@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202603161318">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>The Method | FORM</title>
+<meta name="description" content="How FORM organizes training through repeatable structure, restraint, and consistent work.">
+<link rel="canonical" href="https://speedandform.com/the-method">
+<meta property="og:title" content="The Method | FORM">
+<meta property="og:description" content="How FORM organizes training through repeatable structure, restraint, and consistent work.">
+<meta property="og:url" content="https://speedandform.com/the-method">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://speedandform.com/og/default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://speedandform.com/og/default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:site_name" content="FORM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Method | FORM">
+<meta name="twitter:description" content="How FORM organizes training through repeatable structure, restraint, and consistent work.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --line:#d8d2c8; --line-l:#e8e3dc; }
+body {
+  background: var(--cream); color: var(--ink);
+  font-family: 'Jost', sans-serif; font-weight: 300;
+  font-kerning: normal; font-feature-settings: "kern";
+  padding: 0 0 120px;
+  overflow-y: auto; -webkit-overflow-scrolling: touch;
+}
+
+.nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+
+.content { max-width: 560px; margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
+
+.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 42px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 14px; }
+.page-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; display: block; margin-bottom: 16px; }
+.page-def { font-size: 13px; color: var(--ink-l); line-height: 1.65; letter-spacing: 0.02em; margin-bottom: 32px; }
+
+/* TABS */
+.tabs { display: flex; border-bottom: 1px solid rgba(0,0,0,0.08); margin-bottom: 52px; }
+.tab {
+  font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--ink-f); padding: 0 0 14px; margin-right: 36px;
+  cursor: pointer; position: relative;
+  font-family: 'Jost', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.tab::after {
+  content: ''; position: absolute; bottom: -1px; left: 0; right: 0;
+  height: 1px; background: var(--ink);
+  transform: scaleX(0); transition: transform 0.2s ease;
+}
+.tab { }
+.tab.active { color: var(--ink); }
+.tab.active::after { transform: scaleX(1); }
+
+/* PANELS */
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* SECTION HEAD */
+.section-label { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-f); opacity: 0.65; display: block; margin-bottom: 8px; }
+.method-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: 26px; color: var(--ink); letter-spacing: 0.03em; margin-bottom: 28px; display: block; line-height: 1.2; }
+
+/* DETAIL ROWS */
+.detail-list { margin-top: 0; }
+.detail-row { padding: 16px 0; border-top: 1px solid rgba(0,0,0,0.08); }
+.detail-row:last-child { border-bottom: none; }
+.detail-key { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-f); opacity: 0.65; display: block; margin-bottom: 6px; }
+.detail-val { font-size: 13px; color: var(--ink-l); line-height: 1.68; letter-spacing: 0.02em; }
+.detail-val strong { font-weight: 500; color: var(--ink); }
+
+/* CLOSING */
+.closing-wrap { margin-top: 36px; padding: 0 0 44px; border-bottom: 1px solid rgba(0,0,0,0.08); text-align: center; }
+.closing { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: 21px; color: var(--ink-l); opacity: 0.75; letter-spacing: 0.04em; line-height: 1.9; display: block; }
+
+/* WEEKLY */
+.weekly-intro { font-size: 13px; color: var(--ink-l); line-height: 1.68; letter-spacing: 0.02em; margin-bottom: 32px; }
+.week-row { display: flex; gap: 20px; padding: 16px 0; border-top: 1px solid var(--line-l); align-items: baseline; }
+.week-row:last-of-type { border-bottom: 1px solid var(--line-l); }
+.week-day { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); width: 80px; flex-shrink: 0; padding-top: 1px; }
+.week-val { font-size: 13px; color: var(--ink-l); line-height: 1.65; letter-spacing: 0.02em; }
+.week-val a { color: var(--ink-f); text-decoration: none; }
+.week-row.session .week-day { color: var(--ink); }
+.week-row.session .week-val { color: var(--ink); }
+.weekly-note { padding-bottom: 52px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--ink-f); line-height: 1.7; letter-spacing: 0.02em; margin-top: 40px; }
+
+@media (max-width: 480px) {
+  .nav { padding-left: 24px; padding-right: 24px; }
+  .content { padding-left: 24px; padding-right: 24px; border-left: none; }
+  .page-title { font-size: 34px; }
+  .tab { margin-right: 20px; letter-spacing: 0.2em; }
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a class="nav-home" href="/">FORM</a>
+  <span class="nav-label">The Method</span>
+</div>
+
+<div class="content">
+  <h1 class="page-title">The Method</h1>
+  <span class="page-sub">How the practice is organized.</span>
+  <p class="page-def">The Method describes how FORM organizes training through repeatable structure, restraint, and consistent work.</p>
+
+  <div class="tabs">
+    <span class="tab active" data-panel="threshold">Threshold</span>
+    <span class="tab" data-panel="longrun">Long Run</span>
+    <span class="tab" data-panel="weekly">Weekly</span>
+  </div>
+
+  <!-- THRESHOLD -->
+  <div class="panel active" id="panel-threshold">
+    <span class="section-label">Threshold Session</span>
+    <span class="method-title">Tuesday · Flamingo Park Track</span>
+    <div class="detail-list">
+      <div class="detail-row">
+        <span class="detail-key">Arrive</span>
+        <span class="detail-val">5:50 AM · Flamingo Park Track. Warmup is part of the session.</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">Warmup</span>
+        <span class="detail-val">20 minutes easy. Build gradually. Finish with 4–6 strides with full recovery.</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">Threshold effort</span>
+        <span class="detail-val">The effort you could hold for about 60 minutes in a race. Strong but controlled. Breathing elevated but stable. Speech remains possible.</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">During reps</span>
+        <span class="detail-val">Settle into rhythm in the first 90 seconds. Do not force pace early. Quiet feet. Low arms. Shoulders down. The final rep should feel organized in the same way as the first.</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">Between reps</span>
+        <span class="detail-val">Keep moving. Slow enough to reset breathing, fast enough to preserve rhythm. This is not rest — it is active recovery.</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">Running with others</span>
+        <span class="detail-val">Run your effort, not theirs. If someone goes ahead, let them go. The work is individual, done in parallel.</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">Finish</span>
+        <span class="detail-val">Finish controlled. <strong>Leave something unused.</strong> Cool down easily for about 10 minutes.</span>
+      </div>
+    </div>
+    <div class="closing-wrap">
+      <span class="closing">The session is a rehearsal.<br>Not a race.</span>
+    </div>
+  </div>
+
+  <!-- LONG RUN -->
+  <div class="panel" id="panel-longrun">
+    <span class="section-label">Long Run Session</span>
+    <span class="method-title">Saturday · Hideout, Edgewater</span>
+    <div class="detail-list">
+      <div class="detail-row">
+        <span class="detail-key">Arrive</span>
+        <span class="detail-val">5:30 AM · Hideout, Edgewater.</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">Early miles</span>
+        <span class="detail-val">Truly easy. Conversation pace. Time on feet is the point.</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">Later miles</span>
+        <span class="detail-val">Let pace rise as the body warms. Steady, not forced. Structure matters more than how it felt.</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">Form cues</span>
+        <span class="detail-val">Relax the shoulders. Arms low and easy. Feet land quietly under the hips. As fatigue appears, release unnecessary tension.</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">Finish</span>
+        <span class="detail-val">You should finish knowing you could keep going. If you finish depleted, you ran too hard.</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">After</span>
+        <span class="detail-val">Return to Hideout. Recovery begins here.</span>
+      </div>
+    </div>
+    <div class="closing-wrap">
+      <span class="closing">Finish organized.<br>Not depleted.</span>
+    </div>
+  </div>
+
+  <!-- WEEKLY -->
+  <div class="panel" id="panel-weekly">
+    <span class="section-label">Weekly Practice</span>
+    <span class="method-title">How the practice fits together</span>
+    <p class="weekly-intro">Two group sessions anchor the week. Everything else supports them.</p>
+    <div class="detail-list">
+      <div class="week-row">
+        <span class="week-day">Monday</span>
+        <span class="week-val">Cross training. Core, glutes, hips. Structural support.</span>
+      </div>
+      <div class="week-row session">
+        <span class="week-day">Tuesday</span>
+        <span class="week-val">Threshold. <a href="/threshold">Flamingo Park Track · 5:50 AM →</a></span>
+      </div>
+      <div class="week-row">
+        <span class="week-day">Wednesday</span>
+        <span class="week-val">Easy run. Conversation pace.</span>
+      </div>
+      <div class="week-row">
+        <span class="week-day">Thursday</span>
+        <span class="week-val">Easy run. Optional strides if the legs feel ready.</span>
+      </div>
+      <div class="week-row">
+        <span class="week-day">Friday</span>
+        <span class="week-val">Easy run. Short and quiet. Prepare for Saturday.</span>
+      </div>
+      <div class="week-row session">
+        <span class="week-day">Saturday</span>
+        <span class="week-val">Long run. <a href="/long-run">Hideout, Edgewater · 5:30 AM →</a></span>
+      </div>
+      <div class="week-row">
+        <span class="week-day">Sunday</span>
+        <span class="week-val">Easy or rest. Recovery completes the week.</span>
+      </div>
+    </div>
+    <p class="weekly-note">Most athletes run 4–6 days per week. Easy days stay easy. The rhythm holds.</p>
+    <div class="week-row" style="margin-top: 32px; border-top: 1px solid var(--line-l);">
+      <span class="week-day" style="color: var(--ink-f);">Strength</span>
+      <span class="week-val"><a href="/strength" style="color: var(--ink-f); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px;">Structural Work →</a>  <a href="/mobility" style="color: var(--ink-f); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px;">Mobility →</a><br><span style="font-size: 10px; color: var(--ink-f); opacity: 0.7;">After easy runs · not before threshold or long run</span></span>
+    </div>
+
+    <!-- SLEEP SECTION -->
+    <div id="sleep" style="margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--line-l); scroll-margin-top: 24px;">
+      <span class="section-label" style="margin-bottom: 16px;">Sleep</span>
+      <p style="font-size: 13px; color: var(--ink-l); line-height: 1.68; letter-spacing: 0.02em; margin-bottom: 24px;">Sleep is part of the session. Consistency matters more than hero sleep. The body adapts well to repeated sleep and wake timing — irregular bedtimes tend to compromise threshold and long run more than total duration alone.</p>
+      <div class="detail-list" style="margin-bottom: 24px;">
+        <div class="week-row">
+          <span class="week-day">Deep sleep</span>
+          <span class="week-val">Most associated with physical restoration. Tissue repair. Heavy recovery.</span>
+        </div>
+        <div class="week-row">
+          <span class="week-day">REM sleep</span>
+          <span class="week-val">Nervous system processing, rhythm integration, mood regulation.</span>
+        </div>
+        <div class="week-row">
+          <span class="week-day">Total duration</span>
+          <span class="week-val">The main foundation. Most recovery benefit begins here.</span>
+        </div>
+      </div>
+      <p style="font-size: 13px; color: var(--ink-l); line-height: 1.68; letter-spacing: 0.02em; margin-bottom: 16px;">Poor sleep affects threshold differently than it affects easy running. Threshold asks for coordination, restraint, and inhabited effort — not just energy. A compromised night usually shows in timing and patience before it shows in breathing.</p>
+      <p style="font-size: 13px; color: var(--ink-l); line-height: 1.68; letter-spacing: 0.02em; margin-bottom: 20px;">If sleep was compromised: adjust the session before the session adjusts you. Shorten, reduce, or convert. A controlled easy run protects the week. A broken threshold doesn't.</p>
+      <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: var(--ink-f); line-height: 1.6; letter-spacing: 0.02em;">Use tracking directionally, not as truth. What matters most is total sleep, consistency, and whether rhythm arrives at warm-up.</p>
+    </div>
+  </div>
+
+  <div style="padding: 24px 0; margin-top: 32px; border-top: 1px solid var(--line-l);">
+    <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px;">Mechanical Foundation</span>
+    <p style="font-size: 13px; color: var(--ink-l); line-height: 1.7; letter-spacing: 0.02em;">Before intensity, establish mechanics. The <a href="/ghost" style="color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px;">Ghost Protocol</a> is the mechanical layer this method sits on top of.</p>
+  </div>
+
+  <div style="padding: 20px 0; display: flex; gap: 20px; flex-wrap: wrap; border-top: 1px solid var(--line-l);">
+    <a href="/practice" style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-l); text-decoration: none; font-family: 'Jost', sans-serif;">Practice</a>
+    <a href="/threshold" style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: 'Jost', sans-serif;">Threshold</a>
+    <a href="/long-run" style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: 'Jost', sans-serif;">Long Run</a>
+    <a href="/ghost" style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: 'Jost', sans-serif;">Ghost Protocol</a>
+    <a href="/library" style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: 'Jost', sans-serif;">Library</a>
+  <a href="/training-arc" style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: 'Jost', sans-serif;">Training Arc</a>
+  </div>
+
+</div>
+
+<script>
+const tabs   = document.querySelectorAll('.tab');
+const panels = document.querySelectorAll('.panel');
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
+    window.scrollTo(0, 0);
+  });
+});
+
+// Auto-open tab based on day — Tuesday → Threshold, Saturday → Long Run
+const day = new Date().getDay();
+if (day === 2) {
+  document.querySelector('[data-panel="threshold"]').click();
+} else if (day === 6) {
+  document.querySelector('[data-panel="longrun"]').click();
+}
+</script>
+
+</body>
+</html>

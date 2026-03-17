@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202603161318">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Training Arc | FORM</title>
+<meta name="description" content="How the practice evolves over time. A long-term map of phases, structure, and development in FORM training.">
+<link rel="canonical" href="https://speedandform.com/training-arc">
+<meta property="og:title" content="Training Arc | FORM">
+<meta property="og:description" content="How the practice evolves over time. A long-term map of phases, structure, and development in FORM training.">
+<meta property="og:url" content="https://speedandform.com/training-arc">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://speedandform.com/og/default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="FORM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Training Arc | FORM">
+<meta name="twitter:description" content="How the practice evolves over time. A long-term map of phases, structure, and development in FORM training.">
+<meta name="twitter:image" content="https://speedandform.com/og/default.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --line:#d8d2c8; --line-l:#e8e3dc; }
+html, body { height: auto !important; overflow: visible !important; }
+body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 100px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+.content { max-width: 560px; margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
+.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 52px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 6px; }
+.page-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; display: block; margin-bottom: 40px; }
+.intro { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.75; margin-bottom: 40px; }
+.intro p + p { margin-top: 10px; }
+
+/* arc map */
+.arc-map { margin: 0 0 48px; position: relative; }
+.arc-stage { display: flex; gap: 0; align-items: stretch; padding: 28px 0; border-top: 1px solid var(--line-l); position: relative; }
+.arc-stage:last-child { border-bottom: 1px solid var(--line-l); }
+.arc-stage.current { background: rgba(42,38,32,0.02); margin: 0 -8px; padding-left: 8px; padding-right: 8px; border-radius: 2px; }
+.arc-num { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--line); min-width: 28px; padding-top: 3px; flex-shrink: 0; }
+.arc-stage.current .arc-num { color: var(--ink-f); }
+.arc-body { flex: 1; }
+.arc-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; letter-spacing: 0.04em; color: var(--ink-f); line-height: 1; margin-bottom: 8px; display: block; }
+.arc-stage.current .arc-name { color: var(--ink); }
+.arc-stage.past .arc-name { color: var(--line); }
+.arc-desc { font-size: 13px; color: var(--ink-f); letter-spacing: 0.02em; line-height: 1.65; }
+.arc-stage.current .arc-desc { color: var(--ink-l); }
+.arc-stage.past .arc-desc { color: var(--line); }
+.arc-badge { font-size: 7px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); align-self: flex-start; padding-top: 5px; min-width: 52px; text-align: right; flex-shrink: 0; }
+.arc-stage.current .arc-badge { color: var(--ink-l); }
+
+/* connector line between stages */
+.arc-connector { width: 1px; height: 20px; background: var(--line-l); margin-left: 13px; }
+
+/* what changes section */
+.section-rule { width: 100%; height: 1px; background: var(--line-l); display: block; margin: 40px 0 32px; }
+.section-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
+.section-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 28px; letter-spacing: 0.04em; color: var(--ink); line-height: 1.1; margin-bottom: 16px; display: block; }
+.section-body { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.75; }
+.section-body p + p { margin-top: 10px; }
+.section-body a { color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); }
+
+.change-row { padding: 16px 0; border-bottom: 1px solid var(--line-l); display: grid; grid-template-columns: 130px 1fr; gap: 0; align-items: start; }
+.change-row:first-child { border-top: 1px solid var(--line-l); }
+.change-label { font-size: 8px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-l); padding-top: 3px; }
+.change-body { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.6; }
+
+.closing-rule { width: 100%; height: 1px; background: var(--line-l); display: block; margin: 52px 0 28px; }
+.closing-line { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-l); letter-spacing: 0.02em; display: block; }
+.footer-links { margin-top: 52px; padding-top: 24px; border-top: 1px solid var(--line-l); display: flex; gap: 28px; flex-wrap: wrap; }
+.footer-link { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link:hover { color: var(--ink-l); }
+@media (max-width: 480px) {
+  .nav { padding-left: 24px; padding-right: 24px; }
+  .content { padding-left: 24px; padding-right: 24px; border-left: none; }
+  .page-title { font-size: 38px; }
+  .change-row { grid-template-columns: 100px 1fr; }
+}
+.page-breadcrumb { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 12px; }
+
+.arc-signal { font-size: 11px; color: var(--ink-f); letter-spacing: 0.02em; line-height: 1.6; font-style: italic; display: block; margin-top: 4px; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="nav">
+  <a class="nav-home" href="/">FORM</a>
+  <span class="nav-label">Training Arc</span>
+</div>
+<div class="content">
+
+  <span class="page-breadcrumb">System · Long-Term Development</span>
+  <h1 class="page-title">Training Arc</h1>
+  <span class="page-sub">Development moves in stages, not straight lines.</span>
+
+  <div class="intro">
+    <p>Most runners experience training as a series of individual workouts. A good session, a bad session, a week that felt productive, a week that didn't. The arc view is different — it shows development as a long sequence of stages, each one building on the last. No stage can be skipped. The sequence is the point.</p>
+    <p>The most useful thing this map can do is tell you where you are. A runner who knows they are in the Stewardship stage stops panicking about pace. A runner who can see that Density comes next understands why the current work feels unremarkable — it is supposed to. The arc makes the present moment legible instead of alarming.</p>
+    <p>The arc below describes how a runner develops inside the FORM system over months and years. Current position is marked. The stages before it were necessary to arrive here. The stages ahead require what the current stage is building.</p>
+  </div>
+
+  <!-- ARC MAP -->
+  <div class="arc-map">
+
+    <div class="arc-stage past">
+      <span class="arc-num">01</span>
+      <div class="arc-body">
+        <span class="arc-name">Foundation</span>
+        <span class="arc-signal">You might be here if: runs feel inconsistent week to week, or easy running still feels like effort.</span>
+        <span class="arc-desc">Consistent weekly structure established. Easy running is actually easy. The body shows up and moves without resistance. No injury pattern. Rhythm begins.</span>
+      </div>
+      <span class="arc-badge">Completed</span>
+    </div>
+
+    <div class="arc-connector"></div>
+
+    <div class="arc-stage past">
+      <span class="arc-num">02</span>
+      <div class="arc-body">
+        <span class="arc-name">Organization</span>
+        <span class="arc-signal">You might be here if: the week finally has a predictable rhythm and you stop deciding whether to run.</span>
+        <span class="arc-desc">Two anchor sessions fixed in the week. Tuesday threshold. Saturday long run. Everything else supports them. The week has a shape. The runner stops improvising.</span>
+      </div>
+      <span class="arc-badge">Completed</span>
+    </div>
+
+    <div class="arc-connector"></div>
+
+    <div class="arc-stage current">
+      <span class="arc-num">03</span>
+      <div class="arc-body">
+        <span class="arc-name">Stewardship</span>
+        <span class="arc-signal">You might be here if: sessions end feeling controlled rather than depleted, and the schedule feels like the work itself.</span>
+        <span class="arc-desc">The runner stops chasing pace and starts managing effort. Sessions end correctly — not depleted, not heroic. The system is recognized as the work itself, not the delivery mechanism for it. Consistency compounds quietly.</span>
+      </div>
+      <span class="arc-badge">Current</span>
+    </div>
+
+    <div class="arc-connector"></div>
+
+    <div class="arc-stage">
+      <span class="arc-num">04</span>
+      <div class="arc-body">
+        <span class="arc-name">Density</span>
+        <span class="arc-signal">You might be here if: easy runs feel genuinely easy even at higher mileage, and hard sessions absorb faster than before.</span>
+        <span class="arc-desc">The same structure holds more work without strain. Easy runs feel genuinely easy even at higher mileage. Hard sessions recover faster. The base is wide enough that quality sessions land on stable ground.</span>
+      </div>
+      <span class="arc-badge"></span>
+    </div>
+
+    <div class="arc-connector"></div>
+
+    <div class="arc-stage">
+      <span class="arc-num">05</span>
+      <div class="arc-body">
+        <span class="arc-name">Expression</span>
+        <span class="arc-signal">You might be here if: pace appears without being sought, and races feel like a continuation of training rather than a test.</span>
+        <span class="arc-desc">Speed emerges from the base. Not trained directly — it appears once organization, stewardship, and density have accumulated enough depth. Races feel like natural expression of the training, not a test of it.</span>
+      </div>
+      <span class="arc-badge"></span>
+    </div>
+
+  </div>
+
+  <span class="section-rule"></span>
+  <span class="section-label">How the Arc Works</span>
+  <span class="section-title">What changes at each stage</span>
+
+  <div>
+    <div class="change-row">
+      <span class="change-label">What stays the same</span>
+      <span class="change-body">The structure. Tuesday threshold. Saturday long run. Easy days easy. The week does not change. The athlete inside the week changes.</span>
+    </div>
+    <div class="change-row">
+      <span class="change-label">What changes</span>
+      <span class="change-body">The quality of execution. How easily hard sessions are absorbed. How much capacity is available at the end of a long week. How quickly the body returns to baseline after stress.</span>
+    </div>
+    <div class="change-row">
+      <span class="change-label">How long it takes</span>
+      <span class="change-body">Foundation to Organization: weeks to months. Organization to Stewardship: months. Stewardship to Density: a full training year is common. Density to Expression: it appears — it is not pursued.</span>
+    </div>
+    <div class="change-row">
+      <span class="change-label">What interrupts it</span>
+      <span class="change-body">Illness, injury, inconsistency, and skipping stages. Trying to train at Density before Stewardship is stable is the most common form of self-interruption.</span>
+    </div>
+  </div>
+
+  <span class="section-rule"></span>
+  <span class="section-label">In the moment</span>
+  <span class="section-title">Reading the week</span>
+
+  <div class="section-body">
+    <p>The arc tells you where you are over months. The week tells you something different — whether the system is absorbing the work or resisting it. These signals are more useful than any pace or metric.</p>
+  </div>
+
+  <div class="change-list">
+    <div class="change-row">
+      <span class="change-label">Legs feel heavy early in the week</span>
+      <span class="change-body">Normal after a productive Saturday. The body is absorbing the long run. Keep Tuesday easy or reduce it slightly. The weight usually clears by Wednesday. This is recovery, not regression.</span>
+    </div>
+    <div class="change-row">
+      <span class="change-label">Hard sessions feel harder than they should</span>
+      <span class="change-body">Either the easy days were not easy enough, or the load increased too quickly. Audit the week before pushing through. One honest easy week restores more than grinding through fatigue.</span>
+    </div>
+    <div class="change-row">
+      <span class="change-label">Pace feels slow but effort feels right</span>
+      <span class="change-body">Trust the effort. Heat, humidity, accumulated fatigue, and sleep all affect pace without affecting the training value of the session. FORM runs by effort, not by number.</span>
+    </div>
+    <div class="change-row">
+      <span class="change-label">Everything feels easy suddenly</span>
+      <span class="change-body">The base is consolidating. This is not the moment to add load — it is the signal that the current structure is becoming stable. Stay in it for another cycle before adding volume or intensity.</span>
+    </div>
+    <div class="change-row">
+      <span class="change-label">Form collapses mid-session</span>
+      <span class="change-body">End the session or reduce to easy effort. A session run with collapsed mechanics does not count as training — it counts as accumulated stress without adaptation. The <a href="/ghost" style="color:var(--ink-l);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:1px;">Ghost Protocol</a> exists for exactly this situation.</span>
+    </div>
+  </div>
+
+  <span class="section-rule"></span>
+  <span class="section-label">The Governing Principle</span>
+  <span class="section-title">Speed is emergent</span>
+
+  <div class="section-body">
+    <p>Speed is not trained directly. It appears when the base is deep enough and the noise is low enough. Chasing it before the base is ready produces a simulation of speed — effort that looks fast but costs too much and disappears under load.</p>
+    <p>The arc is not a shortcut. It is the actual path. Stages that feel slow to pass are not wasted time — they are the time the system needs to become durable enough for what comes next.</p>
+    <p>See <a href="/cycles">current cycle</a> for where the group is in the seasonal arc. See <a href="/training-principles">training principles</a> for the governing ideas behind this structure.</p>
+  </div>
+
+  <span class="closing-rule"></span>
+  <span class="closing-line">The sequence is the work.</span>
+
+  <div class="footer-links">
+    <a class="footer-link" href="/practice">Practice →</a>
+    <a class="footer-link" href="/cycles">Cycles</a>
+    <a class="footer-link" href="/race-prep">Race Prep</a>
+    <a class="footer-link" href="/training-principles">Principles</a>
+    <a class="footer-link" href="/return">Return</a>
+  </div>
+
+</div>
+</body>
+</html>

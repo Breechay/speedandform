@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202603161318">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Practice | FORM</title>
+<meta name="description" content="The FORM training board. Weekly schedule, current sessions, and the structure of the practice.">
+<link rel="canonical" href="https://speedandform.com/practice">
+<meta property="og:title" content="Practice | FORM">
+<meta property="og:description" content="The FORM training board. Weekly schedule, current sessions, and the structure of the practice.">
+<meta property="og:url" content="https://speedandform.com/practice">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://speedandform.com/og/default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://speedandform.com/og/default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:site_name" content="FORM">
+<meta name="twitter:title" content="Practice | FORM">
+<meta name="twitter:description" content="The FORM training board. Weekly schedule, current sessions, and the structure of the practice.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --accent:#c4593a; --line:#d8d2c8; --line-l:#e8e3dc; }
+html, body { height: auto !important; overflow: visible !important; }
+body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 100px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
+/* NAV */
+.nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+
+/* CONTENT */
+.content { max-width: 560px; margin: 0 auto; padding: 52px 32px 0; border-left: 1px solid var(--line-l); }
+
+/* BOARD HEADER */
+.board-header { margin-bottom: 40px; }
+.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 42px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 6px; }
+.page-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; display: block; margin-bottom: 10px; }
+.board-week { font-size: 9px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
+.board-anchor { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 19px; font-weight: 300; color: var(--ink-l); letter-spacing: 0.02em; display: block; }
+
+/* DAY ROWS */
+.week-board { border-top: 1px solid var(--line-l); }
+
+.day-row {
+  display: flex; gap: 0;
+  border-bottom: 1px solid var(--line-l);
+  text-decoration: none;
+  padding: 18px 0;
+  position: relative;
+}
+.day-row.today { background: none; }
+.day-row.today::before {
+  content: '';
+  position: absolute; left: -16px; top: 0; bottom: 0; width: 2px;
+  background: var(--ink-l);
+}
+
+.day-col { width: 76px; flex-shrink: 0; padding-top: 3px; }
+.day-name { font-size: 8px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-f); display: block; }
+.day-today-label { font-size: 7px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-l); display: none; margin-top: 5px; }
+.day-row.today .day-today-label { display: block; }
+
+.day-sessions { flex: 1; }
+.session-line {
+  display: block; font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.55;
+}
+.session-line.primary {
+  font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300;
+  letter-spacing: 0.03em; color: var(--ink); line-height: 1.1; margin-bottom: 4px;
+}
+.session-line.detail { font-size: 11px; color: var(--ink-f); letter-spacing: 0.04em; line-height: 1.65; }
+.session-line.sub { font-size: 11px; color: var(--ink-f); letter-spacing: 0.03em; }
+
+/* Anchor sessions — Threshold and Long Run */
+.day-row.anchor { padding-top: 22px; padding-bottom: 22px; }
+.day-row.anchor .session-line.primary {
+  font-size: 23px;
+  color: var(--ink);
+}
+
+/* Supporting days — quieter */
+.day-row.support .session-line.primary { color: var(--ink-l); }
+.day-row.support .day-name { opacity: 0.75; }
+
+/* Rest day */
+.day-row.rest .session-line { color: var(--ink-f); opacity: 0.55; }
+
+/* Today highlight — stronger text */
+.day-row.today .session-line.primary { color: var(--ink); }
+.day-row.today .day-name { color: var(--ink-l); }
+
+/* SESSION LINKS — rows that are tappable */
+.day-row[href] { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+
+/* PHASE BAR — above the week board */
+.phase-bar { margin-bottom: 32px; padding: 16px 0; border-top: 1px solid var(--line-l); display: flex; gap: 0; align-items: baseline; flex-wrap: wrap; }
+.phase-bar-col { flex: 1; min-width: 120px; }
+.phase-bar-col.execution { flex: 2; border-top: 1px solid var(--line-l); margin-top: 12px; padding-top: 12px; width: 100%; flex-basis: 100%; border-left: none !important; padding-left: 0 !important; }
+.phase-bar-label { font-size: 7px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 5px; }
+.phase-bar-value { font-size: 12px; color: var(--ink-l); letter-spacing: 0.04em; }
+.phase-bar-col + .phase-bar-col { border-left: 1px solid var(--line-l); padding-left: 20px; }
+
+/* PHASE LINE (bottom stamp) */
+.phase-line { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line-l); font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); opacity: 0.55; }
+
+@media (max-width: 480px) {
+  .nav { padding-left: 24px; padding-right: 24px; }
+  .content { padding-left: 24px; padding-right: 24px; border-left: none; }
+  .page-title { font-size: 34px; }
+  .day-row.today::before { left: -16px; }
+  .day-col { width: 80px; }
+  .day-name { letter-spacing: 0.14em; }
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a class="nav-home" href="/">FORM</a>
+  <span class="nav-label">Practice</span>
+</div>
+
+<div class="content">
+
+  <div class="board-header">
+    <h1 class="page-title">Practice</h1>
+    <span class="page-sub">The week, organized.</span>
+    <span class="board-week" id="board-week"></span>
+    <span class="board-anchor" id="board-anchor">Stay in the room</span>
+  </div>
+
+  <!-- PHASE BAR -->
+  <div class="phase-bar">
+    <div class="phase-bar-col">
+      <span class="phase-bar-label">Phase</span>
+      <span class="phase-bar-value" id="phase-val">Compression</span>
+    </div>
+    <div class="phase-bar-col">
+      <span class="phase-bar-label">Focus</span>
+      <span class="phase-bar-value" id="focus-val">Durability · Rhythm · Economy</span>
+    </div>
+    <div class="phase-bar-col execution">
+      <span class="phase-bar-label">Execution</span>
+      <span class="phase-bar-value" id="execution-val">Neutral finishes · Leave 15% unused</span>
+    </div>
+  </div>
+
+  <div class="week-board" id="week-board">
+    <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; padding: 14px 0 10px; border-bottom: 1px solid var(--line-l); margin-bottom: 0;">Current Week</span>
+
+    <!-- MONDAY -->
+    <a class="day-row support" href="/strength-routine" id="day-1">
+      <div class="day-col">
+        <span class="day-name">Monday</span>
+        <span class="day-today-label">Today</span>
+      </div>
+      <div class="day-sessions">
+        <span class="session-line primary">Z2 cross-train or rest</span>
+        <span class="session-line detail">+ structural work</span>
+      </div>
+    </a>
+
+    <!-- TUESDAY -->
+    <a class="day-row anchor" href="/threshold" id="day-2">
+      <div class="day-col">
+        <span class="day-name">Tuesday</span>
+        <span class="day-today-label">Today</span>
+      </div>
+      <div class="day-sessions">
+        <span class="session-line primary">Threshold</span>
+        <span class="session-line detail" id="threshold-session">5:50 AM · Flamingo Park</span>
+      </div>
+    </a>
+
+    <!-- WEDNESDAY -->
+    <a class="day-row support" href="/easy-run" id="day-3">
+      <div class="day-col">
+        <span class="day-name">Wednesday</span>
+        <span class="day-today-label">Today</span>
+      </div>
+      <div class="day-sessions">
+        <span class="session-line primary">Easy Run</span>
+        <span class="session-line detail">45 min · easy pace throughout</span>
+      </div>
+    </a>
+
+    <!-- THURSDAY -->
+    <a class="day-row support" href="/easy-run" id="day-4">
+      <div class="day-col">
+        <span class="day-name">Thursday</span>
+        <span class="day-today-label">Today</span>
+      </div>
+      <div class="day-sessions">
+        <span class="session-line primary">Easy + Touch</span>
+        <span class="session-line detail">45 min · 6 × 200 relaxed at end</span>
+      </div>
+    </a>
+
+    <!-- FRIDAY -->
+    <a class="day-row support" href="/easy-run" id="day-5">
+      <div class="day-col">
+        <span class="day-name">Friday</span>
+        <span class="day-today-label">Today</span>
+      </div>
+      <div class="day-sessions">
+        <span class="session-line primary">Flush</span>
+        <span class="session-line detail">45 min · easy</span>
+        <span class="session-line sub">prepare for Saturday</span>
+      </div>
+    </a>
+
+    <!-- SATURDAY -->
+    <a class="day-row anchor" href="/long-run" id="day-6">
+      <div class="day-col">
+        <span class="day-name">Saturday</span>
+        <span class="day-today-label">Today</span>
+      </div>
+      <div class="day-sessions">
+        <span class="session-line primary">Long Run</span>
+        <span class="session-line detail" id="longrun-session">5:30 AM · Hideout · 95 min</span>
+        <span class="session-line sub" id="longrun-sub">First 50 easy · last 45 steady</span>
+      </div>
+    </a>
+
+    <!-- SUNDAY -->
+    <a class="day-row support" href="/easy-run" id="day-7">
+      <div class="day-col">
+        <span class="day-name">Sunday</span>
+        <span class="day-today-label">Today</span>
+      </div>
+      <div class="day-sessions">
+        <span class="session-line primary">Easy</span>
+        <span class="session-line detail">40 min · absorb the week</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="phase-line">FORM · Spring Cycle 2026 · Compression</div>
+
+</div>
+
+<script>
+// ── SPRING CYCLE 2026 SCHEDULE ──
+// Derived from plan.html. Add new cycles here when the plan changes.
+const SCHEDULE = [
+  // Threshold sessions (Tuesdays)
+  { type:'threshold', date:'2026-02-17', desc:'3 × 10 min', sub:'2 min float jog' },
+  { type:'threshold', date:'2026-02-24', desc:'2 × 14 min', sub:'3 min float' },
+  { type:'threshold', date:'2026-03-03', desc:'20 + 8 continuous', sub:'3 min float between. No push in last 8.' },
+  { type:'threshold', date:'2026-03-10', desc:'3 × 12 min', sub:'Shorter floats (90 sec)' },
+  { type:'threshold', date:'2026-03-17', desc:'2 × 15 min', sub:'Last 5 min of each rep slightly tighter rhythm.' },
+  { type:'threshold', date:'2026-03-24', desc:'20 + 12 continuous', sub:'3 min float between' },
+  { type:'threshold', date:'2026-03-31', desc:'3 × 8 min', sub:'90 sec float' },
+  { type:'threshold', date:'2026-04-07', desc:'2 × 8 min', sub:'90 sec float' },
+  // Long runs (Saturdays)
+  { type:'longrun', date:'2026-02-21', desc:'95 min', sub:'50 easy · 45 steady' },
+  { type:'longrun', date:'2026-02-28', desc:'95 min', sub:'50 easy · 45 steady' },
+  { type:'longrun', date:'2026-03-07', desc:'100 min', sub:'50 easy · 50 steady' },
+  { type:'longrun', date:'2026-03-14', desc:'90 min', sub:'60 easy · 30 steady' },
+  { type:'longrun', date:'2026-03-21', desc:'95 min', sub:'45 easy · 40 steady · 10 controlled finish' },
+  { type:'longrun', date:'2026-03-28', desc:'90 min', sub:'40 easy · 40 steady · 10 high steady' },
+  { type:'longrun', date:'2026-04-04', desc:'75 min', sub:'40 easy · 20 steady · 10 controlled' },
+  { type:'longrun', date:'2026-04-11', desc:'Off or shakeout + strides', sub:'' },
+];
+
+// ── HELPERS ──
+function getMonday(d) {
+  const dt = new Date(d);
+  const dow = dt.getDay();
+  dt.setDate(dt.getDate() + (dow === 0 ? -6 : 1 - dow));
+  dt.setHours(0,0,0,0);
+  return dt;
+}
+function toYMD(d) {
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
+// ── MARK TODAY ──
+const dayMap = { 0:7, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6 };
+const todayDate = new Date();
+const todayRow = document.getElementById('day-' + dayMap[todayDate.getDay()]);
+if (todayRow) todayRow.classList.add('today');
+
+// ── WEEK LABEL ──
+(function() {
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const mon = getMonday(new Date());
+  const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
+  const monStr = MONTHS[mon.getMonth()] + ' ' + mon.getDate();
+  const sunStr = (sun.getMonth() !== mon.getMonth() ? MONTHS[sun.getMonth()] + ' ' : '') + sun.getDate();
+  document.getElementById('board-week').textContent = monStr + ' – ' + sunStr;
+})();
+
+// ── WEEK FIELD LINE ──
+// One behavioral line per week. No period. Not motivational — instructional.
+// Keyed to the Monday date of each week in the cycle.
+// Falls back to rotating from the full library for weeks outside the cycle.
+(function() {
+  const CYCLE_LINES = {
+    '2026-02-16': 'Stay with the work',        // W1 · Organization · S01
+    '2026-02-23': 'Let the rhythm settle',      // W2 · Organization · S02
+    '2026-03-02': 'Hold the shape',             // W3 · Organization · S03
+    '2026-03-09': 'Stay in the room',           // W4 · Compression · S04  ← current
+    '2026-03-16': 'Let the rhythm hold',        // W5 · Compression · S05
+    '2026-03-23': 'Do not rush the work',       // W6 · Compression · S06
+    '2026-03-30': 'Hold form under load',       // W7 · Compression · S07
+    '2026-04-06': 'Keep the system quiet',      // W8 · Compression · S08
+  };
+
+  const LIBRARY = [
+    'Stay with the work',
+    'Let the rhythm settle',
+    'Hold the shape',
+    'Stay in the room',
+    'Let the rhythm hold',
+    'Do not rush the work',
+    'Hold form under load',
+    'Keep the system quiet',
+    'Work without urgency',
+    'Leave something unused',
+    'Run the effort',
+    'Trust the structure',
+    'Small work compounds',
+    'Let effort rise slowly',
+    'Stay inside the effort',
+    'Control the middle',
+    'Let speed appear',
+    'Hold composure',
+    'Calm work compounds',
+    'Trust the rhythm',
+  ];
+
+  const mon = getMonday(new Date());
+  const monYMD = toYMD(mon);
+  const line = CYCLE_LINES[monYMD] || LIBRARY[Math.floor((mon.getTime() / (7 * 86400000))) % LIBRARY.length];
+  const el = document.getElementById('board-anchor');
+  if (el) el.textContent = line;
+})();
+
+// ── PHASE BAR — auto-update phase, focus, execution per cycle week ──
+(function() {
+  const PHASE_DATA = {
+    '2026-02-16': { phase: 'Organization', focus: 'Structure · Rhythm · Durability',   execution: 'Stay with the work · Build the day quietly' },
+    '2026-02-23': { phase: 'Organization', focus: 'Structure · Rhythm · Durability',   execution: 'Let the rhythm settle · Hold the shape' },
+    '2026-03-02': { phase: 'Organization', focus: 'Structure · Rhythm · Durability',   execution: 'Hold the shape · Small work compounds' },
+    '2026-03-09': { phase: 'Compression',  focus: 'Durability · Rhythm · Economy',     execution: 'Neutral finishes · Leave 15% unused' },
+    '2026-03-16': { phase: 'Compression',  focus: 'Durability · Rhythm · Economy',     execution: 'Run the effort · Finish neutral' },
+    '2026-03-23': { phase: 'Compression',  focus: 'Durability · Rhythm · Economy',     execution: 'Work without urgency · Control the middle' },
+    '2026-03-30': { phase: 'Compression',  focus: 'Durability · Rhythm · Economy',     execution: 'Hold form under load · Stay inside the effort' },
+    '2026-04-06': { phase: 'Compression',  focus: 'Durability · Rhythm · Economy',     execution: 'Keep the system quiet · Leave something unused' },
+  };
+  const mon = getMonday(new Date());
+  const d = PHASE_DATA[toYMD(mon)];
+  if (d) {
+    const p = document.getElementById('phase-val');
+    const f = document.getElementById('focus-val');
+    const e = document.getElementById('execution-val');
+    if (p) p.textContent = d.phase;
+    if (f) f.textContent = d.focus;
+    if (e) e.textContent = d.execution;
+    const pl = document.querySelector('.phase-line');
+    if (pl) pl.textContent = 'FORM · Spring Cycle 2026 · ' + d.phase;
+  }
+})();
+
+// ── AUTO-UPDATE session detail lines for threshold (Tuesday) and long run (Saturday) ──
+// No Supabase update needed — it just works every week.
+(function() {
+  const mon = getMonday(new Date());
+  const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
+  const monYMD = toYMD(mon);
+  const sunYMD = toYMD(sun);
+
+  let threshold = null, longrun = null;
+  for (const s of SCHEDULE) {
+    if (s.date >= monYMD && s.date <= sunYMD) {
+      if (s.type === 'threshold') threshold = s;
+      if (s.type === 'longrun')   longrun   = s;
+    }
+  }
+
+  if (threshold) {
+    document.getElementById('threshold-session').textContent = '5:50 AM · ' + threshold.desc;
+    // If there's a sub-note, show it as a second detail line
+    if (threshold.sub) {
+      const subEl = document.createElement('span');
+      subEl.className = 'session-line sub';
+      subEl.textContent = threshold.sub;
+      document.getElementById('threshold-session').insertAdjacentElement('afterend', subEl);
+    }
+  }
+
+  if (longrun) {
+    document.getElementById('longrun-session').textContent = '5:30 AM · Hideout · ' + longrun.desc;
+    const subEl = document.getElementById('longrun-sub');
+    if (subEl && longrun.sub) subEl.textContent = longrun.sub;
+  }
+})();
+</script>
+
+</body>
+</html>

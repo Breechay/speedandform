@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202603161318">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Not Found | FORM</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --line:#d8d2c8; --line-l:#e8e3dc; }
+html, body { height: auto; overflow: visible; }
+body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 80px; }
+
+.nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+
+.content { max-width: 560px; margin: 0 auto; padding: 80px 32px 0; border-left: 1px solid var(--line-l); }
+
+.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 48px; letter-spacing: 0.04em; color: var(--ink); line-height: 1.1; margin-bottom: 10px; }
+.page-sub { font-size: 13px; color: var(--ink-f); letter-spacing: 0.03em; display: block; margin-bottom: 40px; line-height: 1.6; }
+
+/* SEARCH */
+.search-block { margin-bottom: 40px; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); }
+.search-form { display: flex; align-items: baseline; gap: 0; padding: 14px 0; }
+.search-input {
+  flex: 1; border: none; background: transparent;
+  font-family: 'Cormorant Garamond', serif; font-weight: 300;
+  font-size: 26px; letter-spacing: 0.04em; color: var(--ink);
+  outline: none; padding: 0;
+}
+.search-input::placeholder { color: var(--line); }
+.search-btn {
+  font-size: 8px; font-weight: 500; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--ink-f);
+  background: none; border: none; cursor: pointer;
+  padding: 8px 0 8px 16px; flex-shrink: 0;
+}
+.search-btn:hover { color: var(--ink-l); }
+
+/* LIKELY LOOKING FOR */
+.likely-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 0; }
+
+.likely-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid var(--line-l); text-decoration: none; transition: opacity 0.15s; }
+.likely-row:first-of-type { border-top: 1px solid var(--line-l); margin-top: 16px; }
+.likely-row:hover { opacity: 0.65; }
+.likely-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.03em; color: var(--ink); }
+.likely-desc { font-size: 10px; color: var(--ink-f); letter-spacing: 0.04em; }
+
+.home-link { display: block; margin-top: 36px; font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.home-link:hover { color: var(--ink-l); }
+
+@media (max-width: 480px) {
+  .nav { padding-left: 24px; padding-right: 24px; }
+  .content { padding-left: 24px; padding-right: 24px; border-left: none; padding-top: 60px; }
+  .page-title { font-size: 38px; }
+  .search-input { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a class="nav-home" href="/">FORM</a>
+  <span class="nav-label">404</span>
+</div>
+
+<div class="content">
+
+  <h1 class="page-title">Wrong turn.</h1>
+  <span class="page-sub">The work is still here.</span>
+
+  <div class="search-block">
+    <form class="search-form" action="/search" method="get">
+      <input class="search-input" name="q" type="text" placeholder="threshold, shoes, form…" autocomplete="off" autocorrect="off" spellcheck="false" autofocus>
+      <button class="search-btn" type="submit">Search →</button>
+    </form>
+  </div>
+
+  <span class="likely-label">Start here</span>
+
+  <a class="likely-row" href="/ghost">
+    <span class="likely-name">Ghost Protocol</span>
+    <span class="likely-desc">Six-week mechanics practice</span>
+  </a>
+  <a class="likely-row" href="/the-method">
+    <span class="likely-name">The Method</span>
+    <span class="likely-desc">How the practice is organized</span>
+  </a>
+  <a class="likely-row" href="/training-arc">
+    <span class="likely-name">Training Arc</span>
+    <span class="likely-desc">Where you are in development</span>
+  </a>
+
+  <span class="likely-label" style="margin-top: 32px; display: block;">Sessions</span>
+
+  <a class="likely-row" href="/threshold">
+    <span class="likely-name">Threshold</span>
+    <span class="likely-desc">Tuesday · 5:50 AM</span>
+  </a>
+  <a class="likely-row" href="/long-run">
+    <span class="likely-name">Long Run</span>
+    <span class="likely-desc">Saturday · 5:30 AM</span>
+  </a>
+  <a class="likely-row" href="/easy-run">
+    <span class="likely-name">Easy Run</span>
+    <span class="likely-desc">Builds the aerobic system</span>
+  </a>
+
+  <span class="likely-label" style="margin-top: 32px; display: block;">Reference</span>
+
+  <a class="likely-row" href="/running-form-errors">
+    <span class="likely-name">Running Form Errors</span>
+    <span class="likely-desc">Mechanics field guide</span>
+  </a>
+  <a class="likely-row" href="/troubleshooting">
+    <span class="likely-name">Troubleshooting</span>
+    <span class="likely-desc">Mid-run adjustments</span>
+  </a>
+  <a class="likely-row" href="/pain-map">
+    <span class="likely-name">Pain Map</span>
+    <span class="likely-desc">Common signals &amp; causes</span>
+  </a>
+
+  <a class="home-link" href="/">← Back to FORM</a>
+
+</div>
+
+<script>
+  // Pre-fill search if query string present
+  const q = new URLSearchParams(window.location.search).get('q');
+  if (q) document.querySelector('.search-input').value = q;
+</script>
+
+</body>
+</html>

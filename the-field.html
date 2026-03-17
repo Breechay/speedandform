@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202603161318">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>The Field | FORM</title>
+<meta name="description" content="The training locations of the FORM practice in Miami. Where the work happens.">
+<link rel="canonical" href="https://speedandform.com/the-field">
+<meta property="og:title" content="The Field | FORM">
+<meta property="og:description" content="The training locations of the FORM practice in Miami. Where the work happens.">
+<meta property="og:url" content="https://speedandform.com/the-field">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://speedandform.com/og/default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://speedandform.com/og/default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:site_name" content="FORM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Field | FORM">
+<meta name="twitter:description" content="The training locations of the FORM practice in Miami. Where the work happens.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #f5f2ec; --ink: #2a2620; --ink-l: #6b6459; --ink-f: #a09890;
+  --line: #d8d2c8; --line-l: #e8e3dc;
+}
+body {
+  background: var(--cream); color: var(--ink);
+  font-family: 'Jost', sans-serif; font-weight: 300;
+  font-kerning: normal; font-feature-settings: "kern";
+  padding-bottom: 120px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+}
+
+/* NAV */
+.nav {
+  max-width: 560px; margin: 0 auto;
+  padding: 36px 32px 0;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-home {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: 22px;
+  letter-spacing: 0.12em; color: var(--ink);
+  text-decoration: none;
+}
+.nav-label {
+  font-size: 8px; font-weight: 500;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--ink-f);
+}
+
+/* CONTENT COLUMN */
+.content {
+  max-width: 560px; margin: 0 auto;
+  padding: 52px 32px 0;
+  border-left: 1px solid var(--line-l);
+}
+
+.page-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: 42px;
+  letter-spacing: 0.04em; color: var(--ink);
+  line-height: 1; margin-bottom: 12px;
+}
+.page-sub {
+  font-size: 11px; color: var(--ink-f);
+  letter-spacing: 0.05em; line-height: 1.6;
+  display: block; margin-bottom: 20px;
+}
+
+/* DIVIDER before images */
+.field-rule {
+  width: 100%; height: 1px;
+  background: var(--line-l); display: block;
+}
+
+/* IMAGE STRIP */
+/* Sequence: Corridor → Effort → Detail → Stillness → Return */
+.frame {
+  display: block;
+  padding-top: 48px;
+}
+.frame img {
+  width: 100%; height: auto; display: block;
+  filter: saturate(0.92) contrast(0.97);
+}
+
+/* Placeholder — shown until image is available */
+.frame-placeholder { display: block; padding-top: 80px; }
+.placeholder-block {
+  width: 100%; aspect-ratio: 3 / 2; min-height: 160px;
+  background: var(--line-l);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.placeholder-block::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    -45deg, transparent, transparent 8px,
+    rgba(216,210,200,0.3) 8px, rgba(216,210,200,0.3) 9px
+  );
+}
+.placeholder-label {
+  font-size: 8px; font-weight: 500;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--ink-f); position: relative; z-index: 1;
+}
+
+/* CLOSING — archive count and cycle stamp */
+.field-close {
+  margin-top: 80px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line-l);
+  display: flex; align-items: baseline; justify-content: space-between;
+}
+.field-stamp {
+  font-size: 8px; font-weight: 500;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--ink-f); opacity: 0.6;
+}
+.frame-count {
+  font-size: 8px; font-weight: 500;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--ink-f); opacity: 0.6;
+}
+
+/* SEO context paragraph — quiet, near bottom */
+.field-context {
+  margin-top: 40px;
+  font-size: 12px; color: var(--ink-f);
+  line-height: 1.7; letter-spacing: 0.02em;
+  max-width: 420px;
+}
+
+/* Narrow frame for closing image — more intimate */
+.frame-narrow {
+  padding-top: 64px;
+  max-width: 420px;
+}
+
+@media (max-width: 480px) {
+  .nav { padding-left: 24px; padding-right: 24px; }
+  .content { padding-left: 24px; padding-right: 24px; border-left: none; }
+  .page-title { font-size: 34px; }
+  .frame { padding-top: 36px; }
+  .frame-placeholder { padding-top: 36px; }
+  .frame-narrow { padding-top: 48px; max-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a class="nav-home" href="/">FORM</a>
+  <span class="nav-label">The Field</span>
+</div>
+
+<div class="content">
+
+  <h1 class="page-title">The Field</h1>
+  <span class="page-sub">Where FORM sessions take place. Visual archive of the training field.</span>
+  <span class="field-rule"></span>
+
+  <!-- 1. CORRIDOR — long run, Miami street -->
+  <div class="frame" data-type="corridor">
+    <img
+      src="/assets/images/field-long-run.webp"
+      alt="Group long run in Miami distance training"
+      loading="eager">
+  </div>
+
+  <!-- 2. EFFORT — track session -->
+  <div class="frame" data-type="effort">
+    <img
+      src="/assets/images/field-track-session.webp"
+      alt="Track workout at Miami running training field"
+      loading="lazy">
+  </div>
+
+  <!-- 3. STILLNESS — B&W, closing -->
+  <div class="frame frame-narrow" data-type="stillness">
+    <img
+      src="/assets/images/field-selfie.webp"
+      alt="Runners after training session"
+      loading="lazy">
+  </div>
+
+  <!--
+    TO ADD A FRAME:
+    <div class="frame" data-type="[corridor|effort|detail|stillness|return]">
+      <img src="/assets/images/[filename].webp" alt="[description]" loading="lazy">
+    </div>
+  -->
+
+  <div class="field-close">
+    <span class="field-stamp">Spring Cycle 2026</span>
+    <span class="frame-count" id="frame-count"></span>
+  </div>
+
+  <p class="field-context">FORM is a small distance running training group based in Miami. Sessions include weekly threshold workouts, long runs, and structured track work. Runners train to improve their distance running over time.</p>
+
+  <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line-l);">
+    <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px;">Session Locations</span>
+    <div style="padding: 14px 0; border-bottom: 1px solid var(--line-l); display: grid; grid-template-columns: 90px 1fr; gap: 0; align-items: baseline;">
+      <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f);">Tuesday</span>
+      <a href="https://maps.google.com/?q=Flamingo+Park+Track,+Miami+Beach,+FL" target="_blank" rel="noopener" style="font-size: 13px; color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); letter-spacing: 0.02em;">Flamingo Park Track</a>
+    </div>
+    <div style="padding: 14px 0; border-bottom: 1px solid var(--line-l); display: grid; grid-template-columns: 90px 1fr; gap: 0; align-items: baseline;">
+      <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f);">Saturday</span>
+      <a href="https://maps.google.com/?q=The+Hideout+Coffee+House,+Edgewater+Miami+FL" target="_blank" rel="noopener" style="font-size: 13px; color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); letter-spacing: 0.02em;">Hideout, Edgewater</a>
+    </div>
+  </div>
+
+  <div style="margin-top: 32px; padding-top: 0;">
+    <a href="/practice" style="font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); text-decoration: none;">Practice →</a>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  const real = document.querySelectorAll('.frame[data-type]').length;
+  const el = document.getElementById('frame-count');
+  if (real > 0) el.textContent = real + (real === 1 ? ' frame' : ' frames');
+})();
+</script>
+
+</body>
+</html>

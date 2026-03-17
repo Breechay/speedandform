@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202603161318">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Week 1 — Rhythm | Running Form Practice | FORM</title>
+<meta name="description" content="Week 1 of the Ghost Protocol — a six-week practice to improve running form through simple mechanical cues. Find the beat. Remove urgency.">
+<link rel="canonical" href="https://speedandform.com/ghost/week-1">
+<meta property="og:title" content="Week 1 — Rhythm | Ghost Protocol | FORM">
+<meta property="og:description" content="Find the beat. Remove urgency.">
+<meta property="og:url" content="https://speedandform.com/ghost/week-1">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://speedandform.com/og/default.jpg">
+<meta property="og:site_name" content="FORM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --line:#d8d2c8; --line-l:#e8e3dc; }
+body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 100px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.nav { max-width: 560px; margin: 0 auto; padding: 28px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.content { max-width: 560px; margin: 0 auto; padding: 48px 32px 0; border-left: 1px solid var(--line-l); }
+.ghost-progress { display: flex; flex-wrap: wrap; margin-bottom: 20px; }
+.ghost-progress a { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; margin-right: 14px; margin-bottom: 4px; transition: color 0.15s; }
+.ghost-progress a:hover { color: var(--ink-l); }
+.ghost-progress a.active { color: var(--ink); }
+.week-eyebrow { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 8px; }
+.week-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 52px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 8px; }
+.week-intent { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 20px; font-weight: 300; color: var(--ink-l); letter-spacing: 0.02em; display: block; margin-bottom: 20px; }
+.goal-block { padding: 14px 0; border-top: 1px solid var(--line-l); margin-bottom: 20px; }
+.goal-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 8px; }
+.goal-text { font-size: 13px; color: var(--ink-l); line-height: 1.7; letter-spacing: 0.02em; }
+.schedule-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 4px; }
+.day-row { display: flex; align-items: baseline; gap: 16px; padding: 8px 0; border-top: 1px solid var(--line-l); }
+.day-row:last-of-type { border-bottom: 1px solid var(--line-l); }
+.day-name { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); min-width: 34px; flex-shrink: 0; }
+.day-session-wrap { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+.day-session { font-size: 13px; color: var(--ink); letter-spacing: 0.02em; }
+.day-cue { font-size: 11px; color: var(--ink-f); letter-spacing: 0.03em; line-height: 1.5; }
+.day-rest { font-size: 13px; color: var(--ink-f); letter-spacing: 0.02em; font-style: italic; }
+.cues-block { margin-top: 24px; }
+.cues-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px; }
+.cues-row { display: flex; gap: 28px; flex-wrap: wrap; padding: 14px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); }
+.cue-item { display: flex; align-items: center; gap: 10px; }
+.cue-icon { width: 24px; height: 24px; flex-shrink: 0; opacity: 0.65; }
+.cue-name { font-size: 12px; color: var(--ink-l); letter-spacing: 0.04em; }
+.checkin-block { margin-top: 24px; padding-bottom: 32px; border-bottom: 1px solid var(--line-l); }
+.checkin-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
+.checkin-q { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.7; margin-bottom: 14px; }
+.checkin-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; line-height: 1.55; }
+.week-nav { margin-top: 48px; display: flex; justify-content: space-between; align-items: center; }
+.week-nav-link { text-decoration: none; display: flex; flex-direction: column; gap: 4px; }
+.week-nav-link.next { text-align: right; }
+.week-nav-dir { font-size: 8px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); }
+.week-nav-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; color: var(--ink-l); letter-spacing: 0.04em; transition: color 0.15s; }
+.week-nav-link:hover .week-nav-name { color: var(--ink); }
+.week-nav-back { font-size: 8px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.week-nav-back:hover { color: var(--ink-l); }
+.practice-footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line-l); display: flex; justify-content: space-between; align-items: center; }
+.practice-mark { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); }
+.save-week { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); cursor: pointer; background: none; border: none; font-family: 'Jost', sans-serif; padding: 0; }
+.save-week:hover { color: var(--ink-l); }
+.footer-links { margin-top: 32px; display: flex; gap: 28px; flex-wrap: wrap; }
+.footer-link { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link:hover { color: var(--ink-l); }
+@media (max-width: 480px) {
+  .nav { padding-left: 24px; padding-right: 24px; }
+  .content { padding-left: 24px; padding-right: 24px; border-left: none; }
+  .week-title { font-size: 40px; }
+  .cues-row { gap: 20px; }
+  .ghost-progress a { margin-right: 10px; }
+}
+
+.drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(42,38,32,0.4); z-index: 200; }
+.drawer-overlay.open { display: block; }
+.ghost-drawer { position: fixed; bottom: 0; left: 0; right: 0; background: var(--cream); z-index: 201; transform: translateY(100%); transition: transform 0.3s cubic-bezier(.4,0,.2,1); max-height: 80vh; overflow-y: auto; border-top-left-radius: 4px; border-top-right-radius: 4px; }
+.ghost-drawer.open { transform: translateY(0); }
+.ghost-drawer-handle { width: 36px; height: 3px; background: var(--line); border-radius: 2px; margin: 14px auto 0; }
+.ghost-drawer-inner { padding: 20px 28px 48px; max-width: 440px; margin: 0 auto; }
+.ghost-drawer-eyebrow { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); margin-bottom: 6px; display: block; }
+.ghost-drawer-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; letter-spacing: 0.04em; color: var(--ink); margin-bottom: 4px; line-height: 1.2; }
+.ghost-drawer-sub { font-size: 11px; color: var(--ink-f); margin-bottom: 20px; letter-spacing: 0.06em; }
+.ghost-drawer-rule { height: 1px; background: var(--line-l); margin: 0 0 20px; }
+.ghost-drawer-lbl { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); margin-bottom: 10px; display: block; }
+.ghost-drawer-body { font-size: 13px; line-height: 1.8; color: var(--ink-l); letter-spacing: 0.02em; margin-bottom: 0; }
+.ghost-drawer-signal { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; line-height: 1.55; margin-top: 16px; display: block; }
+.ghost-drawer-close { margin-top: 28px; width: 100%; background: none; border: 1px solid var(--line); color: var(--ink-f); font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; padding: 12px; cursor: pointer; transition: all 0.15s; }
+.ghost-drawer-close:hover { border-color: var(--ink); color: var(--ink); }
+.day-row { cursor: pointer; }
+.day-row:hover .day-session { color: var(--ink-l); }
+.day-row:hover .day-rest { color: var(--ink-l); }
+
+
+/* METRONOME */
+.metro-wrap { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line-l); }
+.metro-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 14px; }
+.metro-bpm-display { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; color: var(--ink); letter-spacing: 0.04em; line-height: 1; text-align: center; margin-bottom: 4px; }
+.metro-bpm-unit { font-size: 9px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); text-align: center; display: block; margin-bottom: 16px; }
+.metro-presets { display: flex; gap: 8px; justify-content: center; margin-bottom: 14px; }
+.metro-preset { font-size: 10px; font-weight: 500; letter-spacing: 0.15em; color: var(--ink-f); background: none; border: 1px solid var(--line); padding: 6px 12px; cursor: pointer; font-family: 'Jost', sans-serif; transition: all 0.15s; }
+.metro-preset:hover, .metro-preset.active { border-color: var(--ink); color: var(--ink); }
+.metro-controls { display: flex; gap: 8px; align-items: center; justify-content: center; margin-bottom: 14px; }
+.metro-adj { font-size: 18px; color: var(--ink-f); background: none; border: 1px solid var(--line); width: 36px; height: 36px; cursor: pointer; font-family: 'Jost', sans-serif; display: flex; align-items: center; justify-content: center; transition: all 0.15s; line-height: 1; }
+.metro-adj:hover { border-color: var(--ink); color: var(--ink); }
+.metro-start { flex: 1; max-width: 120px; font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); background: none; border: 1px solid var(--line); padding: 10px; cursor: pointer; font-family: 'Jost', sans-serif; transition: all 0.15s; }
+.metro-start:hover { border-color: var(--ink); color: var(--ink); }
+.metro-start.running { border-color: var(--ink); color: var(--ink); }
+.metro-beat-indicator { width: 6px; height: 6px; border-radius: 50%; background: var(--line); margin: 0 auto 14px; transition: background 0.05s; }
+.metro-beat-indicator.flash { background: var(--ink); }
+.metro-note { font-size: 10px; color: var(--ink-f); letter-spacing: 0.03em; line-height: 1.6; text-align: center; }
+
+/* RUNNING MODE */
+.running-mode { display: none; position: fixed; inset: 0; background: var(--cream); z-index: 500; flex-direction: column; align-items: center; justify-content: center; }
+.running-mode.active { display: flex; }
+.running-bpm { font-family: 'Cormorant Garamond', serif; font-size: 96px; font-weight: 300; color: var(--ink); letter-spacing: 0.04em; line-height: 1; }
+.running-unit { font-size: 10px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); margin-top: 8px; margin-bottom: 48px; }
+.running-beat { width: 10px; height: 10px; border-radius: 50%; background: var(--line); margin: 0 auto 48px; transition: background 0.05s; }
+.running-beat.flash { background: var(--ink); }
+.running-stop { font-size: 10px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); background: none; border: 1px solid var(--line); padding: 12px 32px; cursor: pointer; font-family: 'Jost', sans-serif; }
+
+
+/* WEEK MARKER */
+.week-marker { margin-bottom: 24px; display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
+.week-marker-box { width: 12px; height: 12px; border: 1px solid var(--line); flex-shrink: 0; transition: background 0.15s, border-color 0.15s; }
+.week-marker.active .week-marker-box { background: var(--ink); border-color: var(--ink); }
+.week-marker-text { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); transition: color 0.15s; }
+.week-marker.active .week-marker-text { color: var(--ink-l); }
+
+
+.ghost-drawer-done { font-size: 12px; color: var(--ink-f); letter-spacing: 0.02em; font-style: italic; line-height: 1.6; margin-top: 12px; display: block; padding-top: 12px; border-top: 1px solid var(--line-l); }
+.ghost-drawer-done-label { font-size: 8px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--line); display: block; margin-bottom: 4px; font-style: normal; }
+</style>
+</head>
+<body>
+<div class="nav">
+  <a class="nav-home" href="/">FORM</a>
+  <a class="nav-label" href="/ghost">Ghost Protocol</a>
+</div>
+<div class="content">
+
+  <span class="week-eyebrow">Week 1 of 6</span>
+  <h1 class="week-title">Rhythm</h1>
+  <span class="week-intent">Find the beat. Remove urgency.</span>
+  <p style="font-size: 12px; color: var(--ink-f); letter-spacing: 0.02em; line-height: 1.7; margin-top: 10px; margin-bottom: 0;">Easy means conversational. If nasal breathing is difficult, the pace is too fast.</p>
+  <p style="font-size: 12px; color: var(--ink-f); letter-spacing: 0.02em; line-height: 1.7; margin-top: 6px; margin-bottom: 0;">If the week hasn't clicked by Sunday, run it again. The cues become automatic through repetition, not calendar.</p>
+
+  <div class="week-marker" id="week-marker">
+    <div class="week-marker-box"></div>
+    <span class="week-marker-text">Mark as in progress</span>
+  </div>
+
+  <div class="ghost-progress">
+    <a href="/ghost/week-1" class="active">Rhythm</a>
+    <a href="/ghost/week-2">Gravity</a>
+    <a href="/ghost/week-3">Spring</a>
+    <a href="/ghost/week-4">Pillar</a>
+    <a href="/ghost/week-5">Gears</a>
+    <a href="/ghost/week-6">Ghost</a>
+  </div>
+
+  <div class="goal-block">
+    <span class="goal-label">Goal</span>
+    <p class="goal-text">Establish a steady, quiet running rhythm. The foot should arrive without announcement. The breath stays controlled from start to finish.</p>
+  </div>
+
+  <p style="font-size: 11px; color: var(--ink-f); letter-spacing: 0.03em; line-height: 1.6; margin-bottom: 12px;">Run these sessions across the week. Rest days can move.</p>
+  <span class="schedule-label">Weekly Practice</span>
+  <div class="day-row" onclick="openGhostDrawer('Mon')">
+    <span class="day-name">Mon</span>
+    <div class="day-session-wrap">
+      <span class="day-session">20 min Easy Run</span>
+      <span class="day-cue">Count your steps — aim for ~170–180 per minute. Tap the session note for the built-in metronome.</span>
+    </div>
+  </div>
+  <div class="day-row" onclick="openGhostDrawer('Tue')">
+    <span class="day-name">Tue</span>
+    <div class="day-session-wrap">
+      <span class="day-rest">Mobility / Rest</span>
+      <span class="day-cue">Hips and ankles — loosen, don't stretch to pain</span>
+    </div>
+  </div>
+  <div class="day-row" onclick="openGhostDrawer('Wed')">
+    <span class="day-name">Wed</span>
+    <div class="day-session-wrap">
+      <span class="day-session">15 min Rhythm Run</span>
+      <span class="day-cue">Every 3 min, do 30 sec of quick feet — faster turnover, same pace</span>
+    </div>
+  </div>
+  <div class="day-row" onclick="openGhostDrawer('Thu')">
+    <span class="day-name">Thu</span>
+    <div class="day-session-wrap">
+      <span class="day-rest">Rest</span>
+    </div>
+  </div>
+  <div class="day-row" onclick="openGhostDrawer('Fri')">
+    <span class="day-name">Fri</span>
+    <div class="day-session-wrap">
+      <span class="day-session">20 min Easy Run</span>
+      <span class="day-cue">Relax the face and open the hands the entire run</span>
+    </div>
+  </div>
+  <div class="day-row" onclick="openGhostDrawer('Sat')">
+    <span class="day-name">Sat</span>
+    <div class="day-session-wrap">
+      <span class="day-session">30 min Long Easy</span>
+      <span class="day-cue">Nasal breathing only — if the mouth opens, slow down</span>
+    </div>
+  </div>
+  <div class="day-row" onclick="openGhostDrawer('Sun')">
+    <span class="day-name">Sun</span>
+    <div class="day-session-wrap">
+      <span class="day-rest">Rest</span>
+    </div>
+  </div>
+
+  <div class="cues-block">
+    <span class="cues-label">The Three Ghost Cues</span>
+    <div class="cues-row">
+      <div class="cue-item" onclick="openCueDrawer('Quiet_feet')" style="cursor:pointer;">
+        <svg class="cue-icon" viewBox="0 0 24 24" fill="none"><path d="M8 18C8 14 9 10 12 8C15 10 16 14 16 18" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="12" cy="19" rx="5" ry="2.5" stroke="#2a2620" stroke-width="1.2"/><circle cx="12" cy="6" r="1.8" stroke="#2a2620" stroke-width="1.2"/></svg>
+        <span class="cue-name">Quiet feet</span>
+      </div>
+      <div class="cue-item" onclick="openCueDrawer('Tall_spine')" style="cursor:pointer;">
+        <svg class="cue-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="5" r="2" stroke="#2a2620" stroke-width="1.2"/><line x1="12" y1="7" x2="12" y2="22" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round"/><path d="M8 11L12 9L16 11" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 17L12 15L15 17" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="cue-name">Tall spine</span>
+      </div>
+      <div class="cue-item" onclick="openCueDrawer('Nasal_gear')" style="cursor:pointer;">
+        <svg class="cue-icon" viewBox="0 0 24 24" fill="none"><path d="M12 4C12 4 8.5 8 8.5 13C8.5 15 9.8 16.5 11.2 17L11.2 20L12.8 20L12.8 17C14.2 16.5 15.5 15 15.5 13C15.5 8 12 4 12 4Z" stroke="#2a2620" stroke-width="1.2" stroke-linejoin="round"/><path d="M8.5 13C7.2 13 6.8 14 6.8 15C6.8 16.2 7.5 17 8.5 17L11.2 17" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round"/><path d="M15.5 13C16.8 13 17.2 14 17.2 15C17.2 16.2 16.5 17 15.5 17L12.8 17" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round"/></svg>
+        <span class="cue-name">Nasal breathing</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="checkin-block">
+    <span class="checkin-label">Check-In</span>
+    <p class="checkin-q">Did the run feel calmer at the end than at the start?</p>
+    <span class="checkin-note">If you can hear your feet, you're braking.</span>
+  </div>
+
+  <div class="week-nav">
+    <a class="week-nav-back" href="/ghost">← Protocol</a>
+    <a class="week-nav-link next" href="/ghost/week-2">
+      <span class="week-nav-dir">Next →</span>
+      <span class="week-nav-name">Gravity</span>
+    </a>
+  </div>
+
+  <div class="practice-footer">
+    <span class="practice-mark">FORM — Ghost Protocol</span>
+    <button class="save-week" onclick="if(navigator.share){navigator.share({title:'Ghost Protocol — Week 1: Rhythm',url:window.location.href})}else{navigator.clipboard.writeText(window.location.href);this.textContent='Copied';setTimeout(()=>this.textContent='Save Week',2000)}">Save Week</button>
+  </div>
+
+  <div class="footer-links">
+    <a class="footer-link" href="/ghost/cues">All Cues</a>
+    <a class="footer-link" href="/ghost">The Arc</a>
+    <a class="footer-link" href="/easy-run">Easy Run</a>
+    <a class="footer-link" href="/avoid-injury">Avoid Injury</a>
+  </div>
+</div>
+
+<div class="drawer-overlay" id="ghost-overlay" onclick="closeGhostDrawer()"></div>
+<div class="ghost-drawer" id="ghost-drawer">
+  <div class="ghost-drawer-handle"></div>
+  <div class="ghost-drawer-inner">
+    <span class="ghost-drawer-eyebrow" id="gd-eyebrow"></span>
+    <div class="ghost-drawer-title" id="gd-title"></div>
+    <div class="ghost-drawer-sub" id="gd-sub"></div>
+    <div class="ghost-drawer-rule"></div>
+    <span class="ghost-drawer-lbl">What this session is for</span>
+    <p class="ghost-drawer-body" id="gd-body"></p>
+    <span class="ghost-drawer-signal" id="gd-signal"></span>
+    <span class="ghost-drawer-done" id="gd-done" style="display:none;"><span class="ghost-drawer-done-label">Done correctly</span><span id="gd-done-text"></span></span>
+    <div class="metro-wrap" id="metro-section" style="display:none;">
+      <span class="metro-label">Cadence Metronome</span>
+      <div class="metro-bpm-display" id="metro-bpm">170</div>
+      <span class="metro-bpm-unit">BPM</span>
+      <div class="metro-presets">
+        <button class="metro-preset" data-bpm="160" onclick="setMetroBPM(160)">160</button>
+        <button class="metro-preset active" data-bpm="170" onclick="setMetroBPM(170)">170</button>
+        <button class="metro-preset" data-bpm="180" onclick="setMetroBPM(180)">180</button>
+      </div>
+      <div class="metro-controls">
+        <button class="metro-adj" onclick="adjustMetroBPM(-1)">&#8722;</button>
+        <button class="metro-start" id="metro-btn" onclick="toggleMetro()">Start</button>
+        <button class="metro-adj" onclick="adjustMetroBPM(1)">+</button>
+      </div>
+      <div class="metro-beat-indicator" id="metro-beat"></div>
+      <p class="metro-note">Use to check rhythm for 15 seconds, then run freely. Screen stays on during run.</p>
+    </div>
+
+    <a href="/mobility" style="display:block; margin-top:16px; font-size:10px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-f); text-decoration:none; border-bottom:1px solid var(--line-l); padding-bottom:12px;">Mobility reference →</a>
+    <button class="ghost-drawer-close" onclick="closeGhostDrawer()">Close</button>
+  </div>
+</div>
+
+<script>
+const SESSIONS = {"Mon": {"eyebrow": "Session Note", "title": "20 min Easy Run", "sub": "Cadence establishes landing", "body": "Counting steps shifts attention from pace to turnover -- count for 15 seconds, about 43-45 means cadence is near 170-180. Check once, run freely, check again later.", "signal": "If pace increases to match the count, the count is wrong. Same effort, faster legs.", "metro": true, "done": "Footsteps are quieter and the stride feels slightly shorter than usual."}, "Tue": {"eyebrow": "Session Note", "title": "Mobility / Rest", "sub": "Hip and ankle readiness", "body": "Ankle circles and kneeling hip flexor stretch, 60 sec each side. These two areas limit how freely the leg cycles.", "signal": null, "done": null}, "Wed": {"eyebrow": "Session Note", "title": "15 min Rhythm Run", "sub": "Turnover without acceleration", "body": "The quick feet bursts separate turnover from pace -- the legs move faster without the body moving faster. These are two different inputs.", "signal": "If pace rises during the burst, it has become an acceleration. Reset.", "done": "The legs move faster but the body does not feel like it is working harder."}, "Thu": {"eyebrow": "Session Note", "title": "Rest", "sub": "Full recovery", "body": "Adaptation happens between sessions, not during them.", "signal": null, "done": null}, "Fri": {"eyebrow": "Session Note", "title": "20 min Easy Run", "sub": "Tension as a signal", "body": "A clenched jaw means the body is working harder than the effort requires. Open the hands \u2014 tension in the hands travels up through the arms and releases at the shoulders.", "signal": "If the jaw closes again after releasing it, that is the practice. Notice and release repeatedly.", "done": "The jaw is loose and the hands stay open without effort."}, "Sat": {"eyebrow": "Session Note", "title": "30 min Long Easy", "sub": "Breath as a pace governor", "body": "Nasal breathing is a limiter, not a technique. When the mouth opens, the effort has exceeded the aerobic zone.", "signal": "If nasal breathing feels forced at any pace, the pace is still too high.", "done": "The pace feels steady and breathing stays rhythmic through the nose."}, "Sun": {"eyebrow": "Session Note", "title": "Rest", "sub": "Full recovery", "body": "Week 1 is complete. Quiet feet, tall spine, nasal breathing carry into every week that follows \u2014 Week 2 introduces how gravity moves the body forward.", "signal": null, "done": null}};
+
+function openGhostDrawer(day) {
+  const s = SESSIONS[day];
+  if (!s) return;
+  document.getElementById('gd-eyebrow').textContent = s.eyebrow;
+  document.getElementById('gd-title').textContent = s.title;
+  document.getElementById('gd-sub').textContent = s.sub;
+  document.getElementById('gd-body').textContent = s.body;
+  const sig = document.getElementById('gd-signal');
+  if (s.signal) { sig.textContent = s.signal; sig.style.display = 'block'; }
+  else { sig.style.display = 'none'; }
+  const done = document.getElementById('gd-done');
+  const doneText = document.getElementById('gd-done-text');
+  if (s.done && done && doneText) { doneText.textContent = s.done; done.style.display = 'block'; }
+  else if (done) { done.style.display = 'none'; }
+  const metro = document.getElementById('metro-section');
+  if (metro) metro.style.display = s.metro ? 'block' : 'none';
+  document.getElementById('ghost-overlay').classList.add('open');
+  document.getElementById('ghost-drawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGhostDrawer() {
+  if (metroRunning) stopMetro();
+  document.getElementById('ghost-overlay').classList.remove('open');
+  document.getElementById('ghost-drawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Swipe down to dismiss
+(function(){
+  const drawer = document.getElementById('ghost-drawer');
+  let startY = 0, dragging = false, currentY = 0;
+  drawer.addEventListener('touchstart', e => { startY = e.touches[0].clientY; dragging = true; }, {passive:true});
+  drawer.addEventListener('touchmove', e => {
+    if (!dragging) return;
+    currentY = e.touches[0].clientY;
+    const diff = currentY - startY;
+    if (diff > 0) drawer.style.transform = `translateY(${diff}px)`;
+  }, {passive:true});
+  drawer.addEventListener('touchend', () => {
+    if (!dragging) return; dragging = false;
+    const diff = currentY - startY;
+    drawer.style.transform = '';
+    if (diff > 80) closeGhostDrawer();
+  });
+})();
+</script>
+
+
+<div class="drawer-overlay" id="cue-overlay" onclick="closeCueDrawer()"></div>
+<div class="ghost-drawer" id="cue-drawer">
+  <div class="ghost-drawer-handle"></div>
+  <div class="ghost-drawer-inner">
+    <span class="ghost-drawer-eyebrow" id="cd-eyebrow">Cue Note</span>
+    <div class="ghost-drawer-title" id="cd-title"></div>
+    <div class="ghost-drawer-rule"></div>
+    <p class="ghost-drawer-body" id="cd-body"></p>
+    <span class="ghost-drawer-signal" id="cd-signal"></span>
+    <button class="ghost-drawer-close" onclick="closeCueDrawer()">Close</button>
+  </div>
+</div>
+
+<script>
+const CUE_DATA = {"Quiet_feet": {"title": "Quiet feet", "body": "The foot arrives under the body, not ahead of it. A loud landing is the sound of braking -- the stride is decelerating the runner on every contact.", "signal": "If the runner hears a slap, the stride is reaching forward."}, "Tall_spine": {"title": "Tall spine", "body": "Spine position determines shoulder angle, head position, and breathing capacity. A tall spine keeps the system open; a collapsed one compresses it.", "signal": "A string from the crown of the head, not the chin. Crown up creates length."}, "Nasal_gear": {"title": "Nasal breathing", "body": "When the mouth opens, the effort has exceeded the aerobic zone. The nose signals where useful training ends and survival begins.", "signal": "If nasal breathing feels forced, find the pace where it is easy."}};
+function openCueDrawer(key) {
+  const c = CUE_DATA[key];
+  if (!c) return;
+  document.getElementById('cd-title').textContent = c.title;
+  document.getElementById('cd-body').textContent = c.body;
+  const sig = document.getElementById('cd-signal');
+  if (c.signal) { sig.textContent = c.signal; sig.style.display = 'block'; }
+  else { sig.style.display = 'none'; }
+  document.getElementById('cue-overlay').classList.add('open');
+  document.getElementById('cue-drawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCueDrawer() {
+  document.getElementById('cue-overlay').classList.remove('open');
+  document.getElementById('cue-drawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+(function(){
+  const drawer = document.getElementById('cue-drawer');
+  let startY = 0, dragging = false, currentY = 0;
+  drawer.addEventListener('touchstart', e => { startY = e.touches[0].clientY; dragging = true; }, {passive:true});
+  drawer.addEventListener('touchmove', e => {
+    if (!dragging) return;
+    currentY = e.touches[0].clientY;
+    const diff = currentY - startY;
+    if (diff > 0) drawer.style.transform = `translateY(${diff}px)`;
+  }, {passive:true});
+  drawer.addEventListener('touchend', () => {
+    if (!dragging) return; dragging = false;
+    const diff = currentY - startY;
+    drawer.style.transform = '';
+    if (diff > 80) closeCueDrawer();
+  });
+})();
+
+// -- METRONOME --------------------------------------------------------------
+let metroBPM = 170;
+let metroInterval = null;
+let metroRunning = false;
+let wakeLock = null;
+
+function metroBeat() {
+  // Flash drawer indicator
+  const ind = document.getElementById('metro-beat');
+  const rind = document.getElementById('running-beat');
+  if (ind) { ind.classList.add('flash'); setTimeout(() => ind.classList.remove('flash'), 80); }
+  if (rind) { rind.classList.add('flash'); setTimeout(() => rind.classList.remove('flash'), 80); }
+  // Sound: short click using Web Audio
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.frequency.value = 880;
+    gain.gain.setValueAtTime(0.3, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.04);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.04);
+  } catch(e) {}
+}
+
+function startMetro() {
+  if (metroRunning) return;
+  metroRunning = true;
+  const btn = document.getElementById('metro-btn');
+  if (btn) { btn.textContent = 'Stop'; btn.classList.add('running'); }
+  metroBeat();
+  metroInterval = setInterval(metroBeat, Math.round(60000 / metroBPM));
+  // Enter running mode
+  document.getElementById('running-mode').classList.add('active');
+  document.getElementById('running-bpm-display').textContent = metroBPM;
+  document.body.style.overflow = 'hidden';
+  // Wake lock
+  if ('wakeLock' in navigator) {
+    navigator.wakeLock.request('screen').then(wl => { wakeLock = wl; }).catch(() => {});
+  }
+}
+
+function stopMetro() {
+  metroRunning = false;
+  clearInterval(metroInterval);
+  metroInterval = null;
+  const btn = document.getElementById('metro-btn');
+  if (btn) { btn.textContent = 'Start'; btn.classList.remove('running'); }
+  document.getElementById('running-mode').classList.remove('active');
+  document.body.style.overflow = '';
+  if (wakeLock) { wakeLock.release(); wakeLock = null; }
+}
+
+function setMetroBPM(bpm) {
+  metroBPM = bpm;
+  const disp = document.getElementById('metro-bpm');
+  if (disp) disp.textContent = bpm;
+  document.getElementById('running-bpm-display').textContent = bpm;
+  // Update active preset
+  document.querySelectorAll('.metro-preset').forEach(b => {
+    b.classList.toggle('active', parseInt(b.dataset.bpm) === bpm);
+  });
+  // Restart if running
+  if (metroRunning) {
+    clearInterval(metroInterval);
+    metroInterval = setInterval(metroBeat, Math.round(60000 / bpm));
+  }
+}
+
+function adjustMetroBPM(delta) {
+  setMetroBPM(Math.min(220, Math.max(120, metroBPM + delta)));
+}
+
+function toggleMetro() {
+  if (metroRunning) { stopMetro(); } else { startMetro(); }
+}
+
+
+// -- WEEK MARKER ------------------------------------------------------------
+(function() {
+  const key = 'ghost_week_1_active';
+  const marker = document.getElementById('week-marker');
+  if (!marker) return;
+  if (localStorage.getItem(key) === '1') marker.classList.add('active');
+  marker.addEventListener('click', function() {
+    const active = this.classList.toggle('active');
+    localStorage.setItem(key, active ? '1' : '0');
+    this.querySelector('.week-marker-text').textContent = active ? 'Week 1 in progress' : 'Mark as in progress';
+    if (active) this.querySelector('.week-marker-text').textContent = 'Week 1 \u2014 in progress';
+  });
+  // Restore label
+  if (localStorage.getItem(key) === '1') {
+    marker.querySelector('.week-marker-text').textContent = 'Week 1 \u2014 in progress';
+  }
+})();
+
+</script>
+
+
+<!-- RUNNING MODE OVERLAY -->
+<div class="running-mode" id="running-mode">
+  <div class="running-bpm" id="running-bpm-display">170</div>
+  <div class="running-unit">BPM</div>
+  <div class="running-beat" id="running-beat"></div>
+  <button class="running-stop" onclick="stopMetro()">Stop</button>
+</div>
+
+</body>
+</html>

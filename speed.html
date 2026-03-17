@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202603161318">
+<meta name="description" content="Track sessions from the Speed and Form phase. Session structure, rep targets, and track formats.">
+<title>Speed Sessions | FORM</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #f5f2ec; --ink: #2a2620; --ink-l: #6b6459; --ink-f: #a09890;
+  --line: #d8d2c8; --line-l: #e8e3dc;
+  --focus-transition: 0.35s ease;
+}
+html, body { height: auto; overflow: visible; }
+body {
+  background: var(--cream); color: var(--ink);
+  font-family: 'Jost', sans-serif; font-weight: 300;
+  font-kerning: normal; padding-bottom: 120px;
+  overflow-y: auto; -webkit-overflow-scrolling: touch;
+}
+
+/* NAV */
+.nav {
+  max-width: 560px; margin: 0 auto;
+  padding: 36px 32px 0;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-home {
+  font-family: 'Cormorant Garamond', serif; font-weight: 300;
+  font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none;
+}
+.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+
+/* CONTENT */
+.content { max-width: 560px; margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
+
+/* FOCUSED SESSION BANNER — shown when arriving via shared link */
+.focus-banner {
+  display: none;
+  margin-bottom: 40px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line-l);
+  border-bottom: 1px solid var(--line-l);
+}
+.focus-banner.visible { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.focus-banner-text { font-size: 11px; color: var(--ink-f); letter-spacing: 0.06em; }
+.focus-banner-text strong { font-weight: 400; color: var(--ink-l); }
+.focus-banner-clear {
+  font-size: 8px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--ink-f); background: none; border: none; cursor: pointer;
+  padding: 0; white-space: nowrap; font-family: 'Jost', sans-serif;
+}
+.focus-banner-clear:hover { color: var(--ink-l); }
+
+/* PAGE HEADER */
+.page-title {
+  font-family: 'Cormorant Garamond', serif; font-weight: 300;
+  font-size: 52px; letter-spacing: 0.04em; color: var(--ink);
+  line-height: 1; margin-bottom: 10px;
+}
+.page-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; display: block; margin-bottom: 16px; }
+.page-def { font-size: 13px; color: var(--ink-l); line-height: 1.65; letter-spacing: 0.02em; margin-bottom: 8px; }
+.page-note { font-size: 11px; color: var(--ink-f); letter-spacing: 0.03em; line-height: 1.7; display: block; margin-bottom: 16px; }
+
+/* SESSION INDEX */
+.session-index { margin: 32px 0 40px; }
+.session-index-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 12px; }
+.session-index-list { list-style: none; }
+.session-index-item { border-bottom: 1px solid var(--line-l); }
+.session-index-item:first-child { border-top: 1px solid var(--line-l); }
+.session-index-link { display: flex; align-items: baseline; gap: 12px; padding: 10px 0; text-decoration: none; transition: opacity 0.2s; }
+.session-index-link:hover { opacity: 0.7; }
+.session-index-num { font-size: 10px; letter-spacing: 0.12em; color: var(--ink-f); width: 28px; flex-shrink: 0; }
+.session-index-name { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; }
+
+/* SESSION BLOCKS */
+.session-block {
+  transition: opacity var(--focus-transition);
+  margin-top: 52px;
+}
+.session-block:first-of-type { margin-top: 0; }
+
+/* Dimmed state — other sessions when one is focused */
+.has-focus .session-block:not(.focused) {
+  opacity: 0.38;
+  pointer-events: none;
+}
+.has-focus .session-block:not(.focused) .workout-share { display: none; }
+
+/* Focused state */
+.session-block.focused { opacity: 1; pointer-events: auto; }
+
+.section-rule {
+  width: 100%; height: 1px; background: var(--line-l); display: block;
+  margin-bottom: 28px; scroll-margin-top: 32px;
+}
+.session-block.focused .section-rule { background: var(--ink-l); }
+
+/* WORKOUT HEADER */
+.workout-header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 6px;
+}
+.workout-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); }
+.workout-share {
+  font-size: 8px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-f); background: none; border: 1px solid var(--line-l);
+  cursor: pointer; padding: 4px 10px; font-family: 'Jost', sans-serif;
+  transition: color 0.15s, border-color 0.15s;
+}
+.workout-share:hover { color: var(--ink-l); border-color: var(--line); }
+.workout-share.copied { color: var(--ink-l); border-color: var(--line); }
+
+/* WORKOUT CONTENT */
+.workout-title {
+  font-family: 'Cormorant Garamond', serif; font-weight: 300;
+  font-size: 36px; letter-spacing: 0.04em; color: var(--ink);
+  line-height: 1; margin-bottom: 6px;
+}
+.workout-desc { font-size: 12px; color: var(--ink-f); letter-spacing: 0.03em; display: block; margin-bottom: 24px; }
+
+/* INTERVAL LIST */
+.interval-list { list-style: none; }
+.interval-item {
+  padding: 14px 0; border-bottom: 1px solid var(--line-l);
+  transition: background 0.2s;
+}
+.interval-item:first-child { border-top: 1px solid var(--line-l); }
+.interval-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.interval-distance { font-size: 15px; color: var(--ink); letter-spacing: 0.02em; }
+.interval-time { font-size: 15px; color: var(--ink-l); letter-spacing: 0.02em; font-family: 'Cormorant Garamond', serif; font-weight: 300; }
+.interval-recovery { font-size: 11px; color: var(--ink-f); letter-spacing: 0.04em; display: block; margin-top: 4px; }
+.interval-paces { font-size: 11px; color: var(--ink-f); letter-spacing: 0.04em; display: block; margin-top: 2px; opacity: 0.7; }
+
+/* Show/hide paces toggle */
+.paces-toggle {
+  font-size: 8px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-f); background: none; border: none; cursor: pointer;
+  padding: 0; font-family: 'Jost', sans-serif; margin-top: 20px; display: block;
+  transition: color 0.15s;
+}
+.paces-toggle:hover { color: var(--ink-l); }
+.interval-paces { transition: opacity 0.2s; }
+body.paces-hidden .interval-paces { display: none; }
+
+.workout-tag {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 16px; font-weight: 300; color: var(--ink-f);
+  letter-spacing: 0.02em; display: block; margin-top: 20px;
+}
+
+/* CLOSING */
+.closing-rule { width: 100%; height: 1px; background: var(--line-l); display: block; margin: 64px 0 24px; }
+.closing-note { font-size: 12px; color: var(--ink-f); letter-spacing: 0.03em; line-height: 1.75; display: block; }
+.footer-links { margin-top: 52px; padding-top: 24px; border-top: 1px solid var(--line-l); display: flex; gap: 28px; flex-wrap: wrap; }
+.footer-link { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link:hover { color: var(--ink-l); }
+
+@media (max-width: 480px) {
+  .nav { padding-left: 24px; padding-right: 24px; }
+  .content { padding-left: 24px; padding-right: 24px; border-left: none; }
+  .page-title { font-size: 40px; }
+  .workout-title { font-size: 30px; }
+  .interval-distance, .interval-time { font-size: 14px; }
+}
+.page-breadcrumb { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 12px; }
+</style>
+<meta property="og:title" content="Speed Sessions | FORM">
+<meta property="og:description" content="Track sessions from the Speed and Form phase. Session structure, rep targets, and track formats.">
+<meta property="og:url" content="https://speedandform.com/speed">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://speedandform.com/og/default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="FORM">
+<link rel="canonical" href="https://speedandform.com/speed">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Speed Sessions | FORM">
+<meta name="twitter:description" content="Track sessions from the Speed and Form phase. Session structure, rep targets, and track formats.">
+<meta name="twitter:image" content="https://speedandform.com/og/default.jpg">
+</head>
+<body class="paces-hidden">
+
+<div class="nav">
+  <a class="nav-home" href="/">FORM</a>
+  <span class="nav-label">Speed</span>
+</div>
+
+<div class="content">
+
+  <!-- Focus banner: only visible when arriving via a shared session link -->
+  <div class="focus-banner" id="focusBanner">
+    <span class="focus-banner-text">Showing session: <strong id="focusedName"></strong></span>
+    <button class="focus-banner-clear" onclick="clearFocus()">See all sessions</button>
+  </div>
+
+  <!-- Page header: hidden when focused on a single session -->
+  <div id="pageHeader">
+    <span class="page-breadcrumb">Archive · Speed Phase</span>
+  <h1 class="page-title">Speed Sessions</h1>
+    <span class="page-sub">Track sessions from the Speed phase.</span>
+  <p class="page-def">Track sessions from an earlier Speed &amp; Form phase.</p>
+    <span class="page-note">Rep times are the target. Pace conversions are for watch setup only.</span>
+
+    <div class="session-index">
+      <span class="session-index-label">Sessions</span>
+      <ul class="session-index-list">
+        <li class="session-index-item"><a class="session-index-link" href="#session-01"><span class="session-index-num">01</span><span class="session-index-name">Nice and Easy</span></a></li>
+        <li class="session-index-item"><a class="session-index-link" href="#session-02"><span class="session-index-num">02</span><span class="session-index-name">Pyramid Intervals</span></a></li>
+        <li class="session-index-item"><a class="session-index-link" href="#session-03"><span class="session-index-num">03</span><span class="session-index-name">Gauntlet</span></a></li>
+        <li class="session-index-item"><a class="session-index-link" href="#session-04"><span class="session-index-num">04</span><span class="session-index-name">Speed Demons</span></a></li>
+        <li class="session-index-item"><a class="session-index-link" href="#session-05"><span class="session-index-num">05</span><span class="session-index-name">Death</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Paces toggle — available in all views -->
+  <button class="paces-toggle" id="pacesToggle" onclick="togglePaces()">Show pace conversions</button>
+
+  <!-- SESSION BLOCKS -->
+
+  <div class="session-block" data-session="session-01" data-name="Nice and Easy">
+    <span class="section-rule" id="session-01" style="margin-top: 40px;"></span>
+    <div class="workout-header">
+      <span class="workout-label">Session 01</span>
+      <button class="workout-share" onclick="shareSession('session-01', 'Nice and Easy', this)">Share</button>
+    </div>
+    <div class="workout-title">Nice and Easy</div>
+    <span class="workout-desc">Short speed plus controlled 800s.</span>
+    <ul class="interval-list">
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">3 × 200m</span><span class="interval-time">29–32 sec</span></div>
+        <span class="interval-recovery">30 sec recovery</span>
+        <span class="interval-paces">≈ 3:53–4:17 /mi · 2:25–2:40 /km</span>
+      </li>
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">2 × 800m</span><span class="interval-time">2:25–2:30</span></div>
+        <span class="interval-recovery">4 min recovery</span>
+        <span class="interval-paces">≈ 4:51–5:01 /mi · 3:01–3:07 /km</span>
+      </li>
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">1 × 400m</span><span class="interval-time">1:08–1:10</span></div>
+        <span class="interval-paces">≈ 4:33–4:41 /mi · 2:50–2:55 /km</span>
+      </li>
+    </ul>
+    <span class="workout-tag">Fast, but still composed.</span>
+  </div>
+
+  <div class="session-block" data-session="session-02" data-name="Pyramid Intervals">
+    <span class="section-rule" id="session-02" style="margin-top: 52px;"></span>
+    <div class="workout-header">
+      <span class="workout-label">Session 02</span>
+      <button class="workout-share" onclick="shareSession('session-02', 'Pyramid Intervals', this)">Share</button>
+    </div>
+    <div class="workout-title">Pyramid Intervals</div>
+    <span class="workout-desc">Laddered rhythm with controlled recovery.</span>
+    <ul class="interval-list">
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">2 × 300m</span><span class="interval-time">50–52 sec</span></div>
+        <span class="interval-recovery">90 sec recovery</span>
+        <span class="interval-paces">≈ 4:28–4:38 /mi · 2:46–2:53 /km</span>
+      </li>
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">2 × 400m</span><span class="interval-time">1:08–1:12</span></div>
+        <span class="interval-recovery">2 min recovery</span>
+        <span class="interval-paces">≈ 4:33–4:49 /mi · 2:50–3:00 /km</span>
+      </li>
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">1 × 600m</span><span class="interval-time">1:42–1:45</span></div>
+        <span class="interval-recovery">2:30 recovery</span>
+        <span class="interval-paces">≈ 4:33–4:41 /mi · 2:50–2:55 /km</span>
+      </li>
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">2 × 400m</span><span class="interval-time">1:08–1:10</span></div>
+        <span class="interval-recovery">2 min recovery</span>
+        <span class="interval-paces">≈ 4:33–4:41 /mi · 2:50–2:55 /km</span>
+      </li>
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">2 × 300m</span><span class="interval-time">50–52 sec</span></div>
+        <span class="interval-recovery">Full recovery</span>
+        <span class="interval-paces">≈ 4:28–4:38 /mi · 2:46–2:53 /km</span>
+      </li>
+    </ul>
+    <span class="workout-tag">Build and return.</span>
+  </div>
+
+  <div class="session-block" data-session="session-03" data-name="Gauntlet">
+    <span class="section-rule" id="session-03" style="margin-top: 52px;"></span>
+    <div class="workout-header">
+      <span class="workout-label">Session 03</span>
+      <button class="workout-share" onclick="shareSession('session-03', 'Gauntlet', this)">Share</button>
+    </div>
+    <div class="workout-title">Gauntlet</div>
+    <span class="workout-desc">Descending speed with accumulating precision.</span>
+    <ul class="interval-list">
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">3 × 600m</span><span class="interval-time">1:48–1:52</span></div>
+        <span class="interval-recovery">3 min recovery</span>
+        <span class="interval-paces">≈ 4:49–5:00 /mi · 3:00–3:06 /km</span>
+      </li>
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">2 × 400m</span><span class="interval-time">1:08–1:12</span></div>
+        <span class="interval-recovery">2:30 recovery</span>
+        <span class="interval-paces">≈ 4:33–4:49 /mi · 2:50–3:00 /km</span>
+      </li>
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">3 × 300m</span><span class="interval-time">48–52 sec</span></div>
+        <span class="interval-recovery">2 min recovery</span>
+        <span class="interval-paces">≈ 4:17–4:38 /mi · 2:40–2:53 /km</span>
+      </li>
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">2 × 200m</span><span class="interval-time">29–32 sec</span></div>
+        <span class="interval-recovery">2 min recovery</span>
+        <span class="interval-paces">≈ 3:53–4:17 /mi · 2:25–2:40 /km</span>
+      </li>
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">2 × 150m</span><span class="interval-time">20–22 sec</span></div>
+        <span class="interval-recovery">Full recovery</span>
+        <span class="interval-paces">≈ 3:34–3:56 /mi · 2:13–2:26 /km</span>
+      </li>
+    </ul>
+    <span class="workout-tag">Hold form as the reps shorten.</span>
+  </div>
+
+  <div class="session-block" data-session="session-04" data-name="Speed Demons">
+    <span class="section-rule" id="session-04" style="margin-top: 52px;"></span>
+    <div class="workout-header">
+      <span class="workout-label">Session 04</span>
+      <button class="workout-share" onclick="shareSession('session-04', 'Speed Demons', this)">Share</button>
+    </div>
+    <div class="workout-title">Speed Demons</div>
+    <span class="workout-desc">Short fast work with frequent reset.</span>
+    <ul class="interval-list">
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">4 × 300m</span><span class="interval-time">50–52 sec</span></div>
+        <span class="interval-recovery">2:30 recovery</span>
+        <span class="interval-paces">≈ 4:28–4:38 /mi · 2:46–2:53 /km</span>
+      </li>
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">6 × 200m</span><span class="interval-time">32–34 sec</span></div>
+        <span class="interval-recovery">90 sec recovery</span>
+        <span class="interval-paces">≈ 4:17–4:33 /mi · 2:40–2:50 /km</span>
+      </li>
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">8 × 100m</span><span class="interval-time">15–17 sec</span></div>
+        <span class="interval-recovery">90 sec recovery</span>
+        <span class="interval-paces">≈ 4:01–4:33 /mi · 2:30–2:50 /km</span>
+      </li>
+    </ul>
+    <span class="workout-tag">Pure turnover, low volume.</span>
+  </div>
+
+  <div class="session-block" data-session="session-05" data-name="Death">
+    <span class="section-rule" id="session-05" style="margin-top: 52px;"></span>
+    <div class="workout-header">
+      <span class="workout-label">Session 05</span>
+      <button class="workout-share" onclick="shareSession('session-05', 'Death', this)">Share</button>
+    </div>
+    <div class="workout-title">Death</div>
+    <span class="workout-desc">A dense mixed-distance session from an earlier phase.</span>
+    <ul class="interval-list">
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">2 × 600m</span><span class="interval-time">1:48–1:52</span></div>
+        <span class="interval-recovery">3 min recovery</span>
+        <span class="interval-paces">≈ 4:49–5:00 /mi · 3:00–3:06 /km</span>
+      </li>
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">2 × 400m</span><span class="interval-time">1:08–1:12</span></div>
+        <span class="interval-recovery">2:30 recovery</span>
+        <span class="interval-paces">≈ 4:33–4:49 /mi · 2:50–3:00 /km</span>
+      </li>
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">3 × 300m</span><span class="interval-time">48–52 sec</span></div>
+        <span class="interval-recovery">2 min recovery</span>
+        <span class="interval-paces">≈ 4:17–4:38 /mi · 2:40–2:53 /km</span>
+      </li>
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">3 × 200m</span><span class="interval-time">29–32 sec</span></div>
+        <span class="interval-recovery">3 min recovery</span>
+        <span class="interval-paces">≈ 3:53–4:17 /mi · 2:25–2:40 /km</span>
+      </li>
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">1 × 800m</span><span class="interval-time">2:25–2:35</span></div>
+        <span class="interval-recovery">4 min recovery</span>
+        <span class="interval-paces">≈ 4:51–5:11 /mi · 3:01–3:13 /km</span>
+      </li>
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">1 × 400m</span><span class="interval-time">1:08–1:12</span></div>
+        <span class="interval-paces">≈ 4:33–4:49 /mi · 2:50–3:00 /km</span>
+      </li>
+    </ul>
+    <span class="workout-tag">Dense work from a different phase.</span>
+  </div>
+
+  <span class="closing-rule"></span>
+  <span class="closing-note">These sessions belong to a different phase of the practice.<br>Speed is a tool the system returns to when the time is right.</span>
+
+  <div class="footer-links">
+    <a class="footer-link" href="/practice">Practice</a>
+    <a class="footer-link" href="/sessions">Sessions</a>
+    <a class="footer-link" href="/shoes">Shoes</a>
+    <a class="footer-link" href="/library">Library</a>
+  </div>
+
+</div>
+
+<script>
+// ── STATE ──
+let currentFocus = null;
+let pacesVisible = false;
+
+// ── FOCUS LOGIC ──
+function applyFocus(sessionId) {
+  const blocks = document.querySelectorAll('.session-block');
+  const banner = document.getElementById('focusBanner');
+  const header = document.getElementById('pageHeader');
+  const focusedNameEl = document.getElementById('focusedName');
+
+  if (!sessionId) {
+    blocks.forEach(b => b.classList.remove('focused'));
+    document.body.classList.remove('has-focus');
+    document.body.classList.add('paces-hidden');
+    document.getElementById('pacesToggle').style.display = '';
+    pacesVisible = false;
+    document.getElementById('pacesToggle').textContent = 'Show pace conversions';
+    banner.classList.remove('visible');
+    header.style.display = '';
+    currentFocus = null;
+    return;
+  }
+
+  const target = document.querySelector(`[data-session="${sessionId}"]`);
+  if (!target) return;
+
+  currentFocus = sessionId;
+  const name = target.dataset.name;
+
+  blocks.forEach(b => {
+    b.classList.toggle('focused', b.dataset.session === sessionId);
+  });
+  document.body.classList.add('has-focus');
+  document.body.classList.add('paces-hidden');
+  document.getElementById('pacesToggle').style.display = 'none';
+
+  // Show banner, hide full page header
+  focusedNameEl.textContent = name;
+  banner.classList.add('visible');
+  header.style.display = 'none';
+
+  // Scroll to session smoothly
+  setTimeout(() => {
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 60);
+}
+
+function clearFocus() {
+  history.replaceState({}, '', window.location.pathname);
+  applyFocus(null);
+}
+
+// ── SHARE ──
+function shareSession(sessionId, name, btn) {
+  const url = window.location.origin + '/speed#' + sessionId;
+  const title = name + ' — FORM Speed Session';
+
+  if (navigator.share) {
+    navigator.share({ title, text: name, url }).catch(() => {});
+    return;
+  }
+
+  navigator.clipboard.writeText(url).then(() => {
+    btn.textContent = 'Copied';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Share';
+      btn.classList.remove('copied');
+    }, 1800);
+  }).catch(() => {
+    // Fallback
+    const i = document.createElement('input');
+    i.value = url;
+    document.body.appendChild(i);
+    i.select();
+    document.execCommand('copy');
+    document.body.removeChild(i);
+    btn.textContent = 'Copied';
+    setTimeout(() => { btn.textContent = 'Share'; }, 1800);
+  });
+}
+
+// ── PACES TOGGLE ──
+function togglePaces() {
+  pacesVisible = !pacesVisible;
+  document.body.classList.toggle('paces-hidden', !pacesVisible);
+  document.getElementById('pacesToggle').textContent =
+    pacesVisible ? 'Hide pace conversions' : 'Show pace conversions';
+}
+
+// ── HASH ROUTING ──
+function handleHash() {
+  const hash = window.location.hash.replace('#', '');
+  const validSessions = ['session-01','session-02','session-03','session-04','session-05'];
+  if (hash && validSessions.includes(hash)) {
+    applyFocus(hash);
+  } else {
+    applyFocus(null);
+  }
+}
+
+window.addEventListener('hashchange', handleHash);
+document.addEventListener('DOMContentLoaded', handleHash);
+</script>
+</body>
+</html>

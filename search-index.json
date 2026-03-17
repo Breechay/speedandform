@@ -1,0 +1,1409 @@
+[
+  {
+    "title": "Shoe Rotation",
+    "url": "/shoes",
+    "type": "page",
+    "category": "reference",
+    "keywords": [
+      "shoes",
+      "rotation",
+      "shoe rotation",
+      "cloudmonster",
+      "alphafly",
+      "endorphin speed",
+      "race shoe",
+      "tempo trainer",
+      "daily trainer",
+      "plated",
+      "carbon plate",
+      "mileage",
+      "worn shoes"
+    ],
+    "synonyms": [
+      "footwear",
+      "sneakers",
+      "trainers",
+      "gear"
+    ],
+    "description": "Match the tool to the session. Different sessions create different loads."
+  },
+  {
+    "title": "Avoid Injury",
+    "url": "/avoid-injury",
+    "type": "page",
+    "category": "reference",
+    "keywords": [
+      "injury",
+      "pain",
+      "tightness",
+      "shin",
+      "knee",
+      "foot",
+      "stride",
+      "interruption",
+      "signal",
+      "adjust",
+      "stop",
+      "calf",
+      "hamstring",
+      "hip"
+    ],
+    "synonyms": [
+      "hurt",
+      "sore",
+      "ache",
+      "broken",
+      "damaged",
+      "disruption",
+      "setback"
+    ],
+    "description": "Adjust early. Stay uninterrupted."
+  },
+  {
+    "title": "Running Terms",
+    "url": "/running-terms",
+    "type": "page",
+    "category": "reference",
+    "keywords": [
+      "terms",
+      "glossary",
+      "definitions",
+      "vocabulary",
+      "concepts"
+    ],
+    "synonyms": [
+      "words",
+      "meaning",
+      "explain",
+      "what is",
+      "what does"
+    ],
+    "description": "A selective glossary for structured training."
+  },
+  {
+    "title": "Threshold (term)",
+    "url": "/running-terms#threshold",
+    "type": "term",
+    "category": "glossary",
+    "keywords": [
+      "threshold",
+      "aerobic density",
+      "tuesday",
+      "lactate",
+      "tempo",
+      "controlled effort",
+      "rhythm",
+      "pace"
+    ],
+    "synonyms": [
+      "hard effort",
+      "quality session",
+      "tuesday session",
+      "aerobic work"
+    ],
+    "description": "Steady work just below the point where fatigue rises sharply."
+  },
+  {
+    "title": "Economy (term)",
+    "url": "/running-terms#economy",
+    "type": "term",
+    "category": "glossary",
+    "keywords": [
+      "economy",
+      "efficiency",
+      "cost",
+      "energy",
+      "waste",
+      "improvement"
+    ],
+    "synonyms": [
+      "running economy",
+      "efficient",
+      "mechanics"
+    ],
+    "description": "The cost of moving at a given pace."
+  },
+  {
+    "title": "Fuel",
+    "url": "/running-terms#fuel",
+    "type": "term",
+    "category": "glossary",
+    "keywords": [
+      "fuel",
+      "gel",
+      "banana",
+      "carbs",
+      "carbohydrates",
+      "nutrition"
+    ],
+    "synonyms": [
+      "eat",
+      "calories",
+      "before session"
+    ],
+    "description": "Fuel before harder sessions helps the body accept the work."
+  },
+  {
+    "title": "Sleep",
+    "url": "/running-terms#sleep",
+    "type": "term",
+    "category": "glossary",
+    "keywords": [
+      "sleep",
+      "deep sleep",
+      "rem",
+      "watch",
+      "adaptation",
+      "rest"
+    ],
+    "synonyms": [
+      "sleep stages",
+      "watch data",
+      "recovery"
+    ],
+    "description": "Sleep is where most training adaptation occurs."
+  },
+  {
+    "title": "Consistency",
+    "url": "/running-terms#consistency",
+    "type": "term",
+    "category": "glossary",
+    "keywords": [
+      "consistency",
+      "consistent",
+      "uninterrupted",
+      "sequence",
+      "long term",
+      "repeat"
+    ],
+    "synonyms": [
+      "regular",
+      "routine",
+      "discipline",
+      "habit",
+      "continuous"
+    ],
+    "description": "The ability to repeat good work over long periods of time."
+  },
+  {
+    "title": "Session",
+    "url": "/running-terms#session",
+    "type": "term",
+    "category": "glossary",
+    "keywords": [
+      "session",
+      "workout",
+      "training unit",
+      "block",
+      "repetition"
+    ],
+    "synonyms": [
+      "workout",
+      "training session",
+      "run",
+      "work"
+    ],
+    "description": "One piece of training work."
+  },
+  {
+    "title": "Field",
+    "url": "/running-terms#field",
+    "type": "term",
+    "category": "glossary",
+    "keywords": [
+      "field",
+      "training environment",
+      "group",
+      "place",
+      "community"
+    ],
+    "synonyms": [
+      "group",
+      "team",
+      "community",
+      "practice location"
+    ],
+    "description": "The physical training environment \u2014 not a club or identity."
+  },
+  {
+    "title": "Cycle",
+    "url": "/running-terms#cycle",
+    "type": "term",
+    "category": "glossary",
+    "keywords": [
+      "cycle",
+      "block",
+      "phase",
+      "organization",
+      "compression",
+      "spring",
+      "summer",
+      "training block"
+    ],
+    "synonyms": [
+      "training block",
+      "phase",
+      "period",
+      "season"
+    ],
+    "description": "A block of time with one governing job."
+  },
+  {
+    "title": "The Field",
+    "url": "/the-field",
+    "type": "page",
+    "category": "reference",
+    "keywords": [
+      "field",
+      "miami",
+      "training field",
+      "miami running group",
+      "track",
+      "training environment"
+    ],
+    "synonyms": [
+      "group",
+      "training group",
+      "running group",
+      "practice location"
+    ],
+    "description": "A small training field in Miami."
+  },
+  {
+    "title": "Long Run",
+    "url": "/long-run",
+    "type": "page",
+    "category": "training",
+    "keywords": [
+      "long run",
+      "saturday",
+      "steady",
+      "aerobic base",
+      "distance",
+      "hideout",
+      "edgewater",
+      "durability"
+    ],
+    "synonyms": [
+      "saturday run",
+      "long run training",
+      "weekend run",
+      "easy steady run",
+      "long run hideout"
+    ],
+    "description": "Saturday aerobic base work."
+  },
+  {
+    "title": "Sessions",
+    "url": "/sessions",
+    "type": "page",
+    "category": "training",
+    "keywords": [
+      "sessions",
+      "workouts",
+      "threshold session",
+      "long run session",
+      "speed session",
+      "easy run",
+      "recovery run",
+      "3x10",
+      "2x20",
+      "progressive"
+    ],
+    "synonyms": [
+      "workouts",
+      "training sessions",
+      "runs"
+    ],
+    "description": "Recurring workout types used across the training system."
+  },
+  {
+    "title": "Practice",
+    "url": "/practice",
+    "type": "page",
+    "category": "core",
+    "keywords": [
+      "practice",
+      "this week",
+      "today",
+      "schedule",
+      "board",
+      "current",
+      "week"
+    ],
+    "synonyms": [
+      "today",
+      "this week",
+      "schedule",
+      "board"
+    ],
+    "description": "What is happening this week."
+  },
+  {
+    "title": "Plan",
+    "url": "/plan",
+    "type": "page",
+    "category": "core",
+    "keywords": [
+      "plan",
+      "spring cycle",
+      "training plan",
+      "cycle",
+      "weeks",
+      "phase"
+    ],
+    "synonyms": [
+      "training plan",
+      "program",
+      "schedule",
+      "spring"
+    ],
+    "description": "The current training cycle."
+  },
+  {
+    "title": "Competition",
+    "url": "/competition",
+    "type": "page",
+    "category": "core",
+    "keywords": [
+      "competition",
+      "race",
+      "races",
+      "upcoming",
+      "results",
+      "half marathon",
+      "pace tool",
+      "splits",
+      "finish time",
+      "target pace"
+    ],
+    "synonyms": [
+      "race",
+      "racing",
+      "event",
+      "half",
+      "5k",
+      "10k"
+    ],
+    "description": "Races inside the practice."
+  },
+  {
+    "title": "Race Pace Calculator",
+    "url": "/competition",
+    "type": "tool",
+    "category": "tool",
+    "keywords": [
+      "pace",
+      "race pace",
+      "splits",
+      "finish time",
+      "half marathon pace",
+      "per mile",
+      "per km",
+      "race plan",
+      "negative split",
+      "even splits"
+    ],
+    "synonyms": [
+      "calculator",
+      "pace tool",
+      "split calculator",
+      "goal pace"
+    ],
+    "description": "Enter a target finish time to see splits and race plan."
+  },
+  {
+    "title": "Athletes",
+    "url": "/athletes",
+    "type": "page",
+    "category": "core",
+    "keywords": [
+      "athletes",
+      "runners",
+      "group",
+      "members",
+      "threshold times",
+      "training data"
+    ],
+    "synonyms": [
+      "runners",
+      "people",
+      "group members"
+    ],
+    "description": "The current athletes in the system."
+  },
+  {
+    "title": "The Method",
+    "url": "/the-method",
+    "type": "page",
+    "category": "doctrine",
+    "keywords": [
+      "method",
+      "philosophy",
+      "approach",
+      "sleep",
+      "fuel",
+      "strength",
+      "aerobic",
+      "principles"
+    ],
+    "synonyms": [
+      "philosophy",
+      "doctrine",
+      "approach",
+      "system"
+    ],
+    "description": "How FORM approaches training."
+  },
+  {
+    "title": "Speed",
+    "url": "/speed",
+    "type": "page",
+    "category": "training",
+    "keywords": [
+      "speed",
+      "track",
+      "repetitions",
+      "intervals",
+      "fast",
+      "sharpening",
+      "speed work",
+      "200m",
+      "400m",
+      "800m"
+    ],
+    "synonyms": [
+      "track work",
+      "intervals",
+      "fast running",
+      "reps",
+      "repeats"
+    ],
+    "description": "Speed sessions and track work."
+  },
+  {
+    "title": "Easy Run",
+    "url": "/easy-run",
+    "type": "page",
+    "category": "training",
+    "keywords": [
+      "easy run",
+      "easy running",
+      "aerobic",
+      "conversation pace",
+      "recovery run",
+      "base building"
+    ],
+    "synonyms": [
+      "easy pace running",
+      "slow run",
+      "recovery running",
+      "aerobic run",
+      "easy day"
+    ],
+    "description": "The foundation of most training weeks."
+  },
+  {
+    "title": "Strength",
+    "url": "/strength",
+    "type": "page",
+    "category": "training",
+    "keywords": [
+      "strength",
+      "structural work",
+      "durability",
+      "gym",
+      "exercises",
+      "coordination"
+    ],
+    "synonyms": [
+      "strength training",
+      "gym",
+      "weights",
+      "exercises",
+      "structural"
+    ],
+    "description": "Structural work that supports training durability."
+  },
+  {
+    "title": "Training Principles",
+    "url": "/training-principles",
+    "type": "page",
+    "category": "doctrine",
+    "keywords": [
+      "principles",
+      "training principles",
+      "aerobic",
+      "load",
+      "adaptation",
+      "volume",
+      "intensity"
+    ],
+    "synonyms": [
+      "fundamentals",
+      "basics",
+      "core principles",
+      "philosophy"
+    ],
+    "description": "The principles that guide how FORM trains."
+  },
+  {
+    "title": "Training Week",
+    "url": "/training-week",
+    "type": "page",
+    "category": "doctrine",
+    "keywords": [
+      "training week",
+      "week structure",
+      "tuesday",
+      "saturday",
+      "schedule",
+      "weekly"
+    ],
+    "synonyms": [
+      "week",
+      "weekly plan",
+      "weekly structure"
+    ],
+    "description": "How a typical training week is structured."
+  },
+  {
+    "title": "Cycles",
+    "url": "/cycles",
+    "type": "page",
+    "category": "core",
+    "keywords": [
+      "cycles",
+      "archive",
+      "spring cycle",
+      "summer cycle",
+      "past cycles"
+    ],
+    "synonyms": [
+      "past cycles",
+      "archive",
+      "history"
+    ],
+    "description": "Training cycle archive."
+  },
+  {
+    "title": "Library",
+    "url": "/library",
+    "type": "page",
+    "category": "core",
+    "keywords": [
+      "library",
+      "all pages",
+      "index",
+      "reference",
+      "browse"
+    ],
+    "synonyms": [
+      "index",
+      "all",
+      "browse",
+      "everything"
+    ],
+    "description": "All FORM reference pages."
+  },
+  {
+    "title": "Pacing",
+    "url": "/pacing",
+    "type": "reference",
+    "description": "Pace is a reference. Effort is the guide. How to pace easy runs, threshold sessions, and long runs in the FORM system.",
+    "keywords": [
+      "pacing",
+      "pace",
+      "effort",
+      "easy pace",
+      "threshold pace",
+      "race pace",
+      "steady pace",
+      "effort spectrum"
+    ],
+    "synonyms": [
+      "how fast should I run",
+      "pace guide",
+      "effort zones",
+      "running pace reference"
+    ]
+  },
+  {
+    "title": "Fueling",
+    "url": "/fueling",
+    "type": "reference",
+    "description": "When to fuel, what works, and what to avoid. Practical fueling reference for threshold training, long runs, and races.",
+    "keywords": [
+      "fueling",
+      "nutrition",
+      "carbohydrates",
+      "gels",
+      "race fuel",
+      "long run fuel",
+      "hydration",
+      "caffeine",
+      "energy"
+    ],
+    "synonyms": [
+      "what to eat before running",
+      "running nutrition",
+      "race day food",
+      "fueling strategy",
+      "gels for running"
+    ]
+  },
+  {
+    "title": "Recovery",
+    "url": "/recovery",
+    "type": "reference",
+    "description": "Adaptation happens between sessions. How sleep, easy days, and consistent rhythm support training in the FORM system.",
+    "keywords": [
+      "recovery",
+      "sleep",
+      "rest",
+      "adaptation",
+      "easy days",
+      "post-race recovery",
+      "taper recovery",
+      "deep sleep",
+      "REM"
+    ],
+    "synonyms": [
+      "rest day",
+      "how long to recover",
+      "recovery after race",
+      "sleep for runners",
+      "training recovery"
+    ]
+  },
+  {
+    "title": "Race Preparation",
+    "url": "/race-prep",
+    "type": "reference",
+    "description": "Taper structure, race week protocol, and race morning routine. How FORM athletes prepare for competition.",
+    "keywords": [
+      "race prep",
+      "taper",
+      "race week",
+      "race morning",
+      "warm-up",
+      "pre-race",
+      "race day",
+      "race preparation",
+      "competition"
+    ],
+    "synonyms": [
+      "how to taper",
+      "race week training",
+      "what to do before a race",
+      "pre-race routine",
+      "race day preparation"
+    ]
+  },
+  {
+    "title": "Split Calculator",
+    "url": "/split-calculator",
+    "type": "tool",
+    "description": "Enter a distance and goal time to get mile splits, km splits, and 400m repeat pace. Watch-programmable output.",
+    "keywords": [
+      "split calculator",
+      "pace calculator",
+      "running splits",
+      "mile pace",
+      "km pace",
+      "400m pace",
+      "watch programming"
+    ],
+    "synonyms": [
+      "race pace calculator",
+      "running calculator",
+      "split times",
+      "pace converter"
+    ]
+  },
+  {
+    "title": "Field Notes",
+    "url": "/field-notes",
+    "type": "reference",
+    "description": "Observations from inside a disciplined training environment. How standards spread, how groups regulate ego, why quiet cultures outlast loud ones.",
+    "keywords": [
+      "field notes",
+      "training culture",
+      "group dynamics",
+      "ego",
+      "standards",
+      "quiet training",
+      "discipline",
+      "neutrality"
+    ],
+    "synonyms": [
+      "training environment",
+      "running group culture",
+      "how training groups work",
+      "discipline in training"
+    ]
+  },
+  {
+    "title": "Returning to Running",
+    "url": "/return",
+    "type": "reference",
+    "description": "A system for coming back to running after time away. For runners who have done this before and want to rebuild correctly. Four phases: Return, Organization, Density, Expression.",
+    "keywords": [
+      "returning to running",
+      "re-entry",
+      "comeback",
+      "after injury",
+      "running break",
+      "start again",
+      "former runner"
+    ],
+    "synonyms": [
+      "how to start running again",
+      "returning runner",
+      "running after break",
+      "comeback plan",
+      "get back into running"
+    ]
+  },
+  {
+    "title": "Training Interruptions",
+    "url": "/training-interruptions",
+    "type": "page",
+    "category": "reference",
+    "description": "Managing injury and time away from training.",
+    "keywords": "injury, interruption, time off, sick, comeback, return, hurt, pain, tendon, rest",
+    "synonyms": "injured, hurt, sick, layoff, break, missed training"
+  },
+  {
+    "title": "Running Form Errors",
+    "url": "/running-form-errors",
+    "type": "page",
+    "category": "reference",
+    "description": "Common mechanical errors and how to correct them.",
+    "keywords": "form, mechanics, posture, stride, heel strike, overstriding, arm swing, cadence, correction",
+    "synonyms": "technique, mechanics, fix, correct, posture, gait"
+  },
+  {
+    "title": "Training Map",
+    "url": "/training-map",
+    "type": "page",
+    "category": "reference",
+    "description": "How the training system fits together.",
+    "keywords": "structure, overview, system, map, how it works, training overview",
+    "synonyms": "overview, structure, system, diagram"
+  },
+  {
+    "title": "Training Arc",
+    "url": "/training-arc",
+    "type": "page",
+    "category": "reference",
+    "description": "Long-view development across phases of training.",
+    "keywords": "development, phases, long term, arc, progression, build, improve, years",
+    "synonyms": "development, growth, long term, phases, progression"
+  },
+  {
+    "title": "Plan \u2014 Spring 2026",
+    "url": "/plan-spring-2026",
+    "type": "page",
+    "category": "archive",
+    "description": "Current season training plan.",
+    "keywords": "plan, spring 2026, season, schedule, cycle, races",
+    "synonyms": "schedule, season plan, current plan"
+  },
+  {
+    "title": "Sleep",
+    "url": "/sleep",
+    "type": "page",
+    "category": "reference",
+    "description": "Protecting the deepest recovery layer.",
+    "keywords": "sleep, recovery sleep, running recovery, training fatigue, sleep rhythm, deep sleep, REM, rest, adaptation",
+    "synonyms": "rest, recovery sleep, sleep schedule, sleep quality"
+  },
+  {
+    "title": "Anti-Rotation Routine",
+    "url": "/anti-rotation",
+    "type": "reference",
+    "description": "A targeted routine for runners who twist or rotate excessively under load. Dead Bug, Pallof Press, Side Plank, Single-Leg RDL.",
+    "keywords": [
+      "anti-rotation",
+      "anti rotation",
+      "torso twist",
+      "hip pain",
+      "rotation",
+      "core stability",
+      "pallof press",
+      "dead bug"
+    ],
+    "synonyms": [
+      "rotational instability",
+      "hip twisting",
+      "arm crossover fix",
+      "core routine for runners",
+      "anti rotation routine",
+      "twisting while running"
+    ]
+  },
+  {
+    "title": "Operating Principles",
+    "url": "/principles",
+    "type": "reference",
+    "description": "The core operational rules of the FORM training system. Run the effort. Finish neutral. Correct the position. Consistency organizes everything.",
+    "keywords": [
+      "principles",
+      "operating principles",
+      "rules",
+      "philosophy",
+      "finish neutral",
+      "leave 15%",
+      "consistency"
+    ],
+    "synonyms": [
+      "training rules",
+      "form philosophy",
+      "coaching principles",
+      "system rules"
+    ]
+  },
+  {
+    "title": "Running Mechanics Map",
+    "url": "/mechanics-map",
+    "type": "reference",
+    "description": "How common running errors relate to each other. Rhythm, stability, and direction \u2014 the three root categories of mechanical inefficiency.",
+    "keywords": [
+      "mechanics map",
+      "mechanics",
+      "rhythm",
+      "stability",
+      "direction",
+      "overstriding",
+      "vertical bounce",
+      "cadence"
+    ],
+    "synonyms": [
+      "mechanics overview",
+      "running errors overview",
+      "form map"
+    ]
+  },
+  {
+    "title": "Runner Pain Map",
+    "url": "/pain-map",
+    "type": "reference",
+    "description": "Common running pain signals and their usual mechanical causes. Hip, knee, shin, foot, and lower back \u2014 first checks for each.",
+    "keywords": [
+      "pain map",
+      "hip pain",
+      "knee pain",
+      "shin pain",
+      "foot pain",
+      "lower back",
+      "injury",
+      "pain",
+      "aches"
+    ],
+    "synonyms": [
+      "running pain",
+      "injury causes",
+      "pain reference",
+      "what hurts",
+      "runner pain guide",
+      "running aches"
+    ]
+  },
+  {
+    "title": "Troubleshooting the Run",
+    "url": "/troubleshooting",
+    "type": "reference",
+    "description": "Small adjustments for when a run feels off. Stride heavy, breathing tight, form breaking \u2014 calm corrections for each situation.",
+    "keywords": [
+      "troubleshooting",
+      "run feels hard",
+      "stride heavy",
+      "breathing tight",
+      "form breakdown",
+      "adjustments"
+    ],
+    "synonyms": [
+      "mid-run problems",
+      "run not working",
+      "run feels off",
+      "what to do when running feels bad"
+    ]
+  },
+  {
+    "title": "Long Run Pace",
+    "url": "/long-run-pace",
+    "type": "reference",
+    "description": "Steady pace reference for the long run. Formulas, execution structure, and athlete pace cards for Breech, Sam, and Simon.",
+    "keywords": [
+      "long run pace",
+      "steady pace",
+      "easy ceiling",
+      "pace reference",
+      "threshold plus",
+      "long run formula",
+      "pace",
+      "running pace"
+    ],
+    "synonyms": [
+      "what pace long run",
+      "steady long run pace",
+      "long run speed",
+      "pace guide"
+    ]
+  },
+  {
+    "title": "Easy Run Standards",
+    "url": "/easy-run-standards",
+    "type": "reference",
+    "description": "Mechanical standards for easy runs. Garmin-based reference ranges for ground contact time, cadence, stride length, vertical ratio, and vertical oscillation.",
+    "keywords": [
+      "easy run standards",
+      "garmin metrics",
+      "ground contact time",
+      "cadence",
+      "stride length",
+      "vertical ratio",
+      "vertical oscillation",
+      "mechanical standards"
+    ],
+    "synonyms": [
+      "garmin easy run",
+      "running metrics reference",
+      "what do garmin numbers mean",
+      "easy run garmin guide"
+    ]
+  },
+  {
+    "title": "Threshold",
+    "url": "/threshold",
+    "type": "page",
+    "description": "Tuesday threshold session. Sustained running at the top of controlled aerobic effort. Run the effort. Let the pace appear.",
+    "keywords": [
+      "threshold",
+      "tuesday",
+      "tempo",
+      "workout",
+      "effort",
+      "speed",
+      "flamingo park",
+      "track"
+    ],
+    "synonyms": [
+      "threshold run",
+      "tempo run",
+      "speed session",
+      "tuesday workout",
+      "track session",
+      "threshold training"
+    ]
+  },
+  {
+    "title": "Strength Fixes",
+    "url": "/strength-fixes",
+    "type": "page",
+    "description": "Targeted mechanical corrections for common running problems. Glutes not firing, tight calves, hip drop, unstable core, anti-rotation.",
+    "keywords": [
+      "strength fixes",
+      "mechanical fixes",
+      "glutes",
+      "calves",
+      "hip drop",
+      "core",
+      "exercises",
+      "corrections"
+    ],
+    "synonyms": [
+      "strength exercises",
+      "runner strength",
+      "mechanical corrections",
+      "fix running problems"
+    ]
+  },
+  {
+    "title": "Durability Routine",
+    "url": "/strength-routine",
+    "type": "page",
+    "description": "The weekly strength routine for FORM athletes. Two rounds of targeted exercises for structural durability.",
+    "keywords": [
+      "durability routine",
+      "strength routine",
+      "weekly routine",
+      "structural work",
+      "exercises"
+    ],
+    "synonyms": [
+      "strength workout",
+      "runner exercises",
+      "weekly strength"
+    ]
+  },
+  {
+    "title": "Activation",
+    "url": "/strength-activation",
+    "type": "page",
+    "description": "Pre-run activation exercises. Glute activation and movement preparation before threshold or long run sessions.",
+    "keywords": [
+      "activation",
+      "warm up",
+      "pre-run",
+      "glute activation",
+      "preparation"
+    ],
+    "synonyms": [
+      "pre-run warm up",
+      "activation exercises",
+      "warmup routine"
+    ]
+  },
+  {
+    "title": "Threshold Training",
+    "url": "/threshold-training",
+    "type": "page",
+    "description": "What threshold training develops and why it is the most trainable quality in distance running.",
+    "keywords": [
+      "threshold training",
+      "lactate threshold",
+      "aerobic development",
+      "tempo training",
+      "what is threshold"
+    ],
+    "synonyms": [
+      "what is threshold training",
+      "threshold explained",
+      "threshold development"
+    ]
+  },
+  {
+    "title": "How Fast Should I Run",
+    "url": "/how-fast-should-i-run",
+    "type": "page",
+    "description": "Pace guidance for easy runs, threshold, and long runs. Effort-based pacing reference for FORM athletes.",
+    "keywords": [
+      "how fast",
+      "pace",
+      "easy pace",
+      "threshold pace",
+      "long run pace",
+      "effort zones"
+    ],
+    "synonyms": [
+      "what pace should I run",
+      "running pace guide",
+      "effort pacing"
+    ]
+  },
+  {
+    "title": "Ledger",
+    "url": "/ledger",
+    "type": "page",
+    "description": "Training record for the FORM practice. Session log and historical record.",
+    "keywords": [
+      "ledger",
+      "training log",
+      "session record",
+      "history"
+    ],
+    "synonyms": [
+      "training record",
+      "session history",
+      "log"
+    ]
+  },
+  {
+    "title": "Start",
+    "url": "/start",
+    "type": "page",
+    "description": "How to join FORM. Session times, locations, protocol, and what to know before your first session.",
+    "keywords": [
+      "start",
+      "join",
+      "new",
+      "first session",
+      "how to join",
+      "miami running",
+      "flamingo park",
+      "hideout"
+    ],
+    "synonyms": [
+      "how to join FORM",
+      "new runner",
+      "first time",
+      "getting started"
+    ]
+  },
+  {
+    "title": "The Work",
+    "url": "/the-work",
+    "type": "page",
+    "description": "Coaching philosophy and what the practice is building toward.",
+    "keywords": [
+      "the work",
+      "philosophy",
+      "coaching",
+      "practice",
+      "system"
+    ],
+    "synonyms": [
+      "coaching philosophy",
+      "FORM philosophy",
+      "what FORM is building"
+    ]
+  },
+  {
+    "title": "Miami Running Training",
+    "url": "/miami-running-training",
+    "type": "page",
+    "description": "Structured distance running training in Miami. FORM training group information.",
+    "keywords": [
+      "miami running",
+      "miami training",
+      "distance running miami",
+      "running group miami"
+    ],
+    "synonyms": [
+      "miami run club",
+      "miami running group",
+      "training in miami"
+    ]
+  },
+  {
+    "title": "The Ghost Protocol",
+    "url": "/ghost",
+    "type": "page",
+    "category": "practice",
+    "keywords": [
+      "ghost protocol",
+      "running form",
+      "form practice",
+      "running technique",
+      "running cues",
+      "beginner running",
+      "running mechanics",
+      "how to run better",
+      "clean running form",
+      "quiet feet",
+      "nasal breathing",
+      "composure",
+      "six week program",
+      "running form program",
+      "start running",
+      "learn to run",
+      "running for beginners",
+      "cadence running",
+      "tall spine",
+      "wrists to hips"
+    ],
+    "synonyms": [
+      "ghost running",
+      "form practice",
+      "running fundamentals",
+      "movement practice"
+    ],
+    "description": "A six-week practice for clean running form. Rhythm, gravity, spring, pillar, gears, ghost. Start here if you are new to structured running."
+  },
+  {
+    "title": "Week 1 \u2014 Rhythm",
+    "url": "/ghost/week-1",
+    "type": "page",
+    "category": "practice",
+    "keywords": [
+      "rhythm",
+      "cadence",
+      "quiet feet",
+      "nasal breathing",
+      "170 bpm",
+      "180 bpm",
+      "running cadence",
+      "foot strike",
+      "running rhythm",
+      "metronome running"
+    ],
+    "synonyms": [
+      "cadence practice",
+      "running rhythm",
+      "step count"
+    ],
+    "description": "Find the beat. Remove urgency. Week 1 of the Ghost Protocol \u2014 cadence, quiet feet, nasal gear."
+  },
+  {
+    "title": "Week 2 \u2014 Gravity",
+    "url": "/ghost/week-2",
+    "type": "page",
+    "category": "practice",
+    "keywords": [
+      "gravity",
+      "forward lean",
+      "ankle lean",
+      "falling starts",
+      "drive the hip through",
+      "hip extension",
+      "wrists to hips",
+      "arm position running",
+      "lean running",
+      "posture running"
+    ],
+    "synonyms": [
+      "lean running",
+      "gravity running",
+      "pose method"
+    ],
+    "description": "Stop pushing. Start falling. Week 2 of the Ghost Protocol \u2014 ankle lean, hips forward, elbows back."
+  },
+  {
+    "title": "Week 3 \u2014 Spring",
+    "url": "/ghost/week-3",
+    "type": "page",
+    "category": "practice",
+    "keywords": [
+      "spring",
+      "ground contact",
+      "achilles",
+      "elastic running",
+      "hip drive",
+      "hot pavement",
+      "pull dont push",
+      "calf running",
+      "running economy",
+      "ground contact time"
+    ],
+    "synonyms": [
+      "elastic running",
+      "spring mechanics",
+      "ground contact time"
+    ],
+    "description": "Use the ground. Don't sink into it. Week 3 \u2014 hot pavement, pull not push, midfoot landing."
+  },
+  {
+    "title": "Week 4 \u2014 Pillar",
+    "url": "/ghost/week-4",
+    "type": "page",
+    "category": "practice",
+    "keywords": [
+      "pillar",
+      "core running",
+      "torso stability",
+      "quiet shoulders",
+      "relaxed hands",
+      "upper body running",
+      "energy leak",
+      "running posture",
+      "tall stack"
+    ],
+    "synonyms": [
+      "torso stability",
+      "core running",
+      "pillar strength"
+    ],
+    "description": "Still torso. Moving legs. Week 4 \u2014 tall stack, quiet shoulders, relaxed hands."
+  },
+  {
+    "title": "Week 5 \u2014 Gears",
+    "url": "/ghost/week-5",
+    "type": "page",
+    "category": "practice",
+    "keywords": [
+      "gears",
+      "speed",
+      "strides",
+      "acceleration",
+      "calm eyes",
+      "leg recovery",
+      "changing pace",
+      "running speed",
+      "effortless speed"
+    ],
+    "synonyms": [
+      "gear change",
+      "speed mechanics",
+      "strides running"
+    ],
+    "description": "Change speed without changing form. Week 5 \u2014 lean to accelerate, quick leg recovery, calm eyes."
+  },
+  {
+    "title": "Week 6 \u2014 Ghost",
+    "url": "/ghost/week-6",
+    "type": "page",
+    "category": "practice",
+    "keywords": [
+      "ghost",
+      "composure",
+      "nasal breathing threshold",
+      "graduation run",
+      "composure running",
+      "form under fatigue",
+      "integration",
+      "quiet feet fatigue",
+      "stable pillar",
+      "relaxed breath"
+    ],
+    "synonyms": [
+      "composure running",
+      "form under fatigue",
+      "integration"
+    ],
+    "description": "Everything together. No thinking. Week 6 \u2014 composure under fatigue, the graduation run."
+  },
+  {
+    "title": "Running Form Cues",
+    "url": "/ghost/cues",
+    "type": "page",
+    "category": "reference",
+    "keywords": [
+      "running cues",
+      "form cues",
+      "quiet feet",
+      "tall spine",
+      "nasal breathing",
+      "ankle lean",
+      "drive the hip through",
+      "wrists to hips",
+      "hot pavement",
+      "pull dont push",
+      "hip drive",
+      "tall stack",
+      "quiet shoulders",
+      "relaxed hands",
+      "lean to accelerate",
+      "quick leg recovery",
+      "calm eyes",
+      "running technique cues",
+      "running form reference",
+      "cue library"
+    ],
+    "synonyms": [
+      "form cues",
+      "running cue list",
+      "mechanical cues",
+      "running tips"
+    ],
+    "description": "All running form cues from the Ghost Protocol in practice order. A mechanical reference for quiet, efficient movement."
+  },
+  {
+    "title": "Mobility",
+    "url": "/mobility",
+    "type": "page",
+    "category": "reference",
+    "keywords": [
+      "mobility",
+      "hip flexor",
+      "ankle mobility",
+      "calf stretch",
+      "glute activation",
+      "foam roller",
+      "thoracic",
+      "clamshells",
+      "glute bridge",
+      "couch stretch",
+      "running mobility",
+      "recovery mobility"
+    ],
+    "synonyms": [
+      "stretching",
+      "flexibility",
+      "joint prep",
+      "movement prep"
+    ],
+    "description": "The mobility work that supports FORM training. Hip flexors, ankles, calves, mid-back, glutes. Short, specific, purposeful."
+  }
+]

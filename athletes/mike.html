@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202603161318">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Athlete Record — FORM Running Practice</title>
+<meta name="description" content="Training record and session history for a FORM athlete. Threshold times, competition results, and cycle progress.">
+<link rel="canonical" href="https://speedandform.com/athletes/mike">
+<meta property="og:title" content="Athlete Record — FORM">
+<meta property="og:description" content="Training record and session history.">
+<meta property="og:url" content="https://speedandform.com/athletes/mike">
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="FORM">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --accent:#c4593a; --line:#d8d2c8; --line-l:#e8e3dc; }
+html, body { height: auto !important; overflow: visible !important; }
+body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding: 0 0 120px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+.content { max-width: 560px; margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
+.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 52px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 8px; }
+.athlete-meta { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); margin-bottom: 52px; display: block; }
+.section-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 20px; }
+/* Threshold table */
+.threshold-table { width: 100%; border-collapse: collapse; }
+.threshold-table thead tr { border-bottom: 1px solid var(--line); }
+.threshold-table th { font-size: 8px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); padding: 0 0 12px; text-align: left; }
+.threshold-table th:last-child { text-align: right; }
+.threshold-table tbody tr { border-bottom: 1px solid var(--line-l); }
+.threshold-table td { padding: 14px 0; font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; vertical-align: top; }
+.threshold-table td:last-child { text-align: right; }
+.td-session { font-size: 11px; color: var(--ink-f); display: block; margin-top: 2px; }
+.td-pb { font-weight: 500; color: var(--ink); }
+.td-skip-bare { color: var(--line); font-size: 13px; }
+.td-skip-label { color: var(--ink-f); font-size: 10px; font-weight: 400; letter-spacing: 0.06em; }
+.no-data { font-size: 13px; color: var(--ink-f); font-style: italic; font-family: 'Cormorant Garamond', serif; padding: 20px 0; }
+.rule { width: 100%; height: 1px; background: var(--line-l); margin: 52px 0; }
+/* Race section */
+.race-block { padding: 20px 0; border-top: 1px solid var(--line-l); }
+.race-block:last-of-type { border-bottom: 1px solid var(--line-l); }
+.race-date { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 4px; }
+.race-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; color: var(--ink); display: block; margin-bottom: 4px; text-decoration: none; }
+.race-name:hover { color: var(--ink-l); }
+.race-detail { font-size: 12px; color: var(--ink-f); letter-spacing: 0.03em; }
+.race-result { font-size: 13px; font-weight: 500; color: var(--ink); margin-left: 8px; }
+.loading { font-size: 11px; color: var(--ink-f); letter-spacing: 0.1em; text-transform: uppercase; padding: 20px 0; }
+
+
+
+
+@media (max-width: 480px) {
+  .nav { padding-left: 24px; padding-right: 24px; }
+  .content { padding-left: 24px; padding-right: 24px; border-left: none; }
+  .page-title { font-size: 40px; }
+}
+
+/* Upcoming block */
+.upcoming-block { padding: 0 0 32px; }
+.ub-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 8px; }
+.ub-session { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 24px; letter-spacing: 0.04em; color: var(--ink); display: block; margin-bottom: 6px; }
+.ub-link { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.ub-link:hover { color: var(--ink-l); }
+/* Race fields */
+.race-fields { display: flex; align-items: baseline; gap: 12px; margin-top: 6px; flex-wrap: wrap; }
+.rf-label { font-size: 8px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); }
+.rf-val { font-size: 13px; color: var(--ink-l); }
+.rf-edit { cursor: pointer; border-bottom: 1px dashed transparent; transition: border-color 0.15s; }
+.rf-edit:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.rf-inp { border: none; border-bottom: 1.5px solid var(--accent); background: transparent; outline: none; font-family: 'Jost', sans-serif; font-size: 13px; color: var(--ink); padding: 1px 2px; width: 120px; }
+.rc-del { background: none; border: none; cursor: pointer; font-size: 14px; color: var(--ink-f); opacity: 0.4; padding: 0 2px; line-height: 1; margin-left: auto; }
+.rc-del:hover { opacity: 1; color: var(--accent); }
+/* Race add row */
+.race-add-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line-l); }
+.ra-inp { border: none; border-bottom: 1px solid var(--line); background: transparent; outline: none; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 12px; color: var(--ink); padding: 4px 2px; width: 120px; }
+.ra-inp:focus { border-bottom-color: var(--accent); }
+.ra-btn { background: none; border: 1px solid var(--line); cursor: pointer; font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-f); padding: 4px 12px; }
+.ra-btn:hover { border-color: var(--ink-l); color: var(--ink); }
+/* Coach toggle */
+.coach-toggle { position: fixed; bottom: 20px; right: 20px; background: none; border: 1px solid var(--line); cursor: pointer; font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-f); padding: 6px 12px; z-index: 100; background: var(--cream); }
+.coach-toggle:hover { border-color: var(--ink-l); color: var(--ink); }
+</style>
+<meta property="og:image" content="https://speedandform.com/og/default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://speedandform.com/og/default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Athlete Record — FORM">
+<meta name="twitter:description" content="Training record and session history.">
+</head>
+<body>
+<div class="nav">
+  <a class="nav-home" href="/">FORM</a>
+  <span class="nav-label">Athletes</span>
+</div>
+<div class="content">
+  <h1 class="page-title" id="ath-name">—</h1>
+  <span class="athlete-meta" id="ath-meta">Loading…</span>
+
+  <div id="current-session-wrap" style="display:none;"></div>
+
+  <span class="section-label">Threshold · Spring Cycle 2026</span>
+  <div id="threshold-wrap"><div class="loading">Loading…</div></div>
+
+  <div class="rule"></div>
+
+  <span class="section-label"><a href="/competition" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--line-l);">Competition</a></span>
+  <div id="races-wrap"><div class="loading">Loading…</div></div>
+
+  <div id="form-footer"></div>
+  <div style="border-top: 1px solid var(--line-l); margin-top: 64px; padding-top: 24px; display: flex; gap: 32px;">
+    <a href="/athletes" style="font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); text-decoration: none;">Athletes</a>
+    <a href="/practice" style="font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); text-decoration: none;">Practice</a>
+    <a href="/library" style="font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); text-decoration: none;">Library</a>
+  </div>
+</div>
+
+<script>
+const SB  = 'https://zlhxvzgublgtuxplcjjl.supabase.co/rest/v1/';
+const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpsaHh2emd1YmxndHV4cGxjampsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1ODIxMTksImV4cCI6MjA4ODE1ODExOX0.DGEmk1QaAx-CPYkNiHf5BTMI6DKFKp7Wr40fShGv0hc';
+const H   = { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY };
+
+// Session descriptions — matches plan
+const SESSION_NAMES = {
+  1: '3 × 10 min',
+  2: '2 × 14 min',
+  3: '20 + 8',
+  4: '3 × 12 min',
+  5: '2 × 15 min',
+  6: '25 min continuous',
+  7: '3 × 14 min',
+  8: '20 + 12'
+};
+
+// Athlete config — slug → display name
+// skipLabel vocabulary: Race Week · Race Prep · Off Season · Modified
+//   omit = no context, show muted dash
+const ATHLETES = {
+  'breech': { name: 'Breech' },
+  'simon': { name: 'Simon' },
+  'sam-p': { name: 'Sam P.', skipLabel: 'Race Week' },
+  'marcus': { name: 'Marcus', skipLabel: 'Race Prep' },
+  'kyle': { name: 'Kyle', skipLabel: 'Off Season' },
+  'megan': { name: 'Megan' },
+  'jose': { name: 'José' },
+  'lisa': { name: 'Lisa' },
+  'bobby': { name: 'Bobby', skipLabel: 'Race Week' },
+  'ryan': { name: 'Ryan', skipLabel: 'Race Week' },
+  'mike': { name: 'Mike' },
+  'tinius': { name: 'Tinius', skipLabel: 'Off Season' },
+  'sam-v': { name: 'Sam V.' },
+};
+
+// Ledger table prefix — must match ledger.html tbl.id
+const TABLE_PREFIX = 'group';
+
+function getSlug() {
+  const parts = window.location.pathname.split('/');
+  return parts[parts.length - 1] || parts[parts.length - 2];
+}
+
+function formatDate(d) {
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const parts = d.split('-');
+  const dt = new Date(parts[0], parseInt(parts[1])-1, parts[2]);
+  return `${months[dt.getMonth()]} ${dt.getDate()}, ${dt.getFullYear()}`;
+}
+
+function renderCurrentSession(week) {
+  const wrap = document.getElementById('current-session-wrap');
+  if (!wrap) return;
+  if (!week || !week.session) { wrap.style.display = 'none'; return; }
+  wrap.style.display = '';
+  const sessionText = (week.session || '').replace(/^S\d+\s*[·—]\s*/, '').trim();
+  if (!sessionText) { wrap.style.display = 'none'; return; }
+  wrap.innerHTML = `<div class="upcoming-block">
+    <span class="ub-label">Current Session</span>
+    <span class="ub-session">${sessionText}</span>
+    <a class="ub-link" href="/threshold">Threshold →</a>
+  </div>`;
+}
+
+function renderThreshold(times, skipLabel) {
+  if (!times.length) {
+    document.getElementById('threshold-wrap').innerHTML = '<div class="no-data">No sessions logged yet.</div>';
+    return;
+  }
+  // Skipped values: 'race', 'x', '×' — all mean the session was not run
+  const isSkipVal = v => !v || v === 'x' || v === '×' || v === 'race';
+
+  // Find personal best (lowest numeric time)
+  const numeric = times.filter(t => t.time && !isSkipVal(t.time) && /^\d+:\d+/.test(t.time));
+  let pb = null;
+  if (numeric.length) {
+    pb = numeric.reduce((best, t) => {
+      const toSec = s => { const p = s.split(':'); return parseInt(p[0])*60 + parseFloat(p[1]); };
+      return toSec(t.time) < toSec(best.time) ? t : best;
+    });
+  }
+  const rows = times.sort((a,b) => a.week - b.week).map(t => {
+    const skip = isSkipVal(t.time);
+    const isPB = pb && t.week === pb.week && !skip;
+    const tdClass = skip
+      ? (skipLabel ? 'td-skip-label' : 'td-skip-bare')
+      : isPB ? 'td-pb' : '';
+    const displayTime = skip ? (skipLabel || '—') : t.time;
+    const pbDot = isPB ? ' ·' : '';
+    return `<tr>
+      <td>S${String(t.week).padStart(2,'0')}<span class="td-session">${SESSION_NAMES[t.week] || ''}</span></td>
+      <td class="${tdClass}">${displayTime}${pbDot}</td>
+    </tr>`;
+  }).join('');
+  document.getElementById('threshold-wrap').innerHTML = `
+    <table class="threshold-table">
+      <thead><tr><th>Session</th><th>Time</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+}
+
+function renderRaces(races, isCoach) {
+  const wrap = document.getElementById('races-wrap');
+  if (!races.length && !isCoach) {
+    wrap.innerHTML = '<div class="no-data">No races scheduled.</div>';
+    return;
+  }
+  const today = new Date().toISOString().split('T')[0];
+  const sorted = [...races].sort((a,b) => a.date.localeCompare(b.date));
+
+  let html = sorted.map(r => {
+    const past = r.date < today;
+    const id = r.id || '';
+    const targetDisp = r.target || '—';
+    const resultDisp = r.result || '';
+    return `<div class="race-block" data-id="${id}">
+      <span class="race-date">${formatDate(r.date)}</span>
+      <a class="race-name" href="/competition">${r.name}</a>
+      <span class="race-detail">${r.location}</span>
+      <div class="race-fields">
+        ${past
+          ? `<span class="rf-label">Result</span>
+             <span class="rf-val${isCoach ? ' rf-edit' : ''}" data-field="result" data-id="${id}">${resultDisp || (isCoach ? 'add result' : '—')}</span>`
+          : `<span class="rf-label">Target</span>
+             <span class="rf-val${isCoach ? ' rf-edit' : ''}" data-field="target" data-id="${id}">${targetDisp}</span>`
+        }
+        ${isCoach ? `<button class="rc-del" data-id="${id}" title="Remove race">×</button>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+
+  if (isCoach) {
+    html += `<div class="race-add-row">
+      <input class="ra-inp" id="ra-date" type="date" placeholder="Date">
+      <input class="ra-inp" id="ra-name" placeholder="Race name">
+      <input class="ra-inp" id="ra-location" placeholder="Location">
+      <input class="ra-inp" id="ra-target" placeholder="Target (optional)">
+      <button class="ra-btn" onclick="addRace()">Add</button>
+    </div>`;
+  } else if (!races.length) {
+    html = '<div class="no-data">No races scheduled.</div>';
+  }
+
+  wrap.innerHTML = html;
+
+  if (isCoach) {
+    wrap.querySelectorAll('.rf-edit').forEach(el => {
+      el.onclick = () => openRaceField(el);
+    });
+    wrap.querySelectorAll('.rc-del').forEach(btn => {
+      btn.onclick = () => deleteRace(btn.dataset.id);
+    });
+  }
+}
+
+function openRaceField(el) {
+  if (el.querySelector('input')) return;
+  const current = el.textContent.trim();
+  const field = el.dataset.field;
+  const id = el.dataset.id;
+  const inp = document.createElement('input');
+  inp.className = 'rf-inp';
+  inp.value = (current === '—' || current === 'add result') ? '' : current;
+  inp.placeholder = field === 'result' ? 'e.g. 1:42:08' : 'e.g. sub-1:45';
+  el.textContent = '';
+  el.appendChild(inp);
+  inp.focus();
+  const save = async () => {
+    const v = inp.value.trim();
+    el.textContent = v || '—';
+    el.dataset.id = id;
+    if (v) {
+      await fetch(SB + 'races?id=eq.' + encodeURIComponent(id), {
+        method: 'PATCH',
+        headers: { ...H, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+        body: JSON.stringify({ [field]: v })
+      }).catch(() => {});
+    }
+  };
+  inp.onblur = save;
+  inp.onkeydown = e => { if (e.key === 'Enter') inp.blur(); if (e.key === 'Escape') { el.textContent = current; } };
+}
+
+async function addRace() {
+  const date = document.getElementById('ra-date').value.trim();
+  const name = document.getElementById('ra-name').value.trim();
+  const location = document.getElementById('ra-location').value.trim();
+  const target = document.getElementById('ra-target').value.trim();
+  if (!date || !name) return;
+  const athName = currentAthleteName;
+  await fetch(SB + 'races', {
+    method: 'POST',
+    headers: { ...H, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+    body: JSON.stringify({ athlete: athName, date, name, location: location || '', target: target || null })
+  }).catch(() => {});
+  await reloadRaces();
+}
+
+async function deleteRace(id) {
+  if (!id || !confirm('Remove this race?')) return;
+  await fetch(SB + 'races?id=eq.' + encodeURIComponent(id), {
+    method: 'DELETE',
+    headers: H
+  }).catch(() => {});
+  await reloadRaces();
+}
+
+async function reloadRaces() {
+  const name = currentAthleteName;
+  const isCoach = document.body.dataset.coach === '1';
+  try {
+    const res = await fetch(SB + 'races?athlete=eq.' + encodeURIComponent(name) + '&order=date.asc', { headers: H });
+    const races = await res.json();
+    renderRaces(Array.isArray(races) ? races : [], isCoach);
+  } catch(e) {}
+}
+
+
+let currentAthleteName = '';
+let coachMode = false;
+
+async function load() {
+  const slug = getSlug();
+  const athlete = ATHLETES[slug];
+  if (!athlete) {
+    document.getElementById('ath-name').textContent = 'Athlete not found';
+    document.getElementById('ath-meta').textContent = '';
+    document.getElementById('threshold-wrap').innerHTML = '';
+    document.getElementById('races-wrap').innerHTML = '';
+    return;
+  }
+  const name = athlete.name;
+  const skipLabel = athlete.skipLabel || null;
+  currentAthleteName = name;
+
+  document.title = `FORM — ${name}`;
+  document.getElementById('ath-name').textContent = name;
+  document.querySelector('.nav-label').textContent = name;
+
+  try {
+    const athKey = encodeURIComponent(`${TABLE_PREFIX}_${name}`);
+    const [tRes, rRes, aRes, wRes] = await Promise.all([
+      fetch(`${SB}threshold_times?athlete=eq.${athKey}&order=week.asc`, { headers: H }),
+      fetch(`${SB}races?athlete=eq.${encodeURIComponent(name)}&order=date.asc`, { headers: H }),
+      fetch(`${SB}athletes?slug=eq.${slug}`, { headers: H }),
+      fetch(`${SB}this_week?id=eq.current`, { headers: H })
+    ]);
+    const times  = await tRes.json();
+    const races  = await rRes.json();
+    const athRow = await aRes.json();
+    const weekRow = await wRes.json();
+
+    const joined = athRow[0]?.joined || 'Spring 2026';
+    document.getElementById('ath-meta').textContent = `FORM · ${joined}`;
+
+    renderCurrentSession(weekRow[0] || null);
+    renderThreshold(Array.isArray(times) ? times : [], skipLabel);
+    renderRaces(Array.isArray(races) ? races : [], false);
+  } catch(e) {
+    document.getElementById('ath-meta').textContent = 'FORM · Spring 2026';
+    document.getElementById('threshold-wrap').innerHTML = '<div class="no-data">Could not load session data.</div>';
+    document.getElementById('races-wrap').innerHTML = '<div class="no-data">Could not load race data.</div>';
+  }
+}
+
+// Coach mode
+const PIN = '1234';
+function toggleCoach() {
+  if (coachMode) {
+    coachMode = false;
+    document.body.dataset.coach = '0';
+    document.querySelector('.coach-toggle').textContent = '🔒';
+    reloadRaces();
+  } else {
+    const pin = prompt('PIN');
+    if (pin === PIN) {
+      coachMode = true;
+      document.body.dataset.coach = '1';
+      document.querySelector('.coach-toggle').textContent = '🔓';
+      reloadRaces();
+    }
+  }
+}
+
+load();
+
+</script>
+<script src="https://zlhxvzgublgtuxplcjjl.supabase.co/storage/v1/object/public/scripts/form-shell.js"></script>
+<style>
+/* Override athlete-app.js injected scroll lock */
+html, body { height: auto !important; min-height: unset !important; overflow: visible !important; }
+</style>
+</body>
+</html>

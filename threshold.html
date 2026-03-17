@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202603161318">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Threshold | FORM</title>
+<meta name="description" content="Sustained aerobic work that builds the engine. How threshold training fits into the FORM practice and when to run it.">
+<link rel="canonical" href="https://speedandform.com/threshold">
+<meta property="og:title" content="Threshold | FORM">
+<meta property="og:description" content="Sustained aerobic work that builds the engine. How threshold training fits into the FORM practice and when to run it.">
+<meta property="og:url" content="https://speedandform.com/threshold">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://speedandform.com/og/threshold.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://speedandform.com/og/threshold.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:site_name" content="FORM">
+<meta name="twitter:title" content="Threshold | FORM">
+<meta name="twitter:description" content="Sustained aerobic work that builds the engine. How threshold training fits into the FORM practice and when to run it.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --line:#d8d2c8; --line-l:#e8e3dc; }
+body {
+  background: var(--cream); color: var(--ink);
+  font-family: 'Jost', sans-serif; font-weight: 300;
+  font-kerning: normal; font-feature-settings: "kern";
+  padding-bottom: 120px;
+  overflow-y: auto; -webkit-overflow-scrolling: touch;
+}
+
+/* NAV */
+.nav {
+  max-width: 560px; margin: 0 auto;
+  padding: 36px 32px 0;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-home {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: 22px;
+  letter-spacing: 0.12em; color: var(--ink); text-decoration: none;
+}
+.nav-label {
+  font-size: 8px; font-weight: 500;
+  letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f);
+}
+
+/* CONTENT */
+.content {
+  max-width: 560px; margin: 0 auto;
+  padding: 64px 32px 0;
+  border-left: 1px solid var(--line-l);
+}
+
+/* TITLE BLOCK */
+.page-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: 42px;
+  letter-spacing: 0.04em; color: var(--ink);
+  line-height: 1; margin-bottom: 14px;
+  font-size: 42px;
+}
+.page-def { font-size: 13px; color: var(--ink-l); line-height: 1.65; letter-spacing: 0.02em; margin-bottom: 24px; }
+.seo-block { display: none; }
+.seo-label { display: none; }
+.seo-text { display: none; }
+.session-meta {
+  font-size: 8px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-l); opacity: 0.85; display: block; margin-top: 10px; margin-bottom: 0;
+}
+.current-session { display: none; margin: 18px 0 0; }
+.current-session.on { display: block; cursor: pointer; }
+.current-session.on:hover .cs-number { color: var(--ink); }
+
+/* SESSION DRAWER */
+.drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(42,38,32,0.45); z-index: 200; }
+.drawer-overlay.open { display: block; }
+.drawer { position: fixed; bottom: 0; left: 0; right: 0; background: var(--cream); z-index: 201; transform: translateY(100%); transition: transform 0.32s cubic-bezier(.4,0,.2,1); max-height: 85vh; overflow-y: auto; border-top-left-radius: 4px; border-top-right-radius: 4px; }
+.drawer.open { transform: translateY(0); }
+.drawer-handle { width: 36px; height: 3px; background: var(--line); border-radius: 2px; margin: 14px auto 0; }
+.drawer-inner { padding: 20px 32px 48px; max-width: 420px; margin: 0 auto; }
+.drawer-eyebrow { font-size: 9px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); margin-bottom: 6px; display: block; }
+.drawer-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; letter-spacing: 0.04em; color: var(--ink); margin-bottom: 4px; line-height: 1.2; }
+.drawer-sub { font-size: 12px; color: var(--ink-l); margin-bottom: 24px; letter-spacing: 0.03em; }
+.drawer-rule { height: 1px; background: var(--line-l); margin: 20px 0; }
+.drawer-section-lbl { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); margin-bottom: 12px; display: block; }
+.drawer-structure { font-size: 12px; color: var(--ink-l); letter-spacing: 0.06em; margin-bottom: 8px; }
+.drawer-body { font-size: 13.5px; line-height: 1.85; color: var(--ink-l); }
+.drawer-body p { margin-bottom: 12px; }
+.drawer-body p:last-child { margin-bottom: 0; }
+.drawer-close { margin-top: 28px; width: 100%; background: none; border: 1px solid var(--line); color: var(--ink-f); font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; padding: 12px; cursor: pointer; transition: all 0.15s; border-radius: 2px; }
+.drawer-close:hover { border-color: var(--ink); color: var(--ink); }
+.cs-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
+.cs-number { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; letter-spacing: 0.08em; color: var(--ink); display: block; line-height: 1; }
+.cs-name { font-size: 15px; line-height: 1.5; color: var(--ink-l); letter-spacing: 0.02em; display: block; margin-top: 6px; }
+
+.session-standard {
+  margin-top: 16px;
+  font-size: 13px; line-height: 1.68;
+  letter-spacing: 0.02em;
+  color: var(--ink-l);
+}
+
+/* HUB LINKS */
+.links {
+  margin-top: 48px;
+  border-top: 1px solid var(--line-l);
+}
+.hub-link {
+  display: flex; align-items: center; justify-content: space-between;
+  text-decoration: none; padding: 20px 0;
+  border-bottom: 1px solid var(--line-l);
+}
+.hub-link-left { display: flex; flex-direction: column; gap: 4px; }
+.hub-link-label {
+  font-size: 8px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-f);
+}
+.hub-link-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px; font-weight: 300;
+  letter-spacing: 0.04em; color: var(--ink); line-height: 1;
+}
+.hub-link-arrow { font-size: 14px; color: var(--line-l); }
+
+@media (max-width: 480px) {
+  .nav { padding-left: 24px; padding-right: 24px; }
+  .content { padding-left: 24px; padding-right: 24px; border-left: none; }
+  .page-title { font-size: 34px; }
+}
+
+/* Coach */
+.coach-btn { background: none; border: none; cursor: pointer; font-size: 13px; opacity: 0.22; padding: 0; line-height: 1; margin-left: auto; }
+.coach-btn.active { opacity: 1; }
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(42,38,32,0.6); z-index: 300; align-items: center; justify-content: center; }
+.modal-overlay.open { display: flex; }
+.modal { background: var(--cream); padding: 40px; width: 300px; text-align: center; }
+.modal-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; margin-bottom: 24px; }
+.pin-input { width: 100%; border: 1px solid var(--line); background: white; padding: 12px 16px; font-family: 'Jost', sans-serif; font-size: 20px; letter-spacing: 0.4em; text-align: center; color: var(--ink); outline: none; margin-bottom: 16px; }
+.pin-input:focus { border-color: var(--ink); }
+.pin-submit { width: 100%; background: var(--ink); color: var(--cream); border: none; padding: 12px; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; }
+.pin-error { font-size: 11px; color: var(--accent); margin-top: 10px; min-height: 16px; }
+.modal-cancel { margin-top: 14px; font-size: 11px; color: var(--ink-l); cursor: pointer; letter-spacing: 0.1em; text-transform: uppercase; background: none; border: none; font-family: 'Jost', sans-serif; }
+.toast { position: fixed; bottom: 32px; right: 24px; background: var(--ink); color: var(--cream); padding: 10px 16px; font-size: 11px; letter-spacing: 0.1em; border-radius: 2px; opacity: 0; transform: translateY(8px); transition: all 0.3s; z-index: 400; pointer-events: none; }
+.toast.show { opacity: 1; transform: translateY(0); }
+/* Editable session in coach mode */
+.cs-edit { display: none; width: 100%; border: none; border-bottom: 1.5px solid var(--accent); background: transparent; outline: none; font-family: 'Jost', sans-serif; font-size: 13px; color: var(--ink); padding: 2px 0; letter-spacing: 0.03em; margin-top: 4px; }
+.coach-mode .cs-number { cursor: pointer; border-bottom: 1px dashed var(--line); display: inline-block; transition: border-color 0.15s, color 0.15s; }
+.coach-mode .cs-number:hover { border-bottom-color: var(--ink-l); color: var(--ink); }
+.coach-mode .cs-name { cursor: pointer; border-bottom: 1px dashed var(--line); display: inline-block; transition: border-color 0.15s, color 0.15s; }
+.coach-mode .cs-name:hover { border-bottom-color: var(--ink-l); color: var(--ink); }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "FORM Threshold Session",
+  "description": "Weekly threshold training session at Flamingo Park Track, Miami.",
+  "eventSchedule": {
+    "@type": "Schedule",
+    "repeatFrequency": "P1W",
+    "byDay": "https://schema.org/Tuesday",
+    "startTime": "05:50"
+  },
+  "location": {
+    "@type": "Place",
+    "name": "Flamingo Park Track",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Miami Beach",
+      "addressRegion": "FL"
+    }
+  },
+  "organizer": { "@type": "Organization", "name": "FORM" }
+}
+</script>
+</head>
+<body>
+
+<div class="nav">
+  <a class="nav-home" href="/">FORM</a>
+  <span class="nav-label">Threshold</span>
+  <button class="coach-btn" id="coach-btn" onclick="coachAction()">🔒</button>
+</div>
+
+<div class="content">
+
+  <h1 class="page-title">Threshold</h1>
+  <p class="page-def">Run the effort. Let the pace appear.</p>
+  <p class="page-def" style="margin-top: -14px;">It is sustained running at the top of controlled aerobic effort — strong and rhythmic, never desperate.</p>
+  <p class="page-def" style="margin-top: -14px;">The goal is repeatability. If the effort cannot be repeated next week, the session was too hard.</p>
+  <div class="current-session">
+    <span class="cs-label">Current Session</span>
+    <span class="cs-number" id="cs-number">—</span>
+    <span class="cs-name" id="cs-name"></span>
+  </div>
+
+  <div class="session-standard">
+    Run your effort. Finish neutral.
+    <span style="display: block; font-size: 11px; color: var(--ink-f); letter-spacing: 0.04em; font-style: italic; margin-top: 8px; font-weight: 300;">Common mistake: turning threshold into a race.</span>
+  </div>
+  <span class="session-meta">Tuesday · 5:50 AM · <a href="https://maps.google.com/?q=Flamingo+Park+Track,+Miami+Beach,+FL" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--line);">Flamingo Park Track</a></span>
+
+  <div class="links">
+    <a class="hub-link" href="/ledger">
+      <div class="hub-link-left">
+        <span class="hub-link-label">Session Record</span>
+        <span class="hub-link-title">Ledger</span>
+      </div>
+    </a>
+    <a class="hub-link" href="/plan">
+      <div class="hub-link-left">
+        <span class="hub-link-label">Current Cycle</span>
+        <span class="hub-link-title">Plan</span>
+      </div>
+    </a>
+    <a class="hub-link" href="/the-method">
+      <div class="hub-link-left">
+        <span class="hub-link-label">Execution Standard</span>
+        <span class="hub-link-title">The Method</span>
+      </div>
+    </a>
+  </div>
+
+</div>
+
+
+<!-- PIN Modal -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-title">Coach Access</div>
+    <input class="pin-input" type="password" inputmode="numeric" maxlength="6" id="pin-input" placeholder="····" autocomplete="new-password" onkeydown="if(event.key==='Enter') submitPin()">
+    <button class="pin-submit" onclick="submitPin()">Unlock</button>
+    <div class="pin-error" id="pin-error"></div>
+    <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+  </div>
+</div>
+<input class="cs-edit" id="cs-edit" placeholder="S04 · 3 × 12 min" autocomplete="off">
+<div class="toast" id="toast"></div>
+<script>
+const SB  = 'https://zlhxvzgublgtuxplcjjl.supabase.co/rest/v1/';
+const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpsaHh2emd1YmxndHV4cGxjampsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1ODIxMTksImV4cCI6MjA4ODE1ODExOX0.DGEmk1QaAx-CPYkNiHf5BTMI6DKFKp7Wr40fShGv0hc';
+const PIN = '1234';
+let isCoach = false;
+let toastTimer;
+
+// ── SPRING CYCLE 2026 SCHEDULE ──
+const SCHEDULE = [
+  { date:'2026-02-17', num:'S01', desc:'3 × 10 min' },
+  { date:'2026-02-24', num:'S02', desc:'2 × 14 min' },
+  { date:'2026-03-03', num:'S03', desc:'20 + 8 continuous' },
+  { date:'2026-03-10', num:'S04', desc:'3 × 12 min' },
+  { date:'2026-03-17', num:'S05', desc:'2 × 15 min' },
+  { date:'2026-03-24', num:'S06', desc:'20 + 12 continuous' },
+  { date:'2026-03-31', num:'S07', desc:'3 × 8 min' },
+  { date:'2026-04-07', num:'S08', desc:'2 × 8 min' },
+];
+function getMonday(d) {
+  const dt = new Date(d); const dow = dt.getDay();
+  dt.setDate(dt.getDate() + (dow === 0 ? -6 : 1 - dow)); dt.setHours(0,0,0,0); return dt;
+}
+function toYMD(d) { return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+
+function renderSession(raw) {
+  const cs   = document.querySelector('.current-session');
+  const num  = document.getElementById('cs-number');
+  const name = document.getElementById('cs-name');
+  if (!raw || raw === '—') return; // never hide — schedule already set it
+  const match = raw.trim().match(/^(S\d+)\s*[·-]\s*(.+)$/);
+  cs.classList.add('on');
+  if (match) { num.textContent = match[1]; name.textContent = match[2]; }
+  else { num.textContent = ''; name.textContent = raw.trim(); }
+}
+
+// Load from schedule first — always show if session found this week
+(function() {
+  const mon = getMonday(new Date());
+  const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
+  const monYMD = toYMD(mon), sunYMD = toYMD(sun);
+  const s = SCHEDULE.find(s => s.date >= monYMD && s.date <= sunYMD);
+  const cs = document.querySelector('.current-session');
+  const num = document.getElementById('cs-number');
+  const name = document.getElementById('cs-name');
+  if (s) {
+    cs.classList.add('on');
+    num.textContent = s.num;
+    name.textContent = s.desc;
+  }
+})();
+
+// Then check Supabase for coach override
+fetch(SB + 'this_week?id=eq.current&select=session', {
+  headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY }
+})
+.then(r => r.json())
+.then(d => { if (d[0]?.session && d[0].session !== '—') renderSession(d[0].session); })
+.catch(() => {});
+
+// ── COACH ──
+function coachAction() {
+  if (isCoach) {
+    isCoach = false;
+    document.body.classList.remove('coach-mode');
+    document.getElementById('coach-btn').classList.remove('active');
+    document.getElementById('coach-btn').textContent = '🔒';
+    showToast('Coach mode off');
+  } else { openModal(); }
+}
+function openModal() {
+  document.getElementById('modal').classList.add('open');
+  document.getElementById('pin-input').value = '';
+  document.getElementById('pin-error').textContent = '';
+  setTimeout(() => document.getElementById('pin-input').focus(), 100);
+}
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+function submitPin() {
+  if (document.getElementById('pin-input').value === PIN) {
+    isCoach = true; closeModal();
+    document.body.classList.add('coach-mode');
+    document.getElementById('coach-btn').classList.add('active');
+    document.getElementById('coach-btn').textContent = '🔓';
+    showToast('Coach mode on');
+  } else {
+    document.getElementById('pin-error').textContent = 'Incorrect PIN';
+    document.getElementById('pin-input').value = '';
+    document.getElementById('pin-input').focus();
+  }
+}
+document.getElementById('modal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+
+// ── INLINE EDIT ──
+function editSession() {
+  if (!isCoach) return;
+  const num  = document.getElementById('cs-number').textContent;
+  const name = document.getElementById('cs-name').textContent;
+  const current = num ? num + ' · ' + name : name;
+  const inp = document.getElementById('cs-edit');
+  inp.value = current;
+  inp.style.display = 'block';
+  inp.focus(); inp.select();
+  document.querySelector('.current-session').classList.add('on');
+}
+document.getElementById('cs-edit').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') { e.preventDefault(); saveSession(this.value); }
+  if (e.key === 'Escape') { this.style.display = 'none'; }
+});
+document.getElementById('cs-edit').addEventListener('blur', function() {
+  saveSession(this.value);
+});
+async function saveSession(val) {
+  const inp = document.getElementById('cs-edit');
+  inp.style.display = 'none';
+  if (!val.trim()) return;
+  renderSession(val.trim());
+  try {
+    await fetch(SB + 'this_week', {
+      method: 'POST',
+      headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY, 'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates' },
+      body: JSON.stringify({ id: 'current', session: val.trim() })
+    });
+    showToast('Session updated');
+  } catch(e) { showToast('Saved locally'); }
+}
+
+// Tap session — open drawer for all, edit for coach
+document.querySelector('.current-session').addEventListener('click', function() {
+  if (isCoach) { editSession(); return; }
+  openDrawer();
+});
+
+function openDrawer() {
+  const num  = document.getElementById('cs-number').textContent;
+  const name = document.getElementById('cs-name').textContent;
+  document.getElementById('d-title').textContent = num && name ? num + ' · ' + name : (name || num || 'Threshold');
+  document.getElementById('d-sub').textContent = 'Tuesday · 5:50 AM · Flamingo Park Track';
+  document.getElementById('drawer-overlay').classList.add('open');
+  document.getElementById('drawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDrawer() {
+  document.getElementById('drawer-overlay').classList.remove('open');
+  document.getElementById('drawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Swipe down to dismiss
+(function(){
+  const drawer = document.getElementById('drawer');
+  let startY = 0, currentY = 0, dragging = false;
+  drawer.addEventListener('touchstart', e => { startY = e.touches[0].clientY; dragging = true; }, { passive: true });
+  drawer.addEventListener('touchmove', e => {
+    if (!dragging) return;
+    currentY = e.touches[0].clientY;
+    const diff = currentY - startY;
+    if (diff > 0) drawer.style.transform = `translateY(${diff}px)`;
+  }, { passive: true });
+  drawer.addEventListener('touchend', () => {
+    if (!dragging) return;
+    dragging = false;
+    const diff = currentY - startY;
+    drawer.style.transform = '';
+    if (diff > 80) closeDrawer();
+  });
+})();
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+}
+</script>
+<!-- SESSION DRAWER -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-handle"></div>
+  <div class="drawer-inner">
+    <span class="drawer-eyebrow">Current Session</span>
+    <div class="drawer-title" id="d-title"></div>
+    <div class="drawer-sub" id="d-sub"></div>
+    <div class="drawer-rule"></div>
+    <span class="drawer-section-lbl">Session structure</span>
+    <div class="drawer-structure">20 min warmup · Threshold work · 10 min cooldown</div>
+    <div class="drawer-rule"></div>
+    <span class="drawer-section-lbl">What this session is for</span>
+    <div class="drawer-body"><p>Threshold work builds the capacity to hold effort with composure. Run your rhythm, not someone else's pace. Finish neutral.</p></div>
+    <button class="drawer-close" onclick="closeDrawer()">Close</button>
+  </div>
+</div>
+
+</body>
+</html>

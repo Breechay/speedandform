@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202603161318">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Returning to Running | FORM</title>
+<meta name="description" content="Rebuilding the system after time away. A structured approach to re-entry after a break from training.">
+<link rel="canonical" href="https://speedandform.com/return">
+<meta property="og:title" content="Returning to Running | FORM">
+<meta property="og:description" content="Rebuilding the system after time away. A structured approach to re-entry after a break from training.">
+<meta property="og:url" content="https://speedandform.com/return">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://speedandform.com/og/default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="FORM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Returning to Running | FORM">
+<meta name="twitter:description" content="Rebuilding the system after time away. A structured approach to re-entry after a break from training.">
+<meta name="twitter:image" content="https://speedandform.com/og/default.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --line:#d8d2c8; --line-l:#e8e3dc; }
+html, body { height: auto !important; overflow: visible !important; }
+body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 100px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+.content { max-width: 560px; margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
+.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 52px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 6px; }
+.page-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; display: block; margin-bottom: 40px; }
+.intro { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.75; margin-bottom: 48px; }
+.intro p + p { margin-top: 12px; }
+
+/* Phase blocks */
+.phase { padding: 36px 0; border-top: 1px solid var(--line-l); }
+.phase:last-of-type { border-bottom: 1px solid var(--line-l); }
+.phase-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 14px; }
+.phase-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 34px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; display: block; margin-bottom: 6px; }
+.phase-weeks { font-size: 10px; color: var(--ink-f); letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 20px; }
+.phase-body { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.75; }
+.phase-body p + p { margin-top: 12px; }
+.phase-body a { color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); }
+
+/* signal rows */
+.signal-list { margin-top: 20px; display: flex; flex-direction: column; gap: 0; }
+.signal-row { display: grid; grid-template-columns: 100px 1fr; gap: 0; padding: 12px 0; border-top: 1px solid var(--line-l); align-items: start; }
+.signal-label { font-size: 8px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; padding-top: 2px; }
+.signal-label.success { color: var(--ink-l); }
+.signal-label.failure { color: var(--ink-f); }
+.signal-body { font-size: 12px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.65; }
+
+/* section rule */
+.section-rule { width: 100%; height: 1px; background: var(--line-l); display: block; margin: 48px 0 32px; }
+.section-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
+.section-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 28px; letter-spacing: 0.04em; color: var(--ink); line-height: 1.1; margin-bottom: 16px; display: block; }
+.section-body { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.75; }
+.section-body p + p { margin-top: 12px; }
+.section-body a { color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); }
+
+.closing-rule { width: 100%; height: 1px; background: var(--line-l); display: block; margin: 52px 0 28px; }
+.closing-line { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-l); letter-spacing: 0.02em; display: block; }
+.footer-links { margin-top: 52px; padding-top: 24px; border-top: 1px solid var(--line-l); display: flex; gap: 28px; flex-wrap: wrap; }
+.footer-link { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link:hover { color: var(--ink-l); }
+@media (max-width: 480px) {
+  .nav { padding-left: 24px; padding-right: 24px; }
+  .content { padding-left: 24px; padding-right: 24px; border-left: none; }
+  .page-title { font-size: 38px; }
+  .phase-title { font-size: 28px; }
+  .signal-row { grid-template-columns: 84px 1fr; }
+}
+.page-breadcrumb { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 12px; }
+</style>
+</head>
+<body>
+<div class="nav">
+  <a class="nav-home" href="/">FORM</a>
+  <span class="nav-label">Return</span>
+</div>
+<div class="content">
+
+  <span class="page-breadcrumb">Reference · Re-entry</span>
+  <h1 class="page-title">Returning to Running</h1>
+  <span class="page-sub">Rebuilding the system.</span>
+
+  <div class="intro">
+    <p>This page is for runners who have done this before. You ran — seriously, consistently, maybe for years. Then life intervened. Work, injury, a move, a family, the accumulation of reasons that are all real. Now you want to come back.</p>
+    <p>The mistake most returning runners make is treating re-entry as a fitness problem. They know how training feels. They know what effort is. So they go out and run at an effort that feels familiar — and it is familiar, because the neuromuscular memory is still there. The legs remember how to move. But the connective tissue, the tendons, the structural capacity that takes months to build — that is not back yet. The body feels fast before it is durable. That gap is where most returning runners get hurt.</p>
+    <p>This is not a plan. It is a phase. It describes how to rebuild the system that makes training possible — not by chasing fitness, but by reconstructing the foundation underneath it.</p>
+  </div>
+
+  <!-- PHASE 1 -->
+  <div class="phase">
+    <span class="phase-label">Phase One</span>
+    <span class="phase-title">Return</span>
+    <span class="phase-weeks">Weeks 1–4</span>
+    <div class="phase-body">
+      <p>The goal is not fitness. The goal is the habit. Running needs to become normal again before it can become good again.</p>
+      <p>Three to four runs per week. Thirty to forty-five minutes. All easy. No pace targets. No distance goals. The body will feel capable of more — resist it. The structural system lags behind what the legs feel ready to do.</p>
+    </div>
+    <div class="signal-list">
+      <div class="signal-row">
+        <span class="signal-label success">Success signal</span>
+        <span class="signal-body">Running stops feeling like a decision. The routine is established. The body expects the sessions. You stop thinking about whether to go and start thinking about where.</span>
+      </div>
+      <div class="signal-row">
+        <span class="signal-label failure">Early exit signal</span>
+        <span class="signal-body">Testing fitness. Adding a tempo section to see where things are. Running an extra day because the legs feel good. These compress the foundation before it is set.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="phase">
+    <span class="phase-label">Phase Two</span>
+    <span class="phase-title">Organization</span>
+    <span class="phase-weeks">Weeks 4–8</span>
+    <div class="phase-body">
+      <p>Structure appears. The week becomes predictable — not intense, just consistent. Add 4–6 strides twice a week after easy runs. Let the long run extend slowly. No threshold work yet.</p>
+    </div>
+    <div class="signal-list">
+      <div class="signal-row">
+        <span class="signal-label success">Success signal</span>
+        <span class="signal-body">The week feels predictable. Sessions land without negotiation. Easy runs feel genuinely easy — not heroically restrained, just easy.</span>
+      </div>
+      <div class="signal-row">
+        <span class="signal-label failure">Early exit signal</span>
+        <span class="signal-body">Introducing threshold work because the legs feel ready. The legs feeling ready is not the same as the system being ready. The structural lag is four to six weeks behind the muscular lag.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="phase">
+    <span class="phase-label">Phase Three</span>
+    <span class="phase-title">Density</span>
+    <span class="phase-weeks">Weeks 8–16</span>
+    <div class="phase-body">
+      <p>Threshold appears — short and careful. Ten minutes embedded in an easy run, then fifteen, then a full session. The long run gains structure: easy early, steady later. Mileage increases slowly — no more than ten percent per week.</p>
+    </div>
+    <div class="signal-list">
+      <div class="signal-row">
+        <span class="signal-label success">Success signal</span>
+        <span class="signal-body">Threshold sessions feel controlled, not desperate. Recovery is normal — easy runs the day after threshold feel easy. The body is absorbing the work.</span>
+      </div>
+      <div class="signal-row">
+        <span class="signal-label failure">Early exit signal</span>
+        <span class="signal-body">Comparing current threshold pace to what it was before. That comparison is not useful yet. It measures the gap without accounting for what is being rebuilt underneath it.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 4 -->
+  <div class="phase">
+    <span class="phase-label">Phase Four</span>
+    <span class="phase-title">Expression</span>
+    <span class="phase-weeks">Week 16 onward</span>
+    <div class="phase-body">
+      <p>Speed returns on its own. It emerges from the base. This is the point of entry into the main FORM practice — <a href="/the-method">The Method</a>, the current cycle, the full threshold and long run format. Built for a runner who has completed re-entry. Not before.</p>
+    </div>
+    <div class="signal-list">
+      <div class="signal-row">
+        <span class="signal-label success">Success signal</span>
+        <span class="signal-body">Threshold effort feels familiar again — controlled, sustainable, recognized. Easy runs are genuinely easy without discipline. The system is running itself.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE IDENTITY SECTION -->
+  <span class="section-rule"></span>
+  <span class="section-label">The Psychological Piece</span>
+  <span class="section-title">The body remembers speed before it remembers durability</span>
+
+  <div class="section-body">
+    <p>Returning runners carry a specific kind of difficulty that beginners do not have: memory. They remember what training felt like at its best. They remember the pace, the effort, the feeling of being fit. That memory is accurate. It is also not useful yet.</p>
+    <p>The gap between remembered fitness and current fitness is not a verdict on the runner. It is a description of time elapsed and work not yet done. The base has to be rebuilt. The connective tissue has to be rebuilt. The training week has to be rebuilt. None of this takes as long the second time — the neuromuscular system comes back faster, the aerobic memory is real — but it cannot be skipped.</p>
+    <p>The frustration most returning runners feel in the first six weeks is almost always the same: the effort feels right but the pace is wrong. That is the lag working correctly. The effort-pace relationship will normalize as the base returns. It normalizes faster if the runner stays patient. It does not normalize at all if the runner keeps testing it.</p>
+    <p>Let the structure return first. Speed follows structure. It always has.</p>
+  </div>
+
+  <span class="closing-rule"></span>
+  <span class="closing-line">You have done this before. Do it correctly this time.</span>
+
+  <div class="footer-links">
+    <a class="footer-link" href="/training-arc">Training Arc →</a>
+    <a class="footer-link" href="/training-principles">Principles</a>
+    <a class="footer-link" href="/the-method">The Method</a>
+    <a class="footer-link" href="/recovery">Recovery</a>
+    <a class="footer-link" href="/start">Start</a>
+  </div>
+
+</div>
+</body>
+</html>

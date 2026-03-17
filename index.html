@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202603161318">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>FORM</title>
+<meta name="description" content="FORM is a structured running system based in Miami. Threshold work, long runs, and the practice of consistent training.">
+<link rel="canonical" href="https://speedandform.com/">
+<meta property="og:title" content="FORM">
+<meta property="og:description" content="FORM is a structured running system based in Miami. Threshold work, long runs, and the practice of consistent training.">
+<meta property="og:url" content="https://speedandform.com/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://speedandform.com/og/default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://speedandform.com/og/default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:site_name" content="FORM">
+<meta name="twitter:title" content="FORM">
+<meta name="twitter:description" content="FORM is a structured running system based in Miami. Threshold work, long runs, and the practice of consistent training.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #f5f2ec; --ink: #2a2620; --ink-l: #6b6459; --ink-f: #a09890;
+  --line: #d8d2c8; --line-l: #e8e3dc;
+  --col: 400px; /* single column width — board and nav always aligned */
+}
+html { height: 100%; }
+body {
+  background: var(--cream); color: var(--ink);
+  font-family: 'Jost', sans-serif; font-weight: 300;
+  font-kerning: normal; font-feature-settings: "kern";
+  height: 100%;
+  display: flex; flex-direction: column;
+}
+
+/* VIDEO BACKDROP — set opacity to 1 on .bg video when clip is added */
+.bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; background: var(--cream); }
+.bg::after { content: ''; position: absolute; inset: 0; background: rgba(245,242,236,0.88); }
+.bg video { width: 100%; height: 100%; object-fit: cover; opacity: 0; }
+
+/* PAGE */
+.page {
+  position: relative; z-index: 1;
+  flex: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 40px 40px;
+}
+
+/* WORDMARK */
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: 72px;
+  letter-spacing: 0.14em; line-height: 1;
+  color: var(--ink); text-align: center;
+  margin-bottom: 6px;
+}
+
+/* LOCATION */
+.location {
+  font-size: 8px; font-weight: 500;
+  letter-spacing: 0.45em; text-transform: uppercase;
+  color: var(--ink-f); text-align: center;
+  margin-bottom: 14px;
+}
+
+/* MAIN STRUCTURE — board and nav as one continuous column */
+.structure {
+  width: 100%; max-width: var(--col);
+  border-top: 1px solid var(--line-l);
+}
+
+/* SESSION ROWS */
+.board-row {
+  display: flex; align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line-l);
+  text-decoration: none;
+  transition: opacity 0.25s ease;
+}
+.board-row:hover { opacity: 0.72; }
+.board-day {
+  font-size: 8px; font-weight: 500;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--ink-f); width: 70px; flex-shrink: 0;
+}
+.board-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; font-weight: 300;
+  letter-spacing: 0.05em; color: var(--ink);
+  flex: 1; padding-right: 16px;
+}
+.board-detail {
+  font-size: 10px; color: var(--ink-f);
+  letter-spacing: 0.06em; text-align: right;
+  line-height: 1.6; white-space: nowrap;
+}
+
+/* NAV LAYERS */
+.nav-layer {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line-l);
+}
+.layer-label {
+  font-size: 7px; font-weight: 500;
+  letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--ink-f); opacity: 0.75;
+  display: block; margin-bottom: 9px;
+}
+.nav-links { display: flex; gap: 16px; flex-wrap: wrap; }
+.nav-links a {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-l); text-decoration: none;
+  transition: color 0.16s;
+}
+.nav-links a:hover { color: var(--ink); }
+
+/* CYCLE LINE */
+.cycle {
+  margin-top: 26px;
+  padding-top: 14px;
+  font-size: 8px; font-weight: 500;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--ink-f); opacity: 0.55;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  html, body { overflow: hidden !important; height: 100% !important; position: fixed !important; width: 100% !important; }
+  .logo { font-size: 52px; }
+  .page { flex: 1; padding: 33px 24px 24px; justify-content: center; }
+  .structure { max-width: 100%; }
+  .board-day { width: 64px; }
+  .board-name { font-size: 22px; }
+  .board-detail { font-size: 9px; margin-left: 12px; }
+}
+
+/* CURRENT WORK */
+.current-work { width: 100%; max-width: var(--col); margin-bottom: 0; }
+.cw-label { font-size: 7px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); opacity: 0.75; display: block; margin-bottom: 10px; padding-top: 12px; }
+.cw-row { display: flex; align-items: baseline; gap: 10px; padding: 5px 0; }
+.cw-type { font-size: 8px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); width: 76px; flex-shrink: 0; }
+.cw-session { font-size: 13px; color: #5f584e; letter-spacing: 0.02em; }
+
+/* Search entry */
+.search-entry {
+  width: 100%;
+  max-width: var(--col);
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line-l);
+}
+.search-form { display: flex; align-items: baseline; gap: 0; }
+.search-home-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-l);
+  outline: none;
+  padding: 0;
+}
+.search-home-input::placeholder { color: var(--ink-f); letter-spacing: 0.22em; }
+.search-home-btn {
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-f);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0 8px 16px;
+  flex-shrink: 0;
+  min-width: 32px;
+  text-align: right;
+}
+.search-home-btn:hover { color: var(--ink-l); }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportsOrganization",
+  "name": "FORM",
+  "description": "A disciplined running practice based in Miami. Threshold on Tuesday, long run on Saturday.",
+  "url": "https://speedandform.com",
+  "location": {
+    "@type": "Place",
+    "name": "Miami, Florida"
+  },
+  "sport": "Running"
+}
+</script>
+</head>
+<body>
+
+<div class="bg">
+  <video autoplay muted loop playsinline src=""></video>
+</div>
+
+<div class="page">
+
+  <div class="logo">FORM</div>
+  <div class="location">Miami</div>
+
+  <div class="current-work">
+    <span class="cw-label">Current Work</span>
+    <div class="cw-row">
+      <span class="cw-type">Threshold</span>
+      <span class="cw-session" id="cw-threshold">—</span>
+    </div>
+    <div class="cw-row">
+      <span class="cw-type">Long Run</span>
+      <span class="cw-session" id="cw-longrun">—</span>
+    </div>
+  </div>
+
+  <!-- MOVEMENT FOUNDATION STRIP -->
+  <div style="width: 100%; max-width: var(--col); padding: 16px 0 14px; border-bottom: 1px solid var(--line-l);">
+    <span style="font-size: 7px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); opacity: 0.75; display: block; margin-bottom: 9px;">Movement foundation</span>
+    <div style="display: flex; align-items: baseline; gap: 0; flex-wrap: wrap;">
+      <a href="/mobility" style="font-size: 10px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none;">Mobility</a>
+      <span style="font-size: 10px; color: var(--line); margin: 0 8px;">→</span>
+      <a href="/strength" style="font-size: 10px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none;">Structural Work</a>
+      <span style="font-size: 10px; color: var(--line); margin: 0 8px;">→</span>
+      <a href="/ghost" style="font-size: 10px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-l); text-decoration: none;">Ghost Protocol</a>
+    </div>
+    <p style="font-size: 8px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); margin-top: 7px;">Six weeks &mdash; start here if you are new</p>
+  </div>
+
+  <!-- ONE CONTINUOUS STRUCTURE: sessions + nav -->
+  <div class="structure">
+
+    <a class="board-row threshold-row" href="/threshold">
+      <span class="board-day">Tuesday</span>
+      <span class="board-name">Threshold</span>
+      <span class="board-detail" id="detail-threshold">5:50 AM</span>
+    </a>
+
+    <a class="board-row longrun-row" href="/long-run">
+      <span class="board-day">Saturday</span>
+      <span class="board-name">Long Run</span>
+      <span class="board-detail" id="detail-longrun">5:30 AM</span>
+    </a>
+
+    <!-- SEARCH -->
+    <div class="nav-layer" style="padding: 14px 0;">
+      <form class="search-form" action="/search" method="get" onsubmit="return handleSearch(event)">
+        <input class="search-home-input" name="q" id="homeSearch" type="text" placeholder="Search the system →" autocomplete="off" autocorrect="off" spellcheck="false">
+        <button class="search-home-btn" type="submit">→</button>
+      </form>
+    </div>
+
+    <div class="nav-layer">
+      <span class="layer-label">Entry</span>
+      <div class="nav-links">
+        <a href="/practice">Practice</a>
+        <a href="/start">Start</a>
+        <a href="/ghost" style="color: var(--ink);">Ghost Protocol</a>
+      </div>
+    </div>
+
+    <div class="nav-layer">
+      <span class="layer-label">Practice</span>
+      <div class="nav-links">
+        <a href="/the-method">Method</a>
+        <a href="/plan">Plan</a>
+        <a href="/long-run-pace">Long Run Pace</a>
+        <a href="/strength">Strength</a>
+        <a href="/cycles">Cycles</a>
+        <a href="/the-work">The Work</a>
+        <a href="/library">Library</a>
+      </div>
+    </div>
+
+    <div class="nav-layer">
+      <span class="layer-label">Reference</span>
+      <div class="nav-links">
+        <a href="/running-form-errors">Form Errors</a>
+        <a href="/troubleshooting">Troubleshooting</a>
+        <a href="/pain-map">Pain Map</a>
+        <a href="/principles">Principles</a>
+        <a href="/training-interruptions">Interruptions</a>
+      </div>
+    </div>
+
+    <div class="nav-layer">
+      <span class="layer-label">Record</span>
+      <div class="nav-links">
+        <a href="/ledger">Ledger</a>
+        <a href="/athletes">Athletes</a>
+      </div>
+    </div>
+
+    <div class="nav-layer">
+      <span class="layer-label">Field</span>
+      <div class="nav-links">
+        <a href="/the-field">The Field</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cycle">FORM · Spring Cycle 2026</div>
+
+</div>
+
+
+<script>
+// ── SPRING CYCLE 2026 SCHEDULE ──
+const SCHEDULE = [
+  { type:'threshold', date:'2026-02-17', desc:'3 × 10 min' },
+  { type:'threshold', date:'2026-02-24', desc:'2 × 14 min' },
+  { type:'threshold', date:'2026-03-03', desc:'20 + 8 continuous' },
+  { type:'threshold', date:'2026-03-10', desc:'3 × 12 min' },
+  { type:'threshold', date:'2026-03-17', desc:'2 × 15 min' },
+  { type:'threshold', date:'2026-03-24', desc:'20 + 12 continuous' },
+  { type:'threshold', date:'2026-03-31', desc:'3 × 8 min' },
+  { type:'threshold', date:'2026-04-07', desc:'2 × 8 min' },
+  { type:'longrun', date:'2026-02-21', desc:'95 min · 50 easy / 45 steady' },
+  { type:'longrun', date:'2026-02-28', desc:'95 min · 50 easy / 45 steady' },
+  { type:'longrun', date:'2026-03-07', desc:'100 min · 50 easy / 50 steady' },
+  { type:'longrun', date:'2026-03-14', desc:'90 min · 60 easy / 30 steady' },
+  { type:'longrun', date:'2026-03-21', desc:'95 min · 45 easy / 40 steady' },
+  { type:'longrun', date:'2026-03-28', desc:'90 min · 40 easy / 40 steady' },
+  { type:'longrun', date:'2026-04-04', desc:'75 min · 40 easy / 20 steady' },
+  { type:'longrun', date:'2026-04-11', desc:'Off or shakeout + strides' },
+];
+function getMonday(d) {
+  const dt = new Date(d); const dow = dt.getDay();
+  dt.setDate(dt.getDate() + (dow === 0 ? -6 : 1 - dow)); dt.setHours(0,0,0,0); return dt;
+}
+function toYMD(d) { return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+
+(function(){
+  const mon = getMonday(new Date());
+  const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
+  const monYMD = toYMD(mon), sunYMD = toYMD(sun);
+  let threshold = null, longrun = null;
+  for (const s of SCHEDULE) {
+    if (s.date >= monYMD && s.date <= sunYMD) {
+      if (s.type === 'threshold') threshold = s;
+      if (s.type === 'longrun')   longrun   = s;
+    }
+  }
+
+  // Apply schedule — write directly and always show if data exists
+  const thEl = document.getElementById('cw-threshold');
+  const lrEl = document.getElementById('cw-longrun');
+  const cwBlock = document.querySelector('.current-work');
+
+  if (threshold && thEl) thEl.textContent = threshold.desc;
+  if (longrun && lrEl) lrEl.textContent = longrun.desc;
+
+  // Hide individual rows only if genuinely no data from schedule
+  if (!threshold) { const r = thEl?.closest('.cw-row'); if (r) r.style.display = 'none'; }
+  if (!longrun)   { const r = lrEl?.closest('.cw-row'); if (r) r.style.display = 'none'; }
+  if (!threshold && !longrun && cwBlock) cwBlock.style.display = 'none';
+
+  // Supabase override — only UPDATES content, never hides anything
+  const SB  = 'https://zlhxvzgublgtuxplcjjl.supabase.co/rest/v1/';
+  const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpsaHh2emd1YmxndHV4cGxjampsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1ODIxMTksImV4cCI6MjA4ODE1ODExOX0.DGEmk1QaAx-CPYkNiHf5BTMI6DKFKp7Wr40fShGv0hc';
+  fetch(SB + 'this_week?id=eq.current&select=session,long_run', {
+    headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY }
+  })
+  .then(r => r.json())
+  .then(d => {
+    const row = d[0]; if (!row) return;
+    const thOverride = (row.session   && row.session   !== '—') ? row.session.trim().replace(/^S\d+\s*[·–-]\s*/, '')   : null;
+    const lrOverride = (row.long_run  && row.long_run  !== '—') ? row.long_run.trim().replace(/^LR\d*\s*[·–-]\s*/, '')  : null;
+    if (thOverride && thEl) thEl.textContent = thOverride;
+    if (lrOverride && lrEl) lrEl.textContent = lrOverride;
+  })
+  .catch(() => {});
+})();
+  // Weekly rhythm: subtle opacity emphasis only, no completion state
+  // Matches actual FORM training week: Threshold Tue, Long Run Sat
+  (function() {
+    const day = new Date().getDay(); // 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
+    const tRow = document.querySelector('.threshold-row');
+    const lRow = document.querySelector('.longrun-row');
+
+    const opacityMap = {
+      0: { t: 1,   l: 1   }, // Sun — neutral
+      1: { t: 1,   l: 0.9 }, // Mon — threshold orbit
+      2: { t: 1,   l: 0.9 }, // Tue — threshold day
+      3: { t: 1,   l: 1   }, // Wed — neutral
+      4: { t: 0.9, l: 1   }, // Thu — long run coming into focus
+      5: { t: 0.9, l: 1   }, // Fri — long run primary
+      6: { t: 0.9, l: 1   }  // Sat — long run day
+    };
+
+    tRow.style.opacity = opacityMap[day].t;
+    lRow.style.opacity = opacityMap[day].l;
+  })();
+
+// Search form — go to /search?q=...
+function handleSearch(e) {
+  e.preventDefault();
+  const q = document.getElementById('homeSearch').value.trim();
+  if (q) window.location.href = '/search?q=' + encodeURIComponent(q);
+  return false;
+}
+</script>
+</body>
+</html>

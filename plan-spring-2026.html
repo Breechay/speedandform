@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202603161318">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Plan — Spring 2026 | FORM</title>
+<meta name="description" content="The FORM Spring 2026 training plan. Season structure, cycle phases, and race targets.">
+<link rel="canonical" href="https://speedandform.com/plan-spring-2026">
+<meta property="og:title" content="Plan — Spring 2026 | FORM">
+<meta property="og:description" content="The FORM Spring 2026 training plan. Season structure, cycle phases, and race targets.">
+<meta property="og:url" content="https://speedandform.com/plan-spring-2026">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://speedandform.com/og/default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://speedandform.com/og/default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:site_name" content="FORM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Plan — Spring 2026 | FORM">
+<meta name="twitter:description" content="The FORM Spring 2026 training plan. Season structure, cycle phases, and race targets.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #f5f2ec; --ink: #2a2620; --ink-l: #6b6459; --ink-f: #a09890;
+  --accent: #c4593a; --done: #8aaa7a; --line: #d8d2c8; --line-l: #e8e3dc; --race: #1a2e4a;
+}
+.page-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; display: block; margin-bottom: 40px; }
+html, body { height: auto !important; overflow: visible !important; }
+body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding: 0 0 120px; }
+
+/* NAV */
+.nav { max-width: 560px; margin: 0 auto; padding: 32px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
+.nav-lbl { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+
+/* HEADER */
+.header { text-align: center; padding: 24px 40px 32px; }
+.header::after { content: ''; display: block; width: 100%; height: 1px; background: var(--line); margin-top: 28px; }
+.header-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 42px; letter-spacing: 0.05em; color: var(--ink); line-height: 1; }
+
+/* JOINING NOTE */
+.joining-note { text-align: center; font-size: 12px; color: var(--ink-f); font-style: italic; font-family: 'Cormorant Garamond', serif; letter-spacing: 0.03em; margin-top: 20px; }
+
+
+/* SECTION */
+.section { max-width: 560px; margin: 72px auto 0; padding: 0 32px; }
+.section:first-of-type { margin-top: 80px; }
+.section-title { font-family: 'Jost', sans-serif; font-weight: 500; font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--ink-l); margin-bottom: 28px; display: flex; align-items: center; gap: 16px; }
+.section-title::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+.sub-title { font-size: 9px; letter-spacing: 0.3em; margin-bottom: 16px; margin-top: -10px; color: var(--ink-f); text-transform: uppercase; font-weight: 500; }
+.phase-subtitle { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 20px; font-weight: 300; color: var(--ink-f); margin-top: -18px; margin-bottom: 28px; letter-spacing: 0.04em; }
+
+
+/* WORKOUT ROW */
+.workout { display: grid; grid-template-columns: 130px 1fr; gap: 0 20px; align-items: start; padding: 20px 12px; border-bottom: 1px solid var(--line-l); position: relative; transition: background 0.15s; cursor: pointer; border-left: 2px solid transparent; padding-left: 10px; }
+
+
+
+.workout:first-of-type { border-top: 1px solid var(--line-l); }
+
+.workout-date { font-size: 13px; letter-spacing: 0.02em; color: var(--ink); padding-top: 2px; white-space: nowrap; }
+.workout-desc { font-size: 13.5px; line-height: 1.6; color: var(--ink); }
+.workout-sub { font-size: 12px; color: var(--ink-l); margin-top: 4px; line-height: 1.5; }
+.check { display: none; }
+
+
+
+/* RACE ROW */
+.race-row { display: grid; grid-template-columns: 130px 1fr; gap: 0 20px; padding: 20px 12px; background: #1e2d3e; color: #c9d8e8; margin-top: 20px; border-radius: 0; text-decoration: none; }
+.race-row .race-date { font-size: 13px; letter-spacing: 0.05em; font-weight: 400; padding-top: 2px; color: #7a9db8; }
+.race-row .race-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; letter-spacing: 0.08em; color: #dde8f0; }
+.race-row .race-note { font-size: 10px; color: #5e8298; margin-top: 3px; letter-spacing: 0.05em; }
+
+/* SESSION DRAWER */
+.drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(42,38,32,0.45); z-index: 200; }
+.drawer-overlay.open { display: block; }
+.drawer { position: fixed; bottom: 0; left: 0; right: 0; background: var(--cream); z-index: 201; transform: translateY(100%); transition: transform 0.32s cubic-bezier(.4,0,.2,1); max-height: 85vh; overflow-y: auto; border-top-left-radius: 4px; border-top-right-radius: 4px; }
+.drawer.open { transform: translateY(0); }
+.drawer-handle { width: 36px; height: 3px; background: var(--line); border-radius: 2px; margin: 14px auto 0; }
+.drawer-inner { padding: 20px 32px 48px; max-width: 420px; margin: 0 auto; }
+.drawer-date { font-size: 9px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); margin-bottom: 6px; }
+.drawer-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; letter-spacing: 0.04em; color: var(--ink); margin-bottom: 4px; line-height: 1.2; }
+.drawer-sub { font-size: 12px; color: var(--ink-l); margin-bottom: 24px; letter-spacing: 0.03em; }
+.drawer-rule { height: 1px; background: var(--line-l); margin: 20px 0; }
+.drawer-section-lbl { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); margin-bottom: 12px; display: block; }
+.drawer-structure { font-size: 12px; color: var(--ink-l); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+.drawer-culture { font-size: 11px; color: var(--ink-f); letter-spacing: 0.06em; margin-bottom: 20px; display: none; }
+.drawer-body { font-size: 13.5px; line-height: 1.85; color: var(--ink); }
+.drawer-body p { margin-bottom: 12px; }
+.drawer-body p:last-child { margin-bottom: 0; }
+.drawer-body strong { font-weight: 500; color: var(--ink); }
+.drawer-body em { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--ink); display: block; margin: 16px 0; }
+.drawer-cues { margin-top: 16px; }
+.drawer-cue { font-size: 13px; color: var(--ink); line-height: 1.65; padding: 8px 0; border-top: 1px solid var(--line-l); display: flex; gap: 10px; }
+.drawer-cue::before { content: '—'; color: var(--line); flex-shrink: 0; }
+.drawer-close { margin-top: 28px; width: 100%; background: none; border: 1px solid var(--line); color: var(--ink-f); font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; padding: 12px; cursor: pointer; transition: all 0.15s; border-radius: 2px; }
+.drawer-close:hover { border-color: var(--ink); color: var(--ink); }
+
+/* COACH BTN */
+.coach-btn { background: none; border: none; cursor: pointer; font-size: 13px; opacity: 0.22; padding: 0; line-height: 1; margin-left: auto; }
+.coach-btn.active { opacity: 1; }
+
+/* PIN MODAL */
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(42,38,32,0.6); z-index: 300; align-items: center; justify-content: center; }
+.modal-overlay.open { display: flex; }
+.modal { background: var(--cream); padding: 40px; width: 300px; text-align: center; }
+.modal-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; margin-bottom: 24px; }
+.pin-input { width: 100%; border: 1px solid var(--line); background: white; padding: 12px 16px; font-family: 'Jost', sans-serif; font-size: 20px; letter-spacing: 0.4em; text-align: center; color: var(--ink); outline: none; margin-bottom: 16px; }
+.pin-input:focus { border-color: var(--ink); }
+.pin-submit { width: 100%; background: var(--ink); color: var(--cream); border: none; padding: 12px; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; }
+.pin-error { font-size: 11px; color: var(--accent); margin-top: 10px; min-height: 16px; }
+.modal-cancel { margin-top: 14px; font-size: 11px; color: var(--ink-l); cursor: pointer; letter-spacing: 0.1em; text-transform: uppercase; background: none; border: none; font-family: 'Jost', sans-serif; }
+
+/* TOAST */
+.toast { position: fixed; bottom: 76px; right: 24px; background: var(--ink); color: var(--cream); padding: 10px 16px; font-size: 11px; letter-spacing: 0.1em; border-radius: 2px; opacity: 0; transform: translateY(8px); transition: all 0.3s; z-index: 400; pointer-events: none; }
+.toast.show { opacity: 1; transform: translateY(0); }
+
+/* LOADING BAR */
+.loading-bar { position: fixed; top: 0; left: 0; height: 2px; width: 0; background: var(--line); transition: width 0.3s; z-index: 500; }
+
+@media (max-width: 500px) {
+  .workout { grid-template-columns: 105px 1fr 24px; }
+  .header-title { font-size: 34px; }
+  .section { padding: 0 20px; }
+  .nav { padding: 28px 20px 0; }
+  .header { padding: 20px 20px 28px; }
+  .drawer-inner { padding: 16px 36px 40px; }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Current session highlight */
+.workout.is-current { border-left-color: var(--ink-l); }
+.workout.is-current .workout-date { color: var(--ink); font-weight: 500; }
+.workout.is-current .workout-desc { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<div class="loading-bar" id="loading-bar"></div>
+
+<div class="nav">
+  <a class="nav-home" href="/">FORM</a>
+  <span class="nav-lbl">Archive</span>
+  <button class="coach-btn" id="coach-btn" onclick="coachAction()">🔒</button>
+</div>
+
+<div class="header">
+  <div class="header-title">Spring Cycle</div>
+  <div style="margin-top:10px;font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--ink-f);">2026</div>
+</div>
+<div style="text-align:center; padding: 8px 32px 0;">
+    <span style="font-size:8px; font-weight:500; letter-spacing:0.28em; text-transform:uppercase; color:var(--ink-f);">Spring Cycle 2026 — Archive</span>
+  </div>
+  <div class="joining-note">Joining mid-cycle? Start where the group is.</div>
+
+
+
+<!-- PHASE I -->
+<div class="section">
+  <div class="section-title">Phase I &nbsp;·&nbsp; Feb – Mar</div>
+  <div class="phase-subtitle">Durability</div>
+  <div class="sub-title">Track Tuesdays</div>
+
+  <div class="workout" data-id="tt-feb17" data-session="S01" data-type="threshold" data-date="Tue Feb 17" data-desc="3 × 10 min @ current inhabited threshold" data-sub="2 min float jog" onclick="openDrawer(this)">
+    <div class="workout-date">Tue Feb 17</div>
+    <div><div class="workout-desc">3 × 10 min @ current inhabited threshold</div><div class="workout-sub">2 min float jog</div></div>
+    <div class="check"></div>
+  </div>
+  <div class="workout" data-id="tt-feb24" data-session="S02" data-type="threshold" data-date="Tue Feb 24" data-desc="2 × 14 min @ same effort as previous week" data-sub="3 min float" onclick="openDrawer(this)">
+    <div class="workout-date">Tue Feb 24</div>
+    <div><div class="workout-desc">2 × 14 min @ same effort as previous week</div><div class="workout-sub">3 min float</div></div>
+    <div class="check"></div>
+  </div>
+  <div class="workout" data-id="tt-mar3" data-session="S03" data-type="threshold" data-date="Tue Mar 3" data-desc="20 min continuous inhabit" data-sub="Then 8 min after 3 min float. No push in last 8." onclick="openDrawer(this)">
+    <div class="workout-date">Tue Mar 3</div>
+    <div><div class="workout-desc">20 min continuous inhabit</div><div class="workout-sub">Then 8 min after 3 min float. No push in last 8.</div></div>
+    <div class="check"></div>
+  </div>
+  <div class="workout" data-id="tt-mar10" data-session="S04" data-type="threshold" data-date="Tue Mar 10" data-desc="3 × 12 min" data-sub="Shorter floats (90 sec)" onclick="openDrawer(this)">
+    <div class="workout-date">Tue Mar 10</div>
+    <div><div class="workout-desc">3 × 12 min</div><div class="workout-sub">Shorter floats (90 sec)</div></div>
+    <div class="check"></div>
+  </div>
+
+  <div style="margin-top:40px;">
+    <div class="sub-title">Long Run Saturdays</div>
+  </div>
+
+  <div class="workout" data-id="lr-feb21" data-session="LR01" data-type="longrun" data-date="Sat Feb 21" data-desc="95 min" data-sub="50 easy, 45 steady" onclick="openDrawer(this)">
+    <div class="workout-date">Sat Feb 21</div>
+    <div><div class="workout-desc">95 min</div><div class="workout-sub">50 easy, 45 steady</div></div>
+    <div class="check"></div>
+  </div>
+  <div class="workout" data-id="lr-feb28" data-session="LR02" data-type="longrun" data-date="Sat Feb 28" data-desc="95 min" data-sub="50 easy, 45 steady" onclick="openDrawer(this)">
+    <div class="workout-date">Sat Feb 28</div>
+    <div><div class="workout-desc">95 min</div><div class="workout-sub">50 easy, 45 steady</div></div>
+    <div class="check"></div>
+  </div>
+  <div class="workout" data-id="lr-mar7" data-session="LR03" data-type="longrun" data-date="Sat Mar 7" data-desc="100 min" data-sub="50 easy, 50 steady" onclick="openDrawer(this)">
+    <div class="workout-date">Sat Mar 7</div>
+    <div><div class="workout-desc">100 min</div><div class="workout-sub">50 easy, 50 steady</div></div>
+    <div class="check"></div>
+  </div>
+  <div class="workout" data-id="lr-mar14" data-session="LR04" data-type="longrun" data-date="Sat Mar 14" data-desc="90 min" data-sub="60 easy, 30 steady" onclick="openDrawer(this)">
+    <div class="workout-date">Sat Mar 14</div>
+    <div><div class="workout-desc">90 min</div><div class="workout-sub">60 easy, 30 steady</div></div>
+    <div class="check"></div>
+  </div>
+</div>
+
+<!-- PHASE II -->
+<div class="section" style="margin-top:56px;">
+  <div class="section-title">Phase II &nbsp;·&nbsp; Mar – Apr</div>
+  <div class="phase-subtitle">Compression</div>
+  <div class="sub-title">Track Tuesdays</div>
+
+  <div class="workout" data-id="tt-mar17" data-session="S05" data-type="threshold" data-date="Tue Mar 17" data-desc="2 × 15 min @ Threshold" data-sub="Last 5 min of each rep slightly tighter rhythm. 2 min float jog." onclick="openDrawer(this)">
+    <div class="workout-date">Tue Mar 17</div>
+    <div><div class="workout-desc">2 × 15 min @ Threshold</div><div class="workout-sub">Last 5 min of each rep slightly tighter rhythm. 2 min float jog.</div></div>
+    <div class="check"></div>
+  </div>
+  <div class="workout" data-id="tt-mar24" data-session="S06" data-type="threshold" data-date="Tue Mar 24" data-desc="20 min continuous inhabit" data-sub="Then 12 min after 3 min float" onclick="openDrawer(this)">
+    <div class="workout-date">Tue Mar 24</div>
+    <div><div class="workout-desc">20 min continuous inhabit</div><div class="workout-sub">Then 12 min after 3 min float</div></div>
+    <div class="check"></div>
+  </div>
+  <div class="workout" data-id="tt-mar31" data-session="S07" data-type="threshold" data-date="Tue Mar 31" data-desc="3 × 8 min @ Threshold" data-sub="90 sec float" onclick="openDrawer(this)">
+    <div class="workout-date">Tue Mar 31</div>
+    <div><div class="workout-desc">3 × 8 min @ Threshold</div><div class="workout-sub">90 sec float</div></div>
+    <div class="check"></div>
+  </div>
+  <div class="workout" data-id="tt-apr7" data-session="S08" data-type="threshold" data-date="Tue Apr 7" data-desc="2 × 8 min @ Threshold" data-sub="90 sec float" onclick="openDrawer(this)">
+    <div class="workout-date">Tue Apr 7</div>
+    <div><div class="workout-desc">2 × 8 min @ Threshold</div><div class="workout-sub">90 sec float</div></div>
+    <div class="check"></div>
+  </div>
+
+  <div style="margin-top:40px;">
+    <div class="sub-title">Long Run Saturdays</div>
+  </div>
+
+  <div class="workout" data-id="lr-mar21" data-session="LR05" data-type="longrun" data-date="Sat Mar 21" data-desc="95 min" data-sub="45 easy / 40 steady, 10 controlled finish" onclick="openDrawer(this)">
+    <div class="workout-date">Sat Mar 21</div>
+    <div><div class="workout-desc">95 min</div><div class="workout-sub">45 easy / 40 steady, 10 controlled finish</div></div>
+    <div class="check"></div>
+  </div>
+  <div class="workout" data-id="lr-mar28" data-session="LR06" data-type="longrun" data-date="Sat Mar 28" data-desc="90 min" data-sub="40 easy / 40 steady, 10 high steady" onclick="openDrawer(this)">
+    <div class="workout-date">Sat Mar 28</div>
+    <div><div class="workout-desc">90 min</div><div class="workout-sub">40 easy / 40 steady, 10 high steady</div></div>
+    <div class="check"></div>
+  </div>
+  <div class="workout" data-id="lr-apr4" data-session="LR07" data-type="longrun" data-date="Sat Apr 4" data-desc="75 min" data-sub="40 easy / 20 steady, 10 controlled" onclick="openDrawer(this)">
+    <div class="workout-date">Sat Apr 4</div>
+    <div><div class="workout-desc">75 min</div><div class="workout-sub">40 easy / 20 steady, 10 controlled</div></div>
+    <div class="check"></div>
+  </div>
+  <div class="workout" data-id="lr-apr11" data-session="LR08" data-type="longrun" data-date="Sat Apr 11" data-desc="Off or shakeout + strides" data-sub="" onclick="openDrawer(this)">
+    <div class="workout-date">Sat Apr 11</div>
+    <div><div class="workout-desc">Off or shakeout + strides</div></div>
+    <div class="check"></div>
+  </div>
+
+  <a class="race-row" href="/competition">
+    <div class="race-date">Sun Apr 12</div>
+    <div>
+      <div class="race-name">Key Biscayne Half Marathon</div>
+      <div class="race-note">A race inside the practice</div>
+    </div>
+  </a>
+</div>
+
+<!-- SESSION DRAWER -->
+<div class="drawer-overlay" id="drawer-overlay"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-handle"></div>
+  <div class="drawer-inner">
+    <div class="drawer-date" id="d-date"></div>
+    <div class="drawer-title" id="d-title"></div>
+    <div class="drawer-sub" id="d-sub"></div>
+    <div class="drawer-rule"></div>
+    <span class="drawer-section-lbl">Session structure</span>
+    <div class="drawer-structure" id="d-structure"></div>
+    <div class="drawer-culture" id="d-culture"></div>
+    <span class="drawer-section-lbl">What this session is for</span>
+    <div class="drawer-body" id="d-body"></div>
+    <div class="drawer-cues" id="d-cues"></div>
+    <button class="drawer-close" onclick="closeDrawer()">Close</button>
+  </div>
+</div>
+
+
+<!-- PIN Modal -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-title">Coach Access</div>
+    <input class="pin-input" type="password" inputmode="numeric" maxlength="6" id="pin-input" placeholder="····" autocomplete="new-password" onkeydown="if(event.key==='Enter') submitPin()">
+    <button class="pin-submit" onclick="submitPin()">Unlock</button>
+    <div class="pin-error" id="pin-error"></div>
+    <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const SUPABASE_URL = 'https://zlhxvzgublgtuxplcjjl.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpsaHh2emd1YmxndHV4cGxjampsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1ODIxMTksImV4cCI6MjA4ODE1ODExOX0.DGEmk1QaAx-CPYkNiHf5BTMI6DKFKp7Wr40fShGv0hc';
+const COACH_PIN = '1234';
+let isCoach = false;
+
+// ── DRAWER CONTENT ──
+const CONTENT = {
+  threshold: { structure: '20 min warmup · Threshold work · 10 min cooldown', note: 'Threshold work builds the capacity to hold effort with composure. Run your rhythm, not someone else\'s pace. Finish neutral.' },
+  longrun:   { structure: 'Easy early · Steady later', note: 'The long run builds the base. Early miles are truly easy. The pace rises naturally. Finish organized, not depleted.' }
+};
+
+function openDrawer(el) {
+  const type  = el.dataset.type;
+  const date  = el.dataset.date;
+  const desc  = el.dataset.desc;
+  const sub   = el.dataset.sub;
+  const c     = CONTENT[type];
+
+  document.getElementById('d-date').textContent      = date;
+  document.getElementById('d-title').textContent     = desc;
+  document.getElementById('d-sub').textContent       = sub || '';
+  document.getElementById('d-structure').textContent = c.structure;
+  document.getElementById('d-culture').style.display = 'none';
+
+  document.getElementById('d-body').innerHTML = `<p>${c.note}</p>`;
+  document.getElementById('d-cues').innerHTML = '';
+
+  document.getElementById('drawer-overlay').classList.add('open');
+  document.getElementById('drawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  // Coach can toggle done from drawer
+  if (isCoach) {
+    const isDone = el.classList.contains('done');
+    const existing = document.getElementById('drawer-toggle');
+    if (existing) existing.remove();
+    const btn = document.createElement('button');
+    btn.id = 'drawer-toggle';
+    btn.className = 'drawer-close';
+    btn.style.marginTop = '12px';
+    btn.style.background = isDone ? 'transparent' : 'var(--ink)';
+    btn.style.color = isDone ? 'var(--ink-f)' : 'var(--cream)';
+    btn.textContent = isDone ? 'Mark incomplete' : 'Mark complete';
+    btn.onclick = () => { toggleDone(el); closeDrawer(); };
+    document.querySelector('.drawer-inner').appendChild(btn);
+  }
+}
+
+function closeDrawer() {
+  document.getElementById('drawer-overlay').classList.remove('open');
+  document.getElementById('drawer').classList.remove('open');
+  document.body.style.overflow = '';
+  const t = document.getElementById('drawer-toggle');
+  if (t) t.remove();
+}
+
+// ── SUPABASE ──
+async function sbGet() {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/workouts?select=id,done`, {
+    headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+  });
+  return res.json();
+}
+async function sbUpsert(id, done) {
+  await fetch(`${SUPABASE_URL}/rest/v1/workouts`, {
+    method: 'POST',
+    headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates' },
+    body: JSON.stringify({ id, done })
+  });
+}
+
+async function loadState() {
+  setLoading(true);
+  try {
+    const rows = await sbGet();
+    const map = {};
+    rows.forEach(r => map[r.id] = r.done);
+    document.querySelectorAll('.workout').forEach(el => {
+      if (map[el.dataset.id] === true) el.classList.add('done');
+      else el.classList.remove('done');
+    });
+  } catch(e) {}
+  setLoading(false);
+}
+
+
+
+async function toggleDone(el) {
+  if (!isCoach) return;
+  const id = el.dataset.id;
+  const nowDone = !el.classList.contains('done');
+  el.classList.toggle('done');
+  try {
+    await sbUpsert(id, nowDone);
+    showToast(nowDone ? 'Session complete ✓' : 'Unmarked');
+  } catch(e) {
+    el.classList.toggle('done');
+    showToast('Save failed');
+  }
+}
+
+
+
+// ── COACH ──
+function coachAction() {
+  if (isCoach) {
+    isCoach = false;
+    document.body.classList.remove('coach-mode');
+    document.getElementById('coach-btn').classList.remove('active');
+    document.getElementById('coach-btn').textContent = '🔒';
+    showToast('Coach mode off');
+  } else { openModal(); }
+}
+function openModal() {
+  document.getElementById('modal').classList.add('open');
+  document.getElementById('pin-input').value = '';
+  document.getElementById('pin-error').textContent = '';
+  setTimeout(() => document.getElementById('pin-input').focus(), 100);
+}
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+function submitPin() {
+  if (document.getElementById('pin-input').value === COACH_PIN) {
+    isCoach = true; closeModal();
+    document.body.classList.add('coach-mode');
+    document.getElementById('coach-btn').classList.add('active');
+    document.getElementById('coach-btn').textContent = '🔓';
+    showToast('Coach mode on');
+  } else {
+    document.getElementById('pin-error').textContent = 'Incorrect PIN';
+    document.getElementById('pin-input').value = '';
+    document.getElementById('pin-input').focus();
+  }
+}
+document.getElementById('modal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+
+// ── TOAST / LOADING ──
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+}
+function setLoading(on) {
+  document.getElementById('loading-bar').style.width = on ? '70%' : '100%';
+  if (!on) setTimeout(() => document.getElementById('loading-bar').style.width = '0', 400);
+}
+
+// ── DRAWER DISMISS ──
+// Click overlay to close
+document.getElementById('drawer-overlay').addEventListener('click', closeDrawer);
+
+// Swipe down to close
+(function(){
+  const drawer = document.getElementById('drawer');
+  let startY = 0, currentY = 0, dragging = false;
+
+  drawer.addEventListener('touchstart', e => {
+    startY = e.touches[0].clientY;
+    dragging = true;
+  }, { passive: true });
+
+  drawer.addEventListener('touchmove', e => {
+    if (!dragging) return;
+    currentY = e.touches[0].clientY;
+    const diff = currentY - startY;
+    if (diff > 0) drawer.style.transform = `translateY(${diff}px)`;
+  }, { passive: true });
+
+  drawer.addEventListener('touchend', () => {
+    if (!dragging) return;
+    dragging = false;
+    const diff = currentY - startY;
+    drawer.style.transform = '';
+    if (diff > 80) closeDrawer();
+  });
+})();
+
+loadState();
+setInterval(loadState, 30000);
+
+</script>
+  
+  
+
+
+
+<script>
+(function(){
+  const SB  = 'https://zlhxvzgublgtuxplcjjl.supabase.co/rest/v1/';
+  const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpsaHh2emd1YmxndHV4cGxjampsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1ODIxMTksImV4cCI6MjA4ODE1ODExOX0.DGEmk1QaAx-CPYkNiHf5BTMI6DKFKp7Wr40fShGv0hc';
+
+  fetch(SB + 'this_week?id=eq.current&select=session,long_run', {
+    headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY }
+  })
+  .then(r => r.json())
+  .then(d => {
+    const row = d[0];
+    if (!row) return;
+
+    // Extract session name from "S04 · 3 × 12 min" → "3 × 12 min"
+    const sessionRaw = (row.session || '').trim();
+    const lrRaw      = (row.long_run || '').trim();
+
+    const sessionMatch  = sessionRaw.match(/^(S\d+)/);
+    const longRunMatch  = lrRaw.match(/^(LR\d+)/);
+    const currentS  = sessionMatch  ? sessionMatch[1]  : null;
+    const currentLR = longRunMatch  ? longRunMatch[1]  : null;
+
+    document.querySelectorAll('.workout').forEach(el => {
+      const code = el.dataset.session || '';
+      if (currentS && code === currentS) el.classList.add('is-current');
+      if (currentLR && code === currentLR) el.classList.add('is-current');
+    });
+  })
+  .catch(() => {});
+})();
+</script>
+</body>
+</html>

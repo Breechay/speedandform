@@ -1,0 +1,390 @@
+[build]
+  publish = "."
+
+# Force Netlify CDN to purge on every deploy
+[build.environment]
+  NODE_VERSION = "18"
+
+# Context-level cache headers — belt and suspenders alongside _headers file
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma = "no-cache"
+    Expires = "0"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# WordPress spam
+[[redirects]]
+  from = "/wp-admin"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/wp-admin/*"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/wp-login.php"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/wp-content/*"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/wp-includes/*"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/xmlrpc.php"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/feed"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/feed/*"
+  to = "/"
+  status = 301
+
+# Home aliases
+[[redirects]]
+  from = "/home"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/home.html"
+  to = "/"
+  status = 301
+
+# Athletes
+[[redirects]]
+  from = "/athletes/"
+  to = "/athletes.html"
+  status = 301
+
+[[redirects]]
+  from = "/athletes/:slug"
+  to = "/athletes/:slug.html"
+  status = 200
+
+[[redirects]]
+  from = "/athletes/:slug/"
+  to = "/athletes/:slug.html"
+  status = 200
+
+# Core pages
+[[redirects]]
+  from = "/threshold"
+  to = "/threshold.html"
+  status = 200
+
+[[redirects]]
+  from = "/long-run"
+  to = "/long-run.html"
+  status = 200
+
+[[redirects]]
+  from = "/practice"
+  to = "/practice.html"
+  status = 200
+
+[[redirects]]
+  from = "/start"
+  to = "/start.html"
+  status = 200
+
+[[redirects]]
+  from = "/the-method"
+  to = "/the-method.html"
+  status = 200
+
+[[redirects]]
+  from = "/plan"
+  to = "/plan.html"
+  status = 200
+
+[[redirects]]
+  from = "/strength"
+  to = "/strength.html"
+  status = 200
+
+[[redirects]]
+  from = "/cycles"
+  to = "/cycles.html"
+  status = 200
+
+[[redirects]]
+  from = "/the-work"
+  to = "/the-work.html"
+  status = 200
+
+[[redirects]]
+  from = "/library"
+  to = "/library.html"
+  status = 200
+
+[[redirects]]
+  from = "/training-interruptions"
+  to = "/training-interruptions.html"
+  status = 200
+
+[[redirects]]
+  from = "/ledger"
+  to = "/ledger.html"
+  status = 200
+
+[[redirects]]
+  from = "/athletes"
+  to = "/athletes.html"
+  status = 200
+
+[[redirects]]
+  from = "/the-field"
+  to = "/the-field.html"
+  status = 200
+
+[[redirects]]
+  from = "/easy-run"
+  to = "/easy-run.html"
+  status = 200
+
+[[redirects]]
+  from = "/competition"
+  to = "/competition.html"
+  status = 200
+
+[[redirects]]
+  from = "/strength-routine"
+  to = "/strength-routine.html"
+  status = 200
+
+[[redirects]]
+  from = "/strength-activation"
+  to = "/strength-activation.html"
+  status = 200
+
+[[redirects]]
+  from = "/strength-fixes"
+  to = "/strength-fixes.html"
+  status = 200
+
+[[redirects]]
+  from = "/arc"
+  to = "/arc.html"
+  status = 200
+
+[[redirects]]
+  from = "/running-form-errors"
+  to = "/running-form-errors.html"
+  status = 200
+
+[[redirects]]
+  from = "/sessions"
+  to = "/sessions.html"
+  status = 200
+
+[[redirects]]
+  from = "/speed"
+  to = "/speed.html"
+  status = 200
+
+[[redirects]]
+  from = "/shoes"
+  to = "/shoes.html"
+  status = 200
+
+[[redirects]]
+  from = "/training-principles"
+  to = "/training-principles.html"
+  status = 200
+
+[[redirects]]
+  from = "/training-week"
+  to = "/training-week.html"
+  status = 200
+
+[[redirects]]
+  from = "/how-fast-should-i-run"
+  to = "/how-fast-should-i-run.html"
+  status = 200
+
+[[redirects]]
+  from = "/threshold-training"
+  to = "/threshold-training.html"
+  status = 200
+
+[[redirects]]
+  from = "/running-terms"
+  to = "/running-terms.html"
+  status = 200
+
+[[redirects]]
+  from = "/miami-running-training"
+  to = "/miami-running-training.html"
+  status = 200
+
+[[redirects]]
+  from = "/training-map"
+  to = "/training-map.html"
+  status = 200
+
+[[redirects]]
+  from = "/avoid-injury"
+  to = "/avoid-injury.html"
+  status = 200
+
+[[redirects]]
+  from = "/plan-spring-2026"
+  to = "/plan-spring-2026.html"
+  status = 200
+
+[[redirects]]
+  from = "/search"
+  to = "/search.html"
+  status = 200
+
+[[redirects]]
+  from = "/pacing"
+  to = "/pacing.html"
+  status = 200
+
+[[redirects]]
+  from = "/fueling"
+  to = "/fueling.html"
+  status = 200
+
+[[redirects]]
+  from = "/recovery"
+  to = "/recovery.html"
+  status = 200
+
+[[redirects]]
+  from = "/race-prep"
+  to = "/race-prep.html"
+  status = 200
+
+[[redirects]]
+  from = "/split-calculator"
+  to = "/split-calculator.html"
+  status = 200
+
+[[redirects]]
+  from = "/training-arc"
+  to = "/training-arc.html"
+  status = 200
+
+[[redirects]]
+  from = "/field-notes"
+  to = "/field-notes.html"
+  status = 200
+
+[[redirects]]
+  from = "/return"
+  to = "/return.html"
+  status = 200
+
+[[redirects]]
+  from = "/sleep"
+  to = "/sleep.html"
+  status = 200
+
+[[redirects]]
+  from = "/long-run-pace"
+  to = "/long-run-pace.html"
+  status = 200
+
+[[redirects]]
+  from = "/easy-run-standards"
+  to = "/easy-run-standards.html"
+  status = 200
+
+[[redirects]]
+  from = "/anti-rotation"
+  to = "/anti-rotation.html"
+  status = 200
+
+[[redirects]]
+  from = "/principles"
+  to = "/principles.html"
+  status = 200
+
+[[redirects]]
+  from = "/mechanics-map"
+  to = "/mechanics-map.html"
+  status = 200
+
+[[redirects]]
+  from = "/pain-map"
+  to = "/pain-map.html"
+  status = 200
+
+[[redirects]]
+  from = "/troubleshooting"
+  to = "/troubleshooting.html"
+  status = 200
+
+# Ghost Protocol
+[[redirects]]
+  from = "/ghost"
+  to = "/ghost/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/ghost/"
+  to = "/ghost/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/ghost/week-1"
+  to = "/ghost/week-1.html"
+  status = 200
+
+[[redirects]]
+  from = "/ghost/week-2"
+  to = "/ghost/week-2.html"
+  status = 200
+
+[[redirects]]
+  from = "/ghost/week-3"
+  to = "/ghost/week-3.html"
+  status = 200
+
+[[redirects]]
+  from = "/ghost/week-4"
+  to = "/ghost/week-4.html"
+  status = 200
+
+[[redirects]]
+  from = "/ghost/week-5"
+  to = "/ghost/week-5.html"
+  status = 200
+
+[[redirects]]
+  from = "/ghost/week-6"
+  to = "/ghost/week-6.html"
+  status = 200
+
+[[redirects]]
+  from = "/ghost/cues"
+  to = "/ghost/cues.html"
+  status = 200
+
+# Mobility
+[[redirects]]
+  from = "/mobility"
+  to = "/mobility.html"
+  status = 200

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202603161318">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arc</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --line:#d8d2c8; --line-l:#e8e3dc; }
+html, body { height: 100%; }
+body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; }
+
+/* LOCK SCREEN */
+#lock {
+  position: fixed; inset: 0; background: var(--cream);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  z-index: 100; gap: 0;
+}
+.lock-wordmark {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: 36px;
+  letter-spacing: 0.14em; color: var(--ink);
+  margin-bottom: 6px;
+}
+.lock-sub {
+  font-size: 7px; font-weight: 500; letter-spacing: 0.4em;
+  text-transform: uppercase; color: var(--ink-f);
+  margin-bottom: 48px;
+}
+.pin-dots {
+  display: flex; gap: 12px; margin-bottom: 32px;
+}
+.pin-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  border: 1px solid var(--ink-f); background: transparent;
+  transition: background 0.15s;
+}
+.pin-dot.filled { background: var(--ink-l); border-color: var(--ink-l); }
+.pin-grid {
+  display: grid; grid-template-columns: repeat(3, 52px);
+  gap: 10px;
+}
+.pin-btn {
+  width: 52px; height: 52px; border-radius: 50%;
+  border: 1px solid var(--line); background: transparent;
+  font-family: 'Jost', sans-serif; font-size: 16px;
+  font-weight: 300; color: var(--ink-l); cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+.pin-btn:hover { background: var(--line-l); }
+.pin-btn.del { font-size: 12px; color: var(--ink-f); }
+.pin-error {
+  margin-top: 20px; font-size: 9px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--ink-f); opacity: 0;
+  transition: opacity 0.2s;
+}
+.pin-error.show { opacity: 1; }
+
+/* MAIN PAGE */
+#arc {
+  display: none;
+  min-height: 100%;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 40px 100px;
+}
+#arc.visible { display: flex; }
+
+.arc-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: 52px;
+  letter-spacing: 0.14em; line-height: 1;
+  color: var(--ink); text-align: center;
+  margin-bottom: 6px;
+}
+.arc-sub {
+  font-size: 7px; font-weight: 500; letter-spacing: 0.4em;
+  text-transform: uppercase; color: var(--ink-f);
+  text-align: center; margin-bottom: 52px;
+}
+
+.structure {
+  width: 100%; max-width: 400px;
+  border-top: 1px solid var(--line-l);
+}
+
+/* PHASE BLOCK */
+.phase-block {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line-l);
+}
+.block-label {
+  font-size: 7px; font-weight: 500; letter-spacing: 0.35em;
+  text-transform: uppercase; color: var(--ink-f);
+  display: block; margin-bottom: 10px;
+}
+.phase-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; font-weight: 300;
+  letter-spacing: 0.04em; color: var(--ink);
+  display: block; line-height: 1; margin-bottom: 4px;
+}
+.phase-meta {
+  font-size: 10px; color: var(--ink-f); letter-spacing: 0.06em;
+}
+
+/* CURRENT WORK BLOCK */
+.work-block {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line-l);
+}
+.work-row {
+  display: flex; align-items: baseline;
+  gap: 12px; padding: 5px 0;
+}
+.work-area {
+  font-size: 8px; font-weight: 500; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--ink-f);
+  width: 72px; flex-shrink: 0;
+}
+.work-focus {
+  font-size: 12.5px; color: var(--ink-l); letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+
+/* PRINCIPLES BLOCK */
+.principles-block {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line-l);
+}
+.principle-row {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line-l);
+  font-size: 12.5px; color: var(--ink-l);
+  letter-spacing: 0.02em; line-height: 1.5;
+}
+.principle-row:first-child { border-top: 1px solid var(--line-l); }
+.principle-row:last-child { border-bottom: none; }
+
+/* CYCLES BLOCK */
+.cycles-block {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line-l);
+}
+.cycle-row {
+  display: flex; align-items: baseline;
+  justify-content: space-between; gap: 16px;
+  padding: 10px 0; border-bottom: 1px solid var(--line-l);
+}
+.cycle-row:first-child { border-top: 1px solid var(--line-l); }
+.cycle-row:last-child { border-bottom: none; }
+.cycle-period {
+  font-size: 8px; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--ink-f);
+  flex-shrink: 0;
+}
+.cycle-aim {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; font-weight: 300;
+  letter-spacing: 0.03em; color: var(--ink-l);
+  text-align: right;
+}
+
+/* RECORD BLOCK */
+.record-block {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line-l);
+}
+.record-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.record-item, .record-links a {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--ink-l);
+  text-decoration: none;
+}
+
+/* CYCLE LINE */
+.arc-cycle {
+  margin-top: 28px; padding-top: 18px;
+  border-top: 1px solid var(--line-l);
+  font-size: 8px; font-weight: 500;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--ink-f); opacity: 0.55; text-align: center;
+  width: 100%; max-width: 400px;
+}
+
+@media (max-width: 480px) {
+  #arc { padding: 44px 24px 80px; }
+  .arc-logo { font-size: 40px; }
+  .structure { max-width: 100%; }
+  .arc-cycle { max-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- LOCK SCREEN -->
+<div id="lock">
+  <div class="lock-wordmark">Arc</div>
+  <div class="lock-sub">Personal Practice</div>
+  <div class="pin-dots">
+    <div class="pin-dot" id="d0"></div>
+    <div class="pin-dot" id="d1"></div>
+    <div class="pin-dot" id="d2"></div>
+    <div class="pin-dot" id="d3"></div>
+  </div>
+  <div class="pin-grid">
+    <button class="pin-btn" onclick="enter('1')">1</button>
+    <button class="pin-btn" onclick="enter('2')">2</button>
+    <button class="pin-btn" onclick="enter('3')">3</button>
+    <button class="pin-btn" onclick="enter('4')">4</button>
+    <button class="pin-btn" onclick="enter('5')">5</button>
+    <button class="pin-btn" onclick="enter('6')">6</button>
+    <button class="pin-btn" onclick="enter('7')">7</button>
+    <button class="pin-btn" onclick="enter('8')">8</button>
+    <button class="pin-btn" onclick="enter('9')">9</button>
+    <button class="pin-btn" onclick="enter('')"></button>
+    <button class="pin-btn" onclick="enter('0')">0</button>
+    <button class="pin-btn del" onclick="del()">⌫</button>
+  </div>
+  <div class="pin-error" id="pin-error">Incorrect</div>
+</div>
+
+<!-- ARC PAGE -->
+<div id="arc">
+
+  <div class="arc-logo">Arc</div>
+  <div class="arc-sub">Personal Practice</div>
+
+  <div class="structure">
+
+    <!-- CURRENT PHASE -->
+    <div class="phase-block">
+      <span class="block-label">Current Phase</span>
+      <span class="phase-name">Stewardship</span>
+      <span class="phase-meta">Spring 2026 · Consolidation</span>
+    </div>
+
+    <!-- CURRENT WORK -->
+    <div class="work-block">
+      <span class="block-label">Current Work</span>
+      <div class="work-row">
+        <span class="work-area">Running</span>
+        <span class="work-focus">Compression · rhythm · durability</span>
+      </div>
+      <div class="work-row">
+        <span class="work-area">Work</span>
+        <span class="work-focus">RunCards density · financial neutrality · protect mornings</span>
+      </div>
+      <div class="work-row">
+        <span class="work-area">Life</span>
+        <span class="work-focus">Protect calm · home rhythm · reduce interference</span>
+      </div>
+    </div>
+
+    <!-- PRINCIPLES -->
+    <div class="principles-block">
+      <span class="block-label">Principles</span>
+      <div class="principle-row">Protect base layers</div>
+      <div class="principle-row">Remove interference</div>
+      <div class="principle-row">Leave capacity unused</div>
+      <div class="principle-row">Structure over effort</div>
+      <div class="principle-row">Let time finish the work</div>
+    </div>
+
+    <!-- CYCLES -->
+    <div class="cycles-block">
+      <span class="block-label">Cycles</span>
+      <div class="cycle-row">
+        <span class="cycle-period">Current</span>
+        <span class="cycle-aim">Financial Neutrality</span>
+      </div>
+      <div class="cycle-row">
+        <span class="cycle-period">Year Arc</span>
+        <span class="cycle-aim">2026 — Stewardship</span>
+      </div>
+      <div class="cycle-row">
+        <span class="cycle-period">Long Arc</span>
+        <span class="cycle-aim">Stewardship → Expression</span>
+      </div>
+    </div>
+
+    <!-- RECORD -->
+    <div class="record-block">
+      <span class="block-label">Record</span>
+      <div class="record-links">
+        <span class="record-item">Notes</span>
+        <span class="record-item">Decisions</span>
+        <span class="record-item">Fragments</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="arc-cycle">Arc · Spring 2026</div>
+
+</div>
+
+<script>
+const PIN = '1234';
+let entered = '';
+
+function enter(d) {
+  if (d === '' || entered.length >= 4) return;
+  entered += d;
+  updateDots();
+  if (entered.length === 4) {
+    setTimeout(check, 120);
+  }
+}
+
+function del() {
+  entered = entered.slice(0, -1);
+  updateDots();
+  document.getElementById('pin-error').classList.remove('show');
+}
+
+function updateDots() {
+  for (let i = 0; i < 4; i++) {
+    document.getElementById('d' + i).classList.toggle('filled', i < entered.length);
+  }
+}
+
+function check() {
+  if (entered === PIN) {
+    document.getElementById('lock').style.display = 'none';
+    document.getElementById('arc').classList.add('visible');
+  } else {
+    document.getElementById('pin-error').classList.add('show');
+    entered = '';
+    updateDots();
+  }
+}
+</script>
+
+</body>
+</html>

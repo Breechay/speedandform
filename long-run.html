@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202603161318">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Long Run | FORM</title>
+<meta name="description" content="Extended aerobic work that builds endurance and durability. The long run in FORM structure: purpose, pace, and format.">
+<link rel="canonical" href="https://speedandform.com/long-run">
+<meta property="og:title" content="Long Run | FORM">
+<meta property="og:description" content="Extended aerobic work that builds endurance and durability. The long run in FORM structure: purpose, pace, and format.">
+<meta property="og:url" content="https://speedandform.com/long-run">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://speedandform.com/og/long-run.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://speedandform.com/og/long-run.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:site_name" content="FORM">
+<meta name="twitter:title" content="Long Run | FORM">
+<meta name="twitter:description" content="Extended aerobic work that builds endurance and durability. The long run in FORM structure: purpose, pace, and format.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --accent:#c4593a; --line:#d8d2c8; --line-l:#e8e3dc; }
+html, body { height: auto !important; overflow: visible !important; }
+body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 120px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+.content { max-width: 560px; margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
+.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 42px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 14px; }
+.current-session { display: none; margin: 18px 0 0; }
+.current-session.on { display: block; cursor: pointer; }
+.current-session.on:hover .cs-name { color: var(--ink); }
+
+/* SESSION DRAWER */
+.drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(42,38,32,0.45); z-index: 200; }
+.drawer-overlay.open { display: block; }
+.drawer { position: fixed; bottom: 0; left: 0; right: 0; background: var(--cream); z-index: 201; transform: translateY(100%); transition: transform 0.32s cubic-bezier(.4,0,.2,1); max-height: 85vh; overflow-y: auto; border-top-left-radius: 4px; border-top-right-radius: 4px; }
+.drawer.open { transform: translateY(0); }
+.drawer-handle { width: 36px; height: 3px; background: var(--line); border-radius: 2px; margin: 14px auto 0; }
+.drawer-inner { padding: 20px 32px 48px; max-width: 420px; margin: 0 auto; }
+.drawer-eyebrow { font-size: 9px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); margin-bottom: 6px; display: block; }
+.drawer-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; letter-spacing: 0.04em; color: var(--ink); margin-bottom: 4px; line-height: 1.2; }
+.drawer-sub { font-size: 12px; color: var(--ink-l); margin-bottom: 24px; letter-spacing: 0.03em; }
+.drawer-rule { height: 1px; background: var(--line-l); margin: 20px 0; }
+.drawer-section-lbl { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); margin-bottom: 12px; display: block; }
+.drawer-structure { font-size: 12px; color: var(--ink-l); letter-spacing: 0.06em; margin-bottom: 8px; }
+.drawer-body { font-size: 13.5px; line-height: 1.85; color: var(--ink-l); }
+.drawer-body p { margin-bottom: 12px; }
+.drawer-body p:last-child { margin-bottom: 0; }
+.drawer-close { margin-top: 28px; width: 100%; background: none; border: 1px solid var(--line); color: var(--ink-f); font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; padding: 12px; cursor: pointer; transition: all 0.15s; border-radius: 2px; }
+.drawer-close:hover { border-color: var(--ink); color: var(--ink); }
+.cs-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
+.cs-name { font-size: 15px; line-height: 1.5; color: var(--ink-l); letter-spacing: 0.02em; display: block; margin-top: 6px; }
+.seo-block { display: none; }
+.seo-label { display: none; }
+.seo-text { display: none; }
+.page-def { font-size: 13px; color: var(--ink-l); line-height: 1.65; letter-spacing: 0.02em; margin-bottom: 24px; }
+.session-standard { margin-top: 16px; font-size: 13px; line-height: 1.68; letter-spacing: 0.02em; color: var(--ink-l); }
+.session-meta { margin-top: 10px; margin-bottom: 0; font-size: 8px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-l); opacity: 0.85; display: block; }
+.links { margin-top: 36px; border-top: 1px solid var(--line-l); }
+.hub-link { display: flex; align-items: center; text-decoration: none; padding: 18px 0; border-bottom: 1px solid var(--line-l); }
+.hub-link-left { display: flex; flex-direction: column; gap: 4px; }
+.hub-link-label { font-size: 8px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #958c82; }
+.hub-link-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; letter-spacing: 0.04em; color: var(--ink); line-height: 1; }
+/* Coach */
+.coach-btn { background: none; border: none; cursor: pointer; font-size: 13px; opacity: 0.22; padding: 0; line-height: 1; }
+.coach-btn.active { opacity: 1; }
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(42,38,32,0.6); z-index: 300; align-items: center; justify-content: center; }
+.modal-overlay.open { display: flex; }
+.modal { background: var(--cream); padding: 40px; width: 300px; text-align: center; }
+.modal-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; margin-bottom: 24px; }
+.pin-input { width: 100%; border: 1px solid var(--line); background: white; padding: 12px 16px; font-family: 'Jost', sans-serif; font-size: 20px; letter-spacing: 0.4em; text-align: center; color: var(--ink); outline: none; margin-bottom: 16px; }
+.pin-input:focus { border-color: var(--ink); }
+.pin-submit { width: 100%; background: var(--ink); color: var(--cream); border: none; padding: 12px; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; }
+.pin-error { font-size: 11px; color: var(--accent); margin-top: 10px; min-height: 16px; }
+.modal-cancel { margin-top: 14px; font-size: 11px; color: var(--ink-l); cursor: pointer; letter-spacing: 0.1em; text-transform: uppercase; background: none; border: none; font-family: 'Jost', sans-serif; }
+.toast { position: fixed; bottom: 32px; right: 24px; background: var(--ink); color: var(--cream); padding: 10px 16px; font-size: 11px; letter-spacing: 0.1em; border-radius: 2px; opacity: 0; transform: translateY(8px); transition: all 0.3s; z-index: 400; pointer-events: none; }
+.toast.show { opacity: 1; transform: translateY(0); }
+.cs-edit { display: none; width: 100%; border: none; border-bottom: 1.5px solid var(--accent); background: transparent; outline: none; font-family: 'Jost', sans-serif; font-size: 13px; color: var(--ink); padding: 2px 0; letter-spacing: 0.03em; margin-top: 4px; }
+.coach-mode .cs-name { cursor: pointer; border-bottom: 1px dashed var(--line); display: inline-block; transition: border-color 0.15s, color 0.15s; }
+.coach-mode .cs-name:hover { border-bottom-color: var(--ink-l); color: var(--ink); }
+@media (max-width: 480px) {
+  .nav { padding-left: 24px; padding-right: 24px; }
+  .content { padding-left: 24px; padding-right: 24px; border-left: none; }
+  .page-title { font-size: 34px; }
+}
+/* ── LONG RUN LEDGER ── */
+.lr-ledger { margin-top: 64px; }
+.lr-rule { width: 100%; height: 1px; background: var(--line-l); margin-bottom: 32px; }
+.lr-head { margin-bottom: 10px; }
+.lr-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 32px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; display: block; margin-bottom: 6px; }
+.lr-sub { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); display: block; }
+.lr-desc { font-size: 12px; color: var(--ink-f); letter-spacing: 0.03em; line-height: 1.65; margin-bottom: 6px; margin-top: 12px; }
+.lr-note { font-size: 11px; color: var(--ink-f); letter-spacing: 0.03em; line-height: 1.65; margin-bottom: 24px; opacity: 0.7; }
+
+.lr-table { width: 100%; border-collapse: collapse; }
+.lr-table thead th { font-size: 8px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); padding: 0 0 12px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.lr-table thead th + th { padding-left: 16px; }
+.lr-table tbody tr { border-bottom: 1px solid var(--line-l); }
+.lr-table tbody td { padding: 14px 0; font-size: 13px; color: var(--ink-l); vertical-align: top; line-height: 1.4; }
+.lr-table tbody td + td { padding-left: 16px; }
+.lr-table td.lr-date { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; color: var(--ink-f); white-space: nowrap; padding-top: 16px; }
+.lr-table td.lr-struct { color: var(--ink); min-width: 120px; }
+.lr-table td.lr-pace { font-size: 12px; white-space: nowrap; min-width: 52px; }
+.lr-table td.lr-athletes { font-size: 11px; color: var(--ink-f); max-width: 120px; }
+.lr-table td.lr-actions { width: 28px; text-align: right; padding-left: 8px; padding-top: 16px; }
+
+/* editable cells in coach mode */
+.lr-editable { cursor: pointer; border-bottom: 1px dashed transparent; transition: border-color 0.15s; display: inline-block; }
+.coach-mode .lr-editable:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.lr-inp { display: none; border: none; border-bottom: 1.5px solid var(--accent); background: transparent; outline: none; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 13px; color: var(--ink); padding: 1px 2px; width: 100%; }
+.lr-inp.open { display: inline-block; }
+.lr-del-btn { background: none; border: none; cursor: pointer; font-size: 11px; color: var(--ink-f); opacity: 0; padding: 2px; line-height: 1; transition: opacity 0.15s, color 0.15s; }
+.coach-mode .lr-del-btn { opacity: 0.4; }
+.coach-mode .lr-del-btn:hover { opacity: 1; color: var(--accent); }
+
+.lr-add-btn { margin-top: 20px; background: none; border: 1px dashed var(--line); color: var(--ink-f); font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; padding: 7px 14px; cursor: pointer; transition: all 0.15s; }
+.lr-add-btn:hover { border-color: var(--ink); color: var(--ink); }
+.lr-empty { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: var(--ink-f); letter-spacing: 0.02em; padding: 16px 0 8px; display: block; }
+
+@media (max-width: 480px) {
+  .lr-table td.lr-athletes { display: none; }
+  .lr-table thead th.lr-th-athletes { display: none; }
+}
+@media (max-width: 380px) {
+  .lr-table td.lr-pace { font-size: 11px; }
+}
+
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "FORM Long Run",
+  "description": "Weekly long run from Hideout, Edgewater, Miami.",
+  "eventSchedule": {
+    "@type": "Schedule",
+    "repeatFrequency": "P1W",
+    "byDay": "https://schema.org/Saturday",
+    "startTime": "05:30"
+  },
+  "location": {
+    "@type": "Place",
+    "name": "Hideout",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Miami",
+      "addressRegion": "FL",
+      "addressCountry": "US"
+    }
+  },
+  "organizer": { "@type": "Organization", "name": "FORM" }
+}
+</script>
+</head>
+<body>
+
+<div class="nav">
+  <a class="nav-home" href="/">FORM</a>
+  <span class="nav-label">Long Run</span>
+  <button class="coach-btn" id="coach-btn" onclick="coachAction()">🔒</button>
+</div>
+
+<div class="content">
+  <h1 class="page-title">Long Run</h1>
+  <p class="page-def">Long runs extend the distance you can stay organized. Time on feet at controlled effort — not hero effort, not distance pushed. Structure matters more than how it felt. Finish without depleting.</p>
+
+  <!-- TRAINING RATIONALE -->
+  <div style="margin-bottom: 32px;">
+    <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px;">What it builds</span>
+
+    <div style="padding: 14px 0; border-top: 1px solid var(--line-l);">
+      <span style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 6px;">Aerobic base</span>
+      <p style="font-size: 13px; color: var(--ink-l); line-height: 1.75; letter-spacing: 0.02em;">Long runs extend the time spent in aerobic metabolism. The adaptation is not fitness in the acute sense — it is the structural capacity to stay organized under duration. Mitochondrial density, fat oxidation, connective tissue tolerance. These take weeks to accumulate and months to consolidate. The long run is where that work happens.</p>
+    </div>
+
+    <div style="padding: 14px 0; border-top: 1px solid var(--line-l);">
+      <span style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 6px;">Structure under fatigue</span>
+      <p style="font-size: 13px; color: var(--ink-l); line-height: 1.75; letter-spacing: 0.02em;">The second half of a long run is the training. Early miles are transport — they deposit the runner into the state where adaptation actually occurs. When the mechanics hold past 50 minutes, past 60, past 70, the system is internalizing something. When they collapse, the run was too long or too fast. Structure matters more than distance.</p>
+    </div>
+
+    <div style="padding: 14px 0; border-top: 1px solid var(--line-l);">
+      <span style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 6px;">Saturday as a fixed anchor</span>
+      <p style="font-size: 13px; color: var(--ink-l); line-height: 1.75; letter-spacing: 0.02em;">The long run is fixed on Saturday for the same reason threshold is fixed on Tuesday — the schedule is not adjusted to accommodate mood or condition. The repetition trains the body to produce on a specific day. Over a cycle, the system learns to arrive ready. That reliability is itself an adaptation.</p>
+    </div>
+
+    <div style="padding: 14px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l);">
+      <span style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 6px;">Finishing neutral</span>
+      <p style="font-size: 13px; color: var(--ink-l); line-height: 1.75; letter-spacing: 0.02em;">The long run is not a race rehearsal. It ends at Hideout, not at an empty tank. A runner who finishes knowing they could keep going has done it correctly. A runner who finishes depleted has taken from next week to pay for this one. The system rewards runners who manage effort across weeks, not sessions.</p>
+    </div>
+  </div>
+
+  <div class="current-session">
+    <span class="cs-label">Current Session</span>
+    <span class="cs-name" id="cs-name"></span>
+  </div>
+
+  <div class="session-standard">Easy early. Steady later. Finish neutral.</div>
+  <span class="session-meta">Saturday · 5:30 AM · <a href="https://maps.google.com/?q=The+Hideout+Coffee+House,+Edgewater+Miami+FL" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--line);">Hideout, Edgewater</a></span>
+
+  <div class="links">
+    <a class="hub-link" href="/long-run-pace">
+      <div class="hub-link-left">
+        <span class="hub-link-label">Pace Reference</span>
+        <span class="hub-link-title">Long Run Pace</span>
+      </div>
+    </a>
+    <a class="hub-link" href="/ledger">
+      <div class="hub-link-left">
+        <span class="hub-link-label">Training Record</span>
+        <span class="hub-link-title">Ledger</span>
+      </div>
+    </a>
+    <a class="hub-link" href="/plan">
+      <div class="hub-link-left">
+        <span class="hub-link-label">Current Cycle</span>
+        <span class="hub-link-title">Plan</span>
+      </div>
+    </a>
+    <a class="hub-link" href="/the-method">
+      <div class="hub-link-left">
+        <span class="hub-link-label">Execution Standard</span>
+        <span class="hub-link-title">The Method</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- LONG RUN LEDGER -->
+  <div class="lr-ledger" id="lr-ledger">
+    <div class="lr-rule"></div>
+    <div class="lr-head">
+      <span class="lr-title">Long Run Ledger</span>
+      <span class="lr-sub">Spring Cycle 2026</span>
+    </div>
+    <p class="lr-desc">The ledger records long runs completed within the practice.</p>
+    <p class="lr-note">Entries document structure and pacing rather than performance.</p>
+    <div id="lr-table-wrap"></div>
+    <button class="lr-add-btn" id="lr-add-btn" style="display:none" onclick="lrAddRow()">+ Add run</button>
+  </div>
+
+  <div style="padding: 20px 0; margin-top: 8px; display: flex; gap: 20px; flex-wrap: wrap; border-top: 1px solid var(--line-l);">
+    <a href="/long-run-pace" style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-l); text-decoration: none; font-family: 'Jost', sans-serif;">Long Run Pace →</a>
+    <a href="/fueling" style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-l); text-decoration: none; font-family: 'Jost', sans-serif;">Fueling</a>
+    <a href="/recovery" style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: 'Jost', sans-serif;">Recovery</a>
+    <a href="/race-prep" style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: 'Jost', sans-serif;">Race Prep</a>
+    <a href="/training-arc" style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: 'Jost', sans-serif;">Training Arc</a>
+  </div>
+</div>
+
+<!-- PIN Modal -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-title">Coach Access</div>
+    <input class="pin-input" type="password" inputmode="numeric" maxlength="6" id="pin-input" placeholder="····" autocomplete="new-password" onkeydown="if(event.key==='Enter') submitPin()">
+    <button class="pin-submit" onclick="submitPin()">Unlock</button>
+    <div class="pin-error" id="pin-error"></div>
+    <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+  </div>
+</div>
+<input class="cs-edit" id="cs-edit" placeholder="90 min easy" autocomplete="off">
+<div class="toast" id="toast"></div>
+
+<script>
+const SB  = 'https://zlhxvzgublgtuxplcjjl.supabase.co/rest/v1/';
+const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpsaHh2emd1YmxndHV4cGxjampsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1ODIxMTksImV4cCI6MjA4ODE1ODExOX0.DGEmk1QaAx-CPYkNiHf5BTMI6DKFKp7Wr40fShGv0hc';
+const PIN = '1234';
+let isCoach = false, toastTimer;
+
+// ── SPRING CYCLE 2026 SCHEDULE ──
+const SCHEDULE_LR = [
+  { date:'2026-02-21', num:'LR01', desc:'95 min · 50 easy / 45 steady' },
+  { date:'2026-02-28', num:'LR02', desc:'95 min · 50 easy / 45 steady' },
+  { date:'2026-03-07', num:'LR03', desc:'100 min · 50 easy / 50 steady' },
+  { date:'2026-03-14', num:'LR04', desc:'90 min · 60 easy / 30 steady' },
+  { date:'2026-03-21', num:'LR05', desc:'95 min · 45 easy / 40 steady' },
+  { date:'2026-03-28', num:'LR06', desc:'90 min · 40 easy / 40 steady' },
+  { date:'2026-04-04', num:'LR07', desc:'75 min · 40 easy / 20 steady' },
+  { date:'2026-04-11', num:'LR08', desc:'Off or shakeout + strides' },
+];
+function getMonday(d) {
+  const dt = new Date(d); const dow = dt.getDay();
+  dt.setDate(dt.getDate() + (dow === 0 ? -6 : 1 - dow)); dt.setHours(0,0,0,0); return dt;
+}
+function toYMD(d) { return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+
+function renderSession(raw) {
+  const cs   = document.querySelector('.current-session');
+  const name = document.getElementById('cs-name');
+  if (!raw || raw === '—') return; // never hide — schedule already set it
+  const text  = raw.trim();
+  const match = text.match(/^(?:LR\d+|S\d+)\s*[·–-]\s*(.+)$/i) ||
+                text.match(/^(?:LR\d+|S\d+)\s+(.+)$/i);
+  cs.classList.add('on');
+  name.textContent = match ? match[1] : text;
+}
+
+// Load from schedule first — write directly, guaranteed visible
+(function() {
+  const mon = getMonday(new Date());
+  const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
+  const monYMD = toYMD(mon), sunYMD = toYMD(sun);
+  const s = SCHEDULE_LR.find(s => s.date >= monYMD && s.date <= sunYMD);
+  const cs = document.querySelector('.current-session');
+  const name = document.getElementById('cs-name');
+  if (s && cs && name) {
+    cs.classList.add('on');
+    name.textContent = s.desc;
+  }
+})();
+
+// Then check Supabase for coach override
+fetch(SB + 'this_week?id=eq.current&select=long_run', {
+  headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY }
+})
+.then(r => r.json())
+.then(d => { if (d[0]?.long_run && d[0].long_run !== '—') renderSession(d[0].long_run); })
+.catch(() => {});
+
+function coachAction() {
+  if (isCoach) {
+    isCoach = false;
+    document.body.classList.remove('coach-mode');
+    document.getElementById('coach-btn').classList.remove('active');
+    document.getElementById('coach-btn').textContent = '🔒';
+    showToast('Coach mode off');
+  } else { openModal(); }
+}
+function openModal() {
+  document.getElementById('modal').classList.add('open');
+  document.getElementById('pin-input').value = '';
+  document.getElementById('pin-error').textContent = '';
+  setTimeout(() => document.getElementById('pin-input').focus(), 100);
+}
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+function submitPin() {
+  if (document.getElementById('pin-input').value === PIN) {
+    isCoach = true; closeModal();
+    document.body.classList.add('coach-mode');
+    document.getElementById('coach-btn').classList.add('active');
+    document.getElementById('coach-btn').textContent = '🔓';
+    showToast('Coach mode on');
+  } else {
+    document.getElementById('pin-error').textContent = 'Incorrect PIN';
+    document.getElementById('pin-input').value = '';
+    document.getElementById('pin-input').focus();
+  }
+}
+document.getElementById('modal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+
+function editSession() {
+  if (!isCoach) return;
+  const name = document.getElementById('cs-name').textContent;
+  const inp  = document.getElementById('cs-edit');
+  inp.value  = name;
+  inp.style.display = 'block';
+  inp.focus(); inp.select();
+  document.querySelector('.current-session').classList.add('on');
+}
+document.getElementById('cs-edit').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') { e.preventDefault(); saveSession(this.value); }
+  if (e.key === 'Escape') { this.style.display = 'none'; }
+});
+document.getElementById('cs-edit').addEventListener('blur', function() { saveSession(this.value); });
+
+async function saveSession(val) {
+  document.getElementById('cs-edit').style.display = 'none';
+  if (!val.trim()) return;
+  renderSession(val.trim());
+  try {
+    await fetch(SB + 'this_week', {
+      method: 'POST',
+      headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY, 'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates' },
+      body: JSON.stringify({ id: 'current', long_run: val.trim() })
+    });
+    showToast('Session updated');
+  } catch(e) { showToast('Saved locally'); }
+}
+// ── LONG RUN LEDGER ──
+// Table: lr_ledger  columns: id (text PK), date, structure, easy_pace, steady_pace, athletes, sort_order
+// Coach can add rows, edit any cell, add athletes, delete rows.
+
+const LR_ROWS_BASE = [
+  { id:'lr-lro1', date:'Feb 21', structure:'95 min · 50 easy / 45 steady', easy_pace:'',  steady_pace:'', athletes:'' },
+  { id:'lr-lro2', date:'Feb 28', structure:'95 min · 50 easy / 45 steady', easy_pace:'',  steady_pace:'', athletes:'' },
+  { id:'lr-lro3', date:'Mar 7',  structure:'100 min · 50 easy / 50 steady',easy_pace:'',  steady_pace:'', athletes:'' },
+  { id:'lr-lro4', date:'Mar 14', structure:'90 min · 60 easy / 30 steady', easy_pace:'',  steady_pace:'', athletes:'' },
+  { id:'lr-lro5', date:'Mar 21', structure:'95 min · 45 easy / 40 steady', easy_pace:'',  steady_pace:'', athletes:'' },
+  { id:'lr-lro6', date:'Mar 28', structure:'90 min · 40 easy / 40 steady', easy_pace:'',  steady_pace:'', athletes:'' },
+  { id:'lr-lro7', date:'Apr 4',  structure:'75 min · 40 easy / 20 steady', easy_pace:'',  steady_pace:'', athletes:'' },
+  { id:'lr-lro8', date:'Apr 11', structure:'Off or shakeout + strides',    easy_pace:'',  steady_pace:'', athletes:'' },
+];
+
+let lrRows = LR_ROWS_BASE.map(r => Object.assign({}, r));
+let lrLoaded = false;
+
+function lrRender() {
+  const wrap = document.getElementById('lr-table-wrap');
+  if (!lrRows.length) {
+    wrap.innerHTML = '<span class="lr-empty">No runs recorded yet.</span>';
+    return;
+  }
+  const table = document.createElement('table');
+  table.className = 'lr-table';
+  table.innerHTML = `<thead><tr>
+    <th>Date</th>
+    <th>Run Structure</th>
+    <th>Easy Pace</th>
+    <th>Steady Pace</th>
+    <th class="lr-th-athletes">Athletes</th>
+    <th></th>
+  </tr></thead>`;
+  const tbody = document.createElement('tbody');
+  lrRows.forEach(row => tbody.appendChild(lrMkRow(row)));
+  table.appendChild(tbody);
+  wrap.innerHTML = '';
+  wrap.appendChild(table);
+}
+
+function lrMkRow(row) {
+  const tr = document.createElement('tr');
+  tr.dataset.id = row.id;
+
+  function mkCell(cls, field, placeholder, widthClass) {
+    const td = document.createElement('td');
+    td.className = cls;
+    const span = document.createElement('span');
+    span.className = 'lr-editable';
+    span.textContent = row[field] || (isCoach ? placeholder : '—');
+    if (!row[field] && !isCoach) { span.style.opacity = '0.3'; }
+    const inp = document.createElement('input');
+    inp.className = 'lr-inp';
+    inp.placeholder = placeholder;
+    inp.value = row[field] || '';
+    inp.autocomplete = 'off';
+    span.onclick = () => {
+      if (!isCoach) return;
+      span.style.display = 'none';
+      inp.classList.add('open');
+      inp.value = row[field] || '';
+      inp.focus(); inp.select();
+    };
+    const save = async () => {
+      const v = inp.value.trim();
+      row[field] = v;
+      span.textContent = v || (isCoach ? placeholder : '—');
+      span.style.opacity = (!v && !isCoach) ? '0.3' : '';
+      inp.classList.remove('open');
+      span.style.display = '';
+      await lrSaveRow(row);
+    };
+    inp.onblur = save;
+    inp.onkeydown = e => {
+      if (e.key === 'Enter') { e.preventDefault(); save(); }
+      if (e.key === 'Escape') { inp.classList.remove('open'); span.style.display = ''; }
+    };
+    td.appendChild(span);
+    td.appendChild(inp);
+    return td;
+  }
+
+  tr.appendChild(mkCell('lr-date',      'date',       'Date',      ''));
+  tr.appendChild(mkCell('lr-struct',    'structure',  'Structure', ''));
+  tr.appendChild(mkCell('lr-pace',      'easy_pace',  'Easy',      ''));
+  tr.appendChild(mkCell('lr-pace',      'steady_pace','Steady',    ''));
+  tr.appendChild(mkCell('lr-athletes',  'athletes',   'Athletes',  ''));
+
+  const tdAct = document.createElement('td');
+  tdAct.className = 'lr-actions';
+  const del = document.createElement('button');
+  del.className = 'lr-del-btn';
+  del.textContent = '×';
+  del.title = 'Remove row';
+  del.onclick = async () => {
+    if (!isCoach) return;
+    if (!confirm('Remove this run?')) return;
+    lrRows = lrRows.filter(r => r.id !== row.id);
+    await fetch(SB + 'lr_ledger?id=eq.' + encodeURIComponent(row.id), {
+      method: 'DELETE',
+      headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY }
+    }).catch(() => {});
+    lrRender();
+    showToast('Run removed');
+  };
+  tdAct.appendChild(del);
+  tr.appendChild(tdAct);
+  return tr;
+}
+
+async function lrSaveRow(row) {
+  try {
+    await fetch(SB + 'lr_ledger', {
+      method: 'POST',
+      headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY, 'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates' },
+      body: JSON.stringify({ id: row.id, date: row.date, structure: row.structure, easy_pace: row.easy_pace, steady_pace: row.steady_pace, athletes: row.athletes, sort_order: lrRows.indexOf(row) })
+    });
+    showToast('Saved');
+  } catch(e) { showToast('Saved locally'); }
+}
+
+async function lrAddRow() {
+  const id = 'lr-' + Date.now();
+  const row = { id, date: '', structure: '', easy_pace: '', steady_pace: '', athletes: '' };
+  lrRows.push(row);
+  lrRender();
+  // focus the date cell of the new row
+  const tr = document.querySelector('tr[data-id="' + id + '"]');
+  if (tr) {
+    const span = tr.querySelector('.lr-editable');
+    if (span) span.click();
+  }
+}
+
+async function lrSync() {
+  try {
+    const res = await fetch(SB + 'lr_ledger?order=sort_order', {
+      headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY }
+    });
+    const data = await res.json();
+    if (Array.isArray(data) && data.length) {
+      // Merge: overwrite base rows by id, add new ones
+      data.forEach(remote => {
+        const idx = lrRows.findIndex(r => r.id === remote.id);
+        const merged = { id: remote.id, date: remote.date || '', structure: remote.structure || '', easy_pace: remote.easy_pace || '', steady_pace: remote.steady_pace || '', athletes: remote.athletes || '' };
+        if (idx >= 0) { lrRows[idx] = merged; } else { lrRows.push(merged); }
+      });
+      // Re-sort by Supabase sort_order
+      const orderMap = {};
+      data.forEach((r, i) => { orderMap[r.id] = r.sort_order != null ? r.sort_order : i + 100; });
+      lrRows.sort((a, b) => (orderMap[a.id] ?? 99) - (orderMap[b.id] ?? 99));
+    }
+  } catch(e) {}
+  lrRender();
+  lrLoaded = true;
+}
+
+// Update ledger add button visibility when coach mode changes
+function lrSetCoach(on) {
+  document.getElementById('lr-add-btn').style.display = on ? 'inline-block' : 'none';
+  lrRender(); // re-render so editable hints update
+}
+
+// Patch existing coachAction to also toggle ledger
+const _origCoachAction = coachAction;
+window.coachAction = function() {
+  _origCoachAction();
+  lrSetCoach(isCoach);
+};
+const _origSubmitPin = submitPin;
+window.submitPin = function() {
+  _origSubmitPin();
+  if (isCoach) lrSetCoach(true);
+};
+
+// Tap current session to open drawer
+document.querySelector('.current-session').addEventListener('click', function() {
+  openDrawer();
+});
+
+function openDrawer() {
+  const name = document.getElementById('cs-name').textContent;
+  document.getElementById('d-title').textContent = name || 'Long Run';
+  document.getElementById('d-sub').textContent = 'Saturday · 5:30 AM · Hideout, Edgewater';
+  document.getElementById('drawer-overlay').classList.add('open');
+  document.getElementById('drawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDrawer() {
+  document.getElementById('drawer-overlay').classList.remove('open');
+  document.getElementById('drawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Swipe down to dismiss
+(function(){
+  const drawer = document.getElementById('drawer');
+  let startY = 0, currentY = 0, dragging = false;
+  drawer.addEventListener('touchstart', e => { startY = e.touches[0].clientY; dragging = true; }, { passive: true });
+  drawer.addEventListener('touchmove', e => {
+    if (!dragging) return;
+    currentY = e.touches[0].clientY;
+    const diff = currentY - startY;
+    if (diff > 0) drawer.style.transform = `translateY(${diff}px)`;
+  }, { passive: true });
+  drawer.addEventListener('touchend', () => {
+    if (!dragging) return;
+    dragging = false;
+    const diff = currentY - startY;
+    drawer.style.transform = '';
+    if (diff > 80) closeDrawer();
+  });
+})();
+
+// Initialize
+lrRender();
+lrSync();
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+}
+</script>
+
+<!-- SESSION DRAWER -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-handle"></div>
+  <div class="drawer-inner">
+    <span class="drawer-eyebrow">This Saturday</span>
+    <div class="drawer-title" id="d-title"></div>
+    <div class="drawer-sub" id="d-sub"></div>
+    <div class="drawer-rule"></div>
+    <span class="drawer-section-lbl">Session structure</span>
+    <div class="drawer-structure">Easy early · Steady later · Finish neutral</div>
+    <div class="drawer-rule"></div>
+    <span class="drawer-section-lbl">What this session is for</span>
+    <div class="drawer-body"><p>The long run builds the base. Early miles are truly easy. The pace rises naturally in the second half. Finish organized, not depleted.</p></div>
+    <button class="drawer-close" onclick="closeDrawer()">Close</button>
+  </div>
+</div>
+
+</body>
+</html>

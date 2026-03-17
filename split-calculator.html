@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202603161318">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Split Calculator | FORM</title>
+<meta name="description" content="Distance and goal time to watch-ready splits. Pace calculator for race planning and session targets.">
+<link rel="canonical" href="https://speedandform.com/split-calculator">
+<meta property="og:title" content="Split Calculator | FORM">
+<meta property="og:description" content="Distance and goal time to watch-ready splits. Pace calculator for race planning and session targets.">
+<meta property="og:url" content="https://speedandform.com/split-calculator">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://speedandform.com/og/default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="FORM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Split Calculator | FORM">
+<meta name="twitter:description" content="Distance and goal time to watch-ready splits. Pace calculator for race planning and session targets.">
+<meta name="twitter:image" content="https://speedandform.com/og/default.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --line:#d8d2c8; --line-l:#e8e3dc; --accent:#c0392b; }
+html, body { height: auto !important; overflow: visible !important; }
+body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 100px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
+.nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+.content { max-width: 560px; margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
+
+.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 52px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 6px; }
+.page-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; display: block; margin-bottom: 40px; }
+
+/* ── INPUTS ─────────────────────────────────────── */
+.calc-intro { font-size: 13px; color: var(--ink-l); line-height: 1.65; letter-spacing: 0.02em; margin-bottom: 32px; }
+
+.input-row { display: flex; align-items: flex-end; gap: 0; flex-wrap: wrap; margin-bottom: 8px; }
+.input-group { display: flex; flex-direction: column; gap: 6px; }
+.input-label { font-size: 8px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-f); }
+.calc-inp { border: none; border-bottom: 1px solid var(--line); background: transparent; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 16px; color: var(--ink); padding: 6px 0; outline: none; letter-spacing: 0.04em; }
+.calc-inp:focus { border-bottom-color: var(--ink); }
+.calc-inp::placeholder { color: var(--line); }
+.inp-distance { width: 130px; }
+.inp-time     { width: 110px; }
+.inp-sep { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); padding: 0 16px 10px; }
+
+/* distance selector — plain text tabs */
+.dist-tabs { display: flex; gap: 0; margin-bottom: 28px; border-bottom: 1px solid var(--line-l); }
+.dist-tab { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); padding: 10px 16px 10px 0; margin-right: 0; cursor: pointer; border-bottom: 1.5px solid transparent; margin-bottom: -1px; transition: color 0.15s, border-color 0.15s; background: none; border-top: none; border-left: none; border-right: none; font-family: 'Jost', sans-serif; }
+.dist-tab:hover { color: var(--ink-l); }
+.dist-tab.active { color: var(--ink); border-bottom-color: var(--ink); }
+
+.calc-err { font-size: 12px; color: var(--accent); letter-spacing: 0.04em; padding: 8px 0 16px; min-height: 32px; }
+.calc-err:empty { display: none; }
+
+/* ── RESULTS ────────────────────────────────────── */
+.results { display: none; margin-top: 4px; }
+
+.result-summary { font-size: 11px; color: var(--ink-f); letter-spacing: 0.08em; margin-bottom: 24px; font-family: 'Jost', sans-serif; }
+.result-summary strong { color: var(--ink-l); font-weight: 500; }
+
+/* primary splits grid */
+.splits-grid { border-top: 1px solid var(--line); margin-bottom: 32px; }
+.splits-row { display: grid; grid-template-columns: 1fr 90px 90px 90px; padding: 11px 0; border-bottom: 1px solid var(--line-l); font-size: 13px; color: var(--ink-l); gap: 0; align-items: baseline; }
+.splits-row.head { font-size: 8px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); padding: 9px 0 9px; }
+.splits-row.anchor { color: var(--ink); }
+.splits-row .col-label { color: var(--ink-f); font-size: 11px; letter-spacing: 0.06em; }
+.splits-row.anchor .col-label { color: var(--ink-l); }
+.splits-row .col-num { font-variant-numeric: tabular-nums; }
+
+/* watch section */
+.watch-section { padding-top: 24px; border-top: 1px solid var(--line-l); margin-bottom: 32px; }
+.watch-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px; }
+.watch-rows { display: flex; gap: 24px; flex-wrap: wrap; }
+.watch-item { display: flex; flex-direction: column; gap: 4px; }
+.watch-item-label { font-size: 8px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); }
+.watch-item-val { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--ink); letter-spacing: 0.04em; line-height: 1; }
+.watch-item-unit { font-size: 10px; color: var(--ink-f); letter-spacing: 0.1em; margin-top: 2px; }
+
+/* threshold note */
+.thresh-note { padding: 20px 0; border-top: 1px solid var(--line-l); }
+.thresh-note-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 8px; }
+.thresh-note-body { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: var(--ink-f); letter-spacing: 0.02em; line-height: 1.6; }
+
+.section-rule { width: 100%; height: 1px; background: var(--line-l); display: block; margin: 40px 0 28px; }
+
+.footer-links { margin-top: 52px; padding-top: 24px; border-top: 1px solid var(--line-l); display: flex; gap: 28px; flex-wrap: wrap; }
+.footer-link { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link:hover { color: var(--ink-l); }
+
+@media (max-width: 480px) {
+  .nav { padding-left: 24px; padding-right: 24px; }
+  .content { padding-left: 24px; padding-right: 24px; border-left: none; }
+  .page-title { font-size: 38px; }
+  .splits-row { grid-template-columns: 1fr 76px 76px 76px; font-size: 12px; }
+  .watch-item-val { font-size: 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a class="nav-home" href="/">FORM</a>
+  <span class="nav-label">Split Calculator</span>
+</div>
+
+<div class="content">
+
+  <h1 class="page-title">Split Calculator</h1>
+  <span class="page-sub">Distance and goal time to watch-ready splits.</span>
+
+  <p class="calc-intro">Enter a distance and goal finish time to get mile splits, km splits, and 400m repeat pace. Use before programming your watch, before race day, or when checking training targets against a goal time.</p>
+
+  <!-- DISTANCE TABS -->
+  <div class="dist-tabs" id="distTabs">
+    <button class="dist-tab active" data-km="5"      data-miles="3.10686" data-label="5K">5K</button>
+    <button class="dist-tab"        data-km="10"     data-miles="6.21371" data-label="10K">10K</button>
+    <button class="dist-tab"        data-km="21.0975" data-miles="13.1094" data-label="Half Marathon">Half</button>
+    <button class="dist-tab"        data-km="42.195" data-miles="26.2188" data-label="Marathon">Marathon</button>
+    <button class="dist-tab"        data-km=""       data-miles=""        data-label="Custom" id="customTab">Custom</button>
+  </div>
+
+  <!-- INPUTS -->
+  <div class="input-row">
+    <div class="input-group" id="customDistGroup" style="display:none;">
+      <span class="input-label">Distance (km)</span>
+      <input class="calc-inp inp-distance" id="inpDist" type="text" inputmode="decimal" placeholder="e.g. 8" autocomplete="off">
+    </div>
+    <div class="input-group" id="customDistGroupMi" style="display:none;">
+      <span class="input-label">or miles</span>
+      <input class="calc-inp inp-distance" id="inpDistMi" type="text" inputmode="decimal" placeholder="e.g. 5" autocomplete="off" style="width:90px;">
+    </div>
+    <span class="inp-sep" id="customSep" style="display:none;"></span>
+
+    <div class="input-group">
+      <span class="input-label">Goal time</span>
+      <input class="calc-inp inp-time" id="inpTime" type="text" inputmode="numeric" placeholder="h:mm:ss" autocomplete="off">
+    </div>
+  </div>
+
+  <div class="calc-err" id="calcErr"></div>
+
+  <!-- RESULTS -->
+  <div class="results" id="results">
+
+    <p class="result-summary" id="resultSummary"></p>
+
+    <!-- Splits grid -->
+    <div class="splits-grid">
+      <div class="splits-row head">
+        <span class="col-label">Checkpoint</span>
+        <span>Split time</span>
+        <span>/ mile</span>
+        <span>/ km</span>
+      </div>
+      <div id="splitRows"></div>
+    </div>
+
+    <!-- Watch-ready block -->
+    <div class="watch-section">
+      <span class="watch-label">Watch-ready</span>
+      <div class="watch-rows">
+        <div class="watch-item">
+          <span class="watch-item-label">Per mile</span>
+          <span class="watch-item-val" id="watchMile">—</span>
+          <span class="watch-item-unit">min / mile</span>
+        </div>
+        <div class="watch-item">
+          <span class="watch-item-label">Per km</span>
+          <span class="watch-item-val" id="watchKm">—</span>
+          <span class="watch-item-unit">min / km</span>
+        </div>
+        <div class="watch-item">
+          <span class="watch-item-label">400m repeat</span>
+          <span class="watch-item-val" id="watch400">—</span>
+          <span class="watch-item-unit">per 400m</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Threshold reference (only for half/marathon) -->
+    <div class="thresh-note" id="threshNote" style="display:none;">
+      <span class="thresh-note-label">Threshold reference</span>
+      <span class="thresh-note-body" id="threshBody"></span>
+    </div>
+
+  </div>
+
+  <span class="section-rule"></span>
+
+  <div class="footer-links">
+    <a class="footer-link" href="/pacing">Pacing →</a>
+    <a class="footer-link" href="/competition">Race Splits</a>
+    <a class="footer-link" href="/threshold">Threshold</a>
+    <a class="footer-link" href="/race-prep">Race Prep</a>
+  </div>
+
+</div>
+
+<script>
+// ── state ─────────────────────────────────────────────────────────────
+let activeKm    = 5;
+let activeMiles = 3.10686;
+let activeLabel = '5K';
+let isCustom    = false;
+
+// ── format helpers ────────────────────────────────────────────────────
+function fmtPace(secs) {
+  const m = Math.floor(secs / 60), s = Math.round(secs % 60);
+  return m + ':' + String(s).padStart(2, '0');
+}
+
+function fmtTime(secs) {
+  const h = Math.floor(secs / 3600);
+  const m = Math.floor((secs % 3600) / 60);
+  const s = Math.round(secs % 60);
+  if (h > 0) return h + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+  return m + ':' + String(s).padStart(2, '0');
+}
+
+function parseTime(s) {
+  s = s.trim().replace(/[^0-9:]/g, '');
+  const p = s.split(':').map(Number);
+  if (p.length === 3 && p[1] < 60 && p[2] < 60) return p[0] * 3600 + p[1] * 60 + p[2];
+  if (p.length === 2 && p[0] >= 0 && p[1] < 60)  return p[0] * 60 + p[1];
+  if (p.length === 1 && !isNaN(p[0]) && p[0] > 0) return p[0] * 60;
+  return null;
+}
+
+// ── distance tabs ─────────────────────────────────────────────────────
+document.getElementById('distTabs').addEventListener('click', function(e) {
+  const tab = e.target.closest('.dist-tab');
+  if (!tab) return;
+
+  document.querySelectorAll('.dist-tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+
+  isCustom = tab.id === 'customTab';
+  document.getElementById('customDistGroup').style.display   = isCustom ? '' : 'none';
+  document.getElementById('customDistGroupMi').style.display = isCustom ? '' : 'none';
+  document.getElementById('customSep').style.display         = isCustom ? '' : 'none';
+
+  if (!isCustom) {
+    activeKm    = parseFloat(tab.dataset.km);
+    activeMiles = parseFloat(tab.dataset.miles);
+    activeLabel = tab.dataset.label;
+  }
+
+  clearErr();
+  calculate();
+});
+
+// ── live calculation on input ─────────────────────────────────────────
+['inpTime', 'inpDist', 'inpDistMi'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) {
+    el.addEventListener('input', () => { clearErr(); calculate(); });
+    el.addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); });
+  }
+});
+
+// sync custom distance fields (km ↔ mi)
+document.getElementById('inpDist').addEventListener('blur', function() {
+  const v = parseFloat(this.value);
+  if (!isNaN(v) && v > 0) {
+    const mi = document.getElementById('inpDistMi');
+    if (!mi.value) mi.value = '';
+  }
+});
+
+// ── main calculate ────────────────────────────────────────────────────
+function calculate() {
+  const timeStr = document.getElementById('inpTime').value.trim();
+  if (!timeStr) { hide(); return; }
+
+  // resolve distance
+  let km = activeKm, miles = activeMiles, label = activeLabel;
+  if (isCustom) {
+    const dKm = document.getElementById('inpDist').value.trim();
+    const dMi = document.getElementById('inpDistMi').value.trim();
+    if (dKm) {
+      km = parseFloat(dKm);
+      miles = km / 1.60934;
+      label = km + ' km';
+    } else if (dMi) {
+      miles = parseFloat(dMi);
+      km = miles * 1.60934;
+      label = miles + ' mi';
+    } else {
+      hide(); return;
+    }
+    if (isNaN(km) || km <= 0) { showErr('Enter a valid distance.'); hide(); return; }
+  }
+
+  const totalSecs = parseTime(timeStr);
+  if (!totalSecs || totalSecs <= 0) {
+    if (timeStr.length > 2) showErr('Check format — try 1:45:00 or 25:00');
+    hide(); return;
+  }
+
+  const pacePerMile = totalSecs / miles;
+  const pacePerKm   = totalSecs / km;
+  const pace400m    = pacePerKm * 0.4;
+
+  // checkpoints
+  const checkpoints = buildCheckpoints(km, miles, label);
+
+  // render splits grid
+  const rows = document.getElementById('splitRows');
+  rows.innerHTML = '';
+  checkpoints.forEach(cp => {
+    const splitTime = (pacePerKm * cp.km);
+    const row = document.createElement('div');
+    row.className = 'splits-row' + (cp.anchor ? ' anchor' : '');
+    row.innerHTML =
+      '<span class="col-label">' + cp.label + '</span>' +
+      '<span class="col-num">'   + fmtTime(splitTime)  + '</span>' +
+      '<span class="col-num">'   + fmtPace(pacePerMile) + '</span>' +
+      '<span class="col-num">'   + fmtPace(pacePerKm)  + '</span>';
+    if (cp.anchor) {
+
+      row.querySelectorAll('.col-num')[0].textContent = fmtTime(totalSecs);
+    }
+    rows.appendChild(row);
+  });
+
+  // watch block
+  document.getElementById('watchMile').textContent = fmtPace(pacePerMile);
+  document.getElementById('watchKm').textContent   = fmtPace(pacePerKm);
+  document.getElementById('watch400').textContent  = fmtPace(pace400m);
+
+  // summary
+  document.getElementById('resultSummary').innerHTML =
+    '<strong>' + label + '</strong> in ' + fmtTime(totalSecs) +
+    ' &nbsp;·&nbsp; ' + fmtPace(pacePerMile) + ' / mile' +
+    ' &nbsp;·&nbsp; ' + fmtPace(pacePerKm) + ' / km';
+
+  // threshold note — only for half and marathon
+  const threshNote = document.getElementById('threshNote');
+  const threshBody = document.getElementById('threshBody');
+  if (km >= 20) {
+    const tLowMi  = pacePerMile - 30;
+    const tHighMi = pacePerMile - 15;
+    const tLowKm  = pacePerKm  - 18;
+    const tHighKm = pacePerKm  - 10;
+    if (tHighMi > 0) {
+      threshBody.textContent =
+        'For a ' + fmtTime(totalSecs) + ' goal, threshold work may sit around ' +
+        fmtPace(tLowMi) + '–' + fmtPace(tHighMi) + ' / mile (' +
+        fmtPace(tLowKm) + '–' + fmtPace(tHighKm) + ' / km). ' +
+        'This narrows as the aerobic base matures.';
+      threshNote.style.display = '';
+    }
+  } else {
+    threshNote.style.display = 'none';
+  }
+
+  show();
+}
+
+// ── checkpoint builder ────────────────────────────────────────────────
+function buildCheckpoints(km, miles, label) {
+  // For standard distances, use familiar landmarks
+  if (Math.abs(km - 5) < 0.1) {
+    return [
+      { label: '1 km',   km: 1 },
+      { label: '1 mile', km: 1.60934 },
+      { label: '2 km',   km: 2 },
+      { label: '3 km',   km: 3 },
+      { label: '4 km',   km: 4 },
+      { label: 'Finish', km: km, anchor: true },
+    ];
+  }
+  if (Math.abs(km - 10) < 0.1) {
+    return [
+      { label: '1 mile', km: 1.60934 },
+      { label: '5K',     km: 5 },
+      { label: '5 mile', km: 8.04672 },
+      { label: 'Finish', km: km, anchor: true },
+    ];
+  }
+  if (km >= 20 && km <= 22) { // half marathon
+    return [
+      { label: '5K',      km: 5 },
+      { label: '10K',     km: 10 },
+      { label: '10 mile', km: 16.0934 },
+      { label: 'Halfway', km: km / 2 },
+      { label: 'Finish',  km: km, anchor: true },
+    ];
+  }
+  if (km >= 40) { // marathon
+    return [
+      { label: '10K',      km: 10 },
+      { label: 'Halfway',  km: km / 2 },
+      { label: '30K',      km: 30 },
+      { label: '20 mile',  km: 32.1869 },
+      { label: 'Finish',   km: km, anchor: true },
+    ];
+  }
+  // custom: every km up to 5, then every 5km, always finish
+  const pts = [];
+  const step = km <= 5 ? 1 : km <= 15 ? 2 : 5;
+  for (let d = step; d < km - 0.5; d += step) {
+    pts.push({ label: d + ' km', km: d });
+  }
+  pts.push({ label: 'Finish', km: km, anchor: true });
+  return pts;
+}
+
+// ── helpers ───────────────────────────────────────────────────────────
+function show()     { document.getElementById('results').style.display = ''; }
+function hide()     { document.getElementById('results').style.display = 'none'; }
+function clearErr() { document.getElementById('calcErr').textContent = ''; }
+function showErr(m) { document.getElementById('calcErr').textContent = m; }
+</script>
+</body>
+</html>

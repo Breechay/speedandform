@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202603161318">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Week 3 — Spring | Running Form Practice | FORM</title>
+<meta name="description" content="Week 3 of the Ghost Protocol — a six-week running form practice. Use the ground. Don't sink into it.">
+<link rel="canonical" href="https://speedandform.com/ghost/week-3">
+<meta property="og:title" content="Week 3 — Spring | Ghost Protocol | FORM">
+<meta property="og:description" content="Use the ground. Don't sink into it.">
+<meta property="og:url" content="https://speedandform.com/ghost/week-3">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://speedandform.com/og/default.jpg">
+<meta property="og:site_name" content="FORM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --line:#d8d2c8; --line-l:#e8e3dc; }
+body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 100px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.nav { max-width: 560px; margin: 0 auto; padding: 28px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.content { max-width: 560px; margin: 0 auto; padding: 48px 32px 0; border-left: 1px solid var(--line-l); }
+.ghost-progress { display: flex; flex-wrap: wrap; margin-bottom: 20px; }
+.ghost-progress a { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; margin-right: 14px; margin-bottom: 4px; transition: color 0.15s; }
+.ghost-progress a:hover { color: var(--ink-l); }
+.ghost-progress a.active { color: var(--ink); }
+.week-eyebrow { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 8px; }
+.week-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 52px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 8px; }
+.week-intent { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 20px; font-weight: 300; color: var(--ink-l); letter-spacing: 0.02em; display: block; margin-bottom: 20px; }
+.goal-block { padding: 14px 0; border-top: 1px solid var(--line-l); margin-bottom: 20px; }
+.goal-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 8px; }
+.goal-text { font-size: 13px; color: var(--ink-l); line-height: 1.7; letter-spacing: 0.02em; }
+.schedule-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 4px; }
+.day-row { display: flex; align-items: baseline; gap: 16px; padding: 8px 0; border-top: 1px solid var(--line-l); }
+.day-row:last-of-type { border-bottom: 1px solid var(--line-l); }
+.day-name { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); min-width: 34px; flex-shrink: 0; }
+.day-session-wrap { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+.day-session { font-size: 13px; color: var(--ink); letter-spacing: 0.02em; }
+.day-cue { font-size: 11px; color: var(--ink-f); letter-spacing: 0.03em; line-height: 1.5; }
+.day-rest { font-size: 13px; color: var(--ink-f); letter-spacing: 0.02em; font-style: italic; }
+.cues-block { margin-top: 24px; }
+.cues-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px; }
+.cues-row { display: flex; gap: 28px; flex-wrap: wrap; padding: 14px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); }
+.cue-item { display: flex; align-items: center; gap: 10px; }
+.cue-icon { width: 24px; height: 24px; flex-shrink: 0; opacity: 0.65; }
+.cue-name { font-size: 12px; color: var(--ink-l); letter-spacing: 0.04em; }
+.checkin-block { margin-top: 24px; padding-bottom: 32px; border-bottom: 1px solid var(--line-l); }
+.checkin-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
+.checkin-q { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.7; margin-bottom: 14px; }
+.checkin-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; line-height: 1.55; }
+.week-nav { margin-top: 48px; display: flex; justify-content: space-between; align-items: center; }
+.week-nav-link { text-decoration: none; display: flex; flex-direction: column; gap: 4px; }
+.week-nav-link.next { text-align: right; }
+.week-nav-dir { font-size: 8px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); }
+.week-nav-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; color: var(--ink-l); letter-spacing: 0.04em; transition: color 0.15s; }
+.week-nav-link:hover .week-nav-name { color: var(--ink); }
+.practice-footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line-l); display: flex; justify-content: space-between; align-items: center; }
+.practice-mark { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); }
+.save-week { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); cursor: pointer; background: none; border: none; font-family: 'Jost', sans-serif; padding: 0; }
+.save-week:hover { color: var(--ink-l); }
+.footer-links { margin-top: 32px; display: flex; gap: 28px; flex-wrap: wrap; }
+.footer-link { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link:hover { color: var(--ink-l); }
+@media (max-width: 480px) {
+  .nav { padding-left: 24px; padding-right: 24px; }
+  .content { padding-left: 24px; padding-right: 24px; border-left: none; }
+  .week-title { font-size: 40px; }
+  .cues-row { gap: 20px; }
+  .ghost-progress a { margin-right: 10px; }
+}
+
+.drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(42,38,32,0.4); z-index: 200; }
+.drawer-overlay.open { display: block; }
+.ghost-drawer { position: fixed; bottom: 0; left: 0; right: 0; background: var(--cream); z-index: 201; transform: translateY(100%); transition: transform 0.3s cubic-bezier(.4,0,.2,1); max-height: 80vh; overflow-y: auto; border-top-left-radius: 4px; border-top-right-radius: 4px; }
+.ghost-drawer.open { transform: translateY(0); }
+.ghost-drawer-handle { width: 36px; height: 3px; background: var(--line); border-radius: 2px; margin: 14px auto 0; }
+.ghost-drawer-inner { padding: 20px 28px 48px; max-width: 440px; margin: 0 auto; }
+.ghost-drawer-eyebrow { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); margin-bottom: 6px; display: block; }
+.ghost-drawer-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; letter-spacing: 0.04em; color: var(--ink); margin-bottom: 4px; line-height: 1.2; }
+.ghost-drawer-sub { font-size: 11px; color: var(--ink-f); margin-bottom: 20px; letter-spacing: 0.06em; }
+.ghost-drawer-rule { height: 1px; background: var(--line-l); margin: 0 0 20px; }
+.ghost-drawer-lbl { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); margin-bottom: 10px; display: block; }
+.ghost-drawer-body { font-size: 13px; line-height: 1.8; color: var(--ink-l); letter-spacing: 0.02em; margin-bottom: 0; }
+.ghost-drawer-signal { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; line-height: 1.55; margin-top: 16px; display: block; }
+.ghost-drawer-close { margin-top: 28px; width: 100%; background: none; border: 1px solid var(--line); color: var(--ink-f); font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; padding: 12px; cursor: pointer; transition: all 0.15s; }
+.ghost-drawer-close:hover { border-color: var(--ink); color: var(--ink); }
+.day-row { cursor: pointer; }
+.day-row:hover .day-session { color: var(--ink-l); }
+.day-row:hover .day-rest { color: var(--ink-l); }
+
+
+/* WEEK MARKER */
+.week-marker { margin-bottom: 24px; display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
+.week-marker-box { width: 12px; height: 12px; border: 1px solid var(--line); flex-shrink: 0; transition: background 0.15s, border-color 0.15s; }
+.week-marker.active .week-marker-box { background: var(--ink); border-color: var(--ink); }
+.week-marker-text { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); transition: color 0.15s; }
+.week-marker.active .week-marker-text { color: var(--ink-l); }
+
+
+.ghost-drawer-done { font-size: 12px; color: var(--ink-f); letter-spacing: 0.02em; font-style: italic; line-height: 1.6; margin-top: 12px; display: block; padding-top: 12px; border-top: 1px solid var(--line-l); }
+.ghost-drawer-done-label { font-size: 8px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--line); display: block; margin-bottom: 4px; font-style: normal; }
+</style>
+</head>
+<body>
+<div class="nav">
+  <a class="nav-home" href="/">FORM</a>
+  <a class="nav-label" href="/ghost">Ghost Protocol</a>
+</div>
+<div class="content">
+
+  <span class="week-eyebrow">Week 3 of 6</span>
+  <h1 class="week-title">Spring</h1>
+  <span class="week-intent">Use the ground. Don't sink into it.</span>
+
+  <div class="week-marker" id="week-marker">
+    <div class="week-marker-box"></div>
+    <span class="week-marker-text">Mark as in progress</span>
+  </div>
+
+  <div class="ghost-progress">
+    <a href="/ghost/week-1">Rhythm</a>
+    <a href="/ghost/week-2">Gravity</a>
+    <a href="/ghost/week-3" class="active">Spring</a>
+    <a href="/ghost/week-4">Pillar</a>
+    <a href="/ghost/week-5">Gears</a>
+    <a href="/ghost/week-6">Ghost</a>
+  </div>
+
+  <div class="goal-block">
+    <span class="goal-label">Goal</span>
+    <p class="goal-text">Reduce ground contact time. The foot arrives and leaves quickly — the Achilles tendon acts as a spring, not a brake. A runner who stays light on the ground spends less energy and maintains more speed.</p>
+  </div>
+
+  <p style="font-size: 11px; color: var(--ink-f); letter-spacing: 0.03em; line-height: 1.6; margin-bottom: 12px;">Run these sessions across the week. Rest days can move.</p>
+  <span class="schedule-label">Weekly Practice</span>
+  <div class="day-row" onclick="openGhostDrawer('Mon')">
+    <span class="day-name">Mon</span>
+    <div class="day-session-wrap">
+      <span class="day-session">20 min Easy Run</span>
+      <span class="day-cue">Imagine the ground is hot — the foot picks up the moment it lands</span>
+    </div>
+  </div>
+  <div class="day-row" onclick="openGhostDrawer('Tue')">
+    <span class="day-name">Tue</span>
+    <div class="day-session-wrap">
+      <span class="day-session">4 × 30m Skips</span>
+      <span class="day-cue">High skips for height — focus on popping off the ball of the foot</span>
+    </div>
+  </div>
+  <div class="day-row" onclick="openGhostDrawer('Wed')">
+    <span class="day-name">Wed</span>
+    <div class="day-session-wrap">
+      <span class="day-session">25 min Rhythm Run</span>
+      <span class="day-cue">Cadence focus — use a metronome at 175–180 BPM, keep the step light</span>
+    </div>
+  </div>
+  <div class="day-row" onclick="openGhostDrawer('Thu')">
+    <span class="day-name">Thu</span>
+    <div class="day-session-wrap">
+      <span class="day-rest">Rest / Mobility</span>
+      <span class="day-cue">Calf and Achilles — foam roll and slow stretching</span>
+    </div>
+  </div>
+  <div class="day-row" onclick="openGhostDrawer('Fri')">
+    <span class="day-name">Fri</span>
+    <div class="day-session-wrap">
+      <span class="day-session">20 min Easy Run</span>
+      <span class="day-cue">Pull the heel up toward the glute quickly — don't push the ground away</span>
+    </div>
+  </div>
+  <div class="day-row" onclick="openGhostDrawer('Sat')">
+    <span class="day-name">Sat</span>
+    <div class="day-session-wrap">
+      <span class="day-session">45 min Long Easy</span>
+      <span class="day-cue">When tired at 30 min, keep the feet light — stay springy through the end</span>
+    </div>
+  </div>
+  <div class="day-row" onclick="openGhostDrawer('Sun')">
+    <span class="day-name">Sun</span>
+    <div class="day-session-wrap">
+      <span class="day-rest">Rest</span>
+    </div>
+  </div>
+
+  <div class="cues-block">
+    <span class="cues-label">The Three Ghost Cues</span>
+    <div class="cues-row">
+      <div class="cue-item" onclick="openCueDrawer('Hot_pavement')" style="cursor:pointer;">
+        <!-- Hot pavement / quick lift icon -->
+        <svg class="cue-icon" viewBox="0 0 24 24" fill="none">
+          <path d="M12 20 L12 12" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M9 15 L12 12 L15 15" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M7 20 L17 20" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M8 7 Q10 5 12 7 Q14 9 16 7" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        </svg>
+        <span class="cue-name">Hot pavement</span>
+      </div>
+      <div class="cue-item" onclick="openCueDrawer('Pull__don_t_push')" style="cursor:pointer;">
+        <!-- Pull up / heel pull icon -->
+        <svg class="cue-icon" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="5" r="2" stroke="#2a2620" stroke-width="1.2"/>
+          <path d="M12 7 L12 14" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M12 14 L9 18" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M12 14 L15 18" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M15 18 Q16 21 14 21" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+          <path d="M14 21 L13 19" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        <span class="cue-name">Pull, don't push</span>
+      </div>
+      <div class="cue-item" onclick="openCueDrawer('Hip_drive')" style="cursor:pointer;">
+        <!-- Hip drive icon -->
+        <svg class="cue-icon" viewBox="0 0 24 24" fill="none">
+          <path d="M7 16 Q8 12 12 11 Q16 12 17 16 Q17 19 14 20 L10 20 Q7 19 7 16Z" stroke="#2a2620" stroke-width="1.2" fill="none" stroke-linejoin="round"/>
+          <circle cx="12" cy="15.5" r="1.5" stroke="#2a2620" stroke-width="1" fill="none"/>
+          <path d="M14 20 L15 22" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M11 20 L11 22" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M8 20 L7 22" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        <span class="cue-name">Hip drive</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="checkin-block">
+    <span class="checkin-label">Check-In</span>
+    <p class="checkin-q">Did your feet feel lighter as the run went on?</p>
+    <span class="checkin-note">A crisp sound is elastic return. A slap is a brake.</span>
+  </div>
+
+  <div class="week-nav">
+    <a class="week-nav-link" href="/ghost/week-2">
+      <span class="week-nav-dir">← Prev</span>
+      <span class="week-nav-name">Gravity</span>
+    </a>
+    <a class="week-nav-link next" href="/ghost/week-4">
+      <span class="week-nav-dir">Next →</span>
+      <span class="week-nav-name">Pillar</span>
+    </a>
+  </div>
+
+  <div class="practice-footer">
+    <span class="practice-mark">FORM — Ghost Protocol</span>
+    <button class="save-week" onclick="if(navigator.share){navigator.share({title:'Ghost Protocol — Week 3: Spring',url:window.location.href})}else{navigator.clipboard.writeText(window.location.href);this.textContent='Copied';setTimeout(()=>this.textContent='Save Week',2000)}">Save Week</button>
+  </div>
+
+  <div class="footer-links">
+    <a class="footer-link" href="/ghost/cues">All Cues</a>
+    <a class="footer-link" href="/ghost">The Arc</a>
+    <a class="footer-link" href="/easy-run">Easy Run</a>
+    <a class="footer-link" href="/avoid-injury">Avoid Injury</a>
+  </div>
+</div>
+
+<div class="drawer-overlay" id="ghost-overlay" onclick="closeGhostDrawer()"></div>
+<div class="ghost-drawer" id="ghost-drawer">
+  <div class="ghost-drawer-handle"></div>
+  <div class="ghost-drawer-inner">
+    <span class="ghost-drawer-eyebrow" id="gd-eyebrow"></span>
+    <div class="ghost-drawer-title" id="gd-title"></div>
+    <div class="ghost-drawer-sub" id="gd-sub"></div>
+    <div class="ghost-drawer-rule"></div>
+    <span class="ghost-drawer-lbl">What this session is for</span>
+    <p class="ghost-drawer-body" id="gd-body"></p>
+    <span class="ghost-drawer-signal" id="gd-signal"></span>
+    <span class="ghost-drawer-done" id="gd-done" style="display:none;"><span class="ghost-drawer-done-label">Done correctly</span><span id="gd-done-text"></span></span>
+
+    <a href="/mobility" style="display:block; margin-top:16px; font-size:10px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-f); text-decoration:none; border-bottom:1px solid var(--line-l); padding-bottom:12px;">Mobility reference →</a>
+    <button class="ghost-drawer-close" onclick="closeGhostDrawer()">Close</button>
+  </div>
+</div>
+
+<script>
+const SESSIONS = {"Mon": {"eyebrow": "Session Note", "title": "20 min Easy Run", "sub": "Ground contact as a variable", "body": "Short ground contact loads the Achilles spring. A foot that stays down too long absorbs energy instead of returning it.", "signal": "If the feet slap, the ankle is not stiff enough at contact.", "done": "The foot contacts and leaves the ground quickly -- no sinking into each step."}, "Tue": {"eyebrow": "Session Note", "title": "4 x 30m Skips", "sub": "Elastic load and release", "body": "Each skip loads the calf and Achilles and releases -- the same mechanism inside every running stride, slowed down. Height, not distance, is the measure.", "signal": "If height is not increasing across the set, the loading phase is being rushed.", "done": "Each skip feels like a pop off the ground, not a push."}, "Wed": {"eyebrow": "Session Note", "title": "25 min Rhythm Run", "sub": "Cadence reduces ground contact", "body": "At 175-180 BPM the stride shortens automatically, the foot lands closer to the body, and the Achilles spring becomes available.", "signal": "If effort increases to maintain the BPM, the stride is still too long. Let the cadence shorten it.", "done": "The stride shortens slightly and the feet land closer to the body."}, "Thu": {"eyebrow": "Session Note", "title": "Rest / Mobility", "sub": "Calf and Achilles recovery", "body": "Standing calf stretch straight then bent knee, 45 seconds each. The spring work this week loads the calf and Achilles more than any other.", "signal": null, "done": null}, "Fri": {"eyebrow": "Session Note", "title": "20 min Easy Run", "sub": "Pulling versus pushing", "body": "Pulling the heel up creates a circular leg path. Pushing the ground away creates a braking force on every stride.", "signal": "If the lower leg swings visibly behind the body, the pull is happening too late.", "done": "The leg cycles under the body rather than swinging behind it."}, "Sat": {"eyebrow": "Session Note", "title": "45 min Long Easy", "sub": "Spring under duration", "body": "The spring feeling fades around 25\u201330 minutes when the calves tire. Staying light past that point is the test of whether the week has landed.", "signal": "If the feet become heavy, shorten the stride first. Less time on the ground means more spring available.", "done": "The run stays light past the 25-minute mark when the calves would normally tire."}, "Sun": {"eyebrow": "Session Note", "title": "Rest", "sub": "Full recovery", "body": "Spring running loads the calves and Achilles heavily. This day is structural recovery.", "signal": null, "done": null}};
+
+function openGhostDrawer(day) {
+  const s = SESSIONS[day];
+  if (!s) return;
+  document.getElementById('gd-eyebrow').textContent = s.eyebrow;
+  document.getElementById('gd-title').textContent = s.title;
+  document.getElementById('gd-sub').textContent = s.sub;
+  document.getElementById('gd-body').textContent = s.body;
+  const sig = document.getElementById('gd-signal');
+  if (s.signal) { sig.textContent = s.signal; sig.style.display = 'block'; }
+  else { sig.style.display = 'none'; }
+  const done = document.getElementById('gd-done');
+  const doneText = document.getElementById('gd-done-text');
+  if (s.done && done && doneText) { doneText.textContent = s.done; done.style.display = 'block'; }
+  else if (done) { done.style.display = 'none'; }
+  document.getElementById('ghost-overlay').classList.add('open');
+  document.getElementById('ghost-drawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGhostDrawer() {
+  document.getElementById('ghost-overlay').classList.remove('open');
+  document.getElementById('ghost-drawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Swipe down to dismiss
+(function(){
+  const drawer = document.getElementById('ghost-drawer');
+  let startY = 0, dragging = false, currentY = 0;
+  drawer.addEventListener('touchstart', e => { startY = e.touches[0].clientY; dragging = true; }, {passive:true});
+  drawer.addEventListener('touchmove', e => {
+    if (!dragging) return;
+    currentY = e.touches[0].clientY;
+    const diff = currentY - startY;
+    if (diff > 0) drawer.style.transform = `translateY(${diff}px)`;
+  }, {passive:true});
+  drawer.addEventListener('touchend', () => {
+    if (!dragging) return; dragging = false;
+    const diff = currentY - startY;
+    drawer.style.transform = '';
+    if (diff > 80) closeGhostDrawer();
+  });
+})();
+</script>
+
+
+<div class="drawer-overlay" id="cue-overlay" onclick="closeCueDrawer()"></div>
+<div class="ghost-drawer" id="cue-drawer">
+  <div class="ghost-drawer-handle"></div>
+  <div class="ghost-drawer-inner">
+    <span class="ghost-drawer-eyebrow" id="cd-eyebrow">Cue Note</span>
+    <div class="ghost-drawer-title" id="cd-title"></div>
+    <div class="ghost-drawer-rule"></div>
+    <p class="ghost-drawer-body" id="cd-body"></p>
+    <span class="ghost-drawer-signal" id="cd-signal"></span>
+    <button class="ghost-drawer-close" onclick="closeCueDrawer()">Close</button>
+  </div>
+</div>
+
+<script>
+const CUE_DATA = {"Hot_pavement": {"title": "Hot pavement", "body": "Ground contact time determines how much elastic energy the Achilles can return. A foot that stays down too long absorbs energy instead of releasing it.", "signal": "A slap is too long on the ground. A crisp sound is the spring working."}, "Pull__don_t_push": {"title": "Pull, don't push", "body": "Pulling the heel up creates circular leg mechanics. Pushing the ground creates a braking force -- the direction of force determines which system is engaged.", "signal": "If the lower leg swings visibly behind the body, the pull is happening too late."}, "Hip_drive": {"title": "Hip drive", "body": "Propulsion comes from extending the hip back and down through the whole foot. Toe push creates a late braking pattern. Hip extension keeps the force directed backward and turnover quick.", "signal": "If the calf is doing all the work, the hip is not extending. The push starts from the hip."}};
+function openCueDrawer(key) {
+  const c = CUE_DATA[key];
+  if (!c) return;
+  document.getElementById('cd-title').textContent = c.title;
+  document.getElementById('cd-body').textContent = c.body;
+  const sig = document.getElementById('cd-signal');
+  if (c.signal) { sig.textContent = c.signal; sig.style.display = 'block'; }
+  else { sig.style.display = 'none'; }
+  document.getElementById('cue-overlay').classList.add('open');
+  document.getElementById('cue-drawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCueDrawer() {
+  document.getElementById('cue-overlay').classList.remove('open');
+  document.getElementById('cue-drawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+(function(){
+  const drawer = document.getElementById('cue-drawer');
+  let startY = 0, dragging = false, currentY = 0;
+  drawer.addEventListener('touchstart', e => { startY = e.touches[0].clientY; dragging = true; }, {passive:true});
+  drawer.addEventListener('touchmove', e => {
+    if (!dragging) return;
+    currentY = e.touches[0].clientY;
+    const diff = currentY - startY;
+    if (diff > 0) drawer.style.transform = `translateY(${diff}px)`;
+  }, {passive:true});
+  drawer.addEventListener('touchend', () => {
+    if (!dragging) return; dragging = false;
+    const diff = currentY - startY;
+    drawer.style.transform = '';
+    if (diff > 80) closeCueDrawer();
+  });
+})();
+
+// -- WEEK MARKER ------------------------------------------------------------
+(function() {
+  const key = 'ghost_week_3_active';
+  const marker = document.getElementById('week-marker');
+  if (!marker) return;
+  if (localStorage.getItem(key) === '1') marker.classList.add('active');
+  marker.addEventListener('click', function() {
+    const active = this.classList.toggle('active');
+    localStorage.setItem(key, active ? '1' : '0');
+    this.querySelector('.week-marker-text').textContent = active ? 'Week 3 in progress' : 'Mark as in progress';
+    if (active) this.querySelector('.week-marker-text').textContent = 'Week 3 \u2014 in progress';
+  });
+  // Restore label
+  if (localStorage.getItem(key) === '1') {
+    marker.querySelector('.week-marker-text').textContent = 'Week 3 \u2014 in progress';
+  }
+})();
+
+</script>
+
+</body>
+</html>

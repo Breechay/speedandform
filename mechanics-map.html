@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202603161318">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Running Mechanics Map | FORM</title>
+<meta name="description" content="How common running errors relate to each other. Rhythm, stability, and direction — the three root categories of mechanical inefficiency.">
+<link rel="canonical" href="https://speedandform.com/mechanics-map">
+<meta property="og:title" content="Running Mechanics Map | FORM">
+<meta property="og:description" content="How common running errors relate to each other. Rhythm, stability, and direction — the three root categories of mechanical inefficiency.">
+<meta property="og:url" content="https://speedandform.com/mechanics-map">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://speedandform.com/og/default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="FORM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Running Mechanics Map | FORM">
+<meta name="twitter:description" content="How common running errors relate to each other.">
+<meta name="twitter:image" content="https://speedandform.com/og/default.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --line:#d8d2c8; --line-l:#e8e3dc; }
+html, body { height: auto !important; overflow: visible !important; }
+body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 120px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
+.nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+
+.page { max-width: 560px; margin: 0 auto; padding: 64px 32px 0; text-align: center; }
+
+.wm { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 15px; letter-spacing: 0.45em; color: var(--ink); display: block; margin-bottom: 28px; }
+.full-rule { width: 100%; height: 1px; background: var(--line-l); display: block; margin-bottom: 32px; }
+
+.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 38px; letter-spacing: 0.04em; color: var(--ink); display: block; margin-bottom: 8px; line-height: 1; }
+.page-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; display: block; margin-bottom: 52px; }
+
+.map-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--line-l); text-align: left; margin-bottom: 48px; }
+
+.map-col { padding: 28px 20px 28px 0; border-right: 1px solid var(--line-l); }
+.map-col:last-child { border-right: none; padding-right: 0; padding-left: 20px; }
+.map-col:nth-child(2) { padding-left: 20px; }
+
+.map-category { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 18px; }
+.map-item { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 17px; letter-spacing: 0.03em; color: var(--ink-l); display: block; padding: 7px 0; border-bottom: 1px solid var(--line-l); line-height: 1.3; transition: color 0.15s; }
+.map-item:last-child { border-bottom: none; }
+.map-item:hover { color: var(--ink); }
+
+.closing { padding: 8px 0 40px; border-top: 1px solid var(--line-l); }
+.closing-line { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.03em; display: block; padding-top: 28px; }
+
+.footer-links { display: flex; gap: 20px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid var(--line-l); justify-content: flex-start; }
+.footer-link { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link.primary { color: var(--ink-l); }
+.footer-link:hover { color: var(--ink); }
+
+@media (max-width: 480px) {
+  .nav { padding-left: 24px; padding-right: 24px; }
+  .page { padding-left: 24px; padding-right: 24px; padding-top: 44px; }
+  .page-title { font-size: 32px; }
+  .map-grid { grid-template-columns: 1fr; }
+  .map-col { border-right: none; padding: 20px 0; border-bottom: 1px solid var(--line-l); }
+  .map-col:last-child { border-bottom: none; padding-left: 0; }
+  .map-col:nth-child(2) { padding-left: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a class="nav-home" href="/">FORM</a>
+  <span class="nav-label">Mechanics</span>
+</div>
+
+<div class="page">
+  <span class="page-title">Running Mechanics Map</span>
+  <span class="page-sub">Most running errors share the same roots.</span>
+
+  <div class="map-grid">
+    <div class="map-col">
+      <span class="map-category">Rhythm</span>
+      <a class="map-item" href="/running-form-errors#vertical-bounce" style="text-decoration:none; color:inherit;">Cadence</a>
+      <a class="map-item" href="/running-form-errors#hip-bounce-reference" style="text-decoration:none; color:inherit;">Ground contact</a>
+      <a class="map-item" href="/easy-run-standards" style="text-decoration:none; color:inherit;">Stride timing</a>
+    </div>
+    <div class="map-col">
+      <span class="map-category">Stability</span>
+      <a class="map-item" href="/running-form-errors#hip-collapse" style="text-decoration:none; color:inherit;">Pelvis control</a>
+      <a class="map-item" href="/running-form-errors#forward-lean" style="text-decoration:none; color:inherit;">Rib position</a>
+      <a class="map-item" href="/running-form-errors#arm-crossover" style="text-decoration:none; color:inherit;">Arm carriage</a>
+    </div>
+    <div class="map-col">
+      <span class="map-category">Direction</span>
+      <a class="map-item" href="/running-form-errors#overstriding" style="text-decoration:none; color:inherit;">Overstriding</a>
+      <a class="map-item" href="/running-form-errors#vertical-bounce" style="text-decoration:none; color:inherit;">Vertical bounce</a>
+      <a class="map-item" href="/running-form-errors#forward-lean" style="text-decoration:none; color:inherit;">Forward lean</a>
+    </div>
+  </div>
+
+  <div class="closing">
+    <span class="closing-line">Correct the structure. The mechanics organize themselves.</span>
+  </div>
+
+  <div class="footer-links">
+    <a class="footer-link primary" href="/running-form-errors">Form Errors →</a>
+    <a class="footer-link primary" href="/strength-fixes">Strength Fixes →</a>
+    <a class="footer-link" href="/easy-run-standards">Easy Run Standards</a>
+    <a class="footer-link" href="/principles">Principles</a>
+  </div>
+
+</div>
+</body>
+</html>

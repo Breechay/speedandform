@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202603161318">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Durability Routine — Runner Strength Session | FORM</title>
+<meta name="description" content="The FORM durability routine: split squats, single-leg RDL, calf work, and core. Two rounds, twice a week.">
+<link rel="canonical" href="https://speedandform.com/strength-routine">
+<meta property="og:title" content="Durability Routine — Runner Strength Session | FORM">
+<meta property="og:description" content="The FORM durability routine: split squats, single-leg RDL, calf work, and core. Two rounds, twice a week.">
+<meta property="og:url" content="https://speedandform.com/strength-routine">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://speedandform.com/og/default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://speedandform.com/og/default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:site_name" content="FORM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Durability Routine — Runner Strength Session | FORM">
+<meta name="twitter:description" content="The FORM durability routine: split squats, single-leg RDL, calf work, and core. Two rounds, twice a week.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --accent:#c4593a; --line:#d8d2c8; --line-l:#e8e3dc; }
+html, body { height: auto !important; overflow: visible !important; }
+body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 100px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
+.nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+.content { max-width: 560px; margin: 0 auto; padding: 48px 32px 0; border-left: 1px solid var(--line-l); }
+
+/* STICKY HEADER */
+.session-header { display: none; position: sticky; top: 0; z-index: 20; background: var(--cream); border-bottom: 1px solid var(--line-l); padding: 12px 0; }
+.session-header-inner { max-width: 560px; margin: 0 auto; padding: 0 32px; display: flex; align-items: baseline; justify-content: space-between; }
+.sh-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 19px; letter-spacing: 0.06em; color: var(--ink); }
+.sh-meta { font-size: 8px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); }
+
+.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 38px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 6px; }
+.page-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; margin-bottom: 28px; }
+
+/* ROUND TRACKER */
+.round-tracker { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); }
+.round-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+.round-circles { display: flex; gap: 10px; }
+.round-dot { width: 11px; height: 11px; border-radius: 50%; border: 1px solid var(--ink-f); background: transparent; cursor: pointer; transition: background 0.15s, border-color 0.15s; -webkit-tap-highlight-color: transparent; flex-shrink: 0; }
+.round-dot.done { background: var(--ink-l); border-color: var(--ink-l); }
+.round-reset { margin-left: auto; font-size: 8px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); opacity: 0.4; cursor: pointer; background: none; border: none; font-family: 'Jost', sans-serif; -webkit-tap-highlight-color: transparent; padding: 0; }
+
+/* ROUND NOTE */
+.round-note { font-size: 10px; color: var(--ink-f); letter-spacing: 0.04em; padding: 12px 0; border-bottom: 1px solid var(--line-l); }
+
+/* EXERCISE GROUPS */
+.ex-group { margin-top: 24px; }
+.ex-group-label { font-size: 7px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); opacity: 0.7; display: block; margin-bottom: 0; }
+
+.exercise {
+  display: flex; align-items: center; gap: 16px;
+  padding: 14px 0 14px 0;
+  border-bottom: 1px solid var(--line-l);
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.15s, padding-left 0.1s, border-left 0.1s;
+  user-select: none;
+  border-left: 2px solid transparent;
+  margin-left: -2px;
+}
+.exercise:first-of-type { border-top: 1px solid var(--line-l); margin-top: 10px; }
+.exercise:not(.active):not(.done):hover { background: rgba(42,38,32,0.025); }
+.round-dot:not(.done):hover { border-color: var(--ink-l); background: rgba(42,38,32,0.06); }
+
+/* Active — clear, focused */
+.exercise.active {
+  border-left: 2px solid var(--ink-l);
+  padding-left: 14px;
+}
+.exercise.active .ex-name { color: var(--ink); }
+.exercise.active .ex-num { color: var(--ink-l); }
+
+/* Done — strongly faded */
+.exercise.done { opacity: 0.15; }
+
+.ex-num { font-size: 9px; font-weight: 500; letter-spacing: 0.15em; color: var(--ink-f); width: 22px; flex-shrink: 0; transition: color 0.15s; }
+.ex-body { flex: 1; }
+.ex-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; letter-spacing: 0.03em; color: var(--ink-l); line-height: 1; display: block; margin-bottom: 3px; transition: color 0.15s; }
+.ex-spec { font-size: 10px; color: var(--ink-f); letter-spacing: 0.08em; }
+
+/* CUE */
+.cue-block { padding: 20px 0; border-bottom: 1px solid var(--line-l); margin-top: 24px; }
+.cue-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 6px; }
+.cue-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 19px; font-weight: 300; color: var(--ink-l); letter-spacing: 0.03em; line-height: 1.55; }
+
+/* PLACEMENT */
+.placement { padding: 20px 0; border-bottom: 1px solid var(--line-l); }
+.placement-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 12px; }
+.day-row { display: flex; align-items: baseline; gap: 12px; padding: 4px 0; }
+.day-name { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); width: 72px; flex-shrink: 0; }
+.day-note { font-size: 12px; color: var(--ink-l); letter-spacing: 0.02em; }
+.day-note.avoid { color: var(--ink-f); opacity: 0.5; }
+
+/* FOOTER */
+.footer-links { padding: 20px 0; display: flex; gap: 20px; flex-wrap: wrap; }
+.footer-link { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link.primary { color: var(--ink-l); }
+
+@media (max-width: 480px) {
+  .nav { padding-left: 24px; padding-right: 24px; }
+  .content { padding-left: 24px; padding-right: 24px; border-left: none; padding-top: 36px; }
+  .session-header-inner { padding: 0 24px; }
+  .page-title { font-size: 32px; }
+  .exercise.active { padding-left: 12px; }
+}
+</style>
+</head>
+<body>
+
+<div class="session-header" id="sticky-header">
+  <div class="session-header-inner">
+    <span class="sh-title">Durability Routine</span>
+    <span class="sh-meta">2 rounds</span>
+  </div>
+</div>
+
+<div class="nav">
+  <a class="nav-home" href="/">FORM</a>
+  <span class="nav-label">Strength</span>
+</div>
+
+<div class="content">
+
+  <h1 class="page-title" id="page-title">Durability Routine</h1>
+  <div class="page-sub">Structural support for the practice.</div>
+
+  <!-- ROUND TRACKER -->
+  <div class="round-tracker">
+    <span class="round-label">Round</span>
+    <div class="round-circles">
+      <div class="round-dot" id="r1" onclick="toggleRound(1)"></div>
+      <div class="round-dot" id="r2" onclick="toggleRound(2)"></div>
+    </div>
+    <button class="round-reset" onclick="resetAll()">Reset</button>
+  </div>
+  <div class="round-note">Move through in sequence · rest 45–60 sec between movements if needed</div>
+
+  <!-- BLOCK A — STRENGTH -->
+  <div class="ex-group">
+    <span class="ex-group-label">Strength</span>
+
+    <div class="exercise" data-ex onclick="toggleEx(this)">
+      <span class="ex-num">A1</span>
+      <div class="ex-body">
+        <span class="ex-name">Split Squat</span>
+        <span class="ex-spec">8–10 reps / side · controlled descent</span>
+      </div>
+    </div>
+
+    <div class="exercise" data-ex onclick="toggleEx(this)">
+      <span class="ex-num">A2</span>
+      <div class="ex-body">
+        <span class="ex-name">Single-Leg RDL</span>
+        <span class="ex-spec">6–8 reps / side · hinge at hip · chest quiet</span>
+      </div>
+    </div>
+
+    <div class="exercise" data-ex onclick="toggleEx(this)">
+      <span class="ex-num">A3</span>
+      <div class="ex-body">
+        <span class="ex-name">Step Down</span>
+        <span class="ex-spec">8–10 reps / side · slow · knee tracks over foot</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOCK B — CALF -->
+  <div class="ex-group">
+    <span class="ex-group-label">Calf</span>
+
+    <div class="exercise" data-ex onclick="toggleEx(this)">
+      <span class="ex-num">B1</span>
+      <div class="ex-body">
+        <span class="ex-name">Standing Calf Raise</span>
+        <span class="ex-spec">12–15 reps · single leg if possible · full range</span>
+      </div>
+    </div>
+
+    <div class="exercise" data-ex onclick="toggleEx(this)">
+      <span class="ex-num">B2</span>
+      <div class="ex-body">
+        <span class="ex-name">Seated Soleus Raise</span>
+        <span class="ex-spec">12–15 reps · knee bent 90° · slow and full range</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOCK C — CORE -->
+  <div class="ex-group">
+    <span class="ex-group-label">Core</span>
+
+    <div class="exercise" data-ex onclick="toggleEx(this)">
+      <span class="ex-num">C1</span>
+      <div class="ex-body">
+        <span class="ex-name">Copenhagen Plank</span>
+        <span class="ex-spec">20–30 sec / side · hips level</span>
+      </div>
+    </div>
+
+    <div class="exercise" data-ex onclick="toggleEx(this)">
+      <span class="ex-num">C2</span>
+      <div class="ex-body">
+        <span class="ex-name">Side Plank</span>
+        <span class="ex-spec">30–40 sec / side · left side +10 sec if weaker</span>
+      </div>
+    </div>
+
+    <div class="exercise" data-ex onclick="toggleEx(this)">
+      <span class="ex-num">C3</span>
+      <div class="ex-body">
+        <span class="ex-name">Glute Bridge</span>
+        <span class="ex-spec">30 sec hold / side · single leg · ribs down</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUE -->
+  <div class="cue-block">
+    <span class="cue-label">Cue</span>
+    <span class="cue-text">Move slowly. Control the positions.<br>Precision matters more than fatigue.</span>
+  </div>
+
+  <!-- PLACEMENT -->
+  <div class="placement">
+    <span class="placement-label">Weekly Placement</span>
+    <div class="day-row"><span class="day-name">Monday</span><span class="day-note">cross training + this routine</span></div>
+    <div class="day-row"><span class="day-name">Wednesday</span><span class="day-note">after easy run</span></div>
+    <div class="day-row"><span class="day-name">Thursday</span><span class="day-note">after easy run</span></div>
+    <div class="day-row"><span class="day-name">Friday</span><span class="day-note">optional short routine</span></div>
+    <div class="day-row" style="margin-top:8px;"><span class="day-name">Tuesday</span><span class="day-note avoid">not before threshold</span></div>
+    <div class="day-row"><span class="day-name">Saturday</span><span class="day-note avoid">not before long run</span></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-links">
+    <a class="footer-link primary" href="/strength-activation">Activation →</a>
+    <a class="footer-link primary" href="/strength-fixes">Fixes →</a>
+    <a class="footer-link" href="/strength">Structural Work →</a>
+  </div>
+
+</div>
+
+<script>
+// Sticky header
+const stickyHeader = document.getElementById('sticky-header');
+const pageTitle    = document.getElementById('page-title');
+window.addEventListener('scroll', function() {
+  stickyHeader.style.display = pageTitle.getBoundingClientRect().bottom < 0 ? 'block' : 'none';
+}, { passive: true });
+
+// Round tracker
+function toggleRound(n) {
+  document.getElementById('r' + n).classList.toggle('done');
+}
+
+// Exercise tap: inactive → active → done → inactive
+function toggleEx(el) {
+  if (el.classList.contains('active')) {
+    el.classList.remove('active');
+    el.classList.add('done');
+    checkAutoRound();
+  } else if (el.classList.contains('done')) {
+    el.classList.remove('done');
+  } else {
+    // Remove active from all others
+    document.querySelectorAll('.exercise.active').forEach(e => e.classList.remove('active'));
+    el.classList.add('active');
+  }
+}
+
+// Auto-fill next round dot when all exercises are done
+function checkAutoRound() {
+  const all  = document.querySelectorAll('[data-ex]');
+  const done = document.querySelectorAll('[data-ex].done');
+  if (done.length === all.length) {
+    const r1 = document.getElementById('r1');
+    const r2 = document.getElementById('r2');
+    if (!r1.classList.contains('done')) {
+      r1.classList.add('done');
+    } else if (!r2.classList.contains('done')) {
+      r2.classList.add('done');
+      // All done — reset exercises for round 2 if starting again
+    }
+  }
+}
+
+// Reset everything
+function resetAll() {
+  document.querySelectorAll('.round-dot').forEach(d => d.classList.remove('done'));
+  document.querySelectorAll('.exercise').forEach(e => e.classList.remove('done','active'));
+}
+</script>
+
+</body>
+</html>

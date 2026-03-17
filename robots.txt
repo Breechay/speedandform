@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /assets/
+Disallow: /tmp/
+Disallow: /dev/
+
+Sitemap: https://speedandform.com/sitemap.xml

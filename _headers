@@ -1,0 +1,49 @@
+# HTML pages — always revalidate, never serve stale
+/*.html
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+# Root — same
+/
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+# Search index — always fresh
+/search-index.json
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+# Redirects config
+/_redirects
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# Ghost pages explicitly
+/ghost
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+/ghost/*
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+# Static assets — immutable, fingerprinted at build time
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Sitemap and robots — revalidate
+/sitemap.xml
+  Cache-Control: no-cache, must-revalidate
+
+/robots.txt
+  Cache-Control: no-cache, must-revalidate
+
+# Catch-all fallback
+/*
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0

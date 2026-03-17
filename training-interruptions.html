@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202603161318">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Training Interruptions | FORM</title>
+<meta name="description" content="Managing injury and time away from training. How to understand, adjust, and return to rhythm after interruption.">
+<link rel="canonical" href="https://speedandform.com/training-interruptions">
+<meta property="og:title" content="Training Interruptions | FORM">
+<meta property="og:description" content="Managing injury and time away from training. How to understand, adjust, and return to rhythm after interruption.">
+<meta property="og:url" content="https://speedandform.com/training-interruptions">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://speedandform.com/og/default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://speedandform.com/og/default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:site_name" content="FORM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Training Interruptions | FORM">
+<meta name="twitter:description" content="Managing injury and time away from training. How to understand, adjust, and return to rhythm after interruption.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890;
+  --accent:#c4593a; --line:#d8d2c8; --line-l:#e8e3dc;
+  --body-fill: #ddd8d0; --body-active: #9c9088;
+}
+html, body { height: auto !important; overflow: visible !important; }
+body {
+  background: var(--cream); color: var(--ink);
+  font-family: 'Jost', sans-serif; font-weight: 300;
+  font-kerning: normal; font-feature-settings: "kern";
+  padding-bottom: 120px; overflow-y: auto; -webkit-overflow-scrolling: touch;
+}
+
+.nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+.content { max-width: 560px; margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
+
+.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 42px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 8px; }
+.page-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; margin-bottom: 40px; display: block; }
+
+/* TRIAGE RAIL */
+.triage { border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); padding: 20px 0; margin-bottom: 48px; }
+.triage-q { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px; }
+.triage-levels { display: flex; gap: 0; margin-bottom: 14px; }
+.tl { flex: 1; padding-right: 16px; }
+.tl + .tl { border-left: 1px solid var(--line-l); padding-left: 16px; padding-right: 0; }
+.tl-score { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; color: var(--ink); display: block; line-height: 1; margin-bottom: 4px; }
+.tl-action { font-size: 10px; color: var(--ink-l); letter-spacing: 0.03em; line-height: 1.55; display: block; }
+.triage-note { font-size: 10px; color: var(--ink-f); letter-spacing: 0.03em; line-height: 1.6; border-top: 1px solid var(--line-l); padding-top: 12px; }
+
+/* SECTION LABEL */
+.section-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 20px; }
+
+/* BODY MAP + LIST LAYOUT */
+.entry-wrap { display: flex; gap: 32px; align-items: flex-start; margin-bottom: 40px; }
+
+/* SVG BODY MAP */
+.map-col { flex-shrink: 0; width: 162px; }
+.body-map { width: 100%; height: auto; display: block; }
+.map-plate { margin-top: 12px; text-align: center; }
+.map-plate-fig { font-size: 7px; font-weight: 500; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink-f); opacity: 0.55; display: block; margin-bottom: 2px; }
+.map-plate-name { font-size: 8px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-f); opacity: 0.78; display: block; margin-bottom: 6px; }
+.map-caption { font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); opacity: 0.5; display: block; }
+
+/* SVG zones */
+.z {
+  fill: transparent; stroke: transparent; stroke-width: 1;
+  cursor: pointer; transition: fill 0.16s ease, stroke 0.16s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.z:hover { fill: rgba(107,100,89,0.14); }
+.z.active { fill: rgba(107,100,89,0.28); stroke: var(--ink-l); stroke-width: 1.2; }
+
+/* LIST COL */
+.list-col { flex: 1; }
+.zone-list { display: flex; flex-direction: column; }
+.zone-btn {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 0; border-bottom: 1px solid var(--line-l);
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+  background: none; border-left: none; border-right: none; border-top: none;
+  width: 100%; text-align: left; font-family: 'Jost', sans-serif;
+}
+.zone-btn:first-child { border-top: 1px solid var(--line-l); }
+.zone-btn.active .zb-name { color: var(--ink); }
+.zone-btn.active .zb-dot { background: var(--ink); }
+.zb-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--line); flex-shrink: 0; transition: background 0.15s; }
+.zb-name { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 300; letter-spacing: 0.03em; color: var(--ink-l); line-height: 1; }
+.zb-freq { font-size: 8px; color: var(--ink-f); letter-spacing: 0.15em; margin-left: auto; flex-shrink: 0; text-transform: uppercase; }
+
+/* ZONE BTN — active state already handles dot + name color, add background tint */
+.zone-btn:hover:not(.active) { background: rgba(42,38,32,0.025); }
+.zone-btn.active { background: rgba(42,38,32,0.04); border-radius: 4px; padding-left: 6px; margin-left: -6px; }
+.expand-toggle:hover { opacity: 0.75; }
+
+/* DETAIL PANEL — fade in on arrival */
+.detail-panel { display: none; border-top: 1px solid var(--line-l); opacity: 0.6; transition: opacity 220ms ease; }
+.detail-panel.open { display: block; }
+.detail-panel.visible { opacity: 1; }
+
+/* CLEAR SELECTION */
+.clear-btn { display: none; background: none; border: none; padding: 0 0 16px; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); opacity: 0.5; -webkit-tap-highlight-color: transparent; transition: opacity 0.15s; }
+.clear-btn:hover { opacity: 0.8; }
+.clear-btn.visible { display: block; }
+.empty-state { padding: 20px 0; font-size: 13px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; border-top: 1px solid var(--line-l); line-height: 1.55; }
+
+/* DETAIL PANEL */
+.detail-panel { display: none; border-top: 1px solid var(--line-l); }
+.detail-panel.open { display: block; }
+
+.detail-head { padding: 28px 0 20px; border-bottom: 1px solid var(--line-l); }
+.detail-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 32px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 6px; }
+.detail-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: var(--ink-f); display: block; }
+
+/* RUN TODAY — most prominent */
+.run-today { padding: 18px 0; border-bottom: 1px solid var(--line-l); }
+.rt-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
+.rt-text { font-size: 14px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.65; }
+
+/* STANDARD SECTIONS */
+.ds { padding: 16px 0; border-bottom: 1px solid var(--line-l); }
+.ds-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
+.ds-list { list-style: none; padding: 0; }
+.ds-list li { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; padding: 3px 0; display: flex; gap: 10px; align-items: baseline; line-height: 1.55; }
+.ds-list li::before { content: ''; display: block; width: 3px; height: 3px; border-radius: 50%; background: var(--ink-f); flex-shrink: 0; position: relative; top: 6px; }
+
+/* WHEN TO GET HELP */
+.get-help { padding: 16px 0; border-bottom: 1px solid var(--line-l); background: none; }
+.gh-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
+
+/* EXPAND TOGGLE */
+.expand-toggle { padding: 16px 0; border-bottom: 1px solid var(--line-l); cursor: pointer; display: flex; align-items: center; justify-content: space-between; -webkit-tap-highlight-color: transparent; user-select: none; }
+.expand-label { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); }
+.expand-icon { font-size: 14px; color: var(--line); transition: transform 0.2s; }
+.expand-toggle.open .expand-icon { transform: rotate(180deg); }
+
+/* EXPANDED CONTENT */
+.expand-body { display: none; }
+.expand-body.open { display: block; }
+
+/* LOAD PATTERN DETAIL (inside expanded section) */
+.lp-detail { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.6; }
+.lp-detail p { margin-bottom: 8px; }
+.lp-detail ul { list-style: none; padding: 0; margin-top: 6px; }
+.lp-detail ul li { display: flex; gap: 10px; align-items: baseline; padding: 2px 0; font-size: 12px; color: var(--ink-f); }
+.lp-detail ul li::before { content: ''; display: block; width: 3px; height: 3px; border-radius: 50%; background: var(--ink-f); flex-shrink: 0; position: relative; top: 5px; }
+
+/* ADJUST LEVELS */
+.adj-row { display: flex; gap: 14px; align-items: baseline; padding: 7px 0; border-bottom: 1px solid var(--line-l); }
+.adj-row:last-child { border-bottom: none; }
+.adj-level { font-size: 8px; font-weight: 500; letter-spacing: 0.15em; color: var(--ink-f); width: 52px; flex-shrink: 0; }
+.adj-text { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.5; }
+
+/* RECOVERY */
+.rec-row { display: flex; gap: 14px; padding: 5px 0; }
+.rec-w { font-size: 9px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-f); width: 72px; flex-shrink: 0; }
+.rec-t { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; }
+
+/* CLOSING RULE */
+.detail-rule { padding: 20px 0 16px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; line-height: 1.65; }
+
+/* LOAD PATTERN LEGEND */
+.load-legend { margin-bottom: 28px; padding: 14px 0 12px; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); }
+.load-legend-label { font-size: 7px; font-weight: 500; letter-spacing: 0.38em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; opacity: 0.8; }
+.load-legend-grid { display: flex; flex-direction: column; gap: 4px; }
+.lp-row { display: flex; gap: 10px; align-items: baseline; }
+.lp-name { font-size: 9px; font-weight: 500; letter-spacing: 0.04em; color: var(--ink-l); width: 128px; flex-shrink: 0; }
+.lp-zones { font-size: 9px; color: var(--ink-f); letter-spacing: 0.03em; }
+
+/* PAGE CLOSING RULE */
+.page-rule { padding: 20px 0 24px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; line-height: 1.6; margin-top: 8px; }
+
+/* RELATED INTERRUPTIONS */
+.related-row { padding: 12px 0 14px; display: flex; align-items: baseline; gap: 10px; }
+.related-label { font-size: 7px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); flex-shrink: 0; }
+.related-links { display: flex; gap: 8px; flex-wrap: wrap; }
+.related-link { font-size: 11px; color: var(--ink-f); cursor: pointer; letter-spacing: 0.03em; text-decoration: none; border-bottom: 1px solid var(--line-l); padding-bottom: 1px; transition: color 0.15s, border-color 0.15s; }
+.related-link:hover { color: var(--ink-l); border-color: var(--ink-f); }
+
+/* FOOTER */
+.footer-links { padding: 20px 0; display: flex; gap: 20px; flex-wrap: wrap; margin-top: 40px; border-top: 1px solid var(--line-l); }
+.footer-link { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link.primary { color: var(--ink-l); }
+
+@media (max-width: 480px) {
+  .nav { padding-left: 24px; padding-right: 24px; }
+  .content { padding-left: 24px; padding-right: 24px; border-left: none; }
+  .page-title { font-size: 34px; }
+  .entry-wrap { flex-direction: column; gap: 0; align-items: stretch; margin-bottom: 32px; }
+  .map-col { width: 100%; display: flex; flex-direction: column; align-items: center; margin-bottom: 24px; }
+  .body-map { width: 140px; height: auto; }
+  .map-plate { text-align: center; }
+  .map-caption { font-size: 7px; letter-spacing: 0.18em; }
+  .zb-name { font-size: 17px; }
+  .list-col { width: 100%; }
+}
+.page-breadcrumb { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 12px; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": "Running Pain Guide — Achilles, Calf, Shin & Knee",
+  "description": "A practical guide for runners dealing with Achilles, calf, shin splint, and knee pain.",
+  "audience": { "@type": "Audience", "audienceType": "Runners" },
+  "publisher": { "@type": "Organization", "name": "FORM" }
+}
+</script>
+</head>
+<body>
+
+<div class="nav">
+  <a class="nav-home" href="/">FORM</a>
+  <span class="nav-label">Training Interruptions</span>
+</div>
+
+<div class="content">
+
+  <span class="page-breadcrumb">Reference · Injury</span>
+  <h1 class="page-title">Training Interruptions</h1>
+  <span class="page-sub">Select where it hurts. Start with the body area, not the diagnosis.</span>
+
+  <!-- DECISION LADDER -->
+  <div style="padding: 20px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); margin-bottom: 32px;">
+    <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px;">Three Responses to a Problem</span>
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; gap: 16px; align-items: baseline;">
+        <span style="font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); min-width: 80px;">Reduce</span>
+        <span style="font-size: 13px; color: var(--ink-l); line-height: 1.6;">Lower the intensity and see if rhythm returns.</span>
+      </div>
+      <div style="display: flex; gap: 16px; align-items: baseline;">
+        <span style="font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); min-width: 80px;">Continue Easy</span>
+        <span style="font-size: 13px; color: var(--ink-l); line-height: 1.6;">If the issue disappears at easy effort, finish the run calmly.</span>
+      </div>
+      <div style="display: flex; gap: 16px; align-items: baseline;">
+        <span style="font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); min-width: 80px;">Stop</span>
+        <span style="font-size: 13px; color: var(--ink-l); line-height: 1.6;">If the problem persists even at easy effort, end the run and resume the schedule the next day.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRIAGE RAIL -->
+  <div class="triage">
+    <span class="triage-q">Can I keep running today?</span>
+    <div class="triage-levels">
+      <div class="tl">
+        <span class="tl-score">1–3</span>
+        <span class="tl-action">Continue easy. Remove intensity.</span>
+      </div>
+      <div class="tl">
+        <span class="tl-score">4–5</span>
+        <span class="tl-action">Reduce volume. No speed or hills.</span>
+      </div>
+      <div class="tl">
+        <span class="tl-score">6+</span>
+        <span class="tl-action">Stop running. Address directly.</span>
+      </div>
+    </div>
+    <p class="triage-note">Training reference only. Sharp pain, limping, swelling, or pain at rest — get help directly.</p>
+    <p class="triage-note" style="margin-top:8px; border-top:none; padding-top:0; font-style:italic;">Most running interruptions reflect temporary load imbalance, not structural damage.</p>
+  </div>
+
+  <!-- ENTRY -->
+  <span class="section-label">Where does it hurt?</span>
+
+  <div class="entry-wrap">
+
+    <!-- INTERACTIVE BODY MAP -->
+    <div class="map-col">
+      <svg viewBox="0 0 120 300" xmlns="http://www.w3.org/2000/svg" id="body-svg" class="body-map" aria-label="Body map">
+        <!-- reference layer: registration mark, axis, ground line -->
+        <line x1="54" y1="6" x2="66" y2="6" stroke="rgba(107,100,89,0.10)" stroke-width="1"/>
+        <line x1="60" y1="2" x2="60" y2="300" stroke="rgba(107,100,89,0.09)" stroke-width="1"/>
+        <line x1="26" y1="282" x2="94" y2="282" stroke="rgba(107,100,89,0.12)" stroke-width="1"/>
+        <!-- base figure: line-based editorial standing body -->
+        <g class="body-base" fill="none" stroke="var(--ink-f)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <!-- head -->
+          <circle cx="60" cy="24" r="12" />
+          <!-- neck -->
+          <path d="M56 36 L56 44 M64 36 L64 44" />
+          <!-- shoulders -->
+          <path d="M38 48 Q60 42 82 48" />
+          <!-- torso -->
+          <path d="M44 50 Q60 46 76 50 L80 104 Q60 112 40 104 Z" />
+          <!-- arms -->
+          <path d="M38 52 Q28 66 30 90 Q31 107 40 116" />
+          <path d="M82 52 Q92 66 90 90 Q89 107 80 116" />
+          <!-- hips -->
+          <path d="M42 108 Q60 116 78 108" />
+          <!-- left leg -->
+          <path d="M50 112 Q46 142 48 174 Q49 205 46 234" />
+          <path d="M46 234 Q45 252 48 270" />
+          <!-- right leg -->
+          <path d="M70 112 Q74 142 72 174 Q71 205 74 234" />
+          <path d="M74 234 Q75 252 72 270" />
+          <!-- feet -->
+          <path d="M42 272 Q48 276 56 274" />
+          <path d="M64 274 Q72 276 78 272" />
+        </g>
+        <!-- subtle body fill -->
+        <g fill="var(--body-fill)" opacity="0.18">
+          <circle cx="60" cy="24" r="11" />
+          <path d="M45 52 Q60 48 75 52 L78 102 Q60 109 42 102 Z" />
+          <path d="M32 60 Q27 74 31 96 Q33 108 39 113 L41 106 Q35 98 35 88 Q35 72 39 60 Z" />
+          <path d="M88 60 Q93 74 89 96 Q87 108 81 113 L79 106 Q85 98 85 88 Q85 72 81 60 Z" />
+        </g>
+        <!-- interactive zones — hit areas are intentionally larger than the visible figure -->
+        <g class="zones">
+          <!-- back: wider + taller -->
+          <rect class="z" data-zone="back" x="40" y="80" width="40" height="18" rx="7" onclick="selectZone('back')"></rect>
+          <!-- hamstrings: wider + taller, shift up slightly -->
+          <rect class="z" data-zone="hamstring" x="40" y="116" width="20" height="52" rx="8" onclick="selectZone('hamstring')"></rect>
+          <rect class="z" data-zone="hamstring" x="60" y="116" width="20" height="52" rx="8" onclick="selectZone('hamstring')"></rect>
+          <!-- IT band: wider, extend outward -->
+          <rect class="z" data-zone="itband" x="29" y="114" width="14" height="58" rx="5" onclick="selectZone('itband')"></rect>
+          <rect class="z" data-zone="itband" x="77" y="114" width="14" height="58" rx="5" onclick="selectZone('itband')"></rect>
+          <!-- knee: wider + taller -->
+          <rect class="z" data-zone="knee" x="38" y="158" width="44" height="18" rx="8" onclick="selectZone('knee')"></rect>
+          <!-- shin: wider + taller to 20x52 -->
+          <rect class="z" data-zone="shin" x="38" y="176" width="20" height="52" rx="7" onclick="selectZone('shin')"></rect>
+          <rect class="z" data-zone="shin" x="60" y="176" width="20" height="52" rx="7" onclick="selectZone('shin')"></rect>
+          <!-- calf: wider + taller to 24x46, overlaps shin slightly — intentional -->
+          <rect class="z" data-zone="calf" x="36" y="188" width="24" height="46" rx="8" onclick="selectZone('calf')"></rect>
+          <rect class="z" data-zone="calf" x="58" y="188" width="24" height="46" rx="8" onclick="selectZone('calf')"></rect>
+          <!-- achilles: enlarged to 18x30 -->
+          <rect class="z" data-zone="achilles" x="40" y="221" width="18" height="30" rx="6" onclick="selectZone('achilles')"></rect>
+          <rect class="z" data-zone="achilles" x="60" y="221" width="18" height="30" rx="6" onclick="selectZone('achilles')"></rect>
+          <!-- plantar: enlarged to 30x16 -->
+          <rect class="z" data-zone="plantar" x="34" y="263" width="30" height="16" rx="5" onclick="selectZone('plantar')"></rect>
+          <rect class="z" data-zone="plantar" x="56" y="263" width="30" height="16" rx="5" onclick="selectZone('plantar')"></rect>
+        </g>
+      </svg>
+      <div class="map-plate">
+        <span class="map-plate-fig">Fig. 1</span>
+        <span class="map-plate-name">Running Interruption Map</span>
+        <span class="map-caption">Tap where it hurts.</span>
+      </div>
+    </div>
+
+    <!-- ZONE LIST -->
+    <div class="list-col">
+      <button class="clear-btn" id="clear-btn" onclick="clearSelection()">Clear selection</button>
+      <div class="zone-list" id="zone-list">
+        <button class="zone-btn" data-zone="achilles" onclick="selectZone('achilles')">
+          <div class="zb-dot"></div>
+          <span class="zb-name">Achilles pain</span>
+          <span class="zb-freq">Common</span>
+        </button>
+        <button class="zone-btn" data-zone="plantar" onclick="selectZone('plantar')">
+          <div class="zb-dot"></div>
+          <span class="zb-name">Plantar fascia</span>
+          <span class="zb-freq">Common</span>
+        </button>
+        <button class="zone-btn" data-zone="calf" onclick="selectZone('calf')">
+          <div class="zb-dot"></div>
+          <span class="zb-name">Calf tightness</span>
+          <span class="zb-freq">Common</span>
+        </button>
+        <button class="zone-btn" data-zone="shin" onclick="selectZone('shin')">
+          <div class="zb-dot"></div>
+          <span class="zb-name">Shin pain</span>
+        </button>
+        <button class="zone-btn" data-zone="knee" onclick="selectZone('knee')">
+          <div class="zb-dot"></div>
+          <span class="zb-name">Knee pain</span>
+          <span class="zb-freq">Common</span>
+        </button>
+        <button class="zone-btn" data-zone="itband" onclick="selectZone('itband')">
+          <div class="zb-dot"></div>
+          <span class="zb-name">IT Band pain</span>
+          <span class="zb-freq">Common</span>
+        </button>
+        <button class="zone-btn" data-zone="hamstring" onclick="selectZone('hamstring')">
+          <div class="zb-dot"></div>
+          <span class="zb-name">Hamstring strain</span>
+        </button>
+        <button class="zone-btn" data-zone="back" onclick="selectZone('back')">
+          <div class="zb-dot"></div>
+          <span class="zb-name">Lower back pain</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOAD PATTERN LEGEND -->
+  <div class="load-legend">
+    <span class="load-legend-label">Load Patterns</span>
+    <div class="load-legend-grid">
+      <div class="lp-row"><span class="lp-name">Stride braking</span><span class="lp-zones">Shin · Knee · Hamstring</span></div>
+      <div class="lp-row"><span class="lp-name">Calf overload</span><span class="lp-zones">Achilles · Plantar · Calf</span></div>
+      <div class="lp-row"><span class="lp-name">Hip instability</span><span class="lp-zones">IT Band · Knee</span></div>
+      <div class="lp-row"><span class="lp-name">Posterior fatigue</span><span class="lp-zones">Hamstring · Lower Back</span></div>
+      <div class="lp-row"><span class="lp-name">Sudden load increase</span><span class="lp-zones">Most interruptions</span></div>
+      <div class="lp-row"><span class="lp-name">Asymmetry</span><span class="lp-zones">Often one side only</span></div>
+    </div>
+  </div>
+
+  <!-- COMMON PAIN AREAS INDEX -->
+  <div style="margin-bottom: 40px; padding: 20px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l);">
+    <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px;">Common running pain areas</span>
+    <div style="display: flex; flex-direction: column; gap: 0;">
+      <span onclick="selectZone('achilles')" style="font-size: 12px; color: var(--ink-f); letter-spacing: 0.04em; padding: 6px 0; border-bottom: 1px solid var(--line-l); cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">Achilles pain while running</span>
+      <span onclick="selectZone('calf')" style="font-size: 12px; color: var(--ink-f); letter-spacing: 0.04em; padding: 6px 0; border-bottom: 1px solid var(--line-l); cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">Calf tightness while running</span>
+      <span onclick="selectZone('shin')" style="font-size: 12px; color: var(--ink-f); letter-spacing: 0.04em; padding: 6px 0; border-bottom: 1px solid var(--line-l); cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">Shin pain from running</span>
+      <span onclick="selectZone('knee')" style="font-size: 12px; color: var(--ink-f); letter-spacing: 0.04em; padding: 6px 0; border-bottom: 1px solid var(--line-l); cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">Knee pain while running</span>
+      <span onclick="selectZone('itband')" style="font-size: 12px; color: var(--ink-f); letter-spacing: 0.04em; padding: 6px 0; border-bottom: 1px solid var(--line-l); cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">IT band pain while running</span>
+      <span onclick="selectZone('hamstring')" style="font-size: 12px; color: var(--ink-f); letter-spacing: 0.04em; padding: 6px 0; border-bottom: 1px solid var(--line-l); cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">Hamstring pain while running</span>
+      <span onclick="selectZone('back')" style="font-size: 12px; color: var(--ink-f); letter-spacing: 0.04em; padding: 6px 0; border-bottom: 1px solid var(--line-l); cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">Lower back pain while running</span>
+      <span onclick="selectZone('plantar')" style="font-size: 12px; color: var(--ink-f); letter-spacing: 0.04em; padding: 6px 0; cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">Plantar fascia pain while running</span>
+    </div>
+  </div>
+
+  <!-- EMPTY STATE -->
+  <div class="empty-state" id="empty-state">Tap a location to see common running interruptions and simple adjustments.</div>
+
+  <!-- DETAIL PANEL -->
+  <div class="detail-panel" id="detail-panel">
+
+    <div class="detail-head">
+      <div class="detail-title" id="d-title"></div>
+      <span class="detail-sub" id="d-sub"></span>
+    </div>
+    <div class="related-row" id="d-related-row">
+      <span class="related-label">Related</span>
+      <div class="related-links" id="d-related"></div>
+    </div>
+
+    <!-- RUN TODAY -->
+    <div class="run-today">
+      <span class="rt-label">Run today?</span>
+      <div class="rt-text" id="d-runtoday"></div>
+    </div>
+
+    <!-- FEELS LIKE -->
+    <div class="ds">
+      <span class="ds-label">Usually feels like</span>
+      <ul class="ds-list" id="d-feels"></ul>
+    </div>
+
+    <!-- REMOVE FIRST -->
+    <div class="ds">
+      <span class="ds-label">Remove first</span>
+      <ul class="ds-list" id="d-remove"></ul>
+    </div>
+
+    <!-- WHAT HELPS -->
+    <div class="ds">
+      <span class="ds-label">What helps</span>
+      <ul class="ds-list" id="d-helps"></ul>
+    </div>
+
+    <!-- WHEN TO GET HELP -->
+    <div class="get-help ds">
+      <span class="gh-label">When to get help</span>
+      <ul class="ds-list" id="d-gethelp"></ul>
+    </div>
+
+    <!-- EXPAND: deeper reference -->
+    <div class="expand-toggle" id="expand-toggle" onclick="toggleExpand()">
+      <span class="expand-label">Full reference</span>
+      <span class="expand-icon">↓</span>
+    </div>
+    <div class="expand-body" id="expand-body">
+
+      <div class="ds" style="margin-top: 0;">
+        <span class="ds-label">Common causes</span>
+        <ul class="ds-list" id="d-causes"></ul>
+      </div>
+
+      <div class="ds">
+        <span class="ds-label">Load pattern</span>
+        <div class="lp-detail" id="d-loadpattern"></div>
+      </div>
+
+      <div class="ds">
+        <span class="ds-label">Training adjustment by level</span>
+        <div id="d-adjust"></div>
+      </div>
+
+      <div class="ds">
+        <span class="ds-label">Recovery window</span>
+        <div id="d-recovery"></div>
+      </div>
+
+      <div class="ds" style="border-bottom: none;">
+        <span class="ds-label">Return to running</span>
+        <ul class="ds-list" id="d-return"></ul>
+      </div>
+
+    </div>
+
+    <div class="detail-rule" id="d-rule"></div>
+
+  </div>
+
+  <div class="page-rule">Running interruptions are signals, not verdicts. Adjust the load and let rhythm return.</div>
+
+  <div style="margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--line-l);">
+    <span class="section-label">When a Session Stops Early</span>
+    <div style="font-size: 13px; color: var(--ink-l); line-height: 1.75; letter-spacing: 0.02em;">
+      <p>Sometimes a session begins normally and then stops early.</p>
+      <p style="margin-top: 10px;">The rhythm is off. The body is present but the system is not fully online. This is often the result of accumulated fatigue, disrupted sleep, or schedule friction.</p>
+      <p style="margin-top: 10px;">Stopping the session is often the correct decision.</p>
+      <p style="margin-top: 10px;">Do not attempt to repeat the workout later that day or the next day. Threshold work relies on repeatable signals. When the system is not ready, forcing the session produces distorted effort and poor mechanics.</p>
+      <p style="margin-top: 10px;">Instead:</p>
+    </div>
+    <ul class="rule-list" style="margin-top: 12px;">
+      <li class="rule-item" style="border-top: 1px solid var(--line-l);">Continue with the week as scheduled</li>
+      <li class="rule-item">Let the next threshold session arrive normally</li>
+      <li class="rule-item">Focus on sleep and rhythm for the following days</li>
+    </ul>
+    <div style="font-size: 13px; color: var(--ink-l); line-height: 1.75; letter-spacing: 0.02em; margin-top: 16px;">
+      <p>Missing one session has almost no impact on a training cycle.</p>
+      <p style="margin-top: 10px;">Forcing the wrong one can disrupt several.</p>
+      <p style="margin-top: 10px;">If form begins to drift during the run, first reduce intensity and allow the rhythm to settle. If the pattern disappears at easy effort, the run can usually continue as an easy session.</p>
+      <p style="margin-top: 10px;">If the pattern persists even at easy pace, end the run and reset for the next day.</p>
+      <p style="margin-top: 10px;">Repeated occurrences across multiple runs should be treated as an interruption pattern rather than a single-session anomaly.</p>
+    </div>
+  </div>
+
+  <div class="footer-links">
+    <a class="footer-link primary" href="/recovery">Recovery →</a>
+    <a class="footer-link primary" href="/running-form-errors">Form Errors →</a>
+    <a class="footer-link primary" href="/avoid-injury">Avoid Injury →</a>
+    <a class="footer-link" href="/threshold">Threshold →</a>
+    <a class="footer-link" href="/strength">Structural Work</a>
+    <a class="footer-link" href="/library">Library</a>
+  </div>
+
+</div>
+
+<script>
+const ISSUES = {
+  achilles: {
+    title: "Achilles",
+    sub: "Irritation of the tendon above the heel.",
+    runtoday: "Easy running is usually okay if pain is 1–3/10 and loosens within the first 10 minutes. Remove hills and all speed work immediately. If it tightens as the run continues, stop.",
+    feels: ["Morning stiffness in the heel or lower leg","Pain or tightness at the start of a run that may ease as you warm up","Soreness when pushing off","Tightness the day after hard efforts or hills"],
+    remove: ["Speed work and tempo efforts","Hills — uphill loads the tendon, downhill creates impact","Strides and accelerations","Any bounding or plyometric work"],
+    helps: ["Eccentric calf raises — slow lowering phase, single leg","Gentle calf stretching — not aggressive in acute phase","Soft surface running if continuing","Cycling or elliptical to maintain fitness without tendon load"],
+    gethelp: ["Pain that worsens day over day rather than improving","Sharp pain or sudden onset during a run","Visible swelling or thickening of the tendon","Pain at rest or at night"],
+    causes: ["Sudden increase in mileage or intensity","Too many hills before the tendon is ready","Worn or unsupportive shoes","Weak calf complex — the tendon absorbs what the calf cannot","Speed work without sufficient aerobic base"],
+    loadpattern: { summary: "Often appears when the calf becomes the primary shock absorber — especially during hills, speed, or a sudden mileage increase.", watches: ["Sudden speed or hill introduction", "Low cadence placing more load on the calf", "Fatigue in later miles of long runs"] },
+    adjust: [{level:"1–3 / 10", text:"Continue running. Remove hills and speed entirely."},{level:"4–5 / 10", text:"Reduce volume 30–50%. Flat surfaces only."},{level:"6+ / 10", text:"Stop running. Rest 3–5 days minimum."}],
+    recovery: [{window:"Mild", time:"3–7 days"},{window:"Moderate", time:"2–4 weeks"},{window:"Severe", time:"6+ weeks"}],
+    returnSteps: ["Pain-free walking before any running","Pain-free single-leg calf raises","Short easy runs — no pace targets","Hills and speed return only after full resolution"],
+    rule: "The Achilles responds well to load reduction and patience. Pushing through rarely shortens the timeline.",
+    related: [{key:"calf",label:"Calf"},{key:"plantar",label:"Plantar Fascia"}]
+  },
+  plantar: {
+    title: "Plantar Fascia",
+    sub: "Strain of the tissue along the base of the foot.",
+    runtoday: "Often possible at low volume on soft surfaces if pain is 1–3/10. The key signal is morning pain — if stepping out of bed hurts significantly, volume should come down. Avoid hard surfaces entirely until settled.",
+    feels: ["Sharp pain under the heel — worst with the first steps in the morning","Eases after 10–15 minutes of movement","Soreness after long runs or standing","Pain located at the heel or along the arch"],
+    remove: ["Hard surfaces — roads and tracks increase ground reaction force","Speed work and tempo sessions","Long runs above current tolerance","Running on uneven terrain"],
+    helps: ["Frozen water bottle rolling under the foot","Calf and foot stretching — especially first thing in the morning before standing","Supportive footwear even off the track","Orthotic insoles if a structural issue is present"],
+    gethelp: ["Severe limping for more than a day or two","No improvement after 2–3 weeks of reduced load","Sharp tearing sensation during a run","Numbness or pins and needles in the foot"],
+    causes: ["High arches or flat feet placing uneven load","Sudden volume increase","Tight calf muscles and Achilles transferring load to the foot","Worn shoes without arch support","Hard training surfaces"],
+    loadpattern: { summary: "Usually reflects calf overload — when the calf and Achilles are tight, the plantar fascia absorbs excess strain.", watches: ["Tight calves or limited ankle dorsiflexion", "Hard surfaces increasing ground reaction force", "Sudden mileage or pace increase"] },
+    adjust: [{level:"1–3 / 10", text:"Continue running. Soft surfaces only. Reduce volume slightly."},{level:"4–5 / 10", text:"Reduce volume significantly. Begin foot and calf work."},{level:"6+ / 10", text:"Stop running. Active recovery protocol."}],
+    recovery: [{window:"Mild", time:"1–2 weeks"},{window:"Moderate", time:"4–8 weeks"},{window:"Severe", time:"3–6 months"}],
+    returnSteps: ["No pain walking before running","No morning stiffness for several days","Easy flat runs before any volume increase","Hard surfaces and hills return last"],
+    rule: "Plantar fascia strain is slow to resolve when running continues at full load. Patience protects the season.",
+    related: [{key:"achilles",label:"Achilles"},{key:"calf",label:"Calf"}]
+  },
+  calf: {
+    title: "Calf",
+    sub: "From mild tightness to acute muscle strain.",
+    runtoday: "Depends entirely on severity. Tightness at 1–2/10 that doesn't change during a run — proceed easy. Any sharpness, pulling, or pain that increases mid-run — stop immediately. A calf that grabs once will grab again.",
+    feels: ["Tightness or heaviness during or after running","A pulling or grabbing sensation during effort","Soreness when rising onto the toes","In acute strain: a sudden sharp pain mid-stride"],
+    remove: ["Speed work and any acceleration","Hills — both up and down","Strides","Long runs until resolved"],
+    helps: ["Gentle stretching after the acute phase — not immediately","Compression sleeve during recovery","Soft tissue work after 48–72 hours","Eccentric calf loading once pain-free"],
+    gethelp: ["Sudden sharp grab during a run followed by limping","Significant bruising or visible swelling","Unable to rise onto toes without pain","Pain that does not improve after 5–7 days rest"],
+    causes: ["Sudden speed increase or hill work","Insufficient warm-up before hard efforts","Fatigue in later miles of long runs","Previous calf issue not fully resolved","Achilles overload that transfers into calf"],
+    loadpattern: { summary: "Calf strain typically reflects a rapid load increase — more speed, more hills, or longer runs before the tissue is ready.", watches: ["Sudden introduction of speed or hill work", "Fatigue compounding in later long run miles", "Previous calf issue not fully resolved before returning"] },
+    adjust: [{level:"1–3 / 10", text:"Continue easy running. No speed or hills."},{level:"4–5 / 10", text:"Stop running 3–5 days. Cycling only."},{level:"6+ / 10", text:"Stop all impact activity. Seek assessment."}],
+    recovery: [{window:"Tightness", time:"3–7 days"},{window:"Grade 1 strain", time:"1–2 weeks"},{window:"Grade 2 strain", time:"3–6 weeks"}],
+    returnSteps: ["Pain-free walking and stair climbing","Pain-free single-leg calf raise","Easy flat running before any intensity","Full strength before speed work returns"],
+    rule: "Return too early and the calf will remind you. Let the tissue complete its work.",
+    related: [{key:"achilles",label:"Achilles"},{key:"shin",label:"Shin"}]
+  },
+  shin: {
+    title: "Shin",
+    sub: "Stress on the tibia and surrounding muscles.",
+    runtoday: "If the ache is mild and along the muscle (not directly on the bone), easy running on soft surfaces is sometimes okay. If pain is on the bone itself, or if pressing the shin bone causes sharp tenderness — stop running until assessed.",
+    feels: ["Dull ache along the inner edge of the shin","Pain during and after runs — sometimes all day","Tenderness when pressing along the shin bone","May ease during warm-up, return as run continues"],
+    remove: ["Hard surfaces — roads and tracks immediately","Speed work and tempo efforts","Long runs above current volume","Racing or any high-intensity effort"],
+    helps: ["Ice after running, not before","Soft surfaces — grass and trails reduce impact","Hip and glute strengthening to reduce leg loading","Gait evaluation if recurring"],
+    gethelp: ["Pain directly on the bone (not the muscle)","Sharp localized pain that persists after rest","Pain at night or at rest","Swelling over the shin"],
+    causes: ["Too much too soon — the classic overload pattern","Sudden surface change to harder ground","Weak hips causing altered gait and increased tibial stress","Overpronation or rigid foot mechanics","Worn shoes"],
+    loadpattern: { summary: "Shin pain almost always reflects stride braking — when the foot lands too far ahead of the body, the tibia absorbs the impact.", watches: ["Louder or heavier foot strike", "Sudden mileage increase", "Downhill running or hard surfaces"] },
+    adjust: [{level:"1–3 / 10", text:"Reduce volume 30–40%. Soft surfaces only."},{level:"4–5 / 10", text:"Stop running 5–7 days. Cross-train only."},{level:"6+ / 10", text:"Stop all impact. Rule out stress fracture."}],
+    recovery: [{window:"Mild", time:"1–2 weeks"},{window:"Moderate", time:"3–6 weeks"},{window:"Stress fracture", time:"6–8 weeks minimum"}],
+    returnSteps: ["No pain pressing along the shin bone","Pain-free walking for several days","Easy short runs on soft surface first","Gradual return — do not rush volume"],
+    rule: "Shin splints are a load tolerance signal. The body is asking for more time, not more effort.",
+    related: [{key:"calf",label:"Calf"},{key:"knee",label:"Knee"}]
+  },
+  knee: {
+    title: "Knee",
+    sub: "Most commonly irritation around or behind the kneecap.",
+    runtoday: "Easy flat running is often possible if pain is 1–3/10 and does not increase during the run. Avoid all downhills. If pain increases during the run or remains elevated afterward, reduce volume and begin hip strengthening immediately.",
+    feels: ["Aching around or behind the kneecap","Pain going down stairs or sitting for long periods","Discomfort in the final miles of long runs","Clicking or grinding in some cases"],
+    remove: ["Downhill running — this is the primary aggravator","Speed work and tempo efforts","Long runs above current tolerance","Sudden increases in weekly volume"],
+    helps: ["Hip and glute strengthening — the actual fix","Step-downs with single-leg control","Cycling maintains fitness without knee stress","Avoid downhills until fully resolved"],
+    gethelp: ["Swelling around the knee","Locking or catching sensation","Pain that increases throughout a run regardless of pace","Instability or feeling that the knee may give way"],
+    causes: ["Weak quadriceps and hip stabilizers","Overpronation or gait collapse at the knee","Too many hills, especially downhills","Sudden mileage increase","Poor single-leg stability"],
+    loadpattern: { summary: "Runner's knee is almost always a hip problem — when hip stability weakens, the knee absorbs load it wasn't designed to carry.", watches: ["Hip drop or inward knee tracking on one side", "Fatigue during the back half of long runs", "Downhill running compressing the kneecap"] },
+    adjust: [{level:"1–3 / 10", text:"Continue running. Avoid downhills. Strengthen hips."},{level:"4–5 / 10", text:"Reduce volume. Flat only. Begin hip work immediately."},{level:"6+ / 10", text:"Stop running. Seek assessment for structural issues."}],
+    recovery: [{window:"Mild", time:"1–3 weeks"},{window:"Moderate", time:"4–8 weeks"},{window:"Chronic", time:"Ongoing management"}],
+    returnSteps: ["Pain-free stair descent","Single-leg squat without pain","Flat easy runs before hills return","Downhills return last"],
+    rule: "Runner's knee is almost always a hip problem. Strengthen the system, not just the symptom.",
+    related: [{key:"itband",label:"IT Band"},{key:"hamstring",label:"Hamstring"}]
+  },
+  itband: {
+    title: "IT Band",
+    sub: "Lateral knee pain from iliotibial band friction.",
+    runtoday: "IT band pain tends to appear at a predictable point in the run — often at 20–30 minutes. If pain arrives, it will not improve by pushing through. Stop when it appears. Easy flat short runs may be possible if pain stays absent.",
+    feels: ["Sharp or burning pain on the outside of the knee","Appears at a consistent point in the run — then worsens","Eases with rest, returns when running resumes","May radiate up the outer thigh"],
+    remove: ["All hills immediately — both directions","Cambered roads (run down the center if unavoidable)","Speed work","Any run where the pain has appeared recently"],
+    helps: ["Hip abductor and glute medius strengthening","Foam rolling the outer quad — not the IT band itself","Side plank and Copenhagen plank variations","Cycling and swimming to maintain fitness"],
+    gethelp: ["Pain that begins immediately at the start of any run","Lateral knee swelling","Pain at rest","No improvement after 2–3 weeks of reduced load and hip work"],
+    causes: ["Weak hip abductors and glutes","Running on cambered roads","Too many hills","Sudden mileage increase","Worn shoes"],
+    loadpattern: { summary: "IT band friction reflects hip instability — when the hip on that side loses control, the knee tracks outward and the band compresses.", watches: ["Hip drop visible at the waist during the run", "Downhill running or cambered roads", "One leg bearing more load than the other"] },
+    adjust: [{level:"1–3 / 10", text:"Reduce volume. Flat surfaces. No hills."},{level:"4–5 / 10", text:"Stop running until pain-free walking returns."},{level:"6+ / 10", text:"Full rest. Begin targeted hip strengthening."}],
+    recovery: [{window:"Mild", time:"1–2 weeks"},{window:"Moderate", time:"3–6 weeks"},{window:"Chronic", time:"8+ weeks with rehab"}],
+    returnSteps: ["Pain-free walking without lateral knee ache","Single-leg stability without pain","Short flat runs — stop if pain returns at any point","Hills return only after full resolution"],
+    rule: "IT band issues rarely resolve with stretching alone. The hip must be addressed.",
+    related: [{key:"knee",label:"Knee"},{key:"hamstring",label:"Hamstring"}]
+  },
+  hamstring: {
+    title: "Hamstring",
+    sub: "Ranging from chronic tightness to acute strain.",
+    runtoday: "Chronic tightness at 1–2/10 — easy running is usually fine, no speed or strides. Any sharpness, pulling, or history of acute strain — stop and rest. The hamstring is easy to re-aggravate and slow to forgive.",
+    feels: ["Tightness or pulling at the back of the thigh","Sharp pain during acceleration or stride lengthening","Soreness at the sitting bone or mid-hamstring","Stiffness after long periods of sitting"],
+    remove: ["All speed work, tempo, and strides","Aggressive stride lengthening","Long runs if acute","Downhill running which increases hamstring eccentric load"],
+    helps: ["Nordic hamstring curls once out of acute phase","Hip hinge patterns to restore load tolerance","Avoid aggressive stretching in acute phase","Soft tissue work after 72 hours"],
+    gethelp: ["Sudden sharp grab during a run","Bruising appearing at the back of the thigh","Pain directly at the sitting bone (proximal hamstring)","Unable to walk normally"],
+    causes: ["Speed work or tempo runs without sufficient base","Anterior pelvic tilt reducing functional hamstring length","Fatigue in later miles","Insufficient warm-up before hard efforts","Returning too quickly from a previous strain"],
+    loadpattern: { summary: "Hamstring strain often reflects posterior chain fatigue — when the glutes stop contributing, the hamstring compensates and becomes overloaded.", watches: ["Heavy legs or glute fatigue in later long run miles", "Stride overreach during speed work", "Appearing on one side repeatedly — often a symmetry issue"] },
+    adjust: [{level:"1–3 / 10", text:"Continue easy running. No speed or strides."},{level:"4–5 / 10", text:"Stop running. Easy walking and cycling only."},{level:"6+ / 10", text:"Full rest. Seek assessment to rule out proximal tear."}],
+    recovery: [{window:"Tightness", time:"3–7 days"},{window:"Grade 1", time:"1–3 weeks"},{window:"Grade 2", time:"4–8 weeks"}],
+    returnSteps: ["Pain-free walking with normal stride","Pain-free single-leg RDL","Easy running before any acceleration","Speed work returns only when fully loaded"],
+    rule: "Hamstring strains are easily re-aggravated. Return slower than feels necessary.",
+    related: [{key:"back",label:"Lower Back"},{key:"knee",label:"Knee"}]
+  },
+  back: {
+    title: "Lower Back",
+    sub: "Often a hip and core organization issue expressed in the back.",
+    runtoday: "Usually possible at easy pace if pain is mild and does not increase during the run. Shorten stride, focus on posture. If pain is sharp, radiates down the leg, or increases during running — stop and seek assessment.",
+    feels: ["Stiffness or aching in the lower back during or after runs","Tightness that may spread into the glutes","Pain when bending forward or after prolonged sitting","Hip flexor tightness often accompanies"],
+    remove: ["Speed work — pace pressure collapses posture","Long runs where form breaks down","Hills if they increase discomfort","Sitting for long periods without movement breaks"],
+    helps: ["Dead bug and core stability work","Hip flexor lengthening","Glute activation before running","Short running intervals with walking breaks if needed"],
+    gethelp: ["Pain radiating down the leg or into the foot","Sharp pain with sneezing or coughing","Pain at rest or at night","Numbness or weakness in the leg"],
+    causes: ["Tight hip flexors pulling the pelvis forward","Weak core stability allowing excessive lumbar movement","Tight hamstrings","Weak glutes","Running posture breakdown in later miles"],
+    loadpattern: { summary: "Lower back pain in runners usually reflects posterior chain fatigue — the glutes and core lose organization under load and the back compensates.", watches: ["Form breakdown in the final miles of long runs", "Hip flexor tightness restricting stride extension", "Sitting for long periods compressing lumbar structures before training"] },
+    adjust: [{level:"1–3 / 10", text:"Continue running. Shorten stride. Focus on posture."},{level:"4–5 / 10", text:"Reduce volume. No speed. Begin core work."},{level:"6+ / 10", text:"Stop running. Seek assessment if radiating pain present."}],
+    recovery: [{window:"Mild", time:"3–7 days"},{window:"Moderate", time:"1–3 weeks"},{window:"Disc / nerve", time:"Seek assessment"}],
+    returnSteps: ["Pain-free standing and walking","Core engagement without discomfort","Easy short runs before volume returns","Monitor posture throughout"],
+    rule: "Lower back tightness in runners is usually a sign the system has lost organization. Restore the structure.",
+    related: [{key:"hamstring",label:"Hamstring"},{key:"knee",label:"Knee"}]
+  }
+};
+
+let currentZone = null;
+
+function selectZone(key) {
+  if (!ISSUES[key]) return;
+  currentZone = key;
+
+  document.querySelectorAll('.zone-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.zone === key);
+  });
+
+  document.querySelectorAll('.z').forEach(el => {
+    el.classList.toggle('active', el.dataset.zone === key);
+  });
+
+  try { history.replaceState(null, null, '#' + key); } catch(e) {}
+
+  const d = ISSUES[key];
+  document.getElementById('d-title').textContent = d.title;
+  document.getElementById('d-sub').textContent = d.sub;
+  document.getElementById('d-runtoday').textContent = d.runtoday;
+  document.getElementById('d-feels').innerHTML = d.feels.map(f => `<li>${f}</li>`).join('');
+  document.getElementById('d-remove').innerHTML = d.remove.map(r => `<li>${r}</li>`).join('');
+  document.getElementById('d-helps').innerHTML = d.helps.map(h => `<li>${h}</li>`).join('');
+  document.getElementById('d-gethelp').innerHTML = d.gethelp.map(g => `<li>${g}</li>`).join('');
+  document.getElementById('d-causes').innerHTML = d.causes.map(c => `<li>${c}</li>`).join('');
+  const lp = d.loadpattern;
+  document.getElementById('d-loadpattern').innerHTML =
+    `<p>${lp.summary}</p><ul>${lp.watches.map(w => `<li>${w}</li>`).join('')}</ul>`;
+  document.getElementById('d-adjust').innerHTML = d.adjust.map(a =>
+    `<div class="adj-row"><span class="adj-level">${a.level}</span><span class="adj-text">${a.text}</span></div>`
+  ).join('');
+  document.getElementById('d-recovery').innerHTML = d.recovery.map(r =>
+    `<div class="rec-row"><span class="rec-w">${r.window}</span><span class="rec-t">${r.time}</span></div>`
+  ).join('');
+  document.getElementById('d-return').innerHTML = d.returnSteps.map(s => `<li>${s}</li>`).join('');
+  document.getElementById('d-rule').textContent = d.rule;
+  document.getElementById('d-related').innerHTML = d.related.map(r =>
+    `<span class="related-link" onclick="selectZone('${r.key}')">${r.label}</span>`
+  ).join('');
+
+  document.getElementById('expand-body').classList.remove('open');
+  document.getElementById('expand-toggle').classList.remove('open');
+  document.getElementById('empty-state').style.display = 'none';
+
+  const panel = document.getElementById('detail-panel');
+  panel.classList.add('open');
+  panel.classList.remove('visible');
+
+  // Show clear button
+  document.getElementById('clear-btn').classList.add('visible');
+
+  // iOS Safari scroll fix: 1px reset forces anchor to fire on repeated taps
+  window.scrollBy(0, -1);
+  setTimeout(() => {
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Fade panel in after scroll begins
+    setTimeout(() => panel.classList.add('visible'), 80);
+  }, 10);
+}
+
+function clearSelection() {
+  currentZone = null;
+  document.querySelectorAll('.zone-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.z').forEach(el => el.classList.remove('active'));
+  document.getElementById('detail-panel').classList.remove('open', 'visible');
+  document.getElementById('empty-state').style.display = '';
+  document.getElementById('clear-btn').classList.remove('visible');
+  try { history.replaceState(null, null, window.location.pathname); } catch(e) {}
+  // Scroll back to body map
+  window.scrollBy(0, -1);
+  setTimeout(() => {
+    document.getElementById('body-svg').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 10);
+}
+
+function toggleExpand() {
+  const body = document.getElementById('expand-body');
+  const toggle = document.getElementById('expand-toggle');
+  body.classList.toggle('open');
+  toggle.classList.toggle('open');
+}
+
+// Load from hash on page load
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = window.location.hash.replace('#', '');
+  if (hash && ISSUES[hash]) {
+    selectZone(hash);
+  }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Core -->
+  <url><loc>https://speedandform.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://speedandform.com/practice</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://speedandform.com/start</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Ghost Protocol -->
+  <url><loc>https://speedandform.com/ghost</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://speedandform.com/ghost/week-1</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/ghost/week-2</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/ghost/week-3</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/ghost/week-4</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/ghost/week-5</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/ghost/week-6</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/ghost/cues</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Training -->
+  <url><loc>https://speedandform.com/threshold</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://speedandform.com/long-run</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://speedandform.com/easy-run</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/sessions</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/the-method</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://speedandform.com/plan</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/cycles</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://speedandform.com/training-arc</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/training-week</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://speedandform.com/training-map</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://speedandform.com/training-principles</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/the-work</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/plan-spring-2026</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://speedandform.com/training-interruptions</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Strength -->
+  <url><loc>https://speedandform.com/strength</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/strength-routine</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://speedandform.com/strength-activation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://speedandform.com/strength-fixes</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://speedandform.com/anti-rotation</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- Reference -->
+  <url><loc>https://speedandform.com/shoes</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://speedandform.com/running-form-errors</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/avoid-injury</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/pain-map</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://speedandform.com/running-terms</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/how-fast-should-i-run</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/easy-run-standards</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://speedandform.com/pacing</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/long-run-pace</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://speedandform.com/mechanics-map</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://speedandform.com/troubleshooting</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://speedandform.com/principles</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Race & Competition -->
+  <url><loc>https://speedandform.com/competition</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://speedandform.com/race-prep</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/split-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://speedandform.com/speed</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+
+  <!-- Recovery & Support -->
+  <url><loc>https://speedandform.com/recovery</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://speedandform.com/fueling</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/sleep</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://speedandform.com/return</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/threshold-training</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Community & Record -->
+  <url><loc>https://speedandform.com/athletes</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://speedandform.com/ledger</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://speedandform.com/field-notes</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/the-field</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://speedandform.com/miami-running-training</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <url><loc>https://speedandform.com/mobility</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- System -->
+  <url><loc>https://speedandform.com/library</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/search</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+</urlset>

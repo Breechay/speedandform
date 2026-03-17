@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202603161318">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Easy Run Standards | FORM</title>
+<meta name="description" content="Mechanical standards for easy runs. Garmin-based reference ranges for ground contact, cadence, stride length, vertical ratio, and vertical oscillation.">
+<link rel="canonical" href="https://speedandform.com/easy-run-standards">
+<meta property="og:title" content="Easy Run Standards | FORM">
+<meta property="og:description" content="Mechanical standards for easy runs. Garmin-based reference ranges for ground contact, cadence, stride length, vertical ratio, and vertical oscillation.">
+<meta property="og:url" content="https://speedandform.com/easy-run-standards">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://speedandform.com/og/default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="FORM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Easy Run Standards | FORM">
+<meta name="twitter:description" content="Mechanical standards for easy runs. Garmin-based reference ranges for ground contact, cadence, stride length, vertical ratio, and vertical oscillation.">
+<meta name="twitter:image" content="https://speedandform.com/og/default.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --line:#d8d2c8; --line-l:#e8e3dc; }
+html, body { height: auto !important; overflow: visible !important; }
+body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 120px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
+.nav { max-width: 700px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+
+/* PAGE */
+.page { max-width: 700px; margin: 0 auto; padding: 64px 32px 0; }
+
+/* MASTHEAD — centered, matching image */
+.masthead { text-align: center; margin-bottom: 0; }
+.wm { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 15px; letter-spacing: 0.45em; color: var(--ink); display: block; margin-bottom: 28px; }
+.full-rule { width: 100%; height: 1px; background: var(--line-l); display: block; margin-bottom: 36px; }
+.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 22px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); display: block; margin-bottom: 10px; }
+.page-sub { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 17px; letter-spacing: 0.04em; color: var(--ink-l); display: block; margin-bottom: 48px; }
+
+/* METRICS GRID — 2-col matching image */
+.metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+
+.metric { padding: 28px 32px 28px 0; border-top: 1px solid var(--line-l); }
+.metric:nth-child(even) { padding-left: 32px; padding-right: 0; border-left: 1px solid var(--line-l); }
+/* last entry — odd count spans full */
+.metric.full { grid-column: 1 / -1; border-left: none; padding-left: 0; border-bottom: 1px solid var(--line-l); }
+
+.metric-num-title { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; }
+.metric-num { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 17px; color: var(--ink); }
+.metric-title { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 20px; letter-spacing: 0.02em; color: var(--ink); }
+
+.metric-std-label { font-size: 11px; font-weight: 500; letter-spacing: 0.04em; color: var(--ink); display: block; margin-bottom: 10px; }
+.metric-ranges { list-style: none; padding: 0; margin-bottom: 16px; }
+.metric-ranges li { font-size: 12px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.75; display: flex; gap: 8px; align-items: baseline; }
+.metric-ranges li::before { content: '•'; color: var(--ink-f); flex-shrink: 0; font-size: 10px; }
+
+.metric-interp { padding-top: 12px; }
+.metric-interp p { font-size: 12px; color: var(--ink-f); letter-spacing: 0.03em; line-height: 1.7; }
+.metric-interp p + p { margin-top: 2px; }
+
+/* CLOSING */
+.closing { text-align: center; padding: 48px 0 0; }
+.closing-rule { width: 100%; height: 1px; background: var(--line-l); display: block; margin-bottom: 36px; }
+.closing-line { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 18px; letter-spacing: 0.06em; color: var(--ink); display: block; margin-bottom: 32px; }
+
+.footer-links { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+.footer-link { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link.primary { color: var(--ink-l); }
+.footer-link:hover { color: var(--ink); }
+
+@media (max-width: 600px) {
+  .nav { padding-left: 24px; padding-right: 24px; }
+  .page { padding-left: 24px; padding-right: 24px; padding-top: 44px; }
+  .metrics-grid { grid-template-columns: 1fr; }
+  .metric { padding: 24px 0; border-left: none !important; }
+  .metric:nth-child(even) { padding-left: 0; }
+  .metric.full { border-bottom: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a class="nav-home" href="/">FORM</a>
+  <span class="nav-label">Easy Run</span>
+</div>
+
+<div class="page">
+
+  <div class="masthead">
+    <span class="page-title">Easy Runs</span>
+    <span class="page-sub">Mechanical Standards (Garmin-Based)</span>
+    <p style="font-size:13px; color:var(--ink-l); letter-spacing:0.02em; line-height:1.7; margin-bottom:44px; margin-top:-28px;">Use these ranges to confirm easy runs are landing correctly. Check after a comfortable session — not during one. If a metric is outside range, treat it as information, not a problem to fix on the same day.</p>
+  </div>
+
+  <div class="metrics-grid">
+
+    <!-- 1 -->
+    <div class="metric">
+      <div class="metric-num-title">
+        <span class="metric-num">1.</span>
+        <span class="metric-title">Ground Contact Time (GCT)</span>
+      </div>
+      <span class="metric-std-label">Standard</span>
+      <ul class="metric-ranges">
+        <li>225–245 ms</li>
+        <li>Advanced: 215–235 ms</li>
+        <li>Correction zone: &gt;255 ms</li>
+      </ul>
+      <!-- Cue doctrine: keep cues short, physical, usable during motion. One primary, one alternate maximum. -->
+      <!-- Arm carriage cue: "wrist to hips" / alternate: "thumb brushes seam of shorts" -->
+      <div class="metric-interp">
+        <p>Quicker off the ground, not higher.</p>
+        <p>Metrics confirm rhythm. They do not create it.</p>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="metric">
+      <div class="metric-num-title">
+        <span class="metric-num">2.</span>
+        <span class="metric-title">Cadence</span>
+      </div>
+      <span class="metric-std-label">Standard</span>
+      <ul class="metric-ranges">
+        <li>165–174 spm</li>
+        <li>Smaller runners: 170–178</li>
+        <li>Taller runners: 162–170</li>
+        <li>Correction zone: consistently under 160 at moderate pace</li>
+      </ul>
+      <div class="metric-interp">
+        <p>Remove lazy steps.</p>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="metric">
+      <div class="metric-num-title">
+        <span class="metric-num">3.</span>
+        <span class="metric-title">Stride Length</span>
+      </div>
+      <span class="metric-std-label">Standard</span>
+      <ul class="metric-ranges">
+        <li>7:45–8:30 pace → 1.05–1.20m normal</li>
+        <li>7:00–7:30 pace → 1.15–1.30m normal</li>
+      </ul>
+      <div class="metric-interp">
+        <p>If stride is long AND cadence low → overstriding.</p>
+        <p>If stride is short AND cadence high → shuffling.</p>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="metric">
+      <div class="metric-num-title">
+        <span class="metric-num">4.</span>
+        <span class="metric-title">Vertical Ratio</span>
+      </div>
+      <span class="metric-std-label">Standard</span>
+      <ul class="metric-ranges">
+        <li>6.5–8.5%</li>
+        <li>Correction zone: 9%+</li>
+      </ul>
+      <div class="metric-interp">
+        <p>Higher ratio = too much bounce relative to stride length.</p>
+        <p>Glide forward, not upward.</p>
+        <p>Pushing down instead of back.</p>
+      </div>
+    </div>
+
+    <!-- 5 — full width -->
+    <div class="metric full">
+      <div class="metric-num-title">
+        <span class="metric-num">5.</span>
+        <span class="metric-title">Vertical Oscillation</span>
+      </div>
+      <span class="metric-std-label">Standard</span>
+      <ul class="metric-ranges">
+        <li>6–9 cm typical</li>
+        <li>Lower isn't always better.</li>
+        <li>If VO is low but stride short and cadence high → shuffling.</li>
+      </ul>
+      <div class="metric-interp">
+        <p>Elastic, not stiff.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="closing">
+    <span class="closing-rule"></span>
+    <span class="closing-line">Efficiency before expression</span>
+    <div class="footer-links">
+      <a class="footer-link primary" href="/easy-run">Easy Run →</a>
+      <a class="footer-link primary" href="/running-form-errors">Form Errors →</a>
+      <a class="footer-link" href="/the-method">The Method</a>
+      <a class="footer-link" href="/long-run-pace">Long Run Pace</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
