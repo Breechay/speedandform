@@ -294,13 +294,7 @@ function renderSession(raw) {
   }
 })();
 
-// Then check Supabase for coach override
-fetch(SB + 'this_week?id=eq.current&select=session', {
-  headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY }
-})
-.then(r => r.json())
-.then(d => { if (d[0]?.session && d[0].session !== '—') renderSession(d[0].session); })
-.catch(() => {});
+
 
 // ── COACH ──
 function coachAction() {
