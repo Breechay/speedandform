@@ -367,22 +367,6 @@ function toYMD(d) { return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2
   if (!threshold) { const r = thEl?.closest('.cw-row'); if (r) r.style.display = 'none'; }
   if (!longrun)   { const r = lrEl?.closest('.cw-row'); if (r) r.style.display = 'none'; }
   if (!threshold && !longrun && cwBlock) cwBlock.style.display = 'none';
-
-  // Supabase override — only UPDATES content, never hides anything
-  const SB  = 'https://zlhxvzgublgtuxplcjjl.supabase.co/rest/v1/';
-  const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpsaHh2emd1YmxndHV4cGxjampsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1ODIxMTksImV4cCI6MjA4ODE1ODExOX0.DGEmk1QaAx-CPYkNiHf5BTMI6DKFKp7Wr40fShGv0hc';
-  fetch(SB + 'this_week?id=eq.current&select=session,long_run', {
-    headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY }
-  })
-  .then(r => r.json())
-  .then(d => {
-    const row = d[0]; if (!row) return;
-    const thOverride = (row.session   && row.session   !== '—') ? row.session.trim().replace(/^S\d+\s*[·–-]\s*/, '')   : null;
-    const lrOverride = (row.long_run  && row.long_run  !== '—') ? row.long_run.trim().replace(/^LR\d*\s*[·–-]\s*/, '')  : null;
-    if (thOverride && thEl) thEl.textContent = thOverride;
-    if (lrOverride && lrEl) lrEl.textContent = lrOverride;
-  })
-  .catch(() => {});
 })();
   // Weekly rhythm: subtle opacity emphasis only, no completion state
   // Matches actual FORM training week: Threshold Tue, Long Run Sat
