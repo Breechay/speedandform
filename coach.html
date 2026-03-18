@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coach Console · FORM</title>
+  <!-- Supabase client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    /* ─── Palette — matches FORM site & app exactly ─────────────────── */
+    :root {
+      --cream:     #f5f2ec;
+      --ink:       #2a2620;
+      --secondary: #6b6258;
+      --faint:     #a09890;
+      --rule:      #d8d2c8;
+      --accent:    #c4593a;
+      --ghost:     #546480;
+    }
+
+    /* ─── Reset ──────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Jost', 'Helvetica Neue', sans-serif;
+      font-weight: 300;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    /* ─── Typography ─────────────────────────────────────────────────── */
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
+
+    h1, h2, h3, .serif { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; }
+    .label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+    .rule { height: 0.5px; background: var(--rule); border: none; }
+    .rule-subtle { height: 0.5px; background: rgba(216,210,200,0.4); border: none; }
+
+    /* ─── Layout ─────────────────────────────────────────────────────── */
+    .site-frame {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 0 28px 80px;
+    }
+
+    /* ─── Auth gate ──────────────────────────────────────────────────── */
+    #auth-gate {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .auth-card {
+      text-align: center;
+      padding: 48px 0;
+    }
+    .auth-card .wordmark {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 22px;
+      letter-spacing: 3px;
+      color: var(--ink);
+      margin-bottom: 32px;
+    }
+    .auth-card p {
+      font-size: 13px;
+      color: var(--secondary);
+      margin-bottom: 28px;
+    }
+    .auth-input {
+      display: block;
+      width: 260px;
+      margin: 0 auto 12px;
+      padding: 10px 0;
+      border: none;
+      border-bottom: 1px solid var(--rule);
+      background: transparent;
+      font-family: 'Jost', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink);
+      text-align: center;
+      outline: none;
+    }
+    .auth-input::placeholder { color: var(--faint); }
+    .auth-btn {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 10px 28px;
+      background: var(--ink);
+      color: var(--cream);
+      font-family: 'Jost', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+    }
+    .auth-btn:hover { opacity: 0.88; }
+    .auth-error {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--accent);
+    }
+
+    /* ─── Top nav ────────────────────────────────────────────────────── */
+    #console { display: none; }
+    .top-nav {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 28px 0 20px;
+    }
+    .top-nav .wordmark {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 18px;
+      letter-spacing: 2px;
+      color: var(--ink);
+    }
+    .top-nav .console-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+    .top-nav .sign-out {
+      font-size: 11px;
+      color: var(--faint);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: 'Jost', sans-serif;
+      padding: 0;
+    }
+    .top-nav .sign-out:hover { color: var(--secondary); }
+
+    /* ─── Date line ──────────────────────────────────────────────────── */
+    .date-line {
+      font-size: 12px;
+      color: var(--faint);
+      margin-bottom: 32px;
+    }
+
+    /* ─── Attention strip ────────────────────────────────────────────── */
+    .attention-strip {
+      margin-bottom: 36px;
+      padding: 16px 0;
+      border-top: 0.5px solid var(--rule);
+      border-bottom: 0.5px solid var(--rule);
+    }
+    .attention-strip .strip-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 14px;
+    }
+    .attention-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0;
+      padding: 7px 0;
+      cursor: pointer;
+    }
+    .attention-item:hover .a-name { opacity: 0.7; }
+    .attention-item .a-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      min-width: 88px;
+    }
+    .attention-item .a-action {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--faint);
+      min-width: 28px;
+    }
+    .attention-item .a-signal {
+      font-size: 12px;
+      color: var(--secondary);
+      font-style: italic;
+    }
+    .attention-empty {
+      font-size: 12px;
+      color: var(--faint);
+    }
+
+    /* ─── Athlete list ───────────────────────────────────────────────── */
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--ink);
+    }
+    .section-count {
+      font-size: 10px;
+      color: var(--faint);
+    }
+    .athlete-row {
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      align-items: start;
+      gap: 0 20px;
+      padding: 14px 0;
+      cursor: pointer;
+      transition: opacity 0.12s;
+    }
+    .athlete-row:hover { opacity: 0.78; }
+    .athlete-row.active { opacity: 1; }
+    .athlete-row + .athlete-row { border-top: 0.5px solid rgba(216,210,200,0.5); }
+    .a-row-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      padding-top: 2px;
+    }
+    .a-row-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .a-row-cycle {
+      font-size: 12px;
+      color: var(--secondary);
+    }
+    .a-row-signal {
+      font-size: 11px;
+      color: var(--faint);
+      font-style: italic;
+    }
+    .a-row-signal.attention { color: var(--accent); font-style: normal; }
+    .a-row-week {
+      font-size: 10px;
+      color: rgba(160,152,144,0.5);
+      text-align: right;
+      padding-top: 3px;
+      letter-spacing: 0.2px;
+    }
+
+    /* ─── Athlete detail panel ───────────────────────────────────────── */
+    #detail-panel {
+      display: none;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 0.5px solid var(--rule);
+    }
+    #detail-panel.visible { display: block; }
+    .detail-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .detail-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--ink);
+    }
+    .detail-close {
+      font-size: 11px;
+      color: var(--faint);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: 'Jost', sans-serif;
+      padding: 0;
+    }
+    .detail-close:hover { color: var(--secondary); }
+    .detail-sub {
+      font-size: 12px;
+      color: var(--secondary);
+      margin-bottom: 28px;
+    }
+
+    .detail-section {
+      margin-bottom: 36px;
+      padding-top: 4px;
+    }
+    .detail-section-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 12px;
+    }
+
+    /* ─── Session proof rows ─────────────────────────────────────────── */
+
+    .session-code {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--faint);
+      width: 36px;
+      flex-shrink: 0;
+      letter-spacing: 0.3px;
+    }
+    .session-label {
+      font-size: 13px;
+      color: var(--secondary);
+      flex: 1;
+    }
+    .session-pace {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--ink);
+      min-width: 52px;
+      text-align: right;
+    }
+    .session-pace.missing {
+      font-family: 'Jost', sans-serif;
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(160,152,144,0.3);
+      text-align: right;
+    }
+    .session-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0;
+      padding: 10px 0;
+      border-bottom: 0.5px solid rgba(216,210,200,0.35);
+    }
+
+    /* ─── Stat row ───────────────────────────────────────────────────── */
+    .stat-row {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 20px;
+    }
+    .stat-item {}
+    .stat-value {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 22px;
+      color: var(--ink);
+    }
+    .stat-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-top: 2px;
+    }
+
+    /* ─── Signals ────────────────────────────────────────────────────── */
+    .signal-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .signal-line {
+      font-size: 13px;
+      color: var(--secondary);
+    }
+    .signal-line::before {
+      content: '— ';
+      color: var(--faint);
+    }
+
+    /* ─── Notes ──────────────────────────────────────────────────────── */
+    .notes-list {
+      margin-bottom: 16px;
+    }
+    .note-item {
+      padding: 10px 0;
+      border-bottom: 0.5px solid rgba(216,210,200,0.3);
+    }
+    .note-date {
+      font-size: 10px;
+      color: var(--faint);
+      margin-bottom: 3px;
+    }
+    .note-text {
+      font-size: 13px;
+      color: var(--secondary);
+    }
+    .note-form {
+      display: flex;
+      gap: 12px;
+      align-items: flex-end;
+      margin-top: 12px;
+    }
+    .note-input {
+      flex: 1;
+      border: none;
+      border-bottom: 1px solid var(--rule);
+      background: transparent;
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--ink);
+      padding: 6px 0;
+      outline: none;
+    }
+    .note-input::placeholder { color: var(--faint); }
+    .note-submit {
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--secondary);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px 0;
+      white-space: nowrap;
+    }
+    .note-submit:hover { color: var(--ink); }
+
+    /* ─── Empty / loading states ─────────────────────────────────────── */
+    .loading {
+      font-size: 12px;
+      color: var(--faint);
+      padding: 20px 0;
+    }
+    .mock-badge {
+      display: inline-block;
+      font-size: 8px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--faint);
+      border: 0.5px solid var(--rule);
+      padding: 2px 6px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════ AUTH GATE -->
+<div id="auth-gate">
+  <div class="auth-card">
+    <div class="wordmark">FORM</div>
+    <p>Coach access only.</p>
+    <input id="email-input" class="auth-input" type="email" placeholder="email" autocomplete="email" />
+    <input id="password-input" class="auth-input" type="password" placeholder="password" autocomplete="current-password" />
+    <button class="auth-btn" onclick="signIn()">Enter</button>
+    <div class="auth-error" id="auth-error"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ CONSOLE -->
+<div id="console">
+  <div class="site-frame">
+
+    <!-- Top nav -->
+    <div class="top-nav">
+      <div>
+        <span class="wordmark">FORM</span>
+        &ensp;
+        <span class="console-label">Coach</span>
+      </div>
+      <button class="sign-out" onclick="signOut()">Sign out</button>
+    </div>
+    <hr class="rule" />
+
+    <!-- Date context -->
+    <div class="date-line" id="date-line" style="margin-top:14px;"></div>
+
+    <!-- Attention strip -->
+    <div class="attention-strip">
+      <div class="strip-label">Needs attention</div>
+      <div id="attention-list"><span class="loading">Calculating…</span></div>
+    </div>
+
+    <!-- Athlete list -->
+    <div class="section-header">
+      <div class="section-title">Field</div>
+      <div class="section-count" id="athlete-count"></div>
+    </div>
+    <hr class="rule-subtle" />
+    <div id="athlete-list"><span class="loading">Loading…</span></div>
+
+    <!-- Athlete detail panel -->
+    <div id="detail-panel">
+      <div class="detail-header">
+        <div class="detail-name" id="detail-name"></div>
+        <button class="detail-close" onclick="closeDetail()">Close</button>
+      </div>
+      <div class="detail-sub" id="detail-sub"></div>
+
+      <!-- Stats -->
+      <div class="stat-row" id="detail-stats"></div>
+
+      <!-- Signals -->
+      <div class="detail-section" id="detail-signals-section">
+        <div class="detail-section-label">Signals</div>
+        <div class="signal-list" id="detail-signals"></div>
+      </div>
+
+      <!-- Threshold proof -->
+      <div class="detail-section">
+        <div class="detail-section-label">Threshold arc</div>
+        <div id="detail-threshold"></div>
+      </div>
+
+      <!-- Long run proof -->
+      <div class="detail-section">
+        <div class="detail-section-label">Long runs</div>
+        <div id="detail-longruns"></div>
+      </div>
+
+      <!-- Notes -->
+      <div class="detail-section">
+        <div class="detail-section-label">
+          Coach notes
+          <span class="mock-badge">private</span>
+        </div>
+        <div class="notes-list" id="detail-notes"></div>
+        <div class="note-form">
+          <input class="note-input" id="note-input" type="text" placeholder="Add a note…" />
+          <button class="note-submit" onclick="addNote()">Save</button>
+        </div>
+      </div>
+
+    </div><!-- /detail-panel -->
+
+  </div><!-- /site-frame -->
+</div><!-- /console -->
+
+<script>
+// ═══════════════════════════════════════════════════════════════ CONFIG
+//
+// Privacy:
+//   Publishable key is safe for browser use (Supabase docs).
+//   Real protection = Row Level Security on all tables.
+//   Service role key and Postgres connection string must NOT appear here.
+//   All reads fail closed — unauthenticated requests return nothing.
+//
+// Live vs mocked (honest accounting):
+//   LIVE  — Supabase Auth (sign in / out / session)
+//   LIVE  — coach_notes read + write (once table + RLS exist)
+//   LIVE  — athletes, cycles, threshold_entries, long_run_entries
+//            (queries run against Supabase; fall back to MOCK_ATHLETES if empty)
+//   MOCKED — easy_week_entries (no table yet)
+//
+// Tables required (enable RLS on each):
+//   athletes          id (text/slug), display_name, slug, protocol_mode, auth_user_id
+//   cycles            id, athlete_id, name, phase, status, current_week, total_weeks, goal_time, race_name
+//   threshold_entries id, athlete_id, cycle_id, session_code, session_label, week_index, date, pace, outcome
+//   long_run_entries  id, athlete_id, cycle_id, session_code, week_index, date, structure, easy_pace, steady_pace
+//   coach_notes       id, athlete_id, coach_id, date, note, category
+//
+// App-side sync needed:
+//   The iOS app currently writes to local UserDefaults.
+//   To make threshold/long-run reads live here, the app must write
+//   threshold_entries and long_run_entries to Supabase using athlete_id.
+//   Until that sync exists, this console falls back to MOCK_ATHLETES.
+
+const SUPABASE_URL = 'https://zlhxvzgublgtuxplcjjl.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_8Frmr7iywP_Ouh3JOJ94Bg_gPyCIlx9';
+const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// ═══════════════════════════════════════════════════════════════ STATE
+let currentUser = null;
+let athletes    = [];
+let selected    = null;
+
+// ═══════════════════════════════════════════════════════════════ MOCK FALLBACK
+// Same shape as Supabase schema. Used when tables are empty or not yet created.
+const MOCK_ATHLETES = [
+  {
+    id:'breech', display_name:'Breech', slug:'breech', protocol_mode:'form',
+    active_cycle:'Spring Cycle 2026', current_week:5, total_weeks:8, phase:'Compression',
+    goal_time:null,
+    last_session:{type:'threshold', label:'2 × 15 min', pace:'6:09', date:'2026-03-18'},
+    threshold_entries:[
+      {session_code:'S01', session_label:'3 × 10 min', pace:'6:22', date:'2026-02-18'},
+      {session_code:'S02', session_label:'2 × 14 min', pace:'6:18', date:'2026-02-25'},
+      {session_code:'S03', session_label:'20 + 8 min',  pace:'6:15', date:'2026-03-04'},
+      {session_code:'S04', session_label:'3 × 12 min', pace:'6:12', date:'2026-03-11'},
+      {session_code:'S05', session_label:'2 × 15 min', pace:'6:09', date:'2026-03-18'},
+    ],
+    long_run_entries:[
+      {session_code:'LR01', structure:'50 easy / 45 steady',            date:'2026-02-21'},
+      {session_code:'LR02', structure:'50 easy / 45 steady',            date:'2026-02-28'},
+      {session_code:'LR03', structure:'45 easy / 40 steady / 5 high',   date:'2026-03-07'},
+      {session_code:'LR04', structure:'45 easy / 40 steady / 10 ctrl',  date:'2026-03-14'},
+    ],
+    easy_recent:['8:42','8:38','8:31'],
+  },
+  {
+    id:'simon', display_name:'Simon', slug:'simon', protocol_mode:'form',
+    active_cycle:'Spring Cycle 2026', current_week:5, total_weeks:8, phase:'Compression',
+    goal_time:'1:19:00',
+    last_session:{type:'threshold', label:'2 × 15 min', pace:'6:12', date:'2026-03-18'},
+    threshold_entries:[
+      {session_code:'S01', session_label:'3 × 10 min', pace:'6:28', date:'2026-02-18'},
+      {session_code:'S02', session_label:'2 × 14 min', pace:'6:24', date:'2026-02-25'},
+      {session_code:'S03', session_label:'20 + 8 min',  pace:'6:21', date:'2026-03-04'},
+      {session_code:'S04', session_label:'3 × 12 min', pace:'6:18', date:'2026-03-11'},
+      {session_code:'S05', session_label:'2 × 15 min', pace:'6:12', date:'2026-03-18'},
+    ],
+    long_run_entries:[
+      {session_code:'LR01', structure:'50 easy / 45 steady',           date:'2026-02-21'},
+      {session_code:'LR02', structure:'50 easy / 45 steady',           date:'2026-02-28'},
+      {session_code:'LR03', structure:'45 easy / 40 steady / 5 high',  date:'2026-03-07'},
+      {session_code:'LR04', structure:'45 easy / 40 steady / 10 ctrl', date:'2026-03-14'},
+    ],
+    easy_recent:['7:55','7:49','7:43'],
+  },
+  {
+    id:'megan', display_name:'Megan', slug:'megan', protocol_mode:'form',
+    active_cycle:'Spring Cycle 2026', current_week:5, total_weeks:8, phase:'Compression',
+    goal_time:null,
+    last_session:{type:'long_run', label:'LR04 · 95 min', pace:null, date:'2026-03-14'},
+    threshold_entries:[
+      {session_code:'S01', session_label:'3 × 10 min', pace:'7:05', date:'2026-02-18'},
+      {session_code:'S02', session_label:'2 × 14 min', pace:'7:02', date:'2026-02-25'},
+      {session_code:'S03', session_label:'20 + 8 min',  pace:'7:00', date:'2026-03-04'},
+      {session_code:'S04', session_label:'3 × 12 min', pace:'',     date:''},
+      {session_code:'S05', session_label:'2 × 15 min', pace:'',     date:''},
+    ],
+    long_run_entries:[
+      {session_code:'LR01', structure:'55 easy / 40 steady',     date:'2026-02-21'},
+      {session_code:'LR02', structure:'55 easy / 40 steady',     date:'2026-02-28'},
+      {session_code:'LR03', structure:'50 easy / 40 steady',     date:'2026-03-07'},
+      {session_code:'LR04', structure:'50 easy / 40 steady / 5', date:'2026-03-14'},
+    ],
+    easy_recent:['8:15','8:10','8:05'],
+  },
+  {
+    id:'sam', display_name:'Sam P.', slug:'sam-p', protocol_mode:'form',
+    active_cycle:'Spring Cycle 2026', current_week:4, total_weeks:8, phase:'Foundation',
+    goal_time:null,
+    last_session:{type:'threshold', label:'3 × 12 min', pace:'7:18', date:'2026-03-11'},
+    threshold_entries:[
+      {session_code:'S01', session_label:'3 × 10 min', pace:'7:35', date:'2026-02-18'},
+      {session_code:'S02', session_label:'2 × 14 min', pace:'7:30', date:'2026-02-25'},
+      {session_code:'S03', session_label:'20 + 8 min',  pace:'7:24', date:'2026-03-04'},
+      {session_code:'S04', session_label:'3 × 12 min', pace:'7:18', date:'2026-03-11'},
+    ],
+    long_run_entries:[
+      {session_code:'LR01', structure:'60 easy / 20 steady', date:'2026-02-21'},
+      {session_code:'LR02', structure:'60 easy / 25 steady', date:'2026-02-28'},
+      {session_code:'LR03', structure:'55 easy / 30 steady', date:'2026-03-07'},
+    ],
+    easy_recent:['9:05','8:58','8:48'],
+  },
+  {
+    id:'marcus', display_name:'Marcus', slug:'marcus', protocol_mode:'ghost',
+    active_cycle:'Ghost Protocol', current_week:3, total_weeks:6, phase:'Spring',
+    goal_time:null,
+    last_session:{type:'easy', label:'Easy Run · 40 min', pace:'8:22', date:'2026-03-17'},
+    threshold_entries:[], long_run_entries:[], easy_recent:['8:22','8:22','8:19'],
+  },
+  {
+    id:'kyle', display_name:'Kyle', slug:'kyle', protocol_mode:'form',
+    active_cycle:'Spring Cycle 2026', current_week:5, total_weeks:8, phase:'Compression',
+    goal_time:'1:28:00',
+    last_session:{type:'threshold', label:'2 × 15 min', pace:'6:44', date:'2026-03-18'},
+    threshold_entries:[
+      {session_code:'S01', session_label:'3 × 10 min', pace:'6:52', date:'2026-02-18'},
+      {session_code:'S02', session_label:'2 × 14 min', pace:'6:50', date:'2026-02-25'},
+      {session_code:'S03', session_label:'20 + 8 min',  pace:'6:48', date:'2026-03-04'},
+      {session_code:'S04', session_label:'3 × 12 min', pace:'6:46', date:'2026-03-11'},
+      {session_code:'S05', session_label:'2 × 15 min', pace:'6:44', date:'2026-03-18'},
+    ],
+    long_run_entries:[
+      {session_code:'LR01', structure:'50 easy / 45 steady',          date:'2026-02-21'},
+      {session_code:'LR02', structure:'50 easy / 45 steady',          date:'2026-02-28'},
+      {session_code:'LR03', structure:'45 easy / 40 steady / 5 high', date:'2026-03-07'},
+    ],
+    easy_recent:['7:42','7:38','7:30'],
+  },
+  {
+    id:'jose', display_name:'José', slug:'jose', protocol_mode:'form',
+    active_cycle:'Spring Cycle 2026', current_week:5, total_weeks:8, phase:'Compression',
+    goal_time:null, last_session:null,
+    threshold_entries:[
+      {session_code:'S01', session_label:'3 × 10 min', pace:'7:10', date:'2026-02-18'},
+      {session_code:'S02', session_label:'2 × 14 min', pace:'7:08', date:'2026-02-25'},
+    ],
+    long_run_entries:[
+      {session_code:'LR01', structure:'60 easy / 35 steady', date:'2026-02-21'},
+    ],
+    easy_recent:['8:52','8:40'],
+  },
+];
+
+// ═══════════════════════════════════════════════════════════════ HELPERS
+
+// Safe date comparison — never relies on raw string > comparison
+function latestSession(thr, lr) {
+  const t = thr?.date ? new Date(thr.date) : null;
+  const l = lr?.date  ? new Date(lr.date)  : null;
+  if (t && l) return t >= l ? thr : lr;
+  if (t) return thr;
+  if (l) return lr;
+  return null;
+}
+
+// Session label with fallback map — handles app writes that send only session_code
+const SESSION_LABEL_MAP = {
+  S01: '3 × 10 min',
+  S02: '2 × 14 min',
+  S03: '20 + 8 min',
+  S04: '3 × 12 min',
+  S05: '2 × 15 min',
+  S06: '20 + 12 min',
+  S07: '3 × 8 min',
+  S08: '2 × 8 min',
+  LR01: '95 min', LR02: '95 min', LR03: '90 min',
+  LR04: '90 min', LR05: '75 min',
+};
+
+function sessionLabel(entry) {
+  return entry.session_label
+    || SESSION_LABEL_MAP[entry.session_code]
+    || entry.session_code
+    || '';
+}
+
+// ═══════════════════════════════════════════════════════════════ DATA LAYER
+// Real Supabase reads with mock fallback.
+// When tables exist with RLS, real data flows automatically.
+// When tables are empty or missing, falls back to MOCK_ATHLETES.
+
+async function loadAthletes() {
+  try {
+    // 1. Load athletes + their active cycle
+    const { data: athleteRows, error: aErr } = await db
+      .from('athletes')
+      .select('id, display_name, slug, protocol_mode, auth_user_id')
+      .order('display_name');
+    if (aErr || !athleteRows?.length) throw new Error('no athletes');
+
+    // 2. Load cycles for those athletes
+    const athleteIds = athleteRows.map(a => a.id);
+    const { data: cycleRows } = await db
+      .from('cycles')
+      .select('id, athlete_id, name, phase, status, current_week, total_weeks, goal_time, race_name')
+      .in('athlete_id', athleteIds)
+      .eq('status', 'active');
+
+    // 3. Load threshold entries
+    const { data: thrRows } = await db
+      .from('threshold_entries')
+      .select('id, athlete_id, cycle_id, session_code, session_label, week_index, date, pace, outcome')
+      .in('athlete_id', athleteIds)
+      .order('date', { ascending: true });
+
+    // 4. Load long run entries
+    const { data: lrRows } = await db
+      .from('long_run_entries')
+      .select('id, athlete_id, cycle_id, session_code, week_index, date, structure, easy_pace, steady_pace')
+      .in('athlete_id', athleteIds)
+      .order('date', { ascending: true });
+
+    // 5. Assemble into athlete objects (same shape as mock)
+    const assembled = athleteRows.map(a => {
+      const cycle = (cycleRows || []).find(c => c.athlete_id === a.id);
+      const thr   = (thrRows   || []).filter(e => e.athlete_id === a.id);
+      const lr    = (lrRows    || []).filter(e => e.athlete_id === a.id);
+      const lastThr = thr.length ? thr[thr.length - 1] : null;
+      const lastLR  = lr.length  ? lr[lr.length - 1]   : null;
+      const lastSess = latestSession(lastThr, lastLR);
+
+      return {
+        id:               a.id,
+        display_name:     a.display_name,
+        slug:             a.slug,
+        protocol_mode:    a.protocol_mode,
+        active_cycle:     cycle?.name     || '—',
+        current_week:     cycle?.current_week  || 1,
+        total_weeks:      cycle?.total_weeks   || 8,
+        phase:            cycle?.phase    || '',
+        goal_time:        cycle?.goal_time || null,
+        last_session:     lastSess ? {
+          type:  lastSess.session_code?.startsWith('LR') ? 'long_run' : 'threshold',
+          label: sessionLabel(lastSess),
+          pace:  lastSess.pace || null,
+          date:  lastSess.date,
+        } : null,
+        threshold_entries: thr,
+        long_run_entries:  lr,
+        easy_recent: [],  // needs easy_week_entries table — mocked until then
+      };
+    });
+
+    // If we got real data, use it; otherwise fall through to mock
+    if (assembled.length) {
+      console.log(`Loaded ${assembled.length} athletes from Supabase`);
+      return assembled;
+    }
+  } catch (e) {
+    console.log('Supabase read failed, using mock data:', e.message);
+  }
+  // Fallback to mock
+  return MOCK_ATHLETES;
+}
+
+async function loadCoachNotes(athleteId) {
+  try {
+    const { data, error } = await db
+      .from('coach_notes')
+      .select('id, date, note, category')
+      .eq('athlete_id', athleteId)
+      .order('date', { ascending: false })
+      .limit(20);
+    if (!error && data) return data;
+  } catch (_) {}
+  return [];
+}
+
+async function saveCoachNote(athleteId, noteText) {
+  if (!currentUser) return false;
+  try {
+    const { error } = await db.from('coach_notes').insert({
+      athlete_id: athleteId,
+      coach_id:   currentUser.id,
+      note:       noteText,
+      date:       new Date().toISOString().split('T')[0],
+      category:   'general',
+    });
+    if (!error) return true;
+    console.warn('Note save error:', error.message);
+  } catch (e) { console.warn(e); }
+  return false;
+}
+
+// ═══════════════════════════════════════════════════════════════ SIGNALS
+function paceToSecs(pace) {
+  if (!pace) return null;
+  const p = pace.split(':').map(Number);
+  if (p.length !== 2 || isNaN(p[0]) || isNaN(p[1])) return null;
+  return p[0] * 60 + p[1];
+}
+
+function computeSignals(athlete) {
+  const signals = [];
+  const thr     = (athlete.threshold_entries || []).filter(e => e.pace);
+  const easy    = (athlete.easy_recent || []).map(paceToSecs).filter(Boolean);
+  const thrSecs = thr.map(e => paceToSecs(e.pace)).filter(Boolean);
+
+  // Threshold arc
+  if (thrSecs.length >= 3) {
+    const diff = thrSecs[0] - thrSecs[thrSecs.length - 1];
+    if (diff > 10)      signals.push('Threshold moved ' + diff + 's faster.');
+    else if (diff > 3)  signals.push('Threshold is progressing.');
+    else if (diff < -5) signals.push('Threshold pace has varied.');
+    else                signals.push('Threshold is holding.');
+  } else if (thrSecs.length > 0) {
+    signals.push('Threshold data building.');
+  } else if (athlete.protocol_mode === 'form') {
+    signals.push('No threshold sessions logged.');
+  }
+
+  // Easy drift
+  if (easy.length >= 3 && (easy[0] - easy[easy.length - 1]) < -10)
+    signals.push('Easy pace drifting faster each week.');
+
+  // Easy vs threshold convergence
+  if (easy.length && thrSecs.length) {
+    const thrMean  = thrSecs.reduce((a,b) => a+b, 0) / thrSecs.length;
+    const easyMean = easy.reduce((a,b) => a+b, 0) / easy.length;
+    if ((easyMean - thrMean) < 55) signals.push('Easy and threshold are getting close.');
+  }
+
+  // This week
+  const now = new Date();
+  const weekStart = new Date(now);
+  weekStart.setDate(now.getDate() - ((now.getDay() + 6) % 7));
+  weekStart.setHours(0,0,0,0);
+  const inThisWeek = arr => (arr || []).some(e => e.date && new Date(e.date) >= weekStart);
+
+  if (athlete.protocol_mode === 'form') {
+    if (!inThisWeek(athlete.long_run_entries))    signals.push('Long run still open this week.');
+    if (!inThisWeek(athlete.threshold_entries))   signals.push('Threshold still open this week.');
+  }
+  // Time-bounded inactivity — only flag if they HAVE logged before but gone quiet
+  // New athletes (never logged) are an onboarding case, not an attention signal
+  if (athlete.last_session?.date) {
+    const daysSince = (new Date() - new Date(athlete.last_session.date)) / (1000 * 60 * 60 * 24);
+    if (daysSince > 4) signals.push('No recent sessions (' + Math.floor(daysSince) + ' days).');
+  }
+
+  return signals;
+}
+
+// Highest-priority signal for the queue — ordered by coaching urgency
+function queueSignal(athlete) {
+  const signals = computeSignals(athlete);
+  const priority = [
+    'No recent sessions',
+    'No threshold sessions',
+    'getting close',
+    'drifting faster',
+    'Long run still open',
+    'Threshold still open',
+  ];
+  for (const key of priority) {
+    const found = signals.find(s => s.includes(key));
+    if (found) return found;
+  }
+  return null;
+}
+
+// ═══════════════════════════════════════════════════════════════ AUTH
+async function signIn() {
+  const email    = document.getElementById('email-input').value.trim();
+  const password = document.getElementById('password-input').value;
+  const errEl    = document.getElementById('auth-error');
+  errEl.textContent = '';
+  if (!email || !password) { errEl.textContent = 'Email and password required.'; return; }
+  const { data, error } = await db.auth.signInWithPassword({ email, password });
+  if (error) { errEl.textContent = error.message; return; }
+  currentUser = data.user;
+  await showConsole();
+}
+
+async function signOut() {
+  await db.auth.signOut();
+  currentUser = null;
+  document.getElementById('console').style.display = 'none';
+  document.getElementById('auth-gate').style.display = 'flex';
+  document.getElementById('detail-panel').classList.remove('visible');
+  selected = null;
+}
+
+async function checkSession() {
+  const { data } = await db.auth.getSession();
+  if (data?.session?.user) { currentUser = data.session.user; await showConsole(); }
+}
+
+// ═══════════════════════════════════════════════════════════════ RENDER
+async function showConsole() {
+  document.getElementById('auth-gate').style.display = 'none';
+  document.getElementById('console').style.display   = 'block';
+  const now = new Date();
+  document.getElementById('date-line').textContent =
+    now.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
+  athletes = await loadAthletes();
+  renderQueue();
+  renderAthleteList();
+}
+
+function renderQueue() {
+  const list  = document.getElementById('attention-list');
+  const items = athletes
+    .map(a => ({ a, signal: queueSignal(a) }))
+    .filter(x => x.signal);
+
+  if (!items.length) {
+    list.innerHTML = '<span class="attention-empty">Everyone is on track.</span>';
+    return;
+  }
+
+  list.innerHTML = items.map(({ a, signal }) => `
+    <div class="attention-item" onclick="selectAthlete('${a.id}')">
+      <span class="a-name">${a.display_name}</span>
+      <span class="a-action">→</span>
+      <span class="a-signal">${signal}</span>
+    </div>
+  `).join('');
+}
+
+function renderAthleteList() {
+  document.getElementById('athlete-count').textContent = athletes.length + ' athletes';
+
+  const sorted = [...athletes].sort((a, b) => {
+    const aQ = queueSignal(a) ? 1 : 0;
+    const bQ = queueSignal(b) ? 1 : 0;
+    if (aQ !== bQ) return bQ - aQ;
+    return (b.last_session?.date || '0').localeCompare(a.last_session?.date || '0');
+  });
+
+  document.getElementById('athlete-list').innerHTML = sorted.map(a => {
+    const signals   = computeSignals(a);
+    const primary   = signals[0] || '';
+    const isQueue   = !!queueSignal(a);
+    const cycleInfo = [a.active_cycle, a.phase ? `W${a.current_week} of ${a.total_weeks}` : ''].filter(Boolean).join(' · ');
+    const dateStr   = a.last_session ? formatDate(a.last_session.date) : 'no logs';
+    return `
+      <div class="athlete-row" data-id="${a.id}" onclick="selectAthlete('${a.id}')">
+        <div class="a-row-name">${a.display_name}</div>
+        <div class="a-row-meta">
+          <span class="a-row-cycle">${cycleInfo}</span>
+          <span class="a-row-signal${isQueue ? ' attention' : ''}">${primary}</span>
+        </div>
+        <div class="a-row-week">${dateStr}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function formatDate(d) {
+  if (!d) return '';
+  return new Date(d).toLocaleDateString('en-US', { month:'short', day:'numeric' });
+}
+
+async function selectAthlete(id) {
+  selected = athletes.find(a => a.id === id);
+  if (!selected) return;
+  document.querySelectorAll('.athlete-row').forEach(r => r.classList.remove('active'));
+  const row = document.querySelector(`.athlete-row[data-id="${id}"]`);
+  if (row) row.classList.add('active');
+  await renderDetail(selected);
+  document.getElementById('detail-panel').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function closeDetail() {
+  document.getElementById('detail-panel').classList.remove('visible');
+  document.querySelectorAll('.athlete-row').forEach(r => r.classList.remove('active'));
+  selected = null;
+}
+
+async function renderDetail(athlete) {
+  document.getElementById('detail-panel').classList.add('visible');
+  document.getElementById('detail-name').textContent = athlete.display_name;
+
+  const subParts = [
+    athlete.protocol_mode === 'form' ? 'FORM Training' : 'Ghost Protocol',
+    athlete.active_cycle,
+    `${athlete.phase} · W${athlete.current_week} of ${athlete.total_weeks}`,
+  ];
+  if (athlete.goal_time) subParts.push('Goal ' + athlete.goal_time);
+  document.getElementById('detail-sub').textContent = subParts.join('  ·  ');
+
+  // Stats
+  const thr  = (athlete.threshold_entries || []).filter(e => e.pace);
+  const lr   = (athlete.long_run_entries  || []);
+  const secs = thr.map(e => paceToSecs(e.pace)).filter(Boolean);
+  const avg  = secs.length
+    ? (() => { const s = Math.round(secs.reduce((a,b) => a+b,0)/secs.length); return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`; })()
+    : '—';
+
+  document.getElementById('detail-stats').innerHTML = `
+    <div class="stat-item"><div class="stat-value">${thr.length}</div><div class="stat-label">Threshold</div></div>
+    <div class="stat-item"><div class="stat-value">${lr.length}</div><div class="stat-label">Long runs</div></div>
+    <div class="stat-item"><div class="stat-value">${avg}</div><div class="stat-label">Avg pace</div></div>
+  `;
+
+  // Signals
+  document.getElementById('detail-signals').innerHTML =
+    computeSignals(athlete).map(s => `<div class="signal-line">${s}</div>`).join('');
+
+  // Threshold arc — paces right-aligned in Cormorant
+  const thrAll = athlete.threshold_entries || [];
+  document.getElementById('detail-threshold').innerHTML = thrAll.length
+    ? thrAll.map(e => `
+        <div class="session-row">
+          <span class="session-code">${e.session_code}</span>
+          <span class="session-label">${sessionLabel(e)}</span>
+          <span class="session-pace${e.pace ? '' : ' missing'}">${e.pace || '—'}</span>
+        </div>`).join('')
+    : '<div class="loading">No threshold sessions logged.</div>';
+
+  // Long runs
+  document.getElementById('detail-longruns').innerHTML = lr.length
+    ? lr.map(e => `
+        <div class="session-row">
+          <span class="session-code">${e.session_code}</span>
+          <span class="session-label">${e.structure || ''}</span>
+          <span class="session-pace">✓</span>
+        </div>`).join('')
+    : '<div class="loading">No long runs logged.</div>';
+
+  await renderNotes(athlete.id);
+}
+
+// ═══════════════════════════════════════════════════════════════ NOTES
+async function renderNotes(athleteId) {
+  const notes     = await loadCoachNotes(athleteId);
+  const container = document.getElementById('detail-notes');
+  container.innerHTML = notes.length
+    ? notes.map(n => `
+        <div class="note-item">
+          <div class="note-date">${n.date ? formatDate(n.date) : ''}</div>
+          <div class="note-text">${escapeHtml(n.note)}</div>
+        </div>`).join('')
+    : '<div class="loading">No notes yet.</div>';
+}
+
+async function addNote() {
+  if (!selected) return;
+  const input = document.getElementById('note-input');
+  const text  = input.value.trim();
+  if (!text) return;
+
+  input.disabled = true;
+  const saved = await saveCoachNote(selected.id, text);
+  input.disabled = false;
+
+  if (saved) {
+    input.value = '';
+    await renderNotes(selected.id);
+  } else {
+    // Graceful in-memory fallback (coach_notes table not yet created)
+    const container = document.getElementById('detail-notes');
+    const existing  = container.innerHTML.includes('No notes') ? '' : container.innerHTML;
+    const dateStr   = new Date().toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+    container.innerHTML = `
+      <div class="note-item">
+        <div class="note-date">${dateStr}</div>
+        <div class="note-text">${escapeHtml(text)}</div>
+      </div>` + existing;
+    input.value = '';
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════ UTILS
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ═══════════════════════════════════════════════════════════════ INIT
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('password-input').addEventListener('keydown', e => { if (e.key==='Enter') signIn(); });
+  document.getElementById('note-input').addEventListener('keydown',     e => { if (e.key==='Enter') addNote(); });
+  checkSession();
+});
+</script>
+</body>
+</html>
