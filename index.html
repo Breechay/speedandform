@@ -133,13 +133,39 @@ body {
 }
 
 @media (max-width: 480px) {
-  html, body { overflow: hidden !important; height: 100% !important; position: fixed !important; width: 100% !important; }
   .logo { font-size: 52px; }
   .page { flex: 1; padding: 33px 24px 24px; justify-content: center; }
   .structure { max-width: 100%; }
   .board-day { width: 64px; }
   .board-name { font-size: 22px; }
   .board-detail { font-size: 9px; margin-left: 12px; }
+  /* Collapse secondary nav on mobile — keep core visible, hide rest behind toggle */
+  .nav-layer.secondary { display: none; }
+  .nav-layer.secondary.open { display: block; }
+  .nav-more {
+    display: flex;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line-l);
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 100%;
+    cursor: pointer;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-f);
+    font-family: 'Jost', sans-serif;
+    gap: 8px;
+  }
+  .nav-more-arrow { transition: transform 0.2s ease; display: inline-block; }
+  .nav-more.open .nav-more-arrow { transform: rotate(90deg); }
+}
+@media (min-width: 481px) {
+  .nav-more { display: none; }
 }
 
 /* CURRENT WORK */
@@ -272,6 +298,17 @@ body {
     </div>
 
     <div class="nav-layer">
+      <span class="layer-label">App</span>
+      <div class="nav-links">
+        <a href="/app" style="color: var(--ink);">FORM on iPhone →</a>
+      </div>
+    </div>
+
+    <button class="nav-more" id="nav-more-btn" onclick="toggleMore(this)" aria-expanded="false">
+      More <span class="nav-more-arrow">→</span>
+    </button>
+
+    <div class="nav-layer secondary" id="secondary-nav">
       <span class="layer-label">Practice</span>
       <div class="nav-links">
         <a href="/the-method">Method</a>
@@ -284,7 +321,7 @@ body {
       </div>
     </div>
 
-    <div class="nav-layer">
+    <div class="nav-layer secondary">
       <span class="layer-label">Reference</span>
       <div class="nav-links">
         <a href="/running-form-errors">Form Errors</a>
@@ -295,7 +332,7 @@ body {
       </div>
     </div>
 
-    <div class="nav-layer">
+    <div class="nav-layer secondary">
       <span class="layer-label">Record</span>
       <div class="nav-links">
         <a href="/ledger">Ledger</a>
@@ -303,7 +340,7 @@ body {
       </div>
     </div>
 
-    <div class="nav-layer">
+    <div class="nav-layer secondary">
       <span class="layer-label">Field</span>
       <div class="nav-links">
         <a href="/the-field">The Field</a>
@@ -388,6 +425,14 @@ function toYMD(d) { return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2
     tRow.style.opacity = opacityMap[day].t;
     lRow.style.opacity = opacityMap[day].l;
   })();
+
+// Mobile nav toggle
+function toggleMore(btn) {
+  const isOpen = btn.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen);
+  document.querySelectorAll('.nav-layer.secondary').forEach(el => el.classList.toggle('open', isOpen));
+  btn.querySelector('.nav-more-arrow').textContent = isOpen ? '↓' : '→';
+}
 
 // Search form — go to /search?q=...
 function handleSearch(e) {

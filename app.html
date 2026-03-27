@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FORM — App</title>
+<meta name="description" content="The FORM app. Ghost Protocol — six weeks of structured running. Free on iPhone.">
+<link rel="canonical" href="https://speedandform.com/app">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:title" content="FORM — App">
+<meta property="og:description" content="Ghost Protocol. Six weeks. Free on iPhone.">
+<meta property="og:url" content="https://speedandform.com/app">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://speedandform.com/og/default.jpg">
+<meta property="og:site_name" content="FORM">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #f5f2ec;
+  --ink: #2a2620;
+  --ink-l: #6b6459;
+  --ink-f: #a09890;
+  --line: #d8d2c8;
+  --line-l: #e8e3dc;
+  --col: 400px;
+}
+html { height: 100%; }
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-kerning: normal;
+  font-feature-settings: "kern";
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* NAV */
+.nav {
+  padding: 32px 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: calc(var(--col) + 80px);
+  margin: 0 auto;
+  width: 100%;
+}
+.nav-home {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 22px;
+  letter-spacing: 0.12em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.nav-label {
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-f);
+}
+
+/* PAGE */
+.page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 72px 40px 100px;
+}
+
+/* WORDMARK */
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 72px;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  color: var(--ink);
+  text-align: center;
+  margin-bottom: 6px;
+}
+.location {
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--ink-f);
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+/* CONTENT COLUMN */
+.col {
+  width: 100%;
+  max-width: var(--col);
+}
+
+/* HERO STATEMENT */
+.hero {
+  border-top: 1px solid var(--line-l);
+  padding: 28px 0 24px;
+  border-bottom: 1px solid var(--line-l);
+  margin-bottom: 0;
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 36px;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.hero-body {
+  font-size: 13px;
+  color: var(--ink-l);
+  line-height: 1.75;
+  letter-spacing: 0.02em;
+}
+
+/* WHAT'S INSIDE ROWS */
+.inside-row {
+  display: flex;
+  align-items: baseline;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line-l);
+  gap: 16px;
+}
+.inside-label {
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-f);
+  width: 90px;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+.inside-text {
+  font-size: 14px;
+  color: var(--ink-l);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+.inside-text em {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+/* SECTION LABEL */
+.section-label {
+  font-size: 7px;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--ink-f);
+  opacity: 0.75;
+  display: block;
+  margin-bottom: 10px;
+  padding-top: 32px;
+}
+
+/* CTA */
+.cta-block {
+  padding: 28px 0 0;
+  border-top: 1px solid var(--line-l);
+}
+.cta-available {
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ink-f);
+  display: block;
+  margin-bottom: 14px;
+}
+.cta-link {
+  display: inline-block;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 28px;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 3px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.cta-link:hover {
+  color: var(--ink-l);
+  border-color: var(--ink-l);
+}
+.cta-coming {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-f);
+  margin-top: 10px;
+  display: block;
+}
+
+/* FOOTER NAV */
+.foot {
+  margin-top: 64px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line-l);
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.foot a {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-f);
+  text-decoration: none;
+  transition: color 0.16s;
+}
+.foot a:hover { color: var(--ink-l); }
+
+/* PROTOCOL ROWS */
+.protocol-row {
+  display: flex;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line-l);
+  gap: 16px;
+}
+.protocol-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--line);
+  flex-shrink: 0;
+  width: 28px;
+  line-height: 1;
+}
+.protocol-name {
+  font-size: 13px;
+  color: var(--ink-l);
+  flex: 1;
+  letter-spacing: 0.02em;
+}
+.protocol-tag {
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-f);
+  flex-shrink: 0;
+}
+.protocol-tag.free { color: var(--ink-l); }
+
+@media (max-width: 480px) {
+  .nav { padding: 28px 24px 0; }
+  .page { padding: 56px 24px 80px; }
+  .logo { font-size: 52px; }
+  .hero-title { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-home" href="/">FORM</a>
+  <span class="nav-label">App</span>
+</nav>
+
+<div class="page">
+
+  <div class="logo">FORM</div>
+  <div class="location">iPhone</div>
+
+  <div class="col">
+
+    <!-- HERO -->
+    <div class="hero">
+      <h1 class="hero-title">The practice,<br>on your phone.</h1>
+      <p class="hero-body">
+        Every session. Every cue. The metronome. The ledger.
+        Ghost Protocol gives you six weeks of structured running —
+        the same system the group trains on, now in your pocket. Free.
+      </p>
+    </div>
+
+    <!-- WHAT'S INSIDE -->
+    <span class="section-label">What's inside</span>
+
+    <div class="inside-row">
+      <span class="inside-label">Today</span>
+      <span class="inside-text">Your session for the day. Cue, structure, metronome. <em>Read it. Run with it.</em></span>
+    </div>
+
+    <div class="inside-row">
+      <span class="inside-label">Metronome</span>
+      <span class="inside-text">170 BPM default. Runs in the background. Survives tab switches and backgrounding.</span>
+    </div>
+
+    <div class="inside-row">
+      <span class="inside-label">Cues</span>
+      <span class="inside-text">18 mechanics cues across six weeks. Unlocked as you progress. Quiet feet. Tall spine. Nasal breathing.</span>
+    </div>
+
+    <div class="inside-row">
+      <span class="inside-label">Arc</span>
+      <span class="inside-text">Six weeks mapped out. Where you are. Where it's going. What each week builds.</span>
+    </div>
+
+    <div class="inside-row">
+      <span class="inside-label">Ledger</span>
+      <span class="inside-text">Log your sessions. Track the arc. Syncs via iCloud.</span>
+    </div>
+
+    <div class="inside-row">
+      <span class="inside-label">FORM Mode</span>
+      <span class="inside-text">For athletes who've completed Ghost Protocol. Threshold, long run, structured cycles — full coaching intelligence.</span>
+    </div>
+
+    <!-- PROTOCOL LADDER -->
+    <span class="section-label">Protocol ladder</span>
+
+    <div class="protocol-row">
+      <span class="protocol-num">1</span>
+      <span class="protocol-name">Ghost Protocol · Six weeks</span>
+      <span class="protocol-tag free">Free</span>
+    </div>
+    <div class="protocol-row">
+      <span class="protocol-num">2</span>
+      <span class="protocol-name">Speed Emergence · Six weeks</span>
+      <span class="protocol-tag">Coming</span>
+    </div>
+    <div class="protocol-row">
+      <span class="protocol-num">3</span>
+      <span class="protocol-name">Race Preparation · TBD</span>
+      <span class="protocol-tag">Coming</span>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-block">
+      <span class="cta-available">Available on iPhone</span>
+      <!-- Swap href to App Store link when live -->
+      <a class="cta-link" href="#" id="app-store-link">Download on the App Store →</a>
+      <span class="cta-coming" id="coming-note">Pending App Store approval — link live soon.</span>
+    </div>
+
+    <div class="foot">
+      <a href="/">Home</a>
+      <a href="/ghost">Ghost Protocol</a>
+      <a href="/the-method">The Method</a>
+      <a href="/practice">Practice</a>
+      <a href="/privacy">Privacy</a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// When App Store link is live:
+// 1. Set APP_STORE_URL to the real link
+// 2. Remove the coming-note span or set display:none
+const APP_STORE_URL = null; // e.g. 'https://apps.apple.com/app/idXXXXXXX'
+
+if (APP_STORE_URL) {
+  document.getElementById('app-store-link').href = APP_STORE_URL;
+  const note = document.getElementById('coming-note');
+  if (note) note.style.display = 'none';
+} else {
+  const link = document.getElementById('app-store-link');
+  link.style.opacity = '0.45';
+  link.style.pointerEvents = 'none';
+  link.style.cursor = 'default';
+}
+</script>
+
+</body>
+</html>

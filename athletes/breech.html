@@ -171,18 +171,51 @@ function formatDate(d) {
   return `${months[dt.getMonth()]} ${dt.getDate()}, ${dt.getFullYear()}`;
 }
 
-function renderCurrentSession(week) {
+// SCHEDULE-based current session — same source of truth as index.html
+const SCHEDULE = [
+  { type:'threshold', date:'2026-02-17', desc:'3 × 10 min' },
+  { type:'threshold', date:'2026-02-24', desc:'2 × 14 min' },
+  { type:'threshold', date:'2026-03-03', desc:'20 + 8 continuous' },
+  { type:'threshold', date:'2026-03-10', desc:'3 × 12 min' },
+  { type:'threshold', date:'2026-03-17', desc:'2 × 15 min' },
+  { type:'threshold', date:'2026-03-24', desc:'20 + 12 continuous' },
+  { type:'threshold', date:'2026-03-31', desc:'3 × 8 min' },
+  { type:'threshold', date:'2026-04-07', desc:'2 × 8 min' },
+  { type:'longrun', date:'2026-02-21', desc:'95 min · 50 easy / 45 steady' },
+  { type:'longrun', date:'2026-02-28', desc:'95 min · 50 easy / 45 steady' },
+  { type:'longrun', date:'2026-03-07', desc:'100 min · 50 easy / 50 steady' },
+  { type:'longrun', date:'2026-03-14', desc:'90 min · 60 easy / 30 steady' },
+  { type:'longrun', date:'2026-03-21', desc:'95 min · 45 easy / 40 steady' },
+  { type:'longrun', date:'2026-03-28', desc:'90 min · 40 easy / 40 steady' },
+  { type:'longrun', date:'2026-04-04', desc:'75 min · 40 easy / 20 steady' },
+  { type:'longrun', date:'2026-04-11', desc:'Off or shakeout + strides' },
+];
+function _getMonday(d) {
+  const dt = new Date(d); const dow = dt.getDay();
+  dt.setDate(dt.getDate() + (dow === 0 ? -6 : 1 - dow)); dt.setHours(0,0,0,0); return dt;
+}
+function _toYMD(d) { return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+
+function renderCurrentSessionFromSchedule() {
   const wrap = document.getElementById('current-session-wrap');
   if (!wrap) return;
-  if (!week || !week.session) { wrap.style.display = 'none'; return; }
+  const mon = _getMonday(new Date());
+  const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
+  const monYMD = _toYMD(mon), sunYMD = _toYMD(sun);
+  let threshold = null, longrun = null;
+  for (const s of SCHEDULE) {
+    if (s.date >= monYMD && s.date <= sunYMD) {
+      if (s.type === 'threshold') threshold = s;
+      if (s.type === 'longrun')   longrun   = s;
+    }
+  }
+  if (!threshold && !longrun) { wrap.style.display = 'none'; return; }
   wrap.style.display = '';
-  const sessionText = (week.session || '').replace(/^S\d+\s*[·—]\s*/, '').trim();
-  if (!sessionText) { wrap.style.display = 'none'; return; }
-  wrap.innerHTML = `<div class="upcoming-block">
-    <span class="ub-label">Current Session</span>
-    <span class="ub-session">${sessionText}</span>
-    <a class="ub-link" href="/threshold">Threshold →</a>
-  </div>`;
+  let html = '<div class="upcoming-block"><span class="ub-label">This Week</span>';
+  if (threshold) html += `<span class="ub-session">Threshold · ${threshold.desc}</span>`;
+  if (longrun)   html += `<span class="ub-session" style="display:block;margin-top:4px;font-size:20px;">Long Run · ${longrun.desc}</span>`;
+  html += '<a class="ub-link" href="/threshold" style="margin-top:10px;display:inline-block;">Threshold →</a></div>';
+  wrap.innerHTML = html;
 }
 
 function renderThreshold(times, skipLabel) {
@@ -362,21 +395,19 @@ async function load() {
 
   try {
     const athKey = encodeURIComponent(`${TABLE_PREFIX}_${name}`);
-    const [tRes, rRes, aRes, wRes] = await Promise.all([
+    const [tRes, rRes, aRes] = await Promise.all([
       fetch(`${SB}threshold_times?athlete=eq.${athKey}&order=week.asc`, { headers: H }),
       fetch(`${SB}races?athlete=eq.${encodeURIComponent(name)}&order=date.asc`, { headers: H }),
-      fetch(`${SB}athletes?slug=eq.${slug}`, { headers: H }),
-      fetch(`${SB}this_week?id=eq.current`, { headers: H })
+      fetch(`${SB}athletes?slug=eq.${slug}`, { headers: H })
     ]);
     const times  = await tRes.json();
     const races  = await rRes.json();
     const athRow = await aRes.json();
-    const weekRow = await wRes.json();
 
     const joined = athRow[0]?.joined || 'Spring 2026';
     document.getElementById('ath-meta').textContent = `FORM · ${joined}`;
 
-    renderCurrentSession(weekRow[0] || null);
+    renderCurrentSessionFromSchedule();
     renderThreshold(Array.isArray(times) ? times : [], skipLabel);
     renderRaces(Array.isArray(races) ? races : [], false);
   } catch(e) {

@@ -67,6 +67,8 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
   <h1 class="page-title" id="ath-name">—</h1>
   <span class="athlete-meta" id="ath-meta">Loading…</span>
 
+  <div id="current-session-wrap" style="display:none;"></div>
+
   <span class="section-label">Threshold · Spring Cycle 2026</span>
   <div id="threshold-wrap"><div class="loading">Loading…</div></div>
 
@@ -95,16 +97,69 @@ const SESSION_NAMES = {
   8: '20 + 12'
 };
 
-// Athlete config — slug → display name
+// Athlete config — slug → { name, skipLabel? }
 const ATHLETES = {
-  'breech':  'Breech',
-  'simon':   'Simon',
-  'sam-p':   'Sam P.',
-  'marcus':  'Marcus',
-  'kyle':    'Kyle',
-  'megan':   'Megan',
-  'jose':    'José'
+  'breech':  { name: 'Breech' },
+  'simon':   { name: 'Simon' },
+  'sam-p':   { name: 'Sam P.', skipLabel: 'Race Week' },
+  'marcus':  { name: 'Marcus', skipLabel: 'Race Prep' },
+  'kyle':    { name: 'Kyle',   skipLabel: 'Off Season' },
+  'megan':   { name: 'Megan' },
+  'jose':    { name: 'José' },
+  'lisa':    { name: 'Lisa' },
+  'bobby':   { name: 'Bobby',  skipLabel: 'Race Week' },
+  'ryan':    { name: 'Ryan',   skipLabel: 'Race Week' },
+  'mike':    { name: 'Mike' },
+  'tinius':  { name: 'Tinius', skipLabel: 'Off Season' },
+  'sam-v':   { name: 'Sam V.' },
 };
+
+// SCHEDULE — same source of truth as homepage
+const SCHEDULE = [
+  { type:'threshold', date:'2026-02-17', desc:'3 × 10 min' },
+  { type:'threshold', date:'2026-02-24', desc:'2 × 14 min' },
+  { type:'threshold', date:'2026-03-03', desc:'20 + 8 continuous' },
+  { type:'threshold', date:'2026-03-10', desc:'3 × 12 min' },
+  { type:'threshold', date:'2026-03-17', desc:'2 × 15 min' },
+  { type:'threshold', date:'2026-03-24', desc:'20 + 12 continuous' },
+  { type:'threshold', date:'2026-03-31', desc:'3 × 8 min' },
+  { type:'threshold', date:'2026-04-07', desc:'2 × 8 min' },
+  { type:'longrun', date:'2026-02-21', desc:'95 min · 50 easy / 45 steady' },
+  { type:'longrun', date:'2026-02-28', desc:'95 min · 50 easy / 45 steady' },
+  { type:'longrun', date:'2026-03-07', desc:'100 min · 50 easy / 50 steady' },
+  { type:'longrun', date:'2026-03-14', desc:'90 min · 60 easy / 30 steady' },
+  { type:'longrun', date:'2026-03-21', desc:'95 min · 45 easy / 40 steady' },
+  { type:'longrun', date:'2026-03-28', desc:'90 min · 40 easy / 40 steady' },
+  { type:'longrun', date:'2026-04-04', desc:'75 min · 40 easy / 20 steady' },
+  { type:'longrun', date:'2026-04-11', desc:'Off or shakeout + strides' },
+];
+function _getMonday(d) {
+  const dt = new Date(d); const dow = dt.getDay();
+  dt.setDate(dt.getDate() + (dow === 0 ? -6 : 1 - dow)); dt.setHours(0,0,0,0); return dt;
+}
+function _toYMD(d) { return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+
+function renderCurrentSession() {
+  const wrap = document.getElementById('current-session-wrap');
+  if (!wrap) return;
+  const mon = _getMonday(new Date());
+  const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
+  const monYMD = _toYMD(mon), sunYMD = _toYMD(sun);
+  let threshold = null, longrun = null;
+  for (const s of SCHEDULE) {
+    if (s.date >= monYMD && s.date <= sunYMD) {
+      if (s.type === 'threshold') threshold = s;
+      if (s.type === 'longrun')   longrun   = s;
+    }
+  }
+  if (!threshold && !longrun) { wrap.style.display = 'none'; return; }
+  wrap.style.display = '';
+  let html = '<div style="padding:0 0 28px"><span style="font-size:8px;font-weight:500;letter-spacing:.35em;text-transform:uppercase;color:var(--ink-f);display:block;margin-bottom:10px;">This Week</span>';
+  if (threshold) html += `<span style="font-family:\'Cormorant Garamond\',serif;font-size:22px;font-weight:300;color:var(--ink);display:block;margin-bottom:4px;">Threshold · ${threshold.desc}</span>`;
+  if (longrun)   html += `<span style="font-family:\'Cormorant Garamond\',serif;font-size:22px;font-weight:300;color:var(--ink-l);display:block;">Long Run · ${longrun.desc}</span>`;
+  html += '</div>';
+  wrap.innerHTML = html;
+}
 
 function getSlug() {
   const parts = window.location.pathname.split('/');
@@ -118,13 +173,13 @@ function formatDate(d) {
   return `${months[dt.getMonth()]} ${dt.getDate()}, ${dt.getFullYear()}`;
 }
 
-function renderThreshold(times) {
+function renderThreshold(times, skipLabel) {
   if (!times.length) {
     document.getElementById('threshold-wrap').innerHTML = '<div class="no-data">No sessions logged yet.</div>';
     return;
   }
-  // Find personal best (lowest numeric time)
-  const numeric = times.filter(t => t.time && t.time !== 'x' && t.time !== '×');
+  const isSkipVal = v => !v || v === 'x' || v === '×' || v === 'race';
+  const numeric = times.filter(t => t.time && !isSkipVal(t.time) && /^\d+:\d+/.test(t.time));
   let pb = null;
   if (numeric.length) {
     pb = numeric.reduce((best, t) => {
@@ -133,11 +188,13 @@ function renderThreshold(times) {
     });
   }
   const rows = times.sort((a,b) => a.week - b.week).map(t => {
-    const isSkip = t.time === 'x' || t.time === '×';
-    const isPB = pb && t.week === pb.week && !isSkip;
+    const skip = isSkipVal(t.time);
+    const isPB = pb && t.week === pb.week && !skip;
+    const tdClass = skip ? (skipLabel ? 'td-skip-label' : 'td-skip') : isPB ? 'td-pb' : '';
+    const tdText  = skip ? (skipLabel || '×') : t.time;
     return `<tr>
       <td>S${String(t.week).padStart(2,'0')}<span class="td-session">${SESSION_NAMES[t.week] || ''}</span></td>
-      <td class="${isSkip ? 'td-skip' : isPB ? 'td-pb' : ''}">${isSkip ? '×' : t.time}${isPB ? ' ·' : ''}</td>
+      <td class="${tdClass}">${tdText}${isPB ? ' ·' : ''}</td>
     </tr>`;
   }).join('');
   document.getElementById('threshold-wrap').innerHTML = `
@@ -166,21 +223,25 @@ function renderRaces(races) {
 
 async function load() {
   const slug = getSlug();
-  const name = ATHLETES[slug];
-  if (!name) {
+  const athlete = ATHLETES[slug];
+  if (!athlete) {
     document.getElementById('ath-name').textContent = 'Athlete not found';
     document.getElementById('ath-meta').textContent = '';
     document.getElementById('threshold-wrap').innerHTML = '';
     document.getElementById('races-wrap').innerHTML = '';
     return;
   }
+  const name = athlete.name;
+  const skipLabel = athlete.skipLabel || null;
   document.title = `FORM — ${name}`;
   document.getElementById('ath-name').textContent = name;
   document.querySelector('.nav-label').textContent = name;
+  renderCurrentSession();
 
   try {
+    const athKey = encodeURIComponent(`group_${name}`);
     const [tRes, rRes, aRes] = await Promise.all([
-      fetch(`${SB}threshold_times?athlete=eq.${encodeURIComponent(name)}&order=week.asc`, { headers: H }),
+      fetch(`${SB}threshold_times?athlete=eq.${athKey}&order=week.asc`, { headers: H }),
       fetch(`${SB}races?athlete=eq.${encodeURIComponent(name)}&order=date.asc`, { headers: H }),
       fetch(`${SB}athletes?slug=eq.${slug}`, { headers: H })
     ]);
@@ -189,7 +250,7 @@ async function load() {
     const athRow = await aRes.json();
     const joined = athRow[0]?.joined || 'Spring 2026';
     document.getElementById('ath-meta').textContent = `FORM · ${joined}`;
-    renderThreshold(Array.isArray(times) ? times : []);
+    renderThreshold(Array.isArray(times) ? times : [], skipLabel);
     renderRaces(Array.isArray(races) ? races : []);
   } catch(e) {
     document.getElementById('ath-meta').textContent = 'FORM · Spring 2026';
