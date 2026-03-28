@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202603281200">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Taper — Key Biscayne Half | FORM</title>
+<meta name="description" content="14-day taper and race plan for the Key Biscayne Half Marathon. April 12, 2026.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #f5f2ec; --ink: #2a2620; --ink-l: #6b6459; --ink-f: #a09890;
+  --accent: #c4593a; --done: #8aaa7a; --line: #d8d2c8; --line-l: #e8e3dc; --race: #1a2e4a;
+  --speed: #5a3a1a; --speed-bg: #f0e8dd;
+}
+html, body { height: auto !important; overflow: visible !important; }
+body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding: 0 0 120px; }
+
+/* NAV */
+.nav { max-width: 560px; margin: 0 auto; padding: 32px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
+.nav-lbl { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+
+/* HEADER */
+.header { text-align: center; padding: 24px 40px 32px; }
+.header::after { content: ''; display: block; width: 100%; height: 1px; background: var(--line); margin-top: 28px; }
+.header-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 42px; letter-spacing: 0.05em; color: var(--ink); line-height: 1; }
+.header-race { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-f); margin-top: 8px; letter-spacing: 0.04em; }
+
+/* SECTION */
+.section { max-width: 560px; margin: 72px auto 0; padding: 0 32px; }
+.section:first-of-type { margin-top: 56px; }
+.section-title { font-family: 'Jost', sans-serif; font-weight: 500; font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--ink-l); margin-bottom: 28px; display: flex; align-items: center; gap: 16px; }
+.section-title::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+.phase-subtitle { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 20px; font-weight: 300; color: var(--ink-f); margin-top: -18px; margin-bottom: 28px; letter-spacing: 0.04em; }
+
+/* WORKOUT ROW */
+.workout { display: grid; grid-template-columns: 130px 1fr; gap: 0 20px; align-items: start; padding: 20px 12px; border-bottom: 1px solid var(--line-l); position: relative; transition: background 0.15s; cursor: pointer; border-left: 2px solid transparent; padding-left: 10px; }
+.workout:first-of-type { border-top: 1px solid var(--line-l); }
+.workout:hover { background: rgba(42,38,32,0.02); }
+.workout-date { font-size: 13px; letter-spacing: 0.02em; color: var(--ink); padding-top: 2px; white-space: nowrap; }
+.workout-desc { font-size: 13.5px; line-height: 1.6; color: var(--ink); }
+.workout-sub { font-size: 12px; color: var(--ink-l); margin-top: 4px; line-height: 1.5; }
+
+/* Type-specific left borders */
+.workout[data-type="speed"] { border-left-color: var(--accent); }
+.workout[data-type="tune"] { border-left-color: var(--ink-l); }
+.workout[data-type="race-prep"] { border-left-color: #7a9db8; }
+
+/* REST ROW — no left border, dimmer text */
+.workout[data-type="rest"] .workout-desc { color: var(--ink-f); }
+.workout[data-type="rest"] .workout-date { color: var(--ink-l); }
+
+/* RACE ROW */
+.race-row { display: grid; grid-template-columns: 130px 1fr; gap: 0 20px; padding: 20px 12px; background: #1e2d3e; color: #c9d8e8; margin-top: 20px; border-radius: 0; text-decoration: none; }
+.race-row .race-date { font-size: 13px; letter-spacing: 0.05em; font-weight: 400; padding-top: 2px; color: #7a9db8; }
+.race-row .race-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; letter-spacing: 0.08em; color: #dde8f0; }
+.race-row .race-note { font-size: 10px; color: #5e8298; margin-top: 3px; letter-spacing: 0.05em; }
+
+/* PACE CARD */
+.pace-card { background: white; border: 1px solid var(--line); padding: 24px 28px; margin-bottom: 8px; }
+.pace-card + .pace-card { border-top: none; }
+.pace-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); margin-bottom: 10px; }
+.pace-value { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; letter-spacing: 0.04em; color: var(--ink); line-height: 1; }
+.pace-note { font-size: 12px; color: var(--ink-l); margin-top: 6px; line-height: 1.55; }
+.pace-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; }
+.pace-grid .pace-card { border-right: none; }
+.pace-grid .pace-card:last-child { border-right: 1px solid var(--line); }
+
+/* STRATEGY BLOCK */
+.strategy-block { margin-top: 8px; }
+.strategy-row { display: grid; grid-template-columns: 110px 1fr; gap: 0 20px; padding: 16px 0; border-bottom: 1px solid var(--line-l); align-items: start; }
+.strategy-row:first-of-type { border-top: 1px solid var(--line-l); }
+.strategy-miles { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; color: var(--ink-l); padding-top: 2px; }
+.strategy-pace { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--ink); line-height: 1.2; }
+.strategy-cue { font-size: 12px; color: var(--ink-l); margin-top: 4px; font-style: italic; font-family: 'Cormorant Garamond', serif; }
+
+/* DOCTRINE BLOCK */
+.doctrine { margin-top: 8px; }
+.doctrine-item { padding: 16px 0; border-bottom: 1px solid var(--line-l); display: flex; gap: 16px; align-items: start; }
+.doctrine-item:first-of-type { border-top: 1px solid var(--line-l); }
+.doctrine-dash { color: var(--line); flex-shrink: 0; font-size: 14px; padding-top: 1px; }
+.doctrine-text { font-size: 13px; color: var(--ink); line-height: 1.65; }
+.doctrine-text strong { font-weight: 500; }
+
+/* SESSION DRAWER */
+.drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(42,38,32,0.45); z-index: 200; }
+.drawer-overlay.open { display: block; }
+.drawer { position: fixed; bottom: 0; left: 0; right: 0; background: var(--cream); z-index: 201; transform: translateY(100%); transition: transform 0.32s cubic-bezier(.4,0,.2,1); max-height: 85vh; overflow-y: auto; border-top-left-radius: 4px; border-top-right-radius: 4px; }
+.drawer.open { transform: translateY(0); }
+.drawer-handle { width: 36px; height: 3px; background: var(--line); border-radius: 2px; margin: 14px auto 0; }
+.drawer-inner { padding: 20px 32px 48px; max-width: 420px; margin: 0 auto; }
+.drawer-date { font-size: 9px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); margin-bottom: 6px; }
+.drawer-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; letter-spacing: 0.04em; color: var(--ink); margin-bottom: 4px; line-height: 1.2; }
+.drawer-sub { font-size: 12px; color: var(--ink-l); margin-bottom: 24px; letter-spacing: 0.03em; }
+.drawer-rule { height: 1px; background: var(--line-l); margin: 20px 0; }
+.drawer-section-lbl { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); margin-bottom: 12px; display: block; }
+.drawer-structure { font-size: 12px; color: var(--ink-l); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+.drawer-body { font-size: 13.5px; line-height: 1.85; color: var(--ink); }
+.drawer-body p { margin-bottom: 12px; }
+.drawer-body p:last-child { margin-bottom: 0; }
+.drawer-body strong { font-weight: 500; }
+.drawer-body em { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--ink); display: block; margin: 16px 0; }
+.drawer-cues { margin-top: 16px; }
+.drawer-cue { font-size: 13px; color: var(--ink); line-height: 1.65; padding: 8px 0; border-top: 1px solid var(--line-l); display: flex; gap: 10px; }
+.drawer-cue::before { content: '—'; color: var(--line); flex-shrink: 0; }
+.drawer-close { margin-top: 28px; width: 100%; background: none; border: 1px solid var(--line); color: var(--ink-f); font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; padding: 12px; cursor: pointer; transition: all 0.15s; border-radius: 2px; }
+.drawer-close:hover { border-color: var(--ink); color: var(--ink); }
+
+/* LOADING BAR */
+.loading-bar { position: fixed; top: 0; left: 0; height: 2px; width: 0; background: var(--line); transition: width 0.3s; z-index: 500; }
+
+/* TOAST */
+.toast { position: fixed; bottom: 40px; right: 24px; background: var(--ink); color: var(--cream); padding: 10px 16px; font-size: 11px; letter-spacing: 0.1em; border-radius: 2px; opacity: 0; transform: translateY(8px); transition: all 0.3s; z-index: 400; pointer-events: none; }
+.toast.show { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 500px) {
+  .workout { grid-template-columns: 105px 1fr; }
+  .header-title { font-size: 34px; }
+  .section { padding: 0 20px; }
+  .nav { padding: 28px 20px 0; }
+  .header { padding: 20px 20px 28px; }
+  .drawer-inner { padding: 16px 24px 40px; }
+  .pace-grid { grid-template-columns: 1fr; }
+  .pace-grid .pace-card { border-right: 1px solid var(--line) !important; border-top: none; }
+  .strategy-row { grid-template-columns: 90px 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="loading-bar" id="loading-bar"></div>
+
+<div class="nav">
+  <a class="nav-home" href="/">FORM</a>
+  <span class="nav-lbl">Taper</span>
+</div>
+
+<div class="header">
+  <div class="header-title">Key Biscayne</div>
+  <div class="header-race">Half Marathon · April 12, 2026</div>
+  <div style="margin-top:10px;font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--ink-f);">14-Day Taper &amp; Race Plan</div>
+  <div style="margin-top:16px;"><a href="#pace" style="font-size:9px;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:var(--ink-f);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px;">↓ Pace &amp; Strategy</a></div>
+</div>
+
+
+<!-- WEEK 1 -->
+<div class="section" style="margin-top:56px;">
+  <div class="section-title">Week One &nbsp;·&nbsp; Mar 29 – Apr 4</div>
+  <div class="phase-subtitle">Sharpen</div>
+
+  <div class="workout" data-type="rest" data-date="Sun Mar 29" data-desc="Full rest" data-sub="" onclick="openDrawer(this)">
+    <div class="workout-date">Sun Mar 29</div>
+    <div><div class="workout-desc">Full rest</div><div class="workout-sub">Long run recovery. Nothing.</div></div>
+  </div>
+
+  <div class="workout" data-type="easy" data-date="Mon Mar 30" data-desc="30–40 min easy + strides" data-sub="4–6 × 20 sec strides, walk-back recovery" onclick="openDrawer(this)">
+    <div class="workout-date">Mon Mar 30</div>
+    <div><div class="workout-desc">30–40 min easy + strides</div><div class="workout-sub">4–6 × 20 sec strides · walk-back recovery</div></div>
+  </div>
+
+  <div class="workout" data-type="speed" data-date="Tue Mar 31" data-desc="6 × 400m — the sharpener" data-sub="15 min warm-up · 5K feel · 2 min jog recovery · 10 min cool-down" onclick="openDrawer(this)">
+    <div class="workout-date">Tue Mar 31</div>
+    <div><div class="workout-desc">6 × 400m — the sharpener</div><div class="workout-sub">15 min warm-up &nbsp;·&nbsp; ~5:30–5:45 pace &nbsp;·&nbsp; 2 min jog recovery</div></div>
+  </div>
+
+  <div class="workout" data-type="easy" data-date="Wed Apr 1" data-desc="30–40 min truly easy" data-sub="Signal day. No watch pressure." onclick="openDrawer(this)">
+    <div class="workout-date">Wed Apr 1</div>
+    <div><div class="workout-desc">30–40 min truly easy</div><div class="workout-sub">Signal day. No watch pressure.</div></div>
+  </div>
+
+  <div class="workout" data-type="tune" data-date="Thu Apr 2" data-desc="2 × 2 miles @ race pace" data-sub="3 min jog between · then 4 × 20 sec strides · last hard effort" onclick="openDrawer(this)">
+    <div class="workout-date">Thu Apr 2</div>
+    <div><div class="workout-desc">2 × 2 miles @ race pace</div><div class="workout-sub">3 min jog between &nbsp;·&nbsp; then 4 × 20 sec strides &nbsp;·&nbsp; <em style="font-style:italic;font-size:11px;color:var(--ink-f);font-family:inherit;">last hard effort</em></div></div>
+  </div>
+
+  <div class="workout" data-type="rest" data-date="Fri Apr 3" data-desc="Rest" data-sub="" onclick="openDrawer(this)">
+    <div class="workout-date">Fri Apr 3</div>
+    <div><div class="workout-desc">Rest</div><div class="workout-sub">Off. Eat well, sleep early.</div></div>
+  </div>
+
+  <div class="workout" data-type="easy" data-date="Sat Apr 4" data-desc="30 min easy + 4–6 strides" data-sub="Short long run substitute. Light and comfortable." onclick="openDrawer(this)">
+    <div class="workout-date">Sat Apr 4</div>
+    <div><div class="workout-desc">30 min easy + 4–6 strides</div><div class="workout-sub">Short long run substitute. Light and comfortable.</div></div>
+  </div>
+</div>
+
+
+<!-- WEEK 2 -->
+<div class="section">
+  <div class="section-title">Week Two &nbsp;·&nbsp; Apr 5 – 12</div>
+  <div class="phase-subtitle">Non-interference</div>
+
+  <div class="workout" data-type="rest" data-date="Sun Apr 5" data-desc="Rest" data-sub="" onclick="openDrawer(this)">
+    <div class="workout-date">Sun Apr 5</div>
+    <div><div class="workout-desc">Rest or 20 min walk</div><div class="workout-sub">Restlessness is the fitness consolidating.</div></div>
+  </div>
+
+  <div class="workout" data-type="easy" data-date="Mon Apr 6" data-desc="20–25 min easy" data-sub="Short and easy. Just moving." onclick="openDrawer(this)">
+    <div class="workout-date">Mon Apr 6</div>
+    <div><div class="workout-desc">20–25 min easy</div><div class="workout-sub">Just moving.</div></div>
+  </div>
+
+  <div class="workout" data-type="race-prep" data-date="Tue Apr 7" data-desc="3 × 1 mile @ goal pace + strides" data-sub="10 min warm-up · ~6:00 pace · 90 sec jog recovery · 4 × 15 sec strides" onclick="openDrawer(this)">
+    <div class="workout-date">Tue Apr 7</div>
+    <div><div class="workout-desc">3 × 1 mile @ goal pace + strides</div><div class="workout-sub">10 min warm-up &nbsp;·&nbsp; ~6:00 pace &nbsp;·&nbsp; 90 sec jog recovery</div></div>
+  </div>
+
+  <div class="workout" data-type="rest" data-date="Wed Apr 8" data-desc="Rest" data-sub="" onclick="openDrawer(this)">
+    <div class="workout-date">Wed Apr 8</div>
+    <div><div class="workout-desc">Rest</div><div class="workout-sub">Legs are loading. Flat or heavy is fine.</div></div>
+  </div>
+
+  <div class="workout" data-type="easy" data-date="Thu Apr 9" data-desc="20 min easy + 4 strides" data-sub="Keep the engine warm. If strides feel effortless — good." onclick="openDrawer(this)">
+    <div class="workout-date">Thu Apr 9</div>
+    <div><div class="workout-desc">20 min easy + 4 strides</div><div class="workout-sub">Keep the engine warm.</div></div>
+  </div>
+
+  <div class="workout" data-type="rest" data-date="Fri Apr 10" data-desc="Complete rest" data-sub="" onclick="openDrawer(this)">
+    <div class="workout-date">Fri Apr 10</div>
+    <div><div class="workout-desc">Complete rest</div><div class="workout-sub">Prep gear. Confirm logistics. Early dinner, earlier bed.</div></div>
+  </div>
+
+  <div class="workout" data-type="easy" data-date="Sat Apr 11" data-desc="10–15 min shakeout + 4 strides" data-sub="Just loosen up. Prove to your legs tomorrow is real." onclick="openDrawer(this)">
+    <div class="workout-date">Sat Apr 11</div>
+    <div><div class="workout-desc">10–15 min shakeout + 4 strides</div><div class="workout-sub">Just loosen up. Don't do more than this.</div></div>
+  </div>
+
+  <a class="race-row" href="/competition">
+    <div class="race-date">Sun Apr 12</div>
+    <div>
+      <div class="race-name">Key Biscayne Half Marathon</div>
+      <div class="race-note">Express what you've built</div>
+    </div>
+  </a>
+</div>
+
+
+<!-- PACE TARGETS -->
+<div class="section" id="pace">
+  <div class="section-title">Pace Targets</div>
+  <div class="phase-subtitle">Threshold base: ~6:06</div>
+
+  <div class="pace-grid">
+    <div class="pace-card">
+      <div class="pace-label">Sub-1:19 floor</div>
+      <div class="pace-value">6:01</div>
+      <div class="pace-note">avg per mile</div>
+    </div>
+    <div class="pace-card">
+      <div class="pace-label">Goal / cruise</div>
+      <div class="pace-value">5:58</div>
+      <div class="pace-note">miles 4–10</div>
+    </div>
+    <div class="pace-card">
+      <div class="pace-label">Sharpener reps</div>
+      <div class="pace-value">5:35</div>
+      <div class="pace-note">Tue 400s</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- RACE STRATEGY -->
+<div class="section">
+  <div class="section-title">Race Strategy</div>
+  <div class="phase-subtitle">Let it show up</div>
+
+  <div class="strategy-block">
+    <div class="strategy-row">
+      <div class="strategy-miles">Miles 1–3</div>
+      <div>
+        <div class="strategy-pace">6:05 – 6:08</div>
+        <div class="strategy-cue">Should feel slightly held back. If it feels perfect, you're going too fast.</div>
+      </div>
+    </div>
+    <div class="strategy-row">
+      <div class="strategy-miles">Miles 4–10</div>
+      <div>
+        <div class="strategy-pace">6:00 – 6:02</div>
+        <div class="strategy-cue">Training pace showing up. Inhabit the effort — don't command the pace.</div>
+      </div>
+    </div>
+    <div class="strategy-row">
+      <div class="strategy-miles">Miles 11–13.1</div>
+      <div>
+        <div class="strategy-pace">Release</div>
+        <div class="strategy-cue">Not a push — a release of what you didn't use. You'll start moving faster without trying.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- DOCTRINE -->
+<div class="section">
+  <div class="section-title">What Not To Do</div>
+
+  <div class="doctrine">
+    <div class="doctrine-item">
+      <div class="doctrine-dash">—</div>
+      <div class="doctrine-text"><strong>Don't turn Tuesday into a performance.</strong> The 400s are about removing resistance to speed, not proving you have it. Run them quick and loose, not fast and hard.</div>
+    </div>
+    <div class="doctrine-item">
+      <div class="doctrine-dash">—</div>
+      <div class="doctrine-text"><strong>Don't force Thursday into a test.</strong> The 2 × 2 miles should feel almost easy. If it feels like you're proving something, you missed. The goal is calibration, not confirmation.</div>
+    </div>
+    <div class="doctrine-item">
+      <div class="doctrine-dash">—</div>
+      <div class="doctrine-text"><strong>Don't add anything because you "don't feel ready."</strong> Apr 6–9 you may feel heavy, flat, disconnected. This is not fatigue — this is organization happening without stimulation. Do nothing.</div>
+    </div>
+    <div class="doctrine-item">
+      <div class="doctrine-dash">—</div>
+      <div class="doctrine-text"><strong>Don't go out at 5:52 because you feel great.</strong> Key Biscayne is flat. The energy at the start will lie. First 3 miles held back, every time.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- SESSION DRAWER -->
+<div class="drawer-overlay" id="drawer-overlay"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-handle"></div>
+  <div class="drawer-inner">
+    <div class="drawer-date" id="d-date"></div>
+    <div class="drawer-title" id="d-title"></div>
+    <div class="drawer-sub" id="d-sub"></div>
+    <div class="drawer-rule"></div>
+    <span class="drawer-section-lbl" id="d-struct-lbl">Session structure</span>
+    <div class="drawer-structure" id="d-structure"></div>
+    <span class="drawer-section-lbl" style="margin-top:16px;" id="d-body-lbl">What this session is for</span>
+    <div class="drawer-body" id="d-body"></div>
+    <div class="drawer-cues" id="d-cues"></div>
+    <button class="drawer-close" onclick="closeDrawer()">Close</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const CONTENT = {
+  speed: {
+    structure: '15 min warm-up · 6 × 400m · 10 min cool-down',
+    body: `<p>This is the neuromuscular shock. After 6 weeks of threshold, your body knows how to sustain — now it needs to remember how to move fast.</p><p>Run reps 1–2 as a wake-up. Reps 3–4 find rhythm. Reps 5–6 may naturally quicken — let them, don't chase.</p><em>You are not introducing speed. You are removing resistance to it.</em>`,
+    cues: ['Quick and loose, not fast and hard', 'Full 2 min jog between — don\'t shortchange recovery', 'Focus on fluidity, not splits', 'If the first rep feels stiff, that\'s normal. Don\'t adjust.']
+  },
+  tune: {
+    structure: '10 min warm-up · 2 × 2 miles · 4 × 20 sec strides',
+    body: `<p>This is your last meaningful effort and your fitness confirmation. Not because of the stimulus — because of calibration.</p><p>First rep should feel almost too easy. Second rep settled, not forced. If you feel like you\'re proving something, you\'ve missed the point.</p><em>The goal is: "This is what race day will feel like when I\'m not interfering."</em>`,
+    cues: ['~6:00 pace, 3 min jog between reps', 'Finish with 4 × 20 sec strides — relaxed, not aggressive', 'Everything from here is arrival, not fitness']
+  },
+  easy: {
+    structure: 'Easy throughout · No pace targets',
+    body: `<p>This is not training — it\'s reminding the system it still moves. Conversational effort the whole way.</p><p>If strides are listed: elastic, not aggressive. Flat feels → good. Snappy feels → good. Don\'t chase either.</p>`,
+    cues: ['No watch pressure', 'If it feels too easy, good', 'Protect Thursday and race day by doing nothing extra here']
+  },
+  'race-prep': {
+    structure: '10 min warm-up · 3 × 1 mile · 4 × 15 sec strides',
+    body: `<p>This should feel almost effortless at ~6:00 pace. That\'s the point. Your fitness is already there — this session just confirms the signal is still on.</p><p>If it feels hard: you\'re tired, not undertrained. Trust the taper.</p><em>If it feels easy — you\'re ready.</em>`,
+    cues: ['~6:00 pace, 90 sec jog recovery between', '4 × 15 sec strides after — quick, not hard', 'This is your last quality stimulus before race day']
+  },
+  rest: {
+    structure: 'Off',
+    body: `<p>Nothing to prove here. Rest is the training now. Your body is storing glycogen, repairing muscle, and organizing what the last 6 weeks built.</p><p>The restlessness you feel is normal — it\'s the fitness looking for an outlet. Don\'t give it one.</p>`,
+    cues: ['Walk is fine if you need to move', 'Sleep, eat well, stay off your feet', 'Anxiety miles will only cost you on race day']
+  }
+};
+
+function openDrawer(el) {
+  const type = el.dataset.type || 'easy';
+  const date = el.dataset.date;
+  const desc = el.dataset.desc;
+  const sub  = el.dataset.sub;
+  const c    = CONTENT[type] || CONTENT.easy;
+
+  document.getElementById('d-date').textContent      = date;
+  document.getElementById('d-title').textContent     = desc;
+  document.getElementById('d-sub').textContent       = sub || '';
+  document.getElementById('d-structure').textContent = c.structure;
+  document.getElementById('d-body').innerHTML        = c.body;
+
+  const cuesEl = document.getElementById('d-cues');
+  cuesEl.innerHTML = '';
+  if (c.cues) {
+    c.cues.forEach(cue => {
+      const d = document.createElement('div');
+      d.className = 'drawer-cue';
+      d.textContent = cue;
+      cuesEl.appendChild(d);
+    });
+  }
+
+  document.getElementById('drawer-overlay').classList.add('open');
+  document.getElementById('drawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDrawer() {
+  document.getElementById('drawer-overlay').classList.remove('open');
+  document.getElementById('drawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('drawer-overlay').addEventListener('click', closeDrawer);
+
+// Swipe to close
+(function(){
+  const drawer = document.getElementById('drawer');
+  let startY = 0, currentY = 0, dragging = false;
+  drawer.addEventListener('touchstart', e => { startY = e.touches[0].clientY; dragging = true; }, { passive: true });
+  drawer.addEventListener('touchmove', e => {
+    if (!dragging) return;
+    currentY = e.touches[0].clientY;
+    const diff = currentY - startY;
+    if (diff > 0) drawer.style.transform = `translateY(${diff}px)`;
+  }, { passive: true });
+  drawer.addEventListener('touchend', () => {
+    if (!dragging) return;
+    dragging = false;
+    const diff = currentY - startY;
+    drawer.style.transform = '';
+    if (diff > 80) closeDrawer();
+  });
+})();
+</script>
+</body>
+</html>
