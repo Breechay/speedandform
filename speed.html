@@ -199,10 +199,8 @@ body.paces-hidden .interval-paces { display: none; }
 
   <!-- Page header: hidden when focused on a single session -->
   <div id="pageHeader">
-    <span class="page-breadcrumb">Archive · Speed Phase</span>
+    <span class="page-breadcrumb">Speed & Form</span>
   <h1 class="page-title">Speed Sessions</h1>
-    <span class="page-sub">Track sessions from the Speed phase.</span>
-  <p class="page-def">Track sessions from an earlier Speed &amp; Form phase.</p>
     <span class="page-note">Rep times are the target. Pace conversions are for watch setup only.</span>
 
     <div class="session-index">
@@ -213,6 +211,7 @@ body.paces-hidden .interval-paces { display: none; }
         <li class="session-index-item"><a class="session-index-link" href="#session-03"><span class="session-index-num">03</span><span class="session-index-name">Gauntlet</span></a></li>
         <li class="session-index-item"><a class="session-index-link" href="#session-04"><span class="session-index-num">04</span><span class="session-index-name">Speed Demons</span></a></li>
         <li class="session-index-item"><a class="session-index-link" href="#session-05"><span class="session-index-num">05</span><span class="session-index-name">Death</span></a></li>
+        <li class="session-index-item"><a class="session-index-link" href="#session-06"><span class="session-index-num">06</span><span class="session-index-name">Resurrection</span></a></li>
       </ul>
     </div>
   </div>
@@ -229,7 +228,6 @@ body.paces-hidden .interval-paces { display: none; }
       <button class="workout-share" onclick="shareSession('session-01', 'Nice and Easy', this)">Share</button>
     </div>
     <div class="workout-title">Nice and Easy</div>
-    <span class="workout-desc">Short speed plus controlled 800s.</span>
     <ul class="interval-list">
       <li class="interval-item">
         <div class="interval-row"><span class="interval-distance">3 × 200m</span><span class="interval-time">29–32 sec</span></div>
@@ -246,7 +244,6 @@ body.paces-hidden .interval-paces { display: none; }
         <span class="interval-paces">≈ 4:33–4:41 /mi · 2:50–2:55 /km</span>
       </li>
     </ul>
-    <span class="workout-tag">Fast, but still composed.</span>
   </div>
 
   <div class="session-block" data-session="session-02" data-name="Pyramid Intervals">
@@ -256,7 +253,6 @@ body.paces-hidden .interval-paces { display: none; }
       <button class="workout-share" onclick="shareSession('session-02', 'Pyramid Intervals', this)">Share</button>
     </div>
     <div class="workout-title">Pyramid Intervals</div>
-    <span class="workout-desc">Laddered rhythm with controlled recovery.</span>
     <ul class="interval-list">
       <li class="interval-item">
         <div class="interval-row"><span class="interval-distance">2 × 300m</span><span class="interval-time">50–52 sec</span></div>
@@ -284,7 +280,6 @@ body.paces-hidden .interval-paces { display: none; }
         <span class="interval-paces">≈ 4:28–4:38 /mi · 2:46–2:53 /km</span>
       </li>
     </ul>
-    <span class="workout-tag">Build and return.</span>
   </div>
 
   <div class="session-block" data-session="session-03" data-name="Gauntlet">
@@ -294,7 +289,6 @@ body.paces-hidden .interval-paces { display: none; }
       <button class="workout-share" onclick="shareSession('session-03', 'Gauntlet', this)">Share</button>
     </div>
     <div class="workout-title">Gauntlet</div>
-    <span class="workout-desc">Descending speed with accumulating precision.</span>
     <ul class="interval-list">
       <li class="interval-item">
         <div class="interval-row"><span class="interval-distance">3 × 600m</span><span class="interval-time">1:48–1:52</span></div>
@@ -322,7 +316,6 @@ body.paces-hidden .interval-paces { display: none; }
         <span class="interval-paces">≈ 3:34–3:56 /mi · 2:13–2:26 /km</span>
       </li>
     </ul>
-    <span class="workout-tag">Hold form as the reps shorten.</span>
   </div>
 
   <div class="session-block" data-session="session-04" data-name="Speed Demons">
@@ -332,7 +325,6 @@ body.paces-hidden .interval-paces { display: none; }
       <button class="workout-share" onclick="shareSession('session-04', 'Speed Demons', this)">Share</button>
     </div>
     <div class="workout-title">Speed Demons</div>
-    <span class="workout-desc">Short fast work with frequent reset.</span>
     <ul class="interval-list">
       <li class="interval-item">
         <div class="interval-row"><span class="interval-distance">4 × 300m</span><span class="interval-time">50–52 sec</span></div>
@@ -350,7 +342,6 @@ body.paces-hidden .interval-paces { display: none; }
         <span class="interval-paces">≈ 4:01–4:33 /mi · 2:30–2:50 /km</span>
       </li>
     </ul>
-    <span class="workout-tag">Pure turnover, low volume.</span>
   </div>
 
   <div class="session-block" data-session="session-05" data-name="Death">
@@ -360,7 +351,6 @@ body.paces-hidden .interval-paces { display: none; }
       <button class="workout-share" onclick="shareSession('session-05', 'Death', this)">Share</button>
     </div>
     <div class="workout-title">Death</div>
-    <span class="workout-desc">A dense mixed-distance session from an earlier phase.</span>
     <ul class="interval-list">
       <li class="interval-item">
         <div class="interval-row"><span class="interval-distance">2 × 600m</span><span class="interval-time">1:48–1:52</span></div>
@@ -392,7 +382,37 @@ body.paces-hidden .interval-paces { display: none; }
         <span class="interval-paces">≈ 4:33–4:49 /mi · 2:50–3:00 /km</span>
       </li>
     </ul>
-    <span class="workout-tag">Dense work from a different phase.</span>
+  </div>
+
+  <div class="session-block" data-session="session-06" data-name="Resurrection">
+    <span class="section-rule" id="session-06" style="margin-top: 52px;"></span>
+    <div class="workout-header">
+      <span class="workout-label">Session 06</span>
+      <button class="workout-share" onclick="shareSession('session-06', 'Resurrection', this)">Share</button>
+    </div>
+    <div class="workout-title">Resurrection</div>
+    <ul class="interval-list">
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">3 × 600m</span><span class="interval-time">1:48–1:52</span></div>
+        <span class="interval-recovery">2:30 recovery</span>
+        <span class="interval-paces">≈ 4:49–5:00 /mi · 3:00–3:06 /km</span>
+      </li>
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">4 × 400m</span><span class="interval-time">1:08–1:12</span></div>
+        <span class="interval-recovery">1:30 recovery</span>
+        <span class="interval-paces">≈ 4:33–4:49 /mi · 2:50–3:00 /km</span>
+      </li>
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">4 × 300m</span><span class="interval-time">48–52 sec</span></div>
+        <span class="interval-recovery">1 min recovery</span>
+        <span class="interval-paces">≈ 4:17–4:38 /mi · 2:40–2:53 /km</span>
+      </li>
+      <li class="interval-item">
+        <div class="interval-row"><span class="interval-distance">4 × 200m</span><span class="interval-time">29–32 sec</span></div>
+        <span class="interval-recovery">45 sec recovery</span>
+        <span class="interval-paces">≈ 3:53–4:17 /mi · 2:25–2:40 /km</span>
+      </li>
+    </ul>
   </div>
 
   <span class="closing-rule"></span>
@@ -502,7 +522,7 @@ function togglePaces() {
 // ── HASH ROUTING ──
 function handleHash() {
   const hash = window.location.hash.replace('#', '');
-  const validSessions = ['session-01','session-02','session-03','session-04','session-05'];
+  const validSessions = ['session-01','session-02','session-03','session-04','session-05','session-06'];
   if (hash && validSessions.includes(hash)) {
     applyFocus(hash);
   } else {
