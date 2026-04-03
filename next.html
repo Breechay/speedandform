@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202604031200">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Next Cycle — FORM</title>
+<meta name="description" content="Speed Emergence is complete. The next cycle is ready.">
+<link rel="canonical" href="https://speedandform.com/next">
+<meta property="og:title" content="Next Cycle — FORM">
+<meta property="og:description" content="Speed Emergence is complete. The next cycle is ready.">
+<meta property="og:url" content="https://speedandform.com/next">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://speedandform.com/og/default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Next Cycle — FORM">
+<meta name="twitter:description" content="Speed Emergence is complete. The next cycle is ready.">
+<meta name="twitter:image" content="https://speedandform.com/og/default.jpg">
+<meta property="og:site_name" content="FORM">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #f5f2ec; --ink: #2a2620; --ink-l: #6b6459; --ink-f: #a09890;
+  --line: #d8d2c8; --line-l: #e8e3dc;
+}
+html, body { height: 100%; }
+body {
+  background: var(--cream); color: var(--ink);
+  font-family: 'Jost', sans-serif; font-weight: 300;
+  font-kerning: normal; font-feature-settings: "kern";
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  min-height: 100vh;
+  padding: 60px 32px;
+}
+
+.frame {
+  width: 100%; max-width: 400px;
+}
+
+/* Eyebrow */
+.eyebrow {
+  font-size: 8px; font-weight: 500;
+  letter-spacing: 0.38em; text-transform: uppercase;
+  color: var(--ink-f);
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* Subline */
+.subline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-weight: 300;
+  font-size: 16px; letter-spacing: 0.03em;
+  color: var(--ink-f);
+  display: block;
+  margin-bottom: 48px;
+}
+
+/* Rule */
+.rule {
+  width: 100%; height: 1px;
+  background: var(--line-l);
+  display: block;
+  margin-bottom: 40px;
+}
+
+/* Body text block */
+.body {
+  font-size: 13px;
+  color: var(--ink-l);
+  letter-spacing: 0.02em;
+  line-height: 2;
+  margin-bottom: 40px;
+}
+.body p + p { margin-top: 0; }
+
+/* Pause — the hinge */
+.pause {
+  display: block;
+  width: 100%; height: 1px;
+  background: var(--line-l);
+  margin: 32px 0;
+}
+
+/* Transition lines */
+.transition {
+  font-size: 13px;
+  color: var(--ink-l);
+  letter-spacing: 0.02em;
+  line-height: 2;
+  margin-bottom: 40px;
+}
+
+/* Offer */
+.offer-label {
+  font-size: 8px; font-weight: 500;
+  letter-spacing: 0.38em; text-transform: uppercase;
+  color: var(--ink-f);
+  display: block;
+  margin-bottom: 16px;
+}
+
+.offer-word {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: 32px;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 20px;
+}
+
+/* CTA button */
+.cta {
+  display: inline-block;
+  font-size: 9px; font-weight: 500;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--cream);
+  background: var(--ink);
+  text-decoration: none;
+  padding: 14px 24px;
+  margin-bottom: 40px;
+  transition: opacity 0.2s ease;
+}
+.cta:hover { opacity: 0.78; }
+
+/* Footer */
+.footer {
+  border-top: 1px solid var(--line-l);
+  padding-top: 24px;
+}
+.footer-text {
+  font-size: 11px;
+  color: var(--ink-f);
+  letter-spacing: 0.04em;
+  line-height: 1.8;
+}
+
+@media (max-width: 480px) {
+  body { padding: 48px 24px; justify-content: flex-start; padding-top: 80px; }
+}
+</style>
+</head>
+<body>
+
+<div class="frame">
+
+  <span class="eyebrow">Speed Emergence · Complete</span>
+  <span class="subline">Six weeks finished.</span>
+
+  <span class="rule"></span>
+
+  <div class="body">
+    <p>You've run the sessions.</p>
+    <p>You understand the structure.</p>
+    <p>&nbsp;</p>
+    <p>Nothing changes.</p>
+    <p>The work continues.</p>
+  </div>
+
+  <span class="pause"></span>
+
+  <div class="transition">
+    <p>Next cycle opens.</p>
+    <p>&nbsp;</p>
+    <p>Same structure.</p>
+    <p>Higher demand.</p>
+  </div>
+
+  <span class="offer-label">Next Cycle</span>
+  <span class="offer-word">Continue.</span>
+
+  <!-- Payment href: replace with Stripe link or Apple IAP destination when ready -->
+  <a class="cta" href="#checkout">Start Next Cycle — $20</a>
+
+  <div class="footer">
+    <p class="footer-text">No rush.<br>Join when you're ready.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
