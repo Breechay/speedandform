@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202604031200">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Race Strategy | FORM</title>
+<meta name="description" content="Race pace is not chosen — it is revealed. A structured framework for executing your race: pace bands, watch protocol, fueling, and the three days before.">
+<link rel="canonical" href="https://speedandform.com/race-strategy">
+<meta property="og:title" content="Race Strategy | FORM">
+<meta property="og:description" content="Race pace is not chosen — it is revealed. Pace bands, watch protocol, fueling, and the three days before.">
+<meta property="og:url" content="https://speedandform.com/race-strategy">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://speedandform.com/og/default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="FORM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Race Strategy | FORM">
+<meta name="twitter:description" content="Race pace is not chosen — it is revealed. Pace bands, watch protocol, fueling, and the three days before.">
+<meta name="twitter:image" content="https://speedandform.com/og/default.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #f5f2ec;
+  --ink: #2a2620;
+  --ink-l: #6b6459;
+  --ink-f: #a09890;
+  --accent: #c4593a;
+  --line: #d8d2c8;
+  --line-l: #e8e3dc;
+}
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  padding: 0 0 100px;
+}
+.nav {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 36px 32px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-home {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 22px;
+  letter-spacing: 0.12em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.nav-label {
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-f);
+}
+.content {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 64px 32px 0;
+  border-left: 1px solid var(--line-l);
+}
+.page-eyebrow {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 12px;
+}
+.page-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 52px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.page-sub {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--ink-f);
+  display: block;
+  margin-bottom: 52px;
+}
+.section-label {
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--ink-f);
+  display: block;
+  margin-bottom: 20px;
+}
+.rule { width: 100%; height: 1px; background: var(--line-l); margin: 48px 0; }
+
+/* ── Three-day countdown ── */
+.day-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: 1px solid var(--line-l);
+  margin-bottom: 32px;
+}
+.day-tab {
+  padding: 16px 12px;
+  border-right: 1px solid var(--line-l);
+  cursor: pointer;
+  transition: background 0.15s;
+  text-align: center;
+}
+.day-tab:last-child { border-right: none; }
+.day-tab.active { background: var(--ink); }
+.day-tab-label {
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-f);
+  display: block;
+  margin-bottom: 4px;
+  transition: color 0.15s;
+}
+.day-tab.active .day-tab-label { color: var(--ink-f); }
+.day-tab-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--ink);
+  letter-spacing: 0.04em;
+  transition: color 0.15s;
+}
+.day-tab.active .day-tab-name { color: var(--cream); }
+.day-tab.is-past .day-tab-name { color: var(--ink-f); text-decoration: line-through; text-decoration-color: var(--line); }
+.day-tab.is-today .day-tab-label { color: var(--accent); }
+
+/* Day panels */
+.day-panel { display: none; }
+.day-panel.active { display: block; }
+
+.day-summary {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--ink);
+  letter-spacing: 0.03em;
+  display: block;
+  margin-bottom: 6px;
+}
+.day-note {
+  font-size: 13px;
+  color: var(--ink-f);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+/* Checklist items */
+.checklist { margin-bottom: 0; }
+.check-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-top: 1px solid var(--line-l);
+  cursor: pointer;
+}
+.check-item:last-child { border-bottom: 1px solid var(--line-l); }
+.check-box {
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s;
+}
+.check-item.checked .check-box {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.check-tick {
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.check-item.checked .check-tick { opacity: 1; }
+.check-text {
+  font-size: 13px;
+  color: var(--ink-l);
+  line-height: 1.5;
+  transition: color 0.15s;
+}
+.check-item.checked .check-text {
+  color: var(--ink-f);
+  text-decoration: line-through;
+  text-decoration-color: var(--line);
+}
+.check-sub {
+  font-size: 11px;
+  color: var(--ink-f);
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+  display: block;
+  margin-top: 2px;
+}
+
+/* ── Race morning timeline ── */
+.morning-timeline {
+  position: relative;
+  padding-left: 28px;
+}
+.morning-timeline::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--line);
+}
+.morning-item {
+  position: relative;
+  padding: 0 0 30px 24px;
+}
+.morning-item:last-of-type { padding-bottom: 0; }
+.morning-item::before {
+  content: '';
+  position: absolute;
+  left: -23px;
+  top: 7px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--line);
+}
+.morning-item.is-key::before {
+  background: var(--accent);
+  border-color: var(--accent);
+  width: 7px;
+  height: 7px;
+  left: -24px;
+  top: 6px;
+}
+.morning-time {
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-f);
+  display: block;
+  margin-bottom: 4px;
+}
+.morning-item.is-key .morning-time { color: var(--accent); }
+.morning-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--ink);
+  display: block;
+  letter-spacing: 0.03em;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+.morning-text {
+  font-size: 12px;
+  color: var(--ink-f);
+  line-height: 1.7;
+}
+.morning-text strong { font-weight: 500; color: var(--ink-l); }
+
+/* ── Athlete splits ── */
+.athlete-card {
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--line-l);
+}
+.athlete-card:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.athlete-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 28px;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  margin-bottom: 16px;
+  display: block;
+}
+.split-table { width: 100%; border-collapse: collapse; margin-bottom: 12px; }
+.split-table thead tr { border-bottom: 1px solid var(--line); }
+.split-table th {
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-f);
+  padding: 0 0 10px;
+  text-align: left;
+}
+.split-table th:last-child { text-align: right; }
+.split-table tbody tr { border-bottom: 1px solid var(--line-l); }
+.split-table td { padding: 12px 0; font-size: 13px; color: var(--ink-l); vertical-align: top; }
+.split-table td:last-child { text-align: right; }
+.split-phase { font-size: 11px; color: var(--ink-f); display: block; margin-top: 3px; font-style: italic; font-family: 'Cormorant Garamond', serif; }
+.split-pace { font-weight: 500; color: var(--ink); font-size: 15px; }
+.split-ceiling { font-size: 10px; color: var(--ink-f); display: block; margin-top: 2px; letter-spacing: 0.06em; }
+.split-outcome { font-size: 11px; color: var(--accent); letter-spacing: 0.06em; font-weight: 500; margin-top: 10px; display: block; }
+
+/* Watch block */
+.watch-block { margin-top: 20px; padding: 20px; border: 1px solid var(--line-l); }
+.watch-heading { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 14px; }
+.watch-row { display: flex; gap: 12px; margin-bottom: 10px; align-items: baseline; }
+.watch-row:last-of-type { margin-bottom: 0; }
+.watch-signal { font-size: 9px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; min-width: 44px; flex-shrink: 0; }
+.watch-signal.look { color: var(--ink-f); }
+.watch-signal.ignore { color: var(--line); text-decoration: line-through; }
+.watch-text { font-size: 12px; color: var(--ink-l); line-height: 1.5; }
+.watch-note { font-size: 11px; font-style: italic; font-family: 'Cormorant Garamond', serif; color: var(--ink-f); margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line-l); display: block; line-height: 1.6; }
+
+/* Directive */
+.directive { border: 1px solid var(--line); padding: 28px; }
+.directive-heading { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 20px; color: var(--ink); margin-bottom: 16px; letter-spacing: 0.04em; }
+.directive-item { display: flex; gap: 16px; margin-bottom: 10px; align-items: baseline; }
+.directive-phase { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); min-width: 72px; flex-shrink: 0; }
+.directive-instruction { font-size: 13px; color: var(--ink-l); line-height: 1.5; }
+.directive-rule { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: var(--ink); margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--line-l); display: block; line-height: 1.6; }
+
+/* Fuel rows */
+.fuel-row { padding: 16px 0; border-top: 1px solid var(--line-l); display: grid; grid-template-columns: 76px 1fr; gap: 16px; align-items: baseline; }
+.fuel-row:last-of-type { border-bottom: 1px solid var(--line-l); }
+.fuel-marker { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+.fuel-title { font-size: 13px; font-weight: 400; color: var(--ink); display: block; margin-bottom: 3px; }
+.fuel-note { font-size: 12px; color: var(--ink-f); line-height: 1.65; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+
+/* Unit toggle (Simon) */
+.unit-toggle { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; padding: 4px 10px; border: 1px solid var(--line); user-select: none; }
+.unit-toggle:hover { border-color: var(--ink-l); }
+.unit-opt { font-size: 8px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); }
+.unit-opt.active { color: var(--ink); }
+.unit-divider { font-size: 8px; color: var(--line); }
+
+/* Footer */
+.footer-nav { border-top: 1px solid var(--line-l); margin-top: 64px; padding-top: 24px; display: flex; gap: 32px; flex-wrap: wrap; }
+.footer-link { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link:hover { color: var(--ink-l); }
+
+.fuel-content { flex: 1; }
+.fuel-title { font-size: 13px; font-weight: 400; color: var(--ink); display: block; margin-bottom: 3px; }
+.fuel-note { font-size: 12px; color: var(--ink-f); line-height: 1.6; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+
+.hydration-note { font-size: 13px; color: var(--ink-l); line-height: 1.7; padding: 16px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); margin-bottom: 0; }
+.hydration-note strong { font-weight: 500; color: var(--ink); }
+
+.gear-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid var(--line-l); }
+.gear-item { padding: 11px 0; border-bottom: 1px solid var(--line-l); display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--ink-l); cursor: pointer; user-select: none; }
+.gear-item:nth-child(odd) { padding-right: 16px; }
+.gear-item:nth-child(even) { padding-left: 16px; border-left: 1px solid var(--line-l); }
+.gear-check { width: 13px; height: 13px; border: 1px solid var(--line); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+.gear-check svg { display: none; }
+.gear-item.checked .gear-check { background: var(--ink); border-color: var(--ink); }
+.gear-item.checked .gear-check svg { display: block; }
+.gear-item.checked .gear-label { color: var(--ink-f); text-decoration: line-through; }
+.gear-label { line-height: 1.3; }
+
+.warning-block { border: 1px solid var(--accent); padding: 16px 20px; margin: 20px 0 0; }
+.warning-heading { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 8px; }
+.warning-text { font-size: 12px; color: var(--ink-l); line-height: 1.6; }
+.warning-text strong { font-weight: 500; color: var(--ink); }
+
+.principle { padding: 20px 0; border-top: 1px solid var(--line-l); }
+.principle:last-of-type { border-bottom: 1px solid var(--line-l); }
+.principle-label { font-size: 8px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 6px; }
+.principle-text { font-size: 14px; color: var(--ink-l); line-height: 1.7; }
+.principle-text strong { font-weight: 500; color: var(--ink); }
+
+@media (max-width: 480px) {
+  .nav { padding-left: 24px; padding-right: 24px; }
+  .content { padding-left: 24px; padding-right: 24px; border-left: none; }
+  .page-title { font-size: 40px; }
+  .directive { padding: 20px; }
+  .watch-block { padding: 16px; }
+  .day-tab-name { font-size: 15px; }
+  .gear-grid { grid-template-columns: 1fr; }
+  .gear-item:nth-child(even) { padding-left: 0; border-left: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a class="nav-home" href="/">FORM</a>
+  <span class="nav-label">Race Week</span>
+</div>
+
+<div class="content">
+
+  <span class="page-eyebrow">April 12, 2026 · Key Biscayne</span>
+  <h1 class="page-title">Race<br>Week</h1>
+  <span class="page-sub">Half Marathon · Spring Cycle 2026</span>
+
+  <!-- THREE DAY TABS -->
+  <span class="section-label">The Final Three Days</span>
+
+  <div class="day-tabs">
+    <div class="day-tab" id="tab-fri" onclick="showDay('fri')">
+      <span class="day-tab-label">Apr 10</span>
+      <span class="day-tab-name">Friday</span>
+    </div>
+    <div class="day-tab" id="tab-sat" onclick="showDay('sat')">
+      <span class="day-tab-label">Apr 11</span>
+      <span class="day-tab-name">Saturday</span>
+    </div>
+    <div class="day-tab" id="tab-sun" onclick="showDay('sun')">
+      <span class="day-tab-label">Apr 12</span>
+      <span class="day-tab-name">Sunday</span>
+    </div>
+  </div>
+
+  <!-- FRIDAY -->
+  <div class="day-panel" id="panel-fri">
+    <span class="day-summary">Complete rest. Zero running.</span>
+    <p class="day-note">The work is done. Today's only job is to not undo it. Eat well, move slowly, sleep early. Every decision today is about Sunday.</p>
+
+    <div class="checklist">
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"><svg class="check-tick" width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="check-text">Lay out full race kit tonight
+          <span class="check-sub">Bib, pins, shoes, socks, shorts, top, hat, sunscreen, watch charged</span>
+        </span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"><svg class="check-tick" width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="check-text">Count and bag your gels
+          <span class="check-sub">4 total — same brand and flavor as training. Pin or pocket placement decided now.</span>
+        </span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"><svg class="check-tick" width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="check-text">Confirm race logistics
+          <span class="check-sub">Parking, start time, corral, bag check. No surprises Sunday morning.</span>
+        </span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"><svg class="check-tick" width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="check-text">Carb dinner tonight
+          <span class="check-sub">Pasta, rice, bread. Familiar food. Nothing new. 600–800 cal of carbs. Water consistently through the evening.</span>
+        </span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"><svg class="check-tick" width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="check-text">In bed by 9pm
+          <span class="check-sub">You won't sleep well. That's normal. Horizontal rest counts. Don't fight it.</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SATURDAY -->
+  <div class="day-panel" id="panel-sat">
+    <span class="day-summary">10–15 min shakeout + 4 strides.</span>
+    <p class="day-note">This is the last time you run before Sunday. Keep it short. The purpose is blood flow — not fitness, not a test, not a preview. Four strides at race pace, full walk recovery between each. After the last one, goal pace should feel almost familiar.</p>
+
+    <div class="checklist">
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"><svg class="check-tick" width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="check-text">Shakeout run — 10–15 min easy, 4 strides
+          <span class="check-sub">Not more than this. If it feels great, stop anyway.</span>
+        </span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"><svg class="check-tick" width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="check-text">Confirm race kit is complete and ready
+          <span class="check-sub">Everything laid out. Shoes at the door. Morning should require zero decisions.</span>
+        </span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"><svg class="check-tick" width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="check-text">Light carb lunch and dinner
+          <span class="check-sub">Don't overeat — you carb-loaded last night. Just eat normally, prioritize carbs, no heavy sauces or new foods.</span>
+        </span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"><svg class="check-tick" width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="check-text">No alcohol
+          <span class="check-sub">One drink disrupts sleep and muscle glycogen. Not tonight.</span>
+        </span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"><svg class="check-tick" width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="check-text">Set two alarms. In bed by 8:30pm.
+          <span class="check-sub">You'll wake before them. That's fine.</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUNDAY -->
+  <div class="day-panel" id="panel-sun">
+    <span class="day-summary">Race day. Express what you've built.</span>
+    <p class="day-note">Everything you need is already in you. The cycle built it. Today you just don't interrupt it.</p>
+
+    <!-- Race morning timeline -->
+    <div class="morning-timeline" style="margin-bottom: 36px;">
+      <div class="morning-item">
+        <span class="morning-time">~4:30 AM</span>
+        <span class="morning-heading">Wake. Eat immediately.</span>
+        <span class="morning-text">Oats, banana, toast — something familiar. 400–600 calories. No experimenting.</span>
+      </div>
+      <div class="morning-item">
+        <span class="morning-time">~5:00 AM</span>
+        <span class="morning-heading">Coffee, water, move.</span>
+        <span class="morning-text">If coffee is your routine, keep it. Start moving. Don't sit back down.</span>
+      </div>
+      <div class="morning-item">
+        <span class="morning-time">~5:30 AM</span>
+        <span class="morning-heading">Leave. Arrive unhurried.</span>
+        <span class="morning-text">Rushing before a race is the first mistake. You want dead time at the venue — time to stand, look around, feel settled.</span>
+      </div>
+      <div class="morning-item">
+        <span class="morning-time">Pre-race</span>
+        <span class="morning-heading">10 min easy jog. 4 strides. Pre-race gel.</span>
+        <span class="morning-text">Strides at goal pace, full recovery. Gel 25–30 min before gun. Find your corral. <strong>Get away from people who are nervous</strong> — their energy is contagious.</span>
+      </div>
+      <div class="morning-item is-key">
+        <span class="morning-time">Start line</span>
+        <span class="morning-heading">Run the first three miles only.</span>
+        <span class="morning-text">Take one breath. You know exactly what those miles look like. Everything else follows from what you do right now.</span>
+      </div>
+    </div>
+
+    <!-- Three instructions -->
+    <div class="directive">
+      <div class="directive-heading">The only three instructions</div>
+      <div class="directive-item">
+        <span class="directive-phase">Miles 1–3</span>
+        <span class="directive-instruction">Almost boring. If it feels easy, you're right.</span>
+      </div>
+      <div class="directive-item">
+        <span class="directive-phase">Miles 4–10</span>
+        <span class="directive-instruction">Locked. No decisions. Stay inside the rhythm.</span>
+      </div>
+      <div class="directive-item">
+        <span class="directive-phase">Last 5K</span>
+        <span class="directive-instruction">No push. Stay with it. Let it come to you.</span>
+      </div>
+      <span class="directive-rule">Finish neutral. Not heroic. Not collapsing. Neutral.</span>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- SPLITS BY ATHLETE -->
+  <span class="section-label">By Athlete · April 12</span>
+
+  <!-- Brice -->
+  <div class="athlete-card">
+    <span class="athlete-name">Brice</span>
+    <table class="split-table">
+      <thead><tr><th>Phase</th><th>Miles</th><th>Target Pace</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Opening<span class="split-phase">This will feel too easy. Good.</span></td>
+          <td>1–3</td>
+          <td><span class="split-pace">6:15–6:18</span><span class="split-ceiling">ceiling: 6:12</span></td>
+        </tr>
+        <tr>
+          <td>Middle<span class="split-phase">No forcing. Stay inside the rhythm.</span></td>
+          <td>4–10</td>
+          <td><span class="split-pace">6:10–6:13</span><span class="split-ceiling">ceiling: 6:08</span></td>
+        </tr>
+        <tr>
+          <td>Last 5K<span class="split-phase">Don't push. Allow compression.</span></td>
+          <td>11–13.1</td>
+          <td><span class="split-pace">allow tighten</span><span class="split-ceiling">ceiling: 6:05</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <span class="split-outcome">Target: ~1:21–1:22. Earned in miles 1–4, not miles 11–13.</span>
+    <div class="watch-block">
+      <span class="watch-heading">Watch Behavior · Brice</span>
+      <div class="watch-row"><span class="watch-signal look">Look</span><span class="watch-text">Current pace miles 1–3. Below 6:12 → back off immediately. Adrenaline is lying.</span></div>
+      <div class="watch-row"><span class="watch-signal look">Look</span><span class="watch-text">Average pace at mile 7. Faster than 6:10 → you started too quick. Settle now.</span></div>
+      <div class="watch-row"><span class="watch-signal ignore">Ignore</span><span class="watch-text">Individual mile splits. One slow mile is nothing. One fast mile is a problem.</span></div>
+      <div class="watch-row"><span class="watch-signal ignore">Ignore</span><span class="watch-text">Other runners. Their race is not your race.</span></div>
+      <span class="watch-note">5:55 first rep tells you what the ceiling is — not what's sustainable for 13.1. The 6:05 second rep is the honest number. Start from there.</span>
+    </div>
+  </div>
+
+  <!-- Simon -->
+  <div class="athlete-card">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:16px;">
+      <span class="athlete-name" style="margin-bottom:0;">Simon</span>
+      <div class="unit-toggle" onclick="toggleSimonUnits()" title="Switch units">
+        <span class="unit-opt active" id="simon-mi-label">mi</span>
+        <span class="unit-divider">/</span>
+        <span class="unit-opt" id="simon-km-label">km</span>
+      </div>
+    </div>
+    <table class="split-table">
+      <thead><tr><th>Phase</th><th id="simon-dist-header">Miles</th><th id="simon-pace-header">Target Pace</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Opening<span class="split-phase">Stable, clean. Resist the crowd.</span></td>
+          <td id="simon-dist-1">1–3</td>
+          <td><span class="split-pace" id="simon-pace-1">6:20–6:25</span><span class="split-ceiling" id="simon-ceil-1">ceiling: 6:18</span></td>
+        </tr>
+        <tr>
+          <td>Middle<span class="split-phase">Let it settle. No decisions needed.</span></td>
+          <td id="simon-dist-2">4–10</td>
+          <td><span class="split-pace" id="simon-pace-2">6:15–6:18</span><span class="split-ceiling" id="simon-ceil-2">ceiling: 6:10</span></td>
+        </tr>
+        <tr>
+          <td>Last 5K<span class="split-phase">Clean execution yields compression.</span></td>
+          <td id="simon-dist-3">11–13.1</td>
+          <td><span class="split-pace" id="simon-pace-3">6:10–6:12</span><span class="split-ceiling" id="simon-ceil-3">ceiling: 6:05</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <span class="split-outcome">Target: ~1:23–1:24. Your trend has been improving all cycle — trust it.</span>
+    <div class="watch-block">
+      <span class="watch-heading">Watch Behavior · Simon</span>
+      <div class="watch-row"><span class="watch-signal look">Look</span><span class="watch-text" id="simon-watch-1">Current pace miles 1–3. Below 6:18 → ease back. The group goes out fast. Let them.</span></div>
+      <div class="watch-row"><span class="watch-signal look">Look</span><span class="watch-text" id="simon-watch-2">Average pace at mile 6. Should be 6:20–6:22. Faster → you've borrowed from the back half.</span></div>
+      <div class="watch-row"><span class="watch-signal ignore">Ignore</span><span class="watch-text">Effort feel miles 4–8. It will feel moderate. Don't interpret "feels okay" as permission to push.</span></div>
+      <div class="watch-row"><span class="watch-signal ignore">Ignore</span><span class="watch-text">The gap to whoever is ahead. You're racing your own system.</span></div>
+      <span class="watch-note">Threshold trend improving all cycle. The system is there. Trust the data, not the feeling at mile 2.</span>
+    </div>
+  </div>
+
+  <!-- Hope -->
+  <div class="athlete-card">
+    <span class="athlete-name">Hope <span style="font-size:18px;color:var(--ink-f);font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;">paced by Jose</span></span>
+    <span style="display:block;font-size:9px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">Mission: Sub 1:30</span>
+    <table class="split-table">
+      <thead><tr><th>Phase</th><th>Miles</th><th>Target Pace</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Opening<span class="split-phase">Controlled. Settle in together.</span></td>
+          <td>1–3</td>
+          <td><span class="split-pace">6:48–6:52</span><span class="split-ceiling">ceiling: 6:45</span></td>
+        </tr>
+        <tr>
+          <td>Middle<span class="split-phase">Lock it. Jose holds the metronome.</span></td>
+          <td>4–10</td>
+          <td><span class="split-pace">6:45–6:48</span><span class="split-ceiling">ceiling: 6:42</span></td>
+        </tr>
+        <tr>
+          <td>Last 5K<span class="split-phase">If Hope is intact, Jose gives the signal.</span></td>
+          <td>11–13.1</td>
+          <td><span class="split-pace">6:40–6:45</span><span class="split-ceiling">target: sub 6:51 avg</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <span class="split-outcome">Sub 1:30 = 6:51/mi avg. Every second banked early is available late.</span>
+    <div class="watch-block">
+      <span class="watch-heading">Pacer Notes · Jose</span>
+      <div class="watch-row"><span class="watch-signal look">Look</span><span class="watch-text">Her breathing at miles 3 and 6. Can't speak in short sentences → 5–8 sec/mi too fast. Back off without waiting for her to say something.</span></div>
+      <div class="watch-row"><span class="watch-signal look">Look</span><span class="watch-text">Average pace at mile 7. Must be 6:48–6:52. Faster → sub-1:30 is still on but Hope is already in debt.</span></div>
+      <div class="watch-row"><span class="watch-signal ignore">Ignore</span><span class="watch-text">Your own fitness signals. You are not racing. Your effort ceiling is irrelevant.</span></div>
+      <div class="watch-row"><span class="watch-signal ignore">Ignore</span><span class="watch-text">Brice and Simon ahead. A different race entirely.</span></div>
+      <span class="watch-note">Sub 1:30 requires 6:51/mi avg. If you hit mile 10 at 6:50 avg and she still has something left — that's when you push. Not before.</span>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- FUELING -->
+  <span class="section-label">Fueling · The Plan</span>
+
+  <div class="principle" style="border-top:none; padding-top:0;">
+    <span class="principle-label">The Rule</span>
+    <p class="principle-text">At half marathon pace, you burn through glycogen in roughly 75–90 minutes. <strong>You will hit the wall before you feel depleted</strong> — by the time you feel it, it's too late. Fuel on a schedule, not on hunger. This is the most common first-race mistake at this level.</p>
+  </div>
+
+  <div class="fuel-row">
+    <span class="fuel-marker">Night Before</span>
+    <div class="fuel-content">
+      <span class="fuel-title">Carbohydrate load. Simple, familiar foods.</span>
+      <span class="fuel-note">Pasta, rice, bread, potatoes. No heavy sauces, no new foods, nothing high-fiber. 600–800 calories of carbs with dinner. Drink water consistently through the evening — not a flood right before bed, just steady intake.</span>
+    </div>
+  </div>
+  <div class="fuel-row">
+    <span class="fuel-marker">Race Morning</span>
+    <div class="fuel-content">
+      <span class="fuel-title">400–600 cal, 2.5–3 hrs before gun. Nothing new.</span>
+      <span class="fuel-note">Oats with banana, toast with peanut butter, or whatever you've eaten before a long run. White rice works well. Avoid eggs, dairy, high-fat foods — they slow gastric emptying. Coffee is fine if it's your routine; if not, today is not the day to start.</span>
+    </div>
+  </div>
+  <div class="fuel-row">
+    <span class="fuel-marker">30 Min Out</span>
+    <div class="fuel-content">
+      <span class="fuel-title">Gel #1 + 4–6 oz water. The pre-load.</span>
+      <span class="fuel-note">Take one gel 25–30 minutes before the gun. This tops off blood glucose and reduces how aggressively you'll need to fuel during the race. Chase it with water, not a sports drink. Don't take this right at the start line — timing matters.</span>
+    </div>
+  </div>
+  <div class="fuel-row">
+    <span class="fuel-marker">Mile 4–5</span>
+    <div class="fuel-content">
+      <span class="fuel-title">Gel #2. First in-race fuel.</span>
+      <span class="fuel-note">Don't wait until you feel like you need it. Mile 4–5 is roughly 25–30 minutes in — this is the right window. Take it with water at the next aid station. Chew gels if that's easier; don't try to swallow on a hard breath. Slow slightly if you need to — it's worth it.</span>
+    </div>
+  </div>
+  <div class="fuel-row">
+    <span class="fuel-marker">Mile 8–9</span>
+    <div class="fuel-content">
+      <span class="fuel-title">Gel #3. The critical one.</span>
+      <span class="fuel-note">This is the most important gel of the race. Miles 9–11 are where glycogen depletion hits. Taking this at mile 8 puts fuel in your bloodstream exactly when you need it. If you skip this one, miles 10–13 will feel significantly harder than they should. Don't skip it.</span>
+    </div>
+  </div>
+  <div class="fuel-row">
+    <span class="fuel-marker">Mile 11–12</span>
+    <div class="fuel-content">
+      <span class="fuel-title">Optional gel #4 or chew. If available.</span>
+      <span class="fuel-note">At this point you're 15–20 minutes from the finish. A gel here won't fully digest in time, but the simple sugars hit fast enough to help. If you have one and feel yourself fading, take it. If you feel strong, skip it — don't risk GI issues in the final miles.</span>
+    </div>
+  </div>
+
+  <div class="warning-block">
+    <span class="warning-heading">First Race Note · Read This</span>
+    <span class="warning-text">Gels can cause GI distress if you haven't practiced with them in training. <strong>Use the same brand and flavor you've trained with.</strong> If you haven't trained with gels, use Gatorade at every aid station instead — it's slower acting but easier on the stomach. Never try a new product on race day.</span>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- HYDRATION -->
+  <span class="section-label">Hydration · The Plan</span>
+
+  <div class="hydration-note">
+    Key Biscayne in April means heat and humidity. <strong>Do not underestimate this.</strong> Dehydration at this pace accelerates perceived effort and degrades form. The goal is to arrive at the start line already hydrated — not to drink aggressively during the race.
+  </div>
+
+  <div class="fuel-row">
+    <span class="fuel-marker">2 Days Out</span>
+    <div class="fuel-content">
+      <span class="fuel-title">Consistent water intake. ~3L/day.</span>
+      <span class="fuel-note">Your urine should be pale yellow by Thursday. If it's dark, you're behind. Don't chug — just drink consistently through the day.</span>
+    </div>
+  </div>
+  <div class="fuel-row">
+    <span class="fuel-marker">Race Morning</span>
+    <div class="fuel-content">
+      <span class="fuel-title">16–20 oz water with breakfast. Sip until 30 min before.</span>
+      <span class="fuel-note">Stop drinking large amounts 30 minutes before the gun to avoid sloshing. If you're thirsty right before the start, a few small sips are fine.</span>
+    </div>
+  </div>
+  <div class="fuel-row">
+    <span class="fuel-marker">During Race</span>
+    <div class="fuel-content">
+      <span class="fuel-title">4–6 oz at every aid station. Every one.</span>
+      <span class="fuel-note">Don't skip aid stations even if you feel fine. In the heat, thirst lags behind actual need by 10–15 minutes. Alternate water and electrolyte drink if available. Slow to a near-walk at stations if you need to drink properly; the time cost is worth it.</span>
+    </div>
+  </div>
+  <div class="fuel-row">
+    <span class="fuel-marker">Electrolytes</span>
+    <div class="fuel-content">
+      <span class="fuel-title">Salt tabs or electrolyte caps — 1 per hour.</span>
+      <span class="fuel-note">In humid Miami heat you'll sweat significantly. Plain water alone can dilute sodium and cause hyponatremia in longer efforts. If you have electrolyte capsules (Precision Hydration, SaltStick, etc.), take one around miles 4 and 9 with water. If not, make sure you're using the sports drink at aid stations, not just water.</span>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- WARMUP -->
+  <span class="section-label">Warmup Protocol · Race Morning</span>
+
+  <div class="fuel-row">
+    <span class="fuel-marker">T–40 min</span>
+    <div class="fuel-content">
+      <span class="fuel-title">Easy jog. 8–10 minutes, very relaxed.</span>
+      <span class="fuel-note">Not a workout. This raises core temp, gets blood moving to the legs, and signals to your nervous system that something is happening. If you skip the warmup, mile 1 of the race becomes your warmup — at race pace. That's too expensive.</span>
+    </div>
+  </div>
+  <div class="fuel-row">
+    <span class="fuel-marker">T–30 min</span>
+    <div class="fuel-content">
+      <span class="fuel-title">Dynamic drills. 5 minutes.</span>
+      <span class="fuel-note">Leg swings (front/back, side to side), hip circles, high knees, butt kicks, A-skips. Not stretching — movement. Static stretching before a race reduces power output. Save it for after.</span>
+    </div>
+  </div>
+  <div class="fuel-row">
+    <span class="fuel-marker">T–20 min</span>
+    <div class="fuel-content">
+      <span class="fuel-title">4–6 strides at goal pace. Full recovery between each.</span>
+      <span class="fuel-note">Each stride is 20–25 seconds at your target race pace — not sprinting, not jogging. Full stop between each. This primes the neuromuscular system so goal pace doesn't feel like a shock at the gun. After your last stride, goal pace should feel almost familiar.</span>
+    </div>
+  </div>
+  <div class="fuel-row">
+    <span class="fuel-marker">T–10 min</span>
+    <div class="fuel-content">
+      <span class="fuel-title">Corral. Pre-race gel. Calm.</span>
+      <span class="fuel-note">Take your pre-race gel now. Find your corral position — seed toward the front of your wave, not the back. Get away from people who are visibly anxious. Their energy is contagious and you don't need it. Breathe slowly. You've done the work.</span>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- GEAR -->
+  <span class="section-label">Race Day Gear · Checklist</span>
+  <p style="font-size:12px;color:var(--ink-f);margin-bottom:16px;font-family:'Cormorant Garamond',serif;font-style:italic;">Tap to check off the night before. Lay everything out — the morning should require zero decisions.</p>
+
+  <div class="gear-grid" id="gear-grid">
+    <div class="gear-item" onclick="this.classList.toggle('checked')">
+      <div class="gear-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="gear-label">Race bib + safety pins</span>
+    </div>
+    <div class="gear-item" onclick="this.classList.toggle('checked')">
+      <div class="gear-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="gear-label">Race shoes (worn in, not new)</span>
+    </div>
+    <div class="gear-item" onclick="this.classList.toggle('checked')">
+      <div class="gear-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="gear-label">Watch — charged + race mode set</span>
+    </div>
+    <div class="gear-item" onclick="this.classList.toggle('checked')">
+      <div class="gear-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="gear-label">Racing socks (no cotton)</span>
+    </div>
+    <div class="gear-item" onclick="this.classList.toggle('checked')">
+      <div class="gear-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="gear-label">Gels × 4 (trained brand only)</span>
+    </div>
+    <div class="gear-item" onclick="this.classList.toggle('checked')">
+      <div class="gear-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="gear-label">Electrolyte caps or salt tabs</span>
+    </div>
+    <div class="gear-item" onclick="this.classList.toggle('checked')">
+      <div class="gear-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="gear-label">Race kit (worn in training)</span>
+    </div>
+    <div class="gear-item" onclick="this.classList.toggle('checked')">
+      <div class="gear-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="gear-label">Hat or visor (Miami heat)</span>
+    </div>
+    <div class="gear-item" onclick="this.classList.toggle('checked')">
+      <div class="gear-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="gear-label">Sunscreen — applied at home</span>
+    </div>
+    <div class="gear-item" onclick="this.classList.toggle('checked')">
+      <div class="gear-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="gear-label">Body Glide or anti-chafe</span>
+    </div>
+    <div class="gear-item" onclick="this.classList.toggle('checked')">
+      <div class="gear-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="gear-label">Headphones (if using)</span>
+    </div>
+    <div class="gear-item" onclick="this.classList.toggle('checked')">
+      <div class="gear-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="gear-label">Phone + ID (bag check or car)</span>
+    </div>
+    <div class="gear-item" onclick="this.classList.toggle('checked')">
+      <div class="gear-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="gear-label">Post-race clothes + flip flops</span>
+    </div>
+    <div class="gear-item" onclick="this.classList.toggle('checked')">
+      <div class="gear-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#f5f2ec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="gear-label">Cash or card (post-race food)</span>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- POST RACE -->
+  <span class="section-label">Post-Race · The First Hour</span>
+
+  <div class="fuel-row">
+    <span class="fuel-marker">0–15 min</span>
+    <div class="fuel-content">
+      <span class="fuel-title">Keep moving. Walk, don't sit.</span>
+      <span class="fuel-note">Stopping cold after a hard effort pools blood in the legs. Walk for 10 minutes after you cross. Your heart rate will thank you and the recovery starts faster.</span>
+    </div>
+  </div>
+  <div class="fuel-row">
+    <span class="fuel-marker">15 min</span>
+    <div class="fuel-content">
+      <span class="fuel-title">Carbs + protein within 30 minutes of finishing.</span>
+      <span class="fuel-note">The glycogen window is real. Banana + chocolate milk, a recovery shake, a bagel with peanut butter — something immediately. Your muscles are most receptive to glycogen resynthesis in the 30 minutes post-race. Don't wait until you feel hungry.</span>
+    </div>
+  </div>
+  <div class="fuel-row">
+    <span class="fuel-marker">1 Hour</span>
+    <div class="fuel-content">
+      <span class="fuel-title">Real meal. Hydrate with electrolytes.</span>
+      <span class="fuel-note">A full meal within an hour. Protein, carbs, some fat. Don't celebrate with alcohol immediately — it disrupts muscle protein synthesis and dehydrates you further. One celebratory drink with food is fine. Two before a meal is a recovery mistake.</span>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <div class="footer-nav">
+    <a class="footer-link" href="/athletes">Athletes</a>
+    <a class="footer-link" href="/competition">Competition</a>
+    <a class="footer-link" href="/taper-key-biscayne">Taper Plan</a>
+    <a class="footer-link" href="/">FORM</a>
+  </div>
+
+</div>
+
+<script>
+// ── Day tabs ──
+function showDay(day) {
+  ['fri','sat','sun'].forEach(function(d) {
+    document.getElementById('tab-' + d).classList.toggle('active', d === day);
+    document.getElementById('panel-' + d).classList.toggle('active', d === day);
+  });
+}
+
+// Auto-detect today and activate correct tab
+(function() {
+  var now = new Date();
+  var m = now.getMonth() + 1;
+  var d = now.getDate();
+  var day = 'sun';
+  if (m === 4 && d === 10) day = 'fri';
+  else if (m === 4 && d === 11) day = 'sat';
+  else if (m === 4 && d < 10) day = 'fri'; // before race week, default to Friday
+  showDay(day);
+
+  // Mark past tabs
+  var dates = { fri: new Date(2026,3,10), sat: new Date(2026,3,11), sun: new Date(2026,3,12) };
+  var today = new Date(); today.setHours(0,0,0,0);
+  ['fri','sat','sun'].forEach(function(k) {
+    var tab = document.getElementById('tab-' + k);
+    var tabDate = dates[k];
+    if (tabDate < today) tab.classList.add('is-past');
+    else if (tabDate.getTime() === today.getTime()) tab.classList.add('is-today');
+  });
+})();
+
+// ── Checklist ──
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+}
+
+// ── Simon unit toggle ──
+(function() {
+  var units = 'mi';
+  var data = {
+    mi: {
+      distHeader: 'Miles', paceHeader: 'Target Pace',
+      dist: ['1–3','4–10','11–13.1'],
+      pace: ['6:20–6:25','6:15–6:18','6:10–6:12'],
+      ceil: ['ceiling: 6:18','ceiling: 6:10','ceiling: 6:05'],
+      w1: 'Current pace miles 1–3. Below 6:18 → ease back. The group goes out fast. Let them.',
+      w2: 'Average pace at mile 6. Should be 6:20–6:22. Faster → you\'ve borrowed from the back half.'
+    },
+    km: {
+      distHeader: 'Km', paceHeader: 'Target Pace /km',
+      dist: ['1–5','6–16','17–21.1'],
+      pace: ['3:56–3:59','3:54–3:57','3:50–3:52'],
+      ceil: ['ceiling: 3:55','ceiling: 3:49','ceiling: 3:46'],
+      w1: 'Current pace km 1–3. Below 3:55 /km → ease back. The group goes out fast. Let them.',
+      w2: 'Average pace at km 10. Should be 3:56–3:58 /km. Faster → you\'ve borrowed from the back half.'
+    }
+  };
+
+  window.toggleSimonUnits = function() {
+    units = units === 'mi' ? 'km' : 'mi';
+    var d = data[units];
+    document.getElementById('simon-dist-header').textContent = d.distHeader;
+    document.getElementById('simon-pace-header').textContent = d.paceHeader;
+    for (var i = 1; i <= 3; i++) {
+      document.getElementById('simon-dist-' + i).textContent = d.dist[i-1];
+      document.getElementById('simon-pace-' + i).textContent = d.pace[i-1];
+      document.getElementById('simon-ceil-' + i).textContent = d.ceil[i-1];
+    }
+    document.getElementById('simon-watch-1').textContent = d.w1;
+    document.getElementById('simon-watch-2').textContent = d.w2;
+    document.getElementById('simon-mi-label').classList.toggle('active', units === 'mi');
+    document.getElementById('simon-km-label').classList.toggle('active', units === 'km');
+  };
+})();
+</script>
+
+</body>
+</html>

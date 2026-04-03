@@ -56,6 +56,8 @@
   <!-- Race & Competition -->
   <url><loc>https://speedandform.com/competition</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://speedandform.com/race-prep</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/race-strategy</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://speedandform.com/taper-key-biscayne</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://speedandform.com/split-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://speedandform.com/speed</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
 
