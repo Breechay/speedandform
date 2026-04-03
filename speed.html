@@ -196,12 +196,33 @@ body.paces-hidden .interval-paces { display: none; }
     <span class="focus-banner-text">Showing session: <strong id="focusedName"></strong></span>
     <button class="focus-banner-clear" onclick="clearFocus()">See all sessions</button>
   </div>
+  <!-- Shown in focus mode below the session -->
+  <div id="focusAcquisition" style="display:none; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line-l);">
+    <span style="font-size: 11px; color: var(--ink-f); line-height: 1.7; display: block; margin-bottom: 16px;">This session runs every Thursday at Flamingo Park Track, 5:50 AM. It's part of Speed Emergence — a 3-day practice with Tuesday threshold and Saturday long run.</span>
+    <a href="/app" style="font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line-l); padding-bottom: 2px;">Get the FORM app →</a>
+  </div>
 
   <!-- Page header: hidden when focused on a single session -->
   <div id="pageHeader">
-    <span class="page-breadcrumb">Speed & Form</span>
-  <h1 class="page-title">Speed Sessions</h1>
-    <span class="page-note">Rep times are the target. Pace conversions are for watch setup only.</span>
+    <span class="page-breadcrumb">Speed Emergence · Thursday</span>
+    <h1 class="page-title">Speed Sessions</h1>
+
+    <!-- Location + time block -->
+    <div style="padding: 16px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); margin: 20px 0 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 0;">
+      <div style="padding-right: 20px; border-right: 1px solid var(--line-l);">
+        <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 5px;">Where</span>
+        <span style="font-size: 14px; color: var(--ink); display: block; margin-bottom: 2px;">Flamingo Park Track</span>
+        <span style="font-size: 11px; color: var(--ink-f);">South Beach, Miami</span>
+      </div>
+      <div style="padding-left: 20px;">
+        <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 5px;">When</span>
+        <span style="font-size: 14px; color: var(--ink); display: block; margin-bottom: 2px;">Thursdays · 5:50 AM</span>
+        <span style="font-size: 11px; color: var(--ink-f);">Every week · all levels</span>
+      </div>
+    </div>
+
+    <p class="page-def">Six sessions cycling indefinitely. Rep times are the target — stop the rep when form goes, not when the distance does. Leave with something unspent.</p>
+    <span class="page-note">Part of Speed Emergence — Tue threshold · Thu speed · Sat long run.</span>
 
     <div class="session-index">
       <span class="session-index-label">Sessions</span>
@@ -416,12 +437,46 @@ body.paces-hidden .interval-paces { display: none; }
   </div>
 
   <span class="closing-rule"></span>
-  <span class="closing-note">These sessions belong to a different phase of the practice.<br>Speed is a tool the system returns to when the time is right.</span>
 
-  <div class="footer-links">
+  <!-- Acquisition block -->
+  <div style="padding: 28px 0 0;">
+    <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px;">The full practice</span>
+
+    <div style="border-top: 1px solid var(--line-l);">
+      <div style="display: grid; grid-template-columns: 80px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line-l); align-items: baseline;">
+        <span style="font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f);">Tuesday</span>
+        <div>
+          <span style="font-size: 14px; color: var(--ink); display: block; margin-bottom: 2px;">Threshold</span>
+          <span style="font-size: 11px; color: var(--ink-f);">Flamingo Park · 5:50 AM · sustained aerobic work</span>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 80px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line-l); align-items: baseline;">
+        <span style="font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f);">Thursday</span>
+        <div>
+          <span style="font-size: 14px; color: var(--ink); display: block; margin-bottom: 2px;">Speed — you're here</span>
+          <span style="font-size: 11px; color: var(--ink-f);">Flamingo Park · 5:50 AM · the sessions above</span>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 80px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line-l); align-items: baseline;">
+        <span style="font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f);">Saturday</span>
+        <div>
+          <span style="font-size: 14px; color: var(--ink); display: block; margin-bottom: 2px;">Long Run</span>
+          <span style="font-size: 11px; color: var(--ink-f);">Hideout · 5:30 AM · easy + steady structure</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding-top: 24px;">
+      <span style="font-size: 11px; color: var(--ink-f); line-height: 1.7; display: block; margin-bottom: 20px;">The Thursday sessions are one part of Speed Emergence — a six-week cycle that runs Tue / Thu / Sat. The app carries all three days, the daily coaching layer, and the full session ledger.</span>
+      <a href="/app" style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 24px; letter-spacing: 0.04em; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 2px; display: inline-block; transition: border-color 0.2s, color 0.2s;">Get the FORM app →</a>
+    </div>
+  </div>
+
+  <div class="footer-links" style="margin-top: 52px;">
     <a class="footer-link" href="/practice">Practice</a>
-    <a class="footer-link" href="/sessions">Sessions</a>
-    <a class="footer-link" href="/shoes">Shoes</a>
+    <a class="footer-link" href="/threshold">Threshold</a>
+    <a class="footer-link" href="/long-run">Long Run</a>
+    <a class="footer-link" href="/app">App</a>
     <a class="footer-link" href="/library">Library</a>
   </div>
 
@@ -438,6 +493,7 @@ function applyFocus(sessionId) {
   const banner = document.getElementById('focusBanner');
   const header = document.getElementById('pageHeader');
   const focusedNameEl = document.getElementById('focusedName');
+  const focusAcq = document.getElementById('focusAcquisition');
 
   if (!sessionId) {
     blocks.forEach(b => b.classList.remove('focused'));
@@ -448,6 +504,7 @@ function applyFocus(sessionId) {
     document.getElementById('pacesToggle').textContent = 'Show pace conversions';
     banner.classList.remove('visible');
     header.style.display = '';
+    if (focusAcq) focusAcq.style.display = 'none';
     currentFocus = null;
     return;
   }
@@ -465,12 +522,11 @@ function applyFocus(sessionId) {
   document.body.classList.add('paces-hidden');
   document.getElementById('pacesToggle').style.display = 'none';
 
-  // Show banner, hide full page header
   focusedNameEl.textContent = name;
   banner.classList.add('visible');
   header.style.display = 'none';
+  if (focusAcq) focusAcq.style.display = 'block';
 
-  // Scroll to session smoothly
   setTimeout(() => {
     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, 60);

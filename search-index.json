@@ -456,7 +456,7 @@
     "description": "How FORM approaches training."
   },
   {
-    "title": "Speed",
+    "title": "Speed Sessions",
     "url": "/speed",
     "type": "page",
     "category": "training",
@@ -470,16 +470,38 @@
       "speed work",
       "200m",
       "400m",
-      "800m"
+      "800m",
+      "speed emergence",
+      "thursday track",
+      "flamingo park",
+      "nice and easy",
+      "pyramid intervals",
+      "gauntlet",
+      "speed demons",
+      "death",
+      "resurrection",
+      "track session",
+      "200m",
+      "400m",
+      "600m",
+      "800m",
+      "interval training",
+      "rep times",
+      "speed work"
     ],
     "synonyms": [
       "track work",
       "intervals",
       "fast running",
       "reps",
-      "repeats"
+      "repeats",
+      "thursday speed",
+      "track workout",
+      "interval session",
+      "speed emergence thursday",
+      "flamingo park track"
     ],
-    "description": "Speed sessions and track work."
+    "description": "Six Thursday track sessions for Speed Emergence. Flamingo Park, 5:50 AM. Nice and Easy, Pyramid, Gauntlet, Speed Demons, Death, Resurrection."
   },
   {
     "title": "Easy Run",
@@ -1459,5 +1481,147 @@
       "movement prep"
     ],
     "description": "The mobility work that supports FORM training. Hip flexors, ankles, calves, mid-back, glutes. Short, specific, purposeful."
+  },
+  {
+    "title": "FORM App",
+    "url": "/app",
+    "type": "page",
+    "category": "app",
+    "description": "The FORM practice on iPhone. Ghost Protocol, Speed Emergence, coaching intelligence, ledger, metronome. Free.",
+    "keywords": [
+      "form app",
+      "iphone app",
+      "download",
+      "ghost protocol",
+      "speed emergence",
+      "app store",
+      "ios"
+    ],
+    "synonyms": [
+      "get the app",
+      "download form",
+      "form ios",
+      "form iphone"
+    ]
+  },
+  {
+    "title": "Nice and Easy",
+    "url": "/speed#session-01",
+    "type": "reference",
+    "category": "session",
+    "description": "3 \u00d7 200m \u00b7 2 \u00d7 800m \u00b7 1 \u00d7 400m. First session. Short reps, full recovery. Touch speed without spending it.",
+    "keywords": [
+      "speed emergence",
+      "thursday track",
+      "flamingo park",
+      "nice and easy",
+      "track session",
+      "interval"
+    ],
+    "synonyms": [
+      "speed session",
+      "thursday workout",
+      "track workout"
+    ]
+  },
+  {
+    "title": "Pyramid Intervals",
+    "url": "/speed#session-02",
+    "type": "reference",
+    "category": "session",
+    "description": "300s up to 600m and back down. Build and descend. Full pyramid structure.",
+    "keywords": [
+      "speed emergence",
+      "thursday track",
+      "flamingo park",
+      "pyramid intervals",
+      "track session",
+      "interval"
+    ],
+    "synonyms": [
+      "speed session",
+      "thursday workout",
+      "track workout"
+    ]
+  },
+  {
+    "title": "Gauntlet",
+    "url": "/speed#session-03",
+    "type": "reference",
+    "category": "session",
+    "description": "600s + 400s + 300s + 200s + 150s. Volume descends, pace rises. The third session.",
+    "keywords": [
+      "speed emergence",
+      "thursday track",
+      "flamingo park",
+      "gauntlet",
+      "track session",
+      "interval"
+    ],
+    "synonyms": [
+      "speed session",
+      "thursday workout",
+      "track workout"
+    ]
+  },
+  {
+    "title": "Speed Demons",
+    "url": "/speed#session-04",
+    "type": "reference",
+    "category": "session",
+    "description": "4 \u00d7 300m \u00b7 6 \u00d7 200m \u00b7 8 \u00d7 100m. Pure speed volume. Short reps at high intensity.",
+    "keywords": [
+      "speed emergence",
+      "thursday track",
+      "flamingo park",
+      "speed demons",
+      "track session",
+      "interval"
+    ],
+    "synonyms": [
+      "speed session",
+      "thursday workout",
+      "track workout"
+    ]
+  },
+  {
+    "title": "Death",
+    "url": "/speed#session-05",
+    "type": "reference",
+    "category": "session",
+    "description": "600s + 400s + 300s + 200s + 800 + 400. The fifth session. Long reps, full rest. Named honestly.",
+    "keywords": [
+      "speed emergence",
+      "thursday track",
+      "flamingo park",
+      "death",
+      "track session",
+      "interval"
+    ],
+    "synonyms": [
+      "speed session",
+      "thursday workout",
+      "track workout"
+    ]
+  },
+  {
+    "title": "Resurrection",
+    "url": "/speed#session-06",
+    "type": "reference",
+    "category": "session",
+    "description": "600s + 400s + 300s + 200s with compressed rest. Same reps as Death, shorter recovery. The sixth session.",
+    "keywords": [
+      "speed emergence",
+      "thursday track",
+      "flamingo park",
+      "resurrection",
+      "track session",
+      "interval"
+    ],
+    "synonyms": [
+      "speed session",
+      "thursday workout",
+      "track workout"
+    ]
   }
 ]
