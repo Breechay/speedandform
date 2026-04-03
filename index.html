@@ -254,26 +254,6 @@ body {
     </div>
   </div>
 
-  <!-- MOVEMENT FOUNDATION STRIP -->
-  <div style="width: 100%; max-width: var(--col); padding: 16px 0 14px; border-bottom: 1px solid var(--line-l);">
-    <span style="font-size: 7px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); opacity: 0.75; display: block; margin-bottom: 9px;">Movement foundation</span>
-    <div style="display: flex; align-items: baseline; gap: 0; flex-wrap: wrap;">
-      <a href="/mobility" style="font-size: 10px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none;">Mobility</a>
-      <span style="font-size: 10px; color: var(--line); margin: 0 8px;">→</span>
-      <a href="/strength" style="font-size: 10px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none;">Structural Work</a>
-      <span style="font-size: 10px; color: var(--line); margin: 0 8px;">→</span>
-      <a href="/ghost" style="font-size: 10px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-l); text-decoration: none;">Ghost Protocol</a>
-    </div>
-    <p style="font-size: 8px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); margin-top: 7px;">Six weeks &mdash; start here if you are new</p>
-  </div>
-
-  <!-- TESTIMONIAL -->
-  <div style="width: 100%; max-width: var(--col); padding: 18px 0; border-bottom: 1px solid var(--line-l);">
-    <span style="font-size: 7px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); opacity: 0.75; display: block; margin-bottom: 10px;">In the field</span>
-    <p style="font-size: 13px; color: var(--ink-l); line-height: 1.75; letter-spacing: 0.01em;">&ldquo;I&rsquo;ve really focused on keeping my hips straight and increasing my cadence. I just ran the long run for this week with your mental cues in mind and I had one of my best long runs ever.&rdquo;</p>
-    <p style="font-size: 8px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); margin-top: 8px;">Hope &mdash; Gainesville &mdash; training remotely</p>
-  </div>
-
   <!-- ONE CONTINUOUS STRUCTURE: sessions + nav -->
   <div class="structure">
 
@@ -304,18 +284,27 @@ body {
     </div>
 
     <div class="nav-layer">
-      <span class="layer-label">Entry</span>
+      <span class="layer-label">Join</span>
       <div class="nav-links">
-        <a href="/practice">Practice</a>
+        <a href="/thursday" style="color: var(--ink);">Thursday Track →</a>
+        <a href="/ghost">Ghost Protocol</a>
         <a href="/start">Start</a>
-        <a href="/ghost" style="color: var(--ink);">Ghost Protocol</a>
       </div>
     </div>
 
     <div class="nav-layer">
       <span class="layer-label">App</span>
       <div class="nav-links">
-        <a href="/app" style="color: var(--ink);">FORM on iPhone →</a>
+        <a href="https://apps.apple.com/us/app/form-practice/id6761313085" style="color: var(--ink);">Download on iPhone →</a>
+      </div>
+    </div>
+
+    <div class="nav-layer">
+      <span class="layer-label">Athletes</span>
+      <div class="nav-links">
+        <a href="/practice">Practice</a>
+        <a href="/plan-speed-emergence" id="nav-plan-link">Plan</a>
+        <a href="/athletes">Athletes</a>
       </div>
     </div>
 
@@ -327,7 +316,7 @@ body {
       <span class="layer-label">Practice</span>
       <div class="nav-links">
         <a href="/the-method">Method</a>
-        <a href="/plan">Plan</a>
+        <a href="/plan">Plan archive</a>
         <a href="/long-run-pace">Long Run Pace</a>
         <a href="/strength">Strength</a>
         <a href="/cycles">Cycles</a>
@@ -555,6 +544,18 @@ function toYMD(d) {
     if (longrun)   document.getElementById('cw-longrun').textContent   = longrun.desc;
     if (!threshold) document.getElementById('cw-row-threshold').style.display = 'none';
     if (!longrun)   document.getElementById('cw-row-longrun').style.display   = 'none';
+  }
+
+  // ── UPDATE PLAN NAV LINK ──
+  const planLink = document.getElementById('nav-plan-link');
+  if (planLink) {
+    if (isSE) {
+      planLink.href = '/plan-speed-emergence';
+      planLink.textContent = 'Plan';
+    } else {
+      planLink.href = '/plan';
+      planLink.textContent = 'Plan';
+    }
   }
 
   // ── DAY-OF-WEEK OPACITY (applies to all phases) ──

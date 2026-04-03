@@ -1,5 +1,34 @@
 [
   {
+    "title": "Thursday Track",
+    "url": "/thursday",
+    "type": "page",
+    "category": "entry",
+    "description": "FORM speed sessions at Flamingo Park Track. Thursdays 5:50 AM. Short reps, full recovery, no pace required. Show up in running shoes.",
+    "keywords": [
+      "thursday track",
+      "thursday speed",
+      "flamingo park",
+      "speed session",
+      "track workout",
+      "join form",
+      "run with us",
+      "miami running group",
+      "thursday running",
+      "5:50 am",
+      "how to join",
+      "first session",
+      "show up"
+    ],
+    "synonyms": [
+      "join form",
+      "thursday morning run",
+      "track session miami",
+      "flamingo park track thursday",
+      "speed emergence thursday"
+    ]
+  },
+  {
     "title": "Shoe Rotation",
     "url": "/shoes",
     "type": "page",
@@ -1219,7 +1248,7 @@
     "title": "Start",
     "url": "/start",
     "type": "page",
-    "description": "How to join FORM. Session times, locations, protocol, and what to know before your first session.",
+    "description": "How to begin training with FORM in Miami. Three sessions: Thursday track at Flamingo Park 5:50 AM (easiest entry), Tuesday threshold, Saturday long run at Hideout.",
     "keywords": [
       "start",
       "join",
@@ -1228,7 +1257,12 @@
       "how to join",
       "miami running",
       "flamingo park",
-      "hideout"
+      "hideout",
+      "thursday",
+      "join",
+      "three sessions",
+      "how to start",
+      "first session"
     ],
     "synonyms": [
       "how to join FORM",
