@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="deploy-id" content="202604031200">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Speed Emergence | FORM Plan</title>
+<meta name="description" content="Speed Emergence — the active FORM cycle. Tuesday threshold, Thursday track, Saturday long run. Six sessions cycling indefinitely.">
+<link rel="canonical" href="https://speedandform.com/plan-speed-emergence">
+<meta property="og:title" content="Speed Emergence | FORM">
+<meta property="og:description" content="Tuesday threshold · Thursday track · Saturday long run. Six Thursday sessions cycling indefinitely.">
+<meta property="og:url" content="https://speedandform.com/plan-speed-emergence">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://speedandform.com/og/default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="FORM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Speed Emergence | FORM">
+<meta name="twitter:description" content="Tuesday threshold · Thursday track · Saturday long run.">
+<meta name="twitter:image" content="https://speedandform.com/og/default.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #f5f2ec; --ink: #2a2620; --ink-l: #6b6459; --ink-f: #a09890;
+  --accent: #c4593a; --line: #d8d2c8; --line-l: #e8e3dc;
+}
+html, body { height: auto !important; overflow: visible !important; }
+body {
+  background: var(--cream); color: var(--ink);
+  font-family: 'Jost', sans-serif; font-weight: 300;
+  padding-bottom: 80px; overflow-y: auto; -webkit-overflow-scrolling: touch;
+}
+.nav {
+  max-width: 560px; margin: 0 auto;
+  padding: 28px 24px 0;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
+.nav-lbl { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+.header { max-width: 560px; margin: 0 auto; padding: 32px 24px 24px; border-bottom: 1px solid var(--line-l); }
+.header-eyebrow { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 10px; }
+.header-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 42px; letter-spacing: 0.05em; color: var(--ink); line-height: 1; }
+.header-sub { font-size: 11px; color: var(--ink-f); margin-top: 10px; letter-spacing: 0.04em; display: block; }
+.section { max-width: 560px; margin: 0 auto; padding: 0 24px; }
+.section-title {
+  font-size: 9px; font-weight: 500; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--ink-f);
+  padding: 32px 0 6px;
+}
+.location-block {
+  display: flex; gap: 24px; padding: 14px 0;
+  border-top: 1px solid var(--line-l);
+  border-bottom: 1px solid var(--line-l);
+  margin-bottom: 20px;
+}
+.loc-item {}
+.loc-label { font-size: 8px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 3px; }
+.loc-val { font-size: 13px; color: var(--ink); }
+
+/* Session rows */
+.session-row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line-l);
+  align-items: start;
+}
+.session-row:first-of-type { border-top: 1px solid var(--line-l); }
+.session-day { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); padding-top: 2px; }
+.session-name { font-size: 14px; color: var(--ink); display: block; margin-bottom: 3px; }
+.session-detail { font-size: 12px; color: var(--ink-f); line-height: 1.5; }
+.session-location { font-size: 11px; color: var(--ink-f); margin-top: 3px; display: block; }
+
+/* Thursday speed rotation */
+.speed-rotation { margin-top: 20px; }
+.rotation-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 12px; }
+.speed-item {
+  display: flex; align-items: baseline; gap: 14px;
+  padding: 11px 0; border-bottom: 1px solid var(--line-l);
+  text-decoration: none;
+}
+.speed-item:first-of-type { border-top: 1px solid var(--line-l); }
+.speed-num { font-size: 10px; letter-spacing: 0.12em; color: var(--ink-f); width: 24px; flex-shrink: 0; }
+.speed-name { font-size: 13px; color: var(--ink-l); flex: 1; letter-spacing: 0.02em; }
+.speed-item:hover .speed-name { color: var(--ink); }
+.speed-arrow { font-size: 11px; color: var(--ink-f); }
+
+/* Doctrine note */
+.doctrine {
+  margin-top: 32px; padding: 20px;
+  border: 1px solid var(--line-l);
+  font-size: 12px; color: var(--ink-f); line-height: 1.7;
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+}
+
+/* App block */
+.app-block {
+  margin-top: 40px; padding-top: 24px;
+  border-top: 1px solid var(--line-l);
+}
+.app-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 12px; }
+.app-link {
+  font-family: 'Cormorant Garamond', serif; font-weight: 300;
+  font-size: 22px; letter-spacing: 0.04em; color: var(--ink);
+  text-decoration: none; border-bottom: 1px solid var(--line);
+  padding-bottom: 2px; display: inline-block;
+}
+.app-note { font-size: 11px; color: var(--ink-f); margin-top: 10px; display: block; }
+
+/* Footer */
+.footer-links {
+  max-width: 560px; margin: 52px auto 0;
+  padding: 24px 24px 0;
+  border-top: 1px solid var(--line-l);
+  display: flex; gap: 28px; flex-wrap: wrap;
+}
+.footer-link { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link:hover { color: var(--ink-l); }
+
+/* Archive note */
+.archive-note {
+  max-width: 560px; margin: 0 auto;
+  padding: 20px 24px;
+  border-top: 1px solid var(--line-l);
+  font-size: 12px; color: var(--ink-f);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+}
+.archive-link { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; white-space: nowrap; }
+.archive-link:hover { color: var(--ink-l); }
+
+@media (max-width: 500px) {
+  .session-row { grid-template-columns: 80px 1fr; }
+  .header-title { font-size: 34px; }
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a class="nav-home" href="/">FORM</a>
+  <span class="nav-lbl">Plan</span>
+</div>
+
+<div class="header">
+  <span class="header-eyebrow">Active Cycle · Spring 2026</span>
+  <div class="header-title">Speed Emergence</div>
+  <span class="header-sub">Tue threshold · Thu track · Sat long run · open-ended</span>
+</div>
+
+<div class="section">
+
+  <!-- TUESDAY THRESHOLD -->
+  <div class="section-title">Tuesday · Threshold</div>
+
+  <div class="location-block">
+    <div class="loc-item">
+      <span class="loc-label">Where</span>
+      <span class="loc-val">Flamingo Park Track</span>
+    </div>
+    <div class="loc-item">
+      <span class="loc-label">When</span>
+      <span class="loc-val">5:50 AM</span>
+    </div>
+  </div>
+
+  <div class="session-row">
+    <span class="session-day">Week 1 · S01</span>
+    <div>
+      <span class="session-name">Threshold (Inhabit)</span>
+      <span class="session-detail">10 min warm-up · 2 × 10 min threshold · 2:30 float · 5–10 min cool-down</span>
+    </div>
+  </div>
+  <div class="session-row">
+    <span class="session-day">Week 2 · S02</span>
+    <div>
+      <span class="session-name">Threshold</span>
+      <span class="session-detail">10 min warm-up · 2 × 12 min threshold · 2:30 float · cool-down</span>
+    </div>
+  </div>
+  <div class="session-row">
+    <span class="session-day">Week 3 · S03</span>
+    <div>
+      <span class="session-name">Threshold</span>
+      <span class="session-detail">10 min warm-up · 3 × 10 min threshold · 90 sec float · cool-down</span>
+    </div>
+  </div>
+  <div class="session-row">
+    <span class="session-day">Week 4 · S04</span>
+    <div>
+      <span class="session-name">Threshold</span>
+      <span class="session-detail">10 min warm-up · 2 × 15 min threshold · 2 min float · cool-down</span>
+    </div>
+  </div>
+  <div class="session-row">
+    <span class="session-day">Week 5 · S05</span>
+    <div>
+      <span class="session-name">Threshold</span>
+      <span class="session-detail">10 min warm-up · 3 × 12 min threshold · 90 sec float · cool-down</span>
+    </div>
+  </div>
+  <div class="session-row">
+    <span class="session-day">Week 6 · S06</span>
+    <div>
+      <span class="session-name">Threshold (Continuous)</span>
+      <span class="session-detail">10 min warm-up · 20 min continuous threshold · cool-down</span>
+    </div>
+  </div>
+
+  <div class="doctrine">
+    Stay even. Don't negotiate. The threshold is a containment surface — not a test, not a performance. Let effort rise without command.
+  </div>
+
+  <!-- THURSDAY SPEED -->
+  <div class="section-title" style="margin-top: 40px;">Thursday · Speed</div>
+
+  <div class="location-block">
+    <div class="loc-item">
+      <span class="loc-label">Where</span>
+      <span class="loc-val">Flamingo Park Track</span>
+    </div>
+    <div class="loc-item">
+      <span class="loc-label">When</span>
+      <span class="loc-val">5:50 AM</span>
+    </div>
+  </div>
+
+  <p style="font-size: 13px; color: var(--ink-f); line-height: 1.65; margin-bottom: 20px;">Six sessions cycling indefinitely — 01 → 02 → 03 → 04 → 05 → 06 → 01 → … Stop the rep when form goes, not when the distance does. Leave with something unspent.</p>
+
+  <div class="speed-rotation">
+    <span class="rotation-label">The rotation</span>
+    <a class="speed-item" href="/speed#session-01">
+      <span class="speed-num">01</span>
+      <span class="speed-name">Nice and Easy</span>
+      <span class="speed-arrow">→</span>
+    </a>
+    <a class="speed-item" href="/speed#session-02">
+      <span class="speed-num">02</span>
+      <span class="speed-name">Pyramid Intervals</span>
+      <span class="speed-arrow">→</span>
+    </a>
+    <a class="speed-item" href="/speed#session-03">
+      <span class="speed-num">03</span>
+      <span class="speed-name">Gauntlet</span>
+      <span class="speed-arrow">→</span>
+    </a>
+    <a class="speed-item" href="/speed#session-04">
+      <span class="speed-num">04</span>
+      <span class="speed-name">Speed Demons</span>
+      <span class="speed-arrow">→</span>
+    </a>
+    <a class="speed-item" href="/speed#session-05">
+      <span class="speed-num">05</span>
+      <span class="speed-name">Death</span>
+      <span class="speed-arrow">→</span>
+    </a>
+    <a class="speed-item" href="/speed#session-06">
+      <span class="speed-num">06</span>
+      <span class="speed-name">Resurrection</span>
+      <span class="speed-arrow">→</span>
+    </a>
+  </div>
+
+  <!-- SATURDAY LONG RUN -->
+  <div class="section-title" style="margin-top: 40px;">Saturday · Long Run</div>
+
+  <div class="location-block">
+    <div class="loc-item">
+      <span class="loc-label">Where</span>
+      <span class="loc-val">Hideout</span>
+    </div>
+    <div class="loc-item">
+      <span class="loc-label">When</span>
+      <span class="loc-val">5:30 AM</span>
+    </div>
+  </div>
+
+  <div class="session-row">
+    <span class="session-day">Week 1</span>
+    <div>
+      <span class="session-name">Long Run (Organize)</span>
+      <span class="session-detail">60 min easy flowing into 10 min steady — no stop between blocks</span>
+    </div>
+  </div>
+  <div class="session-row">
+    <span class="session-day">Week 2</span>
+    <div>
+      <span class="session-name">Long Run</span>
+      <span class="session-detail">65 min easy flowing into 15 min steady</span>
+    </div>
+  </div>
+  <div class="session-row">
+    <span class="session-day">Week 3</span>
+    <div>
+      <span class="session-name">Long Run</span>
+      <span class="session-detail">65 min easy flowing into 20 min steady</span>
+    </div>
+  </div>
+  <div class="session-row">
+    <span class="session-day">Week 4</span>
+    <div>
+      <span class="session-name">Long Run</span>
+      <span class="session-detail">70 min easy flowing into 20 min steady</span>
+    </div>
+  </div>
+  <div class="session-row">
+    <span class="session-day">Week 5</span>
+    <div>
+      <span class="session-name">Long Run (Absorb)</span>
+      <span class="session-detail">60 min easy only — no steady block</span>
+    </div>
+  </div>
+  <div class="session-row">
+    <span class="session-day">Week 6</span>
+    <div>
+      <span class="session-name">Race / Time Trial</span>
+      <span class="session-detail">5K race or solo time trial — first 1–2 km controlled, no early surge</span>
+    </div>
+  </div>
+
+  <div class="doctrine">
+    Start easy. Let the run build itself. Steady means slightly faster than easy, breathing controlled — not a performance. The long run is a durability anchor, not a fitness test.
+  </div>
+
+  <!-- APP BLOCK -->
+  <div class="app-block">
+    <span class="app-label">The full practice on your phone</span>
+    <a class="app-link" href="https://apps.apple.com/us/app/form-practice/id6761313085">Download FORM on iPhone →</a>
+    <span class="app-note">All three days. Daily coaching layer. Session ledger. Speed Emergence live now.</span>
+  </div>
+
+</div>
+
+<div class="archive-note">
+  <span>Previous cycle: Spring Cycle 2026 · Durability + Compression</span>
+  <a class="archive-link" href="/plan-spring-2026">Archive →</a>
+</div>
+
+<div class="footer-links">
+  <a class="footer-link" href="/plan">Spring Cycle</a>
+  <a class="footer-link" href="/speed">Speed Sessions</a>
+  <a class="footer-link" href="/threshold">Threshold</a>
+  <a class="footer-link" href="/long-run">Long Run</a>
+  <a class="footer-link" href="/practice">Practice</a>
+  <a class="footer-link" href="/">FORM</a>
+</div>
+
+</body>
+</html>

@@ -191,14 +191,14 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
     </a>
 
     <!-- THURSDAY -->
-    <a class="day-row support" href="/easy-run" id="day-4">
+    <a class="day-row anchor" href="/speed" id="day-4">
       <div class="day-col">
         <span class="day-name">Thursday</span>
         <span class="day-today-label">Today</span>
       </div>
       <div class="day-sessions">
-        <span class="session-line primary">Easy + Touch</span>
-        <span class="session-line detail">45 min · 6 × 200 relaxed at end</span>
+        <span class="session-line primary" id="speed-session">Speed</span>
+        <span class="session-line detail">5:50 AM · Flamingo Park</span>
       </div>
     </a>
 
@@ -247,10 +247,10 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 </div>
 
 <script>
-// ── SPRING CYCLE 2026 SCHEDULE ──
-// Derived from plan.html. Add new cycles here when the plan changes.
+// ── SCHEDULE — Spring Cycle 2026 + Speed Emergence ──
+// After Apr 12 the active cycle is Speed Emergence: Tue threshold, Thu speed, Sat long run.
 const SCHEDULE = [
-  // Threshold sessions (Tuesdays)
+  // Spring Cycle threshold (Tuesdays)
   { type:'threshold', date:'2026-02-17', desc:'3 × 10 min', sub:'2 min float jog' },
   { type:'threshold', date:'2026-02-24', desc:'2 × 14 min', sub:'3 min float' },
   { type:'threshold', date:'2026-03-03', desc:'20 + 8 continuous', sub:'3 min float between. No push in last 8.' },
@@ -259,7 +259,16 @@ const SCHEDULE = [
   { type:'threshold', date:'2026-03-24', desc:'20 + 12 continuous', sub:'3 min float between' },
   { type:'threshold', date:'2026-03-31', desc:'3 × 8 min', sub:'90 sec float' },
   { type:'threshold', date:'2026-04-07', desc:'2 × 8 min', sub:'90 sec float' },
-  // Long runs (Saturdays)
+  // Speed Emergence threshold (Tuesdays from Apr 15)
+  { type:'threshold', date:'2026-04-15', desc:'2 × 10 min', sub:'2:30 float' },
+  { type:'threshold', date:'2026-04-22', desc:'2 × 12 min', sub:'2:30 float' },
+  { type:'threshold', date:'2026-04-29', desc:'3 × 10 min', sub:'90 sec float' },
+  { type:'threshold', date:'2026-05-06', desc:'2 × 15 min', sub:'2 min float' },
+  { type:'threshold', date:'2026-05-13', desc:'3 × 12 min', sub:'90 sec float' },
+  { type:'threshold', date:'2026-05-20', desc:'20 min continuous', sub:'' },
+  { type:'threshold', date:'2026-05-27', desc:'2 × 10 min', sub:'2:30 float' },
+  { type:'threshold', date:'2026-06-03', desc:'2 × 12 min', sub:'2:30 float' },
+  // Spring Cycle long runs (Saturdays)
   { type:'longrun', date:'2026-02-21', desc:'95 min', sub:'50 easy · 45 steady' },
   { type:'longrun', date:'2026-02-28', desc:'95 min', sub:'50 easy · 45 steady' },
   { type:'longrun', date:'2026-03-07', desc:'100 min', sub:'50 easy · 50 steady' },
@@ -268,6 +277,24 @@ const SCHEDULE = [
   { type:'longrun', date:'2026-03-28', desc:'90 min', sub:'40 easy · 40 steady · 10 high steady' },
   { type:'longrun', date:'2026-04-04', desc:'75 min', sub:'40 easy · 20 steady · 10 controlled' },
   { type:'longrun', date:'2026-04-11', desc:'Off or shakeout + strides', sub:'' },
+  // Speed Emergence long runs (Saturdays from Apr 18)
+  { type:'longrun', date:'2026-04-18', desc:'70 min', sub:'60 easy · 10 steady' },
+  { type:'longrun', date:'2026-04-25', desc:'75 min', sub:'60 easy · 15 steady' },
+  { type:'longrun', date:'2026-05-02', desc:'80 min', sub:'60 easy · 20 steady' },
+  { type:'longrun', date:'2026-05-09', desc:'85 min', sub:'65 easy · 20 steady' },
+  { type:'longrun', date:'2026-05-16', desc:'60 min', sub:'easy only' },
+  { type:'longrun', date:'2026-05-23', desc:'Race / Time Trial', sub:'5K or solo TT' },
+  { type:'longrun', date:'2026-05-30', desc:'70 min', sub:'60 easy · 10 steady' },
+  { type:'longrun', date:'2026-06-06', desc:'75 min', sub:'60 easy · 15 steady' },
+  // Speed Emergence Thursday track sessions — cycling 01→06
+  { type:'speed', date:'2026-04-17', session:'01', name:'Nice and Easy' },
+  { type:'speed', date:'2026-04-24', session:'02', name:'Pyramid Intervals' },
+  { type:'speed', date:'2026-05-01', session:'03', name:'Gauntlet' },
+  { type:'speed', date:'2026-05-08', session:'04', name:'Speed Demons' },
+  { type:'speed', date:'2026-05-15', session:'05', name:'Death' },
+  { type:'speed', date:'2026-05-22', session:'06', name:'Resurrection' },
+  { type:'speed', date:'2026-05-29', session:'01', name:'Nice and Easy' },
+  { type:'speed', date:'2026-06-05', session:'02', name:'Pyramid Intervals' },
 ];
 
 // ── HELPERS ──
@@ -378,17 +405,17 @@ if (todayRow) todayRow.classList.add('today');
   const monYMD = toYMD(mon);
   const sunYMD = toYMD(sun);
 
-  let threshold = null, longrun = null;
+  let threshold = null, longrun = null, speed = null;
   for (const s of SCHEDULE) {
     if (s.date >= monYMD && s.date <= sunYMD) {
       if (s.type === 'threshold') threshold = s;
       if (s.type === 'longrun')   longrun   = s;
+      if (s.type === 'speed')     speed     = s;
     }
   }
 
   if (threshold) {
     document.getElementById('threshold-session').textContent = '5:50 AM · ' + threshold.desc;
-    // If there's a sub-note, show it as a second detail line
     if (threshold.sub) {
       const subEl = document.createElement('span');
       subEl.className = 'session-line sub';
@@ -401,6 +428,11 @@ if (todayRow) todayRow.classList.add('today');
     document.getElementById('longrun-session').textContent = '5:30 AM · Hideout · ' + longrun.desc;
     const subEl = document.getElementById('longrun-sub');
     if (subEl && longrun.sub) subEl.textContent = longrun.sub;
+  }
+
+  if (speed) {
+    const el = document.getElementById('speed-session');
+    if (el) el.textContent = speed.name;
   }
 })();
 </script>

@@ -361,6 +361,35 @@
     "description": "The current training cycle."
   },
   {
+    "title": "Speed Emergence Plan",
+    "url": "/plan-speed-emergence",
+    "type": "reference",
+    "category": "planning",
+    "description": "The active FORM training cycle. Tuesday threshold at Flamingo Park 5:50 AM. Thursday speed at Flamingo Park 5:50 AM. Saturday long run at Hideout 5:30 AM.",
+    "keywords": [
+      "speed emergence",
+      "active cycle",
+      "current plan",
+      "tuesday threshold",
+      "thursday speed",
+      "saturday long run",
+      "flamingo park",
+      "hideout",
+      "5:50 am",
+      "5:30 am",
+      "speed emergence plan",
+      "current cycle",
+      "training plan"
+    ],
+    "synonyms": [
+      "current training plan",
+      "this weeks plan",
+      "active program",
+      "speed emergence schedule",
+      "weekly schedule"
+    ]
+  },
+  {
     "title": "Competition",
     "url": "/competition",
     "type": "page",
