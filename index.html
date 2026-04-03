@@ -174,8 +174,6 @@ body {
 .cw-row { display: flex; align-items: baseline; gap: 10px; padding: 5px 0; }
 .cw-type { font-size: 8px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); width: 76px; flex-shrink: 0; }
 .cw-session { font-size: 13px; color: #5f584e; letter-spacing: 0.02em; }
-
-/* Search entry */
 .search-entry {
   width: 100%;
   max-width: var(--col);
@@ -241,12 +239,16 @@ body {
   <div class="location">Miami</div>
 
   <div class="current-work">
-    <span class="cw-label">Current Work</span>
-    <div class="cw-row">
+    <span class="cw-label" id="cw-label">Current Work</span>
+    <div class="cw-row" id="cw-row-threshold">
       <span class="cw-type">Threshold</span>
       <span class="cw-session" id="cw-threshold">—</span>
     </div>
-    <div class="cw-row">
+    <div class="cw-row" id="cw-row-speed" style="display:none;">
+      <span class="cw-type">Speed</span>
+      <span class="cw-session" id="cw-speed">—</span>
+    </div>
+    <div class="cw-row" id="cw-row-longrun">
       <span class="cw-type">Long Run</span>
       <span class="cw-session" id="cw-longrun">—</span>
     </div>
@@ -275,13 +277,19 @@ body {
   <!-- ONE CONTINUOUS STRUCTURE: sessions + nav -->
   <div class="structure">
 
-    <a class="board-row threshold-row" href="/threshold">
+    <a class="board-row threshold-row" href="/threshold" id="row-tuesday">
       <span class="board-day">Tuesday</span>
       <span class="board-name">Threshold</span>
       <span class="board-detail" id="detail-threshold">5:50 AM</span>
     </a>
 
-    <a class="board-row longrun-row" href="/long-run">
+    <a class="board-row speed-row" href="/speed" id="row-thursday" style="display:none;">
+      <span class="board-day">Thursday</span>
+      <span class="board-name" id="board-speed-name">Speed</span>
+      <span class="board-detail">5:50 AM · Flamingo</span>
+    </a>
+
+    <a class="board-row longrun-row" href="/long-run" id="row-saturday">
       <span class="board-day">Saturday</span>
       <span class="board-name">Long Run</span>
       <span class="board-detail" id="detail-longrun">5:30 AM</span>
@@ -356,7 +364,7 @@ body {
 
   </div>
 
-  <div class="cycle">FORM · Spring Cycle 2026</div>
+  <div class="cycle" id="cycle-label">FORM · Spring Cycle 2026</div>
 
   <!-- EMAIL COLLECTION -->
   <div style="width: 100%; max-width: var(--col); margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--line-l);">
@@ -378,8 +386,16 @@ body {
 
 
 <script>
-// ── SPRING CYCLE 2026 SCHEDULE ──
+// ── PHASE DATES ──
+// Pre-race (taper): now until Apr 11
+// Race week: Apr 12 (Key Biscayne Half Marathon)
+// Speed Emergence: Apr 13 onward
+const RACE_DATE    = new Date('2026-04-12T00:00:00');
+const SE_START     = new Date('2026-04-13T00:00:00'); // SE Monday start
+
+// ── FULL SCHEDULE ──
 const SCHEDULE = [
+  // Spring Cycle threshold
   { type:'threshold', date:'2026-02-17', desc:'3 × 10 min' },
   { type:'threshold', date:'2026-02-24', desc:'2 × 14 min' },
   { type:'threshold', date:'2026-03-03', desc:'20 + 8 continuous' },
@@ -388,6 +404,16 @@ const SCHEDULE = [
   { type:'threshold', date:'2026-03-24', desc:'20 + 12 continuous' },
   { type:'threshold', date:'2026-03-31', desc:'3 × 8 min' },
   { type:'threshold', date:'2026-04-07', desc:'2 × 8 min' },
+  // Speed Emergence threshold
+  { type:'threshold', date:'2026-04-15', desc:'2 × 10 min' },
+  { type:'threshold', date:'2026-04-22', desc:'2 × 12 min' },
+  { type:'threshold', date:'2026-04-29', desc:'3 × 10 min' },
+  { type:'threshold', date:'2026-05-06', desc:'2 × 15 min' },
+  { type:'threshold', date:'2026-05-13', desc:'3 × 12 min' },
+  { type:'threshold', date:'2026-05-20', desc:'20 min continuous' },
+  { type:'threshold', date:'2026-05-27', desc:'2 × 10 min' },
+  { type:'threshold', date:'2026-06-03', desc:'2 × 12 min' },
+  // Spring Cycle long runs
   { type:'longrun', date:'2026-02-21', desc:'95 min · 50 easy / 45 steady' },
   { type:'longrun', date:'2026-02-28', desc:'95 min · 50 easy / 45 steady' },
   { type:'longrun', date:'2026-03-07', desc:'100 min · 50 easy / 50 steady' },
@@ -396,60 +422,161 @@ const SCHEDULE = [
   { type:'longrun', date:'2026-03-28', desc:'90 min · 40 easy / 40 steady' },
   { type:'longrun', date:'2026-04-04', desc:'75 min · 40 easy / 20 steady' },
   { type:'longrun', date:'2026-04-11', desc:'Off or shakeout + strides' },
+  // Speed Emergence long runs
+  { type:'longrun', date:'2026-04-18', desc:'70 min · 60 easy / 10 steady' },
+  { type:'longrun', date:'2026-04-25', desc:'75 min · 60 easy / 15 steady' },
+  { type:'longrun', date:'2026-05-02', desc:'80 min · 60 easy / 20 steady' },
+  { type:'longrun', date:'2026-05-09', desc:'85 min · 65 easy / 20 steady' },
+  { type:'longrun', date:'2026-05-16', desc:'60 min · easy only' },
+  { type:'longrun', date:'2026-05-23', desc:'Race / Time Trial' },
+  { type:'longrun', date:'2026-05-30', desc:'70 min · 60 easy / 10 steady' },
+  // Speed Emergence Thursday speed sessions
+  { type:'speed', date:'2026-04-17', session:'01', name:'Nice and Easy' },
+  { type:'speed', date:'2026-04-24', session:'02', name:'Pyramid Intervals' },
+  { type:'speed', date:'2026-05-01', session:'03', name:'Gauntlet' },
+  { type:'speed', date:'2026-05-08', session:'04', name:'Speed Demons' },
+  { type:'speed', date:'2026-05-15', session:'05', name:'Death' },
+  { type:'speed', date:'2026-05-22', session:'06', name:'Resurrection' },
+  { type:'speed', date:'2026-05-29', session:'01', name:'Nice and Easy' },
+  { type:'speed', date:'2026-06-05', session:'02', name:'Pyramid Intervals' },
 ];
+
 function getMonday(d) {
   const dt = new Date(d); const dow = dt.getDay();
   dt.setDate(dt.getDate() + (dow === 0 ? -6 : 1 - dow)); dt.setHours(0,0,0,0); return dt;
 }
-function toYMD(d) { return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function toYMD(d) {
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
 
-(function(){
-  const mon = getMonday(new Date());
-  const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
-  const monYMD = toYMD(mon), sunYMD = toYMD(sun);
-  let threshold = null, longrun = null;
-  for (const s of SCHEDULE) {
-    if (s.date >= monYMD && s.date <= sunYMD) {
-      if (s.type === 'threshold') threshold = s;
-      if (s.type === 'longrun')   longrun   = s;
+(function() {
+  const today    = new Date(); today.setHours(0,0,0,0);
+  const isRaceDay   = today.getTime() === RACE_DATE.getTime();
+  const isTaperWeek = today < RACE_DATE;  // Apr 3–11
+  const isSE        = today >= SE_START;  // Apr 13+
+
+  // ── PHASE: TAPER / RACE WEEK (now → Apr 12) ──
+  if (isTaperWeek || isRaceDay) {
+    // Show two sessions (threshold + long run), taper context
+    document.getElementById('cw-label').textContent = isRaceDay ? 'Race Day' : 'Race Week';
+    document.getElementById('cycle-label').textContent = 'FORM · Key Biscayne Half · April 12';
+
+    if (isRaceDay) {
+      document.getElementById('cw-threshold').textContent = 'Rest. Everything is already done.';
+      document.getElementById('cw-longrun').textContent = '—';
+      document.getElementById('cw-row-longrun').style.display = 'none';
+      // Replace board rows with race day context
+      document.getElementById('row-tuesday').style.display = 'none';
+      document.getElementById('row-saturday').style.display = 'none';
+      // Add race strategy link to board
+      const raceRow = document.createElement('a');
+      raceRow.className = 'board-row'; raceRow.href = '/races/key-biscayne-2026';
+      raceRow.innerHTML = '<span class="board-day">Today</span><span class="board-name">Race Strategy</span><span class="board-detail">Key Biscayne</span>';
+      document.getElementById('row-thursday').insertAdjacentElement('afterend', raceRow);
+      document.getElementById('row-thursday').style.display = 'none';
+    } else {
+      // Taper week — show schedule-based data
+      const mon = getMonday(today);
+      const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
+      const monYMD = toYMD(mon), sunYMD = toYMD(sun);
+      let threshold = null, longrun = null;
+      for (const s of SCHEDULE) {
+        if (s.date >= monYMD && s.date <= sunYMD) {
+          if (s.type === 'threshold') threshold = s;
+          if (s.type === 'longrun')   longrun   = s;
+        }
+      }
+      if (threshold) document.getElementById('cw-threshold').textContent = threshold.desc;
+      if (longrun)   document.getElementById('cw-longrun').textContent   = longrun.desc;
+      if (!threshold) document.getElementById('cw-row-threshold').style.display = 'none';
+      if (!longrun)   document.getElementById('cw-row-longrun').style.display   = 'none';
+
+      // Taper: add race strategy to nav, no Thursday row
+      document.getElementById('row-thursday').style.display = 'none';
+    }
+
+    // Add race strategy to nav entry links if taper
+    if (isTaperWeek) {
+      const navEntry = document.querySelector('.nav-layer .nav-links');
+      if (navEntry) {
+        const a = document.createElement('a');
+        a.href = '/races/key-biscayne-2026'; a.textContent = 'Race Strategy';
+        a.style.color = 'var(--ink)';
+        navEntry.appendChild(a);
+      }
     }
   }
 
-  // Apply schedule — write directly and always show if data exists
-  const thEl = document.getElementById('cw-threshold');
-  const lrEl = document.getElementById('cw-longrun');
-  const cwBlock = document.querySelector('.current-work');
+  // ── PHASE: SPEED EMERGENCE (Apr 13+) ──
+  else if (isSE) {
+    document.getElementById('cycle-label').textContent = 'FORM · Speed Emergence';
 
-  if (threshold && thEl) thEl.textContent = threshold.desc;
-  if (longrun && lrEl) lrEl.textContent = longrun.desc;
+    // Show Thursday speed row
+    document.getElementById('row-thursday').style.display = '';
 
-  // Hide individual rows only if genuinely no data from schedule
-  if (!threshold) { const r = thEl?.closest('.cw-row'); if (r) r.style.display = 'none'; }
-  if (!longrun)   { const r = lrEl?.closest('.cw-row'); if (r) r.style.display = 'none'; }
-  if (!threshold && !longrun && cwBlock) cwBlock.style.display = 'none';
+    // Find this week's sessions
+    const mon = getMonday(today);
+    const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
+    const monYMD = toYMD(mon), sunYMD = toYMD(sun);
+    let threshold = null, longrun = null, speed = null;
+    for (const s of SCHEDULE) {
+      if (s.date >= monYMD && s.date <= sunYMD) {
+        if (s.type === 'threshold') threshold = s;
+        if (s.type === 'longrun')   longrun   = s;
+        if (s.type === 'speed')     speed     = s;
+      }
+    }
+    if (threshold) document.getElementById('cw-threshold').textContent = threshold.desc;
+    if (longrun)   document.getElementById('cw-longrun').textContent   = longrun.desc;
+    if (speed) {
+      document.getElementById('cw-row-speed').style.display = '';
+      document.getElementById('cw-speed').textContent = speed.name;
+      document.getElementById('board-speed-name').textContent = speed.name;
+    }
+    if (!threshold) document.getElementById('cw-row-threshold').style.display = 'none';
+    if (!longrun)   document.getElementById('cw-row-longrun').style.display   = 'none';
+    if (!speed)     document.getElementById('cw-row-speed').style.display     = 'none';
+  }
+
+  // ── SPRING CYCLE (default — before any SE data) ──
+  else {
+    document.getElementById('row-thursday').style.display = 'none';
+    const mon = getMonday(today);
+    const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
+    const monYMD = toYMD(mon), sunYMD = toYMD(sun);
+    let threshold = null, longrun = null;
+    for (const s of SCHEDULE) {
+      if (s.date >= monYMD && s.date <= sunYMD) {
+        if (s.type === 'threshold') threshold = s;
+        if (s.type === 'longrun')   longrun   = s;
+      }
+    }
+    if (threshold) document.getElementById('cw-threshold').textContent = threshold.desc;
+    if (longrun)   document.getElementById('cw-longrun').textContent   = longrun.desc;
+    if (!threshold) document.getElementById('cw-row-threshold').style.display = 'none';
+    if (!longrun)   document.getElementById('cw-row-longrun').style.display   = 'none';
+  }
+
+  // ── DAY-OF-WEEK OPACITY (applies to all phases) ──
+  const day = today.getDay();
+  const tRow = document.getElementById('row-tuesday');
+  const lRow = document.getElementById('row-saturday');
+  const sRow = document.getElementById('row-thursday');
+  const opacityMap = {
+    0: { t:1,   l:1,   s:0.9 }, // Sun
+    1: { t:1,   l:0.9, s:0.9 }, // Mon — threshold coming
+    2: { t:1,   l:0.9, s:0.9 }, // Tue — threshold day
+    3: { t:1,   l:1,   s:1   }, // Wed
+    4: { t:0.9, l:1,   s:1   }, // Thu — speed day
+    5: { t:0.9, l:1,   s:1   }, // Fri — long run coming
+    6: { t:0.9, l:1,   s:0.9 }  // Sat — long run day
+  };
+  if (tRow) tRow.style.opacity = opacityMap[day].t;
+  if (lRow) lRow.style.opacity = opacityMap[day].l;
+  if (sRow && sRow.style.display !== 'none') sRow.style.opacity = opacityMap[day].s;
 })();
-  // Weekly rhythm: subtle opacity emphasis only, no completion state
-  // Matches actual FORM training week: Threshold Tue, Long Run Sat
-  (function() {
-    const day = new Date().getDay(); // 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
-    const tRow = document.querySelector('.threshold-row');
-    const lRow = document.querySelector('.longrun-row');
 
-    const opacityMap = {
-      0: { t: 1,   l: 1   }, // Sun — neutral
-      1: { t: 1,   l: 0.9 }, // Mon — threshold orbit
-      2: { t: 1,   l: 0.9 }, // Tue — threshold day
-      3: { t: 1,   l: 1   }, // Wed — neutral
-      4: { t: 0.9, l: 1   }, // Thu — long run coming into focus
-      5: { t: 0.9, l: 1   }, // Fri — long run primary
-      6: { t: 0.9, l: 1   }  // Sat — long run day
-    };
-
-    tRow.style.opacity = opacityMap[day].t;
-    lRow.style.opacity = opacityMap[day].l;
-  })();
-
-// Mobile nav toggle
+// ── MOBILE NAV TOGGLE ──
 function toggleMore(btn) {
   const isOpen = btn.classList.toggle('open');
   btn.setAttribute('aria-expanded', isOpen);
@@ -457,7 +584,7 @@ function toggleMore(btn) {
   btn.querySelector('.nav-more-arrow').textContent = isOpen ? '↓' : '→';
 }
 
-// Search form — go to /search?q=...
+// ── SEARCH ──
 function handleSearch(e) {
   e.preventDefault();
   const q = document.getElementById('homeSearch').value.trim();
@@ -465,7 +592,7 @@ function handleSearch(e) {
   return false;
 }
 
-// Email form — submit via fetch, show inline confirmation
+// ── EMAIL FORM ──
 document.getElementById('email-form').addEventListener('submit', function(e) {
   e.preventDefault();
   const form = e.target;
