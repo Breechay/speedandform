@@ -1,6 +1,24 @@
 # FORM Strategy Spec
-**Version 1.0 · April 2026**
+**Version 1.2 · April 3, 2026**
+
 **Authority: This document is the strategic source of truth for FORM — the product, the business, the trajectory. It is written for AI agents and collaborators working on any part of the system. Read this before touching anything.**
+
+---
+
+## Changelog — v1.2 (from v1.1)
+
+- Speed Emergence cycle close protocol added (Section 3 + Section 10)
+- "Indefinitely" language removed and corrected throughout — sessions cycle via mod 6 rotation but the cycle closes at 6 weeks
+- Monetization framing revised: paid tier = future cycle content (content-gated), not "remote athlete" as persona (person-gated)
+- /ghost 404 confirmed resolved — ghost/ directory and _redirects both in place
+- durationWeeks projected end date bug elevated from "verify resolved" to specific fix required
+- FORMRaceIntelligence.swift status clarified — file exists at FORM/Today/, awaiting Chris drop-in (add to Compile Sources + one-line swap Today.swift line 11248)
+- Console version sync note added. Console is currently v55b.
+- Solo vs. Miami question resolved at spec level
+- Section 6 current state updated to April 3, 2026
+- Infrastructure risk clarification: Xcode 26 status unconfirmed — not "deadline passed"
+- Stripe not wired added to infrastructure risks
+- Site changes applied Apr 3: "indefinitely" removed, first rep permission added, /next CTA fixed
 
 ---
 
@@ -22,77 +40,57 @@ FORM is a structured distance running practice based in Miami. It began as PDFs 
 ## 2. The Three Products
 
 ### 2.1 The App — `FORM Practice` (iOS)
-**App Store:** https://apps.apple.com/us/app/form-practice/id6761313085
-**Repo:** https://github.com/Breechay/FORM-iOS.git
-**Key file:** `FORM/Today/Today.swift` (~39,000 lines, monolith being split by Chris)
+**App Store:** https://apps.apple.com/us/app/form-practice/id6761313085  
+**Repo:** https://github.com/Breechay/FORM-iOS.git  
+**Key file:** `FORMApp.swift` (44,408 lines as of v7.1 — monolith being split by Chris)
 
-The app is the primary product. Everything else points to it. It contains:
-- **Ghost Protocol** — 6-week entry program. Free. The onboarding experience.
-- **Speed Emergence** — Active cycle. Tue threshold + Thu speed (6 sessions cycling) + Sat long run. Free.
-- **Intelligence layers** — `FORMThresholdIntelligence`, `FORMLongRunIntelligence`, `FORMSpeedIntelligence`. Each provides a `duringLine` shown during sessions.
-- **Ledger** — Session log. Records rep times, paces, completion.
-- **Ghost Protocol tabs** — TODAY / AHEAD / CUES / ARC
-- **Coach console** — Brice can write notes visible to athletes
+The app is the primary product. Everything else points to it.
 
-**Current app state (April 2026):**
+**Current app state (April 2026)**
 - Ghost Protocol: live, App Store approved
-- Speed Emergence: live in app, 6 Thursday sessions (Nice and Easy, Pyramid Intervals, Gauntlet, Speed Demons, Death, Resurrection) cycling indefinitely
-- FORMRaceIntelligence.swift: built, needs drop-in by Chris
-- Open code issues: `durationWeeks: 6` conflict with open-ended spec, session rotation must be session-indexed not week-indexed
+- Speed Emergence: live in app, 6 Thursday sessions rotating via mod 6. Cycle closes at 6 weeks — session rotation is open but the program container is not
+- FORMRaceIntelligence.swift: built and in repo at `FORM/Today/`. Awaiting Chris drop-in (add to Compile Sources + one-line swap Today.swift line 11248) before April 9
+- App version: v7.1
+- Monolith split underway: 7 feature files extracted to `FORM/` subdirectories (reference-only, not in Compile Sources yet)
 
-**What the app must never do:**
+**Open code issues**
+- Bug — `durationWeeks: 6` generates a projected end date for Speed Emergence that should not exist. When `isOpenEndedCycling` is true, suppress projected end date computation and display entirely. Code fix, not a verification pass. Chris.
+
+**What the app must never do**
 - Gamify (no streaks, no badges, no leaderboards)
-- Coach (no "great job", no "stay strong", no motivational language)
+- Coach (no "great job", no motivational language)
 - Interpret ledger data back as outcome
 - Add a second friction line per session
 
-### 2.2 The Site — `speedandform.com`
-**Repo:** https://github.com/Breechay/speedandform.git
-**Deploy:** Netlify, auto-deploy from main branch
+### 2.2 The Site — speedandform.com
+**Repo:** https://github.com/Breechay/speedandform.git · Netlify auto-deploy from main  
 **Backend:** Supabase (`zlhxvzgublgtuxplcjjl`)
 
-The site serves two audiences simultaneously:
-1. **Strangers** — people who find FORM via a shared session link, Google, or social. They need to understand what FORM is and have a clear path to participate.
-2. **Existing athletes** — people who train with the group. They need quick operational info: what's this week, where do we meet.
+The site serves two audiences: strangers (acquisition) and existing athletes (operational reference). Athletes should migrate to the app for operational detail — the site's job is acquisition and trust.
 
-**The right resolution:** Athletes use the app. The site is for strangers and acquisition. The site should stop trying to be the athlete dashboard — that's the app's job. Every athlete operational touchpoint on the site should have a quiet "→ in the app" nudge.
+**Design system (locked — do not change)**
+- `--cream: #f5f2ec`
+- `--ink: #2a2620`
+- `--ink-l: #6b6459`
+- `--ink-f: #a09890`
+- `--accent: #c4593a`
+- `--line: #d8d2c8`
+- Fonts: Cormorant Garamond (serif) + Jost (sans)
+- Voice: calm authority, restraint over effort, finish neutral
 
-**Key pages:**
-- `/` — homepage. Time-aware: taper (now–Apr 11), race day (Apr 12), Speed Emergence (Apr 13+)
-- `/thursday` — the acquisition door. This Thursday's session, Flamingo Park, 5:50 AM, "Show up in running shoes." Share this, not individual session links.
-- `/speed` — the 6 Thursday sessions as reference. Spec-locked language. No friction lines. Share buttons on each session.
-- `/practice` — athlete week dashboard. Dynamic schedule. App nudge.
-- `/plan-speed-emergence` — active cycle page: all 3 sessions, locations, times, session rotation
-- `/race-strategy` — permanent race framework (doctrine)
-- `/races/key-biscayne-2026` — April 12 event page (Brice, Simon, Hope splits, three-day countdown)
-- `/app` — app page with App Store link and protocol ladder
-- `/start` — how to join. Thursday listed first as easiest entry.
-- `/ghost` — Ghost Protocol entry program
+### 2.3 The Coach Console — coach.html
+Supabase-authenticated. Brice uses this to write session notes visible to athletes in the app. Currently at v55b.
 
-**Design system (locked, do not change):**
-```
---cream: #f5f2ec
---ink: #2a2620
---ink-l: #6b6459
---ink-f: #a09890
---accent: #c4593a
---line: #d8d2c8
---line-l: #e8e3dc
-Fonts: Cormorant Garamond (serif/display) + Jost (sans/body)
-Voice: calm authority, restraint over effort, finish neutral
-Never: gamification, streaks, engagement mechanics, celebration language
-```
-
-### 2.3 The Coach Console — `coach.html`
-Supabase-authenticated. Brice uses this to write session notes visible to athletes in the app. PIN: 1234 (not sensitive, known to Brice). Lives at `/coach.html` — not publicly linked but accessible.
+**Console version sync rule:** when the console is updated for a strategic change, update the spec in the same pass. They should never diverge by more than one working session.
 
 ---
 
 ## 3. Speed Emergence Spec (Current Cycle)
 
-**Authority document:** `form_program_spec_speed_emergence.html` v3.0. This overrides everything.
+**Authority document:** `form_program_spec_speed_emergence.html v3.0`. This overrides everything.
 
-**The six Thursday sessions (locked, do not rename):**
+**The six Thursday sessions (locked — do not rename)**
+
 | # | Name | Key structure |
 |---|------|--------------|
 | 01 | Nice and Easy | 3×200m · 2×800m · 1×400m |
@@ -102,273 +100,255 @@ Supabase-authenticated. Brice uses this to write session notes visible to athlet
 | 05 | Death | 600s+400s+300s+200s+800+400 |
 | 06 | Resurrection | Same as Death with compressed rest |
 
-**Friction lines (app-only, never on site):**
-- 01: "The first rep won't feel like enough."
-- 02: "The middle will feel longer than it is."
-- 03: "The last reps arrive before you're ready."
-- 04: "It will feel repetitive."
-- 05: "You'll want it to end earlier than it does."
-- 06: "The rest won't feel like enough." (provisional)
-
-**Intelligence layer duringLine (always-on, separate from friction lines):**
-"The rep ends when the form ends — not when the distance does."
-
-**Locked program close surfaces:**
+**Locked program close surfaces**
 - Mirror line: "You learned to move faster without letting your shape break."
 - Continuation bridge: "Continue what you built."
-- Archive closing line: behavior-derived (race + threshold ≥4 → "Built cleanly. Closed cleanly." etc.)
+- Intelligence duringLine: "The rep ends when the form ends — not when the distance does."
 
-**Surface rules:**
-- Site: structure only. No friction lines.
-- App drawer: structure + one friction line.
-- Plan tab Thursday rows: session name only. No subtitle.
-- Today card Thursday: `greetingContext` = "Light contact. Do not chase sharpness."
-- Notification: "Thursday is ready." (fires Thu 5:15 AM)
-- Completion line: "Finished."
+**Speed Emergence Cycle Close Protocol**
 
-**Acquisition sentence (locked, spec-authority):**
-"If you want to run like this again, it's in FORM."
-This is used on the site at the bottom of `/speed` and `/thursday`. Do not modify.
+*Critical distinction:* The cycle closes at 6 weeks. Session rotation is mod 6 (open) — athletes cycle through all six sessions without hitting a hard stop per session. But the program container closes after 6 weeks. This is not "indefinitely." The sessions are the tools; the cycle is the shape.
+
+*Timeline*
+- Start: April 13, 2026
+- First Thursday track: April 17, 2026
+- Projected close: ~May 24, 2026 (6 weeks from start)
+
+*Trigger conditions*
+- 6 weeks elapsed from April 13
+- Group has completed at least one rotation of all six sessions
+
+*What changes at close*
+1. Update homepage state from "Speed Emergence active" → "between cycles"
+2. Archive /plan-speed-emergence
+3. Write cycle close console note for athletes
+4. Fire continuation bridge: "Continue what you built." + next cycle offer → speedandform.com/next
+5. Update console status to "Cycle closed — [date]"
+
+*Between-cycles Thursday:* Open group run. No structured intervals. Carrier holds it. Brice runs. High acquisition moment — note any new faces. No mention of payment in-person. The product handles that.
 
 ---
 
 ## 4. Product History
 
-The progression tells the strategy:
+- **PDF era** — Brice coaching individual athletes via PDF training plans
+- **Site era** — speedandform.com built to replace PDFs. Site became the operational dashboard
+- **App era** — FORM Practice app built and shipped. App Store approved April 2026. The app now takes over the operational dashboard role from the site. The site shifts to acquisition surface
+- **Next era** — Monetization. The free base has been earned. The paying tier is the natural next layer
 
-**PDF era** — Brice coaching individual athletes via PDF training plans. Personal, manual, not scalable.
-
-**Site era** — `speedandform.com` built to replace PDFs. Athletes check the site for the weekly schedule. The site became the operational dashboard.
-
-**App era** — FORM Practice app built and shipped to App Store. App Store approved April 2026. The app should now take over the operational dashboard role from the site. The site should shift from "athlete tool" to "acquisition surface."
-
-**Next era** — Monetization. The free base has been earned over years. The paying tier is the natural next layer.
-
-This matters for agents: decisions about where content lives (site vs. app) should always bias toward the app now. The site's job going forward is to get people into the app or to Thursday at Flamingo Park.
+**Agent decision rule:** Decisions about where content lives (site vs. app) should always bias toward the app now. The site's job is to get people into the app or to Thursday at Flamingo Park.
 
 ---
 
-## 5. Athlete Roster (Current Group)
+## 5. Athlete Roster
 
-Athletes with pages at `/athletes/[name]`:
-Simon, Hope (coached by Jose), Bobby, Marcus, Kyle, Megan, Lisa, Ryan, Sam P., Sam V., Tinius, Mike, Jose, Brice (Breech).
+Athletes with pages at /athletes/[name]: Simon, Hope, Bobby, Marcus, Kyle, Megan, Lisa, Ryan, Sam P., Sam V., Tinius, Mike, Jose, Brice (Breech).
 
-Athlete pages track: threshold session history, race history, coach notes. Supabase-backed. Coach-editable. Athletes can view their own.
+Notable: Simon (Key Biscayne target ~1:23–1:24 HM) · Hope (paced by Jose, sub-1:30 HM, trains remotely from Gainesville) · Brice (target ~1:21–1:22 HM) · Kyle (from Miami, now in NY)
 
-**Notable facts for agent context:**
-- Simon: Key Biscayne target ~1:23–1:24 half marathon
-- Hope: paced by Jose, target sub-1:30 half marathon
-- Brice: target ~1:21–1:22 half marathon
-- Session names in Speed Emergence spec are named after origin athletes (Bobby = Nice and Easy, Tinius = Pyramid Intervals, Sam = Gauntlet, Erik = Speed Demons, Breechay = Death, Brice = Resurrection)
+Session names origin: Bobby = Nice and Easy · Tinius = Pyramid Intervals · Sam = Gauntlet · Erik = Speed Demons · Breechay = Death · Brice = Resurrection
 
 ---
 
 ## 6. Current State Snapshot (April 3, 2026)
 
-**Immediate context:**
+**Immediate context**
 - Key Biscayne Half Marathon: April 12, 2026
 - Taper active: April 3–11
 - Speed Emergence begins: April 13 (first Thursday track: April 17)
-- App: live on App Store, Speed Emergence active
+- App: live on App Store, v7.1 shipped
+- FORMRaceIntelligence.swift: built and in repo — needs Chris drop-in before April 9
 
-**Site state:**
-- Homepage: time-aware (taper / race day / SE states), 3-session board
-- `/thursday`: live, acquisition door, session auto-populates
-- `/speed`: spec-compliant, 6 sessions, share buttons, acquisition block
-- `/race-strategy`: permanent framework
-- `/races/key-biscayne-2026`: April 12 event page with Brice/Simon/Hope splits
-- `/plan-speed-emergence`: active cycle page
-- `/plan`: Spring Cycle archive, links to SE
+**Site state**
+- Homepage: time-aware (taper / race day / SE states), 3-session board ✓
+- /thursday: taper state live, SE Apr 17 preview correct, first rep permission added ✓
+- /speed: spec-compliant, 6 sessions, share buttons ✓
+- /races/key-biscayne-2026: April 12 event page with pace strategy ✓
+- /taper-key-biscayne: 14-day taper plan ✓
+- /ghost: live — ghost/ directory with index + 6 week pages + cues. _redirects correct ✓
+- /next: built Apr 3, content-complete, mailto notify CTA (Stripe not yet wired) ✓
 
-**Recent commits (newest first):**
-- `789a864` — acquisition model: /thursday + homepage rebuilt + start updated
-- `0874017` — homepage time-aware phase switching + 3-session SE layout
-- `c713895` — speed emergence cycle transition + App Store URL live
-- `135514f` — speed emergence acquisition layer + site coherence pass
-- `499c7cf` — split race-strategy into framework + event pages
-- `80e6472` — add /race-strategy permanent resource
+**Known open issues**
+- durationWeeks projected end date bug — suppress when isOpenEndedCycling is true (Chris)
+- Xcode 26 / iOS 18.5 SDK upgrade status — unconfirmed (Chris)
+- Session 05 Death structure: site vs. SE spec v3.0 — needs reconciliation
+- Stripe: not wired. No webhook, no entitlement unlock, no production test
 
 ---
 
 ## 7. Monetization Path
 
-**The principle:** Brice has built trust with a large free audience over years. The transition to paid should be earned, not extracted. The first paying customers are already in the group.
-
-### Tier 0 — Free Forever
-- Ghost Protocol (6-week entry program in app)
-- The group sessions (Thursday track at Flamingo Park)
+**Tier 0 — Free Forever**
+- Ghost Protocol (6-week entry program)
+- Speed Emergence (current cycle — free for the founding cohort)
+- The group sessions (Thursday track)
 - The site
 
-**Why:** Ghost Protocol is the proof of concept. If someone can finish 6 weeks, they trust the system. The group sessions are the community — charging for them now would shrink the network before it's strong enough. The site is acquisition.
+**Tier 1 — Next Cycle ($15–25/month or one-time cycle purchase)**
 
-### Tier 1 — Remote Athlete ($15–25/month)
-**First paid product. Build this next.**
+*Strategy — Resolved · v1.2:* The paid tier is content-gated, not person-gated. The first paid product is not "remote athlete access" — it is the next cycle after Speed Emergence. The /join-remote page framing is retired.
 
-The remote athlete already exists. Hope trains remotely from Gainesville. She uses the app, gets the session, has no access to the group. She represents the first paying customer archetype: no local group, no coach, wants structure that works.
+*Current status:* Stripe chosen over Apple IAP. Flow understood: external payment → webhook → entitlement unlock. No webhook implemented, no entitlement unlock, no production test. /next is built with mailto notify fallback CTA.
 
-What a remote tier includes:
-- Full app access with cycle updates
-- Occasional coach notes written to their athlete page
-- Race strategy access when they have a race
-- No live coaching (async only, via coach console notes)
+*Build order*
+1. Define next cycle content — prerequisite for everything
+2. Define price ($15–25/month or one-time)
+3. Wire Stripe webhook + entitlement unlock + `paid_cycle` flag in Supabase
+4. Replace /next mailto CTA with real Stripe checkout link
+5. Manually confirm first cohort (5–10 athletes) before automating payment
 
-The infrastructure exists: athlete pages, coach console, the app. The only missing piece is a payment gate and a clear onboarding flow for remote athletes.
+*What not to do:* No paywall on Ghost Protocol · No charging for the website · No subscriptions before a coaching loop exists · No rushing before SE usage data is clear
 
-**How to build it:**
-1. Add a `remote_athlete` flag to Supabase athlete records
-2. Build a `/join-remote` page: what you get, price, Apple Pay / Stripe
-3. Gate certain app features behind this flag (race intelligence, coach notes)
-4. Brice manually onboards first cohort (5–10 people) before automating
+**Distribution — first rep permission**
+"You can leave after the first rep." — Added to /thursday Apr 3, 2026 ✓
 
-### Tier 2 — Premium Cycles (next after Tier 1)
-Speed Emergence is currently free. The next cycle after Speed Emergence — whatever follows — is the first paid cycle.
-
-The pattern: Ghost Protocol proves the system → Speed Emergence deepens it → next cycle costs money. Athletes who've completed two free cycles are the most qualified buyers of a third.
-
-**What makes a paid cycle feel worth it:**
-- Personalized pace targets (derived from ledger history)
-- Race Intelligence layer wired to their specific goal race
-- Closer coaching loop (more frequent notes, structured check-ins)
-- Priority access to new sessions before they go to the group
-
-### Tier 3 — Thursday at Scale (not yet)
-Thursday track is currently the acquisition engine. Charging for it would slow growth. Hold until the group consistently self-organizes — the spec's north star: "One Thursday happens without the founder, and no one tells them about it."
-
-When Thursday is self-sustaining (guest coaches, group regulars who know the sessions, no Brice required), a small session fee ($5–10) creates commitment signal and covers track costs. This is 12–24 months out.
-
-### What Not to Do
-- Don't put a paywall on Ghost Protocol — it's the trust-builder
-- Don't charge for the website
-- Don't add subscriptions before there's a human coaching loop behind them
-- Don't rush to monetize before the app usage data from Speed Emergence is clear
-- Don't add features for paid tiers that don't already exist in some form
+**Tier 3 — Thursday at Scale (not yet)**
+Thursday track is currently the acquisition engine. Charging for it would slow growth. Hold until the group consistently self-organizes.
 
 ---
 
 ## 8. App ↔ Site Coherence Rules
 
-These rules exist to ensure the app and site feel like one product, not two separate things.
+1. Session names are identical everywhere. No abbreviations, no variations.
+2. The site never competes with the app. If the app does something, the site points to it.
+3. Every site surface has an app nudge. Always quiet, never pushy.
+4. Schedule data is maintained in both. They must match.
+5. The Thursday share link points to /thursday, not /speed#session-0X.
 
-**Rule 1: Session names are identical everywhere.**
-"Nice and Easy" on the site, "Nice and Easy" in the app, "Nice and Easy" in athlete pages. No abbreviations, no variations. The name is the product.
+---
 
-**Rule 2: The site never competes with the app.**
-If the app does something, the site should point to it, not replicate it. The site's session schedule is a preview; the full coaching detail is in the app.
+## 8.5 Non-Founder Carrier
 
-**Rule 3: Every site surface has an app nudge.**
-`/practice` has "Full detail in app →". `/speed` has "If you want to run like this again, it's in FORM." `/thursday` has the App Store download link. The nudge is always quiet, never pushy.
+Right now FORM doctrine lives in three places: in Brice, in the app, and in the site. The Thursday north star — one session happening without the founder — cannot be reached by product work alone. It requires the protocol to transfer into the field through at least one other human who holds it without performance.
 
-**Rule 4: Schedule data is maintained in both.**
-When the cycle changes, both the site SCHEDULE arrays and the app's `speedEmergenceDayPlans` must be updated. They must match. The site's SCHEDULE in `practice.html` and `index.html` is the human-readable source of truth for session dates. The app is the authoritative coaching source.
+**What a carrier is:** One or two athletes who can hold the warm-up shape, start the session on time, preserve session language, and close with "Finished." Not assistant coaches. Not captains. Quiet carriers of sequence.
 
-**Rule 5: The Thursday share link points to `/thursday`, not `/speed#session-0X`.**
-`/thursday` is the door. `/speed#session-05` is the reference. Sharing the door gets people into the community. Sharing the reference gets people a workout.
+**How to establish it:** No announcement. No new title. No ceremony. Brice tells them directly. On Thursday, Brice begins showing up operationally silent — not absent, just not leading. The carrier takes the warm-up. Brice runs.
 
 ---
 
 ## 9. What Agents Should Know Before Starting Work
 
-### Before touching the site:
-1. Clone `https://github.com/Breechay/speedandform.git`
-2. Read `FORM_STRATEGY_SPEC.md` (this document)
-3. Read `form_program_spec_speed_emergence.html` before touching anything in `/speed` or session content
-4. Check the FORM console (latest version in memory or conversation) for open gaps and build queue
-5. The design system is locked. Do not introduce new colors, fonts, or layout patterns.
-6. Commit messages should be descriptive. Every significant change gets a commit. Push after committing.
+**Before touching the site**
+- Clone https://github.com/Breechay/speedandform.git
+- Read this document (FORM_STRATEGY_SPEC.md v1.2)
+- Read form_program_spec_speed_emergence.html before touching /speed or session content
+- Check the console (v55b) for open gaps and build queue
+- The design system is locked. Do not introduce new colors, fonts, or layout patterns.
+- Commit messages descriptive. Every significant change gets a commit. Push after committing.
 
-### Before touching the app:
-1. Clone `https://github.com/Breechay/FORM-iOS.git`
-2. The primary file is `FORM/Today/Today.swift` (~39K lines). It is a monolith being refactored by Chris.
-3. Read the Speed Emergence spec before touching any Speed Emergence content.
-4. Never add coaching language to session drawers.
-5. The session rotation is session-indexed (mod 6), not week-indexed. Do not revert this.
-6. `duringLine` in intelligence layers is a separate surface from session friction lines. Do not merge them.
+**Before touching the app**
+- Clone https://github.com/Breechay/FORM-iOS.git
+- The primary compile unit is FORMApp.swift (44,408 lines). Feature files in FORM/ are reference-only.
+- Read the Speed Emergence spec before touching any Speed Emergence content
+- Never add coaching language to session drawers
+- Session rotation is session-indexed (mod 6), not week-indexed. Do not revert this.
+- When isOpenEndedCycling is true, do not compute or display a projected end date.
 
-### Key locked strings (never modify without spec authority):
+**Key locked strings (never modify without spec authority)**
 - Acquisition sentence: "If you want to run like this again, it's in FORM."
-- duringLine: "The rep ends when the form ends — not when the distance does."
+- Intelligence duringLine: "The rep ends when the form ends — not when the distance does."
 - Mirror line: "You learned to move faster without letting your shape break."
 - Continuation bridge: "Continue what you built."
 - Thursday notification: "Thursday is ready."
-- Completion line: "Finished."
-- Site closing note on `/speed`: "These sessions belong to a different phase of the practice. Speed is a tool the system returns to when the time is right."
+- Completion: "Finished."
 
-### Infrastructure:
-- **Supabase project:** `zlhxvzgublgtuxplcjjl` (speedandform.com backend)
-- **Netlify:** auto-deploy from `Breechay/speedandform` main branch
-- **App Store:** `id6761313085`
-- **GitHub repos:** `Breechay/speedandform` (site), `Breechay/FORM-iOS` (app)
+**Infrastructure**
+- Supabase: `zlhxvzgublgtuxplcjjl`
+- Netlify: auto-deploy from Breechay/speedandform main
+- App Store: id6761313085
+- Repos: Breechay/speedandform (site) · Breechay/FORM-iOS (app)
 
 ---
 
 ## 10. Open Work Queue
 
-### Immediate (post-race, April 13+)
-- [ ] Verify app session rotation is session-indexed not week-indexed (for Chris)
-- [ ] Verify `durationWeeks: 6` conflict is resolved in app (for Chris)
-- [ ] Drop `FORMRaceIntelligence.swift` into `FORM/Today/` (for Chris)
-- [ ] One-line change in Today.swift: `FORMTodayRaceModeView()` → `FORMTodayRaceModeViewV2()`
-- [ ] Wire Thursday track session results into athlete pages after first SE session (Apr 17)
-- [ ] Add Key Biscayne race results to athlete pages after April 12
+**Pre-race (before April 12)**
+- [ ] Verify Key Biscayne athletes have raceDate and goalTime in FORMCycleRecord (Brice / Chris)
+- [ ] Drop FORMRaceIntelligence.swift into Compile Sources (Chris) — before April 9
+- [ ] One-line change in Today.swift line 11248: `FORMTodayRaceModeView()` → `FORMTodayRaceModeViewV2()` (Chris) — before April 9
 
-### Site — Next cycle
-- [ ] Archive Spring Cycle properly in `cycles.html`
-- [ ] Update `the-field.html` — add Thursday to session locations
-- [ ] Update structured data (schema.org) on `index.html` for three sessions
-- [ ] Update meta description on `index.html` for Speed Emergence
-- [ ] `start.html` closing line update: "Start Thursday. Everything else follows." ✓ (done)
+**Immediate (post-race, April 13+)**
+- [ ] Fix durationWeeks projected end date bug — when isOpenEndedCycling is true, suppress projected end date. Chris.
+- [ ] Confirm Xcode 26 / iOS 18.5 SDK upgrade status — must resolve before any new App Store submissions
+- [ ] Reconcile Session 05 (Death) structure: site speed.html vs. form_program_spec_speed_emergence.html v3.0
 
-### App — Open spec gaps
-- [ ] `FORMSpeedIntelligence` — define Speed Emergence-specific secondary close lines (3–5 words, observational, tag-derived)
-- [ ] Decide: lock Resurrection friction line or keep provisional after first cycle
-- [ ] Decide: `durationWeeks` — open-ended or extended container
-- [ ] Decide: readiness gate for Thursday (after 4–6 sessions)
-- [ ] Speed ledger signature layer — "Even finish" / "Closed fast" etc. (deferred)
+**Monetization — Build order**
+- [ ] Define next cycle content — prerequisite for everything in monetization
+- [ ] Define paid cycle price ($15–25/month or one-time)
+- [ ] Wire Stripe webhook + entitlement unlock
+- [ ] Add `paid_cycle` flag to Supabase athlete records
+- [ ] Replace /next mailto CTA with real Stripe checkout link
+- [ ] Manually confirm first cohort (5–10 athletes) before automating payment
 
-### Monetization — Build order
-- [ ] Define remote athlete flow (what they get, price, onboarding)
-- [ ] Build `/join-remote` page
-- [ ] Add `remote_athlete` flag to Supabase schema
-- [ ] Gate race intelligence + coach notes behind remote flag
-- [ ] Manually onboard first 5–10 remote athletes (no automation yet)
-- [ ] Decide second paid cycle content before Speed Emergence closes
+**Cycle Close Protocol (needed before ~May 24)**
+- [ ] Define exactly what changes on the site at SE close
+- [ ] Define what the console shows between cycles
+- [ ] Draft continuation bridge copy pointing toward paid next cycle
+- [ ] Define between-cycles Thursday app state (what Today shows when SE is closed)
 
-### Social / Distribution (not yet started)
-- [ ] Thursday session shares: use `/thursday` not `/speed#session-0X`
-- [ ] Instagram bio link → `/thursday`
-- [ ] Consider a "Thursday regulars" concept — share card for athletes who've attended 4+ consecutive Thursdays
-- [ ] PERDRIX brand documentation (separate but related — Alberto Perdrix music curator at Hideout)
+**Site — completed Apr 3, 2026**
+- ✓ "Cycling indefinitely" removed from thursday.html, plan-speed-emergence.html (body + meta)
+- ✓ "You can leave after the first rep." added to thursday.html
+- ✓ /next CTA replaced: dead #checkout → mailto notify fallback
+- ✓ FORM_STRATEGY_SPEC.md updated to v1.2
+- ✓ form_console_v55b.html added to repo
+- ✓ coach.html Part B link updated to v55b
 
 ---
 
 ## 11. Doctrine (Non-Negotiable)
 
-These principles govern every decision across every surface. Agents should check work against these before shipping anything.
-
-**No gamification.** No streaks, no badges, no completion percentages shown as achievement, no leaderboards, no "you're in the top 10%" messages. These are incompatible with the voice.
-
-**Restraint over effort.** The work is about doing enough, not doing everything. Session language communicates what the session is, not how hard you should try.
-
-**Finish neutral.** Nothing in the product should celebrate completion excessively. The mirror line is recognition, not praise. "Finished." is the close, not "Crushed it."
-
-**The session is the product.** The app is where it lives. The site points to the app. The coach is not the product. The structure is the product.
-
-**Silence as authority.** Empty space, short sentences, minimal copy. Restraint in language signals that the work doesn't need explaining. When in doubt, remove a word.
-
-**The Thursday north star.** "One Thursday happens without the founder — and no one tells them about it. That's when FORM is real." Every decision about scale, monetization, and product should be tested against this.
+- **No gamification.** No streaks, no badges, no leaderboards, no "you're in the top 10%" messages.
+- **Restraint over effort.** Session language communicates what the session is, not how hard you should try.
+- **Finish neutral.** The mirror line is recognition, not praise. "Finished." is the close, not "Crushed it."
+- **The session is the product.** The app is where it lives. The site points to the app.
+- **The coach is not the product.**
+- **Silence as authority.** Empty space, short sentences, minimal copy. When in doubt, remove a word.
+- **The Thursday north star.** "One Thursday happens without the founder — and no one tells them about it. That's when FORM is real."
 
 ---
 
 ## 12. RunCards (Separate Product)
 
-Brice also manages **RunCards** — a run club discovery app. Engineer: Chris Radler. Recent work includes V3 card redesign, city consolidation, MongoDB live backend. This is a separate product with its own codebase and doesn't intersect with FORM except that Chris works on both. Do not conflate the two products.
+Brice also manages RunCards — a run club discovery app. Engineer: Chris Radler. Recent work includes V3 card redesign, city consolidation, MongoDB live backend. Separate product. Do not conflate with FORM.
 
 ---
 
 ## 13. PERDRIX (Brand Context)
 
-Alberto Perdrix is a music curator who plays at Hideout (the FORM Saturday long run location). Brice manages the Alberto Perdrix brand. The brand strategy: document the music, don't promote the artist. Bilingual EN/ES. Print-ready assets built. This is unrelated to FORM's training content but shares physical space (Hideout) and brand philosophy (restraint, documentation over promotion).
+Alberto Perdrix is a music curator who plays at Hideout (the FORM Saturday long run location). Brice manages the Alberto Perdrix brand. Brand strategy: document the music, don't promote the artist. Bilingual EN/ES. Unrelated to FORM training content but shares physical space and brand philosophy. Do not apply FORM session language conventions to PERDRIX content without Brice's direction.
 
 ---
 
-*FORM Strategy Spec v1.0 · Written April 3, 2026 · Next review: post-Speed Emergence cycle 1 close*
+## 14. How the Spec Gets Updated
+
+This document changes only when one of three conditions is met:
+1. A gate breach in the console triggers a finding that invalidates a strategic assumption. Console updated first; spec updated to reflect the revision.
+2. A cycle close is the natural review point. Sections 6, 7, and 10 are most likely to need updates.
+3. A spec-level decision is settled. Open strategic questions are listed explicitly. When Brice settles one, the spec is updated.
+
+**Console–spec sync rule:** When the console is updated for a strategic change, update the spec in the same session. They should never diverge by more than one working session.
+
+Agents may not update this spec based on field signals or inferred preference without Brice's direction.
+
+---
+
+## 15. Infrastructure Risks (Known)
+
+**iOS SDK / Xcode 26 — Status Unconfirmed**  
+Build 2 was submitted with the iOS 18.5 SDK. Any future App Store submission may be blocked until the Xcode 26 upgrade is confirmed complete. Must confirm with Chris before planning any new app feature work.
+
+**Strava production approval — pending**  
+Ticket 13267, submitted Mar 24. The `.production` flip is in code. While waiting: verify callback domain = `strava-oauth`, relay at form-strava-relay.vercel.app responds, URL scheme `form` in Xcode target. Gate: do not build additional Strava-dependent features until approved.
+
+**Garmin — scaffolding only**  
+FORMObservationSource includes `.garmin` and deduplication logic exists. The actual Garmin polling/integration is unbuilt. Gate: Strava live and validated first.
+
+**Stripe — not wired**  
+Chosen over Apple IAP. Flow understood: external payment → webhook → entitlement unlock. No webhook built, no entitlement unlock, no production test. /next has mailto notify fallback CTA. Gate: define next cycle content first.
+
+---
+
+*FORM Strategy Spec v1.2 · April 3, 2026*  
+*Next review: Speed Emergence cycle close (~May 24, 2026)*
