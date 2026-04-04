@@ -110,12 +110,12 @@ Supabase-authenticated. Brice uses this to write session notes visible to athlet
 *Critical distinction:* The cycle closes at 6 weeks. Session rotation is mod 6 (open) — athletes cycle through all six sessions without hitting a hard stop per session. But the program container closes after 6 weeks. This is not "indefinitely." The sessions are the tools; the cycle is the shape.
 
 *Timeline*
-- Start: April 13, 2026
-- First Thursday track: April 17, 2026
-- Projected close: ~May 24, 2026 (6 weeks from start)
+- Start: April 20, 2026 (recovery week April 13–19)
+- First Thursday track: April 24, 2026
+- Projected close: ~May 31, 2026 (6 weeks from April 20)
 
 *Trigger conditions*
-- 6 weeks elapsed from April 13
+- 6 weeks elapsed from April 20
 - Group has completed at least one rotation of all six sessions
 
 *What changes at close*
@@ -155,13 +155,13 @@ Session names origin: Bobby = Nice and Easy · Tinius = Pyramid Intervals · Sam
 **Immediate context**
 - Key Biscayne Half Marathon: April 12, 2026
 - Taper active: April 3–11
-- Speed Emergence begins: April 13 (first Thursday track: April 17)
+- Speed Emergence begins: April 20 (recovery week April 13–19; first Thursday track: April 24)
 - App: live on App Store, v7.1 shipped
 - FORMRaceIntelligence.swift: built and in repo — needs Chris drop-in before April 9
 
 **Site state**
 - Homepage: time-aware (taper / race day / SE states), 3-session board ✓
-- /thursday: taper state live, SE Apr 17 preview correct, first rep permission added ✓
+- /thursday: taper state live, recovery week state added, SE Apr 20 / first track Apr 24, first rep permission added ✓
 - /speed: spec-compliant, 6 sessions, share buttons ✓
 - /races/key-biscayne-2026: April 12 event page with pace strategy ✓
 - /taper-key-biscayne: 14-day taper plan ✓
@@ -268,7 +268,7 @@ Right now FORM doctrine lives in three places: in Brice, in the app, and in the 
 - [ ] Drop FORMRaceIntelligence.swift into Compile Sources (Chris) — before April 9
 - [ ] One-line change in Today.swift line 11248: `FORMTodayRaceModeView()` → `FORMTodayRaceModeViewV2()` (Chris) — before April 9
 
-**Immediate (post-race, April 13+)**
+**Immediate (post-race, April 20+)**
 - [ ] Fix durationWeeks projected end date bug — when isOpenEndedCycling is true, suppress projected end date. Chris.
 - [ ] Confirm Xcode 26 / iOS 18.5 SDK upgrade status — must resolve before any new App Store submissions
 - [ ] Reconcile Session 05 (Death) structure: site speed.html vs. form_program_spec_speed_emergence.html v3.0
@@ -281,7 +281,7 @@ Right now FORM doctrine lives in three places: in Brice, in the app, and in the 
 - [ ] Replace /next mailto CTA with real Stripe checkout link
 - [ ] Manually confirm first cohort (5–10 athletes) before automating payment
 
-**Cycle Close Protocol (needed before ~May 24)**
+**Cycle Close Protocol (needed before ~May 31)**
 - [ ] Define exactly what changes on the site at SE close
 - [ ] Define what the console shows between cycles
 - [ ] Draft continuation bridge copy pointing toward paid next cycle
@@ -351,4 +351,4 @@ Chosen over Apple IAP. Flow understood: external payment → webhook → entitle
 ---
 
 *FORM Strategy Spec v1.2 · April 3, 2026*  
-*Next review: Speed Emergence cycle close (~May 24, 2026)*
+*Next review: Speed Emergence cycle close (~May 31, 2026)*
