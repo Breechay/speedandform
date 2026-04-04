@@ -215,7 +215,7 @@ body {
     </div>
   </div>
 
-  <!-- Race week state (Apr 7–11): no Thursday speed during taper -->
+  <!-- Race week state (Apr 7–12): no Thursday speed during taper -->
   <div id="state-taper" class="race-state">
     <span class="eyebrow">Race Week · April 12</span>
     <div class="session-name">No<br>Speed<br>Today</div>
@@ -227,8 +227,8 @@ body {
       </div>
       <div class="loc">
         <span class="loc-label">Next Thursday</span>
-        <span class="loc-val">Apr 17 · Nice and Easy</span>
-        <span class="loc-sub">First Speed Emergence track</span>
+        <span class="loc-val">Apr 17 · Easy running</span>
+        <span class="loc-sub">Recovery week — no track</span>
       </div>
     </div>
     <div class="app-block">
@@ -239,7 +239,30 @@ body {
     <div class="app-block" style="border-top: 1px solid var(--line-l);">
       <span class="app-label">Get the app</span>
       <a class="app-link" href="https://apps.apple.com/us/app/form-practice/id6761313085">Download FORM on iPhone →</a>
-      <span class="app-note">Speed Emergence begins Apr 13. First track session Apr 17. The app carries all three days.</span>
+      <span class="app-note">Speed Emergence begins Apr 20. First track session Apr 24.</span>
+    </div>
+  </div>
+
+  <!-- Recovery week state (Apr 13–19): easy running only -->
+  <div id="state-recovery" class="race-state" style="display:none">
+    <span class="eyebrow">Recovery Week · Apr 13–19</span>
+    <div class="session-name">No<br>Track<br>Today</div>
+    <div class="location-block">
+      <div class="loc">
+        <span class="loc-label">This week</span>
+        <span class="loc-val">Easy running only</span>
+        <span class="loc-sub">Let the race settle</span>
+      </div>
+      <div class="loc">
+        <span class="loc-label">Next Thursday</span>
+        <span class="loc-val">Apr 24 · Nice and Easy</span>
+        <span class="loc-sub">Speed Emergence begins</span>
+      </div>
+    </div>
+    <div class="app-block">
+      <span class="app-label">Get the app</span>
+      <a class="app-link" href="https://apps.apple.com/us/app/form-practice/id6761313085">Download FORM on iPhone →</a>
+      <span class="app-note">Speed Emergence begins Apr 20. The app carries all three days.</span>
     </div>
   </div>
 
@@ -266,18 +289,18 @@ const SESSIONS = [
 
 // Known Thursday dates with session index (0-based)
 const THURSDAY_SCHEDULE = [
-  { date:'2026-04-17', idx:0 },
-  { date:'2026-04-24', idx:1 },
-  { date:'2026-05-01', idx:2 },
-  { date:'2026-05-08', idx:3 },
-  { date:'2026-05-15', idx:4 },
-  { date:'2026-05-22', idx:5 },
-  { date:'2026-05-29', idx:0 },
-  { date:'2026-06-05', idx:1 },
-  { date:'2026-06-12', idx:2 },
-  { date:'2026-06-19', idx:3 },
-  { date:'2026-06-26', idx:4 },
-  { date:'2026-07-03', idx:5 },
+  { date:'2026-04-24', idx:0 },
+  { date:'2026-05-01', idx:1 },
+  { date:'2026-05-08', idx:2 },
+  { date:'2026-05-15', idx:3 },
+  { date:'2026-05-22', idx:4 },
+  { date:'2026-05-29', idx:5 },
+  { date:'2026-06-05', idx:0 },
+  { date:'2026-06-12', idx:1 },
+  { date:'2026-06-19', idx:2 },
+  { date:'2026-06-26', idx:3 },
+  { date:'2026-07-03', idx:4 },
+  { date:'2026-07-10', idx:5 },
 ];
 
 function toYMD(d) {
@@ -293,15 +316,23 @@ function getNextThursday(from) {
 }
 
 (function() {
-  const today = new Date(); today.setHours(0,0,0,0);
-  const TAPER_START = new Date('2026-04-07T00:00:00');
-  const SE_START    = new Date('2026-04-13T00:00:00');
-  const RACE_DATE   = new Date('2026-04-12T00:00:00');
+  const today         = new Date(); today.setHours(0,0,0,0);
+  const TAPER_START   = new Date('2026-04-07T00:00:00');
+  const RACE_DATE     = new Date('2026-04-12T00:00:00');
+  const RECOVERY_END  = new Date('2026-04-19T00:00:00');
+  const SE_START      = new Date('2026-04-20T00:00:00');
 
-  // ── TAPER WEEK (Apr 7–12): no Thursday speed ──
+  // ── TAPER (Apr 7–12) ──
   if (today >= TAPER_START && today <= RACE_DATE) {
     document.getElementById('state-normal').style.display = 'none';
     document.getElementById('state-taper').style.display = 'block';
+    return;
+  }
+
+  // ── RECOVERY WEEK (Apr 13–19) ──
+  if (today > RACE_DATE && today <= RECOVERY_END) {
+    document.getElementById('state-normal').style.display = 'none';
+    document.getElementById('state-recovery').style.display = 'block';
     return;
   }
 
@@ -314,38 +345,35 @@ function getNextThursday(from) {
     if (s.date === thuYMD) { session = SESSIONS[s.idx]; break; }
   }
 
-  // Fallback: derive from cycle position if date not in schedule
+  // Fallback: derive from cycle position
   if (!session) {
-    // Apr 17 = session 0, then +1 per week cycling mod 6
-    const anchor = new Date('2026-04-17T00:00:00');
+    const anchor    = new Date('2026-04-24T00:00:00'); // first SE track
     const weeksDiff = Math.round((nextThu - anchor) / (7 * 24 * 60 * 60 * 1000));
     if (weeksDiff >= 0) {
       session = SESSIONS[weeksDiff % 6];
     } else {
-      // Before SE launch — show Nice and Easy as preview
-      session = SESSIONS[0];
+      session = SESSIONS[0]; // preview before launch
     }
   }
 
   // ── UPDATE DOM ──
-  const isThisThursday = today.getDay() === 4; // Thursday
-  const eyebrow = document.getElementById('thu-eyebrow');
-  const nameEl  = document.getElementById('thu-session-name');
+  const isThisThursday = today.getDay() === 4;
+  const eyebrow  = document.getElementById('thu-eyebrow');
+  const nameEl   = document.getElementById('thu-session-name');
   const inlineEl = document.getElementById('thu-session-inline');
 
   if (isThisThursday && today >= SE_START) {
     eyebrow.textContent = 'Tonight · Speed Emergence';
   } else if (today < SE_START) {
-    // Pre-SE: show what's coming
     const dateStr = nextThu.toLocaleDateString('en-US', { month:'long', day:'numeric' });
-    eyebrow.textContent = 'Speed Emergence · Apr 13 · First track ' + dateStr;
+    eyebrow.textContent = 'Speed Emergence · Apr 20 · First track ' + dateStr;
   } else {
     const dateStr = nextThu.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' });
     eyebrow.textContent = dateStr + ' · Speed Emergence';
   }
 
-  if (nameEl) nameEl.innerHTML = session.nameBreak;
-  if (inlineEl) inlineEl.textContent = session.name;
+  if (nameEl)   nameEl.innerHTML      = session.nameBreak;
+  if (inlineEl) inlineEl.textContent  = session.name;
 })();
 </script>
 </body>

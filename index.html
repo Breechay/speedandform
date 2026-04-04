@@ -380,7 +380,7 @@ body {
 // Race week: Apr 12 (Key Biscayne Half Marathon)
 // Speed Emergence: Apr 13 onward
 const RACE_DATE    = new Date('2026-04-12T00:00:00');
-const SE_START     = new Date('2026-04-13T00:00:00'); // SE Monday start
+const SE_START     = new Date('2026-04-20T00:00:00'); // SE Monday start (recovery week Apr 13–19)
 
 // ── FULL SCHEDULE ──
 const SCHEDULE = [
@@ -394,14 +394,14 @@ const SCHEDULE = [
   { type:'threshold', date:'2026-03-31', desc:'3 × 8 min' },
   { type:'threshold', date:'2026-04-07', desc:'2 × 8 min' },
   // Speed Emergence threshold
-  { type:'threshold', date:'2026-04-15', desc:'2 × 10 min' },
-  { type:'threshold', date:'2026-04-22', desc:'2 × 12 min' },
-  { type:'threshold', date:'2026-04-29', desc:'3 × 10 min' },
-  { type:'threshold', date:'2026-05-06', desc:'2 × 15 min' },
-  { type:'threshold', date:'2026-05-13', desc:'3 × 12 min' },
-  { type:'threshold', date:'2026-05-20', desc:'20 min continuous' },
-  { type:'threshold', date:'2026-05-27', desc:'2 × 10 min' },
-  { type:'threshold', date:'2026-06-03', desc:'2 × 12 min' },
+  { type:'threshold', date:'2026-04-22', desc:'2 × 10 min' },
+  { type:'threshold', date:'2026-04-29', desc:'2 × 12 min' },
+  { type:'threshold', date:'2026-05-06', desc:'3 × 10 min' },
+  { type:'threshold', date:'2026-05-13', desc:'2 × 15 min' },
+  { type:'threshold', date:'2026-05-20', desc:'3 × 12 min' },
+  { type:'threshold', date:'2026-05-27', desc:'20 min continuous' },
+  { type:'threshold', date:'2026-06-03', desc:'2 × 10 min' },
+  { type:'threshold', date:'2026-06-10', desc:'2 × 12 min' },
   // Spring Cycle long runs
   { type:'longrun', date:'2026-02-21', desc:'95 min · 50 easy / 45 steady' },
   { type:'longrun', date:'2026-02-28', desc:'95 min · 50 easy / 45 steady' },
@@ -412,22 +412,23 @@ const SCHEDULE = [
   { type:'longrun', date:'2026-04-04', desc:'75 min · 40 easy / 20 steady' },
   { type:'longrun', date:'2026-04-11', desc:'Off or shakeout + strides' },
   // Speed Emergence long runs
-  { type:'longrun', date:'2026-04-18', desc:'70 min · 60 easy / 10 steady' },
-  { type:'longrun', date:'2026-04-25', desc:'75 min · 60 easy / 15 steady' },
-  { type:'longrun', date:'2026-05-02', desc:'80 min · 60 easy / 20 steady' },
-  { type:'longrun', date:'2026-05-09', desc:'85 min · 65 easy / 20 steady' },
-  { type:'longrun', date:'2026-05-16', desc:'60 min · easy only' },
-  { type:'longrun', date:'2026-05-23', desc:'Race / Time Trial' },
-  { type:'longrun', date:'2026-05-30', desc:'70 min · 60 easy / 10 steady' },
+  { type:'longrun', date:'2026-04-18', desc:'Easy · recovery week' },
+  { type:'longrun', date:'2026-04-25', desc:'70 min · 60 easy / 10 steady' },
+  { type:'longrun', date:'2026-05-02', desc:'75 min · 60 easy / 15 steady' },
+  { type:'longrun', date:'2026-05-09', desc:'80 min · 60 easy / 20 steady' },
+  { type:'longrun', date:'2026-05-16', desc:'85 min · 65 easy / 20 steady' },
+  { type:'longrun', date:'2026-05-23', desc:'60 min · easy only' },
+  { type:'longrun', date:'2026-05-30', desc:'Race / Time Trial' },
+  { type:'longrun', date:'2026-06-06', desc:'70 min · 60 easy / 10 steady' },
   // Speed Emergence Thursday speed sessions
-  { type:'speed', date:'2026-04-17', session:'01', name:'Nice and Easy' },
-  { type:'speed', date:'2026-04-24', session:'02', name:'Pyramid Intervals' },
-  { type:'speed', date:'2026-05-01', session:'03', name:'Gauntlet' },
-  { type:'speed', date:'2026-05-08', session:'04', name:'Speed Demons' },
-  { type:'speed', date:'2026-05-15', session:'05', name:'Death' },
-  { type:'speed', date:'2026-05-22', session:'06', name:'Resurrection' },
-  { type:'speed', date:'2026-05-29', session:'01', name:'Nice and Easy' },
-  { type:'speed', date:'2026-06-05', session:'02', name:'Pyramid Intervals' },
+  { type:'speed', date:'2026-04-24', session:'01', name:'Nice and Easy' },
+  { type:'speed', date:'2026-05-01', session:'02', name:'Pyramid Intervals' },
+  { type:'speed', date:'2026-05-08', session:'03', name:'Gauntlet' },
+  { type:'speed', date:'2026-05-15', session:'04', name:'Speed Demons' },
+  { type:'speed', date:'2026-05-22', session:'05', name:'Death' },
+  { type:'speed', date:'2026-05-29', session:'06', name:'Resurrection' },
+  { type:'speed', date:'2026-06-05', session:'01', name:'Nice and Easy' },
+  { type:'speed', date:'2026-06-12', session:'02', name:'Pyramid Intervals' },
 ];
 
 function getMonday(d) {
@@ -440,9 +441,12 @@ function toYMD(d) {
 
 (function() {
   const today    = new Date(); today.setHours(0,0,0,0);
-  const isRaceDay   = today.getTime() === RACE_DATE.getTime();
-  const isTaperWeek = today < RACE_DATE;  // Apr 3–11
-  const isSE        = today >= SE_START;  // Apr 13+
+  const isRaceDay      = today.getTime() === RACE_DATE.getTime();
+  const isTaperWeek    = today < RACE_DATE;
+  const RECOVERY_START = new Date('2026-04-13T00:00:00');
+  const RECOVERY_END   = new Date('2026-04-19T00:00:00');
+  const isRecoveryWeek = today >= RECOVERY_START && today <= RECOVERY_END;
+  const isSE           = today >= SE_START;  // Apr 20+
 
   // ── PHASE: TAPER / RACE WEEK (now → Apr 12) ──
   if (isTaperWeek || isRaceDay) {
@@ -496,7 +500,17 @@ function toYMD(d) {
     }
   }
 
-  // ── PHASE: SPEED EMERGENCE (Apr 13+) ──
+  // ── PHASE: RECOVERY WEEK (Apr 13–19) ──
+  else if (isRecoveryWeek) {
+    document.getElementById('cw-label').textContent = 'Recovery Week';
+    document.getElementById('cycle-label').textContent = 'FORM · Recovery · Apr 13–19';
+    document.getElementById('cw-threshold').textContent = 'Easy running only';
+    document.getElementById('cw-longrun').textContent = 'Easy · longer if you want';
+    document.getElementById('row-thursday').style.display = 'none';
+    document.getElementById('cw-row-speed').style.display = 'none';
+  }
+
+  // ── PHASE: SPEED EMERGENCE (Apr 20+) ──
   else if (isSE) {
     document.getElementById('cycle-label').textContent = 'FORM · Speed Emergence';
 
