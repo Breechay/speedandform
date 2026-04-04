@@ -228,7 +228,7 @@ body {
       <div class="loc">
         <span class="loc-label">Next Thursday</span>
         <span class="loc-val">Apr 17 · Nice and Easy</span>
-        <span class="loc-sub">Speed Emergence begins</span>
+        <span class="loc-sub">First Speed Emergence track</span>
       </div>
     </div>
     <div class="app-block">
@@ -239,7 +239,7 @@ body {
     <div class="app-block" style="border-top: 1px solid var(--line-l);">
       <span class="app-label">Get the app</span>
       <a class="app-link" href="https://apps.apple.com/us/app/form-practice/id6761313085">Download FORM on iPhone →</a>
-      <span class="app-note">Speed Emergence starts Apr 17. The app carries all three days.</span>
+      <span class="app-note">Speed Emergence begins Apr 13. First track session Apr 17. The app carries all three days.</span>
     </div>
   </div>
 
@@ -338,7 +338,7 @@ function getNextThursday(from) {
   } else if (today < SE_START) {
     // Pre-SE: show what's coming
     const dateStr = nextThu.toLocaleDateString('en-US', { month:'long', day:'numeric' });
-    eyebrow.textContent = dateStr + ' · Speed Emergence begins';
+    eyebrow.textContent = 'Speed Emergence · Apr 13 · First track ' + dateStr;
   } else {
     const dateStr = nextThu.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' });
     eyebrow.textContent = dateStr + ' · Speed Emergence';
