@@ -1,4 +1,5 @@
 [build]
+  command = "cd forge && npm install && npm run build"
   publish = "."
 
 # Force Netlify CDN to purge on every deploy
@@ -19,6 +20,13 @@
     Cache-Control = "public, max-age=31536000, immutable"
 
 # WordPress spam
+
+# Forge React app — SPA catch-all
+[[redirects]]
+  from = "/forge/*"
+  to = "/forge/dist/index.html"
+  status = 200
+
 [[redirects]]
   from = "/wp-admin"
   to = "/"

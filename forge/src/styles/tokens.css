@@ -1,0 +1,12 @@
+:root {
+  --color-bg: #F0EDE6;
+  --color-ink: #1A1710;
+  --color-accent: #BA7517;
+  --color-chrome: #6B6358;
+  --color-dim: #9E978C;
+  --color-rule: #DDD9D0;
+  --color-rule-light: #E8E4DB;
+  --color-surface: #FAFAF7;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'Libre Baskerville', 'Courier New', monospace;
+}

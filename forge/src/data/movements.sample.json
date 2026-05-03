@@ -1,0 +1,210 @@
+[
+  {
+    "movementId": "back_squat",
+    "displayName": "Back Squat",
+    "muscleGroup": ["Quads", "Glutes", "Hamstrings", "Core"],
+    "defaultCue": "Brace through the belt. Knees track third toe.",
+    "defaultRestSeconds": 180,
+    "movementIntent": "Controlled"
+  },
+  {
+    "movementId": "front_squat",
+    "displayName": "Front Squat",
+    "muscleGroup": ["Quads", "Glutes", "Core"],
+    "defaultCue": "Elbows up. Torso vertical through the descent.",
+    "defaultRestSeconds": 180,
+    "movementIntent": "Controlled"
+  },
+  {
+    "movementId": "romanian_deadlift",
+    "displayName": "Romanian Deadlift",
+    "muscleGroup": ["Hamstrings", "Glutes", "Spinal Erectors"],
+    "defaultCue": "Hinge until you feel the hamstrings load. Bar stays in contact.",
+    "defaultRestSeconds": 150,
+    "movementIntent": "Controlled"
+  },
+  {
+    "movementId": "deadlift",
+    "displayName": "Deadlift",
+    "muscleGroup": ["Hamstrings", "Glutes", "Spinal Erectors", "Lats", "Traps"],
+    "defaultCue": "Floor pressure through the whole foot. Lat engagement before the pull.",
+    "defaultRestSeconds": 180,
+    "movementIntent": "Controlled"
+  },
+  {
+    "movementId": "power_clean",
+    "displayName": "Power Clean",
+    "muscleGroup": ["Hamstrings", "Glutes", "Traps", "Shoulders"],
+    "defaultCue": "Second pull initiates at hip contact. Catch in quarter squat.",
+    "defaultRestSeconds": 180,
+    "movementIntent": "Explosive"
+  },
+  {
+    "movementId": "hang_power_clean",
+    "displayName": "Hang Power Clean",
+    "muscleGroup": ["Hamstrings", "Traps", "Shoulders"],
+    "defaultCue": "Initiate from the power position. Aggressive hip extension.",
+    "defaultRestSeconds": 150,
+    "movementIntent": "Explosive"
+  },
+  {
+    "movementId": "bench_press",
+    "displayName": "Bench Press",
+    "muscleGroup": ["Chest", "Shoulders", "Triceps"],
+    "defaultCue": "Retract the scapula before unracking. Bar path slight arc.",
+    "defaultRestSeconds": 150,
+    "movementIntent": "Controlled"
+  },
+  {
+    "movementId": "incline_bench_press",
+    "displayName": "Incline Bench Press",
+    "muscleGroup": ["Upper Chest", "Shoulders", "Triceps"],
+    "defaultCue": "30–45 degree incline. Retract and depress scapula.",
+    "defaultRestSeconds": 150,
+    "movementIntent": "Controlled"
+  },
+  {
+    "movementId": "pull_up",
+    "displayName": "Pull-Up",
+    "muscleGroup": ["Lats", "Biceps", "Rear Delts"],
+    "defaultCue": "Dead hang start. Drive elbows to hips.",
+    "defaultRestSeconds": 120,
+    "movementIntent": "Controlled"
+  },
+  {
+    "movementId": "barbell_row",
+    "displayName": "Barbell Row",
+    "muscleGroup": ["Lats", "Rhomboids", "Biceps", "Rear Delts"],
+    "defaultCue": "Hinge at 45 degrees. Pull to lower chest. Controlled eccentric.",
+    "defaultRestSeconds": 120,
+    "movementIntent": "Controlled"
+  },
+  {
+    "movementId": "overhead_press",
+    "displayName": "Overhead Press",
+    "muscleGroup": ["Shoulders", "Triceps", "Upper Traps"],
+    "defaultCue": "Bar starts at clavicle. Full extension overhead. No lumbar hyperextension.",
+    "defaultRestSeconds": 150,
+    "movementIntent": "Controlled"
+  },
+  {
+    "movementId": "push_press",
+    "displayName": "Push Press",
+    "muscleGroup": ["Shoulders", "Triceps", "Glutes", "Quads"],
+    "defaultCue": "Dip to initiate. Drive through legs into overhead lockout.",
+    "defaultRestSeconds": 150,
+    "movementIntent": "Explosive"
+  },
+  {
+    "movementId": "lateral_raise",
+    "displayName": "Lateral Raise",
+    "muscleGroup": ["Lateral Delts"],
+    "defaultCue": "Lead with the elbow. Stop at shoulder height.",
+    "defaultRestSeconds": 60,
+    "movementIntent": "Accessory"
+  },
+  {
+    "movementId": "face_pull",
+    "displayName": "Face Pull",
+    "muscleGroup": ["Rear Delts", "Rotator Cuff", "Rhomboids"],
+    "defaultCue": "Pull to forehead. External rotate at end range.",
+    "defaultRestSeconds": 60,
+    "movementIntent": "Accessory"
+  },
+  {
+    "movementId": "tricep_pushdown",
+    "displayName": "Tricep Pushdown",
+    "muscleGroup": ["Triceps"],
+    "defaultCue": "Upper arms fixed. Full extension at bottom.",
+    "defaultRestSeconds": 60,
+    "movementIntent": "Accessory"
+  },
+  {
+    "movementId": "bicep_curl",
+    "displayName": "Bicep Curl",
+    "muscleGroup": ["Biceps"],
+    "defaultCue": "Supinate through the curl. No momentum.",
+    "defaultRestSeconds": 60,
+    "movementIntent": "Accessory"
+  },
+  {
+    "movementId": "box_jump",
+    "displayName": "Box Jump",
+    "muscleGroup": ["Quads", "Glutes", "Calves"],
+    "defaultCue": "Load through the hips. Land softly, absorb through knees.",
+    "defaultRestSeconds": 90,
+    "movementIntent": "Explosive"
+  },
+  {
+    "movementId": "broad_jump",
+    "displayName": "Broad Jump",
+    "muscleGroup": ["Quads", "Glutes", "Hamstrings"],
+    "defaultCue": "Arm swing coordinates with hip drive. Stick the landing.",
+    "defaultRestSeconds": 90,
+    "movementIntent": "Explosive"
+  },
+  {
+    "movementId": "split_squat",
+    "displayName": "Split Squat",
+    "muscleGroup": ["Quads", "Glutes"],
+    "defaultCue": "Vertical shin on front leg. Hip drop straight down.",
+    "defaultRestSeconds": 90,
+    "movementIntent": "Controlled"
+  },
+  {
+    "movementId": "hip_thrust",
+    "displayName": "Hip Thrust",
+    "muscleGroup": ["Glutes", "Hamstrings"],
+    "defaultCue": "Full hip extension at top. Chin tucked.",
+    "defaultRestSeconds": 90,
+    "movementIntent": "Controlled"
+  },
+  {
+    "movementId": "nordic_curl",
+    "displayName": "Nordic Curl",
+    "muscleGroup": ["Hamstrings"],
+    "defaultCue": "Eccentric only. Slow controlled descent. Catch if needed.",
+    "defaultRestSeconds": 120,
+    "movementIntent": "Controlled"
+  },
+  {
+    "movementId": "calf_raise",
+    "displayName": "Calf Raise",
+    "muscleGroup": ["Calves"],
+    "defaultCue": "Full range. Pause at stretch at bottom.",
+    "defaultRestSeconds": 60,
+    "movementIntent": "Accessory"
+  },
+  {
+    "movementId": "plank",
+    "displayName": "Plank",
+    "muscleGroup": ["Core"],
+    "defaultCue": "Neutral spine. Posterior pelvic tilt. Push floor away.",
+    "defaultRestSeconds": 60,
+    "movementIntent": "Steady"
+  },
+  {
+    "movementId": "pallof_press",
+    "displayName": "Pallof Press",
+    "muscleGroup": ["Core", "Obliques"],
+    "defaultCue": "Resist rotation. Full extension. Return controlled.",
+    "defaultRestSeconds": 60,
+    "movementIntent": "Steady"
+  },
+  {
+    "movementId": "farmers_carry",
+    "displayName": "Farmer's Carry",
+    "muscleGroup": ["Traps", "Core", "Grip", "Glutes"],
+    "defaultCue": "Packed shoulders. Tall spine. Short quick steps.",
+    "defaultRestSeconds": 90,
+    "movementIntent": "Steady"
+  },
+  {
+    "movementId": "sled_push",
+    "displayName": "Sled Push",
+    "muscleGroup": ["Quads", "Glutes", "Calves", "Core"],
+    "defaultCue": "Low body angle. Drive through full extension.",
+    "defaultRestSeconds": 120,
+    "movementIntent": "Steady"
+  }
+]
