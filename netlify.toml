@@ -4,7 +4,7 @@
 
 # Force Netlify CDN to purge on every deploy
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
 
 # Context-level cache headers — belt and suspenders alongside _headers file
 [[headers]]
