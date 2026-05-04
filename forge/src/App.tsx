@@ -10,6 +10,53 @@ import { SettingsPage } from './pages/SettingsPage'
 import { AuthGuard } from './components/AuthGuard'
 import { useAuthStore } from './store/authStore'
 
+
+// ── ForgeMark animated loading indicator ──────────────────────
+// Mirrors ForgeMark.swift: 5 bars, bottom-aligned, ascending left to right.
+// Each bar pulses in sequence with a staggered delay.
+function ForgeMarkAnimated() {
+  const bars = [
+    { height: 11, delay: '0ms'   },
+    { height: 15, delay: '80ms'  },
+    { height: 19, delay: '160ms' },
+    { height: 22, delay: '240ms' },
+    { height: 26, delay: '320ms' },
+  ]
+  const totalWidth = bars.length * 5 + (bars.length - 1) * 4  // barW=5 gap=4
+
+  return (
+    <div>
+      <style>{`
+        @keyframes forge-bar-pulse {
+          0%, 100% { opacity: 0.25; transform: scaleY(0.75); }
+          50%       { opacity: 1;    transform: scaleY(1);    }
+        }
+      `}</style>
+      <div style={{
+        display: 'flex',
+        alignItems: 'flex-end',
+        gap: 4,
+        width: totalWidth,
+        height: 32,
+      }}>
+        {bars.map((bar, i) => (
+          <div
+            key={i}
+            style={{
+              width: 5,
+              height: bar.height,
+              borderRadius: 2.5,
+              background: 'var(--color-accent)',
+              transformOrigin: 'bottom',
+              animation: `forge-bar-pulse 1s ease-in-out ${bar.delay} infinite`,
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export function App() {
   const loading = useAuthStore(s => s.loading)
 
@@ -19,18 +66,12 @@ export function App() {
         minHeight: '100vh',
         background: 'var(--color-bg)',
         display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+        gap: 20,
       }}>
-        <div style={{
-          width: 24,
-          height: 24,
-          border: '2.5px solid var(--color-rule)',
-          borderTopColor: 'var(--color-accent)',
-          borderRadius: '50%',
-          animation: 'spin 0.7s linear infinite',
-        }} />
-        <style>{`@keyframes spin { to { transform: rotate(360deg) } }`}</style>
+        <ForgeMarkAnimated />
       </div>
     )
   }

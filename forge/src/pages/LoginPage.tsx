@@ -116,8 +116,15 @@ function SetPasswordForm() {
     <div style={wrap}>
       <div style={card}>
         <div style={{ marginBottom: 20 }}>
-          <div style={{ fontFamily: 'monospace', fontSize: 20, color: C.ink, marginBottom: 4 }}>Forge</div>
-          <div style={{ fontFamily: 'monospace', fontSize: 12, color: C.dim }}>Coach · Set your password</div>
+          <svg width="26" height="20" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg" style={{display:'block',marginBottom:8}}>
+            <rect x="0" y="20.8" width="5" height="11.2" rx="2.5" fill="#8C6029"/>
+            <rect x="8.8" y="17.2" width="5" height="14.8" rx="2.5" fill="#8C6029"/>
+            <rect x="17.5" y="13.5" width="5" height="18.5" rx="2.5" fill="#8C6029"/>
+            <rect x="26.3" y="9.9" width="5" height="22.1" rx="2.5" fill="#8C6029"/>
+            <rect x="35" y="6.4" width="5" height="25.6" rx="2.5" fill="#8C6029"/>
+          </svg>
+          <div style={{ fontFamily: 'Georgia,serif', fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.ink, marginBottom: 2 }}>Forge</div>
+          <div style={{ fontFamily: 'Georgia,serif', fontSize: 10, color: C.dim, letterSpacing: '0.06em' }}>Coach · Set password</div>
         </div>
         <div style={{ height: 1, background: C.rule, marginBottom: 24 }} />
 
@@ -214,8 +221,15 @@ export function LoginPage() {
     <div style={wrap}>
       <div style={card}>
         <div style={{ marginBottom: 20 }}>
-          <div style={{ fontFamily: 'monospace', fontSize: 20, color: C.ink, marginBottom: 4 }}>Forge</div>
-          <div style={{ fontFamily: 'monospace', fontSize: 12, color: C.dim }}>Coach</div>
+          <svg width="26" height="20" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg" style={{display:'block',marginBottom:8}}>
+            <rect x="0" y="20.8" width="5" height="11.2" rx="2.5" fill="#8C6029"/>
+            <rect x="8.8" y="17.2" width="5" height="14.8" rx="2.5" fill="#8C6029"/>
+            <rect x="17.5" y="13.5" width="5" height="18.5" rx="2.5" fill="#8C6029"/>
+            <rect x="26.3" y="9.9" width="5" height="22.1" rx="2.5" fill="#8C6029"/>
+            <rect x="35" y="6.4" width="5" height="25.6" rx="2.5" fill="#8C6029"/>
+          </svg>
+          <div style={{ fontFamily: 'Georgia,serif', fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.ink, marginBottom: 2 }}>Forge</div>
+          <div style={{ fontFamily: 'Georgia,serif', fontSize: 10, color: C.dim, letterSpacing: '0.06em' }}>Coach</div>
         </div>
         <div style={{ height: 1, background: C.rule, marginBottom: 24 }} />
 

@@ -43,13 +43,25 @@ export function Layout() {
         boxShadow: 'var(--shadow-sm)',
       }}>
         {/* Wordmark */}
-        <span style={{
-          fontFamily: 'var(--font-serif)',
-          fontSize: 13, fontWeight: 700,
-          letterSpacing: '0.18em',
-          textTransform: 'uppercase',
-          color: 'var(--color-ink)',
-        }}>Forge</span>
+        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 8 }}>
+          {/* ForgeMark — 5 bars ascending */}
+          <svg width="22" height="18" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0"    y="20.8" width="5" height="11.2" rx="2.5" fill="var(--color-accent)"/>
+            <rect x="8.8"  y="17.2" width="5" height="14.8" rx="2.5" fill="var(--color-accent)"/>
+            <rect x="17.5" y="13.5" width="5" height="18.5" rx="2.5" fill="var(--color-accent)"/>
+            <rect x="26.3" y="9.9"  width="5" height="22.1" rx="2.5" fill="var(--color-accent)"/>
+            <rect x="35"   y="6.4"  width="5" height="25.6" rx="2.5" fill="var(--color-accent)"/>
+          </svg>
+          <span style={{
+            fontFamily: 'var(--font-serif)',
+            fontSize: 12, fontWeight: 700,
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            color: 'var(--color-ink)',
+            lineHeight: 1,
+            paddingBottom: 1,
+          }}>Forge</span>
+        </div>
 
         {/* Nav */}
         <nav style={{ display: 'flex', gap: 2, flex: 1 }}>
