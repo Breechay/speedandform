@@ -1,173 +1,215 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useProgram, useAssignProgram, useRoster } from '../../hooks/useForge'
+import { useRoster } from '../../hooks/useForge'
 import type { RosterAthlete } from '../../api/athletes'
 
-function nextMonday(): string {
-  const d = new Date()
-  const day = d.getDay()
-  const diff = day === 0 ? 1 : 8 - day
-  d.setDate(d.getDate() + diff)
-  return d.toISOString().split('T')[0]
+function FieldLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <label style={{
+      display: 'block',
+      fontFamily: 'var(--font-serif)',
+      fontSize: 9, fontWeight: 700,
+      letterSpacing: '0.12em', textTransform: 'uppercase',
+      color: 'var(--color-dim)', marginBottom: 6,
+    }}>{children}</label>
+  )
 }
 
 export function AssignPage() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
-  const { data: program } = useProgram(id)
-  const { data: roster = [] } = useRoster()
-  const assign = useAssignProgram()
+  const { data: roster = [], isLoading } = useRoster()
 
-  const [search, setSearch] = useState('')
   const [selected, setSelected] = useState<string[]>([])
-  const [startDate, setStartDate] = useState(nextMonday())
-  const [done, setDone] = useState(false)
+  const [search, setSearch] = useState('')
+  const [startDate, setStartDate] = useState(() => {
+    // Default to next Monday
+    const d = new Date()
+    const day = d.getDay()
+    const toMonday = day === 0 ? 1 : 8 - day
+    d.setDate(d.getDate() + toMonday)
+    return d.toISOString().split('T')[0]
+  })
+  const [assigning, setAssigning] = useState(false)
+  const [done,      setDone]      = useState(false)
+  const [error,     setError]     = useState('')
 
   const filtered = roster.filter(a => {
     const name = `${a.firstName} ${a.lastName}`.toLowerCase()
-    return name.includes(search.toLowerCase())
+    return !search || name.includes(search.toLowerCase())
   })
 
-  function toggleAthlete(athleteId: string) {
-    setSelected(prev =>
-      prev.includes(athleteId) ? prev.filter(id => id !== athleteId) : [...prev, athleteId]
-    )
-  }
+  const toggle = (id: string) =>
+    setSelected(s => s.includes(id) ? s.filter(x => x !== id) : [...s, id])
 
   const conflicts = roster.filter(a =>
-    selected.includes(a.athleteId) && a.assignmentStatus === 'active'
+    selected.includes(a.athleteId) && a.programName
   )
 
-  async function handleAssign() {
+  const handleAssign = async () => {
     if (!id || selected.length === 0) return
-    assign.mutate({ programId: id, athleteIds: selected, startDate }, {
-      onSuccess: () => {
-        setDone(true)
-        setTimeout(() => navigate('/forge/roster'), 1500)
-      },
-    })
+    setAssigning(true); setError('')
+    try {
+      const { assignProgram } = await import('../../api/programs')
+      await assignProgram(id, selected, startDate)
+      setDone(true)
+      setTimeout(() => navigate('/forge/roster'), 1200)
+    } catch (err: any) {
+      setError(err.message || 'Assignment failed.')
+    } finally {
+      setAssigning(false)
+    }
   }
 
   return (
-    <div style={{ maxWidth: 1200, margin: '0 auto', padding: '40px 32px 80px' }}>
-      <button onClick={() => navigate(`/forge/programs/${id}`)} style={{
-        background: 'none', border: 'none',
-        fontFamily: 'var(--font-mono)', fontSize: 13,
-        color: 'var(--color-dim)', cursor: 'pointer',
-        padding: '0 0 12px', display: 'block',
-      }}>
-        ← Program
-      </button>
-
+    <div className="page">
       <div style={{ marginBottom: 28 }}>
-        <h1 style={{ fontFamily: 'var(--font-mono)', fontSize: 22, fontWeight: 400, color: 'var(--color-ink)', marginBottom: 4 }}>
-          {program?.name || '—'}
-        </h1>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--color-dim)' }}>
-          Assign to athletes
-        </div>
+        <button
+          onClick={() => navigate('/forge/programs')}
+          style={{
+            background: 'none', border: 'none', cursor: 'pointer',
+            color: 'var(--color-dim)', fontSize: 11,
+            fontFamily: 'var(--font-serif)',
+            display: 'flex', alignItems: 'center', gap: 5,
+            marginBottom: 12, padding: 0,
+          }}
+        >← Programs</button>
+        <h1 className="page-title" style={{ marginBottom: 4 }}>Assign program</h1>
+        <p style={{ fontSize: 12, color: 'var(--color-dim)', fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}>
+          Select athletes and a start date.
+        </p>
       </div>
 
-      {done ? (
-        <div style={{ padding: 32, textAlign: 'center', fontSize: 14, color: '#2D6645', fontFamily: 'var(--font-mono)' }}>
-          Program assigned.
-        </div>
-      ) : (
-        <div style={{ maxWidth: 520 }}>
-          <div style={{ background: 'var(--color-surface)', border: '1px solid var(--color-rule)', borderRadius: 8, padding: '20px 20px' }}>
-            {/* Athlete search */}
-            <div style={{ marginBottom: 16 }}>
-              <label style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-dim)', marginBottom: 6 }}>
-                Athletes
-              </label>
-              <input
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-                placeholder="Search athletes…"
-                style={{ height: 36, width: '100%', padding: '0 12px', background: 'var(--color-surface)', border: '1px solid var(--color-rule)', borderRadius: 4, fontSize: 14, color: 'var(--color-ink)', outline: 'none', marginBottom: 8 }}
-                onFocus={e => (e.target.style.borderColor = 'var(--color-accent)')}
-                onBlur={e => (e.target.style.borderColor = 'var(--color-rule)')}
-              />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 20, maxWidth: 500 }}>
 
-              {/* Athlete list */}
-              <div style={{ border: '1px solid var(--color-rule)', borderRadius: 4, maxHeight: 200, overflowY: 'auto' }}>
-                {filtered.length === 0 ? (
-                  <div style={{ padding: '12px 14px', fontSize: 13, color: 'var(--color-dim)' }}>No athletes found.</div>
-                ) : filtered.map((a: RosterAthlete) => (
-                  <label key={a.athleteId} style={{
-                    display: 'flex', alignItems: 'center', gap: 10,
-                    padding: '9px 14px',
-                    borderBottom: '1px solid var(--color-rule-light)',
-                    cursor: 'pointer',
-                    background: selected.includes(a.athleteId) ? 'rgba(186,117,23,0.05)' : 'transparent',
-                  }}>
-                    <input
-                      type="checkbox"
-                      checked={selected.includes(a.athleteId)}
-                      onChange={() => toggleAthlete(a.athleteId)}
-                      style={{ accentColor: 'var(--color-accent)' }}
-                    />
-                    <span style={{ fontSize: 14, color: 'var(--color-ink)', flex: 1 }}>
-                      {a.firstName} {a.lastName}
-                    </span>
-                    {a.programName && (
-                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--color-dim)' }}>
-                        active: {a.programName}
-                      </span>
-                    )}
-                  </label>
-                ))}
-              </div>
-
-              {selected.length > 0 && (
-                <div style={{ marginTop: 6, fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--color-accent)' }}>
-                  {selected.length} selected
-                </div>
-              )}
-            </div>
-
-            {/* Start date */}
-            <div style={{ marginBottom: 16 }}>
-              <label style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-dim)', marginBottom: 6 }}>
-                Start date
-              </label>
-              <input
-                type="date"
-                value={startDate}
-                onChange={e => setStartDate(e.target.value)}
-                style={{ height: 36, padding: '0 12px', background: 'var(--color-surface)', border: '1px solid var(--color-rule)', borderRadius: 4, fontSize: 14, color: 'var(--color-ink)', outline: 'none', width: 180 }}
-              />
-            </div>
-
-            {/* Conflict warning */}
-            {conflicts.length > 0 && (
-              <div style={{ padding: '10px 12px', background: 'rgba(186,117,23,0.08)', border: '1px solid rgba(186,117,23,0.25)', borderRadius: 4, fontSize: 13, color: 'var(--color-accent)', marginBottom: 16 }}>
-                This will pause {conflicts.map(c => c.programName).filter((v, i, a) => a.indexOf(v) === i).join(', ')} for {conflicts.length} {conflicts.length === 1 ? 'athlete' : 'athletes'}.
+        {/* Athlete selector */}
+        <div>
+          <FieldLabel>Athletes</FieldLabel>
+          <input
+            className="input"
+            style={{ marginBottom: 8 }}
+            placeholder="Search…"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
+          <div className="card" style={{ maxHeight: 260, overflowY: 'auto', borderRadius: 8 }}>
+            {isLoading && (
+              <div style={{ padding: 24, display: 'flex', justifyContent: 'center' }}>
+                <div className="spinner" />
               </div>
             )}
+            {!isLoading && filtered.map((a: RosterAthlete) => {
+              const isSelected = selected.includes(a.athleteId)
+              return (
+                <div
+                  key={a.athleteId}
+                  onClick={() => toggle(a.athleteId)}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: 12,
+                    padding: '11px 14px',
+                    cursor: 'pointer',
+                    background: isSelected ? 'var(--color-accent-dim)' : 'transparent',
+                    borderBottom: '1px solid var(--color-rule-light)',
+                    transition: 'background 80ms',
+                  }}
+                >
+                  {/* Checkbox */}
+                  <div style={{
+                    width: 16, height: 16, borderRadius: 3,
+                    border: `1.5px solid ${isSelected ? 'var(--color-accent)' : 'var(--color-rule)'}`,
+                    background: isSelected ? 'var(--color-accent)' : 'transparent',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    flexShrink: 0, transition: 'all 80ms',
+                  }}>
+                    {isSelected && (
+                      <span style={{ color: '#fff', fontSize: 9, lineHeight: 1, fontWeight: 700 }}>✓</span>
+                    )}
+                  </div>
 
-            <button
-              onClick={handleAssign}
-              disabled={selected.length === 0 || assign.isPending}
-              style={{
-                width: '100%', height: 36,
-                background: selected.length === 0 ? 'var(--color-dim)' : 'var(--color-accent)',
-                color: '#fff', border: 'none', borderRadius: 8,
-                fontSize: 13, fontWeight: 500,
-                cursor: selected.length === 0 ? 'not-allowed' : 'pointer',
-              }}
-            >
-              {assign.isPending ? 'Assigning…' : `Assign program →`}
-            </button>
+                  <span style={{ flex: 1, fontSize: 13, fontWeight: 500, color: 'var(--color-ink)' }}>
+                    {a.firstName} {a.lastName}
+                  </span>
 
-            {assign.isError && (
-              <div style={{ marginTop: 8, fontSize: 13, color: '#D85A30' }}>
-                Assignment failed. Please try again.
+                  {a.programName && (
+                    <span style={{
+                      fontSize: 10, color: 'var(--color-dim)',
+                      fontFamily: 'var(--font-serif)', fontStyle: 'italic',
+                    }}>active: {a.programName}</span>
+                  )}
+                </div>
+              )
+            })}
+            {!isLoading && filtered.length === 0 && (
+              <div style={{ padding: '20px', textAlign: 'center', color: 'var(--color-dim)', fontSize: 12, fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}>
+                No athletes.
               </div>
             )}
           </div>
+          {selected.length > 0 && (
+            <p style={{
+              fontSize: 11, color: 'var(--color-dim)',
+              fontFamily: 'var(--font-serif)', marginTop: 5,
+            }}>
+              {selected.length} selected
+            </p>
+          )}
         </div>
-      )}
+
+        {/* Start date */}
+        <div>
+          <FieldLabel>Start date</FieldLabel>
+          <input
+            className="input"
+            type="date"
+            value={startDate}
+            onChange={e => setStartDate(e.target.value)}
+          />
+          <p style={{
+            fontSize: 10, color: 'var(--color-dim)',
+            fontFamily: 'var(--font-serif)', fontStyle: 'italic', marginTop: 4,
+          }}>
+            Defaults to next Monday. Sessions are scheduled from this date.
+          </p>
+        </div>
+
+        {/* Conflict warning */}
+        {conflicts.length > 0 && (
+          <div style={{
+            padding: '10px 14px',
+            background: 'var(--color-accent-dim)',
+            border: '1px solid var(--color-accent-mid)',
+            borderRadius: 6,
+          }}>
+            <p style={{ fontSize: 12, color: 'var(--color-accent)', fontFamily: 'var(--font-serif)' }}>
+              {conflicts.length} athlete{conflicts.length !== 1 ? 's' : ''} have an active program. It will be paused.
+            </p>
+          </div>
+        )}
+
+        {/* Error */}
+        {error && (
+          <p style={{ fontSize: 12, color: 'var(--color-error)', fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}>
+            {error}
+          </p>
+        )}
+
+        {/* Submit */}
+        <div>
+          {done ? (
+            <p style={{ fontSize: 13, color: 'var(--color-success)', fontFamily: 'var(--font-serif)' }}>
+              Assigned. Redirecting…
+            </p>
+          ) : (
+            <button
+              className="btn btn-primary"
+              onClick={handleAssign}
+              disabled={selected.length === 0 || assigning}
+            >
+              {assigning ? 'Assigning…' : `Assign to ${selected.length > 0 ? selected.length : '—'} athlete${selected.length !== 1 ? 's' : ''} →`}
+            </button>
+          )}
+        </div>
+      </div>
     </div>
   )
 }

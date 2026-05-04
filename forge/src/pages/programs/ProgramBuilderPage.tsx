@@ -1,247 +1,370 @@
-import { useEffect, useRef, useCallback } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { getProgram, createProgram, saveProgram } from '../../api/programs'
+import { getProgram, createProgram, saveProgram, publishProgram } from '../../api/programs'
 import { useProgramStore, startAutosave, stopAutosave } from '../../store/programStore'
 import type { Week, Session, Exercise, SetPrescription, ProgressionRule, MovementIntent } from '../../types/program'
 import MovementCombobox from '../../components/MovementCombobox'
 import ValidationPanel from '../../components/ValidationPanel'
-import movementsData from '../../data/movements.sample.json'
+import movementsData from '../../data/movements.json'
 import type { Movement } from '../../types/program'
 
-const catalog: Movement[] = movementsData as Movement[]
+const catalog: Movement[] = movementsData as unknown as Movement[]
 
-const DAY_NAMES = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+const DAY_NAMES = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 const INTENT_OPTIONS: MovementIntent[] = ['Controlled', 'Explosive', 'Steady', 'Accessory']
 
-// ─── Abstract cue words ──────────────────────────────────────────────────────
-const ABSTRACT_CUE_WORDS = ['engage', 'focus on', 'maintain', 'feel', 'remember']
-function isCueTooAbstract(cue: string): boolean {
-  const lower = cue.toLowerCase()
-  return ABSTRACT_CUE_WORDS.some((w) => lower.includes(w))
+const INTENT_COLOR: Record<MovementIntent, string> = {
+  Controlled: 'var(--color-accent)',
+  Explosive:  '#C94F2A',
+  Steady:     '#2D6645',
+  Accessory:  'var(--color-dim)',
 }
 
-// ─── Exercise Card ───────────────────────────────────────────────────────────
-function ExerciseCard({
-  exercise,
-  sessionId,
-  index,
-  usedMovementIds,
-}: {
+function useProgramLocalState<T>(initial: T): [T, React.Dispatch<React.SetStateAction<T>>] {
+  return React.useState<T>(initial)
+}
+
+// ── Shared field label ───────────────────────────────────────────────────────
+function FieldLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <label style={{
+      display: 'block',
+      fontFamily: 'var(--font-serif)',
+      fontSize: 9, fontWeight: 700,
+      letterSpacing: '0.12em',
+      textTransform: 'uppercase',
+      color: 'var(--color-dim)',
+      marginBottom: 5,
+    }}>{children}</label>
+  )
+}
+
+// ── Set Row ──────────────────────────────────────────────────────────────────
+function SetRow({ set, onUpdate, onDelete, canDelete }: {
+  set: SetPrescription
+  onUpdate: (p: Partial<SetPrescription>) => void
+  onDelete: () => void
+  canDelete: boolean
+}) {
+  const invalid = set.reps === null && set.durationSeconds === null
+  return (
+    <div style={{
+      display: 'grid',
+      gridTemplateColumns: '20px 1fr 1fr 1fr 24px',
+      gap: 6, alignItems: 'center',
+      marginBottom: 5,
+      padding: invalid ? '4px 6px' : '2px 0',
+      background: invalid ? 'rgba(201,79,42,0.05)' : 'transparent',
+      borderRadius: 4,
+      border: invalid ? '1px solid rgba(201,79,42,0.2)' : '1px solid transparent',
+    }}>
+      <span style={{
+        fontSize: 9, fontFamily: 'var(--font-serif)',
+        color: 'var(--color-dim)', textAlign: 'center',
+        fontWeight: 700, letterSpacing: '0.06em',
+      }}>{set.setNumber}</span>
+
+      {[
+        { placeholder: 'Reps', field: 'reps' as const },
+        { placeholder: 'lb',   field: 'weightLb' as const },
+        { placeholder: 's',    field: 'durationSeconds' as const },
+      ].map(({ placeholder, field }) => (
+        <input
+          key={field}
+          className="input"
+          style={{ height: 30, fontSize: 13, textAlign: 'center', padding: '0 6px' }}
+          type="number"
+          min={0}
+          placeholder={placeholder}
+          value={set[field] ?? ''}
+          onChange={e => onUpdate({ [field]: e.target.value !== '' ? Number(e.target.value) : null })}
+        />
+      ))}
+
+      <button
+        onClick={onDelete}
+        disabled={!canDelete}
+        style={{
+          background: 'none', border: 'none',
+          cursor: canDelete ? 'pointer' : 'default',
+          color: canDelete ? 'var(--color-dim)' : 'transparent',
+          fontSize: 14, lineHeight: 1, padding: 0,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}
+      >×</button>
+
+      {invalid && (
+        <div style={{
+          gridColumn: '1 / -1',
+          fontSize: 10, color: 'var(--color-error)',
+          fontFamily: 'var(--font-serif)', paddingLeft: 26,
+          fontStyle: 'italic',
+        }}>Needs reps or duration.</div>
+      )}
+    </div>
+  )
+}
+
+// ── Progression editor ───────────────────────────────────────────────────────
+function ProgressionEditor({ rule, onChange }: {
+  rule: ProgressionRule
+  onChange: (r: ProgressionRule) => void
+}) {
+  return (
+    <div style={{ marginTop: 10, paddingTop: 10, borderTop: '1px solid var(--color-rule-light)' }}>
+      <FieldLabel>Progression</FieldLabel>
+      <select
+        className="input"
+        style={{ height: 32, fontSize: 13, marginBottom: 8 }}
+        value={rule.type}
+        onChange={e => onChange({ type: e.target.value as ProgressionRule['type'] })}
+      >
+        <option value="None">None</option>
+        <option value="Linear">Linear</option>
+        <option value="Double">Double progression</option>
+        <option value="StepDeload">Step-deload</option>
+        <option value="Fixed">Fixed</option>
+      </select>
+
+      {rule.type === 'Linear' && (
+        <div>
+          <FieldLabel>Increment (lb)</FieldLabel>
+          <input className="input" style={{ height: 32 }} type="number"
+            value={rule.incrementLb ?? ''}
+            onChange={e => onChange({ ...rule, incrementLb: e.target.value ? Number(e.target.value) : undefined })}
+          />
+        </div>
+      )}
+      {rule.type === 'Double' && (
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>
+          {([['Rep min', 'repRangeMin'], ['Rep max', 'repRangeMax'], ['Increment lb', 'incrementLb']] as const).map(([label, key]) => (
+            <div key={key}>
+              <FieldLabel>{label}</FieldLabel>
+              <input className="input" style={{ height: 32 }} type="number"
+                value={(rule as any)[key] ?? ''}
+                onChange={e => onChange({ ...rule, [key]: e.target.value ? Number(e.target.value) : undefined })}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+      {rule.type === 'StepDeload' && (
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+          {([['Progression weeks', 'progressionWeeks'], ['Deload %', 'deloadPercent']] as const).map(([label, key]) => (
+            <div key={key}>
+              <FieldLabel>{label}</FieldLabel>
+              <input className="input" style={{ height: 32 }} type="number"
+                value={(rule as any)[key] ?? ''}
+                onChange={e => onChange({ ...rule, [key]: e.target.value ? Number(e.target.value) : undefined })}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ── Exercise card ────────────────────────────────────────────────────────────
+function ExerciseCard({ exercise, sessionId, index, usedMovementIds }: {
   exercise: Exercise
   sessionId: string
   index: number
   usedMovementIds: string[]
 }) {
   const { updateExercise, deleteExercise, addSet, updateSet, deleteSet, updateProgression } = useProgramStore()
-  const [progOpenState, setProgOpenState] = useProgramLocalState(false)
+  const [showProg, setShowProg] = useProgramLocalState(false)
 
   const movement = exercise.movementId
-    ? catalog.find((m) => m.movementId === exercise.movementId) ?? null
+    ? catalog.find(m => m.movementId === exercise.movementId) ?? null
     : null
-
-  const allSetsUniform = exercise.sets.length > 1 &&
-    exercise.sets.every(
-      (s) => s.reps === exercise.sets[0].reps &&
-             s.weightLb === exercise.sets[0].weightLb &&
-             s.durationSeconds === exercise.sets[0].durationSeconds
-    )
 
   return (
     <div style={{
       background: 'var(--color-surface)',
       border: '1px solid var(--color-rule)',
       borderRadius: 8,
-      marginBottom: 12,
+      marginBottom: 10,
       overflow: 'hidden',
     }}>
       {/* Card header */}
       <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        padding: '10px 14px',
+        display: 'flex', alignItems: 'center', gap: 10,
+        padding: '9px 14px',
         background: 'var(--color-bg)',
         borderBottom: '1px solid var(--color-rule-light)',
-        gap: 10,
       }}>
-        <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--color-dim)', minWidth: 20 }}>
-          {String(index + 1).padStart(2, '0')}
+        <span style={{
+          fontSize: 9, fontFamily: 'var(--font-serif)', fontWeight: 700,
+          color: 'var(--color-dim)', letterSpacing: '0.08em', minWidth: 18,
+        }}>{String(index + 1).padStart(2, '0')}</span>
+
+        {exercise.isPrimeMover && (
+          <span style={{
+            fontSize: 8, fontFamily: 'var(--font-serif)', fontWeight: 700,
+            letterSpacing: '0.1em', textTransform: 'uppercase',
+            color: 'var(--color-accent)', paddingRight: 4,
+          }}>Prime</span>
+        )}
+
+        <span style={{ flex: 1, fontSize: 13, fontWeight: 500, color: 'var(--color-ink)' }}>
+          {movement?.displayName ?? <span style={{ color: 'var(--color-dim)', fontStyle: 'italic' }}>No movement</span>}
         </span>
-        <span style={{ flex: 1, fontSize: 14, fontWeight: 500, color: 'var(--color-ink)' }}>
-          {movement?.displayName ?? 'No movement selected'}
-        </span>
+
+        <span style={{
+          fontSize: 9, fontFamily: 'var(--font-serif)', fontWeight: 700,
+          color: INTENT_COLOR[exercise.movementIntent],
+          letterSpacing: '0.08em', textTransform: 'uppercase',
+        }}>{exercise.movementIntent}</span>
+
         <button
           onClick={() => deleteExercise(sessionId, exercise.id)}
-          style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--color-dim)', fontSize: 16, padding: '0 4px' }}
-          title="Delete exercise"
-        >⌫</button>
+          style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--color-dim)', fontSize: 15, padding: '0 2px', lineHeight: 1 }}
+        >×</button>
       </div>
 
       {/* Card body */}
-      <div style={{ padding: '14px' }}>
-        {/* Movement selector */}
+      <div style={{ padding: 14 }}>
+        {/* Movement */}
         <div style={{ marginBottom: 12 }}>
-          <label className="label-mono" style={{ display: 'block', marginBottom: 4 }}>Movement</label>
+          <FieldLabel>Movement</FieldLabel>
           <MovementCombobox
             value={exercise.movementId}
-            onChange={(movementId, mov) =>
-              updateExercise(sessionId, exercise.id, {
-                movementId,
-                cue: exercise.cue || mov.defaultCue,
-                restSeconds: exercise.restSeconds ?? mov.defaultRestSeconds,
-                movementIntent: mov.movementIntent,
-              })
-            }
+            onChange={(movementId, mov) => updateExercise(sessionId, exercise.id, {
+              movementId,
+              cue: exercise.cue || mov.defaultCue,
+              restSeconds: exercise.restSeconds ?? (mov as any).defaultRestSeconds ?? null,
+              movementIntent: mov.movementIntent,
+            })}
             onClear={() => updateExercise(sessionId, exercise.id, { movementId: null, cue: '' })}
             usedMovementIds={usedMovementIds}
           />
         </div>
 
-        {/* Intent + Prime Mover + Rest */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr auto', gap: 10, marginBottom: 12 }}>
+        {/* Intent + Rest + Prime */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10, marginBottom: 12 }}>
           <div>
-            <label className="label-mono" style={{ display: 'block', marginBottom: 4 }}>Intent</label>
-            <select
-              className="input"
+            <FieldLabel>Intent</FieldLabel>
+            <select className="input" style={{ height: 32, fontSize: 13 }}
               value={exercise.movementIntent}
-              onChange={(e) => updateExercise(sessionId, exercise.id, { movementIntent: e.target.value as MovementIntent })}
+              onChange={e => updateExercise(sessionId, exercise.id, { movementIntent: e.target.value as MovementIntent })}
             >
-              {INTENT_OPTIONS.map((o) => <option key={o}>{o}</option>)}
+              {INTENT_OPTIONS.map(o => <option key={o}>{o}</option>)}
             </select>
           </div>
           <div>
-            <label className="label-mono" style={{ display: 'block', marginBottom: 4 }}>Rest (s)</label>
-            <input
-              className="input"
-              type="number"
-              min={30}
-              max={300}
-              placeholder="Default (policy)"
+            <FieldLabel>Rest (s)</FieldLabel>
+            <input className="input" style={{ height: 32, fontSize: 13 }} type="number"
+              placeholder="Policy default"
               value={exercise.restSeconds ?? ''}
-              onChange={(e) =>
-                updateExercise(sessionId, exercise.id, {
-                  restSeconds: e.target.value ? Number(e.target.value) : null,
-                })
-              }
+              onChange={e => updateExercise(sessionId, exercise.id, {
+                restSeconds: e.target.value ? Number(e.target.value) : null,
+              })}
             />
           </div>
-          <div style={{ paddingTop: 22 }}>
-            <label style={{ display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+          <div style={{ display: 'flex', alignItems: 'flex-end', paddingBottom: 2 }}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: 7, cursor: 'pointer' }}>
               <input
                 type="checkbox"
                 checked={exercise.isPrimeMover}
-                onChange={(e) =>
-                  updateExercise(sessionId, exercise.id, {
-                    isPrimeMover: e.target.checked,
-                    restSeconds: e.target.checked && !exercise.restSeconds ? 120 : exercise.restSeconds,
-                  })
-                }
+                onChange={e => updateExercise(sessionId, exercise.id, { isPrimeMover: e.target.checked })}
+                style={{ accentColor: 'var(--color-accent)', width: 14, height: 14 }}
               />
-              <span style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--color-chrome)' }}>
-                Prime mover
-              </span>
+              <span style={{
+                fontSize: 9, fontFamily: 'var(--font-serif)', fontWeight: 700,
+                letterSpacing: '0.1em', textTransform: 'uppercase',
+                color: 'var(--color-chrome)',
+              }}>Prime mover</span>
             </label>
           </div>
         </div>
 
         {/* Cue */}
         <div style={{ marginBottom: 14 }}>
-          <label className="label-mono" style={{ display: 'block', marginBottom: 4 }}>Cue</label>
+          <FieldLabel>Cue</FieldLabel>
           <input
             className="input"
-            type="text"
+            style={{ height: 32, fontSize: 13, fontStyle: exercise.cue ? 'normal' : 'italic' }}
             maxLength={60}
-            placeholder="Physical cue (optional)"
+            placeholder="Physical cue only — one line."
             value={exercise.cue}
-            onChange={(e) => updateExercise(sessionId, exercise.id, { cue: e.target.value })}
+            onChange={e => updateExercise(sessionId, exercise.id, { cue: e.target.value })}
           />
-          {exercise.cue && isCueTooAbstract(exercise.cue) && (
-            <p style={{ fontSize: 11, color: 'var(--color-accent)', fontFamily: 'var(--font-mono)', marginTop: 3 }}>
-              Cue may be too abstract.
+          {exercise.cue && ['engage', 'focus', 'maintain', 'feel', 'try to'].some(w => exercise.cue.toLowerCase().includes(w)) && (
+            <p style={{ fontSize: 10, color: 'var(--color-error)', fontFamily: 'var(--font-serif)', marginTop: 3, fontStyle: 'italic' }}>
+              Too abstract. Make it physical.
             </p>
           )}
         </div>
 
-        {/* Set prescription table */}
-        <div style={{ marginBottom: 10 }}>
-          <label className="label-mono" style={{ display: 'block', marginBottom: 6 }}>Sets</label>
-
-          {allSetsUniform ? (
-            <div style={{
-              padding: '8px 12px',
-              background: 'var(--color-bg)',
-              borderRadius: 4,
-              fontSize: 13,
-              fontFamily: 'var(--font-mono)',
-              color: 'var(--color-chrome)',
-              marginBottom: 6,
-            }}>
-              {exercise.sets.length} sets × {exercise.sets[0].reps ?? '—'} reps
-              {exercise.sets[0].weightLb !== null ? ` @ ${exercise.sets[0].weightLb} lb` : ''}
-              {exercise.sets[0].durationSeconds ? ` · ${exercise.sets[0].durationSeconds}s` : ''}
-              <button
-                onClick={() => {/* expand to individual rows — handled by editing any row */}}
-                style={{
-                  marginLeft: 10,
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  fontSize: 11,
-                  color: 'var(--color-accent)',
-                  fontFamily: 'var(--font-mono)',
-                }}
-              >Edit sets</button>
+        {/* Sets */}
+        <div style={{ marginBottom: 6 }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+            <FieldLabel>Sets</FieldLabel>
+            <div style={{ display: 'grid', gridTemplateColumns: '20px 1fr 1fr 1fr 24px', gap: 6, width: 'calc(100% - 40px)' }}>
+              {['#', 'Reps', 'lb', 'Dur (s)', ''].map((h, i) => (
+                <span key={i} style={{
+                  fontSize: 9, fontFamily: 'var(--font-serif)', fontWeight: 700,
+                  letterSpacing: '0.1em', textTransform: 'uppercase',
+                  color: 'var(--color-dim)', textAlign: 'center',
+                }}>{h}</span>
+              ))}
             </div>
-          ) : null}
+          </div>
 
-          {/* Set rows */}
-          {exercise.sets.map((set) => (
+          {exercise.sets.map(set => (
             <SetRow
               key={set.id}
               set={set}
-              onUpdate={(patch) => updateSet(sessionId, exercise.id, set.id, patch)}
+              onUpdate={patch => updateSet(sessionId, exercise.id, set.id, patch)}
               onDelete={() => deleteSet(sessionId, exercise.id, set.id)}
               canDelete={exercise.sets.length > 1}
             />
           ))}
 
-          {exercise.sets.length < 8 && (
+          {exercise.sets.length < 8 ? (
             <button
-              className="btn-ghost"
-              style={{ marginTop: 4, fontSize: 12 }}
               onClick={() => addSet(sessionId, exercise.id)}
-            >+ Set</button>
-          )}
-          {exercise.sets.length >= 8 && (
-            <p style={{ fontSize: 11, color: 'var(--color-dim)', fontFamily: 'var(--font-mono)', marginTop: 4 }}>
-              Maximum 8 sets per exercise.
-            </p>
+              style={{
+                marginTop: 6, background: 'none', border: 'none',
+                cursor: 'pointer', color: 'var(--color-accent)',
+                fontSize: 12, fontFamily: 'var(--font-serif)',
+                padding: '2px 0', letterSpacing: '0.02em',
+              }}
+            >+ set</button>
+          ) : (
+            <p style={{ fontSize: 10, color: 'var(--color-dim)', fontFamily: 'var(--font-serif)', marginTop: 4, fontStyle: 'italic' }}>Max 8 sets.</p>
           )}
         </div>
 
-        {/* Progression (collapsible) */}
+        {/* Progression toggle */}
         <button
-          onClick={() => setProgOpenState((v: boolean) => !v)}
+          onClick={() => setShowProg(v => !v)}
           style={{
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 5,
-            color: 'var(--color-chrome)',
-            fontSize: 12,
-            fontFamily: 'var(--font-mono)',
-            padding: '4px 0',
+            background: 'none', border: 'none', cursor: 'pointer',
+            color: 'var(--color-dim)', fontSize: 11,
+            fontFamily: 'var(--font-serif)',
+            padding: 0, display: 'flex', alignItems: 'center', gap: 5,
+            letterSpacing: '0.04em',
           }}
         >
-          <span>{progOpenState ? '▾' : '▸'}</span>
+          <span style={{ fontSize: 9, color: showProg ? 'var(--color-accent)' : 'var(--color-dim)' }}>
+            {showProg ? '▾' : '▸'}
+          </span>
           Progression
+          {exercise.progression.type !== 'None' && (
+            <span style={{
+              fontSize: 9, fontFamily: 'var(--font-serif)', fontWeight: 700,
+              color: 'var(--color-accent)', letterSpacing: '0.08em',
+              textTransform: 'uppercase', marginLeft: 4,
+            }}>{exercise.progression.type}</span>
+          )}
         </button>
 
-        {progOpenState && (
+        {showProg && (
           <ProgressionEditor
             rule={exercise.progression}
-            onChange={(rule) => updateProgression(sessionId, exercise.id, rule)}
+            onChange={rule => updateProgression(sessionId, exercise.id, rule)}
           />
         )}
       </div>
@@ -249,239 +372,89 @@ function ExerciseCard({
   )
 }
 
-// Local state hook (simple)
-function useProgramLocalState<T>(initial: T): [T, React.Dispatch<React.SetStateAction<T>>] {
-  const [state, setState] = React.useState<T>(initial)
-  return [state, setState]
-}
-import React from 'react'
-
-// ─── Set Row ─────────────────────────────────────────────────────────────────
-function SetRow({
-  set,
-  onUpdate,
-  onDelete,
-  canDelete,
-}: {
-  set: SetPrescription
-  onUpdate: (patch: Partial<SetPrescription>) => void
-  onDelete: () => void
-  canDelete: boolean
-}) {
-  const invalid = set.reps === null && set.durationSeconds === null
-
-  return (
-    <div style={{
-      display: 'grid',
-      gridTemplateColumns: '24px 1fr 1fr 1fr 28px',
-      gap: 6,
-      alignItems: 'center',
-      marginBottom: 6,
-      padding: invalid ? '4px 6px' : '0',
-      borderRadius: 4,
-      background: invalid ? 'rgba(216,90,48,0.06)' : 'transparent',
-      border: invalid ? '1px solid rgba(216,90,48,0.3)' : '1px solid transparent',
-    }}>
-      <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--color-dim)', textAlign: 'center' }}>
-        {set.setNumber}
-      </span>
-      <input
-        className="input"
-        style={{ height: 32 }}
-        type="number"
-        min={1}
-        max={50}
-        placeholder="Reps"
-        value={set.reps ?? ''}
-        onChange={(e) => onUpdate({ reps: e.target.value ? Number(e.target.value) : null })}
-      />
-      <input
-        className="input"
-        style={{ height: 32 }}
-        type="number"
-        min={0}
-        placeholder="lb"
-        value={set.weightLb ?? ''}
-        onChange={(e) => onUpdate({ weightLb: e.target.value !== '' ? Number(e.target.value) : null })}
-      />
-      <input
-        className="input"
-        style={{ height: 32 }}
-        type="number"
-        min={0}
-        placeholder="Dur (s)"
-        value={set.durationSeconds ?? ''}
-        onChange={(e) => onUpdate({ durationSeconds: e.target.value ? Number(e.target.value) : null })}
-      />
-      <button
-        onClick={onDelete}
-        disabled={!canDelete}
-        style={{
-          background: 'none',
-          border: 'none',
-          cursor: canDelete ? 'pointer' : 'default',
-          color: canDelete ? 'var(--color-dim)' : 'transparent',
-          fontSize: 14,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >×</button>
-      {invalid && (
-        <div style={{ gridColumn: '1 / -1', fontSize: 11, color: '#D85A30', fontFamily: 'var(--font-mono)', paddingLeft: 30 }}>
-          Set must have reps or duration.
-        </div>
-      )}
-    </div>
-  )
-}
-
-// ─── Progression Editor ──────────────────────────────────────────────────────
-function ProgressionEditor({ rule, onChange }: { rule: ProgressionRule; onChange: (r: ProgressionRule) => void }) {
-  return (
-    <div style={{ padding: '10px 0 4px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-      <div>
-        <label className="label-mono" style={{ display: 'block', marginBottom: 4 }}>Rule</label>
-        <select
-          className="input"
-          value={rule.type}
-          onChange={(e) => onChange({ type: e.target.value as ProgressionRule['type'] })}
-        >
-          {['None', 'Linear', 'Double', 'StepDeload', 'Fixed'].map((t) => (
-            <option key={t} value={t}>{t === 'Double' ? 'Double progression' : t === 'StepDeload' ? 'Step-deload' : t}</option>
-          ))}
-        </select>
-      </div>
-
-      {rule.type === 'Linear' && (
-        <div>
-          <label className="label-mono" style={{ display: 'block', marginBottom: 4 }}>Increment (lb)</label>
-          <input
-            className="input"
-            type="number"
-            value={rule.incrementLb ?? ''}
-            onChange={(e) => onChange({ ...rule, incrementLb: e.target.value ? Number(e.target.value) : undefined })}
-          />
-        </div>
-      )}
-
-      {rule.type === 'Double' && (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>
-          <div>
-            <label className="label-mono" style={{ display: 'block', marginBottom: 4 }}>Rep min</label>
-            <input className="input" type="number" value={rule.repRangeMin ?? ''}
-              onChange={(e) => onChange({ ...rule, repRangeMin: e.target.value ? Number(e.target.value) : undefined })} />
-          </div>
-          <div>
-            <label className="label-mono" style={{ display: 'block', marginBottom: 4 }}>Rep max</label>
-            <input className="input" type="number" value={rule.repRangeMax ?? ''}
-              onChange={(e) => onChange({ ...rule, repRangeMax: e.target.value ? Number(e.target.value) : undefined })} />
-          </div>
-          <div>
-            <label className="label-mono" style={{ display: 'block', marginBottom: 4 }}>Increment (lb)</label>
-            <input className="input" type="number" value={rule.incrementLb ?? ''}
-              onChange={(e) => onChange({ ...rule, incrementLb: e.target.value ? Number(e.target.value) : undefined })} />
-          </div>
-        </div>
-      )}
-
-      {rule.type === 'StepDeload' && (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
-          <div>
-            <label className="label-mono" style={{ display: 'block', marginBottom: 4 }}>Progression weeks</label>
-            <input className="input" type="number" value={rule.progressionWeeks ?? ''}
-              onChange={(e) => onChange({ ...rule, progressionWeeks: e.target.value ? Number(e.target.value) : undefined })} />
-          </div>
-          <div>
-            <label className="label-mono" style={{ display: 'block', marginBottom: 4 }}>Deload %</label>
-            <input className="input" type="number" value={rule.deloadPercent ?? ''}
-              onChange={(e) => onChange({ ...rule, deloadPercent: e.target.value ? Number(e.target.value) : undefined })} />
-          </div>
-        </div>
-      )}
-    </div>
-  )
-}
-
-// ─── Session Editor (right panel when session selected) ──────────────────────
+// ── Session editor ───────────────────────────────────────────────────────────
 function SessionEditor({ sessionId }: { sessionId: string }) {
-  const program = useProgramStore((s) => s.program)
+  const program = useProgramStore(s => s.program)
   const { updateSessionName, updateSessionDayIndex, updateSessionIntensityLabel, addExercise } = useProgramStore()
 
-  // Find session
   let session: Session | null = null
   for (const block of program.blocks)
     for (const week of block.weeks)
       for (const s of week.sessions)
         if (s.id === sessionId) session = s
 
-  if (!session) return <p style={{ color: 'var(--color-dim)', fontSize: 14 }}>Session not found.</p>
+  if (!session) return null
 
-  const usedMovementIds = session.exercises.map((e) => e.movementId).filter(Boolean) as string[]
+  const usedMovementIds = session.exercises.map(e => e.movementId).filter(Boolean) as string[]
+  const hasErrors = session.exercises.some(e => e.sets.some(s => s.reps === null && s.durationSeconds === null))
 
   return (
     <div>
-      {/* Session header */}
+      {/* Session fields */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, marginBottom: 24 }}>
         <div>
-          <label className="label-mono" style={{ display: 'block', marginBottom: 4 }}>Session name</label>
-          <input
-            className="input"
-            maxLength={40}
+          <FieldLabel>Session name</FieldLabel>
+          <input className="input" style={{ height: 34 }} maxLength={40}
             value={session.name}
-            onChange={(e) => updateSessionName(sessionId, e.target.value)}
+            onChange={e => updateSessionName(sessionId, e.target.value)}
           />
         </div>
         <div>
-          <label className="label-mono" style={{ display: 'block', marginBottom: 4 }}>Day</label>
-          <select
-            className="input"
+          <FieldLabel>Day</FieldLabel>
+          <select className="input" style={{ height: 34, fontSize: 13 }}
             value={session.dayIndex ?? ''}
-            onChange={(e) => updateSessionDayIndex(sessionId, e.target.value !== '' ? Number(e.target.value) : null)}
+            onChange={e => updateSessionDayIndex(sessionId, e.target.value !== '' ? Number(e.target.value) : null)}
           >
             <option value="">— unset —</option>
-            {DAY_NAMES.map((name, i) => (
-              <option key={i} value={i}>{name}</option>
-            ))}
+            {DAY_NAMES.map((d, i) => <option key={i} value={i}>{d}</option>)}
           </select>
         </div>
         <div>
-          <label className="label-mono" style={{ display: 'block', marginBottom: 4 }}>Intensity</label>
-          <input
-            className="input"
-            placeholder="e.g. Heavy"
+          <FieldLabel>Intensity label</FieldLabel>
+          <input className="input" style={{ height: 34 }} placeholder="e.g. Heavy"
             value={session.intensityLabel}
-            onChange={(e) => updateSessionIntensityLabel(sessionId, e.target.value)}
+            onChange={e => updateSessionIntensityLabel(sessionId, e.target.value)}
           />
         </div>
       </div>
 
-      {/* Exercise count indicator */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-        <span className="label-mono">Exercises ({session.exercises.length}/8)</span>
-        {session.exercises.length < 8 ? (
-          <button className="btn-secondary" style={{ height: 32, fontSize: 12 }} onClick={() => addExercise(sessionId)}>
-            + Add exercise
+      {/* Exercise count + add */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
+        <span style={{
+          fontSize: 9, fontFamily: 'var(--font-serif)', fontWeight: 700,
+          letterSpacing: '0.12em', textTransform: 'uppercase',
+          color: hasErrors ? 'var(--color-error)' : 'var(--color-dim)',
+        }}>
+          Exercises {session.exercises.length}/8
+          {session.exercises.length < 4 && session.exercises.length > 0 && (
+            <span style={{ color: 'var(--color-error)' }}> · needs {4 - session.exercises.length} more</span>
+          )}
+        </span>
+        {session.exercises.length < 8 && (
+          <button className="btn btn-outline" style={{ height: 30, fontSize: 12 }} onClick={() => addExercise(sessionId)}>
+            + Exercise
           </button>
-        ) : (
-          <span style={{ fontSize: 11, color: 'var(--color-dim)', fontFamily: 'var(--font-mono)' }}>
-            Maximum 8 exercises per session.
-          </span>
         )}
       </div>
 
       {session.exercises.length === 0 ? (
-        <div style={{ padding: '48px 0', textAlign: 'center' }}>
-          <p style={{ color: 'var(--color-dim)', fontSize: 14 }}>No exercises yet.</p>
-          <button className="btn-primary" style={{ marginTop: 12 }} onClick={() => addExercise(sessionId)}>
+        <div style={{
+          padding: '40px 0', textAlign: 'center',
+          border: '1px dashed var(--color-rule)',
+          borderRadius: 8,
+        }}>
+          <p style={{ color: 'var(--color-dim)', fontSize: 13, fontFamily: 'var(--font-serif)', fontStyle: 'italic', marginBottom: 12 }}>
+            No exercises.
+          </p>
+          <button className="btn btn-primary" onClick={() => addExercise(sessionId)}>
             + Add exercise
           </button>
         </div>
       ) : (
-        session.exercises.map((exercise, i) => (
+        session.exercises.map((ex, i) => (
           <ExerciseCard
-            key={exercise.id}
-            exercise={exercise}
+            key={ex.id}
+            exercise={ex}
             sessionId={sessionId}
             index={i}
             usedMovementIds={usedMovementIds}
@@ -492,71 +465,59 @@ function SessionEditor({ sessionId }: { sessionId: string }) {
   )
 }
 
-// ─── Program Metadata (right panel when program selected) ────────────────────
+// ── Program meta editor ──────────────────────────────────────────────────────
 function ProgramMetaEditor() {
   const { program, setName, setSourceLabel, setTargetWeeks, setDaysPerWeek, setNotes } = useProgramStore()
 
   return (
-    <div style={{ maxWidth: 520 }}>
-      <h2 style={{ fontSize: 17, fontWeight: 600, color: 'var(--color-ink)', marginBottom: 20 }}>Program details</h2>
+    <div style={{ maxWidth: 480 }}>
+      <p style={{
+        fontSize: 9, fontFamily: 'var(--font-serif)', fontWeight: 700,
+        letterSpacing: '0.12em', textTransform: 'uppercase',
+        color: 'var(--color-dim)', marginBottom: 20,
+      }}>Program details</p>
+
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
         <div>
-          <label className="label-mono" style={{ display: 'block', marginBottom: 4 }}>Program name *</label>
-          <input
-            className="input"
-            maxLength={60}
+          <FieldLabel>Program name *</FieldLabel>
+          <input className="input" maxLength={60}
             placeholder="e.g. Forge Accumulation Block"
             value={program.name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={e => setName(e.target.value)}
           />
         </div>
         <div>
-          <label className="label-mono" style={{ display: 'block', marginBottom: 4 }}>Source label</label>
-          <input
-            className="input"
-            maxLength={30}
-            placeholder="e.g. Custom, Forge"
+          <FieldLabel>Source label</FieldLabel>
+          <input className="input" maxLength={30}
+            placeholder="e.g. Brice, Custom"
             value={program.sourceLabel}
-            onChange={(e) => setSourceLabel(e.target.value)}
+            onChange={e => setSourceLabel(e.target.value)}
           />
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
           <div>
-            <label className="label-mono" style={{ display: 'block', marginBottom: 4 }}>Target weeks (4–6)</label>
-            <input
-              className="input"
-              type="number"
-              min={4}
-              max={6}
-              placeholder="4"
+            <FieldLabel>Target weeks (4–6)</FieldLabel>
+            <input className="input" type="number" min={4} max={6}
               value={program.targetWeeks ?? ''}
-              onChange={(e) => setTargetWeeks(e.target.value ? Number(e.target.value) : null)}
+              onChange={e => setTargetWeeks(e.target.value ? Number(e.target.value) : null)}
             />
           </div>
           <div>
-            <label className="label-mono" style={{ display: 'block', marginBottom: 4 }}>Days per week (3–5)</label>
-            <input
-              className="input"
-              type="number"
-              min={3}
-              max={5}
-              placeholder="4"
+            <FieldLabel>Days per week (3–5)</FieldLabel>
+            <input className="input" type="number" min={3} max={5}
               value={program.daysPerWeek ?? ''}
-              onChange={(e) => setDaysPerWeek(e.target.value ? Number(e.target.value) : null)}
+              onChange={e => setDaysPerWeek(e.target.value ? Number(e.target.value) : null)}
             />
           </div>
         </div>
         <div>
-          <label className="label-mono" style={{ display: 'block', marginBottom: 4 }}>Internal notes</label>
-          <textarea
-            className="input"
-            style={{ height: 100, resize: 'vertical', paddingTop: 8 }}
-            maxLength={500}
+          <FieldLabel>Internal notes</FieldLabel>
+          <textarea className="input" style={{ height: 90 }} maxLength={500}
             placeholder="Not shown to athletes."
             value={program.notes}
-            onChange={(e) => setNotes(e.target.value)}
+            onChange={e => setNotes(e.target.value)}
           />
-          <p style={{ fontSize: 11, color: 'var(--color-dim)', fontFamily: 'var(--font-mono)', marginTop: 3 }}>
+          <p style={{ fontSize: 10, color: 'var(--color-dim)', fontFamily: 'var(--font-serif)', marginTop: 3, textAlign: 'right' }}>
             {program.notes.length}/500
           </p>
         </div>
@@ -565,7 +526,112 @@ function ProgramMetaEditor() {
   )
 }
 
-// ─── Left Panel Tree ─────────────────────────────────────────────────────────
+// ── Tree row ─────────────────────────────────────────────────────────────────
+function TreeRow({ label, depth, selected, onClick, expanded, editable, onLabelChange, actions = [], meta }: {
+  label: string
+  depth: number
+  selected: boolean
+  onClick: () => void
+  expanded?: boolean
+  editable?: boolean
+  onLabelChange?: (v: string) => void
+  actions?: { label: string; onClick: () => void; danger?: boolean }[]
+  meta?: string
+}) {
+  const [editing, setEditing] = React.useState(false)
+  const [menuOpen, setMenuOpen] = React.useState(false)
+
+  return (
+    <div
+      onClick={onClick}
+      style={{
+        display: 'flex', alignItems: 'center',
+        paddingLeft: 12 + depth * 14,
+        paddingRight: 8, height: 34,
+        cursor: 'pointer',
+        background: selected ? 'var(--color-accent-dim)' : 'transparent',
+        borderLeft: `2px solid ${selected ? 'var(--color-accent)' : 'transparent'}`,
+        gap: 6, position: 'relative',
+        transition: 'background 80ms',
+      }}
+    >
+      {/* Expand chevron or indent dot */}
+      <span style={{
+        fontSize: 8, color: selected ? 'var(--color-accent)' : 'var(--color-dim)',
+        minWidth: 10, textAlign: 'center', lineHeight: 1,
+      }}>
+        {expanded !== undefined ? (expanded ? '▾' : '▸') : '·'}
+      </span>
+
+      {/* Label */}
+      {editable && editing ? (
+        <input
+          autoFocus
+          onClick={e => e.stopPropagation()}
+          style={{
+            flex: 1, fontSize: 12, background: 'transparent',
+            border: 'none', outline: 'none',
+            color: 'var(--color-ink)', fontFamily: 'var(--font-sans)',
+          }}
+          value={label}
+          onChange={e => onLabelChange?.(e.target.value)}
+          onBlur={() => setEditing(false)}
+          onKeyDown={e => e.key === 'Enter' && setEditing(false)}
+        />
+      ) : (
+        <span
+          style={{
+            flex: 1, fontSize: 12,
+            color: selected ? 'var(--color-ink)' : 'var(--color-chrome)',
+            fontWeight: selected ? 500 : 400,
+            overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+          }}
+          onDoubleClick={e => { if (editable) { e.stopPropagation(); setEditing(true) } }}
+        >{label}</span>
+      )}
+
+      {/* Meta count */}
+      {meta && (
+        <span style={{ fontSize: 9, fontFamily: 'var(--font-serif)', color: 'var(--color-dim)', flexShrink: 0 }}>
+          {meta}
+        </span>
+      )}
+
+      {/* Actions menu */}
+      {actions.length > 0 && (
+        <div style={{ position: 'relative', flexShrink: 0 }} onClick={e => e.stopPropagation()}>
+          <button
+            onClick={e => { e.stopPropagation(); setMenuOpen(o => !o) }}
+            style={{
+              background: 'none', border: 'none', cursor: 'pointer',
+              color: 'var(--color-dim)', fontSize: 13, padding: '1px 3px',
+              borderRadius: 3, lineHeight: 1, opacity: menuOpen ? 1 : 0.6,
+            }}
+          >⋯</button>
+          {menuOpen && (
+            <>
+              <div
+                style={{ position: 'fixed', inset: 0, zIndex: 49 }}
+                onClick={() => setMenuOpen(false)}
+              />
+              <div className="dropdown" style={{ right: 0, top: '100%', zIndex: 50, minWidth: 140 }}>
+                {actions.map(a => (
+                  <button
+                    key={a.label}
+                    className={`dropdown-item${a.danger ? ' danger' : ''}`}
+                    onClick={() => { setMenuOpen(false); a.onClick() }}
+                  >{a.label}</button>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ── Program tree ─────────────────────────────────────────────────────────────
 function ProgramTree() {
   const {
     program, selection, expandedWeeks,
@@ -576,85 +642,79 @@ function ProgramTree() {
   } = useProgramStore()
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-      {/* Program row */}
+    <div style={{ paddingBottom: 16 }}>
+      {/* Program root */}
       <TreeRow
         label={program.name || 'New program'}
         depth={0}
         selected={selection.type === 'program'}
         onClick={() => select({ type: 'program' })}
-        icon="◈"
+        meta={`${program.blocks.reduce((n, b) => n + b.weeks.length, 0)}w`}
       />
 
-      {program.blocks.map((block) => (
+      {program.blocks.map(block => (
         <div key={block.id}>
-          {/* Block row */}
           <TreeRow
             label={block.name}
             depth={0}
             selected={selection.type === 'block' && selection.blockId === block.id}
             onClick={() => select({ type: 'block', blockId: block.id })}
-            icon="▪"
             editable
-            onLabelChange={(name) => updateBlockName(block.id, name)}
+            onLabelChange={name => updateBlockName(block.id, name)}
+            meta={`${block.weeks.length}w`}
             actions={[
-              { label: 'Add week', onClick: () => addWeek(block.id) },
-              { label: 'Duplicate block', onClick: () => duplicateBlock(block.id) },
-              { label: 'Delete block', onClick: () => deleteBlock(block.id), destructive: true },
+              { label: 'Add week',       onClick: () => addWeek(block.id) },
+              { label: 'Duplicate',      onClick: () => duplicateBlock(block.id) },
+              { label: 'Delete block',   onClick: () => deleteBlock(block.id), danger: true },
             ]}
-            rightLabel={`${block.weeks.length}w`}
           />
 
-          {block.weeks.map((week) => {
+          {block.weeks.map(week => {
             const isExpanded = expandedWeeks.has(week.id)
             return (
               <div key={week.id}>
-                {/* Week row */}
                 <TreeRow
                   label={`Week ${week.weekNumber}`}
                   depth={1}
                   selected={selection.type === 'week' && selection.weekId === week.id}
                   onClick={() => { select({ type: 'week', blockId: block.id, weekId: week.id }); toggleWeek(week.id) }}
-                  icon={isExpanded ? '▾' : '▸'}
+                  expanded={isExpanded}
+                  meta={`${week.sessions.length}s`}
                   actions={[
-                    { label: 'Add session', onClick: () => addSession(week.id) },
-                    { label: 'Duplicate week', onClick: () => duplicateWeek(block.id, week.id) },
-                    { label: 'Delete week', onClick: () => deleteWeek(block.id, week.id), destructive: true },
+                    { label: 'Add session',  onClick: () => addSession(week.id) },
+                    { label: 'Duplicate',    onClick: () => duplicateWeek(block.id, week.id) },
+                    { label: 'Delete week',  onClick: () => deleteWeek(block.id, week.id), danger: true },
                   ]}
-                  rightLabel={`${week.sessions.length}s`}
                 />
 
-                {isExpanded && week.sessions.map((session) => (
+                {isExpanded && week.sessions.map(session => (
                   <TreeRow
                     key={session.id}
                     label={session.name}
                     depth={2}
                     selected={selection.type === 'session' && selection.sessionId === session.id}
                     onClick={() => select({ type: 'session', blockId: block.id, weekId: week.id, sessionId: session.id })}
-                    icon="·"
                     editable
-                    onLabelChange={(name) => updateSessionName(session.id, name)}
+                    onLabelChange={name => updateSessionName(session.id, name)}
+                    meta={`${session.exercises.length}ex`}
                     actions={[
-                      { label: 'Duplicate', onClick: () => duplicateSession(session.id) },
-                      { label: 'Delete session', onClick: () => deleteSession(session.id), destructive: true },
+                      { label: 'Duplicate',      onClick: () => duplicateSession(session.id) },
+                      { label: 'Delete session', onClick: () => deleteSession(session.id), danger: true },
                     ]}
-                    rightLabel={`${session.exercises.length}ex`}
                   />
                 ))}
 
                 {isExpanded && (
-                  <div
+                  <button
                     onClick={() => addSession(week.id)}
                     style={{
-                      paddingLeft: 52,
-                      paddingTop: 4,
-                      paddingBottom: 4,
-                      fontSize: 12,
-                      color: 'var(--color-accent)',
-                      cursor: 'pointer',
-                      fontFamily: 'var(--font-mono)',
+                      display: 'block', width: '100%', textAlign: 'left',
+                      paddingLeft: 12 + 2 * 14 + 16, paddingTop: 4, paddingBottom: 4,
+                      background: 'none', border: 'none', cursor: 'pointer',
+                      fontSize: 11, color: 'var(--color-accent)',
+                      fontFamily: 'var(--font-serif)',
                     }}
-                  >+ Add session</div>
+                  >+ session</button>
                 )}
               </div>
             )
@@ -663,320 +723,231 @@ function ProgramTree() {
       ))}
 
       {/* Add block */}
-      <div
+      <button
         onClick={addBlock}
         style={{
-          padding: '8px 16px',
-          fontSize: 12,
-          color: 'var(--color-accent)',
-          cursor: 'pointer',
-          fontFamily: 'var(--font-mono)',
-          borderTop: '1px solid var(--color-rule-light)',
-          marginTop: 4,
+          display: 'block', width: '100%', textAlign: 'left',
+          padding: '8px 12px',
+          background: 'none',
+          border: 'none', borderTop: '1px solid var(--color-rule-light)',
+          cursor: 'pointer', marginTop: 6,
+          fontSize: 11, color: 'var(--color-accent)',
+          fontFamily: 'var(--font-serif)',
         }}
-      >+ Add block</div>
+      >+ block</button>
     </div>
   )
 }
 
-// ─── Tree Row ─────────────────────────────────────────────────────────────────
-function TreeRow({
-  label, depth, selected, onClick, icon,
-  editable, onLabelChange,
-  actions = [],
-  rightLabel,
-}: {
-  label: string
-  depth: number
-  selected: boolean
-  onClick: () => void
-  icon: string
-  editable?: boolean
-  onLabelChange?: (v: string) => void
-  actions?: { label: string; onClick: () => void; destructive?: boolean }[]
-  rightLabel?: string
-}) {
-  const [editing, setEditing] = React.useState(false)
-  const [menuOpen, setMenuOpen] = React.useState(false)
-
-  return (
-    <div
-      onClick={onClick}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        paddingLeft: 16 + depth * 16,
-        paddingRight: 8,
-        height: 32,
-        cursor: 'pointer',
-        background: selected ? 'rgba(186,117,23,0.08)' : 'transparent',
-        borderLeft: selected ? '2px solid var(--color-accent)' : '2px solid transparent',
-        gap: 6,
-        position: 'relative',
-      }}
-    >
-      <span style={{ fontSize: 10, color: selected ? 'var(--color-accent)' : 'var(--color-dim)', minWidth: 10 }}>
-        {icon}
-      </span>
-      {editable && editing ? (
-        <input
-          autoFocus
-          style={{ flex: 1, fontSize: 13, background: 'transparent', border: 'none', outline: 'none', color: 'var(--color-ink)' }}
-          value={label}
-          onChange={(e) => onLabelChange?.(e.target.value)}
-          onBlur={() => setEditing(false)}
-          onKeyDown={(e) => e.key === 'Enter' && setEditing(false)}
-          onClick={(e) => e.stopPropagation()}
-        />
-      ) : (
-        <span
-          style={{
-            flex: 1,
-            fontSize: 13,
-            color: selected ? 'var(--color-ink)' : 'var(--color-chrome)',
-            fontWeight: selected ? 500 : 400,
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-          }}
-          onDoubleClick={(e) => { if (editable) { e.stopPropagation(); setEditing(true) } }}
-        >
-          {label}
-        </span>
-      )}
-      {rightLabel && (
-        <span style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--color-dim)' }}>
-          {rightLabel}
-        </span>
-      )}
-      {actions.length > 0 && (
-        <div style={{ position: 'relative' }} onClick={(e) => e.stopPropagation()}>
-          <button
-            onClick={(e) => { e.stopPropagation(); setMenuOpen((o) => !o) }}
-            style={{
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              color: 'var(--color-dim)',
-              fontSize: 14,
-              padding: '2px 4px',
-              borderRadius: 3,
-              opacity: menuOpen ? 1 : 0.5,
-            }}
-          >⋯</button>
-          {menuOpen && (
-            <div
-              style={{
-                position: 'absolute',
-                right: 0,
-                top: '100%',
-                background: 'var(--color-surface)',
-                border: '1px solid var(--color-rule)',
-                borderRadius: 6,
-                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-                zIndex: 50,
-                minWidth: 150,
-                overflow: 'hidden',
-              }}
-            >
-              {actions.map((a) => (
-                <button
-                  key={a.label}
-                  onClick={(e) => { e.stopPropagation(); setMenuOpen(false); a.onClick() }}
-                  style={{
-                    display: 'block',
-                    width: '100%',
-                    padding: '8px 14px',
-                    textAlign: 'left',
-                    background: 'none',
-                    border: 'none',
-                    cursor: 'pointer',
-                    fontSize: 13,
-                    color: a.destructive ? '#D85A30' : 'var(--color-ink)',
-                    borderBottom: '1px solid var(--color-rule-light)',
-                  }}
-                >{a.label}</button>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-    </div>
-  )
-}
-
-// ─── Main Page ───────────────────────────────────────────────────────────────
-export default function ProgramBuilderPage() {
-  const { id } = useParams<{ id: string }>()
-  const navigate = useNavigate()
-  const { program, selection, saveState, saveDraft, runValidation, showValidation } = useProgramStore()
-  const supabaseIdRef = useRef<string | null>(id ?? null)
-  // On mount: load from Supabase if editing an existing program
-  useEffect(() => {
-    if (id) {
-      getProgram(id)
-        .then(p => {
-          useProgramStore.setState({ program: p, selection: { type: 'program' } })
-          supabaseIdRef.current = id
-        })
-        .catch(err => console.error('Failed to load program:', err))
-    } else {
-      // New program — reset store to blank
-// new program — store already initializes to empty
-    }
-    startAutosave()
-    return () => stopAutosave()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id])
-
-  // Save to Supabase (in addition to localStorage)
-  const handleSave = useCallback(async () => {
-    saveDraft() // localStorage backup
-    try {
-      const current = useProgramStore.getState().program
-      if (supabaseIdRef.current) {
-        await saveProgram({ ...current, id: supabaseIdRef.current })
-      } else {
-        const newId = await createProgram(current)
-        supabaseIdRef.current = newId
-        navigate(`/forge/programs/${newId}`, { replace: true })
-      }
-    } catch (err) {
-      console.error('Save failed:', err)
-    }
-  }, [saveDraft, navigate])
-
-  const handleBlur = () => handleSave()
-
-  return (
-    <div onBlur={handleBlur} style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 52px - 64px)' }}>
-      {/* Header bar */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        marginBottom: 16,
-        gap: 12,
-        paddingBottom: 16,
-        borderBottom: '1px solid var(--color-rule)',
-      }}>
-        <input
-          style={{
-            flex: 1,
-            fontSize: 20,
-            fontWeight: 600,
-            background: 'transparent',
-            border: 'none',
-            outline: 'none',
-            color: 'var(--color-ink)',
-          }}
-          placeholder="New program"
-          value={program.name}
-          onChange={(e) => useProgramStore.getState().setName(e.target.value)}
-        />
-
-        {/* Save state indicator */}
-        <span style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--color-dim)', minWidth: 60, textAlign: 'right' }}>
-          {saveState.status === 'saving' ? 'Saving…' : saveState.status === 'saved' ? 'Saved' : ''}
-        </span>
-
-        {/* Status badge */}
-        <span className={`pill ${program.status === 'Published' ? 'pill-amber' : 'pill-dim'}`}>
-          {program.status}
-        </span>
-
-        <button className="btn-ghost" onClick={handleSave}>Save draft</button>
-        <button
-          className="btn-secondary"
-          onClick={() => { handleSave(); runValidation() }}
-        >Publish</button>
-      </div>
-
-      {/* Two-panel layout */}
-      <div style={{ display: 'flex', gap: 24, flex: 1, overflow: 'hidden' }}>
-        {/* Left panel */}
-        <div style={{
-          width: 280,
-          flexShrink: 0,
-          background: 'var(--color-surface)',
-          border: '1px solid var(--color-rule)',
-          borderRadius: 8,
-          overflowY: 'auto',
-        }}>
-          <ProgramTree />
-        </div>
-
-        {/* Right panel */}
-        <div style={{
-          flex: 1,
-          background: 'var(--color-surface)',
-          border: '1px solid var(--color-rule)',
-          borderRadius: 8,
-          overflowY: 'auto',
-          padding: 24,
-        }}>
-          {selection.type === 'program' && <ProgramMetaEditor />}
-          {selection.type === 'block' && (
-            <BlockDetail blockId={selection.blockId!} />
-          )}
-          {selection.type === 'week' && (
-            <WeekDetail weekId={selection.weekId!} />
-          )}
-          {selection.type === 'session' && selection.sessionId && (
-            <SessionEditor sessionId={selection.sessionId} />
-          )}
-        </div>
-      </div>
-
-      {/* Validation panel overlay */}
-      {showValidation && <ValidationPanel />}
-    </div>
-  )
-}
-
+// ── Block/Week detail panels ─────────────────────────────────────────────────
 function BlockDetail({ blockId }: { blockId: string }) {
-  const block = useProgramStore((s) => s.program.blocks.find((b) => b.id === blockId))
+  const block = useProgramStore(s => s.program.blocks.find(b => b.id === blockId))
   if (!block) return null
-  const totalExercises = block.weeks.reduce(
-    (sum, w) => sum + w.sessions.reduce((s2, sess) => s2 + sess.exercises.length, 0), 0
-  )
+  const totalEx = block.weeks.reduce((n, w) => n + w.sessions.reduce((m, s) => m + s.exercises.length, 0), 0)
   return (
     <div>
-      <h2 style={{ fontSize: 17, fontWeight: 600, color: 'var(--color-ink)', marginBottom: 4 }}>{block.name}</h2>
-      <p style={{ fontSize: 13, fontFamily: 'var(--font-mono)', color: 'var(--color-dim)' }}>
-        {block.weeks.length} week{block.weeks.length !== 1 ? 's' : ''} · {totalExercises} exercises total
+      <p style={{ fontSize: 16, fontFamily: 'var(--font-serif)', color: 'var(--color-ink)', marginBottom: 8 }}>{block.name}</p>
+      <p style={{ fontSize: 12, color: 'var(--color-dim)', fontFamily: 'var(--font-serif)' }}>
+        {block.weeks.length} week{block.weeks.length !== 1 ? 's' : ''} · {totalEx} exercises
       </p>
     </div>
   )
 }
 
 function WeekDetail({ weekId }: { weekId: string }) {
-  const program = useProgramStore((s) => s.program)
+  const program = useProgramStore(s => s.program)
   let week: Week | null = null
-  for (const block of program.blocks)
-    for (const w of block.weeks)
-      if (w.id === weekId) week = w
+  for (const b of program.blocks) for (const w of b.weeks) if (w.id === weekId) week = w
   if (!week) return null
   return (
     <div>
-      <h2 style={{ fontSize: 17, fontWeight: 600, color: 'var(--color-ink)', marginBottom: 4 }}>Week {week.weekNumber}</h2>
-      <p style={{ fontSize: 13, fontFamily: 'var(--font-mono)', color: 'var(--color-dim)' }}>
-        {week.sessions.length} session{week.sessions.length !== 1 ? 's' : ''}
+      <p style={{ fontSize: 16, fontFamily: 'var(--font-serif)', color: 'var(--color-ink)', marginBottom: 16 }}>
+        Week {week.weekNumber}
       </p>
-      <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 6 }}>
-        {week.sessions.map((s) => (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        {week.sessions.map(s => (
           <div key={s.id} style={{
-            padding: '10px 14px',
+            padding: '11px 14px',
             background: 'var(--color-bg)',
-            borderRadius: 6,
             border: '1px solid var(--color-rule)',
+            borderRadius: 6,
           }}>
-            <span style={{ fontSize: 14, fontWeight: 500, color: 'var(--color-ink)' }}>{s.name}</span>
-            <span style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--color-dim)', marginLeft: 12 }}>
-              {s.exercises.length} exercises · {s.dayIndex !== null ? DAY_NAMES[s.dayIndex] : 'Day unset'}
+            <span style={{ fontSize: 13, fontWeight: 500, color: 'var(--color-ink)' }}>{s.name}</span>
+            <span style={{ fontSize: 11, fontFamily: 'var(--font-serif)', color: 'var(--color-dim)', marginLeft: 10 }}>
+              {s.exercises.length}ex · {s.dayIndex !== null ? DAY_NAMES[s.dayIndex] : 'Day unset'}
             </span>
           </div>
         ))}
       </div>
+    </div>
+  )
+}
+
+// ── Main builder page ────────────────────────────────────────────────────────
+export default function ProgramBuilderPage() {
+  const { id } = useParams<{ id?: string }>()
+  const navigate = useNavigate()
+  const { program, selection, saveState, saveDraft, runValidation, showValidation, resetDraft } = useProgramStore()
+  const [saving, setSaving] = useState(false)
+  const [publishing, setPublishing] = useState(false)
+
+  // Load existing program from Supabase when editing
+  useEffect(() => {
+    if (id && id !== 'new') {
+      getProgram(id).then(prog => {
+        useProgramStore.setState(s => ({
+          program: {
+            ...s.program,
+            id: prog.id,
+            name: prog.name,
+            sourceLabel: prog.sourceLabel,
+            targetWeeks: prog.targetWeeks,
+            daysPerWeek: prog.daysPerWeek,
+            notes: prog.notes ?? '',
+            status: prog.status,
+            blocks: prog.blocks ?? [],
+            lastSaved: prog.lastSaved,
+          }
+        }))
+      }).catch(console.error)
+    } else if (!id || id === 'new') {
+      resetDraft()
+    }
+  }, [id])
+
+  useEffect(() => {
+    startAutosave()
+    return () => stopAutosave()
+  }, [])
+
+  const handleSave = useCallback(async () => {
+    setSaving(true)
+    try {
+      if (id && id !== 'new') {
+        await saveProgram(program)
+      } else {
+        const newId = await createProgram(program)
+        navigate(`/forge/programs/${newId}`, { replace: true })
+      }
+      saveDraft()
+    } catch (e) {
+      console.error(e)
+      saveDraft()
+    } finally {
+      setSaving(false)
+    }
+  }, [id, program, navigate, saveDraft])
+
+  const handlePublish = useCallback(async () => {
+    const errors = runValidation()
+    const hasErrors = errors.filter(r => r.severity === 'error').length > 0
+    if (hasErrors) return // ValidationPanel already shown
+    setPublishing(true)
+    try {
+      await handleSave()
+      if (id && id !== 'new') await publishProgram(id)
+      useProgramStore.setState(s => ({ program: { ...s.program, status: 'Published' }, showValidation: false }))
+    } catch (e) {
+      console.error(e)
+    } finally {
+      setPublishing(false)
+    }
+  }, [id, handleSave, runValidation])
+
+  const handleBlur = useCallback(() => {
+    handleSave()
+  }, [handleSave])
+
+  return (
+    <div onBlur={handleBlur} style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 50px)' }}>
+
+      {/* ── Header bar ── */}
+      <div style={{
+        display: 'flex', alignItems: 'center',
+        padding: '0 36px', height: 52,
+        borderBottom: '1px solid var(--color-rule)',
+        gap: 12, flexShrink: 0,
+        background: 'var(--color-surface)',
+      }}>
+        <button
+          onClick={() => navigate('/forge/programs')}
+          style={{
+            background: 'none', border: 'none', cursor: 'pointer',
+            color: 'var(--color-dim)', fontSize: 11,
+            fontFamily: 'var(--font-serif)',
+            padding: '0 8px 0 0',
+            borderRight: '1px solid var(--color-rule)',
+            marginRight: 4,
+          }}
+        >← Programs</button>
+
+        {/* Program name — inline edit */}
+        <input
+          style={{
+            flex: 1, fontSize: 14, fontWeight: 500,
+            background: 'transparent', border: 'none', outline: 'none',
+            color: 'var(--color-ink)', fontFamily: 'var(--font-sans)',
+          }}
+          placeholder="New program"
+          value={program.name}
+          onChange={e => useProgramStore.getState().setName(e.target.value)}
+        />
+
+        {/* Save state */}
+        <span style={{
+          fontSize: 11, fontFamily: 'var(--font-serif)',
+          color: 'var(--color-dim)', minWidth: 50,
+          fontStyle: 'italic',
+        }}>
+          {saveState.status === 'saving' ? 'Saving…' : saveState.status === 'saved' ? 'Saved' : ''}
+        </span>
+
+        {/* Status pill */}
+        <span className={`pill ${program.status === 'Published' ? 'pill-amber' : 'pill-dim'}`}>
+          {program.status}
+        </span>
+
+        <button className="btn btn-ghost" style={{ height: 30, fontSize: 12 }} onClick={handleSave} disabled={saving}>
+          {saving ? 'Saving…' : 'Save draft'}
+        </button>
+        <button
+          className="btn btn-primary"
+          style={{ height: 30, fontSize: 12 }}
+          disabled={publishing}
+          onClick={handlePublish}
+        >
+          {publishing ? 'Publishing…' : 'Publish →'}
+        </button>
+      </div>
+
+      {/* ── Two-panel layout ── */}
+      <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
+
+        {/* Left: tree */}
+        <div style={{
+          width: 240, flexShrink: 0,
+          background: 'var(--color-surface)',
+          borderRight: '1px solid var(--color-rule)',
+          overflowY: 'auto',
+          paddingTop: 8,
+        }}>
+          <ProgramTree />
+        </div>
+
+        {/* Right: editor */}
+        <div style={{
+          flex: 1, overflowY: 'auto',
+          padding: '28px 32px',
+          background: 'var(--color-bg)',
+        }}>
+          {selection.type === 'program'  && <ProgramMetaEditor />}
+          {selection.type === 'block'    && selection.blockId   && <BlockDetail blockId={selection.blockId} />}
+          {selection.type === 'week'     && selection.weekId    && <WeekDetail weekId={selection.weekId} />}
+          {selection.type === 'session'  && selection.sessionId && <SessionEditor sessionId={selection.sessionId} />}
+        </div>
+      </div>
+
+      {showValidation && <ValidationPanel />}
     </div>
   )
 }
