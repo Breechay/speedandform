@@ -1,116 +1,121 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { useAuthStore } from '../store/authStore'
+import { signOut as authSignOut } from '../api/auth'
 
-export default function Layout() {
+export function Layout() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
   const navigate = useNavigate()
+  const { user, setUser } = useAuthStore()
+
+  const initials = user
+    ? `${user.firstName?.[0] ?? ''}${user.lastName?.[0] ?? ''}`.toUpperCase()
+    : '–'
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    function handle(e: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setMenuOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handle)
+    return () => document.removeEventListener('mousedown', handle)
+  }, [])
+
+  const handleSignOut = async () => {
+    setMenuOpen(false)
+    await authSignOut(); setUser(null)
+    navigate('/forge/login', { replace: true })
+  }
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--color-bg)' }}>
-      {/* Topbar */}
+      {/* ── Topbar ── */}
       <header style={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 40,
-        height: 52,
+        position: 'sticky', top: 0, zIndex: 40,
+        height: 50,
         background: 'var(--color-surface)',
         borderBottom: '1px solid var(--color-rule)',
-        display: 'flex',
-        alignItems: 'center',
-        padding: '0 32px',
-        gap: 32,
+        display: 'flex', alignItems: 'center',
+        padding: '0 36px', gap: 40,
+        boxShadow: 'var(--shadow-sm)',
       }}>
         {/* Wordmark */}
         <span style={{
-          fontSize: 15,
-          fontWeight: 600,
-          fontFamily: 'var(--font-mono)',
+          fontFamily: 'var(--font-serif)',
+          fontSize: 13, fontWeight: 700,
+          letterSpacing: '0.18em',
+          textTransform: 'uppercase',
           color: 'var(--color-ink)',
-          letterSpacing: '0.04em',
-        }}>FORGE</span>
+        }}>Forge</span>
 
         {/* Nav */}
-        <nav style={{ display: 'flex', gap: 4, flex: 1 }}>
+        <nav style={{ display: 'flex', gap: 2, flex: 1 }}>
           {[['Roster', '/forge/roster'], ['Programs', '/forge/programs']].map(([label, path]) => (
-            <NavLink
-              key={path}
-              to={path}
-              style={({ isActive }) => ({
-                padding: '4px 12px',
-                borderRadius: 6,
-                fontSize: 14,
-                fontWeight: 500,
-                color: isActive ? 'var(--color-ink)' : 'var(--color-chrome)',
-                background: isActive ? 'var(--color-bg)' : 'transparent',
-                textDecoration: 'none',
-                transition: 'all 120ms',
-              })}
-            >
-              {label}
-            </NavLink>
+            <NavLink key={path} to={path} style={({ isActive }) => ({
+              padding: '4px 12px',
+              borderRadius: 6,
+              fontSize: 13, fontWeight: isActive ? 500 : 400,
+              color: isActive ? 'var(--color-ink)' : 'var(--color-dim)',
+              background: isActive ? 'var(--color-bg)' : 'transparent',
+              textDecoration: 'none',
+              transition: 'all 100ms',
+              letterSpacing: '0.01em',
+            })}>{label}</NavLink>
           ))}
         </nav>
 
-        {/* Avatar menu */}
-        <div style={{ position: 'relative' }}>
+        {/* Avatar */}
+        <div ref={menuRef} style={{ position: 'relative' }}>
           <button
-            onClick={() => setMenuOpen((o) => !o)}
+            onClick={() => setMenuOpen(o => !o)}
             style={{
-              width: 32,
-              height: 32,
-              borderRadius: '50%',
-              background: 'var(--color-accent)',
-              color: '#fff',
-              fontSize: 12,
-              fontWeight: 600,
-              border: 'none',
+              width: 30, height: 30, borderRadius: '50%',
+              background: menuOpen ? 'var(--color-accent)' : 'var(--color-accent-dim)',
+              border: '1.5px solid var(--color-accent-mid)',
+              color: menuOpen ? '#fff' : 'var(--color-accent)',
+              fontSize: 10, fontWeight: 700,
+              fontFamily: 'var(--font-serif)',
+              letterSpacing: '0.06em',
               cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontFamily: 'var(--font-mono)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              transition: 'all 120ms',
             }}
-          >BC</button>
+          >{initials}</button>
+
           {menuOpen && (
-            <div style={{
-              position: 'absolute',
-              right: 0,
-              top: 40,
-              background: 'var(--color-surface)',
-              border: '1px solid var(--color-rule)',
-              borderRadius: 8,
-              boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
-              minWidth: 160,
-              overflow: 'hidden',
-              zIndex: 50,
-            }}>
-              {[['Settings', '/forge/settings'], ['Sign out', '/forge/login']].map(([label, path]) => (
-                <button
-                  key={label}
-                  onClick={() => { setMenuOpen(false); navigate(path) }}
-                  style={{
-                    display: 'block',
-                    width: '100%',
-                    padding: '10px 16px',
-                    textAlign: 'left',
-                    background: 'none',
-                    border: 'none',
-                    cursor: 'pointer',
-                    fontSize: 14,
-                    color: label === 'Sign out' ? '#D85A30' : 'var(--color-ink)',
-                    borderBottom: label === 'Settings' ? '1px solid var(--color-rule-light)' : 'none',
-                  }}
-                >{label}</button>
-              ))}
+            <div className="dropdown" style={{ right: 0, top: 38, minWidth: 180 }}>
+              {/* Name row */}
+              {user && (
+                <div style={{
+                  padding: '11px 14px 9px',
+                  borderBottom: '1px solid var(--color-rule-light)',
+                }}>
+                  <p style={{ fontSize: 13, fontWeight: 500, color: 'var(--color-ink)' }}>
+                    {user.firstName} {user.lastName}
+                  </p>
+                  <p style={{ fontSize: 11, color: 'var(--color-dim)', fontFamily: 'var(--font-serif)', marginTop: 1 }}>
+                    {user.email}
+                  </p>
+                </div>
+              )}
+              <button className="dropdown-item" onClick={() => { setMenuOpen(false); navigate('/forge/settings') }}>
+                Settings
+              </button>
+              <button className="dropdown-item danger" onClick={handleSignOut}>
+                Sign out
+              </button>
             </div>
           )}
         </div>
       </header>
 
-      {/* Page content */}
-      <main style={{ maxWidth: 1200, margin: '0 auto', padding: '32px 32px' }}>
+      {/* ── Page content ── */}
+      <div style={{ maxWidth: 1080, margin: '0 auto' }}>
         <Outlet />
-      </main>
+      </div>
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import Layout from './components/Layout'
+import { Layout } from './components/Layout'
 import { LoginPage } from './pages/LoginPage'
 import { RosterPage } from './pages/roster/RosterPage'
 import { AthleteDetailPage } from './pages/athlete/AthleteDetailPage'

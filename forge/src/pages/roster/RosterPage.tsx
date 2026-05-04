@@ -3,189 +3,256 @@ import { useNavigate } from 'react-router-dom'
 import { useRoster } from '../../hooks/useForge'
 import type { RosterAthlete } from '../../api/athletes'
 
-const STATUS_STYLE: Record<string, React.CSSProperties> = {
-  Active:       { background: 'transparent', color: 'var(--color-accent)',  border: '1px solid var(--color-accent)' },
-  Behind:       { background: 'transparent', color: '#D85A30',              border: '1px solid #D85A30' },
-  Complete:     { background: 'transparent', color: 'var(--color-dim)',     border: '1px solid var(--color-dim)' },
-  'No program': { background: 'transparent', color: 'var(--color-dim)',     border: '1px dashed var(--color-rule)' },
+const DAY_MS = 86_400_000
+
+function daysSince(dateStr: string | null): string {
+  if (!dateStr) return '—'
+  const d = Math.floor((Date.now() - new Date(dateStr).getTime()) / DAY_MS)
+  if (d === 0) return 'Today'
+  if (d === 1) return 'Yesterday'
+  return `${d}d ago`
 }
 
-function Spinner() {
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 64 }}>
-      <div style={{
-        width: 24, height: 24,
-        border: '2.5px solid var(--color-rule)',
-        borderTopColor: 'var(--color-accent)',
-        borderRadius: '50%',
-        animation: 'spin 0.7s linear infinite',
-      }} />
-      <style>{`@keyframes spin { to { transform: rotate(360deg) } }`}</style>
-    </div>
-  )
+function deriveStatus(a: RosterAthlete): 'Active' | 'Behind' | 'Complete' | 'No program' {
+  if (!a.programName) return 'No program'
+  if (a.sessionsTotal > 0 && a.sessionsCompleted >= a.sessionsTotal) return 'Complete'
+  return 'Active'
 }
 
-function formatDate(iso: string | null) {
-  if (!iso) return 'Never'
-  const d = new Date(iso)
-  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+const STATUS_PILL: Record<string, string> = {
+  Active:      'pill pill-amber',
+  Behind:      'pill pill-error',
+  Complete:    'pill pill-green',
+  'No program': 'pill pill-dim',
 }
 
 export function RosterPage() {
   const navigate = useNavigate()
   const { data: roster = [], isLoading, error } = useRoster()
-  const [activeFilter, setActiveFilter] = useState('All')
+  const [search, setSearch] = useState('')
+  const [programFilter, setProgramFilter] = useState('All')
+  const [showAdd, setShowAdd] = useState(false)
 
-  // Unique program names for filter pills
-  const programs = ['All', ...Array.from(new Set(
-    roster.filter(a => a.programName).map(a => a.programName!)
-  ))]
+  const programs = Array.from(new Set(roster.map(r => r.programName).filter(Boolean))) as string[]
 
-  const filtered = activeFilter === 'All'
-    ? roster
-    : roster.filter(a => a.programName === activeFilter)
+  const filtered = roster.filter(a => {
+    const name = `${a.firstName} ${a.lastName}`.toLowerCase()
+    if (search && !name.includes(search.toLowerCase())) return false
+    if (programFilter !== 'All' && a.programName !== programFilter) return false
+    return true
+  })
 
   return (
-    <div style={{ maxWidth: 1200, margin: '0 auto', padding: '40px 32px 80px' }}>
+    <div className="page">
       {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 }}>
-        <h1 style={{ fontSize: 24, fontWeight: 600, color: 'var(--color-ink)' }}>Roster</h1>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <span style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: 13,
-            color: 'var(--color-dim)',
-          }}>
-            {roster.length} athletes
+      <div className="page-header">
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
+          <h1 className="page-title">Roster</h1>
+          <span style={{ fontSize: 12, color: 'var(--color-dim)', fontFamily: 'var(--font-serif)' }}>
+            {roster.length}
           </span>
-          <button style={{
-            height: 36, padding: '0 16px',
-            background: 'transparent',
-            color: 'var(--color-accent)',
-            border: '1px solid var(--color-accent)',
-            borderRadius: 8,
-            fontSize: 13, fontWeight: 500,
-            cursor: 'pointer',
-          }}>
+        </div>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <input
+            className="input"
+            style={{ width: 200, height: 31, fontSize: 13 }}
+            placeholder="Search…"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
+          <button className="btn btn-primary" onClick={() => setShowAdd(true)}>
             Add athlete
           </button>
         </div>
       </div>
 
       {/* Filter pills */}
-      <div style={{ display: 'flex', gap: 8, marginBottom: 20, flexWrap: 'wrap' }}>
-        {programs.map(p => (
-          <button key={p} onClick={() => setActiveFilter(p)} style={{
-            height: 30, padding: '0 14px',
-            borderRadius: 20,
-            border: '1px solid',
-            borderColor: activeFilter === p ? 'var(--color-accent)' : 'var(--color-rule)',
-            background: activeFilter === p ? 'rgba(186,117,23,0.08)' : 'transparent',
-            color: activeFilter === p ? 'var(--color-accent)' : 'var(--color-chrome)',
-            fontSize: 13,
-            fontWeight: activeFilter === p ? 600 : 400,
-            cursor: 'pointer',
-          }}>
-            {p}
-          </button>
-        ))}
-      </div>
+      {programs.length > 0 && (
+        <div style={{ display: 'flex', gap: 6, marginBottom: 20, flexWrap: 'wrap' }}>
+          {['All', ...programs].map(p => (
+            <button
+              key={p}
+              className={`filter-pill ${programFilter === p ? 'active' : ''}`}
+              onClick={() => setProgramFilter(p)}
+            >{p}</button>
+          ))}
+        </div>
+      )}
 
       {/* Table */}
-      <div style={{
-        background: 'var(--color-surface)',
-        border: '1px solid var(--color-rule)',
-        borderRadius: 8,
-        overflow: 'hidden',
-      }}>
-        {isLoading ? <Spinner /> : error ? (
-          <div style={{ padding: 32, textAlign: 'center', fontSize: 14, color: 'var(--color-dim)' }}>
-            Failed to load roster.
+      <div className="card">
+        {isLoading && (
+          <div style={{ padding: '48px', display: 'flex', justifyContent: 'center' }}>
+            <div className="spinner" />
           </div>
-        ) : (
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        )}
+
+        {error && (
+          <div style={{ padding: '32px', textAlign: 'center', color: 'var(--color-error)', fontSize: 13 }}>
+            {error.message}
+          </div>
+        )}
+
+        {!isLoading && !error && (
+          <table className="forge-table">
             <thead>
               <tr>
-                {['Athlete', 'Program', 'Block', 'Last Session', 'This Block', 'Status'].map(h => (
-                  <th key={h} style={{
-                    padding: '0 16px 10px',
-                    paddingTop: 16,
-                    textAlign: 'left',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: 11,
-                    fontWeight: 500,
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase',
-                    color: 'var(--color-dim)',
-                    borderBottom: '1px solid var(--color-rule)',
-                  }}>
-                    {h}
-                  </th>
-                ))}
+                <th>Athlete</th>
+                <th>Program</th>
+                <th>Sessions</th>
+                <th>Last session</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
               {filtered.length === 0 ? (
-                <tr><td colSpan={6}>
-                  <div style={{ padding: 48, textAlign: 'center', color: 'var(--color-dim)', fontSize: 14 }}>
-                    {roster.length === 0 ? 'No athletes.' : 'No athletes match this filter.'}
-                  </div>
-                </td></tr>
-              ) : filtered.map((a: RosterAthlete) => (
-                <tr key={a.athleteId} style={{ cursor: 'pointer' }}
-                  onMouseEnter={e => (e.currentTarget.style.background = 'var(--color-bg)')}
-                  onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
-                >
-                  <td
-                    style={{ padding: '13px 16px', borderBottom: '1px solid var(--color-rule-light)', fontSize: 15, fontWeight: 500, color: 'var(--color-ink)' }}
-                    onClick={() => navigate(`/forge/roster/${a.athleteId}`)}
-                  >
-                    {a.firstName} {a.lastName}
-                  </td>
-                  <td style={{ padding: '13px 16px', borderBottom: '1px solid var(--color-rule-light)', fontSize: 14, color: 'var(--color-chrome)' }}>
-                    {a.programName || '—'}
-                  </td>
-                  <td style={{ padding: '13px 16px', borderBottom: '1px solid var(--color-rule-light)' }}>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--color-chrome)' }}>
-                      {a.blockLabel || '—'}
-                    </span>
-                  </td>
-                  <td style={{ padding: '13px 16px', borderBottom: '1px solid var(--color-rule-light)' }}>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--color-chrome)' }}>
-                      {formatDate(a.lastSessionAt)}
-                    </span>
-                  </td>
-                  <td style={{ padding: '13px 16px', borderBottom: '1px solid var(--color-rule-light)' }}>
-                    <span style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: 13,
-                      color: a.sessionsTotal > 0 && a.sessionsCompleted >= a.sessionsTotal
-                        ? 'var(--color-accent)' : 'var(--color-chrome)',
-                      fontWeight: a.sessionsTotal > 0 && a.sessionsCompleted >= a.sessionsTotal ? 500 : 400,
-                    }}>
-                      {a.sessionsTotal > 0 ? `${a.sessionsCompleted} / ${a.sessionsTotal}` : '—'}
-                    </span>
-                  </td>
-                  <td style={{ padding: '13px 16px', borderBottom: '1px solid var(--color-rule-light)' }}>
-                    <span style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      padding: '2px 10px',
-                      borderRadius: 20,
-                      fontSize: 11,
-                      fontWeight: 500,
-                      whiteSpace: 'nowrap',
-                      ...STATUS_STYLE[a.status],
-                    }}>
-                      {a.status}
-                    </span>
+                <tr>
+                  <td colSpan={5}>
+                    <div className="empty-state">
+                      {search ? 'No results.' : 'No athletes. Add one to get started.'}
+                    </div>
                   </td>
                 </tr>
-              ))}
+              ) : filtered.map(a => {
+                const status = deriveStatus(a)
+                return (
+                  <tr key={a.athleteId} onClick={() => navigate(`/forge/roster/${a.athleteId}`)}>
+                    <td>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                        <div style={{
+                          width: 28, height: 28, borderRadius: '50%',
+                          background: 'var(--color-accent-dim)',
+                          border: '1px solid var(--color-accent-mid)',
+                          display: 'flex', alignItems: 'center', justifyContent: 'center',
+                          fontSize: 10, fontWeight: 700, color: 'var(--color-accent)',
+                          fontFamily: 'var(--font-serif)', letterSpacing: '0.05em',
+                          flexShrink: 0,
+                        }}>
+                          {(a.firstName[0] ?? '') + (a.lastName[0] ?? '')}
+                        </div>
+                        <span style={{ fontSize: 14, fontWeight: 500, color: 'var(--color-ink)' }}>
+                          {a.firstName} {a.lastName}
+                        </span>
+                      </div>
+                    </td>
+                    <td style={{ color: 'var(--color-chrome)', fontSize: 13 }}>
+                      {a.programName ?? '—'}
+                    </td>
+                    <td>
+                      {a.sessionsTotal > 0 ? (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                          <div style={{
+                            height: 3, width: 60, background: 'var(--color-rule)',
+                            borderRadius: 2, overflow: 'hidden',
+                          }}>
+                            <div style={{
+                              height: '100%',
+                              width: `${Math.min(100, (a.sessionsCompleted / a.sessionsTotal) * 100)}%`,
+                              background: 'var(--color-accent)',
+                              borderRadius: 2,
+                            }} />
+                          </div>
+                          <span style={{ fontSize: 12, color: 'var(--color-dim)', fontFamily: 'var(--font-serif)' }}>
+                            {a.sessionsCompleted}/{a.sessionsTotal}
+                          </span>
+                        </div>
+                      ) : (
+                        <span style={{ color: 'var(--color-dim)', fontSize: 13 }}>—</span>
+                      )}
+                    </td>
+                    <td style={{ color: 'var(--color-dim)', fontSize: 12, fontFamily: 'var(--font-serif)' }}>
+                      {daysSince(a.lastSessionAt)}
+                    </td>
+                    <td>
+                      <span className={STATUS_PILL[status]}>{status}</span>
+                    </td>
+                  </tr>
+                )
+              })}
             </tbody>
           </table>
         )}
       </div>
+
+      {showAdd && <AddAthleteSlider onClose={() => setShowAdd(false)} />}
     </div>
+  )
+}
+
+// ── Add athlete slider ──────────────────────────────────────────────
+function AddAthleteSlider({ onClose }: { onClose: () => void }) {
+  const [form, setForm] = useState({ first_name: '', last_name: '', email: '' })
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const handle = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true); setError('')
+    try {
+      const { createAthlete: addAthlete } = await import('../../api/athletes')
+      await addAthlete(form.first_name, form.last_name, form.email); window.location.reload()
+      onClose()
+    } catch (err: any) {
+      setError(err.message || 'Could not add athlete.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <>
+      <div
+        onClick={onClose}
+        style={{ position: 'fixed', inset: 0, background: 'rgba(26,23,16,0.25)', zIndex: 50 }}
+      />
+      <div style={{
+        position: 'fixed', right: 0, top: 0, bottom: 0, width: 360,
+        background: 'var(--color-surface)',
+        borderLeft: '1px solid var(--color-rule)',
+        boxShadow: 'var(--shadow-lg)',
+        padding: '32px 28px',
+        zIndex: 60,
+        display: 'flex', flexDirection: 'column', gap: 24,
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <h2 style={{ fontSize: 16, fontWeight: 500, color: 'var(--color-ink)', fontFamily: 'var(--font-serif)' }}>
+            Add athlete
+          </h2>
+          <button onClick={onClose} style={{
+            background: 'none', border: 'none', cursor: 'pointer',
+            color: 'var(--color-dim)', fontSize: 18, lineHeight: 1, padding: 4,
+          }}>×</button>
+        </div>
+
+        <form onSubmit={handle} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+          {[
+            { key: 'first_name', label: 'First name', type: 'text' },
+            { key: 'last_name',  label: 'Last name',  type: 'text' },
+            { key: 'email',      label: 'Email',      type: 'email' },
+          ].map(({ key, label, type }) => (
+            <div key={key}>
+              <label className="eyebrow" style={{ display: 'block', marginBottom: 6 }}>{label}</label>
+              <input
+                className="input"
+                type={type}
+                value={(form as any)[key]}
+                onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))}
+                required
+              />
+            </div>
+          ))}
+
+          {error && (
+            <p style={{ fontSize: 12, color: 'var(--color-error)', fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}>
+              {error}
+            </p>
+          )}
+
+          <button type="submit" className="btn btn-primary" disabled={loading} style={{ marginTop: 4 }}>
+            {loading ? 'Adding…' : 'Add athlete →'}
+          </button>
+        </form>
+      </div>
+    </>
   )
 }

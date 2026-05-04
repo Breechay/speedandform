@@ -1,12 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
 :root {
-  --color-bg: #F0EDE6;
-  --color-ink: #1A1710;
-  --color-accent: #BA7517;
-  --color-chrome: #6B6358;
-  --color-dim: #9E978C;
-  --color-rule: #DDD9D0;
-  --color-rule-light: #E8E4DB;
-  --color-surface: #FAFAF7;
-  --font-sans: 'DM Sans', system-ui, sans-serif;
-  --font-mono: 'Libre Baskerville', 'Courier New', monospace;
+  /* ── Brice world palette (ForgePalette.swift: cream world) ── */
+  --color-bg:          #F0EDE6;   /* NativePalette.cream */
+  --color-surface:     #FAFAF7;
+  --color-surface-2:   #F5F2EB;
+  --color-ink:         #1A1710;   /* NativePalette.titleInk */
+  --color-accent:      #8C6029;   /* warm amber: 0.55, 0.38, 0.18 → #8C6029 */
+  --color-accent-dim:  rgba(140, 96, 41, 0.10);
+  --color-accent-mid:  rgba(140, 96, 41, 0.22);
+  --color-chrome:      #6B6660;   /* 0.42, 0.40, 0.37 */
+  --color-dim:         #998F85;   /* 0.60, 0.57, 0.53 */
+  --color-rule:        #DDD9D0;
+  --color-rule-light:  #E8E4DB;
+  --color-error:       #C94F2A;
+  --color-success:     #2D6645;
+
+  /* ── Typography (matches iOS) ── */
+  --font-sans:  'DM Sans', system-ui, sans-serif;
+  --font-serif: 'Libre Baskerville', Georgia, serif;
+  --font-mono:  'Libre Baskerville', 'Courier New', monospace;
+
+  /* ── Shadows ── */
+  --shadow-sm: 0 1px 3px rgba(26,23,16,0.05);
+  --shadow-md: 0 4px 16px rgba(26,23,16,0.07), 0 1px 3px rgba(26,23,16,0.04);
+  --shadow-lg: 0 8px 32px rgba(26,23,16,0.09), 0 2px 8px rgba(26,23,16,0.05);
+
+  /* ── Radii ── */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 12px;
 }

@@ -1,0 +1,632 @@
+[
+  {
+    "movementId": "dumbbell_bench_press",
+    "displayName": "Dumbbell Bench Press",
+    "defaultCue": "Feet flat. Press straight up."
+  },
+  {
+    "movementId": "incline_dumbbell_bench_press",
+    "displayName": "Incline Dumbbell Bench Press",
+    "defaultCue": "Elbows at 45\u00b0. Press to ceiling."
+  },
+  {
+    "movementId": "decline_dumbbell_bench_press",
+    "displayName": "Decline Dumbbell Bench Press",
+    "defaultCue": "Control down. Press straight."
+  },
+  {
+    "movementId": "flat_bench_press_dumbbell",
+    "displayName": "Flat Bench Press Dumbbell",
+    "defaultCue": "Feet flat. Press straight up."
+  },
+  {
+    "movementId": "barbell_bench_press",
+    "displayName": "Barbell Bench Press",
+    "defaultCue": "Bar to mid-chest. Feet flat."
+  },
+  {
+    "movementId": "close_grip_bench_press",
+    "displayName": "Close Grip Bench Press",
+    "defaultCue": "Elbows in. Triceps drive."
+  },
+  {
+    "movementId": "reverse_grip_bench_press",
+    "displayName": "Reverse Grip Bench Press",
+    "defaultCue": "Elbows in. Wrists straight."
+  },
+  {
+    "movementId": "dumbbell_chest_fly",
+    "displayName": "Dumbbell Chest Fly",
+    "defaultCue": "Slight bend. Wide arc."
+  },
+  {
+    "movementId": "swiss_ball_chest_fly",
+    "displayName": "Swiss Ball Chest Fly",
+    "defaultCue": "Hips up. Slight bend in elbows."
+  },
+  {
+    "movementId": "incline_chest_fly",
+    "displayName": "Incline Chest Fly",
+    "defaultCue": "Slight bend. Don't flatten."
+  },
+  {
+    "movementId": "cable_chest_fly_high_to_low",
+    "displayName": "Cable Chest Fly High To Low",
+    "defaultCue": "Hands meet at hip height."
+  },
+  {
+    "movementId": "cable_crossover",
+    "displayName": "Cable Crossover",
+    "defaultCue": "Hands meet at chest height."
+  },
+  {
+    "movementId": "chest_press_machine_or_pec_deck_fly",
+    "displayName": "Chest Press Machine Or Pec Deck Fly",
+    "defaultCue": "Squeeze at center."
+  },
+  {
+    "movementId": "one_arm_dumbbell_bench_press",
+    "displayName": "One Arm Dumbbell Bench Press",
+    "defaultCue": "Core tight. Press straight."
+  },
+  {
+    "movementId": "chest_pullover",
+    "displayName": "Chest Pullover",
+    "defaultCue": "Straight arms. Full stretch."
+  },
+  {
+    "movementId": "chest_dips",
+    "displayName": "Chest Dips",
+    "defaultCue": "Lean forward. Elbows wide."
+  },
+  {
+    "movementId": "weighted_belt_chest_dip",
+    "displayName": "Weighted Belt Chest Dip",
+    "defaultCue": "Lean forward. Control down."
+  },
+  {
+    "movementId": "swiss_ball_dumbbell_bench",
+    "displayName": "Swiss Ball Dumbbell Bench",
+    "defaultCue": "Hips up. Feet planted."
+  },
+  {
+    "movementId": "dumbbell_t_push_up",
+    "displayName": "Dumbbell T Push Up",
+    "defaultCue": "Hips still. Full rotation."
+  },
+  {
+    "movementId": "push_ups",
+    "displayName": "Push Ups",
+    "defaultCue": "Chest to floor. Elbows at 45\u00b0."
+  },
+  {
+    "movementId": "incline_push_ups",
+    "displayName": "Incline Push Ups",
+    "defaultCue": "Chest to hands. Full depth."
+  },
+  {
+    "movementId": "weighted_dips",
+    "displayName": "Weighted Dips",
+    "defaultCue": "Lean forward slightly. Control down."
+  },
+  {
+    "movementId": "bench_dips",
+    "displayName": "Bench Dips",
+    "defaultCue": "Hips close to bench. Elbows back."
+  },
+  {
+    "movementId": "pull_ups",
+    "displayName": "Pull Ups",
+    "defaultCue": "Pull elbows to ribs. Full hang at bottom."
+  },
+  {
+    "movementId": "mixed_grip_pull_ups",
+    "displayName": "Mixed Grip Pull Ups",
+    "defaultCue": "Pull elbows down. Full hang at bottom."
+  },
+  {
+    "movementId": "chin_ups",
+    "displayName": "Chin Ups",
+    "defaultCue": "Elbows in. Squeeze at top."
+  },
+  {
+    "movementId": "lat_pulldown",
+    "displayName": "Lat Pulldown",
+    "defaultCue": "Pull to collar bone. Chest up."
+  },
+  {
+    "movementId": "v_bar_lat_pulldown",
+    "displayName": "V Bar Lat Pulldown",
+    "defaultCue": "Elbows to sides. Feel the lats."
+  },
+  {
+    "movementId": "dumbbell_bent_over_row",
+    "displayName": "Dumbbell Bent Over Row",
+    "defaultCue": "Chest up. Pull elbow to hip."
+  },
+  {
+    "movementId": "reverse_grip_bent_over_row",
+    "displayName": "Reverse Grip Bent Over Row",
+    "defaultCue": "Underhand grip. Pull to waist."
+  },
+  {
+    "movementId": "bent_over_one_arm_long_bar_row",
+    "displayName": "Bent Over One Arm Long Bar Row",
+    "defaultCue": "Elbow back. Row to hip."
+  },
+  {
+    "movementId": "one_arm_dumbbell_row",
+    "displayName": "One Arm Dumbbell Row",
+    "defaultCue": "Pull elbow straight back. No twist."
+  },
+  {
+    "movementId": "machine_row",
+    "displayName": "Machine Row",
+    "defaultCue": "Chest on pad. Pull to ribs."
+  },
+  {
+    "movementId": "narrow_grip_seated_row",
+    "displayName": "Narrow Grip Seated Row",
+    "defaultCue": "Sit tall. Pull to navel."
+  },
+  {
+    "movementId": "towel_inverted_row",
+    "displayName": "Towel Inverted Row",
+    "defaultCue": "Body straight. Pull chest up."
+  },
+  {
+    "movementId": "straight_arm_cable_pulldown",
+    "displayName": "Straight Arm Cable Pulldown",
+    "defaultCue": "Arms mostly straight. Pull to hips."
+  },
+  {
+    "movementId": "alternating_dumbbell_shoulder_press",
+    "displayName": "Alternating Dumbbell Shoulder Press",
+    "defaultCue": "Shoulder down. Press straight up."
+  },
+  {
+    "movementId": "swiss_ball_alternating_shoulder_press",
+    "displayName": "Swiss Ball Alternating Shoulder Press",
+    "defaultCue": "Hips up. Press overhead."
+  },
+  {
+    "movementId": "bosu_ball_dumbbell_push_press",
+    "displayName": "Bosu Ball Dumbbell Push Press",
+    "defaultCue": "Drive from legs. Lock overhead."
+  },
+  {
+    "movementId": "dumbbell_shoulder_press",
+    "displayName": "Dumbbell Shoulder Press",
+    "defaultCue": "Elbows under hands. Press straight."
+  },
+  {
+    "movementId": "military_press",
+    "displayName": "Military Press",
+    "defaultCue": "Bar to chin. Press overhead."
+  },
+  {
+    "movementId": "machine_press",
+    "displayName": "Machine Press",
+    "defaultCue": "Elbows under hands. No shrug."
+  },
+  {
+    "movementId": "machine_shoulder_press",
+    "displayName": "Machine Shoulder Press",
+    "defaultCue": "Elbows under hands. Press up."
+  },
+  {
+    "movementId": "lateral_raise",
+    "displayName": "Lateral Raise",
+    "defaultCue": "Lead with elbows. Stop at shoulder height."
+  },
+  {
+    "movementId": "seated_lateral_raise",
+    "displayName": "Seated Lateral Raise",
+    "defaultCue": "Sit tall. Lead with elbows."
+  },
+  {
+    "movementId": "bent_over_lateral_raise",
+    "displayName": "Bent Over Lateral Raise",
+    "defaultCue": "Hinge at hips. Raise to shoulder height."
+  },
+  {
+    "movementId": "leaning_swiss_ball_lateral_raise",
+    "displayName": "Leaning Swiss Ball Lateral Raise",
+    "defaultCue": "Lean away. Lead with elbow."
+  },
+  {
+    "movementId": "bosu_ball_side_raise",
+    "displayName": "Bosu Ball Side Raise",
+    "defaultCue": "Balanced. Lead with elbows."
+  },
+  {
+    "movementId": "leaning_lateral_raise",
+    "displayName": "Leaning Lateral Raise",
+    "defaultCue": "Body angled. Raise to shoulder."
+  },
+  {
+    "movementId": "front_lateral_raise",
+    "displayName": "Front Lateral Raise",
+    "defaultCue": "Thumbs up. Raise to eye level."
+  },
+  {
+    "movementId": "front_incline_dumbbell_raise",
+    "displayName": "Front Incline Dumbbell Raise",
+    "defaultCue": "Raise to eye level. Thumbs up."
+  },
+  {
+    "movementId": "scaption",
+    "displayName": "Scaption",
+    "defaultCue": "30\u00b0 out from front. Thumbs up."
+  },
+  {
+    "movementId": "bosu_ball_scaption",
+    "displayName": "Bosu Ball Scaption",
+    "defaultCue": "Thumbs up. Raise to shoulder height."
+  },
+  {
+    "movementId": "shoulder_shrug",
+    "displayName": "Shoulder Shrug",
+    "defaultCue": "Straight up. No roll."
+  },
+  {
+    "movementId": "barbell_shrug",
+    "displayName": "Barbell Shrug",
+    "defaultCue": "Straight up. Hold at top."
+  },
+  {
+    "movementId": "incline_reverse_fly",
+    "displayName": "Incline Reverse Fly",
+    "defaultCue": "Chest on pad. Open arms wide."
+  },
+  {
+    "movementId": "face_pull",
+    "displayName": "Face Pull",
+    "defaultCue": "Pull to forehead. Elbows high."
+  },
+  {
+    "movementId": "cable_face_pull_to_chest",
+    "displayName": "Cable Face Pull To Chest",
+    "defaultCue": "Pull to face. Elbows high."
+  },
+  {
+    "movementId": "swiss_ball_row_to_external_rotation",
+    "displayName": "Swiss Ball Row To External Rotation",
+    "defaultCue": "Row first, then rotate out."
+  },
+  {
+    "movementId": "rear_delt_machine",
+    "displayName": "Rear Delt Machine",
+    "defaultCue": "Arms wide. Squeeze back."
+  },
+  {
+    "movementId": "dumbbell_upright_row",
+    "displayName": "Dumbbell Upright Row",
+    "defaultCue": "Elbows high. Pull to chin."
+  },
+  {
+    "movementId": "bosu_ball_upright_row",
+    "displayName": "Bosu Ball Upright Row",
+    "defaultCue": "Balanced. Elbows drive up."
+  },
+  {
+    "movementId": "bent_over_cable_lateral_raise",
+    "displayName": "Bent Over Cable Lateral Raise",
+    "defaultCue": "Hinge forward. Lead with elbow."
+  },
+  {
+    "movementId": "squat",
+    "displayName": "Squat",
+    "defaultCue": "Knees out. Push through heels."
+  },
+  {
+    "movementId": "full_squat",
+    "displayName": "Full Squat",
+    "defaultCue": "Knees out. Chest tall."
+  },
+  {
+    "movementId": "front_squat",
+    "displayName": "Front Squat",
+    "defaultCue": "Elbows high. Knees track toes."
+  },
+  {
+    "movementId": "back_squat",
+    "displayName": "Back Squat",
+    "defaultCue": "Bar on traps. Knees track toes."
+  },
+  {
+    "movementId": "leg_press",
+    "displayName": "Leg Press",
+    "defaultCue": "Push through heels. Don't lock knees."
+  },
+  {
+    "movementId": "lunges",
+    "displayName": "Lunges",
+    "defaultCue": "Front knee over ankle. Torso tall."
+  },
+  {
+    "movementId": "dumbbell_lunge",
+    "displayName": "Dumbbell Lunge",
+    "defaultCue": "Step long. Front knee over ankle."
+  },
+  {
+    "movementId": "dumbbell_lunge_rotation",
+    "displayName": "Dumbbell Lunge Rotation",
+    "defaultCue": "Lunge first. Rotate to front leg."
+  },
+  {
+    "movementId": "reverse_lunges",
+    "displayName": "Reverse Lunges",
+    "defaultCue": "Step back. Front knee stays still."
+  },
+  {
+    "movementId": "barbell_lunge",
+    "displayName": "Barbell Lunge",
+    "defaultCue": "Bar on traps. Step long."
+  },
+  {
+    "movementId": "good_morning",
+    "displayName": "Good Morning",
+    "defaultCue": "Hips back. Back flat."
+  },
+  {
+    "movementId": "one_legged_good_morning",
+    "displayName": "One Legged Good Morning",
+    "defaultCue": "Hips back. Balance on standing leg."
+  },
+  {
+    "movementId": "deadlift",
+    "displayName": "Deadlift",
+    "defaultCue": "Bar close to legs. Push through floor."
+  },
+  {
+    "movementId": "mixed_grip_deadlift",
+    "displayName": "Mixed Grip Deadlift",
+    "defaultCue": "Bar close. Lock in before pulling."
+  },
+  {
+    "movementId": "romanian_deadlift",
+    "displayName": "Romanian Deadlift",
+    "defaultCue": "Hips back. Bar close. Back flat."
+  },
+  {
+    "movementId": "straight_leg_deadlift",
+    "displayName": "Straight Leg Deadlift",
+    "defaultCue": "Hips back. Legs mostly straight."
+  },
+  {
+    "movementId": "sumo_rdl",
+    "displayName": "Sumo Rdl",
+    "defaultCue": "Wide stance. Hips back. Bar between legs."
+  },
+  {
+    "movementId": "leg_curl",
+    "displayName": "Leg Curl",
+    "defaultCue": "Curl heel to glute. Hips on bench."
+  },
+  {
+    "movementId": "glute_ham",
+    "displayName": "Glute Ham",
+    "defaultCue": "Lower slow. Pull back up."
+  },
+  {
+    "movementId": "standing_calf_raise",
+    "displayName": "Standing Calf Raise",
+    "defaultCue": "Full range. Pause at top."
+  },
+  {
+    "movementId": "seated_calf_raise",
+    "displayName": "Seated Calf Raise",
+    "defaultCue": "Full stretch at bottom. Pause at top."
+  },
+  {
+    "movementId": "reverse_seated_calf_raise",
+    "displayName": "Reverse Seated Calf Raise",
+    "defaultCue": "Heels up. Hold at top."
+  },
+  {
+    "movementId": "calf_raise",
+    "displayName": "Calf Raise",
+    "defaultCue": "Full stretch down. Pause at top."
+  },
+  {
+    "movementId": "curl",
+    "displayName": "Curl",
+    "defaultCue": "Elbows stay in. Full extension down."
+  },
+  {
+    "movementId": "hammer_curl",
+    "displayName": "Hammer Curl",
+    "defaultCue": "Thumbs up. Elbows fixed."
+  },
+  {
+    "movementId": "preacher_curl",
+    "displayName": "Preacher Curl",
+    "defaultCue": "Full stretch at bottom."
+  },
+  {
+    "movementId": "one_arm_preacher_curl",
+    "displayName": "One Arm Preacher Curl",
+    "defaultCue": "Elbow on pad. Don't lean in."
+  },
+  {
+    "movementId": "incline_dumbbell_curl",
+    "displayName": "Incline Dumbbell Curl",
+    "defaultCue": "Arms hang back. Full stretch."
+  },
+  {
+    "movementId": "decline_dumbbell_curl",
+    "displayName": "Decline Dumbbell Curl",
+    "defaultCue": "Arms hang forward. Full stretch."
+  },
+  {
+    "movementId": "reverse_curl",
+    "displayName": "Reverse Curl",
+    "defaultCue": "Knuckles up. Elbows fixed."
+  },
+  {
+    "movementId": "pause_reverse_curl",
+    "displayName": "Pause Reverse Curl",
+    "defaultCue": "Pause halfway. Knuckles up."
+  },
+  {
+    "movementId": "overhead_cable_curl",
+    "displayName": "Overhead Cable Curl",
+    "defaultCue": "Elbows fixed. Curl toward ears."
+  },
+  {
+    "movementId": "low_pulley_cable_curl",
+    "displayName": "Low Pulley Cable Curl",
+    "defaultCue": "Elbows fixed. Full extension."
+  },
+  {
+    "movementId": "single_arm_cross_curl",
+    "displayName": "Single Arm Cross Curl",
+    "defaultCue": "Cross body. Elbow stays in."
+  },
+  {
+    "movementId": "wall_curl",
+    "displayName": "Wall Curl",
+    "defaultCue": "Back to wall. Elbow stays back."
+  },
+  {
+    "movementId": "ez_bar_curl",
+    "displayName": "Ez Bar Curl",
+    "defaultCue": "Angled grip. Elbows in."
+  },
+  {
+    "movementId": "skull_crushers",
+    "displayName": "Skull Crushers",
+    "defaultCue": "Elbows fixed. Lower to forehead."
+  },
+  {
+    "movementId": "decline_skull_crushers",
+    "displayName": "Decline Skull Crushers",
+    "defaultCue": "Elbows in. Lower behind head."
+  },
+  {
+    "movementId": "tricep_pushdown",
+    "displayName": "Tricep Pushdown",
+    "defaultCue": "Elbows glued to sides. Full extension."
+  },
+  {
+    "movementId": "cable_pushdown",
+    "displayName": "Cable Pushdown",
+    "defaultCue": "Elbows still. Extend fully."
+  },
+  {
+    "movementId": "reverse_grip_tricep_pushdown",
+    "displayName": "Reverse Grip Tricep Pushdown",
+    "defaultCue": "Underhand grip. Elbows in."
+  },
+  {
+    "movementId": "bent_over_triceps_extension",
+    "displayName": "Bent Over Triceps Extension",
+    "defaultCue": "Upper arm fixed. Extend behind."
+  },
+  {
+    "movementId": "triceps_dips",
+    "displayName": "Triceps Dips",
+    "defaultCue": "Elbows straight back. Go deep."
+  },
+  {
+    "movementId": "straight_leg_swiss_ball_dip",
+    "displayName": "Straight Leg Swiss Ball Dip",
+    "defaultCue": "Legs straight. Elbows back."
+  },
+  {
+    "movementId": "cable_overhead_triceps_extension",
+    "displayName": "Cable Overhead Triceps Extension",
+    "defaultCue": "Elbows by ears. Full extension."
+  },
+  {
+    "movementId": "overhead_triceps_extension",
+    "displayName": "Overhead Triceps Extension",
+    "defaultCue": "Elbows by ears. Don't flare."
+  },
+  {
+    "movementId": "swiss_ball_overhead_dumbbell_triceps_extension",
+    "displayName": "Swiss Ball Overhead Dumbbell Triceps Extension",
+    "defaultCue": "Elbows by ears. Full stretch."
+  },
+  {
+    "movementId": "tricep_kickback",
+    "displayName": "Tricep Kickback",
+    "defaultCue": "Upper arm horizontal. Extend fully."
+  },
+  {
+    "movementId": "incline_cross_shoulder_tricep_extension",
+    "displayName": "Incline Cross Shoulder Tricep Extension",
+    "defaultCue": "Elbow fixed. Extend across."
+  },
+  {
+    "movementId": "medicine_ball_tricep_power_pushup",
+    "displayName": "Medicine Ball Tricep Power Pushup",
+    "defaultCue": "Explosive push. Full lockout."
+  },
+  {
+    "movementId": "palms_up_wrist_curl",
+    "displayName": "Palms Up Wrist Curl",
+    "defaultCue": "Wrist only. Full range."
+  },
+  {
+    "movementId": "palms_down_wrist_curl",
+    "displayName": "Palms Down Wrist Curl",
+    "defaultCue": "Knuckles up. Wrist only."
+  },
+  {
+    "movementId": "front_wrist_curl",
+    "displayName": "Front Wrist Curl",
+    "defaultCue": "Wrist only. Forearm on thigh."
+  },
+  {
+    "movementId": "back_wrist_curl",
+    "displayName": "Back Wrist Curl",
+    "defaultCue": "Knuckles up. Full range."
+  },
+  {
+    "movementId": "landmine_rotations",
+    "displayName": "Landmine Rotations",
+    "defaultCue": "Pivot from core. Arms extended."
+  },
+  {
+    "movementId": "power_clean",
+    "displayName": "Power Clean",
+    "defaultCue": "Bar close. Elbows fast at top."
+  },
+  {
+    "movementId": "hang_clean",
+    "displayName": "Hang Clean",
+    "defaultCue": "Start from hang. Elbows fast."
+  },
+  {
+    "movementId": "snatch",
+    "displayName": "Snatch",
+    "defaultCue": "Bar close. Lock straight overhead."
+  },
+  {
+    "movementId": "hang_snatch",
+    "displayName": "Hang Snatch",
+    "defaultCue": "Start from hang. Lock overhead."
+  },
+  {
+    "movementId": "power_snatch",
+    "displayName": "Power Snatch",
+    "defaultCue": "Bar close. Pull high. Punch up."
+  },
+  {
+    "movementId": "clean_and_jerk",
+    "displayName": "Clean And Jerk",
+    "defaultCue": "Clean first. Dip and drive overhead."
+  },
+  {
+    "movementId": "push_press",
+    "displayName": "Push Press",
+    "defaultCue": "Dip slightly. Drive from legs."
+  },
+  {
+    "movementId": "overhead_press",
+    "displayName": "Overhead Press",
+    "defaultCue": "Bar to chin. Press overhead."
+  }
+]

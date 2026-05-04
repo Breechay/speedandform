@@ -1,167 +1,159 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { usePrograms, useArchiveProgram, useDuplicateProgram } from '../../hooks/useForge'
-import type { ProgramListItem } from '../../api/programs'
+import { usePrograms } from '../../hooks/useForge'
+import type { ProgramListItem as ProgramRow } from '../../api/programs'
 
-function Spinner() {
+function formatDate(d: string) {
+  return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+}
+
+const STATUS_PILL: Record<string, string> = {
+  Published: 'pill pill-amber',
+  Draft:     'pill pill-dim',
+  Archived:  'pill pill-dim',
+}
+
+function ProgramRow({ p, onAction }: {
+  p: ProgramRow
+  onAction: (action: string, id: string) => void
+}) {
+  const navigate = useNavigate()
+  const [open, setOpen] = useState(false)
+
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 64 }}>
-      <div style={{ width: 24, height: 24, border: '2.5px solid var(--color-rule)', borderTopColor: 'var(--color-accent)', borderRadius: '50%', animation: 'spin 0.7s linear infinite' }} />
-      <style>{`@keyframes spin { to { transform: rotate(360deg) } }`}</style>
-    </div>
+    <tr style={{ position: 'relative' }}>
+      <td>
+        <button
+          onClick={() => navigate(`/forge/programs/${p.id}`)}
+          style={{
+            background: 'none', border: 'none', cursor: 'pointer', padding: 0,
+            fontSize: 14, fontWeight: 500, color: 'var(--color-ink)',
+            textAlign: 'left',
+          }}
+        >{p.name || 'Untitled'}</button>
+        
+      </td>
+      <td style={{ color: 'var(--color-dim)', fontSize: 12, fontFamily: 'var(--font-serif)' }}>
+        {p.targetWeeks ? `${p.targetWeeks}w` : '—'}
+      </td>
+      <td style={{ color: 'var(--color-dim)', fontSize: 12, fontFamily: 'var(--font-serif)' }}>
+        {p.daysPerWeek ? `${p.daysPerWeek}d` : '—'}
+      </td>
+      <td style={{ color: 'var(--color-dim)', fontSize: 12, fontFamily: 'var(--font-serif)' }}>
+        {formatDate(p.updatedAt)}
+      </td>
+      <td><span className={STATUS_PILL[p.status] ?? 'pill pill-dim'}>{p.status}</span></td>
+      <td style={{ width: 40 }}>
+        <div style={{ position: 'relative' }}>
+          <button
+            onClick={e => { e.stopPropagation(); setOpen(o => !o) }}
+            style={{
+              background: 'none', border: 'none', cursor: 'pointer',
+              color: 'var(--color-dim)', fontSize: 16, padding: '2px 6px',
+              borderRadius: 4, lineHeight: 1,
+            }}
+          >⋯</button>
+          {open && (
+            <>
+              <div style={{ position: 'fixed', inset: 0, zIndex: 49 }} onClick={() => setOpen(false)} />
+              <div className="dropdown" style={{ right: 0, top: '100%', zIndex: 50 }}>
+                {p.status !== 'Archived' && (
+                  <button className="dropdown-item" onClick={() => { setOpen(false); navigate(`/forge/programs/${p.id}`) }}>
+                    Edit
+                  </button>
+                )}
+                <button className="dropdown-item" onClick={() => { setOpen(false); navigate(`/forge/programs/${p.id}/assign`) }}>
+                  Assign →
+                </button>
+                <button className="dropdown-item" onClick={() => { setOpen(false); onAction('duplicate', p.id) }}>
+                  Duplicate
+                </button>
+                {p.status !== 'Archived' && (
+                  <button className="dropdown-item danger" onClick={() => { setOpen(false); onAction('archive', p.id) }}>
+                    Archive
+                  </button>
+                )}
+              </div>
+            </>
+          )}
+        </div>
+      </td>
+    </tr>
   )
-}
-
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-}
-
-const STATUS_STYLE: Record<string, React.CSSProperties> = {
-  Draft:     { background: 'rgba(186,117,23,0.08)', color: 'var(--color-accent)', border: '1px solid rgba(186,117,23,0.25)' },
-  Published: { background: 'rgba(45,102,69,0.08)',  color: '#2D6645',             border: '1px solid rgba(45,102,69,0.2)' },
-  Archived:  { background: 'transparent',            color: 'var(--color-dim)',    border: '1px solid var(--color-rule)' },
 }
 
 export function ProgramLibraryPage() {
   const navigate = useNavigate()
-  const { data: allPrograms = [], isLoading } = usePrograms()
-  const archive = useArchiveProgram()
-  const duplicate = useDuplicateProgram()
+  const { data: programs = [], isLoading, refetch } = usePrograms()
 
-  const programs = allPrograms.filter(p => !p.isTemplate)
-  const templates = allPrograms.filter(p => p.isTemplate)
-
-  function handleDuplicate(id: string, e: React.MouseEvent) {
-    e.stopPropagation()
-    duplicate.mutate(id, {
-      onSuccess: (newId) => navigate(`/forge/programs/${newId}`),
-    })
+  const handleAction = async (action: string, id: string) => {
+    const { archiveProgram, duplicateProgram } = await import('../../api/programs')
+    if (action === 'archive') { await archiveProgram(id); refetch() }
+    if (action === 'duplicate') { await duplicateProgram(id); refetch() }
   }
 
-  function handleArchive(id: string, e: React.MouseEvent) {
-    e.stopPropagation()
-    if (confirm('Archive this program?')) archive.mutate(id)
-  }
-
-  function ProgramTable({ items, showAssign }: { items: ProgramListItem[], showAssign: boolean }) {
-    return (
-      <div style={{ background: 'var(--color-surface)', border: '1px solid var(--color-rule)', borderRadius: 8, overflow: 'hidden' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-          <thead>
-            <tr>
-              {['Program', 'Weeks', 'Days/Wk', 'Last Edited', 'Status', ''].map((h, i) => (
-                <th key={i} style={{
-                  padding: '14px 16px 10px',
-                  textAlign: i === 5 ? 'right' : 'left',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: 11, fontWeight: 500,
-                  letterSpacing: '0.1em', textTransform: 'uppercase',
-                  color: 'var(--color-dim)',
-                  borderBottom: '1px solid var(--color-rule)',
-                }}>{h}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {items.length === 0 ? (
-              <tr><td colSpan={6}>
-                <div style={{ padding: 48, textAlign: 'center', color: 'var(--color-dim)', fontSize: 14 }}>
-                  No programs yet.
-                </div>
-              </td></tr>
-            ) : items.map(p => (
-              <tr key={p.id}
-                onClick={() => navigate(`/forge/programs/${p.id}`)}
-                style={{ cursor: 'pointer' }}
-                onMouseEnter={e => (e.currentTarget.style.background = 'var(--color-bg)')}
-                onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
-              >
-                <td style={{ padding: '13px 16px', borderBottom: '1px solid var(--color-rule-light)', fontSize: 15, fontWeight: 500, color: 'var(--color-ink)' }}>
-                  {p.name}
-                </td>
-                <td style={{ padding: '13px 16px', borderBottom: '1px solid var(--color-rule-light)' }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--color-chrome)' }}>
-                    {p.targetWeeks ?? '—'}
-                  </span>
-                </td>
-                <td style={{ padding: '13px 16px', borderBottom: '1px solid var(--color-rule-light)' }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--color-chrome)' }}>
-                    {p.daysPerWeek ? `${p.daysPerWeek}×` : '—'}
-                  </span>
-                </td>
-                <td style={{ padding: '13px 16px', borderBottom: '1px solid var(--color-rule-light)' }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--color-chrome)' }}>
-                    {formatDate(p.updatedAt)}
-                  </span>
-                </td>
-                <td style={{ padding: '13px 16px', borderBottom: '1px solid var(--color-rule-light)' }}>
-                  <span style={{
-                    display: 'inline-flex', alignItems: 'center',
-                    padding: '2px 9px', borderRadius: 20,
-                    fontSize: 11, fontWeight: 500,
-                    ...STATUS_STYLE[p.status],
-                  }}>
-                    {p.status}
-                  </span>
-                </td>
-                <td style={{ padding: '13px 16px', borderBottom: '1px solid var(--color-rule-light)', textAlign: 'right' }}>
-                  <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
-                    {showAssign && p.status === 'Published' && (
-                      <button
-                        onClick={e => { e.stopPropagation(); navigate(`/forge/programs/${p.id}/assign`) }}
-                        style={{ height: 28, padding: '0 10px', background: 'transparent', color: 'var(--color-accent)', border: '1px solid var(--color-accent)', borderRadius: 6, fontSize: 12, fontWeight: 500, cursor: 'pointer' }}
-                      >
-                        Assign →
-                      </button>
-                    )}
-                    <button
-                      onClick={e => handleDuplicate(p.id, e)}
-                      style={{ height: 28, padding: '0 10px', background: 'transparent', color: 'var(--color-chrome)', border: '1px solid var(--color-rule)', borderRadius: 6, fontSize: 12, cursor: 'pointer' }}
-                    >
-                      Duplicate
-                    </button>
-                    {p.status !== 'Archived' && (
-                      <button
-                        onClick={e => handleArchive(p.id, e)}
-                        style={{ height: 28, padding: '0 10px', background: 'transparent', color: 'var(--color-dim)', border: '1px solid var(--color-rule)', borderRadius: 6, fontSize: 12, cursor: 'pointer' }}
-                      >
-                        Archive
-                      </button>
-                    )}
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    )
-  }
+  const active   = programs.filter(p => p.status !== 'Archived')
+  const archived = programs.filter(p => p.status === 'Archived')
 
   return (
-    <div style={{ maxWidth: 1200, margin: '0 auto', padding: '40px 32px 80px' }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 28 }}>
-        <h1 style={{ fontSize: 24, fontWeight: 600, color: 'var(--color-ink)' }}>Programs</h1>
-        <button
-          onClick={() => navigate('/forge/programs/new')}
-          style={{ height: 36, padding: '0 16px', background: 'var(--color-accent)', color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 500, cursor: 'pointer' }}
-        >
+    <div className="page">
+      <div className="page-header">
+        <h1 className="page-title">Programs</h1>
+        <button className="btn btn-primary" onClick={() => navigate('/forge/programs/new')}>
           New program →
         </button>
       </div>
 
-      {isLoading ? <Spinner /> : (
-        <>
-          <ProgramTable items={programs} showAssign />
+      <div className="card">
+        {isLoading && (
+          <div style={{ padding: 40, display: 'flex', justifyContent: 'center' }}>
+            <div className="spinner" />
+          </div>
+        )}
 
-          {templates.length > 0 && (
-            <div style={{ marginTop: 40 }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-dim)', marginBottom: 14 }}>
-                Templates
-              </div>
-              <ProgramTable items={templates} showAssign={false} />
-            </div>
-          )}
-        </>
+        {!isLoading && active.length === 0 && (
+          <div className="empty-state">
+            No programs. Build one.
+          </div>
+        )}
+
+        {active.length > 0 && (
+          <table className="forge-table">
+            <thead>
+              <tr>
+                <th>Program</th>
+                <th>Weeks</th>
+                <th>Days/wk</th>
+                <th>Edited</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {active.map(p => (
+                <ProgramRow key={p.id} p={p} onAction={handleAction} />
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+
+      {archived.length > 0 && (
+        <div style={{ marginTop: 40 }}>
+          <p className="eyebrow" style={{ marginBottom: 12 }}>Archived</p>
+          <div className="card">
+            <table className="forge-table">
+              <thead>
+                <tr>
+                  <th>Program</th><th>Weeks</th><th>Days/wk</th><th>Edited</th><th>Status</th><th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {archived.map(p => <ProgramRow key={p.id} p={p} onAction={handleAction} />)}
+              </tbody>
+            </table>
+          </div>
+        </div>
       )}
     </div>
   )
