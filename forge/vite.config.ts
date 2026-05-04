@@ -4,7 +4,7 @@ import { resolve } from 'path'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/forge/',
+  base: '/forge-app/',
   build: {
     outDir: resolve(__dirname, '../forge-app'),
     emptyOutDir: true,
