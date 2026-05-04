@@ -85,11 +85,16 @@ export async function getRoster(): Promise<RosterAthlete[]> {
   if (error) throw error
   if (!data) return []
 
-  return data.map((row: any) => ({
+  return data.map((row: any) => {
+    // coach_roster view: athlete_id=slug, name=full name, display_name=short name
+    const nameParts = (row.name || row.display_name || '').split(' ')
+    const firstName = nameParts[0] || ''
+    const lastName = nameParts.slice(1).join(' ') || ''
+    return {
     athleteId: row.athlete_id,
-    firstName: row.first_name,
-    lastName: row.last_name,
-    email: row.email,
+    firstName,
+    lastName,
+    email: row.email || '',
     assignmentId: row.assignment_id,
     programTemplateId: row.program_template_id,
     programName: row.program_name,
@@ -100,22 +105,24 @@ export async function getRoster(): Promise<RosterAthlete[]> {
     sessionsTotal: Number(row.sessions_total) || 0,
     status: deriveStatus(row),
     blockLabel: null, // derived from program structure in Phase 5
-  }))
+  }
+  })
 }
 
 export async function getAthlete(athleteId: string): Promise<AthleteDetail> {
   const { data, error } = await supabase
     .from('athletes')
-    .select('id, first_name, last_name, email')
-    .eq('id', athleteId)
+    .select('slug, name, display_name')
+    .eq('slug', athleteId)
     .single()
 
   if (error) throw error
+  const nameParts = (data.name || '').split(' ')
   return {
-    id: data.id,
-    firstName: data.first_name,
-    lastName: data.last_name,
-    email: data.email,
+    id: data.slug,
+    firstName: nameParts[0] || data.display_name || '',
+    lastName: nameParts.slice(1).join(' ') || '',
+    email: '',
   }
 }
 
