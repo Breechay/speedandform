@@ -607,6 +607,17 @@ function handleSearch(e) {
   return false;
 }
 
+// ── SUPABASE AUTH REDIRECT ──
+// Catch Supabase auth tokens that land on the root (password reset, invite, magic link)
+// and forward them to the Forge login page so the app can handle the session.
+(function() {
+  const hash = window.location.hash;
+  if (hash && (hash.includes('access_token=') || hash.includes('error=access_denied') || hash.includes('type=recovery') || hash.includes('type=invite'))) {
+    window.location.replace('/forge/login' + hash);
+    return;
+  }
+})();
+
 // ── EMAIL FORM ──
 document.getElementById('email-form').addEventListener('submit', function(e) {
   e.preventDefault();
