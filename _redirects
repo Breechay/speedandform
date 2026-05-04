@@ -1,7 +1,7 @@
 # Forge Coach Interface — React SPA
-/forge                  /forge/dist/index.html      200
-/forge/                 /forge/dist/index.html      200
-/forge/*                /forge/dist/index.html      200
+/forge                  /forge-app/index.html      200
+/forge/                 /forge-app/index.html      200
+/forge/*                /forge-app/index.html      200
 
 /home                   /                           301
 /home.html              /                           301

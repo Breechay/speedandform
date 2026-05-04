@@ -24,7 +24,7 @@
 # Forge React app — SPA catch-all
 [[redirects]]
   from = "/forge/*"
-  to = "/forge/dist/index.html"
+  to = "/forge-app/index.html"
   status = 200
 
 [[redirects]]
