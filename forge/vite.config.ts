@@ -6,7 +6,6 @@ export default defineConfig({
   plugins: [react()],
   base: '/forge/',
   build: {
-    // Output to repo root so Netlify (publish=".") serves it directly
     outDir: resolve(__dirname, '../forge-app'),
     emptyOutDir: true,
   },
