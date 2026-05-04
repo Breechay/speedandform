@@ -1,4 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { getProgram, createProgram, saveProgram } from '../../api/programs'
 import { useProgramStore, startAutosave, stopAutosave } from '../../store/programStore'
 import type { Week, Session, Exercise, SetPrescription, ProgressionRule, MovementIntent } from '../../types/program'
 import MovementCombobox from '../../components/MovementCombobox'
@@ -805,14 +807,46 @@ function TreeRow({
 
 // ─── Main Page ───────────────────────────────────────────────────────────────
 export default function ProgramBuilderPage() {
+  const { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
   const { program, selection, saveState, saveDraft, runValidation, showValidation } = useProgramStore()
-
+  const supabaseIdRef = useRef<string | null>(id ?? null)
+  // On mount: load from Supabase if editing an existing program
   useEffect(() => {
+    if (id) {
+      getProgram(id)
+        .then(p => {
+          useProgramStore.setState({ program: p, selection: { type: 'program' } })
+          supabaseIdRef.current = id
+        })
+        .catch(err => console.error('Failed to load program:', err))
+    } else {
+      // New program — reset store to blank
+// new program — store already initializes to empty
+    }
     startAutosave()
     return () => stopAutosave()
-  }, [])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id])
 
-  const handleBlur = () => saveDraft()
+  // Save to Supabase (in addition to localStorage)
+  const handleSave = useCallback(async () => {
+    saveDraft() // localStorage backup
+    try {
+      const current = useProgramStore.getState().program
+      if (supabaseIdRef.current) {
+        await saveProgram({ ...current, id: supabaseIdRef.current })
+      } else {
+        const newId = await createProgram(current)
+        supabaseIdRef.current = newId
+        navigate(`/forge/programs/${newId}`, { replace: true })
+      }
+    } catch (err) {
+      console.error('Save failed:', err)
+    }
+  }, [saveDraft, navigate])
+
+  const handleBlur = () => handleSave()
 
   return (
     <div onBlur={handleBlur} style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 52px - 64px)' }}>
@@ -850,10 +884,10 @@ export default function ProgramBuilderPage() {
           {program.status}
         </span>
 
-        <button className="btn-ghost" onClick={saveDraft}>Save draft</button>
+        <button className="btn-ghost" onClick={handleSave}>Save draft</button>
         <button
           className="btn-secondary"
-          onClick={() => { saveDraft(); runValidation() }}
+          onClick={() => { handleSave(); runValidation() }}
         >Publish</button>
       </div>
 

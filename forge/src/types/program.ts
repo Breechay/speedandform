@@ -86,9 +86,11 @@ export interface ProgramTemplate {
   sourceLabel: string
   targetWeeks: number | null
   daysPerWeek: number | null
+  defaultRestSeconds?: number | null
   notes: string
   status: ProgramStatus
   blocks: Block[]
+  isTemplate?: boolean
   lastSaved: string | null     // ISO timestamp
 }
 
