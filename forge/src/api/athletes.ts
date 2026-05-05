@@ -22,6 +22,7 @@ export interface AthleteDetail {
   firstName: string
   lastName: string
   email: string
+  authUserId: string | null
 }
 
 export interface SessionInstance {
@@ -54,6 +55,31 @@ export interface AssignedProgram {
   programName: string
   status: 'active' | 'paused' | 'completed'
   startDate: string
+  updatedAt: string
+}
+
+export interface StrengthSessionSummary {
+  id: string
+  sessionName: string
+  completedAt: string
+  durationSeconds: number | null
+  topMovements: string[]
+}
+
+export interface RunningSessionSummary {
+  id: string
+  sessionType: string
+  completedAt: string
+  durationSeconds: number | null
+  distanceMeters: number | null
+  avgPaceSecondsPerKm: number | null
+}
+
+export interface CoachNote {
+  id: string
+  content: string
+  isShared: boolean
+  createdAt: string
   updatedAt: string
 }
 
@@ -110,9 +136,25 @@ export async function getRoster(): Promise<RosterAthlete[]> {
 }
 
 export async function getAthlete(athleteId: string): Promise<AthleteDetail> {
+  const { data: profile } = await supabase
+    .from('athlete_profiles')
+    .select('id, first_name, last_name, email, slug')
+    .or(`slug.eq.${athleteId},id.eq.${athleteId}`)
+    .maybeSingle()
+
+  if (profile) {
+    return {
+      id: profile.slug ?? profile.id,
+      firstName: profile.first_name,
+      lastName: profile.last_name,
+      email: profile.email,
+      authUserId: profile.id,
+    }
+  }
+
   const { data, error } = await supabase
     .from('athletes')
-    .select('slug, name, display_name')
+    .select('slug, name, display_name, auth_user_id, email')
     .eq('slug', athleteId)
     .single()
 
@@ -122,7 +164,8 @@ export async function getAthlete(athleteId: string): Promise<AthleteDetail> {
     id: data.slug,
     firstName: nameParts[0] || data.display_name || '',
     lastName: nameParts.slice(1).join(' ') || '',
-    email: '',
+    email: data.email || '',
+    authUserId: data.auth_user_id ?? null,
   }
 }
 
@@ -180,6 +223,110 @@ export async function getAthletePrograms(athleteId: string): Promise<AssignedPro
     startDate: row.start_date,
     updatedAt: row.updated_at,
   }))
+}
+
+export async function getAthleteStrengthSessions(
+  authUserId: string
+): Promise<StrengthSessionSummary[]> {
+  const { data, error } = await supabase
+    .from('strength_sessions')
+    .select(`
+      id, session_name, completed_at, duration_seconds,
+      set_logs (movement_name, set_index)
+    `)
+    .eq('athlete_id', authUserId)
+    .order('completed_at', { ascending: false })
+    .limit(50)
+
+  if (error) return []
+  if (!data) return []
+
+  return data.map((s: any) => {
+    const topMovements = Array.from(
+      new Map(
+        (s.set_logs ?? [])
+          .sort((a: any, b: any) => (a.set_index ?? 0) - (b.set_index ?? 0))
+          .map((log: any) => [log.movement_name, log.movement_name])
+      ).values()
+    ).slice(0, 3) as string[]
+
+    return {
+      id: s.id,
+      sessionName: s.session_name || 'Strength session',
+      completedAt: s.completed_at,
+      durationSeconds: s.duration_seconds,
+      topMovements,
+    }
+  })
+}
+
+export async function getAthleteRunningSessions(
+  authUserId: string
+): Promise<RunningSessionSummary[]> {
+  const { data, error } = await supabase
+    .from('running_sessions')
+    .select('id, session_type, started_at, completed_at, duration_seconds, distance_meters, avg_pace_seconds_per_km')
+    .eq('athlete_id', authUserId)
+    .order('completed_at', { ascending: false })
+    .limit(50)
+
+  if (error) return []
+  if (!data) return []
+
+  return data.map((r: any) => ({
+    id: r.id,
+    sessionType: r.session_type,
+    completedAt: r.completed_at ?? r.started_at,
+    durationSeconds: r.duration_seconds,
+    distanceMeters: r.distance_meters,
+    avgPaceSecondsPerKm: r.avg_pace_seconds_per_km,
+  }))
+}
+
+export async function getCoachNotes(athleteId: string): Promise<CoachNote[]> {
+  const { data, error } = await supabase
+    .from('coach_notes')
+    .select('id, content, is_shared, created_at, updated_at')
+    .eq('athlete_id', athleteId)
+    .order('created_at', { ascending: false })
+
+  if (error) return []
+  return (data ?? []).map((row: any) => ({
+    id: row.id,
+    content: row.content,
+    isShared: !!row.is_shared,
+    createdAt: row.created_at,
+    updatedAt: row.updated_at,
+  }))
+}
+
+export async function saveCoachNote(
+  athleteId: string,
+  content: string,
+  isShared: boolean
+): Promise<void> {
+  const { data: userData } = await supabase.auth.getUser()
+  if (!userData.user) throw new Error('Not authenticated')
+
+  const { error } = await supabase
+    .from('coach_notes')
+    .insert({
+      coach_id: userData.user.id,
+      athlete_id: athleteId,
+      content,
+      is_shared: isShared,
+    })
+
+  if (error) throw error
+}
+
+export async function deleteCoachNote(noteId: string): Promise<void> {
+  const { error } = await supabase
+    .from('coach_notes')
+    .delete()
+    .eq('id', noteId)
+
+  if (error) throw error
 }
 
 export async function createAthlete(

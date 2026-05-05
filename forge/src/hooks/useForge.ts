@@ -4,6 +4,11 @@ import {
   getAthlete,
   getAthleteSessions,
   getAthletePrograms,
+  getAthleteStrengthSessions,
+  getAthleteRunningSessions,
+  getCoachNotes,
+  saveCoachNote,
+  deleteCoachNote,
   createAthlete,
 } from '../api/athletes'
 import {
@@ -26,6 +31,9 @@ export const queryKeys = {
   athleteSessions: (id: string, assignmentId?: string) =>
     ['athlete-sessions', id, assignmentId] as const,
   athletePrograms: (id: string) => ['athlete-programs', id] as const,
+  athleteStrengthSessions: (authUserId: string | null) => ['athlete-strength-sessions', authUserId] as const,
+  athleteRunningSessions: (authUserId: string | null) => ['athlete-running-sessions', authUserId] as const,
+  coachNotes: (athleteId: string) => ['coach-notes', athleteId] as const,
   programs: ['programs'] as const,
   program: (id: string) => ['program', id] as const,
 }
@@ -63,6 +71,64 @@ export function useAthletePrograms(id: string) {
     queryKey: queryKeys.athletePrograms(id),
     queryFn: () => getAthletePrograms(id),
     enabled: !!id,
+  })
+}
+
+export function useAthleteStrengthSessions(authUserId: string | null) {
+  return useQuery({
+    queryKey: queryKeys.athleteStrengthSessions(authUserId),
+    queryFn: () => getAthleteStrengthSessions(authUserId!),
+    enabled: !!authUserId,
+  })
+}
+
+export function useAthleteRunningSessions(authUserId: string | null) {
+  return useQuery({
+    queryKey: queryKeys.athleteRunningSessions(authUserId),
+    queryFn: () => getAthleteRunningSessions(authUserId!),
+    enabled: !!authUserId,
+  })
+}
+
+export function useCoachNotes(athleteId: string) {
+  return useQuery({
+    queryKey: queryKeys.coachNotes(athleteId),
+    queryFn: () => getCoachNotes(athleteId),
+    enabled: !!athleteId,
+  })
+}
+
+export function useSaveCoachNote() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: ({
+      athleteId,
+      content,
+      isShared,
+    }: {
+      athleteId: string
+      content: string
+      isShared: boolean
+    }) => saveCoachNote(athleteId, content, isShared),
+    onSuccess: (_, vars) => {
+      queryClient.invalidateQueries({ queryKey: queryKeys.coachNotes(vars.athleteId) })
+    },
+  })
+}
+
+export function useDeleteCoachNote() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: ({
+      noteId,
+      athleteId: _athleteId,
+    }: {
+      noteId: string
+      athleteId: string
+    }) => deleteCoachNote(noteId),
+    onSuccess: (_, vars) => {
+      queryClient.invalidateQueries({ queryKey: queryKeys.coachNotes(vars.athleteId) })
+    },
   })
 }
 
