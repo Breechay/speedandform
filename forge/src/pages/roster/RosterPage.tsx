@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { InvitePanel } from '../../components/InvitePanel'
 import { useNavigate } from 'react-router-dom'
 import { useRoster } from '../../hooks/useForge'
 import type { RosterAthlete } from '../../api/athletes'
@@ -32,6 +33,7 @@ export function RosterPage() {
   const [search, setSearch] = useState('')
   const [programFilter, setProgramFilter] = useState('All')
   const [showAdd, setShowAdd] = useState(false)
+  const [showInvite, setShowInvite] = useState(false)
 
   const programs = Array.from(new Set(roster.map(r => r.programName).filter(Boolean))) as string[]
 
@@ -60,6 +62,9 @@ export function RosterPage() {
             value={search}
             onChange={e => setSearch(e.target.value)}
           />
+          <button className="btn btn-ghost" style={{ height: 33, fontSize: 13 }} onClick={() => setShowInvite(true)}>
+            Invite →
+          </button>
           <button className="btn btn-primary" onClick={() => setShowAdd(true)}>
             Add athlete
           </button>
@@ -174,6 +179,7 @@ export function RosterPage() {
         )}
       </div>
 
+      {showInvite && <InvitePanel onClose={() => setShowInvite(false)} />}
       {showAdd && <AddAthleteSlider onClose={() => setShowAdd(false)} />}
     </div>
   )
