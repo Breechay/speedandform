@@ -1,0 +1,18 @@
+---
+description: speedandform web repo — doctrine pointers and denylist for agents.
+alwaysApply: true
+---
+
+# speedandform — Agent context
+
+## Read first
+
+1. `docs/CURSOR_CONTEXT.md`  
+2. `docs/DO_NOT_BUILD.md`  
+3. When **FORM-iOS** is in the same workspace: `FORM-iOS/docs/form_field_doctrine.md` and `FORM-iOS/docs/form_web_spec_v2.md` for The Field and `/form` behavior  
+
+## Defaults
+
+- **Diagnose before redesign** (especially loading/auth/env).  
+- **Preserve** production static site and `coach.html` unless the task explicitly migrates them.  
+- **No** social / engagement mechanics — see `docs/DO_NOT_BUILD.md`.
