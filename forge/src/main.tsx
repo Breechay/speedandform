@@ -17,8 +17,11 @@ const queryClient = new QueryClient({
 })
 
 // Bootstrap auth state — runs once before render
-supabase.auth.onAuthStateChange(async (_event, session) => {
+async function initAuth() {
   const { setUser, setLoading } = useAuthStore.getState()
+
+  // Resolve cold-load auth immediately so loading state cannot hang.
+  const { data: { session } } = await supabase.auth.getSession()
   if (session?.user) {
     try {
       const user = await getCurrentUser()
@@ -30,7 +33,23 @@ supabase.auth.onAuthStateChange(async (_event, session) => {
     setUser(null)
   }
   setLoading(false)
-})
+
+  // Handle subsequent auth events (sign in/out, token refresh, etc.)
+  supabase.auth.onAuthStateChange(async (_event, nextSession) => {
+    if (nextSession?.user) {
+      try {
+        const user = await getCurrentUser()
+        setUser(user)
+      } catch {
+        setUser(null)
+      }
+    } else {
+      setUser(null)
+    }
+  })
+}
+
+void initAuth()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

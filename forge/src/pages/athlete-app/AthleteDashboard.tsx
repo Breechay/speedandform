@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAthleteStore } from '../../store/athleteStore'
 import { getAthleteProfile, athleteSignOut } from '../../api/athleteInvite'
 import { supabase } from '../../lib/supabase'
+import { AthleteLayout } from '../../components/AthleteLayout'
 
 const C = {
   bg: '#F0EDE6', surface: '#FAFAF7', ink: '#1A1710',
@@ -56,40 +57,7 @@ export function AthleteDashboard() {
   const hasInvite = !athlete.slug  // no slug = not yet connected to a coach
 
   return (
-    <div style={{
-      minHeight: '100vh', background: C.bg,
-      fontFamily: "'DM Sans', system-ui, sans-serif",
-    }}>
-      {/* Header */}
-      <header style={{
-        height: 50, background: C.surface,
-        borderBottom: `1px solid ${C.rule}`,
-        display: 'flex', alignItems: 'center',
-        padding: '0 28px', justifyContent: 'space-between',
-      }}>
-        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 8 }}>
-          <svg width="20" height="16" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0"    y="20.8" width="5" height="11.2" rx="2.5" fill={C.accent}/>
-            <rect x="8.8"  y="17.2" width="5" height="14.8" rx="2.5" fill={C.accent}/>
-            <rect x="17.5" y="13.5" width="5" height="18.5" rx="2.5" fill={C.accent}/>
-            <rect x="26.3" y="9.9"  width="5" height="22.1" rx="2.5" fill={C.accent}/>
-            <rect x="35"   y="6.4"  width="5" height="25.6" rx="2.5" fill={C.accent}/>
-          </svg>
-          <span style={{ fontFamily: 'Georgia,serif', fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.ink }}>
-            Forge
-          </span>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <span style={{ fontSize: 13, color: C.dim }}>
-            {athlete.firstName} {athlete.lastName}
-          </span>
-          <button
-            onClick={handleSignOut}
-            style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 12, color: C.dim, fontFamily: 'Georgia,serif' }}
-          >Sign out</button>
-        </div>
-      </header>
-
+    <AthleteLayout athlete={athlete} onSignOut={handleSignOut}>
       {/* Content */}
       <div style={{ maxWidth: 520, margin: '0 auto', padding: '40px 24px' }}>
 
@@ -164,6 +132,6 @@ export function AthleteDashboard() {
           </div>
         )}
       </div>
-    </div>
+    </AthleteLayout>
   )
 }

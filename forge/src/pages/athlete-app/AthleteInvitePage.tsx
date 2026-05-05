@@ -55,7 +55,7 @@ export function AthleteInvitePage() {
       if (!user) throw new Error('Not signed in.')
       await acceptInvite(invite.id, user.id, invite.coachId, invite.athleteSlug)
       setStep('done')
-      setTimeout(() => navigate('/forge/athlete', { replace: true }), 1800)
+      setTimeout(() => navigate('/forge/athlete/ledger', { replace: true }), 1800)
     } catch (err: any) {
       setError(err.message || 'Failed to accept invite.')
     } finally {

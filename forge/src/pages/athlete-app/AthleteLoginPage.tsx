@@ -99,7 +99,7 @@ export function AthleteLoginPage() {
       if (inviteCode) {
         navigate(`/forge/athlete/invite?code=${inviteCode}`, { replace: true })
       } else {
-        navigate('/forge/athlete', { replace: true })
+        navigate('/forge/athlete/ledger', { replace: true })
       }
     } catch (err: any) {
       setError(err.message || 'Incorrect email or password.')
@@ -119,7 +119,7 @@ export function AthleteLoginPage() {
       if (inviteCode) {
         navigate(`/forge/athlete/invite?code=${inviteCode}`, { replace: true })
       } else {
-        navigate('/forge/athlete', { replace: true })
+        navigate('/forge/athlete/ledger', { replace: true })
       }
     } catch (err: any) {
       setError(err.message?.includes('already registered')
@@ -141,7 +141,7 @@ export function AthleteLoginPage() {
       if (user) {
         const profile = await getAthleteProfile(user.id)
         setAthlete(profile)
-        navigate('/forge/athlete', { replace: true })
+        navigate('/forge/athlete/ledger', { replace: true })
       }
     } catch (err: any) {
       setError(err.message || 'Failed to set password.')

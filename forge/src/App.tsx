@@ -9,6 +9,11 @@ import { AssignPage } from './pages/programs/AssignPage'
 import { SettingsPage } from './pages/SettingsPage'
 import { AuthGuard } from './components/AuthGuard'
 import { useAuthStore } from './store/authStore'
+import { AthleteLoginPage } from './pages/athlete-app/AthleteLoginPage'
+import { AthleteInvitePage } from './pages/athlete-app/AthleteInvitePage'
+import { AthleteDashboard } from './pages/athlete-app/AthleteDashboard'
+import { AthleteAccountPage } from './pages/athlete-app/AthleteAccountPage'
+import { AthleteLedgerPage } from './pages/athlete-app/AthleteLedgerPage'
 
 
 // ── ForgeMark animated loading indicator ──────────────────────
@@ -80,6 +85,13 @@ export function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/forge/login" element={<LoginPage />} />
+        {/* Athlete routes — separate auth context from coach */}
+        <Route path="/forge/athlete/login" element={<AthleteLoginPage />} />
+        <Route path="/forge/athlete/invite" element={<AthleteInvitePage />} />
+        <Route path="/forge/athlete" element={<Navigate to="/forge/athlete/ledger" replace />} />
+        <Route path="/forge/athlete/dashboard" element={<AthleteDashboard />} />
+        <Route path="/forge/athlete/account" element={<AthleteAccountPage />} />
+        <Route path="/forge/athlete/ledger" element={<AthleteLedgerPage />} />
         <Route path="/forge" element={<AuthGuard><Layout /></AuthGuard>}>
           <Route index element={<Navigate to="/forge/roster" replace />} />
           <Route path="roster" element={<RosterPage />} />
