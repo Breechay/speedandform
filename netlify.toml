@@ -1,5 +1,5 @@
 [build]
-  command = ""
+  command = "cd forge && npm install && npm run build"
   publish = "."
 
 # Force Netlify CDN to purge on every deploy
