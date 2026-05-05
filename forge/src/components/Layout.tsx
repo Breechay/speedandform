@@ -65,7 +65,7 @@ export function Layout() {
 
         {/* Nav */}
         <nav style={{ display: 'flex', gap: 2, flex: 1 }}>
-          {[['Roster', '/forge/roster'], ['Programs', '/forge/programs']].map(([label, path]) => (
+          {[['Roster', '/forge/roster'], ['Programs', '/forge/programs'], ['Field', '/forge/field']].map(([label, path]) => (
             <NavLink key={path} to={path} style={({ isActive }) => ({
               padding: '4px 12px',
               borderRadius: 6,

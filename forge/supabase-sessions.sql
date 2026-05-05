@@ -17,21 +17,33 @@ create table if not exists strength_sessions (
 
 alter table strength_sessions enable row level security;
 
+drop policy if exists "Athlete reads own strength sessions" on strength_sessions;
 create policy "Athlete reads own strength sessions"
   on strength_sessions for select
   using (auth.uid() = athlete_id);
 
+drop policy if exists "Athlete writes own strength sessions" on strength_sessions;
+create policy "Athlete writes own strength sessions"
+  on strength_sessions for insert
+  with check (auth.uid() = athlete_id);
+
+drop policy if exists "Coach reads athlete strength sessions" on strength_sessions;
 create policy "Coach reads athlete strength sessions"
   on strength_sessions for select
   using (
-    athlete_id in (
-      select ca.athlete_auth_id
+    exists (
+      select 1
       from coach_athletes ca
       where ca.coach_id = auth.uid()
+        and (
+          ca.athlete_auth_id = strength_sessions.athlete_id
+          or ca.athlete_id::text = strength_sessions.athlete_id::text
+        )
     )
   );
 
 -- iOS app writes sessions via service key (bypasses RLS)
+drop policy if exists "Service role insert" on strength_sessions;
 create policy "Service role insert"
   on strength_sessions for insert
   with check (true);
@@ -52,6 +64,7 @@ create table if not exists set_logs (
 
 alter table set_logs enable row level security;
 
+drop policy if exists "Athlete reads own set logs" on set_logs;
 create policy "Athlete reads own set logs"
   on set_logs for select
   using (
@@ -60,16 +73,31 @@ create policy "Athlete reads own set logs"
     )
   );
 
+drop policy if exists "Athlete writes own set logs" on set_logs;
+create policy "Athlete writes own set logs"
+  on set_logs for insert
+  with check (
+    session_id in (
+      select id from strength_sessions where athlete_id = auth.uid()
+    )
+  );
+
+drop policy if exists "Coach reads athlete set logs" on set_logs;
 create policy "Coach reads athlete set logs"
   on set_logs for select
   using (
     session_id in (
-      select ss.id from strength_sessions ss
-      join coach_athletes ca on ca.athlete_auth_id = ss.athlete_id
+      select ss.id
+      from strength_sessions ss
+      join coach_athletes ca on (
+        ca.athlete_auth_id = ss.athlete_id
+        or ca.athlete_id::text = ss.athlete_id::text
+      )
       where ca.coach_id = auth.uid()
     )
   );
 
+drop policy if exists "Service role insert set logs" on set_logs;
 create policy "Service role insert set logs"
   on set_logs for insert
   with check (true);
@@ -91,20 +119,32 @@ create table if not exists running_sessions (
 
 alter table running_sessions enable row level security;
 
+drop policy if exists "Athlete reads own running sessions" on running_sessions;
 create policy "Athlete reads own running sessions"
   on running_sessions for select
   using (auth.uid() = athlete_id);
 
+drop policy if exists "Athlete writes own running sessions" on running_sessions;
+create policy "Athlete writes own running sessions"
+  on running_sessions for insert
+  with check (auth.uid() = athlete_id);
+
+drop policy if exists "Coach reads athlete running sessions" on running_sessions;
 create policy "Coach reads athlete running sessions"
   on running_sessions for select
   using (
-    athlete_id in (
-      select ca.athlete_auth_id
+    exists (
+      select 1
       from coach_athletes ca
       where ca.coach_id = auth.uid()
+        and (
+          ca.athlete_auth_id = running_sessions.athlete_id
+          or ca.athlete_id::text = running_sessions.athlete_id::text
+        )
     )
   );
 
+drop policy if exists "Service role insert running sessions" on running_sessions;
 create policy "Service role insert running sessions"
   on running_sessions for insert
   with check (true);

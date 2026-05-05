@@ -2,7 +2,6 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2"
 
 const supabaseUrl = Deno.env.get("SUPABASE_URL")!
-const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
 
 serve(async (req) => {
   if (req.method !== "POST") {
@@ -25,9 +24,8 @@ serve(async (req) => {
   }
 
   const payload = await req.json()
-  const serviceClient = createClient(supabaseUrl, serviceKey)
 
-  const { error: sessionError } = await serviceClient
+  const { error: sessionError } = await userClient
     .from("strength_sessions")
     .upsert({
       id: payload.id,
@@ -59,7 +57,7 @@ serve(async (req) => {
       completed_at: s.completedAt,
     }))
 
-    const { error: setsError } = await serviceClient
+    const { error: setsError } = await userClient
       .from("set_logs")
       .upsert(setRows, { onConflict: "id" })
 

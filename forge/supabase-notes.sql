@@ -8,13 +8,17 @@ create table if not exists coach_notes (
   updated_at    timestamptz not null default now()
 );
 
+-- Backward-compat: some existing environments may have coach_notes without is_shared.
+alter table coach_notes
+  add column if not exists is_shared boolean not null default false;
+
 alter table coach_notes enable row level security;
 
 drop policy if exists "Coach manages own notes" on coach_notes;
 create policy "Coach manages own notes"
   on coach_notes for all
-  using (coach_id in (select id from coach_profiles where id = auth.uid()))
-  with check (coach_id in (select id from coach_profiles where id = auth.uid()));
+  using (coach_id = auth.uid())
+  with check (coach_id = auth.uid());
 
 drop policy if exists "Athlete reads shared notes" on coach_notes;
 create policy "Athlete reads shared notes"
@@ -22,9 +26,7 @@ create policy "Athlete reads shared notes"
   using (
     is_shared = true
     and (
-      athlete_id in (
-        select slug from athlete_profiles where id = auth.uid()
-      )
+      athlete_id in (select slug from athlete_profiles where id = auth.uid())
       or athlete_id = auth.uid()::text
     )
   );

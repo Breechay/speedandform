@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-dom'
 import { Layout } from './components/Layout'
 import { LoginPage } from './pages/LoginPage'
 import { RosterPage } from './pages/roster/RosterPage'
@@ -14,6 +14,9 @@ import { AthleteInvitePage } from './pages/athlete-app/AthleteInvitePage'
 import { AthleteDashboard } from './pages/athlete-app/AthleteDashboard'
 import { AthleteAccountPage } from './pages/athlete-app/AthleteAccountPage'
 import { AthleteLedgerPage } from './pages/athlete-app/AthleteLedgerPage'
+import { TheFieldPage } from './pages/field/TheFieldPage'
+import { MiamiFieldPage } from './pages/field/MiamiFieldPage'
+import { FieldAthleteProfilePage } from './pages/field/FieldAthleteProfilePage'
 
 
 // ── ForgeMark animated loading indicator ──────────────────────
@@ -62,6 +65,11 @@ function ForgeMarkAnimated() {
   )
 }
 
+function FormFieldAthleteRedirect() {
+  const { athleteSlug = '' } = useParams<{ athleteSlug: string }>()
+  return <Navigate to={`/forge/field/${athleteSlug}`} replace />
+}
+
 export function App() {
   const loading = useAuthStore(s => s.loading)
 
@@ -92,6 +100,13 @@ export function App() {
         <Route path="/forge/athlete/dashboard" element={<AthleteDashboard />} />
         <Route path="/forge/athlete/account" element={<AthleteAccountPage />} />
         <Route path="/forge/athlete/ledger" element={<AthleteLedgerPage />} />
+        <Route path="/forge/field" element={<TheFieldPage />} />
+        <Route path="/forge/field/miami" element={<MiamiFieldPage />} />
+        <Route path="/forge/field/:athleteSlug" element={<FieldAthleteProfilePage />} />
+        {/* Canonical Field path is /forge/field; keep /form aliases to avoid link drift */}
+        <Route path="/form/field" element={<Navigate to="/forge/field" replace />} />
+        <Route path="/form/field/miami" element={<Navigate to="/forge/field/miami" replace />} />
+        <Route path="/form/field/:athleteSlug" element={<FormFieldAthleteRedirect />} />
         <Route path="/forge" element={<AuthGuard><Layout /></AuthGuard>}>
           <Route index element={<Navigate to="/forge/roster" replace />} />
           <Route path="roster" element={<RosterPage />} />

@@ -28,6 +28,21 @@
   status = 200
 
 [[redirects]]
+  from = "/form/field"
+  to = "/forge/field"
+  status = 301
+
+[[redirects]]
+  from = "/form/field/miami"
+  to = "/forge/field/miami"
+  status = 301
+
+[[redirects]]
+  from = "/form/field/*"
+  to = "/forge/field/:splat"
+  status = 301
+
+[[redirects]]
   from = "/wp-admin"
   to = "/"
   status = 301
