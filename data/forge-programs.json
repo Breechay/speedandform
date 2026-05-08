@@ -1,0 +1,4125 @@
+{
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-05-08",
+  "programs": [
+    {
+      "id": "speed_form_strength_v1",
+      "displayName": "FORM Strength",
+      "shortDescription": "Balanced full-body strength work through the week.",
+      "audience": "Athletes building base strength with consistent weekly sessions.",
+      "status": "placeholder",
+      "weeks": [
+        {
+          "weekNumber": 1,
+          "days": [
+            {
+              "dayIndex": 0,
+              "sessionName": "Session 1",
+              "estimatedMinutes": 60,
+              "equipment": [],
+              "exercises": []
+            },
+            {
+              "dayIndex": 1,
+              "sessionName": "Session 2",
+              "estimatedMinutes": 60,
+              "equipment": [],
+              "exercises": []
+            },
+            {
+              "dayIndex": 2,
+              "sessionName": "Session 3",
+              "estimatedMinutes": 60,
+              "equipment": [],
+              "exercises": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mason_hypertrophy_v1",
+      "displayName": "Mason Hypertrophy",
+      "shortDescription": "High-volume muscle-building split with clear daily focus.",
+      "audience": "Athletes training for size and consistency across the week.",
+      "status": "authored",
+      "weeks": [
+        {
+          "weekNumber": 1,
+          "days": [
+            {
+              "dayIndex": 0,
+              "sessionName": "Chest + Shoulders + Triceps",
+              "estimatedMinutes": 70,
+              "equipment": [
+                "dumbbells",
+                "barbell",
+                "cables",
+                "machines"
+              ],
+              "exercises": [
+                {
+                  "movementId": "mason_incline_dumbbell_press",
+                  "name": "Incline Dumbbell Press",
+                  "loadType": "weighted",
+                  "restSeconds": 120,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_flat_barbell_bench_press",
+                  "name": "Flat Barbell Bench Press",
+                  "loadType": "weighted",
+                  "restSeconds": 120,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_machine_shoulder_press",
+                  "name": "Machine Shoulder Press",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_cable_lateral_raise",
+                  "name": "Cable Lateral Raise",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_high_to_low_cable_fly",
+                  "name": "High-to-Low Cable Fly",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_rear_delt_fly",
+                  "name": "Rear Delt Fly",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_close_grip_bench_press",
+                  "name": "Close-Grip Bench Press",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 8
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_overhead_rope_extension",
+                  "name": "Overhead Rope Extension",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_rope_pushdown",
+                  "name": "Rope Pushdown",
+                  "loadType": "weighted",
+                  "restSeconds": 60,
+                  "cue": "Last set: drop set.",
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 1,
+              "sessionName": "Back + Biceps",
+              "estimatedMinutes": 65,
+              "equipment": [
+                "barbell",
+                "cables",
+                "machines"
+              ],
+              "exercises": [
+                {
+                  "movementId": "mason_wide_grip_lat_pulldown",
+                  "name": "Wide-Grip Lat Pulldown",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_chest_supported_row",
+                  "name": "Chest-Supported Row",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_neutral_grip_pulldown",
+                  "name": "Neutral-Grip Pulldown",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_ez_bar_curl",
+                  "name": "EZ-Bar Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_single_arm_lat_pulldown",
+                  "name": "Single-Arm Lat Pulldown",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_reverse_dumbbell_curl",
+                  "name": "Reverse Dumbbell Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_face_pull",
+                  "name": "Face Pull",
+                  "loadType": "weighted",
+                  "restSeconds": 60,
+                  "sets": [
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 20
+                    },
+                    {
+                      "reps": 20
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_cable_curl",
+                  "name": "Cable Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 60,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 2,
+              "sessionName": "Legs + Calves",
+              "estimatedMinutes": 60,
+              "equipment": [
+                "barbell",
+                "machines",
+                "dumbbells"
+              ],
+              "exercises": [
+                {
+                  "movementId": "mason_hack_or_pendulum_squat",
+                  "name": "Hack or Pendulum Squat",
+                  "loadType": "weighted",
+                  "restSeconds": 120,
+                  "sets": [
+                    {
+                      "reps": 5
+                    },
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 8
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_romanian_deadlift",
+                  "name": "Romanian Deadlift",
+                  "loadType": "weighted",
+                  "restSeconds": 120,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_bulgarian_split_squat",
+                  "name": "Bulgarian Split Squat",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_leg_curl",
+                  "name": "Leg Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_leg_extension",
+                  "name": "Leg Extension",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "cue": "Last set: drop set.",
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_standing_calf_raise",
+                  "name": "Standing Calf Raise",
+                  "loadType": "weighted",
+                  "restSeconds": 60,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 20
+                    },
+                    {
+                      "reps": 20
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 3,
+              "sessionName": "Conditioning",
+              "estimatedMinutes": 30,
+              "equipment": [],
+              "exercises": [
+                {
+                  "movementId": "mason_steady_run",
+                  "name": "Steady Run",
+                  "loadType": "time",
+                  "sets": [
+                    {
+                      "seconds": 1800
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 4,
+              "sessionName": "Chest + Back",
+              "estimatedMinutes": 65,
+              "equipment": [
+                "dumbbells",
+                "cables",
+                "machines"
+              ],
+              "exercises": [
+                {
+                  "movementId": "mason_flat_dumbbell_bench_press",
+                  "name": "Flat Dumbbell Bench Press",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_pull_up_or_lat_pulldown",
+                  "name": "Pull-Up or Lat Pulldown",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_incline_dumbbell_or_machine_press",
+                  "name": "Incline Dumbbell or Machine Press",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_seated_cable_row",
+                  "name": "Seated Cable Row",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_pec_deck_or_cable_fly",
+                  "name": "Pec Deck or Cable Fly",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_straight_arm_pulldown",
+                  "name": "Straight-Arm Pulldown",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_push_up",
+                  "name": "Push-Up",
+                  "loadType": "bodyweight",
+                  "restSeconds": 60,
+                  "cue": "Near failure.",
+                  "sets": [
+                    {
+                      "reps": 20
+                    },
+                    {
+                      "reps": 20
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 5,
+              "sessionName": "Arms + Shoulders",
+              "estimatedMinutes": 60,
+              "equipment": [
+                "dumbbells",
+                "cables"
+              ],
+              "exercises": [
+                {
+                  "movementId": "mason_seated_dumbbell_shoulder_press",
+                  "name": "Seated Dumbbell Shoulder Press",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_cable_lateral_raise",
+                  "name": "Cable Lateral Raise",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_ez_bar_curl",
+                  "name": "EZ-Bar Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_rear_delt_fly",
+                  "name": "Rear Delt Fly",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_reverse_grip_dumbbell_curl",
+                  "name": "Reverse-Grip Dumbbell Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_overhead_triceps_extension",
+                  "name": "Overhead Triceps Extension",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_rope_pushdown",
+                  "name": "Rope Pushdown",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 6,
+              "sessionName": "Run",
+              "estimatedMinutes": 45,
+              "equipment": [],
+              "exercises": [
+                {
+                  "movementId": "mason_easy_run",
+                  "name": "Easy Run",
+                  "loadType": "time",
+                  "sets": [
+                    {
+                      "seconds": 2700
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "weekNumber": 2,
+          "days": [
+            {
+              "dayIndex": 0,
+              "sessionName": "Chest + Shoulders + Triceps",
+              "estimatedMinutes": 70,
+              "equipment": [
+                "dumbbells",
+                "barbell",
+                "cables",
+                "machines"
+              ],
+              "exercises": [
+                {
+                  "movementId": "mason_incline_dumbbell_press",
+                  "name": "Incline Dumbbell Press",
+                  "loadType": "weighted",
+                  "restSeconds": 120,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_flat_barbell_bench_press",
+                  "name": "Flat Barbell Bench Press",
+                  "loadType": "weighted",
+                  "restSeconds": 120,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_machine_shoulder_press",
+                  "name": "Machine Shoulder Press",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_cable_lateral_raise",
+                  "name": "Cable Lateral Raise",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_high_to_low_cable_fly",
+                  "name": "High-to-Low Cable Fly",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_rear_delt_fly",
+                  "name": "Rear Delt Fly",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_close_grip_bench_press",
+                  "name": "Close-Grip Bench Press",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 8
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_overhead_rope_extension",
+                  "name": "Overhead Rope Extension",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_rope_pushdown",
+                  "name": "Rope Pushdown",
+                  "loadType": "weighted",
+                  "restSeconds": 60,
+                  "cue": "Last set: drop set.",
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 1,
+              "sessionName": "Back + Biceps",
+              "estimatedMinutes": 65,
+              "equipment": [
+                "barbell",
+                "cables",
+                "machines"
+              ],
+              "exercises": [
+                {
+                  "movementId": "mason_wide_grip_lat_pulldown",
+                  "name": "Wide-Grip Lat Pulldown",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_chest_supported_row",
+                  "name": "Chest-Supported Row",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_neutral_grip_pulldown",
+                  "name": "Neutral-Grip Pulldown",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_ez_bar_curl",
+                  "name": "EZ-Bar Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_single_arm_lat_pulldown",
+                  "name": "Single-Arm Lat Pulldown",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_reverse_dumbbell_curl",
+                  "name": "Reverse Dumbbell Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_face_pull",
+                  "name": "Face Pull",
+                  "loadType": "weighted",
+                  "restSeconds": 60,
+                  "sets": [
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 20
+                    },
+                    {
+                      "reps": 20
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_cable_curl",
+                  "name": "Cable Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 60,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 2,
+              "sessionName": "Legs + Calves",
+              "estimatedMinutes": 60,
+              "equipment": [
+                "barbell",
+                "machines",
+                "dumbbells"
+              ],
+              "exercises": [
+                {
+                  "movementId": "mason_hack_or_pendulum_squat",
+                  "name": "Hack or Pendulum Squat",
+                  "loadType": "weighted",
+                  "restSeconds": 120,
+                  "sets": [
+                    {
+                      "reps": 5
+                    },
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 8
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_romanian_deadlift",
+                  "name": "Romanian Deadlift",
+                  "loadType": "weighted",
+                  "restSeconds": 120,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_bulgarian_split_squat",
+                  "name": "Bulgarian Split Squat",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_leg_curl",
+                  "name": "Leg Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_leg_extension",
+                  "name": "Leg Extension",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "cue": "Last set: drop set.",
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_standing_calf_raise",
+                  "name": "Standing Calf Raise",
+                  "loadType": "weighted",
+                  "restSeconds": 60,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 20
+                    },
+                    {
+                      "reps": 20
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 3,
+              "sessionName": "Conditioning",
+              "estimatedMinutes": 30,
+              "equipment": [],
+              "exercises": [
+                {
+                  "movementId": "mason_steady_run",
+                  "name": "Steady Run",
+                  "loadType": "time",
+                  "sets": [
+                    {
+                      "seconds": 1800
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 4,
+              "sessionName": "Chest + Back",
+              "estimatedMinutes": 65,
+              "equipment": [
+                "dumbbells",
+                "cables",
+                "machines"
+              ],
+              "exercises": [
+                {
+                  "movementId": "mason_flat_dumbbell_bench_press",
+                  "name": "Flat Dumbbell Bench Press",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_pull_up_or_lat_pulldown",
+                  "name": "Pull-Up or Lat Pulldown",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_incline_dumbbell_or_machine_press",
+                  "name": "Incline Dumbbell or Machine Press",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_seated_cable_row",
+                  "name": "Seated Cable Row",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_pec_deck_or_cable_fly",
+                  "name": "Pec Deck or Cable Fly",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_straight_arm_pulldown",
+                  "name": "Straight-Arm Pulldown",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_push_up",
+                  "name": "Push-Up",
+                  "loadType": "bodyweight",
+                  "restSeconds": 60,
+                  "cue": "Near failure.",
+                  "sets": [
+                    {
+                      "reps": 20
+                    },
+                    {
+                      "reps": 20
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 5,
+              "sessionName": "Arms + Shoulders",
+              "estimatedMinutes": 60,
+              "equipment": [
+                "dumbbells",
+                "cables"
+              ],
+              "exercises": [
+                {
+                  "movementId": "mason_seated_dumbbell_shoulder_press",
+                  "name": "Seated Dumbbell Shoulder Press",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_cable_lateral_raise",
+                  "name": "Cable Lateral Raise",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_ez_bar_curl",
+                  "name": "EZ-Bar Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_rear_delt_fly",
+                  "name": "Rear Delt Fly",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_reverse_grip_dumbbell_curl",
+                  "name": "Reverse-Grip Dumbbell Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_overhead_triceps_extension",
+                  "name": "Overhead Triceps Extension",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_rope_pushdown",
+                  "name": "Rope Pushdown",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 6,
+              "sessionName": "Run",
+              "estimatedMinutes": 45,
+              "equipment": [],
+              "exercises": [
+                {
+                  "movementId": "mason_easy_run",
+                  "name": "Easy Run",
+                  "loadType": "time",
+                  "sets": [
+                    {
+                      "seconds": 2700
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "weekNumber": 3,
+          "days": [
+            {
+              "dayIndex": 0,
+              "sessionName": "Chest + Shoulders + Triceps",
+              "estimatedMinutes": 70,
+              "equipment": [
+                "dumbbells",
+                "barbell",
+                "cables",
+                "machines"
+              ],
+              "exercises": [
+                {
+                  "movementId": "mason_incline_dumbbell_press",
+                  "name": "Incline Dumbbell Press",
+                  "loadType": "weighted",
+                  "restSeconds": 120,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_flat_barbell_bench_press",
+                  "name": "Flat Barbell Bench Press",
+                  "loadType": "weighted",
+                  "restSeconds": 120,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_machine_shoulder_press",
+                  "name": "Machine Shoulder Press",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_cable_lateral_raise",
+                  "name": "Cable Lateral Raise",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_high_to_low_cable_fly",
+                  "name": "High-to-Low Cable Fly",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_rear_delt_fly",
+                  "name": "Rear Delt Fly",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_close_grip_bench_press",
+                  "name": "Close-Grip Bench Press",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 8
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_overhead_rope_extension",
+                  "name": "Overhead Rope Extension",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_rope_pushdown",
+                  "name": "Rope Pushdown",
+                  "loadType": "weighted",
+                  "restSeconds": 60,
+                  "cue": "Last set: drop set.",
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 1,
+              "sessionName": "Back + Biceps",
+              "estimatedMinutes": 65,
+              "equipment": [
+                "barbell",
+                "cables",
+                "machines"
+              ],
+              "exercises": [
+                {
+                  "movementId": "mason_wide_grip_lat_pulldown",
+                  "name": "Wide-Grip Lat Pulldown",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_chest_supported_row",
+                  "name": "Chest-Supported Row",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_neutral_grip_pulldown",
+                  "name": "Neutral-Grip Pulldown",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_ez_bar_curl",
+                  "name": "EZ-Bar Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_single_arm_lat_pulldown",
+                  "name": "Single-Arm Lat Pulldown",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_reverse_dumbbell_curl",
+                  "name": "Reverse Dumbbell Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_face_pull",
+                  "name": "Face Pull",
+                  "loadType": "weighted",
+                  "restSeconds": 60,
+                  "sets": [
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 20
+                    },
+                    {
+                      "reps": 20
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_cable_curl",
+                  "name": "Cable Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 60,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 2,
+              "sessionName": "Legs + Calves",
+              "estimatedMinutes": 60,
+              "equipment": [
+                "barbell",
+                "machines",
+                "dumbbells"
+              ],
+              "exercises": [
+                {
+                  "movementId": "mason_hack_or_pendulum_squat",
+                  "name": "Hack or Pendulum Squat",
+                  "loadType": "weighted",
+                  "restSeconds": 120,
+                  "sets": [
+                    {
+                      "reps": 5
+                    },
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 8
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_romanian_deadlift",
+                  "name": "Romanian Deadlift",
+                  "loadType": "weighted",
+                  "restSeconds": 120,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_bulgarian_split_squat",
+                  "name": "Bulgarian Split Squat",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_leg_curl",
+                  "name": "Leg Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_leg_extension",
+                  "name": "Leg Extension",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "cue": "Last set: drop set.",
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_standing_calf_raise",
+                  "name": "Standing Calf Raise",
+                  "loadType": "weighted",
+                  "restSeconds": 60,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 20
+                    },
+                    {
+                      "reps": 20
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 3,
+              "sessionName": "Conditioning",
+              "estimatedMinutes": 30,
+              "equipment": [],
+              "exercises": [
+                {
+                  "movementId": "mason_steady_run",
+                  "name": "Steady Run",
+                  "loadType": "time",
+                  "sets": [
+                    {
+                      "seconds": 1800
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 4,
+              "sessionName": "Chest + Back",
+              "estimatedMinutes": 65,
+              "equipment": [
+                "dumbbells",
+                "cables",
+                "machines"
+              ],
+              "exercises": [
+                {
+                  "movementId": "mason_flat_dumbbell_bench_press",
+                  "name": "Flat Dumbbell Bench Press",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_pull_up_or_lat_pulldown",
+                  "name": "Pull-Up or Lat Pulldown",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_incline_dumbbell_or_machine_press",
+                  "name": "Incline Dumbbell or Machine Press",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_seated_cable_row",
+                  "name": "Seated Cable Row",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_pec_deck_or_cable_fly",
+                  "name": "Pec Deck or Cable Fly",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_straight_arm_pulldown",
+                  "name": "Straight-Arm Pulldown",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_push_up",
+                  "name": "Push-Up",
+                  "loadType": "bodyweight",
+                  "restSeconds": 60,
+                  "cue": "Near failure.",
+                  "sets": [
+                    {
+                      "reps": 20
+                    },
+                    {
+                      "reps": 20
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 5,
+              "sessionName": "Arms + Shoulders",
+              "estimatedMinutes": 60,
+              "equipment": [
+                "dumbbells",
+                "cables"
+              ],
+              "exercises": [
+                {
+                  "movementId": "mason_seated_dumbbell_shoulder_press",
+                  "name": "Seated Dumbbell Shoulder Press",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_cable_lateral_raise",
+                  "name": "Cable Lateral Raise",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_ez_bar_curl",
+                  "name": "EZ-Bar Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_rear_delt_fly",
+                  "name": "Rear Delt Fly",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_reverse_grip_dumbbell_curl",
+                  "name": "Reverse-Grip Dumbbell Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_overhead_triceps_extension",
+                  "name": "Overhead Triceps Extension",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_rope_pushdown",
+                  "name": "Rope Pushdown",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 6,
+              "sessionName": "Run",
+              "estimatedMinutes": 45,
+              "equipment": [],
+              "exercises": [
+                {
+                  "movementId": "mason_easy_run",
+                  "name": "Easy Run",
+                  "loadType": "time",
+                  "sets": [
+                    {
+                      "seconds": 2700
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "weekNumber": 4,
+          "days": [
+            {
+              "dayIndex": 0,
+              "sessionName": "Chest + Shoulders + Triceps",
+              "estimatedMinutes": 70,
+              "equipment": [
+                "dumbbells",
+                "barbell",
+                "cables",
+                "machines"
+              ],
+              "exercises": [
+                {
+                  "movementId": "mason_incline_dumbbell_press",
+                  "name": "Incline Dumbbell Press",
+                  "loadType": "weighted",
+                  "restSeconds": 120,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_flat_barbell_bench_press",
+                  "name": "Flat Barbell Bench Press",
+                  "loadType": "weighted",
+                  "restSeconds": 120,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_machine_shoulder_press",
+                  "name": "Machine Shoulder Press",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_cable_lateral_raise",
+                  "name": "Cable Lateral Raise",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_high_to_low_cable_fly",
+                  "name": "High-to-Low Cable Fly",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_rear_delt_fly",
+                  "name": "Rear Delt Fly",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_close_grip_bench_press",
+                  "name": "Close-Grip Bench Press",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 8
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_overhead_rope_extension",
+                  "name": "Overhead Rope Extension",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_rope_pushdown",
+                  "name": "Rope Pushdown",
+                  "loadType": "weighted",
+                  "restSeconds": 60,
+                  "cue": "Last set: drop set.",
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 1,
+              "sessionName": "Back + Biceps",
+              "estimatedMinutes": 65,
+              "equipment": [
+                "barbell",
+                "cables",
+                "machines"
+              ],
+              "exercises": [
+                {
+                  "movementId": "mason_wide_grip_lat_pulldown",
+                  "name": "Wide-Grip Lat Pulldown",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_chest_supported_row",
+                  "name": "Chest-Supported Row",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_neutral_grip_pulldown",
+                  "name": "Neutral-Grip Pulldown",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_ez_bar_curl",
+                  "name": "EZ-Bar Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_single_arm_lat_pulldown",
+                  "name": "Single-Arm Lat Pulldown",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_reverse_dumbbell_curl",
+                  "name": "Reverse Dumbbell Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_face_pull",
+                  "name": "Face Pull",
+                  "loadType": "weighted",
+                  "restSeconds": 60,
+                  "sets": [
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 20
+                    },
+                    {
+                      "reps": 20
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_cable_curl",
+                  "name": "Cable Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 60,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 2,
+              "sessionName": "Legs + Calves",
+              "estimatedMinutes": 60,
+              "equipment": [
+                "barbell",
+                "machines",
+                "dumbbells"
+              ],
+              "exercises": [
+                {
+                  "movementId": "mason_hack_or_pendulum_squat",
+                  "name": "Hack or Pendulum Squat",
+                  "loadType": "weighted",
+                  "restSeconds": 120,
+                  "sets": [
+                    {
+                      "reps": 5
+                    },
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 8
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_romanian_deadlift",
+                  "name": "Romanian Deadlift",
+                  "loadType": "weighted",
+                  "restSeconds": 120,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_bulgarian_split_squat",
+                  "name": "Bulgarian Split Squat",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_leg_curl",
+                  "name": "Leg Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_leg_extension",
+                  "name": "Leg Extension",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "cue": "Last set: drop set.",
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_standing_calf_raise",
+                  "name": "Standing Calf Raise",
+                  "loadType": "weighted",
+                  "restSeconds": 60,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 20
+                    },
+                    {
+                      "reps": 20
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 3,
+              "sessionName": "Conditioning",
+              "estimatedMinutes": 30,
+              "equipment": [],
+              "exercises": [
+                {
+                  "movementId": "mason_steady_run",
+                  "name": "Steady Run",
+                  "loadType": "time",
+                  "sets": [
+                    {
+                      "seconds": 1800
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 4,
+              "sessionName": "Chest + Back",
+              "estimatedMinutes": 65,
+              "equipment": [
+                "dumbbells",
+                "cables",
+                "machines"
+              ],
+              "exercises": [
+                {
+                  "movementId": "mason_flat_dumbbell_bench_press",
+                  "name": "Flat Dumbbell Bench Press",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_pull_up_or_lat_pulldown",
+                  "name": "Pull-Up or Lat Pulldown",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_incline_dumbbell_or_machine_press",
+                  "name": "Incline Dumbbell or Machine Press",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_seated_cable_row",
+                  "name": "Seated Cable Row",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_pec_deck_or_cable_fly",
+                  "name": "Pec Deck or Cable Fly",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_straight_arm_pulldown",
+                  "name": "Straight-Arm Pulldown",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_push_up",
+                  "name": "Push-Up",
+                  "loadType": "bodyweight",
+                  "restSeconds": 60,
+                  "cue": "Near failure.",
+                  "sets": [
+                    {
+                      "reps": 20
+                    },
+                    {
+                      "reps": 20
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 5,
+              "sessionName": "Arms + Shoulders",
+              "estimatedMinutes": 60,
+              "equipment": [
+                "dumbbells",
+                "cables"
+              ],
+              "exercises": [
+                {
+                  "movementId": "mason_seated_dumbbell_shoulder_press",
+                  "name": "Seated Dumbbell Shoulder Press",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_cable_lateral_raise",
+                  "name": "Cable Lateral Raise",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_ez_bar_curl",
+                  "name": "EZ-Bar Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_rear_delt_fly",
+                  "name": "Rear Delt Fly",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_reverse_grip_dumbbell_curl",
+                  "name": "Reverse-Grip Dumbbell Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_overhead_triceps_extension",
+                  "name": "Overhead Triceps Extension",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "mason_rope_pushdown",
+                  "name": "Rope Pushdown",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 6,
+              "sessionName": "Run",
+              "estimatedMinutes": 45,
+              "equipment": [],
+              "exercises": [
+                {
+                  "movementId": "mason_easy_run",
+                  "name": "Easy Run",
+                  "loadType": "time",
+                  "sets": [
+                    {
+                      "seconds": 2700
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jose_apartment_v1",
+      "displayName": "Jose Apartment",
+      "shortDescription": "Apartment-friendly strength sessions with limited equipment.",
+      "audience": "Athletes training at home with dumbbells, bands, and minimal space.",
+      "status": "authored",
+      "weeks": [
+        {
+          "weekNumber": 1,
+          "days": [
+            {
+              "dayIndex": 0,
+              "sessionName": "Pull",
+              "estimatedMinutes": 55,
+              "equipment": [
+                "apartment gym",
+                "dumbbells",
+                "cables"
+              ],
+              "exercises": [
+                {
+                  "movementId": "jose_apt_chin_ups",
+                  "name": "APT Chin-Ups",
+                  "loadType": "bodyweight",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_apt_lateral_raise_dumbbell",
+                  "name": "Lateral Raise (Dumbbell)",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_apt_y_raises",
+                  "name": "APT Y Raises",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_apt_dumbbell_single_arm_row",
+                  "name": "APT Dumbbell Single-Arm Row",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_apt_lat_prayers",
+                  "name": "APT Lat Prayers",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_apt_dumbbell_shrugs",
+                  "name": "APT Dumbbell Shrugs",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_apt_cable_curl",
+                  "name": "APT Cable Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_apt_dumbbell_hammer_curl",
+                  "name": "APT Dumbbell Hammer Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 1,
+              "sessionName": "Push",
+              "estimatedMinutes": 50,
+              "equipment": [
+                "apartment gym",
+                "dumbbells",
+                "cables"
+              ],
+              "exercises": [
+                {
+                  "movementId": "jose_apt_lateral_raise_dumbbell",
+                  "name": "Lateral Raise (Dumbbell)",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_apt_incline_bench",
+                  "name": "APT Incline Bench",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_apt_bench",
+                  "name": "APT Bench",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_apt_triceps_pushdown",
+                  "name": "APT Triceps Pushdown",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_apt_kneeling_cable_crunch",
+                  "name": "APT Kneeling Cable Crunch",
+                  "loadType": "weighted",
+                  "restSeconds": 60,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_apt_hanging_knee_raise",
+                  "name": "APT Hanging Knee Raise",
+                  "loadType": "bodyweight",
+                  "restSeconds": 60,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 2,
+              "sessionName": "Leg Day",
+              "estimatedMinutes": 50,
+              "equipment": [
+                "apartment gym",
+                "dumbbells",
+                "machines"
+              ],
+              "exercises": [
+                {
+                  "movementId": "jose_apt_single_leg_leg_extension",
+                  "name": "APT Single-Leg Leg Extension",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_apt_leg_extension",
+                  "name": "APT Leg Extension",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_apt_seated_leg_curl",
+                  "name": "APT Seated Leg Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_apt_single_leg_dumbbell_rdl",
+                  "name": "APT Single-Leg Dumbbell Romanian Deadlift",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_apt_bulgarian_split_squat_quads",
+                  "name": "APT Bulgarian Split Squat \u2014 Quads",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 12
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 3,
+              "sessionName": "Upper",
+              "estimatedMinutes": 55,
+              "equipment": [
+                "apartment gym",
+                "dumbbells",
+                "cables"
+              ],
+              "exercises": [
+                {
+                  "movementId": "jose_apt_pull_ups",
+                  "name": "APT Pull-Ups",
+                  "loadType": "bodyweight",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_apt_dumbbell_lateral_raise",
+                  "name": "APT Dumbbell Lateral Raise",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_apt_dumbbell_high_incline_press",
+                  "name": "APT Dumbbell High Incline Press",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_apt_lat_prayers",
+                  "name": "APT Lat Prayers",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_apt_dumbbell_shrugs",
+                  "name": "APT Dumbbell Shrugs",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_apt_triceps_pushdown",
+                  "name": "APT Triceps Pushdown",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_apt_dumbbell_bicep_curl",
+                  "name": "APT Dumbbell Bicep Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jose_full_gym_v1",
+      "displayName": "Jose Full Gym",
+      "shortDescription": "Full-gym strength split using barbells, cables, and machines.",
+      "audience": "Athletes with full gym access who want structured weekly progress.",
+      "status": "authored",
+      "weeks": [
+        {
+          "weekNumber": 1,
+          "days": [
+            {
+              "dayIndex": 0,
+              "sessionName": "Pull",
+              "estimatedMinutes": 65,
+              "equipment": [
+                "machines",
+                "dumbbells",
+                "cables"
+              ],
+              "exercises": [
+                {
+                  "movementId": "jose_full_gym80_seated_lateral_raise",
+                  "name": "Gym80 Seated Lateral Raise",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_pull_up",
+                  "name": "Pull-Up",
+                  "loadType": "bodyweight",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_close_grip_cable_row",
+                  "name": "Close-Grip Cable Row",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_t_bar_row_upper_back",
+                  "name": "T-Bar Row (Upper Back)",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_bicep_curl_barbell",
+                  "name": "Bicep Curl (Barbell)",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_ab_cruncher",
+                  "name": "Ab Cruncher",
+                  "loadType": "weighted",
+                  "restSeconds": 60,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_reverse_fly_machine",
+                  "name": "Reverse Fly (Machine)",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_seated_hammer_curl",
+                  "name": "Seated Hammer Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 1,
+              "sessionName": "Push Day",
+              "estimatedMinutes": 65,
+              "equipment": [
+                "machines",
+                "dumbbells",
+                "cables"
+              ],
+              "exercises": [
+                {
+                  "movementId": "jose_full_atlantis_seated_lateral_raise",
+                  "name": "Atlantis Seated Lateral Raise",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_dumbbell_seated_shoulder_press",
+                  "name": "Dumbbell Seated Shoulder Press",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_close_grip_bench",
+                  "name": "Close-Grip Bench",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_pure_kraft_ab_cruncher",
+                  "name": "Pure Kraft Ab Cruncher",
+                  "loadType": "weighted",
+                  "restSeconds": 60,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_seated_overhead_triceps_extension",
+                  "name": "Seated Overhead Triceps Extension",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_triceps_pushdown",
+                  "name": "Triceps Pushdown",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_seated_chest_fly",
+                  "name": "Seated Chest Fly",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 2,
+              "sessionName": "Leg Day",
+              "estimatedMinutes": 65,
+              "equipment": [
+                "machines",
+                "plate-loaded"
+              ],
+              "exercises": [
+                {
+                  "movementId": "jose_full_pendulum_squat",
+                  "name": "Pendulum Squat",
+                  "loadType": "weighted",
+                  "restSeconds": 120,
+                  "sets": [
+                    {
+                      "reps": 6
+                    },
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_glute_builder_hip_abductor",
+                  "name": "Glute Builder Hip Abductor",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_gym80_lying_leg_curl",
+                  "name": "Gym80 Lying Leg Curl",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_hip_thrust_machine",
+                  "name": "Hip Thrust (Machine)",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_single_leg_extension",
+                  "name": "Single-Leg Extension",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_seated_calf_raise_plate_loaded",
+                  "name": "Seated Calf Raise (Plate Loaded)",
+                  "loadType": "weighted",
+                  "restSeconds": 60,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_tibia_raises",
+                  "name": "Tibia Raises",
+                  "loadType": "weighted",
+                  "restSeconds": 60,
+                  "sets": [
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 20
+                    },
+                    {
+                      "reps": 20
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "dayIndex": 3,
+              "sessionName": "Upper Day",
+              "estimatedMinutes": 65,
+              "equipment": [
+                "machines",
+                "dumbbells",
+                "cables"
+              ],
+              "exercises": [
+                {
+                  "movementId": "jose_full_gym80_seated_lateral_raise",
+                  "name": "Gym80 Seated Lateral Raise",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_15_degree_dumbbell_press",
+                  "name": "15 Degree Dumbbell Press",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_35_degree_dumbbell_press",
+                  "name": "35 Degree Dumbbell Press",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_neutral_grip_pull_ups",
+                  "name": "Neutral-Grip Pull-Ups",
+                  "loadType": "bodyweight",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 10
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_pure_kraft_ab_cruncher",
+                  "name": "Pure Kraft Ab Cruncher",
+                  "loadType": "weighted",
+                  "restSeconds": 60,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_reverse_fly_machine",
+                  "name": "Reverse Fly (Machine)",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_bicep_curl_dumbbell",
+                  "name": "Bicep Curl (Dumbbell)",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_triceps_pushdown_rope_handles",
+                  "name": "Triceps Pushdown (Rope Handles)",
+                  "loadType": "weighted",
+                  "restSeconds": 75,
+                  "sets": [
+                    {
+                      "reps": 12
+                    },
+                    {
+                      "reps": 15
+                    },
+                    {
+                      "reps": 15
+                    }
+                  ]
+                },
+                {
+                  "movementId": "jose_full_lat_bias_t_bar_row",
+                  "name": "Lat Bias T-Bar Row",
+                  "loadType": "weighted",
+                  "restSeconds": 90,
+                  "sets": [
+                    {
+                      "reps": 8
+                    },
+                    {
+                      "reps": 10
+                    },
+                    {
+                      "reps": 12
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
