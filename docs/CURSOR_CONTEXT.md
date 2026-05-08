@@ -4,7 +4,7 @@
 **Doctrine (canonical, lives in iOS repo):** `FORM-iOS/docs/form_field_doctrine.md`, `FORM-iOS/docs/form_web_spec_v2.md`  
 **Denylist:** `docs/DO_NOT_BUILD.md` (this repo)
 
-When both **`speedandform`** and **`FORM-iOS`** roots are in the workspace, treat Field doctrine in **FORM-iOS/docs/** as authoritative for **The Field** behavior and copy.
+When both **`speedandform`** and **`FORM-iOS`** roots are in the workspace, treat Field doctrine in **FORM-iOS/docs/** as authoritative for **The Field** behavior and copy. Any athlete-visible web copy should match **`FORM-iOS/docs/VOICE_DOCTRINE.md`** (plain language gate), then field specs as listed below.
 
 ## What this repo is
 
