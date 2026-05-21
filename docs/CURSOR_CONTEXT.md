@@ -2,7 +2,11 @@
 
 **Purpose:** Thin orientation for the **Netlify / static site** and any **SPA sub-apps** (`/form`, `/forge`, etc.) in this repo.  
 **Doctrine (canonical, lives in iOS repo):** `FORM-iOS/docs/form_field_doctrine.md`, `FORM-iOS/docs/form_web_spec_v2.md`  
+**FORM/Forge architecture:** `FORM-iOS/docs/FORM_FORGE_ARCHITECTURE.md`  
+**Workspace operator kernel:** `FORM-iOS/docs/BRICE_OS/BRICE_OPERATOR_KERNEL.md` (cross-repo only — not web implementation detail)  
 **Denylist:** `docs/DO_NOT_BUILD.md` (this repo)
+
+**RunCards:** Not in this repo. SoT: `FORM-iOS/docs/BRICE_OS/RUNCARDS_CONTEXT.md` (temporary bridge). Do not add RunCards docs here.
 
 When both **`speedandform`** and **`FORM-iOS`** roots are in the workspace, treat Field doctrine in **FORM-iOS/docs/** as authoritative for **The Field** behavior and copy. Any athlete-visible web copy should match **`FORM-iOS/docs/VOICE_DOCTRINE.md`** (plain language gate), then field specs as listed below.
 
