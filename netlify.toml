@@ -1,5 +1,5 @@
 [build]
-  command = "cd forge && npm install && npm run build"
+  command = "echo 'no build needed'"
   publish = "."
 
 # Force Netlify CDN to purge on every deploy
@@ -410,4 +410,9 @@
 [[redirects]]
   from = "/mobility"
   to = "/mobility.html"
+  status = 200
+
+[[redirects]]
+  from = "/village-intake"
+  to = "/village-intake.html"
   status = 200
