@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simon — FORM</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #edecea;
+  --ink: #1e1d1b;
+  --ink-l: #5e5b56;
+  --ink-f: #8a8680;
+  --ink-d: #3d3b38;
+  --accent: #c4593a;
+  --green: #3d6e52;
+  --line: #ccc9c3;
+  --line-l: #dedad4;
+  --data: #4a6078;
+  /* per-metric colors */
+  --m-target:    #8a8680; /* neutral grey — target annotation */
+
+}
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  min-height: 100vh;
+}
+
+/* ── NAV ── */
+.nav {
+  max-width: 600px; margin: 0 auto;
+  padding: 36px 32px 0;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 20px; letter-spacing: 0.14em; color: var(--ink); text-decoration: none; }
+.nav-sub { font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-f); }
+
+/* ── CONTENT SPINE ── */
+.content {
+  max-width: 600px; margin: 0 auto;
+  padding: 52px 32px 80px;
+  border-left: 1px solid var(--line-l);
+}
+
+/* ── HEADER ── */
+.hdr {
+  margin-bottom: 40px;
+  opacity: 0; animation: up 0.6s ease forwards 0.05s;
+}
+.hdr-top {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 20px; margin-bottom: 10px;
+}
+.hdr-tag { font-size: 9px; font-weight: 500; letter-spacing: 0.32em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 8px; }
+.hdr-name { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 300; letter-spacing: 0.04em; line-height: 1; color: var(--ink); }
+
+/* PR column — compact, right-aligned, same as original */
+.hdr-pr { flex-shrink: 0; text-align: right; padding-top: 6px; }
+.hdr-pr-row { display: flex; align-items: baseline; gap: 4px; justify-content: flex-end; margin-bottom: 4px; }
+.hdr-pr-row:last-child { margin-bottom: 0; }
+.hdr-pr-label { font-size: 8px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); }
+.hdr-pr-val { font-size: 14px; font-weight: 400; color: var(--ink); letter-spacing: -0.01em; }
+.hdr-pr-val.goal { color: var(--accent); }
+.hdr-pr-sub { font-size: 9px; color: var(--ink-f); }
+.hdr-pr-sub-km { font-size: 9px; color: var(--ink-f); opacity: 0.7; }
+.hdr-pr-sub-sep { font-size: 9px; color: var(--line); padding: 0 1px; }
+
+.hdr-bottom {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 16px; padding-top: 10px;
+  border-top: 1px solid var(--line-l); margin-top: 10px;
+}
+.hdr-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: var(--ink-l); }
+.hdr-meta { font-size: 10px; font-weight: 400; color: var(--ink-f); letter-spacing: 0.04em; text-align: right; white-space: nowrap; }
+.hdr-link { color: var(--ink-d); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px; transition: border-color 0.15s, color 0.15s; }
+.hdr-link:hover { color: var(--ink); border-color: var(--ink); }
+
+/* ── SECTION LABEL ── */
+.s-label { font-size: 9px; font-weight: 500; letter-spacing: 0.32em; text-transform: uppercase; color: var(--ink-d); display: block; margin-bottom: 20px; }
+
+/* ── CHART ── */
+.chart-wrap { margin-bottom: 32px; opacity: 0; animation: up 0.7s ease forwards 0.2s; }
+#chart { width: 100%; display: block; overflow: visible; }
+
+/* ── COACHING BLOCK — unified ── */
+.coaching-block {
+  margin-bottom: 28px;
+  border: 1px solid var(--line-l);
+  opacity: 0; animation: up 0.6s ease forwards 0.45s;
+}
+.directive-strip {
+  display: flex;
+  border-bottom: 1px solid var(--line-l);
+}
+.directive-item {
+  flex: 1; padding: 14px 16px 16px;
+  border-right: 1px solid var(--line-l);
+}
+.directive-item:last-child { border-right: none; }
+.directive-label {
+  font-size: 8px; font-weight: 500; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--accent);
+  display: block; margin-bottom: 7px;
+}
+.directive-text {
+  font-size: 13px; color: var(--ink-l); line-height: 1.55;
+}
+.coaching-bottom {
+  display: flex; align-items: stretch;
+}
+.watch-strip {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 16px 11px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+.watch-label {
+  font-size: 8px; font-weight: 500; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--ink-d);
+  flex-shrink: 0;
+}
+.watch-pills {
+  display: block;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--ink-l);
+  max-width: 100%;
+}
+.watch-pill {
+  font-family: 'Jost', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  color: var(--ink-l);
+  white-space: nowrap;
+}
+.watch-pill::before {
+  content: none;
+}
+.watch-pill:not(:last-child)::after {
+  content: ' · ';
+  color: var(--line);
+  white-space: pre;
+}
+.cues-inline {
+  display: flex; gap: 0; flex-shrink: 0;
+  border-left: 1px solid var(--line-l);
+}
+.cue-inline-item {
+  padding: 10px 14px 11px;
+  border-left: 1px solid var(--line-l);
+  min-width: 108px;
+}
+.cue-inline-item:first-child { border-left: none; }
+.cue-inline-label {
+  font-size: 8px; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--accent);
+  display: block; margin-bottom: 4px;
+}
+.cue-inline-text {
+  font-size: 11px; color: var(--ink-l); line-height: 1.5; font-weight: 400;
+}
+
+/* ── NEXT SESSION CALLOUT ── */
+.next-callout {
+  margin-bottom: 40px; padding: 18px 20px;
+  border: 1px solid var(--line);
+  display: flex; align-items: center; gap: 20px;
+  opacity: 0; animation: up 0.6s ease forwards 0.6s;
+}
+.next-num { font-size: 13px; font-weight: 500; color: var(--green); line-height: 1.5; flex-shrink: 0; white-space: nowrap; letter-spacing: 0.02em; }
+.next-divider { width: 1px; background: var(--line); align-self: stretch; flex-shrink: 0; }
+.next-title { font-size: 9px; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; color: var(--green); display: block; margin-bottom: 5px; }
+.next-desc { font-size: 13px; color: var(--ink-l); line-height: 1.6; }
+
+/* ── ARCHIVE ── */
+.archive {
+  margin-top: 64px;
+  opacity: 0; animation: up 0.6s ease forwards 0.85s;
+}
+.archive > .s-label { margin-bottom: 20px; }
+
+.archive-section {
+  margin-bottom: 8px;
+  background: var(--cream);
+}
+
+.archive-section-hd {
+  padding: 0 0 10px 0;
+  border-bottom: 1px solid var(--line-l);
+  display: flex; align-items: baseline; gap: 12px;
+  margin-bottom: 20px;
+}
+.archive-section-title {
+  font-size: 9px; font-weight: 500; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--ink-d);
+}
+.archive-section-body { padding: 0; }
+
+/* session entries */
+.session-entry {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--line-l);
+}
+.session-entry:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: none; }
+
+.session-meta {
+  display: flex; align-items: baseline; gap: 12px;
+  margin-bottom: 12px;
+}
+.session-date {
+  font-size: 9px; font-weight: 500; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--ink-d);
+}
+.session-name { font-size: 9px; color: var(--ink-f); letter-spacing: 0.06em; }
+
+.session-splits {
+  display: flex; align-items: center; gap: 6px;
+  margin-bottom: 12px; flex-wrap: wrap;
+}
+.split-block { display: flex; flex-direction: column; gap: 5px; }
+.split-mi {
+  font-family: 'Jost', sans-serif; font-size: 16px;
+  font-weight: 500; color: var(--ink); letter-spacing: -0.02em; line-height: 1;
+}
+.split-mi.accent { color: var(--green); }
+.split-mi.dim { color: var(--ink-f); font-weight: 400; font-size: 11px; letter-spacing: 0.08em; }
+.split-km {
+  font-family: 'Jost', sans-serif; font-size: 9px;
+  font-weight: 400; color: var(--ink-f); letter-spacing: 0.02em; line-height: 1;
+}
+.split-km.accent { color: var(--green); opacity: 0.8; }
+.split-arrow { font-size: 9px; color: var(--line); align-self: flex-start; padding-top: 3px; }
+
+.session-note {
+  font-size: 12px; color: var(--ink-l); line-height: 1.75;
+}
+
+/* archive prose */
+.archive-body {
+  font-size: 13px; color: var(--ink-l); line-height: 1.8;
+}
+
+/* ── SESSION INTERPRETATION — COLLAPSED ── */
+.session-data {
+  margin-top: 10px;
+  padding: 7px 10px;
+  background: transparent;
+  border-left: 2px solid var(--line);
+}
+.session-data-text {
+  font-size: 10px; color: var(--ink-f); line-height: 1.6;
+  letter-spacing: 0.03em; font-weight: 400;
+}
+/* per-metric coloring */
+.m-hit      { color: var(--green); }
+.m-miss     { color: var(--accent); }
+.m-target   { color: var(--m-target); font-size: 9px; }
+.m-check    { color: var(--green); font-size: 9px; }
+.session-takeaway {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line-l);
+}
+.session-takeaway-text {
+  font-size: 13px; color: var(--ink); line-height: 1.6;
+  font-weight: 400;
+}
+.session-takeaway-action {
+  font-size: 12px; color: var(--ink-l); line-height: 1.6;
+  margin-top: 3px;
+}
+
+/* ── COACH NOTES DISSOLVED BLOCK ── */
+.coach-notes {
+  margin-top: 8px;
+  padding: 20px 18px 24px;
+  border: 1px solid var(--line-l);
+}
+.coach-note-item {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line-l);
+}
+.coach-note-item:first-child { padding-top: 0; }
+.coach-note-item:last-child { border-bottom: none; padding-bottom: 0; }
+.coach-note-label {
+  font-size: 8px; font-weight: 500; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--accent);
+  display: block; margin-bottom: 6px;
+}
+.coach-note-body {
+  font-size: 13px; color: var(--ink-l); line-height: 1.75;
+}
+
+/* ── TRAINING NOTES ENHANCEMENTS ── */
+.session-entry {
+  position: relative;
+}
+.session-entry.is-recent {
+  padding-left: 18px;
+  margin-left: -18px;
+}
+.session-entry.is-recent::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--green);
+  opacity: 0;
+  animation: dot-in 0.4s ease forwards 1.1s;
+}
+.session-entry.is-recent::after {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 10px;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--green), transparent);
+  opacity: 0;
+  animation: dot-in 0.6s ease forwards 1.2s;
+}
+@keyframes dot-in {
+  from { opacity: 0; transform: scale(0.4); }
+  to   { opacity: 0.55; transform: scale(1); }
+}
+
+/* stagger session entries */
+.session-entry:nth-child(1) { opacity: 0; animation: up 0.5s ease forwards 0.95s; }
+.session-entry:nth-child(2) { opacity: 0; animation: up 0.5s ease forwards 1.05s; }
+
+/* color the action line green — it's the directive */
+.session-takeaway-action {
+  color: var(--green) !important;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.04em;
+  line-height: 1.6; margin-top: 5px;
+  text-transform: none;
+}
+
+/* coach notes block — clean with accent rule */
+.coach-notes {
+  background: transparent;
+  border-left: 2px solid rgba(196, 89, 58, 0.5);
+  opacity: 0; animation: up 0.5s ease forwards 1.2s;
+}
+
+/* ── FOOTER ── */
+.foot {
+  padding-top: 20px; border-top: 1px solid var(--line-l);
+  display: flex; justify-content: space-between; align-items: center;
+  opacity: 0; animation: up 0.6s ease forwards 0.75s;
+}
+.foot-brand { font-family: 'Cormorant Garamond', serif; font-size: 15px; letter-spacing: 0.14em; color: var(--ink-f); font-weight: 300; }
+.foot-note { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); }
+
+/* ── MOBILE ── */
+@media (max-width: 520px) {
+  .nav {
+    padding: 28px 20px 0;
+  }
+  .nav-home {
+    font-size: 22px;
+    letter-spacing: 0.12em;
+  }
+  .nav-sub {
+    font-size: 10px;
+    letter-spacing: 0.26em;
+    color: var(--ink-l);
+  }
+
+  .content {
+    padding: 36px 16px 64px;
+    border-left: none;
+  }
+
+  /* Hero — athlete card: identity left, PRs top-right */
+  .hdr {
+    margin-bottom: 22px;
+  }
+  .hdr-top {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+  .hdr-identity {
+    flex: 1;
+    min-width: 0;
+  }
+  .hdr-tag {
+    font-size: 7px;
+    letter-spacing: 0.2em;
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  .hdr-name {
+    font-size: 38px;
+    line-height: 0.95;
+  }
+  .hdr-pr {
+    flex-shrink: 0;
+    width: 164px;
+    max-width: 46%;
+    text-align: right;
+    padding-top: 2px;
+  }
+  .hdr-pr-row {
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 1px 4px;
+    margin-bottom: 3px;
+    line-height: 1.1;
+    align-items: baseline;
+  }
+  .hdr-pr-row:last-child {
+    margin-bottom: 0;
+  }
+  .hdr-pr-label {
+    flex: 0 0 auto;
+    font-size: 6.5px;
+    letter-spacing: 0.14em;
+    color: var(--ink-f);
+    opacity: 0.75;
+  }
+  .hdr-pr-val {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .hdr-pr-val.goal {
+    font-weight: 500;
+  }
+  .hdr-pr-sub,
+  .hdr-pr-sub-km {
+    font-size: 7.5px;
+    color: var(--ink-f);
+    opacity: 0.45;
+  }
+  .hdr-pr-sub-sep {
+    opacity: 0.35;
+    font-size: 7.5px;
+  }
+  .hdr-bottom {
+    flex-direction: column;
+    gap: 0;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--line-l);
+  }
+  .hdr-sub {
+    font-size: 14px;
+    line-height: 1.35;
+    color: var(--ink-l);
+  }
+  .hdr-meta {
+    text-align: left;
+    white-space: normal;
+  }
+
+  .chart-wrap {
+    margin-bottom: 20px;
+  }
+  .chart-wrap > .s-label {
+    margin-bottom: 8px;
+    font-size: 8px;
+    letter-spacing: 0.26em;
+  }
+
+  .directive-strip {
+    flex-direction: column;
+  }
+  .directive-item {
+    border-right: none;
+    border-bottom: 1px solid var(--line-l);
+  }
+  .directive-item:last-child {
+    border-bottom: none;
+  }
+  .coaching-bottom {
+    flex-direction: column;
+  }
+  .watch-strip {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line-l);
+  }
+  .watch-pills {
+    line-height: 1.5;
+  }
+  .watch-pill {
+    display: block;
+    white-space: normal;
+    padding: 1px 0;
+  }
+  .watch-pill:not(:last-child)::after {
+    content: none;
+  }
+  .cues-inline {
+    border-left: none;
+    flex-direction: column;
+  }
+  .cue-inline-item {
+    border-left: none;
+    border-top: 1px solid var(--line-l);
+    min-width: auto;
+  }
+  .cue-inline-item:first-child {
+    border-top: none;
+  }
+}
+
+/* Smallest phones — tighter PR column, still top-right */
+@media (max-width: 380px) {
+  .hdr-top {
+    gap: 8px;
+  }
+  .hdr-name {
+    font-size: 34px;
+  }
+  .hdr-pr {
+    width: 150px;
+    max-width: 48%;
+  }
+  .hdr-pr-val {
+    font-size: 12px;
+  }
+  .hdr-pr-sub,
+  .hdr-pr-sub-km,
+  .hdr-pr-sub-sep {
+    font-size: 7px;
+  }
+}
+
+@keyframes up { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse-ring {
+  0%,100% { r: 11; opacity: 0.18; }
+  50% { r: 15; opacity: 0.05; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-home" href="#">FORM</a>
+  <span class="nav-sub">Athlete</span>
+</nav>
+
+<main class="content">
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="hdr-top">
+      <div class="hdr-identity">
+        <span class="hdr-tag">Miami · Tuesday 6 AM · Run well. Get faster.</span>
+        <h1 class="hdr-name">Simon</h1>
+      </div>
+      <div class="hdr-pr">
+        <div class="hdr-pr-row">
+          <span class="hdr-pr-label">5K</span>
+          <span class="hdr-pr-val">17:35</span>
+          <span class="hdr-pr-sub">5:39 /mi</span>
+          <span class="hdr-pr-sub-sep">·</span>
+          <span class="hdr-pr-sub-km">3:29 /km</span>
+        </div>
+        <div class="hdr-pr-row">
+          <span class="hdr-pr-label">10K goal</span>
+          <span class="hdr-pr-val goal">sub 37:17</span>
+          <span class="hdr-pr-sub">6:00 /mi</span>
+          <span class="hdr-pr-sub-sep">·</span>
+          <span class="hdr-pr-sub-km">3:44 /km</span>
+        </div>
+        <div class="hdr-pr-row">
+          <span class="hdr-pr-label">Half</span>
+          <span class="hdr-pr-val">1:26:15</span>
+          <span class="hdr-pr-sub">6:35 /mi</span>
+          <span class="hdr-pr-sub-sep">·</span>
+          <span class="hdr-pr-sub-km">4:06 /km</span>
+        </div>
+      </div>
+    </div>
+    <div class="hdr-bottom">
+      <p class="hdr-sub">Improve form. Let speed emerge.</p>
+    </div>
+  </div>
+
+  <!-- CHART -->
+  <div class="chart-wrap">
+    <span class="s-label">This block · pace <span style="font-weight:400; letter-spacing:0.06em; text-transform:none; color:var(--ink-f); font-size:8px;">· session avg</span></span>
+    <svg id="chart" xmlns="http://www.w3.org/2000/svg"></svg>
+  </div>
+
+  <!-- COACHING LAYER -->
+  <div class="coaching-block">
+    <span class="s-label" style="display:block; padding: 14px 16px 0; margin-bottom: 12px;">This block · what to do</span>
+    <div class="directive-strip">
+      <div class="directive-item">
+        <span class="directive-label">Before the first lap</span>
+        <span class="directive-text">180 by lap 2. No easing in.</span>
+      </div>
+      <div class="directive-item">
+        <span class="directive-label">Jun 2 · 30 min</span>
+        <span class="directive-text">Settle at 3:44 by minute 5. Hold it for 30. No float.</span>
+      </div>
+    </div>
+    <div class="coaching-bottom">
+      <div class="watch-strip">
+        <span class="watch-label">Watch for</span>
+        <div class="watch-pills">
+          <span class="watch-pill">Hands climbing</span>
+          <span class="watch-pill">Big steps</span>
+          <span class="watch-pill">Lazy arms</span>
+        </div>
+      </div>
+      <div class="cues-inline">
+        <div class="cue-inline-item">
+          <span class="cue-inline-label">Feet</span>
+          <span class="cue-inline-text">Quick. 210ms. No reaching.</span>
+        </div>
+        <div class="cue-inline-item">
+          <span class="cue-inline-label">Arms</span>
+          <span class="cue-inline-text">Wrists low. Hip to hip. Keep them moving.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEXT SESSION -->
+  <div class="next-callout">
+    <div class="next-num">Jun 2 · 30 min<br>3:44 /km · 6:00 /mi</div>
+    <div class="next-divider"></div>
+    <div class="next-body">
+      <span class="next-title">Week 3 · continuous · track</span>
+      <span class="next-desc">Settle at 3:44 by minute 5. Hold it for 30. No float.</span>
+    </div>
+  </div>
+
+  <!-- ARCHIVE / COACH NOTES -->
+  <div class="archive">
+
+    <span class="s-label">Training notes</span>
+
+    <!-- SESSION LOG -->
+    <div class="archive-section">
+      <div class="archive-section-hd">
+        <span class="archive-section-title">Last two sessions</span>
+      </div>
+      <div class="archive-section-body">
+
+        <div class="session-entry">
+          <div class="session-meta">
+            <span class="session-date">May 20</span>
+            <span class="session-name">3 × 10 min · track</span>
+          </div>
+          <div class="session-splits">
+            <div class="split-block">
+              <span class="split-mi">6:18 /mi</span>
+              <span class="split-km">3:55 /km</span>
+            </div>
+            <span class="split-arrow">→</span>
+            <div class="split-block">
+              <span class="split-mi">6:12 /mi</span>
+              <span class="split-km">3:50 /km</span>
+            </div>
+            <span class="split-arrow">→</span>
+            <div class="split-block">
+              <span class="split-mi">6:09 /mi</span>
+              <span class="split-km">3:48 /km</span>
+            </div>
+          </div>
+          <div class="session-data">
+            <span class="session-data-text"><span class="m-miss">168 spm</span><span class="m-target"> → 178–180</span> · <span class="m-miss">244ms ground</span><span class="m-target"> → 210–215ms</span> · stamina ended 36% · 31% Zone 5</span>
+          </div>
+          <div class="session-takeaway">
+            <p class="session-takeaway-text">168 spm. Too passive early. Got there eventually.</p>
+            <p class="session-takeaway-action">You wait too long to run well.</p>
+          </div>
+        </div>
+
+        <div class="session-entry is-recent">
+          <div class="session-meta">
+            <span class="session-date">May 26</span>
+            <span class="session-name">20 min + 10 min · track</span>
+          </div>
+          <div class="session-splits">
+            <div class="split-block">
+              <span class="split-mi">6:14 /mi</span>
+              <span class="split-km">3:52 /km</span>
+            </div>
+            <span class="split-arrow">→</span>
+            <div class="split-block">
+              <span class="split-mi dim">2 min float</span>
+              <span class="split-km">&nbsp;</span>
+            </div>
+            <span class="split-arrow">→</span>
+            <div class="split-block">
+              <span class="split-mi accent">6:04 /mi</span>
+              <span class="split-km accent">3:46 /km</span>
+            </div>
+          </div>
+          <div class="session-data">
+            <span class="session-data-text"><span class="m-hit">178–180 spm ✓</span> · <span class="m-miss">~220ms ground</span><span class="m-target"> → 210–215ms</span> · performance condition +5 to +6 · stamina ended 50%</span>
+          </div>
+          <div class="session-takeaway">
+            <p class="session-takeaway-text">You can already touch goal pace tired.</p>
+            <p class="session-takeaway-action">Now hold it for 30.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- COACH NOTES — dissolved -->
+    <div class="coach-notes">
+      <div class="coach-note-item">
+        <span class="coach-note-label">What changed</span>
+        <p class="coach-note-body">More steps. Less time on the ground. Faster pace. More left at the end.</p>
+      </div>
+      <div class="coach-note-item">
+        <span class="coach-note-label">Where you are</span>
+        <p class="coach-note-body">You can already touch goal pace tired. Now hold it for 30.</p>
+      </div>
+      <div class="coach-note-item">
+        <span class="coach-note-label">Why the track</span>
+        <p class="coach-note-body">No hills, no turns, no guessing. The track gives you the same loop every time — so when the numbers change, you know it's you, not the terrain. Same loop. Real signal.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="foot">
+    <span class="foot-brand">FORM</span>
+    <div style="display:flex; align-items:center; gap:14px;">
+      <span class="foot-note">Miami · 2026</span>
+      <span style="color:var(--line); font-size:9px;">·</span>
+      <span class="foot-note" style="color:var(--ink-f); font-weight:400; letter-spacing:0.12em; text-transform:none; font-size:9px;">Updated after each session</span>
+      <span style="color:var(--line); font-size:9px;">·</span>
+      <a href="https://apps.apple.com/us/app/form-practice/id6761313085" class="hdr-link" style="font-size:9px; letter-spacing:0.12em; color:var(--ink-f);">iOS app</a>
+      <span style="color:var(--line); font-size:9px;">·</span>
+      <a href="https://speedandform.com" class="hdr-link" style="font-size:9px; letter-spacing:0.12em; color:var(--ink-f);">join a session</a>
+    </div>
+  </div>
+
+</main>
+
+<script>
+(function () {
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.getElementById('chart');
+
+  const sessions = [
+    { mi:371, km:231, miStr:'6:11', kmStr:'3:51', date:'May 20', name:'3 × 10 min',         done:true             },
+    { mi:368, km:229, miStr:'6:08', kmStr:'3:49', date:'May 26', name:'20 + 10 min',        done:true, today:true  },
+    { mi:360, km:224, miStr:'6:00', kmStr:'3:44', date:'Jun 2',  name:'30 min',             future:true           },
+    { mi:360, km:224, miStr:'6:00', kmStr:'3:44', date:'Jun 9',  name:'40 min / 10K trial', nameMobile:['40 min','10K trial'], future:true, far:true  },
+  ];
+
+  const C = {
+    cream:'#edecea', line:'#ccc9c3', lineL:'#dedad4', inkF:'#8a8680', inkL:'#5e5b56',
+    inkD:'#3d3b38', ink:'#1e1d1b', accent:'#c4593a', green:'#3d6e52'
+  };
+
+  const el = (tag, attrs, text) => {
+    const e = document.createElementNS(NS, tag);
+    Object.entries(attrs).forEach(([k,v]) => e.setAttribute(k,v));
+    if (text !== undefined) e.textContent = text;
+    return e;
+  };
+
+  let resizeTimer;
+
+  function renderChart() {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+    const W = svg.parentElement.clientWidth || 536;
+    const mobile = W <= 520;
+    const xAxisH = mobile ? 132 : 100;
+    const graphH = mobile ? 248 : 280;
+    const PAD = mobile
+      ? { top: 30, right: 46, bottom: xAxisH, left: 44 }
+      : { top: 36, right: 28, bottom: xAxisH, left: 52 };
+    const H = graphH + xAxisH;
+    const gW = W - PAD.left - PAD.right;
+    const gH = graphH - PAD.top;
+    const n = sessions.length;
+
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.setAttribute('width', W);
+    svg.setAttribute('height', H);
+    svg.style.overflow = 'visible';
+
+    const xPos = sessions.map((_, i) => PAD.left + (i / (n - 1)) * gW);
+    const yMin = 354, yMax = 379;
+    const toY = sec => PAD.top + gH * ((sec - yMin) / (yMax - yMin));
+
+    svg.appendChild(el('rect', { x: 0, y: 0, width: W, height: H, fill: C.cream }));
+
+    const targetY = toY(360);
+    svg.appendChild(el('rect', { x: PAD.left, y: PAD.top, width: gW, height: targetY - PAD.top, fill: C.green, opacity: '0.03' }));
+
+    const yLabelX = PAD.left - (mobile ? 6 : 9);
+    const yKmX = W - PAD.right + (mobile ? 4 : 9);
+    const axisHdrY = PAD.top - (mobile ? 14 : 16);
+
+    [360, 365, 370, 375].forEach(sec => {
+      const y = toY(sec), isTgt = sec === 360;
+      const m = Math.floor(sec / 60), s = String(sec % 60).padStart(2, '0');
+      svg.appendChild(el('line', { x1: PAD.left, y1: y, x2: W - PAD.right, y2: y, stroke: isTgt ? C.green : C.lineL, 'stroke-width': '1', 'stroke-dasharray': isTgt ? '3 6' : 'none', opacity: isTgt ? '0.6' : '1' }));
+      svg.appendChild(el('text', { x: yLabelX, y: y + 4, 'text-anchor': 'end', fill: isTgt ? C.green : C.inkD, 'font-family': 'Jost,sans-serif', 'font-size': mobile ? '9' : '10', 'font-weight': isTgt ? '500' : '400' }, `${m}:${s}`));
+      const skm = Math.round(sec / 1.60934);
+      const mk = Math.floor(skm / 60), sk2 = String(skm % 60).padStart(2, '0');
+      svg.appendChild(el('text', { x: yKmX, y: y + 4, 'text-anchor': 'start', fill: isTgt ? C.green : C.inkF, 'font-family': 'Jost,sans-serif', 'font-size': mobile ? '8' : '9', 'font-weight': '300' }, `${mk}:${sk2}`));
+    });
+
+    svg.appendChild(el('text', { x: yLabelX, y: axisHdrY, 'text-anchor': 'end', fill: C.inkD, 'font-family': 'Jost,sans-serif', 'font-size': '8', 'font-weight': '500', 'letter-spacing': '0.16em' }, 'MIN/MI'));
+    svg.appendChild(el('text', { x: yKmX, y: axisHdrY, 'text-anchor': 'start', fill: C.inkF, 'font-family': 'Jost,sans-serif', 'font-size': '8', 'font-weight': '400', 'letter-spacing': '0.12em' }, 'MIN/KM'));
+    svg.appendChild(el('text', { x: yLabelX, y: PAD.top - 5, 'text-anchor': 'end', fill: C.inkF, 'font-family': 'Jost,sans-serif', 'font-size': '8', 'letter-spacing': '0.08em' }, '↑ faster'));
+
+    xPos.forEach(cx => svg.appendChild(el('line', { x1: cx, y1: PAD.top, x2: cx, y2: graphH, stroke: C.line, 'stroke-width': '1', opacity: '0.45' })));
+
+    const doneIdx = sessions.flatMap((s, i) => s.done ? [i] : []);
+    if (doneIdx.length > 1) {
+      const d = doneIdx.map((i, j) => `${j ? 'L' : 'M'}${xPos[i]},${toY(sessions[i].mi)}`).join(' ');
+      const path = el('path', { d, fill: 'none', stroke: C.ink, 'stroke-width': '2', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
+      svg.appendChild(path);
+      const len = path.getTotalLength?.() ?? 400;
+      Object.assign(path.style, { strokeDasharray: len, strokeDashoffset: len, transition: 'stroke-dashoffset 1.0s cubic-bezier(0.16,1,0.3,1) 0.3s' });
+      setTimeout(() => { path.style.strokeDashoffset = '0'; }, 50);
+    }
+
+    const lastDone = Math.max(...doneIdx);
+    const futureIdx = sessions.flatMap((s, i) => s.future ? [i] : []);
+    if (futureIdx.length) {
+      const pts = [lastDone, ...futureIdx];
+      const projD = pts.map((i, j) => `${j ? 'L' : 'M'}${xPos[i]},${toY(sessions[i].mi)}`).join(' ');
+      const proj = el('path', { d: `M${xPos[lastDone]},${toY(sessions[lastDone].mi)}`, fill: 'none', stroke: C.accent, 'stroke-width': '1.5', 'stroke-dasharray': '4 5', 'stroke-linecap': 'round', opacity: '0.6' });
+      svg.appendChild(proj);
+      setTimeout(() => {
+        proj.setAttribute('d', projD);
+        const pl = proj.getTotalLength?.() ?? 300;
+        Object.assign(proj.style, { strokeDasharray: pl, strokeDashoffset: pl, transition: 'stroke-dashoffset 0.9s cubic-bezier(0.16,1,0.3,1)' });
+        setTimeout(() => { proj.style.strokeDashoffset = '0'; }, 20);
+      }, 1100);
+    }
+
+    sessions.forEach((s, i) => {
+      const cx = xPos[i], cy = toY(s.mi);
+      if (s.today) {
+        const ring = el('circle', { cx, cy, r: mobile ? '9' : '11', fill: 'none', stroke: C.accent, 'stroke-width': '1', opacity: '0.18' });
+        svg.appendChild(ring);
+        ring.style.animation = 'pulse-ring 2s ease-in-out infinite';
+      }
+      svg.appendChild(el('circle', {
+        cx, cy,
+        r: s.future ? (mobile ? '3.5' : '4') : (mobile ? '5' : '5.5'),
+        fill: s.today ? C.accent : s.future ? C.cream : C.ink,
+        stroke: s.future ? (s.far ? C.line : C.inkF) : s.today ? C.accent : C.ink,
+        'stroke-width': '1.5'
+      }));
+    });
+
+    const axisTop = graphH + (mobile ? 10 : 12);
+    const dateSize = mobile ? '8' : '9';
+    const nameSize = mobile ? '12' : '15';
+    const paceSize = mobile ? '13' : '15';
+    const kmSize = mobile ? '9' : '10';
+    const dateTrack = mobile ? '0.14em' : '0.2em';
+
+    sessions.forEach((s, i) => {
+      const cx = xPos[i];
+      const anchor = mobile ? 'middle' : (i === 0 ? 'start' : i === n - 1 ? 'end' : 'middle');
+      const datCol = s.future ? C.inkF : C.inkD;
+      const pacCol = s.today ? C.accent : s.future ? C.inkL : C.ink;
+      const dimCol = s.far ? C.inkF : C.inkL;
+
+      if (!mobile) {
+        svg.appendChild(el('text', { x: cx, y: axisTop + 14, 'text-anchor': anchor, fill: datCol, 'font-family': 'Jost,sans-serif', 'font-size': dateSize, 'font-weight': '500', 'letter-spacing': dateTrack }, s.date.toUpperCase()));
+        svg.appendChild(el('text', { x: cx, y: axisTop + 31, 'text-anchor': anchor, fill: C.inkL, 'font-family': 'Cormorant Garamond,serif', 'font-size': nameSize, 'font-weight': '300', 'font-style': 'italic' }, s.name));
+        svg.appendChild(el('text', { x: cx, y: axisTop + 50, 'text-anchor': anchor, fill: pacCol, 'font-family': 'Jost,sans-serif', 'font-size': paceSize, 'font-weight': s.future ? '400' : '500' }, s.miStr + ' /mi'));
+        svg.appendChild(el('text', { x: cx, y: axisTop + 66, 'text-anchor': anchor, fill: dimCol, 'font-family': 'Jost,sans-serif', 'font-size': kmSize, 'font-weight': '400' }, s.kmStr + ' /km'));
+        return;
+      }
+
+      let y = axisTop + 11;
+      svg.appendChild(el('text', { x: cx, y, 'text-anchor': anchor, fill: datCol, 'font-family': 'Jost,sans-serif', 'font-size': dateSize, 'font-weight': '500', 'letter-spacing': dateTrack }, s.date.toUpperCase()));
+      y += 14;
+      if (s.nameMobile) {
+        s.nameMobile.forEach((line, li) => {
+          svg.appendChild(el('text', { x: cx, y: y + li * 13, 'text-anchor': anchor, fill: C.inkL, 'font-family': 'Cormorant Garamond,serif', 'font-size': nameSize, 'font-weight': '300', 'font-style': 'italic' }, line));
+        });
+        y += s.nameMobile.length * 13 + 5;
+      } else {
+        svg.appendChild(el('text', { x: cx, y, 'text-anchor': anchor, fill: C.inkL, 'font-family': 'Cormorant Garamond,serif', 'font-size': nameSize, 'font-weight': '300', 'font-style': 'italic' }, s.name));
+        y += 16;
+      }
+      svg.appendChild(el('text', { x: cx, y, 'text-anchor': anchor, fill: pacCol, 'font-family': 'Jost,sans-serif', 'font-size': paceSize, 'font-weight': s.future ? '400' : '500' }, s.miStr + ' /mi'));
+      y += 14;
+      svg.appendChild(el('text', { x: cx, y, 'text-anchor': anchor, fill: dimCol, 'font-family': 'Jost,sans-serif', 'font-size': kmSize, 'font-weight': '400' }, s.kmStr + ' /km'));
+    });
+  }
+
+  renderChart();
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(renderChart, 120);
+  });
+})();
+</script>
+</body>
+</html>
