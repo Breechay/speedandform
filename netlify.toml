@@ -416,3 +416,13 @@
   from = "/village-intake"
   to = "/village-intake.html"
   status = 200
+
+[[redirects]]
+  from = "/perception-manual"
+  to = "/perception-manual.html"
+  status = 200
+
+[[redirects]]
+  from = "/form/perception-manual"
+  to = "/perception-manual.html"
+  status = 301
