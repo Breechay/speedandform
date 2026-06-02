@@ -27,6 +27,7 @@ When both **`speedandform`** and **`FORM-iOS`** roots are in the workspace, trea
 | Area | Notes |
 |------|--------|
 | Deploy | `netlify.toml`, `_redirects` |
+| Perception Manual (SoT) | `perception-manual.html` + `assets/perception-manual/` — see `docs/PERCEPTION_MANUAL.md` |
 | Coach | `coach.html` — production; do not replace casually |
 | New SPA | Follow internal specs; match tokens in `form_web_spec_v2.md` where applicable |
 
