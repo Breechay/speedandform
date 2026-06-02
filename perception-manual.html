@@ -45,7 +45,7 @@ body {
 .page:last-child { border-bottom: none; }
 .display {
   font-family: 'EB Garamond', serif;
-  font-size: 80px;
+  font-size: clamp(48px, 7vw, 80px);
   font-weight: 400;
   letter-spacing: -2px;
   line-height: 0.9;
@@ -154,15 +154,75 @@ p { margin-bottom: 1.1em; font-size: 15px; line-height: 1.85; }
   display: flex; justify-content: space-between;
   font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint);
 }
+
+html { scroll-behavior: smooth; }
+body { margin-left: 200px; }
+.page { scroll-margin-top: 40px; }
+#sidebar {
+  position: fixed; left: 0; top: 0; width: 200px; height: 100vh;
+  background: var(--cream); border-right: 1px solid var(--rule);
+  padding: 32px 0 24px; z-index: 50; overflow-y: auto;
+  display: flex; flex-direction: column;
+}
+#sidebar .nav-brand {
+  font-family: 'EB Garamond', serif; font-size: 18px; letter-spacing: -0.02em;
+  padding: 0 24px 24px; border-bottom: 1px solid var(--rule); margin-bottom: 16px;
+}
+#sidebar nav { flex: 1; }
+#sidebar a {
+  display: block; padding: 10px 24px;
+  font-family: 'EB Garamond', serif; font-size: 12px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-faint); text-decoration: none;
+  border-left: 2px solid transparent; transition: color 0.2s, border-color 0.2s;
+}
+#sidebar a.active { color: var(--ink); border-left-color: var(--ink); }
+#progress-bar {
+  position: fixed; top: 0; left: 200px; right: 0; height: 2px;
+  background: var(--ink); transform-origin: left; transform: scaleX(0);
+  z-index: 100; transition: transform 0.1s linear; pointer-events: none;
+}
+.reveal {
+  opacity: 0; transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.principle-name { cursor: pointer; display: flex; justify-content: space-between; align-items: baseline; }
+.principle.collapsed .principle-body { overflow: hidden; max-height: 0; margin-bottom: 0 !important; transition: max-height 0.4s ease, margin-bottom 0.3s ease; }
+.principle.open .principle-body { max-height: 2000px; }
+.toggle-icon { font-family: Inter, sans-serif; font-size: 14px; font-weight: 300; color: var(--ink-faint); flex-shrink: 0; margin-left: 12px; }
+@media (max-width: 900px) {
+  body { margin-left: 0; }
+  #sidebar { display: none; }
+  #progress-bar { left: 0; }
+}
+
 @media print { .page { page-break-after: always; } }
 </style>
 </head>
 <body>
+<div id="progress-bar"></div>
+<aside id="sidebar">
+  <div class="nav-brand">FORM</div>
+  <nav id="chapter-nav">
+    <a href="#ch-01" data-chapter="ch-01"><span style="opacity:0.5;margin-right:8px;">01</span>Foundation</a>
+    <a href="#ch-02" data-chapter="ch-02"><span style="opacity:0.5;margin-right:8px;">02</span>Principles</a>
+    <a href="#ch-03" data-chapter="ch-03"><span style="opacity:0.5;margin-right:8px;">03</span>Visual Ref</a>
+    <a href="#ch-04" data-chapter="ch-04"><span style="opacity:0.5;margin-right:8px;">04</span>Selection</a>
+    <a href="#ch-05" data-chapter="ch-05"><span style="opacity:0.5;margin-right:8px;">05</span>Capture</a>
+    <a href="#ch-06" data-chapter="ch-06"><span style="opacity:0.5;margin-right:8px;">06</span>Profiles</a>
+    <a href="#ch-07" data-chapter="ch-07"><span style="opacity:0.5;margin-right:8px;">07</span>Edit</a>
+    <a href="#ch-08" data-chapter="ch-08"><span style="opacity:0.5;margin-right:8px;">08</span>Color</a>
+    <a href="#ch-09" data-chapter="ch-09"><span style="opacity:0.5;margin-right:8px;">09</span>Delete</a>
+    <a href="#ch-10" data-chapter="ch-10"><span style="opacity:0.5;margin-right:8px;">10</span>Palette</a>
+    <a href="#ch-11" data-chapter="ch-11"><span style="opacity:0.5;margin-right:8px;">11</span>LUTs</a>
+  </nav>
+</aside>
 
 <!-- ══════════════════════════════
      COVER
 ══════════════════════════════ -->
-<div class="page" style="padding:0; overflow:hidden; min-height:100vh; display:grid; grid-template-columns:1fr 1fr; gap:0;">
+<div class="page" id="cover" style="padding:0; overflow:hidden; min-height:100vh; display:grid; grid-template-columns:1fr 1fr; gap:0;">
 
   <!-- LEFT: Text -->
   <div style="padding:72px 48px 72px 72px; display:flex; flex-direction:column; justify-content:space-between;">
@@ -217,7 +277,7 @@ p { margin-bottom: 1.1em; font-size: 15px; line-height: 1.85; }
 <!-- ══════════════════════════════
      01 — THINGS SHAPED BY TIME
 ══════════════════════════════ -->
-<div class="page">
+<div class="page" id="ch-01">
   <div class="chapter-num">01</div>
   <div class="chapter-title">Things Shaped by Time</div>
   <div class="chapter-sub">The aesthetic foundation</div>
@@ -311,7 +371,7 @@ p { margin-bottom: 1.1em; font-size: 15px; line-height: 1.85; }
 <!-- ══════════════════════════════
      02 — SIX GOVERNING PRINCIPLES
 ══════════════════════════════ -->
-<div class="page">
+<div class="page" id="ch-02">
   <div class="chapter-num">02</div>
   <div class="chapter-title">Six Governing Principles</div>
   <div class="chapter-sub">These are the doctrine. LUTs and presets are implementation.</div>
@@ -388,19 +448,11 @@ p { margin-bottom: 1.1em; font-size: 15px; line-height: 1.85; }
 <!-- ══════════════════════════════
      03 — VISUAL REFERENCE
 ══════════════════════════════ -->
-<div class="page">
+<div class="page" id="ch-03">
   <div class="chapter-num">03</div>
   <div class="chapter-title">Visual Reference</div>
   <div class="chapter-sub">Miami After Rain — the canonical FIELD reference. The full spectrum.</div>
 
-  <!-- Simon full width at top — the primary reference -->
-  <div style="margin-bottom:8px;">
-    <img src="/assets/perception-manual/05.jpg" style="width:100%; display:block; max-height:380px; object-fit:cover; object-position:center 30%;" alt="">
-  </div>
-  <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:36px;">
-    <div class="caption" style="margin-bottom:0;">Miami after rain — the canonical FORM FIELD frame. Wet track, reflection, movement, anonymous athlete, city softened into atmosphere.</div>
-    <div style="font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-faint); white-space:nowrap; margin-left:24px;">The grade test: remove it. The frame survives.</div>
-  </div>
 
   <div class="two-col" style="gap:32px; align-items:start;">
     <div>
@@ -487,7 +539,7 @@ p { margin-bottom: 1.1em; font-size: 15px; line-height: 1.85; }
 <!-- ══════════════════════════════
      04 — SELECTION
 ══════════════════════════════ -->
-<div class="page">
+<div class="page" id="ch-04">
   <div class="chapter-num">04</div>
   <div class="chapter-title">Selection</div>
   <div class="chapter-sub">The first and most important step.</div>
@@ -562,7 +614,7 @@ p { margin-bottom: 1.1em; font-size: 15px; line-height: 1.85; }
 <!-- ══════════════════════════════
      05 — CAPTURE
 ══════════════════════════════ -->
-<div class="page">
+<div class="page" id="ch-05">
   <div class="chapter-num">05</div>
   <div class="chapter-title">Capture</div>
   <div class="chapter-sub">Camera, lens language, and shot archetypes</div>
@@ -646,7 +698,7 @@ p { margin-bottom: 1.1em; font-size: 15px; line-height: 1.85; }
 <!-- ══════════════════════════════
      06 — CAMERA PROFILES
 ══════════════════════════════ -->
-<div class="page">
+<div class="page" id="ch-06">
   <div class="chapter-num">06</div>
   <div class="chapter-title">Camera Profiles</div>
   <div class="chapter-sub">HLG3, Rec.709, and S-Log2 — choose based on the situation. Each has a purpose.</div>
@@ -712,7 +764,7 @@ p { margin-bottom: 1.1em; font-size: 15px; line-height: 1.85; }
 <!-- ══════════════════════════════
      07 — EDIT
 ══════════════════════════════ -->
-<div class="page">
+<div class="page" id="ch-07">
   <div class="chapter-num">07</div>
   <div class="chapter-title">Editing & Sound</div>
   <div class="chapter-sub">Rhythm, movement, and music</div>
@@ -762,7 +814,7 @@ p { margin-bottom: 1.1em; font-size: 15px; line-height: 1.85; }
 <!-- ══════════════════════════════
      08 — COLOR DIRECTION
 ══════════════════════════════ -->
-<div class="page">
+<div class="page" id="ch-08">
   <div class="chapter-num">08</div>
   <div class="chapter-title">Color & Tone</div>
   <div class="chapter-sub">Palette, grade, and atmosphere. Muted. Earth-forward. Shadows hold color. Skin is warm, not orange. Contrast is gentle.</div>
@@ -849,6 +901,50 @@ p { margin-bottom: 1.1em; font-size: 15px; line-height: 1.85; }
 
   <div class="rule"></div>
 
+
+  <div class="rule"></div>
+
+  <span class="label">FORM Branches</span>
+  <div style="margin-top:16px;">
+    <div class="branch">
+      <div class="branch-name">FORM FIELD</div>
+      <div class="branch-items">
+        Outdoor / athletic<br>
+        Rain, ocean, track, skin in motion<br>
+        FIELD_HLG · FIELD_Rec709<br>
+        Airy exposure · navy shadows · open highlights
+      </div>
+    </div>
+    <div class="branch">
+      <div class="branch-name">FORM STILL</div>
+      <div class="branch-items">
+        Interior / editorial / cultivated<br>
+        Stone, glass, warm light, ceremony<br>
+        STILL_HLG · STILL_Rec709<br>
+        Lifted shadows · matte skin · rolled highlights
+      </div>
+    </div>
+    <div class="branch" style="border-color: var(--ink-muted);">
+      <div class="branch-name">FORM MOMENT</div>
+      <div style="font-size:11px; color:var(--ink-muted); margin-bottom:12px; font-style:italic;">Under development. The editorial branch.</div>
+      <div class="branch-items">
+        Sunday albums<br>
+        Hideout<br>
+        Portraits<br>
+        Hero frames<br>
+        Instagram selects<br>
+        Slightly richer reds<br>
+        Deeper blacks<br>
+        Warmer skin<br>
+        Subdued greens<br>
+        Subtle grain<br>
+        Gentle vignette<br>
+        Emotional emphasis
+      </div>
+      <p style="font-size:11px; color:var(--ink-muted); margin-top:14px;">The Simon frame is still FIELD. MOMENT amplifies what FIELD discovers.</p>
+    </div>
+  </div>
+
   <span class="label">Never</span>
   <div style="margin-top:10px;">
     <div class="never-item"><span class="never-dash">—</span><span>Teal-orange split tone — moves toward generic fitness, away from FORM</span></div>
@@ -864,7 +960,7 @@ p { margin-bottom: 1.1em; font-size: 15px; line-height: 1.85; }
 <!-- ══════════════════════════════
      09 — WHAT TO DELETE
 ══════════════════════════════ -->
-<div class="page">
+<div class="page" id="ch-09">
   <div class="chapter-num">09</div>
   <div class="chapter-title">What to Delete</div>
   <div class="chapter-sub">Ruthless editing is a creative act. If it doesn't serve the image, delete it. Mercy is the enemy of meaning.</div>
@@ -914,7 +1010,7 @@ p { margin-bottom: 1.1em; font-size: 15px; line-height: 1.85; }
 <!-- ══════════════════════════════
      10 — COLOR PALETTE
 ══════════════════════════════ -->
-<div class="page">
+<div class="page" id="ch-10">
   <div class="chapter-num">10</div>
   <div class="chapter-title">Color Palette</div>
   <div class="chapter-sub">Two worlds, one luminosity</div>
@@ -988,7 +1084,7 @@ p { margin-bottom: 1.1em; font-size: 15px; line-height: 1.85; }
 <!-- ══════════════════════════════
      11 — LUT & PRESET SPECS
 ══════════════════════════════ -->
-<div class="page">
+<div class="page" id="ch-11">
   <div class="chapter-num">11</div>
   <div class="chapter-title">Preset & LUT Specifications</div>
   <div class="chapter-sub">Tools for consistency. Use these as starting points, not rules. The score.</div>
@@ -1014,6 +1110,20 @@ p { margin-bottom: 1.1em; font-size: 15px; line-height: 1.85; }
   </div>
 
   <p style="font-size:11px; color:var(--ink-muted); margin-bottom:24px;">Apply at 20–40% strength. Adjust white balance after LUT.</p>
+
+  <div id="lut-helper" style="margin:28px 0; border:1px solid var(--rule); padding:22px;">
+    <div class="label" style="margin-bottom:14px;">LUT Selector</div>
+    <div style="display:flex; gap:12px; margin-bottom:16px; flex-wrap:wrap;">
+      <button type="button" onclick="selectLUT('field')" id="btn-field" style="padding:8px 16px; border:1px solid var(--ink); background:transparent; font-family:'Inter',sans-serif; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer;">Field / Outdoor</button>
+      <button type="button" onclick="selectLUT('still')" id="btn-still" style="padding:8px 16px; border:1px solid var(--rule); background:transparent; font-family:'Inter',sans-serif; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; color:var(--ink-muted);">Interior / Still</button>
+    </div>
+    <div style="display:flex; gap:12px; margin-bottom:20px; flex-wrap:wrap;">
+      <button type="button" onclick="selectSource('hlg')" id="btn-hlg" style="padding:6px 14px; border:1px solid var(--ink); background:transparent; font-family:'Inter',sans-serif; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer;">HLG3 Source</button>
+      <button type="button" onclick="selectSource('rec')" id="btn-rec" style="padding:6px 14px; border:1px solid var(--rule); background:transparent; font-family:'Inter',sans-serif; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; color:var(--ink-muted);">Rec.709 Source</button>
+    </div>
+    <div id="lut-result" style="font-family:'Inter',monospace; font-size:13px; padding:14px 18px; background:var(--ink); color:white; letter-spacing:0.06em;">FIELD_HLG.cube</div>
+    <div style="font-size:10px; color:var(--ink-muted); margin-top:8px;">Apply at 20–40% strength. Adjust white balance after.</div>
+  </div>
 
   <div class="rule"></div>
 
@@ -1088,6 +1198,90 @@ p { margin-bottom: 1.1em; font-size: 15px; line-height: 1.85; }
 
   <div class="page-footer"><span>Form</span><span>11 — Preset & LUT Specifications</span></div>
 </div>
+
+
+<script>
+(function () {
+  document.querySelectorAll('.page[id^="ch-"]').forEach(page => {
+    Array.from(page.children).forEach(child => {
+      if (child.classList.contains('page-footer')) return;
+      const wrap = document.createElement('div');
+      wrap.className = 'reveal';
+      page.insertBefore(wrap, child);
+      wrap.appendChild(child);
+    });
+  });
+
+  const revealIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealIO.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(r => revealIO.observe(r));
+
+  const bar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const max = document.body.scrollHeight - window.innerHeight;
+    bar.style.transform = 'scaleX(' + (max > 0 ? window.scrollY / max : 0) + ')';
+  }, { passive: true });
+
+  const navLinks = document.querySelectorAll('#chapter-nav a');
+  const pages = ['ch-01','ch-02','ch-03','ch-04','ch-05','ch-06','ch-07','ch-08','ch-09','ch-10','ch-11']
+    .map(id => document.getElementById(id)).filter(Boolean);
+  const navIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.classList.toggle('active', a.dataset.chapter === e.target.id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+  pages.forEach(p => navIO.observe(p));
+
+  document.querySelectorAll('.principle').forEach(principle => {
+    const name = principle.querySelector('.principle-name');
+    if (!name) return;
+    principle.querySelectorAll('p').forEach(p => p.classList.add('principle-body'));
+    principle.classList.add('collapsed');
+    name.insertAdjacentHTML('beforeend', '<span class="toggle-icon">+</span>');
+    name.addEventListener('click', () => {
+      const open = !principle.classList.contains('open');
+      principle.classList.toggle('open', open);
+      principle.classList.toggle('collapsed', !open);
+      name.querySelector('.toggle-icon').textContent = open ? '−' : '+';
+    });
+  });
+})();
+
+let lutMode = 'field', lutSrc = 'hlg';
+function updateLUT() {
+  const map = {
+    field: { hlg: 'FIELD_HLG.cube', rec: 'FIELD_Rec709.cube' },
+    still: { hlg: 'STILL_HLG.cube', rec: 'STILL_Rec709.cube' }
+  };
+  document.getElementById('lut-result').textContent = map[lutMode][lutSrc];
+}
+function selectLUT(v) {
+  lutMode = v;
+  ['field', 'still'].forEach(id => {
+    const btn = document.getElementById('btn-' + id);
+    btn.style.borderColor = id === v ? 'var(--ink)' : 'var(--rule)';
+    btn.style.color = id === v ? 'var(--ink)' : 'var(--ink-muted)';
+  });
+  updateLUT();
+}
+function selectSource(v) {
+  lutSrc = v;
+  ['hlg', 'rec'].forEach(id => {
+    const btn = document.getElementById('btn-' + id);
+    btn.style.borderColor = id === v ? 'var(--ink)' : 'var(--rule)';
+    btn.style.color = id === v ? 'var(--ink)' : 'var(--ink-muted)';
+  });
+  updateLUT();
+}
+</script>
 
 </body>
 </html>
