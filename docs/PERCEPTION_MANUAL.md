@@ -21,6 +21,8 @@ There is no second HTML in the repo. Downloads / Claude exports with `data:image
 
 Images load from the repo on the live site. Claude does not need embedded base64 for normal edits.
 
+**Hideout capture note:** ch.04b documents how Hideout looks on camera (opening, service, gathering). Business identity lives in `hideout-ops-console/docs/HIDEOUT_HOUSE_DOCTRINE.md` — neighborhood infrastructure, stewardship, conditions.
+
 ## When Claude gives you a new full export (rare)
 
 Use only when Claude rebuilt the page and sent a **new** `FORM_Perception_Manual_*.html` with embedded images (e.g. new photos or reordered images).
