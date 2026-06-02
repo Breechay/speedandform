@@ -10,23 +10,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FORM — A Perception Manual v10</title>
+<title>FORM — A Perception Manual</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --cream: #F5F2EC;
-  --ink: #1A1A18;
-  --ink-mid: #4A4A48;
-  --ink-muted: #6B6B68;
-  --ink-faint: #B0AFA8;
-  --rule: #D8D4CC;
-  --sidebar-w: 236px;
-  --content-max: 960px;
-  --page-v: 96px;
-  --page-h: clamp(28px, 5vw, 72px);
+  --cream: #F4F0E8;
+  --cream-warm: #EDE8DE;
+  --ink: #181714;
+  --ink-mid: #3E3B36;
+  --ink-muted: #6E6A62;
+  --ink-faint: #A8A49C;
+  --ink-ghost: #C8C4BC;
+  --rule: #D4CFC6;
+  --rule-soft: #E4E0D8;
+  --sidebar-w: 220px;
+  --content-max: 900px;
 }
 
 html {
@@ -37,1140 +38,1307 @@ html {
 
 body {
   font-family: 'EB Garamond', serif;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 400;
-  line-height: 1.8;
+  line-height: 1.85;
   background: var(--cream);
   color: var(--ink);
   overflow-x: hidden;
   margin: 0;
-  padding: 0;
 }
 
-/* ── LAYOUT SHELL ─────────────────── */
+/* ─── SIDEBAR ─────────────────────────────── */
+#sidebar {
+  position: fixed;
+  left: 0; top: 0;
+  width: var(--sidebar-w);
+  height: 100vh;
+  background: var(--cream-warm);
+  border-right: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.nav-brand {
+  padding: 40px 32px 32px;
+  border-bottom: 1px solid var(--rule);
+  flex-shrink: 0;
+}
+
+.nav-brand-form {
+  font-family: 'EB Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.nav-brand-sub {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-family: 'EB Garamond', serif;
+}
+
+#chapter-nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 0 32px;
+  scrollbar-width: none;
+}
+#chapter-nav::-webkit-scrollbar { display: none; }
+
+#chapter-nav a {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 8px 32px;
+  font-family: 'EB Garamond', serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#chapter-nav a .n {
+  font-size: 9px;
+  opacity: 0.5;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+  min-width: 24px;
+}
+
+#chapter-nav a:hover { color: var(--ink-mid); }
+#chapter-nav a.active { color: var(--ink); border-left-color: var(--ink); }
+
+/* ─── PROGRESS ────────────────────────────── */
+#progress-bar {
+  position: fixed;
+  top: 0; left: var(--sidebar-w); right: 0;
+  height: 1px;
+  background: var(--ink);
+  transform-origin: left;
+  transform: scaleX(0);
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* ─── SHELL + PAGES ───────────────────────── */
 #shell {
   margin-left: var(--sidebar-w);
   min-height: 100vh;
 }
 
-/* ── PAGE WRAPPER ─────────────────── */
 .page {
-  border-bottom: 1px solid var(--rule);
-  position: relative;
-  page-break-after: always;
+  border-bottom: 1px solid var(--rule-soft);
 }
 .page:last-child { border-bottom: none; }
 
 .page-inner {
   max-width: var(--content-max);
   margin: 0 auto;
-  padding: var(--page-v) var(--page-h);
+  padding: 120px clamp(40px, 7vw, 96px) 100px;
 }
 
-/* ── SIDEBAR ─────────────────────── */
-#sidebar {
-  position: fixed;
-  left: 0; top: 0;
-  width: var(--sidebar-w);
-  height: 100vh;
-  background: var(--cream);
-  border-right: 1px solid var(--rule);
-  display: flex;
-  flex-direction: column;
-  z-index: 50;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
+.page[id] { scroll-margin-top: 32px; }
 
-#sidebar .nav-brand {
+/* ─── CHAPTER HEADER ──────────────────────── */
+.ch-eyebrow {
   font-family: 'EB Garamond', serif;
-  font-size: 20px;
-  letter-spacing: -0.02em;
-  padding: 32px 28px 24px;
-  border-bottom: 1px solid var(--rule);
-  flex-shrink: 0;
-}
-
-#sidebar nav {
-  flex: 1;
-  padding: 12px 0 24px;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-#sidebar a {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  padding: 9px 28px;
-  font-size: 10px;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  text-decoration: none;
-  border-left: 2px solid transparent;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: color 0.15s, border-color 0.15s;
-  font-family: 'EB Garamond', serif;
-}
-
-#sidebar a .nav-num {
-  opacity: 0.4;
   font-size: 9px;
-  letter-spacing: 0.08em;
-  flex-shrink: 0;
-}
-
-#sidebar a:hover { color: var(--ink-mid); }
-#sidebar a.active { color: var(--ink); border-left-color: var(--ink); }
-
-/* ── PROGRESS BAR ────────────────── */
-#progress-bar {
-  position: fixed;
-  top: 0;
-  left: var(--sidebar-w);
-  right: 0;
-  height: 1px;
-  background: var(--ink);
-  transform-origin: left;
-  transform: scaleX(0);
-  z-index: 100;
-  transition: transform 0.08s linear;
-  pointer-events: none;
-}
-
-/* ── SCROLL MARGIN ───────────────── */
-.page[id] { scroll-margin-top: 40px; }
-
-/* ── TYPOGRAPHY ──────────────────── */
-.display {
-  font-family: 'EB Garamond', serif;
-  font-size: clamp(52px, 6vw, 80px);
-  font-weight: 400;
-  letter-spacing: -2px;
-  line-height: 0.9;
-}
-
-.chapter-num {
-  font-size: 9px;
-  font-weight: 400;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ink-faint);
-  margin-bottom: 20px;
-  font-family: 'EB Garamond', serif;
+  color: var(--ink-ghost);
+  margin-bottom: 28px;
+  display: block;
 }
 
-.chapter-title {
-  font-family: 'EB Garamond', serif;
-  font-size: 42px;
-  font-weight: 400;
+.ch-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(40px, 5vw, 62px);
+  font-weight: 300;
   line-height: 1.0;
-  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 12px;
 }
 
-.chapter-sub {
-  font-size: 11px;
+.ch-sub {
+  font-family: 'EB Garamond', serif;
+  font-size: 13px;
   font-weight: 400;
   color: var(--ink-muted);
-  letter-spacing: 0.04em;
-  margin-bottom: 52px;
-  font-family: 'EB Garamond', serif;
+  letter-spacing: 0.02em;
+  margin-bottom: 72px;
+  line-height: 1.6;
 }
 
+/* ─── LEAD ────────────────────────────────── */
 .lead {
-  font-family: 'EB Garamond', serif;
-  font-size: 21px;
-  line-height: 1.5;
-  margin-bottom: 40px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(22px, 2.8vw, 30px);
+  font-weight: 300;
+  line-height: 1.45;
+  color: var(--ink);
+  margin-bottom: 56px;
+  max-width: 680px;
 }
 
-.pullquote {
+/* ─── BODY TEXT ───────────────────────────── */
+p {
   font-family: 'EB Garamond', serif;
+  font-size: 16px;
+  line-height: 1.95;
+  color: var(--ink-mid);
+  margin-bottom: 1.2em;
+}
+
+p.large { font-size: 18px; color: var(--ink); }
+
+/* ─── PULLQUOTE ───────────────────────────── */
+.pq {
+  font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 20px;
-  line-height: 1.55;
-  border-left: 1px solid var(--ink);
-  padding-left: 24px;
-  margin: 40px 0;
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--ink);
+  padding-left: 28px;
+  border-left: 1px solid var(--ink-mid);
+  margin: 56px 0;
   max-width: 600px;
 }
 
-.label {
+/* ─── LABEL ───────────────────────────────── */
+.lbl {
+  font-family: 'EB Garamond', serif;
   font-size: 9px;
   font-weight: 400;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ink-muted);
-  margin-bottom: 12px;
+  color: var(--ink-faint);
   display: block;
-  font-family: 'EB Garamond', serif;
+  margin-bottom: 16px;
 }
 
-p {
-  margin-bottom: 1.1em;
-  font-size: 15px;
-  line-height: 1.9;
-  font-family: 'EB Garamond', serif;
-}
+/* ─── DIVIDERS ────────────────────────────── */
+.rule { height: 1px; background: var(--rule-soft); margin: 56px 0; }
+.rule-strong { height: 1px; background: var(--rule); margin: 56px 0; }
+.rule-ink { height: 1px; background: var(--ink); margin: 56px 0; }
 
-/* ── DIVIDERS ────────────────────── */
-.rule { height: 1px; background: var(--rule); margin: 40px 0; }
-.rule-ink { height: 1px; background: var(--ink); margin: 40px 0; }
-
-/* ── GRID LAYOUTS ────────────────── */
+/* ─── TWO COLUMN ──────────────────────────── */
 .two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 52px;
+  gap: 72px;
 }
 
-@media (max-width: 700px) {
-  .two-col { grid-template-columns: 1fr; gap: 36px; }
+/* ─── TABLE ───────────────────────────────── */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 4px;
 }
 
-/* ── TABLES ──────────────────────── */
-.spec-table { width: 100%; border-collapse: collapse; }
-.spec-table td {
-  padding: 10px 0;
-  border-bottom: 1px solid var(--rule);
-  font-size: 13px;
-  vertical-align: top;
-  line-height: 1.6;
+.tbl td {
+  padding: 13px 0;
+  border-bottom: 1px solid var(--rule-soft);
   font-family: 'EB Garamond', serif;
+  font-size: 15px;
+  line-height: 1.65;
+  vertical-align: top;
+  color: var(--ink-mid);
 }
-.spec-table td:first-child {
+
+.tbl td:first-child {
   font-size: 9px;
   font-weight: 400;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ink-muted);
-  width: 115px;
-  padding-right: 22px;
+  color: var(--ink-faint);
+  width: 110px;
+  padding-right: 24px;
   white-space: nowrap;
-  font-family: 'EB Garamond', serif;
+  padding-top: 15px;
 }
-.spec-table tr:last-child td { border-bottom: none; }
 
-/* ── IMAGE GRIDS ─────────────────── */
-.ref-grid {
+.tbl tr:last-child td { border-bottom: none; }
+
+/* ─── IMAGE GRID ──────────────────────────── */
+.img-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.img-grid-3 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 16px;
-  margin: 28px 0;
-}
-.ref-item img { width: 100%; display: block; }
-.ref-label {
-  font-size: 9px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  margin-top: 8px;
-  font-family: 'EB Garamond', serif;
-}
-.ref-desc {
-  font-size: 11px;
-  color: var(--ink-mid);
-  margin-top: 3px;
-  line-height: 1.55;
-  font-family: 'EB Garamond', serif;
-}
-.caption {
-  font-size: 10px;
-  color: var(--ink-muted);
-  letter-spacing: 0.04em;
-  margin-top: 8px;
-  margin-bottom: 20px;
-  font-family: 'EB Garamond', serif;
+  margin: 40px 0;
 }
 
-/* ── PRINCIPLES (ch-02) ──────────── */
-.principle {
-  padding-bottom: 28px;
-  margin-bottom: 28px;
-  border-bottom: 1px solid var(--rule);
-}
-.principle:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
-.principle-num {
-  font-size: 9px;
-  letter-spacing: 0.1em;
+.img-grid-2 img,
+.img-grid-3 img { width: 100%; display: block; }
+
+.img-cap {
+  font-family: 'EB Garamond', serif;
+  font-size: 10px;
   color: var(--ink-faint);
-  margin-bottom: 4px;
-  font-family: 'EB Garamond', serif;
+  letter-spacing: 0.06em;
+  margin-top: 9px;
+  line-height: 1.4;
 }
-.principle-name {
+
+.img-desc {
   font-family: 'EB Garamond', serif;
-  font-size: 26px;
-  font-weight: 400;
-  margin-bottom: 10px;
+  font-size: 12px;
+  color: var(--ink-muted);
+  margin-top: 4px;
+  line-height: 1.55;
+}
+
+/* ─── PRINCIPLE ───────────────────────────── */
+.principle {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.principle:first-child { padding-top: 0; }
+.principle:last-child { border-bottom: none; padding-bottom: 0; }
+
+.principle-n {
+  font-family: 'EB Garamond', serif;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--ink-ghost);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.principle-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--ink);
+  margin-bottom: 12px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
 }
-.toggle-icon {
-  font-size: 14px;
+
+.principle-title .tog {
+  font-family: 'EB Garamond', serif;
+  font-size: 16px;
   font-weight: 300;
   color: var(--ink-faint);
   flex-shrink: 0;
-  margin-left: 12px;
-  font-family: 'EB Garamond', serif;
+  margin-left: 16px;
+  transition: transform 0.3s;
 }
+
+.principle-body p {
+  font-size: 15px;
+  color: var(--ink-muted);
+  line-height: 1.85;
+}
+
 .principle.collapsed .principle-body {
   overflow: hidden;
   max-height: 0;
-  margin-bottom: 0 !important;
-  transition: max-height 0.4s ease, margin-bottom 0.3s ease;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
 }
-.principle.open .principle-body { max-height: 2000px; }
 
-/* ── LIST ITEMS ──────────────────── */
-.shot-item { margin-bottom: 20px; }
-.shot-num { font-size: 9px; letter-spacing: 0.14em; color: var(--ink-faint); text-transform: uppercase; font-family: 'EB Garamond', serif; }
-.shot-name { font-family: 'EB Garamond', serif; font-size: 18px; margin: 4px 0; }
-.shot-desc { font-size: 12px; color: var(--ink-muted); line-height: 1.6; font-family: 'EB Garamond', serif; }
+.principle.open .principle-body {
+  max-height: 800px;
+  opacity: 1;
+}
 
-.select-item {
-  font-size: 13px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--rule);
+/* ─── SELECT / DELETE LISTS ───────────────── */
+.s-item {
   display: flex;
-  gap: 14px;
+  gap: 16px;
   align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--rule-soft);
   font-family: 'EB Garamond', serif;
+  font-size: 15px;
+  color: var(--ink-mid);
 }
-.select-dot {
+.s-dot {
   width: 3px; height: 3px; border-radius: 50%;
-  background: var(--ink-faint); margin-top: 10px; flex-shrink: 0;
+  background: var(--ink-ghost); flex-shrink: 0; margin-top: 11px;
 }
-.delete-item {
-  font-size: 12px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--rule);
-  color: var(--ink-muted);
+.s-dash {
+  font-size: 10px; color: var(--ink-ghost); flex-shrink: 0; padding-top: 2px;
+  letter-spacing: 0.05em;
+}
+
+.d-item {
   display: flex;
   gap: 16px;
-  font-family: 'EB Garamond', serif;
-}
-.delete-x { font-size: 9px; letter-spacing: 0.1em; color: var(--ink-faint); flex-shrink: 0; padding-top: 1px; font-family: 'EB Garamond', serif; }
-.never-item {
-  font-size: 12px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--rule);
-  color: var(--ink-muted);
-  display: flex;
-  gap: 18px;
-  font-family: 'EB Garamond', serif;
-}
-.never-dash { color: var(--ink-faint); flex-shrink: 0; }
-
-/* ── CAMERA PROFILES ─────────────── */
-.cam-profile { border-left: 1px solid var(--ink); padding-left: 20px; margin-bottom: 28px; }
-.cam-profile-name { font-size: 9px; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 10px; font-family: 'EB Garamond', serif; }
-
-/* ── LUT BLOCKS ──────────────────── */
-.lut-block { border: 1px solid var(--rule); padding: 24px; margin-bottom: 18px; }
-.lut-name { font-family: 'EB Garamond', serif; font-size: 20px; margin-bottom: 4px; }
-.lut-file { font-family: 'EB Garamond', serif; font-size: 10px; color: var(--ink-muted); margin-bottom: 14px; letter-spacing: 0.06em; }
-
-/* ── TOC ─────────────────────────── */
-.toc-item {
-  display: flex;
-  gap: 16px;
-  padding: 9px 0;
-  border-bottom: 1px solid var(--rule);
   align-items: baseline;
-}
-.toc-num { font-size: 10px; color: var(--ink-faint); width: 28px; flex-shrink: 0; font-family: 'EB Garamond', serif; }
-.toc-title { font-size: 14px; font-family: 'EB Garamond', serif; }
-
-/* ── PALETTE SWATCHES ────────────── */
-.palette-row { display: flex; gap: 0; margin-bottom: 28px; }
-.swatch { height: 28px; flex: 1; position: relative; }
-.swatch-label {
-  position: absolute; bottom: -36px; left: 0;
-  font-size: 8px; color: var(--ink-muted); white-space: nowrap; line-height: 1.3;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--rule-soft);
   font-family: 'EB Garamond', serif;
+  font-size: 14px;
+  color: var(--ink-faint);
 }
-
-/* ── BRANCH BLOCKS ───────────────── */
-.branch { border-top: 1px solid var(--ink); padding-top: 18px; margin-bottom: 28px; }
-.branch-name { font-family: 'EB Garamond', serif; font-size: 22px; margin-bottom: 10px; }
-.branch-items { font-size: 12px; color: var(--ink-muted); line-height: 2.1; columns: 2; font-family: 'EB Garamond', serif; }
-
-/* ── PAGE FOOTER ─────────────────── */
-.page-footer {
-  margin-top: 64px;
-  padding-top: 20px;
-  border-top: 1px solid var(--rule);
-  display: flex;
-  justify-content: space-between;
+.d-mark {
   font-size: 9px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--ink-ghost);
+  flex-shrink: 0;
+  padding-top: 2px;
   font-family: 'EB Garamond', serif;
 }
 
-/* ── REVEALS ─────────────────────── */
-.reveal {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
+/* ─── SHOT ARCHETYPES ─────────────────────── */
+.shot {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--rule-soft);
 }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+.shot:last-child { border-bottom: none; }
+.shot-n { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-ghost); margin-bottom: 4px; font-family: 'EB Garamond', serif; }
+.shot-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; color: var(--ink); margin-bottom: 6px; }
+.shot-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.65; font-family: 'EB Garamond', serif; }
 
-/* ── CINEMA SIBLING BLOCK ─────────── */
-.doctrine-link {
+/* ─── CAMERA PROFILE ──────────────────────── */
+.cam {
+  padding: 24px 0 24px 24px;
+  border-left: 1px solid var(--ink-mid);
+  margin-bottom: 32px;
+}
+.cam-name {
+  font-family: 'EB Garamond', serif;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 12px;
+}
+
+/* ─── BRANCH ──────────────────────────────── */
+.branch {
+  padding-top: 20px;
+  border-top: 1px solid var(--ink);
+  margin-bottom: 32px;
+}
+.branch-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.branch-items {
+  font-family: 'EB Garamond', serif;
+  font-size: 13px;
+  color: var(--ink-muted);
+  line-height: 2.2;
+  columns: 2;
+}
+
+/* ─── LUT BLOCK ───────────────────────────── */
+.lut-block {
   border: 1px solid var(--rule);
-  padding: 20px 24px;
-  margin-top: 40px;
-  display: grid;
-  grid-template-columns: 1fr auto;
+  padding: 28px;
+  margin-bottom: 16px;
+}
+.lut-name { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; color: var(--ink); margin-bottom: 4px; }
+.lut-file { font-family: 'EB Garamond', serif; font-size: 10px; color: var(--ink-muted); letter-spacing: 0.08em; margin-bottom: 18px; }
+
+/* ─── TOC ─────────────────────────────────── */
+.toc-row {
+  display: flex;
   gap: 20px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--rule-soft);
   align-items: baseline;
 }
-.doctrine-link-title { font-family: 'EB Garamond', serif; font-size: 16px; margin-bottom: 4px; }
-.doctrine-link-desc { font-size: 11px; color: var(--ink-muted); line-height: 1.6; font-family: 'EB Garamond', serif; }
-.doctrine-link-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); white-space: nowrap; font-family: 'EB Garamond', serif; }
+.toc-n { font-family: 'EB Garamond', serif; font-size: 10px; color: var(--ink-ghost); width: 32px; flex-shrink: 0; }
+.toc-t { font-family: 'EB Garamond', serif; font-size: 15px; color: var(--ink-mid); }
 
-/* ── MOBILE ──────────────────────── */
-@media (max-width: 900px) {
+/* ─── PALETTE ─────────────────────────────── */
+.pal-row { display: flex; margin-bottom: 20px; }
+.swatch { height: 32px; flex: 1; position: relative; }
+.swatch-lbl {
+  position: absolute; bottom: -38px; left: 0;
+  font-family: 'EB Garamond', serif;
+  font-size: 8px; color: var(--ink-faint);
+  white-space: nowrap; line-height: 1.3;
+}
+
+/* ─── DOCTRINE LINK ───────────────────────── */
+.doctrine-block {
+  margin-top: 56px;
+  padding: 28px 32px;
+  border: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: start;
+}
+.doctrine-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--ink); margin-bottom: 8px; }
+.doctrine-desc { font-family: 'EB Garamond', serif; font-size: 13px; color: var(--ink-muted); line-height: 1.75; }
+.doctrine-tag { font-family: 'EB Garamond', serif; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-ghost); white-space: nowrap; padding-top: 4px; }
+
+/* ─── PAGE FOOTER ─────────────────────────── */
+.page-footer {
+  margin-top: 80px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule-soft);
+  display: flex;
+  justify-content: space-between;
+  font-family: 'EB Garamond', serif;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+}
+
+/* ─── CONTEXT SECTION HEADER ──────────────── */
+.ctx-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 32px;
+  padding-top: 48px;
+  border-top: 1px solid var(--ink);
+}
+.ctx-header:first-of-type { border-top: 2px solid var(--ink); }
+.ctx-title { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; color: var(--ink); }
+.ctx-tag { font-family: 'EB Garamond', serif; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); }
+
+/* ─── FOUR-WORLD GRID ─────────────────────── */
+.world-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--ink);
+  margin-top: 16px;
+}
+.world-cell {
+  padding: 24px 20px 24px 0;
+  border-right: 1px solid var(--rule-soft);
+}
+.world-cell:last-child { border-right: none; padding-right: 0; padding-left: 20px; }
+.world-cell:nth-child(2),
+.world-cell:nth-child(3) { padding-left: 20px; }
+.world-n { font-family: 'EB Garamond', serif; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-ghost); margin-bottom: 8px; }
+.world-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--ink); margin-bottom: 10px; }
+.world-desc { font-family: 'EB Garamond', serif; font-size: 12px; color: var(--ink-muted); line-height: 1.75; }
+
+/* ─── SHOOTING CONTEXT GRID ───────────────── */
+.ctx-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--rule);
+  margin-bottom: 56px;
+}
+.ctx-cell {
+  padding: 24px;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.ctx-cell:nth-child(3),
+.ctx-cell:nth-child(6) { border-right: none; }
+.ctx-cell:nth-child(4),
+.ctx-cell:nth-child(5),
+.ctx-cell:nth-child(6) { border-bottom: none; }
+.ctx-cat { font-family: 'EB Garamond', serif; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-ghost); margin-bottom: 10px; }
+.ctx-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; color: var(--ink); margin-bottom: 10px; }
+.ctx-desc { font-family: 'EB Garamond', serif; font-size: 12px; color: var(--ink-muted); line-height: 1.8; }
+
+/* ─── GRADE STAT ──────────────────────────── */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  border: 1px solid var(--rule);
+  text-align: center;
+}
+.stat-cell { padding: 16px 8px; border-right: 1px solid var(--rule); }
+.stat-cell:last-child { border-right: none; }
+.stat-n { font-family: 'EB Garamond', serif; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-ghost); margin-bottom: 8px; }
+.stat-v { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; color: var(--ink); }
+
+/* ─── COVER ───────────────────────────────── */
+#cover {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.cover-left {
+  padding: 80px 56px 80px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--cream);
+}
+.cover-right {
+  overflow: hidden;
+  position: relative;
+}
+.cover-right img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: brightness(0.96);
+}
+.cover-form {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(64px, 8vw, 100px);
+  font-weight: 300;
+  letter-spacing: -3px;
+  line-height: 0.88;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+.cover-rule { height: 1px; background: var(--ink); margin-bottom: 20px; }
+.cover-series {
+  font-family: 'EB Garamond', serif;
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 64px;
+}
+.cover-thesis {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+.cover-maxim {
+  font-family: 'EB Garamond', serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 48px;
+}
+.cover-desc {
+  font-family: 'EB Garamond', serif;
+  font-size: 13px;
+  line-height: 1.85;
+  color: var(--ink-muted);
+  margin-bottom: 0.9em;
+}
+.cover-toc-rule { height: 1px; background: var(--rule-soft); margin-bottom: 24px; }
+.cover-version {
+  margin-top: 32px;
+  font-family: 'EB Garamond', serif;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  line-height: 1.8;
+}
+
+/* ─── REVEALS ─────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─── MOBILE ──────────────────────────────── */
+@media (max-width: 960px) {
   #shell { margin-left: 0; }
   #sidebar { display: none; }
   #progress-bar { left: 0; }
-  .page-inner { padding: 60px 24px; }
-  .two-col { grid-template-columns: 1fr; gap: 32px; }
-  .ref-grid { grid-template-columns: 1fr 1fr; }
+  .page-inner { padding: 80px 32px 72px; }
+  .two-col { grid-template-columns: 1fr; gap: 48px; }
+  .world-grid { grid-template-columns: 1fr 1fr; }
+  .ctx-grid { grid-template-columns: 1fr 1fr; }
+  .ctx-cell:nth-child(2),
+  .ctx-cell:nth-child(4) { border-right: none; }
+  .ctx-cell:nth-child(3),
+  .ctx-cell:nth-child(4) { border-bottom: 1px solid var(--rule); }
+  .ctx-cell:nth-child(5),
+  .ctx-cell:nth-child(6) { border-bottom: none; }
+  #cover { grid-template-columns: 1fr; }
+  .cover-right { height: 50vw; }
+  .cover-left { padding: 60px 32px; }
+  .stat-row { grid-template-columns: repeat(3, 1fr); }
+  .stat-cell:nth-child(3) { border-right: none; }
+  .stat-cell:nth-child(4),
+  .stat-cell:nth-child(5),
+  .stat-cell:nth-child(6) { border-top: 1px solid var(--rule); }
 }
 
-@media (max-width: 480px) {
-  .ref-grid { grid-template-columns: 1fr; }
-  .chapter-title { font-size: 32px; }
+@media (max-width: 600px) {
+  .world-grid { grid-template-columns: 1fr; }
+  .img-grid-3 { grid-template-columns: 1fr 1fr; }
+  .world-cell, .world-cell:last-child { padding: 20px 0; border-right: none; border-bottom: 1px solid var(--rule-soft); }
 }
 
 @media print { .page { page-break-after: always; } }
 </style>
 </head>
 <body>
+
 <div id="progress-bar"></div>
+
 <aside id="sidebar">
-  <div class="nav-brand">FORM</div>
-    <nav id="chapter-nav">
-    <a href="#ch-00" data-chapter="ch-00"><span class="nav-num">00</span>Order</a>
-    <a href="#ch-00b" data-chapter="ch-00b"><span class="nav-num">00b</span>Mythology</a>
-    <a href="#ch-01" data-chapter="ch-01"><span class="nav-num">01</span>Foundation</a>
-    <a href="#ch-02" data-chapter="ch-02"><span class="nav-num">02</span>Principles</a>
-    <a href="#ch-03" data-chapter="ch-03"><span class="nav-num">03</span>Visual Ref</a>
-    <a href="#ch-04" data-chapter="ch-04"><span class="nav-num">04</span>Selection</a>
-    <a href="#ch-04b" data-chapter="ch-04b"><span class="nav-num">04b</span>Contexts</a>
-    <a href="#ch-05" data-chapter="ch-05"><span class="nav-num">05</span>Capture</a>
-    <a href="#ch-06" data-chapter="ch-06"><span class="nav-num">06</span>Profiles</a>
-    <a href="#ch-07" data-chapter="ch-07"><span class="nav-num">07</span>Edit</a>
-    <a href="#ch-08" data-chapter="ch-08"><span class="nav-num">08</span>Color</a>
-    <a href="#ch-09" data-chapter="ch-09"><span class="nav-num">09</span>Delete</a>
-    <a href="#ch-10" data-chapter="ch-10"><span class="nav-num">10</span>Palette</a>
-    <a href="#ch-11" data-chapter="ch-11"><span class="nav-num">11</span>LUTs</a>
+  <div class="nav-brand">
+    <span class="nav-brand-form">FORM</span>
+    <span class="nav-brand-sub">Perception Manual</span>
+  </div>
+  <nav id="chapter-nav">
+    <a href="#ch-00" data-ch="ch-00"><span class="n">00</span>Order</a>
+    <a href="#ch-00b" data-ch="ch-00b"><span class="n">00b</span>Mythology</a>
+    <a href="#ch-01" data-ch="ch-01"><span class="n">01</span>Foundation</a>
+    <a href="#ch-02" data-ch="ch-02"><span class="n">02</span>Principles</a>
+    <a href="#ch-03" data-ch="ch-03"><span class="n">03</span>Visual Ref</a>
+    <a href="#ch-04" data-ch="ch-04"><span class="n">04</span>Selection</a>
+    <a href="#ch-04b" data-ch="ch-04b"><span class="n">04b</span>Contexts</a>
+    <a href="#ch-05" data-ch="ch-05"><span class="n">05</span>Capture</a>
+    <a href="#ch-06" data-ch="ch-06"><span class="n">06</span>Profiles</a>
+    <a href="#ch-07" data-ch="ch-07"><span class="n">07</span>Edit</a>
+    <a href="#ch-08" data-ch="ch-08"><span class="n">08</span>Color</a>
+    <a href="#ch-09" data-ch="ch-09"><span class="n">09</span>Delete</a>
+    <a href="#ch-10" data-ch="ch-10"><span class="n">10</span>Palette</a>
+    <a href="#ch-11" data-ch="ch-11"><span class="n">11</span>LUTs</a>
   </nav>
 </aside>
 
 <div id="shell">
 
-<!-- ══════════════════════════════
-     COVER
-══════════════════════════════ -->
-<div class="page" id="cover" style="padding:0; overflow:hidden; min-height:100vh; display:grid; grid-template-columns:1fr 1fr; gap:0;">
-
-  <!-- LEFT: Text -->
-  <div style="padding:72px 48px 72px 72px; display:flex; flex-direction:column; justify-content:space-between;">
+<!-- COVER ══════════════════════════════════ -->
+<div id="cover" class="page">
+  <div class="cover-left">
     <div>
-      <div class="display" style="margin-bottom:16px;">FORM</div>
-      <div style="height:1px; background:var(--ink); margin-bottom:16px;"></div>
-      <div style="font-size:10px; font-weight:300; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:56px;">A Perception Manual</div>
+      <div class="cover-form">FORM</div>
+      <div class="cover-rule"></div>
+      <div class="cover-series">A Perception Manual</div>
 
-      <div style="font-family:'EB Garamond',serif; font-size:28px; line-height:1.25; margin-bottom:24px;">
+      <div class="cover-thesis">
         The camera arrives<br>after the activity<br>has already begun.
       </div>
 
-      <div style="font-size:10px; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:48px;">
-        The image is discovered, not constructed.
-      </div>
+      <div class="cover-maxim">The image is discovered, not constructed.</div>
 
-      <div style="height:1px; background:var(--rule); margin-bottom:32px;"></div>
+      <div style="height:1px; background:var(--rule-soft); margin-bottom:28px;"></div>
 
-      <p style="font-size:12px; line-height:1.8; color:var(--ink-mid);">A visual doctrine built on one principle: highly organized systems wrapped in atmosphere. Order provides the structure. Atmosphere provides the feeling. Neither works without the other.</p>
-
-      <p style="font-size:12px; line-height:1.8; color:var(--ink-mid);">FORM does not manufacture atmosphere. FORM reveals it.</p>
+      <p class="cover-desc">A visual doctrine built on one principle: highly organized systems wrapped in atmosphere. Order provides the structure. Atmosphere provides the feeling. Neither works without the other.</p>
+      <p class="cover-desc">FORM does not manufacture atmosphere. FORM reveals it.</p>
     </div>
 
     <div>
-      <div style="height:1px; background:var(--rule); margin-bottom:20px;"></div>
-      <span class="label">Contents</span>
-      <div class="toc-item"><span class="toc-num">00</span><span class="toc-title">Order + Atmosphere — The Core Thesis</span></div>
-      <div class="toc-item"><span class="toc-num">00b</span><span class="toc-title">Mythology Inside Reality — The Eye's Actual Hierarchy</span></div>
-      <div class="toc-item"><span class="toc-num">01</span><span class="toc-title">Things Shaped by Time — Foundation</span></div>
-      <div class="toc-item"><span class="toc-num">02</span><span class="toc-title">Six Governing Principles</span></div>
-      <div class="toc-item"><span class="toc-num">03</span><span class="toc-title">Visual Reference — Natural & Cultivated</span></div>
-      <div class="toc-item"><span class="toc-num">04</span><span class="toc-title">Selection — The First Step</span></div>
-      <div class="toc-item"><span class="toc-num">04b</span><span class="toc-title">Shooting Contexts — Field, Self & Hideout</span></div>
-      <div class="toc-item"><span class="toc-num">05</span><span class="toc-title">Capture — Camera, Lens & Archetypes</span></div>
-      <div class="toc-item"><span class="toc-num">06</span><span class="toc-title">Camera Profiles — HLG3 & Rec.709</span></div>
-      <div class="toc-item"><span class="toc-num">07</span><span class="toc-title">Edit — Rhythm, Motion & Sound</span></div>
-      <div class="toc-item"><span class="toc-num">08</span><span class="toc-title">Color Direction — FIELD & STILL</span></div>
-      <div class="toc-item"><span class="toc-num">09</span><span class="toc-title">What to Delete</span></div>
-      <div class="toc-item"><span class="toc-num">10</span><span class="toc-title">Color Palette</span></div>
-      <div class="toc-item"><span class="toc-num">11</span><span class="toc-title">LUT & Preset Specifications</span></div>
-
-      <div style="margin-top:28px; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-faint);">
-        Version 10 &nbsp;·&nbsp; Miami, Florida<br>
-        This is a living document. Refine it. Use it. Evolve it.
-      </div>
+      <div class="cover-toc-rule"></div>
+      <span class="lbl">Contents</span>
+      <div class="toc-row"><span class="toc-n">00</span><span class="toc-t">Order + Atmosphere — The Core Thesis</span></div>
+      <div class="toc-row"><span class="toc-n">00b</span><span class="toc-t">Mythology Inside Reality — The Eye's Hierarchy</span></div>
+      <div class="toc-row"><span class="toc-n">01</span><span class="toc-t">Things Shaped by Time — Foundation</span></div>
+      <div class="toc-row"><span class="toc-n">02</span><span class="toc-t">Six Governing Principles</span></div>
+      <div class="toc-row"><span class="toc-n">03</span><span class="toc-t">Visual Reference — Natural &amp; Cultivated</span></div>
+      <div class="toc-row"><span class="toc-n">04</span><span class="toc-t">Selection — The First Step</span></div>
+      <div class="toc-row"><span class="toc-n">04b</span><span class="toc-t">Shooting Contexts — Field, Self &amp; Hideout</span></div>
+      <div class="toc-row"><span class="toc-n">05</span><span class="toc-t">Capture — Camera, Lens &amp; Archetypes</span></div>
+      <div class="toc-row"><span class="toc-n">06</span><span class="toc-t">Camera Profiles — HLG3 &amp; Rec.709</span></div>
+      <div class="toc-row"><span class="toc-n">07</span><span class="toc-t">Edit — Rhythm, Motion &amp; Sound</span></div>
+      <div class="toc-row"><span class="toc-n">08</span><span class="toc-t">Color Direction — FIELD &amp; STILL</span></div>
+      <div class="toc-row"><span class="toc-n">09</span><span class="toc-t">What to Delete</span></div>
+      <div class="toc-row"><span class="toc-n">10</span><span class="toc-t">Color Palette</span></div>
+      <div class="toc-row"><span class="toc-n">11</span><span class="toc-t">LUT &amp; Preset Specifications</span></div>
+      <div class="cover-version">Version 10 &nbsp;·&nbsp; Miami, Florida<br>This is a living document. Refine it. Use it. Evolve it.</div>
     </div>
   </div>
-
-  <!-- RIGHT: Simon full bleed -->
-  <div style="overflow:hidden; position:relative;">
-    <img src="/assets/perception-manual/01.jpg" style="width:100%; height:100%; object-fit:cover; object-position:center top; display:block;" alt="">
+  <div class="cover-right">
+    <img src="/assets/perception-manual/01.jpg" alt="">
   </div>
 </div>
 
-<!-- ══════════════════════════════
-     00 — THE CORE THESIS
-══════════════════════════════ -->
+<!-- 00 ═══════════════════════════════════════ -->
 <div class="page" id="ch-00">
   <div class="page-inner">
-  <div class="chapter-num">00</div>
-  <div class="chapter-title">Order + Atmosphere</div>
-  <div class="chapter-sub">The method. Mythology inside reality is the thesis.</div>
+    <span class="ch-eyebrow">00</span>
+    <h1 class="ch-title">Order + Atmosphere</h1>
+    <p class="ch-sub">The method. Mythology inside reality is the thesis.</p>
 
-  <div class="lead">
-    Most photographers shoot events or subjects.<br>
-    FORM shoots meaning.<br>
-    The method is order wrapped in atmosphere.<br>
-    The goal is mythology inside reality.
-  </div>
+    <div class="lead">
+      Most photographers shoot events or subjects.<br>
+      FORM shoots meaning.<br>
+      The method is order wrapped in atmosphere.<br>
+      The goal is mythology inside reality.
+    </div>
 
-  <div class="rule"></div>
+    <div class="rule"></div>
 
-  <div class="two-col" style="gap:56px; margin-bottom:40px;">
-    <div>
-      <span class="label">What Order Looks Like</span>
-      <table class="spec-table" style="margin-top:12px;">
-        <tr><td>Architecture</td><td>Underlying geometry. The drawing beneath the room.</td></tr>
-        <tr><td>Running Form</td><td>Mechanics made visible. Organization expressed through motion.</td></tr>
-        <tr><td>Playing Cards</td><td>Restraint, craftsmanship, detail density. Premium through reduction.</td></tr>
-        <tr><td>Hideout Systems</td><td>Curation as structure. Space organized around presence.</td></tr>
-        <tr><td>Training</td><td>Repetition building toward form. Process made beautiful.</td></tr>
-      </table>
+    <div class="two-col" style="margin-bottom:56px;">
+      <div>
+        <span class="lbl">What Order Looks Like</span>
+        <table class="tbl">
+          <tr><td>Architecture</td><td>Underlying geometry. The drawing beneath the room.</td></tr>
+          <tr><td>Running Form</td><td>Mechanics made visible. Organization expressed through motion.</td></tr>
+          <tr><td>Playing Cards</td><td>Restraint, craftsmanship, detail density. Premium through reduction.</td></tr>
+          <tr><td>Hideout Systems</td><td>Curation as structure. Space organized around presence.</td></tr>
+          <tr><td>Training</td><td>Repetition building toward form. Process made beautiful.</td></tr>
+        </table>
+      </div>
+      <div>
+        <span class="lbl">What Atmosphere Looks Like</span>
+        <table class="tbl">
+          <tr><td>Fog</td><td>Selective illumination. Mystery. Expensive silence.</td></tr>
+          <tr><td>Rain</td><td>Wet track, reflection, movement. The world made tactile.</td></tr>
+          <tr><td>Temple</td><td>Ritual. Presence. Movement with intention.</td></tr>
+          <tr><td>Rio Beach</td><td>Aliveness. Communal joy. Life expressing itself unselfconsciously.</td></tr>
+          <tr><td>Human Warmth</td><td>The feeling that someone real was there.</td></tr>
+        </table>
+      </div>
     </div>
-    <div>
-      <span class="label">What Atmosphere Looks Like</span>
-      <table class="spec-table" style="margin-top:12px;">
-        <tr><td>Fog</td><td>Selective illumination. Mystery. Expensive silence.</td></tr>
-        <tr><td>Rain</td><td>Wet track, reflection, movement. The world made tactile.</td></tr>
-        <tr><td>Temple</td><td>Ritual. Presence. Movement with intention.</td></tr>
-        <tr><td>Rio Beach</td><td>Aliveness. Communal joy. Life expressing itself unselfconsciously.</td></tr>
-        <tr><td>Human Warmth</td><td>The feeling that someone real was there.</td></tr>
-      </table>
-    </div>
-  </div>
 
-  <div class="rule"></div>
+    <div class="rule"></div>
 
-  <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:0; border-top:2px solid var(--ink); margin-bottom:36px;">
-    <div style="padding:20px 20px 20px 0; border-right:1px solid var(--rule);">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:8px;">What to avoid</div>
-      <div style="font-family:'EB Garamond',serif; font-size:16px; font-style:italic; color:var(--ink-muted);">Atmosphere without order — moody for its own sake. Orange/teal. Cinematic as costume.</div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:2px solid var(--ink); margin-bottom:56px;">
+      <div style="padding:28px 28px 28px 0; border-right:1px solid var(--rule-soft);">
+        <div class="lbl">Avoid</div>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:18px; font-style:italic; color:var(--ink-muted); font-weight:300;">Atmosphere without order — moody for its own sake. Orange/teal. Cinematic as costume.</p>
+      </div>
+      <div style="padding:28px; border-right:1px solid var(--rule-soft);">
+        <div class="lbl">Avoid</div>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:18px; font-style:italic; color:var(--ink-muted); font-weight:300;">Order without atmosphere — cold, technical, correct but lifeless. The frame that survives but doesn't breathe.</p>
+      </div>
+      <div style="padding:28px 0 28px 28px;">
+        <div class="lbl">What FORM does</div>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:300; color:var(--ink);">Organized systems wrapped in atmosphere. The architecture is always underneath. The atmosphere is always discovered, not manufactured.</p>
+      </div>
     </div>
-    <div style="padding:20px; border-right:1px solid var(--rule);">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:8px;">What to avoid</div>
-      <div style="font-family:'EB Garamond',serif; font-size:16px; font-style:italic; color:var(--ink-muted);">Order without atmosphere — cold, technical, correct but lifeless. The frame that survives but doesn't breathe.</div>
-    </div>
-    <div style="padding:20px 0 20px 20px;">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:8px;">What FORM does</div>
-      <div style="font-family:'EB Garamond',serif; font-size:16px;">Organized systems wrapped in atmosphere. The architecture is always underneath. The atmosphere is always discovered, not manufactured.</div>
-    </div>
-  </div>
 
-  <div class="pullquote" style="font-size:18px; max-width:580px;">
-    The Audi in fog. The monk on the bridge. The athlete on the wet track.<br>
-    None of them need a LUT.<br>
-    They already have both things.
-  </div>
+    <div class="pq">
+      The Audi in fog. The monk on the bridge.<br>
+      The athlete on the wet track.<br>
+      None of them need a LUT.
+    </div>
 
-  <div class="rule"></div>
+    <div class="rule"></div>
 
-  <span class="label">The Four Worlds — recurring reference themes</span>
-  <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:0; margin-top:14px; border:1px solid var(--rule);">
-    <div style="padding:18px 16px; border-right:1px solid var(--rule);">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:8px;">I</div>
-      <div style="font-family:'EB Garamond',serif; font-size:18px; margin-bottom:8px;">Precision Luxury</div>
-      <div style="font-size:11px; color:var(--ink-muted); line-height:1.7;">Restraint. Craftsmanship. Geometry. Premium materials. Detail density. Black + bronze. This is FORM. This is Hideout.</div>
+    <span class="lbl">The Four Worlds — recurring reference themes</span>
+    <div class="world-grid">
+      <div class="world-cell">
+        <div class="world-n">I</div>
+        <div class="world-title">Precision Luxury</div>
+        <div class="world-desc">Restraint. Craftsmanship. Geometry. Premium materials. Detail density. Black + bronze. This is FORM. This is Hideout.</div>
+      </div>
+      <div class="world-cell">
+        <div class="world-n">II</div>
+        <div class="world-title">Atmospheric Machines</div>
+        <div class="world-desc">Darkness. Fog. Selective illumination. Negative space. Mystery. Controlled highlights. Expensive silence.</div>
+      </div>
+      <div class="world-cell">
+        <div class="world-n">III</div>
+        <div class="world-title">Ritual</div>
+        <div class="world-desc">The monk. The temple. The rain. Movement with intention. Presence. The practice itself. Connects to FORM, running, Sundays.</div>
+      </div>
+      <div class="world-cell">
+        <div class="world-n">IV</div>
+        <div class="world-title">Human Aliveness</div>
+        <div class="world-desc">Joyful. Messy. Communal. Life expressing itself unselfconsciously. Not performance. Not achievement. Just presence.</div>
+      </div>
     </div>
-    <div style="padding:18px 16px; border-right:1px solid var(--rule);">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:8px;">II</div>
-      <div style="font-family:'EB Garamond',serif; font-size:18px; margin-bottom:8px;">Atmospheric Machines</div>
-      <div style="font-size:11px; color:var(--ink-muted); line-height:1.7;">Darkness. Fog. Selective illumination. Negative space. Mystery. Controlled highlights. Expensive silence.</div>
-    </div>
-    <div style="padding:18px 16px; border-right:1px solid var(--rule);">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:8px;">III</div>
-      <div style="font-family:'EB Garamond',serif; font-size:18px; margin-bottom:8px;">Ritual</div>
-      <div style="font-size:11px; color:var(--ink-muted); line-height:1.7;">The monk. The temple. The rain. Movement with intention. Presence. The practice itself. Connects to FORM, running, Sundays.</div>
-    </div>
-    <div style="padding:18px 16px;">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:8px;">IV</div>
-      <div style="font-family:'EB Garamond',serif; font-size:18px; margin-bottom:8px;">Human Aliveness</div>
-      <div style="font-size:11px; color:var(--ink-muted); line-height:1.7;">Joyful. Messy. Communal. Life expressing itself unselfconsciously. Not performance. Not achievement. Just presence.</div>
-    </div>
-  </div>
 
-  <div class="page-footer"><span>Form</span><span>00 — Order + Atmosphere</span></div>
+    <div class="page-footer"><span>Form</span><span>00 — Order + Atmosphere</span></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════
-     00b — MYTHOLOGY INSIDE REALITY
-══════════════════════════════ -->
+<!-- 00b ══════════════════════════════════════ -->
 <div class="page" id="ch-00b">
   <div class="page-inner">
-  <div class="chapter-num">00b</div>
-  <div class="chapter-title">Mythology Inside Reality</div>
-  <div class="chapter-sub">The thesis. This is what the eye is actually looking for.</div>
+    <span class="ch-eyebrow">00b</span>
+    <h1 class="ch-title">Mythology Inside Reality</h1>
+    <p class="ch-sub">The thesis. This is what the eye is actually looking for.</p>
 
-  <div class="lead">
-    Every image you've ever saved contains an ordinary thing<br>
-    elevated into something archetypal.<br>
-    Not fantasy. Not cinematic. Archetype.
-  </div>
-
-  <div class="rule"></div>
-
-  <div class="two-col" style="gap:56px; margin-bottom:40px;">
-    <div>
-      <span class="label">What the eye is actually reading</span>
-      <table class="spec-table" style="margin-top:12px;">
-        <tr><td>Runner on wet track</td><td>Not Simon. Persistence. Repetition. Form.</td></tr>
-        <tr><td>Monk on bridge</td><td>Not Japan. Ritual. Movement with intention. Presence.</td></tr>
-        <tr><td>Egyptian temple</td><td>Not architecture. A portal. Human inside ancient structure.</td></tr>
-        <tr><td>Rio beach football</td><td>Not sport. A celebration of aliveness.</td></tr>
-        <tr><td>Espresso machine</td><td>Not equipment. Ritual.</td></tr>
-        <tr><td>Vinyl selection</td><td>Not music. Curation as ceremony.</td></tr>
-        <tr><td>Audi in fog</td><td>Not a car. A machine emerging from darkness.</td></tr>
-        <tr><td>Jungle house</td><td>Not a building. A sanctuary.</td></tr>
-      </table>
+    <div class="lead">
+      Every image you've ever saved contains an ordinary thing<br>
+      elevated into something archetypal.<br>
+      Not fantasy. Not cinematic. Archetype.
     </div>
-    <div>
-      <span class="label">The visual hierarchy — in order</span>
-      <div style="margin-top:12px;">
-        <div class="principle" style="padding-bottom:18px; margin-bottom:18px;">
-          <div class="principle-num">1.</div>
-          <div class="principle-name" style="font-size:20px;">Geometry</div>
-          <p style="font-size:12px; color:var(--ink-muted);">Architecture. Cards. Temples. Bridges. Track lanes. The eye finds structure first. Always. Lines, frames, symmetry, repetition — before subject.</p>
+
+    <div class="rule"></div>
+
+    <div class="two-col" style="margin-bottom:56px;">
+      <div>
+        <span class="lbl">What the eye is actually reading</span>
+        <table class="tbl">
+          <tr><td>Runner on wet track</td><td>Not Simon. Persistence. Repetition. Form.</td></tr>
+          <tr><td>Monk on bridge</td><td>Not Japan. Ritual. Movement with intention. Presence.</td></tr>
+          <tr><td>Egyptian temple</td><td>Not architecture. A portal. Human inside ancient structure.</td></tr>
+          <tr><td>Rio beach football</td><td>Not sport. A celebration of aliveness.</td></tr>
+          <tr><td>Espresso machine</td><td>Not equipment. Ritual.</td></tr>
+          <tr><td>Vinyl selection</td><td>Not music. Curation as ceremony.</td></tr>
+          <tr><td>Audi in fog</td><td>Not a car. A machine emerging from darkness.</td></tr>
+          <tr><td>Jungle house</td><td>Not a building. A sanctuary.</td></tr>
+        </table>
+      </div>
+      <div>
+        <span class="lbl">The visual hierarchy — in order</span>
+        <div class="principle" style="padding-top:0;">
+          <div class="principle-n">1.</div>
+          <div class="principle-title" style="cursor:default;">Geometry</div>
+          <div class="principle-body"><p>Architecture. Cards. Temples. Bridges. Track lanes. The eye finds structure first. Always. Lines, frames, symmetry, repetition — before subject.</p></div>
         </div>
-        <div class="principle" style="padding-bottom:18px; margin-bottom:18px;">
-          <div class="principle-num">2.</div>
-          <div class="principle-name" style="font-size:20px;">Atmosphere</div>
-          <p style="font-size:12px; color:var(--ink-muted);">Fog. Rain. Steam. Dust. Light. Atmosphere softens geometry. Weather is production value — it was already there.</p>
+        <div class="principle">
+          <div class="principle-n">2.</div>
+          <div class="principle-title" style="cursor:default;">Atmosphere</div>
+          <div class="principle-body"><p>Fog. Rain. Steam. Dust. Light. Atmosphere softens geometry. Weather is production value — it was already there.</p></div>
         </div>
-        <div class="principle" style="padding-bottom:18px; margin-bottom:18px;">
-          <div class="principle-num">3.</div>
-          <div class="principle-name" style="font-size:20px;">Human Presence</div>
-          <p style="font-size:12px; color:var(--ink-muted);">Not portraits. Presence. Someone inhabiting the space. Small humans inside large systems. The individual inside structure.</p>
+        <div class="principle">
+          <div class="principle-n">3.</div>
+          <div class="principle-title" style="cursor:default;">Human Presence</div>
+          <div class="principle-body"><p>Not portraits. Presence. Someone inhabiting the space. Small humans inside large systems. The individual inside structure.</p></div>
         </div>
-        <div class="principle" style="padding-bottom:0; margin-bottom:0; border-bottom:none;">
-          <div class="principle-num">4.</div>
-          <div class="principle-name" style="font-size:20px;">Narrative</div>
-          <p style="font-size:12px; color:var(--ink-muted);">Very subtle. Never obvious. Questions over answers. The image implies a world — it does not explain one.</p>
+        <div class="principle">
+          <div class="principle-n">4.</div>
+          <div class="principle-title" style="cursor:default;">Narrative</div>
+          <div class="principle-body"><p>Very subtle. Never obvious. Questions over answers. The image implies a world — it does not explain one.</p></div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="rule"></div>
+    <div class="rule"></div>
 
-  <div style="border-top:2px solid var(--ink); padding-top:20px; margin-bottom:36px;">
-    <span class="label" style="margin-bottom:16px; display:block;">Shooting doctrine — derived from the references</span>
-    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:0;">
-      <div style="padding:18px 20px 18px 0; border-right:1px solid var(--rule);">
-        <div style="font-family:'EB Garamond',serif; font-size:18px; margin-bottom:8px;">Shoot Architecture First</div>
-        <div style="font-size:11px; color:var(--ink-muted); line-height:1.7;">Even when shooting people. Find lines, frames, symmetry, repetition before the subject arrives. The structure is the frame for the mythology.</div>
-      </div>
-      <div style="padding:18px 20px; border-right:1px solid var(--rule);">
-        <div style="font-family:'EB Garamond',serif; font-size:18px; margin-bottom:8px;">Shoot Weather</div>
-        <div style="font-size:11px; color:var(--ink-muted); line-height:1.7;">Rain. Steam. Fog. Morning light. Golden hour. Weather is free production design. It appears in nearly every reference image. Wait for it.</div>
-      </div>
-      <div style="padding:18px 20px; border-right:1px solid var(--rule);">
-        <div style="font-family:'EB Garamond',serif; font-size:18px; margin-bottom:8px;">Shoot Small / Large</div>
-        <div style="font-size:11px; color:var(--ink-muted); line-height:1.7;">Temple. Bridge. Track. Architecture drawing. The individual inside the system. Scale creates meaning. A small human inside a large structure is never just a photo.</div>
-      </div>
-      <div style="padding:18px 0 18px 20px;">
-        <div style="font-family:'EB Garamond',serif; font-size:18px; margin-bottom:8px;">Shoot Ritual</div>
-        <div style="font-size:11px; color:var(--ink-muted); line-height:1.7;">Not action. Not events. Ritual. Lacing shoes. Pouring coffee. Selecting vinyl. Stretching. The moment before the moment. The ceremony inside the ordinary.</div>
+    <div style="border-top:2px solid var(--ink); padding-top:28px; margin-bottom:48px;">
+      <span class="lbl" style="margin-bottom:24px;">Shooting doctrine — derived from the references</span>
+      <div class="world-grid">
+        <div class="world-cell">
+          <div class="world-title">Shoot Architecture First</div>
+          <div class="world-desc">Even when shooting people. Find lines, frames, symmetry, repetition before the subject arrives. The structure is the frame for the mythology.</div>
+        </div>
+        <div class="world-cell">
+          <div class="world-title">Shoot Weather</div>
+          <div class="world-desc">Rain. Steam. Fog. Morning light. Golden hour. Weather is free production design. It appears in nearly every reference image. Wait for it.</div>
+        </div>
+        <div class="world-cell">
+          <div class="world-title">Shoot Small / Large</div>
+          <div class="world-desc">Temple. Bridge. Track. A small human inside a large structure is never just a photo. Scale creates meaning.</div>
+        </div>
+        <div class="world-cell">
+          <div class="world-title">Shoot Ritual</div>
+          <div class="world-desc">Not action. Not events. Ritual. Lacing shoes. Pouring coffee. Selecting vinyl. The ceremony inside the ordinary.</div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="pullquote" style="font-size:18px; max-width:600px;">
-    The color grade is the last 5%.<br>
-    The capture is doing the work.<br>
-    Your taste is deeper than a LUT.
-  </div>
-
-  <div class="rule"></div>
-
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:1px solid var(--ink);">
-    <div style="padding:20px 24px 20px 0; border-right:1px solid var(--rule);">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:8px;">What other photographers shoot</div>
-      <div style="font-family:'EB Garamond',serif; font-size:16px; font-style:italic; color:var(--ink-muted);">Events. Subjects. Aesthetics. "Look what happened." "Look who is here." "Look how this was graded."</div>
+    <div class="pq">
+      The color grade is the last 5%.<br>
+      The capture is doing the work.<br>
+      Your taste is deeper than a LUT.
     </div>
-    <div style="padding:20px 0 20px 24px;">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:8px;">What FORM shoots</div>
-      <div style="font-family:'EB Garamond',serif; font-size:16px;">Meaning. "What does this represent?" The references are not describing a color palette. They are describing a worldview.</div>
+
+    <div class="rule"></div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:1px solid var(--ink);">
+      <div style="padding:28px 32px 28px 0; border-right:1px solid var(--rule-soft);">
+        <div class="lbl">What other photographers shoot</div>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:20px; font-style:italic; font-weight:300; color:var(--ink-muted);">Events. Subjects. Aesthetics. "Look what happened." "Look who is here."</p>
+      </div>
+      <div style="padding:28px 0 28px 32px;">
+        <div class="lbl">What FORM shoots</div>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:300; color:var(--ink);">Meaning. "What does this represent?" The references describe a worldview, not a color palette.</p>
+      </div>
     </div>
-  </div>
 
-
-  <div class="doctrine-link">
-    <div>
-      <div class="doctrine-link-title">Studio, not site</div>
-      <div class="doctrine-link-desc">FORM is the front door. Studio is the back room. Training pages stay compressed and athlete-facing. The perception manual holds the authored worldview — how things are seen, selected, shot, edited, and remembered. It connects FORM, Hideout, cinema, and personal practice without turning them into a public biography.</div>
+    <div class="doctrine-block">
+      <div>
+        <div class="doctrine-title">Studio, not site</div>
+        <div class="doctrine-desc">FORM is the front door. Studio is the back room. Training pages stay compressed and athlete-facing. The perception manual holds the authored worldview — how things are seen, selected, shot, edited, and remembered. It connects FORM, Hideout, cinema, and personal practice without turning them into a public biography.</div>
+      </div>
+      <div class="doctrine-tag">Context</div>
     </div>
-    <div class="doctrine-link-label">Context</div>
-  </div>
 
-  <div class="page-footer"><span>Form</span><span>00b — Mythology Inside Reality</span></div>
+    <div class="page-footer"><span>Form</span><span>00b — Mythology Inside Reality</span></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════
-     01 — THINGS SHAPED BY TIME
-══════════════════════════════ -->
+<!-- 01 ═══════════════════════════════════════ -->
 <div class="page" id="ch-01">
   <div class="page-inner">
-  <div class="chapter-num">01</div>
-  <div class="chapter-title">Things Shaped by Time</div>
-  <div class="chapter-sub">The aesthetic foundation</div>
+    <span class="ch-eyebrow">01</span>
+    <h1 class="ch-title">Things Shaped by Time</h1>
+    <p class="ch-sub">The aesthetic foundation</p>
 
-  <div class="lead">
-    FORM is attracted to beauty that emerges from cultivation,<br>restraint, and time. Not luxury. Not perfection. Cultivation.
-  </div>
+    <div class="lead">
+      FORM is attracted to beauty that emerges from cultivation,<br>
+      restraint, and time. Not luxury. Not perfection. Cultivation.
+    </div>
 
-  <p>A body trained for years. Moss growing across stone. A weathered building in afternoon light. A carefully composed room. A bonsai shaped through restraint. Beauty is rarely created in the moment it is photographed. It is usually the visible result of a long process already underway.</p>
+    <p class="large">A body trained for years. Moss growing across stone. A weathered building in afternoon light. A carefully composed room. A bonsai shaped through restraint. Beauty is rarely created in the moment it is photographed. It is usually the visible result of a long process already underway.</p>
 
-  <div class="pullquote" style="font-size:17px; max-width:500px;">
-    FORM documents evidence of this process.<br>
-    Not performances for the camera.
-  </div>
+    <div class="pq">
+      FORM documents evidence of this process.<br>
+      Not performances for the camera.
+    </div>
 
-  <div class="rule"></div>
+    <div class="rule"></div>
 
-  <div class="two-col">
-    <div>
-      <div class="branch">
-        <div class="branch-name">Natural Systems</div>
-        <div class="branch-items">
-          Athlete in motion<br>
-          Ocean surface<br>
-          Rain and condensation<br>
-          Waterfalls<br>
-          Terrariums and moss<br>
-          Skin, freckles, sweat<br>
-          Forest and bark<br>
-          Tide pools
+    <div class="two-col">
+      <div>
+        <div class="branch">
+          <div class="branch-name">Natural Systems</div>
+          <div class="branch-items">
+            Athlete in motion<br>Ocean surface<br>Rain and condensation<br>Waterfalls<br>
+            Terrariums and moss<br>Skin, freckles, sweat<br>Forest and bark<br>Tide pools
+          </div>
+        </div>
+        <div class="branch">
+          <div class="branch-name">Cultivated Systems</div>
+          <div class="branch-items">
+            Architecture<br>Interiors and ritual<br>Sculpture and art<br>Bonsai and gardens<br>
+            Tailoring and fabric<br>Cafés and gathering<br>Weathered buildings<br>Masquerade and ceremony
+          </div>
+        </div>
+        <p style="font-size:13px; color:var(--ink-muted); font-style:italic;">Both obey the same principles. The LUT differs. The doctrine does not.</p>
+      </div>
+      <div>
+        <span class="lbl">What to Find &amp; Protect in Every Frame</span>
+        <table class="tbl" style="margin-top:8px;">
+          <tr><td>Skin</td><td>Luminous, not hard. Freckles, pores, sweat — the primary tactile subject.</td></tr>
+          <tr><td>Water</td><td>Puddles, reflections, condensation, ocean — carry luminosity and movement.</td></tr>
+          <tr><td>Organic</td><td>Moss, bark, leaves, clay — never flatten with clarity or over-sharpen.</td></tr>
+          <tr><td>Fabric</td><td>Rain jacket, athletic material, natural fiber — sheen and weight.</td></tr>
+          <tr><td>Glass</td><td>Goggle reflections, windows, terrarium — depth and environmental layering.</td></tr>
+          <tr><td>Stone</td><td>Concrete, marble, weathered plaster — the stage that makes subjects meaningful.</td></tr>
+          <tr><td>Wood</td><td>Grain, warmth, age — never over-sharpened.</td></tr>
+          <tr><td>Air</td><td>The space between objects. Humidity. Atmosphere. Where light lives.</td></tr>
+        </table>
+        <div class="pq" style="font-size:18px; margin-top:40px;">
+          Richness through materiality,<br>not richness through shadow.
         </div>
       </div>
-      <div class="branch">
-        <div class="branch-name">Cultivated Systems</div>
-        <div class="branch-items">
-          Architecture<br>
-          Interiors and ritual<br>
-          Sculpture and art<br>
-          Bonsai and gardens<br>
-          Tailoring and fabric<br>
-          Cafés and gathering<br>
-          Weathered buildings<br>
-          Masquerade and ceremony
-        </div>
-      </div>
-      <p style="font-size:12px; color:var(--ink-muted); font-style:italic; margin-top:4px;">Both obey the same principles. The LUT differs. The doctrine does not.</p>
     </div>
 
-    <div>
-      <span class="label">What to Find & Protect in Every Frame</span>
-      <table class="spec-table" style="margin-top:12px;">
-        <tr><td>Skin</td><td>Luminous, not hard. Freckles, pores, sweat — the primary tactile subject.</td></tr>
-        <tr><td>Water</td><td>Puddles, reflections, condensation, ocean — carry luminosity and movement.</td></tr>
-        <tr><td>Organic</td><td>Moss, bark, leaves, clay — never flatten with clarity or over-sharpen.</td></tr>
-        <tr><td>Fabric</td><td>Rain jacket, athletic material, natural fiber — sheen and weight.</td></tr>
-        <tr><td>Glass</td><td>Goggle reflections, windows, terrarium — depth and environmental layering.</td></tr>
-        <tr><td>Stone</td><td>Concrete, marble, weathered plaster — the stage that makes subjects meaningful.</td></tr>
-        <tr><td>Wood</td><td>Grain, warmth, age — never over-sharpened.</td></tr>
-        <tr><td>Air</td><td>The space between objects. Humidity. Atmosphere. Where light lives.</td></tr>
-      </table>
+    <div class="rule"></div>
 
-      <div class="pullquote" style="margin-top:28px; font-size:16px;">
-        Richness through materiality,<br>not richness through shadow.
+    <div class="img-grid-3">
+      <div>
+        <img src="/assets/perception-manual/02.jpg" alt="">
+        <div class="img-cap">Cultivated — sculpture</div>
+        <div class="img-desc">Human form studied for generations, distilled into stone. Not fitness. Form.</div>
+      </div>
+      <div>
+        <img src="/assets/perception-manual/03.jpg" alt="">
+        <div class="img-cap">Cultivated meets natural</div>
+        <div class="img-desc">Geometry meeting growth. Human intention meeting organic complexity.</div>
+      </div>
+      <div>
+        <img src="/assets/perception-manual/04.jpg" alt="">
+        <div class="img-cap">Cultivated — memory</div>
+        <div class="img-desc">Patina, accumulated beauty, age. Rich, not minimal. Restraint selects.</div>
       </div>
     </div>
-  </div>
 
-  <div class="rule"></div>
-
-  <div class="ref-grid">
-    <div class="ref-item">
-      <img src="/assets/perception-manual/02.jpg" style="width:100%; display:block;" alt="">
-      <div class="ref-label">Cultivated — sculpture</div>
-      <div class="ref-desc">Human form studied for generations, distilled into stone. Not fitness. Form.</div>
-    </div>
-    <div class="ref-item">
-      <img src="/assets/perception-manual/03.jpg" style="width:100%; display:block;" alt="">
-      <div class="ref-label">Cultivated meets natural</div>
-      <div class="ref-desc">Geometry meeting growth. Human intention meeting organic complexity.</div>
-    </div>
-    <div class="ref-item">
-      <img src="/assets/perception-manual/04.jpg" style="width:100%; display:block;" alt="">
-      <div class="ref-label">Cultivated — memory</div>
-      <div class="ref-desc">Patina, accumulated beauty, age. Rich, not minimal. Restraint selects.</div>
-    </div>
-  </div>
-
-  <div class="page-footer"><span>Form</span><span>01 — Things Shaped by Time</span></div>
+    <div class="page-footer"><span>Form</span><span>01 — Things Shaped by Time</span></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════
-     02 — SIX GOVERNING PRINCIPLES
-══════════════════════════════ -->
+<!-- 02 ═══════════════════════════════════════ -->
 <div class="page" id="ch-02">
   <div class="page-inner">
-  <div class="chapter-num">02</div>
-  <div class="chapter-title">Six Governing Principles</div>
-  <div class="chapter-sub">These are the doctrine. LUTs and presets are implementation.</div>
+    <span class="ch-eyebrow">02</span>
+    <h1 class="ch-title">Six Governing Principles</h1>
+    <p class="ch-sub">These are the doctrine. LUTs and presets are implementation.</p>
 
-  <div class="two-col" style="gap:56px;">
-    <div>
-      <div class="principle">
-        <div class="principle-num">I.</div>
-        <div class="principle-name">Materiality</div>
-        <p>Light reveals texture. The grade protects it. Never manufacture it.</p>
-        <p style="font-size:12px; color:var(--ink-muted);">Everything in the FORM world is tactile: wet skin, rain jackets, terrarium moss, ocean water, condensation, freckles, puddles, glass reflections, sweat, bark, stone, aged plaster. Clarity near zero. Dehaze near zero. When grading: ask what surface is being illuminated.</p>
+    <div class="two-col" style="gap:80px;">
+      <div>
+        <div class="principle">
+          <div class="principle-n">I.</div>
+          <div class="principle-title">Materiality <span class="tog">+</span></div>
+          <div class="principle-body">
+            <p>Light reveals texture. The grade protects it. Never manufacture it.</p>
+            <p style="font-size:14px; color:var(--ink-muted);">Everything in the FORM world is tactile: wet skin, rain jackets, terrarium moss, ocean water, condensation, freckles, puddles, glass reflections, sweat, bark, stone, aged plaster. Clarity near zero. Dehaze near zero. When grading: ask what surface is being illuminated.</p>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-n">II.</div>
+          <div class="principle-title">Luminosity <span class="tog">+</span></div>
+          <div class="principle-body">
+            <p>The shadows glow. The blacks breathe. The image feels alive from within.</p>
+            <p style="font-size:14px; color:var(--ink-muted);">Luminosity over contrast. Preserve the feeling that light exists inside the scene — not merely striking its surfaces.</p>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-n">III.</div>
+          <div class="principle-title">Movement <span class="tog">+</span></div>
+          <div class="principle-body">
+            <p>The athlete is not posing. He is doing. The room is not staged. It has been lived in.</p>
+            <p style="font-size:14px; color:var(--ink-muted);">In FIELD: running, diving, ocean, rain, water in motion. In STILL: the quality of arrested time — a space that feels like someone just left.</p>
+          </div>
+        </div>
       </div>
-
-      <div class="principle">
-        <div class="principle-num">II.</div>
-        <div class="principle-name">Luminosity</div>
-        <p>The shadows glow. The blacks breathe. The image feels alive from within.</p>
-        <p style="font-size:12px; color:var(--ink-muted);">Luminosity over contrast. Preserve the feeling that light exists inside the scene — not merely striking its surfaces. The ORGO image is not bright. The skier is not bright. Yet all feel illuminated.</p>
-      </div>
-
-      <div class="principle">
-        <div class="principle-num">III.</div>
-        <div class="principle-name">Movement</div>
-        <p>The athlete is not posing. He is doing. The room is not staged. It has been lived in.</p>
-        <p style="font-size:12px; color:var(--ink-muted);">In FIELD: running, diving, ocean, rain, water in motion. In STILL: the quality of arrested time — a space that feels like someone just left. Prefer evidence of activity over evidence of arrangement.</p>
+      <div>
+        <div class="principle">
+          <div class="principle-n">IV.</div>
+          <div class="principle-title">Attention <span class="tog">+</span></div>
+          <div class="principle-body">
+            <p>The camera records what the eye learned to notice. The photographer discovers beauty. The camera does not create it.</p>
+            <p style="font-size:14px; color:var(--ink-muted);">FORM images feel like someone was paying attention. Shoot what you actually see — not what you think looks good.</p>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-n">V.</div>
+          <div class="principle-title">Restraint <span class="tog">+</span></div>
+          <div class="principle-body">
+            <p>Restraint selects. Minimalism removes. They are not the same thing.</p>
+            <p style="font-size:14px; color:var(--ink-muted);">They're rich. But they're organized. One thing speaks at a time. Masculine without aggression. Beautiful without decoration. Soft without weakness. This is the FORM register.</p>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-n">VI.</div>
+          <div class="principle-title">Revealed Atmosphere <span class="tog">+</span></div>
+          <div class="principle-body">
+            <p>FORM does not manufacture atmosphere. FORM reveals it.</p>
+            <p style="font-size:14px; color:var(--ink-muted);">Mood is not the enemy. Manufactured mood is. The universal test: <em>if the grade becomes more interesting than the experience itself, pull it back.</em> The goal is not cinematic. The goal is <em>unusually alive.</em></p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div>
-      <div class="principle">
-        <div class="principle-num">IV.</div>
-        <div class="principle-name">Attention</div>
-        <p>The camera records what the eye learned to notice. The photographer discovers beauty. The camera does not create it.</p>
-        <p style="font-size:12px; color:var(--ink-muted);">FORM images feel like someone was paying attention. Shoot what you actually see — not what you think looks good.</p>
-      </div>
+    <div class="rule"></div>
 
-      <div class="principle">
-        <div class="principle-num">V.</div>
-        <div class="principle-name">Restraint</div>
-        <p>Restraint selects. Minimalism removes. They are not the same thing.</p>
-        <p style="font-size:12px; color:var(--ink-muted);">Your references consistently favor abundance under organization rather than reduction. The library room is not minimal — it has books, flowers, velvet, aged plaster, a gathered floral arrangement. The jungle architecture is not minimal. The statues are not minimal. The flowers are not minimal. Even the track image isn't minimal.</p>
-        <p style="font-size:12px; color:var(--ink-muted);">They're rich. But they're organized. One thing speaks at a time.</p>
-        <p style="font-size:12px; color:var(--ink-muted);">Masculine without aggression. Beautiful without decoration. Soft without weakness. This is the FORM register.</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:1px solid var(--ink);">
+      <div style="padding:28px 32px 28px 0; border-right:1px solid var(--rule-soft);">
+        <div class="lbl">The image should make you want to</div>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:26px; font-style:italic; font-weight:300; color:var(--ink); margin:0;">"Inhabit the moment."</p>
       </div>
-
-      <div class="principle" style="border-bottom:none; padding-bottom:0; margin-bottom:0;">
-        <div class="principle-num">VI.</div>
-        <div class="principle-name">Revealed Atmosphere</div>
-        <p>FORM does not manufacture atmosphere. FORM reveals it.</p>
-        <p style="font-size:12px; color:var(--ink-muted);">Mood is not the enemy. Manufactured mood is. The library has mood. The statues have mood. The flower portrait has mood. None of it was added in post. It was already there. The camera arrived and witnessed it.</p>
-        <p style="font-size:12px; color:var(--ink-muted);">Presence comes first. Mood is allowed to emerge from what is already there.</p>
-        <p style="font-size:12px; color:var(--ink-muted);">The universal test: <em>if the grade becomes more interesting than the experience itself, pull it back.</em> The photograph should make someone want to inhabit the moment — not admire the edit.</p>
-        <p style="font-size:12px; color:var(--ink-muted);">The goal is not cinematic. The goal is <em>unusually alive.</em></p>
+      <div style="padding:28px 0 28px 32px;">
+        <div class="lbl">Not</div>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:26px; font-style:italic; font-weight:300; color:var(--ink-muted); margin:0;">"Admire the edit."</p>
       </div>
     </div>
-  </div>
 
-  <div class="rule"></div>
-
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:1px solid var(--ink);">
-    <div style="padding:20px 24px 20px 0; border-right:1px solid var(--rule);">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:8px;">The image should make you want to</div>
-      <div style="font-family:'EB Garamond',serif; font-size:18px; font-style:italic;">"Inhabit the moment."</div>
-    </div>
-    <div style="padding:20px 0 20px 24px;">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:8px;">Not</div>
-      <div style="font-family:'EB Garamond',serif; font-size:18px; font-style:italic; color:var(--ink-muted);">"Admire the edit."</div>
-    </div>
-  </div>
-
-  <div class="page-footer"><span>Form</span><span>02 — Six Governing Principles</span></div>
+    <div class="page-footer"><span>Form</span><span>02 — Six Governing Principles</span></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════
-     03 — VISUAL REFERENCE
-══════════════════════════════ -->
+<!-- 03 ═══════════════════════════════════════ -->
 <div class="page" id="ch-03">
   <div class="page-inner">
-  <div class="chapter-num">03</div>
-  <div class="chapter-title">Visual Reference</div>
-  <div class="chapter-sub">Miami After Rain — the canonical FIELD reference. The full spectrum.</div>
+    <span class="ch-eyebrow">03</span>
+    <h1 class="ch-title">Visual Reference</h1>
+    <p class="ch-sub">Miami After Rain — the canonical FIELD reference. The full spectrum.</p>
 
-
-  <div class="two-col" style="gap:32px; align-items:start;">
-    <div>
-      <span class="label">Natural Systems</span>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px;">
-        <div>
-          <img src="/assets/perception-manual/06.jpg" style="width:100%; display:block;" alt="">
-          <div class="caption">Hard light — texture revealed</div>
+    <div class="two-col" style="gap:40px; align-items:start; margin-bottom:56px;">
+      <div>
+        <span class="lbl">Natural Systems</span>
+        <div class="img-grid-2" style="margin-top:16px;">
+          <div><img src="/assets/perception-manual/06.jpg" alt=""><div class="img-cap">Hard light — texture revealed</div></div>
+          <div><img src="/assets/perception-manual/07.jpg" alt=""><div class="img-cap">Ocean — luminosity and motion</div></div>
+          <div><img src="/assets/perception-manual/08.jpg" alt=""><div class="img-cap">Skin — luminous, not hard</div></div>
+          <div><img src="/assets/perception-manual/09.jpg" alt=""><div class="img-cap">Weathered beauty — ambient life</div></div>
         </div>
-        <div>
-          <img src="/assets/perception-manual/07.jpg" style="width:100%; display:block;" alt="">
-          <div class="caption">Ocean — luminosity and motion</div>
-        </div>
-        <div>
-          <img src="/assets/perception-manual/08.jpg" style="width:100%; display:block;" alt="">
-          <div class="caption">Skin — luminous, not hard</div>
-        </div>
-        <div>
-          <img src="/assets/perception-manual/09.jpg" style="width:100%; display:block;" alt="">
-          <div class="caption">Weathered beauty — ambient life, warm air</div>
+      </div>
+      <div>
+        <span class="lbl">Cultivated Systems</span>
+        <div class="img-grid-2" style="margin-top:16px;">
+          <div><img src="/assets/perception-manual/10.jpg" alt=""><div class="img-cap">Interior — stone, glass, warm light</div></div>
+          <div><img src="/assets/perception-manual/11.jpg" alt=""><div class="img-cap">Ceremony — shadow that glows</div></div>
+          <div><img src="/assets/perception-manual/12.jpg" alt=""><div class="img-cap">Accumulated beauty, not arranged</div></div>
+          <div><img src="/assets/perception-manual/13.jpg" alt=""><div class="img-cap">Masculine softness — FORM skin</div></div>
         </div>
       </div>
     </div>
-    <div>
-      <span class="label">Cultivated Systems</span>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px;">
-        <div>
-          <img src="/assets/perception-manual/10.jpg" style="width:100%; display:block;" alt="">
-          <div class="caption">Interior — stone, glass, warm light</div>
-        </div>
-        <div>
-          <img src="/assets/perception-manual/11.jpg" style="width:100%; display:block;" alt="">
-          <div class="caption">Ceremony — shadow that glows</div>
-        </div>
-        <div>
-          <img src="/assets/perception-manual/12.jpg" style="width:100%; display:block;" alt="">
-          <div class="caption">Accumulated beauty, not arranged</div>
-        </div>
-        <div>
-          <img src="/assets/perception-manual/13.jpg" style="width:100%; display:block;" alt="">
-          <div class="caption">Masculine softness — the FORM skin register</div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="rule"></div>
+    <div class="rule"></div>
 
-  <div class="two-col" style="gap:32px;">
-    <div>
-      <span class="label">Grade Analysis — Miami After Rain</span>
-      <table class="spec-table" style="margin-top:12px;">
-        <tr><td>Sky</td><td>Cyan removed · blue shifted cleaner · saturation lifted</td></tr>
-        <tr><td>Track</td><td>Magenta reduced · brick/clay · not orange</td></tr>
-        <tr><td>Greens</td><td>Olive/forest push · yellow-green reduced</td></tr>
-        <tr><td>Highlights</td><td>Buildings cooled to white · sky open, not blown</td></tr>
-        <tr><td>Skin</td><td>Warm-neutral · slightly golden · texture intact</td></tr>
-        <tr><td>Shadows</td><td>Deep navy and olive — not black</td></tr>
-        <tr><td>Midtones</td><td>Slightly elevated · bright without washed out</td></tr>
-        <tr><td>Overall</td><td>Grade supports the photograph. Does not become the subject.</td></tr>
-      </table>
-    </div>
-    <div>
-      <span class="label">What the grade should not do</span>
-      <table class="spec-table" style="margin-top:12px;">
-        <tr><td>The Test</td><td>If the grade becomes more interesting than the experience itself, pull it back. The puddle should feel reflective and calm — not swampy. That's a different film.</td></tr>
-        <tr><td>Drama</td><td>The problem isn't mood. The problem is manufactured mood. Mood is allowed to emerge from what is already in the scene.</td></tr>
-        <tr><td>Separation</td><td>Avoid excessive color separation between track, sky, greens. More air between tones, not more contrast.</td></tr>
-        <tr><td>Sharpness</td><td>Atmospheric images have visible air. Not blur. Not soft focus. The space between objects matters.</td></tr>
-      </table>
-
-      <div class="pullquote" style="font-size:15px; margin-top:28px;">
-        The Morocco image isn't dark.<br>
-        The flower portrait isn't dark.<br>
-        The statues aren't dark.<br>
-        They operate on a different principle.
-      </div>
-    </div>
-  </div>
-
-  <div class="page-footer"><span>Form</span><span>03 — Visual Reference</span></div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════
-     04 — SELECTION
-══════════════════════════════ -->
-<div class="page" id="ch-04">
-  <div class="page-inner">
-  <div class="chapter-num">04</div>
-  <div class="chapter-title">Selection</div>
-  <div class="chapter-sub">The first and most important step.</div>
-
-  <div class="lead">The biggest skill isn't grading. It's choosing.</div>
-
-  <p>You don't make the image in camera. You make it here — in the moment of recognition before the shutter fires, and in the brutal editing afterward.</p>
-
-  <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:0; margin:28px 0; border-top:1px solid var(--ink);">
-    <div style="padding:18px 0; border-right:1px solid var(--rule);">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:5px;">01</div>
-      <div style="font-family:'EB Garamond',serif; font-size:18px;">Attention</div>
-      <div style="font-size:10px; color:var(--ink-muted); margin-top:4px;">Notice something worth noticing</div>
-    </div>
-    <div style="padding:18px 16px; border-right:1px solid var(--rule); background:var(--ink);">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:5px;">02</div>
-      <div style="font-family:'EB Garamond',serif; font-size:18px; color:white;">Selection</div>
-      <div style="font-size:10px; color:rgba(255,255,255,0.5); margin-top:4px;">Choose what matters</div>
-    </div>
-    <div style="padding:18px 16px; border-right:1px solid var(--rule);">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:5px;">03</div>
-      <div style="font-family:'EB Garamond',serif; font-size:18px;">Capture</div>
-      <div style="font-size:10px; color:var(--ink-muted); margin-top:4px;">Record it with intention</div>
-    </div>
-    <div style="padding:18px 16px;">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:5px;">04</div>
-      <div style="font-family:'EB Garamond',serif; font-size:18px;">Grade</div>
-      <div style="font-size:10px; color:var(--ink-muted); margin-top:4px;">Support what's real</div>
-    </div>
-  </div>
-
-  <div class="two-col">
-    <div>
-      <span class="label">Choose images that contain</span>
-      <div style="margin-top:10px;">
-        <div class="select-item"><div class="select-dot"></div><span>Honest moments over performative ones</span></div>
-        <div class="select-item"><div class="select-dot"></div><span>Context over isolation — subject in its world</span></div>
-        <div class="select-item"><div class="select-dot"></div><span>Imperfect timing over forced timing</span></div>
-        <div class="select-item"><div class="select-dot"></div><span>Environmental portraits over headshots</span></div>
-        <div class="select-item"><div class="select-dot"></div><span>Scenes with depth, reflections, and textures</span></div>
-        <div class="select-item"><div class="select-dot"></div><span>Weathered beauty — imperfection that reads as premium</span></div>
-        <div class="select-item"><div class="select-dot"></div><span>Images where the air itself is visible</span></div>
-      </div>
-    </div>
-    <div>
-      <span class="label">Delete immediately</span>
-      <div style="margin-top:10px;">
-        <div class="select-item"><div class="select-dot"></div><span>Posing without purpose</span></div>
-        <div class="select-item"><div class="select-dot"></div><span>Clean perfection — not honest</span></div>
-        <div class="select-item"><div class="select-dot"></div><span>Orange skin — never</span></div>
-        <div class="select-item"><div class="select-dot"></div><span>Empty backgrounds — context is always the point</span></div>
-        <div class="select-item"><div class="select-dot"></div><span>Over-composition — let the moment compose itself</span></div>
-        <div class="select-item"><div class="select-dot"></div><span>Anything you kept because you worked hard for it</span></div>
-        <div class="select-item"><div class="select-dot"></div><span>Any image that looks like other people's images</span></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="pullquote" style="margin-top:36px; font-size:17px;">
-    Luxury through selection, not luxury through perfection.
-  </div>
-
-  <div class="rule"></div>
-
-  <p style="font-size:12px; color:var(--ink-muted);">Why did you stop and save that puddle? That runner? That terrarium? That ORGO image? That waterfall? The answer isn't exposure settings. It's because you recognized something worth looking at. Selection is that recognition — trained, sharpened, then trusted.</p>
-
-  <p style="font-size:12px; color:var(--ink-muted);">Your taste is increasingly driven by selection rather than processing. That is exactly where strong visual systems eventually end up. The best work remains.</p>
-
-  <div class="page-footer"><span>Form</span><span>04 — Selection</span></div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════
-     04b — SHOOTING CONTEXTS
-══════════════════════════════ -->
-<div class="page" id="ch-04b">
-  <div class="page-inner">
-  <div class="chapter-num">04b</div>
-  <div class="chapter-title">Shooting Contexts</div>
-  <div class="chapter-sub">Six worlds. What to point the camera at when living normal life.</div>
-
-  <div class="lead">
-    You are not a travel photographer.<br>
-    You are not a fashion photographer.<br>
-    You are Brice — which means 90% of your opportunities<br>
-    are already in front of you every day.
-  </div>
-
-  <div class="rule"></div>
-
-  <!-- SHOT LIST GRID -->
-  <span class="label" style="margin-bottom:16px; display:block;">The FORM Shot List — six categories, four arcs each</span>
-  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:1px solid var(--rule); margin-bottom:40px;">
-
-    <div style="padding:18px; border-right:1px solid var(--rule); border-bottom:1px solid var(--rule);">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:8px;">I — Self</div>
-      <div style="font-family:'EB Garamond',serif; font-size:16px; margin-bottom:10px;">Ritual · Transition · Solitude · Recovery</div>
-      <div style="font-size:11px; color:var(--ink-muted); line-height:1.8;">Tying shoes. Opening blinds. Making coffee. Journaling. Stretching. Balcony. Leaving the apartment. Entering Hideout. Small figure inside large frame.</div>
-    </div>
-
-    <div style="padding:18px; border-right:1px solid var(--rule); border-bottom:1px solid var(--rule);">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:8px;">II — Athletes</div>
-      <div style="font-family:'EB Garamond',serif; font-size:16px; margin-bottom:10px;">Preparation · Effort · Recovery · Community</div>
-      <div style="font-size:11px; color:var(--ink-muted); line-height:1.8;">Spikes on track. Watches. Drills. Then rhythm, repetition, effort. Then hands on knees, walking recovery, conversations. Shoot the full arc — not just the rep.</div>
-    </div>
-
-    <div style="padding:18px; border-bottom:1px solid var(--rule);">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:8px;">III — Hideout</div>
-      <div style="font-family:'EB Garamond',serif; font-size:16px; margin-bottom:10px;">Opening · Service · Gathering · Closing</div>
-      <div style="font-size:11px; color:var(--ink-muted); line-height:1.8;">Chairs, lights, first drink, empty room. Then handoff, steam, pouring. Then conversation, reading, waiting. Then sunlight gone, wiped tables, flowers remaining.</div>
-    </div>
-
-    <div style="padding:18px; border-right:1px solid var(--rule);">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:8px;">IV — Sundays</div>
-      <div style="font-family:'EB Garamond',serif; font-size:16px; margin-bottom:10px;">Setup · Listening · Conversation · Departure</div>
-      <div style="font-size:11px; color:var(--ink-muted); line-height:1.8;">You are not documenting DJs. You are documenting gathering. Selecting records. Adjusting needle. People listening. Flowers. Hands on cups. Not the hero shot.</div>
-    </div>
-
-    <div style="padding:18px; border-right:1px solid var(--rule);">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:8px;">V — Architecture</div>
-      <div style="font-family:'EB Garamond',serif; font-size:16px; margin-bottom:10px;">Portals · Symmetry · Light · Scale</div>
-      <div style="font-size:11px; color:var(--ink-muted); line-height:1.8;">Build a deliberate archive. You already see architecture differently. Thresholds, corridors, repetition, frames within frames. This is one of the strongest recurring signals in every reference.</div>
-    </div>
-
-    <div style="padding:18px;">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:8px;">VI — Miami</div>
-      <div style="font-family:'EB Garamond',serif; font-size:16px; margin-bottom:10px;">Rain · Water · Reflections · Morning</div>
-      <div style="font-size:11px; color:var(--ink-muted); line-height:1.8;">The city as atmosphere. Miami after rain is the canonical FIELD frame for a reason. Build a weather archive. Puddles, wet roads, pre-dawn light, bay reflections.</div>
-    </div>
-
-  </div>
-
-  <div class="rule"></div>
-
-  <!-- THREE DETAILED CONTEXTS -->
-  <div style="border-top:2px solid var(--ink); padding-top:20px; margin-bottom:36px;">
-    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:20px;">
-      <div style="font-family:'EB Garamond',serif; font-size:28px;">I. Self — Solo Shooting</div>
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint);">Tripod · Self-Timer · Presence</div>
-    </div>
     <div class="two-col" style="gap:40px;">
       <div>
-        <span class="label">The approach</span>
-        <p>Not portraits of yourself. Presence inside structure. The tripod doesn't exist to take photos of you — it exists because you are often alone and you are frequently inside interesting frames that need a small human to complete them.</p>
+        <span class="lbl">Grade Analysis — Miami After Rain</span>
+        <table class="tbl" style="margin-top:8px;">
+          <tr><td>Sky</td><td>Cyan removed · blue shifted cleaner · saturation lifted</td></tr>
+          <tr><td>Track</td><td>Magenta reduced · brick/clay · not orange</td></tr>
+          <tr><td>Greens</td><td>Olive/forest push · yellow-green reduced</td></tr>
+          <tr><td>Highlights</td><td>Buildings cooled to white · sky open, not blown</td></tr>
+          <tr><td>Skin</td><td>Warm-neutral · slightly golden · texture intact</td></tr>
+          <tr><td>Shadows</td><td>Deep navy and olive — not black</td></tr>
+          <tr><td>Midtones</td><td>Slightly elevated · bright without washed out</td></tr>
+          <tr><td>Overall</td><td>Grade supports the photograph. Does not become the subject.</td></tr>
+        </table>
+      </div>
+      <div>
+        <span class="lbl">What the grade should not do</span>
+        <table class="tbl" style="margin-top:8px;">
+          <tr><td>The Test</td><td>If the grade becomes more interesting than the experience, pull it back.</td></tr>
+          <tr><td>Drama</td><td>The problem isn't mood. The problem is manufactured mood.</td></tr>
+          <tr><td>Separation</td><td>More air between tones, not more contrast.</td></tr>
+          <tr><td>Sharpness</td><td>Atmospheric images have visible air. Not blur. Not soft focus.</td></tr>
+        </table>
+        <div class="pq" style="font-size:17px; margin-top:40px;">
+          The Morocco image isn't dark.<br>
+          The flower portrait isn't dark.<br>
+          They operate on a different principle.
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer"><span>Form</span><span>03 — Visual Reference</span></div>
+  </div>
+</div>
+
+<!-- 04 ═══════════════════════════════════════ -->
+<div class="page" id="ch-04">
+  <div class="page-inner">
+    <span class="ch-eyebrow">04</span>
+    <h1 class="ch-title">Selection</h1>
+    <p class="ch-sub">The first and most important step.</p>
+
+    <div class="lead">The biggest skill isn't grading. It's choosing.</div>
+
+    <p class="large">You don't make the image in camera. You make it here — in the moment of recognition before the shutter fires, and in the brutal editing afterward.</p>
+
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin:48px 0; border-top:1px solid var(--ink);">
+      <div style="padding:24px 0; border-right:1px solid var(--rule-soft);">
+        <div class="lbl">01</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; color:var(--ink);">Attention</div>
+        <div style="font-family:'EB Garamond',serif; font-size:12px; color:var(--ink-muted); margin-top:6px;">Notice something worth noticing</div>
+      </div>
+      <div style="padding:24px 16px; border-right:1px solid var(--rule-soft); background:var(--ink);">
+        <div class="lbl" style="color:rgba(255,255,255,0.3);">02</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; color:white;">Selection</div>
+        <div style="font-family:'EB Garamond',serif; font-size:12px; color:rgba(255,255,255,0.45); margin-top:6px;">Choose what matters</div>
+      </div>
+      <div style="padding:24px 16px; border-right:1px solid var(--rule-soft);">
+        <div class="lbl">03</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; color:var(--ink);">Capture</div>
+        <div style="font-family:'EB Garamond',serif; font-size:12px; color:var(--ink-muted); margin-top:6px;">Record it with intention</div>
+      </div>
+      <div style="padding:24px 16px;">
+        <div class="lbl">04</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; color:var(--ink);">Grade</div>
+        <div style="font-family:'EB Garamond',serif; font-size:12px; color:var(--ink-muted); margin-top:6px;">Support what's real</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <span class="lbl">Choose images that contain</span>
+        <div style="margin-top:8px;">
+          <div class="s-item"><div class="s-dot"></div><span>Honest moments over performative ones</span></div>
+          <div class="s-item"><div class="s-dot"></div><span>Context over isolation — subject in its world</span></div>
+          <div class="s-item"><div class="s-dot"></div><span>Imperfect timing over forced timing</span></div>
+          <div class="s-item"><div class="s-dot"></div><span>Environmental portraits over headshots</span></div>
+          <div class="s-item"><div class="s-dot"></div><span>Scenes with depth, reflections, and textures</span></div>
+          <div class="s-item"><div class="s-dot"></div><span>Weathered beauty — imperfection that reads as premium</span></div>
+          <div class="s-item"><div class="s-dot"></div><span>Images where the air itself is visible</span></div>
+        </div>
+      </div>
+      <div>
+        <span class="lbl">Delete immediately</span>
+        <div style="margin-top:8px;">
+          <div class="d-item"><div class="d-mark">—</div><span>Posing without purpose</span></div>
+          <div class="d-item"><div class="d-mark">—</div><span>Clean perfection — not honest</span></div>
+          <div class="d-item"><div class="d-mark">—</div><span>Orange skin — never</span></div>
+          <div class="d-item"><div class="d-mark">—</div><span>Empty backgrounds — context is always the point</span></div>
+          <div class="d-item"><div class="d-mark">—</div><span>Over-composition — let the moment compose itself</span></div>
+          <div class="d-item"><div class="d-mark">—</div><span>Anything you kept because you worked hard for it</span></div>
+          <div class="d-item"><div class="d-mark">—</div><span>Any image that looks like other people's images</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pq" style="margin-top:56px;">
+      Luxury through selection, not luxury through perfection.
+    </div>
+
+    <div class="rule"></div>
+
+    <p>Why did you stop and save that puddle? That runner? That terrarium? The answer isn't exposure settings. It's because you recognized something worth looking at. Selection is that recognition — trained, sharpened, then trusted.</p>
+
+    <div class="page-footer"><span>Form</span><span>04 — Selection</span></div>
+  </div>
+</div>
+
+<!-- 04b ══════════════════════════════════════ -->
+<div class="page" id="ch-04b">
+  <div class="page-inner">
+    <span class="ch-eyebrow">04b</span>
+    <h1 class="ch-title">Shooting Contexts</h1>
+    <p class="ch-sub">Six worlds. What to point the camera at when living normal life.</p>
+
+    <div class="lead">
+      You are not a travel photographer.<br>
+      You are not a fashion photographer.<br>
+      You are Brice — which means 90% of your opportunities<br>are already in front of you every day.
+    </div>
+
+    <div class="rule"></div>
+
+    <span class="lbl" style="margin-bottom:20px;">The FORM Shot List — six categories, four arcs each</span>
+    <div class="ctx-grid">
+      <div class="ctx-cell">
+        <div class="ctx-cat">I — Self</div>
+        <div class="ctx-name">Ritual · Transition · Solitude · Recovery</div>
+        <div class="ctx-desc">Tying shoes. Opening blinds. Making coffee. Journaling. Stretching. Balcony. Leaving the apartment. Entering Hideout. Small figure inside large frame.</div>
+      </div>
+      <div class="ctx-cell">
+        <div class="ctx-cat">II — Athletes</div>
+        <div class="ctx-name">Preparation · Effort · Recovery · Community</div>
+        <div class="ctx-desc">Spikes on track. Watches. Drills. Then rhythm, repetition, effort. Then hands on knees, walking recovery, conversations. Shoot the full arc — not just the rep.</div>
+      </div>
+      <div class="ctx-cell">
+        <div class="ctx-cat">III — Hideout</div>
+        <div class="ctx-name">Opening · Service · Gathering · Closing</div>
+        <div class="ctx-desc">Chairs, lights, first drink, empty room. Then handoff, steam, pouring. Then conversation, reading, waiting. Then sunlight gone, wiped tables, flowers remaining.</div>
+      </div>
+      <div class="ctx-cell">
+        <div class="ctx-cat">IV — Sundays</div>
+        <div class="ctx-name">Setup · Listening · Conversation · Departure</div>
+        <div class="ctx-desc">You are not documenting DJs. You are documenting gathering. Selecting records. Adjusting needle. People listening. Flowers. Hands on cups. Not the hero shot.</div>
+      </div>
+      <div class="ctx-cell">
+        <div class="ctx-cat">V — Architecture</div>
+        <div class="ctx-name">Portals · Symmetry · Light · Scale</div>
+        <div class="ctx-desc">Build a deliberate archive. You already see architecture differently. Thresholds, corridors, repetition, frames within frames. The strongest recurring signal in your references.</div>
+      </div>
+      <div class="ctx-cell">
+        <div class="ctx-cat">VI — Miami</div>
+        <div class="ctx-name">Rain · Water · Reflections · Morning</div>
+        <div class="ctx-desc">The city as atmosphere. Miami after rain is the canonical FIELD frame for a reason. Build a weather archive. Puddles, wet roads, pre-dawn light, bay reflections.</div>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="ctx-header">
+      <div class="ctx-title">I. Self — Solo Shooting</div>
+      <div class="ctx-tag">Tripod · Self-Timer · Presence</div>
+    </div>
+    <div class="two-col" style="gap:56px; margin-bottom:56px;">
+      <div>
+        <span class="lbl">The approach</span>
+        <p>Not portraits of yourself. Presence inside structure. The tripod exists because you are often alone and frequently inside interesting frames that need a small human to complete them.</p>
         <p>The mistake is standing and looking at the camera. The correct approach is setting the frame, then entering it and doing the thing you would be doing anyway.</p>
-        <div class="pullquote" style="font-size:14px; margin-top:16px;">
+        <div class="pq" style="font-size:17px; margin-top:32px;">
           The monk on the bridge didn't pose.<br>
           He walked. Someone had the frame ready.<br>
           You are both people.
         </div>
       </div>
       <div>
-        <span class="label">Tripod protocol</span>
-        <table class="spec-table" style="margin-top:12px;">
+        <span class="lbl">Tripod protocol</span>
+        <table class="tbl" style="margin-top:8px;">
           <tr><td>Scout first</td><td>Set the frame before you're in it. Know exactly where to walk, stop, move.</td></tr>
           <tr><td>Timer</td><td>10-second delay minimum. Burst mode always. Take 20+ frames per setup.</td></tr>
           <tr><td>Back to camera</td><td>Default. Anonymous presence is more powerful than portrait here.</td></tr>
@@ -1180,787 +1348,638 @@ p {
         </table>
       </div>
     </div>
-  </div>
 
-  <div style="border-top:1px solid var(--rule); padding-top:20px; margin-bottom:36px;">
-    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:20px;">
-      <div style="font-family:'EB Garamond',serif; font-size:28px;">II. Athletes — The Full Arc</div>
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint);">Track · Long Run · Intervals</div>
-    </div>
-    <div class="two-col" style="gap:40px;">
-      <div>
-        <span class="label">Most people shoot</span>
-        <div style="margin-top:10px;">
-          <div class="delete-item"><span class="delete-x">SKIP</span><span>The rep. The highlight. The finish. The hero moment.</span></div>
-          <div class="delete-item"><span class="delete-x">SKIP</span><span>Athletes looking at camera, posed, aware.</span></div>
-          <div class="delete-item"><span class="delete-x">SKIP</span><span>Action shots that could be stock photography.</span></div>
+    <div style="border-top:1px solid var(--rule-soft); padding-top:40px; margin-bottom:56px;">
+      <div class="ctx-header" style="border-top:none; padding-top:0;">
+        <div class="ctx-title">II. Athletes — The Full Arc</div>
+        <div class="ctx-tag">Track · Long Run · Intervals</div>
+      </div>
+      <div class="two-col" style="gap:56px;">
+        <div>
+          <span class="lbl">Most people shoot</span>
+          <div style="margin-top:8px;">
+            <div class="d-item"><div class="d-mark">Skip</div><span>The rep. The highlight. The finish. The hero moment.</span></div>
+            <div class="d-item"><div class="d-mark">Skip</div><span>Athletes looking at camera, posed, aware.</span></div>
+            <div class="d-item"><div class="d-mark">Skip</div><span>Action shots that could be stock photography.</span></div>
+          </div>
+          <span class="lbl" style="margin-top:28px;">FORM shoots</span>
+          <div style="margin-top:8px;">
+            <div class="s-item"><div class="s-dot"></div><span>Before — spikes on track, watch setting, drills, the moment before first rep</span></div>
+            <div class="s-item"><div class="s-dot"></div><span>During — rhythm and repetition over peak effort</span></div>
+            <div class="s-item"><div class="s-dot"></div><span>After — hands on knees, walking recovery, athletes in conversation</span></div>
+            <div class="s-item"><div class="s-dot"></div><span>Context — one figure, large environment, weather, architecture of the venue</span></div>
+          </div>
         </div>
-        <span class="label" style="margin-top:20px; display:block;">FORM shoots</span>
-        <div style="margin-top:10px;">
-          <div class="select-item"><div class="select-dot"></div><span>Before — spikes on track, watch setting, drills, the moment before first rep</span></div>
-          <div class="select-item"><div class="select-dot"></div><span>During — rhythm and repetition over peak effort</span></div>
-          <div class="select-item"><div class="select-dot"></div><span>After — hands on knees, walking recovery, athletes in conversation</span></div>
-          <div class="select-item"><div class="select-dot"></div><span>Context — one figure, large environment, weather, architecture of the venue</span></div>
+        <div>
+          <span class="lbl">Logistics</span>
+          <table class="tbl" style="margin-top:8px;">
+            <tr><td>Arrive early</td><td>Find the geometry before the athletes do. The empty track is a frame.</td></tr>
+            <tr><td>Light</td><td>Pre-dawn intervals or golden hour long runs. Midday is flat.</td></tr>
+            <tr><td>Position</td><td>Low for convergence. Behind for anonymity. Wide for context.</td></tr>
+            <tr><td>Clip length</td><td>10–30 seconds. One action, real time. Entrance, movement, exit.</td></tr>
+            <tr><td>Wet track</td><td>Worth waiting for every time. Rain changes everything.</td></tr>
+          </table>
         </div>
       </div>
-      <div>
-        <span class="label">Logistics</span>
-        <table class="spec-table" style="margin-top:12px;">
-          <tr><td>Arrive early</td><td>Find the geometry before the athletes do. The empty track is a frame.</td></tr>
-          <tr><td>Light</td><td>Pre-dawn intervals or golden hour long runs. Midday is flat.</td></tr>
-          <tr><td>Position</td><td>Low for convergence. Behind for anonymity. Wide for context.</td></tr>
-          <tr><td>Clip length</td><td>10–30 seconds. One action, real time. Entrance, movement, exit.</td></tr>
-          <tr><td>Wet track</td><td>Worth waiting for every time. Rain changes everything.</td></tr>
-        </table>
-      </div>
     </div>
-  </div>
 
-  <div style="border-top:1px solid var(--rule); padding-top:20px;">
-    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:20px;">
-      <div style="font-family:'EB Garamond',serif; font-size:28px;">III. Hideout — The Full Day</div>
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint);">Interior · Ritual · Community</div>
-    </div>
-    <div class="two-col" style="gap:40px;">
-      <div>
-        <span class="label">Hideout is full of rituals most people miss</span>
-        <table class="spec-table" style="margin-top:12px;">
-          <tr><td>Opening</td><td>Empty room, chairs, first light, preparation — before anyone arrives.</td></tr>
-          <tr><td>Service</td><td>The handoff. Steam. Pour. Cup on wood. Real time, no cuts.</td></tr>
-          <tr><td>Village</td><td>Conversation from distance. Reading. Waiting. Communal quiet.</td></tr>
-          <tr><td>Closing</td><td>Sunlight disappearing. Wiped tables. Flowers remaining. The after.</td></tr>
-        </table>
+    <div style="border-top:1px solid var(--rule-soft); padding-top:40px;">
+      <div class="ctx-header" style="border-top:none; padding-top:0;">
+        <div class="ctx-title">III. Hideout — The Full Day</div>
+        <div class="ctx-tag">Interior · Ritual · Community</div>
       </div>
-      <div>
-        <span class="label">Logistics</span>
-        <table class="spec-table" style="margin-top:12px;">
-          <tr><td>Arrive early</td><td>Shoot the space empty. Then shoot it full. Two completely different images.</td></tr>
-          <tr><td>Available light</td><td>Window light only where possible. Flash kills the atmosphere every time.</td></tr>
-          <tr><td>Observer mode</td><td>Most Hideout images should be taken without directing. Don't ask people to hold still.</td></tr>
-          <tr><td>Clips</td><td>One action, real time. Pour. Place. Select. No transitions needed. 15–30 seconds.</td></tr>
-          <tr><td>Details</td><td>Flower arrangement, book spine, cup ring on wood. Accumulated beauty, not arranged beauty.</td></tr>
-        </table>
+      <div class="two-col" style="gap:56px;">
+        <div>
+          <span class="lbl">Rituals most people miss</span>
+          <table class="tbl" style="margin-top:8px;">
+            <tr><td>Opening</td><td>Empty room, chairs, first light, preparation — before anyone arrives.</td></tr>
+            <tr><td>Service</td><td>The handoff. Steam. Pour. Cup on wood. Real time, no cuts.</td></tr>
+            <tr><td>Village</td><td>Conversation from distance. Reading. Waiting. Communal quiet.</td></tr>
+            <tr><td>Closing</td><td>Sunlight disappearing. Wiped tables. Flowers remaining. The after.</td></tr>
+          </table>
+        </div>
+        <div>
+          <span class="lbl">Logistics</span>
+          <table class="tbl" style="margin-top:8px;">
+            <tr><td>Arrive early</td><td>Shoot the space empty. Then shoot it full. Two completely different images.</td></tr>
+            <tr><td>Available light</td><td>Window light only where possible. Flash kills the atmosphere every time.</td></tr>
+            <tr><td>Observer mode</td><td>Most Hideout images should be taken without directing. Don't ask people to hold still.</td></tr>
+            <tr><td>Clips</td><td>One action, real time. Pour. Place. Select. No transitions needed. 15–30 seconds.</td></tr>
+            <tr><td>Details</td><td>Flower arrangement, book spine, cup ring on wood. Accumulated beauty, not arranged beauty.</td></tr>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="page-footer"><span>Form</span><span>04b — Shooting Contexts</span></div>
+    <div class="page-footer"><span>Form</span><span>04b — Shooting Contexts</span></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════
-     05 — CAPTURE
-══════════════════════════════ -->
+<!-- 05 ═══════════════════════════════════════ -->
 <div class="page" id="ch-05">
   <div class="page-inner">
-  <div class="chapter-num">05</div>
-  <div class="chapter-title">Capture</div>
-  <div class="chapter-sub">Camera, lens language, and shot archetypes</div>
+    <span class="ch-eyebrow">05</span>
+    <h1 class="ch-title">Capture</h1>
+    <p class="ch-sub">Camera, lens language, and shot archetypes</p>
 
-  <div class="two-col">
-    <div>
-      <span class="label">Camera & Format</span>
-      <table class="spec-table" style="margin-top:12px;">
-        <tr><td>Format (Video)</td><td>10-bit minimum, 4:2:2 preferred</td></tr>
-        <tr><td>Codec</td><td>ProRes 422 HQ / H.265 (Long GOP acceptable for web)</td></tr>
-        <tr><td>Resolution</td><td>4K (3840×2160) minimum</td></tr>
-        <tr><td>Frame Rates</td><td>24fps cinematic / 60fps fluid / 120–240fps slow-mo</td></tr>
-        <tr><td>Shutter</td><td>180° rule — 1/48 at 24fps, 1/120 at 60fps, 1/240 at 120fps</td></tr>
-        <tr><td>ISO</td><td>Use base ISO. Expose to the right without clipping.</td></tr>
-        <tr><td>White Balance</td><td>5200K–5600K (day) · 3200K–4000K (low light) · keep consistent</td></tr>
-        <tr><td>Focus</td><td>Manual or AF with intent. Don't hunt.</td></tr>
-        <tr><td>Stabilization</td><td>Use support. Don't warp the image.</td></tr>
-        <tr><td>Stills</td><td>Shoot RAW. Highest dynamic range available.</td></tr>
-      </table>
+    <div class="two-col">
+      <div>
+        <span class="lbl">Camera &amp; Format</span>
+        <table class="tbl" style="margin-top:8px;">
+          <tr><td>Format (Video)</td><td>10-bit minimum, 4:2:2 preferred</td></tr>
+          <tr><td>Codec</td><td>ProRes 422 HQ / H.265 (Long GOP acceptable for web)</td></tr>
+          <tr><td>Resolution</td><td>4K (3840×2160) minimum</td></tr>
+          <tr><td>Frame Rates</td><td>24fps cinematic / 60fps fluid / 120–240fps slow-mo</td></tr>
+          <tr><td>Shutter</td><td>180° rule — 1/48 at 24fps, 1/120 at 60fps</td></tr>
+          <tr><td>ISO</td><td>Use base ISO. Expose to the right without clipping.</td></tr>
+          <tr><td>White Balance</td><td>5200K–5600K (day) · 3200K–4000K (low light)</td></tr>
+          <tr><td>Focus</td><td>Manual or AF with intent. Don't hunt.</td></tr>
+          <tr><td>Stabilization</td><td>Use support. Don't warp the image.</td></tr>
+          <tr><td>Stills</td><td>Shoot RAW. Highest dynamic range available.</td></tr>
+        </table>
 
-      <span class="label" style="margin-top:28px; display:block;">Lens Language</span>
-      <table class="spec-table" style="margin-top:12px;">
-        <tr><td>Focal</td><td>20mm, 24mm, 35mm, 50mm, 85mm, 135mm</td></tr>
-        <tr><td>Aperture</td><td>Wide open when appropriate. Depth is a tool.</td></tr>
-        <tr><td>Distance</td><td>Close to your body. Get close. Respect space.</td></tr>
-        <tr><td>Perspective</td><td>Natural over exaggerated.</td></tr>
-        <tr><td>Movement</td><td>Let the shot breathe. Pan and drift with purpose.</td></tr>
-      </table>
-    </div>
+        <span class="lbl" style="margin-top:40px;">Lens Language</span>
+        <table class="tbl" style="margin-top:8px;">
+          <tr><td>Focal</td><td>20mm, 24mm, 35mm, 50mm, 85mm, 135mm</td></tr>
+          <tr><td>Aperture</td><td>Wide open when appropriate. Depth is a tool.</td></tr>
+          <tr><td>Distance</td><td>Get close. Respect space.</td></tr>
+          <tr><td>Perspective</td><td>Natural over exaggerated.</td></tr>
+          <tr><td>Movement</td><td>Let the shot breathe. Pan and drift with purpose.</td></tr>
+        </table>
+      </div>
 
-    <div>
-      <span class="label">The 8 Form Shot Archetypes</span>
-      <div style="margin-top:12px;">
-        <div class="shot-item">
-          <div class="shot-num">01</div>
-          <div class="shot-name">Surface Detail</div>
-          <div class="shot-desc">Extreme close — skin, moss, water drops, stone, wood grain. No full subject needed.</div>
-        </div>
-        <div class="shot-item">
-          <div class="shot-num">02</div>
-          <div class="shot-name">Subject in Environment</div>
-          <div class="shot-desc">Wide enough to show the world. Body or object is part of landscape, not in front of it.</div>
-        </div>
-        <div class="shot-item">
-          <div class="shot-num">03</div>
-          <div class="shot-name">Motion Streak</div>
-          <div class="shot-desc">Slow shutter or slow-mo. Water, limbs, hair — evidence of movement.</div>
-        </div>
-        <div class="shot-item">
-          <div class="shot-num">04</div>
-          <div class="shot-name">Reflection</div>
-          <div class="shot-desc">Puddle, glass, goggle, water, mirror. The environment reflected on itself.</div>
-        </div>
-        <div class="shot-item">
-          <div class="shot-num">05</div>
-          <div class="shot-name">Hard Light Portrait</div>
-          <div class="shot-desc">Directional sun or source. Shadows on face. Texture revealed. Nothing softened.</div>
-        </div>
-        <div class="shot-item">
-          <div class="shot-num">06</div>
-          <div class="shot-name">Backlit Silhouette</div>
-          <div class="shot-desc">Subject against bright sky, water, or window. Luminosity behind, form in front.</div>
-        </div>
-        <div class="shot-item">
-          <div class="shot-num">07</div>
-          <div class="shot-name">Compression</div>
-          <div class="shot-desc">Long lens. Subject and environment on one plane. Intimacy and depth.</div>
-        </div>
-        <div class="shot-item">
-          <div class="shot-num">08</div>
-          <div class="shot-name">Transition Detail</div>
-          <div class="shot-desc">Hands, feet, objects — the moment between actions. Rest, preparation, arrival.</div>
+      <div>
+        <span class="lbl">The 8 FORM Shot Archetypes</span>
+        <div style="margin-top:8px;">
+          <div class="shot"><div class="shot-n">01</div><div class="shot-title">Surface Detail</div><div class="shot-desc">Extreme close — skin, moss, water drops, stone, wood grain. No full subject needed.</div></div>
+          <div class="shot"><div class="shot-n">02</div><div class="shot-title">Subject in Environment</div><div class="shot-desc">Wide enough to show the world. Body or object is part of landscape, not in front of it.</div></div>
+          <div class="shot"><div class="shot-n">03</div><div class="shot-title">Motion Streak</div><div class="shot-desc">Slow shutter or slow-mo. Water, limbs, hair — evidence of movement.</div></div>
+          <div class="shot"><div class="shot-n">04</div><div class="shot-title">Reflection</div><div class="shot-desc">Puddle, glass, goggle, water, mirror. The environment reflected on itself.</div></div>
+          <div class="shot"><div class="shot-n">05</div><div class="shot-title">Hard Light Portrait</div><div class="shot-desc">Directional sun or source. Shadows on face. Texture revealed. Nothing softened.</div></div>
+          <div class="shot"><div class="shot-n">06</div><div class="shot-title">Backlit Silhouette</div><div class="shot-desc">Subject against bright sky, water, or window. Luminosity behind, form in front.</div></div>
+          <div class="shot"><div class="shot-n">07</div><div class="shot-title">Compression</div><div class="shot-desc">Long lens. Subject and environment on one plane. Intimacy and depth.</div></div>
+          <div class="shot"><div class="shot-n">08</div><div class="shot-title">Transition Detail</div><div class="shot-desc">Hands, feet, objects — the moment between actions. Rest, preparation, arrival.</div></div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="page-footer"><span>Form</span><span>05 — Capture</span></div>
+    <div class="page-footer"><span>Form</span><span>05 — Capture</span></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════
-     06 — CAMERA PROFILES
-══════════════════════════════ -->
+<!-- 06 ═══════════════════════════════════════ -->
 <div class="page" id="ch-06">
   <div class="page-inner">
-  <div class="chapter-num">06</div>
-  <div class="chapter-title">Camera Profiles</div>
-  <div class="chapter-sub">HLG3, Rec.709, and S-Log2 — choose based on the situation. Each has a purpose.</div>
+    <span class="ch-eyebrow">06</span>
+    <h1 class="ch-title">Camera Profiles</h1>
+    <p class="ch-sub">HLG3, Rec.709, and S-Log2 — choose based on the situation. Each has a purpose.</p>
 
-  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0; margin-bottom:36px; border-top:1px solid var(--ink);">
-    <div style="padding:20px 20px 20px 0; border-right:1px solid var(--rule);">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:6px;">HLG3</div>
-      <div style="font-family:'EB Garamond',serif; font-size:22px; margin-bottom:8px;">Recommended</div>
-      <p style="font-size:12px; color:var(--ink-muted);">High dynamic range. Natural contrast. Best for run-and-gun, fast delivery, ready-to-share.</p>
-      <p style="font-size:11px; color:var(--ink-muted);">More highlight latitude. Easier than S-Log. Doesn't fall apart in low light. <strong style="color:var(--ink);">Use FORM_HLG LUTs.</strong></p>
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0; margin-bottom:48px; border-top:2px solid var(--ink);">
+      <div style="padding:32px 28px 32px 0; border-right:1px solid var(--rule-soft);">
+        <div class="lbl">HLG3</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:var(--ink); margin-bottom:12px;">Recommended</div>
+        <p>High dynamic range. Natural contrast. Best for run-and-gun, fast delivery, ready-to-share.</p>
+        <p style="font-size:13px;">More highlight latitude. Easier than S-Log. <strong>Use FORM_HLG LUTs.</strong></p>
+      </div>
+      <div style="padding:32px 28px; border-right:1px solid var(--rule-soft);">
+        <div class="lbl">Rec.709</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:var(--ink); margin-bottom:12px;">Fast Social</div>
+        <p>Medium dynamic range. Contrasty, punchy. Best for controlled scenes, interviews, social content.</p>
+        <p style="font-size:13px;">Grade lightly. <strong>Apply STILL_Rec709 LUT.</strong></p>
+      </div>
+      <div style="padding:32px 0 32px 28px;">
+        <div class="lbl">S-Log2</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:var(--ink); margin-bottom:12px;">High-End</div>
+        <p>Maximum latitude. Flat, low contrast. Best for maximum flexibility, grading, and commercial work.</p>
+        <p style="font-size:13px;">Expose mid to right. Apply SLOG_TO_REC709 LUT base, then grade.</p>
+      </div>
     </div>
-    <div style="padding:20px; border-right:1px solid var(--rule);">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:6px;">Rec.709</div>
-      <div style="font-family:'EB Garamond',serif; font-size:22px; margin-bottom:8px;">Fast Social</div>
-      <p style="font-size:12px; color:var(--ink-muted);">Medium dynamic range. Contrasty, punchy. Best for controlled scenes, interviews, social content.</p>
-      <p style="font-size:11px; color:var(--ink-muted);">Grade lightly. <strong style="color:var(--ink);">Apply STILL_Rec709 LUT.</strong></p>
-    </div>
-    <div style="padding:20px;">
-      <div style="font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:6px;">S-Log2</div>
-      <div style="font-family:'EB Garamond',serif; font-size:22px; margin-bottom:8px;">High-End / Commercial</div>
-      <p style="font-size:12px; color:var(--ink-muted);">Maximum latitude. Flat, low contrast. Best for maximum flexibility, grading, and commercial work.</p>
-      <p style="font-size:11px; color:var(--ink-muted);">Expose mid to right. Apply SLOG_TO_REC709 LUT base, then grade.</p>
-    </div>
-  </div>
 
-  <div class="rule"></div>
+    <div class="rule"></div>
 
-  <span class="label">Workflow by Situation</span>
-  <div style="margin-top:16px;">
-    <div class="cam-profile">
-      <div class="cam-profile-name">Field / Run & Gun</div>
-      <table class="spec-table">
-        <tr><td>Profile</td><td>HLG3</td></tr>
-        <tr><td>Expose</td><td>To the right. Apply FIELD_HLG LUT.</td></tr>
-      </table>
+    <span class="lbl">Workflow by Situation</span>
+    <div style="margin-top:20px;">
+      <div class="cam"><div class="cam-name">Field / Run &amp; Gun</div><table class="tbl"><tr><td>Profile</td><td>HLG3</td></tr><tr><td>Expose</td><td>To the right. Apply FIELD_HLG LUT.</td></tr></table></div>
+      <div class="cam"><div class="cam-name">Still / Controlled — Interior / Editorial</div><table class="tbl"><tr><td>Profile</td><td>Rec.709</td></tr><tr><td>Grade</td><td>Lightly. Apply STILL_Rec709 LUT.</td></tr></table></div>
+      <div class="cam"><div class="cam-name">High-End / Commercial</div><table class="tbl"><tr><td>Profile</td><td>S-Log2</td></tr><tr><td>Expose</td><td>Mid to right. Apply SLOG_TO_REC709 LUT base, then grade.</td></tr></table></div>
+      <div class="cam" style="margin-bottom:0;"><div class="cam-name">Hybrid / Mixed Light</div><table class="tbl"><tr><td>Profile</td><td>HLG3</td></tr><tr><td>Note</td><td>More forgiving in mixed environments.</td></tr></table></div>
     </div>
-    <div class="cam-profile">
-      <div class="cam-profile-name">Still / Controlled — Interior / Editorial</div>
-      <table class="spec-table">
-        <tr><td>Profile</td><td>Rec.709</td></tr>
-        <tr><td>Grade</td><td>Lightly. Apply STILL_Rec709 LUT.</td></tr>
-      </table>
-    </div>
-    <div class="cam-profile">
-      <div class="cam-profile-name">High-End / Commercial</div>
-      <table class="spec-table">
-        <tr><td>Profile</td><td>S-Log2</td></tr>
-        <tr><td>Expose</td><td>Mid to right. Apply SLOG_TO_REC709 LUT base, then grade.</td></tr>
-      </table>
-    </div>
-    <div class="cam-profile" style="margin-bottom:0;">
-      <div class="cam-profile-name">Hybrid / Mixed Light</div>
-      <table class="spec-table">
-        <tr><td>Profile</td><td>HLG3</td></tr>
-        <tr><td>Note</td><td>More forgiving in mixed environments.</td></tr>
-      </table>
-    </div>
-  </div>
 
-  <div class="page-footer"><span>Form</span><span>06 — Camera Profiles</span></div>
+    <div class="page-footer"><span>Form</span><span>06 — Camera Profiles</span></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════
-     07 — EDIT
-══════════════════════════════ -->
+<!-- 07 ═══════════════════════════════════════ -->
 <div class="page" id="ch-07">
   <div class="page-inner">
-  <div class="chapter-num">07</div>
-  <div class="chapter-title">Editing & Sound</div>
-  <div class="chapter-sub">Rhythm, movement, and music</div>
+    <span class="ch-eyebrow">07</span>
+    <h1 class="ch-title">Editing &amp; Sound</h1>
+    <p class="ch-sub">Rhythm, movement, and music</p>
 
-  <div class="two-col">
-    <div>
-      <span class="label">Editing Rhythm</span>
-      <table class="spec-table" style="margin-top:12px;">
-        <tr><td>Hold Length</td><td>Let shots breathe. Hold longer than comfortable. Cut on action, not on every beat.</td></tr>
-        <tr><td>Entry Point</td><td>Use action to initiate cuts. Cut as subject enters motion.</td></tr>
-        <tr><td>Exit Point</td><td>Hold 10–15 frames past the action. Let environment settle.</td></tr>
-        <tr><td>Speed Ramps</td><td>Only when they add meaning. Slow motion is a punctuation mark, not a filter.</td></tr>
-        <tr><td>Transitions</td><td>Hard cuts preferred. Match on motion or texture. No wipes.</td></tr>
-        <tr><td>Hold Shots</td><td>One long environmental shot per sequence. Let the world exist.</td></tr>
-      </table>
+    <div class="two-col">
+      <div>
+        <span class="lbl">Editing Rhythm</span>
+        <table class="tbl" style="margin-top:8px;">
+          <tr><td>Hold Length</td><td>Let shots breathe. Hold longer than comfortable. Cut on action, not on every beat.</td></tr>
+          <tr><td>Entry Point</td><td>Use action to initiate cuts. Cut as subject enters motion.</td></tr>
+          <tr><td>Exit Point</td><td>Hold 10–15 frames past the action. Let environment settle.</td></tr>
+          <tr><td>Speed Ramps</td><td>Only when they add meaning. Slow motion is a punctuation mark, not a filter.</td></tr>
+          <tr><td>Transitions</td><td>Hard cuts preferred. Match on motion or texture. No wipes.</td></tr>
+          <tr><td>Hold Shots</td><td>One long environmental shot per sequence. Let the world exist.</td></tr>
+        </table>
 
-      <span class="label" style="margin-top:28px; display:block;">Movement Language</span>
-      <table class="spec-table" style="margin-top:12px;">
-        <tr><td>Handheld</td><td>STILL: subtle. FIELD: stabilized and controlled.</td></tr>
-        <tr><td>Push/Pull</td><td>In. Pull back. Drift sideways. Let the world move around the subject.</td></tr>
-        <tr><td>Foreground</td><td>Use foreground, reflections, and layers whenever available.</td></tr>
-        <tr><td>No Drone</td><td>Environment establishing only. Never a substitute for ground shots.</td></tr>
-        <tr><td>No Zoom</td><td>Resist digital zoom entirely. Move the body instead.</td></tr>
-      </table>
-    </div>
+        <span class="lbl" style="margin-top:40px;">Movement Language</span>
+        <table class="tbl" style="margin-top:8px;">
+          <tr><td>Handheld</td><td>STILL: subtle. FIELD: stabilized and controlled.</td></tr>
+          <tr><td>Push/Pull</td><td>In. Pull back. Drift sideways. Let the world move around the subject.</td></tr>
+          <tr><td>Foreground</td><td>Use foreground, reflections, and layers whenever available.</td></tr>
+          <tr><td>No Drone</td><td>Environment establishing only. Never a substitute for ground shots.</td></tr>
+          <tr><td>No Zoom</td><td>Resist digital zoom entirely. Move the body instead.</td></tr>
+        </table>
+      </div>
 
-    <div>
-      <span class="label">Sound & Music Direction</span>
-      <table class="spec-table" style="margin-top:12px;">
-        <tr><td>Still/HLG</td><td>Nils Frahm · Ólafur Arnalds · Hania Rani · Johann Johannsson</td></tr>
-        <tr><td>Field World</td><td>Bonobo · Floating Points · Tycho · Boards of Canada</td></tr>
-        <tr><td>Sound Design</td><td>Let sound create space. Silence is a tool. Ambient under music — rain, leaves, water, footsteps.</td></tr>
-        <tr><td>Avoid</td><td>Drop-heavy EDM. Generic stock. Anything announcing itself over the image.</td></tr>
-        <tr><td>Sync Still</td><td>Cut slightly ahead of beat or on breath — not exactly on it.</td></tr>
-        <tr><td>Sync Field</td><td>Cut to beat.</td></tr>
-      </table>
+      <div>
+        <span class="lbl">Sound &amp; Music Direction</span>
+        <table class="tbl" style="margin-top:8px;">
+          <tr><td>Still/HLG</td><td>Nils Frahm · Ólafur Arnalds · Hania Rani · Johann Johannsson</td></tr>
+          <tr><td>Field World</td><td>Bonobo · Floating Points · Tycho · Boards of Canada</td></tr>
+          <tr><td>Sound Design</td><td>Let sound create space. Silence is a tool. Ambient under music — rain, leaves, water, footsteps.</td></tr>
+          <tr><td>Avoid</td><td>Drop-heavy EDM. Generic stock. Anything announcing itself over the image.</td></tr>
+          <tr><td>Sync Still</td><td>Cut slightly ahead of beat or on breath — not exactly on it.</td></tr>
+          <tr><td>Sync Field</td><td>Cut to beat.</td></tr>
+        </table>
 
-      <div class="pullquote" style="margin-top:32px; font-size:16px;">
-        Let sound create space.<br>Silence is a tool.
+        <div class="pq" style="margin-top:48px;">
+          Let sound create space.<br>
+          Silence is a tool.
+        </div>
       </div>
     </div>
-  </div>
 
-
-  <div class="doctrine-link">
-    <div>
-      <div class="doctrine-link-title">Cinema Doctrine — When It Matters</div>
-      <div class="doctrine-link-desc">A sibling document. Perception manual studies the frame — order, atmosphere, capture, color. Cinema doctrine studies people on screen — conduct, ensemble, inference, stillness, service ritual. They meet at director's notes: author the environment, earn the stillness, let ritual reveal character. Vitality under containment. The conversation is never about what it's about.</div>
+    <div class="doctrine-block">
+      <div>
+        <div class="doctrine-title">Cinema Doctrine — When It Matters</div>
+        <div class="doctrine-desc">A sibling document. The perception manual studies the frame — order, atmosphere, capture, color. The cinema doctrine studies people on screen — conduct, ensemble, inference, stillness, service ritual. They meet at director's notes: author the environment, earn the stillness, let ritual reveal character. Vitality under containment. The conversation is never about what it's about.</div>
+      </div>
+      <div class="doctrine-tag">Sibling doc</div>
     </div>
-    <div class="doctrine-link-label">Sibling doc</div>
-  </div>
 
-  <div class="page-footer"><span>Form</span><span>07 — Editing & Sound</span></div>
+    <div class="page-footer"><span>Form</span><span>07 — Editing &amp; Sound</span></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════
-     08 — COLOR DIRECTION
-══════════════════════════════ -->
+<!-- 08 ═══════════════════════════════════════ -->
 <div class="page" id="ch-08">
   <div class="page-inner">
-  <div class="chapter-num">08</div>
-  <div class="chapter-title">Color & Tone</div>
-  <div class="chapter-sub">Palette, grade, and atmosphere. Muted. Earth-forward. Shadows hold color. Skin is warm, not orange. Contrast is gentle.</div>
+    <span class="ch-eyebrow">08</span>
+    <h1 class="ch-title">Color &amp; Tone</h1>
+    <p class="ch-sub">Muted. Earth-forward. Shadows hold color. Skin is warm, not orange. Contrast is gentle.</p>
 
-  <!-- Miami palette swatches -->
-  <span class="label">Miami After Rain Palette</span>
-  <div style="display:flex; gap:0; margin:14px 0 48px;">
-    <div style="flex:1; position:relative;">
-      <div style="height:40px; background:#00F0F0; opacity:0; position:absolute; top:0; left:0; right:0;"></div>
-      <div style="height:40px; background:#4CE5A4;"></div>
-      <div style="font-size:8px; color:var(--ink-muted); margin-top:6px; line-height:1.4;">Rain Sky<br>#4CE5A4</div>
+    <span class="lbl">Miami After Rain Palette</span>
+    <div style="display:flex; margin:16px 0 64px;">
+      <div style="flex:1; position:relative;"><div style="height:40px; background:#4CE5A4;"></div><div style="font-family:'EB Garamond',serif; font-size:8px; color:var(--ink-muted); margin-top:8px; line-height:1.4;">Rain Sky<br>#4CE5A4</div></div>
+      <div style="flex:1; position:relative;"><div style="height:40px; background:#4A6B5C;"></div><div style="font-family:'EB Garamond',serif; font-size:8px; color:var(--ink-muted); margin-top:8px; line-height:1.4;">Wet Tree<br>#4A6B5C</div></div>
+      <div style="flex:1; position:relative;"><div style="height:40px; background:#8B6A55;"></div><div style="font-family:'EB Garamond',serif; font-size:8px; color:var(--ink-muted); margin-top:8px; line-height:1.4;">Track Clay<br>#8B6A55</div></div>
+      <div style="flex:1; position:relative;"><div style="height:40px; background:#1C3040;"></div><div style="font-family:'EB Garamond',serif; font-size:8px; color:var(--ink-muted); margin-top:8px; line-height:1.4;">Shadow Navy<br>#1C3040</div></div>
+      <div style="flex:1; position:relative;"><div style="height:40px; background:#C4A882;"></div><div style="font-family:'EB Garamond',serif; font-size:8px; color:var(--ink-muted); margin-top:8px; line-height:1.4;">Skin Warmth<br>#C4A882</div></div>
+      <div style="flex:1; position:relative;"><div style="height:40px; background:#E8E0D0;"></div><div style="font-family:'EB Garamond',serif; font-size:8px; color:var(--ink-muted); margin-top:8px; line-height:1.4;">Warm Highlight<br>#E8E0D0</div></div>
     </div>
-    <div style="flex:1; position:relative;">
-      <div style="height:40px; background:#4A6B5C;"></div>
-      <div style="font-size:8px; color:var(--ink-muted); margin-top:6px; line-height:1.4;">Wet Tree<br>#4A6B5C</div>
-    </div>
-    <div style="flex:1; position:relative;">
-      <div style="height:40px; background:#8B6A55;"></div>
-      <div style="font-size:8px; color:var(--ink-muted); margin-top:6px; line-height:1.4;">Track Clay<br>#8B6A55</div>
-    </div>
-    <div style="flex:1; position:relative;">
-      <div style="height:40px; background:#1C3040;"></div>
-      <div style="font-size:8px; color:var(--ink-muted); margin-top:6px; line-height:1.4;">Shadow Navy<br>#1C3040</div>
-    </div>
-    <div style="flex:1; position:relative;">
-      <div style="height:40px; background:#C4A882;"></div>
-      <div style="font-size:8px; color:var(--ink-muted); margin-top:6px; line-height:1.4;">Skin Warmth<br>#C4A882</div>
-    </div>
-    <div style="flex:1; position:relative;">
-      <div style="height:40px; background:#E8E0D0;"></div>
-      <div style="font-size:8px; color:var(--ink-muted); margin-top:6px; line-height:1.4;">Warm Highlight<br>#E8E0D0</div>
-    </div>
-  </div>
 
-  <div class="rule"></div>
+    <div class="rule"></div>
 
-  <div class="two-col">
-    <div>
-      <span class="label">Grade Breakdown</span>
-      <table class="spec-table" style="margin-top:12px;">
-        <tr><td>Shadows</td><td>Slight navy/teal. Not green. Not black.</td></tr>
-        <tr><td>Midtones</td><td>Neutral with warmth in skin.</td></tr>
-        <tr><td>Highlights</td><td>Soft gold. Controlled.</td></tr>
-        <tr><td>Contrast</td><td>Low to moderate.</td></tr>
-        <tr><td>Saturation</td><td>Muted across all channels.</td></tr>
-        <tr><td>Clarity</td><td>0 or negative. Let atmosphere remain.</td></tr>
-        <tr><td>Grain</td><td>8–15 (filmic). Always.</td></tr>
-      </table>
+    <div class="two-col">
+      <div>
+        <span class="lbl">Grade Breakdown</span>
+        <table class="tbl" style="margin-top:8px;">
+          <tr><td>Shadows</td><td>Slight navy/teal. Not green. Not black.</td></tr>
+          <tr><td>Midtones</td><td>Neutral with warmth in skin.</td></tr>
+          <tr><td>Highlights</td><td>Soft gold. Controlled.</td></tr>
+          <tr><td>Contrast</td><td>Low to moderate.</td></tr>
+          <tr><td>Saturation</td><td>Muted across all channels.</td></tr>
+          <tr><td>Clarity</td><td>0 or negative. Let atmosphere remain.</td></tr>
+          <tr><td>Grain</td><td>8–15 (filmic). Always.</td></tr>
+        </table>
 
-      <div class="rule"></div>
+        <div class="rule-strong"></div>
 
-      <span class="label">Field — Outdoor / Athletic</span>
-      <table class="spec-table" style="margin-top:12px;">
-        <tr><td>Exposure</td><td>+0.15 to +0.35 — airy and open, not dark</td></tr>
-        <tr><td>Contrast</td><td>Moderate — depth without crushing. Never punchy.</td></tr>
-        <tr><td>Highlights</td><td>Protected and open — sky and water stay bright</td></tr>
-        <tr><td>Shadows</td><td>Deep navy/olive — only deepest 5–10% darkened</td></tr>
-        <tr><td>Skin</td><td>Warm-golden. Texture and freckles intact. Low magenta.</td></tr>
-        <tr><td>Clarity</td><td>Near zero. Texture comes from light.</td></tr>
-      </table>
-    </div>
-    <div>
-      <span class="label">The Atmosphere</span>
-      <p style="margin-top:10px; font-size:13px; line-height:1.9;">We preserve air, humidity, and depth. The space between objects matters.</p>
-      <p style="font-size:13px; line-height:1.9;">The universal test: if the grade becomes more interesting than the experience itself, pull it back. Less color. Less clarity. More air. The photograph should make someone want to inhabit the moment — not admire the edit.</p>
+        <span class="lbl">Field — Outdoor / Athletic</span>
+        <table class="tbl" style="margin-top:8px;">
+          <tr><td>Exposure</td><td>+0.15 to +0.35 — airy and open, not dark</td></tr>
+          <tr><td>Contrast</td><td>Moderate — depth without crushing. Never punchy.</td></tr>
+          <tr><td>Highlights</td><td>Protected and open — sky and water stay bright</td></tr>
+          <tr><td>Shadows</td><td>Deep navy/olive — only deepest 5–10% darkened</td></tr>
+          <tr><td>Skin</td><td>Warm-golden. Texture and freckles intact. Low magenta.</td></tr>
+          <tr><td>Clarity</td><td>Near zero. Texture comes from light.</td></tr>
+        </table>
+      </div>
+      <div>
+        <span class="lbl">The Atmosphere</span>
+        <p class="large" style="margin-top:8px;">We preserve air, humidity, and depth. The space between objects matters.</p>
+        <p>The universal test: if the grade becomes more interesting than the experience itself, pull it back. Less color. Less clarity. More air.</p>
 
-      <div class="rule"></div>
+        <div class="rule-strong"></div>
 
-      <span class="label">Still — Interior / Editorial / Cultivated</span>
-      <table class="spec-table" style="margin-top:12px;">
-        <tr><td>Exposure</td><td>Normal to slight pull-back — preserve ambient mood</td></tr>
-        <tr><td>Contrast</td><td>Low-medium — filmic matte quality.</td></tr>
-        <tr><td>Highlights</td><td>Rolled off softly — warm-white shoulder.</td></tr>
-        <tr><td>Shadows</td><td>Lifted 12–15 IRE — warm amber cast. Shadows glow.</td></tr>
-        <tr><td>Skin</td><td>Neutral-warm, matte — freckles, pores, texture preserved.</td></tr>
-        <tr><td>Saturation</td><td>Global -15 to -25% — let the palette breathe.</td></tr>
-      </table>
+        <span class="lbl">Still — Interior / Editorial / Cultivated</span>
+        <table class="tbl" style="margin-top:8px;">
+          <tr><td>Exposure</td><td>Normal to slight pull-back — preserve ambient mood</td></tr>
+          <tr><td>Contrast</td><td>Low-medium — filmic matte quality.</td></tr>
+          <tr><td>Highlights</td><td>Rolled off softly — warm-white shoulder.</td></tr>
+          <tr><td>Shadows</td><td>Lifted 12–15 IRE — warm amber cast. Shadows glow.</td></tr>
+          <tr><td>Skin</td><td>Neutral-warm, matte — freckles, pores, texture preserved.</td></tr>
+          <tr><td>Saturation</td><td>Global -15 to -25% — let the palette breathe.</td></tr>
+        </table>
 
-      <div class="pullquote" style="margin-top:24px; font-size:15px;">
-        FORM does not manufacture<br>atmosphere. FORM reveals it.
+        <div class="pq" style="font-size:17px; margin-top:40px;">
+          FORM does not manufacture<br>atmosphere. FORM reveals it.
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="rule"></div>
+    <div class="rule"></div>
 
-
-  <div class="rule"></div>
-
-  <span class="label">FORM Branches</span>
-  <div style="margin-top:16px;">
-    <div class="branch">
-      <div class="branch-name">FORM FIELD</div>
-      <div class="branch-items">
-        Outdoor / athletic<br>
-        Rain, ocean, track, skin in motion<br>
-        FIELD_HLG · FIELD_Rec709<br>
-        Airy exposure · navy shadows · open highlights
+    <span class="lbl">FORM Branches</span>
+    <div style="margin-top:20px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:0; border-top:1px solid var(--rule);">
+      <div style="padding:28px 28px 28px 0; border-right:1px solid var(--rule-soft);">
+        <div class="branch-name">FORM FIELD</div>
+        <div class="branch-items" style="columns:1;">Outdoor / athletic<br>Rain, ocean, track, skin in motion<br>FIELD_HLG · FIELD_Rec709<br>Airy exposure · navy shadows · open highlights</div>
+      </div>
+      <div style="padding:28px; border-right:1px solid var(--rule-soft);">
+        <div class="branch-name">FORM STILL</div>
+        <div class="branch-items" style="columns:1;">Interior / editorial / cultivated<br>Stone, glass, warm light, ceremony<br>STILL_HLG · STILL_Rec709<br>Lifted shadows · matte skin · rolled highlights</div>
+      </div>
+      <div style="padding:28px 0 28px 28px;">
+        <div class="branch-name" style="color:var(--ink-muted);">FORM MOMENT</div>
+        <p style="font-size:12px; color:var(--ink-muted); font-style:italic; margin-bottom:12px;">Under development. The editorial branch.</p>
+        <div class="branch-items" style="columns:1; font-size:12px;">Sunday albums · Hideout · Portraits · Hero frames<br>Richer reds · deeper blacks · warmer skin<br>Subtle grain · gentle vignette · emotional emphasis</div>
+        <p style="font-size:11px; color:var(--ink-faint); margin-top:12px;">The Simon frame is still FIELD. MOMENT amplifies what FIELD discovers.</p>
       </div>
     </div>
-    <div class="branch">
-      <div class="branch-name">FORM STILL</div>
-      <div class="branch-items">
-        Interior / editorial / cultivated<br>
-        Stone, glass, warm light, ceremony<br>
-        STILL_HLG · STILL_Rec709<br>
-        Lifted shadows · matte skin · rolled highlights
-      </div>
-    </div>
-    <div class="branch" style="border-color: var(--ink-muted);">
-      <div class="branch-name">FORM MOMENT</div>
-      <div style="font-size:11px; color:var(--ink-muted); margin-bottom:12px; font-style:italic;">Under development. The editorial branch.</div>
-      <div class="branch-items">
-        Sunday albums<br>
-        Hideout<br>
-        Portraits<br>
-        Hero frames<br>
-        Instagram selects<br>
-        Slightly richer reds<br>
-        Deeper blacks<br>
-        Warmer skin<br>
-        Subdued greens<br>
-        Subtle grain<br>
-        Gentle vignette<br>
-        Emotional emphasis
-      </div>
-      <p style="font-size:11px; color:var(--ink-muted); margin-top:14px;">The Simon frame is still FIELD. MOMENT amplifies what FIELD discovers.</p>
-    </div>
-  </div>
 
-  <span class="label">Never</span>
-  <div style="margin-top:10px;">
-    <div class="never-item"><span class="never-dash">—</span><span>Teal-orange split tone — moves toward generic fitness, away from FORM</span></div>
-    <div class="never-item"><span class="never-dash">—</span><span>Crushed blacks — destroys the shadow texture that makes these images alive</span></div>
-    <div class="never-item"><span class="never-dash">—</span><span>Heavy clarity or dehaze — manufactures texture; must come from light, not sliders</span></div>
-    <div class="never-item"><span class="never-dash">—</span><span>Vignette abuse — heavy vignettes signal low confidence in the frame</span></div>
-    <div class="never-item"><span class="never-dash">—</span><span>Anything that slows the feeling of being somewhere real</span></div>
-  </div>
+    <div class="rule"></div>
 
-  <div class="page-footer"><span>Form</span><span>08 — Color & Tone</span></div>
+    <span class="lbl">Never</span>
+    <div style="margin-top:8px;">
+      <div class="d-item"><div class="d-mark">—</div><span>Teal-orange split tone — moves toward generic fitness, away from FORM</span></div>
+      <div class="d-item"><div class="d-mark">—</div><span>Crushed blacks — destroys the shadow texture that makes these images alive</span></div>
+      <div class="d-item"><div class="d-mark">—</div><span>Heavy clarity or dehaze — manufactures texture; must come from light, not sliders</span></div>
+      <div class="d-item"><div class="d-mark">—</div><span>Vignette abuse — heavy vignettes signal low confidence in the frame</span></div>
+      <div class="d-item"><div class="d-mark">—</div><span>Anything that slows the feeling of being somewhere real</span></div>
+    </div>
+
+    <div class="page-footer"><span>Form</span><span>08 — Color &amp; Tone</span></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════
-     09 — WHAT TO DELETE
-══════════════════════════════ -->
+<!-- 09 ═══════════════════════════════════════ -->
 <div class="page" id="ch-09">
   <div class="page-inner">
-  <div class="chapter-num">09</div>
-  <div class="chapter-title">What to Delete</div>
-  <div class="chapter-sub">Ruthless editing is a creative act. If it doesn't serve the image, delete it. Mercy is the enemy of meaning.</div>
+    <span class="ch-eyebrow">09</span>
+    <h1 class="ch-title">What to Delete</h1>
+    <p class="ch-sub">Ruthless editing is a creative act. Mercy is the enemy of meaning.</p>
 
-  <div class="lead">The image is discovered, not constructed.<br>The best work remains.</div>
+    <div class="lead">The image is discovered, not constructed.<br>The best work remains.</div>
 
-  <div class="two-col">
-    <div>
-      <span class="label">Delete (Grade)</span>
-      <div class="delete-item"><span class="delete-x">—</span><span>Over-saturation</span></div>
-      <div class="delete-item"><span class="delete-x">—</span><span>Clarity addiction</span></div>
-      <div class="delete-item"><span class="delete-x">—</span><span>Artificial contrast</span></div>
-      <div class="delete-item"><span class="delete-x">—</span><span>Orange skin — never</span></div>
-      <div class="delete-item"><span class="delete-x">—</span><span>Teal shadows</span></div>
-      <div class="delete-item"><span class="delete-x">—</span><span>Vignette abuse</span></div>
+    <div class="two-col">
+      <div>
+        <span class="lbl">Delete (Grade)</span>
+        <div class="d-item"><div class="d-mark">—</div><span>Over-saturation</span></div>
+        <div class="d-item"><div class="d-mark">—</div><span>Clarity addiction</span></div>
+        <div class="d-item"><div class="d-mark">—</div><span>Artificial contrast</span></div>
+        <div class="d-item"><div class="d-mark">—</div><span>Orange skin — never</span></div>
+        <div class="d-item"><div class="d-mark">—</div><span>Teal shadows</span></div>
+        <div class="d-item"><div class="d-mark">—</div><span>Vignette abuse</span></div>
 
-      <span class="label" style="margin-top:28px; display:block;">Delete (Edit)</span>
-      <div class="delete-item"><span class="delete-x">—</span><span>Speed ramps for no reason</span></div>
-      <div class="delete-item"><span class="delete-x">—</span><span>Posing</span></div>
-      <div class="delete-item"><span class="delete-x">—</span><span>Long intros</span></div>
-      <div class="delete-item"><span class="delete-x">—</span><span>Anything that slows meaning</span></div>
+        <span class="lbl" style="margin-top:40px;">Delete (Edit)</span>
+        <div class="d-item"><div class="d-mark">—</div><span>Speed ramps for no reason</span></div>
+        <div class="d-item"><div class="d-mark">—</div><span>Posing</span></div>
+        <div class="d-item"><div class="d-mark">—</div><span>Long intros</span></div>
+        <div class="d-item"><div class="d-mark">—</div><span>Anything that slows meaning</span></div>
+      </div>
+      <div>
+        <span class="lbl">Delete (Shoot)</span>
+        <div class="d-item"><div class="d-mark">—</div><span>Scenes without purpose</span></div>
+        <div class="d-item"><div class="d-mark">—</div><span>Clean perfection — not honest</span></div>
+        <div class="d-item"><div class="d-mark">—</div><span>Empty frames</span></div>
+        <div class="d-item"><div class="d-mark">—</div><span>Coverage you don't need</span></div>
+
+        <span class="lbl" style="margin-top:40px;">Delete (Selection)</span>
+        <div class="d-item"><div class="d-mark">—</div><span>Anything you kept out of obligation</span></div>
+        <div class="d-item"><div class="d-mark">—</div><span>Anything kept because you worked hard for it</span></div>
+        <div class="d-item"><div class="d-mark">—</div><span>Almost moments</span></div>
+        <div class="d-item"><div class="d-mark">—</div><span>Safe choices</span></div>
+        <div class="d-item"><div class="d-mark">—</div><span>Any image you could have made without being there</span></div>
+      </div>
     </div>
-    <div>
-      <span class="label">Delete (Shoot)</span>
-      <div class="delete-item"><span class="delete-x">—</span><span>Scenes without purpose</span></div>
-      <div class="delete-item"><span class="delete-x">—</span><span>Clean perfection — not honest</span></div>
-      <div class="delete-item"><span class="delete-x">—</span><span>Empty frames</span></div>
-      <div class="delete-item"><span class="delete-x">—</span><span>Coverage you don't need</span></div>
 
-      <span class="label" style="margin-top:28px; display:block;">Delete (Selection)</span>
-      <div class="delete-item"><span class="delete-x">—</span><span>Anything you kept out of obligation</span></div>
-      <div class="delete-item"><span class="delete-x">—</span><span>Anything kept because you worked hard for it</span></div>
-      <div class="delete-item"><span class="delete-x">—</span><span>Almost moments</span></div>
-      <div class="delete-item"><span class="delete-x">—</span><span>Safe choices</span></div>
-      <div class="delete-item"><span class="delete-x">—</span><span>Any image you could have made without being there</span></div>
+    <div class="pq" style="margin-top:64px;">
+      FORM observes. It does not direct.<br>
+      The image is discovered, not constructed.
     </div>
-  </div>
 
-  <div class="pullquote" style="margin-top:40px; font-size:17px;">
-    FORM observes. It does not direct.<br>
-    The image is discovered, not constructed.
-  </div>
-
-  <div class="page-footer"><span>Form</span><span>09 — What to Delete</span></div>
+    <div class="page-footer"><span>Form</span><span>09 — What to Delete</span></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════
-     10 — COLOR PALETTE
-══════════════════════════════ -->
+<!-- 10 ═══════════════════════════════════════ -->
 <div class="page" id="ch-10">
   <div class="page-inner">
-  <div class="chapter-num">10</div>
-  <div class="chapter-title">Color Palette</div>
-  <div class="chapter-sub">Two worlds, one luminosity</div>
+    <span class="ch-eyebrow">10</span>
+    <h1 class="ch-title">Color Palette</h1>
+    <p class="ch-sub">Two worlds, one luminosity</p>
 
-  <div class="two-col" style="gap:56px;">
-    <div>
-      <span class="label">Field Palette — Outdoor / Athletic</span>
-      <div style="margin-top:16px; margin-bottom:44px;">
-        <div class="palette-row">
-          <div class="swatch" style="background:#2B3D2A;"><span class="swatch-label">Forest<br>#2B3D2A</span></div>
-          <div class="swatch" style="background:#3A5C3A;"><span class="swatch-label">Moss<br>#3A5C3A</span></div>
-          <div class="swatch" style="background:#7A9B4F;"><span class="swatch-label">Olive<br>#7A9B4F</span></div>
-          <div class="swatch" style="background:#B8C87A;"><span class="swatch-label">Lime<br>#B8C87A</span></div>
-          <div class="swatch" style="background:#1C2B3E;"><span class="swatch-label">Navy<br>#1C2B3E</span></div>
-          <div class="swatch" style="background:#2E5B8A;"><span class="swatch-label">Ocean<br>#2E5B8A</span></div>
-          <div class="swatch" style="background:#8FA8B8;"><span class="swatch-label">Sky<br>#8FA8B8</span></div>
-          <div class="swatch" style="background:#C4A882;"><span class="swatch-label">Skin Lt<br>#C4A882</span></div>
-          <div class="swatch" style="background:#8C6844;"><span class="swatch-label">Skin Md<br>#8C6844</span></div>
-          <div class="swatch" style="background:#1A1A18;"><span class="swatch-label">Black<br>#1A1A18</span></div>
+    <div class="two-col" style="gap:72px;">
+      <div>
+        <span class="lbl">Field Palette — Outdoor / Athletic</span>
+        <div style="margin-top:20px; margin-bottom:56px;">
+          <div class="pal-row">
+            <div class="swatch" style="background:#2B3D2A;"><span class="swatch-lbl">Forest<br>#2B3D2A</span></div>
+            <div class="swatch" style="background:#3A5C3A;"><span class="swatch-lbl">Moss<br>#3A5C3A</span></div>
+            <div class="swatch" style="background:#7A9B4F;"><span class="swatch-lbl">Olive<br>#7A9B4F</span></div>
+            <div class="swatch" style="background:#B8C87A;"><span class="swatch-lbl">Lime<br>#B8C87A</span></div>
+            <div class="swatch" style="background:#1C2B3E;"><span class="swatch-lbl">Navy<br>#1C2B3E</span></div>
+            <div class="swatch" style="background:#2E5B8A;"><span class="swatch-lbl">Ocean<br>#2E5B8A</span></div>
+            <div class="swatch" style="background:#8FA8B8;"><span class="swatch-lbl">Sky<br>#8FA8B8</span></div>
+            <div class="swatch" style="background:#C4A882;"><span class="swatch-lbl">Skin Lt<br>#C4A882</span></div>
+            <div class="swatch" style="background:#8C6844;"><span class="swatch-lbl">Skin Md<br>#8C6844</span></div>
+            <div class="swatch" style="background:#1A1A18;"><span class="swatch-lbl">Black<br>#1A1A18</span></div>
+          </div>
+        </div>
+
+        <span class="lbl">Miami After Rain — Extracted</span>
+        <div style="margin-top:20px; margin-bottom:56px;">
+          <div class="pal-row">
+            <div class="swatch" style="background:#7B9BAE;"><span class="swatch-lbl">Rain Sky<br>#7B9BAE</span></div>
+            <div class="swatch" style="background:#4A6B5C;"><span class="swatch-lbl">Wet Tree<br>#4A6B5C</span></div>
+            <div class="swatch" style="background:#8B6355;"><span class="swatch-lbl">Track Clay<br>#8B6355</span></div>
+            <div class="swatch" style="background:#C8B898;"><span class="swatch-lbl">Skin Wet<br>#C8B898</span></div>
+            <div class="swatch" style="background:#2A3A4A;"><span class="swatch-lbl">Shadow<br>#2A3A4A</span></div>
+            <div class="swatch" style="background:#D4D8CC;"><span class="swatch-lbl">Cloud<br>#D4D8CC</span></div>
+            <div class="swatch" style="background:#5C7A68;"><span class="swatch-lbl">Puddle<br>#5C7A68</span></div>
+            <div class="swatch" style="background:#9BA88C;"><span class="swatch-lbl">Grass<br>#9BA88C</span></div>
+          </div>
         </div>
       </div>
 
-      <span class="label">Miami After Rain — Extracted</span>
-      <div style="margin-top:16px; margin-bottom:44px;">
-        <div class="palette-row">
-          <div class="swatch" style="background:#7B9BAE;"><span class="swatch-label">Rain Sky<br>#7B9BAE</span></div>
-          <div class="swatch" style="background:#4A6B5C;"><span class="swatch-label">Wet Tree<br>#4A6B5C</span></div>
-          <div class="swatch" style="background:#8B6355;"><span class="swatch-label">Track Clay<br>#8B6355</span></div>
-          <div class="swatch" style="background:#C8B898;"><span class="swatch-label">Skin Wet<br>#C8B898</span></div>
-          <div class="swatch" style="background:#2A3A4A;"><span class="swatch-label">Shadow<br>#2A3A4A</span></div>
-          <div class="swatch" style="background:#D4D8CC;"><span class="swatch-label">Cloud<br>#D4D8CC</span></div>
-          <div class="swatch" style="background:#5C7A68;"><span class="swatch-label">Puddle<br>#5C7A68</span></div>
-          <div class="swatch" style="background:#9BA88C;"><span class="swatch-label">Grass<br>#9BA88C</span></div>
+      <div>
+        <span class="lbl">Still Palette — Interior / Editorial</span>
+        <div style="margin-top:20px; margin-bottom:56px;">
+          <div class="pal-row">
+            <div class="swatch" style="background:#4A5240;"><span class="swatch-lbl">Dk Olive<br>#4A5240</span></div>
+            <div class="swatch" style="background:#7A8A70;"><span class="swatch-lbl">Sage<br>#7A8A70</span></div>
+            <div class="swatch" style="background:#B8C4A8;"><span class="swatch-lbl">Pale Sage<br>#B8C4A8</span></div>
+            <div class="swatch" style="background:#E8E4D8;"><span class="swatch-lbl">Warm Wh<br>#E8E4D8</span></div>
+            <div class="swatch" style="background:#C8C0A8;"><span class="swatch-lbl">Linen<br>#C8C0A8</span></div>
+            <div class="swatch" style="background:#A89880;"><span class="swatch-lbl">Taupe<br>#A89880</span></div>
+            <div class="swatch" style="background:#D4B898;"><span class="swatch-lbl">Skin Lt<br>#D4B898</span></div>
+            <div class="swatch" style="background:#A8846A;"><span class="swatch-lbl">Skin Md<br>#A8846A</span></div>
+            <div class="swatch" style="background:#6A5040;"><span class="swatch-lbl">Skin Sh<br>#6A5040</span></div>
+            <div class="swatch" style="background:#3A3530;"><span class="swatch-lbl">Lifted Blk<br>#3A3530</span></div>
+          </div>
         </div>
+
+        <span class="lbl">Color Philosophy</span>
+        <table class="tbl" style="margin-top:8px;">
+          <tr><td>Greens</td><td>Always organic — olive, moss, forest. Never neon. Slightly cooler than natural.</td></tr>
+          <tr><td>Blues</td><td>Deep and earned — ocean, steel, sky. Full in FIELD. Muted-cool in STILL.</td></tr>
+          <tr><td>Skin</td><td>Warm-to-neutral always. Golden in FIELD. Matte-natural in STILL. Never orange.</td></tr>
+          <tr><td>Shadows</td><td>FIELD: deep navy/olive, not black. STILL: lifted 12–15 IRE, warm amber cast.</td></tr>
+          <tr><td>Highlights</td><td>FIELD: open and bright. STILL: soft warm-white roll-off, never blown.</td></tr>
+        </table>
+        <p style="font-size:12px; font-style:italic; color:var(--ink-muted); margin-top:20px;">Texture comes from light. The grade protects it. Never manufacture it.</p>
       </div>
     </div>
 
-    <div>
-      <span class="label">Still Palette — Interior / Editorial</span>
-      <div style="margin-top:16px; margin-bottom:44px;">
-        <div class="palette-row">
-          <div class="swatch" style="background:#4A5240;"><span class="swatch-label">Dk Olive<br>#4A5240</span></div>
-          <div class="swatch" style="background:#7A8A70;"><span class="swatch-label">Sage<br>#7A8A70</span></div>
-          <div class="swatch" style="background:#B8C4A8;"><span class="swatch-label">Pale Sage<br>#B8C4A8</span></div>
-          <div class="swatch" style="background:#E8E4D8;"><span class="swatch-label">Warm Wh<br>#E8E4D8</span></div>
-          <div class="swatch" style="background:#C8C0A8;"><span class="swatch-label">Linen<br>#C8C0A8</span></div>
-          <div class="swatch" style="background:#A89880;"><span class="swatch-label">Taupe<br>#A89880</span></div>
-          <div class="swatch" style="background:#D4B898;"><span class="swatch-label">Skin Lt<br>#D4B898</span></div>
-          <div class="swatch" style="background:#A8846A;"><span class="swatch-label">Skin Md<br>#A8846A</span></div>
-          <div class="swatch" style="background:#6A5040;"><span class="swatch-label">Skin Sh<br>#6A5040</span></div>
-          <div class="swatch" style="background:#3A3530;"><span class="swatch-label">Lifted Blk<br>#3A3530</span></div>
-        </div>
-      </div>
-
-      <span class="label">Color Philosophy</span>
-      <table class="spec-table" style="margin-top:12px;">
-        <tr><td>Greens</td><td>Always organic — olive, moss, forest. Never neon. Slightly cooler than natural.</td></tr>
-        <tr><td>Blues</td><td>Deep and earned — ocean, steel, sky. Full in FIELD. Muted-cool in STILL.</td></tr>
-        <tr><td>Skin</td><td>Warm-to-neutral always. Golden in FIELD. Matte-natural in STILL. Never orange.</td></tr>
-        <tr><td>Shadows</td><td>FIELD: deep navy/olive, not black. STILL: lifted 12–15 IRE, warm amber cast.</td></tr>
-        <tr><td>Highlights</td><td>FIELD: open and bright. STILL: soft warm-white roll-off, never blown.</td></tr>
-      </table>
-
-      <p style="font-size:11px; font-style:italic; color:var(--ink-muted); margin-top:16px;">Texture comes from light. The grade protects it. Never manufacture it.</p>
-    </div>
-  </div>
-
-  <div class="page-footer"><span>Form</span><span>10 — Color Palette</span></div>
+    <div class="page-footer"><span>Form</span><span>10 — Color Palette</span></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════
-     11 — LUT & PRESET SPECS
-══════════════════════════════ -->
+<!-- 11 ═══════════════════════════════════════ -->
 <div class="page" id="ch-11">
   <div class="page-inner">
-  <div class="chapter-num">11</div>
-  <div class="chapter-title">Preset & LUT Specifications</div>
-  <div class="chapter-sub">Tools for consistency. Use these as starting points, not rules. The score.</div>
+    <span class="ch-eyebrow">11</span>
+    <h1 class="ch-title">Preset &amp; LUT Specifications</h1>
+    <p class="ch-sub">Tools for consistency. Use these as starting points, not rules. The score.</p>
 
-  <span class="label">LUTs Included (4)</span>
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; margin:14px 0 8px; border:1px solid var(--rule);">
-    <div style="padding:12px 16px; border-right:1px solid var(--rule); border-bottom:1px solid var(--rule);">
-      <div style="font-family:'Inter',monospace; font-size:10px; color:var(--ink-muted); margin-bottom:4px;">FIELD_HLG.cube</div>
-      <div style="font-size:12px;">Outdoor / Field — HLG3 source</div>
+    <span class="lbl">LUTs Included (4)</span>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; margin:16px 0 12px; border:1px solid var(--rule);">
+      <div style="padding:16px 20px; border-right:1px solid var(--rule); border-bottom:1px solid var(--rule);">
+        <div style="font-family:'EB Garamond',serif; font-size:10px; color:var(--ink-muted); letter-spacing:0.08em; margin-bottom:5px;">FIELD_HLG.cube</div>
+        <div style="font-family:'EB Garamond',serif; font-size:14px; color:var(--ink);">Outdoor / Field — HLG3 source</div>
+      </div>
+      <div style="padding:16px 20px; border-bottom:1px solid var(--rule);">
+        <div style="font-family:'EB Garamond',serif; font-size:10px; color:var(--ink-muted); letter-spacing:0.08em; margin-bottom:5px;">FIELD_Rec709.cube</div>
+        <div style="font-family:'EB Garamond',serif; font-size:14px; color:var(--ink);">Outdoor / Field — Rec.709 source</div>
+      </div>
+      <div style="padding:16px 20px; border-right:1px solid var(--rule);">
+        <div style="font-family:'EB Garamond',serif; font-size:10px; color:var(--ink-muted); letter-spacing:0.08em; margin-bottom:5px;">STILL_HLG.cube</div>
+        <div style="font-family:'EB Garamond',serif; font-size:14px; color:var(--ink);">Interior / Editorial — HLG3 source</div>
+      </div>
+      <div style="padding:16px 20px;">
+        <div style="font-family:'EB Garamond',serif; font-size:10px; color:var(--ink-muted); letter-spacing:0.08em; margin-bottom:5px;">STILL_Rec709.cube</div>
+        <div style="font-family:'EB Garamond',serif; font-size:14px; color:var(--ink);">Interior / Editorial — Rec.709 source</div>
+      </div>
     </div>
-    <div style="padding:12px 16px; border-bottom:1px solid var(--rule);">
-      <div style="font-family:'Inter',monospace; font-size:10px; color:var(--ink-muted); margin-bottom:4px;">FIELD_Rec709.cube</div>
-      <div style="font-size:12px;">Outdoor / Field — Rec.709 source</div>
-    </div>
-    <div style="padding:12px 16px; border-right:1px solid var(--rule);">
-      <div style="font-family:'Inter',monospace; font-size:10px; color:var(--ink-muted); margin-bottom:4px;">STILL_HLG.cube</div>
-      <div style="font-size:12px;">Interior / Editorial — HLG3 source</div>
-    </div>
-    <div style="padding:12px 16px;">
-      <div style="font-family:'Inter',monospace; font-size:10px; color:var(--ink-muted); margin-bottom:4px;">STILL_Rec709.cube</div>
-      <div style="font-size:12px;">Interior / Editorial — Rec.709 source</div>
-    </div>
-  </div>
 
-  <p style="font-size:11px; color:var(--ink-muted); margin-bottom:24px;">Apply at 20–40% strength. Adjust white balance after LUT.</p>
+    <p style="font-size:13px; color:var(--ink-muted); margin-bottom:32px;">Apply at 20–40% strength. Adjust white balance after LUT.</p>
 
-  <div id="lut-helper" style="margin:28px 0; border:1px solid var(--rule); padding:22px;">
-    <div class="label" style="margin-bottom:14px;">LUT Selector</div>
-    <div style="display:flex; gap:12px; margin-bottom:16px; flex-wrap:wrap;">
-      <button type="button" onclick="selectLUT('field')" id="btn-field" style="padding:8px 16px; border:1px solid var(--ink); background:transparent; font-family:'Inter',sans-serif; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer;">Field / Outdoor</button>
-      <button type="button" onclick="selectLUT('still')" id="btn-still" style="padding:8px 16px; border:1px solid var(--rule); background:transparent; font-family:'Inter',sans-serif; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; color:var(--ink-muted);">Interior / Still</button>
+    <div id="lut-helper" style="margin:0 0 40px; border:1px solid var(--rule); padding:28px;">
+      <span class="lbl" style="margin-bottom:20px;">LUT Selector</span>
+      <div style="display:flex; gap:12px; margin-bottom:14px; flex-wrap:wrap;">
+        <button type="button" onclick="selectLUT('field')" id="btn-field" style="padding:10px 20px; border:1px solid var(--ink); background:transparent; font-family:'EB Garamond',serif; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; color:var(--ink);">Field / Outdoor</button>
+        <button type="button" onclick="selectLUT('still')" id="btn-still" style="padding:10px 20px; border:1px solid var(--rule); background:transparent; font-family:'EB Garamond',serif; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; color:var(--ink-muted);">Interior / Still</button>
+      </div>
+      <div style="display:flex; gap:12px; margin-bottom:24px; flex-wrap:wrap;">
+        <button type="button" onclick="selectSource('hlg')" id="btn-hlg" style="padding:8px 16px; border:1px solid var(--ink); background:transparent; font-family:'EB Garamond',serif; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; color:var(--ink);">HLG3 Source</button>
+        <button type="button" onclick="selectSource('rec')" id="btn-rec" style="padding:8px 16px; border:1px solid var(--rule); background:transparent; font-family:'EB Garamond',serif; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; color:var(--ink-muted);">Rec.709 Source</button>
+      </div>
+      <div id="lut-result" style="font-family:'EB Garamond',serif; font-size:16px; letter-spacing:0.08em; padding:16px 20px; background:var(--ink); color:var(--cream);">FIELD_HLG.cube</div>
+      <div style="font-family:'EB Garamond',serif; font-size:11px; color:var(--ink-muted); margin-top:10px; letter-spacing:0.04em;">Apply at 20–40% strength. Adjust white balance after.</div>
     </div>
-    <div style="display:flex; gap:12px; margin-bottom:20px; flex-wrap:wrap;">
-      <button type="button" onclick="selectSource('hlg')" id="btn-hlg" style="padding:6px 14px; border:1px solid var(--ink); background:transparent; font-family:'Inter',sans-serif; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer;">HLG3 Source</button>
-      <button type="button" onclick="selectSource('rec')" id="btn-rec" style="padding:6px 14px; border:1px solid var(--rule); background:transparent; font-family:'Inter',sans-serif; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; color:var(--ink-muted);">Rec.709 Source</button>
-    </div>
-    <div id="lut-result" style="font-family:'Inter',monospace; font-size:13px; padding:14px 18px; background:var(--ink); color:white; letter-spacing:0.06em;">FIELD_HLG.cube</div>
-    <div style="font-size:10px; color:var(--ink-muted); margin-top:8px;">Apply at 20–40% strength. Adjust white balance after.</div>
-  </div>
 
-  <div class="rule"></div>
+    <div class="rule"></div>
 
-  <span class="label">Lightroom Presets (2)</span>
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:14px 0;">
-    <div class="lut-block">
-      <div class="lut-name">FORM_FIELD.xmp</div>
-      <div class="lut-file">Outdoor / Field</div>
-      <table class="spec-table">
-        <tr><td>Exposure</td><td>+0.20</td></tr>
-        <tr><td>Contrast</td><td>-10</td></tr>
-        <tr><td>Clarity</td><td>0</td></tr>
-        <tr><td>Highlights</td><td>-40</td></tr>
-        <tr><td>Shadows</td><td>+15</td></tr>
-        <tr><td>Whites</td><td>+10</td></tr>
-        <tr><td>Blacks</td><td>-15</td></tr>
-        <tr><td>Vibrance</td><td>-10</td></tr>
-        <tr><td>Saturation</td><td>-9</td></tr>
-      </table>
+    <span class="lbl">Lightroom Presets (2)</span>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0;">
+      <div class="lut-block">
+        <div class="lut-name">FORM_FIELD.xmp</div>
+        <div class="lut-file">Outdoor / Field</div>
+        <table class="tbl">
+          <tr><td>Exposure</td><td>+0.20</td></tr>
+          <tr><td>Contrast</td><td>-10</td></tr>
+          <tr><td>Clarity</td><td>0</td></tr>
+          <tr><td>Highlights</td><td>-40</td></tr>
+          <tr><td>Shadows</td><td>+15</td></tr>
+          <tr><td>Whites</td><td>+10</td></tr>
+          <tr><td>Blacks</td><td>-15</td></tr>
+          <tr><td>Vibrance</td><td>-10</td></tr>
+          <tr><td>Saturation</td><td>-9</td></tr>
+        </table>
+      </div>
+      <div class="lut-block">
+        <div class="lut-name">FORM_STILL.xmp</div>
+        <div class="lut-file">Portrait / Still Life</div>
+        <table class="tbl">
+          <tr><td>Exposure</td><td>+0.10</td></tr>
+          <tr><td>Contrast</td><td>-10</td></tr>
+          <tr><td>Clarity</td><td>-5</td></tr>
+          <tr><td>Highlights</td><td>-40</td></tr>
+          <tr><td>Shadows</td><td>+15</td></tr>
+          <tr><td>Whites</td><td>+10</td></tr>
+          <tr><td>Blacks</td><td>-15</td></tr>
+          <tr><td>Vibrance</td><td>-10</td></tr>
+          <tr><td>Saturation</td><td>-9</td></tr>
+        </table>
+      </div>
     </div>
-    <div class="lut-block">
-      <div class="lut-name">FORM_STILL.xmp</div>
-      <div class="lut-file">Portrait / Still Life</div>
-      <table class="spec-table">
-        <tr><td>Exposure</td><td>+0.10</td></tr>
-        <tr><td>Contrast</td><td>-10</td></tr>
-        <tr><td>Clarity</td><td>-5</td></tr>
-        <tr><td>Highlights</td><td>-40</td></tr>
-        <tr><td>Shadows</td><td>+15</td></tr>
-        <tr><td>Whites</td><td>+10</td></tr>
-        <tr><td>Blacks</td><td>-15</td></tr>
-        <tr><td>Vibrance</td><td>-10</td></tr>
-        <tr><td>Saturation</td><td>-9</td></tr>
-      </table>
-    </div>
-  </div>
 
-  <div class="rule"></div>
+    <div class="rule"></div>
 
-  <span class="label">Key Settings (Both)</span>
-  <div style="display:grid; grid-template-columns:repeat(6,1fr); gap:0; margin-top:12px; text-align:center; border:1px solid var(--rule);">
-    <div style="padding:12px 8px; border-right:1px solid var(--rule);">
-      <div style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-faint); margin-bottom:6px;">Exposure</div>
-      <div style="font-family:'EB Garamond',serif; font-size:20px;">+0.20</div>
+    <span class="lbl">Key Settings (Both)</span>
+    <div class="stat-row" style="margin-top:16px;">
+      <div class="stat-cell"><div class="stat-n">Exposure</div><div class="stat-v">+0.20</div></div>
+      <div class="stat-cell"><div class="stat-n">Contrast</div><div class="stat-v">−10</div></div>
+      <div class="stat-cell"><div class="stat-n">Clarity</div><div class="stat-v">0</div></div>
+      <div class="stat-cell"><div class="stat-n">Highlights</div><div class="stat-v">−40</div></div>
+      <div class="stat-cell"><div class="stat-n">Shadows</div><div class="stat-v">+15</div></div>
+      <div class="stat-cell"><div class="stat-n">Vibrance</div><div class="stat-v">−10</div></div>
     </div>
-    <div style="padding:12px 8px; border-right:1px solid var(--rule);">
-      <div style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-faint); margin-bottom:6px;">Contrast</div>
-      <div style="font-family:'EB Garamond',serif; font-size:20px;">-10</div>
-    </div>
-    <div style="padding:12px 8px; border-right:1px solid var(--rule);">
-      <div style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-faint); margin-bottom:6px;">Clarity</div>
-      <div style="font-family:'EB Garamond',serif; font-size:20px;">0</div>
-    </div>
-    <div style="padding:12px 8px; border-right:1px solid var(--rule);">
-      <div style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-faint); margin-bottom:6px;">Highlights</div>
-      <div style="font-family:'EB Garamond',serif; font-size:20px;">-40</div>
-    </div>
-    <div style="padding:12px 8px; border-right:1px solid var(--rule);">
-      <div style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-faint); margin-bottom:6px;">Shadows</div>
-      <div style="font-family:'EB Garamond',serif; font-size:20px;">+15</div>
-    </div>
-    <div style="padding:12px 8px;">
-      <div style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-faint); margin-bottom:6px;">Vibrance</div>
-      <div style="font-family:'EB Garamond',serif; font-size:20px;">-10</div>
-    </div>
-  </div>
 
-  <div style="margin-top:44px; padding-top:24px; border-top:1px solid var(--ink); display:flex; justify-content:space-between; align-items:baseline;">
-    <p style="font-size:11px; color:var(--ink-muted); margin-bottom:0;">DaVinci Resolve · Premiere Pro · Final Cut Pro · Lightroom Classic & CC</p>
-    <p style="font-size:11px; font-style:italic; color:var(--ink-faint); margin-bottom:0;">Version 10 · Miami, Florida</p>
-  </div>
+    <div style="margin-top:56px; padding-top:24px; border-top:1px solid var(--ink); display:flex; justify-content:space-between; align-items:baseline;">
+      <p style="font-family:'EB Garamond',serif; font-size:12px; color:var(--ink-muted); margin-bottom:0;">DaVinci Resolve · Premiere Pro · Final Cut Pro · Lightroom Classic &amp; CC</p>
+      <p style="font-family:'EB Garamond',serif; font-size:12px; font-style:italic; color:var(--ink-ghost); margin-bottom:0;">Version 10 · Miami, Florida</p>
+    </div>
 
-  <div class="page-footer"><span>Form</span><span>11 — Preset & LUT Specifications</span></div>
+    <div class="page-footer"><span>Form</span><span>11 — Preset &amp; LUT Specifications</span></div>
   </div>
 </div>
 
-</div>
-
+</div><!-- /shell -->
 
 <script>
 (function () {
   'use strict';
 
-  // Reveal on scroll
+  // Scroll reveals
   document.querySelectorAll('.page[id^="ch-"]').forEach(page => {
     const inner = page.querySelector('.page-inner');
     if (!inner) return;
     Array.from(inner.children).forEach(child => {
       if (child.classList.contains('page-footer')) return;
-      if (child.classList.contains('doctrine-link')) return;
-      const wrap = document.createElement('div');
-      wrap.className = 'reveal';
-      inner.insertBefore(wrap, child);
-      wrap.appendChild(child);
+      if (child.classList.contains('doctrine-block')) return;
+      const w = document.createElement('div');
+      w.className = 'reveal';
+      inner.insertBefore(w, child);
+      w.appendChild(child);
     });
   });
 
-  const revealIO = new IntersectionObserver((entries) => {
+  const revealIO = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        revealIO.unobserve(e.target);
-      }
+      if (e.isIntersecting) { e.target.classList.add('visible'); revealIO.unobserve(e.target); }
     });
-  }, { threshold: 0.08 });
+  }, { threshold: 0.06 });
   document.querySelectorAll('.reveal').forEach(r => revealIO.observe(r));
 
   // Progress bar
   const bar = document.getElementById('progress-bar');
   window.addEventListener('scroll', () => {
     const max = document.body.scrollHeight - window.innerHeight;
-    if (bar && max > 0) bar.style.transform = 'scaleX(' + (window.scrollY / max) + ')';
+    if (bar && max > 0) bar.style.transform = `scaleX(${window.scrollY / max})`;
   }, { passive: true });
 
   // Active nav
-  const navLinks = document.querySelectorAll('#chapter-nav a');
-  const pageIds = ['ch-00','ch-00b','ch-01','ch-02','ch-03','ch-04','ch-04b','ch-05','ch-06','ch-07','ch-08','ch-09','ch-10','ch-11'];
-  const pages = pageIds.map(id => document.getElementById(id)).filter(Boolean);
+  const links = document.querySelectorAll('#chapter-nav a');
+  const ids = ['ch-00','ch-00b','ch-01','ch-02','ch-03','ch-04','ch-04b','ch-05','ch-06','ch-07','ch-08','ch-09','ch-10','ch-11'];
+  const sections = ids.map(id => document.getElementById(id)).filter(Boolean);
 
-  const navIO = new IntersectionObserver((entries) => {
+  const navIO = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        navLinks.forEach(a => a.classList.toggle('active', a.dataset.chapter === e.target.id));
+        links.forEach(a => a.classList.toggle('active', a.dataset.ch === e.target.id));
       }
     });
-  }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
-  pages.forEach(p => navIO.observe(p));
+  }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+  sections.forEach(s => navIO.observe(s));
 
   // Collapsible principles (ch-02 only)
-  document.querySelectorAll('#ch-02 .principle').forEach(principle => {
-    const name = principle.querySelector('.principle-name');
-    if (!name) return;
-    principle.querySelectorAll('p').forEach(p => p.classList.add('principle-body'));
-    principle.classList.add('collapsed');
-    name.insertAdjacentHTML('beforeend', '<span class="toggle-icon">+</span>');
-    name.addEventListener('click', () => {
-      const open = !principle.classList.contains('open');
-      principle.classList.toggle('open', open);
-      principle.classList.toggle('collapsed', !open);
-      const icon = name.querySelector('.toggle-icon');
-      if (icon) icon.textContent = open ? '−' : '+';
+  document.querySelectorAll('#ch-02 .principle').forEach(p => {
+    const title = p.querySelector('.principle-title');
+    if (!title) return;
+    const body = p.querySelector('.principle-body');
+    if (!body) return;
+    p.classList.add('collapsed');
+    title.addEventListener('click', () => {
+      const isOpen = p.classList.contains('open');
+      p.classList.toggle('open', !isOpen);
+      p.classList.toggle('collapsed', isOpen);
+      const tog = title.querySelector('.tog');
+      if (tog) tog.textContent = isOpen ? '+' : '−';
     });
   });
 })();
 
-// LUT selector
 let lutMode = 'field', lutSrc = 'hlg';
 function updateLUT() {
-  const map = {
-    field: { hlg: 'FIELD_HLG.cube', rec: 'FIELD_Rec709.cube' },
-    still: { hlg: 'STILL_HLG.cube', rec: 'STILL_Rec709.cube' }
-  };
+  const map = { field: { hlg: 'FIELD_HLG.cube', rec: 'FIELD_Rec709.cube' }, still: { hlg: 'STILL_HLG.cube', rec: 'STILL_Rec709.cube' } };
   const el = document.getElementById('lut-result');
   if (el) el.textContent = map[lutMode][lutSrc];
 }
 function selectLUT(v) {
   lutMode = v;
   ['field','still'].forEach(id => {
-    const btn = document.getElementById('btn-' + id);
-    if (btn) {
-      btn.style.borderColor = id === v ? 'var(--ink)' : 'var(--rule)';
-      btn.style.color = id === v ? 'var(--ink)' : 'var(--ink-muted)';
-    }
+    const b = document.getElementById('btn-' + id);
+    if (b) { b.style.borderColor = id === v ? 'var(--ink)' : 'var(--rule)'; b.style.color = id === v ? 'var(--ink)' : 'var(--ink-muted)'; }
   });
   updateLUT();
 }
 function selectSource(v) {
   lutSrc = v;
   ['hlg','rec'].forEach(id => {
-    const btn = document.getElementById('btn-' + id);
-    if (btn) {
-      btn.style.borderColor = id === v ? 'var(--ink)' : 'var(--rule)';
-      btn.style.color = id === v ? 'var(--ink)' : 'var(--ink-muted)';
-    }
+    const b = document.getElementById('btn-' + id);
+    if (b) { b.style.borderColor = id === v ? 'var(--ink)' : 'var(--rule)'; b.style.color = id === v ? 'var(--ink)' : 'var(--ink-muted)'; }
   });
   updateLUT();
 }
 </script>
-
 </body>
 </html>
