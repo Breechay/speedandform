@@ -423,6 +423,11 @@
   status = 200
 
 [[redirects]]
+  from = "/studio"
+  to = "/studio.html"
+  status = 200
+
+[[redirects]]
   from = "/form/perception-manual"
   to = "/perception-manual.html"
   status = 301

@@ -7,6 +7,7 @@
 | **HTML** | `perception-manual.html` |
 | **Images** | `assets/perception-manual/01.jpg` … `13.jpg` |
 | **Live URL** | https://speedandform.com/perception-manual |
+| **Studio hub** | https://speedandform.com/studio — private dashboard; see `docs/STUDIO.md` |
 
 Edit **only** these paths. Push to `main` → Netlify deploys.
 
