@@ -2,6 +2,8 @@
 
 Constitutional docs for the curated Miami social village (FORM Private / Sunday Village).
 
+**Execution surface:** Sunday Village now lives in **HideoutApp** (Sundays tab) — not a separate FORM Private app. These docs hold *why* and *stewardship*; Hideout holds *Sunday operations*.
+
 | File | Role |
 |------|------|
 | `FORM_PRIVATE_DOCTRINE_V3.md` | Core doctrine |
@@ -14,8 +16,9 @@ Constitutional docs for the curated Miami social village (FORM Private / Sunday 
 | `The_Village_Creative_Layer_v2.pdf` | Creative layer (PDF) |
 | `prototypes/` | Early Swift UI experiments — reference only |
 
-**Live surface:** `village-intake.html` in speedandform repo root (canonical).
-
-**iOS app:** `~/Documents/form-private-ios/` — member/curator app source.
-
-**Media:** Village shoots → `~/Documents/FORM/HIDEOUT/2026-06/`
+| Surface | Path |
+|---------|------|
+| **Sunday (live product)** | `HideoutApp/` · Sundays tab |
+| **Intake (web)** | `village-intake.html` in this repo |
+| **Archived iOS prototype** | https://github.com/Breechay/form-private-ios |
+| **Media** | `~/Documents/FORM/HIDEOUT/` |
