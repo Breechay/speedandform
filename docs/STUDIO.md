@@ -8,6 +8,7 @@
 | **Films list** | `films.html` · https://speedandform.com/films |
 | **Perception manual** | `perception-manual.html` · https://speedandform.com/perception-manual |
 | **Cinema doctrine (markdown)** | `INCREMENTS/Docs/CINEMATIC_DOCTRINE.md` |
+| **Field Guide PDF (exploration)** | `docs/field-guide/BREECHAY_field_guide_v2.pdf` · working copy `~/Documents/FORM/STUDIO/DOCS/` |
 
 **Unlisted.** `noindex` on studio + films — bookmark the URLs.
 
