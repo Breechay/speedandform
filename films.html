@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<!--
+  Deploy: films.html (repo root)
+  Live: https://speedandform.com/films
+  Private watch list — unlisted, noindex. Canonical markdown: INCREMENTS/Docs/CINEMATIC_DOCTRINE.md
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>FORM Studio — Films</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #F4F0E8; --cream-warm: #EDE8DE; --ink: #181714; --ink-mid: #3E3B36;
+  --ink-muted: #6E6A62; --ink-faint: #A8A49C; --ink-ghost: #C8C4BC;
+  --rule: #D4CFC6; --rule-soft: #E4E0D8; --sidebar-w: 200px;
+}
+html { scroll-behavior: smooth; background: var(--cream); }
+body { font-family: 'EB Garamond', serif; font-size: 17px; line-height: 1.85; background: var(--cream); color: var(--ink); }
+#sidebar { position: fixed; left: 0; top: 0; width: var(--sidebar-w); height: 100vh; background: var(--cream-warm); border-right: 1px solid var(--rule); z-index: 50; padding: 36px 0; }
+.nav-brand { padding: 0 28px 24px; border-bottom: 1px solid var(--rule); margin-bottom: 16px; }
+.nav-brand-form { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; display: block; }
+.nav-brand-sub { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-faint); }
+#sidebar a { display: block; padding: 9px 28px; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); text-decoration: none; border-left: 2px solid transparent; }
+#sidebar a:hover { color: var(--ink-mid); }
+.nav-divider { height: 1px; background: var(--rule-soft); margin: 12px 28px; }
+.nav-label { padding: 16px 28px 4px; font-size: 8px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-ghost); }
+#shell { margin-left: var(--sidebar-w); min-height: 100vh; }
+#progress-bar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: 1px; background: var(--ink); transform-origin: left; transform: scaleX(0); z-index: 100; }
+.page { max-width: 880px; margin: 0 auto; padding: 80px clamp(32px, 6vw, 80px); border-bottom: 1px solid var(--rule-soft); }
+.hero-eyebrow { font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-ghost); margin-bottom: 20px; display: block; }
+.hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 5vw, 56px); font-weight: 300; margin-bottom: 16px; }
+.hero-sub { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; font-style: italic; color: var(--ink-muted); max-width: 540px; line-height: 1.45; margin-bottom: 32px; }
+.lead { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; line-height: 1.5; margin-bottom: 32px; max-width: 600px; }
+h2 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; margin-bottom: 8px; }
+.section-note { font-size: 13px; color: var(--ink-muted); margin-bottom: 28px; max-width: 560px; line-height: 1.8; }
+.film-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 24px 0 40px; }
+.film-cell { background: var(--cream); padding: 20px 22px; }
+.film-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; margin-bottom: 3px; }
+.film-meta { font-size: 10px; letter-spacing: 0.1em; color: var(--ink-ghost); text-transform: uppercase; margin-bottom: 10px; }
+.film-why { font-size: 13px; color: var(--ink-muted); line-height: 1.65; }
+.film-tag { display: inline-block; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); border: 1px solid var(--rule); padding: 2px 7px; margin: 10px 4px 0 0; }
+.tbl { width: 100%; border-collapse: collapse; margin: 20px 0 40px; }
+.tbl td { padding: 12px 0; border-bottom: 1px solid var(--rule-soft); font-size: 14px; color: var(--ink-mid); vertical-align: top; line-height: 1.65; }
+.tbl td:first-child { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); width: 110px; padding-right: 16px; }
+.link-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+.link-row a { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-mid); text-decoration: none; border: 1px solid var(--rule); padding: 10px 16px; }
+.link-row a:hover { border-color: var(--ink); color: var(--ink); }
+#footer { max-width: 880px; margin: 0 auto; padding: 40px clamp(32px, 6vw, 80px) 72px; display: flex; justify-content: space-between; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-ghost); }
+@media (max-width: 860px) { #sidebar { display: none; } #shell { margin-left: 0; } #progress-bar { left: 0; } .film-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<aside id="sidebar">
+  <div class="nav-brand">
+    <span class="nav-brand-form">Films</span>
+    <span class="nav-brand-sub">Studio · Private</span>
+  </div>
+  <nav>
+    <a href="#hero">Overview</a>
+    <div class="nav-divider"></div>
+    <a href="#watch-first">Watch first</a>
+    <a href="#confirmed">Confirmed</a>
+    <a href="#ensemble">Ensemble</a>
+    <a href="#explore">To explore</a>
+    <a href="#watch-for">Watch for</a>
+    <div class="nav-divider"></div>
+    <div class="nav-label">Return</div>
+    <a href="/studio">Studio hub</a>
+    <a href="/perception-manual">Perception manual</a>
+  </nav>
+</aside>
+<div id="shell">
+
+<section class="page" id="hero">
+  <span class="hero-eyebrow">When It Matters · Sunday frequency</span>
+  <h1 class="hero-title">Films with context.</h1>
+  <p class="hero-sub">Not a hype list. What to watch for — ensemble pressure, inference, atmosphere, recognition.</p>
+  <p class="section-note">Drawn from <em>Cinematic Doctrine v11</em> and operator taste. A film can be frequency — same as one excellent conversation. Criterion: reverence without performance.</p>
+  <div class="link-row">
+    <a href="/studio">← Studio hub</a>
+    <a href="/perception-manual">Perception manual</a>
+  </div>
+</section>
+
+<section class="page" id="watch-first">
+  <h2>Watch first</h2>
+  <p class="section-note">Highest leverage this quarter — doctrine-aligned, immediately useful.</p>
+  <div class="film-grid">
+    <div class="film-cell">
+      <div class="film-title">Margin Call</div>
+      <div class="film-meta">2011 · J.C. Chandor</div>
+      <div class="film-why">One building, one night, eight distinct architectures under the same pressure. No noise. Jeremy Irons arrives late, reorganizes the room, leaves. Gerri-tier institutional patience.</div>
+      <span class="film-tag">ensemble pressure</span><span class="film-tag">inference</span>
+    </div>
+    <div class="film-cell">
+      <div class="film-title">Steve Jobs</div>
+      <div class="film-meta">2015 · Sorkin · Fassbender</div>
+      <div class="film-why">Three backstage acts, one escalating rupture. Joanna Hoffman is ballast — reads the room faster than Jobs, never competes for the genius role. Two-layer dialogue throughout.</div>
+      <span class="film-tag">ballast dynamic</span><span class="film-tag">dialogue</span>
+    </div>
+    <div class="film-cell">
+      <div class="film-title">The Grand Budapest Hotel</div>
+      <div class="film-meta">2014 · Wes Anderson · Fiennes</div>
+      <div class="film-why">Gustave under maximum pressure: more wit, more warmth, the standard holds. Authored environment at doctrine level — every room communicates before anyone speaks.</div>
+      <span class="film-tag">authored environment</span><span class="film-tag">warmth + rigor</span>
+    </div>
+    <div class="film-cell">
+      <div class="film-title">The Killer</div>
+      <div class="film-meta">2023 · Fincher · Fassbender</div>
+      <div class="film-why">Opening sequence only. Slows everything down. Watches. Waits. Narrates internally. Recognition, not aspiration — private machinery accurately named.</div>
+      <span class="film-tag">recognition</span><span class="film-tag">atmosphere</span>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="confirmed">
+  <h2>Confirmed — doctrine list</h2>
+  <p class="section-note">Core watch list from When It Matters. Context over titles.</p>
+  <div class="film-grid">
+    <div class="film-cell">
+      <div class="film-title">Heat</div>
+      <div class="film-meta">1995 · Michael Mann · McCauley</div>
+      <div class="film-why">The benchmark. Internally governed, no wasted motion. A code so complete it needs no external validation. Mann's Los Angeles does work before dialogue.</div>
+      <span class="film-tag">atmosphere</span><span class="film-tag">character</span>
+    </div>
+    <div class="film-cell">
+      <div class="film-title">Better Call Saul</div>
+      <div class="film-meta">TV 2015–2022 · Gilligan</div>
+      <div class="film-why">Four architectures under one system. Mike: internal law. Kim: composed precision. Ensemble thesis in practice — longer holds, behavior over exposition.</div>
+      <span class="film-tag">ensemble</span><span class="film-tag">character</span>
+    </div>
+    <div class="film-cell">
+      <div class="film-title">Dune</div>
+      <div class="film-meta">2021 · Villeneuve · Leto</div>
+      <div class="film-why">Slow authority. Duke Leto — warm underneath, doesn't flinch. Small humans inside enormous structures. Visual hierarchy from the perception manual in cinema form.</div>
+      <span class="film-tag">atmosphere</span><span class="film-tag">scale</span>
+    </div>
+    <div class="film-cell">
+      <div class="film-title">Collateral</div>
+      <div class="film-meta">2004 · Mann · Vincent</div>
+      <div class="film-why">Night LA as character. Atmosphere through lens and light, not grade. Vincent operates with ritual and internal law — vitality under containment.</div>
+      <span class="film-tag">atmosphere</span><span class="film-tag">city</span>
+    </div>
+    <div class="film-cell">
+      <div class="film-title">Tinker Tailor Soldier Spy</div>
+      <div class="film-meta">2011 · Alfredson · Smiley</div>
+      <div class="film-why">All inference. Gets even quieter under pressure. Everything is subtext — watch when sharp, rewards complete attention.</div>
+      <span class="film-tag">inference</span><span class="film-tag">stillness</span>
+    </div>
+    <div class="film-cell">
+      <div class="film-title">Phantom Thread</div>
+      <div class="film-meta">2017 · PTA</div>
+      <div class="film-why">Shadow study — Woodcock is Gustave's shadow. Standards harden into the only way when warmth exits. Study, not aspiration.</div>
+      <span class="film-tag">shadow</span><span class="film-tag">authored env</span>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="ensemble">
+  <h2>Ensemble thesis</h2>
+  <p class="section-note">Distinct ways of being under shared pressure — where the real drama lives.</p>
+  <div class="film-grid">
+    <div class="film-cell">
+      <div class="film-title">Sicario</div>
+      <div class="film-meta">2015 · Villeneuve</div>
+      <div class="film-why">Three architectures under shared pressure. Alejandro: arrives, reorganizes, leaves. Blunt is moral axis. Friction between them is the film.</div>
+      <span class="film-tag">ensemble contrast</span><span class="film-tag">doctrine</span>
+    </div>
+    <div class="film-cell">
+      <div class="film-title">Knives Out</div>
+      <div class="film-meta">2019 · Rian Johnson</div>
+      <div class="film-why">Benoit Blanc as Nichols frequency — ironic detachment deployed as precision. Craig doing the opposite of Bond after Casino Royale.</div>
+      <span class="film-tag">weird precision</span><span class="film-tag">ensemble</span>
+    </div>
+    <div class="film-cell">
+      <div class="film-title">The Thomas Crown Affair</div>
+      <div class="film-meta">1999 · McTiernan</div>
+      <div class="film-why">Elegant operator, solitary, plays from enjoyment. Russo matches him — fast mutual recognition between two people genuinely hard to read.</div>
+      <span class="film-tag">counterpart</span><span class="film-tag">orchestration</span>
+    </div>
+    <div class="film-cell">
+      <div class="film-title">Pulp Fiction</div>
+      <div class="film-meta">1994 · The Wolf scene only</div>
+      <div class="film-why">Arrives. Assesses. Reorganizes. Leaves. Total economy of action. Competence expressed as ritual in minimal screen time.</div>
+      <span class="film-tag">ritual</span><span class="film-tag">economy</span>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="explore">
+  <h2>To explore</h2>
+  <p class="section-note">Worth finding — queue when sharp, not urgency.</p>
+  <div class="film-grid">
+    <div class="film-cell">
+      <div class="film-title">Molly's Game</div>
+      <div class="film-meta">2017 · Sorkin</div>
+      <div class="film-why">Strategic self-possession. Two-layer dialogue — the conversation is never about what it's about.</div>
+      <span class="film-tag">character</span><span class="film-tag">dialogue</span>
+    </div>
+    <div class="film-cell">
+      <div class="film-title">Ocean's Eleven</div>
+      <div class="film-meta">2001 · Soderbergh</div>
+      <div class="film-why">Danny plans. Rusty inhabits. Each crew member stays fully themselves while coordinating — ensemble chemistry over singular icons.</div>
+      <span class="film-tag">ensemble</span><span class="film-tag">ease</span>
+    </div>
+    <div class="film-cell">
+      <div class="film-title">Michael Clayton</div>
+      <div class="film-meta">2007 · Gilroy</div>
+      <div class="film-why">Finds where pressure flows. Goes there quietly. Contained competence under real stakes — adult register without melodrama.</div>
+      <span class="film-tag">pressure fluency</span>
+    </div>
+    <div class="film-cell">
+      <div class="film-title">Moneyball</div>
+      <div class="film-meta">2011 · Bennett Miller</div>
+      <div class="film-why">Holds the model. Room can push — model stays. Reality over consensus.</div>
+      <span class="film-tag">conviction</span>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="watch-for">
+  <h2>What to watch for</h2>
+  <p class="section-note">Regardless of film — the lens stays the same.</p>
+  <table class="tbl">
+    <tr><td>Environment</td><td>Does the room communicate before anyone speaks? What does production design do that dialogue doesn't need to?</td></tr>
+    <tr><td>Stillness</td><td>When do characters go still? What earns that moment? How much does the camera move?</td></tr>
+    <tr><td>Ritual</td><td>What repeated actions reveal character? Service, preparation, cleanup, arrival.</td></tr>
+    <tr><td>Inference</td><td>What is the film not explaining? Where does it trust you to reconstruct the chain?</td></tr>
+    <tr><td>Ensemble</td><td>What does each character reveal about the others by contrast?</td></tr>
+    <tr><td>Atmosphere</td><td>How is atmosphere created — lens, light, sound, pacing — before grade?</td></tr>
+  </table>
+  <p class="section-note">Full doctrine: <code>INCREMENTS/Docs/CINEMATIC_DOCTRINE.md</code> · Character map in PDF v11.</p>
+</section>
+
+<div id="footer">
+  <span>FORM Studio · Films</span>
+  <span>Private · speedandform.com/films</span>
+</div>
+</div>
+<script>
+const bar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const max = document.body.scrollHeight - window.innerHeight;
+  if (bar && max > 0) bar.style.transform = `scaleX(${window.scrollY / max})`;
+}, { passive: true });
+</script>
+</body>
+</html>

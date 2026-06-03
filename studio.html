@@ -526,6 +526,9 @@ p {
     <div class="nav-divider"></div>
     <div class="nav-section-label">Reference</div>
     <a href="#" onclick="toggleSection('films'); return false;" data-section="films">Films</a>
+    <div class="nav-divider"></div>
+    <a href="/films">Full film list →</a>
+    <a href="/perception-manual">Perception manual →</a>
   </nav>
 </aside>
 
@@ -594,12 +597,19 @@ p {
             </div>
             <div class="link-card-arrow">→</div>
           </div>
-          <div class="link-card" style="cursor:default; opacity:0.6;">
+          <div class="link-card" onclick="window.open('/films', '_blank')">
+            <div class="link-card-left">
+              <div class="link-card-title">Films</div>
+              <div class="link-card-desc">Watch list with context — Sunday frequency, not hype. Expanded list beyond this hub.</div>
+            </div>
+            <div class="link-card-arrow">→</div>
+          </div>
+          <div class="link-card" style="cursor:default; opacity:0.85;">
             <div class="link-card-left">
               <div class="link-card-title">Cinema Doctrine</div>
-              <div class="link-card-desc">People on screen — conduct, ensemble, inference, stillness. When It Matters v11.</div>
+              <div class="link-card-desc">When It Matters v11 — INCREMENTS/Docs/CINEMATIC_DOCTRINE.md · PDF: cinematic_doctrine_v11.pdf</div>
             </div>
-            <div class="link-card-arrow" style="font-size:11px; color:var(--ink-ghost);">PDF</div>
+            <div class="link-card-arrow" style="font-size:11px; color:var(--ink-ghost);">MD</div>
           </div>
           <div class="link-card" onclick="toggleSection('films')">
             <div class="link-card-left">
@@ -631,9 +641,9 @@ p {
       <h4>The documents and where they live</h4>
       <table class="tbl">
         <tr><td>Perception Manual</td><td>speedandform.com/perception-manual · repo: perception-manual.html</td></tr>
-        <tr><td>Cinema Doctrine</td><td>INCREMENTS/cinematic_doctrine_v11.pdf · local only · needs transcription</td></tr>
+        <tr><td>Cinema Doctrine</td><td>INCREMENTS/Docs/CINEMATIC_DOCTRINE.md · PDF: cinematic_doctrine_v11.pdf</td></tr>
         <tr><td>Studio Hub</td><td>speedandform.com/studio · repo: studio.html · this file</td></tr>
-        <tr><td>Film List</td><td>INCREMENTS/film_recommendations.html · untracked locally</td></tr>
+        <tr><td>Film List</td><td>speedandform.com/films · repo: films.html</td></tr>
         <tr><td>Operator Manual</td><td>FORM-iOS/docs/BRICE_OS/ · private · not public</td></tr>
         <tr><td>What I Want</td><td>INCREMENTS/what_i_want_v7.pdf · private · not public</td></tr>
       </table>
@@ -644,11 +654,11 @@ p {
           <div>
             <div style="font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-ghost); margin-bottom:10px; font-family:'EB Garamond',serif;">Public — speedandform.com (linked artifacts)</div>
             <div class="item"><div class="item-dot"></div><span>Perception manual (/perception-manual)</span></div>
-            <div class="item"><div class="item-dot"></div><span>Cinema doctrine (when transcribed)</span></div>
-            <div class="item"><div class="item-dot"></div><span>Film list (when published)</span></div>
+            <div class="item"><div class="item-dot"></div><span>Cinema doctrine (when transcribed to web — markdown live now)</span></div>
+            <div class="item"><div class="item-dot"></div><span>Film list (/films)</span></div>
           </div>
           <div>
-            <div style="font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-ghost); margin-bottom:10px; font-family:'EB Garamond',serif;">Private — unlisted (/studio · BRICE_OS · INCREMENTS)</div>
+            <div style="font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-ghost); margin-bottom:10px; font-family:'EB Garamond',serif;">Private — unlisted (/studio · /films · BRICE_OS · INCREMENTS)</div>
             <div class="item"><div class="item-dot"></div><span>This hub (field guide, file system, films inline)</span></div>
             <div class="item"><div class="item-dot"></div><span>Operator manual</span></div>
             <div class="item"><div class="item-dot"></div><span>What I Want doc</span></div>
@@ -823,6 +833,8 @@ p {
         <tr><td>Wes Anderson</td><td>Grand Budapest — authored environments, warmth + rigor simultaneously.</td></tr>
         <tr><td>Vince Gilligan</td><td>Better Call Saul — long-arc character revelation, distinct people under shared pressure.</td></tr>
       </table>
+
+      <p style="margin-top:24px; font-size:13px; color:var(--ink-muted);">Full doctrine: <code>INCREMENTS/Docs/CINEMATIC_DOCTRINE.md</code> · Expanded film list: <a href="/films" style="color:var(--ink-mid);">/films</a></p>
 
     </div>
   </div>
@@ -1053,7 +1065,9 @@ p {
         <div class="file indent-2">📄 perception-manual.html</div>
         <div class="file indent-2">📄 cinematic_doctrine_v11.pdf</div>
         <div class="file indent-2">📄 studio.html</div>
+        <div class="file indent-2">📄 films.html</div>
         <div class="file indent-2">📄 film_recommendations.html</div>
+        <div class="file indent-2">📄 CINEMATIC_DOCTRINE.md</div>
         <div class="file">📁 LUTS/</div>
         <div class="file indent-2">📄 FIELD_HLG.cube</div>
         <div class="file indent-2">📄 FIELD_Rec709.cube</div>
@@ -1134,6 +1148,7 @@ p {
     <div class="section-inner">
 
       <div class="lead">Not a watchlist for hype. Films you watch to study something specific — atmosphere, ensemble, character under pressure, authored environments.</div>
+      <p style="font-size:13px;color:var(--ink-muted);margin-bottom:24px;">Expanded tiers and ensemble picks: <a href="/films" style="color:var(--ink-mid);">speedandform.com/films</a></p>
 
       <h3>Watch next — confirmed matches</h3>
       <div class="film-grid">

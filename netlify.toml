@@ -428,6 +428,11 @@
   status = 200
 
 [[redirects]]
+  from = "/films"
+  to = "/films.html"
+  status = 200
+
+[[redirects]]
   from = "/form/perception-manual"
   to = "/perception-manual.html"
   status = 301
