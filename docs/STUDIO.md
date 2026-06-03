@@ -40,8 +40,10 @@ Think by **signal** (rain, preparation, communal energy), not by shoot date.
 ## Day-to-day
 
 1. Before shoot → `/studio` → **Open Field Guide**
-2. After cull → route stills to SELECTS, clips to LIBRARY, empty Downloads
+2. After cull → route to `~/Documents/FORM/` — stills to SELECTS, clips to LIBRARY, empty Downloads
 3. Edit reel → pull from LIBRARY + export to PROJECTS
+
+**Media root:** `~/Documents/FORM/` — not git. Repos hold docs and code only.
 
 ## Do not
 
