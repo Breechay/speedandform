@@ -16,4 +16,6 @@ Constitutional docs for the curated Miami social village (FORM Private / Sunday 
 
 **Live surface:** `village-intake.html` in speedandform repo root (canonical).
 
+**iOS app:** `~/Documents/form-private-ios/` — member/curator app source.
+
 **Media:** Village shoots → `~/Documents/FORM/HIDEOUT/2026-06/`
