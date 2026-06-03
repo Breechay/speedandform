@@ -104,6 +104,8 @@ body {
 
 #sidebar a:hover { color: var(--ink-mid); }
 #sidebar a.active { color: var(--ink); border-left-color: var(--ink); }
+#sidebar a.nav-home { color: var(--ink-mid); letter-spacing: 0.16em; }
+#sidebar a.nav-home.active { color: var(--ink); }
 
 .nav-section-label {
   padding: 20px 32px 6px;
@@ -171,8 +173,43 @@ body {
   font-weight: 300;
   font-style: italic;
   color: var(--ink-muted);
-  margin-bottom: 48px;
+  margin-bottom: 32px;
   max-width: 580px;
+  line-height: 1.45;
+}
+
+.hero-cta {
+  display: inline-block;
+  margin-bottom: 48px;
+  padding: 14px 28px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--cream);
+  font-family: 'EB Garamond', serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.hero-cta:hover { background: transparent; color: var(--ink); }
+
+.section-home .section-header { padding-top: 52px; }
+.section-home .section-title { font-size: 36px; }
+
+.section-quiet .section-title { font-size: 26px; color: var(--ink-muted); }
+.section-quiet .lead { font-size: 18px; color: var(--ink-muted); }
+.section-quiet .film-grid { opacity: 0.92; }
+
+.rule-brutal {
+  border-left: 3px solid var(--ink);
+  padding: 16px 0 16px 24px;
+  margin: 28px 0 36px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--ink);
   line-height: 1.45;
 }
 
@@ -515,17 +552,20 @@ p {
   <nav>
     <a href="#hero" onclick="return false;" data-scroll="hero">Overview</a>
     <div class="nav-divider"></div>
+    <div class="nav-section-label">Home</div>
+    <a href="#" onclick="toggleSection('fieldguide'); return false;" data-section="fieldguide" class="nav-home">Field Guide</a>
+    <div class="nav-divider"></div>
     <div class="nav-section-label">Documents</div>
     <a href="#" onclick="toggleSection('map'); return false;" data-section="map">The Map</a>
     <a href="#" onclick="toggleSection('perception'); return false;" data-section="perception">Perception</a>
     <a href="#" onclick="toggleSection('cinema'); return false;" data-section="cinema">Cinema</a>
     <div class="nav-divider"></div>
-    <div class="nav-section-label">Practice</div>
-    <a href="#" onclick="toggleSection('fieldguide'); return false;" data-section="fieldguide">Field Guide</a>
+    <div class="nav-section-label">Archive</div>
     <a href="#" onclick="toggleSection('files'); return false;" data-section="files">File System</a>
+    <a href="#" onclick="toggleSection('library'); return false;" data-section="library">Media Library</a>
     <div class="nav-divider"></div>
     <div class="nav-section-label">Reference</div>
-    <a href="#" onclick="toggleSection('films'); return false;" data-section="films">Films</a>
+    <a href="#" onclick="toggleSection('films'); return false;" data-section="films" style="opacity:0.75;">Films</a>
     <div class="nav-divider"></div>
     <a href="/films">Full film list →</a>
     <a href="/perception-manual">Perception manual →</a>
@@ -537,12 +577,13 @@ p {
 <!-- HERO ════════════════════════════════════ -->
 <div id="hero">
   <span class="hero-eyebrow">FORM · Studio · Private</span>
-  <h1 class="hero-title">The back room.</h1>
-  <p class="hero-sub">One operating system, viewed from six angles. Click any section to open it. Everything lives here.</p>
+  <h1 class="hero-title">The Studio.</h1>
+  <p class="hero-sub">Private operating room — not another doctrine doc. Map, perception, cinema, archive, reference. One file. Everything lives here.</p>
+  <button type="button" class="hero-cta" onclick="toggleSection('fieldguide')">Open Field Guide</button>
 
-  <div style="height:1px; background:var(--rule-soft); margin:40px 0;"></div>
+  <div style="height:1px; background:var(--rule-soft); margin:0 0 40px;"></div>
 
-  <p style="font-size:14px; color:var(--ink-muted); max-width:600px; line-height:1.9;">FORM is the front door — training, athletes, Tuesday Threshold. Studio is where the worldview lives: how things are seen, shot, selected, edited, remembered. Perception manual, cinema doctrine, films, file system, eye-training exercises. All connected. All in here.</p>
+  <p style="font-size:14px; color:var(--ink-muted); max-width:600px; line-height:1.9;">FORM is the front door. Studio is where capture becomes practice — checklists before you shoot, where files live after, clips you'll pull for reels six months from now. Perception manual for frame doctrine. This file for doing the work.</p>
 
   <div class="thesis-stack">
     <div class="thesis-step">
@@ -571,283 +612,14 @@ p {
   </div>
 </div>
 
-<!-- THE MAP ══════════════════════════════════ -->
-<div class="section" id="sec-map">
-  <div class="section-header" onclick="toggleSection('map')">
-    <div class="section-header-left">
-      <span class="section-num">01</span>
-      <div>
-        <div class="section-title">The Map</div>
-        <div class="section-sub">How the documents relate</div>
-      </div>
-    </div>
-    <span class="section-toggle">+</span>
-  </div>
-  <div class="section-body" id="body-map">
-    <div class="section-inner">
-
-      <div class="lead">Three documents. One operating system. They're not separate things — they're the same worldview from different angles.</div>
-
-      <div class="two-col" style="margin-bottom:48px;">
-        <div>
-          <div class="link-card" onclick="window.open('/perception-manual', '_blank')">
-            <div class="link-card-left">
-              <div class="link-card-title">Perception Manual</div>
-              <div class="link-card-desc">How to see, select, shoot, edit, and grade. The frame doctrine. Chapters 00–11.</div>
-            </div>
-            <div class="link-card-arrow">→</div>
-          </div>
-          <div class="link-card" onclick="window.open('/films', '_blank')">
-            <div class="link-card-left">
-              <div class="link-card-title">Films</div>
-              <div class="link-card-desc">Watch list with context — Sunday frequency, not hype. Expanded list beyond this hub.</div>
-            </div>
-            <div class="link-card-arrow">→</div>
-          </div>
-          <div class="link-card" style="cursor:default; opacity:0.85;">
-            <div class="link-card-left">
-              <div class="link-card-title">Cinema Doctrine</div>
-              <div class="link-card-desc">When It Matters v11 — INCREMENTS/Docs/CINEMATIC_DOCTRINE.md · PDF: cinematic_doctrine_v11.pdf</div>
-            </div>
-            <div class="link-card-arrow" style="font-size:11px; color:var(--ink-ghost);">MD</div>
-          </div>
-          <div class="link-card" onclick="toggleSection('films')">
-            <div class="link-card-left">
-              <div class="link-card-title">Films</div>
-              <div class="link-card-desc">The watch list with context. Sunday frequency, not hype.</div>
-            </div>
-            <div class="link-card-arrow">↓</div>
-          </div>
-        </div>
-        <div>
-          <h4>How they connect</h4>
-          <table class="tbl">
-            <tr><td>Both study</td><td>Ritual. Atmosphere. Presence. Things that are discovered, not constructed.</td></tr>
-            <tr><td>Perception</td><td>Studies the frame — order, atmosphere, capture, color.</td></tr>
-            <tr><td>Cinema</td><td>Studies people on screen — conduct, ensemble, inference, stillness.</td></tr>
-            <tr><td>They meet at</td><td>Director's notes. Author the environment, earn the stillness, let ritual reveal character.</td></tr>
-            <tr><td>Both reject</td><td>Performance. Manufactured mood. Explanation over inference.</td></tr>
-          </table>
-
-          <div class="pq" style="font-size:18px; margin-top:36px;">
-            Vitality under containment.<br>
-            The conversation is never about what it's about.
-          </div>
-        </div>
-      </div>
-
-      <div class="rule-ink"></div>
-
-      <h4>The documents and where they live</h4>
-      <table class="tbl">
-        <tr><td>Perception Manual</td><td>speedandform.com/perception-manual · repo: perception-manual.html</td></tr>
-        <tr><td>Cinema Doctrine</td><td>INCREMENTS/Docs/CINEMATIC_DOCTRINE.md · PDF: cinematic_doctrine_v11.pdf</td></tr>
-        <tr><td>Studio Hub</td><td>speedandform.com/studio · repo: studio.html · this file</td></tr>
-        <tr><td>Film List</td><td>speedandform.com/films · repo: films.html</td></tr>
-        <tr><td>Operator Manual</td><td>FORM-iOS/docs/BRICE_OS/ · private · not public</td></tr>
-        <tr><td>What I Want</td><td>INCREMENTS/what_i_want_v7.pdf · private · not public</td></tr>
-      </table>
-
-      <div style="margin-top:40px; padding:24px 28px; border:1px solid var(--rule);">
-        <h4 style="margin-top:0;">What belongs in public Studio vs what stays private</h4>
-        <div class="two-col" style="gap:40px; margin-top:0;">
-          <div>
-            <div style="font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-ghost); margin-bottom:10px; font-family:'EB Garamond',serif;">Public — speedandform.com (linked artifacts)</div>
-            <div class="item"><div class="item-dot"></div><span>Perception manual (/perception-manual)</span></div>
-            <div class="item"><div class="item-dot"></div><span>Cinema doctrine (when transcribed to web — markdown live now)</span></div>
-            <div class="item"><div class="item-dot"></div><span>Film list (/films)</span></div>
-          </div>
-          <div>
-            <div style="font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-ghost); margin-bottom:10px; font-family:'EB Garamond',serif;">Private — unlisted (/studio · /films · BRICE_OS · INCREMENTS)</div>
-            <div class="item"><div class="item-dot"></div><span>This hub (field guide, file system, films inline)</span></div>
-            <div class="item"><div class="item-dot"></div><span>Operator manual</span></div>
-            <div class="item"><div class="item-dot"></div><span>What I Want doc</span></div>
-            <div class="item"><div class="item-dot"></div><span>INCREMENTS system docs</span></div>
-            <div class="item"><div class="item-dot"></div><span>Character map / personal notes</span></div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- PERCEPTION ═══════════════════════════════ -->
-<div class="section" id="sec-perception">
-  <div class="section-header" onclick="toggleSection('perception')">
-    <div class="section-header-left">
-      <span class="section-num">02</span>
-      <div>
-        <div class="section-title">Perception Manual</div>
-        <div class="section-sub">Key doctrine, inline</div>
-      </div>
-    </div>
-    <span class="section-toggle">+</span>
-  </div>
-  <div class="section-body" id="body-perception">
-    <div class="section-inner">
-
-      <div class="lead">The full manual lives at /perception-manual. This is the doctrine compressed — the things worth memorizing.</div>
-
-      <div class="link-card" onclick="window.open('/perception-manual', '_blank')" style="margin-bottom:40px;">
-        <div class="link-card-left">
-          <div class="link-card-title">Open Full Manual →</div>
-          <div class="link-card-desc">speedandform.com/perception-manual · 11 chapters · living document</div>
-        </div>
-        <div class="link-card-arrow">↗</div>
-      </div>
-
-      <h3>The thesis stack</h3>
-      <table class="tbl">
-        <tr><td>Thesis</td><td>Mythology inside reality. Every image elevates an ordinary thing into something archetypal. Not fantasy. Archetype.</td></tr>
-        <tr><td>Method</td><td>Order + atmosphere. Highly organized systems wrapped in atmosphere. Neither works without the other.</td></tr>
-        <tr><td>Subject</td><td>Self · Athletes · Hideout · Sundays · Architecture · Miami. 90% of opportunities are already in front of you.</td></tr>
-        <tr><td>Technique</td><td>Capture → selection → edit → grade. The LUT is the last 5%. The capture is doing the work.</td></tr>
-      </table>
-
-      <h3>The six principles — compressed</h3>
-      <table class="tbl">
-        <tr><td>I. Materiality</td><td>Light reveals texture. The grade protects it. Never manufacture it. Clarity near zero.</td></tr>
-        <tr><td>II. Luminosity</td><td>Shadows glow. Blacks breathe. Light feels like it's inside the scene, not striking it.</td></tr>
-        <tr><td>III. Movement</td><td>The athlete is not posing. The room has been lived in. Evidence of activity over arrangement.</td></tr>
-        <tr><td>IV. Attention</td><td>The camera records what the eye learned to notice. Shoot what you actually see.</td></tr>
-        <tr><td>V. Restraint</td><td>Restraint selects. Minimalism removes. Rich but organized. One thing speaks at a time.</td></tr>
-        <tr><td>VI. Atmosphere</td><td>FORM does not manufacture atmosphere. FORM reveals it. The goal is not cinematic. Unusually alive.</td></tr>
-      </table>
-
-      <div class="pq">
-        If the grade becomes more interesting than the experience itself,<br>pull it back.
-      </div>
-
-      <h3>The visual hierarchy — in order</h3>
-      <div class="card-grid">
-        <div class="card"><div class="card-label">1 — First</div><div class="card-title">Geometry</div><div class="card-desc">Architecture. Cards. Temples. Bridges. Track lanes. The eye finds structure first. Always.</div></div>
-        <div class="card"><div class="card-label">2 — Second</div><div class="card-title">Atmosphere</div><div class="card-desc">Fog. Rain. Steam. Dust. Light. Atmosphere softens geometry. Weather is production value.</div></div>
-        <div class="card"><div class="card-label">3 — Third</div><div class="card-title">Human Presence</div><div class="card-desc">Not portraits. Presence. Small humans inside large systems. Individual inside structure.</div></div>
-        <div class="card"><div class="card-label">4 — Last</div><div class="card-title">Narrative</div><div class="card-desc">Very subtle. Never obvious. Questions over answers. The image implies a world.</div></div>
-      </div>
-
-      <h3>What to never do</h3>
-      <div class="item"><div class="item-dash">—</div><span>Teal-orange split tone</span></div>
-      <div class="item"><div class="item-dash">—</div><span>Crushed blacks — destroys shadow texture</span></div>
-      <div class="item"><div class="item-dash">—</div><span>Heavy clarity or dehaze — texture must come from light, not sliders</span></div>
-      <div class="item"><div class="item-dash">—</div><span>Vignette abuse — signals low confidence in the frame</span></div>
-      <div class="item"><div class="item-dash">—</div><span>Orange skin — never</span></div>
-      <div class="item"><div class="item-dash">—</div><span>Anything that slows the feeling of being somewhere real</span></div>
-
-      <h3>LUT quick reference</h3>
-      <div class="stat-row">
-        <div class="stat-cell"><div class="stat-n">Exposure</div><div class="stat-v">+0.20</div></div>
-        <div class="stat-cell"><div class="stat-n">Contrast</div><div class="stat-v">−10</div></div>
-        <div class="stat-cell"><div class="stat-n">Clarity</div><div class="stat-v">0</div></div>
-        <div class="stat-cell"><div class="stat-n">Highlights</div><div class="stat-v">−40</div></div>
-        <div class="stat-cell"><div class="stat-n">Shadows</div><div class="stat-v">+15</div></div>
-        <div class="stat-cell"><div class="stat-n">Vibrance</div><div class="stat-v">−10</div></div>
-      </div>
-      <table class="tbl" style="margin-top:16px;">
-        <tr><td>Outdoor</td><td>FIELD_HLG.cube or FIELD_Rec709.cube · apply at 20–40%</td></tr>
-        <tr><td>Interior</td><td>STILL_HLG.cube or STILL_Rec709.cube · apply at 20–40%</td></tr>
-        <tr><td>Both</td><td>Adjust white balance after LUT. Always.</td></tr>
-      </table>
-
-    </div>
-  </div>
-</div>
-
-<!-- CINEMA ═══════════════════════════════════ -->
-<div class="section" id="sec-cinema">
-  <div class="section-header" onclick="toggleSection('cinema')">
-    <div class="section-header-left">
-      <span class="section-num">03</span>
-      <div>
-        <div class="section-title">Cinema Doctrine</div>
-        <div class="section-sub">When It Matters — key extracts</div>
-      </div>
-    </div>
-    <span class="section-toggle">+</span>
-  </div>
-  <div class="section-body" id="body-cinema">
-    <div class="section-inner">
-
-      <div class="lead">The characters that stay are the ones who change the emotional reality around them. Not because they're central. Because when they're in the room — something shifts.</div>
-
-      <p>The cinema doctrine is a sibling to the perception manual, not a replacement. Perception studies the frame. Cinema studies people on screen — conduct, ensemble, inference, stillness, service ritual. They meet at director's notes.</p>
-
-      <h3>The core question — designing characters</h3>
-      <table class="tbl">
-        <tr><td>When pressure hits</td><td>What does this character do? Not what are their traits — what do they do? That's behavior. Behavior is character.</td></tr>
-        <tr><td>What they never do</td><td>Often more useful than what they do. Charon never loses composure. McCauley never negotiates the code. The constraint defines the person.</td></tr>
-        <tr><td>Care indirect</td><td>Doctore's care is in his severity. Gordon's in showing up. Characters that stay show care sideways — never performed directly.</td></tr>
-        <tr><td>Abundance or hunger</td><td>Rusty's ease comes from inhabitation. Ocean's from enjoyment. Same intensity reads completely differently depending on its source.</td></tr>
-        <tr><td>Protagonist or force</td><td>Gordon matters because of Batman and Dent. Some of the most powerful characters don't carry the story — they change what the story means.</td></tr>
-      </table>
-
-      <h3>Character quick reference</h3>
-      <div class="card-grid">
-        <div class="card">
-          <div class="card-label">Calm unused capacity</div>
-          <div class="card-title">Gerri Kellman</div>
-          <div class="card-desc">Speaks only when leverage exists. Every word already placed. Institutional patience. The character you underestimate because she lets you.</div>
-        </div>
-        <div class="card">
-          <div class="card-label">The private machinery</div>
-          <div class="card-title">The Killer (opening)</div>
-          <div class="card-desc">Slows everything down. Watches. Waits. Narrates internally. Recognition, not aspiration. Rusty is the public surface. This is the private operating mode.</div>
-        </div>
-        <div class="card">
-          <div class="card-label">Ease without effort</div>
-          <div class="card-title">Rusty Ryan = Breechay</div>
-          <div class="card-desc">Stays completely himself. Ease sharpens. Nothing rattles the rhythm. Danny plans the operation. Rusty is already inside it.</div>
-        </div>
-        <div class="card">
-          <div class="card-label">Ironic precision</div>
-          <div class="card-title">Zach Nichols</div>
-          <div class="card-desc">Destabilizes the room. Ironic detachment deployed as precision. Dangerous because you keep misjudging him. Grandmaster energy.</div>
-        </div>
-      </div>
-
-      <h3>Ensemble thesis</h3>
-      <p>The most consistent pattern: not singular characters, but systems of differentiated people. What happens when distinct ways of being face the same pressure together — that's where the real drama lives.</p>
-      <table class="tbl">
-        <tr><td>Ocean's crew</td><td>Danny plans. Rusty inhabits. Each crew member stays fully themselves while coordinating into one operation.</td></tr>
-        <tr><td>Better Call Saul</td><td>Mike: internal law, no waste. Kim: composed precision. Jimmy: adaptive improvisation. Gus: total surface curation. Four architectures, one system.</td></tr>
-        <tr><td>Criminal Intent</td><td>Embodied intelligence. Inference over exposition. Goren noticed object placement, asked something unrelated — you reconstruct the chain. Modern TV explains the inference. That kills it.</td></tr>
-        <tr><td>Succession</td><td>Family as a power system. Gerri speaks only when leverage exists. Shiv confuses proximity to power with power. Logan: room reorganizes from fear.</td></tr>
-      </table>
-
-      <h3>Director's notes — visual choices</h3>
-      <table class="tbl">
-        <tr><td>Author the environment</td><td>The room communicates before anyone speaks. Grand Budapest, Phantom Thread, Collateral, Hannibal — all authored spaces.</td></tr>
-        <tr><td>Earn the stillness</td><td>If stillness is the default, movement carries meaning. If silence is normal, speech carries weight. Establish the baseline first.</td></tr>
-        <tr><td>Service ritual</td><td>Charon's desk. Doctore's drills. Gustave's rounds. Before dialogue, ritual communicates internal standard.</td></tr>
-        <tr><td>Vitality under containment</td><td>Containment without life reads inert. The character must be alive under the surface. M is just the surface. Craig Bond has vitality underneath.</td></tr>
-        <tr><td>Inference over exposition</td><td>Don't explain what a smart character concludes. Let them ask something seemingly unrelated. The audience reconstructs the chain. Never write out the synthesis.</td></tr>
-      </table>
-
-      <h3>Directors to study</h3>
-      <table class="tbl">
-        <tr><td>Michael Mann</td><td>Heat, Collateral — atmosphere as character, operator psychology, vitality under pressure.</td></tr>
-        <tr><td>David Fincher</td><td>Social Network, The Killer — compression, controlled attention, intelligence at velocity.</td></tr>
-        <tr><td>Denis Villeneuve</td><td>Sicario, Dune — slow authority, sovereign atmosphere.</td></tr>
-        <tr><td>Steven Soderbergh</td><td>Ocean's trilogy, Erin Brockovich — wide temperature range, ensemble movement.</td></tr>
-        <tr><td>Wes Anderson</td><td>Grand Budapest — authored environments, warmth + rigor simultaneously.</td></tr>
-        <tr><td>Vince Gilligan</td><td>Better Call Saul — long-arc character revelation, distinct people under shared pressure.</td></tr>
-      </table>
-
-      <p style="margin-top:24px; font-size:13px; color:var(--ink-muted);">Full doctrine: <code>INCREMENTS/Docs/CINEMATIC_DOCTRINE.md</code> · Expanded film list: <a href="/films" style="color:var(--ink-mid);">/films</a></p>
-
-    </div>
-  </div>
-</div>
-
 <!-- FIELD GUIDE ══════════════════════════════ -->
-<div class="section" id="sec-fieldguide">
+<div class="section section-home" id="sec-fieldguide">
   <div class="section-header" onclick="toggleSection('fieldguide')">
     <div class="section-header-left">
-      <span class="section-num">04</span>
+      <span class="section-num">01 · Home</span>
       <div>
         <div class="section-title">Field Guide</div>
-        <div class="section-sub">Practical protocols · eye training · before and after</div>
+        <div class="section-sub">Open this when you are about to shoot</div>
       </div>
     </div>
     <span class="section-toggle">+</span>
@@ -1010,8 +782,278 @@ p {
         <tr><td>Third pass</td><td>Delete anything that looks like other people's images. If it could be stock photography, delete it.</td></tr>
         <tr><td>Keep</td><td>Images where something is actually happening. Where you can name the mythology. Where the atmosphere was already there.</td></tr>
         <tr><td>The ratio</td><td>50–200 shots in. 3–8 keepers is a good session. 1–2 is fine. 0 is information — what were you not seeing?</td></tr>
-        <tr><td>Move files</td><td>Same day as review. Into the right folder. Don't let them sit in Downloads.</td></tr>
+        <tr><td>Move files</td><td>Same day as review. Stills → SELECTS. Clips for future reels → LIBRARY/. Nothing stays in Downloads.</td></tr>
+        <tr><td>Library test</td><td>Would you pull this clip six months from now for a reel? If yes → LIBRARY/ by category. Not graded. Not a project yet.</td></tr>
       </table>
+
+    </div>
+  </div>
+</div>
+
+<!-- THE MAP ══════════════════════════════════ -->
+<div class="section" id="sec-map">
+  <div class="section-header" onclick="toggleSection('map')">
+    <div class="section-header-left">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">The Map</div>
+        <div class="section-sub">How the documents relate</div>
+      </div>
+    </div>
+    <span class="section-toggle">+</span>
+  </div>
+  <div class="section-body" id="body-map">
+    <div class="section-inner">
+
+      <div class="lead">Three documents. One operating system. They're not separate things — they're the same worldview from different angles.</div>
+
+      <div class="two-col" style="margin-bottom:48px;">
+        <div>
+          <div class="link-card" onclick="window.open('/perception-manual', '_blank')">
+            <div class="link-card-left">
+              <div class="link-card-title">Perception Manual</div>
+              <div class="link-card-desc">How to see, select, shoot, edit, and grade. The frame doctrine. Chapters 00–11.</div>
+            </div>
+            <div class="link-card-arrow">→</div>
+          </div>
+          <div class="link-card" onclick="window.open('/films', '_blank')">
+            <div class="link-card-left">
+              <div class="link-card-title">Films</div>
+              <div class="link-card-desc">Watch list with context — Sunday frequency, not hype. Expanded list beyond this hub.</div>
+            </div>
+            <div class="link-card-arrow">→</div>
+          </div>
+          <div class="link-card" style="cursor:default; opacity:0.85;">
+            <div class="link-card-left">
+              <div class="link-card-title">Cinema Doctrine</div>
+              <div class="link-card-desc">When It Matters v11 — INCREMENTS/Docs/CINEMATIC_DOCTRINE.md · PDF: cinematic_doctrine_v11.pdf</div>
+            </div>
+            <div class="link-card-arrow" style="font-size:11px; color:var(--ink-ghost);">MD</div>
+          </div>
+          <div class="link-card" onclick="toggleSection('films')">
+            <div class="link-card-left">
+              <div class="link-card-title">Films</div>
+              <div class="link-card-desc">The watch list with context. Sunday frequency, not hype.</div>
+            </div>
+            <div class="link-card-arrow">↓</div>
+          </div>
+        </div>
+        <div>
+          <h4>How they connect</h4>
+          <table class="tbl">
+            <tr><td>Both study</td><td>Ritual. Atmosphere. Presence. Things that are discovered, not constructed.</td></tr>
+            <tr><td>Perception</td><td>Studies the frame — order, atmosphere, capture, color.</td></tr>
+            <tr><td>Cinema</td><td>Studies people on screen — conduct, ensemble, inference, stillness.</td></tr>
+            <tr><td>They meet at</td><td>Director's notes. Author the environment, earn the stillness, let ritual reveal character.</td></tr>
+            <tr><td>Both reject</td><td>Performance. Manufactured mood. Explanation over inference.</td></tr>
+          </table>
+
+          <div class="pq" style="font-size:18px; margin-top:36px;">
+            Vitality under containment.<br>
+            The conversation is never about what it's about.
+          </div>
+        </div>
+      </div>
+
+      <div class="rule-ink"></div>
+
+      <h4>The documents and where they live</h4>
+      <table class="tbl">
+        <tr><td>Perception Manual</td><td>speedandform.com/perception-manual · repo: perception-manual.html</td></tr>
+        <tr><td>Cinema Doctrine</td><td>INCREMENTS/Docs/CINEMATIC_DOCTRINE.md · PDF: cinematic_doctrine_v11.pdf</td></tr>
+        <tr><td>Studio Hub</td><td>speedandform.com/studio · repo: studio.html · this file</td></tr>
+        <tr><td>Film List</td><td>speedandform.com/films · repo: films.html</td></tr>
+        <tr><td>Operator Manual</td><td>FORM-iOS/docs/BRICE_OS/ · private · not public</td></tr>
+        <tr><td>What I Want</td><td>INCREMENTS/what_i_want_v7.pdf · private · not public</td></tr>
+      </table>
+
+      <div style="margin-top:40px; padding:24px 28px; border:1px solid var(--rule);">
+        <h4 style="margin-top:0;">What belongs in public Studio vs what stays private</h4>
+        <div class="two-col" style="gap:40px; margin-top:0;">
+          <div>
+            <div style="font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-ghost); margin-bottom:10px; font-family:'EB Garamond',serif;">Public — speedandform.com (linked artifacts)</div>
+            <div class="item"><div class="item-dot"></div><span>Perception manual (/perception-manual)</span></div>
+            <div class="item"><div class="item-dot"></div><span>Cinema doctrine (when transcribed to web — markdown live now)</span></div>
+            <div class="item"><div class="item-dot"></div><span>Film list (/films)</span></div>
+          </div>
+          <div>
+            <div style="font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-ghost); margin-bottom:10px; font-family:'EB Garamond',serif;">Private — unlisted (/studio · /films · BRICE_OS · INCREMENTS)</div>
+            <div class="item"><div class="item-dot"></div><span>This hub (field guide, file system, films inline)</span></div>
+            <div class="item"><div class="item-dot"></div><span>Operator manual</span></div>
+            <div class="item"><div class="item-dot"></div><span>What I Want doc</span></div>
+            <div class="item"><div class="item-dot"></div><span>INCREMENTS system docs</span></div>
+            <div class="item"><div class="item-dot"></div><span>Character map / personal notes</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- PERCEPTION ═══════════════════════════════ -->
+<div class="section" id="sec-perception">
+  <div class="section-header" onclick="toggleSection('perception')">
+    <div class="section-header-left">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Perception Manual</div>
+        <div class="section-sub">Key doctrine, inline</div>
+      </div>
+    </div>
+    <span class="section-toggle">+</span>
+  </div>
+  <div class="section-body" id="body-perception">
+    <div class="section-inner">
+
+      <div class="lead">The full manual lives at /perception-manual. This is the doctrine compressed — the things worth memorizing.</div>
+
+      <div class="link-card" onclick="window.open('/perception-manual', '_blank')" style="margin-bottom:40px;">
+        <div class="link-card-left">
+          <div class="link-card-title">Open Full Manual →</div>
+          <div class="link-card-desc">speedandform.com/perception-manual · 11 chapters · living document</div>
+        </div>
+        <div class="link-card-arrow">↗</div>
+      </div>
+
+      <h3>The thesis stack</h3>
+      <table class="tbl">
+        <tr><td>Thesis</td><td>Mythology inside reality. Every image elevates an ordinary thing into something archetypal. Not fantasy. Archetype.</td></tr>
+        <tr><td>Method</td><td>Order + atmosphere. Highly organized systems wrapped in atmosphere. Neither works without the other.</td></tr>
+        <tr><td>Subject</td><td>Self · Athletes · Hideout · Sundays · Architecture · Miami. 90% of opportunities are already in front of you.</td></tr>
+        <tr><td>Technique</td><td>Capture → selection → edit → grade. The LUT is the last 5%. The capture is doing the work.</td></tr>
+      </table>
+
+      <h3>The six principles — compressed</h3>
+      <table class="tbl">
+        <tr><td>I. Materiality</td><td>Light reveals texture. The grade protects it. Never manufacture it. Clarity near zero.</td></tr>
+        <tr><td>II. Luminosity</td><td>Shadows glow. Blacks breathe. Light feels like it's inside the scene, not striking it.</td></tr>
+        <tr><td>III. Movement</td><td>The athlete is not posing. The room has been lived in. Evidence of activity over arrangement.</td></tr>
+        <tr><td>IV. Attention</td><td>The camera records what the eye learned to notice. Shoot what you actually see.</td></tr>
+        <tr><td>V. Restraint</td><td>Restraint selects. Minimalism removes. Rich but organized. One thing speaks at a time.</td></tr>
+        <tr><td>VI. Atmosphere</td><td>FORM does not manufacture atmosphere. FORM reveals it. The goal is not cinematic. Unusually alive.</td></tr>
+      </table>
+
+      <div class="pq">
+        If the grade becomes more interesting than the experience itself,<br>pull it back.
+      </div>
+
+      <h3>The visual hierarchy — in order</h3>
+      <div class="card-grid">
+        <div class="card"><div class="card-label">1 — First</div><div class="card-title">Geometry</div><div class="card-desc">Architecture. Cards. Temples. Bridges. Track lanes. The eye finds structure first. Always.</div></div>
+        <div class="card"><div class="card-label">2 — Second</div><div class="card-title">Atmosphere</div><div class="card-desc">Fog. Rain. Steam. Dust. Light. Atmosphere softens geometry. Weather is production value.</div></div>
+        <div class="card"><div class="card-label">3 — Third</div><div class="card-title">Human Presence</div><div class="card-desc">Not portraits. Presence. Small humans inside large systems. Individual inside structure.</div></div>
+        <div class="card"><div class="card-label">4 — Last</div><div class="card-title">Narrative</div><div class="card-desc">Very subtle. Never obvious. Questions over answers. The image implies a world.</div></div>
+      </div>
+
+      <h3>What to never do</h3>
+      <div class="item"><div class="item-dash">—</div><span>Teal-orange split tone</span></div>
+      <div class="item"><div class="item-dash">—</div><span>Crushed blacks — destroys shadow texture</span></div>
+      <div class="item"><div class="item-dash">—</div><span>Heavy clarity or dehaze — texture must come from light, not sliders</span></div>
+      <div class="item"><div class="item-dash">—</div><span>Vignette abuse — signals low confidence in the frame</span></div>
+      <div class="item"><div class="item-dash">—</div><span>Orange skin — never</span></div>
+      <div class="item"><div class="item-dash">—</div><span>Anything that slows the feeling of being somewhere real</span></div>
+
+      <h3>LUT quick reference</h3>
+      <div class="stat-row">
+        <div class="stat-cell"><div class="stat-n">Exposure</div><div class="stat-v">+0.20</div></div>
+        <div class="stat-cell"><div class="stat-n">Contrast</div><div class="stat-v">−10</div></div>
+        <div class="stat-cell"><div class="stat-n">Clarity</div><div class="stat-v">0</div></div>
+        <div class="stat-cell"><div class="stat-n">Highlights</div><div class="stat-v">−40</div></div>
+        <div class="stat-cell"><div class="stat-n">Shadows</div><div class="stat-v">+15</div></div>
+        <div class="stat-cell"><div class="stat-n">Vibrance</div><div class="stat-v">−10</div></div>
+      </div>
+      <table class="tbl" style="margin-top:16px;">
+        <tr><td>Outdoor</td><td>FIELD_HLG.cube or FIELD_Rec709.cube · apply at 20–40%</td></tr>
+        <tr><td>Interior</td><td>STILL_HLG.cube or STILL_Rec709.cube · apply at 20–40%</td></tr>
+        <tr><td>Both</td><td>Adjust white balance after LUT. Always.</td></tr>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<!-- CINEMA ═══════════════════════════════════ -->
+<div class="section" id="sec-cinema">
+  <div class="section-header" onclick="toggleSection('cinema')">
+    <div class="section-header-left">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Cinema Doctrine</div>
+        <div class="section-sub">When It Matters — key extracts</div>
+      </div>
+    </div>
+    <span class="section-toggle">+</span>
+  </div>
+  <div class="section-body" id="body-cinema">
+    <div class="section-inner">
+
+      <div class="lead">The characters that stay are the ones who change the emotional reality around them. Not because they're central. Because when they're in the room — something shifts.</div>
+
+      <p>The cinema doctrine is a sibling to the perception manual, not a replacement. Perception studies the frame. Cinema studies people on screen — conduct, ensemble, inference, stillness, service ritual. They meet at director's notes.</p>
+
+      <h3>The core question — designing characters</h3>
+      <table class="tbl">
+        <tr><td>When pressure hits</td><td>What does this character do? Not what are their traits — what do they do? That's behavior. Behavior is character.</td></tr>
+        <tr><td>What they never do</td><td>Often more useful than what they do. Charon never loses composure. McCauley never negotiates the code. The constraint defines the person.</td></tr>
+        <tr><td>Care indirect</td><td>Doctore's care is in his severity. Gordon's in showing up. Characters that stay show care sideways — never performed directly.</td></tr>
+        <tr><td>Abundance or hunger</td><td>Rusty's ease comes from inhabitation. Ocean's from enjoyment. Same intensity reads completely differently depending on its source.</td></tr>
+        <tr><td>Protagonist or force</td><td>Gordon matters because of Batman and Dent. Some of the most powerful characters don't carry the story — they change what the story means.</td></tr>
+      </table>
+
+      <h3>Character quick reference</h3>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-label">Calm unused capacity</div>
+          <div class="card-title">Gerri Kellman</div>
+          <div class="card-desc">Speaks only when leverage exists. Every word already placed. Institutional patience. The character you underestimate because she lets you.</div>
+        </div>
+        <div class="card">
+          <div class="card-label">The private machinery</div>
+          <div class="card-title">The Killer (opening)</div>
+          <div class="card-desc">Slows everything down. Watches. Waits. Narrates internally. Recognition, not aspiration. Rusty is the public surface. This is the private operating mode.</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Ease without effort</div>
+          <div class="card-title">Rusty Ryan = Breechay</div>
+          <div class="card-desc">Stays completely himself. Ease sharpens. Nothing rattles the rhythm. Danny plans the operation. Rusty is already inside it.</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Ironic precision</div>
+          <div class="card-title">Zach Nichols</div>
+          <div class="card-desc">Destabilizes the room. Ironic detachment deployed as precision. Dangerous because you keep misjudging him. Grandmaster energy.</div>
+        </div>
+      </div>
+
+      <h3>Ensemble thesis</h3>
+      <p>The most consistent pattern: not singular characters, but systems of differentiated people. What happens when distinct ways of being face the same pressure together — that's where the real drama lives.</p>
+      <table class="tbl">
+        <tr><td>Ocean's crew</td><td>Danny plans. Rusty inhabits. Each crew member stays fully themselves while coordinating into one operation.</td></tr>
+        <tr><td>Better Call Saul</td><td>Mike: internal law, no waste. Kim: composed precision. Jimmy: adaptive improvisation. Gus: total surface curation. Four architectures, one system.</td></tr>
+        <tr><td>Criminal Intent</td><td>Embodied intelligence. Inference over exposition. Goren noticed object placement, asked something unrelated — you reconstruct the chain. Modern TV explains the inference. That kills it.</td></tr>
+        <tr><td>Succession</td><td>Family as a power system. Gerri speaks only when leverage exists. Shiv confuses proximity to power with power. Logan: room reorganizes from fear.</td></tr>
+      </table>
+
+      <h3>Director's notes — visual choices</h3>
+      <table class="tbl">
+        <tr><td>Author the environment</td><td>The room communicates before anyone speaks. Grand Budapest, Phantom Thread, Collateral, Hannibal — all authored spaces.</td></tr>
+        <tr><td>Earn the stillness</td><td>If stillness is the default, movement carries meaning. If silence is normal, speech carries weight. Establish the baseline first.</td></tr>
+        <tr><td>Service ritual</td><td>Charon's desk. Doctore's drills. Gustave's rounds. Before dialogue, ritual communicates internal standard.</td></tr>
+        <tr><td>Vitality under containment</td><td>Containment without life reads inert. The character must be alive under the surface. M is just the surface. Craig Bond has vitality underneath.</td></tr>
+        <tr><td>Inference over exposition</td><td>Don't explain what a smart character concludes. Let them ask something seemingly unrelated. The audience reconstructs the chain. Never write out the synthesis.</td></tr>
+      </table>
+
+      <h3>Directors to study</h3>
+      <table class="tbl">
+        <tr><td>Michael Mann</td><td>Heat, Collateral — atmosphere as character, operator psychology, vitality under pressure.</td></tr>
+        <tr><td>David Fincher</td><td>Social Network, The Killer — compression, controlled attention, intelligence at velocity.</td></tr>
+        <tr><td>Denis Villeneuve</td><td>Sicario, Dune — slow authority, sovereign atmosphere.</td></tr>
+        <tr><td>Steven Soderbergh</td><td>Ocean's trilogy, Erin Brockovich — wide temperature range, ensemble movement.</td></tr>
+        <tr><td>Wes Anderson</td><td>Grand Budapest — authored environments, warmth + rigor simultaneously.</td></tr>
+        <tr><td>Vince Gilligan</td><td>Better Call Saul — long-arc character revelation, distinct people under shared pressure.</td></tr>
+      </table>
+
+      <p style="margin-top:24px; font-size:13px; color:var(--ink-muted);">Full doctrine: <code>INCREMENTS/Docs/CINEMATIC_DOCTRINE.md</code> · Expanded film list: <a href="/films" style="color:var(--ink-mid);">/films</a></p>
 
     </div>
   </div>
@@ -1032,7 +1074,9 @@ p {
   <div class="section-body" id="body-files">
     <div class="section-inner">
 
-      <div class="lead">Everything in one place, named so you can find it in the dark. No more scattered folders.</div>
+      <div class="lead">Everything in one place, named so you can find it in the dark.</div>
+
+      <div class="rule-brutal">No file lives in Downloads after review.</div>
 
       <h3>Master folder structure</h3>
 
@@ -1052,11 +1096,27 @@ p {
         <div class="file indent-3">📁 2026-06-01_sunday_opening/</div>
         <div class="file indent-3">📁 2026-06-08_sunday_village/</div>
         <div class="note indent-2">→ Interiors, service, gathering, Sundays.</div>
+        <div class="file">📁 LIBRARY/</div>
+        <div class="note indent-2">→ Reusable clips — not tied to one shoot. See Media Library section.</div>
+        <div class="file indent-2">📁 ATMOSPHERE/</div>
+        <div class="file indent-2">📁 PEOPLE/</div>
+        <div class="file indent-2">📁 MOVEMENT/</div>
+        <div class="file indent-2">📁 WEATHER/</div>
+        <div class="file indent-2">📁 HIDEOUT/</div>
+        <div class="file indent-2">📁 ATHLETES/</div>
+        <div class="file indent-2">📁 CITY/</div>
+        <div class="file indent-2">📁 DETAILS/</div>
+        <div class="file">📁 PROJECTS/</div>
+        <div class="note indent-2">→ Exports for reels, profiles, Sunday films — optional, add when needed.</div>
+        <div class="file indent-2">📁 FORM_REELS/</div>
+        <div class="file indent-2">📁 SUNDAY_VILLAGE/</div>
+        <div class="file indent-2">📁 SIMON/</div>
+        <div class="file indent-2">📁 HIDEOUT_FILMS/</div>
         <div class="file">📁 ARCHIVE/</div>
         <div class="file indent-2">📁 REFERENCE/</div>
         <div class="file indent-3">📄 saved reference images organized by world</div>
         <div class="file indent-2">📁 SELECTS/</div>
-        <div class="file indent-3">📄 final keepers, exported and ready</div>
+        <div class="file indent-3">📄 best stills from a shoot — finished keepers</div>
         <div class="file indent-2">📁 GRADED/</div>
         <div class="file indent-3">📄 graded exports by project</div>
         <br>
@@ -1082,7 +1142,7 @@ p {
         <div class="file indent-2">📄 BRICE_OPERATOR_MANUAL.md</div>
         <div class="file indent-2">📄 what_i_want_v7.pdf</div>
         <div class="file indent-2">📄 DOCTRINE_INDEX.md</div>
-        <div class="file indent-2">📄 CINEMATIC_DOCTRINE.md (stub — needs transcription)</div>
+        <div class="file indent-2">📄 CINEMATIC_DOCTRINE.md</div>
       </div>
 
       <h3>File naming convention</h3>
@@ -1093,14 +1153,21 @@ p {
         <tr><td>Graded exports</td><td>Project name + date + version<br><span style="color:var(--ink-faint); font-size:12px;">FORM_threshold_2026-06_v2.mp4</span></td></tr>
       </table>
 
-      <h3>The rule — move files same day as review</h3>
-      <p>The discipline that prevents scatter: on the same day you cull a shoot, you move the keepers into the right folder. Not later. Same session. If you don't do this, files accumulate in Downloads and you lose them — not because they're deleted, but because you can never find them again.</p>
+      <h3>The rule — same day as review</h3>
+      <p>On the day you cull, you move files. Shoot folders to FIELD/SELF/HIDEOUT. Stills to SELECTS. Clips with future value to LIBRARY. Exports to PROJECTS. Not tomorrow. Not "later."</p>
 
       <table class="tbl">
-        <tr><td>After cull</td><td>Move shoot folder from import location to correct FORM/FIELD/ or FORM/SELF/ etc.</td></tr>
-        <tr><td>Keepers</td><td>Copy keepers (not move) to ARCHIVE/SELECTS/ with the naming convention above.</td></tr>
-        <tr><td>Reference images</td><td>Anything saved from Instagram etc → ARCHIVE/REFERENCE/ organized by world (PRECISION_LUXURY/, RITUAL/, etc.)</td></tr>
-        <tr><td>Never</td><td>Leave anything in Downloads for more than 24 hours. It will disappear.</td></tr>
+        <tr><td>After cull</td><td>Move shoot folder from import location to correct FORM/FIELD/, FORM/SELF/, or FORM/HIDEOUT/.</td></tr>
+        <tr><td>Stills — keepers</td><td>Copy best images to ARCHIVE/SELECTS/ with naming convention. One shoot's best stills.</td></tr>
+        <tr><td>Clips — library</td><td>Any clip you might pull for a reel later → LIBRARY/ by category (rain, steam, preparation, etc.). Not graded. Not edited.</td></tr>
+        <tr><td>Reference images</td><td>Saved inspiration → ARCHIVE/REFERENCE/ by world (PRECISION_LUXURY/, RITUAL/, etc.)</td></tr>
+        <tr><td>Downloads</td><td><strong>Empty after review.</strong> No exceptions. If it's still there, the review isn't done.</td></tr>
+      </table>
+
+      <table class="tbl" style="margin-top:24px;">
+        <tr><td>SELECTS</td><td>Best images from a shoot — finished stills</td></tr>
+        <tr><td>LIBRARY</td><td>Reusable footage regardless of original shoot — inventory for future edits</td></tr>
+        <tr><td>PROJECTS</td><td>Where exports land when you're building something specific</td></tr>
       </table>
 
       <h3>Reference image organization</h3>
@@ -1132,14 +1199,83 @@ p {
   </div>
 </div>
 
-<!-- FILMS ════════════════════════════════════ -->
-<div class="section" id="sec-films">
-  <div class="section-header" onclick="toggleSection('films')">
+<!-- MEDIA LIBRARY ════════════════════════════ -->
+<div class="section" id="sec-library">
+  <div class="section-header" onclick="toggleSection('library')">
     <div class="section-header-left">
       <span class="section-num">06</span>
       <div>
+        <div class="section-title">Media Library</div>
+        <div class="section-sub">Reusable clips · inventory for reels and edits</div>
+      </div>
+    </div>
+    <span class="section-toggle">+</span>
+  </div>
+  <div class="section-body" id="body-library">
+    <div class="section-inner">
+
+      <div class="lead">Not every clip belongs to the shoot it came from. Some clips are future raw material.</div>
+
+      <p>Your best reels won't always come from a dedicated shoot. They'll come from Matteo arranging flowers, Simon between reps, steam off coffee, rain on the patio, sunlight moving across a wall. At the time they're just clips. Six months later they're the opening shot.</p>
+
+      <div class="pq" style="font-size:20px;">You don't think "I need footage from June 2nd." You think "I need rain." "I need preparation." "I need an athlete walking away from camera." That's a library problem, not a date problem.</div>
+
+      <h3>What goes here</h3>
+      <table class="tbl">
+        <tr><td>LIBRARY</td><td>Reusable clips with signal — not graded, not edited, not tied to one project</td></tr>
+        <tr><td>SELECTS</td><td>Best stills from a specific shoot — finished images</td></tr>
+        <tr><td>PROJECTS</td><td>Exports when you're building FORM reels, Sunday films, athlete profiles</td></tr>
+      </table>
+
+      <h3>Categories</h3>
+      <div class="folder-tree">
+        <div class="folder">📁 FORM/LIBRARY/</div>
+        <div class="file">📁 ATMOSPHERE/</div>
+        <div class="note indent-2">→ Steam, light moving, quiet room energy, empty space before people</div>
+        <div class="file">📁 PEOPLE/</div>
+        <div class="note indent-2">→ Reading in corner, conversation from across room, hands, faces in profile</div>
+        <div class="file">📁 MOVEMENT/</div>
+        <div class="note indent-2">→ Walking away from camera, tying spikes, pouring, placing a cup</div>
+        <div class="file">📁 WEATHER/</div>
+        <div class="note indent-2">→ Rain, wet pavement, bay surface, clouds, golden hour transitions</div>
+        <div class="file">📁 HIDEOUT/</div>
+        <div class="note indent-2">→ Service ritual, opening, village quiet, flowers, closing light</div>
+        <div class="file">📁 ATHLETES/</div>
+        <div class="note indent-2">→ Warmup, recovery, between reps, track geometry with figure small</div>
+        <div class="file">📁 CITY/</div>
+        <div class="note indent-2">→ Trains, Margaret Pace waves, downtown geometry, Edgewater waterfront</div>
+        <div class="file">📁 DETAILS/</div>
+        <div class="note indent-2">→ Cup ring on wood, book spine, vinyl, texture, craft close-ups</div>
+      </div>
+
+      <h3>After cull — routing clips</h3>
+      <table class="tbl">
+        <tr><td>Ask</td><td>Would I pull this for a reel without caring which shoot it came from?</td></tr>
+        <tr><td>Yes</td><td>Copy to LIBRARY/category/. Name simply: <span style="color:var(--ink-faint);">LIB_rain_patio_2026-06.mp4</span></td></tr>
+        <tr><td>No</td><td>Leave in shoot folder or delete. Don't hoard.</td></tr>
+        <tr><td>Building now</td><td>When editing a reel → pull from LIBRARY + PROJECTS export folder</td></tr>
+      </table>
+
+      <h3>Examples worth keeping</h3>
+      <div class="item"><div class="item-dot"></div><span>Matteo arranging flowers — MOVEMENT or HIDEOUT</span></div>
+      <div class="item"><div class="item-dot"></div><span>Simon jogging between reps — ATHLETES</span></div>
+      <div class="item"><div class="item-dot"></div><span>Steam off espresso — ATMOSPHERE or DETAILS</span></div>
+      <div class="item"><div class="item-dot"></div><span>Rain on patio — WEATHER</span></div>
+      <div class="item"><div class="item-dot"></div><span>Runner tying spikes — MOVEMENT / ATHLETES</span></div>
+      <div class="item"><div class="item-dot"></div><span>Sunlight moving across a wall — ATMOSPHERE</span></div>
+
+    </div>
+  </div>
+</div>
+
+<!-- FILMS ════════════════════════════════════ -->
+<div class="section section-quiet" id="sec-films">
+  <div class="section-header" onclick="toggleSection('films')">
+    <div class="section-header-left">
+      <span class="section-num">07</span>
+      <div>
         <div class="section-title">Films</div>
-        <div class="section-sub">Sunday frequency · watch with intention · not a hype list</div>
+        <div class="section-sub">Reference · Sunday frequency · not the center</div>
       </div>
     </div>
     <span class="section-toggle">+</span>
@@ -1147,8 +1283,8 @@ p {
   <div class="section-body" id="body-films">
     <div class="section-inner">
 
-      <div class="lead">Not a watchlist for hype. Films you watch to study something specific — atmosphere, ensemble, character under pressure, authored environments.</div>
-      <p style="font-size:13px;color:var(--ink-muted);margin-bottom:24px;">Expanded tiers and ensemble picks: <a href="/films" style="color:var(--ink-mid);">speedandform.com/films</a></p>
+      <div class="lead">Study films when sharp. Not a watchlist for hype.</div>
+      <p style="font-size:13px;color:var(--ink-muted);margin-bottom:24px;">Full list: <a href="/films" style="color:var(--ink-mid);">speedandform.com/films</a> · Inline picks below.</p>
 
       <h3>Watch next — confirmed matches</h3>
       <div class="film-grid">
@@ -1305,8 +1441,16 @@ window.addEventListener('scroll', () => {
   if (bar && max > 0) bar.style.transform = `scaleX(${window.scrollY / max})`;
 }, { passive: true });
 
-// Keyboard shortcut — press number 1-6 to open section
-const sectionMap = { '1': 'map', '2': 'perception', '3': 'cinema', '4': 'fieldguide', '5': 'files', '6': 'films' };
+// Keyboard shortcut — press number 1-7 to open section
+const sectionMap = {
+  '1': 'fieldguide',
+  '2': 'map',
+  '3': 'perception',
+  '4': 'cinema',
+  '5': 'files',
+  '6': 'library',
+  '7': 'films'
+};
 window.addEventListener('keydown', e => {
   if (e.target.tagName === 'INPUT') return;
   if (sectionMap[e.key]) toggleSection(sectionMap[e.key]);
