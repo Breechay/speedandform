@@ -5,6 +5,8 @@ alwaysApply: true
 
 # speedandform — Agent context
 
+**Human tone (workspace default):** Site = understanding (philosophical, timeless); still human, not deck-speak. `FORM-iOS/docs/BRICE_OS/HUMAN_TONE_DEFAULT.md`. FORM web spec governs tone split with app.
+
 ## Read first
 
 1. `docs/CURSOR_CONTEXT.md`  
