@@ -5,11 +5,23 @@ import {
   useAthletePrograms,
   useAthleteRunningSessions,
   useAthleteStrengthSessions,
+  useAthleteAccountability,
+  useClearCoachJudgment,
+  useCoachJudgment,
   useCoachNotes,
   useDeleteCoachNote,
   useSaveCoachNote,
+  useSetCoachJudgment,
 } from '../../hooks/useForge'
 import { formatDate, formatDistance, formatDuration, formatPace } from '../../utils/format'
+import { AccountabilitySummary } from '../../components/AccountabilitySummary'
+import { CoachPlaybook } from '../../components/CoachPlaybook'
+import { CoachTodayJudgment } from '../../components/CoachTodayJudgment'
+import {
+  ROD_ACCOUNTABILITY_PROGRAM_ID,
+  deriveCoachContactState,
+  deriveNextFixedPoint,
+} from '../../api/accountability'
 
 type CoachTab = 'sessions' | 'programs' | 'notes'
 type SessionFilter = 'all' | 'strength' | 'running'
@@ -41,6 +53,28 @@ export function AthleteDetailPage() {
   const saveNoteMutation = useSaveCoachNote()
   const deleteNoteMutation = useDeleteCoachNote()
 
+  const active = assignments.find((a: any) => a.status === 'active')
+  const isRodProgram = active?.catalogProgramId === ROD_ACCOUNTABILITY_PROGRAM_ID
+
+  const {
+    data: accountability,
+    refetch: refetchAccountability,
+  } = useAthleteAccountability(athlete?.authUserId ?? null, !!isRodProgram)
+
+  const rodProgramId = active?.catalogProgramId ?? ROD_ACCOUNTABILITY_PROGRAM_ID
+  const {
+    data: activeJudgment,
+    isLoading: judgmentLoading,
+  } = useCoachJudgment(athlete?.authUserId ?? null, isRodProgram ? rodProgramId : null, !!isRodProgram)
+  const setJudgmentMutation = useSetCoachJudgment()
+  const clearJudgmentMutation = useClearCoachJudgment()
+
+  const rodCoachState = accountability ? deriveCoachContactState(accountability) : null
+  const coachingNotes = useMemo(
+    () => notes.filter((n) => !n.isShared).map((n) => n.content),
+    [notes],
+  )
+
   if (isLoading) {
     return (
       <div className="page" style={{ display: 'flex', justifyContent: 'center', padding: 80 }}>
@@ -50,7 +84,6 @@ export function AthleteDetailPage() {
   }
 
   const fullName = athlete ? `${athlete.firstName} ${athlete.lastName}` : '—'
-  const active = assignments.find((a: any) => a.status === 'active')
   const sessionsLoading = strengthLoading || runningLoading
   const units: 'km' | 'mi' = 'km'
 
@@ -105,6 +138,15 @@ export function AthleteDetailPage() {
     await deleteNoteMutation.mutateAsync({ noteId, athleteId: athlete.id })
   }
 
+  const handlePlaybookSaveNote = async (content: string) => {
+    if (!athlete || !content.trim()) return
+    await saveNoteMutation.mutateAsync({
+      athleteId: athlete.id,
+      content: content.trim(),
+      isShared: false,
+    })
+  }
+
   return (
     <div className="page">
       {/* Back + name */}
@@ -124,10 +166,67 @@ export function AthleteDetailPage() {
         <h1 className="page-title" style={{ marginBottom: 4 }}>{fullName}</h1>
         <p style={{ fontSize: 12, color: 'var(--color-dim)', fontFamily: 'var(--font-serif)' }}>
           {active
-            ? (active as any).program_templates?.name ?? 'Active program'
+            ? (active as any).programName ?? 'Active program'
             : 'No active program'}
         </p>
       </div>
+
+      {isRodProgram && athlete?.authUserId && accountability && (
+        <>
+          <CoachTodayJudgment
+            athleteAuthId={athlete.authUserId}
+            programId={rodProgramId}
+            active={activeJudgment}
+            isLoading={judgmentLoading}
+            isSaving={setJudgmentMutation.isPending || clearJudgmentMutation.isPending}
+            onSave={async (input) => {
+              await setJudgmentMutation.mutateAsync({
+                athleteAuthId: athlete.authUserId!,
+                programId: rodProgramId,
+                text: input.text,
+                expiresAt: input.expiresAt,
+                clearAfterNextLift: input.clearAfterNextLift,
+              })
+            }}
+            onClear={async (judgmentId) => {
+              await clearJudgmentMutation.mutateAsync({
+                judgmentId,
+                athleteAuthId: athlete.authUserId!,
+                programId: rodProgramId,
+              })
+            }}
+          />
+          <AccountabilitySummary
+            authUserId={athlete.authUserId}
+            snapshot={accountability}
+            onRefresh={() => { void refetchAccountability() }}
+          />
+          {rodCoachState && (
+            <CoachPlaybook
+              state={rodCoachState}
+              athleteName={athlete.firstName || fullName.split(' ')[0] || 'Athlete'}
+              nextFixedPoint={deriveNextFixedPoint()}
+              proteinDays={accountability.proteinDaysThisWeek}
+              sessionsMissed={Math.max(
+                0,
+                accountability.strengthSessionsExpected - accountability.strengthSessionsThisWeek,
+              )}
+              alcoholFlagged={accountability.alcoholThisWeek}
+              daysSilent={
+                accountability.daysSinceLastOpen >= 99 ? 0 : accountability.daysSinceLastOpen
+              }
+              notes={coachingNotes}
+              onSaveNote={(note) => { void handlePlaybookSaveNote(note) }}
+            />
+          )}
+        </>
+      )}
+
+      {isRodProgram && !athlete?.authUserId && (
+        <p style={{ fontSize: 12, color: 'var(--color-dim)', marginBottom: 24, lineHeight: 1.5 }}>
+          Accountability data appears once Rod accepts his invite and opens the FORM app.
+        </p>
+      )}
 
       {/* Tabs */}
       <div style={{
@@ -287,7 +386,7 @@ export function AthleteDetailPage() {
             </div>
             <label style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 12, color: 'var(--color-dim)' }}>
               <input type="checkbox" checked={shareWithAthlete} onChange={(e) => setShareWithAthlete(e.target.checked)} />
-              Share with athlete
+              Private archive only (use Today judgment above for athlete Today)
             </label>
           </div>
 

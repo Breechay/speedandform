@@ -11,6 +11,12 @@ import {
   deleteCoachNote,
   createAthlete,
 } from '../api/athletes'
+import { getAthleteAccountability } from '../api/accountability'
+import {
+  clearCoachJudgment,
+  getActiveCoachJudgment,
+  setCoachJudgment,
+} from '../api/judgments'
 import {
   getPrograms,
   getProgram,
@@ -34,6 +40,9 @@ export const queryKeys = {
   athleteStrengthSessions: (authUserId: string | null) => ['athlete-strength-sessions', authUserId] as const,
   athleteRunningSessions: (authUserId: string | null) => ['athlete-running-sessions', authUserId] as const,
   coachNotes: (athleteId: string) => ['coach-notes', athleteId] as const,
+  athleteAccountability: (authUserId: string | null) => ['athlete-accountability', authUserId] as const,
+  coachJudgment: (authUserId: string | null, programId: string) =>
+    ['coach-judgment', authUserId, programId] as const,
   programs: ['programs'] as const,
   program: (id: string) => ['program', id] as const,
 }
@@ -95,6 +104,56 @@ export function useCoachNotes(athleteId: string) {
     queryKey: queryKeys.coachNotes(athleteId),
     queryFn: () => getCoachNotes(athleteId),
     enabled: !!athleteId,
+  })
+}
+
+export function useAthleteAccountability(authUserId: string | null, enabled = true) {
+  return useQuery({
+    queryKey: queryKeys.athleteAccountability(authUserId),
+    queryFn: () => getAthleteAccountability(authUserId!),
+    enabled: !!authUserId && enabled,
+    staleTime: 15_000,
+  })
+}
+
+export function useCoachJudgment(authUserId: string | null, programId: string | null, enabled = true) {
+  return useQuery({
+    queryKey: queryKeys.coachJudgment(authUserId, programId ?? ''),
+    queryFn: () => getActiveCoachJudgment(authUserId!, programId!),
+    enabled: !!authUserId && !!programId && enabled,
+    staleTime: 10_000,
+  })
+}
+
+export function useSetCoachJudgment() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: setCoachJudgment,
+    onSuccess: (_, vars) => {
+      queryClient.invalidateQueries({
+        queryKey: queryKeys.coachJudgment(vars.athleteAuthId, vars.programId),
+      })
+    },
+  })
+}
+
+export function useClearCoachJudgment() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: ({
+      judgmentId,
+      athleteAuthId,
+      programId,
+    }: {
+      judgmentId: string
+      athleteAuthId: string
+      programId: string
+    }) => clearCoachJudgment(judgmentId).then(() => ({ athleteAuthId, programId })),
+    onSuccess: (_, vars) => {
+      queryClient.invalidateQueries({
+        queryKey: queryKeys.coachJudgment(vars.athleteAuthId, vars.programId),
+      })
+    },
   })
 }
 

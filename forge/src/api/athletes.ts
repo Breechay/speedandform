@@ -1,4 +1,5 @@
 import { supabase } from '../lib/supabase'
+import { ROD_ACCOUNTABILITY_PROGRAM_ID } from './accountability'
 
 export interface RosterAthlete {
   athleteId: string
@@ -52,10 +53,23 @@ export interface SetLog {
 export interface AssignedProgram {
   id: string
   programTemplateId: string
+  catalogProgramId: string | null
   programName: string
   status: 'active' | 'paused' | 'completed'
   startDate: string
   updatedAt: string
+}
+
+function catalogProgramIdFromTemplate(template: {
+  notes?: string | null
+  structure?: { catalogProgramId?: string; programId?: string; id?: string } | null
+} | null): string | null {
+  if (!template) return null
+  if (template.notes === ROD_ACCOUNTABILITY_PROGRAM_ID) return ROD_ACCOUNTABILITY_PROGRAM_ID
+  const structure = template.structure
+  const fromStructure =
+    structure?.catalogProgramId ?? structure?.programId ?? structure?.id ?? null
+  return fromStructure === ROD_ACCOUNTABILITY_PROGRAM_ID ? ROD_ACCOUNTABILITY_PROGRAM_ID : null
 }
 
 export interface StrengthSessionSummary {
@@ -204,7 +218,7 @@ export async function getAthletePrograms(athleteId: string): Promise<AssignedPro
     .select(`
       id,
       program_template_id,
-      program_templates(name),
+      program_templates(name, notes, structure),
       status,
       start_date,
       updated_at
@@ -218,6 +232,7 @@ export async function getAthletePrograms(athleteId: string): Promise<AssignedPro
   return data.map((row: any) => ({
     id: row.id,
     programTemplateId: row.program_template_id,
+    catalogProgramId: catalogProgramIdFromTemplate(row.program_templates),
     programName: row.program_templates?.name || 'Unknown program',
     status: row.status,
     startDate: row.start_date,

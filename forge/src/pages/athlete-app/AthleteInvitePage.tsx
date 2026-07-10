@@ -47,6 +47,13 @@ export function AthleteInvitePage() {
     }
   }
 
+  const openFormApp = async () => {
+    const { data: { session } } = await supabase.auth.getSession()
+    if (!session?.access_token) return
+    const url = `form://forge-auth?access_token=${encodeURIComponent(session.access_token)}`
+    window.location.href = url
+  }
+
   const handleAccept = async () => {
     if (!invite || !athlete) return
     setLoading(true); setError('')
@@ -55,7 +62,6 @@ export function AthleteInvitePage() {
       if (!user) throw new Error('Not signed in.')
       await acceptInvite(invite.id, user.id, invite.coachId, invite.athleteSlug)
       setStep('done')
-      setTimeout(() => navigate('/forge/athlete/ledger', { replace: true }), 1800)
     } catch (err: any) {
       setError(err.message || 'Failed to accept invite.')
     } finally {
@@ -210,9 +216,31 @@ export function AthleteInvitePage() {
             <p style={{ fontSize: 15, fontWeight: 500, color: C.ink, fontFamily: 'Georgia,serif' }}>
               Connected.
             </p>
-            <p style={{ fontSize: 12, color: C.dim, fontFamily: 'Georgia,serif', marginTop: 6, fontStyle: 'italic' }}>
-              Redirecting…
+            <p style={{ fontSize: 12, color: C.dim, fontFamily: 'Georgia,serif', marginTop: 6, marginBottom: 20 }}>
+              Open the FORM app to sync sessions and intake.
             </p>
+            <button
+              onClick={() => { void openFormApp() }}
+              style={{
+                height: 38, width: '100%', background: C.accent, color: '#fff',
+                border: 'none', borderRadius: 6, fontSize: 14, fontWeight: 600,
+                cursor: 'pointer', fontFamily: "'DM Sans', system-ui, sans-serif",
+                marginBottom: 10,
+              }}
+            >
+              Open FORM app →
+            </button>
+            <button
+              onClick={() => navigate('/forge/athlete/ledger', { replace: true })}
+              style={{
+                height: 32, width: '100%', background: 'transparent',
+                border: `1px solid ${C.rule}`, borderRadius: 6,
+                fontSize: 12, color: C.chrome, cursor: 'pointer',
+                fontFamily: "'DM Sans', system-ui, sans-serif",
+              }}
+            >
+              Continue in browser
+            </button>
           </div>
         )}
       </div>
