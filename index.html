@@ -1,293 +1,255 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Speed &amp; Form — The thinking is done.</title>
-<meta name="description" content="Speed & Form builds training where the thinking is already done. FORM holds the running week. FORGE holds the strength program. Open the app and train.">
-<link rel="canonical" href="https://speedandform.com/">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="Speed & Form — The thinking is done.">
-<meta property="og:description" content="FORM holds the running week. FORGE holds the strength program. You just train.">
-<meta property="og:url" content="https://speedandform.com/">
-<meta name="twitter:card" content="summary_large_image">
-
-<script>document.documentElement.classList.remove('no-js');</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+<title>Speed &amp; Form — Race preparation and physique training, already organized.</title>
+<meta content="FORM turns a race goal into a clear running week. FORGE is a complete physique program that puts the work where it changes your frame most." name="description"/>
+<link href="https://speedandform.com/" rel="canonical"/>
+<link href="/favicon.ico" rel="icon"/>
+<link href="/apple-touch-icon.png" rel="apple-touch-icon"/>
+<meta content="website" property="og:type"/>
+<meta content="Speed &amp; Form — The thinking is done." property="og:title"/>
+<meta content="The thinking is done. Train for a race with FORM or build your physique with FORGE." property="og:description"/>
+<meta content="https://speedandform.com/" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
 <style>
-@font-face { font-family:'Cormorant Garamond'; font-weight:300; font-display:swap; src:url('/assets/site/fonts/cormorant-garamond-latin-300-normal.woff2') format('woff2'); }
-@font-face { font-family:'Cormorant Garamond'; font-weight:400; font-display:swap; src:url('/assets/site/fonts/cormorant-garamond-latin-400-normal.woff2') format('woff2'); }
-@font-face { font-family:'Cormorant Garamond'; font-style:italic; font-weight:400; font-display:swap; src:url('/assets/site/fonts/cormorant-garamond-latin-400-italic.woff2') format('woff2'); }
-@font-face { font-family:'Cormorant Garamond'; font-weight:500; font-display:swap; src:url('/assets/site/fonts/cormorant-garamond-latin-500-normal.woff2') format('woff2'); }
-@font-face { font-family:'Jost'; font-weight:300; font-display:swap; src:url('/assets/site/fonts/jost-latin-300-normal.woff2') format('woff2'); }
-@font-face { font-family:'Jost'; font-weight:400; font-display:swap; src:url('/assets/site/fonts/jost-latin-400-normal.woff2') format('woff2'); }
-@font-face { font-family:'Jost'; font-weight:500; font-display:swap; src:url('/assets/site/fonts/jost-latin-500-normal.woff2') format('woff2'); }
-@font-face { font-family:'JetBrains Mono'; font-weight:400; font-display:swap; src:url('/assets/site/fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2'); }
-@font-face { font-family:'JetBrains Mono'; font-weight:500; font-display:swap; src:url('/assets/site/fonts/jetbrains-mono-latin-500-normal.woff2') format('woff2'); }
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300;font-display:swap;src:url('/assets/site/fonts/cormorant-garamond-latin-300-normal.woff2') format('woff2')}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/site/fonts/cormorant-garamond-latin-400-normal.woff2') format('woff2')}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:400;font-display:swap;src:url('/assets/site/fonts/cormorant-garamond-latin-400-italic.woff2') format('woff2')}
+@font-face{font-family:'Jost';font-style:normal;font-weight:300;font-display:swap;src:url('/assets/site/fonts/jost-latin-300-normal.woff2') format('woff2')}
+@font-face{font-family:'Jost';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/site/fonts/jost-latin-400-normal.woff2') format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/site/fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;src:url('/assets/site/fonts/jetbrains-mono-latin-500-normal.woff2') format('woff2')}
 
-*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+*{box-sizing:border-box}html,body{margin:0}html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+:root{--cream:#efe9df;--paper:#f8f4ed;--paper2:#f3ede3;--ink:#29251f;--body:#635c52;--muted:#8f877b;--faint:#aaa193;--copper:#b56f39;--green:#2e5938;--plum:#72506f;--blue:#3c5e7b;--black:#050608;--panel:#0d0e11;--panel2:#111216;--bone:#eee8dc;--gold:#c79a3e;--gold2:#e0b848;--darkbody:#bdb5a8;--line:rgba(41,37,31,.09);--dline:rgba(238,232,220,.1);--nav:64px}
+body{background:var(--cream);color:var(--body);font-family:'Jost',sans-serif;font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}.wrap{width:min(1200px,calc(100% - 52px));margin-inline:auto}.mono{font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.24em}.eyebrow{font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.26em;font-size:11px;color:var(--copper)}
+:focus-visible{outline:2px solid var(--copper);outline-offset:4px}
 
-/* ---- motion tokens (shared architecture; all transitions derive from these) ---- */
-:root{ --m-dur-1:.35s; --m-dur-2:.6s; --m-dur-3:.9s; --m-ease:cubic-bezier(.2,.7,.2,1);
-       --m-rise:16px; --m-fade:.55s; --m-scale:.985; }
+.nav{height:var(--nav);position:sticky;top:0;z-index:80;background:rgba(239,233,223,.88);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);border-bottom:1px solid var(--line)}
+.nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;width:min(1200px,calc(100% - 52px));margin:auto}.brand{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;text-decoration:none;color:var(--ink)}.nav-links{display:flex;gap:26px}.nav-links a{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--muted)}
 
-:root{
-  --cream:#EFE9DF; --paper:#F6F2EA; --ink:#2A2620; --body:#5B554A; --muted:#8E877A; --faint:#B3AB9C;
-  --copper:#B0703A; --green:#2E5938; --tan:#C2A079;
-  --black:#050608; --panel:#0D0E11; --gold:#C79A3E; --gold-bright:#E0B848;
-  --text:#EAE4D8; --dbody:#C4BDB0; --dmuted:#8B8477;
-  --line:rgba(42,38,32,0.10); --line-2:rgba(42,38,32,0.055); --rule:rgba(176,112,58,0.30);
-  --dline:rgba(234,228,216,0.09); --gold-line:rgba(199,154,62,0.28);
-  --nav-h:64px;
-}
-html{ -webkit-text-size-adjust:100%; }
-@media (prefers-reduced-motion: no-preference){ html{ scroll-behavior:smooth; } }
-body{ background:var(--cream); color:var(--body); font-family:'Jost',sans-serif; font-weight:300; line-height:1.7; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
-.serif{ font-family:'Cormorant Garamond',serif; font-weight:300; }
-.eyebrow{ font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:500; letter-spacing:0.28em; text-transform:uppercase; color:var(--copper); }
-.wrap{ width:100%; max-width:1240px; margin:0 auto; padding:0 40px; }
-a{ color:inherit; }
-a:focus-visible,summary:focus-visible{ outline:2px solid var(--copper); outline-offset:3px; }
-.skip{ position:absolute; left:-999px; top:0; background:var(--ink); color:var(--cream); padding:10px 16px; z-index:200; }
-.skip:focus{ left:0; }
-@media (max-width:640px){ .wrap{ padding:0 26px; } }
+/* Hero: keep the original promise almost untouched. */
+.hero{position:relative;min-height:1030px;overflow:hidden;background:var(--cream);isolation:isolate}.hero-bg{position:absolute;z-index:-2;top:-4%;left:50%;width:min(1120px,116vw);max-width:none;transform:translateX(-50%);opacity:.43;mix-blend-mode:multiply}.hero-wash{position:absolute;inset:0;z-index:-1;background:radial-gradient(52% 38% at 50% 31%,rgba(255,252,246,.9),transparent 76%)}
+.hero-copy{text-align:center;padding-top:82px;position:relative;z-index:3}.hero-copy .kick{font-size:11px;color:var(--muted)}.hero h1{font-family:'Cormorant Garamond',serif;font-weight:300;color:var(--ink);font-size:clamp(66px,8.2vw,108px);line-height:.88;letter-spacing:-.035em;margin:20px 0 17px}.hero h1 em{display:block;color:var(--copper);font-weight:400}.hero-sub{font-size:clamp(19px,2vw,23px);margin:0;color:#575046}.hero-device{position:absolute;z-index:2;top:414px;left:50%;width:min(382px,34vw);transform:translateX(-50%);padding:8px;border-radius:46px;background:linear-gradient(150deg,#fffdf8,#e3dbcf 72%);box-shadow:0 0 0 1px rgba(41,37,31,.06),0 38px 70px -30px rgba(54,43,33,.33)}.hero-device img{width:100%;display:block;border-radius:38px}
 
-.nav{ position:sticky; top:0; z-index:100; height:var(--nav-h); background:rgba(239,233,223,0.78); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid var(--line-2); }
-.nav-inner{ height:100%; display:flex; align-items:center; justify-content:space-between; max-width:1240px; margin:0 auto; padding:0 40px; }
-.wordmark{ font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.30em; text-transform:uppercase; color:var(--ink); text-decoration:none; }
-.nav-links{ display:flex; gap:28px; }
-.nav-links a{ font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
-.nav-links a:hover{ color:var(--ink); }
-@media (max-width:680px){ .nav-links{ gap:18px; } .nav-links a.hide-sm{ display:none; } }
+/* Founder truth */
+.why{position:relative;background:var(--paper);border-top:1px solid var(--line);padding:108px 0 114px;overflow:hidden}.why::after{content:"";position:absolute;right:-150px;top:-90px;width:520px;height:520px;background:url('/assets/home/form/contour.webp') center/contain no-repeat;opacity:.1;mix-blend-mode:multiply}.why-grid{position:relative;z-index:1;display:grid;grid-template-columns:.75fr 1.35fr;gap:88px}.why h2{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,5.7vw,76px);font-weight:300;line-height:.98;letter-spacing:-.035em;color:var(--ink);margin:18px 0 0}.why-copy{font-size:18px;max-width:680px}.why-copy p{margin:0 0 22px}.why-copy .lead{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,39px);line-height:1.25;color:var(--ink);margin:31px 0}.signature{font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.15em;font-size:10px;color:var(--copper);margin-top:31px}
+.practice{position:relative;margin:0;background:#0a0a0a;overflow:hidden}.practice img{display:block;width:100%;height:clamp(500px,65vw,760px);object-fit:cover;filter:contrast(1.03)}.practice::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 57%,rgba(0,0,0,.58));pointer-events:none}.practice-caption{position:absolute;z-index:2;left:max(26px,calc((100vw - 1200px)/2));bottom:28px;color:#f2ede4;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.2em;font-size:10px}.practice-coaching img{object-position:50% 52%}
+.method{padding:72px 0;background:var(--cream);border-bottom:1px solid var(--line)}.method-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:76px;align-items:end}.method h2{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,6vw,80px);font-weight:300;line-height:.95;letter-spacing:-.04em;color:var(--ink);margin:0}.method p{font-size:18px;margin:0;max-width:530px}
 
-/* hero */
-.hero{ position:relative; padding:92px 0 72px; text-align:center; overflow:hidden; }
-.hero .contour{ position:absolute; top:-6%; left:50%; transform:translateX(-50%); width:min(1000px,120vw); opacity:.42; mix-blend-mode:multiply; pointer-events:none; z-index:0; }
-.hero-inner{ position:relative; z-index:2; }
-.hero .kick{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.34em; text-transform:uppercase; color:var(--muted); }
-.hero h1{ font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(46px,7.2vw,92px); line-height:1.0; color:var(--ink); margin:24px 0 26px; }
-.hero h1 em{ font-style:italic; color:var(--copper); }
-.hero p{ font-size:18px; color:var(--body); max-width:56ch; margin:0 auto; }
-.hero .scroll{ margin-top:44px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.24em; text-transform:uppercase; color:var(--muted); }
+/* Start point */
+.start{padding:100px 0 106px;background:var(--paper2);border-bottom:1px solid var(--line)}.start-head{text-align:center;max-width:760px;margin:0 auto 48px}.start h2{font-family:'Cormorant Garamond',serif;font-size:clamp(50px,6vw,80px);font-weight:300;line-height:.98;letter-spacing:-.035em;color:var(--ink);margin:15px 0 20px}.start-head p{font-size:18px;margin:0}.start-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.start-card{min-height:340px;padding:44px;border-radius:4px;text-decoration:none;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;transition:transform .3s ease}.start-card:hover{transform:translateY(-3px)}.start-card h3{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(38px,4.5vw,58px);line-height:1;margin:14px 0 18px}.start-card p{max-width:42ch;font-size:17px;margin:0}.start-card .go{font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.16em;font-size:10.5px;margin-top:34px}.start-form{background:#fbf8f1;color:var(--body);border:1px solid var(--line)}.start-form::after{content:"";position:absolute;right:-120px;bottom:-190px;width:470px;height:470px;background:url('/assets/home/form/contour.webp') center/contain no-repeat;opacity:.17;mix-blend-mode:multiply}.start-form h3{color:var(--ink)}.start-form .go{color:var(--green)}.start-forge{background:var(--black);color:var(--darkbody);border:1px solid rgba(199,154,62,.2)}.start-forge::after{content:"";position:absolute;right:-130px;bottom:-230px;width:520px;height:520px;background:url('/assets/home/forge/anatomy-shoulders.webp') center/contain no-repeat;opacity:.25}.start-forge h3{color:var(--bone)}.start-forge .go,.start-forge .eyebrow{color:var(--gold)}
 
-/* door — shared */
-.door{ position:relative; overflow:hidden; }
-.door-inner{ position:relative; z-index:2; display:grid; grid-template-columns:1fr 400px; gap:60px; align-items:center; padding:84px 0; }
-.door .num{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.24em; text-transform:uppercase; }
-.door h2{ font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(40px,6vw,78px); line-height:0.98; margin:14px 0 10px; }
-.door .tag{ font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(22px,2.6vw,30px); }
-.door p{ font-size:17px; margin:22px 0 32px; max-width:46ch; }
-.door .enter{ display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.16em; text-transform:uppercase; text-decoration:none; padding:14px 26px; border-radius:999px; transition:.2s; }
-.door-media{ position:relative; display:flex; justify-content:center; }
-.door-media .phone{ position:relative; z-index:2; width:300px; border-radius:38px; padding:7px; line-height:0; }
-.door-media .phone img{ display:block; width:100%; height:auto; border-radius:31px; }
-@media (max-width:900px){
-  .door-inner{ grid-template-columns:1fr; gap:34px; padding:72px 0; }
-  .door-media{ order:-1; } .door-media .phone{ width:230px; }
-}
+.chapter-rail{position:sticky;top:var(--nav);z-index:70;background:rgba(248,244,237,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.chapter-rail-inner{height:48px;display:flex;align-items:center;justify-content:center;gap:34px}.chapter-rail a{font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.17em;font-size:9.5px;text-decoration:none;color:var(--muted);padding:12px 3px}.chapter-rail a[aria-current="true"]{color:var(--ink);box-shadow:inset 0 -1px var(--copper)}
 
-/* FORM door (light) */
-.door-form{ background:var(--cream); border-top:1px solid var(--line-2); }
-.door-form .contour{ position:absolute; right:-6%; top:-10%; width:min(680px,60vw); opacity:.4; mix-blend-mode:multiply; z-index:0; pointer-events:none; }
-.door-form .num{ color:var(--green); }
-.door-form h2{ color:var(--ink); }
-.door-form .tag{ color:var(--copper); }
-.door-form p{ color:var(--body); }
-.door-form .phone{ background:linear-gradient(160deg,#fbf9f4,#e6ded0 70%); box-shadow:0 50px 100px -44px rgba(42,38,32,0.4), 0 0 0 1px rgba(42,38,32,0.06); }
-.door-form .enter{ background:var(--ink); color:var(--cream); }
-.door-form .enter:hover{ background:#3a352c; }
+/* Product chapters */
+.product{position:relative;overflow:hidden;scroll-margin-top:calc(var(--nav) + 48px)}.product-inner{position:relative;z-index:2;padding:118px 0 82px;display:grid;grid-template-columns:minmax(0,1fr) minmax(310px,430px);gap:74px;align-items:center}.product h2{font-family:'Cormorant Garamond',serif;font-size:clamp(58px,7vw,94px);font-weight:300;line-height:.9;letter-spacing:-.04em;margin:18px 0 24px}.product-copy{font-size:18px;max-width:590px}.utility-copy{font-size:16px;line-height:1.75;max-width:575px;margin:31px 0 35px;padding-left:20px;border-left:1px solid currentColor;opacity:.9}.actions{display:flex;gap:20px;align-items:center;flex-wrap:wrap}.button,.text-link{font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.15em;font-size:10.5px;text-decoration:none}.button{padding:15px 25px;border-radius:999px}.text-link{padding-bottom:4px;border-bottom:1px solid currentColor}.product-media{display:flex;justify-content:center;position:relative}.phone{width:min(354px,100%);padding:8px;border-radius:45px}.phone img{display:block;width:100%;border-radius:37px}.cross-intro{margin-top:54px;padding-top:28px;border-top:1px solid currentColor;max-width:610px;opacity:.86}.cross-intro strong{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400}.cross-intro a{font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.14em;font-size:10px;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:3px;margin-left:8px}
+.product-form{background:#faf7f0}.product-form .terrain{position:absolute;width:690px;left:-165px;bottom:-140px;opacity:.15;mix-blend-mode:multiply}.product-form h2{color:var(--ink)}.product-form .utility-copy{color:var(--muted);border-color:rgba(181,111,57,.45)}.product-form .phone{background:linear-gradient(150deg,#fffdf8,#e3dbcf 72%);box-shadow:0 50px 90px -42px rgba(41,37,31,.42),0 0 0 1px rgba(41,37,31,.06)}.product-form .button{background:var(--ink);color:var(--cream)}.product-form .text-link{color:var(--copper)}.product-form .cross-intro{border-color:rgba(41,37,31,.13)}.product-form .cross-intro a{color:var(--copper)}
+.product-forge{background:var(--black);color:var(--darkbody)}.product-forge .glow{position:absolute;inset:0;background:radial-gradient(680px 560px at 88% 47%,rgba(199,154,62,.15),transparent 65%)}.product-forge .anatomy{position:absolute;right:-9%;top:39%;width:min(700px,55vw);transform:translateY(-50%);opacity:.43}.product-forge h2{color:var(--bone)}.product-forge .utility-copy{color:#999184;border-color:rgba(199,154,62,.43)}.product-forge .phone{background:linear-gradient(150deg,#27282c,#0b0c0e 72%);box-shadow:0 56px 110px -40px #000,0 0 0 1px rgba(255,255,255,.05)}.product-forge .button{background:var(--gold);color:#161109}.product-forge .text-link{color:var(--gold)}.product-forge .cross-intro{border-color:rgba(238,232,220,.13)}.product-forge .cross-intro a{color:var(--gold)}
 
-/* seam between rooms */
-.seam{ position:relative; height:0; z-index:6; pointer-events:none; }
-.seam-svg{ position:absolute; left:0; right:0; top:-13px; width:100%; height:26px; overflow:visible; display:block; }
-.seam-path{ fill:none; stroke:url(#seamGrad); stroke-width:1.5; }
+/* Expandable proof: core conversion remains visible without opening. */
+.deep-dive{position:relative;z-index:2;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.product-form .deep-dive{background:#f4eee5}.product-forge .deep-dive{background:#08090b;border-color:var(--dline)}.deep-dive summary{list-style:none;cursor:pointer;padding:27px 0;display:flex;align-items:center;justify-content:space-between;gap:30px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.16em;font-size:10.5px}.deep-dive summary::-webkit-details-marker{display:none}.deep-dive summary::after{content:"+";font-family:'Jost',sans-serif;font-size:24px;font-weight:300;line-height:1}.deep-dive[open] summary::after{content:"−"}.product-form .deep-dive summary{color:var(--ink)}.product-forge .deep-dive summary{color:var(--gold)}.proof-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;padding:8px 0 42px}.proof-card{margin:0}.proof-frame{padding:6px;border-radius:28px;overflow:hidden;line-height:0}.proof-frame img{width:100%;display:block;border-radius:22px}.product-form .proof-frame{background:#fffaf2;box-shadow:0 20px 48px -31px rgba(41,37,31,.45)}.product-forge .proof-frame{background:#202126;box-shadow:0 24px 55px -28px #000}.proof-card figcaption{padding-top:13px}.proof-card .proof-label{display:block;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.15em;font-size:9.5px}.proof-card .proof-copy{display:block;font-size:14px;line-height:1.5;margin-top:5px}.product-form .proof-label{color:var(--copper)}.product-form .proof-copy{color:var(--muted)}.product-forge .proof-label{color:var(--gold)}.product-forge .proof-copy{color:#8f887d}
 
-/* FORGE door (dark) */
-.door-forge{ background:var(--black); }
-.door-forge .glow{ position:absolute; inset:0; z-index:0; pointer-events:none; background:radial-gradient(560px 460px at 82% 40%, rgba(199,154,62,0.14), transparent 62%); }
-.door-forge .anat{ position:absolute; top:50%; right:-8%; width:min(620px,52vw); transform:translateY(-50%); z-index:0; opacity:.5; pointer-events:none; }
-.door-forge .num{ color:var(--gold); }
-.door-forge h2{ color:var(--text); }
-.door-forge .tag{ color:var(--gold); }
-.door-forge p{ color:var(--dbody); }
-.door-forge .phone{ background:linear-gradient(160deg,#26262b,#0c0c0f 60%); box-shadow:0 60px 120px -40px rgba(0,0,0,0.95), 0 0 0 1px rgba(255,255,255,0.04); }
-.door-forge .enter{ background:var(--gold); color:#14100A; }
-.door-forge .enter:hover{ background:var(--gold-bright); }
+/* The bridge turns the two disciplines into one athlete story. */
+.bridge{background:#111;position:relative;color:#ddd5ca;scroll-margin-top:calc(var(--nav) + 48px)}.bridge-head{padding:96px 0 62px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end}.bridge h2{font-family:'Cormorant Garamond',serif;font-size:clamp(54px,6.4vw,86px);font-weight:300;line-height:.92;letter-spacing:-.04em;color:var(--bone);margin:0}.bridge-copy{font-size:18px;max-width:560px}.bridge-copy p{margin:0 0 18px}.bridge-photo-grid{display:grid;grid-template-columns:1fr 1fr;min-height:610px}.bridge-photo{margin:0;position:relative;overflow:hidden}.bridge-photo img{display:block;width:100%;height:100%;min-height:610px;object-fit:cover;filter:contrast(1.04)}.bridge-photo:first-child img{object-position:46% center}.bridge-photo:last-child img{object-position:52% center}.bridge-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 58%,rgba(0,0,0,.65))}.bridge-photo figcaption{position:absolute;z-index:2;left:28px;bottom:25px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.17em;font-size:9.5px;color:#eee7dc}.bridge-line{height:1px;background:linear-gradient(90deg,var(--copper),var(--gold))}
 
-/* library strip */
-.library{ background:var(--paper); border-top:1px solid var(--line-2); border-bottom:1px solid var(--line-2); padding:56px 0; }
-.library-inner{ display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap; }
-.library h3{ font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(28px,3.4vw,42px); color:var(--ink); }
-.library p{ font-size:16px; color:var(--muted); margin-top:8px; max-width:44ch; }
-.library a{ font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--copper); text-decoration:none; border-bottom:1px solid var(--rule); padding-bottom:4px; white-space:nowrap; }
-.library a:hover{ border-color:var(--copper); }
+/* Inline FORGE launch conversion */
+.forge-download{margin-top:38px;padding:24px;border:1px solid rgba(199,154,62,.24);background:rgba(199,154,62,.045);max-width:610px}.forge-download h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--bone);margin:0 0 7px}.forge-download p{font-size:14px;color:#9d9588;margin:0 0 17px}.launch-form{display:flex;gap:10px}.launch-form input{min-width:0;flex:1;background:#090a0c;border:1px solid rgba(238,232,220,.16);color:var(--bone);padding:13px 14px;font:400 14px 'Jost',sans-serif;border-radius:0}.launch-form button{border:0;background:var(--gold);color:#171109;padding:13px 18px;font:500 10px 'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.13em;cursor:pointer}.form-disclosure{font-size:11px!important;margin-top:11px!important}.form-disclosure a{color:var(--gold)}
 
-/* philosophy line */
-.phil{ padding:80px 0; text-align:center; }
-.phil p{ font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(24px,3.4vw,38px); line-height:1.4; color:var(--ink); max-width:24ch; margin:0 auto; }
-.phil .sub{ font-family:'Jost'; font-style:normal; font-size:16px; color:var(--muted); max-width:52ch; margin:24px auto 0; line-height:1.7; }
+/* Library */
+.library{padding:96px 0 102px;background:var(--paper);border-bottom:1px solid var(--line)}.library-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:90px;align-items:start}.library h2{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,5.2vw,72px);font-weight:300;line-height:.98;color:var(--ink);margin:15px 0 21px}.library p{font-size:17px;margin:0;max-width:520px}.library-action{display:inline-block;margin-top:31px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.15em;font-size:10.5px;color:var(--copper);text-decoration:none;border-bottom:1px solid rgba(181,111,57,.35);padding-bottom:5px}.library-list{border-top:1px solid var(--line)}.library-item{display:grid;grid-template-columns:115px 1fr auto;gap:22px;align-items:center;padding:23px 0;border-bottom:1px solid var(--line);text-decoration:none}.library-item .cat{font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.16em;font-size:9.5px;color:var(--muted)}.library-item .title{font-family:'Cormorant Garamond',serif;font-size:28px;line-height:1.15;color:var(--ink)}.library-item .arrow{font-size:20px;color:var(--copper)}
+.final{padding:95px 0;text-align:center}.final h2{font-family:'Cormorant Garamond',serif;font-size:clamp(50px,6vw,80px);font-weight:300;line-height:1;color:var(--ink);margin:0}.final p{font-size:17px;margin:22px auto 0;max-width:600px}.final-links{display:flex;justify-content:center;gap:17px;flex-wrap:wrap;margin-top:36px}.final-links a{min-width:230px;padding:16px 25px;border-radius:999px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.15em;font-size:10.5px;text-decoration:none}.final-links .form-choice{color:var(--ink);border:1px solid rgba(46,89,56,.28);box-shadow:inset 0 -2px 0 rgba(46,89,56,.08)}.final-links .forge-choice{background:var(--black);color:var(--gold);border:1px solid rgba(199,154,62,.35)}
+.footer{border-top:1px solid var(--line);padding:54px 0 38px}.footer-top{display:flex;justify-content:space-between;gap:35px;flex-wrap:wrap}.footer-mark{font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.28em;font-size:11px;color:var(--ink)}.footer-links{display:flex;gap:25px;flex-wrap:wrap}.footer-links a{font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.13em;font-size:9.5px;color:var(--muted);text-decoration:none}.footer-bottom{margin-top:34px;padding-top:20px;border-top:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:9px;color:#aaa194;letter-spacing:.07em}
 
-/* footer */
-.footer{ border-top:1px solid var(--line-2); padding:70px 0 46px; }
-.footer-top{ display:flex; justify-content:space-between; gap:48px; flex-wrap:wrap; }
-.footer-mark{ font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:.28em; color:var(--ink); }
-.footer-tag{ font-family:'Cormorant Garamond',serif; font-style:italic; font-size:18px; color:var(--muted); margin-top:12px; max-width:32ch; }
-.footer-cols{ display:flex; gap:56px; flex-wrap:wrap; }
-.footer-col .lab{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--faint); margin-bottom:14px; }
-.footer-col a{ display:block; font-size:14px; color:var(--body); text-decoration:none; padding:5px 0; }
-.footer-col a:hover{ color:var(--copper); }
-.footer-bot{ margin-top:52px; padding-top:26px; border-top:1px solid var(--line-2); font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.08em; color:var(--faint); }
+@media(max-width:900px){.why-grid,.method-grid,.product-inner,.library-grid,.bridge-head{grid-template-columns:1fr}.why-grid{gap:40px}.method-grid{gap:25px}.start-grid{grid-template-columns:1fr}.product-inner{gap:43px}.product-media{order:-1}.phone{width:min(330px,82vw)}.product-forge .anatomy{right:-28%;width:95vw;opacity:.27}.library-grid{gap:50px}.library-item{grid-template-columns:100px 1fr auto}.bridge-head{gap:25px}.proof-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px){.wrap,.nav-inner{width:calc(100% - 52px)}.nav-links{gap:18px}.nav-links a{font-size:9.5px}.brand{font-size:11px;letter-spacing:.28em}.hero{min-height:1160px}.hero-bg{top:-2%;left:47%;width:168vw;opacity:.4}.hero-copy{padding-top:calc(7svh + 12px)}.hero-copy .kick{font-size:10px}.hero h1{font-size:clamp(58px,16vw,75px);margin:18px 0 18px}.hero-sub{font-size:20px}.hero-device{top:48svh;width:min(80vw,340px);padding:7px;border-radius:42px}.hero-device img{border-radius:35px}.why{padding:82px 0 86px}.why h2{font-size:52px;max-width:9ch}.why-copy{font-size:17px}.why-copy .lead{font-size:30px;margin:27px 0}.practice img{height:47svh;min-height:375px}.practice-caption{left:26px;bottom:21px}.practice-coaching img{object-position:56% 50%}.method{padding:64px 0}.method h2{font-size:51px}.method p{font-size:17px}.start{padding:78px 0 82px}.start h2{font-size:54px}.start-card{min-height:290px;padding:31px}.chapter-rail-inner{justify-content:space-between;gap:8px}.chapter-rail a{font-size:8.7px}.product-inner{padding:82px 0 62px}.product h2{font-size:57px}.product-copy{font-size:17px}.utility-copy{font-size:15.5px;margin:27px 0 31px}.product-media{order:0}.product-media .phone{height:min(72svh,610px);overflow:hidden}.product-media .phone img{height:auto}.product-forge .anatomy{top:31%;right:-40%;width:125vw;opacity:.28}.cross-intro strong{display:block;margin-bottom:7px}.cross-intro a{margin-left:0}.deep-dive summary{padding:24px 0;font-size:9.5px}.proof-strip{display:flex;overflow-x:auto;gap:14px;margin-right:-26px;padding:6px 26px 34px 0;scroll-snap-type:x mandatory}.proof-card{flex:0 0 min(74vw,295px);scroll-snap-align:start}.bridge-head{padding:80px 0 48px}.bridge h2{font-size:57px}.bridge-copy{font-size:17px}.bridge-photo-grid{grid-template-columns:1fr;min-height:0}.bridge-photo img{min-height:420px;height:50svh}.launch-form{flex-direction:column}.launch-form button{padding:14px}.library{padding:76px 0}.library-grid{gap:43px}.library-list{margin-top:3px}.library-item{grid-template-columns:1fr auto;gap:6px 15px;padding:20px 0}.library-item .cat{grid-column:1/2}.library-item .title{grid-column:1/2;font-size:25px}.library-item .arrow{grid-column:2;grid-row:1/3;align-self:center}.final{padding:80px 0}.final-links{display:grid}.footer-links{gap:17px}}
+@media(max-width:390px){.wrap,.nav-inner{width:calc(100% - 44px)}.nav-links{gap:14px}.hero h1{font-size:58px}.hero-device{width:82vw}.why-copy .lead{font-size:28px}.product-media .phone{height:580px}.start-card{padding:27px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.start-card{transition:none}}
 
-/* motion */
-body.anim .reveal{ transform:translateY(var(--m-rise)); transition:transform var(--m-dur-3) var(--m-ease); }
-body.anim .reveal.in{ transform:none; }
-body.anim .reveal.d1{ transition-delay:.08s;} body.anim .reveal.d2{ transition-delay:.16s;} body.anim .reveal.d3{ transition-delay:.24s;}
-body.anim .hero-inner > *{ transform:translateY(12px); transition:transform .8s ease; }
-body.anim.lit .hero-inner > *{ transform:none; }
-body.anim.lit .hero-inner > *:nth-child(2){ transition-delay:.1s;} body.anim.lit .hero-inner > *:nth-child(3){ transition-delay:.2s;} body.anim.lit .hero-inner > *:nth-child(4){ transition-delay:.3s;}
-@media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+/* V5 positioning: distinct outcomes first, optional ecosystem second. */
+.chapter-rail-inner{gap:52px}
+.plan-path{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:34px 0 35px;border-top:1px solid;border-bottom:1px solid}
+.plan-path>div{padding:18px 16px 17px 0;min-width:0}.plan-path>div+div{padding-left:18px;border-left:1px solid}
+.path-label{display:block;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.16em;font-size:8.5px;margin-bottom:7px}
+.path-value{display:block;font-family:'Cormorant Garamond',serif;font-size:23px;line-height:1.08}
+.form-path{border-color:rgba(41,37,31,.12)}.form-path>div+div{border-color:rgba(41,37,31,.1)}.form-path .path-label{color:var(--copper)}.form-path .path-value{color:var(--ink)}
+.forge-path{border-color:rgba(199,154,62,.22)}.forge-path>div+div{border-color:rgba(199,154,62,.18)}.forge-path .path-label{color:var(--gold)}.forge-path .path-value{color:var(--bone)}
+.mechanic-copy{font-size:15px;line-height:1.7;max-width:570px;color:#938b80;margin:-10px 0 34px}
+.compact-cross{margin-top:39px;padding-top:21px}.compact-cross strong{font-size:20px}.compact-cross a{font-size:9px}
+.chapter-practice{position:relative;margin:0;overflow:hidden;background:#0a0a0a}.chapter-practice img{display:block;width:100%;height:clamp(470px,61vw,720px);object-fit:cover;filter:contrast(1.04)}.chapter-practice::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 57%,rgba(0,0,0,.62));pointer-events:none}.chapter-practice figcaption{position:absolute;z-index:2;left:max(26px,calc((100vw - 1200px)/2));bottom:26px;color:#eee7dc;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.19em;font-size:9.5px}.form-practice img{object-position:48% center}.forge-practice img{object-position:52% center}
+.growth-bridge{padding:94px 0 101px;background:var(--paper2);border-bottom:1px solid var(--line);text-align:center}.growth-inner{max-width:820px}.growth-bridge h2{font-family:'Cormorant Garamond',serif;font-size:clamp(49px,5.8vw,78px);font-weight:300;line-height:.98;letter-spacing:-.035em;color:var(--ink);margin:15px auto 22px}.growth-bridge p:last-child{font-size:18px;max-width:700px;margin:0 auto}
+.library-secondary{opacity:.66}.library-secondary .title{font-size:24px}
+@media(max-width:900px){.plan-path{max-width:620px}.chapter-practice img{height:54svh;min-height:410px}}
+@media(max-width:680px){.chapter-rail-inner{justify-content:center;gap:54px}.plan-path{grid-template-columns:repeat(3,minmax(0,1fr));margin:29px 0 31px}.plan-path>div{padding:15px 9px 14px 0}.plan-path>div+div{padding-left:10px}.path-label{font-size:7.5px;letter-spacing:.11em}.path-value{font-size:18px}.mechanic-copy{font-size:14.5px}.compact-cross{margin-top:35px}.chapter-practice img{height:47svh;min-height:370px}.chapter-practice figcaption{left:26px;bottom:21px}.form-practice img{object-position:46% center}.forge-practice img{object-position:50% center}.growth-bridge{padding:75px 0 80px}.growth-bridge h2{font-size:53px}.growth-bridge p:last-child{font-size:17px}.library-secondary{margin-top:8px;border-top:1px dashed rgba(41,37,31,.13)}}
 </style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Speed & Form",
-  "url": "https://speedandform.com/",
-  "description": "Training where the thinking is already done. FORM holds the running week. FORGE holds the strength program.",
-  "sameAs": []
-}
-</script>
 </head>
 <body>
-<a href="#main" class="skip">Skip to content</a>
-
-<nav class="nav">
-  <div class="nav-inner">
-    <a class="wordmark" href="/">Speed &amp; Form</a>
-    <div class="nav-links">
-      <a href="/form/">FORM</a>
-      <a href="/forge-sculpt/">FORGE</a>
-      <a class="hide-sm" href="/library">Library</a>
-    </div>
-  </div>
-</nav>
-
-<main id="main">
-<!-- HERO -->
-<section class="hero">
-  <img class="contour" src="/assets/form/form-contour.webp" alt="" aria-hidden="true">
-  <div class="wrap hero-inner">
-    <p class="kick">Speed &amp; Form</p>
-    <h1>The thinking<br><em>is done.</em></h1>
-    <p>FORM holds your running week. FORGE holds your strength program. You just train.</p>
-    <p class="scroll">Choose your room ↓</p>
-  </div>
-</section>
-
-<!-- FORM DOOR -->
-<section class="door door-form">
-  <img class="contour" src="/assets/form/form-contour.webp" alt="" aria-hidden="true">
-  <div class="wrap door-inner">
-    <div>
-      <p class="num reveal">Room 01 · Running</p>
-      <h2 class="reveal d1">FORM</h2>
-      <p class="tag reveal d1">Running, sequenced.</p>
-      <p class="reveal d2">Your week is already built — every run with a job, every pace set. See what belongs today and run it.</p>
-      <a class="enter reveal d2" href="/form/" data-sf-event="form_door_entered">Enter FORM →</a>
-      <p class="reveal d2" style="margin:16px 0 0;"><a href="https://apps.apple.com/us/app/form-training/id6761313085" data-sf-event="hero_appstore_click" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--copper);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:3px;">Download on the App Store</a></p>
-    </div>
-    <div class="door-media reveal d1">
-      <div class="phone"><img src="/assets/form/form-week.jpg" width="647" height="1400" alt="FORM week view showing the shape of the training week."></div>
-    </div>
-  </div>
-</section>
-
-<div class="seam" data-seam="terrain-to-anatomy" aria-hidden="true">
-  <!-- reserved: this single line is where terrain contours become anatomical fiber in the experience pass -->
-  <svg class="seam-svg" viewBox="0 0 1440 26" preserveAspectRatio="none">
-    <defs><linearGradient id="seamGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#B0703A" stop-opacity="0"/><stop offset=".35" stop-color="#B0703A"/>
-      <stop offset=".65" stop-color="#C79A3E"/><stop offset="1" stop-color="#C79A3E" stop-opacity="0"/>
-    </linearGradient></defs>
-    <path class="seam-path" d="M0,13 C240,7 480,19 720,13 C960,7 1200,19 1440,13"/>
-  </svg>
+<nav class="nav"><div class="nav-inner"><a class="brand" href="#top">Speed &amp; Form</a><div class="nav-links"><a href="#form">FORM</a><a href="#forge">FORGE</a></div></div></nav>
+<main id="top">
+<section aria-labelledby="hero-title" class="hero">
+<img alt="" class="hero-bg" src="/assets/home/form/contour.webp"/>
+<div class="hero-wash"></div>
+<div class="wrap hero-copy">
+<p class="kick mono">Speed &amp; Form</p>
+<h1 id="hero-title">The thinking<em>is done.</em></h1>
+<p class="hero-sub">You just train.</p>
 </div>
-
-<!-- FORGE DOOR -->
-<section class="door door-forge">
-  <div class="glow" aria-hidden="true"></div>
-  <img class="anat" src="/assets/forge/anatomy-hero.webp" alt="" aria-hidden="true">
-  <div class="wrap door-inner">
-    <div>
-      <p class="num reveal">Room 02 · Physique</p>
-      <h2 class="reveal d1">FORGE</h2>
-      <p class="tag reveal d1">Physique training, decided.</p>
-      <p class="reveal d2">A complete four-phase program for men. A balanced frame — shoulders, back, glutes, core — with every session already written.</p>
-      <a class="enter reveal d2" href="/forge-sculpt/" data-sf-event="forge_door_entered">Enter FORGE →</a>
-    </div>
-    <div class="door-media reveal d1">
-      <div class="phone"><img src="/assets/forge/week-shoulder-a.jpg" width="647" height="1400" alt="FORGE Week 1 with the day's session ready."></div>
-    </div>
-  </div>
+<div class="hero-device"><img alt="FORM Week 5 showing a running week arranged across threshold, easy, interval and long-run work." src="/assets/home/form/week.webp"/></div>
 </section>
+<section class="why">
+<div class="wrap why-grid">
+<div><p class="eyebrow">Why I built them</p><h2>More information was not the answer.</h2></div>
+<div class="why-copy">
+<p>People were already collecting workouts, exercises, and pacing advice from everywhere, then trying to apply all of it at once.</p>
+<p class="lead">The advice was not always bad. It simply was not organized around their body, their goal, their schedule, or the work they had already done.</p>
+<p>That is how training becomes busy without becoming useful.</p>
+<p>I built FORM and FORGE from the systems I use with my athletes in Miami. They put the right work in the right place, so you can open the app and execute.</p>
+<p class="signature">Coach Brice · Miami</p>
+</div>
+</div>
+</section>
+<figure class="practice practice-coaching">
+<img alt="Coach Brice speaking with athletes beside a track after training in Miami." src="/assets/home/practice/coaching-track.webp"/>
+<figcaption class="practice-caption">The practice · Miami</figcaption>
+</figure>
+<section class="method"><div class="wrap method-grid"><h2>The right work.<br/>In the right order.</h2><p>More is not automatically better. Progress comes from knowing what matters now, what can wait, and where the emphasis belongs.</p></div></section>
+<section aria-labelledby="start-title" class="start">
+<div class="wrap">
+<div class="start-head">
+<p class="eyebrow">Start here</p>
+<h2 id="start-title">Start with the goal in front of you.</h2>
+<p>You are not choosing what kind of athlete you are. Just what you are training for now.</p>
+</div>
+<div class="start-grid">
+<a class="start-card start-form" data-sf-event="form_chapter_entered" href="#form">
+<div><p class="eyebrow" style="color:var(--green)">FORM · Race preparation</p><h3>I’m training for a race.</h3><p>FORM turns the goal into a clear week, sets the paces, and shows what belongs today.</p></div>
+<span class="go">See FORM →</span>
+</a>
+<a class="start-card start-forge" data-sf-event="forge_chapter_entered" href="#forge">
+<div><p class="eyebrow">FORGE · Physique</p><h3>I want to build my physique.</h3><p>FORGE gives you a complete program that puts more work where it changes your frame most.</p></div>
+<span class="go">See FORGE →</span>
+</a>
+</div>
+</div>
+</section>
+<nav aria-label="Training chapters" class="chapter-rail"><div class="wrap chapter-rail-inner"><a data-chapter="form" href="#form">FORM</a><a data-chapter="forge" href="#forge">FORGE</a></div></nav>
+<section class="product product-form" data-section="form" id="form">
+<img alt="" class="terrain" src="/assets/home/form/contour.webp"/>
+<div class="wrap product-inner">
+<div>
+<p class="eyebrow" style="color:var(--green)">FORM · Race preparation</p>
+<h2>Know what to run today.</h2>
+<p class="product-copy">FORM turns your race goal into the week in front of you. The sessions are placed, the paces are set, and today’s run is ready.</p>
+<p class="utility-copy">Built especially for the first half marathon, the next half marathon, and the runner who wants the whole build to make sense.</p>
+<div aria-label="Example FORM race preparation" class="plan-path form-path">
+<div><span class="path-label">Goal</span><span class="path-value">Half Marathon</span></div>
+<div><span class="path-label">Today</span><span class="path-value">Long Run</span></div>
+<div><span class="path-label">Build</span><span class="path-value">Week 5 of 14</span></div>
+</div>
+<div class="actions"><a class="button" data-sf-event="form_appstore_click" href="https://apps.apple.com/us/app/form-training/id6761313085">Download FORM</a><a class="text-link" href="#form-proof">See the race plan ↓</a></div>
+<div class="cross-intro compact-cross"><strong>Strength belongs in the picture too.</strong><a href="#forge">Explore FORGE ↓</a></div>
+</div>
+<div class="product-media"><div class="phone"><img alt="FORM Long Run session with the session shape, pacing and sequence ready." src="/assets/home/form/long-run.webp"/></div></div>
+</div>
+<details class="deep-dive" id="form-proof">
+<summary class="wrap">See how FORM builds toward a race</summary>
+<div class="wrap proof-strip">
+<figure class="proof-card"><div class="proof-frame"><img alt="FORM Long Run session screen." src="/assets/home/form/long-run.webp"/></div><figcaption><span class="proof-label">Today</span><span class="proof-copy">The session and paces that move the current race plan forward.</span></figcaption></figure>
+<figure class="proof-card"><div class="proof-frame"><img alt="FORM race-preparation week screen." src="/assets/home/form/week.webp"/></div><figcaption><span class="proof-label">The week</span><span class="proof-copy">Every run has a role in the build.</span></figcaption></figure>
+<figure class="proof-card"><div class="proof-frame"><img alt="FORM interval session screen." src="/assets/home/form/interval.webp"/></div><figcaption><span class="proof-label">The session</span><span class="proof-copy">Targets, repetitions and recovery are already set.</span></figcaption></figure>
+<figure class="proof-card"><div class="proof-frame"><img alt="FORM progress screen." src="/assets/home/form/progress.webp"/></div><figcaption><span class="proof-label">Progress</span><span class="proof-copy">See how the demands change as the build develops.</span></figcaption></figure>
+</div>
+</details>
+</section><figure class="chapter-practice form-practice">
+<img alt="An athlete running during a group training session in Miami." src="/assets/home/practice/running-practice.webp"/>
+<figcaption>Race preparation · In practice</figcaption>
+</figure>
 
-<!-- LIBRARY -->
+<section class="product product-forge" data-section="forge" id="forge">
+<div class="glow"></div><img alt="" class="anatomy" src="/assets/home/forge/anatomy-shoulders.webp"/>
+<div class="wrap product-inner">
+<div>
+<p class="eyebrow">FORGE · Physique</p>
+<h2>Know what to train today.</h2>
+<p class="product-copy">Breechay Sculpt is a complete four-phase physique program for men, with every session already written.</p>
+<p class="utility-copy">More work goes where it will change your frame most. The rest is developed and maintained in proportion.</p>
+<div aria-label="Example FORGE physique program" class="plan-path forge-path">
+<div><span class="path-label">Focus</span><span class="path-value">Upper frame</span></div>
+<div><span class="path-label">Today</span><span class="path-value">Shoulder A</span></div>
+<div><span class="path-label">Program</span><span class="path-value">Phase 1 of 4</span></div>
+</div>
+<p class="mechanic-copy">Open the session and begin. Your exercises, sets, reps, and previous work are already there.</p>
+<div class="actions"><a class="button" href="#forge-download">Start Week 1</a><a class="text-link" href="#forge-proof">See the program ↓</a></div>
+<div class="forge-download" id="forge-download">
+<h3>Get FORGE at launch.</h3>
+<p>Leave your email and I’ll send the App Store link when FORGE opens.</p>
+<form class="launch-form" data-netlify="true" data-sf-event-submit="forge_email_submitted" method="POST" name="forge-launch" data-sf-event-submit="forge_email_submitted"><input name="form-name" type="hidden" value="forge-launch"/><label for="forge-email" style="position:absolute;left:-9999px">Email address</label><input autocomplete="email" id="forge-email" name="email" placeholder="you@example.com" required="" type="email"/><button type="submit">Send me the link</button></form>
+<p class="form-disclosure">One launch email only. <a href="/forge-sculpt/privacy/#website-form">How this email is handled.</a></p>
+</div>
+<div class="cross-intro compact-cross"><strong>Training for a race too?</strong><a href="https://apps.apple.com/us/app/form-training/id6761313085" data-sf-event="appstore_click">FORM can hold the running week ↑</a></div>
+</div>
+<div class="product-media"><div class="phone"><img alt="FORGE Week 1 with Shoulder A ready to begin." src="/assets/home/forge/week-shoulder.webp"/></div></div>
+</div>
+<details class="deep-dive" id="forge-proof">
+<summary class="wrap">See how FORGE holds the physique program</summary>
+<div class="wrap proof-strip">
+<figure class="proof-card"><div class="proof-frame"><img alt="FORGE Week 1 screen." src="/assets/home/forge/week-shoulder.webp"/></div><figcaption><span class="proof-label">The program</span><span class="proof-copy">See what today is building and what comes next.</span></figcaption></figure>
+<figure class="proof-card"><div class="proof-frame"><img alt="FORGE active set screen." src="/assets/home/forge/session-set.webp"/></div><figcaption><span class="proof-label">The session</span><span class="proof-copy">Exercises, sets, reps and the next action stay in one view.</span></figcaption></figure>
+<figure class="proof-card"><div class="proof-frame"><img alt="FORGE rest timer screen." src="/assets/home/forge/session-rest.webp"/></div><figcaption><span class="proof-label">The work</span><span class="proof-copy">Rest runs itself while your previous set remains visible.</span></figcaption></figure>
+<figure class="proof-card"><div class="proof-frame"><img alt="FORGE training record screen." src="/assets/home/forge/record.webp"/></div><figcaption><span class="proof-label">The record</span><span class="proof-copy">The completed session is kept when the work closes.</span></figcaption></figure>
+</div>
+</details>
+</section><figure class="chapter-practice forge-practice">
+<img alt="An athlete training on a cable machine in a Miami gym." src="/assets/home/practice/strength-practice.webp"/>
+<figcaption>Physique training · In practice</figcaption>
+</figure><section class="growth-bridge">
+<div class="wrap growth-inner">
+<p class="eyebrow">When the work expands</p>
+<h2>Training can grow with you.</h2>
+<p>You may begin with a race. You may begin with your physique. Start with the work that matters now. Add more only when it belongs.</p>
+</div>
+</section>
 <section class="library">
-  <div class="wrap library-inner">
-    <div>
-      <h3 class="reveal">The Library</h3>
-      <p class="reveal d1">The thinking behind the training, for whenever you want to go deeper.</p>
-    </div>
-    <a class="reveal d1" href="/library" data-sf-event="library_entered">Read the Library →</a>
-  </div>
+<div class="wrap library-grid">
+<div>
+<p class="eyebrow">The Library</p>
+<h2>Understand more when you need to.</h2>
+<p>The apps tell you what belongs today. The Library explains why.</p>
+<a class="library-action" data-sf-event="library_entered" href="/library">Explore the Library →</a>
+</div>
+<div aria-label="Selected topics from the Library" class="library-list"><a class="library-item" href="/library"><span class="cat">Race prep</span><span class="title">How a half-marathon week fits together</span><span class="arrow">→</span></a><a class="library-item" href="/library"><span class="cat">Running</span><span class="title">Why easy days stay easy</span><span class="arrow">→</span></a><a class="library-item" href="/library"><span class="cat">Physique</span><span class="title">Why every area should not receive the same volume</span><span class="arrow">→</span></a><a class="library-item library-secondary" href="/library"><span class="cat">Training both</span><span class="title">Starting to run when you already lift</span><span class="arrow">→</span></a></div>
+</div>
 </section>
-
-<!-- PHILOSOPHY -->
-<section class="phil">
-  <div class="wrap">
-    <p class="reveal">Stop training everything at the same volume.</p>
-    <p class="sub reveal d1">Most people do too much of the wrong work and get nothing for it. A few things, done well, at the right emphasis — that's the whole method. Built from the practice in Miami. Used wherever you train.</p>
-  </div>
-</section>
-
+<section class="final"><div class="wrap"><h2>What are you training for?</h2><p>Start with what matters now.</p><div class="final-links"><a class="form-choice" data-sf-event="final_form_appstore_click" href="https://apps.apple.com/us/app/form-training/id6761313085">Train for a race</a><a class="forge-choice" href="#forge-download">Build your physique</a></div></div></section>
 </main>
-
-<footer class="footer">
-  <div class="wrap">
-    <div class="footer-top">
-      <div>
-        <div class="footer-mark">SPEED &amp; FORM</div>
-        <div class="footer-tag">The thinking is done.</div>
-      </div>
-      <div class="footer-cols">
-        <div class="footer-col"><p class="lab">Rooms</p><a href="/form/">FORM · Running</a><a href="/forge-sculpt/">FORGE · Physique</a><a href="/library">The Library</a></div>
-        <div class="footer-col"><p class="lab">FORM</p><a href="/form/#how">How the week works</a><a href="/form/#download">Get FORM</a></div>
-        <div class="footer-col"><p class="lab">FORGE</p><a href="/forge-sculpt/#program">The Program</a><a href="/forge-sculpt/#download">Get FORGE</a></div>
-      </div>
-    </div>
-    <div class="footer-bot">© <span id="yr">2026</span> Brice Ikouebe, operating as Speed &amp; Form · Miami</div>
-  </div>
-</footer>
-
+<footer class="footer"><div class="wrap"><div class="footer-top"><div class="footer-mark">Speed &amp; Form</div><div class="footer-links"><a href="#form">FORM</a><a href="#forge">FORGE</a><a href="/library">Library</a><a href="/the-field">The Field</a><a href="/form/">FORM in depth</a> · <a href="/forge-sculpt/">FORGE in depth</a> · <a href="/form/support/">Support</a></div></div><div class="footer-bottom">© 2026 Brice Ikouebe, operating as Speed &amp; Form · Miami</div></div></footer>
 <script>
 (function(){
-  var yr=document.getElementById('yr'); if(yr) yr.textContent=new Date().getFullYear();
-  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  document.body.classList.add('anim');
-  requestAnimationFrame(function(){ setTimeout(function(){ document.body.classList.add('lit'); }, 120); });
+  var links=[].slice.call(document.querySelectorAll('[data-chapter]'));
+  var sections=[].slice.call(document.querySelectorAll('[data-section]'));
   if('IntersectionObserver' in window){
-    var ro=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); ro.unobserve(e.target); } }); },{threshold:0.16, rootMargin:'0px 0px -8% 0px'});
-    document.querySelectorAll('.reveal').forEach(function(el){ ro.observe(el); });
-  } else { document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); }); }
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          links.forEach(function(link){link.setAttribute('aria-current',link.dataset.chapter===entry.target.dataset.section?'true':'false');});
+        }
+      });
+    },{rootMargin:'-34% 0px -56% 0px',threshold:0});
+    sections.forEach(function(section){io.observe(section);});
+  }
+  window.sfTrack=window.sfTrack||function(n,d){(window.sfEvents=window.sfEvents||[]).push(Object.assign({event:n,ts:Date.now()},d||{}));if(window.dataLayer)window.dataLayer.push(Object.assign({event:n},d||{}));};
+  document.addEventListener('click',function(e){var t=e.target.closest('[data-sf-event]');if(t)sfTrack(t.getAttribute('data-sf-event'),{href:t.getAttribute('href')||null});});
+  document.addEventListener('toggle',function(e){var d=e.target;if(d&&d.tagName==='DETAILS'&&d.open)sfTrack('product_proof_opened',{id:d.id||null});},true);
+  document.addEventListener('submit',function(e){var f=e.target.closest('[data-sf-event-submit]');if(f)sfTrack(f.getAttribute('data-sf-event-submit'),{});});
 })();
 </script>
 <script>
-/* Speed & Form conversion hooks — provider-agnostic. Events buffer in window.sfEvents
-   and mirror to window.dataLayer if present. Stable names; wire a provider later. */
 window.sfTrack=window.sfTrack||function(n,d){(window.sfEvents=window.sfEvents||[]).push(Object.assign({event:n,ts:Date.now()},d||{}));if(window.dataLayer)window.dataLayer.push(Object.assign({event:n},d||{}));};
-document.addEventListener('click',function(e){var t=e.target.closest('[data-sf-event]');if(t)sfTrack(t.getAttribute('data-sf-event'),{href:t.getAttribute('href')||null});});
-document.addEventListener('toggle',function(e){var d=e.target;if(d&&d.tagName==='DETAILS'&&d.open&&d.closest&&d.closest('.faq'))sfTrack('faq_opened',{q:(d.querySelector('summary')||{textContent:''}).textContent.trim()});},true);
+document.addEventListener('click',function(e){var x=e.target.closest('[data-sf-event]');if(x)sfTrack(x.getAttribute('data-sf-event'),{href:x.getAttribute('href')||null});});
 document.addEventListener('submit',function(e){var f=e.target.closest('[data-sf-event-submit]');if(f)sfTrack(f.getAttribute('data-sf-event-submit'),{});});
 </script>
 </body>
