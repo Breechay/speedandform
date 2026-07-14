@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Use — FORGE</title>
+<link rel="canonical" href="https://speedandform.com/forge-sculpt/terms/">
+<meta name="robots" content="noindex, follow">
+<style>
+@font-face{font-family:'Cormorant Garamond';font-weight:300;font-display:swap;src:url('/assets/site/fonts/cormorant-garamond-latin-300-normal.woff2') format('woff2')}
+@font-face{font-family:'Cormorant Garamond';font-weight:400;font-display:swap;src:url('/assets/site/fonts/cormorant-garamond-latin-400-normal.woff2') format('woff2')}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:400;font-display:swap;src:url('/assets/site/fonts/cormorant-garamond-latin-400-italic.woff2') format('woff2')}
+@font-face{font-family:'Jost';font-weight:300;font-display:swap;src:url('/assets/site/fonts/jost-latin-300-normal.woff2') format('woff2')}
+@font-face{font-family:'Jost';font-weight:400;font-display:swap;src:url('/assets/site/fonts/jost-latin-400-normal.woff2') format('woff2')}
+@font-face{font-family:'Jost';font-weight:500;font-display:swap;src:url('/assets/site/fonts/jost-latin-500-normal.woff2') format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-weight:400;font-display:swap;src:url('/assets/site/fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-weight:500;font-display:swap;src:url('/assets/site/fonts/jetbrains-mono-latin-500-normal.woff2') format('woff2')}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#050608;--gold:#C79A3E;--ember:#B8471E;--gold-line:rgba(199,154,62,.28);
+--text:#EAE4D8;--body:#C4BDB0;--muted:#8B8477;--faint:#5C554B;
+--line:rgba(234,228,216,.09);--line-2:rgba(234,228,216,.055)}
+body{background:var(--black);color:var(--body);font-family:'Jost',sans-serif;font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.nav{position:sticky;top:0;z-index:100;height:64px;background:rgba(5,6,8,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-2)}
+.nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;max-width:1240px;margin:0 auto;padding:0 40px}
+.lockup{display:inline-flex;align-items:center;gap:11px;text-decoration:none}
+.lockup .anvil{width:22px;height:auto;opacity:.9}
+.lockup .txt{display:inline-flex;align-items:baseline;gap:8px}
+.lockup .house{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.26em;color:var(--muted);text-transform:uppercase}
+.lockup .sep{color:var(--faint)}
+.lockup .prod{font-size:14px;font-weight:500;letter-spacing:.34em;color:var(--text)}
+.back{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid var(--gold-line);border-radius:999px;padding:8px 16px}
+.back:hover{background:var(--gold);color:#000}
+.legal{padding:72px 0 96px}
+.doc{max-width:820px;margin:0 auto;padding:0 40px}
+.legal-head{margin-bottom:44px}
+.legal-head h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(32px,4vw,46px);color:var(--text);margin-top:14px}
+.updated{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--muted);margin-top:12px}
+.legal-lede{font-size:16px;color:var(--body);margin-top:16px;line-height:1.7}
+.callout{border:1px solid var(--gold-line);border-radius:14px;padding:22px 24px;margin-bottom:36px;background:linear-gradient(180deg,rgba(199,154,62,.05),transparent)}
+.callout p{font-size:15px;color:var(--body);line-height:1.7}
+.item{display:grid;grid-template-columns:52px 1fr;gap:20px;padding:26px 0;border-top:1px solid var(--line-2)}
+.item-no{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold);padding-top:6px}
+.item-copy h3{font-family:'Jost';font-weight:500;font-size:16px;color:var(--text);margin-bottom:10px}
+.item-copy p{font-size:15px;color:var(--body);line-height:1.72;margin-bottom:10px}
+.item-copy p:last-child{margin-bottom:0}
+.item-copy a{color:var(--gold);text-decoration:underline;text-underline-offset:2px}
+.ph{color:var(--ember);font-family:'JetBrains Mono',monospace;font-size:12.5px;background:rgba(184,71,30,.08);padding:1px 5px;border-radius:3px}
+.contact-card{border:1px solid var(--gold-line);border-radius:14px;padding:26px;margin-bottom:32px}
+.contact-card .lab{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.contact-card .email{display:block;font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--gold);text-decoration:none;margin:10px 0 6px}
+.contact-card .sla{font-size:13px;color:var(--muted)}
+.srow{padding:22px 0;border-top:1px solid var(--line-2)}
+.srow h3{font-family:'Jost';font-weight:500;font-size:16px;color:var(--text);margin-bottom:8px}
+.srow p{font-size:15px;color:var(--body);line-height:1.7}
+.srow a{color:var(--gold)}
+.legal-head h2{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(32px,4vw,46px);color:var(--text);margin-top:14px}
+.footer{border-top:1px solid var(--line-2);padding:40px 0;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:var(--faint)}
+.footer a{color:var(--muted);text-decoration:none;margin:0 10px}
+.footer a:hover{color:var(--gold)}
+@media (max-width:640px){.doc{padding:0 22px}.nav-inner{padding:0 22px}.item{grid-template-columns:40px 1fr;gap:14px}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-inner">
+  <a class="lockup" href="/forge-sculpt/"><img class="anvil" src="/assets/forge/anvil-mark.webp" width="22" alt=""><span class="txt"><span class="house">Speed &amp; Form</span><span class="sep">/</span><span class="prod">FORGE</span></span></a>
+  <a class="back" href="/forge-sculpt/">Back to FORGE</a>
+</div></nav>
+<main class="legal"><div class="doc">
+<div class="legal-head"><p class="eyebrow">Legal</p><h1>Terms of Use</h1><p class="updated">Effective date: <span class="ph">[PUBLICATION DATE]</span></p><p class="legal-lede">These terms govern your use of the FORGE app and the Breechay Sculpt program.</p></div>
+
+    <div class="item"><p class="item-no">01</p><div class="item-copy"><h3>Agreement</h3><p>By downloading or using FORGE you agree to these terms. If you do not agree, do not use the app. FORGE is provided by Brice Ikouebe, operating as Speed &amp; Form.</p></div></div>
+
+    <div class="item"><p class="item-no">02</p><div class="item-copy"><h3>Eligibility</h3><p>FORGE is not intended for children under 13. If you are under the age of majority where you live, you may use FORGE only with the involvement and permission of a parent or legal guardian.</p></div></div>
+
+    <div class="item"><p class="item-no">03</p><div class="item-copy"><h3>Your use</h3><p>FORGE is licensed to you for personal, non-commercial use. You may not copy, resell, redistribute, or reverse engineer the app or its programming. You are responsible for keeping your device secure.</p></div></div>
+
+    <div class="item"><p class="item-no">04</p><div class="item-copy"><h3>Membership and billing</h3><p>Week 1 of Breechay Sculpt is free. Continued access requires a FORGE membership, sold as an Apple in-app purchase. The available subscription period and price are shown in FORGE before purchase and may vary by country or region.</p><p><strong>Billing through Apple.</strong> All charges are processed by Apple through your Apple ID.</p><p><strong>Auto-renewal.</strong> Subscriptions renew automatically unless cancelled at least 24 hours before the end of the current period. Your Apple ID is charged for renewal within the 24 hours before the period ends.</p><p><strong>Cancellation and restore.</strong> Manage or cancel anytime in Settings, then your Apple ID, then Subscriptions. You can restore an active purchase from the membership screen in FORGE.</p></div></div>
+
+    <div class="item"><p class="item-no">05</p><div class="item-copy"><h3>Intellectual property</h3><p>FORGE, Breechay Sculpt, and all associated programming, text, and design are owned by Brice Ikouebe, operating as Speed &amp; Form, and are protected by applicable law.</p></div></div>
+
+    <div class="item"><p class="item-no">06</p><div class="item-copy"><h3>Availability and changes</h3><p>We may update, change, or discontinue features of FORGE at any time. We aim for reliable availability but do not guarantee uninterrupted service.</p></div></div>
+
+    <div class="item"><p class="item-no">07</p><div class="item-copy"><h3>Health and fitness disclaimer</h3><p>FORGE provides general fitness and educational information. It is not medical advice and does not diagnose, treat, prevent, or cure any condition. Consider your own health and consult an appropriate professional before starting or changing a training program.</p><p>You are responsible for selecting appropriate weights and performing exercises safely. Physical exercise carries inherent risk of injury. Stop and seek help if you feel unwell.</p></div></div>
+
+    <div class="item"><p class="item-no">08</p><div class="item-copy"><h3>Disclaimer of warranties</h3><p>FORGE is provided "as is" and "as available," without warranties of any kind to the extent permitted by law.</p></div></div>
+
+    <div class="item"><p class="item-no">09</p><div class="item-copy"><h3>Limitation of liability</h3><p>To the extent permitted by law, Brice Ikouebe, operating as Speed &amp; Form, is not liable for indirect, incidental, or consequential damages arising from your use of FORGE.</p></div></div>
+
+    <div class="item"><p class="item-no">10</p><div class="item-copy"><h3>Termination</h3><p>You may stop using FORGE at any time. We may suspend or terminate access if these terms are violated. Provisions that by their nature should survive termination will survive.</p></div></div>
+
+    <div class="item"><p class="item-no">11</p><div class="item-copy"><h3>Governing law</h3><p>These terms are governed by the laws of the State of Florida, United States, without regard to conflict-of-law rules.</p></div></div>
+
+    <div class="item"><p class="item-no">12</p><div class="item-copy"><h3>Apple standard EULA</h3><p>Unless you have a separate agreement with us, your use of FORGE is also subject to Apple's standard Licensed Application End User License Agreement, available at <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">apple.com/legal/internet-services/itunes/dev/stdeula</a>.</p></div></div>
+
+    <div class="item"><p class="item-no">13</p><div class="item-copy"><h3>Contact</h3><p>Questions about these terms: <a href="mailto:support@speedandform.com">support@speedandform.com</a>.</p></div></div>
+</div></main>
+<footer class="footer">
+  <a href="/forge-sculpt/support/">Support</a><a href="/forge-sculpt/privacy/">Privacy</a><a href="/forge-sculpt/terms/">Terms</a><a href="/">Speed &amp; Form</a>
+  <div style="margin-top:14px;">© <span id="yr">2026</span> Brice Ikouebe, operating as Speed &amp; Form</div>
+</footer>
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+</body></html>

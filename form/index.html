@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FORM — Running, sequenced.</title>
+<meta name="description" content="FORM builds your running week for you — every run with a job, every pace set. See what belongs today, run it, and watch the week add up.">
+<link rel="canonical" href="https://speedandform.com/form/">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/form/form-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="FORM — Running, sequenced.">
+<meta property="og:description" content="Your running week, already built — every run with a job, every pace set.">
+<meta property="og:url" content="https://speedandform.com/form/">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>document.documentElement.classList.remove('no-js');</script>
+<style>
+@font-face { font-family:'Cormorant Garamond'; font-style:normal; font-weight:300; font-display:swap; src:url('/assets/site/fonts/cormorant-garamond-latin-300-normal.woff2') format('woff2'); }
+@font-face { font-family:'Cormorant Garamond'; font-style:normal; font-weight:400; font-display:swap; src:url('/assets/site/fonts/cormorant-garamond-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family:'Cormorant Garamond'; font-style:italic; font-weight:400; font-display:swap; src:url('/assets/site/fonts/cormorant-garamond-latin-400-italic.woff2') format('woff2'); }
+@font-face { font-family:'Cormorant Garamond'; font-style:normal; font-weight:500; font-display:swap; src:url('/assets/site/fonts/cormorant-garamond-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family:'Jost'; font-style:normal; font-weight:300; font-display:swap; src:url('/assets/site/fonts/jost-latin-300-normal.woff2') format('woff2'); }
+@font-face { font-family:'Jost'; font-style:normal; font-weight:400; font-display:swap; src:url('/assets/site/fonts/jost-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family:'Jost'; font-style:normal; font-weight:500; font-display:swap; src:url('/assets/site/fonts/jost-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family:'JetBrains Mono'; font-style:normal; font-weight:400; font-display:swap; src:url('/assets/site/fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family:'JetBrains Mono'; font-style:normal; font-weight:500; font-display:swap; src:url('/assets/site/fonts/jetbrains-mono-latin-500-normal.woff2') format('woff2'); }
+
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+
+/* ---- motion tokens (shared architecture; all transitions derive from these) ---- */
+:root{ --m-dur-1:.35s; --m-dur-2:.6s; --m-dur-3:.9s; --m-ease:cubic-bezier(.2,.7,.2,1);
+       --m-rise:16px; --m-fade:.55s; --m-scale:.985; }
+
+/*tokens*/
+:root{
+  --cream:#EFE9DF; --paper:#F6F2EA; --paper-2:#FBF8F2;
+  --ink:#2A2620; --body:#5B554A; --muted:#8E877A; --faint:#B3AB9C;
+  --copper:#B0703A; --slate:#3D5875; --green:#2E5938; --plum:#6E4A6B; --rust:#B8402E;
+  --tan:#C2A079;
+  --line:rgba(42,38,32,0.10); --line-2:rgba(42,38,32,0.055); --rule:rgba(176,112,58,0.30);
+  --nav-h:64px;
+}
+html{ -webkit-text-size-adjust:100%; }
+@media (prefers-reduced-motion: no-preference){ html{ scroll-behavior:smooth; } }
+body{ background:var(--cream); color:var(--body); font-family:'Jost',sans-serif; font-weight:300; line-height:1.7; -webkit-font-smoothing:antialiased; }
+.hero-stage,.recog,.scene-media,.stage-media,.inst,.entry{ overflow:hidden; }
+
+.serif{ font-family:'Cormorant Garamond',serif; font-weight:300; }
+.eyebrow{ font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:500; letter-spacing:0.28em; text-transform:uppercase; color:var(--copper); }
+.wrap{ width:100%; max-width:1240px; margin:0 auto; padding:0 40px; }
+.wrap-narrow{ width:100%; max-width:780px; margin:0 auto; padding:0 40px; }
+a{ color:inherit; }
+a:focus-visible, button:focus-visible, summary:focus-visible{ outline:2px solid var(--copper); outline-offset:3px; border-radius:2px; }
+.skip{ position:absolute; left:-999px; top:0; background:var(--ink); color:var(--cream); padding:10px 16px; z-index:200; }
+.skip:focus{ left:0; }
+@media (max-width:640px){ .wrap,.wrap-narrow{ padding:0 26px; } }
+
+/* nav */
+.nav{ position:sticky; top:0; z-index:100; height:var(--nav-h); background:rgba(239,233,223,0.78); backdrop-filter:saturate(140%) blur(14px); -webkit-backdrop-filter:saturate(140%) blur(14px); border-bottom:1px solid var(--line-2); }
+.nav-inner{ height:100%; display:flex; align-items:center; justify-content:space-between; max-width:1240px; margin:0 auto; padding:0 40px; }
+.lockup{ display:inline-flex; align-items:baseline; gap:8px; text-decoration:none; }
+.lockup .house{ font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.26em; color:var(--muted); text-transform:uppercase; }
+.lockup .sep{ color:var(--faint); }
+.lockup .prod{ font-size:14px; font-weight:500; letter-spacing:0.34em; color:var(--ink); }
+.lockup:hover .house{ color:var(--copper); }
+.nav-links{ display:flex; align-items:center; gap:28px; }
+.nav-links a{ font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
+.nav-links a:hover{ color:var(--ink); }
+.nav-cta{ color:var(--copper) !important; border:1px solid var(--rule); border-radius:999px; padding:8px 16px; transition:.2s; }
+.nav-cta:hover{ background:var(--ink); color:var(--cream) !important; border-color:var(--ink); }
+.menu{ display:none; position:relative; }
+.menu summary{ list-style:none; cursor:pointer; padding:8px 14px; border:1px solid var(--rule); border-radius:999px; color:var(--copper); font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; }
+.menu summary::-webkit-details-marker{ display:none; }
+.menu-panel{ position:absolute; right:0; top:44px; width:230px; background:var(--paper-2); border:1px solid var(--line); border-radius:12px; padding:8px; box-shadow:0 30px 60px -24px rgba(42,38,32,0.28); z-index:120; }
+.menu-panel a{ display:block; padding:11px 12px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--body); text-decoration:none; border-radius:7px; }
+.menu-panel a:hover{ background:var(--cream); color:var(--copper); }
+.menu-panel .rule{ height:1px; background:var(--line); margin:6px 4px; }
+@media (max-width:900px){ .nav-links{ display:none; } .menu{ display:block; } }
+
+/* buttons */
+.btn{ display:inline-flex; align-items:center; gap:9px; font-family:'Jost',sans-serif; font-weight:500; font-size:13px; letter-spacing:0.05em; text-decoration:none; cursor:pointer; padding:15px 28px; border-radius:999px; transition:transform .15s, background .2s, border-color .2s, color .2s; }
+.btn-solid{ background:var(--ink); color:var(--cream); border:1px solid var(--ink); }
+.btn-solid:hover{ background:#3a352c; }
+.btn-soon{ background:transparent; color:var(--copper); border:1px dashed var(--rule); cursor:default; font-weight:400; }
+.btn-soon .dot{ width:6px; height:6px; border-radius:50%; background:var(--copper); display:inline-block; }
+.btn-ghost{ color:var(--copper); border-bottom:1px solid var(--rule); border-radius:0; padding:15px 6px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; }
+.btn-ghost:hover{ border-bottom-color:var(--copper); }
+@media (prefers-reduced-motion: no-preference){ .btn-solid:hover{ transform:translateY(-1px); } }
+
+/* light phone */
+.phone{ position:relative; border-radius:40px; padding:7px; background:linear-gradient(160deg,#fbf9f4,#e6ded0 70%); box-shadow:0 50px 100px -44px rgba(42,38,32,0.4), 0 0 0 1px rgba(42,38,32,0.06); line-height:0; }
+.phone::after{ content:""; position:absolute; top:16px; left:50%; transform:translateX(-50%); width:34%; height:5px; border-radius:99px; background:rgba(42,38,32,0.14); z-index:2; }
+.phone img{ display:block; width:100%; height:auto; border-radius:33px; }
+
+/* contour texture */
+.contour{ position:absolute; pointer-events:none; opacity:.5; mix-blend-mode:multiply; z-index:0; }
+
+/* hero */
+.hero{ position:relative; padding:96px 0 108px; overflow:hidden; }
+.hero .contour{ top:-8%; right:-6%; width:min(760px,64vw); opacity:.45; }
+.hero-grid{ position:relative; z-index:2; display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center; }
+.hero h1{ font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(48px,7vw,86px); line-height:1.0; color:var(--ink); margin:22px 0 26px; }
+.hero h1 em{ font-style:italic; color:var(--copper); }
+.hero-lede{ font-size:17.5px; color:var(--body); max-width:46ch; margin-bottom:36px; }
+.hero-actions{ display:flex; align-items:center; gap:22px; flex-wrap:wrap; }
+.hero-note{ margin-top:26px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); }
+.hero-note .b{ color:var(--copper); }
+.hero-stage{ position:relative; display:flex; justify-content:center; }
+.hero-phone{ position:relative; z-index:3; width:288px; }
+@media (max-width:900px){
+  .hero{ padding:48px 0 60px; }
+  .hero-grid{ grid-template-columns:1fr; gap:26px; }
+  .hero-stage{ order:-1; } .hero-phone{ width:230px; }
+  .hero .contour{ width:120%; right:-30%; opacity:.4; }
+}
+
+/* sections */
+section{ scroll-margin-top:calc(var(--nav-h) + 12px); }
+.band{ padding:112px 0; border-top:1px solid var(--line-2); position:relative; }
+.sec-head{ max-width:660px; margin-bottom:60px; }
+.sec-head h2{ font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(34px,4.8vw,56px); line-height:1.05; color:var(--ink); margin-top:16px; }
+.sec-lede{ font-size:17px; color:var(--body); margin-top:20px; max-width:58ch; }
+
+body.anim .reveal{ transform:translateY(var(--m-rise)); transition:transform var(--m-dur-3) var(--m-ease); }
+body.anim .reveal.in{ transform:none; }
+body.anim .reveal.d1{ transition-delay:.08s;} body.anim .reveal.d2{ transition-delay:.16s;}
+body.anim .reveal.d3{ transition-delay:.24s;} body.anim .reveal.d4{ transition-delay:.32s;}
+
+/* recognition */
+.recog{ position:relative; }
+.recog .contour{ right:-8%; bottom:-16%; width:min(440px,44vw); opacity:.4; -webkit-mask-image:linear-gradient(to top,transparent,#000 50%); mask-image:linear-gradient(to top,transparent,#000 50%); }
+.recog-lead{ font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(36px,5.4vw,66px); line-height:1.06; color:var(--ink); max-width:15ch; }
+.recog-list{ list-style:none; margin:44px 0 0; max-width:40ch; position:relative; z-index:2; }
+.recog-list li{ font-family:'Cormorant Garamond',serif; font-size:clamp(22px,2.6vw,30px); line-height:1.5; color:var(--body); padding:8px 0 8px 30px; position:relative; }
+.recog-list li::before{ content:""; position:absolute; left:0; top:1em; width:14px; height:2px; }
+.recog-list li:nth-child(1)::before{ background:var(--copper);} .recog-list li:nth-child(2)::before{ background:var(--slate);} .recog-list li:nth-child(3)::before{ background:var(--green);}
+.recog-list li em{ color:var(--ink); font-style:italic; }
+
+/* the loop (pinned) */
+.loop{ position:relative; border-top:1px solid var(--line-2); }
+.loop-head{ padding:96px 0 0; }
+.loop-sticky{ position:relative; }
+.loop-stage{ display:none; }
+.scene{ display:grid; grid-template-columns:1fr 380px; gap:64px; align-items:center; padding:64px 0; border-bottom:1px solid var(--line-2); }
+.scene:last-child{ border-bottom:0; }
+.scene-copy .idx{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.24em; text-transform:uppercase; }
+.scene-copy h3{ font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(30px,3.8vw,46px); line-height:1.08; color:var(--ink); margin:16px 0 20px; }
+.scene-copy p{ font-size:17px; color:var(--body); max-width:46ch; }
+.scene-media{ position:relative; display:flex; justify-content:center; }
+.scene-media .phone{ width:300px; }
+.i-copper{ color:var(--copper);} .i-slate{ color:var(--slate);} .i-green{ color:var(--green);} .i-plum{ color:var(--plum);}
+@media (max-width:900px){
+  .scene{ grid-template-columns:1fr; gap:26px; padding:52px 0; }
+  .scene-media{ order:-1; } .scene-media .phone{ width:230px; }
+}
+@media (min-width:901px){
+  body.anim .loop.pinned .loop-sticky{ position:sticky; top:0; height:100vh; display:flex; align-items:center; }
+  body.anim .loop.pinned .loop-stack{ display:none; }
+  body.anim .loop.pinned .loop-stage{ display:grid; grid-template-columns:1fr 380px; gap:64px; align-items:center; width:100%; max-width:1240px; margin:0 auto; padding:0 40px 0 168px; }
+  body.anim .loop.pinned .stage-copy{ position:relative; min-height:240px; }
+  body.anim .loop.pinned .stage-scene{ position:absolute; inset:0; opacity:0; transform:translateY(14px); transition:opacity var(--m-fade) var(--m-ease), transform var(--m-fade) var(--m-ease); pointer-events:none; }
+  body.anim .loop.pinned .stage-scene.on{ opacity:1; transform:none; }
+  body.anim .loop.pinned .stage-media{ position:relative; height:640px; }
+  body.anim .loop.pinned .stage-phone{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:320px; z-index:2; }
+  body.anim .loop.pinned .stage-shot{ position:absolute; inset:0; opacity:0; transition:opacity var(--m-fade) var(--m-ease); }
+  body.anim .loop.pinned .stage-shot.on{ opacity:1; }
+  body.anim .loop.pinned .loop-rail{ position:absolute; left:40px; top:0; height:100%; display:flex; flex-direction:column; justify-content:center; z-index:5; }
+  body.anim .loop.pinned .loop-rail .tick{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.2em; color:var(--faint); padding:9px 0 9px 20px; position:relative; transition:color .3s; }
+  body.anim .loop.pinned .loop-rail .tick::before{ content:""; position:absolute; left:0; top:50%; width:9px; height:9px; border:1px solid var(--faint); border-radius:50%; transform:translateY(-50%); transition:.3s; }
+  body.anim .loop.pinned .loop-rail .tick.on{ color:var(--copper); }
+  body.anim .loop.pinned .loop-rail .tick.on::before{ background:var(--copper); border-color:var(--copper); }
+}
+
+
+/* ---- FORM demo region (data-driven; fixtures in FORM_WEEK below) ---- */
+.demo{ position:relative; }
+.demo .demo-field{ position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.35;
+  background:url('/assets/form/form-contour.webp') right -80px top -120px / 640px auto no-repeat; mix-blend-mode:multiply; }
+.demo-shell{ position:relative; z-index:2; }
+.demo-tabs{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:28px; }
+.demo-tab{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  padding:10px 16px; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--muted);
+  cursor:pointer; transition:color var(--m-dur-1) var(--m-ease), border-color var(--m-dur-1) var(--m-ease), background var(--m-dur-1) var(--m-ease); }
+.demo-tab[aria-selected="true"]{ color:var(--ink); border-color:currentColor; }
+.demo-tab.t-threshold[aria-selected="true"]{ color:var(--copper);} .demo-tab.t-easy[aria-selected="true"]{ color:var(--slate);}
+.demo-tab.t-interval[aria-selected="true"]{ color:var(--plum);} .demo-tab.t-longrun[aria-selected="true"]{ color:var(--green);}
+.demo-tab.t-progress[aria-selected="true"]{ color:var(--copper);}
+html.no-js .demo-tabs{ display:none; }
+.demo-stage{ display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:start; }
+.demo-card{ background:var(--paper-2); border:1px solid var(--line-2); border-radius:20px; padding:34px 36px;
+  transition:opacity var(--m-dur-1) var(--m-ease); }
+.demo-card.swap{ opacity:0; }
+.demo-card .d-day{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.22em; text-transform:uppercase; }
+.demo-card .d-name{ font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(28px,3.4vw,42px); color:var(--ink); margin:10px 0 4px; }
+.demo-card .d-range{ font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--body); }
+.demo-card .d-note{ font-size:15.5px; color:var(--body); margin:16px 0 20px; max-width:44ch; }
+.demo-card .d-shape{ list-style:none; border-top:1px solid var(--line-2); }
+.demo-card .d-shape li{ display:flex; justify-content:space-between; gap:20px; padding:11px 0; border-bottom:1px solid var(--line-2);
+  font-size:14.5px; color:var(--body); }
+.demo-card .d-shape li b{ font-weight:500; color:var(--ink); font-family:'Cormorant Garamond',serif; font-size:18px; }
+.demo-card .d-wasnow{ list-style:none; border-top:1px solid var(--line-2); }
+.demo-card .d-wasnow li{ padding:14px 0; border-bottom:1px solid var(--line-2); }
+.demo-card .d-wasnow .w{ font-size:13.5px; color:var(--muted); }
+.demo-card .d-wasnow .n{ font-family:'Cormorant Garamond',serif; font-size:22px; color:var(--ink); margin-top:2px; }
+.demo-card .d-interp{ font-family:'Cormorant Garamond',serif; font-style:italic; font-size:20px; color:var(--body); margin-top:18px; }
+.demo-shift{ background:transparent; border:1px solid var(--rule); border-radius:20px; padding:28px 30px; }
+.demo-shift .lab{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--copper); margin-bottom:16px; }
+.demo-shift .row{ padding:12px 0; border-top:1px solid var(--line-2); }
+.demo-shift .row:first-of-type{ border-top:0; padding-top:0; }
+.demo-shift .was{ font-size:13px; color:var(--muted); }
+.demo-shift .now{ font-family:'Cormorant Garamond',serif; font-size:19px; color:var(--ink); }
+.demo-shift .dot{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:8px; vertical-align:1px; }
+.demo-note{ margin-top:22px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--faint); }
+.demo-cta{ margin-top:26px; }
+@media (max-width:900px){ .demo-stage{ grid-template-columns:1fr; } .demo-card{ padding:26px 24px; } .demo-shift{ padding:24px; } }
+
+.demo-change{ margin-top:24px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--copper); background:none; border:none; border-bottom:1px solid var(--rule); padding:0 2px 8px; cursor:pointer; }
+.demo-change:hover{ border-bottom-color:var(--copper); }
+html.no-js .demo-change{ display:none; }
+/* five instruments */
+.inst{ position:relative; }
+.inst-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:22px; margin-top:8px; }
+.instc{ padding:26px 22px; border-top:2px solid; background:linear-gradient(180deg,var(--paper),transparent); }
+.instc .nm{ font-family:'Cormorant Garamond',serif; font-size:26px; color:var(--ink); }
+.instc .ds{ font-size:14px; color:var(--muted); margin-top:8px; line-height:1.6; }
+.instc.c1{ border-color:var(--copper);} .instc.c2{ border-color:var(--slate);} .instc.c3{ border-color:var(--plum);} .instc.c4{ border-color:var(--green);} .instc.c5{ border-color:var(--rust);}
+@media (max-width:900px){ .inst-grid{ grid-template-columns:1fr 1fr; } }
+@media (max-width:520px){ .inst-grid{ grid-template-columns:1fr; } }
+
+/* athlete evidence */
+.ath{ display:grid; grid-template-columns:360px 1fr; gap:64px; align-items:center; }
+.ath-media{ display:flex; gap:20px; justify-content:center; }
+.ath-media .phone{ width:230px; }
+.ath-media .phone:nth-child(2){ margin-top:44px; }
+.ath h2{ font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(30px,4vw,50px); line-height:1.06; color:var(--ink); }
+.ath p{ font-size:17px; color:var(--body); margin-top:20px; max-width:46ch; }
+@media (max-width:900px){ .ath{ grid-template-columns:1fr; gap:32px; } .ath-media{ order:-1; gap:14px; } .ath-media .phone{ width:150px; } .ath-media .phone:nth-child(2){ margin-top:26px; } }
+
+/* fit */
+.fit{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
+.fit h2{ font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(30px,4vw,48px); line-height:1.08; color:var(--ink); }
+.fit ul{ list-style:none; }
+.fit li{ font-size:16.5px; color:var(--body); padding:12px 0 12px 26px; border-bottom:1px solid var(--line-2); position:relative; }
+.fit li::before{ content:""; position:absolute; left:0; top:1.35em; width:12px; height:2px; background:var(--copper); }
+.fit .disq{ margin-top:26px; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:20px; color:var(--muted); }
+@media (max-width:820px){ .fit{ grid-template-columns:1fr; gap:28px; } }
+
+/* entry */
+.entry{ position:relative; text-align:center; }
+.entry .contour{ left:50%; top:50%; transform:translate(-50%,-50%); width:min(700px,90vw); opacity:.3; }
+.entry-inner{ position:relative; z-index:2; }
+.entry h2{ font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(36px,5vw,58px); color:var(--ink); }
+.entry .sec-lede{ margin:22px auto 34px; }
+.price-note{ margin-top:24px; font-size:14px; color:var(--muted); }
+.apple-note{ margin-top:8px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); }
+
+/* faq */
+.faq{ max-width:820px; }
+.faq details{ border-bottom:1px solid var(--line-2); }
+.faq summary{ list-style:none; cursor:pointer; padding:24px 0; display:flex; align-items:center; justify-content:space-between; gap:20px; font-family:'Cormorant Garamond',serif; font-size:24px; color:var(--ink); }
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary .pl{ color:var(--copper); font-family:'Jost'; font-weight:300; font-size:26px; transition:transform .25s; }
+.faq details[open] summary .pl{ transform:rotate(45deg); }
+.faq details p{ padding:0 0 26px; font-size:16px; color:var(--body); max-width:64ch; }
+
+/* final */
+.door{ position:relative; padding:150px 0; text-align:center; overflow:hidden; border-top:1px solid var(--line-2); }
+.door .contour{ left:50%; top:50%; transform:translate(-50%,-46%); width:min(720px,94vw); opacity:.35; -webkit-mask-image:radial-gradient(closest-side,#000 45%,transparent 80%); mask-image:radial-gradient(closest-side,#000 45%,transparent 80%); }
+.door-inner{ position:relative; z-index:2; }
+.door h2{ font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(38px,6vw,72px); line-height:1.02; color:var(--ink); }
+.door p{ font-size:19px; color:var(--body); margin:20px 0 40px; }
+
+/* mobile cta */
+.mcta{ position:fixed; left:0; right:0; bottom:0; z-index:90; display:none; align-items:center; justify-content:space-between; gap:14px; padding:12px 20px calc(12px + env(safe-area-inset-bottom)); background:rgba(246,242,234,0.94); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-top:1px solid var(--rule); transform:translateY(120%); transition:transform .4s ease; }
+.mcta.show{ transform:none; }
+.mcta .lab{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--body); }
+.mcta .lab b{ color:var(--copper); font-weight:500; }
+.mcta a{ font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--copper); text-decoration:none; border:1px solid var(--rule); border-radius:999px; padding:9px 15px; white-space:nowrap; }
+@media (max-width:900px){ .mcta{ display:flex; } }
+
+/* legal */
+.legal{ padding:96px 0; border-top:1px solid var(--line-2); }
+.doc{ max-width:820px; margin:0 auto; padding:0 40px; }
+.legal-head{ margin-bottom:40px; }
+.legal-head h2{ font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(32px,4vw,46px); color:var(--ink); margin-top:12px; }
+.legal-lede{ font-size:16px; color:var(--body); margin-top:16px; }
+.callout{ border:1px solid var(--rule); border-radius:14px; padding:22px 24px; margin-bottom:20px; background:linear-gradient(180deg,rgba(176,112,58,0.05),transparent); }
+.callout p{ font-size:15px; color:var(--body); }
+.contact-card{ border:1px solid var(--rule); border-radius:14px; padding:26px; margin-bottom:20px; }
+.contact-card .lab{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); }
+.contact-card .email{ display:block; font-family:'Cormorant Garamond',serif; font-size:26px; color:var(--copper); text-decoration:none; margin:10px 0 6px; }
+.contact-card .sla{ font-size:13px; color:var(--muted); }
+.srow{ padding:22px 0; border-top:1px solid var(--line-2); }
+.srow h3{ font-family:'Jost'; font-weight:500; font-size:16px; color:var(--ink); margin-bottom:8px; }
+.srow p{ font-size:15px; color:var(--body); }
+.srow a{ color:var(--copper); }
+.ph{ color:var(--rust); font-family:'JetBrains Mono',monospace; font-size:12.5px; background:rgba(184,64,46,0.08); padding:1px 5px; border-radius:3px; }
+
+/* footer */
+.footer{ border-top:1px solid var(--line-2); padding:70px 0 46px; }
+.footer-top{ display:flex; justify-content:space-between; gap:48px; flex-wrap:wrap; }
+.footer-mark{ font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:.28em; color:var(--ink); }
+.footer-tag{ font-family:'Cormorant Garamond',serif; font-style:italic; font-size:18px; color:var(--muted); margin-top:12px; max-width:32ch; }
+.footer-cols{ display:flex; gap:56px; flex-wrap:wrap; }
+.footer-col .lab{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--faint); margin-bottom:14px; }
+.footer-col a{ display:block; font-size:14px; color:var(--body); text-decoration:none; padding:5px 0; }
+.footer-col a:hover{ color:var(--copper); }
+.footer-bot{ display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-top:52px; padding-top:26px; border-top:1px solid var(--line-2); font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.08em; color:var(--faint); }
+
+/* hero intro motion */
+body.anim .hero-copy > *{ transform:translateY(12px); transition:transform .8s ease; }
+body.anim.lit .hero-copy > *{ transform:none; }
+body.anim.lit .hero-copy > *:nth-child(2){ transition-delay:.08s;} body.anim.lit .hero-copy > *:nth-child(3){ transition-delay:.16s;}
+body.anim.lit .hero-copy > *:nth-child(4){ transition-delay:.24s;} body.anim.lit .hero-copy > *:nth-child(5){ transition-delay:.32s;}
+body.anim .hero-phone{ transform:translateY(20px); transition:transform 1s ease .2s; }
+body.anim.lit .hero-phone{ transform:none; }
+body.anim .hero .contour{ opacity:.2; transition:opacity 1.6s ease; }
+body.anim.lit .hero .contour{ opacity:.45; }
+
+@media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Skip to content</a>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="lockup" href="/" aria-label="Speed &amp; Form home">
+      <span class="house">Speed &amp; Form</span><span class="sep">/</span><span class="prod">FORM</span>
+    </a>
+    <div class="nav-links">
+      <a href="#how">How the week works</a>
+      <a href="#demo">Try it</a>
+      <a href="#instruments">The instruments</a>
+      <a href="#faq">Questions</a>
+      <a class="nav-cta" href="#download">Get FORM</a>
+    </div>
+    <details class="menu">
+      <summary>Menu</summary>
+      <div class="menu-panel">
+        <a href="#how">How the week works</a>
+        <a href="#demo">Try it</a>
+        <a href="#instruments">The instruments</a>
+        <a href="#faq">Questions</a>
+        <a href="#download">Get FORM</a>
+        <div class="rule"></div>
+        <a href="/form/support/">Support</a>
+        <a href="/form/privacy/">Privacy</a>
+        <a href="/form/terms/">Terms</a>
+        <div class="rule"></div>
+        <a href="/forge-sculpt/">FORGE</a>
+        <a href="/">Speed &amp; Form</a>
+      </div>
+    </details>
+  </div>
+</nav>
+
+<main id="main">
+<a id="top"></a>
+
+<!-- HERO -->
+<section class="hero">
+  <img class="contour" src="/assets/form/form-contour.webp" alt="" aria-hidden="true">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">FORM · Running</p>
+        <h1>Your running week,<br><em>already built.</em></h1>
+        <p class="hero-lede">Every run has a job — hard days, easy days, the long run — placed so they add up. Open FORM, see what belongs today, and go.</p>
+        <div class="hero-actions" id="download">
+          <a class="btn btn-solid" data-sf-event="hero_appstore_click" href="https://apps.apple.com/us/app/form-training/id6761313085">Download FORM</a>
+          <a class="btn btn-ghost" href="#how">See how the week works</a>
+        </div>
+        <p class="hero-note"><span class="b">Available now</span> · iPhone</p>
+      </div>
+      <div class="hero-stage">
+        <div class="hero-phone"><div class="phone"><img src="/assets/form/form-today.jpg" width="647" height="1400" alt="FORM Today: the Long Run session for the current week."></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECOGNITION -->
+<section class="band recog">
+  <img class="contour" src="/assets/form/form-contour.webp" alt="" aria-hidden="true">
+  <div class="wrap">
+    <p class="eyebrow reveal">The idea behind FORM</p>
+    <p class="recog-lead reveal d1" style="margin-top:22px;">Most runners do too much of the wrong running.</p>
+    <ul class="recog-list">
+      <li class="reveal d1">Hard days too easy. Easy days too <em>hard</em>.</li>
+      <li class="reveal d2">Everything at the same volume, adding up to <em>nothing</em>.</li>
+      <li class="reveal d3">FORM sets the emphasis — each run does its <em>job</em>, and the week compounds.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- THE WEEK LOOP -->
+<section class="loop" id="how">
+  <div class="wrap loop-head">
+    <p class="eyebrow reveal">Open the app</p>
+    <h2 class="serif reveal d1" style="font-size:clamp(34px,4.8vw,56px);max-width:17ch;margin-top:16px;color:var(--ink);">See today, understand the week, watch it change.</h2>
+  </div>
+
+  <div class="loop-sticky">
+    <div class="loop-rail" aria-hidden="true">
+      <div class="tick" data-i="0">01 · Today</div>
+      <div class="tick" data-i="1">02 · Session</div>
+      <div class="tick" data-i="2">03 · Week</div>
+      <div class="tick" data-i="3">04 · Progress</div>
+    </div>
+
+    <div class="loop-stage" aria-hidden="true">
+      <div class="stage-copy">
+        <div class="stage-scene" data-i="0"><p class="idx i-green" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;">Today</p><h3 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:46px;line-height:1.08;color:var(--ink);margin:16px 0 20px;">See today's run. Go.</h3><p style="font-size:17px;color:var(--body);max-width:46ch;">The session, its shape, and your paces — waiting when you open the app. No building, no math.</p></div>
+        <div class="stage-scene" data-i="1"><p class="idx i-copper" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;">The session</p><h3 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:46px;line-height:1.08;color:var(--ink);margin:16px 0 20px;">Paces set. Structure set.</h3><p style="font-size:17px;color:var(--body);max-width:46ch;">Warm-up, main, cool-down, and the band to sit in. You run; the plan holds.</p></div>
+        <div class="stage-scene" data-i="2"><p class="idx i-slate" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;">The week</p><h3 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:46px;line-height:1.08;color:var(--ink);margin:16px 0 20px;">Every day has a job.</h3><p style="font-size:17px;color:var(--body);max-width:46ch;">Hard days earn their place. Easy days protect them. You can see the whole week working as one piece.</p></div>
+        <div class="stage-scene" data-i="3"><p class="idx i-plum" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;">Progress</p><h3 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:46px;line-height:1.08;color:var(--ink);margin:16px 0 20px;">When the week changes, you'll know why.</h3><p style="font-size:17px;color:var(--body);max-width:46ch;">FORM reads the work you actually did and shows what moved — plainly, including when there isn't enough evidence yet.</p></div>
+      </div>
+      <div class="stage-media">
+        <div class="stage-phone">
+          <div class="phone" style="position:relative;">
+            <img class="stage-shot" data-i="0" src="/assets/form/form-today.jpg" width="647" height="1400" alt="" style="position:relative;">
+            <img class="stage-shot" data-i="1" src="/assets/form/form-threshold.jpg" width="647" height="1400" alt="" style="position:absolute;top:7px;left:7px;width:calc(100% - 14px);">
+            <img class="stage-shot" data-i="2" src="/assets/form/form-week.jpg" width="647" height="1400" alt="" style="position:absolute;top:7px;left:7px;width:calc(100% - 14px);">
+            <img class="stage-shot" data-i="3" src="/assets/form/form-progress.jpg" width="647" height="1400" alt="" style="position:absolute;top:7px;left:7px;width:calc(100% - 14px);">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap loop-stack">
+      <div class="scene reveal">
+        <div class="scene-copy"><p class="idx i-green">01 · Today</p><h3>See today's run. Go.</h3><p>The session, its shape, and your paces — waiting when you open the app. No building, no math.</p></div>
+        <div class="scene-media"><div class="phone"><img src="/assets/form/form-today.jpg" width="647" height="1400" alt="FORM Today: the Long Run session."></div></div>
+      </div>
+      <div class="scene reveal">
+        <div class="scene-copy"><p class="idx i-copper">02 · The session</p><h3>Paces set. Structure set.</h3><p>Warm-up, main, cool-down, and the band to sit in. You run; the plan holds.</p></div>
+        <div class="scene-media"><div class="phone"><img src="/assets/form/form-threshold.jpg" width="647" height="1400" alt="FORM Threshold session with its pace band."></div></div>
+      </div>
+      <div class="scene reveal">
+        <div class="scene-copy"><p class="idx i-slate">03 · The week</p><h3>Every day has a job.</h3><p>Hard days earn their place. Easy days protect them. You can see the whole week working as one piece.</p></div>
+        <div class="scene-media"><div class="phone"><img src="/assets/form/form-week.jpg" width="647" height="1400" alt="FORM Week view showing the shape of the training week."></div></div>
+      </div>
+      <div class="scene reveal">
+        <div class="scene-copy"><p class="idx i-plum">04 · Progress</p><h3>When the week changes, you'll know why.</h3><p>FORM reads the work you actually did and shows what moved — plainly, including when there isn't enough evidence yet.</p></div>
+        <div class="scene-media"><div class="phone"><img src="/assets/form/form-progress.jpg" width="647" height="1400" alt="FORM Progress: the campaign and this week's shift."></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- DEMO REGION · FORM (first-class; data-driven from FORM_WEEK fixtures; static fallback = Threshold state below) -->
+<section class="band demo" id="demo" data-demo="form-week" data-instrument="threshold">
+  <div class="demo-field" data-layer="contour" aria-hidden="true"></div>
+  <div class="wrap demo-shell">
+    <div class="sec-head">
+      <p class="eyebrow reveal">Try the week</p>
+      <h2 class="serif reveal d1">What changed this week?</h2>
+      <p class="sec-lede reveal d2">A small, real slice of FORM — Week 5 of a half-marathon build. Tap through the week's work, then see what changed.</p>
+    </div>
+    <div class="demo-tabs" role="tablist" aria-label="This week's work" id="demoTabs"></div>
+    <div class="demo-stage reveal">
+      <div class="demo-card" id="demoCard" aria-live="polite">
+        <p class="d-day" style="color:var(--copper);">Tue · Threshold</p>
+        <p class="d-name">30 min continuous</p>
+        <p class="d-range">5:13–5:23 /mi · threshold pace band</p>
+        <p class="d-note">Controlled hard. The pace you can hold, extended over time.</p>
+        <ul class="d-shape">
+          <li><b>Warm-up</b><span>10–15 min easy</span></li>
+          <li><b>Main</b><span>30 min continuous threshold</span></li>
+          <li><b>Cool-down</b><span>5–10 min easy</span></li>
+        </ul>
+      </div>
+      <aside class="demo-shift" id="demoShift">
+        <p class="lab">This week's shift</p>
+        <div class="row"><span class="dot" style="background:var(--copper);"></span><span class="was">Threshold · was 20 + 10 min</span><p class="now">→ 30 min continuous</p></div>
+        <div class="row"><span class="dot" style="background:var(--green);"></span><span class="was">Long Run · was 60 easy → 2 × 15 @ HM</span><p class="now">→ 70 easy → 25 min continuous</p></div>
+        <div class="row"><p class="was" style="font-style:italic;">The running is beginning to support longer uninterrupted work.</p></div>
+      </aside>
+    </div>
+    <button class="demo-change" id="demoChange">See what changed this week →</button>
+    <p class="demo-note">Sample data · the living week is in the app</p>
+    <div class="demo-cta reveal"><a class="btn btn-solid" data-sf-event="post_demo_appstore_click" href="https://apps.apple.com/us/app/form-training/id6761313085">Download FORM</a></div>
+  </div>
+</section>
+
+<!-- FIVE INSTRUMENTS -->
+<section class="band inst" id="instruments">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow reveal">The instruments</p><h2 class="serif reveal d1">Five kinds of running. Each with a job.</h2><p class="sec-lede reveal d2">The same five words, everywhere in FORM. Learn them once; they never change.</p></div>
+    <div class="inst-grid">
+      <div class="instc c1 reveal"><div class="nm">Threshold</div><div class="ds">Controlled hard. The pace you can hold, extended over time.</div></div>
+      <div class="instc c2 reveal d1"><div class="nm">Easy</div><div class="ds">The restrained running that protects everything else.</div></div>
+      <div class="instc c3 reveal d2"><div class="nm">Interval</div><div class="ds">Aerobic power built in measured repetitions.</div></div>
+      <div class="instc c4 reveal d3"><div class="nm">Long Run</div><div class="ds">Durability, and race effort carried in one piece.</div></div>
+      <div class="instc c5 reveal d4"><div class="nm">Speed</div><div class="ds">Short, reactive work placed where the week can absorb it.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- THE ATHLETE / EVIDENCE -->
+<section class="band">
+  <div class="wrap">
+    <div class="ath">
+      <div class="ath-media reveal">
+        <div class="phone"><img src="/assets/form/form-athlete.jpg" width="647" height="1400" alt="FORM profile: the athlete's campaign, paces, and personal bests."></div>
+        <div class="phone"><img src="/assets/form/form-witness.jpg" width="647" height="1400" alt="FORM profile: latest work, this week, and recent sessions."></div>
+      </div>
+      <div>
+        <p class="eyebrow reveal">The evidence</p>
+        <h2 class="reveal d1" style="margin-top:16px;">Your running, on the record.</h2>
+        <p class="reveal d2">Your goal, your paces, your bests, and the sessions you actually ran — one page that shows where you are and where it's going.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIT -->
+<section class="band">
+  <div class="wrap">
+    <div class="fit">
+      <div>
+        <h2 class="reveal">For runners who want results more than routines.</h2>
+        <p class="disq reveal d1">FORM isn't a blank log. If building your own plan is the fun part, it's not for you.</p>
+      </div>
+      <ul class="reveal d1">
+        <li>Training for something — a half, a marathon, or staying sharp</li>
+        <li>Wants easy, threshold, interval, speed, and the long run in the right relationship</li>
+        <li>Would rather run a considered week than invent one daily</li>
+        <li>Wants easy days easy and hard days earned</li>
+        <li>Wants honest reasons when the plan changes</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ENTRY -->
+<section class="band entry">
+  <img class="contour" src="/assets/form/form-contour.webp" alt="" aria-hidden="true">
+  <div class="wrap-narrow entry-inner">
+    <p class="eyebrow reveal">Get FORM</p>
+    <h2 class="reveal d1">Open it. Today's run is there.</h2>
+    <a class="btn btn-solid" href="https://apps.apple.com/us/app/form-training/id6761313085">Download FORM</a>
+    <p class="price-note">Membership options and pricing are shown in FORM.</p>
+    <p class="apple-note">Available for iPhone</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="band" id="faq">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow reveal">Questions</p><h2 class="serif reveal d1">Before you begin.</h2></div>
+    <div class="faq reveal">
+      <details><summary>Do I need to build my own plan?<span class="pl">+</span></summary><p>No. FORM arranges the week for you — every kind of running in relationship. You open the app and run what belongs today.</p></details>
+      <details><summary>What races does FORM support?<span class="pl">+</span></summary><p>FORM is built around campaigns like the half marathon and marathon, with paces and a week that progress toward a goal. More on the specific campaigns is shown inside the app.</p></details>
+      <details><summary>Does it work with my watch and shoes?<span class="pl">+</span></summary><p>FORM shows the session, the paces, and the shape of the week; you run it with whatever watch and shoes you use. Logging keeps your record in one place.</p></details>
+      <details><summary>What is "the evidence"?<span class="pl">+</span></summary><p>FORM reads your completed work and explains meaningful changes when there is enough evidence. When there is not, it says so plainly rather than inventing a story.</p></details>
+      <details><summary>Is there a team or social side?<span class="pl">+</span></summary><p>FORM includes Your Village — a quiet, work-first way to train alongside a group. It is built around standards and shared work, not leaderboards.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="door">
+  <img class="contour" src="/assets/form/form-contour.webp" alt="" aria-hidden="true">
+  <div class="wrap door-inner">
+    <h2 class="reveal">The week is built.</h2>
+    <p class="reveal d1">Today's run is waiting. Let's go.</p>
+    <div class="reveal d2"><a class="btn btn-solid" data-sf-event="final_appstore_click" href="https://apps.apple.com/us/app/form-training/id6761313085">Download FORM</a></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-mark">SPEED &amp; FORM</div>
+        <div class="footer-tag">FORM holds the running week. FORGE holds the strength.</div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col"><p class="lab">The House</p><a href="/">Speed &amp; Form</a><a href="/forge-sculpt/">FORGE</a><a href="/library">Library</a><a href="/form/">FORM</a></div>
+        <div class="footer-col"><p class="lab">FORM</p><a href="#how">How the week works</a><a href="#instruments">The instruments</a><a href="#download">Get FORM</a></div>
+        <div class="footer-col"><p class="lab">Legal</p><a href="/form/support/">Support</a><a href="/form/privacy/">Privacy</a><a href="/form/terms/">Terms</a></div>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span>© <span id="yr">2026</span> Brice Ikouebe, operating as Speed &amp; Form · Miami</span>
+      <span>FORM · Running, sequenced.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="mcta" id="mcta" aria-hidden="true">
+  <span class="lab"><b>FORM</b> · The week is built</span>
+  <a href="https://apps.apple.com/us/app/form-training/id6761313085">Download →</a>
+</div>
+
+<script>
+(function(){
+  var yr=document.getElementById('yr'); if(yr) yr.textContent=new Date().getFullYear();
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce) return;
+  document.body.classList.add('anim');
+  requestAnimationFrame(function(){ setTimeout(function(){ document.body.classList.add('lit'); }, 120); });
+
+  if('IntersectionObserver' in window){
+    var ro=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); ro.unobserve(e.target); } }); },{threshold:0.16, rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ ro.observe(el); });
+  } else { document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); }); }
+
+  var loop=document.querySelector('.loop'), N=4, loopHead=document.querySelector('.loop-head');
+  var desktop=window.matchMedia('(min-width:901px)');
+  function enablePinned(on){ if(on){ loop.classList.add('pinned'); loop.style.height=(N*100)+'vh'; } else { loop.classList.remove('pinned'); loop.style.height=''; } }
+  enablePinned(desktop.matches);
+  if(desktop.addEventListener) desktop.addEventListener('change',function(e){ enablePinned(e.matches); cur=-1; onScroll(); });
+  var scenes=document.querySelectorAll('.stage-scene'), shots=document.querySelectorAll('.stage-shot'), ticks=document.querySelectorAll('.loop-rail .tick');
+  var cur=-1;
+  function setStep(i){ if(i===cur) return; cur=i; [scenes,shots,ticks].forEach(function(set){ set.forEach(function(el){ el.classList.toggle('on', +el.getAttribute('data-i')===i); }); }); }
+  function onScroll(){
+    if(!loop.classList.contains('pinned')){ return; }
+    var vh=window.innerHeight, headH=loopHead?loopHead.offsetHeight:0;
+    var start=loop.offsetTop+headH, travel=loop.offsetHeight-headH-vh;
+    if(travel<=0) return;
+    var p=(window.pageYOffset-start)/travel; p=Math.max(0,Math.min(0.999,p));
+    setStep(Math.floor(p*N));
+  }
+  setStep(0);
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  var mcta=document.getElementById('mcta'), hero=document.querySelector('.hero');
+  if(mcta&&hero&&'IntersectionObserver' in window){ new IntersectionObserver(function(es){ mcta.classList.toggle('show', !es[0].isIntersecting); },{threshold:0}).observe(hero); }
+})();
+</script>
+<script>
+/* FORM demo — data fixtures are replaceable without touching layout */
+(function(){
+  var FORM_WEEK={
+    instruments:[
+      {id:"threshold",name:"Threshold",varc:"--copper",day:"Tue · Threshold",title:"30 min continuous",range:"5:13–5:23 /mi · threshold pace band",note:"Controlled hard. The pace you can hold, extended over time.",shape:[["Warm-up","10–15 min easy"],["Main","30 min continuous threshold"],["Cool-down","5–10 min easy"]]},
+      {id:"easy",name:"Easy",varc:"--slate",day:"Wed · Easy",title:"40–50 min easy",range:"stay under 6:38 /mi",note:"The restrained running that protects tomorrow's demand.",shape:[["Easy","40–50 min · between hard days"]]},
+      {id:"interval",name:"Interval",varc:"--plum",day:"Thu · The Long One",title:"Mixed-distance ladder",range:"12 reps · 4.7 km of work",note:"Aerobic power built in measured repetitions. Controlled hard. Repeatable.",shape:[["2 × 600 m","1:48–1:52 · 180s easy between"],["2 × 400 m","1:08–1:12 · 150s easy between"],["3 × 300 m","48–52s · 120s easy between"]]},
+      {id:"longrun",name:"Long Run",varc:"--green",day:"Sat · Long Run",title:"70 easy → 25 continuous",range:"@ HM effort · around 5:43 /mi",note:"Durability first, then race effort carried in one piece.",shape:[["Easy","70 min · under 6:38 /mi"],["Finish","25 min · around 5:43 · by effort"],["Cool-down","5 min · walk or jog"]]}
+    ],
+    change:{id:"change",varc:"--copper",day:"Week 5 of 14 · Build",title:"The week got harder. Here is why.",range:"Half Marathon · goal 1:15",wasnow:[["Threshold · was 20 + 10 min","30 min continuous"],["Long Run · was 60 easy → 2 × 15 @ HM","70 easy → 25 min continuous"]],interp:"The running is beginning to support longer uninterrupted work."}
+  };
+  var tabs=document.getElementById('demoTabs'), card=document.getElementById('demoCard'),
+      sec=document.querySelector('[data-demo="form-week"]'), changeBtn=document.getElementById('demoChange');
+  if(!tabs||!card) return;
+  var started=false, completed=false;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  FORM_WEEK.instruments.forEach(function(it,i){
+    var b=document.createElement('button');
+    b.className='demo-tab t-'+it.id; b.setAttribute('role','tab'); b.setAttribute('aria-selected', i===0?'true':'false');
+    b.textContent=it.name; b.addEventListener('click',function(){ select(it,b); });
+    tabs.appendChild(b);
+  });
+  function begin(){ if(!started){ started=true; sfTrack('demo_started',{demo:'form-week'}); } }
+  function render(it){
+    var h='<p class="d-day" style="color:var('+it.varc+');">'+it.day+'</p>'
+        +'<p class="d-name">'+it.title+'</p>'
+        +'<p class="d-range">'+it.range+'</p>';
+    if(it.note) h+='<p class="d-note">'+it.note+'</p>';
+    if(it.shape){ h+='<ul class="d-shape">'+it.shape.map(function(s){return '<li><b>'+s[0]+'</b><span>'+s[1]+'</span></li>';}).join('')+'</ul>'; }
+    if(it.wasnow){ h+='<ul class="d-wasnow">'+it.wasnow.map(function(s){return '<li><p class="w">'+s[0]+'</p><p class="n">→ '+s[1]+'</p></li>';}).join('')+'</ul><p class="d-interp">'+it.interp+'</p>'; }
+    card.innerHTML=h;
+  }
+  function show(it){ if(reduce){ render(it); return; } card.classList.add('swap'); setTimeout(function(){ render(it); card.classList.remove('swap'); },180); }
+  function select(it,btn){
+    begin();
+    tabs.querySelectorAll('.demo-tab').forEach(function(b){ b.setAttribute('aria-selected', b===btn?'true':'false'); });
+    sec.setAttribute('data-instrument', it.id);   /* hook: contour choreography (experience pass) */
+    show(it);
+  }
+  if(changeBtn) changeBtn.addEventListener('click',function(){
+    begin();
+    tabs.querySelectorAll('.demo-tab').forEach(function(b){ b.setAttribute('aria-selected','false'); });
+    sec.setAttribute('data-instrument','change');
+    if(!completed){ completed=true; sfTrack('demo_completed',{demo:'form-week'}); }
+    show(FORM_WEEK.change);
+  });
+})();
+</script>
+<script>
+/* Speed & Form conversion hooks — provider-agnostic. Events buffer in window.sfEvents
+   and mirror to window.dataLayer if present. Stable names; wire a provider later. */
+window.sfTrack=window.sfTrack||function(n,d){(window.sfEvents=window.sfEvents||[]).push(Object.assign({event:n,ts:Date.now()},d||{}));if(window.dataLayer)window.dataLayer.push(Object.assign({event:n},d||{}));};
+document.addEventListener('click',function(e){var t=e.target.closest('[data-sf-event]');if(t)sfTrack(t.getAttribute('data-sf-event'),{href:t.getAttribute('href')||null});});
+document.addEventListener('toggle',function(e){var d=e.target;if(d&&d.tagName==='DETAILS'&&d.open&&d.closest&&d.closest('.faq'))sfTrack('faq_opened',{q:(d.querySelector('summary')||{textContent:''}).textContent.trim()});},true);
+document.addEventListener('submit',function(e){var f=e.target.closest('[data-sf-event-submit]');if(f)sfTrack(f.getAttribute('data-sf-event-submit'),{});});
+</script>
+</body>
+</html>

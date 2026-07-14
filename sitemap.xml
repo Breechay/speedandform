@@ -85,4 +85,6 @@
   <url><loc>https://speedandform.com/library</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://speedandform.com/search</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
+  <url><loc>https://speedandform.com/form/</loc></url>
+  <url><loc>https://speedandform.com/forge-sculpt/</loc></url>
 </urlset>

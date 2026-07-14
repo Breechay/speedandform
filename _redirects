@@ -90,10 +90,13 @@
 /race-strategy          /race-strategy.html         200
 /taper-key-biscayne     /taper-key-biscayne.html    200
 /races/key-biscayne-2026  /races/key-biscayne-2026.html  200
-/app                    /app.html                   200
-/privacy                /privacy.html               200
-/terms                  /terms.html                 200
-/support                /support.html               200
+/app                    /form/                      301
+/privacy                /form/privacy/              301
+/terms                  /form/terms/                301
+/support                /form/support/              301
 /plan-spring-2026       /plan-spring-2026.html      200
 /thursday               /thursday.html              200
 /plan-speed-emergence   /plan-speed-emergence.html  200
+
+# New site rooms (2026 rebuild)
+/forge-sculpt.html      /forge-sculpt/              301
