@@ -452,6 +452,164 @@ body{
 }
 @media(max-width:520px){.brand-name{display:none}.brand-symbol{width:39px}.nav-inner{padding:0 18px}}
 </style>
+
+<style>
+/* V7.1 — outcome panels and plan receipts. Media never sits beneath copy. */
+.start-grid{gap:22px}
+.start-card{
+  min-height:410px;
+  padding:0;
+  display:grid;
+  grid-template-columns:minmax(0,1.08fr) minmax(220px,.72fr);
+  align-items:stretch;
+  border-radius:30px;
+  overflow:hidden;
+  isolation:isolate;
+  justify-content:stretch;
+}
+.start-card::before,.start-card::after{display:none}
+.start-card-copy{
+  position:relative;
+  z-index:3;
+  max-width:none!important;
+  padding:45px 24px 40px 42px;
+  display:flex;
+  min-width:0;
+  flex-direction:column;
+  align-items:flex-start;
+}
+.start-card h3{max-width:10.5ch;margin:15px 0 18px}
+.start-card-copy>p:last-of-type{max-width:34ch}
+.start-card .go{margin-top:auto;padding-top:34px}
+.start-card-visual{
+  position:relative;
+  z-index:1;
+  min-width:0;
+  max-width:none!important;
+  width:auto;
+  overflow:hidden;
+  border-left:1px solid rgba(41,37,31,.08);
+}
+.start-card-visual::before,.start-card-visual::after{content:"";position:absolute;pointer-events:none}
+.start-form .start-card-visual{
+  background:
+    radial-gradient(250px 250px at 48% 43%,rgba(114,80,111,.12),transparent 72%),
+    linear-gradient(180deg,rgba(255,255,255,.46),rgba(114,80,111,.035));
+}
+.start-form .start-card-visual::before{
+  inset:-8% -38% -14% -24%;
+  background:url('/assets/home/form/contour.webp') center/contain no-repeat;
+  opacity:.18;
+  mix-blend-mode:multiply;
+}
+.start-card-screen{
+  position:absolute;
+  z-index:2;
+  left:50%;
+  right:auto;
+  top:42px;
+  bottom:auto;
+  width:min(228px,88%);
+  height:auto;
+  border-radius:27px;
+  transform:translateX(-50%);
+  opacity:1;
+  box-shadow:0 32px 66px -34px rgba(41,37,31,.55);
+  transition:transform .55s var(--ease-premium),box-shadow .55s var(--ease-premium);
+}
+.start-card:hover .start-card-screen{transform:translateX(-50%) translateY(-7px);opacity:1}
+.start-form .start-card-screen{box-shadow:0 32px 70px -34px rgba(114,80,111,.55)}
+.start-forge .start-card-visual{border-left-color:rgba(238,232,220,.08);background:radial-gradient(280px 240px at 58% 42%,rgba(199,154,62,.11),transparent 70%),#050607}
+.start-forge .start-card-visual::before{
+  inset:0 -48% -14% -28%;
+  background:url('/assets/home/forge/anatomy-shoulders.webp') 50% 58%/contain no-repeat;
+  opacity:.23;
+}
+.start-forge .start-card-visual::after{
+  inset:0;
+  background:linear-gradient(90deg,rgba(3,4,5,.42),transparent 42%),linear-gradient(180deg,transparent 62%,rgba(3,4,5,.68));
+}
+.start-forge .start-card-screen{top:45px;width:min(224px,86%);opacity:.83;box-shadow:0 34px 76px -28px #000}
+.start-forge:hover .start-card-screen{opacity:.94}
+
+/* The three facts read as a compact receipt, not three cramped mini-cards. */
+.plan-path{box-shadow:none}
+
+@media(max-width:900px){
+  .start-card{grid-template-columns:minmax(0,1fr) 205px}
+  .start-card-copy{padding-left:36px}
+  .start-card-screen{width:min(205px,88%)}
+}
+@media(max-width:680px){
+  .start-grid{gap:24px}
+  .start-card{
+    min-height:0;
+    display:flex;
+    flex-direction:column;
+    border-radius:25px;
+  }
+  .start-card-copy{padding:30px 27px 25px}
+  .start-card h3{font-size:35px;max-width:11ch;margin:12px 0 15px}
+  .start-card-copy>p:last-of-type{font-size:16px;line-height:1.58;max-width:31ch}
+  .start-card .go{margin-top:0;padding-top:27px;font-size:9.7px}
+  .start-card-visual{
+    height:226px;
+    flex:0 0 226px;
+    border-left:0;
+    border-top:1px solid rgba(41,37,31,.08);
+  }
+  .start-forge .start-card-visual{border-top-color:rgba(238,232,220,.09)}
+  .start-card-screen{
+    top:20px;
+    width:178px;
+    border-radius:23px;
+    opacity:1;
+  }
+  .start-card:hover .start-card-screen{transform:translateX(-50%)}
+  .start-form .start-card-visual::before{inset:-30% -28% -55% -28%;opacity:.16}
+  .start-forge .start-card-visual::before{inset:-12% -12% -22% -12%;background-position:50% 48%;opacity:.3}
+  .start-forge .start-card-screen{top:20px;width:176px;opacity:.88}
+
+  .plan-path{
+    display:block;
+    margin:30px 0 32px;
+    border-radius:20px;
+    overflow:hidden;
+  }
+  .plan-path>div{
+    display:grid;
+    grid-template-columns:78px minmax(0,1fr);
+    align-items:center;
+    gap:17px;
+    min-height:61px;
+    padding:14px 18px!important;
+    border-left:0!important;
+  }
+  .plan-path>div+div{border-top:1px solid}
+  .form-path>div+div{border-top-color:rgba(114,80,111,.13)}
+  .forge-path>div+div{border-top-color:rgba(199,154,62,.16)}
+  .plan-path>div:nth-child(2){position:relative}
+  .form-path>div:nth-child(2){background:rgba(114,80,111,.055)}
+  .forge-path>div:nth-child(2){background:rgba(199,154,62,.045)}
+  .plan-path>div:nth-child(2)::before{
+    content:"";position:absolute;left:0;top:14px;bottom:14px;width:2px;border-radius:2px;
+  }
+  .form-path>div:nth-child(2)::before{background:var(--form-accent)}
+  .forge-path>div:nth-child(2)::before{background:var(--gold2)}
+  .path-label{margin:0;font-size:7.8px;letter-spacing:.14em}
+  .path-value{font-size:19px;line-height:1.16;text-align:right;justify-self:end;max-width:15ch}
+}
+@media(max-width:390px){
+  .start-card-copy{padding:28px 25px 24px}
+  .start-card h3{font-size:33px}
+  .start-card-visual{height:214px;flex-basis:214px}
+  .start-card-screen{width:168px}
+  .start-forge .start-card-screen{width:166px}
+  .plan-path>div{grid-template-columns:72px minmax(0,1fr);padding:14px 16px!important}
+  .path-value{font-size:18px}
+}
+</style>
+
 </head>
 <body><div aria-hidden="true" class="page-grain"></div>
 <nav aria-label="Primary navigation" class="nav" data-theme="light"><div class="nav-inner"><a aria-label="Speed &amp; Form home" class="brand" href="#top"><span aria-hidden="true" class="brand-symbol"></span><span class="brand-name">Speed &amp; Form</span></a><div class="nav-links"><a aria-current="false" data-nav-target="form" href="#form" title="FORM race preparation">FORM</a><a aria-current="false" data-nav-target="forge" href="#forge" title="FORGE physique training">FORGE</a></div></div></nav>
@@ -492,14 +650,12 @@ body{
 </div>
 <div class="start-grid">
 <a class="start-card start-form" data-sf-event="form_chapter_entered" href="#form">
-<div><p class="eyebrow">FORM · Race preparation</p><h3>I’m training for a race.</h3><p>FORM builds the week around the race, your current running, and the days you can actually train.</p></div>
-<img alt="FORM interval session preview" class="start-card-screen form-card-screen" decoding="async" height="2048" loading="lazy" src="/assets/home/form/interval.webp" width="946"/>
-<span class="go">Build toward race day →</span>
+<div class="start-card-copy"><p class="eyebrow">FORM · Race preparation</p><h3>I’m training for a race.</h3><p>FORM builds the week around the race, your current running, and the days you can actually train.</p><span class="go">Build toward race day →</span></div>
+<div aria-hidden="true" class="start-card-visual"><img alt="" class="start-card-screen form-card-screen" decoding="async" height="2048" loading="lazy" src="/assets/home/form/interval.webp" width="946"/></div>
 </a>
 <a class="start-card start-forge" data-sf-event="forge_chapter_entered" href="#forge">
-<div><p class="eyebrow">FORGE · Physique</p><h3>I want to sculpt my physique.</h3><p>FORGE gives you a complete program that directs more work to the areas that change your frame most.</p></div>
-<img alt="FORGE Week 1 preview" class="start-card-screen forge-card-screen" decoding="async" height="2048" loading="lazy" src="/assets/home/forge/week-shoulder.webp" width="946"/>
-<span class="go">See the physique program →</span>
+<div class="start-card-copy"><p class="eyebrow">FORGE · Physique</p><h3>I want to sculpt my physique.</h3><p>FORGE gives you a complete program that directs more work to the areas that change your frame most.</p><span class="go">See the physique program →</span></div>
+<div aria-hidden="true" class="start-card-visual"><img alt="" class="start-card-screen forge-card-screen" decoding="async" height="2048" loading="lazy" src="/assets/home/forge/week-shoulder.webp" width="946"/></div>
 </a>
 </div>
 </div>
