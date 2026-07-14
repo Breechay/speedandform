@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FORGE — Breechay Sculpt</title>
+<meta name="description" content="FORGE is the home of Breechay Sculpt, a four-phase strength and physique program with every session already written. Open the app, see today's work, and train.">
+<link rel="canonical" href="https://speedandform.com/forge-sculpt">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="FORGE — Breechay Sculpt">
+<meta property="og:description" content="A complete four-phase physique program. Today's work is already written. Open the app and begin.">
+<meta property="og:url" content="https://speedandform.com/forge-sculpt">
+<!-- PLACEHOLDER: replace with a real 1200x630 landscape image. Interim uses a portrait app shot. -->
+<meta property="og:image" content="https://speedandform.com/assets/forge/week-shoulder-a.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FORGE — Breechay Sculpt">
+<meta name="twitter:description" content="A complete four-phase physique program. Today's work is already written.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:   #050608;
+  --panel:   #0D0E11;
+  --panel-2: #131419;
+  --gold:    #C79A3E;
+  --gold-bright: #E0B848;
+  --amber:   #BA7517;
+  --gold-line: rgba(199,154,62,0.28);
+  --text:    #EAE4D8;
+  --body:    #C4BDB0;
+  --muted:   #8B8477;
+  --faint:   #5C554B;
+  --line:    rgba(234,228,216,0.09);
+  --line-2:  rgba(234,228,216,0.055);
+  --nav-h:   64px;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+body {
+  background: var(--black);
+  color: var(--body);
+  font-family: 'Jost', sans-serif; font-weight: 300;
+  line-height: 1.7;
+  font-kerning: normal; font-feature-settings: "kern";
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.serif { font-family: 'Cormorant Garamond', serif; font-weight: 300; }
+.mono  { font-family: 'JetBrains Mono', monospace; }
+
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.30em; text-transform: uppercase;
+  color: var(--gold);
+}
+.wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+.wrap-narrow { width: 100%; max-width: 760px; margin: 0 auto; padding: 0 32px; }
+
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
+
+.skip { position: absolute; left: -999px; top: 0; background: var(--gold); color: #000; padding: 10px 16px; z-index: 200; border-radius: 0 0 6px 0; font-size: 12px; }
+.skip:focus { left: 0; }
+
+/* nav */
+.nav { position: sticky; top: 0; z-index: 100; height: var(--nav-h);
+  background: rgba(5,6,8,0.80); backdrop-filter: saturate(140%) blur(12px); -webkit-backdrop-filter: saturate(140%) blur(12px);
+  border-bottom: 1px solid var(--line-2); }
+.nav-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+.nav-mark { font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 0.36em; color: var(--text); text-decoration: none; }
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links a { font-family:'JetBrains Mono',monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; }
+.nav-links a:hover { color: var(--text); }
+.nav-cta { color: var(--gold) !important; border: 1px solid var(--gold-line); border-radius: 999px; padding: 8px 16px; }
+.nav-cta:hover { background: var(--gold); color: #000 !important; border-color: var(--gold); }
+@media (max-width: 880px) { .nav-links a:not(.nav-cta) { display: none; } }
+
+/* buttons */
+.btn { display: inline-flex; align-items: center; gap: 8px; font-family: 'Jost', sans-serif; font-weight: 400;
+  font-size: 13px; letter-spacing: 0.05em; text-decoration: none; cursor: pointer; padding: 14px 26px; border-radius: 999px; transition: transform .15s, background .2s, opacity .2s; }
+.btn-solid { background: var(--gold); color: #14100A; border: 1px solid var(--gold); font-weight: 500; }
+.btn-solid:hover { background: var(--gold-bright); border-color: var(--gold-bright); }
+.btn-ghost { color: var(--gold); border-bottom: 1px solid var(--gold-line); border-radius: 0; padding: 14px 6px;
+  font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; }
+.btn-ghost:hover { border-bottom-color: var(--gold); }
+@media (prefers-reduced-motion: no-preference) { .btn-solid:hover { transform: translateY(-1px); } }
+
+/* screenshot frame */
+.shot { border-radius: 32px; overflow: hidden; border: 1px solid var(--gold-line);
+  box-shadow: 0 50px 100px -34px rgba(0,0,0,0.9), 0 0 60px -20px rgba(199,154,62,0.10);
+  background: var(--panel); line-height: 0; }
+.shot img { display: block; width: 100%; height: auto; }
+
+/* hero */
+.hero { padding: 92px 0 100px; position: relative; }
+.hero::before { content:""; position:absolute; top:-120px; right:-160px; width:520px; height:520px;
+  background: radial-gradient(circle, rgba(199,154,62,0.10), transparent 68%); pointer-events:none; z-index:0; }
+.hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 68px; align-items: center; }
+.hero h1 { font-family:'Cormorant Garamond',serif; font-weight: 300; font-size: clamp(48px,7.2vw,84px); line-height: 1.0; color: var(--text); margin: 22px 0 26px; letter-spacing: 0.005em; }
+.hero h1 em { font-style: italic; color: var(--gold); }
+.hero-lede { font-size: 17px; color: var(--body); line-height: 1.75; max-width: 42ch; margin-bottom: 36px; }
+.hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.hero .shot { max-width: 340px; margin: 0 auto; }
+@media (max-width: 880px) {
+  .hero { padding: 52px 0 64px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 46px; }
+  .hero .shot { order: -1; max-width: 280px; }
+}
+
+/* sections */
+section { scroll-margin-top: calc(var(--nav-h) + 12px); }
+.band { padding: 100px 0; border-top: 1px solid var(--line-2); }
+.sec-head { max-width: 640px; margin-bottom: 58px; }
+.sec-head h2 { font-family:'Cormorant Garamond',serif; font-weight: 300; font-size: clamp(34px,4.8vw,54px); line-height: 1.06; color: var(--text); margin-top: 16px; }
+.sec-lede { font-size: 17px; color: var(--body); margin-top: 20px; line-height: 1.75; max-width: 56ch; }
+
+/* positioning */
+.pos p { font-size: 19px; line-height: 1.75; color: var(--body); max-width: 60ch; margin-bottom: 20px; }
+.pos .lead-serif { font-family:'Cormorant Garamond',serif; font-size: 30px; line-height: 1.35; color: var(--text); font-weight: 400; margin: 18px 0 26px; }
+.pos .lead-serif em { color: var(--gold); font-style: italic; }
+
+/* steps */
+.steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 40px; }
+.step-num { font-family:'Cormorant Garamond',serif; font-size: 34px; color: var(--gold); }
+.step h3 { font-family:'Jost',sans-serif; font-size: 15px; font-weight: 500; letter-spacing: 0.01em; color: var(--text); margin: 14px 0 9px; padding-top: 16px; border-top: 1px solid var(--gold-line); }
+.step p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+@media (max-width: 780px) { .steps { grid-template-columns: 1fr 1fr; gap: 32px; } }
+@media (max-width: 460px) { .steps { grid-template-columns: 1fr; } }
+
+/* phases ladder */
+.phases { border-top: 1px solid var(--gold-line); }
+.phase { display: grid; grid-template-columns: 92px 1fr; gap: 34px; padding: 42px 0; border-bottom: 1px solid var(--line); align-items: start; }
+.phase-mark { font-family:'Cormorant Garamond',serif; color: var(--gold); line-height: 1; }
+.phase-mark .rn { font-size: 38px; display: block; }
+.phase-mark .lbl { font-family:'JetBrains Mono',monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--faint); margin-top: 10px; }
+.phase-name { font-family:'Cormorant Garamond',serif; font-size: 32px; font-weight: 400; color: var(--text); line-height: 1.1; margin-bottom: 12px; }
+.phase-body { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 58ch; }
+.phase-close { margin-top: 42px; font-family:'Cormorant Garamond',serif; font-size: 23px; font-style: italic; color: var(--body); }
+@media (max-width: 560px) { .phase { grid-template-columns: 1fr; gap: 12px; } .phase-mark { display:flex; align-items:baseline; gap:14px; } .phase-mark .lbl { margin-top:0; } }
+
+/* feature rows (editorial, alternating) */
+.frow { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 64px; align-items: center; padding: 60px 0; }
+.frow.flip { grid-template-columns: 1.1fr 0.9fr; }
+.frow.flip .frow-media { order: 2; }
+.frow .shot { max-width: 320px; margin: 0 auto; }
+.frow-cap { font-family:'JetBrains Mono',monospace; font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+.frow-text h3 { font-family:'Cormorant Garamond',serif; font-size: clamp(28px,3.4vw,38px); font-weight: 400; color: var(--text); line-height: 1.12; margin: 14px 0 16px; }
+.frow-text p { font-size: 16px; color: var(--body); line-height: 1.75; max-width: 46ch; }
+@media (max-width: 780px) {
+  .frow, .frow.flip { grid-template-columns: 1fr; gap: 34px; padding: 44px 0; }
+  .frow.flip .frow-media { order: -1; }
+  .frow-media { order: -1; }
+  .frow .shot { max-width: 260px; }
+}
+
+/* trio */
+.trio { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; margin-top: 20px; }
+.trio .shot { max-width: 100%; border-radius: 24px; }
+.trio-cap { font-family:'Cormorant Garamond',serif; font-size: 22px; color: var(--text); margin: 18px 0 6px; }
+.trio-sub { font-family:'JetBrains Mono',monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); line-height: 1.6; }
+@media (max-width: 720px) { .trio { grid-template-columns: 1fr; gap: 40px; max-width: 300px; } }
+
+/* membership */
+.member { text-align: center; }
+.member h2 { font-family:'Cormorant Garamond',serif; font-weight: 300; font-size: clamp(40px,5.4vw,62px); color: var(--text); line-height: 1.02; margin-top: 16px; }
+.member .price-note { font-size: 13px; color: var(--muted); margin-top: 24px; }
+.member .apple-note { font-family:'JetBrains Mono',monospace; font-size: 10px; letter-spacing:0.1em; text-transform:uppercase; color: var(--faint); margin-top: 12px; }
+
+/* legal */
+.legal { padding: 96px 0; border-top: 1px solid var(--line-2); }
+.legal-head { max-width: 760px; margin: 0 auto 46px; }
+.legal-head h2 { font-family:'Cormorant Garamond',serif; font-weight: 300; font-size: clamp(34px,4.6vw,50px); color: var(--text); margin-top: 12px; line-height: 1.08; }
+.legal-head .updated { font-family:'JetBrains Mono',monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--faint); margin-top: 16px; }
+.legal-lede { font-size: 16px; color: var(--body); line-height: 1.75; margin-top: 22px; }
+.doc { max-width: 760px; margin: 0 auto; }
+
+.callout { background: var(--panel); border: 1px solid var(--line); border-left: 2px solid var(--gold); border-radius: 0 10px 10px 0; padding: 18px 22px; margin: 6px 0 40px; }
+.callout p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+.callout strong { color: var(--gold); font-weight: 500; }
+
+.item { padding: 32px 0; border-top: 1px solid var(--line-2); }
+.item:first-child { border-top: 1px solid var(--gold-line); }
+.item-no { font-family:'JetBrains Mono',monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--gold); }
+.item h3 { font-family:'Cormorant Garamond',serif; font-size: 25px; font-weight: 400; color: var(--text); margin: 8px 0 14px; line-height: 1.2; }
+.item p { font-size: 15px; color: var(--body); line-height: 1.8; margin-bottom: 12px; }
+.item p:last-child { margin-bottom: 0; }
+.item p strong { color: var(--text); font-weight: 500; }
+.item a { color: var(--gold); text-underline-offset: 3px; }
+
+/* support */
+.srow { padding: 28px 0; border-top: 1px solid var(--line-2); }
+.srow:first-of-type { border-top: 1px solid var(--gold-line); }
+.srow h3 { font-family:'Cormorant Garamond',serif; font-size: 26px; font-weight: 400; color: var(--text); margin-bottom: 10px; }
+.srow p { font-size: 15px; color: var(--body); line-height: 1.75; }
+.contact-card { background: linear-gradient(180deg,var(--panel-2),var(--panel)); border: 1px solid var(--gold-line); border-radius: 16px; padding: 34px; margin-bottom: 44px; }
+.contact-card .lab { font-family:'JetBrains Mono',monospace; font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+.contact-card a.email { font-family:'Cormorant Garamond',serif; font-size: 32px; font-weight: 300; color: var(--text); text-decoration: none; display: inline-block; }
+.contact-card a.email:hover { color: var(--gold); }
+.contact-card .sla { font-family:'JetBrains Mono',monospace; font-size: 11px; letter-spacing: 0.06em; color: var(--muted); margin-top: 12px; }
+
+/* placeholder token */
+.ph { font-family: 'JetBrains Mono', monospace; font-size: 0.82em; color: var(--gold-bright);
+  background: rgba(199,154,62,0.10); border: 1px dashed rgba(199,154,62,0.55); border-radius: 3px; padding: 1px 5px; }
+
+/* footer */
+.footer { background: #030405; border-top: 1px solid var(--line-2); padding: 66px 0 42px; color: var(--muted); }
+.footer-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; flex-wrap: wrap; margin-bottom: 46px; }
+.footer-mark { font-size: 15px; font-weight: 500; letter-spacing: 0.36em; color: var(--text); }
+.footer-tag { font-family:'Cormorant Garamond',serif; font-size: 19px; font-style: italic; color: var(--muted); margin-top: 10px; }
+.footer-cols { display: flex; gap: 56px; flex-wrap: wrap; }
+.footer-col .lab { font-family:'JetBrains Mono',monospace; font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--faint); margin-bottom: 14px; }
+.footer-col a { display: block; font-size: 13px; color: var(--body); text-decoration: none; margin-bottom: 9px; }
+.footer-col a:hover { color: var(--gold); }
+.footer-bot { border-top: 1px solid var(--line-2); padding-top: 24px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-family:'JetBrains Mono',monospace; font-size: 10px; letter-spacing: 0.04em; color: var(--faint); }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-mark" href="#top" aria-label="FORGE home">FORGE</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#program">The Program</a>
+      <a href="#how">How It Works</a>
+      <a href="#support">Support</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#terms">Terms</a>
+      <a class="nav-cta" href="#download">Download</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<a id="top"></a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Forge · Breechay Sculpt</p>
+        <h1>Your training,<br><em>already decided.</em></h1>
+        <p class="hero-lede">
+          FORGE is the home of Breechay Sculpt, a four-phase strength and physique program
+          with every session already written. Open the app, see today's work, and train.
+        </p>
+        <div class="hero-actions" id="download">
+          <!-- PLACEHOLDER: real App Store link -->
+          <a class="btn btn-solid" href="https://apps.apple.com/app/idXXXXXXXXXX">Download on the App Store</a>
+          <a class="btn btn-ghost" href="#program">See the program</a>
+        </div>
+      </div>
+      <div>
+        <div class="shot">
+          <img src="assets/forge/week-shoulder-a.jpg" width="1080" height="2337"
+               alt="FORGE week view: Week 1, Phase 1 Foundation, with Day 1 Shoulder A ready to begin.">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POSITIONING -->
+<section class="band pos">
+  <div class="wrap-narrow">
+    <p class="eyebrow">Not another blank tracker</p>
+    <p class="lead-serif">The program comes <em>first</em>.</p>
+    <p>Most workout apps give you an exercise library and ask you to build the plan yourself. FORGE gives you the plan.</p>
+    <p>Your week is structured. Your session is written. Your previous work is remembered. You only need to enter the room and begin.</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="band" id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">How it works</p>
+      <h2 class="serif">Open the app and begin.</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="step-num">1</span><h3>Open today</h3><p>See the session that belongs to the current day, and where it sits within the week.</p></div>
+      <div class="step"><span class="step-num">2</span><h3>Follow the work</h3><p>Exercises, sets, reps, and progression are already written. Nothing to assemble.</p></div>
+      <div class="step"><span class="step-num">3</span><h3>Log without breaking rhythm</h3><p>Record weight and reps quickly, see your previous performance, and keep moving.</p></div>
+      <div class="step"><span class="step-num">4</span><h3>Progress the program</h3><p>Close the week, move into the next one, and continue through all four phases.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BREECHAY SCULPT -->
+<section class="band" id="program">
+  <div class="wrap-narrow">
+    <div class="sec-head">
+      <p class="eyebrow">Breechay Sculpt</p>
+      <h2 class="serif">Four phases.<br>One complete silhouette.</h2>
+      <p class="sec-lede">Each phase changes the emphasis while preserving the work that came before it. Breechay Sculpt is one continuous program, not four unrelated plans.</p>
+    </div>
+    <div class="phases">
+      <div class="phase">
+        <div class="phase-mark"><span class="rn">I</span><span class="lbl">Phase</span></div>
+        <div><div class="phase-name">Build the Frame</div><p class="phase-body">The first phase emphasizes the upper-body silhouette: shoulders, upper chest, back, and arms. The objective is width, structure, and a stronger visual frame.</p></div>
+      </div>
+      <div class="phase">
+        <div class="phase-mark"><span class="rn">II</span><span class="lbl">Phase</span></div>
+        <div><div class="phase-name">Glute Build</div><p class="phase-body">The second phase gives the lower body and glutes greater emphasis while continuing to support the physique, developing the lower silhouette without abandoning the frame established in Phase 1.</p></div>
+      </div>
+      <div class="phase">
+        <div class="phase-mark"><span class="rn">III</span><span class="lbl">Phase</span></div>
+        <div><div class="phase-name">Specialize</div><p class="phase-body">The third phase develops the areas that most influence the completed silhouette, with added attention to glute development, core, proportion, and refinement.</p></div>
+      </div>
+      <div class="phase">
+        <div class="phase-mark"><span class="rn">IV</span><span class="lbl">Phase</span></div>
+        <div><div class="phase-name">Reveal</div><p class="phase-body">The fourth phase is built to preserve the physique while helping reveal the work completed across the program.</p></div>
+      </div>
+    </div>
+    <p class="phase-close">The emphasis moves. The work accumulates.</p>
+  </div>
+</section>
+
+<!-- INSIDE THE APP -->
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Inside the app</p>
+      <h2 class="serif">Built for the middle of a session.</h2>
+    </div>
+
+    <div class="frow">
+      <div class="frow-media"><div class="shot"><img src="assets/forge/week-shoulder-a.jpg" width="1080" height="2337" alt="FORGE Week view showing Day 1 Shoulder A and the days that follow."></div></div>
+      <div class="frow-text">
+        <span class="frow-cap">The week · today</span>
+        <h3>Today's work, without the search</h3>
+        <p>The session for the day is already on screen, with the rest of the week laid out behind it. No library to browse, no plan to build. Begin when ready.</p>
+      </div>
+    </div>
+
+    <div class="frow flip">
+      <div class="frow-media"><div class="shot"><img src="assets/forge/session-set.jpg" width="1080" height="2337" alt="FORGE session view: logging a set of Cable Lateral Raise with weight and reps."></div></div>
+      <div class="frow-text">
+        <span class="frow-cap">The session</span>
+        <h3>Logging that respects the session</h3>
+        <p>One exercise at a time, with the cue that matters and the sets laid out below. Enter weight and reps in a tap or two, complete the set, and keep moving.</p>
+      </div>
+    </div>
+
+    <div class="frow">
+      <div class="frow-media"><div class="shot"><img src="assets/forge/record.jpg" width="1080" height="2337" alt="FORGE Record view: closed sessions listed by month with total volume."></div></div>
+      <div class="frow-text">
+        <span class="frow-cap">The record</span>
+        <h3>A record of the work accumulating</h3>
+        <p>Every session you close lives here, gathered by month, with your best sets kept. Not a dashboard. A record of what was actually done.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:40px;">
+      <p class="eyebrow" style="margin-bottom:26px;">And the details that keep you moving</p>
+      <div class="trio">
+        <div>
+          <div class="shot"><img src="assets/forge/session-rest.jpg" width="1080" height="2337" alt="FORGE rest timer between sets, with previous set shown."></div>
+          <p class="trio-cap">Rest, and your last set</p>
+          <p class="trio-sub">Built-in rest timing · previous performance in view</p>
+        </div>
+        <div>
+          <div class="shot"><img src="assets/forge/week-pull.jpg" width="1080" height="2337" alt="FORGE week rail showing which days are available now and which open later."></div>
+          <p class="trio-cap">A clear path through the week</p>
+          <p class="trio-sub">Available now · opens after the day before</p>
+        </div>
+        <div>
+          <div class="shot"><img src="assets/forge/week-phase2.jpg" width="1080" height="2337" alt="FORGE showing a later phase of the program with its own emphasis."></div>
+          <p class="trio-cap">Into the next phase</p>
+          <p class="trio-sub">The emphasis shifts · the program continues</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP -->
+<section class="band">
+  <div class="wrap-narrow member">
+    <p class="eyebrow">Membership</p>
+    <h2>Begin with Week 1.</h2>
+    <p class="sec-lede" style="margin:22px auto 34px;">The first week of Breechay Sculpt is free. Continue into the complete four-phase program with a FORGE membership.</p>
+    <!-- PLACEHOLDER: App Store or paywall link -->
+    <a class="btn btn-solid" href="https://apps.apple.com/app/idXXXXXXXXXX">Start Week 1</a>
+    <p class="price-note">Pricing shown in the app. <span class="ph">[CONFIRM SUBSCRIPTION TERM &amp; PRICE]</span></p>
+    <p class="apple-note">Subscriptions are billed and managed through the Apple App Store</p>
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section class="legal" id="support">
+  <div class="doc">
+    <div class="legal-head">
+      <p class="eyebrow">Support</p>
+      <h2>Help with FORGE</h2>
+      <p class="legal-lede">Questions about access, purchases, or the app. This is the fastest way to reach a person.</p>
+    </div>
+    <div class="contact-card">
+      <p class="lab">Contact</p>
+      <a class="email" href="mailto:support@speedandform.com">support@speedandform.com</a>
+      <p class="sla">We respond within 48 hours</p>
+    </div>
+    <div class="srow"><h3>Restore a purchase</h3><p>Open FORGE, go to the membership screen, and select Restore Purchases. Make sure you are signed into the same Apple ID used for the original purchase.</p></div>
+    <div class="srow"><h3>Manage or cancel a subscription</h3><p>FORGE memberships are billed through Apple. You can manage or cancel anytime from your iPhone: Settings, then your Apple ID, then Subscriptions.</p></div>
+    <div class="srow"><h3>Delete your account</h3><p>You can delete your account from inside FORGE: <span class="ph">[INSERT CONFIRMED IN-APP PATH, likely You → Settings → Delete Account]</span>. Deleting removes your associated data as described in the Privacy Policy. If you can no longer open the app, email us with the subject line "Delete Account" and we will assist.</p></div>
+    <div class="srow"><h3>Basic troubleshooting</h3><p>If something looks wrong, close and reopen FORGE, confirm you are on the latest version from the App Store, and restart your device if needed. If the issue continues, email support with what you were doing, what you expected, and what happened instead.</p></div>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section class="legal" id="privacy">
+  <div class="doc">
+    <div class="legal-head">
+      <p class="eyebrow">Legal</p>
+      <h2>Privacy Policy</h2>
+      <p class="updated">Effective date: <span class="ph">[CONFIRM EFFECTIVE DATE]</span></p>
+      <p class="legal-lede">This policy explains what information FORGE collects, how it is used, and your choices. FORGE is published by Speed and Form.</p>
+    </div>
+    <div class="callout"><p><strong>Before publishing:</strong> every highlighted token below marks a fact that must be confirmed against the current FORGE build. Do not publish while any placeholder remains. Sibling app FORM stores data on-device and in the user's iCloud with no third-party analytics; confirm whether FORGE follows the same model or uses a server backend, then the placeholders can be replaced with confirmed language.</p></div>
+
+    <div class="item"><p class="item-no">01</p><h3>Who we are</h3><p>FORGE is operated by <span class="ph">[INSERT LEGAL BUSINESS NAME]</span> ("we," "us"), trading as Speed and Form, based in <span class="ph">[INSERT BUSINESS LOCATION / ADDRESS IF REQUIRED]</span>. You can reach us at <a href="mailto:support@speedandform.com">support@speedandform.com</a>.</p></div>
+
+    <div class="item"><p class="item-no">02</p><h3>Information you provide</h3><p><strong>Account information.</strong> <span class="ph">[CONFIRM WHETHER FORGE REQUIRES AN ACCOUNT AND WHICH METHOD, e.g. Sign in with Apple]</span>. <span class="ph">[CONFIRM WHETHER EMAIL OR PHONE NUMBER IS COLLECTED]</span>.</p><p><strong>Training data.</strong> Your logged sets, reps, weights, session history, and program progress. <span class="ph">[CONFIRM WHERE TRAINING DATA IS STORED: on-device only, the user's iCloud, and/or Speed and Form servers via [CONFIRM BACKEND PROVIDER]]</span>.</p></div>
+
+    <div class="item"><p class="item-no">03</p><h3>Purchases and subscriptions</h3><p>FORGE memberships are sold as Apple in-app purchases. <strong>Apple processes all payments.</strong> We never receive or store your card number or full payment details. From Apple we receive <span class="ph">[CONFIRM WHAT PURCHASE INFORMATION FORGE RECEIVES, e.g. transaction and subscription status]</span>, which we use to unlock and maintain your membership.</p></div>
+
+    <div class="item"><p class="item-no">04</p><h3>Device and diagnostic data</h3><p><span class="ph">[CONFIRM CRASH-REPORTING / DIAGNOSTIC PROVIDER, e.g. Apple MetricKit, or state none]</span>.</p></div>
+
+    <div class="item"><p class="item-no">05</p><h3>Analytics</h3><p><span class="ph">[CONFIRM ANALYTICS PROVIDER, or state that FORGE uses no third-party analytics]</span>.</p></div>
+
+    <div class="item"><p class="item-no">06</p><h3>Notifications</h3><p><span class="ph">[CONFIRM NOTIFICATION APPROACH, e.g. local notifications only, or push via Apple Push Notification service / a third-party provider]</span>. Notifications are only sent if you grant permission, and can be turned off in your device settings.</p></div>
+
+    <div class="item"><p class="item-no">07</p><h3>Third-party services</h3><p>Apple provides in-app purchases and, where used, the frameworks named above, each governed by Apple's privacy policy at <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">apple.com/legal/privacy</a>. Any additional providers must be listed here: <span class="ph">[CONFIRM ALL THIRD-PARTY SDKs / PROVIDERS]</span>.</p></div>
+
+    <div class="item"><p class="item-no">08</p><h3>Data retention</h3><p><span class="ph">[CONFIRM DATA-RETENTION PRACTICE: how long data is kept and what triggers deletion]</span>.</p></div>
+
+    <div class="item"><p class="item-no">09</p><h3>Deleting your data</h3><p>You can delete your account and associated data from inside FORGE: <span class="ph">[INSERT CONFIRMED IN-APP ACCOUNT-DELETION PATH]</span>. <span class="ph">[CONFIRM WHAT IS DELETED AND WHETHER ANY DATA PERSISTS, e.g. in iCloud or in billing records held by Apple]</span>.</p></div>
+
+    <div class="item"><p class="item-no">10</p><h3>Data security</h3><p><span class="ph">[CONFIRM SECURITY MEASURES. Do not claim encryption or specific safeguards unless verified in the build.]</span></p></div>
+
+    <div class="item"><p class="item-no">11</p><h3>Selling of personal information</h3><p><span class="ph">[IF CONFIRMED, STATE: FORGE does not sell your personal information. Include only once verified.]</span></p></div>
+
+    <div class="item"><p class="item-no">12</p><h3>Children's privacy</h3><p>FORGE is not directed to children under 13, and we do not knowingly collect personal information from children under 13. If you believe a child has provided information, contact us and we will take steps to remove it.</p></div>
+
+    <div class="item"><p class="item-no">13</p><h3>International users</h3><p><span class="ph">[CONFIRM IF APPLICABLE: where data is processed, and any rights for users outside your home country]</span>.</p></div>
+
+    <div class="item"><p class="item-no">14</p><h3>Changes to this policy</h3><p>We may update this policy. When we do, we will revise the effective date above. Continued use of FORGE after changes are posted constitutes acceptance of the updated policy.</p></div>
+
+    <div class="item"><p class="item-no">15</p><h3>Contact</h3><p>Questions about this policy or your data: <a href="mailto:support@speedandform.com">support@speedandform.com</a>.</p></div>
+  </div>
+</section>
+
+<!-- TERMS -->
+<section class="legal" id="terms">
+  <div class="doc">
+    <div class="legal-head">
+      <p class="eyebrow">Legal</p>
+      <h2>Terms of Use</h2>
+      <p class="updated">Effective date: <span class="ph">[CONFIRM EFFECTIVE DATE]</span></p>
+      <p class="legal-lede">These terms govern your use of the FORGE app and the Breechay Sculpt program.</p>
+    </div>
+
+    <div class="item"><p class="item-no">01</p><h3>Agreement</h3><p>By downloading or using FORGE you agree to these terms. If you do not agree, do not use the app. FORGE is provided by <span class="ph">[INSERT LEGAL BUSINESS NAME]</span>, trading as Speed and Form.</p></div>
+
+    <div class="item"><p class="item-no">02</p><h3>Eligibility</h3><p>You must be at least <span class="ph">[CONFIRM MINIMUM AGE]</span> years old to use FORGE. If you are a minor in your jurisdiction, you may use FORGE only with the consent of a parent or guardian.</p></div>
+
+    <div class="item"><p class="item-no">03</p><h3>Your account and use</h3><p>You are responsible for activity under your account and for keeping your device and credentials secure. FORGE is licensed to you for personal, non-commercial use. You may not copy, resell, redistribute, or reverse engineer the app or its programming.</p></div>
+
+    <div class="item"><p class="item-no">04</p><h3>Membership and billing</h3><p>Week 1 of Breechay Sculpt is free. Continued access requires a FORGE membership (<span class="ph">[CONFIRM SUBSCRIPTION TERM &amp; PRICE]</span>), sold as an Apple in-app purchase.</p><p><strong>Billing through Apple.</strong> All charges are processed by Apple through your Apple ID.</p><p><strong>Auto-renewal.</strong> Subscriptions renew automatically unless cancelled at least 24 hours before the end of the current period. Your Apple ID is charged for renewal within the 24 hours before the period ends.</p><p><strong>Cancellation and restore.</strong> Manage or cancel anytime in Settings, then your Apple ID, then Subscriptions. You can restore an active purchase from the membership screen in FORGE.</p></div>
+
+    <div class="item"><p class="item-no">05</p><h3>Intellectual property</h3><p>FORGE, Breechay Sculpt, and all associated programming, text, and design are owned by <span class="ph">[INSERT LEGAL BUSINESS NAME]</span> and are protected by applicable law.</p></div>
+
+    <div class="item"><p class="item-no">06</p><h3>Availability and changes</h3><p>We may update, change, or discontinue features of FORGE at any time. We aim for reliable availability but do not guarantee uninterrupted service.</p></div>
+
+    <div class="item"><p class="item-no">07</p><h3>Health and fitness disclaimer</h3><p>FORGE provides general fitness and educational information. It is not medical advice and does not diagnose, treat, prevent, or cure any condition. Consider your own health and consult an appropriate professional before starting or changing a training program.</p><p>You are responsible for selecting appropriate weights and performing exercises safely. Physical exercise carries inherent risk of injury. Stop and seek help if you feel unwell.</p></div>
+
+    <div class="item"><p class="item-no">08</p><h3>Disclaimer of warranties</h3><p>FORGE is provided "as is" and "as available," without warranties of any kind to the extent permitted by law.</p></div>
+
+    <div class="item"><p class="item-no">09</p><h3>Limitation of liability</h3><p>To the extent permitted by law, <span class="ph">[INSERT LEGAL BUSINESS NAME]</span> is not liable for indirect, incidental, or consequential damages arising from your use of FORGE.</p></div>
+
+    <div class="item"><p class="item-no">10</p><h3>Termination</h3><p>You may stop using FORGE at any time. We may suspend or terminate access if these terms are violated. Provisions that by their nature should survive termination will survive.</p></div>
+
+    <div class="item"><p class="item-no">11</p><h3>Governing law</h3><p>These terms are governed by the laws of <span class="ph">[INSERT GOVERNING JURISDICTION]</span>, without regard to conflict-of-law rules.</p></div>
+
+    <div class="item"><p class="item-no">12</p><h3>Apple standard EULA</h3><p>Unless you have signed a separate agreement with us, your use of FORGE is also subject to Apple's standard Licensed Application End User License Agreement, available at <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">apple.com/legal/internet-services/itunes/dev/stdeula</a>.</p></div>
+
+    <div class="item"><p class="item-no">13</p><h3>Contact</h3><p>Questions about these terms: <a href="mailto:support@speedandform.com">support@speedandform.com</a>.</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-mark">FORGE</div>
+        <div class="footer-tag">Breechay Sculpt. Today's work is waiting.</div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <p class="lab">App</p>
+          <!-- PLACEHOLDER: real App Store link -->
+          <a href="https://apps.apple.com/app/idXXXXXXXXXX">Download on the App Store</a>
+          <a href="#program">The Program</a>
+          <a href="#how">How It Works</a>
+        </div>
+        <div class="footer-col">
+          <p class="lab">Legal</p>
+          <a href="#support">Support</a>
+          <a href="#privacy">Privacy</a>
+          <a href="#terms">Terms</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span>© <span id="yr">2026</span> <span class="ph">[INSERT LEGAL BUSINESS NAME]</span> · Speed and Form · Miami</span>
+      <span>Last updated <span class="ph">[CONFIRM DATE]</span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
