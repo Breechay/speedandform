@@ -39,6 +39,56 @@ Route decision: FORGE stays at /forge-sculpt/ (its existing public URL, dedicate
 folder, zero conflict with anything else in the repo). Moving to /forge later is an
 optional rename + one redirect — never a prerequisite.
 
+## DO-NOT-REGRESS LIST — verify against THIS, never against your own diff
+
+Every item below is live on a shipping page. If your change removes one, it is a
+regression regardless of how good the change is.
+
+| Feature | Lives at | Verify with | Why it can't go |
+|---|---|---|---|
+| `FORGE_SESSION` demo | `forge-sculpt/index.html` — CSS ~200–236, HTML ~518–543, JS ~760–839 | `grep -c FORGE_SESSION` → **14** | Claims must be demo-provable. "You open it. You execute." is only true if the demo does it. |
+| `data-demo` / `data-region` | demo `<section>` + JS selectors | `grep -c` → **2** / **1** | JS selects on them. Removing them kills the demo silently. |
+| `demo_started` / `demo_completed` | demo JS | `grep -c` → **1** / **1** | Stable event names. Never rename. |
+| Netlify email capture | `#notify`, `name="forge-prelaunch"` | `grep -c data-netlify` → **1** | Pre-launch conversion. Its privacy disclosure exists *because* of it (decision log #3). |
+| `sfTrack` + `data-sf-event*` | bottom script | `grep -c sfTrack` → **6** | Analytics. Wire a provider later; don't rename events. |
+| Legal footer links | footer | `grep -c "forge-sculpt/privacy/"` etc. | Compliance. Not optional on a page with a form. |
+| "Coming to the App Store" ×3 | hero, price, final | `grep -c` → **3** | FORGE is pre-launch. There is no store link yet. |
+
+**How this list gets broken — 2026-07-15, verbatim, so it isn't repeated.**
+
+An agent replaced this page with the north-star design. It grafted back the form,
+analytics, legal links, and CTA — then verified those four and reported success.
+It had **itself** produced the evidence, hours earlier, that `FORGE_SESSION` (14),
+`data-demo` (2) and `data-region` (1) were live and had to survive. The demo was
+deleted. The verification passed because it tested the work that was done rather
+than the list of things that had to hold.
+
+> **A checklist built from what you changed will always pass. Verify against the
+> list above, before the diff, and paste the counts.**
+
+Caught in review, before push. Nothing shipped.
+
+## The north star is a DESIGN REFERENCE, not a deployable page
+
+`forge.html` (in the FORM-iOS repo, `FORGE_START_HERE.md` §1) is the approved
+visual and tonal reference. **It is not the live page and must never be copied
+over `forge-sculpt/index.html`.** It contains zero of the do-not-regress items,
+and it annotates itself:
+
+    data-audit="BUILD — ATHLETES UNCONFIRMED / PERMISSION REQUIRED"
+    data-audit="BUILD — PRICING NOT APPROVED"
+    data-audit="BUILD — CTA STATE PENDING APPROVAL"
+    data-audit="POLISH"        ← the #today "device" is a PICTURE, not the demo
+
+Adopting its design means porting the composition **around** the live machinery,
+not replacing the page with it. Known corrections needed before any adoption:
+
+- `#today` device mock says **"140 KG"** — FORGE ships **pounds** (signed 2026-07-15).
+- Athletes section is four placeholder cards. §6: real, permissioned, real durations.
+- Price cards state $99/$19.99 — **unapproved**. The live page states no price by design.
+- "The curriculum runs the better part of a year" — only Phases 1–4 ship (~15 weeks).
+  Restore only when Phases 5–12 + Hold + re-entry ship.
+
 ## Key mechanics someone might otherwise break
 - **Reveals are transform-only.** Nothing is ever hidden behind opacity/JS. Full-page
   captures, no-JS, and reduced-motion must always show complete content. Do not
@@ -97,3 +147,49 @@ Then verify: all 9 routes load with zero 4xx and zero console errors; no horizon
 overflow at 1440 and 390; demos operate end-to-end (FORM: 4 tabs + change action;
 FORGE: set→rest→set→Record, all four steppers); JS disabled still shows complete
 content incl. demo fallbacks; window.sfEvents fills as you interact.
+
+## DEPLOY & ROLLBACK
+
+Netlify serves the repo root on `main` and auto-deploys every push (~1 min to live).
+**No build step. No staging. Pushing main IS deploying live.**
+
+    # 1. QA locally first — always
+    cd ~/Documents/speedandform && python3 -m http.server 8000
+    #    → http://localhost:8000/forge-sculpt/  at 1440 and 390
+
+    # 2. Verify the do-not-regress list ABOVE. Paste the counts.
+    grep -c FORGE_SESSION forge-sculpt/index.html    # expect 14
+
+    # 3. Inspect before staging
+    git status
+    git diff --check
+
+    # 4. Stage, re-read, commit, push
+    git add forge-sculpt/index.html docs/site/HANDOFF.md
+    git diff --cached
+    git commit -m "..."
+    git push
+
+    # ROLLBACK — if anything looks wrong live
+    git revert HEAD && git push
+
+Risky change? Use a branch + Netlify Deploy Preview instead of main.
+
+### Agents: READ-ONLY GIT. No exceptions.
+
+An agent may read the repo and edit files. It may **not** run `commit`, `add`,
+`checkout`, `rm`, or any mutating git command. Brice runs those from Terminal.
+
+This is not etiquette — the sandbox is subtly broken against these repos:
+
+1. **Hooks silently don't run.** `.git/hooks/pre-commit` is a symlink to an absolute
+   macOS path that doesn't resolve inside the agent sandbox. Git skips a broken hook
+   symlink **without warning**. On 2026-07-15 an agent committed 30 files — four
+   syntactically broken — straight past the guard built to stop exactly that. Neither
+   party knew the check hadn't run.
+2. **Locks get stranded.** Sandbox git can create `.git/index.lock` and `HEAD.lock`
+   but cannot unlink them. It stranded locks on both repos three times in one session.
+   Clearing one: verify no owner with `lsof .git/index.lock` and `ps aux | grep '[g]it'`
+   — a `com.apple` read handle is just Spotlight — then `rm -f .git/index.lock`.
+
+An agent's commit looks identical to a checked one and isn't.
