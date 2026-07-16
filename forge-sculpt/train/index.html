@@ -183,6 +183,22 @@ footer{max-width:var(--maxw);margin:0 auto;padding:30px 0;border-top:1px solid v
   .nav-right{gap:1px}.theme .tl{display:none}.theme{width:40px;height:40px;padding:0;justify-content:center}.nav-link{font-size:9px}.resume-action{font-size:0}.resume-arrow{font-size:22px}.wkrail{grid-template-columns:1fr}.program-metrics{grid-template-columns:1fr 1fr 1fr}.metric span{font-size:7px}.fx-set{gap:10px}.fx-val{font-size:11px}.barrow{align-items:flex-start}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+
+/* ===== refinement pass (beauty touches) ===== */
+.hero{padding-top:clamp(28px,5vw,58px);padding-bottom:20px}
+.hero-grid{min-height:clamp(340px,50vw,452px)}
+.hero-art{min-height:clamp(290px,42vw,430px)}
+.phase-step{justify-items:center}
+.phase-track:before{left:12.5%;right:12.5%}
+.program-panel{cursor:pointer;transition:transform .22s var(--ease),border-color .22s var(--ease)}
+.program-panel:hover{transform:translateY(-2px);border-color:var(--line-strong)}
+.program-link span{transition:transform .2s}
+.program-panel:hover .program-link span{transform:translateX(4px)}
+.metric b{font-family:var(--mono);font-weight:400;font-size:clamp(21px,2.6vw,27px);color:var(--text);display:block;letter-spacing:-.01em}
+.metric span{font-family:var(--mono);font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-4);margin-top:4px;display:block}
+.launch-note{font-family:var(--mono);font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--text-4);margin-top:14px;display:flex;align-items:center;gap:7px}
+.launch-note:before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent-dim)}
+@media(max-width:760px){.hero-art{min-height:300px}.program-metrics{grid-template-columns:repeat(3,1fr)}}
 </style>
 </head>
 <body>
@@ -347,7 +363,7 @@ function entry(){chrome(false,'',null);view.className='portal-home';view.innerHT
   const done=!!STATE.email;
   const su=el(`<section class="signup launch-panel"><div><h3>FORGE is moving to its own app.</h3><p>Leave your email and I'll send you the App Store link when it's ready.</p></div>
     ${done?`<div class="signup-row"><div class="signup-done">✓ Got it — I'll send the link when FORGE is live.</div></div>`
-    :`<div class="signup-row"><input type="email" name="email" placeholder="Email address" id="su-in" autocomplete="email"><button class="btn" id="su-btn">Send me the link</button><p id="su-err" style="display:none;color:var(--accent);font-size:13px;grid-column:1/-1"></p></div>`}</section>`);
+    :`<div class="signup-row"><input type="email" name="email" placeholder="Email address" id="su-in" autocomplete="email"><button class="btn" id="su-btn">Send me the link</button><p id="su-err" style="display:none;color:var(--accent);font-size:13px;grid-column:1/-1"></p></div><p class="launch-note">No spam. Just the link.</p>`}</section>`);
   home.appendChild(su);view.appendChild(home);
   if(!done){const b=su.querySelector('#su-btn'),i=su.querySelector('#su-in'),er=su.querySelector('#su-err');
     const submit=()=>{const v=i.value.trim();if(!/.+@.+\..+/.test(v)){er.textContent='Enter a valid email.';er.style.display='block';return;}
