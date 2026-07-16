@@ -8,7 +8,11 @@
 <meta property="og:title" content="FORGE — Athlete Portal">
 <meta property="og:description" content="Every session, already written. A preview of the FORGE app.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://speedandform.com/assets/forge/og-forge.jpg">
+<meta property="og:image" content="https://speedandform.com/assets/forge/og-forge-portal-v2.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta name="twitter:image" content="https://speedandform.com/assets/forge/og-forge-portal-v2.jpg">
 <meta property="og:url" content="https://speedandform.com/forge-sculpt/train/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -198,6 +202,7 @@ footer{max-width:var(--maxw);margin:0 auto;padding:30px 0;border-top:1px solid v
 .metric span{font-family:var(--mono);font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-4);margin-top:4px;display:block}
 .launch-note{font-family:var(--mono);font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--text-4);margin-top:14px;display:flex;align-items:center;gap:7px}
 .launch-note:before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent-dim)}
+@media(min-width:761px){.launch-note{grid-column:2}}
 @media(max-width:760px){.hero-art{min-height:300px}.program-metrics{grid-template-columns:repeat(3,1fr)}}
 </style>
 </head>
@@ -379,11 +384,9 @@ function sculptOverview(){chrome(true,'Forge Sculpt','sculpt');view.innerHTML=''
   view.appendChild(el(`<div class="stack fadein" style="--gap:10px;padding-top:8px"><span class="eyebrow">Complete Program</span>
     <h2>Forge Sculpt</h2><p class="lede">Four phases. The emphasis moves; the frame you build early is held, not abandoned.</p></div>`));
   if(!unlocked()){const ds=sampleDi();
-    const banner=el(`<div class="resume-band fadein" style="margin-top:20px;border-color:var(--line)"><div>
-      <div class="rl">Preview</div><div class="rt">Open one full session free · athletes unlock every week</div></div>
-      <span class="ext" id="ov-access">Enter code →</span></div>`);
-    banner.querySelector('#ov-access').onclick=e=>{e.stopPropagation();go('/access');};
+    const banner=el(`<section class="resume-rail fadein" role="button" tabindex="0" style="margin-top:20px"><div class="resume-mark">01</div><div class="resume-copy"><div class="resume-label">Full session preview</div><div class="resume-title">Phase I · Pull — free</div></div><div class="resume-action"><span>Open</span><span class="resume-arrow">→</span></div></section>`);
     banner.onclick=()=>go(`/sculpt/${SAMPLE.pn}/${SAMPLE.wn}/${ds}`);
+    banner.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();banner.click();}};
     view.appendChild(banner);}
   const wrap=el(`<div class="fadein" style="margin-top:22px;border-top:1px solid var(--line)"></div>`);
   FS.phases.forEach(ph=>{
@@ -393,7 +396,7 @@ function sculptOverview(){chrome(true,'Forge Sculpt','sculpt');view.innerHTML=''
       <div><div class="pt">🔒 ${esc(ph.title)}</div><div class="ps">Unlocks when you reach it</div></div>
       <div class="pw">Locked<br>${ph.weeks.length} wks</div></div>`));return;}
     const row=el(`<div class="phase">${art}
-      <div><div class="pt"><span class="dot ${st}"></span>${esc(ph.title)}</div><div class="ps">${esc(ph.sub)}</div></div>
+      <div><div class="pt"><span class="dot ${st}"></span>${esc(ph.title)}</div>${ph.sub?`<div class="ps">${esc(ph.sub)}</div>`:``}</div>
       <div class="pw">${st==='now'?'Current':st==='done'?'Done':''}<br>${ph.weeks.length} wks</div></div>`);
     row.onclick=()=>go(`/sculpt/${ph.n}`);wrap.appendChild(row);});
   view.appendChild(wrap);
@@ -404,7 +407,7 @@ function sculptOverview(){chrome(true,'Forge Sculpt','sculpt');view.innerHTML=''
 function phaseWeeks(pn){const ph=FS.phases.find(x=>x.n===pn);if(!ph)return go('/sculpt');
   chrome(true,`${ph.title}`,'sculpt');view.innerHTML='';
   view.appendChild(el(`<div class="stack fadein" style="--gap:10px;padding-top:8px"><span class="eyebrow">Phase ${['','I','II','III','IV'][pn]}</span>
-    <h2>${esc(ph.title)}</h2><p class="lede">${esc(ph.sub)}.</p></div>`));
+    <h2>${esc(ph.title)}</h2>${ph.sub?`<p class="lede">${esc(ph.sub)}.</p>`:``}</div>`));
   const rail=el(`<div class="wkrail fadein" style="margin-top:22px"></div>`);
   const ni=nextIncomplete();
   ph.weeks.forEach(w=>{const wd=weekDone(pn,w),cur=ni&&ni.ph===pn&&ni.w===w.num;
