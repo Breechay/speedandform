@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>MOCKUP — Homepage deltas · NOT DEPLOYABLE</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   DESIGN REFERENCE — NOT A DEPLOYABLE PAGE
+   Per NORTH-STAR-ADOPTION.md: a north star is a picture; the live page is a
+   machine. index.html carries sfTrack (5), data-sf-event (11), 1 script block.
+   NONE of that is here. Do not paste this over index.html.
+   Tokens below are READ FROM index.html, not invented.
+   ========================================================================== */
+:root{
+  --cream:#efe9df; --paper2:#f3ede3; --ink:#29251f; --body:#635c52;
+  --muted:#8f877b; --faint:#aaa193; --line:rgba(41,37,31,.09);
+  --plum:#72506f; --blue:#3c5e7b; --copper:#b56f39;
+  --black:#050608; --panel:#0d0e11; --bone:#eee8dc; --gold:#c79a3e;
+  --dline:rgba(238,232,220,.1);
+  --display-sans:'Jost',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --serif:'Cormorant Garamond',serif;
+  --ease-premium:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--ink);font-family:var(--display-sans);font-weight:300;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 40px}
+.eyebrow{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+
+/* ---- mockup chrome (not part of the design) ---- */
+#bar{position:fixed;bottom:0;left:0;right:0;z-index:99;background:#141210;color:#e8e3d9;
+  font-family:var(--mono);font-size:11px;padding:10px 16px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+#bar b{color:#c79a3e;font-weight:500}
+#bar button{font-family:var(--mono);font-size:11px;background:#2a2622;color:#e8e3d9;border:1px solid #46403a;
+  padding:5px 10px;cursor:pointer;border-radius:2px}
+#bar button[aria-pressed="true"]{background:#c79a3e;color:#141210;border-color:#c79a3e}
+.delta{position:relative}
+body.show-deltas .delta{outline:1.5px dashed var(--plum);outline-offset:6px}
+body.show-deltas .delta::after{content:attr(data-delta);position:absolute;top:-9px;left:-6px;
+  background:var(--plum);color:#fff;font-family:var(--mono);font-size:9px;letter-spacing:.1em;
+  padding:2px 6px;border-radius:2px;white-space:nowrap;z-index:5}
+
+/* ---- nav ---- */
+nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.mark{font-family:var(--serif);font-size:22px;letter-spacing:.12em;color:var(--ink);text-decoration:none}
+.navlinks{display:flex;gap:28px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+.navlinks a{color:var(--muted);text-decoration:none}
+.navlinks a:hover{color:var(--ink)}
+.skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--cream);padding:10px 16px;
+  font-family:var(--mono);font-size:12px;z-index:200}
+.skip:focus{left:0}
+
+/* ---- hero ---- */
+.hero{padding:92px 0 0;position:relative;overflow:hidden}
+.hero-contour{position:absolute;right:-8%;top:-14%;width:62%;opacity:.30;pointer-events:none}
+.hero h1{font-size:clamp(46px,6.6vw,86px);font-weight:300;line-height:.98;letter-spacing:-.015em;position:relative}
+.hero h1 em{font-family:var(--serif);font-style:italic;font-weight:300}
+.hero .sub{margin-top:22px;font-size:19px;color:var(--body);max-width:33ch;line-height:1.5}
+
+/* ---- router ---- */
+.router{margin-top:66px;padding-bottom:88px;position:relative}
+.router .eyebrow{margin-bottom:20px;display:block}
+.doors{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.door{background:var(--cream);padding:34px 30px 30px;display:flex;flex-direction:column;gap:12px;
+  transition:background .4s var(--ease-premium)}
+.door:hover{background:var(--paper2)}
+.door .tag{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint)}
+.door h2{font-size:25px;font-weight:300;letter-spacing:-.01em}
+.door p{font-size:15px;color:var(--body);line-height:1.55;flex:1}
+.cta{align-self:flex-start;font-family:var(--display-sans);font-size:14px;font-weight:400;letter-spacing:.02em;
+  padding:12px 22px;border-radius:2px;text-decoration:none;transition:.3s var(--ease-premium);border:1px solid transparent}
+.cta-filled{background:var(--plum);color:#fff}
+.cta-filled:hover{background:#5d4159}
+.cta-outline{background:transparent;color:var(--ink);border-color:rgba(41,37,31,.28)}
+.cta-outline:hover{border-color:var(--ink)}
+.status{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--copper)}
+
+/* ---- chapters ---- */
+.chapter{padding:104px 0;border-top:1px solid var(--line)}
+.chapter h2{font-size:clamp(30px,3.6vw,46px);font-weight:300;line-height:1.05;letter-spacing:-.015em;margin:14px 0 20px}
+.chapter .lead{font-size:17px;color:var(--body);line-height:1.6;max-width:56ch}
+.grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.instr{display:flex;gap:34px;margin:32px 0 30px;flex-wrap:wrap}
+.instr div span{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-bottom:5px}
+.instr div b{font-weight:400;font-size:15px;color:var(--ink)}
+.shots{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:52px}
+.shots figure{margin:0}
+.shots img{border-radius:12px;border:1px solid var(--line)}
+.shots figcaption{font-family:var(--mono);font-size:9.5px;line-height:1.5;letter-spacing:.06em;color:var(--faint);margin-top:9px}
+
+/* ---- forge room ---- */
+.forge{background:var(--black);color:var(--bone);border-top:none}
+.forge .eyebrow{color:var(--gold)}
+.forge .lead{color:#bdb5a8}
+.forge .instr div span{color:#7d766c}
+.forge .instr div b{color:var(--bone)}
+.forge .shots img{border-color:var(--dline)}
+.forge .shots figcaption{color:#7d766c}
+.forge .cta-outline{color:var(--bone);border-color:rgba(238,232,220,.3)}
+.forge .cta-outline:hover{border-color:var(--bone)}
+.forge .cta-filled{background:var(--gold);color:var(--black)}
+.forge .status{color:var(--gold)}
+
+/* ---- people ---- */
+.people-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
+.people-grid img{aspect-ratio:4/5;object-fit:cover;filter:grayscale(.12)}
+.people-grid figcaption{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--faint);margin-top:10px;text-transform:uppercase}
+
+/* ---- library ---- */
+.lib{display:grid;grid-template-columns:1fr 1fr;gap:0 48px;margin-top:36px;border-top:1px solid var(--line)}
+.lib a{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:19px 0;
+  border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink);font-size:16px}
+.lib a span{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+.lib a:hover{color:var(--plum)}
+
+/* ---- brice ---- */
+.brice{border-top:1px solid var(--line);padding:104px 0}
+.brice-in{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:center}
+.brice img{filter:grayscale(.18)}
+.brice h2{font-size:38px;font-weight:300;margin:14px 0 22px;letter-spacing:-.015em}
+.brice p{font-size:16.5px;line-height:1.68;color:var(--body);margin-bottom:16px;max-width:54ch}
+.brice p.close{color:var(--ink)}
+.brice a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line)}
+
+/* ---- final + footer ---- */
+.final{border-top:1px solid var(--line);padding:96px 0;text-align:center}
+.final h2{font-size:clamp(28px,3.4vw,42px);font-weight:300;margin-bottom:12px;letter-spacing:-.015em}
+.final p{color:var(--body);margin-bottom:34px}
+.final .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+footer{border-top:1px solid var(--line);padding:52px 0 120px;font-size:13.5px;color:var(--muted)}
+footer .gloss{max-width:52ch;line-height:1.65;margin-bottom:26px}
+footer .flinks{display:flex;gap:22px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.16em;text-transform:uppercase;margin-bottom:22px}
+footer a{color:var(--muted);text-decoration:none}
+footer a:hover{color:var(--ink)}
+footer .copy{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--faint)}
+
+@media (max-width:820px){
+  .wrap{padding:0 22px}
+  .doors,.grid2,.brice-in,.lib{grid-template-columns:1fr}
+  .grid2,.brice-in{gap:38px}
+  .shots{grid-template-columns:repeat(2,1fr)}
+  .people-grid{grid-template-columns:1fr}
+  .hero{padding-top:56px}
+  .hero-contour{width:120%;right:-30%;opacity:.18}
+  .router{margin-top:44px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="skip delta" data-delta="Δ4 skip link (index.html: 0)" href="#main">Skip to content</a>
+
+<div class="wrap">
+  <nav>
+    <a class="mark" href="#">Speed &amp; Form</a>
+    <div class="navlinks"><a href="#">FORM</a><a href="#">FORGE</a><a href="#">Library</a></div>
+  </nav>
+</div>
+
+<main id="main">
+
+<!-- HERO + ROUTER MERGED (proposed, not approved — see DO-NOT-REGRESS) -->
+<section class="hero">
+  <img class="hero-contour" src="https://speedandform.com/assets/home/form/contour.webp" alt="">
+  <div class="wrap">
+    <span class="eyebrow">Speed &amp; Form</span>
+    <h1 style="margin-top:18px">The thinking<br><em>is done.</em></h1>
+    <p class="sub">You just train.</p>
+  </div>
+
+  <div class="wrap router delta" data-delta="Router merged into hero — PROPOSED">
+    <span class="eyebrow">Where do you want to start?</span>
+    <div class="doors">
+      <div class="door">
+        <span class="tag">FORM · Race preparation</span>
+        <h2>I'm training for a race.</h2>
+        <p>FORM builds the week around the race, your current running, and the days you can actually train.</p>
+        <a class="cta cta-filled" href="https://apps.apple.com/us/app/form-training/id6761313085">Build toward race day →</a>
+      </div>
+      <div class="door">
+        <span class="tag">FORGE · Physique</span>
+        <h2>I want to sculpt my physique.</h2>
+        <p>FORGE gives you a complete program that directs more work to the areas that change your frame most.</p>
+        <div class="delta" data-delta="Δ1+Δ2 status-driven CTA">
+          <p class="status" data-forge-status style="margin-bottom:10px">Coming to the App Store</p>
+          <a class="cta cta-outline" data-forge-cta href="/forge-sculpt/">See the program →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM CHAPTER -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="grid2">
+      <div>
+        <span class="eyebrow">FORM · Race preparation</span>
+        <h2>Know what to run today.</h2>
+        <p class="lead">A good plan does not throw every useful idea into the same week. It gives the current goal priority, puts the work in order, and makes today's decision obvious.</p>
+        <div class="instr">
+          <div><span>Goal</span><b>Half Marathon</b></div>
+          <div><span>Today</span><b>Long Run</b></div>
+          <div><span>Build</span><b>Week 5 of 14</b></div>
+        </div>
+        <a class="cta cta-filled" href="https://apps.apple.com/us/app/form-training/id6761313085">Download FORM</a>
+      </div>
+      <img src="https://speedandform.com/assets/home/form/week.webp" alt="FORM week view" style="border-radius:14px;border:1px solid var(--line)">
+    </div>
+    <div class="shots delta" data-delta="Δ5 srcset (index.html: 0, with 17 lazy)">
+      <figure><img loading="lazy" src="https://speedandform.com/assets/home/form/long-run.webp" alt="FORM long run session"><figcaption>Today · The session and paces that move the plan forward.</figcaption></figure>
+      <figure><img loading="lazy" src="https://speedandform.com/assets/home/form/week.webp" alt="FORM week"><figcaption>The week · Every run has a role in the build.</figcaption></figure>
+      <figure><img loading="lazy" src="https://speedandform.com/assets/home/form/interval.webp" alt="FORM interval"><figcaption>The session · Targets and recovery already set.</figcaption></figure>
+      <figure><img loading="lazy" src="https://speedandform.com/assets/home/form/progress.webp" alt="FORM progress"><figcaption>Progress · How the demands change as it develops.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- FORGE ROOM — bounded black band, deliberately shorter than FORM -->
+<section class="chapter forge">
+  <div class="wrap">
+    <div class="grid2">
+      <div>
+        <span class="eyebrow">FORGE · Physique</span>
+        <h2>Know what to train today.</h2>
+        <p class="lead">Breechay Sculpt is a four-phase program for men who want a broader, more balanced frame — with every session already written. The emphasis moves across shoulders, upper back, glutes, and core.</p>
+        <div class="instr">
+          <div><span>Focus</span><b>Upper frame</b></div>
+          <div><span>Today</span><b>Shoulder A</b></div>
+          <div><span>Program</span><b>Phase 1 of 4</b></div>
+        </div>
+        <div class="delta" data-delta="Δ2 status label (index.html: 0 · forge-sculpt: 3)">
+          <p class="status" data-forge-status style="margin-bottom:12px">Coming to the App Store. Week 1 is free when it lands.</p>
+          <a class="cta cta-outline" data-forge-cta href="/forge-sculpt/">See the program →</a>
+        </div>
+      </div>
+      <img src="https://speedandform.com/assets/home/forge/week-shoulder.webp" alt="FORGE week view" style="border-radius:14px;border:1px solid var(--dline)">
+    </div>
+  </div>
+</section>
+
+<!-- THE PEOPLE — fallback state. No names. Consent unverified for all 13 /athletes/ pages. -->
+<section class="chapter">
+  <div class="wrap">
+    <span class="eyebrow">The people</span>
+    <h2>Different people. The same standard.</h2>
+    <p class="lead">The athletes here arrive with different schedules, histories, and goals. What stays constant is that someone decided the work before they got there.</p>
+    <div class="people-grid delta" data-delta="Fallback — no athlete names until written consent">
+      <figure><img loading="lazy" src="https://speedandform.com/assets/home/practice/coaching-track.webp" alt="Track session in Miami"><figcaption>Track session · Miami</figcaption></figure>
+      <figure><img loading="lazy" src="https://speedandform.com/assets/home/practice/running-practice.webp" alt="Long run in Miami"><figcaption>Long run · Miami</figcaption></figure>
+      <figure><img loading="lazy" src="https://speedandform.com/assets/home/practice/strength-practice.webp" alt="Strength work in Miami"><figcaption>Strength work · Miami</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- LIBRARY -->
+<section class="chapter">
+  <div class="wrap">
+    <span class="eyebrow">The Library</span>
+    <h2>Learn the reason. Keep the work simple.</h2>
+    <p class="lead">The apps tell you what to do today. The Library gives you the coaching behind the decision.</p>
+    <div class="lib">
+      <a href="/library/half-marathon-week/">How a half-marathon week fits together <span>Race prep</span></a>
+      <a href="/library/easy-days/">Why easy days stay easy <span>Running</span></a>
+      <a href="/library/physique-volume/">Why every area should not get the same volume <span>Physique</span></a>
+      <a href="/library/when-a-week-goes-wrong/">What to do when the week goes wrong <span>Training</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- BRICE — relocated from screen 2 to screen 7. FORM named as the group. -->
+<section class="brice">
+  <div class="wrap brice-in">
+    <img src="https://speedandform.com/assets/home/practice/coaching-track.webp" alt="Brice Ikouebe with athletes beside the track in Miami">
+    <div>
+      <span class="eyebrow">Brice Ikouebe · Miami</span>
+      <h2>Built close to the work.</h2>
+      <p>Most people I coach are already carrying a full life. They may have a race date, a physique goal, or both, but not hours to sort through conflicting advice. You should not have to become your own coach before you can train well.</p>
+      <p class="delta" data-delta="FORM = the group. The reveal.">FORM is the group. Tuesday mornings at the track. Saturday long runs from <a href="https://www.hideoutmiami.com/">Hideout</a> in Edgewater, the café I co-own. The app is named after it. It holds the plans I used to hand out as PDFs, then put on this website.</p>
+      <p class="close">The apps are where the work is kept now. Open the app. See today's work. Execute.</p>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>What are you ready to train for?</h2>
+    <p>Choose the goal in front of you.</p>
+    <div class="row">
+      <a class="cta cta-filled" href="https://apps.apple.com/us/app/form-training/id6761313085">Train for a race</a>
+      <a class="cta cta-outline" data-forge-cta href="/forge-sculpt/">See the physique program</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="gloss">Speed &amp; Form began as our Miami training group. Form keeps the work precise. Speed keeps it alive. We train with composure when it matters and intensity when it belongs.</p>
+    <div class="flinks"><a href="/form/">FORM</a><a href="/forge-sculpt/">FORGE</a><a href="/library">Library</a><a href="/form/support/">Support</a></div>
+    <p class="copy">© 2026 Brice Ikouebe, operating as Speed &amp; Form · Miami</p>
+  </div>
+</footer>
+</main>
+
+<div id="bar">
+  <b>MOCKUP</b> · design reference, not deployable · tokens read from index.html
+  <span style="opacity:.5">|</span>
+  <button id="t-delta" aria-pressed="false">Show 5 deltas</button>
+  <button id="t-forge" aria-pressed="false">forge.status: <b id="fs">in_development</b></button>
+  <span style="opacity:.5">|</span>
+  <span style="opacity:.65">Missing vs live: sfTrack(5) · data-sf-event(11) · 1 script block</span>
+</div>
+
+<script>
+/* Mockup chrome only. Frame 10: the status transition, designed cold. */
+const b=document.body, td=document.getElementById('t-delta'), tf=document.getElementById('t-forge'), fs=document.getElementById('fs');
+td.addEventListener('click',()=>{const on=b.classList.toggle('show-deltas');td.setAttribute('aria-pressed',on);td.textContent=on?'Hide 5 deltas':'Show 5 deltas';});
+let shipped=false;
+tf.addEventListener('click',()=>{
+  shipped=!shipped; tf.setAttribute('aria-pressed',shipped); fs.textContent=shipped?'shipped':'in_development';
+  document.querySelectorAll('[data-forge-status]').forEach(el=>{el.style.display=shipped?'none':'';});
+  document.querySelectorAll('[data-forge-cta]').forEach(el=>{
+    if(shipped){el.textContent='Download FORGE';el.className='cta cta-filled';el.href='https://apps.apple.com/';}
+    else{el.textContent=el.closest('.final')?'See the physique program':'See the program →';el.className='cta cta-outline';el.href='/forge-sculpt/';}
+  });
+});
+</script>
+</body>
+</html>

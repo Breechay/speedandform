@@ -53,6 +53,21 @@ set → rest → set → Record, four steppers. The north star illustrates it.
 argument that FORGE has already made the decisions; a fake screen inside that argument
 is the one thing that would prove it hasn't.
 
+### The mock's `140 KG` — delete it, do not convert it
+
+The obvious move is `140 KG` → `310 LB`. **That is wrong**, and it is the subtler
+version of the same mistake that produced the units bug in the app.
+
+`140` is an **invented website-only number**. Converting it preserves the invention
+with better arithmetic and creates a second performance value that no production
+fixture owns — exactly the "two authorities" problem `ForgeLoadUnit` was created to
+end (`ForgeSliceViewModels.swift`).
+
+The static device is being replaced by the real demo anyway. **The load must be
+inherited from the `FORGE_SESSION` fixture and rendered through the shared pounds
+formatter.** The page displays what the machine says. It does not maintain its own
+number.
+
 ---
 
 ## The three blocks to port
@@ -84,7 +99,7 @@ This needs visual iteration at 1440 and 390. It cannot be done blind.
 
 | Issue | North star has | Must become | Authority |
 |---|---|---|---|
-| Units | `4 × 8 · 140 KG` | pounds (140 kg ≈ 310 lb; use a realistic increment) | FORGE_START_HERE §2 — pounds signed 2026-07-15 |
+| Units | `4 × 8 · 140 KG` in the static mock | **Do NOT convert it. Delete the mock.** The load must be inherited from the `FORGE_SESSION` production fixture and rendered through the shared pounds formatter. | FORGE_START_HERE §2 — pounds signed 2026-07-15 |
 | Athletes | 4 placeholder cards, `PHOTO PENDING`, `"Quote pending"`, `Phases 1–X · XX weeks` | **omit the section** until real | §6 — real, permissioned, real durations |
 | Pricing | `$99/year`, `$19.99/month`, `data-audit="BUILD — PRICING NOT APPROVED"` | **no price stated** — "shown in FORGE before you subscribe" | §5 — unapproved; 15-week math is dead |
 | CTA | `<a href="#" data-audit="BUILD — CTA STATE PENDING APPROVAL">Download FORGE</a>` | `Coming to the App Store` ×3 | FORGE is pre-launch |

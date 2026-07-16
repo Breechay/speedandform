@@ -9,9 +9,10 @@ alwaysApply: true
 
 ## Read first
 
-1. `docs/CURSOR_CONTEXT.md`  
-2. `docs/DO_NOT_BUILD.md`  
-3. When **FORM-iOS** is in the same workspace: `FORM-iOS/docs/form_field_doctrine.md` and `FORM-iOS/docs/form_web_spec_v2.md` for The Field and `/form` behavior  
+1. `docs/CURSOR_CONTEXT.md`
+2. `docs/DO_NOT_BUILD.md`
+3. **Homepage work only:** `docs/site/HOMEPAGE-DECISION-RECORD.md` (POSITIONING-V7 held; portrait brief rejected; do not write a V8) and `docs/site/HOMEPAGE-DO-NOT-REGRESS.md` (index.html baseline + real tokens — never invent tokens, they are in the file)
+4. When **FORM-iOS** is in the same workspace: `FORM-iOS/docs/form_field_doctrine.md` and `FORM-iOS/docs/form_web_spec_v2.md` for The Field and `/form` behavior
 
 ## Defaults
 

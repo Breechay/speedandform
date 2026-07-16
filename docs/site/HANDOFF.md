@@ -26,6 +26,12 @@ clarity about them. It is deliberately not a generic fitness landing page.
   Variant A is applied. Do not regress to the killed lines listed in the deck.
 
 ## Architecture (FROZEN — do not restructure)
+
+**What FROZEN means, exactly.** Frozen = routes, functional machinery, data hooks,
+fallbacks, analytics, and legal structure. **The internal visual composition of
+`/forge-sculpt/` MAY change — but only through `NORTH-STAR-ADOPTION.md`, and only
+while preserving those contracts.** Redesigning the page is permitted. Reopening
+routes or deleting machinery is not.
     index.html                          /               the house
     form/index.html                     /form/          LIVE — real App Store CTA
     form/support|privacy|terms/         FORM legal (stubs; see gates)
@@ -53,6 +59,21 @@ regression regardless of how good the change is.
 | `sfTrack` + `data-sf-event*` | bottom script | `grep -c sfTrack` → **6** | Analytics. Wire a provider later; don't rename events. |
 | Legal footer links | footer | `grep -c "forge-sculpt/privacy/"` etc. | Compliance. Not optional on a page with a form. |
 | "Coming to the App Store" ×3 | hero, price, final | `grep -c` → **3** | FORGE is pre-launch. There is no store link yet. |
+
+**The counts are a BASELINE, not an eternal invariant.** They are the current
+production numbers. A legitimate refactor might take `FORGE_SESSION` from 14
+occurrences to 12 while the demo works perfectly. **A changed count is not
+automatically a regression — but it requires an explicit explanation and behavioural
+verification before merge. An unexplained decrease fails the gate.**
+
+The real invariants, which no refactor may break:
+
+- the `FORGE_SESSION` fixture still exists and still drives the demo
+- the demo initializes
+- `data-demo` / `data-region` still resolve for the JS that selects on them
+- state transitions work: set → rest → set → Record, all four steppers
+- `demo_started` / `demo_completed` fire, once each, under the same names
+- the no-JS static fallback remains and stays in sync with the fixtures
 
 **How this list gets broken — 2026-07-15, verbatim, so it isn't repeated.**
 
