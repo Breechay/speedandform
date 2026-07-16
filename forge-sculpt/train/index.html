@@ -179,6 +179,10 @@ main{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad) 40px}
 .modebar{display:inline-flex;border:1px solid var(--line);border-radius:100px;padding:3px;margin:2px 0 18px;gap:2px}
 .modebar button{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;background:none;border:none;color:var(--text-3);padding:8px 18px;border-radius:100px;cursor:pointer;transition:.2s}
 .modebar button.on{background:var(--accent-soft);color:var(--accent)}
+.barrow{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:2px 0 18px}
+.barrow .modebar{margin:0}
+.sharebtn{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-2);background:transparent;border:1px solid var(--line);padding:9px 15px;border-radius:100px;cursor:pointer;transition:.2s}
+.sharebtn:hover{border-color:var(--accent-dim);color:var(--text)}
 .fx-coord{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-4)}
 .fx-title{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:6px 0 4px}
 .fx-title .fxlabel{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
@@ -228,18 +232,18 @@ footer{max-width:var(--maxw);margin:0 auto;padding:30px var(--pad);border-top:1p
 
 <script>
 /* ---- config ---- */
-const ACCESS_MODE='open-preview'; /* 'open-preview' | 'account-required' */
+const ACCESS_MODE='open-preview'; /* 'open-preview' (live) | 'shared-code-demo' (a client-visible code is NOT security — real gate = Supabase entitlements, see README) */
 const PUBLIC_ACCESS_UNTIL='2026-07-23T23:59:59-04:00'; /* informational only — gate is flag-driven, never clock-driven */
 const SIGNUP_FORM_NAME='forge-launch';
 /* ---- native theme art (lives in the repo) ---- */
-const ASSET={hero:'/assets/forge/anatomy-reveal.webp',p1:'/assets/forge/anatomy-shoulders.webp',p2:'/assets/forge/anatomy-glute.webp',p3:'/assets/home/forge/anatomy-core.webp',p4:'/assets/home/forge/anatomy-full.webp',pull:'/assets/home/forge/anatomy-pull.webp'};
+const ASSET={hero:'/assets/forge/anatomy-reveal.webp',heroLight:'/assets/forge/hero-light.webp',p1:'/assets/forge/anatomy-shoulders.webp',p2:'/assets/forge/anatomy-glute.webp',p3:'/assets/home/forge/anatomy-core.webp',p4:'/assets/home/forge/anatomy-full.webp',pull:'/assets/home/forge/anatomy-pull.webp'};
 const PHASE_ART={1:ASSET.p1,2:ASSET.p2,3:ASSET.p3,4:ASSET.p4};
 const phaseLocked=n=>ACCESS_MODE!=='open-preview'&&n===4;
 /* ---- data: single source of truth is ./data/forge-portal-programs.json ---- */
-const PHASE_TITLES={1:['Establish the Frame','Build the outline — shoulders and upper frame'],2:['Bias the Posterior','The lower body arrives without losing the frame'],3:['Specialize','Spend the week on what the rear view exposes'],4:['Reveal','Nothing new enters — the work shortens so the shape shows']};
+const PHASE_TITLES={1:['Build the Frame',''],2:['Glute Build',''],3:['Specialize',''],4:['Reveal','']};
 let DATA=null,FS=null,ROD=null;
-function adaptEx(e){const sets=e.sets||[];const o={n:e.name,rest:e.restSeconds||0,prime:!!e.isPrimeMover,intent:e.movementIntent,lat:e.laterality,cue:e.cue||'',sc:sets.length};const s0=sets[0]||{};if(s0.reps&&typeof s0.reps==='object'){o.rmin=s0.reps.min;o.rmax=s0.reps.max;}else if(typeof s0.seconds!=='undefined'){o.sec=s0.seconds;}if(typeof s0.targetWeightPounds!=='undefined')o.load=s0.targetWeightPounds;const subs=e.substitutions||[];if(subs.length)o.sub=subs[0].name;return o;}
-function adaptDay(s){return{t:s.title,wd:s.weekday,kind:s.kind,fin:!!s.isFinishDay,ex:(s.exercises||[]).map(adaptEx)};}
+function adaptEx(e){const sets=e.sets||[];const o={mid:e.movementId||'',n:e.name,rest:e.restSeconds||0,prime:!!e.isPrimeMover,intent:e.movementIntent,lat:e.laterality,cue:e.cue||'',sc:sets.length};const s0=sets[0]||{};if(s0.reps&&typeof s0.reps==='object'){o.rmin=s0.reps.min;o.rmax=s0.reps.max;}else if(typeof s0.seconds!=='undefined'){o.sec=s0.seconds;}if(typeof s0.targetWeightPounds!=='undefined')o.load=s0.targetWeightPounds;o.subs=(e.substitutions||[]).map(su=>su.name).filter(Boolean);return o;}
+function adaptDay(s){return{id:s.id||'',t:s.title,wd:s.weekday,kind:s.kind,fin:!!s.isFinishDay,ex:(s.exercises||[]).map(adaptEx)};}
 function adaptWeeks(weeks){return(weeks||[]).map(w=>({num:w.weekNumber,label:w.label||'',days:(w.days||[]).map(adaptDay)}));}
 function buildData(raw){const byId={};(raw.programs||[]).forEach(p=>byId[p.id]=p);const fr=byId['forge_sculpt'];if(!fr||!Array.isArray(fr.phases)||fr.phases.length<4)throw new Error('forge_sculpt missing/invalid');const fs={id:'forge_sculpt',name:'Forge Sculpt',phases:fr.phases.map(ph=>({n:ph.phaseNumber,title:(PHASE_TITLES[ph.phaseNumber]||['Phase '+ph.phaseNumber,''])[0],sub:(PHASE_TITLES[ph.phaseNumber]||['',''])[1],weeks:adaptWeeks(ph.weeks)}))};const rr=byId['rod'];const rod={id:'rod',name:'Rod',weeks:rr?adaptWeeks(rr.weeks):[]};return{programs:{forge_sculpt:fs,rod:rod}};}
 const view=document.getElementById('view'),subnav=document.getElementById('subnav'),crumb=document.getElementById('crumb'),sticky=document.getElementById('sticky');
@@ -249,13 +253,16 @@ const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
 
 /* ---- persistence (real, guarded) ---- */
 let STATE={done:{},sets:{},email:null,mode:'session'};
-try{const s=localStorage.getItem('forge_portal_v1');if(s)STATE=Object.assign(STATE,JSON.parse(s));}catch(e){}
+try{const s=localStorage.getItem('forge_portal_v2');if(s)STATE=Object.assign(STATE,JSON.parse(s));}catch(e){}
 if(!STATE.sets)STATE.sets={};if(!STATE.mode)STATE.mode='session';
-const save=()=>{try{localStorage.setItem('forge_portal_v1',JSON.stringify(STATE));}catch(e){}};
-const keyOf=(prog,a,b,c)=>`${prog}:${a}:${b}:${c}`;
+const save=()=>{try{localStorage.setItem('forge_portal_v2',JSON.stringify(STATE));}catch(e){}};
+/* stable identity: session keyed by program+phase+session.id; focus tick by +movementId+set */
+const fsKey=(pn,day)=>`fs:p${pn}:${day.id}`;
+const rodKey=(wn,day)=>`rod:w${wn}:${day.id}`;
+const setKey=(dkey,ex,k)=>`${dkey}::${ex.mid}::${k}`;
 
 /* ---- access model: open shell + gated curriculum ---- */
-const ACCESS_CODE='forge2026'; /* used only when ACCESS_MODE===\'account-required\' */
+const ACCESS_CODE='forge2026'; /* demo only for 'shared-code-demo'; not authentication */
 const SAMPLE={pn:1,wn:1}; /* free public sample: Phase 1 · Week 1 · Pull */
 function sampleDi(){const w=FS.phases[0].weeks.find(x=>x.num===SAMPLE.wn);return w?w.days.findIndex(d=>/pull/i.test(d.t)):-1;}
 function isSample(pn,wn,di){return pn===SAMPLE.pn&&wn===SAMPLE.wn&&di===sampleDi();}
@@ -268,9 +275,9 @@ function repStr(e){if(e.sec)return `${e.sc}×${e.sec}s`;if(e.rmin==null)return `
 function stats(d){let sets=0,rest=0;d.ex.forEach(e=>{sets+=e.sc;if(e.rest>rest)rest=e.rest;});return{moves:d.ex.length,sets,rest};}
 /* flat ordered training sessions across non-locked phases (1-3) for resume */
 function flatFS(){const out=[];FS.phases.forEach(ph=>{if(phaseLocked(ph.n))return;ph.weeks.forEach(w=>{w.days.forEach((d,di)=>{if(hasEx(d))out.push({ph:ph.n,w:w.num,di,d});});});});return out;}
-function nextIncomplete(){const f=flatFS();for(const s of f){if(!STATE.done[keyOf('fs',s.ph,s.w,s.di)])return s;}return null;}
+function nextIncomplete(){const f=flatFS();for(const s of f){if(!STATE.done[fsKey(s.ph,s.d)])return s;}return null;}
 function phaseState(n){if(phaseLocked(n))return'next';const ni=nextIncomplete();if(!ni)return n<4?'done':'next';if(n<ni.ph)return'done';if(n===ni.ph)return'now';return'next';}
-function weekDone(prog,phn,w){return w.days.every((d,di)=>isRest(d)||STATE.done[keyOf(prog,phn,w.num,di)]);}
+function weekDone(pn,w){return w.days.every(d=>isRest(d)||STATE.done[fsKey(pn,d)]);}
 
 /* ---- chrome ---- */
 document.getElementById('home').onclick=()=>go('/');
@@ -329,7 +336,7 @@ function entry(){chrome(false,'',null);view.innerHTML='';
     </div>
     <div class="hero-art">
       <img class="hero-fig dark-only" alt="" src="${ASSET.hero}">
-      <div class="hero-type light-only"><div class="lg">Forge<br>Sculpt</div><div class="sm">Physique, decided</div></div>
+      <img class="hero-fig light-only" alt="" src="${ASSET.heroLight}">
     </div></div></section>`);
   view.appendChild(hero);
   const ni=nextIncomplete();
@@ -385,21 +392,21 @@ function sculptOverview(){chrome(true,'Forge Sculpt','sculpt');view.innerHTML=''
       <div><div class="pt">🔒 ${esc(ph.title)}</div><div class="ps">Unlocks when you reach it</div></div>
       <div class="pw">Locked<br>${ph.weeks.length} wks</div></div>`));return;}
     const row=el(`<div class="phase">${art}
-      <div><div class="pt"><span class="dot ${st}"></span>${esc(ph.title)}</div><div class="ps">${esc(ph.sub)}</div></div>
+      <div><div class="pt"><span class="dot ${st}"></span>${esc(ph.title)}</div>${ph.sub?`<div class="ps">${esc(ph.sub)}</div>`:''}</div>
       <div class="pw">${st==='now'?'Current':st==='done'?'Done':''}<br>${ph.weeks.length} wks</div></div>`);
     row.onclick=()=>go(`/sculpt/${ph.n}`);wrap.appendChild(row);});
   view.appendChild(wrap);
-  view.appendChild(el(`<footer>Phase names are canon from the FORGE Sculpt program. Weeks, sessions and prescriptions are the real exported training data.</footer>`));
+  view.appendChild(el(`<footer>Weeks, sessions and prescriptions are the real exported training data.</footer>`));
 }
 
 /* ---- phase weeks ---- */
 function phaseWeeks(pn){const ph=FS.phases.find(x=>x.n===pn);if(!ph)return go('/sculpt');
   chrome(true,`${ph.title}`,'sculpt');view.innerHTML='';
   view.appendChild(el(`<div class="stack fadein" style="--gap:10px;padding-top:8px"><span class="eyebrow">Phase ${['','I','II','III','IV'][pn]}</span>
-    <h2>${esc(ph.title)}</h2><p class="lede">${esc(ph.sub)}.</p></div>`));
+    <h2>${esc(ph.title)}</h2>${ph.sub?`<p class="lede">${esc(ph.sub)}.</p>`:''}</div>`));
   const rail=el(`<div class="wkrail fadein" style="margin-top:22px"></div>`);
   const ni=nextIncomplete();
-  ph.weeks.forEach(w=>{const wd=weekDone('fs',pn,w),cur=ni&&ni.ph===pn&&ni.w===w.num;
+  ph.weeks.forEach(w=>{const wd=weekDone(pn,w),cur=ni&&ni.ph===pn&&ni.w===w.num;
     const card=el(`<div class="wk">${wd?'<span class="check">✓</span>':''}<div class="wn">Week ${w.num}</div>
       <div class="wt">${esc(w.label)}</div><div class="ws">${wd?'Complete':cur?'Current →':''}</div></div>`);
     card.onclick=()=>go(`/sculpt/${pn}/${w.num}`);rail.appendChild(card);});
@@ -412,7 +419,7 @@ function weekSessions(pn,wn){const ph=FS.phases.find(x=>x.n===pn);const w=ph&&ph
   view.appendChild(el(`<div class="stack fadein" style="--gap:10px;padding-top:8px"><span class="eyebrow">${esc(ph.title)} · Week ${wn}</span>
     <h2>Week ${wn}</h2><div class="readbox" style="margin-top:4px">${esc(w.label)}</div></div>`));
   const ni=nextIncomplete();const list=el(`<div class="fadein" style="margin-top:18px"></div>`);
-  w.days.forEach((d,di)=>{const rest=isRest(d),k=keyOf('fs',pn,wn,di),done=STATE.done[k];
+  w.days.forEach((d,di)=>{const rest=isRest(d),k=fsKey(pn,d),done=STATE.done[k];
     const isNext=ni&&ni.ph===pn&&ni.w===wn&&ni.di===di;
     const st=stats(d);
     const row=el(`<div class="sess ${rest?'rest':''}"><div class="sd">${esc((d.wd||'').slice(0,3))}</div>
@@ -425,7 +432,7 @@ function weekSessions(pn,wn){const ph=FS.phases.find(x=>x.n===pn);const w=ph&&ph
 /* ---- session sheet (shared) ---- */
 function chapterArt(title){if(/pull/i.test(title))return ASSET.pull;return null;}
 function focusReps(e){return e.sec?`${e.sec}s`:(e.rmin==null?'—':(e.rmin===e.rmax?`${e.rmin}`:`${e.rmin}–${e.rmax}`));}
-function setsChecked(doneKey,day){let n=0;day.ex.forEach((e,i)=>{for(let k=1;k<=e.sc;k++){if(STATE.sets[`${doneKey}#${i}.${k}`])n++;}});return n;}
+function setsChecked(doneKey,day){let n=0;day.ex.forEach(e=>{for(let k=1;k<=e.sc;k++){if(STATE.sets[setKey(doneKey,e,k)])n++;}});return n;}
 
 /* SESSION — the editorial training sheet (default; sells FORGE) */
 function sessionBody(title,eyebrow,day){
@@ -440,7 +447,7 @@ function sessionBody(title,eyebrow,day){
   day.ex.forEach((e,i)=>{
     const cueInline=e.prime&&e.cue?`<div class="ex-cue">${esc(e.cue)}</div>`:'';
     const detailCue=(!e.prime&&e.cue)?`<div class="row"><span class="k">Cue</span>${esc(e.cue)}</div>`:'';
-    const detailSub=e.sub?`<div class="row"><span class="k">Substitution</span>${esc(e.sub)}</div>`:'';
+    const detailSub=(e.subs&&e.subs.length)?`<div class="row"><span class="k">Substitution${e.subs.length>1?'s':''}</span>${e.subs.map(esc).join(' · ')}</div>`:'';
     const detail=(detailCue||detailSub)?`<div class="ex-more"><button class="ex-toggle">＋ ${e.prime?'Substitution':'Cue · substitution'}</button>
       <div class="ex-detail">${detailCue}${detailSub}</div></div>`:'';
     const ex=el(`<div class="ex ${e.prime?'prime':''}"><div class="ex-top"><div class="ex-idx">${String(i+1).padStart(2,'0')}</div>
@@ -459,22 +466,21 @@ function sessionBody(title,eyebrow,day){
    shown (a tick asserts them), cues one tap away, no timer, completion never automatic. */
 function focusBody(title,eyebrow,day,doneKey){
   view.appendChild(el(`<div class="fx-head-wrap fadein"><div class="fx-coord">${esc(eyebrow)}</div>
-    <div class="fx-title"><h2>${esc(title)}</h2><span class="fxlabel">Focus</span></div>
-    <div class="fx-feel">Give me the work. Stay out of my way.</div></div>`));
+    <div class="fx-title"><h2>${esc(title)}</h2><span class="fxlabel">Focus</span></div></div>`));
   const box=el(`<div class="fadein" style="margin-top:16px"></div>`);
   day.ex.forEach((e,i)=>{
     const side=(e.lat&&e.lat!=='bilateral')?' / side':'';
     const reps=focusReps(e);
     const rx=`${e.sc} × ${reps}${side} · ${e.rest}s rest`;
-    const canHelp=!!(e.cue||e.sub);
+    const canHelp=!!(e.cue||(e.subs&&e.subs.length));
     const val=`${reps}${side}${e.load?` × ${e.load} lb`:''}`;
     const mv=el(`<div class="fx-mv">
       <button class="fx-head"><div class="fx-name">${esc(e.n)}${e.prime?'<span class="ex-badge">Key lift</span>':''}${canHelp?'<span class="fx-q">?</span>':''}</div>
       <div class="fx-rx">${rx}</div></button>
-      ${canHelp?`<div class="fx-help">${e.cue?`<div>${esc(e.cue)}</div>`:''}${e.sub?`<div style="margin-top:8px"><span style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-4)">Sub</span> ${esc(e.sub)}</div>`:''}</div>`:''}</div>`);
+      ${canHelp?`<div class="fx-help">${e.cue?`<div>${esc(e.cue)}</div>`:''}${(e.subs&&e.subs.length)?`<div style="margin-top:8px"><span style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-4)">Sub${e.subs.length>1?'s':''}</span> ${e.subs.map(esc).join(' · ')}</div>`:''}</div>`:''}</div>`);
     if(canHelp){const hb=mv.querySelector('.fx-head'),hp=mv.querySelector('.fx-help');hb.onclick=()=>hp.classList.toggle('open');}
     for(let k=1;k<=e.sc;k++){
-      const sk=`${doneKey}#${i}.${k}`;
+      const sk=setKey(doneKey,e,k);
       const btn=el(`<button class="fx-set ${STATE.sets[sk]?'done':''}"><span class="fx-mark"></span><span class="fx-idx">Set ${k} of ${e.sc}</span><span class="fx-val">${val}</span></button>`);
       btn.onclick=()=>{STATE.sets[sk]=!STATE.sets[sk];save();btn.classList.toggle('done');if(renderSession._refresh)renderSession._refresh();};
       mv.appendChild(btn);
@@ -490,7 +496,12 @@ function renderSession(prog,title,eyebrow,day,doneKey,backLabel){
   document.title=`${title} — FORGE Sculpt`;
   const bar=el(`<div class="modebar fadein"><button data-m="session" class="${mode==='session'?'on':''}">Session</button><button data-m="focus" class="${mode==='focus'?'on':''}">Focus</button></div>`);
   bar.querySelectorAll('button').forEach(b=>b.onclick=()=>{STATE.mode=b.dataset.m;save();render();});
-  view.appendChild(bar);
+  const share=el(`<button class="sharebtn" id="s-share">↗ Share</button>`);
+  share.onclick=async()=>{const url=location.href;const text=`FORGE Sculpt — ${eyebrow} — ${title}`;
+    const copied=()=>{share.textContent='✓ Link copied';setTimeout(()=>{share.textContent='↗ Share';},2000);};
+    try{if(navigator.share){await navigator.share({title:'FORGE Sculpt',text,url});}else{await navigator.clipboard.writeText(`${text}\n${url}`);copied();}}
+    catch(e){try{await navigator.clipboard.writeText(`${text}\n${url}`);copied();}catch(_){}}};
+  const barrow=el(`<div class="barrow fadein"></div>`);barrow.appendChild(bar);barrow.appendChild(share);view.appendChild(barrow);
   if(mode==='focus')focusBody(title,eyebrow,day,doneKey);else sessionBody(title,eyebrow,day);
   // sticky — explicit session close, never automatic
   sticky.classList.remove('hide');
@@ -505,7 +516,7 @@ function renderSession(prog,title,eyebrow,day,doneKey,backLabel){
 }
 function sessionSheet(prog,pn,wn,di){const ph=FS.phases.find(x=>x.n===pn);const w=ph&&ph.weeks.find(x=>x.num===wn);const day=w&&w.days[di];
   if(!day)return go('/sculpt');chrome(false,'','sculpt');
-  renderSession('fs',day.t,`${ph.title} · Week ${wn} · ${day.wd}`,day,keyOf('fs',pn,wn,di),`Week ${wn}`);}
+  renderSession('fs',day.t,`${ph.title} · Week ${wn} · ${day.wd}`,day,fsKey(pn,day),`Week ${wn}`);}
 
 /* ---- rod ---- */
 function rodHome(){chrome(true,'Rod · Coach-led','rod');view.innerHTML='';
@@ -514,7 +525,7 @@ function rodHome(){chrome(true,'Rod · Coach-led','rod');view.innerHTML='';
     <h2>Rod</h2><p class="lede">Monday &amp; Friday · 6:15 AM. Your latest week is up top; earlier weeks below.</p>
     <div class="readbox" style="margin-top:4px">${esc(cur.label||('Week '+cur.num))}</div></div>`));
   const list=el(`<div class="fadein" style="margin-top:18px"></div>`);
-  cur.days.forEach((d,di)=>{if(isRest(d))return;const st=stats(d),done=STATE.done[keyOf('rod',cur.num,0,di)];
+  cur.days.forEach((d,di)=>{if(isRest(d))return;const st=stats(d),done=STATE.done[rodKey(cur.num,d)];
     const row=el(`<div class="sess"><div class="sd">${esc((d.wd||'').slice(0,3))}</div>
       <div class="sn">${esc(d.t)}<div class="sg">${st.moves} moves · ${st.sets} sets · 6:15 AM</div></div>
       ${done?'<span class="tag done">✓ Done</span>':''}</div>`);
@@ -528,7 +539,7 @@ function rodHome(){chrome(true,'Rod · Coach-led','rod');view.innerHTML='';
     view.appendChild(el2);}
 }
 function rodSession(wn,di){const w=ROD.weeks.find(x=>x.num===wn);const day=w&&w.days[di];if(!day)return go('/rod');
-  chrome(false,'','rod');renderSession('rod',day.t,`${esc(w.label||('Week '+w.num))} · ${day.wd} · 6:15 AM`,day,keyOf('rod',wn,0,di),'Rod · this week');}
+  chrome(false,'','rod');renderSession('rod',day.t,`${esc(w.label||('Week '+w.num))} · ${day.wd} · 6:15 AM`,day,rodKey(wn,day),'Rod · this week');}
 
 function unavailable(err){try{sticky.classList.add('hide');}catch(e){}view.innerHTML='';
   view.appendChild(el(`<div class="stack" style="--gap:12px;padding-top:44px"><span class="eyebrow">Temporarily unavailable</span><h2>Training isn't loading right now.</h2><p class="lede">The program data didn't load. Refresh in a moment — if it keeps happening, let Brice know.</p></div>`));

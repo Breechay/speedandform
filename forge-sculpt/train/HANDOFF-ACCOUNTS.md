@@ -81,10 +81,12 @@ Use the Supabase user UUID as the identity key — not the email (Hide My Email 
 relay address; store it as contact info only). Accept relay domains
 `privaterelay.appleid.com`, `icloud.com`, `private.icloud.com`.
 
-**5. Entitlements replace the shared code.** When `ACCESS_MODE='account-required'`,
-full Forge Sculpt + Rod require an authenticated account with server-backed
-`product_access` (Henry → Sculpt; Tinius → Sculpt + focus preference; Rod → his track).
-The public sample session stays open with no account.
+**5. Entitlements are the *real* gate — the portal flag is not.** The portal's
+`ACCESS_MODE`/`ACCESS_CODE` only hide the interface; the code is client-visible and the
+program JSON is publicly fetchable. Real protection = auth + server-backed
+`product_access` (Henry → Sculpt; Tinius → Sculpt + focus preference; Rod → his track),
+with the full data served only to entitled users. The public sample session stays open
+with no account. Until this lands, the portal stays `open-preview`.
 
 **6. Native FORGE later** uses native `AuthenticationServices` → `signInWithIdToken` on
 the **same** Supabase project → same user → same progress. Provide an explicit

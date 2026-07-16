@@ -30,11 +30,18 @@ Anatomy art is referenced from the existing repo assets (`/assets/forge/*`,
 
 | Const | Now | Meaning |
 |---|---|---|
-| `ACCESS_MODE` | `'open-preview'` | Everything open; Phase IV unlocked; no gate. Set to `'account-required'` to gate the full curriculum behind sign-in (leaves the sample session public). |
+| `ACCESS_MODE` | `'open-preview'` | Everything open; Phase IV unlocked; no gate. The only other value, `'shared-code-demo'`, hides the *interface* behind a code — it is **not security**. |
 | `PUBLIC_ACCESS_UNTIL` | `2026-07-23…` | **Informational only.** The gate is flag-driven, never clock-driven — flipping the date does nothing on its own. |
-| `ACCESS_CODE` | `'forge2026'` | Only used if `ACCESS_MODE === 'account-required'` (interim shared code before real accounts land). |
+| `ACCESS_CODE` | `'forge2026'` | Demo code for `'shared-code-demo'` only. |
 
-To gate after the open week: change one line, `ACCESS_MODE = 'account-required'`, commit, push.
+**The real gate is not a flag.** A client-visible `ACCESS_CODE` and a publicly-fetchable
+`data/forge-portal-programs.json` mean anyone can read the full program regardless of
+`ACCESS_MODE`. Actual protection = server-backed accounts + entitlements (Supabase),
+which is Cursor's build — see `HANDOFF-ACCOUNTS.md`. Do **not** treat `shared-code-demo`
+as authentication. Keep `open-preview` until Supabase entitlements land.
+
+Rod is **unlisted, not private** — out of nav/metadata, but anyone with the direct URL
+(or the JSON URL) can read it. Fine for the preview; not a privacy guarantee.
 
 ## Modes
 
