@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FORGE · Athlete Portal</title>
+<meta name="description" content="FORGE — the athlete training portal. The full four-phase Forge Sculpt program, every session already written.">
+<meta property="og:title" content="FORGE — Athlete Portal">
+<meta property="og:description" content="Every session, already written. A preview of the FORGE app.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://speedandform.com/assets/forge/og-forge.jpg">
+<meta property="og:url" content="https://speedandform.com/forge-sculpt/train/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root,[data-theme="dark"]{
+  --bg:#0D0D0C;--surface:#080807;--surface-2:#131312;
+  --text:#E9E4DA;--text-2:rgba(233,228,218,.70);--text-3:rgba(233,228,218,.45);
+  --text-4:rgba(233,228,218,.28);--line:rgba(233,228,218,.12);--line-2:rgba(233,228,218,.06);
+  --accent:#C9A768;--accent-2:#B08D4F;--accent-dim:rgba(176,141,79,.35);--accent-soft:rgba(201,167,104,.12);
+  --btn-fill:#E9E4DA;--btn-text:#080807;--nav-bg:rgba(13,13,12,.82);--shadow-card:none;--dot-ring:rgba(201,167,104,.18);
+}
+[data-theme="light"]{
+  --bg:#F0EDE6;--surface:#FAFAF7;--surface-2:#F5F2EB;
+  --text:#1A1710;--text-2:rgba(26,23,16,.72);--text-3:rgba(26,23,16,.50);
+  --text-4:rgba(26,23,16,.34);--line:#DDD9D0;--line-2:#E8E4DB;
+  --accent:#8C6029;--accent-2:#8C6029;--accent-dim:rgba(140,96,41,.30);--accent-soft:rgba(140,96,41,.09);
+  --btn-fill:#8C6029;--btn-text:#FFF;--nav-bg:rgba(240,237,230,.88);
+  --shadow-card:0 4px 16px rgba(26,23,16,.07),0 1px 3px rgba(26,23,16,.04);--dot-ring:rgba(140,96,41,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text-2);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;padding-bottom:118px;min-height:100vh;transition:background .4s var(--ease),color .4s var(--ease)}
+:root{--sans:'Jost',system-ui,sans-serif;--serif:'Instrument Serif',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  --maxw:800px;--pad:clamp(20px,5.5vw,44px);--ease:cubic-bezier(.22,.61,.36,1)}
+h1,h2,h3{font-weight:400;letter-spacing:-.02em;line-height:1.06;color:var(--text)}
+h1{font-size:clamp(40px,10vw,72px);letter-spacing:-.035em}
+h2{font-size:clamp(26px,6.5vw,40px);letter-spacing:-.028em}
+.serif{font-family:var(--serif);font-style:italic;letter-spacing:-.01em}
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.20em;text-transform:uppercase;color:var(--text-3)}
+a{color:inherit;text-decoration:none}
+.dark-only{display:initial}.light-only{display:none}
+[data-theme="light"] .dark-only{display:none}[data-theme="light"] .light-only{display:initial}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:var(--nav-bg);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.wordmark{font-family:var(--mono);font-size:13px;letter-spacing:.30em;color:var(--text);cursor:pointer;font-weight:500}
+.nav-right{display:flex;align-items:center;gap:4px}
+.nav-link{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);padding:8px 11px;border-radius:2px;cursor:pointer;transition:color .2s}
+.nav-link:hover{color:var(--text)}.nav-link.active{color:var(--accent)}
+.theme{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text-2);background:transparent;border:1px solid var(--line);padding:8px 12px;border-radius:100px;cursor:pointer;transition:.2s;margin-left:4px}
+.theme:hover{border-color:var(--accent-dim);color:var(--text)}.theme .ic{font-size:12px;line-height:1}
+.subnav{max-width:var(--maxw);margin:0 auto;padding:10px var(--pad);display:flex;align-items:center;gap:14px;border-top:1px solid var(--line-2)}
+.subnav.hide{display:none}
+.back{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);display:inline-flex;align-items:center;gap:7px;cursor:pointer;background:none;border:none;transition:color .2s;padding:0}
+.back:hover{color:var(--text)}
+.crumb{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-4)}
+main{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad) 40px}
+.stack>*+*{margin-top:var(--gap,18px)}
+.lede{font-size:clamp(16px,4.4vw,19px);color:var(--text-2);line-height:1.55}
+.muted{color:var(--text-3);font-size:13px}
+.fadein{animation:f .5s var(--ease)}@keyframes f{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* hero */
+.hero{position:relative;padding-top:30px}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:6px;align-items:end}
+@media(min-width:660px){.hero-grid{grid-template-columns:1.3fr .85fr}}
+.hero-art{position:relative;min-height:230px;display:flex;justify-content:center;align-items:flex-end}
+@media(min-width:660px){.hero-art{min-height:400px}}
+.hero-fig{max-height:min(58vh,440px);width:auto;max-width:100%;object-fit:contain;object-position:bottom center;
+  -webkit-mask-image:linear-gradient(to bottom,#000 62%,transparent 99%);mask-image:linear-gradient(to bottom,#000 62%,transparent 99%)}
+.hero-type{width:100%;border:1px solid var(--line);border-radius:3px;background:var(--surface);box-shadow:var(--shadow-card);
+  padding:26px 24px;text-align:right}
+.hero-type .lg{font-family:var(--serif);font-style:italic;font-size:46px;color:var(--text);line-height:.98;letter-spacing:-.02em}
+.hero-type .sm{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-top:12px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:11px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;background:var(--btn-fill);color:var(--btn-text);padding:16px 24px;border-radius:2px;border:1px solid var(--btn-fill);cursor:pointer;transition:.22s;width:100%}
+.btn:hover{background:var(--accent);border-color:var(--accent)}
+[data-theme="light"] .btn:hover{filter:brightness(.9);background:var(--btn-fill);border-color:var(--btn-fill)}
+.btn-ghost{background:transparent;color:var(--text-2);border-color:var(--line)}
+.btn-ghost:hover{background:transparent;color:var(--text);border-color:var(--accent-dim);filter:none}
+
+/* program / resume cards */
+.pcard{display:block;background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:24px;cursor:pointer;
+  transition:border-color .25s,transform .25s;box-shadow:var(--shadow-card)}
+.pcard:hover{border-color:var(--accent-dim);transform:translateY(-2px)}
+.pcard .pt{font-size:25px;color:var(--text);letter-spacing:-.02em;margin-bottom:5px}
+.pcard .pd{font-size:14px;color:var(--text-3);line-height:1.5}
+.pcard .resume{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-top:15px;display:flex;align-items:center;gap:8px}
+.resume-band{background:var(--surface);border:1px solid var(--accent-dim);border-radius:3px;padding:18px 22px;display:flex;
+  align-items:center;justify-content:space-between;gap:16px;box-shadow:var(--shadow-card);cursor:pointer;transition:transform .2s}
+.resume-band:hover{transform:translateY(-2px)}
+.resume-band .rl{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.resume-band .rt{font-size:18px;color:var(--text);margin-top:4px;letter-spacing:-.01em}
+
+/* phase rows */
+.phase{display:grid;grid-template-columns:64px 1fr auto;gap:18px;align-items:center;padding:20px 4px;border-bottom:1px solid var(--line);cursor:pointer;transition:background .3s}
+.phase:hover{background:var(--surface-2)}
+.phase.locked{cursor:default;opacity:.6}.phase.locked:hover{background:transparent}
+.p-art{width:64px;height:80px;position:relative;display:flex;align-items:center;justify-content:center}
+.p-art img{width:100%;height:100%;object-fit:contain;object-position:center;
+  -webkit-mask-image:radial-gradient(ellipse at center,#000 55%,transparent 92%);mask-image:radial-gradient(ellipse at center,#000 55%,transparent 92%)}
+.p-art.crop img{-webkit-mask-image:linear-gradient(to bottom,#000 40%,transparent 96%);mask-image:linear-gradient(to bottom,#000 40%,transparent 96%);opacity:.7}
+.p-num{font-family:var(--serif);font-style:italic;font-size:38px;color:var(--accent);line-height:1}
+.phase .pt{font-size:20px;color:var(--text);letter-spacing:-.015em;display:flex;align-items:center;gap:8px}
+.phase .ps{font-size:13px;color:var(--text-3);margin-top:3px}
+.phase .pw{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-4);text-align:right;white-space:nowrap}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+.dot.done{background:var(--accent-2)}.dot.now{background:var(--accent);box-shadow:0 0 0 3px var(--dot-ring)}.dot.next{background:var(--line)}
+
+/* week rail */
+.wkrail{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:8px}
+.wk{background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:16px;cursor:pointer;transition:border-color .25s,transform .2s;box-shadow:var(--shadow-card);position:relative}
+.wk:hover{border-color:var(--accent-dim);transform:translateY(-2px)}
+.wk .wn{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3)}
+.wk .wt{font-size:15px;color:var(--text);margin-top:8px;letter-spacing:-.01em;line-height:1.25}
+.wk .ws{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;margin-top:11px;color:var(--accent)}
+.wk .check{position:absolute;top:14px;right:14px;color:var(--accent);font-size:12px}
+
+/* session list */
+.readbox{background:var(--surface);border-left:2px solid var(--accent-dim);padding:15px 18px;border-radius:2px;font-size:14.5px;color:var(--text-2);line-height:1.5;box-shadow:var(--shadow-card)}
+.sess{display:flex;align-items:center;gap:16px;padding:16px 4px;border-bottom:1px solid var(--line);cursor:pointer;transition:background .25s}
+.sess:hover{background:var(--surface-2)}
+.sess.rest{opacity:.45;cursor:default}
+.sess .sd{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--accent);width:52px;flex:none;text-transform:uppercase}
+.sess .sn{font-size:17px;color:var(--text);letter-spacing:-.01em;flex:1}
+.sess .sg{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-4);margin-top:3px}
+.tag{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:100px;border:1px solid var(--line);color:var(--text-3);white-space:nowrap}
+.tag.next{border-color:var(--accent-dim);color:var(--accent)}.tag.done{border-color:transparent;color:var(--text-4)}
+
+/* session sheet */
+.sheet-head{display:flex;align-items:center;gap:16px;margin-top:6px}
+.chapter{width:60px;height:60px;flex:none;display:flex;align-items:center;justify-content:center}
+.chapter img{width:100%;height:100%;object-fit:contain;-webkit-mask-image:radial-gradient(circle,#000 55%,transparent 88%);mask-image:radial-gradient(circle,#000 55%,transparent 88%)}
+.statrow{display:flex;gap:26px;margin-top:20px;flex-wrap:wrap;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.stat b{font-family:var(--mono);font-size:22px;color:var(--text);font-weight:400;display:block}
+.stat span{font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-4)}
+.keylifts{margin-top:16px;font-size:13.5px;color:var(--text-3)}
+.keylifts b{color:var(--accent);font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:400;display:block;margin-bottom:5px}
+.ex{border-bottom:1px solid var(--line);padding:20px 0}
+.ex.prime{background:linear-gradient(90deg,var(--accent-soft),transparent 70%);margin:0 calc(var(--pad)*-1);padding-left:var(--pad);padding-right:var(--pad);border-bottom:1px solid var(--line)}
+.ex-top{display:flex;align-items:flex-start;gap:14px}
+.ex-idx{font-family:var(--mono);font-size:12px;color:var(--accent);width:26px;flex:none;padding-top:4px}
+.ex-name{font-size:19px;color:var(--text);letter-spacing:-.01em;line-height:1.2}
+.ex-badge{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent-dim);border-radius:100px;padding:2px 8px;margin-left:8px;vertical-align:middle;white-space:nowrap}
+.ex-var{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-top:4px}
+.ex-rx{display:flex;gap:24px;margin:12px 0 0 40px;flex-wrap:wrap}
+.ex-rx .rx{display:flex;flex-direction:column;gap:3px}
+.ex-rx .rx b{font-family:var(--mono);font-size:16px;color:var(--text);font-weight:400}
+.ex-rx .rx span{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-4)}
+.ex-cue{margin:12px 0 0 40px;font-size:14px;color:var(--text-2);line-height:1.5}
+.ex-more{margin:12px 0 0 40px}
+.ex-toggle{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:none;border:none;cursor:pointer;display:inline-flex;gap:7px;padding:0}
+.ex-detail{margin-top:10px;font-size:13.5px;color:var(--text-2);line-height:1.5;display:none}
+.ex-detail.open{display:block}
+.ex-detail .row{padding:7px 0;border-top:1px solid var(--line-2)}
+.ex-detail .k{font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-4);display:block;margin-bottom:3px}
+
+/* signup */
+.signup{background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:24px;margin-top:26px;box-shadow:var(--shadow-card)}
+.signup h3{font-size:20px;color:var(--text);letter-spacing:-.01em}
+.signup p{font-size:14px;color:var(--text-3);margin-top:6px;line-height:1.5}
+.signup-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.signup input{flex:1;min-width:180px;background:var(--surface-2);border:1px solid var(--line);color:var(--text);font-family:var(--sans);font-size:14px;padding:14px;border-radius:2px}
+.signup input:focus{outline:none;border-color:var(--accent-dim)}
+.signup .btn{width:auto;flex:none}
+.signup-done{color:var(--accent);font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.ext{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:inline-flex;gap:7px;align-items:center}
+.ext:hover{color:var(--text)}
+
+/* mode toggle + focus */
+.modebar{display:inline-flex;border:1px solid var(--line);border-radius:100px;padding:3px;margin:2px 0 18px;gap:2px}
+.modebar button{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;background:none;border:none;color:var(--text-3);padding:8px 18px;border-radius:100px;cursor:pointer;transition:.2s}
+.modebar button.on{background:var(--accent-soft);color:var(--accent)}
+.fx-coord{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-4)}
+.fx-title{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:6px 0 4px}
+.fx-title .fxlabel{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+.fx-feel{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--text-3)}
+.fx-mv{border-top:1px solid var(--line)}
+.fx-head{display:flex;flex-direction:column;gap:4px;padding:16px 0 10px;cursor:pointer;background:none;border:none;width:100%;text-align:left}
+.fx-name{font-size:16px;color:var(--text);letter-spacing:-.01em;display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.fx-q{font-family:var(--mono);font-size:12px;color:var(--text-4);border:1px solid var(--line);border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;line-height:1}
+.fx-rx{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--text-3);text-transform:uppercase}
+.fx-help{display:none;font-size:13.5px;color:var(--text-2);line-height:1.5;border-left:1px solid var(--accent);padding:2px 0 10px 14px;margin:2px 0 6px}
+.fx-help.open{display:block}
+.fx-set{display:flex;align-items:center;gap:14px;padding:12px 0;min-height:46px;cursor:pointer;border:none;border-bottom:1px solid var(--line-2);background:none;width:100%;text-align:left}
+.fx-mark{width:12px;height:12px;flex:none;border:1px solid var(--text-4);border-radius:1px;transition:.15s}
+.fx-set.done .fx-mark{background:var(--accent);border-color:var(--accent)}
+.fx-idx{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);flex:1}
+.fx-set.done .fx-idx{color:var(--text-4)}
+.fx-val{font-family:var(--mono);font-size:12.5px;color:var(--text);letter-spacing:.03em}
+.fx-set.done .fx-val{color:var(--text-4)}
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--nav-bg);backdrop-filter:blur(12px);border-top:1px solid var(--line)}
+.sticky.hide{display:none}
+.sticky-in{max-width:var(--maxw);margin:0 auto;padding:12px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.sticky .prog{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3)}
+.mini{padding:12px 18px;width:auto}.mini.done-state{background:transparent;color:var(--accent);border-color:var(--accent-dim)}
+footer{max-width:var(--maxw);margin:0 auto;padding:30px var(--pad);border-top:1px solid var(--line-2);font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-4);line-height:1.9}
+</style>
+</head>
+<body>
+<form name="forge-launch" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="forge-launch">
+  <input type="email" name="email"><input name="bot-field">
+</form>
+<nav class="nav">
+  <div class="nav-in">
+    <span class="wordmark" id="home">FORGE</span>
+    <div class="nav-right">
+      <span class="nav-link" data-go="/sculpt" id="nl-sculpt">Sculpt</span>
+      <button class="theme" id="theme"><span class="ic">☀</span><span class="tl">Light</span></button>
+    </div>
+  </div>
+  <div class="subnav hide" id="subnav"><button class="back" id="back">‹ Back</button><span class="crumb" id="crumb"></span></div>
+</nav>
+<main id="view"></main>
+<div class="sticky hide" id="sticky"><div class="sticky-in">
+  <button class="back" id="s-back">‹ Week</button><span class="prog" id="s-prog"></span>
+  <button class="btn mini" id="s-done">Mark Complete</button>
+</div></div>
+
+<script>
+/* ---- config ---- */
+const ACCESS_MODE='open-preview'; /* 'open-preview' | 'account-required' */
+const PUBLIC_ACCESS_UNTIL='2026-07-23T23:59:59-04:00'; /* informational only — gate is flag-driven, never clock-driven */
+const SIGNUP_FORM_NAME='forge-launch';
+/* ---- native theme art (lives in the repo) ---- */
+const ASSET={hero:'/assets/forge/anatomy-reveal.webp',p1:'/assets/forge/anatomy-shoulders.webp',p2:'/assets/forge/anatomy-glute.webp',p3:'/assets/home/forge/anatomy-core.webp',p4:'/assets/home/forge/anatomy-full.webp',pull:'/assets/home/forge/anatomy-pull.webp'};
+const PHASE_ART={1:ASSET.p1,2:ASSET.p2,3:ASSET.p3,4:ASSET.p4};
+const phaseLocked=n=>ACCESS_MODE!=='open-preview'&&n===4;
+/* ---- data: single source of truth is ./data/forge-portal-programs.json ---- */
+const PHASE_TITLES={1:['Establish the Frame','Build the outline — shoulders and upper frame'],2:['Bias the Posterior','The lower body arrives without losing the frame'],3:['Specialize','Spend the week on what the rear view exposes'],4:['Reveal','Nothing new enters — the work shortens so the shape shows']};
+let DATA=null,FS=null,ROD=null;
+function adaptEx(e){const sets=e.sets||[];const o={n:e.name,rest:e.restSeconds||0,prime:!!e.isPrimeMover,intent:e.movementIntent,lat:e.laterality,cue:e.cue||'',sc:sets.length};const s0=sets[0]||{};if(s0.reps&&typeof s0.reps==='object'){o.rmin=s0.reps.min;o.rmax=s0.reps.max;}else if(typeof s0.seconds!=='undefined'){o.sec=s0.seconds;}if(typeof s0.targetWeightPounds!=='undefined')o.load=s0.targetWeightPounds;const subs=e.substitutions||[];if(subs.length)o.sub=subs[0].name;return o;}
+function adaptDay(s){return{t:s.title,wd:s.weekday,kind:s.kind,fin:!!s.isFinishDay,ex:(s.exercises||[]).map(adaptEx)};}
+function adaptWeeks(weeks){return(weeks||[]).map(w=>({num:w.weekNumber,label:w.label||'',days:(w.days||[]).map(adaptDay)}));}
+function buildData(raw){const byId={};(raw.programs||[]).forEach(p=>byId[p.id]=p);const fr=byId['forge_sculpt'];if(!fr||!Array.isArray(fr.phases)||fr.phases.length<4)throw new Error('forge_sculpt missing/invalid');const fs={id:'forge_sculpt',name:'Forge Sculpt',phases:fr.phases.map(ph=>({n:ph.phaseNumber,title:(PHASE_TITLES[ph.phaseNumber]||['Phase '+ph.phaseNumber,''])[0],sub:(PHASE_TITLES[ph.phaseNumber]||['',''])[1],weeks:adaptWeeks(ph.weeks)}))};const rr=byId['rod'];const rod={id:'rod',name:'Rod',weeks:rr?adaptWeeks(rr.weeks):[]};return{programs:{forge_sculpt:fs,rod:rod}};}
+const view=document.getElementById('view'),subnav=document.getElementById('subnav'),crumb=document.getElementById('crumb'),sticky=document.getElementById('sticky');
+const el=h=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild;};
+const go=h=>location.hash=h;
+const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
+
+/* ---- persistence (real, guarded) ---- */
+let STATE={done:{},sets:{},email:null,mode:'session'};
+try{const s=localStorage.getItem('forge_portal_v1');if(s)STATE=Object.assign(STATE,JSON.parse(s));}catch(e){}
+if(!STATE.sets)STATE.sets={};if(!STATE.mode)STATE.mode='session';
+const save=()=>{try{localStorage.setItem('forge_portal_v1',JSON.stringify(STATE));}catch(e){}};
+const keyOf=(prog,a,b,c)=>`${prog}:${a}:${b}:${c}`;
+
+/* ---- access model: open shell + gated curriculum ---- */
+const ACCESS_CODE='forge2026'; /* used only when ACCESS_MODE===\'account-required\' */
+const SAMPLE={pn:1,wn:1}; /* free public sample: Phase 1 · Week 1 · Pull */
+function sampleDi(){const w=FS.phases[0].weeks.find(x=>x.num===SAMPLE.wn);return w?w.days.findIndex(d=>/pull/i.test(d.t)):-1;}
+function isSample(pn,wn,di){return pn===SAMPLE.pn&&wn===SAMPLE.wn&&di===sampleDi();}
+const unlocked=()=>ACCESS_MODE==='open-preview'||!!STATE.unlocked;
+
+/* ---- helpers ---- */
+const hasEx=d=>d.ex&&d.ex.length>0;
+const isRest=d=>d.kind==='rest'||!hasEx(d);
+function repStr(e){if(e.sec)return `${e.sc}×${e.sec}s`;if(e.rmin==null)return `${e.sc} sets`;return e.rmin===e.rmax?`${e.sc}×${e.rmin}`:`${e.sc}×${e.rmin}–${e.rmax}`;}
+function stats(d){let sets=0,rest=0;d.ex.forEach(e=>{sets+=e.sc;if(e.rest>rest)rest=e.rest;});return{moves:d.ex.length,sets,rest};}
+/* flat ordered training sessions across non-locked phases (1-3) for resume */
+function flatFS(){const out=[];FS.phases.forEach(ph=>{if(phaseLocked(ph.n))return;ph.weeks.forEach(w=>{w.days.forEach((d,di)=>{if(hasEx(d))out.push({ph:ph.n,w:w.num,di,d});});});});return out;}
+function nextIncomplete(){const f=flatFS();for(const s of f){if(!STATE.done[keyOf('fs',s.ph,s.w,s.di)])return s;}return null;}
+function phaseState(n){if(phaseLocked(n))return'next';const ni=nextIncomplete();if(!ni)return n<4?'done':'next';if(n<ni.ph)return'done';if(n===ni.ph)return'now';return'next';}
+function weekDone(prog,phn,w){return w.days.every((d,di)=>isRest(d)||STATE.done[keyOf(prog,phn,w.num,di)]);}
+
+/* ---- chrome ---- */
+document.getElementById('home').onclick=()=>go('/');
+document.querySelectorAll('.nav-link').forEach(l=>l.onclick=()=>go(l.dataset.go));
+document.getElementById('back').onclick=()=>history.back();document.getElementById('s-back').onclick=()=>history.back();
+const themeBtn=document.getElementById('theme');
+themeBtn.onclick=()=>{const c=document.documentElement.getAttribute('data-theme'),n=c==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);themeBtn.querySelector('.ic').textContent=n==='dark'?'☀':'☾';themeBtn.querySelector('.tl').textContent=n==='dark'?'Light':'Dark';};
+function chrome(showSub,crumbText,active){subnav.classList.toggle('hide',!showSub);crumb.textContent=crumbText||'';sticky.classList.add('hide');
+  const ns=document.getElementById('nl-sculpt');if(ns)ns.classList.toggle('active',active==='sculpt');
+  document.title=(crumbText?crumbText+' — ':'')+'FORGE Sculpt';}
+
+/* ---- router ---- */
+function render(){const h=location.hash.replace(/^#/,'')||'/';const p=h.split('/').filter(Boolean);window.scrollTo(0,0);
+  if(!p.length)return entry();
+  if(p[0]==='access')return unlocked()?go('/sculpt'):gate('/sculpt');
+  if(p[0]==='sculpt'){
+    if(p.length===1)return sculptOverview();                                   /* public map */
+    if(p.length===4&&isSample(+p[1],+p[2],+p[3]))return sessionSheet('fs',+p[1],+p[2],+p[3]); /* free sample */
+    if(!unlocked())return gate(h);                                             /* gate the rest */
+    if(p.length===2)return phaseWeeks(+p[1]);
+    if(p.length===3)return weekSessions(+p[1],+p[2]);
+    if(p.length===4)return sessionSheet('fs',+p[1],+p[2],+p[3]);}
+  if(p[0]==='rod'){if(!unlocked())return gate(h);if(p.length===1)return rodHome();if(p.length===3)return rodSession(+p[1],+p[2]);}
+  entry();}
+
+/* ---- access gate ---- */
+function gate(target){chrome(false,'',null);view.innerHTML='';
+  view.appendChild(el(`<div class="stack fadein" style="--gap:12px;padding-top:26px">
+    <span class="eyebrow">Athlete Access</span><h2>Your full program<br>lives here.</h2>
+    <p class="lede">The complete four-phase curriculum and coached tracks are for current athletes. Enter the code — it stays on this device.</p></div>`));
+  const box=el(`<div class="signup fadein"><div class="signup-row">
+    <input type="text" placeholder="Athlete code" id="ac-in" autocomplete="off">
+    <button class="btn" id="ac-btn">Enter</button></div>
+    <p id="ac-err" style="color:var(--accent);display:none;margin-top:12px">That code isn't right — check with Brice.</p></div>`);
+  view.appendChild(box);
+  const i=box.querySelector('#ac-in'),bt=box.querySelector('#ac-btn'),er=box.querySelector('#ac-err');
+  const submit=()=>{if(i.value.trim().toLowerCase()===ACCESS_CODE){STATE.unlocked=true;save();
+    const t=target||'/sculpt';if(location.hash.replace(/^#/,'')===t){render();}else{go(t);}}else{er.style.display='block';}};
+  bt.onclick=submit;i.onkeydown=e=>{if(e.key==='Enter')submit();};
+  const ds=sampleDi();
+  const alt=el(`<div class="stack fadein" style="--gap:14px;margin-top:26px">
+    <div class="muted">Just looking? See one full session, free —</div>
+    <button class="btn btn-ghost" id="ac-sample">Open a real sample session →</button></div>`);
+  alt.querySelector('#ac-sample').onclick=()=>go(`/sculpt/${SAMPLE.pn}/${SAMPLE.wn}/${ds}`);
+  view.appendChild(alt);
+}
+
+/* ---- entry ---- */
+function entry(){chrome(false,'',null);view.innerHTML='';
+  const hero=el(`<section class="hero fadein"><div class="hero-grid">
+    <div class="hero-copy stack" style="--gap:12px">
+      <span class="eyebrow">A preview of the FORGE app</span>
+      <h1>The work is<br>still here.</h1>
+      <p class="lede">FORGE is becoming its own standalone app. Until it launches, this is a live preview — and your current training, still here.</p>
+    </div>
+    <div class="hero-art">
+      <img class="hero-fig dark-only" alt="" src="${ASSET.hero}">
+      <div class="hero-type light-only"><div class="lg">Forge<br>Sculpt</div><div class="sm">Physique, decided</div></div>
+    </div></div></section>`);
+  view.appendChild(hero);
+  const ni=nextIncomplete();
+  if(unlocked()&&ni){const ph=FS.phases.find(x=>x.n===ni.ph),wk=ph.weeks.find(w=>w.num===ni.w),d=ni.d;
+    const band=el(`<div class="resume-band fadein" style="margin-top:22px"><div><div class="rl">Resume training</div>
+      <div class="rt">${esc(ph.title)} · Week ${wk.num} · ${esc(d.t)}</div></div><span class="ext">Continue →</span></div>`);
+    band.onclick=()=>go(`/sculpt/${ni.ph}/${ni.w}/${ni.di}`);view.appendChild(band);}
+  if(!unlocked()){const ds=sampleDi();
+    const samp=el(`<div class="resume-band fadein" style="margin-top:22px;border-color:var(--line)"><div><div class="rl">Free sample</div>
+      <div class="rt">See one full session — Phase I · Pull</div></div><span class="ext">Open →</span></div>`);
+    samp.onclick=()=>go(`/sculpt/${SAMPLE.pn}/${SAMPLE.wn}/${ds}`);view.appendChild(samp);}
+  const c1=el(`<div class="pcard fadein" style="margin-top:14px"><div class="pt">${esc(FS.name)}</div>
+    <div class="pd">Four phases · ${FS.phases.reduce((a,p)=>a+p.weeks.length,0)} weeks · complete physique program</div>
+    <div class="resume">→ ${ni?'Continue where you left off':'Open the program'}</div></div>`);
+  c1.onclick=()=>go('/sculpt');
+  view.appendChild(c1);
+  // signup
+  const done=!!STATE.email;
+  const su=el(`<div class="signup fadein"><h3>FORGE is moving to its own app.</h3>
+    <p>Leave your email and I'll send you the App Store link when it's ready.</p>
+    ${done?`<div class="signup-row"><div class="signup-done">✓ Got it — I'll send the link when FORGE is live.</div></div>`
+    :`<div class="signup-row"><input type="email" name="email" placeholder="Email address" id="su-in"><button class="btn" id="su-btn">Send me the link</button></div>
+      <p id="su-err" style="display:none;color:var(--accent);margin-top:12px;font-size:13px"></p>`}</div>`);
+  view.appendChild(su);
+  if(!done){const b=su.querySelector('#su-btn'),i=su.querySelector('#su-in'),er=su.querySelector('#su-err');
+    b.onclick=()=>{const v=i.value.trim();if(!/.+@.+\..+/.test(v)){er.textContent='Enter a valid email.';er.style.display='block';return;}
+      er.style.display='none';b.textContent='Sending…';b.disabled=true;
+      const body=new URLSearchParams({'form-name':SIGNUP_FORM_NAME,email:v}).toString();
+      fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body})
+        .then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);STATE.email=v;save();
+          su.querySelector('.signup-row').innerHTML=`<div class="signup-done">✓ Got it — I'll send the link when FORGE is live.</div>`;})
+        .catch(()=>{b.textContent='Send me the link';b.disabled=false;er.textContent="Couldn't send that — try again in a moment.";er.style.display='block';});};}
+  view.appendChild(el(`<footer>Progress is saved to this browser &amp; device.<br>The standalone app is where the full record will live.<br><br>
+    <a class="ext" href="https://speedandform.com/forge-sculpt/" target="_blank" rel="noopener">View the FORGE Sculpt page ↗</a></footer>`));
+}
+
+/* ---- sculpt overview ---- */
+function sculptOverview(){chrome(true,'Forge Sculpt','sculpt');view.innerHTML='';
+  view.appendChild(el(`<div class="stack fadein" style="--gap:10px;padding-top:8px"><span class="eyebrow">Complete Program</span>
+    <h2>Forge Sculpt</h2><p class="lede">Four phases. The emphasis moves; the frame you build early is held, not abandoned.</p></div>`));
+  if(!unlocked()){const ds=sampleDi();
+    const banner=el(`<div class="resume-band fadein" style="margin-top:20px;border-color:var(--line)"><div>
+      <div class="rl">Preview</div><div class="rt">Open one full session free · athletes unlock every week</div></div>
+      <span class="ext" id="ov-access">Enter code →</span></div>`);
+    banner.querySelector('#ov-access').onclick=e=>{e.stopPropagation();go('/access');};
+    banner.onclick=()=>go(`/sculpt/${SAMPLE.pn}/${SAMPLE.wn}/${ds}`);
+    view.appendChild(banner);}
+  const wrap=el(`<div class="fadein" style="margin-top:22px;border-top:1px solid var(--line)"></div>`);
+  FS.phases.forEach(ph=>{
+    const locked=phaseLocked(ph.n),st=phaseState(ph.n);
+    const art=`<div class="p-art dark-only ${locked?'crop':''}"><img alt="" src="${PHASE_ART[ph.n]}"></div><div class="p-num light-only">${['','I','II','III','IV'][ph.n]}</div>`;
+    if(locked){wrap.appendChild(el(`<div class="phase locked">${art}
+      <div><div class="pt">🔒 ${esc(ph.title)}</div><div class="ps">Unlocks when you reach it</div></div>
+      <div class="pw">Locked<br>${ph.weeks.length} wks</div></div>`));return;}
+    const row=el(`<div class="phase">${art}
+      <div><div class="pt"><span class="dot ${st}"></span>${esc(ph.title)}</div><div class="ps">${esc(ph.sub)}</div></div>
+      <div class="pw">${st==='now'?'Current':st==='done'?'Done':''}<br>${ph.weeks.length} wks</div></div>`);
+    row.onclick=()=>go(`/sculpt/${ph.n}`);wrap.appendChild(row);});
+  view.appendChild(wrap);
+  view.appendChild(el(`<footer>Phase names are canon from the FORGE Sculpt program. Weeks, sessions and prescriptions are the real exported training data.</footer>`));
+}
+
+/* ---- phase weeks ---- */
+function phaseWeeks(pn){const ph=FS.phases.find(x=>x.n===pn);if(!ph)return go('/sculpt');
+  chrome(true,`${ph.title}`,'sculpt');view.innerHTML='';
+  view.appendChild(el(`<div class="stack fadein" style="--gap:10px;padding-top:8px"><span class="eyebrow">Phase ${['','I','II','III','IV'][pn]}</span>
+    <h2>${esc(ph.title)}</h2><p class="lede">${esc(ph.sub)}.</p></div>`));
+  const rail=el(`<div class="wkrail fadein" style="margin-top:22px"></div>`);
+  const ni=nextIncomplete();
+  ph.weeks.forEach(w=>{const wd=weekDone('fs',pn,w),cur=ni&&ni.ph===pn&&ni.w===w.num;
+    const card=el(`<div class="wk">${wd?'<span class="check">✓</span>':''}<div class="wn">Week ${w.num}</div>
+      <div class="wt">${esc(w.label)}</div><div class="ws">${wd?'Complete':cur?'Current →':''}</div></div>`);
+    card.onclick=()=>go(`/sculpt/${pn}/${w.num}`);rail.appendChild(card);});
+  view.appendChild(rail);
+}
+
+/* ---- week sessions ---- */
+function weekSessions(pn,wn){const ph=FS.phases.find(x=>x.n===pn);const w=ph&&ph.weeks.find(x=>x.num===wn);if(!w)return go('/sculpt');
+  chrome(true,`${ph.title} · Week ${wn}`,'sculpt');view.innerHTML='';
+  view.appendChild(el(`<div class="stack fadein" style="--gap:10px;padding-top:8px"><span class="eyebrow">${esc(ph.title)} · Week ${wn}</span>
+    <h2>Week ${wn}</h2><div class="readbox" style="margin-top:4px">${esc(w.label)}</div></div>`));
+  const ni=nextIncomplete();const list=el(`<div class="fadein" style="margin-top:18px"></div>`);
+  w.days.forEach((d,di)=>{const rest=isRest(d),k=keyOf('fs',pn,wn,di),done=STATE.done[k];
+    const isNext=ni&&ni.ph===pn&&ni.w===wn&&ni.di===di;
+    const st=stats(d);
+    const row=el(`<div class="sess ${rest?'rest':''}"><div class="sd">${esc((d.wd||'').slice(0,3))}</div>
+      <div class="sn">${esc(d.t)}${!rest?`<div class="sg">${st.moves} moves · ${st.sets} sets</div>`:''}</div>
+      ${done?'<span class="tag done">✓ Done</span>':isNext?'<span class="tag next">Next</span>':''}</div>`);
+    if(!rest)row.onclick=()=>go(`/sculpt/${pn}/${wn}/${di}`);list.appendChild(row);});
+  view.appendChild(list);
+}
+
+/* ---- session sheet (shared) ---- */
+function chapterArt(title){if(/pull/i.test(title))return ASSET.pull;return null;}
+function focusReps(e){return e.sec?`${e.sec}s`:(e.rmin==null?'—':(e.rmin===e.rmax?`${e.rmin}`:`${e.rmin}–${e.rmax}`));}
+function setsChecked(doneKey,day){let n=0;day.ex.forEach((e,i)=>{for(let k=1;k<=e.sc;k++){if(STATE.sets[`${doneKey}#${i}.${k}`])n++;}});return n;}
+
+/* SESSION — the editorial training sheet (default; sells FORGE) */
+function sessionBody(title,eyebrow,day){
+  const ca=chapterArt(title);
+  view.appendChild(el(`<div class="sheet-head fadein">${ca?`<div class="chapter dark-only"><img alt="" src="${ca}"></div>`:''}
+    <div><span class="eyebrow">${esc(eyebrow)}</span><h2 style="margin-top:4px">${esc(title)}</h2></div></div>`));
+  const s=stats(day),prime=day.ex.filter(e=>e.prime);
+  view.appendChild(el(`<div class="statrow fadein"><div class="stat"><b>${s.moves}</b><span>Movements</span></div>
+    <div class="stat"><b>${s.sets}</b><span>Working sets</span></div><div class="stat"><b>${s.rest}s</b><span>Longest rest</span></div></div>`));
+  if(prime.length)view.appendChild(el(`<div class="keylifts fadein"><b>Key lifts</b>${prime.map(e=>esc(e.n)).join(' · ')}</div>`));
+  const box=el(`<div class="fadein" style="margin-top:8px"></div>`);
+  day.ex.forEach((e,i)=>{
+    const cueInline=e.prime&&e.cue?`<div class="ex-cue">${esc(e.cue)}</div>`:'';
+    const detailCue=(!e.prime&&e.cue)?`<div class="row"><span class="k">Cue</span>${esc(e.cue)}</div>`:'';
+    const detailSub=e.sub?`<div class="row"><span class="k">Substitution</span>${esc(e.sub)}</div>`:'';
+    const detail=(detailCue||detailSub)?`<div class="ex-more"><button class="ex-toggle">＋ ${e.prime?'Substitution':'Cue · substitution'}</button>
+      <div class="ex-detail">${detailCue}${detailSub}</div></div>`:'';
+    const ex=el(`<div class="ex ${e.prime?'prime':''}"><div class="ex-top"><div class="ex-idx">${String(i+1).padStart(2,'0')}</div>
+      <div><div class="ex-name">${esc(e.n)}${e.prime?'<span class="ex-badge">Key lift</span>':''}</div>
+      <div class="ex-var">${esc(e.intent||'')}${e.lat&&e.lat!=='bilateral'?' · '+esc(e.lat):''}</div></div></div>
+      <div class="ex-rx"><div class="rx"><b>${repStr(e)}</b><span>${e.sec?'Sets × Time':'Sets × Reps'}</span></div>
+      <div class="rx"><b>${e.rest}s</b><span>Rest</span></div>${e.load?`<div class="rx"><b>${e.load}</b><span>Target lb</span></div>`:''}</div>
+      ${cueInline}${detail}</div>`);
+    const t=ex.querySelector('.ex-toggle');
+    if(t){const dd=ex.querySelector('.ex-detail');t.onclick=()=>{dd.classList.toggle('open');t.textContent=(dd.classList.contains('open')?'– Hide':'＋ '+(e.prime?'Substitution':'Cue · substitution'));};}
+    box.appendChild(ex);});
+  view.appendChild(box);
+}
+
+/* FOCUS — execution surface. Mirrors the app: per-set square marks, values always
+   shown (a tick asserts them), cues one tap away, no timer, completion never automatic. */
+function focusBody(title,eyebrow,day,doneKey){
+  view.appendChild(el(`<div class="fx-head-wrap fadein"><div class="fx-coord">${esc(eyebrow)}</div>
+    <div class="fx-title"><h2>${esc(title)}</h2><span class="fxlabel">Focus</span></div>
+    <div class="fx-feel">Give me the work. Stay out of my way.</div></div>`));
+  const box=el(`<div class="fadein" style="margin-top:16px"></div>`);
+  day.ex.forEach((e,i)=>{
+    const side=(e.lat&&e.lat!=='bilateral')?' / side':'';
+    const reps=focusReps(e);
+    const rx=`${e.sc} × ${reps}${side} · ${e.rest}s rest`;
+    const canHelp=!!(e.cue||e.sub);
+    const val=`${reps}${side}${e.load?` × ${e.load} lb`:''}`;
+    const mv=el(`<div class="fx-mv">
+      <button class="fx-head"><div class="fx-name">${esc(e.n)}${e.prime?'<span class="ex-badge">Key lift</span>':''}${canHelp?'<span class="fx-q">?</span>':''}</div>
+      <div class="fx-rx">${rx}</div></button>
+      ${canHelp?`<div class="fx-help">${e.cue?`<div>${esc(e.cue)}</div>`:''}${e.sub?`<div style="margin-top:8px"><span style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-4)">Sub</span> ${esc(e.sub)}</div>`:''}</div>`:''}</div>`);
+    if(canHelp){const hb=mv.querySelector('.fx-head'),hp=mv.querySelector('.fx-help');hb.onclick=()=>hp.classList.toggle('open');}
+    for(let k=1;k<=e.sc;k++){
+      const sk=`${doneKey}#${i}.${k}`;
+      const btn=el(`<button class="fx-set ${STATE.sets[sk]?'done':''}"><span class="fx-mark"></span><span class="fx-idx">Set ${k} of ${e.sc}</span><span class="fx-val">${val}</span></button>`);
+      btn.onclick=()=>{STATE.sets[sk]=!STATE.sets[sk];save();btn.classList.toggle('done');if(renderSession._refresh)renderSession._refresh();};
+      mv.appendChild(btn);
+    }
+    box.appendChild(mv);});
+  view.appendChild(box);
+}
+
+function renderSession(prog,title,eyebrow,day,doneKey,backLabel){
+  view.innerHTML='';
+  view.appendChild(el(`<button class="back" style="margin:6px 0 12px" onclick="history.back()">‹ ${esc(backLabel)}</button>`));
+  const mode=STATE.mode||'session';
+  document.title=`${title} — FORGE Sculpt`;
+  const bar=el(`<div class="modebar fadein"><button data-m="session" class="${mode==='session'?'on':''}">Session</button><button data-m="focus" class="${mode==='focus'?'on':''}">Focus</button></div>`);
+  bar.querySelectorAll('button').forEach(b=>b.onclick=()=>{STATE.mode=b.dataset.m;save();render();});
+  view.appendChild(bar);
+  if(mode==='focus')focusBody(title,eyebrow,day,doneKey);else sessionBody(title,eyebrow,day);
+  // sticky — explicit session close, never automatic
+  sticky.classList.remove('hide');
+  const s=stats(day),doneBtn=document.getElementById('s-done'),progEl=document.getElementById('s-prog');
+  document.getElementById('s-back').onclick=()=>history.back();
+  const refresh=()=>{const d=STATE.done[doneKey];
+    progEl.textContent=mode==='focus'?`${setsChecked(doneKey,day)}/${s.sets} sets ticked`:`${s.moves} movements · ${s.sets} sets`;
+    doneBtn.textContent=d?'✓ Session complete':(mode==='focus'?'Finish session':'Mark Complete');
+    doneBtn.classList.toggle('done-state',!!d);};
+  renderSession._refresh=refresh;refresh();
+  doneBtn.onclick=()=>{STATE.done[doneKey]=!STATE.done[doneKey];save();refresh();};
+}
+function sessionSheet(prog,pn,wn,di){const ph=FS.phases.find(x=>x.n===pn);const w=ph&&ph.weeks.find(x=>x.num===wn);const day=w&&w.days[di];
+  if(!day)return go('/sculpt');chrome(false,'','sculpt');
+  renderSession('fs',day.t,`${ph.title} · Week ${wn} · ${day.wd}`,day,keyOf('fs',pn,wn,di),`Week ${wn}`);}
+
+/* ---- rod ---- */
+function rodHome(){chrome(true,'Rod · Coach-led','rod');view.innerHTML='';
+  const cur=ROD.weeks[ROD.weeks.length-1];
+  view.appendChild(el(`<div class="stack fadein" style="--gap:10px;padding-top:8px"><span class="eyebrow">Coach-led Track</span>
+    <h2>Rod</h2><p class="lede">Monday &amp; Friday · 6:15 AM. Your latest week is up top; earlier weeks below.</p>
+    <div class="readbox" style="margin-top:4px">${esc(cur.label||('Week '+cur.num))}</div></div>`));
+  const list=el(`<div class="fadein" style="margin-top:18px"></div>`);
+  cur.days.forEach((d,di)=>{if(isRest(d))return;const st=stats(d),done=STATE.done[keyOf('rod',cur.num,0,di)];
+    const row=el(`<div class="sess"><div class="sd">${esc((d.wd||'').slice(0,3))}</div>
+      <div class="sn">${esc(d.t)}<div class="sg">${st.moves} moves · ${st.sets} sets · 6:15 AM</div></div>
+      ${done?'<span class="tag done">✓ Done</span>':''}</div>`);
+    row.onclick=()=>go(`/rod/${cur.num}/${di}`);list.appendChild(row);});
+  view.appendChild(list);
+  const earlier=ROD.weeks.slice(0,-1).reverse();
+  if(earlier.length){view.appendChild(el(`<div class="eyebrow fadein" style="margin-top:32px">Earlier Weeks</div>`));
+    const el2=el(`<div class="fadein" style="margin-top:10px"></div>`);
+    earlier.forEach(w=>{const r=el(`<div class="sess"><div class="sd">W${w.num}</div><div class="sn">${esc(w.label||('Week '+w.num))}</div><span class="tag">View</span></div>`);
+      r.onclick=()=>{const di=w.days.findIndex(d=>!isRest(d));go(`/rod/${w.num}/${di}`);};el2.appendChild(r);});
+    view.appendChild(el2);}
+}
+function rodSession(wn,di){const w=ROD.weeks.find(x=>x.num===wn);const day=w&&w.days[di];if(!day)return go('/rod');
+  chrome(false,'','rod');renderSession('rod',day.t,`${esc(w.label||('Week '+w.num))} · ${day.wd} · 6:15 AM`,day,keyOf('rod',wn,0,di),'Rod · this week');}
+
+function unavailable(err){try{sticky.classList.add('hide');}catch(e){}view.innerHTML='';
+  view.appendChild(el(`<div class="stack" style="--gap:12px;padding-top:44px"><span class="eyebrow">Temporarily unavailable</span><h2>Training isn't loading right now.</h2><p class="lede">The program data didn't load. Refresh in a moment — if it keeps happening, let Brice know.</p></div>`));
+  console.error('[FORGE portal] data load failed:',err);}
+async function boot(){try{const res=await fetch('./data/forge-portal-programs.json',{cache:'no-cache'});if(!res.ok)throw new Error('HTTP '+res.status);const raw=await res.json();DATA=buildData(raw);FS=DATA.programs.forge_sculpt;ROD=DATA.programs.rod;}catch(err){return unavailable(err);}window.addEventListener('hashchange',render);render();}
+boot();
+</script>
+</body>
+</html>

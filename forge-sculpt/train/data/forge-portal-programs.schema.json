@@ -1,0 +1,247 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://speedandform.com/forge-sculpt/train/data/forge-portal-programs.schema.json",
+  "title": "FORGE temporary athlete portal programs",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "generatedAt", "source", "programs"],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "commit", "authority"],
+      "properties": {
+        "repository": { "const": "FORM-iOS" },
+        "commit": { "type": "string", "minLength": 7 },
+        "authority": { "type": "string", "minLength": 1 }
+      }
+    },
+    "programs": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "oneOf": [
+          { "$ref": "#/$defs/phasedProgram" },
+          { "$ref": "#/$defs/weeklyProgram" }
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "phasedProgram": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "displayName", "kind", "phases"],
+      "properties": {
+        "id": { "const": "forge_sculpt" },
+        "displayName": { "type": "string", "minLength": 1 },
+        "kind": { "const": "phased" },
+        "phases": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": { "$ref": "#/$defs/phase" }
+        }
+      }
+    },
+    "weeklyProgram": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "displayName", "kind", "weeks"],
+      "properties": {
+        "id": { "const": "rod" },
+        "displayName": { "type": "string", "minLength": 1 },
+        "kind": { "const": "weekly" },
+        "weeks": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/week" }
+        }
+      }
+    },
+    "phase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["phaseNumber", "programId", "displayName", "weeks"],
+      "properties": {
+        "phaseNumber": { "type": "integer", "minimum": 1, "maximum": 4 },
+        "programId": {
+          "type": "string",
+          "pattern": "^forge_sculpt_phase[1-4]_v1(?:_fs)?$"
+        },
+        "displayName": { "type": "string", "minLength": 1 },
+        "weeks": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/week" }
+        }
+      }
+    },
+    "week": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["weekNumber", "days"],
+      "properties": {
+        "weekNumber": { "type": "integer", "minimum": 1 },
+        "label": { "type": "string", "minLength": 1 },
+        "days": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/day" }
+        }
+      }
+    },
+    "day": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "dayIndex",
+        "weekday",
+        "title",
+        "kind",
+        "sessionType",
+        "isFinishDay",
+        "exercises"
+      ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "dayIndex": { "type": "integer", "minimum": 0, "maximum": 6 },
+        "weekday": {
+          "enum": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ]
+        },
+        "title": { "type": "string", "minLength": 1 },
+        "kind": { "enum": ["training", "rest"] },
+        "sessionType": {
+          "enum": ["standard", "recoveryBuffer", "activation"]
+        },
+        "isFinishDay": { "type": "boolean" },
+        "shortSessionMovementIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "exercises": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/exercise" }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "kind": { "const": "training" } },
+            "required": ["kind"]
+          },
+          "then": {
+            "properties": { "exercises": { "minItems": 1 } }
+          }
+        },
+        {
+          "if": {
+            "properties": { "kind": { "const": "rest" } },
+            "required": ["kind"]
+          },
+          "then": {
+            "properties": { "exercises": { "maxItems": 0 } }
+          }
+        }
+      ]
+    },
+    "exercise": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "movementId",
+        "name",
+        "laterality",
+        "movementIntent",
+        "isPrimeMover",
+        "restSeconds",
+        "sets"
+      ],
+      "properties": {
+        "movementId": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "laterality": { "enum": ["bilateral", "unilateral"] },
+        "movementIntent": {
+          "enum": ["controlled", "explosive", "steady", "accessory"]
+        },
+        "isPrimeMover": { "type": "boolean" },
+        "restSeconds": { "type": "integer", "minimum": 0 },
+        "cue": { "type": "string", "minLength": 1 },
+        "sets": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/set" }
+        },
+        "substitutions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "items": { "$ref": "#/$defs/substitution" }
+        }
+      }
+    },
+    "set": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reps": { "$ref": "#/$defs/repRange" },
+        "seconds": { "type": "integer", "minimum": 1 },
+        "targetWeightPounds": { "type": "integer", "minimum": 0 },
+        "rir": { "$ref": "#/$defs/rirRange" }
+      },
+      "anyOf": [
+        { "required": ["reps"] },
+        { "required": ["seconds"] }
+      ]
+    },
+    "repRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["min", "max"],
+      "properties": {
+        "min": { "type": "integer", "minimum": 1 },
+        "max": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "rirRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["min", "max"],
+      "properties": {
+        "min": { "type": "integer", "minimum": 0 },
+        "max": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "substitution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["movementId", "name", "restSeconds"],
+      "properties": {
+        "movementId": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "restSeconds": { "type": "integer", "minimum": 0 },
+        "reps": { "type": "integer", "minimum": 1 },
+        "seconds": { "type": "integer", "minimum": 1 },
+        "targetWeightPounds": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}
