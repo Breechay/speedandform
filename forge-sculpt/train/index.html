@@ -45,7 +45,7 @@ body{background:
   radial-gradient(circle at 78% 6%,color-mix(in srgb,var(--accent) 5%,transparent),transparent 31rem),
   linear-gradient(180deg,var(--bg),var(--bg-2) 115%);
   color:var(--text-2);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.6;
-  -webkit-font-smoothing:antialiased;padding-bottom:118px;min-height:100vh;transition:background .38s var(--ease),color .38s var(--ease)}
+  -webkit-font-smoothing:antialiased;padding-bottom:118px;min-height:100vh;transition:background .2s var(--ease),color .2s var(--ease)}
 :root{--sans:'Jost',system-ui,sans-serif;--serif:'Instrument Serif',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,monospace;
   --maxw:840px;--homew:1180px;--pad:clamp(20px,5vw,48px);--ease:cubic-bezier(.22,.61,.36,1)}
 h1,h2,h3{font-weight:400;letter-spacing:-.025em;line-height:1.04;color:var(--text)}
@@ -61,24 +61,25 @@ a{color:inherit;text-decoration:none}.hide{display:none!important}
 /* chrome */
 .nav{position:sticky;top:0;z-index:50;background:var(--nav-bg);backdrop-filter:blur(20px) saturate(1.12);border-bottom:1px solid var(--line-2)}
 .nav-in{max-width:var(--homew);margin:0 auto;padding:0 var(--pad);height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.wordmark{font-family:var(--mono);font-size:13px;letter-spacing:.36em;color:var(--text);cursor:pointer;font-weight:500}
+.wordmark{font-family:var(--mono);font-size:13px;letter-spacing:.36em;color:var(--text);cursor:pointer;font-weight:500;background:none;border:none;min-height:44px;display:inline-flex;align-items:center}
 .nav-right{display:flex;align-items:center;gap:7px}
-.nav-link{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-3);padding:9px 12px;cursor:pointer;transition:color .2s}
+.nav-link{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-3);padding:9px 12px;min-height:44px;display:inline-flex;align-items:center;cursor:pointer;transition:color .2s}
 .nav-link:hover{color:var(--text)}.nav-link.active{color:var(--accent)}
 .theme{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:var(--text-2);
-  background:color-mix(in srgb,var(--surface) 42%,transparent);border:1px solid var(--line);padding:10px 15px;border-radius:999px;cursor:pointer;transition:.2s;margin-left:2px}
+  background:color-mix(in srgb,var(--surface) 42%,transparent);border:1px solid var(--line);padding:10px 15px;min-height:44px;border-radius:999px;cursor:pointer;transition:.2s;margin-left:2px}
 .theme:hover{border-color:var(--line-strong);color:var(--text);transform:translateY(-1px)}.theme .ic{font-size:11px;line-height:1}
 .subnav{max-width:var(--maxw);margin:0 auto;padding:10px var(--pad);display:flex;align-items:center;gap:14px;border-top:1px solid var(--line-2)}
 .subnav.hide{display:none}
-.back{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);display:inline-flex;align-items:center;gap:7px;cursor:pointer;background:none;border:none;transition:color .2s;padding:0}
+.back{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);display:inline-flex;align-items:center;gap:7px;min-height:44px;cursor:pointer;background:none;border:none;transition:color .2s;padding:0 8px}
 .back:hover{color:var(--text)}
 .crumb{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-4)}
-main{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad) 48px;transition:max-width .25s var(--ease)}
+main{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad) 48px;transition:max-width .2s var(--ease)}
 main.portal-home{max-width:var(--homew)}
 .stack>*+*{margin-top:var(--gap,18px)}
 .lede{font-size:clamp(17px,2.2vw,21px);color:var(--text-2);line-height:1.58;max-width:670px}
 .muted{color:var(--text-3);font-size:13px}
 .fadein{animation:f .48s var(--ease)}@keyframes f{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.execution .fadein{animation-duration:.2s}
 
 /* home hero */
 .hero{position:relative;padding:clamp(42px,7vw,88px) 0 26px}
@@ -127,7 +128,7 @@ main.portal-home{max-width:var(--homew)}
 .account-panel{padding:22px 24px;display:grid;grid-template-columns:minmax(260px,1fr) auto;gap:28px;align-items:center}
 .account-panel h3{font-size:21px;color:var(--text)}.account-panel p{font-size:14px;color:var(--text-3);margin-top:5px;line-height:1.5;max-width:600px}
 .account-actions{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap}.account-status{font-family:var(--mono);font-size:9px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);text-align:right}
-.apple-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-width:210px;height:46px;padding:0 18px;border-radius:6px;border:1px solid #000;background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;font-size:15px;font-weight:500;cursor:pointer}.apple-btn:hover{filter:brightness(1.14)}.apple-btn:disabled{opacity:.55;cursor:wait}.apple-mark{font-size:19px;line-height:1}
+.apple-wrap{min-width:220px}.apple-wrap #appleid-signin{width:220px;height:46px}.apple-error{margin-top:7px;text-align:center}
 .signup{background:var(--surface);border:1px solid var(--line);padding:24px;margin-top:26px;box-shadow:var(--panel-shadow)}
 .signup h3{font-size:20px;color:var(--text)}.signup p{font-size:14px;color:var(--text-3);margin-top:6px;line-height:1.5}
 .signup-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
@@ -162,13 +163,13 @@ main.portal-home{max-width:var(--homew)}
 .statrow{display:flex;gap:0;margin-top:24px;flex-wrap:wrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.stat{padding:15px 26px 15px 0}.stat+.stat{border-left:1px solid var(--line);padding-left:26px}.stat b{font-family:var(--mono);font-size:21px;color:var(--text);font-weight:400;display:block}.stat span{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-4)}
 .keylifts{margin-top:17px;font-size:13.5px;color:var(--text-3)}.keylifts b{color:var(--accent);font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:400;display:block;margin-bottom:5px}
 .ex{border-bottom:1px solid var(--line);padding:23px 0}.ex.prime{position:relative;background:linear-gradient(90deg,var(--accent-soft),transparent 78%);margin:0 calc(var(--pad)*-1);padding-left:var(--pad);padding-right:var(--pad);border-bottom:1px solid var(--line)}.ex.prime:before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent)}
-.ex-top{display:flex;align-items:flex-start;gap:14px}.ex-idx{font-family:var(--mono);font-size:11px;color:var(--accent);width:27px;flex:none;padding-top:4px}.ex-name{font-size:20px;color:var(--text);line-height:1.2}.ex-badge{font-family:var(--mono);font-size:7.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent-dim);border-radius:999px;padding:2px 8px;margin-left:8px;vertical-align:middle;white-space:nowrap}.ex-var{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-top:4px}.ex-rx{display:flex;gap:28px;margin:13px 0 0 41px;flex-wrap:wrap}.ex-rx .rx{display:flex;flex-direction:column;gap:2px}.ex-rx .rx b{font-family:var(--mono);font-size:16px;color:var(--text);font-weight:400}.ex-rx .rx span{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-4)}.ex-cue{margin:13px 0 0 41px;font-size:14px;color:var(--text-2);line-height:1.5;max-width:620px}.ex-more{margin:13px 0 0 41px}.ex-toggle{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:none;border:none;cursor:pointer;padding:0}.ex-detail{margin-top:11px;font-size:13.5px;color:var(--text-2);line-height:1.5;display:none}.ex-detail.open{display:block}.ex-detail .row{padding:8px 0;border-top:1px solid var(--line-2)}.ex-detail .k{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-4);display:block;margin-bottom:3px}
+.ex-top{display:flex;align-items:flex-start;gap:14px}.ex-idx{font-family:var(--mono);font-size:11px;color:var(--accent);width:27px;flex:none;padding-top:4px}.ex-name{font-size:20px;color:var(--text);line-height:1.2}.ex-badge{font-family:var(--mono);font-size:7.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent-dim);border-radius:999px;padding:2px 8px;margin-left:8px;vertical-align:middle;white-space:nowrap}.ex-var{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-top:4px}.ex-rx{display:flex;gap:28px;margin:13px 0 0 41px;flex-wrap:wrap}.ex-rx .rx{display:flex;flex-direction:column;gap:2px}.ex-rx .rx b{font-family:var(--mono);font-size:16px;color:var(--text);font-weight:400}.ex-rx .rx span{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-4)}.ex-cue{margin:13px 0 0 41px;font-size:14px;color:var(--text-2);line-height:1.5;max-width:620px}.ex-more{margin:13px 0 0 41px}.ex-toggle{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:none;border:none;cursor:pointer;padding:0;min-height:44px;display:inline-flex;align-items:center}.ex-detail{margin-top:11px;font-size:13.5px;color:var(--text-2);line-height:1.5;display:none}.ex-detail.open{display:block}.ex-detail .row{padding:8px 0;border-top:1px solid var(--line-2)}.ex-detail .k{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-4);display:block;margin-bottom:3px}
 
 /* session/focus controls */
-.modebar{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px}.modebar button{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;background:none;border:none;color:var(--text-3);padding:8px 18px;border-radius:999px;cursor:pointer;transition:.2s}.modebar button.on{background:var(--accent-soft);color:var(--accent)}
-.barrow{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:2px 0 20px}.sharebtn{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-2);background:transparent;border:1px solid var(--line);padding:9px 15px;border-radius:999px;cursor:pointer;transition:.2s}.sharebtn:hover{border-color:var(--line-strong);color:var(--text)}
-.fx-coord{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-4)}.fx-title{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:6px 0 4px}.fx-title .fxlabel{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}.fx-mv{border-top:1px solid var(--line)}.fx-head{display:flex;flex-direction:column;gap:4px;padding:17px 0 11px;cursor:pointer;background:none;border:none;width:100%;text-align:left}.fx-name{font-size:17px;color:var(--text);display:flex;gap:9px;align-items:center;flex-wrap:wrap}.fx-q{font-family:var(--mono);font-size:11px;color:var(--text-4);border:1px solid var(--line);border-radius:50%;width:17px;height:17px;display:inline-flex;align-items:center;justify-content:center}.fx-rx{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--text-3);text-transform:uppercase}.fx-help{display:none;font-size:13.5px;color:var(--text-2);line-height:1.5;border-left:1px solid var(--accent);padding:2px 0 10px 14px;margin:2px 0 6px}.fx-help.open{display:block}.fx-set{display:flex;align-items:center;gap:14px;padding:13px 0;min-height:48px;cursor:pointer;border:none;border-bottom:1px solid var(--line-2);background:none;width:100%;text-align:left}.fx-mark{width:13px;height:13px;flex:none;border:1px solid var(--text-4);transition:.15s}.fx-set.done .fx-mark{background:var(--accent);border-color:var(--accent)}.fx-idx{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);flex:1}.fx-set.done .fx-idx,.fx-set.done .fx-val{color:var(--text-4)}.fx-val{font-family:var(--mono);font-size:12px;color:var(--text);letter-spacing:.03em}
-.sticky{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--nav-bg);backdrop-filter:blur(18px);border-top:1px solid var(--line)}.sticky.hide{display:none}.sticky-in{max-width:var(--maxw);margin:0 auto;padding:12px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:12px}.sticky .prog{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3)}.mini{padding:12px 18px;width:auto}.mini.done-state{background:transparent;color:var(--accent);border-color:var(--accent-dim)}
+.modebar{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px}.modebar button{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;background:none;border:none;color:var(--text-3);padding:8px 18px;min-height:44px;border-radius:999px;cursor:pointer;transition:.2s}.modebar button.on{background:var(--accent-soft);color:var(--accent)}
+.barrow{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:2px 0 20px}.sharebtn{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-2);background:transparent;border:1px solid var(--line);padding:9px 15px;min-height:44px;border-radius:999px;cursor:pointer;transition:.2s}.sharebtn:hover{border-color:var(--line-strong);color:var(--text)}
+.fx-coord{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-4)}.fx-title{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:6px 0 4px}.fx-title .fxlabel{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}.fx-mv{border-top:1px solid var(--line)}.fx-head{display:flex;flex-direction:column;gap:4px;padding:17px 0 11px;min-height:44px;cursor:pointer;background:none;border:none;width:100%;text-align:left}.fx-name{font-size:17px;color:var(--text);display:flex;gap:9px;align-items:center;flex-wrap:wrap}.fx-q{font-family:var(--mono);font-size:11px;color:var(--text-4);border:1px solid var(--line);border-radius:50%;width:17px;height:17px;display:inline-flex;align-items:center;justify-content:center}.fx-rx{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--text-3);text-transform:uppercase}.fx-help{display:none;font-size:13.5px;color:var(--text-2);line-height:1.5;border-left:1px solid var(--accent);padding:2px 0 10px 14px;margin:2px 0 6px}.fx-help.open{display:block}.fx-set{display:flex;align-items:center;gap:14px;padding:13px 0;min-height:64px;cursor:pointer;border:none;border-bottom:1px solid var(--line-2);background:none;width:100%;text-align:left}.fx-mark{width:13px;height:13px;flex:none;border:1px solid var(--text-4);transition:.15s}.fx-set.done .fx-mark{background:var(--accent);border-color:var(--accent)}.fx-idx{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);flex:1}.fx-set.done .fx-idx,.fx-set.done .fx-val{color:var(--text-4)}.fx-val{font-family:var(--mono);font-size:12px;color:var(--text);letter-spacing:.03em}
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--nav-bg);backdrop-filter:blur(18px);border-top:1px solid var(--line)}.sticky.hide{display:none}.sticky-in{max-width:var(--maxw);margin:0 auto;padding:12px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:12px}.sticky .prog{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3)}.mini{padding:12px 18px;min-height:44px;width:auto}.mini.done-state{background:transparent;color:var(--accent);border-color:var(--accent-dim)}
 footer{max-width:var(--maxw);margin:0 auto;padding:30px 0;border-top:1px solid var(--line-2);font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-4);line-height:1.9}
 
 [data-theme="light"] .resume-rail,[data-theme="light"] .program-panel,[data-theme="light"] .account-panel,[data-theme="light"] .launch-panel,[data-theme="light"] .wk,[data-theme="light"] .signup{background:rgba(249,246,240,.74);backdrop-filter:blur(8px)}
@@ -183,14 +184,14 @@ footer{max-width:var(--maxw);margin:0 auto;padding:30px 0;border-top:1px solid v
   h1{font-size:clamp(52px,16vw,76px)}
   .home-stack{gap:14px}.resume-rail{grid-template-columns:1fr auto;gap:14px;padding:20px}.resume-mark{display:none}.resume-title{font-size:21px;line-height:1.28}.resume-action{align-self:end}.resume-action span:first-child{display:none}
   .program-panel{grid-template-columns:1fr;padding:26px 22px;gap:28px}.program-map{border-left:0;border-top:1px solid var(--line);padding:24px 0 0}.program-metrics{margin-top:22px}.metric{padding-right:10px}.metric+.metric{padding-left:12px}.metric b{font-size:17px}.program-panel:after{width:90%;right:-40%;bottom:-18%}
-  .account-panel,.launch-panel{grid-template-columns:1fr;padding:24px 22px;gap:18px}.account-actions{justify-content:flex-start}.account-status{text-align:left}.apple-btn{width:100%}.launch-panel .signup-row{grid-template-columns:1fr}.launch-panel .btn{width:100%}
+  .account-panel,.launch-panel{grid-template-columns:1fr;padding:24px 22px;gap:18px}.account-actions{justify-content:flex-start}.account-status{text-align:left}.apple-wrap,.apple-wrap #appleid-signin{width:100%}.launch-panel .signup-row{grid-template-columns:1fr}.launch-panel .btn{width:100%}
   .phase{grid-template-columns:50px 1fr auto;gap:14px;padding:18px 6px}.p-art{width:48px;height:62px}.p-num{font-size:36px}.phase .pt{font-size:18px}.phase .pw{font-size:8px}
   .wkrail{grid-template-columns:1fr 1fr}.wk{min-height:116px;padding:15px}.sess{grid-template-columns:48px minmax(0,1fr) auto;padding:17px 4px}.sess:hover{padding-left:10px}.sess.rest:hover{padding-left:4px}.sess .sn{font-size:17px}
   .statrow{display:grid;grid-template-columns:repeat(3,1fr)}.stat{padding:13px 8px 13px 0}.stat+.stat{padding-left:12px}.stat b{font-size:18px}.ex-rx{gap:20px}.ex.prime{margin:0 -20px;padding-left:20px;padding-right:20px}
   .sticky-in{padding:10px 20px}.sticky .prog{max-width:110px;line-height:1.35}.mini{padding:11px 14px}
 }
 @media(max-width:420px){
-  .nav-right{gap:1px}.theme .tl{display:none}.theme{width:40px;height:40px;padding:0;justify-content:center}.nav-link{font-size:9px}.resume-action{font-size:0}.resume-arrow{font-size:22px}.wkrail{grid-template-columns:1fr}.program-metrics{grid-template-columns:1fr 1fr 1fr}.metric span{font-size:7px}.fx-set{gap:10px}.fx-val{font-size:11px}.barrow{align-items:flex-start}
+  .nav-right{gap:1px}.theme .tl{display:none}.theme{width:44px;height:44px;padding:0;justify-content:center}.nav-link{font-size:9px}.resume-action{font-size:0}.resume-arrow{font-size:22px}.wkrail{grid-template-columns:1fr}.program-metrics{grid-template-columns:1fr 1fr 1fr}.metric span{font-size:7px}.fx-set{gap:10px}.fx-val{font-size:11px}.barrow{align-items:flex-start}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
 
@@ -219,7 +220,7 @@ footer{max-width:var(--maxw);margin:0 auto;padding:30px 0;border-top:1px solid v
 </form>
 <nav class="nav">
   <div class="nav-in">
-    <span class="wordmark" id="home">FORGE</span>
+    <button class="wordmark" id="home" aria-label="FORGE home">FORGE</button>
     <div class="nav-right">
       <span class="nav-link" data-go="/sculpt" id="nl-sculpt">Sculpt</span>
       <button class="theme" id="theme"><span class="ic">☀</span><span class="tl">Light</span></button>
@@ -285,25 +286,40 @@ const setKey=(dkey,ex,k)=>`${dkey}::${ex.mid}::${k}`;
 
 /* ---- shared account identity (progress remains local during open preview) ---- */
 let AUTH=null,ACCOUNT_USER=null,ACCOUNT_READY=false,ACCOUNT_BUSY=false,ACCOUNT_ERROR='';
+let APPLE_TRANSACTION=null,APPLE_ERROR_NODE=null,APPLE_LISTENERS_INSTALLED=false;
 function secureToken(){if(crypto.randomUUID)return crypto.randomUUID();const bytes=new Uint8Array(24);crypto.getRandomValues(bytes);return Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');}
+function installAppleListeners(){
+  if(APPLE_LISTENERS_INSTALLED)return;
+  document.addEventListener('AppleIDSignInOnSuccess',handleAppleSuccess);
+  document.addEventListener('AppleIDSignInOnFailure',handleAppleFailure);
+  APPLE_LISTENERS_INSTALLED=true;
+}
 async function initAccount(){
   if(!window.supabase||!window.AppleID){ACCOUNT_ERROR='Apple sign-in is unavailable right now.';return;}
   AUTH=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}});
   const {data,error}=await AUTH.auth.getSession();
   if(error){ACCOUNT_ERROR='Apple sign-in is unavailable right now.';return;}
   ACCOUNT_USER=data.session?.user||null;ACCOUNT_READY=true;
+  installAppleListeners();
   AUTH.auth.onAuthStateChange((event,session)=>{ACCOUNT_USER=session?.user||null;if(event==='SIGNED_IN'||event==='SIGNED_OUT'){const h=location.hash.replace(/^#/,'')||'/';if(h==='/')entry();}});
 }
-async function signInApple(button,errorNode){
+function prepareAppleControl(errorNode){
   if(!AUTH||!window.AppleID||ACCOUNT_BUSY)return;
-  ACCOUNT_BUSY=true;ACCOUNT_ERROR='';button.disabled=true;button.lastChild.textContent='Connecting…';errorNode.textContent='';
-  const nonce=secureToken(),state=secureToken();
+  ACCOUNT_ERROR='';APPLE_ERROR_NODE=errorNode;errorNode.textContent='';
+  APPLE_TRANSACTION={nonce:secureToken(),state:secureToken()};
+  AppleID.auth.init({clientId:APPLE_CLIENT_ID,scope:'name email',redirectURI:APPLE_REDIRECT_URI,state:APPLE_TRANSACTION.state,nonce:APPLE_TRANSACTION.nonce,usePopup:true});
+  if(typeof AppleID.auth.renderButton==='function')AppleID.auth.renderButton();
+}
+async function handleAppleSuccess(event){
+  if(!AUTH||!APPLE_TRANSACTION||ACCOUNT_BUSY)return;
+  ACCOUNT_BUSY=true;ACCOUNT_ERROR='';
   try{
-    AppleID.auth.init({clientId:APPLE_CLIENT_ID,scope:'name email',redirectURI:APPLE_REDIRECT_URI,state,nonce,usePopup:true});
-    const apple=await AppleID.auth.signIn();
-    const token=apple?.authorization?.id_token||apple?.id_token;
+    const apple=event.detail||{};
+    const authorization=apple.authorization||{};
+    if(authorization.state!==APPLE_TRANSACTION.state)throw new Error('Apple state mismatch');
+    const token=authorization.id_token||apple.id_token;
     if(!token)throw new Error('Apple identity token missing');
-    const {data,error}=await AUTH.auth.signInWithIdToken({provider:'apple',token,nonce});
+    const {data,error}=await AUTH.auth.signInWithIdToken({provider:'apple',token,nonce:APPLE_TRANSACTION.nonce});
     if(error)throw error;
     const person=apple?.user?.name;
     if(person&&(person.firstName||person.lastName)){
@@ -312,11 +328,21 @@ async function signInApple(button,errorNode){
     }
     ACCOUNT_USER=data.user;entry();
   }catch(error){
-    if(error?.error!=='popup_closed_by_user')ACCOUNT_ERROR="Couldn't connect with Apple. Try again.";
-    errorNode.textContent=ACCOUNT_ERROR;
+    ACCOUNT_ERROR="Couldn't connect with Apple. Try again.";
+    if(APPLE_ERROR_NODE)APPLE_ERROR_NODE.textContent=ACCOUNT_ERROR;
   }finally{
-    ACCOUNT_BUSY=false;if(document.body.contains(button)){button.disabled=false;button.lastChild.textContent='Continue with Apple';}
+    ACCOUNT_BUSY=false;APPLE_TRANSACTION=null;
+    if(!ACCOUNT_USER&&document.getElementById('appleid-signin'))requestAnimationFrame(()=>prepareAppleControl(APPLE_ERROR_NODE));
   }
+}
+function handleAppleFailure(event){
+  const reason=event?.detail?.error;
+  if(reason!=='popup_closed_by_user'){
+    ACCOUNT_ERROR="Couldn't connect with Apple. Try again.";
+    if(APPLE_ERROR_NODE)APPLE_ERROR_NODE.textContent=ACCOUNT_ERROR;
+  }
+  APPLE_TRANSACTION=null;ACCOUNT_BUSY=false;
+  if(document.getElementById('appleid-signin'))prepareAppleControl(APPLE_ERROR_NODE);
 }
 async function signOutAccount(){if(!AUTH)return;await AUTH.auth.signOut();ACCOUNT_USER=null;entry();}
 
@@ -345,7 +371,7 @@ document.getElementById('back').onclick=()=>history.back();document.getElementBy
 const themeBtn=document.getElementById('theme');
 function applyTheme(n){document.documentElement.setAttribute('data-theme',n);themeBtn.querySelector('.ic').textContent=n==='dark'?'☀':'☾';themeBtn.querySelector('.tl').textContent=n==='dark'?'Light':'Dark';}
 let savedTheme='dark';try{savedTheme=localStorage.getItem('forge_portal_theme')||'dark';}catch(e){}applyTheme(savedTheme);
-themeBtn.onclick=()=>{const n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';applyTheme(n);try{localStorage.setItem('forge_portal_theme',n);}catch(e){}};
+themeBtn.onclick=()=>{const n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';applyTheme(n);try{localStorage.setItem('forge_portal_theme',n);}catch(e){}const h=location.hash.replace(/^#/,'')||'/';if(h==='/')entry();};
 function chrome(showSub,crumbText,active){view.className='';subnav.classList.toggle('hide',!showSub);crumb.textContent=crumbText||'';sticky.classList.add('hide');
   const ns=document.getElementById('nl-sculpt');if(ns)ns.classList.toggle('active',active==='sculpt');
   document.title=(crumbText?crumbText+' — ':'')+'FORGE Sculpt';}
@@ -427,8 +453,8 @@ function entry(){chrome(false,'',null);view.className='portal-home';view.innerHT
       <div class="map-title">${esc(activePhase.title)}</div><div class="map-weeks">${activePhase.weeks.length} weeks in this phase</div></div></section>`);
   const openProgram=()=>go('/sculpt');program.onclick=openProgram;program.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openProgram();}};home.appendChild(program);
 
-  const account=el(`<section class="account-panel"><div><h3>One account for FORGE.</h3>
-    <p>Continue with Apple here, then use the same Apple account when the standalone app arrives. Training progress still saves to this browser during the preview.</p></div>
+  const account=el(`<section class="account-panel"><div><h3>Use the same account in FORGE.</h3>
+    <p>Continue with Apple here, then use that Apple account in the standalone app. Training progress still saves to this browser during the preview.</p></div>
     <div class="account-actions"></div></section>`);
   const accountActions=account.querySelector('.account-actions');
   if(ACCOUNT_USER){
@@ -436,8 +462,9 @@ function entry(){chrome(false,'',null);view.className='portal-home';view.innerHT
     const status=el(`<div><div class="account-status">Apple connected</div><div class="muted" style="margin-top:4px">${esc(email)}</div></div>`);
     const out=el(`<button class="btn btn-ghost mini">Sign out</button>`);out.onclick=signOutAccount;accountActions.appendChild(status);accountActions.appendChild(out);
   }else if(ACCOUNT_READY){
-    const wrap=el(`<div><button class="apple-btn"><span class="apple-mark"></span><span>Continue with Apple</span></button><div class="muted" style="margin-top:7px;text-align:center" aria-live="polite"></div></div>`);
-    const button=wrap.querySelector('button'),errorNode=wrap.querySelector('.muted');button.onclick=()=>signInApple(button,errorNode);accountActions.appendChild(wrap);
+    const appleColor=document.documentElement.getAttribute('data-theme')==='light'?'black':'white';
+    const wrap=el(`<div class="apple-wrap"><div id="appleid-signin" data-mode="center-align" data-type="continue" data-color="${appleColor}" data-border="true" data-border-radius="0" data-height="46" data-width="220"></div><div class="muted apple-error" aria-live="polite"></div></div>`);
+    const errorNode=wrap.querySelector('.apple-error');accountActions.appendChild(wrap);requestAnimationFrame(()=>prepareAppleControl(errorNode));
   }else{
     accountActions.appendChild(el(`<div class="muted">${esc(ACCOUNT_ERROR||'Loading Apple sign-in…')}</div>`));
   }
@@ -446,7 +473,7 @@ function entry(){chrome(false,'',null);view.className='portal-home';view.innerHT
   const done=!!STATE.email;
   const su=el(`<section class="signup launch-panel"><div><h3>FORGE is moving to its own app.</h3><p>Leave your email and I'll send you the App Store link when it's ready.</p></div>
     ${done?`<div class="signup-row"><div class="signup-done">✓ Got it — I'll send the link when FORGE is live.</div></div>`
-    :`<div class="signup-row"><input type="email" name="email" placeholder="Email address" id="su-in" autocomplete="email"><button class="btn" id="su-btn">Send me the link</button><p id="su-err" style="display:none;color:var(--accent);font-size:13px;grid-column:1/-1"></p></div><p class="launch-note">No spam. Just the link.</p>`}</section>`);
+    :`<div class="signup-row"><input type="email" name="email" placeholder="Email address" id="su-in" autocomplete="email"><button class="btn btn-ghost" id="su-btn">Send me the link</button><p id="su-err" style="display:none;color:var(--accent);font-size:13px;grid-column:1/-1"></p></div>`}</section>`);
   home.appendChild(su);view.appendChild(home);
   if(!done){const b=su.querySelector('#su-btn'),i=su.querySelector('#su-in'),er=su.querySelector('#su-err');
     const submit=()=>{const v=i.value.trim();if(!/.+@.+\..+/.test(v)){er.textContent='Enter a valid email.';er.style.display='block';return;}
@@ -471,8 +498,8 @@ function sculptOverview(){chrome(true,'Forge Sculpt','sculpt');view.innerHTML=''
     const locked=phaseLocked(ph.n),st=phaseState(ph.n);
     const art=`<div class="p-art dark-only ${locked?'crop':''}"><img alt="" src="${PHASE_ART[ph.n]}"></div><div class="p-num light-only">${['','I','II','III','IV'][ph.n]}</div>`;
     if(locked){wrap.appendChild(el(`<div class="phase locked">${art}
-      <div><div class="pt">🔒 ${esc(ph.title)}</div><div class="ps">Unlocks when you reach it</div></div>
-      <div class="pw">Locked<br>${ph.weeks.length} wks</div></div>`));return;}
+      <div><div class="pt">${esc(ph.title)}</div><div class="ps">Not available in preview</div></div>
+      <div class="pw">Not available</div></div>`));return;}
     const row=el(`<div class="phase">${art}
       <div><div class="pt"><span class="dot ${st}"></span>${esc(ph.title)}</div>${ph.sub?`<div class="ps">${esc(ph.sub)}</div>`:``}</div>
       <div class="pw">${st==='now'?'Current':st==='done'?'Done':''}<br>${ph.weeks.length} wks</div></div>`);
@@ -573,6 +600,7 @@ function focusBody(title,eyebrow,day,doneKey){
 
 function renderSession(prog,title,eyebrow,day,doneKey,backLabel){
   view.innerHTML='';
+  view.className='execution';
   view.appendChild(el(`<button class="back" style="margin:6px 0 12px" onclick="history.back()">‹ ${esc(backLabel)}</button>`));
   const mode=STATE.mode||'session';
   document.title=`${title} — FORGE Sculpt`;

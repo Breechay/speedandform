@@ -1,0 +1,111 @@
+---
+description: FORGE web design + voice northstar gate. Read before ANY forge-sculpt / train portal / account surface UI, motion, color, type, or athlete-facing copy. Enforces the ratified Design Northstar and surface classes — not whatever CSS is currently live.
+globs:
+  - "forge-sculpt/**"
+alwaysApply: false
+---
+
+# FORGE — Web Design & Voice Northstar Gate
+
+**Canonical:** `docs/FORGE_DESIGN_NORTHSTAR.md` — tokens, type, surface classes, buttons, gold, voice, account representation.
+**Product/behavioral truth:** `FORM-iOS/docs/FORGE_ACCOUNT_CONTINUITY_MASTER.md` + `FORM-iOS/docs/FORGE_START_HERE.md`.
+**Account architecture:** `FORM-iOS/docs/FORGE_ACCOUNT_CONTINUITY_MASTER.md` §§16–18 (this gate never defines the DB).
+**Native boundary:** native execution behavior remains governed by tracked FORM-iOS execution and logging-mode contracts; fixture views are evidence only.
+**Phrase:** **Luxury discipline, not luxury decoration. The page is square. Numbers are mono. Gold is earned. Copy is provable.**
+
+## Authority — live code is evidence, not law
+
+```
+1. Ratified product & behavioral contracts
+2. Ratified FORGE Design Northstar
+3. Canonical tokens & shared components
+4. Surface-specific approved contracts (Focus, account receipt)
+5. Current implementation  ← evidence of intent, NEVER self-ratifying
+```
+
+> When the shipped page disagrees with canon, **flag the drift and adjudicate.** Do not rewrite canon around whatever is live, and do not let a mediocre shipped choice become the standard future agents preserve. Push back when chat asks for something the Northstar forbids.
+
+---
+
+## Declaration — fill before any visual or copy change
+
+```
+SURFACE          [Conversion | Orientation | Execution | Receipt | Settings]
+ATHLETE JOB      What must the athlete understand or do here?
+CEREMONY TIER    [Operational | Ritual | Ceremonial]
+DOMINANT ACTION  The one primary action — or none.
+TRUTH SOURCES    Where does every displayed fact come from?
+REFERENCE PATTERN Which existing FORGE component / approved surface governs?
+TOKENS           Which canonical tokens / components are used?
+THEMES           How do dark and light behave — each native?
+GOLD             What real state or structure does it mark? (or none)
+RISKS            Trust · accessibility · persistence · offline · edge states
+```
+
+Any blank row, or a token not in the canonical layer → **pixels wait.** `Reference standard: Ritz/Porsche/Yacht/Watch` is a taste prompt only—it never substitutes for ATHLETE JOB or the existing component contract.
+
+---
+
+## Hard stops (reject before ship)
+
+**Surface discipline**
+- Applying Conversion intensity (strong anatomy, emotional composition, competing filled CTAs) to a Receipt/Settings surface → **reject.**
+- More than one filled primary CTA dominating a surface → **reject.**
+- Filled primary on a Receipt/Settings surface where the action isn't genuinely dominant → **reject** (use `.btn-ghost` / text).
+
+**Type**
+- An **operational** number, coordinate, value, metric, receipt date, input, or standalone count rendered in serif/Jost → **reject.** (Numbers *inside natural Jost sentences* are fine — do not flag "Train 6 days each week." Approved ceremonial numerals may be serif.)
+- Instrument Serif used for body, data, or more than one signature phrase → **reject.**
+
+**Geometry**
+- Radius > 2 on anything operational; buttons not square; `surface`(14) radius used off device-chrome; pill(999) off mono chips → **reject.**
+- Athlete-facing tap target < 44px; set-log action < 64px → **reject.**
+
+**Color / gold / literals**
+- A repeated semantic color/type/radius/motion/touch value in feature code instead of the canonical token layer → **reject.** Responsive composition may use local layout values when they do not create a competing design role; document genuine one-offs.
+- Styling that breaks `[data-theme="light"]`, or a **dark-native asset filtered into light** → **reject.** Light uses light-native anatomy (or stays typographic when none exists).
+- Gold as decoration: confetti, gloss/gradient "premium," glow on operational CTAs, unearned emphasis → **reject.** Gold marks real state/structure or goes.
+
+**Sign in with Apple**
+- Any redrawn, approximated, substituted, or restyled Apple mark / custom SVG apple glyph → **reject.** Use Apple's official Sign in with Apple control (web JS button / `ASAuthorizationAppleIDButton`).
+
+**Voice**
+- Hype, begging, flattery, over-explaining, unprovable claims → **reject.**
+- No real signal → emit **empty string**, not counterfeit care.
+- Periodization jargon / coaching essays on chrome → **reject.** Chrome = facts, one fact one place.
+
+**Account / Receipt surfaces** (`train/**`, account panels) — representation only
+- Any status (`Last synced`, import "complete") shown without a confirmed server round-trip this session → **reject.** Server-confirmed or silent (`Not confirmed` / omit).
+- Premium framing on missing entitlement (Upgrade / Unlock / lock glyph / blurred preview) → **reject.** Absence is a fact: `Not on this account`.
+- Copy implying access loss = record loss → **reject.**
+- Describing email (incl. Apple relay) as the identity, or prompting the athlete to authorize a merge → **reject.** (DB keying is the schema ruling's job — don't invent it here either.)
+- Auth bundled with marketing consent → **reject.** Launch email is a separate optional checkbox.
+- Treating client `ACCESS_MODE` as security → **reject.** Real gate = server-backed entitlements.
+
+**Portal Focus mode** (temporary web contract)
+- Auto-completing a session, hiding prescribed values, dropping `/ side`, adding a rest timer, or moving cues out from behind `?` → **reject.** Do not project this web contract onto native mode truth without its own ruling.
+
+---
+
+## Taste filter (any *no* → refine)
+
+1. Prepared room or feature collection? 2. Serious buyer respected? 3. Good on the 100th open? 4. Gold earned? 5. Copy necessary **and provable**? 6. Anything cheap, loud, or needy? 7. Both themes native and correct?
+
+---
+
+## After implementing
+
+```
+- Surface / athlete job / dominant action: [named]
+- Northstar tokens: [only vars — no invented literals in component code]
+- Type: [operational numbers mono · serif ceremony-only · Jost aloud-test]
+- Geometry: [square · touch ≥44/64]
+- Gold/motion: [marks real state · ≤220ms · no fake premium]
+- Themes: [dark + light both native · no filtered assets]
+- Apple (if touched): [official control · no custom mark]
+- Account (if touched): [server-confirmed-or-silent · no premium framing · no DB claims]
+- Drift: [none / flagged: canon vs live]
+- Taste filter: [pass / what to refine]
+```
+
+Pair with `.cursor/rules/form-speedandform-context.mdc` (repo context + denylist). This gate governs the **web** expression of the canon; native FORGE follows the companion gate in `FORM-iOS/.cursor/rules/`.

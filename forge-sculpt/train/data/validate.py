@@ -103,7 +103,13 @@ def validate_portal_contract() -> None:
     )
     require("signInWithIdToken({provider:'apple'" in portal, "Supabase Apple ID-token exchange missing")
     require("scope:'name email'" in portal and "nonce,usePopup:true" in portal, "Apple first-login identity contract missing")
+    require('id="appleid-signin"' in portal and 'data-type="continue"' in portal, "official Apple JS control missing")
+    require("AppleIDSignInOnSuccess" in portal and "AppleIDSignInOnFailure" in portal, "Apple event handling missing")
+    require("authorization.state!==APPLE_TRANSACTION.state" in portal, "Apple state verification missing")
+    require("apple-btn" not in portal and "apple-mark" not in portal, "custom Apple control is prohibited")
     require("progress still saves to this browser" in portal.lower(), "account copy must preserve local-only progress truth")
+    require("min-height:64px" in portal, "Focus set action must remain 64px")
+    require(".execution .fadein{animation-duration:.2s}" in portal, "execution motion must remain within 220ms")
     require((REPOSITORY_ROOT / "auth/apple/callback.html").is_file(), "Apple callback document missing")
 
     for invented in ("Build the Frame", "Glute Build", "Specialize", "6:15 AM"):

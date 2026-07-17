@@ -25,8 +25,10 @@ invalid, the portal shows a clean "temporarily unavailable" state — it never r
 placeholder training.
 
 Anatomy art is referenced from the existing repo assets (`/assets/forge/*`,
-`/assets/home/forge/*`) — dark mode only. Light mode is intentionally typographic
-(the app has no cream-native anatomy on the web side).
+`/assets/home/forge/*`). Dark and light are authored separately: the portal hero uses
+`anatomy-reveal.webp` in dark and the cream-native `hero-light.webp` in light. Surfaces
+without an approved light-native asset remain typographic; dark assets are never
+filtered into light.
 
 ## Configuration (top of the `<script>` in index.html)
 
