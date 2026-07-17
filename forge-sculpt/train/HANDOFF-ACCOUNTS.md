@@ -97,6 +97,11 @@ Schema, authority, constraints, and RLS are defined only in
 `FORM-iOS/docs/FORGE_ACCOUNT_CONTINUITY_MASTER.md` §§16–18. This handoff does not
 define a competing database model.
 
+Before writing migration SQL, run `supabase-continuity-audit.sql` against the remote
+Training Phases project and preserve every result set. The existing
+`athlete_profiles`, coach-console `program_assignments`, views, policies, triggers, and
+foreign keys must be mapped—not duplicated or replaced blindly.
+
 Portal mapping into that contract:
 
 - local session completion → canonical `session_completions`

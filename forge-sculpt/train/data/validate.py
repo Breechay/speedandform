@@ -10,6 +10,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 DATA_PATH = ROOT / "forge-portal-programs.json"
 PORTAL_PATH = ROOT.parent / "index.html"
+CONTINUITY_PATH = ROOT.parent / "continuity-store.js"
+SESSION_MODEL_PATH = ROOT.parent / "session-model.js"
 REPOSITORY_ROOT = ROOT.parents[2]
 
 FLAGSHIP_IDS = [
@@ -58,6 +60,7 @@ def validate_weeks(weeks: list[dict], path: str) -> tuple[int, int, int, int]:
     week_numbers = [week["weekNumber"] for week in weeks]
     require(len(week_numbers) == len(set(week_numbers)), f"{path}: duplicate week number")
 
+    session_ids: list[str] = []
     training_sessions = 0
     exercise_occurrences = 0
     prescribed_sets = 0
@@ -66,6 +69,7 @@ def validate_weeks(weeks: list[dict], path: str) -> tuple[int, int, int, int]:
         day_indices = [day["dayIndex"] for day in days]
         require(len(day_indices) == len(set(day_indices)), f"{path}/week-{week['weekNumber']}: duplicate day")
         for day in days:
+            session_ids.append(day["id"])
             day_path = f"{path}/week-{week['weekNumber']}/day-{day['dayIndex']}"
             exercises = day["exercises"]
             if day["kind"] == "rest":
@@ -81,6 +85,7 @@ def validate_weeks(weeks: list[dict], path: str) -> tuple[int, int, int, int]:
                 for index, item in enumerate(sets):
                     validate_set(item, f"{day_path}/{exercise['movementId']}/set-{index + 1}")
 
+    require(len(session_ids) == len(set(session_ids)), f"{path}: duplicate stable session id")
     return len(weeks), training_sessions, exercise_occurrences, prescribed_sets
 
 
@@ -92,8 +97,18 @@ def validate_portal_contract() -> None:
     require('name="forge-launch"' in portal and 'data-netlify="true"' in portal, "Netlify form declaration missing")
     require("if(!r.ok)throw new Error" in portal, "signup must fail closed")
     require("navigator.share" in portal and "location.href" in portal, "exact session sharing missing")
-    require("localStorage.setItem('forge_portal_v2'" in portal, "portal state persistence missing")
-    require("STATE.mode=b.dataset.m;save()" in portal, "Session/Focus preference persistence missing")
+    require('<script src="./continuity-store.js"></script>' in portal, "durable continuity store is not loaded")
+    require(CONTINUITY_PATH.is_file(), "durable continuity store missing")
+    continuity = CONTINUITY_PATH.read_text()
+    require("indexedDB.open(DB_NAME,DB_VERSION)" in continuity, "IndexedDB boundary missing")
+    require("anonymousNamespace()" in continuity and "userNamespace(userId)" in continuity, "account namespaces missing")
+    require("claimAnonymousLocally" in continuity, "explicit anonymous claim path missing")
+    require("namespace_status" in continuity and "status:'localOnly'" in continuity, "local queue contract drifted")
+    require("completion_key" in continuity and "{unique:true}" in continuity, "cross-tab completion uniqueness missing")
+    require("stale_snapshot_revision" in continuity and "storageRevision" in portal, "cross-tab snapshot CAS missing")
+    require("anonymousReceipts.forEach" in continuity and "anonymousMutations.forEach" in continuity, "claim must carry receipts and mutations")
+    require("type:'local_state_claimed'" in continuity, "claim receipt missing")
+    require("STATE.mode=b.dataset.m;await save()" in portal, "Session/Focus preference persistence missing")
     require("Finish session" in portal, "Focus completion must remain explicit")
     require("setInterval(" not in portal and "RestTimer" not in portal, "Focus must not contain a rest timer")
     require("const APPLE_CLIENT_ID='com.speedandform.account.web'" in portal, "Apple web Services ID mismatch")
@@ -107,12 +122,26 @@ def validate_portal_contract() -> None:
     require("AppleIDSignInOnSuccess" in portal and "AppleIDSignInOnFailure" in portal, "Apple event handling missing")
     require("authorization.state!==APPLE_TRANSACTION.state" in portal, "Apple state verification missing")
     require("apple-btn" not in portal and "apple-mark" not in portal, "custom Apple control is prohibited")
-    require("progress is saved to this browser" in portal.lower(), "portal must preserve local-only progress truth")
+    require("Saved on this device." in portal and "Saving on this device is not confirmed." in portal, "local persistence evidence states missing")
     require("min-height:64px" in portal, "Focus set action must remain 64px")
     require(".execution .fadein{animation-duration:.2s}" in portal, "execution motion must remain within 220ms")
     require("installExerciseNavigator(barrow)" in portal and "scrollIntoView" in portal, "exercise navigation missing")
     require("No spam. Just the link." not in portal, "removed launch filler returned")
     require("Training progress still saves to this browser during the preview." not in portal, "removed account filler returned")
+    require("async function contentHash" in portal and "crypto.subtle.digest('SHA-256'" in portal, "prescription fingerprint missing")
+    require("function adaptSet(item,exerciseId,index)" in portal, "stable authored-set adapter missing")
+    require("sets=(e.sets||[]).map" in portal and "e.sets[k-1]" in portal, "portal must preserve each authored set")
+    require(SESSION_MODEL_PATH.is_file(), "shared session/receipt model missing")
+    session_model = SESSION_MODEL_PATH.read_text()
+    require("truth:'confirmedAsDisplayed'" in session_model, "Focus confirmation provenance missing")
+    require("confirmedPrescription" in session_model and "performedSets" not in session_model, "Focus confirmation must not populate actual-performance fields")
+    require("activeDurationSeconds:null" in session_model, "Focus must not invent active duration")
+    require("unconfirmed_authored_sets" in session_model, "partial Focus completion guard missing")
+    require("amendsReceiptId" in session_model and "reopensReceiptId" in session_model, "receipt amendment lineage missing")
+    require("receipts.add(this.receiptRow" in continuity, "immutable receipt insert missing")
+    require("commitCompletion(namespace,state,receipt,event)" in continuity, "atomic completion boundary missing")
+    require("client_event_id_conflict" in continuity and "mutationMatches" in continuity, "idempotent retry guard missing")
+    require("focus.set." not in portal and "session.completed" not in portal, "local event names must match server whitelist")
     require((REPOSITORY_ROOT / "auth/apple/callback.html").is_file(), "Apple callback document missing")
 
     for invented in ("Build the Frame", "Glute Build", "Specialize", "6:15 AM"):

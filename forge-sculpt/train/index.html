@@ -128,6 +128,7 @@ main.portal-home{max-width:var(--homew)}
 .account-panel{padding:22px 24px;display:grid;grid-template-columns:minmax(260px,1fr) auto;gap:28px;align-items:center}
 .account-panel h3{font-size:21px;color:var(--text)}.account-panel p{font-size:14px;color:var(--text-3);margin-top:5px;line-height:1.5;max-width:600px}
 .account-actions{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap}.account-status{font-family:var(--mono);font-size:9px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);text-align:right}
+.local-claim{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px;display:flex;align-items:center;justify-content:space-between;gap:18px}.local-claim .claim-facts{font-family:var(--mono);font-size:9px;letter-spacing:.11em;text-transform:uppercase;color:var(--text-3);margin-top:5px}
 .apple-wrap{min-width:220px}.apple-wrap #appleid-signin{width:220px;height:46px}.apple-error{margin-top:7px;text-align:center}
 .signup{background:var(--surface);border:1px solid var(--line);padding:24px;margin-top:26px;box-shadow:var(--panel-shadow)}
 .signup h3{font-size:20px;color:var(--text)}.signup p{font-size:14px;color:var(--text-3);margin-top:6px;line-height:1.5}
@@ -187,7 +188,7 @@ footer{max-width:var(--maxw);margin:0 auto;padding:30px 0;border-top:1px solid v
   h1{font-size:clamp(52px,16vw,76px)}
   .home-stack{gap:14px}.resume-rail{grid-template-columns:1fr auto;gap:14px;padding:20px}.resume-mark{display:none}.resume-title{font-size:21px;line-height:1.28}.resume-action{align-self:end}.resume-action span:first-child{display:none}
   .program-panel{grid-template-columns:1fr;padding:26px 22px;gap:28px}.program-map{border-left:0;border-top:1px solid var(--line);padding:24px 0 0}.program-metrics{margin-top:22px}.metric{padding-right:10px}.metric+.metric{padding-left:12px}.metric b{font-size:17px}.program-panel:after{width:90%;right:-40%;bottom:-18%}
-  .account-panel,.launch-panel{grid-template-columns:1fr;padding:24px 22px;gap:18px}.account-actions{justify-content:flex-start}.account-status{text-align:left}.apple-wrap,.apple-wrap #appleid-signin{width:100%}.launch-panel .signup-row{grid-template-columns:1fr}.launch-panel .btn{width:100%}
+  .account-panel,.launch-panel{grid-template-columns:1fr;padding:24px 22px;gap:18px}.account-actions{justify-content:flex-start}.account-status{text-align:left}.local-claim{align-items:flex-start;flex-direction:column}.local-claim .btn{width:100%}.apple-wrap,.apple-wrap #appleid-signin{width:100%}.launch-panel .signup-row{grid-template-columns:1fr}.launch-panel .btn{width:100%}
   .phase{grid-template-columns:50px 1fr auto;gap:14px;padding:18px 6px}.p-art{width:48px;height:62px}.p-num{font-size:36px}.phase .pt{font-size:18px}.phase .pw{font-size:8px}
   .wkrail{grid-template-columns:1fr 1fr}.wk{min-height:116px;padding:15px}.sess{grid-template-columns:48px minmax(0,1fr) auto;padding:17px 4px}.sess:hover{padding-left:10px}.sess.rest:hover{padding-left:4px}.sess .sn{font-size:17px}
   .statrow{display:grid;grid-template-columns:repeat(3,1fr)}.stat{padding:13px 8px 13px 0}.stat+.stat{padding-left:12px}.stat b{font-size:18px}.ex-rx{gap:20px}.ex.prime{margin:0 -20px;padding-left:20px;padding-right:20px}
@@ -237,6 +238,8 @@ footer{max-width:var(--maxw);margin:0 auto;padding:30px 0;border-top:1px solid v
   <button class="btn mini" id="s-done">Mark Complete</button>
 </div></div>
 
+<script src="./continuity-store.js"></script>
+<script src="./session-model.js"></script>
 <script>
 /* ---- config ---- */
 const ACCESS_MODE='open-preview'; /* 'open-preview' (live) | 'shared-code-demo' (client-visible only; real gate = Supabase entitlements) */
@@ -252,9 +255,19 @@ const PHASE_ART={1:ASSET.p1,2:ASSET.p2,3:ASSET.p3,4:ASSET.p4};
 const phaseLocked=n=>ACCESS_MODE!=='open-preview'&&n===4;
 /* ---- data: single source of truth is ./data/forge-portal-programs.json ---- */
 let DATA=null,FS=null,ROD=null;
-function adaptEx(e){const sets=e.sets||[];const o={mid:e.movementId||'',n:e.name,rest:e.restSeconds||0,prime:!!e.isPrimeMover,intent:e.movementIntent,lat:e.laterality,cue:e.cue||'',sc:sets.length};const s0=sets[0]||{};if(s0.reps&&typeof s0.reps==='object'){o.rmin=s0.reps.min;o.rmax=s0.reps.max;}else if(typeof s0.seconds!=='undefined'){o.sec=s0.seconds;}if(typeof s0.targetWeightPounds!=='undefined')o.load=s0.targetWeightPounds;o.subs=(e.substitutions||[]).map(su=>su.name).filter(Boolean);return o;}
-function adaptDay(s){return{id:s.id||'',t:s.title,wd:s.weekday,kind:s.kind,fin:!!s.isFinishDay,ex:(s.exercises||[]).map(adaptEx)};}
-function adaptWeeks(weeks){return(weeks||[]).map(w=>({num:w.weekNumber,label:w.label||'',days:(w.days||[]).map(adaptDay)}));}
+const ROD_PROGRAM_VERSION='rod_accountability_v1';
+function stableStringify(value){if(Array.isArray(value))return`[${value.map(stableStringify).join(',')}]`;if(value&&typeof value==='object')return`{${Object.keys(value).sort().map(key=>`${JSON.stringify(key)}:${stableStringify(value[key])}`).join(',')}}`;return JSON.stringify(value);}
+async function contentHash(value){const bytes=new TextEncoder().encode(stableStringify(value));const digest=await crypto.subtle.digest('SHA-256',bytes);return Array.from(new Uint8Array(digest),byte=>byte.toString(16).padStart(2,'0')).join('');}
+function adaptSet(item,exerciseId,index){return{id:`${exerciseId}:set-${index+1}`,sequence:index+1,reps:item.reps||null,seconds:item.seconds??null,targetWeightPounds:item.targetWeightPounds??null,rir:item.rir||null};}
+function adaptEx(e,sessionVersion,prescriptionHash,exerciseIndex){
+  const exerciseId=`${sessionVersion}:${prescriptionHash.slice(0,12)}:movement-${exerciseIndex+1}:${e.movementId||'unknown'}`;
+  const sets=(e.sets||[]).map((item,index)=>adaptSet(item,exerciseId,index));
+  const o={id:exerciseId,mid:e.movementId||'',n:e.name,rest:e.restSeconds||0,prime:!!e.isPrimeMover,intent:e.movementIntent,lat:e.laterality,cue:e.cue||'',sc:sets.length,sets};
+  const s0=sets[0]||{};if(s0.reps&&typeof s0.reps==='object'){o.rmin=s0.reps.min;o.rmax=s0.reps.max;}else if(s0.seconds!=null){o.sec=s0.seconds;}if(s0.targetWeightPounds!=null)o.load=s0.targetWeightPounds;
+  o.subs=(e.substitutions||[]).map(su=>su.name).filter(Boolean);return o;
+}
+function adaptDay(s,programId,programVersion,prescriptionHash){const sessionVersion=`${programVersion}:${s.id}`;return{id:s.id||'',version:sessionVersion,programId,programVersion,prescriptionHash,t:s.title,wd:s.weekday,kind:s.kind,fin:!!s.isFinishDay,ex:(s.exercises||[]).map((exercise,index)=>adaptEx(exercise,sessionVersion,prescriptionHash,index))};}
+function adaptWeeks(weeks,programId,programVersion,prescriptionHash){return(weeks||[]).map(w=>({num:w.weekNumber,label:w.label||'',days:(w.days||[]).map(day=>adaptDay(day,programId,programVersion,prescriptionHash))}));}
 const EXPECTED_COUNTS={forge_sculpt:[15,90,519,1520],rod:[6,12,72,252]};
 const FORBIDDEN_TERMS=['tibia','accountability','alcohol','medication','waist','protein','judgment','mania','depression'];
 function programCounts(parts){let weeks=0,sessions=0,exercises=0,sets=0;parts.forEach(part=>(part.weeks||[]).forEach(w=>{weeks++;(w.days||[]).forEach(d=>{if(d.kind==='rest'){if((d.exercises||[]).length)throw new Error('rest day contains exercises');return;}if(!(d.exercises||[]).length)throw new Error('training day has no exercises');sessions++;exercises+=d.exercises.length;d.exercises.forEach(e=>{if(!e.id&&!e.movementId)throw new Error('exercise identity missing');if(!(e.sets||[]).length)throw new Error('exercise prescription missing');sets+=e.sets.length;});});}));return[weeks,sessions,exercises,sets];}
@@ -271,21 +284,143 @@ function validatePortalData(raw){
   FORBIDDEN_TERMS.forEach(term=>{if(new RegExp(`\\b${term}\\b`,'i').test(serialized))throw new Error(`forbidden term: ${term}`);});
   return byId;
 }
-function buildData(raw){const byId=validatePortalData(raw);const fr=byId.forge_sculpt;const fs={id:'forge_sculpt',name:fr.displayName,phases:fr.phases.map(ph=>({n:ph.phaseNumber,title:ph.displayName,sub:'',weeks:adaptWeeks(ph.weeks)}))};const rr=byId.rod;const rod={id:'rod',name:rr.displayName,weeks:adaptWeeks(rr.weeks)};return{programs:{forge_sculpt:fs,rod:rod}};}
+async function buildData(raw){
+  const byId=validatePortalData(raw),fr=byId.forge_sculpt;
+  const phases=await Promise.all(fr.phases.map(async ph=>{const prescriptionHash=await contentHash(ph);return{n:ph.phaseNumber,version:ph.programId,prescriptionHash,title:ph.displayName,sub:'',weeks:adaptWeeks(ph.weeks,fr.id,ph.programId,prescriptionHash)}}));
+  const fs={id:'forge_sculpt',name:fr.displayName,phases};
+  const rr=byId.rod,rodHash=await contentHash(rr),rod={id:'rod',version:ROD_PROGRAM_VERSION,prescriptionHash:rodHash,name:rr.displayName,weeks:adaptWeeks(rr.weeks,rr.id,ROD_PROGRAM_VERSION,rodHash)};
+  return{programs:{forge_sculpt:fs,rod}};
+}
 const view=document.getElementById('view'),subnav=document.getElementById('subnav'),crumb=document.getElementById('crumb'),sticky=document.getElementById('sticky');
 const el=h=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild;};
 const go=h=>location.hash=h;
 const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
 
-/* ---- persistence (real, guarded) ---- */
-let STATE={done:{},sets:{},email:null,mode:'session'};
-try{const s=localStorage.getItem('forge_portal_v2');if(s)STATE=Object.assign(STATE,JSON.parse(s));}catch(e){}
-if(!STATE.sets)STATE.sets={};if(!STATE.mode)STATE.mode='session';
-const save=()=>{try{localStorage.setItem('forge_portal_v2',JSON.stringify(STATE));}catch(e){}};
+/* ---- durable local continuity ---- */
+const defaultState=()=>({storageRevision:0,done:{},sets:{},sessions:{},email:null,mode:'session'});
+let LEGACY_STATE=defaultState();
+try{const value=localStorage.getItem('forge_portal_v2');if(value)LEGACY_STATE=Object.assign(defaultState(),JSON.parse(value));}catch(_){}
+let STATE=defaultState(),LOCAL_DB=null,CURRENT_NAMESPACE=null,ANONYMOUS_STATE=defaultState(),LOCAL_SAVE_STATUS='notConfirmed',LOCAL_STORE_ERROR='';
+let LOCAL_WRITE_CHAIN=Promise.resolve();
+const NAMESPACE_REVISIONS=new Map();
+function normalizedState(value){const state=Object.assign(defaultState(),value||{});if(!Number.isInteger(state.storageRevision))state.storageRevision=0;if(!state.done)state.done={};if(!state.sets)state.sets={};if(!state.sessions)state.sessions={};if(!state.mode)state.mode='session';return state;}
+function queueLocalWrite(operation){const pending=LOCAL_WRITE_CHAIN.then(operation,operation);LOCAL_WRITE_CHAIN=pending.catch(()=>{});return pending;}
+async function initContinuityStore(){
+  try{
+    LOCAL_DB=await ForgeContinuityStore.open();
+    CURRENT_NAMESPACE=LOCAL_DB.anonymousNamespace();
+    ANONYMOUS_STATE=normalizedState(await LOCAL_DB.migrateLegacyAnonymous(LEGACY_STATE));
+    STATE=normalizedState(ANONYMOUS_STATE);
+    NAMESPACE_REVISIONS.set(CURRENT_NAMESPACE,STATE.storageRevision);
+    LOCAL_SAVE_STATUS='saved';
+  }catch(error){
+    LOCAL_STORE_ERROR='Training storage is unavailable on this browser.';
+    STATE=normalizedState(LEGACY_STATE);
+    console.error('[FORGE portal] continuity store unavailable:',error);
+  }
+}
+async function activateUserNamespace(userId){
+  if(!LOCAL_DB)return;
+  const namespace=LOCAL_DB.userNamespace(userId);
+  CURRENT_NAMESPACE=namespace;
+  const snapshot=await LOCAL_DB.snapshot(namespace);
+  if(CURRENT_NAMESPACE!==namespace)return;
+  STATE=normalizedState(snapshot);
+  NAMESPACE_REVISIONS.set(namespace,STATE.storageRevision);
+  LOCAL_SAVE_STATUS='saved';
+}
+async function activateAnonymousNamespace(){
+  if(!LOCAL_DB)return;
+  const namespace=LOCAL_DB.anonymousNamespace();
+  CURRENT_NAMESPACE=namespace;
+  const snapshot=await LOCAL_DB.snapshot(namespace);
+  if(CURRENT_NAMESPACE!==namespace)return;
+  STATE=normalizedState(snapshot||ANONYMOUS_STATE);
+  NAMESPACE_REVISIONS.set(namespace,STATE.storageRevision);
+  LOCAL_SAVE_STATUS='saved';
+}
+function save(){
+  if(!LOCAL_DB||!CURRENT_NAMESPACE){LOCAL_SAVE_STATUS='notConfirmed';return Promise.resolve(false);}
+  const namespace=CURRENT_NAMESPACE;
+  LOCAL_SAVE_STATUS='saving';
+  const snapshot=normalizedState(JSON.parse(JSON.stringify(STATE)));
+  return queueLocalWrite(()=>LOCAL_DB.saveSnapshot(namespace,snapshot)).then(committed=>{NAMESPACE_REVISIONS.set(namespace,committed.storageRevision);if(CURRENT_NAMESPACE===namespace){STATE.storageRevision=committed.storageRevision;LOCAL_SAVE_STATUS='saved';if(namespace===LOCAL_DB.anonymousNamespace()){ANONYMOUS_STATE=normalizedState(JSON.parse(JSON.stringify(STATE)));}}return true;}).catch(error=>{if(CURRENT_NAMESPACE===namespace){LOCAL_SAVE_STATUS='notConfirmed';LOCAL_STORE_ERROR='This change could not be confirmed on this device.';}console.error('[FORGE portal] local save failed:',error);return false;});
+}
 /* stable identity: program + session id; focus tick = session + movement + set */
 const fsKey=(pn,day)=>`fs:p${pn}:${day.id}`;
 const rodKey=(wn,day)=>`rod:w${wn}:${day.id}`;
-const setKey=(dkey,ex,k)=>`${dkey}::${ex.mid}::${k}`;
+const completionKey=(legacyKey,day)=>`${legacyKey}:${day.prescriptionHash}`;
+function isSessionDone(legacyKey,day){const versioned=completionKey(legacyKey,day);return Object.prototype.hasOwnProperty.call(STATE.done,versioned)?!!STATE.done[versioned]:!!STATE.done[legacyKey];}
+const legacySetKey=(dkey,ex,k)=>`${dkey}::${ex.mid}::${k}`;
+const setKey=(dkey,ex,k)=>ex.sets?.[k-1]?.id||legacySetKey(dkey,ex,k);
+const sessionStateKey=day=>`${day.version}:${day.prescriptionHash}`;
+function migrateLegacySetKeys(){
+  let changed=false;
+  const migrateDay=(doneKey,day)=>{
+    const versionedDone=completionKey(doneKey,day);
+    if(Object.prototype.hasOwnProperty.call(STATE.done,doneKey)&&!Object.prototype.hasOwnProperty.call(STATE.done,versionedDone)){STATE.done[versionedDone]=STATE.done[doneKey];STATE.done[doneKey]=false;changed=true;}
+    day.ex.forEach(ex=>{for(let k=1;k<=ex.sc;k++){const legacy=legacySetKey(doneKey,ex,k),stable=setKey(doneKey,ex,k);if(Object.prototype.hasOwnProperty.call(STATE.sets,legacy)&&!Object.prototype.hasOwnProperty.call(STATE.sets,stable)){STATE.sets[stable]=STATE.sets[legacy];delete STATE.sets[legacy];changed=true;}}});
+  };
+  FS.phases.forEach(ph=>ph.weeks.forEach(week=>week.days.filter(hasEx).forEach(day=>migrateDay(fsKey(ph.n,day),day))));
+  ROD.weeks.forEach(week=>week.days.filter(hasEx).forEach(day=>migrateDay(rodKey(week.num,day),day)));
+  return changed;
+}
+function importedFocusDraft(day,doneKey){
+  const stateKey=sessionStateKey(day);
+  let draft=STATE.sessions[stateKey];
+  if(draft)return draft;
+  draft=ForgeSessionModel.createFocusDraft(day,{id:crypto.randomUUID(),now:new Date()});
+  day.ex.forEach(ex=>{for(let k=1;k<=ex.sc;k++){const setId=setKey(doneKey,ex,k);if(STATE.sets[setId])draft=ForgeSessionModel.confirmFocusSet(draft,setId,true,{now:new Date()});}});
+  STATE.sessions[stateKey]=draft;
+  return draft;
+}
+function adoptCommittedState(next){STATE=normalizedState(next);if(CURRENT_NAMESPACE)NAMESPACE_REVISIONS.set(CURRENT_NAMESPACE,STATE.storageRevision);if(LOCAL_DB&&CURRENT_NAMESPACE===LOCAL_DB.anonymousNamespace())ANONYMOUS_STATE=normalizedState(JSON.parse(JSON.stringify(STATE)));LOCAL_SAVE_STATUS='saved';}
+async function commitFocusSet(day,doneKey,setId,confirmed){
+  await LOCAL_WRITE_CHAIN;
+  const stateKey=sessionStateKey(day),namespace=CURRENT_NAMESPACE;
+  const current=importedFocusDraft(day,doneKey);
+  const draft=ForgeSessionModel.confirmFocusSet(current,setId,confirmed,{now:new Date()});
+  const next=normalizedState(JSON.parse(JSON.stringify(STATE)));
+  next.sessions[stateKey]=draft;
+  if(confirmed)next.sets[setId]=true;else delete next.sets[setId];
+  const event={id:crypto.randomUUID(),type:confirmed?'set_checked':'set_unchecked',entityId:stateKey,payload:{draftId:draft.id,setId,prescriptionHash:day.prescriptionHash,truth:confirmed?'confirmedAsDisplayed':null,revision:draft.revision}};
+  next.storageRevision=NAMESPACE_REVISIONS.get(namespace)??next.storageRevision;
+  try{const committed=await queueLocalWrite(()=>LOCAL_DB.commitStateMutation(namespace,next,event));NAMESPACE_REVISIONS.set(namespace,committed.storageRevision);if(CURRENT_NAMESPACE===namespace)adoptCommittedState(committed);return true;}catch(error){if(CURRENT_NAMESPACE===namespace){try{const current=normalizedState(await LOCAL_DB.snapshot(namespace));adoptCommittedState(current);}catch(_){LOCAL_SAVE_STATUS='notConfirmed';}LOCAL_STORE_ERROR='This set could not be confirmed on this device.';}console.error('[FORGE portal] Focus set commit failed:',error);return false;}
+}
+async function closeOrReopenFocus(day,doneKey){
+  await LOCAL_WRITE_CHAIN;
+  const stateKey=sessionStateKey(day),doneStateKey=completionKey(doneKey,day),existing=STATE.sessions[stateKey],namespace=CURRENT_NAMESPACE;
+  if(!existing&&isSessionDone(doneKey,day)){
+    const next=normalizedState(JSON.parse(JSON.stringify(STATE)));
+    next.done[doneStateKey]=false;
+    next.done[doneKey]=false;
+    let draft=ForgeSessionModel.createFocusDraft(day,{id:crypto.randomUUID(),now:new Date()});
+    day.ex.forEach(ex=>{for(let k=1;k<=ex.sc;k++){const setId=setKey(doneKey,ex,k);if(next.sets[setId])draft=ForgeSessionModel.confirmFocusSet(draft,setId,true,{now:new Date()});}});
+    next.sessions[stateKey]=draft;
+    const event={id:crypto.randomUUID(),type:'session_reopened',entityId:stateKey,payload:{draftId:draft.id,prescriptionHash:day.prescriptionHash,source:'legacyLocalCompletion'}};
+    next.storageRevision=NAMESPACE_REVISIONS.get(namespace)??next.storageRevision;
+    const committed=await queueLocalWrite(()=>LOCAL_DB.commitStateMutation(namespace,next,event));NAMESPACE_REVISIONS.set(namespace,committed.storageRevision);if(CURRENT_NAMESPACE===namespace)adoptCommittedState(committed);return true;
+  }
+  const current=existing||importedFocusDraft(day,doneKey);
+  const next=normalizedState(JSON.parse(JSON.stringify(STATE)));
+  if(current.status==='completed'){
+    const clientEventId=crypto.randomUUID();
+    const reopened=ForgeSessionModel.reopenDraft(current,{clientEventId,now:new Date()});
+    next.sessions[stateKey]=reopened.draft;next.done[doneStateKey]=false;
+    next.storageRevision=NAMESPACE_REVISIONS.get(namespace)??next.storageRevision;
+    const committed=await queueLocalWrite(()=>LOCAL_DB.commitStateMutation(namespace,next,{...reopened.event,entityId:stateKey,payload:{...reopened.event,prescriptionHash:day.prescriptionHash}}));
+    next.storageRevision=committed.storageRevision;
+  }else{
+    const receiptId=crypto.randomUUID(),clientEventId=crypto.randomUUID();
+    const completion=ForgeSessionModel.completeFocusDraft(current,{receiptId,clientEventId,now:new Date()});
+    next.sessions[stateKey]=completion.draft;next.done[doneStateKey]=true;
+    next.storageRevision=NAMESPACE_REVISIONS.get(namespace)??next.storageRevision;
+    const committed=await queueLocalWrite(()=>LOCAL_DB.commitCompletion(namespace,next,completion.receipt,{id:clientEventId,type:'session_completed',entityId:stateKey,payload:{receiptId,prescriptionHash:day.prescriptionHash,revision:completion.draft.revision}}));
+    next.storageRevision=committed.storageRevision;
+  }
+  NAMESPACE_REVISIONS.set(namespace,next.storageRevision);
+  if(CURRENT_NAMESPACE===namespace)adoptCommittedState(next);return true;
+}
 
 /* ---- shared account identity (progress remains local during open preview) ---- */
 let AUTH=null,ACCOUNT_USER=null,ACCOUNT_READY=false,ACCOUNT_BUSY=false,ACCOUNT_ERROR='';
@@ -302,9 +437,11 @@ async function initAccount(){
   AUTH=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}});
   const {data,error}=await AUTH.auth.getSession();
   if(error){ACCOUNT_ERROR='Apple sign-in is unavailable right now.';return;}
-  ACCOUNT_USER=data.session?.user||null;ACCOUNT_READY=true;
+  ACCOUNT_USER=data.session?.user||null;
+  if(ACCOUNT_USER)await activateUserNamespace(ACCOUNT_USER.id);
+  ACCOUNT_READY=true;
   installAppleListeners();
-  AUTH.auth.onAuthStateChange((event,session)=>{ACCOUNT_USER=session?.user||null;if(event==='SIGNED_IN'||event==='SIGNED_OUT'){const h=location.hash.replace(/^#/,'')||'/';if(h==='/')entry();}});
+  AUTH.auth.onAuthStateChange((event,session)=>{if(event!=='SIGNED_IN'&&event!=='SIGNED_OUT')return;setTimeout(async()=>{ACCOUNT_USER=session?.user||null;if(ACCOUNT_USER)await activateUserNamespace(ACCOUNT_USER.id);else await activateAnonymousNamespace();const h=location.hash.replace(/^#/,'')||'/';if(h==='/')entry();else go('/');},0);});
 }
 function prepareAppleControl(errorNode){
   if(!AUTH||!window.AppleID||ACCOUNT_BUSY)return;
@@ -329,7 +466,7 @@ async function handleAppleSuccess(event){
       const fullName=[person.firstName,person.middleName,person.lastName].filter(Boolean).join(' ');
       await AUTH.auth.updateUser({data:{full_name:fullName,given_name:person.firstName||null,family_name:person.lastName||null}});
     }
-    ACCOUNT_USER=data.user;entry();
+    ACCOUNT_USER=data.user;await activateUserNamespace(data.user.id);entry();
   }catch(error){
     ACCOUNT_ERROR="Couldn't connect with Apple. Try again.";
     if(APPLE_ERROR_NODE)APPLE_ERROR_NODE.textContent=ACCOUNT_ERROR;
@@ -347,7 +484,25 @@ function handleAppleFailure(event){
   APPLE_TRANSACTION=null;ACCOUNT_BUSY=false;
   if(document.getElementById('appleid-signin'))prepareAppleControl(APPLE_ERROR_NODE);
 }
-async function signOutAccount(){if(!AUTH)return;await AUTH.auth.signOut();ACCOUNT_USER=null;entry();}
+async function useAnonymousTrainingWhileSignedIn(){
+  if(!LOCAL_DB||!ACCOUNT_USER)return;
+  const userId=ACCOUNT_USER.id;
+  try{
+    const claimed=normalizedState(await LOCAL_DB.claimAnonymousLocally(userId));
+    if(ACCOUNT_USER?.id!==userId)return;
+    STATE=claimed;
+    CURRENT_NAMESPACE=LOCAL_DB.userNamespace(userId);
+    ANONYMOUS_STATE=defaultState();
+    NAMESPACE_REVISIONS.set(CURRENT_NAMESPACE,STATE.storageRevision);
+    NAMESPACE_REVISIONS.delete(LOCAL_DB.anonymousNamespace());
+    if(migrateLegacySetKeys())await save();
+    entry();
+  }catch(error){
+    ACCOUNT_ERROR=error?.message==='target_namespace_not_empty'?'Training already exists for this account on this device.':'This device training could not be opened.';
+    entry();
+  }
+}
+async function signOutAccount(){if(!AUTH)return;await AUTH.auth.signOut();ACCOUNT_USER=null;await activateAnonymousNamespace();entry();}
 
 /* ---- access model: open shell + gated curriculum ---- */
 const ACCESS_CODE='forge2026'; /* demo only for shared-code-demo; not authentication */
@@ -359,13 +514,18 @@ const unlocked=()=>ACCESS_MODE==='open-preview'||!!STATE.unlocked;
 /* ---- helpers ---- */
 const hasEx=d=>d.ex&&d.ex.length>0;
 const isRest=d=>d.kind==='rest'||!hasEx(d);
-function repStr(e){if(e.sec)return `${e.sc}×${e.sec}s`;if(e.rmin==null)return `${e.sc} sets`;return e.rmin===e.rmax?`${e.sc}×${e.rmin}`:`${e.sc}×${e.rmin}–${e.rmax}`;}
+function setTarget(set){if(set.seconds!=null)return`${set.seconds}s`;if(!set.reps)return'—';return set.reps.min===set.reps.max?`${set.reps.min}`:`${set.reps.min}–${set.reps.max}`;}
+function prescriptionSummary(e){const values=e.sets.map(setTarget);if(!values.length)return'—';return values.every(value=>value===values[0])?`${values.length}×${values[0]}`:values.join(' / ');}
+function prescriptionLabel(e){if(e.sets.every(set=>set.seconds!=null))return e.sets.every(set=>set.seconds===e.sets[0].seconds)?'Sets × Time':'Time by set';return e.sets.every(set=>set.reps&&set.reps.min===e.sets[0]?.reps?.min&&set.reps.max===e.sets[0]?.reps?.max)?'Sets × Reps':'Reps by set';}
+function setValue(set,laterality){const side=laterality&&laterality!=='bilateral'?' / side':'';const load=set.targetWeightPounds!=null?` × ${set.targetWeightPounds} lb`:'';return`${setTarget(set)}${side}${load}`;}
+function loadSummary(e){const values=e.sets.map(set=>set.targetWeightPounds).filter(value=>value!=null);if(!values.length)return null;return values.every(value=>value===values[0])?`${values[0]}`:values.join(' / ');}
+function repStr(e){return prescriptionSummary(e);}
 function stats(d){let sets=0,rest=0;d.ex.forEach(e=>{sets+=e.sc;if(e.rest>rest)rest=e.rest;});return{moves:d.ex.length,sets,rest};}
 /* flat ordered training sessions across non-locked phases (1-3) for resume */
 function flatFS(){const out=[];FS.phases.forEach(ph=>{if(phaseLocked(ph.n))return;ph.weeks.forEach(w=>{w.days.forEach((d,di)=>{if(hasEx(d))out.push({ph:ph.n,w:w.num,di,d});});});});return out;}
-function nextIncomplete(){const f=flatFS();for(const s of f){if(!STATE.done[fsKey(s.ph,s.d)])return s;}return null;}
+function nextIncomplete(){const f=flatFS();for(const s of f){if(!isSessionDone(fsKey(s.ph,s.d),s.d))return s;}return null;}
 function phaseState(n){if(phaseLocked(n))return'next';const ni=nextIncomplete();if(!ni)return n<4?'done':'next';if(n<ni.ph)return'done';if(n===ni.ph)return'now';return'next';}
-function weekDone(phn,w){return w.days.every(d=>isRest(d)||STATE.done[fsKey(phn,d)]);}
+function weekDone(phn,w){return w.days.every(d=>isRest(d)||isSessionDone(fsKey(phn,d),d));}
 
 /* ---- chrome ---- */
 document.getElementById('home').onclick=()=>go('/');
@@ -404,7 +564,7 @@ function gate(target){chrome(false,'',null);view.innerHTML='';
     <p id="ac-err" style="color:var(--accent);display:none;margin-top:12px">That code isn't right — check with Brice.</p></div>`);
   view.appendChild(box);
   const i=box.querySelector('#ac-in'),bt=box.querySelector('#ac-btn'),er=box.querySelector('#ac-err');
-  const submit=()=>{if(i.value.trim().toLowerCase()===ACCESS_CODE){STATE.unlocked=true;save();
+  const submit=async()=>{if(i.value.trim().toLowerCase()===ACCESS_CODE){await LOCAL_WRITE_CHAIN;STATE.unlocked=true;await save();
     const t=target||'/sculpt';if(location.hash.replace(/^#/,'')===t){render();}else{go(t);}}else{er.style.display='block';}};
   bt.onclick=submit;i.onkeydown=e=>{if(e.key==='Enter')submit();};
   const ds=sampleDi();
@@ -464,6 +624,12 @@ function entry(){chrome(false,'',null);view.className='portal-home';view.innerHT
     const email=ACCOUNT_USER.email||'Apple account connected';
     const status=el(`<div><div class="account-status">Apple connected</div><div class="muted" style="margin-top:4px">${esc(email)}</div></div>`);
     const out=el(`<button class="btn btn-ghost mini">Sign out</button>`);out.onclick=signOutAccount;accountActions.appendChild(status);accountActions.appendChild(out);
+    const anonymousCounts=ForgeContinuityStore.Store.counts(ANONYMOUS_STATE),accountCounts=ForgeContinuityStore.Store.counts(STATE);
+    if((anonymousCounts.completed||anonymousCounts.checks||anonymousCounts.drafts)&&!accountCounts.completed&&!accountCounts.checks&&!accountCounts.drafts){
+      const activeText=anonymousCounts.drafts?` · ${anonymousCounts.drafts} active`:``;
+      const claim=el(`<div class="local-claim"><div><div class="account-status">Training on this device</div><div class="claim-facts">${anonymousCounts.completed} completed sessions · ${anonymousCounts.checks} Focus checks${activeText}</div></div><button class="btn btn-ghost mini">Use while signed in</button></div>`);
+      claim.querySelector('button').onclick=useAnonymousTrainingWhileSignedIn;account.appendChild(claim);
+    }
   }else if(ACCOUNT_READY){
     const appleColor=document.documentElement.getAttribute('data-theme')==='light'?'black':'white';
     const wrap=el(`<div class="apple-wrap"><div id="appleid-signin" data-mode="center-align" data-type="continue" data-color="${appleColor}" data-border="true" data-border-radius="0" data-height="46" data-width="220"></div><div class="muted apple-error" aria-live="polite"></div></div>`);
@@ -481,10 +647,11 @@ function entry(){chrome(false,'',null);view.className='portal-home';view.innerHT
   if(!done){const b=su.querySelector('#su-btn'),i=su.querySelector('#su-in'),er=su.querySelector('#su-err');
     const submit=()=>{const v=i.value.trim();if(!/.+@.+\..+/.test(v)){er.textContent='Enter a valid email.';er.style.display='block';return;}
       er.style.display='none';b.textContent='Sending…';b.disabled=true;const body=new URLSearchParams({'form-name':SIGNUP_FORM_NAME,email:v}).toString();
-      fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);STATE.email=v;save();su.querySelector('.signup-row').innerHTML=`<div class="signup-done">✓ Got it — I'll send the link when FORGE is live.</div>`;})
+      fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body}).then(async r=>{if(!r.ok)throw new Error('HTTP '+r.status);await LOCAL_WRITE_CHAIN;STATE.email=v;await save();su.querySelector('.signup-row').innerHTML=`<div class="signup-done">✓ Got it — I'll send the link when FORGE is live.</div>`;})
       .catch(()=>{b.textContent='Send me the link';b.disabled=false;er.textContent="Couldn't send that — try again in a moment.";er.style.display='block';});};
     b.onclick=submit;i.onkeydown=e=>{if(e.key==='Enter')submit();};}
-  view.appendChild(el(`<footer>Progress is saved to this browser &amp; device.<br>The standalone app is where the full record will live.<br><br><a class="ext" href="https://speedandform.com/forge-sculpt/" target="_blank" rel="noopener">View the FORGE Sculpt page ↗</a></footer>`));
+  const persistenceLine=LOCAL_STORE_ERROR?'Saving on this device is not confirmed.':'Saved on this device.';
+  view.appendChild(el(`<footer>${persistenceLine}<br>The standalone app is where the full record will live.<br><br><a class="ext" href="https://speedandform.com/forge-sculpt/" target="_blank" rel="noopener">View the FORGE Sculpt page ↗</a></footer>`));
 }
 
 /* ---- sculpt overview ---- */
@@ -531,7 +698,7 @@ function weekSessions(pn,wn){const ph=FS.phases.find(x=>x.n===pn);const w=ph&&ph
   view.appendChild(el(`<div class="stack fadein" style="--gap:10px;padding-top:8px"><span class="eyebrow">${esc(ph.title)} · Week ${wn}</span>
     <h2>Week ${wn}</h2><div class="readbox" style="margin-top:4px">${esc(w.label)}</div></div>`));
   const ni=nextIncomplete();const list=el(`<div class="fadein" style="margin-top:18px"></div>`);
-  w.days.forEach((d,di)=>{const rest=isRest(d),k=fsKey(pn,d),done=STATE.done[k];
+  w.days.forEach((d,di)=>{const rest=isRest(d),k=fsKey(pn,d),done=isSessionDone(k,d);
     const isNext=ni&&ni.ph===pn&&ni.w===wn&&ni.di===di;
     const st=stats(d);
     const row=el(`<div class="sess ${rest?'rest':''}"><div class="sd">${esc((d.wd||'').slice(0,3))}</div>
@@ -543,7 +710,6 @@ function weekSessions(pn,wn){const ph=FS.phases.find(x=>x.n===pn);const w=ph&&ph
 
 /* ---- session sheet (shared) ---- */
 function chapterArt(title){if(/pull/i.test(title))return ASSET.pull;return null;}
-function focusReps(e){return e.sec?`${e.sec}s`:(e.rmin==null?'—':(e.rmin===e.rmax?`${e.rmin}`:`${e.rmin}–${e.rmax}`));}
 function setsChecked(doneKey,day){let n=0;day.ex.forEach(e=>{for(let k=1;k<=e.sc;k++){if(STATE.sets[setKey(doneKey,e,k)])n++;}});return n;}
 
 /* SESSION — the editorial training sheet (default; sells FORGE) */
@@ -565,8 +731,8 @@ function sessionBody(title,eyebrow,day){
     const ex=el(`<div class="ex ${e.prime?'prime':''}" data-movement-index="${i}"><div class="ex-top"><div class="ex-idx">${String(i+1).padStart(2,'0')}</div>
       <div><div class="ex-name">${esc(e.n)}${e.prime?'<span class="ex-badge">Key lift</span>':''}</div>
       <div class="ex-var">${esc(e.intent||'')}${e.lat&&e.lat!=='bilateral'?' · '+esc(e.lat):''}</div></div></div>
-      <div class="ex-rx"><div class="rx"><b>${repStr(e)}</b><span>${e.sec?'Sets × Time':'Sets × Reps'}</span></div>
-      <div class="rx"><b>${e.rest}s</b><span>Rest</span></div>${e.load?`<div class="rx"><b>${e.load}</b><span>Target lb</span></div>`:''}</div>
+      <div class="ex-rx"><div class="rx"><b>${repStr(e)}</b><span>${prescriptionLabel(e)}</span></div>
+      <div class="rx"><b>${e.rest}s</b><span>Rest</span></div>${loadSummary(e)?`<div class="rx"><b>${loadSummary(e)}</b><span>Target lb${loadSummary(e).includes('/')?' by set':''}</span></div>`:''}</div>
       ${cueInline}${detail}</div>`);
     const t=ex.querySelector('.ex-toggle');
     if(t){const dd=ex.querySelector('.ex-detail');t.onclick=()=>{dd.classList.toggle('open');t.textContent=(dd.classList.contains('open')?'– Hide':'＋ '+(e.prime?'Substitution':'Cue · substitution'));};}
@@ -576,16 +742,14 @@ function sessionBody(title,eyebrow,day){
 
 /* FOCUS — execution surface. Mirrors the app: per-set square marks, values always
    shown (a tick asserts them), cues one tap away, no timer, completion never automatic. */
-function focusBody(title,eyebrow,day,doneKey){
+function focusBody(title,eyebrow,day,doneKey,draft,legacyCompleted){
   view.appendChild(el(`<div class="fx-head-wrap fadein"><div class="fx-coord">${esc(eyebrow)}</div>
     <div class="fx-title"><h2>${esc(title)}</h2><span class="fxlabel">Focus</span></div></div>`));
   const box=el(`<div class="fadein" style="margin-top:16px"></div>`);
   day.ex.forEach((e,i)=>{
     const side=(e.lat&&e.lat!=='bilateral')?' / side':'';
-    const reps=focusReps(e);
-    const rx=`${e.sc} × ${reps}${side} · ${e.rest}s rest`;
+    const rx=`${prescriptionSummary(e)}${side} · ${e.rest}s rest`;
     const canHelp=!!(e.cue||(e.subs&&e.subs.length));
-    const val=`${reps}${side}${e.load?` × ${e.load} lb`:''}`;
     const mv=el(`<div class="fx-mv" data-movement-index="${i}">
       <button class="fx-head"><div class="fx-name">${esc(e.n)}${e.prime?'<span class="ex-badge">Key lift</span>':''}${canHelp?'<span class="fx-q">?</span>':''}</div>
       <div class="fx-rx">${rx}</div></button>
@@ -593,8 +757,10 @@ function focusBody(title,eyebrow,day,doneKey){
     if(canHelp){const hb=mv.querySelector('.fx-head'),hp=mv.querySelector('.fx-help');hb.onclick=()=>hp.classList.toggle('open');}
     for(let k=1;k<=e.sc;k++){
       const sk=setKey(doneKey,e,k);
-      const btn=el(`<button class="fx-set ${STATE.sets[sk]?'done':''}"><span class="fx-mark"></span><span class="fx-idx">Set ${k} of ${e.sc}</span><span class="fx-val">${val}</span></button>`);
-      btn.onclick=()=>{STATE.sets[sk]=!STATE.sets[sk];save();btn.classList.toggle('done');if(renderSession._refresh)renderSession._refresh();};
+      const confirmed=!!draft?.setConfirmations?.[sk]||!!STATE.sets[sk],locked=legacyCompleted||draft?.status==='completed'||!LOCAL_DB;
+      const btn=el(`<button class="fx-set ${confirmed?'done':''}" aria-pressed="${confirmed?'true':'false'}"><span class="fx-mark"></span><span class="fx-idx">Set ${k} of ${e.sc}</span><span class="fx-val">${setValue(e.sets[k-1],e.lat)}</span></button>`);
+      btn.disabled=locked;
+      btn.onclick=async()=>{btn.disabled=true;await commitFocusSet(day,doneKey,sk,!confirmed);render();};
       mv.appendChild(btn);
     }
     box.appendChild(mv);});
@@ -623,22 +789,27 @@ function renderSession(prog,title,eyebrow,day,doneKey,backLabel){
   const mode=STATE.mode||'session';
   document.title=`${title} — FORGE Sculpt`;
   const bar=el(`<div class="modebar"><button data-m="session" class="${mode==='session'?'on':''}">Session</button><button data-m="focus" class="${mode==='focus'?'on':''}">Focus</button></div>`);
-  bar.querySelectorAll('button').forEach(b=>b.onclick=()=>{STATE.mode=b.dataset.m;save();render();});
+  bar.querySelectorAll('button').forEach(b=>b.onclick=async()=>{await LOCAL_WRITE_CHAIN;STATE.mode=b.dataset.m;await save();render();});
   const share=el(`<button class="sharebtn">↗ Share</button>`);
   share.onclick=async()=>{const url=location.href,text=`FORGE Sculpt — ${eyebrow} — ${title}`;const copied=()=>{share.textContent='✓ Link copied';setTimeout(()=>share.textContent='↗ Share',2000);};try{if(navigator.share){await navigator.share({title:'FORGE Sculpt',text,url});}else{await navigator.clipboard.writeText(`${text}\n${url}`);copied();}}catch(e){try{await navigator.clipboard.writeText(`${text}\n${url}`);copied();}catch(_){}}};
   const barrow=el(`<div class="barrow fadein"></div>`);barrow.appendChild(bar);barrow.appendChild(share);view.appendChild(barrow);
-  if(mode==='focus')focusBody(title,eyebrow,day,doneKey);else sessionBody(title,eyebrow,day);
+  const stateKey=sessionStateKey(day),legacyCompleted=mode==='focus'&&!STATE.sessions[stateKey]&&isSessionDone(doneKey,day);
+  const draft=mode==='focus'&&!legacyCompleted?importedFocusDraft(day,doneKey):STATE.sessions[stateKey]||null;
+  if(mode==='focus')focusBody(title,eyebrow,day,doneKey,draft,legacyCompleted);else sessionBody(title,eyebrow,day);
   installExerciseNavigator(barrow);
   // sticky — explicit session close, never automatic
   sticky.classList.remove('hide');
   const s=stats(day),doneBtn=document.getElementById('s-done'),progEl=document.getElementById('s-prog');
   document.getElementById('s-back').onclick=()=>history.back();
-  const refresh=()=>{const d=STATE.done[doneKey];
+  const refresh=()=>{const d=isSessionDone(doneKey,day),current=STATE.sessions[stateKey]||draft;
     progEl.textContent=mode==='focus'?`${setsChecked(doneKey,day)}/${s.sets} sets ticked`:`${s.moves} movements · ${s.sets} sets`;
-    doneBtn.textContent=d?'✓ Session complete':(mode==='focus'?'Finish session':'Mark Complete');
+    if(mode!=='focus'){doneBtn.textContent='Open Focus';doneBtn.disabled=false;}
+    else if(legacyCompleted||current?.status==='completed'){doneBtn.textContent='Reopen session';doneBtn.disabled=!LOCAL_DB;}
+    else if(current&&ForgeSessionModel.canComplete(current)){doneBtn.textContent='Finish session';doneBtn.disabled=!LOCAL_DB;}
+    else{doneBtn.textContent='Confirm every set';doneBtn.disabled=true;}
     doneBtn.classList.toggle('done-state',!!d);};
   renderSession._refresh=refresh;refresh();
-  doneBtn.onclick=()=>{STATE.done[doneKey]=!STATE.done[doneKey];save();refresh();};
+  doneBtn.onclick=async()=>{if(mode!=='focus'){await LOCAL_WRITE_CHAIN;STATE.mode='focus';await save();return render();}const namespace=CURRENT_NAMESPACE;doneBtn.disabled=true;try{await closeOrReopenFocus(day,doneKey);render();}catch(error){LOCAL_SAVE_STATUS='notConfirmed';LOCAL_STORE_ERROR='This session change could not be confirmed on this device.';console.error('[FORGE portal] session commit failed:',error);try{if(CURRENT_NAMESPACE===namespace){STATE=normalizedState(await LOCAL_DB.snapshot(namespace));NAMESPACE_REVISIONS.set(namespace,STATE.storageRevision);return render();}}catch(reloadError){console.error('[FORGE portal] session reload failed:',reloadError);}refresh();}};
 }
 function sessionSheet(prog,pn,wn,di){const ph=FS.phases.find(x=>x.n===pn);const w=ph&&ph.weeks.find(x=>x.num===wn);const day=w&&w.days[di];
   if(!day)return go('/sculpt');chrome(false,'','sculpt');
@@ -651,7 +822,7 @@ function rodHome(){chrome(true,'Rod · Coach-led','rod');view.innerHTML='';
     <h2>Rod</h2><p class="lede">Monday &amp; Friday. Your latest week is up top; earlier weeks below.</p>
     <div class="readbox" style="margin-top:4px">${esc(cur.label||('Week '+cur.num))}</div></div>`));
   const list=el(`<div class="fadein" style="margin-top:18px"></div>`);
-  cur.days.forEach((d,di)=>{if(isRest(d))return;const st=stats(d),done=STATE.done[rodKey(cur.num,d)];
+  cur.days.forEach((d,di)=>{if(isRest(d))return;const st=stats(d),done=isSessionDone(rodKey(cur.num,d),d);
     const row=el(`<div class="sess"><div class="sd">${esc((d.wd||'').slice(0,3))}</div>
       <div class="sn">${esc(d.t)}<div class="sg">${st.moves} moves · ${st.sets} sets</div></div>
       ${done?'<span class="tag done">✓ Done</span>':''}</div>`);
@@ -670,7 +841,23 @@ function rodSession(wn,di){const w=ROD.weeks.find(x=>x.num===wn);const day=w&&w.
 function unavailable(err){try{sticky.classList.add('hide');}catch(e){}view.innerHTML='';
   view.appendChild(el(`<div class="stack" style="--gap:12px;padding-top:44px"><span class="eyebrow">Temporarily unavailable</span><h2>Training isn't loading right now.</h2><p class="lede">The program data didn't load. Refresh in a moment — if it keeps happening, let Brice know.</p></div>`));
   console.error('[FORGE portal] data load failed:',err);}
-async function boot(){try{const res=await fetch('./data/forge-portal-programs.json',{cache:'no-cache'});if(!res.ok)throw new Error('HTTP '+res.status);const raw=await res.json();DATA=buildData(raw);FS=DATA.programs.forge_sculpt;ROD=DATA.programs.rod;}catch(err){return unavailable(err);}try{await initAccount();}catch(error){ACCOUNT_ERROR='Apple sign-in is unavailable right now.';console.error('[FORGE portal] account init failed:',error);}window.addEventListener('hashchange',render);render();}
+async function loadPortalPayload(){
+  const cacheKey='portal-programs:1.0.0';
+  let raw;
+  try{
+    const response=await fetch('./data/forge-portal-programs.json',{cache:'no-cache'});
+    if(!response.ok)throw new Error('HTTP '+response.status);
+    raw=await response.json();
+    validatePortalData(raw);
+  }catch(networkError){
+    const cached=LOCAL_DB?await LOCAL_DB.cachedProgram(cacheKey):null;
+    if(cached){validatePortalData(cached.payload);console.warn('[FORGE portal] using validated cached program:',networkError);return cached.payload;}
+    throw networkError;
+  }
+  if(LOCAL_DB){try{await LOCAL_DB.cacheProgram(cacheKey,raw,await contentHash(raw));}catch(cacheError){LOCAL_STORE_ERROR='This program could not be saved for offline use.';console.error('[FORGE portal] program cache failed:',cacheError);}}
+  return raw;
+}
+async function boot(){await initContinuityStore();try{const raw=await loadPortalPayload();DATA=await buildData(raw);FS=DATA.programs.forge_sculpt;ROD=DATA.programs.rod;}catch(err){return unavailable(err);}try{await initAccount();}catch(error){ACCOUNT_ERROR='Apple sign-in is unavailable right now.';console.error('[FORGE portal] account init failed:',error);}if(migrateLegacySetKeys())await save();window.addEventListener('hashchange',render);render();}
 window.addEventListener('DOMContentLoaded',boot);
 </script>
 </body>

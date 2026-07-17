@@ -10,19 +10,37 @@ Lives at **https://speedandform.com/forge-sculpt/train/**
 ```
 forge-sculpt/train/
 ├── index.html                        the portal (HTML + CSS + JS, no build step)
+├── continuity-store.js               account-scoped IndexedDB/cache/queue boundary
+├── session-model.js                  shared draft, Focus truth, and receipt model
 ├── README.md                         this file
 ├── HANDOFF-ACCOUNTS.md               account/auth boundary and current audit status
 ├── supabase-auth-audit.sql           read-only remote auth failure preflight
+├── supabase-continuity-audit.sql     read-only account/schema authority preflight
 └── data/
     ├── forge-portal-programs.json    single source of truth — Forge Sculpt (P1–4) + Rod
     ├── forge-portal-programs.schema.json
-    └── validate.py                   fail-closed validator (python3 validate.py)
+    ├── validate.py                   fail-closed validator (python3 validate.py)
+    ├── test_session_model.js         draft/receipt truth tests
+    └── test_continuity_contract.js   revision/receipt uniqueness tests
 ```
 
 The portal **fetches `./data/forge-portal-programs.json` at runtime** and renders
 everything from it. There is no inlined program content. If the JSON is missing or
 invalid, the portal shows a clean "temporarily unavailable" state — it never renders
 placeholder training.
+
+### Prescription identity
+
+The browser preserves every authored set. It derives immutable-version context from:
+
+```text
+program version → stable session id → movement occurrence → authored set sequence
+```
+
+It also computes a SHA-256 prescription fingerprint for each phase/program payload.
+Drafts and future receipts must carry the version, stable set identity, fingerprint,
+and prescription snapshot. A later content edit may never rewrite an older receipt.
+Any authored prescription change requires a new program version.
 
 Anatomy art is referenced from the existing repo assets (`/assets/forge/*`,
 `/assets/home/forge/*`). Dark and light are authored separately: the portal hero uses
@@ -79,20 +97,32 @@ cd forge-sculpt/train && python3 -m http.server 8080
 Static; Netlify auto-publishes the repository root on push to `main`. There is no
 portal build step.
 
+**Gate status:** implementation foundation complete; ratification remains pending the
+Supabase preflight/reconciliation and iPhone Safari runtime proof.
+
 From the repository root:
 
 ```bash
 python3 forge-sculpt/train/data/validate.py
+node forge-sculpt/train/data/test_session_model.js
+node forge-sculpt/train/data/test_continuity_contract.js
 git add \
   forge-sculpt/train/index.html \
+  forge-sculpt/train/continuity-store.js \
+  forge-sculpt/train/session-model.js \
   forge-sculpt/train/README.md \
   forge-sculpt/train/HANDOFF-ACCOUNTS.md \
-  forge-sculpt/train/supabase-auth-audit.sql \
+  forge-sculpt/train/supabase-continuity-audit.sql \
   forge-sculpt/train/data/validate.py \
-  netlify.toml \
-  _redirects
+  forge-sculpt/train/data/test_session_model.js \
+  forge-sculpt/train/data/test_continuity_contract.js
 git diff --cached --check
-git commit -m "Prepare FORGE open preview portal"
+git commit \
+  -m "Establish FORGE local continuity and receipt truth foundation" \
+  -m "Pending:
+- Supabase schema/RLS reconciliation
+- iPhone Safari runtime proof
+- production account wiring"
 git push origin main
 ```
 
