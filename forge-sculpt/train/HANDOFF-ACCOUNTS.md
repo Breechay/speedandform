@@ -12,7 +12,7 @@ and website workstations and can run migrations, native builds, and Apple/Supaba
 `data/forge-portal-programs.json` (the real export). No placeholder content.
 
 - **Real data**: Forge Sculpt Phases 1–4 (15 weeks) + Rod, rendered from the JSON. Fail-closed if it doesn't load.
-- **Session + Focus modes.** Focus mirrors the audited app contract (`ForgeFocusLogging.swift`): per-**set** square marks `SET n OF m`, values always visible, laterality `/ side`, cues behind `?`, **no rest timer**, completion **never automatic**. Mode + ticks persist locally (`forge_portal_v1`).
+- **Session + Focus modes.** Focus mirrors the audited app contract (`ForgeFocusLogging.swift`): per-**set** square marks `SET n OF m`, values always visible, laterality `/ side`, cues behind `?`, **no rest timer**, completion **never automatic**. Mode + ticks persist locally (`forge_portal_v2`).
 - **Open-preview** (`ACCESS_MODE='open-preview'`): all phases/weeks/sessions open, Phase IV unlocked, stable shareable hash URLs that survive refresh, `document.title` per route.
 - **Rod unlisted**: direct URL only (`#/rod`), out of nav/cards/metadata.
 - **Signup** → Netlify Forms (`forge-launch`), fail-closed.
@@ -33,16 +33,14 @@ Supabase auth repair, Apple Developer identifiers, Supabase provider + RLS table
 Apple JS ↔ `signInWithIdToken` on the site, native `AuthenticationServices` in FORGE,
 entitlement checks, env/secrets, Hide My Email.
 
-**Claude/portal (front-end):** once Cursor gives (a) the Supabase URL + anon key and
-(b) confirmed table names, wire the portal's "Continue with Apple" button, session
-restore, and swap `STATE` reads/writes to Supabase for signed-in users. Until then the
-portal stays local-only and open.
+**Portal (front-end):** Apple identity is now wired. Session restore and the `STATE`
+sync remain local-only until the progress schema and RLS tests are signed.
 
 ---
 
 ## Part 3 — Cursor task list (build order matters)
 
-**0. Repair the existing Supabase signup path FIRST.** There was a prior
+**0. COMPLETE — Repair the existing Supabase signup path FIRST.** There was a prior
 `500 Database error saving new user`. Apple auth also inserts into `auth.users`, so
 prove a brand-new user can be created cleanly before touching Apple. Audit every
 trigger/function/policy on `auth.users`; add a passing new-user insertion test.
@@ -59,12 +57,15 @@ migration and cannot be diagnosed from this repository alone. Run the read-only
 `supabase-auth-audit.sql` in the Training Phases Supabase SQL editor and save its
 results before changing Apple identifiers or providers.
 
-**1. Audit Apple Developer state before changing anything.** Record FORM's App ID,
+Remote proof completed Jul 16 2026: a new Supabase user was created successfully;
+the earlier `Database error saving new user` did not reproduce.
+
+**1. COMPLETE — Audit Apple Developer state before changing anything.** Record FORM's App ID,
 FORGE's standalone App ID, whether either has Sign in with Apple enabled, whether either
 already has Apple-authenticated users, and which should be the long-term **primary**.
 Do not regroup identifiers after users exist.
 
-**2. Design one Sign in with Apple group (one account system, Apple as first method):**
+**2. COMPLETE — Design one Sign in with Apple group (one account system, Apple as first method):**
 ```
 Primary App ID (Speed & Form)
 ├── FORGE iOS App ID
@@ -74,13 +75,23 @@ Primary App ID (Speed & Form)
 Website Services ID domains: `speedandform.com`, `www.speedandform.com`.
 Return URL: `https://speedandform.com/auth/apple/callback`.
 
-**3. Configure Supabase Apple provider** to accept: the web Services ID + FORGE bundle
+Configured:
+- Primary: FORM (`com.speedandform.app`)
+- Grouped native client: FORGE (`com.speedandform.forge`)
+- Web Services ID: `com.speedandform.account.web`
+
+**3. COMPLETE — Configure Supabase Apple provider** to accept: the web Services ID + FORGE bundle
 ID (+ FORM later). Web method: **Sign in with Apple JS → `supabase.auth.signInWithIdToken`**
 (not redirect OAuth) — it captures the name on first authorization and avoids web-secret
 rotation. Use random `state` + `nonce`; verify signature/audience/expiry/nonce. Never put
 Apple private keys or the Supabase service-role key in browser code.
 
-**4. Data model (RLS: user may only read/write their own rows):**
+Supabase accepts all three client IDs. The portal uses Apple JS popup authorization,
+random state + nonce, then exchanges the ID token through `signInWithIdToken`.
+The Apple name is copied into Supabase user metadata when Apple provides it on first
+authorization. No account trigger or duplicate profile table was added.
+
+**4. NEXT — Data model (RLS: user may only read/write their own rows):**
 ```
 profiles(user_id, display_name, given_name, family_name, created_at)
 product_access(user_id, product, access_level, source, valid_until)   -- entitlements

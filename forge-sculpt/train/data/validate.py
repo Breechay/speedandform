@@ -96,6 +96,15 @@ def validate_portal_contract() -> None:
     require("STATE.mode=b.dataset.m;save()" in portal, "Session/Focus preference persistence missing")
     require("Finish session" in portal, "Focus completion must remain explicit")
     require("setInterval(" not in portal and "RestTimer" not in portal, "Focus must not contain a rest timer")
+    require("const APPLE_CLIENT_ID='com.speedandform.account.web'" in portal, "Apple web Services ID mismatch")
+    require(
+        "const APPLE_REDIRECT_URI='https://speedandform.com/auth/apple/callback'" in portal,
+        "Apple return URL mismatch",
+    )
+    require("signInWithIdToken({provider:'apple'" in portal, "Supabase Apple ID-token exchange missing")
+    require("scope:'name email'" in portal and "nonce,usePopup:true" in portal, "Apple first-login identity contract missing")
+    require("progress still saves to this browser" in portal.lower(), "account copy must preserve local-only progress truth")
+    require((REPOSITORY_ROOT / "auth/apple/callback.html").is_file(), "Apple callback document missing")
 
     for invented in ("Build the Frame", "Glute Build", "Specialize", "6:15 AM"):
         require(invented not in portal, f"portal contains invented copy: {invented}")

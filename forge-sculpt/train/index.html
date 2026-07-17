@@ -18,6 +18,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.105.1/dist/umd/supabase.min.js"></script>
+<script defer src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
 <style>
 :root,[data-theme="dark"]{
   --bg:#090908;--bg-2:#0E0E0C;--surface:#10100E;--surface-2:#151512;--surface-3:#1A1916;
@@ -92,7 +94,7 @@ main.portal-home{max-width:var(--homew)}
 
 /* home composition */
 .home-stack{display:grid;gap:16px;padding-bottom:12px}
-.resume-rail,.program-panel,.launch-panel{position:relative;overflow:hidden;border:1px solid var(--line);background:color-mix(in srgb,var(--surface) 94%,transparent);box-shadow:var(--panel-shadow),var(--panel-glow)}
+.resume-rail,.program-panel,.account-panel,.launch-panel{position:relative;overflow:hidden;border:1px solid var(--line);background:color-mix(in srgb,var(--surface) 94%,transparent);box-shadow:var(--panel-shadow),var(--panel-glow)}
 .resume-rail{display:grid;grid-template-columns:50px minmax(0,1fr) auto;align-items:center;gap:20px;padding:22px 24px;border-color:var(--line-strong);cursor:pointer;transition:transform .22s,border-color .22s,background .22s}
 .resume-rail:before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,var(--accent-soft),transparent 52%);pointer-events:none}
 .resume-rail:hover{transform:translateY(-2px);border-color:var(--accent)}
@@ -122,6 +124,10 @@ main.portal-home{max-width:var(--homew)}
 .launch-panel{padding:22px 24px;display:grid;grid-template-columns:minmax(260px,.8fr) minmax(380px,1.2fr);gap:28px;align-items:center}
 .launch-panel h3{font-size:21px;color:var(--text)}.launch-panel p{font-size:14px;color:var(--text-3);margin-top:5px;line-height:1.5}
 .launch-panel .signup-row{margin-top:0;display:grid;grid-template-columns:1fr auto;gap:10px}.launch-panel .signup-done{grid-column:1/-1}
+.account-panel{padding:22px 24px;display:grid;grid-template-columns:minmax(260px,1fr) auto;gap:28px;align-items:center}
+.account-panel h3{font-size:21px;color:var(--text)}.account-panel p{font-size:14px;color:var(--text-3);margin-top:5px;line-height:1.5;max-width:600px}
+.account-actions{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap}.account-status{font-family:var(--mono);font-size:9px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);text-align:right}
+.apple-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-width:210px;height:46px;padding:0 18px;border-radius:6px;border:1px solid #000;background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;font-size:15px;font-weight:500;cursor:pointer}.apple-btn:hover{filter:brightness(1.14)}.apple-btn:disabled{opacity:.55;cursor:wait}.apple-mark{font-size:19px;line-height:1}
 .signup{background:var(--surface);border:1px solid var(--line);padding:24px;margin-top:26px;box-shadow:var(--panel-shadow)}
 .signup h3{font-size:20px;color:var(--text)}.signup p{font-size:14px;color:var(--text-3);margin-top:6px;line-height:1.5}
 .signup-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
@@ -165,7 +171,7 @@ main.portal-home{max-width:var(--homew)}
 .sticky{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--nav-bg);backdrop-filter:blur(18px);border-top:1px solid var(--line)}.sticky.hide{display:none}.sticky-in{max-width:var(--maxw);margin:0 auto;padding:12px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:12px}.sticky .prog{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3)}.mini{padding:12px 18px;width:auto}.mini.done-state{background:transparent;color:var(--accent);border-color:var(--accent-dim)}
 footer{max-width:var(--maxw);margin:0 auto;padding:30px 0;border-top:1px solid var(--line-2);font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-4);line-height:1.9}
 
-[data-theme="light"] .resume-rail,[data-theme="light"] .program-panel,[data-theme="light"] .launch-panel,[data-theme="light"] .wk,[data-theme="light"] .signup{background:rgba(249,246,240,.74);backdrop-filter:blur(8px)}
+[data-theme="light"] .resume-rail,[data-theme="light"] .program-panel,[data-theme="light"] .account-panel,[data-theme="light"] .launch-panel,[data-theme="light"] .wk,[data-theme="light"] .signup{background:rgba(249,246,240,.74);backdrop-filter:blur(8px)}
 [data-theme="light"] .hero-fig.light-only{mix-blend-mode:multiply}
 [data-theme="light"] .phase:hover,[data-theme="light"] .sess:hover{background:rgba(140,96,41,.055)}
 
@@ -177,7 +183,7 @@ footer{max-width:var(--maxw);margin:0 auto;padding:30px 0;border-top:1px solid v
   h1{font-size:clamp(52px,16vw,76px)}
   .home-stack{gap:14px}.resume-rail{grid-template-columns:1fr auto;gap:14px;padding:20px}.resume-mark{display:none}.resume-title{font-size:21px;line-height:1.28}.resume-action{align-self:end}.resume-action span:first-child{display:none}
   .program-panel{grid-template-columns:1fr;padding:26px 22px;gap:28px}.program-map{border-left:0;border-top:1px solid var(--line);padding:24px 0 0}.program-metrics{margin-top:22px}.metric{padding-right:10px}.metric+.metric{padding-left:12px}.metric b{font-size:17px}.program-panel:after{width:90%;right:-40%;bottom:-18%}
-  .launch-panel{grid-template-columns:1fr;padding:24px 22px;gap:18px}.launch-panel .signup-row{grid-template-columns:1fr}.launch-panel .btn{width:100%}
+  .account-panel,.launch-panel{grid-template-columns:1fr;padding:24px 22px;gap:18px}.account-actions{justify-content:flex-start}.account-status{text-align:left}.apple-btn{width:100%}.launch-panel .signup-row{grid-template-columns:1fr}.launch-panel .btn{width:100%}
   .phase{grid-template-columns:50px 1fr auto;gap:14px;padding:18px 6px}.p-art{width:48px;height:62px}.p-num{font-size:36px}.phase .pt{font-size:18px}.phase .pw{font-size:8px}
   .wkrail{grid-template-columns:1fr 1fr}.wk{min-height:116px;padding:15px}.sess{grid-template-columns:48px minmax(0,1fr) auto;padding:17px 4px}.sess:hover{padding-left:10px}.sess.rest:hover{padding-left:4px}.sess .sn{font-size:17px}
   .statrow{display:grid;grid-template-columns:repeat(3,1fr)}.stat{padding:13px 8px 13px 0}.stat+.stat{padding-left:12px}.stat b{font-size:18px}.ex-rx{gap:20px}.ex.prime{margin:0 -20px;padding-left:20px;padding-right:20px}
@@ -232,6 +238,10 @@ footer{max-width:var(--maxw);margin:0 auto;padding:30px 0;border-top:1px solid v
 const ACCESS_MODE='open-preview'; /* 'open-preview' (live) | 'shared-code-demo' (client-visible only; real gate = Supabase entitlements) */
 const PUBLIC_ACCESS_UNTIL='2026-07-23T23:59:59-04:00'; /* informational only — gate is flag-driven, never clock-driven */
 const SIGNUP_FORM_NAME='forge-launch';
+const SUPABASE_URL='https://zlhxvzgublgtuxplcjjl.supabase.co';
+const SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpsaHh2emd1YmxndHV4cGxjampsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1ODIxMTksImV4cCI6MjA4ODE1ODExOX0.DGEmk1QaAx-CPYkNiHf5BTMI6DKFKp7Wr40fShGv0hc';
+const APPLE_CLIENT_ID='com.speedandform.account.web';
+const APPLE_REDIRECT_URI='https://speedandform.com/auth/apple/callback';
 /* ---- native theme art (lives in the repo) ---- */
 const ASSET={hero:'/assets/forge/anatomy-reveal.webp',heroLight:'/assets/forge/hero-light.webp',p1:'/assets/forge/anatomy-shoulders.webp',p2:'/assets/forge/anatomy-glute.webp',p3:'/assets/home/forge/anatomy-core.webp',p4:'/assets/home/forge/anatomy-full.webp',pull:'/assets/home/forge/anatomy-pull.webp'};
 const PHASE_ART={1:ASSET.p1,2:ASSET.p2,3:ASSET.p3,4:ASSET.p4};
@@ -272,6 +282,43 @@ const save=()=>{try{localStorage.setItem('forge_portal_v2',JSON.stringify(STATE)
 const fsKey=(pn,day)=>`fs:p${pn}:${day.id}`;
 const rodKey=(wn,day)=>`rod:w${wn}:${day.id}`;
 const setKey=(dkey,ex,k)=>`${dkey}::${ex.mid}::${k}`;
+
+/* ---- shared account identity (progress remains local during open preview) ---- */
+let AUTH=null,ACCOUNT_USER=null,ACCOUNT_READY=false,ACCOUNT_BUSY=false,ACCOUNT_ERROR='';
+function secureToken(){if(crypto.randomUUID)return crypto.randomUUID();const bytes=new Uint8Array(24);crypto.getRandomValues(bytes);return Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');}
+async function initAccount(){
+  if(!window.supabase||!window.AppleID){ACCOUNT_ERROR='Apple sign-in is unavailable right now.';return;}
+  AUTH=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}});
+  const {data,error}=await AUTH.auth.getSession();
+  if(error){ACCOUNT_ERROR='Apple sign-in is unavailable right now.';return;}
+  ACCOUNT_USER=data.session?.user||null;ACCOUNT_READY=true;
+  AUTH.auth.onAuthStateChange((event,session)=>{ACCOUNT_USER=session?.user||null;if(event==='SIGNED_IN'||event==='SIGNED_OUT'){const h=location.hash.replace(/^#/,'')||'/';if(h==='/')entry();}});
+}
+async function signInApple(button,errorNode){
+  if(!AUTH||!window.AppleID||ACCOUNT_BUSY)return;
+  ACCOUNT_BUSY=true;ACCOUNT_ERROR='';button.disabled=true;button.lastChild.textContent='Connecting…';errorNode.textContent='';
+  const nonce=secureToken(),state=secureToken();
+  try{
+    AppleID.auth.init({clientId:APPLE_CLIENT_ID,scope:'name email',redirectURI:APPLE_REDIRECT_URI,state,nonce,usePopup:true});
+    const apple=await AppleID.auth.signIn();
+    const token=apple?.authorization?.id_token||apple?.id_token;
+    if(!token)throw new Error('Apple identity token missing');
+    const {data,error}=await AUTH.auth.signInWithIdToken({provider:'apple',token,nonce});
+    if(error)throw error;
+    const person=apple?.user?.name;
+    if(person&&(person.firstName||person.lastName)){
+      const fullName=[person.firstName,person.middleName,person.lastName].filter(Boolean).join(' ');
+      await AUTH.auth.updateUser({data:{full_name:fullName,given_name:person.firstName||null,family_name:person.lastName||null}});
+    }
+    ACCOUNT_USER=data.user;entry();
+  }catch(error){
+    if(error?.error!=='popup_closed_by_user')ACCOUNT_ERROR="Couldn't connect with Apple. Try again.";
+    errorNode.textContent=ACCOUNT_ERROR;
+  }finally{
+    ACCOUNT_BUSY=false;if(document.body.contains(button)){button.disabled=false;button.lastChild.textContent='Continue with Apple';}
+  }
+}
+async function signOutAccount(){if(!AUTH)return;await AUTH.auth.signOut();ACCOUNT_USER=null;entry();}
 
 /* ---- access model: open shell + gated curriculum ---- */
 const ACCESS_CODE='forge2026'; /* demo only for shared-code-demo; not authentication */
@@ -379,6 +426,22 @@ function entry(){chrome(false,'',null);view.className='portal-home';view.innerHT
     <div class="program-map"><div class="phase-track">${phaseSteps}</div><div class="map-label">${ni?`Phase ${activePhase.n} of 4`:'Program complete'}</div>
       <div class="map-title">${esc(activePhase.title)}</div><div class="map-weeks">${activePhase.weeks.length} weeks in this phase</div></div></section>`);
   const openProgram=()=>go('/sculpt');program.onclick=openProgram;program.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openProgram();}};home.appendChild(program);
+
+  const account=el(`<section class="account-panel"><div><h3>One account for FORGE.</h3>
+    <p>Continue with Apple here, then use the same Apple account when the standalone app arrives. Training progress still saves to this browser during the preview.</p></div>
+    <div class="account-actions"></div></section>`);
+  const accountActions=account.querySelector('.account-actions');
+  if(ACCOUNT_USER){
+    const email=ACCOUNT_USER.email||'Apple account connected';
+    const status=el(`<div><div class="account-status">Apple connected</div><div class="muted" style="margin-top:4px">${esc(email)}</div></div>`);
+    const out=el(`<button class="btn btn-ghost mini">Sign out</button>`);out.onclick=signOutAccount;accountActions.appendChild(status);accountActions.appendChild(out);
+  }else if(ACCOUNT_READY){
+    const wrap=el(`<div><button class="apple-btn"><span class="apple-mark"></span><span>Continue with Apple</span></button><div class="muted" style="margin-top:7px;text-align:center" aria-live="polite"></div></div>`);
+    const button=wrap.querySelector('button'),errorNode=wrap.querySelector('.muted');button.onclick=()=>signInApple(button,errorNode);accountActions.appendChild(wrap);
+  }else{
+    accountActions.appendChild(el(`<div class="muted">${esc(ACCOUNT_ERROR||'Loading Apple sign-in…')}</div>`));
+  }
+  home.appendChild(account);
 
   const done=!!STATE.email;
   const su=el(`<section class="signup launch-panel"><div><h3>FORGE is moving to its own app.</h3><p>Leave your email and I'll send you the App Store link when it's ready.</p></div>
@@ -560,8 +623,8 @@ function rodSession(wn,di){const w=ROD.weeks.find(x=>x.num===wn);const day=w&&w.
 function unavailable(err){try{sticky.classList.add('hide');}catch(e){}view.innerHTML='';
   view.appendChild(el(`<div class="stack" style="--gap:12px;padding-top:44px"><span class="eyebrow">Temporarily unavailable</span><h2>Training isn't loading right now.</h2><p class="lede">The program data didn't load. Refresh in a moment — if it keeps happening, let Brice know.</p></div>`));
   console.error('[FORGE portal] data load failed:',err);}
-async function boot(){try{const res=await fetch('./data/forge-portal-programs.json',{cache:'no-cache'});if(!res.ok)throw new Error('HTTP '+res.status);const raw=await res.json();DATA=buildData(raw);FS=DATA.programs.forge_sculpt;ROD=DATA.programs.rod;}catch(err){return unavailable(err);}window.addEventListener('hashchange',render);render();}
-boot();
+async function boot(){try{const res=await fetch('./data/forge-portal-programs.json',{cache:'no-cache'});if(!res.ok)throw new Error('HTTP '+res.status);const raw=await res.json();DATA=buildData(raw);FS=DATA.programs.forge_sculpt;ROD=DATA.programs.rod;}catch(err){return unavailable(err);}try{await initAccount();}catch(error){ACCOUNT_ERROR='Apple sign-in is unavailable right now.';console.error('[FORGE portal] account init failed:',error);}window.addEventListener('hashchange',render);render();}
+window.addEventListener('DOMContentLoaded',boot);
 </script>
 </body>
 </html>

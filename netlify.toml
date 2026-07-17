@@ -21,6 +21,12 @@
 
 # WordPress spam
 
+# Sign in with Apple web Services ID return URL
+[[redirects]]
+  from = "/auth/apple/callback"
+  to = "/auth/apple/callback.html"
+  status = 200
+
 # FORGE athlete portal — preserve the directory base for relative data loading
 [[redirects]]
   from = "/forge-sculpt/train"
