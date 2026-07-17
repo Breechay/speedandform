@@ -47,6 +47,18 @@ portal stays local-only and open.
 prove a brand-new user can be created cleanly before touching Apple. Audit every
 trigger/function/policy on `auth.users`; add a passing new-user insertion test.
 
+Repository audit completed Jul 16 2026:
+
+- checked-in SQL references `auth.users`, but no checked-in migration defines an
+  `auth.users` trigger;
+- this checkout has no linked Supabase CLI project configuration;
+- Supabase and Netlify CLIs are not installed locally.
+
+The failing trigger therefore lives in remote database state or an uncommitted
+migration and cannot be diagnosed from this repository alone. Run the read-only
+`supabase-auth-audit.sql` in the Training Phases Supabase SQL editor and save its
+results before changing Apple identifiers or providers.
+
 **1. Audit Apple Developer state before changing anything.** Record FORM's App ID,
 FORGE's standalone App ID, whether either has Sign in with Apple enabled, whether either
 already has Apple-authenticated users, and which should be the long-term **primary**.

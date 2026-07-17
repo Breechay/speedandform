@@ -11,6 +11,8 @@ Lives at **https://speedandform.com/forge-sculpt/train/**
 forge-sculpt/train/
 ├── index.html                        the portal (HTML + CSS + JS, no build step)
 ├── README.md                         this file
+├── HANDOFF-ACCOUNTS.md               account/auth boundary and current audit status
+├── supabase-auth-audit.sql           read-only remote auth failure preflight
 └── data/
     ├── forge-portal-programs.json    single source of truth — Forge Sculpt (P1–4) + Rod
     ├── forge-portal-programs.schema.json
@@ -72,5 +74,52 @@ cd forge-sculpt/train && python3 -m http.server 8080
 
 ## Deploy
 
-Static; Netlify auto-publishes the repo root on push to `main`. No build. See the
-commit/verify/rollback block in the deploy handoff.
+Static; Netlify auto-publishes the repository root on push to `main`. There is no
+portal build step.
+
+From the repository root:
+
+```bash
+python3 forge-sculpt/train/data/validate.py
+git add \
+  forge-sculpt/train/index.html \
+  forge-sculpt/train/README.md \
+  forge-sculpt/train/HANDOFF-ACCOUNTS.md \
+  forge-sculpt/train/supabase-auth-audit.sql \
+  forge-sculpt/train/data/validate.py \
+  netlify.toml \
+  _redirects
+git diff --cached --check
+git commit -m "Prepare FORGE open preview portal"
+git push origin main
+```
+
+Expected URLs:
+
+```text
+https://speedandform.com/forge-sculpt/train/
+https://speedandform.com/forge-sculpt/train/#/sculpt
+https://speedandform.com/forge-sculpt/train/#/sculpt/1/1/0
+https://speedandform.com/forge-sculpt/train/#/rod
+```
+
+Post-deploy verification:
+
+```bash
+curl -fsSI https://speedandform.com/forge-sculpt/train |
+  grep -Ei 'HTTP/|location:'
+curl -fsS https://speedandform.com/forge-sculpt/train/ |
+  grep -F "const ACCESS_MODE='open-preview'"
+curl -fsS https://speedandform.com/forge-sculpt/train/data/forge-portal-programs.json |
+  python3 -c 'import json,sys; d=json.load(sys.stdin); print(d["schemaVersion"], [p["id"] for p in d["programs"]])'
+```
+
+Then submit one real email and confirm it appears under Netlify → Forms →
+`forge-launch`. Localhost intentionally cannot prove that integration.
+
+Rollback the deployment commit without rewriting history:
+
+```bash
+git revert <portal-deploy-commit>
+git push origin main
+```

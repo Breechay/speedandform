@@ -237,12 +237,27 @@ const ASSET={hero:'/assets/forge/anatomy-reveal.webp',heroLight:'/assets/forge/h
 const PHASE_ART={1:ASSET.p1,2:ASSET.p2,3:ASSET.p3,4:ASSET.p4};
 const phaseLocked=n=>ACCESS_MODE!=='open-preview'&&n===4;
 /* ---- data: single source of truth is ./data/forge-portal-programs.json ---- */
-const PHASE_TITLES={1:['Build the Frame',''],2:['Glute Build',''],3:['Specialize',''],4:['Reveal','']};
 let DATA=null,FS=null,ROD=null;
 function adaptEx(e){const sets=e.sets||[];const o={mid:e.movementId||'',n:e.name,rest:e.restSeconds||0,prime:!!e.isPrimeMover,intent:e.movementIntent,lat:e.laterality,cue:e.cue||'',sc:sets.length};const s0=sets[0]||{};if(s0.reps&&typeof s0.reps==='object'){o.rmin=s0.reps.min;o.rmax=s0.reps.max;}else if(typeof s0.seconds!=='undefined'){o.sec=s0.seconds;}if(typeof s0.targetWeightPounds!=='undefined')o.load=s0.targetWeightPounds;o.subs=(e.substitutions||[]).map(su=>su.name).filter(Boolean);return o;}
 function adaptDay(s){return{id:s.id||'',t:s.title,wd:s.weekday,kind:s.kind,fin:!!s.isFinishDay,ex:(s.exercises||[]).map(adaptEx)};}
 function adaptWeeks(weeks){return(weeks||[]).map(w=>({num:w.weekNumber,label:w.label||'',days:(w.days||[]).map(adaptDay)}));}
-function buildData(raw){const byId={};(raw.programs||[]).forEach(p=>byId[p.id]=p);const fr=byId['forge_sculpt'];if(!fr||!Array.isArray(fr.phases)||fr.phases.length<4)throw new Error('forge_sculpt missing/invalid');const fs={id:'forge_sculpt',name:'Forge Sculpt',phases:fr.phases.map(ph=>({n:ph.phaseNumber,title:(PHASE_TITLES[ph.phaseNumber]||['Phase '+ph.phaseNumber,''])[0],sub:(PHASE_TITLES[ph.phaseNumber]||['',''])[1],weeks:adaptWeeks(ph.weeks)}))};const rr=byId['rod'];const rod={id:'rod',name:'Rod',weeks:rr?adaptWeeks(rr.weeks):[]};return{programs:{forge_sculpt:fs,rod:rod}};}
+const EXPECTED_COUNTS={forge_sculpt:[15,90,519,1520],rod:[6,12,72,252]};
+const FORBIDDEN_TERMS=['tibia','accountability','alcohol','medication','waist','protein','judgment','mania','depression'];
+function programCounts(parts){let weeks=0,sessions=0,exercises=0,sets=0;parts.forEach(part=>(part.weeks||[]).forEach(w=>{weeks++;(w.days||[]).forEach(d=>{if(d.kind==='rest'){if((d.exercises||[]).length)throw new Error('rest day contains exercises');return;}if(!(d.exercises||[]).length)throw new Error('training day has no exercises');sessions++;exercises+=d.exercises.length;d.exercises.forEach(e=>{if(!e.id&&!e.movementId)throw new Error('exercise identity missing');if(!(e.sets||[]).length)throw new Error('exercise prescription missing');sets+=e.sets.length;});});}));return[weeks,sessions,exercises,sets];}
+function validatePortalData(raw){
+  if(!raw||raw.schemaVersion!=='1.0.0'||!Array.isArray(raw.programs))throw new Error('unsupported portal data');
+  const byId=Object.fromEntries(raw.programs.map(p=>[p.id,p]));
+  if(raw.programs.length!==2||!byId.forge_sculpt||!byId.rod)throw new Error('program allowlist mismatch');
+  if(byId.forge_sculpt.kind!=='phased'||byId.forge_sculpt.phases.length!==4)throw new Error('Forge Sculpt phase mismatch');
+  if(byId.rod.kind!=='weekly')throw new Error('Rod program shape mismatch');
+  const sculptCounts=programCounts(byId.forge_sculpt.phases),rodCounts=programCounts([byId.rod]);
+  if(sculptCounts.some((n,i)=>n!==EXPECTED_COUNTS.forge_sculpt[i]))throw new Error('Forge Sculpt census mismatch');
+  if(rodCounts.some((n,i)=>n!==EXPECTED_COUNTS.rod[i]))throw new Error('Rod census mismatch');
+  const serialized=JSON.stringify(raw).toLowerCase();
+  FORBIDDEN_TERMS.forEach(term=>{if(new RegExp(`\\b${term}\\b`,'i').test(serialized))throw new Error(`forbidden term: ${term}`);});
+  return byId;
+}
+function buildData(raw){const byId=validatePortalData(raw);const fr=byId.forge_sculpt;const fs={id:'forge_sculpt',name:fr.displayName,phases:fr.phases.map(ph=>({n:ph.phaseNumber,title:ph.displayName,sub:'',weeks:adaptWeeks(ph.weeks)}))};const rr=byId.rod;const rod={id:'rod',name:rr.displayName,weeks:adaptWeeks(rr.weeks)};return{programs:{forge_sculpt:fs,rod:rod}};}
 const view=document.getElementById('view'),subnav=document.getElementById('subnav'),crumb=document.getElementById('crumb'),sticky=document.getElementById('sticky');
 const el=h=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild;};
 const go=h=>location.hash=h;
@@ -523,12 +538,12 @@ function sessionSheet(prog,pn,wn,di){const ph=FS.phases.find(x=>x.n===pn);const 
 function rodHome(){chrome(true,'Rod · Coach-led','rod');view.innerHTML='';
   const cur=ROD.weeks[ROD.weeks.length-1];
   view.appendChild(el(`<div class="stack fadein" style="--gap:10px;padding-top:8px"><span class="eyebrow">Coach-led Track</span>
-    <h2>Rod</h2><p class="lede">Monday &amp; Friday · 6:15 AM. Your latest week is up top; earlier weeks below.</p>
+    <h2>Rod</h2><p class="lede">Monday &amp; Friday. Your latest week is up top; earlier weeks below.</p>
     <div class="readbox" style="margin-top:4px">${esc(cur.label||('Week '+cur.num))}</div></div>`));
   const list=el(`<div class="fadein" style="margin-top:18px"></div>`);
   cur.days.forEach((d,di)=>{if(isRest(d))return;const st=stats(d),done=STATE.done[rodKey(cur.num,d)];
     const row=el(`<div class="sess"><div class="sd">${esc((d.wd||'').slice(0,3))}</div>
-      <div class="sn">${esc(d.t)}<div class="sg">${st.moves} moves · ${st.sets} sets · 6:15 AM</div></div>
+      <div class="sn">${esc(d.t)}<div class="sg">${st.moves} moves · ${st.sets} sets</div></div>
       ${done?'<span class="tag done">✓ Done</span>':''}</div>`);
     row.onclick=()=>go(`/rod/${cur.num}/${di}`);list.appendChild(row);});
   view.appendChild(list);
@@ -540,7 +555,7 @@ function rodHome(){chrome(true,'Rod · Coach-led','rod');view.innerHTML='';
     view.appendChild(el2);}
 }
 function rodSession(wn,di){const w=ROD.weeks.find(x=>x.num===wn);const day=w&&w.days[di];if(!day)return go('/rod');
-  chrome(false,'','rod');renderSession('rod',day.t,`${esc(w.label||('Week '+w.num))} · ${day.wd} · 6:15 AM`,day,rodKey(wn,day),'Rod · this week');}
+  chrome(false,'','rod');renderSession('rod',day.t,`${esc(w.label||('Week '+w.num))} · ${day.wd}`,day,rodKey(wn,day),'Rod · this week');}
 
 function unavailable(err){try{sticky.classList.add('hide');}catch(e){}view.innerHTML='';
   view.appendChild(el(`<div class="stack" style="--gap:12px;padding-top:44px"><span class="eyebrow">Temporarily unavailable</span><h2>Training isn't loading right now.</h2><p class="lede">The program data didn't load. Refresh in a moment — if it keeps happening, let Brice know.</p></div>`));

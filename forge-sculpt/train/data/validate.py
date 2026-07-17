@@ -9,6 +9,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 DATA_PATH = ROOT / "forge-portal-programs.json"
+PORTAL_PATH = ROOT.parent / "index.html"
+REPOSITORY_ROOT = ROOT.parents[2]
 
 FLAGSHIP_IDS = [
     "forge_sculpt_phase1_v1",
@@ -82,6 +84,36 @@ def validate_weeks(weeks: list[dict], path: str) -> tuple[int, int, int, int]:
     return len(weeks), training_sessions, exercise_occurrences, prescribed_sets
 
 
+def validate_portal_contract() -> None:
+    portal = PORTAL_PATH.read_text()
+    require("const ACCESS_MODE='open-preview'" in portal, "portal is not in open-preview mode")
+    require("phaseLocked=n=>ACCESS_MODE!=='open-preview'&&n===4" in portal, "Phase IV access contract changed")
+    require("validatePortalData(raw)" in portal, "browser runtime validation missing")
+    require('name="forge-launch"' in portal and 'data-netlify="true"' in portal, "Netlify form declaration missing")
+    require("if(!r.ok)throw new Error" in portal, "signup must fail closed")
+    require("navigator.share" in portal and "location.href" in portal, "exact session sharing missing")
+    require("localStorage.setItem('forge_portal_v2'" in portal, "portal state persistence missing")
+    require("STATE.mode=b.dataset.m;save()" in portal, "Session/Focus preference persistence missing")
+    require("Finish session" in portal, "Focus completion must remain explicit")
+    require("setInterval(" not in portal and "RestTimer" not in portal, "Focus must not contain a rest timer")
+
+    for invented in ("Build the Frame", "Glute Build", "Specialize", "6:15 AM"):
+        require(invented not in portal, f"portal contains invented copy: {invented}")
+
+    assets = (
+        "assets/forge/anatomy-reveal.webp",
+        "assets/forge/hero-light.webp",
+        "assets/forge/anatomy-shoulders.webp",
+        "assets/forge/anatomy-glute.webp",
+        "assets/home/forge/anatomy-core.webp",
+        "assets/home/forge/anatomy-full.webp",
+        "assets/home/forge/anatomy-pull.webp",
+        "assets/forge/og-forge-portal-v2.jpg",
+    )
+    for asset in assets:
+        require((REPOSITORY_ROOT / asset).is_file(), f"missing portal asset: {asset}")
+
+
 def main() -> None:
     raw = DATA_PATH.read_text()
     data = json.loads(raw)
@@ -113,9 +145,11 @@ def main() -> None:
     for term in FORBIDDEN_TERMS:
         require(not re.search(rf"\b{re.escape(term)}\b", raw, re.IGNORECASE), f"forbidden term: {term}")
 
+    validate_portal_contract()
     print("FORGE portal data valid")
     print(f"Forge Sculpt: {tuple(sculpt_counts)}")
     print(f"Rod: {rod_counts}")
+    print("Portal contract: open preview, sharing, persistence, signup and assets valid")
 
 
 if __name__ == "__main__":

@@ -21,6 +21,12 @@
 
 # WordPress spam
 
+# FORGE athlete portal — preserve the directory base for relative data loading
+[[redirects]]
+  from = "/forge-sculpt/train"
+  to = "/forge-sculpt/train/"
+  status = 301
+
 # Forge React app — SPA catch-all
 [[redirects]]
   from = "/forge/*"
