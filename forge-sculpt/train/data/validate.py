@@ -107,9 +107,12 @@ def validate_portal_contract() -> None:
     require("AppleIDSignInOnSuccess" in portal and "AppleIDSignInOnFailure" in portal, "Apple event handling missing")
     require("authorization.state!==APPLE_TRANSACTION.state" in portal, "Apple state verification missing")
     require("apple-btn" not in portal and "apple-mark" not in portal, "custom Apple control is prohibited")
-    require("progress still saves to this browser" in portal.lower(), "account copy must preserve local-only progress truth")
+    require("progress is saved to this browser" in portal.lower(), "portal must preserve local-only progress truth")
     require("min-height:64px" in portal, "Focus set action must remain 64px")
     require(".execution .fadein{animation-duration:.2s}" in portal, "execution motion must remain within 220ms")
+    require("installExerciseNavigator(barrow)" in portal and "scrollIntoView" in portal, "exercise navigation missing")
+    require("No spam. Just the link." not in portal, "removed launch filler returned")
+    require("Training progress still saves to this browser during the preview." not in portal, "removed account filler returned")
     require((REPOSITORY_ROOT / "auth/apple/callback.html").is_file(), "Apple callback document missing")
 
     for invented in ("Build the Frame", "Glute Build", "Specialize", "6:15 AM"):

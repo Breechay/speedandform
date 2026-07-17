@@ -40,12 +40,12 @@
   --dot-ring:rgba(140,96,41,.16);--paper-grain:.018;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;background:var(--bg)}
+html{scroll-behavior:smooth;background:var(--bg);overflow-x:hidden}
 body{background:
   radial-gradient(circle at 78% 6%,color-mix(in srgb,var(--accent) 5%,transparent),transparent 31rem),
   linear-gradient(180deg,var(--bg),var(--bg-2) 115%);
   color:var(--text-2);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.6;
-  -webkit-font-smoothing:antialiased;padding-bottom:118px;min-height:100vh;transition:background .2s var(--ease),color .2s var(--ease)}
+  -webkit-font-smoothing:antialiased;padding-bottom:118px;min-height:100vh;overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;transition:background .2s var(--ease),color .2s var(--ease)}
 :root{--sans:'Jost',system-ui,sans-serif;--serif:'Instrument Serif',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,monospace;
   --maxw:840px;--homew:1180px;--pad:clamp(20px,5vw,48px);--ease:cubic-bezier(.22,.61,.36,1)}
 h1,h2,h3{font-weight:400;letter-spacing:-.025em;line-height:1.04;color:var(--text)}
@@ -168,6 +168,9 @@ main.portal-home{max-width:var(--homew)}
 /* session/focus controls */
 .modebar{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px}.modebar button{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;background:none;border:none;color:var(--text-3);padding:8px 18px;min-height:44px;border-radius:999px;cursor:pointer;transition:.2s}.modebar button.on{background:var(--accent-soft);color:var(--accent)}
 .barrow{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:2px 0 20px}.sharebtn{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-2);background:transparent;border:1px solid var(--line);padding:9px 15px;min-height:44px;border-radius:999px;cursor:pointer;transition:.2s}.sharebtn:hover{border-color:var(--line-strong);color:var(--text)}
+.exercise-nav{position:sticky;top:73px;z-index:24;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;gap:8px;margin:0 0 14px;padding:6px;background:var(--nav-bg);backdrop-filter:blur(16px);border:1px solid var(--line)}
+.exercise-nav button{width:44px;height:44px;border:0;background:transparent;color:var(--text-2);font-size:18px;cursor:pointer}.exercise-nav button:disabled{opacity:.25;cursor:default}.exercise-nav .exercise-position{text-align:center;font-family:var(--mono);font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--text-3)}
+.ex,.fx-mv{scroll-margin-top:142px}
 .fx-coord{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-4)}.fx-title{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:6px 0 4px}.fx-title .fxlabel{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}.fx-mv{border-top:1px solid var(--line)}.fx-head{display:flex;flex-direction:column;gap:4px;padding:17px 0 11px;min-height:44px;cursor:pointer;background:none;border:none;width:100%;text-align:left}.fx-name{font-size:17px;color:var(--text);display:flex;gap:9px;align-items:center;flex-wrap:wrap}.fx-q{font-family:var(--mono);font-size:11px;color:var(--text-4);border:1px solid var(--line);border-radius:50%;width:17px;height:17px;display:inline-flex;align-items:center;justify-content:center}.fx-rx{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--text-3);text-transform:uppercase}.fx-help{display:none;font-size:13.5px;color:var(--text-2);line-height:1.5;border-left:1px solid var(--accent);padding:2px 0 10px 14px;margin:2px 0 6px}.fx-help.open{display:block}.fx-set{display:flex;align-items:center;gap:14px;padding:13px 0;min-height:64px;cursor:pointer;border:none;border-bottom:1px solid var(--line-2);background:none;width:100%;text-align:left}.fx-mark{width:13px;height:13px;flex:none;border:1px solid var(--text-4);transition:.15s}.fx-set.done .fx-mark{background:var(--accent);border-color:var(--accent)}.fx-idx{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);flex:1}.fx-set.done .fx-idx,.fx-set.done .fx-val{color:var(--text-4)}.fx-val{font-family:var(--mono);font-size:12px;color:var(--text);letter-spacing:.03em}
 .sticky{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--nav-bg);backdrop-filter:blur(18px);border-top:1px solid var(--line)}.sticky.hide{display:none}.sticky-in{max-width:var(--maxw);margin:0 auto;padding:12px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:12px}.sticky .prog{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3)}.mini{padding:12px 18px;min-height:44px;width:auto}.mini.done-state{background:transparent;color:var(--accent);border-color:var(--accent-dim)}
 footer{max-width:var(--maxw);margin:0 auto;padding:30px 0;border-top:1px solid var(--line-2);font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-4);line-height:1.9}
@@ -377,7 +380,7 @@ function chrome(showSub,crumbText,active){view.className='';subnav.classList.tog
   document.title=(crumbText?crumbText+' — ':'')+'FORGE Sculpt';}
 
 /* ---- router ---- */
-function render(){const h=location.hash.replace(/^#/,'')||'/';const p=h.split('/').filter(Boolean);window.scrollTo(0,0);
+function render(){if(MOVEMENT_OBSERVER){MOVEMENT_OBSERVER.disconnect();MOVEMENT_OBSERVER=null;}const h=location.hash.replace(/^#/,'')||'/';const p=h.split('/').filter(Boolean);window.scrollTo(0,0);
   if(!p.length)return entry();
   if(p[0]==='access')return unlocked()?go('/sculpt'):gate('/sculpt');
   if(p[0]==='sculpt'){
@@ -454,7 +457,7 @@ function entry(){chrome(false,'',null);view.className='portal-home';view.innerHT
   const openProgram=()=>go('/sculpt');program.onclick=openProgram;program.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openProgram();}};home.appendChild(program);
 
   const account=el(`<section class="account-panel"><div><h3>Use the same account in FORGE.</h3>
-    <p>Continue with Apple here, then use that Apple account in the standalone app. Training progress still saves to this browser during the preview.</p></div>
+    <p>Continue with Apple here, then use that Apple account in the standalone app.</p></div>
     <div class="account-actions"></div></section>`);
   const accountActions=account.querySelector('.account-actions');
   if(ACCOUNT_USER){
@@ -559,7 +562,7 @@ function sessionBody(title,eyebrow,day){
     const detailSub=(e.subs&&e.subs.length)?`<div class="row"><span class="k">Substitution${e.subs.length>1?'s':''}</span>${e.subs.map(esc).join(' · ')}</div>`:'';
     const detail=(detailCue||detailSub)?`<div class="ex-more"><button class="ex-toggle">＋ ${e.prime?'Substitution':'Cue · substitution'}</button>
       <div class="ex-detail">${detailCue}${detailSub}</div></div>`:'';
-    const ex=el(`<div class="ex ${e.prime?'prime':''}"><div class="ex-top"><div class="ex-idx">${String(i+1).padStart(2,'0')}</div>
+    const ex=el(`<div class="ex ${e.prime?'prime':''}" data-movement-index="${i}"><div class="ex-top"><div class="ex-idx">${String(i+1).padStart(2,'0')}</div>
       <div><div class="ex-name">${esc(e.n)}${e.prime?'<span class="ex-badge">Key lift</span>':''}</div>
       <div class="ex-var">${esc(e.intent||'')}${e.lat&&e.lat!=='bilateral'?' · '+esc(e.lat):''}</div></div></div>
       <div class="ex-rx"><div class="rx"><b>${repStr(e)}</b><span>${e.sec?'Sets × Time':'Sets × Reps'}</span></div>
@@ -583,7 +586,7 @@ function focusBody(title,eyebrow,day,doneKey){
     const rx=`${e.sc} × ${reps}${side} · ${e.rest}s rest`;
     const canHelp=!!(e.cue||(e.subs&&e.subs.length));
     const val=`${reps}${side}${e.load?` × ${e.load} lb`:''}`;
-    const mv=el(`<div class="fx-mv">
+    const mv=el(`<div class="fx-mv" data-movement-index="${i}">
       <button class="fx-head"><div class="fx-name">${esc(e.n)}${e.prime?'<span class="ex-badge">Key lift</span>':''}${canHelp?'<span class="fx-q">?</span>':''}</div>
       <div class="fx-rx">${rx}</div></button>
       ${canHelp?`<div class="fx-help">${e.cue?`<div>${esc(e.cue)}</div>`:''}${(e.subs&&e.subs.length)?`<div style="margin-top:8px"><span style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-4)">Sub${e.subs.length>1?'s':''}</span> ${e.subs.map(esc).join(' · ')}</div>`:''}</div>`:''}</div>`);
@@ -598,6 +601,21 @@ function focusBody(title,eyebrow,day,doneKey){
   view.appendChild(box);
 }
 
+let MOVEMENT_OBSERVER=null;
+function installExerciseNavigator(anchor){
+  if(MOVEMENT_OBSERVER){MOVEMENT_OBSERVER.disconnect();MOVEMENT_OBSERVER=null;}
+  const targets=[...view.querySelectorAll('[data-movement-index]')];
+  if(targets.length<2)return;
+  const nav=el(`<div class="exercise-nav" aria-label="Exercise navigation"><button type="button" aria-label="Previous exercise">↑</button><div class="exercise-position"></div><button type="button" aria-label="Next exercise">↓</button></div>`);
+  const buttons=nav.querySelectorAll('button'),position=nav.querySelector('.exercise-position');
+  let current=0;
+  const update=index=>{current=Math.max(0,Math.min(targets.length-1,index));position.textContent=`Exercise ${current+1} of ${targets.length}`;buttons[0].disabled=current===0;buttons[1].disabled=current===targets.length-1;};
+  const move=delta=>{update(current+delta);targets[current].scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});};
+  buttons[0].onclick=()=>move(-1);buttons[1].onclick=()=>move(1);update(0);anchor.after(nav);
+  MOVEMENT_OBSERVER=new IntersectionObserver(entries=>{const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top);if(visible.length)update(Number(visible[0].target.dataset.movementIndex));},{rootMargin:'-142px 0px -55% 0px',threshold:0});
+  targets.forEach(target=>MOVEMENT_OBSERVER.observe(target));
+}
+
 function renderSession(prog,title,eyebrow,day,doneKey,backLabel){
   view.innerHTML='';
   view.className='execution';
@@ -610,6 +628,7 @@ function renderSession(prog,title,eyebrow,day,doneKey,backLabel){
   share.onclick=async()=>{const url=location.href,text=`FORGE Sculpt — ${eyebrow} — ${title}`;const copied=()=>{share.textContent='✓ Link copied';setTimeout(()=>share.textContent='↗ Share',2000);};try{if(navigator.share){await navigator.share({title:'FORGE Sculpt',text,url});}else{await navigator.clipboard.writeText(`${text}\n${url}`);copied();}}catch(e){try{await navigator.clipboard.writeText(`${text}\n${url}`);copied();}catch(_){}}};
   const barrow=el(`<div class="barrow fadein"></div>`);barrow.appendChild(bar);barrow.appendChild(share);view.appendChild(barrow);
   if(mode==='focus')focusBody(title,eyebrow,day,doneKey);else sessionBody(title,eyebrow,day);
+  installExerciseNavigator(barrow);
   // sticky — explicit session close, never automatic
   sticky.classList.remove('hide');
   const s=stats(day),doneBtn=document.getElementById('s-done'),progEl=document.getElementById('s-prog');
