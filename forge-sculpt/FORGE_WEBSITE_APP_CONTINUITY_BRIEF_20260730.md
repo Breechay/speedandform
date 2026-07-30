@@ -131,7 +131,7 @@ Program IDs (flagship ladder): `forge_sculpt_phase1_v1` … `forge_sculpt_phase1
 - Do not invent a second gold system that fights the app.
 
 ### 5.7 Price
-- When settled on site: **$199** annual (app visual-beta list aligns to launch annual / `$199.99` StoreKit display).
+- Public page and StoreKit must match: **$199.99** annual (`forge_annual` / launch annual).
 - Do not invent founding scarcity math on the public page unless the app is still showing it.
 
 ### 5.8 Phase name alignment
@@ -195,7 +195,7 @@ Website CTA into the app should end on **ENTER THE YEAR** / open the year — th
 | Product surfaces | Today / Focus / Record glass | Today poster, Focus, Record |
 | No workout marketplace | Refusal: inspect day/week/year; assignment stays authored | No shop / rewrite surface; inspection allowed |
 | Local record | Device-owned; export/deletion under athlete control when true | Local store; name privacy line §6 — do not claim “everything” / progress photos unless shipping |
-| Price | $199 when settled | Membership annual list / StoreKit |
+| Price | $199.99 / year (match StoreKit) | Membership annual list / StoreKit `forge_annual` |
 | Speaks when | Landing thresholds only | Register + Paywall; quiet in training |
 
 ---
@@ -216,9 +216,12 @@ Website CTA into the app should end on **ENTER THE YEAR** / open the year — th
 - [x] Soften Record claims (no “everything” / progress photos until shipping proves them)
 - [ ] Author photography — blocked until a real Brice image is supplied
 - [x] FORGE bronze scoped to landing; do not migrate Northstar / `train/` without separate ruling
+- [x] Final truth close: illustrative allocation label; Focus plate without SWAP; `$199.99`; programming-decision claim; sample-data disclosure
+- [ ] Fresh optics Today/Record screenshots (current JPGs still older chrome; Focus is HTML until capture lands)
 
 **Executed:** 2026-07-30 · `forge-sculpt/index.html` · phone still locked for Forge launch.  
-**Truth + glass pass:** 2026-07-30 evening.
+**Truth + glass pass:** 2026-07-30 evening.  
+**Final asset + truth close:** 2026-07-30 · Structure/voice frozen.
 
 ---
 

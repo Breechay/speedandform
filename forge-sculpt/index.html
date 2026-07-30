@@ -215,11 +215,38 @@ section{position:relative}
   padding:10px 14px 0;font-family:var(--mono);font-size:8px;letter-spacing:.14em;color:var(--bone-28);
 }
 .glass-plate .g-shot{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;object-position:top center;background:#0A0A09}
+.glass-plate .g-live{
+  aspect-ratio:9/16;padding:18px 16px 20px;display:flex;flex-direction:column;gap:12px;
+  background:linear-gradient(180deg,#12110F 0%,#0A0A09 100%);
+}
+.glass-plate .g-live .g-coord{font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;color:var(--gold);text-transform:uppercase}
+.glass-plate .g-live .g-move{font-size:17px;letter-spacing:-.02em;line-height:1.2;color:var(--bone);margin-top:4px}
+.glass-plate .g-live .g-cue{font-size:12px;color:var(--bone-45);line-height:1.45}
+.glass-plate .g-live .g-set{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;margin-top:auto}
+.glass-plate .g-live .g-io{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  border-top:1px solid var(--bone-06);border-bottom:1px solid var(--bone-06);padding:14px 0;
+}
+.glass-plate .g-live .g-io b{font-family:var(--mono);font-size:18px;font-weight:500;color:var(--bone);letter-spacing:.02em}
+.glass-plate .g-live .g-io span{font-family:var(--mono);font-size:8px;letter-spacing:.12em;color:var(--bone-28);text-transform:uppercase;display:block;margin-top:4px}
+.glass-plate .g-live .g-act{
+  text-align:center;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink);background:var(--gold);padding:12px 10px;border-radius:2px;
+}
+.glass-plate .g-live .g-exit{
+  display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--bone-28);margin-top:2px;
+}
 .glass-plate .g-cap{
   padding:12px 14px 14px;border-top:1px solid var(--bone-06);
   font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);
 }
 .glass-plate .g-cap span{display:block;color:var(--bone-28);margin-top:4px;letter-spacing:.1em}
+.glass-note{
+  margin-top:14px;font-family:var(--mono);font-size:9px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--bone-28);text-align:right;
+}
+@media(max-width:940px){.glass-note{text-align:center}}
 .claims{margin-top:44px;display:flex;flex-direction:column;gap:0}
 .claims div{border-top:1px solid var(--bone-12);padding:18px 0}
 .claims div:last-child{border-bottom:1px solid var(--bone-12)}
@@ -520,13 +547,13 @@ html.no-js .dp-step, html.no-js .dp-act, html.no-js .dp-reset{ display:none; }
 
     <div class="alloc reveal">
       <div class="alloc-hd">
-        <p class="eyebrow">Weekly volume · share of working sets</p>
+        <p class="eyebrow">Illustrative allocation · share of working sets</p>
         <p class="eyebrow">Fig. 01</p>
       </div>
       <div class="alloc-cols">
         <div class="alloc-col">
           <h4>The self-assembled split</h4>
-          <p class="cap">What a trained man's week looks like when he chose it himself.</p>
+          <p class="cap">Editorial example — what a trained man's week often looks like when he chose it himself.</p>
           <div class="bar-row"><span class="lbl">Chest</span><div class="bar-track"><i class="bar-fill" data-w="26"></i></div><span class="pct">26</span></div>
           <div class="bar-row"><span class="lbl">Arms</span><div class="bar-track"><i class="bar-fill" data-w="23"></i></div><span class="pct">23</span></div>
           <div class="bar-row"><span class="lbl">Back</span><div class="bar-track"><i class="bar-fill" data-w="16"></i></div><span class="pct">16</span></div>
@@ -537,7 +564,7 @@ html.no-js .dp-step, html.no-js .dp-act, html.no-js .dp-reset{ display:none; }
         </div>
         <div class="alloc-col ours">
           <h4>Breechay Sculpt · Build the Glute Base</h4>
-          <p class="cap">The same budget, allocated against the frame rather than the habit.</p>
+          <p class="cap">Illustrative emphasis — not a published registry census. The point is the reallocation, not the exact digits.</p>
           <div class="bar-row hi"><span class="lbl">Shoulders</span><div class="bar-track"><i class="bar-fill" data-w="21"></i></div><span class="pct">21</span></div>
           <div class="bar-row hi"><span class="lbl">Back</span><div class="bar-track"><i class="bar-fill" data-w="20"></i></div><span class="pct">20</span></div>
           <div class="bar-row hi"><span class="lbl">Glutes</span><div class="bar-track"><i class="bar-fill" data-w="19"></i></div><span class="pct">19</span></div>
@@ -548,6 +575,7 @@ html.no-js .dp-step, html.no-js .dp-act, html.no-js .dp-reset{ display:none; }
         </div>
       </div>
       <p class="alloc-note">
+        Illustrative allocation · not measured from the P02 registry.<br>
         Your chest gets less. That is not an oversight — it is the entire point.<br>
         A generator cannot make this decision. It has no opinion about your body.
       </p>
@@ -636,7 +664,7 @@ html.no-js .dp-step, html.no-js .dp-act, html.no-js .dp-reset{ display:none; }
           <div><h4>Today is already decided</h4><p>Open the app and the session is waiting — anatomy, Support, week position, begin when ready.</p></div>
           <div><h4>Focus is the gym screen</h4><p>One movement. Log the set. Finish. Leave for a call and the session is still exactly where you left it.</p></div>
           <div><h4>The Record keeps the work</h4><p>Your recorded training stays on this device. Export and deletion remain under your control.</p></div>
-          <div><h4>There is never a next decision</h4><p>Finish today and tomorrow is already written. That is the whole product.</p></div>
+          <div><h4>There is never another programming decision</h4><p>Finish today and tomorrow’s assignment is already written.</p></div>
         </div>
       </div>
 
@@ -649,8 +677,20 @@ html.no-js .dp-step, html.no-js .dp-act, html.no-js .dp-reset{ display:none; }
           </figure>
           <figure class="glass-plate">
             <div class="g-chrome"><span>FORGE</span><span>FOCUS</span></div>
-            <img class="g-shot" src="/assets/forge/session-set.jpg" alt="Focus — one movement, prescription, and set logging" width="390" height="844" loading="lazy" decoding="async">
-            <figcaption class="g-cap">Focus<span>The work</span></figcaption>
+            <div class="g-live" aria-hidden="true">
+              <p class="g-coord">Shoulder A · Set 1 of 4</p>
+              <p class="g-move">Cable Lateral Raise (Cross-Body)</p>
+              <p class="g-cue">Elbow drives up and out, not the wrist. Top position: upper arm parallel to floor.</p>
+              <p class="g-set">Log the set</p>
+              <div class="g-io">
+                <div><b>25</b><span>lb</span></div>
+                <div style="opacity:.35;font-family:var(--mono)">×</div>
+                <div style="text-align:right"><b>15</b><span>reps</span></div>
+              </div>
+              <div class="g-act">Complete set →</div>
+              <div class="g-exit"><span>Exit</span><span>Finish</span></div>
+            </div>
+            <figcaption class="g-cap">Focus<span>The work · no swap</span></figcaption>
           </figure>
           <figure class="glass-plate">
             <div class="g-chrome"><span>FORGE</span><span>RECORD</span></div>
@@ -658,6 +698,7 @@ html.no-js .dp-step, html.no-js .dp-act, html.no-js .dp-reset{ display:none; }
             <figcaption class="g-cap">Record<span>The evidence</span></figcaption>
           </figure>
         </div>
+        <p class="glass-note">Product shown with sample training data</p>
       </div>
     </div>
   </div>
@@ -767,7 +808,7 @@ html.no-js .dp-step, html.no-js .dp-act, html.no-js .dp-reset{ display:none; }
     </div>
 
     <div class="price-soon reveal" style="text-align:center;margin:36px 0 0;">
-        <p class="mono" style="font-size:clamp(28px,4vw,42px);letter-spacing:.06em;color:var(--bone);margin-bottom:8px;">$199<span style="font-size:14px;color:var(--bone-45);letter-spacing:.14em;"> / year</span></p>
+        <p class="mono" style="font-size:clamp(28px,4vw,42px);letter-spacing:.06em;color:var(--bone);margin-bottom:8px;">$199.99<span style="font-size:14px;color:var(--bone-45);letter-spacing:.14em;"> / year</span></p>
         <p class="price-note" style="margin-top:6px;opacity:.7;font-size:13px;">Week 1 free. Annual membership through the Apple App Store.</p>
         <p class="apple-note" style="opacity:.6;font-size:12px;">Billed and managed through Apple · Cancel anytime</p>
 
@@ -833,14 +874,14 @@ html.no-js .dp-step, html.no-js .dp-act, html.no-js .dp-reset{ display:none; }
     <p class="eyebrow reveal">Breechay Sculpt · The Frame · Week 01</p>
     <h2 class="reveal" style="transition-delay:.06s">Enter the year.</h2>
     <p class="lede reveal" style="transition-delay:.12s">
-      Three campaigns. Twelve phases. Forty-nine training weeks, then the Hold. Every session already decided. The first week costs nothing and tells you everything.
+      Three campaigns. Twelve phases. Forty-nine training weeks, then the Hold. Every session already decided. The first week costs nothing and tells you enough.
     </p>
     <div class="hero-actions reveal" style="transition-delay:.18s">
       <a class="btn" href="#notify">Enter the year</a>
       <a class="btn btn-ghost" href="#curriculum">See the curriculum</a>
     </div>
     <p class="proofline reveal" style="transition-delay:.24s">
-      iPhone · Week 1 free · $199 / year · Billed through the Apple App Store
+      iPhone · Week 1 free · $199.99 / year · Billed through the Apple App Store
     </p>
   </div>
 </section>
