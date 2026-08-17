@@ -99,6 +99,10 @@
 /thursday               /thursday.html              200
 /plan-speed-emergence   /plan-speed-emergence.html  200
 
+# Interactive homepage mockup (does not replace production index)
+/mockupA                /mockupA/index.html         200
+/mockupA/               /mockupA/index.html         200
+
 # New site rooms (2026 rebuild)
 /forge-sculpt.html      /forge-sculpt/              301
 /forge-sculpt/train     /forge-sculpt/train/        301
