@@ -307,6 +307,11 @@
     });
   });
 
+  document.getElementById("labFab").addEventListener("click", function () {
+    const on = document.body.classList.toggle("lab-open");
+    this.classList.toggle("is-on", on);
+  });
+
   function openLab(open) {
     lab.classList.toggle("open", open);
     document.getElementById("labToggle").classList.toggle("is-on", open);
