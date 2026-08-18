@@ -184,6 +184,8 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 .drop span{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,239,226,.34)}
 .drop.has{border-color:#C3AD96}
 .reach{margin-top:8px}
+.reach .ti{margin-top:4px}
+.reach .hint{display:block;margin-top:22px}
 .ticks{margin-top:28px;display:flex;gap:12px;align-items:center}
 .tick{font-size:10px;letter-spacing:.16em;color:rgba(244,239,226,.24);transition:color .5s var(--ease)}
 .tick.done{color:rgba(244,239,226,.5)}
