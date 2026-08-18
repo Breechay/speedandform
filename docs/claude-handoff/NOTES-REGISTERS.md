@@ -71,12 +71,14 @@ Plate 03 is back, with a different job. It died the first time for restating 01 
 
 **The test that kills 03 again:** if the Line on it could have been said on 02, it is a restatement and the plate goes. 03 earns its place only by naming a person.
 
-## NOTE 001 — live, cue still open
+## NOTE 001 — live
 
 Plate 03 carries Hope and the Line. `/notes` carries the full Observation. The frame is `/media/note-001.jpg` (Hope on the bridge, 9:16). Permissions cleared.
 
 **Line** — *The back leg finishes when nothing is rushing it.* Passes both tests: could not have been said on 02, survives Hope being removed.
 
-Reason paragraphs two and three, and the Close, are authored. The three inputs in the Close (slower than you want, jaw, arms swinging not driving) are the standard reading, not Brice's words. **His cue replaces them.** Do not invent one.
+**Close** — Brice's cues, verbatim, reordered only: glide forward, less rotation, less bounce. Then the sensation: how much of the stride is already happening behind you.
+
+Reason paragraphs two and three are authored. The mechanism matches the cues. The words are not his.
 
 Source: `docs/claude-handoff/NOTE-001.md`.

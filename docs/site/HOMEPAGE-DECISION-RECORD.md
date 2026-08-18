@@ -12,7 +12,7 @@
 
 - **01 THE WORK** — Run Development / With Brice / 8 weeks / $1,200. Colour film.
 - **02 THE PRACTICE** — *I develop runners.* and three more arguments on a horizontal text axis (swipe the thesis, or tap `01 / 04`). Grey film.
-- **03 THE NOTES** — one Observation. A still, not a film. Line + Hope + door to `/notes`. Not a grid. **Live:** *The back leg finishes when nothing is rushing it.* Frame is Hope on the bridge. Permissions cleared. The Close on `/notes` is authored; Brice's actual cue still replaces the three inputs.
+- **03 THE NOTES** — one Observation. A still, not a film. Line + Hope + door to `/notes`. Not a grid. **Live:** *The back leg finishes when nothing is rushing it.* Frame is Hope on the bridge. Permissions cleared. Close on `/notes`: Glide forward. Less rotation. Less bounce. Then the sensation behind you.
 - **Begin** — same five questions. No cart. Persists across all three plates.
 
 **01 + first thesis + Begin is still complete** without extra 02 swipes and without reaching 03. Both 02 and 03 are depth.

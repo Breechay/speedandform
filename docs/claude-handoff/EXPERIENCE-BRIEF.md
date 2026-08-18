@@ -11,7 +11,7 @@ Owner: Brice. Site: speedandform.com. This is an instrument, not a campaign.
 BEGIN             The five-question conversation. Persists. Does not move.
 ```
 
-The first 03 died for restating 01 and 02. This 03 is evidence, not a spec sheet. The Line is *The back leg finishes when nothing is rushing it.* If a Line could have been said on 02, the plate goes again. The Close on `/notes` is authored; Brice's cue still replaces the inputs.
+The first 03 died for restating 01 and 02. This 03 is evidence, not a spec sheet. The Line is *The back leg finishes when nothing is rushing it.* If a Line could have been said on 02, the plate goes again. The Close on `/notes` is his: Glide forward. Less rotation. Less bounce.
 
 **01 + first thesis + Begin is still complete** without extra 02 swipes and without reaching 03.
 

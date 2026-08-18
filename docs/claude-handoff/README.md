@@ -25,6 +25,6 @@ Fonts load from Google (Fraunces + JetBrains Mono). Needs network once.
 | `docs/PROMPT-FOR-CLAUDE.md` | Paste to Claude |
 | `docs/ASK-BRICE.md` | Ask before writing more copy |
 
-Do not add a cart. Do not invent athlete content. 01 + first thesis + Begin must still work if no one reaches 03. Plate 03 is NOTE 001 (Hope). The Close on `/notes` waits on Brice's cue. See `NOTES-REGISTERS.md`.
+Do not add a cart. Do not invent athlete content. 01 + first thesis + Begin must still work if no one reaches 03. Plate 03 is NOTE 001 (Hope). Close is his cues. See `NOTES-REGISTERS.md`.
 
 Live: https://speedandform.com/

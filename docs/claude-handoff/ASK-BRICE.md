@@ -26,15 +26,13 @@ Ask one at a time. Write down the answer in his language first. Only then compre
 12. What do you never say to an athlete?
 13. What do people think they are buying, and what are they actually entering?
 
-## NOTE 001 — the cue that remains
+## NOTE 001 — closed
 
-Line and frame are live. Hope is named. Permissions cleared.
+Line, frame, name, and Close are live. Hope. Permissions cleared.
 
-Reason 2–3 and the Close are authored. The three inputs in the Close are not his words.
+Close cues are his, verbatim: *glide forward, reduce extra rotation and minimal bounce.* Compressed to: Glide forward. Less rotation. Less bounce.
 
-**What do you actually say to an athlete to get this out of them?**
-
-His cue replaces the Close inputs. Do not invent one.
+Reason 2–3 remain authored.
 
 ## How to use the answers
 
