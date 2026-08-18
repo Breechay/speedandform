@@ -1,0 +1,272 @@
+(function () {
+  var $ = function (s) { return document.querySelector(s); };
+  var $$ = function (s) { return [].slice.call(document.querySelectorAll(s)); };
+  var clamp = function (n, a, b) { return Math.max(a, Math.min(b, n)); };
+  var lerp = function (a, b, t) { return a + (b - a) * t; };
+  var ease = function (t) { return t * t * (3 - 2 * t); };
+
+  var A = { other: [] };
+  var qi = 0;
+  var QN = 5;
+  var BRICE = "briceikouebe@gmail.com";
+  var sending = false;
+  var plates = $("#plates");
+  var filmA = $("#filmA");
+  var filmB = $("#filmB");
+  var beginSlot = $("#beginSlot");
+  var ledger = $("#termsLedger");
+  var includesRow = $("#includesRow");
+  var activePlate = 0;
+  var returnPlate = 0;
+  var termsSeen = false;
+  var snapTimer = 0;
+  var snapLock = false;
+  var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function pane(id) {
+    $$(".pane").forEach(function (p) { p.classList.toggle("on", p.id === id); });
+    var shown = id ? $("#" + id) : null;
+    if (shown) shown.scrollTop = 0;
+  }
+
+  function mode(m) {
+    document.body.classList.remove("asking", "reading");
+    if (m) document.body.classList.add(m);
+    if (m) {
+      filmA.pause();
+      filmB.pause();
+    } else {
+      syncFilms(activePlate);
+    }
+  }
+
+  function plateHeight() { return Math.max(1, plates.clientHeight); }
+
+  function snapToPlate(i, behavior) {
+    activePlate = clamp(i, 0, 2);
+    snapLock = true;
+    plates.scrollTo({ top: activePlate * plateHeight(), behavior: behavior || (reduced ? "auto" : "smooth") });
+    window.setTimeout(function () { snapLock = false; }, reduced ? 30 : 520);
+    updatePlateState(activePlate);
+  }
+
+  function updatePlateState(i) {
+    activePlate = clamp(i, 0, 2);
+    beginSlot.classList.toggle("quiet", activePlate === 1);
+    beginSlot.classList.toggle("terms-rank", activePlate === 2);
+    if (activePlate === 2 && !termsSeen) {
+      termsSeen = true;
+      ledger.classList.add("revealed");
+    }
+    syncFilms(activePlate);
+  }
+
+  function syncFilms(i) {
+    if (document.body.classList.contains("asking") || document.body.classList.contains("reading")) return;
+    if (document.hidden) { filmA.pause(); filmB.pause(); return; }
+    if (i === 0) {
+      filmB.pause();
+      filmA.play().catch(function () {});
+    } else if (i === 1) {
+      filmA.pause();
+      filmB.play().catch(function () {});
+    } else {
+      filmA.pause();
+      filmB.pause();
+    }
+  }
+
+  function paintScroll() {
+    var h = plateHeight();
+    var p = plates.scrollTop / h;
+    var p01 = ease(clamp(p, 0, 1));
+    var p12 = ease(clamp(p - 1, 0, 1));
+    var nearestForMotion = clamp(Math.round(p), 0, 2);
+
+    var aOpacity = reduced ? (nearestForMotion === 0 ? 1 : 0) : 1 - p01;
+    var bOpacity = reduced ? (nearestForMotion === 1 ? 1 : nearestForMotion === 2 ? .16 : 0) : p01 * (1 - .84 * p12);
+    var aScale = reduced ? 1 : lerp(1, 1.055, p01);
+    var bScale = reduced ? 1 : lerp(1.025, 1, p01);
+    var roomDark = lerp(.02, .22, p12);
+    var hatchOpacity = reduced ? .52 : lerp(.65, .42, p01) * lerp(1, .68, p12);
+    var hatchY = reduced ? 0 : lerp(0, -2.5, p01);
+    document.documentElement.style.setProperty("--film-a-opacity", aOpacity.toFixed(3));
+    document.documentElement.style.setProperty("--film-b-opacity", bOpacity.toFixed(3));
+    document.documentElement.style.setProperty("--film-a-scale", aScale.toFixed(4));
+    document.documentElement.style.setProperty("--film-b-scale", bScale.toFixed(4));
+    document.documentElement.style.setProperty("--room-dark", roomDark.toFixed(3));
+    document.documentElement.style.setProperty("--hatch-opacity", hatchOpacity.toFixed(3));
+    document.documentElement.style.setProperty("--hatch-y", hatchY.toFixed(2) + "px");
+
+    var practiceIn = $(".practice-in");
+    if (practiceIn) {
+      var arrive = ease(clamp((p - .48) / .42, 0, 1));
+      practiceIn.style.setProperty("--practice-title-opacity", arrive.toFixed(3));
+      practiceIn.style.setProperty("--practice-title-y", ((1 - arrive) * 18).toFixed(1) + "px");
+      var copyArrive = ease(clamp((p - .62) / .36, 0, 1));
+      practiceIn.style.setProperty("--practice-copy-opacity", copyArrive.toFixed(3));
+      practiceIn.style.setProperty("--practice-copy-y", ((1 - copyArrive) * 14).toFixed(1) + "px");
+    }
+
+    var nearest = clamp(Math.round(p), 0, 2);
+    if (nearest !== activePlate && Math.abs(p - nearest) < .38) updatePlateState(nearest);
+
+    window.clearTimeout(snapTimer);
+    if (!snapLock && !reduced) {
+      snapTimer = window.setTimeout(function () {
+        if (document.body.classList.contains("asking") || document.body.classList.contains("reading")) return;
+        var target = clamp(Math.round(plates.scrollTop / plateHeight()), 0, 2);
+        var dist = Math.abs(plates.scrollTop - target * plateHeight());
+        if (dist > 2) snapToPlate(target, "smooth");
+        else updatePlateState(target);
+      }, 120);
+    }
+  }
+
+  function showQ(i) {
+    qi = Math.max(0, Math.min(QN - 1, i));
+    $$(".q").forEach(function (q, j) { q.classList.toggle("on", j === qi); });
+    $("#ticks").innerHTML = Array.from({ length: QN }, function (_, j) {
+      return '<span class="tick ' + (j < qi ? "done" : j === qi ? "now" : "") + '">' + String(j + 1).padStart(2, "0") + "</span>";
+    }).join("");
+  }
+
+  function start() {
+    returnPlate = clamp(Math.round(plates.scrollTop / plateHeight()), 0, 2);
+    mode("asking");
+    pane("p-ask");
+    showQ(0);
+  }
+
+  $("#begin").addEventListener("click", start);
+  $("#back").addEventListener("click", function () {
+    if (qi === 0) {
+      pane(null);
+      mode(null);
+      snapToPlate(returnPlate, "auto");
+    } else showQ(qi - 1);
+  });
+  $("#editBtn").addEventListener("click", function () { mode("asking"); pane("p-ask"); showQ(0); });
+  $("#restart").addEventListener("click", function () { pane(null); mode(null); snapToPlate(0, "auto"); });
+
+  includesRow.addEventListener("click", function () {
+    var open = includesRow.getAttribute("aria-expanded") === "true";
+    includesRow.setAttribute("aria-expanded", open ? "false" : "true");
+  });
+
+  $$(".opts").forEach(function (box) {
+    var key = box.dataset.key;
+    var many = box.dataset.mode === "many";
+    box.addEventListener("click", function (e) {
+      var b = e.target.closest(".opt");
+      if (!b) return;
+      if (many) {
+        var none = b.textContent === "Nothing regularly";
+        var turningOn = b.getAttribute("aria-pressed") !== "true";
+        if (none) {
+          $$('[data-key="other"] .opt').forEach(function (x) { x.setAttribute("aria-pressed", "false"); });
+          if (turningOn) b.setAttribute("aria-pressed", "true");
+        } else {
+          $$('[data-key="other"] .opt').forEach(function (x) { if (x.textContent === "Nothing regularly") x.setAttribute("aria-pressed", "false"); });
+          b.setAttribute("aria-pressed", turningOn ? "true" : "false");
+        }
+        A.other = $$('[data-key="other"] .opt[aria-pressed="true"]').map(function (x) { return x.textContent; });
+        return;
+      }
+      $$('[data-key="' + key + '"] .opt').forEach(function (x) { x.setAttribute("aria-pressed", "false"); });
+      b.setAttribute("aria-pressed", "true");
+      A[key] = b.textContent;
+      if (key === "goal") setTimeout(function () { showQ(1); }, 280);
+    });
+  });
+
+  $$('[data-next]').forEach(function (b) {
+    b.addEventListener("click", function () {
+      if (qi === 3) A.issue = $("#issue").value.trim();
+      if (qi === 4) {
+        A.name = $("#nm").value.trim();
+        A.mail = $("#em").value.trim();
+        var need = $("#needMail");
+        if (!/.+@.+\..+/.test(A.mail)) { need.hidden = false; $("#em").focus(); return; }
+        need.hidden = true;
+        build();
+        mode("reading");
+        pane("p-read");
+        return;
+      }
+      showQ(qi + 1);
+    });
+  });
+
+  $("#drop").addEventListener("click", function () { $("#pick").click(); });
+  $("#pick").addEventListener("change", function (e) {
+    var f = e.target.files && e.target.files[0];
+    if (!f) return;
+    A.vid = f.name; A.file = f; $("#dropT").textContent = f.name; $("#drop").classList.add("has");
+  });
+
+  function offer() {
+    var lift = A.other.indexOf("Strength") > -1 || A.other.indexOf("HYROX or mixed") > -1;
+    var days = parseInt((A.days || "0").replace(/\D.*$/, ""), 10) || 0;
+    return A.goal === "Balance running and lifting" || (lift && days >= 4);
+  }
+
+  function build() {
+    var both = offer();
+    $("#rKind").textContent = both ? "Run + Strength" : "Run Development";
+    $("#rMoney").textContent = both ? "8 Weeks · $1,800" : "8 Weeks · $1,200";
+    $("#rHead").textContent = A.name ? (A.name.split(" ")[0] + ", here is where you are.") : "Here is where you are.";
+    var now = [];
+    if (A.days) now.push(A.days + " days running");
+    if (A.vol) now.push(/week/.test(A.vol) ? A.vol : A.vol + " a week");
+    if (A.long) now.push("longest " + A.long.replace(" mi", "") + " mi");
+    var other = A.other.filter(function (x) { return x !== "Nothing regularly"; });
+    var rows = [];
+    if (A.goal) rows.push(["You want to", A.goal.toLowerCase() + ".", ""]);
+    if (now.length) rows.push(["Right now", now.join(" · "), other.length ? ("Also training: " + other.join(", ").toLowerCase()) : ""]);
+    if (A.issue) rows.push(["The issue", '"' + A.issue + '"', "", true]);
+    if (A.vid) rows.push(["Attached", A.vid, "Brice will watch it before he replies."]);
+    if (both) rows.push(["Why both", "Running and lifting are already in the same week.", "One person writing both is the only way they stop taking from each other."]);
+    if (A.city === "Miami") rows.push(["Miami", "Some key sessions can happen together.", "When seeing the work in person is worth more than reading about it."]);
+    $("#rRows").innerHTML = rows.map(function (r, i) {
+      return '<div class="row" style="animation-delay:' + (0.12 + i * 0.09) + 's"><label>' + r[0] + "</label><p" + (r[3] ? ' class="quote"' : "") + ">" + r[1] + "</p>" + (r[2] ? "<small>" + r[2] + "</small>" : "") + "</div>";
+    }).join("");
+  }
+
+  function payload() {
+    var both = offer();
+    return { offer:both?"Run + Strength":"Run Development",price:both?"8 weeks · $1,800":"8 weeks · $1,200",goal:A.goal||"",days:A.days||"",volume:A.vol||"",longest:A.long||"",other:(A.other||[]).join(", "),issue:A.issue||"",city:A.city||"",name:A.name||"",email:A.mail||"","video-name":A.vid||"" };
+  }
+
+  function sendToBrice() {
+    if (sending) return;
+    sending = true;
+    var btn = $("#sendBtn"), err = $("#sendErr"), data = payload();
+    btn.disabled = true; err.hidden = true;
+    var dest = (btn.getAttribute("data-send-to") || BRICE).trim() || BRICE;
+    var mail = new FormData();
+    mail.append("_subject", data.offer + " — " + (data.name || "new start")); mail.append("_template", "table"); mail.append("_captcha", "false");
+    if (data.email) mail.append("_replyto", data.email);
+    Object.keys(data).forEach(function (k) { mail.append(k, data[k]); }); if (A.file) mail.append("video", A.file);
+    var netlify = new FormData(); netlify.append("form-name", "run-development"); Object.keys(data).forEach(function (k) { netlify.append(k, data[k]); }); if (A.file) netlify.append("video", A.file);
+    var emailed = fetch("https://formsubmit.co/ajax/" + encodeURIComponent(dest), { method:"POST", body:mail, headers:{Accept:"application/json"} }).then(function (r) { return r.json().then(function (j) { return { ok:r.ok, j:j }; }); });
+    var stored = fetch("/", { method:"POST", body:netlify }).catch(function () { return null; });
+    Promise.all([emailed, stored]).then(function (res) {
+      if (res[0] && res[0].ok) { pane("p-done"); return; }
+      err.hidden = false; err.textContent = "It did not send. Check the address and try again."; btn.disabled = false; sending = false;
+    }).catch(function () { err.hidden = false; err.textContent = "It did not send. Try again."; btn.disabled = false; sending = false; });
+  }
+
+  $("#sendBtn").addEventListener("click", sendToBrice);
+  plates.addEventListener("scroll", paintScroll, { passive:true });
+  document.addEventListener("visibilitychange", function () { syncFilms(activePlate); });
+  window.addEventListener("resize", function () { if (!document.body.classList.contains("asking") && !document.body.classList.contains("reading")) snapToPlate(activePlate, "auto"); paintScroll(); });
+
+  if (filmB.readyState >= 1) { try { filmB.currentTime = 8; } catch (e) {} }
+  else filmB.addEventListener("loadedmetadata", function () { try { filmB.currentTime = 8; } catch (e) {} }, { once:true });
+
+  showQ(0);
+  pane(null);
+  paintScroll();
+  updatePlateState(0);
+})();

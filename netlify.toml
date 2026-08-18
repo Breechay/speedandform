@@ -480,3 +480,24 @@
   from = "/mockupb/"
   to = "/mockupb/index.html"
   status = 200
+
+# Snap-track preview. Does not replace /.
+[[redirects]]
+  from = "/mockupC"
+  to = "/mockupc/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/mockupC/"
+  to = "/mockupc/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/mockupc"
+  to = "/mockupc/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/mockupc/"
+  to = "/mockupc/index.html"
+  status = 200

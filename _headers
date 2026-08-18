@@ -68,6 +68,23 @@
   X-Robots-Tag: noindex, nofollow
   Cache-Control: no-cache, no-store, must-revalidate
 
+# Mockup C — snap-track preview; do not index
+/mockupC
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/mockupC/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/mockupc
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/mockupc/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-cache, no-store, must-revalidate
+
 # Catch-all fallback
 /*
   Cache-Control: no-cache, no-store, must-revalidate
