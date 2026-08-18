@@ -134,12 +134,6 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 @keyframes ledgerType{to{opacity:1;transform:none}}
 .ledger-label{font-size:9.5px;letter-spacing:.2em;color:rgba(244,239,226,.42);padding-top:3px}
 .ledger-value{font-size:12px;line-height:1.7;letter-spacing:.035em;color:rgba(244,239,226,.86);max-width:62ch}
-.ledger-includes{padding-right:36px}
-.ledger-includes:hover,.ledger-includes[aria-expanded="true"]{background:rgba(246,242,232,.018)}
-.ledger-includes:hover::after,.ledger-includes[aria-expanded="true"]::after{background:rgba(246,242,232,.32)}
-.includes-more{display:inline}
-.ledger-mark{position:absolute;right:2px;top:17px;font-size:15px;font-weight:400;color:rgba(244,239,226,.48);transition:transform .4s var(--ease),color .4s}
-.ledger-includes[aria-expanded="true"] .ledger-mark{transform:rotate(45deg);color:var(--ivory)}
 
 .begin-slot{
   position:absolute;z-index:13;left:50%;bottom:max(74px,calc(42px + env(safe-area-inset-bottom)));transform:translateX(-50%);
@@ -200,8 +194,6 @@ body.reading .veil{background:rgba(9,9,8,.985)}
   .plate-terms .plate-inner{justify-content:flex-start;padding-top:calc(var(--barH) + 74px);padding-bottom:144px}
   .ledger-row{grid-template-columns:94px minmax(0,1fr);padding:16px 0;gap:12px}
   .ledger-value{font-size:11px;line-height:1.65}
-  .includes-more{display:block;max-height:0;opacity:0;overflow:hidden;transform:translateY(-4px);transition:max-height .5s var(--ease),opacity .4s var(--ease),transform .5s var(--ease)}
-  .ledger-includes[aria-expanded="true"] .includes-more{max-height:120px;opacity:1;transform:none;margin-top:5px}
   .begin-slot{bottom:max(74px,calc(42px + env(safe-area-inset-bottom)))}
 }
 

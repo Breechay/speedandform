@@ -15,7 +15,6 @@
   var filmB = $("#filmB");
   var beginSlot = $("#beginSlot");
   var ledger = $("#termsLedger");
-  var includesRow = $("#includesRow");
   var activePlate = 0;
   var returnPlate = 0;
   var termsSeen = false;
@@ -166,11 +165,6 @@
   });
   $("#editBtn").addEventListener("click", function () { mode("asking"); pane("p-ask"); showQ(0); });
   $("#restart").addEventListener("click", function () { pane(null); mode(null); snapToPlate(0, "auto"); });
-
-  includesRow.addEventListener("click", function () {
-    var open = includesRow.getAttribute("aria-expanded") === "true";
-    includesRow.setAttribute("aria-expanded", open ? "false" : "true");
-  });
 
   $$(".opts").forEach(function (box) {
     var key = box.dataset.key;
