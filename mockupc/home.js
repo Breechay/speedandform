@@ -21,6 +21,7 @@
   var termsSeen = false;
   var snapTimer = 0;
   var snapLock = false;
+  var paintQueued = false;
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function pane(id) {
@@ -36,7 +37,7 @@
       filmA.pause();
       filmB.pause();
     } else {
-      syncFilms(activePlate);
+      syncFilms();
     }
   }
 
@@ -58,54 +59,71 @@
       termsSeen = true;
       ledger.classList.add("revealed");
     }
-    syncFilms(activePlate);
+    syncFilms();
   }
 
-  function syncFilms(i) {
-    if (document.body.classList.contains("asking") || document.body.classList.contains("reading")) return;
-    if (document.hidden) { filmA.pause(); filmB.pause(); return; }
-    if (i === 0) {
-      filmB.pause();
-      filmA.play().catch(function () {});
-    } else if (i === 1) {
+  function keepFilm(el) {
+    if (!el) return;
+    el.muted = true;
+    var go = el.play();
+    if (go && go.catch) go.catch(function () {});
+  }
+
+  function syncFilms() {
+    if (document.body.classList.contains("asking") || document.body.classList.contains("reading") || document.hidden) {
       filmA.pause();
-      filmB.play().catch(function () {});
-    } else {
-      filmA.pause();
       filmB.pause();
+      return;
     }
+    keepFilm(filmA);
+    keepFilm(filmB);
   }
 
   function paintScroll() {
     var h = plateHeight();
     var p = plates.scrollTop / h;
-    var p01 = ease(clamp(p, 0, 1));
-    var p12 = ease(clamp(p - 1, 0, 1));
-    var nearestForMotion = clamp(Math.round(p), 0, 2);
+    var p01 = clamp(p, 0, 1);
+    var p12 = clamp(p - 1, 0, 1);
 
-    var aOpacity = reduced ? (nearestForMotion === 0 ? 1 : 0) : 1 - p01;
-    var bOpacity = reduced ? (nearestForMotion === 1 ? 1 : nearestForMotion === 2 ? .16 : 0) : p01 * (1 - .84 * p12);
-    var aScale = reduced ? 1 : lerp(1, 1.055, p01);
-    var bScale = reduced ? 1 : lerp(1.025, 1, p01);
-    var roomDark = lerp(.02, .22, p12);
-    var hatchOpacity = reduced ? .52 : lerp(.65, .42, p01) * lerp(1, .68, p12);
-    var hatchY = reduced ? 0 : lerp(0, -2.5, p01);
-    document.documentElement.style.setProperty("--film-a-opacity", aOpacity.toFixed(3));
-    document.documentElement.style.setProperty("--film-b-opacity", bOpacity.toFixed(3));
-    document.documentElement.style.setProperty("--film-a-scale", aScale.toFixed(4));
-    document.documentElement.style.setProperty("--film-b-scale", bScale.toFixed(4));
-    document.documentElement.style.setProperty("--room-dark", roomDark.toFixed(3));
-    document.documentElement.style.setProperty("--hatch-opacity", hatchOpacity.toFixed(3));
-    document.documentElement.style.setProperty("--hatch-y", hatchY.toFixed(2) + "px");
+    var aOut = reduced ? (p01 > .5 ? 1 : 0) : ease(clamp((p01 - .1) / .68, 0, 1));
+    var bIn = reduced ? (p01 > .5 ? 1 : 0) : ease(clamp(p01 / .55, 0, 1));
+    var bRecede = reduced ? (p12 > .5 ? 1 : 0) : ease(p12);
+
+    document.documentElement.style.setProperty("--film-a-opacity", (1 - aOut).toFixed(3));
+    document.documentElement.style.setProperty("--film-b-opacity", (bIn * lerp(1, .14, bRecede)).toFixed(3));
+    document.documentElement.style.setProperty("--film-a-scale", reduced ? "1" : lerp(1, 1.012, aOut).toFixed(4));
+    document.documentElement.style.setProperty("--film-b-scale", "1");
+    document.documentElement.style.setProperty("--film-b-sat", lerp(1, .32, bRecede).toFixed(3));
+    document.documentElement.style.setProperty("--film-b-bright", lerp(1, .52, bRecede).toFixed(3));
+    document.documentElement.style.setProperty("--room-dark", lerp(.02, .62, bRecede).toFixed(3));
+    document.documentElement.style.setProperty("--hatch-opacity", (lerp(.62, .34, bIn) * lerp(1, 1.28, bRecede)).toFixed(3));
+    document.documentElement.style.setProperty("--hatch-y", "0px");
+
+    var work = $(".hero-in");
+    if (work) {
+      var workLeave = ease(clamp(p01 / .48, 0, 1));
+      work.style.setProperty("--work-opacity", (1 - workLeave).toFixed(3));
+      work.style.setProperty("--work-y", (workLeave * -16).toFixed(1) + "px");
+    }
 
     var practiceIn = $(".practice-in");
     if (practiceIn) {
-      var arrive = ease(clamp((p - .48) / .42, 0, 1));
-      practiceIn.style.setProperty("--practice-title-opacity", arrive.toFixed(3));
-      practiceIn.style.setProperty("--practice-title-y", ((1 - arrive) * 18).toFixed(1) + "px");
-      var copyArrive = ease(clamp((p - .62) / .36, 0, 1));
-      practiceIn.style.setProperty("--practice-copy-opacity", copyArrive.toFixed(3));
+      var arrive = ease(clamp((p01 - .34) / .48, 0, 1));
+      var leave = ease(clamp(p12 / .38, 0, 1));
+      practiceIn.style.setProperty("--practice-title-opacity", (arrive * (1 - leave)).toFixed(3));
+      practiceIn.style.setProperty("--practice-title-y", ((1 - arrive) * 18 + leave * -12).toFixed(1) + "px");
+      var copyArrive = ease(clamp((p01 - .48) / .44, 0, 1));
+      practiceIn.style.setProperty("--practice-copy-opacity", (copyArrive * (1 - leave)).toFixed(3));
       practiceIn.style.setProperty("--practice-copy-y", ((1 - copyArrive) * 14).toFixed(1) + "px");
+      var linkArrive = ease(clamp((p01 - .6) / .38, 0, 1));
+      practiceIn.style.setProperty("--practice-link-opacity", (linkArrive * (1 - leave)).toFixed(3));
+    }
+
+    var termsIn = $(".terms-in");
+    if (termsIn) {
+      var tIn = ease(clamp((p12 - .1) / .52, 0, 1));
+      termsIn.style.setProperty("--terms-opacity", tIn.toFixed(3));
+      termsIn.style.setProperty("--terms-y", ((1 - tIn) * 16).toFixed(1) + "px");
     }
 
     var nearest = clamp(Math.round(p), 0, 2);
@@ -119,7 +137,7 @@
         var dist = Math.abs(plates.scrollTop - target * plateHeight());
         if (dist > 2) snapToPlate(target, "smooth");
         else updatePlateState(target);
-      }, 120);
+      }, 90);
     }
   }
 
@@ -258,15 +276,26 @@
   }
 
   $("#sendBtn").addEventListener("click", sendToBrice);
-  plates.addEventListener("scroll", paintScroll, { passive:true });
-  document.addEventListener("visibilitychange", function () { syncFilms(activePlate); });
-  window.addEventListener("resize", function () { if (!document.body.classList.contains("asking") && !document.body.classList.contains("reading")) snapToPlate(activePlate, "auto"); paintScroll(); });
-
-  if (filmB.readyState >= 1) { try { filmB.currentTime = 8; } catch (e) {} }
-  else filmB.addEventListener("loadedmetadata", function () { try { filmB.currentTime = 8; } catch (e) {} }, { once:true });
+  plates.addEventListener("scroll", function () {
+    if (paintQueued) return;
+    paintQueued = true;
+    requestAnimationFrame(function () {
+      paintQueued = false;
+      paintScroll();
+    });
+  }, { passive: true });
+  document.addEventListener("visibilitychange", function () { syncFilms(); });
+  window.addEventListener("pageshow", function () { syncFilms(); });
+  window.addEventListener("focus", function () { syncFilms(); });
+  window.addEventListener("resize", function () {
+    if (!document.body.classList.contains("asking") && !document.body.classList.contains("reading")) snapToPlate(activePlate, "auto");
+    paintScroll();
+  });
 
   showQ(0);
   pane(null);
   paintScroll();
   updatePlateState(0);
+  keepFilm(filmA);
+  keepFilm(filmB);
 })();
