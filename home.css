@@ -49,13 +49,36 @@ a{color:inherit;text-decoration:none}
   position:absolute;inset:0;z-index:2;pointer-events:none;
   background-image:repeating-linear-gradient(
     to bottom,
-    rgba(9,9,8,.38) 0,
-    rgba(9,9,8,.38) 1px,
+    rgba(9,9,8,.32) 0,
+    rgba(9,9,8,.32) 1px,
     transparent 1px,
     transparent 4px
   );
-  opacity:.85;
+  opacity:.8;
   transition:opacity 1.2s var(--ease);
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx){
+  .hatch{
+    background-image:repeating-linear-gradient(
+      to bottom,
+      rgba(9,9,8,.2) 0,
+      rgba(9,9,8,.2) .5px,
+      transparent .5px,
+      transparent 2px
+    );
+    opacity:.65;
+  }
+}
+@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 3dppx){
+  .hatch{
+    background-image:repeating-linear-gradient(
+      to bottom,
+      rgba(9,9,8,.18) 0,
+      rgba(9,9,8,.18) .34px,
+      transparent .34px,
+      transparent 1.67px
+    );
+  }
 }
 body.asking .hatch,body.reading .hatch{opacity:0}
 body.asking .film video{filter:blur(16px) saturate(.55);transform:scale(1.1);opacity:.5}
@@ -102,9 +125,11 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 .with{margin-top:18px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-on-ink-dim)}
 .hr{width:40px;height:1px;background:var(--line-on-ink);margin:26px 0}
 .terms{font-size:14px;letter-spacing:.06em;color:var(--text-on-ink);display:flex;align-items:center;gap:14px}
-.terms .fee,.terms .sep{color:var(--text-on-ink-dim)}
+.terms .sep{color:var(--text-on-ink-dim)}
+.terms .fee{color:rgba(244,239,226,.82)}
 .cta{
-  margin-top:34px;display:inline-flex;align-items:center;gap:16px;border:1px solid var(--line-on-ink);
+  margin-top:34px;display:inline-flex;align-items:center;gap:16px;
+  border:1px solid rgba(246,242,232,.28);
   padding:18px 30px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
   transition:background .4s var(--ease),color .4s var(--ease),border-color .4s var(--ease);
 }
@@ -144,13 +169,14 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 .ti + .ti{margin-top:4px}
 .ta::placeholder,.ti::placeholder{color:rgba(244,239,226,.24)}
 .drop{
-  margin-top:22px;border:1px dashed var(--line-on-ink);padding:20px;display:flex;align-items:center;
+  margin-top:22px;border-bottom:1px solid var(--line-on-ink);padding:18px 0;display:flex;align-items:center;
   justify-content:space-between;gap:16px;cursor:pointer;transition:all .35s var(--ease);
 }
-.drop:hover{border-color:rgba(246,242,232,.4);background:rgba(246,242,232,.03)}
+.drop:hover{border-color:rgba(246,242,232,.4)}
 .drop b{display:block;font-family:var(--serif);font-weight:460;font-size:19px;color:var(--ivory)}
 .drop span{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-on-ink-dim)}
-.drop.has{border-style:solid;border-color:#C3AD96}
+.drop.has{border-color:#C3AD96}
+.reach{margin-top:28px}
 .ticks{margin-top:28px;display:flex;gap:12px;align-items:center}
 .tick{font-size:10px;letter-spacing:.16em;color:rgba(244,239,226,.24);transition:color .5s var(--ease)}
 .tick.done{color:rgba(244,239,226,.5)}
