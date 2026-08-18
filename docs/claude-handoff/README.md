@@ -22,7 +22,7 @@ Fonts load from Google (Fraunces + JetBrains Mono). Needs network once.
 | `docs/claude-handoff/NOTES-REGISTERS.md` | Two registers |
 | `docs/claude-handoff/NOTE-001.md` | Hope Observation source |
 | `docs/claude-handoff/AFTER-SEND.md` | Private Payment Link. Reply templates. No cart. |
-| `docs/claude-handoff/SOUNDTRACK.md` | Bed on `/mockupc` only. Not on `/`. |
+| `docs/claude-handoff/SOUNDTRACK.md` | Parked. Do not rebuild a player. |
 | `docs/EXPERIENCE-BRIEF.md` | Read first |
 | `docs/PROMPT-FOR-CLAUDE.md` | Paste to Claude |
 | `docs/ASK-BRICE.md` | Ask before writing more copy |

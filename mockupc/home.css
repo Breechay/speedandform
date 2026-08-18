@@ -93,16 +93,11 @@ body.asking .film video,body.reading .film video{transition:filter .9s var(--eas
   position:absolute;z-index:12;left:50%;top:0;transform:translateX(-50%);display:flex;align-items:center;justify-content:space-between;
   height:var(--barH);padding:0 var(--gutter);gap:16px;max-width:var(--wrap);width:100%;pointer-events:none;
 }
-.bar .id,.bar-end{pointer-events:none}
-.bar .id{display:flex;align-items:center;flex:none;pointer-events:auto}
-.bar-end{margin-left:auto;display:flex;align-items:center;gap:18px}
-.bar .back,.bar .bed-kill{
-  font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-on-ink-dim);
-  opacity:0;pointer-events:none;transition:opacity .5s,color .35s
-}
+.bar .id,.bar .back{pointer-events:auto}
+.bar .id{display:flex;align-items:center;flex:none}
+.bar .back{margin-left:auto;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-on-ink-dim);opacity:0;pointer-events:none;transition:opacity .5s,color .35s}
 body.asking .bar .back{opacity:1;pointer-events:auto}
-body.listening .bar .bed-kill{opacity:1;pointer-events:auto}
-.bar .back:hover,.bar .bed-kill:hover{color:var(--ivory)}
+.bar .back:hover{color:var(--ivory)}
 
 .plates{
   position:absolute;inset:0;z-index:4;transform:translateY(0);overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;
@@ -181,15 +176,6 @@ body.listening .bar .bed-kill{opacity:1;pointer-events:auto}
 .pc-break{display:none}
 .practice-link{display:inline-block;width:max-content;margin-top:0;align-self:center;font-size:10px;letter-spacing:.16em;color:rgba(244,239,226,.55);border-bottom:1px solid rgba(244,239,226,.2);padding-bottom:4px;opacity:var(--practice-link-opacity,1);transition:color .35s,border-color .35s}
 .practice-link:hover{color:var(--ivory);border-color:rgba(244,239,226,.55)}
-.bed-play{
-  display:inline-block;width:max-content;margin:0;padding:14px 0 4px;
-  font-size:10px;letter-spacing:.16em;color:rgba(244,239,226,.7);
-  border-bottom:1px solid rgba(244,239,226,.35);
-  opacity:var(--practice-link-opacity,1);transition:color .35s,border-color .35s
-}
-.bed-play:hover{color:var(--ivory);border-color:rgba(244,239,226,.55)}
-.bed-play.on{color:var(--ivory);border-color:rgba(244,239,226,.7)}
-#bed{position:absolute;width:0;height:0;opacity:0;pointer-events:none}
 
 .begin-slot{
   position:absolute;z-index:13;left:50%;bottom:max(74px,calc(42px + env(safe-area-inset-bottom)));transform:translateX(-50%);
