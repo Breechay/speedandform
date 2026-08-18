@@ -30,6 +30,10 @@
   var argNow = $("#argNow");
   var ai = 0;
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var AUTO_MS = 9000;     // dwell on 02 before one hint that there is more
+  var AUTO_ONCE = true;   // false = keep advancing
+  var autoTimer = 0;
+  var touched = false;
 
   function pane(id) {
     $$(".pane").forEach(function (p) { p.classList.toggle("on", p.id === id); });
@@ -72,6 +76,7 @@
   function updatePlateState(i) {
     activePlate = clamp(i, 0, lastPlate);
     beginSlot.classList.toggle("quiet", activePlate === 1);
+    if (activePlate === 1) armAuto(); else window.clearTimeout(autoTimer);
     if (plateCue) {
       $$("#plateCue [data-cue]").forEach(function (el) {
         var on = el.getAttribute("data-cue") === String(activePlate);
@@ -119,35 +124,69 @@
     if (argNow) argNow.textContent = String(ai + 1).padStart(2, "0");
   }
 
+  function stopAuto() {
+    touched = true;
+    window.clearTimeout(autoTimer);
+  }
+
+  function armAuto() {
+    window.clearTimeout(autoTimer);
+    if (touched || reduced || !thesis) return;
+    if (activePlate !== 1) return;
+    autoTimer = window.setTimeout(function () {
+      if (touched || activePlate !== 1) return;
+      if (document.body.classList.contains("asking") || document.body.classList.contains("reading")) return;
+      showArg(ai + 1 > argEls.length - 1 ? 0 : ai + 1, 1);
+      if (!AUTO_ONCE) armAuto();
+    }, AUTO_MS);
+  }
+
   function wireThesis() {
     if (!thesis) return;
-    var x0 = 0, y0 = 0, live = false, axis = 0;
+    var x0 = 0, y0 = 0, live = false, axis = 0, moved = 0;
+
     thesis.addEventListener("pointerdown", function (e) {
       if (e.pointerType === "mouse" && e.button !== 0) return;
-      x0 = e.clientX; y0 = e.clientY; live = true; axis = 0;
+      x0 = e.clientX; y0 = e.clientY; live = true; axis = 0; moved = 0;
     });
+
     thesis.addEventListener("pointermove", function (e) {
       if (!live) return;
       var dx = e.clientX - x0, dy = e.clientY - y0;
+      moved = Math.max(moved, Math.abs(dx), Math.abs(dy));
       if (!axis) {
-        if (Math.abs(dx) < 10 && Math.abs(dy) < 10) return;
+        if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
         axis = Math.abs(dx) > Math.abs(dy) ? 1 : -1;
         if (axis === 1 && thesis.setPointerCapture) { try { thesis.setPointerCapture(e.pointerId); } catch (err) {} }
       }
       if (axis !== 1) return;
-      if (Math.abs(dx) < 46) return;
+      if (Math.abs(dx) < 32) return;
       live = false;
+      stopAuto();
       showArg(ai + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
     });
-    thesis.addEventListener("pointerup", function () { live = false; axis = 0; });
-    thesis.addEventListener("pointercancel", function () { live = false; axis = 0; });
-    var count = $("#argCount");
-    if (count) count.addEventListener("click", function () {
+
+    thesis.addEventListener("pointerup", function (e) {
+      var wasLive = live;
+      live = false; axis = 0;
+      if (!wasLive || moved > 8) return;
+      if (e.target.closest && e.target.closest("a")) return;
+      stopAuto();
       showArg(ai + 1 > argEls.length - 1 ? 0 : ai + 1, 1);
     });
+
+    thesis.addEventListener("pointercancel", function () { live = false; axis = 0; });
+
+    var count = $("#argCount");
+    if (count) count.addEventListener("click", function () {
+      stopAuto();
+      showArg(ai + 1 > argEls.length - 1 ? 0 : ai + 1, 1);
+    });
+
     thesis.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowRight") showArg(ai + 1, 1);
-      if (e.key === "ArrowLeft") showArg(ai - 1, -1);
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      stopAuto();
+      showArg(ai + (e.key === "ArrowRight" ? 1 : -1), e.key === "ArrowRight" ? 1 : -1);
     });
   }
 
