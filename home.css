@@ -140,10 +140,15 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 .q.on{display:block;animation:qin .55s var(--ease) both}
 @keyframes qin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 .q h2{
-  font-family:var(--serif);font-weight:460;font-size:clamp(28px,5vw,50px);line-height:1.05;
-  letter-spacing:-.015em;color:var(--ivory);max-width:17ch;
+  font-family:var(--serif);font-weight:380;font-size:clamp(24px,4.35vw,43px);line-height:1.02;
+  letter-spacing:-.01em;color:var(--ivory);max-width:16ch;
 }
-.q .hint{margin-top:12px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-on-ink-dim)}
+.q .ask-line{
+  margin-top:36px;font-family:var(--serif);font-weight:380;
+  font-size:clamp(22px,3.8vw,36px);line-height:1.05;letter-spacing:-.01em;color:var(--ivory);
+  max-width:16ch;
+}
+.q .hint{margin-top:12px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,239,226,.34)}
 .opts{margin-top:26px;display:flex;flex-wrap:wrap;gap:8px}
 .opt{
   padding:10px 15px;border:1px solid var(--line-on-ink);font-size:13px;letter-spacing:.02em;
@@ -151,29 +156,34 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 }
 .opt:hover{color:var(--ivory);border-color:rgba(246,242,232,.4)}
 .opt[aria-pressed="true"]{background:var(--ivory);color:var(--ink);border-color:var(--ivory)}
-.grp{margin-top:22px}
+.grp{margin-top:32px}
 .grp>label{
-  display:block;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(244,239,226,.4);margin-bottom:11px;
+  display:block;font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(244,239,226,.32);margin-bottom:12px;
 }
 .grp .opts{margin-top:0}
 .q .cta{margin-top:26px}
-.ta,.ti{
+.ta{
   width:100%;background:none;border:0;border-bottom:1px solid var(--line-on-ink);outline:none;
   font-family:var(--serif);font-weight:400;font-size:20px;line-height:1.5;color:var(--ivory);
   padding:16px 0;resize:vertical;cursor:text;
 }
-.ti + .ti{margin-top:4px}
-.ta::placeholder,.ti::placeholder{color:rgba(244,239,226,.24)}
+.ti{
+  width:100%;background:none;border:0;border-bottom:1px solid var(--line-on-ink);outline:none;
+  font-family:var(--mono);font-size:14px;letter-spacing:.02em;line-height:1.5;color:var(--ivory);
+  padding:12px 0;cursor:text;
+}
+.ti + .ti{margin-top:8px}
+.ta::placeholder,.ti::placeholder{color:rgba(244,239,226,.28)}
 .drop{
   margin-top:22px;border-bottom:1px solid var(--line-on-ink);padding:18px 0;display:flex;align-items:center;
   justify-content:space-between;gap:16px;cursor:pointer;transition:all .35s var(--ease);
 }
 .drop:hover{border-color:rgba(246,242,232,.4)}
-.drop b{display:block;font-family:var(--serif);font-weight:460;font-size:19px;color:var(--ivory)}
-.drop span{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-on-ink-dim)}
+.drop b{display:block;font-family:var(--serif);font-weight:380;font-size:19px;color:var(--ivory)}
+.drop span{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,239,226,.34)}
 .drop.has{border-color:#C3AD96}
-.reach{margin-top:28px}
+.reach{margin-top:8px}
 .ticks{margin-top:28px;display:flex;gap:12px;align-items:center}
 .tick{font-size:10px;letter-spacing:.16em;color:rgba(244,239,226,.24);transition:color .5s var(--ease)}
 .tick.done{color:rgba(244,239,226,.5)}
