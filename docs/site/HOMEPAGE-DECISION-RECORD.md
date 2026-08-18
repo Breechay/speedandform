@@ -12,14 +12,14 @@
 
 - **01 THE WORK** — Run Development / With Brice / 8 weeks / $1,200. Colour film.
 - **02 THE PRACTICE** — *I develop runners.* and three more arguments on a horizontal text axis (swipe the thesis, or tap `01 / 04`). Grey film.
-- **03 THE NOTES** — one Observation. A still, not a film. Line + named athlete + door to `/notes`. Not a grid. **Blocked:** Line is a visible PENDING string and the frame is a placeholder until Brice writes one real observation about a named athlete (consent required). Do not invent athlete content to unblock it.
+- **03 THE NOTES** — one Observation. A still, not a film. Line + Hope + door to `/notes`. Not a grid. **Live:** *The back leg finishes when nothing is rushing it.* Frame is Hope on the bridge. Permissions cleared. The Close on `/notes` is authored; Brice's actual cue still replaces the three inputs.
 - **Begin** — same five questions. No cart. Persists across all three plates.
 
 **01 + first thesis + Begin is still complete** without extra 02 swipes and without reaching 03. Both 02 and 03 are depth.
 
 Kill test for 03: if the Line could have been said on 02, it is a restatement and the plate goes. 03 earns its place only by naming a person.
 
-Notes are distribution, not a content library. Two registers, one sequence: Observation (name + bronze rule) and Reminder (no name). No labels, chips, or eyebrows. Maintenance workouts are not Notes. The approved Line / Reason / Close card is not being redesigned. Spec: `docs/claude-handoff/NOTES-REGISTERS.md`.
+Notes are distribution, not a content library. Two registers, one sequence: Observation (name + bronze rule) and Reminder (no name). Close differs by register: Reminder = the decision it changes; Observation = the sensation to go find, and what produces it. No labels, chips, or eyebrows. Maintenance workouts are not Notes. Spec: `docs/claude-handoff/NOTES-REGISTERS.md`.
 
 Composition, copy, and intake wording on 01 / 02 are locked. Tokens live in `home.css` (Fraunces, JetBrains Mono, ink `#0b0b0a`, ivory `#f6f2e8`, bronze `#C3AD96`) — not the July 2026 cream/plum table below, which belonged to the previous homepage.
 

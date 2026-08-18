@@ -2,16 +2,16 @@
 
 Owner: Brice. Site: speedandform.com. This is an instrument, not a campaign.
 
-**Live now:** three plates, then Begin. 03 is wired and blocked.
+**Live now:** three plates, then Begin. 03 is NOTE 001 — Hope on the bridge.
 
 ```
 01  THE WORK      Run Development. With Brice. 8 weeks. $1,200. Colour film.
 02  THE PRACTICE  I develop runners. How he thinks. Grey film.
-03  THE NOTES     One Observation. A still. Line, name, door to /notes.
+03  THE NOTES     One Observation. A still. Line, Hope, door to /notes.
 BEGIN             The five-question conversation. Persists. Does not move.
 ```
 
-The first 03 died for restating 01 and 02. This 03 is evidence, not a spec sheet. It is blocked until Brice writes one real Observation about a named athlete. Do not invent that Line. If the Line could have been said on 02, the plate goes again.
+The first 03 died for restating 01 and 02. This 03 is evidence, not a spec sheet. The Line is *The back leg finishes when nothing is rushing it.* If a Line could have been said on 02, the plate goes again. The Close on `/notes` is authored; Brice's cue still replaces the inputs.
 
 **01 + first thesis + Begin is still complete** without extra 02 swipes and without reaching 03.
 

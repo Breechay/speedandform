@@ -38,7 +38,7 @@ When both **`speedandform`** and **`FORM-iOS`** roots are in the workspace, trea
 
 _Update this line when your sprint changes._
 
-- Homepage: Run Development instrument. Plate 03 (Notes door) is wired and blocked on one real Observation. Do not invent athlete content. See `docs/claude-handoff/NOTES-REGISTERS.md`.
+- Homepage: Run Development instrument. Plate 03 is NOTE 001 (Hope). Close on `/notes` is authored pending Brice's cue. See `docs/claude-handoff/NOTE-001.md`.
 
 ---
 

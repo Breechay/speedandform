@@ -26,15 +26,15 @@ Ask one at a time. Write down the answer in his language first. Only then compre
 12. What do you never say to an athlete?
 13. What do people think they are buying, and what are they actually entering?
 
-## To unblock plate 03
+## NOTE 001 — the cue that remains
 
-Same method: his words first, compressed after. Do not invent an athlete, a frame, or a Line.
+Line and frame are live. Hope is named. Permissions cleared.
 
-**One athlete. One frame. What did you see in it?**
+Reason 2–3 and the Close are authored. The three inputs in the Close are not his words.
 
-If Simon is the obvious one because the campaign is finished, start there — only with permission. Named, not anonymous. Pride requires a name.
+**What do you actually say to an athlete to get this out of them?**
 
-The Line must survive the athlete being removed. If it only works as a caption for that photo, it is a caption.
+His cue replaces the Close inputs. Do not invent one.
 
 ## How to use the answers
 

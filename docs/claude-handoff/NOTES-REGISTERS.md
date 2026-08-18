@@ -31,8 +31,12 @@ One number sequence across both. NOTE 015 may be an Observation and NOTE 016 a R
 - **Frame** — the photograph. The athlete, mid-work, in the treatment Brice gives their images.
 - **Name** — mono, small, bronze rule to its left. The register mark.
 - **Line** — what he saw. Same Line slot, same string across all three surfaces. Still a discernment a runner can repeat, not a caption.
-- **Reason** — two or three short paragraphs, past tense, about that session. What he saw, what he did about it.
-- **Close** — the decision it changed. Bronze, 500 weight, once per card. Unchanged.
+- **Reason** — two or three short paragraphs about that frame. What he saw. What the mechanism is, if he will own it.
+- **Close** — same slot, same bronze, same weight, different job by register:
+  - **Reminder:** the decision it changes. Training is the currency.
+  - **Observation:** the sensation to go find, and what produces it. The body is the currency. A decision is the wrong close here — it diagnoses and leaves the runner with nothing to do.
+
+The trail leg in NOTE 001 is the example: it cannot be cued. Tell someone to extend it and they reach, overstride, brake. So an Observation Close hands over the inputs that produce the thing, then names the sensation so they know when they have found it.
 
 The Line must survive the athlete being removed. If it only makes sense as a caption for that photo, it is a caption, not a Note.
 
@@ -40,7 +44,7 @@ The Line must survive the athlete being removed. If it only makes sense as a cap
 
 Named makes it evidence and makes it shareable. Simon sees Simon. Pride requires a name, and pride is the mechanism.
 
-The cost is real: every Observation needs the athlete's permission, and a Note about someone who later leaves is awkward. Accept both. Ask at the time the frame is taken, not later.
+Athletes are signed. No per-note release is required. Still do not invent a name or a frame.
 
 ## Cut: maintenance workouts
 
@@ -67,12 +71,12 @@ Plate 03 is back, with a different job. It died the first time for restating 01 
 
 **The test that kills 03 again:** if the Line on it could have been said on 02, it is a restatement and the plate goes. 03 earns its place only by naming a person.
 
-## Currently blocked
+## NOTE 001 — live, cue still open
 
-Plate 03 is built and wired. Its Line is a visible PENDING string, and the frame is a placeholder copy of `practice.jpg` at `/media/note-001.jpg`. The PENDING string is deliberate — so the still can be seen landing — and it is not finished copy.
+Plate 03 carries Hope and the Line. `/notes` carries the full Observation. The frame is `/media/note-001.jpg` (Hope on the bridge, 9:16). Permissions cleared.
 
-Do not replace either with invented athlete content. Empty space beats filler.
+**Line** — *The back leg finishes when nothing is rushing it.* Passes both tests: could not have been said on 02, survives Hope being removed.
 
-`/notes` is an honest empty door so the instrument does not 404. It is not a library of fourteen notes. Do not invent Reminders or Observations to fill it.
+Reason paragraphs two and three, and the Close, are authored. The three inputs in the Close (slower than you want, jaw, arms swinging not driving) are the standard reading, not Brice's words. **His cue replaces them.** Do not invent one.
 
-To unblock: one athlete, one frame, and what Brice saw in it, in his words.
+Source: `docs/claude-handoff/NOTE-001.md`.

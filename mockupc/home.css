@@ -14,7 +14,7 @@
   --barH:74px;
   --film-b-opacity:0;
   --still-opacity:0;
-  --note-frame:url('/media/note-001.jpg');
+  --note-frame:url('/media/note-001.jpg?v=rd24');
   --hatch-opacity:.65;
   --cross:cubic-bezier(.42,0,.58,1);
 }
@@ -55,8 +55,8 @@ body.asking .still,body.reading .still{transition:filter .9s var(--ease),transfo
 .still-c{opacity:var(--still-opacity);will-change:opacity}
 .still{
   position:absolute;inset:0;background-image:var(--note-frame);
-  background-size:cover;background-position:center 38%;
-  filter:contrast(1.14) saturate(1.04) brightness(.92);
+  background-size:cover;background-position:center center;
+  filter:contrast(1.06) saturate(.94) brightness(.84);
 }
 .veil{
   position:absolute;inset:0;z-index:1;pointer-events:none;
