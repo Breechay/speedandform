@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,380;9..144,460;9..144,560&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/home.css?v=rd6">
+  <link rel="stylesheet" href="/home.css?v=rd7">
 </head>
 <body>
   <a class="skip" href="#begin">Begin</a>
@@ -62,10 +62,10 @@
               <button class="opt" type="button">Run faster</button>
               <button class="opt" type="button">Run longer</button>
               <button class="opt" type="button">Run more consistently</button>
-              <button class="opt" type="button">Build durability</button>
-              <button class="opt" type="button">Return to running</button>
-              <button class="opt" type="button">Balance running and lifting</button>
+              <button class="opt" type="button">Stop getting hurt</button>
               <button class="opt" type="button">Prepare for a race</button>
+              <button class="opt" type="button">Balance running and lifting</button>
+              <button class="opt" type="button">Return to running</button>
               <button class="opt" type="button">Not sure yet</button>
             </div>
           </div>
@@ -85,19 +85,19 @@
             <div class="grp"><label>Weekly distance</label>
               <div class="opts" data-key="vol" data-mode="one">
                 <button class="opt" type="button">Under 10 mi</button>
-                <button class="opt" type="button">10–20</button>
-                <button class="opt" type="button">20–30</button>
-                <button class="opt" type="button">30–45</button>
-                <button class="opt" type="button">45+</button>
+                <button class="opt" type="button">10–20 mi</button>
+                <button class="opt" type="button">20–30 mi</button>
+                <button class="opt" type="button">30–45 mi</button>
+                <button class="opt" type="button">45+ mi</button>
               </div>
             </div>
             <div class="grp"><label>Longest run lately</label>
               <div class="opts" data-key="long" data-mode="one">
                 <button class="opt" type="button">Under 4 mi</button>
-                <button class="opt" type="button">4–6</button>
-                <button class="opt" type="button">6–10</button>
-                <button class="opt" type="button">10–15</button>
-                <button class="opt" type="button">15+</button>
+                <button class="opt" type="button">4–6 mi</button>
+                <button class="opt" type="button">6–10 mi</button>
+                <button class="opt" type="button">10–15 mi</button>
+                <button class="opt" type="button">15+ mi</button>
               </div>
             </div>
             <button class="cta" type="button" data-next>Continue <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
@@ -125,11 +125,10 @@
 
           <div class="q" data-q="4">
             <h2>Anything I should see?</h2>
-            <p class="hint">Optional</p>
             <div class="drop" id="drop">
               <div>
                 <b id="dropT">A recent running video</b>
-                <span>Front, side or behind — whatever you have</span>
+                <span>Optional — front, side or behind</span>
               </div>
               <span>Choose file</span>
             </div>
@@ -145,6 +144,7 @@
               <input class="ti" id="nm" autocomplete="name" placeholder="Name">
               <input class="ti" id="em" type="email" autocomplete="email" placeholder="Email">
             </div>
+            <p class="need" id="needMail" hidden>Email so Brice can reply.</p>
             <button class="cta" type="button" data-next>Done <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
           </div>
 
@@ -197,6 +197,6 @@
   </form>
   <input type="file" id="pick" accept="video/*" hidden>
 
-  <script src="/home.js?v=rd4"></script>
+  <script src="/home.js?v=rd7"></script>
 </body>
 </html>

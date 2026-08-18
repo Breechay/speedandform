@@ -174,7 +174,7 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 .send{margin-top:28px;display:flex;gap:13px;flex-wrap:wrap;align-items:center}
 .send .cta{margin-top:0}
 .note{margin-top:22px;font-size:11px;letter-spacing:.04em;color:rgba(244,239,226,.4)}
-.send-err{margin-top:16px;font-size:12px;color:#C3AD96}
+.need,.send-err{margin-top:14px;font-size:12px;color:#C3AD96}
 .ghost{
   border:1px solid var(--line-on-ink);padding:18px 24px;font-size:10.5px;letter-spacing:.18em;
   text-transform:uppercase;color:var(--text-on-ink-dim);transition:all .35s;

@@ -53,8 +53,19 @@
       var b = e.target.closest(".opt");
       if (!b) return;
       if (many) {
-        var on = b.getAttribute("aria-pressed") === "true";
-        b.setAttribute("aria-pressed", on ? "false" : "true");
+        var none = b.textContent === "Nothing regularly";
+        var turningOn = b.getAttribute("aria-pressed") !== "true";
+        if (none) {
+          $$('[data-key="other"] .opt').forEach(function (x) {
+            x.setAttribute("aria-pressed", "false");
+          });
+          if (turningOn) b.setAttribute("aria-pressed", "true");
+        } else {
+          $$('[data-key="other"] .opt').forEach(function (x) {
+            if (x.textContent === "Nothing regularly") x.setAttribute("aria-pressed", "false");
+          });
+          b.setAttribute("aria-pressed", turningOn ? "true" : "false");
+        }
         A.other = $$('[data-key="other"] .opt[aria-pressed="true"]').map(function (x) {
           return x.textContent;
         });
@@ -75,6 +86,13 @@
       if (qi === 4) {
         A.name = $("#nm").value.trim();
         A.mail = $("#em").value.trim();
+        var need = $("#needMail");
+        if (!/.+@.+\..+/.test(A.mail)) {
+          need.hidden = false;
+          $("#em").focus();
+          return;
+        }
+        need.hidden = true;
         build();
         mode("reading");
         pane("p-read");
@@ -112,7 +130,7 @@
 
     var now = [];
     if (A.days) now.push(A.days + " days running");
-    if (A.vol) now.push(A.vol.indexOf("mi") > -1 ? A.vol : A.vol + " mi a week");
+    if (A.vol) now.push(/week/.test(A.vol) ? A.vol : A.vol + " a week");
     if (A.long) now.push("longest " + A.long.replace(" mi", "") + " mi");
     var other = A.other.filter(function (x) { return x !== "Nothing regularly"; });
 
