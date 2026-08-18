@@ -32,7 +32,6 @@
   }
 
   $("#begin").addEventListener("click", start);
-  $("#barBegin").addEventListener("click", start);
   $("#back").addEventListener("click", function () {
     if (qi === 0) { mode(null); pane("p-hero"); }
     else showQ(qi - 1);
