@@ -30,8 +30,8 @@
   var argNow = $("#argNow");
   var ai = 0;
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var AUTO_MS = 9000;     // dwell on 02 before one hint that there is more
-  var AUTO_ONCE = true;   // false = keep advancing
+  var AUTO_MS = 9000;
+  var AUTO_ONCE = true;
   var autoTimer = 0;
   var touched = false;
 
@@ -88,40 +88,23 @@
     syncFilms();
   }
 
-  function keepFilm(el, mayLoad) {
+  function keepFilm(el) {
     if (!el) return;
     el.muted = true;
-    el.loop = true;
     el.playsInline = true;
-    if (mayLoad && el.readyState === 0) {
-      try { el.load(); } catch (err) {}
-    }
+    if (el.readyState === 0) { try { el.load(); } catch (e) {} }
     var go = el.play();
     if (go && go.catch) go.catch(function () {});
   }
 
-  function watchFilm(el) {
-    if (!el) return;
-    ["pause", "stalled", "suspend", "waiting", "ended"].forEach(function (ev) {
-      el.addEventListener(ev, function () {
-        if (document.body.classList.contains("asking") || document.body.classList.contains("reading") || document.hidden) return;
-        keepFilm(el, false);
-      });
-    });
-  }
-
-  var filmWatch = 0;
-  function startFilmWatch() {
-    window.clearInterval(filmWatch);
-    filmWatch = window.setInterval(function () {
-      if (document.body.classList.contains("asking") || document.body.classList.contains("reading") || document.hidden) return;
-      if (filmA && (filmA.paused || filmA.readyState === 0)) keepFilm(filmA, true);
-      if (filmB && (filmB.paused || filmB.readyState === 0)) keepFilm(filmB, true);
-    }, 1200);
+  function filmsShouldRun() {
+    return !document.hidden
+      && !document.body.classList.contains("asking")
+      && !document.body.classList.contains("reading");
   }
 
   function syncFilms() {
-    if (document.body.classList.contains("asking") || document.body.classList.contains("reading") || document.hidden) {
+    if (!filmsShouldRun()) {
       filmA.pause();
       filmB.pause();
       return;
@@ -129,6 +112,22 @@
     keepFilm(filmA);
     keepFilm(filmB);
   }
+
+  // Backgrounding Safari, switching apps, or restoring from bfcache all leave the
+  // element .paused with no event fired. Poll cheaply and only while we should be running.
+  window.setInterval(function () {
+    if (!filmsShouldRun()) return;
+    if (filmA.paused) keepFilm(filmA);
+    if (filmB.paused) keepFilm(filmB);
+  }, 1200);
+
+  [filmA, filmB].forEach(function (v) {
+    ["pause", "stalled", "suspend", "waiting", "ended"].forEach(function (ev) {
+      v.addEventListener(ev, function () {
+        if (filmsShouldRun()) window.setTimeout(function () { keepFilm(v); }, 60);
+      });
+    });
+  });
 
   function showArg(n, dir) {
     var next = clamp(n, 0, argEls.length - 1);
@@ -245,40 +244,51 @@
     if (inst) inst.classList.toggle("moved", p01 > .04);
   }
 
+  var qTimer = 0;
+
   function paintTicks() {
-    $$("#ticks .tick").forEach(function (el, j) {
+    var box = $("#ticks");
+    if (!box) return;
+    if (!box.children.length) {
+      box.innerHTML = Array.from({ length: QN }, function (_, j) {
+        return '<span class="tick">' + String(j + 1).padStart(2, "0") + "</span>";
+      }).join("");
+    }
+    [].slice.call(box.children).forEach(function (el, j) {
       el.classList.toggle("done", j < qi);
       el.classList.toggle("now", j === qi);
     });
   }
 
-  function showQ(i) {
+  function showQ(i, immediate) {
     var next = Math.max(0, Math.min(QN - 1, i));
     var qs = $$(".q");
-    if (next === qi) {
-      qs.forEach(function (q, j) { q.classList.toggle("on", j === qi); q.classList.remove("out"); });
+    var from = qs[qi];
+    window.clearTimeout(qTimer);
+    qs.forEach(function (q) { q.classList.remove("leaving"); });
+
+    if (immediate || next === qi || !from) {
+      qi = next;
+      qs.forEach(function (q, j) { q.classList.toggle("on", j === qi); });
       paintTicks();
       return;
     }
-    var leaving = qs[qi];
+
+    from.classList.remove("on");
+    from.classList.add("leaving");
     qi = next;
-    qs.forEach(function (q, j) {
-      q.classList.toggle("on", j === qi);
-      q.classList.remove("out");
-    });
-    if (leaving && leaving !== qs[qi] && !reduced) {
-      leaving.classList.remove("on");
-      leaving.classList.add("out");
-      window.setTimeout(function () { leaving.classList.remove("out"); }, 240);
-    }
     paintTicks();
+    qTimer = window.setTimeout(function () {
+      from.classList.remove("leaving");
+      qs.forEach(function (q, j) { q.classList.toggle("on", j === qi); });
+    }, 140);
   }
 
   function start() {
     returnPlate = clamp(Math.round(plates.scrollTop / plateHeight()), 0, lastPlate);
     mode("asking");
     pane("p-ask");
-    showQ(0);
+    showQ(0, true);
   }
 
   $("#begin").addEventListener("click", start);
@@ -289,7 +299,7 @@
       snapToPlate(returnPlate, "auto");
     } else showQ(qi - 1);
   });
-  $("#editBtn").addEventListener("click", function () { mode("asking"); pane("p-ask"); showQ(0); });
+  $("#editBtn").addEventListener("click", function () { mode("asking"); pane("p-ask"); showQ(0, true); });
   $("#restart").addEventListener("click", function () { pane(null); mode(null); snapToPlate(0, "auto"); });
 
   $$(".opts").forEach(function (box) {
@@ -314,7 +324,7 @@
       $$('[data-key="' + key + '"] .opt').forEach(function (x) { x.setAttribute("aria-pressed", "false"); });
       b.setAttribute("aria-pressed", "true");
       A[key] = b.textContent;
-      if (key === "goal") setTimeout(function () { showQ(1); }, 360);
+      if (key === "goal") setTimeout(function () { showQ(1); }, 300);
     });
   });
 
@@ -423,15 +433,12 @@
     paintScroll();
   });
 
-  showQ(0);
+  showQ(0, true);
   pane(null);
   measure();
   wireThesis();
   paintScroll();
   updatePlateState(0);
-  watchFilm(filmA);
-  watchFilm(filmB);
-  startFilmWatch();
   keepFilm(filmA);
   keepFilm(filmB);
 })();
