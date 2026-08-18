@@ -45,7 +45,7 @@ a{color:inherit;text-decoration:none}
 .film-a{opacity:var(--film-a-opacity);transform:scale(var(--film-a-scale));transform-origin:center center}
 .film-b{opacity:var(--film-b-opacity);transform:scale(var(--film-b-scale));transform-origin:center center}
 .film-a,.film-b{transition:filter 1.1s var(--ease)}
-.film-b video{object-position:42% center}
+.film-b video{object-position:center 46%}
 .veil{
   position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
