@@ -52,9 +52,26 @@ body.asking .film-a,body.asking .film-b,body.reading .film-a,body.reading .film-
     linear-gradient(rgba(9,9,8,.02),rgba(9,9,8,.02)),
     linear-gradient(0deg,rgba(9,9,8,.96) 0%,rgba(9,9,8,.82) 26%,rgba(9,9,8,.30) 58%,rgba(9,9,8,.08) 80%,rgba(9,9,8,.40) 100%);
 }
+/* The glass. The picture is in the next room; this is what you are looking through. */
+.glass{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:
+    radial-gradient(122% 78% at 50% 40%, rgba(9,9,8,0) 38%, rgba(9,9,8,.34) 82%, rgba(9,9,8,.52) 100%),
+    linear-gradient(180deg, rgba(206,222,234,.055) 0%, rgba(206,222,234,.022) 46%, rgba(9,9,8,.05) 100%);
+}
+.grain{
+  position:absolute;inset:0;z-index:3;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22180%22%20height%3D%22180%22%3E%3Cfilter%20id%3D%22n%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.85%22%20numOctaves%3D%223%22%20stitchTiles%3D%22stitch%22%2F%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22180%22%20height%3D%22180%22%20filter%3D%22url%28%23n%29%22%20opacity%3D%220.55%22%2F%3E%3C%2Fsvg%3E");
+  background-size:180px 180px;background-repeat:repeat;
+  opacity:.055;
+}
+@media (-webkit-min-device-pixel-ratio:2),(min-resolution:2dppx){
+  .grain{background-size:120px 120px;opacity:.075}
+}
+
 .hatch{
   position:absolute;inset:0;z-index:2;pointer-events:none;
-  background-image:repeating-linear-gradient(to bottom,rgba(9,9,8,.32) 0,rgba(9,9,8,.32) 1px,transparent 1px,transparent 4px);
+  background-image:repeating-linear-gradient(to bottom,rgba(9,9,8,.26) 0,rgba(9,9,8,.26) 1px,transparent 1px,transparent 4px);
   opacity:var(--hatch-opacity);transform:translateZ(0);will-change:opacity;
 }
 @media (-webkit-min-device-pixel-ratio:2),(min-resolution:2dppx){
@@ -100,7 +117,7 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 .practice-in{max-width:var(--wrap)}
 .practice-in .plate-index{margin-bottom:22px}
 
-.thesis{display:grid;touch-action:pan-y;cursor:grab}
+.thesis{display:grid;align-items:end;touch-action:pan-y;cursor:grab}
 .thesis:active{cursor:grabbing}
 .arg{
   grid-area:1/1;opacity:0;pointer-events:none;transform:translateY(14px);
@@ -109,7 +126,7 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 .arg.on{opacity:1;pointer-events:auto;transform:none;transition-delay:.06s}
 .arg.out{opacity:0;transform:translateY(-18px);transition-delay:0s}
 .arg-count{
-  display:block;width:max-content;margin-top:26px;padding:6px 0 0;
+  display:block;width:max-content;margin-top:20px;padding:6px 0 0;
   font-size:9.5px;letter-spacing:.2em;color:rgba(244,239,226,.34);line-height:1;
   opacity:var(--practice-link-opacity,1);transition:color .4s var(--ease)
 }
@@ -161,6 +178,8 @@ body.asking .mode-panes,body.reading .mode-panes{display:flex}
 body.asking .plates,body.reading .plates{opacity:0;visibility:hidden;pointer-events:none;transition:none}
 body.asking .begin-slot,body.reading .begin-slot{opacity:0;pointer-events:none}
 body.asking .hatch,body.reading .hatch{opacity:0}
+body.asking .glass,body.reading .glass{opacity:.5;transition:opacity 1.1s var(--ease)}
+body.asking .grain,body.reading .grain{opacity:.03;transition:opacity 1.1s var(--ease)}
 body.asking .film video{filter:blur(16px) saturate(.55);transform:scale(1.1);opacity:.5}
 body.asking .veil{background:linear-gradient(0deg,rgba(9,9,8,.97),rgba(9,9,8,.93))}
 body.reading .film video{filter:blur(22px) saturate(.3);transform:scale(1.14);opacity:.24}
