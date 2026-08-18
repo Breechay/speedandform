@@ -38,6 +38,15 @@
   var qTimer = 0;
   var reloadAt = { a: 0, b: 0 };
   var filmBReady = false;
+  var bed = $("#bed");
+  var bedPlay = $("#bedPlay");
+  var bedKill = $("#bedKill");
+  var bedOn = false;
+  var bedArmed = false;
+  var bedVol = 0.62;
+  var bedDuck = 0.35;
+  var bedFade = 0;
+  var BED_SRC = "/mockupc/media/bed.mp3?v=snap19";
 
   function pane(id) {
     $$(".pane").forEach(function (p) { p.classList.toggle("on", p.id === id); });
@@ -54,6 +63,81 @@
     } else {
       syncFilms();
     }
+    duckBed();
+  }
+
+  function bedWanted() {
+    if (!bedOn) return 0;
+    if (document.body.classList.contains("asking") || document.body.classList.contains("reading")) return bedDuck;
+    return bedVol;
+  }
+
+  function duckBed() {
+    window.clearInterval(bedFade);
+    if (!bed) return;
+    var to = bedWanted();
+    if (reduced) {
+      bed.volume = to;
+      if (!bedOn) bed.pause();
+      return;
+    }
+    bedFade = window.setInterval(function () {
+      var v = bed.volume;
+      var n = v + (to - v) * 0.2;
+      if (Math.abs(n - to) < 0.012) {
+        bed.volume = to;
+        window.clearInterval(bedFade);
+        if (!bedOn) bed.pause();
+        return;
+      }
+      bed.volume = n;
+    }, 32);
+  }
+
+  function setBedUi(on) {
+    document.body.classList.toggle("listening", on);
+    if (bedPlay) {
+      bedPlay.classList.toggle("on", on);
+      bedPlay.setAttribute("aria-label", on ? "Pause" : "Play");
+    }
+  }
+
+  function startBed() {
+    if (!bed) return;
+    if (!bedArmed) {
+      bed.src = BED_SRC;
+      bedArmed = true;
+    }
+    bedOn = true;
+    setBedUi(true);
+    bed.volume = reduced ? bedWanted() : Math.max(bed.volume, 0.05);
+    var go = bed.play();
+    if (go && go.catch) go.catch(function () { stopBed(true); });
+    duckBed();
+  }
+
+  function stopBed(immediate) {
+    bedOn = false;
+    setBedUi(false);
+    if (!bed) return;
+    if (immediate || reduced) {
+      window.clearInterval(bedFade);
+      bed.volume = 0;
+      bed.pause();
+      return;
+    }
+    duckBed();
+  }
+
+  function wireBed() {
+    if (!bed) return;
+    bed.volume = 0;
+    if (bedPlay) bedPlay.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (bedOn) stopBed(); else startBed();
+    });
+    if (bedKill) bedKill.addEventListener("click", function () { stopBed(); });
   }
 
   function plateHeight() { return H; }
@@ -495,6 +579,7 @@
   pane(null);
   measure();
   wireThesis();
+  wireBed();
   paintScroll();
   updatePlateState(0);
   keepFilm(filmA);
