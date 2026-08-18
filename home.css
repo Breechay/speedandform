@@ -12,15 +12,9 @@
   --ease:cubic-bezier(.22,.61,.36,1);
   --heroY:22%;
   --barH:74px;
-  --film-a-opacity:1;
   --film-b-opacity:0;
-  --film-a-scale:1;
-  --film-b-scale:1;
-  --film-b-sat:1;
-  --film-b-bright:1;
-  --room-dark:.02;
   --hatch-opacity:.65;
-  --hatch-y:0px;
+  --cross:cubic-bezier(.42,0,.58,1);
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -44,14 +38,10 @@ a{color:inherit;text-decoration:none}
 .film-stack,.film{position:absolute;inset:0}
 .film-stack{z-index:0;background:var(--ink)}
 .film video{width:100%;height:100%;object-fit:cover;object-position:center var(--heroY)}
-.film-a{
-  opacity:var(--film-a-opacity);transform:scale(var(--film-a-scale));transform-origin:center center;
-  will-change:opacity,transform;
-}
+.film-a{opacity:1}
 .film-b{
-  opacity:var(--film-b-opacity);transform:scale(var(--film-b-scale));transform-origin:center center;
-  filter:saturate(var(--film-b-sat)) brightness(var(--film-b-bright));
-  will-change:opacity,filter;
+  opacity:var(--film-b-opacity);
+  will-change:opacity;
 }
 .film-a,.film-b{transition:none}
 body.asking .film-a,body.asking .film-b,body.reading .film-a,body.reading .film-b{transition:filter 1.1s var(--ease)}
@@ -59,13 +49,13 @@ body.asking .film-a,body.asking .film-b,body.reading .film-a,body.reading .film-
 .veil{
   position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
-    linear-gradient(rgba(9,9,8,var(--room-dark)),rgba(9,9,8,var(--room-dark))),
+    linear-gradient(rgba(9,9,8,.02),rgba(9,9,8,.02)),
     linear-gradient(0deg,rgba(9,9,8,.96) 0%,rgba(9,9,8,.82) 26%,rgba(9,9,8,.30) 58%,rgba(9,9,8,.08) 80%,rgba(9,9,8,.40) 100%);
 }
 .hatch{
   position:absolute;inset:0;z-index:2;pointer-events:none;
   background-image:repeating-linear-gradient(to bottom,rgba(9,9,8,.32) 0,rgba(9,9,8,.32) 1px,transparent 1px,transparent 4px);
-  opacity:var(--hatch-opacity);transform:translateY(var(--hatch-y));
+  opacity:var(--hatch-opacity);transform:translateZ(0);will-change:opacity;
 }
 @media (-webkit-min-device-pixel-ratio:2),(min-resolution:2dppx){
   .hatch{background-image:repeating-linear-gradient(to bottom,rgba(9,9,8,.2) 0,rgba(9,9,8,.2) .5px,transparent .5px,transparent 2px)}
@@ -86,11 +76,11 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 
 .plates{
   position:absolute;inset:0;z-index:4;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;
-  scroll-snap-type:y proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+  scroll-snap-type:y mandatory;scroll-behavior:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
   transition:opacity .45s var(--ease),visibility .45s;
 }
 .plates::-webkit-scrollbar{display:none}
-.plate{height:100svh;min-height:100svh;position:relative;scroll-snap-align:start;overflow:hidden}
+.plate{height:100svh;min-height:100svh;position:relative;scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden}
 .plate-inner{max-width:var(--wrap);height:100%;margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter);position:relative}
 .plate-index{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,239,226,.43)}
 
@@ -135,13 +125,18 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 }
 .plate-cue button{
   pointer-events:auto;appearance:none;background:none;border:0;padding:0;margin:0;cursor:pointer;
-  font:inherit;font-size:9px;letter-spacing:.2em;color:rgba(244,239,226,.38);line-height:1;text-align:left;
-  transition:color .45s var(--ease);
+  font:inherit;font-size:9px;letter-spacing:.2em;color:rgba(244,239,226,.52);line-height:1;text-align:left;
+  transition:color 1.1s var(--ease);
 }
-.plate-cue button.on{color:rgba(244,239,226,.88)}
-.plate-cue button.on::after{
-  content:"";display:block;width:11px;height:1px;margin-top:6px;background:currentColor;opacity:.7;
+.inst.moved .plate-cue button{color:rgba(244,239,226,.34)}
+.plate-cue button.on,
+.inst.moved .plate-cue button.on{color:rgba(244,239,226,.88)}
+.plate-cue button::after{
+  content:"";display:block;width:11px;height:1px;margin-top:6px;background:currentColor;
+  opacity:0;transform:scaleX(0);transform-origin:left center;
+  transition:opacity .5s var(--ease),transform .55s var(--ease);
 }
+.plate-cue button.on::after{opacity:.7;transform:scaleX(1)}
 body.asking .plate-cue,body.reading .plate-cue{opacity:0;pointer-events:none}
 
 .mode-panes{position:absolute;inset:var(--barH) 0 0;z-index:9;display:none}

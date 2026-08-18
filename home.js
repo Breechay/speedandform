@@ -18,9 +18,13 @@
   var lastPlate = 1;
   var activePlate = 0;
   var returnPlate = 0;
-  var snapTimer = 0;
-  var snapLock = false;
   var paintQueued = false;
+  var H = 1;
+  var last = {};
+  var root = document.documentElement;
+  var inst = document.querySelector(".inst");
+  var workEl = null;
+  var practiceEl = null;
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function pane(id) {
@@ -40,13 +44,24 @@
     }
   }
 
-  function plateHeight() { return Math.max(1, plates.clientHeight); }
+  function plateHeight() { return H; }
+
+  function measure() {
+    H = Math.max(1, plates.clientHeight);
+    workEl = $(".hero-in");
+    practiceEl = $(".practice-in");
+  }
+
+  function put(el, name, value) {
+    var k = name + (el === root ? "" : "@" + (el.className || ""));
+    if (last[k] === value) return;
+    last[k] = value;
+    el.style.setProperty(name, value);
+  }
 
   function snapToPlate(i, behavior) {
     activePlate = clamp(i, 0, lastPlate);
-    snapLock = true;
-    plates.scrollTo({ top: activePlate * plateHeight(), behavior: behavior || (reduced ? "auto" : "smooth") });
-    window.setTimeout(function () { snapLock = false; }, reduced ? 30 : 520);
+    plates.scrollTo({ top: activePlate * H, behavior: behavior || (reduced ? "auto" : "smooth") });
     updatePlateState(activePlate);
   }
 
@@ -82,55 +97,33 @@
   }
 
   function paintScroll() {
-    var h = plateHeight();
-    var p = plates.scrollTop / h;
-    var p01 = clamp(p, 0, 1);
+    var p01 = clamp(plates.scrollTop / H, 0, 1);
 
-    var aOut = reduced ? (p01 > .5 ? 1 : 0) : ease(clamp((p01 - .1) / .68, 0, 1));
-    var bIn = reduced ? (p01 > .5 ? 1 : 0) : ease(clamp(p01 / .55, 0, 1));
+    // One true dissolve: B sits above A and fades in. A never moves, never dims.
+    var cross = reduced ? (p01 > .5 ? 1 : 0) : ease(clamp((p01 - .06) / .70, 0, 1));
+    put(root, "--film-b-opacity", cross.toFixed(3));
+    put(root, "--hatch-opacity", lerp(.62, .34, cross).toFixed(3));
 
-    document.documentElement.style.setProperty("--film-a-opacity", (1 - aOut).toFixed(3));
-    document.documentElement.style.setProperty("--film-b-opacity", bIn.toFixed(3));
-    document.documentElement.style.setProperty("--film-a-scale", reduced ? "1" : lerp(1, 1.012, aOut).toFixed(4));
-    document.documentElement.style.setProperty("--film-b-scale", "1");
-    document.documentElement.style.setProperty("--film-b-sat", "1");
-    document.documentElement.style.setProperty("--film-b-bright", "1");
-    document.documentElement.style.setProperty("--room-dark", ".02");
-    document.documentElement.style.setProperty("--hatch-opacity", lerp(.62, .34, bIn).toFixed(3));
-    document.documentElement.style.setProperty("--hatch-y", "0px");
-
-    var work = $(".hero-in");
-    if (work) {
-      var workLeave = ease(clamp(p01 / .48, 0, 1));
-      work.style.setProperty("--work-opacity", (1 - workLeave).toFixed(3));
-      work.style.setProperty("--work-y", (workLeave * -16).toFixed(1) + "px");
+    if (workEl) {
+      var leave = reduced ? (p01 > .5 ? 1 : 0) : ease(clamp(p01 / .46, 0, 1));
+      put(workEl, "--work-opacity", (1 - leave).toFixed(3));
+      put(workEl, "--work-y", (leave * -22).toFixed(1) + "px");
     }
 
-    var practiceIn = $(".practice-in");
-    if (practiceIn) {
-      var arrive = ease(clamp((p01 - .34) / .48, 0, 1));
-      practiceIn.style.setProperty("--practice-title-opacity", arrive.toFixed(3));
-      practiceIn.style.setProperty("--practice-title-y", ((1 - arrive) * 18).toFixed(1) + "px");
-      var copyArrive = ease(clamp((p01 - .48) / .44, 0, 1));
-      practiceIn.style.setProperty("--practice-copy-opacity", copyArrive.toFixed(3));
-      practiceIn.style.setProperty("--practice-copy-y", ((1 - copyArrive) * 14).toFixed(1) + "px");
-      var linkArrive = ease(clamp((p01 - .6) / .38, 0, 1));
-      practiceIn.style.setProperty("--practice-link-opacity", linkArrive.toFixed(3));
+    if (practiceEl) {
+      var t = reduced ? (p01 > .5 ? 1 : 0) : ease(clamp((p01 - .38) / .50, 0, 1));
+      var c = reduced ? t : ease(clamp((p01 - .46) / .50, 0, 1));
+      var l = reduced ? t : ease(clamp((p01 - .56) / .44, 0, 1));
+      put(practiceEl, "--practice-title-opacity", t.toFixed(3));
+      put(practiceEl, "--practice-title-y", ((1 - t) * 20).toFixed(1) + "px");
+      put(practiceEl, "--practice-copy-opacity", c.toFixed(3));
+      put(practiceEl, "--practice-copy-y", ((1 - c) * 14).toFixed(1) + "px");
+      put(practiceEl, "--practice-link-opacity", l.toFixed(3));
     }
 
-    var nearest = clamp(Math.round(p), 0, lastPlate);
-    if (nearest !== activePlate && Math.abs(p - nearest) < .38) updatePlateState(nearest);
-
-    window.clearTimeout(snapTimer);
-    if (!snapLock && !reduced) {
-      snapTimer = window.setTimeout(function () {
-        if (document.body.classList.contains("asking") || document.body.classList.contains("reading")) return;
-        var target = clamp(Math.round(plates.scrollTop / plateHeight()), 0, lastPlate);
-        var dist = Math.abs(plates.scrollTop - target * plateHeight());
-        if (dist > 2) snapToPlate(target, "smooth");
-        else updatePlateState(target);
-      }, 90);
-    }
+    var nearest = p01 < .5 ? 0 : 1;
+    if (nearest !== activePlate) updatePlateState(nearest);
+    if (inst) inst.classList.toggle("moved", p01 > .04);
   }
 
   function showQ(i) {
@@ -284,12 +277,15 @@
   window.addEventListener("pageshow", function () { syncFilms(); });
   window.addEventListener("focus", function () { syncFilms(); });
   window.addEventListener("resize", function () {
+    measure();
+    last = {};
     if (!document.body.classList.contains("asking") && !document.body.classList.contains("reading")) snapToPlate(activePlate, "auto");
     paintScroll();
   });
 
   showQ(0);
   pane(null);
+  measure();
   paintScroll();
   updatePlateState(0);
   keepFilm(filmA);
