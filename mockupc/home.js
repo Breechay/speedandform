@@ -25,8 +25,7 @@
   var inst = document.querySelector(".inst");
   var workEl = null;
   var practiceEl = null;
-  var noteEl = null;
-  var stillEl = null;
+  var askEl = null;
   var thesis = $("#thesis");
   var argEls = $$(".arg");
   var argNow = $("#argNow");
@@ -63,8 +62,7 @@
     H = Math.max(1, plates.clientHeight);
     workEl = $(".hero-in");
     practiceEl = $(".practice-in");
-    noteEl = $(".note-in");
-    stillEl = $(".still-c");
+    askEl = $(".ask-in");
   }
 
   function put(el, name, value) {
@@ -258,8 +256,8 @@
     var cross1 = reduced ? (a > .5 ? 1 : 0) : ease(clamp((a - .06) / .70, 0, 1));
     var cross2 = reduced ? (b > .5 ? 1 : 0) : ease(clamp((b - .06) / .70, 0, 1));
     put(root, "--film-b-opacity", cross1.toFixed(3));
-    put(root, "--still-opacity", cross2.toFixed(3));
-    put(root, "--hatch-opacity", lerp(lerp(.62, .34, cross1), .22, cross2).toFixed(3));
+    put(root, "--room-dim", cross2.toFixed(3));
+    put(root, "--hatch-opacity", lerp(.62, .28, Math.max(cross1, cross2 * .4)).toFixed(3));
 
     if (workEl) {
       var leave = reduced ? (a > .5 ? 1 : 0) : ease(clamp(a / .46, 0, 1));
@@ -279,15 +277,13 @@
       put(practiceEl, "--practice-link-opacity", (l * (1 - gone)).toFixed(3));
     }
 
-    if (noteEl) {
-      var nl = reduced ? (b > .5 ? 1 : 0) : ease(clamp((b - .38) / .50, 0, 1));
-      var nw = reduced ? nl : ease(clamp((b - .48) / .48, 0, 1));
-      var nd = reduced ? nl : ease(clamp((b - .58) / .42, 0, 1));
-      put(noteEl, "--note-line-opacity", nl.toFixed(3));
-      put(noteEl, "--note-line-y", ((1 - nl) * 20).toFixed(1) + "px");
-      put(noteEl, "--note-who-opacity", nw.toFixed(3));
-      put(noteEl, "--note-who-y", ((1 - nw) * 14).toFixed(1) + "px");
-      put(noteEl, "--note-door-opacity", nd.toFixed(3));
+    if (askEl) {
+      var at = reduced ? (b > .5 ? 1 : 0) : ease(clamp((b - .38) / .50, 0, 1));
+      var ao = reduced ? at : ease(clamp((b - .50) / .46, 0, 1));
+      put(askEl, "--ask-title-opacity", at.toFixed(3));
+      put(askEl, "--ask-title-y", ((1 - at) * 20).toFixed(1) + "px");
+      put(askEl, "--ask-opts-opacity", ao.toFixed(3));
+      put(askEl, "--ask-opts-y", ((1 - ao) * 14).toFixed(1) + "px");
     }
 
     var nearest = clamp(Math.round(p), 0, lastPlate);
@@ -370,10 +366,23 @@
         A.other = $$('[data-key="other"] .opt[aria-pressed="true"]').map(function (x) { return x.textContent; });
         return;
       }
-      $$('[data-key="' + key + '"] .opt').forEach(function (x) { x.setAttribute("aria-pressed", "false"); });
-      b.setAttribute("aria-pressed", "true");
+      $$('[data-key="' + key + '"] .opt').forEach(function (x) {
+        x.setAttribute("aria-pressed", x.textContent === b.textContent ? "true" : "false");
+      });
       A[key] = b.textContent;
-      if (key === "goal") setTimeout(function () { showQ(1); }, 300);
+      if (key === "goal") {
+        var already = document.body.classList.contains("asking");
+        if (!already) {
+          returnPlate = clamp(Math.round(plates.scrollTop / plateHeight()), 0, lastPlate);
+          window.setTimeout(function () {
+            mode("asking");
+            pane("p-ask");
+            showQ(1, true);
+          }, 180);
+        } else {
+          window.setTimeout(function () { showQ(1); }, 300);
+        }
+      }
     });
   });
 

@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,380;9..144,460;9..144,560&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/home.css?v=rd26">
+  <link rel="stylesheet" href="/home.css?v=rd27">
 </head>
 <body>
   <a class="skip" href="#begin">Begin</a>
@@ -33,8 +33,8 @@
     <div class="film-stack" aria-hidden="true">
       <div class="film film-a"><video id="filmA" src="/media/run-development.mp4?v=rd16" poster="/media/run-development.jpg?v=rd26" autoplay muted loop playsinline preload="auto" disablepictureinpicture></video></div>
       <div class="film film-b"><video id="filmB" src="/media/practice.mp4?v=rd16" poster="/media/practice.jpg?v=rd26" autoplay muted loop playsinline preload="none" disablepictureinpicture></video></div>
-      <div class="film still-c"><div class="still" id="stillC"></div></div>
     </div>
+    <div class="dim" aria-hidden="true"></div>
     <div class="veil" aria-hidden="true"></div>
     <div class="glass" aria-hidden="true"></div>
     <div class="hatch" aria-hidden="true"></div>
@@ -83,12 +83,20 @@
           </div>
         </div>
       </section>
-      <section class="plate plate-note" data-plate="2" aria-label="03 The Notes">
-        <div class="plate-inner note-in">
-          <p class="plate-index">03 / THE NOTES</p>
-          <p class="note-line">The back leg finishes when nothing is rushing it.</p>
-          <p class="note-who">Hope</p>
-          <a class="note-door" href="/notes">All notes <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></a>
+      <section class="plate plate-ask" data-plate="2" aria-label="What are you trying to do?">
+        <div class="plate-inner ask-in">
+          <h2>What are you trying to do?</h2>
+          <div class="opts" data-key="goal" data-mode="one">
+            <button class="opt" type="button">Run better</button>
+            <button class="opt" type="button">Run faster</button>
+            <button class="opt" type="button">Run longer</button>
+            <button class="opt" type="button">Run more consistently</button>
+            <button class="opt" type="button">Stop getting hurt</button>
+            <button class="opt" type="button">Prepare for a race</button>
+            <button class="opt" type="button">Balance running and lifting</button>
+            <button class="opt" type="button">Return to running</button>
+            <button class="opt" type="button">Not sure yet</button>
+          </div>
         </div>
       </section>
     </main>
@@ -96,7 +104,7 @@
     <div class="begin-slot" id="beginSlot">
       <button class="cta persistent-begin" id="begin" type="button">Begin <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
     </div>
-    <nav class="plate-cue" id="plateCue" aria-label="The work, the practice, the notes">
+    <nav class="plate-cue" id="plateCue" aria-label="The work, the practice, then the question">
       <button type="button" data-cue="0" class="on" aria-current="true">01</button>
       <button type="button" data-cue="1">02</button>
       <button type="button" data-cue="2">03</button>
@@ -209,6 +217,10 @@
           <h2 id="rHead">Here is what you told me.</h2>
           <p class="money" id="rMoney">8 Weeks · $1,200</p>
           <div class="rows" id="rRows"></div>
+          <a class="read-obs" href="/notes">
+            <p class="note-line">The back leg finishes when nothing is rushing it.</p>
+            <p class="note-who">Hope</p>
+          </a>
           <div class="send">
             <button class="cta" id="sendBtn" type="button" data-send-to="briceikouebe@gmail.com">Send to Brice <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
             <button class="ghost" id="editBtn" type="button">Change an answer</button>
@@ -236,6 +248,6 @@
   </form>
   <input type="file" id="pick" accept="video/*" hidden>
 
-  <script src="/home.js?v=rd26"></script>
+  <script src="/home.js?v=rd27"></script>
 </body>
 </html>

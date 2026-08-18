@@ -10,7 +10,7 @@ What is live and locked:
 - 01 = the offer (Run Development, Brice, 8 weeks, $1,200). Colour film.
 - 02 = the thinking (**I develop runners.** + the paragraph). Grey film.
 - Begin opens the **same five questions**. That intake is locked.
-- Plate 03 is evidence (one named Observation, a still), not a spec sheet. NOTE 001 is live (Hope). Close is his cues: glide forward, less rotation, less bounce. See `NOTES-REGISTERS.md` and `NOTE-001.md`.
+- Plate 03 is the first question (*What are you trying to do?*). Film B continues. The still is canned. Hope sits on the review screen and at `/notes`. Begin still opens at question one.
 
 Brice wants to explore, on top of this, a more cinematic/editorial experience:
 

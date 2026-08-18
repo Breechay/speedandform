@@ -12,8 +12,8 @@
 
 - **01 THE WORK** — Run Development / With Brice / 8 weeks / $1,200. Colour film.
 - **02 THE PRACTICE** — *I develop runners.* and three more arguments on a horizontal text axis (swipe the thesis, or tap `01 / 04`). Grey film.
-- **03 THE NOTES** — one Observation. A still, not a film. Line + Hope + door to `/notes`. Not a grid. **Live:** *The back leg finishes when nothing is rushing it.* Frame is Hope on the bridge. Permissions cleared. Close on `/notes`: Glide forward. Less rotation. Less bounce. Then the sensation behind you.
-- **Begin** — same five questions. No cart. Persists across all three plates.
+- **03** — the first question. *What are you trying to do?* Same chips. Film B continues, the room darkens, no still. Tapping an option opens the intake at question two. Begin still opens at question one and does not move.
+- **Begin** — same five questions. No cart. Persists across all three plates. Review screen carries Hope (Line, name, bronze) above Send. Full Note at `/notes`.
 
 **01 + first thesis + Begin is still complete** without extra 02 swipes and without reaching 03. Both 02 and 03 are depth.
 

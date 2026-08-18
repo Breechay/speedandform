@@ -38,7 +38,7 @@ When both **`speedandform`** and **`FORM-iOS`** roots are in the workspace, trea
 
 _Update this line when your sprint changes._
 
-- Homepage: Run Development instrument. Plate 03 is NOTE 001 (Hope). Close is his cues: glide forward, less rotation, less bounce. See `docs/claude-handoff/NOTE-001.md`.
+- Homepage: 03 is the first question on darkened film B. Hope sits on the review screen. Private link is a per-athlete Stripe Payment Link you send — not a page. See `docs/claude-handoff/AFTER-SEND.md`.
 
 ---
 

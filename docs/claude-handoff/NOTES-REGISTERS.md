@@ -56,24 +56,23 @@ Maintenance work belongs in FORM, or in an athlete's own record. Not in the publ
 
 The right number is however many exist without one being filler. The working estimate is already ~50. Ship the door with 14 behind it. A library that grows because athletes keep handing over frames is a consequence, not a plan.
 
-## Plate 03 — the door, not the gallery
+## Plate 03 — the question, not the still
 
-Plate 03 is back, with a different job. It died the first time for restating 01 and 02. It returns as **evidence**, which neither 01 nor 02 provides.
+The still on 03 is canned. Concept was sound; a bright daylight photograph in a dark instrument cannot be saved by grading. Hope's Note does not belong before Begin. Evidence is for people who have already decided to care.
 
-- 01 is the offer. 02 is the mind. 03 is the proof that the mind has been applied to real people.
-- **One note. Not a grid.** A grid turns the instrument back into a website, which is how 03 died.
-- **The material changes.** 01 is a colour film, 02 is a grey film, 03 is a still photograph. The instrument stops moving when it shows you evidence. That is the whole reason 03 is allowed to exist as a third room.
-- Same handoff law: the still fades in over film B, film B never moves. One property.
-- Contents: the Line, the athlete's name with its bronze rule, and one door to `/notes`. Nothing else.
-- Begin persists and does not move.
+**03 is the first question.** *What are you trying to do?* Same wording, same chips. Film B continues. The room darkens. No new picture.
 
-**01 + first thesis + Begin is still complete.** 02 and 03 are both depth. Unchanged and non-negotiable.
+Tapping an option records the answer and opens the intake at question two. **Begin stays and still opens at question one.** No contradiction.
 
-**The test that kills 03 again:** if the Line on it could have been said on 02, it is a restatement and the plate goes. 03 earns its place only by naming a person.
+Hope's Note sits on the review screen — below the rows, above Send — Line, name, bronze rule, nothing else. Full card remains at `/notes`.
 
-## NOTE 001 — live
+**01 + first thesis + Begin is still complete** without reaching 03.
 
-Plate 03 carries Hope and the Line. `/notes` carries the full Observation. The frame is `/media/note-001.jpg` (Hope on the bridge, 9:16). Permissions cleared.
+## NOTE 001 — on the review screen, and at `/notes`
+
+The homepage still is canned. The Observation belongs where they hesitate: the review screen, below what they told you, above Send. Line, name, bronze rule. Full card at `/notes`.
+
+Plate 03 is the first question. Film B continues. The room darkens.
 
 **Line** — *The back leg finishes when nothing is rushing it.* Passes both tests: could not have been said on 02, survives Hope being removed.
 
