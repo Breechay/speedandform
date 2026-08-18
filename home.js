@@ -15,7 +15,7 @@
   var filmB = $("#filmB");
   var beginSlot = $("#beginSlot");
   var plateCue = $("#plateCue");
-  var lastPlate = 1;
+  var lastPlate = 2;
   var activePlate = 0;
   var returnPlate = 0;
   var paintQueued = false;
@@ -25,15 +25,18 @@
   var inst = document.querySelector(".inst");
   var workEl = null;
   var practiceEl = null;
+  var noteEl = null;
+  var stillEl = null;
   var thesis = $("#thesis");
   var argEls = $$(".arg");
   var argNow = $("#argNow");
   var ai = 0;
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var AUTO_MS = 9000;
-  var AUTO_ONCE = true;
+  var AUTO_MS = 9000;          // dwell before the page shows you there is more
+  var AUTO_ONCE = true;        // false = keep advancing like a carousel
   var autoTimer = 0;
   var touched = false;
+  var qTimer = 0;
 
   function pane(id) {
     $$(".pane").forEach(function (p) { p.classList.toggle("on", p.id === id); });
@@ -58,6 +61,8 @@
     H = Math.max(1, plates.clientHeight);
     workEl = $(".hero-in");
     practiceEl = $(".practice-in");
+    noteEl = $(".note-in");
+    stillEl = $(".still-c");
   }
 
   function put(el, name, value) {
@@ -75,7 +80,7 @@
 
   function updatePlateState(i) {
     activePlate = clamp(i, 0, lastPlate);
-    beginSlot.classList.toggle("quiet", activePlate === 1);
+    beginSlot.classList.toggle("quiet", activePlate > 0);
     if (activePlate === 1) armAuto(); else window.clearTimeout(autoTimer);
     if (plateCue) {
       $$("#plateCue [data-cue]").forEach(function (el) {
@@ -215,36 +220,50 @@
   }
 
   function paintScroll() {
-    var p01 = clamp(plates.scrollTop / H, 0, 1);
+    var p = clamp(plates.scrollTop / H, 0, lastPlate);
+    var a = clamp(p, 0, 1);              // 01 -> 02
+    var b = clamp(p - 1, 0, 1);          // 02 -> 03
 
-    // One true dissolve: B sits above A and fades in. A never moves, never dims.
-    var cross = reduced ? (p01 > .5 ? 1 : 0) : ease(clamp((p01 - .06) / .70, 0, 1));
-    put(root, "--film-b-opacity", cross.toFixed(3));
-    put(root, "--hatch-opacity", lerp(.62, .34, cross).toFixed(3));
+    // Each handoff is one dissolve. The layer above fades in; the one below never moves.
+    var cross1 = reduced ? (a > .5 ? 1 : 0) : ease(clamp((a - .06) / .70, 0, 1));
+    var cross2 = reduced ? (b > .5 ? 1 : 0) : ease(clamp((b - .06) / .70, 0, 1));
+    put(root, "--film-b-opacity", cross1.toFixed(3));
+    put(root, "--still-opacity", cross2.toFixed(3));
+    put(root, "--hatch-opacity", lerp(lerp(.62, .34, cross1), .22, cross2).toFixed(3));
 
     if (workEl) {
-      var leave = reduced ? (p01 > .5 ? 1 : 0) : ease(clamp(p01 / .46, 0, 1));
+      var leave = reduced ? (a > .5 ? 1 : 0) : ease(clamp(a / .46, 0, 1));
       put(workEl, "--work-opacity", (1 - leave).toFixed(3));
       put(workEl, "--work-y", (leave * -22).toFixed(1) + "px");
     }
 
     if (practiceEl) {
-      var t = reduced ? (p01 > .5 ? 1 : 0) : ease(clamp((p01 - .38) / .50, 0, 1));
-      var c = reduced ? t : ease(clamp((p01 - .46) / .50, 0, 1));
-      var l = reduced ? t : ease(clamp((p01 - .56) / .44, 0, 1));
-      put(practiceEl, "--practice-title-opacity", t.toFixed(3));
-      put(practiceEl, "--practice-title-y", ((1 - t) * 20).toFixed(1) + "px");
-      put(practiceEl, "--practice-copy-opacity", c.toFixed(3));
-      put(practiceEl, "--practice-copy-y", ((1 - c) * 14).toFixed(1) + "px");
-      put(practiceEl, "--practice-link-opacity", l.toFixed(3));
+      var t = reduced ? (a > .5 ? 1 : 0) : ease(clamp((a - .38) / .50, 0, 1));
+      var c = reduced ? t : ease(clamp((a - .46) / .50, 0, 1));
+      var l = reduced ? t : ease(clamp((a - .56) / .44, 0, 1));
+      var gone = reduced ? (b > .5 ? 1 : 0) : ease(clamp(b / .46, 0, 1));
+      put(practiceEl, "--practice-title-opacity", (t * (1 - gone)).toFixed(3));
+      put(practiceEl, "--practice-title-y", ((1 - t) * 20 - gone * 22).toFixed(1) + "px");
+      put(practiceEl, "--practice-copy-opacity", (c * (1 - gone)).toFixed(3));
+      put(practiceEl, "--practice-copy-y", ((1 - c) * 14 - gone * 22).toFixed(1) + "px");
+      put(practiceEl, "--practice-link-opacity", (l * (1 - gone)).toFixed(3));
     }
 
-    var nearest = p01 < .5 ? 0 : 1;
-    if (nearest !== activePlate) updatePlateState(nearest);
-    if (inst) inst.classList.toggle("moved", p01 > .04);
-  }
+    if (noteEl) {
+      var nl = reduced ? (b > .5 ? 1 : 0) : ease(clamp((b - .38) / .50, 0, 1));
+      var nw = reduced ? nl : ease(clamp((b - .48) / .48, 0, 1));
+      var nd = reduced ? nl : ease(clamp((b - .58) / .42, 0, 1));
+      put(noteEl, "--note-line-opacity", nl.toFixed(3));
+      put(noteEl, "--note-line-y", ((1 - nl) * 20).toFixed(1) + "px");
+      put(noteEl, "--note-who-opacity", nw.toFixed(3));
+      put(noteEl, "--note-who-y", ((1 - nw) * 14).toFixed(1) + "px");
+      put(noteEl, "--note-door-opacity", nd.toFixed(3));
+    }
 
-  var qTimer = 0;
+    var nearest = clamp(Math.round(p), 0, lastPlate);
+    if (nearest !== activePlate) updatePlateState(nearest);
+    if (inst) inst.classList.toggle("moved", p > .04);
+  }
 
   function paintTicks() {
     var box = $("#ticks");

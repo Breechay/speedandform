@@ -2,15 +2,20 @@
 
 Owner: Brice. Site: speedandform.com. This is an instrument, not a campaign.
 
-**Live now:** two plates, then Begin.
+**Live now:** three plates, then Begin. 03 is wired and blocked.
 
 ```
-01  THE WORK      Run Development. With Brice. 8 weeks. $1,200.
-02  THE PRACTICE  I develop runners. How he thinks.
-BEGIN             The five-question conversation.
+01  THE WORK      Run Development. With Brice. 8 weeks. $1,200. Colour film.
+02  THE PRACTICE  I develop runners. How he thinks. Grey film.
+03  THE NOTES     One Observation. A still. Line, name, door to /notes.
+BEGIN             The five-question conversation. Persists. Does not move.
 ```
 
-Plate 03 was built and cut. It restated 01 and 02. Do not resurrect it.
+The first 03 died for restating 01 and 02. This 03 is evidence, not a spec sheet. It is blocked until Brice writes one real Observation about a named athlete. Do not invent that Line. If the Line could have been said on 02, the plate goes again.
+
+**01 + first thesis + Begin is still complete** without extra 02 swipes and without reaching 03.
+
+Rulings: `NOTES-REGISTERS.md`.
 
 ---
 
@@ -140,11 +145,11 @@ The product is not eight weeks and a price. The product is **Brice writing the w
 
 01 names it. 02 shows how he thinks. Begin lets them speak.
 
-A purchase on this page is **not a cart**. After the questions, they send to Brice. He replies. If it is a fit, a private link follows. Do not add Stripe, a “buy” label, or a package comparison. That would undo 03’s death.
+A purchase on this page is **not a cart**. After the questions, they send to Brice. He replies. If it is a fit, a private link follows. Do not add Stripe, a “buy” label, or a package comparison.
 
 More argument-statements exist to make 02 feel like a person, so Begin feels like the next sentence — not to stall them in a gallery.
 
-When they are done with the gist, Begin is obvious. If they never swipe 02’s extra arguments, the page is still complete. **01 + first thesis + Begin is enough.** Depth is optional. That rule is non-negotiable. Same rule that killed plate 03.
+When they are done with the gist, Begin is obvious. If they never swipe 02’s extra arguments, and never reach 03, the page is still complete. **01 + first thesis + Begin is enough.** Depth is optional. That rule is non-negotiable. 03 is evidence, not more argument.
 
 ---
 
@@ -177,7 +182,7 @@ Do not add: testimonials, credentials wall, service cards, About, a fourth plate
 
 ## Prototype order
 
-1. Keep two plates + Begin + intake working.
+1. Keep 01 + first thesis + Begin working without anyone reaching 03.
 2. Swipe indicator (ticks exist — only refine).
 3. 02 text as a second axis (arguments). Copy only after `ASK-BRICE.md`.
 4. Type-assembly on 01→02 if it still feels like the same instrument.

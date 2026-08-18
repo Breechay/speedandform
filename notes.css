@@ -1,0 +1,50 @@
+:root{
+  --ink:#0b0b0a;
+  --ivory:#f6f2e8;
+  --text-on-ink:#f4efe2;
+  --text-on-ink-dim:rgba(244,239,226,.58);
+  --serif:'Fraunces',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --wrap:720px;
+  --gutter:clamp(20px,4vw,56px);
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --barH:74px;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  min-height:100svh;background:var(--ink);color:var(--text-on-ink);font-family:var(--mono);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+a{color:inherit;text-decoration:none}
+
+.skip{position:absolute;left:-999px;top:8px;z-index:80;background:var(--ivory);color:var(--ink);padding:10px 14px}
+.skip:focus{left:8px}
+.id{font-family:var(--serif);font-weight:380;font-size:17px;letter-spacing:.22em;color:var(--ivory);line-height:1}
+
+.bar{
+  display:flex;align-items:center;height:var(--barH);
+  padding:0 var(--gutter);max-width:1360px;margin:0 auto;width:100%;
+}
+
+main{max-width:var(--wrap);padding:48px var(--gutter) 96px}
+.kicker{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,239,226,.43);margin-bottom:22px}
+h1{
+  font-family:var(--serif);font-weight:380;font-size:clamp(32px,5.4vw,52px);
+  line-height:1.04;letter-spacing:-.016em;color:var(--ivory);max-width:16ch;
+}
+.copy{
+  margin-top:28px;max-width:42ch;font-family:var(--serif);font-weight:380;
+  font-size:clamp(16px,1.9vw,20px);line-height:1.5;color:rgba(244,239,226,.68);
+}
+.back{
+  display:inline-flex;align-items:center;gap:12px;margin-top:40px;
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,239,226,.58);
+  border-bottom:1px solid rgba(244,239,226,.2);padding-bottom:6px;
+  transition:color .35s var(--ease),border-color .35s var(--ease);
+}
+.back:hover{color:var(--ivory);border-color:rgba(244,239,226,.55)}
+.arrow{width:14px;height:14px;display:inline-flex;transition:transform .4s var(--ease)}
+.arrow svg{width:14px;height:14px}
+.back:hover .arrow{transform:translateX(4px)}

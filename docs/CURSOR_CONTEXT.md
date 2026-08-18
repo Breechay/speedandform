@@ -38,7 +38,7 @@ When both **`speedandform`** and **`FORM-iOS`** roots are in the workspace, trea
 
 _Update this line when your sprint changes._
 
-- Forge / coach console: align with **FORM-iOS** Forge palette + doctrine; **diagnose-then-fix** loading/auth before UI churn.
+- Homepage: Run Development instrument. Plate 03 (Notes door) is wired and blocked on one real Observation. Do not invent athlete content. See `docs/claude-handoff/NOTES-REGISTERS.md`.
 
 ---
 

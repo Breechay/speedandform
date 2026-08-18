@@ -6,17 +6,17 @@ Read `docs/EXPERIENCE-BRIEF.md` and `docs/ASK-BRICE.md` before you design. Then 
 
 What is live and locked:
 
-- Two full-viewport plates, then **Begin**
-- 01 = the offer (Run Development, Brice, 8 weeks, $1,200)
-- 02 = the thinking (**I develop runners.** + the paragraph)
-- Begin opens the **same five questions**. That intake is locked. Not slides 03–07.
-- Plate 03 was cut on purpose. Do not rebuild a spec sheet.
+- Three full-viewport plates, then **Begin**. 01 + first thesis + Begin is still complete without 03.
+- 01 = the offer (Run Development, Brice, 8 weeks, $1,200). Colour film.
+- 02 = the thinking (**I develop runners.** + the paragraph). Grey film.
+- Begin opens the **same five questions**. That intake is locked.
+- Plate 03 is evidence (one named Observation, a still), not a spec sheet. Do not rebuild the old 03. It is blocked until Brice writes the Line. See `NOTES-REGISTERS.md`.
 
 Brice wants to explore, on top of this, a more cinematic/editorial experience:
 
 - Temperature of the Bourne Legacy poster (assembled, serious, grayscale as *one* room) — **not** a slat-wipe over the runners’ faces
 - Optional depth: swipe or tap **only the 02 thesis text** for more *arguments* about how he actually trains — after you have asked him the questions in ASK-BRICE. Do not invent his methodology.
-- A quiet indicator that the page snaps vertically (01 / 02 ticks already exist)
+- A quiet indicator that the page snaps vertically (01 / 02 / 03 ticks already exist)
 - Award-level beauty through restraint. If it looks like a 2012 movie microsite, it failed.
 - When someone has the gist, **Begin** is the purchase path. There is no cart.
 

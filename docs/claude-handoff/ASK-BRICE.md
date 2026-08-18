@@ -26,6 +26,16 @@ Ask one at a time. Write down the answer in his language first. Only then compre
 12. What do you never say to an athlete?
 13. What do people think they are buying, and what are they actually entering?
 
+## To unblock plate 03
+
+Same method: his words first, compressed after. Do not invent an athlete, a frame, or a Line.
+
+**One athlete. One frame. What did you see in it?**
+
+If Simon is the obvious one because the campaign is finished, start there — only with permission. Named, not anonymous. Pride requires a name.
+
+The Line must survive the athlete being removed. If it only works as a caption for that photo, it is a caption.
+
 ## How to use the answers
 
 Each extra 02 argument = **one claim** (short, serif, like “I develop runners.”) + **one proof** (two or three sentences, quieter).

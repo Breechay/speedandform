@@ -8,13 +8,20 @@
 
 ## Current production (2026-08-18)
 
-`/` is the **Run Development instrument**: two full-viewport plates, then Begin, then the five-question intake, then send to Brice. This is a later product decision by Brice. It does not reopen POSITIONING-V7, and it is not a portrait brief.
+`/` is the **Run Development instrument**: three full-viewport snap plates, then Begin, then the five-question intake, then send to Brice. This is a later product decision by Brice. It does not reopen POSITIONING-V7, and it is not a portrait brief.
 
-- **01 THE WORK** — Run Development / With Brice / 8 weeks / $1,200
-- **02 THE PRACTICE** — *I develop runners.* and three more arguments on a horizontal text axis (swipe the thesis, or tap `01 / 04`). First thesis + Begin is still complete without the swipe.
-- **Begin** — same five questions. No cart. No plate 03.
+- **01 THE WORK** — Run Development / With Brice / 8 weeks / $1,200. Colour film.
+- **02 THE PRACTICE** — *I develop runners.* and three more arguments on a horizontal text axis (swipe the thesis, or tap `01 / 04`). Grey film.
+- **03 THE NOTES** — one Observation. A still, not a film. Line + named athlete + door to `/notes`. Not a grid. **Blocked:** Line is a visible PENDING string and the frame is a placeholder until Brice writes one real observation about a named athlete (consent required). Do not invent athlete content to unblock it.
+- **Begin** — same five questions. No cart. Persists across all three plates.
 
-Composition, copy, and intake wording are locked. Motion/depth exploration happens on top of this, not instead of it. Tokens live in `home.css` (Fraunces, JetBrains Mono, ink `#0b0b0a`, ivory `#f6f2e8`) — not the July 2026 cream/plum table below, which belonged to the previous homepage.
+**01 + first thesis + Begin is still complete** without extra 02 swipes and without reaching 03. Both 02 and 03 are depth.
+
+Kill test for 03: if the Line could have been said on 02, it is a restatement and the plate goes. 03 earns its place only by naming a person.
+
+Notes are distribution, not a content library. Two registers, one sequence: Observation (name + bronze rule) and Reminder (no name). No labels, chips, or eyebrows. Maintenance workouts are not Notes. The approved Line / Reason / Close card is not being redesigned. Spec: `docs/claude-handoff/NOTES-REGISTERS.md`.
+
+Composition, copy, and intake wording on 01 / 02 are locked. Tokens live in `home.css` (Fraunces, JetBrains Mono, ink `#0b0b0a`, ivory `#f6f2e8`, bronze `#C3AD96`) — not the July 2026 cream/plum table below, which belonged to the previous homepage.
 
 The July 2026 do-not-regress counts in `HOMEPAGE-DO-NOT-REGRESS.md` apply to the archived page, not to this instrument. Do not restore the V7 marketing homepage onto `/`.
 
