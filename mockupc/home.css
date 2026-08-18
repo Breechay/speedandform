@@ -129,6 +129,21 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 .persistent-begin{pointer-events:auto;margin:0}
 .begin-slot.quiet .persistent-begin{border-color:rgba(246,242,232,.4);color:var(--ivory)}
 
+.plate-cue{
+  position:absolute;z-index:12;right:max(16px, calc(var(--gutter) - 6px));top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:14px;pointer-events:none;
+}
+.plate-cue button{
+  pointer-events:auto;appearance:none;background:none;border:0;padding:0;margin:0;cursor:pointer;
+  font:inherit;font-size:9px;letter-spacing:.2em;color:rgba(244,239,226,.38);line-height:1;text-align:left;
+  transition:color .45s var(--ease);
+}
+.plate-cue button.on{color:rgba(244,239,226,.88)}
+.plate-cue button.on::after{
+  content:"";display:block;width:11px;height:1px;margin-top:6px;background:currentColor;opacity:.7;
+}
+body.asking .plate-cue,body.reading .plate-cue{opacity:0;pointer-events:none}
+
 .mode-panes{position:absolute;inset:var(--barH) 0 0;z-index:9;display:none}
 body.asking .mode-panes,body.reading .mode-panes{display:flex}
 body.asking .plates,body.reading .plates{opacity:0;visibility:hidden;pointer-events:none;transition:none}

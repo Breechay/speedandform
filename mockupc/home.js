@@ -14,6 +14,7 @@
   var filmA = $("#filmA");
   var filmB = $("#filmB");
   var beginSlot = $("#beginSlot");
+  var plateCue = $("#plateCue");
   var lastPlate = 1;
   var activePlate = 0;
   var returnPlate = 0;
@@ -52,6 +53,14 @@
   function updatePlateState(i) {
     activePlate = clamp(i, 0, lastPlate);
     beginSlot.classList.toggle("quiet", activePlate === 1);
+    if (plateCue) {
+      $$("#plateCue [data-cue]").forEach(function (el) {
+        var on = el.getAttribute("data-cue") === String(activePlate);
+        el.classList.toggle("on", on);
+        if (on) el.setAttribute("aria-current", "true");
+        else el.removeAttribute("aria-current");
+      });
+    }
     syncFilms();
   }
 
@@ -254,6 +263,15 @@
   }
 
   $("#sendBtn").addEventListener("click", sendToBrice);
+  if (plateCue) {
+    $$("#plateCue [data-cue]").forEach(function (el) {
+      el.addEventListener("click", function () {
+        var i = parseInt(el.getAttribute("data-cue"), 10);
+        if (isNaN(i)) return;
+        snapToPlate(i);
+      });
+    });
+  }
   plates.addEventListener("scroll", function () {
     if (paintQueued) return;
     paintQueued = true;

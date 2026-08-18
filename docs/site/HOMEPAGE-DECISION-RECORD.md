@@ -6,6 +6,20 @@
 
 ---
 
+## Current production (2026-08-18)
+
+`/` is the **Run Development instrument**: two full-viewport plates, then Begin, then the five-question intake, then send to Brice. This is a later product decision by Brice. It does not reopen POSITIONING-V7, and it is not a portrait brief.
+
+- **01 THE WORK** — Run Development / With Brice / 8 weeks / $1,200
+- **02 THE PRACTICE** — *I develop runners.* + the locked paragraph
+- **Begin** — same five questions. No cart. No plate 03.
+
+Composition, copy, and intake wording are locked. Motion/depth exploration happens on top of this, not instead of it. Tokens live in `home.css` (Fraunces, JetBrains Mono, ink `#0b0b0a`, ivory `#f6f2e8`) — not the July 2026 cream/plum table below, which belonged to the previous homepage.
+
+The July 2026 do-not-regress counts in `HOMEPAGE-DO-NOT-REGRESS.md` apply to the archived page, not to this instrument. Do not restore the V7 marketing homepage onto `/`.
+
+---
+
 ## Why this file exists
 
 In July 2026 a very long homepage brief was written proposing that `/` become

@@ -20,14 +20,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,380;9..144,460;9..144,560&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/home.css?v=rd12">
+  <link rel="stylesheet" href="/home.css?v=rd15">
 </head>
 <body>
   <a class="skip" href="#begin">Begin</a>
 
-  <section class="inst">
-    <div class="film">
-      <video id="film" src="/media/run-development.mp4?v=orig" poster="/media/run-development.jpg?v=orig" autoplay muted loop playsinline></video>
+  <section class="inst" aria-label="Run Development">
+    <div class="film-stack" aria-hidden="true">
+      <div class="film film-a"><video id="filmA" src="/media/run-development.mp4?v=orig" poster="/media/run-development.jpg?v=orig" autoplay muted loop playsinline preload="auto"></video></div>
+      <div class="film film-b"><video id="filmB" src="/media/practice.mp4?v=clip7" poster="/media/practice.jpg?v=clip7" muted loop playsinline preload="auto"></video></div>
     </div>
     <div class="veil" aria-hidden="true"></div>
     <div class="hatch" aria-hidden="true"></div>
@@ -37,17 +38,36 @@
       <button class="back" id="back" type="button">Back</button>
     </div>
 
-    <div class="panes">
-      <div class="pane on" id="p-hero">
-        <div class="hero-in">
+    <main class="plates" id="plates" aria-label="Run Development overview">
+      <section class="plate plate-work" data-plate="0" aria-label="01 The Work">
+        <div class="plate-inner hero-in">
+          <p class="plate-index">01 / THE WORK</p>
           <h1>Run<br>Development</h1>
           <p class="with">With Brice</p>
           <div class="hr"></div>
           <p class="terms"><span>8 Weeks</span><span class="sep">—</span><span class="fee">$1,200</span></p>
-          <button class="cta" id="begin" type="button">Begin <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
         </div>
-      </div>
+      </section>
 
+      <section class="plate plate-practice" data-plate="1" aria-label="02 The Practice">
+        <div class="plate-inner practice-in">
+          <p class="plate-index">02 / THE PRACTICE</p>
+          <h2>I develop runners.</h2>
+          <p class="practice-copy">Training is an argument made over time. <br class="pc-break">I assess where you are, prescribe the work,<br class="pc-break">observe what it establishes, and decide what comes next.</p>
+          <a class="practice-link" href="https://www.instagram.com/form.practice/" target="_blank" rel="noreferrer">@form.practice</a>
+        </div>
+      </section>
+    </main>
+
+    <div class="begin-slot" id="beginSlot">
+      <button class="cta persistent-begin" id="begin" type="button">Begin <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
+    </div>
+    <nav class="plate-cue" id="plateCue" aria-label="The work, then the practice">
+      <button type="button" data-cue="0" class="on" aria-current="true">01</button>
+      <button type="button" data-cue="1">02</button>
+    </nav>
+
+    <div class="mode-panes" id="modePanes" aria-live="polite">
       <div class="pane" id="p-ask">
         <div class="ask-inner">
           <div class="q on" data-q="0">
@@ -177,22 +197,10 @@
   <form name="run-development" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
     <input type="hidden" name="form-name" value="run-development">
     <p class="hidden"><label>Don’t fill this<input name="bot-field"></label></p>
-    <input name="offer">
-    <input name="price">
-    <input name="goal">
-    <input name="days">
-    <input name="volume">
-    <input name="longest">
-    <input name="other">
-    <input name="issue">
-    <input name="city">
-    <input name="name">
-    <input name="email">
-    <input name="video-name">
-    <input type="file" name="video" accept="video/*">
+    <input name="offer"><input name="price"><input name="goal"><input name="days"><input name="volume"><input name="longest"><input name="other"><input name="issue"><input name="city"><input name="name"><input name="email"><input name="video-name"><input type="file" name="video" accept="video/*">
   </form>
   <input type="file" id="pick" accept="video/*" hidden>
 
-  <script src="/home.js?v=rd11"></script>
+  <script src="/home.js?v=rd15"></script>
 </body>
 </html>

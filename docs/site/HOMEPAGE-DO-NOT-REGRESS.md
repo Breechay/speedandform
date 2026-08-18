@@ -1,5 +1,7 @@
 # HOMEPAGE — DO-NOT-REGRESS
 
+> **2026-08-18:** `/` is now the two-plate Run Development instrument (`index.html` + `home.css` + `home.js`). The counts below are the **July 2026 marketing homepage**, archived in `docs/site/archive/`. Do not use them to “fix” the live instrument back into that page.
+
 **Baseline captured:** 2026-07-15, against `index.html` @ 67,611 bytes / 810 lines.
 **v2 applied:** 2026-07-15. File now 69,905 bytes. All invariants below verified held
 post-change; the five deltas verified applied. Counts in the table are the **live**
