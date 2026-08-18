@@ -88,11 +88,36 @@
     syncFilms();
   }
 
-  function keepFilm(el) {
+  function keepFilm(el, mayLoad) {
     if (!el) return;
     el.muted = true;
+    el.loop = true;
+    el.playsInline = true;
+    if (mayLoad && el.readyState === 0) {
+      try { el.load(); } catch (err) {}
+    }
     var go = el.play();
     if (go && go.catch) go.catch(function () {});
+  }
+
+  function watchFilm(el) {
+    if (!el) return;
+    ["pause", "stalled", "suspend", "waiting", "ended"].forEach(function (ev) {
+      el.addEventListener(ev, function () {
+        if (document.body.classList.contains("asking") || document.body.classList.contains("reading") || document.hidden) return;
+        keepFilm(el, false);
+      });
+    });
+  }
+
+  var filmWatch = 0;
+  function startFilmWatch() {
+    window.clearInterval(filmWatch);
+    filmWatch = window.setInterval(function () {
+      if (document.body.classList.contains("asking") || document.body.classList.contains("reading") || document.hidden) return;
+      if (filmA && (filmA.paused || filmA.readyState === 0)) keepFilm(filmA, true);
+      if (filmB && (filmB.paused || filmB.readyState === 0)) keepFilm(filmB, true);
+    }, 1200);
   }
 
   function syncFilms() {
@@ -220,12 +245,33 @@
     if (inst) inst.classList.toggle("moved", p01 > .04);
   }
 
+  function paintTicks() {
+    $$("#ticks .tick").forEach(function (el, j) {
+      el.classList.toggle("done", j < qi);
+      el.classList.toggle("now", j === qi);
+    });
+  }
+
   function showQ(i) {
-    qi = Math.max(0, Math.min(QN - 1, i));
-    $$(".q").forEach(function (q, j) { q.classList.toggle("on", j === qi); });
-    $("#ticks").innerHTML = Array.from({ length: QN }, function (_, j) {
-      return '<span class="tick ' + (j < qi ? "done" : j === qi ? "now" : "") + '">' + String(j + 1).padStart(2, "0") + "</span>";
-    }).join("");
+    var next = Math.max(0, Math.min(QN - 1, i));
+    var qs = $$(".q");
+    if (next === qi) {
+      qs.forEach(function (q, j) { q.classList.toggle("on", j === qi); q.classList.remove("out"); });
+      paintTicks();
+      return;
+    }
+    var leaving = qs[qi];
+    qi = next;
+    qs.forEach(function (q, j) {
+      q.classList.toggle("on", j === qi);
+      q.classList.remove("out");
+    });
+    if (leaving && leaving !== qs[qi] && !reduced) {
+      leaving.classList.remove("on");
+      leaving.classList.add("out");
+      window.setTimeout(function () { leaving.classList.remove("out"); }, 240);
+    }
+    paintTicks();
   }
 
   function start() {
@@ -268,7 +314,7 @@
       $$('[data-key="' + key + '"] .opt').forEach(function (x) { x.setAttribute("aria-pressed", "false"); });
       b.setAttribute("aria-pressed", "true");
       A[key] = b.textContent;
-      if (key === "goal") setTimeout(function () { showQ(1); }, 280);
+      if (key === "goal") setTimeout(function () { showQ(1); }, 360);
     });
   });
 
@@ -383,6 +429,9 @@
   wireThesis();
   paintScroll();
   updatePlateState(0);
+  watchFilm(filmA);
+  watchFilm(filmB);
+  startFilmWatch();
   keepFilm(filmA);
   keepFilm(filmB);
 })();

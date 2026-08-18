@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,380;9..144,460;9..144,560&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/mockupc/home.css?v=snap12">
+  <link rel="stylesheet" href="/mockupc/home.css?v=snap13">
 </head>
 <body>
   <a class="skip" href="#begin">Begin</a>
@@ -29,7 +29,7 @@
   <section class="inst" aria-label="Run Development">
     <div class="film-stack" aria-hidden="true">
       <div class="film film-a"><video id="filmA" src="/media/run-development.mp4?v=rd16" poster="/media/run-development.jpg?v=orig" autoplay muted loop playsinline preload="auto"></video></div>
-      <div class="film film-b"><video id="filmB" src="/mockupc/media/practice.mp4?v=rd16" poster="/mockupc/media/practice.jpg?v=clip7" muted loop playsinline preload="auto"></video></div>
+      <div class="film film-b"><video id="filmB" src="/mockupc/media/practice.mp4?v=rd16" poster="/mockupc/media/practice.jpg?v=clip7" autoplay muted loop playsinline preload="auto"></video></div>
     </div>
     <div class="veil" aria-hidden="true"></div>
     <div class="glass" aria-hidden="true"></div>
@@ -73,8 +73,10 @@
               <p class="practice-copy">Fresh, fed, slept, moving well. That is the week worth having, not the heroic one. Stack eight of them and the same paces cost less. More ground, less negotiation.</p>
             </article>
           </div>
-          <button class="arg-count" id="argCount" type="button" aria-label="Next argument"><span id="argNow">01</span><span class="sep">/</span><span>04</span></button>
-          <a class="practice-link" href="https://www.instagram.com/form.practice/" target="_blank" rel="noreferrer">@form.practice</a>
+          <div class="practice-meta">
+            <button class="arg-count" id="argCount" type="button" aria-label="Next argument"><span id="argNow">01</span><span class="sep">/</span><span>04</span></button>
+            <a class="practice-link" href="https://www.instagram.com/form.practice/" target="_blank" rel="noreferrer">@form.practice</a>
+          </div>
         </div>
       </section>
     </main>
@@ -184,7 +186,13 @@
             <button class="cta" type="button" data-next>Done <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
           </div>
 
-          <div class="ticks" id="ticks"></div>
+          <div class="ticks" id="ticks">
+            <span class="tick now">01</span>
+            <span class="tick">02</span>
+            <span class="tick">03</span>
+            <span class="tick">04</span>
+            <span class="tick">05</span>
+          </div>
         </div>
       </div>
 
@@ -221,6 +229,6 @@
   </form>
   <input type="file" id="pick" accept="video/*" hidden>
 
-  <script src="/mockupc/home.js?v=snap12"></script>
+  <script src="/mockupc/home.js?v=snap13"></script>
 </body>
 </html>
