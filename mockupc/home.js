@@ -37,6 +37,8 @@
   var autoTimer = 0;
   var touched = false;
   var qTimer = 0;
+  var reloadAt = { a: 0, b: 0 };
+  var filmBReady = false;
 
   function pane(id) {
     $$(".pane").forEach(function (p) { p.classList.toggle("on", p.id === id); });
@@ -97,9 +99,20 @@
     if (!el) return;
     el.muted = true;
     el.playsInline = true;
-    if (el.readyState === 0) { try { el.load(); } catch (e) {} }
     var go = el.play();
     if (go && go.catch) go.catch(function () {});
+  }
+
+  // Only reload a film that has genuinely lost its source. readyState 0 during
+  // the first buffer is normal; calling load() there aborts the fetch and starts over.
+  function reviveFilm(el, key) {
+    if (!el) return;
+    var dead = el.error || el.networkState === 3; // NETWORK_NO_SOURCE
+    if (!dead) return;
+    var now = Date.now();
+    if (now - reloadAt[key] < 8000) return;
+    reloadAt[key] = now;
+    try { el.load(); } catch (e) {}
   }
 
   function filmsShouldRun() {
@@ -115,24 +128,41 @@
       return;
     }
     keepFilm(filmA);
-    keepFilm(filmB);
+    if (filmBReady) keepFilm(filmB);
   }
 
   // Backgrounding Safari, switching apps, or restoring from bfcache all leave the
   // element .paused with no event fired. Poll cheaply and only while we should be running.
   window.setInterval(function () {
     if (!filmsShouldRun()) return;
-    if (filmA.paused) keepFilm(filmA);
-    if (filmB.paused) keepFilm(filmB);
-  }, 1200);
+    if (filmA.paused && filmA.readyState > 1) keepFilm(filmA);
+    if (filmBReady && filmB.paused && filmB.readyState > 1) keepFilm(filmB);
+    reviveFilm(filmA, "a");
+    if (filmBReady) reviveFilm(filmB, "b");
+  }, 1500);
 
   [filmA, filmB].forEach(function (v) {
-    ["pause", "stalled", "suspend", "waiting", "ended"].forEach(function (ev) {
+    ["pause", "ended"].forEach(function (ev) {
       v.addEventListener(ev, function () {
-        if (filmsShouldRun()) window.setTimeout(function () { keepFilm(v); }, 60);
+        if (!filmsShouldRun() || v.readyState <= 1) return;
+        if (v === filmB && !filmBReady) return;
+        window.setTimeout(function () { keepFilm(v); }, 60);
       });
     });
   });
+
+  // 01 gets the pipe to itself. 02 starts fetching only once 01 can actually play.
+  function releaseSecondFilm() {
+    if (filmBReady) return;
+    filmBReady = true;
+    filmB.setAttribute("preload", "auto");
+    if (filmsShouldRun()) keepFilm(filmB);
+  }
+  if (filmA.readyState >= 3) releaseSecondFilm();
+  else {
+    filmA.addEventListener("canplay", releaseSecondFilm, { once: true });
+    window.setTimeout(releaseSecondFilm, 4000);
+  }
 
   function showArg(n, dir) {
     var next = clamp(n, 0, argEls.length - 1);
@@ -459,5 +489,4 @@
   paintScroll();
   updatePlateState(0);
   keepFilm(filmA);
-  keepFilm(filmB);
 })();
