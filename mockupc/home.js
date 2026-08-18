@@ -46,7 +46,7 @@
   var bedVol = 0.62;
   var bedDuck = 0.35;
   var bedFade = 0;
-  var BED_SRC = "/mockupc/media/bed.mp3?v=snap19";
+  var BED_SRC = "/mockupc/media/bed.mp3?v=snap20";
 
   function pane(id) {
     $$(".pane").forEach(function (p) { p.classList.toggle("on", p.id === id); });

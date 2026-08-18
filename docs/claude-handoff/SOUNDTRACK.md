@@ -4,7 +4,7 @@ Not on production `/`. Do not copy this to `index.html` until the bed inhabits t
 
 ## What it is
 
-One room tone for the three plates. Play lives on 02, next to `@form.practice`. No bar, no artist, no scrub, no playlist.
+One room tone for the three plates. Play lives on 02, in the row under the thesis: `01 / 04`, then **Play**, then `@form.practice`. Same type as the Instagram link. No bar, no artist, no scrub, no playlist.
 
 Silent on arrival. One `<audio id="bed">` outside the slide track, so 01 → 02 → 03 → Begin does not restart it. After it has started, **Off** appears bar-right (and stays available during intake). Asking/reading ducks volume to 0.35; it does not pause.
 
