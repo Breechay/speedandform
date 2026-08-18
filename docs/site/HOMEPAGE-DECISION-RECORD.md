@@ -11,7 +11,7 @@
 `/` is the **Run Development instrument**: two full-viewport plates, then Begin, then the five-question intake, then send to Brice. This is a later product decision by Brice. It does not reopen POSITIONING-V7, and it is not a portrait brief.
 
 - **01 THE WORK** — Run Development / With Brice / 8 weeks / $1,200
-- **02 THE PRACTICE** — *I develop runners.* + the locked paragraph
+- **02 THE PRACTICE** — *I develop runners.* and three more arguments on a horizontal text axis (swipe the thesis, or tap `01 / 04`). First thesis + Begin is still complete without the swipe.
 - **Begin** — same five questions. No cart. No plate 03.
 
 Composition, copy, and intake wording are locked. Motion/depth exploration happens on top of this, not instead of it. Tokens live in `home.css` (Fraunces, JetBrains Mono, ink `#0b0b0a`, ivory `#f6f2e8`) — not the July 2026 cream/plum table below, which belonged to the previous homepage.

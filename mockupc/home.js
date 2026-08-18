@@ -25,6 +25,10 @@
   var inst = document.querySelector(".inst");
   var workEl = null;
   var practiceEl = null;
+  var thesis = $("#thesis");
+  var argEls = $$(".arg");
+  var argNow = $("#argNow");
+  var ai = 0;
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function pane(id) {
@@ -94,6 +98,57 @@
     }
     keepFilm(filmA);
     keepFilm(filmB);
+  }
+
+  function showArg(n, dir) {
+    var next = clamp(n, 0, argEls.length - 1);
+    if (next === ai) return;
+    var leaving = argEls[ai];
+    ai = next;
+    argEls.forEach(function (el, j) {
+      var on = j === ai;
+      el.classList.toggle("on", on);
+      el.classList.remove("out");
+      if (on) el.removeAttribute("aria-hidden");
+      else el.setAttribute("aria-hidden", "true");
+    });
+    if (leaving && dir !== 0 && !reduced) {
+      leaving.classList.add("out");
+      window.setTimeout(function () { leaving.classList.remove("out"); }, 600);
+    }
+    if (argNow) argNow.textContent = String(ai + 1).padStart(2, "0");
+  }
+
+  function wireThesis() {
+    if (!thesis) return;
+    var x0 = 0, y0 = 0, live = false, axis = 0;
+    thesis.addEventListener("pointerdown", function (e) {
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      x0 = e.clientX; y0 = e.clientY; live = true; axis = 0;
+    });
+    thesis.addEventListener("pointermove", function (e) {
+      if (!live) return;
+      var dx = e.clientX - x0, dy = e.clientY - y0;
+      if (!axis) {
+        if (Math.abs(dx) < 10 && Math.abs(dy) < 10) return;
+        axis = Math.abs(dx) > Math.abs(dy) ? 1 : -1;
+        if (axis === 1 && thesis.setPointerCapture) { try { thesis.setPointerCapture(e.pointerId); } catch (err) {} }
+      }
+      if (axis !== 1) return;
+      if (Math.abs(dx) < 46) return;
+      live = false;
+      showArg(ai + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
+    });
+    thesis.addEventListener("pointerup", function () { live = false; axis = 0; });
+    thesis.addEventListener("pointercancel", function () { live = false; axis = 0; });
+    var count = $("#argCount");
+    if (count) count.addEventListener("click", function () {
+      showArg(ai + 1 > argEls.length - 1 ? 0 : ai + 1, 1);
+    });
+    thesis.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") showArg(ai + 1, 1);
+      if (e.key === "ArrowLeft") showArg(ai - 1, -1);
+    });
   }
 
   function paintScroll() {
@@ -286,6 +341,7 @@
   showQ(0);
   pane(null);
   measure();
+  wireThesis();
   paintScroll();
   updatePlateState(0);
   keepFilm(filmA);
