@@ -107,8 +107,8 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 .pane::-webkit-scrollbar{display:none}
 .pane.on{display:flex}
 
-#p-hero{flex-direction:column;justify-content:flex-end;padding:64px var(--gutter) 72px;max-width:var(--wrap);width:100%;margin:0 auto}
-@media(max-width:760px){#p-hero{padding-bottom:84px}}
+#p-hero{flex-direction:column;justify-content:flex-end;padding:64px var(--gutter) 62px;max-width:var(--wrap);width:100%;margin:0 auto}
+@media(max-width:760px){#p-hero{padding-bottom:74px}}
 .hero-in>*{animation:up 1s var(--ease) both}
 .hero-in>*:nth-child(2){animation-delay:.08s}
 .hero-in>*:nth-child(3){animation-delay:.14s}
