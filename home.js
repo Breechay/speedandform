@@ -122,8 +122,6 @@
     var both = offer();
     $("#rKind").textContent = both ? "Run + Strength" : "Run Development";
     $("#rMoney").textContent = both ? "8 Weeks · $1,800" : "8 Weeks · $1,200";
-    $("#coord").innerHTML = (both ? "Run + Strength" : "Run Development") + "<br>" +
-      (both ? "8 Weeks · $1,800" : "8 Weeks · $1,200");
     $("#rHead").textContent = A.name
       ? (A.name.split(" ")[0] + ", here is where you are.")
       : "Here is where you are.";
