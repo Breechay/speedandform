@@ -459,3 +459,24 @@
   from = "/mockupA/"
   to = "/mockupA/index.html"
   status = 200
+
+# Same Run Development instrument as /. Lowercase path survives Pretty URLs.
+[[redirects]]
+  from = "/mockupB"
+  to = "/mockupb/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/mockupB/"
+  to = "/mockupb/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/mockupb"
+  to = "/mockupb/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/mockupb/"
+  to = "/mockupb/index.html"
+  status = 200

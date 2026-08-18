@@ -103,6 +103,12 @@
 /mockupA                /mockupA/index.html         200
 /mockupA/               /mockupA/index.html         200
 
+# Run Development — same instrument as /. Lowercase folder survives Pretty URLs.
+/mockupB                /mockupb/index.html         200
+/mockupB/               /mockupb/index.html         200
+/mockupb                /mockupb/index.html         200
+/mockupb/               /mockupb/index.html         200
+
 # New site rooms (2026 rebuild)
 /forge-sculpt.html      /forge-sculpt/              301
 /forge-sculpt/train     /forge-sculpt/train/        301
