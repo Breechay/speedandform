@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Speed &amp; Form — Mockup A</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,460;1,9..144,300&family=JetBrains+Mono:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-mode="hero">
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="brand">
+        <span class="mark" aria-hidden="true"></span>
+        <span>Speed &amp; Form</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="form.html">FORM</a></li>
+          <li><a href="breechay.html">BREECHAY</a></li>
+          <li><a href="notes.html">Notes</a></li>
+        </ul>
+        <button type="button" class="btn header-begin" id="headerBegin">Begin</button>
+        <button type="button" class="tool-btn lab-fab" id="labFab"><span class="dot"></span>Lab</button>
+        <button type="button" class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span></button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="menu-panel" id="menuPanel" hidden>
+    <a href="form.html">FORM</a>
+    <a href="breechay.html">BREECHAY</a>
+    <a href="notes.html">Notes</a>
+    <a href="athletes.html">Athletes</a>
+    <p class="quiet">Mockup A · not the live site</p>
+  </div>
+
+  <main class="stage" id="stage">
+    <video class="hero-video" id="heroVideo" autoplay muted loop playsinline poster="hero-poster.jpg">
+      <source src="jose-marky.mp4" type="video/mp4">
+    </video>
+    <img class="hero-still" id="heroStill" alt="">
+    <div class="hero-scrim" id="heroScrim"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <div class="hero-copy" id="heroCopy">
+      <h1 data-edit="heroTitle">Run<br>Development</h1>
+      <p class="hero-sub" data-edit="heroSub">With Brice</p>
+      <div class="hero-divider"></div>
+      <p class="hero-meta"><span data-edit="heroWeeks">8 Weeks</span><span class="fee" data-edit="heroFee">— $1,200</span></p>
+      <div class="hero-cta">
+        <button type="button" class="btn" id="btnBegin">Begin
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="rail" id="rail" aria-live="polite"></div>
+
+    <section class="ask" id="ask" aria-label="Starting questions">
+      <div class="ask-top">
+        <p class="coord" id="coord">Run Development · 8 weeks · $1,200</p>
+        <p class="progress" id="progress">
+          <span data-n="1">01</span>
+          <span data-n="2">02</span>
+          <span data-n="3">03</span>
+          <span data-n="4">04</span>
+          <span data-n="5">05</span>
+        </p>
+      </div>
+
+      <div class="ask-body">
+        <div class="q" id="q1" data-q="1">
+          <p class="q-num">01</p>
+          <h2 data-edit="q1Title">What do you want to improve?</h2>
+          <div class="options" id="q1Options"></div>
+        </div>
+
+        <div class="q" id="q2" data-q="2">
+          <p class="q-num">02</p>
+          <h2 data-edit="q2Title">What does your running look like right now?</h2>
+          <p class="q-help" data-edit="q2Help">Enough to understand the week. Not a training autobiography.</p>
+          <div class="measure-grid">
+            <div class="measure">
+              <label>Days / week</label>
+              <div class="counter">
+                <button type="button" data-bump="days:-1">−</button>
+                <output id="daysOut">—</output>
+                <button type="button" data-bump="days:1">+</button>
+              </div>
+            </div>
+            <div class="measure">
+              <label>Approx. miles / week</label>
+              <div class="counter">
+                <button type="button" data-bump="miles:-5">−</button>
+                <output id="milesOut">—</output>
+                <button type="button" data-bump="miles:5">+</button>
+              </div>
+            </div>
+            <div class="measure">
+              <label>Longest recent run</label>
+              <div class="counter">
+                <button type="button" data-bump="longest:-1">−</button>
+                <output id="longestOut">—</output>
+                <button type="button" data-bump="longest:1">+</button>
+              </div>
+            </div>
+          </div>
+          <input class="optional-line" id="weekNote" type="text" placeholder="Optional — anything else about the week">
+        </div>
+
+        <div class="q" id="q3" data-q="3">
+          <p class="q-num">03</p>
+          <h2 data-edit="q3Title">What else are you training?</h2>
+          <p class="q-help" data-edit="q3Help">Anything that regularly competes for the same body.</p>
+          <div class="options" id="q3Options"></div>
+        </div>
+
+        <div class="q" id="q4" data-q="4">
+          <p class="q-num">04</p>
+          <h2 data-edit="q4Title">What isn’t going the way you want?</h2>
+          <textarea class="free-text" id="friction" rows="5" placeholder=""></textarea>
+        </div>
+
+        <div class="q" id="q5" data-q="5">
+          <p class="q-num">05</p>
+          <h2 data-edit="q5Title">Anything I should see?</h2>
+          <p class="q-help" data-edit="q5Help">A running video, if you have one. Optional.</p>
+          <div class="upload-zone" id="uploadZone">
+            <video class="upload-preview" id="runPreview" muted loop playsinline></video>
+            <label for="runVideo">Add video<small>Side, front, or behind. Whatever you already have.</small></label>
+            <input type="file" id="runVideo" accept="video/*">
+          </div>
+          <div class="lines">
+            <div class="linefield">
+              <label for="name">Name</label>
+              <input id="name" type="text" autocomplete="name">
+            </div>
+            <div class="linefield">
+              <label for="email">Email</label>
+              <input id="email" type="email" autocomplete="email">
+            </div>
+          </div>
+          <div class="location-row" id="locOptions"></div>
+        </div>
+      </div>
+
+      <div class="ask-foot">
+        <button type="button" class="back" id="btnBack">Back</button>
+        <button type="button" class="next" id="btnNext">Continue →</button>
+      </div>
+    </section>
+
+    <article class="receipt" id="receipt" aria-label="Starting receipt">
+      <div class="wrap">
+        <p class="receipt-kicker">Starting receipt</p>
+        <h2 id="receiptOffer">Run Development</h2>
+        <p class="receipt-price" id="receiptMeta">8 weeks · $1,200</p>
+        <div class="rrows" id="receiptRows"></div>
+        <p class="miami-note" id="receiptMiami">Some key sessions can happen together when seeing the work in person would help.</p>
+        <a class="send" id="btnSend" href="sent.html"><span>Send to Brice</span><span>→</span></a>
+        <p class="reads">Brice reads every submission.</p>
+      </div>
+    </article>
+  </main>
+
+  <section class="exits" id="exits">
+    <div class="wrap">
+      <p class="exits-head">Also here</p>
+      <div class="products">
+        <a class="product" href="form.html">
+          <div class="phone" aria-hidden="true"><div class="phone-shot">FORM</div></div>
+          <div>
+            <p class="prod-k">App</p>
+            <p class="prod-name">FORM</p>
+            <p class="prod-copy">The week, on the phone.</p>
+            <span class="btn">Open</span>
+          </div>
+        </a>
+        <a class="product" href="breechay.html">
+          <div class="phone" aria-hidden="true"><div class="phone-shot">BREECHAY</div></div>
+          <div>
+            <p class="prod-k">App</p>
+            <p class="prod-name">BREECHAY</p>
+            <p class="prod-copy">The year, designed.</p>
+            <span class="btn">Open</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="footer-brand">Speed &amp; Form<span class="city">Miami</span></p>
+      <p class="footer-copy">Mockup A. The live site is unchanged.</p>
+      <div class="footer-links">
+        <a href="form.html">FORM</a>
+        <a href="breechay.html">BREECHAY</a>
+        <a href="notes.html">Notes</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="tools">
+    <button type="button" class="tool-btn" id="editToggle"><span class="dot"></span>Edit text</button>
+    <button type="button" class="tool-btn" id="labToggle"><span class="dot"></span>Media Lab</button>
+  </div>
+
+  <aside class="lab" id="lab" aria-label="Media Lab">
+    <div class="lab-head">
+      <b>Media Lab</b>
+      <button type="button" class="tool-btn" id="labClose">Close</button>
+    </div>
+    <div class="lab-body">
+      <p class="lab-note">Load your own film or stills. They stay on this device. The Mac path is not on the server — drop Jose_marky_III_mild_enhanced.mp4 here to judge the real file.</p>
+      <div class="lab-row">
+        <span>Frame</span>
+        <input type="range" id="labY" min="0" max="50" value="22">
+        <span id="labYVal">22</span>
+      </div>
+      <div class="lab-row">
+        <span>Scrim</span>
+        <input type="range" id="labScrim" min="40" max="100" value="92">
+        <span id="labScrimVal">92</span>
+      </div>
+      <div class="lab-acts">
+        <label>Load film<input type="file" id="labFilm" accept="video/*"></label>
+        <label>Load still<input type="file" id="labStill" accept="image/*"></label>
+        <button type="button" id="labReset">Reset film</button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="state-lab" id="stateLab" aria-label="State Lab"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -42,6 +42,15 @@
 /robots.txt
   Cache-Control: no-cache, must-revalidate
 
+# Mockup A — do not index
+/mockupA
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/mockupA/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-cache, no-store, must-revalidate
+
 # Catch-all fallback
 /*
   Cache-Control: no-cache, no-store, must-revalidate

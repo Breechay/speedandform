@@ -448,3 +448,14 @@
   from = "/form/perception-manual"
   to = "/perception-manual.html"
   status = 301
+
+# Interactive homepage mockup (does not replace production index)
+[[redirects]]
+  from = "/mockupA"
+  to = "/mockupA/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/mockupA/"
+  to = "/mockupA/index.html"
+  status = 200
