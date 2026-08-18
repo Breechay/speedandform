@@ -224,4 +224,30 @@
 
   $("#sendBtn").addEventListener("click", sendToBrice);
   showQ(0);
+
+  // iOS Safari pauses muted loops when you leave the browser. Start them again on return.
+  var film = $("#film");
+  var filmRetry;
+  function keepFilm() {
+    if (!film || document.hidden) return;
+    film.muted = true;
+    clearTimeout(filmRetry);
+    var go = function () {
+      if (!film || document.hidden) return;
+      var p = film.play();
+      if (p && p.catch) p.catch(function () {});
+    };
+    go();
+    filmRetry = setTimeout(go, 280);
+  }
+  if (film) {
+    film.muted = true;
+    film.playsInline = true;
+    keepFilm();
+    film.addEventListener("pause", keepFilm);
+    film.addEventListener("ended", keepFilm);
+    document.addEventListener("visibilitychange", keepFilm);
+    window.addEventListener("pageshow", keepFilm);
+    window.addEventListener("focus", keepFilm);
+  }
 })();
