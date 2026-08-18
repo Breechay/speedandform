@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,380;9..144,460;9..144,560&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/home.css?v=rd5">
+  <link rel="stylesheet" href="/home.css?v=rd6">
 </head>
 <body>
   <a class="skip" href="#begin">Begin</a>
@@ -36,8 +36,10 @@
       <a class="id" href="/" aria-label="Speed &amp; Form">
         <img class="mk" src="/media/mark.png" alt="">
       </a>
-      <span class="coord" id="coord">Run Development<br>8 Weeks · $1,200</span>
-      <button class="back" id="back" type="button">Back</button>
+      <div class="bar-end">
+        <span class="coord" id="coord">Run Development<br>8 Weeks · $1,200</span>
+        <button class="back" id="back" type="button">Back</button>
+      </div>
     </div>
 
     <div class="panes">
@@ -56,6 +58,7 @@
           <div class="q on" data-q="0">
             <h2>What do you want to improve?</h2>
             <div class="opts" data-key="goal" data-mode="one">
+              <button class="opt" type="button">Run better</button>
               <button class="opt" type="button">Run faster</button>
               <button class="opt" type="button">Run longer</button>
               <button class="opt" type="button">Run more consistently</button>

@@ -33,7 +33,7 @@ a{color:inherit;text-decoration:none}
 .skip:focus{left:8px}
 
 .arrow{width:14px;height:14px;transition:transform .4s var(--ease)}
-.mk{height:23.3px;width:auto;display:block}
+.mk{height:24.7px;width:auto;display:block}
 
 .inst{position:relative;height:100svh;overflow:hidden;display:flex;flex-direction:column}
 .film{position:absolute;inset:0;z-index:0}
@@ -69,10 +69,10 @@ body.reading .veil{background:rgba(9,9,8,.985)}
   max-width:var(--wrap);width:100%;margin:0 auto;
 }
 .bar .id{display:flex;align-items:center;flex:none}
+.bar-end{display:flex;align-items:center;gap:12px;margin-left:auto}
 .coord{
   font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-on-ink-dim);
   opacity:0;transform:translateY(-6px);transition:all .7s var(--ease);text-align:right;line-height:1.7;
-  margin-left:auto;
 }
 body.asking .coord,body.reading .coord{opacity:1;transform:none}
 .bar .back{
