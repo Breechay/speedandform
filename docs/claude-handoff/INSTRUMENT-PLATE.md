@@ -18,6 +18,8 @@ BEGIN               persists. Still opens at question one.
 
 The material change earns the plate. Same argument that earned the old still — a different room — without type on a photograph. 01 colour, 02 grey, 03 bone, 04 dark.
 
+On bone, Begin is ink on cream. Ivory on bone disappears. `.quiet` must not win over `.light`.
+
 ## Layout lock
 
 The instrument owns the top. The copy owns the bottom third. They never share pixels.
