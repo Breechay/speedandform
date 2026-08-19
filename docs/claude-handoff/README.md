@@ -24,9 +24,9 @@ Fonts load from Google (Fraunces + JetBrains Mono). Needs network once.
 | `docs/claude-handoff/NOTE-001.md` | Hope Observation source |
 | `docs/claude-handoff/AFTER-SEND.md` | Zelle in the reply. Coaching sentence first. No cart. |
 | `docs/claude-handoff/AUDIT-rd28.md` | Review Note is not a link. |
-| `docs/claude-handoff/REACHABLE.md` | Zip README. This pass is closed. Start here. |
-| `docs/claude-handoff/INSTRUMENT-PLATE.md` | 03 is the light room. Live on `/`. Pass closed. |
-| `docs/claude-handoff/SURFACE-AND-WEATHER.md` | Dial is the sun. Dragon is weather. App stays bare. |
+| `docs/claude-handoff/REACHABLE.md` | Zip README. `/` closed. `/mockupc` has the race line. |
+| `docs/claude-handoff/INSTRUMENT-PLATE.md` | 03 is the light room. Live on `/`. Race line on `/mockupc`. |
+| `docs/claude-handoff/SURFACE-AND-WEATHER.md` | Dial is the sun. Dragon is weather. No weather API. Spreads > motifs. |
 | `docs/claude-handoff/APP-STORE-COPY.md` | FORM iOS metadata. Paste with the build. Not site copy. |
 | `docs/EXPERIENCE-BRIEF.md` | Read first |
 | `docs/PROMPT-FOR-CLAUDE.md` | Paste to Claude |
