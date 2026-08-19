@@ -38,8 +38,8 @@ When both **`speedandform`** and **`FORM-iOS`** roots are in the workspace, trea
 
 _Update this line when your sprint changes._
 
-- Homepage instrument pass is **closed**. Four plates live on `/` (`rd38`). Twin `/mockupc`. Do not reopen 03 for taste. Specs: `docs/claude-handoff/REACHABLE.md`, `INSTRUMENT-PLATE.md`, `SURFACE-AND-WEATHER.md`. Receipt + Zelle: `AFTER-SEND.md`.
-- Next is not the site. Athletes, then the Field (weather around a still-bare instrument), then paywall — when that is the task.
+- Homepage `/` and `/mockupc` carry the race line and the W1 tab (`rd39` / `snap39`). The instrument steps aside for the week. Weather drifts; it is not a feed. Specs: `docs/claude-handoff/INSTRUMENT-PLATE.md`, `SURFACE-AND-WEATHER.md`. Receipt + Zelle: `AFTER-SEND.md`.
+- Next is not more chrome. Athletes, then the Field (weather around a still-bare instrument), then paywall — when that is the task.
 
 ---
 

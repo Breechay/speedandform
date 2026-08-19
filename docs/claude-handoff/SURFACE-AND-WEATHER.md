@@ -29,42 +29,38 @@ Not a character. Not a third object to compose against. Weather.
 - Own `<img>` layer. Never `background-image`.
 - Saturated. No wash, blur, grain, tint, or blend on the art.
 - Cropped by the viewport. You never see the whole contour. It enters from outside and leaves again.
+- The crop must read as **deliberate** before it is understood. Enough curve and scale to be a form entering the frame. A shard in the corner looks accidental.
 - Bottom-right. Orange and teal must **consume that corner** — no cream pocket, or it reads as a stamp on the page.
 - Mid-right of a phone stays almost empty. Fins do not climb the edge into the middle of the screen.
 - Does not cover the disc. Does not compete with Begin.
 - Arrives with the room (`--paper-enter` on the site). Not a flying entrance.
+- Site crop now: `min(86vw, 560px)`, right −30% / bottom −16%, image offset 4/6%, opacity 92% so it sits under the paper rather than on it. Desktop `clamp(420px, 44vw, 660px)`.
+- `weatherDrift`: 54s, ease-in-out, alternating, 8px across and 10px up with a 0.6° turn, pivoting from the lower right. Slow enough that you never catch it moving, only notice that it has. That's the difference between weather and animation.
 
 On the app, later: the same crop, primarily in the unused lower field. It may shift slightly with the day. Slightly. A few percent, not a parade. Rest days can be quieter. Interval days do not need a performance.
 
 ## Clouds
 
-Not in this site pass. When they come:
+Not in this site pass. When they come, they are a picture. Not a forecast.
 
 - Two or three, as their own layers, independent of the tail.
 - Subtle. Taste, not sky replacement.
 - None in the bottom-right corner. That corner belongs to the tail.
 - Do not bake them into the dragon PNG.
+- **Do not attach clouds to weather data.** The moment atmosphere needs a data source to justify itself, it becomes a feature, and you will end up designing an API instead of a picture.
 
-## Weather data (app, later)
+## Weather data
 
-Only if it is free and it does not become a dashboard.
-
-The illustration may answer the day: a little more cloud, a little less, the tail a hair left or right. The athlete does not come here to read a forecast. If they have to interpret a number, it does not belong on Today.
-
-Never:
-
-- A temperature in the corner of Today
-- A weather icon competing with the session
-- A reason to open the app that is not the work
+Do not. Sun, field, weather works because nothing labels it.
 
 ## Site lock (now)
 
-Live on `/`. Twin at `/mockupc`. Spec: `INSTRUMENT-PLATE.md`.
+Live on `/` (`rd39`) and `/mockupc` (`snap39`). Spec: `INSTRUMENT-PLATE.md`.
 
 - Art: `/media/dragon-tail.webp` (not the PNG; do not preload it against the films)
-- Markup: `.dragon-tail > img` inside `.plate-instrument`, above the paper, below the copy
+- Markup: `.dragon-tail > img` inside `.plate-instrument`
 - Warm on plate 02 so 03 does not pop
-- Tab / placard is still not this work
+- W1 tab / placard is on the plate. The instrument steps aside. The tab tells once.
 
 ## App lock (not this work)
 

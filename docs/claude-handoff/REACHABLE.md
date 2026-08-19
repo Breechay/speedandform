@@ -4,9 +4,11 @@ Open in Chrome. Phone is the real test.
 
 Live: https://speedandform.com/ · twin: https://speedandform.com/mockupc
 
-**This pass is closed.** The four-plate homepage is live. The instrument looks right. Evaluate, upgrade, or improve only if something is actually wrong. Do not reopen the plate for taste. The app, paywall, and Field weather wait until athletes are using it.
+**The four-plate homepage is live.** Race line under the disc. W1 tab on the left. The week is behind the tab until it's asked for. The dragon is weather, drifting.
 
-Cache: `/` `rd38`. `/mockupc` `snap36`.
+Cache: `/` `rd39`. `/mockupc` `snap39`.
+
+Cache: `/` `rd39`. `/mockupc` `snap39`. Race line, W1 tab, weather drift. The instrument steps aside.
 
 ## `/` — production
 
