@@ -344,14 +344,12 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
   from{transform:translate3d(0,0,0) rotate(0deg)}
   to{transform:translate3d(-8px,-10px,0) rotate(-.6deg)}
 }
-/* one veil. mediates empty field and dragon. not a cloud graphic.
-   source is readable; the page pushes it back down. */
+/* one cloud. Japanese ink form, not a wash. Cool gray, authored edge.
+   No blur, no multiply — those turned it into a brown smudge. */
 .weather-cloud{
   position:absolute;right:-8%;bottom:12%;z-index:2;
   width:min(92vw,540px);pointer-events:none;
-  opacity:calc(var(--paper-enter,0) * .22);
-  filter:blur(5px);
-  mix-blend-mode:multiply;
+  opacity:calc(var(--paper-enter,0) * .42);
   transform:translate3d(calc(16px * (1 - var(--paper-enter,0))),calc(8px * (1 - var(--paper-enter,0))),0);
 }
 .weather-cloud img{

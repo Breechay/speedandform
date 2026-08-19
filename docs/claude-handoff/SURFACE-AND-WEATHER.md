@@ -45,8 +45,9 @@ On the app, later: the same crop, primarily in the unused lower field. It may sh
 A picture. Not a forecast. Independent of the tail.
 
 - Own `<img>` layer (`.weather-cloud`). Never baked into the dragon file.
-- **One** on the plate: the ribbon veil (`/media/cloud-ribbon.webp`). Family also has `cloud-bridge` and `cloud-bank` — not on the page.
-- Warm gray parchment, not white. Source is ~35–45% readable. The page displays it at ~22% with a 5px blur and `multiply`, so it reads as atmosphere, not a cloud graphic.
+- **One** on the plate: the ribbon (`/media/cloud-ribbon.webp`). A cool gray kumo — Japanese ink silhouette, not a watercolor smear. Family also has `cloud-bridge` and `cloud-bank` — not on the page.
+- Cool stone gray, not brown, not white. Authored edge. No page blur, no `multiply` — those turned the last pass into a dirt smudge.
+- Displayed at ~.42 so the form reads and the paper still shows through.
 - Sits slightly right, in the lower field. Its job is to mediate empty field and dragon — not to fill the center-left.
 - Mass on the right (kisses the dragon’s visible edge). Taper to the left. One softer trailing lobe.
 - Does not cover the disc. Does not compete with Begin. Does not occupy the extreme bottom-right corner — that still belongs to the tail.
@@ -61,7 +62,7 @@ Do not. Sun, field, weather works because nothing labels it.
 
 ## Site lock (now)
 
-Live on `/` (`rd44`) and `/mockupc` (`snap44`). Spec: `INSTRUMENT-PLATE.md`.
+Live on `/` (`rd45`) and `/mockupc` (`snap45`). Spec: `INSTRUMENT-PLATE.md`.
 
 - Art: `/media/dragon-tail.webp` (not the PNG; do not preload it against the films)
 - Markup: `.dragon-tail > img` and `.weather-cloud > img` inside `.plate-instrument`
@@ -76,7 +77,7 @@ Live on `/` (`rd44`) and `/mockupc` (`snap44`). Spec: `INSTRUMENT-PLATE.md`.
 
 **Weather dissolves the way weather dissolves.** The mask sits on `.dragon-tail`, not on the file. Corner holds. The edge facing the room falls into paper. The image drifts through that veil. Do not blur, wash, or blend the art to get this — the falloff is the atmosphere.
 
-**One cloud, as a picture.** The ribbon is the source; the page makes it quiet. Shifted right so it mediates dragon and empty field. Not more visible — more elegant. Then stop.
+**One cloud, as a picture.** Cool gray kumo. Authored edge. No blur, no multiply. Shifted right so it mediates dragon and empty field. Then stop.
 
 **Weather moves the way weather moves.** `weatherDrift`: 54s, ease-in-out, alternating, −8px / −10px and −0.6°, origin 80% 80%. Slow enough that you never catch it moving, only notice that it has. Anything faster is animation, and animation is a performance.
 
@@ -91,6 +92,7 @@ When it is: one crop, unused field, behind chrome if needed, never over Today’
 - A dragon head, eyes, claws, or a full beast
 - Recolor, desaturate, or drop opacity until it is a stain
 - Blur or blend the dragon file to fake atmosphere — the mask is the veil
+- Blur or `multiply` the cloud — that is how it became a brown smudge
 - Pattern fills, chapter marks, or catalog chrome from the art-book references
 - A second horizontal axis of art across 01 and 02
 - Social, engagement, or “something to look at” as a product
