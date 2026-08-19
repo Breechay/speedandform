@@ -16,7 +16,7 @@ BEGIN               persists. Still opens at question one.
 
 01 + first thesis + Begin is still complete.
 
-Cache: `/` `rd43`. `/mockupc` `snap43`.
+Cache: `/` `rd44`. `/mockupc` `snap44`.
 
 ## Why light
 
@@ -39,7 +39,7 @@ Depth is by focus, not by blurring the page. The instrument dissolves into the p
 - Cycle: 7s hold. Outgoing session 0.5s. Incoming starts at 0.45s and takes 0.95s. Same 1.4s total; never both legible. The session does not travel. The disc names the day.
 - Parallax capped at 8px.
 - Headline only. The paragraph was the instrument's job written out in words.
-- Atmosphere: cropped dragon as weather in the bottom-right. `min(86vw, 560px)` at right −14% / bottom −6%, image offset 2/2%, opacity `.92`. Desktop `clamp(420px, 44vw, 660px)`, right −2% / bottom −4%. A radial mask on the container (not the file) holds the corner and dissolves toward the room. See `SURFACE-AND-WEATHER.md`.
+- Atmosphere: cropped dragon as weather in the bottom-right. `min(86vw, 560px)` at right −14% / bottom −6%, image offset 2/2%, opacity `.92`. Desktop `clamp(420px, 44vw, 660px)`, right −2% / bottom −4%. A radial mask on the container (not the file) holds the corner and dissolves toward the room. One ribbon cloud mediates the empty field and the dragon — rightward, quiet, `multiply` at .22. See `SURFACE-AND-WEATHER.md`.
 
 On a 375×667 phone the disc and the eyebrow land close. The air belongs between the instrument and FORM, then between the instrument and the copy. Dial centre is `35svh + 14px`.
 
@@ -141,3 +141,4 @@ Copy on the plate (site voice):
 - Cover the instrument with the placard instead of moving it
 - Put the race line back under the disc unless asked
 - Bake the tail into a CSS background, desaturate it, or cover the disc
+- Stack a second cloud, or raise the ribbon until it announces itself

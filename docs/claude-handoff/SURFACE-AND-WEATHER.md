@@ -42,13 +42,18 @@ On the app, later: the same crop, primarily in the unused lower field. It may sh
 
 ## Clouds
 
-Not in this site pass. When they come, they are a picture. Not a forecast.
+A picture. Not a forecast. Independent of the tail.
 
-- Two or three, as their own layers, independent of the tail.
-- Subtle. Taste, not sky replacement.
-- None in the bottom-right corner. That corner belongs to the tail.
-- Do not bake them into the dragon PNG.
-- **Do not attach clouds to weather data.** The moment atmosphere needs a data source to justify itself, it becomes a feature, and you will end up designing an API instead of a picture.
+- Own `<img>` layer (`.weather-cloud`). Never baked into the dragon file.
+- **One** on the plate: the ribbon veil (`/media/cloud-ribbon.webp`). Family also has `cloud-bridge` and `cloud-bank` — not on the page.
+- Warm gray parchment, not white. Source is ~35–45% readable. The page displays it at ~22% with a 5px blur and `multiply`, so it reads as atmosphere, not a cloud graphic.
+- Sits slightly right, in the lower field. Its job is to mediate empty field and dragon — not to fill the center-left.
+- Mass on the right (kisses the dragon’s visible edge). Taper to the left. One softer trailing lobe.
+- Does not cover the disc. Does not compete with Begin. Does not occupy the extreme bottom-right corner — that still belongs to the tail.
+- Arrives with the room. `cloudDrift` 80s, slower than the dragon, different path. Anything faster is animation.
+- **Do not attach clouds to weather data.**
+
+The family is three files so the app can later crop, shift, or quiet the same weather. Do not put all three on the site.
 
 ## Weather data
 
@@ -56,10 +61,10 @@ Do not. Sun, field, weather works because nothing labels it.
 
 ## Site lock (now)
 
-Live on `/` (`rd43`) and `/mockupc` (`snap43`). Spec: `INSTRUMENT-PLATE.md`.
+Live on `/` (`rd44`) and `/mockupc` (`snap44`). Spec: `INSTRUMENT-PLATE.md`.
 
 - Art: `/media/dragon-tail.webp` (not the PNG; do not preload it against the films)
-- Markup: `.dragon-tail > img` inside `.plate-instrument`
+- Markup: `.dragon-tail > img` and `.weather-cloud > img` inside `.plate-instrument`
 - Warm on plate 02 so 03 does not pop
 - W1 tab / placard is on the plate. The instrument steps aside. The tab tells once.
 
@@ -70,6 +75,8 @@ Live on `/` (`rd43`) and `/mockupc` (`snap43`). Spec: `INSTRUMENT-PLATE.md`.
 **A crop has to read as a form entering the frame.** The tightest pass on the tail left a shard in the corner that read as something the viewport accidentally clipped, not as a shape arriving. The rule: enough curve and scale to be read as deliberate before it is understood — never a terminus, never anatomy. Roughly a quarter arch around the sun, held to the lower right, mid-right stays empty.
 
 **Weather dissolves the way weather dissolves.** The mask sits on `.dragon-tail`, not on the file. Corner holds. The edge facing the room falls into paper. The image drifts through that veil. Do not blur, wash, or blend the art to get this — the falloff is the atmosphere.
+
+**One cloud, as a picture.** The ribbon is the source; the page makes it quiet. Shifted right so it mediates dragon and empty field. Not more visible — more elegant. Then stop.
 
 **Weather moves the way weather moves.** `weatherDrift`: 54s, ease-in-out, alternating, −8px / −10px and −0.6°, origin 80% 80%. Slow enough that you never catch it moving, only notice that it has. Anything faster is animation, and animation is a performance.
 
@@ -88,3 +95,4 @@ When it is: one crop, unused field, behind chrome if needed, never over Today’
 - A second horizontal axis of art across 01 and 02
 - Social, engagement, or “something to look at” as a product
 - Treating the site plate as a mock of the iOS screen, or the iOS screen as a poster
+- Put `cloud-bridge` or `cloud-bank` on the plate. The ribbon is the one. Then stop.
