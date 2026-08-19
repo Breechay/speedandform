@@ -1,8 +1,8 @@
 # 03 THE INSTRUMENT — live on `/`
 
-**This pass is closed.** Evaluate from `REACHABLE.md` / the reachable zip. Do not redesign 03 unless something is actually wrong.
+Four plates. The race line, the W1 tab, and the tell are on `/` and `/mockupc` in this tree. Merge so live `/` matches. Question is 04. Nothing after the ask.
 
-Production `/` is four plates. `/mockupc` is the same sequence (noindex twin). Question is 04. Nothing after the ask. Do not build the week tab / placard until that is the task.
+The governing move on the placard: **the instrument steps aside rather than being covered.**
 
 ## Sequence
 
@@ -16,7 +16,7 @@ BEGIN               persists. Still opens at question one.
 
 01 + first thesis + Begin is still complete.
 
-Cache: `/` `rd38`. `/mockupc` `snap36`.
+Cache: `/` `rd41`. `/mockupc` `snap41`.
 
 ## Why light
 
@@ -36,10 +36,10 @@ Depth is by focus, not by blurring the page. The instrument dissolves into the p
 - Phone: MON and SUN are gone. SAT and TUE rest further in the fade (`--k: .28`).
 - Week labels: static `blur(1.15px)`. Resting ink via registered `--k`. The ring does not light. The disc already names the day (TUESDAY / SATURDAY). Lighting TUE pulled the eye off the plate. Do not animate the blur.
 - Rail on bone: 30% ink, 66% when on. 16% is invisible, not missing.
-- Cycle: 7s hold. Outgoing session 0.5s. Incoming starts at 0.45s and takes 0.95s. Same 1.4s total; never both legible. Nothing travels.
+- Cycle: 7s hold. Outgoing session 0.5s. Incoming starts at 0.45s and takes 0.95s. Same 1.4s total; never both legible. The session does not travel. The race line's light does.
 - Parallax capped at 8px.
 - Headline only. The paragraph was the instrument's job written out in words.
-- Atmosphere: cropped dragon as weather in the bottom-right. No cream pocket in that corner. Mid-right stays empty. See `SURFACE-AND-WEATHER.md`.
+- Atmosphere: cropped dragon as weather in the bottom-right. `min(86vw, 560px)` at right −30% / bottom −16%, image offset 4/6%, opacity `.92`. Desktop `clamp(420px, 44vw, 660px)`. See `SURFACE-AND-WEATHER.md`.
 
 On a 375×667 phone the disc and the eyebrow land close. The air belongs between the instrument and FORM, then between the instrument and the copy. Dial centre is `35svh + 14px`.
 
@@ -51,6 +51,44 @@ Nothing on the plate is on a clock. The room answers the gesture.
 - Week fills around the arc as you pull the room up: top of the arc first, then outward. Each label carries `--d` for its place in that order.
 - Scroll back and it reverses.
 - The week stays at rest. The disc names the day.
+
+## The race line
+
+One hairline under the disc, disc-width, four segments in race proportion — `9 / 20 / 54 / 17`. Start is short. Hold is most of the race. No labels.
+
+The segment belonging to the session on the disc lights (ink .55, 2px) and the light travels as the cycle turns. Four sessions read as four parts of one race.
+
+It rides `--cy` and the disc's entrance scale (`.945 → 1`), or it detaches from the disc while the room arrives. Width tracks the disc: both are `60%`. Sits at `top: calc(50% + 33%)`.
+
+Brice sketched this as four labelled underlines — Start, Settle, Hold, Finish. Right instinct, wrong form. Four words under the disc is a legend explaining the plate, and it eats the air the plate just won. The disc already says the word; the line says where the word lives.
+
+## The week tab and the placard
+
+The tab is the app's own `W1` margin tab and the only thing on the plate that asks to be touched. 30 × 106, ink on bone, vertical mono, left edge at `34svh`.
+
+One tap slides in a `min(78vw, 330px)` ivory panel:
+
+```
+THE PLAN
+Half Marathon
+West Palm Beach · Dec 13 · 1:15:00
+MON Easy / TUE Intervals / WED Easy / THU Speed / FRI Easy / SAT Long run / SUN Rest
+Five days. Intervals Tuesday. Long Saturday. The rest stays easy.
+```
+
+Long is bronze. Rest is italic. Every line is the app's, none of it is authored for the web.
+
+**The instrument steps aside rather than being covered.** Dial and race line translate right and drop to .34; the copy drops to .22. You can see the instrument the whole time — the week took the room, it did not replace it.
+
+Closes on the tab, an outside tap, Escape, or leaving the room. You never come back to a page mid-gesture.
+
+Nothing about the week exists until it is asked for. Today is on the disc; the week is behind the tab.
+
+### The tell
+
+The tab leans out 6px and comes back. Once, 1.4s after the room settles, then never again for the session. Suppressed if the placard is already open, if the tab has been tapped, or under reduced motion.
+
+One tell, once. A tab that pulses is a page asking to be used; a tab that moves a single time is an object telling you it is a handle.
 
 ## Depths
 
@@ -105,5 +143,7 @@ Copy on the plate (site voice):
 - A canned entrance animation while you wait
 - Equal 1.4s fades on both sessions (prints two workouts at once)
 - Invent a mark that the app does not use, or leave a type unmarked in one place
-- Build the W1 tab / placard unless that is the task
+- Repeat the tell, or add a second one
+- Cover the instrument with the placard instead of moving it
+- Label the race line, or number its segments
 - Bake the tail into a CSS background, desaturate it, or cover the disc

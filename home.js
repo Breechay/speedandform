@@ -53,6 +53,7 @@
   function mode(m) {
     document.body.classList.remove("asking", "reading");
     if (m) document.body.classList.add(m);
+    if (m === "asking" || m === "reading") closePlacard();
     if (m) {
       filmA.pause();
       filmB.pause();
@@ -334,6 +335,10 @@
     sessEls.forEach(function (el, j) {
       el.classList.toggle("on", j === sessI);
     });
+    var rl = document.getElementById("raceline");
+    if (rl) [].slice.call(rl.children).forEach(function (seg, j) {
+      seg.classList.toggle("on", j === sessI);
+    });
     /* the disc already names the day. lighting the ring pulls the eye to TUE. */
   }
 
@@ -380,6 +385,59 @@
       dial.insertAdjacentHTML("beforeend", frag);
     }
     showSess(0);
+    wirePlacard();
+  }
+
+  /* The week lives behind the margin tab — one tap, the app's own gesture.
+     Nothing about it exists until it is asked for. */
+  var placardWired = false;
+  var closePlacard = function () {};
+  function wirePlacard() {
+    if (placardWired) return;
+    var tab = document.getElementById("weekTab");
+    var card = document.getElementById("placard");
+    var plate = tab && tab.closest(".plate-instrument");
+    if (!tab || !card || !plate) return;
+    placardWired = true;
+
+    function set(open) {
+      plate.classList.toggle("placard-open", open);
+      tab.setAttribute("aria-expanded", open ? "true" : "false");
+      card.setAttribute("aria-hidden", open ? "false" : "true");
+    }
+    closePlacard = function () { set(false); };
+    tab.addEventListener("click", function (e) {
+      e.stopPropagation();
+      set(!plate.classList.contains("placard-open"));
+    });
+    plate.addEventListener("click", function (e) {
+      if (!plate.classList.contains("placard-open")) return;
+      if (card.contains(e.target) || tab.contains(e.target)) return;
+      set(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") set(false);
+    });
+    /* the tell: once, after the room has settled, and only if untouched.
+       a tab that pulses is a page asking to be used; a tab that moves a
+       single time is an object telling you it's a handle. */
+    var told = false;
+    function tell() {
+      if (told || reduced) return;
+      told = true;
+      window.setTimeout(function () {
+        if (plate.classList.contains("placard-open")) return;
+        tab.classList.add("tell");
+        window.setTimeout(function () { tab.classList.remove("tell"); }, 1700);
+      }, 1400);
+    }
+    tab.addEventListener("click", function () { told = true; }, { once: true });
+    /* leaving the room closes it — you never come back to a page mid-gesture */
+    if (plates) plates.addEventListener("scroll", function () {
+      if (activePlate === 2) tell();
+      if (plate.classList.contains("placard-open") && activePlate !== 2) set(false);
+    }, { passive: true });
+    if (activePlate === 2) tell();
   }
 
   function paintTicks() {

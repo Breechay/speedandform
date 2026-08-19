@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,380;9..144,460;9..144,560&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/home.css?v=rd38">
+  <link rel="stylesheet" href="/home.css?v=rd41">
 </head>
 <body>
   <a class="skip" href="#begin">Begin</a>
@@ -117,7 +117,26 @@
               <div class="today">TUESDAY</div>
             </div>
           </div>
+          <div class="raceline" id="raceline" aria-hidden="true">
+            <i class="on" style="--w:9"></i><i style="--w:20"></i><i style="--w:54"></i><i style="--w:17"></i>
+          </div>
         </div>
+        <aside class="placard" id="placard" aria-hidden="true">
+          <p class="pl-eyebrow">The plan</p>
+          <h3 class="pl-title">Half Marathon</h3>
+          <p class="pl-race">West Palm Beach · Dec 13 · 1:15:00</p>
+          <ol class="pl-week">
+            <li><b>MON</b><span>Easy</span></li>
+            <li><b>TUE</b><span class="key">Intervals</span></li>
+            <li><b>WED</b><span>Easy</span></li>
+            <li><b>THU</b><span>Speed</span></li>
+            <li><b>FRI</b><span>Easy</span></li>
+            <li><b>SAT</b><span class="long">Long run</span></li>
+            <li><b>SUN</b><span class="rest">Rest</span></li>
+          </ol>
+          <p class="pl-line">Five days. Intervals Tuesday. Long Saturday. The rest stays easy.</p>
+        </aside>
+        <button class="week-tab" id="weekTab" type="button" aria-expanded="false" aria-controls="placard"><span>W1</span></button>
         <div class="instrument-scrim" aria-hidden="true"></div>
         <div class="dragon-tail" aria-hidden="true">
           <img src="/media/dragon-tail.webp?v=rd36" alt="" width="1024" height="1536" decoding="async" loading="lazy" fetchpriority="low">
@@ -289,6 +308,6 @@
   </form>
   <input type="file" id="pick" accept="video/*" hidden>
 
-  <script src="/home.js?v=rd38"></script>
+  <script src="/home.js?v=rd41"></script>
 </body>
 </html>
