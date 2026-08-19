@@ -1,0 +1,26 @@
+/* live home.css, rd48 — dragon only. no cloud. */
+
+.dragon-tail{
+  /* Weather, not an object. Held to the lower-right.
+     Mask is atmosphere — the pigment stays; the form
+     dissolves toward the room. */
+  position:absolute;right:-14%;bottom:-6%;z-index:2;
+  width:min(86vw,560px);pointer-events:none;
+  opacity:calc(var(--paper-enter,0) * .92);
+  transform:translate3d(calc(22px * (1 - var(--paper-enter,0))),calc(30px * (1 - var(--paper-enter,0))),0);
+  -webkit-mask-image:radial-gradient(125% 100% at 88% 108%,#000 16%,rgba(0,0,0,.82) 42%,rgba(0,0,0,.38) 64%,rgba(0,0,0,.1) 80%,transparent 94%);
+  mask-image:radial-gradient(125% 100% at 88% 108%,#000 16%,rgba(0,0,0,.82) 42%,rgba(0,0,0,.38) 64%,rgba(0,0,0,.1) 80%,transparent 94%);
+}
+.dragon-tail img{
+  display:block;width:100%;height:auto;position:relative;left:2%;top:2%;
+  animation:weatherDrift 54s ease-in-out infinite alternate;
+  transform-origin:80% 80%;
+}
+@keyframes weatherDrift{
+  from{transform:translate3d(0,0,0) rotate(0deg)}
+  to{transform:translate3d(-8px,-10px,0) rotate(-.6deg)}
+}
+
+@media(min-width:760px){
+  .dragon-tail{right:-2%;bottom:-4%;width:clamp(420px,44vw,660px)}
+}
