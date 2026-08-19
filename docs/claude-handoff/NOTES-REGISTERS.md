@@ -64,13 +64,13 @@ The still on 03 is canned. Concept was sound; a bright daylight photograph in a 
 
 Tapping an option records the answer and opens the intake at question two. **Begin stays and still opens at question one.** No contradiction.
 
-Hope's Note sits on the review screen — below the rows, above Send — Line, name, bronze rule, nothing else. Full card remains at `/notes`.
+Hope's Note sits on the review screen — below the rows, above Send — Line, name, bronze rule, nothing else. It is not a link: the answers live only in memory until Send. Full card remains at `/notes`.
 
 **01 + first thesis + Begin is still complete** without reaching 03.
 
 ## NOTE 001 — on the review screen, and at `/notes`
 
-The homepage still is canned. The Observation belongs where they hesitate: the review screen, below what they told you, above Send. Line, name, bronze rule. Full card at `/notes`.
+The homepage still is canned. The Observation belongs where they hesitate: the review screen, below what they told you, above Send. Line, name, bronze rule. Not a link. Full card at `/notes`.
 
 Plate 03 is the first question. Film B continues. The room darkens.
 

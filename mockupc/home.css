@@ -124,6 +124,7 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 .plate-practice .plate-inner{display:flex;flex-direction:column;justify-content:flex-end;padding-top:calc(var(--barH) + 30px);padding-bottom:178px}
 .plate-ask .plate-inner{display:flex;flex-direction:column;justify-content:flex-end;padding-top:calc(var(--barH) + 30px);padding-bottom:178px}
 .ask-in{max-width:var(--wrap)}
+.ask-in .plate-index{margin-bottom:22px}
 .ask-in h2{
   font-family:var(--serif);font-weight:380;font-size:clamp(38px,6vw,82px);line-height:.98;letter-spacing:-.016em;
   color:var(--ivory);max-width:12ch;
@@ -143,10 +144,8 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 }
 .note-who::before{content:"";display:inline-block;width:18px;height:1px;background:#C3AD96;vertical-align:middle;margin-right:12px;opacity:.85}
 .read-obs{
-  display:block;margin-top:32px;padding-top:28px;border-top:1px solid var(--line-on-ink);
-  transition:opacity .35s var(--ease);
+  display:block;margin:32px 0 0;padding-top:28px;border-top:1px solid var(--line-on-ink);
 }
-.read-obs:hover{opacity:.82}
 .practice-in{max-width:var(--wrap)}
 .practice-in .plate-index{margin-bottom:22px}
 
