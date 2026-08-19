@@ -14,7 +14,7 @@ BEGIN               persists. Still opens at question one.
 
 01 + first thesis + Begin is still complete.
 
-Cache: `/` `rd37`. `/mockupc` `snap35`.
+Cache: `/` `rd38`. `/mockupc` `snap36`.
 
 ## Why light
 
@@ -37,7 +37,7 @@ Depth is by focus, not by blurring the page. The instrument dissolves into the p
 - Cycle: 7s hold. Outgoing session 0.5s. Incoming starts at 0.45s and takes 0.95s. Same 1.4s total; never both legible. Nothing travels.
 - Parallax capped at 8px.
 - Headline only. The paragraph was the instrument's job written out in words.
-- Atmosphere: a cropped dragon tail as its own `<img>` layer, bottom-right. WebP, not preloaded against the films. Warmed as you enter 02. No clouds in this pass.
+- Atmosphere: cropped dragon as weather in the bottom-right. No cream pocket in that corner. Mid-right stays empty. See `SURFACE-AND-WEATHER.md`.
 
 On a 375×667 phone the disc and the eyebrow land close. The air belongs between the instrument and FORM, then between the instrument and the copy. Dial centre is `35svh + 14px`.
 
