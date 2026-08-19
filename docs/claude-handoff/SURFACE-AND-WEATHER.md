@@ -35,7 +35,7 @@ Not a character. Not a third object to compose against. Weather.
 - Does not cover the disc. Does not compete with Begin.
 - Arrives with the room (`--paper-enter` on the site). Not a flying entrance.
 - Site crop now: `min(86vw, 560px)`, right −30% / bottom −16%, image offset 4/6%, opacity 92% so it sits under the paper rather than on it. Desktop `clamp(420px, 44vw, 660px)`.
-- `weatherDrift`: 54s, ease-in-out, alternating, 8px across and 10px up with a 0.6° turn, pivoting from the lower right. Slow enough that you never catch it moving, only notice that it has. That's the difference between weather and animation.
+- `weatherDrift`: 54s, ease-in-out, alternating, −8px / −10px and −0.6°, origin 80% 80%. Slow enough that you never catch it moving, only notice that it has. Anything faster is animation, and animation is a performance.
 
 On the app, later: the same crop, primarily in the unused lower field. It may shift slightly with the day. Slightly. A few percent, not a parade. Rest days can be quieter. Interval days do not need a performance.
 
@@ -55,12 +55,20 @@ Do not. Sun, field, weather works because nothing labels it.
 
 ## Site lock (now)
 
-Live on `/` (`rd40`) and `/mockupc` (`snap40`). Spec: `INSTRUMENT-PLATE.md`.
+Live on `/` (`rd41`) and `/mockupc` (`snap41`). Spec: `INSTRUMENT-PLATE.md`.
 
 - Art: `/media/dragon-tail.webp` (not the PNG; do not preload it against the films)
 - Markup: `.dragon-tail > img` inside `.plate-instrument`
 - Warm on plate 02 so 03 does not pop
 - W1 tab / placard is on the plate. The instrument steps aside. The tab tells once.
+
+## Two amendments (Aug 19)
+
+**Clouds are not weather data, and not a plan tier.** Do not make the artwork contingent on a forecast API or on what a free account gets. The moment atmosphere needs a data source to justify itself it stops being a picture and becomes a feature, and you will end up designing an integration instead of a sky. If real conditions ever influence it, beautiful — but it never has to earn its existence with a number.
+
+**A crop has to read as a form entering the frame.** The tightest pass on the tail left a shard in the corner that read as something the viewport accidentally clipped, not as a shape arriving. The rule: enough curve and scale to be read as deliberate before it is understood — never a terminus, never anatomy. Roughly a quarter arch around the sun, held to the lower right, mid-right stays empty.
+
+**Weather moves the way weather moves.** `weatherDrift`: 54s, ease-in-out, alternating, −8px / −10px and −0.6°, origin 80% 80%. Slow enough that you never catch it moving, only notice that it has. Anything faster is animation, and animation is a performance.
 
 ## App lock (not this work)
 

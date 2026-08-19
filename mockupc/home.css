@@ -268,8 +268,8 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
    Four segments in race proportion — start, settle, hold, finish. No labels.
    The disc already says the word; the line says where it lives. */
 .raceline{
-  position:absolute;left:50%;top:calc(50% + 34%);width:60%;
-  transform:translate(-50%,-50%) translateY(var(--cy,0px));
+  position:absolute;left:50%;top:calc(50% + 33%);width:60%;
+  transform:translate(-50%,-50%) translateY(var(--cy,0px)) scale(calc(.945 + .055 * var(--paper-enter,0)));
   display:flex;gap:6px;align-items:center;
   opacity:calc(min(1,(var(--paper-enter,0) - .12) * 3));
   pointer-events:none;
@@ -502,5 +502,6 @@ body.reading .veil{background:rgba(9,9,8,.985)}
   .dial{transform:translate(-50%,-50%)}
   .week-tab.tell{animation:none}
   .disc{transform:translate(-50%,-50%)}
+  .raceline{transform:translate(-50%,-50%)}
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
