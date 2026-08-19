@@ -4,7 +4,7 @@ Open in Chrome. Phone is the real test.
 
 Live: https://speedandform.com/ · twin: https://speedandform.com/mockupc
 
-`/` and `/mockupc` match (`rd46` / `snap46`) — W1 tab, tell, weather drift, one kumo cloud. No race line. The instrument steps aside. Live `/` is this plate.
+`/` and `/mockupc` match (`rd47` / `snap47`) — W1 tab, tell, weather drift. Cloud parked. No race line. The instrument steps aside. Live `/` is this plate.
 
 ## `/` — production
 
@@ -53,7 +53,7 @@ Art-book / poster references are confidence, not a layout to copy onto Today.
 |---|---|
 | `index.html` `home.css` `home.js` | Production `/` |
 | `mockupc/` | Four-plate twin |
-| `media/` | Films, posters, `dragon-tail.webp`, cloud family (`cloud-ribbon` on the plate) |
+| `media/` | Films, posters, `dragon-tail.webp`. Cloud family archived in `docs/claude-handoff/cloud-parked/` |
 | `notes.html` `notes.css` | NOTE 001 |
 | `og/` | Share cards |
 | `docs/CURSOR_CONTEXT.md` | Orientation |
@@ -67,5 +67,6 @@ Art-book / poster references are confidence, not a layout to copy onto Today.
 - Invent a mark the app does not use
 - Bake the tail into a CSS background, or cover the disc
 - Redesign 03 because you have a new idea for the dragon
+- Put the cloud back unless asked. Archive: `cloud-parked/`
 - Rewrite `coach.html`
 - Start the iOS Field illustration or paywall from this zip

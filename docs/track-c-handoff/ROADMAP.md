@@ -30,7 +30,7 @@ Last updated: 19 Aug 2026.
 - `[—]` **B2 · The race line under the disc.** Built, then parked. It read as a weird underline on the sun. Do not put it back unless asked. *19 Aug*
 - `[x]` B3 · The W1 margin tab, the ivory placard, the tell. *19 Aug*
 - `[x]` B4 · Intake: success gating, mailto fallback, receipt-scale review, text-size-adjust. *19 Aug*
-- `[~]` **B5 · Dragon / weather.** Crop raised, atmosphere mask, one cool-gray kumo (no blur, no multiply — the wash read as dirt). Still not “there” as weather. Next lever is crop and quiet, not size, not a second cloud. *19 Aug*
+- `[—]` **B5 · Dragon / weather.** Dragon crop and atmosphere mask stay. Cloud parked (wash = dirt smudge; kumo = right medium, wrong crop — cut off on the right). Do not restore unless asked. Archive: `docs/claude-handoff/cloud-parked/`. *19 Aug*
 - `[ ]` **B6 · Thin lines are on notice.** A hairline must carry meaning at a glance or it is noise. Where a divider is only separating things, use space.
 - `[ ]` B7 · Record the plate, portrait, one full cycle, for Instagram — after 38 is approved.
 - `[ ]` B8 · Decide whether `/notes` should be reachable. Currently orphaned by design.
