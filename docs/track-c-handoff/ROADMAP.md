@@ -37,20 +37,7 @@ Last updated: 19 Aug 2026.
 
 ---
 
-## TRACK C — Today becomes the instrument  ← **you are here**
-
-Gate: Brice authorized this now. Spec: `TRACK-C.md`. Tokens: `TOKENS.md`.
-
-The governing idea: **the plan lives in the placard, so Today can hold less.** Today shows today.
-
-- `[ ]` **C1 · The wordmark.** Site FORM lockup — Fraunces, 17px, weight 380, tracking `.22em`, ink on bone.
-- `[ ]` **C2 · The typography rule.** New York inside the sun (session name). Fraunces outside (lockup, placard). SF for everything measured. Never a pace in serif. *Do not put Fraunces inside the disc.*
-- `[ ]` **C3 · Kill the header.** `Tuesday / the eighteenth of august` dies. The disc already names the day.
-- `[ ]` **C4 · The week recedes.** Static blur, clip MON/SUN, do not light the ring.
-- `[ ]` **C5 · FILE SESSION becomes the boxed CTA.** Site Begin on bone. SESSION DETAILS stays secondary.
-- `[ ]` **C6 · Ivory placard replaces the brown plan sheet.** Instrument steps aside. Not covered.
-- `[ ]` **C7 · Editing moves into the placard, concealed.** Rest = the plan. Edit reveals run days, long day, can’t-run, race/goal. Editable ≠ unbounded.
-- `[ ]` **C8 · One language for the four movements.** Keep the struck mark. Delete the rings.
+- `[x]` **C1–C8 · Today becomes the instrument.** Codex, FORM-iOS. *19 Aug*
 
 ---
 
@@ -73,6 +60,10 @@ Do not reopen unless a Track C string fails the guard.
 ## TRACK E — the world with rules
 
 Gate: Track C landed. Atmosphere on a surface still being rebuilt is wasted work.
+
+**E-weather is a separate zip:** `docs/track-e-handoff/`. Dragon on Today. Do not start E1–E5 from that zip.
+
+- `[ ]` **E-weather · Dragon on Today.** Same treatment as live `/`. Unused field. Mask on the container. No cloud. Spec in `docs/track-e-handoff/TRACK-E.md`.
 
 - `[ ]` **E1 · Wire the chapter close.** Four full-screen takeovers in Brice’s voice, firing when a block binds. Zero production call sites today. Wiring, not design.
 - `[ ]` **E2 · The Week Print.** Archive, never recap. No totals as achievement.

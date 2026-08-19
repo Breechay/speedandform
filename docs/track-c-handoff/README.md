@@ -9,6 +9,8 @@ Open `TRACK-C.md` and implement C1–C8 in order. Update `ROADMAP.md` in place a
 
 Track D (voice) is already done on `cursor/the-plan-binding-93e5`. Do not reopen it. New strings must still pass the language guard.
 
+Track E weather is a separate package: `docs/track-e-handoff/`. Do not start it from this zip.
+
 ## Why this exists
 
 The site is ahead of the app. Brice’s call: **put the site’s experience on Today first**, so nothing is lost. The plan now lives in the ivory placard, which means Today can hold less. Today shows today.
