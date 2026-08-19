@@ -192,18 +192,17 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
   background-size:180px 180px;mix-blend-mode:multiply;
 }
 .dial{
-  /* the instrument sits ABOVE the copy, never behind it.
-     no spinning bezel, no collar — week labels and the session disc.
-     box = min(92vw, 54svh); centre at 29svh + 5pt; whole thing scaled 1.02. */
+  /* week labels and the session disc. scaled so MON/SUN clip on a phone.
+     centre a touch higher so the bigger disc still clears the copy. */
   --box:min(92vw,54svh);
-  position:absolute;left:50%;top:calc(29svh + 5pt);z-index:1;width:var(--box);aspect-ratio:1;
-  transform:translate(-50%,-50%) scale(1.02) translateY(var(--py,0px));
+  position:absolute;left:50%;top:26svh;z-index:1;width:var(--box);aspect-ratio:1;
+  transform:translate(-50%,-50%) scale(1.08) translateY(var(--py,0px));
   color:var(--ink);opacity:var(--paper-enter,0);pointer-events:none;
 }
 .disc{
   /* the session plate. no ring, no shadow — paper on paper, a shade lighter. */
   position:absolute;left:50%;top:50%;border-radius:50%;
-  width:58%;height:58%;transform:translate(-50%,-50%) translateY(var(--cy,0px));
+  width:66%;height:66%;transform:translate(-50%,-50%) translateY(var(--cy,0px));
   background:var(--disc);
   display:grid;place-items:center;text-align:center;
 }
@@ -213,21 +212,21 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
   position:absolute;transform:translate(-50%,-50%) scale(var(--s,1));
   text-align:center;color:var(--ink);white-space:nowrap;
 }
-.day .mk{display:block;margin:0 auto 8px;line-height:0;opacity:.4;color:var(--ink)}
+.day .mk{display:block;margin:0 auto 5px;line-height:0;opacity:.7;color:var(--ink)}
 .day .mk svg{display:block;margin:0 auto;overflow:visible}
 .day b{
   display:block;font-family:var(--sans);
-  font-size:11.5px;letter-spacing:.15em;font-weight:500;
-  color:rgba(11,11,10,.6);opacity:1;
+  font-size:12px;letter-spacing:.12em;font-weight:590;
+  color:rgba(11,11,10,.8);opacity:1;
 }
 .day span{
   display:block;font-family:var(--sans);
-  font-size:12.5px;font-weight:400;letter-spacing:0;margin-top:2px;
-  color:rgba(11,11,10,.38);opacity:1;
+  font-size:13px;font-weight:500;letter-spacing:0;margin-top:1px;
+  color:rgba(11,11,10,.55);opacity:1;
 }
-.day.on .mk{opacity:.72}
-.day.on b{color:rgba(11,11,10,.88)}
-.day.on span{color:rgba(11,11,10,.6)}
+.day.on .mk{opacity:.92}
+.day.on b{color:rgba(11,11,10,.92)}
+.day.on span{color:rgba(11,11,10,.72)}
 .session{
   position:absolute;inset:0;display:grid;align-content:center;justify-items:center;
   gap:5px;padding:0 7%;
@@ -263,24 +262,24 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
   padding-top:calc(var(--barH) + 30px);padding-bottom:150px;z-index:3;
   color:var(--ink);opacity:var(--paper-enter,0);
 }
-.instrument-in .plate-index{color:rgba(11,11,10,.55);margin-bottom:20px}
+.instrument-in .plate-index{color:rgba(11,11,10,.42);margin-bottom:16px}
 .instrument-in h2{
-  font-family:var(--serif);font-weight:300;font-size:clamp(26px,6.4vw,38px);
-  line-height:1.04;letter-spacing:-.01em;color:var(--ink);max-width:15ch;
+  font-family:var(--serif);font-weight:300;font-size:clamp(24px,5.8vw,34px);
+  line-height:1.06;letter-spacing:-.01em;color:var(--ink);max-width:14ch;
 }
 .instrument-copy{
-  margin-top:16px;max-width:29ch;font-family:var(--serif);font-weight:300;
-  font-size:clamp(14.5px,3.9vw,16px);line-height:1.48;color:rgba(11,11,10,.62);
+  margin-top:18px;max-width:28ch;font-family:var(--serif);font-weight:300;
+  font-size:clamp(14px,3.6vw,15.5px);line-height:1.5;color:rgba(11,11,10,.52);
 }
 .instrument-meta{
-  font-family:var(--mono);font-size:11px;letter-spacing:.18em;
-  margin-top:20px;width:max-content;padding-bottom:6px;
-  border-bottom:1px solid rgba(11,11,10,.7);color:rgba(11,11,10,.7);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;
+  margin-top:22px;width:max-content;padding-bottom:6px;
+  border-bottom:1px solid rgba(11,11,10,.55);color:rgba(11,11,10,.55);
 }
 
 .inst.light .bar .id{color:var(--ink)}
-.inst.light .plate-cue button{color:rgba(11,11,10,.34)}
-.inst.light .plate-cue button.on{color:var(--ink)}
+.inst.light .plate-cue button{color:rgba(11,11,10,.16)}
+.inst.light .plate-cue button.on{color:rgba(11,11,10,.38)}
 .inst.light .hatch,.inst.light .veil,.inst.light .glass,.inst.light .grain{opacity:0}
 body.asking .inst.light .bar .id,body.reading .inst.light .bar .id{color:var(--ivory)}
 
@@ -390,7 +389,7 @@ body.reading .veil{background:rgba(9,9,8,.985)}
   .arg{transform:none!important}
   .arg.out{transform:none!important}
   .session{transform:none!important}
-  .dial{transform:translate(-50%,-50%) scale(1.02)}
+  .dial{transform:translate(-50%,-50%) scale(1.08)}
   .disc{transform:translate(-50%,-50%)}
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }

@@ -351,20 +351,20 @@
         ["SUN", "Rest", "rest"]
       ];
       var MARK = {
-        dot:   '<svg width="14" height="8" viewBox="0 0 14 8" fill="currentColor" aria-hidden="true"><circle cx="7" cy="4" r="1.7"/></svg>',
-        reps:  '<svg width="20" height="8" viewBox="0 0 20 8" fill="currentColor" aria-hidden="true"><circle cx="6" cy="4" r="1.35"/><circle cx="10" cy="4" r="1.35"/><circle cx="14" cy="4" r="1.35"/></svg>',
-        speed: '<svg width="26" height="8" viewBox="0 0 26 8" fill="currentColor" aria-hidden="true"><circle cx="6" cy="4" r="1.5"/><circle cx="13" cy="4" r="1.5"/><circle cx="20" cy="4" r="1.5"/></svg>',
-        arc:   '<svg width="22" height="10" viewBox="0 0 22 10" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M2 9 A9 9 0 0 1 20 9"/></svg>',
-        rest:  '<svg width="18" height="8" viewBox="0 0 18 8" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M4 4 H14"/></svg>'
+        dot:   '<svg width="14" height="8" viewBox="0 0 14 8" fill="currentColor" aria-hidden="true"><circle cx="7" cy="4" r="2"/></svg>',
+        reps:  '<svg width="22" height="8" viewBox="0 0 22 8" fill="currentColor" aria-hidden="true"><circle cx="6" cy="4" r="1.7"/><circle cx="11" cy="4" r="1.7"/><circle cx="16" cy="4" r="1.7"/></svg>',
+        speed: '<svg width="28" height="8" viewBox="0 0 28 8" fill="currentColor" aria-hidden="true"><circle cx="6" cy="4" r="1.85"/><circle cx="14" cy="4" r="1.85"/><circle cx="22" cy="4" r="1.85"/></svg>',
+        arc:   '<svg width="22" height="10" viewBox="0 0 22 10" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2 9 A9 9 0 0 1 20 9"/></svg>',
+        rest:  '<svg width="18" height="8" viewBox="0 0 18 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 4 H14"/></svg>'
       };
       /* first session lights the ring as the labels are written.
          never paint TUE and correct it after. */
       var lit = (sessEls[0] && sessEls[0].getAttribute("data-day")) || "1";
       var frag = "";
       days.forEach(function (d, i) {
-        var a = (180 + i * 30) * Math.PI / 180, r = 41; /* label ring, % of --box */
+        var a = (180 + i * 30) * Math.PI / 180, r = 50; /* outside the disc; MON/SUN clip on a phone */
         var x = 50 + r * Math.cos(a), y = 50 + r * Math.sin(a);
-        var sc = (1 - Math.abs(i - 3) * 0.07).toFixed(2); /* falls off from the top of the arc */
+        var sc = (1 - Math.abs(i - 3) * 0.04).toFixed(2); /* gentler falloff — the set should read as one */
         frag += '<div class="day' + (String(i) === String(lit) ? " on" : "") + '" style="left:' + x + "%;top:" + y + "%;--s:" + sc + '">'
               + '<i class="mk">' + (MARK[d[2]] || MARK.dot) + "</i><b>" + d[0] + "</b><span>" + d[1] + "</span></div>";
       });
