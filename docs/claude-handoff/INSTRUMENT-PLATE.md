@@ -14,7 +14,7 @@ BEGIN               persists. Still opens at question one.
 
 01 + first thesis + Begin is still complete.
 
-Cache: `/` `rd34`. `/mockupc` `snap32`.
+Cache: `/` `rd35`. `/mockupc` `snap33`.
 
 ## Why light
 
@@ -37,6 +37,7 @@ Depth is by focus, not by blurring the page. The instrument dissolves into the p
 - Cycle: 7s hold. Outgoing session 0.5s. Incoming starts at 0.45s and takes 0.95s. Same 1.4s total; never both legible. Nothing travels.
 - Parallax capped at 8px.
 - Headline only. The paragraph was the instrument's job written out in words.
+- Atmosphere: a cropped dragon tail as its own `<img>` layer, bottom-right. Not a background. Arrives with `--paper-enter`. No clouds in this pass.
 
 On a 375×667 phone the disc and the eyebrow land close. The air belongs between the instrument and FORM, then between the instrument and the copy. Dial centre is `35svh + 14px`.
 
@@ -103,3 +104,4 @@ Copy on the plate (site voice):
 - Equal 1.4s fades on both sessions (prints two workouts at once)
 - Invent a mark that the app does not use, or leave a type unmarked in one place
 - Build the W1 tab / placard unless that is the task
+- Bake the tail into a CSS background, desaturate it, or cover the disc
