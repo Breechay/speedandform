@@ -303,6 +303,7 @@
       var py = Math.max(-14, -over * 0.06);
       var cy = Math.max(-14, -over * 0.02);
       dial.style.setProperty("--py", py.toFixed(1) + "px");
+      dial.style.setProperty("--cy", cy.toFixed(1) + "px");
       disc.style.setProperty("--cy", cy.toFixed(1) + "px");
     }
 
@@ -350,15 +351,30 @@
       box.innerHTML = html;
     }
     if (dial && !dial.querySelector(".day")) {
+      /* [abbr, word, mark] — the mark is the session's character,
+         same vocabulary the app uses on the dial teeth. */
       var days = [
-        ["MON", "Easy"], ["TUE", "Intervals"], ["WED", "Easy"],
-        ["THU", "Speed"], ["FRI", "Easy"], ["SAT", "Long run"], ["SUN", "Rest"]
+        ["MON", "Easy", "dot"], ["TUE", "Intervals", "reps"], ["WED", "Easy", "dot"],
+        ["THU", "Speed", "speed"], ["FRI", "Easy", "dot"], ["SAT", "Long run", "arc"],
+        ["SUN", "Rest", "rest"]
       ];
+      var MARK = {
+        dot:   '<svg width="14" height="8" viewBox="0 0 14 8" fill="currentColor" aria-hidden="true"><circle cx="7" cy="4" r="1.7"/></svg>',
+        reps:  '<svg width="20" height="8" viewBox="0 0 20 8" fill="currentColor" aria-hidden="true"><circle cx="6" cy="4" r="1.35"/><circle cx="10" cy="4" r="1.35"/><circle cx="14" cy="4" r="1.35"/></svg>',
+        speed: '<svg width="26" height="8" viewBox="0 0 26 8" fill="currentColor" aria-hidden="true"><circle cx="6" cy="4" r="1.5"/><circle cx="13" cy="4" r="1.5"/><circle cx="20" cy="4" r="1.5"/></svg>',
+        arc:   '<svg width="22" height="10" viewBox="0 0 22 10" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M2 9 A9 9 0 0 1 20 9"/></svg>',
+        rest:  '<svg width="18" height="8" viewBox="0 0 18 8" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M4 4 H14"/></svg>'
+      };
+      /* first session lights the ring as the labels are written.
+         never paint TUE and correct it after. */
+      var lit = (sessEls[0] && sessEls[0].getAttribute("data-day")) || "1";
       var frag = "";
       days.forEach(function (d, i) {
-        var a = (180 + i * 30) * Math.PI / 180, r = 56;
+        var a = (180 + i * 30) * Math.PI / 180, r = 41; /* label ring, % of --box */
         var x = 50 + r * Math.cos(a), y = 50 + r * Math.sin(a);
-        frag += '<div class="day' + (i === 1 ? " on" : "") + '" style="left:' + x + "%;top:" + y + '%"><b>' + d[0] + "</b><span>" + d[1] + "</span></div>";
+        var sc = (1 - Math.abs(i - 3) * 0.07).toFixed(2); /* falls off from the top of the arc */
+        frag += '<div class="day' + (String(i) === String(lit) ? " on" : "") + '" style="left:' + x + "%;top:" + y + "%;--s:" + sc + '">'
+              + '<i class="mk">' + (MARK[d[2]] || MARK.dot) + "</i><b>" + d[0] + "</b><span>" + d[1] + "</span></div>";
       });
       dial.insertAdjacentHTML("beforeend", frag);
     }
