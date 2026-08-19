@@ -1,8 +1,50 @@
 # The sun — match the site
 
-The app sun is smaller, sharper, and tighter than the site. Pressure to Pace does not breathe. This is the same leftover as the hairline. Fix the sun. Do not rebuild Today. Do not start Track E from this note.
+The app sun is smaller, sharper, and tighter than the site. Pressure to Pace does not breathe. **It has also fallen back to SF.** That is a regression. The title is New York. Fix the sun. Do not rebuild Today. Do not start Track E from this note.
 
-Look at live `https://speedandform.com/` plate 03 on a phone. Hold it next to Today. The site sun is larger. The title sits in air. There is no line around the circle.
+Look at live `https://speedandform.com/` plate 03 on a phone. Hold it next to Today.
+
+## Stop — Pressure to Pace is New York
+
+Not SF. Not Fraunces. Not bold. If it looks like FILE SESSION’s face, it is wrong.
+
+Live CSS, `home.css`:
+
+```css
+.name{
+  font-family: ui-serif, "New York", "Iowan Old Style", Palatino, Georgia, serif;
+  font-size: clamp(21px, 5.5vw, 26.5px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -.021em;
+  color: #0b0b0a;
+}
+```
+
+On iPhone `ui-serif` **is New York**. In Swift that is:
+
+```swift
+.font(.system(size: 21, weight: .regular, design: .serif))
+```
+
+`size: 21` on a phone (`5.5vw` of 390 ≈ 21.5). Weight `.regular` (400). Design **`.serif`**. Never `.default`. Never `Font.system(.title)`. Never Fraunces inside the disc.
+
+The kick is SF. The paces are SF. The day name is SF. **Only the session title is serif.**
+
+Copy inside the sun, exactly:
+
+```
+builds start          ← SF 10.5, tracking .16em, ink .42. The job word (start) is ochre #9d7440.
+Pressure to Pace      ← New York 400. The one serif line.
+30 min steady · …     ← SF ~12, line-height 1.55, ink .68
+3 × 8 min · …
+2 min float between
+TUESDAY               ← SF 10.5, ochre, tracking .16em
+```
+
+The kick is `builds start`, not `WAS TO BUILD START`. Restore the site’s words.
+
+Inspect the view that draws the title. If it uses `Font.system` without `design: .serif`, that is the bug.
 
 ## Size
 
@@ -114,12 +156,12 @@ If the sun grows and the week stays on the old radius, the labels will sit on th
 
 ## Done when
 
-A phone shot of Today next to plate 03 reads as the same instrument: larger sun, no hairline, Pressure to Pace sitting in air, TUESDAY at the bottom, the week an arc at the site’s distance, rim gone into paper.
+A phone shot of Today next to plate 03 reads as the same instrument: larger sun, no hairline, **Pressure to Pace in New York 400**, sitting in air, TUESDAY at the bottom, the week an arc at the site’s distance, rim gone into paper.
 
 ## Do not
 
 - A ring, a glow, a drop shadow
-- Blur the words inside the sun
+- Set Pressure to Pace in SF, or in Fraunces, or bold
 - Fill a small disc by enlarging or bolding the title
 - Put the barcode mark between the name and the paces
 - A tight collar of days against the disc
