@@ -4,7 +4,7 @@ Open in Chrome. Phone is the real test.
 
 Live: https://speedandform.com/ · twin: https://speedandform.com/mockupc
 
-**This tree:** `/` and `/mockupc` match (`rd41` / `snap41`) — race line, W1 tab, tell, weather drift. The instrument steps aside. Live `main` does not have them yet. Merge before the next agent builds against the old `/`.
+`/` and `/mockupc` match (`rd41` / `snap41`) — race line, W1 tab, tell, weather drift. The instrument steps aside. Live `/` is this plate.
 
 ## `/` — production
 
@@ -39,7 +39,7 @@ The disc is the sun. The week is at rest. The dragon is atmosphere, not a third 
 
 Read `docs/claude-handoff/INSTRUMENT-PLATE.md` and `docs/claude-handoff/SURFACE-AND-WEATHER.md`.
 
-`/mockupc` is the same four plates, `noindex`. Film B there is `/mockupc/media/practice.mp4`. Production uses `/media/practice.mp4`. On this tree they are twins. On live `main` they are not, until this merges.
+`/mockupc` is the same four plates, `noindex`. Film B there is `/mockupc/media/practice.mp4`. Production uses `/media/practice.mp4`. They are twins.
 
 ## Later (not this zip)
 

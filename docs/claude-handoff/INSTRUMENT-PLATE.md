@@ -1,6 +1,6 @@
 # 03 THE INSTRUMENT — live on `/`
 
-Four plates. The race line, the W1 tab, and the tell are on `/` and `/mockupc` in this tree. Merge so live `/` matches. Question is 04. Nothing after the ask.
+Four plates. The race line, the W1 tab, and the tell are on `/` and `/mockupc`. Live `/` is this plate. Question is 04. Nothing after the ask.
 
 The governing move on the placard: **the instrument steps aside rather than being covered.**
 

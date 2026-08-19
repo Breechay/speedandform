@@ -38,7 +38,7 @@ When both **`speedandform`** and **`FORM-iOS`** roots are in the workspace, trea
 
 _Update this line when your sprint changes._
 
-- Homepage `/` and `/mockupc` match in this tree (`rd41` / `snap41`): race line, W1 tab, tell, weather drift. Merge so live `/` is not the old plate. Specs: `docs/claude-handoff/INSTRUMENT-PLATE.md`, `SURFACE-AND-WEATHER.md`. Receipt + Zelle: `AFTER-SEND.md`.
+- Homepage `/` and `/mockupc` match (`rd41` / `snap41`): race line, W1 tab, tell, weather drift. Live `/` is this plate. Specs: `docs/claude-handoff/INSTRUMENT-PLATE.md`, `SURFACE-AND-WEATHER.md`. Receipt + Zelle: `AFTER-SEND.md`.
 - Next is not more chrome. Athletes, then the Field (weather around a still-bare instrument), then paywall — when that is the task.
 
 ---
