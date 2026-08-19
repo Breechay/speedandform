@@ -38,8 +38,8 @@ When both **`speedandform`** and **`FORM-iOS`** roots are in the workspace, trea
 
 _Update this line when your sprint changes._
 
-- Homepage: four plates. 03 is THE INSTRUMENT (bone paper, dial as sun, dragon as weather). 04 is the first question. Receipt, then Zelle in the reply. See `docs/claude-handoff/AFTER-SEND.md`, `INSTRUMENT-PLATE.md`, `SURFACE-AND-WEATHER.md`.
-- `/mockupc` is the noindex twin of `/`. Not a fifth product.
+- Homepage instrument pass is **closed**. Four plates live on `/` (`rd38`). Twin `/mockupc`. Do not reopen 03 for taste. Specs: `docs/claude-handoff/REACHABLE.md`, `INSTRUMENT-PLATE.md`, `SURFACE-AND-WEATHER.md`. Receipt + Zelle: `AFTER-SEND.md`.
+- Next is not the site. Athletes, then the Field (weather around a still-bare instrument), then paywall — when that is the task.
 
 ---
 

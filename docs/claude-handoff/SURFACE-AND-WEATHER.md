@@ -1,5 +1,7 @@
 # Surface and weather
 
+The site pass is closed. Live on `/`. App weather waits.
+
 For Claude, Codex, and anyone touching the instrument plate or, later, the Field.
 
 The app is an instrument. It was built to look complete while bare. That is still the law.

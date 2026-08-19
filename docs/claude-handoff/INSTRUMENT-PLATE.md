@@ -1,5 +1,7 @@
 # 03 THE INSTRUMENT — live on `/`
 
+**This pass is closed.** Evaluate from `REACHABLE.md` / the reachable zip. Do not redesign 03 unless something is actually wrong.
+
 Production `/` is four plates. `/mockupc` is the same sequence (noindex twin). Question is 04. Nothing after the ask. Do not build the week tab / placard until that is the task.
 
 ## Sequence
