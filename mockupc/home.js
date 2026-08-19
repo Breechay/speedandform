@@ -119,12 +119,6 @@
       var im = new Image();
       im.src = el.currentSrc || el.src;
     }
-    var cloud = document.querySelector(".weather-cloud img");
-    if (cloud) {
-      cloud.loading = "eager";
-      var c = new Image();
-      c.src = cloud.currentSrc || cloud.src;
-    }
   }
 
   // Only reload a film that has genuinely lost its source. readyState 0 during

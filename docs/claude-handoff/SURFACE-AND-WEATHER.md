@@ -40,21 +40,19 @@ Not a character. Not a third object to compose against. Weather.
 
 On the app, later: the same crop, primarily in the unused lower field. It may shift slightly with the day. Slightly. A few percent, not a parade. Rest days can be quieter. Interval days do not need a performance.
 
-## Clouds
+## Clouds — parked
 
-A picture. Not a forecast. Independent of the tail.
+Not on the plate. Do not restore unless Brice asks.
 
-- Own `<img>` layer (`.weather-cloud`). Never baked into the dragon file.
-- **One** on the plate: the ribbon (`/media/cloud-ribbon.webp`). A cool gray kumo — Japanese ink silhouette, the mass, not the snail tail. Family also has `cloud-bridge` and `cloud-bank` — not on the page.
-- Cool stone gray, not brown, not white. Authored edge. No page blur, no `multiply` — those turned the last pass into a dirt smudge.
-- Displayed at ~.42 so the form reads and the paper still shows through.
-- Sits slightly right, in the lower field. Its job is to mediate empty field and dragon — not to fill the center-left.
-- Sits slightly right, in the lower field, over the dragon. Compact — the long serpentine taper is gone.
-- Does not cover the disc. Does not compete with Begin. Does not occupy the extreme bottom-right corner — that still belongs to the tail.
-- Arrives with the room. `cloudDrift` 80s, slower than the dragon, different path. Anything faster is animation.
+Two directions were tried (wash, then kumo). Wash was a dirt smudge. Kumo was the right medium (cool ink, no blur, no multiply) but the crop was wrong — first a snail tail, then a mass cut off on the right.
+
+Brief, assets, mocks, and screenshots: `docs/claude-handoff/cloud-parked/`.
+
+When it comes back: start from kumo’s medium and wash’s lesson. The unsolved problem is crop and completeness — a form that belongs to the corner without looking truncated, and without growing a tail that reads as an animal.
+
+- Own `<img>` layer if it returns. Never baked into the dragon file.
 - **Do not attach clouds to weather data.**
-
-The family is three files so the app can later crop, shift, or quiet the same weather. Do not put all three on the site.
+- Do not blur. Do not `multiply`. Do not restore the snail tail without asking.
 
 ## Weather data
 
@@ -62,10 +60,10 @@ Do not. Sun, field, weather works because nothing labels it.
 
 ## Site lock (now)
 
-Live on `/` (`rd46`) and `/mockupc` (`snap46`). Spec: `INSTRUMENT-PLATE.md`.
+Live on `/` (`rd47`) and `/mockupc` (`snap47`). Spec: `INSTRUMENT-PLATE.md`.
 
 - Art: `/media/dragon-tail.webp` (not the PNG; do not preload it against the films)
-- Markup: `.dragon-tail > img` and `.weather-cloud > img` inside `.plate-instrument`
+- Markup: `.dragon-tail > img` inside `.plate-instrument`. No cloud layer.
 - Warm on plate 02 so 03 does not pop
 - W1 tab / placard is on the plate. The instrument steps aside. The tab tells once.
 
@@ -77,7 +75,7 @@ Live on `/` (`rd46`) and `/mockupc` (`snap46`). Spec: `INSTRUMENT-PLATE.md`.
 
 **Weather dissolves the way weather dissolves.** The mask sits on `.dragon-tail`, not on the file. Corner holds. The edge facing the room falls into paper. The image drifts through that veil. Do not blur, wash, or blend the art to get this — the falloff is the atmosphere.
 
-**One cloud, as a picture.** Cool gray kumo. Authored edge. No blur, no multiply. Shifted right so it mediates dragon and empty field. Then stop.
+**The cloud is parked.** Right medium was cool ink. Wrong crop. See `cloud-parked/`. Do not put it back unless asked.
 
 **Weather moves the way weather moves.** `weatherDrift`: 54s, ease-in-out, alternating, −8px / −10px and −0.6°, origin 80% 80%. Slow enough that you never catch it moving, only notice that it has. Anything faster is animation, and animation is a performance.
 
@@ -92,9 +90,10 @@ When it is: one crop, unused field, behind chrome if needed, never over Today’
 - A dragon head, eyes, claws, or a full beast
 - Recolor, desaturate, or drop opacity until it is a stain
 - Blur or blend the dragon file to fake atmosphere — the mask is the veil
-- Blur or `multiply` the cloud — that is how it became a brown smudge
+- Blur or `multiply` a cloud if it returns — that is how it became a brown smudge
+- Put the cloud back on the plate unless asked. Archive: `cloud-parked/`
 - Pattern fills, chapter marks, or catalog chrome from the art-book references
 - A second horizontal axis of art across 01 and 02
 - Social, engagement, or “something to look at” as a product
 - Treating the site plate as a mock of the iOS screen, or the iOS screen as a poster
-- Put `cloud-bridge` or `cloud-bank` on the plate. The ribbon is the one. Then stop.
+- Restore the snail tail without asking
