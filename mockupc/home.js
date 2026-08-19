@@ -34,7 +34,7 @@
   var sessEls = $$(".session");
   var sessI = 0;
   var sessTimer = 0;
-  var SESS_MS = 4200;
+  var SESS_MS = 7000; /* a session holds long enough to be read, not watched */
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var AUTO_MS = 9000;          // dwell before the page shows you there is more
   var AUTO_ONCE = true;        // false = keep advancing like a carousel
@@ -300,8 +300,8 @@
     var disc = $("#disc");
     if (dial && disc && !reduced) {
       var over = Math.max(0, (p - 2) * H);
-      var py = Math.max(-14, -over * 0.06);
-      var cy = Math.max(-14, -over * 0.02);
+      var py = Math.max(-8, -over * 0.035);
+      var cy = Math.max(-8, -over * 0.012);
       dial.style.setProperty("--py", py.toFixed(1) + "px");
       dial.style.setProperty("--cy", cy.toFixed(1) + "px");
       disc.style.setProperty("--cy", cy.toFixed(1) + "px");
@@ -362,7 +362,7 @@
       var lit = (sessEls[0] && sessEls[0].getAttribute("data-day")) || "1";
       var frag = "";
       days.forEach(function (d, i) {
-        var a = (180 + i * 30) * Math.PI / 180, r = 50; /* outside the disc; MON/SUN clip on a phone */
+        var a = (180 + i * 30) * Math.PI / 180, r = 46; /* outside the disc, inside the mask fade */
         var x = 50 + r * Math.cos(a), y = 50 + r * Math.sin(a);
         var sc = (1 - Math.abs(i - 3) * 0.04).toFixed(2); /* gentler falloff — the set should read as one */
         frag += '<div class="day' + (String(i) === String(lit) ? " on" : "") + '" style="left:' + x + "%;top:" + y + "%;--s:" + sc + '">'

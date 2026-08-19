@@ -24,16 +24,23 @@ On bone, Begin is ink on cream. Ivory on bone disappears. `.quiet` must not win 
 
 The instrument owns the top. The copy owns the bottom third. They never share pixels.
 
-- Dial box: `min(92vw, 54svh)`, centre `26svh`, scale `1.08`
-- Disc `66%` of the box. Labels at r=50. On a phone MON and SUN clip — that is correct. The week is the five days you can read.
-- Preview days are as bold as the lit day, then the lit day darkens a little further. Falloff is `0.04` per step, not `0.07`.
-- Copy is quieter and smaller than it was. The 01–04 index recedes on the cream plate. The plate was a crowd; it should be a room.
+Depth is by focus, not by blurring the page. The instrument dissolves into the paper at its own edges. The disc is the only sharp thing. The copy sits on clean paper in front of it.
+
+- Dial box: `min(112vw, 60svh)`, centre `35svh`. Passes behind the FORM wordmark.
+- Radial mask: opaque to 38%, .62 at 54%, gone by 76%. The week doesn't end at a hard edge.
+- Disc `62%`. Labels at r=46, inside the mask fade. MON and SUN clip.
+- Week labels: static `blur(1.15px)` at .62. The day in play gets brighter, never sharper. Opacity 1.2s; the blur value never animates.
+- Cycle: 7s hold, 1.4s dissolve, nothing travels. No 6px rise.
+- Parallax capped at 8px.
+- Headline only. The paragraph was the instrument's job written out in words.
+
+On a 375×667 phone the disc and the eyebrow land within ~20px. If it reads tight, `35svh` → `33svh`. The air belongs between the instrument and the copy, not inside either one.
 
 ## Depths
 
-No spinning bezel. No collar. The week labels sit around the session disc. The disc is paper on paper, a shade lighter — no ring, no shadow.
+No spinning bezel. No collar. Depth by focus: a radial mask on the dial, a static blur on the week. The disc is sharp. The copy is on clean paper.
 
-Scale the whole instrument `1.08` and sit it at `26svh`. MON and SUN clip on a phone. If the disc eats the eyebrow, the lever is `26svh` → `24svh`, not the type.
+If the disc eats the eyebrow on 375×667, the lever is `35svh` → `33svh`, not the type.
 
 The name is New York (`ui-serif` on iPhone). The kick is SF (`--sans`). Not Fraunces, not mono. Paper is the app cream `#F2EEE6`.
 

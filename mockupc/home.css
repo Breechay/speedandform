@@ -194,15 +194,19 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 .dial{
   /* week labels and the session disc. scaled so MON/SUN clip on a phone.
      centre a touch higher so the bigger disc still clears the copy. */
-  --box:min(92vw,54svh);
-  position:absolute;left:50%;top:26svh;z-index:1;width:var(--box);aspect-ratio:1;
-  transform:translate(-50%,-50%) scale(1.08) translateY(var(--py,0px));
+  --box:min(112vw,60svh);
+  position:absolute;left:50%;top:35svh;z-index:1;width:var(--box);aspect-ratio:1;
+  transform:translate(-50%,-50%) translateY(var(--py,0px));
   color:var(--ink);opacity:var(--paper-enter,0);pointer-events:none;
+  /* depth without perspective: the instrument dissolves into the paper at its
+     edges, so the week is atmosphere and the disc is the only sharp thing. */
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,#000 0 38%,rgba(0,0,0,.62) 54%,rgba(0,0,0,0) 76%);
+  mask-image:radial-gradient(circle at 50% 50%,#000 0 38%,rgba(0,0,0,.62) 54%,rgba(0,0,0,0) 76%);
 }
 .disc{
   /* the session plate. no ring, no shadow — paper on paper, a shade lighter. */
   position:absolute;left:50%;top:50%;border-radius:50%;
-  width:66%;height:66%;transform:translate(-50%,-50%) translateY(var(--cy,0px));
+  width:62%;height:62%;transform:translate(-50%,-50%) translateY(var(--cy,0px));
   background:var(--disc);
   display:grid;place-items:center;text-align:center;
 }
@@ -211,7 +215,10 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 .day{
   position:absolute;transform:translate(-50%,-50%) scale(var(--s,1));
   text-align:center;color:var(--ink);white-space:nowrap;
+  filter:blur(1.15px);opacity:.62;
+  transition:opacity 1.2s var(--ease);
 }
+.day.on{opacity:1}
 .day .mk{display:block;margin:0 auto 5px;line-height:0;opacity:.7;color:var(--ink)}
 .day .mk svg{display:block;margin:0 auto;overflow:visible}
 .day b{
@@ -230,10 +237,10 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 .session{
   position:absolute;inset:0;display:grid;align-content:center;justify-items:center;
   gap:5px;padding:0 7%;
-  opacity:0;transform:translateY(6px);
-  transition:opacity .7s var(--ease),transform .7s var(--ease);
+  opacity:0;
+  transition:opacity 1.4s var(--ease);
 }
-.session.on{opacity:1;transform:none}
+.session.on{opacity:1}
 .kick{
   /* SF on iPhone — the app's eyebrow, not a mono label. */
   font-family:var(--sans);font-size:11px;font-weight:510;letter-spacing:.16em;
@@ -255,17 +262,17 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 .instrument-scrim{
   position:absolute;left:0;right:0;bottom:0;height:58%;z-index:2;pointer-events:none;
   opacity:var(--paper-enter,0);
-  background:linear-gradient(to bottom,rgba(242,238,230,0) 0%,rgba(242,238,230,.92) 30%,var(--bone) 58%);
+  background:linear-gradient(to bottom,rgba(242,238,230,0) 0%,rgba(242,238,230,.55) 42%,var(--bone) 78%);
 }
 .plate-instrument .plate-inner{
   display:flex;flex-direction:column;justify-content:flex-end;
-  padding-top:calc(var(--barH) + 30px);padding-bottom:150px;z-index:3;
+  padding-top:calc(var(--barH) + 30px);padding-bottom:clamp(120px,22svh,170px);z-index:3;
   color:var(--ink);opacity:var(--paper-enter,0);
 }
-.instrument-in .plate-index{color:rgba(11,11,10,.42);margin-bottom:16px}
+.instrument-in .plate-index{color:rgba(11,11,10,.42);margin-bottom:18px}
 .instrument-in h2{
   font-family:var(--serif);font-weight:300;font-size:clamp(24px,5.8vw,34px);
-  line-height:1.06;letter-spacing:-.01em;color:var(--ink);max-width:14ch;
+  line-height:1.1;letter-spacing:-.01em;color:var(--ink);max-width:14ch;
 }
 .instrument-copy{
   margin-top:18px;max-width:28ch;font-family:var(--serif);font-weight:300;
@@ -389,7 +396,7 @@ body.reading .veil{background:rgba(9,9,8,.985)}
   .arg{transform:none!important}
   .arg.out{transform:none!important}
   .session{transform:none!important}
-  .dial{transform:translate(-50%,-50%) scale(1.08)}
+  .dial{transform:translate(-50%,-50%)}
   .disc{transform:translate(-50%,-50%)}
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
