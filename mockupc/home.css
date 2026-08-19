@@ -216,7 +216,7 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 .day .mk svg{display:block;margin:0 auto;overflow:visible}
 .day b{
   display:block;font-family:var(--sans);
-  font-size:12px;letter-spacing:.12em;font-weight:590;
+  font-size:12px;letter-spacing:.12em;font-weight:600;
   color:rgba(11,11,10,.8);opacity:1;
 }
 .day span{
