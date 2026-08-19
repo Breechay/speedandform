@@ -341,15 +341,7 @@
   }
 
   function wireInstrument() {
-    var box = $("#dialTicks");
     var dial = $("#dial");
-    if (box && !box.children.length) {
-      var html = "";
-      for (var i = 0; i < 72; i++) {
-        html += '<i class="' + (i % 6 ? "dot" : "") + '" style="transform:rotate(' + (i * 5) + 'deg)"></i>';
-      }
-      box.innerHTML = html;
-    }
     if (dial && !dial.querySelector(".day")) {
       /* [abbr, word, mark] — the mark is the session's character,
          same vocabulary the app uses on the dial teeth. */

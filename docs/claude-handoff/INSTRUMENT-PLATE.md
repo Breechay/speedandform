@@ -33,24 +33,11 @@ The scrim is a fade, not a collision cover.
 
 ## Depths
 
-The week turns around the session. The session never moves.
+No spinning bezel. No collar. The week labels sit around the session disc. The disc is paper on paper, a shade lighter — no ring, no shadow.
 
-A band spinning against the disc reads as attached to it. That is why it looked nervous.
+Scale the whole instrument `1.02` and sit it `5pt` below `29svh`. If 375×667 gets tight, the lever is still `29svh` → `27svh`, not the type.
 
-```
-turning bezel   100% of --box     ticks, 12px / dots 3px, 1 rev / 240s
-day labels      r=41              fixed inside the bezel
-still collar    66%               .dial::after hairline. never spins.
-still disc      58%               no drop shadow. the collar is the only edge.
-```
-
-Three depths of stillness, one thing moving.
-
-If the bezel still competes on the phone: `.dial-ticks{animation:none}`. The composition survives because the collar defines the disc.
-
-No tilt, no perspective, no drop shadow. A shadow here is the one element pretending to be 3D.
-
-Tick `transform-origin` derives from `--box` (`50% calc(var(--box) * .5)`). Never hardcode a vw recipe — that is how the ticks drifted off the ring.
+The name is New York (`ui-serif` on iPhone). The kick is SF (`--sans`). Not Fraunces, not mono. Paper is the app cream `#F2EEE6`.
 
 ## Marks — same vocabulary as the app
 
