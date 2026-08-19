@@ -20,14 +20,16 @@ The material change earns the plate. Same argument that earned the old still —
 
 ## Bind
 
-The core cycles four sessions (4.2s hold, 700ms dissolve). Each one brings its own day forward on the ring. Frozen TUE while the core moves is decoration.
+The core cycles four sessions (4.2s hold, 700ms dissolve). One session per race job. Each one brings its own day forward on the ring.
 
-| Session | Day | Kick |
-|---|---|---|
-| Pressure to Pace | Tuesday · Intervals | builds start |
-| 5 × 1K | Thursday · Speed | builds start |
-| Pyramid | Thursday · Speed | builds start |
-| Race rehearsal | Tuesday · Intervals | builds finish |
+| Job | Session | Day | Kick |
+|---|---|---|---|
+| start | Pressure to Pace | Tuesday · Intervals | builds start |
+| settle | Clean Rhythm | Tuesday · Intervals | builds settle |
+| hold | Long aerobic support | Saturday · Long run | builds hold |
+| finish | Race rehearsal | Tuesday · Intervals | builds finish |
+
+The name is authored (serif). The numbers are measured (`--sans`, system stack, SF on iPhone). No webfont.
 
 ## Do not
 

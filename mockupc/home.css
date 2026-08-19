@@ -9,6 +9,9 @@
   --text-on-ink-dim:rgba(244,239,226,.58);
   --serif:'Fraunces',Georgia,serif;
   --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  /* the instrument's own body face — on iPhone this resolves to literal SF,
+     which is what FORM actually renders. No webfont, no load. */
+  --sans:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',Arial,sans-serif;
   --wrap:1360px;
   --gutter:clamp(20px,4vw,56px);
   --ease:cubic-bezier(.22,.61,.36,1);
@@ -223,7 +226,7 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
   display:block;font-family:var(--mono);
   font-size:10px;letter-spacing:.18em;font-weight:500;opacity:.75;
 }
-.day span{display:block;font-size:12px;font-weight:300;font-family:var(--serif);opacity:.45;margin-top:2px}
+.day span{display:block;font-size:11.5px;font-weight:400;font-family:var(--sans);opacity:.5;margin-top:3px}
 .day.on b{opacity:1}
 .day.on span{opacity:.7}
 .session{
@@ -239,7 +242,7 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 }
 .kick em{font-style:normal;color:#9d7440}
 .name{font-size:27px;font-weight:400;font-family:var(--serif);line-height:1.05;color:var(--ink)}
-.line{font-size:14px;font-weight:300;font-family:var(--serif);color:rgba(11,11,10,.72);line-height:1.5}
+.line{font-size:13.5px;font-weight:400;font-family:var(--sans);color:rgba(11,11,10,.68);line-height:1.55;letter-spacing:-.002em}
 .line small{font-family:var(--mono);font-size:10px;opacity:.45;letter-spacing:.1em;margin-right:8px}
 .today{
   font-family:var(--mono);font-size:10px;letter-spacing:.22em;
