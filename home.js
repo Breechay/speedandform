@@ -322,10 +322,7 @@
     sessEls.forEach(function (el, j) {
       el.classList.toggle("on", j === sessI);
     });
-    var day = sessEls[sessI].getAttribute("data-day");
-    $$("#dial .day").forEach(function (el, j) {
-      el.classList.toggle("on", String(j) === day);
-    });
+    /* the disc already names the day. lighting the ring pulls the eye to TUE. */
   }
 
   function armSess() {
@@ -357,9 +354,7 @@
         arc:   '<svg width="22" height="10" viewBox="0 0 22 10" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2 9 A9 9 0 0 1 20 9"/></svg>',
         rest:  '<svg width="18" height="8" viewBox="0 0 18 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 4 H14"/></svg>'
       };
-      /* first session lights the ring as the labels are written.
-         never paint TUE and correct it after. */
-      var lit = (sessEls[0] && sessEls[0].getAttribute("data-day")) || "1";
+      /* the week stays at rest. the disc names the day. */
       var frag = "";
       days.forEach(function (d, i) {
         var a = (180 + i * 30) * Math.PI / 180, r = 46; /* outside the disc, inside the mask fade */
@@ -367,7 +362,7 @@
         var sc = (1 - Math.abs(i - 3) * 0.04).toFixed(2); /* gentler falloff — the set should read as one */
         var dl = (Math.abs(i - 3) * 0.055).toFixed(3); /* and it arrives in that order, top of the arc first */
         var ring = (i === 0 || i === 6) ? " edge" : (i === 1 || i === 5) ? " shoulder" : "";
-        frag += '<div class="day' + ring + (String(i) === String(lit) ? " on" : "") + '" style="left:' + x + "%;top:" + y + "%;--s:" + sc + ";--d:" + dl + '">'
+        frag += '<div class="day' + ring + '" style="left:' + x + "%;top:" + y + "%;--s:" + sc + ";--d:" + dl + '">'
               + '<i class="mk">' + (MARK[d[2]] || MARK.dot) + "</i><b>" + d[0] + "</b><span>" + d[1] + "</span></div>";
       });
       dial.insertAdjacentHTML("beforeend", frag);
