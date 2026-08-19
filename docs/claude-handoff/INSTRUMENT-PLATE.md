@@ -14,7 +14,7 @@ BEGIN               persists. Still opens at question one.
 
 01 + first thesis + Begin is still complete.
 
-Cache: `/` `rd33`. `/mockupc` `snap31`.
+Cache: `/` `rd34`. `/mockupc` `snap32`.
 
 ## Why light
 
@@ -30,7 +30,7 @@ Depth is by focus, not by blurring the page. The instrument dissolves into the p
 
 - Dial box: `min(112vw, 60svh)`, centre `calc(35svh + 14px)` so WED clears FORM.
 - Radial mask: opaque to 38%, .62 at 54%, gone by 76%. The week doesn't end at a hard edge.
-- Disc `62%`. Labels at r=46, inside the mask fade.
+- Disc `60%`. Labels at r=46, inside the mask fade. Type inside the disc sits a little smaller so the plate has air.
 - Phone: MON and SUN are gone. SAT and TUE rest further in the fade (`--k: .28`).
 - Week labels: static `blur(1.15px)`. Resting ink via registered `--k`. The ring does not light. The disc already names the day (TUESDAY / SATURDAY). Lighting TUE pulled the eye off the plate. Do not animate the blur.
 - Rail on bone: 30% ink, 66% when on. 16% is invisible, not missing.
@@ -78,7 +78,7 @@ Scale falls off from the top of the arc: `1 − 0.04` per step out. The week sta
 
 ## Bind
 
-The core cycles four sessions (7s hold, staggered 1.4s dissolve). One session per race job. Each one brings its own day forward on the ring.
+The core cycles four sessions (7s hold, staggered 1.4s dissolve). One session per race job. The disc names the day. The ring stays at rest.
 
 | Job | Session | Day | Kick |
 |---|---|---|---|
@@ -92,7 +92,7 @@ The name is authored (serif). The numbers are measured (`--sans`, system stack, 
 Copy on the plate (site voice):
 
 - *Every session is built for something.*
-- `FORM · iOS` (label, not App Store CTA)
+- `FORM · iOS` — App Store, `https://apps.apple.com/us/app/form-running-plans/id6761313085`
 
 ## Do not
 
