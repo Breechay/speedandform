@@ -344,11 +344,10 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
   from{transform:translate3d(0,0,0) rotate(0deg)}
   to{transform:translate3d(-8px,-10px,0) rotate(-.6deg)}
 }
-/* one cloud. Japanese ink form, not a wash. Cool gray, authored edge.
-   No blur, no multiply — those turned it into a brown smudge. */
+/* one cloud. Japanese ink form. The mass, not the snail tail. */
 .weather-cloud{
-  position:absolute;right:-8%;bottom:12%;z-index:2;
-  width:min(92vw,540px);pointer-events:none;
+  position:absolute;right:-2%;bottom:10%;z-index:2;
+  width:min(48vw,280px);pointer-events:none;
   opacity:calc(var(--paper-enter,0) * .42);
   transform:translate3d(calc(16px * (1 - var(--paper-enter,0))),calc(8px * (1 - var(--paper-enter,0))),0);
 }
@@ -490,7 +489,7 @@ body.reading .veil{background:rgba(9,9,8,.985)}
 
 @media(min-width:760px){
   .dragon-tail{right:-2%;bottom:-4%;width:clamp(420px,44vw,660px)}
-  .weather-cloud{right:-4%;bottom:14%;width:clamp(420px,48vw,620px)}
+  .weather-cloud{right:0;bottom:12%;width:clamp(200px,28vw,320px)}
 }
 
 @media(min-width:900px){

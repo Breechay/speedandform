@@ -45,11 +45,11 @@ On the app, later: the same crop, primarily in the unused lower field. It may sh
 A picture. Not a forecast. Independent of the tail.
 
 - Own `<img>` layer (`.weather-cloud`). Never baked into the dragon file.
-- **One** on the plate: the ribbon (`/media/cloud-ribbon.webp`). A cool gray kumo — Japanese ink silhouette, not a watercolor smear. Family also has `cloud-bridge` and `cloud-bank` — not on the page.
+- **One** on the plate: the ribbon (`/media/cloud-ribbon.webp`). A cool gray kumo — Japanese ink silhouette, the mass, not the snail tail. Family also has `cloud-bridge` and `cloud-bank` — not on the page.
 - Cool stone gray, not brown, not white. Authored edge. No page blur, no `multiply` — those turned the last pass into a dirt smudge.
 - Displayed at ~.42 so the form reads and the paper still shows through.
 - Sits slightly right, in the lower field. Its job is to mediate empty field and dragon — not to fill the center-left.
-- Mass on the right (kisses the dragon’s visible edge). Taper to the left. One softer trailing lobe.
+- Sits slightly right, in the lower field, over the dragon. Compact — the long serpentine taper is gone.
 - Does not cover the disc. Does not compete with Begin. Does not occupy the extreme bottom-right corner — that still belongs to the tail.
 - Arrives with the room. `cloudDrift` 80s, slower than the dragon, different path. Anything faster is animation.
 - **Do not attach clouds to weather data.**
@@ -62,7 +62,7 @@ Do not. Sun, field, weather works because nothing labels it.
 
 ## Site lock (now)
 
-Live on `/` (`rd45`) and `/mockupc` (`snap45`). Spec: `INSTRUMENT-PLATE.md`.
+Live on `/` (`rd46`) and `/mockupc` (`snap46`). Spec: `INSTRUMENT-PLATE.md`.
 
 - Art: `/media/dragon-tail.webp` (not the PNG; do not preload it against the films)
 - Markup: `.dragon-tail > img` and `.weather-cloud > img` inside `.plate-instrument`
