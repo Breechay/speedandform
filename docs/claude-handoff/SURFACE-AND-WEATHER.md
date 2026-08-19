@@ -16,6 +16,8 @@ Brice is a colorful person. The technical system underneath is quiet on purpose.
 
 If a pass makes the Field look like an art book, a museum catalog, or a wallpaper, it is wrong. Those references (Vietnamese weapon catalogs, illustrated pages, patterned paper) are about *ingenuity and surface* — illustration that is the room, not decoration stuck on an app shell. Steal the confidence. Do not steal the layout.
 
+The real find in those catalogs is **spreads**, not motifs. Alternating density is what makes a book feel authored — a heavy page, then air, then a heavy page. That is worth more to FORM than any dragon. Do not import the animals, the borders, or the chapter chrome. If the site or the app ever learns from those books, it learns the rhythm of pages.
+
 ## The sun
 
 The disc is the sun. It is Today. It names the day. It does not need a second sun, a sky gradient, or a weather widget beside it.
@@ -29,6 +31,7 @@ Not a character. Not a third object to compose against. Weather.
 - Own `<img>` layer. Never `background-image`.
 - Saturated. No wash, blur, grain, tint, or blend on the art.
 - Cropped by the viewport. You never see the whole contour. It enters from outside and leaves again.
+- The crop must read as **deliberate** before it is understood. Enough curve and scale to be a form entering the frame. A shard in the corner looks like the viewport clipped something — that is accidental, and it is wrong.
 - Bottom-right. Orange and teal must **consume that corner** — no cream pocket, or it reads as a stamp on the page.
 - Mid-right of a phone stays almost empty. Fins do not climb the edge into the middle of the screen.
 - Does not cover the disc. Does not compete with Begin.
@@ -38,45 +41,42 @@ On the app, later: the same crop, primarily in the unused lower field. It may sh
 
 ## Clouds
 
-Not in this site pass. When they come:
+Not in this site pass. When they come, they are a picture. Not a forecast.
 
 - Two or three, as their own layers, independent of the tail.
 - Subtle. Taste, not sky replacement.
 - None in the bottom-right corner. That corner belongs to the tail.
 - Do not bake them into the dragon PNG.
+- **Do not attach clouds to weather data.** The moment atmosphere needs a data source to justify itself, it becomes a feature, and you will end up designing an API instead of a picture.
 
-## Weather data (app, later)
+## Weather data
 
-Only if it is free and it does not become a dashboard.
+Do not. Not free. Not paid. Not later as an illustration-as-forecast.
 
-The illustration may answer the day: a little more cloud, a little less, the tail a hair left or right. The athlete does not come here to read a forecast. If they have to interpret a number, it does not belong on Today.
-
-Never:
-
-- A temperature in the corner of Today
-- A weather icon competing with the session
-- A reason to open the app that is not the work
+Sun, field, weather works because nothing labels it. A temperature, an icon, or a cloud that answers a feed is a dashboard. The athlete does not come here to read the sky.
 
 ## Site lock (now)
 
-Live on `/`. Twin at `/mockupc`. Spec: `INSTRUMENT-PLATE.md`.
+Live on `/` (`rd38`). Twin at `/mockupc` (`snap37`) — race line lives here first. Spec: `INSTRUMENT-PLATE.md`.
 
 - Art: `/media/dragon-tail.webp` (not the PNG; do not preload it against the films)
 - Markup: `.dragon-tail > img` inside `.plate-instrument`, above the paper, below the copy
 - Warm on plate 02 so 03 does not pop
-- Tab / placard is still not this work
+- Tab / placard is still not this work. Weather arriving on the plate and a slide-out in the same breath is two new things competing. Race line, then the tab.
 
 ## App lock (not this work)
 
 Do not start the Field illustration until that is the task.
 
-When it is: one crop, unused field, behind chrome if needed, never over Today’s dominant action. The app stays complete while bare. Weather is the only addition that survives the 100m lock — and only if it reduces nothing, covers nothing, and can be ignored.
+When it is: one crop, unused field, behind chrome if needed, never over Today’s dominant action. The app stays complete while bare. Weather is a picture around the instrument — not a feed, not a forecast, not a reason to open an API. It survives the 100m lock only if it reduces nothing, covers nothing, and can be ignored.
 
 ## Do not
 
 - A dragon head, eyes, claws, or a full beast
 - Recolor, desaturate, or drop opacity until it is a stain
 - Pattern fills, chapter marks, or catalog chrome from the art-book references
+- Motifs from those catalogs. Spreads (alternating density) are the find. The dragon is not.
+- Attaching atmosphere to weather data
 - A second horizontal axis of art across 01 and 02
 - Social, engagement, or “something to look at” as a product
 - Treating the site plate as a mock of the iOS screen, or the iOS screen as a poster

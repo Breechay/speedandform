@@ -4,9 +4,11 @@ Open in Chrome. Phone is the real test.
 
 Live: https://speedandform.com/ · twin: https://speedandform.com/mockupc
 
-**This pass is closed.** The four-plate homepage is live. The instrument looks right. Evaluate, upgrade, or improve only if something is actually wrong. Do not reopen the plate for taste. The app, paywall, and Field weather wait until athletes are using it.
+**Production `/` is closed.** The four-plate homepage is live. Do not reopen 03 on `/` for taste.
 
-Cache: `/` `rd38`. `/mockupc` `snap36`.
+`/mockupc` is ahead of this zip: race line under the disc (`snap37`). Four segments, no labels. The light travels. Dragon crop on the twin is being read as a form entering, not a shard. Placard still queued.
+
+Cache: `/` `rd38`. `/mockupc` `snap37`. The reachable zip packed at close-out is stale on mockupc until repacked.
 
 ## `/` — production
 
@@ -40,7 +42,7 @@ The disc is the sun. The week is at rest. The dragon is atmosphere, not a third 
 
 Read `docs/claude-handoff/INSTRUMENT-PLATE.md` and `docs/claude-handoff/SURFACE-AND-WEATHER.md`.
 
-`/mockupc` is the same four plates, `noindex`. Film B there is `/mockupc/media/practice.mp4`. Production uses `/media/practice.mp4`.
+`/mockupc` is the same four plates, `noindex`, plus the race line. Film B there is `/mockupc/media/practice.mp4`. Production uses `/media/practice.mp4`. Do not copy the line onto `/` until asked.
 
 ## Later (not this zip)
 

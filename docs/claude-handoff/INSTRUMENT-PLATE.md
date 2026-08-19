@@ -1,8 +1,8 @@
 # 03 THE INSTRUMENT — live on `/`
 
-**This pass is closed.** Evaluate from `REACHABLE.md` / the reachable zip. Do not redesign 03 unless something is actually wrong.
+Production `/` is **closed**. Four plates. Do not redesign 03 on `/` unless something is actually wrong.
 
-Production `/` is four plates. `/mockupc` is the same sequence (noindex twin). Question is 04. Nothing after the ask. Do not build the week tab / placard until that is the task.
+`/mockupc` is open for the **race line** (snap37). Same four plates, noindex. The sketch of four underlined words was a legend — it tells, and it spends the air. The line under the disc is the drawing of the same idea. Placard / W1 tab stays queued behind this. Question is still 04. Nothing after the ask.
 
 ## Sequence
 
@@ -16,7 +16,7 @@ BEGIN               persists. Still opens at question one.
 
 01 + first thesis + Begin is still complete.
 
-Cache: `/` `rd38`. `/mockupc` `snap36`.
+Cache: `/` `rd38`. `/mockupc` `snap37`.
 
 ## Why light
 
@@ -36,10 +36,11 @@ Depth is by focus, not by blurring the page. The instrument dissolves into the p
 - Phone: MON and SUN are gone. SAT and TUE rest further in the fade (`--k: .28`).
 - Week labels: static `blur(1.15px)`. Resting ink via registered `--k`. The ring does not light. The disc already names the day (TUESDAY / SATURDAY). Lighting TUE pulled the eye off the plate. Do not animate the blur.
 - Rail on bone: 30% ink, 66% when on. 16% is invisible, not missing.
-- Cycle: 7s hold. Outgoing session 0.5s. Incoming starts at 0.45s and takes 0.95s. Same 1.4s total; never both legible. Nothing travels.
+- Cycle: 7s hold. Outgoing session 0.5s. Incoming starts at 0.45s and takes 0.95s. Same 1.4s total; never both legible. The session does not travel. On `/mockupc`, the race line's light does.
 - Parallax capped at 8px.
 - Headline only. The paragraph was the instrument's job written out in words.
-- Atmosphere: cropped dragon as weather in the bottom-right. No cream pocket in that corner. Mid-right stays empty. See `SURFACE-AND-WEATHER.md`.
+- Atmosphere: cropped dragon as weather in the bottom-right. Enough curve and scale to read as a form entering, not a shard. No cream pocket. Mid-right stays empty. See `SURFACE-AND-WEATHER.md`.
+- `/mockupc` only — race line: one hairline under the disc, disc-width (`60%` of the dial, same as the plate). Four segments in race proportion **9 / 20 / 54 / 17**. Start is short. Hold is most of the race. No labels. The segment for the session on the disc lights; the light travels as the cycle turns. Same mark as the app's waveform strip. Do not put this on `/` until asked.
 
 On a 375×667 phone the disc and the eyebrow land close. The air belongs between the instrument and FORM, then between the instrument and the copy. Dial centre is `35svh + 14px`.
 
@@ -81,7 +82,7 @@ Scale falls off from the top of the arc: `1 − 0.04` per step out. The week sta
 
 ## Bind
 
-The core cycles four sessions (7s hold, staggered 1.4s dissolve). One session per race job. The disc names the day. The ring stays at rest.
+The core cycles four sessions (7s hold, staggered 1.4s dissolve). One session per race job. The disc names the day. The ring stays at rest. On `/mockupc`, the race line is the four jobs as one race — 9 / 20 / 54 / 17 — and the light is which part of the race the disc is holding.
 
 | Job | Session | Day | Kick |
 |---|---|---|---|
@@ -105,5 +106,7 @@ Copy on the plate (site voice):
 - A canned entrance animation while you wait
 - Equal 1.4s fades on both sessions (prints two workouts at once)
 - Invent a mark that the app does not use, or leave a type unmarked in one place
-- Build the W1 tab / placard unless that is the task
+- Build the W1 tab / placard unless that is the task. Race line reads first. Then the tab.
+- A legend of four underlined words under the disc (that was the wrong drawing)
 - Bake the tail into a CSS background, desaturate it, or cover the disc
+- Copy the race line onto `/` until asked
