@@ -1,19 +1,24 @@
 # After they send — what you actually do
 
-The site ends at the email. There is no `/start`, no token, no cart. That is correct. The private link is not a page. It is something you send.
+The site ends at the email. There is no `/start`, no token, no cart. That is correct.
+
+**Payment is Zelle, arranged in the reply.** Not a Stripe Payment Link. Not a page. Not a cart. Two sources for this rule is how copies drift — if you rebuild a checkout, you have not read this file.
+
+The money moment lives entirely in the reply, so that reply carries two jobs. Keep them in this order:
+
+1. What you would do first (the coaching sentence). That is the product.
+2. How to pay (Zelle). Logistics.
+
+Do not mention Zelle — or any payment — on the site.
 
 ## The call
 
-**A Stripe Payment Link, created per athlete, at the moment you accept them.**
-
-Not a reusable link. A reusable link can be forwarded to someone you did not accept. Duplicate the product, put their name on it, paste it in the reply. Thirty seconds. Revocable. The payment record carries the name.
-
-Two products, once:
+Two offers:
 
 - Run Development — $1,200
 - Run + Strength — $1,800
 
-This does not put Stripe on `/`. The no-cart rule holds. A link inside a private reply is the flow the page already describes.
+Accept them, or don't. If you accept, Zelle is inside the relationship the way the rest of the flow is: no cart, no fees, no reusable link that can be forwarded to someone you did not accept.
 
 ## Assessment credit
 
@@ -28,9 +33,7 @@ Write the first sentence yourself. That is the product. Everything else is logis
 
 [What you would do first, from what they sent. One or two sentences. Not a template.]
 
-If you want to start, this link is yours. It is not for anyone else.
-
-[Payment Link]
+If you want to start: Zelle [your handle]. $1,200 / $1,800. It is not for anyone else.
 
 Brice
 ```
