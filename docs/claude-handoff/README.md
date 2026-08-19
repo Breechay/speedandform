@@ -24,6 +24,7 @@ Fonts load from Google (Fraunces + JetBrains Mono). Needs network once.
 | `docs/claude-handoff/NOTE-001.md` | Hope Observation source |
 | `docs/claude-handoff/AFTER-SEND.md` | Private Payment Link. Reply templates. No cart. |
 | `docs/claude-handoff/AUDIT-rd28.md` | Review Note is not a link. |
+| `docs/claude-handoff/INSTRUMENT-PLATE.md` | `/mockupc` 03 is the light room. Not on `/`. |
 | `docs/EXPERIENCE-BRIEF.md` | Read first |
 | `docs/PROMPT-FOR-CLAUDE.md` | Paste to Claude |
 | `docs/ASK-BRICE.md` | Ask before writing more copy |

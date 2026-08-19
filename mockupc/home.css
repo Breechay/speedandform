@@ -2,6 +2,8 @@
   --ink:#0b0b0a;
   --paper:#eee8db;
   --ivory:#f6f2e8;
+  --bone:#e9e5da;
+  --disc:#f3f0e7;
   --line-on-ink:rgba(246,242,232,.16);
   --text-on-ink:#f4efe2;
   --text-on-ink-dim:rgba(244,239,226,.58);
@@ -15,6 +17,7 @@
   --film-b-opacity:0;
   --room-dim:0;
   --hatch-opacity:.65;
+  --paper-enter:0;
   --cross:cubic-bezier(.42,0,.58,1);
 }
 
@@ -176,6 +179,104 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 .practice-link{display:inline-block;width:max-content;margin-top:0;align-self:center;font-size:10px;letter-spacing:.16em;color:rgba(244,239,226,.55);border-bottom:1px solid rgba(244,239,226,.2);padding-bottom:4px;opacity:var(--practice-link-opacity,1);transition:color .35s,border-color .35s}
 .practice-link:hover{color:var(--ivory);border-color:rgba(244,239,226,.55)}
 
+.plate-instrument{background:transparent}
+.plate-instrument .paper{
+  position:absolute;inset:0;z-index:0;background:var(--bone);opacity:var(--paper-enter,0);pointer-events:none;
+}
+.instrument-grain{
+  position:absolute;inset:0;z-index:1;pointer-events:none;opacity:calc(var(--paper-enter,0) * .05);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px 180px;mix-blend-mode:multiply;
+}
+.dial{
+  position:absolute;left:50%;top:44%;z-index:1;width:118vw;aspect-ratio:1;
+  transform:translate(-50%,-50%) translateY(var(--py,0px));
+  color:var(--ink);opacity:var(--paper-enter,0);pointer-events:none;
+}
+.ring,.dial-ticks,.disc{position:absolute;left:50%;top:50%;border-radius:50%}
+.ring{
+  width:100%;height:100%;transform:translate(-50%,-50%);
+  border:1px solid rgba(11,11,10,.16);
+}
+.dial-ticks{
+  width:80%;height:80%;
+  transform:translate(-50%,-50%) rotate(var(--spin,0deg));
+  animation:dialspin 180s linear infinite;
+}
+@keyframes dialspin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.dial-ticks i{
+  position:absolute;left:50%;top:0;width:1px;height:9px;
+  background:rgba(11,11,10,.28);transform-origin:50% calc(50vw * 1.18 * .40);
+}
+.dial-ticks i.dot{height:2px;opacity:.5}
+.disc{
+  width:60%;height:60%;transform:translate(-50%,-50%) translateY(var(--cy,0px));
+  background:var(--disc);
+  box-shadow:0 0 0 1px rgba(11,11,10,.05), 0 18px 60px -30px rgba(11,11,10,.5);
+  display:grid;place-items:center;text-align:center;
+}
+.day{
+  position:absolute;transform:translate(-50%,-50%);
+  text-align:center;color:var(--ink);white-space:nowrap;
+}
+.day b{
+  display:block;font-family:var(--mono);
+  font-size:10px;letter-spacing:.18em;font-weight:500;opacity:.75;
+}
+.day span{display:block;font-size:12px;font-weight:300;font-family:var(--serif);opacity:.45;margin-top:2px}
+.day.on b{opacity:1}
+.day.on span{opacity:.7}
+.session{
+  position:absolute;inset:0;display:grid;align-content:center;justify-items:center;
+  gap:6px;padding:0 8%;
+  opacity:0;transform:translateY(6px);
+  transition:opacity .7s var(--ease),transform .7s var(--ease);
+}
+.session.on{opacity:1;transform:none}
+.kick{
+  font-family:var(--mono);font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(11,11,10,.5);margin-bottom:6px;
+}
+.kick em{font-style:normal;color:#9d7440}
+.name{font-size:27px;font-weight:400;font-family:var(--serif);line-height:1.05;color:var(--ink)}
+.line{font-size:14px;font-weight:300;font-family:var(--serif);color:rgba(11,11,10,.72);line-height:1.5}
+.line small{font-family:var(--mono);font-size:10px;opacity:.45;letter-spacing:.1em;margin-right:8px}
+.today{
+  font-family:var(--mono);font-size:10px;letter-spacing:.22em;
+  color:#9d7440;margin-top:8px;
+}
+.instrument-scrim{
+  position:absolute;left:0;right:0;bottom:0;height:52%;z-index:2;pointer-events:none;
+  opacity:var(--paper-enter,0);
+  background:linear-gradient(to bottom,rgba(233,229,218,0) 0%,rgba(233,229,218,.86) 38%,var(--bone) 72%);
+}
+.plate-instrument .plate-inner{
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding-top:calc(var(--barH) + 30px);padding-bottom:178px;z-index:3;
+  color:var(--ink);opacity:var(--paper-enter,0);
+}
+.instrument-in .plate-index{color:rgba(11,11,10,.55);margin-bottom:20px}
+.instrument-in h2{
+  font-family:var(--serif);font-weight:300;font-size:clamp(32px,8vw,46px);
+  line-height:1.02;letter-spacing:-.01em;color:var(--ink);max-width:16ch;
+}
+.instrument-copy{
+  margin-top:18px;max-width:30ch;font-family:var(--serif);font-weight:300;
+  font-size:clamp(15px,4.2vw,17px);line-height:1.5;color:rgba(11,11,10,.62);
+}
+.instrument-meta{
+  font-family:var(--mono);font-size:11px;letter-spacing:.18em;
+  margin-top:26px;width:max-content;padding-bottom:6px;
+  border-bottom:1px solid rgba(11,11,10,.7);color:rgba(11,11,10,.7);
+}
+
+.inst.light .bar .id{color:var(--ink)}
+.inst.light .plate-cue button{color:rgba(11,11,10,.34)}
+.inst.light .plate-cue button.on{color:var(--ink)}
+.inst.light .persistent-begin{color:var(--ink);border-color:rgba(11,11,10,.28)}
+.inst.light .hatch,.inst.light .veil,.inst.light .glass,.inst.light .grain{opacity:0}
+body.asking .inst.light .bar .id,body.reading .inst.light .bar .id{color:var(--ivory)}
+
 .begin-slot{
   position:absolute;z-index:13;left:50%;bottom:max(74px,calc(42px + env(safe-area-inset-bottom)));transform:translateX(-50%);
   width:100%;max-width:var(--wrap);padding:0 var(--gutter);pointer-events:none;transition:opacity .35s var(--ease);
@@ -259,6 +360,7 @@ body.reading .veil{background:rgba(9,9,8,.985)}
   .plate-work .plate-inner{padding-bottom:176px}
   .plate-ask .plate-inner{padding-bottom:176px}
   .plate-practice .plate-inner{padding-bottom:176px}
+  .plate-instrument .plate-inner{padding-bottom:176px}
   .practice-copy{font-size:15px;line-height:1.45;max-width:34ch}
   .pc-break{display:block}
   .begin-slot{bottom:max(74px,calc(42px + env(safe-area-inset-bottom)))}
@@ -272,5 +374,8 @@ body.reading .veil{background:rgba(9,9,8,.985)}
 @media(prefers-reduced-motion:reduce){
   .arg{transform:none!important}
   .arg.out{transform:none!important}
+  .session{transform:none!important}
+  .dial-ticks{animation:none}
+  .dial,.disc{transform:translate(-50%,-50%)}
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }

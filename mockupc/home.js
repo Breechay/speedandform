@@ -15,7 +15,7 @@
   var filmB = $("#filmB");
   var beginSlot = $("#beginSlot");
   var plateCue = $("#plateCue");
-  var lastPlate = 2;
+  var lastPlate = 3;
   var activePlate = 0;
   var returnPlate = 0;
   var paintQueued = false;
@@ -25,11 +25,16 @@
   var inst = document.querySelector(".inst");
   var workEl = null;
   var practiceEl = null;
+  var instrumentEl = null;
   var askEl = null;
   var thesis = $("#thesis");
   var argEls = $$(".arg");
   var argNow = $("#argNow");
   var ai = 0;
+  var sessEls = $$(".session");
+  var sessI = 0;
+  var sessTimer = 0;
+  var SESS_MS = 4200;
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var AUTO_MS = 9000;          // dwell before the page shows you there is more
   var AUTO_ONCE = true;        // false = keep advancing like a carousel
@@ -62,6 +67,7 @@
     H = Math.max(1, plates.clientHeight);
     workEl = $(".hero-in");
     practiceEl = $(".practice-in");
+    instrumentEl = $(".instrument-in");
     askEl = $(".ask-in");
   }
 
@@ -82,6 +88,7 @@
     activePlate = clamp(i, 0, lastPlate);
     beginSlot.classList.toggle("quiet", activePlate > 0);
     if (activePlate === 1) armAuto(); else window.clearTimeout(autoTimer);
+    if (activePlate === 2) armSess(); else window.clearTimeout(sessTimer);
     if (plateCue) {
       $$("#plateCue [data-cue]").forEach(function (el) {
         var on = el.getAttribute("data-cue") === String(activePlate);
@@ -250,14 +257,17 @@
   function paintScroll() {
     var p = clamp(plates.scrollTop / H, 0, lastPlate);
     var a = clamp(p, 0, 1);              // 01 -> 02
-    var b = clamp(p - 1, 0, 1);          // 02 -> 03
+    var b = clamp(p - 1, 0, 1);          // 02 -> 03 instrument
+    var c = clamp(p - 2, 0, 1);          // 03 -> 04 question
 
-    // Each handoff is one dissolve. The layer above fades in; the one below never moves.
     var cross1 = reduced ? (a > .5 ? 1 : 0) : ease(clamp((a - .06) / .70, 0, 1));
-    var cross2 = reduced ? (b > .5 ? 1 : 0) : ease(clamp((b - .06) / .70, 0, 1));
+    var crossW = reduced ? (b > .5 ? 1 : 0) : ease(clamp((b - .06) / .70, 0, 1));
+    var crossQ = reduced ? (c > .5 ? 1 : 0) : ease(clamp((c - .06) / .70, 0, 1));
+    var paper = Math.max(0, Math.min(1, crossW * (1 - crossQ)));
     put(root, "--film-b-opacity", cross1.toFixed(3));
-    put(root, "--room-dim", cross2.toFixed(3));
-    put(root, "--hatch-opacity", lerp(.62, .28, Math.max(cross1, cross2 * .4)).toFixed(3));
+    put(root, "--paper-enter", paper.toFixed(3));
+    put(root, "--room-dim", crossQ.toFixed(3));
+    put(root, "--hatch-opacity", (lerp(.62, .28, Math.max(cross1, crossQ * .4)) * (1 - paper)).toFixed(3));
 
     if (workEl) {
       var leave = reduced ? (a > .5 ? 1 : 0) : ease(clamp(a / .46, 0, 1));
@@ -267,28 +277,92 @@
 
     if (practiceEl) {
       var t = reduced ? (a > .5 ? 1 : 0) : ease(clamp((a - .38) / .50, 0, 1));
-      var c = reduced ? t : ease(clamp((a - .46) / .50, 0, 1));
+      var copy = reduced ? t : ease(clamp((a - .46) / .50, 0, 1));
       var l = reduced ? t : ease(clamp((a - .56) / .44, 0, 1));
       var gone = reduced ? (b > .5 ? 1 : 0) : ease(clamp(b / .46, 0, 1));
       put(practiceEl, "--practice-title-opacity", (t * (1 - gone)).toFixed(3));
       put(practiceEl, "--practice-title-y", ((1 - t) * 20 - gone * 22).toFixed(1) + "px");
-      put(practiceEl, "--practice-copy-opacity", (c * (1 - gone)).toFixed(3));
-      put(practiceEl, "--practice-copy-y", ((1 - c) * 14 - gone * 22).toFixed(1) + "px");
+      put(practiceEl, "--practice-copy-opacity", (copy * (1 - gone)).toFixed(3));
+      put(practiceEl, "--practice-copy-y", ((1 - copy) * 14 - gone * 22).toFixed(1) + "px");
       put(practiceEl, "--practice-link-opacity", (l * (1 - gone)).toFixed(3));
     }
 
     if (askEl) {
-      var at = reduced ? (b > .5 ? 1 : 0) : ease(clamp((b - .38) / .50, 0, 1));
-      var ao = reduced ? at : ease(clamp((b - .50) / .46, 0, 1));
+      var at = reduced ? (c > .5 ? 1 : 0) : ease(clamp((c - .38) / .50, 0, 1));
+      var ao = reduced ? at : ease(clamp((c - .50) / .46, 0, 1));
       put(askEl, "--ask-title-opacity", at.toFixed(3));
       put(askEl, "--ask-title-y", ((1 - at) * 20).toFixed(1) + "px");
       put(askEl, "--ask-opts-opacity", ao.toFixed(3));
       put(askEl, "--ask-opts-y", ((1 - ao) * 14).toFixed(1) + "px");
     }
 
+    var dial = $("#dial");
+    var disc = $("#disc");
+    if (dial && disc && !reduced) {
+      var over = Math.max(0, (p - 2) * H);
+      var py = Math.max(-14, -over * 0.06);
+      var cy = Math.max(-14, -over * 0.02);
+      dial.style.setProperty("--py", py.toFixed(1) + "px");
+      disc.style.setProperty("--cy", cy.toFixed(1) + "px");
+    }
+
     var nearest = clamp(Math.round(p), 0, lastPlate);
     if (nearest !== activePlate) updatePlateState(nearest);
-    if (inst) inst.classList.toggle("moved", p > .04);
+    if (inst) {
+      inst.classList.toggle("moved", p > .04);
+      inst.classList.toggle("light", paper > 0.45);
+    }
+  }
+
+  function showSess(n) {
+    if (!sessEls.length) return;
+    var next = ((n % sessEls.length) + sessEls.length) % sessEls.length;
+    sessI = next;
+    sessEls.forEach(function (el, j) {
+      el.classList.toggle("on", j === sessI);
+    });
+    var day = sessEls[sessI].getAttribute("data-day");
+    $$("#dial .day").forEach(function (el, j) {
+      el.classList.toggle("on", String(j) === day);
+    });
+  }
+
+  function armSess() {
+    window.clearTimeout(sessTimer);
+    if (reduced || !sessEls.length) return;
+    if (activePlate !== 2) return;
+    if (document.body.classList.contains("asking") || document.body.classList.contains("reading")) return;
+    sessTimer = window.setTimeout(function () {
+      if (activePlate !== 2) return;
+      showSess(sessI + 1);
+      armSess();
+    }, SESS_MS);
+  }
+
+  function wireInstrument() {
+    var box = $("#dialTicks");
+    var dial = $("#dial");
+    if (box && !box.children.length) {
+      var html = "";
+      for (var i = 0; i < 72; i++) {
+        html += '<i class="' + (i % 6 ? "dot" : "") + '" style="transform:rotate(' + (i * 5) + 'deg)"></i>';
+      }
+      box.innerHTML = html;
+    }
+    if (dial && !dial.querySelector(".day")) {
+      var days = [
+        ["MON", "Easy"], ["TUE", "Intervals"], ["WED", "Easy"],
+        ["THU", "Speed"], ["FRI", "Easy"], ["SAT", "Long run"], ["SUN", "Rest"]
+      ];
+      var frag = "";
+      days.forEach(function (d, i) {
+        var a = (180 + i * 30) * Math.PI / 180, r = 56;
+        var x = 50 + r * Math.cos(a), y = 50 + r * Math.sin(a);
+        frag += '<div class="day' + (i === 1 ? " on" : "") + '" style="left:' + x + "%;top:" + y + '%"><b>' + d[0] + "</b><span>" + d[1] + "</span></div>";
+      });
+      dial.insertAdjacentHTML("beforeend", frag);
+    }
+    showSess(0);
   }
 
   function paintTicks() {
@@ -495,6 +569,7 @@
   pane(null);
   measure();
   wireThesis();
+  wireInstrument();
   paintScroll();
   updatePlateState(0);
   keepFilm(filmA);

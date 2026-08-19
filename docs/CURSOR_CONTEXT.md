@@ -39,6 +39,7 @@ When both **`speedandform`** and **`FORM-iOS`** roots are in the workspace, trea
 _Update this line when your sprint changes._
 
 - Homepage: 03 is the first question on darkened film B. Hope sits on the review screen as a figure, not a link. Private link is a per-athlete Stripe Payment Link you send — not a page. See `docs/claude-handoff/AFTER-SEND.md`.
+- `/mockupc` only: 03 is THE INSTRUMENT (bone paper, authored dial). Question is 04. Not on `/`. See `docs/claude-handoff/INSTRUMENT-PLATE.md`.
 
 ---
 
