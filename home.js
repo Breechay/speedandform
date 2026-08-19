@@ -108,6 +108,17 @@
     if (go && go.catch) go.catch(function () {});
   }
 
+  var tailWarmed = false;
+  function warmTail() {
+    if (tailWarmed) return;
+    tailWarmed = true;
+    var el = document.querySelector(".dragon-tail img");
+    if (!el) return;
+    el.loading = "eager";
+    var im = new Image();
+    im.src = el.currentSrc || el.src;
+  }
+
   // Only reload a film that has genuinely lost its source. readyState 0 during
   // the first buffer is normal; calling load() there aborts the fetch and starts over.
   function reviveFilm(el, key) {
@@ -264,6 +275,7 @@
     var crossW = reduced ? (b > .5 ? 1 : 0) : ease(clamp((b - .06) / .70, 0, 1));
     var crossQ = reduced ? (c > .5 ? 1 : 0) : ease(clamp((c - .06) / .70, 0, 1));
     var paper = Math.max(0, Math.min(1, crossW * (1 - crossQ)));
+    if (p > 0.45) warmTail();
     put(root, "--film-b-opacity", cross1.toFixed(3));
     put(root, "--paper-enter", paper.toFixed(3));
     put(root, "--room-dim", crossQ.toFixed(3));

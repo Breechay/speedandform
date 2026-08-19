@@ -271,8 +271,8 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 }
 /* atmosphere, not wallpaper. cropped by the plate. arrives with the paper. */
 .dragon-tail{
-  position:absolute;right:-14%;bottom:-20%;z-index:2;
-  width:76%;pointer-events:none;
+  position:absolute;right:-8%;bottom:-6%;z-index:2;
+  width:86%;pointer-events:none;
   opacity:var(--paper-enter,0);
   transform:translate3d(calc(18px * (1 - var(--paper-enter,0))),calc(26px * (1 - var(--paper-enter,0))),0) scale(calc(.985 + .015 * var(--paper-enter,0)));
 }
@@ -408,7 +408,7 @@ body.reading .veil{background:rgba(9,9,8,.985)}
 }
 
 @media(min-width:760px){
-  .dragon-tail{right:-8%;bottom:-16%;width:clamp(420px,46vw,680px)}
+  .dragon-tail{right:-5%;bottom:-8%;width:clamp(480px,54vw,740px)}
 }
 
 @media(min-width:900px){
