@@ -11,7 +11,7 @@ Owner: Brice. Site: speedandform.com. This is an instrument, not a campaign.
 BEGIN             The five-question conversation. Persists. Opens at question one.
 ```
 
-The still on 03 is canned. Hope's Note sits on the review screen and at `/notes`. If they never reach 03, 01 + first thesis + Begin is still complete.
+The still on 03 is canned. Hope's Note sits at `/notes`. If they never reach 03, 01 + first thesis + Begin is still complete.
 
 **01 + first thesis + Begin is still complete** without extra 02 swipes and without reaching 03.
 
@@ -145,7 +145,7 @@ The product is not eight weeks and a price. The product is **Brice writing the w
 
 01 names it. 02 shows how he thinks. Begin lets them speak.
 
-A purchase on this page is **not a cart**. After the questions, they send to Brice. He replies. If it is a fit, a private link follows. Do not add Stripe, a “buy” label, or a package comparison.
+A purchase on this page is **not a cart**. After the questions, they send to Brice. He replies with what he would do first. If it is a fit, payment is Zelle, in that same reply, after the coaching sentence. Do not add Stripe, a “buy” label, or a package comparison.
 
 More argument-statements exist to make 02 feel like a person, so Begin feels like the next sentence — not to stall them in a gallery.
 

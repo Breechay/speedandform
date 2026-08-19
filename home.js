@@ -421,7 +421,7 @@
     var both = offer();
     $("#rKind").textContent = both ? "Run + Strength" : "Run Development";
     $("#rMoney").textContent = both ? "8 Weeks · $1,800" : "8 Weeks · $1,200";
-    $("#rHead").textContent = A.name ? (A.name.split(" ")[0] + ", here is where you are.") : "Here is where you are.";
+    $("#rHead").textContent = "Here is what you told me.";
     var now = [];
     if (A.days) now.push(A.days + " days running");
     if (A.vol) now.push(/week/.test(A.vol) ? A.vol : A.vol + " a week");
@@ -431,9 +431,8 @@
     if (A.goal) rows.push(["You want to", A.goal.toLowerCase() + ".", ""]);
     if (now.length) rows.push(["Right now", now.join(" · "), other.length ? ("Also training: " + other.join(", ").toLowerCase()) : ""]);
     if (A.issue) rows.push(["The issue", '"' + A.issue + '"', "", true]);
-    if (A.vid) rows.push(["Attached", A.vid, "Brice will watch it before he replies."]);
-    if (both) rows.push(["Why both", "Running and lifting are already in the same week.", "One person writing both is the only way they stop taking from each other."]);
-    if (A.city === "Miami") rows.push(["Miami", "Some key sessions can happen together.", "When seeing the work in person is worth more than reading about it."]);
+    if (A.vid) rows.push(["Attached", A.vid, ""]);
+    if (A.city) rows.push(["Where you train", A.city, ""]);
     $("#rRows").innerHTML = rows.map(function (r, i) {
       return '<div class="row" style="animation-delay:' + (0.12 + i * 0.09) + 's"><label>' + r[0] + "</label><p" + (r[3] ? ' class="quote"' : "") + ">" + r[1] + "</p>" + (r[2] ? "<small>" + r[2] + "</small>" : "") + "</div>";
     }).join("");
@@ -453,14 +452,29 @@
     var mail = new FormData();
     mail.append("_subject", data.offer + " — " + (data.name || "new start")); mail.append("_template", "table"); mail.append("_captcha", "false");
     if (data.email) mail.append("_replyto", data.email);
-    Object.keys(data).forEach(function (k) { mail.append(k, data[k]); }); if (A.file) mail.append("video", A.file);
+    Object.keys(data).forEach(function (k) { mail.append(k, data[k]); });
     var netlify = new FormData(); netlify.append("form-name", "run-development"); Object.keys(data).forEach(function (k) { netlify.append(k, data[k]); }); if (A.file) netlify.append("video", A.file);
     var emailed = fetch("https://formsubmit.co/ajax/" + encodeURIComponent(dest), { method:"POST", body:mail, headers:{Accept:"application/json"} }).then(function (r) { return r.json().then(function (j) { return { ok:r.ok, j:j }; }); });
     var stored = fetch("/", { method:"POST", body:netlify }).catch(function () { return null; });
     Promise.all([emailed, stored]).then(function (res) {
-      if (res[0] && res[0].ok) { pane("p-done"); return; }
-      err.hidden = false; err.textContent = "It did not send. Check the address and try again."; btn.disabled = false; sending = false;
-    }).catch(function () { err.hidden = false; err.textContent = "It did not send. Try again."; btn.disabled = false; sending = false; });
+      var j = res[0] && res[0].j, sent = res[0] && res[0].ok && String(j && j.success) === "true";
+      if (sent) { pane("p-done"); return; }
+      fail(err, btn, data);
+    }).catch(function () { fail(err, btn, data); });
+  }
+
+  /* A 200 from the mail relay is not proof of delivery — the relay answers 200
+     while it waits for a one-time address confirmation. Gate on success, and
+     never dead-end: hand back a prefilled email so the answers survive. */
+  function fail(err, btn, data) {
+    var lines = Object.keys(data).filter(function (k) { return data[k]; })
+      .map(function (k) { return k + ": " + data[k]; }).join("\n");
+    var href = "mailto:" + BRICE
+      + "?subject=" + encodeURIComponent(data.offer + " — " + (data.name || "new start"))
+      + "&body=" + encodeURIComponent(lines);
+    err.hidden = false;
+    err.innerHTML = 'It did not send. <a href="' + href + '">Send it as an email instead</a> — your answers are already in it.';
+    btn.disabled = false; sending = false;
   }
 
   $("#sendBtn").addEventListener("click", sendToBrice);

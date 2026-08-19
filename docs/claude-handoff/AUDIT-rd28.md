@@ -60,4 +60,4 @@ Not worth pre-emptively solving. Worth looking at on the smallest phone you can 
 - Both option sets share `data-key="goal"` and stay in sync, so Change an answer shows the choice made on the plate.
 - Back out of question two returns to plate 03, not plate 01.
 - 01 + first thesis + Begin is still complete without a single extra gesture.
-- No cart, no Stripe, no payment path on any page. Correct — the private link is something Brice sends.
+- No cart, no Stripe, no payment path on any page. Payment is Zelle, arranged in the reply. See `AFTER-SEND.md`.

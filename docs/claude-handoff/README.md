@@ -22,7 +22,7 @@ Fonts load from Google (Fraunces + JetBrains Mono). Needs network once.
 | `notes.html` | NOTE 001. One Observation. Not a grid. |
 | `docs/claude-handoff/NOTES-REGISTERS.md` | Two registers |
 | `docs/claude-handoff/NOTE-001.md` | Hope Observation source |
-| `docs/claude-handoff/AFTER-SEND.md` | Private Payment Link. Reply templates. No cart. |
+| `docs/claude-handoff/AFTER-SEND.md` | Zelle in the reply. Coaching sentence first. No cart. |
 | `docs/claude-handoff/AUDIT-rd28.md` | Review Note is not a link. |
 | `docs/claude-handoff/INSTRUMENT-PLATE.md` | `/mockupc` 03 is the light room. Not on `/`. |
 | `docs/claude-handoff/APP-STORE-COPY.md` | FORM iOS metadata. Paste with the build. Not site copy. |
@@ -30,6 +30,6 @@ Fonts load from Google (Fraunces + JetBrains Mono). Needs network once.
 | `docs/PROMPT-FOR-CLAUDE.md` | Paste to Claude |
 | `docs/ASK-BRICE.md` | Ask before writing more copy |
 
-Do not add a cart. Do not invent athlete content. 01 + first thesis + Begin must still work if no one reaches 03. Plate 03 is the first question. Hope is on the review screen, not as a link. Private link is a per-athlete Stripe Payment Link you send — see `AFTER-SEND.md`.
+Do not add a cart. Do not invent athlete content. 01 + first thesis + Begin must still work if no one reaches 03. Plate 03 is the first question. The review is a receipt. Hope is at `/notes`, not on the review. Payment is Zelle, arranged in the reply — see `AFTER-SEND.md`.
 
 Live: https://speedandform.com/

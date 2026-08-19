@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,380;9..144,460;9..144,560&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/home.css?v=rd28">
+  <link rel="stylesheet" href="/home.css?v=rd30">
 </head>
 <body>
   <a class="skip" href="#begin">Begin</a>
@@ -214,20 +214,14 @@
 
       <div class="pane" id="p-read">
         <div class="rc">
-          <p class="kind" id="rKind">Run Development</p>
+          <p class="kind"><span id="rKind">Run Development</span><span class="sep">·</span><span id="rMoney">8 Weeks · $1,200</span></p>
           <h2 id="rHead">Here is what you told me.</h2>
-          <p class="money" id="rMoney">8 Weeks · $1,200</p>
           <div class="rows" id="rRows"></div>
-          <figure class="read-obs">
-            <blockquote class="note-line">The back leg finishes when nothing is rushing it.</blockquote>
-            <figcaption class="note-who">Hope</figcaption>
-          </figure>
           <div class="send">
             <button class="cta" id="sendBtn" type="button" data-send-to="briceikouebe@gmail.com">Send to Brice <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
             <button class="ghost" id="editBtn" type="button">Change an answer</button>
           </div>
           <p class="send-err" id="sendErr" hidden>It did not send. Try again.</p>
-          <p class="note">Brice reads every one of these himself.</p>
         </div>
       </div>
 
@@ -235,7 +229,7 @@
         <div class="rc">
           <p class="kind">Received</p>
           <h2 class="done-title">It’s with Brice.</h2>
-          <p class="done-copy">He reads it himself, usually within a day, and replies with what he would do first. If it is a fit, a private link to start follows. His reply comes from briceikouebe@gmail.com.</p>
+          <p class="done-copy">He reads it himself, usually within a day, and replies with what he would do first. His reply comes from briceikouebe@gmail.com.</p>
           <button class="cta" id="restart" type="button">Back to the start <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
         </div>
       </div>
@@ -249,6 +243,6 @@
   </form>
   <input type="file" id="pick" accept="video/*" hidden>
 
-  <script src="/home.js?v=rd28"></script>
+  <script src="/home.js?v=rd30"></script>
 </body>
 </html>
