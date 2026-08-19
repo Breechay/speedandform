@@ -6,9 +6,7 @@ Live: https://speedandform.com/ · twin: https://speedandform.com/mockupc
 
 **The four-plate homepage is live.** Race line under the disc. W1 tab on the left. The week is behind the tab until it's asked for. The dragon is weather, drifting.
 
-Cache: `/` `rd39`. `/mockupc` `snap39`.
-
-Cache: `/` `rd39`. `/mockupc` `snap39`. Race line, W1 tab, weather drift. The instrument steps aside.
+Cache: `/` `rd40`. `/mockupc` `snap40`. Race line, W1 tab, weather drift. The tab tells once. The instrument steps aside.
 
 ## `/` — production
 

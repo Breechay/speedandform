@@ -326,7 +326,6 @@
       inst.classList.toggle("moved", p > .04);
       inst.classList.toggle("light", paper > 0.45);
     }
-    maybeTellTab(paper);
   }
 
   function showSess(n) {
@@ -419,38 +418,26 @@
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") set(false);
     });
+    /* the tell: once, after the room has settled, and only if untouched.
+       a tab that pulses is a page asking to be used; a tab that moves a
+       single time is an object telling you it's a handle. */
+    var told = false;
+    function tell() {
+      if (told || reduced) return;
+      told = true;
+      window.setTimeout(function () {
+        if (plate.classList.contains("placard-open")) return;
+        tab.classList.add("tell");
+        window.setTimeout(function () { tab.classList.remove("tell"); }, 1700);
+      }, 1400);
+    }
+    tab.addEventListener("click", function () { told = true; }, { once: true });
     /* leaving the room closes it — you never come back to a page mid-gesture */
     if (plates) plates.addEventListener("scroll", function () {
+      if (activePlate === 2) tell();
       if (plate.classList.contains("placard-open") && activePlate !== 2) set(false);
     }, { passive: true });
-  }
-
-  /* one small tell: the tab slides out 6px and back, once, the first time
-     the room settles. anything more than once is a page begging. */
-  var tabTold = false;
-  var tabTellTimer = 0;
-  function maybeTellTab(paper) {
-    if (tabTold || reduced) return;
-    if (activePlate !== 2 || paper < 0.92) {
-      window.clearTimeout(tabTellTimer);
-      tabTellTimer = 0;
-      return;
-    }
-    if (tabTellTimer) return;
-    tabTellTimer = window.setTimeout(function () {
-      tabTellTimer = 0;
-      if (tabTold || reduced) return;
-      if (activePlate !== 2) return;
-      var tab = document.getElementById("weekTab");
-      var plate = tab && tab.closest(".plate-instrument");
-      if (!tab || !plate) { tabTold = true; return; }
-      if (plate.classList.contains("placard-open")) { tabTold = true; return; }
-      tabTold = true;
-      tab.classList.add("tell");
-      tab.addEventListener("animationend", function () {
-        tab.classList.remove("tell");
-      }, { once: true });
-    }, 700);
+    if (activePlate === 2) tell();
   }
 
   function paintTicks() {

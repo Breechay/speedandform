@@ -14,7 +14,7 @@ BEGIN               persists. Still opens at question one.
 
 01 + first thesis + Begin is still complete.
 
-Cache: `/` `rd39`. `/mockupc` `snap39`.
+Cache: `/` `rd40`. `/mockupc` `snap40`.
 
 ## Why light
 
@@ -40,7 +40,7 @@ Depth is by focus, not by blurring the page. The instrument dissolves into the p
 - Atmosphere: cropped dragon as weather in the bottom-right. `min(86vw, 560px)` at right −30% / bottom −16%, image offset 4/6%, opacity `.92`. Desktop `clamp(420px, 44vw, 660px)`. `weatherDrift` 54s, ease-in-out, alternating, 8px across and 10px up with a 0.6° turn, origin lower-right. Slow enough that you never catch it moving, only notice that it has. See `SURFACE-AND-WEATHER.md`.
 - Race line: one hairline under the disc, disc-width, four segments **9 / 20 / 54 / 17**. No labels. The segment for the session on the disc lights; the light travels.
 - W1 tab: 30 × 106, ink on bone, vertical mono, left edge. One tap and the panel comes in from the left while the dial (and the race line inside it) slide right and drop to 34%, the copy to 22%. You can still see the instrument. Closes on the tab, an outside tap, Escape, or scrolling out of the room. Inside: THE PLAN, Half Marathon, the seven days (Long in bronze, Rest in italic), the app's own summary sentence. Nothing authored for the web.
-- Tab tell: slides out 6px and back, once, the first time the room settles. Never again.
+- Tab tell: leans out 6px and back, 1.5s of movement, 1.4s after the room settles. Once. Never again for the rest of the session. Suppressed if the placard is already open, if you've already tapped the tab, or under reduced motion.
 
 On a 375×667 phone the disc and the eyebrow land close. The air belongs between the instrument and FORM, then between the instrument and the copy. Dial centre is `35svh + 14px`.
 

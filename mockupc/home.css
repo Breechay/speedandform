@@ -294,12 +294,14 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 .inst.light .week-tab{pointer-events:auto}
 .week-tab span{writing-mode:vertical-rl;transform:rotate(180deg)}
 .placard-open .week-tab{transform:translateX(min(78vw,330px))}
-/* once, the first time the room settles. never again. */
+/* one tell, once. 1.5s of movement, 1.4s after the room settles.
+   any more than once and the page is begging. */
+.week-tab.tell{animation:tabTell 1.5s var(--ease) 1;transition:none}
 @keyframes tabTell{
-  0%,100%{transform:translateX(0)}
-  42%{transform:translateX(6px)}
+  0%{transform:translateX(0)}
+  38%{transform:translateX(6px)}
+  100%{transform:translateX(0)}
 }
-.week-tab.tell{animation:tabTell 1.05s var(--ease) 1;transition:none}
 
 .placard{
   position:absolute;left:0;top:0;bottom:0;z-index:6;

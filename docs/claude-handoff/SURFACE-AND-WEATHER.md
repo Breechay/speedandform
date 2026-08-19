@@ -55,7 +55,7 @@ Do not. Sun, field, weather works because nothing labels it.
 
 ## Site lock (now)
 
-Live on `/` (`rd39`) and `/mockupc` (`snap39`). Spec: `INSTRUMENT-PLATE.md`.
+Live on `/` (`rd40`) and `/mockupc` (`snap40`). Spec: `INSTRUMENT-PLATE.md`.
 
 - Art: `/media/dragon-tail.webp` (not the PNG; do not preload it against the films)
 - Markup: `.dragon-tail > img` inside `.plate-instrument`
