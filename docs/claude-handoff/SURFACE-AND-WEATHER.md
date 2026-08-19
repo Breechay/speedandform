@@ -27,14 +27,15 @@ On the site the week around it is atmosphere, at rest. On the app the dial is th
 Not a character. Not a third object to compose against. Weather.
 
 - Own `<img>` layer. Never `background-image`.
-- Saturated. No wash, blur, grain, tint, or blend on the art.
+- Saturated. No wash, blur, grain, tint, or blend on the file. Atmosphere is a **mask on the container**, not a treatment of the art. The pigment stays. The form dissolves toward the room.
 - Cropped by the viewport. You never see the whole contour. It enters from outside and leaves again.
 - The crop must read as **deliberate** before it is understood. Enough curve and scale to be a form entering the frame. A shard in the corner looks accidental.
 - Bottom-right. Orange and teal must **consume that corner** — no cream pocket, or it reads as a stamp on the page.
 - Mid-right of a phone stays almost empty. Fins do not climb the edge into the middle of the screen.
 - Does not cover the disc. Does not compete with Begin.
 - Arrives with the room (`--paper-enter` on the site). Not a flying entrance.
-- Site crop now: `min(86vw, 560px)`, right −24% / bottom −6%, image offset 2/2%, opacity 92% so it sits under the paper rather than on it. Desktop `clamp(420px, 44vw, 660px)`, right −12% / bottom −4%. Raised, and a little of the right edge brought back in so the crop reads as a form, not a shard.
+- Site crop now: `min(86vw, 560px)`, right −14% / bottom −6%, image offset 2/2%, opacity 92%. Desktop `clamp(420px, 44vw, 660px)`, right −2% / bottom −4%.
+- Atmosphere mask: radial, origin low-right of the box (`88% 108%`). Corner holds. The edge facing the sun and the copy falls away. The drift animation is on the image, the mask stays put — the form moves through the veil, not with it.
 - `weatherDrift`: 54s, ease-in-out, alternating, −8px / −10px and −0.6°, origin 80% 80%. Slow enough that you never catch it moving, only notice that it has. Anything faster is animation, and animation is a performance.
 
 On the app, later: the same crop, primarily in the unused lower field. It may shift slightly with the day. Slightly. A few percent, not a parade. Rest days can be quieter. Interval days do not need a performance.
@@ -55,7 +56,7 @@ Do not. Sun, field, weather works because nothing labels it.
 
 ## Site lock (now)
 
-Live on `/` (`rd42`) and `/mockupc` (`snap42`). Spec: `INSTRUMENT-PLATE.md`.
+Live on `/` (`rd43`) and `/mockupc` (`snap43`). Spec: `INSTRUMENT-PLATE.md`.
 
 - Art: `/media/dragon-tail.webp` (not the PNG; do not preload it against the films)
 - Markup: `.dragon-tail > img` inside `.plate-instrument`
@@ -67,6 +68,8 @@ Live on `/` (`rd42`) and `/mockupc` (`snap42`). Spec: `INSTRUMENT-PLATE.md`.
 **Clouds are not weather data, and not a plan tier.** Do not make the artwork contingent on a forecast API or on what a free account gets. The moment atmosphere needs a data source to justify itself it stops being a picture and becomes a feature, and you will end up designing an integration instead of a sky. If real conditions ever influence it, beautiful — but it never has to earn its existence with a number.
 
 **A crop has to read as a form entering the frame.** The tightest pass on the tail left a shard in the corner that read as something the viewport accidentally clipped, not as a shape arriving. The rule: enough curve and scale to be read as deliberate before it is understood — never a terminus, never anatomy. Roughly a quarter arch around the sun, held to the lower right, mid-right stays empty.
+
+**Weather dissolves the way weather dissolves.** The mask sits on `.dragon-tail`, not on the file. Corner holds. The edge facing the room falls into paper. The image drifts through that veil. Do not blur, wash, or blend the art to get this — the falloff is the atmosphere.
 
 **Weather moves the way weather moves.** `weatherDrift`: 54s, ease-in-out, alternating, −8px / −10px and −0.6°, origin 80% 80%. Slow enough that you never catch it moving, only notice that it has. Anything faster is animation, and animation is a performance.
 
@@ -80,6 +83,7 @@ When it is: one crop, unused field, behind chrome if needed, never over Today’
 
 - A dragon head, eyes, claws, or a full beast
 - Recolor, desaturate, or drop opacity until it is a stain
+- Blur or blend the dragon file to fake atmosphere — the mask is the veil
 - Pattern fills, chapter marks, or catalog chrome from the art-book references
 - A second horizontal axis of art across 01 and 02
 - Social, engagement, or “something to look at” as a product

@@ -325,13 +325,15 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 }
 /* atmosphere, not wallpaper. cropped by the plate. arrives with the paper. */
 .dragon-tail{
-  /* Weather, not an object. Enough curve and scale to read as a form entering
-     the frame — never a terminus, never anatomy. Held to the lower-right.
-     Raised, and a little of the right edge brought back in so the crop reads. */
-  position:absolute;right:-24%;bottom:-6%;z-index:2;
+  /* Weather, not an object. Held to the lower-right. Shifted left so more of
+     the right edge reads. Mask is atmosphere — the pigment stays; the form
+     dissolves toward the room as if it were moving through cloud. */
+  position:absolute;right:-14%;bottom:-6%;z-index:2;
   width:min(86vw,560px);pointer-events:none;
   opacity:calc(var(--paper-enter,0) * .92);
   transform:translate3d(calc(22px * (1 - var(--paper-enter,0))),calc(30px * (1 - var(--paper-enter,0))),0);
+  -webkit-mask-image:radial-gradient(125% 100% at 88% 108%,#000 16%,rgba(0,0,0,.82) 42%,rgba(0,0,0,.38) 64%,rgba(0,0,0,.1) 80%,transparent 94%);
+  mask-image:radial-gradient(125% 100% at 88% 108%,#000 16%,rgba(0,0,0,.82) 42%,rgba(0,0,0,.38) 64%,rgba(0,0,0,.1) 80%,transparent 94%);
 }
 .dragon-tail img{
   display:block;width:100%;height:auto;position:relative;left:2%;top:2%;
@@ -471,7 +473,7 @@ body.reading .veil{background:rgba(9,9,8,.985)}
 }
 
 @media(min-width:760px){
-  .dragon-tail{right:-12%;bottom:-4%;width:clamp(420px,44vw,660px)}
+  .dragon-tail{right:-2%;bottom:-4%;width:clamp(420px,44vw,660px)}
 }
 
 @media(min-width:900px){
