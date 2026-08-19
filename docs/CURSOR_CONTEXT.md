@@ -38,7 +38,7 @@ When both **`speedandform`** and **`FORM-iOS`** roots are in the workspace, trea
 
 _Update this line when your sprint changes._
 
-- Homepage `/` instrument pass is **closed** (`rd38`). Do not reopen production 03 for taste. `/mockupc` is open for the race line (`snap37`) — four unlabeled segments under the disc, not a legend. Specs: `docs/claude-handoff/INSTRUMENT-PLATE.md`, `SURFACE-AND-WEATHER.md`. Receipt + Zelle: `AFTER-SEND.md`.
+- Homepage `/` instrument pass is **closed** (`rd38`). Do not reopen production 03 for taste. `/mockupc` is open for the race line (`snap38`) — four unlabeled segments under the disc, not a legend. Specs: `docs/claude-handoff/INSTRUMENT-PLATE.md`, `SURFACE-AND-WEATHER.md`. Receipt + Zelle: `AFTER-SEND.md`.
 - Placard / W1 tab stays queued. Do not attach weather to a data source. Spreads (alternating density) matter more than motifs.
 - Next on `/` is not the site. Athletes, then the Field (weather around a still-bare instrument), then paywall — when that is the task.
 

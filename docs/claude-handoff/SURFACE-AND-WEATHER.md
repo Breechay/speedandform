@@ -57,7 +57,7 @@ Sun, field, weather works because nothing labels it. A temperature, an icon, or 
 
 ## Site lock (now)
 
-Live on `/` (`rd38`). Twin at `/mockupc` (`snap37`) — race line lives here first. Spec: `INSTRUMENT-PLATE.md`.
+Live on `/` (`rd38`). Twin at `/mockupc` (`snap38`) — race line lives here first. Spec: `INSTRUMENT-PLATE.md`.
 
 - Art: `/media/dragon-tail.webp` (not the PNG; do not preload it against the films)
 - Markup: `.dragon-tail > img` inside `.plate-instrument`, above the paper, below the copy

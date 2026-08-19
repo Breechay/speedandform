@@ -195,7 +195,7 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 .dial{
   /* week labels and the session disc. 14px lower so WED clears FORM. */
   --box:min(112vw,60svh);
-  position:absolute;left:50%;top:calc(35svh + 14px);z-index:1;width:var(--box);aspect-ratio:1;
+  position:absolute;left:50%;top:calc(35svh + 14px);z-index:3;width:var(--box);aspect-ratio:1;
   transform:translate(-50%,-50%) translateY(var(--py,0px));
   color:var(--ink);opacity:var(--paper-enter,0);pointer-events:none;
   /* depth without perspective: the instrument dissolves into the paper at its
@@ -289,15 +289,16 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 }
 /* atmosphere, not wallpaper. cropped by the plate. arrives with the paper. */
 .dragon-tail{
-  /* a form entering the frame — enough curve and scale to read as a crop,
-     not a shard. Still the corner. Still not climbing the mid-right. */
-  position:absolute;right:-20%;bottom:-8%;z-index:2;
-  width:72%;pointer-events:none;
+  /* weather in the paper, behind the instrument. the plate is the window.
+     the form is larger than the window, anchored bottom-right, so the
+     orange curve reads as a crop before it is understood. */
+  position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden;
   opacity:var(--paper-enter,0);
   transform:translate3d(calc(18px * (1 - var(--paper-enter,0))),calc(26px * (1 - var(--paper-enter,0))),0) scale(calc(.985 + .015 * var(--paper-enter,0)));
 }
 .dragon-tail img{
-  display:block;width:100%;height:auto;position:relative;left:3%;top:6%;
+  position:absolute;right:-10%;bottom:-6%;left:auto;top:auto;
+  width:110%;height:auto;display:block;
 }
 .plate-instrument .plate-inner{
   display:flex;flex-direction:column;justify-content:flex-end;
@@ -428,7 +429,7 @@ body.reading .veil{background:rgba(9,9,8,.985)}
 }
 
 @media(min-width:760px){
-  .dragon-tail{right:-16%;bottom:-6%;width:clamp(420px,48vw,680px)}
+  .dragon-tail img{width:62%;right:-4%;bottom:-8%}
 }
 
 @media(min-width:900px){

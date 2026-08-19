@@ -6,9 +6,9 @@ Live: https://speedandform.com/ · twin: https://speedandform.com/mockupc
 
 **Production `/` is closed.** The four-plate homepage is live. Do not reopen 03 on `/` for taste.
 
-`/mockupc` is ahead of this zip: race line under the disc (`snap37`). Four segments, no labels. The light travels. Dragon crop on the twin is being read as a form entering, not a shard. Placard still queued.
+`/mockupc` is ahead of this zip: race line under the disc (`snap38`). Four segments, no labels. The light travels. Dragon crop on the twin is being read as a form entering, not a shard. Placard still queued.
 
-Cache: `/` `rd38`. `/mockupc` `snap37`. The reachable zip packed at close-out is stale on mockupc until repacked.
+Cache: `/` `rd38`. `/mockupc` `snap38`. The reachable zip packed at close-out is stale on mockupc until repacked.
 
 ## `/` — production
 

@@ -2,7 +2,7 @@
 
 Production `/` is **closed**. Four plates. Do not redesign 03 on `/` unless something is actually wrong.
 
-`/mockupc` is open for the **race line** (snap37). Same four plates, noindex. The sketch of four underlined words was a legend — it tells, and it spends the air. The line under the disc is the drawing of the same idea. Placard / W1 tab stays queued behind this. Question is still 04. Nothing after the ask.
+`/mockupc` is open for the **race line** (snap38). Same four plates, noindex. The sketch of four underlined words was a legend — it tells, and it spends the air. The line under the disc is the drawing of the same idea. Placard / W1 tab stays queued behind this. Question is still 04. Nothing after the ask.
 
 ## Sequence
 
@@ -16,7 +16,7 @@ BEGIN               persists. Still opens at question one.
 
 01 + first thesis + Begin is still complete.
 
-Cache: `/` `rd38`. `/mockupc` `snap37`.
+Cache: `/` `rd38`. `/mockupc` `snap38`.
 
 ## Why light
 
