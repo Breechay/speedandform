@@ -1,3 +1,4 @@
+@property --k{syntax:'<number>';initial-value:.62;inherits:false}
 :root{
   --ink:#0b0b0a;
   --paper:#eee8db;
@@ -206,7 +207,10 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 .disc{
   /* the session plate. no ring, no shadow — paper on paper, a shade lighter. */
   position:absolute;left:50%;top:50%;border-radius:50%;
-  width:62%;height:62%;transform:translate(-50%,-50%) translateY(var(--cy,0px));
+  width:62%;height:62%;
+  /* grows the last few percent as the room arrives — scroll-driven, so the
+     instrument answers the gesture rather than playing a canned animation. */
+  transform:translate(-50%,-50%) translateY(var(--cy,0px)) scale(calc(.945 + .055 * var(--paper-enter,0)));
   background:var(--disc);
   display:grid;place-items:center;text-align:center;
 }
@@ -215,10 +219,13 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 .day{
   position:absolute;transform:translate(-50%,-50%) scale(var(--s,1));
   text-align:center;color:var(--ink);white-space:nowrap;
-  filter:blur(1.15px);opacity:.62;
-  transition:opacity 1.2s var(--ease);
+  filter:blur(1.15px);
+  /* the week fills in around the disc, top of the arc first, as the room
+     arrives. --d is the label's place in that order, set in home.js. */
+  opacity:calc(min(1,(var(--paper-enter,0) - var(--d,0)) * 3) * var(--k,.62));
+  transition:--k 1.1s var(--ease);
 }
-.day.on{opacity:1}
+.day.on{--k:1}
 .day .mk{display:block;margin:0 auto 5px;line-height:0;opacity:.7;color:var(--ink)}
 .day .mk svg{display:block;margin:0 auto;overflow:visible}
 .day b{
@@ -237,10 +244,12 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 .session{
   position:absolute;inset:0;display:grid;align-content:center;justify-items:center;
   gap:5px;padding:0 7%;
-  opacity:0;
-  transition:opacity 1.4s var(--ease);
+  opacity:0;pointer-events:none;
+  /* the outgoing session must be GONE before the incoming arrives, or both
+     sit at half opacity and the disc reads as two sessions printed together. */
+  transition:opacity .5s var(--ease);
 }
-.session.on{opacity:1}
+.session.on{opacity:1;transition:opacity .95s var(--ease) .45s}
 .kick{
   /* SF on iPhone — the app's eyebrow, not a mono label. */
   font-family:var(--sans);font-size:11px;font-weight:510;letter-spacing:.16em;
@@ -285,8 +294,8 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 }
 
 .inst.light .bar .id{color:var(--ink)}
-.inst.light .plate-cue button{color:rgba(11,11,10,.16)}
-.inst.light .plate-cue button.on{color:rgba(11,11,10,.38)}
+.inst.light .plate-cue button{color:rgba(11,11,10,.3)}
+.inst.light .plate-cue button.on{color:rgba(11,11,10,.66)}
 .inst.light .hatch,.inst.light .veil,.inst.light .glass,.inst.light .grain{opacity:0}
 body.asking .inst.light .bar .id,body.reading .inst.light .bar .id{color:var(--ivory)}
 
@@ -396,7 +405,7 @@ body.reading .veil{background:rgba(9,9,8,.985)}
   .arg{transform:none!important}
   .arg.out{transform:none!important}
   .session{transform:none!important}
-  .dial{transform:translate(-50%,-50%)}
+  .dial{transform:translate(-50%,-50%) scale(1.08)}
   .disc{transform:translate(-50%,-50%)}
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }

@@ -1,6 +1,6 @@
-# 03 THE INSTRUMENT — `/mockupc` only
+# 03 THE INSTRUMENT — live on `/`
 
-Not on production `/`. Question is 04. Nothing after the ask.
+Production `/` is four plates. `/mockupc` is the same sequence (noindex twin). Question is 04. Nothing after the ask. Do not build the week tab / placard until that is the task.
 
 ## Sequence
 
@@ -13,6 +13,8 @@ BEGIN               persists. Still opens at question one.
 ```
 
 01 + first thesis + Begin is still complete.
+
+Cache: `/` `rd31`. `/mockupc` `snap29`.
 
 ## Why light
 
@@ -27,14 +29,24 @@ The instrument owns the top. The copy owns the bottom third. They never share pi
 Depth is by focus, not by blurring the page. The instrument dissolves into the paper at its own edges. The disc is the only sharp thing. The copy sits on clean paper in front of it.
 
 - Dial box: `min(112vw, 60svh)`, centre `35svh`. Passes behind the FORM wordmark.
-- Radial mask: opaque to 38%, .62 at 54%, gone by 76%. The week doesn't end at a hard edge.
-- Disc `62%`. Labels at r=46, inside the mask fade. MON and SUN clip.
-- Week labels: static `blur(1.15px)` at .62. The day in play gets brighter, never sharper. Opacity 1.2s; the blur value never animates.
-- Cycle: 7s hold, 1.4s dissolve, nothing travels. No 6px rise.
+- Radial mask: opaque to 38%, .62 at 54%, gone by 76%. The week doesn't end at a hard edge. MON/SUN clip on a phone — intended.
+- Disc `62%`. Labels at r=46, inside the mask fade.
+- Week labels: static `blur(1.15px)`. Resting ink via registered `--k` (.62). The day in play goes to `--k: 1` — brighter, never sharper. Do not animate the blur.
+- Rail on bone: 30% ink, 66% when on. 16% is invisible, not missing.
+- Cycle: 7s hold. Outgoing session 0.5s. Incoming starts at 0.45s and takes 0.95s. Same 1.4s total; never both legible. Nothing travels.
 - Parallax capped at 8px.
 - Headline only. The paragraph was the instrument's job written out in words.
 
 On a 375×667 phone the disc and the eyebrow land within ~20px. If it reads tight, `35svh` → `33svh`. The air belongs between the instrument and the copy, not inside either one.
+
+## Entrance — scroll, not a timeline
+
+Nothing on the plate is on a clock. The room answers the gesture.
+
+- Disc scales `.945 → 1` from `--paper-enter` (scroll position).
+- Week fills around the arc as you pull the room up: top of the arc first, then outward to SAT and MON. Each label carries `--d` for its place in that order.
+- Scroll back and it reverses.
+- Day-in-play brightens through `--k`, not a snap to opacity 1.
 
 ## Depths
 
@@ -67,7 +79,7 @@ The first session lights the ring as the labels are written. Do not hardcode TUE
 
 ## Bind
 
-The core cycles four sessions (4.2s hold, 700ms dissolve). One session per race job. Each one brings its own day forward on the ring.
+The core cycles four sessions (7s hold, staggered 1.4s dissolve). One session per race job. Each one brings its own day forward on the ring.
 
 | Job | Session | Day | Kick |
 |---|---|---|---|
@@ -81,7 +93,6 @@ The name is authored (serif). The numbers are measured (`--sans`, system stack, 
 Copy on the plate (site voice):
 
 - *Every session is built for something.*
-- *Open it and the day is decided. The work, the paces, and the part of the race it is building.*
 - `FORM · iOS` (label, not App Store CTA)
 
 ## Do not
@@ -89,5 +100,7 @@ Copy on the plate (site voice):
 - Phone chrome or a screenshot
 - Tilt, perspective, 3D, drop shadow
 - A fifth plate after the question
-- Copy this to production `/` until the room inhabits the films
+- A canned entrance animation while you wait
+- Equal 1.4s fades on both sessions (prints two workouts at once)
 - Invent a mark that the app does not use, or leave a type unmarked in one place
+- Build the W1 tab / placard unless that is the task

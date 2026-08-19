@@ -23,8 +23,8 @@
   <link rel="preload" as="image" href="/media/run-development.jpg?v=rd26" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,380;9..144,460;9..144,560&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/home.css?v=rd30">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,380;9..144,460;9..144,560&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/home.css?v=rd31">
 </head>
 <body>
   <a class="skip" href="#begin">Begin</a>
@@ -83,9 +83,51 @@
           </div>
         </div>
       </section>
-      <section class="plate plate-ask" data-plate="2" aria-label="03 The start">
+      <section class="plate plate-instrument" data-plate="2" aria-label="03 The instrument">
+        <div class="paper" aria-hidden="true"></div>
+        <div class="instrument-grain" aria-hidden="true"></div>
+        <div class="dial" id="dial" aria-hidden="true">
+          <div class="disc" id="disc">
+            <div class="session on" data-day="1">
+              <div class="kick">builds <em>start</em></div>
+              <div class="name">Pressure to Pace</div>
+              <div class="line">30 min steady · 6:49–7:03 /mi</div>
+              <div class="line">3 × 8 min · 5:43 /mi</div>
+              <div class="line">2 min float between</div>
+              <div class="today">TUESDAY</div>
+            </div>
+            <div class="session" data-day="1">
+              <div class="kick">builds <em>settle</em></div>
+              <div class="name">Clean Rhythm</div>
+              <div class="line">4 × 6 min · 7:15 /mi</div>
+              <div class="line">2 min recovery easy</div>
+              <div class="today">TUESDAY</div>
+            </div>
+            <div class="session" data-day="5">
+              <div class="kick">builds <em>hold</em></div>
+              <div class="name">Long aerobic support</div>
+              <div class="line">85–100 min · 6:38–7:03 /mi</div>
+              <div class="line">last 15 min · 6:11–6:25 /mi</div>
+              <div class="today">SATURDAY</div>
+            </div>
+            <div class="session" data-day="1">
+              <div class="kick">builds <em>finish</em></div>
+              <div class="name">Race rehearsal</div>
+              <div class="line">controlled work at race pace</div>
+              <div class="today">TUESDAY</div>
+            </div>
+          </div>
+        </div>
+        <div class="instrument-scrim" aria-hidden="true"></div>
+        <div class="plate-inner instrument-in">
+          <p class="plate-index">03 / THE INSTRUMENT</p>
+          <h2>Every session is built for something.</h2>
+          <p class="instrument-meta">FORM · iOS</p>
+        </div>
+      </section>
+      <section class="plate plate-ask" data-plate="3" aria-label="04 The start">
         <div class="plate-inner ask-in">
-          <p class="plate-index">03 / THE START</p>
+          <p class="plate-index">04 / THE START</p>
           <h2>What are you trying to do?</h2>
           <div class="opts" data-key="goal" data-mode="one">
             <button class="opt" type="button" aria-pressed="false">Run better</button>
@@ -105,10 +147,11 @@
     <div class="begin-slot" id="beginSlot">
       <button class="cta persistent-begin" id="begin" type="button">Begin <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
     </div>
-    <nav class="plate-cue" id="plateCue" aria-label="The work, the practice, then the question">
+    <nav class="plate-cue" id="plateCue" aria-label="The work, the practice, the instrument, then the question">
       <button type="button" data-cue="0" class="on" aria-current="true">01</button>
       <button type="button" data-cue="1">02</button>
       <button type="button" data-cue="2">03</button>
+      <button type="button" data-cue="3">04</button>
     </nav>
 
     <div class="mode-panes" id="modePanes" aria-live="polite">
@@ -243,6 +286,6 @@
   </form>
   <input type="file" id="pick" accept="video/*" hidden>
 
-  <script src="/home.js?v=rd30"></script>
+  <script src="/home.js?v=rd31"></script>
 </body>
 </html>

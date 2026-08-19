@@ -1,12 +1,18 @@
+@property --k{syntax:'<number>';initial-value:.62;inherits:false}
 :root{
   --ink:#0b0b0a;
   --paper:#eee8db;
   --ivory:#f6f2e8;
+  --bone:#F2EEE6;
+  --disc:#F8F4EC;
   --line-on-ink:rgba(246,242,232,.16);
   --text-on-ink:#f4efe2;
   --text-on-ink-dim:rgba(244,239,226,.58);
   --serif:'Fraunces',Georgia,serif;
   --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  /* the instrument's own body face — on iPhone this resolves to literal SF,
+     which is what FORM actually renders. No webfont, no load. */
+  --sans:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',Arial,sans-serif;
   --wrap:1360px;
   --gutter:clamp(20px,4vw,56px);
   --ease:cubic-bezier(.22,.61,.36,1);
@@ -15,6 +21,7 @@
   --film-b-opacity:0;
   --room-dim:0;
   --hatch-opacity:.65;
+  --paper-enter:0;
   --cross:cubic-bezier(.42,0,.58,1);
 }
 
@@ -143,6 +150,9 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
   margin-top:14px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,239,226,.5);
 }
 .note-who::before{content:"";display:inline-block;width:18px;height:1px;background:#C3AD96;vertical-align:middle;margin-right:12px;opacity:.85}
+.read-obs{
+  display:block;margin:32px 0 0;padding-top:28px;border-top:1px solid var(--line-on-ink);
+}
 .practice-in{max-width:var(--wrap)}
 .practice-in .plate-index{margin-bottom:22px}
 
@@ -173,6 +183,122 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 .practice-link{display:inline-block;width:max-content;margin-top:0;align-self:center;font-size:10px;letter-spacing:.16em;color:rgba(244,239,226,.55);border-bottom:1px solid rgba(244,239,226,.2);padding-bottom:4px;opacity:var(--practice-link-opacity,1);transition:color .35s,border-color .35s}
 .practice-link:hover{color:var(--ivory);border-color:rgba(244,239,226,.55)}
 
+.plate-instrument{background:transparent}
+.plate-instrument .paper{
+  position:absolute;inset:0;z-index:0;background:var(--bone);opacity:var(--paper-enter,0);pointer-events:none;
+}
+.instrument-grain{
+  position:absolute;inset:0;z-index:1;pointer-events:none;opacity:calc(var(--paper-enter,0) * .05);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px 180px;mix-blend-mode:multiply;
+}
+.dial{
+  /* week labels and the session disc. scaled so MON/SUN clip on a phone.
+     centre a touch higher so the bigger disc still clears the copy. */
+  --box:min(112vw,60svh);
+  position:absolute;left:50%;top:35svh;z-index:1;width:var(--box);aspect-ratio:1;
+  transform:translate(-50%,-50%) translateY(var(--py,0px));
+  color:var(--ink);opacity:var(--paper-enter,0);pointer-events:none;
+  /* depth without perspective: the instrument dissolves into the paper at its
+     edges, so the week is atmosphere and the disc is the only sharp thing. */
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,#000 0 38%,rgba(0,0,0,.62) 54%,rgba(0,0,0,0) 76%);
+  mask-image:radial-gradient(circle at 50% 50%,#000 0 38%,rgba(0,0,0,.62) 54%,rgba(0,0,0,0) 76%);
+}
+.disc{
+  /* the session plate. no ring, no shadow — paper on paper, a shade lighter. */
+  position:absolute;left:50%;top:50%;border-radius:50%;
+  width:62%;height:62%;
+  /* grows the last few percent as the room arrives — scroll-driven, so the
+     instrument answers the gesture rather than playing a canned animation. */
+  transform:translate(-50%,-50%) translateY(var(--cy,0px)) scale(calc(.945 + .055 * var(--paper-enter,0)));
+  background:var(--disc);
+  display:grid;place-items:center;text-align:center;
+}
+/* week labels — matched to the app: system sans, a mark above each day,
+   and a scale falloff from the top of the arc outward. */
+.day{
+  position:absolute;transform:translate(-50%,-50%) scale(var(--s,1));
+  text-align:center;color:var(--ink);white-space:nowrap;
+  filter:blur(1.15px);
+  /* the week fills in around the disc, top of the arc first, as the room
+     arrives. --d is the label's place in that order, set in home.js. */
+  opacity:calc(min(1,(var(--paper-enter,0) - var(--d,0)) * 3) * var(--k,.62));
+  transition:--k 1.1s var(--ease);
+}
+.day.on{--k:1}
+.day .mk{display:block;margin:0 auto 5px;line-height:0;opacity:.7;color:var(--ink)}
+.day .mk svg{display:block;margin:0 auto;overflow:visible}
+.day b{
+  display:block;font-family:var(--sans);
+  font-size:12px;letter-spacing:.12em;font-weight:600;
+  color:rgba(11,11,10,.8);opacity:1;
+}
+.day span{
+  display:block;font-family:var(--sans);
+  font-size:13px;font-weight:500;letter-spacing:0;margin-top:1px;
+  color:rgba(11,11,10,.55);opacity:1;
+}
+.day.on .mk{opacity:.92}
+.day.on b{color:rgba(11,11,10,.92)}
+.day.on span{color:rgba(11,11,10,.72)}
+.session{
+  position:absolute;inset:0;display:grid;align-content:center;justify-items:center;
+  gap:5px;padding:0 7%;
+  opacity:0;pointer-events:none;
+  /* the outgoing session must be GONE before the incoming arrives, or both
+     sit at half opacity and the disc reads as two sessions printed together. */
+  transition:opacity .5s var(--ease);
+}
+.session.on{opacity:1;transition:opacity .95s var(--ease) .45s}
+.kick{
+  /* SF on iPhone — the app's eyebrow, not a mono label. */
+  font-family:var(--sans);font-size:11px;font-weight:510;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(11,11,10,.42);margin-bottom:6px;
+}
+.kick em{font-style:normal;font-weight:510;color:#9d7440}
+.name{
+  /* New York on iPhone — the app's session title. Not Fraunces. */
+  font-family:ui-serif,'New York','Iowan Old Style',Palatino,Georgia,serif;
+  font-size:clamp(22px,5.8vw,28px);font-weight:400;line-height:1.08;
+  letter-spacing:-.021em;color:var(--ink);
+}
+.line{font-size:clamp(12px,3.4vw,13.5px);font-weight:400;font-family:var(--sans);color:rgba(11,11,10,.68);line-height:1.55;letter-spacing:-.002em}
+.line small{font-family:var(--mono);font-size:10px;opacity:.45;letter-spacing:.1em;margin-right:8px}
+.today{
+  font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:#9d7440;margin-top:8px;
+}
+.instrument-scrim{
+  position:absolute;left:0;right:0;bottom:0;height:58%;z-index:2;pointer-events:none;
+  opacity:var(--paper-enter,0);
+  background:linear-gradient(to bottom,rgba(242,238,230,0) 0%,rgba(242,238,230,.55) 42%,var(--bone) 78%);
+}
+.plate-instrument .plate-inner{
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding-top:calc(var(--barH) + 30px);padding-bottom:clamp(120px,22svh,170px);z-index:3;
+  color:var(--ink);opacity:var(--paper-enter,0);
+}
+.instrument-in .plate-index{color:rgba(11,11,10,.42);margin-bottom:18px}
+.instrument-in h2{
+  font-family:var(--serif);font-weight:300;font-size:clamp(24px,5.8vw,34px);
+  line-height:1.1;letter-spacing:-.01em;color:var(--ink);max-width:14ch;
+}
+.instrument-copy{
+  margin-top:18px;max-width:28ch;font-family:var(--serif);font-weight:300;
+  font-size:clamp(14px,3.6vw,15.5px);line-height:1.5;color:rgba(11,11,10,.52);
+}
+.instrument-meta{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;
+  margin-top:22px;width:max-content;padding-bottom:6px;
+  border-bottom:1px solid rgba(11,11,10,.55);color:rgba(11,11,10,.55);
+}
+
+.inst.light .bar .id{color:var(--ink)}
+.inst.light .plate-cue button{color:rgba(11,11,10,.3)}
+.inst.light .plate-cue button.on{color:rgba(11,11,10,.66)}
+.inst.light .hatch,.inst.light .veil,.inst.light .glass,.inst.light .grain{opacity:0}
+body.asking .inst.light .bar .id,body.reading .inst.light .bar .id{color:var(--ivory)}
+
 .begin-slot{
   position:absolute;z-index:13;left:50%;bottom:max(74px,calc(42px + env(safe-area-inset-bottom)));transform:translateX(-50%);
   width:100%;max-width:var(--wrap);padding:0 var(--gutter);pointer-events:none;transition:opacity .35s var(--ease);
@@ -186,6 +312,15 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 .cta[disabled]{opacity:.3;pointer-events:none}
 .persistent-begin{pointer-events:auto;margin:0}
 .begin-slot.quiet .persistent-begin{border-color:rgba(246,242,232,.4);color:var(--ivory)}
+/* cream plate: ivory on bone disappears. ink on bone, and win over .quiet. */
+.inst.light .persistent-begin,
+.inst.light .begin-slot.quiet .persistent-begin{
+  color:var(--ink);border-color:rgba(11,11,10,.35);background:transparent;
+}
+.inst.light .persistent-begin:hover,
+.inst.light .begin-slot.quiet .persistent-begin:hover{
+  background:var(--ink);color:var(--bone);border-color:var(--ink);
+}
 
 .plate-cue{
   position:absolute;z-index:12;right:max(16px, calc(var(--gutter) - 6px));top:50%;transform:translateY(-50%);
@@ -256,7 +391,6 @@ body.reading .veil{background:rgba(9,9,8,.985)}
   .plate-work .plate-inner{padding-bottom:176px}
   .plate-ask .plate-inner{padding-bottom:176px}
   .plate-practice .plate-inner{padding-bottom:176px}
-  .ask-in h2{font-size:clamp(28px,7.4vw,40px)}
   .practice-copy{font-size:15px;line-height:1.45;max-width:34ch}
   .pc-break{display:block}
   .begin-slot{bottom:max(74px,calc(42px + env(safe-area-inset-bottom)))}
@@ -270,5 +404,8 @@ body.reading .veil{background:rgba(9,9,8,.985)}
 @media(prefers-reduced-motion:reduce){
   .arg{transform:none!important}
   .arg.out{transform:none!important}
+  .session{transform:none!important}
+  .dial{transform:translate(-50%,-50%) scale(1.08)}
+  .disc{transform:translate(-50%,-50%)}
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }

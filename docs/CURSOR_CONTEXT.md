@@ -38,8 +38,8 @@ When both **`speedandform`** and **`FORM-iOS`** roots are in the workspace, trea
 
 _Update this line when your sprint changes._
 
-- Homepage: 03 is the first question on darkened film B. The review is a receipt of what they said — nothing invented, no Hope Note. He replies with what he would do first. Payment is Zelle, arranged in that reply. See `docs/claude-handoff/AFTER-SEND.md`.
-- `/mockupc` only: 03 is THE INSTRUMENT (bone paper, authored dial). Question is 04. Not on `/`. See `docs/claude-handoff/INSTRUMENT-PLATE.md`.
+- Homepage: four plates. 03 is THE INSTRUMENT (bone paper, authored dial). 04 is the first question on darkened film B. The review is a receipt of what they said — nothing invented, no Hope Note. He replies with what he would do first. Payment is Zelle, arranged in that reply. See `docs/claude-handoff/AFTER-SEND.md` and `docs/claude-handoff/INSTRUMENT-PLATE.md`.
+- `/mockupc` is the noindex twin of `/` (same four plates). Not a fifth product.
 
 ---
 
