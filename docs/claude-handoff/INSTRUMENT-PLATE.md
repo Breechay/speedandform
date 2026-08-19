@@ -14,7 +14,7 @@ BEGIN               persists. Still opens at question one.
 
 01 + first thesis + Begin is still complete.
 
-Cache: `/` `rd31`. `/mockupc` `snap29`.
+Cache: `/` `rd32`. `/mockupc` `snap30`.
 
 ## Why light
 
@@ -28,16 +28,17 @@ The instrument owns the top. The copy owns the bottom third. They never share pi
 
 Depth is by focus, not by blurring the page. The instrument dissolves into the paper at its own edges. The disc is the only sharp thing. The copy sits on clean paper in front of it.
 
-- Dial box: `min(112vw, 60svh)`, centre `35svh`. Passes behind the FORM wordmark.
-- Radial mask: opaque to 38%, .62 at 54%, gone by 76%. The week doesn't end at a hard edge. MON/SUN clip on a phone — intended.
+- Dial box: `min(112vw, 60svh)`, centre `calc(35svh + 9px)` so WED clears FORM.
+- Radial mask: opaque to 38%, .62 at 54%, gone by 76%. The week doesn't end at a hard edge.
 - Disc `62%`. Labels at r=46, inside the mask fade.
+- Phone: MON and SUN are gone. SAT and TUE rest further in the fade (`--k: .28`). They still come forward when that session is in play.
 - Week labels: static `blur(1.15px)`. Resting ink via registered `--k` (.62). The day in play goes to `--k: 1` — brighter, never sharper. Do not animate the blur.
 - Rail on bone: 30% ink, 66% when on. 16% is invisible, not missing.
 - Cycle: 7s hold. Outgoing session 0.5s. Incoming starts at 0.45s and takes 0.95s. Same 1.4s total; never both legible. Nothing travels.
 - Parallax capped at 8px.
 - Headline only. The paragraph was the instrument's job written out in words.
 
-On a 375×667 phone the disc and the eyebrow land within ~20px. If it reads tight, `35svh` → `33svh`. The air belongs between the instrument and the copy, not inside either one.
+On a 375×667 phone the disc and the eyebrow land close. The air belongs between the instrument and FORM, then between the instrument and the copy. Dial centre is `35svh + 9px`.
 
 ## Entrance — scroll, not a timeline
 
@@ -52,7 +53,7 @@ Nothing on the plate is on a clock. The room answers the gesture.
 
 No spinning bezel. No collar. Depth by focus: a radial mask on the dial, a static blur on the week. The disc is sharp. The copy is on clean paper.
 
-If the disc eats the eyebrow on 375×667, the lever is `35svh` → `33svh`, not the type.
+If the disc eats the eyebrow on 375×667, the lever is the `35svh + 9px` offset, not the type.
 
 The name is New York (`ui-serif` on iPhone). The kick is SF (`--sans`). Not Fraunces, not mono. Paper is the app cream `#F2EEE6`.
 

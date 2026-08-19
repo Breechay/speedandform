@@ -366,7 +366,8 @@
         var x = 50 + r * Math.cos(a), y = 50 + r * Math.sin(a);
         var sc = (1 - Math.abs(i - 3) * 0.04).toFixed(2); /* gentler falloff — the set should read as one */
         var dl = (Math.abs(i - 3) * 0.055).toFixed(3); /* and it arrives in that order, top of the arc first */
-        frag += '<div class="day' + (String(i) === String(lit) ? " on" : "") + '" style="left:' + x + "%;top:" + y + "%;--s:" + sc + ";--d:" + dl + '">'
+        var ring = (i === 0 || i === 6) ? " edge" : (i === 1 || i === 5) ? " shoulder" : "";
+        frag += '<div class="day' + ring + (String(i) === String(lit) ? " on" : "") + '" style="left:' + x + "%;top:" + y + "%;--s:" + sc + ";--d:" + dl + '">'
               + '<i class="mk">' + (MARK[d[2]] || MARK.dot) + "</i><b>" + d[0] + "</b><span>" + d[1] + "</span></div>";
       });
       dial.insertAdjacentHTML("beforeend", frag);

@@ -193,10 +193,9 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
   background-size:180px 180px;mix-blend-mode:multiply;
 }
 .dial{
-  /* week labels and the session disc. scaled so MON/SUN clip on a phone.
-     centre a touch higher so the bigger disc still clears the copy. */
+  /* week labels and the session disc. 9px lower so WED clears FORM. */
   --box:min(112vw,60svh);
-  position:absolute;left:50%;top:35svh;z-index:1;width:var(--box);aspect-ratio:1;
+  position:absolute;left:50%;top:calc(35svh + 9px);z-index:1;width:var(--box);aspect-ratio:1;
   transform:translate(-50%,-50%) translateY(var(--py,0px));
   color:var(--ink);opacity:var(--paper-enter,0);pointer-events:none;
   /* depth without perspective: the instrument dissolves into the paper at its
@@ -225,6 +224,7 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
   opacity:calc(min(1,(var(--paper-enter,0) - var(--d,0)) * 3) * var(--k,.62));
   transition:--k 1.1s var(--ease);
 }
+.day.shoulder{--k:.4}
 .day.on{--k:1}
 .day .mk{display:block;margin:0 auto 5px;line-height:0;opacity:.7;color:var(--ink)}
 .day .mk svg{display:block;margin:0 auto;overflow:visible}
@@ -394,6 +394,10 @@ body.reading .veil{background:rgba(9,9,8,.985)}
   .practice-copy{font-size:15px;line-height:1.45;max-width:34ch}
   .pc-break{display:block}
   .begin-slot{bottom:max(74px,calc(42px + env(safe-area-inset-bottom)))}
+  /* MON/SUN clip and crowd the phone. SAT/TUE rest further in the fade. */
+  .day.edge{display:none}
+  .day.shoulder{--k:.28}
+  .day.shoulder.on{--k:1}
 }
 
 @media(min-width:900px){
