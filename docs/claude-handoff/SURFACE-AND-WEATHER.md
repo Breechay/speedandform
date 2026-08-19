@@ -34,7 +34,7 @@ Not a character. Not a third object to compose against. Weather.
 - Mid-right of a phone stays almost empty. Fins do not climb the edge into the middle of the screen.
 - Does not cover the disc. Does not compete with Begin.
 - Arrives with the room (`--paper-enter` on the site). Not a flying entrance.
-- Site crop now: `min(86vw, 560px)`, right −30% / bottom −16%, image offset 4/6%, opacity 92% so it sits under the paper rather than on it. Desktop `clamp(420px, 44vw, 660px)`.
+- Site crop now: `min(86vw, 560px)`, right −24% / bottom −6%, image offset 2/2%, opacity 92% so it sits under the paper rather than on it. Desktop `clamp(420px, 44vw, 660px)`, right −12% / bottom −4%. Raised, and a little of the right edge brought back in so the crop reads as a form, not a shard.
 - `weatherDrift`: 54s, ease-in-out, alternating, −8px / −10px and −0.6°, origin 80% 80%. Slow enough that you never catch it moving, only notice that it has. Anything faster is animation, and animation is a performance.
 
 On the app, later: the same crop, primarily in the unused lower field. It may shift slightly with the day. Slightly. A few percent, not a parade. Rest days can be quieter. Interval days do not need a performance.
@@ -55,7 +55,7 @@ Do not. Sun, field, weather works because nothing labels it.
 
 ## Site lock (now)
 
-Live on `/` (`rd41`) and `/mockupc` (`snap41`). Spec: `INSTRUMENT-PLATE.md`.
+Live on `/` (`rd42`) and `/mockupc` (`snap42`). Spec: `INSTRUMENT-PLATE.md`.
 
 - Art: `/media/dragon-tail.webp` (not the PNG; do not preload it against the films)
 - Markup: `.dragon-tail > img` inside `.plate-instrument`

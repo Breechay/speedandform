@@ -335,10 +335,6 @@
     sessEls.forEach(function (el, j) {
       el.classList.toggle("on", j === sessI);
     });
-    var rl = document.getElementById("raceline");
-    if (rl) [].slice.call(rl.children).forEach(function (seg, j) {
-      seg.classList.toggle("on", j === sessI);
-    });
     /* the disc already names the day. lighting the ring pulls the eye to TUE. */
   }
 

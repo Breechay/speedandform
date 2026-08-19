@@ -24,8 +24,8 @@ Fonts load from Google (Fraunces + JetBrains Mono). Needs network once.
 | `docs/claude-handoff/NOTE-001.md` | Hope Observation source |
 | `docs/claude-handoff/AFTER-SEND.md` | Zelle in the reply. Coaching sentence first. No cart. |
 | `docs/claude-handoff/AUDIT-rd28.md` | Review Note is not a link. |
-| `docs/claude-handoff/REACHABLE.md` | Zip README. `/` and `/mockupc` have the race line and the W1 tab. |
-| `docs/claude-handoff/INSTRUMENT-PLATE.md` | 03 is the light room. Tab, race line, weather drift. |
+| `docs/claude-handoff/REACHABLE.md` | Zip README. `/` and `/mockupc` have the W1 tab. Race line parked. |
+| `docs/claude-handoff/INSTRUMENT-PLATE.md` | 03 is the light room. Tab, weather drift. No race line. |
 | `docs/claude-handoff/SURFACE-AND-WEATHER.md` | Dial is the sun. Dragon is weather. No weather API. |
 | `docs/claude-handoff/APP-STORE-COPY.md` | FORM iOS metadata. Paste with the build. Not site copy. |
 | `docs/EXPERIENCE-BRIEF.md` | Read first |
