@@ -38,7 +38,7 @@ When both **`speedandform`** and **`FORM-iOS`** roots are in the workspace, trea
 
 _Update this line when your sprint changes._
 
-- Homepage `/` and `/mockupc` match (`rd47` / `snap47`): W1 tab, tell, weather drift. Cloud parked (`docs/claude-handoff/cloud-parked/`). Race line parked. Live `/` is this plate. Specs: `docs/claude-handoff/INSTRUMENT-PLATE.md`, `SURFACE-AND-WEATHER.md`. Receipt + Zelle: `AFTER-SEND.md`.
+- Homepage `/` and `/mockupc` match (`rd48` / `snap48`): W1 tab, tell, weather drift. Cloud parked (`docs/claude-handoff/cloud-parked/`). Race line parked. Live `/` is this plate. Specs: `docs/claude-handoff/INSTRUMENT-PLATE.md`, `SURFACE-AND-WEATHER.md`. Receipt + Zelle: `AFTER-SEND.md`.
 - **Track C (app Today):** Codex implements from `docs/track-c-handoff/`. The site is the look; the app is the action. Do not port site philosophy copy onto Today.
 - Next is not more chrome. Athletes, then the Field (weather around a still-bare instrument), then paywall — when that is the task.
 

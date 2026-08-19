@@ -346,7 +346,7 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 }
 .plate-instrument .plate-inner{
   display:flex;flex-direction:column;justify-content:flex-end;
-  padding-top:calc(var(--barH) + 30px);padding-bottom:clamp(120px,22svh,170px);z-index:3;
+  padding-top:calc(var(--barH) + 30px);padding-bottom:clamp(168px,24svh,186px);z-index:3;
   color:var(--ink);opacity:var(--paper-enter,0);
 }
 .instrument-in .plate-index{color:rgba(11,11,10,.42);margin-bottom:18px}
@@ -363,8 +363,12 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
   margin-top:22px;width:max-content;padding-bottom:6px;
   border-bottom:1px solid rgba(11,11,10,.55);color:rgba(11,11,10,.55);
   pointer-events:auto;position:relative;z-index:3;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;
 }
-.instrument-meta:hover{color:var(--ink);border-color:rgba(11,11,10,.8)}
+.instrument-meta::before{content:"";position:absolute;inset:-14px -18px -10px -12px}
+@media (hover:hover) and (pointer:fine){
+  .instrument-meta:hover{color:var(--ink);border-color:rgba(11,11,10,.8)}
+}
 
 .inst.light .bar .id{color:var(--ink)}
 .inst.light .plate-cue button{color:rgba(11,11,10,.3)}

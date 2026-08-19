@@ -16,7 +16,7 @@ BEGIN               persists. Still opens at question one.
 
 01 + first thesis + Begin is still complete.
 
-Cache: `/` `rd47`. `/mockupc` `snap47`.
+Cache: `/` `rd48`. `/mockupc` `snap48`.
 
 ## Why light
 
@@ -127,7 +127,7 @@ The name is authored (serif). The numbers are measured (`--sans`, system stack, 
 Copy on the plate (site voice):
 
 - *Every session is built for something.*
-- `FORM · iOS` — App Store, `https://apps.apple.com/us/app/form-running-plans/id6761313085`
+- `FORM · iOS` — App Store, `id6761313085`. Clears Begin. On iPhone opens the store app, not the web listing.
 
 ## Do not
 

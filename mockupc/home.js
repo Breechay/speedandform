@@ -435,6 +435,28 @@
       if (plate.classList.contains("placard-open") && activePlate !== 2) set(false);
     }, { passive: true });
     if (activePlate === 2) tell();
+    wireStore();
+  }
+
+  /* Snap scroll waits to see if a tap is a swipe. Hover on iPhone
+     eats the first tap. Begin sat on the underline. Open the store
+     on pointerup, and on iPhone skip the web listing. */
+  function wireStore() {
+    var a = document.querySelector("a.instrument-meta");
+    if (!a) return;
+    var id = "6761313085";
+    var ios = /iPhone|iPad|iPod/.test(navigator.userAgent);
+    a.href = ios ? ("itms-apps://itunes.apple.com/app/id" + id) : ("https://apps.apple.com/us/app/id" + id);
+    var x0 = 0, y0 = 0;
+    a.addEventListener("pointerdown", function (e) {
+      x0 = e.clientX; y0 = e.clientY;
+    });
+    a.addEventListener("pointerup", function (e) {
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      if (Math.abs(e.clientX - x0) > 12 || Math.abs(e.clientY - y0) > 12) return;
+      e.preventDefault();
+      window.location.assign(a.href);
+    });
   }
 
   function paintTicks() {

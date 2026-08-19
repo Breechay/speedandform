@@ -4,7 +4,7 @@ Open in Chrome. Phone is the real test.
 
 Live: https://speedandform.com/ · twin: https://speedandform.com/mockupc
 
-`/` and `/mockupc` match (`rd47` / `snap47`) — W1 tab, tell, weather drift. Cloud parked. No race line. The instrument steps aside. Live `/` is this plate.
+`/` and `/mockupc` match (`rd48` / `snap48`) — W1 tab, tell, weather drift. Cloud parked. No race line. The instrument steps aside. Live `/` is this plate.
 
 ## `/` — production
 
