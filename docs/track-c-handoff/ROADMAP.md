@@ -38,7 +38,7 @@ Last updated: 19 Aug 2026.
 ---
 
 - `[x]` **C1–C8 · Today becomes the instrument.** Codex, FORM-iOS. *19 Aug*
-- `[ ]` **Disc edge.** Site sun has no hairline. Rim dissolves into paper. Type stays sharp. Spec: `DISC-EDGE.md`.
+- `[ ]` **The sun.** Larger, like the site. No hairline. Pressure to Pace breathes (New York 400, not bold). TUESDAY at the bottom. Spec: `DISC-EDGE.md`.
 
 ---
 

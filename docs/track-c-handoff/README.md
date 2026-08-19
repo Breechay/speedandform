@@ -20,7 +20,7 @@ The site is ahead of the app. Brice’s call: **put the site’s experience on T
 | File | Use |
 |---|---|
 | `TRACK-C.md` | Build this. The spec. |
-| `DISC-EDGE.md` | C leftover. The sun has no hairline. Rim dissolves. Type stays sharp. |
+| `DISC-EDGE.md` | C leftover. Larger sun, no hairline, type breathes. Pressure to Pace as on the site. |
 | `TOKENS.md` | Exact colours, type, sizes from live CSS. Do not invent tokens. |
 | `TONE.md` | Site vs app. Compression. What copy may not enter Today. |
 | `ROADMAP.md` | The ledger. Statuses in place. Track D marked done. |
