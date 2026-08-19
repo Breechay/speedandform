@@ -4,7 +4,7 @@ Open in Chrome. Phone is the real test.
 
 Live: https://speedandform.com/ · twin: https://speedandform.com/mockupc
 
-`/` and `/mockupc` match (`rd41` / `snap41`) — race line, W1 tab, tell, weather drift. The instrument steps aside. Live `/` is this plate.
+`/` and `/mockupc` match (`rd42` / `snap42`) — W1 tab, tell, weather drift. No race line. The instrument steps aside. Live `/` is this plate.
 
 ## `/` — production
 
@@ -34,7 +34,7 @@ The disc is the sun. The week is at rest. The dragon is atmosphere, not a third 
 - Radial mask. Week labels static blur. MON/SUN gone on the phone. SAT/TUE further in the fade. The ring does not light.
 - Session: 7s hold. Outgoing 0.5s, incoming 0.95s from 0.45s. Never both legible.
 - Tail: `/media/dragon-tail.webp`, own `<img>` layer, cropped through the bottom-right. No cream pocket. Mid-right of the phone stays empty. Warmed on 02, not preloaded against the films.
-- Race line: disc-width `60%`, `top: calc(50% + 33%)`, same `.945 → 1` entrance scale as the disc. Four segments **9 / 20 / 54 / 17**. No labels. The light travels.
+- Race line: parked. The hairline under the disc read as an underline on the sun. Do not put it back unless asked.
 - `FORM · iOS` opens the App Store.
 
 Read `docs/claude-handoff/INSTRUMENT-PLATE.md` and `docs/claude-handoff/SURFACE-AND-WEATHER.md`.
