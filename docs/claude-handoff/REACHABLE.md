@@ -4,7 +4,7 @@ Open in Chrome. Phone is the real test.
 
 Live: https://speedandform.com/ · twin: https://speedandform.com/mockupc
 
-`/` and `/mockupc` match (`rd43` / `snap43`) — W1 tab, tell, weather drift. No race line. The instrument steps aside. Live `/` is this plate.
+`/` and `/mockupc` match (`rd44` / `snap44`) — W1 tab, tell, weather drift, one ribbon cloud. No race line. The instrument steps aside. Live `/` is this plate.
 
 ## `/` — production
 
@@ -53,7 +53,7 @@ Art-book / poster references are confidence, not a layout to copy onto Today.
 |---|---|
 | `index.html` `home.css` `home.js` | Production `/` |
 | `mockupc/` | Four-plate twin |
-| `media/` | Films, posters, `dragon-tail.webp` (not `.orig.mp4`) |
+| `media/` | Films, posters, `dragon-tail.webp`, cloud family (`cloud-ribbon` on the plate) |
 | `notes.html` `notes.css` | NOTE 001 |
 | `og/` | Share cards |
 | `docs/CURSOR_CONTEXT.md` | Orientation |
