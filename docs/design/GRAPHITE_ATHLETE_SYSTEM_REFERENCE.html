@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Graphite Athlete System · Reference</title>
+<!--
+GRAPHITE ATHLETE SYSTEM — IMPLEMENTATION CONTRACT
+
+This file is the visual authority for the private Speed & Form coaching system:
+Coach Desk, Natalie's private athlete site, FORM Coach Reads, Athlete Record,
+Session Details, Directions, Reads, Decisions, Support Work and Account views.
+
+LOCKED:
+- Near-black field, visibly separate graphite surfaces, high-contrast sans text.
+- Lime means current action or acknowledgement required. Never decorative.
+- Coral means attention. Green means established/complete.
+- Plain labels. No institutional/system language.
+- Minimal serif: FORM mark only.
+- No cream, archival document styling, decorative rulers, faint mono labels,
+  oversized serif statements or low-contrast restraint.
+- First viewport answers: who needs Brice, what they need, what evidence exists,
+  and what Brice can do now.
+
+ADAPTIVE:
+- Coach Desk is denser and roster-led.
+- Natalie is calmer, single-athlete and website-first, but uses the same tokens,
+  typography, surfaces, states and action logic.
+- FORM is execution-first and may show fewer simultaneous surfaces.
+- Layout may change by task. The visual and behavioral language may not.
+-->
+<style>
+:root{
+  --field:#141718;--field-2:#171a1c;--surface:#1d2123;--raised:#282d30;
+  --edge:#3b4346;--text:#f1f2ef;--secondary:#a8b0b2;--muted:#7f898c;
+  --lime:#d8ff68;--coral:#ff8a70;--green:#76d3a4;
+  --r:14px;--sans:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--field);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased}button,textarea{font:inherit;color:inherit}button{cursor:pointer}.shell{min-height:100vh}.topbar{height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:#111415;border-bottom:1px solid #2d3335}.brand{display:flex;align-items:center;gap:18px}.form{font-family:Georgia,serif;letter-spacing:.23em;font-size:15px;color:var(--lime)}.product{font-weight:700;font-size:14px}.tools{display:flex;gap:9px;align-items:center}.search,.spec{border:0;background:var(--raised);padding:9px 12px;border-radius:9px;font-size:12px}.profile{border:0;width:36px;height:36px;border-radius:50%;background:var(--text);color:var(--field);font-size:11px;font-weight:800}.layout{display:grid;grid-template-columns:350px minmax(0,1fr);min-height:calc(100vh - 68px)}.rail{background:var(--field-2);border-right:1px solid #2b3133;padding:28px 22px}.date,.kicker{font-size:11px;font-weight:650;color:var(--secondary)}.rail h1{font-size:23px;letter-spacing:-.025em;margin:8px 0 5px}.rail>p{font-size:13px;color:var(--secondary);margin:0}.rail-head{display:flex;justify-content:space-between;align-items:center;margin:34px 2px 12px}.rail-head strong{font-size:12px}.rail-head span{font-size:10px;color:var(--muted)}.athletes{display:grid;gap:7px}.athlete{display:grid;grid-template-columns:40px 1fr auto;gap:11px;align-items:center;text-align:left;border:1px solid transparent;background:transparent;border-radius:12px;padding:10px;width:100%}.athlete:hover{background:#1b1f20}.athlete.active{background:var(--surface);border-color:var(--edge)}.avatar{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--raised);font-size:10px;font-weight:800}.active .avatar{background:var(--lime);color:#121610}.athlete-copy{display:flex;flex-direction:column;min-width:0}.athlete-copy b{font-size:13px}.athlete-copy small{font-size:10px;color:var(--secondary);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.status{font-size:9px;font-weight:800;border-radius:20px;padding:5px 7px;background:var(--raised);color:var(--secondary);white-space:nowrap}.status.now{background:var(--lime);color:#141814}.status.good{background:rgba(118,211,164,.13);color:var(--green)}.main{padding:28px;min-width:0}.decision,.week,.coaching{background:var(--surface);border:1px solid #333a3e;border-radius:var(--r)}.decision{padding:29px 30px}.decision-head{display:flex;justify-content:space-between;gap:20px}.decision h2{font-size:33px;line-height:1.06;letter-spacing:-.035em;margin:8px 0 0}.more{height:34px;border:0;border-radius:9px;background:var(--raised);padding:0 11px}.summary{max-width:680px;color:var(--secondary);font-size:14px;line-height:1.55;margin:18px 0 23px}.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.fact{background:var(--raised);border:1px solid var(--edge);border-radius:11px;padding:13px 14px}.fact span{display:block;color:var(--secondary);font-size:10px}.fact b{display:block;font-size:14px;margin-top:5px}.action-label{font-size:11px;font-weight:800;color:var(--lime);margin:23px 0 10px}.actions{display:flex;gap:9px}.actions button{border-radius:10px;padding:11px 15px;font-size:12px;font-weight:800}.primary{background:var(--lime);border:1px solid var(--lime);color:#11150f}.secondary-button{background:transparent;border:1px solid var(--edge)}.write{border:0;background:none;color:var(--secondary);font-size:11px;padding:12px 0 0}.support-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:16px;margin-top:16px}.week,.coaching{padding:22px}.panel-head{display:flex;justify-content:space-between;align-items:center}.panel-head h3{font-size:13px;margin:0}.panel-head button{border:0;background:none;color:var(--secondary);font-size:10px}.intent{font-size:13px;line-height:1.5;color:var(--secondary);margin:14px 0}.sessions{display:grid;gap:7px}.session{display:grid;grid-template-columns:42px 1fr auto;gap:9px;align-items:center;background:var(--raised);border-radius:10px;padding:11px}.day{font-size:9px;font-weight:850;color:var(--secondary)}.session div{display:flex;flex-direction:column}.session b{font-size:12px}.session small{font-size:10px;color:var(--secondary);margin-top:3px}.distance{font-size:11px}.note{padding:14px 0}.note+.note{border-top:1px solid var(--edge)}.note-state{font-size:9px;font-weight:800;color:var(--green)}.note-state.draft{color:var(--coral)}.note p{font-size:12px;line-height:1.52;margin:7px 0 0}.continue{border:0;background:none;color:var(--lime);font-size:10px;font-weight:800;padding:8px 0 0}.contract{position:fixed;inset:0;display:none;place-items:center;padding:22px;background:rgba(5,7,8,.78);z-index:10}.contract.open{display:grid}.contract-card{width:min(720px,100%);max-height:86vh;overflow:auto;background:#1c2022;border:1px solid var(--edge);border-radius:18px;padding:28px}.contract-head{display:flex;align-items:center;justify-content:space-between}.contract-head h2{margin:0;font-size:22px}.close{border:0;background:var(--raised);border-radius:9px;width:34px;height:34px}.contract-card h3{font-size:12px;color:var(--lime);margin:25px 0 8px}.contract-card p,.contract-card li{font-size:13px;color:var(--secondary);line-height:1.55}.contract-card ul{padding-left:18px}.token-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.swatch{padding:14px 10px;border-radius:9px;border:1px solid var(--edge);font-size:10px}.swatch i{display:block;width:22px;height:22px;border-radius:6px;margin-bottom:8px}
+@media(max-width:900px){.layout{grid-template-columns:280px 1fr}.status{display:none}.support-grid{grid-template-columns:1fr}}
+@media(max-width:680px){.topbar{height:58px;padding:0 16px}.product,.search{display:none}.layout{display:block}.rail{border:0;padding:20px 15px 14px}.rail h1{font-size:21px}.rail-head{margin-top:20px}.athlete:not(.active){display:none}.main{padding:0 14px 28px}.decision{padding:22px 18px}.decision h2{font-size:28px}.facts{grid-template-columns:1fr 1fr}.fact:last-child{grid-column:1/-1}.actions{display:grid}.support-grid{gap:10px;margin-top:10px}.week,.coaching{padding:18px}.token-row{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<main class="shell">
+  <header class="topbar"><div class="brand"><span class="form">FORM</span><span class="product">Coach Desk</span></div><div class="tools"><button class="search">⌕&nbsp; Search</button><button class="spec" id="openSpec">System contract</button><button class="profile">BI</button></div></header>
+  <div class="layout">
+    <aside class="rail">
+      <span class="date">Monday, August 24</span><h1>Good afternoon, Brice.</h1><p>One decision needs you today.</p>
+      <div class="rail-head"><strong>Athletes</strong><span>4 active</span></div>
+      <div class="athletes">
+        <button class="athlete active"><span class="avatar">NA</span><span class="athlete-copy"><b>Natalie</b><small>Decide whether five miles opens</small></span><span class="status now">Needs you</span></button>
+        <button class="athlete"><span class="avatar">MB</span><span class="athlete-copy"><b>Marcus</b><small>Outdoor race-pace read</small></span><span class="status">Waiting for run</span></button>
+        <button class="athlete"><span class="avatar">HA</span><span class="athlete-copy"><b>Hope</b><small>Working pace control</small></span><span class="status good">On track</span></button>
+        <button class="athlete"><span class="avatar">JS</span><span class="athlete-copy"><b>Jose</b><small>Quality under added load</small></span><span class="status">Watch next</span></button>
+      </div>
+    </aside>
+    <section class="main">
+      <article class="decision">
+        <div class="decision-head"><div><span class="kicker">Natalie · Week 1 of 8</span><h2>Should five miles open?</h2></div><button class="more">•••</button></div>
+        <p class="summary">Three miles stayed composed. Her next-day knee response decides whether Tuesday moves forward.</p>
+        <div class="facts"><div class="fact"><span>Longest run</span><b>3.0 mi</b></div><div class="fact"><span>Next session</span><b>Tuesday</b></div><div class="fact"><span>Waiting on</span><b>Knee check</b></div></div>
+        <div class="action-label">Make the next call</div><div class="actions"><button class="primary">Open five miles</button><button class="secondary-button">Repeat three miles</button></div><button class="write">Write a different decision</button>
+      </article>
+      <div class="support-grid">
+        <article class="week"><div class="panel-head"><h3>This week</h3><button>View full record</button></div><p class="intent">Keep easy genuinely easy. Let Sunday answer the distance question.</p><div class="sessions"><div class="session"><span class="day">SUN</span><div><b>Track with Brice</b><small>Arms free. Heel light.</small></div><span class="distance">3 mi</span></div><div class="session"><span class="day">TUE</span><div><b>Easy</b><small>More time, same easy effort.</small></div><span class="distance">4 mi</span></div><div class="session"><span class="day">THU</span><div><b>Support + stairs</b><small>Single-leg control.</small></div><span class="distance">3 mi</span></div></div></article>
+        <article class="coaching"><div class="panel-head"><h3>Recent coaching</h3><button>See all</button></div><div class="note"><span class="note-state">Direction · Published</span><p>Protect the easy effort and quiet knee. Distance can move; movement cannot.</p></div><div class="note"><span class="note-state draft">Read · Draft</span><p>Three miles stayed composed. The next-day response still decides progression.</p><button class="continue">Continue writing</button></div></article>
+      </div>
+    </section>
+  </div>
+</main>
+<aside class="contract" id="contract" aria-hidden="true"><div class="contract-card"><div class="contract-head"><h2>Graphite system contract</h2><button class="close" id="closeSpec">×</button></div><h3>One system, different jobs</h3><p>Use this language across the Coach Desk, Natalie’s private website, athlete records, Session Details, Directions, Reads, Decisions, support work, account views and future FORM coaching surfaces. Layout adapts to the job; the visual and behavioral language does not.</p><h3>Locked</h3><ul><li>High-contrast sans typography. Serif only for the FORM mark.</li><li>Lime means current action or acknowledgement required—not decoration.</li><li>Coral means attention. Green means established or complete.</li><li>Plain labels and direct writing. No system-speak.</li><li>No cream, archival rulers, faint mono labels or oversized serif prose.</li><li>First viewport answers who needs Brice, what they need, the evidence, and the action.</li></ul><h3>Core tokens</h3><div class="token-row"><div class="swatch"><i style="background:#141718"></i>Field<br>#141718</div><div class="swatch"><i style="background:#1d2123"></i>Surface<br>#1D2123</div><div class="swatch"><i style="background:#d8ff68"></i>Action<br>#D8FF68</div><div class="swatch"><i style="background:#ff8a70"></i>Attention<br>#FF8A70</div></div><h3>Adaptive</h3><p>Coach Desk is roster-led and denser. Natalie’s private site is calmer and single-athlete. FORM is execution-first. All three inherit the same contrast, typography, state language, surfaces and action hierarchy.</p></div></aside>
+<script>
+const contract=document.getElementById('contract');
+document.getElementById('openSpec').onclick=()=>{contract.classList.add('open');contract.setAttribute('aria-hidden','false')};
+document.getElementById('closeSpec').onclick=()=>{contract.classList.remove('open');contract.setAttribute('aria-hidden','true')};
+contract.onclick=e=>{if(e.target===contract)document.getElementById('closeSpec').click()};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('closeSpec').click()});
+</script>
+</body>
+</html>

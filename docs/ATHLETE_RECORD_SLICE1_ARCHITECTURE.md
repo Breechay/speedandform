@@ -2,7 +2,8 @@
 
 Status: pre-code decision package  
 Scope: authentication, Natalie’s private record, coach desk, share excerpt  
-Binding visual references: `docs/mocks/natalie-record.html`, `docs/mocks/coach-desk.html`
+Visual and behavioral authority: `docs/design/GRAPHITE_ATHLETE_SYSTEM_REFERENCE.html`<br>
+Content and information reference: `docs/mocks/natalie-record.html`
 
 This package answers §11 of `ATHLETE_RECORD_BRIEF.md` for all of Slice 1. No production schema or application code should be written until the live Supabase catalog is compared with the checked-in SQL and the decisions below are accepted.
 
@@ -308,15 +309,21 @@ auth/record-callback/
 
 The implementation stays framework-free for Slice 1. Components are small ES-module renderers/custom elements with semantic HTML. The athlete projection is shared; the coach desk does not maintain a second handcrafted version of Natalie’s record.
 
-## 6. Coach desk composition and motion contract
+## 6. Graphite composition and motion contract
 
-`docs/mocks/coach-desk.html` is binding for hierarchy and proportion:
+`docs/design/GRAPHITE_ATHLETE_SYSTEM_REFERENCE.html` is binding for the private system’s
+visual and behavioral language. The earlier cream coach-desk composition is retired.
 
-- a horizontal four-athlete decision queue, ordered by what needs Brice;
-- the selected athlete’s own record is the dominant surface;
-- one attached coach margin contains the current question, need, Direction, Read, Decision, and a physically separate private note;
-- no sidebar navigation, statistic cards, activity feed, mileage ranking, or universal score;
-- on narrow screens the queue scrolls horizontally and the coach margin follows the athlete record.
+- desktop Coach Desk is roster-led: the active athlete and explicit state are visibly selected;
+- the current Decision is the dominant surface, followed by its evidence and immediate action;
+- This Week and Recent Coaching are supporting surfaces, not equal-priority dashboard cards;
+- lime marks only the required action or acknowledgement; coral marks attention; green marks established/complete;
+- the first viewport answers who needs Brice, what they need, what evidence exists, and what Brice can do now;
+- labels use plain states rather than coded or institutional language;
+- Natalie’s record keeps its five-band content and calmer pacing, but the cream, serif-heavy,
+  archival styling in `docs/mocks/natalie-record.html` is not implementation authority;
+- mobile leads with the selected athlete, current Decision, and primary action. Other athletes
+  and supporting information follow rather than shrinking the desktop rail and density.
 
 Motion communicates one state change:
 
@@ -326,13 +333,13 @@ Motion communicates one state change:
 - no parallax, count-up, confetti, looping decoration, or delayed access to controls;
 - `prefers-reduced-motion` removes positional and opacity choreography.
 
-Claude Browser (or another visual critic) is useful only after a deploy preview carries this real state and motion. Its job is to identify hierarchy, rhythm, and motion defects against the binding mocks—not to invent a new desk composition.
+Claude Browser (or another visual critic) is useful only after a deploy preview carries this real state and motion. Its job is to identify hierarchy, contrast, explicit state, and motion defects against Graphite—not to invent a new visual system.
 
 ## 7. Phased Slice 1 plan
 
 ### Phase 0 — accept the foundation
 
-- Review the two binding mocks and this package.
+- Review the Graphite system reference, Natalie content reference, and this package.
 - Run the live-catalog gate.
 - Turn this proposed schema into a migration diff against reality.
 - Write RLS tests before application writes exist.
