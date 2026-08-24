@@ -16,6 +16,33 @@
   Pragma: no-cache
   Expires: 0
 
+# Private Graphite product — no indexing, framing or cross-origin data leaks
+/athlete/*
+  X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
+  Referrer-Policy: no-referrer
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; img-src 'self' data: blob: https://pbgsjjegycacodiltbhn.supabase.co; connect-src 'self' https://pbgsjjegycacodiltbhn.supabase.co wss://pbgsjjegycacodiltbhn.supabase.co; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'
+
+/coach/*
+  X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
+  Referrer-Policy: no-referrer
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; img-src 'self' data: blob: https://pbgsjjegycacodiltbhn.supabase.co; connect-src 'self' https://pbgsjjegycacodiltbhn.supabase.co wss://pbgsjjegycacodiltbhn.supabase.co; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'
+
+/auth/record-callback/*
+  X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
+  Referrer-Policy: no-referrer
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; connect-src 'self' https://pbgsjjegycacodiltbhn.supabase.co; object-src 'none'; base-uri 'self'; frame-ancestors 'none'
+
+/record/*
+  X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; connect-src 'self' https://pbgsjjegycacodiltbhn.supabase.co; object-src 'none'; base-uri 'self'; frame-ancestors 'none'
+
 # Redirects config
 /_redirects
   Cache-Control: no-cache, no-store, must-revalidate

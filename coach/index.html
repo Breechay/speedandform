@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#141718">
+  <title>Coach Desk · FORM</title>
+  <link rel="stylesheet" href="/private/graphite.css?v=1">
+</head>
+<body>
+  <a class="skip-link" href="#deskMain">Skip to current decision</a>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="FORM home"><span class="form-mark">FORM</span><span class="product-name">Coach Desk</span></a>
+      <div class="topbar-tools"><span class="user-email" id="userEmail"></span><button class="button quiet" id="signOut" type="button" hidden>Sign out</button></div>
+    </header>
+    <main id="app"><div class="loading" aria-label="Loading Coach Desk"></div></main>
+  </div>
+
+  <dialog class="dialog" id="decisionDialog">
+    <form class="dialog-inner" id="decisionForm">
+      <div class="dialog-head"><div><p class="eyebrow">Publish a Decision</p><h2 id="decisionDialogTitle">Make the next call</h2></div><button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button></div>
+      <input type="hidden" name="actionId">
+      <div class="form-grid">
+        <label class="field-label">Athlete-facing decision<textarea class="field-textarea" name="athleteText" required></textarea></label>
+        <label class="field-label">Why this changed<textarea class="field-textarea" name="rationale" required></textarea></label>
+      </div>
+      <p class="status-message" id="decisionStatus" role="status"></p>
+      <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Publish Decision <span class="icon-arrow">→</span></button></div>
+    </form>
+  </dialog>
+
+  <dialog class="dialog" id="coachingDialog">
+    <form class="dialog-inner" id="coachingForm">
+      <div class="dialog-head"><div><p class="eyebrow">Athlete-facing coaching</p><h2>Write what matters now.</h2></div><button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button></div>
+      <div class="form-grid">
+        <label class="field-label">Object<select class="field-select" name="objectType"><option value="direction">Direction · before the run</option><option value="read">Read · after the run</option></select></label>
+        <label class="field-label" data-direction-only>Planned session<select class="field-select" name="plannedSessionId"></select></label>
+        <label class="field-label" data-direction-only>What must stay protected<input class="field-input" name="protectedVariable" placeholder="Easy effort and a quiet knee"></label>
+        <label class="field-label" data-direction-only>What can move<input class="field-input" name="movableVariable" placeholder="Distance and walk breaks"></label>
+        <label class="field-label" data-direction-only>Stop or change if<input class="field-input" name="stopOrChangeIf" placeholder="Movement changes or discomfort builds"></label>
+        <label class="field-label" data-read-only hidden>Question this answers<input class="field-input" name="questionAnswered" placeholder="What did the session teach us?"></label>
+        <label class="field-label">Athlete-facing wording<textarea class="field-textarea" name="athleteText" required placeholder="Plain, direct, and useful."></textarea></label>
+      </div>
+      <p class="status-message" id="coachingStatus" role="status"></p>
+      <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Publish <span class="icon-arrow">→</span></button></div>
+    </form>
+  </dialog>
+
+  <dialog class="dialog" id="noteDialog">
+    <form class="dialog-inner" id="noteForm">
+      <div class="dialog-head"><div><p class="eyebrow">Coach only</p><h2>Add a private note.</h2></div><button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button></div>
+      <div class="form-grid"><label class="field-label">Private note<textarea class="field-textarea" name="body" required placeholder="This can never be selected by the athlete."></textarea></label></div>
+      <p class="status-message" id="noteStatus" role="status"></p>
+      <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Save private note <span class="icon-arrow">→</span></button></div>
+    </form>
+  </dialog>
+
+  <dialog class="dialog" id="shareDialog">
+    <form class="dialog-inner" id="shareForm">
+      <div class="dialog-head"><div><p class="eyebrow">Frozen public excerpt</p><h2>Share only what was approved.</h2></div><button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button></div>
+      <div class="form-grid">
+        <label class="field-label">Public headline<input class="field-input" name="headline" required></label>
+        <label class="field-label">Public summary<textarea class="field-textarea" name="summary" required></textarea></label>
+        <label class="field-label">Consent note<input class="field-input" name="consentNote" required placeholder="Natalie approved this exact excerpt on Aug 24"></label>
+        <label class="field-label">Consent recorded at<input class="field-input" name="consentRecordedAt" type="datetime-local" required></label>
+      </div>
+      <p class="status-message" id="shareStatus" role="status"></p>
+      <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Publish frozen excerpt <span class="icon-arrow">→</span></button></div>
+    </form>
+  </dialog>
+  <script type="module" src="/coach/coach.js?v=2"></script>
+</body>
+</html>

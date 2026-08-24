@@ -27,6 +27,31 @@
   to = "/auth/apple/callback.html"
   status = 200
 
+# Private athlete system
+# force = true so the private product wins over any same-named legacy page.
+[[redirects]]
+  from = "/athlete"
+  to = "/athlete/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/coach"
+  to = "/coach/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/auth/record-callback"
+  to = "/auth/record-callback/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/record/:slug"
+  to = "/record/index.html"
+  status = 200
+
 # FORGE athlete portal — preserve the directory base for relative data loading
 [[redirects]]
   from = "/forge-sculpt/train"
