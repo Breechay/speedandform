@@ -106,8 +106,15 @@ body.asking .film video,body.reading .film video{transition:filter .9s var(--eas
 .bar .back{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-on-ink-dim);opacity:0;pointer-events:none;transition:opacity .5s,color .35s}
 body.asking .bar .back{opacity:1;pointer-events:auto}
 .bar .back:hover{color:var(--ivory)}
-.bar .signin{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-on-ink-dim);transition:color .35s var(--ease)}
-.bar .signin:hover{color:var(--ivory)}
+.bar .signin{
+  display:inline-flex;align-items:center;gap:7px;padding:4px 0 5px;
+  border-bottom:1px solid rgba(244,239,226,.24);
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-on-ink-dim);
+  transition:color .35s var(--ease),border-color .35s var(--ease);
+}
+.bar .signin span{font-size:12px;line-height:1;letter-spacing:0;transition:transform .35s var(--ease)}
+.bar .signin:hover{color:var(--ivory);border-color:rgba(244,239,226,.62)}
+.bar .signin:hover span{transform:translateX(3px)}
 
 .plates{
   position:absolute;inset:0;z-index:4;transform:translateY(0);overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;
@@ -374,7 +381,7 @@ body.asking .bar .back{opacity:1;pointer-events:auto}
 }
 
 .inst.light .bar .id{color:var(--ink)}
-.inst.light .bar .signin{color:rgba(11,11,10,.58)}
+.inst.light .bar .signin{color:rgba(11,11,10,.58);border-color:rgba(11,11,10,.2)}
 .inst.light .bar .signin:hover{color:var(--ink)}
 .inst.light .plate-cue button{color:rgba(11,11,10,.3)}
 .inst.light .plate-cue button.on{color:rgba(11,11,10,.66)}
@@ -493,7 +500,7 @@ body.reading .veil{background:rgba(9,9,8,.985)}
 /* Full-width desktops, plus narrower desktop browser panes with a mouse/trackpad.
    Touch devices below 1024px keep the four-plate mobile composition. */
 @media (min-width:1024px), (min-width:820px) and (hover:hover) and (pointer:fine){
-  .inst{--split-right:50%;background:var(--paper)}
+  .inst{--split-right:40%;background:var(--paper)}
   .film-stack,.dim,.veil,.glass,.hatch,.grain{right:var(--split-right)}
   .plates{right:var(--split-right)}
   .plate-ask{display:none}
@@ -508,9 +515,10 @@ body.reading .veil{background:rgba(9,9,8,.985)}
   .plate-cue [data-cue="3"]{display:none}
 
   .bar{max-width:none}
-  .bar .signin{color:rgba(11,11,10,.58)}
-  .bar .signin:hover{color:var(--ink)}
-  .bar .back{color:rgba(11,11,10,.52)}
+  .bar-actions{display:contents}
+  .bar .signin{position:absolute;right:var(--gutter);color:rgba(11,11,10,.58);border-color:rgba(11,11,10,.2)}
+  .bar .signin:hover{color:var(--ink);border-color:rgba(11,11,10,.54)}
+  .bar .back{position:absolute;left:calc(100% - var(--split-right) + clamp(28px,4vw,62px));color:rgba(11,11,10,.52)}
   .bar .back:hover{color:var(--ink)}
   body.asking .inst.light .bar .id,body.reading .inst.light .bar .id{color:var(--ink)}
 
