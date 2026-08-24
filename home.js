@@ -15,7 +15,7 @@
   var filmB = $("#filmB");
   var beginSlot = $("#beginSlot");
   var plateCue = $("#plateCue");
-  var desktopSplit = window.matchMedia && window.matchMedia("(min-width: 1024px)");
+  var desktopSplit = window.matchMedia && window.matchMedia("(min-width: 1024px), (min-width: 820px) and (hover: hover) and (pointer: fine)");
   var lastPlate = desktopSplit && desktopSplit.matches ? 2 : 3;
   var activePlate = 0;
   var returnPlate = 0;
