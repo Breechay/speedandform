@@ -493,7 +493,7 @@ body.reading .veil{background:rgba(9,9,8,.985)}
 /* Full-width desktops, plus narrower desktop browser panes with a mouse/trackpad.
    Touch devices below 1024px keep the four-plate mobile composition. */
 @media (min-width:1024px), (min-width:820px) and (hover:hover) and (pointer:fine){
-  .inst{--split-right:44%;background:var(--paper)}
+  .inst{--split-right:50%;background:var(--paper)}
   .film-stack,.dim,.veil,.glass,.hatch,.grain{right:var(--split-right)}
   .plates{right:var(--split-right)}
   .plate-ask{display:none}
