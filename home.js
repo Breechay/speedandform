@@ -15,7 +15,8 @@
   var filmB = $("#filmB");
   var beginSlot = $("#beginSlot");
   var plateCue = $("#plateCue");
-  var lastPlate = 3;
+  var desktopSplit = window.matchMedia && window.matchMedia("(min-width: 1024px)");
+  var lastPlate = desktopSplit && desktopSplit.matches ? 2 : 3;
   var activePlate = 0;
   var returnPlate = 0;
   var paintQueued = false;
@@ -44,7 +45,12 @@
   var reloadAt = { a: 0, b: 0 };
   var filmBReady = false;
 
+  function isDesktopSplit() {
+    return !!(desktopSplit && desktopSplit.matches);
+  }
+
   function pane(id) {
+    if (!id && isDesktopSplit()) id = "p-ask";
     $$(".pane").forEach(function (p) { p.classList.toggle("on", p.id === id); });
     var shown = id ? $("#" + id) : null;
     if (shown) shown.scrollTop = 0;
@@ -54,7 +60,7 @@
     document.body.classList.remove("asking", "reading");
     if (m) document.body.classList.add(m);
     if (m === "asking" || m === "reading") closePlacard();
-    if (m) {
+    if (m && !isDesktopSplit()) {
       filmA.pause();
       filmB.pause();
     } else {
@@ -65,6 +71,8 @@
   function plateHeight() { return H; }
 
   function measure() {
+    lastPlate = isDesktopSplit() ? 2 : 3;
+    activePlate = clamp(activePlate, 0, lastPlate);
     H = Math.max(1, plates.clientHeight);
     workEl = $(".hero-in");
     practiceEl = $(".practice-in");
@@ -135,8 +143,9 @@
 
   function filmsShouldRun() {
     return !document.hidden
-      && !document.body.classList.contains("asking")
-      && !document.body.classList.contains("reading");
+      && (isDesktopSplit()
+        || (!document.body.classList.contains("asking")
+          && !document.body.classList.contains("reading")));
   }
 
   function syncFilms() {
@@ -669,6 +678,7 @@
   window.addEventListener("resize", function () {
     measure();
     last = {};
+    if (isDesktopSplit() && !$(".pane.on")) pane("p-ask");
     if (!document.body.classList.contains("asking") && !document.body.classList.contains("reading")) snapToPlate(activePlate, "auto");
     paintScroll();
   });
