@@ -160,8 +160,10 @@ a { color: inherit; }
 .field-input:focus, .field-select:focus, .field-textarea:focus { border-color: var(--lime); box-shadow: 0 0 0 2px rgba(216, 255, 104, .12); }
 .field-input::placeholder, .field-textarea::placeholder { color: var(--muted); }
 
-/* §9 typography law, carried from the app: any line carrying a figure uses
-   tabular numerals so columns of numbers align and do not shimmer on update. */
+/* Tabular numerals inside the sans face, so figures align in a column and do
+   not shimmer when a value updates. NOT the brief's mono-label law: the
+   Graphite contract locks "high-contrast sans, serif only for the FORM mark"
+   and explicitly rejects faint mono labels. */
 .mark-number strong, .session-distance, .support-dose, .evidence b, .record-event time,
 .private-note time, .checkpoint, .rail-heading span, .share-mark {
   font-variant-numeric: tabular-nums;
