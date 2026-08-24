@@ -205,7 +205,8 @@ export async function createDirection(payload) {
     priority_targets: payload.priorityTargets,
     execution_context: payload.executionContext || {},
     athlete_text: payload.athleteText,
-    delivery_state: 'published',
+    delivery_state: payload.deliveryState || 'published',
+    delivered_wording: payload.deliveredWording || null,
     authored_by: user.id,
     published_at: new Date().toISOString()
   }).select('*').single();
@@ -220,7 +221,8 @@ export async function createRead(payload) {
     athlete_id: payload.athleteId,
     athlete_text: payload.athleteText,
     question_answered: payload.questionAnswered,
-    delivery_state: 'published',
+    delivery_state: payload.deliveryState || 'published',
+    delivered_wording: payload.deliveredWording || null,
     authored_by: user.id,
     published_at: new Date().toISOString()
   }).select('*').single();

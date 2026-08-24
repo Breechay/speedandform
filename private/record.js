@@ -30,6 +30,22 @@ export function formatDuration(seconds) {
   return hours ? `${hours}:${String(minutes).padStart(2, '0')}:${String(rest).padStart(2, '0')}` : `${minutes}:${String(rest).padStart(2, '0')}`;
 }
 
+const contextLabels = {
+  outdoor: 'Outdoor', treadmill: 'Treadmill', track: 'Track',
+  with_brice: 'With Brice', independent: 'Independent'
+};
+
+// Surface is the purpose for some marks, not metadata, so the record shows it.
+function executionTags(direction) {
+  const context = direction?.execution_context;
+  if (!context || typeof context !== 'object') return '';
+  const tags = [context.surface, context.company]
+    .filter(Boolean)
+    .map((value) => `<span class="execution-tag">${escapeHtml(contextLabels[value] || value)}</span>`);
+  if (context.heat_allowance) tags.push(`<span class="execution-tag">${escapeHtml(context.heat_allowance)}</span>`);
+  return tags.length ? `<div class="execution-tags">${tags.join('')}</div>` : '';
+}
+
 function sessionRows(record, interactive) {
   return record.sessions.map((session) => {
     const version = session.currentVersion || {};
@@ -45,6 +61,7 @@ function sessionRows(record, interactive) {
       <div class="session-copy">
         <b>${escapeHtml(version.title || 'Session')}</b>
         <small>${escapeHtml(direction?.athlete_text || version.intent || '')}</small>
+        ${executionTags(direction)}
       </div>
       <span class="session-distance">${version.prescribed_distance ? `${escapeHtml(version.prescribed_distance)} ${escapeHtml(version.distance_unit || '')}` : ''}</span>
       ${fileControl}
@@ -138,6 +155,6 @@ export function renderAthleteRecord(record, { interactive = false, projection = 
     ${readSection(record)}
     ${supportSection(record)}
     ${recordSection(record)}
-    <footer class="account-band"><span>${escapeHtml(athlete.account_label)}</span><span>Private coaching record</span></footer>
+    <footer class="account-band" id="account"><span>${escapeHtml(athlete.account_label)}</span><span>Private coaching record</span></footer>
   </div>`;
 }

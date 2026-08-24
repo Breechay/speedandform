@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#141718">
   <title>Coach Desk · FORM</title>
-  <link rel="stylesheet" href="/private/graphite.css?v=1">
+  <link rel="stylesheet" href="/private/graphite.css?v=3">
 </head>
 <body>
   <a class="skip-link" href="#deskMain">Skip to current decision</a>
@@ -40,8 +40,15 @@
         <label class="field-label" data-direction-only>What must stay protected<input class="field-input" name="protectedVariable" placeholder="Easy effort and a quiet knee"></label>
         <label class="field-label" data-direction-only>What can move<input class="field-input" name="movableVariable" placeholder="Distance and walk breaks"></label>
         <label class="field-label" data-direction-only>Stop or change if<input class="field-input" name="stopOrChangeIf" placeholder="Movement changes or discomfort builds"></label>
+        <label class="field-label" data-direction-only>Where it happens<select class="field-select" name="surface"><option value="">Not specified</option><option value="outdoor">Outdoor</option><option value="treadmill">Treadmill</option><option value="track">Track</option></select></label>
+        <label class="field-label" data-direction-only>Company<select class="field-select" name="company"><option value="">Not specified</option><option value="with_brice">With Brice</option><option value="independent">Independent</option></select></label>
+        <label class="field-label" data-direction-only>Heat allowance<input class="field-input" name="heatAllowance" placeholder="Slower is correct above 80&deg;F"></label>
+        <label class="field-label" data-direction-only>Priority order<textarea class="field-textarea priority-input" name="priorityTargets" placeholder="One target per line, most important first."></textarea></label>
         <label class="field-label" data-read-only hidden>Question this answers<input class="field-input" name="questionAnswered" placeholder="What did the session teach us?"></label>
+        <label class="field-label" data-read-only hidden>Sessions this Read covers<select class="field-select" name="completionIds" multiple size="4"></select><small class="field-hint">One Read, many sessions. The text is never copied.</small></label>
         <label class="field-label">Athlete-facing wording<textarea class="field-textarea" name="athleteText" required placeholder="Plain, direct, and useful."></textarea></label>
+        <label class="field-label">How it reaches them<select class="field-select" name="deliveryState"><option value="published">Published to their record</option><option value="delivered_externally">Sent outside FORM</option></select></label>
+        <label class="field-label" data-external-only hidden>Wording actually sent<textarea class="field-textarea" name="deliveredWording" placeholder="Paste exactly what you sent, so the history is true rather than approximate."></textarea></label>
       </div>
       <p class="status-message" id="coachingStatus" role="status"></p>
       <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Publish <span class="icon-arrow">→</span></button></div>
@@ -70,6 +77,6 @@
       <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Publish frozen excerpt <span class="icon-arrow">→</span></button></div>
     </form>
   </dialog>
-  <script type="module" src="/coach/coach.js?v=2"></script>
+  <script type="module" src="/coach/coach.js?v=3"></script>
 </body>
 </html>
