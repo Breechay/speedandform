@@ -8,6 +8,7 @@ const userEmail = document.getElementById('userEmail');
 const fileDialog = document.getElementById('fileDialog');
 const fileForm = document.getElementById('fileForm');
 const fileStatus = document.getElementById('fileStatus');
+const recordNav = document.getElementById('recordNav');
 let record = null;
 
 async function authView() {
@@ -78,6 +79,9 @@ async function renderRecord(athleteId) {
   record = await loadAthleteRecord(athleteId);
   app.innerHTML = renderAthleteRecord(record, { interactive: true });
   bindRecordActions();
+  // The record has its own nav, so the bare sign-out button steps aside.
+  recordNav.hidden = false;
+  signOutButton.hidden = true;
 }
 
 fileDialog.querySelectorAll('[data-close-dialog]').forEach((button) => button.addEventListener('click', () => fileDialog.close()));
@@ -111,6 +115,8 @@ fileForm.addEventListener('submit', async (event) => {
 });
 
 signOutButton.addEventListener('click', signOut);
+document.getElementById('navSignOut').addEventListener('click', signOut);
+recordNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => { recordNav.open = false; }));
 
 async function boot() {
   try {

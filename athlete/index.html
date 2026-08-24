@@ -6,14 +6,28 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#141718">
   <title>Your record · FORM</title>
-  <link rel="stylesheet" href="/private/graphite.css?v=1">
+  <link rel="stylesheet" href="/private/graphite.css?v=3">
 </head>
 <body>
   <a class="skip-link" href="#app">Skip to your record</a>
   <div class="app-shell">
     <header class="topbar">
       <a class="brand" href="/" aria-label="FORM home"><span class="form-mark">FORM</span><span class="product-name">Athlete Record</span></a>
-      <div class="topbar-tools"><span class="user-email" id="userEmail"></span><button class="button quiet" id="signOut" type="button" hidden>Sign out</button></div>
+      <div class="topbar-tools">
+        <span class="user-email" id="userEmail"></span>
+        <details class="record-nav" id="recordNav" hidden>
+          <summary aria-label="Record sections"><span class="nav-bars" aria-hidden="true"></span></summary>
+          <nav class="record-nav-panel">
+            <a href="#now">Now</a>
+            <a href="#read">Read</a>
+            <a href="#support">Support</a>
+            <a href="#record">Record</a>
+            <a href="#account">Account</a>
+            <button class="nav-signout" id="navSignOut" type="button">Sign out</button>
+          </nav>
+        </details>
+        <button class="button quiet" id="signOut" type="button" hidden>Sign out</button>
+      </div>
     </header>
     <main id="app"><div class="loading" aria-label="Loading your record"></div></main>
   </div>
@@ -61,6 +75,6 @@
       <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Save to the record <span class="icon-arrow">→</span></button></div>
     </form>
   </dialog>
-  <script type="module" src="/athlete/athlete.js?v=2"></script>
+  <script type="module" src="/athlete/athlete.js?v=3"></script>
 </body>
 </html>

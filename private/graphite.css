@@ -55,6 +55,34 @@ a { color: inherit; }
 .topbar-tools { display: flex; align-items: center; gap: 10px; }
 .user-email { max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--secondary); font-size: 12px; }
 
+/* §9: the record's only nav. Now · Read · Support · Record · Account · Sign out. */
+.record-nav { position: relative; }
+.record-nav > summary {
+  list-style: none; width: 40px; height: 40px; display: grid; place-items: center;
+  border: 1px solid var(--edge); border-radius: var(--radius-sm); cursor: pointer;
+}
+.record-nav > summary::-webkit-details-marker { display: none; }
+.nav-bars, .nav-bars::before, .nav-bars::after {
+  display: block; width: 15px; height: 1.5px; background: var(--text); border-radius: 2px;
+}
+.nav-bars { position: relative; }
+.nav-bars::before, .nav-bars::after { content: ""; position: absolute; left: 0; }
+.nav-bars::before { top: -5px; }
+.nav-bars::after { top: 5px; }
+.record-nav[open] > summary { border-color: var(--lime); }
+.record-nav-panel {
+  position: absolute; z-index: 60; top: calc(100% + 8px); right: 0; min-width: 178px;
+  display: grid; padding: 7px; border: 1px solid var(--edge); border-radius: var(--radius-sm);
+  background: var(--raised); box-shadow: var(--shadow);
+}
+.record-nav-panel a, .nav-signout {
+  padding: 10px 11px; border: 0; border-radius: 8px; background: transparent;
+  color: var(--text); font-size: 13px; font-weight: 700; text-align: left;
+  text-decoration: none; cursor: pointer;
+}
+.record-nav-panel a:hover, .nav-signout:hover { background: var(--raised-2); }
+.nav-signout { margin-top: 4px; border-top: 1px solid var(--edge); border-radius: 0 0 8px 8px; color: var(--secondary); }
+
 .button {
   min-height: 44px; border: 1px solid var(--edge); border-radius: var(--radius-sm);
   background: transparent; color: var(--text); padding: 10px 15px;
@@ -131,6 +159,26 @@ a { color: inherit; }
 .field-textarea { min-height: 116px; resize: vertical; line-height: 1.5; }
 .field-input:focus, .field-select:focus, .field-textarea:focus { border-color: var(--lime); box-shadow: 0 0 0 2px rgba(216, 255, 104, .12); }
 .field-input::placeholder, .field-textarea::placeholder { color: var(--muted); }
+
+/* §9 typography law, carried from the app: any line carrying a figure uses
+   tabular numerals so columns of numbers align and do not shimmer on update. */
+.mark-number strong, .session-distance, .support-dose, .evidence b, .record-event time,
+.private-note time, .checkpoint, .rail-heading span, .share-mark {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Execution context: surface and company are the purpose of some marks. */
+.execution-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 7px; }
+.execution-tag {
+  border: 1px solid var(--edge); border-radius: 999px; padding: 2px 9px;
+  color: var(--secondary); font-size: 10px; font-weight: 750;
+  letter-spacing: .04em; text-transform: uppercase;
+}
+.field-hint { margin-top: 5px; color: var(--muted); font-size: 11px; font-weight: 400; }
+.priority-input { min-height: 76px; }
+select[multiple].field-select { min-height: 96px; padding: 8px; }
+select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 .access-pending { display: grid; gap: 18px; }
 
 /* Athlete record */

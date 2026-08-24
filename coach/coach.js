@@ -1,6 +1,6 @@
 import { authErrorMessage, enabledProviders, getAccessContext, sendMagicLink, signInWithApple, signOut } from '/private/auth.js';
 import { addPrivateNote, createDirection, createRead, loadAthleteRecord, loadCoachRoster, publishRecordExcerpt, resolveCoachTask } from '/private/data.js';
-import { escapeHtml, renderAthleteRecord } from '/private/record.js';
+import { escapeHtml, formatDate, renderAthleteRecord } from '/private/record.js';
 
 const stateLabels = {
   needs_you: 'Needs you', waiting_for_run: 'Waiting for run', waiting_for_athlete: 'Waiting for athlete',
@@ -128,14 +128,22 @@ function openDecision(actionId) {
 function openCoaching() {
   coachingForm.reset();
   coachingForm.elements.plannedSessionId.innerHTML = selectedRecord.sessions.map((session) => `<option value="${session.id}">${escapeHtml(session.day_label)} · ${escapeHtml(session.currentVersion?.title || 'Session')}</option>`).join('');
+  coachingForm.elements.completionIds.innerHTML = selectedRecord.completions.map((completion) => {
+    const session = selectedRecord.sessions.find((item) => item.id === completion.planned_session_id);
+    const distance = completion.actual_distance ? ` · ${completion.actual_distance} ${completion.distance_unit || ''}` : '';
+    return `<option value="${completion.id}">${escapeHtml(formatDate(completion.filed_at))} · ${escapeHtml(session?.currentVersion?.title || completion.status)}${escapeHtml(distance)}</option>`;
+  }).join('') || '<option value="" disabled>No sessions filed yet</option>';
   document.getElementById('coachingStatus').textContent = '';
   toggleCoachingFields(); coachingDialog.showModal();
 }
 
 function toggleCoachingFields() {
   const read = coachingForm.elements.objectType.value === 'read';
+  const external = coachingForm.elements.deliveryState.value === 'delivered_externally';
   coachingForm.querySelectorAll('[data-direction-only]').forEach((node) => { node.hidden = read; });
   coachingForm.querySelectorAll('[data-read-only]').forEach((node) => { node.hidden = !read; });
+  coachingForm.querySelectorAll('[data-external-only]').forEach((node) => { node.hidden = !external; });
+  coachingForm.elements.deliveredWording.required = external;
 }
 
 function openShare() {
@@ -150,6 +158,7 @@ function openShare() {
 
 dialogs.forEach((dialog) => dialog.querySelectorAll('[data-close-dialog]').forEach((button) => button.addEventListener('click', () => dialog.close())));
 coachingForm.elements.objectType.addEventListener('change', toggleCoachingFields);
+coachingForm.elements.deliveryState.addEventListener('change', toggleCoachingFields);
 
 decisionForm.addEventListener('submit', async (event) => {
   event.preventDefault(); const form = new FormData(decisionForm); const status = document.getElementById('decisionStatus'); const button = decisionForm.querySelector('button[type="submit"]');
@@ -164,8 +173,29 @@ coachingForm.addEventListener('submit', async (event) => {
   event.preventDefault(); const form = new FormData(coachingForm); const status = document.getElementById('coachingStatus'); const button = coachingForm.querySelector('button[type="submit"]');
   button.disabled = true; status.textContent = 'Publishing…';
   try {
-    if (form.get('objectType') === 'direction') await createDirection({ athleteId: selectedId, plannedSessionId: form.get('plannedSessionId'), protectedVariable: form.get('protectedVariable'), movableVariable: form.get('movableVariable'), stopOrChangeIf: form.get('stopOrChangeIf'), priorityTargets: [form.get('protectedVariable')], athleteText: form.get('athleteText'), executionContext: {} });
-    else await createRead({ athleteId: selectedId, athleteText: form.get('athleteText'), questionAnswered: form.get('questionAnswered'), completionIds: selectedRecord.completions.slice(0, 1).map((item) => item.id) });
+    const deliveryState = form.get('deliveryState');
+    const deliveredWording = deliveryState === 'delivered_externally' ? form.get('deliveredWording') : null;
+    if (form.get('objectType') === 'direction') {
+      // Surface is the purpose for some marks, not metadata: a treadmill completion
+      // produces the numbers without answering an outdoor question.
+      const executionContext = {};
+      if (form.get('surface')) executionContext.surface = form.get('surface');
+      if (form.get('company')) executionContext.company = form.get('company');
+      if (String(form.get('heatAllowance') || '').trim()) executionContext.heat_allowance = form.get('heatAllowance').trim();
+      const priorityTargets = String(form.get('priorityTargets') || '').split('\n').map((line) => line.trim()).filter(Boolean);
+      await createDirection({
+        athleteId: selectedId, plannedSessionId: form.get('plannedSessionId'),
+        protectedVariable: form.get('protectedVariable'), movableVariable: form.get('movableVariable'),
+        stopOrChangeIf: form.get('stopOrChangeIf'),
+        priorityTargets: priorityTargets.length ? priorityTargets : [form.get('protectedVariable')],
+        athleteText: form.get('athleteText'), executionContext, deliveryState, deliveredWording
+      });
+    } else {
+      await createRead({
+        athleteId: selectedId, athleteText: form.get('athleteText'), questionAnswered: form.get('questionAnswered'),
+        completionIds: form.getAll('completionIds').filter(Boolean), deliveryState, deliveredWording
+      });
+    }
     coachingDialog.close(); await refreshSelected(true);
   } catch (error) { status.textContent = error.message; status.className = 'status-message error'; button.disabled = false; }
 });
