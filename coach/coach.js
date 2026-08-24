@@ -1,4 +1,4 @@
-import { authErrorMessage, getAccessContext, sendMagicLink, signInWithApple, signOut } from '/private/auth.js';
+import { authErrorMessage, enabledProviders, getAccessContext, sendMagicLink, signInWithApple, signOut } from '/private/auth.js';
 import { addPrivateNote, createDirection, createRead, loadAthleteRecord, loadCoachRoster, publishRecordExcerpt, resolveCoachTask } from '/private/data.js';
 import { escapeHtml, renderAthleteRecord } from '/private/record.js';
 
@@ -24,15 +24,16 @@ let roster = [];
 let selectedId = null;
 let selectedRecord = null;
 
-function authView() {
+async function authView() {
   document.body.classList.add('auth-only');
+  const apple = (await enabledProviders()).apple === true;
   app.innerHTML = `<section class="auth-page"><div class="auth-card doorway">
     <h1 class="auth-mark">FORM<span class="sr-only"> — Coach sign in</span></h1>
-    <div class="auth-actions"><button class="button primary" id="appleSignIn" type="button">Continue with Apple <span class="icon-arrow">→</span></button></div>
-    <div class="auth-divider">or use email</div>
-    <form id="magicForm" class="form-grid"><label class="field-label">Email address<input class="field-input" type="email" name="email" autocomplete="email" required></label><button class="button" type="submit">Email me a sign-in link <span class="icon-arrow">→</span></button><p class="status-message" id="authStatus" role="status"></p></form>
+    ${apple ? `<div class="auth-actions"><button class="button primary" id="appleSignIn" type="button">Continue with Apple <span class="icon-arrow">→</span></button></div>
+    <div class="auth-divider">or use email</div>` : ''}
+    <form id="magicForm" class="form-grid"><label class="field-label">Email address<input class="field-input" type="email" name="email" autocomplete="email" required placeholder="you@example.com"></label><button class="button${apple ? '' : ' primary'}" type="submit">Email me a sign-in link <span class="icon-arrow">→</span></button><p class="status-message" id="authStatus" role="status"></p></form>
   </div></section>`;
-  document.getElementById('appleSignIn').addEventListener('click', async () => {
+  document.getElementById('appleSignIn')?.addEventListener('click', async () => {
     const status = document.getElementById('authStatus'); status.textContent = 'Opening Apple…';
     try { await signInWithApple('/coach/'); } catch (error) { status.textContent = authErrorMessage(error); status.className = 'status-message error'; }
   });
@@ -193,7 +194,7 @@ signOutButton.addEventListener('click', signOut);
 async function boot() {
   try {
     const access = await getAccessContext();
-    if (!access.session) { authView(); return; }
+    if (!access.session) { await authView(); return; }
     document.body.classList.remove('auth-only');
     userEmail.textContent = access.session.user.email || ''; signOutButton.hidden = false;
     if (!access.coachMemberships.length && access.athleteMemberships.length) { window.location.replace('/athlete/'); return; }

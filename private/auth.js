@@ -1,4 +1,4 @@
-import { callbackUrl, supabase } from './supabase-client.js';
+import { callbackUrl, supabase, SUPABASE_PUBLISHABLE_KEY, SUPABASE_URL } from './supabase-client.js';
 
 const ALLOWED_DESTINATIONS = ['/athlete/', '/coach/'];
 
@@ -12,6 +12,26 @@ export function safeReturnTo(value) {
   } catch {
     return '/athlete/';
   }
+}
+
+let providerCache = null;
+
+// Supabase publishes which providers are actually enabled. Asking first means
+// we never offer a button that would navigate the browser to a raw JSON error
+// page, and Apple appears on its own the moment the provider is configured.
+export async function enabledProviders() {
+  if (providerCache) return providerCache;
+  try {
+    const response = await fetch(`${SUPABASE_URL}/auth/v1/settings`, {
+      headers: { apikey: SUPABASE_PUBLISHABLE_KEY }
+    });
+    if (!response.ok) throw new Error('settings unavailable');
+    const settings = await response.json();
+    providerCache = settings.external || {};
+  } catch {
+    providerCache = {};
+  }
+  return providerCache;
 }
 
 export async function sendMagicLink(email, returnTo = '/athlete/') {
