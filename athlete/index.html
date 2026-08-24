@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#141718">
+  <title>Your record · FORM</title>
+  <link rel="stylesheet" href="/private/graphite.css?v=1">
+</head>
+<body>
+  <a class="skip-link" href="#app">Skip to your record</a>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="FORM home"><span class="form-mark">FORM</span><span class="product-name">Athlete Record</span></a>
+      <div class="topbar-tools"><span class="user-email" id="userEmail"></span><button class="button quiet" id="signOut" type="button" hidden>Sign out</button></div>
+    </header>
+    <main id="app"><div class="loading" aria-label="Loading your record"></div></main>
+  </div>
+
+  <dialog class="dialog" id="fileDialog">
+    <form class="dialog-inner" id="fileForm">
+      <div class="dialog-head"><div><p class="eyebrow">Your session</p><h2 id="fileTitle">File this run</h2></div><button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button></div>
+      <input type="hidden" name="plannedSessionId">
+      <input type="hidden" name="completionId">
+      <div class="form-grid two">
+        <label class="field-label">What happened?
+          <select class="field-select" name="status" required><option value="completed">Completed</option><option value="partial">Partial</option><option value="changed">Changed</option><option value="skipped">Skipped</option></select>
+        </label>
+        <label class="field-label">Actual distance
+          <input class="field-input" name="actualDistance" type="number" min="0" step="0.1" inputmode="decimal" placeholder="3.0">
+        </label>
+        <label class="field-label">Time in minutes
+          <input class="field-input" name="durationMinutes" type="number" min="0" step="1" inputmode="numeric" placeholder="39">
+        </label>
+        <label class="field-label">How did it feel?
+          <input class="field-input" name="felt" autocomplete="off" placeholder="Easy and controlled">
+        </label>
+        <label class="field-label">Knee during
+          <input class="field-input" name="kneeDuring" autocomplete="off" placeholder="Quiet">
+        </label>
+        <label class="field-label">Knee after
+          <input class="field-input" name="kneeAfter" autocomplete="off" placeholder="What changed, if anything?">
+        </label>
+        <label class="field-label">Normal by the next day?
+          <select class="field-select" name="recoveredNextDay"><option value="">Not checked yet</option><option value="yes">Yes</option><option value="no">No</option></select>
+        </label>
+        <label class="field-label">Strava link
+          <input class="field-input" name="stravaUrl" type="url" inputmode="url" placeholder="https://strava.com/activities/…">
+        </label>
+      </div>
+      <div class="form-grid">
+        <label class="field-label">Your note
+          <textarea class="field-textarea" name="athleteNote" placeholder="What should Brice know?"></textarea>
+        </label>
+        <label class="field-label" id="evidenceField">Optional screenshot
+          <input class="field-input" name="evidence" type="file" accept="image/jpeg,image/png,image/webp,application/pdf">
+        </label>
+      </div>
+      <p class="status-message" id="fileStatus" role="status"></p>
+      <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Save to the record <span class="icon-arrow">→</span></button></div>
+    </form>
+  </dialog>
+  <script type="module" src="/athlete/athlete.js?v=2"></script>
+</body>
+</html>

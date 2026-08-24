@@ -27,6 +27,27 @@
   to = "/auth/apple/callback.html"
   status = 200
 
+# Private athlete system
+[[redirects]]
+  from = "/athlete"
+  to = "/athlete/"
+  status = 301
+
+[[redirects]]
+  from = "/coach"
+  to = "/coach/"
+  status = 301
+
+[[redirects]]
+  from = "/auth/record-callback"
+  to = "/auth/record-callback/"
+  status = 301
+
+[[redirects]]
+  from = "/record/:slug"
+  to = "/record/index.html"
+  status = 200
+
 # FORGE athlete portal — preserve the directory base for relative data loading
 [[redirects]]
   from = "/forge-sculpt/train"

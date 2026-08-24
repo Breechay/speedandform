@@ -1,19 +1,18 @@
 # ATHLETE RECORD — SLICE 1 ARCHITECTURE
 
-Status: pre-code decision package  
+Status: accepted foundation; implementation in progress
 Scope: authentication, Natalie’s private record, coach desk, share excerpt  
 Visual and behavioral authority: `docs/design/GRAPHITE_ATHLETE_SYSTEM_REFERENCE.html`<br>
 Content and information reference: `docs/mocks/natalie-record.html`
 
-This package answers §11 of `ATHLETE_RECORD_BRIEF.md` for all of Slice 1. No production schema or application code should be written until the live Supabase catalog is compared with the checked-in SQL and the decisions below are accepted.
+This package answers §11 of `ATHLETE_RECORD_BRIEF.md` for all of Slice 1. On Aug 24, 2026, a clean project named `FORM Athlete System` (`pbgsjjegycacodiltbhn`, North Virginia) was created and linked. Its migration catalog is empty. The paused `Training Phases` project remains an untouched archive, so Slice 1 can implement the canonical model below without transforming or duplicating the legacy athlete schema.
 
 ## 1. Current architecture and security findings
 
 ### What is usable
 
 - The public site is static HTML on Netlify. New private routes can follow the same zero-build model with shared ES modules.
-- Supabase is already the identity and persistence boundary for FORGE.
-- `coach_profiles`, `athletes`, `coach_athletes`, `program_assignments`, `session_instances`, and `running_sessions` express most of the nouns Slice 1 needs.
+- Supabase remains the identity and persistence boundary, now in a clean project dedicated to the private coaching product.
 - Existing Edge Functions correctly establish the pattern that a user JWT is verified before a write.
 - The public `athletes/*.html` records can remain unchanged and isolated from the private record.
 
@@ -32,17 +31,17 @@ The checked-in SQL is not a trustworthy description of the live database. It con
 
 The FORM audit still supports Gate A in the brief. FORM’s filed sessions are local-first in `UserDefaults`; website-to-app delivery must not be represented as working in Slice 1. The current FORM worktree also contains unrelated uncommitted work, so this website package does not touch it.
 
-### Mandatory live-catalog gate
+### Live-catalog gate — complete
 
-Before migration 001 is authored, export and review:
+The linked project reports zero migrations and contains no legacy application tables. The gate is therefore satisfied without importing private rows. Before every production push, the migration dry run and RLS tests remain mandatory.
 
-1. table columns, primary keys, foreign keys, indexes, and views for every table named in this document;
-2. all RLS enablement and policies;
-3. functions, triggers, and grants, especially invite acceptance and public-field access;
-4. row counts and null/key-shape checks, without exporting private row contents;
-5. all deployed Edge Functions and their environment dependencies.
+The archived project was not unpaused or modified. Its previous risks remain useful constraints for the new design:
 
-The migration plan is then written as a transformation from the live catalog—not as a replay of the repository SQL.
+1. never expose invitation or private-record tables to `anon`;
+2. never use a slug as a domain foreign key;
+3. never maintain two writable athlete/profile/session concepts;
+4. never mix public and private coaching rows in one table;
+5. never treat a `service_role` policy as a security boundary.
 
 ## 2. Canonical data model
 
@@ -54,25 +53,26 @@ Keep one canonical `athletes` row with a stable UUID primary key. Add or normali
 
 Migrate the useful fields from `athlete_profiles` into `athletes`; then replace `athlete_profiles` with a compatibility view only if a deployed consumer still requires the name. Do not leave two writable athlete profiles.
 
-`coach_athletes` references `athletes.id` only. Slugs are presentation identifiers and never foreign keys.
+`athlete_memberships` references `athletes.id` only. Slugs are presentation identifiers and never foreign keys.
 
-### Existing tables to normalize, not duplicate
+### Canonical tables implemented in the clean project
 
-| Existing table | Slice 1 role | Required normalization |
+| Table | Slice 1 role | Contract |
 |---|---|---|
-| `coach_profiles` | Coach identity extension | Add explicit active/status metadata only if live catalog lacks it. |
-| `athletes` | Canonical athlete and membership row | Stable UUID PK; nullable unique `auth_user_id`; private/public routing slugs separated; no duplicate identity table. |
-| `coach_athletes` | Assignment and authorization edge | UUID `athlete_id`; unique coach/athlete; active dates/status. |
-| `program_assignments` | Training block | Extend with `source`, `goal_label`, `target_event`, `week_count`, and lifecycle; do not add `training_blocks`. |
-| `session_instances` | Planned session occurrence | Stable UUID `planned_session_id`; author-owned prescription and version metadata; status does not stand in for an actual. |
-| `running_sessions` | Athlete-filed completion | Stable UUID `completion_id`; nullable `planned_session_id`; athlete-owned actuals; preserve partial/changed/skipped semantics. |
-| `coach_judgments` | Legacy FORGE judgment | Migrate compatible history into Decisions, or preserve as a compatibility view; do not run two writable judgment systems. |
-| `coach_notes` | Legacy notes | Classify and migrate to athlete-visible Read text or `coach_private_notes`; never expose mixed-visibility rows. |
-| `athlete_invites` | Membership bootstrap | Make table unreadable to anon; accept through a constrained RPC. |
+| `profiles` | Auth identity extension | One row per `auth.users` identity; not a source of authorization. |
+| `athletes` | Canonical athlete record | Stable UUID PK; account links live on memberships; private and public routing remain separate. |
+| `athlete_memberships` | Assignment and authorization edge | UUID athlete and user keys; explicit `athlete` or `coach` role; unique active relationship. |
+| `access_invites` | Membership bootstrap | Confirmed email plus role; unreadable to anonymous clients; claimed only through the constrained RPC. |
+| `training_blocks` | Coach-authored training block | Owns source, goal, event, week count, and lifecycle. |
+| `training_weeks` | Week within a block | Stable week identity and explicit state. |
+| `planned_sessions` | Planned occurrence | Stable UUID and ordering; status never stands in for an actual. |
+| `planned_session_versions` | Immutable prescription history | Original and replacement wording remain auditable. |
+| `session_completions` | Athlete-filed actual | Optional planned-session link; preserves partial, changed, and skipped semantics. |
+| `completion_revisions` | Immutable athlete correction history | Captures the previous and replacement actual when an athlete updates a completion. |
 
 ### New tables: only concepts the current model does not own
 
-Names are provisional until the live-catalog gate confirms they are unused.
+These concept tables were created in the foundation migration after the empty-catalog gate passed.
 
 #### `directions`
 
@@ -177,12 +177,12 @@ Coach-only athlete relationship metadata including block label, weeks, payment s
 
 Natalie is represented by the same normalized model, not a custom page-shaped JSON blob:
 
-- one `athletes` row linked to her Supabase account;
-- one `coach_athletes` assignment;
-- one `program_assignments` row with `source = coach_authored`, eight weeks, Miami Half / Finish;
+- one `athletes` row that can exist before she claims access;
+- one athlete `athlete_memberships` row created when her confirmed email signs in, plus Brice’s coach membership;
+- one `training_blocks` row with `source = coach_authored`, eight weeks, Miami Half / Finish;
 - Week 0 baseline stored as a versioned baseline record: running history, longest run, frequency, constraints, initial movement read, strength schedule;
-- three `session_instances` for the current week;
-- zero or more Natalie-owned `running_sessions`, each retaining status, actual distance/time, feeling, knee during/after, next-day recovery, and optional Strava URL or uploaded asset reference;
+- three `planned_sessions` and immutable prescription versions for the current week;
+- zero or more Natalie-owned `session_completions`, each retaining status, actual distance/time, feeling, knee during/after, next-day recovery, and optional Strava URL or uploaded asset reference;
 - one active primary `athlete_marks` row with checkpoints and four authored progression conditions;
 - current movement markers, support prescription, Direction, Read, and Decision rows;
 - chronological Record assembled from immutable publication/version events, not overwritten plan text;
@@ -196,10 +196,11 @@ The page query returns an athlete-safe aggregate assembled by an RPC or explicit
 
 Create small `security definer` helpers owned by a non-login role, with `search_path` fixed to trusted schemas and execute grants limited to authenticated users:
 
-- `is_self_athlete(athlete_id)` — canonical athlete’s `auth_user_id = auth.uid()`.
-- `is_assigned_coach(athlete_id)` — active `coach_athletes` edge for `auth.uid()`.
+- `is_athlete_member(athlete_id)` — active athlete membership for `auth.uid()`.
+- `is_coach_member(athlete_id)` — active coach membership for `auth.uid()`.
+- `can_read_athlete(athlete_id)` — either of the two membership checks above.
 
-Do not trust a role string in client-editable user metadata. Coach status comes from `coach_profiles` plus the assignment edge.
+Do not trust a role string in client-editable user metadata. Authorization comes only from the server-owned membership edge.
 
 ### Policy matrix
 
@@ -221,9 +222,9 @@ Every table has RLS enabled in the same migration that creates or changes it. De
 
 1. `/athlete/` offers Apple and email magic link.
 2. `/auth/record-callback/` exchanges the authorization code for a Supabase session and validates the intended local return path.
-3. An authenticated athlete accepts a single-use invite through `accept_athlete_invite(code)`.
-4. The RPC hashes/normalizes the code, locks the invite, checks expiry and unused state, links exactly one canonical athlete to `auth.uid()`, creates the coach assignment if required, marks the invite used, and returns only the destination.
-5. Reaccepting with the same account is idempotent; accepting an athlete already linked to a different account fails without leaking that account.
+3. The callback invokes `claim_access()` after authentication.
+4. The RPC reads the email and `email_confirmed_at` directly from the server-owned `auth.users` row, compares that verified email with an active, unexpired `access_invites` row, creates exactly one membership, and marks the invitation accepted. Auth-row creation alone never consumes an invitation.
+5. Reclaiming with the same account is idempotent. A different account cannot claim the row, and the public client never reads the invitation catalog.
 
 Apple account recovery, magic-link reauthentication, sign-out, and expired-link states are part of Slice 1—not follow-up polish.
 
@@ -239,20 +240,20 @@ Apple account recovery, magic-link reauthentication, sign-out, and expired-link 
 
 | Field | Owner | Canonical storage |
 |---|---|---|
-| Weekly prescription | Coach | `program_assignments` + versioned `session_instances` |
+| Weekly prescription | Coach | `training_blocks` + versioned `planned_sessions` |
 | Session Direction | Coach | `directions.*` |
-| Natalie session status/actual distance/time | Natalie | `running_sessions.status`, `distance`, `duration_seconds` |
-| Natalie feeling and knee response | Natalie | athlete-owned actual fields on `running_sessions` |
-| Natalie next-day recovery | Natalie | `running_sessions.recovered_next_day` + athlete note |
-| Optional Strava proof | Natalie | `running_sessions.strava_url` or private asset reference |
+| Natalie session status/actual distance/time | Natalie | `session_completions.status`, `actual_distance`, `duration_seconds` |
+| Natalie feeling and knee response | Natalie | athlete-owned actual fields on `session_completions` |
+| Natalie next-day recovery | Natalie | `session_completions.recovered_next_day` + athlete note |
+| Optional Strava proof | Natalie | `session_completions.strava_url` or private asset reference |
 | FORM athletes’ actuals | FORM after Gate A | existing completion model; no Slice 1 website write path |
-| Corrections to actuals | Athlete | versioned correction/event tied to `running_sessions.id` |
+| Corrections to actuals | Athlete | immutable `completion_revisions` tied to `session_completions.id` |
 | Coach annotation on actual | Coach | `coach_private_notes` or published Read, never actual columns |
 | Athlete note | Athlete | completion-owned athlete note field/table |
 | Technical Read | Coach | `reads`, `read_completions`, `movement_reads` |
 | Current coaching question | Coach | `athlete_marks.current_question` |
 | Race goal proposal | Athlete | proposal event/field, pending |
-| Race goal confirmation | Coach | confirmed fields on `program_assignments` with audit event |
+| Race goal confirmation | Coach | confirmed fields on `training_blocks` with audit event |
 | Support prescription | Coach | `support_prescriptions`, `support_items` |
 | Decision | Coach | `decisions`, optional join references |
 | Private note | Coach | `coach_private_notes` only |
@@ -274,15 +275,15 @@ Existing `/athletes/*.html`, FORGE routes, and the homepage remain unchanged. Re
 ### Static component tree
 
 ```text
-shared/
+private/
   auth-session.js
   supabase-client.js
   route-guard.js
   record-format.js
-  record-tokens.css
+  graphite.css
 athlete/
   index.html
-  athlete-record.js
+  athlete.js
     AthleteChrome
     NowBand
     MarkBand
@@ -292,7 +293,7 @@ athlete/
     SessionFilingSheet
 coach/
   index.html
-  coach-desk.js
+  coach.js
     DecisionQueue
     AthleteRecordProjection   ← same athlete-safe renderer/data shape
     CoachMargin
