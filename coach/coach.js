@@ -25,8 +25,9 @@ let selectedId = null;
 let selectedRecord = null;
 
 function authView() {
-  app.innerHTML = `<section class="auth-page"><div class="auth-card">
-    <p class="eyebrow">Coach access</p><h1>The decision queue.</h1>
+  document.body.classList.add('auth-only');
+  app.innerHTML = `<section class="auth-page"><div class="auth-card doorway">
+    <h1 class="auth-mark">FORM</h1>
     <div class="auth-actions"><button class="button primary" id="appleSignIn" type="button">Continue with Apple <span class="icon-arrow">→</span></button></div>
     <div class="auth-divider">or use email</div>
     <form id="magicForm" class="form-grid"><label class="field-label">Email address<input class="field-input" type="email" name="email" autocomplete="email" required></label><button class="button" type="submit">Email me a sign-in link <span class="icon-arrow">→</span></button><p class="status-message" id="authStatus" role="status"></p></form>
@@ -193,6 +194,7 @@ async function boot() {
   try {
     const access = await getAccessContext();
     if (!access.session) { authView(); return; }
+    document.body.classList.remove('auth-only');
     userEmail.textContent = access.session.user.email || ''; signOutButton.hidden = false;
     if (!access.coachMemberships.length && access.athleteMemberships.length) { window.location.replace('/athlete/'); return; }
     if (!access.coachMemberships.length) { pendingView(access.session.user.email || 'This account'); return; }
