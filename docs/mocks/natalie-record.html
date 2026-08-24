@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Natalie · Speed &amp; Form</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,380;9..144,460;9..144,560&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f0ece3;
+  --ink:#14120f;
+  --bronze:#96795A;
+  --text:#1d1a16;
+  --dim:rgba(29,26,22,.64);
+  --faint:rgba(29,26,22,.42);
+  --hair:rgba(29,26,22,.15);
+  --serif:'Fraunces',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --wrap:560px;
+  --gutter:clamp(22px,5vw,40px);
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);font-family:var(--mono);
+  font-size:13px;line-height:1.62;letter-spacing:.005em;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  padding-bottom:96px;
+}
+.mono-fig{font-variant-numeric:tabular-nums}
+
+/* ── chrome ─────────────────────────────────────── */
+.bar{
+  position:sticky;top:0;z-index:40;
+  display:flex;align-items:center;justify-content:space-between;
+  height:64px;padding:0 var(--gutter);
+  background:linear-gradient(var(--bg) 68%,rgba(240,236,227,0));
+}
+.id{font-family:var(--serif);font-weight:380;font-size:15px;letter-spacing:.22em;color:var(--ink)}
+.bar-r{display:flex;align-items:center;gap:20px}
+.signin{
+  font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);
+  text-decoration:none;border-bottom:1px solid var(--hair);padding-bottom:3px;
+  transition:color .3s var(--ease),border-color .3s var(--ease);
+}
+.signin:hover{color:var(--ink);border-color:var(--bronze)}
+.signin:focus-visible{outline:1px solid var(--bronze);outline-offset:5px}
+.menu{
+  width:26px;height:26px;display:grid;align-content:center;gap:5px;
+  background:none;border:0;cursor:pointer;padding:0;
+}
+.menu span{display:block;height:1px;width:22px;background:var(--dim);transition:background .3s var(--ease)}
+.menu:hover span{background:var(--ink)}
+.menu:focus-visible{outline:1px solid var(--bronze);outline-offset:6px}
+
+/* ── band skeleton ──────────────────────────────── */
+.band{max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter)}
+.band + .band{margin-top:104px}
+.eyebrow{
+  font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:var(--faint);
+  display:flex;align-items:center;gap:11px;margin-bottom:26px;
+}
+.eyebrow::before{content:"";width:16px;height:1px;background:var(--bronze);opacity:.8;flex:none}
+.title{
+  font-family:var(--serif);font-weight:380;letter-spacing:-.015em;line-height:1.04;
+  font-size:clamp(30px,7.4vw,42px);color:var(--ink);
+}
+.rule{height:1px;background:var(--hair);margin:22px 0}
+
+/* ── NOW ────────────────────────────────────────── */
+.now-meta{margin-top:14px;color:var(--dim);font-size:11.5px;letter-spacing:.06em}
+.now-meta b{color:var(--text);font-weight:500}
+.touch{
+  display:grid;grid-template-columns:44px 1fr;gap:0 16px;
+  padding:19px 0;border-top:1px solid var(--hair);
+}
+.touch:last-of-type{border-bottom:1px solid var(--hair)}
+.day{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--bronze);padding-top:4px}
+.work{font-size:15px;color:var(--ink);letter-spacing:.01em}
+.work .fig{font-variant-numeric:tabular-nums}
+.intent{grid-column:2;color:var(--dim);font-size:12.5px;margin-top:5px;max-width:34ch}
+.because{margin-top:30px}
+.because-k{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+.because-l{
+  font-family:var(--serif);font-weight:380;font-size:20px;line-height:1.34;
+  color:var(--ink);margin-top:10px;max-width:26ch;letter-spacing:-.005em;
+}
+
+/* ── THE MARK — signature ───────────────────────── */
+.mark{margin-top:8px}
+.mark-fig{
+  display:flex;align-items:baseline;gap:9px;
+  font-variant-numeric:tabular-nums;
+}
+.mark-now{font-size:46px;font-weight:500;color:var(--ink);letter-spacing:-.03em;line-height:1}
+.mark-of{font-size:13px;color:var(--dim);letter-spacing:.04em}
+.mark-label{font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--faint);margin-top:14px}
+.track{position:relative;height:26px;margin-top:26px}
+.track-line{position:absolute;top:12px;left:0;right:0;height:1px;background:var(--hair)}
+.track-fill{
+  position:absolute;top:12px;left:0;height:1px;background:var(--bronze);
+  width:0;transition:width 1.5s var(--ease) .25s;
+}
+.tick{position:absolute;top:0;transform:translateX(-50%);text-align:center}
+.tick i{
+  display:block;width:1px;height:9px;background:var(--hair);margin:8px auto 0;
+  transition:background .5s var(--ease),height .5s var(--ease);
+}
+.tick.reached i{background:var(--bronze);height:13px;margin-top:4px}
+.tick.here i{background:var(--ink);height:17px;margin-top:2px}
+.tick b{
+  position:absolute;top:26px;left:50%;transform:translateX(-50%);
+  font-size:9.5px;font-weight:400;color:var(--faint);font-variant-numeric:tabular-nums;
+}
+.tick.here b{color:var(--ink)}
+.earns{margin-top:60px}
+.earns-k{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
+.earns li{
+  list-style:none;padding:11px 0 11px 22px;border-top:1px solid var(--hair);
+  color:var(--dim);font-size:12.5px;position:relative;
+}
+.earns li::before{content:"";position:absolute;left:0;top:19px;width:9px;height:1px;background:var(--bronze);opacity:.55}
+.all-four{margin-top:14px;font-size:11px;color:var(--faint);letter-spacing:.02em}
+
+/* ── THE READ ───────────────────────────────────── */
+.keep{
+  font-family:var(--serif);font-size:17px;line-height:1.44;color:var(--ink);
+  font-weight:380;max-width:32ch;margin-bottom:34px;letter-spacing:-.004em;
+}
+.marker{padding:17px 0;border-top:1px solid var(--hair)}
+.marker:last-of-type{border-bottom:1px solid var(--hair)}
+.marker-top{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+.marker-name{font-size:14.5px;color:var(--ink);letter-spacing:.005em}
+.state{font-size:9px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;flex:none}
+.state.present{color:var(--bronze)}
+.state.available{color:var(--dim)}
+.state.fades{color:var(--dim);opacity:.75}
+.state.developing{color:var(--faint)}
+.cue{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--dim);margin-top:6px;max-width:36ch}
+
+/* ── SUPPORT ────────────────────────────────────── */
+.group{margin-top:30px}
+.group-k{font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--bronze);margin-bottom:4px}
+.mv{display:flex;justify-content:space-between;gap:18px;padding:12px 0;border-bottom:1px solid var(--hair)}
+.mv-n{font-size:13.5px;color:var(--ink)}
+.mv-d{font-size:12px;color:var(--faint);font-variant-numeric:tabular-nums;white-space:nowrap;flex:none}
+.mv-c{font-size:11.5px;color:var(--dim);margin-top:3px;max-width:32ch}
+.shared{margin-top:24px;font-size:11.5px;color:var(--faint);line-height:1.6}
+
+/* ── RECORD ─────────────────────────────────────── */
+.wk{display:flex;justify-content:space-between;gap:18px;padding:15px 0;border-top:1px solid var(--hair);align-items:baseline}
+.wk:last-of-type{border-bottom:1px solid var(--hair)}
+.wk-n{font-size:12px;letter-spacing:.16em;color:var(--dim);font-variant-numeric:tabular-nums}
+.wk-s{font-size:12px;color:var(--faint);text-align:right}
+.wk.open .wk-s{color:var(--bronze)}
+.zero{margin-top:26px;color:var(--dim);font-size:12.5px;line-height:1.7;max-width:38ch}
+.zero b{color:var(--ink);font-weight:400;font-variant-numeric:tabular-nums}
+
+/* ── foot ───────────────────────────────────────── */
+.foot{max-width:var(--wrap);margin:104px auto 0;padding:22px var(--gutter) 0;border-top:1px solid var(--hair);
+  display:flex;justify-content:space-between;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+
+/* ── motion ─────────────────────────────────────── */
+.rise{opacity:0;transform:translateY(14px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rise.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .rise{opacity:1;transform:none;transition:none}
+  .track-fill{transition:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <span class="id">FORM</span>
+  <div class="bar-r">
+    <a class="signin" href="/athlete/">Sign in</a>
+    <button class="menu" aria-label="Menu"><span></span><span></span></button>
+  </div>
+</div>
+
+<!-- ── NOW ─────────────────────────────────────── -->
+<section class="band rise" id="now">
+  <span class="eyebrow">Now</span>
+  <h1 class="title">Natalie Ajamil</h1>
+  <p class="now-meta">Miami Half · Finish &nbsp;·&nbsp; Block <b class="mono-fig">01</b> · Week <b class="mono-fig">1</b> of <b class="mono-fig">8</b></p>
+
+  <div class="rule"></div>
+
+  <div class="touch">
+    <span class="day">Sun</span>
+    <span class="work">Track with Brice · <span class="fig">3 mi</span></span>
+    <p class="intent">Let the arms move. The shoe can kiss the floor; the heel stays off.</p>
+  </div>
+  <div class="touch">
+    <span class="day">Tue</span>
+    <span class="work">Easy · <span class="fig">4 mi</span></span>
+    <p class="intent">Longer on your feet without changing the effort. Walk when you want to.</p>
+  </div>
+  <div class="touch">
+    <span class="day">Thu</span>
+    <span class="work">Support · <span class="fig">3 mi</span> + stairs</span>
+    <p class="intent">Build the single-leg control the running is already asking for.</p>
+  </div>
+
+  <div class="because">
+    <span class="because-k">This week matters because</span>
+    <p class="because-l">More time on your feet without changing how you move.</p>
+  </div>
+</section>
+
+<!-- ── THE MARK ────────────────────────────────── -->
+<section class="band rise" id="mark">
+  <span class="eyebrow">The mark</span>
+  <div class="mark">
+    <div class="mark-fig">
+      <span class="mark-now">3.0</span>
+      <span class="mark-of">of 13.1 miles</span>
+    </div>
+    <p class="mark-label">Longest continuous distance</p>
+
+    <div class="track" id="track">
+      <div class="track-line"></div>
+      <div class="track-fill" id="fill"></div>
+      <span class="tick here"  style="left:0%">   <i></i><b>3</b></span>
+      <span class="tick"       style="left:19.8%"><i></i><b>5</b></span>
+      <span class="tick"       style="left:29.7%"><i></i><b>6</b></span>
+      <span class="tick"       style="left:44.6%"><i></i><b>7.5</b></span>
+      <span class="tick"       style="left:59.4%"><i></i><b>9</b></span>
+      <span class="tick"       style="left:74.3%"><i></i><b>10.5</b></span>
+      <span class="tick"       style="left:100%"> <i></i><b>13.1</b></span>
+    </div>
+  </div>
+
+  <div class="earns">
+    <p class="earns-k">What earns the next distance</p>
+    <ul>
+      <li class="earns-i">The knee stays quiet during, and after.</li>
+      <li class="earns-i">You move normally by the next day.</li>
+      <li class="earns-i">Single-leg control holds at the end of the run.</li>
+      <li class="earns-i">Easy still feels genuinely easy.</li>
+    </ul>
+    <p class="all-four">All four. Repeating a distance is a decision, not a miss.</p>
+  </div>
+</section>
+
+<!-- ── THE READ ────────────────────────────────── -->
+<section class="band rise" id="read">
+  <span class="eyebrow">The read · Sunday, track</span>
+  <p class="keep">Efficient and composed for three weeks into running. We are not rebuilding your form. We are strengthening what has to hold underneath it.</p>
+
+  <div class="marker">
+    <div class="marker-top"><span class="marker-name">Running economy</span><span class="state present">Present</span></div>
+    <p class="cue">No wobble, no bounce. Don't let anything interfere with this.</p>
+  </div>
+  <div class="marker">
+    <div class="marker-top"><span class="marker-name">Heel light</span><span class="state available">Available</span></div>
+    <p class="cue">The shoe can kiss the floor. The heel stays off.</p>
+  </div>
+  <div class="marker">
+    <div class="marker-top"><span class="marker-name">Wrist to hip</span><span class="state available">Available</span></div>
+    <p class="cue">Let the arms move. Big proud chest.</p>
+  </div>
+  <div class="marker">
+    <div class="marker-top"><span class="marker-name">Chest proud</span><span class="state fades">Fades</span></div>
+    <p class="cue">Shoulders back without lifting the ribs.</p>
+  </div>
+  <div class="marker">
+    <div class="marker-top"><span class="marker-name">Single-leg control</span><span class="state developing">Developing</span></div>
+    <p class="cue">Own the knee over the foot.</p>
+  </div>
+</section>
+
+<!-- ── SUPPORT ─────────────────────────────────── -->
+<section class="band rise" id="support">
+  <span class="eyebrow">Support</span>
+  <h2 class="title">The work<br>underneath.</h2>
+
+  <div class="group">
+    <p class="group-k">Own the single leg</p>
+    <div class="mv"><div><div class="mv-n">Bulgarian split squat</div><div class="mv-c">Knee tracks over the foot the whole way down.</div></div><span class="mv-d">3 × 8 ea</span></div>
+    <div class="mv"><div><div class="mv-n">Single-leg RDL</div><div class="mv-c">Hips square. Stop where control stops.</div></div><span class="mv-d">3 × 8 ea</span></div>
+    <div class="mv"><div><div class="mv-n">Reverse lunge</div><div class="mv-c">Step back quietly.</div></div><span class="mv-d">3 × 8 ea</span></div>
+    <div class="mv"><div><div class="mv-n">Lateral step-down</div><div class="mv-c">Slow down. This one is about the descent.</div></div><span class="mv-d">3 × 8 ea</span></div>
+  </div>
+
+  <div class="group">
+    <p class="group-k">Build the lower leg</p>
+    <div class="mv"><div><div class="mv-n">Calf raise · bent knee</div><div class="mv-c">Lower slower than you lift.</div></div><span class="mv-d">3 × 12</span></div>
+    <div class="mv"><div><div class="mv-n">Calf raise · straight leg</div><div class="mv-c">Full height every rep.</div></div><span class="mv-d">3 × 12</span></div>
+    <div class="mv"><div><div class="mv-n">Tibialis raise</div><div class="mv-c">Protects the shin as mileage climbs.</div></div><span class="mv-d">3 × 15</span></div>
+  </div>
+
+  <div class="group">
+    <p class="group-k">Open the upper frame</p>
+    <div class="mv"><div><div class="mv-n">Reverse cable crossover</div><div class="mv-c">This is the one that holds the chest late in a run.</div></div><span class="mv-d">3 × 15</span></div>
+    <div class="mv"><div><div class="mv-n">Band pull-apart</div><div class="mv-c">Shoulders down, not shrugged.</div></div><span class="mv-d">3 × 15</span></div>
+  </div>
+
+  <div class="group">
+    <p class="group-k">Thursday</p>
+    <div class="mv"><div><div class="mv-n">Stairs · up only</div><div class="mv-c">Ride down. Descending is the part the knee doesn't want yet.</div></div><span class="mv-d">10–15 min</span></div>
+  </div>
+
+  <p class="shared">Prescribed for your strength coach to program — not a second workout on top of theirs.</p>
+</section>
+
+<!-- ── THE RECORD ──────────────────────────────── -->
+<section class="band rise" id="record">
+  <span class="eyebrow">The record</span>
+  <h2 class="title">Where this<br>started.</h2>
+
+  <p class="zero">Running <b>3</b> weeks. Longest run <b>3</b> miles. Three touches a week. Left knee noticeable on stairs. Lifting twice a week with your strength coach. Goal: finish the Miami Half.</p>
+
+  <div class="rule"></div>
+
+  <div class="wk open"><span class="wk-n">WEEK 01</span><span class="wk-s">In progress</span></div>
+  <div class="wk"><span class="wk-n">WEEK 02</span><span class="wk-s">—</span></div>
+  <div class="wk"><span class="wk-n">WEEK 03</span><span class="wk-s">—</span></div>
+  <div class="wk"><span class="wk-n">WEEK 04</span><span class="wk-s">—</span></div>
+</section>
+
+<div class="foot">
+  <span>Run Development · Week 1 of 8</span>
+  <span>Paid</span>
+</div>
+
+<script>
+(function(){
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      e.target.classList.add('in');
+      if(e.target.id === 'mark'){
+        // 3.0 of 13.1 → the fill stops exactly at the current tick
+        requestAnimationFrame(function(){ document.getElementById('fill').style.width = '0%'; });
+      }
+      io.unobserve(e.target);
+    });
+  },{threshold:.16});
+  document.querySelectorAll('.rise').forEach(function(n){ io.observe(n); });
+})();
+</script>
+</body>
+</html>
