@@ -13,7 +13,7 @@ let record = null;
 function authView() {
   document.body.classList.add('auth-only');
   app.innerHTML = `<section class="auth-page"><div class="auth-card doorway">
-    <h1 class="auth-mark">FORM</h1>
+    <h1 class="auth-mark">FORM<span class="sr-only"> — Athlete sign in</span></h1>
     <div class="auth-actions"><button class="button primary" id="appleSignIn" type="button">Continue with Apple <span class="icon-arrow">→</span></button></div>
     <div class="auth-divider">or use email</div>
     <form id="magicForm" class="form-grid">
