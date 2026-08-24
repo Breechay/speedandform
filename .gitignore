@@ -1,3 +1,6 @@
 forge/index.html
 media/*.orig.mp4
 mockupc/media/*.orig.mp4
+
+# Local Netlify folder
+.netlify

@@ -28,23 +28,27 @@
   status = 200
 
 # Private athlete system
-# force = true so the private product wins over any same-named legacy page.
+# 200 rewrites, not 301s: Netlify matches "/coach" and "/coach/" as the same
+# path, so a redirect between them loops forever. A rewrite cannot loop, and
+# force = true still makes the private product win over legacy coach.html.
+# The pages reference assets by absolute path, so serving them at the
+# slashless URL resolves correctly.
 [[redirects]]
   from = "/athlete"
-  to = "/athlete/"
-  status = 301
+  to = "/athlete/index.html"
+  status = 200
   force = true
 
 [[redirects]]
   from = "/coach"
-  to = "/coach/"
-  status = 301
+  to = "/coach/index.html"
+  status = 200
   force = true
 
 [[redirects]]
   from = "/auth/record-callback"
-  to = "/auth/record-callback/"
-  status = 301
+  to = "/auth/record-callback/index.html"
+  status = 200
   force = true
 
 [[redirects]]

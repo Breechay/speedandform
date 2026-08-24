@@ -11,8 +11,9 @@ const fileStatus = document.getElementById('fileStatus');
 let record = null;
 
 function authView() {
-  app.innerHTML = `<section class="auth-page"><div class="auth-card">
-    <p class="eyebrow">Private coaching</p><h1>Your work, in one place.</h1>
+  document.body.classList.add('auth-only');
+  app.innerHTML = `<section class="auth-page"><div class="auth-card doorway">
+    <h1 class="auth-mark">FORM</h1>
     <div class="auth-actions"><button class="button primary" id="appleSignIn" type="button">Continue with Apple <span class="icon-arrow">→</span></button></div>
     <div class="auth-divider">or use email</div>
     <form id="magicForm" class="form-grid">
@@ -114,6 +115,7 @@ async function boot() {
   try {
     const access = await getAccessContext();
     if (!access.session) { authView(); return; }
+    document.body.classList.remove('auth-only');
     userEmail.textContent = access.session.user.email || '';
     signOutButton.hidden = false;
     if (!access.athleteMemberships.length && access.coachMemberships.length) { window.location.replace('/coach/'); return; }
