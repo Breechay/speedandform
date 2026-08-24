@@ -267,7 +267,7 @@ for the complete private coaching system. Layout density adapts to the job; the 
   language, surfaces, and action logic.
 - On desktop, the homepage split-screen questionnaire is the doorway into Graphite: the film
   stays public-facing while the intake uses Graphite typography, surfaces, states, and actions.
-  The mobile homepage sequence remains unchanged unless it is redesigned separately.
+  On mobile, the public four-plate sequence remains intact and Graphite begins when intake opens.
 - Motion communicates that the record advanced. It does not decorate.
 
 ---

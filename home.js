@@ -19,6 +19,7 @@
   var lastPlate = desktopSplit && desktopSplit.matches ? 2 : 3;
   var activePlate = 0;
   var returnPlate = 0;
+  var enteredFromPlateAnswer = false;
   var paintQueued = false;
   var H = 1;
   var last = {};
@@ -96,6 +97,7 @@
   function updatePlateState(i) {
     activePlate = clamp(i, 0, lastPlate);
     beginSlot.classList.toggle("quiet", activePlate > 0);
+    inst.classList.toggle("doorway", activePlate === 3);
     if (activePlate === 1) armAuto(); else window.clearTimeout(autoTimer);
     if (activePlate === 2) armSess(); else window.clearTimeout(sessTimer);
     if (plateCue) {
@@ -508,6 +510,7 @@
 
   function start() {
     returnPlate = clamp(Math.round(plates.scrollTop / plateHeight()), 0, lastPlate);
+    enteredFromPlateAnswer = false;
     mode("asking");
     pane("p-ask");
     showQ(0, true);
@@ -515,6 +518,13 @@
 
   $("#begin").addEventListener("click", start);
   $("#back").addEventListener("click", function () {
+    if (enteredFromPlateAnswer && qi === 1) {
+      enteredFromPlateAnswer = false;
+      pane(null);
+      mode(null);
+      snapToPlate(3, "auto");
+      return;
+    }
     if (qi === 0) {
       pane(null);
       mode(null);
@@ -547,21 +557,31 @@
         x.setAttribute("aria-pressed", x.textContent === b.textContent ? "true" : "false");
       });
       A[key] = b.textContent;
+      if (key === "days" || key === "vol" || key === "long") updateRunningNext();
       if (key === "goal") {
         var already = document.body.classList.contains("asking");
         if (!already) {
           returnPlate = clamp(Math.round(plates.scrollTop / plateHeight()), 0, lastPlate);
+          enteredFromPlateAnswer = returnPlate === 3;
           window.setTimeout(function () {
             mode("asking");
             pane("p-ask");
             showQ(1, true);
           }, 180);
         } else {
+          enteredFromPlateAnswer = false;
           window.setTimeout(function () { showQ(1); }, 300);
         }
       }
     });
   });
+
+  function updateRunningNext() {
+    var ready = !!(A.days && A.vol && A.long);
+    var next = $("#runningNext"), note = $("#runningNeed");
+    if (next) next.disabled = !ready;
+    if (note) note.hidden = ready;
+  }
 
   $$('[data-next]').forEach(function (b) {
     b.addEventListener("click", function () {
