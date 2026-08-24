@@ -1,6 +1,11 @@
 # THE ATHLETE RECORD — BUILD BRIEF
 speedandform.com · private coaching surface · Aug 2026
 
+> **Visual authority update — Aug 24, 2026:** §9's original cream, serif-led direction
+> is superseded by `docs/design/GRAPHITE_ATHLETE_SYSTEM_REFERENCE.html` for every
+> private coaching surface. The product law, content model, ownership, security,
+> Slice 1 scope, and all other sections remain authoritative.
+
 ---
 
 ## THE PRODUCT LAW
@@ -239,22 +244,31 @@ Never a universal athlete score. Never streaks, badges or leaderboards.
 
 ---
 
-## 9. VISUAL
+## 9. VISUAL — GRAPHITE SYSTEM
 
-Carry the live site's material, not the old athlete-page palette, and not plate 03 literally.
+`docs/design/GRAPHITE_ATHLETE_SYSTEM_REFERENCE.html` is the visual and behavioral authority
+for the complete private coaching system. Layout density adapts to the job; the language does not.
 
-- Tokens from `home.css` / `notes.css`: `--ink #0b0b0a`, `--ivory #f6f2e8`, `--paper #eee8db`,
-  `--bronze #C3AD96`, `--serif Fraunces`, `--mono JetBrains Mono`, `--wrap 560px`,
-  `--ease cubic-bezier(.22,.61,.36,1)`.
-- **Typography law, carried from the app:** one serif title per document; every line that
-  carries a figure is mono with tabular numerals, including its label. A list with no
-  figures may stay serif.
-- Warm field, generous space, large circular geometry used once and sparingly. No dragon.
-- One continuous page. No sidebar dashboard, no floating SaaS cards, no mobile nav chrome
-  competing with the content. Hamburger at right holds only: Now · Read · Support · Record ·
-  Account · Sign out.
-- Motion communicates that the record advanced — a changed line resolves quietly into place
-  as it publishes. It does not decorate.
+- Field `#141718`; roster variation `#171A1C`; surface `#1D2123`; raised surface `#282D30`;
+  edge `#3B4346`; text `#F1F2EF`; secondary `#A8B0B2`.
+- Action lime `#D8FF68` is reserved for the current action or acknowledgement required.
+  Attention coral `#FF8A70` marks something needing attention. Positive green `#76D3A4`
+  marks established or complete.
+- High-contrast sans typography throughout. Serif is limited to the FORM mark, if used.
+- State is written plainly: Needs you · Waiting for run · Waiting for athlete · Ready to
+  publish · Plan changed · On track · Nothing needed. Important state never relies on tint alone.
+- Surfaces exist only to group an action or coherent object. No decorative outlines, nested
+  depth, archival rulers, faint mono labels, oversized serif statements, or low-contrast cream.
+- The first viewport answers: who needs Brice, what they need, what evidence exists, and what
+  Brice can do now.
+- Desktop may show roster, current decision, evidence, week, and recent coaching. Mobile shows
+  selected athlete, current decision, and primary action first; supporting material follows.
+- Natalie is calmer and more spacious, but inherits the same typography, contrast, state
+  language, surfaces, and action logic.
+- On desktop, the homepage split-screen questionnaire is the doorway into Graphite: the film
+  stays public-facing while the intake uses Graphite typography, surfaces, states, and actions.
+  The mobile homepage sequence remains unchanged unless it is redesigned separately.
+- Motion communicates that the record advanced. It does not decorate.
 
 ---
 
