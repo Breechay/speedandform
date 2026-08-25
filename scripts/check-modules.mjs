@@ -28,7 +28,13 @@ for (const file of MODULES) {
   // Strip string literals: PostgREST selects like "athletes(id, slug)" look
   // like calls but are query syntax, not JavaScript.
   const raw = readFileSync(file, 'utf8');
-  const source = raw.replace(/'(?:[^'\\\n]|\\.)*'/g, "''").replace(/"(?:[^"\\\n]|\\.)*"/g, '""');
+  // Comments are prose. "a different one (which is what Apple hands over)" reads
+  // as a call to one() unless they are stripped first.
+  const source = raw
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .replace(/^\s*\/\/.*$/gm, '')
+    .replace(/'(?:[^'\\\n]|\\.)*'/g, "''")
+    .replace(/"(?:[^"\\\n]|\\.)*"/g, '""');
   const known = new Set(GLOBALS);
 
   for (const match of source.matchAll(/import\s*\{([^}]+)\}/g)) {

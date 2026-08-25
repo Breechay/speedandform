@@ -1,4 +1,4 @@
-import { authErrorMessage, enabledProviders, getAccessContext, sendMagicLink, signInWithApple, signOut } from '/private/auth.js';
+import { bindAccountSecurity, authErrorMessage, getAccessContext, renderDoorway, signOut } from '/private/auth.js';
 import { changeEmail, fileSession, loadAthleteRecord, updateCompletion } from '/private/data.js';
 import { escapeHtml, renderAthleteRecord } from '/private/record.js';
 
@@ -17,31 +17,7 @@ let shownWeekId = null;
 
 async function authView() {
   document.body.classList.add('auth-only');
-  // Apple is the intended doorway. Email stands in only while the Apple
-  // provider is off, so the record is never unreachable.
-  const apple = (await enabledProviders()).apple === true;
-  const action = apple
-    ? `<div class="auth-actions"><button class="button primary" id="appleSignIn" type="button">Sign in with Apple <span class="icon-arrow">\u2192</span></button></div>`
-    : `<form id="magicForm" class="form-grid"><label class="field-label">Email address<input class="field-input" type="email" name="email" autocomplete="email" required placeholder="you@example.com"></label><button class="button primary" type="submit">Email me a sign-in link <span class="icon-arrow">\u2192</span></button></form>`;
-  app.innerHTML = `<section class="auth-page"><div class="auth-card doorway">
-    <h1 class="auth-mark">FORM<span class="sr-only"> \u2014 Athlete sign in</span></h1>
-    ${action}
-    <p class="status-message" id="authStatus" role="status"></p>
-  </div></section>`;
-  document.getElementById('appleSignIn')?.addEventListener('click', async () => {
-    const status = document.getElementById('authStatus'); status.textContent = 'Opening Apple\u2026';
-    try { await signInWithApple('/athlete/'); } catch (error) { status.textContent = authErrorMessage(error); status.className = 'status-message error'; }
-  });
-  document.getElementById('magicForm')?.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const status = document.getElementById('authStatus');
-    const button = event.currentTarget.querySelector('button[type="submit"]');
-    button.disabled = true; status.className = 'status-message'; status.textContent = 'Sending a secure link\u2026';
-    try {
-      await sendMagicLink(new FormData(event.currentTarget).get('email'), '/athlete/');
-      status.textContent = 'Check your email. The link signs you in.'; status.className = 'status-message success';
-    } catch (error) { status.textContent = authErrorMessage(error); status.className = 'status-message error'; button.disabled = false; }
-  });
+  await renderDoorway(app, { destination: '/athlete/', label: 'Athlete sign in' });
 }
 
 function pendingView(email) {
@@ -103,6 +79,7 @@ async function renderRecord(athleteId) {
   signOutButton.hidden = true;
   bindWeekNav();
   document.getElementById('accountSignOut')?.addEventListener('click', signOut);
+  bindAccountSecurity();
   document.getElementById('changeEmail')?.addEventListener('click', () => {
     emailForm.reset();
     const status = document.getElementById('emailStatus');

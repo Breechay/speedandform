@@ -275,8 +275,8 @@ function accountSection(record, email, interactive) {
       <div class="account-row"><span>Coaching</span><b>${escapeHtml(athlete.account_label)}</b></div>
       ${block ? `<div class="account-row"><span>Block</span><b>Week ${escapeHtml(block.current_week)} of ${escapeHtml(block.total_weeks)}</b></div>` : ''}
     </div>
-    <p class="account-note">You sign in with a link, so there is no password to keep.</p>
-    ${interactive ? `<div class="account-actions"><button class="button" type="button" id="changeEmail">Change email</button><button class="button quiet" type="button" id="accountSignOut">Sign out</button></div>` : ''}
+    <p class="account-note">A link always works. Set a password if you would rather sign in the usual way.</p>
+    ${interactive ? `<div class="account-actions"><button class="button" type="button" id="setPassword">Set a password</button><button class="button" type="button" id="linkApple" hidden>Link Apple</button><button class="button" type="button" id="changeEmail">Change email</button><button class="button quiet" type="button" id="accountSignOut">Sign out</button></div>` : ''}
   </section>`;
 }
 

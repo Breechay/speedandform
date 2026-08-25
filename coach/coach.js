@@ -1,4 +1,4 @@
-import { authErrorMessage, enabledProviders, getAccessContext, sendMagicLink, signInWithApple, signOut } from '/private/auth.js';
+import { bindAccountSecurity, authErrorMessage, getAccessContext, renderDoorway, signOut } from '/private/auth.js';
 import { addPrivateNote, authorSession, createDirection, createRead, fileForAthlete, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask, reviseSession } from '/private/data.js';
 import { escapeHtml, formatDate, gradeSection, markSection, recordSection, weekSection, whoSection } from '/private/record.js';
 
@@ -45,31 +45,7 @@ let shownWeekId = null;
 
 async function authView() {
   document.body.classList.add('auth-only');
-  // Apple is the intended doorway. Email stands in only while the Apple
-  // provider is off, so the record is never unreachable.
-  const apple = (await enabledProviders()).apple === true;
-  const action = apple
-    ? `<div class="auth-actions"><button class="button primary" id="appleSignIn" type="button">Sign in with Apple <span class="icon-arrow">\u2192</span></button></div>`
-    : `<form id="magicForm" class="form-grid"><label class="field-label">Email address<input class="field-input" type="email" name="email" autocomplete="email" required placeholder="you@example.com"></label><button class="button primary" type="submit">Email me a sign-in link <span class="icon-arrow">\u2192</span></button></form>`;
-  app.innerHTML = `<section class="auth-page"><div class="auth-card doorway">
-    <h1 class="auth-mark">FORM<span class="sr-only"> \u2014 Coach sign in</span></h1>
-    ${action}
-    <p class="status-message" id="authStatus" role="status"></p>
-  </div></section>`;
-  document.getElementById('appleSignIn')?.addEventListener('click', async () => {
-    const status = document.getElementById('authStatus'); status.textContent = 'Opening Apple\u2026';
-    try { await signInWithApple('/coach/'); } catch (error) { status.textContent = authErrorMessage(error); status.className = 'status-message error'; }
-  });
-  document.getElementById('magicForm')?.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const status = document.getElementById('authStatus');
-    const button = event.currentTarget.querySelector('button[type="submit"]');
-    button.disabled = true; status.className = 'status-message'; status.textContent = 'Sending a secure link\u2026';
-    try {
-      await sendMagicLink(new FormData(event.currentTarget).get('email'), '/coach/');
-      status.textContent = 'Check your email. The link signs you in.'; status.className = 'status-message success';
-    } catch (error) { status.textContent = authErrorMessage(error); status.className = 'status-message error'; button.disabled = false; }
-  });
+  await renderDoorway(app, { destination: '/coach/', label: 'Coach sign in' });
 }
 
 function pendingView(email) {
@@ -97,6 +73,8 @@ function athleteMenuHtml() {
     <div class="control-menu wide">
       <p class="control-who">${escapeHtml(account?.relationship_label || selectedRecord.athlete.account_label)}</p>
       ${notes || '<p class="control-who">No private notes.</p>'}
+      <button class="control-item" id="setPassword" type="button">Set a password</button>
+      <button class="control-item" id="linkApple" type="button" hidden>Link Apple</button>
       <button class="control-item" id="newSession" type="button">Add a session</button>
       <button class="control-item" id="fileRun" type="button">File a run</button>
       <button class="control-item" id="addPrivateNote" type="button">Add a private note</button>
@@ -159,6 +137,7 @@ function bindDesk() {
     if (button.dataset.write === 'decision') openDecision(null);
     else openCoaching(button.dataset.write, button.dataset.subject);
   }));
+  bindAccountSecurity();
   document.getElementById('newSession')?.addEventListener('click', () => openSession(null));
   document.getElementById('fileRun')?.addEventListener('click', () => openFile(''));
   // Revise and file from the session itself, so the coach never re-finds it.

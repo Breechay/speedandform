@@ -1117,3 +1117,13 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   .piece-row { grid-template-columns: 1fr 1fr; }
   .piece-row .field-select { grid-column: 1 / -1; }
 }
+
+/* Doorway alternatives. Password is the primary path; these are the ways in
+   when it is not set yet or the email on the Apple ID is a different one. */
+.auth-alts { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; align-items: center; }
+.link-button {
+  background: none; border: 0; padding: 2px 0; cursor: pointer;
+  color: var(--secondary); font: inherit; font-size: 13px; text-decoration: underline;
+  text-underline-offset: 3px; text-decoration-color: var(--edge);
+}
+.link-button:hover { color: var(--text); text-decoration-color: var(--muted); }
