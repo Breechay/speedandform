@@ -2,8 +2,14 @@ const markerNames = {
   heel_light: 'Heel light',
   chest_proud: 'Chest proud',
   wrist_to_hip: 'Wrist to hip',
-  single_leg_control: 'Single-leg control',
+  single_leg_control: 'Single leg',
   running_economy: 'Running economy'
+};
+
+const gradeStates = {
+  holds: 'holds',
+  holds_until_tired: 'holds until tired',
+  not_yet: 'not yet'
 };
 
 export function escapeHtml(value) {
@@ -72,45 +78,44 @@ function sessionRows(record, interactive) {
 function markSection(record) {
   const mark = record.primaryMark;
   if (!mark) return '';
-  const checkpoints = mark.checkpoints.map((point) => `<span class="checkpoint ${escapeHtml(point.state)}"><span>${escapeHtml(point.label)}</span></span>`).join('');
-  const current = mark.current_value ?? '—';
-  const target = mark.target_value ? `of ${mark.target_value} ${mark.unit || ''}` : mark.unit || '';
-  return `<section class="record-section" id="mark">
-    <div class="section-head"><div><p class="eyebrow">The mark</p><h2>${escapeHtml(mark.label)}</h2></div></div>
-    <div class="mark-number"><strong>${escapeHtml(current)}</strong><span>${escapeHtml(target)}</span></div>
-    ${checkpoints ? `<div class="checkpoint-track" aria-label="Distance checkpoints">${checkpoints}</div>` : ''}
-    ${mark.current_question ? `<div class="question-box"><span>Current coaching question</span><p>${escapeHtml(mark.current_question)}</p></div>` : ''}
+  const current = Number(mark.current_value);
+  const target = Number(mark.target_value);
+  const filled = Number.isFinite(current) && Number.isFinite(target) && target > 0
+    ? Math.max(2, Math.min(100, (current / target) * 100))
+    : 0;
+  const unit = mark.unit || '';
+  return `<section class="record-section crop" id="mark">
+    <p class="eyebrow">The mark</p>
+    <p class="bar-figure"><strong>${escapeHtml(mark.current_value ?? '—')}</strong> of ${escapeHtml(mark.target_value ?? '—')} ${escapeHtml(unit)}</p>
+    <div class="bar" role="img" aria-label="${escapeHtml(mark.current_value ?? '—')} of ${escapeHtml(mark.target_value ?? '—')} ${escapeHtml(unit)}"><span style="width:${filled}%"></span></div>
+    <p class="bar-label">${escapeHtml(mark.label)}</p>
   </section>`;
 }
 
-function readSection(record) {
-  if (!record.movementReads.length && !record.reads.length) return '';
-  const latestRead = record.reads[0];
-  const markers = record.movementReads.map((marker) => `<article class="marker-row">
-    <div class="marker-top"><span class="marker-name">${escapeHtml(markerNames[marker.marker] || marker.marker)}</span><span class="marker-state ${escapeHtml(marker.state)}">${escapeHtml(marker.state)}</span></div>
-    <p class="marker-cue">${escapeHtml(marker.cue)}</p>
-  </article>`).join('');
-  return `<section class="record-section" id="read">
-    <div class="section-head"><div><p class="eyebrow">The read</p></div></div>
-    ${latestRead ? `<p class="latest-read">${escapeHtml(latestRead.athlete_text)}</p>` : ''}
-    <div class="marker-list">${markers}</div>
-  </section>`;
+function gradeHtml(record) {
+  if (!record.movementReads.length) return '';
+  return `<div class="grade">${record.movementReads.map((marker) => `<div class="grade-row ${escapeHtml(marker.state)}">
+    <b>${escapeHtml(markerNames[marker.marker] || marker.marker)}</b>
+    <span class="grade-state">${escapeHtml(gradeStates[marker.state] || marker.state)}</span>
+    <small>${escapeHtml(marker.cue)}</small>
+  </div>`).join('')}</div>`;
 }
 
 function supportSection(record) {
-  if (!record.support || !record.supportItems.length) return '';
+  const grade = gradeHtml(record);
+  if (!grade && !record.supportItems.length) return '';
   const purposes = [...new Set(record.supportItems.map((item) => item.purpose))];
   const groups = purposes.map((purpose) => `<div class="support-group">
     <h3>${escapeHtml(purpose)}</h3>
     <div class="support-list">${record.supportItems.filter((item) => item.purpose === purpose).map((item) => `<article class="support-item">
-      <div><b>${escapeHtml(item.movement)}</b><small>${escapeHtml(item.cue)} ${escapeHtml(item.reason)}</small></div>
+      <div><b>${escapeHtml(item.movement)}</b><small>${escapeHtml(item.cue)}</small></div>
       <span class="support-dose">${escapeHtml(item.dose)}</span>
     </article>`).join('')}</div>
   </div>`).join('');
-  return `<section class="record-section" id="support">
-    <div class="section-head"><div><p class="eyebrow">Support</p><h2>${escapeHtml(record.support.title)}</h2></div></div>
+  return `<section class="record-section crop" id="support">
+    <p class="eyebrow">The work</p>
+    ${grade}
     ${groups}
-    <p class="shared-line">${record.support.shared_with_strength_coach ? 'Shared with your strength coach.' : 'Not yet shared with your strength coach.'}</p>
   </section>`;
 }
 
@@ -157,20 +162,17 @@ function accountSection(record, email, interactive) {
 
 export function renderAthleteRecord(record, { interactive = false, projection = false, email = '' } = {}) {
   const athlete = record.athlete;
-  const block = record.block;
-  const week = record.currentWeek;
   if (!athlete) return '<div class="status-message error">This record is not available.</div>';
-  const meta = [athlete.target_event, athlete.goal_label, block ? `Block ${String(block.block_number).padStart(2, '0')}` : null, block ? `Week ${block.current_week} of ${block.total_weeks}` : null].filter(Boolean).join(' · ');
-  const state = week?.state === 'in_progress' ? 'On track' : (week?.state || 'Active');
+  const week = record.currentWeek;
+  // One column, three crops. Each one crops cleanly to a screenshot.
   return `<div class="record-shell${projection ? ' projection' : ''}">
-    <section class="record-hero" id="now">
-      <div class="record-hero-head"><div><p class="eyebrow">Now</p><h1>${escapeHtml(athlete.display_name)}</h1><p class="record-meta">${escapeHtml(meta)}</p></div><span class="state-pill on_track">${escapeHtml(state)}</span></div>
-      ${week ? `<p class="week-intent">${escapeHtml(week.intent)}</p><div class="because"><span>This week matters because</span><p>${escapeHtml(week.matters_because)}</p></div>` : ''}
+    <section class="record-section crop" id="now">
+      <p class="eyebrow">This week</p>
+      ${week?.intent ? `<p class="week-intent">${escapeHtml(week.intent)}</p>` : ''}
       <div class="sessions-list record-sessions">${sessionRows(record, interactive)}</div>
     </section>
-    ${markSection(record)}
-    ${readSection(record)}
     ${supportSection(record)}
+    ${markSection(record)}
     ${recordSection(record)}
     ${accountSection(record, email, interactive)}
   </div>`;
