@@ -1,5 +1,5 @@
 import { bindAccountSecurity, authErrorMessage, getAccessContext, renderDoorway, signOut } from '/private/auth.js';
-import { addPrivateNote, authorSession, createDirection, createRead, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask, reviseSession } from '/private/data.js';
+import { addPrivateNote, authorSession, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask, reviseSession } from '/private/data.js';
 import { escapeHtml, evidenceSection, formatDate, progressionSection, gradeSection, weekSection, whoSection } from '/private/record.js';
 
 // Account states only. The desk no longer labels athletes by a stored state —
@@ -35,6 +35,8 @@ const sessionDialog = document.getElementById('sessionDialog');
 const sessionForm = document.getElementById('sessionForm');
 const fileDialog = document.getElementById('fileDialog');
 const fileForm = document.getElementById('fileForm');
+// Set when the filing dialog is correcting an existing entry rather than adding one.
+let editingCompletionId = null;
 const judgeDialog = document.getElementById('judgeDialog');
 const judgeForm = document.getElementById('judgeForm');
 let judgingCompletionId = null;
@@ -87,16 +89,20 @@ function athleteMenuHtml() {
 }
 
 function deskHtml() {
+  // Two columns, because comparison needs two things in view at once and this is
+  // read on a laptop. The instrument sits left: where she is, where she is going,
+  // whether it is becoming believable. The session under the glass sits right,
+  // where the screenshot it was read from can sit beside the reading.
   return `<section class="desk-main" id="deskMain">
     <div class="board">
       <div class="board-main">
         <div class="who-row">${whoSection(selectedRecord)}${athleteMenuHtml()}</div>
-        ${weekSection(selectedRecord, { shownWeekId })}
         ${progressionSection(selectedRecord, { interactive: true })}
+        ${weekSection(selectedRecord, { shownWeekId })}
         ${gradeSection(selectedRecord)}
-        ${evidenceSection(selectedRecord, { interactive: true })}
       </div>
       <div class="board-side">
+        ${evidenceSection(selectedRecord, { interactive: true })}
       </div>
     </div>
   </section>`;
@@ -159,6 +165,8 @@ function bindDesk() {
     button.addEventListener('click', () => openSession(button.dataset.revise)));
   app.querySelectorAll('[data-file]').forEach((button) =>
     button.addEventListener('click', () => openFile(button.dataset.file)));
+  app.querySelectorAll('[data-correct]').forEach((button) =>
+    button.addEventListener('click', () => openFile('', button.dataset.correct)));
   document.getElementById('addPrivateNote')?.addEventListener('click', () => { noteForm.reset(); document.getElementById('noteStatus').textContent = ''; noteDialog.showModal(); });
   document.getElementById('shareExcerpt')?.addEventListener('click', openShare);
 }
@@ -272,28 +280,57 @@ function openSession(plannedSessionId = null) {
   sessionDialog.showModal();
 }
 
-function pieceRowHtml() {
+function secondsToClock(seconds) {
+  const value = Math.round(seconds);
+  return `${Math.floor(value / 60)}:${String(value % 60).padStart(2, '0')}`;
+}
+
+function pieceRowHtml(piece = null) {
+  const kind = piece?.kind || 'rep';
+  const sel = (value) => (kind === value ? ' selected' : '');
   return `<div class="piece-row">
     <select class="field-select" data-piece="kind">
-      <option value="warmup">Warm up</option><option value="rep" selected>Rep</option>
-      <option value="float">Float</option><option value="cooldown">Cool down</option>
+      <option value="warmup"${sel('warmup')}>Warm up</option><option value="rep"${sel('rep')}>Rep</option>
+      <option value="float"${sel('float')}>Float</option><option value="cooldown"${sel('cooldown')}>Cool down</option>
     </select>
-    <input class="field-input" data-piece="distance" type="number" step="0.01" min="0" placeholder="1">
-    <input class="field-input" data-piece="time" placeholder="6:29">
-    <input class="field-input" data-piece="pace" placeholder="pace">
+    <input class="field-input" data-piece="distance" type="number" step="0.01" min="0" placeholder="1" value="${piece?.distance ?? ''}">
+    <input class="field-input" data-piece="time" placeholder="6:29" value="${piece?.duration_seconds ? secondsToClock(piece.duration_seconds) : ''}">
+    <input class="field-input" data-piece="pace" placeholder="pace" value="${piece?.pace_seconds ? secondsToClock(piece.pace_seconds) : ''}">
     <button class="button small" type="button" data-remove-piece aria-label="Remove">&times;</button>
   </div>`;
 }
 
-function openFile(plannedSessionId = '') {
+function openFile(plannedSessionId = '', completionId = null) {
   fileForm.reset();
-  document.getElementById('pieceRows').innerHTML = pieceRowHtml();
+  editingCompletionId = completionId;
+  const existing = completionId ? selectedRecord.completions.find((item) => item.id === completionId) : null;
+  const existingPieces = completionId
+    ? (selectedRecord.pieces || []).filter((piece) => piece.completion_id === completionId)
+    : [];
+  document.getElementById('pieceRows').innerHTML =
+    (existingPieces.length ? existingPieces.map((piece) => pieceRowHtml(piece)).join('') : pieceRowHtml());
   fileForm.elements.plannedSessionId.innerHTML =
     '<option value="">Not one of her sessions</option>' +
     selectedRecord.sessions.map((session) =>
       `<option value="${session.id}">${escapeHtml(session.day_label)} · ${escapeHtml(session.currentVersion?.title || 'Session')}</option>`).join('');
   if (plannedSessionId) fileForm.elements.plannedSessionId.value = plannedSessionId;
-  document.getElementById('fileContext').textContent = `File a run for ${selectedRecord.athlete.first_name}`;
+  if (existing) {
+    // Correcting starts from what is there, so a wrong number is changed rather
+    // than the whole session retyped from the screenshot again.
+    const f = fileForm.elements;
+    f.plannedSessionId.value = existing.planned_session_id || '';
+    f.status.value = existing.status;
+    f.rpe.value = existing.rpe ?? '';
+    f.actualDistance.value = existing.actual_distance ?? '';
+    f.duration.value = existing.duration_seconds ? secondsToClock(existing.duration_seconds) : '';
+    f.surface.value = existing.surface || '';
+    f.temperatureF.value = existing.temperature_f ?? '';
+    f.conditions.value = existing.conditions || '';
+    f.athleteNote.value = existing.athlete_note || '';
+  }
+  document.getElementById('fileContext').textContent = existing
+    ? `Correct ${escapeHtml(formatDate(existing.filed_at))}`
+    : `File a run for ${selectedRecord.athlete.first_name}`;
   document.getElementById('fileStatus').textContent = '';
   fileDialog.showModal();
 }
@@ -392,7 +429,7 @@ fileForm.addEventListener('submit', async (event) => {
 
   button.disabled = true; status.textContent = 'Filing.';
   try {
-    await fileForAthlete({
+    const payload = {
       athleteId: selectedRecord.athlete.id,
       plannedSessionId: f.plannedSessionId.value || null,
       status: f.status.value,
@@ -405,7 +442,9 @@ fileForm.addEventListener('submit', async (event) => {
       conditions: f.conditions.value.trim() || null,
       athleteNote: f.athleteNote.value.trim() || null,
       recoveredNextDay: null
-    }, pieces, f.evidence.files[0] || null);
+    };
+    if (editingCompletionId) await editFiledSession(editingCompletionId, payload, pieces);
+    else await fileForAthlete(payload, pieces, f.evidence.files[0] || null);
     fileDialog.close();
     await refreshSelected(true);
   } catch (error) {

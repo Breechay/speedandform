@@ -338,6 +338,9 @@ export function evidenceSection(record, { interactive = false } = {}) {
       // Where it happened sits in the header, not in a detail row. For Marcus it
       // decides whether the session can answer his claim at all.
       const completion = (record.completions || []).find((item) => item.id === verdict.completion_id);
+      // The screenshot is what the numbers were read from. Beside them, a wrong
+      // reading is visible; filed away somewhere else, it is not.
+      const shot = (record.evidenceFiles || []).find((file) => file.completion_id === verdict.completion_id)?.url || null;
       const where = [
         completion?.surface,
         completion?.temperature_f ? `${completion.temperature_f}\u00b0` : null,
@@ -374,6 +377,10 @@ export function evidenceSection(record, { interactive = false } = {}) {
             </tr>
           </tbody>
         </table>
+        ${shot ? `<a class="ev-shot" href="${escapeHtml(shot)}" target="_blank" rel="noopener">
+          <img src="${escapeHtml(shot)}" alt="Watch screenshot this session was read from" loading="lazy">
+        </a>` : ''}
+        ${interactive ? `<button class="link-button" type="button" data-correct="${escapeHtml(verdict.completion_id)}">Correct this</button>` : ''}
         ${judgment
           ? `<p class="ev-judgment ${escapeHtml(judgment.direction)}"><span>${escapeHtml(directionWords[judgment.direction])}</span>${escapeHtml(judgment.reason)}</p>`
           : interactive
@@ -398,41 +405,41 @@ export function progressionSection(record, { interactive = false } = {}) {
   const mark = record.primaryMark;
   if (!mark?.checkpoints?.length) return '';
 
+  // Rungs as numerals rather than marks. Nothing has to be learned to read them,
+  // and a repeated rung simply appears twice, which is the honest shape: six held
+  // a second time at a lower effort is stronger evidence than reaching ten once.
   const rungs = mark.checkpoints.slice().sort((a, b) => a.position - b.position).map((point) => {
     const word = checkpointWords[point.state] || '';
-    return `<${interactive ? 'button' : 'span'} class="proof-rung ${escapeHtml(point.state)}"
+    const tag = interactive ? 'button' : 'span';
+    return `<${tag} class="rung-n ${escapeHtml(point.state)}"
       ${interactive ? `type="button" data-checkpoint="${escapeHtml(point.id)}" data-state="${escapeHtml(point.state)}"` : ''}>
-      <span class="proof-mark" aria-hidden="true"></span>
-      <span class="proof-value">${escapeHtml(point.label)}</span>
-      ${word ? `<span class="proof-state">${escapeHtml(word)}</span>` : ''}
-    </${interactive ? 'button' : 'span'}>`;
+      <b>${escapeHtml(point.label)}</b><span>mi</span>
+      ${word ? `<em>${escapeHtml(word)}</em>` : ''}
+    </${tag}>`;
   }).join('');
 
-  // Only what is still ahead. A block already run is history, and history is not
-  // where this is going.
   const today = new Date().toISOString().slice(0, 10);
-  const ahead = (record.sessions || [])
+  const upcoming = (record.sessions || [])
     .filter((session) => session.scheduled_on && session.scheduled_on >= today && session.currentVersion)
-    .sort((a, b) => a.scheduled_on.localeCompare(b.scheduled_on))
-    .slice(0, 6)
-    .map((session) => `<tr>
-      <td class="ahead-when">${escapeHtml(formatDate(session.scheduled_on))}</td>
-      <td>${escapeHtml(session.currentVersion.title)}</td>
-      <td class="ahead-dose">${session.currentVersion.prescribed_distance
-        ? `${escapeHtml(Number(session.currentVersion.prescribed_distance))} mi`
-        : session.currentVersion.prescribed_duration_minutes
-          ? `${escapeHtml(session.currentVersion.prescribed_duration_minutes)} min` : ''}</td>
-    </tr>`).join('');
+    .sort((a, b) => a.scheduled_on.localeCompare(b.scheduled_on))[0];
 
-  const readings = (record.judgments || []).map((judgment) => `<article class="reading ${escapeHtml(judgment.direction)}">
-    <time>${escapeHtml(formatDate(judgment.created_at))}</time>
-    <span class="reading-direction">${escapeHtml(directionWords[judgment.direction])}</span>
-    <p>${escapeHtml(judgment.reason)}</p>
-  </article>`).join('');
+  const readings = (record.judgments || []).map((judgment) => `<tr class="${escapeHtml(judgment.direction)}">
+    <td class="rd-when">${escapeHtml(formatDate(judgment.created_at))}</td>
+    <td class="rd-why">${escapeHtml(judgment.reason)}</td>
+    <td class="rd-dir">${escapeHtml(directionWords[judgment.direction])}</td>
+  </tr>`).join('');
+
+  // Plain questions as labels. They say what the row answers without explaining
+  // themselves, and they are the questions Brice actually asks of the page.
+  const row = (label, body) => body
+    ? `<div class="pr-row"><p class="pr-label">${escapeHtml(label)}</p><div class="pr-body">${body}</div></div>`
+    : '';
 
   return `<section class="record-section progression" id="progression">
-    <div class="proof">${rungs}</div>
-    ${ahead ? `<table class="ahead"><tbody>${ahead}</tbody></table>` : ''}
-    ${readings ? `<div class="readings">${readings}</div>` : ''}
+    ${row('Where she is now', `<div class="rungs-n">${rungs}</div>`)}
+    ${row('Where she is going', `<p class="pr-claim">${escapeHtml(mark.claim || mark.current_question)}</p>`)}
+    ${upcoming ? row('Next', `<p class="pr-next">${escapeHtml(upcoming.currentVersion.title)}<span>${escapeHtml(formatDate(upcoming.scheduled_on))}</span></p>`) : ''}
+    ${readings ? row('Is this becoming believable', `<table class="readings-t"><tbody>${readings}</tbody></table>`) : ''}
   </section>`;
+}
 }

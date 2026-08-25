@@ -1183,68 +1183,67 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 }
 
 /* ── Progression ─────────────────────────────────────────────────────────────
-   The ladder shows position and nothing else. It does not try to say how
-   convincing the proof was; the readings underneath do that. Overloading a rung
-   with evidence quality is what turns a clear instrument into a scoring system.
+   Rungs are numerals, not marks. Nothing has to be learned to read them, and a
+   repeated rung simply appears twice: six held again at a lower effort is
+   stronger evidence than reaching ten once, and that shape says so by itself.
 
-   Weeks are deliberately not an axis here. Putting distances on a calendar line
-   implies each one happens on a fixed date, and the block repeats rungs and
-   reorders them on purpose. */
-.proof { display: flex; align-items: flex-start; margin: 4px 0 34px; }
-.proof-rung {
-  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 9px;
-  background: none; border: 0; padding: 0; position: relative; color: inherit; font: inherit;
+   Weeks are deliberately not an axis. Putting these distances on a calendar line
+   implies each happens on a fixed date, and the block repeats and reorders them. */
+.progression { display: grid; gap: 26px; }
+.pr-row { display: grid; grid-template-columns: 140px 1fr; gap: 24px; align-items: start; }
+.pr-label {
+  margin: 6px 0 0; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); line-height: 1.5;
+}
+.pr-body { min-width: 0; }
+
+.rungs-n { display: flex; gap: clamp(14px, 3vw, 40px); align-items: flex-start; flex-wrap: wrap; }
+.rung-n {
+  background: none; border: 0; padding: 0; color: inherit; font: inherit;
+  display: flex; flex-direction: column; align-items: flex-start; line-height: 1;
 }
 [data-checkpoint] { cursor: pointer; }
-/* The connector belongs to the instrument, not between unrelated sections. */
-.proof-rung::before {
-  content: ""; position: absolute; top: 6px; left: -50%; width: 100%;
-  height: 1px; background: var(--edge);
+.rung-n b {
+  font-size: clamp(30px, 5vw, 52px); font-weight: 800; letter-spacing: -.03em;
+  color: var(--edge); font-variant-numeric: tabular-nums; transition: color .18s var(--ease);
 }
-.proof-rung:first-child::before { display: none; }
-.proof-mark {
-  width: 13px; height: 13px; border-radius: 50%; position: relative;
-  border: 1.5px solid var(--muted); background: var(--field); box-sizing: border-box;
+.rung-n span { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--edge); margin-top: 6px; }
+.rung-n em {
+  font-style: normal; font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); margin-top: 5px;
 }
-.proof-value { font-size: 13px; font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; }
-.proof-state {
-  font-size: 9.5px; letter-spacing: .09em; text-transform: uppercase; color: var(--muted);
-}
-
-.proof-rung.reached .proof-mark,
-.proof-rung.repeated .proof-mark { background: var(--green); border-color: var(--green); }
-.proof-rung.reached .proof-value,
-.proof-rung.repeated .proof-value { color: var(--text); }
-/* Repeating a rung is a decision. It must not read as a stall, so it is marked
-   as its own state rather than left looking identical to a single hold. */
-.proof-rung.repeated .proof-mark::after {
-  content: ""; position: absolute; inset: -5px; border-radius: 50%;
-  border: 1px solid var(--green); opacity: .55;
-}
+.rung-n.reached b, .rung-n.repeated b { color: var(--secondary); }
+.rung-n.reached span, .rung-n.repeated span { color: var(--muted); }
 /* Lime is spent once per composition, here, on the rung that is next. */
-.proof-rung.current .proof-mark { border-color: var(--lime); border-width: 2px; }
-.proof-rung.current .proof-value { color: var(--lime); }
-.proof-rung.current .proof-state { color: var(--lime); }
-.proof-rung.retired .proof-mark { border-style: dashed; }
+.rung-n.current b, .rung-n.current span, .rung-n.current em { color: var(--lime); }
+.rung-n.retired b { color: var(--edge); text-decoration: line-through; }
+[data-checkpoint]:hover b { color: var(--text); }
 
-.ahead { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
-.ahead td { padding: 9px 0; vertical-align: baseline; color: var(--secondary); font-size: 14px; }
-.ahead-when { width: 26%; color: var(--muted); font-size: 12.5px; }
-.ahead-dose { width: 16%; text-align: right; color: var(--text); font-variant-numeric: tabular-nums; }
+.pr-claim { margin: 0; font-size: clamp(17px, 2vw, 22px); line-height: 1.35; color: var(--text); max-width: 30ch; }
+.pr-next { margin: 0; font-size: 16px; color: var(--lime); }
+.pr-next span { display: block; margin-top: 5px; font-size: 12px; color: var(--muted); }
 
-.reading { margin-bottom: 22px; }
-.reading time { display: block; color: var(--muted); font-size: 12px; }
-.reading-direction {
-  display: block; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase;
-  margin: 5px 0 6px; color: var(--muted);
+.readings-t { width: 100%; border-collapse: collapse; }
+.readings-t td { padding: 10px 0; vertical-align: baseline; }
+.rd-when { width: 78px; color: var(--muted); font-size: 12px; }
+.rd-why { color: var(--text); font-size: 14.5px; line-height: 1.5; padding-right: 20px; }
+.rd-dir {
+  width: 150px; text-align: right; font-size: 10px; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--muted);
 }
-.reading.supports .reading-direction { color: var(--green); }
-.reading.against .reading-direction,
-.reading.does_not_answer .reading-direction { color: var(--coral); }
-.reading p { margin: 0; font-size: 15px; line-height: 1.5; color: var(--text); }
+.readings-t tr.supports .rd-dir { color: var(--green); }
+.readings-t tr.against .rd-dir,
+.readings-t tr.does_not_answer .rd-dir { color: var(--coral); }
 
-@media (max-width: 560px) {
-  .proof-value { font-size: 12px; }
-  .proof-state { font-size: 8.5px; }
+@media (max-width: 700px) {
+  .pr-row { grid-template-columns: 1fr; gap: 10px; }
+  .rd-dir { width: 92px; }
 }
-.ev-where { margin: 5px 0 0; color: var(--muted); font-size: 12.5px; }
+
+
+/* The screenshot the numbers were read from, next to the numbers. A wrong reading
+   is visible here and invisible anywhere else: Hope's recoveries were entered
+   backwards once and nothing on the page could have contradicted them. */
+.ev-shot { display: block; margin-top: 14px; border: 1px solid var(--edge); border-radius: 8px; overflow: hidden; }
+.ev-shot img { display: block; width: 100%; height: auto; }
+.ev-shot:hover { border-color: var(--muted); }

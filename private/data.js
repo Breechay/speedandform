@@ -61,7 +61,8 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     supabase.from('session_verdicts').select('*').eq('athlete_id', athleteId),
     supabase.from('session_pieces').select('*').eq('athlete_id', athleteId).order('position'),
     supabase.from('mark_standing_judgments').select('*').eq('athlete_id', athleteId).order('created_at', { ascending: false }),
-    supabase.from('mark_judgment_completions').select('*')
+    supabase.from('mark_judgment_completions').select('*'),
+    supabase.from('completion_evidence').select('*').eq('athlete_id', athleteId).order('created_at')
   ];
 
   if (coach) {
@@ -82,7 +83,7 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     baselinesResponse, completionsResponse, directionsResponse, readsResponse,
     decisionsResponse, marksResponse, signalsResponse, checkpointsResponse,
     gatesResponse, movementResponse, supportResponse, supportItemsResponse,
-    verdictsResponse, piecesResponse, judgmentsResponse, judgmentLinksResponse,
+    verdictsResponse, piecesResponse, judgmentsResponse, judgmentLinksResponse, evidenceFilesResponse,
     taskResponse, evidenceResponse, actionsResponse, privateNotesResponse, adminResponse
   ] = responses;
 
@@ -140,6 +141,7 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     support: supportResponse.data,
     supportItems: result(supportItemsResponse.data, supportItemsResponse.error),
     verdicts: result(verdictsResponse.data, verdictsResponse.error),
+    evidenceFiles: await signEvidence(result(evidenceFilesResponse.data, evidenceFilesResponse.error)),
     pieces: result(piecesResponse.data, piecesResponse.error),
     judgments: result(judgmentsResponse.data, judgmentsResponse.error).map((judgment) => ({
       ...judgment,
@@ -471,6 +473,48 @@ export async function fileForAthlete(payload, pieces = [], evidenceFile = null) 
   return completion;
 }
 
+// Editing a filed session. The audit trigger snapshots the previous values into
+// completion_revisions, so a correction never destroys what was there before.
+// Splits are replaced wholesale rather than diffed: a re-read of a screenshot is
+// a new reading of the whole session, not an edit to one number.
+export async function editFiledSession(completionId, payload, pieces = null) {
+  const { error } = await supabase
+    .from('session_completions')
+    .update({
+      status: payload.status,
+      actual_distance: payload.actualDistance || null,
+      distance_unit: payload.distanceUnit || 'mi',
+      duration_seconds: payload.durationSeconds || null,
+      rpe: payload.rpe || null,
+      surface: payload.surface || null,
+      temperature_f: payload.temperatureF || null,
+      conditions: payload.conditions || null,
+      athlete_note: payload.athleteNote || null
+    })
+    .eq('id', completionId);
+  if (error) throw error;
+
+  if (pieces) {
+    const { error: clearError } = await supabase.from('session_pieces').delete().eq('completion_id', completionId);
+    if (clearError) throw clearError;
+    if (pieces.length) {
+      const { error: piecesError } = await supabase.from('session_pieces').insert(
+        pieces.map((piece, index) => ({
+          athlete_id: payload.athleteId,
+          completion_id: completionId,
+          position: index + 1,
+          kind: piece.kind,
+          distance: piece.distance || null,
+          distance_unit: piece.distance ? (piece.distanceUnit || 'mi') : null,
+          duration_seconds: piece.durationSeconds || null,
+          pace_seconds: piece.paceSeconds || null
+        }))
+      );
+      if (piecesError) throw piecesError;
+    }
+  }
+}
+
 // Brice's judgment of what a session did to the claim. The mechanical verdicts
 // inform it; they never make it. Amending writes a new judgment naming the one it
 // replaces, so the earlier reading stays legible.
@@ -511,4 +555,17 @@ export async function moveCheckpoint(checkpointId, state) {
     .update({ state })
     .eq('id', checkpointId);
   if (error) throw error;
+}
+
+// The bucket is private, so a stored path is not something a browser can render.
+// Signed for an hour: long enough to read a session, short enough that a copied
+// URL is not a standing key to an athlete's record.
+async function signEvidence(rows) {
+  if (!rows.length) return [];
+  const paths = rows.filter((row) => row.storage_path).map((row) => row.storage_path);
+  if (!paths.length) return rows;
+  const { data, error } = await supabase.storage.from('session-evidence').createSignedUrls(paths, 3600);
+  if (error) return rows;
+  const byPath = new Map((data || []).map((item) => [item.path, item.signedUrl]));
+  return rows.map((row) => ({ ...row, url: row.external_url || byPath.get(row.storage_path) || null }));
 }
