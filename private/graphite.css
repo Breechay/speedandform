@@ -554,3 +554,104 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 .next-week .session-row { opacity: .62; }
 .support-group h3 { font-size: 13px; margin: 22px 0 4px; }
 .shared-line { margin: 18px 0 0; color: var(--muted); font-size: 12px; }
+
+
+/* ── The ladder ──────────────────────────────────────────────────────────────
+   A lone bar states a ratio. The ladder shows the distances she will actually
+   run, which one is next, and how far the whole thing reaches. */
+
+.mark-crop .bar-figure { display: flex; align-items: baseline; gap: 10px; margin: 0 0 26px; }
+.bar-figure strong { font-size: clamp(40px, 9vw, 56px); font-weight: 700; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.bar-target { color: var(--secondary); font-size: 15px; }
+
+.ladder { position: relative; }
+.ladder-track { position: absolute; left: 0; right: 0; top: 5px; height: 2px; background: var(--raised); border-radius: 2px; }
+.ladder-fill { display: block; height: 100%; border-radius: 2px; background: var(--lime); transform-origin: left center; animation: bar-fill .9s var(--ease) .2s both; }
+.rungs { position: relative; display: flex; justify-content: space-between; margin: 0; padding: 0; list-style: none; }
+.rung { display: flex; flex-direction: column; align-items: center; gap: 11px; min-width: 0; }
+.rung-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--field); box-shadow: inset 0 0 0 2px var(--edge);
+  transition: box-shadow .3s var(--ease), background .3s var(--ease);
+}
+.rung.reached .rung-dot { background: var(--lime); box-shadow: inset 0 0 0 2px var(--lime); }
+.rung.next .rung-dot { background: var(--field); box-shadow: inset 0 0 0 2px var(--lime), 0 0 0 5px rgba(216, 255, 104, .14); }
+.rung-value { color: var(--muted); font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rung.reached .rung-value { color: var(--text); }
+.rung.next .rung-value { color: var(--lime); }
+.mark-crop .bar-label { margin-top: 24px; }
+
+/* ── Collapsible roster ──────────────────────────────────────────────────────
+   Four names do not need a third of the screen once he is inside one athlete. */
+
+.rail-toggle {
+  position: absolute; top: 20px; right: 14px; width: 30px; height: 30px;
+  display: grid; place-items: center; border: 0; border-radius: 8px;
+  background: transparent; cursor: pointer; opacity: .55;
+}
+.rail-toggle:hover { opacity: 1; background: var(--field-2); }
+.rail-bars, .rail-bars::before, .rail-bars::after { display: block; width: 13px; height: 1.5px; background: var(--text); border-radius: 2px; }
+.rail-bars { position: relative; }
+.rail-bars::before, .rail-bars::after { content: ""; position: absolute; left: 0; }
+.rail-bars::before { top: -4px; }
+.rail-bars::after { top: 4px; }
+.desk-rail { position: relative; transition: width .28s var(--ease); }
+.rail-collapsed { display: none; }
+
+.rail-collapsed-on .desk-layout { grid-template-columns: 62px minmax(0, 1fr); }
+.rail-collapsed-on .rail-body { display: none; }
+.rail-collapsed-on .desk-rail { padding: 20px 0; }
+.rail-collapsed-on .rail-toggle { position: static; margin: 0 auto 18px; }
+.rail-collapsed-on .rail-collapsed { display: grid; gap: 9px; justify-items: center; }
+.rail-chip {
+  width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--raised); color: var(--secondary); font-size: 10px; font-weight: 800; opacity: .55;
+}
+.rail-chip.needs { opacity: 1; }
+.rail-chip.active { background: var(--lime); color: #11150f; opacity: 1; }
+
+@media (max-width: 700px) {
+  .rail-collapsed-on .desk-layout { grid-template-columns: 1fr; }
+  .rail-collapsed-on .rail-collapsed { grid-auto-flow: column; justify-content: start; padding: 0 14px; }
+  .rail-toggle { top: 12px; right: 12px; }
+}
+
+.mark-name { margin: 22px 0 0; font-size: 14px; font-weight: 700; }
+
+/* Her week as a shape, not a paragraph. Planned length in grey, filed length in
+   lime on top of it: over, under and missing all read at a glance. */
+.week-grid { margin-top: 22px; }
+.week-head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; padding-bottom: 18px; }
+.wk-label { font-size: 15px; font-weight: 750; }
+.wk-of { margin-left: 7px; color: var(--muted); font-size: 12px; }
+.wk-total { text-align: right; font-variant-numeric: tabular-nums; }
+.wk-total b { font-size: 20px; font-weight: 750; }
+.wk-total span { margin-left: 6px; color: var(--secondary); font-size: 12px; }
+.week-rows { display: grid; gap: 2px; }
+.wk-row {
+  display: grid; grid-template-columns: 42px minmax(88px, 1.1fr) minmax(90px, 2.4fr) 46px auto;
+  gap: 14px; align-items: center; padding: 12px 10px; border-radius: 9px;
+}
+.wk-row:hover { background: var(--field-2); }
+.wk-day { color: var(--muted); font-size: 10px; font-weight: 850; letter-spacing: .04em; }
+.wk-title { font-size: 13px; font-weight: 650; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wk-bars { position: relative; height: 8px; }
+.wk-plan, .wk-actual { position: absolute; left: 0; top: 0; height: 100%; border-radius: 4px; }
+.wk-plan { background: var(--raised); }
+.wk-actual { background: var(--lime); transform-origin: left center; animation: bar-fill .7s var(--ease) both; }
+.wk-row.pending .wk-actual { display: none; }
+.wk-row.skipped .wk-actual { background: var(--coral); }
+.wk-row.partial .wk-actual { background: var(--coral); }
+.wk-num { font-size: 13px; font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+.wk-num i { color: var(--muted); font-style: normal; font-weight: 600; }
+.wk-flag {
+  border: 0; border-radius: 999px; background: rgba(216, 255, 104, .13); color: var(--lime);
+  padding: 5px 11px; font-size: 10px; font-weight: 800; white-space: nowrap; cursor: pointer;
+}
+.wk-flag:hover { background: var(--lime); color: #11150f; }
+.wk-flag-empty { width: 1px; }
+@media (max-width: 700px) {
+  .wk-row { grid-template-columns: 34px minmax(0, 1fr) 44px; row-gap: 8px; }
+  .wk-bars { grid-column: 1 / -1; }
+  .wk-flag { grid-column: 1 / -1; justify-self: start; }
+}
