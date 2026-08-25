@@ -120,9 +120,14 @@ export function weekSection(record, { interactive = false, shownWeekId = null } 
         <span class="wk-label">Week ${escapeHtml(week?.week_number ?? '\u2014')}</span><span class="wk-of">of ${escapeHtml(total)}</span>
         <button class="wk-arrow" type="button" data-week-step="1" ${index >= 0 && index < weeks.length - 1 ? '' : 'disabled'} aria-label="Next week">\u203a</button>
       </div>
-      <div class="wk-total"><b>${actualTotal.toFixed(1)}</b><span>of ${plannedTotal.toFixed(1)} mi</span></div>
+      <div class="wk-shape">
+        <b>${days.filter((day) => day.session).length}</b><span>runs</span>
+        <b>${Number(plannedTotal.toFixed(1))}</b><span>mi</span>
+        <b>${Number(Math.max(...days.map((day) => day.planned), 0).toFixed(1))}</b><span>longest</span>
+      </div>
     </div>
     ${scale}
+    ${actualTotal > 0 ? `<p class="wk-filed"><b>${Number(actualTotal.toFixed(1))}</b> of ${Number(plannedTotal.toFixed(1))} mi filed</p>` : ''}
     ${week?.intent ? `<p class="wk-intent">${escapeHtml(week.intent)}</p>` : ''}
     <div class="week-days">${days.map((day) => {
       if (!day.session) return `<div class="day empty"><span class="day-name">${escapeHtml(day.label)}</span></div>`;

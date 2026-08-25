@@ -881,3 +881,18 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   .day-title, .day-note { font-size: 9px; }
   .desk-main { padding: 20px 14px 50px; }
 }
+
+
+/* The week answers "what am I doing" before it answers "how far along am I".
+   Shape first: how many runs, how far, how long the longest one is. */
+.wk-shape { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+.wk-shape b { font-size: 17px; font-weight: 750; font-variant-numeric: tabular-nums; }
+.wk-shape span { color: var(--secondary); font-size: 12px; margin-right: 8px; }
+.wk-shape span:last-of-type { margin-right: 0; }
+.wk-filed { margin: 0 0 16px; color: var(--muted); font-size: 12px; }
+.wk-filed b { color: var(--lime); font-variant-numeric: tabular-nums; }
+
+@media (max-width: 700px) {
+  .week-head { flex-wrap: wrap; gap: 10px; }
+  .wk-shape b { font-size: 15px; }
+}
