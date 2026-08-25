@@ -474,4 +474,3 @@ export function progressionSection(record, { interactive = false } = {}) {
     ${readings ? row('Is this becoming believable', `<table class="readings-t"><tbody>${readings}</tbody></table>`) : ''}
   </section>`;
 }
-}
