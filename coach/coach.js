@@ -41,6 +41,7 @@ const judgeDialog = document.getElementById('judgeDialog');
 const judgeForm = document.getElementById('judgeForm');
 const confidenceDialog = document.getElementById('confidenceDialog');
 const confidenceForm = document.getElementById('confidenceForm');
+const ladderDialog = document.getElementById('ladderDialog');
 const rungDialog = document.getElementById('rungDialog');
 const rungForm = document.getElementById('rungForm');
 let editingCheckpointId = null;
@@ -277,13 +278,12 @@ function currentRungHtml() {
   // Unset says unset. Falling back to the first proposed numeral would turn
   // missing information into a coaching statement.
   const next = points.find((point) => point.position > (current?.position ?? -1) && point.state === 'proposed');
-  return `<p class="rungLine">
+  return `<button class="rungLine" type="button" id="openLadder">
     <span>Current rung</span>
-    ${current
-      ? `<b>${escapeHtml(current.label)} mi</b>`
-      : `<b class="rungLine__unset">unset</b><button class="rungLine__choose" type="button" id="chooseCurrent">choose &rsaquo;</button>`}
+    ${current ? `<b>${escapeHtml(current.label)} mi</b>` : '<b class="rungLine__unset">unset</b>'}
+    <em>${current ? 'change' : 'choose'} \u203a</em>
     ${next ? `<span>Next</span><b class="rungLine__next">${escapeHtml(next.label)} mi</b>` : ''}
-  </p>`;
+  </button>`;
 }
 
 // Discrete authored points only. No interpolation, no smoothing, no projection to
@@ -434,11 +434,7 @@ function bindDesk() {
   }));
   bindAccountSecurity();
   document.getElementById('setConfidence')?.addEventListener('click', openConfidence);
-  document.getElementById('chooseCurrent')?.addEventListener('click', () => {
-    const first = document.querySelector('.consoleAthleteRow--selected [data-set-current], .consoleAthleteRow--selected [data-cycle-checkpoint]');
-    first?.scrollIntoView({ block: 'nearest' });
-    first?.focus();
-  });
+  document.getElementById('openLadder')?.addEventListener('click', openLadder);
   document.getElementById('newSession')?.addEventListener('click', () => openSession(null));
   
   // Console actions using data-console-action
@@ -664,6 +660,32 @@ function openJudge(completionId) {
     .join('') || '<option value="" disabled>Nothing else filed</option>';
   document.getElementById('judgeStatus').textContent = '';
   judgeDialog.showModal();
+}
+
+const stateWords = {
+  proposed: 'Proposed', current: 'Current', reached: 'Established',
+  repeated: 'Established again', retired: 'Retired'
+};
+
+// The ladder, reachable without occupying the page. Opening it writes nothing.
+function openLadder() {
+  const mark = selectedRecord.primaryMark;
+  if (!mark?.checkpoints?.length) return;
+  document.getElementById('ladderContext').textContent =
+    `${selectedRecord.athlete.first_name || selectedRecord.athlete.display_name}\u2019s ladder`;
+  document.getElementById('ladderRows').innerHTML = mark.checkpoints
+    .slice().sort((a, b) => a.position - b.position)
+    .map((point) => `<button class="ladderRow" type="button"
+      data-cycle-checkpoint="${escapeHtml(point.id)}" data-state="${escapeHtml(point.state)}">
+      <b>${escapeHtml(point.label)}<i>mi</i></b>
+      <span class="ladderRow__state ${escapeHtml(point.state)}">${escapeHtml(stateWords[point.state] || point.state)}</span>
+    </button>`).join('');
+  document.getElementById('ladderRows').querySelectorAll('[data-cycle-checkpoint]').forEach((button) =>
+    button.addEventListener('click', () => {
+      ladderDialog.close();
+      openRung(button.dataset.cycleCheckpoint, button.dataset.state, button.querySelector('b').textContent.replace('mi', '').trim());
+    }));
+  ladderDialog.showModal();
 }
 
 function openRung(checkpointId, state, label) {
