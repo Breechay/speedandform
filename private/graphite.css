@@ -1063,3 +1063,35 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 @media (max-width: 700px) {
   .focus-track .step { width: 15px; }
 }
+
+
+/* ── Data tables ─────────────────────────────────────────────────────────────
+   The no-cards rule governs content grouping, not data. Comparative numbers
+   read best in a real table: a header band, delineated cells, one alignment.
+   An aligned column of text without that structure is a list pretending. */
+.tbl { width: 100%; border-collapse: collapse; margin-top: 20px; }
+.tbl th, .tbl td {
+  padding: 12px 14px; text-align: left; vertical-align: baseline;
+  border-bottom: 1px solid var(--edge);
+}
+.tbl thead th {
+  background: var(--field-2); color: var(--muted);
+  font-size: 10px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase;
+}
+.tbl thead th:first-child { border-top-left-radius: 9px; }
+.tbl thead th:last-child { border-top-right-radius: 9px; }
+.tbl tbody th {
+  color: var(--muted); font-size: 13px; font-weight: 500; width: 34%;
+}
+.tbl td { font-size: 15px; font-variant-numeric: tabular-nums; }
+.tbl td.asked { color: var(--secondary); }
+.tbl td.done { font-weight: 700; }
+.tbl td.done.miss { color: var(--coral); }
+.tbl tbody tr:last-child th, .tbl tbody tr:last-child td { border-bottom: 0; }
+.tbl-note { margin: 16px 0 0; font-size: 15px; line-height: 1.5; max-width: 46ch; }
+
+@media (max-width: 560px) {
+  .tbl th, .tbl td { padding: 10px 9px; }
+  .tbl td { font-size: 13px; }
+  .tbl tbody th { font-size: 12px; width: 30%; }
+}
