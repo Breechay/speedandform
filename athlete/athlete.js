@@ -13,6 +13,7 @@ const emailDialog = document.getElementById('emailDialog');
 const emailForm = document.getElementById('emailForm');
 let signedInEmail = '';
 let record = null;
+let shownWeekId = null;
 
 async function authView() {
   document.body.classList.add('auth-only');
@@ -74,14 +75,33 @@ function bindRecordActions() {
   }));
 }
 
+function bindWeekNav() {
+  app.querySelectorAll('[data-week]').forEach((button) => button.addEventListener('click', () => {
+    shownWeekId = button.dataset.week; renderFrom();
+  }));
+  app.querySelectorAll('[data-week-step]').forEach((button) => button.addEventListener('click', () => {
+    const weeks = (record.weeks || []).slice().sort((a, b) => a.week_number - b.week_number);
+    const at = weeks.findIndex((entry) => entry.id === (shownWeekId || record.currentWeek?.id));
+    const next = weeks[at + Number(button.dataset.weekStep)];
+    if (next) { shownWeekId = next.id; renderFrom(); }
+  }));
+}
+
+function renderFrom() {
+  app.innerHTML = renderAthleteRecord(record, { interactive: true, email: signedInEmail, shownWeekId });
+  bindRecordActions();
+  bindWeekNav();
+}
+
 async function renderRecord(athleteId) {
   app.innerHTML = '<div class="loading" aria-label="Loading your record"></div>';
   record = await loadAthleteRecord(athleteId);
-  app.innerHTML = renderAthleteRecord(record, { interactive: true, email: signedInEmail });
+  app.innerHTML = renderAthleteRecord(record, { interactive: true, email: signedInEmail, shownWeekId });
   bindRecordActions();
   // The record has its own nav, so the bare sign-out button steps aside.
   recordNav.hidden = false;
   signOutButton.hidden = true;
+  bindWeekNav();
   document.getElementById('accountSignOut')?.addEventListener('click', signOut);
   document.getElementById('changeEmail')?.addEventListener('click', () => {
     emailForm.reset();

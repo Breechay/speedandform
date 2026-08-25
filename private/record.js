@@ -75,6 +75,86 @@ function sessionRows(record, interactive, list = null) {
   }).join('');
 }
 
+const DAY_ORDER = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+
+// One component, both surfaces. What Brice sees in the middle of his desk is
+// literally what she sees when she signs in — same markup, same data, so the
+// two can never drift apart by being maintained separately.
+export function weekSection(record, { interactive = false, shownWeekId = null } = {}) {
+  const weeks = (record.weeks || []).slice().sort((a, b) => a.week_number - b.week_number);
+  const total = record.block?.total_weeks || weeks.length || 1;
+  const week = weeks.find((entry) => entry.id === shownWeekId) || record.currentWeek || weeks[0] || null;
+  const sessions = week ? (record.sessionsByWeek?.[week.id] || []) : [];
+  const attention = record.attention || [];
+
+  const days = DAY_ORDER.map((label) => {
+    const session = sessions.find((entry) => (entry.day_label || '').toUpperCase().startsWith(label.slice(0, 3)));
+    const version = session?.currentVersion || {};
+    const completion = session ? record.completions.find((entry) => entry.planned_session_id === session.id) : null;
+    const flag = session ? attention.find((item) => item.subject_id === session.id || item.subject_id === completion?.id) : null;
+    return { label, session, version, completion, flag,
+      planned: Number(version.prescribed_distance) || 0,
+      actual: Number(completion?.actual_distance) || 0 };
+  });
+
+  const scale = Math.max(...days.map((day) => Math.max(day.planned, day.actual)), 1);
+  const plannedTotal = days.reduce((sum, day) => sum + day.planned, 0);
+  const actualTotal = days.reduce((sum, day) => sum + day.actual, 0);
+  const index = week ? weeks.findIndex((entry) => entry.id === week.id) : -1;
+
+  const strip = Array.from({ length: total }, (_, position) => {
+    const number = position + 1;
+    const authored = weeks.find((entry) => entry.week_number === number);
+    const shown = week && authored && authored.id === week.id;
+    return `<button class="wk-pip${authored ? ' authored' : ''}${shown ? ' shown' : ''}" type="button"
+      ${authored ? `data-week="${authored.id}"` : 'disabled'} aria-label="Week ${number}">${number}</button>`;
+  }).join('');
+
+  return `<section class="record-section crop week-grid" id="now">
+    <div class="week-head">
+      <div class="wk-nav">
+        <button class="wk-arrow" type="button" data-week-step="-1" ${index > 0 ? '' : 'disabled'} aria-label="Previous week">\u2039</button>
+        <span class="wk-label">Week ${escapeHtml(week?.week_number ?? '\u2014')}</span><span class="wk-of">of ${escapeHtml(total)}</span>
+        <button class="wk-arrow" type="button" data-week-step="1" ${index >= 0 && index < weeks.length - 1 ? '' : 'disabled'} aria-label="Next week">\u203a</button>
+      </div>
+      <div class="wk-total"><b>${actualTotal.toFixed(1)}</b><span>of ${plannedTotal.toFixed(1)} mi</span></div>
+    </div>
+    <div class="wk-strip">${strip}</div>
+    ${week?.intent ? `<p class="wk-intent">${escapeHtml(week.intent)}</p>` : ''}
+    <div class="week-days">${days.map((day) => {
+      const state = day.completion ? day.completion.status : (day.session ? 'pending' : 'empty');
+      const fileButton = interactive && day.session
+        ? `<button class="wk-file" type="button" data-file-session="${day.session.id}"${day.completion ? ` data-completion-id="${day.completion.id}"` : ''}>${day.completion ? 'Edit' : 'File'}</button>`
+        : '';
+      return `<div class="wk-col ${escapeHtml(state)}${day.flag ? ' flagged' : ''}">
+        <span class="wk-dayname">${escapeHtml(day.label)}</span>
+        <div class="wk-stack">
+          ${day.session ? `<span class="wk-plan" style="height:${Math.max(6, (day.planned / scale) * 100)}%"></span>
+          ${day.actual ? `<span class="wk-actual" style="height:${Math.max(6, (day.actual / scale) * 100)}%"></span>` : ''}` : ''}
+        </div>
+        <span class="wk-num">${day.session ? (day.completion ? day.actual || '\u2014' : `<i>${day.planned || '\u2014'}</i>`) : ''}</span>
+        <span class="wk-title">${escapeHtml(day.version.title || '')}</span>
+        ${fileButton}
+        ${day.flag && !interactive ? `<button class="wk-flag" type="button" data-write="${escapeHtml(day.flag.kind === 'missing_direction' ? 'direction' : 'read')}" data-subject="${escapeHtml(day.flag.subject_id || '')}" title="${escapeHtml(day.flag.title)}"></button>` : ''}
+      </div>`;
+    }).join('')}</div>
+  </section>`;
+}
+
+// The header both surfaces share.
+export function whoSection(record) {
+  const athlete = record.athlete;
+  const block = record.block;
+  const raceOn = block?.race_on
+    ? new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(new Date(`${block.race_on}T12:00:00`))
+    : null;
+  const goal = block?.goal_statement || [block?.goal_label, block?.target_event].filter(Boolean).join(' \u00b7 ') || null;
+  return `<header class="who">
+    <h1>${escapeHtml(athlete.display_name)}</h1>
+    ${goal ? `<p class="who-goal">${escapeHtml(goal)}${raceOn ? `<span class="who-date">${escapeHtml(raceOn)}</span>` : ''}</p>` : ''}
+  </header>`;
+}
+
 export function markSection(record) {
   const mark = record.primaryMark;
   if (!mark) return '';
@@ -188,34 +268,12 @@ function accountSection(record, email, interactive) {
   </section>`;
 }
 
-export function renderAthleteRecord(record, { interactive = false, projection = false, email = '' } = {}) {
-  const athlete = record.athlete;
-  if (!athlete) return '<div class="status-message error">This record is not available.</div>';
-  const week = record.currentWeek;
-  const next = record.nextWeek;
-  const block = record.block;
-  const raceOn = block?.race_on
-    ? new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(new Date(`${block.race_on}T12:00:00`))
-    : null;
-  const goal = block?.goal_statement
-    || [block?.goal_label, block?.target_event].filter(Boolean).join(' · ')
-    || null;
+export function renderAthleteRecord(record, { interactive = false, projection = false, email = '', shownWeekId = null } = {}) {
+  if (!record.athlete) return '<div class="status-message error">This record is not available.</div>';
   return `<div class="record-shell${projection ? ' projection' : ''}">
-    <header class="who">
-      <h1>${escapeHtml(athlete.display_name)}</h1>
-      ${goal ? `<p class="who-goal">${escapeHtml(goal)}${raceOn ? `<span class="who-date">${escapeHtml(raceOn)}</span>` : ''}</p>` : ''}
-    </header>
+    ${whoSection(record)}
     ${markSection(record)}
-    <section class="record-section crop" id="now">
-      <p class="eyebrow">This week${week ? ` · ${escapeHtml(week.week_number)} of ${escapeHtml(record.block?.total_weeks ?? '')}` : ''}</p>
-      ${week?.intent ? `<p class="week-intent">${escapeHtml(week.intent)}</p>` : ''}
-      <div class="sessions-list record-sessions">${sessionRows(record, interactive, record.currentSessions)}</div>
-      ${next && record.nextSessions?.length ? `<details class="next-week">
-        <summary><span>Next week</span></summary>
-        ${next.intent ? `<p class="next-intent">${escapeHtml(next.intent)}</p>` : ''}
-        <div class="sessions-list record-sessions">${sessionRows(record, false, record.nextSessions)}</div>
-      </details>` : ''}
-    </section>
+    ${weekSection(record, { interactive, shownWeekId })}
     ${gradeSection(record)}
     ${supportSection(record)}
     ${recordSection(record)}
