@@ -110,7 +110,6 @@ function deskHtml() {
         ${markSection(selectedRecord)}
       </div>
       <div class="board-side">
-        ${gradeSection(selectedRecord)}
         ${recordSection(selectedRecord, { limit: 4 })}
         ${coachMarginHtml()}
       </div>
