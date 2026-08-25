@@ -22,7 +22,7 @@ export function escapeHtml(value) {
 }
 
 export function formatDate(value, options = { month: 'short', day: 'numeric' }) {
-  if (!value) return '—';
+  if (!value) return '';
   const date = new Date(value.includes?.('T') ? value : `${value}T12:00:00`);
   if (Number.isNaN(date.valueOf())) return escapeHtml(value);
   return new Intl.DateTimeFormat('en-US', options).format(date);
@@ -115,7 +115,7 @@ export function weekSection(record, { interactive = false, shownWeekId = null } 
   return `<section class="record-section crop week-grid" id="now">
     <p class="wk-block">Block ${escapeHtml(record.block?.block_number ?? 1)}${record.block?.name ? ` \u00b7 ${escapeHtml(record.block.name)}` : ''}</p>
     <div class="week-head">
-      <h2 class="wk-title">Week ${escapeHtml(week?.week_number ?? '\u2014')}</h2>
+      <h2 class="wk-title">Week ${escapeHtml(week?.week_number ?? '')}</h2>
       <div class="wk-move">
         <button class="wk-arrow" type="button" data-week-step="-1" ${index > 0 ? '' : 'disabled'} aria-label="Previous week">\u2039</button>
         <span class="wk-of">of ${escapeHtml(total)}</span>
@@ -187,7 +187,7 @@ export function markSection(record) {
     </li>`;
   }).join('');
   return `<section class="record-section crop mark-crop" id="mark">
-    <p class="bar-figure"><strong>${escapeHtml(mark.current_value ?? '—')}</strong><span class="bar-target">of ${escapeHtml(mark.target_value ?? '—')} ${escapeHtml(unit)}</span></p>
+    <p class="bar-figure"><strong>${escapeHtml(mark.current_value ?? '')}</strong><span class="bar-target">of ${escapeHtml(mark.target_value ?? '')} ${escapeHtml(unit)}</span></p>
     <div class="ladder">
       <div class="ladder-track"><span class="ladder-fill" style="width:${fill}%"></span></div>
       <ol class="rungs">${rungs}</ol>
@@ -271,7 +271,7 @@ function accountSection(record, email, interactive) {
   return `<section class="record-section account-section" id="account">
     <div class="section-head"><div><p class="eyebrow">Account</p><h2>${escapeHtml(athlete.display_name)}</h2></div></div>
     <div class="account-rows">
-      <div class="account-row"><span>Signed in as</span><b>${escapeHtml(email || '—')}</b></div>
+      <div class="account-row"><span>Signed in as</span><b>${escapeHtml(email || 'Not set')}</b></div>
       <div class="account-row"><span>Coaching</span><b>${escapeHtml(athlete.account_label)}</b></div>
       ${block ? `<div class="account-row"><span>Block</span><b>Week ${escapeHtml(block.current_week)} of ${escapeHtml(block.total_weeks)}</b></div>` : ''}
     </div>

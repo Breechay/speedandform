@@ -85,6 +85,14 @@ handed a task.
 
 Attention annotates the thing it concerns. It never becomes the headline.
 
+## 3e. No em dashes
+
+Not in any rendered copy. Full stops and commas instead. En dashes are fine for
+number ranges (`6:25–6:30`, `7–8`).
+
+An em dash is a writer's mark, and these surfaces are supposed to sound like Brice
+wrote them. He texts in full stops.
+
 ## 4. No copy that must be decoded
 
 Plain, direct, and useful. If a sentence needs a beat of translation before the
