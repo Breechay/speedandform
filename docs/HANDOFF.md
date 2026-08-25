@@ -1,114 +1,92 @@
-# Handoff · 2026-08-29
+# Handoff · 2026-08-29 (console rebuild in progress)
 
-Two repos. `~/Documents/speedandform` is the website and database. `~/FORM-iOS`
-is the iOS app. They do not talk to each other and are not supposed to yet.
+Read this, then `docs/COACH_CONSOLE_BRIEF.md`. Brice is also pasting a detailed
+composition spec into your first message. **That spec is the authority for the
+layout.** This document is the authority for what is already true in the repo.
 
-## Read these first, in this order
+## Where things actually stand
 
-1. `docs/COACH_CONSOLE_BRIEF.md` — **Draft, not ratified.** The current authority
-   for the desk. Read it before touching the desk.
-2. `docs/FORM_MASTER.md` — how Brice coaches, and Part I.5: the app is not law.
-3. `docs/VOICE_LAW.md` and `docs/ATHLETE_COACHING_SYSTEM.md` — voice and structure.
-4. `docs/ROADMAP.md` — build state. Sections 3 and 5 were corrected on 2026-08-28
-   after reading both codebases; earlier text in other docs may still be stale.
+`main` is pushed and deployed **except the last commit**, which is committed
+locally and deliberately not deployed. Do not deploy until Brice approves a
+screenshot.
 
-Document authority order, highest first: Brice's live decisions and actual athlete
-evidence, then `ATHLETE_COACHING_SYSTEM.md`, then `FORM_MASTER.md`, then
-`ROADMAP.md`, then the console brief, then anything else. Agent proposals are
-input, never authority.
+```
+439898b  Make the ladder reachable again      committed, NOT deployed
+3f1fb67  Darker field, white wordmark          deployed
+724e93e  Read-only ladders, one lime           deployed
+```
 
-## The single most important fact
+All five checkers pass on HEAD.
 
-**The website is Brice's instrument. It is not an athlete product.**
+## The mistake to not repeat
 
-Athletes train in the FORM app. Brice sends them what they need. Nothing in the
-coaching model depends on an athlete opening a web page. Sign-in stays and
-Natalie's page stays working, but no design decision is made to serve an athlete's
-engagement with the site.
+The console was rebuilt component by component instead of replacing the page
+composition. Every screenshot looked closer and none of them looked right, and
+the last one opened to four giant ladder rows with the actual work below the
+fold. **Replace the composition first, then fill it.** Brice has said this
+plainly and it is the single most important instruction here.
 
-## How work actually gets done here
+Also: do not deploy while iterating on the visual. Take a local screenshot,
+show it, wait.
 
-- **Never deploy casually.** Pushing to `main` triggers a paid Netlify build.
-  Branch pushes and deploy previews are off. Batch changes.
-- **Run all four checkers before committing**, and know what each does not do:
-  - `node scripts/check-syntax.mjs` parses every module as the browser would.
-    Plain `node --check` does **not** catch module-level syntax errors.
-  - `node scripts/check-modules.mjs` resolves called identifiers to imports.
-  - `node scripts/check-dom.mjs` matches `form.elements.x` to real markup.
-  - `node scripts/check-copy.mjs` fails on em dashes in rendered copy.
-- Migrations: `npx --yes supabase@latest db push --linked`. Project ref
-  `pbgsjjegycacodiltbhn`, already linked.
-- The app repo is Brice's and is dirty. Keep any change there purely additive and
-  commit only the file you touched.
+## What is real and working, do not rebuild
 
-## Standing laws that keep getting rediscovered
+- **Filing** goes through `file_session`, an enforced server-authoritative
+  transaction. Coach insert and update policies are dropped; there is no way
+  around it. It validates membership, status, that a linked session belongs to
+  the same athlete, future dates, and piece kinds as a set before any write.
+- **Correction** goes through `correct_session`, requires a reason, and stamps
+  that reason onto every revision the change produced. Completions and pieces are
+  both snapshotted into `completion_revisions` before being changed.
+- **Judgments** (`mark_judgments`): moves it / does not answer it / works against
+  it, append-only, may rest on several completions.
+- **Confidence** (`mark_confidence_reads`): append-only, coach-only, score plus a
+  required reason and required next-evidence. `mark_standing_confidence` is the
+  newest unsuperseded read. The write path is `setConfidence` and the editor
+  dialog exists. **The three empty states are not built and not tested.**
+- **Proof coverage** is `proofCoverage(mark)` in `private/data.js`: highest
+  checkpoint in reached or repeated over the mark target. Derived, never stored.
+- **Checkpoints** move only through `moveCheckpoint`, and `scripts/check-contracts.mjs`
+  follows the call graph to prove nothing else reaches it.
 
-**No generated coaching, ever.** Only Brice writes coaching text. Fabricated
-coaching was published under his name once and had to be retracted. Silence
-beats filler.
+## Two things that are wrong right now
 
-**No em dashes in rendered copy.** En dashes are fine for ranges.
+**Marcus reads about 61 per cent coverage and it is not trustworthy.** Clicking a
+rung used to cycle its state, so exploring the interface advanced authored
+decisions silently. Cycling is gone, replaced by an explicit chooser. **Do not
+repair his states with a migration.** The last commit makes the ladder reachable
+from the current-rung line so Brice can set them by hand. That is the only
+honest repair.
 
-**Plain spoken English.** No coach vocabulary: protocol, stimulus, consolidate,
-prescribed, taper, held easy. Write like a text message.
+**Confidence and coverage may be conflated on screen.** Trace every rendered
+percentage to its source before trusting it. The athlete tab must show
+`latestAuthoredConfidence?.score ?? '—'` and nothing else. Coverage is a separate
+instrument and must never appear as confidence. Until Brice repairs the
+checkpoint states, prefer wording like `established checkpoint` over `proven`,
+because some of that state came from accidental clicks.
 
-**The proof ladder and the block are different shapes.**
-`1 · 2 · 5 · 6 · 8 · 10 · 13.1` is how far has become believable, one rung per
-capability. `2 · 5 · 6 · 6 · 8 · 8 · 10 · 6 · 4` is what the block asks, in order.
-Repeated sixes and eights belong to the evidence, never to the ladder. This was
-conflated once and had to be reverted.
+## Traps that have already cost time
 
-**Nothing advances a ladder automatically.** A judgment records what evidence did
-to the claim. Moving a rung is a separate explicit decision by Brice.
+- **Run all five checkers before every commit.** `node scripts/check-syntax.mjs`,
+  `check-modules`, `check-dom`, `check-copy`, `check-contracts`. Plain
+  `node --check` does **not** catch module syntax errors; a stray brace once hung
+  the whole console on its spinner.
+- **Pushing to `main` costs a paid Netlify build.** Batch.
+- **`style-src` is `'self'`.** No web fonts. The condensed look uses a local
+  stack.
+- **Week 1 in the database is Aug 23 to 29**, Sunday anchored. Illustrative specs
+  show Monday anchored dates. The database is authority; do not migrate dates to
+  match a mockup.
+- **Never delete and recreate `mark_checkpoints` rows.** A migration did once and
+  irreversibly erased every `current` state; the table has no audit trigger.
+- **Hope\u2019s 25 Aug recoveries are 10:01 \u00b7 12:12 \u00b7 12:12** against her own 8:48
+  easy. She rested instead of floating. Every outside agent so far has repeated an
+  inverted version saying "3:00 hard" or "recoveries too short". That is wrong.
 
-**No confidence score and no replacement for one.** Not a count, not a density,
-not "2 pieces of evidence". Those are all scores in other clothes.
+## Standing laws
 
-**Never delete and recreate `mark_checkpoints` rows.** A migration did, and it
-irreversibly erased every `current` state; the table has no audit trigger. Update
-or append in place.
-
-## The recovery inversion, and why it matters
-
-Hope's floats on 25 Aug were recorded as "3:00 each, run hard". Her Garmin says
-**10:01 · 12:12 · 12:12** against her own 8:48 easy. She barely ran them, which is
-why she could hold 6:19, and it is exactly what Brice meant by "recovered a bit
-too much". The record told the opposite story on the one surface whose job is
-reading evidence correctly.
-
-**Every outside agent asked about this so far has repeated the inverted version.**
-If you see "3:00 hard" or "recoveries too short" anywhere, it is wrong.
-
-The real discriminator is each athlete against **their own easy pace**. Jose's
-floats sit within 14s of his 8:16. Hope's run up to 204s slower than her 8:48.
-`session_verdicts` computes this; `easy_pace` is exposed on the view.
-
-## Current state
-
-**Done and live:** Apple sign-in and custom SMTP; the shared doorway with
-password, magic link and Apple; session authoring, revision, filing and
-correction from the desk; the three mechanical verdicts; claim judgments; the
-capability ladder; the squad strip; repeated exposures; surface and conditions on
-a completion; screenshots as collapsed provenance.
-
-**The filing transaction is server-authoritative.** `file_session` and
-`correct_session` are the only way a coach creates or changes a completion; the
-insert and update policies are dropped. Both the browser and any agent must go
-through them. They validate membership, status, athlete identity of the linked
-session, future dates, and piece kinds as a set before writing.
-
-**Waiting on Brice:**
-- Ratify the console brief, or amend it further.
-- **Restore each athlete's current rung by hand.** A bad migration erased them and
-  they cannot be recovered. Click the numeral that should be lime on Hope, Jose
-  and Marcus. Natalie's rows were never touched.
-- The Apple client secret expires **2027-02-24**. Regenerate with
-  `node scripts/apple-client-secret.mjs keys/AuthKey_CQ9529MR2K.p8 | pbcopy`.
-  The signing key is in `keys/`, gitignored because `publish = "."` makes the repo
-  root the web root.
-
-**Known open, not started:**
-- An intake brief for the agent that reads Garmin screenshots.
-- A contract test that a judgment cannot move a rung. The law is written and the
-  behaviour agrees, but nothing enforces it.
-- The app and website seam. See `ROADMAP.md` section 5, corrected.
+No generated coaching, ever. No em dashes in rendered copy. Plain spoken English,
+no coach vocabulary. The proof ladder (`1 2 5 6 8 10 13.1`, one rung per
+capability) and the block (`2 5 6 6 8 8 10 6 4`, what the plan asks in order) are
+different shapes. Nothing advances a ladder automatically. The website is Brice\u2019s
+instrument, not an athlete product.
