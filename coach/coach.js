@@ -1,6 +1,6 @@
 import { authErrorMessage, enabledProviders, getAccessContext, sendMagicLink, signInWithApple, signOut } from '/private/auth.js';
 import { addPrivateNote, createDirection, createRead, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask } from '/private/data.js';
-import { escapeHtml, formatDate, gradeSection, markSection, recordSection } from '/private/record.js';
+import { escapeHtml, gradeSection, markSection, recordSection, weekSection, whoSection } from '/private/record.js';
 
 // Account states only. The desk no longer labels athletes by a stored state —
 // the queue is derived from the record.
@@ -84,80 +84,6 @@ function rosterHtml() {
   }).join('');
 }
 
-const DAY_ORDER = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-
-function weekGridHtml() {
-  const weeks = (selectedRecord.weeks || []).slice().sort((a, b) => a.week_number - b.week_number);
-  const total = selectedRecord.block?.total_weeks || weeks.length || 1;
-  const week = weeks.find((entry) => entry.id === shownWeekId) || selectedRecord.currentWeek || weeks[0] || null;
-  const sessions = week ? (selectedRecord.sessionsByWeek?.[week.id] || []) : [];
-  const attention = selectedRecord.attention || [];
-
-  // Every day of the week has a slot, so an empty day reads as a real decision
-  // rather than an absence, and other sessions can be filled in later.
-  const days = DAY_ORDER.map((label) => {
-    const session = sessions.find((entry) => (entry.day_label || '').toUpperCase().startsWith(label.slice(0, 3)));
-    const version = session?.currentVersion || {};
-    const completion = session ? selectedRecord.completions.find((entry) => entry.planned_session_id === session.id) : null;
-    const flag = session ? attention.find((item) => item.subject_id === session.id || item.subject_id === completion?.id) : null;
-    return {
-      label, session, version, completion, flag,
-      planned: Number(version.prescribed_distance) || 0,
-      actual: Number(completion?.actual_distance) || 0
-    };
-  });
-
-  const scale = Math.max(...days.map((day) => Math.max(day.planned, day.actual)), 1);
-  const plannedTotal = days.reduce((sum, day) => sum + day.planned, 0);
-  const actualTotal = days.reduce((sum, day) => sum + day.actual, 0);
-  const index = week ? weeks.findIndex((entry) => entry.id === week.id) : -1;
-
-  const strip = Array.from({ length: total }, (_, position) => {
-    const number = position + 1;
-    const authored = weeks.find((entry) => entry.week_number === number);
-    const isShown = week && authored && authored.id === week.id;
-    return `<button class="wk-pip${authored ? ' authored' : ''}${isShown ? ' shown' : ''}" type="button"
-      ${authored ? `data-week="${authored.id}"` : 'disabled'} aria-label="Week ${number}">${number}</button>`;
-  }).join('');
-
-  return `<div class="week-grid">
-    <div class="week-head">
-      <div class="wk-nav">
-        <button class="wk-arrow" type="button" data-week-step="-1" ${index > 0 ? '' : 'disabled'} aria-label="Previous week">‹</button>
-        <span class="wk-label">Week ${escapeHtml(week?.week_number ?? '—')}</span><span class="wk-of">of ${escapeHtml(total)}</span>
-        <button class="wk-arrow" type="button" data-week-step="1" ${index >= 0 && index < weeks.length - 1 ? '' : 'disabled'} aria-label="Next week">›</button>
-      </div>
-      <div class="wk-total"><b>${actualTotal.toFixed(1)}</b><span>of ${plannedTotal.toFixed(1)} mi</span></div>
-    </div>
-    <div class="wk-strip">${strip}</div>
-    ${week?.intent ? `<p class="wk-intent">${escapeHtml(week.intent)}</p>` : ''}
-    <div class="week-days">${days.map((day) => {
-      const state = day.completion ? day.completion.status : (day.session ? 'pending' : 'empty');
-      return `<div class="wk-col ${escapeHtml(state)}${day.flag ? ' flagged' : ''}">
-        <span class="wk-dayname">${escapeHtml(day.label)}</span>
-        <div class="wk-stack">
-          ${day.session ? `<span class="wk-plan" style="height:${Math.max(6, (day.planned / scale) * 100)}%"></span>
-          ${day.actual ? `<span class="wk-actual" style="height:${Math.max(6, (day.actual / scale) * 100)}%"></span>` : ''}` : ''}
-        </div>
-        <span class="wk-num">${day.session ? (day.completion ? day.actual || '—' : `<i>${day.planned || '—'}</i>`) : ''}</span>
-        <span class="wk-title" title="${escapeHtml(day.version.title || '')}">${escapeHtml(day.version.title || '')}</span>
-        ${day.flag ? `<button class="wk-flag" type="button" data-write="${escapeHtml((attentionKinds[day.flag.kind] || {}).act || 'read')}" data-subject="${escapeHtml(day.flag.subject_id || '')}" title="${escapeHtml(day.flag.title)}"></button>` : ''}
-      </div>`;
-    }).join('')}</div>
-  </div>`;
-}
-
-
-function decisionHtml() {
-  const athlete = selectedRecord.athlete;
-  const items = selectedRecord.attention || [];
-  const unplaced = items.filter((item) => item.kind === 'week_unclosed' || item.kind === 'authored');
-  return `<article class="situation">
-    <p class="eyebrow">${escapeHtml(athlete.display_name)}${selectedRecord.athlete.target_event ? ` · ${escapeHtml(selectedRecord.athlete.target_event)}` : ''}</p>
-    ${weekGridHtml()}
-    ${unplaced.length ? `<div class="also">${unplaced.map((item) => `<button class="also-row" type="button" data-write="${escapeHtml((attentionKinds[item.kind] || {}).act || 'decision')}" data-subject="${escapeHtml(item.subject_id || '')}"><b>${escapeHtml(item.title)}</b><small>${escapeHtml(item.summary)}</small></button>`).join('')}</div>` : ''}
-  </article>`;
-}
 
 
 
@@ -182,14 +108,6 @@ function coachMarginHtml() {
 }
 
 function deskHtml() {
-  const athlete = selectedRecord.athlete;
-  const block = selectedRecord.block;
-  const raceOn = block?.race_on
-    ? new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric' }).format(new Date(`${block.race_on}T12:00:00`))
-    : null;
-  const goal = block?.goal_statement || [block?.goal_label, block?.target_event].filter(Boolean).join(' · ') || null;
-  // A dashboard, not a document. The same parts her page is built from, laid out
-  // for a desk: her plan on the left, what Brice is judging on the right.
   return `<div class="desk-layout">
     <aside class="desk-rail">
       <button class="rail-toggle" id="railToggle" type="button" aria-label="Show or hide the roster"><span class="rail-bars"></span></button>
@@ -201,14 +119,11 @@ function deskHtml() {
       <div class="rail-collapsed" aria-hidden="true">${roster.map((entry) => `<span class="rail-chip${entry.id === selectedId ? ' active' : ''}${entry.topItem ? ' needs' : ''}">${escapeHtml(initials(entry.display_name))}</span>`).join('')}</div>
     </aside>
     <section class="desk-main" id="deskMain">
-      <header class="who">
-        <h1>${escapeHtml(athlete.display_name)}</h1>
-        ${goal ? `<p class="who-goal">${escapeHtml(goal)}${raceOn ? `<span class="who-date">${escapeHtml(raceOn)}</span>` : ''}</p>` : ''}
-      </header>
       <div class="board">
         <div class="board-main">
+          ${whoSection(selectedRecord)}
           ${markSection(selectedRecord)}
-          ${weekGridHtml()}
+          ${weekSection(selectedRecord, { shownWeekId })}
         </div>
         <div class="board-side">
           ${gradeSection(selectedRecord)}
