@@ -537,3 +537,20 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 @media (prefers-reduced-motion: reduce) {
   .record-shell .crop, .bar span { animation: none; }
 }
+
+
+/* Next week orients without competing with this one. Closed by default: what she
+   does now is the page; what comes next is a glance. */
+.next-week { margin-top: 24px; }
+.next-week > summary {
+  list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+  color: var(--secondary); font-size: 12px; font-weight: 750;
+}
+.next-week > summary::-webkit-details-marker { display: none; }
+.next-week > summary::before { content: "›"; transition: transform .2s var(--ease); }
+.next-week[open] > summary::before { transform: rotate(90deg); }
+.next-week > summary:hover { color: var(--text); }
+.next-intent { margin: 14px 0 4px; color: var(--secondary); font-size: 13px; line-height: 1.5; max-width: 54ch; }
+.next-week .session-row { opacity: .62; }
+.support-group h3 { font-size: 13px; margin: 22px 0 4px; }
+.shared-line { margin: 18px 0 0; color: var(--muted); font-size: 12px; }
