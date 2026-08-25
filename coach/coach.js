@@ -1,6 +1,6 @@
 import { bindAccountSecurity, authErrorMessage, getAccessContext, renderDoorway, signOut } from '/private/auth.js';
-import { addPrivateNote, authorSession, createDirection, createRead, fileForAthlete, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask, reviseSession } from '/private/data.js';
-import { escapeHtml, formatDate, gradeSection, markSection, weekSection, whoSection } from '/private/record.js';
+import { addPrivateNote, authorSession, createDirection, createRead, fileForAthlete, judgeClaim, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask, reviseSession } from '/private/data.js';
+import { escapeHtml, evidenceSection, formatDate, gradeSection, markSection, weekSection, whoSection } from '/private/record.js';
 
 // Account states only. The desk no longer labels athletes by a stored state —
 // the queue is derived from the record.
@@ -35,6 +35,9 @@ const sessionDialog = document.getElementById('sessionDialog');
 const sessionForm = document.getElementById('sessionForm');
 const fileDialog = document.getElementById('fileDialog');
 const fileForm = document.getElementById('fileForm');
+const judgeDialog = document.getElementById('judgeDialog');
+const judgeForm = document.getElementById('judgeForm');
+let judgingCompletionId = null;
 // Set when the session dialog is revising rather than authoring. A revision
 // appends a version; authoring makes the session.
 let revisingSessionId = null;
@@ -91,6 +94,7 @@ function deskHtml() {
         ${weekSection(selectedRecord, { shownWeekId })}
         ${markSection(selectedRecord)}
         ${gradeSection(selectedRecord)}
+        ${evidenceSection(selectedRecord, { interactive: true })}
       </div>
       <div class="board-side">
       </div>
@@ -140,6 +144,8 @@ function bindDesk() {
   document.getElementById('newSession')?.addEventListener('click', () => openSession(null));
   document.getElementById('fileRun')?.addEventListener('click', () => openFile(''));
   // Revise and file from the session itself, so the coach never re-finds it.
+  app.querySelectorAll('[data-judge]').forEach((button) =>
+    button.addEventListener('click', () => openJudge(button.dataset.judge)));
   app.querySelectorAll('[data-revise]').forEach((button) =>
     button.addEventListener('click', () => openSession(button.dataset.revise)));
   app.querySelectorAll('[data-file]').forEach((button) =>
@@ -288,6 +294,40 @@ document.getElementById('addPiece').addEventListener('click', () => {
 });
 document.getElementById('pieceRows').addEventListener('click', (event) => {
   if (event.target.closest('[data-remove-piece]')) event.target.closest('.piece-row').remove();
+});
+
+function openJudge(completionId) {
+  judgeForm.reset();
+  judgingCompletionId = completionId;
+  const mark = selectedRecord.primaryMark;
+  document.getElementById('judgeClaimText').textContent = mark?.claim || mark?.current_question || '';
+  // A judgment can rest on more than one session; the one clicked is implied.
+  judgeForm.elements.completionIds.innerHTML = selectedRecord.completions
+    .filter((completion) => completion.id !== completionId)
+    .map((completion) => `<option value="${completion.id}">${escapeHtml(formatDate(completion.filed_at))} · ${escapeHtml(completion.status)}</option>`)
+    .join('') || '<option value="" disabled>Nothing else filed</option>';
+  document.getElementById('judgeStatus').textContent = '';
+  judgeDialog.showModal();
+}
+
+judgeForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const status = document.getElementById('judgeStatus');
+  const button = judgeForm.querySelector('button[type="submit"]');
+  const also = [...judgeForm.elements.completionIds.selectedOptions].map((option) => option.value).filter(Boolean);
+  button.disabled = true; status.textContent = 'Saving.';
+  try {
+    await judgeClaim({
+      athleteId: selectedRecord.athlete.id,
+      markId: selectedRecord.primaryMark.id,
+      direction: [...judgeForm.elements.direction].find((radio) => radio.checked).value,
+      reason: judgeForm.elements.reason.value,
+      completionIds: [judgingCompletionId, ...also]
+    });
+    judgeDialog.close();
+    await refreshSelected(true);
+  } catch (error) { status.textContent = error.message; }
+  finally { button.disabled = false; }
 });
 
 sessionForm.addEventListener('submit', async (event) => {

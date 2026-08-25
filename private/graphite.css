@@ -1127,3 +1127,57 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   text-underline-offset: 3px; text-decoration-color: var(--edge);
 }
 .link-button:hover { color: var(--text); text-decoration-color: var(--muted); }
+
+/* ── Evidence ────────────────────────────────────────────────────────────────
+   Reading order is the judgment. Recovery decides whether a session can answer
+   anything, so it sits first and heaviest. Splits are the most seductive number
+   and the least decisive, so they sit last and quiet: Hope's 6:19 is the fastest
+   figure anywhere in the record and the least useful. */
+.evidence .claim {
+  font-size: 21px; line-height: 1.4; color: var(--text); margin: 0 0 30px; max-width: 34ch;
+}
+.ev { margin-top: 34px; }
+.ev-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.ev-head h3 { font-size: 15px; font-weight: 600; margin: 0; }
+.ev-head time { color: var(--muted); font-size: 12px; }
+
+.ev-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+.ev-table thead th {
+  text-align: left; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); font-weight: 600; padding: 0 0 6px;
+}
+.ev-table tbody th {
+  text-align: left; font-weight: 500; color: var(--secondary); width: 22%;
+  padding: 11px 0; vertical-align: baseline;
+}
+.ev-table td { padding: 11px 0; vertical-align: baseline; color: var(--secondary); }
+.ev-table thead th + th,
+.ev-table tbody th + td { width: 22%; }
+.ev-table b { font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; }
+.ev-table small { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.45; }
+
+/* The recovery row carries the most weight because it carries the decision. */
+.ev-recovery b { font-size: 19px; letter-spacing: .01em; }
+.ev-effort b { font-size: 16px; }
+
+/* Coral means this cannot be used as proof. It never means the athlete ran badly:
+   Hope's session was well run and still cannot say how far she holds race pace. */
+.ev-recovery.off b,
+.ev-recovery.off small,
+.ev-effort.off b { color: var(--coral); }
+
+.ev-splits th, .ev-splits td { color: var(--muted); font-size: 13px; padding-top: 9px; }
+
+.ev-judgment { margin: 14px 0 0; font-size: 14px; line-height: 1.5; color: var(--text); }
+.ev-judgment span {
+  display: block; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 5px;
+}
+.ev-judgment.supports span { color: var(--green); }
+.ev-judgment.does_not_answer span,
+.ev-judgment.against span { color: var(--coral); }
+
+@media (max-width: 560px) {
+  .ev-table tbody th { width: 30%; }
+  .ev-recovery b { font-size: 17px; }
+}

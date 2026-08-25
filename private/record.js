@@ -292,3 +292,89 @@ export function renderAthleteRecord(record, { interactive = false, projection = 
     ${accountSection(record, email, interactive)}
   </div>`;
 }
+
+function paceText(seconds) {
+  if (!seconds && seconds !== 0) return '';
+  const value = Math.round(seconds);
+  return `${Math.floor(value / 60)}:${String(value % 60).padStart(2, '0')}`;
+}
+
+const directionWords = {
+  supports: 'moves the claim',
+  against: 'works against the claim',
+  does_not_answer: 'does not answer the claim'
+};
+
+// A session, read in the order that decides what it is worth. Recovery sits first
+// and largest because it determines whether the session can answer anything;
+// splits sit last and quiet because they are the most seductive and the least
+// decisive. Hope's 6:19 is the fastest number on either page and the least useful.
+export function evidenceSection(record, { interactive = false } = {}) {
+  const mark = record.primaryMark;
+  if (!mark) return '';
+  const verdicts = record.verdicts || [];
+  if (!verdicts.length) return '';
+
+  const rows = verdicts.slice()
+    .sort((a, b) => new Date(b.filed_at || 0) - new Date(a.filed_at || 0))
+    .map((verdict) => {
+      const pieces = (record.pieces || []).filter((piece) => piece.completion_id === verdict.completion_id);
+      const floats = pieces.filter((piece) => piece.kind === 'float');
+      const reps = pieces.filter((piece) => piece.kind === 'rep');
+      const easy = verdict.easy_pace;
+
+      // The gap is the evidence. 10:01 alone looks like a slow mile; 10:01 beside
+      // her own 8:48 easy is the record of someone who stopped running.
+      const gaps = floats.map((piece) => piece.pace_seconds - easy).filter((gap) => Number.isFinite(gap));
+      const worst = gaps.length ? Math.max(...gaps) : null;
+      const rested = verdict.float_verdict === 'outside';
+      const reference = easy && gaps.length
+        ? (rested
+            ? `up to ${Math.round(worst)}s slower than the ${paceText(easy)} easy either side of it`
+            : `inside ${Math.round(Math.max(...gaps.map((gap) => Math.abs(gap))))}s of the ${paceText(easy)} easy either side of it`)
+        : '';
+
+      const judgment = (record.judgments || []).find((item) => item.completionIds.includes(verdict.completion_id));
+      const effortOff = verdict.effort_verdict === 'outside';
+
+      return `<article class="ev">
+        <div class="ev-head">
+          <h3>${escapeHtml(verdict.title || 'Session')}</h3>
+          <time>${escapeHtml(formatDate(verdict.filed_at))}</time>
+        </div>
+        <table class="ev-table">
+          <thead><tr><th></th><th>asked</th><th>happened</th></tr></thead>
+          <tbody>
+            <tr class="ev-recovery${rested ? ' off' : ''}">
+              <th>Recovery</th>
+              <td>easy</td>
+              <td>
+                <b>${floats.map((piece) => escapeHtml(paceText(piece.pace_seconds))).join('  ')}</b>
+                ${reference ? `<small>${escapeHtml(reference)}</small>` : ''}
+              </td>
+            </tr>
+            <tr class="ev-effort${effortOff ? ' off' : ''}">
+              <th>Effort</th>
+              <td>${verdict.rpe_low ? `${escapeHtml(verdict.rpe_low)}–${escapeHtml(verdict.rpe_high)}` : 'not asked'}</td>
+              <td><b>${verdict.rpe ? escapeHtml(verdict.rpe) : ''}</b></td>
+            </tr>
+            <tr class="ev-splits">
+              <th>Miles</th>
+              <td>${verdict.pace_verdict === 'not prescribed' ? 'not asked' : `${escapeHtml(paceText(verdict.pace_low))}–${escapeHtml(paceText(verdict.pace_high))}`}</td>
+              <td>${reps.map((piece) => escapeHtml(paceText(piece.pace_seconds))).join(' · ')}</td>
+            </tr>
+          </tbody>
+        </table>
+        ${judgment
+          ? `<p class="ev-judgment ${escapeHtml(judgment.direction)}"><span>${escapeHtml(directionWords[judgment.direction])}</span>${escapeHtml(judgment.reason)}</p>`
+          : interactive
+            ? `<button class="link-button" type="button" data-judge="${escapeHtml(verdict.completion_id)}">Say what this did to the claim</button>`
+            : ''}
+      </article>`;
+    }).join('');
+
+  return `<section class="record-section evidence" id="evidence">
+    <p class="claim">${escapeHtml(mark.claim || mark.current_question)}</p>
+    ${rows}
+  </section>`;
+}

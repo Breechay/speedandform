@@ -54,7 +54,14 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     supabase.from('mark_gate_conditions').select('*').eq('athlete_id', athleteId).order('position'),
     supabase.from('movement_reads').select('*').eq('athlete_id', athleteId).order('position'),
     supabase.from('support_prescriptions').select('*').eq('athlete_id', athleteId).eq('active', true).maybeSingle(),
-    supabase.from('support_items').select('*').eq('athlete_id', athleteId).order('group_position').order('item_position')
+    supabase.from('support_items').select('*').eq('athlete_id', athleteId).order('group_position').order('item_position'),
+    // The three mechanical verdicts, and the pieces they were computed from. The
+    // easy pace matters as much as the verdict: 10:01 is only evidence of resting
+    // next to her own 8:48.
+    supabase.from('session_verdicts').select('*').eq('athlete_id', athleteId),
+    supabase.from('session_pieces').select('*').eq('athlete_id', athleteId).order('position'),
+    supabase.from('mark_standing_judgments').select('*').eq('athlete_id', athleteId).order('created_at', { ascending: false }),
+    supabase.from('mark_judgment_completions').select('*')
   ];
 
   if (coach) {
@@ -75,6 +82,7 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     baselinesResponse, completionsResponse, directionsResponse, readsResponse,
     decisionsResponse, marksResponse, signalsResponse, checkpointsResponse,
     gatesResponse, movementResponse, supportResponse, supportItemsResponse,
+    verdictsResponse, piecesResponse, judgmentsResponse, judgmentLinksResponse,
     taskResponse, evidenceResponse, actionsResponse, privateNotesResponse, adminResponse
   ] = responses;
 
@@ -131,6 +139,13 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     movementReads: result(movementResponse.data, movementResponse.error),
     support: supportResponse.data,
     supportItems: result(supportItemsResponse.data, supportItemsResponse.error),
+    verdicts: result(verdictsResponse.data, verdictsResponse.error),
+    pieces: result(piecesResponse.data, piecesResponse.error),
+    judgments: result(judgmentsResponse.data, judgmentsResponse.error).map((judgment) => ({
+      ...judgment,
+      completionIds: result(judgmentLinksResponse.data, judgmentLinksResponse.error)
+        .filter((link) => link.judgment_id === judgment.id).map((link) => link.completion_id)
+    })),
     task,
     taskEvidence: task ? result(evidenceResponse?.data, evidenceResponse?.error).filter((item) => item.task_id === task.id) : [],
     taskActions: task ? result(actionsResponse?.data, actionsResponse?.error).filter((item) => item.task_id === task.id) : [],
@@ -448,4 +463,36 @@ export async function fileForAthlete(payload, pieces = []) {
     if (piecesError) throw piecesError;
   }
   return completion;
+}
+
+// Brice's judgment of what a session did to the claim. The mechanical verdicts
+// inform it; they never make it. Amending writes a new judgment naming the one it
+// replaces, so the earlier reading stays legible.
+export async function judgeClaim(payload) {
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
+  if (userError) throw userError;
+  if (!user) throw new Error('Sign in before judging.');
+  if (!String(payload.reason || '').trim()) throw new Error('A judgment needs your reason.');
+
+  const { data: judgment, error } = await supabase
+    .from('mark_judgments')
+    .insert({
+      athlete_id: payload.athleteId,
+      mark_id: payload.markId,
+      direction: payload.direction,
+      reason: payload.reason.trim(),
+      supersedes: payload.supersedes || null,
+      authored_by: user.id
+    })
+    .select('*')
+    .single();
+  if (error) throw error;
+
+  if (payload.completionIds?.length) {
+    const { error: linkError } = await supabase.from('mark_judgment_completions').insert(
+      payload.completionIds.map((completionId) => ({ judgment_id: judgment.id, completion_id: completionId }))
+    );
+    if (linkError) throw linkError;
+  }
+  return judgment;
 }

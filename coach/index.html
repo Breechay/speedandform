@@ -92,6 +92,30 @@
     </form>
   </dialog>
 
+  <dialog class="dialog" id="judgeDialog">
+    <form class="dialog-inner" id="judgeForm">
+      <div class="dialog-head">
+        <h2 id="judgeContext">What did this do to the claim?</h2>
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Close">&times;</button>
+      </div>
+      <p class="claim" id="judgeClaimText"></p>
+      <div class="switch" role="group" aria-label="Direction">
+        <label><input type="radio" name="direction" value="supports" checked><span>Moves it</span></label>
+        <label><input type="radio" name="direction" value="does_not_answer"><span>Does not answer it</span></label>
+        <label><input type="radio" name="direction" value="against"><span>Works against it</span></label>
+      </div>
+      <label class="field-label lead">Why
+        <textarea class="field-textarea" name="reason" required placeholder="Your words. This is the part that is still legible in six weeks."></textarea>
+      </label>
+      <details class="more">
+        <summary>Other runs this rests on</summary>
+        <label class="field-label">Runs<select class="field-select" name="completionIds" multiple size="4"></select></label>
+      </details>
+      <p class="status-message" id="judgeStatus" role="status"></p>
+      <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Save <span class="icon-arrow">&rarr;</span></button></div>
+    </form>
+  </dialog>
+
   <dialog class="dialog" id="sessionDialog">
     <form class="dialog-inner" id="sessionForm">
       <div class="dialog-head">
