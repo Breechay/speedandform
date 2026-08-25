@@ -1,5 +1,5 @@
 import { bindAccountSecurity, authErrorMessage, getAccessContext, renderDoorway, signOut } from '/private/auth.js';
-import { addPrivateNote, authorSession, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask, reviseSession } from '/private/data.js';
+import { addPrivateNote, authorSession, proofCoverage, setConfidence, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask, reviseSession } from '/private/data.js';
 import { escapeHtml, evidenceSection, formatDate, progressionSection, gradeSection, whoSection } from '/private/record.js';
 
 // Account states only. The desk no longer labels athletes by a stored state —
@@ -39,6 +39,8 @@ const fileForm = document.getElementById('fileForm');
 let editingCompletionId = null;
 const judgeDialog = document.getElementById('judgeDialog');
 const judgeForm = document.getElementById('judgeForm');
+const confidenceDialog = document.getElementById('confidenceDialog');
+const confidenceForm = document.getElementById('confidenceForm');
 let judgingCompletionId = null;
 // Set when the session dialog is revising rather than authoring. A revision
 // appends a version; authoring makes the session.
@@ -180,6 +182,36 @@ function athleteMenuHtml() {
   </details>`;
 }
 
+function confidenceHtml() {
+  const mark = selectedRecord.primaryMark;
+  if (!mark) return '';
+  const read = mark.confidence || (selectedRecord.confidenceReads || [])[0] || null;
+  const cover = proofCoverage(mark);
+  const goal = [selectedRecord.athlete.goal_label, selectedRecord.athlete.target_event]
+    .filter(Boolean).join(' · ');
+
+  // Missing confidence is not zero. Nothing has been said yet, and 0% would be a
+  // statement Brice never made.
+  const score = read
+    ? `<b>${escapeHtml(read.score)}<i>%</i></b><span>${escapeHtml(formatDate(read.created_at))}</span>`
+    : `<b class="unset">&mdash;</b><span>not set</span>`;
+
+  return `<div class="consoleInstruments">
+    <button class="inst inst--confidence" type="button" id="setConfidence">
+      <span class="inst-label">Goal confidence</span>
+      ${score}
+      ${goal ? `<span class="inst-goal">${escapeHtml(goal)}</span>` : ''}
+    </button>
+    ${cover ? `<div class="inst inst--coverage">
+      <span class="inst-label">Proof coverage</span>
+      <b>${escapeHtml(Number(cover.established.toFixed(1)))}<i>/${escapeHtml(cover.target)} mi</i></b>
+      <span class="inst-rail" aria-hidden="true"><span style="width:${cover.percent}%"></span></span>
+      <span class="inst-goal">${escapeHtml(cover.percent)}% of the race proven</span>
+    </div>` : ''}
+    ${read ? `<p class="inst-why">${escapeHtml(read.reason)}<em>next: ${escapeHtml(read.next_evidence)}</em></p>` : ''}
+  </div>`;
+}
+
 function deskHtml() {
   // One typographic instrument on a flat graphite field.
   const mark = selectedRecord.primaryMark;
@@ -209,6 +241,11 @@ function deskHtml() {
         ${athleteMenuHtml()}
       </div>
       
+      <!-- Two instruments. Confidence is Brice's judgment about the race;
+           coverage is the distance he has established. They share a row and
+           never an axis, because they are different quantities. -->
+      ${confidenceHtml()}
+
       <!-- Claim -->
       ${claim ? `<p class="consoleClaim">${escapeHtml(claim)}</p>` : ''}
       
@@ -323,6 +360,7 @@ function bindDesk() {
     else openCoaching(button.dataset.write, button.dataset.subject);
   }));
   bindAccountSecurity();
+  document.getElementById('setConfidence')?.addEventListener('click', openConfidence);
   document.getElementById('newSession')?.addEventListener('click', () => openSession(null));
   
   // Console actions using data-console-action
@@ -549,6 +587,52 @@ function openJudge(completionId) {
   document.getElementById('judgeStatus').textContent = '';
   judgeDialog.showModal();
 }
+
+function openConfidence() {
+  confidenceForm.reset();
+  const mark = selectedRecord.primaryMark;
+  const read = mark?.confidence || (selectedRecord.confidenceReads || [])[0] || null;
+  document.getElementById('confidenceGoal').textContent =
+    [selectedRecord.athlete.goal_label, selectedRecord.athlete.target_event, selectedRecord.athlete.race_on]
+      .filter(Boolean).join(' · ');
+  confidenceForm.elements.completionIds.innerHTML = selectedRecord.completions
+    .map((completion) => `<option value="${completion.id}">${escapeHtml(formatDate(completion.filed_at))} · ${escapeHtml(completion.status)}</option>`)
+    .join('') || '<option value="" disabled>Nothing filed yet</option>';
+  // Amending starts from what stands, so the change is visible as a change.
+  if (read) {
+    confidenceForm.elements.score.value = read.score;
+    confidenceForm.elements.nextEvidence.value = read.next_evidence || '';
+    confidenceForm.elements.interveneIf.value = read.intervene_if || '';
+  }
+  document.getElementById('confidenceStatus').textContent = '';
+  confidenceDialog.showModal();
+}
+
+confidenceForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const status = document.getElementById('confidenceStatus');
+  const button = confidenceForm.querySelector('button[type="submit"]');
+  const mark = selectedRecord.primaryMark;
+  const standing = mark?.confidence || (selectedRecord.confidenceReads || [])[0] || null;
+  const f = confidenceForm.elements;
+  button.disabled = true; status.textContent = 'Saving.';
+  try {
+    await setConfidence({
+      athleteId: selectedRecord.athlete.id,
+      markId: mark.id,
+      score: f.score.value,
+      reason: f.reason.value,
+      nextEvidence: f.nextEvidence.value,
+      interveneIf: f.interveneIf.value,
+      // Amending names what it replaces, so the earlier reading stays readable.
+      supersedes: standing?.id || null,
+      completionIds: [...f.completionIds.selectedOptions].map((option) => option.value).filter(Boolean)
+    });
+    confidenceDialog.close();
+    await refreshSelected(true);
+  } catch (error) { status.textContent = error.message; }
+  finally { button.disabled = false; }
+});
 
 judgeForm.addEventListener('submit', async (event) => {
   event.preventDefault();

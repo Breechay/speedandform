@@ -1719,3 +1719,43 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 .expo td b { display: block; font-size: 14px; font-weight: 600; color: var(--edge); }
 .expo td.done b { color: var(--text); }
 .expo td span { display: block; margin-top: 3px; font-size: 11.5px; color: var(--muted); }
+
+/* ── The two instruments ─────────────────────────────────────────────────────
+   Confidence is Brice's judgment about the race. Coverage is the distance he has
+   established. They sit in one row and never on one axis: five of 13.1 miles is
+   38 per cent proven and says nothing about whether he believes in the day. */
+.consoleInstruments {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, max-content));
+  gap: clamp(28px, 5vw, 72px); align-items: start; margin-bottom: 34px;
+}
+.inst { background: none; border: 0; padding: 0; text-align: left; color: inherit; font: inherit; }
+.inst--confidence { cursor: pointer; }
+.inst-label {
+  display: block; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 8px;
+}
+.inst b {
+  display: block; font-size: clamp(38px, 4.6vw, 64px); font-weight: 800;
+  letter-spacing: -.035em; line-height: .95; color: var(--text); font-variant-numeric: tabular-nums;
+}
+.inst b i { font-style: normal; font-size: .42em; font-weight: 600; color: var(--muted); margin-left: 3px; }
+/* Nothing said yet is not zero. 0% would be a statement Brice never made. */
+.inst b.unset { color: var(--edge); }
+.inst > span:not(.inst-label):not(.inst-goal):not(.inst-rail) {
+  display: block; margin-top: 7px; font-size: 11.5px; color: var(--muted);
+}
+.inst-goal { display: block; margin-top: 6px; font-size: 12px; color: var(--secondary); }
+.inst--confidence:hover b { color: var(--lime); }
+
+/* A quiet distance rail, deliberately not the confidence graph. */
+.inst-rail { display: block; height: 2px; margin-top: 12px; width: 190px; background: var(--raised); }
+.inst-rail span { display: block; height: 100%; background: var(--secondary); }
+
+.inst-why {
+  grid-column: 1 / -1; margin: 4px 0 0; max-width: 56ch;
+  font-size: 14.5px; line-height: 1.5; color: var(--text);
+}
+.inst-why em { display: block; margin-top: 6px; font-style: normal; font-size: 12.5px; color: var(--muted); }
+
+.pct-input { display: flex; align-items: baseline; gap: 6px; }
+.pct-input span { color: var(--muted); font-size: 14px; }
