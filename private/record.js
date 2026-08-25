@@ -73,16 +73,13 @@ function markSection(record) {
   const mark = record.primaryMark;
   if (!mark) return '';
   const checkpoints = mark.checkpoints.map((point) => `<span class="checkpoint ${escapeHtml(point.state)}"><span>${escapeHtml(point.label)}</span></span>`).join('');
-  const gates = mark.gates.map((gate) => `<div class="gate-item ${escapeHtml(gate.state)}">${escapeHtml(gate.condition_text)}</div>`).join('');
   const current = mark.current_value ?? '—';
   const target = mark.target_value ? `of ${mark.target_value} ${mark.unit || ''}` : mark.unit || '';
   return `<section class="record-section" id="mark">
     <div class="section-head"><div><p class="eyebrow">The mark</p><h2>${escapeHtml(mark.label)}</h2></div></div>
     <div class="mark-number"><strong>${escapeHtml(current)}</strong><span>${escapeHtml(target)}</span></div>
-    <p class="mark-label">The mark is evidence, not a countdown.</p>
-    ${checkpoints ? `<div class="checkpoint-track" aria-label="Coach-authored distance checkpoints">${checkpoints}</div>` : ''}
-    <div class="question-box"><span>Current coaching question</span><p>${escapeHtml(mark.current_question)}</p></div>
-    ${gates ? `<div class="gate-list">${gates}</div><p class="all-four">All four. Repeating a distance is a decision, not a miss.</p>` : ''}
+    ${checkpoints ? `<div class="checkpoint-track" aria-label="Distance checkpoints">${checkpoints}</div>` : ''}
+    ${mark.current_question ? `<div class="question-box"><span>Current coaching question</span><p>${escapeHtml(mark.current_question)}</p></div>` : ''}
   </section>`;
 }
 
@@ -94,8 +91,8 @@ function readSection(record) {
     <p class="marker-cue">${escapeHtml(marker.cue)}</p>
   </article>`).join('');
   return `<section class="record-section" id="read">
-    <div class="section-head"><div><p class="eyebrow">The read</p><h2>What stays. What develops.</h2></div></div>
-    <div class="keep-callout"><strong>KEEP</strong><p>${escapeHtml(latestRead?.athlete_text || 'Protect what already works.')}</p></div>
+    <div class="section-head"><div><p class="eyebrow">The read</p></div></div>
+    ${latestRead ? `<p class="latest-read">${escapeHtml(latestRead.athlete_text)}</p>` : ''}
     <div class="marker-list">${markers}</div>
   </section>`;
 }
@@ -112,7 +109,6 @@ function supportSection(record) {
   </div>`).join('');
   return `<section class="record-section" id="support">
     <div class="section-head"><div><p class="eyebrow">Support</p><h2>${escapeHtml(record.support.title)}</h2></div></div>
-    <p class="section-summary">${escapeHtml(record.support.summary || '')}</p>
     ${groups}
     <p class="shared-line">${record.support.shared_with_strength_coach ? 'Shared with your strength coach.' : 'Not yet shared with your strength coach.'}</p>
   </section>`;
@@ -129,8 +125,13 @@ function recordSection(record) {
   events.sort((a, b) => new Date(b.date) - new Date(a.date));
   const baseline = record.baselines[0];
   return `<section class="record-section" id="record">
-    <div class="section-head"><div><p class="eyebrow">The record</p><h2>Where this started.</h2></div></div>
-    ${baseline ? `<p class="baseline-copy">${escapeHtml(baseline.running_history)} Longest run ${escapeHtml(baseline.longest_run)} miles. ${escapeHtml(baseline.current_frequency)} touches a week. ${escapeHtml(baseline.constraints)} ${escapeHtml(baseline.strength_schedule)}</p>` : ''}
+    <div class="section-head"><div><p class="eyebrow">The record</p></div></div>
+    ${baseline ? `<dl class="baseline">
+      <div><dt>Before the block</dt><dd>${escapeHtml(baseline.running_history)}</dd></div>
+      <div><dt>Longest run</dt><dd>${escapeHtml(baseline.longest_run)} mi</dd></div>
+      <div><dt>Frequency</dt><dd>${escapeHtml(baseline.current_frequency)} a week</dd></div>
+      <div><dt>Constraints</dt><dd>${escapeHtml(baseline.constraints)}</dd></div>
+    </dl>` : ''}
     <div class="record-list">${events.map((event) => `<article class="record-event">
       <div class="record-event-top"><span class="record-event-type">${escapeHtml(event.type)}</span><time>${formatDate(event.date)}</time></div>
       <p>${escapeHtml(event.body)}</p>

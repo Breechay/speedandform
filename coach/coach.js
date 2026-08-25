@@ -152,6 +152,8 @@ function deskHtml() {
   const headline = needing
     ? `${needing === 1 ? 'One athlete needs' : `${needing} athletes need`} you.`
     : 'Nothing is waiting on you.';
+  // One athlete at a time: her record as she sees it, with what needs Brice
+  // above it and his own margin below. One composition, not two documents.
   return `<div class="desk-layout">
     <aside class="desk-rail">
       <p class="eyebrow">${new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric' }).format(new Date())}</p>
@@ -160,10 +162,8 @@ function deskHtml() {
     </aside>
     <section class="desk-main" id="deskMain">
       ${decisionHtml()}
-      <div class="desk-columns">
-        ${coachMarginHtml()}
-        <details class="record-drawer"><summary><span>${escapeHtml(selectedRecord.athlete.first_name)}'s record, as ${escapeHtml(selectedRecord.athlete.first_name)} sees it</span></summary><div class="projection-frame"><div class="projection-scroll"><div id="recordProjection">${renderAthleteRecord(selectedRecord, { projection: true })}</div></div></div></details>
-      </div>
+      <div class="her-view" id="recordProjection">${renderAthleteRecord(selectedRecord, { projection: true })}</div>
+      ${coachMarginHtml()}
     </section>
   </div>`;
 }
