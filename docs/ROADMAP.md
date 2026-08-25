@@ -93,13 +93,20 @@ nothing. The view falls back to the *original* version when none predates filing
 never the newest, because falling back to the newest is the retroactive-band trap
 wearing a different hat.
 
-## 3 · Key-session entry
+## 3 · Key-session entry — DONE (2026-08-28)
 
-Brice files these himself from Garmin and Strava. Today that is a SQL migration. It
-needs to be a form: distance, duration, per-rep splits, float paces, RPE, surface,
-conditions, and his sentence.
+Authoring, revising, and filing all happen from the desk. The `…` menu carries
+**Add a session** and **File a run**; a session card carries revise and file.
 
-**Proof:** a session is entered in under a minute without touching the database.
+The blocker was never the form. `planned_sessions` and `planned_session_versions`
+carried read policies and **no write policies**, and the only completions insert
+policy demanded `source = 'athlete'`. The browser was never permitted to author,
+which is why every Tuesday cost a migration.
+`20260828120000_coach_authoring.sql` opens those three doors and no others.
+
+A revision appends a version. It cannot overwrite one: the immutability trigger
+rejects updates, which is what kept the band Jose's verdict was judged against
+intact when the band later moved.
 
 ## 4 · Unpark the app's progression
 
@@ -116,19 +123,45 @@ compressed floats does not advance anything.
 
 ## 5 · Gate A — close the seam
 
-Right now the app holds the ladder and the site holds the plan. **Two records of the
-same thing, and they will drift the first time one changes.** That is the seam.
+**Corrected 2026-08-28 after reading both codebases. The earlier description of
+this step was wrong in three ways.**
 
-`FORM/Forge/ForgeSupabaseBridge.swift` is 298 lines and already does the whole
-mechanism: Keychain token storage, a `form://forge-auth?access_token=` deep link that
-carries a session from web to app after an invite, and offline enqueue/flush queues.
+It is not two records of one plan that might drift. They are **two different
+Supabase projects**: the site is `pbgsjjegycacodiltbhn`, the app points at
+`zlhxvzgublgtuxplcjjl`, which is paused. Separate databases, separate auth.
 
-**Gate A does not need Sign in with Apple inside FORM.** The athlete signs in on the
-website and the app receives the token by deep link, exactly as FORGE already does in
-production.
+**The Forge bridge is not the mechanism.** Forge is a standalone app now and was
+never used with these athletes. Everything Forge is sealed inside `FORM/Forge/`;
+the Plan, Ledger, and Today surfaces never touch it. Rewiring it buys nothing.
+The running side gets its own client instead.
 
-**Proof:** a session filed in FORM appears on the website under the right athlete, and
-the plan exists in one place rather than two.
+**And the app's training record never leaves the phone.** Filed sessions live in
+`FORM/Ledger/` and iCloud KVS. No table anywhere holds what an athlete actually
+ran in the app.
+
+So the seam is three jobs:
+
+**5a — the running side gets a Supabase client** pointed at the live project,
+reusing the deep-link token pattern rather than the Forge bridge itself.
+
+**5b — the app files completions** to `session_completions` with `session_pieces`
+for splits, in the shape step 3 already writes. A run logged on her phone appears
+on the desk.
+
+**5c — Postgres supplies the prescription; the app keeps composing the coaching.**
+Not "the app reads its plan from Postgres." `planned_session_versions` holds a
+prescription: title, distance, intent, details. `FORMDayPlan` holds a coached day:
+purpose, what to watch for, what to fix, the evidence question, typed V3 work,
+ghost overlays. Twenty-five fields of authorship that do not belong in a web form
+and should not be rebuilt there. The site supplies what is prescribed; the app's
+doctrine engine keeps composing everything around it.
+
+**Order matters: 3 before 5c.** The entry form's fields *are* the contract for
+what the app can receive. Building 5c first would mean guessing at that contract
+and paying for it twice.
+
+**Proof:** a session filed in FORM appears on the website under the right athlete,
+and a Tuesday authored on the desk appears on her phone.
 
 ## 6 · Effort travels with the session in the app
 
@@ -140,22 +173,23 @@ matters, instead of arriving as a text the next morning.
 
 ---
 
-## Brice's manual items
+## Brice's manual items — ALL DONE (2026-08-25)
 
-Not code, and each one blocks something. Worth doing in a window with energy for it,
-since they are all account plumbing.
-
-| | What | What it unblocks |
+| | | |
 |---|---|---|
-| **A** | Apple provider credentials in Supabase (Services ID, Team ID, Key ID, private key) | The doorway becomes Apple-only on its own. Email is the fallback until then, so nothing is broken meanwhile. |
-| **B** | Custom SMTP, verified on a **subdomain** | Sign-in emails at scale, and the Graphite email template. Supabase's built-in mailer caps at a handful an hour, which four athletes signing in will hit. Verify on `send.speedandform.com`; a root SPF change breaks your Cloudflare inbound routing. |
-| **C** | Natalie's athlete invite | Her page has never been seen by a signed-in athlete. Every existing invite is a claimed coach invite of yours. |
-| **D** | Netlify billing | Production deploys. Local development does not need it. |
+| A | Sign in with Apple | Services ID `com.speedandform.web`, Team `L5VBZ7L4U2`, Key `CQ9529MR2K`. Supabase reports `apple` enabled; the doorway detects it with no deploy. |
+| B | Custom SMTP | Resend on `send.speedandform.com`, 30 emails/hour. |
+| C | Natalie's invite | `natalie.ramirez03@gmail.com`, claims on first verified sign-in. |
+| D | Netlify deploy previews | Off. Only pushes to `main` cost a build. |
 
-None of these block steps 1 to 4. **B** is the real one — it is the difference between
-a demo and four people actually using this.
+**One date to keep: 2027-02-24.** The Apple client secret is a JWT and Apple caps
+it at six months. When it lapses, web sign-in stops with no warning. The signing
+key is in `keys/` (gitignored, because `publish = "."` makes the repo root the web
+root) and regenerating is one command:
 
----
+```
+node scripts/apple-client-secret.mjs keys/AuthKey_CQ9529MR2K.p8 | pbcopy
+```
 
 ## Not now
 
