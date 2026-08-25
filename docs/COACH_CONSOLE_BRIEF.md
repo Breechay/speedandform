@@ -1,6 +1,6 @@
 # The Coach Console
 
-**Draft.** Not ratified. This supersedes `EVIDENCE_INFOGRAPHIC_BRIEF.md` for anything
+**Ratified 2026-08-29.** This supersedes `EVIDENCE_INFOGRAPHIC_BRIEF.md` for anything
 about the desk. Where documents disagree, the order in `FORM_MASTER.md` governs,
 and Brice's live coaching decisions outrank every document here.
 
@@ -45,13 +45,24 @@ the claim is testing. It answers how far has become believable.
 
 **Marcus's evidence additionally requires OUTSIDE, and OUTSIDE is not a rung.**
 It is a condition on whether a session counts, recorded as `surface` on the
-completion. A treadmill six does not advance him. Putting it in the ladder would
-make a condition look like a capability.
+completion. A treadmill six cannot be used to justify moving Marcus's ladder.
+Putting OUTSIDE in the ladder would make a condition look like a capability.
 
 **Natalie is a separate row.** Her question is different: distance progression
 and a movement gate. She appears in the strip with her own marks, visibly not on
 the shared geometry. She does not disappear from the desk because she stopped
 being a website user.
+
+Her live authored ladder is:
+
+```
+3 · 5 · 6 · 8 · 10 · 12 · 13.1
+```
+
+That sequence supersedes the earlier `3 · 5 · 6 · 7.5 · 9 · 10.5 · 13.1`
+proposal. `20260825230000_round_the_ladder.sql` records Brice's decision to round
+7.5 to 8, 9 to 10, and 10.5 to 12. Never reconstruct Natalie's rungs from an
+older brief or example.
 
 **The strip does not rank.** No "ahead", "behind", "on track", "stalled", or any
 word that orders one athlete against another. Equal rungs make comparison
@@ -97,7 +108,8 @@ In order:
 1. The claim, in Brice's words
 2. Current rung and next proposed rung
 3. What is coming
-4. The latest key session: **recovery first, effort second, splits quiet**
+4. The latest key session. When it contains recoveries: **recovery first, effort
+   second, splits quiet**
 5. Repeated exposures of the same distance, and what changed between them. Six at
    effort 8 and six at effort 7 is the whole argument for repeating a rung, and
    this is the only place it can be seen
@@ -225,3 +237,40 @@ irreversibly erased every `current` and `retired` state: only `reached` and
 trigger to fall back on. Ids changed too.
 
 Future corrections update or append in place, preserving ids and state.
+
+### One-time repair from the destructive migration
+
+The deleted `current` states cannot be recovered from the database. Brice must
+manually choose the current lime rung for Hope, Jose and Marcus. Do not infer it
+from distance, the block, the latest completion, or a judgment. Natalie's rows
+were not touched.
+
+Once restored, each selection is the new authority. Record it normally; do not
+create a special historical value pretending the erased state is known.
+
+---
+
+## 11 · Build state at ratification
+
+Already live:
+
+- authored capability checkpoints rendered as numerals
+- recovery first, effort second, splits quiet
+- recovery resolved against the athlete's own easy pace
+- append-only, multi-session judgments with three directions
+- screenshot provenance collapsed by default
+- manual filing and agent filing through the same server-authoritative transaction
+- correction history for both the completion and its ordered session pieces
+- correction reason
+- repeated exposures grouped under the selected athlete rather than duplicated
+  as capability rungs
+
+Still required:
+
+- the four-athlete squad strip
+- manual restoration of the current rung for Hope, Jose and Marcus
+- a contract test proving that writing `moves it` cannot change a checkpoint
+
+Do not rebuild live items merely because they appear in this brief. Audit the
+current implementation first, then change only what is absent or violates the
+ratified law.

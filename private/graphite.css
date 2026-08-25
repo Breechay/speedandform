@@ -1257,26 +1257,32 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 
 /* ── Squad strip ─────────────────────────────────────────────────────────────
    Orientation only. Three athletes share one claim, so their rungs align and the
-   eye reads them together. Nothing here orders one runner against another. */
+   eye reads them together. Nothing here orders one runner against another, and
+   no numeral is ever derived from how far somebody actually ran. */
 .sq {
-  display: grid; grid-template-columns: 96px 1fr auto; gap: 18px; align-items: center;
-  width: 100%; background: none; border: 0; padding: 13px 0; cursor: pointer;
+  display: grid; grid-template-columns: 108px 1fr auto; gap: 22px; align-items: baseline;
+  width: 100%; background: none; border: 0; padding: 9px 0; cursor: pointer;
   color: inherit; font: inherit; text-align: left;
 }
-.sq-name { font-size: 15px; font-weight: 600; color: var(--secondary); }
-.sq[aria-current] .sq-name { color: var(--text); }
-.sq-ladder { display: flex; gap: clamp(8px, 1.6vw, 22px); min-width: 0; }
+/* Selection reads through weight, not another colour. */
+.sq-name { font-size: 14px; font-weight: 500; color: var(--muted); letter-spacing: .02em; }
+.sq[aria-current] .sq-name { color: var(--text); font-weight: 700; }
+.sq-ladder { display: flex; gap: clamp(12px, 2.4vw, 34px); min-width: 0; }
 .sq-ladder em { font-style: normal; font-size: 12px; color: var(--muted); }
 .sq-rung {
-  font-size: 14px; font-weight: 700; color: var(--edge); font-variant-numeric: tabular-nums;
+  font-size: clamp(17px, 1.7vw, 22px); font-weight: 700; letter-spacing: -.02em;
+  color: var(--edge); font-variant-numeric: tabular-nums;
 }
 .sq-rung.reached, .sq-rung.repeated { color: var(--secondary); }
-.sq-rung.current { color: var(--lime); }
-.sq-flag { font-size: 10px; letter-spacing: .09em; text-transform: uppercase; color: var(--coral); }
-.sq:hover .sq-name { color: var(--text); }
-/* Natalie's question is a different one, so her row is visibly not on the shared
-   geometry rather than squeezed onto it. */
-.sq-apart { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--edge); }
+/* An unselected athlete's current rung still reads as current, in text rather
+   than in lime, so the page never carries more than one lime element. */
+.sq-rung.current { color: var(--text); }
+.sq-rung.lit { color: var(--lime); }
+.sq-note { font-size: 10.5px; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); }
+/* Separated by space. A rule here would read as a section boundary rather than
+   as a different question. */
+.sq-apart { margin-top: 26px; }
+
 .squad { margin-bottom: 34px; padding-bottom: 22px; border-bottom: 1px solid var(--edge); }
 
 /* Repeated exposures. The ladder carries one rung per capability, so this is the

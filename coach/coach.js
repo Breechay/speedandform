@@ -62,23 +62,29 @@ function initials(name) { return String(name || '').split(/\s+/).map((part) => p
 function rosterHtml() {
   // Orientation, not ranking. Hope, Jose and Marcus share one claim so they share
   // one geometry and the eye reads them together. Nothing here says ahead or
-  // behind: equal rungs make comparison possible, and the strip stops at showing
-  // where the evidence stands.
-  const shared = (athlete) => (athlete.mark?.checkpoints || []).length > 8;
+  // behind, and nothing derives a rung from how far anyone has run.
+  const shared = (athlete) => (athlete.mark?.checkpoints || []).length
+    && !(athlete.mark?.checkpoints || []).some((point) => Number(point.value) === 3);
+
   const strip = (athlete) => (athlete.mark?.checkpoints || [])
     .slice().sort((a, b) => a.position - b.position)
-    .map((point) => `<span class="sq-rung ${escapeHtml(point.state)}">${escapeHtml(point.label)}</span>`)
-    .join('');
+    .map((point) => {
+      // Lime is spent once per composition. Four athletes each showing a lime
+      // numeral is four, so only the selected athlete's current rung gets it.
+      const lit = point.state === 'current' && athlete.id === selectedId;
+      return `<span class="sq-rung ${escapeHtml(point.state)}${lit ? ' lit' : ''}">${escapeHtml(point.label)}</span>`;
+    }).join('');
 
   const card = (athlete) => `<button class="sq" type="button" data-athlete-id="${escapeHtml(athlete.id)}"
     ${athlete.id === selectedId ? 'aria-current="true"' : ''}>
     <span class="sq-name">${escapeHtml(athlete.first_name || athlete.display_name)}</span>
-    <span class="sq-ladder">${strip(athlete) || '<em>nothing yet</em>'}</span>
-    ${athlete.topItem ? `<span class="sq-flag">${escapeHtml(attentionKinds[athlete.topItem.kind]?.label || 'Needs you')}</span>` : ''}
+    <span class="sq-ladder">${strip(athlete) || '<em>no ladder yet</em>'}</span>
+    <span class="sq-note">${athlete.home_surface === 'form' && /outside/i.test(athlete.mark?.claim || '')
+      ? 'outside counts' : ''}</span>
   </button>`;
 
-  // Natalie is not forced onto the shared geometry. Her question is different, and
-  // she stays on the desk regardless of whether she uses a website.
+  // Natalie's question is a different one, so her row is separated by space
+  // rather than a rule. A rule would read as a section boundary.
   const together = roster.filter(shared);
   const apart = roster.filter((athlete) => !shared(athlete));
   return `${together.map(card).join('')}${apart.length
