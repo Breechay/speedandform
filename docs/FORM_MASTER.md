@@ -68,6 +68,35 @@ the product to state instead:
 
 ---
 
+## PART I.5 — THE APP IS NOT LAW
+
+**Brice's coaching is the authority. The app is its current draft.**
+
+`FORMV3Programming.swift` and the doctrine documents were written fast, at a high
+level, before any of it had been run against real athletes over a real block. They
+are a good first pass, not scripture. Where live coaching and the app disagree, the
+app is behind.
+
+So a difference between what Brice prescribes and what the app authored is **an
+amendment, not a conflict**. The correct response is to update the app, the docs and
+the rules to match the coaching, and to record why.
+
+Two consequences worth stating, because both were nearly got wrong:
+
+- **Do not treat an authored constraint as binding just because it is written down.**
+  The "hard-day budget is TWO (Settle + Long) at every frequency" line reads like
+  doctrine and is not: it was generated, never Brice's, and his athletes train three
+  quality days. A rule with no coach behind it is a draft with confidence.
+- **Live athlete data is what promotes a draft into doctrine.** Working through these
+  three athletes in detail is how the app gets specific. Building the presentation
+  surface is part of that: designing how a session must read forces the question of
+  what the session actually is.
+
+When amending, say what changed and what the evidence was. The record of *why* the
+app moved is worth as much as the move.
+
+---
+
 ## PART II — THE RESEARCH FRAME
 
 He is not running a training log. He is testing whether a small number of specific

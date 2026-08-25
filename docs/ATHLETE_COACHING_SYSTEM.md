@@ -175,6 +175,16 @@ En dashes stay for number ranges: `6:25–6:30`, `10–15 minutes`, `7–8`.
 The reason is register. An em dash is a writer's mark. Brice texts in full stops,
 and the surfaces should sound like he wrote them.
 
+## 12c. The app is a draft; the coaching is the authority
+
+Where FORM-iOS and Brice's live prescriptions disagree, the app is behind. A
+difference is an **amendment**, not a conflict: update the app to match, and record
+the evidence that moved it.
+
+Never treat an authored constraint as binding merely because it is written in the
+repo. Check whether a coach is actually behind it. Some of what is there was
+generated at speed and has never met an athlete.
+
 ## 13. Banned vocabulary
 
 "The mark", "the read", "the record", "the work", "coach margin", "object",
