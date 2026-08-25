@@ -8,13 +8,15 @@ function result(data, error) {
 export async function loadCoachRoster(coachMemberships) {
   const athleteIds = coachMemberships.map((item) => item.athlete_id);
   if (!athleteIds.length) return [];
-  const [attentionResponse, markResponse] = await Promise.all([
+  const [attentionResponse, markResponse, checkpointResponse] = await Promise.all([
     supabase.from('coach_attention').select('*').in('athlete_id', athleteIds)
       .order('priority').order('occurred_at', { ascending: false, nullsFirst: false }),
-    supabase.from('athlete_marks').select('*').in('athlete_id', athleteIds).eq('active', true).eq('is_primary', true)
+    supabase.from('athlete_marks').select('*').in('athlete_id', athleteIds).eq('active', true).eq('is_primary', true),
+    supabase.from('mark_checkpoints').select('*').in('athlete_id', athleteIds).order('position')
   ]);
   if (attentionResponse.error) throw attentionResponse.error;
   if (markResponse.error) throw markResponse.error;
+  if (checkpointResponse.error) throw checkpointResponse.error;
   const attention = attentionResponse.data || [];
   // Ordered by what actually needs the coach, not by a stored priority column.
   return coachMemberships.map((membership) => {
@@ -24,7 +26,12 @@ export async function loadCoachRoster(coachMemberships) {
       membership,
       attention: items,
       topItem: items[0] || null,
-      mark: markResponse.data?.find((mark) => mark.athlete_id === membership.athlete_id) || null
+      mark: (() => {
+        const mark = markResponse.data?.find((item) => item.athlete_id === membership.athlete_id) || null;
+        return mark
+          ? { ...mark, checkpoints: (checkpointResponse.data || []).filter((point) => point.mark_id === mark.id) }
+          : null;
+      })()
     };
   }).sort((a, b) => (a.topItem?.priority ?? 999) - (b.topItem?.priority ?? 999));
 }
@@ -426,51 +433,28 @@ export async function fileForAthlete(payload, pieces = [], evidenceFile = null) 
   if (userError) throw userError;
   if (!user) throw new Error('Sign in before filing.');
 
-  const { data: completion, error } = await supabase
-    .from('session_completions')
-    .insert({
-      athlete_id: payload.athleteId,
-      planned_session_id: payload.plannedSessionId || null,
-      status: payload.status,
-      actual_distance: payload.actualDistance || null,
-      distance_unit: payload.distanceUnit || 'mi',
-      duration_seconds: payload.durationSeconds || null,
-      rpe: payload.rpe || null,
-      felt: payload.felt || null,
-      knee_during: payload.kneeDuring || null,
-      knee_after: payload.kneeAfter || null,
-      recovered_next_day: payload.recoveredNextDay,
-      athlete_note: payload.athleteNote || null,
-      strava_url: payload.stravaUrl || null,
-      surface: payload.surface || null,
-      temperature_f: payload.temperatureF || null,
-      conditions: payload.conditions || null,
-      source: 'coach_import',
-      filed_by: user.id
-    })
-    .select('*')
-    .single();
+  // Through the RPC, not a direct insert. The coach insert policy is gone, so a
+  // session and its pieces arrive together or not at all, and an agent filing
+  // from a screenshot goes through exactly the same door.
+  const { data: completionId, error } = await supabase.rpc('file_session', {
+    p_athlete_id: payload.athleteId,
+    p_status: payload.status,
+    p_planned_session_id: payload.plannedSessionId || null,
+    p_actual_distance: payload.actualDistance || null,
+    p_distance_unit: payload.distanceUnit || 'mi',
+    p_duration_seconds: payload.durationSeconds || null,
+    p_rpe: payload.rpe || null,
+    p_surface: payload.surface || null,
+    p_temperature_f: payload.temperatureF || null,
+    p_conditions: payload.conditions || null,
+    p_athlete_note: payload.athleteNote || null,
+    p_filed_at: payload.filedAt || null,
+    p_pieces: pieces
+  });
   if (error) throw error;
 
-  if (pieces.length) {
-    const { error: piecesError } = await supabase.from('session_pieces').insert(
-      pieces.map((piece, index) => ({
-        athlete_id: payload.athleteId,
-        completion_id: completion.id,
-        position: index + 1,
-        kind: piece.kind,
-        distance: piece.distance || null,
-        distance_unit: piece.distance ? (piece.distanceUnit || 'mi') : null,
-        duration_seconds: piece.durationSeconds || null,
-        pace_seconds: piece.paceSeconds || null
-      }))
-    );
-    if (piecesError) throw piecesError;
-  }
-  // The Garmin screenshot is the source; everything above is a reading of it.
-  // Keeping them together is what makes a wrong reading visible later.
-  if (evidenceFile) await uploadEvidence(payload.athleteId, completion.id, evidenceFile, user.id);
-  return completion;
+  if (evidenceFile) await uploadEvidence(payload.athleteId, completionId, evidenceFile, user.id);
+  return { id: completionId };
 }
 
 // Editing a filed session. The audit trigger snapshots the previous values into
@@ -478,41 +462,28 @@ export async function fileForAthlete(payload, pieces = [], evidenceFile = null) 
 // Splits are replaced wholesale rather than diffed: a re-read of a screenshot is
 // a new reading of the whole session, not an edit to one number.
 export async function editFiledSession(completionId, payload, pieces = null) {
-  const { error } = await supabase
-    .from('session_completions')
-    .update({
-      status: payload.status,
-      actual_distance: payload.actualDistance || null,
-      distance_unit: payload.distanceUnit || 'mi',
-      duration_seconds: payload.durationSeconds || null,
-      rpe: payload.rpe || null,
-      surface: payload.surface || null,
-      temperature_f: payload.temperatureF || null,
-      conditions: payload.conditions || null,
-      athlete_note: payload.athleteNote || null
-    })
-    .eq('id', completionId);
-  if (error) throw error;
-
-  if (pieces) {
-    const { error: clearError } = await supabase.from('session_pieces').delete().eq('completion_id', completionId);
-    if (clearError) throw clearError;
-    if (pieces.length) {
-      const { error: piecesError } = await supabase.from('session_pieces').insert(
-        pieces.map((piece, index) => ({
-          athlete_id: payload.athleteId,
-          completion_id: completionId,
-          position: index + 1,
-          kind: piece.kind,
-          distance: piece.distance || null,
-          distance_unit: piece.distance ? (piece.distanceUnit || 'mi') : null,
-          duration_seconds: piece.durationSeconds || null,
-          pace_seconds: piece.paceSeconds || null
-        }))
-      );
-      if (piecesError) throw piecesError;
-    }
+  // A correction always carries why. The audit trigger fires on the write and
+  // cannot see a sentence the caller never sent, so the reason travels with the
+  // change and is stamped onto every revision the change produced.
+  if (!String(payload.reason || '').trim()) {
+    throw new Error('A correction needs a reason. It is what makes the earlier reading legible later.');
   }
+  const { error } = await supabase.rpc('correct_session', {
+    p_completion_id: completionId,
+    p_reason: payload.reason.trim(),
+    p_status: payload.status || null,
+    p_actual_distance: payload.actualDistance || null,
+    p_duration_seconds: payload.durationSeconds || null,
+    p_rpe: payload.rpe || null,
+    p_surface: payload.surface || null,
+    p_temperature_f: payload.temperatureF || null,
+    p_conditions: payload.conditions || null,
+    p_athlete_note: payload.athleteNote || null,
+    p_filed_at: payload.filedAt || null,
+    // null leaves the splits alone; an empty array says there are none.
+    p_pieces: pieces
+  });
+  if (error) throw error;
 }
 
 // Brice's judgment of what a session did to the claim. The mechanical verdicts

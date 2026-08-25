@@ -60,14 +60,30 @@ function pendingView(email) {
 function initials(name) { return String(name || '').split(/\s+/).map((part) => part[0]).join('').slice(0, 2).toUpperCase(); }
 
 function rosterHtml() {
-  return roster.map((athlete) => `<button class="athlete-button${athlete.id === selectedId ? ' active' : ''}${athlete.topItem ? ' needs' : ''}" type="button" data-athlete-id="${athlete.id}">
-    <span class="athlete-list-copy"><b>${escapeHtml(athlete.first_name || athlete.display_name)}</b><small>${escapeHtml(athlete.topItem ? athlete.topItem.title : 'Nothing waiting')}</small></span>
-    ${athlete.attention.length ? `<span class="attention-count">${athlete.attention.length}</span>` : ''}
-  </button>`).join('');
+  // Orientation, not ranking. Hope, Jose and Marcus share one claim so they share
+  // one geometry and the eye reads them together. Nothing here says ahead or
+  // behind: equal rungs make comparison possible, and the strip stops at showing
+  // where the evidence stands.
+  const shared = (athlete) => (athlete.mark?.checkpoints || []).length > 8;
+  const strip = (athlete) => (athlete.mark?.checkpoints || [])
+    .slice().sort((a, b) => a.position - b.position)
+    .map((point) => `<span class="sq-rung ${escapeHtml(point.state)}">${escapeHtml(point.label)}</span>`)
+    .join('');
+
+  const card = (athlete) => `<button class="sq" type="button" data-athlete-id="${escapeHtml(athlete.id)}"
+    ${athlete.id === selectedId ? 'aria-current="true"' : ''}>
+    <span class="sq-name">${escapeHtml(athlete.first_name || athlete.display_name)}</span>
+    <span class="sq-ladder">${strip(athlete) || '<em>nothing yet</em>'}</span>
+    ${athlete.topItem ? `<span class="sq-flag">${escapeHtml(attentionKinds[athlete.topItem.kind]?.label || 'Needs you')}</span>` : ''}
+  </button>`;
+
+  // Natalie is not forced onto the shared geometry. Her question is different, and
+  // she stays on the desk regardless of whether she uses a website.
+  const together = roster.filter(shared);
+  const apart = roster.filter((athlete) => !shared(athlete));
+  return `${together.map(card).join('')}${apart.length
+    ? `<div class="sq-apart">${apart.map(card).join('')}</div>` : ''}`;
 }
-
-
-
 
 function athleteMenuHtml() {
   const account = selectedRecord.adminStatus;
@@ -94,6 +110,7 @@ function deskHtml() {
   // whether it is becoming believable. The session under the glass sits right,
   // where the screenshot it was read from can sit beside the reading.
   return `<section class="desk-main" id="deskMain">
+    <div class="squad" id="squadStrip"></div>
     <div class="board">
       <div class="board-main">
         <div class="who-row">${whoSection(selectedRecord)}${athleteMenuHtml()}</div>
@@ -131,7 +148,18 @@ function closeRoster() {
   }, 220);
 }
 
+function paintSquad() {
+  // Always on the desk, not behind a drawer. The strip is orientation, and
+  // orientation you have to open is not orientation.
+  const strip = document.getElementById('squadStrip');
+  if (!strip) return;
+  strip.innerHTML = rosterHtml();
+  strip.querySelectorAll('[data-athlete-id]').forEach((button) =>
+    button.addEventListener('click', () => selectAthlete(button.dataset.athleteId)));
+}
+
 function bindDesk() {
+  paintSquad();
   app.querySelectorAll('[data-week]').forEach((button) => button.addEventListener('click', () => {
     shownWeekId = button.dataset.week; app.innerHTML = deskHtml(); bindDesk();
   }));
@@ -328,6 +356,11 @@ function openFile(plannedSessionId = '', completionId = null) {
     f.conditions.value = existing.conditions || '';
     f.athleteNote.value = existing.athlete_note || '';
   }
+  // Correcting asks why and can move the date; filing takes the screenshot.
+  fileForm.querySelectorAll('[data-correct-only]').forEach((node) => { node.hidden = !existing; });
+  fileForm.querySelectorAll('[data-file-only]').forEach((node) => { node.hidden = !!existing; });
+  fileForm.elements.reason.required = !!existing;
+  if (existing) fileForm.elements.filedOn.value = String(existing.filed_at).slice(0, 10);
   document.getElementById('fileContext').textContent = existing
     ? `Correct ${escapeHtml(formatDate(existing.filed_at))}`
     : `File a run for ${selectedRecord.athlete.first_name}`;
@@ -441,7 +474,14 @@ fileForm.addEventListener('submit', async (event) => {
       temperatureF: f.temperatureF.value ? Number(f.temperatureF.value) : null,
       conditions: f.conditions.value.trim() || null,
       athleteNote: f.athleteNote.value.trim() || null,
-      recoveredNextDay: null
+      recoveredNextDay: null,
+      reason: f.reason.value,
+      // A date without a time would move the session to midnight; keep the clock.
+      filedAt: f.filedOn.value
+        ? new Date(`${f.filedOn.value}T${String(editingCompletionId
+            ? (selectedRecord.completions.find((item) => item.id === editingCompletionId)?.filed_at || '')
+            : '').slice(11, 19) || '12:00:00'}`).toISOString()
+        : null
     };
     if (editingCompletionId) await editFiledSession(editingCompletionId, payload, pieces);
     else await fileForAthlete(payload, pieces, f.evidence.files[0] || null);

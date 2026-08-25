@@ -193,7 +193,15 @@
         <button class="button small" type="button" id="addPiece">Add a split</button>
       </fieldset>
 
-      <label class="field-label">Garmin screenshot
+      <label class="field-label" data-correct-only hidden>Date
+        <input class="field-input" type="date" name="filedOn">
+      </label>
+
+      <label class="field-label" data-correct-only hidden>What was wrong
+        <input class="field-input" name="reason" placeholder="Recoveries were read backwards. She ran them slow, not hard.">
+      </label>
+
+      <label class="field-label" data-file-only>Garmin screenshot
         <input class="field-input" type="file" name="evidence" accept="image/*">
       </label>
 
