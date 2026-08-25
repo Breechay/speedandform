@@ -30,7 +30,7 @@ not a paragraph.
 | Race | OUC Half, Orlando | OUC Half, Orlando | West Palm Beach Half |
 | Date | Dec 5 2026 | Dec 5 2026 | Dec 13 2026 |
 | Goal | ~1:30 (unsettled, see below) | 1:25 | 1:30 |
-| The question | Can she hold 6:25–6:30 for a whole half? | Can he do a hard session and still be fine for the next one? | Does the treadmill speed show up outside? |
+| What we are finding out | Whether she can hold 6:25–6:30 for the whole half | Whether he can go hard and still be fine for the next session | Whether the treadmill speed shows up outside |
 | State | Can't tell yet | Working | Nothing to go on yet |
 
 Hope's goal number is genuinely unresolved between 1:30 and 1:35. Do not design
@@ -109,7 +109,12 @@ boundary.
 **Motion is wanted here** — but it says the record advanced. It never celebrates, never
 pulses, never rewards. It yields to `prefers-reduced-motion`.
 
-**Voice — the hard one.** Brice writes like he texts. He does not say "advanced",
+**Voice — the hard one.** Brice is **presenting his athletes**, not reporting on them.
+The claim is stated the way he would say it out loud — *"Our goal here is to see if
+she can hold 6:25–6:30 for the whole half"* — never *"Can she hold 6:25–6:30?"*, which
+reads as discussing her with a third party. First person plural throughout.
+
+He writes like he texts. He does not say "advanced",
 "stalled", "confounded", "consolidate", "held easy", "prescribed", "protocol" or
 "stimulus". He says *"floats were trash"*, *"easily your best session to date"*,
 *"6:19 is too fast, recovered a bit too much"*, *"we don't need to get faster, we need
