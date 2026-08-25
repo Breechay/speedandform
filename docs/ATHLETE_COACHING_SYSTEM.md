@@ -162,6 +162,29 @@ what a word means, and never feel she is being addressed by a system.
 
 ---
 
+## 12b. No em dashes
+
+Not in any copy that renders. Not in coaching content, labels, empty states, or
+placeholders. A full stop or a comma does the job, and the sentence is shorter for it.
+
+- "Recoveries were too slow, that's rest not a float." Not "too slow — that's rest".
+- "Up only. Ride back down." Not "Up only — ride back down."
+
+En dashes stay for number ranges: `6:25–6:30`, `10–15 minutes`, `7–8`.
+
+The reason is register. An em dash is a writer's mark. Brice texts in full stops,
+and the surfaces should sound like he wrote them.
+
+## 12c. The app is a draft; the coaching is the authority
+
+Where FORM-iOS and Brice's live prescriptions disagree, the app is behind. A
+difference is an **amendment**, not a conflict: update the app to match, and record
+the evidence that moved it.
+
+Never treat an authored constraint as binding merely because it is written in the
+repo. Check whether a coach is actually behind it. Some of what is there was
+generated at speed and has never met an athlete.
+
 ## 13. Banned vocabulary
 
 "The mark", "the read", "the record", "the work", "coach margin", "object",
@@ -181,4 +204,5 @@ Before adding any label, ask whether the content already says it. It usually doe
 5. Does the desk offer one act, or a menu of objects?
 6. Is any hierarchy being carried by a rule that space could carry?
 7. Is any fact written as a sentence that could be a shape?
-8. Does anything demand an action simply because a surface opened?
+8. Does any rendered string contain an em dash?
+9. Does anything demand an action simply because a surface opened?
