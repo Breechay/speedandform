@@ -258,6 +258,13 @@ otp_expiry = 3600
 # subject = "You have been invited"
 # content_path = "./supabase/templates/invite.html"
 
+# FORM sign-in link. The hosted project's template is set in the Supabase
+# dashboard; this keeps the canonical copy in version control and applies it
+# to local development.
+[auth.email.template.magic_link]
+subject = "Your FORM sign-in link"
+content_path = "./supabase/templates/magic_link.html"
+
 # Uncomment to customize notification email template
 # [auth.email.notification.password_changed]
 # enabled = true
