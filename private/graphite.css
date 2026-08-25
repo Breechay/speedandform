@@ -491,3 +491,49 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 .baseline div { margin: 0; }
 .baseline dt { color: var(--muted); font-size: 11px; font-weight: 750; }
 .baseline dd { margin: 5px 0 0; font-size: 13px; line-height: 1.45; }
+
+
+/* ── Her page: one column, three crops ───────────────────────────────────────
+   Each crop is a clean screenshot. Nothing explains itself. */
+
+.record-shell .crop { padding: 34px 0; border-top: 1px solid var(--edge); }
+.record-shell .crop:first-child { border-top: 0; padding-top: 4px; }
+.record-shell .crop .eyebrow { margin: 0 0 18px; }
+.week-intent { margin: 0 0 20px; font-size: 15px; line-height: 1.5; max-width: 56ch; }
+
+/* The mark: one bar, one label, never two numbers competing. */
+.bar-figure { margin: 0 0 14px; font-size: 15px; color: var(--secondary); }
+.bar-figure strong { font-size: 34px; font-weight: 750; color: var(--text); letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.bar { height: 6px; border-radius: 3px; background: var(--raised); overflow: hidden; }
+.bar span { display: block; height: 100%; border-radius: 3px; background: var(--lime); }
+.bar-label { margin: 12px 0 0; color: var(--secondary); font-size: 13px; }
+
+/* The grade: a state, not a score. "Holds until tired" is the whole product. */
+.grade { display: grid; gap: 0; margin-bottom: 30px; }
+.grade-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; padding: 13px 0; border-top: 1px solid var(--edge); }
+.grade-row:first-child { border-top: 0; }
+.grade-row b { font-size: 14px; }
+.grade-row small { grid-column: 1 / -1; color: var(--secondary); font-size: 12px; line-height: 1.45; }
+.grade-state { font-size: 11px; font-weight: 800; letter-spacing: .02em; white-space: nowrap; }
+.grade-row.holds .grade-state { color: var(--green); }
+.grade-row.holds_until_tired .grade-state { color: var(--lime); }
+.grade-row.not_yet .grade-state { color: var(--coral); }
+
+
+/* Motion says the record advanced. It does not decorate.
+   Crops settle in sequence on arrival; nothing moves again until something
+   actually changes. */
+@keyframes crop-settle { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
+.record-shell .crop { animation: crop-settle .42s var(--ease) both; }
+.record-shell .crop:nth-child(2) { animation-delay: .05s; }
+.record-shell .crop:nth-child(3) { animation-delay: .1s; }
+.record-shell .crop:nth-child(4) { animation-delay: .15s; }
+.record-shell .crop:nth-child(5) { animation-delay: .2s; }
+
+/* The bar fills toward the mark rather than appearing at length. */
+@keyframes bar-fill { from { transform: scaleX(0); } to { transform: none; } }
+.bar span { transform-origin: left center; animation: bar-fill .78s var(--ease) .22s both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .record-shell .crop, .bar span { animation: none; }
+}
