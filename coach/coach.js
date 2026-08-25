@@ -182,13 +182,15 @@ function deskHtml() {
 
 const RAIL_KEY = 'form-desk-rail-collapsed';
 function applyRailState() {
-  document.body.classList.toggle('rail-collapsed-on', localStorage.getItem(RAIL_KEY) === '1');
+  // Collapsed by default: he opens the desk to work on one athlete, not to
+  // browse four names. Expanding is the deliberate act.
+  document.body.classList.toggle('rail-collapsed-on', localStorage.getItem(RAIL_KEY) !== '0');
 }
 
 function bindDesk() {
   applyRailState();
   document.getElementById('railToggle')?.addEventListener('click', () => {
-    localStorage.setItem(RAIL_KEY, localStorage.getItem(RAIL_KEY) === '1' ? '0' : '1');
+    localStorage.setItem(RAIL_KEY, localStorage.getItem(RAIL_KEY) === '0' ? '1' : '0');
     applyRailState();
   });
   app.querySelectorAll('[data-athlete-id]').forEach((button) => button.addEventListener('click', () => selectAthlete(button.dataset.athleteId)));

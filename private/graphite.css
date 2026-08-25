@@ -655,3 +655,27 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   .wk-bars { grid-column: 1 / -1; }
   .wk-flag { grid-column: 1 / -1; justify-self: start; }
 }
+
+
+/* Movement: the position on the track is read before any word is. */
+.grade-row { grid-template-columns: minmax(0, 1fr) auto auto; gap: 4px 14px; align-items: center; }
+.grade-track { display: inline-flex; gap: 3px; }
+.grade-track .step { width: 15px; height: 4px; border-radius: 2px; background: var(--raised); }
+.grade-row.holds .step.on { background: var(--green); }
+.grade-row.holds_until_tired .step.on { background: var(--lime); }
+.grade-row.not_yet .step.on { background: var(--coral); }
+.grade-row small { grid-column: 1 / -1; }
+
+/* History reads down the page as a column of dates, not a stack of paragraphs. */
+.record-list { display: grid; }
+.record-event { display: grid; grid-template-columns: 58px 74px minmax(0, 1fr); gap: 14px; align-items: baseline; padding: 11px 0; border-top: 1px solid var(--edge); }
+.record-event:first-child { border-top: 0; }
+.record-event time { color: var(--muted); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.event-type { font-size: 10px; font-weight: 800; letter-spacing: .03em; color: var(--secondary); }
+.event-type.filed { color: var(--lime); }
+.event-type.decision { color: var(--text); }
+.record-event p { margin: 0; font-size: 13px; line-height: 1.45; }
+@media (max-width: 700px) {
+  .record-event { grid-template-columns: 54px minmax(0, 1fr); row-gap: 4px; }
+  .record-event p { grid-column: 1 / -1; }
+}

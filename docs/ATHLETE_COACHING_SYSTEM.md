@@ -31,6 +31,32 @@ about progress.
 **No essays that say nothing.** This is the most common failure and the one that
 gets caught last.
 
+## 2b. Show it, do not describe it
+
+Everything that can be a shape is a shape. A number, a bar, a ladder, a position
+on a track — never a paragraph describing the same fact.
+
+- Her week is a **row per session**: planned length in grey, filed length in lime
+  on top of it. Over, under and missing are read at a glance, with no sentence.
+- The mark is a **ladder**, not a bar. A bar states a ratio; the ladder shows the
+  distances she will actually run and which one is next.
+- Movement is a **position on a three-step track**, read before the words are.
+- History is a **column of dates**, scanned downward, not a stack of paragraphs.
+
+If a fact is being explained in a sentence, ask what shape it is first.
+
+## 2c. The desk shows the week, not a task
+
+Opening an athlete shows **her week**. Attention appears as a flag on the day it
+concerns, and pressing it opens the write dialog already pointed at that session.
+
+The first desk led with a headline and a lime button every single time. That is
+a to-do list wearing a coach's clothes. He looks, and then he acts if he decides
+to — the order matters.
+
+The roster is **collapsed by default**. Four names do not need a third of the
+screen once he is inside one athlete; expanding is the deliberate act.
+
 ## 3. The grade is a state, not a score
 
 Four cues, three states: **holds · holds until tired · not yet.**
@@ -114,6 +140,16 @@ what a word means, and never feel she is being addressed by a system.
 
 ---
 
+## 13. Banned vocabulary
+
+"The mark", "the read", "the record", "the work", "coach margin", "object",
+"write the Read". See `VOICE_LAW.md` §3b–3c. The pattern is a definite article
+over an abstract noun, or a button named after a database row.
+
+Before adding any label, ask whether the content already says it. It usually does.
+
+---
+
 ## Review test
 
 1. Does every crop survive as a standalone screenshot?
@@ -122,3 +158,5 @@ what a word means, and never feel she is being addressed by a system.
 4. Is there a second number competing with the mark?
 5. Does the desk offer one act, or a menu of objects?
 6. Is any hierarchy being carried by a rule that space could carry?
+7. Is any fact written as a sentence that could be a shape?
+8. Does anything demand an action simply because a surface opened?
