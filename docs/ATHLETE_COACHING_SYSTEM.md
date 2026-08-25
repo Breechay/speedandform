@@ -57,6 +57,28 @@ to — the order matters.
 The roster is **collapsed by default**. Four names do not need a third of the
 screen once he is inside one athlete; expanding is the deliberate act.
 
+## 2d. The desk is a board; her page is a column
+
+Two jobs, one language. Graphite allows the layout to adapt and the language not to.
+
+**His desk is a two-column board that fits one screen.** Her plan on the left —
+the ladder, then the week. What he is judging on the right — movement, history,
+his private margin. He should never scroll to see how an athlete is doing.
+
+**Her page is a single column** because it travels as a screenshot on a phone.
+
+The desk composes the *same parts* her page is built from. It never renders her
+page whole inside itself: doing that duplicated the week, once as his grid and
+again inside her embedded record, which is what made the desk endless.
+
+**The week has seven days, always.** Every day holds a slot, so an empty day
+reads as a decision rather than an absence, and the room is already there when
+other sessions are added. Weeks are navigable across the whole block; unauthored
+weeks show as unauthored rather than being hidden.
+
+Anything belonging to someone else — the support prescription is the strength
+coach's — is off his desk entirely and collapsed on hers.
+
 ## 3. The grade is a state, not a score
 
 Four cues, three states: **holds · holds until tired · not yet.**

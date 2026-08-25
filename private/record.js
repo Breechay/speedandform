@@ -75,7 +75,7 @@ function sessionRows(record, interactive, list = null) {
   }).join('');
 }
 
-function markSection(record) {
+export function markSection(record) {
   const mark = record.primaryMark;
   if (!mark) return '';
   const current = Number(mark.current_value);
@@ -105,7 +105,7 @@ function markSection(record) {
   </section>`;
 }
 
-function gradeSection(record) {
+export function gradeSection(record) {
   const grade = gradeHtml(record);
   return grade ? `<section class="record-section crop" id="read"><p class="eyebrow">Movement</p>${grade}</section>` : '';
 }
@@ -126,7 +126,7 @@ function gradeHtml(record) {
   }).join('')}</div>`;
 }
 
-function supportSection(record) {
+export function supportSection(record) {
   if (!record.supportItems.length) return '';
   const purposes = [...new Set(record.supportItems.map((item) => item.purpose))];
   const groups = purposes.map((purpose) => `<div class="support-group">
@@ -136,14 +136,17 @@ function supportSection(record) {
       <span class="support-dose">${escapeHtml(item.dose)}</span>
     </article>`).join('')}</div>
   </div>`).join('');
+  const count = record.supportItems.length;
   return `<section class="record-section" id="support">
-    <p class="eyebrow">Support · for your strength coach</p>
-    ${groups}
-    <p class="shared-line">${record.support?.shared_with_strength_coach ? 'Shared with your strength coach.' : 'Not yet shared with your strength coach.'}</p>
+    <details class="support-drawer">
+      <summary><span class="eyebrow">Support · for your strength coach</span><span class="support-count">${escapeHtml(count)}</span></summary>
+      ${groups}
+      <p class="shared-line">${record.support?.shared_with_strength_coach ? 'Shared with your strength coach.' : 'Not yet shared with your strength coach.'}</p>
+    </details>
   </section>`;
 }
 
-function recordSection(record) {
+export function recordSection(record) {
   const events = [];
   record.completions.forEach((item) => events.push({
     type: 'Filed', date: item.filed_at,
@@ -190,7 +193,18 @@ export function renderAthleteRecord(record, { interactive = false, projection = 
   if (!athlete) return '<div class="status-message error">This record is not available.</div>';
   const week = record.currentWeek;
   const next = record.nextWeek;
+  const block = record.block;
+  const raceOn = block?.race_on
+    ? new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(new Date(`${block.race_on}T12:00:00`))
+    : null;
+  const goal = block?.goal_statement
+    || [block?.goal_label, block?.target_event].filter(Boolean).join(' · ')
+    || null;
   return `<div class="record-shell${projection ? ' projection' : ''}">
+    <header class="who">
+      <h1>${escapeHtml(athlete.display_name)}</h1>
+      ${goal ? `<p class="who-goal">${escapeHtml(goal)}${raceOn ? `<span class="who-date">${escapeHtml(raceOn)}</span>` : ''}</p>` : ''}
+    </header>
     ${markSection(record)}
     <section class="record-section crop" id="now">
       <p class="eyebrow">This week${week ? ` · ${escapeHtml(week.week_number)} of ${escapeHtml(record.block?.total_weeks ?? '')}` : ''}</p>
