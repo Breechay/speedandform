@@ -1,6 +1,6 @@
 import { authErrorMessage, enabledProviders, getAccessContext, sendMagicLink, signInWithApple, signOut } from '/private/auth.js';
 import { addPrivateNote, createDirection, createRead, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask } from '/private/data.js';
-import { escapeHtml, formatDate, renderAthleteRecord } from '/private/record.js';
+import { escapeHtml, formatDate, gradeSection, markSection, recordSection } from '/private/record.js';
 
 // Account states only. The desk no longer labels athletes by a stored state —
 // the queue is derived from the record.
@@ -34,6 +34,7 @@ const shareForm = document.getElementById('shareForm');
 let roster = [];
 let selectedId = null;
 let selectedRecord = null;
+let shownWeekId = null;
 
 async function authView() {
   document.body.classList.add('auth-only');
@@ -83,44 +84,69 @@ function rosterHtml() {
   }).join('');
 }
 
-function weekGridHtml() {
-  const week = selectedRecord.currentWeek;
-  const sessions = selectedRecord.currentSessions || [];
-  const attention = selectedRecord.attention || [];
-  if (!sessions.length) return '<p class="muted">No week authored yet.</p>';
+const DAY_ORDER = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
-  const rows = sessions.map((session) => {
-    const version = session.currentVersion || {};
-    const completion = selectedRecord.completions.find((entry) => entry.planned_session_id === session.id);
-    const planned = Number(version.prescribed_distance) || 0;
-    const actual = Number(completion?.actual_distance) || 0;
-    const flag = attention.find((item) => item.subject_id === session.id || item.subject_id === completion?.id);
-    const state = completion ? completion.status : 'pending';
-    return { session, version, completion, planned, actual, flag, state };
+function weekGridHtml() {
+  const weeks = (selectedRecord.weeks || []).slice().sort((a, b) => a.week_number - b.week_number);
+  const total = selectedRecord.block?.total_weeks || weeks.length || 1;
+  const week = weeks.find((entry) => entry.id === shownWeekId) || selectedRecord.currentWeek || weeks[0] || null;
+  const sessions = week ? (selectedRecord.sessionsByWeek?.[week.id] || []) : [];
+  const attention = selectedRecord.attention || [];
+
+  // Every day of the week has a slot, so an empty day reads as a real decision
+  // rather than an absence, and other sessions can be filled in later.
+  const days = DAY_ORDER.map((label) => {
+    const session = sessions.find((entry) => (entry.day_label || '').toUpperCase().startsWith(label.slice(0, 3)));
+    const version = session?.currentVersion || {};
+    const completion = session ? selectedRecord.completions.find((entry) => entry.planned_session_id === session.id) : null;
+    const flag = session ? attention.find((item) => item.subject_id === session.id || item.subject_id === completion?.id) : null;
+    return {
+      label, session, version, completion, flag,
+      planned: Number(version.prescribed_distance) || 0,
+      actual: Number(completion?.actual_distance) || 0
+    };
   });
 
-  const scale = Math.max(...rows.map((row) => Math.max(row.planned, row.actual)), 1);
-  const plannedTotal = rows.reduce((sum, row) => sum + row.planned, 0);
-  const actualTotal = rows.reduce((sum, row) => sum + row.actual, 0);
+  const scale = Math.max(...days.map((day) => Math.max(day.planned, day.actual)), 1);
+  const plannedTotal = days.reduce((sum, day) => sum + day.planned, 0);
+  const actualTotal = days.reduce((sum, day) => sum + day.actual, 0);
+  const index = week ? weeks.findIndex((entry) => entry.id === week.id) : -1;
+
+  const strip = Array.from({ length: total }, (_, position) => {
+    const number = position + 1;
+    const authored = weeks.find((entry) => entry.week_number === number);
+    const isShown = week && authored && authored.id === week.id;
+    return `<button class="wk-pip${authored ? ' authored' : ''}${isShown ? ' shown' : ''}" type="button"
+      ${authored ? `data-week="${authored.id}"` : 'disabled'} aria-label="Week ${number}">${number}</button>`;
+  }).join('');
 
   return `<div class="week-grid">
     <div class="week-head">
-      <div><span class="wk-label">Week ${escapeHtml(week?.week_number ?? '—')}</span><span class="wk-of">of ${escapeHtml(selectedRecord.block?.total_weeks ?? '—')}</span></div>
-      <div class="wk-total"><b>${actualTotal.toFixed(1)}</b><span>of ${plannedTotal.toFixed(1)} mi filed</span></div>
+      <div class="wk-nav">
+        <button class="wk-arrow" type="button" data-week-step="-1" ${index > 0 ? '' : 'disabled'} aria-label="Previous week">‹</button>
+        <span class="wk-label">Week ${escapeHtml(week?.week_number ?? '—')}</span><span class="wk-of">of ${escapeHtml(total)}</span>
+        <button class="wk-arrow" type="button" data-week-step="1" ${index >= 0 && index < weeks.length - 1 ? '' : 'disabled'} aria-label="Next week">›</button>
+      </div>
+      <div class="wk-total"><b>${actualTotal.toFixed(1)}</b><span>of ${plannedTotal.toFixed(1)} mi</span></div>
     </div>
-    <div class="week-rows">${rows.map((row) => `
-      <div class="wk-row ${escapeHtml(row.state)}${row.flag ? ' flagged' : ''}" data-session="${row.session.id}" data-completion="${row.completion?.id || ''}">
-        <span class="wk-day">${escapeHtml(row.session.day_label)}</span>
-        <span class="wk-title">${escapeHtml(row.version.title || 'Session')}</span>
-        <span class="wk-bars">
-          <span class="wk-plan" style="width:${(row.planned / scale) * 100}%"></span>
-          <span class="wk-actual" style="width:${(row.actual / scale) * 100}%"></span>
-        </span>
-        <span class="wk-num">${row.completion ? `${row.actual || '—'}` : `<i>${row.planned || '—'}</i>`}</span>
-        ${row.flag ? `<button class="wk-flag" type="button" data-write="${escapeHtml((attentionKinds[row.flag.kind] || {}).act || 'read')}" data-subject="${escapeHtml(row.flag.subject_id || '')}">${escapeHtml(row.flag.title)}</button>` : '<span class="wk-flag-empty"></span>'}
-      </div>`).join('')}</div>
+    <div class="wk-strip">${strip}</div>
+    ${week?.intent ? `<p class="wk-intent">${escapeHtml(week.intent)}</p>` : ''}
+    <div class="week-days">${days.map((day) => {
+      const state = day.completion ? day.completion.status : (day.session ? 'pending' : 'empty');
+      return `<div class="wk-col ${escapeHtml(state)}${day.flag ? ' flagged' : ''}">
+        <span class="wk-dayname">${escapeHtml(day.label)}</span>
+        <div class="wk-stack">
+          ${day.session ? `<span class="wk-plan" style="height:${Math.max(6, (day.planned / scale) * 100)}%"></span>
+          ${day.actual ? `<span class="wk-actual" style="height:${Math.max(6, (day.actual / scale) * 100)}%"></span>` : ''}` : ''}
+        </div>
+        <span class="wk-num">${day.session ? (day.completion ? day.actual || '—' : `<i>${day.planned || '—'}</i>`) : ''}</span>
+        <span class="wk-title" title="${escapeHtml(day.version.title || '')}">${escapeHtml(day.version.title || '')}</span>
+        ${day.flag ? `<button class="wk-flag" type="button" data-write="${escapeHtml((attentionKinds[day.flag.kind] || {}).act || 'read')}" data-subject="${escapeHtml(day.flag.subject_id || '')}" title="${escapeHtml(day.flag.title)}"></button>` : ''}
+      </div>`;
+    }).join('')}</div>
   </div>`;
 }
+
 
 function decisionHtml() {
   const athlete = selectedRecord.athlete;
@@ -156,26 +182,40 @@ function coachMarginHtml() {
 }
 
 function deskHtml() {
-  const needing = roster.filter((athlete) => athlete.topItem).length;
-  const headline = needing
-    ? `${needing === 1 ? 'One athlete needs' : `${needing} athletes need`} you.`
-    : 'Nothing is waiting on you.';
-  // One athlete at a time: her record as she sees it, with what needs Brice
-  // above it and his own margin below. One composition, not two documents.
+  const athlete = selectedRecord.athlete;
+  const block = selectedRecord.block;
+  const raceOn = block?.race_on
+    ? new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric' }).format(new Date(`${block.race_on}T12:00:00`))
+    : null;
+  const goal = block?.goal_statement || [block?.goal_label, block?.target_event].filter(Boolean).join(' · ') || null;
+  // A dashboard, not a document. The same parts her page is built from, laid out
+  // for a desk: her plan on the left, what Brice is judging on the right.
   return `<div class="desk-layout">
     <aside class="desk-rail">
       <button class="rail-toggle" id="railToggle" type="button" aria-label="Show or hide the roster"><span class="rail-bars"></span></button>
       <div class="rail-body">
         <p class="eyebrow">${new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric' }).format(new Date())}</p>
-        <h1>${escapeHtml(headline)}</h1>
+        <h1>${escapeHtml(roster.filter((entry) => entry.topItem).length ? `${roster.filter((entry) => entry.topItem).length} need you` : 'Nothing waiting')}</h1>
         <div class="athlete-list">${rosterHtml()}</div>
       </div>
-      <div class="rail-collapsed" aria-hidden="true">${roster.map((athlete) => `<span class="rail-chip${athlete.id === selectedId ? ' active' : ''}${athlete.topItem ? ' needs' : ''}">${escapeHtml(initials(athlete.display_name))}</span>`).join('')}</div>
+      <div class="rail-collapsed" aria-hidden="true">${roster.map((entry) => `<span class="rail-chip${entry.id === selectedId ? ' active' : ''}${entry.topItem ? ' needs' : ''}">${escapeHtml(initials(entry.display_name))}</span>`).join('')}</div>
     </aside>
     <section class="desk-main" id="deskMain">
-      ${decisionHtml()}
-      <div class="her-view" id="recordProjection">${renderAthleteRecord(selectedRecord, { projection: true })}</div>
-      ${coachMarginHtml()}
+      <header class="who">
+        <h1>${escapeHtml(athlete.display_name)}</h1>
+        ${goal ? `<p class="who-goal">${escapeHtml(goal)}${raceOn ? `<span class="who-date">${escapeHtml(raceOn)}</span>` : ''}</p>` : ''}
+      </header>
+      <div class="board">
+        <div class="board-main">
+          ${markSection(selectedRecord)}
+          ${weekGridHtml()}
+        </div>
+        <div class="board-side">
+          ${gradeSection(selectedRecord)}
+          ${recordSection(selectedRecord)}
+          ${coachMarginHtml()}
+        </div>
+      </div>
     </section>
   </div>`;
 }
@@ -194,6 +234,15 @@ function bindDesk() {
     applyRailState();
   });
   app.querySelectorAll('[data-athlete-id]').forEach((button) => button.addEventListener('click', () => selectAthlete(button.dataset.athleteId)));
+  app.querySelectorAll('[data-week]').forEach((button) => button.addEventListener('click', () => {
+    shownWeekId = button.dataset.week; app.innerHTML = deskHtml(); bindDesk();
+  }));
+  app.querySelectorAll('[data-week-step]').forEach((button) => button.addEventListener('click', () => {
+    const weeks = (selectedRecord.weeks || []).slice().sort((a, b) => a.week_number - b.week_number);
+    const current = weeks.findIndex((entry) => entry.id === (shownWeekId || selectedRecord.currentWeek?.id));
+    const next = weeks[current + Number(button.dataset.weekStep)];
+    if (next) { shownWeekId = next.id; app.innerHTML = deskHtml(); bindDesk(); }
+  }));
   app.querySelectorAll('[data-task-action]').forEach((button) => button.addEventListener('click', () => openDecision(button.dataset.taskAction)));
   app.querySelectorAll('[data-write]').forEach((button) => button.addEventListener('click', () => {
     if (button.dataset.write === 'decision') openDecision(null);
@@ -205,6 +254,7 @@ function bindDesk() {
 
 async function selectAthlete(athleteId) {
   selectedId = athleteId;
+  shownWeekId = null;
   app.innerHTML = '<div class="loading" aria-label="Loading athlete"></div>';
   selectedRecord = await loadAthleteRecord(athleteId, { coach: true });
   selectedRecord.attention = roster.find((entry) => entry.id === athleteId)?.attention || await loadAttentionFor(athleteId);

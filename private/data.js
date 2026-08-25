@@ -115,6 +115,10 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     // Sessions belong to a week. Rendering them unfiltered puts the whole block
     // on one screen the moment more than one week exists.
     currentSessions: currentWeek ? sessions.filter((item) => item.week_id === currentWeek.id) : sessions,
+    sessionsByWeek: weeks.reduce((map, week) => {
+      map[week.id] = sessions.filter((item) => item.week_id === week.id);
+      return map;
+    }, {}),
     nextSessions: nextWeek ? sessions.filter((item) => item.week_id === nextWeek.id) : [],
     sessions,
     baselines: result(baselinesResponse.data, baselinesResponse.error),
