@@ -335,6 +335,14 @@ export function evidenceSection(record, { interactive = false } = {}) {
         : '';
 
       const judgment = (record.judgments || []).find((item) => item.completionIds.includes(verdict.completion_id));
+      // Where it happened sits in the header, not in a detail row. For Marcus it
+      // decides whether the session can answer his claim at all.
+      const completion = (record.completions || []).find((item) => item.id === verdict.completion_id);
+      const where = [
+        completion?.surface,
+        completion?.temperature_f ? `${completion.temperature_f}\u00b0` : null,
+        completion?.conditions
+      ].filter(Boolean).join(' \u00b7 ');
       const effortOff = verdict.effort_verdict === 'outside';
 
       return `<article class="ev">
@@ -342,6 +350,7 @@ export function evidenceSection(record, { interactive = false } = {}) {
           <h3>${escapeHtml(verdict.title || 'Session')}</h3>
           <time>${escapeHtml(formatDate(verdict.filed_at))}</time>
         </div>
+        ${where ? `<p class="ev-where">${escapeHtml(where)}</p>` : ''}
         <table class="ev-table">
           <thead><tr><th></th><th>asked</th><th>happened</th></tr></thead>
           <tbody>
@@ -376,5 +385,54 @@ export function evidenceSection(record, { interactive = false } = {}) {
   return `<section class="record-section evidence" id="evidence">
     <p class="claim">${escapeHtml(mark.claim || mark.current_question)}</p>
     ${rows}
+  </section>`;
+}
+
+const checkpointWords = { reached: 'held', current: 'next', repeated: 'held again', proposed: '', retired: 'retired' };
+
+// Where this is going. Three separate things, deliberately not merged: the ladder
+// is proof positions, the block ahead is calendar, and the judgments are belief
+// moving over time. Putting distances on a week axis would imply each distance
+// happens on a fixed date, and the block repeats rungs and reorders them.
+export function progressionSection(record, { interactive = false } = {}) {
+  const mark = record.primaryMark;
+  if (!mark?.checkpoints?.length) return '';
+
+  const rungs = mark.checkpoints.slice().sort((a, b) => a.position - b.position).map((point) => {
+    const word = checkpointWords[point.state] || '';
+    return `<${interactive ? 'button' : 'span'} class="proof-rung ${escapeHtml(point.state)}"
+      ${interactive ? `type="button" data-checkpoint="${escapeHtml(point.id)}" data-state="${escapeHtml(point.state)}"` : ''}>
+      <span class="proof-mark" aria-hidden="true"></span>
+      <span class="proof-value">${escapeHtml(point.label)}</span>
+      ${word ? `<span class="proof-state">${escapeHtml(word)}</span>` : ''}
+    </${interactive ? 'button' : 'span'}>`;
+  }).join('');
+
+  // Only what is still ahead. A block already run is history, and history is not
+  // where this is going.
+  const today = new Date().toISOString().slice(0, 10);
+  const ahead = (record.sessions || [])
+    .filter((session) => session.scheduled_on && session.scheduled_on >= today && session.currentVersion)
+    .sort((a, b) => a.scheduled_on.localeCompare(b.scheduled_on))
+    .slice(0, 6)
+    .map((session) => `<tr>
+      <td class="ahead-when">${escapeHtml(formatDate(session.scheduled_on))}</td>
+      <td>${escapeHtml(session.currentVersion.title)}</td>
+      <td class="ahead-dose">${session.currentVersion.prescribed_distance
+        ? `${escapeHtml(Number(session.currentVersion.prescribed_distance))} mi`
+        : session.currentVersion.prescribed_duration_minutes
+          ? `${escapeHtml(session.currentVersion.prescribed_duration_minutes)} min` : ''}</td>
+    </tr>`).join('');
+
+  const readings = (record.judgments || []).map((judgment) => `<article class="reading ${escapeHtml(judgment.direction)}">
+    <time>${escapeHtml(formatDate(judgment.created_at))}</time>
+    <span class="reading-direction">${escapeHtml(directionWords[judgment.direction])}</span>
+    <p>${escapeHtml(judgment.reason)}</p>
+  </article>`).join('');
+
+  return `<section class="record-section progression" id="progression">
+    <div class="proof">${rungs}</div>
+    ${ahead ? `<table class="ahead"><tbody>${ahead}</tbody></table>` : ''}
+    ${readings ? `<div class="readings">${readings}</div>` : ''}
   </section>`;
 }

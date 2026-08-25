@@ -440,6 +440,9 @@ export async function fileForAthlete(payload, pieces = []) {
       recovered_next_day: payload.recoveredNextDay,
       athlete_note: payload.athleteNote || null,
       strava_url: payload.stravaUrl || null,
+      surface: payload.surface || null,
+      temperature_f: payload.temperatureF || null,
+      conditions: payload.conditions || null,
       source: 'coach_import',
       filed_by: user.id
     })
@@ -495,4 +498,14 @@ export async function judgeClaim(payload) {
     if (linkError) throw linkError;
   }
   return judgment;
+}
+
+// Moving a rung. Advancing is Brice's call, never derived from a session landing
+// in a band: an advance has to be earned, and a repeat is a decision he made.
+export async function moveCheckpoint(checkpointId, state) {
+  const { error } = await supabase
+    .from('mark_checkpoints')
+    .update({ state })
+    .eq('id', checkpointId);
+  if (error) throw error;
 }

@@ -1,6 +1,6 @@
 import { bindAccountSecurity, authErrorMessage, getAccessContext, renderDoorway, signOut } from '/private/auth.js';
-import { addPrivateNote, authorSession, createDirection, createRead, fileForAthlete, judgeClaim, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask, reviseSession } from '/private/data.js';
-import { escapeHtml, evidenceSection, formatDate, gradeSection, markSection, weekSection, whoSection } from '/private/record.js';
+import { addPrivateNote, authorSession, createDirection, createRead, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask, reviseSession } from '/private/data.js';
+import { escapeHtml, evidenceSection, formatDate, progressionSection, gradeSection, weekSection, whoSection } from '/private/record.js';
 
 // Account states only. The desk no longer labels athletes by a stored state —
 // the queue is derived from the record.
@@ -92,7 +92,7 @@ function deskHtml() {
       <div class="board-main">
         <div class="who-row">${whoSection(selectedRecord)}${athleteMenuHtml()}</div>
         ${weekSection(selectedRecord, { shownWeekId })}
-        ${markSection(selectedRecord)}
+        ${progressionSection(selectedRecord, { interactive: true })}
         ${gradeSection(selectedRecord)}
         ${evidenceSection(selectedRecord, { interactive: true })}
       </div>
@@ -144,6 +144,15 @@ function bindDesk() {
   document.getElementById('newSession')?.addEventListener('click', () => openSession(null));
   document.getElementById('fileRun')?.addEventListener('click', () => openFile(''));
   // Revise and file from the session itself, so the coach never re-finds it.
+  const nextState = { proposed: 'current', current: 'reached', reached: 'repeated', repeated: 'proposed', retired: 'proposed' };
+  app.querySelectorAll('[data-checkpoint]').forEach((button) =>
+    button.addEventListener('click', async () => {
+      button.disabled = true;
+      try {
+        await moveCheckpoint(button.dataset.checkpoint, nextState[button.dataset.state] || 'current');
+        await refreshSelected(true);
+      } catch (error) { button.disabled = false; window.alert(error.message); }
+    }));
   app.querySelectorAll('[data-judge]').forEach((button) =>
     button.addEventListener('click', () => openJudge(button.dataset.judge)));
   app.querySelectorAll('[data-revise]').forEach((button) =>
@@ -391,6 +400,9 @@ fileForm.addEventListener('submit', async (event) => {
       distanceUnit: 'mi',
       durationSeconds: toSeconds(f.duration.value),
       rpe: f.rpe.value ? Number(f.rpe.value) : null,
+      surface: f.surface.value || null,
+      temperatureF: f.temperatureF.value ? Number(f.temperatureF.value) : null,
+      conditions: f.conditions.value.trim() || null,
       athleteNote: f.athleteNote.value.trim() || null,
       recoveredNextDay: null
     }, pieces);

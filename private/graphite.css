@@ -1181,3 +1181,70 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   .ev-table tbody th { width: 30%; }
   .ev-recovery b { font-size: 17px; }
 }
+
+/* ── Progression ─────────────────────────────────────────────────────────────
+   The ladder shows position and nothing else. It does not try to say how
+   convincing the proof was; the readings underneath do that. Overloading a rung
+   with evidence quality is what turns a clear instrument into a scoring system.
+
+   Weeks are deliberately not an axis here. Putting distances on a calendar line
+   implies each one happens on a fixed date, and the block repeats rungs and
+   reorders them on purpose. */
+.proof { display: flex; align-items: flex-start; margin: 4px 0 34px; }
+.proof-rung {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 9px;
+  background: none; border: 0; padding: 0; position: relative; color: inherit; font: inherit;
+}
+[data-checkpoint] { cursor: pointer; }
+/* The connector belongs to the instrument, not between unrelated sections. */
+.proof-rung::before {
+  content: ""; position: absolute; top: 6px; left: -50%; width: 100%;
+  height: 1px; background: var(--edge);
+}
+.proof-rung:first-child::before { display: none; }
+.proof-mark {
+  width: 13px; height: 13px; border-radius: 50%; position: relative;
+  border: 1.5px solid var(--muted); background: var(--field); box-sizing: border-box;
+}
+.proof-value { font-size: 13px; font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; }
+.proof-state {
+  font-size: 9.5px; letter-spacing: .09em; text-transform: uppercase; color: var(--muted);
+}
+
+.proof-rung.reached .proof-mark,
+.proof-rung.repeated .proof-mark { background: var(--green); border-color: var(--green); }
+.proof-rung.reached .proof-value,
+.proof-rung.repeated .proof-value { color: var(--text); }
+/* Repeating a rung is a decision. It must not read as a stall, so it is marked
+   as its own state rather than left looking identical to a single hold. */
+.proof-rung.repeated .proof-mark::after {
+  content: ""; position: absolute; inset: -5px; border-radius: 50%;
+  border: 1px solid var(--green); opacity: .55;
+}
+/* Lime is spent once per composition, here, on the rung that is next. */
+.proof-rung.current .proof-mark { border-color: var(--lime); border-width: 2px; }
+.proof-rung.current .proof-value { color: var(--lime); }
+.proof-rung.current .proof-state { color: var(--lime); }
+.proof-rung.retired .proof-mark { border-style: dashed; }
+
+.ahead { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+.ahead td { padding: 9px 0; vertical-align: baseline; color: var(--secondary); font-size: 14px; }
+.ahead-when { width: 26%; color: var(--muted); font-size: 12.5px; }
+.ahead-dose { width: 16%; text-align: right; color: var(--text); font-variant-numeric: tabular-nums; }
+
+.reading { margin-bottom: 22px; }
+.reading time { display: block; color: var(--muted); font-size: 12px; }
+.reading-direction {
+  display: block; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase;
+  margin: 5px 0 6px; color: var(--muted);
+}
+.reading.supports .reading-direction { color: var(--green); }
+.reading.against .reading-direction,
+.reading.does_not_answer .reading-direction { color: var(--coral); }
+.reading p { margin: 0; font-size: 15px; line-height: 1.5; color: var(--text); }
+
+@media (max-width: 560px) {
+  .proof-value { font-size: 12px; }
+  .proof-state { font-size: 8.5px; }
+}
+.ev-where { margin: 5px 0 0; color: var(--muted); font-size: 12.5px; }

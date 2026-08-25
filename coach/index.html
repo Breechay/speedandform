@@ -176,7 +176,16 @@
         <label class="field-label">Effort<input class="field-input" type="number" min="1" max="10" name="rpe" placeholder="8"></label>
         <label class="field-label">Distance<input class="field-input" type="number" step="0.01" min="0" name="actualDistance" placeholder="8"></label>
         <label class="field-label">Time<input class="field-input" name="duration" placeholder="52:10" pattern="[0-9]{1,2}:[0-9]{2}(:[0-9]{2})?"></label>
+        <label class="field-label">Where<select class="field-select" name="surface">
+          <option value="">Not recorded</option><option value="road">Road</option>
+          <option value="track">Track</option><option value="trail">Trail</option>
+          <option value="treadmill">Treadmill</option>
+        </select></label>
+        <label class="field-label">Temperature<input class="field-input" type="number" min="-40" max="140" name="temperatureF" placeholder="84"></label>
       </div>
+      <label class="field-label">Anything that changed what the pace cost
+        <input class="field-input" name="conditions" placeholder="Humid, into the wind on the way back.">
+      </label>
 
       <fieldset class="pieces">
         <legend class="field-label">Splits</legend>
