@@ -82,6 +82,32 @@ So any confidence treatment must:
 If your answer is that a single confidence figure cannot be made honest, say so and
 propose what replaces it. That is a legitimate answer.
 
+## The plan they are on
+
+Fifteen weeks for Hope and Jose, sixteen for Marcus. **Three quality days a week**,
+which is what these athletes actually train.
+
+- **Tuesday** — the race-pace ladder (below)
+- **Thursday** — threshold or speed, alternating against Tuesday's load
+- **Sunday** — the long run, climbing to 14 miles and coming down for the race
+
+**The ladder is the spine.** The mark is *longest continuous run at race pace*, and it
+climbs **1 → 2 → 5 → 6 → 8 → 10 → 13.1 miles**. They have held one mile continuously;
+their 4 × 1 mi was four miles of race pace broken by recoveries. Two miles is the
+bridge, where rep length grows before the reps disappear. It ends at 13.1 because that
+is where the question gets answered.
+
+Race pace anchors at **6:30 to 6:45**. At 6:45 the half is 1:28, so the slow end still
+clears sub-1:30 with room, and the long continuous efforts stay sustainable.
+
+Peak lands three weeks out. Race pace is not every week: seven race-pace sessions in
+fifteen, with threshold and easy weeks between. **The repeats are the point** — six
+miles twice, the second at RPE 7 instead of 8, is stronger evidence than reaching ten
+once. Repeating a rung is a decision, not a miss.
+
+**The week's whole shape matters, not just Tuesday.** A page showing only the key
+session hides the thing that makes the block work.
+
 ## What exists to build on
 
 Live and reusable: a header (name, race, date, weeks out); a **ladder** of milestones
@@ -97,6 +123,15 @@ Not stored, worth asking for if needed: surface and conditions (decisive for Mar
 and per-rep structured splits rather than a formatted string.
 
 ## Constraints
+
+**Tables are permitted, and wanted, for data.** The no-cards rule governs content
+grouping, not comparative numbers. A table with a header band and delineated cells
+reads instantly; aligned text without that structure is a list pretending to be a
+table, and it fails. Asked-for against what-happened belongs in a real table.
+
+**Class names must be scoped.** A bare utility class (`.next`) collided with a state
+class (`.rung.next`) and silently broke the ladder's layout. State classes are always
+qualified by their element.
 
 **Visual.** Field `#141718` · surface `#1D2123` · raised `#282D30` · edge `#3B4346` ·
 text `#F1F2EF` · secondary `#A8B0B2` · muted `#7F898C`. **Lime `#D8FF68` is the
@@ -136,6 +171,17 @@ for a three-state read · a bar chart of three sessions across seven days · con
 lines drawn between two sections · tap-to-preview navigation on a progress strip ·
 character-count truncation · rest-day filler · phase strips reading CONSOLIDATE →
 EXTEND → RACE-SPECIFIC → TAPER · the words ADVANCED / STALLED / CONFOUNDED.
+
+## One thing to understand about the source
+
+The FORM iOS app already contains a half-marathon programming engine, and **it is not
+law**. It was authored quickly and at a high level before any of it had run against a
+real athlete through a real block. Where it and Brice's live coaching disagree, the
+app is behind, and the correct response is to amend the app.
+
+That has already happened once here: the app's ceiling was 25 continuous race-pace
+minutes, and the ladder above supersedes it. Do not treat anything from that repo as
+a constraint on a proposal.
 
 ## The questions
 
