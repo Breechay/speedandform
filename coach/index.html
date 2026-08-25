@@ -12,7 +12,7 @@
   <a class="skip-link" href="#deskMain">Skip to current decision</a>
   <div class="app-shell">
     <header class="topbar">
-      <a class="brand" href="/" aria-label="FORM home"><span class="form-mark">FORM</span><span class="product-name">Coach Console</span></a>
+      <a class="brand" href="/coach/" aria-label="Coach Console"><span class="form-mark">FORM</span><span class="product-name">Coach Console</span></a>
       <div class="topbar-tools">
         <button class="switcher" id="openRoster" type="button" aria-label="Switch athlete">Athletes</button>
         <details class="control" id="control">
@@ -88,6 +88,24 @@
       </details>
 
       <p class="status-message" id="coachingStatus" role="status"></p>
+      <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Save <span class="icon-arrow">&rarr;</span></button></div>
+    </form>
+  </dialog>
+
+  <dialog class="dialog" id="rungDialog">
+    <form class="dialog-inner" id="rungForm">
+      <div class="dialog-head">
+        <h2 id="rungContext">This rung</h2>
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Close">&times;</button>
+      </div>
+      <div class="switch switch--stack" role="group" aria-label="State">
+        <label><input type="radio" name="state" value="proposed"><span>Not proven yet</span></label>
+        <label><input type="radio" name="state" value="current"><span>Working on it now</span></label>
+        <label><input type="radio" name="state" value="reached"><span>Held it</span></label>
+        <label><input type="radio" name="state" value="repeated"><span>Held it again</span></label>
+        <label><input type="radio" name="state" value="retired"><span>Not going there</span></label>
+      </div>
+      <p class="status-message" id="rungStatus" role="status"></p>
       <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Save <span class="icon-arrow">&rarr;</span></button></div>
     </form>
   </dialog>

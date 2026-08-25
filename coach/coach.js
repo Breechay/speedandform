@@ -41,6 +41,9 @@ const judgeDialog = document.getElementById('judgeDialog');
 const judgeForm = document.getElementById('judgeForm');
 const confidenceDialog = document.getElementById('confidenceDialog');
 const confidenceForm = document.getElementById('confidenceForm');
+const rungDialog = document.getElementById('rungDialog');
+const rungForm = document.getElementById('rungForm');
+let editingCheckpointId = null;
 let judgingCompletionId = null;
 // Set when the session dialog is revising rather than authoring. A revision
 // appends a version; authoring makes the session.
@@ -49,6 +52,7 @@ let roster = [];
 let selectedId = null;
 let selectedRecord = null;
 let shownWeekId = null;
+let shownSessionId = null;
 
 async function authView() {
   document.body.classList.add('auth-only');
@@ -182,6 +186,110 @@ function athleteMenuHtml() {
   </details>`;
 }
 
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const dayLabel = (iso) => {
+  const date = new Date(`${iso}T12:00:00`);
+  return `${MONTHS[date.getMonth()]} ${date.getDate()}`;
+};
+// "Aug 31 to Sep 6" collapses to "Aug 31–Sep 6"; a range inside one month
+// collapses further to "Sep 7–13", which is how the dates read on paper.
+const rangeLabel = (from, to) => {
+  if (!from || !to) return '';
+  const a = new Date(`${from}T12:00:00`);
+  const b = new Date(`${to}T12:00:00`);
+  return a.getMonth() === b.getMonth()
+    ? `${MONTHS[a.getMonth()]} ${a.getDate()}\u2013${b.getDate()}`
+    : `${dayLabel(from)}\u2013${dayLabel(to)}`;
+};
+
+// The runway. Sixteen weeks with their real dates, the key authored session in
+// each, and the race at the right edge. Weeks are a calendar and the ladder is a
+// capability, so this never shows rungs: it shows when the chances to change the
+// evidence actually fall.
+function runwayHtml() {
+  const weeks = (selectedRecord.weeks || []).slice().sort((a, b) => a.week_number - b.week_number);
+  if (!weeks.length) return '';
+  const today = new Date().toISOString().slice(0, 10);
+  const shown = shownWeekId || selectedRecord.currentWeek?.id;
+
+  const cells = weeks.map((week) => {
+    // Today and selected are different states. Choosing another week must not
+    // move today.
+    const isToday = week.starts_on && week.ends_on && week.starts_on <= today && today <= week.ends_on;
+    const isShown = week.id === shown;
+    const key = (selectedRecord.sessionsByWeek?.[week.id] || [])
+      .map((session) => session.currentVersion)
+      .filter((version) => version && /race pace/i.test(version.title || ''))[0];
+    return `<button class="rw${isToday ? ' rw--today' : ''}${isShown ? ' rw--shown' : ''}"
+      type="button" data-week="${escapeHtml(week.id)}"
+      aria-current="${isShown ? 'true' : 'false'}"
+      aria-label="Week ${escapeHtml(week.week_number)}, ${escapeHtml(rangeLabel(week.starts_on, week.ends_on))}">
+      <span class="rw-no">W${escapeHtml(week.week_number)}</span>
+      <span class="rw-when">${escapeHtml(rangeLabel(week.starts_on, week.ends_on))}</span>
+      <span class="rw-key">${key?.prescribed_distance ? `${escapeHtml(Number(key.prescribed_distance))} mi` : ''}</span>
+      ${isToday ? '<span class="rw-now">today</span>' : ''}
+    </button>`;
+  }).join('');
+
+  return `<div class="runway" role="group" aria-label="The block, week by week">${cells}</div>`;
+}
+
+// The chosen week's work, and the session under it. This is the part with
+// something to act on.
+function weekWorkHtml() {
+  const weeks = (selectedRecord.weeks || []);
+  const shown = weeks.find((week) => week.id === (shownWeekId || selectedRecord.currentWeek?.id)) || weeks[0];
+  if (!shown) return '';
+  const sessions = (selectedRecord.sessionsByWeek?.[shown.id] || [])
+    .filter((session) => session.currentVersion)
+    .sort((a, b) => String(a.scheduled_on).localeCompare(String(b.scheduled_on)));
+  const picked = sessions.find((session) => session.id === shownSessionId) || sessions[0];
+
+  const rows = sessions.map((session) => {
+    const version = session.currentVersion;
+    const done = (selectedRecord.completions || []).find((item) => item.planned_session_id === session.id);
+    return `<button class="wk-row${session.id === picked?.id ? ' wk-row--on' : ''}${done ? ' wk-row--done' : ''}"
+      type="button" data-session="${escapeHtml(session.id)}">
+      <span class="wk-day">${escapeHtml(String(session.day_label).slice(0, 3))}<em>${escapeHtml(session.scheduled_on ? dayLabel(session.scheduled_on) : '')}</em></span>
+      <span class="wk-dose">${version.prescribed_distance
+        ? `${escapeHtml(Number(version.prescribed_distance))}<i>mi</i>`
+        : version.prescribed_duration_minutes ? `${escapeHtml(version.prescribed_duration_minutes)}<i>min</i>` : ''}</span>
+      <span class="wk-what">${escapeHtml(version.title)}</span>
+    </button>`;
+  }).join('');
+
+  return `<div class="weekWork">
+    <div class="wk-list">
+      <p class="wk-head">Week ${escapeHtml(shown.week_number)}<span>${escapeHtml(rangeLabel(shown.starts_on, shown.ends_on))}</span></p>
+      ${rows || '<p class="wk-empty">Nothing authored for this week.</p>'}
+    </div>
+    ${picked ? sessionInspectorHtml(picked) : ''}
+  </div>`;
+}
+
+function sessionInspectorHtml(session) {
+  const version = session.currentVersion;
+  const done = (selectedRecord.completions || []).find((item) => item.planned_session_id === session.id);
+  const band = [version.pace_low, version.pace_high].filter(Boolean).join('\u2013');
+  return `<div class="inspect">
+    <p class="ins-when">${escapeHtml(session.day_label)}${session.scheduled_on ? ` \u00b7 ${escapeHtml(dayLabel(session.scheduled_on))}` : ''}</p>
+    <h3 class="ins-what">${escapeHtml(version.title)}</h3>
+    <div class="ins-facts">
+      ${band ? `<span><b>${escapeHtml(band)}</b>race pace</span>` : ''}
+      ${version.rpe_low ? `<span><b>${escapeHtml(version.rpe_low)}\u2013${escapeHtml(version.rpe_high)}</b>asked effort</span>` : ''}
+    </div>
+    ${version.details ? `<p class="ins-detail">${escapeHtml(version.details)}</p>` : ''}
+    ${version.intent ? `<p class="ins-why">${escapeHtml(version.intent)}</p>` : ''}
+    <div class="ins-actions">
+      <button type="button" data-revise="${escapeHtml(session.id)}">MODIFY SESSION</button>
+      ${done
+        ? `<button type="button" data-correct="${escapeHtml(done.id)}">CORRECT ENTRY</button>
+           <button type="button" data-judge="${escapeHtml(done.id)}">SAY WHAT THIS DID</button>`
+        : `<button type="button" data-file="${escapeHtml(session.id)}">FILE RESULT</button>`}
+    </div>
+  </div>`;
+}
+
 function confidenceHtml() {
   const mark = selectedRecord.primaryMark;
   if (!mark) return '';
@@ -234,37 +342,26 @@ function deskHtml() {
   
   return `<section class="coachConsole" id="deskMain">
     <div id="squadStrip"></div>
-    <div class="consoleStage">
-      <!-- Athlete header with menu -->
-      <div class="consoleAthleteHeader">
-        ${whoSection(selectedRecord)}
-        ${athleteMenuHtml()}
-      </div>
-      
-      <!-- Two instruments. Confidence is Brice's judgment about the race;
-           coverage is the distance he has established. They share a row and
-           never an axis, because they are different quantities. -->
-      ${confidenceHtml()}
 
-      <!-- Claim -->
-      ${claim ? `<p class="consoleClaim">${escapeHtml(claim)}</p>` : ''}
-      
-      <!-- Orientation: current, next, coming -->
-      ${progressionSection(selectedRecord, { interactive: true })}
-      
-      <!-- Latest session -->
-      ${evidenceSection(selectedRecord, { interactive: true })}
-      
-      <!-- Coaching sentence -->
-      ${coachingSentence ? `<p class="consoleCoachSentence">${escapeHtml(coachingSentence)}</p>` : ''}
-      
-      <!-- Actions -->
-      <div class="consoleActions">
-        <button type="button" data-console-action="file-run">FILE A RUN</button>
-        ${hasCompletion ? `<button type="button" data-console-action="correct-entry" data-completion-id="${escapeHtml(latestCompletion.id)}">CORRECT ENTRY</button>` : ''}
-        ${hasCompletion ? `<button type="button" data-console-action="judge" data-completion-id="${escapeHtml(latestCompletion.id)}">SAY WHAT THIS DID</button>` : ''}
-        ${hasEvidence ? `<button type="button" data-console-action="source-image" data-completion-id="${escapeHtml(latestCompletion.id)}">SOURCE IMAGE</button>` : ''}
-      </div>
+    <div class="consoleHead">
+      <div class="consoleWho">${whoSection(selectedRecord)}${athleteMenuHtml()}</div>
+      ${confidenceHtml()}
+    </div>
+
+    ${claim ? `<p class="consoleClaim">${escapeHtml(claim)}</p>` : ''}
+    ${progressionSection(selectedRecord, { interactive: true })}
+
+    ${runwayHtml()}
+    ${weekWorkHtml()}
+
+    ${evidenceSection(selectedRecord, { interactive: true })}
+    ${coachingSentence ? `<p class="consoleCoachSentence">${escapeHtml(coachingSentence)}</p>` : ''}
+
+    <div class="consoleActions">
+      <button type="button" data-console-action="file-run">FILE A RUN</button>
+      ${hasCompletion ? `<button type="button" data-console-action="correct-entry" data-completion-id="${escapeHtml(latestCompletion.id)}">CORRECT ENTRY</button>` : ''}
+      ${hasCompletion ? `<button type="button" data-console-action="judge" data-completion-id="${escapeHtml(latestCompletion.id)}">SAY WHAT THIS DID</button>` : ''}
+      ${hasEvidence ? `<button type="button" data-console-action="source-image" data-completion-id="${escapeHtml(latestCompletion.id)}">SOURCE IMAGE</button>` : ''}
     </div>
   </section>`;
 }
@@ -328,25 +425,21 @@ function paintSquad() {
       }
     }));
   
-  // Bind checkpoint cycling for normal mode
+  // A rung opens a choice rather than cycling. Cycling meant one stray click
+  // advanced an authored decision through four states with nothing said, which is
+  // how a ladder with no outdoor evidence came to read 61 per cent proven.
   squadContainer.querySelectorAll('[data-cycle-checkpoint]').forEach((button) =>
-    button.addEventListener('click', async () => {
-      button.disabled = true;
-      try {
-        const nextState = { proposed: 'current', current: 'reached', reached: 'repeated', repeated: 'proposed', retired: 'proposed' };
-        await moveCheckpoint(button.dataset.cycleCheckpoint, nextState[button.dataset.state] || 'current');
-        await refreshSelected(true);
-      } catch (error) {
-        button.disabled = false;
-        window.alert(error.message);
-      }
-    }));
+    button.addEventListener('click', () => openRung(button.dataset.cycleCheckpoint, button.dataset.state, button.textContent.trim())));
 }
 
 function bindDesk() {
   paintSquad();
   app.querySelectorAll('[data-week]').forEach((button) => button.addEventListener('click', () => {
-    shownWeekId = button.dataset.week; app.innerHTML = deskHtml(); bindDesk();
+    shownWeekId = button.dataset.week; shownSessionId = null;
+    app.innerHTML = deskHtml(); bindDesk();
+  }));
+  app.querySelectorAll('[data-session]').forEach((button) => button.addEventListener('click', () => {
+    shownSessionId = button.dataset.session; app.innerHTML = deskHtml(); bindDesk();
   }));
   app.querySelectorAll('[data-week-step]').forEach((button) => button.addEventListener('click', () => {
     const weeks = (selectedRecord.weeks || []).slice().sort((a, b) => a.week_number - b.week_number);
@@ -587,6 +680,30 @@ function openJudge(completionId) {
   document.getElementById('judgeStatus').textContent = '';
   judgeDialog.showModal();
 }
+
+function openRung(checkpointId, state, label) {
+  rungForm.reset();
+  editingCheckpointId = checkpointId;
+  document.getElementById('rungContext').textContent = `${label} miles`;
+  [...rungForm.elements.state].forEach((radio) => { radio.checked = radio.value === state; });
+  document.getElementById('rungStatus').textContent = '';
+  rungDialog.showModal();
+}
+
+rungForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const status = document.getElementById('rungStatus');
+  const button = rungForm.querySelector('button[type="submit"]');
+  const chosen = [...rungForm.elements.state].find((radio) => radio.checked)?.value;
+  if (!chosen) { status.textContent = 'Pick one.'; return; }
+  button.disabled = true; status.textContent = 'Saving.';
+  try {
+    await moveCheckpoint(editingCheckpointId, chosen);
+    rungDialog.close();
+    await refreshSelected(true);
+  } catch (error) { status.textContent = error.message; }
+  finally { button.disabled = false; }
+});
 
 function openConfidence() {
   confidenceForm.reset();
