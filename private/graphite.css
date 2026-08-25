@@ -277,24 +277,24 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 
 /* Coach desk */
 .desk-layout { display: grid; grid-template-columns: 340px minmax(0, 1fr); min-height: calc(100vh - 68px); }
-.desk-rail { position: sticky; top: 68px; height: calc(100vh - 68px); overflow: auto; padding: 28px 22px; border-right: 1px solid #2b3133; background: var(--field-2); }
-.desk-rail h1 { margin: 7px 0 4px; font-size: 24px; letter-spacing: -.035em; }
-.desk-rail > p { margin: 0; color: var(--secondary); font-size: 13px; }
+.desk-rail { position: sticky; top: 0; height: 100vh; overflow: auto; padding: 22px 20px; border-right: 1px solid var(--edge); background: transparent; }
+.desk-rail h1 { margin: 6px 0 3px; font-size: 19px; letter-spacing: -.02em; }
+.desk-rail > p { margin: 0; color: var(--secondary); font-size: 12px; }
 .rail-heading { display: flex; justify-content: space-between; margin: 30px 2px 11px; font-size: 11px; }
 .rail-heading span { color: var(--muted); }
 .athlete-list { display: grid; gap: 7px; }
-.athlete-button { width: 100%; display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 11px; align-items: center; border: 1px solid transparent; border-radius: 12px; background: transparent; color: var(--text); padding: 10px; text-align: left; cursor: pointer; }
-.athlete-button:hover { background: #1b1f20; }
-.athlete-button.active { border-color: var(--edge); background: var(--surface); }
+.athlete-button { width: 100%; display: grid; grid-template-columns: 32px minmax(0, 1fr) auto; gap: 10px; align-items: center; border: 0; border-left: 2px solid transparent; border-radius: 0; background: transparent; color: var(--text); padding: 8px 10px; text-align: left; cursor: pointer; }
+.athlete-button:hover { background: var(--field-2); }
+.athlete-button.active { border-left-color: var(--lime); background: transparent; }
 .avatar { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--raised); font-size: 10px; font-weight: 850; }
 .athlete-button.active .avatar { background: var(--lime); color: #121610; }
 .athlete-list-copy { min-width: 0; }
 .athlete-list-copy b, .athlete-list-copy small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .athlete-list-copy b { font-size: 13px; }
 .athlete-list-copy small { margin-top: 3px; color: var(--secondary); font-size: 10px; }
-.desk-main { min-width: 0; padding: 28px; }
-.decision-card { padding: clamp(23px, 4vw, 34px); border: 1px solid #333a3e; border-radius: var(--radius); background: var(--surface); }
-.decision-card h2 { max-width: 17ch; margin: 8px 0 0; font-size: clamp(34px, 5vw, 52px); line-height: 1.01; letter-spacing: -.05em; }
+.desk-main { min-width: 0; padding: 22px 24px 28px; }
+.decision-card { padding: 0 0 22px; border: 0; border-bottom: 1px solid var(--edge); border-radius: 0; background: transparent; }
+.decision-card h2 { max-width: 26ch; margin: 9px 0 0; font-size: clamp(21px, 2.3vw, 27px); line-height: 1.14; letter-spacing: -.02em; }
 .decision-summary { max-width: 690px; margin: 18px 0 24px; color: var(--secondary); }
 .evidence-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
 .evidence { padding: 14px; border: 1px solid var(--edge); border-radius: 11px; background: var(--raised); }
@@ -304,17 +304,17 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 .action-label { margin: 24px 0 10px; color: var(--lime); font-size: 11px; font-weight: 850; }
 .decision-actions { display: flex; flex-wrap: wrap; gap: 9px; }
 .decision-resolution { padding: 14px; border-radius: 10px; background: rgba(118, 211, 164, .09); color: var(--green); font-size: 12px; }
-.desk-columns { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(280px, .7fr); gap: 16px; margin-top: 16px; align-items: start; }
-.projection-frame { min-width: 0; border: 1px solid #333a3e; border-radius: var(--radius); background: var(--surface); overflow: hidden; }
+.desk-columns { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(268px, .75fr); gap: 30px; margin-top: 20px; align-items: start; }
+.projection-frame { min-width: 0; border: 0; border-radius: 0; background: transparent; }
 .projection-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 17px 20px; border-bottom: 1px solid var(--edge); }
 .projection-head h3 { margin: 0; font-size: 13px; }
-.projection-frame .record-shell { width: 100%; padding: 18px; }
-.projection-frame .record-hero, .projection-frame .record-section { border-color: var(--edge); background: var(--raised); }
-.projection-frame .record-section { margin-top: 10px; }
-.projection-frame .because, .projection-frame .session-row, .projection-frame .question-box, .projection-frame .keep-callout { background: var(--surface); }
-.coach-margin { display: grid; gap: 10px; }
-.margin-panel { padding: 20px; border: 1px solid #333a3e; border-radius: var(--radius); background: var(--surface); }
-.margin-panel h3 { margin: 5px 0 0; font-size: 18px; }
+.projection-frame .record-shell { width: 100%; padding: 0; }
+.projection-frame .record-hero, .projection-frame .record-section { border: 0; border-top: 1px solid var(--edge); border-radius: 0; background: transparent; }
+.projection-frame .record-section { margin-top: 0; padding-top: 16px; }
+.projection-frame .because, .projection-frame .session-row, .projection-frame .question-box, .projection-frame .keep-callout { background: var(--field-2); }
+.coach-margin { display: grid; gap: 16px; align-content: start; }
+.margin-panel { padding: 0 0 16px; border: 0; border-bottom: 1px solid var(--edge); border-radius: 0; background: transparent; }
+.margin-panel h3 { margin: 4px 0 0; font-size: 14px; }
 .margin-panel p { color: var(--secondary); font-size: 12px; }
 .margin-actions { display: grid; gap: 8px; margin-top: 15px; }
 .private-note { padding: 12px 0; border-top: 1px solid var(--edge); }
@@ -357,12 +357,12 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   .dialog-actions { display: grid; }
   .dialog-actions .button { width: 100%; }
   .desk-layout { display: block; }
-  .desk-rail { position: static; height: auto; padding: 19px 14px 13px; border: 0; }
-  .desk-rail h1 { font-size: 21px; }
+  .desk-rail { position: static; height: auto; padding: 16px 14px 12px; border: 0; border-bottom: 1px solid var(--edge); }
+  .desk-rail h1 { font-size: 18px; }
   .rail-heading { margin-top: 20px; }
   .athlete-button:not(.active) { display: none; }
   .desk-main { padding: 0 14px 28px; }
-  .decision-card h2 { font-size: 34px; }
+  .decision-card h2 { font-size: 21px; }
   .evidence-grid { grid-template-columns: 1fr 1fr; }
   .evidence:last-child { grid-column: 1 / -1; }
   .decision-actions { display: grid; }
@@ -378,3 +378,15 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+
+/* The desk shows three things at once. The athlete's own page is reference,
+   so it scrolls within its own height instead of pushing the tools below the
+   fold. */
+.projection-scroll { max-height: min(56vh, 560px); overflow: auto; padding-right: 4px; }
+.projection-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; padding-bottom: 12px; }
+.projection-head h3 { margin: 0; font-size: 13px; font-weight: 750; }
+.projection-frame .record-hero h1 { font-size: 20px; letter-spacing: -.02em; }
+.projection-frame .record-section h2 { font-size: 15px; }
+.projection-frame .mark-number strong { font-size: 27px; }
+.projection-frame .account-band { border-radius: 0; }

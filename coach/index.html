@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#141718">
   <title>Coach Desk · FORM</title>
-  <link rel="stylesheet" href="/private/graphite.css?v=4">
+  <link rel="stylesheet" href="/private/graphite.css?v=5">
 </head>
 <body>
   <a class="skip-link" href="#deskMain">Skip to current decision</a>
@@ -33,9 +33,9 @@
 
   <dialog class="dialog" id="coachingDialog">
     <form class="dialog-inner" id="coachingForm">
-      <div class="dialog-head"><div><p class="eyebrow">Athlete-facing coaching</p><h2>Write what matters now.</h2></div><button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button></div>
+      <div class="dialog-head"><div><p class="eyebrow">Athlete-facing coaching</p><h2>Write a Direction or a Read</h2></div><button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button></div>
       <div class="form-grid">
-        <label class="field-label">Object<select class="field-select" name="objectType"><option value="direction">Direction · before the run</option><option value="read">Read · after the run</option></select></label>
+        <label class="field-label">What are you writing<select class="field-select" name="objectType"><option value="direction">Direction · before the run</option><option value="read">Read · after the run</option></select></label>
         <label class="field-label" data-direction-only>Planned session<select class="field-select" name="plannedSessionId"></select></label>
         <label class="field-label" data-direction-only>What must stay protected<input class="field-input" name="protectedVariable" placeholder="Easy effort and a quiet knee"></label>
         <label class="field-label" data-direction-only>What can move<input class="field-input" name="movableVariable" placeholder="Distance and walk breaks"></label>
@@ -77,6 +77,6 @@
       <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Publish frozen excerpt <span class="icon-arrow">→</span></button></div>
     </form>
   </dialog>
-  <script type="module" src="/coach/coach.js?v=4"></script>
+  <script type="module" src="/coach/coach.js?v=5"></script>
 </body>
 </html>

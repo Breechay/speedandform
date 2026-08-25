@@ -74,7 +74,7 @@ function rosterHtml() {
 
 function decisionHtml() {
   const task = selectedRecord.task;
-  if (!task) return `<article class="decision-card"><span class="state-pill on_track">Nothing needed</span><h2>The next work is already clear.</h2><p class="decision-summary">No decision is waiting on Brice for ${escapeHtml(selectedRecord.athlete.first_name)}.</p></article>`;
+  if (!task) return `<article class="decision-card"><span class="state-pill on_track">Nothing needed</span><h2>Nothing needs a decision.</h2><p class="decision-summary">No decision is waiting on Brice for ${escapeHtml(selectedRecord.athlete.first_name)}.</p></article>`;
   const evidence = selectedRecord.taskEvidence.map((item) => `<div class="evidence"><span>${escapeHtml(item.label)}</span><b>${escapeHtml(item.value)}</b></div>`).join('');
   const actions = selectedRecord.taskActions.map((action) => `<button class="button${action.is_primary ? ' primary' : ''}" type="button" data-task-action="${action.id}">${escapeHtml(action.label)}${action.is_primary ? ' <span class="icon-arrow">→</span>' : ''}</button>`).join('');
   return `<article class="decision-card">
@@ -92,7 +92,7 @@ function coachMarginHtml() {
   const notes = selectedRecord.privateNotes.slice(0, 3).map((note) => `<article class="private-note"><time>${new Date(note.created_at).toLocaleDateString()}</time><p>${escapeHtml(note.body)}</p></article>`).join('');
   const account = selectedRecord.adminStatus;
   return `<aside class="coach-margin" aria-label="Coach margin">
-    <section class="margin-panel"><p class="eyebrow">Coach margin</p><h3>Write once. Publish clearly.</h3><div class="margin-actions"><button class="button primary" id="writeCoaching" type="button">Write Direction or Read <span class="icon-arrow">→</span></button><button class="button" id="addPrivateNote" type="button">Add private note</button><button class="button" id="shareExcerpt" type="button">Create share card</button></div></section>
+    <section class="margin-panel"><div class="margin-actions"><button class="button primary" id="writeCoaching" type="button">Write Direction or Read <span class="icon-arrow">→</span></button><button class="button" id="addPrivateNote" type="button">Add private note</button><button class="button" id="shareExcerpt" type="button">Create share card</button></div></section>
     <section class="margin-panel"><p class="eyebrow">Recent coaching</p>${latestDirection ? `<p><strong>Direction · Published</strong><br>${escapeHtml(latestDirection.athlete_text)}</p>` : '<p>No Direction yet.</p>'}${latestRead ? `<p><strong>Read · Published</strong><br>${escapeHtml(latestRead.athlete_text)}</p>` : ''}</section>
     <section class="margin-panel"><p class="eyebrow">Coach only</p><h3>${escapeHtml(account?.relationship_label || selectedRecord.athlete.account_label)}</h3><p>${account ? escapeHtml(stateLabels[account.payment_state] || account.payment_state.replace('_', ' ')) : ''}</p>${notes || '<p>No private notes.</p>'}</section>
   </aside>`;
@@ -102,7 +102,7 @@ function deskHtml() {
   const needsCount = roster.filter((athlete) => ['needs_you', 'ready_to_publish', 'plan_changed'].includes(athlete.task?.state)).length;
   return `<div class="desk-layout">
     <aside class="desk-rail"><p class="eyebrow">${new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric' }).format(new Date())}</p><h1>What needs a decision.</h1><p>${needsCount ? `${needsCount} ${needsCount === 1 ? 'decision needs' : 'decisions need'} you today.` : 'Nothing urgent is waiting.'}</p><div class="rail-heading"><strong>Athletes</strong><span>${roster.length} active</span></div><div class="athlete-list">${rosterHtml()}</div></aside>
-    <section class="desk-main" id="deskMain">${decisionHtml()}<div class="desk-columns"><section class="projection-frame"><div class="projection-head"><h3>${escapeHtml(selectedRecord.athlete.first_name)}’s record · athlete view</h3><a class="button quiet" href="#recordProjection">View record</a></div><div id="recordProjection">${renderAthleteRecord(selectedRecord, { projection: true })}</div></section>${coachMarginHtml()}</div></section>
+    <section class="desk-main" id="deskMain">${decisionHtml()}<div class="desk-columns"><section class="projection-frame"><div class="projection-head"><h3>${escapeHtml(selectedRecord.athlete.first_name)}’s record · athlete view</h3><a class="button quiet" href="#recordProjection">View record</a></div><div class="projection-scroll"><div id="recordProjection">${renderAthleteRecord(selectedRecord, { projection: true })}</div></div></section>${coachMarginHtml()}</div></section>
   </div>`;
 }
 
