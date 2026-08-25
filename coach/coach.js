@@ -81,37 +81,31 @@ function rosterHtml() {
 
 
 
-function coachMarginHtml() {
-  const latestDirection = selectedRecord.directions[0];
-  const latestRead = selectedRecord.reads[0];
-  const notes = selectedRecord.privateNotes.slice(0, 2).map((note) => `<article class="private-note"><time>${new Date(note.created_at).toLocaleDateString()}</time><p>${escapeHtml(note.body)}</p></article>`).join('');
+function athleteMenuHtml() {
   const account = selectedRecord.adminStatus;
-  return `<aside class="coach-margin" aria-label="Coach only">
-    <section class="margin-panel">
-      <p class="eyebrow">Last published</p>
-      ${latestDirection ? `<p class="margin-line"><b>Direction</b> ${escapeHtml(latestDirection.athlete_text)}</p>` : ''}
-      ${latestRead ? `<p class="margin-line"><b>Read</b> ${escapeHtml(latestRead.athlete_text)}</p>` : ''}
-      ${!latestDirection && !latestRead ? '<p class="margin-line muted">Nothing published yet.</p>' : ''}
-    </section>
-    <section class="margin-panel">
-      <p class="eyebrow">Coach only · ${escapeHtml(account?.relationship_label || selectedRecord.athlete.account_label)}</p>
-      ${notes || '<p class="margin-line muted">No private notes.</p>'}
-      <div class="margin-actions"><button class="button quiet" id="addPrivateNote" type="button">Add a note</button><button class="button quiet" id="shareExcerpt" type="button">Share card</button></div>
-    </section>
-  </aside>`;
+  const notes = selectedRecord.privateNotes.slice(0, 3).map((note) =>
+    `<article class="private-note"><time>${new Date(note.created_at).toLocaleDateString()}</time><p>${escapeHtml(note.body)}</p></article>`).join('');
+  return `<details class="athlete-menu" id="athleteMenu">
+    <summary aria-label="Coach only">\u2026</summary>
+    <div class="control-menu wide">
+      <p class="control-who">${escapeHtml(account?.relationship_label || selectedRecord.athlete.account_label)}</p>
+      ${notes || '<p class="control-who">No private notes.</p>'}
+      <button class="control-item" id="addPrivateNote" type="button">Add a private note</button>
+      <button class="control-item" id="shareExcerpt" type="button">Create a share card</button>
+    </div>
+  </details>`;
 }
 
 function deskHtml() {
   return `<section class="desk-main" id="deskMain">
     <div class="board">
       <div class="board-main">
-        ${whoSection(selectedRecord)}
+        <div class="who-row">${whoSection(selectedRecord)}${athleteMenuHtml()}</div>
         ${weekSection(selectedRecord, { shownWeekId })}
         ${markSection(selectedRecord)}
       </div>
       <div class="board-side">
         ${recordSection(selectedRecord, { limit: 4 })}
-        ${coachMarginHtml()}
       </div>
     </div>
   </section>`;
@@ -187,7 +181,7 @@ function openCoaching(objectType = 'direction', subjectId = '') {
     const session = selectedRecord.sessions.find((item) => item.id === completion.planned_session_id);
     const distance = completion.actual_distance ? ` · ${completion.actual_distance} ${completion.distance_unit || ''}` : '';
     return `<option value="${completion.id}">${escapeHtml(formatDate(completion.filed_at))} · ${escapeHtml(session?.currentVersion?.title || completion.status)}${escapeHtml(distance)}</option>`;
-  }).join('') || '<option value="" disabled>No sessions filed yet</option>';
+  }).join('') || '<option value="" disabled>Nothing logged yet</option>';
   // Preselect what the situation pointed at, so the coach is not re-finding it.
   if (subjectId) {
     if (objectType === 'read') {

@@ -933,3 +933,21 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   .day { min-height: 116px; padding: 13px 12px; }
   .day-figure { font-size: 21px; }
 }
+
+
+/* Coach-only acts live on her name, not in a footer. They are rare and
+   deliberate; they should not hold ground on every visit. */
+.who-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+.athlete-menu { position: relative; }
+.athlete-menu > summary {
+  list-style: none; cursor: pointer; width: 32px; height: 32px; display: grid;
+  place-items: center; border-radius: 8px; color: var(--secondary);
+  font-size: 17px; line-height: 1; letter-spacing: .08em;
+}
+.athlete-menu > summary::-webkit-details-marker { display: none; }
+.athlete-menu > summary:hover, .athlete-menu[open] > summary { background: var(--field-2); color: var(--text); }
+.control-menu.wide { min-width: 268px; }
+.control-menu.wide .private-note { padding: 9px 10px; border-top: 1px solid var(--edge); }
+.control-menu.wide .private-note:first-of-type { border-top: 0; }
+.control-menu.wide .private-note p { font-size: 12px; }
+.athlete-menu .control-menu { position: absolute; z-index: 60; top: calc(100% + 8px); right: 0; }
