@@ -86,6 +86,7 @@ export function weekSection(record, { interactive = false, shownWeekId = null } 
   const week = weeks.find((entry) => entry.id === shownWeekId) || record.currentWeek || weeks[0] || null;
   const sessions = week ? (record.sessionsByWeek?.[week.id] || []) : [];
   const attention = record.attention || [];
+  const index = week ? weeks.findIndex((entry) => entry.id === week.id) : -1;
 
   const days = DAY_ORDER.map((label) => {
     const session = sessions.find((entry) => (entry.day_label || '').toUpperCase().startsWith(label.slice(0, 3)));
@@ -97,18 +98,20 @@ export function weekSection(record, { interactive = false, shownWeekId = null } 
       actual: Number(completion?.actual_distance) || 0 };
   });
 
-  const scale = Math.max(...days.map((day) => Math.max(day.planned, day.actual)), 1);
   const plannedTotal = days.reduce((sum, day) => sum + day.planned, 0);
   const actualTotal = days.reduce((sum, day) => sum + day.actual, 0);
-  const index = week ? weeks.findIndex((entry) => entry.id === week.id) : -1;
 
-  const strip = Array.from({ length: total }, (_, position) => {
-    const number = position + 1;
-    const authored = weeks.find((entry) => entry.week_number === number);
-    const shown = week && authored && authored.id === week.id;
-    return `<button class="wk-pip${authored ? ' authored' : ''}${shown ? ' shown' : ''}" type="button"
-      ${authored ? `data-week="${authored.id}"` : 'disabled'} aria-label="Week ${number}">${number}</button>`;
-  }).join('');
+  // Weeks read as a scale, not a row of buttons. The current one is marked; the
+  // rest are ticks you can move to.
+  const scale = weeks.length > 1 || total > 1
+    ? `<div class="wk-scale">${Array.from({ length: total }, (_, position) => {
+        const number = position + 1;
+        const authored = weeks.find((entry) => entry.week_number === number);
+        const shown = week && authored && authored.id === week.id;
+        return `<button class="wk-tick${authored ? ' authored' : ''}${shown ? ' shown' : ''}" type="button"
+          ${authored ? `data-week="${authored.id}"` : 'disabled'} aria-label="Week ${number}"></button>`;
+      }).join('')}</div>`
+    : '';
 
   return `<section class="record-section crop week-grid" id="now">
     <div class="week-head">
@@ -119,39 +122,43 @@ export function weekSection(record, { interactive = false, shownWeekId = null } 
       </div>
       <div class="wk-total"><b>${actualTotal.toFixed(1)}</b><span>of ${plannedTotal.toFixed(1)} mi</span></div>
     </div>
-    <div class="wk-strip">${strip}</div>
+    ${scale}
     ${week?.intent ? `<p class="wk-intent">${escapeHtml(week.intent)}</p>` : ''}
     <div class="week-days">${days.map((day) => {
-      const state = day.completion ? day.completion.status : (day.session ? 'pending' : 'empty');
-      const fileButton = interactive && day.session
-        ? `<button class="wk-file" type="button" data-file-session="${day.session.id}"${day.completion ? ` data-completion-id="${day.completion.id}"` : ''}>${day.completion ? 'Edit' : 'File'}</button>`
-        : '';
-      return `<div class="wk-col ${escapeHtml(state)}${day.flag ? ' flagged' : ''}">
-        <span class="wk-dayname">${escapeHtml(day.label)}</span>
-        <div class="wk-stack">
-          ${day.session ? `<span class="wk-plan" style="height:${Math.max(6, (day.planned / scale) * 100)}%"></span>
-          ${day.actual ? `<span class="wk-actual" style="height:${Math.max(6, (day.actual / scale) * 100)}%"></span>` : ''}` : ''}
-        </div>
-        <span class="wk-num">${day.session ? (day.completion ? day.actual || '\u2014' : `<i>${day.planned || '\u2014'}</i>`) : ''}</span>
-        <span class="wk-title">${escapeHtml(day.version.title || '')}</span>
-        ${fileButton}
-        ${day.flag && !interactive ? `<button class="wk-flag" type="button" data-write="${escapeHtml(day.flag.kind === 'missing_direction' ? 'direction' : 'read')}" data-subject="${escapeHtml(day.flag.subject_id || '')}" title="${escapeHtml(day.flag.title)}"></button>` : ''}
+      if (!day.session) return `<div class="day empty"><span class="day-name">${escapeHtml(day.label)}</span></div>`;
+      const filed = Boolean(day.completion);
+      const note = day.flag
+        ? (day.flag.kind === 'missing_direction' ? 'no plan yet' : 'needs a reply')
+        : (filed ? 'filed' : '');
+      return `<div class="day${filed ? ' filed' : ''}${day.flag ? ' flagged' : ''}"
+        ${interactive ? `data-file-session="${day.session.id}"${day.completion ? ` data-completion-id="${day.completion.id}"` : ''} role="button" tabindex="0"` : ''}
+        ${!interactive && day.flag ? `data-write="${escapeHtml(day.flag.kind === 'missing_direction' ? 'direction' : 'read')}" data-subject="${escapeHtml(day.flag.subject_id || '')}" role="button" tabindex="0"` : ''}>
+        <span class="day-name">${escapeHtml(day.label)}</span>
+        <span class="day-figure">${escapeHtml(filed ? day.actual : day.planned)}<i>mi</i></span>
+        <span class="day-title">${escapeHtml(day.version.title || '')}</span>
+        ${note ? `<span class="day-note">${escapeHtml(note)}</span>` : ''}
       </div>`;
     }).join('')}</div>
   </section>`;
 }
 
+
 // The header both surfaces share.
 export function whoSection(record) {
   const athlete = record.athlete;
   const block = record.block;
-  const raceOn = block?.race_on
-    ? new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(new Date(`${block.race_on}T12:00:00`))
-    : null;
   const goal = block?.goal_statement || [block?.goal_label, block?.target_event].filter(Boolean).join(' \u00b7 ') || null;
+  let orient = '';
+  if (block?.race_on) {
+    const race = new Date(`${block.race_on}T12:00:00`);
+    const today = new Date();
+    const weeksOut = Math.max(0, Math.round((race - today) / (7 * 24 * 60 * 60 * 1000)));
+    const date = new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(race);
+    orient = `<span class="who-date">${escapeHtml(date)}</span><span class="who-out"><b>${weeksOut}</b> weeks out</span>`;
+  }
   return `<header class="who">
     <h1>${escapeHtml(athlete.display_name)}</h1>
-    ${goal ? `<p class="who-goal">${escapeHtml(goal)}${raceOn ? `<span class="who-date">${escapeHtml(raceOn)}</span>` : ''}</p>` : ''}
+    ${goal ? `<p class="who-goal">${escapeHtml(goal)}${orient}</p>` : ''}
   </header>`;
 }
 
@@ -186,24 +193,23 @@ export function markSection(record) {
 }
 
 export function gradeSection(record) {
-  const grade = gradeHtml(record);
-  return grade ? `<section class="record-section crop" id="read"><p class="eyebrow">Movement</p>${grade}</section>` : '';
-}
-
-const gradeOrder = ['not_yet', 'holds_until_tired', 'holds'];
-
-function gradeHtml(record) {
   if (!record.movementReads.length) return '';
-  return `<div class="grade">${record.movementReads.map((marker) => {
-    const index = gradeOrder.indexOf(marker.state);
-    const steps = gradeOrder.map((_, position) => `<span class="step${position <= index ? ' on' : ''}"></span>`).join('');
-    return `<div class="grade-row ${escapeHtml(marker.state)}">
-      <b>${escapeHtml(markerNames[marker.marker] || marker.marker)}</b>
-      <span class="grade-track" role="img" aria-label="${escapeHtml(gradeStates[marker.state] || marker.state)}">${steps}</span>
-      <span class="grade-state">${escapeHtml(gradeStates[marker.state] || marker.state)}</span>
-      <small>${escapeHtml(marker.cue)}</small>
+  const groups = [
+    { state: 'not_yet', label: 'Not yet' },
+    { state: 'holds_until_tired', label: 'Holds until tired' },
+    { state: 'holds', label: 'Holds' }
+  ].map((group) => {
+    const items = record.movementReads.filter((marker) => marker.state === group.state);
+    if (!items.length) return '';
+    return `<div class="mv-group ${escapeHtml(group.state)}">
+      <span class="mv-state">${escapeHtml(group.label)}</span>
+      <span class="mv-names">${items.map((marker) => escapeHtml(markerNames[marker.marker] || marker.marker)).join(', ')}</span>
     </div>`;
-  }).join('')}</div>`;
+  }).join('');
+  return `<section class="record-section" id="read">
+    <p class="eyebrow">Movement</p>
+    <div class="movement">${groups}</div>
+  </section>`;
 }
 
 export function supportSection(record) {
@@ -226,32 +232,26 @@ export function supportSection(record) {
   </section>`;
 }
 
-export function recordSection(record) {
+export function recordSection(record, { limit = 0 } = {}) {
   const events = [];
   record.completions.forEach((item) => events.push({
     type: 'Filed', date: item.filed_at,
-    body: `${item.status[0].toUpperCase()}${item.status.slice(1)}${item.actual_distance ? ` · ${item.actual_distance} ${item.distance_unit || ''}` : ''}${item.athlete_note ? ` — ${item.athlete_note}` : ''}`
+    body: `${item.actual_distance ? `${item.actual_distance} ${item.distance_unit || ''} \u00b7 ` : ''}${item.status}${item.athlete_note ? ` \u2014 ${item.athlete_note}` : ''}`
   }));
-  record.reads.forEach((item) => events.push({ type: 'Read', date: item.published_at || item.created_at, body: item.athlete_text }));
-  record.decisions.forEach((item) => events.push({ type: 'Decision', date: item.effective_on, body: item.athlete_text }));
+  record.reads.forEach((item) => events.push({ type: 'Reply', date: item.published_at || item.created_at, body: item.athlete_text }));
+  record.decisions.forEach((item) => events.push({ type: 'Change', date: item.effective_on, body: item.athlete_text }));
   events.sort((a, b) => new Date(b.date) - new Date(a.date));
-  const baseline = record.baselines[0];
+  const shown = limit ? events.slice(0, limit) : events;
+  if (!shown.length) return '';
   return `<section class="record-section" id="record">
-    <div class="section-head"><div><p class="eyebrow">History</p></div></div>
-    ${baseline ? `<dl class="baseline">
-      <div><dt>Before the block</dt><dd>${escapeHtml(baseline.running_history)}</dd></div>
-      <div><dt>Longest run</dt><dd>${escapeHtml(baseline.longest_run)} mi</dd></div>
-      <div><dt>Frequency</dt><dd>${escapeHtml(baseline.current_frequency)} a week</dd></div>
-      <div><dt>Constraints</dt><dd>${escapeHtml(baseline.constraints)}</dd></div>
-    </dl>` : ''}
-    <div class="record-list">${events.map((event) => `<article class="record-event">
+    <p class="eyebrow">History</p>
+    <div class="record-list">${shown.map((event) => `<article class="record-event">
       <time>${escapeHtml(formatDate(event.date))}</time>
       <span class="event-type ${escapeHtml(event.type.toLowerCase())}">${escapeHtml(event.type)}</span>
       <p>${escapeHtml(event.body)}</p>
-    </article>`).join('') || '<p class="muted">Nothing filed yet.</p>'}</div>
+    </article>`).join('')}</div>
   </section>`;
 }
-
 
 function accountSection(record, email, interactive) {
   const athlete = record.athlete;

@@ -6,17 +6,31 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#141718">
   <title>Coach Desk · FORM</title>
-  <link rel="stylesheet" href="/private/graphite.css?v=20">
+  <link rel="stylesheet" href="/private/graphite.css?v=21">
 </head>
 <body>
   <a class="skip-link" href="#deskMain">Skip to current decision</a>
   <div class="app-shell">
     <header class="topbar">
       <a class="brand" href="/" aria-label="FORM home"><span class="form-mark">FORM</span><span class="product-name">Coach Desk</span></a>
-      <div class="topbar-tools"><span class="user-email" id="userEmail"></span><button class="button quiet" id="signOut" type="button" hidden>Sign out</button></div>
+      <div class="topbar-tools">
+        <button class="switcher" id="openRoster" type="button" aria-label="Switch athlete">Athletes</button>
+        <details class="control" id="control">
+          <summary aria-label="Account"><span class="avatar-me" id="userInitials">B</span></summary>
+          <div class="control-menu">
+            <p class="control-who" id="userEmail"></p>
+            <button class="control-item" id="signOut" type="button">Sign out</button>
+          </div>
+        </details>
+      </div>
     </header>
     <main id="app"><div class="loading" aria-label="Loading Coach Desk"></div></main>
   </div>
+  <div class="roster-scrim" id="rosterScrim" hidden></div>
+  <aside class="roster-drawer" id="rosterDrawer" hidden aria-label="Athletes">
+    <div class="roster-head"><p class="eyebrow" id="rosterCount"></p><button class="drawer-close" id="closeRoster" type="button" aria-label="Close">&times;</button></div>
+    <div class="athlete-list" id="rosterList"></div>
+  </aside>
 
   <dialog class="dialog" id="decisionDialog">
     <form class="dialog-inner" id="decisionForm">
@@ -77,6 +91,6 @@
       <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Publish frozen excerpt <span class="icon-arrow">→</span></button></div>
     </form>
   </dialog>
-  <script type="module" src="/coach/coach.js?v=20"></script>
+  <script type="module" src="/coach/coach.js?v=21"></script>
 </body>
 </html>

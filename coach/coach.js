@@ -72,16 +72,10 @@ function pendingView(email) {
 function initials(name) { return String(name || '').split(/\s+/).map((part) => part[0]).join('').slice(0, 2).toUpperCase(); }
 
 function rosterHtml() {
-  return roster.map((athlete) => {
-    const active = athlete.id === selectedId;
-    const item = athlete.topItem;
-    const count = athlete.attention.length;
-    const reason = item ? item.title : 'Nothing waiting';
-    return `<button class="athlete-button${active ? ' active' : ''}${item ? ' needs' : ''}" type="button" data-athlete-id="${athlete.id}" aria-pressed="${active}">
-      <span class="athlete-list-copy"><b>${escapeHtml(athlete.first_name || athlete.display_name)}</b><small>${escapeHtml(reason)}</small></span>
-      ${count > 1 ? `<span class="attention-count">${count}</span>` : (item ? '<span class="attention-dot" aria-label="Needs you"></span>' : '')}
-    </button>`;
-  }).join('');
+  return roster.map((athlete) => `<button class="athlete-button${athlete.id === selectedId ? ' active' : ''}${athlete.topItem ? ' needs' : ''}" type="button" data-athlete-id="${athlete.id}">
+    <span class="athlete-list-copy"><b>${escapeHtml(athlete.first_name || athlete.display_name)}</b><small>${escapeHtml(athlete.topItem ? athlete.topItem.title : 'Nothing waiting')}</small></span>
+    ${athlete.attention.length ? `<span class="attention-count">${athlete.attention.length}</span>` : ''}
+  </button>`).join('');
 }
 
 
@@ -108,47 +102,46 @@ function coachMarginHtml() {
 }
 
 function deskHtml() {
-  return `<div class="desk-layout">
-    <aside class="desk-rail">
-      <button class="rail-toggle" id="railToggle" type="button" aria-label="Show or hide the roster"><span class="rail-bars"></span></button>
-      <div class="rail-body">
-        <p class="eyebrow">${new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric' }).format(new Date())}</p>
-        <h1>${escapeHtml(roster.filter((entry) => entry.topItem).length ? `${roster.filter((entry) => entry.topItem).length} need you` : 'Nothing waiting')}</h1>
-        <div class="athlete-list">${rosterHtml()}</div>
+  return `<section class="desk-main" id="deskMain">
+    <div class="board">
+      <div class="board-main">
+        ${whoSection(selectedRecord)}
+        ${markSection(selectedRecord)}
+        ${weekSection(selectedRecord, { shownWeekId })}
       </div>
-      <div class="rail-collapsed" aria-hidden="true">${roster.map((entry) => `<span class="rail-chip${entry.id === selectedId ? ' active' : ''}${entry.topItem ? ' needs' : ''}">${escapeHtml(initials(entry.display_name))}</span>`).join('')}</div>
-    </aside>
-    <section class="desk-main" id="deskMain">
-      <div class="board">
-        <div class="board-main">
-          ${whoSection(selectedRecord)}
-          ${markSection(selectedRecord)}
-          ${weekSection(selectedRecord, { shownWeekId })}
-        </div>
-        <div class="board-side">
-          ${gradeSection(selectedRecord)}
-          ${recordSection(selectedRecord)}
-          ${coachMarginHtml()}
-        </div>
+      <div class="board-side">
+        ${gradeSection(selectedRecord)}
+        ${recordSection(selectedRecord, { limit: 4 })}
+        ${coachMarginHtml()}
       </div>
-    </section>
-  </div>`;
+    </div>
+  </section>`;
 }
 
-const RAIL_KEY = 'form-desk-rail-collapsed';
-function applyRailState() {
-  // Collapsed by default: he opens the desk to work on one athlete, not to
-  // browse four names. Expanding is the deliberate act.
-  document.body.classList.toggle('rail-collapsed-on', localStorage.getItem(RAIL_KEY) !== '0');
+function paintRoster() {
+  const needing = roster.filter((entry) => entry.topItem).length;
+  document.getElementById('rosterCount').textContent = needing ? `${needing} need you` : 'Nothing waiting';
+  document.getElementById('rosterList').innerHTML = rosterHtml();
+  document.getElementById('rosterList').querySelectorAll('[data-athlete-id]').forEach((button) =>
+    button.addEventListener('click', () => { closeRoster(); selectAthlete(button.dataset.athleteId); }));
+}
+
+function openRoster() {
+  paintRoster();
+  document.getElementById('rosterDrawer').hidden = false;
+  document.getElementById('rosterScrim').hidden = false;
+  requestAnimationFrame(() => document.body.classList.add('roster-open'));
+}
+
+function closeRoster() {
+  document.body.classList.remove('roster-open');
+  setTimeout(() => {
+    document.getElementById('rosterDrawer').hidden = true;
+    document.getElementById('rosterScrim').hidden = true;
+  }, 220);
 }
 
 function bindDesk() {
-  applyRailState();
-  document.getElementById('railToggle')?.addEventListener('click', () => {
-    localStorage.setItem(RAIL_KEY, localStorage.getItem(RAIL_KEY) === '0' ? '1' : '0');
-    applyRailState();
-  });
-  app.querySelectorAll('[data-athlete-id]').forEach((button) => button.addEventListener('click', () => selectAthlete(button.dataset.athleteId)));
   app.querySelectorAll('[data-week]').forEach((button) => button.addEventListener('click', () => {
     shownWeekId = button.dataset.week; app.innerHTML = deskHtml(); bindDesk();
   }));
@@ -293,13 +286,19 @@ async function refreshSelected(animate = false) {
 }
 
 signOutButton.addEventListener('click', signOut);
+document.getElementById('openRoster').addEventListener('click', openRoster);
+document.getElementById('closeRoster').addEventListener('click', closeRoster);
+document.getElementById('rosterScrim').addEventListener('click', closeRoster);
+document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeRoster(); });
 
 async function boot() {
   try {
     const access = await getAccessContext();
     if (!access.session) { await authView(); return; }
     document.body.classList.remove('auth-only');
-    userEmail.textContent = access.session.user.email || ''; signOutButton.hidden = false;
+    const email = access.session.user.email || '';
+    userEmail.textContent = email;
+    document.getElementById('userInitials').textContent = (email[0] || 'B').toUpperCase();
     if (!access.coachMemberships.length && access.athleteMemberships.length) { window.location.replace('/athlete/'); return; }
     if (!access.coachMemberships.length) { pendingView(access.session.user.email || 'This account'); return; }
     roster = await loadCoachRoster(access.coachMemberships);
