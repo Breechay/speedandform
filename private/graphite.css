@@ -1027,3 +1027,39 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 .mv-state.holds { color: var(--muted); }
 .mv-state.holds_until_tired { color: var(--text); font-weight: 650; }
 .mv-state.not_yet { color: var(--text); font-weight: 750; }
+
+
+/* ── Areas of focus ──────────────────────────────────────────────────────────
+   A position, not a word and not a number. Brice sets it on Sundays. No score is
+   shown, because a visible score is a score and scores get chased.
+   A cue that has work behind it opens to show that work. */
+.focus { display: grid; gap: 0; padding-top: 2px; }
+.focus-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  padding: 12px 0; border-top: 1px solid var(--edge);
+}
+.focus-row:first-child { border-top: 0; }
+.focus-row.has-work { display: block; padding: 0; }
+.focus-row.has-work > summary {
+  list-style: none; cursor: pointer; display: flex; align-items: center;
+  justify-content: space-between; gap: 20px; padding: 12px 0;
+}
+.focus-row.has-work > summary::-webkit-details-marker { display: none; }
+.focus-row.has-work > summary:hover .focus-cue { color: var(--text); }
+/* A cue with work behind it says so, or nobody finds it. */
+.focus-row.has-work > summary .focus-cue::after {
+  content: "\203a"; margin-left: 8px; color: var(--muted);
+  display: inline-block; transition: transform .18s var(--ease);
+}
+.focus-row.has-work[open] > summary .focus-cue::after { transform: rotate(90deg); }
+.focus-cue { color: var(--secondary); font-size: 14px; }
+.focus-track { display: inline-flex; gap: 4px; flex: none; }
+.focus-track .step { width: 20px; height: 4px; border-radius: 2px; background: var(--raised); }
+.focus-track .step.on { background: var(--text); }
+.focus-work { padding: 2px 0 16px; }
+.focus-work .support-item { border-top: 1px solid var(--edge); }
+.focus-work .support-item:first-child { border-top: 0; }
+
+@media (max-width: 700px) {
+  .focus-track .step { width: 15px; }
+}

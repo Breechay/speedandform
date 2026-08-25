@@ -166,20 +166,6 @@ export function whoSection(record) {
   </header>`;
 }
 
-function markStateHtml(record, points, current) {
-  const next = points.find((point) => Number(point.value) > current);
-  // Single-leg control is the one cue with a consequence: until it clears, the
-  // next distance does not open. Stated with the same words the movement rows
-  // use, so nothing new has to be read, and nothing is written in his voice.
-  const held = (record.movementReads || []).some((marker) =>
-    marker.marker === 'single_leg_control' && marker.state === 'not_yet');
-  if (!next) return '';
-  const distance = `${escapeHtml(next.label || next.value)} ${escapeHtml(record.primaryMark?.unit || '')}`;
-  return held
-    ? `<p class="mark-state waiting">${distance} \u00b7 not yet</p>`
-    : `<p class="mark-state">Next \u00b7 ${distance}</p>`;
-}
-
 export function markSection(record) {
   const mark = record.primaryMark;
   if (!mark) return '';
@@ -206,21 +192,35 @@ export function markSection(record) {
       <div class="ladder-track"><span class="ladder-fill" style="width:${fill}%"></span></div>
       <ol class="rungs">${rungs}</ol>
     </div>
-    <p class="mark-name">${escapeHtml(mark.label)}</p>
-    ${markStateHtml(record, points, current)}
   </section>`;
 }
 
 export function gradeSection(record) {
   if (!record.movementReads.length) return '';
-  const order = ['not_yet', 'holds_until_tired', 'holds'];
   const rows = record.movementReads.slice()
-    .sort((a, b) => order.indexOf(a.state) - order.indexOf(b.state))
-    .map((marker) => `<div class="mv-row">
-      <span class="mv-cue">${escapeHtml(markerNames[marker.marker] || marker.marker)}</span>
-      <span class="mv-state ${escapeHtml(marker.state)}">${escapeHtml(gradeStates[marker.state] || marker.state)}</span>
-    </div>`).join('');
-  return `<section class="record-section movement-block">${rows}</section>`;
+    .sort((a, b) => (a.rating ?? 0) - (b.rating ?? 0))
+    .map((marker) => {
+      const rating = Math.max(0, Math.min(5, Number(marker.rating) || 0));
+      const track = Array.from({ length: 5 }, (_, step) =>
+        `<span class="step${step < rating ? ' on' : ''}"></span>`).join('');
+      const work = marker.support_purpose
+        ? record.supportItems.filter((item) => item.purpose === marker.support_purpose)
+        : [];
+      const head = `<span class="focus-cue">${escapeHtml(markerNames[marker.marker] || marker.marker)}</span>
+        <span class="focus-track" aria-hidden="true">${track}</span>`;
+      if (!work.length) return `<div class="focus-row">${head}</div>`;
+      return `<details class="focus-row has-work">
+        <summary>${head}</summary>
+        <div class="focus-work">${work.map((item) => `<article class="support-item">
+          <div><b>${escapeHtml(item.movement)}</b><small>${escapeHtml(item.cue)}</small></div>
+          <span class="support-dose">${escapeHtml(item.dose)}</span>
+        </article>`).join('')}</div>
+      </details>`;
+    }).join('');
+  return `<section class="record-section" id="read">
+    <p class="eyebrow">Areas of focus</p>
+    <div class="focus">${rows}</div>
+  </section>`;
 }
 
 
