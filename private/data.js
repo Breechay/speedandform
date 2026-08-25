@@ -419,7 +419,7 @@ async function writeVersion(plannedSessionId, payload, versionNumber, userId) {
 // Filing for an athlete. Same record as their own filing, marked coach_import so
 // the source of a number is never in doubt. Pieces carry the splits the verdict
 // reads; without them a session has a distance and no evidence.
-export async function fileForAthlete(payload, pieces = []) {
+export async function fileForAthlete(payload, pieces = [], evidenceFile = null) {
   const { data: { user }, error: userError } = await supabase.auth.getUser();
   if (userError) throw userError;
   if (!user) throw new Error('Sign in before filing.');
@@ -465,6 +465,9 @@ export async function fileForAthlete(payload, pieces = []) {
     );
     if (piecesError) throw piecesError;
   }
+  // The Garmin screenshot is the source; everything above is a reading of it.
+  // Keeping them together is what makes a wrong reading visible later.
+  if (evidenceFile) await uploadEvidence(payload.athleteId, completion.id, evidenceFile, user.id);
   return completion;
 }
 

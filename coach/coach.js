@@ -405,7 +405,7 @@ fileForm.addEventListener('submit', async (event) => {
       conditions: f.conditions.value.trim() || null,
       athleteNote: f.athleteNote.value.trim() || null,
       recoveredNextDay: null
-    }, pieces);
+    }, pieces, f.evidence.files[0] || null);
     fileDialog.close();
     await refreshSelected(true);
   } catch (error) {
