@@ -785,3 +785,99 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 .support-drawer[open] > summary::after { transform: rotate(90deg); }
 .support-count { color: var(--muted); font-size: 11px; font-weight: 750; }
 .support-drawer > summary .eyebrow { margin: 0; }
+
+
+/* ── Control centre ──────────────────────────────────────────────────────────
+   His own account is not a headline. An avatar, and a menu when he wants it. */
+.switcher {
+  border: 0; border-radius: 8px; background: transparent; color: var(--secondary);
+  padding: 8px 12px; font-size: 12px; font-weight: 750; cursor: pointer;
+}
+.switcher:hover { background: var(--field-2); color: var(--text); }
+.control { position: relative; }
+.control > summary { list-style: none; cursor: pointer; }
+.control > summary::-webkit-details-marker { display: none; }
+.avatar-me {
+  display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%;
+  background: var(--raised); color: var(--text); font-size: 11px; font-weight: 800;
+}
+.control[open] .avatar-me { background: var(--lime); color: #11150f; }
+.control-menu {
+  position: absolute; z-index: 60; top: calc(100% + 9px); right: 0; min-width: 208px;
+  display: grid; gap: 2px; padding: 8px; border: 1px solid var(--edge);
+  border-radius: 11px; background: var(--raised); box-shadow: var(--shadow);
+}
+.control-who { margin: 4px 8px 8px; color: var(--muted); font-size: 11px; overflow: hidden; text-overflow: ellipsis; }
+.control-item {
+  border: 0; border-radius: 7px; background: transparent; color: var(--text);
+  padding: 9px 10px; text-align: left; font-size: 13px; font-weight: 650; cursor: pointer;
+}
+.control-item:hover { background: var(--raised-2); }
+
+/* ── Roster drawer ───────────────────────────────────────────────────────────
+   Nothing on screen but one athlete. The others arrive when asked for. */
+.roster-scrim { position: fixed; inset: 0; z-index: 70; background: rgba(6, 8, 9, .6); opacity: 0; transition: opacity .22s var(--ease); }
+.roster-open .roster-scrim { opacity: 1; }
+.roster-drawer {
+  position: fixed; z-index: 80; inset: 0 auto 0 0; width: min(316px, 84vw);
+  padding: 22px 18px; background: var(--field-2); border-right: 1px solid var(--edge);
+  transform: translateX(-100%); transition: transform .24s var(--ease); overflow: auto;
+}
+.roster-open .roster-drawer { transform: none; }
+.roster-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.roster-head .eyebrow { margin: 0; }
+.drawer-close { border: 0; background: transparent; color: var(--secondary); font-size: 21px; line-height: 1; cursor: pointer; }
+.drawer-close:hover { color: var(--text); }
+.desk-main { padding: 30px 34px 60px; max-width: 1320px; margin: 0 auto; }
+
+/* Orientation: how far out the race is, next to what it is. */
+.who-out { margin-left: 14px; padding-left: 14px; border-left: 1px solid var(--edge); color: var(--secondary); }
+.who-out b { color: var(--lime); font-weight: 800; font-variant-numeric: tabular-nums; }
+
+/* ── The week ────────────────────────────────────────────────────────────────
+   Seven plain cells. The number is the data; three sessions across seven days
+   were never a bar chart. */
+.wk-scale { display: flex; gap: 4px; margin: 0 0 20px; }
+.wk-tick { flex: 1; height: 3px; border: 0; border-radius: 2px; background: var(--raised); padding: 0; cursor: default; }
+.wk-tick.authored { background: var(--edge); cursor: pointer; }
+.wk-tick.authored:hover { background: var(--secondary); }
+.wk-tick.shown { background: var(--lime); }
+
+.week-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.day {
+  display: grid; gap: 5px; justify-items: start; align-content: start;
+  padding: 14px 12px; border-radius: 10px; background: var(--field-2);
+  min-height: 106px; text-align: left;
+}
+.day.empty { background: transparent; box-shadow: inset 0 0 0 1px var(--edge); min-height: 106px; }
+.day[role="button"] { cursor: pointer; }
+.day[role="button"]:hover { background: var(--raised); }
+.day-name { color: var(--muted); font-size: 10px; font-weight: 850; letter-spacing: .06em; }
+.day-figure { font-size: 21px; font-weight: 700; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.day-figure i { margin-left: 3px; font-style: normal; font-size: 11px; font-weight: 600; color: var(--muted); }
+.day.filed .day-figure { color: var(--lime); }
+.day-title { color: var(--secondary); font-size: 11px; line-height: 1.3; overflow-wrap: anywhere; }
+.day-note { margin-top: 2px; font-size: 10px; font-weight: 750; color: var(--muted); }
+.day.flagged .day-note { color: var(--lime); }
+
+/* ── Movement ────────────────────────────────────────────────────────────────
+   Grouped by state, so the pattern is visible without reading four rows and
+   comparing them. */
+.movement { display: grid; gap: 12px; }
+.mv-group { display: grid; gap: 4px; padding-left: 12px; border-left: 2px solid var(--edge); }
+.mv-group.holds { border-left-color: var(--green); }
+.mv-group.holds_until_tired { border-left-color: var(--lime); }
+.mv-group.not_yet { border-left-color: var(--coral); }
+.mv-state { font-size: 10px; font-weight: 850; letter-spacing: .04em; text-transform: uppercase; }
+.mv-group.holds .mv-state { color: var(--green); }
+.mv-group.holds_until_tired .mv-state { color: var(--lime); }
+.mv-group.not_yet .mv-state { color: var(--coral); }
+.mv-names { font-size: 13px; line-height: 1.45; }
+
+@media (max-width: 860px) {
+  .week-days { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 2px; }
+  .day, .day.empty { min-height: 84px; padding: 10px 6px; }
+  .day-figure { font-size: 15px; }
+  .day-title, .day-note { font-size: 9px; }
+  .desk-main { padding: 20px 14px 50px; }
+}
