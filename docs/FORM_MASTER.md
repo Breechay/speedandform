@@ -91,6 +91,23 @@ current question and the movement read are all evidence about one claim.
 | **Jose** | Quality survives added load. | Two sessions in a day, second session unimpaired; float pace stays at easy pace. | Live · supported 2026-08-25 |
 | **Marcus** | Treadmill ability is available outdoors when conditions change the cost. | Goal-pace miles closed **outdoors**, conditions stamped. A treadmill completion cannot answer it. | Live · no outdoor close yet |
 
+### Whose failure a session was
+
+A session that cannot be read has two very different causes, and only one of them
+belongs to the athlete:
+
+- **execution** — the athlete deviated from what was asked;
+- **prescription** — the work was left too loose to produce a readable answer.
+
+Hope's 2026-08-25 is the second. Brice's read: she is in better shape than the
+session showed, and it went the way it did because there were no guardrails on it,
+not because she is behind. So she progresses to 6–8 miles at race pace alongside
+Jose rather than repeating the session.
+
+Recording which cause applies is the point. If sessions keep coming back unreadable
+because of the prescription, that is a pattern in the prescribing — the kind of thing
+only a record can show, and the kind of thing a coach cannot see from inside it.
+
 ### Hope's session is confounded, and that matters
 
 Her reps were fast, but the floats were compressed and she logged RPE 9 against a
@@ -98,7 +115,7 @@ Her reps were fast, but the floats were compressed and she logged RPE 9 against 
 like — the reps may be faster than her control state supports.
 
 **It is not evidence for the goal change.** The threshold history is; this session
-is not. The next block has to isolate the variable: same structure, floats run as
+is not. All three athletes are now going for sub-1:30. The next block has to isolate the variable: same structure, floats run as
 floats, and see whether goal pace sits at RPE 7–8 with real recovery.
 
 Recording that distinction is the entire reason the research frame exists. Without
