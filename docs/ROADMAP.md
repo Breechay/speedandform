@@ -50,6 +50,17 @@ A session that nails the pace at RPE 9 against a prescribed 7 to 8 resolves **ou
 on effort while inside on pace. That is the whole idea from the Hope conversation, made
 mechanical: the correction stops being a text message after the fact.
 
+**A verdict is computed against the band that was prescribed at the time**, never the
+current one. Session versions are append-only for exactly this reason: the 6:30 to
+6:45 band was set after 2026-08-25, and judging that session by it would be marking an
+athlete against an instruction she was never given. The verdict reads the version that
+was current when the session was filed.
+
+This is not hypothetical. Measured against the new band, Jose's "best session to date"
+comes back 2 of 4 reps inside, because 6:27 and 6:28 are faster than 6:30. Against the
+band he was actually given that morning, 6:25 to 6:30, it is clean. Same numbers,
+opposite reading.
+
 Two rules that must survive implementation:
 - **RPE is never a score.** It locates how a session felt against intent. Nobody wins
   by hitting exactly an 8, and it is never comparable between athletes.
