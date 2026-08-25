@@ -1,11 +1,22 @@
 import { authErrorMessage, enabledProviders, getAccessContext, sendMagicLink, signInWithApple, signOut } from '/private/auth.js';
-import { addPrivateNote, createDirection, createRead, loadAthleteRecord, loadCoachRoster, publishRecordExcerpt, resolveCoachTask } from '/private/data.js';
+import { addPrivateNote, createDirection, createRead, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask } from '/private/data.js';
 import { escapeHtml, formatDate, renderAthleteRecord } from '/private/record.js';
 
+// Account states only. The desk no longer labels athletes by a stored state —
+// the queue is derived from the record.
 const stateLabels = {
-  needs_you: 'Needs you', waiting_for_run: 'Waiting for run', waiting_for_athlete: 'Waiting for athlete',
-  ready_to_publish: 'Ready to publish', plan_changed: 'Plan changed', on_track: 'On track',
-  nothing_needed: 'Nothing needed', resolved: 'Resolved'
+  needs_you: 'Needs you', ready_to_publish: 'Ready to publish', plan_changed: 'Plan changed',
+  on_track: 'On track', nothing_needed: 'Nothing needed', resolved: 'Resolved'
+};
+
+// What each kind of attention actually asks the coach to do. The primary act
+// follows the situation instead of offering every object every time.
+const attentionKinds = {
+  recovery_flag:     { label: 'Recovery',  act: 'read',      cta: 'Write the Read' },
+  authored:          { label: 'Needs you', act: 'decision',  cta: 'Write the Decision' },
+  unread_session:    { label: 'Unanswered', act: 'read',     cta: 'Write the Read' },
+  missing_direction: { label: 'No Direction', act: 'direction', cta: 'Write the Direction' },
+  week_unclosed:     { label: 'Week open', act: 'decision',  cta: 'Write the Decision' }
 };
 
 const app = document.getElementById('app');
@@ -62,55 +73,108 @@ function initials(name) { return String(name || '').split(/\s+/).map((part) => p
 function rosterHtml() {
   return roster.map((athlete) => {
     const active = athlete.id === selectedId;
-    const task = athlete.task;
-    const status = task?.state || 'nothing_needed';
-    return `<button class="athlete-button${active ? ' active' : ''}" type="button" data-athlete-id="${athlete.id}" aria-pressed="${active}">
-      <span class="avatar">${escapeHtml(initials(athlete.display_name))}</span>
-      <span class="athlete-list-copy"><b>${escapeHtml(athlete.display_name)}</b><small>${escapeHtml(task?.title || athlete.mark?.current_question || 'Nothing needed')}</small></span>
-      <span class="state-pill ${escapeHtml(status)}">${escapeHtml(stateLabels[status])}</span>
+    const item = athlete.topItem;
+    const count = athlete.attention.length;
+    const reason = item ? item.title : 'Nothing waiting';
+    return `<button class="athlete-button${active ? ' active' : ''}${item ? ' needs' : ''}" type="button" data-athlete-id="${athlete.id}" aria-pressed="${active}">
+      <span class="athlete-list-copy"><b>${escapeHtml(athlete.first_name || athlete.display_name)}</b><small>${escapeHtml(reason)}</small></span>
+      ${count > 1 ? `<span class="attention-count">${count}</span>` : (item ? '<span class="attention-dot" aria-label="Needs you"></span>' : '')}
     </button>`;
   }).join('');
 }
 
 function decisionHtml() {
-  const task = selectedRecord.task;
-  if (!task) return `<article class="decision-card"><span class="state-pill on_track">Nothing needed</span><h2>Nothing needs a decision.</h2><p class="decision-summary">No decision is waiting on Brice for ${escapeHtml(selectedRecord.athlete.first_name)}.</p></article>`;
-  const evidence = selectedRecord.taskEvidence.map((item) => `<div class="evidence"><span>${escapeHtml(item.label)}</span><b>${escapeHtml(item.value)}</b></div>`).join('');
-  const actions = selectedRecord.taskActions.map((action) => `<button class="button${action.is_primary ? ' primary' : ''}" type="button" data-task-action="${action.id}">${escapeHtml(action.label)}${action.is_primary ? ' <span class="icon-arrow">→</span>' : ''}</button>`).join('');
-  return `<article class="decision-card">
-    <span class="state-pill ${escapeHtml(task.state)}">${escapeHtml(stateLabels[task.state])}</span>
-    <h2>${escapeHtml(task.title)}</h2><p class="decision-summary">${escapeHtml(task.summary)}</p>
-    ${evidence ? `<div class="evidence-grid">${evidence}</div>` : ''}
-    ${actions ? `<div class="action-label">Make the next call</div><div class="decision-actions">${actions}</div>` : ''}
-    <button class="button quiet" type="button" id="customDecision">Write ${actions ? 'a different' : 'the'} Decision</button>
+  const items = selectedRecord.attention || [];
+  const athlete = selectedRecord.athlete;
+  if (!items.length) {
+    return `<article class="situation quiet">
+      <p class="eyebrow">${escapeHtml(athlete.first_name)}</p>
+      <h2>Nothing is waiting on you.</h2>
+      <p class="lede">${escapeHtml(selectedRecord.primaryMark?.current_question || 'The next work is already clear.')}</p>
+      <div class="do"><button class="button" type="button" data-write="direction">Write a Direction</button><button class="button" type="button" data-write="read">Write a Read</button></div>
+    </article>`;
+  }
+  const item = items[0];
+  const kind = attentionKinds[item.kind] || { label: 'Needs you', act: 'decision', cta: 'Write the Decision' };
+  const rest = items.slice(1);
+  return `<article class="situation">
+    <p class="eyebrow">${escapeHtml(athlete.first_name)} · ${escapeHtml(kind.label)}</p>
+    <h2>${escapeHtml(item.title)}</h2>
+    <p class="lede">${escapeHtml(item.summary)}</p>
+    ${evidenceHtml(item)}
+    <div class="do">
+      <button class="button primary" type="button" data-write="${escapeHtml(kind.act)}" data-subject="${escapeHtml(item.subject_id || '')}">${escapeHtml(kind.cta)} <span class="icon-arrow">→</span></button>
+      ${item.kind === 'authored' && selectedRecord.taskActions.length
+        ? selectedRecord.taskActions.map((action) => `<button class="button" type="button" data-task-action="${action.id}">${escapeHtml(action.label)}</button>`).join('')
+        : ''}
+    </div>
+    ${rest.length ? `<div class="also"><span>Also waiting</span>${rest.map((other) => `<button class="also-row" type="button" data-focus="${escapeHtml(other.subject_id || '')}"><b>${escapeHtml(other.title)}</b><small>${escapeHtml(other.summary)}</small></button>`).join('')}</div>` : ''}
   </article>`;
+}
+
+function evidenceHtml(item) {
+  const facts = [];
+  const mark = selectedRecord.primaryMark;
+  if (mark) facts.push({ label: mark.label, value: mark.current_value == null ? '—' : `${mark.current_value}${mark.unit ? ` ${mark.unit}` : ''}` });
+  if (item.occurred_at) facts.push({ label: 'When', value: formatDate(item.occurred_at) });
+  const completion = selectedRecord.completions.find((entry) => entry.id === item.subject_id);
+  if (completion) {
+    if (completion.felt) facts.push({ label: 'Felt', value: completion.felt });
+    if (completion.knee_after) facts.push({ label: 'Knee after', value: completion.knee_after });
+    if (completion.athlete_note) facts.push({ label: 'Her note', value: completion.athlete_note });
+  }
+  if (!facts.length) return '';
+  return `<dl class="facts">${facts.slice(0, 4).map((fact) => `<div><dt>${escapeHtml(fact.label)}</dt><dd>${escapeHtml(fact.value)}</dd></div>`).join('')}</dl>`;
 }
 
 function coachMarginHtml() {
   const latestDirection = selectedRecord.directions[0];
   const latestRead = selectedRecord.reads[0];
-  const notes = selectedRecord.privateNotes.slice(0, 3).map((note) => `<article class="private-note"><time>${new Date(note.created_at).toLocaleDateString()}</time><p>${escapeHtml(note.body)}</p></article>`).join('');
+  const notes = selectedRecord.privateNotes.slice(0, 2).map((note) => `<article class="private-note"><time>${new Date(note.created_at).toLocaleDateString()}</time><p>${escapeHtml(note.body)}</p></article>`).join('');
   const account = selectedRecord.adminStatus;
-  return `<aside class="coach-margin" aria-label="Coach margin">
-    <section class="margin-panel"><div class="margin-actions"><button class="button primary" id="writeCoaching" type="button">Write Direction or Read <span class="icon-arrow">→</span></button><button class="button" id="addPrivateNote" type="button">Add private note</button><button class="button" id="shareExcerpt" type="button">Create share card</button></div></section>
-    <section class="margin-panel"><p class="eyebrow">Recent coaching</p>${latestDirection ? `<p><strong>Direction · Published</strong><br>${escapeHtml(latestDirection.athlete_text)}</p>` : '<p>No Direction yet.</p>'}${latestRead ? `<p><strong>Read · Published</strong><br>${escapeHtml(latestRead.athlete_text)}</p>` : ''}</section>
-    <section class="margin-panel"><p class="eyebrow">Coach only</p><h3>${escapeHtml(account?.relationship_label || selectedRecord.athlete.account_label)}</h3><p>${account ? escapeHtml(stateLabels[account.payment_state] || account.payment_state.replace('_', ' ')) : ''}</p>${notes || '<p>No private notes.</p>'}</section>
+  return `<aside class="coach-margin" aria-label="Coach only">
+    <section class="margin-panel">
+      <p class="eyebrow">Last published</p>
+      ${latestDirection ? `<p class="margin-line"><b>Direction</b> ${escapeHtml(latestDirection.athlete_text)}</p>` : ''}
+      ${latestRead ? `<p class="margin-line"><b>Read</b> ${escapeHtml(latestRead.athlete_text)}</p>` : ''}
+      ${!latestDirection && !latestRead ? '<p class="margin-line muted">Nothing published yet.</p>' : ''}
+    </section>
+    <section class="margin-panel">
+      <p class="eyebrow">Coach only · ${escapeHtml(account?.relationship_label || selectedRecord.athlete.account_label)}</p>
+      ${notes || '<p class="margin-line muted">No private notes.</p>'}
+      <div class="margin-actions"><button class="button quiet" id="addPrivateNote" type="button">Add a note</button><button class="button quiet" id="shareExcerpt" type="button">Share card</button></div>
+    </section>
   </aside>`;
 }
 
 function deskHtml() {
-  const needsCount = roster.filter((athlete) => ['needs_you', 'ready_to_publish', 'plan_changed'].includes(athlete.task?.state)).length;
+  const needing = roster.filter((athlete) => athlete.topItem).length;
+  const headline = needing
+    ? `${needing === 1 ? 'One athlete needs' : `${needing} athletes need`} you.`
+    : 'Nothing is waiting on you.';
   return `<div class="desk-layout">
-    <aside class="desk-rail"><p class="eyebrow">${new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric' }).format(new Date())}</p><h1>What needs a decision.</h1><p>${needsCount ? `${needsCount} ${needsCount === 1 ? 'decision needs' : 'decisions need'} you today.` : 'Nothing urgent is waiting.'}</p><div class="rail-heading"><strong>Athletes</strong><span>${roster.length} active</span></div><div class="athlete-list">${rosterHtml()}</div></aside>
-    <section class="desk-main" id="deskMain">${decisionHtml()}<div class="desk-columns"><section class="projection-frame"><div class="projection-head"><h3>${escapeHtml(selectedRecord.athlete.first_name)}’s record · athlete view</h3><a class="button quiet" href="#recordProjection">View record</a></div><div class="projection-scroll"><div id="recordProjection">${renderAthleteRecord(selectedRecord, { projection: true })}</div></div></section>${coachMarginHtml()}</div></section>
+    <aside class="desk-rail">
+      <p class="eyebrow">${new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric' }).format(new Date())}</p>
+      <h1>${escapeHtml(headline)}</h1>
+      <div class="athlete-list">${rosterHtml()}</div>
+    </aside>
+    <section class="desk-main" id="deskMain">
+      ${decisionHtml()}
+      <div class="desk-columns">
+        ${coachMarginHtml()}
+        <details class="record-drawer"><summary><span>${escapeHtml(selectedRecord.athlete.first_name)}'s record, as ${escapeHtml(selectedRecord.athlete.first_name)} sees it</span></summary><div class="projection-frame"><div class="projection-scroll"><div id="recordProjection">${renderAthleteRecord(selectedRecord, { projection: true })}</div></div></div></details>
+      </div>
+    </section>
   </div>`;
 }
 
 function bindDesk() {
   app.querySelectorAll('[data-athlete-id]').forEach((button) => button.addEventListener('click', () => selectAthlete(button.dataset.athleteId)));
   app.querySelectorAll('[data-task-action]').forEach((button) => button.addEventListener('click', () => openDecision(button.dataset.taskAction)));
-  document.getElementById('customDecision')?.addEventListener('click', () => openDecision(null));
-  document.getElementById('writeCoaching')?.addEventListener('click', openCoaching);
+  app.querySelectorAll('[data-write]').forEach((button) => button.addEventListener('click', () => {
+    if (button.dataset.write === 'decision') openDecision(null);
+    else openCoaching(button.dataset.write, button.dataset.subject);
+  }));
   document.getElementById('addPrivateNote')?.addEventListener('click', () => { noteForm.reset(); document.getElementById('noteStatus').textContent = ''; noteDialog.showModal(); });
   document.getElementById('shareExcerpt')?.addEventListener('click', openShare);
 }
@@ -119,6 +183,7 @@ async function selectAthlete(athleteId) {
   selectedId = athleteId;
   app.innerHTML = '<div class="loading" aria-label="Loading athlete"></div>';
   selectedRecord = await loadAthleteRecord(athleteId, { coach: true });
+  selectedRecord.attention = roster.find((entry) => entry.id === athleteId)?.attention || await loadAttentionFor(athleteId);
   app.innerHTML = deskHtml(); bindDesk();
   history.replaceState(null, '', `/coach/?athlete=${encodeURIComponent(selectedRecord.athlete.slug)}`);
 }
@@ -133,14 +198,23 @@ function openDecision(actionId) {
   decisionDialog.showModal();
 }
 
-function openCoaching() {
+function openCoaching(objectType = 'direction', subjectId = '') {
   coachingForm.reset();
+  coachingForm.elements.objectType.value = objectType === 'read' ? 'read' : 'direction';
   coachingForm.elements.plannedSessionId.innerHTML = selectedRecord.sessions.map((session) => `<option value="${session.id}">${escapeHtml(session.day_label)} · ${escapeHtml(session.currentVersion?.title || 'Session')}</option>`).join('');
   coachingForm.elements.completionIds.innerHTML = selectedRecord.completions.map((completion) => {
     const session = selectedRecord.sessions.find((item) => item.id === completion.planned_session_id);
     const distance = completion.actual_distance ? ` · ${completion.actual_distance} ${completion.distance_unit || ''}` : '';
     return `<option value="${completion.id}">${escapeHtml(formatDate(completion.filed_at))} · ${escapeHtml(session?.currentVersion?.title || completion.status)}${escapeHtml(distance)}</option>`;
   }).join('') || '<option value="" disabled>No sessions filed yet</option>';
+  // Preselect what the situation pointed at, so the coach is not re-finding it.
+  if (subjectId) {
+    if (objectType === 'read') {
+      [...coachingForm.elements.completionIds.options].forEach((option) => { option.selected = option.value === subjectId; });
+    } else if ([...coachingForm.elements.plannedSessionId.options].some((option) => option.value === subjectId)) {
+      coachingForm.elements.plannedSessionId.value = subjectId;
+    }
+  }
   document.getElementById('coachingStatus').textContent = '';
   toggleCoachingFields(); coachingDialog.showModal();
 }
@@ -172,6 +246,7 @@ decisionForm.addEventListener('submit', async (event) => {
   event.preventDefault(); const form = new FormData(decisionForm); const status = document.getElementById('decisionStatus'); const button = decisionForm.querySelector('button[type="submit"]');
   button.disabled = true; status.textContent = 'Publishing the Decision…';
   try {
+    if (!selectedRecord.task) throw new Error('This situation has no coach task to resolve. Publish a Read or Direction instead.');
     await resolveCoachTask(selectedRecord.task.id, form.get('actionId') || null, form.get('actionId') ? null : { athleteText: form.get('athleteText'), rationale: form.get('rationale') });
     decisionDialog.close(); await refreshSelected(true);
   } catch (error) { status.textContent = error.message; status.className = 'status-message error'; button.disabled = false; }
@@ -224,7 +299,8 @@ shareForm.addEventListener('submit', async (event) => {
 
 async function refreshSelected(animate = false) {
   const access = await getAccessContext(); roster = await loadCoachRoster(access.coachMemberships); selectedRecord = await loadAthleteRecord(selectedId, { coach: true });
-  app.innerHTML = deskHtml(); if (animate) document.querySelector('.decision-card')?.classList.add('resolve-in'); bindDesk();
+  selectedRecord.attention = roster.find((entry) => entry.id === selectedId)?.attention || [];
+  app.innerHTML = deskHtml(); if (animate) document.querySelector('.situation')?.classList.add('resolve-in'); bindDesk();
 }
 
 signOutButton.addEventListener('click', signOut);
