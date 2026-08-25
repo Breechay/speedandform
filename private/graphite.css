@@ -1241,9 +1241,16 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 }
 
 
-/* The screenshot the numbers were read from, next to the numbers. A wrong reading
-   is visible here and invisible anywhere else: Hope's recoveries were entered
-   backwards once and nothing on the page could have contradicted them. */
-.ev-shot { display: block; margin-top: 14px; border: 1px solid var(--edge); border-radius: 8px; overflow: hidden; }
-.ev-shot img { display: block; width: 100%; height: auto; }
-.ev-shot:hover { border-color: var(--muted); }
+/* Provenance, kept closed. The agent translates the screenshot into a structured
+   session; making Brice re-read the source every time would undo that work. It
+   opens when a number looks wrong, which is when it is worth the space. */
+.ev-source { margin-top: 12px; }
+.ev-source > summary {
+  list-style: none; cursor: pointer; display: inline-block;
+  font-size: 12px; color: var(--secondary); text-decoration: underline;
+  text-underline-offset: 3px; text-decoration-color: var(--edge);
+}
+.ev-source > summary::-webkit-details-marker { display: none; }
+.ev-source > summary:hover { color: var(--text); }
+.ev-source a { display: block; margin-top: 10px; border: 1px solid var(--edge); border-radius: 8px; overflow: hidden; }
+.ev-source img { display: block; width: 100%; height: auto; }

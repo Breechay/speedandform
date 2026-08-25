@@ -338,8 +338,10 @@ export function evidenceSection(record, { interactive = false } = {}) {
       // Where it happened sits in the header, not in a detail row. For Marcus it
       // decides whether the session can answer his claim at all.
       const completion = (record.completions || []).find((item) => item.id === verdict.completion_id);
-      // The screenshot is what the numbers were read from. Beside them, a wrong
-      // reading is visible; filed away somewhere else, it is not.
+      // Provenance, kept closed. The agent reads the screenshot and files the
+      // structured session; making Brice re-read the source on every session
+      // would undo the translation it was there to do. It opens when a number
+      // looks wrong, which is the only time it earns the space.
       const shot = (record.evidenceFiles || []).find((file) => file.completion_id === verdict.completion_id)?.url || null;
       const where = [
         completion?.surface,
@@ -377,9 +379,12 @@ export function evidenceSection(record, { interactive = false } = {}) {
             </tr>
           </tbody>
         </table>
-        ${shot ? `<a class="ev-shot" href="${escapeHtml(shot)}" target="_blank" rel="noopener">
-          <img src="${escapeHtml(shot)}" alt="Watch screenshot this session was read from" loading="lazy">
-        </a>` : ''}
+        ${shot ? `<details class="ev-source">
+          <summary>Read from</summary>
+          <a href="${escapeHtml(shot)}" target="_blank" rel="noopener">
+            <img src="${escapeHtml(shot)}" alt="The watch screenshot this session was read from" loading="lazy">
+          </a>
+        </details>` : ''}
         ${interactive ? `<button class="link-button" type="button" data-correct="${escapeHtml(verdict.completion_id)}">Correct this</button>` : ''}
         ${judgment
           ? `<p class="ev-judgment ${escapeHtml(judgment.direction)}"><span>${escapeHtml(directionWords[judgment.direction])}</span>${escapeHtml(judgment.reason)}</p>`
