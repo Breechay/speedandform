@@ -55,6 +55,7 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     supabase.from('training_weeks').select('*').eq('athlete_id', athleteId).order('week_number', { ascending: false }),
     supabase.from('planned_sessions').select('*').eq('athlete_id', athleteId).order('position'),
     supabase.from('planned_session_versions').select('*').eq('athlete_id', athleteId).order('version_number', { ascending: false }),
+    supabase.from('planned_session_components').select('*').eq('athlete_id', athleteId).order('position'),
     supabase.from('athlete_baselines').select('*').eq('athlete_id', athleteId).order('captured_at', { ascending: false }),
     supabase.from('session_completions').select('*').eq('athlete_id', athleteId).order('filed_at', { ascending: false }),
     supabase.from('directions').select('*').eq('athlete_id', athleteId).in('delivery_state', ['published', 'delivered_externally']).order('published_at', { ascending: false }),
@@ -94,7 +95,7 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
 
   const [
     athleteResponse, blockResponse, weeksResponse, sessionsResponse, versionsResponse,
-    baselinesResponse, completionsResponse, directionsResponse, readsResponse,
+    componentsResponse, baselinesResponse, completionsResponse, directionsResponse, readsResponse,
     decisionsResponse, marksResponse, signalsResponse, checkpointsResponse,
     gatesResponse, movementResponse, supportResponse, supportItemsResponse,
     verdictsResponse, piecesResponse, judgmentsResponse, judgmentLinksResponse,
@@ -102,7 +103,13 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     taskResponse, evidenceResponse, actionsResponse, privateNotesResponse, adminResponse
   ] = responses;
 
-  const versions = result(versionsResponse.data, versionsResponse.error);
+  const components = result(componentsResponse.data, componentsResponse.error);
+  const versions = result(versionsResponse.data, versionsResponse.error)
+    .map((version) => ({
+      ...version,
+      components: components.filter((item) => item.version_id === version.id)
+        .sort((a, b) => a.position - b.position)
+    }));
   const sessions = result(sessionsResponse.data, sessionsResponse.error).map((session) => ({
     ...session,
     versions: versions.filter((version) => version.planned_session_id === session.id),

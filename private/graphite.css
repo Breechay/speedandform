@@ -630,20 +630,11 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 .wk-total b { font-size: 20px; font-weight: 750; }
 .wk-total span { margin-left: 6px; color: var(--secondary); font-size: 12px; }
 .week-rows { display: grid; gap: 2px; }
-.wk-row {
-  display: grid; grid-template-columns: 42px minmax(88px, 1.1fr) minmax(90px, 2.4fr) 46px auto;
-  gap: 14px; align-items: center; padding: 12px 10px; border-radius: 9px;
-}
-.wk-row:hover { background: var(--field-2); }
-.wk-day { color: var(--muted); font-size: 10px; font-weight: 850; letter-spacing: .04em; }
 .wk-title { font-size: 13px; font-weight: 650; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .wk-bars { position: relative; height: 8px; }
 .wk-plan, .wk-actual { position: absolute; left: 0; top: 0; height: 100%; border-radius: 4px; }
 .wk-plan { background: var(--raised); }
 .wk-actual { background: var(--lime); transform-origin: left center; animation: bar-fill .7s var(--ease) both; }
-.wk-row.pending .wk-actual { display: none; }
-.wk-row.skipped .wk-actual { background: var(--coral); }
-.wk-row.partial .wk-actual { background: var(--coral); }
 .wk-num { font-size: 13px; font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
 .wk-num i { color: var(--muted); font-style: normal; font-weight: 600; }
 .wk-flag {
@@ -653,7 +644,6 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 .wk-flag:hover { background: var(--lime); color: #11150f; }
 .wk-flag-empty { width: 1px; }
 @media (max-width: 700px) {
-  .wk-row { grid-template-columns: 34px minmax(0, 1fr) 44px; row-gap: 8px; }
   .wk-bars { grid-column: 1 / -1; }
   .wk-flag { grid-column: 1 / -1; justify-self: start; }
 }
@@ -783,130 +773,27 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 }
 
 /* Squad strip - full width, not a card */
-.consoleSquad {
-  width: 100%;
-  margin-bottom: 42px;
-}
 
-.consoleAthleteRow {
-  display: grid;
-  grid-template-columns:
-    minmax(130px, 0.8fr)
-    repeat(7, minmax(52px, 1fr))
-    minmax(170px, 1.1fr);
-  align-items: baseline;
-  width: 100%;
-  min-height: 58px;
-  border: 0;
-  background: transparent;
-  color: var(--text);
-  padding: 12px 0;
-}
 
-.consoleAthleteRow__name {
-  font-size: clamp(25px, 2.3vw, 42px);
-  font-weight: 500;
-  color: var(--muted);
-  letter-spacing: 0.02em;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  padding: 0;
-  text-align: left;
-}
 
-.consoleAthleteRow__name:hover {
-  color: var(--text);
-}
 
-.consoleAthleteRow--selected .consoleAthleteRow__name {
-  color: var(--text);
-  font-weight: 700;
-}
 
-.consoleAthleteRow__ladder {
-  display: flex;
-  gap: clamp(12px, 2.4vw, 34px);
-  align-items: baseline;
-}
 
-.consoleRung {
-  font-size: clamp(24px, 2.1vw, 38px);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--edge);
-  font-variant-numeric: tabular-nums;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  cursor: pointer;
-}
 
-.consoleRung--proposed {
-  color: var(--muted);
-}
 
-.consoleRung--held {
-  color: var(--secondary);
-}
 
-.consoleRung--current {
-  color: var(--text);
-}
 
-.consoleRung--retired {
-  color: var(--muted);
-}
 
-/* Only the selected athlete's current rung is lime - applied via .consoleRung--lit */
-.consoleRung--lit {
-  color: var(--lime);
-}
 
 /* Choosable rungs for selecting current */
-.consoleRung--choosable {
-  cursor: pointer;
-}
 
-.consoleRung--choosable:hover {
-  color: var(--text);
-}
 
 /* CHOOSE CURRENT instruction */
-.consoleRung__instruction {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--lime);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-left: 16px;
-  align-self: center;
-}
 
-.consoleAthleteRow__condition {
-  font-size: 10.5px;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
 
 /* Natalie separated by space, not a border */
-.consoleSquad__apart {
-  margin-top: 26px;
-}
 
 /* Selected athlete stage - single column named grid */
-.consoleStage {
-  display: grid;
-  grid-template-columns: minmax(320px, 0.78fr) minmax(620px, 1.5fr);
-  grid-template-areas:
-    "claim claim"
-    "orientation orientation"
-    "session session"
-    "continuation continuation"
-    "actions actions";
-  column-gap: clamp(36px, 5vw, 90px);
-}
 
 /* Claim - large, no label */
 .consoleClaim {
@@ -1143,19 +1030,8 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
     padding: 20px clamp(16px, 4vw, 32px) 48px;
   }
   
-  .consoleAthleteRow {
-    grid-template-columns: 1fr;
-    min-height: auto;
-    padding: 16px 0;
-  }
   
-  .consoleAthleteRow__ladder {
-    margin-top: 8px;
-  }
   
-  .consoleStage {
-    grid-template-columns: 1fr;
-  }
   
   .consoleActions {
     flex-wrap: wrap;
@@ -1649,49 +1525,11 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
    Orientation, and it has to earn its space. Four rows of display numerals ate
    the whole first screen and left nothing to act on, so this is deliberately
    small: enough to see where everyone stands, not enough to be the page. */
-.consoleSquad { display: grid; gap: 2px; margin-bottom: 30px; }
-.consoleAthleteRow {
-  display: grid; grid-template-columns: 92px auto 1fr; gap: 18px;
-  align-items: baseline; padding: 5px 0;
-}
-.consoleAthleteRow__name {
-  display: flex; align-items: baseline; gap: 9px;
-  background: none; border: 0; padding: 3px 10px 3px 0; cursor: pointer; text-align: left;
-  font: inherit; font-size: 14px; font-weight: 600; color: var(--muted); letter-spacing: .03em;
-  text-transform: uppercase;
-}
-.consoleAthleteRow__name em {
-  font-style: normal; font-size: 12.5px; font-weight: 500; color: var(--muted);
-  font-variant-numeric: tabular-nums; letter-spacing: 0;
-}
-.consoleAthleteRow--selected .consoleAthleteRow__name { color: var(--text); }
-.consoleAthleteRow--selected .consoleAthleteRow__name em { color: var(--secondary); }
-.consoleAthleteRow__name:hover { color: var(--secondary); }
-.consoleAthleteRow__ladder { display: flex; gap: 16px; align-items: baseline; }
-.consoleRung {
-  background: none; border: 0; padding: 0; font: inherit;
-  font-size: 15px; font-weight: 700; color: var(--edge);
-  font-variant-numeric: tabular-nums; min-width: 26px; text-align: center;
-}
-button.consoleRung { cursor: pointer; }
-button.consoleRung:hover { color: var(--text); }
-.consoleRung--held { color: var(--secondary); }
 /* Current without lime still has to be legible, so it carries a rule as well as
    a colour. State never rests on colour alone. */
-.consoleRung--current { color: var(--text); box-shadow: inset 0 -2px 0 var(--muted); }
-.consoleRung--lit { color: var(--lime); box-shadow: inset 0 -2px 0 var(--lime); }
-.consoleRung--retired { color: var(--edge); text-decoration: line-through; }
-.consoleRung__instruction {
-  font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--lime); margin-left: 6px;
-}
 /* Its own column, so it can never land on top of the numerals. */
-.consoleAthleteRow__condition {
-  font-size: 9.5px; letter-spacing: .09em; text-transform: uppercase;
-  color: var(--muted); white-space: nowrap;
-}
 /* A different geometry is a different question, separated by space rather than a
    rule. A rule would read as a section boundary. */
-.consoleSquad__apart { margin-top: 18px; }
 
 /* ── The two instruments ─────────────────────────────────────────────────────
    Confidence is Brice's judgment about the race. Coverage is the distance he has
@@ -1737,50 +1575,11 @@ button.consoleRung:hover { color: var(--text); }
    Sixteen weeks with their real dates and the key session in each. Weeks are a
    calendar and the ladder is a capability, so no rung appears here: this says
    when the chances to change the evidence actually fall. */
-.runway {
-  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(66px, 1fr);
-  gap: 1px; margin: 30px 0 0; overflow-x: auto; scrollbar-width: thin;
-}
-.rw {
-  display: grid; align-content: start; gap: 5px; padding: 11px 8px 13px;
-  background: none; border: 0; border-top: 1px solid var(--edge);
-  cursor: pointer; text-align: left; color: inherit; font: inherit;
-}
-.rw-no { font-size: 12px; font-weight: 700; color: var(--secondary); font-variant-numeric: tabular-nums; }
-.rw-when { font-size: 10px; line-height: 1.35; color: var(--muted); }
-.rw-key { font-size: 13px; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; min-height: 1em; }
-.rw-now { font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--secondary); }
-.rw:hover { background: var(--surface); }
 /* Today and selected are different states, so selecting another week never
    moves today. */
-.rw--today { border-top-color: var(--secondary); }
-.rw--shown { background: var(--surface); border-top-color: var(--lime); }
-.rw--shown .rw-no { color: var(--lime); }
 
 /* ── The chosen week, and the session under it ───────────────────────────────
    The part with something to act on. */
-.weekWork {
-  display: grid; grid-template-columns: minmax(300px, 1fr) minmax(320px, 1.1fr);
-  gap: clamp(30px, 5vw, 70px); margin: 34px 0 44px; align-items: start;
-}
-.wk-head {
-  margin: 0 0 12px; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
-}
-.wk-head span { margin-left: 10px; color: var(--secondary); letter-spacing: .04em; }
-.wk-row {
-  display: grid; grid-template-columns: 68px 74px 1fr; gap: 14px; align-items: baseline;
-  width: 100%; padding: 11px 10px 11px 0; background: none; border: 0;
-  border-top: 1px solid var(--edge); cursor: pointer; text-align: left; color: inherit; font: inherit;
-}
-.wk-row:hover { background: var(--surface); }
-.wk-row--on { background: var(--surface); box-shadow: inset 2px 0 0 var(--lime); padding-left: 10px; }
-.wk-day { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-.wk-day em { display: block; margin-top: 3px; font-style: normal; letter-spacing: 0; text-transform: none; }
-.wk-dose { font-size: 21px; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
-.wk-dose i { font-style: normal; font-size: 11px; font-weight: 500; color: var(--muted); margin-left: 3px; }
-.wk-what { font-size: 14px; color: var(--secondary); }
-.wk-row--done .wk-what { color: var(--text); }
-.wk-empty { margin: 0; color: var(--muted); font-size: 13px; }
 
 .ins-when { margin: 0; font-size: 11px; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); }
 .ins-what { margin: 8px 0 0; font-size: clamp(24px, 2.6vw, 38px); font-weight: 800; letter-spacing: -.03em; }
@@ -1804,10 +1603,6 @@ button.consoleRung:hover { color: var(--text); }
 .consoleWho { flex: 0 1 auto; }
 
 @media (max-width: 900px) {
-  .weekWork { grid-template-columns: 1fr; }
-  .runway { grid-auto-columns: 92px; }
-  .consoleAthleteRow { grid-template-columns: 84px 1fr; }
-  .consoleAthleteRow__condition { grid-column: 2; }
 }
 
 /* The current rung, stated. Unset says unset and offers the choice, because
@@ -1843,11 +1638,6 @@ button.consoleRung:hover { color: var(--text); }
 .confHistory__rail i:not(:last-child) { background: var(--muted); }
 
 /* The runway as a ruled grid: a week header row and the key session under it. */
-.runway { border: 1px solid var(--edge); border-right: 0; }
-.rw { border: 0; border-right: 1px solid var(--edge); padding: 10px 9px 12px; }
-.rw--shown { box-shadow: inset 0 0 0 1px var(--lime); background: none; }
-.rw--today .rw-no { color: var(--lime); }
-.rw--today .rw-when { color: var(--lime); }
 
 /* Evidence inside the inspector. A filed session is read where it was chosen,
    not on another surface. Recovery decides whether the session can answer
@@ -1898,77 +1688,23 @@ button.consoleRung:hover { color: var(--text); }
 
 .coachConsole { padding: 22px clamp(20px, 3vw, 44px) 70px; }
 
-.cc-top {
-  display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(280px, .9fr);
-  gap: clamp(28px, 4vw, 64px); align-items: start; padding-bottom: 26px;
-}
 
 /* The tab bar. Names and confidence on one line, and nothing else. */
-.atabs { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin-bottom: 26px; }
-.atab {
-  display: flex; align-items: baseline; gap: 8px; padding: 9px 14px;
-  background: none; border: 1px solid transparent; cursor: pointer;
-  font-family: var(--condensed); font-size: 15px; font-weight: 700;
-  letter-spacing: .07em; text-transform: uppercase; color: var(--muted);
-}
-.atab em {
-  font-style: normal; font-weight: 500; font-size: 13px; letter-spacing: .02em;
-  color: var(--muted); font-variant-numeric: tabular-nums;
-}
-.atab:hover { color: var(--secondary); }
-.atab--on { border-color: var(--lime); color: var(--text); }
-.atab--on em { color: var(--lime); }
-.atabs-order {
-  margin-left: auto; background: none; border: 0; cursor: pointer;
-  font-family: var(--condensed); font-size: 11px; letter-spacing: .1em;
-  text-transform: uppercase; color: var(--muted);
-}
-.atabs-order:hover { color: var(--secondary); }
 
-.cc-name {
-  margin: 0; font-family: var(--condensed); font-size: clamp(44px, 6vw, 82px);
-  font-weight: 700; letter-spacing: .01em; line-height: .9; text-transform: uppercase;
-}
-.cc-race {
-  margin: 12px 0 0; font-family: var(--condensed); font-size: 15px;
-  letter-spacing: .1em; text-transform: uppercase; color: var(--secondary);
-}
-.cc-race b { color: var(--lime); font-weight: 700; }
 
 .rungLine { font-family: var(--condensed); margin-top: 16px; }
 .rungLine b { font-family: var(--condensed); }
 
 /* Confidence and coverage stack on the right, never sharing an axis. */
-.cc-right .consoleInstruments { display: block; margin: 0; }
-.cc-right .inst { margin-bottom: 22px; }
-.cc-right .inst-label { font-family: var(--condensed); font-size: 12px; letter-spacing: .1em; }
-.cc-right .inst b { font-family: var(--condensed); }
-.cc-right .inst--confidence b { color: var(--lime); }
-.cc-right .inst-rail { width: 100%; }
-.cc-right .inst-why { max-width: none; font-size: 13px; }
 
 /* The runway. Every stored week, its dates, and the key session under it. */
-.runway { grid-auto-columns: minmax(58px, 1fr); font-family: var(--condensed); }
-.rw-no { font-size: 15px; letter-spacing: .04em; }
-.rw-when { font-size: 10.5px; letter-spacing: .04em; text-transform: uppercase; }
-.rw-key { font-size: 15px; letter-spacing: .03em; }
-.rw-now { font-size: 9.5px; }
 
-.weekWork { margin-top: 30px; }
-.wk-head, .wk-day, .wk-dose, .wk-what { font-family: var(--condensed); }
-.wk-head { font-size: 12px; }
-.wk-what { font-size: 15px; letter-spacing: .06em; text-transform: uppercase; color: var(--text); }
-.wk-dose { font-size: 26px; letter-spacing: .02em; }
-.wk-day { font-size: 12px; }
 .ins-when, .ins-what, .ins-facts, .ins-actions button, .evf-row dt, .evf-was b { font-family: var(--condensed); }
 .ins-what { letter-spacing: .01em; text-transform: uppercase; }
 .ins-facts b { font-size: 30px; letter-spacing: .01em; }
 .ins-actions button, .consoleActions button { font-family: var(--condensed); font-size: 12.5px; }
 
 @media (max-width: 1000px) {
-  .cc-top { grid-template-columns: 1fr; }
-  .atabs { overflow-x: auto; flex-wrap: nowrap; }
-  .runway { grid-auto-columns: 84px; }
 }
 
 /* The current rung, and the ladder behind it. The ladder is reachable without
@@ -1997,3 +1733,334 @@ button.consoleRung:hover { color: var(--text); }
 .ladderRow__state.current { color: var(--lime); }
 .ladderRow__state.reached, .ladderRow__state.repeated { color: var(--secondary); }
 .switch--stack { display: grid; gap: 2px; }
+
+/* ── The Coach Console composition ───────────────────────────────────────────
+   Five horizontal bands and nothing before them: top bar, athlete tabs, hero,
+   runway, workbench. The composition is defined here as a whole. Earlier passes
+   moved components inside a page shape that put the work below the fold, and
+   every screenshot looked closer without ever looking right. */
+:root {
+  --console-field: #080B0C;
+  --console-surface: #101415;
+  --console-raised: #151A1C;
+  --console-edge: #293033;
+  --console-text: #F4F5F1;
+  --console-secondary: #929A9C;
+  --console-muted: #555E61;
+  --console-lime: #D8FF68;
+  --console-coral: #FF735F;
+}
+
+.coachConsole {
+  background: var(--console-field);
+  color: var(--console-text);
+  padding: 0 clamp(18px, 2.6vw, 38px) 56px;
+}
+
+/* 1 · Top bar */
+.consoleTopbar { min-height: 64px; border-bottom: 1px solid var(--console-edge); }
+.consoleTopbar .form-mark { font-family: var(--serif); color: var(--console-text); }
+.consoleTopbar .product-name { color: var(--console-secondary); }
+.consoleOrderToggle {
+  background: none; border: 0; cursor: pointer; padding: 6px 10px;
+  font-family: var(--condensed); font-size: 11px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--console-muted);
+}
+.consoleOrderToggle:hover { color: var(--console-secondary); }
+
+/* 2 · Athlete tabs. This band selects an athlete. It carries no numerals, no
+   ladder and no editing: the whole tab is the target. */
+.consoleAthleteTabs {
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr);
+  min-height: 72px; border-bottom: 1px solid var(--console-edge);
+}
+.consoleAthleteTab {
+  display: flex; align-items: center; gap: 12px; padding: 0 18px;
+  background: none; border: 0; border-bottom: 2px solid transparent;
+  cursor: pointer; text-align: left; min-width: 0;
+}
+.consoleAthleteTab__name {
+  font-family: var(--condensed); font-size: clamp(15px, 1.35vw, 19px); font-weight: 700;
+  letter-spacing: .07em; text-transform: uppercase; color: var(--console-secondary);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.consoleAthleteTab__score {
+  font-family: var(--condensed); font-style: normal; font-size: 13px;
+  color: var(--console-muted); font-variant-numeric: tabular-nums;
+}
+.consoleAthleteTab:hover .consoleAthleteTab__name { color: var(--console-text); }
+/* Lime is spent once per composition: on the athlete who is open. */
+.consoleAthleteTab--on { border-bottom-color: var(--console-lime); }
+.consoleAthleteTab--on .consoleAthleteTab__name { color: var(--console-text); }
+.consoleAthleteTab--on .consoleAthleteTab__score { color: var(--console-lime); }
+
+/* 3 · Hero. Identity and the current rung on the left, the two instruments on
+   the right. No ladder appears here; the rung line opens it. */
+.consoleHero {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 380px);
+  gap: clamp(28px, 3.4vw, 48px); min-height: 190px; padding: 28px 8px 24px;
+  border-bottom: 1px solid var(--console-edge);
+}
+.consoleHero__identity { min-width: 0; }
+.consoleHero__name {
+  margin: 0; font-family: var(--condensed); font-size: clamp(48px, 6.2vw, 92px);
+  font-weight: 800; line-height: .92; letter-spacing: -.01em;
+  text-transform: uppercase; color: var(--console-text);
+}
+.consoleHero__goal {
+  margin: 12px 0 0; font-family: var(--condensed); font-size: 14px;
+  letter-spacing: .09em; text-transform: uppercase; color: var(--console-secondary);
+}
+.consoleHero__condition {
+  margin: 10px 0 0; font-family: var(--condensed); font-size: 11.5px;
+  letter-spacing: .11em; text-transform: uppercase; color: var(--console-muted);
+}
+.consoleHero__instruments { min-width: 0; }
+
+/* The current rung: one compact line that opens the chooser. Opening writes
+   nothing. */
+.consoleRungLine {
+  display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+  margin-top: 22px; padding: 0; background: none; border: 0;
+  cursor: pointer; text-align: left; font-family: var(--condensed);
+}
+.consoleRungLine__label {
+  font-size: 12px; letter-spacing: .11em; text-transform: uppercase; color: var(--console-muted);
+}
+.consoleRungLine b {
+  font-size: 15px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--console-text); font-variant-numeric: tabular-nums;
+}
+.consoleRungLine__unset { color: var(--console-secondary); }
+.consoleRungLine__next { color: var(--console-secondary); }
+.consoleRungLine em {
+  font-style: normal; font-size: 12px; letter-spacing: .11em;
+  text-transform: uppercase; color: var(--console-lime);
+}
+.consoleRungLine:hover b { color: var(--console-lime); }
+
+.consoleHero__identityHead { display: flex; align-items: flex-start; gap: 14px; }
+.consoleHero__identityHead .athlete-menu { margin-top: 10px; }
+
+/* The two instruments. One column, never one axis. */
+.consoleInstrument { display: block; margin-bottom: 20px; }
+.consoleInstrument:last-child { margin-bottom: 0; }
+.consoleInstrument__score {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: none; border: 0; padding: 0; cursor: pointer; text-align: left; width: 100%;
+}
+.consoleInstrument b {
+  display: block; font-family: var(--condensed); font-size: clamp(34px, 3.4vw, 46px);
+  font-weight: 800; line-height: .9; letter-spacing: -.02em;
+  color: var(--console-text); font-variant-numeric: tabular-nums;
+}
+.consoleInstrument--confidence b { color: var(--console-lime); }
+.consoleInstrument b i {
+  font-style: normal; font-size: .45em; font-weight: 600;
+  color: var(--console-muted); margin-left: 3px;
+}
+/* Nothing said yet is not zero. 0% would be a statement Brice never made. */
+/* Nothing said yet reads as a dash, not as a rule. At the instrument's own size
+   an em dash is a long grey bar and looks like a divider. */
+.consoleInstrument__unset {
+  color: var(--console-secondary) !important; font-size: .55em; line-height: 1.6;
+}
+.consoleInstrument--confidence .consoleInstrument__unset { color: var(--console-secondary) !important; }
+.consoleInstrument__read { display: block; min-width: 0; padding-top: 2px; }
+.consoleInstrument__label {
+  display: block; font-family: var(--condensed); font-size: 12px; letter-spacing: .11em;
+  text-transform: uppercase; color: var(--console-text); margin-bottom: 4px;
+}
+.consoleInstrument--coverage .consoleInstrument__label { color: var(--console-secondary); }
+.consoleInstrument__note {
+  display: block; font-family: var(--condensed); font-size: 11.5px; line-height: 1.5;
+  letter-spacing: .07em; text-transform: uppercase; color: var(--console-muted);
+}
+.consoleInstrument__score:hover .consoleInstrument__label { color: var(--console-lime); }
+.consoleInstrument__next {
+  margin: 12px 0 0; font-family: var(--condensed); font-size: 11px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--console-muted);
+}
+.consoleInstrument__next em {
+  display: block; margin-top: 3px; font-style: normal;
+  letter-spacing: .07em; color: var(--console-secondary);
+}
+/* A quiet distance rail, deliberately not the confidence graph. */
+.consoleCoverageRail {
+  display: block; height: 2px; margin: 12px 0 8px; width: 100%; background: var(--console-raised);
+}
+.consoleCoverageRail i { display: block; height: 100%; width: 0; background: var(--console-secondary); }
+
+/* Discrete authored points. One reading renders as one mark at the left. */
+.consoleConfidenceHistory { display: block; margin-top: 14px; }
+.consoleConfidenceHistory__latest {
+  display: block; font-family: var(--condensed); font-size: 11px; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--console-lime); margin-bottom: 6px;
+}
+.consoleConfidenceHistory__rail {
+  position: relative; display: block; height: 2px; width: 100%; background: var(--console-raised);
+}
+.consoleConfidenceHistory__rail i {
+  position: absolute; top: -2px; left: 0; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--console-lime); transform: translateX(-3px);
+}
+
+/* 4 · The runway. Every authored week with its stored dates. No dots, no rungs. */
+.consoleRunwayViewport {
+  overflow-x: auto; scrollbar-width: thin;
+  border-bottom: 1px solid var(--console-edge); padding: 0 0 4px;
+}
+.consoleRunway {
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(88px, 1fr);
+  min-width: 100%;
+}
+.consoleWeek {
+  display: grid; align-content: start; gap: 6px; padding: 14px 10px 16px; min-height: 132px;
+  background: none; border: 0; border-left: 1px solid var(--console-edge);
+  cursor: pointer; text-align: left; font-family: var(--condensed);
+}
+.consoleWeek:first-child { border-left: 0; }
+.consoleWeek__no {
+  font-size: 15px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--console-text); font-variant-numeric: tabular-nums;
+}
+.consoleWeek__when {
+  font-size: 10.5px; line-height: 1.4; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--console-muted); min-height: 2.8em;
+}
+.consoleWeek__now {
+  font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--console-lime); min-height: 1em;
+}
+.consoleWeek__key {
+  font-size: 17px; font-weight: 700; letter-spacing: .02em;
+  color: var(--console-text); font-variant-numeric: tabular-nums; min-height: 1em;
+}
+.consoleWeek__race {
+  font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--console-coral); min-height: 1em;
+}
+.consoleWeek:hover { background: var(--console-surface); }
+/* Today and selected are independent states. */
+.consoleWeek--today { background: var(--console-surface); }
+.consoleWeek--shown { box-shadow: inset 0 0 0 1px var(--console-lime); }
+.consoleWeek--shown .consoleWeek__no { color: var(--console-lime); }
+/* Race day falls outside every authored week for a block that ends the day
+   before it. Its own marker says so rather than folding it into the last week. */
+.consoleWeek--raceApart { cursor: default; }
+.consoleWeek--raceApart:hover { background: none; }
+.consoleWeek--raceApart .consoleWeek__no { color: var(--console-coral); }
+
+/* 5 · The workbench. The chosen week, and the session under it. */
+.consoleWorkbench {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(380px, 1fr);
+  gap: clamp(24px, 2.6vw, 36px); min-height: 320px; padding: 26px 8px 0;
+}
+.consoleWorkbench__week { min-width: 0; }
+.consoleWorkbench__inspector { min-width: 0; border-left: 1px solid var(--console-edge); padding-left: clamp(20px, 2.4vw, 34px); }
+.consoleWorkbench__head {
+  margin: 0 0 6px; font-family: var(--condensed); font-size: 12px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--console-muted);
+}
+.consoleWorkbench__head span { margin-left: 10px; color: var(--console-secondary); }
+.consoleWorkbench__empty { margin: 0; font-size: 13px; color: var(--console-muted); }
+.consoleWorkRow {
+  display: grid; grid-template-columns: 72px 92px minmax(0, 1fr); align-items: baseline; gap: 16px;
+  width: 100%; padding: 15px 10px; background: none; border: 0;
+  border-top: 1px solid var(--console-edge); cursor: pointer; text-align: left;
+  font-family: var(--condensed);
+}
+.consoleWorkRow__day {
+  font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--console-muted);
+}
+.consoleWorkRow__day em {
+  display: block; margin-top: 3px; font-style: normal; letter-spacing: .06em;
+}
+.consoleWorkRow__dose {
+  font-size: 26px; font-weight: 700; letter-spacing: .02em;
+  color: var(--console-text); font-variant-numeric: tabular-nums;
+}
+.consoleWorkRow__dose i {
+  font-style: normal; font-size: 12px; font-weight: 500; color: var(--console-muted); margin-left: 4px;
+}
+.consoleWorkRow__what {
+  font-size: 15px; letter-spacing: .06em; text-transform: uppercase; color: var(--console-secondary);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.consoleWorkRow:hover { background: var(--console-surface); }
+.consoleWorkRow--done .consoleWorkRow__what { color: var(--console-text); }
+.consoleWorkRow--on { background: var(--console-surface); box-shadow: inset 0 0 0 1px var(--console-lime); }
+
+/* Laptop density. The bands all fit at 1536 wide; below that the hero has to
+   give the runway and the workbench their room back. */
+@media (max-width: 1400px) {
+  .consoleHero { min-height: 0; padding: 22px 8px 20px; }
+  .consoleHero__name { font-size: clamp(44px, 5vw, 70px); }
+  .consoleRungLine { margin-top: 16px; }
+  .consoleWeek { min-height: 116px; padding: 12px 8px 14px; }
+  .consoleWorkbench { padding-top: 20px; min-height: 0; }
+  .consoleWorkRow { padding: 12px 10px; }
+}
+
+/* 9 · Below 760px the bands stack and the two horizontal instruments scroll.
+   Week columns keep their width so the dates stay legible. */
+@media (max-width: 760px) {
+  .coachConsole { padding: 0 14px 44px; }
+  .consoleAthleteTabs { grid-auto-columns: minmax(150px, 1fr); overflow-x: auto; }
+  .consoleHero { grid-template-columns: 1fr; gap: 26px; min-height: 0; padding: 22px 0 20px; }
+  .consoleHero__name { font-size: clamp(42px, 13vw, 62px); }
+  .consoleRunway { grid-auto-columns: minmax(96px, 1fr); }
+  .consoleWorkbench { grid-template-columns: 1fr; gap: 22px; padding: 22px 0 0; }
+  .consoleWorkbench__inspector { border-left: 0; border-top: 1px solid var(--console-edge); padding: 22px 0 0; }
+  .consoleWorkRow { grid-template-columns: 64px 80px minmax(0, 1fr); gap: 12px; padding: 13px 0; }
+}
+
+/* The dose, not the total. A runway cell says what the session is before it says
+   how far it is, because three doubles and six continuous miles both total six
+   and establish different things. */
+.consoleWeek__how {
+  font-family: var(--condensed); font-size: 9.5px; line-height: 1.45;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--console-muted);
+  min-height: 2.9em;
+}
+.consoleWeek { min-height: 158px; }
+@media (max-width: 1400px) { .consoleWeek { min-height: 146px; } }
+
+.consoleWorkRow__what em {
+  display: block; margin-top: 4px; font-style: normal; font-size: 10.5px;
+  letter-spacing: .07em; color: var(--console-muted);
+}
+.consoleWorkRow--adhoc .consoleWorkRow__what { color: var(--console-muted); }
+.consoleWorkRow--adhoc .consoleWorkRow__what em { color: var(--console-coral); }
+
+/* The prescription, in the order it is met. */
+.ins-dose { margin: 0 0 18px; font-family: var(--condensed); }
+.ins-dose b {
+  display: block; font-size: 30px; font-weight: 700; letter-spacing: .03em;
+  text-transform: uppercase; color: var(--console-text);
+}
+.ins-dose span {
+  display: block; margin-top: 5px; font-size: 12px; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--console-secondary);
+}
+.ins-anatomy { margin: 0 0 20px; font-family: var(--condensed); }
+.ins-part {
+  display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 14px;
+  align-items: baseline; padding: 9px 0; border-top: 1px solid var(--console-edge);
+}
+.ins-part dt {
+  font-size: 11px; letter-spacing: .11em; text-transform: uppercase; color: var(--console-muted);
+}
+.ins-part dd { margin: 0; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.ins-part dd b {
+  font-size: 15px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--console-text); font-variant-numeric: tabular-nums;
+}
+.ins-part dd span {
+  font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--console-secondary);
+}
+.ins-where em {
+  margin-left: 10px; font-style: normal; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--console-coral);
+}
+.evf-was span { margin-left: 10px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--console-muted); }

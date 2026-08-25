@@ -1,6 +1,6 @@
 import { bindAccountSecurity, authErrorMessage, getAccessContext, renderDoorway, signOut } from '/private/auth.js';
 import { addPrivateNote, authorSession, proofCoverage, setConfidence, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask, reviseSession } from '/private/data.js';
-import { directionWords, escapeHtml, evidenceSection, formatDate, progressionSection, gradeSection, whoSection } from '/private/record.js';
+import { directionWords, escapeHtml, formatDate } from '/private/record.js';
 
 // Account states only. The desk no longer labels athletes by a stored state —
 // the queue is derived from the record.
@@ -54,6 +54,8 @@ let selectedId = null;
 let selectedRecord = null;
 let shownWeekId = null;
 let shownSessionId = null;
+// Set when an ad hoc filing is open rather than an authored session.
+let shownCompletionId = null;
 // Ordering is a mode, never a permanent rearrangement of the roster.
 let attentionOrder = false;
 
@@ -68,26 +70,43 @@ function pendingView(email) {
 
 function initials(name) { return String(name || '').split(/\s+/).map((part) => part[0]).join('').slice(0, 2).toUpperCase(); }
 
+// The standing authored confidence: the newest read nothing has superseded, read
+// from mark_standing_confidence through the roster. One source for every surface
+// that shows the figure, because the tabs and the hero showing different numbers
+// is how confidence and coverage got conflated in the first place. Proof coverage
+// is a different instrument and never stands in for this.
+function standingConfidence(athleteId, markId) {
+  const read = roster.find((entry) => entry.id === athleteId)?.mark?.confidence || null;
+  // Filtered by the active mark. A read belonging to another mark is another
+  // claim's judgment and must never stand in for this one.
+  if (!read) return null;
+  return !markId || read.mark_id === markId ? read : null;
+}
+
+// The erased current states cannot be recovered, and the ones that survived came
+// partly from the old click cycling. Until Brice picks a current rung the ladder
+// is unreviewed, and nothing derived from it may be presented as trustworthy.
+function ladderReviewed(mark) {
+  return Boolean((mark?.checkpoints || []).some((point) => point.state === 'current'));
+}
+
 function rosterHtml() {
-  // A tab bar, not four ladders. Orientation is who exists and how confident
-  // Brice is; the ladder belongs to the athlete who is open, where there is room
-  // to act on it.
+  // Four shallow tabs. This band selects an athlete and does nothing else: a rung
+  // in the navigation turned orientation into an editor, and four ladders stacked
+  // down the page pushed the actual work below the fold.
   const tab = (athlete) => {
-    const read = athlete.mark?.confidence || null;
-    return `<button class="atab${athlete.id === selectedId ? ' atab--on' : ''}" type="button"
-      data-select-athlete="${escapeHtml(athlete.id)}"
+    const read = standingConfidence(athlete.id, athlete.mark?.id);
+    return `<button class="consoleAthleteTab${athlete.id === selectedId ? ' consoleAthleteTab--on' : ''}"
+      type="button" data-select-athlete="${escapeHtml(athlete.id)}"
       ${athlete.id === selectedId ? 'aria-current="true"' : ''}>
-      <span>${escapeHtml(athlete.first_name || athlete.display_name)}</span>
-      <em>${read ? `${escapeHtml(read.score)}%` : '\u2014'}</em>
+      <span class="consoleAthleteTab__name">${escapeHtml(athlete.first_name || athlete.display_name)}</span>
+      <em class="consoleAthleteTab__score">${read ? `${escapeHtml(read.score)}%` : '\u2014'}</em>
     </button>`;
   };
   const order = attentionOrder
-    ? roster.slice().sort((a, b) => (a.mark?.confidence?.score ?? -1) - (b.mark?.confidence?.score ?? -1))
+    ? roster.slice().sort((a, b) => (standingConfidence(a.id, a.mark?.id)?.score ?? -1) - (standingConfidence(b.id, b.mark?.id)?.score ?? -1))
     : roster;
-  return `<nav class="atabs" aria-label="Athletes">
-    ${order.map(tab).join('')}
-    <button class="atabs-order" type="button" id="orderToggle">${attentionOrder ? 'needs attention' : 'roster'}</button>
-  </nav>`;
+  return order.map(tab).join('');
 }
 
 function athleteMenuHtml() {
@@ -125,44 +144,111 @@ const rangeLabel = (from, to) => {
     : `${dayLabel(from)}\u2013${dayLabel(to)}`;
 };
 
-// The runway. Sixteen weeks with their real dates, the key authored session in
-// each, and the race at the right edge. Weeks are a calendar and the ladder is a
-// capability, so this never shows rungs: it shows when the chances to change the
-// evidence actually fall.
+// Marcus's evidence standard is outside. A treadmill run is a real completion and
+// real tolerance; it simply cannot answer the question the claim is asking, and
+// saying so in words is the whole point of recording surface.
+function qualifyingWords(completion) {
+  const needs = selectedRecord.primaryMark?.evidence_surface_requirement;
+  if (needs === 'outdoor' && completion.surface === 'treadmill') {
+    return 'Completed \u00b7 non qualifying proof';
+  }
+  return 'Completed';
+}
+
+// The proof-bearing dose, read from the stored anatomy. Never from the title and
+// never from the total: three doubles with floats, six continuous miles and a six
+// mile session containing a warm up all total six, and they establish different
+// things. A session with no structured dose says so rather than guessing.
+function doseOf(version) {
+  const work = (version?.components || []).find((part) => part.role === 'work');
+  if (!work) return null;
+  const unit = work.distance_unit || 'mi';
+  const amount = work.distance != null
+    ? `${Number(work.distance)} ${unit}`
+    : `${Math.round((work.duration_seconds || 0) / 60)} min`;
+  const line = work.shape === 'repetitions'
+    ? `${work.repeat_count} \u00d7 ${amount}`
+    : `${amount} continuous`;
+  const band = [work.pace_low, work.pace_high].filter(Boolean).join('\u2013');
+  const qualifiers = [];
+  if (band) qualifiers.push(`${band}/${unit}`);
+  else if (work.rpe_low) qualifiers.push(`RPE ${work.rpe_low}\u2013${work.rpe_high}`);
+  if (work.recovery_seconds != null) {
+    qualifiers.push(`${Math.floor(work.recovery_seconds / 60)}:${String(work.recovery_seconds % 60).padStart(2, '0')} ${work.recovery_kind}`);
+  }
+  if (selectedRecord.primaryMark?.evidence_surface_requirement === 'outdoor') qualifiers.push('outside');
+  return { line, qualifiers: qualifiers.join(' \u00b7 '), work };
+}
+
+// The runway. Every authored week with its real dates, the key race-pace session
+// in each, and the race. Weeks are a calendar and the ladder is a capability, so
+// no rung appears here: this says when the chances to change the evidence fall.
+//
+// Stored dates are the authority. Week 1 is Sunday anchored and starts Aug 23;
+// the Monday anchored dates in the illustrative mockups are not migrated to.
 function runwayHtml() {
   const weeks = (selectedRecord.weeks || []).slice().sort((a, b) => a.week_number - b.week_number);
   if (!weeks.length) return '';
   const today = new Date().toISOString().slice(0, 10);
   const shown = shownWeekId || selectedRecord.currentWeek?.id;
+  const raceOn = selectedRecord.block?.race_on || null;
+  // The race belongs to a week only when a week actually contains it. Marcus's
+  // last authored week ends Dec 12 and he races Dec 13, so painting RACE into the
+  // final column would put the race inside a week that ends before it happens.
+  const raceWeek = raceOn
+    ? weeks.find((week) => week.starts_on && week.ends_on && week.starts_on <= raceOn && raceOn <= week.ends_on)
+    : null;
 
   const cells = weeks.map((week) => {
     // Today and selected are different states. Choosing another week must not
     // move today.
     const isToday = week.starts_on && week.ends_on && week.starts_on <= today && today <= week.ends_on;
     const isShown = week.id === shown;
+    // The key session is the one carrying a structured race-pace dose, not the
+    // one with the largest number.
     const key = (selectedRecord.sessionsByWeek?.[week.id] || [])
       .map((session) => session.currentVersion)
-      .filter((version) => version && /race pace/i.test(version.title || ''))[0];
-    return `<button class="rw${isToday ? ' rw--today' : ''}${isShown ? ' rw--shown' : ''}"
+      .filter((version) => version && doseOf(version))[0];
+    const dose = key ? doseOf(key) : null;
+    return `<button class="consoleWeek${isToday ? ' consoleWeek--today' : ''}${isShown ? ' consoleWeek--shown' : ''}"
       type="button" data-week="${escapeHtml(week.id)}"
       aria-current="${isShown ? 'true' : 'false'}"
       aria-label="Week ${escapeHtml(week.week_number)}, ${escapeHtml(rangeLabel(week.starts_on, week.ends_on))}">
-      <span class="rw-no">W${escapeHtml(week.week_number)}</span>
-      <span class="rw-when">${escapeHtml(rangeLabel(week.starts_on, week.ends_on))}</span>
-      <span class="rw-key">${key?.prescribed_distance ? `${escapeHtml(Number(key.prescribed_distance))} mi` : ''}</span>
-      ${isToday ? '<span class="rw-now">today</span>' : ''}
+      <span class="consoleWeek__no">W${escapeHtml(week.week_number)}</span>
+      <span class="consoleWeek__when">${escapeHtml(rangeLabel(week.starts_on, week.ends_on))}</span>
+      <span class="consoleWeek__now">${isToday ? 'current week' : ''}</span>
+      <span class="consoleWeek__key">${dose ? escapeHtml(dose.line) : ''}</span>
+      <span class="consoleWeek__how">${dose ? escapeHtml(dose.qualifiers) : ''}</span>
+      <span class="consoleWeek__race">${raceWeek && week.id === raceWeek.id ? 'race' : ''}</span>
     </button>`;
   }).join('');
 
-  return `<div class="runway" role="group" aria-label="The block, week by week">${cells}</div>`;
+  // When no authored week holds race day, it gets its own marker past the last
+  // column rather than being folded into a week that does not contain it.
+  const apart = raceOn && !raceWeek
+    ? `<div class="consoleWeek consoleWeek--raceApart">
+        <span class="consoleWeek__no">Race</span>
+        <span class="consoleWeek__when">${escapeHtml(dayLabel(raceOn))}</span>
+        <span class="consoleWeek__now"></span>
+        <span class="consoleWeek__key"></span>
+        <span class="consoleWeek__how"></span>
+        <span class="consoleWeek__race"></span>
+      </div>`
+    : '';
+
+  return `<section class="consoleRunwayViewport" aria-label="The block, week by week">
+    <div class="consoleRunway">${cells}${apart}</div>
+  </section>`;
 }
 
-// The chosen week's work, and the session under it. This is the part with
-// something to act on.
-function weekWorkHtml() {
+// The chosen week's work, and the session under it. This is the band with
+// something to act on, and it sits in the first viewport rather than below it.
+function workbenchHtml() {
   const weeks = (selectedRecord.weeks || []);
   const shown = weeks.find((week) => week.id === (shownWeekId || selectedRecord.currentWeek?.id)) || weeks[0];
   if (!shown) return '';
+  // Calendar order, from the stored dates. The long run is stored on the week's
+  // first day, so a Sunday anchored week opens with it.
   const sessions = (selectedRecord.sessionsByWeek?.[shown.id] || [])
     .filter((session) => session.currentVersion)
     .sort((a, b) => String(a.scheduled_on).localeCompare(String(b.scheduled_on)));
@@ -171,22 +257,61 @@ function weekWorkHtml() {
   const rows = sessions.map((session) => {
     const version = session.currentVersion;
     const done = (selectedRecord.completions || []).find((item) => item.planned_session_id === session.id);
-    return `<button class="wk-row${session.id === picked?.id ? ' wk-row--on' : ''}${done ? ' wk-row--done' : ''}"
+    const dose = doseOf(version);
+    return `<button class="consoleWorkRow${session.id === picked?.id ? ' consoleWorkRow--on' : ''}${done ? ' consoleWorkRow--done' : ''}"
       type="button" data-session="${escapeHtml(session.id)}">
-      <span class="wk-day">${escapeHtml(String(session.day_label).slice(0, 3))}<em>${escapeHtml(session.scheduled_on ? dayLabel(session.scheduled_on) : '')}</em></span>
-      <span class="wk-dose">${version.prescribed_distance
-        ? `${escapeHtml(Number(version.prescribed_distance))}<i>mi</i>`
+      <span class="consoleWorkRow__day">${escapeHtml(String(session.day_label).slice(0, 3))}<em>${escapeHtml(session.scheduled_on ? dayLabel(session.scheduled_on) : '')}</em></span>
+      <span class="consoleWorkRow__dose">${dose
+        ? escapeHtml(dose.line)
+        : version.prescribed_distance ? `${escapeHtml(Number(version.prescribed_distance))}<i>mi</i>`
         : version.prescribed_duration_minutes ? `${escapeHtml(version.prescribed_duration_minutes)}<i>min</i>` : ''}</span>
-      <span class="wk-what">${escapeHtml(version.title)}</span>
+      <span class="consoleWorkRow__what">${escapeHtml(version.title)}
+        ${dose ? `<em>${escapeHtml(dose.qualifiers)}</em>` : ''}</span>
     </button>`;
   }).join('');
 
-  return `<div class="weekWork">
-    <div class="wk-list">
-      <p class="wk-head">Week ${escapeHtml(shown.week_number)}<span>${escapeHtml(rangeLabel(shown.starts_on, shown.ends_on))}</span></p>
-      ${rows || '<p class="wk-empty">Nothing authored for this week.</p>'}
+  // Work that was filed against no prescription. It belongs to the record, but it
+  // is not a planned session and must never be dressed as one.
+  const adHoc = (selectedRecord.completions || []).filter((item) =>
+    !item.planned_session_id && item.filed_at
+      && item.filed_at.slice(0, 10) >= shown.starts_on && item.filed_at.slice(0, 10) <= shown.ends_on);
+
+  return `<section class="consoleWorkbench">
+    <div class="consoleWorkbench__week">
+      <p class="consoleWorkbench__head">Week ${escapeHtml(shown.week_number)}<span>${escapeHtml(rangeLabel(shown.starts_on, shown.ends_on))}</span></p>
+      ${rows || '<p class="consoleWorkbench__empty">Nothing authored for this week.</p>'}
+      ${adHoc.map((item) => `<button class="consoleWorkRow consoleWorkRow--adhoc" type="button"
+        data-completion="${escapeHtml(item.id)}">
+        <span class="consoleWorkRow__day">${escapeHtml(dayLabel(item.filed_at.slice(0, 10)))}</span>
+        <span class="consoleWorkRow__dose">${escapeHtml(Number(item.actual_distance || 0))}<i>mi</i></span>
+        <span class="consoleWorkRow__what">Ad hoc${item.surface ? ` \u00b7 ${escapeHtml(item.surface)}` : ''}
+          <em>${escapeHtml(qualifyingWords(item))}</em></span>
+      </button>`).join('')}
     </div>
-    ${picked ? sessionInspectorHtml(picked) : ''}
+    <div class="consoleWorkbench__inspector">${
+      shownCompletionId
+        ? adHocInspectorHtml((selectedRecord.completions || []).find((item) => item.id === shownCompletionId))
+        : picked ? sessionInspectorHtml(picked) : ''}</div>
+  </section>`;
+}
+
+// A filing with no prescription behind it. It is shown as what it is: work that
+// happened, with the record's own words about whether it can carry the claim.
+function adHocInspectorHtml(completion) {
+  if (!completion) return '';
+  const clock = (seconds) => seconds ? `${Math.floor(seconds / 60)}:${String(Math.round(seconds) % 60).padStart(2, '0')}` : '';
+  return `<div class="inspect">
+    <p class="ins-when">${escapeHtml(dayLabel(completion.filed_at.slice(0, 10)))} \u00b7 ad hoc</p>
+    <h3 class="ins-what">${escapeHtml(completion.title || 'Filed without a prescription')}</h3>
+    <p class="ins-dose"><span>${escapeHtml([
+      completion.actual_distance ? `${Number(completion.actual_distance)} mi total` : '',
+      completion.duration_seconds ? clock(completion.duration_seconds) : ''
+    ].filter(Boolean).join(' \u00b7 '))}</span></p>
+    ${evidenceFactsHtml(completion)}
+    <div class="ins-actions">
+      <button type="button" data-correct="${escapeHtml(completion.id)}">CORRECT ENTRY</button>
+      <button type="button" data-judge="${escapeHtml(completion.id)}">SAY WHAT THIS DID</button>
+    </div>
   </div>`;
 }
 
@@ -212,12 +337,30 @@ function sessionInspectorHtml(session) {
   </div>`;
 
   const band = [version.pace_low, version.pace_high].filter(Boolean).join('\u2013');
+  const dose = doseOf(version);
+  const clock = (seconds) => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
+  const anatomy = (version.components || []).map((part) => {
+    const what = part.shape === 'repetitions'
+      ? `${part.repeat_count} \u00d7 ${Number(part.distance)} ${part.distance_unit}`
+      : part.distance != null ? `${Number(part.distance)} ${part.distance_unit} continuous`
+      : `${Math.round((part.duration_seconds || 0) / 60)} min`;
+    const at = [part.pace_low, part.pace_high].filter(Boolean).join('\u2013');
+    const after = part.recovery_seconds != null
+      ? `${clock(part.recovery_seconds)} ${part.recovery_kind}` : '';
+    return `<div class="ins-part">
+      <dt>${escapeHtml(String(part.role).replace('_', ' '))}</dt>
+      <dd><b>${escapeHtml(what)}</b>${at ? `<span>${escapeHtml(at)}/${escapeHtml(part.distance_unit || 'mi')}</span>` : ''}
+        ${after ? `<span>${escapeHtml(after)}</span>` : ''}</dd>
+    </div>`;
+  }).join('');
+
   return `<div class="inspect">
     ${head}
-    <div class="ins-facts">
+    ${dose ? `<p class="ins-dose"><b>${escapeHtml(dose.line)}</b><span>${escapeHtml(dose.qualifiers)}</span></p>` : ''}
+    ${anatomy ? `<dl class="ins-anatomy">${anatomy}</dl>` : `<div class="ins-facts">
       ${band ? `<span><b>${escapeHtml(band)}</b>race pace</span>` : ''}
-      ${version.rpe_low ? `<span><b>${escapeHtml(version.rpe_low)}\u2013${escapeHtml(version.rpe_high)}</b>asked effort</span>` : ''}
-    </div>
+      ${version.rpe_low ? `<span><b>${escapeHtml(version.rpe_low)}\u2013${escapeHtml(version.rpe_high)}</b>RPE</span>` : ''}
+    </div>`}
     ${version.details ? `<p class="ins-detail">${escapeHtml(version.details)}</p>` : ''}
     ${version.intent ? `<p class="ins-why">${escapeHtml(version.intent)}</p>` : ''}
     ${version.version_number > 1 ? `<p class="ins-rev">version ${escapeHtml(version.version_number)}${
@@ -244,22 +387,36 @@ function evidenceFactsHtml(completion) {
   const judgment = (selectedRecord.judgments || []).find((item) => item.completionIds.includes(completion.id));
 
   const where = [completion.surface, completion.conditions].filter(Boolean).join(' \u00b7 ');
+  const standing = qualifyingWords(completion);
 
-  return `${where ? `<p class="ins-where">${escapeHtml(where)}</p>` : ''}
+  return `${where ? `<p class="ins-where">${escapeHtml(where)}<em>${escapeHtml(standing)}</em></p>` : ''}
     <dl class="evf">
       ${floats.length ? `<div class="evf-row${rested ? ' evf-row--off' : ''}">
         <dt>Recovery</dt>
-        <dd class="evf-asked">asked easy</dd>
+        <dd class="evf-asked">${verdict ? 'asked easy' : 'not prescribed'}</dd>
         <dd class="evf-was"><b>${floats.map((piece) => escapeHtml(pace(piece.pace_seconds))).join('  ')}</b>
           ${verdict ? `<span>${escapeHtml(verdict.floats_honest)} of ${escapeHtml(verdict.floats)} inside easy</span>` : ''}</dd>
       </div>` : ''}
       <div class="evf-row${effortOff ? ' evf-row--off' : ''}">
-        <dt>Effort</dt>
+        <dt>RPE</dt>
         <dd class="evf-asked">${verdict?.rpe_low ? `asked ${escapeHtml(verdict.rpe_low)}\u2013${escapeHtml(verdict.rpe_high)}` : 'not asked'}</dd>
         <dd class="evf-was"><b>${completion.rpe ? escapeHtml(completion.rpe) : '\u2014'}</b></dd>
       </div>
+      ${(reps.length || floats.length) ? `<div class="evf-row evf-row--quiet">
+        <dt>Rep range</dt>
+        <dd class="evf-asked">${reps.length ? `${reps.length} recorded` : 'splits not filed'}</dd>
+        <dd class="evf-was">${(() => {
+          // An average hides the thing that matters. 6:49 average could be four
+          // miles inside four seconds or four inside forty, and only one of
+          // those is control.
+          const seconds = reps.map((piece) => piece.pace_seconds).filter((value) => value != null);
+          if (!seconds.length) return 'not available';
+          const low = Math.min(...seconds); const high = Math.max(...seconds);
+          return `${escapeHtml(pace(low))}\u2013${escapeHtml(pace(high))} <span>${escapeHtml(high - low)} sec range</span>`;
+        })()}</dd>
+      </div>` : ''}
       ${reps.length ? `<div class="evf-row evf-row--quiet">
-        <dt>Miles</dt>
+        <dt>Splits</dt>
         <dd class="evf-asked">${verdict?.pace_verdict === 'not prescribed' || !verdict?.pace_low
           ? 'not recorded' : `asked ${escapeHtml(pace(verdict.pace_low))}\u2013${escapeHtml(pace(verdict.pace_high))}`}</dd>
         <dd class="evf-was">${reps.map((piece) => escapeHtml(pace(piece.pace_seconds))).join(' \u00b7 ')}</dd>
@@ -270,25 +427,38 @@ function evidenceFactsHtml(completion) {
     ${completion.athlete_note ? `<p class="ins-said">${escapeHtml(completion.athlete_note)}</p>` : ''}`;
 }
 
+// Three separate ideas, never merged. ESTABLISHED is the rung Brice has accepted.
+// CURRENT TEST is what the work is asking now. NEXT PROOF TARGET only means
+// anything once the established rung is known, so it stays silent until then.
 function currentRungHtml() {
   const mark = selectedRecord.primaryMark;
   if (!mark?.checkpoints?.length) return '';
   const points = mark.checkpoints.slice().sort((a, b) => a.position - b.position);
   const current = points.find((point) => point.state === 'current');
-  // Unset says unset. Falling back to the first proposed numeral would turn
-  // missing information into a coaching statement.
+  const reviewed = ladderReviewed(mark);
+  const established = points.filter((point) => point.state === 'reached' || point.state === 'repeated').pop();
   const next = points.find((point) => point.position > (current?.position ?? -1) && point.state === 'proposed');
-  return `<button class="rungLine" type="button" id="openLadder">
-    <span>Current rung</span>
-    ${current ? `<b>${escapeHtml(current.label)} mi</b>` : '<b class="rungLine__unset">unset</b>'}
-    <em>${current ? 'change' : 'choose'} \u203a</em>
-    ${next ? `<span>Next</span><b class="rungLine__next">${escapeHtml(next.label)} mi</b>` : ''}
+
+  if (!reviewed) {
+    return `<button class="consoleRungLine consoleRungLine--unreviewed" type="button" id="openLadder">
+      <span class="consoleRungLine__label">Checkpoints</span>
+      <b class="consoleRungLine__unset">not reviewed</b>
+      <em>review ladder \u203a</em>
+    </button>`;
+  }
+
+  return `<button class="consoleRungLine" type="button" id="openLadder">
+    <span class="consoleRungLine__label">Current test</span>
+    <b>${escapeHtml(current.label)} mi</b>
+    ${established ? `<span class="consoleRungLine__label">Established</span><b class="consoleRungLine__next">${escapeHtml(established.label)} mi</b>` : ''}
+    ${next ? `<span class="consoleRungLine__label">Next proof target</span><b class="consoleRungLine__next">${escapeHtml(next.label)} mi</b>` : ''}
+    <em>change \u203a</em>
   </button>`;
 }
 
 // Discrete authored points only. No interpolation, no smoothing, no projection to
 // race day: a line drawn between two readings would show days on which Brice said
-// nothing.
+// nothing. One reading is a legitimate state and renders as one mark.
 function confidenceHistoryHtml() {
   const reads = (selectedRecord.confidenceReads || []).slice().reverse();
   if (!reads.length) return '';
@@ -296,130 +466,155 @@ function confidenceHistoryHtml() {
   const first = Math.min(...times);
   const span = Math.max(1, Math.max(...times) - first);
   const latest = reads[reads.length - 1];
-  return `<div class="confHistory" role="img"
-    aria-label="${escapeHtml(reads.map((r) => `${formatDate(r.created_at)} ${r.score} per cent`).join(', '))}">
-    <span class="confHistory__latest">${escapeHtml(formatDate(latest.created_at))} \u00b7 ${escapeHtml(latest.score)}%</span>
-    <span class="confHistory__rail">${reads.map((read) =>
-      `<i style="left:${((new Date(read.created_at).getTime() - first) / span) * 100}%"></i>`).join('')}</span>
+  // Positions travel as data and are applied through the CSSOM. style-src is
+  // 'self' with no unsafe-inline, so a style attribute written into markup is
+  // dropped by the browser and every mark would stack at the left edge.
+  return `<div class="consoleConfidenceHistory" role="img"
+    aria-label="${escapeHtml(reads.map((read) => `${formatDate(read.created_at)} ${read.score} per cent`).join(', '))}">
+    <span class="consoleConfidenceHistory__latest">${escapeHtml(formatDate(latest.created_at))} · ${escapeHtml(latest.score)}%</span>
+    <span class="consoleConfidenceHistory__rail">${reads.map((read) =>
+      `<i data-at="${Math.round(((new Date(read.created_at).getTime() - first) / span) * 100)}"></i>`).join('')}</span>
   </div>`;
 }
 
+// Confidence is Brice's judgment about the race. Coverage is the distance he has
+// established. They sit in one column and never on one axis: five of 13.1 miles
+// is 38 per cent proven and says nothing about whether he believes in the day.
 function confidenceHtml() {
   const mark = selectedRecord.primaryMark;
   if (!mark) return '';
-  const read = mark.confidence || (selectedRecord.confidenceReads || [])[0] || null;
+  const read = standingConfidence(selectedRecord.athlete.id, mark.id);
   const cover = proofCoverage(mark);
-  const goal = [selectedRecord.athlete.goal_label, selectedRecord.athlete.target_event]
-    .filter(Boolean).join(' · ');
+  const reviewed = ladderReviewed(mark);
 
-  // Missing confidence is not zero. Nothing has been said yet, and 0% would be a
-  // statement Brice never made.
-  const score = read
-    ? `<b>${escapeHtml(read.score)}<i>%</i></b><span>${escapeHtml(formatDate(read.created_at))}</span>`
-    : `<b class="unset">&mdash;</b><span>not set</span>`;
-
-  return `<div class="consoleInstruments">
-    <button class="inst inst--confidence" type="button" id="setConfidence">
-      <span class="inst-label">Goal confidence</span>
-      ${score}
-      ${goal ? `<span class="inst-goal">${escapeHtml(goal)}</span>` : ''}
+  return `<div class="consoleInstrument consoleInstrument--confidence">
+    <button class="consoleInstrument__score" type="button" id="setConfidence">
+      ${read
+        // Missing confidence is not zero. Nothing has been said yet, and 0% would
+        // be a statement Brice never made.
+        ? `<b>${escapeHtml(read.score)}<i>%</i></b>`
+        : '<b class="consoleInstrument__unset">\u2014</b>'}
+      <span class="consoleInstrument__read">
+        <span class="consoleInstrument__label">Goal confidence</span>
+        <span class="consoleInstrument__note">${read
+          ? `Updated ${escapeHtml(formatDate(read.created_at))}`
+          : 'Set confidence'}</span>
+        ${read?.reason ? `<span class="consoleInstrument__note">${escapeHtml(read.reason)}</span>` : ''}
+      </span>
     </button>
     ${confidenceHistoryHtml()}
-    ${cover ? `<div class="inst inst--coverage">
-      <span class="inst-label">Proof coverage</span>
-      <b>${escapeHtml(Number(cover.established.toFixed(1)))}<i>/${escapeHtml(cover.target)} mi</i></b>
-      <span class="inst-rail" aria-hidden="true"><span style="width:${cover.percent}%"></span></span>
-      <span class="inst-goal">${escapeHtml(cover.percent)}% of the race proven</span>
-    </div>` : ''}
-    ${read ? `<p class="inst-why">${escapeHtml(read.reason)}<em>next: ${escapeHtml(read.next_evidence)}</em></p>` : ''}
+    ${read?.next_evidence
+      ? `<p class="consoleInstrument__next">Next thing that can change confidence<em>${escapeHtml(read.next_evidence)}</em></p>`
+      : ''}
+  </div>
+  <div class="consoleInstrument consoleInstrument--coverage">
+    <span class="consoleInstrument__label">Established proof</span>
+    ${reviewed && cover
+      ? `<b>${escapeHtml(cover.established.toFixed(1))}<i>mi</i></b>
+         <span class="consoleCoverageRail" aria-hidden="true"><i data-at="${escapeHtml(cover.percent)}"></i></span>
+         <span class="consoleInstrument__note">${escapeHtml(cover.established.toFixed(1))} of ${escapeHtml(cover.target)} mi</span>`
+      // A percentage computed from contaminated checkpoint state is a number that
+      // looks like evidence. It stays hidden until the ladder has been reviewed.
+      : `<b class="consoleInstrument__unset">\u2014</b>
+         <span class="consoleInstrument__note">Not reviewed</span>`}
   </div>`;
 }
 
-function deskHtml() {
-  // One typographic instrument on a flat graphite field.
-  const mark = selectedRecord.primaryMark;
-  const claim = mark?.claim || mark?.current_question || '';
-  
-  // Check action availability
-  const hasCompletion = selectedRecord.completions?.length > 0;
-  const latestCompletion = selectedRecord.completions?.[0];
-  // Use the same evidence relationship as evidenceSection
-  const hasEvidence = latestCompletion && (selectedRecord.evidenceFiles || []).some((file) => file.completion_id === latestCompletion.id);
-  
-  // Check for coaching sentence - use the most recent published read or direction
-  const coachingSentence = (() => {
-    const allCoaching = [
-      ...(selectedRecord.directions || []).filter((d) => d.delivery_state === 'published'),
-      ...(selectedRecord.reads || []).filter((r) => r.delivery_state === 'published')
-    ].sort((a, b) => new Date(b.published_at || b.created_at) - new Date(a.published_at || a.created_at));
-    return allCoaching[0]?.athlete_text || '';
-  })();
-  
+const fullDate = (iso) => {
+  const date = new Date(`${iso}T12:00:00`);
+  return `${MONTHS[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+};
+
+function heroHtml() {
   const athlete = selectedRecord.athlete;
-  const race = [athlete.goal_label, athlete.target_event].filter(Boolean).join(' \u00b7 ');
+  const mark = selectedRecord.primaryMark;
+  const raceOn = selectedRecord.block?.race_on;
+  const goal = [athlete.goal_label, athlete.target_event, raceOn ? fullDate(raceOn) : '']
+    .filter(Boolean).join(' · ');
 
-  return `<section class="coachConsole" id="deskMain">
-    <div class="cc-top">
-      <div class="cc-left">
-        <div id="squadStrip"></div>
-        <h1 class="cc-name">${escapeHtml(athlete.first_name || athlete.display_name)}</h1>
-        <p class="cc-race">${escapeHtml(race)}${weeksOutLabel()}</p>
-        ${currentRungHtml()}
+  return `<section class="consoleHero">
+    <div class="consoleHero__identity">
+      <div class="consoleHero__identityHead">
+        <h1 class="consoleHero__name">${escapeHtml(athlete.first_name || athlete.display_name)}</h1>
+        ${athleteMenuHtml()}
       </div>
-      <div class="cc-right">${confidenceHtml()}</div>
+      ${goal ? `<p class="consoleHero__goal">${escapeHtml(goal)}</p>` : ''}
+      ${currentRungHtml()}
+      ${mark?.evidence_surface_requirement === 'outdoor'
+        // A condition on whether evidence counts, said in words beside the goal.
+        // It is not a rung and never sits on top of a numeral.
+        ? '<p class="consoleHero__condition">Outside evidence only</p>' : ''}
     </div>
-
-    ${runwayHtml()}
-    ${weekWorkHtml()}
+    <div class="consoleHero__instruments">${confidenceHtml()}</div>
   </section>`;
 }
 
-function weeksOutLabel() {
-  const on = selectedRecord.block?.race_on;
-  if (!on) return '';
-  const days = Math.round((new Date(`${on}T12:00:00`) - new Date()) / 86400000);
-  if (days < 0) return '';
-  return ` \u00b7 <b>${Math.ceil(days / 7)}</b> weeks out`;
+// Five bands, in order, and nothing before them. The composition is replaced as a
+// whole rather than patched, because every previous pass moved a component and
+// left the page shape that put the work below the fold.
+function deskHtml() {
+  return `<div class="coachConsole" id="deskMain">
+    <nav class="consoleAthleteTabs" id="squadStrip" aria-label="Athletes"></nav>
+    ${heroHtml()}
+    ${runwayHtml()}
+    ${workbenchHtml()}
+  </div>`;
+}
+
+// Proportions arrive as data attributes and are applied here. style-src is 'self'
+// with no unsafe-inline, so a width or offset written into a style attribute is
+// dropped by the browser: on the deployed page every confidence mark sat at the
+// left edge and the coverage rail read empty at any percentage.
+function paintRails() {
+  app.querySelectorAll('.consoleCoverageRail i, .consoleConfidenceHistory__rail i').forEach((mark) => {
+    const at = Number(mark.dataset.at);
+    if (!Number.isFinite(at)) return;
+    if (mark.parentElement.classList.contains('consoleCoverageRail')) mark.style.width = `${at}%`;
+    else mark.style.left = `${at}%`;
+  });
+}
+
+// The chosen week is brought into view inside its own scroller. scrollIntoView
+// would also move the page vertically, which on a phone throws away the hero the
+// coach just read.
+function revealShownWeek() {
+  const viewport = app.querySelector('.consoleRunwayViewport');
+  const shown = viewport?.querySelector('.consoleWeek--shown');
+  if (!viewport || !shown) return;
+  const left = shown.offsetLeft;
+  const right = left + shown.offsetWidth;
+  if (left < viewport.scrollLeft) viewport.scrollLeft = left - 12;
+  else if (right > viewport.scrollLeft + viewport.clientWidth) {
+    viewport.scrollLeft = right - viewport.clientWidth + 12;
+  }
 }
 
 function paintSquad() {
   // Always on the desk, not behind a drawer. The strip is orientation, and
-  // orientation you have to open is not orientation.
+  // orientation you have to open is not orientation. Selecting is all it does.
   const squadContainer = document.getElementById('squadStrip');
   if (!squadContainer) return;
   squadContainer.innerHTML = rosterHtml();
-  
-  // Bind athlete selection once here
   squadContainer.querySelectorAll('[data-select-athlete]').forEach((button) =>
     button.addEventListener('click', () => selectAthlete(button.dataset.selectAthlete)));
-  
-  // Bind set-current for choosing mode
-  squadContainer.querySelectorAll('[data-set-current]').forEach((button) =>
-    button.addEventListener('click', async () => {
-      button.disabled = true;
-      try {
-        await setAsCurrent(button.dataset.setCurrent);
-      } catch (error) {
-        button.disabled = false;
-        window.alert(error.message);
-      }
-    }));
-  
-  // A rung opens a choice rather than cycling. Cycling meant one stray click
-  // advanced an authored decision through four states with nothing said, which is
-  // how a ladder with no outdoor evidence came to read 61 per cent proven.
-  squadContainer.querySelectorAll('[data-cycle-checkpoint]').forEach((button) =>
-    button.addEventListener('click', () => openRung(button.dataset.cycleCheckpoint, button.dataset.state, button.textContent.trim())));
+  const toggle = document.getElementById('orderToggle');
+  if (toggle) toggle.textContent = attentionOrder ? 'needs attention' : 'roster';
 }
 
 function bindDesk() {
   paintSquad();
+  paintRails();
+  revealShownWeek();
   app.querySelectorAll('[data-week]').forEach((button) => button.addEventListener('click', () => {
     shownWeekId = button.dataset.week; shownSessionId = null;
     app.innerHTML = deskHtml(); bindDesk();
   }));
   app.querySelectorAll('[data-session]').forEach((button) => button.addEventListener('click', () => {
-    shownSessionId = button.dataset.session; app.innerHTML = deskHtml(); bindDesk();
+    shownSessionId = button.dataset.session; shownCompletionId = null;
+    app.innerHTML = deskHtml(); bindDesk();
+  }));
+  app.querySelectorAll('[data-completion]').forEach((button) => button.addEventListener('click', () => {
+    shownCompletionId = button.dataset.completion; app.innerHTML = deskHtml(); bindDesk();
   }));
   app.querySelectorAll('[data-week-step]').forEach((button) => button.addEventListener('click', () => {
     const weeks = (selectedRecord.weeks || []).slice().sort((a, b) => a.week_number - b.week_number);
@@ -433,6 +628,12 @@ function bindDesk() {
     else openCoaching(button.dataset.write, button.dataset.subject);
   }));
   bindAccountSecurity();
+  // Ordering is a mode, never a permanent rearrangement of the roster, so the
+  // control sits with the account tools rather than inside the tab row.
+  document.getElementById('orderToggle')?.addEventListener('click', () => {
+    attentionOrder = !attentionOrder;
+    paintSquad();
+  });
   document.getElementById('setConfidence')?.addEventListener('click', openConfidence);
   document.getElementById('openLadder')?.addEventListener('click', openLadder);
   document.getElementById('newSession')?.addEventListener('click', () => openSession(null));
@@ -461,15 +662,6 @@ function bindDesk() {
     button.addEventListener('click', () => openFile('', button.dataset.correct)));
   document.getElementById('addPrivateNote')?.addEventListener('click', () => { noteForm.reset(); document.getElementById('noteStatus').textContent = ''; noteDialog.showModal(); });
   document.getElementById('shareExcerpt')?.addEventListener('click', openShare);
-}
-
-async function setAsCurrent(checkpointId) {
-  try {
-    await moveCheckpoint(checkpointId, 'current');
-    await refreshSelected(true);
-  } catch (error) {
-    window.alert(error.message);
-  }
 }
 
 async function selectAthlete(athleteId) {
