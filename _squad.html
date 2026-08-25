@@ -1,0 +1,81 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/private/graphite.css?v=32">
+<style>
+/* Proposed only. */
+.squad { max-width: 760px; margin: 0 auto; padding: 30px 22px 70px; }
+.squad-head { margin-bottom: 40px; }
+.squad-head h1 { margin: 0; font-size: 26px; letter-spacing: -.02em; }
+.squad-head p { margin: 8px 0 0; color: var(--secondary); font-size: 14px; }
+
+.ath { padding: 24px 0; border-top: 1px solid var(--edge); }
+.ath-top { display: flex; align-items: baseline; justify-content: space-between; gap: 18px; }
+.ath-name { font-size: 20px; font-weight: 750; letter-spacing: -.01em; }
+.ath-when { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.ath-state { margin: 10px 0 0; font-size: 15px; font-weight: 700; }
+.ath-state.working { color: var(--green); }
+.ath-state.unclear { color: var(--muted); }
+.ath-goal { margin: 6px 0 0; color: var(--secondary); font-size: 14px; line-height: 1.45; max-width: 52ch; }
+.ath-note { margin: 10px 0 0; font-size: 14px; line-height: 1.45; max-width: 52ch; }
+
+.same { margin-top: 46px; padding-top: 26px; border-top: 1px solid var(--edge); }
+.same > p.eyebrow { margin: 0 0 6px; }
+.same h2 { margin: 0 0 22px; font-size: 17px; font-weight: 700; }
+.pair { display: grid; grid-template-columns: 92px 1fr 1fr; gap: 0 26px; align-items: baseline; }
+.pair > div { padding: 11px 0; border-top: 1px solid var(--edge); }
+.pair > div:nth-child(-n+3) { border-top: 0; }
+.pk { color: var(--muted); font-size: 12px; }
+.pn { font-size: 13px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--secondary); }
+.pv { font-size: 17px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.pv.good { color: var(--green); }
+.pv.off { color: var(--coral); }
+.pv small { margin-left: 7px; color: var(--muted); font-size: 12px; font-weight: 400; }
+.pv.quiet { color: var(--muted); font-size: 14px; font-weight: 500; }
+</style></head><body>
+<div class="squad">
+
+<div class="squad-head">
+  <h1>Three athletes, one build</h1>
+  <p>Orlando on December 5 · West Palm Beach on December 13</p>
+</div>
+
+<div class="ath">
+  <div class="ath-top"><span class="ath-name">Hope</span><span class="ath-when">Orlando · 15 weeks</span></div>
+  <p class="ath-state unclear">Can't tell from this one</p>
+  <p class="ath-goal">Our goal here is to see if she can hold 6:25–6:30 for the whole half.</p>
+  <p class="ath-note">6:19 is too fast — recovered a bit too much.</p>
+</div>
+
+<div class="ath">
+  <div class="ath-top"><span class="ath-name">Marcus</span><span class="ath-when">West Palm Beach · 16 weeks</span></div>
+  <p class="ath-state unclear">Nothing to go on yet</p>
+  <p class="ath-goal">Our goal here is to see if the treadmill speed shows up outside.</p>
+</div>
+
+<div class="ath">
+  <div class="ath-top"><span class="ath-name">Jose</span><span class="ath-when">Orlando · 15 weeks</span></div>
+  <p class="ath-state working">This is working</p>
+  <p class="ath-goal">Our goal here is to see if he can go hard and still be fine for the next session.</p>
+  <p class="ath-note">Easily your best session to date.</p>
+</div>
+
+<div class="same">
+  <p class="eyebrow">Tuesday, August 25</p>
+  <h2>20 min easy, then 4 × 1 mi. No stopping.</h2>
+  <div class="pair">
+    <div class="pk"></div><div class="pn">Jose</div><div class="pn">Hope</div>
+
+    <div class="pk">Recoveries</div>
+    <div class="pv good">8:14 · 8:30 · 8:26</div>
+    <div class="pv off">ran hard</div>
+
+    <div class="pk">How it felt</div>
+    <div class="pv">8<small>asked for 7–8</small></div>
+    <div class="pv">9<small>asked for 7–8</small></div>
+
+    <div class="pk">Miles</div>
+    <div class="pv quiet">6:31 · 6:28 · 6:30 · 6:27</div>
+    <div class="pv quiet">6:29 · 6:20 · 6:22 · 6:19</div>
+  </div>
+</div>
+
+</div></body></html>

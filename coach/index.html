@@ -92,6 +92,83 @@
     </form>
   </dialog>
 
+  <dialog class="dialog" id="sessionDialog">
+    <form class="dialog-inner" id="sessionForm">
+      <div class="dialog-head">
+        <h2 id="sessionContext">New session</h2>
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Close">&times;</button>
+      </div>
+
+      <label class="field-label lead">What she is running
+        <input class="field-input" name="title" required placeholder="6 x 1 mile at race pace">
+      </label>
+
+      <div class="form-grid two">
+        <label class="field-label">Week<select class="field-select" name="weekId" required></select></label>
+        <label class="field-label">Day<select class="field-select" name="dayLabel" required>
+          <option>Monday</option><option selected>Tuesday</option><option>Wednesday</option>
+          <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option>
+        </select></label>
+        <label class="field-label">Date<input class="field-input" type="date" name="scheduledOn"></label>
+        <label class="field-label">Distance<input class="field-input" type="number" step="0.01" min="0" name="prescribedDistance" placeholder="6"></label>
+        <label class="field-label">Or minutes<input class="field-input" type="number" min="0" name="prescribedDurationMinutes" placeholder="60"></label>
+        <label class="field-label">Effort<span class="rpe-pair">
+          <input class="field-input" type="number" min="1" max="10" name="rpeLow" placeholder="7">
+          <input class="field-input" type="number" min="1" max="10" name="rpeHigh" placeholder="8">
+        </span></label>
+      </div>
+
+      <label class="field-label">Why
+        <input class="field-input" name="intent" required placeholder="Get comfortable holding race pace for longer.">
+      </label>
+
+      <label class="field-label">How it is built
+        <textarea class="field-textarea" name="details" placeholder="20 min easy, then 6 x 1 mile at 6:30 to 6:45 with 90 second floats, then 10 min easy."></textarea>
+      </label>
+
+      <label class="field-label" id="changeReasonField" hidden>What changed and why
+        <input class="field-input" name="changeReason" placeholder="Moved to 8 miles. She held 6 without fading.">
+      </label>
+
+      <p class="status-message" id="sessionStatus" role="status"></p>
+      <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Save <span class="icon-arrow">&rarr;</span></button></div>
+    </form>
+  </dialog>
+
+  <dialog class="dialog" id="fileDialog">
+    <form class="dialog-inner" id="fileForm">
+      <div class="dialog-head">
+        <h2 id="fileContext">File a run</h2>
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Close">&times;</button>
+      </div>
+
+      <label class="field-label">Which session<select class="field-select" name="plannedSessionId"></select></label>
+
+      <div class="form-grid two">
+        <label class="field-label">How it went<select class="field-select" name="status">
+          <option value="completed">Ran it</option><option value="partial">Ran part of it</option>
+          <option value="changed">Ran something else</option><option value="skipped">Did not run</option>
+        </select></label>
+        <label class="field-label">Effort<input class="field-input" type="number" min="1" max="10" name="rpe" placeholder="8"></label>
+        <label class="field-label">Distance<input class="field-input" type="number" step="0.01" min="0" name="actualDistance" placeholder="8"></label>
+        <label class="field-label">Time<input class="field-input" name="duration" placeholder="52:10" pattern="[0-9]{1,2}:[0-9]{2}(:[0-9]{2})?"></label>
+      </div>
+
+      <fieldset class="pieces">
+        <legend class="field-label">Splits</legend>
+        <div id="pieceRows"></div>
+        <button class="button small" type="button" id="addPiece">Add a split</button>
+      </fieldset>
+
+      <label class="field-label">What she said
+        <textarea class="field-textarea" name="athleteNote" placeholder="Paste her words. Not yours."></textarea>
+      </label>
+
+      <p class="status-message" id="fileStatus" role="status"></p>
+      <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">File <span class="icon-arrow">&rarr;</span></button></div>
+    </form>
+  </dialog>
+
   <dialog class="dialog" id="noteDialog">
     <form class="dialog-inner" id="noteForm">
       <div class="dialog-head"><div><p class="eyebrow">Coach only</p><h2>Add a private note.</h2></div><button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button></div>

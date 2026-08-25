@@ -1,5 +1,5 @@
 import { authErrorMessage, enabledProviders, getAccessContext, sendMagicLink, signInWithApple, signOut } from '/private/auth.js';
-import { addPrivateNote, createDirection, createRead, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask } from '/private/data.js';
+import { addPrivateNote, authorSession, createDirection, createRead, fileForAthlete, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask, reviseSession } from '/private/data.js';
 import { escapeHtml, formatDate, gradeSection, markSection, recordSection, weekSection, whoSection } from '/private/record.js';
 
 // Account states only. The desk no longer labels athletes by a stored state —
@@ -31,6 +31,13 @@ const noteDialog = document.getElementById('noteDialog');
 const noteForm = document.getElementById('noteForm');
 const shareDialog = document.getElementById('shareDialog');
 const shareForm = document.getElementById('shareForm');
+const sessionDialog = document.getElementById('sessionDialog');
+const sessionForm = document.getElementById('sessionForm');
+const fileDialog = document.getElementById('fileDialog');
+const fileForm = document.getElementById('fileForm');
+// Set when the session dialog is revising rather than authoring. A revision
+// appends a version; authoring makes the session.
+let revisingSessionId = null;
 let roster = [];
 let selectedId = null;
 let selectedRecord = null;
@@ -90,6 +97,8 @@ function athleteMenuHtml() {
     <div class="control-menu wide">
       <p class="control-who">${escapeHtml(account?.relationship_label || selectedRecord.athlete.account_label)}</p>
       ${notes || '<p class="control-who">No private notes.</p>'}
+      <button class="control-item" id="newSession" type="button">Add a session</button>
+      <button class="control-item" id="fileRun" type="button">File a run</button>
       <button class="control-item" id="addPrivateNote" type="button">Add a private note</button>
       <button class="control-item" id="shareExcerpt" type="button">Create a share card</button>
     </div>
@@ -150,6 +159,13 @@ function bindDesk() {
     if (button.dataset.write === 'decision') openDecision(null);
     else openCoaching(button.dataset.write, button.dataset.subject);
   }));
+  document.getElementById('newSession')?.addEventListener('click', () => openSession(null));
+  document.getElementById('fileRun')?.addEventListener('click', () => openFile(''));
+  // Revise and file from the session itself, so the coach never re-finds it.
+  app.querySelectorAll('[data-revise]').forEach((button) =>
+    button.addEventListener('click', () => openSession(button.dataset.revise)));
+  app.querySelectorAll('[data-file]').forEach((button) =>
+    button.addEventListener('click', () => openFile(button.dataset.file)));
   document.getElementById('addPrivateNote')?.addEventListener('click', () => { noteForm.reset(); document.getElementById('noteStatus').textContent = ''; noteDialog.showModal(); });
   document.getElementById('shareExcerpt')?.addEventListener('click', openShare);
 }
@@ -221,6 +237,151 @@ function openShare() {
   document.getElementById('shareStatus').textContent = '';
   shareDialog.showModal();
 }
+
+// mm:ss or h:mm:ss. A coach reads a watch, not a seconds counter.
+function toSeconds(text) {
+  const parts = String(text || '').trim().split(':').map(Number);
+  if (!parts.length || parts.some((part) => Number.isNaN(part))) return null;
+  return parts.reduce((total, part) => total * 60 + part, 0);
+}
+
+function openSession(plannedSessionId = null) {
+  sessionForm.reset();
+  revisingSessionId = plannedSessionId;
+  const weeks = selectedRecord.weeks;
+  sessionForm.elements.weekId.innerHTML = weeks
+    .map((week) => `<option value="${week.id}">Week ${week.week_number}${week.starts_on ? ` · ${escapeHtml(formatDate(week.starts_on))}` : ''}</option>`)
+    .join('');
+
+  const session = plannedSessionId ? selectedRecord.sessions.find((entry) => entry.id === plannedSessionId) : null;
+  const version = session?.currentVersion;
+  document.getElementById('changeReasonField').hidden = !session;
+  sessionForm.elements.changeReason.required = !!session;
+
+  if (session) {
+    // Revising starts from what is already there, so the coach edits rather than retypes.
+    document.getElementById('sessionContext').textContent = `${session.day_label} · version ${(version?.version_number || 0) + 1}`;
+    sessionForm.elements.weekId.value = session.week_id;
+    sessionForm.elements.dayLabel.value = session.day_label;
+    sessionForm.elements.scheduledOn.value = session.scheduled_on || '';
+    sessionForm.elements.title.value = version?.title || '';
+    sessionForm.elements.prescribedDistance.value = version?.prescribed_distance || '';
+    sessionForm.elements.prescribedDurationMinutes.value = version?.prescribed_duration_minutes || '';
+    sessionForm.elements.intent.value = version?.intent || '';
+    sessionForm.elements.details.value = version?.details || '';
+    sessionForm.elements.rpeLow.value = version?.rpe_low || '';
+    sessionForm.elements.rpeHigh.value = version?.rpe_high || '';
+  } else {
+    document.getElementById('sessionContext').textContent = `New session for ${selectedRecord.athlete.first_name}`;
+    if (selectedRecord.currentWeek) sessionForm.elements.weekId.value = selectedRecord.currentWeek.id;
+  }
+  document.getElementById('sessionStatus').textContent = '';
+  sessionDialog.showModal();
+}
+
+function pieceRowHtml() {
+  return `<div class="piece-row">
+    <select class="field-select" data-piece="kind">
+      <option value="warmup">Warm up</option><option value="rep" selected>Rep</option>
+      <option value="float">Float</option><option value="cooldown">Cool down</option>
+    </select>
+    <input class="field-input" data-piece="distance" type="number" step="0.01" min="0" placeholder="1">
+    <input class="field-input" data-piece="time" placeholder="6:29">
+    <input class="field-input" data-piece="pace" placeholder="pace">
+    <button class="button small" type="button" data-remove-piece aria-label="Remove">&times;</button>
+  </div>`;
+}
+
+function openFile(plannedSessionId = '') {
+  fileForm.reset();
+  document.getElementById('pieceRows').innerHTML = pieceRowHtml();
+  fileForm.elements.plannedSessionId.innerHTML =
+    '<option value="">Not one of her sessions</option>' +
+    selectedRecord.sessions.map((session) =>
+      `<option value="${session.id}">${escapeHtml(session.day_label)} · ${escapeHtml(session.currentVersion?.title || 'Session')}</option>`).join('');
+  if (plannedSessionId) fileForm.elements.plannedSessionId.value = plannedSessionId;
+  document.getElementById('fileContext').textContent = `File a run for ${selectedRecord.athlete.first_name}`;
+  document.getElementById('fileStatus').textContent = '';
+  fileDialog.showModal();
+}
+
+document.getElementById('addPiece').addEventListener('click', () => {
+  document.getElementById('pieceRows').insertAdjacentHTML('beforeend', pieceRowHtml());
+});
+document.getElementById('pieceRows').addEventListener('click', (event) => {
+  if (event.target.closest('[data-remove-piece]')) event.target.closest('.piece-row').remove();
+});
+
+sessionForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const status = document.getElementById('sessionStatus');
+  const button = sessionForm.querySelector('button[type="submit"]');
+  const f = sessionForm.elements;
+  const payload = {
+    athleteId: selectedRecord.athlete.id,
+    weekId: f.weekId.value,
+    dayLabel: f.dayLabel.value,
+    scheduledOn: f.scheduledOn.value || null,
+    title: f.title.value.trim(),
+    prescribedDistance: f.prescribedDistance.value ? Number(f.prescribedDistance.value) : null,
+    distanceUnit: 'mi',
+    prescribedDurationMinutes: f.prescribedDurationMinutes.value ? Number(f.prescribedDurationMinutes.value) : null,
+    intent: f.intent.value.trim(),
+    details: f.details.value.trim() || null,
+    rpeLow: f.rpeLow.value ? Number(f.rpeLow.value) : null,
+    rpeHigh: f.rpeHigh.value ? Number(f.rpeHigh.value) : null,
+    changeReason: f.changeReason.value.trim() || null
+  };
+  button.disabled = true; status.textContent = 'Saving.';
+  try {
+    if (revisingSessionId) await reviseSession(revisingSessionId, payload);
+    else {
+      // Position orders the week. Take the next free slot rather than asking.
+      const inWeek = selectedRecord.sessions.filter((entry) => entry.week_id === payload.weekId);
+      payload.position = inWeek.reduce((highest, entry) => Math.max(highest, entry.position), 0) + 1;
+      await authorSession(payload);
+    }
+    sessionDialog.close();
+    await refreshSelected(true);
+  } catch (error) {
+    status.textContent = error.message;
+  } finally { button.disabled = false; }
+});
+
+fileForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const status = document.getElementById('fileStatus');
+  const button = fileForm.querySelector('button[type="submit"]');
+  const f = fileForm.elements;
+  const pieces = [...document.querySelectorAll('.piece-row')].map((row) => {
+    const value = (name) => row.querySelector(`[data-piece="${name}"]`).value.trim();
+    const distance = value('distance') ? Number(value('distance')) : null;
+    const durationSeconds = toSeconds(value('time'));
+    // Pace typed wins. Otherwise derive it, but only when both parts are there.
+    const paceSeconds = toSeconds(value('pace'))
+      || (distance && durationSeconds ? Math.round(durationSeconds / distance) : null);
+    return { kind: value('kind'), distance, distanceUnit: 'mi', durationSeconds, paceSeconds };
+  }).filter((piece) => piece.distance || piece.durationSeconds || piece.paceSeconds);
+
+  button.disabled = true; status.textContent = 'Filing.';
+  try {
+    await fileForAthlete({
+      athleteId: selectedRecord.athlete.id,
+      plannedSessionId: f.plannedSessionId.value || null,
+      status: f.status.value,
+      actualDistance: f.actualDistance.value ? Number(f.actualDistance.value) : null,
+      distanceUnit: 'mi',
+      durationSeconds: toSeconds(f.duration.value),
+      rpe: f.rpe.value ? Number(f.rpe.value) : null,
+      athleteNote: f.athleteNote.value.trim() || null,
+      recoveredNextDay: null
+    }, pieces);
+    fileDialog.close();
+    await refreshSelected(true);
+  } catch (error) {
+    status.textContent = error.message;
+  } finally { button.disabled = false; }
+});
 
 dialogs.forEach((dialog) => dialog.querySelectorAll('[data-close-dialog]').forEach((button) => button.addEventListener('click', () => dialog.close())));
 [...coachingForm.elements.objectType].forEach((radio) => radio.addEventListener('change', toggleCoachingFields));

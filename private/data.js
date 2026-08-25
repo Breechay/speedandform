@@ -328,3 +328,124 @@ export async function changeEmail(nextEmail, returnTo = '/athlete/') {
   if (error) throw error;
   return normalized;
 }
+
+// Authoring a key session. Until now this only happened in SQL migrations, which
+// meant every Tuesday cost a deploy. A session is a planned_session plus its first
+// version; revising it appends a version rather than editing one, so the band a
+// verdict was judged against is still there after the band moves.
+export async function authorSession(payload) {
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
+  if (userError) throw userError;
+  if (!user) throw new Error('Sign in before authoring a session.');
+
+  const { data: session, error: sessionError } = await supabase
+    .from('planned_sessions')
+    .insert({
+      athlete_id: payload.athleteId,
+      week_id: payload.weekId,
+      scheduled_on: payload.scheduledOn || null,
+      day_label: payload.dayLabel,
+      position: payload.position,
+      state: payload.state || 'published',
+      created_by: user.id
+    })
+    .select('*')
+    .single();
+  if (sessionError) throw sessionError;
+
+  const version = await writeVersion(session.id, payload, 1, user.id);
+  return { ...session, versions: [version], currentVersion: version };
+}
+
+export async function reviseSession(plannedSessionId, payload) {
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
+  if (userError) throw userError;
+  if (!user) throw new Error('Sign in before revising a session.');
+  if (!payload.changeReason) throw new Error('A revision needs a reason. It is the part that is still legible in six weeks.');
+
+  // Ask for the highest version rather than counting: a concurrent revision would
+  // make a count wrong, and the unique constraint would reject the write anyway.
+  const { data: latest, error: latestError } = await supabase
+    .from('planned_session_versions')
+    .select('version_number')
+    .eq('planned_session_id', plannedSessionId)
+    .order('version_number', { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  if (latestError) throw latestError;
+
+  return writeVersion(plannedSessionId, payload, (latest?.version_number || 0) + 1, user.id);
+}
+
+async function writeVersion(plannedSessionId, payload, versionNumber, userId) {
+  const { data, error } = await supabase
+    .from('planned_session_versions')
+    .insert({
+      athlete_id: payload.athleteId,
+      planned_session_id: plannedSessionId,
+      version_number: versionNumber,
+      title: payload.title,
+      prescribed_distance: payload.prescribedDistance || null,
+      distance_unit: payload.prescribedDistance ? (payload.distanceUnit || 'mi') : null,
+      prescribed_duration_minutes: payload.prescribedDurationMinutes || null,
+      intent: payload.intent,
+      details: payload.details || null,
+      rpe_low: payload.rpeLow || null,
+      rpe_high: payload.rpeHigh || null,
+      change_reason: payload.changeReason || null,
+      authored_by: userId
+    })
+    .select('*')
+    .single();
+  if (error) throw error;
+  return data;
+}
+
+// Filing for an athlete. Same record as their own filing, marked coach_import so
+// the source of a number is never in doubt. Pieces carry the splits the verdict
+// reads; without them a session has a distance and no evidence.
+export async function fileForAthlete(payload, pieces = []) {
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
+  if (userError) throw userError;
+  if (!user) throw new Error('Sign in before filing.');
+
+  const { data: completion, error } = await supabase
+    .from('session_completions')
+    .insert({
+      athlete_id: payload.athleteId,
+      planned_session_id: payload.plannedSessionId || null,
+      status: payload.status,
+      actual_distance: payload.actualDistance || null,
+      distance_unit: payload.distanceUnit || 'mi',
+      duration_seconds: payload.durationSeconds || null,
+      rpe: payload.rpe || null,
+      felt: payload.felt || null,
+      knee_during: payload.kneeDuring || null,
+      knee_after: payload.kneeAfter || null,
+      recovered_next_day: payload.recoveredNextDay,
+      athlete_note: payload.athleteNote || null,
+      strava_url: payload.stravaUrl || null,
+      source: 'coach_import',
+      filed_by: user.id
+    })
+    .select('*')
+    .single();
+  if (error) throw error;
+
+  if (pieces.length) {
+    const { error: piecesError } = await supabase.from('session_pieces').insert(
+      pieces.map((piece, index) => ({
+        athlete_id: payload.athleteId,
+        completion_id: completion.id,
+        position: index + 1,
+        kind: piece.kind,
+        distance: piece.distance || null,
+        distance_unit: piece.distance ? (piece.distanceUnit || 'mi') : null,
+        duration_seconds: piece.durationSeconds || null,
+        pace_seconds: piece.paceSeconds || null
+      }))
+    );
+    if (piecesError) throw piecesError;
+  }
+  return completion;
+}

@@ -1095,3 +1095,25 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   .tbl td { font-size: 13px; }
   .tbl tbody th { font-size: 12px; width: 30%; }
 }
+
+/* Session authoring and filing.
+   A split row reads left to right the way a watch does: what it was, how far,
+   how long, how fast. Pace sits last because it is usually derived. */
+.rpe-pair { display: flex; gap: 6px; }
+.rpe-pair .field-input { width: 100%; }
+
+.pieces { border: 1px solid var(--edge); border-radius: 10px; padding: 14px; margin: 0; }
+.pieces legend { padding: 0 6px; }
+
+.piece-row { display: grid; grid-template-columns: 1.3fr 0.8fr 0.9fr 0.9fr auto; gap: 6px; margin-bottom: 6px; align-items: center; }
+.piece-row .field-input,
+.piece-row .field-select { margin: 0; }
+
+.button.small { padding: 7px 12px; font-size: 12px; }
+.piece-row .button.small { padding: 7px 10px; line-height: 1; }
+
+@media (max-width: 560px) {
+  /* Stacking keeps every field tappable instead of five columns of slivers. */
+  .piece-row { grid-template-columns: 1fr 1fr; }
+  .piece-row .field-select { grid-column: 1 / -1; }
+}
