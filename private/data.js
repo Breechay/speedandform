@@ -93,11 +93,29 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
   }));
 
   const task = taskResponse?.data || null;
+  const weeks = result(weeksResponse.data, weeksResponse.error);
+  // "Current" is the week in progress, or the one today falls inside — not the
+  // highest week number, which becomes week 8 the moment a block is authored ahead.
+  const today = new Date().toISOString().slice(0, 10);
+  const currentWeek =
+    weeks.find((week) => week.state === 'in_progress')
+    || weeks.find((week) => week.starts_on && week.ends_on && week.starts_on <= today && today <= week.ends_on)
+    || weeks.slice().sort((a, b) => a.week_number - b.week_number).find((week) => week.state !== 'complete')
+    || weeks[0] || null;
+  const nextWeek = currentWeek
+    ? weeks.filter((week) => week.week_number > currentWeek.week_number)
+        .sort((a, b) => a.week_number - b.week_number)[0] || null
+    : null;
   return {
     athlete: athleteResponse.data,
     block: blockResponse.data,
-    weeks: result(weeksResponse.data, weeksResponse.error),
-    currentWeek: result(weeksResponse.data, weeksResponse.error)[0] || null,
+    weeks,
+    currentWeek,
+    nextWeek,
+    // Sessions belong to a week. Rendering them unfiltered puts the whole block
+    // on one screen the moment more than one week exists.
+    currentSessions: currentWeek ? sessions.filter((item) => item.week_id === currentWeek.id) : sessions,
+    nextSessions: nextWeek ? sessions.filter((item) => item.week_id === nextWeek.id) : [],
     sessions,
     baselines: result(baselinesResponse.data, baselinesResponse.error),
     completions: result(completionsResponse.data, completionsResponse.error),

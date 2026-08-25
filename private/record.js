@@ -52,8 +52,8 @@ function executionTags(direction) {
   return tags.length ? `<div class="execution-tags">${tags.join('')}</div>` : '';
 }
 
-function sessionRows(record, interactive) {
-  return record.sessions.map((session) => {
+function sessionRows(record, interactive, list = null) {
+  return (list || record.sessions).map((session) => {
     const version = session.currentVersion || {};
     const completion = record.completions.find((item) => item.planned_session_id === session.id);
     const direction = record.directions.find((item) => item.planned_session_id === session.id);
@@ -92,6 +92,11 @@ function markSection(record) {
   </section>`;
 }
 
+function gradeSection(record) {
+  const grade = gradeHtml(record);
+  return grade ? `<section class="record-section crop" id="read"><p class="eyebrow">The read</p>${grade}</section>` : '';
+}
+
 function gradeHtml(record) {
   if (!record.movementReads.length) return '';
   return `<div class="grade">${record.movementReads.map((marker) => `<div class="grade-row ${escapeHtml(marker.state)}">
@@ -102,8 +107,7 @@ function gradeHtml(record) {
 }
 
 function supportSection(record) {
-  const grade = gradeHtml(record);
-  if (!grade && !record.supportItems.length) return '';
+  if (!record.supportItems.length) return '';
   const purposes = [...new Set(record.supportItems.map((item) => item.purpose))];
   const groups = purposes.map((purpose) => `<div class="support-group">
     <h3>${escapeHtml(purpose)}</h3>
@@ -112,10 +116,10 @@ function supportSection(record) {
       <span class="support-dose">${escapeHtml(item.dose)}</span>
     </article>`).join('')}</div>
   </div>`).join('');
-  return `<section class="record-section crop" id="support">
-    <p class="eyebrow">The work</p>
-    ${grade}
+  return `<section class="record-section" id="support">
+    <p class="eyebrow">Support · for your strength coach</p>
     ${groups}
+    <p class="shared-line">${record.support?.shared_with_strength_coach ? 'Shared with your strength coach.' : 'Not yet shared with your strength coach.'}</p>
   </section>`;
 }
 
@@ -164,15 +168,21 @@ export function renderAthleteRecord(record, { interactive = false, projection = 
   const athlete = record.athlete;
   if (!athlete) return '<div class="status-message error">This record is not available.</div>';
   const week = record.currentWeek;
-  // One column, three crops. Each one crops cleanly to a screenshot.
+  const next = record.nextWeek;
   return `<div class="record-shell${projection ? ' projection' : ''}">
     <section class="record-section crop" id="now">
-      <p class="eyebrow">This week</p>
+      <p class="eyebrow">This week${week ? ` · ${escapeHtml(week.week_number)} of ${escapeHtml(record.block?.total_weeks ?? '')}` : ''}</p>
       ${week?.intent ? `<p class="week-intent">${escapeHtml(week.intent)}</p>` : ''}
-      <div class="sessions-list record-sessions">${sessionRows(record, interactive)}</div>
+      <div class="sessions-list record-sessions">${sessionRows(record, interactive, record.currentSessions)}</div>
+      ${next && record.nextSessions?.length ? `<details class="next-week">
+        <summary><span>Next week</span></summary>
+        ${next.intent ? `<p class="next-intent">${escapeHtml(next.intent)}</p>` : ''}
+        <div class="sessions-list record-sessions">${sessionRows(record, false, record.nextSessions)}</div>
+      </details>` : ''}
     </section>
-    ${supportSection(record)}
     ${markSection(record)}
+    ${gradeSection(record)}
+    ${supportSection(record)}
     ${recordSection(record)}
     ${accountSection(record, email, interactive)}
   </div>`;
