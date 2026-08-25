@@ -35,14 +35,18 @@ else.
 Hope, Jose and Marcus share one claim, so they share one geometry:
 
 ```
-1 · 2 · 5 · 6 · 6 · 8 · 10 · 13.1
+1 · 2 · 5 · 6 · 8 · 10 · 13.1
 ```
 
 Aligned across the three, so the eye reads them together.
 
-**Marcus's accepted evidence additionally requires OUTSIDE.** A treadmill six
-does not advance his ladder. That is a condition on which evidence counts, not a
-separate claim.
+**This is the capability ladder, not the block.** One rung per distinct distance
+the claim is testing. It answers how far has become believable.
+
+**Marcus's evidence additionally requires OUTSIDE, and OUTSIDE is not a rung.**
+It is a condition on whether a session counts, recorded as `surface` on the
+completion. A treadmill six does not advance him. Putting it in the ladder would
+make a condition look like a capability.
 
 **Natalie is a separate row.** Her question is different: distance progression
 and a movement gate. She appears in the strip with her own marks, visibly not on
@@ -64,15 +68,25 @@ Selecting an athlete opens their surface below. The strip stays.
 - Muted numeral: proposed
 - Lime numeral: current
 - Established numeral: held
-- The second `6` is its own authored exposure, not a repeat marker on the first
 
 A session landing at six miles **must never** move a numeral by itself. The
 highest distance actually held is a derived fact that may inform the decision. It
 cannot be the authority.
 
-Six held, then six held again at a lower effort, is stronger evidence than
-reaching ten once. Two numerals say that without notation. One numeral with a
-badge does not.
+### The ladder and the block are different shapes
+
+| | |
+|---|---|
+| `1 · 2 · 5 · 6 · 8 · 10 · 13.1` | how far has become believable |
+| `2 · 5 · 6 · 6 · 8 · 8 · 10 · 6 · 4` | what the block asks, in order |
+
+**One rung per capability.** The block repeats six and eight on purpose, and the
+second of each should feel easier. That repetition is real evidence and must be
+visible, but it belongs to the exposures under the rung, never to the ladder.
+
+Duplicating a rung breaks two things at once: a scheduled session starts looking
+like a new level of proof, and the taper six and four at weeks 13 and 14 start
+looking like the athlete moved backward. Neither is true.
 
 ---
 
@@ -84,17 +98,23 @@ In order:
 2. Current rung and next proposed rung
 3. What is coming
 4. The latest key session: **recovery first, effort second, splits quiet**
-5. Judgments over time
-6. Brice's current sentence, when he has written one
-7. File, correct, or change the upcoming work
+5. Repeated exposures of the same distance, and what changed between them. Six at
+   effort 8 and six at effort 7 is the whole argument for repeating a rung, and
+   this is the only place it can be seen
+6. Judgments over time
+7. Brice's current sentence, when he has written one
+8. File, correct, or change the upcoming work
 
 Recovery is read against **that athlete's own easy pace**, never against another
 athlete's. Jose's floats sit within 14s of his 8:16. Hope's run up to 204s slower
 than her 8:48. Same rule, no comparison between them.
 
-Coral means **this cannot be used as proof**. It never means the athlete ran
-badly. Hope's August 25 was well run and still cannot say how far she holds race
-pace.
+Coral means **attention**, and which kind is always said in words, never left to
+the colour: `DOES NOT ANSWER` or `WORKS AGAINST IT`. Those are different
+findings and only one of them can weaken the claim.
+
+Coral never means the athlete ran badly. Hope's August 25 was well run and still
+cannot say how far she holds race pace.
 
 ---
 
@@ -158,6 +178,9 @@ It never occupies half the desk.
 - No confidence number, gauge, meter, or progress bar
 - No calendar grid, phase strip, or forecast of future weeks
 - No dots whose meaning must be learned
+- No colour carrying a meaning by itself; coral is always accompanied by the word
+- The block is never rendered as a second ladder. "What is coming" is the next few
+  authored sessions and nothing more
 - No cards for content grouping; real tables for comparative data
 - Lime is spent once per composition
 - No em dashes in rendered copy
