@@ -1,6 +1,6 @@
 # The Coach Console
 
-Ratified 2026-08-28. This supersedes `EVIDENCE_INFOGRAPHIC_BRIEF.md` for anything
+**Draft.** Not ratified. This supersedes `EVIDENCE_INFOGRAPHIC_BRIEF.md` for anything
 about the desk. Where documents disagree, the order in `FORM_MASTER.md` governs,
 and Brice's live coaching decisions outrank every document here.
 
@@ -113,8 +113,9 @@ Coral means **attention**, and which kind is always said in words, never left to
 the colour: `DOES NOT ANSWER` or `WORKS AGAINST IT`. Those are different
 findings and only one of them can weaken the claim.
 
-Coral never means the athlete ran badly. Hope's August 25 was well run and still
-cannot say how far she holds race pace.
+Coral never means the athlete ran badly. Hope's August 25 does not answer how far
+she can hold race pace. Whether it was well run is Brice's judgment, not
+something the system asserts.
 
 ---
 
@@ -122,8 +123,11 @@ cannot say how far she holds race pace.
 
 Frozen.
 
-- Agent filing and manual filing use **the same creation path**. There is never a
-  second kind of session that behaves differently.
+- Agent filing and manual filing use **the same server-authoritative transaction**.
+  It validates coach membership, athlete identity, source, completion fields and
+  ordered session pieces, then writes them atomically. **Neither path may write
+  completions or pieces around it.** A shared browser function is not enough while
+  an agent can still write SQL directly.
 - Brice can always file **without a screenshot**.
 - Brice can always **correct an agent-filed entry**.
 - A correction preserves the previous completion **and every previous session
@@ -153,6 +157,15 @@ one it replaces.
 **A session that does not answer the claim enters history and changes nothing.**
 Only readable evidence against the claim can weaken it. An unreadable session is
 not a failure and not an absence; it is a third state.
+
+### A judgment never moves a rung
+
+Writing **moves it** records what the evidence did to the claim. It does not
+change a numeral. Moving the current rung is a separate explicit decision, even
+when both are offered in one flow.
+
+Without this stated, the interface eventually makes **moves it** auto-advance,
+and the ladder quietly stops being authored.
 
 **No confidence figure, and no replacement for one.** Not a count, not a density,
 not "2 pieces of evidence", not an accumulation of marks. Those are all scores
@@ -201,3 +214,14 @@ It never occupies half the desk.
 - Any athlete-engagement surface
 - A redesign of Natalie's page
 - "One screen, three bands" as a hard law
+
+---
+
+## 10 · Checkpoint migrations
+
+**Never delete and recreate checkpoint rows.** `20260829100000` did, and it
+irreversibly erased every `current` and `retired` state: only `reached` and
+`repeated` were captured before the delete, and `mark_checkpoints` has no audit
+trigger to fall back on. Ids changed too.
+
+Future corrections update or append in place, preserving ids and state.

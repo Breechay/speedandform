@@ -423,6 +423,32 @@ export function progressionSection(record, { interactive = false } = {}) {
     </${tag}>`;
   }).join('');
 
+  // Where repetition lives, now that the ladder carries one rung per capability.
+  // Six at effort 8 and six at effort 7 is the entire argument for repeating a
+  // rung, and it can only be seen by putting the exposures side by side.
+  const exposures = (() => {
+    const byDistance = new Map();
+    (record.sessions || []).forEach((session) => {
+      const version = session.currentVersion;
+      const distance = Number(version?.prescribed_distance);
+      if (!distance || !/race pace/i.test(version.title || '')) return;
+      const done = (record.completions || []).find((item) => item.planned_session_id === session.id);
+      if (!byDistance.has(distance)) byDistance.set(distance, []);
+      byDistance.get(distance).push({ session, version, done });
+    });
+    return [...byDistance.entries()]
+      .filter(([, list]) => list.length > 1)
+      .sort((a, b) => a[0] - b[0])
+      .map(([distance, list]) => `<tr>
+        <th>${escapeHtml(Number(distance))} mi</th>
+        ${list.sort((a, b) => String(a.session.scheduled_on).localeCompare(String(b.session.scheduled_on)))
+          .map((item) => `<td class="${item.done ? 'done' : ''}">
+            <b>${item.done?.rpe ? `effort ${escapeHtml(item.done.rpe)}` : 'not yet'}</b>
+            <span>${escapeHtml(formatDate(item.session.scheduled_on))}</span>
+          </td>`).join('')}
+      </tr>`).join('');
+  })();
+
   const today = new Date().toISOString().slice(0, 10);
   const upcoming = (record.sessions || [])
     .filter((session) => session.scheduled_on && session.scheduled_on >= today && session.currentVersion)
@@ -443,6 +469,7 @@ export function progressionSection(record, { interactive = false } = {}) {
   return `<section class="record-section progression" id="progression">
     ${row('Where she is now', `<div class="rungs-n">${rungs}</div>`)}
     ${row('Where she is going', `<p class="pr-claim">${escapeHtml(mark.claim || mark.current_question)}</p>`)}
+    ${exposures ? row('Held more than once', `<table class="expo"><tbody>${exposures}</tbody></table>`) : ''}
     ${upcoming ? row('Next', `<p class="pr-next">${escapeHtml(upcoming.currentVersion.title)}<span>${escapeHtml(formatDate(upcoming.scheduled_on))}</span></p>`) : ''}
     ${readings ? row('Is this becoming believable', `<table class="readings-t"><tbody>${readings}</tbody></table>`) : ''}
   </section>`;
