@@ -8,11 +8,12 @@ function result(data, error) {
 export async function loadCoachRoster(coachMemberships) {
   const athleteIds = coachMemberships.map((item) => item.athlete_id);
   if (!athleteIds.length) return [];
-  const [attentionResponse, markResponse, checkpointResponse] = await Promise.all([
+  const [attentionResponse, markResponse, checkpointResponse, confidenceResponse] = await Promise.all([
     supabase.from('coach_attention').select('*').in('athlete_id', athleteIds)
       .order('priority').order('occurred_at', { ascending: false, nullsFirst: false }),
     supabase.from('athlete_marks').select('*').in('athlete_id', athleteIds).eq('active', true).eq('is_primary', true),
-    supabase.from('mark_checkpoints').select('*').in('athlete_id', athleteIds).order('position')
+    supabase.from('mark_checkpoints').select('*').in('athlete_id', athleteIds).order('position'),
+    supabase.from('mark_standing_confidence').select('*').in('athlete_id', athleteIds)
   ]);
   if (attentionResponse.error) throw attentionResponse.error;
   if (markResponse.error) throw markResponse.error;
@@ -29,7 +30,11 @@ export async function loadCoachRoster(coachMemberships) {
       mark: (() => {
         const mark = markResponse.data?.find((item) => item.athlete_id === membership.athlete_id) || null;
         return mark
-          ? { ...mark, checkpoints: (checkpointResponse.data || []).filter((point) => point.mark_id === mark.id) }
+          ? {
+              ...mark,
+              checkpoints: (checkpointResponse.data || []).filter((point) => point.mark_id === mark.id),
+              confidence: (confidenceResponse.data || []).find((read) => read.mark_id === mark.id) || null
+            }
           : null;
       })()
     };
@@ -69,6 +74,8 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     supabase.from('session_pieces').select('*').eq('athlete_id', athleteId).order('position'),
     supabase.from('mark_standing_judgments').select('*').eq('athlete_id', athleteId).order('created_at', { ascending: false }),
     supabase.from('mark_judgment_completions').select('*'),
+    supabase.from('mark_confidence_reads').select('*').eq('athlete_id', athleteId).order('created_at', { ascending: false }),
+    supabase.from('mark_confidence_completions').select('*'),
     supabase.from('completion_evidence').select('*').eq('athlete_id', athleteId).order('created_at')
   ];
 
@@ -90,7 +97,8 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     baselinesResponse, completionsResponse, directionsResponse, readsResponse,
     decisionsResponse, marksResponse, signalsResponse, checkpointsResponse,
     gatesResponse, movementResponse, supportResponse, supportItemsResponse,
-    verdictsResponse, piecesResponse, judgmentsResponse, judgmentLinksResponse, evidenceFilesResponse,
+    verdictsResponse, piecesResponse, judgmentsResponse, judgmentLinksResponse,
+    confidenceResponse, confidenceLinksResponse, evidenceFilesResponse,
     taskResponse, evidenceResponse, actionsResponse, privateNotesResponse, adminResponse
   ] = responses;
 
@@ -149,6 +157,11 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     support: supportResponse.data,
     supportItems: result(supportItemsResponse.data, supportItemsResponse.error),
     verdicts: result(verdictsResponse.data, verdictsResponse.error),
+    confidenceReads: result(confidenceResponse.data, confidenceResponse.error).map((read) => ({
+      ...read,
+      completionIds: result(confidenceLinksResponse.data, confidenceLinksResponse.error)
+        .filter((link) => link.read_id === read.id).map((link) => link.completion_id)
+    })),
     evidenceFiles: await signEvidence(result(evidenceFilesResponse.data, evidenceFilesResponse.error)),
     pieces: result(piecesResponse.data, piecesResponse.error),
     judgments: result(judgmentsResponse.data, judgmentsResponse.error).map((judgment) => ({
@@ -540,4 +553,54 @@ async function signEvidence(rows) {
   if (error) return rows;
   const byPath = new Map((data || []).map((item) => [item.path, item.signedUrl]));
   return rows.map((row) => ({ ...row, url: row.external_url || byPath.get(row.storage_path) || null }));
+}
+
+// Brice's confidence that the athlete gets the goal on the day, if this path
+// continues. Authored, never calculated. It carries the reason and what would
+// change it next, because a percentage travelling alone is the black box this was
+// meant to avoid wearing a coach's name.
+export async function setConfidence(payload) {
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
+  if (userError) throw userError;
+  if (!user) throw new Error('Sign in before setting confidence.');
+  const score = Number(payload.score);
+  if (!Number.isInteger(score) || score < 0 || score > 100) throw new Error('Confidence is a whole number from 0 to 100.');
+  if (!String(payload.reason || '').trim()) throw new Error('A confidence needs your reason.');
+  if (!String(payload.nextEvidence || '').trim()) throw new Error('Name the next thing that could change it.');
+
+  const { data: read, error } = await supabase
+    .from('mark_confidence_reads')
+    .insert({
+      athlete_id: payload.athleteId,
+      mark_id: payload.markId,
+      score,
+      reason: payload.reason.trim(),
+      next_evidence: payload.nextEvidence.trim(),
+      intervene_if: String(payload.interveneIf || '').trim() || null,
+      supersedes: payload.supersedes || null,
+      authored_by: user.id
+    })
+    .select('*')
+    .single();
+  if (error) throw error;
+
+  if (payload.completionIds?.length) {
+    const { error: linkError } = await supabase.from('mark_confidence_completions').insert(
+      payload.completionIds.map((completionId) => ({ read_id: read.id, completion_id: completionId }))
+    );
+    if (linkError) throw linkError;
+  }
+  return read;
+}
+
+// Proof coverage is not confidence. It is the furthest distance Brice has
+// established, over the mark's target. Derived from authored checkpoint state
+// only: a completion at eight miles proves nothing until he says it does.
+export function proofCoverage(mark) {
+  const target = Number(mark?.target_value);
+  if (!target) return null;
+  const established = (mark.checkpoints || [])
+    .filter((point) => point.state === 'reached' || point.state === 'repeated')
+    .reduce((furthest, point) => Math.max(furthest, Number(point.value) || 0), 0);
+  return { established, target, percent: Math.round((established / target) * 100) };
 }

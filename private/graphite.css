@@ -1,11 +1,11 @@
 :root {
   color-scheme: dark;
-  --field: #141718;
+  --field: #0e1011;
   --field-2: #171a1c;
-  --surface: #1d2123;
-  --raised: #282d30;
+  --surface: #141718;
+  --raised: #1d2123;
   --raised-2: #303638;
-  --edge: #3b4346;
+  --edge: #2b3235;
   --text: #f1f2ef;
   --secondary: #a8b0b2;
   --muted: #7f898c;
@@ -50,7 +50,7 @@ a { color: inherit; }
   background: transparent; border-bottom: 0;
 }
 .brand { display: inline-flex; align-items: center; gap: 18px; text-decoration: none; }
-.form-mark { font-family: var(--serif); font-size: 15px; letter-spacing: .23em; color: var(--lime); }
+.form-mark { font-family: var(--serif); font-size: 15px; letter-spacing: .23em; color: var(--text); }
 .product-name { font-size: 13px; font-weight: 760; }
 .topbar-tools { display: flex; align-items: center; gap: 10px; }
 .user-email { max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--secondary); font-size: 12px; }
@@ -134,7 +134,7 @@ a { color: inherit; }
 .auth-card h1.auth-mark {
   max-width: none; margin: 0; padding-bottom: 30px;
   font-family: var(--serif); font-weight: 400; font-size: clamp(27px, 5.4vw, 34px);
-  line-height: 1.1; letter-spacing: .3em; text-indent: .15em; color: var(--lime); /* half the tracking, optical centering */
+  line-height: 1.1; letter-spacing: .3em; text-indent: .15em; color: var(--text); /* half the tracking, optical centering */
 }
 .auth-mark::after {
   content: ""; display: block; width: 26px; height: 1px; margin: 26px auto 0;

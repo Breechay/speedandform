@@ -274,3 +274,37 @@ Still required:
 Do not rebuild live items merely because they appear in this brief. Audit the
 current implementation first, then change only what is absent or violates the
 ratified law.
+
+---
+
+## 11 · Decision note, 2026-08-29
+
+Brice explicitly asked for four things this document had prohibited. They are
+allowed now, and only to this extent:
+
+1. **A dated 16-week plan view.** Section 8 barred the block from becoming a
+   second ladder. It still is barred from that. What is allowed is a dated runway
+   showing real week ranges and the key authored session in each, because "week 2
+   of 16" beside a date and a countdown was three clocks with no stated
+   relationship between them.
+2. **A coach-authored goal confidence percentage.** Section 6 said no confidence
+   figure and no replacement for one. **That prohibition was never Brice's.** It
+   came out of agent discussion and he was repeatedly talked into it. The real
+   objection was always to a *computed* figure, which hides its reasoning and gets
+   chased. **An authored one is a different object entirely.** It is Brice's judgment that the athlete achieves the named goal on
+   the named date if the current path continues, carrying his reason, the evidence
+   it rests on, and what would change it. Nothing calculates it.
+3. **A confidence history line.** Discrete authored points only. No interpolation,
+   no smoothing, no projection, no daily generated values.
+4. **An optional confidence ordering.** Roster order stays the default and stays
+   stable. Ascending confidence is a mode, never a permanent rearrangement.
+
+**Proof coverage is a separate instrument and is not confidence.** It is the
+highest established checkpoint over the mark's target: five of 13.1 is 38 per
+cent proven. Derived from authored checkpoint state, never from a completion.
+Five established miles does not make confidence 38 per cent, and the two must
+never share an axis.
+
+Everything else in this document stands. In particular: no invented data, no
+automatic checkpoint movement, nothing inferring confidence from a completion,
+and no athlete-facing redesign.
