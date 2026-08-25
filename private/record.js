@@ -86,8 +86,8 @@ export function weekSection(record, { interactive = false, shownWeekId = null } 
   const week = weeks.find((entry) => entry.id === shownWeekId) || record.currentWeek || weeks[0] || null;
   const all = week ? (record.sessionsByWeek?.[week.id] || []) : [];
   const index = week ? weeks.findIndex((entry) => entry.id === week.id) : -1;
+  const currentNumber = record.currentWeek?.week_number ?? 0;
 
-  // Only days with work. An empty Wednesday is not a thing to look at.
   const sessions = DAY_ORDER
     .map((label) => all.find((entry) => (entry.day_label || '').toUpperCase().startsWith(label.slice(0, 3))))
     .filter(Boolean)
@@ -100,8 +100,17 @@ export function weekSection(record, { interactive = false, shownWeekId = null } 
     });
 
   const plannedTotal = sessions.reduce((sum, item) => sum + item.planned, 0);
-  const actualTotal = sessions.reduce((sum, item) => sum + item.actual, 0);
   const longest = sessions.reduce((most, item) => Math.max(most, item.planned), 0);
+  // Lime marks the next unfiled session, and nothing else on this screen.
+  const nextUp = sessions.find((item) => !item.completion)?.session.id || null;
+
+  // The block as a whole: structure only. No future numbers — she has no reason
+  // yet to know what week 7 asks of her.
+  const spine = `<div class="spine">${Array.from({ length: total }, (_, position) => {
+    const number = position + 1;
+    const state = number < currentNumber ? 'past' : (number === currentNumber ? 'now' : 'ahead');
+    return `<span class="pip ${state}"></span>`;
+  }).join('')}</div>`;
 
   return `<section class="record-section crop week-grid" id="now">
     <p class="wk-block">Block ${escapeHtml(record.block?.block_number ?? 1)}${record.block?.name ? ` \u00b7 ${escapeHtml(record.block.name)}` : ''}</p>
@@ -113,17 +122,18 @@ export function weekSection(record, { interactive = false, shownWeekId = null } 
         <button class="wk-arrow" type="button" data-week-step="1" ${index >= 0 && index < weeks.length - 1 ? '' : 'disabled'} aria-label="Next week">\u203a</button>
       </div>
     </div>
+    ${spine}
     <div class="wk-shape">
       <b>${sessions.length}</b><span>runs</span>
       <b>${Number(plannedTotal.toFixed(1))}</b><span>mi</span>
-      <b>${Number(longest.toFixed(1))}</b><span>longest</span>
-      ${actualTotal > 0 ? `<em>${Number(actualTotal.toFixed(1))} done</em>` : ''}
+      <b>${Number(longest.toFixed(1))}</b><span>mi long run</span>
     </div>
     ${week?.intent ? `<p class="wk-intent">${escapeHtml(week.intent)}</p>` : ''}
     <div class="week-days">${sessions.map((item) => {
       const filed = Boolean(item.completion);
+      const isNext = item.session.id === nextUp;
       const note = item.version.intent || '';
-      return `<div class="day${filed ? ' filed' : ''}"
+      return `<div class="day${filed ? ' filed' : ''}${isNext ? ' next' : ''}"
         ${interactive
           ? `data-file-session="${item.session.id}"${item.completion ? ` data-completion-id="${item.completion.id}"` : ''}`
           : `data-write="direction" data-subject="${escapeHtml(item.session.id)}"`}
@@ -156,6 +166,18 @@ export function whoSection(record) {
   </header>`;
 }
 
+function markStateHtml(record, points, current) {
+  const next = points.find((point) => Number(point.value) > current);
+  // Single-leg control is the one cue with a consequence: until it clears, the
+  // next distance holds. NEXT and HOLD are structural words in FORM's existing
+  // register, the same family as FILED — nothing here is written in his voice.
+  const held = (record.movementReads || []).some((marker) =>
+    marker.marker === 'single_leg_control' && marker.state === 'not_yet');
+  if (held) return '<p class="mark-state hold">HOLD \u00b7 single leg</p>';
+  if (!next) return '';
+  return `<p class="mark-state">NEXT \u00b7 ${escapeHtml(next.label || next.value)} ${escapeHtml(record.primaryMark?.unit || '')}</p>`;
+}
+
 export function markSection(record) {
   const mark = record.primaryMark;
   if (!mark) return '';
@@ -182,29 +204,23 @@ export function markSection(record) {
       <div class="ladder-track"><span class="ladder-fill" style="width:${fill}%"></span></div>
       <ol class="rungs">${rungs}</ol>
     </div>
-    <p class="bar-label">${escapeHtml(mark.label)}</p>
+    <p class="mark-name">${escapeHtml(mark.label)}</p>
+    ${markStateHtml(record, points, current)}
   </section>`;
 }
 
 export function gradeSection(record) {
   if (!record.movementReads.length) return '';
-  const groups = [
-    { state: 'not_yet', label: 'Not yet' },
-    { state: 'holds_until_tired', label: 'Holds until tired' },
-    { state: 'holds', label: 'Holds' }
-  ].map((group) => {
-    const items = record.movementReads.filter((marker) => marker.state === group.state);
-    if (!items.length) return '';
-    return `<div class="mv-group ${escapeHtml(group.state)}">
-      <span class="mv-state">${escapeHtml(group.label)}</span>
-      <span class="mv-names">${items.map((marker) => escapeHtml(markerNames[marker.marker] || marker.marker)).join(', ')}</span>
-    </div>`;
-  }).join('');
-  return `<section class="record-section" id="read">
-    <p class="eyebrow">Movement</p>
-    <div class="movement">${groups}</div>
-  </section>`;
+  const order = ['not_yet', 'holds_until_tired', 'holds'];
+  const rows = record.movementReads.slice()
+    .sort((a, b) => order.indexOf(a.state) - order.indexOf(b.state))
+    .map((marker) => `<div class="mv-row">
+      <span class="mv-cue">${escapeHtml(markerNames[marker.marker] || marker.marker)}</span>
+      <span class="mv-state ${escapeHtml(marker.state)}">${escapeHtml(gradeStates[marker.state] || marker.state)}</span>
+    </div>`).join('');
+  return `<section class="record-section movement-block">${rows}</section>`;
 }
+
 
 export function supportSection(record) {
   if (!record.supportItems.length) return '';
@@ -268,6 +284,7 @@ export function renderAthleteRecord(record, { interactive = false, projection = 
     ${whoSection(record)}
     ${weekSection(record, { interactive, shownWeekId })}
     ${markSection(record)}
+    ${gradeSection(record)}
     ${supportSection(record)}
     ${recordSection(record)}
     ${accountSection(record, email, interactive)}
