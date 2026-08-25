@@ -169,8 +169,8 @@ export function whoSection(record) {
 function markStateHtml(record, points, current) {
   const next = points.find((point) => Number(point.value) > current);
   // Single-leg control is the one cue with a consequence: until it clears, the
-  // next distance holds. NEXT and HOLD are structural words in FORM's existing
-  // register, the same family as FILED — nothing here is written in his voice.
+  // next distance does not open. Stated with the same words the movement rows
+  // use, so nothing new has to be read, and nothing is written in his voice.
   const held = (record.movementReads || []).some((marker) =>
     marker.marker === 'single_leg_control' && marker.state === 'not_yet');
   if (!next) return '';
