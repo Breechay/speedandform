@@ -173,9 +173,11 @@ function markStateHtml(record, points, current) {
   // register, the same family as FILED — nothing here is written in his voice.
   const held = (record.movementReads || []).some((marker) =>
     marker.marker === 'single_leg_control' && marker.state === 'not_yet');
-  if (held) return '<p class="mark-state hold">HOLD \u00b7 single leg</p>';
   if (!next) return '';
-  return `<p class="mark-state">NEXT \u00b7 ${escapeHtml(next.label || next.value)} ${escapeHtml(record.primaryMark?.unit || '')}</p>`;
+  const distance = `${escapeHtml(next.label || next.value)} ${escapeHtml(record.primaryMark?.unit || '')}`;
+  return held
+    ? `<p class="mark-state waiting">${distance} \u00b7 not yet</p>`
+    : `<p class="mark-state">Next \u00b7 ${distance}</p>`;
 }
 
 export function markSection(record) {

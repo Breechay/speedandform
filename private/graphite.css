@@ -1013,10 +1013,10 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 /* The mark's state. Structural words, not a sentence — a generated sentence
    would be the interface writing in his voice. */
 .mark-state {
-  margin: 12px 0 0; font-size: 11px; font-weight: 800; letter-spacing: .09em;
-  color: var(--secondary); text-transform: uppercase;
+  margin: 12px 0 0; font-size: 13px; font-weight: 700;
+  color: var(--secondary);
 }
-.mark-state.hold { color: var(--coral); }
+.mark-state.waiting { color: var(--text); }
 
 /* Movement: the words are the system. Weight carries it; colour is spent only
    on the state that has a consequence. */
@@ -1026,4 +1026,4 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 .mv-state { font-size: 14px; }
 .mv-state.holds { color: var(--muted); }
 .mv-state.holds_until_tired { color: var(--text); font-weight: 650; }
-.mv-state.not_yet { color: var(--coral); font-weight: 650; }
+.mv-state.not_yet { color: var(--text); font-weight: 750; }
