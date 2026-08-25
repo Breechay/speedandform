@@ -12,11 +12,11 @@ const stateLabels = {
 // What each kind of attention actually asks the coach to do. The primary act
 // follows the situation instead of offering every object every time.
 const attentionKinds = {
-  recovery_flag:     { label: 'Recovery',  act: 'read',      cta: 'Write the Read' },
-  authored:          { label: 'Needs you', act: 'decision',  cta: 'Write the Decision' },
-  unread_session:    { label: 'Unanswered', act: 'read',     cta: 'Write the Read' },
-  missing_direction: { label: 'No Direction', act: 'direction', cta: 'Write the Direction' },
-  week_unclosed:     { label: 'Week open', act: 'decision',  cta: 'Write the Decision' }
+  recovery_flag:     { label: 'Recovery',  act: 'read',      cta: 'Respond' },
+  authored:          { label: 'Needs you', act: 'decision',  cta: 'Decide' },
+  unread_session:    { label: 'Waiting on you', act: 'read',     cta: 'Respond' },
+  missing_direction: { label: 'No Direction', act: 'direction', cta: 'Set the plan' },
+  week_unclosed:     { label: 'Week open', act: 'decision',  cta: 'Decide' }
 };
 
 const app = document.getElementById('app');
@@ -83,49 +83,57 @@ function rosterHtml() {
   }).join('');
 }
 
-function decisionHtml() {
-  const items = selectedRecord.attention || [];
-  const athlete = selectedRecord.athlete;
-  if (!items.length) {
-    return `<article class="situation quiet">
-      <p class="eyebrow">${escapeHtml(athlete.first_name)}</p>
-      <h2>Nothing is waiting on you.</h2>
-      <p class="lede">${escapeHtml(selectedRecord.primaryMark?.current_question || 'The next work is already clear.')}</p>
-      <div class="do"><button class="button" type="button" data-write="direction">Write a Direction</button><button class="button" type="button" data-write="read">Write a Read</button></div>
-    </article>`;
-  }
-  const item = items[0];
-  const kind = attentionKinds[item.kind] || { label: 'Needs you', act: 'decision', cta: 'Write the Decision' };
-  const rest = items.slice(1);
-  return `<article class="situation">
-    <p class="eyebrow">${escapeHtml(athlete.first_name)} · ${escapeHtml(kind.label)}</p>
-    <h2>${escapeHtml(item.title)}</h2>
-    <p class="lede">${escapeHtml(item.summary)}</p>
-    ${evidenceHtml(item)}
-    <div class="do">
-      <button class="button primary" type="button" data-write="${escapeHtml(kind.act)}" data-subject="${escapeHtml(item.subject_id || '')}">${escapeHtml(kind.cta)} <span class="icon-arrow">→</span></button>
-      ${item.kind === 'authored' && selectedRecord.taskActions.length
-        ? selectedRecord.taskActions.map((action) => `<button class="button" type="button" data-task-action="${action.id}">${escapeHtml(action.label)}</button>`).join('')
-        : ''}
+function weekGridHtml() {
+  const week = selectedRecord.currentWeek;
+  const sessions = selectedRecord.currentSessions || [];
+  const attention = selectedRecord.attention || [];
+  if (!sessions.length) return '<p class="muted">No week authored yet.</p>';
+
+  const rows = sessions.map((session) => {
+    const version = session.currentVersion || {};
+    const completion = selectedRecord.completions.find((entry) => entry.planned_session_id === session.id);
+    const planned = Number(version.prescribed_distance) || 0;
+    const actual = Number(completion?.actual_distance) || 0;
+    const flag = attention.find((item) => item.subject_id === session.id || item.subject_id === completion?.id);
+    const state = completion ? completion.status : 'pending';
+    return { session, version, completion, planned, actual, flag, state };
+  });
+
+  const scale = Math.max(...rows.map((row) => Math.max(row.planned, row.actual)), 1);
+  const plannedTotal = rows.reduce((sum, row) => sum + row.planned, 0);
+  const actualTotal = rows.reduce((sum, row) => sum + row.actual, 0);
+
+  return `<div class="week-grid">
+    <div class="week-head">
+      <div><span class="wk-label">Week ${escapeHtml(week?.week_number ?? '—')}</span><span class="wk-of">of ${escapeHtml(selectedRecord.block?.total_weeks ?? '—')}</span></div>
+      <div class="wk-total"><b>${actualTotal.toFixed(1)}</b><span>of ${plannedTotal.toFixed(1)} mi filed</span></div>
     </div>
-    ${rest.length ? `<div class="also"><span>Also waiting</span>${rest.map((other) => `<button class="also-row" type="button" data-focus="${escapeHtml(other.subject_id || '')}"><b>${escapeHtml(other.title)}</b><small>${escapeHtml(other.summary)}</small></button>`).join('')}</div>` : ''}
+    <div class="week-rows">${rows.map((row) => `
+      <div class="wk-row ${escapeHtml(row.state)}${row.flag ? ' flagged' : ''}" data-session="${row.session.id}" data-completion="${row.completion?.id || ''}">
+        <span class="wk-day">${escapeHtml(row.session.day_label)}</span>
+        <span class="wk-title">${escapeHtml(row.version.title || 'Session')}</span>
+        <span class="wk-bars">
+          <span class="wk-plan" style="width:${(row.planned / scale) * 100}%"></span>
+          <span class="wk-actual" style="width:${(row.actual / scale) * 100}%"></span>
+        </span>
+        <span class="wk-num">${row.completion ? `${row.actual || '—'}` : `<i>${row.planned || '—'}</i>`}</span>
+        ${row.flag ? `<button class="wk-flag" type="button" data-write="${escapeHtml((attentionKinds[row.flag.kind] || {}).act || 'read')}" data-subject="${escapeHtml(row.flag.subject_id || '')}">${escapeHtml(row.flag.title)}</button>` : '<span class="wk-flag-empty"></span>'}
+      </div>`).join('')}</div>
+  </div>`;
+}
+
+function decisionHtml() {
+  const athlete = selectedRecord.athlete;
+  const items = selectedRecord.attention || [];
+  const unplaced = items.filter((item) => item.kind === 'week_unclosed' || item.kind === 'authored');
+  return `<article class="situation">
+    <p class="eyebrow">${escapeHtml(athlete.display_name)}${selectedRecord.athlete.target_event ? ` · ${escapeHtml(selectedRecord.athlete.target_event)}` : ''}</p>
+    ${weekGridHtml()}
+    ${unplaced.length ? `<div class="also">${unplaced.map((item) => `<button class="also-row" type="button" data-write="${escapeHtml((attentionKinds[item.kind] || {}).act || 'decision')}" data-subject="${escapeHtml(item.subject_id || '')}"><b>${escapeHtml(item.title)}</b><small>${escapeHtml(item.summary)}</small></button>`).join('')}</div>` : ''}
   </article>`;
 }
 
-function evidenceHtml(item) {
-  const facts = [];
-  const mark = selectedRecord.primaryMark;
-  if (mark) facts.push({ label: mark.label, value: mark.current_value == null ? '—' : `${mark.current_value}${mark.unit ? ` ${mark.unit}` : ''}` });
-  if (item.occurred_at) facts.push({ label: 'When', value: formatDate(item.occurred_at) });
-  const completion = selectedRecord.completions.find((entry) => entry.id === item.subject_id);
-  if (completion) {
-    if (completion.felt) facts.push({ label: 'Felt', value: completion.felt });
-    if (completion.knee_after) facts.push({ label: 'Knee after', value: completion.knee_after });
-    if (completion.athlete_note) facts.push({ label: 'Her note', value: completion.athlete_note });
-  }
-  if (!facts.length) return '';
-  return `<dl class="facts">${facts.slice(0, 4).map((fact) => `<div><dt>${escapeHtml(fact.label)}</dt><dd>${escapeHtml(fact.value)}</dd></div>`).join('')}</dl>`;
-}
+
 
 function coachMarginHtml() {
   const latestDirection = selectedRecord.directions[0];
@@ -156,9 +164,13 @@ function deskHtml() {
   // above it and his own margin below. One composition, not two documents.
   return `<div class="desk-layout">
     <aside class="desk-rail">
-      <p class="eyebrow">${new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric' }).format(new Date())}</p>
-      <h1>${escapeHtml(headline)}</h1>
-      <div class="athlete-list">${rosterHtml()}</div>
+      <button class="rail-toggle" id="railToggle" type="button" aria-label="Show or hide the roster"><span class="rail-bars"></span></button>
+      <div class="rail-body">
+        <p class="eyebrow">${new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric' }).format(new Date())}</p>
+        <h1>${escapeHtml(headline)}</h1>
+        <div class="athlete-list">${rosterHtml()}</div>
+      </div>
+      <div class="rail-collapsed" aria-hidden="true">${roster.map((athlete) => `<span class="rail-chip${athlete.id === selectedId ? ' active' : ''}${athlete.topItem ? ' needs' : ''}">${escapeHtml(initials(athlete.display_name))}</span>`).join('')}</div>
     </aside>
     <section class="desk-main" id="deskMain">
       ${decisionHtml()}
@@ -168,7 +180,17 @@ function deskHtml() {
   </div>`;
 }
 
+const RAIL_KEY = 'form-desk-rail-collapsed';
+function applyRailState() {
+  document.body.classList.toggle('rail-collapsed-on', localStorage.getItem(RAIL_KEY) === '1');
+}
+
 function bindDesk() {
+  applyRailState();
+  document.getElementById('railToggle')?.addEventListener('click', () => {
+    localStorage.setItem(RAIL_KEY, localStorage.getItem(RAIL_KEY) === '1' ? '0' : '1');
+    applyRailState();
+  });
   app.querySelectorAll('[data-athlete-id]').forEach((button) => button.addEventListener('click', () => selectAthlete(button.dataset.athleteId)));
   app.querySelectorAll('[data-task-action]').forEach((button) => button.addEventListener('click', () => openDecision(button.dataset.taskAction)));
   app.querySelectorAll('[data-write]').forEach((button) => button.addEventListener('click', () => {

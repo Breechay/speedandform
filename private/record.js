@@ -80,21 +80,34 @@ function markSection(record) {
   if (!mark) return '';
   const current = Number(mark.current_value);
   const target = Number(mark.target_value);
-  const filled = Number.isFinite(current) && Number.isFinite(target) && target > 0
-    ? Math.max(2, Math.min(100, (current / target) * 100))
-    : 0;
   const unit = mark.unit || '';
-  return `<section class="record-section crop" id="mark">
-    <p class="eyebrow">The mark</p>
-    <p class="bar-figure"><strong>${escapeHtml(mark.current_value ?? '—')}</strong> of ${escapeHtml(mark.target_value ?? '—')} ${escapeHtml(unit)}</p>
-    <div class="bar" role="img" aria-label="${escapeHtml(mark.current_value ?? '—')} of ${escapeHtml(mark.target_value ?? '—')} ${escapeHtml(unit)}"><span style="width:${filled}%"></span></div>
+  const points = (mark.checkpoints || []).slice().sort((a, b) => Number(a.value) - Number(b.value));
+  const reachedCount = points.filter((point) => Number(point.value) <= current).length;
+  const fill = points.length > 1
+    ? Math.max(0, Math.min(100, ((reachedCount - 1) / (points.length - 1)) * 100))
+    : (Number.isFinite(current) && Number.isFinite(target) && target > 0 ? (current / target) * 100 : 0);
+  const rungs = points.map((point) => {
+    const value = Number(point.value);
+    const reached = value <= current;
+    const isNext = !reached && value > current
+      && !points.some((other) => Number(other.value) > current && Number(other.value) < value);
+    return `<li class="rung${reached ? ' reached' : ''}${isNext ? ' next' : ''}">
+      <span class="rung-dot"></span><span class="rung-value">${escapeHtml(point.label || point.value)}</span>
+    </li>`;
+  }).join('');
+  return `<section class="record-section crop mark-crop" id="mark">
+    <p class="bar-figure"><strong>${escapeHtml(mark.current_value ?? '—')}</strong><span class="bar-target">of ${escapeHtml(mark.target_value ?? '—')} ${escapeHtml(unit)}</span></p>
+    <div class="ladder">
+      <div class="ladder-track"><span class="ladder-fill" style="width:${fill}%"></span></div>
+      <ol class="rungs">${rungs}</ol>
+    </div>
     <p class="bar-label">${escapeHtml(mark.label)}</p>
   </section>`;
 }
 
 function gradeSection(record) {
   const grade = gradeHtml(record);
-  return grade ? `<section class="record-section crop" id="read"><p class="eyebrow">The read</p>${grade}</section>` : '';
+  return grade ? `<section class="record-section crop" id="read"><p class="eyebrow">Movement</p>${grade}</section>` : '';
 }
 
 function gradeHtml(record) {
@@ -134,7 +147,7 @@ function recordSection(record) {
   events.sort((a, b) => new Date(b.date) - new Date(a.date));
   const baseline = record.baselines[0];
   return `<section class="record-section" id="record">
-    <div class="section-head"><div><p class="eyebrow">The record</p></div></div>
+    <div class="section-head"><div><p class="eyebrow">History</p></div></div>
     ${baseline ? `<dl class="baseline">
       <div><dt>Before the block</dt><dd>${escapeHtml(baseline.running_history)}</dd></div>
       <div><dt>Longest run</dt><dd>${escapeHtml(baseline.longest_run)} mi</dd></div>
@@ -170,6 +183,7 @@ export function renderAthleteRecord(record, { interactive = false, projection = 
   const week = record.currentWeek;
   const next = record.nextWeek;
   return `<div class="record-shell${projection ? ' projection' : ''}">
+    ${markSection(record)}
     <section class="record-section crop" id="now">
       <p class="eyebrow">This week${week ? ` · ${escapeHtml(week.week_number)} of ${escapeHtml(record.block?.total_weeks ?? '')}` : ''}</p>
       ${week?.intent ? `<p class="week-intent">${escapeHtml(week.intent)}</p>` : ''}
@@ -180,7 +194,6 @@ export function renderAthleteRecord(record, { interactive = false, projection = 
         <div class="sessions-list record-sessions">${sessionRows(record, false, record.nextSessions)}</div>
       </details>` : ''}
     </section>
-    ${markSection(record)}
     ${gradeSection(record)}
     ${supportSection(record)}
     ${recordSection(record)}
