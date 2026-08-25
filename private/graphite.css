@@ -1848,3 +1848,125 @@ button.consoleRung:hover { color: var(--text); }
 .rw--shown { box-shadow: inset 0 0 0 1px var(--lime); background: none; }
 .rw--today .rw-no { color: var(--lime); }
 .rw--today .rw-when { color: var(--lime); }
+
+/* Evidence inside the inspector. A filed session is read where it was chosen,
+   not on another surface. Recovery decides whether the session can answer
+   anything, so it leads; splits are the most seductive figure and the least
+   decisive, so they close. */
+.evf { margin: 22px 0 0; }
+.evf-row {
+  display: grid; grid-template-columns: 86px 108px 1fr; gap: 16px;
+  align-items: baseline; padding: 13px 0; border-top: 1px solid var(--edge);
+}
+.evf-row dt { font-size: 11px; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); }
+.evf-asked { margin: 0; font-size: 12px; color: var(--muted); }
+.evf-was { margin: 0; color: var(--text); }
+.evf-was b { font-size: 21px; font-weight: 700; letter-spacing: .01em; font-variant-numeric: tabular-nums; }
+.evf-was span { display: block; margin-top: 5px; font-size: 11px; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+/* Coral is attention, never a verdict on the running. The words alongside carry
+   the finding. */
+.evf-row--off .evf-was b, .evf-row--off .evf-was span { color: var(--coral); }
+.evf-row--quiet dt, .evf-row--quiet .evf-was { color: var(--muted); font-size: 13px; }
+.evf-row--quiet .evf-was { font-variant-numeric: tabular-nums; }
+
+.ins-where { margin: 14px 0 0; font-size: 11.5px; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+.ins-rev { margin: 16px 0 0; font-size: 11.5px; color: var(--muted); }
+.ins-what em { font-style: normal; font-size: .45em; letter-spacing: .1em; text-transform: uppercase; color: var(--secondary); }
+.ins-judgment { margin: 20px 0 0; font-size: 14px; line-height: 1.5; color: var(--text); }
+.ins-judgment span {
+  display: block; margin-bottom: 5px; font-size: 10.5px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted);
+}
+.ins-judgment.supports span { color: var(--green); }
+.ins-judgment.against span, .ins-judgment.does_not_answer span { color: var(--coral); }
+.ins-said { margin: 14px 0 0; font-size: 14px; line-height: 1.5; color: var(--secondary); }
+
+@media (max-width: 560px) {
+  .evf-row { grid-template-columns: 1fr 1fr; }
+  .evf-row dt { grid-column: 1 / -1; }
+}
+
+/* ── The console composition ─────────────────────────────────────────────────
+   One screen. Who exists and how confident Brice is, the athlete open, the block
+   as dated weeks, then the week and the session with the actions beside them.
+
+   Condensed type carries the instrument: names, numerals, labels, actions. The
+   claim and Brice's sentences stay in the readable face. There is no web font
+   here because style-src is 'self'; this is the nearest condensed stack the
+   machine already has. */
+:root { --condensed: 'Arial Narrow', 'Helvetica Neue', Inter, system-ui, sans-serif; }
+
+.coachConsole { padding: 22px clamp(20px, 3vw, 44px) 70px; }
+
+.cc-top {
+  display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(280px, .9fr);
+  gap: clamp(28px, 4vw, 64px); align-items: start; padding-bottom: 26px;
+}
+
+/* The tab bar. Names and confidence on one line, and nothing else. */
+.atabs { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin-bottom: 26px; }
+.atab {
+  display: flex; align-items: baseline; gap: 8px; padding: 9px 14px;
+  background: none; border: 1px solid transparent; cursor: pointer;
+  font-family: var(--condensed); font-size: 15px; font-weight: 700;
+  letter-spacing: .07em; text-transform: uppercase; color: var(--muted);
+}
+.atab em {
+  font-style: normal; font-weight: 500; font-size: 13px; letter-spacing: .02em;
+  color: var(--muted); font-variant-numeric: tabular-nums;
+}
+.atab:hover { color: var(--secondary); }
+.atab--on { border-color: var(--lime); color: var(--text); }
+.atab--on em { color: var(--lime); }
+.atabs-order {
+  margin-left: auto; background: none; border: 0; cursor: pointer;
+  font-family: var(--condensed); font-size: 11px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted);
+}
+.atabs-order:hover { color: var(--secondary); }
+
+.cc-name {
+  margin: 0; font-family: var(--condensed); font-size: clamp(44px, 6vw, 82px);
+  font-weight: 700; letter-spacing: .01em; line-height: .9; text-transform: uppercase;
+}
+.cc-race {
+  margin: 12px 0 0; font-family: var(--condensed); font-size: 15px;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--secondary);
+}
+.cc-race b { color: var(--lime); font-weight: 700; }
+
+.rungLine { font-family: var(--condensed); margin-top: 16px; }
+.rungLine b { font-family: var(--condensed); }
+
+/* Confidence and coverage stack on the right, never sharing an axis. */
+.cc-right .consoleInstruments { display: block; margin: 0; }
+.cc-right .inst { margin-bottom: 22px; }
+.cc-right .inst-label { font-family: var(--condensed); font-size: 12px; letter-spacing: .1em; }
+.cc-right .inst b { font-family: var(--condensed); }
+.cc-right .inst--confidence b { color: var(--lime); }
+.cc-right .inst-rail { width: 100%; }
+.cc-right .inst-why { max-width: none; font-size: 13px; }
+
+/* The runway. Every stored week, its dates, and the key session under it. */
+.runway { grid-auto-columns: minmax(58px, 1fr); font-family: var(--condensed); }
+.rw-no { font-size: 15px; letter-spacing: .04em; }
+.rw-when { font-size: 10.5px; letter-spacing: .04em; text-transform: uppercase; }
+.rw-key { font-size: 15px; letter-spacing: .03em; }
+.rw-now { font-size: 9.5px; }
+
+.weekWork { margin-top: 30px; }
+.wk-head, .wk-day, .wk-dose, .wk-what { font-family: var(--condensed); }
+.wk-head { font-size: 12px; }
+.wk-what { font-size: 15px; letter-spacing: .06em; text-transform: uppercase; color: var(--text); }
+.wk-dose { font-size: 26px; letter-spacing: .02em; }
+.wk-day { font-size: 12px; }
+.ins-when, .ins-what, .ins-facts, .ins-actions button, .evf-row dt, .evf-was b { font-family: var(--condensed); }
+.ins-what { letter-spacing: .01em; text-transform: uppercase; }
+.ins-facts b { font-size: 30px; letter-spacing: .01em; }
+.ins-actions button, .consoleActions button { font-family: var(--condensed); font-size: 12.5px; }
+
+@media (max-width: 1000px) {
+  .cc-top { grid-template-columns: 1fr; }
+  .atabs { overflow-x: auto; flex-wrap: nowrap; }
+  .runway { grid-auto-columns: 84px; }
+}

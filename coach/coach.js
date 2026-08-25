@@ -1,6 +1,6 @@
 import { bindAccountSecurity, authErrorMessage, getAccessContext, renderDoorway, signOut } from '/private/auth.js';
 import { addPrivateNote, authorSession, proofCoverage, setConfidence, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask, reviseSession } from '/private/data.js';
-import { escapeHtml, evidenceSection, formatDate, progressionSection, gradeSection, whoSection } from '/private/record.js';
+import { directionWords, escapeHtml, evidenceSection, formatDate, progressionSection, gradeSection, whoSection } from '/private/record.js';
 
 // Account states only. The desk no longer labels athletes by a stored state —
 // the queue is derived from the record.
@@ -53,6 +53,8 @@ let selectedId = null;
 let selectedRecord = null;
 let shownWeekId = null;
 let shownSessionId = null;
+// Ordering is a mode, never a permanent rearrangement of the roster.
+let attentionOrder = false;
 
 async function authView() {
   document.body.classList.add('auth-only');
@@ -66,109 +68,25 @@ function pendingView(email) {
 function initials(name) { return String(name || '').split(/\s+/).map((part) => part[0]).join('').slice(0, 2).toUpperCase(); }
 
 function rosterHtml() {
-  // Orientation, not ranking. Athletes are grouped by their checkpoint geometry,
-  // not by magic numbers or hardcoded names.
-  const getGeometryKey = (athlete) => {
-    const checkpoints = (athlete.mark?.checkpoints || [])
-      .slice().sort((a, b) => a.position - b.position)
-      .map((point) => `${point.position}-${point.value}`)
-      .join(',');
-    return checkpoints;
-  };
-
-  const strip = (athlete) => {
-    const checkpoints = (athlete.mark?.checkpoints || [])
-      .slice().sort((a, b) => a.position - b.position);
-    
-    // Check if this athlete has a current rung
-    const hasCurrent = checkpoints.some((point) => point.state === 'current');
-    const isSelected = athlete.id === selectedId;
-    
-    // Non-selected athletes get read-only numerals
-    if (!isSelected) {
-      return checkpoints.map((point) => {
-        const stateClass = point.state === 'proposed' ? 'consoleRung--proposed' 
-          : point.state === 'reached' || point.state === 'repeated' ? 'consoleRung--held'
-          : point.state === 'current' ? 'consoleRung--current'
-          : point.state === 'retired' ? 'consoleRung--retired' : '';
-        return `<span class="consoleRung ${stateClass}">${escapeHtml(point.label)}</span>`;
-      }).join('') || '<em>no ladder yet</em>';
-    }
-    
-    // Selected athlete - may be in choosing mode or normal mode
-    let rungButtons = checkpoints.map((point) => {
-      // Lime is spent once per composition. Four athletes each showing a lime
-      // numeral is four, so only the selected athlete's current rung gets it.
-      // Lime is spent once per composition, so only the selected athlete's
-      // current rung carries it. Other athletes' current rungs stay legible in
-      // text, never by colour alone.
-      const lit = point.state === 'current' && athlete.id === selectedId;
-      const stateClass = point.state === 'proposed' ? 'consoleRung--proposed' 
-        : point.state === 'reached' || point.state === 'repeated' ? 'consoleRung--held'
-        : point.state === 'current' ? 'consoleRung--current'
-        : point.state === 'retired' ? 'consoleRung--retired' : '';
-      
-      // If athlete is in choosing mode (no current), make rungs clickable for selection
-      const label = `${escapeHtml(point.label)} miles, ${escapeHtml(point.state)}`;
-
-      // Another athlete's ladder is orientation. It carries no handler, so a
-      // stray click can never move a rung on a record that is not open.
-      if (athlete.id !== selectedId) {
-        return `<span class="consoleRung ${stateClass}" role="img" aria-label="${label}">${escapeHtml(point.label)}</span>`;
-      }
-
-      // With no current rung authored, every numeral becomes the choice. Nothing
-      // is inferred and nothing is pre-lit.
-      if (!hasCurrent) {
-        return `<button class="consoleRung ${stateClass} consoleRung--choosable"
-          type="button" data-set-current="${escapeHtml(point.id)}"
-          aria-label="Set ${escapeHtml(point.label)} miles as current">${escapeHtml(point.label)}</button>`;
-      }
-
-      return `<button class="consoleRung ${stateClass}${lit ? ' consoleRung--lit' : ''}"
-        type="button" data-cycle-checkpoint="${escapeHtml(point.id)}" data-state="${escapeHtml(point.state)}"
-        aria-label="${label}">${escapeHtml(point.label)}</button>`;
-    }).join('');
-    
-    // Lime goes to the instruction rather than to a guessed numeral.
-    if (!hasCurrent && athlete.id === selectedId) {
-      rungButtons += `<span class="consoleRung__instruction">CHOOSE CURRENT</span>`;
-    }
-    
-    return rungButtons || '<em>no ladder yet</em>';
-  };
-
-  const card = (athlete) => {
-    const condition = athlete.mark?.evidence_surface_requirement === 'outdoor' ? 'OUTSIDE EVIDENCE ONLY' : '';
-    // Each athlete's standing confidence, or a dash. Never a zero: zero is a
-    // statement Brice did not make.
+  // A tab bar, not four ladders. Orientation is who exists and how confident
+  // Brice is; the ladder belongs to the athlete who is open, where there is room
+  // to act on it.
+  const tab = (athlete) => {
     const read = athlete.mark?.confidence || null;
-
-    return `<div class="consoleAthleteRow${athlete.id === selectedId ? ' consoleAthleteRow--selected' : ''}">
-      <button class="consoleAthleteRow__name" type="button" data-select-athlete="${escapeHtml(athlete.id)}"
-        ${athlete.id === selectedId ? 'aria-current="true"' : ''}>
-        <span>${escapeHtml(athlete.first_name || athlete.display_name)}</span>
-        <em>${read ? `${escapeHtml(read.score)}%` : '\u2014'}</em>
-      </button>
-      <div class="consoleAthleteRow__ladder" role="group" aria-label="Capability ladder">
-        ${strip(athlete)}
-      </div>
-      <span class="consoleAthleteRow__condition">${condition}</span>
-    </div>`;
+    return `<button class="atab${athlete.id === selectedId ? ' atab--on' : ''}" type="button"
+      data-select-athlete="${escapeHtml(athlete.id)}"
+      ${athlete.id === selectedId ? 'aria-current="true"' : ''}>
+      <span>${escapeHtml(athlete.first_name || athlete.display_name)}</span>
+      <em>${read ? `${escapeHtml(read.score)}%` : '\u2014'}</em>
+    </button>`;
   };
-
-  // Group athletes by their checkpoint geometry, sort by group size descending
-  const geometryGroups = new Map();
-  roster.forEach((athlete) => {
-    const key = getGeometryKey(athlete);
-    if (!geometryGroups.has(key)) geometryGroups.set(key, []);
-    geometryGroups.get(key).push(athlete);
-  });
-
-  const groups = [...geometryGroups.values()].sort((a, b) => b.length - a.length);
-  return `<section class="consoleSquad">${groups.map((group, index) => 
-    `${index > 0 ? '<div class="consoleSquad__apart">' : ''}${group.map(card).join('')}${index > 0 ? '</div>' : ''}`
-  ).join('')}</section>`;
+  const order = attentionOrder
+    ? roster.slice().sort((a, b) => (a.mark?.confidence?.score ?? -1) - (b.mark?.confidence?.score ?? -1))
+    : roster;
+  return `<nav class="atabs" aria-label="Athletes">
+    ${order.map(tab).join('')}
+    <button class="atabs-order" type="button" id="orderToggle">${attentionOrder ? 'needs attention' : 'roster'}</button>
+  </nav>`;
 }
 
 function athleteMenuHtml() {
@@ -274,24 +192,81 @@ function weekWorkHtml() {
 function sessionInspectorHtml(session) {
   const version = session.currentVersion;
   const done = (selectedRecord.completions || []).find((item) => item.planned_session_id === session.id);
+  const head = `<p class="ins-when">${escapeHtml(session.day_label)}${session.scheduled_on ? ` \u00b7 ${escapeHtml(dayLabel(session.scheduled_on))}` : ''}</p>
+    <h3 class="ins-what">${escapeHtml(version.title)}${
+      selectedRecord.primaryMark?.evidence_surface_requirement === 'outdoor' && /race pace/i.test(version.title || '')
+        ? ' <em>outside</em>' : ''}</h3>`;
+
+  // Once a session is filed the same inspector becomes the evidence, rather than
+  // sending the coach to a different surface to read what happened.
+  if (done) return `<div class="inspect">
+    ${head}
+    ${evidenceFactsHtml(done)}
+    <div class="ins-actions">
+      <button type="button" data-correct="${escapeHtml(done.id)}">CORRECT ENTRY</button>
+      <button type="button" data-judge="${escapeHtml(done.id)}">SAY WHAT THIS DID</button>
+      ${(selectedRecord.evidenceFiles || []).some((file) => file.completion_id === done.id)
+        ? `<button type="button" data-console-action="source-image" data-completion-id="${escapeHtml(done.id)}">SOURCE IMAGE</button>` : ''}
+    </div>
+  </div>`;
+
   const band = [version.pace_low, version.pace_high].filter(Boolean).join('\u2013');
   return `<div class="inspect">
-    <p class="ins-when">${escapeHtml(session.day_label)}${session.scheduled_on ? ` \u00b7 ${escapeHtml(dayLabel(session.scheduled_on))}` : ''}</p>
-    <h3 class="ins-what">${escapeHtml(version.title)}</h3>
+    ${head}
     <div class="ins-facts">
       ${band ? `<span><b>${escapeHtml(band)}</b>race pace</span>` : ''}
       ${version.rpe_low ? `<span><b>${escapeHtml(version.rpe_low)}\u2013${escapeHtml(version.rpe_high)}</b>asked effort</span>` : ''}
     </div>
     ${version.details ? `<p class="ins-detail">${escapeHtml(version.details)}</p>` : ''}
     ${version.intent ? `<p class="ins-why">${escapeHtml(version.intent)}</p>` : ''}
+    ${version.version_number > 1 ? `<p class="ins-rev">version ${escapeHtml(version.version_number)}${
+      version.change_reason ? ` \u00b7 ${escapeHtml(version.change_reason)}` : ''}</p>` : ''}
     <div class="ins-actions">
       <button type="button" data-revise="${escapeHtml(session.id)}">MODIFY SESSION</button>
-      ${done
-        ? `<button type="button" data-correct="${escapeHtml(done.id)}">CORRECT ENTRY</button>
-           <button type="button" data-judge="${escapeHtml(done.id)}">SAY WHAT THIS DID</button>`
-        : `<button type="button" data-file="${escapeHtml(session.id)}">FILE RESULT</button>`}
+      <button type="button" data-file="${escapeHtml(session.id)}">FILE RESULT</button>
+      <button type="button" data-write="direction" data-subject="${escapeHtml(session.id)}">ADD INSTRUCTIONS</button>
     </div>
   </div>`;
+}
+
+// Recovery first and largest, effort second, splits quiet. The reading order is
+// the judgment: recovery decides whether the session can answer anything, and
+// splits are the most seductive figure and the least decisive.
+function evidenceFactsHtml(completion) {
+  const verdict = (selectedRecord.verdicts || []).find((item) => item.completion_id === completion.id);
+  const pieces = (selectedRecord.pieces || []).filter((piece) => piece.completion_id === completion.id);
+  const floats = pieces.filter((piece) => piece.kind === 'float');
+  const reps = pieces.filter((piece) => piece.kind === 'rep');
+  const pace = (seconds) => (seconds ? `${Math.floor(seconds / 60)}:${String(Math.round(seconds) % 60).padStart(2, '0')}` : '');
+  const rested = verdict?.float_verdict === 'outside';
+  const effortOff = verdict?.effort_verdict === 'outside';
+  const judgment = (selectedRecord.judgments || []).find((item) => item.completionIds.includes(completion.id));
+
+  const where = [completion.surface, completion.conditions].filter(Boolean).join(' \u00b7 ');
+
+  return `${where ? `<p class="ins-where">${escapeHtml(where)}</p>` : ''}
+    <dl class="evf">
+      ${floats.length ? `<div class="evf-row${rested ? ' evf-row--off' : ''}">
+        <dt>Recovery</dt>
+        <dd class="evf-asked">asked easy</dd>
+        <dd class="evf-was"><b>${floats.map((piece) => escapeHtml(pace(piece.pace_seconds))).join('  ')}</b>
+          ${verdict ? `<span>${escapeHtml(verdict.floats_honest)} of ${escapeHtml(verdict.floats)} inside easy</span>` : ''}</dd>
+      </div>` : ''}
+      <div class="evf-row${effortOff ? ' evf-row--off' : ''}">
+        <dt>Effort</dt>
+        <dd class="evf-asked">${verdict?.rpe_low ? `asked ${escapeHtml(verdict.rpe_low)}\u2013${escapeHtml(verdict.rpe_high)}` : 'not asked'}</dd>
+        <dd class="evf-was"><b>${completion.rpe ? escapeHtml(completion.rpe) : '\u2014'}</b></dd>
+      </div>
+      ${reps.length ? `<div class="evf-row evf-row--quiet">
+        <dt>Miles</dt>
+        <dd class="evf-asked">${verdict?.pace_verdict === 'not prescribed' || !verdict?.pace_low
+          ? 'not recorded' : `asked ${escapeHtml(pace(verdict.pace_low))}\u2013${escapeHtml(pace(verdict.pace_high))}`}</dd>
+        <dd class="evf-was">${reps.map((piece) => escapeHtml(pace(piece.pace_seconds))).join(' \u00b7 ')}</dd>
+      </div>` : ''}
+    </dl>
+    ${judgment ? `<p class="ins-judgment ${escapeHtml(judgment.direction)}">
+      <span>${escapeHtml(directionWords[judgment.direction] || judgment.direction)}</span>${escapeHtml(judgment.reason)}</p>` : ''}
+    ${completion.athlete_note ? `<p class="ins-said">${escapeHtml(completion.athlete_note)}</p>` : ''}`;
 }
 
 function currentRungHtml() {
@@ -380,67 +355,31 @@ function deskHtml() {
     return allCoaching[0]?.athlete_text || '';
   })();
   
+  const athlete = selectedRecord.athlete;
+  const race = [athlete.goal_label, athlete.target_event].filter(Boolean).join(' \u00b7 ');
+
   return `<section class="coachConsole" id="deskMain">
-    <div id="squadStrip"></div>
-
-    <div class="consoleHead">
-      <div class="consoleWho">${whoSection(selectedRecord)}${athleteMenuHtml()}</div>
-      ${confidenceHtml()}
+    <div class="cc-top">
+      <div class="cc-left">
+        <div id="squadStrip"></div>
+        <h1 class="cc-name">${escapeHtml(athlete.first_name || athlete.display_name)}</h1>
+        <p class="cc-race">${escapeHtml(race)}${weeksOutLabel()}</p>
+        ${currentRungHtml()}
+      </div>
+      <div class="cc-right">${confidenceHtml()}</div>
     </div>
-
-    ${currentRungHtml()}
-    ${claim ? `<p class="consoleClaim">${escapeHtml(claim)}</p>` : ''}
-    ${progressionSection(selectedRecord, { interactive: true })}
 
     ${runwayHtml()}
     ${weekWorkHtml()}
-
-    ${evidenceSection(selectedRecord, { interactive: true })}
-    ${coachingSentence ? `<p class="consoleCoachSentence">${escapeHtml(coachingSentence)}</p>` : ''}
-
-    <div class="consoleActions">
-      <button type="button" data-console-action="file-run">FILE A RUN</button>
-      ${hasCompletion ? `<button type="button" data-console-action="correct-entry" data-completion-id="${escapeHtml(latestCompletion.id)}">CORRECT ENTRY</button>` : ''}
-      ${hasCompletion ? `<button type="button" data-console-action="judge" data-completion-id="${escapeHtml(latestCompletion.id)}">SAY WHAT THIS DID</button>` : ''}
-      ${hasEvidence ? `<button type="button" data-console-action="source-image" data-completion-id="${escapeHtml(latestCompletion.id)}">SOURCE IMAGE</button>` : ''}
-    </div>
   </section>`;
 }
 
-function paintRoster() {
-  const needing = roster.filter((entry) => entry.topItem).length;
-  document.getElementById('rosterCount').textContent = needing ? `${needing} need you` : 'Nothing waiting';
-  document.getElementById('rosterList').innerHTML = rosterDrawerHtml();
-  document.getElementById('rosterList').querySelectorAll('[data-athlete-id]').forEach((button) =>
-    button.addEventListener('click', () => { closeRoster(); selectAthlete(button.dataset.athleteId); }));
-}
-
-function rosterDrawerHtml() {
-  // Simplified roster drawer - just athlete names for selection
-  return roster.map((athlete) => `<button class="athlete-button${athlete.id === selectedId ? ' active' : ''}" 
-    type="button" data-athlete-id="${escapeHtml(athlete.id)}"
-    ${athlete.id === selectedId ? 'aria-current="true"' : ''}>
-    <div class="avatar">${initials(athlete.first_name || athlete.display_name)}</div>
-    <div class="athlete-list-copy">
-      <b>${escapeHtml(athlete.first_name || athlete.display_name)}</b>
-      <small>${escapeHtml(athlete.account_label || 'Athlete')}</small>
-    </div>
-  </button>`).join('');
-}
-
-function openRoster() {
-  paintRoster();
-  document.getElementById('rosterDrawer').hidden = false;
-  document.getElementById('rosterScrim').hidden = false;
-  requestAnimationFrame(() => document.body.classList.add('roster-open'));
-}
-
-function closeRoster() {
-  document.body.classList.remove('roster-open');
-  setTimeout(() => {
-    document.getElementById('rosterDrawer').hidden = true;
-    document.getElementById('rosterScrim').hidden = true;
-  }, 220);
+function weeksOutLabel() {
+  const on = selectedRecord.block?.race_on;
+  if (!on) return '';
+  const days = Math.round((new Date(`${on}T12:00:00`) - new Date()) / 86400000);
+  if (days < 0) return '';
+  return ` \u00b7 <b>${Math.ceil(days / 7)}</b> weeks out`;
 }
 
 function paintSquad() {
@@ -966,10 +905,6 @@ async function refreshSelected(animate = false) {
 }
 
 signOutButton.addEventListener('click', signOut);
-document.getElementById('openRoster').addEventListener('click', openRoster);
-document.getElementById('closeRoster').addEventListener('click', closeRoster);
-document.getElementById('rosterScrim').addEventListener('click', closeRoster);
-document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeRoster(); });
 
 async function boot() {
   try {

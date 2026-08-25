@@ -14,7 +14,6 @@
     <header class="topbar">
       <a class="brand" href="/coach/" aria-label="Coach Console"><span class="form-mark">FORM</span><span class="product-name">Coach Console</span></a>
       <div class="topbar-tools">
-        <button class="switcher" id="openRoster" type="button" aria-label="Switch athlete">Athletes</button>
         <details class="control" id="control">
           <summary aria-label="Account"><span class="avatar-me" id="userInitials">B</span></summary>
           <div class="control-menu">
@@ -26,11 +25,6 @@
     </header>
     <main id="app"><div class="loading" aria-label="Loading Coach Console"></div></main>
   </div>
-  <div class="roster-scrim" id="rosterScrim" hidden></div>
-  <aside class="roster-drawer" id="rosterDrawer" hidden aria-label="Athletes">
-    <div class="roster-head"><p class="eyebrow" id="rosterCount"></p><button class="drawer-close" id="closeRoster" type="button" aria-label="Close">&times;</button></div>
-    <div class="athlete-list" id="rosterList"></div>
-  </aside>
 
   <dialog class="dialog" id="decisionDialog">
     <form class="dialog-inner" id="decisionForm">

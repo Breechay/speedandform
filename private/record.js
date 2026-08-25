@@ -299,7 +299,7 @@ function paceText(seconds) {
   return `${Math.floor(value / 60)}:${String(value % 60).padStart(2, '0')}`;
 }
 
-const directionWords = {
+export const directionWords = {
   supports: 'moves the claim',
   against: 'works against the claim',
   does_not_answer: 'does not answer the claim'
