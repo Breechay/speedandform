@@ -403,3 +403,73 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 .account-row b { font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .account-note { margin: 14px 0 0; color: var(--muted); font-size: 12px; }
 .account-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
+
+
+/* ── Desk, rebuilt ───────────────────────────────────────────────────────────
+   Hierarchy comes from space, scale and weight. Rules appear only where there
+   is a genuine boundary — the rail against the work. */
+
+.desk-rail { border-right: 1px solid var(--edge); }
+.desk-rail h1 { font-size: 21px; letter-spacing: -.02em; margin: 8px 0 26px; max-width: 15ch; }
+.desk-rail .athlete-list { display: grid; gap: 2px; }
+
+.athlete-button {
+  grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: center;
+  border: 0; border-radius: 9px; padding: 11px 12px; opacity: .58;
+}
+.athlete-button.needs { opacity: 1; }
+.athlete-button:hover { background: var(--field-2); opacity: 1; }
+.athlete-button.active { background: var(--surface); opacity: 1; }
+.athlete-button .athlete-list-copy b { font-size: 14px; }
+.athlete-button .athlete-list-copy small { margin-top: 2px; font-size: 11px; }
+.athlete-button.active .athlete-list-copy small { color: var(--text); }
+.attention-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--lime); }
+.attention-count {
+  min-width: 19px; height: 19px; padding: 0 5px; border-radius: 10px;
+  display: grid; place-items: center; background: var(--lime); color: #11150f;
+  font-size: 10px; font-weight: 850; font-variant-numeric: tabular-nums;
+}
+
+/* The situation: one thing, stated plainly, with the act it calls for. */
+.situation { padding: 4px 0 0; max-width: 62ch; }
+.situation h2 { margin: 10px 0 0; font-size: clamp(22px, 2.4vw, 28px); line-height: 1.12; letter-spacing: -.022em; }
+.situation .lede { margin: 12px 0 0; color: var(--secondary); font-size: 15px; line-height: 1.5; }
+.situation.quiet h2 { color: var(--secondary); }
+
+.facts { display: flex; flex-wrap: wrap; gap: 34px; margin: 26px 0 0; }
+.facts div { margin: 0; }
+.facts dt { color: var(--muted); font-size: 11px; font-weight: 750; }
+.facts dd { margin: 5px 0 0; font-size: 14px; font-weight: 650; font-variant-numeric: tabular-nums; }
+
+.do { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 30px; }
+
+.also { margin-top: 38px; }
+.also > span { display: block; color: var(--muted); font-size: 11px; font-weight: 750; margin-bottom: 8px; }
+.also-row {
+  display: block; width: 100%; text-align: left; border: 0; border-radius: 9px;
+  background: transparent; color: var(--text); padding: 9px 11px; cursor: pointer;
+}
+.also-row:hover { background: var(--field-2); }
+.also-row b { display: block; font-size: 13px; }
+.also-row small { display: block; margin-top: 2px; color: var(--secondary); font-size: 11px; }
+
+/* Coach-only context sits quietly beside the work. */
+.desk-columns { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: 46px; }
+.coach-margin { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 34px; }
+.margin-panel { padding: 0; border: 0; }
+.margin-line { margin: 9px 0 0; font-size: 12px; line-height: 1.5; color: var(--secondary); }
+.margin-line b { color: var(--text); font-weight: 750; }
+.margin-line.muted { color: var(--muted); }
+.margin-actions { display: flex; gap: 8px; margin-top: 14px; }
+
+/* The athlete's own page is reference: closed until asked for. */
+.record-drawer { margin-top: 40px; border-top: 1px solid var(--edge); padding-top: 16px; }
+.record-drawer > summary {
+  list-style: none; cursor: pointer; display: flex; align-items: center; gap: 9px;
+  color: var(--secondary); font-size: 12px; font-weight: 750;
+}
+.record-drawer > summary::-webkit-details-marker { display: none; }
+.record-drawer > summary::before { content: "›"; display: inline-block; transition: transform .2s var(--ease); }
+.record-drawer[open] > summary::before { transform: rotate(90deg); }
+.record-drawer > summary:hover { color: var(--text); }
+.record-drawer .projection-frame { margin-top: 18px; }

@@ -8,18 +8,32 @@ function result(data, error) {
 export async function loadCoachRoster(coachMemberships) {
   const athleteIds = coachMemberships.map((item) => item.athlete_id);
   if (!athleteIds.length) return [];
-  const [taskResponse, markResponse] = await Promise.all([
-    supabase.from('coach_tasks').select('*').in('athlete_id', athleteIds).is('resolved_at', null).order('priority'),
+  const [attentionResponse, markResponse] = await Promise.all([
+    supabase.from('coach_attention').select('*').in('athlete_id', athleteIds)
+      .order('priority').order('occurred_at', { ascending: false, nullsFirst: false }),
     supabase.from('athlete_marks').select('*').in('athlete_id', athleteIds).eq('active', true).eq('is_primary', true)
   ]);
-  if (taskResponse.error) throw taskResponse.error;
+  if (attentionResponse.error) throw attentionResponse.error;
   if (markResponse.error) throw markResponse.error;
-  return coachMemberships.map((membership) => ({
-    ...membership.athletes,
-    membership,
-    task: taskResponse.data?.find((task) => task.athlete_id === membership.athlete_id) || null,
-    mark: markResponse.data?.find((mark) => mark.athlete_id === membership.athlete_id) || null
-  })).sort((a, b) => (a.task?.priority ?? 999) - (b.task?.priority ?? 999));
+  const attention = attentionResponse.data || [];
+  // Ordered by what actually needs the coach, not by a stored priority column.
+  return coachMemberships.map((membership) => {
+    const items = attention.filter((item) => item.athlete_id === membership.athlete_id);
+    return {
+      ...membership.athletes,
+      membership,
+      attention: items,
+      topItem: items[0] || null,
+      mark: markResponse.data?.find((mark) => mark.athlete_id === membership.athlete_id) || null
+    };
+  }).sort((a, b) => (a.topItem?.priority ?? 999) - (b.topItem?.priority ?? 999));
+}
+
+export async function loadAttentionFor(athleteId) {
+  const { data, error } = await supabase.from('coach_attention').select('*')
+    .eq('athlete_id', athleteId).order('priority').order('occurred_at', { ascending: false, nullsFirst: false });
+  if (error) throw error;
+  return data || [];
 }
 
 export async function loadAthleteRecord(athleteId, { coach = false } = {}) {

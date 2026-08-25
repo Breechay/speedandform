@@ -47,6 +47,27 @@ only what it owns. There is no conflict resolution to build, ever.
 **Consequence:** "my note surfaces on their filed run in FORM" cannot be built from the
 website. It is blocked on a FORM-side project (Gate A). Nothing about Natalie is blocked.
 
+> **Re-audited Aug 25, 2026 against `cursor/the-plan-binding-93e5` (`4db85cae`).**
+> Two findings above have moved, and one materially lowers the cost of Gate A.
+>
+> - `AuthenticationServices` now also appears in `FORMApp.swift`, but only to revoke a
+>   stored Apple credential on account deletion. There is still no Sign in with Apple,
+>   and `form_apple_user_id` is a device-local `@AppStorage` value, not a session.
+>   The conclusion holds; the evidence for it has changed.
+> - Filing is still device-local (`UserDefaults` plus iCloud KVS). Unchanged.
+> - **`FORM/Forge/ForgeSupabaseBridge.swift` is 298 lines and already implements the
+>   whole A1/A3 mechanism:** Keychain token storage, a `form://forge-auth?access_token=`
+>   deep link that carries a session from web to app after an invite, and offline
+>   enqueue/flush queues. Gate A does not need Sign in with Apple in FORM. The athlete
+>   signs in on the website — which now works — and the app receives the token by deep
+>   link, exactly as FORGE already does in production.
+> - The Field already posts real training to a server: `POST /api/field/entries` with
+>   `{ groupId, entry }`, carrying session name, type, splits and completion date. It is
+>   **unauthenticated** (group id only, no JWT), it is what the athlete chose to publish
+>   rather than what they filed, and its identity is `form_apple_user_id`. Show it if
+>   useful, clearly labelled as published-to-The-Field. Never write it into
+>   `session_completions`: it would be exactly the duplicate completion source §11 forbids.
+
 ---
 
 ## 2. GATE A — THE ONE APP PROJECT THAT UNBLOCKS EVERYTHING
@@ -133,6 +154,34 @@ Ship three. Not seven.
 
 Questions, scheduling and encouragement stay in WhatsApp for now. They are a relationship,
 not a missing feature.
+
+---
+
+## 4b. THE DESK IS A QUEUE, NOT A SCREEN
+
+Learned by shipping it wrong. The first Coach Desk stored its queue in `coach_tasks`
+rows written once by the seed. Nothing created work when an athlete filed, so the desk
+emptied after the first resolution and never refilled — while reporting "Nothing needed"
+for an athlete who had a filed run nobody had answered and a session due with no Direction.
+
+**Attention is derived, never stored.** `public.coach_attention` computes it from the
+record on every read: an unsettled recovery, work filed and unanswered, a session due
+without a Direction, a week left open, and coach-authored tasks that actually ask
+something. A `security_invoker` view, so RLS still decides who sees whom, and no second
+source of truth is created. A stored queue is always one event away from lying.
+
+**The act follows the situation.** Filed work asks for a Read. A session with no
+Direction asks for a Direction. A week left open asks for a Decision. The desk offers
+that one act, not a standing row of buttons naming every object in the system. Naming
+objects makes the coach translate their situation into the data model; the situation
+should already know.
+
+**Health outranks work.** A recovery that did not settle sorts above everything.
+
+**One situation at a time.** The desk states who, what happened, the athlete's own words
+as evidence, and the act. Anything else — the athlete's own page especially — is
+reference and stays closed until asked for. Three documents at equal weight is why a
+coach cannot tell what they are looking at.
 
 ---
 
@@ -289,6 +338,39 @@ counters, payments UI beyond a status line.
 
 **Account band:** `Run Development · 8 weeks · Week 1 · Paid` for Natalie;
 `Founding Member` for the other three. Dollar amount is coach-private.
+
+---
+
+## 10b. BUILD STATE — Aug 25, 2026
+
+Live on speedandform.com. Branch `codex/private-athlete-system`, merged to `main`.
+
+**Shipped.** Passwordless auth with RLS from the first migration (17 pgTAP checks);
+Natalie's five-band record with filing and correction over immutable
+`completion_revisions`; the Coach Desk on the derived queue; Direction, Read, Decision,
+private notes; frozen consented share excerpts; Account with email change.
+
+**Corrected in flight.** Direction was dropping `execution_context` entirely — surface is
+the purpose for Marcus's mark (§6), not metadata. A Read hard-coded the most recent
+completion instead of the sessions it was about (§4: one row, many references). Nothing
+could write `delivered_externally`, so the three FORM athletes' history was recorded as
+though published in-product rather than sent by hand (§2).
+
+**Open, owner-dependent.**
+
+1. Apple provider credentials. The doorway shows Apple only once the provider is enabled
+   and falls back to email until then, so the record is never unreachable.
+2. Custom SMTP. Supabase's free tier refuses email-template changes on its built-in
+   provider and rate-limits sends to a handful per hour. `supabase/templates/magic_link.html`
+   applies on the first `config push` afterwards. Verify the sender on a **subdomain** —
+   speedandform.com receives through Cloudflare Email Routing, and a root SPF change
+   breaks inbound mail.
+3. Natalie's athlete invite. Every existing invite is a claimed coach invite.
+4. **Marcus, Hope and Jose have a primary mark and a current question, and nothing else:
+   zero checkpoints, zero gates, zero supporting signals.** §6 promises up to two
+   supporting signals each. This is authored coaching judgment and must not be generated.
+   Their zero planned sessions are correct, not missing — their plan source is
+   `form_program` (§3) until Gate A.
 
 ---
 
