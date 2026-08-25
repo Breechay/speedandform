@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#141718">
   <title>Coach Desk · FORM</title>
-  <link rel="stylesheet" href="/private/graphite.css?v=26">
+  <link rel="stylesheet" href="/private/graphite.css?v=27">
 </head>
 <body>
   <a class="skip-link" href="#deskMain">Skip to current decision</a>
@@ -47,25 +47,48 @@
 
   <dialog class="dialog" id="coachingDialog">
     <form class="dialog-inner" id="coachingForm">
-      <div class="dialog-head"><div><p class="eyebrow">Athlete-facing coaching</p><h2>Write to her</h2></div><button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button></div>
-      <div class="form-grid">
-        <label class="field-label">What are you writing<select class="field-select" name="objectType"><option value="direction">Before the run</option><option value="read">After the run</option></select></label>
-        <label class="field-label" data-direction-only>Planned session<select class="field-select" name="plannedSessionId"></select></label>
-        <label class="field-label" data-direction-only>What must stay protected<input class="field-input" name="protectedVariable" placeholder="Easy effort and a quiet knee"></label>
-        <label class="field-label" data-direction-only>What can move<input class="field-input" name="movableVariable" placeholder="Distance and walk breaks"></label>
-        <label class="field-label" data-direction-only>Stop or change if<input class="field-input" name="stopOrChangeIf" placeholder="Movement changes or discomfort builds"></label>
-        <label class="field-label" data-direction-only>Where it happens<select class="field-select" name="surface"><option value="">Not specified</option><option value="outdoor">Outdoor</option><option value="treadmill">Treadmill</option><option value="track">Track</option></select></label>
-        <label class="field-label" data-direction-only>Company<select class="field-select" name="company"><option value="">Not specified</option><option value="with_brice">With Brice</option><option value="independent">Independent</option></select></label>
-        <label class="field-label" data-direction-only>Heat allowance<input class="field-input" name="heatAllowance" placeholder="Slower is correct above 80&deg;F"></label>
-        <label class="field-label" data-direction-only>Priority order<textarea class="field-textarea priority-input" name="priorityTargets" placeholder="One target per line, most important first."></textarea></label>
-        <label class="field-label" data-read-only hidden>Question this answers<input class="field-input" name="questionAnswered" placeholder="What did the session teach us?"></label>
-        <label class="field-label" data-read-only hidden>Sessions this covers<select class="field-select" name="completionIds" multiple size="4"></select><small class="field-hint">One note, many sessions.</small></label>
-        <label class="field-label">Athlete-facing wording<textarea class="field-textarea" name="athleteText" required placeholder="Plain, direct, and useful."></textarea></label>
-        <label class="field-label">How it reaches them<select class="field-select" name="deliveryState"><option value="published">Published to their record</option><option value="delivered_externally">Sent outside FORM</option></select></label>
-        <label class="field-label" data-external-only hidden>Wording actually sent<textarea class="field-textarea" name="deliveredWording" placeholder="Paste exactly what you sent, so the history is true rather than approximate."></textarea></label>
+      <div class="dialog-head">
+        <h2 id="coachingContext">Write to her</h2>
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Close">&times;</button>
       </div>
+
+      <label class="field-label lead">Instructions
+        <textarea class="field-textarea tall" name="athleteText" required placeholder="How these miles get run."></textarea>
+      </label>
+
+      <div class="switch" role="group" aria-label="When this is for">
+        <label><input type="radio" name="objectType" value="direction" checked><span>Before the run</span></label>
+        <label><input type="radio" name="objectType" value="read"><span>After the run</span></label>
+      </div>
+
+      <details class="more" data-direction-only>
+        <summary>Structure</summary>
+        <div class="form-grid two">
+          <label class="field-label">Protect<input class="field-input" name="protectedVariable" placeholder="Easy effort and a quiet knee"></label>
+          <label class="field-label">Can move<input class="field-input" name="movableVariable" placeholder="Distance and walk breaks"></label>
+          <label class="field-label">Stop or change if<input class="field-input" name="stopOrChangeIf" placeholder="Movement changes or discomfort builds"></label>
+          <label class="field-label">Heat allowance<input class="field-input" name="heatAllowance" placeholder="Slower is correct above 80&deg;F"></label>
+          <label class="field-label">Where<select class="field-select" name="surface"><option value="">Not specified</option><option value="outdoor">Outdoor</option><option value="treadmill">Treadmill</option><option value="track">Track</option></select></label>
+          <label class="field-label">Company<select class="field-select" name="company"><option value="">Not specified</option><option value="with_brice">With Brice</option><option value="independent">Independent</option></select></label>
+        </div>
+        <label class="field-label">Priority order<textarea class="field-textarea priority-input" name="priorityTargets" placeholder="One target per line, most important first."></textarea></label>
+        <label class="field-label">Session<select class="field-select" name="plannedSessionId"></select></label>
+      </details>
+
+      <details class="more" data-read-only hidden>
+        <summary>Which runs</summary>
+        <label class="field-label">Runs this covers<select class="field-select" name="completionIds" multiple size="4"></select></label>
+        <label class="field-label">Question this answers<input class="field-input" name="questionAnswered" placeholder="What did the session teach us?"></label>
+      </details>
+
+      <details class="more">
+        <summary>How it reaches her</summary>
+        <label class="field-label">Delivery<select class="field-select" name="deliveryState"><option value="published">Published to her record</option><option value="delivered_externally">Sent outside FORM</option></select></label>
+        <label class="field-label" data-external-only hidden>Wording actually sent<textarea class="field-textarea" name="deliveredWording" placeholder="Paste exactly what you sent."></textarea></label>
+      </details>
+
       <p class="status-message" id="coachingStatus" role="status"></p>
-      <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Publish <span class="icon-arrow">→</span></button></div>
+      <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Save <span class="icon-arrow">&rarr;</span></button></div>
     </form>
   </dialog>
 
@@ -91,6 +114,6 @@
       <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Publish frozen excerpt <span class="icon-arrow">→</span></button></div>
     </form>
   </dialog>
-  <script type="module" src="/coach/coach.js?v=26"></script>
+  <script type="module" src="/coach/coach.js?v=27"></script>
 </body>
 </html>

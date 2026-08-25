@@ -175,7 +175,8 @@ function openDecision(actionId) {
 
 function openCoaching(objectType = 'direction', subjectId = '') {
   coachingForm.reset();
-  coachingForm.elements.objectType.value = objectType === 'read' ? 'read' : 'direction';
+  const wanted = objectType === 'read' ? 'read' : 'direction';
+  [...coachingForm.elements.objectType].forEach((radio) => { radio.checked = radio.value === wanted; });
   coachingForm.elements.plannedSessionId.innerHTML = selectedRecord.sessions.map((session) => `<option value="${session.id}">${escapeHtml(session.day_label)} · ${escapeHtml(session.currentVersion?.title || 'Session')}</option>`).join('');
   coachingForm.elements.completionIds.innerHTML = selectedRecord.completions.map((completion) => {
     const session = selectedRecord.sessions.find((item) => item.id === completion.planned_session_id);
@@ -190,12 +191,19 @@ function openCoaching(objectType = 'direction', subjectId = '') {
       coachingForm.elements.plannedSessionId.value = subjectId;
     }
   }
+  // The dialog names the session it is for, so nothing has to be re-found.
+  const session = selectedRecord.sessions.find((entry) => entry.id === subjectId);
+  const version = session?.currentVersion;
+  document.getElementById('coachingContext').textContent = session
+    ? `${session.day_label} · ${version?.title || 'Session'}${version?.prescribed_distance ? ` · ${Number(version.prescribed_distance)} ${version.distance_unit || ''}` : ''}`
+    : `${selectedRecord.athlete.first_name} · ${wanted === 'read' ? 'after the run' : 'before the run'}`;
+  if (version?.intent) coachingForm.elements.athleteText.value = version.intent;
   document.getElementById('coachingStatus').textContent = '';
   toggleCoachingFields(); coachingDialog.showModal();
 }
 
 function toggleCoachingFields() {
-  const read = coachingForm.elements.objectType.value === 'read';
+  const read = [...coachingForm.elements.objectType].find((radio) => radio.checked)?.value === 'read';
   const external = coachingForm.elements.deliveryState.value === 'delivered_externally';
   coachingForm.querySelectorAll('[data-direction-only]').forEach((node) => { node.hidden = read; });
   coachingForm.querySelectorAll('[data-read-only]').forEach((node) => { node.hidden = !read; });
@@ -214,7 +222,7 @@ function openShare() {
 }
 
 dialogs.forEach((dialog) => dialog.querySelectorAll('[data-close-dialog]').forEach((button) => button.addEventListener('click', () => dialog.close())));
-coachingForm.elements.objectType.addEventListener('change', toggleCoachingFields);
+[...coachingForm.elements.objectType].forEach((radio) => radio.addEventListener('change', toggleCoachingFields));
 coachingForm.elements.deliveryState.addEventListener('change', toggleCoachingFields);
 
 decisionForm.addEventListener('submit', async (event) => {
@@ -233,7 +241,7 @@ coachingForm.addEventListener('submit', async (event) => {
   try {
     const deliveryState = form.get('deliveryState');
     const deliveredWording = deliveryState === 'delivered_externally' ? form.get('deliveredWording') : null;
-    if (form.get('objectType') === 'direction') {
+    if (form.get('objectType') !== 'read') {
       // Surface is the purpose for some marks, not metadata: a treadmill completion
       // produces the numbers without answering an outdoor question.
       const executionContext = {};
