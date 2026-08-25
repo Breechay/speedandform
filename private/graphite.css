@@ -1035,14 +1035,13 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
    A cue that has work behind it opens to show that work. */
 .focus { display: grid; gap: 0; padding-top: 2px; }
 .focus-row {
-  display: flex; align-items: center; justify-content: space-between; gap: 20px;
-  padding: 12px 0; border-top: 1px solid var(--edge);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 20px;
+  padding: 11px 0;
 }
-.focus-row:first-child { border-top: 0; }
 .focus-row.has-work { display: block; padding: 0; }
 .focus-row.has-work > summary {
-  list-style: none; cursor: pointer; display: flex; align-items: center;
-  justify-content: space-between; gap: 20px; padding: 12px 0;
+  list-style: none; cursor: pointer; display: flex; align-items: baseline;
+  justify-content: space-between; gap: 20px; padding: 11px 0;
 }
 .focus-row.has-work > summary::-webkit-details-marker { display: none; }
 .focus-row.has-work > summary:hover .focus-cue { color: var(--text); }
@@ -1052,17 +1051,18 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   display: inline-block; transition: transform .18s var(--ease);
 }
 .focus-row.has-work[open] > summary .focus-cue::after { transform: rotate(90deg); }
-.focus-cue { color: var(--secondary); font-size: 14px; }
-.focus-track { display: inline-flex; gap: 4px; flex: none; }
-.focus-track .step { width: 20px; height: 4px; border-radius: 2px; background: var(--raised); }
-.focus-track .step.on { background: var(--text); }
+.focus-cue { color: var(--text); font-size: 15px; }
+
+/* The rating is a number. Five dashes made the reader count them to find it out. */
+.focus-score {
+  flex: none; color: var(--text); font-size: 17px; font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.focus-score small { color: var(--muted); font-size: 12px; font-weight: 500; margin-left: 1px; }
+
 .focus-work { padding: 2px 0 16px; }
 .focus-work .support-item { border-top: 1px solid var(--edge); }
 .focus-work .support-item:first-child { border-top: 0; }
-
-@media (max-width: 700px) {
-  .focus-track .step { width: 15px; }
-}
 
 
 /* ── Data tables ─────────────────────────────────────────────────────────────

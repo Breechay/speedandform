@@ -1,6 +1,6 @@
 import { bindAccountSecurity, authErrorMessage, getAccessContext, renderDoorway, signOut } from '/private/auth.js';
 import { addPrivateNote, authorSession, createDirection, createRead, fileForAthlete, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask, reviseSession } from '/private/data.js';
-import { escapeHtml, formatDate, gradeSection, markSection, recordSection, weekSection, whoSection } from '/private/record.js';
+import { escapeHtml, formatDate, gradeSection, markSection, weekSection, whoSection } from '/private/record.js';
 
 // Account states only. The desk no longer labels athletes by a stored state —
 // the queue is derived from the record.
@@ -93,7 +93,6 @@ function deskHtml() {
         ${gradeSection(selectedRecord)}
       </div>
       <div class="board-side">
-        ${recordSection(selectedRecord, { limit: 4 })}
       </div>
     </div>
   </section>`;

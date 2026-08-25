@@ -2,7 +2,7 @@ const markerNames = {
   heel_light: 'Heel light',
   chest_proud: 'Chest proud',
   wrist_to_hip: 'Wrist to hip',
-  single_leg_control: 'Single leg',
+  single_leg_control: 'Single leg strength',
   running_economy: 'Running economy'
 };
 
@@ -201,13 +201,13 @@ export function gradeSection(record) {
     .sort((a, b) => (a.rating ?? 0) - (b.rating ?? 0))
     .map((marker) => {
       const rating = Math.max(0, Math.min(5, Number(marker.rating) || 0));
-      const track = Array.from({ length: 5 }, (_, step) =>
-        `<span class="step${step < rating ? ' on' : ''}"></span>`).join('');
+      // Five dashes made the reader count them to learn a number. Print the number.
+      const track = rating ? `${rating}<small>/5</small>` : '';
       const work = marker.support_purpose
         ? record.supportItems.filter((item) => item.purpose === marker.support_purpose)
         : [];
       const head = `<span class="focus-cue">${escapeHtml(markerNames[marker.marker] || marker.marker)}</span>
-        <span class="focus-track" aria-hidden="true">${track}</span>`;
+        <span class="focus-score">${track}</span>`;
       if (!work.length) return `<div class="focus-row">${head}</div>`;
       return `<details class="focus-row has-work">
         <summary>${head}</summary>
