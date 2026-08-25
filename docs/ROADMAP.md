@@ -66,8 +66,32 @@ Two rules that must survive implementation:
   by hitting exactly an 8, and it is never comparable between athletes.
 - **A verdict states, it never grades.** "Asked for 7 to 8, felt like 9" is a fact.
 
-**Proof:** Hope's 2026-08-25 renders outside on effort and float, inside on nothing.
-Jose's renders inside on all three. Neither needed a sentence typed by hand.
+**Done.** `public.session_verdicts` resolves all three. The float rule needed no
+invented number: the athlete's own warm-up and cool-down define what easy means for
+them that day, which is Brice's own standard said about Jose, *"the floats were
+basically your warm up / easy pace, that's a really great sign."* A float more than
+45 s/mi slower than that is rest. Jose's sat within 14 s; Hope's were 73 to 204 s
+slower.
+
+| | Reps | Pace | Floats | Effort |
+|---|---|---|---|---|
+| Hope | 0 of 4 | not prescribed | **0 of 3 honest** | **9 vs 7–8 · outside** |
+| Jose | 0 of 4 | not prescribed | 3 of 3 honest | 8 vs 7–8 · inside |
+
+Two findings fell out of building it.
+
+**Pace resolves to "not prescribed" for both, and that is correct.** The record did
+not carry a pace band that morning; 6:25 to 6:30 lived in Brice's texts. That is the
+guardrail gap he identified, now visible in the data rather than in his memory of it.
+The fix is not to backdate the band, it is to prescribe into the record going forward,
+which the block now does.
+
+**The append-only rule refused to let me fix it the easy way.** Backdating the version
+that carried the real band would have made the verdict come out, and the trigger
+blocked it. A system that lets history be adjusted so a verdict reads better is worth
+nothing. The view falls back to the *original* version when none predates filing,
+never the newest, because falling back to the newest is the retroactive-band trap
+wearing a different hat.
 
 ## 3 · Key-session entry
 
