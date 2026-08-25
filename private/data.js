@@ -541,12 +541,73 @@ export async function judgeClaim(payload) {
 
 // Moving a rung. Advancing is Brice's call, never derived from a session landing
 // in a band: an advance has to be earned, and a repeat is a decision he made.
-export async function moveCheckpoint(checkpointId, state) {
+// A rung moves two lawful ways: an authored progression rule fires on structured
+// evidence, or Brice decides. Both are recorded, permanently, in an append only
+// ledger beside the checkpoint. The current state is on the row; how it got there
+// is in the ledger.
+//
+// Automatic movements are idempotent by construction. The unique index on
+// (checkpoint, evidence, rule, rule version) makes a replayed filing a no-op, so
+// FORM's offline queue retrying an upload cannot advance a rung twice.
+const CHECKPOINT_SOURCES = ['automatic', 'coach', 'override'];
+const CHECKPOINT_DECISIONS = ['advance', 'repeatDose', 'reduce', 'replace', 'hold'];
+
+export async function moveCheckpoint(checkpointId, state, provenance = {}) {
+  const { source, decision = 'advance', reason, evidenceCompletionId, ruleId, ruleVersion } = provenance;
+  if (!CHECKPOINT_SOURCES.includes(source)) {
+    throw new Error('A rung cannot move without saying what moved it.');
+  }
+  if (!CHECKPOINT_DECISIONS.includes(decision)) {
+    throw new Error('A rung moves by advance, repeatDose, reduce, replace or hold.');
+  }
+  if (!String(reason || '').trim()) {
+    throw new Error('A rung that moves records why.');
+  }
+  if (source === 'automatic' && !(evidenceCompletionId && ruleId && ruleVersion)) {
+    throw new Error('An automatic advance names its evidence and the rule version that fired.');
+  }
+
+  const { data: { user } } = await supabase.auth.getUser();
+  const { data: before, error: readError } = await supabase
+    .from('mark_checkpoints').select('id, athlete_id, mark_id, state')
+    .eq('id', checkpointId).single();
+  if (readError) throw readError;
+
+  // The ledger first. If the movement is a replay the unique index rejects it and
+  // the checkpoint is never touched, which is what makes reprocessing safe.
+  const { error: ledgerError } = await supabase.from('mark_checkpoint_movements').insert({
+    athlete_id: before.athlete_id,
+    mark_id: before.mark_id,
+    checkpoint_id: checkpointId,
+    source,
+    decision,
+    previous_state: before.state,
+    resulting_state: state,
+    evidence_completion_id: evidenceCompletionId || null,
+    rule_id: ruleId || null,
+    rule_version: ruleVersion || null,
+    reason: String(reason).trim(),
+    moved_by: source === 'automatic' ? null : (user?.id || null)
+  });
+  if (ledgerError) {
+    // 23505 is the idempotency index doing its job: this filing already moved
+    // this rung through this rule. Not an error, and not a second movement.
+    if (ledgerError.code === '23505') return { moved: false, reason: 'already applied' };
+    throw ledgerError;
+  }
+
   const { error } = await supabase
     .from('mark_checkpoints')
-    .update({ state })
+    .update({
+      state,
+      source,
+      moved_at: new Date().toISOString(),
+      moved_by: source === 'automatic' ? null : (user?.id || null),
+      evidence_completion_id: evidenceCompletionId || null
+    })
     .eq('id', checkpointId);
   if (error) throw error;
+  return { moved: true };
 }
 
 // The bucket is private, so a stored path is not something a browser can render.

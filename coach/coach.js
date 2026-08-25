@@ -83,11 +83,19 @@ function standingConfidence(athleteId, markId) {
   return !markId || read.mark_id === markId ? read : null;
 }
 
-// The erased current states cannot be recovered, and the ones that survived came
-// partly from the old click cycling. Until Brice picks a current rung the ladder
-// is unreviewed, and nothing derived from it may be presented as trustworthy.
-function ladderReviewed(mark) {
-  return Boolean((mark?.checkpoints || []).some((point) => point.state === 'current'));
+// Provenance, not permission. A rung whose source is legacy moved before anything
+// recorded what moved it, so it is shown with that said out loud rather than
+// hidden. The program clock never waits on a review: the week advances, the next
+// session is there, and an unreviewed ladder is a note beside a number, not a
+// gate in front of one.
+function ladderProvenance(mark) {
+  const points = (mark?.checkpoints || []).filter((point) =>
+    point.state === 'reached' || point.state === 'repeated');
+  if (!points.length) return null;
+  if (points.every((point) => point.source === 'legacy')) return 'provenance not recorded';
+  if (points.some((point) => point.source === 'legacy')) return 'some rungs predate the record';
+  if (points.every((point) => point.source === 'automatic')) return 'advanced on filed evidence';
+  return null;
 }
 
 function rosterHtml() {
@@ -170,14 +178,22 @@ function doseOf(version) {
     ? `${work.repeat_count} \u00d7 ${amount}`
     : `${amount} continuous`;
   const band = [work.pace_low, work.pace_high].filter(Boolean).join('\u2013');
+  // A pace band is what makes a session proof bearing. An easy run and a long run
+  // are authored against effort, so they are real work and not evidence for this
+  // claim, and the outside condition does not apply to them.
+  const proofBearing = Boolean(band);
   const qualifiers = [];
   if (band) qualifiers.push(`${band}/${unit}`);
   else if (work.rpe_low) qualifiers.push(`RPE ${work.rpe_low}\u2013${work.rpe_high}`);
   if (work.recovery_seconds != null) {
     qualifiers.push(`${Math.floor(work.recovery_seconds / 60)}:${String(work.recovery_seconds % 60).padStart(2, '0')} ${work.recovery_kind}`);
+  } else if (work.recovery_kind === 'equal') {
+    qualifiers.push('equal recovery');
   }
-  if (selectedRecord.primaryMark?.evidence_surface_requirement === 'outdoor') qualifiers.push('outside');
-  return { line, qualifiers: qualifiers.join(' \u00b7 '), work };
+  if (proofBearing && selectedRecord.primaryMark?.evidence_surface_requirement === 'outdoor') {
+    qualifiers.push('outside');
+  }
+  return { line, qualifiers: qualifiers.join(' \u00b7 '), work, proofBearing };
 }
 
 // The runway. Every authored week with its real dates, the key race-pace session
@@ -204,12 +220,12 @@ function runwayHtml() {
     // move today.
     const isToday = week.starts_on && week.ends_on && week.starts_on <= today && today <= week.ends_on;
     const isShown = week.id === shown;
-    // The key session is the one carrying a structured race-pace dose, not the
-    // one with the largest number.
-    const key = (selectedRecord.sessionsByWeek?.[week.id] || [])
-      .map((session) => session.currentVersion)
-      .filter((version) => version && doseOf(version))[0];
-    const dose = key ? doseOf(key) : null;
+    // The key session is the proof bearing one: the dose authored against a pace
+    // band. Every session carries structure now, so "has a dose" would have made
+    // the Sunday long run the headline of most weeks.
+    const dose = (selectedRecord.sessionsByWeek?.[week.id] || [])
+      .map((session) => doseOf(session.currentVersion))
+      .filter((item) => item && item.proofBearing)[0] || null;
     return `<button class="consoleWeek${isToday ? ' consoleWeek--today' : ''}${isShown ? ' consoleWeek--shown' : ''}"
       type="button" data-week="${escapeHtml(week.id)}"
       aria-current="${isShown ? 'true' : 'false'}"
@@ -435,24 +451,20 @@ function currentRungHtml() {
   if (!mark?.checkpoints?.length) return '';
   const points = mark.checkpoints.slice().sort((a, b) => a.position - b.position);
   const current = points.find((point) => point.state === 'current');
-  const reviewed = ladderReviewed(mark);
-  const established = points.filter((point) => point.state === 'reached' || point.state === 'repeated').pop();
-  const next = points.find((point) => point.position > (current?.position ?? -1) && point.state === 'proposed');
-
-  if (!reviewed) {
-    return `<button class="consoleRungLine consoleRungLine--unreviewed" type="button" id="openLadder">
-      <span class="consoleRungLine__label">Checkpoints</span>
-      <b class="consoleRungLine__unset">not reviewed</b>
-      <em>review ladder \u203a</em>
-    </button>`;
-  }
+  const established = points.filter((point) =>
+    point.state === 'reached' || point.state === 'repeated').pop();
+  // Next is the first thing not yet proposed past whichever of the two is higher.
+  const floor = Math.max(current?.position ?? -1, established?.position ?? -1);
+  const next = points.find((point) => point.position > floor && point.state === 'proposed');
 
   return `<button class="consoleRungLine" type="button" id="openLadder">
     <span class="consoleRungLine__label">Current test</span>
-    <b>${escapeHtml(current.label)} mi</b>
+    ${current
+      ? `<b>${escapeHtml(current.label)} mi</b>`
+      : '<b class="consoleRungLine__unset">not set</b>'}
     ${established ? `<span class="consoleRungLine__label">Established</span><b class="consoleRungLine__next">${escapeHtml(established.label)} mi</b>` : ''}
-    ${next ? `<span class="consoleRungLine__label">Next proof target</span><b class="consoleRungLine__next">${escapeHtml(next.label)} mi</b>` : ''}
-    <em>change \u203a</em>
+    ${next ? `<span class="consoleRungLine__label">Next</span><b class="consoleRungLine__next">${escapeHtml(next.label)} mi</b>` : ''}
+    <em>${current ? 'change' : 'choose'} \u203a</em>
   </button>`;
 }
 
@@ -485,7 +497,7 @@ function confidenceHtml() {
   if (!mark) return '';
   const read = standingConfidence(selectedRecord.athlete.id, mark.id);
   const cover = proofCoverage(mark);
-  const reviewed = ladderReviewed(mark);
+  const provenance = ladderProvenance(mark);
 
   return `<div class="consoleInstrument consoleInstrument--confidence">
     <button class="consoleInstrument__score" type="button" id="setConfidence">
@@ -509,14 +521,13 @@ function confidenceHtml() {
   </div>
   <div class="consoleInstrument consoleInstrument--coverage">
     <span class="consoleInstrument__label">Established proof</span>
-    ${reviewed && cover
+    ${cover && cover.established > 0
       ? `<b>${escapeHtml(cover.established.toFixed(1))}<i>mi</i></b>
          <span class="consoleCoverageRail" aria-hidden="true"><i data-at="${escapeHtml(cover.percent)}"></i></span>
-         <span class="consoleInstrument__note">${escapeHtml(cover.established.toFixed(1))} of ${escapeHtml(cover.target)} mi</span>`
-      // A percentage computed from contaminated checkpoint state is a number that
-      // looks like evidence. It stays hidden until the ladder has been reviewed.
+         <span class="consoleInstrument__note">${escapeHtml(cover.established.toFixed(1))} of ${escapeHtml(cover.target)} mi</span>
+         ${provenance ? `<span class="consoleInstrument__note consoleInstrument__caveat">${escapeHtml(provenance)}</span>` : ''}`
       : `<b class="consoleInstrument__unset">\u2014</b>
-         <span class="consoleInstrument__note">Not reviewed</span>`}
+         <span class="consoleInstrument__note">Nothing established yet</span>`}
   </div>`;
 }
 
@@ -897,7 +908,11 @@ rungForm.addEventListener('submit', async (event) => {
   if (!chosen) { status.textContent = 'Pick one.'; return; }
   button.disabled = true; status.textContent = 'Saving.';
   try {
-    await moveCheckpoint(editingCheckpointId, chosen);
+    // Brice deciding by hand. The rule's own advances carry source 'automatic'
+    // and cite the filing that earned them.
+    await moveCheckpoint(editingCheckpointId, chosen, {
+      source: 'coach', decision: 'advance', reason: 'Set by hand from the ladder.'
+    });
     rungDialog.close();
     await refreshSelected(true);
   } catch (error) { status.textContent = error.message; }

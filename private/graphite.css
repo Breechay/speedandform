@@ -2064,3 +2064,6 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   text-transform: uppercase; color: var(--console-coral);
 }
 .evf-was span { margin-left: 10px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--console-muted); }
+
+/* Provenance said quietly beside the number, never in front of it. */
+.consoleInstrument__caveat { color: var(--console-muted); font-style: italic; letter-spacing: .06em; }

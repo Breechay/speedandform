@@ -1,15 +1,23 @@
 // The doctrine that is easiest to break by accident, enforced.
 //
-// A checkpoint records what Brice decided about a capability. Nothing else may
-// move it: not a judgment, not a filed session, not a correction, not a
-// synchronisation job. The danger is not that someone argues for auto-advance,
-// it is that somebody writes
+// A rung moves two lawful ways, and the system is coach GOVERNED rather than
+// coach GATED. An authored progression rule may advance a checkpoint on
+// structured evidence without waiting for Brice; Brice may decide directly. The
+// program clock never waits on a review.
 //
-//   if (direction === 'supports') advanceCheckpoint()
+// What is forbidden is a rung that moved with nothing recording what moved it.
+// That is the actual failure: accidental cycling advanced authored decisions
+// silently until a ladder with no outdoor evidence read 61 per cent proven. The
+// fix was never to ban automation, it was to make every move say who made it.
 //
-// in a hurry and it looks helpful. There is no test runner in this repo, so this
-// enforces the invariant statically, which also catches the SQL paths a unit test
-// against the client would miss.
+// This checker used to require that a rung only ever moved from a click. That
+// rule was written by an agent, not by Brice, and it would have blocked the
+// automatic progression the roadmap has always described and FORM-iOS already
+// implements as FORMV3ProgressionDecision. It is replaced, not weakened: the
+// invariant is now stronger, because a silent move fails here too.
+//
+// There is no test runner in this repo, so this enforces the invariant
+// statically, which also catches the SQL paths a unit test would miss.
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -34,6 +42,20 @@ const sanctioned = [
   'supabase/migrations/20260828200000_advance_the_ladder.sql',
   'supabase/migrations/20260829100000_ladder_matches_the_plan.sql',
   'supabase/migrations/20260829120000_ladder_is_capability.sql',
+  // Adds the provenance columns and backfills them. Never touches state.
+  'supabase/migrations/20260829180000_checkpoint_provenance.sql',
+];
+
+// A sanctioned migration may reshape the ladder or add provenance. Only the two
+// that were authored to set state are allowed to write the state column, so a
+// future schema migration cannot quietly advance a rung on its way past.
+const stateWriters = [
+  'supabase/migrations/20260824183100_seed_slice1.sql',
+  'supabase/migrations/20260825230000_round_the_ladder.sql',
+  'supabase/migrations/20260827140000_race_pace_ladder.sql',
+  'supabase/migrations/20260828200000_advance_the_ladder.sql',
+  'supabase/migrations/20260829100000_ladder_matches_the_plan.sql',
+  'supabase/migrations/20260829120000_ladder_is_capability.sql',
 ];
 
 let bad = 0;
@@ -41,7 +63,16 @@ const write = /(insert\s+into\s+(public\.)?mark_checkpoints|update\s+(public\.)?
 
 for (const file of files) {
   const relative = file.replace(/^\.\//, '');
-  if (sanctioned.includes(relative)) continue;
+  if (sanctioned.includes(relative)) {
+    if (!stateWriters.includes(relative)) {
+      const text = readFileSync(file, 'utf8');
+      if (/update\s+(public\.)?mark_checkpoints[\s\S]{0,400}?\bset\b[\s\S]{0,200}?\bstate\s*=/i.test(text)) {
+        console.error(`${relative}: writes checkpoint state, which only an authored ladder migration may do`);
+        bad++;
+      }
+    }
+    continue;
+  }
   const text = readFileSync(file, 'utf8');
   if (write.test(text)) {
     console.error(`${relative}: writes mark_checkpoints outside the sanctioned path`);
@@ -78,48 +109,53 @@ if (!/export async function moveCheckpoint/.test(data)) {
   bad++;
 }
 
-// The only way a rung moves is a click on a numeral: cycling an authored rung's
-// state, or choosing a current one where none is set. Following the call graph
-// rather than the call site matters, because a named helper between the handler
-// and the mutation is exactly how this guard would go blind.
-const desk = readFileSync('coach/coach.js', 'utf8');
-const allowedTriggers = ['data-cycle-checkpoint', 'data-set-current'];
+// Every move of a rung must name its source, and the source must be one the
+// doctrine recognises. Following the call sites rather than the UI, because the
+// rule engine will move rungs from a server path with no click anywhere near it.
+const SOURCES = ['automatic', 'coach', 'override'];
+const movers = ['coach/coach.js', 'private/data.js'];
 
-const enclosing = (text, index) => {
-  // The nearest function declaration above this position.
-  const head = text.slice(0, index);
-  const match = [...head.matchAll(/(?:async\s+)?function\s+(\w+)/g)].pop();
-  return match ? match[1] : null;
-};
-
-const movers = new Set();       // things that reach moveCheckpoint
-const callSites = [];
-for (const call of desk.matchAll(/moveCheckpoint\s*\(/g)) {
-  callSites.push(call.index);
-  const owner = enclosing(desk, call.index);
-  if (owner) movers.add(owner);
-}
-if (!callSites.length) {
-  console.error('coach/coach.js: nothing calls moveCheckpoint; the rung can no longer be moved');
-  bad++;
-}
-
-// Every way of reaching a mover must originate at an allowed trigger.
-const reached = [...movers, 'moveCheckpoint'];
-for (const name of reached) {
-  for (const use of desk.matchAll(new RegExp(`\\b${name}\\s*\\(`, 'g'))) {
-    // Skip the declaration itself.
-    if (/function\s+$/.test(desk.slice(Math.max(0, use.index - 12), use.index))) continue;
-    const owner = enclosing(desk, use.index);
-    if (owner && movers.has(owner) && owner !== name) continue;   // mover calling a mover
-    const context = desk.slice(Math.max(0, use.index - 900), use.index);
-    if (!allowedTriggers.some((trigger) => context.includes(trigger))) {
-      const line = desk.slice(0, use.index).split('\n').length;
-      console.error(`coach/coach.js:${line}: ${name} is reachable from something other than a click on a rung`);
+for (const file of movers) {
+  const text = readFileSync(file, 'utf8');
+  for (const call of text.matchAll(/moveCheckpoint\s*\(/g)) {
+    // The declaration itself is not a call site.
+    if (/(?:async\s+)?function\s+$/.test(text.slice(Math.max(0, call.index - 30), call.index))) continue;
+    const args = text.slice(call.index, call.index + 400);
+    const named = SOURCES.some((source) => args.includes(`source: '${source}'`));
+    const forwards = /provenance|\.\.\.source|source\s*[,)]/.test(args);
+    if (!named && !forwards) {
+      const line = text.slice(0, call.index).split('\n').length;
+      console.error(`${file}:${line}: a rung moves here without naming what moved it`);
       bad++;
     }
   }
 }
 
+// The guard inside moveCheckpoint is the last line of defence. If it goes, a
+// caller that forgets a source writes a rung with no provenance at all.
+if (!/CHECKPOINT_SOURCES\.includes\(source\)/.test(data)) {
+  console.error('private/data.js: moveCheckpoint no longer rejects a move with no source');
+  bad++;
+}
+if (!/moved_at/.test(data)) {
+  console.error('private/data.js: moveCheckpoint no longer stamps provenance onto the row');
+  bad++;
+}
+// The ledger is what makes automatic advancement auditable and idempotent. If
+// the write disappears, rungs move with no permanent record and a replayed
+// filing can move one twice.
+if (!/from\('mark_checkpoint_movements'\)\s*\.insert/.test(data)) {
+  console.error('private/data.js: a rung can move without writing the movement ledger');
+  bad++;
+}
+if (!/ledgerError\.code === '23505'/.test(data)) {
+  console.error('private/data.js: moveCheckpoint no longer treats a replayed filing as already applied');
+  bad++;
+}
+if (!/An automatic advance names its evidence and the rule version/.test(data)) {
+  console.error('private/data.js: an automatic advance can fire without citing evidence or a rule version');
+  bad++;
+}
+
 if (bad) { console.error(`\n${bad} contract violation(s)`); process.exit(1); }
-console.log('contract check passed: nothing but an explicit coach decision moves a rung');
+console.log('contract check passed: every rung that moves records what moved it');
