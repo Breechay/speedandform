@@ -1,16 +1,18 @@
 :root {
   color-scheme: dark;
-  --field: #0e1011;
-  --field-2: #171a1c;
-  --surface: #141718;
-  --raised: #1d2123;
-  --raised-2: #303638;
-  --edge: #2b3235;
-  --text: #f1f2ef;
-  --secondary: #a8b0b2;
-  --muted: #7f898c;
+  /* The console is an instrument on near black. The old charcoal read as a panel
+     colour once the composition stopped using panels. */
+  --field: #080b0c;
+  --field-2: #101415;
+  --surface: #101415;
+  --raised: #151a1c;
+  --raised-2: #1f2528;
+  --edge: #293033;
+  --text: #f4f5f1;
+  --secondary: #929a9c;
+  --muted: #555e61;
   --lime: #d8ff68;
-  --coral: #ff8a70;
+  --coral: #ff735f;
   --green: #76d3a4;
   --shadow: 0 24px 80px rgba(0, 0, 0, .28);
   --radius: 14px;
@@ -1653,10 +1655,17 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   align-items: baseline; padding: 5px 0;
 }
 .consoleAthleteRow__name {
-  background: none; border: 0; padding: 0; cursor: pointer; text-align: left;
-  font: inherit; font-size: 14px; font-weight: 500; color: var(--muted); letter-spacing: .01em;
+  display: flex; align-items: baseline; gap: 9px;
+  background: none; border: 0; padding: 3px 10px 3px 0; cursor: pointer; text-align: left;
+  font: inherit; font-size: 14px; font-weight: 600; color: var(--muted); letter-spacing: .03em;
+  text-transform: uppercase;
 }
-.consoleAthleteRow--selected .consoleAthleteRow__name { color: var(--text); font-weight: 700; }
+.consoleAthleteRow__name em {
+  font-style: normal; font-size: 12.5px; font-weight: 500; color: var(--muted);
+  font-variant-numeric: tabular-nums; letter-spacing: 0;
+}
+.consoleAthleteRow--selected .consoleAthleteRow__name { color: var(--text); }
+.consoleAthleteRow--selected .consoleAthleteRow__name em { color: var(--secondary); }
 .consoleAthleteRow__name:hover { color: var(--secondary); }
 .consoleAthleteRow__ladder { display: flex; gap: 16px; align-items: baseline; }
 .consoleRung {
@@ -1800,3 +1809,42 @@ button.consoleRung:hover { color: var(--text); }
   .consoleAthleteRow { grid-template-columns: 84px 1fr; }
   .consoleAthleteRow__condition { grid-column: 2; }
 }
+
+/* The current rung, stated. Unset says unset and offers the choice, because
+   falling back to the first proposed numeral would turn missing information into
+   a coaching statement. */
+.rungLine {
+  display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+  margin: 20px 0 0; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+}
+.rungLine b {
+  font-size: 15px; font-weight: 700; letter-spacing: 0; text-transform: none;
+  color: var(--text); font-variant-numeric: tabular-nums;
+}
+.rungLine b.rungLine__unset { color: var(--muted); letter-spacing: .1em; text-transform: uppercase; font-size: 11px; }
+.rungLine__next { color: var(--secondary) !important; }
+.rungLine__choose {
+  background: none; border: 0; padding: 0; cursor: pointer; font: inherit;
+  font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--lime);
+}
+
+/* Confidence history. Discrete authored readings on a date axis, and nothing
+   between them: a connecting line would draw days on which nothing was said. */
+.confHistory { margin-top: 14px; }
+.confHistory__latest { display: block; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--lime); }
+.confHistory__rail {
+  display: block; position: relative; height: 1px; margin-top: 9px;
+  width: min(320px, 100%); background: var(--edge);
+}
+.confHistory__rail i {
+  position: absolute; top: 50%; width: 7px; height: 7px; margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%; background: var(--lime);
+}
+.confHistory__rail i:not(:last-child) { background: var(--muted); }
+
+/* The runway as a ruled grid: a week header row and the key session under it. */
+.runway { border: 1px solid var(--edge); border-right: 0; }
+.rw { border: 0; border-right: 1px solid var(--edge); padding: 10px 9px 12px; }
+.rw--shown { box-shadow: inset 0 0 0 1px var(--lime); background: none; }
+.rw--today .rw-no { color: var(--lime); }
+.rw--today .rw-when { color: var(--lime); }

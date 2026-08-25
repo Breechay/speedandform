@@ -140,11 +140,15 @@ function rosterHtml() {
 
   const card = (athlete) => {
     const condition = athlete.mark?.evidence_surface_requirement === 'outdoor' ? 'OUTSIDE EVIDENCE ONLY' : '';
-    
+    // Each athlete's standing confidence, or a dash. Never a zero: zero is a
+    // statement Brice did not make.
+    const read = athlete.mark?.confidence || null;
+
     return `<div class="consoleAthleteRow${athlete.id === selectedId ? ' consoleAthleteRow--selected' : ''}">
       <button class="consoleAthleteRow__name" type="button" data-select-athlete="${escapeHtml(athlete.id)}"
         ${athlete.id === selectedId ? 'aria-current="true"' : ''}>
-        ${escapeHtml(athlete.first_name || athlete.display_name)}
+        <span>${escapeHtml(athlete.first_name || athlete.display_name)}</span>
+        <em>${read ? `${escapeHtml(read.score)}%` : '\u2014'}</em>
       </button>
       <div class="consoleAthleteRow__ladder" role="group" aria-label="Capability ladder">
         ${strip(athlete)}
@@ -290,6 +294,41 @@ function sessionInspectorHtml(session) {
   </div>`;
 }
 
+function currentRungHtml() {
+  const mark = selectedRecord.primaryMark;
+  if (!mark?.checkpoints?.length) return '';
+  const points = mark.checkpoints.slice().sort((a, b) => a.position - b.position);
+  const current = points.find((point) => point.state === 'current');
+  // Unset says unset. Falling back to the first proposed numeral would turn
+  // missing information into a coaching statement.
+  const next = points.find((point) => point.position > (current?.position ?? -1) && point.state === 'proposed');
+  return `<p class="rungLine">
+    <span>Current rung</span>
+    ${current
+      ? `<b>${escapeHtml(current.label)} mi</b>`
+      : `<b class="rungLine__unset">unset</b><button class="rungLine__choose" type="button" id="chooseCurrent">choose &rsaquo;</button>`}
+    ${next ? `<span>Next</span><b class="rungLine__next">${escapeHtml(next.label)} mi</b>` : ''}
+  </p>`;
+}
+
+// Discrete authored points only. No interpolation, no smoothing, no projection to
+// race day: a line drawn between two readings would show days on which Brice said
+// nothing.
+function confidenceHistoryHtml() {
+  const reads = (selectedRecord.confidenceReads || []).slice().reverse();
+  if (!reads.length) return '';
+  const times = reads.map((read) => new Date(read.created_at).getTime());
+  const first = Math.min(...times);
+  const span = Math.max(1, Math.max(...times) - first);
+  const latest = reads[reads.length - 1];
+  return `<div class="confHistory" role="img"
+    aria-label="${escapeHtml(reads.map((r) => `${formatDate(r.created_at)} ${r.score} per cent`).join(', '))}">
+    <span class="confHistory__latest">${escapeHtml(formatDate(latest.created_at))} \u00b7 ${escapeHtml(latest.score)}%</span>
+    <span class="confHistory__rail">${reads.map((read) =>
+      `<i style="left:${((new Date(read.created_at).getTime() - first) / span) * 100}%"></i>`).join('')}</span>
+  </div>`;
+}
+
 function confidenceHtml() {
   const mark = selectedRecord.primaryMark;
   if (!mark) return '';
@@ -310,6 +349,7 @@ function confidenceHtml() {
       ${score}
       ${goal ? `<span class="inst-goal">${escapeHtml(goal)}</span>` : ''}
     </button>
+    ${confidenceHistoryHtml()}
     ${cover ? `<div class="inst inst--coverage">
       <span class="inst-label">Proof coverage</span>
       <b>${escapeHtml(Number(cover.established.toFixed(1)))}<i>/${escapeHtml(cover.target)} mi</i></b>
@@ -348,6 +388,7 @@ function deskHtml() {
       ${confidenceHtml()}
     </div>
 
+    ${currentRungHtml()}
     ${claim ? `<p class="consoleClaim">${escapeHtml(claim)}</p>` : ''}
     ${progressionSection(selectedRecord, { interactive: true })}
 
@@ -454,6 +495,11 @@ function bindDesk() {
   }));
   bindAccountSecurity();
   document.getElementById('setConfidence')?.addEventListener('click', openConfidence);
+  document.getElementById('chooseCurrent')?.addEventListener('click', () => {
+    const first = document.querySelector('.consoleAthleteRow--selected [data-set-current], .consoleAthleteRow--selected [data-cycle-checkpoint]');
+    first?.scrollIntoView({ block: 'nearest' });
+    first?.focus();
+  });
   document.getElementById('newSession')?.addEventListener('click', () => openSession(null));
   
   // Console actions using data-console-action
