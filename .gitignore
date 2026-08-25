@@ -4,3 +4,7 @@ mockupc/media/*.orig.mp4
 
 # Local Netlify folder
 .netlify
+
+# Apple signing key + generated client secret. Never committed: publish = "." means
+# anything tracked here is downloadable from speedandform.com.
+keys/
