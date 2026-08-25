@@ -473,3 +473,21 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 .record-drawer[open] > summary::before { transform: rotate(90deg); }
 .record-drawer > summary:hover { color: var(--text); }
 .record-drawer .projection-frame { margin-top: 18px; }
+
+
+/* Her record, in his desk: the same document she reads, at desk density. */
+.her-view { margin-top: 46px; border-top: 1px solid var(--edge); padding-top: 8px; }
+.her-view .record-shell { padding: 0; }
+.her-view .record-hero h1 { font-size: 21px; }
+.her-view .record-section h2 { font-size: 15px; }
+.her-view .mark-number strong { font-size: 30px; }
+.coach-margin { margin-top: 46px; border-top: 1px solid var(--edge); padding-top: 22px; }
+
+/* A Read is the coach's sentence. It is not wrapped in a slogan. */
+.latest-read { margin: 6px 0 22px; font-size: 15px; line-height: 1.5; max-width: 58ch; }
+
+/* Week 0 reads as what was measured, not as prose written about her. */
+.baseline { display: grid; grid-template-columns: repeat(auto-fit, minmax(178px, 1fr)); gap: 22px 34px; margin: 4px 0 26px; }
+.baseline div { margin: 0; }
+.baseline dt { color: var(--muted); font-size: 11px; font-weight: 750; }
+.baseline dd { margin: 5px 0 0; font-size: 13px; line-height: 1.45; }
