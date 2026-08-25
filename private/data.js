@@ -278,3 +278,17 @@ export async function loadPublication(slug) {
   if (error) throw error;
   return data;
 }
+
+// Sign-in is passwordless, so there is no password to change. The email is the
+// identity, and Supabase confirms a change from the new address before it
+// takes effect.
+export async function changeEmail(nextEmail, returnTo = '/athlete/') {
+  const normalized = String(nextEmail || '').trim().toLowerCase();
+  if (!normalized.includes('@')) throw new Error('Enter a valid email address.');
+  const { error } = await supabase.auth.updateUser(
+    { email: normalized },
+    { emailRedirectTo: `${window.location.origin}/auth/record-callback/?return_to=${encodeURIComponent(returnTo)}` }
+  );
+  if (error) throw error;
+  return normalized;
+}

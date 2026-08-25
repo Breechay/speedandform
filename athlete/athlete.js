@@ -1,5 +1,5 @@
 import { authErrorMessage, enabledProviders, getAccessContext, sendMagicLink, signInWithApple, signOut } from '/private/auth.js';
-import { fileSession, loadAthleteRecord, updateCompletion } from '/private/data.js';
+import { changeEmail, fileSession, loadAthleteRecord, updateCompletion } from '/private/data.js';
 import { escapeHtml, renderAthleteRecord } from '/private/record.js';
 
 const app = document.getElementById('app');
@@ -9,6 +9,9 @@ const fileDialog = document.getElementById('fileDialog');
 const fileForm = document.getElementById('fileForm');
 const fileStatus = document.getElementById('fileStatus');
 const recordNav = document.getElementById('recordNav');
+const emailDialog = document.getElementById('emailDialog');
+const emailForm = document.getElementById('emailForm');
+let signedInEmail = '';
 let record = null;
 
 async function authView() {
@@ -74,11 +77,18 @@ function bindRecordActions() {
 async function renderRecord(athleteId) {
   app.innerHTML = '<div class="loading" aria-label="Loading your record"></div>';
   record = await loadAthleteRecord(athleteId);
-  app.innerHTML = renderAthleteRecord(record, { interactive: true });
+  app.innerHTML = renderAthleteRecord(record, { interactive: true, email: signedInEmail });
   bindRecordActions();
   // The record has its own nav, so the bare sign-out button steps aside.
   recordNav.hidden = false;
   signOutButton.hidden = true;
+  document.getElementById('accountSignOut')?.addEventListener('click', signOut);
+  document.getElementById('changeEmail')?.addEventListener('click', () => {
+    emailForm.reset();
+    const status = document.getElementById('emailStatus');
+    status.textContent = ''; status.className = 'status-message';
+    emailDialog.showModal();
+  });
 }
 
 fileDialog.querySelectorAll('[data-close-dialog]').forEach((button) => button.addEventListener('click', () => fileDialog.close()));
@@ -120,7 +130,8 @@ async function boot() {
     const access = await getAccessContext();
     if (!access.session) { await authView(); return; }
     document.body.classList.remove('auth-only');
-    userEmail.textContent = access.session.user.email || '';
+    signedInEmail = access.session.user.email || '';
+    userEmail.textContent = signedInEmail;
     signOutButton.hidden = false;
     if (!access.athleteMemberships.length && access.coachMemberships.length) { window.location.replace('/coach/'); return; }
     if (!access.athleteMemberships.length) { pendingView(access.session.user.email || 'This account'); return; }
@@ -132,3 +143,19 @@ async function boot() {
 }
 
 boot();
+
+emailDialog.querySelectorAll('[data-close-dialog]').forEach((button) => button.addEventListener('click', () => emailDialog.close()));
+emailForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const status = document.getElementById('emailStatus');
+  const submit = emailForm.querySelector('button[type="submit"]');
+  submit.disabled = true; status.className = 'status-message'; status.textContent = 'Sending the confirmation\u2026';
+  try {
+    const next = await changeEmail(new FormData(emailForm).get('email'));
+    status.textContent = `Check ${next}. The change takes effect once you confirm it.`;
+    status.className = 'status-message success';
+  } catch (error) {
+    status.textContent = error.message || 'That email could not be saved.';
+    status.className = 'status-message error'; submit.disabled = false;
+  }
+});

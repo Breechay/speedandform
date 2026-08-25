@@ -138,7 +138,23 @@ function recordSection(record) {
   </section>`;
 }
 
-export function renderAthleteRecord(record, { interactive = false, projection = false } = {}) {
+
+function accountSection(record, email, interactive) {
+  const athlete = record.athlete;
+  const block = record.block;
+  return `<section class="record-section account-section" id="account">
+    <div class="section-head"><div><p class="eyebrow">Account</p><h2>${escapeHtml(athlete.display_name)}</h2></div></div>
+    <div class="account-rows">
+      <div class="account-row"><span>Signed in as</span><b>${escapeHtml(email || '—')}</b></div>
+      <div class="account-row"><span>Coaching</span><b>${escapeHtml(athlete.account_label)}</b></div>
+      ${block ? `<div class="account-row"><span>Block</span><b>Week ${escapeHtml(block.current_week)} of ${escapeHtml(block.total_weeks)}</b></div>` : ''}
+    </div>
+    <p class="account-note">You sign in with a link, so there is no password to keep.</p>
+    ${interactive ? `<div class="account-actions"><button class="button" type="button" id="changeEmail">Change email</button><button class="button quiet" type="button" id="accountSignOut">Sign out</button></div>` : ''}
+  </section>`;
+}
+
+export function renderAthleteRecord(record, { interactive = false, projection = false, email = '' } = {}) {
   const athlete = record.athlete;
   const block = record.block;
   const week = record.currentWeek;
@@ -155,6 +171,6 @@ export function renderAthleteRecord(record, { interactive = false, projection = 
     ${readSection(record)}
     ${supportSection(record)}
     ${recordSection(record)}
-    <footer class="account-band" id="account"><span>${escapeHtml(athlete.account_label)}</span><span>Private coaching record</span></footer>
+    ${accountSection(record, email, interactive)}
   </div>`;
 }
