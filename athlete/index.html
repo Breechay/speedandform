@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#141718">
   <title>Your record · FORM</title>
-  <link rel="stylesheet" href="/private/graphite.css?v=4">
+  <link rel="stylesheet" href="/private/graphite.css?v=8">
 </head>
 <body>
   <a class="skip-link" href="#app">Skip to your record</a>
@@ -75,6 +75,14 @@
       <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Save to the record <span class="icon-arrow">→</span></button></div>
     </form>
   </dialog>
-  <script type="module" src="/athlete/athlete.js?v=4"></script>
+  <dialog class="dialog" id="emailDialog">
+    <form class="dialog-inner" id="emailForm">
+      <div class="dialog-head"><div><p class="eyebrow">Account</p><h2>Change your email</h2></div><button class="dialog-close" type="button" data-close-dialog aria-label="Close">&times;</button></div>
+      <div class="form-grid"><label class="field-label">New email address<input class="field-input" type="email" name="email" autocomplete="email" required placeholder="you@example.com"><small class="field-hint">We send a confirmation to the new address. Your record stays linked either way.</small></label></div>
+      <p class="status-message" id="emailStatus" role="status"></p>
+      <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Send confirmation <span class="icon-arrow">&rarr;</span></button></div>
+    </form>
+  </dialog>
+  <script type="module" src="/athlete/athlete.js?v=8"></script>
 </body>
 </html>
