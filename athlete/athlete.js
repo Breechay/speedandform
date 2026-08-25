@@ -57,7 +57,7 @@ function bindRecordActions() {
     fileForm.reset();
     fileForm.elements.plannedSessionId.value = button.dataset.fileSession;
     fileForm.elements.completionId.value = completion?.id || '';
-    document.getElementById('fileTitle').textContent = completion ? 'Update your session' : 'File this session';
+    document.getElementById('fileTitle').textContent = completion ? 'Update this run' : 'How did it go?';
     document.getElementById('evidenceField').hidden = Boolean(completion);
     fileStatus.textContent = ''; fileStatus.className = 'status-message';
     if (completion) {
@@ -128,16 +128,16 @@ fileForm.addEventListener('submit', async (event) => {
     recoveredNextDay: recovery === '' ? null : recovery === 'yes',
     athleteNote: data.get('athleteNote'), stravaUrl: data.get('stravaUrl')
   };
-  submit.disabled = true; fileStatus.textContent = 'Saving your session…'; fileStatus.className = 'status-message';
+  submit.disabled = true; fileStatus.textContent = 'Saving…'; fileStatus.className = 'status-message';
   try {
     const completionId = data.get('completionId');
     if (completionId) await updateCompletion(completionId, payload);
     else await fileSession(payload, data.get('evidence')?.size ? data.get('evidence') : null);
-    fileStatus.textContent = 'Saved. Your record has moved forward.'; fileStatus.className = 'status-message success';
+    fileStatus.textContent = 'Saved.'; fileStatus.className = 'status-message success';
     await renderRecord(record.athlete.id);
     fileDialog.close();
   } catch (error) {
-    fileStatus.textContent = error.message || 'The session could not be saved.'; fileStatus.className = 'status-message error'; submit.disabled = false;
+    fileStatus.textContent = error.message || 'That could not be saved.'; fileStatus.className = 'status-message error'; submit.disabled = false;
   }
 });
 

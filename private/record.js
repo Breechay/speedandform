@@ -117,7 +117,7 @@ export function weekSection(record, { interactive = false, shownWeekId = null } 
       <b>${sessions.length}</b><span>runs</span>
       <b>${Number(plannedTotal.toFixed(1))}</b><span>mi</span>
       <b>${Number(longest.toFixed(1))}</b><span>longest</span>
-      ${actualTotal > 0 ? `<em>${Number(actualTotal.toFixed(1))} filed</em>` : ''}
+      ${actualTotal > 0 ? `<em>${Number(actualTotal.toFixed(1))} done</em>` : ''}
     </div>
     ${week?.intent ? `<p class="wk-intent">${escapeHtml(week.intent)}</p>` : ''}
     <div class="week-days">${sessions.map((item) => {
@@ -131,7 +131,7 @@ export function weekSection(record, { interactive = false, shownWeekId = null } 
         <span class="day-name">${escapeHtml(item.session.day_label)}</span>
         <span class="day-figure">${escapeHtml(filed ? item.actual : item.planned)}<i>mi</i></span>
         <span class="day-title">${escapeHtml(item.version.title || '')}</span>
-        ${note ? `<p class="day-note">${escapeHtml(note)}</p>` : `<p class="day-add">${interactive ? 'Tap to file' : 'Add instructions'}</p>`}
+        ${note ? `<p class="day-note">${escapeHtml(note)}</p>` : `<p class="day-add">${interactive ? 'Log it' : 'Add instructions'}</p>`}
       </div>`;
     }).join('')}</div>
   </section>`;
@@ -229,8 +229,8 @@ export function supportSection(record) {
 export function recordSection(record, { limit = 0 } = {}) {
   const events = [];
   record.completions.forEach((item) => events.push({
-    type: 'Filed', date: item.filed_at,
-    body: `${item.actual_distance ? `${item.actual_distance} ${item.distance_unit || ''} \u00b7 ` : ''}${item.status}${item.athlete_note ? ` \u2014 ${item.athlete_note}` : ''}`
+    type: item.status.charAt(0).toUpperCase() + item.status.slice(1), date: item.filed_at,
+    body: `${item.actual_distance ? `${item.actual_distance} ${item.distance_unit || ''}` : ''}${item.athlete_note ? `${item.actual_distance ? ' \u2014 ' : ''}${item.athlete_note}` : ''}`
   }));
   record.reads.forEach((item) => events.push({ type: 'Reply', date: item.published_at || item.created_at, body: item.athlete_text }));
   record.decisions.forEach((item) => events.push({ type: 'Change', date: item.effective_on, body: item.athlete_text }));
