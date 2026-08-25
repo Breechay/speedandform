@@ -110,13 +110,20 @@ function gradeSection(record) {
   return grade ? `<section class="record-section crop" id="read"><p class="eyebrow">Movement</p>${grade}</section>` : '';
 }
 
+const gradeOrder = ['not_yet', 'holds_until_tired', 'holds'];
+
 function gradeHtml(record) {
   if (!record.movementReads.length) return '';
-  return `<div class="grade">${record.movementReads.map((marker) => `<div class="grade-row ${escapeHtml(marker.state)}">
-    <b>${escapeHtml(markerNames[marker.marker] || marker.marker)}</b>
-    <span class="grade-state">${escapeHtml(gradeStates[marker.state] || marker.state)}</span>
-    <small>${escapeHtml(marker.cue)}</small>
-  </div>`).join('')}</div>`;
+  return `<div class="grade">${record.movementReads.map((marker) => {
+    const index = gradeOrder.indexOf(marker.state);
+    const steps = gradeOrder.map((_, position) => `<span class="step${position <= index ? ' on' : ''}"></span>`).join('');
+    return `<div class="grade-row ${escapeHtml(marker.state)}">
+      <b>${escapeHtml(markerNames[marker.marker] || marker.marker)}</b>
+      <span class="grade-track" role="img" aria-label="${escapeHtml(gradeStates[marker.state] || marker.state)}">${steps}</span>
+      <span class="grade-state">${escapeHtml(gradeStates[marker.state] || marker.state)}</span>
+      <small>${escapeHtml(marker.cue)}</small>
+    </div>`;
+  }).join('')}</div>`;
 }
 
 function supportSection(record) {
@@ -155,9 +162,10 @@ function recordSection(record) {
       <div><dt>Constraints</dt><dd>${escapeHtml(baseline.constraints)}</dd></div>
     </dl>` : ''}
     <div class="record-list">${events.map((event) => `<article class="record-event">
-      <div class="record-event-top"><span class="record-event-type">${escapeHtml(event.type)}</span><time>${formatDate(event.date)}</time></div>
+      <time>${escapeHtml(formatDate(event.date))}</time>
+      <span class="event-type ${escapeHtml(event.type.toLowerCase())}">${escapeHtml(event.type)}</span>
       <p>${escapeHtml(event.body)}</p>
-    </article>`).join('') || '<p class="muted">The first filed session begins the record.</p>'}</div>
+    </article>`).join('') || '<p class="muted">Nothing filed yet.</p>'}</div>
   </section>`;
 }
 

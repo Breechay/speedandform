@@ -44,6 +44,47 @@ A section header names the section. It does not describe what the section is for
 
 If a heading needs a subtitle explaining it, the heading is wrong.
 
+## 3b. No definite article over an abstract noun
+
+**Banned outright:** "The mark", "The read", "The record", "The work".
+
+Each names a *concept* where the thing itself is already on screen. The reader
+decodes a label to reach content that was speaking for itself. It is the same
+failure as `Object` as a field name, and the same failure as "Coach margin" —
+naming the system's idea of a thing instead of the thing.
+
+Say what it is, or say nothing:
+
+| Banned | Now |
+|---|---|
+| The mark | *(nothing — "Longest continuous distance" names itself)* |
+| The read | Movement |
+| The record | History |
+| Coach margin | *(nothing — the buttons say what they do)* |
+
+A section label earns its place only when the content is ambiguous without it.
+Most are not.
+
+## 3c. Acts are verbs, not object names
+
+A button says what pressing it does, in the coach's language, never the name of
+a row that gets written.
+
+| Banned | Now |
+|---|---|
+| Write the Read | Respond |
+| Write the Direction | Set the plan |
+| Write the Decision | Decide |
+| Direction · before the run | Before the run |
+
+## 3d. Nothing demands anything on arrival
+
+A standing call to action that fires every time a surface opens is nagging, not
+coaching. Brice opens an athlete to *see how her week is going* — not to be
+handed a task.
+
+Attention annotates the thing it concerns. It never becomes the headline.
+
 ## 4. No copy that must be decoded
 
 Plain, direct, and useful. If a sentence needs a beat of translation before the
