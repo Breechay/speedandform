@@ -679,3 +679,10 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   .record-event { grid-template-columns: 54px minmax(0, 1fr); row-gap: 4px; }
   .record-event p { grid-column: 1 / -1; }
 }
+
+/* The lit dots carry the progress; the fill is a connector, not the story. So
+   the first rung reading 0% is correct rather than broken. */
+.mark-crop .mark-name { margin-top: 18px; }
+.mark-crop .bar-figure { margin-bottom: 22px; }
+.grade-row { padding: 15px 0; }
+.grade-row small { margin-top: 2px; }
