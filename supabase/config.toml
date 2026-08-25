@@ -243,15 +243,28 @@ otp_length = 6
 # Number of seconds before the email OTP expires (defaults to 1 hour).
 otp_expiry = 3600
 
-# Use a production-ready SMTP server
+# Production SMTP.
+#
+# Required before any email-template change: the hosted project refuses
+# template edits on the free tier while it uses the built-in mail provider.
+# It also lifts the built-in rate limit of a few sends per hour, which four
+# athletes signing in will otherwise hit.
+#
+# IMPORTANT — speedandform.com receives mail through Cloudflare Email Routing
+# (MX route1/2/3.mx.cloudflare.net, SPF include:_spf.mx.cloudflare.net).
+# Verify the sending provider on a SUBDOMAIN (send.speedandform.com) so the
+# root MX and SPF are left alone. Adding a second root SPF include, or
+# replacing the existing one, breaks inbound mail.
+#
+# Fill the key in as an environment variable; never commit the secret.
 # [auth.email.smtp]
 # enabled = true
-# host = "smtp.sendgrid.net"
+# host = "smtp.resend.com"
 # port = 587
-# user = "apikey"
-# pass = "env(SENDGRID_API_KEY)"
-# admin_email = "admin@email.com"
-# sender_name = "Admin"
+# user = "resend"
+# pass = "env(RESEND_API_KEY)"
+# admin_email = "no-reply@send.speedandform.com"
+# sender_name = "FORM"
 
 # Uncomment to customize email template
 # [auth.email.template.invite]
