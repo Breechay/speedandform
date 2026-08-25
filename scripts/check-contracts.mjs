@@ -78,15 +78,47 @@ if (!/export async function moveCheckpoint/.test(data)) {
   bad++;
 }
 
-// And the only caller in the UI is the rung the coach clicked.
+// The only way a rung moves is a click on a numeral: cycling an authored rung's
+// state, or choosing a current one where none is set. Following the call graph
+// rather than the call site matters, because a named helper between the handler
+// and the mutation is exactly how this guard would go blind.
 const desk = readFileSync('coach/coach.js', 'utf8');
-const calls = [...desk.matchAll(/moveCheckpoint\s*\(/g)];
-if (calls.length !== 1) {
-  console.error(`coach/coach.js: moveCheckpoint called ${calls.length} times; expected exactly one, from the rung click`);
+const allowedTriggers = ['data-cycle-checkpoint', 'data-set-current'];
+
+const enclosing = (text, index) => {
+  // The nearest function declaration above this position.
+  const head = text.slice(0, index);
+  const match = [...head.matchAll(/(?:async\s+)?function\s+(\w+)/g)].pop();
+  return match ? match[1] : null;
+};
+
+const movers = new Set();       // things that reach moveCheckpoint
+const callSites = [];
+for (const call of desk.matchAll(/moveCheckpoint\s*\(/g)) {
+  callSites.push(call.index);
+  const owner = enclosing(desk, call.index);
+  if (owner) movers.add(owner);
+}
+if (!callSites.length) {
+  console.error('coach/coach.js: nothing calls moveCheckpoint; the rung can no longer be moved');
   bad++;
-} else if (!/data-checkpoint[\s\S]{0,400}?moveCheckpoint\s*\(/.test(desk)) {
-  console.error('coach/coach.js: moveCheckpoint is no longer reached from the rung click');
-  bad++;
+}
+
+// Every way of reaching a mover must originate at an allowed trigger.
+const reached = [...movers, 'moveCheckpoint'];
+for (const name of reached) {
+  for (const use of desk.matchAll(new RegExp(`\\b${name}\\s*\\(`, 'g'))) {
+    // Skip the declaration itself.
+    if (/function\s+$/.test(desk.slice(Math.max(0, use.index - 12), use.index))) continue;
+    const owner = enclosing(desk, use.index);
+    if (owner && movers.has(owner) && owner !== name) continue;   // mover calling a mover
+    const context = desk.slice(Math.max(0, use.index - 900), use.index);
+    if (!allowedTriggers.some((trigger) => context.includes(trigger))) {
+      const line = desk.slice(0, use.index).split('\n').length;
+      console.error(`coach/coach.js:${line}: ${name} is reachable from something other than a click on a rung`);
+      bad++;
+    }
+  }
 }
 
 if (bad) { console.error(`\n${bad} contract violation(s)`); process.exit(1); }

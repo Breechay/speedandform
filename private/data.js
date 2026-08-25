@@ -105,7 +105,8 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     ...mark,
     signals: result(signalsResponse.data, signalsResponse.error).filter((item) => item.mark_id === mark.id),
     checkpoints: result(checkpointsResponse.data, checkpointsResponse.error).filter((item) => item.mark_id === mark.id),
-    gates: result(gatesResponse.data, gatesResponse.error).filter((item) => item.mark_id === mark.id)
+    gates: result(gatesResponse.data, gatesResponse.error).filter((item) => item.mark_id === mark.id),
+    evidence_surface_requirement: mark.evidence_surface_requirement || 'any'
   }));
 
   const task = taskResponse?.data || null;

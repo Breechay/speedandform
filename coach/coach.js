@@ -1,6 +1,6 @@
 import { bindAccountSecurity, authErrorMessage, getAccessContext, renderDoorway, signOut } from '/private/auth.js';
 import { addPrivateNote, authorSession, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask, reviseSession } from '/private/data.js';
-import { escapeHtml, evidenceSection, formatDate, progressionSection, gradeSection, weekSection, whoSection } from '/private/record.js';
+import { escapeHtml, evidenceSection, formatDate, progressionSection, gradeSection, whoSection } from '/private/record.js';
 
 // Account states only. The desk no longer labels athletes by a stored state —
 // the queue is derived from the record.
@@ -60,35 +60,105 @@ function pendingView(email) {
 function initials(name) { return String(name || '').split(/\s+/).map((part) => part[0]).join('').slice(0, 2).toUpperCase(); }
 
 function rosterHtml() {
-  // Orientation, not ranking. Hope, Jose and Marcus share one claim so they share
-  // one geometry and the eye reads them together. Nothing here says ahead or
-  // behind, and nothing derives a rung from how far anyone has run.
-  const shared = (athlete) => (athlete.mark?.checkpoints || []).length
-    && !(athlete.mark?.checkpoints || []).some((point) => Number(point.value) === 3);
+  // Orientation, not ranking. Athletes are grouped by their checkpoint geometry,
+  // not by magic numbers or hardcoded names.
+  const getGeometryKey = (athlete) => {
+    const checkpoints = (athlete.mark?.checkpoints || [])
+      .slice().sort((a, b) => a.position - b.position)
+      .map((point) => `${point.position}-${point.value}`)
+      .join(',');
+    return checkpoints;
+  };
 
-  const strip = (athlete) => (athlete.mark?.checkpoints || [])
-    .slice().sort((a, b) => a.position - b.position)
-    .map((point) => {
+  const strip = (athlete) => {
+    const checkpoints = (athlete.mark?.checkpoints || [])
+      .slice().sort((a, b) => a.position - b.position);
+    
+    // Check if this athlete has a current rung
+    const hasCurrent = checkpoints.some((point) => point.state === 'current');
+    const isSelected = athlete.id === selectedId;
+    
+    // Non-selected athletes get read-only numerals
+    if (!isSelected) {
+      return checkpoints.map((point) => {
+        const stateClass = point.state === 'proposed' ? 'consoleRung--proposed' 
+          : point.state === 'reached' || point.state === 'repeated' ? 'consoleRung--held'
+          : point.state === 'current' ? 'consoleRung--current'
+          : point.state === 'retired' ? 'consoleRung--retired' : '';
+        return `<span class="consoleRung ${stateClass}">${escapeHtml(point.label)}</span>`;
+      }).join('') || '<em>no ladder yet</em>';
+    }
+    
+    // Selected athlete - may be in choosing mode or normal mode
+    let rungButtons = checkpoints.map((point) => {
       // Lime is spent once per composition. Four athletes each showing a lime
       // numeral is four, so only the selected athlete's current rung gets it.
+      // Lime is spent once per composition, so only the selected athlete's
+      // current rung carries it. Other athletes' current rungs stay legible in
+      // text, never by colour alone.
       const lit = point.state === 'current' && athlete.id === selectedId;
-      return `<span class="sq-rung ${escapeHtml(point.state)}${lit ? ' lit' : ''}">${escapeHtml(point.label)}</span>`;
+      const stateClass = point.state === 'proposed' ? 'consoleRung--proposed' 
+        : point.state === 'reached' || point.state === 'repeated' ? 'consoleRung--held'
+        : point.state === 'current' ? 'consoleRung--current'
+        : point.state === 'retired' ? 'consoleRung--retired' : '';
+      
+      // If athlete is in choosing mode (no current), make rungs clickable for selection
+      const label = `${escapeHtml(point.label)} miles, ${escapeHtml(point.state)}`;
+
+      // Another athlete's ladder is orientation. It carries no handler, so a
+      // stray click can never move a rung on a record that is not open.
+      if (athlete.id !== selectedId) {
+        return `<span class="consoleRung ${stateClass}" role="img" aria-label="${label}">${escapeHtml(point.label)}</span>`;
+      }
+
+      // With no current rung authored, every numeral becomes the choice. Nothing
+      // is inferred and nothing is pre-lit.
+      if (!hasCurrent) {
+        return `<button class="consoleRung ${stateClass} consoleRung--choosable"
+          type="button" data-set-current="${escapeHtml(point.id)}"
+          aria-label="Set ${escapeHtml(point.label)} miles as current">${escapeHtml(point.label)}</button>`;
+      }
+
+      return `<button class="consoleRung ${stateClass}${lit ? ' consoleRung--lit' : ''}"
+        type="button" data-cycle-checkpoint="${escapeHtml(point.id)}" data-state="${escapeHtml(point.state)}"
+        aria-label="${label}">${escapeHtml(point.label)}</button>`;
     }).join('');
+    
+    // Lime goes to the instruction rather than to a guessed numeral.
+    if (!hasCurrent && athlete.id === selectedId) {
+      rungButtons += `<span class="consoleRung__instruction">CHOOSE CURRENT</span>`;
+    }
+    
+    return rungButtons || '<em>no ladder yet</em>';
+  };
 
-  const card = (athlete) => `<button class="sq" type="button" data-athlete-id="${escapeHtml(athlete.id)}"
-    ${athlete.id === selectedId ? 'aria-current="true"' : ''}>
-    <span class="sq-name">${escapeHtml(athlete.first_name || athlete.display_name)}</span>
-    <span class="sq-ladder">${strip(athlete) || '<em>no ladder yet</em>'}</span>
-    <span class="sq-note">${athlete.home_surface === 'form' && /outside/i.test(athlete.mark?.claim || '')
-      ? 'outside counts' : ''}</span>
-  </button>`;
+  const card = (athlete) => {
+    const condition = athlete.mark?.evidence_surface_requirement === 'outdoor' ? 'OUTSIDE EVIDENCE ONLY' : '';
+    
+    return `<div class="consoleAthleteRow${athlete.id === selectedId ? ' consoleAthleteRow--selected' : ''}">
+      <button class="consoleAthleteRow__name" type="button" data-select-athlete="${escapeHtml(athlete.id)}"
+        ${athlete.id === selectedId ? 'aria-current="true"' : ''}>
+        ${escapeHtml(athlete.first_name || athlete.display_name)}
+      </button>
+      <div class="consoleAthleteRow__ladder" role="group" aria-label="Capability ladder">
+        ${strip(athlete)}
+      </div>
+      <span class="consoleAthleteRow__condition">${condition}</span>
+    </div>`;
+  };
 
-  // Natalie's question is a different one, so her row is separated by space
-  // rather than a rule. A rule would read as a section boundary.
-  const together = roster.filter(shared);
-  const apart = roster.filter((athlete) => !shared(athlete));
-  return `${together.map(card).join('')}${apart.length
-    ? `<div class="sq-apart">${apart.map(card).join('')}</div>` : ''}`;
+  // Group athletes by their checkpoint geometry, sort by group size descending
+  const geometryGroups = new Map();
+  roster.forEach((athlete) => {
+    const key = getGeometryKey(athlete);
+    if (!geometryGroups.has(key)) geometryGroups.set(key, []);
+    geometryGroups.get(key).push(athlete);
+  });
+
+  const groups = [...geometryGroups.values()].sort((a, b) => b.length - a.length);
+  return `<section class="consoleSquad">${groups.map((group, index) => 
+    `${index > 0 ? '<div class="consoleSquad__apart">' : ''}${group.map(card).join('')}${index > 0 ? '</div>' : ''}`
+  ).join('')}</section>`;
 }
 
 function athleteMenuHtml() {
@@ -103,7 +173,7 @@ function athleteMenuHtml() {
       <button class="control-item" id="setPassword" type="button">Set a password</button>
       <button class="control-item" id="linkApple" type="button" hidden>Link Apple</button>
       <button class="control-item" id="newSession" type="button">Add a session</button>
-      <button class="control-item" id="fileRun" type="button">File a run</button>
+      <button class="control-item" data-console-action="file-run" type="button">File a run</button>
       <button class="control-item" id="addPrivateNote" type="button">Add a private note</button>
       <button class="control-item" id="shareExcerpt" type="button">Create a share card</button>
     </div>
@@ -111,21 +181,52 @@ function athleteMenuHtml() {
 }
 
 function deskHtml() {
-  // Two columns, because comparison needs two things in view at once and this is
-  // read on a laptop. The instrument sits left: where she is, where she is going,
-  // whether it is becoming believable. The session under the glass sits right,
-  // where the screenshot it was read from can sit beside the reading.
-  return `<section class="desk-main" id="deskMain">
-    <div class="squad" id="squadStrip"></div>
-    <div class="board">
-      <div class="board-main">
-        <div class="who-row">${whoSection(selectedRecord)}${athleteMenuHtml()}</div>
-        ${progressionSection(selectedRecord, { interactive: true })}
-        ${weekSection(selectedRecord, { shownWeekId })}
-        ${gradeSection(selectedRecord)}
+  // One typographic instrument on a flat graphite field.
+  const mark = selectedRecord.primaryMark;
+  const claim = mark?.claim || mark?.current_question || '';
+  
+  // Check action availability
+  const hasCompletion = selectedRecord.completions?.length > 0;
+  const latestCompletion = selectedRecord.completions?.[0];
+  // Use the same evidence relationship as evidenceSection
+  const hasEvidence = latestCompletion && (selectedRecord.evidenceFiles || []).some((file) => file.completion_id === latestCompletion.id);
+  
+  // Check for coaching sentence - use the most recent published read or direction
+  const coachingSentence = (() => {
+    const allCoaching = [
+      ...(selectedRecord.directions || []).filter((d) => d.delivery_state === 'published'),
+      ...(selectedRecord.reads || []).filter((r) => r.delivery_state === 'published')
+    ].sort((a, b) => new Date(b.published_at || b.created_at) - new Date(a.published_at || a.created_at));
+    return allCoaching[0]?.athlete_text || '';
+  })();
+  
+  return `<section class="coachConsole" id="deskMain">
+    <div id="squadStrip"></div>
+    <div class="consoleStage">
+      <!-- Athlete header with menu -->
+      <div class="consoleAthleteHeader">
+        ${whoSection(selectedRecord)}
+        ${athleteMenuHtml()}
       </div>
-      <div class="board-side">
-        ${evidenceSection(selectedRecord, { interactive: true })}
+      
+      <!-- Claim -->
+      ${claim ? `<p class="consoleClaim">${escapeHtml(claim)}</p>` : ''}
+      
+      <!-- Orientation: current, next, coming -->
+      ${progressionSection(selectedRecord, { interactive: true })}
+      
+      <!-- Latest session -->
+      ${evidenceSection(selectedRecord, { interactive: true })}
+      
+      <!-- Coaching sentence -->
+      ${coachingSentence ? `<p class="consoleCoachSentence">${escapeHtml(coachingSentence)}</p>` : ''}
+      
+      <!-- Actions -->
+      <div class="consoleActions">
+        <button type="button" data-console-action="file-run">FILE A RUN</button>
+        ${hasCompletion ? `<button type="button" data-console-action="correct-entry" data-completion-id="${escapeHtml(latestCompletion.id)}">CORRECT ENTRY</button>` : ''}
+        ${hasCompletion ? `<button type="button" data-console-action="judge" data-completion-id="${escapeHtml(latestCompletion.id)}">SAY WHAT THIS DID</button>` : ''}
+        ${hasEvidence ? `<button type="button" data-console-action="source-image" data-completion-id="${escapeHtml(latestCompletion.id)}">SOURCE IMAGE</button>` : ''}
       </div>
     </div>
   </section>`;
@@ -134,9 +235,22 @@ function deskHtml() {
 function paintRoster() {
   const needing = roster.filter((entry) => entry.topItem).length;
   document.getElementById('rosterCount').textContent = needing ? `${needing} need you` : 'Nothing waiting';
-  document.getElementById('rosterList').innerHTML = rosterHtml();
+  document.getElementById('rosterList').innerHTML = rosterDrawerHtml();
   document.getElementById('rosterList').querySelectorAll('[data-athlete-id]').forEach((button) =>
     button.addEventListener('click', () => { closeRoster(); selectAthlete(button.dataset.athleteId); }));
+}
+
+function rosterDrawerHtml() {
+  // Simplified roster drawer - just athlete names for selection
+  return roster.map((athlete) => `<button class="athlete-button${athlete.id === selectedId ? ' active' : ''}" 
+    type="button" data-athlete-id="${escapeHtml(athlete.id)}"
+    ${athlete.id === selectedId ? 'aria-current="true"' : ''}>
+    <div class="avatar">${initials(athlete.first_name || athlete.display_name)}</div>
+    <div class="athlete-list-copy">
+      <b>${escapeHtml(athlete.first_name || athlete.display_name)}</b>
+      <small>${escapeHtml(athlete.account_label || 'Athlete')}</small>
+    </div>
+  </button>`).join('');
 }
 
 function openRoster() {
@@ -157,11 +271,39 @@ function closeRoster() {
 function paintSquad() {
   // Always on the desk, not behind a drawer. The strip is orientation, and
   // orientation you have to open is not orientation.
-  const strip = document.getElementById('squadStrip');
-  if (!strip) return;
-  strip.innerHTML = rosterHtml();
-  strip.querySelectorAll('[data-athlete-id]').forEach((button) =>
-    button.addEventListener('click', () => selectAthlete(button.dataset.athleteId)));
+  const squadContainer = document.getElementById('squadStrip');
+  if (!squadContainer) return;
+  squadContainer.innerHTML = rosterHtml();
+  
+  // Bind athlete selection once here
+  squadContainer.querySelectorAll('[data-select-athlete]').forEach((button) =>
+    button.addEventListener('click', () => selectAthlete(button.dataset.selectAthlete)));
+  
+  // Bind set-current for choosing mode
+  squadContainer.querySelectorAll('[data-set-current]').forEach((button) =>
+    button.addEventListener('click', async () => {
+      button.disabled = true;
+      try {
+        await setAsCurrent(button.dataset.setCurrent);
+      } catch (error) {
+        button.disabled = false;
+        window.alert(error.message);
+      }
+    }));
+  
+  // Bind checkpoint cycling for normal mode
+  squadContainer.querySelectorAll('[data-cycle-checkpoint]').forEach((button) =>
+    button.addEventListener('click', async () => {
+      button.disabled = true;
+      try {
+        const nextState = { proposed: 'current', current: 'reached', reached: 'repeated', repeated: 'proposed', retired: 'proposed' };
+        await moveCheckpoint(button.dataset.cycleCheckpoint, nextState[button.dataset.state] || 'current');
+        await refreshSelected(true);
+      } catch (error) {
+        button.disabled = false;
+        window.alert(error.message);
+      }
+    }));
 }
 
 function bindDesk() {
@@ -182,19 +324,23 @@ function bindDesk() {
   }));
   bindAccountSecurity();
   document.getElementById('newSession')?.addEventListener('click', () => openSession(null));
-  document.getElementById('fileRun')?.addEventListener('click', () => openFile(''));
+  
+  // Console actions using data-console-action
+  app.querySelectorAll('[data-console-action]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const action = button.dataset.consoleAction;
+      if (action === 'file-run') openFile('');
+      else if (action === 'correct-entry' && button.dataset.completionId) openFile('', button.dataset.completionId);
+      else if (action === 'judge' && button.dataset.completionId) openJudge(button.dataset.completionId);
+      else if (action === 'source-image' && button.dataset.completionId) {
+        // Find the evidence details for this specific completion
+        const evidenceDetails = document.querySelector(`.ev-source[data-completion-id="${button.dataset.completionId}"]`);
+        if (evidenceDetails) evidenceDetails.open = !evidenceDetails.open;
+      }
+    });
+  });
+  
   // Revise and file from the session itself, so the coach never re-finds it.
-  const nextState = { proposed: 'current', current: 'reached', reached: 'repeated', repeated: 'proposed', retired: 'proposed' };
-  app.querySelectorAll('[data-checkpoint]').forEach((button) =>
-    button.addEventListener('click', async () => {
-      button.disabled = true;
-      try {
-        await moveCheckpoint(button.dataset.checkpoint, nextState[button.dataset.state] || 'current');
-        await refreshSelected(true);
-      } catch (error) { button.disabled = false; window.alert(error.message); }
-    }));
-  app.querySelectorAll('[data-judge]').forEach((button) =>
-    button.addEventListener('click', () => openJudge(button.dataset.judge)));
   app.querySelectorAll('[data-revise]').forEach((button) =>
     button.addEventListener('click', () => openSession(button.dataset.revise)));
   app.querySelectorAll('[data-file]').forEach((button) =>
@@ -203,6 +349,15 @@ function bindDesk() {
     button.addEventListener('click', () => openFile('', button.dataset.correct)));
   document.getElementById('addPrivateNote')?.addEventListener('click', () => { noteForm.reset(); document.getElementById('noteStatus').textContent = ''; noteDialog.showModal(); });
   document.getElementById('shareExcerpt')?.addEventListener('click', openShare);
+}
+
+async function setAsCurrent(checkpointId) {
+  try {
+    await moveCheckpoint(checkpointId, 'current');
+    await refreshSelected(true);
+  } catch (error) {
+    window.alert(error.message);
+  }
 }
 
 async function selectAthlete(athleteId) {

@@ -342,7 +342,8 @@ export function evidenceSection(record, { interactive = false } = {}) {
       // structured session; making Brice re-read the source on every session
       // would undo the translation it was there to do. It opens when a number
       // looks wrong, which is the only time it earns the space.
-      const shot = (record.evidenceFiles || []).find((file) => file.completion_id === verdict.completion_id)?.url || null;
+      const shot = (record.evidenceFiles || []).find((file) => file.completion_id === verdict.completion_id);
+      const shotUrl = shot?.url || null;
       const where = [
         completion?.surface,
         completion?.temperature_f ? `${completion.temperature_f}\u00b0` : null,
@@ -350,39 +351,39 @@ export function evidenceSection(record, { interactive = false } = {}) {
       ].filter(Boolean).join(' \u00b7 ');
       const effortOff = verdict.effort_verdict === 'outside';
 
-      return `<article class="ev">
-        <div class="ev-head">
-          <h3>${escapeHtml(verdict.title || 'Session')}</h3>
+      return `<section class="consoleSession">
+        <header class="consoleSession__header">
           <time>${escapeHtml(formatDate(verdict.filed_at))}</time>
-        </div>
+          <h2>${escapeHtml(verdict.title || 'Session')}</h2>
+        </header>
         ${where ? `<p class="ev-where">${escapeHtml(where)}</p>` : ''}
-        <table class="ev-table">
-          <thead><tr><th></th><th>asked</th><th>happened</th></tr></thead>
+        <table class="consoleSessionFacts">
+          <thead><tr><th></th><th>Asked</th><th>Happened</th></tr></thead>
           <tbody>
-            <tr class="ev-recovery${rested ? ' off' : ''}">
+            <tr class="consoleSessionFacts__recovery${rested ? ' off' : ''}">
               <th>Recovery</th>
               <td>easy</td>
               <td>
-                <b>${floats.map((piece) => escapeHtml(paceText(piece.pace_seconds))).join('  ')}</b>
+                ${floats.map((piece) => escapeHtml(paceText(piece.pace_seconds))).join(' · ')}
                 ${reference ? `<small>${escapeHtml(reference)}</small>` : ''}
               </td>
             </tr>
-            <tr class="ev-effort${effortOff ? ' off' : ''}">
+            <tr class="consoleSessionFacts__effort${effortOff ? ' off' : ''}">
               <th>Effort</th>
               <td>${verdict.rpe_low ? `${escapeHtml(verdict.rpe_low)}–${escapeHtml(verdict.rpe_high)}` : 'not asked'}</td>
-              <td><b>${verdict.rpe ? escapeHtml(verdict.rpe) : ''}</b></td>
+              <td>${verdict.rpe ? escapeHtml(verdict.rpe) : ''}</td>
             </tr>
-            <tr class="ev-splits">
+            <tr class="consoleSessionFacts__splits">
               <th>Miles</th>
               <td>${verdict.pace_verdict === 'not prescribed' ? 'not asked' : `${escapeHtml(paceText(verdict.pace_low))}–${escapeHtml(paceText(verdict.pace_high))}`}</td>
               <td>${reps.map((piece) => escapeHtml(paceText(piece.pace_seconds))).join(' · ')}</td>
             </tr>
           </tbody>
         </table>
-        ${shot ? `<details class="ev-source">
+        ${shot ? `<details class="ev-source" data-completion-id="${escapeHtml(verdict.completion_id)}">
           <summary>Read from</summary>
-          <a href="${escapeHtml(shot)}" target="_blank" rel="noopener">
-            <img src="${escapeHtml(shot)}" alt="The watch screenshot this session was read from" loading="lazy">
+          <a href="${escapeHtml(shotUrl)}" target="_blank" rel="noopener">
+            <img src="${escapeHtml(shotUrl)}" alt="The watch screenshot this session was read from" loading="lazy">
           </a>
         </details>` : ''}
         ${interactive ? `<button class="link-button" type="button" data-correct="${escapeHtml(verdict.completion_id)}">Correct this</button>` : ''}
@@ -391,13 +392,10 @@ export function evidenceSection(record, { interactive = false } = {}) {
           : interactive
             ? `<button class="link-button" type="button" data-judge="${escapeHtml(verdict.completion_id)}">Say what this did to the claim</button>`
             : ''}
-      </article>`;
+      </section>`;
     }).join('');
 
-  return `<section class="record-section evidence" id="evidence">
-    <p class="claim">${escapeHtml(mark.claim || mark.current_question)}</p>
-    ${rows}
-  </section>`;
+  return rows;
 }
 
 const checkpointWords = { reached: 'held', current: 'next', repeated: 'held again', proposed: '', retired: 'retired' };
@@ -410,18 +408,23 @@ export function progressionSection(record, { interactive = false } = {}) {
   const mark = record.primaryMark;
   if (!mark?.checkpoints?.length) return '';
 
-  // Rungs as numerals rather than marks. Nothing has to be learned to read them,
-  // and a repeated rung simply appears twice, which is the honest shape: six held
-  // a second time at a lower effort is stronger evidence than reaching ten once.
-  const rungs = mark.checkpoints.slice().sort((a, b) => a.position - b.position).map((point) => {
-    const word = checkpointWords[point.state] || '';
-    const tag = interactive ? 'button' : 'span';
-    return `<${tag} class="rung-n ${escapeHtml(point.state)}"
-      ${interactive ? `type="button" data-checkpoint="${escapeHtml(point.id)}" data-state="${escapeHtml(point.state)}"` : ''}>
-      <b>${escapeHtml(point.label)}</b><span>mi</span>
-      ${word ? `<em>${escapeHtml(word)}</em>` : ''}
-    </${tag}>`;
-  }).join('');
+  // Current and next rung only - quiet factual information
+  const current = mark.checkpoints.find((point) => point.state === 'current');
+  const next = mark.checkpoints.find((point) => point.state === 'proposed');
+  
+  let orientation = '';
+  if (current || next) {
+    orientation = `<div class="consoleOrientation">`;
+    if (current) {
+      orientation += `<p class="consoleCurrent"><span class="consoleOrientation__label">Current</span> <span class="consoleOrientation__value">${escapeHtml(current.label)} mi</span></p>`;
+    } else {
+      orientation += `<p class="consoleCurrent"><span class="consoleOrientation__label">Current</span> <button class="consoleOrientation__action" type="button" data-checkpoint-action="choose">CHOOSE CURRENT</button></p>`;
+    }
+    if (next) {
+      orientation += `<p class="consoleNext"><span class="consoleOrientation__label">Next</span> <span class="consoleOrientation__value">${escapeHtml(next.label)} mi</span></p>`;
+    }
+    orientation += `</div>`;
+  }
 
   // Where repetition lives, now that the ladder carries one rung per capability.
   // Six at effort 8 and six at effort 7 is the entire argument for repeating a
@@ -452,7 +455,8 @@ export function progressionSection(record, { interactive = false } = {}) {
   const today = new Date().toISOString().slice(0, 10);
   const upcoming = (record.sessions || [])
     .filter((session) => session.scheduled_on && session.scheduled_on >= today && session.currentVersion)
-    .sort((a, b) => a.scheduled_on.localeCompare(b.scheduled_on))[0];
+    .sort((a, b) => a.scheduled_on.localeCompare(b.scheduled_on))
+    .slice(0, 3); // Only show next few sessions
 
   const readings = (record.judgments || []).map((judgment) => `<tr class="${escapeHtml(judgment.direction)}">
     <td class="rd-when">${escapeHtml(formatDate(judgment.created_at))}</td>
@@ -460,17 +464,29 @@ export function progressionSection(record, { interactive = false } = {}) {
     <td class="rd-dir">${escapeHtml(directionWords[judgment.direction])}</td>
   </tr>`).join('');
 
-  // Plain questions as labels. They say what the row answers without explaining
-  // themselves, and they are the questions Brice actually asks of the page.
-  const row = (label, body) => body
-    ? `<div class="pr-row"><p class="pr-label">${escapeHtml(label)}</p><div class="pr-body">${body}</div></div>`
-    : '';
+  let continuation = '';
+  if (exposures || upcoming.length || readings) {
+    continuation = `<div class="consoleContinuation">`;
+    if (exposures) {
+      continuation += `<div class="consoleContinuation__section">
+        <p class="consoleContinuation__label">Repeated exposures</p>
+        <table class="expo"><tbody>${exposures}</tbody></table>
+      </div>`;
+    }
+    if (upcoming.length) {
+      continuation += `<div class="consoleContinuation__section">
+        <p class="consoleContinuation__label">Coming next</p>
+        ${upcoming.map((session) => `<p class="consoleContinuation__session">${escapeHtml(session.currentVersion.title)}<time>${escapeHtml(formatDate(session.scheduled_on))}</time></p>`).join('')}
+      </div>`;
+    }
+    if (readings) {
+      continuation += `<div class="consoleContinuation__section">
+        <p class="consoleContinuation__label">Judgments over time</p>
+        <table class="readings-t"><tbody>${readings}</tbody></table>
+      </div>`;
+    }
+    continuation += `</div>`;
+  }
 
-  return `<section class="record-section progression" id="progression">
-    ${row('Where she is now', `<div class="rungs-n">${rungs}</div>`)}
-    ${row('Where she is going', `<p class="pr-claim">${escapeHtml(mark.claim || mark.current_question)}</p>`)}
-    ${exposures ? row('Held more than once', `<table class="expo"><tbody>${exposures}</tbody></table>`) : ''}
-    ${upcoming ? row('Next', `<p class="pr-next">${escapeHtml(upcoming.currentVersion.title)}<span>${escapeHtml(formatDate(upcoming.scheduled_on))}</span></p>`) : ''}
-    ${readings ? row('Is this becoming believable', `<table class="readings-t"><tbody>${readings}</tbody></table>`) : ''}
-  </section>`;
+  return `${orientation}${continuation}`;
 }

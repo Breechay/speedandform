@@ -771,9 +771,397 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 .board-side .coach-margin { margin-top: 0; border-top: 1px solid var(--edge); padding-top: 22px; }
 .desk-main .who { padding-bottom: 30px; }
 
+/* ── Coach Console visual redesign ───────────────────────────────────────────
+   One typographic instrument on a flat graphite field. */
+.coachConsole {
+  min-height: 100vh;
+  padding: 24px clamp(24px, 4vw, 64px) 72px;
+  background: var(--field);
+  color: var(--text);
+}
+
+/* Squad strip - full width, not a card */
+.consoleSquad {
+  width: 100%;
+  margin-bottom: 42px;
+}
+
+.consoleAthleteRow {
+  display: grid;
+  grid-template-columns:
+    minmax(130px, 0.8fr)
+    repeat(7, minmax(52px, 1fr))
+    minmax(170px, 1.1fr);
+  align-items: baseline;
+  width: 100%;
+  min-height: 58px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  padding: 12px 0;
+}
+
+.consoleAthleteRow__name {
+  font-size: clamp(25px, 2.3vw, 42px);
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+}
+
+.consoleAthleteRow__name:hover {
+  color: var(--text);
+}
+
+.consoleAthleteRow--selected .consoleAthleteRow__name {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.consoleAthleteRow__ladder {
+  display: flex;
+  gap: clamp(12px, 2.4vw, 34px);
+  align-items: baseline;
+}
+
+.consoleRung {
+  font-size: clamp(24px, 2.1vw, 38px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--edge);
+  font-variant-numeric: tabular-nums;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.consoleRung--proposed {
+  color: var(--muted);
+}
+
+.consoleRung--held {
+  color: var(--secondary);
+}
+
+.consoleRung--current {
+  color: var(--text);
+}
+
+.consoleRung--retired {
+  color: var(--muted);
+}
+
+/* Only the selected athlete's current rung is lime - applied via .consoleRung--lit */
+.consoleRung--lit {
+  color: var(--lime);
+}
+
+/* Choosable rungs for selecting current */
+.consoleRung--choosable {
+  cursor: pointer;
+}
+
+.consoleRung--choosable:hover {
+  color: var(--text);
+}
+
+/* CHOOSE CURRENT instruction */
+.consoleRung__instruction {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--lime);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-left: 16px;
+  align-self: center;
+}
+
+.consoleAthleteRow__condition {
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Natalie separated by space, not a border */
+.consoleSquad__apart {
+  margin-top: 26px;
+}
+
+/* Selected athlete stage - single column named grid */
+.consoleStage {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.78fr) minmax(620px, 1.5fr);
+  grid-template-areas:
+    "claim claim"
+    "orientation orientation"
+    "session session"
+    "continuation continuation"
+    "actions actions";
+  column-gap: clamp(36px, 5vw, 90px);
+}
+
+/* Claim - large, no label */
+.consoleClaim {
+  font-size: clamp(28px, 3.2vw, 52px);
+  line-height: 1.03;
+  letter-spacing: -0.035em;
+  margin: 0 0 32px;
+  color: var(--text);
+}
+
+/* Session facts table with visual hierarchy */
+.consoleSession {
+  margin: 42px 0;
+}
+
+.consoleSession__header {
+  margin-bottom: 24px;
+}
+
+.consoleSession__header time {
+  color: var(--secondary);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.consoleSession__header h2 {
+  font-size: clamp(32px, 3.8vw, 48px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 8px 0 0;
+}
+
+.consoleSessionFacts {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.consoleSessionFacts th {
+  text-align: left;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 12px 16px;
+}
+
+.consoleSessionFacts td {
+  padding: 16px;
+  vertical-align: baseline;
+}
+
+/* Recovery - largest and most prominent */
+.consoleSessionFacts__recovery td {
+  font-size: clamp(104px, 14vw, 220px);
+  line-height: 0.78;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.consoleSessionFacts__recovery td small {
+  display: block;
+  font-size: clamp(14px, 1.5vw, 18px);
+  line-height: 1.4;
+  color: var(--secondary);
+  margin-top: 8px;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+/* Effort - second largest */
+.consoleSessionFacts__effort td {
+  font-size: clamp(92px, 11vw, 180px);
+  line-height: 0.82;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.consoleSessionFacts__effort td small {
+  display: block;
+  font-size: clamp(14px, 1.5vw, 18px);
+  line-height: 1.4;
+  color: var(--secondary);
+  margin-top: 8px;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+/* Splits - smallest and muted */
+.consoleSessionFacts__splits td {
+  font-size: clamp(24px, 3vw, 48px);
+  color: var(--secondary);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Coaching sentence - no panel */
+.consoleCoachSentence {
+  font-size: clamp(18px, 2vw, 24px);
+  line-height: 1.4;
+  color: var(--text);
+  margin: 32px 0;
+  font-style: italic;
+}
+
+/* Console athlete header */
+.consoleAthleteHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.consoleAthleteHeader .who {
+  margin: 0;
+}
+
+/* Console orientation - current, next, coming */
+.consoleOrientation {
+  margin: 32px 0;
+  padding: 20px 0;
+  border-top: 1px solid var(--edge);
+  border-bottom: 1px solid var(--edge);
+}
+
+.consoleCurrent, .consoleNext {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin: 12px 0;
+}
+
+.consoleOrientation__label {
+  color: var(--secondary);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  min-width: 80px;
+}
+
+.consoleOrientation__value {
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.consoleOrientation__action {
+  color: var(--lime);
+  font-size: 14px;
+  font-weight: 700;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.consoleOrientation__action:hover {
+  text-decoration: underline;
+}
+
+
+
+/* Console continuation - repeated exposures, judgments */
+.consoleContinuation {
+  margin-top: 42px;
+}
+
+.consoleContinuation__section {
+  margin-bottom: 32px;
+}
+
+.consoleContinuation__label {
+  color: var(--secondary);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+
+.consoleContinuation__session {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  color: var(--text);
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+.consoleContinuation__session time {
+  color: var(--secondary);
+  font-size: 12px;
+}
+
+/* Actions - quiet text controls */
+.consoleActions {
+  display: flex;
+  gap: 16px;
+  margin-top: 42px;
+  flex-wrap: wrap;
+}
+
+.consoleActions button {
+  min-height: 44px;
+  border: 0;
+  background: transparent;
+  color: var(--secondary);
+  padding: 10px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.consoleActions button:hover {
+  color: var(--text);
+  background: var(--field-2);
+}
+
 @media (max-width: 1080px) {
   .board { grid-template-columns: minmax(0, 1fr); gap: 30px; }
   .board-side .grade-row small { display: block; }
+  
+  /* Coach console responsive */
+  .coachConsole {
+    padding: 20px clamp(16px, 4vw, 32px) 48px;
+  }
+  
+  .consoleAthleteRow {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 16px 0;
+  }
+  
+  .consoleAthleteRow__ladder {
+    margin-top: 8px;
+  }
+  
+  .consoleStage {
+    grid-template-columns: 1fr;
+  }
+  
+  .consoleActions {
+    flex-wrap: wrap;
+  }
+  
+  .consoleActions button {
+    min-height: 48px;
+  }
 }
 
 /* Support belongs to her strength coach, so it opens only when asked for. */
@@ -1284,6 +1672,40 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 .sq-apart { margin-top: 26px; }
 
 .squad { margin-bottom: 34px; padding-bottom: 22px; border-bottom: 1px solid var(--edge); }
+
+/* Legacy squad styles for backward compatibility */
+.sq {
+  width: 100%;
+  display: grid;
+  grid-template-columns:
+    minmax(130px, 0.8fr)
+    repeat(7, minmax(52px, 1fr))
+    minmax(170px, 1.1fr);
+  align-items: baseline;
+  min-height: 58px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  padding: 12px 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sq:hover {
+  background: var(--field-2);
+}
+
+.sq[aria-current] .sq-name {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.sq-name {
+  font-size: clamp(25px, 2.3vw, 42px);
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
 
 /* Repeated exposures. The ladder carries one rung per capability, so this is the
    only place six at effort 8 and six at effort 7 can be seen next to each other,
