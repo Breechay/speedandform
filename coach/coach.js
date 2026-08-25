@@ -1,6 +1,6 @@
 import { authErrorMessage, enabledProviders, getAccessContext, sendMagicLink, signInWithApple, signOut } from '/private/auth.js';
 import { addPrivateNote, createDirection, createRead, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask } from '/private/data.js';
-import { escapeHtml, gradeSection, markSection, recordSection, weekSection, whoSection } from '/private/record.js';
+import { escapeHtml, markSection, recordSection, weekSection, whoSection } from '/private/record.js';
 
 // Account states only. The desk no longer labels athletes by a stored state —
 // the queue is derived from the record.
@@ -106,8 +106,8 @@ function deskHtml() {
     <div class="board">
       <div class="board-main">
         ${whoSection(selectedRecord)}
-        ${markSection(selectedRecord)}
         ${weekSection(selectedRecord, { shownWeekId })}
+        ${markSection(selectedRecord)}
       </div>
       <div class="board-side">
         ${gradeSection(selectedRecord)}

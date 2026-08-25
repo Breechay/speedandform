@@ -84,71 +84,60 @@ export function weekSection(record, { interactive = false, shownWeekId = null } 
   const weeks = (record.weeks || []).slice().sort((a, b) => a.week_number - b.week_number);
   const total = record.block?.total_weeks || weeks.length || 1;
   const week = weeks.find((entry) => entry.id === shownWeekId) || record.currentWeek || weeks[0] || null;
-  const sessions = week ? (record.sessionsByWeek?.[week.id] || []) : [];
-  const attention = record.attention || [];
+  const all = week ? (record.sessionsByWeek?.[week.id] || []) : [];
   const index = week ? weeks.findIndex((entry) => entry.id === week.id) : -1;
 
-  const days = DAY_ORDER.map((label) => {
-    const session = sessions.find((entry) => (entry.day_label || '').toUpperCase().startsWith(label.slice(0, 3)));
-    const version = session?.currentVersion || {};
-    const completion = session ? record.completions.find((entry) => entry.planned_session_id === session.id) : null;
-    const flag = session ? attention.find((item) => item.subject_id === session.id || item.subject_id === completion?.id) : null;
-    return { label, session, version, completion, flag,
-      planned: Number(version.prescribed_distance) || 0,
-      actual: Number(completion?.actual_distance) || 0 };
-  });
+  // Only days with work. An empty Wednesday is not a thing to look at.
+  const sessions = DAY_ORDER
+    .map((label) => all.find((entry) => (entry.day_label || '').toUpperCase().startsWith(label.slice(0, 3))))
+    .filter(Boolean)
+    .map((session) => {
+      const version = session.currentVersion || {};
+      const completion = record.completions.find((entry) => entry.planned_session_id === session.id);
+      return { session, version, completion,
+        planned: Number(version.prescribed_distance) || 0,
+        actual: Number(completion?.actual_distance) || 0 };
+    });
 
-  const plannedTotal = days.reduce((sum, day) => sum + day.planned, 0);
-  const actualTotal = days.reduce((sum, day) => sum + day.actual, 0);
-
-  // Weeks read as a scale, not a row of buttons. The current one is marked; the
-  // rest are ticks you can move to.
-  const scale = weeks.length > 1 || total > 1
-    ? `<div class="wk-scale">${Array.from({ length: total }, (_, position) => {
-        const number = position + 1;
-        const authored = weeks.find((entry) => entry.week_number === number);
-        const shown = week && authored && authored.id === week.id;
-        return `<button class="wk-tick${authored ? ' authored' : ''}${shown ? ' shown' : ''}" type="button"
-          ${authored ? `data-week="${authored.id}"` : 'disabled'} aria-label="Week ${number}"></button>`;
-      }).join('')}</div>`
-    : '';
+  const plannedTotal = sessions.reduce((sum, item) => sum + item.planned, 0);
+  const actualTotal = sessions.reduce((sum, item) => sum + item.actual, 0);
+  const longest = sessions.reduce((most, item) => Math.max(most, item.planned), 0);
 
   return `<section class="record-section crop week-grid" id="now">
+    <p class="wk-block">Block ${escapeHtml(record.block?.block_number ?? 1)}${record.block?.name ? ` \u00b7 ${escapeHtml(record.block.name)}` : ''}</p>
     <div class="week-head">
-      <div class="wk-nav">
+      <h2 class="wk-title">Week ${escapeHtml(week?.week_number ?? '\u2014')}</h2>
+      <div class="wk-move">
         <button class="wk-arrow" type="button" data-week-step="-1" ${index > 0 ? '' : 'disabled'} aria-label="Previous week">\u2039</button>
-        <span class="wk-label">Week ${escapeHtml(week?.week_number ?? '\u2014')}</span><span class="wk-of">of ${escapeHtml(total)}</span>
+        <span class="wk-of">of ${escapeHtml(total)}</span>
         <button class="wk-arrow" type="button" data-week-step="1" ${index >= 0 && index < weeks.length - 1 ? '' : 'disabled'} aria-label="Next week">\u203a</button>
       </div>
-      <div class="wk-shape">
-        <b>${days.filter((day) => day.session).length}</b><span>runs</span>
-        <b>${Number(plannedTotal.toFixed(1))}</b><span>mi</span>
-        <b>${Number(Math.max(...days.map((day) => day.planned), 0).toFixed(1))}</b><span>longest</span>
-      </div>
     </div>
-    ${scale}
-    ${actualTotal > 0 ? `<p class="wk-filed"><b>${Number(actualTotal.toFixed(1))}</b> of ${Number(plannedTotal.toFixed(1))} mi filed</p>` : ''}
+    <div class="wk-shape">
+      <b>${sessions.length}</b><span>runs</span>
+      <b>${Number(plannedTotal.toFixed(1))}</b><span>mi</span>
+      <b>${Number(longest.toFixed(1))}</b><span>longest</span>
+      ${actualTotal > 0 ? `<em>${Number(actualTotal.toFixed(1))} filed</em>` : ''}
+    </div>
     ${week?.intent ? `<p class="wk-intent">${escapeHtml(week.intent)}</p>` : ''}
-    <div class="week-days">${days.map((day) => {
-      if (!day.session) return `<div class="day empty"><span class="day-name">${escapeHtml(day.label)}</span></div>`;
-      const filed = Boolean(day.completion);
-      const note = day.flag
-        ? (day.flag.kind === 'missing_direction' ? 'no plan yet' : 'needs a reply')
-        : (filed ? 'filed' : '');
-      return `<div class="day${filed ? ' filed' : ''}${day.flag ? ' flagged' : ''}"
-        ${interactive ? `data-file-session="${day.session.id}"${day.completion ? ` data-completion-id="${day.completion.id}"` : ''} role="button" tabindex="0"` : ''}
-        ${!interactive && day.flag ? `data-write="${escapeHtml(day.flag.kind === 'missing_direction' ? 'direction' : 'read')}" data-subject="${escapeHtml(day.flag.subject_id || '')}" role="button" tabindex="0"` : ''}>
-        <span class="day-name">${escapeHtml(day.label)}</span>
-        <span class="day-figure">${escapeHtml(filed ? day.actual : day.planned)}<i>mi</i></span>
-        <span class="day-title">${escapeHtml(day.version.title || '')}</span>
-        ${note ? `<span class="day-note">${escapeHtml(note)}</span>` : ''}
+    <div class="week-days">${sessions.map((item) => {
+      const filed = Boolean(item.completion);
+      const note = item.version.intent || '';
+      return `<div class="day${filed ? ' filed' : ''}"
+        ${interactive
+          ? `data-file-session="${item.session.id}"${item.completion ? ` data-completion-id="${item.completion.id}"` : ''}`
+          : `data-write="direction" data-subject="${escapeHtml(item.session.id)}"`}
+        role="button" tabindex="0">
+        <span class="day-name">${escapeHtml(item.session.day_label)}</span>
+        <span class="day-figure">${escapeHtml(filed ? item.actual : item.planned)}<i>mi</i></span>
+        <span class="day-title">${escapeHtml(item.version.title || '')}</span>
+        ${note ? `<p class="day-note">${escapeHtml(note)}</p>` : `<p class="day-add">${interactive ? 'Tap to file' : 'Add instructions'}</p>`}
       </div>`;
     }).join('')}</div>
   </section>`;
 }
 
 
-// The header both surfaces share.
 export function whoSection(record) {
   const athlete = record.athlete;
   const block = record.block;
@@ -277,9 +266,8 @@ export function renderAthleteRecord(record, { interactive = false, projection = 
   if (!record.athlete) return '<div class="status-message error">This record is not available.</div>';
   return `<div class="record-shell${projection ? ' projection' : ''}">
     ${whoSection(record)}
-    ${markSection(record)}
     ${weekSection(record, { interactive, shownWeekId })}
-    ${gradeSection(record)}
+    ${markSection(record)}
     ${supportSection(record)}
     ${recordSection(record)}
     ${accountSection(record, email, interactive)}
