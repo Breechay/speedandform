@@ -2083,3 +2083,11 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   font-family: var(--condensed); font-size: 11px; letter-spacing: .11em;
   text-transform: uppercase; color: var(--console-lime);
 }
+
+/* The dose column holds one line. "9 mi continuous" wrapping into the title
+   beside it was the crowding. */
+.consoleWorkRow { grid-template-columns: 72px minmax(92px, auto) minmax(0, 1fr); }
+.consoleWorkRow__dose { white-space: nowrap; }
+@media (max-width: 760px) {
+  .consoleWorkRow { grid-template-columns: 64px minmax(74px, auto) minmax(0, 1fr); }
+}

@@ -179,6 +179,10 @@ function doseOf(version) {
   const line = work.shape === 'repetitions'
     ? `${work.repeat_count} \u00d7 ${amount}`
     : `${amount} continuous`;
+  // The runway has room for two lines and reads better spelling it out. A week
+  // row does not, and "9 mi continuous" wrapping into the title beside it is
+  // worse than saying continuous once, quietly, with the other qualifiers.
+  const shortLine = work.shape === 'repetitions' ? `${work.repeat_count} \u00d7 ${amount}` : amount;
   // Four reps of a mile is four miles of work and one mile held. The total is
   // said so nobody reads it as the other thing, and it is never proof on its own.
   const totalLine = total != null ? `${total} ${unit} total` : null;
@@ -199,7 +203,8 @@ function doseOf(version) {
     qualifiers.push('outside');
   }
   if (totalLine) qualifiers.unshift(totalLine);
-  return { line, qualifiers: qualifiers.join(' \u00b7 '), work, proofBearing, totalLine };
+  else if (work.shape === 'continuous') qualifiers.unshift('continuous');
+  return { line, shortLine, qualifiers: qualifiers.join(' \u00b7 '), work, proofBearing, totalLine };
 }
 
 // The runway. Every authored week with its real dates, the key race-pace session
@@ -284,7 +289,7 @@ function workbenchHtml() {
       type="button" data-session="${escapeHtml(session.id)}">
       <span class="consoleWorkRow__day">${escapeHtml(String(session.day_label).slice(0, 3))}<em>${escapeHtml(session.scheduled_on ? dayLabel(session.scheduled_on) : '')}</em></span>
       <span class="consoleWorkRow__dose">${dose
-        ? escapeHtml(dose.line)
+        ? escapeHtml(dose.shortLine)
         : version.prescribed_distance ? `${escapeHtml(Number(version.prescribed_distance))}<i>mi</i>`
         : version.prescribed_duration_minutes ? `${escapeHtml(version.prescribed_duration_minutes)}<i>min</i>` : ''}</span>
       <span class="consoleWorkRow__what">${escapeHtml(version.title)}
