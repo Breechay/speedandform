@@ -16,23 +16,44 @@
 -- so nothing here moves one.
 --
 -- Natalie is not in scope. Her block is a different program on a different claim.
+--
+-- On ordering: planned_sessions carries a unique (week_id, position). A first
+-- attempt refiled one week at a time and failed on it, because the Sunday moving
+-- OUT of a week was still sitting on position 3 when the Sunday moving IN
+-- arrived. Nothing applied. So the authored order is parked on positions that
+-- cannot collide, the weeks are rebuilt, every session is refiled in one
+-- statement, and the order is put back.
 
+-- 1. Park the authored order. Position is TUE 1, THU 2, SUN 3, and it is restored
+--    untouched at the end; this table exists only to survive the move.
+create temporary table _authored_position as
+select ps.id, ps.position
+  from public.planned_sessions ps
+  join public.athletes a on a.id = ps.athlete_id
+ where a.slug in ('hope', 'jose', 'marcus');
+
+-- 2. Clear the (week_id, position) space. Globally unique temporary positions
+--    mean no intermediate state of the refile can collide, whatever order the
+--    rows happen to move in.
+update public.planned_sessions ps
+   set position = 1000 + t.n
+  from (select id, row_number() over (order by id) as n from _authored_position) t
+ where t.id = ps.id;
+
+-- 3. Every week from 1 to the block's authored length, Monday anchored. Existing
+--    rows are updated in place so their ids and history survive.
 do $$
 declare
   b record;
   wk integer;
   monday constant date := date '2026-08-24';   -- the Monday of week 1
-  w_id uuid;
-  moved integer := 0;
 begin
   for b in
-    select tb.id, tb.athlete_id, tb.total_weeks, tb.race_on, a.slug
+    select tb.id, tb.athlete_id, tb.total_weeks
       from public.training_blocks tb
       join public.athletes a on a.id = tb.athlete_id
      where tb.status = 'active' and a.slug in ('hope', 'jose', 'marcus')
   loop
-    -- 1. Every week from 1 to the block's authored length, Monday anchored.
-    --    Existing rows are updated in place so their ids and history survive.
     for wk in 1 .. b.total_weeks loop
       update public.training_weeks
          set starts_on = monday + ((wk - 1) * 7),
@@ -48,23 +69,29 @@ begin
                 monday + ((wk - 1) * 7), monday + ((wk - 1) * 7) + 6, 'planned');
       end if;
     end loop;
-
-    -- 2. File each authored session under the week that contains its own date.
-    --    scheduled_on is untouched; only week_id moves.
-    for w_id in
-      select id from public.training_weeks where block_id = b.id
-    loop
-      update public.planned_sessions ps
-         set week_id = w_id
-        from public.training_weeks tw
-       where tw.id = w_id
-         and ps.athlete_id = b.athlete_id
-         and ps.scheduled_on between tw.starts_on and tw.ends_on
-         and ps.week_id is distinct from w_id;
-      get diagnostics moved = row_count;
-    end loop;
   end loop;
 end $$;
+
+-- 4. File each authored session under the week that contains its own date, in one
+--    statement. scheduled_on is untouched; only week_id moves.
+update public.planned_sessions ps
+   set week_id = tw.id
+  from public.training_weeks tw
+  join public.training_blocks tb on tb.id = tw.block_id and tb.status = 'active'
+  join public.athletes a on a.id = tb.athlete_id
+ where a.slug in ('hope', 'jose', 'marcus')
+   and ps.athlete_id = tb.athlete_id
+   and ps.scheduled_on between tw.starts_on and tw.ends_on
+   and ps.week_id is distinct from tw.id;
+
+-- 5. Put the authored order back. Each Monday to Sunday week holds at most one
+--    Tuesday, one Thursday and one Sunday, so the restore cannot collide.
+update public.planned_sessions ps
+   set position = t.position
+  from _authored_position t
+ where t.id = ps.id;
+
+drop table _authored_position;
 
 -- ── Validation. Any failure aborts the migration. ───────────────────────────
 
@@ -73,7 +100,6 @@ declare
   bad integer;
   detail text;
 begin
-  -- Week 1 starts on Monday 24 August for every block in scope.
   select count(*) into bad
     from public.training_weeks tw
     join public.training_blocks tb on tb.id = tw.block_id
@@ -82,7 +108,6 @@ begin
      and tw.week_number = 1 and tw.starts_on <> date '2026-08-24';
   if bad > 0 then raise exception 'week 1 does not start on 2026-08-24 (% blocks)', bad; end if;
 
-  -- Week numbering is contiguous from 1 and as long as the block says.
   select count(*) into bad
     from public.training_blocks tb
     join public.athletes a on a.id = tb.athlete_id
@@ -90,7 +115,6 @@ begin
      and tb.total_weeks <> (select count(*) from public.training_weeks w where w.block_id = tb.id);
   if bad > 0 then raise exception 'a block does not have total_weeks weeks (% blocks)', bad; end if;
 
-  -- Every week is exactly Monday to Sunday.
   select count(*) into bad
     from public.training_weeks tw
     join public.training_blocks tb on tb.id = tw.block_id
@@ -99,7 +123,6 @@ begin
      and (extract(isodow from tw.starts_on) <> 1 or tw.ends_on <> tw.starts_on + 6);
   if bad > 0 then raise exception '% weeks are not Monday to Sunday', bad; end if;
 
-  -- Every planned session falls inside the week it points at.
   select count(*) into bad
     from public.planned_sessions ps
     join public.training_weeks tw on tw.id = ps.week_id
@@ -109,7 +132,14 @@ begin
      and ps.scheduled_on not between tw.starts_on and tw.ends_on;
   if bad > 0 then raise exception '% sessions sit outside their week', bad; end if;
 
-  -- Race day belongs to the final week of its block.
+  -- The authored order survived the move. A stranded temporary position would
+  -- mean the restore silently missed rows.
+  select count(*) into bad
+    from public.planned_sessions ps
+    join public.athletes a on a.id = ps.athlete_id
+   where a.slug in ('hope', 'jose', 'marcus') and ps.position > 100;
+  if bad > 0 then raise exception '% sessions kept a temporary position', bad; end if;
+
   select count(*) into bad
     from public.training_blocks tb
     join public.athletes a on a.id = tb.athlete_id
@@ -120,8 +150,6 @@ begin
           and tb.race_on between w.starts_on and w.ends_on);
   if bad > 0 then raise exception 'race day is outside the final week (% blocks)', bad; end if;
 
-  -- Inside a week the authored order is Tuesday, Thursday, Sunday, and position
-  -- already carries it. Prove position and date agree.
   select count(*) into bad
     from public.planned_sessions a1
     join public.planned_sessions a2
