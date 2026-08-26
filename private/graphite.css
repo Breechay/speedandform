@@ -2091,3 +2091,9 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 @media (max-width: 760px) {
   .consoleWorkRow { grid-template-columns: 64px minmax(74px, auto) minmax(0, 1fr); }
 }
+
+/* A double is two sessions on one day. Said, never merged. */
+.consoleWorkRow__double {
+  display: block; margin-top: 4px; font-style: normal; font-size: 10.5px;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--console-lime);
+}

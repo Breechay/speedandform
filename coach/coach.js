@@ -185,7 +185,7 @@ function doseOf(version) {
   const shortLine = work.shape === 'repetitions' ? `${work.repeat_count} \u00d7 ${amount}` : amount;
   // Four reps of a mile is four miles of work and one mile held. The total is
   // said so nobody reads it as the other thing, and it is never proof on its own.
-  const totalLine = total != null ? `${total} ${unit} total` : null;
+  const totalLine = total != null ? `${total} ${unit} total work` : null;
   const band = [work.pace_low, work.pace_high].filter(Boolean).join('\u2013');
   // A pace band is what makes a session proof bearing. An easy run and a long run
   // are authored against effort, so they are real work and not evidence for this
@@ -200,7 +200,10 @@ function doseOf(version) {
     qualifiers.push('equal recovery');
   }
   if (proofBearing && selectedRecord.primaryMark?.evidence_surface_requirement === 'outdoor') {
-    qualifiers.push('outside');
+    // Not an authored surface on the session. The mark requires outdoor evidence,
+    // and this is a session that could carry proof, so the rule is shown where it
+    // applies rather than left to be remembered.
+    qualifiers.push('outdoor to count');
   }
   if (totalLine) qualifiers.unshift(totalLine);
   // `line` already says continuous; `shortLine` does not. The word belongs to
@@ -288,6 +291,19 @@ function workbenchHtml() {
     .sort((a, b) => String(a.scheduled_on).localeCompare(String(b.scheduled_on)));
   const picked = sessions.find((session) => session.id === shownSessionId) || sessions[0];
 
+  // Two filings on one calendar date is a double. They stay two sessions with two
+  // prescriptions; only the fact that they share a day is added.
+  const filedPerDay = (selectedRecord.completions || []).reduce((map, item) => {
+    const day = (item.filed_at || '').slice(0, 10);
+    if (day) map[day] = (map[day] || 0) + 1;
+    return map;
+  }, {});
+  const doubleOn = (date) => (filedPerDay[date] || 0) > 1;
+  const ordinalIn = (session) => {
+    const sameDay = sessions.filter((item) => item.scheduled_on === session.scheduled_on);
+    return sameDay.length > 1 ? `${sameDay.indexOf(session) + 1} of ${sameDay.length}` : null;
+  };
+
   const rows = sessions.map((session) => {
     const version = session.currentVersion;
     const done = (selectedRecord.completions || []).find((item) => item.planned_session_id === session.id);
@@ -300,6 +316,8 @@ function workbenchHtml() {
         : version.prescribed_distance ? `${escapeHtml(Number(version.prescribed_distance))}<i>mi</i>`
         : version.prescribed_duration_minutes ? `${escapeHtml(version.prescribed_duration_minutes)}<i>min</i>` : ''}</span>
       <span class="consoleWorkRow__what">${escapeHtml(version.title)}
+        ${doubleOn(session.scheduled_on)
+          ? `<i class="consoleWorkRow__double">Double \u00b7 ${escapeHtml(ordinalIn(session) || '')}</i>` : ''}
         ${dose ? `<em>${escapeHtml(dose.shortQualifiers)}</em>` : ''}</span>
     </button>`;
   }).join('');
@@ -352,7 +370,13 @@ function adHocInspectorHtml(completion) {
 function sessionInspectorHtml(session) {
   const version = session.currentVersion;
   const done = (selectedRecord.completions || []).find((item) => item.planned_session_id === session.id);
-  const head = `<p class="ins-when">${escapeHtml(session.day_label)}${session.scheduled_on ? ` \u00b7 ${escapeHtml(dayLabel(session.scheduled_on))}` : ''}</p>
+  const sameDay = (selectedRecord.sessions || []).filter((item) =>
+    item.scheduled_on === session.scheduled_on && item.currentVersion);
+  const filedThatDay = (selectedRecord.completions || []).filter((item) =>
+    (item.filed_at || '').slice(0, 10) === session.scheduled_on).length;
+  const head = `<p class="ins-when">${escapeHtml(session.day_label)}${session.scheduled_on ? ` \u00b7 ${escapeHtml(dayLabel(session.scheduled_on))}` : ''}${
+    filedThatDay > 1 && sameDay.length > 1
+      ? ` \u00b7 double, session ${escapeHtml(sameDay.indexOf(session) + 1)} of ${escapeHtml(sameDay.length)}` : ''}</p>
     <h3 class="ins-what">${escapeHtml(version.title)}${
       selectedRecord.primaryMark?.evidence_surface_requirement === 'outdoor' && /race pace/i.test(version.title || '')
         ? ' <em>outside</em>' : ''}</h3>`;
@@ -618,7 +642,7 @@ function heroHtml() {
       ${mark?.evidence_surface_requirement === 'outdoor'
         // A condition on whether evidence counts, said in words beside the goal.
         // It is not a rung and never sits on top of a numeral.
-        ? '<p class="consoleHero__condition">Outside evidence only</p>' : ''}
+        ? '<p class="consoleHero__condition">Proof requires \u00b7 outdoor</p>' : ''}
     </div>
     <div class="consoleHero__instruments">${confidenceHtml()}</div>
   </section>`;
