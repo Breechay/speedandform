@@ -2097,3 +2097,11 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   display: block; margin-top: 4px; font-style: normal; font-size: 10.5px;
   letter-spacing: .1em; text-transform: uppercase; color: var(--console-lime);
 }
+
+/* Someone waiting on you is marked in place. The tabs never rearrange: position
+   is how a coach finds an athlete, and a navigation that reorders itself teaches
+   that position means nothing. */
+.consoleAthleteTab__waiting {
+  width: 5px; height: 5px; border-radius: 50%; background: var(--console-coral);
+  flex: none; align-self: center;
+}

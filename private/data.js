@@ -38,7 +38,11 @@ export async function loadCoachRoster(coachMemberships) {
           : null;
       })()
     };
-  }).sort((a, b) => (a.topItem?.priority ?? 999) - (b.topItem?.priority ?? 999));
+  });
+  // Roster order is stable. Attention sorts the queue, never the navigation:
+  // tabs that rearrange themselves whenever an exception opens or closes teach
+  // the coach that position means nothing, and the position is how you find
+  // someone. The attention is shown on the tab instead of moving it.
 }
 
 export async function loadAttentionFor(athleteId) {

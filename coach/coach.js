@@ -104,11 +104,15 @@ function rosterHtml() {
   // down the page pushed the actual work below the fold.
   const tab = (athlete) => {
     const read = standingConfidence(athlete.id, athlete.mark?.id);
+    // Someone waiting on you is marked, not moved. The dot says there is
+    // something here; the queue is where it gets ordered.
+    const waiting = (athlete.attention || []).length > 0;
     return `<button class="consoleAthleteTab${athlete.id === selectedId ? ' consoleAthleteTab--on' : ''}"
       type="button" data-select-athlete="${escapeHtml(athlete.id)}"
       ${athlete.id === selectedId ? 'aria-current="true"' : ''}>
       <span class="consoleAthleteTab__name">${escapeHtml(athlete.first_name || athlete.display_name)}</span>
       <em class="consoleAthleteTab__score">${read ? `${escapeHtml(read.score)}%` : '\u2014'}</em>
+      ${waiting ? '<i class="consoleAthleteTab__waiting" aria-label="Waiting on you"></i>' : ''}
     </button>`;
   };
   const order = attentionOrder
