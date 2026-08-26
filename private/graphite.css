@@ -2067,3 +2067,13 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 
 /* Provenance said quietly beside the number, never in front of it. */
 .consoleInstrument__caveat { color: var(--console-muted); font-style: italic; letter-spacing: .06em; }
+
+/* The work is the evidence, so it leads. Recovery is loud only when it was
+   prescribed or when it changed what the session could answer. */
+.evf-row--lead .evf-was b { font-size: 26px; }
+.evf-row--lead .evf-was span { display: block; margin-top: 4px; }
+.evf-row--quiet .evf-was { color: var(--console-secondary); font-weight: 400; }
+.evf-row--quiet .evf-was b { font-size: 15px; font-weight: 600; color: var(--console-secondary); }
+/* Completed is not an alarm. Coral is reserved for what needs attention. */
+.ins-where em { color: var(--console-secondary); }
+.ins-where em.ins-where--flag { color: var(--console-coral); }

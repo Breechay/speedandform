@@ -111,6 +111,10 @@
         <label><input type="radio" name="state" value="repeated"><span>Established again</span></label>
         <label><input type="radio" name="state" value="retired"><span>Retired</span></label>
       </div>
+      <label class="field-label lead">Why
+        <input class="field-input" name="reason" required placeholder="Correcting the legacy ladder. Eight was never established outside.">
+      </label>
+      <p class="dialog-note" id="rungProvenance"></p>
       <p class="status-message" id="rungStatus" role="status"></p>
       <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Save <span class="icon-arrow">&rarr;</span></button></div>
     </form>

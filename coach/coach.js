@@ -92,8 +92,8 @@ function ladderProvenance(mark) {
   const points = (mark?.checkpoints || []).filter((point) =>
     point.state === 'reached' || point.state === 'repeated');
   if (!points.length) return null;
-  if (points.every((point) => point.source === 'legacy')) return 'provenance not recorded';
-  if (points.some((point) => point.source === 'legacy')) return 'some rungs predate the record';
+  if (points.every((point) => point.source === 'legacy')) return 'legacy state, not evidenced here';
+  if (points.some((point) => point.source === 'legacy')) return 'some rungs are legacy state';
   if (points.every((point) => point.source === 'automatic')) return 'advanced on filed evidence';
   return null;
 }
@@ -174,9 +174,14 @@ function doseOf(version) {
   const amount = work.distance != null
     ? `${Number(work.distance)} ${unit}`
     : `${Math.round((work.duration_seconds || 0) / 60)} min`;
+  const total = work.shape === 'repetitions' && work.distance != null
+    ? Number((work.distance * work.repeat_count).toFixed(2)) : null;
   const line = work.shape === 'repetitions'
     ? `${work.repeat_count} \u00d7 ${amount}`
     : `${amount} continuous`;
+  // Four reps of a mile is four miles of work and one mile held. The total is
+  // said so nobody reads it as the other thing, and it is never proof on its own.
+  const totalLine = total != null ? `${total} ${unit} total` : null;
   const band = [work.pace_low, work.pace_high].filter(Boolean).join('\u2013');
   // A pace band is what makes a session proof bearing. An easy run and a long run
   // are authored against effort, so they are real work and not evidence for this
@@ -193,7 +198,8 @@ function doseOf(version) {
   if (proofBearing && selectedRecord.primaryMark?.evidence_surface_requirement === 'outdoor') {
     qualifiers.push('outside');
   }
-  return { line, qualifiers: qualifiers.join(' \u00b7 '), work, proofBearing };
+  if (totalLine) qualifiers.unshift(totalLine);
+  return { line, qualifiers: qualifiers.join(' \u00b7 '), work, proofBearing, totalLine };
 }
 
 // The runway. Every authored week with its real dates, the key race-pace session
@@ -392,60 +398,88 @@ function sessionInspectorHtml(session) {
 // Recovery first and largest, effort second, splits quiet. The reading order is
 // the judgment: recovery decides whether the session can answer anything, and
 // splits are the most seductive figure and the least decisive.
+// What the session actually established, read against what was actually asked.
+//
+// The prescription comes from the stored components now, not the legacy verdict
+// table. That table predates structured dose and says "not prescribed" for
+// sessions that plainly were, which is how Hope's 3:00 float came to read as
+// nothing being asked of her recovery.
+//
+// Order follows what carries the claim. For interval work the reps are the
+// evidence: how many, at what range, how tight. Recovery earns the top of the
+// page only when it was prescribed or when it materially changed the session,
+// which is different from always. RPE is context and reads as context.
 function evidenceFactsHtml(completion) {
-  const verdict = (selectedRecord.verdicts || []).find((item) => item.completion_id === completion.id);
   const pieces = (selectedRecord.pieces || []).filter((piece) => piece.completion_id === completion.id);
   const floats = pieces.filter((piece) => piece.kind === 'float');
   const reps = pieces.filter((piece) => piece.kind === 'rep');
   const pace = (seconds) => (seconds ? `${Math.floor(seconds / 60)}:${String(Math.round(seconds) % 60).padStart(2, '0')}` : '');
-  const rested = verdict?.float_verdict === 'outside';
-  const effortOff = verdict?.effort_verdict === 'outside';
+  const clock = (seconds) => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
   const judgment = (selectedRecord.judgments || []).find((item) => item.completionIds.includes(completion.id));
+
+  // The authored prescription behind this filing, when there is one.
+  const session = (selectedRecord.sessions || []).find((item) => item.id === completion.planned_session_id);
+  const work = (session?.currentVersion?.components || []).find((part) => part.role === 'work');
+  const askedBand = [work?.pace_low, work?.pace_high].filter(Boolean).join('\u2013');
+  const askedRecovery = work?.recovery_seconds != null
+    ? `${clock(work.recovery_seconds)} ${work.recovery_kind}`
+    : work?.recovery_kind === 'equal' ? 'equal' : null;
+  const askedEffort = work?.rpe_low ? `${work.rpe_low}\u2013${work.rpe_high}` : null;
+
+  // The athlete's own easy pace that day decides whether a recovery was run at
+  // all. Never another athlete's. It is computed per completion from the easy
+  // pieces of that same session and exposed on the verdict, which is where the
+  // prescription stops being the source and the athlete's own reference starts.
+  const verdict = (selectedRecord.verdicts || []).find((item) => item.completion_id === completion.id);
+  const easy = verdict?.easy_pace || null;
+  const floatSeconds = floats.map((piece) => piece.pace_seconds).filter((value) => value != null);
+  const restedInstead = Boolean(easy && floatSeconds.length && Math.min(...floatSeconds) > easy + 60);
+  // Prescribed, or so far off that it changed what the session could answer.
+  const recoveryMatters = Boolean(askedRecovery) || restedInstead;
+
+  const repSeconds = reps.map((piece) => piece.pace_seconds).filter((value) => value != null);
+  const spread = repSeconds.length ? Math.max(...repSeconds) - Math.min(...repSeconds) : null;
 
   const where = [completion.surface, completion.conditions].filter(Boolean).join(' \u00b7 ');
   const standing = qualifyingWords(completion);
+  const nonQualifying = /non qualifying/i.test(standing);
 
-  return `${where ? `<p class="ins-where">${escapeHtml(where)}<em>${escapeHtml(standing)}</em></p>` : ''}
-    <dl class="evf">
-      ${floats.length ? `<div class="evf-row${rested ? ' evf-row--off' : ''}">
-        <dt>Recovery</dt>
-        <dd class="evf-asked">${verdict ? 'asked easy' : 'not prescribed'}</dd>
-        <dd class="evf-was"><b>${floats.map((piece) => escapeHtml(pace(piece.pace_seconds))).join('  ')}</b>
-          ${verdict ? `<span>${escapeHtml(verdict.floats_honest)} of ${escapeHtml(verdict.floats)} inside easy</span>` : ''}</dd>
-      </div>` : ''}
-      <div class="evf-row${effortOff ? ' evf-row--off' : ''}">
-        <dt>RPE</dt>
-        <dd class="evf-asked">${verdict?.rpe_low ? `asked ${escapeHtml(verdict.rpe_low)}\u2013${escapeHtml(verdict.rpe_high)}` : 'not asked'}</dd>
-        <dd class="evf-was"><b>${completion.rpe ? escapeHtml(completion.rpe) : '\u2014'}</b></dd>
-      </div>
-      ${(reps.length || floats.length) ? `<div class="evf-row evf-row--quiet">
-        <dt>Rep range</dt>
-        <dd class="evf-asked">${reps.length ? `${reps.length} recorded` : 'splits not filed'}</dd>
-        <dd class="evf-was">${(() => {
-          // An average hides the thing that matters. 6:49 average could be four
-          // miles inside four seconds or four inside forty, and only one of
-          // those is control.
-          const seconds = reps.map((piece) => piece.pace_seconds).filter((value) => value != null);
-          if (!seconds.length) return 'not available';
-          const low = Math.min(...seconds); const high = Math.max(...seconds);
-          return `${escapeHtml(pace(low))}\u2013${escapeHtml(pace(high))} <span>${escapeHtml(high - low)} sec range</span>`;
-        })()}</dd>
-      </div>` : ''}
-      ${reps.length ? `<div class="evf-row evf-row--quiet">
-        <dt>Splits</dt>
-        <dd class="evf-asked">${verdict?.pace_verdict === 'not prescribed' || !verdict?.pace_low
-          ? 'not recorded' : `asked ${escapeHtml(pace(verdict.pace_low))}\u2013${escapeHtml(pace(verdict.pace_high))}`}</dd>
-        <dd class="evf-was">${reps.map((piece) => escapeHtml(pace(piece.pace_seconds))).join(' \u00b7 ')}</dd>
-      </div>` : ''}
-    </dl>
+  const workRow = reps.length ? `<div class="evf-row evf-row--lead">
+      <dt>Work</dt>
+      <dd class="evf-asked">${work
+        ? `asked ${escapeHtml(work.repeat_count)} \u00d7 ${escapeHtml(Number(work.distance))} ${escapeHtml(work.distance_unit)}`
+        : 'no prescription filed'}</dd>
+      <dd class="evf-was"><b>${escapeHtml(reps.length)} \u00d7 ${escapeHtml(pace(Math.min(...repSeconds)))}\u2013${escapeHtml(pace(Math.max(...repSeconds)))}</b>
+        <span>${escapeHtml(spread)} sec across ${escapeHtml(reps.length)} reps</span></dd>
+    </div>
+    <div class="evf-row evf-row--quiet">
+      <dt>Splits</dt>
+      <dd class="evf-asked">${askedBand ? `asked ${escapeHtml(askedBand)}` : 'pace not prescribed'}</dd>
+      <dd class="evf-was">${reps.map((piece) => escapeHtml(pace(piece.pace_seconds))).join(' \u00b7 ')}</dd>
+    </div>` : '';
+
+  const recoveryRow = floats.length ? `<div class="evf-row${recoveryMatters ? '' : ' evf-row--quiet'}${restedInstead ? ' evf-row--off' : ''}">
+      <dt>Recovery</dt>
+      <dd class="evf-asked">${askedRecovery ? `asked ${escapeHtml(askedRecovery)}` : 'not prescribed'}</dd>
+      <dd class="evf-was">${recoveryMatters
+        ? `<b>${floats.map((piece) => escapeHtml(pace(piece.pace_seconds))).join('  ')}</b>`
+        : floats.map((piece) => escapeHtml(pace(piece.pace_seconds))).join(' \u00b7 ')}
+        ${restedInstead ? '<span>rested rather than floated</span>' : ''}</dd>
+    </div>` : '';
+
+  const effortRow = `<div class="evf-row evf-row--quiet">
+      <dt>RPE</dt>
+      <dd class="evf-asked">${askedEffort ? `asked ${escapeHtml(askedEffort)}` : 'not asked'}</dd>
+      <dd class="evf-was">${completion.rpe ? escapeHtml(completion.rpe) : '\u2014'}</dd>
+    </div>`;
+
+  return `${where ? `<p class="ins-where">${escapeHtml(where)}<em${nonQualifying ? ' class="ins-where--flag"' : ''}>${escapeHtml(standing)}</em></p>` : ''}
+    <dl class="evf">${workRow}${effortRow}${recoveryRow}</dl>
     ${judgment ? `<p class="ins-judgment ${escapeHtml(judgment.direction)}">
       <span>${escapeHtml(directionWords[judgment.direction] || judgment.direction)}</span>${escapeHtml(judgment.reason)}</p>` : ''}
     ${completion.athlete_note ? `<p class="ins-said">${escapeHtml(completion.athlete_note)}</p>` : ''}`;
 }
 
-// Three separate ideas, never merged. ESTABLISHED is the rung Brice has accepted.
-// CURRENT TEST is what the work is asking now. NEXT PROOF TARGET only means
-// anything once the established rung is known, so it stays silent until then.
 function currentRungHtml() {
   const mark = selectedRecord.primaryMark;
   if (!mark?.checkpoints?.length) return '';
@@ -891,9 +925,18 @@ function openLadder() {
   ladderDialog.showModal();
 }
 
+let editingCheckpointSource = null;
+
 function openRung(checkpointId, state, label) {
   rungForm.reset();
   editingCheckpointId = checkpointId;
+  const point = (selectedRecord.primaryMark?.checkpoints || []).find((item) => item.id === checkpointId);
+  editingCheckpointSource = point?.source || null;
+  // A rung that predates provenance is being corrected, not decided. Saying so
+  // is the difference between repairing the erasure and quietly overwriting it.
+  document.getElementById('rungProvenance').textContent = editingCheckpointSource === 'legacy'
+    ? 'This rung moved before anything recorded what moved it. Changing it is filed as a correction and the old value stays in the ledger.'
+    : '';
   document.getElementById('rungContext').textContent = `${label} miles`;
   [...rungForm.elements.state].forEach((radio) => { radio.checked = radio.value === state; });
   document.getElementById('rungStatus').textContent = '';
@@ -908,10 +951,13 @@ rungForm.addEventListener('submit', async (event) => {
   if (!chosen) { status.textContent = 'Pick one.'; return; }
   button.disabled = true; status.textContent = 'Saving.';
   try {
-    // Brice deciding by hand. The rule's own advances carry source 'automatic'
-    // and cite the filing that earned them.
+    // Correcting a rung nobody can vouch for is an override; setting one that
+    // was properly recorded is a coach decision. Both name a reason, and the
+    // previous value survives in the append-only ledger either way.
     await moveCheckpoint(editingCheckpointId, chosen, {
-      source: 'coach', decision: 'advance', reason: 'Set by hand from the ladder.'
+      source: editingCheckpointSource === 'legacy' ? 'override' : 'coach',
+      decision: chosen === 'proposed' ? 'reduce' : 'advance',
+      reason: rungForm.elements.reason.value
     });
     rungDialog.close();
     await refreshSelected(true);

@@ -121,7 +121,15 @@ for (const file of movers) {
     // The declaration itself is not a call site.
     if (/(?:async\s+)?function\s+$/.test(text.slice(Math.max(0, call.index - 30), call.index))) continue;
     const args = text.slice(call.index, call.index + 400);
-    const named = SOURCES.some((source) => args.includes(`source: '${source}'`));
+    // The value of `source:` may be a literal or a conditional between literals.
+    // Every quoted string in it must be a source the doctrine recognises, so a
+    // ternary is allowed and a smuggled-in string is not.
+    const assigned = args.match(/source:\s*([^,\n}]+)/);
+    // Strings on the right of a comparison are what is being tested, not what is
+    // being written. `x === 'legacy' ? 'override' : 'coach'` writes two sources.
+    const chosen = assigned ? assigned[1].replace(/[!=]==?\s*'[^']*'/g, '') : '';
+    const literals = [...chosen.matchAll(/'([^']*)'/g)].map((m) => m[1]);
+    const named = literals.length > 0 && literals.every((value) => SOURCES.includes(value));
     const forwards = /provenance|\.\.\.source|source\s*[,)]/.test(args);
     if (!named && !forwards) {
       const line = text.slice(0, call.index).split('\n').length;
