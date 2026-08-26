@@ -203,8 +203,15 @@ function doseOf(version) {
     qualifiers.push('outside');
   }
   if (totalLine) qualifiers.unshift(totalLine);
-  else if (work.shape === 'continuous') qualifiers.unshift('continuous');
-  return { line, shortLine, qualifiers: qualifiers.join(' \u00b7 '), work, proofBearing, totalLine };
+  // `line` already says continuous; `shortLine` does not. The word belongs to
+  // whichever headline is missing it, and never to both.
+  const shapeWord = work.shape === 'continuous' ? 'continuous' : null;
+  const shortQualifiers = shapeWord ? [shapeWord, ...qualifiers] : qualifiers;
+  return {
+    line, shortLine, work, proofBearing, totalLine,
+    qualifiers: qualifiers.join(' \u00b7 '),
+    shortQualifiers: shortQualifiers.join(' \u00b7 ')
+  };
 }
 
 // The runway. Every authored week with its real dates, the key race-pace session
@@ -293,7 +300,7 @@ function workbenchHtml() {
         : version.prescribed_distance ? `${escapeHtml(Number(version.prescribed_distance))}<i>mi</i>`
         : version.prescribed_duration_minutes ? `${escapeHtml(version.prescribed_duration_minutes)}<i>min</i>` : ''}</span>
       <span class="consoleWorkRow__what">${escapeHtml(version.title)}
-        ${dose ? `<em>${escapeHtml(dose.qualifiers)}</em>` : ''}</span>
+        ${dose ? `<em>${escapeHtml(dose.shortQualifiers)}</em>` : ''}</span>
     </button>`;
   }).join('');
 
@@ -366,7 +373,8 @@ function sessionInspectorHtml(session) {
   const band = [version.pace_low, version.pace_high].filter(Boolean).join('\u2013');
   const dose = doseOf(version);
   const clock = (seconds) => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
-  const anatomy = (version.components || []).map((part) => {
+  const parts = version.components || [];
+  const anatomy = (parts.length > 1 ? parts : []).map((part) => {
     const what = part.shape === 'repetitions'
       ? `${part.repeat_count} \u00d7 ${Number(part.distance)} ${part.distance_unit}`
       : part.distance != null ? `${Number(part.distance)} ${part.distance_unit} continuous`
@@ -384,10 +392,11 @@ function sessionInspectorHtml(session) {
   return `<div class="inspect">
     ${head}
     ${dose ? `<p class="ins-dose"><b>${escapeHtml(dose.line)}</b><span>${escapeHtml(dose.qualifiers)}</span></p>` : ''}
-    ${anatomy ? `<dl class="ins-anatomy">${anatomy}</dl>` : `<div class="ins-facts">
+    ${anatomy ? `<dl class="ins-anatomy">${anatomy}</dl>` : ''}
+    ${!dose && (band || version.rpe_low) ? `<div class="ins-facts">
       ${band ? `<span><b>${escapeHtml(band)}</b>race pace</span>` : ''}
       ${version.rpe_low ? `<span><b>${escapeHtml(version.rpe_low)}\u2013${escapeHtml(version.rpe_high)}</b>RPE</span>` : ''}
-    </div>`}
+    </div>` : ''}
     ${version.details ? `<p class="ins-detail">${escapeHtml(version.details)}</p>` : ''}
     ${version.intent ? `<p class="ins-why">${escapeHtml(version.intent)}</p>` : ''}
     ${version.version_number > 1 ? `<p class="ins-rev">version ${escapeHtml(version.version_number)}${
@@ -490,11 +499,20 @@ function currentRungHtml() {
   if (!mark?.checkpoints?.length) return '';
   const points = mark.checkpoints.slice().sort((a, b) => a.position - b.position);
   const current = points.find((point) => point.state === 'current');
-  const established = points.filter((point) =>
-    point.state === 'reached' || point.state === 'repeated').pop();
-  // Next is the first thing not yet proposed past whichever of the two is higher.
-  const floor = Math.max(current?.position ?? -1, established?.position ?? -1);
-  const next = points.find((point) => point.position > floor && point.state === 'proposed');
+  // When the mark says its established proof is unknown, the reached rungs are
+  // exactly what is not trusted. Showing one here would put the number back on
+  // screen a line above the instrument that just refused to assert it, and the
+  // next proof target means nothing until the established rung is known.
+  const trusted = mark.established_proof_state !== 'unknown';
+  const established = trusted
+    ? points.filter((point) => point.state === 'reached' || point.state === 'repeated').pop()
+    : null;
+  const floor = trusted
+    ? Math.max(current?.position ?? -1, established?.position ?? -1)
+    : (current?.position ?? -1);
+  const next = trusted
+    ? points.find((point) => point.position > floor && point.state === 'proposed')
+    : null;
 
   return `<button class="consoleRungLine" type="button" id="openLadder">
     <span class="consoleRungLine__label">Current test</span>
@@ -502,6 +520,7 @@ function currentRungHtml() {
       ? `<b>${escapeHtml(current.label)} mi</b>`
       : '<b class="consoleRungLine__unset">not set</b>'}
     ${established ? `<span class="consoleRungLine__label">Established</span><b class="consoleRungLine__next">${escapeHtml(established.label)} mi</b>` : ''}
+    ${trusted ? '' : '<span class="consoleRungLine__label">Established</span><b class="consoleRungLine__unset">unknown</b>'}
     ${next ? `<span class="consoleRungLine__label">Next</span><b class="consoleRungLine__next">${escapeHtml(next.label)} mi</b>` : ''}
     <em>${current ? 'change' : 'choose'} \u203a</em>
   </button>`;
