@@ -203,7 +203,7 @@ function doseOf(version) {
     // Not an authored surface on the session. The mark requires outdoor evidence,
     // and this is a session that could carry proof, so the rule is shown where it
     // applies rather than left to be remembered.
-    qualifiers.push('outdoor to count');
+    qualifiers.push('proof \u00b7 outdoor only');
   }
   if (totalLine) qualifiers.unshift(totalLine);
   // `line` already says continuous; `shortLine` does not. The word belongs to
@@ -592,7 +592,10 @@ function confidenceHtml() {
         <span class="consoleInstrument__label">Goal confidence</span>
         <span class="consoleInstrument__note">${read
           ? `Updated ${escapeHtml(formatDate(read.created_at))}`
-          : 'Set confidence'}</span>
+          // Confidence is what the evaluator will compute, not a box to type in.
+          // Inviting manual entry undermines the rule before it ships.
+          : 'Not evaluated'}</span>
+        ${read ? '' : '<span class="consoleInstrument__note">Awaiting qualifying evidence</span>'}
         ${read?.reason ? `<span class="consoleInstrument__note">${escapeHtml(read.reason)}</span>` : ''}
       </span>
     </button>
@@ -642,7 +645,7 @@ function heroHtml() {
       ${mark?.evidence_surface_requirement === 'outdoor'
         // A condition on whether evidence counts, said in words beside the goal.
         // It is not a rung and never sits on top of a numeral.
-        ? '<p class="consoleHero__condition">Proof requires \u00b7 outdoor</p>' : ''}
+        ? '<p class="consoleHero__condition">Proof \u00b7 outdoor only</p>' : ''}
     </div>
     <div class="consoleHero__instruments">${confidenceHtml()}</div>
   </section>`;
