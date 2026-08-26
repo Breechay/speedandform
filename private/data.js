@@ -661,6 +661,33 @@ export async function setConfidence(payload) {
   return read;
 }
 
+// Whether the ladder is trusted to answer how far has become believable. Setting
+// it to unknown changes no rung: the doubted rung stays exactly where it is, and
+// so does everything under it, which is the point. Recorded append-only, because
+// who stopped trusting a number is the thing the erasure destroyed.
+export async function setEstablishedProofState(markId, state, reason) {
+  if (!['derived', 'unknown'].includes(state)) throw new Error('Established proof is derived or unknown.');
+  if (!String(reason || '').trim()) throw new Error('Say why the ladder is no longer answering.');
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error('Sign in before correcting established proof.');
+
+  const { data: mark, error: readError } = await supabase
+    .from('athlete_marks').select('id, athlete_id, established_proof_state').eq('id', markId).single();
+  if (readError) throw readError;
+
+  const { error: ledgerError } = await supabase.from('mark_proof_state_changes').insert({
+    athlete_id: mark.athlete_id, mark_id: mark.id,
+    previous_state: mark.established_proof_state, resulting_state: state,
+    reason: String(reason).trim(), changed_by: user.id
+  });
+  if (ledgerError) throw ledgerError;
+
+  const { error } = await supabase.from('athlete_marks')
+    .update({ established_proof_state: state }).eq('id', markId);
+  if (error) throw error;
+  return { state };
+}
+
 // Proof coverage is not confidence. It is the furthest distance Brice has
 // established, over the mark's target. Derived from authored checkpoint state
 // only: a completion at eight miles proves nothing until he says it does.

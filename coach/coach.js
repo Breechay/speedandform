@@ -1,5 +1,5 @@
 import { bindAccountSecurity, authErrorMessage, getAccessContext, renderDoorway, signOut } from '/private/auth.js';
-import { addPrivateNote, authorSession, proofCoverage, setConfidence, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask, reviseSession } from '/private/data.js';
+import { addPrivateNote, authorSession, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask, reviseSession } from '/private/data.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
 
 // Account states only. The desk no longer labels athletes by a stored state —
@@ -555,13 +555,19 @@ function confidenceHtml() {
   </div>
   <div class="consoleInstrument consoleInstrument--coverage">
     <span class="consoleInstrument__label">Established proof</span>
-    ${cover && cover.established > 0
+    ${mark.established_proof_state === 'unknown'
+      ? `<b class="consoleInstrument__unset">unknown</b>
+         <span class="consoleInstrument__note">The ladder is not answering this yet</span>
+         <button class="consoleInstrument__act" type="button" id="reviewLadder">Review ladder \u203a</button>`
+      : cover && cover.established > 0
       ? `<b>${escapeHtml(cover.established.toFixed(1))}<i>mi</i></b>
          <span class="consoleCoverageRail" aria-hidden="true"><i data-at="${escapeHtml(cover.percent)}"></i></span>
          <span class="consoleInstrument__note">${escapeHtml(cover.established.toFixed(1))} of ${escapeHtml(cover.target)} mi</span>
          ${provenance ? `<span class="consoleInstrument__note consoleInstrument__caveat">${escapeHtml(provenance)}</span>` : ''}`
       : `<b class="consoleInstrument__unset">\u2014</b>
          <span class="consoleInstrument__note">Nothing established yet</span>`}
+    ${mark.established_proof_state !== 'unknown' && cover && cover.established > 0
+      ? '<button class="consoleInstrument__act" type="button" id="doubtProof">Not trustworthy \u203a</button>' : ''}
   </div>`;
 }
 
@@ -681,6 +687,17 @@ function bindDesk() {
   });
   document.getElementById('setConfidence')?.addEventListener('click', openConfidence);
   document.getElementById('openLadder')?.addEventListener('click', openLadder);
+  document.getElementById('reviewLadder')?.addEventListener('click', openLadder);
+  // Doubting the number changes no rung. It stops the screen asserting a
+  // distance while the ladder that produced it is still unexamined.
+  document.getElementById('doubtProof')?.addEventListener('click', async () => {
+    const reason = window.prompt('Why is this established proof not trustworthy?');
+    if (!reason?.trim()) return;
+    try {
+      await setEstablishedProofState(selectedRecord.primaryMark.id, 'unknown', reason);
+      await refreshSelected(true);
+    } catch (error) { window.alert(error.message); }
+  });
   document.getElementById('newSession')?.addEventListener('click', () => openSession(null));
   
   // Console actions using data-console-action

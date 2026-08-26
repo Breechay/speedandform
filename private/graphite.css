@@ -2077,3 +2077,9 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 /* Completed is not an alarm. Coral is reserved for what needs attention. */
 .ins-where em { color: var(--console-secondary); }
 .ins-where em.ins-where--flag { color: var(--console-coral); }
+
+.consoleInstrument__act {
+  display: block; margin-top: 10px; padding: 0; background: none; border: 0; cursor: pointer;
+  font-family: var(--condensed); font-size: 11px; letter-spacing: .11em;
+  text-transform: uppercase; color: var(--console-lime);
+}
