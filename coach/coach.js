@@ -1,5 +1,5 @@
 import { bindAccountSecurity, authErrorMessage, getAccessContext, renderDoorway, signOut } from '/private/auth.js';
-import { addPrivateNote, authorSession, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask, reviseSession } from '/private/data.js';
+import { addPrivateNote, authorSession, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask, reviseSession } from '/private/data.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
 
 // Account states only. The desk no longer labels athletes by a stored state —
@@ -40,6 +40,7 @@ let editingCompletionId = null;
 const judgeDialog = document.getElementById('judgeDialog');
 const judgeForm = document.getElementById('judgeForm');
 const confidenceDialog = document.getElementById('confidenceDialog');
+const proposalDialog = document.getElementById('proposalDialog');
 const confidenceForm = document.getElementById('confidenceForm');
 const ladderDialog = document.getElementById('ladderDialog');
 const rungDialog = document.getElementById('rungDialog');
@@ -758,7 +759,10 @@ function bindDesk() {
     attentionOrder = !attentionOrder;
     paintSquad();
   });
-  document.getElementById('setConfidence')?.addEventListener('click', openConfidence);
+  // A proposal waiting to be answered is what the instrument opens; the manual form
+  // is only for when there is nothing proposed.
+  document.getElementById('setConfidence')?.addEventListener('click', () =>
+    (selectedRecord.confidenceProposal ? openProposal() : openConfidence()));
   document.getElementById('openLadder')?.addEventListener('click', openLadder);
   document.getElementById('reviewLadder')?.addEventListener('click', openLadder);
   document.getElementById('newSession')?.addEventListener('click', () => openSession(null));
@@ -990,6 +994,74 @@ async function doubtEstablishedProof() {
     await refreshSelected(true);
   } catch (error) { window.alert(error.message); }
 }
+
+// What a number means, so the figure is never read as a percentage of nothing.
+// 100 is reserved for the goal being achieved, not for a plan going well.
+function confidenceBand(score) {
+  if (score >= 100) return 'Achieved';
+  if (score >= 95) return 'Exceptionally corroborated';
+  if (score >= 85) return 'Race-ready';
+  if (score >= 70) return 'Strong';
+  if (score >= 55) return 'Credible';
+  if (score >= 40) return 'Building';
+  return 'Unsupported';
+}
+
+// The proposal, opened. Everything the rule used is on the page: a score nobody can
+// argue with is the black box this replaced, so the argument is the interface.
+function openProposal() {
+  const proposal = selectedRecord.confidenceProposal;
+  if (!proposal) return;
+  document.getElementById('proposalScore').textContent = `${proposal.score}%`;
+  document.getElementById('proposalBand').textContent = confidenceBand(proposal.score);
+  document.getElementById('proposalRule').textContent =
+    `confidence.${proposal.rule_version}, on ${proposal.evidence_completion_ids?.length || 0} filed session(s).`;
+
+  document.getElementById('proposalFactors').innerHTML = (proposal.factors || [])
+    .map((factor) => `<p class="proposalFactor"><b>+${escapeHtml(factor.points)}</b>${escapeHtml(factor.says)}</p>`)
+    .join('') || '<p class="dialog-note">No factor fired.</p>';
+
+  // How each session was reported to feel against what it asked. Recorded, never
+  // scored: no factor awards points for effort, and none will until Brice writes one.
+  document.getElementById('proposalEffort').innerHTML = (proposal.effort_observations || [])
+    .map((seen) => `<p class="proposalEffort${seen.exception ? ' proposalEffort--exception' : ''}">
+      <b>${escapeHtml(formatDate(seen.on))}</b>
+      RPE ${seen.reported === null ? 'awaiting' : escapeHtml(seen.reported)}
+      ${seen.asked_low ? `\u00b7 asked ${escapeHtml(seen.asked_low)}\u2013${escapeHtml(seen.asked_high)}` : ''}
+      <em>${escapeHtml(seen.reading)}</em>
+      ${seen.said ? `<span>${escapeHtml(seen.said)}</span>` : ''}</p>`)
+    .join('');
+
+  document.getElementById('proposalLimiting').textContent = proposal.limiting || '';
+  document.getElementById('proposalNext').textContent = '';
+  document.getElementById('proposalStatus').textContent = '';
+  document.getElementById('proposalOverride').hidden = true;
+  proposalDialog.showModal();
+}
+
+async function decide(decision) {
+  const proposal = selectedRecord.confidenceProposal;
+  if (!proposal) return;
+  const form = document.getElementById('proposalForm');
+  const status = document.getElementById('proposalStatus');
+  status.textContent = 'Working\u2026';
+  try {
+    await decideConfidence(proposal.id, decision,
+      form.elements.overrideScore?.value, form.elements.overrideReason?.value);
+    proposalDialog.close();
+    await refreshSelected(true);
+  } catch (error) {
+    status.textContent = error.message;
+  }
+}
+
+document.getElementById('proposalAccept')?.addEventListener('click', () => decide('accept'));
+document.getElementById('proposalHold')?.addEventListener('click', () => decide('hold'));
+document.getElementById('proposalOverrideOpen')?.addEventListener('click', () => {
+  const panel = document.getElementById('proposalOverride');
+  if (panel.hidden) { panel.hidden = false; return; }
+  decide('override');
+});
 
 const stateWords = {
   proposed: 'Proposed', current: 'Current', reached: 'Owned',

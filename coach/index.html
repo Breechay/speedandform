@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#141718">
   <title>Coach Console · FORM</title>
-  <link rel="stylesheet" href="/private/graphite.css?v=33">
+  <link rel="stylesheet" href="/private/graphite.css?v=34">
 </head>
 <body>
   <a class="skip-link" href="#deskMain">Skip to current decision</a>
@@ -123,6 +123,37 @@
       <p class="dialog-note" id="rungProvenance"></p>
       <p class="status-message" id="rungStatus" role="status"></p>
       <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Save <span class="icon-arrow">&rarr;</span></button></div>
+    </form>
+  </dialog>
+
+  <!-- What the rule proposes, why, and the three things Brice can do about it.
+       A number with a way to argue with it, which is the whole design. -->
+  <dialog class="dialog" id="proposalDialog">
+    <form class="dialog-inner" id="proposalForm">
+      <div class="dialog-head">
+        <h2>Proposed confidence</h2>
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Close">&times;</button>
+      </div>
+      <p class="proposalScore"><b id="proposalScore"></b><span id="proposalBand"></span></p>
+      <p class="dialog-note" id="proposalRule"></p>
+      <div id="proposalFactors"></div>
+      <div id="proposalEffort"></div>
+      <p class="dialog-note" id="proposalLimiting"></p>
+      <p class="dialog-note" id="proposalNext"></p>
+      <div class="proposalOverride" id="proposalOverride" hidden>
+        <label class="field-label">Your number
+          <span class="pct-input"><input class="field-input" type="number" min="0" max="100" name="overrideScore"><span>%</span></span>
+        </label>
+        <label class="field-label lead">Why the rule is wrong here
+          <textarea class="field-textarea" name="overrideReason" placeholder="The 1 km evidence is indoors and the race is not."></textarea>
+        </label>
+      </div>
+      <p class="dialog-status" id="proposalStatus"></p>
+      <div class="dialog-acts">
+        <button class="btn" type="button" id="proposalAccept">Accept</button>
+        <button class="btn btn--quiet" type="button" id="proposalHold">Hold</button>
+        <button class="btn btn--quiet" type="button" id="proposalOverrideOpen">Override</button>
+      </div>
     </form>
   </dialog>
 

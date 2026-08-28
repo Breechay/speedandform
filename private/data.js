@@ -699,6 +699,29 @@ export async function setEstablishedProofState(markId, state, reason) {
   return { state };
 }
 
+// Accept, hold or override what the rule proposed.
+//
+// One call, because accepting is one transaction: the decision and the standing
+// confidence it writes must not be able to exist without each other. The database
+// refuses a superseded or stale proposal, so a coach cannot answer an argument that
+// the evidence has already moved past.
+export async function decideConfidence(proposalId, decision, score, reason) {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error('Sign in before deciding confidence.');
+  if (decision === 'override') {
+    if (score === null || score === undefined || score === '') throw new Error('An override needs your number.');
+    if (!String(reason || '').trim()) throw new Error('An override needs your reason.');
+  }
+  const { data, error } = await supabase.rpc('decide_confidence', {
+    p_proposal_id: proposalId,
+    p_decision: decision,
+    p_score: decision === 'override' ? Number(score) : null,
+    p_reason: decision === 'override' ? String(reason).trim() : null
+  });
+  if (error) throw new Error(error.message);
+  return data;
+}
+
 // Proof coverage is not confidence. It is the furthest distance Brice has
 // established, over the mark's target. Derived from authored checkpoint state
 // only: a completion at eight miles proves nothing until he says it does.

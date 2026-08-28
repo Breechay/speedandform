@@ -2124,3 +2124,19 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 .ins-felt__said {
   margin: 10px 0 0; font-size: 15px; line-height: 1.55; color: var(--console-text); max-width: 60ch;
 }
+
+/* The proposal review. The argument is the interface, so the factors get room and
+   the score does not shout over them. */
+.proposalScore { display: flex; align-items: baseline; gap: 12px; margin: 0 0 4px; }
+.proposalScore b { font-size: 40px; font-weight: 500; line-height: 1; }
+.proposalScore span { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.62; }
+.proposalFactor { display: flex; gap: 12px; margin: 0 0 6px; font-size: 14px; line-height: 1.45; }
+.proposalFactor b { min-width: 34px; opacity: 0.72; font-variant-numeric: tabular-nums; }
+.proposalEffort { margin: 10px 0 0; font-size: 14px; line-height: 1.5; }
+.proposalEffort b { margin-right: 8px; }
+.proposalEffort em { display: block; opacity: 0.66; font-style: normal; font-size: 13px; }
+.proposalEffort span { display: block; margin-top: 4px; opacity: 0.78; font-size: 13px; }
+/* An exception is a thing to look at, not a failure to mark in red. */
+.proposalEffort--exception { border-left: 2px solid currentColor; padding-left: 10px; }
+.proposalOverride { margin-top: 14px; }
+.dialog-acts { display: flex; gap: 10px; margin-top: 18px; }
