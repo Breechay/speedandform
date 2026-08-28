@@ -522,7 +522,7 @@ function evidenceFactsHtml(completion) {
   const feltRow = `<div class="ins-felt">
       <p class="ins-felt__label">How did it feel?</p>
       <p class="ins-felt__rpe">${completion.rpe ? `RPE ${escapeHtml(completion.rpe)}` : 'Not reported'}
-        ${askedEffort ? `<em>asked ${escapeHtml(askedEffort)}</em>` : ''}</p>
+        <em>${askedEffort ? `asked ${escapeHtml(askedEffort)}` : 'effort not prescribed'}</em></p>
       ${completion.athlete_note ? `<p class="ins-felt__said">${escapeHtml(completion.athlete_note)}</p>` : ''}
     </div>`;
 
