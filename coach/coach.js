@@ -1007,6 +1007,22 @@ function confidenceBand(score) {
   return 'Unsupported';
 }
 
+// Brice's reading of a reported effort, in the words he uses for it. The database
+// keeps the full sentence; this is the label a coach scans.
+//
+// A 6 is the interesting one: outstanding, achieved with headroom, and NOT a reason
+// to accelerate anything. Three comparable 6s inside six weeks say the paces may
+// have gone stale, and even then the Console recommends a review and never moves a
+// pace on its own.
+function effortLabel(reported, askedHigh) {
+  if (reported === null || reported === undefined) return 'AWAITING RPE';
+  if (reported <= 5) return 'CHEAPER THAN DESIGNED \u00b7 VERIFY EXECUTION';
+  if (reported === 6) return 'OUTSTANDING \u00b7 HEADROOM';
+  if (reported <= 8) return 'AT DESIGNED EFFORT';
+  if (reported === 9) return 'MORE COSTLY THAN DESIGNED \u00b7 COACH ATTENTION';
+  return 'MAXIMAL \u00b7 IMMEDIATE REVIEW';
+}
+
 // The proposal, opened. Everything the rule used is on the page: a score nobody can
 // argue with is the black box this replaced, so the argument is the interface.
 function openProposal() {
@@ -1028,7 +1044,7 @@ function openProposal() {
       <b>${escapeHtml(formatDate(seen.on))}</b>
       RPE ${seen.reported === null ? 'awaiting' : escapeHtml(seen.reported)}
       ${seen.asked_low ? `\u00b7 asked ${escapeHtml(seen.asked_low)}\u2013${escapeHtml(seen.asked_high)}` : ''}
-      <em>${escapeHtml(seen.reading)}</em>
+      <em>${escapeHtml(effortLabel(seen.reported, seen.asked_high))}</em>
       ${seen.said ? `<span>${escapeHtml(seen.said)}</span>` : ''}</p>`)
     .join('');
 
