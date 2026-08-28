@@ -559,8 +559,8 @@ function currentRungHtml() {
     ${current
       ? `<b>${escapeHtml(current.label)} mi</b>`
       : '<b class="consoleRungLine__unset">not set</b>'}
-    ${established ? `<span class="consoleRungLine__label">Established</span><b class="consoleRungLine__next">${escapeHtml(established.label)} mi</b>` : ''}
-    ${trusted ? '' : '<span class="consoleRungLine__label">Established</span><b class="consoleRungLine__unset">unknown</b>'}
+    ${established && trusted ? `<span class="consoleRungLine__label">Owned</span><b class="consoleRungLine__next">${escapeHtml(established.label)} mi</b>` : ''}
+    ${trusted ? '' : '<span class="consoleRungLine__label">Owned</span><b class="consoleRungLine__unset">\u2014</b>'}
     ${next ? `<span class="consoleRungLine__label">Next</span><b class="consoleRungLine__next">${escapeHtml(next.label)} mi</b>` : ''}
     <em>${current ? 'change' : 'choose'} \u203a</em>
   </button>`;
@@ -597,22 +597,29 @@ function confidenceHtml() {
   const cover = proofCoverage(mark);
   const provenance = ladderProvenance(mark);
 
+  // A proposal is not a confidence. It is an argument waiting for Brice, so it
+  // renders as the number it would write and a way in — never as the standing
+  // figure, which is what accepting is for.
+  const proposal = selectedRecord.confidenceProposal || null;
+  const score = read ? read.score : (proposal ? proposal.score : null);
+  const wantsReview = !read && proposal;
+
   return `<div class="consoleInstrument consoleInstrument--confidence">
     <button class="consoleInstrument__score" type="button" id="setConfidence">
-      ${read
+      ${score === null || score === undefined
         // Missing confidence is not zero. Nothing has been said yet, and 0% would
-        // be a statement Brice never made.
-        ? `<b>${escapeHtml(read.score)}<i>%</i></b>`
-        : '<b class="consoleInstrument__unset">\u2014</b>'}
+        // be a statement Brice never made. A dash says that and stops there: the
+        // reasons it is absent are real states, but they belong in the review, not
+        // narrated at a coach who came here to read a number.
+        ? '<b class="consoleInstrument__unset">\u2014</b>'
+        : `<b>${escapeHtml(score)}<i>%</i></b>`}
       <span class="consoleInstrument__read">
         <span class="consoleInstrument__label">Goal confidence</span>
-        <span class="consoleInstrument__note">${read
-          ? `Updated ${escapeHtml(formatDate(read.created_at))}`
-          // Confidence is what the evaluator will compute, not a box to type in.
-          // Inviting manual entry undermines the rule before it ships.
-          : 'Not evaluated'}</span>
-        ${read ? '' : '<span class="consoleInstrument__note">Awaiting qualifying evidence</span>'}
-        ${read?.reason ? `<span class="consoleInstrument__note">${escapeHtml(read.reason)}</span>` : ''}
+        ${wantsReview
+          ? '<span class="consoleInstrument__note consoleInstrument__review">Review \u203a</span>'
+          : read
+          ? `<span class="consoleInstrument__note">Updated ${escapeHtml(formatDate(read.created_at))}</span>`
+          : ''}
       </span>
     </button>
     ${confidenceHistoryHtml()}
@@ -621,20 +628,19 @@ function confidenceHtml() {
       : ''}
   </div>
   <div class="consoleInstrument consoleInstrument--coverage">
-    <span class="consoleInstrument__label">Established proof</span>
+    <span class="consoleInstrument__label">Distance owned</span>
     ${mark.established_proof_state === 'unknown'
-      ? `<b class="consoleInstrument__unset">unknown</b>
-         <span class="consoleInstrument__note">The ladder is not answering this yet</span>
-         <button class="consoleInstrument__act" type="button" id="reviewLadder">Review ladder \u203a</button>`
+      // Disowned. A dash and a way in, because the rung being unevidenced is a fact
+      // about the record rather than something to tell an athlete's coach twice.
+      ? `<b class="consoleInstrument__unset">\u2014</b>
+         <button class="consoleInstrument__act" type="button" id="reviewLadder">Review \u203a</button>`
       : cover && cover.established > 0
+      // Legacy proof shows its distance like any other. Where it came from is true
+      // and kept, and it is in the ladder where someone can act on it.
       ? `<b>${escapeHtml(cover.established.toFixed(1))}<i>mi</i></b>
          <span class="consoleCoverageRail" aria-hidden="true"><i data-at="${escapeHtml(cover.percent)}"></i></span>
-         <span class="consoleInstrument__note">${escapeHtml(cover.established.toFixed(1))} of ${escapeHtml(cover.target)} mi</span>
-         ${provenance ? `<span class="consoleInstrument__note consoleInstrument__caveat">${escapeHtml(provenance)}</span>` : ''}`
-      : `<b class="consoleInstrument__unset">\u2014</b>
-         <span class="consoleInstrument__note">Nothing established yet</span>`}
-    ${mark.established_proof_state !== 'unknown' && cover && cover.established > 0
-      ? '<button class="consoleInstrument__act" type="button" id="doubtProof">Not trustworthy \u203a</button>' : ''}
+         <span class="consoleInstrument__note">${escapeHtml(cover.established.toFixed(1))} of ${escapeHtml(cover.target)} mi</span>`
+      : '<b class="consoleInstrument__unset">\u2014</b>'}
   </div>`;
 }
 
@@ -755,16 +761,6 @@ function bindDesk() {
   document.getElementById('setConfidence')?.addEventListener('click', openConfidence);
   document.getElementById('openLadder')?.addEventListener('click', openLadder);
   document.getElementById('reviewLadder')?.addEventListener('click', openLadder);
-  // Doubting the number changes no rung. It stops the screen asserting a
-  // distance while the ladder that produced it is still unexamined.
-  document.getElementById('doubtProof')?.addEventListener('click', async () => {
-    const reason = window.prompt('Why is this established proof not trustworthy?');
-    if (!reason?.trim()) return;
-    try {
-      await setEstablishedProofState(selectedRecord.primaryMark.id, 'unknown', reason);
-      await refreshSelected(true);
-    } catch (error) { window.alert(error.message); }
-  });
   document.getElementById('newSession')?.addEventListener('click', () => openSession(null));
   
   // Console actions using data-console-action
@@ -983,9 +979,21 @@ function openJudge(completionId) {
   judgeDialog.showModal();
 }
 
+// Saying a rung is not evidenced changes no rung. It stops the screen asserting a
+// distance the ladder behind it cannot support.
+async function doubtEstablishedProof() {
+  const reason = window.prompt('What is missing behind this rung?');
+  if (!reason?.trim()) return;
+  try {
+    await setEstablishedProofState(selectedRecord.primaryMark.id, 'unknown', reason);
+    ladderDialog.close();
+    await refreshSelected(true);
+  } catch (error) { window.alert(error.message); }
+}
+
 const stateWords = {
-  proposed: 'Proposed', current: 'Current', reached: 'Established',
-  repeated: 'Established again', retired: 'Retired'
+  proposed: 'Proposed', current: 'Current', reached: 'Owned',
+  repeated: 'Owned again', retired: 'Retired'
 };
 
 // The ladder, reachable without occupying the page. Opening it writes nothing.
@@ -1006,6 +1014,15 @@ function openLadder() {
       ladderDialog.close();
       openRung(button.dataset.cycleCheckpoint, button.dataset.state, button.querySelector('b').textContent.replace('mi', '').trim());
     }));
+  const provenance = ladderProvenance(mark);
+  document.getElementById('ladderProvenance').textContent = provenance || '';
+  // The control that says a rung is not evidenced. It lives here now, beside the
+  // rungs, rather than on the main screen where it read as an accusation.
+  const acts = document.getElementById('ladderActs');
+  acts.innerHTML = mark.established_proof_state !== 'unknown'
+    ? '<button class="consoleInstrument__act" type="button" id="doubtProof">Not evidenced here \u203a</button>'
+    : '';
+  document.getElementById('doubtProof')?.addEventListener('click', doubtEstablishedProof);
   ladderDialog.showModal();
 }
 

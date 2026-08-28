@@ -81,7 +81,11 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     supabase.from('mark_judgment_completions').select('*'),
     supabase.from('mark_confidence_reads').select('*').eq('athlete_id', athleteId).order('created_at', { ascending: false }),
     supabase.from('mark_confidence_completions').select('*'),
-    supabase.from('completion_evidence').select('*').eq('athlete_id', athleteId).order('created_at')
+    supabase.from('completion_evidence').select('*').eq('athlete_id', athleteId).order('created_at'),
+    // What confidence.v1 proposes and nobody has answered yet. Never a standing
+    // score: the Console shows it as a number to review, and only a decision writes.
+    supabase.from('mark_open_confidence_proposal').select('*').eq('athlete_id', athleteId)
+      .order('created_at', { ascending: false })
   ];
 
   if (coach) {
@@ -103,7 +107,7 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     decisionsResponse, marksResponse, signalsResponse, checkpointsResponse,
     gatesResponse, movementResponse, supportResponse, supportItemsResponse,
     verdictsResponse, piecesResponse, judgmentsResponse, judgmentLinksResponse,
-    confidenceResponse, confidenceLinksResponse, evidenceFilesResponse,
+    confidenceResponse, confidenceLinksResponse, evidenceFilesResponse, proposalResponse,
     taskResponse, evidenceResponse, actionsResponse, privateNotesResponse, adminResponse
   ] = responses;
 
@@ -174,6 +178,9 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
         .filter((link) => link.read_id === read.id).map((link) => link.completion_id)
     })),
     evidenceFiles: await signEvidence(result(evidenceFilesResponse.data, evidenceFilesResponse.error)),
+    // The newest proposal nobody has answered. One per mark by construction, so the
+    // primary mark's is the one the instrument shows.
+    confidenceProposal: result(proposalResponse.data, proposalResponse.error)[0] || null,
     pieces: result(piecesResponse.data, piecesResponse.error),
     judgments: result(judgmentsResponse.data, judgmentsResponse.error).map((judgment) => ({
       ...judgment,
