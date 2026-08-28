@@ -515,11 +515,23 @@ function evidenceFactsHtml(completion) {
       <dd class="evf-was">${completion.rpe ? escapeHtml(completion.rpe) : '\u2014'}</dd>
     </div>`;
 
+  // How it felt, first. It is what Brice asks after every session and what the
+  // athlete actually volunteers; the splits explain it rather than replace it.
+  // An authored effort target sits beside the reported number only when one
+  // exists, and is never invented to score adherence against.
+  const feltRow = `<div class="ins-felt">
+      <p class="ins-felt__label">How did it feel?</p>
+      <p class="ins-felt__rpe">${completion.rpe ? `RPE ${escapeHtml(completion.rpe)}` : 'Not reported'}
+        ${askedEffort ? `<em>asked ${escapeHtml(askedEffort)}</em>` : ''}</p>
+      ${completion.athlete_note ? `<p class="ins-felt__said">${escapeHtml(completion.athlete_note)}</p>` : ''}
+    </div>`;
+
   return `${where ? `<p class="ins-where">${escapeHtml(where)}<em${nonQualifying ? ' class="ins-where--flag"' : ''}>${escapeHtml(standing)}</em></p>` : ''}
+    ${feltRow}
     <dl class="evf">${workRow}${effortRow}${recoveryRow}</dl>
     ${judgment ? `<p class="ins-judgment ${escapeHtml(judgment.direction)}">
       <span>${escapeHtml(directionWords[judgment.direction] || judgment.direction)}</span>${escapeHtml(judgment.reason)}</p>` : ''}
-    ${completion.athlete_note ? `<p class="ins-said">${escapeHtml(completion.athlete_note)}</p>` : ''}`;
+`;
 }
 
 function currentRungHtml() {

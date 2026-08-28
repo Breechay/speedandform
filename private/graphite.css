@@ -2105,3 +2105,22 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   width: 5px; height: 5px; border-radius: 50%; background: var(--console-coral);
   flex: none; align-self: center;
 }
+
+/* How it felt, first. The athlete reports this before any number, and Brice asks
+   for it every time; the splits underneath explain it rather than replace it. */
+.ins-felt { margin: 0 0 22px; padding-bottom: 20px; border-bottom: 1px solid var(--console-edge); }
+.ins-felt__label {
+  margin: 0 0 8px; font-family: var(--condensed); font-size: 11px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--console-muted);
+}
+.ins-felt__rpe {
+  margin: 0; font-family: var(--condensed); font-size: 30px; font-weight: 700;
+  letter-spacing: .03em; text-transform: uppercase; color: var(--console-text);
+}
+.ins-felt__rpe em {
+  margin-left: 12px; font-style: normal; font-size: 12px; font-weight: 500;
+  letter-spacing: .09em; color: var(--console-secondary);
+}
+.ins-felt__said {
+  margin: 10px 0 0; font-size: 15px; line-height: 1.55; color: var(--console-text); max-width: 60ch;
+}
