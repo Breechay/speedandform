@@ -19,6 +19,11 @@
           <summary aria-label="Account"><span class="avatar-me" id="userInitials">B</span></summary>
           <div class="control-menu">
             <p class="control-who" id="userEmail"></p>
+            <!-- bindAccountSecurity has always been able to set a password and link
+                 Apple; the Console simply never rendered the buttons it binds to, so
+                 the reset link was the only way in and it just signed you back in. -->
+            <button class="control-item" id="setPassword" type="button">Set a password</button>
+            <button class="control-item" id="linkApple" type="button" hidden>Link Apple</button>
             <button class="control-item" id="signOut" type="button">Sign out</button>
           </div>
         </details>
