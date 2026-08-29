@@ -165,5 +165,33 @@ if (!/An automatic advance names its evidence and the rule version/.test(data)) 
   bad++;
 }
 
+// Field authorisation. The relay served athlete training data unauthenticated for
+// a hundred and ten days, and the replacement is only a fix while these two things
+// stay true: a client cannot write its own membership, and a client cannot read the
+// access log. A policy granting either is the original hole in a new shape.
+//
+// The applied migration asserts both against the live catalogue. This catches a new
+// migration that would grant them, before it is ever pushed.
+{
+  const migrations = readdirSync('supabase/migrations').filter((f) => f.endsWith('.sql'));
+  for (const file of migrations) {
+    const sql = readFileSync(`supabase/migrations/${file}`, 'utf8');
+    const policies = sql.match(/create policy[\s\S]*?;/gi) || [];
+    for (const policy of policies) {
+      const flat = policy.replace(/\s+/g, ' ').toLowerCase();
+      if (flat.includes('on public.field_group_memberships')
+          && /\bfor (insert|update|delete|all)\b/.test(flat)) {
+        console.error(`${file}: a client can write its own Field membership`);
+        bad++;
+      }
+      if (flat.includes('on public.field_access_log')
+          && /\bfor (select|all)\b/.test(flat)) {
+        console.error(`${file}: the Field access log is client-readable`);
+        bad++;
+      }
+    }
+  }
+}
+
 if (bad) { console.error(`\n${bad} contract violation(s)`); process.exit(1); }
 console.log('contract check passed: every rung that moves records what moved it');
