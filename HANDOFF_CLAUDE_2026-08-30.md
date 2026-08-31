@@ -3,12 +3,24 @@
 Read Codex's handoff first. This file covers only what **this** session changed, and
 one mistake it made in a shared repository.
 
+## Codex stopped mid-flight
+
+Codex hit its usage limit while compiling the iOS callback flow and never ran its
+own checkpoint. This session ran that checkpoint for it. Its uncommitted work built
+clean and its 13 Coaching tests passed, so it is committed at `93f20731` on
+`release/39.4-athlete-coaching` **attributed to Codex in the message** — the
+coaching auth/callback flow, `FORMSessionUploadQueueStore` (upsert replaces a
+receipt in place and preserves filed order), and the log-surface changes.
+
+Its last stated position: **the Supabase Auth callback URL is not configured and the
+real magic-link redirect is unverified.** That is where tomorrow starts.
+
 ## Repository state
 
 | | |
 |---|---|
 | speedandform | `main` — see `git log`, latest commit is the pause migration |
-| FORM-iOS | `release/39.4-athlete-coaching` @ `4082d064` — **39.4 (7)** |
+| FORM-iOS | `release/39.4-athlete-coaching` @ `93f20731` — **39.4 (7)**, includes Codex's work |
 | FORM-iOS | `form-coaching-integration` @ `c7d57fe2` |
 | FORM-iOS | remote main `904b8753` — **deliberately untouched** |
 | fallback archive | `~/Library/Developer/Xcode/Archives/FORM-39.4-6-privacy.xcarchive` — verified, **do not upload** |
@@ -18,10 +30,20 @@ one mistake it made in a shared repository.
 - **Coaching sync: PAUSED** — `coaching_sync_state.enabled = false`, reason
   "Paused until the 39.4 (7) end-to-end athlete walk passes."
 - Active athlete memberships: **0**. No Hope/José/Marcus membership exists.
-- One unclaimed `access_invites` row predates this session — check before assuming it is a fixture.
+- Protected administrators: **1 active**, 1 row total (`coaching_administrators`).
+- Disposable identities: **0**. No `auth.users` row on `example.invalid` survives.
+- One unclaimed invite: `natalie.ramirez03@gmail.com`. It predates both sessions and
+  is a real person, **not a fixture** — do not delete it.
 - Disposable fixtures remaining: **0** (the athlete proof ran inside a rolled-back transaction).
 - Field relay: still closed. The four `field_*` tables are the authenticated
   replacement schema, not the switch.
+
+## Preserved, still dirty on purpose
+
+`relay/api/field/*.js`, `relay/.gitignore`, `relay/api/_lib/`,
+`Packages/FORMMovementKit/.../FORMFilm.swift` and the generated build fingerprint
+were dirty before either session started and were left that way, as Codex's
+checkpoint asked.
 
 ## A mistake to know about
 
@@ -89,6 +111,15 @@ site that writes.
 - No RPE, symptom, token or magic-link value reaches a log.
 - Account deletion clears coaching Keychain tokens and the plan cache — necessary,
   **not sufficient**; the server-side request path is unwired.
+
+## Where tomorrow starts
+
+1. Configure the Supabase Auth callback URL (Codex's unfinished step; the CLI does
+   not expose it, so it needs the dashboard).
+2. Finish and verify the real magic-link redirect into FORM.
+3. Then the disposable athlete walk, app to server to Console.
+
+Sync stays paused until that walk passes. Field stays closed. No real memberships.
 
 ## Test baseline
 
