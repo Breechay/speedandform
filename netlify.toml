@@ -1,3 +1,18 @@
+# ── Publishing is a human action ─────────────────────────────────────────────
+#
+# Every push to main was auto-publishing, and a production deploy is 15 of the 300
+# free monthly credits. That is roughly twenty pushes a month, and one working day
+# spent about a dozen of them. Build minutes were never the cost; automatic
+# publishing was.
+#
+# The real control is the Netlify UI: Site configuration -> Build & deploy ->
+# Continuous deployment -> Stop auto publishing. Pushes still build a preview and
+# nothing reaches production until a person presses publish.
+#
+# Deliberately NOT using `ignore = "exit 0"` here. That skips every build including
+# branch previews, which is the loop used to check a change on a phone. The point is
+# to stop publishing, not to stop building.
+
 [build]
   command = "echo 'no build needed'"
   publish = "."
