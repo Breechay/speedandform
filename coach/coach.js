@@ -333,6 +333,15 @@ function blockShapeHtml() {
         ? `${Number(version.prescribed_distance)} easy`
         : title;
     };
+    // The description is Brice's own adaptation line, exactly as he wrote it in the
+    // library. Never generated, never trimmed mid-sentence: a long one wraps. A
+    // session without one renders the name alone -- the race-pace runs need no
+    // sentence, because the name already is the session.
+    const cell = (session) => {
+      const label = escapeHtml(name(session));
+      const why = session?.currentVersion?.intent?.trim();
+      return why ? `${label}<em>${escapeHtml(why)}</em>` : label;
+    };
 
     const weekend = pick(['SAT', 'SUN']);
     const weekendTitle = weekend?.currentVersion?.title || '';
@@ -342,9 +351,9 @@ function blockShapeHtml() {
 
     return `<tr class="${isRace ? 'is-race' : isReach ? 'is-reach' : ''}">
       <td class="out">${escapeHtml(out)}</td>
-      <td>${escapeHtml(name(pick(['TUE'])))}</td>
-      <td>${escapeHtml(name(pick(['THU'])))}</td>
-      <td>${isRace ? 'Race' : escapeHtml(name(weekend))}</td>
+      <td>${cell(pick(['TUE']))}</td>
+      <td>${cell(pick(['THU']))}</td>
+      <td>${isRace ? 'Race' : cell(weekend)}</td>
     </tr>`;
   }).filter(Boolean).join('');
 

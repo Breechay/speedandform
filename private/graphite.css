@@ -2306,3 +2306,22 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   .blockShape-head { flex-direction: column; gap: 4px; }
   .blockShape-table td { font-size: 13px; padding: 8px 0; }
 }
+
+/* The authored adaptation line, under the name it belongs to. Wraps rather than
+   truncating: a sentence cut mid-clause is worse than no sentence. */
+.blockShape-table td em {
+  display: block;
+  margin-top: 3px;
+  font-style: normal;
+  font-size: 11.5px;
+  line-height: 1.42;
+  color: var(--muted);
+  max-width: 34ch;
+}
+.blockShape-table tr.is-reach td:last-child em,
+.blockShape-table tr.is-race td:last-child em {
+  color: var(--secondary);
+  text-transform: none;
+  font-weight: 400;
+  letter-spacing: 0;
+}
