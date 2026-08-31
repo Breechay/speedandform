@@ -2210,21 +2210,99 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 .recovery__blocks span { display: block; height: 8px; border-radius: 2px; background: currentColor; opacity: 0.28; }
 .recovery__blocks em { display: block; margin-top: 6px; font-style: normal; font-size: 11px; font-variant-numeric: tabular-nums; opacity: 0.55; }
 
-/* THE SHAPE — built to be screenshotted and sent to a group chat.
-   No hover, no scroll, nothing that only reads next to the rest of the Console. */
-.shape { margin: 34px 0 0; padding: 22px 0 4px; border-top: 1px solid currentColor; border-color: rgba(255,255,255,0.08); }
-.shape__head { margin: 0 0 16px; display: flex; align-items: baseline; gap: 12px; }
-.shape__head b { font-size: 17px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
-.shape__head span { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.45; }
-.shape__grid { width: 100%; border-collapse: collapse; }
-.shape__grid tr { border-bottom: 1px solid rgba(255,255,255,0.05); }
-.shape__grid th { width: 68px; text-align: left; vertical-align: top; padding: 11px 12px 11px 0; }
-.shape__grid th b { display: block; font-size: 19px; font-weight: 500; font-variant-numeric: tabular-nums; opacity: 0.85; }
-.shape__grid th span { display: block; font-size: 9px; letter-spacing: 0.09em; text-transform: uppercase; opacity: 0.34; }
-.shape__grid td { vertical-align: top; padding: 11px 14px 11px 0; }
-.shape__day { display: block; font-size: 9px; letter-spacing: 0.09em; text-transform: uppercase; opacity: 0.34; margin-bottom: 2px; }
-.shape__grid td b { display: block; font-size: 14px; font-weight: 400; opacity: 0.92; }
-.shape__dose { display: block; font-size: 12px; font-variant-numeric: tabular-nums; opacity: 0.62; }
-.shape__band { display: block; font-size: 11px; font-variant-numeric: tabular-nums; opacity: 0.42; }
-/* Race week is the only marked row. It needs no label — it is the last one. */
-.shape__row--race th b, .shape__row--race td b { color: #c8f560; }
+/* THE BLOCK — the campaign on one screen, made to be photographed.
+   Spec: console-block-shape.md. Every value is an existing token. */
+.blockShape {
+  background: var(--surface);
+  border: 1px solid var(--edge);
+  border-radius: var(--radius);
+  padding: 30px 32px 24px;
+  max-width: 780px;
+}
+
+.blockShape-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 26px;
+}
+.blockShape-name {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: .01em;
+  color: var(--text);
+}
+.blockShape-goal {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 720;
+  letter-spacing: .08em;
+  color: var(--secondary);
+}
+
+.blockShape-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+.blockShape-table th {
+  padding: 0 0 10px;
+  border-bottom: 1px solid var(--edge);
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: .1em;
+  color: var(--muted);
+  text-align: left;
+}
+.blockShape-table td {
+  padding: 9px 0;
+  font-size: 14px;
+  color: var(--text);
+  vertical-align: baseline;
+}
+.blockShape-table th:first-child,
+.blockShape-table td:first-child { width: 46px; }
+.blockShape-table th:nth-child(2),
+.blockShape-table td:nth-child(2) { width: 30%; }
+.blockShape-table th:nth-child(3),
+.blockShape-table td:nth-child(3) { width: 30%; }
+
+.blockShape-table td.out {
+  color: var(--secondary);
+  font-weight: 700;
+}
+.blockShape-table tr:first-child td { padding-top: 14px; }
+
+/* reach weeks */
+.blockShape-table tr.is-reach td.out { color: var(--text); }
+.blockShape-table tr.is-reach td:last-child {
+  color: var(--lime);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+/* race */
+.blockShape-table tr.is-race td:last-child {
+  color: var(--coral);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.blockShape-mark {
+  margin: 22px 0 0;
+  font-family: var(--serif);
+  font-size: 12px;
+  letter-spacing: .23em;
+  color: var(--muted);
+}
+
+/* narrow */
+@media (max-width: 700px) {
+  .blockShape { padding: 22px 18px 18px; }
+  .blockShape-head { flex-direction: column; gap: 4px; }
+  .blockShape-table td { font-size: 13px; padding: 8px 0; }
+}
