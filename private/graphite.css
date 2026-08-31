@@ -2124,6 +2124,13 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 .ins-felt__said {
   margin: 10px 0 0; font-size: 15px; line-height: 1.55; color: var(--console-text); max-width: 60ch;
 }
+.ins-felt__symptoms {
+  margin: 10px 0 0; font-size: 14px; line-height: 1.5; color: var(--console-secondary);
+}
+.ins-felt__symptoms strong {
+  margin-right: 8px; font-family: var(--condensed); font-size: 10px;
+  letter-spacing: .11em; text-transform: uppercase; color: var(--console-coral);
+}
 
 /* The proposal review. The argument is the interface, so the factors get room and
    the score does not shout over them. */
@@ -2140,3 +2147,65 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 .proposalEffort--exception { border-left: 2px solid currentColor; padding-left: 10px; }
 .proposalOverride { margin-top: 14px; }
 .dialog-acts { display: flex; gap: 10px; margin-top: 18px; }
+
+/* ── The session instrument ──────────────────────────────────────────────────
+   Two rails, one grammar. A rail is drawn only for a field the prescription
+   stated as a range; white for the result, lime for where she actually landed,
+   white 22% for the geometry of what was asked, coral only when she fell outside
+   it. Nothing else on the screen competes with those two figures. */
+.rails { display: flex; gap: 80px; margin: 34px 0 0; flex-wrap: wrap; }
+.rail { flex: 1 1 320px; min-width: 260px; max-width: 320px; }
+.rail__figure { margin: 0 0 6px; font-size: 42px; font-weight: 600; line-height: 1; letter-spacing: -0.01em; }
+.rail__figure em { margin-left: 10px; font-style: normal; font-size: 15px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.45; }
+.rail__svg { display: block; width: 100%; height: auto; overflow: visible; }
+.rail__span { stroke: currentColor; stroke-opacity: 0.22; stroke-width: 2; }
+.rail__done { stroke: currentColor; stroke-opacity: 1; stroke-width: 2; }
+.rail__mark { fill: #c8f560; }
+/* Coral is reserved. It means she landed outside what was asked, and nothing else. */
+.rail__mark--out { fill: #f0765a; }
+.rail__tick { fill: currentColor; fill-opacity: 0.4; font-size: 10px; letter-spacing: 0.08em; }
+.rail__sub { fill: currentColor; fill-opacity: 0.26; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* Pace was open on this session, so it gets chronology and no band. */
+.paceRun { margin: 40px 0 0; }
+.paceRun__label { margin: 0 0 10px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.45; }
+.paceRun__label em { margin-left: 10px; font-style: normal; text-transform: none; letter-spacing: 0; opacity: 0.7; }
+.paceRun__svg { display: block; width: 100%; height: auto; overflow: visible; }
+.paceRun__line { fill: none; stroke: currentColor; stroke-opacity: 0.7; stroke-width: 1.5; }
+.paceRun__dot { fill: currentColor; }
+.paceRun__values { display: flex; margin: 10px 0 0; padding: 0; list-style: none; }
+.paceRun__values li { flex: 1 1 0; text-align: center; font-size: 13px; font-variant-numeric: tabular-nums; opacity: 0.85; }
+.paceRun__spread { margin: 8px 0 0; text-align: right; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.45; }
+
+.ins-said { margin: 30px 0 0; padding: 0; border: 0; max-width: 560px; font-size: 20px; line-height: 1.4; opacity: 0.9; }
+.ins-symptom { margin: 14px 0 0; max-width: 560px; font-size: 15px; line-height: 1.5; opacity: 0.72; }
+
+.fold { margin: 30px 0 0; }
+.fold summary { cursor: pointer; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.45; }
+.fold__body { margin: 16px 0 0; }
+.fold__row { display: flex; gap: 18px; margin: 0 0 8px; font-size: 13px; }
+.fold__row dt { flex: 0 0 108px; opacity: 0.45; }
+.fold__row dd { margin: 0; font-variant-numeric: tabular-nums; opacity: 0.85; }
+.fold__row dd em { margin-left: 10px; font-style: normal; opacity: 0.5; }
+
+@media (max-width: 520px) {
+  .rails { gap: 28px; }
+  .rail { max-width: none; }
+  .rail__figure { font-size: 34px; }
+  .paceRun__values li { font-size: 12px; }
+  .ins-said { font-size: 17px; }
+}
+
+/* The prescribed window inside the wider scale. */
+.rail__band { stroke: currentColor; stroke-opacity: 0.34; stroke-width: 8; stroke-linecap: butt; }
+
+/* Recovery: the durations are the fact. Five equal blocks read as five equal
+   blocks without a sentence explaining that they were even. */
+.recovery { margin: 36px 0 0; }
+.recovery__label { margin: 0 0 6px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.45; }
+.recovery__label em { margin-left: 10px; font-style: normal; text-transform: none; letter-spacing: 0; opacity: 0.7; }
+.recovery__figure { margin: 0 0 12px; font-size: 24px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.recovery__blocks { display: flex; gap: 8px; margin: 0; padding: 0; list-style: none; max-width: 460px; }
+.recovery__blocks li { flex: 1 1 0; text-align: center; }
+.recovery__blocks span { display: block; height: 8px; border-radius: 2px; background: currentColor; opacity: 0.28; }
+.recovery__blocks em { display: block; margin-top: 6px; font-style: normal; font-size: 11px; font-variant-numeric: tabular-nums; opacity: 0.55; }

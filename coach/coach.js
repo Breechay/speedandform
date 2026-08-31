@@ -181,6 +181,59 @@ function titleAlreadySays(title, line) {
   return dose.length > 0 && flatten(title).includes(dose);
 }
 
+// A rail is drawn only for a field the prescription stated as a RANGE. Pace and
+// recovery were open on this session, so they get observation and no rail: a band
+// drawn around an open field invents a target nobody set, and the athlete would be
+// measured against it forever after.
+//
+// Geometry travels as SVG attributes rather than inline styles. style-src is 'self'
+// with no unsafe-inline, so a style attribute written into markup is dropped and
+// every mark would collapse to the left edge.
+function railSvg({ min, max, ticks, actual, fillFromMin, sublabels, band }) {
+  const left = 10;
+  const right = 310;
+  const at = (value) => max === min ? left : left + ((value - min) / (max - min)) * (right - left);
+  const judged = band || { from: min, to: max };
+  const outside = actual != null && (actual < judged.from || actual > judged.to);
+  const markerClass = outside ? 'rail__mark rail__mark--out' : 'rail__mark';
+  const fill = fillFromMin && actual != null
+    ? `<line class="rail__done" x1="${at(min)}" y1="14" x2="${at(actual)}" y2="14"></line>` : '';
+  // A prescribed window drawn inside a wider scale, so the reader sees both where
+  // she was asked to be and how much scale sits either side of it.
+  const window = band
+    ? `<line class="rail__band" x1="${at(band.from)}" y1="14" x2="${at(band.to)}" y2="14"></line>` : '';
+  const mark = actual != null
+    ? `<circle class="${markerClass}" cx="${at(Math.min(Math.max(actual, min), max))}" cy="14" r="4.5"></circle>` : '';
+  const tickText = ticks.map((tick) =>
+    `<text class="rail__tick" x="${at(tick)}" y="34" text-anchor="middle">${escapeHtml(tick)}</text>`).join('');
+  const subText = (sublabels || []).map((entry) =>
+    `<text class="rail__sub" x="${at(entry.at)}" y="48" text-anchor="middle">${escapeHtml(entry.text)}</text>`).join('');
+  return `<svg class="rail__svg" viewBox="0 0 320 56" role="presentation" focusable="false">
+    <line class="rail__span" x1="${left}" y1="14" x2="${right}" y2="14"></line>
+    ${window}${fill}${mark}${tickText}${subText}
+  </svg>`;
+}
+
+// Chronology, not ranking. The story of these six reps is 6:42, 6:47, then four
+// inside three seconds -- she found it and held it. Sorting by pace would draw a
+// tidy line and destroy the only thing the splits actually say.
+function paceRunSvg(seconds) {
+  if (seconds.length < 2) return '';
+  const fastest = Math.min(...seconds);
+  const slowest = Math.max(...seconds);
+  const span = Math.max(1, slowest - fastest);
+  const left = 12, right = 708, top = 10, bottom = 46;
+  const x = (i) => left + (i * (right - left)) / (seconds.length - 1);
+  // Faster sits higher, which is the direction a runner already reads.
+  const y = (value) => top + ((value - fastest) / span) * (bottom - top);
+  const points = seconds.map((value, i) => `${x(i)},${y(value)}`).join(' ');
+  const dots = seconds.map((value, i) =>
+    `<circle class="paceRun__dot" cx="${x(i)}" cy="${y(value)}" r="3"></circle>`).join('');
+  return `<svg class="paceRun__svg" viewBox="0 0 720 56" role="presentation" focusable="false">
+    <polyline class="paceRun__line" points="${points}"></polyline>${dots}
+  </svg>`;
+}
+
 function doseOf(version) {
   const work = (version?.components || []).find((part) => part.role === 'work');
   if (!work) return null;
@@ -483,6 +536,10 @@ function evidenceFactsHtml(completion) {
     ? `${clock(work.recovery_seconds)} ${work.recovery_kind}`
     : work?.recovery_kind === 'equal' ? 'equal' : null;
   const askedEffort = work?.rpe_low ? `${work.rpe_low}\u2013${work.rpe_high}` : null;
+  // The authored effort band, as numbers rather than a rendered string, because the
+  // rail needs to place a marker inside it and cannot read a dash.
+  const workRpeLow = work?.rpe_low ?? null;
+  const workRpeHigh = work?.rpe_high ?? null;
 
   // The athlete's own easy pace that day decides whether a recovery was run at
   // all. Never another athlete's. It is computed per completion from the easy
@@ -502,49 +559,103 @@ function evidenceFactsHtml(completion) {
   const standing = qualifyingWords(completion);
   const nonQualifying = /non qualifying/i.test(standing);
 
-  const workRow = reps.length ? `<div class="evf-row evf-row--lead">
-      <dt>Work</dt>
-      <dd class="evf-asked">${work
-        ? `asked ${escapeHtml(work.repeat_count)} \u00d7 ${escapeHtml(Number(work.distance))} ${escapeHtml(work.distance_unit)}`
-        : 'no prescription filed'}</dd>
-      <dd class="evf-was"><b>${escapeHtml(reps.length)} \u00d7 ${escapeHtml(pace(Math.min(...repSeconds)))}\u2013${escapeHtml(pace(Math.max(...repSeconds)))}</b>
-        <span>${escapeHtml(spread)} sec across ${escapeHtml(reps.length)} reps</span></dd>
-    </div>
-    <div class="evf-row evf-row--quiet">
-      <dt>Splits</dt>
-      <dd class="evf-asked">${askedBand ? `asked ${escapeHtml(askedBand)}` : 'pace not prescribed'}</dd>
-      <dd class="evf-was">${reps.map((piece) => escapeHtml(pace(piece.pace_seconds))).join(' \u00b7 ')}</dd>
+  // ── Two rails, one grammar ───────────────────────────────────────────────
+  //
+  // Only two things were prescribed as a range on this session: how many reps, and
+  // how hard. Both ask the same question -- where inside an allowed span did she
+  // land -- so both get the same drawing, side by side, and nothing else does.
+  const repsRail = (work && work.repeat_minimum != null && work.repeat_ceiling != null && reps.length)
+    ? (() => {
+        const min = work.repeat_minimum;
+        const ceiling = work.repeat_ceiling;
+        const ticks = [];
+        for (let n = min; n <= ceiling; n += 1) ticks.push(n);
+        const sublabels = [{ at: min, text: 'min' }];
+        if (work.repeat_target != null) sublabels.push({ at: work.repeat_target, text: 'target' });
+        sublabels.push({ at: ceiling, text: 'ceiling' });
+        return `<div class="rail">
+          <p class="rail__figure">${escapeHtml(reps.length)}<em>reps</em></p>
+          ${railSvg({ min, max: ceiling, ticks, actual: reps.length, fillFromMin: true, sublabels })}
+        </div>`;
+      })()
+    : '';
+
+  const rpeRail = (completion.rpe != null && workRpeLow != null && workRpeHigh != null)
+    ? `<div class="rail">
+        <p class="rail__figure">RPE ${escapeHtml(completion.rpe)}</p>
+        ${railSvg({
+          min: 1, max: 10, ticks: [1, workRpeLow, workRpeHigh, 10],
+          actual: completion.rpe, fillFromMin: false,
+          band: { from: workRpeLow, to: workRpeHigh },
+          sublabels: [{ at: (workRpeLow + workRpeHigh) / 2, text: 'asked' }]
+        })}
+      </div>`
+    : '';
+
+  const rails = (repsRail || rpeRail) ? `<div class="rails">${repsRail}${rpeRail}</div>` : '';
+
+  // ── Pace: observed only, in the order it happened ────────────────────────
+  const paceBlock = repSeconds.length > 1 ? `<div class="paceRun">
+      <p class="paceRun__label">Pace<em>${askedBand ? escapeHtml(askedBand) : 'not prescribed'}</em></p>
+      ${paceRunSvg(repSeconds)}
+      <ol class="paceRun__values">${reps.map((piece) =>
+        `<li>${escapeHtml(pace(piece.pace_seconds))}</li>`).join('')}</ol>
+      ${spread != null ? `<p class="paceRun__spread">${escapeHtml(spread)} sec</p>` : ''}
     </div>` : '';
 
-  const recoveryRow = floats.length ? `<div class="evf-row${recoveryMatters ? '' : ' evf-row--quiet'}${restedInstead ? ' evf-row--off' : ''}">
-      <dt>Recovery</dt>
-      <dd class="evf-asked">${askedRecovery ? `asked ${escapeHtml(askedRecovery)}` : 'not prescribed'}</dd>
-      <dd class="evf-was">${recoveryMatters
-        ? `<b>${floats.map((piece) => escapeHtml(pace(piece.pace_seconds))).join('  ')}</b>`
-        : floats.map((piece) => escapeHtml(pace(piece.pace_seconds))).join(' \u00b7 ')}
-        ${restedInstead ? '<span>rested rather than floated</span>' : ''}</dd>
-    </div>` : '';
-
-  const effortRow = `<div class="evf-row evf-row--quiet">
-      <dt>RPE</dt>
-      <dd class="evf-asked">${askedEffort ? `asked ${escapeHtml(askedEffort)}` : 'not asked'}</dd>
-      <dd class="evf-was">${completion.rpe ? escapeHtml(completion.rpe) : '\u2014'}</dd>
+  // ── Recovery: what she actually took between reps ────────────────────────
+  //
+  // Five equal two-minute floats is a real filed fact and a good one. It was
+  // previously drawn as a row of PACES under a duration label, which read as a
+  // prescription FORM never made. The durations are the figure; the paces are detail.
+  const recoveryDurations = floats.map((piece) => piece.duration_seconds).filter((v) => v != null);
+  const recoveryBlock = recoveryDurations.length ? (() => {
+    const same = new Set(recoveryDurations).size === 1;
+    const clockOf = (secs) => `${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}`;
+    return `<div class="recovery">
+      <p class="recovery__label">Recovery<em>${askedRecovery ? escapeHtml(askedRecovery) : 'not prescribed'}</em></p>
+      <p class="recovery__figure">${escapeHtml(recoveryDurations.length)} \u00d7 ${
+        same ? escapeHtml(clockOf(recoveryDurations[0])) : 'varied'}</p>
+      <ol class="recovery__blocks">${recoveryDurations.map((secs) =>
+        `<li><span></span><em>${escapeHtml(clockOf(secs))}</em></li>`).join('')}</ol>
     </div>`;
+  })() : '';
 
-  // How it felt, first. It is what Brice asks after every session and what the
-  // athlete actually volunteers; the splits explain it rather than replace it.
-  // An authored effort target sits beside the reported number only when one
-  // exists, and is never invented to score adherence against.
-  const feltRow = `<div class="ins-felt">
-      <p class="ins-felt__label">How did it feel?</p>
-      <p class="ins-felt__rpe">${completion.rpe ? `RPE ${escapeHtml(completion.rpe)}` : 'Not reported'}
-        <em>${askedEffort ? `asked ${escapeHtml(askedEffort)}` : 'effort not prescribed'}</em></p>
-      ${completion.athlete_note ? `<p class="ins-felt__said">${escapeHtml(completion.athlete_note)}</p>` : ''}
-    </div>`;
+  // ── Everything else, behind a fold ───────────────────────────────────────
+  //
+  // The recovery figures are PACES. They were rendered under a duration label,
+  // which read as though FORM had prescribed a float it never prescribed. Both the
+  // paces and the filed durations live here now, each named as what it is.
+  const detailRows = [
+    reps.length ? `<div class="fold__row"><dt>Splits</dt><dd>${
+      reps.map((piece) => escapeHtml(pace(piece.pace_seconds))).join(' \u00b7 ')}</dd></div>` : '',
+    floats.length ? `<div class="fold__row"><dt>Recovery pace</dt><dd>${
+      floats.map((piece) => escapeHtml(pace(piece.pace_seconds))).join(' \u00b7 ')}</dd></div>` : '',
+    floats.some((piece) => piece.duration_seconds != null)
+      ? `<div class="fold__row"><dt>Recovery time</dt><dd>${floats.map((piece) =>
+          piece.duration_seconds != null
+            ? escapeHtml(`${Math.floor(piece.duration_seconds / 60)}:${String(piece.duration_seconds % 60).padStart(2, '0')}`)
+            : '\u2014').join(' \u00b7 ')}<em>${askedRecovery ? `asked ${escapeHtml(askedRecovery)}` : 'not prescribed'}</em></dd></div>`
+      : '',
+    completion.actual_distance != null
+      ? `<div class="fold__row"><dt>Total</dt><dd>${escapeHtml(Number(completion.actual_distance))} ${escapeHtml(completion.distance_unit || 'mi')}</dd></div>` : ''
+  ].filter(Boolean).join('');
 
+  const details = detailRows
+    ? `<details class="fold"><summary>Rep details</summary><dl class="fold__body">${detailRows}</dl></details>`
+    : '';
+
+  // The instruments first, then her words, then the fold. One divider on the
+  // screen and it sits above the actions, which the caller draws.
   return `${where ? `<p class="ins-where">${escapeHtml(where)}<em${nonQualifying ? ' class="ins-where--flag"' : ''}>${escapeHtml(standing)}</em></p>` : ''}
-    ${feltRow}
-    <dl class="evf">${workRow}${effortRow}${recoveryRow}</dl>
+    ${rails}
+    ${paceBlock}
+    ${recoveryBlock}
+    ${completion.athlete_note ? `<blockquote class="ins-said">${escapeHtml(completion.athlete_note)}</blockquote>` : ''}
+    ${completion.symptoms ? `<p class="ins-symptom">${escapeHtml(completion.symptoms)}</p>` : ''}
+    ${!rails && completion.rpe ? `<p class="ins-felt__rpe">RPE ${escapeHtml(completion.rpe)}<em>${
+      askedEffort ? `asked ${escapeHtml(askedEffort)}` : 'effort not prescribed'}</em></p>` : ''}
+    ${details}
     ${judgment ? `<p class="ins-judgment ${escapeHtml(judgment.direction)}">
       <span>${escapeHtml(directionWords[judgment.direction] || judgment.direction)}</span>${escapeHtml(judgment.reason)}</p>` : ''}
 `;

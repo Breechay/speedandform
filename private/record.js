@@ -380,6 +380,11 @@ export function evidenceSection(record, { interactive = false } = {}) {
             </tr>
           </tbody>
         </table>
+        ${(completion?.athlete_note || completion?.symptoms) ? `<div class="ins-felt">
+          <p class="ins-felt__label">Athlete report</p>
+          ${completion?.athlete_note ? `<p class="ins-felt__said">${escapeHtml(completion.athlete_note)}</p>` : ''}
+          ${completion?.symptoms ? `<p class="ins-felt__symptoms"><strong>Symptoms</strong> ${escapeHtml(completion.symptoms)}</p>` : ''}
+        </div>` : ''}
         ${shot ? `<details class="ev-source" data-completion-id="${escapeHtml(verdict.completion_id)}">
           <summary>Read from</summary>
           <a href="${escapeHtml(shotUrl)}" target="_blank" rel="noopener">
