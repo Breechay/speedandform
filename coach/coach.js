@@ -172,6 +172,15 @@ function qualifyingWords(completion) {
 // never from the total: three doubles with floats, six continuous miles and a six
 // mile session containing a warm up all total six, and they establish different
 // things. A session with no structured dose says so rather than guessing.
+// Whether a session's title already states its dose. Compared on letters and digits
+// only, so "3 x 2 mi at race pace" and "3 X 2 MI" are recognised as the same claim
+// however either was typed.
+function titleAlreadySays(title, line) {
+  const flatten = (text) => String(text || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  const dose = flatten(line);
+  return dose.length > 0 && flatten(title).includes(dose);
+}
+
 function doseOf(version) {
   const work = (version?.components || []).find((part) => part.role === 'work');
   if (!work) return null;
@@ -420,7 +429,13 @@ function sessionInspectorHtml(session) {
 
   return `<div class="inspect">
     ${head}
-    ${dose ? `<p class="ins-dose"><b>${escapeHtml(dose.line)}</b><span>${escapeHtml(dose.qualifiers)}</span></p>` : ''}
+    ${dose ? `<p class="ins-dose">${
+      // When the title already says the dose -- "3 x 2 mi at race pace" over a dose
+      // line reading "3 x 2 mi" -- repeating it reads as two different facts about
+      // the session when it is one fact printed twice. The qualifiers underneath are
+      // not a repeat and always stay.
+      titleAlreadySays(version.title, dose.line) ? '' : `<b>${escapeHtml(dose.line)}</b>`
+    }<span>${escapeHtml(dose.qualifiers)}</span></p>` : ''}
     ${anatomy ? `<dl class="ins-anatomy">${anatomy}</dl>` : ''}
     ${!dose && (band || version.rpe_low) ? `<div class="ins-facts">
       ${band ? `<span><b>${escapeHtml(band)}</b>race pace</span>` : ''}
