@@ -290,6 +290,61 @@ function doseOf(version) {
 //
 // Stored dates are the authority. Week 1 is Sunday anchored and starts Aug 23;
 // the Monday anchored dates in the illustrative mockups are not migrated to.
+// The structure line, DERIVED from the authored pieces.
+//
+// Brice's library stores a notation string — "15e + 4 × [5 min LT2 / 2 min steady
+// float]" — and the plain-language version was hand-written beside it. That is two
+// sources of truth for one fact, and the moment a session's pieces change the
+// sentence keeps describing the old one.
+//
+// So neither string is read. Both renderings come off the typed components, which
+// means a session that is re-authored re-renders and cannot lie about itself.
+//
+//   console form   6 × 30s / 90s jog → 15 min @ 6:30–6:45
+//   plain form     6 × 30 sec, 90 sec jog between, then 15 min at race pace
+//
+// The plain form is what leaves the Console. LT2, HM and 15e are internal
+// vocabulary, and a line an athlete reads should say what it means in the words a
+// coach would use standing next to them.
+function structureOf(version, { plain = false } = {}) {
+  const parts = (version?.components || [])
+    .filter((part) => part.role === 'work')
+    .sort((a, b) => a.position - b.position);
+  if (!parts.length) return null;
+
+  const clock = (secs) => secs % 60 === 0 ? `${secs / 60} min` : `${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}`;
+  const brief = (secs) => secs < 60 ? `${secs}s` : clock(secs);
+  const spoken = (secs) => secs < 60 ? `${secs} sec` : clock(secs);
+  const unit = plain ? spoken : brief;
+
+  // A band names the effort it belongs to rather than repeating two numbers the
+  // athlete already has on the paces page.
+  const effort = (part) => {
+    if (part.pace_low_seconds == null) return '';
+    if (part.pace_low_seconds >= 390 && part.pace_high_seconds <= 405) {
+      return plain ? ' at race pace' : ` @ ${part.pace_low}\u2013${part.pace_high}`;
+    }
+    return plain ? ' at threshold' : ` @ ${part.pace_low}\u2013${part.pace_high}`;
+  };
+
+  const magnitude = (part) => {
+    if (part.duration_seconds != null) return unit(part.duration_seconds);
+    const distance = Number(part.distance);
+    // A rep shorter than a kilometre is spoken in metres. Nobody has ever run
+    // "0.2 km", and a decimal in a rep length reads as a rounding error.
+    if (part.distance_unit === 'km' && distance < 1) return `${Math.round(distance * 1000)} m`;
+    return `${distance} ${part.distance_unit}`;
+  };
+
+  return parts.map((part) => {
+    if (part.shape !== 'repetitions') return `${magnitude(part)}${effort(part)}`;
+    const reps = `${part.repeat_count} \u00d7 ${magnitude(part)}${effort(part)}`;
+    if (part.recovery_seconds == null) return reps;
+    const rest = `${unit(part.recovery_seconds)} ${part.recovery_kind || ''}`.trim();
+    return plain ? `${reps}, ${rest} between` : `${reps} / ${rest}`;
+  }).join(plain ? ', then ' : ' \u2192 ');
+}
+
 // THE BLOCK — the whole campaign on one screen, made to be photographed.
 //
 // Brice sends this to the group chat, so it has to survive being an image: no hover,
@@ -339,8 +394,13 @@ function blockShapeHtml() {
     // sentence, because the name already is the session.
     const cell = (session) => {
       const label = escapeHtml(name(session));
-      const why = session?.currentVersion?.intent?.trim();
-      return why ? `${label}<em>${escapeHtml(why)}</em>` : label;
+      const version = session?.currentVersion;
+      const why = version?.intent?.trim();
+      // Plain form: this view gets photographed and sent to athletes.
+      const what = structureOf(version, { plain: true });
+      return `<div class="s-name">${label}</div>`
+        + (why ? `<div class="s-desc">${escapeHtml(why)}</div>` : '')
+        + (what ? `<div class="s-struct">${escapeHtml(what)}</div>` : '');
     };
 
     const weekend = pick(['SAT', 'SUN']);

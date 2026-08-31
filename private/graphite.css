@@ -2325,3 +2325,11 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   font-weight: 400;
   letter-spacing: 0;
 }
+
+/* The structure, under the reason. The why first, because that is the part nobody
+   else's app has; the what second, because it is the part they will run. */
+.blockShape-table .s-name { font-family: var(--serif); font-size: 15px; line-height: 1.25; }
+.blockShape-table .s-desc { margin-top: 5px; font-size: 11.5px; line-height: 1.45; color: var(--secondary); max-width: 30ch; }
+.blockShape-table .s-struct { margin-top: 4px; font-size: 10.5px; letter-spacing: .03em; color: var(--muted); font-variant-numeric: tabular-nums; max-width: 30ch; }
+.blockShape-table tr.is-reach td:last-child .s-name { color: var(--lime); }
+.blockShape-table tr.is-race td:last-child .s-name { color: var(--coral); }
