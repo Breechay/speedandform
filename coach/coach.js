@@ -290,6 +290,64 @@ function doseOf(version) {
 //
 // Stored dates are the authority. Week 1 is Sunday anchored and starts Aug 23;
 // the Monday anchored dates in the illustrative mockups are not migrated to.
+// THE SHAPE — the whole block on one screen, made to be photographed.
+//
+// Brice sends this to the group chat, so it has to survive being a screenshot: no
+// hover, no scroll, no interaction, nothing that only makes sense next to the rest
+// of the Console. Weeks down the side, the decisive days across, and the distance to
+// race on the left because that is the number an athlete feels.
+//
+// Easy runs are left out. With them every week looks identical, which is the
+// opposite of what a shape is for.
+function shapeHtml() {
+  const weeks = selectedRecord.weeks || [];
+  if (!weeks.length) return '';
+  const raceOn = selectedRecord.block?.race_on;
+
+  const rows = weeks.map((week) => {
+    const sessions = (selectedRecord.sessionsByWeek?.[week.id] || [])
+      .filter((session) => {
+        const title = session.currentVersion?.title || '';
+        return !/^(easy|recovery|rest|medium-long|easy week)$/i.test(title.trim());
+      })
+      .sort((a, b) => String(a.scheduled_on).localeCompare(String(b.scheduled_on)));
+    if (!sessions.length) return '';
+
+    const out = raceOn && week.starts_on
+      ? Math.max(0, Math.round((new Date(raceOn) - new Date(week.starts_on)) / 604800000))
+      : null;
+    const isRace = raceOn && week.starts_on && week.ends_on
+      && week.starts_on <= raceOn && raceOn <= week.ends_on;
+
+    const cells = sessions.map((session) => {
+      const version = session.currentVersion;
+      const dose = doseOf(version);
+      const band = [version?.pace_low, version?.pace_high].filter(Boolean).join('\u2013');
+      return `<td>
+        <span class="shape__day">${escapeHtml(String(session.day_label || '').slice(0, 3))}</span>
+        <b>${escapeHtml(version?.title || '')}</b>
+        ${dose && !titleAlreadySays(version?.title, dose.shortLine)
+          ? `<span class="shape__dose">${escapeHtml(dose.shortLine)}</span>` : ''}
+        ${band ? `<span class="shape__band">${escapeHtml(band)}</span>` : ''}
+      </td>`;
+    }).join('');
+
+    return `<tr${isRace ? ' class="shape__row--race"' : ''}>
+      <th scope="row"><b>${out === null ? '' : escapeHtml(out)}</b><span>${
+        out === null ? '' : (out === 0 ? 'race' : out === 1 ? 'wk out' : 'wks out')}</span></th>
+      ${cells}
+    </tr>`;
+  }).filter(Boolean).join('');
+
+  if (!rows) return '';
+  const athlete = selectedRecord.athlete;
+  return `<section class="shape" aria-label="The shape of the block">
+    <p class="shape__head"><b>${escapeHtml(athlete.first_name || athlete.display_name || '')}</b>
+      <span>${escapeHtml([athlete.goal_label, athlete.target_event].filter(Boolean).join(' \u00b7 '))}</span></p>
+    <table class="shape__grid">${rows}</table>
+  </section>`;
+}
+
 function runwayHtml() {
   const weeks = (selectedRecord.weeks || []).slice().sort((a, b) => a.week_number - b.week_number);
   if (!weeks.length) return '';
@@ -342,7 +400,8 @@ function runwayHtml() {
 
   return `<section class="consoleRunwayViewport" aria-label="The block, week by week">
     <div class="consoleRunway">${cells}${apart}</div>
-  </section>`;
+  </section>
+  ${shapeHtml()}`;
 }
 
 // The chosen week's work, and the session under it. This is the band with

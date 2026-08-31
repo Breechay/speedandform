@@ -2209,3 +2209,22 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 .recovery__blocks li { flex: 1 1 0; text-align: center; }
 .recovery__blocks span { display: block; height: 8px; border-radius: 2px; background: currentColor; opacity: 0.28; }
 .recovery__blocks em { display: block; margin-top: 6px; font-style: normal; font-size: 11px; font-variant-numeric: tabular-nums; opacity: 0.55; }
+
+/* THE SHAPE — built to be screenshotted and sent to a group chat.
+   No hover, no scroll, nothing that only reads next to the rest of the Console. */
+.shape { margin: 34px 0 0; padding: 22px 0 4px; border-top: 1px solid currentColor; border-color: rgba(255,255,255,0.08); }
+.shape__head { margin: 0 0 16px; display: flex; align-items: baseline; gap: 12px; }
+.shape__head b { font-size: 17px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+.shape__head span { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.45; }
+.shape__grid { width: 100%; border-collapse: collapse; }
+.shape__grid tr { border-bottom: 1px solid rgba(255,255,255,0.05); }
+.shape__grid th { width: 68px; text-align: left; vertical-align: top; padding: 11px 12px 11px 0; }
+.shape__grid th b { display: block; font-size: 19px; font-weight: 500; font-variant-numeric: tabular-nums; opacity: 0.85; }
+.shape__grid th span { display: block; font-size: 9px; letter-spacing: 0.09em; text-transform: uppercase; opacity: 0.34; }
+.shape__grid td { vertical-align: top; padding: 11px 14px 11px 0; }
+.shape__day { display: block; font-size: 9px; letter-spacing: 0.09em; text-transform: uppercase; opacity: 0.34; margin-bottom: 2px; }
+.shape__grid td b { display: block; font-size: 14px; font-weight: 400; opacity: 0.92; }
+.shape__dose { display: block; font-size: 12px; font-variant-numeric: tabular-nums; opacity: 0.62; }
+.shape__band { display: block; font-size: 11px; font-variant-numeric: tabular-nums; opacity: 0.42; }
+/* Race week is the only marked row. It needs no label — it is the last one. */
+.shape__row--race th b, .shape__row--race td b { color: #c8f560; }
