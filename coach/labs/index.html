@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#07090a">
+  <title>FORM Labs</title>
+  <link rel="preload" href="/assets/labs/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/labs/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/coach/labs/labs.css?v=2">
+</head>
+<body>
+  <svg class="grain" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".82" numOctaves="3"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+  <div class="mark">FORM <em>LABS</em></div>
+  <div class="stamp" id="stamp"></div>
+  <nav class="navSet" id="nav" hidden>
+    <button data-nav="bench" type="button">Bench</button>
+    <button data-nav="block" type="button">Plan</button>
+    <button data-nav="console" type="button">Console</button>
+  </nav>
+
+  <div id="app"><div class="loading">READING THE BENCH</div></div>
+
+  <div class="shScrim" id="shScrim"></div>
+  <aside class="sheet" id="sheet" aria-label="Editor" aria-hidden="true">
+    <div class="shHead">
+      <div><div class="shKind" id="shKind"></div><div class="shTitle" id="shTitle"></div>
+        <div class="shSub" id="shSub"></div></div>
+      <button class="shClose" id="shClose" type="button" aria-label="Close">×</button>
+    </div>
+    <div class="shBody" id="shBody"></div>
+    <div class="shFoot">
+      <span class="shNote" id="shNote"></span>
+      <button class="btn ghost" id="shCancel" type="button">Cancel</button>
+      <button class="btn" id="shSave" type="button">Keep</button>
+    </div>
+  </aside>
+
+  <script type="module" src="/coach/labs/labs.js?v=1"></script>
+</body>
+</html>

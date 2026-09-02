@@ -45,6 +45,122 @@ export async function loadCoachRoster(coachMemberships) {
   // someone. The attention is shown on the tab instead of moving it.
 }
 
+// THE BENCH. One column per athlete, and every column is composed to the same
+// baselines: the race, the week, the goal, what was last run or is due today,
+// what is next, the note, and the instrument.
+//
+// Deliberately NOT loadAthleteRecord per athlete. That is 26 queries each and 182
+// for seven columns, and it would have been discovered in production. RLS already
+// permits .in() across the athletes a coach holds, so the whole bench is one
+// Promise.all of seven cross-athlete reads.
+export async function loadCoachBench(coachMemberships) {
+  const roster = await loadCoachRoster(coachMemberships);
+  if (!roster.length) return [];
+  const athleteIds = roster.map((entry) => entry.id);
+  const today = new Date().toISOString().slice(0, 10);
+  const windowStart = new Date(Date.now() - 60 * 86400000).toISOString();
+
+  const [blocksResponse, weeksResponse, completionsResponse] = await Promise.all([
+    supabase.from('training_blocks').select('*').in('athlete_id', athleteIds).eq('status', 'active'),
+    supabase.from('training_weeks').select('*').in('athlete_id', athleteIds).order('week_number'),
+    // A recency window rather than a row cap. A flat limit means one athlete
+    // filing heavily hides another athlete's last session entirely, and the
+    // column would say "nothing filed" about someone who ran on Tuesday.
+    supabase.from('session_completions').select('*').in('athlete_id', athleteIds)
+      .gte('filed_at', windowStart).order('filed_at', { ascending: false })
+  ]);
+  [blocksResponse, weeksResponse, completionsResponse].forEach(({ error }) => { if (error) throw error; });
+
+  const weeks = weeksResponse.data || [];
+  // The current week is found from the WEEK's own dates, never from a session
+  // date: a Saturday long run and a Sunday long run in one week fall into
+  // different buckets the moment the session date is the key. And the dates
+  // outrank training_weeks.state, which goes stale the day a week ends.
+  const currentWeekFor = (athleteId) => {
+    const mine = weeks.filter((week) => week.athlete_id === athleteId);
+    return mine.find((week) => week.starts_on && week.ends_on && week.starts_on <= today && today <= week.ends_on)
+      || mine.find((week) => week.state === 'in_progress')
+      || mine.find((week) => week.state !== 'complete')
+      || mine[0] || null;
+  };
+
+  const currentWeeks = athleteIds.map(currentWeekFor).filter(Boolean);
+  const weekIds = currentWeeks.map((week) => week.id);
+  let completions = completionsResponse.data || [];
+  // Anyone silent for longer than the window still has a last session, and the
+  // column should say what it was. One more query, only for those athletes.
+  const silent = athleteIds.filter((id) => !completions.some((item) => item.athlete_id === id));
+  if (silent.length) {
+    // One row each, not one query with a shared limit: a shared limit lets the
+    // athlete with the most history push the quieter one out of the result.
+    const older = await Promise.all(silent.map((id) => supabase.from('session_completions')
+      .select('*').eq('athlete_id', id).order('filed_at', { ascending: false }).limit(1)));
+    older.forEach(({ data, error }) => {
+      if (error) throw error;
+      completions = completions.concat(data || []);
+    });
+  }
+  const latestIds = athleteIds
+    .map((id) => completions.find((item) => item.athlete_id === id)?.id)
+    .filter(Boolean);
+
+  const [sessionsResponse, piecesResponse] = await Promise.all([
+    weekIds.length
+      ? supabase.from('planned_sessions').select('*').in('week_id', weekIds).order('position')
+      : Promise.resolve({ data: [] }),
+    latestIds.length
+      ? supabase.from('session_pieces').select('*').in('completion_id', latestIds).order('position')
+      : Promise.resolve({ data: [] })
+  ]);
+  [sessionsResponse, piecesResponse].forEach(({ error }) => { if (error) throw error; });
+
+  const sessions = sessionsResponse.data || [];
+  const sessionIds = sessions.map((session) => session.id);
+  const versionsResponse = sessionIds.length
+    ? await supabase.from('planned_session_versions').select('*')
+        .in('planned_session_id', sessionIds).order('version_number', { ascending: false })
+    : { data: [] };
+  if (versionsResponse.error) throw versionsResponse.error;
+  const versions = versionsResponse.data || [];
+  const versionIds = versions.map((version) => version.id);
+  const componentsResponse = versionIds.length
+    ? await supabase.from('planned_session_components').select('*').in('version_id', versionIds).order('position')
+    : { data: [] };
+  if (componentsResponse.error) throw componentsResponse.error;
+  const components = componentsResponse.data || [];
+
+  const withComponents = versions.map((version) => ({
+    ...version,
+    components: components.filter((part) => part.version_id === version.id)
+      .sort((a, b) => a.position - b.position)
+  }));
+
+  const signed = await signPortraits(roster);
+  return signed.map((entry) => {
+    const block = (blocksResponse.data || []).find((item) => item.athlete_id === entry.id) || null;
+    const currentWeek = currentWeekFor(entry.id);
+    const mine = sessions.filter((session) => session.week_id === currentWeek?.id)
+      .map((session) => ({
+        ...session,
+        currentVersion: withComponents.find((version) => version.planned_session_id === session.id) || null
+      }));
+    const latest = completions.find((item) => item.athlete_id === entry.id) || null;
+    return {
+      ...entry,
+      block,
+      currentWeek,
+      weekCount: weeks.filter((week) => week.athlete_id === entry.id).length,
+      // Today is a session scheduled today. Next is the next one after it, and
+      // when nothing is due today the last filing is what the column shows.
+      today: mine.find((session) => session.scheduled_on === today) || null,
+      next: mine.filter((session) => session.scheduled_on && session.scheduled_on > today)
+        .sort((a, b) => a.scheduled_on.localeCompare(b.scheduled_on))[0] || null,
+      latestCompletion: latest,
+      latestPieces: latest ? (piecesResponse.data || []).filter((piece) => piece.completion_id === latest.id) : []
+    };
+  });
+}
+
 export async function loadAttentionFor(athleteId) {
   const { data, error } = await supabase.from('coach_attention').select('*')
     .eq('athlete_id', athleteId).order('priority').order('occurred_at', { ascending: false, nullsFirst: false });
@@ -85,6 +201,12 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     // What confidence.v1 proposes and nobody has answered yet. Never a standing
     // score: the Console shows it as a number to review, and only a decision writes.
     supabase.from('mark_open_confidence_proposal').select('*').eq('athlete_id', athleteId)
+      .order('created_at', { ascending: false }),
+    // What the athlete said about a session, and what a rule found, kept as
+    // different kinds of fact. The queue shows these through coach_attention,
+    // which drops the exception's own id — and the id is what reviewing one
+    // needs. So the rows are read directly.
+    supabase.from('session_exception_state').select('*').eq('athlete_id', athleteId)
       .order('created_at', { ascending: false })
   ];
 
@@ -108,6 +230,7 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     gatesResponse, movementResponse, supportResponse, supportItemsResponse,
     verdictsResponse, piecesResponse, judgmentsResponse, judgmentLinksResponse,
     confidenceResponse, confidenceLinksResponse, evidenceFilesResponse, proposalResponse,
+    exceptionsResponse,
     taskResponse, evidenceResponse, actionsResponse, privateNotesResponse, adminResponse
   ] = responses;
 
@@ -137,17 +260,24 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
   // "Current" is the week in progress, or the one today falls inside — not the
   // highest week number, which becomes week 8 the moment a block is authored ahead.
   const today = new Date().toISOString().slice(0, 10);
+  // The CALENDAR first, the stored state second. `in_progress` is set by hand and
+  // nothing in the app has ever moved it: on 2 September every athlete's week 1
+  // still said in_progress three days after it ended, so both surfaces called
+  // week 1 current and drew last week's sessions as this week's work. Dates are a
+  // fact; the state column is an opinion nobody is maintaining.
   const currentWeek =
-    weeks.find((week) => week.state === 'in_progress')
-    || weeks.find((week) => week.starts_on && week.ends_on && week.starts_on <= today && today <= week.ends_on)
+    weeks.find((week) => week.starts_on && week.ends_on && week.starts_on <= today && today <= week.ends_on)
+    || weeks.find((week) => week.state === 'in_progress')
     || weeks.slice().sort((a, b) => a.week_number - b.week_number).find((week) => week.state !== 'complete')
     || weeks[0] || null;
   const nextWeek = currentWeek
     ? weeks.filter((week) => week.week_number > currentWeek.week_number)
         .sort((a, b) => a.week_number - b.week_number)[0] || null
     : null;
+  const [signedAthlete] = await signPortraits([athleteResponse.data || {}]);
+
   return {
-    athlete: athleteResponse.data,
+    athlete: signedAthlete,
     block: blockResponse.data,
     weeks,
     currentWeek,
@@ -182,6 +312,7 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     // primary mark's is the one the instrument shows.
     confidenceProposal: result(proposalResponse.data, proposalResponse.error)[0] || null,
     pieces: result(piecesResponse.data, piecesResponse.error),
+    exceptions: result(exceptionsResponse.data, exceptionsResponse.error),
     judgments: result(judgmentsResponse.data, judgmentsResponse.error).map((judgment) => ({
       ...judgment,
       completionIds: result(judgmentLinksResponse.data, judgmentLinksResponse.error)
@@ -271,6 +402,35 @@ export async function resolveCoachTask(taskId, actionId = null, custom = null) {
   });
   if (error) throw error;
   return data;
+}
+
+// Reviewing an athlete's report. The exception itself is immutable; the workflow
+// beside it is an append-only ledger, and every move names who made it and why.
+// This is what makes filing a read actually clear the item off the bench.
+export async function setExceptionStatus(exceptionId, status, reason) {
+  if (!String(reason || '').trim()) throw new Error('Closing a report needs your reason.');
+  const { error } = await supabase.rpc('set_exception_status', {
+    p_exception_id: exceptionId, p_status: status, p_reason: String(reason).trim()
+  });
+  if (error) throw error;
+}
+
+// Portraits are signed for the same reason session evidence is: a face is not
+// public. An hour is longer than a read and shorter than a shared link being
+// worth anything, and the bench re-signs when the tab comes back into view.
+//
+// Degrades to no portrait rather than throwing. The columns and the bucket may
+// not exist yet, and an athlete without a photograph is a monogram.
+export async function signPortraits(athletes) {
+  const paths = athletes.map((athlete) => athlete.portrait_path).filter(Boolean);
+  if (!paths.length) return athletes.map((athlete) => ({ ...athlete, portraitUrl: null }));
+  const { data, error } = await supabase.storage.from('athlete-portraits').createSignedUrls(paths, 3600);
+  if (error) return athletes.map((athlete) => ({ ...athlete, portraitUrl: null }));
+  const byPath = new Map((data || []).map((item) => [item.path, item.signedUrl]));
+  return athletes.map((athlete) => ({
+    ...athlete,
+    portraitUrl: athlete.portrait_path ? byPath.get(athlete.portrait_path) || null : null
+  }));
 }
 
 export async function addPrivateNote(athleteId, body) {
@@ -389,72 +549,60 @@ export async function changeEmail(nextEmail, returnTo = '/athlete/') {
 // meant every Tuesday cost a deploy. A session is a planned_session plus its first
 // version; revising it appends a version rather than editing one, so the band a
 // verdict was judged against is still there after the band moves.
+// Authoring and revising both go through the database now, not through two
+// inserts from here.
+//
+// The reason is `planned_session_components`. It is the prescription, and until
+// today no JavaScript in this repository wrote it — so a revision changing the
+// reps wrote a new version row and left the typed anatomy untouched, and every
+// surface rendering structure from components carried on describing the old work
+// under the new name. Silently. `revise_session` writes both or neither.
+//
+// Two smaller things came with it. The version number is assigned server-side,
+// so a read-then-write race between two revisions is gone. And components travel
+// with pace in SECONDS; the text columns are derived in the database, which ends
+// the two-representations problem at the door rather than downstream.
+//
+// `components` omitted means "I did not touch the structure" and the previous
+// version's anatomy is carried forward. An explicit [] means the session has no
+// typed structure. Those are different statements and the RPC keeps them apart.
 export async function authorSession(payload) {
-  const { data: { user }, error: userError } = await supabase.auth.getUser();
-  if (userError) throw userError;
-  if (!user) throw new Error('Sign in before authoring a session.');
-
-  const { data: session, error: sessionError } = await supabase
-    .from('planned_sessions')
-    .insert({
-      athlete_id: payload.athleteId,
-      week_id: payload.weekId,
-      scheduled_on: payload.scheduledOn || null,
-      day_label: payload.dayLabel,
-      position: payload.position,
-      state: payload.state || 'published',
-      created_by: user.id
-    })
-    .select('*')
-    .single();
-  if (sessionError) throw sessionError;
-
-  const version = await writeVersion(session.id, payload, 1, user.id);
-  return { ...session, versions: [version], currentVersion: version };
+  const { data, error } = await supabase.rpc('author_session', {
+    p_athlete_id: payload.athleteId,
+    p_week_id: payload.weekId,
+    p_day_label: payload.dayLabel,
+    p_title: payload.title,
+    p_intent: payload.intent,
+    p_scheduled_on: payload.scheduledOn || null,
+    p_position: payload.position || null,
+    p_prescribed_distance: payload.prescribedDistance || null,
+    p_distance_unit: payload.prescribedDistance ? (payload.distanceUnit || 'mi') : null,
+    p_prescribed_duration_minutes: payload.prescribedDurationMinutes || null,
+    p_rpe_low: payload.rpeLow || null,
+    p_rpe_high: payload.rpeHigh || null,
+    p_components: payload.components ?? null,
+    p_details: payload.details || null
+  });
+  if (error) throw error;
+  return { id: data };
 }
 
 export async function reviseSession(plannedSessionId, payload) {
-  const { data: { user }, error: userError } = await supabase.auth.getUser();
-  if (userError) throw userError;
-  if (!user) throw new Error('Sign in before revising a session.');
-  if (!payload.changeReason) throw new Error('A revision needs a reason. It is the part that is still legible in six weeks.');
-
-  // Ask for the highest version rather than counting: a concurrent revision would
-  // make a count wrong, and the unique constraint would reject the write anyway.
-  const { data: latest, error: latestError } = await supabase
-    .from('planned_session_versions')
-    .select('version_number')
-    .eq('planned_session_id', plannedSessionId)
-    .order('version_number', { ascending: false })
-    .limit(1)
-    .maybeSingle();
-  if (latestError) throw latestError;
-
-  return writeVersion(plannedSessionId, payload, (latest?.version_number || 0) + 1, user.id);
-}
-
-async function writeVersion(plannedSessionId, payload, versionNumber, userId) {
-  const { data, error } = await supabase
-    .from('planned_session_versions')
-    .insert({
-      athlete_id: payload.athleteId,
-      planned_session_id: plannedSessionId,
-      version_number: versionNumber,
-      title: payload.title,
-      prescribed_distance: payload.prescribedDistance || null,
-      distance_unit: payload.prescribedDistance ? (payload.distanceUnit || 'mi') : null,
-      prescribed_duration_minutes: payload.prescribedDurationMinutes || null,
-      intent: payload.intent,
-      details: payload.details || null,
-      rpe_low: payload.rpeLow || null,
-      rpe_high: payload.rpeHigh || null,
-      change_reason: payload.changeReason || null,
-      authored_by: userId
-    })
-    .select('*')
-    .single();
+  const { data, error } = await supabase.rpc('revise_session', {
+    p_planned_session_id: plannedSessionId,
+    p_title: payload.title,
+    p_intent: payload.intent,
+    p_change_reason: payload.changeReason || '',
+    p_prescribed_distance: payload.prescribedDistance || null,
+    p_distance_unit: payload.prescribedDistance ? (payload.distanceUnit || 'mi') : null,
+    p_prescribed_duration_minutes: payload.prescribedDurationMinutes || null,
+    p_rpe_low: payload.rpeLow || null,
+    p_rpe_high: payload.rpeHigh || null,
+    p_components: payload.components ?? null,
+    p_details: payload.details || null
+  });
   if (error) throw error;
-  return data;
+  return { id: data };
 }
 
 // Filing for an athlete. Same record as their own filing, marked coach_import so

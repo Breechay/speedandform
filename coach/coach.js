@@ -1,6 +1,7 @@
 import { bindAccountSecurity, authErrorMessage, getAccessContext, renderDoorway, signOut } from '/private/auth.js';
 import { addPrivateNote, authorSession, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask, reviseSession } from '/private/data.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
+import { MONTHS, dayLabel, initials, rangeLabel, structureOf, titleAlreadySays } from '/private/render.js';
 
 // Account states only. The desk no longer labels athletes by a stored state —
 // the queue is derived from the record.
@@ -69,7 +70,6 @@ function pendingView(email) {
   app.innerHTML = `<section class="auth-page"><div class="auth-card"><p class="eyebrow">Signed in</p><h1>No coach assignment yet.</h1><p>${escapeHtml(email)} is authenticated, but this account has not been assigned to the roster.</p></div></section>`;
 }
 
-function initials(name) { return String(name || '').split(/\s+/).map((part) => part[0]).join('').slice(0, 2).toUpperCase(); }
 
 // The standing authored confidence: the newest read nothing has superseded, read
 // from mark_standing_confidence through the roster. One source for every surface
@@ -141,21 +141,6 @@ function athleteMenuHtml() {
   </details>`;
 }
 
-const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-const dayLabel = (iso) => {
-  const date = new Date(`${iso}T12:00:00`);
-  return `${MONTHS[date.getMonth()]} ${date.getDate()}`;
-};
-// "Aug 31 to Sep 6" collapses to "Aug 31–Sep 6"; a range inside one month
-// collapses further to "Sep 7–13", which is how the dates read on paper.
-const rangeLabel = (from, to) => {
-  if (!from || !to) return '';
-  const a = new Date(`${from}T12:00:00`);
-  const b = new Date(`${to}T12:00:00`);
-  return a.getMonth() === b.getMonth()
-    ? `${MONTHS[a.getMonth()]} ${a.getDate()}\u2013${b.getDate()}`
-    : `${dayLabel(from)}\u2013${dayLabel(to)}`;
-};
 
 // Marcus's evidence standard is outside. A treadmill run is a real completion and
 // real tolerance; it simply cannot answer the question the claim is asking, and
@@ -172,15 +157,6 @@ function qualifyingWords(completion) {
 // never from the total: three doubles with floats, six continuous miles and a six
 // mile session containing a warm up all total six, and they establish different
 // things. A session with no structured dose says so rather than guessing.
-// Whether a session's title already states its dose. Compared on letters and digits
-// only, so "3 x 2 mi at race pace" and "3 X 2 MI" are recognised as the same claim
-// however either was typed.
-function titleAlreadySays(title, line) {
-  const flatten = (text) => String(text || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-  const dose = flatten(line);
-  return dose.length > 0 && flatten(title).includes(dose);
-}
-
 // A rail is drawn only for a field the prescription stated as a RANGE. Pace and
 // recovery were open on this session, so they get observation and no rail: a band
 // drawn around an open field invents a target nobody set, and the athlete would be
@@ -290,60 +266,6 @@ function doseOf(version) {
 //
 // Stored dates are the authority. Week 1 is Sunday anchored and starts Aug 23;
 // the Monday anchored dates in the illustrative mockups are not migrated to.
-// The structure line, DERIVED from the authored pieces.
-//
-// Brice's library stores a notation string — "15e + 4 × [5 min LT2 / 2 min steady
-// float]" — and the plain-language version was hand-written beside it. That is two
-// sources of truth for one fact, and the moment a session's pieces change the
-// sentence keeps describing the old one.
-//
-// So neither string is read. Both renderings come off the typed components, which
-// means a session that is re-authored re-renders and cannot lie about itself.
-//
-//   console form   6 × 30s / 90s jog → 15 min @ 6:30–6:45
-//   plain form     6 × 30 sec, 90 sec jog between, then 15 min at race pace
-//
-// The plain form is what leaves the Console. LT2, HM and 15e are internal
-// vocabulary, and a line an athlete reads should say what it means in the words a
-// coach would use standing next to them.
-function structureOf(version, { plain = false } = {}) {
-  const parts = (version?.components || [])
-    .filter((part) => part.role === 'work')
-    .sort((a, b) => a.position - b.position);
-  if (!parts.length) return null;
-
-  const clock = (secs) => secs % 60 === 0 ? `${secs / 60} min` : `${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}`;
-  const brief = (secs) => secs < 60 ? `${secs}s` : clock(secs);
-  const spoken = (secs) => secs < 60 ? `${secs} sec` : clock(secs);
-  const unit = plain ? spoken : brief;
-
-  // A band names the effort it belongs to rather than repeating two numbers the
-  // athlete already has on the paces page.
-  const effort = (part) => {
-    if (part.pace_low_seconds == null) return '';
-    if (part.pace_low_seconds >= 390 && part.pace_high_seconds <= 405) {
-      return plain ? ' at race pace' : ` @ ${part.pace_low}\u2013${part.pace_high}`;
-    }
-    return plain ? ' at threshold' : ` @ ${part.pace_low}\u2013${part.pace_high}`;
-  };
-
-  const magnitude = (part) => {
-    if (part.duration_seconds != null) return unit(part.duration_seconds);
-    const distance = Number(part.distance);
-    // A rep shorter than a kilometre is spoken in metres. Nobody has ever run
-    // "0.2 km", and a decimal in a rep length reads as a rounding error.
-    if (part.distance_unit === 'km' && distance < 1) return `${Math.round(distance * 1000)} m`;
-    return `${distance} ${part.distance_unit}`;
-  };
-
-  return parts.map((part) => {
-    if (part.shape !== 'repetitions') return `${magnitude(part)}${effort(part)}`;
-    const reps = `${part.repeat_count} \u00d7 ${magnitude(part)}${effort(part)}`;
-    if (part.recovery_seconds == null) return reps;
-    const rest = `${unit(part.recovery_seconds)} ${part.recovery_kind || ''}`.trim();
-    return plain ? `${reps}, ${rest} between` : `${reps} / ${rest}`;
-  }).join(plain ? ', then ' : ' \u2192 ');
-}
 
 // THE BLOCK — the whole campaign on one screen, made to be photographed.
 //
