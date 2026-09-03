@@ -122,6 +122,29 @@ function instrumentWords(mark) {
 }
 
 
+// The note is one line and it is about what to do, not a transcript.
+//
+// `coach_attention` hands back a generic title and whatever the athlete wrote —
+// José's symptom report is 238 characters of his own words, and two athletes
+// both read "Waiting on your reply. Completed · 3.0 mi", which is a template
+// wearing the place of a sentence. Neither belongs on a column.
+//
+// So each kind gets a short factual line naming the thing and when. The words
+// themselves are on the athlete's page, which is where a report gets read.
+function noteFor(item) {
+  if (!item) return '';
+  const when = item.occurred_at ? dayLabel(item.occurred_at.slice(0, 10)) : null;
+  const on = when ? ` ${when}` : '';
+  switch (item.kind) {
+    case 'athlete_report':   return `Reported something${on}. Unread.`;
+    case 'recovery_flag':    return `Recovery did not settle${on}.`;
+    case 'unread_session':   return `Filed${on}, unread.`;
+    case 'missing_direction':return `${item.summary || 'A session is due'} — no instructions.`;
+    case 'authored':         return item.title || 'Waiting on you.';
+    default:                 return item.title || '';
+  }
+}
+
 function columnHtml(entry) {
   const race = raceLine(entry, entry.block);
   const week = entry.currentWeek && entry.block?.total_weeks
@@ -154,8 +177,10 @@ function columnHtml(entry) {
   // athlete's own report reads coral; everything else is the coach's own list.
   const item = entry.topItem;
   const noteClass = item && item.kind === 'athlete_report' ? 'note amb' : 'note';
-  const note = item ? `${item.title}. ${item.summary || ''}`.trim() : '';
+  const note = noteFor(item);
 
+  // Null is a state and not a gap. An athlete with nothing established gets the
+  // em dash rather than a number, and the caption says so in words.
   const mark = entry.mark;
   const figure = mark?.current_value != null
     ? `<b>${escapeHtml(Number(mark.current_value))}</b><span>${escapeHtml(instrumentWords(mark))}</span>`
@@ -175,9 +200,23 @@ function columnHtml(entry) {
   </button>`;
 }
 
+// Ordered by who needs you, then by how close the race is.
+//
+// The roster order was stable and alphabetical, which put the athlete with an
+// unread symptom off the right edge of the screen. Position is how you find
+// someone, so this is a real trade — but a bench whose first column is never the
+// urgent one is a queue you have to scroll to use.
+function benchOrder(a, b) {
+  const urgency = (entry) => entry.topItem ? (entry.topItem.priority ?? 99) : 999;
+  if (urgency(a) !== urgency(b)) return urgency(a) - urgency(b);
+  const race = (entry) => entry.block?.race_on || '9999-12-31';
+  return race(a).localeCompare(race(b));
+}
+
 function benchHtml() {
   if (!bench.length) return '<div class="failed"><h1>No athletes yet.</h1><p>This account holds no coach memberships.</p></div>';
-  return `<main class="view on"><div class="bench">${bench.map(columnHtml).join('')}</div><div class="benchEdge"></div></main>`;
+  const ordered = bench.slice().sort(benchOrder);
+  return `<main class="view on"><div class="bench">${ordered.map(columnHtml).join('')}</div><div class="benchEdge"></div></main>`;
 }
 
 // ── the athlete ─────────────────────────────────────────────────────────────
