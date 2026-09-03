@@ -415,6 +415,40 @@ export async function setExceptionStatus(exceptionId, status, reason) {
   if (error) throw error;
 }
 
+// The only write any surface has on `athletes`. Uploads the file under the
+// athlete's own folder — the prefix the storage policy authorises on — and then
+// points the row at it. Two steps, and the row is written second: a pointer to a
+// file that failed to upload is worse than a file nobody points at.
+export async function savePortrait(athleteId, file, crop = {}) {
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
+  if (userError) throw userError;
+  if (!user) throw new Error('Sign in before setting a portrait.');
+
+  let path = null;
+  if (file) {
+    const extension = String(file.name || 'portrait').split('.').pop()
+      .replace(/[^a-z0-9]/gi, '').toLowerCase() || 'jpg';
+    path = `${athleteId}/${crypto.randomUUID()}.${extension}`;
+    const { error } = await supabase.storage.from('athlete-portraits')
+      .upload(path, file, { upsert: false, contentType: file.type || 'image/jpeg' });
+    if (error) throw error;
+  }
+
+  const { error } = await supabase.rpc('set_athlete_portrait', {
+    p_athlete_id: athleteId,
+    p_path: path,
+    p_x: crop.x ?? null,
+    p_y: crop.y ?? null,
+    p_zoom: crop.zoom ?? null,
+    p_exposure: crop.exposure ?? null,
+    p_contrast: crop.contrast ?? null,
+    p_grade: crop.grade ?? null,
+    p_clear: crop.clear === true
+  });
+  if (error) throw error;
+  return path;
+}
+
 // Portraits are signed for the same reason session evidence is: a face is not
 // public. An hour is longer than a read and shorter than a shared link being
 // worth anything, and the bench re-signs when the tab comes back into view.
@@ -425,11 +459,13 @@ export async function signPortraits(athletes) {
   const paths = athletes.map((athlete) => athlete.portrait_path).filter(Boolean);
   if (!paths.length) return athletes.map((athlete) => ({ ...athlete, portraitUrl: null }));
   const { data, error } = await supabase.storage.from('athlete-portraits').createSignedUrls(paths, 3600);
-  if (error) return athletes.map((athlete) => ({ ...athlete, portraitUrl: null }));
-  const byPath = new Map((data || []).map((item) => [item.path, item.signedUrl]));
+  const byPath = error ? new Map() : new Map((data || []).map((item) => [item.path, item.signedUrl]));
+  // A pointer that exists and could not be signed is not the same state as no
+  // photograph. The monogram is drawn for both, but only one of them is a fault.
   return athletes.map((athlete) => ({
     ...athlete,
-    portraitUrl: athlete.portrait_path ? byPath.get(athlete.portrait_path) || null : null
+    portraitUrl: athlete.portrait_path ? byPath.get(athlete.portrait_path) || null : null,
+    portraitUnreachable: Boolean(athlete.portrait_path) && !byPath.get(athlete.portrait_path)
   }));
 }
 
