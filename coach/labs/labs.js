@@ -99,6 +99,16 @@ const plateOf = (slug) => ['', ' warm', ' cool'][String(slug || '').length % 3];
 
 // ── the bench ───────────────────────────────────────────────────────────────
 
+// The race, in the words the block carries. `target_event` is a distance in a
+// field that reads as an event — "Half marathon" — so it is the fallback and not
+// the source. A block with no place named renders no place.
+function raceLine(athlete, block) {
+  const named = [block?.race_name, block?.race_place].filter(Boolean).join(' · ');
+  return [named || athlete?.target_event, block?.race_on ? dayLabel(block.race_on) : null]
+    .filter(Boolean).join(' · ');
+}
+
+
 // The caption under an instrument figure. A mark labelled "miles owned" already
 // says its unit, and "MI MILES OWNED" is the same word twice; a mark labelled
 // "owned" does not, and needs it. The label is authored, so which case applies
@@ -113,8 +123,7 @@ function instrumentWords(mark) {
 
 
 function columnHtml(entry) {
-  const race = [entry.target_event, entry.block?.race_on ? dayLabel(entry.block.race_on) : null]
-    .filter(Boolean).join(' · ');
+  const race = raceLine(entry, entry.block);
   const week = entry.currentWeek && entry.block?.total_weeks
     ? `Week ${entry.currentWeek.week_number} of ${entry.block.total_weeks}` : '';
   const due = entry.today;
@@ -258,7 +267,7 @@ function athleteHtml() {
   const athlete = record.athlete;
   const block = record.block;
   const week = record.currentWeek;
-  const race = [athlete.target_event, block?.race_on ? dayLabel(block.race_on) : null].filter(Boolean).join(' · ');
+  const race = raceLine(athlete, block);
   const standing = week && block?.total_weeks ? `week ${week.week_number} of ${block.total_weeks}` : '';
 
   return `<main class="view on"><div class="stage">
@@ -372,7 +381,8 @@ function blockHtml() {
   return `<main class="view on"><div class="block">
     <div class="bHead"><div>
       <button class="back" type="button" data-nav="athlete">← ${escapeHtml(record.athlete.first_name)}</button>
-      <div class="bTitle">${escapeHtml(`${block.total_weeks} weeks`)}${block.race_on ? ` to ${escapeHtml(record.athlete.target_event || 'the race')}` : ''}</div>
+      <div class="bTitle">${escapeHtml(`${block.total_weeks} weeks`)}${
+        block.race_on ? ` to ${escapeHtml(block.race_place || block.race_name || record.athlete.target_event || 'the race')}` : ''}</div>
       <div class="bSub">${escapeHtml(rangeLabel(block.starts_on, block.race_on || block.ends_on))}${
         current ? ` · week ${escapeHtml(current.week_number)}` : ''}</div>
     </div></div>

@@ -439,3 +439,97 @@ neither surface has fields to author it with yet. The Console sends
 `components: null` and carries structure forward, which is correct and is not the
 same as being able to change it. That editor is what turns a hundred and fifty
 hand-written sessions into a Sunday.
+
+
+---
+
+## 9. Third pass, 2 September
+
+### The wrong-week audit — clean
+
+`console/ladder` is pushed; `origin/console/ladder` = `38c1bca`, verified byte for
+byte. Production's schema record is no longer only on one laptop.
+
+The question was whether anything prescribed in the last few days was authored
+against the stale week. **It was not.**
+
+- The Console showed the wrong week from **31 August** (30 August for Natalie,
+  whose week 1 ended a day earlier) until the fix today.
+- **Nothing has been authored at all since 31 August**, and every version written
+  on the 31st came from a migration — 324 of the 329 versions in the database
+  have `authored_by` null. Migrations name their week by number in SQL; none of
+  them can be misled by a display.
+- All 40 versions written on the 31st landed in **weeks 5 to 14** (21 Sep to 29
+  Nov). Nothing touched week 1 or week 2.
+- The only five versions ever authored by a person through the Console were
+  written on **26, 28 and 29 August**, all into week 1 — while week 1 genuinely
+  *was* the current week. Natalie's, on the 29th, was the last day of her week 1.
+- Zero sessions created since 31 August.
+
+So the display was wrong for two days and nothing was decided against it. The
+exposure was real and the window happened to be empty.
+
+### The race is a row now
+
+`training_blocks.race_name` and `race_place`, with `athletes.target_event` as the
+fallback it should always have been — it holds a distance, "Half marathon", in a
+field the surfaces read as an event.
+
+Backfilled: Hope and José to *OUC Half · Orlando*, which existed only in the
+design file; Marcus and Natalie take their `target_event` as the name, with no
+place invented. The bench now renders **OUC Half · Orlando · Dec 05** from rows.
+
+### The captions are captions
+
+`Longest continuous run at race pace` → **`continuous at race pace`**, and
+`Longest continuous distance` → **`continuous`**. The instrument reads
+`1 MI CONTINUOUS AT RACE PACE`, one line. The full sentence was never lost: it
+is already on the mark as `current_question` — *"How far can he hold 6:30–6:45
+without it coming apart?"*
+
+### The component editor — the Console can author anatomy
+
+In the Console, where authoring belongs. A repeating list of pieces inside the
+session dialog: role, shape, reps, distance or minutes, band, recovery and kind,
+floor and ceiling. It loads what a session already has, so a revision is an edit
+rather than a retype.
+
+Three decisions inside it:
+
+1. **Untouched sends nothing.** Open the dialog, change the title, save — the
+   component field is omitted entirely, `revise_session` reads that as "I did not
+   touch the structure", and the previous anatomy carries forward whole. Sending
+   back what is on screen would not be equivalent: the screen holds what this
+   form knows how to say, and the row knows more.
+2. **Provenance the form cannot show travels invisibly.** Two components carry
+   `rpe_source = 'inherited'` with `rpe_default_version = 'v1'` — an RPE that came
+   from `effort_defaults`, not from anyone typing. `rpeDefaultVersion` was missing
+   from the wire and from the explicit insert, so a coach changing the reps would
+   have silently reclassified an inherited default as no default. Migration
+   `20260902150000` closes it; the editor carries both fields per row without
+   showing them.
+3. **The form complains in words, before the database does.** Unmeasured piece,
+   repetitions with no rep count, a recovery with no name, a band written
+   backwards. Four sentences a coach can act on instead of a rejected save.
+
+Verified in a harness against the real editor code: a three-piece session
+round-trips unchanged, including the inherited RPE; editing marks it edited and
+`repeat_target` follows `repeat_count`, which is what the database's
+`components_target_is_the_count` constraint requires; switching a piece from
+repetitions to continuous keeps its distance and band and drops the reps and
+recovery a continuous piece cannot carry; add and remove shift the carried
+provenance with the row. All four complaints fire.
+
+Then end to end: the editor's exact JSON through the real `revise_session` on
+production, inside a rolled-back transaction. Two typed components landed,
+positions from array order, `6:30` / `6:45` derived from 390 / 405 — and
+`structureOf` renders it back as **4 × 1 mi @ 6:30–6:45 / 3 min float**, or in
+plain form *"4 × 1 mi at race pace, 3 min float between"*. Row counts unchanged
+before and after.
+
+### Still open
+
+- **`main` is behind production.** Merging waits on one signed-in load of Labs,
+  which is the one step I cannot perform.
+- The ladder changes — 6 by week 4, 8 by week 6, 10 by week 9, 12 by week 11 —
+  are now authorable through the form rather than through SQL.

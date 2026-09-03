@@ -2333,3 +2333,26 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 .blockShape-table .s-struct { margin-top: 4px; font-size: 10.5px; letter-spacing: .03em; color: var(--muted); font-variant-numeric: tabular-nums; max-width: 30ch; }
 .blockShape-table tr.is-reach td:last-child .s-name { color: var(--lime); }
 .blockShape-table tr.is-race td:last-child .s-name { color: var(--coral); }
+
+/* ── THE ANATOMY EDITOR ──
+   A session's typed components, in the tool whose job is data entry. Dense on
+   purpose: a coach authoring a block is filling a form fifteen weeks deep, and
+   every row that needs scrolling past is a row that gets skipped. */
+.parts { border: 1px solid var(--edge); border-radius: var(--radius-sm); padding: 14px 16px 16px; margin: 0 0 18px; }
+.parts legend { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 600; padding: 0 6px; }
+.parts-rows { display: flex; flex-direction: column; gap: 10px; }
+.part { display: grid; grid-template-columns: 108px 104px 1fr 30px; gap: 8px; align-items: start;
+  padding: 10px; border: 1px solid var(--edge); border-radius: var(--radius-sm); background: var(--raised); }
+.part select, .part input { width: 100%; border: 1px solid var(--edge); background: var(--field-2); color: var(--text);
+  border-radius: 6px; padding: 7px 8px; font: inherit; font-size: 12.5px; }
+.part-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(72px, 1fr)); gap: 8px; }
+.part-fields label { display: grid; gap: 3px; font-size: 9.5px; letter-spacing: .11em; text-transform: uppercase;
+  color: var(--muted); font-weight: 600; }
+.part-drop { align-self: center; background: none; border: 0; color: var(--muted); font-size: 17px; line-height: 1; padding: 4px; cursor: pointer; }
+.part-drop:hover { color: var(--coral); }
+.parts-actions { display: flex; align-items: center; gap: 14px; margin-top: 12px; }
+.parts-add { font-size: 12px; font-weight: 600; color: var(--lime); }
+.parts-add:hover { text-decoration: underline; }
+.parts-note { font-size: 11.5px; color: var(--muted); }
+.parts-note.changed { color: var(--lime); }
+.parts-empty { font-size: 12.5px; color: var(--muted); line-height: 1.5; }

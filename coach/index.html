@@ -246,6 +246,19 @@
         <input class="field-input" name="intent" required placeholder="Get comfortable holding race pace for longer.">
       </label>
 
+      <!-- The anatomy. This is the prescription: what structureOf renders, what
+           the plan feed carries, and what the app runs. Until today no form in
+           this repository could write it and every one of these rows arrived by
+           migration. The prose field below it is what item 73 deletes. -->
+      <fieldset class="parts" id="sessionParts">
+        <legend>What it is made of</legend>
+        <div class="parts-rows" id="partsRows"></div>
+        <div class="parts-actions">
+          <button class="parts-add" type="button" id="addPart">Add a piece</button>
+          <span class="parts-note" id="partsNote"></span>
+        </div>
+      </fieldset>
+
       <label class="field-label">How it is built
         <textarea class="field-textarea" name="details" placeholder="20 min easy, then 6 x 1 mile at 6:30 to 6:45 with 90 second floats, then 10 min easy."></textarea>
       </label>

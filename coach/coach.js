@@ -1062,6 +1062,175 @@ function toSeconds(text) {
   return parts.reduce((total, part) => total * 60 + part, 0);
 }
 
+// ── THE ANATOMY EDITOR ──────────────────────────────────────────────────────
+//
+// `planned_session_components` is the prescription. Until now nothing in this
+// repository could write it from a form, which is why a block arrived as a
+// hundred and fifty hand-written INSERTs and why authoring happened four times a
+// year. This is the form.
+//
+// Two rules govern it.
+//
+// A piece is measured by distance OR duration, never neither — the database says
+// so and the form should say so first, in words, rather than letting a coach
+// find out by having a save rejected.
+//
+// And an editor that is opened and not touched sends NOTHING. `revise_session`
+// reads a null component list as "I did not touch the structure" and carries the
+// previous version's anatomy forward, provenance and all. That is not the same
+// as restating what was on screen: what is on screen is what this form knows how
+// to say, and the row knows more than the form does.
+
+const PART_ROLES = [['work', 'Work'], ['warm_up', 'Warm up'], ['recovery', 'Recovery'], ['cool_down', 'Cool down']];
+const RECOVERY_KINDS = [['', 'none'], ['float', 'float'], ['easy', 'easy'], ['jog', 'jog'], ['standing', 'standing'], ['equal', 'equal']];
+let partsOpenedAs = '';
+
+const clockText = (seconds) => seconds == null || seconds === ''
+  ? '' : `${Math.floor(seconds / 60)}:${String(Math.round(seconds % 60)).padStart(2, '0')}`;
+
+function partRowHtml(part = {}) {
+  const shape = part.shape || 'continuous';
+  const options = (list, chosen) => list
+    .map(([value, label]) => `<option value="${value}"${String(chosen || '') === value ? ' selected' : ''}>${label}</option>`).join('');
+  const field = (label, name, value, extra = '') =>
+    `<label>${label}<input name="${name}" value="${value == null ? '' : value}" ${extra}></label>`;
+  return `<div class="part" data-part>
+    <select name="role">${options(PART_ROLES, part.role || 'work')}</select>
+    <select name="shape">
+      <option value="continuous"${shape === 'continuous' ? ' selected' : ''}>continuous</option>
+      <option value="repetitions"${shape === 'repetitions' ? ' selected' : ''}>repetitions</option>
+    </select>
+    <div class="part-fields">
+      ${shape === 'repetitions' ? field('Reps', 'repeatCount', part.repeat_count, 'type="number" min="1"') : ''}
+      ${field('Distance', 'distance', part.distance == null ? '' : Number(part.distance), 'type="number" step="0.01" min="0"')}
+      ${field('Minutes', 'durationMinutes', part.duration_seconds == null ? '' : Number((part.duration_seconds / 60).toFixed(2)), 'type="number" step="0.01" min="0"')}
+      ${field('Band fast', 'paceLow', clockText(part.pace_low_seconds), 'placeholder="6:30"')}
+      ${field('Band slow', 'paceHigh', clockText(part.pace_high_seconds), 'placeholder="6:45"')}
+      ${shape === 'repetitions' ? field('Recovery', 'recovery', clockText(part.recovery_seconds), 'placeholder="3:00"') : ''}
+      ${shape === 'repetitions' ? `<label>Kind<select name="recoveryKind">${options(RECOVERY_KINDS, part.recovery_kind)}</select></label>` : ''}
+      ${shape === 'repetitions' ? field('Floor', 'repeatMinimum', part.repeat_minimum, 'type="number" min="1"') : ''}
+      ${shape === 'repetitions' ? field('Ceiling', 'repeatCeiling', part.repeat_ceiling, 'type="number" min="1"') : ''}
+    </div>
+    <button class="part-drop" type="button" data-drop-part aria-label="Remove this piece">&times;</button>
+  </div>`;
+}
+
+// Provenance the form cannot show travels invisibly, per row, so a coach editing
+// the reps on a session does not silently reclassify an inherited RPE.
+const CARRIED = ['rpe_source', 'rpe_default_version', 'rpe_low', 'rpe_high', 'repeat_target', 'repeat_progression', 'distance_unit'];
+let carriedParts = [];
+
+function paintParts(parts) {
+  carriedParts = parts.map((part) => {
+    const kept = {};
+    CARRIED.forEach((key) => { if (part[key] != null) kept[key] = part[key]; });
+    return kept;
+  });
+  const rows = document.getElementById('partsRows');
+  rows.innerHTML = parts.length
+    ? parts.map((part) => partRowHtml(part)).join('')
+    : '<p class="parts-empty">No typed anatomy. Add a piece, or leave it empty and the session says only what its title says.</p>';
+  partsOpenedAs = readParts({ raw: true });
+  markPartsState();
+}
+
+function markPartsState() {
+  const note = document.getElementById('partsNote');
+  const changed = readParts({ raw: true }) !== partsOpenedAs;
+  note.textContent = changed ? 'Edited — this rewrites the anatomy.' : 'Untouched — the previous anatomy is carried forward.';
+  note.className = changed ? 'parts-note changed' : 'parts-note';
+}
+
+// Reads the rows into the wire shape. Pace goes out in seconds: the text columns
+// are derived server-side so one fact keeps one source.
+function readParts({ raw = false } = {}) {
+  const rows = [...document.querySelectorAll('#partsRows [data-part]')];
+  const parts = rows.map((row, index) => {
+    const at = (name) => row.querySelector(`[name="${name}"]`)?.value.trim() || '';
+    const number = (name) => at(name) === '' ? null : Number(at(name));
+    const shape = at('shape');
+    const minutes = number('durationMinutes');
+    const carried = carriedParts[index] || {};
+    const part = {
+      role: at('role'),
+      shape,
+      repeatCount: shape === 'repetitions' ? number('repeatCount') : null,
+      distance: number('distance'),
+      distanceUnit: number('distance') == null ? null : (carried.distance_unit || 'mi'),
+      durationSeconds: minutes == null ? null : Math.round(minutes * 60),
+      recoverySeconds: shape === 'repetitions' && at('recovery') ? toSeconds(at('recovery')) : null,
+      recoveryKind: shape === 'repetitions' ? (at('recoveryKind') || null) : null,
+      paceLowSeconds: at('paceLow') ? toSeconds(at('paceLow')) : null,
+      paceHighSeconds: at('paceHigh') ? toSeconds(at('paceHigh')) : null,
+      rpeLow: carried.rpe_low ?? null,
+      rpeHigh: carried.rpe_high ?? null,
+      rpeSource: carried.rpe_source ?? null,
+      rpeDefaultVersion: carried.rpe_default_version ?? null,
+      repeatMinimum: shape === 'repetitions' ? number('repeatMinimum') : null,
+      repeatTarget: shape === 'repetitions' ? (number('repeatCount') ?? carried.repeat_target ?? null) : null,
+      repeatProgression: shape === 'repetitions' ? (carried.repeat_progression ?? null) : null,
+      repeatCeiling: shape === 'repetitions' ? number('repeatCeiling') : null
+    };
+    Object.keys(part).forEach((key) => { if (part[key] === null) delete part[key]; });
+    return part;
+  });
+  return raw ? JSON.stringify(parts) : parts;
+}
+
+// Said here, in the coach's words, rather than surfaced as a rejected save.
+function partsComplaint(parts) {
+  for (const [index, part] of parts.entries()) {
+    const where = `Piece ${index + 1}`;
+    if (part.distance == null && part.durationSeconds == null) return `${where} is not measured. Give it a distance or a number of minutes.`;
+    if (part.shape === 'repetitions' && !part.repeatCount) return `${where} repeats, so it needs a number of reps.`;
+    if (part.recoverySeconds != null && !part.recoveryKind) return `${where} has a recovery with no name. Say what it is: float, easy, jog or standing.`;
+    if (part.paceLowSeconds != null && part.paceHighSeconds != null && part.paceLowSeconds > part.paceHighSeconds) {
+      return `${where} has its band backwards. The fast end goes first.`;
+    }
+  }
+  return null;
+}
+
+document.getElementById('addPart').addEventListener('click', () => {
+  const rows = document.getElementById('partsRows');
+  if (rows.querySelector('.parts-empty')) rows.innerHTML = '';
+  carriedParts.push({});
+  rows.insertAdjacentHTML('beforeend', partRowHtml({ role: 'work', shape: 'continuous' }));
+  markPartsState();
+});
+
+document.getElementById('sessionParts').addEventListener('click', (event) => {
+  const drop = event.target.closest('[data-drop-part]');
+  if (!drop) return;
+  const row = drop.closest('[data-part]');
+  const index = [...row.parentElement.children].indexOf(row);
+  carriedParts.splice(index, 1);
+  row.remove();
+  if (!document.querySelectorAll('#partsRows [data-part]').length) {
+    document.getElementById('partsRows').innerHTML = '<p class="parts-empty">No typed anatomy. Add a piece, or leave it empty and the session says only what its title says.</p>';
+  }
+  markPartsState();
+});
+
+// Changing the shape changes which fields exist, so the row is redrawn. What the
+// coach already typed is read back out of it first.
+document.getElementById('sessionParts').addEventListener('change', (event) => {
+  if (event.target.name === 'shape') {
+    const row = event.target.closest('[data-part]');
+    const index = [...row.parentElement.children].indexOf(row);
+    const current = readParts()[index] || {};
+    row.outerHTML = partRowHtml({
+      role: current.role, shape: event.target.value, repeat_count: current.repeatCount,
+      distance: current.distance, duration_seconds: current.durationSeconds,
+      pace_low_seconds: current.paceLowSeconds, pace_high_seconds: current.paceHighSeconds,
+      recovery_seconds: current.recoverySeconds, recovery_kind: current.recoveryKind,
+      repeat_minimum: current.repeatMinimum, repeat_ceiling: current.repeatCeiling
+    });
+  }
+  markPartsState();
+});
+document.getElementById('sessionParts').addEventListener('input', markPartsState);
+
 function openSession(plannedSessionId = null) {
   sessionForm.reset();
   revisingSessionId = plannedSessionId;
@@ -1085,10 +1254,12 @@ function openSession(plannedSessionId = null) {
     sessionForm.elements.prescribedDistance.value = version?.prescribed_distance || '';
     sessionForm.elements.prescribedDurationMinutes.value = version?.prescribed_duration_minutes || '';
     sessionForm.elements.intent.value = version?.intent || '';
+    paintParts((version?.components || []).slice().sort((a, b) => a.position - b.position));
     sessionForm.elements.details.value = version?.details || '';
     sessionForm.elements.rpeLow.value = version?.rpe_low || '';
     sessionForm.elements.rpeHigh.value = version?.rpe_high || '';
   } else {
+    paintParts([]);
     document.getElementById('sessionContext').textContent = `New session for ${selectedRecord.athlete.first_name}`;
     if (selectedRecord.currentWeek) sessionForm.elements.weekId.value = selectedRecord.currentWeek.id;
   }
@@ -1434,6 +1605,16 @@ sessionForm.addEventListener('submit', async (event) => {
     rpeHigh: f.rpeHigh.value ? Number(f.rpeHigh.value) : null,
     changeReason: f.changeReason.value.trim() || null
   };
+
+  // Untouched means untouched: the field is omitted, revise_session carries the
+  // previous anatomy forward, and nothing this form cannot express is lost. A new
+  // session has nothing to carry, so what is on screen is what it gets.
+  const parts = readParts();
+  const touched = readParts({ raw: true }) !== partsOpenedAs;
+  if (!revisingSessionId || touched) payload.components = parts;
+
+  const complaint = partsComplaint(payload.components || []);
+  if (complaint) { status.textContent = complaint; status.className = 'status-message error'; return; }
   button.disabled = true; status.textContent = 'Saving.';
   try {
     if (revisingSessionId) await reviseSession(revisingSessionId, payload);
