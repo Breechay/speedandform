@@ -553,7 +553,7 @@ document.addEventListener('click', (event) => {
   const go = event.target.closest('[data-nav]');
   if (!go) return;
   const where = go.dataset.nav;
-  if (where === 'console') { location.href = '/coach/'; return; }
+  if (where === 'console') { location.href = '/coach/console/'; return; }
   if (where === 'bench') { location.hash = '#/bench'; return; }
   const slug = record?.athlete?.slug || route().slug;
   if (!slug) return;
@@ -586,8 +586,8 @@ async function boot() {
     document.getElementById('stamp').textContent = new Date().toLocaleDateString(undefined,
       { weekday: 'short', day: 'numeric', month: 'short' });
     access = await getAccessContext();
-    if (!access.session) { location.href = '/coach/'; return; }
-    if (!access.coachMemberships.length) { location.href = '/coach/'; return; }
+    if (!access.session) { location.href = '/coach/console/'; return; }
+    if (!access.coachMemberships.length) { location.href = '/coach/console/'; return; }
     bench = await loadCoachBench(access.coachMemberships);
     if (!location.hash) location.hash = '#/bench';
     await show();

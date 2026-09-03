@@ -1,3 +1,17 @@
+# ── Labs is where you land ───────────────────────────────────────────────────
+#
+# Signing in as a coach lands on the bench, not on the authoring tool. Labs is
+# the daily surface — read what came back, decide what it means — and the
+# Console is where a block gets built four times a year. You go there on
+# purpose.
+#
+# The Console keeps its file and moves address. The console rules come first:
+# _redirects takes the first match, and /coach/* would otherwise swallow them.
+/coach/console          /coach/index.html       200
+/coach/console/         /coach/index.html       200
+/coach                  /coach/labs/            302
+/coach/                 /coach/labs/            302
+
 # Forge Coach Interface — React SPA
 /auth/apple/callback    /auth/apple/callback.html    200
 /forge                  /forge-app/index.html      200
