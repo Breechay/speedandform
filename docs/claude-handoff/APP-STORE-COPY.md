@@ -1,6 +1,6 @@
 # App Store copy — FORM iOS
 
-Paste with build 38/5. Metadata edits are free until the build goes to review.
+Candidate metadata for build 39.4 (7). Do not submit or upload this build from this document.
 
 This is App Store text. It does not belong on the site.
 
@@ -52,3 +52,17 @@ Now on iPad.
 - Name the fix plainly. "Bug fixes and improvements" is not available to you — the people who watched that bug happen are the beta athletes, and naming it is the same currency the app runs on
 - Every athlete opens 38 at **W1 / WEEK 1** while their race position is unchanged. Tell them before the build lands, or it reads as a reset: the week counter starts over because the app did, the race clock and the training did not
 
+## App Privacy disclosure — build 39.4 (7)
+
+Complete these selections in App Store Connect only after a final product/legal review. They describe the optional FORM coaching connection; they do not authorize an App Store upload.
+
+| Data type | Collected | Linked to identity | Used for tracking | Purpose |
+| --- | --- | --- | --- | --- |
+| User ID | Yes, for connected coaching | Yes | No | App functionality and account management |
+| Name | Yes, only when supplied for connected coaching | Yes | No | App functionality |
+| Email address | Yes, only when supplied through connected coaching authentication | Yes | No | App functionality and account management |
+| Health & Fitness — fitness data | Yes, when an athlete files a coaching session, effort rating, words, or symptoms | Yes | No | App functionality |
+| Diagnostics | No server collection by FORM | N/A | No | N/A |
+| Location, contacts, financial information, browsing history, identifiers for tracking | No | N/A | No | N/A |
+
+The app does not use advertising, cross-app tracking, third-party analytics, or a service-role credential. Coaching data is visible only to the athlete and assigned coaching team, access is revoked as soon as deletion is requested, and server coaching data is removed or irreversibly anonymized within 30 days.

@@ -1243,6 +1243,14 @@ function openSession(plannedSessionId = null) {
   const version = session?.currentVersion;
   document.getElementById('changeReasonField').hidden = !session;
   sessionForm.elements.changeReason.required = !!session;
+  // Authoring is the moment a session has to say why it exists. Revising is not:
+  // 284 of the versions in this database have no intent, and a required field on
+  // a session that never had one is a machine asking a coach to write filler so
+  // the save will go through. Blank means unchanged, server-side and here.
+  sessionForm.elements.intent.required = !session;
+  document.getElementById('intentHint').textContent = session
+    ? 'Leave it as it is to keep what the session already says. Blank does not clear it.'
+    : '';
 
   if (session) {
     // Revising starts from what is already there, so the coach edits rather than retypes.

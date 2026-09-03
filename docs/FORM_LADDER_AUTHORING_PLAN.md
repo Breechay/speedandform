@@ -37,7 +37,7 @@ long run.
 
 | Week | Operation | Session |
 |---|---|---|
-| W4 | **6 mi** continuous @ 6:30–6:45, replacing the easy run | Tue Sep 15 |
+| W4 | **6 mi** continuous @ 6:30–6:45, replacing the easy run | **Thu Sep 17** |
 | W5 | leave at 7 | Tue Sep 22 |
 | W8 | **7 → 8 mi** | Sun Oct 18 |
 | W9 | **9 → 10 mi** | Sun Oct 25 |
@@ -74,24 +74,43 @@ what `planned_sessions` is for — a session is a stable identity and what it as
 for is a numbered version. Cancelling one session to author another in its place
 would throw away the history to arrive at the same Sunday.
 
-**W4 is the only one that is not obvious**, and it needs a decision:
+**All fourteen are revisions**, W4 included. Same day, changed its mind, with a
+reason on the record — which is what happened. Cancel-and-author would claim the
+easy run was withdrawn and something else put in its place, which is not true and
+loses the thread.
 
-The instruction is to replace Tuesday's easy run rather than author a double.
-Two ways, and they are different claims about what happened:
-
-- **Revise it.** Tue Sep 15 stays one session and its version 2 says 6 mi at race
-  pace instead of Easy week 6 mi. The history reads: this Tuesday changed from an
-  easy run to a rung, with a reason. One edit, no new primitive.
-- **Cancel and author.** Two sessions on the record, one cancelled, one new. It
-  says the easy run was withdrawn and something else put in its place.
-
-**Revising is recommended**, and there is a second reason: **nothing in any
+Worth knowing separately: **nothing in any
 surface can cancel a session.** `planned_sessions.state` has `'cancelled'` and
 Labs renders it — the block draws the 2 × 4 and the 2 × 5 struck through — but no
 form, function or RPC writes that state. The two cancelled sessions in this block
 could only have been set by SQL. That is the same family of gap the component
-editor just closed, and it is worth closing on its own account rather than
-because this plan tripped over it.
+editor just closed, and it is being closed on its own account rather than because
+this plan tripped over it.
+
+---
+
+## What nearly stopped all fourteen
+
+`write_session_version` refused a blank intent. **284 of the 329 versions in this
+database have no intent** — the not-null came off that column in August — and all
+fourteen target sessions are among them. Every operation in this plan would have
+been refused with *"a session needs an intent"*, about sessions that have never
+had one.
+
+The worse half is what happens next: faced with a save that will not go through,
+a coach types a sentence to get past it. That is how filler copy is born — prose
+written for a validator and then delivered to the athlete, because that field is
+what reaches their phone.
+
+Fixed in `20260902160000`. **Blank means unchanged.** A revision carries the
+previous sentence forward; where there never was one it stays silent. Authoring
+still requires an intent, because that is the moment someone actually knows why
+the session exists. The Console's intent field is no longer `required` on a
+revision, and says that blank does not clear what is already there.
+
+Proven: an intent-less session revises and stays silent, a session with an intent
+keeps it when the field is left blank, and authoring without one is still
+refused.
 
 ---
 
@@ -99,8 +118,11 @@ because this plan tripped over it.
 
 Per athlete, in the order they would be done:
 
-1. W4 Tue Sep 15 — revise Easy week → **6 mi at race pace**, one continuous work
-   component, 6 mi, band 6:30–6:45
+1. W4 **Thu Sep 17** — revise Easy (5 mi) → **6 mi at race pace**, one continuous
+   work component, 6 mi, band 6:30–6:45. Tuesday stays easy, the week still drops,
+   and the rung sits late enough to be run off a recovered week. Checked in the
+   rows: Thursday is a single 5-mile continuous easy component at RPE 4–5,
+   identical for both athletes, so it takes the change cleanly.
 2. W5 Sun Sep 27 — long run first component 9 → **11**
 3. W6 Sun Oct 4 — long run first component 10 → **12**
 4. W8 Sun Oct 18 — rung 7 → **8**
