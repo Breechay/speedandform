@@ -1,126 +1,114 @@
-# The ladder changes — what to author, and two things that collide
+# The ladder changes — the final list
 
-Prepared 2 September against the live rows. **Nothing has been authored.** The
-bench has not been loaded signed in, which is the gate.
+Settled 2 September. **Nothing has been authored.** The gate is one signed-in
+load of the bench.
 
-Hope and José are identical in every week checked, so every operation below is
-done twice, once each.
-
----
-
-## What is actually there
-
-Long-run distance is the first component **plus** the race-pace finish segment.
-Reading only the first component under-reports every one of them by 2 to 3 miles.
-
-| Week | Rung — continuous at 6:30–6:45 | Long run | Down |
-|---|---|---|---|
-| W3 | **5 mi** · Tue Sep 8 | 9 = 7 + 2 @ band · Sun Sep 13 | |
-| W4 | — | 11 = 9 + 2 | easy week |
-| W5 | **7 mi** · Tue Sep 22 | 11 = 9 + 2 | |
-| W6 | The Governor · **15 min**, not 5 mi | 12 = 10 + 2 | restraint |
-| W7 | 2 × 4 mi · **cancelled** | **7**, no finish | **down week** |
-| W8 | **7 mi** · Sun Oct 18 | none — the rung has the Sunday | easy week |
-| W9 | 4 mi · Tue Oct 20, **9 mi** · Sun Oct 25 | none — the rung has the Sunday | |
-| W10 | — | 13 = 10 + 3 | |
-| W11 | 2 × 5 mi cancelled, **10 mi** · Sun Nov 8 | none — the rung has the Sunday | |
-
-Two corrections to the table in the brief: **W6 has no 5-mile continuous** — it
-has The Governor, 15 minutes at band inside a session about opening gear — and
-**W9 has two** banded continuous runs, 4 mi on the Tuesday and 9 mi on the
-Sunday.
+Hope and José are identical in every week checked. Every operation below is done
+twice, once each: **nine edits per athlete, eighteen in total.**
 
 ---
 
-## The ladder, after the edits
+## What was corrected on the way here
 
-W4 = 6, W5 = 7, W7 = 8, W9 = 10, W11 = 12. Monotonic, and it lands the agreed
-shape: six by week four, eight by week seven, ten by week nine, twelve by week
-eleven. The rung going backwards from 7 to 5 disappears because the 5 was never
-there — W6's 15-minute Governor was being read as a rung.
+**Long-run distance is the first component plus the race-pace finish.** Reading
+only the first component under-reports every long run in the block by two to
+three miles. Those Sundays were never 9 and 11; they were 7 + 2 and 9 + 2. Every
+long run already finishes at race pace, so extending that is a change of degree,
+not a new pattern.
 
-| | Operation | Where |
+**W6 has no five-mile continuous.** It has The Governor — fifteen minutes at band
+inside a session about choosing the opening gear. The rung never went backwards
+from 7 to 5; that reading came from counting The Governor as a rung.
+
+**W9 has two banded continuous runs**, 4 mi on the Tuesday and 9 mi on the Sunday.
+
+**The rung stops being a long run once the ramp passes it.** A twelve-mile
+continuous run at 6:30–6:45 four weeks out is a harder and more specific session
+than a sixteen-mile easy run with a race-pace finish, and it is the one that
+establishes the race. Running both spends recovery on something the rung already
+delivers. So the ramp stops at W7, and from W8 the rung is the long run.
+
+---
+
+## The ladder
+
+**6, 7, 8, 10, 12** across W4, W5, W8, W9, W11. No week carries both a rung and a
+long run.
+
+| Week | Operation | Session |
 |---|---|---|
-| W4 | **author** 6 mi continuous @ 6:30–6:45 | day open — see below |
-| W5 | leave | Tue Sep 22 |
-| W7 | **author** 8 mi continuous @ 6:30–6:45 | Tue Oct 6, the slot the cancelled 2 × 4 vacates |
-| W8 | **cancel** the 7 mi rung | Sun Oct 18 |
-| W9 | **revise** 9 mi → 10 mi | Sun Oct 25 |
-| W11 | **revise** 10 mi → 12 mi | Sun Nov 8 |
+| W4 | **6 mi** continuous @ 6:30–6:45, replacing the easy run | Tue Sep 15 |
+| W5 | leave at 7 | Tue Sep 22 |
+| W8 | **7 → 8 mi** | Sun Oct 18 |
+| W9 | **9 → 10 mi** | Sun Oct 25 |
+| W11 | **10 → 12 mi** | Sun Nov 8 |
 
-Four of the six are single operations through the session dialog. Only W4 and W7
-are new sessions.
+## The long runs
 
----
+Ramp stops at W7. Each is a distance change on the **first** component only; the
+race-pace finish segment is left exactly as it is.
 
-## Two collisions, unresolved on purpose
+| Week | Total | First component | Finish |
+|---|---|---|---|
+| W3 | 9, leave | 7 | + 2 @ band |
+| W4 | 11, leave | 9 | + 2 @ band |
+| W5 | 11 → **13** | 9 → **11** | + 2 @ band |
+| W6 | 12 → **14** | 10 → **12** | + 2 @ band |
+| W7 | 7, leave — the down week | 7 | none |
+| W10 | 13 → **15** | 10 → **12** | + 3 @ band |
 
-### 1. W7 is the down week and the new 8-mile rung
-
-The ramp makes W7 the down week — 7 miles, the only week that drops, and it is
-already authored that way. The instruction also moves the 8-mile rung out of W6
-into W7, so W6 can stay the restraint week with The Blind Mile and The Governor.
-
-Both are right on their own. Together they put the block's first eight-mile
-continuous run at race pace inside its recovery week.
-
-Three ways out, and this is a programming call:
-
-- **The rung goes to W8** and takes the Sunday the cancelled 7-mile rung leaves.
-  W6 stays restraint, W7 stays down, and the ladder reads 6, 7, 8, 10, 12 across
-  W4, W5, W8, W9, W11. Costs nothing and moves one week later than agreed.
-- **The rung stays in W7** and W7 stops being the down week, which means the
-  ramp needs a different down week — W6 is the only candidate, and that
-  reintroduces exactly the stacking the instruction was avoiding.
-- **The rung stays in W6** after all, alongside The Blind Mile and The Governor.
-  Named for completeness; the instruction already rejected it.
-
-### 2. The rung and the long run in W8, W9 and W11
-
-The answer given was that the rung *is* the long run in those weeks — their
-Sunday is already a long run run entirely at race pace. That is true of the
-distances as they stand.
-
-It stops being true after the ramp. The ramp asks for 15 at W8, 16 at W9 and 16
-at W10, and the rungs there are 10 and 12. A ten-mile continuous run at race pace
-and a sixteen-mile long run with a race-pace finish are not the same session and
-cannot be.
-
-So one of two things:
-
-- **The ramp stops at W7.** W3 = 9, W4 = 12, W5 = 13, W6 = 14, W7 = 7 down, and
-  from W8 onward the rung is the long run — 10 at W9, 12 at W11, run entirely at
-  pace. The block's back half trades distance for quality, which is what a
-  fourteen-week half build usually does.
-- **The ramp runs to W10** and W8, W9 and W10 each carry two long sessions: the
-  rung and a 15- or 16-mile long run. That is a real jump in load in the three
-  weeks before the taper, and worth saying out loud before it is authored.
-
-The first reading is the one consistent with everything else in the block. It is
-not mine to choose.
+Longest run 15 at W10. Longest continuous at pace 12 at W11.
 
 ---
 
-## One smaller open question
+## How each one is written
 
-**W4's day.** W4 is the easy week: Easy week 6 mi on Tue Sep 15, Easy 5 mi on
-Thu Sep 17, long run Sun Sep 20. "It replaces nothing" reads as *this rung
-supersedes no existing rung*, not *leave the easy sessions alone*. So the 6-mile
-continuous either replaces the Tuesday easy — making the down week hold one
-quality session — or is added beside it, which authors a second Tuesday session
-and a double in an easy week. Replacing is the safer reading and it is still a
-choice.
+Seven of the nine are revisions through the session dialog: open the session,
+change one number on one component, give the reason. The anatomy editor rewrites
+components only when it is touched, so nothing else in the session moves.
+
+**W8 is a revision, not a new session.** The instruction was to take the Sunday
+that the cancelled 7-mile rung vacates. Revising 7 → 8 on that same session is
+one edit and keeps the session's identity and its whole version history, which is
+what `planned_sessions` is for — a session is a stable identity and what it asks
+for is a numbered version. Cancelling one session to author another in its place
+would throw away the history to arrive at the same Sunday.
+
+**W4 is the only one that is not obvious**, and it needs a decision:
+
+The instruction is to replace Tuesday's easy run rather than author a double.
+Two ways, and they are different claims about what happened:
+
+- **Revise it.** Tue Sep 15 stays one session and its version 2 says 6 mi at race
+  pace instead of Easy week 6 mi. The history reads: this Tuesday changed from an
+  easy run to a rung, with a reason. One edit, no new primitive.
+- **Cancel and author.** Two sessions on the record, one cancelled, one new. It
+  says the easy run was withdrawn and something else put in its place.
+
+**Revising is recommended**, and there is a second reason: **nothing in any
+surface can cancel a session.** `planned_sessions.state` has `'cancelled'` and
+Labs renders it — the block draws the 2 × 4 and the 2 × 5 struck through — but no
+form, function or RPC writes that state. The two cancelled sessions in this block
+could only have been set by SQL. That is the same family of gap the component
+editor just closed, and it is worth closing on its own account rather than
+because this plan tripped over it.
 
 ---
 
-## How it gets authored
+## The eighteen operations
 
-Through the session dialog, now that it can write anatomy. Each rung is one work
-component: continuous, distance in miles, band 6:30–6:45. A revision needs its
-reason; the anatomy editor rewrites the components only when it is touched, so
-changing 9 to 10 means editing the distance field on the one piece and nothing
-else moves.
+Per athlete, in the order they would be done:
 
-The long-run ramp is a distance change on the first component of each existing
-long run, leaving the race-pace finish segment alone — except W8, W9 and W11,
-which have no long run to revise and depend on the question above.
+1. W4 Tue Sep 15 — revise Easy week → **6 mi at race pace**, one continuous work
+   component, 6 mi, band 6:30–6:45
+2. W5 Sun Sep 27 — long run first component 9 → **11**
+3. W6 Sun Oct 4 — long run first component 10 → **12**
+4. W8 Sun Oct 18 — rung 7 → **8**
+5. W9 Sun Oct 25 — rung 9 → **10**
+6. W10 Sun Nov 1 — long run first component 10 → **12**
+7. W11 Sun Nov 8 — rung 10 → **12**
+
+Seven per athlete, fourteen in total — not nine and eighteen. W5 needs no ladder
+edit and W4 needs no long-run edit, so two of the nine cancel out.
+
+Every one of them carries a change reason. None of them touches a filed session.
