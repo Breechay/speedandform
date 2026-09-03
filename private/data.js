@@ -153,7 +153,10 @@ export async function loadCoachBench(coachMemberships) {
       // Today is a session scheduled today. Next is the next one after it, and
       // when nothing is due today the last filing is what the column shows.
       today: mine.find((session) => session.scheduled_on === today) || null,
-      next: mine.filter((session) => session.scheduled_on && session.scheduled_on > today)
+      // The next KEY session, not the next session. Once easy running is authored
+      // as a weekly budget, the very next thing on the calendar is usually an
+      // easy run — true, and not what you open the bench to find out.
+      next: mine.filter((session) => session.is_key && session.scheduled_on && session.scheduled_on > today)
         .sort((a, b) => a.scheduled_on.localeCompare(b.scheduled_on))[0] || null,
       latestCompletion: latest,
       latestPieces: latest ? (piecesResponse.data || []).filter((piece) => piece.completion_id === latest.id) : []

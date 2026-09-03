@@ -168,7 +168,9 @@ function columnHtml(entry) {
   }
 
   if (entry.next) {
-    registers.push(`<div><div class="lab">NEXT · ${escapeHtml(String(entry.next.day_label).slice(0, 3).toUpperCase())}</div><div class="val dim">${
+    // NEXT KEY, because it is. "NEXT" reads as the very next thing on their
+    // calendar and invites you to think the week is three sessions long.
+    registers.push(`<div><div class="lab">NEXT KEY · ${escapeHtml(String(entry.next.day_label).slice(0, 3).toUpperCase())}</div><div class="val dim">${
       escapeHtml(doseLine(entry.next) || titleOf(entry.next))
     }</div></div>`);
   }
