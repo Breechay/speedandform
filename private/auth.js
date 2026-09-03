@@ -139,9 +139,22 @@ export async function getAccessContext() {
   const session = await getSession();
   if (!session) return { session: null, memberships: [], athleteMemberships: [], coachMemberships: [] };
   await claimAccess();
+  // Scoped to the signed-in user, explicitly, and not left to RLS.
+  //
+  // The read policy is `user_id = auth.uid() OR is_coach_member(athlete_id)`,
+  // which is right for reading and wrong for identity: a coach can see the
+  // membership rows of every athlete they coach, so this query came back holding
+  // JOSÉ's athlete membership alongside Brice's own. `athleteMemberships` filters
+  // on role and not on whose row it is, so `athleteMemberships[0]` was another
+  // person, and /athlete/ rendered their record — interactively, with a Log it
+  // button that would have filed a session against their athlete_id.
+  //
+  // "What may I read" and "who am I" are different questions. RLS answers the
+  // first. Only this filter answers the second.
   const { data, error } = await supabase
     .from('athlete_memberships')
     .select('athlete_id, role, status, athletes(id, slug, display_name, first_name, home_surface, target_event, goal_label, program_name, account_label)')
+    .eq('user_id', session.user.id)
     .eq('status', 'active');
   if (error) throw error;
   const memberships = data || [];
