@@ -59,6 +59,8 @@ export async function loadCoachBench(coachMemberships) {
   const athleteIds = roster.map((entry) => entry.id);
   const today = new Date().toISOString().slice(0, 10);
   const windowStart = new Date(Date.now() - 60 * 86400000).toISOString();
+  const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
+  const weekAhead = new Date(Date.now() + 7 * 86400000).toISOString().slice(0, 10);
 
   const [blocksResponse, weeksResponse, completionsResponse] = await Promise.all([
     supabase.from('training_blocks').select('*').in('athlete_id', athleteIds).eq('status', 'active'),
@@ -84,8 +86,16 @@ export async function loadCoachBench(coachMemberships) {
       || mine[0] || null;
   };
 
+  // The week after, too. The brief looks seven days forward, and on a Friday or
+  // a Sunday most of what is coming belongs to next week's rows.
+  const nextWeekFor = (athleteId) => {
+    const current = currentWeekFor(athleteId);
+    if (!current) return null;
+    return weeks.filter((week) => week.athlete_id === athleteId && week.week_number > current.week_number)
+      .sort((a, b) => a.week_number - b.week_number)[0] || null;
+  };
   const currentWeeks = athleteIds.map(currentWeekFor).filter(Boolean);
-  const weekIds = currentWeeks.map((week) => week.id);
+  const weekIds = currentWeeks.concat(athleteIds.map(nextWeekFor).filter(Boolean)).map((week) => week.id);
   let completions = completionsResponse.data || [];
   // Anyone silent for longer than the window still has a last session, and the
   // column should say what it was. One more query, only for those athletes.
@@ -159,7 +169,18 @@ export async function loadCoachBench(coachMemberships) {
       next: mine.filter((session) => session.is_key && session.scheduled_on && session.scheduled_on > today)
         .sort((a, b) => a.scheduled_on.localeCompare(b.scheduled_on))[0] || null,
       latestCompletion: latest,
-      latestPieces: latest ? (piecesResponse.data || []).filter((piece) => piece.completion_id === latest.id) : []
+      latestPieces: latest ? (piecesResponse.data || []).filter((piece) => piece.completion_id === latest.id) : [],
+      // What the brief needs and the bench does not: everything filed in the
+      // last seven days, and everything asked of them in the next seven.
+      recentFilings: completions.filter((item) => item.athlete_id === entry.id && item.filed_at.slice(0, 10) >= weekAgo),
+      coming: sessions.filter((session) => session.week_id === currentWeek?.id || session.week_id === nextWeekFor(entry.id)?.id)
+        .filter((session) => session.scheduled_on && session.scheduled_on >= today && session.scheduled_on <= weekAhead)
+        .map((session) => ({
+          ...session,
+          currentVersion: withComponents.find((version) => version.planned_session_id === session.id) || null
+        }))
+        .sort((a, b) => a.scheduled_on.localeCompare(b.scheduled_on)),
+      nextWeek: nextWeekFor(entry.id)
     };
   });
 }

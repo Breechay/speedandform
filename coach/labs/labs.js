@@ -349,6 +349,134 @@ function athleteHtml() {
   </div></main>`;
 }
 
+
+// ── THE BRIEF ───────────────────────────────────────────────────────────────
+//
+// Not a dashboard. Five messages you have not sent yet.
+//
+// One athlete per block, three questions in order — what they did, what is
+// coming, what to ask — and the last one is the point. Everything above it
+// exists so the ask is right. A block that does not end in something worth
+// saying to a person does not earn its place, so an athlete who is quiet and on
+// track gets one line and no block. That absence is information too, and it is
+// what stops this becoming a list of chores.
+//
+// It is dated and it does not persist. Reading it is not an action. The actions
+// are Read, and messaging them yourself.
+
+const SHORT_DAY = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const weekdayOf = (iso) => SHORT_DAY[new Date(`${iso}T12:00:00`).getDay()];
+
+// A long run is two facts, not one number. Nine miles with two at race pace is
+// a different session from nine easy, and "9 mi" cannot tell you which.
+function shapeOf(session) {
+  const parts = (session?.currentVersion?.components || [])
+    .filter((part) => part.role === 'work').sort((a, b) => a.position - b.position);
+  const banded = parts.filter((part) => part.pace_low_seconds != null);
+  if (parts.length === 2 && banded.length === 1 && parts.every((part) => part.distance != null)) {
+    const total = parts.reduce((sum, part) => sum + Number(part.distance), 0);
+    const easy = parts.find((part) => part.pace_low_seconds == null);
+    return `${Number(total.toFixed(1))} = ${Number(easy.distance)} + ${Number(banded[0].distance)} at band`;
+  }
+  return doseLine(session) || titleOf(session);
+}
+
+// What they did. Days filed, and anything of theirs still sitting unread.
+function didLine(entry) {
+  const filed = (entry.recentFilings || [])
+    .map((item) => weekdayOf(item.filed_at.slice(0, 10)));
+  const days = [...new Set(filed)];
+  const said = [];
+  if (days.length) {
+    said.push(`Filed ${days.length === 1 ? days[0] : `${days.slice(0, -1).join(', ')} and ${days[days.length - 1]}`}.`);
+  } else if (entry.latestCompletion) {
+    said.push(`Nothing filed this week. Last was ${dayLabel(entry.latestCompletion.filed_at.slice(0, 10))}.`);
+  } else {
+    said.push('Nothing filed since the block opened.');
+  }
+  const report = (entry.attention || []).find((item) => item.kind === 'athlete_report');
+  if (report) said.push(`Reported something ${dayLabel(report.occurred_at.slice(0, 10))}, still unread.`);
+  const unread = (entry.attention || []).filter((item) => item.kind === 'unread_session').length;
+  if (unread && !report) said.push(`${unread} ${unread === 1 ? 'filing' : 'filings'} still unread.`);
+  return said.join(' ');
+}
+
+// What is coming. Key work named, easy running counted, nothing padded.
+function comingLine(entry) {
+  // Every dated session, not only the key ones. The long run is usually what you
+  // end up talking about and it is deliberately not flagged key; a coming line
+  // that hides it would send you into a conversation missing half the week.
+  const coming = entry.coming || [];
+  if (!coming.length) return 'Nothing authored in the next seven days.';
+  return coming.slice(0, 4)
+    .map((session) => `${weekdayOf(session.scheduled_on)} · ${shapeOf(session)}`).join('   ');
+}
+
+// The ask, as a draft rather than a prompt. It starts from what actually
+// happened — an unread symptom, a first rung, a week with nothing in it — and it
+// is written to be edited, not to be obeyed.
+const LONG_DAY = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const spokenDay = (iso) => LONG_DAY[new Date(`${iso}T12:00:00`).getDay()];
+
+function askFor(entry) {
+  const report = (entry.attention || []).find((item) => item.kind === 'athlete_report');
+  const firstKey = (entry.coming || []).find((session) => session.is_key && session.scheduled_on);
+  // A sentence speaks in full weekdays. The tabular line above it does not.
+  const when = firstKey ? spokenDay(firstKey.scheduled_on) : 'the next hard one';
+  if (report) {
+    // Never quote a fragment of what they wrote. Splitting an athlete's sentence
+    // on its first full stop produced "Ask about stopped at 4 and shortened cool
+    // down" — their words, mangled, in your voice. Name the report and let the
+    // words stay on their page.
+    return `Ask about what they reported on ${dayLabel(report.occurred_at.slice(0, 10))} before ${when}.`;
+  }
+  if ((entry.attention || []).some((item) => item.kind === 'recovery_flag')) {
+    return `Ask how the day after landed before ${when}.`;
+  }
+  if (!entry.latestCompletion) {
+    // The line above already said nothing has been filed. Do not say it twice.
+    return 'Ask what is getting in the way before authoring anything else.';
+  }
+  const unread = (entry.attention || []).filter((item) => item.kind === 'unread_session');
+  if (unread.length) {
+    return `Read ${dayLabel(unread[0].occurred_at.slice(0, 10))} before you write to them.`;
+  }
+  return null;
+}
+
+function briefBlock(entry) {
+  const ask = askFor(entry);
+  const week = entry.currentWeek && entry.block?.total_weeks
+    ? `Week ${entry.currentWeek.week_number} of ${entry.block.total_weeks}` : '';
+  if (!ask) {
+    return `<div class="bq"><h3>${escapeHtml(entry.first_name)}</h3><p class="bqQuiet">Nothing to raise.</p></div>`;
+  }
+  return `<div class="bBlock">
+    <h3>${escapeHtml(entry.first_name)}<span>${escapeHtml(week)}</span></h3>
+    <p class="bDid">${escapeHtml(didLine(entry))}</p>
+    <p class="bComing">${escapeHtml(comingLine(entry))}</p>
+    <div class="bAsk">
+      <textarea class="bAskText" rows="2" data-ask="${escapeHtml(entry.slug)}">${escapeHtml(ask)}</textarea>
+      <button class="bCopy" type="button" data-copy="${escapeHtml(entry.slug)}">Copy</button>
+    </div>
+  </div>`;
+}
+
+function briefHtml() {
+  const day = new Date().toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'long' });
+  const ordered = bench.slice().sort(benchOrder);
+  const speaking = ordered.filter((entry) => askFor(entry));
+  const quiet = ordered.filter((entry) => !askFor(entry));
+  return `<main class="view on"><div class="brief">
+    <div class="bHead"><div><div class="bTitle">The brief</div>
+      <div class="bSub">${escapeHtml(day)} · ${speaking.length} to write to${quiet.length ? `, ${quiet.length} quiet` : ''}</div></div></div>
+    ${speaking.map(briefBlock).join('')}
+    ${quiet.length ? `<div class="bQuiet">${quiet.map(briefBlock).join('')}</div>` : ''}
+    <p class="bFoot">This is today's. It is not saved and reading it changes nothing —
+      the actions are filing a read, and writing to them yourself.</p>
+  </div></main>`;
+}
+
 // ── the block ───────────────────────────────────────────────────────────────
 
 // A chip's quote is the session's intent, and it is shown only when this block
@@ -554,13 +682,14 @@ function route() {
   const hash = location.hash.replace(/^#\/?/, '');
   const [kind, slug, leaf] = hash.split('/');
   if (kind === 'a' && slug) return { view: leaf === 'block' ? 'block' : 'athlete', slug };
+  if (kind === 'brief') return { view: 'brief' };
   return { view: 'bench' };
 }
 
 function markNav(view, slug) {
   nav.hidden = false;
   nav.querySelectorAll('button').forEach((button) => button.classList.remove('on'));
-  const which = view === 'bench' ? 'bench' : view === 'block' ? 'block' : null;
+  const which = view === 'bench' ? 'bench' : view === 'brief' ? 'brief' : view === 'block' ? 'block' : null;
   if (which) nav.querySelector(`[data-nav="${which}"]`)?.classList.add('on');
   nav.querySelector('[data-nav="block"]').hidden = !slug;
 }
@@ -577,6 +706,7 @@ async function selectAthlete(slug, { silent = false } = {}) {
 function render() {
   const { view, slug } = route();
   if (view === 'bench') app.innerHTML = benchHtml();
+  else if (view === 'brief') app.innerHTML = briefHtml();
   else if (view === 'block') app.innerHTML = blockHtml();
   else app.innerHTML = athleteHtml();
   markNav(view, slug);
@@ -585,7 +715,7 @@ function render() {
 
 async function show() {
   const { view, slug } = route();
-  if (view === 'bench') { render(); return; }
+  if (view === 'bench' || view === 'brief') { render(); return; }
   if (record?.athlete?.slug !== slug) { await selectAthlete(slug); return; }
   render();
 }
@@ -595,6 +725,15 @@ async function show() {
 document.addEventListener('click', (event) => {
   const column = event.target.closest('[data-slug]');
   if (column) { location.hash = `#/a/${column.dataset.slug}`; return; }
+
+  const copy = event.target.closest('[data-copy]');
+  if (copy) {
+    const box = document.querySelector(`[data-ask="${copy.dataset.copy}"]`);
+    if (box) navigator.clipboard.writeText(box.value.trim()).then(() => {
+      copy.textContent = 'Copied'; setTimeout(() => { copy.textContent = 'Copy'; }, 1400);
+    }).catch(() => {});
+    return;
+  }
 
   const read = event.target.closest('[data-read]');
   if (read) { openRead(read.dataset.read, read.dataset.completion); return; }
@@ -607,6 +746,7 @@ document.addEventListener('click', (event) => {
   const where = go.dataset.nav;
   if (where === 'console') { location.href = '/coach/console/'; return; }
   if (where === 'bench') { location.hash = '#/bench'; return; }
+  if (where === 'brief') { location.hash = '#/brief'; return; }
   const slug = record?.athlete?.slug || route().slug;
   if (!slug) return;
   location.hash = where === 'block' ? `#/a/${slug}/block` : `#/a/${slug}`;
