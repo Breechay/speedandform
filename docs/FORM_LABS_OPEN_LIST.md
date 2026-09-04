@@ -1,0 +1,63 @@
+# FORM Labs — the open list
+
+The single place. Not the chat. Brice edits, Code re-reads at the start of a
+session. Updated 4 September.
+
+---
+
+## Waiting on Brice
+
+- **Sep 1 filings.** The splits are in `FORM_Sep1_Sessions_Handoff`. Say go and
+  they get filed. Prescribed 2:00 float vs executed 3:00 recovery is not a
+  conflict — one is what was asked, the other is what happened, and both get
+  recorded.
+- **Simon's sessions.** He is entered, coach-delivered, eight weeks to HYROX
+  Nashville with weeks generated. The block is empty. Send the cycle
+  (2 × 10 → 2 × 12 → 2 × 15 → 25 min at 6:00–6:08) and it gets authored.
+- **Rod and Devin.** Waiting on the strength evidence grammar, not on a build.
+
+## Next to build
+
+1. **File evidence.** Promoted to second verb after Read. For a coach-delivered
+   athlete it is the only path evidence has — not a bridge to ingest any more.
+2. **Cell click → session in place.** The matrix should open a drawer over the
+   block rather than navigating away: prescription, evidence, athlete report,
+   revise. The block stays visible behind it.
+3. **Standing observations on the surfaces.** `athlete_observations` exists and
+   nothing reads or writes it yet. WHAT HELPS on the athlete page; WHAT I'M
+   SEEING for Rod and Devin. Same object.
+4. **Note to self**, wired to `coach_private_notes`, per athlete.
+5. **Week view** — the coming seven days per athlete, reachable in one click.
+
+## Settled, do not relitigate
+
+- Labs is where you coach; the Console is where you build a block.
+- An athlete is not an app user. `delivery` says which.
+- Blank means unchanged. Silence beats filler.
+- A signal whose quiet means two different things is not a signal.
+- RLS answers "what may I read", never "who am I".
+- Lime marks work that moves what an athlete owns, nothing else.
+- The easy budget is a budget, not a schedule. It has no day.
+
+## Known gaps, not scheduled
+
+- **`is_key` currently means "has a day"**, which is true today and will need
+  saying explicitly the moment a dated session is genuinely optional.
+- **Rungs are inferred**, not read. `establishes_checkpoint_id` exists and is
+  unpopulated; Labs derives rung-ness from continuous-at-band matching an
+  unreached checkpoint.
+- **Sixteen tables no surface can write.** `docs/SCHEMA_AHEAD_OF_SURFACES_AUDIT.md`
+  has the ordered list. Three were closed on 3–4 September (portraits, marks,
+  athletes/blocks/weeks).
+- **Facts that arrived without provenance.** Marcus's rungs and both ladders were
+  set by migration with no ledger row. Worth one sweep: which rows claim a state
+  with no corresponding movement or judgment behind them.
+- **The plan's ladder starts below where José is.** He owns 6.1; his next two
+  rung sessions are 5 and 7. The 5 re-proves ground he holds.
+
+## The gates
+
+- **Gate A walk** — never done. Both switches are on and the fixture is
+  deactivated; rebuilding it is one command.
+- **Build 41** — unshipped. Until it lands, José's phone shows the app's own
+  plan, not yours.

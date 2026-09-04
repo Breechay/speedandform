@@ -601,3 +601,58 @@ img[data-portrait]{--exp:.9;--con:1.16;--px:50%;--py:40%;--pz:1;--grade:.20}
 
 /* A rung reads in the instrument's colour, because it is the ladder speaking. */
 .val.rung{color:var(--lime);font-size:12px;margin-top:3px;line-height:1.35}
+
+/* ══ THE PLAN, AS A MATRIX ══
+   No cell borders. The structure comes from fills — that is the whole
+   difference between a training ledger and a spreadsheet. Key days sit on a
+   darker band, the current week is a lime column top to bottom, and empty days
+   nearly disappear because an unassigned Monday is not information. */
+.hero{display:grid;grid-template-columns:auto 1fr 1fr;gap:44px;align-items:start;
+  padding:88px 30px 24px;border-bottom:1px solid #ffffff0d}
+.who{display:flex;gap:18px;align-items:center}
+.heroPortrait{width:74px;height:74px;border-radius:50%;object-fit:cover;flex:0 0 auto;
+  object-position:var(--px,50%) var(--py,40%);
+  filter:saturate(var(--grade,.2)) contrast(var(--con,1.16)) brightness(var(--exp,.9));display:none}
+.heroPortrait.has-photo{display:block}
+.who h1{font-family:var(--serif);font-weight:400;font-size:38px;letter-spacing:-.02em;margin:0;line-height:1}
+.who .race{font-size:11px;letter-spacing:.13em;color:var(--secondary);margin-top:10px;text-transform:uppercase}
+.who .wk{display:inline-block;margin-top:12px;padding:5px 13px;border:1px solid #ffffff1a;
+  border-radius:999px;font-size:11px;letter-spacing:.1em;color:var(--secondary)}
+.hero .lab{font-size:9.5px;letter-spacing:.17em;color:var(--muted);font-weight:600}
+.hero h2{font-family:var(--serif);font-weight:400;font-size:23px;letter-spacing:-.01em;margin:9px 0 0;line-height:1.2}
+.hero p{font-size:13px;color:var(--secondary);margin:9px 0 0;line-height:1.55;max-width:44ch}
+
+.plate{padding:26px 30px 60px;height:calc(100vh - 210px);overflow-y:auto}
+.plateHead{display:flex;align-items:baseline;gap:22px;margin-bottom:16px}
+.plateHead h3{font-family:var(--serif);font-weight:400;font-size:24px;letter-spacing:-.012em;margin:0}
+.scroll{overflow-x:auto}
+.plate table{width:100%;min-width:1180px;border-collapse:separate;border-spacing:0;table-layout:fixed}
+.plate th,.plate td{text-align:left;vertical-align:top;padding:9px 11px}
+.plate thead th{padding:0 11px 12px;border-bottom:1px solid #ffffff12}
+.wn{display:block;font-size:12px;font-weight:600;letter-spacing:.02em}
+.wd{display:block;font-size:10.5px;color:var(--muted);margin-top:2px}
+.wr{display:block;font-size:9px;letter-spacing:.11em;color:var(--secondary);margin-top:3px}
+.plate thead th.cur .wn{color:var(--lime)}
+.plate .d{width:112px;font-size:12px;color:var(--secondary);font-weight:500;padding-left:0}
+.plate tbody tr.keyrow td{background:#101a10}
+.plate tbody td{background:#0d1112;border-top:1px solid var(--field)}
+.plate tbody td.cur{background:#141a12;box-shadow:inset 1px 0 0 #d8ff6836,inset -1px 0 0 #d8ff6836}
+.plate tbody tr:first-child td.cur{box-shadow:inset 1px 0 0 #d8ff6836,inset -1px 0 0 #d8ff6836,inset 0 1px 0 var(--lime)}
+.plate .s{display:block;cursor:pointer}
+.plate .s+.s{margin-top:9px}
+.plate .s b{display:block;font-size:12px;font-weight:500;line-height:1.32;letter-spacing:-.004em}
+.plate .s i{display:block;font-style:normal;font-size:11px;color:var(--secondary);margin-top:2px;
+  font-variant-numeric:tabular-nums}
+.plate .s.own b{color:var(--lime)}
+.plate .s.canx{opacity:.4}
+.plate .s.canx b{text-decoration:line-through}
+.plate .none{color:#2c3336;font-size:12px}
+.plate .easyc{background:#0b0f10}
+.plate .easyc .s b{color:var(--secondary);font-weight:400}
+.plate .easyc .s i{color:var(--muted)}
+.plate tr.volrow td{background:none;border-top:1px solid #ffffff12;padding-top:12px;
+  font-size:13.5px;font-weight:600;font-variant-numeric:tabular-nums}
+.plate tr.volrow td.cur{color:var(--lime);box-shadow:none}
+.plate tr.volrow .d{font-size:9.5px;letter-spacing:.16em;color:var(--muted);font-weight:600;
+  text-transform:uppercase;border-top:1px solid #ffffff12;padding-top:14px}
+@media (max-width:900px){.hero{grid-template-columns:1fr;gap:22px;padding-top:80px}.plate{padding:22px 16px 50px}}

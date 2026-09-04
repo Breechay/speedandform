@@ -605,106 +605,118 @@ function dayChip(session) {
   return sentence(label.toLowerCase());
 }
 
-function chipHtml(session, filed, voices) {
-  const classes = ['chip', characterOf(session)];
-  if (session.state === 'cancelled') classes.push('canx');
-  if (filed) classes.push('filed');
-  const own = session.currentVersion?.intent;
-  const intent = own && voices.get(own) === 1 ? own : null;
-  return `<div class="${classes.join(' ')}">
-    <b>${escapeHtml(dayChip(session))}</b>
-    <span>${escapeHtml(titleOf(session))}</span>
-    <em>${escapeHtml(doseLine(session))}</em>
-    ${intent ? `<q>${escapeHtml(intent)}</q>` : ''}</div>`;
+// ── THE PLAN, AS A MATRIX ───────────────────────────────────────────────────
+//
+// Weeks across, days down, the whole block as one object. A coach spreading the
+// season across a desk sees the argument before reading any cell: quality on
+// Tuesdays, distance on Sundays, the down week as a gap in the volume row.
+//
+// The card strip it replaces showed the sequence and never the organism. You
+// could not scan across Tuesdays. You could not see where the recovery weeks
+// fell. Everything was the same size, which meant nothing had weight.
+//
+// Two rules the matrix keeps that a spreadsheet would not:
+//
+// Empty days stay empty. José is not assigned Mondays, and filling them to make
+// the grid look complete would be inventing training. The em dashes are true.
+//
+// The easy budget gets its own row, "Across the week", because it is a budget
+// and not a schedule. Spreading eighteen miles across Monday to Friday would be
+// fake calendar precision about miles that are his to place.
+
+const WEEK_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+const KEY_DAYS = new Set(['Tuesday', 'Sunday']);
+
+function cellHtml(sessions, mark) {
+  if (!sessions.length) return '<span class="none">—</span>';
+  return sessions.map((session) => {
+    const classes = ['s'];
+    if (session.state === 'cancelled') classes.push('canx');
+    // Lime is reserved for work that moves what the athlete owns. A planned
+    // race-pace session is not automatically owned.
+    if (rungFor(session, mark)) classes.push('own');
+    const miles = authoredMiles(session.currentVersion);
+    return `<span class="${classes.join(' ')}" data-session="${escapeHtml(session.id)}">
+      <b>${escapeHtml(titleOf(session))}</b>
+      <i>${escapeHtml(miles ? `${Number(miles)} mi` : doseLine(session))}</i></span>`;
+  }).join('');
 }
 
 function blockHtml() {
   const block = record.block;
   const weeks = (record.weeks || []).slice().sort((a, b) => a.week_number - b.week_number);
   if (!block || !weeks.length) {
-    return '<main class="view on"><div class="block"><div class="failed"><h1>No active block.</h1><p>Nothing is authored for this athlete yet.</p></div></div></main>';
+    return '<main class="view on"><div class="plate"><div class="failed"><h1>No active block.</h1><p>Nothing is authored for this athlete yet.</p></div></div></main>';
   }
-  const filedFor = new Set((record.completions || []).map((item) => item.planned_session_id).filter(Boolean));
-  const voices = new Map();
-  (record.sessions || []).forEach((session) => {
-    const intent = session.currentVersion?.intent;
-    if (intent) voices.set(intent, (voices.get(intent) || 0) + 1);
-  });
-  const now = today();
+  const athlete = record.athlete;
+  const mark = record.primaryMark;
   const current = record.currentWeek;
+  const filed = new Set((record.completions || []).map((item) => item.planned_session_id).filter(Boolean));
 
-  const upcoming = (record.sessions || [])
-    .filter((session) => session.scheduled_on && session.scheduled_on >= now && session.state !== 'cancelled')
-    .sort((a, b) => a.scheduled_on.localeCompare(b.scheduled_on)).slice(0, 4);
+  const forWeek = (week) => (record.sessionsByWeek?.[week.id] || []);
+  const onDay = (week, day) => forWeek(week)
+    .filter((session) => session.scheduled_on && String(session.day_label).slice(0, 3).toUpperCase() === day.slice(0, 3).toUpperCase());
+  const budgetFor = (week) => forWeek(week).filter((session) => !session.scheduled_on);
+  const milesFor = (week) => forWeek(week)
+    .reduce((total, session) => total + (session.state === 'cancelled' ? 0 : (authoredMiles(session.currentVersion) || 0)), 0);
 
-  const milesFor = (week) => (record.sessionsByWeek?.[week.id] || [])
-    .reduce((total, session) => total + (authoredMiles(session.currentVersion) || 0), 0);
-  const peak = Math.max(1, ...weeks.map(milesFor));
-
-  const strip = weeks.map((week) => {
-    const sessions = record.sessionsByWeek?.[week.id] || [];
-    const banded = sessions.some((session) => characterOf(session) === 'quality');
-    return `<div class="sw${week.id === current?.id ? ' cur' : ''}" data-week="${escapeHtml(week.id)}"
-      data-height="${Math.round((milesFor(week) / peak) * 52)}"><i class="${banded ? 'q' : 'l'}"></i></div>`;
+  const head = weeks.map((week) => {
+    const down = milesFor(week) > 0 && milesFor(week) < 0.75 * Math.max(...weeks.map(milesFor));
+    return `<th class="${week.id === current?.id ? 'cur' : ''}">
+      <span class="wn">W${escapeHtml(week.week_number)}</span>
+      <span class="wd">${escapeHtml(dayLabel(week.starts_on))}</span>
+      ${down ? '<span class="wr">down</span>' : ''}</th>`;
   }).join('');
 
-  const rows = weeks.map((week) => {
-    const sessions = (record.sessionsByWeek?.[week.id] || []).slice()
-      .sort((a, b) => (a.scheduled_on || '').localeCompare(b.scheduled_on || '') || a.position - b.position);
-    const out = block.race_on && week.starts_on
-      ? Math.max(0, Math.round((new Date(block.race_on) - new Date(week.starts_on)) / 604800000)) : null;
+  const rows = WEEK_DAYS.map((day) => `<tr class="${KEY_DAYS.has(day) ? 'keyrow' : ''}">
+      <th class="d">${day}</th>
+      ${weeks.map((week) => `<td class="${week.id === current?.id ? 'cur' : ''}">${
+        cellHtml(onDay(week, day), mark)}</td>`).join('')}
+    </tr>`).join('');
+
+  const budgetRow = weeks.some((week) => budgetFor(week).length)
+    ? `<tr><th class="d">Across the week</th>${weeks.map((week) => {
+        const budget = budgetFor(week);
+        return `<td class="easyc ${week.id === current?.id ? 'cur' : ''}">${budget.length
+          ? budget.map((session) => `<span class="s"><b>Easy</b><i>${escapeHtml(doseLine(session) || titleOf(session))}</i></span>`).join('')
+          : '<span class="none">—</span>'}</td>`;
+      }).join('')}</tr>` : '';
+
+  const volume = `<tr class="volrow"><th class="d">Weekly volume</th>${weeks.map((week) => {
     const miles = milesFor(week);
-    const chips = sessions.length
-      ? sessions.map((session) => chipHtml(session, filedFor.has(session.id), voices)).join('')
-      : '<div class="chip hole"><b>—</b><span>Nothing published</span><em>this week is unwritten</em></div>';
-    return `<div class="wrow${week.id === current?.id ? ' cur' : ''}${sessions.length ? '' : ' empty'}" id="wk-${escapeHtml(week.id)}">
-      <div class="wmeta"><b class="wn">W${escapeHtml(week.week_number)}</b>
-        <span>${escapeHtml(rangeLabel(week.starts_on, week.ends_on))}${out != null ? ` · ${out} out` : ''}</span>
-        <em>${miles ? `${Number(miles.toFixed(1))} mi` : '—'}</em></div>
-      <div class="chips">${chips}</div></div>`;
-  }).join('');
+    return `<td class="${week.id === current?.id ? 'cur' : ''}">${miles ? `${Number(miles.toFixed(0))} mi` : '—'}</td>`;
+  }).join('')}</tr>`;
 
-  const holes = weeks.filter((week) => !(record.sessionsByWeek?.[week.id] || []).length);
-  const cancelled = (record.sessions || []).filter((session) => session.state === 'cancelled');
-  const authored = weeks.reduce((total, week) => total + milesFor(week), 0);
+  const owned = mark?.current_value != null ? `${Number(mark.current_value)} ${mark.unit || ''}`.trim() : null;
+  const nextRung = (mark?.checkpoints || []).find((rung) => rung.state === 'current');
 
-  return `<main class="view on"><div class="block">
-    <div class="bHead"><div>
-      <button class="back" type="button" data-nav="athlete">← ${escapeHtml(record.athlete.first_name)}</button>
-      <div class="bTitle">${escapeHtml(`${block.total_weeks} weeks`)}${
-        block.race_on ? ` to ${escapeHtml(block.race_place || block.race_name || record.athlete.target_event || 'the race')}` : ''}</div>
-      <div class="bSub">${escapeHtml(rangeLabel(block.starts_on, block.race_on || block.ends_on))}${
-        current ? ` · week ${escapeHtml(current.week_number)}` : ''}</div>
-    </div></div>
-
-    ${upcoming.length ? `<div class="nextUp"><div class="nuLab">NEXT UP</div><div class="nuRow">${
-      upcoming.map((session) => `<div class="nu"><b>${escapeHtml(session.scheduled_on === now ? 'today' : dayLabel(session.scheduled_on))}</b>
-        <span>${escapeHtml(titleOf(session))}</span><em>${escapeHtml(doseLine(session))}</em></div>`).join('')
-    }</div></div>` : ''}
-
-    <div class="strip"><div class="stripLab">SHAPE</div><div class="stripGrid" data-weeks="${weeks.length}">${strip}</div></div>
-    <div class="swk"><div></div><div class="swkGrid" data-weeks="${weeks.length}">${
-      weeks.map((week) => `<span class="${week.id === current?.id ? 'cur' : ''}">W${escapeHtml(week.week_number)}</span>`).join('')
-    }</div></div>
-
-    <div class="planLab">THE PLAN</div>
-    ${rows}
-
-    <div class="bFoot">
-      <div><h4>WHAT IS AUTHORED</h4><p>The plan holds <b>${Number(authored.toFixed(0))} mi</b> across ${weeks.length} weeks.
-        What the watch recorded is not in this system yet.</p></div>
-      <div><h4>HOLES</h4>${
-        holes.length
-          ? holes.map((week) => `<p class="alarm">Week ${escapeHtml(week.week_number)} has nothing published.</p>`).join('')
-          : '<p>Every week is written.</p>'
-      }</div>
-      <div><h4>CANCELLED</h4>${
-        cancelled.length
-          ? `<p>${cancelled.map((session) => escapeHtml(titleOf(session))).join('. ')}.</p>`
-          : '<p>Nothing cancelled.</p>'
-      }</div>
+  return `<main class="view on">
+    <div class="hero">
+      <div class="who">
+        <img class="heroPortrait" data-portrait="${escapeHtml(athlete.slug)}" alt="">
+        <div><h1>${escapeHtml(athlete.first_name)}</h1>
+          <div class="race">${escapeHtml([block.race_name, block.race_place].filter(Boolean).join(' · ') || athlete.target_event || '')}${
+            block.race_on ? ` · ${escapeHtml(dayLabel(block.race_on))}` : ''}</div>
+          <div class="wk">WEEK ${escapeHtml(current?.week_number ?? '—')} / ${escapeHtml(block.total_weeks)}</div></div>
+      </div>
+      <div><div class="lab">BLOCK</div>
+        <h2>${escapeHtml(block.name || 'The block')}</h2>
+        <p>${escapeHtml(block.goal_statement || '')}</p></div>
+      <div><div class="lab">CURRENT EXPERIMENT</div>
+        <h2>${escapeHtml(mark?.current_question || athlete.goal_label || '')}</h2>
+        <p>${owned ? `Owns ${escapeHtml(owned)} today${nextRung ? `. The next rung is ${escapeHtml(Number(nextRung.value))}.` : '.'}` : 'Nothing established yet.'}</p></div>
     </div>
-  </div></main>`;
+
+    <div class="plate">
+      <div class="plateHead">
+        <button class="back" type="button" data-nav="athlete">← ${escapeHtml(athlete.first_name)}</button>
+        <h3>${escapeHtml(block.total_weeks)} weeks</h3></div>
+      <div class="scroll"><table>
+        <thead><tr><th class="d"></th>${head}</tr></thead>
+        <tbody>${rows}${budgetRow}${volume}</tbody>
+      </table></div>
+    </div>
+  </main>`;
 }
 
 // ── paint: every geometric value, after render, through the CSSOM ───────────
