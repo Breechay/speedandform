@@ -73,6 +73,12 @@ export function rungFor(session, mark) {
   if (parts.length !== 1) return null;
   const work = parts[0];
   if (work.shape !== 'continuous' || work.pace_low_seconds == null || work.distance == null) return null;
+  // A ceiling is not something you hold. The weekly easy budget is a single
+  // continuous work component carrying a one-sided 8:45 and a distance, which
+  // is the same shape as a rung — and Hope's cutback budget is exactly 10 miles,
+  // so her easy running was reading as the session that would move her to the
+  // ten-mile rung. Ownership needs a band with a floor to fall out of.
+  if (work.pace_high_seconds == null) return null;
   const rungs = (mark?.checkpoints || []).slice().sort((a, b) => a.position - b.position);
   const match = rungs.find((rung) => Math.abs(Number(rung.value) - Number(work.distance)) < 0.05);
   if (!match || match.state === 'reached') return null;
