@@ -23,6 +23,8 @@ session. Updated 4 September.
 - **Pace bands as a block-level fact.** `6:30–6:45` is repeated on 54 components
   per athlete; changing race pace means editing all 54. Brice's own note: it
   belongs on the block once and gets inherited.
+- ~~**Ownership eligibility**~~ **Closed 4 September.** See *Eligibility is not
+  establishment* above. Historical note on how it surfaced:
 - **Ownership eligibility — now demonstrated, not theoretical.** Filing one test
   session for Simon on 4 September put him in `athlete_continuous_owned` at
   1.66 mi. He has **no mark and no checkpoints**: the view groups by athlete off
@@ -97,6 +99,29 @@ first two applications of Race Pace Durability, not doctrine. José's `10/8/8`,
 the 16-mile W12 and the rest become part of the method when Brice decides they
 generalise — through `PROMOTE TO METHOD`, never by being live. See
 `docs/FORM_LABS_METHOD_OBJECT.md`.
+
+## Eligibility is not establishment
+
+`planned_session_components.counts_toward_mark_id` says **evidence from this
+component is allowed to answer this mark**. It does not say the component
+established anything — that only becomes true when a filed piece qualifies.
+
+Authored, never inferred. Not from pace bounds, session titles, component
+shapes, repetition structure, athlete type, or whether a band happens to have an
+upper bound. Every one of those is guessing at intention from structure, and
+that guess is what put Simon on a continuous-distance ladder he does not have.
+
+    component  →  eligibility  →  filed evidence  →  established value
+
+MEASURED and ESTABLISHED are different claims. Simon ran an uninterrupted 1.66
+miles at 6:02; that is measured, it is on the record, and it establishes nothing
+because no component of his points at a continuous-distance mark. Labs can know
+the first without claiming the second — which is what lets one evidence system
+serve his duration question, Natalie's continuous-running question and a strength
+athlete's capacity question without any of them contaminating the others.
+
+A **cancelled** prescription confers no eligibility. The evidence stays; the
+withdrawn ask no longer defines what it was meant to establish.
 
 ## Frozen semantics
 

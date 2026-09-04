@@ -1818,7 +1818,11 @@ async function keepRevision() {
           ...(part.pace_high_seconds != null ? { paceHighSeconds: part.pace_high_seconds } : {}),
           ...(part.recovery_kind ? { recoveryKind: part.recovery_kind } : {}),
           ...(part.recovery_seconds != null ? { recoverySeconds: part.recovery_seconds } : {}),
-          ...(part.repeat_count != null ? { repeatCount: part.repeat_count } : {})
+          ...(part.repeat_count != null ? { repeatCount: part.repeat_count } : {}),
+          // Eligibility travels with the piece. Without this a dose edit would
+          // silently un-eligible the component and the number would only be seen
+          // to be wrong when a rung failed to land.
+          ...(part.counts_toward_mark_id ? { countsTowardMarkId: part.counts_toward_mark_id } : {})
         };
         if (part.id === dose.id) wire.distance = next;
         return wire;
