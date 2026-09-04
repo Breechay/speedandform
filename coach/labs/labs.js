@@ -356,6 +356,17 @@ function athleteHtml() {
 // print that sentence thirty times and teach the eye to skip it — the quote is
 // there for the session that has something of its own to say. Silence is the
 // default, not the failure.
+// A weekly budget has no day. It is the week's easy running as one authored
+// quantity — 18 miles at 8:45 or slower — and it carries no scheduled_on,
+// because "Monday" would be a lie about work the athlete spreads across four
+// mornings. Its label is the whole word, not a three-letter stump.
+const WEEKDAYS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+function dayChip(session) {
+  const label = String(session.day_label || '').toUpperCase();
+  if (WEEKDAYS.includes(label.slice(0, 3))) return sentence(label.slice(0, 3).toLowerCase());
+  return sentence(label.toLowerCase());
+}
+
 function chipHtml(session, filed, voices) {
   const classes = ['chip', characterOf(session)];
   if (session.state === 'cancelled') classes.push('canx');
@@ -363,7 +374,7 @@ function chipHtml(session, filed, voices) {
   const own = session.currentVersion?.intent;
   const intent = own && voices.get(own) === 1 ? own : null;
   return `<div class="${classes.join(' ')}">
-    <b>${escapeHtml(sentence(String(session.day_label).slice(0, 3).toLowerCase()))}</b>
+    <b>${escapeHtml(dayChip(session))}</b>
     <span>${escapeHtml(titleOf(session))}</span>
     <em>${escapeHtml(doseLine(session))}</em>
     ${intent ? `<q>${escapeHtml(intent)}</q>` : ''}</div>`;
