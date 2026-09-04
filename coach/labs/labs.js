@@ -625,7 +625,12 @@ function dayChip(session) {
 // fake calendar precision about miles that are his to place.
 
 const WEEK_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-const KEY_DAYS = new Set(['Tuesday', 'Sunday']);
+// Saturday, not Sunday. Hope, José and Simon run their long day on a Saturday;
+// the block was authored on the wrong weekday from the start and 25 sessions
+// moved on 4 September. Derived would be better than a constant — the heavy days
+// are whichever ones hold the key work — but the block is authored to a rhythm
+// and naming it is honest until an athlete's rhythm differs.
+const KEY_DAYS = new Set(['Tuesday', 'Saturday']);
 
 function cellHtml(sessions, mark) {
   if (!sessions.length) return '<span class="none">—</span>';
@@ -668,7 +673,10 @@ function blockHtml() {
       ${down ? '<span class="wr">down</span>' : ''}</th>`;
   }).join('');
 
-  const rows = WEEK_DAYS.map((day) => `<tr class="${KEY_DAYS.has(day) ? 'keyrow' : ''}">
+  // Only days that ever hold something get a row. Wednesday and Friday sitting
+  // empty across fifteen columns is not information, it is furniture.
+  const livedDays = WEEK_DAYS.filter((day) => weeks.some((week) => onDay(week, day).length));
+  const rows = livedDays.map((day) => `<tr class="${KEY_DAYS.has(day) ? 'keyrow' : ''}">
       <th class="d">${day}</th>
       ${weeks.map((week) => `<td class="${week.id === current?.id ? 'cur' : ''}">${
         cellHtml(onDay(week, day), mark)}</td>`).join('')}
