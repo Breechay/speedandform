@@ -22,7 +22,7 @@
 // Nothing in this file writes a style attribute into a template string.
 
 import { authErrorMessage, getAccessContext } from '/private/auth.js';
-import { createRead, loadAthleteRecord, loadAttentionFor, loadCoachBench, savePortrait, setExceptionStatus } from '/private/data.js';
+import { createRead, loadAthleteRecord, loadAttentionFor, loadCoachBench, rungFor, savePortrait, setExceptionStatus } from '/private/data.js';
 import { escapeHtml } from '/private/record.js';
 import { authoredMiles, dayLabel, rangeLabel, structureOf, titleAlreadySays } from '/private/render.js';
 
@@ -194,6 +194,24 @@ function weeksOut(entry) {
 // The position, and the sentence that earns it. Derived only from what the card
 // already holds: did the last key session land in its band, is anything of
 // theirs unread, has anything been filed at all.
+// Two instances are a pattern. One is an instance.
+//
+// Hope went under her band on 25 August and again on 1 September, and the second
+// time the third rep cost her. A card that judges only the most recent session
+// calls that "running hot" twice and never says the word that matters, which is
+// that it is happening repeatedly and has started to take something.
+function patternOf(entry) {
+  const judged = (entry.judgeable || [])
+    .map((filing) => heldTheBand(filing.completion, filing.pieces, filing.version))
+    .filter(Boolean);
+  if (judged.length < 2) return null;
+  const under = judged.filter((verdict) => verdict.includes('under')).length;
+  if (under >= 2) return 'under';
+  const over = judged.filter((verdict) => verdict.includes('over')).length;
+  if (over >= 2) return 'over';
+  return null;
+}
+
 function standing(entry) {
   const report = (entry.attention || []).find((item) => item.kind === 'athlete_report');
   if (report) {
@@ -206,6 +224,15 @@ function standing(entry) {
   }
   const verdict = heldTheBand(entry.latestCompletion, entry.latestPieces, entry.latestVersion);
   const when = dayLabel(entry.latestCompletion.filed_at.slice(0, 10));
+  const pattern = patternOf(entry);
+  if (pattern === 'under') {
+    return { word: 'Watch', tone: 'amb',
+      because: 'Second session running where she went under the band early and paid for it late.' };
+  }
+  if (pattern === 'over') {
+    return { word: 'Watch', tone: 'amb',
+      because: 'Second session running off the back of the band. The dose is asking too much.' };
+  }
   if (verdict?.startsWith('held the band')) {
     return { word: 'On track', tone: 'ok', because: `Held the band ${when}${verdict.includes('stopped') ? ' and stopped where he was told to' : ''}.` };
   }
@@ -244,8 +271,15 @@ function columnHtml(entry) {
   const nextLine = entry.next ? (() => {
     const shape = [titleOf(entry.next), doseLine(entry.next)]
       .filter(Boolean).filter((part, i, all) => i === 0 || !titleAlreadySays(all[0], part)).join(' · ');
-    return `<div><div class="lab">NEXT KEY · ${escapeHtml(String(entry.next.day_label).slice(0, 3).toUpperCase())}</div>
-      <div class="val dim">${escapeHtml(shape)}</div></div>`;
+    // A rung is not just another key session. When the next one would move the
+    // ladder, the card says so — it is the difference between a Thursday and the
+    // first time an athlete owns anything.
+    const rung = rungFor(entry.next, entry.mark);
+    return `<div><div class="lab">NEXT KEY · ${escapeHtml(dayLabel(entry.next.scheduled_on).toUpperCase())}</div>
+      <div class="val dim">${escapeHtml(shape)}</div>
+      ${rung ? `<div class="val rung">${rung.first
+        ? 'First rung. Nothing owned until this lands.'
+        : `Moves the ladder to ${escapeHtml(Number(rung.rung.value))}.`}</div>` : ''}</div>`;
   })() : '';
 
   const item = entry.topItem;

@@ -598,3 +598,6 @@ img[data-portrait]{--exp:.9;--con:1.16;--px:50%;--py:40%;--pz:1;--grade:.20}
 .verdict.amb b{color:var(--coral)}
 .verdict.dim b{color:var(--secondary)}
 .regs{min-height:168px;padding-top:15px}
+
+/* A rung reads in the instrument's colour, because it is the ladder speaking. */
+.val.rung{color:var(--lime);font-size:12px;margin-top:3px;line-height:1.35}

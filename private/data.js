@@ -53,6 +53,32 @@ export async function loadCoachRoster(coachMemberships) {
 // for seven columns, and it would have been discovered in production. RLS already
 // permits .in() across the athletes a coach holds, so the whole bench is one
 // Promise.all of seven cross-athlete reads.
+// Which rung a session would move, if any.
+//
+// A rung is a continuous run held in band for a distance the ladder is asking
+// for — not a long run, not an interval set. Derived here from the components
+// and the checkpoints because `planned_sessions` does not yet name the rung it
+// establishes; when establishes_checkpoint_id lands this reads the column
+// instead and stops inferring.
+export function rungFor(session, mark) {
+  const parts = (session?.currentVersion?.components || []).filter((part) => part.role === 'work');
+  if (parts.length !== 1) return null;
+  const work = parts[0];
+  if (work.shape !== 'continuous' || work.pace_low_seconds == null || work.distance == null) return null;
+  const rungs = (mark?.checkpoints || []).slice().sort((a, b) => a.position - b.position);
+  const match = rungs.find((rung) => Math.abs(Number(rung.value) - Number(work.distance)) < 0.05);
+  if (!match || match.state === 'reached') return null;
+  // "First" means nothing above the opening rung has been earned yet — not
+  // simply that this is the next unreached row. José's ladder marks 2.00 as
+  // current, but no authored session anywhere is a continuous two miles in band,
+  // so that rung cannot be moved and the five on 8 September really is the first
+  // thing he can own.
+  const earned = rungs.filter((rung) => rung.state === 'reached');
+  const opening = rungs[0];
+  const nothingEarnedYet = earned.every((rung) => rung.id === opening?.id);
+  return { rung: match, first: nothingEarnedYet };
+}
+
 export async function loadCoachBench(coachMemberships) {
   const roster = await loadCoachRoster(coachMemberships);
   if (!roster.length) return [];
@@ -202,16 +228,35 @@ export async function loadCoachBench(coachMemberships) {
       // The next KEY session, not the next session. Once easy running is authored
       // as a weekly budget, the very next thing on the calendar is usually an
       // easy run — true, and not what you open the bench to find out.
-      // Across the week boundary, deliberately. On a Friday the next key session
-      // is Sunday; on a Sunday it is Tuesday, which belongs to next week's rows.
-      // Confining this to the current week made the register go blank exactly
-      // when a coach opens the bench to see what is coming.
-      next: sessions.filter((session) => (session.week_id === currentWeek?.id || session.week_id === nextWeekFor(entry.id)?.id)
-          && session.is_key && session.scheduled_on && session.scheduled_on > today)
-        .map((session) => ({ ...session, currentVersion: withComponents.find((v) => v.planned_session_id === session.id) || null }))
-        .sort((a, b) => a.scheduled_on.localeCompare(b.scheduled_on))[0] || null,
+      // Across the week boundary, and chosen by WEIGHT rather than by date.
+      //
+      // On Friday 4 September the nearest key session was Sunday's ten-mile long
+      // run, so that is what the bench showed. Tuesday the 8th is five miles
+      // continuous in band — the first rung on the ownership ladder, the first
+      // time either of them owns anything. Picking the nearer one buried the
+      // most important session in their next ten days behind a long run.
+      next: (() => {
+        const coming = sessions
+          .filter((session) => (session.week_id === currentWeek?.id || session.week_id === nextWeekFor(entry.id)?.id)
+            && session.is_key && session.scheduled_on && session.scheduled_on > today
+            && session.scheduled_on <= weekAhead)
+          .map((session) => ({ ...session, currentVersion: withComponents.find((v) => v.planned_session_id === session.id) || null }))
+          .sort((a, b) => a.scheduled_on.localeCompare(b.scheduled_on));
+        return coming.find((session) => rungFor(session, entry.mark)) || coming[0] || null;
+      })(),
       latestCompletion: latest,
       latestVersion: latest?.planned_session_id ? versionFor.get(latest.planned_session_id) || null : null,
+      // The judgeable filings, newest first, each with the prescription it was
+      // run against and the pieces that came back. One session is an instance;
+      // two is a pattern, and only this list can tell them apart.
+      judgeable: mineFiled
+        .filter((item) => item.planned_session_id && banded(item.planned_session_id))
+        .slice(0, 4)
+        .map((item) => ({
+          completion: item,
+          version: versionFor.get(item.planned_session_id),
+          pieces: (piecesResponse.data || []).filter((piece) => piece.completion_id === item.id)
+        })),
       // 6.1 owned means nothing without 13.1. The target is the top rung.
       markTarget: (() => {
         const rungs = entry.mark?.checkpoints || [];
