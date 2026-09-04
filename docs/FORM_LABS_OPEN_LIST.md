@@ -7,23 +7,18 @@ session. Updated 4 September.
 
 ## Waiting on Brice
 
-- **Sep 1 filings.** The splits are in `FORM_Sep1_Sessions_Handoff`. Say go and
-  they get filed. Prescribed 2:00 float vs executed 3:00 recovery is not a
-  conflict — one is what was asked, the other is what happened, and both get
-  recorded.
-- **Simon's sessions.** He is entered, coach-delivered, eight weeks to HYROX
-  Nashville with weeks generated. The block is empty. Send the cycle
-  (2 × 10 → 2 × 12 → 2 × 15 → 25 min at 6:00–6:08) and it gets authored.
+- **Simon's sessions.** He is entered and real in production: coach-delivered,
+  eight weeks to HYROX Nashville (Dec 9), all eight weeks generated, block named
+  *Threshold cycle*. **The weeks are empty.** Send the cycle
+  (2 × 10 → 2 × 12 → 2 × 15 → 25 min at 6:00–6:08) and it gets authored. His
+  threshold experiment is a duration question, not a distance one — do not put
+  him on the continuous-distance ladder.
+- **José: Full or Half.** The Sep 1 handoff says Orlando *Full* Marathon; the
+  database and everything else say OUC Half. Same date. Unresolved.
 - **Rod and Devin.** Waiting on the strength evidence grammar, not on a build.
 
 ## Next to build
 
-0. **Derive `current_value`, stop typing it.** What an athlete owns is the
-   longest continuous piece ever held inside its band — one query over
-   `session_pieces` joined to the prescription. It was typed by hand three times
-   on 4 September and was wrong three times: 1, then 6.1, then 1, when the
-   evidence said 2. A number a human keys in is a number that drifts from the
-   evidence the moment anything is filed.
 1. **File evidence.** Promoted to second verb after Read. For a coach-delivered
    athlete it is the only path evidence has — not a bridge to ingest any more.
 2. **Cell click → session in place.** The matrix should open a drawer over the
@@ -34,6 +29,28 @@ session. Updated 4 September.
    SEEING for Rod and Devin. Same object.
 4. **Note to self**, wired to `coach_private_notes`, per athlete.
 5. **Week view** — the coming seven days per athlete, reachable in one click.
+
+## Frozen semantics
+
+Two quantities that kept collapsing into one. They are different questions and a
+completed `3 × 2 mi` answers both differently:
+
+- **RACE-PACE VOLUME** — the sum of qualifying work. `3 × 2 mi` is **6 mi**.
+- **CONTINUOUS DISTANCE OWNED** — the longest **single** uninterrupted
+  qualifying segment. `3 × 2 mi` is **2 mi**, and can never be 6.
+
+A segment qualifies when it is one filed piece, carrying a distance, whose **own
+pace** falls inside the band its prescription asked for. Per segment, never per
+workout average — Hope's third rep came back at 6:59 against a 6:30–6:45 band and
+she still owns two miles, because her first two qualify on their own.
+
+`CONTINUOUS DISTANCE OWNED` is the canonical name. UI copy may wrap; it may not
+rename the concept. The caption was shortened to `MI AT RACE PACE` once and the
+word it dropped was the one carrying the distinction.
+
+**Derived, as of `athlete_continuous_owned`.** Labs reads the view.
+`athlete_marks.current_value` is a stored copy that drifts and is no longer what
+any surface shows.
 
 ## Settled, do not relitigate
 

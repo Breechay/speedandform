@@ -8,12 +8,15 @@ function result(data, error) {
 export async function loadCoachRoster(coachMemberships) {
   const athleteIds = coachMemberships.map((item) => item.athlete_id);
   if (!athleteIds.length) return [];
-  const [attentionResponse, markResponse, checkpointResponse, confidenceResponse] = await Promise.all([
+  const [attentionResponse, markResponse, checkpointResponse, confidenceResponse, ownedResponse] = await Promise.all([
     supabase.from('coach_attention').select('*').in('athlete_id', athleteIds)
       .order('priority').order('occurred_at', { ascending: false, nullsFirst: false }),
     supabase.from('athlete_marks').select('*').in('athlete_id', athleteIds).eq('active', true).eq('is_primary', true),
     supabase.from('mark_checkpoints').select('*').in('athlete_id', athleteIds).order('position'),
-    supabase.from('mark_standing_confidence').select('*').in('athlete_id', athleteIds)
+    supabase.from('mark_standing_confidence').select('*').in('athlete_id', athleteIds),
+    // What they own, derived. athlete_marks.current_value is a stored copy that
+    // drifts the moment anything is filed; this is computed from the pieces.
+    supabase.from('athlete_continuous_owned').select('*').in('athlete_id', athleteIds)
   ]);
   if (attentionResponse.error) throw attentionResponse.error;
   if (markResponse.error) throw markResponse.error;
@@ -29,9 +32,14 @@ export async function loadCoachRoster(coachMemberships) {
       topItem: items[0] || null,
       mark: (() => {
         const mark = markResponse.data?.find((item) => item.athlete_id === membership.athlete_id) || null;
+        const derived = (ownedResponse?.data || []).find((row) => row.athlete_id === membership.athlete_id);
         return mark
           ? {
               ...mark,
+              // Derived wins. The stored column stays for anything still reading
+              // it, but nothing on a surface should show a number a human typed.
+              current_value: derived ? Number(derived.owned_mi) : mark.current_value,
+              owned_from_segments: derived?.qualifying_segments ?? null,
               checkpoints: (checkpointResponse.data || []).filter((point) => point.mark_id === mark.id),
               confidence: (confidenceResponse.data || []).find((read) => read.mark_id === mark.id) || null
             }
