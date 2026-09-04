@@ -18,6 +18,12 @@ session. Updated 4 September.
 
 ## Next to build
 
+0. **Derive `current_value`, stop typing it.** What an athlete owns is the
+   longest continuous piece ever held inside its band — one query over
+   `session_pieces` joined to the prescription. It was typed by hand three times
+   on 4 September and was wrong three times: 1, then 6.1, then 1, when the
+   evidence said 2. A number a human keys in is a number that drifts from the
+   evidence the moment anything is filed.
 1. **File evidence.** Promoted to second verb after Read. For a coach-delivered
    athlete it is the only path evidence has — not a bridge to ingest any more.
 2. **Cell click → session in place.** The matrix should open a drawer over the
@@ -58,6 +64,9 @@ session. Updated 4 September.
   already covered. Broken work carries volume; continuous work establishes
   continuous distance. The plan authors the progression, the ladder reports
   evidence, and the two are never the same statement.
+- **Owned is the longest CONTINUOUS piece held in band.** Not the sum of broken
+  work, and not the shortest rep. Each rep of 3 × 2 mi is two continuous miles,
+  so 3 × 2 owns two.
 
 ## The gates
 

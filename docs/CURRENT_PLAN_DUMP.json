@@ -180,6 +180,26 @@
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
    "kind": "unread_session",
+   "occurred_at": "2026-09-01T12:00:00+00:00",
+   "priority": 20,
+   "subject_id": "742f0e2b-2b8c-4b55-8ced-cf0ca2c373ce",
+   "subject_kind": "completion",
+   "summary": "Completed \u00b7 6.0 mi",
+   "title": "Waiting on your reply"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "kind": "unread_session",
+   "occurred_at": "2026-09-01T12:00:00+00:00",
+   "priority": 20,
+   "subject_id": "a18b174e-b0da-4b90-a73d-5bd37fe0cea6",
+   "subject_kind": "completion",
+   "summary": "Completed \u00b7 6.0 mi",
+   "title": "Waiting on your reply"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "kind": "unread_session",
    "occurred_at": "2026-08-25T11:00:00+00:00",
    "priority": 20,
    "subject_id": "b2364160-8944-4c21-acff-f0939719c5f2",
@@ -590,6 +610,19 @@
  ],
  "checkpoints": [
   {
+   "athlete_id": "10000000-0000-4000-8000-000000000002",
+   "evidence_completion_id": null,
+   "id": "54698d18-db18-451f-92bb-19c4336cce63",
+   "label": "1",
+   "mark_id": "20000000-0000-4000-8000-000000000002",
+   "moved_at": null,
+   "moved_by": null,
+   "position": 1,
+   "source": "legacy",
+   "state": "current",
+   "value": 1
+  },
+  {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
    "evidence_completion_id": null,
    "id": "afe2f291-06de-458b-b28c-59d9baf63748",
@@ -629,32 +662,6 @@
    "value": 1
   },
   {
-   "athlete_id": "10000000-0000-4000-8000-000000000002",
-   "evidence_completion_id": null,
-   "id": "54698d18-db18-451f-92bb-19c4336cce63",
-   "label": "1",
-   "mark_id": "20000000-0000-4000-8000-000000000002",
-   "moved_at": null,
-   "moved_by": null,
-   "position": 1,
-   "source": "legacy",
-   "state": "current",
-   "value": 1
-  },
-  {
-   "athlete_id": "10000000-0000-4000-8000-000000000004",
-   "evidence_completion_id": null,
-   "id": "efbc5b5e-49f7-4c75-a611-492306b326a1",
-   "label": "2",
-   "mark_id": "20000000-0000-4000-8000-000000000004",
-   "moved_at": null,
-   "moved_by": null,
-   "position": 2,
-   "source": "legacy",
-   "state": "current",
-   "value": 2
-  },
-  {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
    "evidence_completion_id": null,
    "id": "21000000-0000-4000-8000-000000000002",
@@ -666,19 +673,6 @@
    "source": "legacy",
    "state": "proposed",
    "value": 5
-  },
-  {
-   "athlete_id": "10000000-0000-4000-8000-000000000003",
-   "evidence_completion_id": null,
-   "id": "097bb7ee-6a44-4254-93f7-25790b7dc079",
-   "label": "2",
-   "mark_id": "20000000-0000-4000-8000-000000000003",
-   "moved_at": null,
-   "moved_by": null,
-   "position": 2,
-   "source": "legacy",
-   "state": "current",
-   "value": 2
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -694,11 +688,50 @@
    "value": 2
   },
   {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "evidence_completion_id": null,
+   "id": "efbc5b5e-49f7-4c75-a611-492306b326a1",
+   "label": "2",
+   "mark_id": "20000000-0000-4000-8000-000000000004",
+   "moved_at": null,
+   "moved_by": null,
+   "position": 2,
+   "source": "legacy",
+   "state": "reached",
+   "value": 2
+  },
+  {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
    "evidence_completion_id": null,
-   "id": "4524d08b-051b-461f-88c6-2c20304adc3e",
-   "label": "5",
+   "id": "097bb7ee-6a44-4254-93f7-25790b7dc079",
+   "label": "2",
    "mark_id": "20000000-0000-4000-8000-000000000003",
+   "moved_at": null,
+   "moved_by": null,
+   "position": 2,
+   "source": "legacy",
+   "state": "reached",
+   "value": 2
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000001",
+   "evidence_completion_id": null,
+   "id": "21000000-0000-4000-8000-000000000003",
+   "label": "6",
+   "mark_id": "20000000-0000-4000-8000-000000000001",
+   "moved_at": null,
+   "moved_by": null,
+   "position": 3,
+   "source": "legacy",
+   "state": "proposed",
+   "value": 6
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000002",
+   "evidence_completion_id": null,
+   "id": "dad75e23-62df-4754-b7df-e17339c16497",
+   "label": "5",
+   "mark_id": "20000000-0000-4000-8000-000000000002",
    "moved_at": null,
    "moved_by": null,
    "position": 3,
@@ -716,34 +749,21 @@
    "moved_by": null,
    "position": 3,
    "source": "legacy",
-   "state": "proposed",
+   "state": "current",
    "value": 5
   },
   {
-   "athlete_id": "10000000-0000-4000-8000-000000000002",
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
    "evidence_completion_id": null,
-   "id": "dad75e23-62df-4754-b7df-e17339c16497",
+   "id": "4524d08b-051b-461f-88c6-2c20304adc3e",
    "label": "5",
-   "mark_id": "20000000-0000-4000-8000-000000000002",
+   "mark_id": "20000000-0000-4000-8000-000000000003",
    "moved_at": null,
    "moved_by": null,
    "position": 3,
    "source": "legacy",
-   "state": "proposed",
+   "state": "current",
    "value": 5
-  },
-  {
-   "athlete_id": "10000000-0000-4000-8000-000000000001",
-   "evidence_completion_id": null,
-   "id": "21000000-0000-4000-8000-000000000003",
-   "label": "6",
-   "mark_id": "20000000-0000-4000-8000-000000000001",
-   "moved_at": null,
-   "moved_by": null,
-   "position": 3,
-   "source": "legacy",
-   "state": "proposed",
-   "value": 6
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
@@ -1111,6 +1131,37 @@
    "updated_at": "2026-08-26T01:50:24.586295+00:00"
   },
   {
+   "actual_distance": 6,
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "athlete_note": "High humidity and dew point. Breathing controlled, hardest part muscular. Felt fluid, legs strong, finished strong and felt another two miles was there. Increased calories and carbs and felt stronger. Huge confidence booster.",
+   "conditions": null,
+   "continuous": null,
+   "distance_unit": "mi",
+   "duration_seconds": null,
+   "easy_minutes": null,
+   "evidence_id": null,
+   "felt": null,
+   "filed_at": "2026-09-01T12:00:00+00:00",
+   "filed_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "float_paces": null,
+   "floats_easy": null,
+   "id": "742f0e2b-2b8c-4b55-8ced-cf0ca2c373ce",
+   "knee_after": null,
+   "knee_during": null,
+   "planned_session_id": "0d0cf9aa-407f-4467-aecf-229e496f0584",
+   "recovered_next_day": null,
+   "rep_paces": null,
+   "rpe": 8,
+   "source": "coach_import",
+   "status": "completed",
+   "strava_url": null,
+   "surface": "outdoor",
+   "symptoms": null,
+   "temperature_f": null,
+   "unreadable_because": null,
+   "updated_at": "2026-09-04T10:08:53.831408+00:00"
+  },
+  {
    "actual_distance": null,
    "athlete_id": "10000000-0000-4000-8000-000000000003",
    "athlete_note": "Felt really good. Definitely felt in control. Yeah my breathing felt really solid.",
@@ -1140,6 +1191,37 @@
    "temperature_f": null,
    "unreadable_because": null,
    "updated_at": "2026-08-28T01:43:52.593016+00:00"
+  },
+  {
+   "actual_distance": 6,
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "athlete_note": "Felt she had missed the session. The work landed at the target boundary with a fade in the final rep.",
+   "conditions": null,
+   "continuous": null,
+   "distance_unit": "mi",
+   "duration_seconds": null,
+   "easy_minutes": null,
+   "evidence_id": null,
+   "felt": null,
+   "filed_at": "2026-09-01T12:00:00+00:00",
+   "filed_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "float_paces": null,
+   "floats_easy": null,
+   "id": "a18b174e-b0da-4b90-a73d-5bd37fe0cea6",
+   "knee_after": null,
+   "knee_during": null,
+   "planned_session_id": "6505f344-28cf-434c-988f-668bd5b2ab9e",
+   "recovered_next_day": null,
+   "rep_paces": null,
+   "rpe": 7,
+   "source": "coach_import",
+   "status": "completed",
+   "strava_url": null,
+   "surface": "outdoor",
+   "symptoms": null,
+   "temperature_f": null,
+   "unreadable_because": null,
+   "updated_at": "2026-09-04T10:08:53.831408+00:00"
   }
  ],
  "components": [
@@ -16588,7 +16670,7 @@
    "version_id": "0fd58189-126c-43d7-94c3-1d6091dab342"
   }
  ],
- "dumped_at": "2026-09-04T10:07:21.492506+00:00",
+ "dumped_at": "2026-09-04T10:09:41.710372+00:00",
  "exceptions": [
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -16637,7 +16719,7 @@
    "claim_state": "working",
    "created_at": "2026-08-24T19:20:16.029027+00:00",
    "current_question": "How far can he hold 6:30\u20136:45 without it coming apart?",
-   "current_value": 1,
+   "current_value": 2,
    "established_proof_state": "derived",
    "evidence_surface_requirement": "any",
    "id": "20000000-0000-4000-8000-000000000004",
@@ -16647,7 +16729,7 @@
    "next_test": "6\u20138 miles straight at race pace.",
    "target_value": 13.1,
    "unit": "mi",
-   "updated_at": "2026-09-04T10:07:14.418277+00:00"
+   "updated_at": "2026-09-04T10:09:22.803293+00:00"
   },
   {
    "active": true,
@@ -16659,7 +16741,7 @@
    "claim_state": "working",
    "created_at": "2026-08-24T19:20:16.029027+00:00",
    "current_question": "How far can she hold 6:30\u20136:45 without it coming apart?",
-   "current_value": 1,
+   "current_value": 2,
    "established_proof_state": "derived",
    "evidence_surface_requirement": "any",
    "id": "20000000-0000-4000-8000-000000000003",
@@ -16669,7 +16751,7 @@
    "next_test": "6\u20138 miles straight at race pace.",
    "target_value": 13.1,
    "unit": "mi",
-   "updated_at": "2026-09-04T10:07:14.418277+00:00"
+   "updated_at": "2026-09-04T10:09:22.803293+00:00"
   },
   {
    "active": true,
@@ -17188,6 +17270,84 @@
    "kind": "rep",
    "pace_seconds": 393,
    "position": 12
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "completion_id": "742f0e2b-2b8c-4b55-8ced-cf0ca2c373ce",
+   "created_at": "2026-09-04T10:08:53.831408+00:00",
+   "distance": 2,
+   "distance_unit": "mi",
+   "duration_seconds": null,
+   "duration_seconds_exact": null,
+   "id": "36c9489f-e467-430a-8ea2-82d73bc28529",
+   "kind": "rep",
+   "pace_seconds": 397,
+   "position": 1
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "completion_id": "742f0e2b-2b8c-4b55-8ced-cf0ca2c373ce",
+   "created_at": "2026-09-04T10:08:53.831408+00:00",
+   "distance": 2,
+   "distance_unit": "mi",
+   "duration_seconds": null,
+   "duration_seconds_exact": null,
+   "id": "2bdaa2ed-d3ed-4974-ae6f-8d6f387550a6",
+   "kind": "rep",
+   "pace_seconds": 401,
+   "position": 2
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "completion_id": "742f0e2b-2b8c-4b55-8ced-cf0ca2c373ce",
+   "created_at": "2026-09-04T10:08:53.831408+00:00",
+   "distance": 2,
+   "distance_unit": "mi",
+   "duration_seconds": null,
+   "duration_seconds_exact": null,
+   "id": "b64eb40b-4064-4c05-99ee-050bff2fecdc",
+   "kind": "rep",
+   "pace_seconds": 395,
+   "position": 3
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "completion_id": "a18b174e-b0da-4b90-a73d-5bd37fe0cea6",
+   "created_at": "2026-09-04T10:08:53.831408+00:00",
+   "distance": 2,
+   "distance_unit": "mi",
+   "duration_seconds": null,
+   "duration_seconds_exact": null,
+   "id": "ad926b3d-1313-46bc-a313-0c721176ecfa",
+   "kind": "rep",
+   "pace_seconds": 399,
+   "position": 1
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "completion_id": "a18b174e-b0da-4b90-a73d-5bd37fe0cea6",
+   "created_at": "2026-09-04T10:08:53.831408+00:00",
+   "distance": 2,
+   "distance_unit": "mi",
+   "duration_seconds": null,
+   "duration_seconds_exact": null,
+   "id": "a7293510-8722-4457-bbff-8095a2d6d394",
+   "kind": "rep",
+   "pace_seconds": 398,
+   "position": 2
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "completion_id": "a18b174e-b0da-4b90-a73d-5bd37fe0cea6",
+   "created_at": "2026-09-04T10:08:53.831408+00:00",
+   "distance": 2,
+   "distance_unit": "mi",
+   "duration_seconds": null,
+   "duration_seconds_exact": null,
+   "id": "4d0a6378-5c3f-4aad-90f9-972abf766f27",
+   "kind": "rep",
+   "pace_seconds": 419,
+   "position": 3
   }
  ],
  "sessions": [
