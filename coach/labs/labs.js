@@ -219,8 +219,15 @@ function standing(entry) {
       because: `Something reported ${dayLabel(report.occurred_at.slice(0, 10))} and nobody has read it.` };
   }
   if (!entry.latestCompletion) {
-    return { word: 'No evidence', tone: 'dim',
-      because: 'Nothing filed since the block opened. No evidence is not no ability.' };
+    // Two different states that used to look identical. Simon is coached in
+    // person and the app is optional; Marcus was invited and never opened it.
+    // One is a coaching choice and the other is a gap, and a bench that cannot
+    // tell them apart nags about both and is wrong about one.
+    return entry.delivery === 'coach'
+      ? { word: 'Coach-delivered', tone: 'dim',
+          because: 'Coached in person. Evidence arrives through you, so nothing here is waiting on him.' }
+      : { word: 'No evidence', tone: 'dim',
+          because: 'Nothing filed since the block opened. No evidence is not no ability.' };
   }
   const verdict = heldTheBand(entry.latestCompletion, entry.latestPieces, entry.latestVersion);
   const when = dayLabel(entry.latestCompletion.filed_at.slice(0, 10));
