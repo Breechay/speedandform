@@ -1,186 +1,119 @@
 # FORM Labs — the open list
 
 The single place. Not the chat. Brice edits, Code re-reads at the start of a
-session. Updated 4 September.
+session. Rewritten 4 September, after Tranche C and the ownership-eligibility
+fix closed. Everything resolved has been removed rather than struck through;
+the archaeology lives in git.
 
 ---
 
-## Waiting on Brice
+## BLOCKING
 
-- **Simon's sessions.** He is entered and real in production: coach-delivered,
-  eight weeks to HYROX Nashville (Dec 9), all eight weeks generated, block named
-  *Threshold cycle*. **The weeks are empty.** Send the cycle
-  (2 × 10 → 2 × 12 → 2 × 15 → 25 min at 6:00–6:08) and it gets authored. His
-  threshold experiment is a duration question, not a distance one — do not put
-  him on the continuous-distance ladder.
-- **José: Full or Half.** The Sep 1 handoff says Orlando *Full* Marathon; the
-  database and everything else say OUC Half. Same date. Unresolved.
-- **Rod and Devin.** Waiting on the strength evidence grammar, not on a build.
-- **Where the threshold cell lives.** ≈6:15 is real and intentional for both
-  athletes, and no component in either block prescribes it — the number exists
-  only in the reference mock. `training_blocks.purpose` is an enum, so there is
-  nowhere to author it. Same question as the pace bands below.
-- **Pace bands as a block-level fact.** `6:30–6:45` is repeated on 54 components
-  per athlete; changing race pace means editing all 54. Brice's own note: it
-  belongs on the block once and gets inherited.
-- ~~**Ownership eligibility**~~ **Closed 4 September.** See *Eligibility is not
-  establishment* above. Historical note on how it surfaced:
-- **Ownership eligibility — now demonstrated, not theoretical.** Filing one test
-  session for Simon on 4 September put him in `athlete_continuous_owned` at
-  1.66 mi. He has **no mark and no checkpoints**: the view groups by athlete off
-  any two-sided band and has no relationship to what the athlete's experiment is
-  actually asking. His is a duration question. It is invisible today only because
-  the bench reads `mark.current_value` and he has no mark — it becomes visible
-  the moment he gets one. Cancelling the session did not remove him, because the
-  view does not look at session state either. Brice's call, and the model he
-  named is the answer: eligibility belongs to the prescription
-  (`counts_toward_mark`, or `establishes_checkpoint_id`), not to whether both
-  pace numbers happen to be non-null.
-- **Ownership eligibility.** `athlete_continuous_owned` counts any segment inside
-  "the band its prescription asked for", and the weekly easy budget carries a
-  one-sided `8:45 or slower`. Nothing exploits it today because easy filings
-  carry no pieces, but the guard is missing. A two-sided-band test is a decent
-  temporary fix and must not become doctrine — the robust model is explicit
-  eligibility on the prescription (`counts_toward_mark`, or the existing
-  `establishes_checkpoint_id` direction), not guessing from whether both pace
-  numbers happen to be non-null. Brice's call.
-- **Is Marcus running Race Pace Durability?** See
-  `docs/FORM_LABS_METHOD_OBJECT.md`.
+Three things, and only the first two stop work.
 
-## Next to build
+- **Simon's cycle.** He is real in production — coach-delivered, eight weeks to
+  HYROX Nashville, all eight weeks generated, a portrait, two standing facts, and
+  **zero sessions**. Send the cycle (2 × 10 → 2 × 12 → 2 × 15 → 25 min at
+  6:00–6:08) and it gets authored. His experiment is a duration question; he must
+  not land on the continuous-distance ladder.
+- **W14 and W15.** The taper and race week are unauthored for José and Hope. W14
+  has no Saturday and W15 is entirely empty — the block currently stops three
+  weeks out and the race is not in it. A coaching decision, and the next thing to
+  do inside Labs rather than to Labs.
+- **José: Full or Half.** The 1 September handoff says Orlando *Full*; the
+  database and everything since say OUC Half, same date. Unresolved, and it has
+  been unresolved for four days.
 
-1. ~~**File evidence.**~~ **Built 4 September.** From the session drawer, on the
-   existing `file_session` path: status, distance, time, RPE, surface, their
-   words, and splits where the session has reps. Proven end to end for Simon.
-2. ~~**Cell click → session in place.**~~ **Built.** The drawer opens over the lit
-   matrix: prescription, anatomy, evidence, revision history, Revise and File.
-3. ~~**Standing observations on the surfaces.**~~ **Built.** WHAT HELPS reads
-   `athlete_standing_observations` and Add writes one. Simon carries the first two.
-4. **Note to self**, wired to `coach_private_notes`, per athlete.
-5. **Week view** — the coming seven days per athlete, reachable in one click.
+## SHOULD DO
 
-**Recorded, not scheduled:** the method object. Hope's and José's blocks are the
-first two applications of a coaching method now named **Race Pace Durability**,
-which is the thing that may eventually be sold. The block is an instance; the
-method never rewrites an athlete; promotion is explicit and one-directional.
-Concept, four laws, minimum schema and what not to build are in
-`docs/FORM_LABS_METHOD_OBJECT.md`.
+- **Build 41.** The wiring is complete and the server is green — feed filtered,
+  both switches on, all 66 easy days published. Until 41 ships, José's phone
+  still runs the app's own plan. `docs/BUILD_41_ACCEPTANCE.md` is the eight-item
+  physical-device pass; item 4 is the one likely to need UI work, because
+  `prescribed_distance` changed meaning and a Tuesday now reads 10.4 where it
+  read 7.
+- **Netlify.** Paused on the usage limit. No functions exist; the cost is
+  `no-store` on `/*` over 11 MB of assets and three MP4s, `publish = "."`
+  shipping 115 MB per deploy, and 29 pushes in a day. `docs/NETLIFY_USAGE_AUDIT.md`
+  has the three cheap fixes. Nothing is urgent while development is local.
+- **Note to self** — `coach_private_notes` exists, the panel exists, nothing is
+  wired.
+- **Week view** — the coming seven days per athlete, one click.
+- **Marcus and Natalie have no instrument audit.** Neither is connected to an
+  eligibility model, deliberately. Marcus is `outdoor_goal_pace_miles` with no
+  established value; Natalie is `longest_continuous_distance` at 3. Their marks
+  need the same deliberate connection José's and Hope's just got.
+- **Marcus and Natalie have no portrait.** Two of five plates on the bench.
+- **Is Marcus running Race Pace Durability?** Same goal, same band, a mark asking
+  the same question with an outdoor qualifier. A coaching judgment, not a rename.
 
-## Settled 4 September — the mileage model
+## LATER
 
-`prescribed_distance` is the **expected total session distance**. The components
-describe the work inside it. A `6 mi at race pace` work component lives inside a
-9.4-mile session.
+- **Rod and Devin.** Waiting on the strength evidence grammar. `athlete_observations`
+  is already the object — WHAT HELPS and WHAT I'M SEEING are the same thing.
+- **The method object.** Race Pace Durability as a reusable, eventually sellable
+  method, with `PROMOTE TO METHOD` as the only way anything gets there.
+  `docs/FORM_LABS_METHOD_OBJECT.md` — concept and minimum schema, built nowhere.
+- **`is_key` means "has a day"**, which is true today and will need saying out
+  loud the first time a dated session is genuinely optional.
+- **Rungs are still inferred** from continuous-at-band matching an unreached
+  checkpoint. `establishes_checkpoint_id` is set on 0 of 286 sessions and is the
+  real answer. Now that eligibility is explicit, this is the smaller remaining
+  inference.
+- **Facts that arrived without provenance.** Marcus's rungs and both ladders were
+  set by migration with no ledger row. One sweep, whenever.
+- **Six prescriptions revised after their filing** — the August RPE and band
+  backfills. Not repaired, by decision. The inspector says
+  `PRESCRIPTION REVISED AFTER FILING`, and the Revise guard stops it happening again.
+- **`actual_distance` means two things** — the whole session on some rows, the
+  work only on others. Two rows are null despite carrying full splits. Any weekly
+  filed total is wrong until it is one convention; the fix is `correct_session`
+  with a reason, per row.
+- **Threshold has a home now** (`block_pace_bands`) but no session prescribes it.
+  If threshold work is ever authored, it must not be connected to the
+  continuous-distance mark.
+- **Sixteen tables no surface can write.** `docs/SCHEMA_AHEAD_OF_SURFACES_AUDIT.md`.
+  Six have been closed since it was written.
 
-- Warm-ups, cool-downs and running recoveries are real running and count toward
-  the week. A `jog`, `float` or `easy` recovery is running; a `standing` one is not.
-- **TOTAL** is every mile the week asks for. **EASY** is standalone easy sessions
-  only — a warm-up belongs to its quality session and never to EASY.
-- The weekly `Across the week` budget rows survive as **historical/audit context
-  only**. They stop being counted the moment a week authors its days.
+---
 
-Both athlete blocks now carry **fully authored daily running, W3–W13**, on one
-canonical rhythm:
+## CANON — do not relitigate
 
-    MON easy · TUE quality · WED easy · THU support-quality · FRI easy · SAT long/specific · SUN rest
+**Ownership.** Six laws, settled 4 September:
 
-    TOTAL   43 · 48 · 54 · 50 · 39 · 46 · 52 · 53 · 48 · 58 · 50
-    EASY    21 · 22 · 23 · 24 · 23 · 24 · 25 · 26 · 24 · 30 · 26
-
-W7 is the cutback, made by withdrawing structured load rather than gutting the
-aerobic base. **W12 is the aerobic peak** — a 16-mile Saturday, 58.4 total.
-Hope and José share the architecture exactly.
-
-**W14 and W15 are deliberately unresolved.** The taper and race week are a
-coaching decision, not a mileage one.
-
-**None of this is promoted to the method.** These mileages are evidence from the
-first two applications of Race Pace Durability, not doctrine. José's `10/8/8`,
-the 16-mile W12 and the rest become part of the method when Brice decides they
-generalise — through `PROMOTE TO METHOD`, never by being live. See
-`docs/FORM_LABS_METHOD_OBJECT.md`.
-
-## Eligibility is not establishment
-
-`planned_session_components.counts_toward_mark_id` says **evidence from this
-component is allowed to answer this mark**. It does not say the component
-established anything — that only becomes true when a filed piece qualifies.
-
-Authored, never inferred. Not from pace bounds, session titles, component
-shapes, repetition structure, athlete type, or whether a band happens to have an
-upper bound. Every one of those is guessing at intention from structure, and
-that guess is what put Simon on a continuous-distance ladder he does not have.
-
-    component  →  eligibility  →  filed evidence  →  established value
+1. The prescription **component** declares eligibility — `counts_toward_mark_id`.
+2. **Filed evidence** determines establishment.
+3. **Continuous ownership** is the longest single uninterrupted qualifying piece.
+   `3 × 2 mi` establishes 2 and never 6.
+4. A **cancelled** prescription cannot establish. Its evidence remains historical
+   fact.
+5. A **revision inherits** eligibility unless the coach deliberately changes what
+   the prescription tests.
+6. **Pace alone never determines** what an athlete has established.
 
 MEASURED and ESTABLISHED are different claims. Simon ran an uninterrupted 1.66
-miles at 6:02; that is measured, it is on the record, and it establishes nothing
-because no component of his points at a continuous-distance mark. Labs can know
-the first without claiming the second — which is what lets one evidence system
-serve his duration question, Natalie's continuous-running question and a strength
-athlete's capacity question without any of them contaminating the others.
+miles at 6:02: measured, on the record, establishing nothing, because no
+component of his points at a continuous-distance mark.
 
-A **cancelled** prescription confers no eligibility. The evidence stays; the
-withdrawn ask no longer defines what it was meant to establish.
+`mark_established_value` is **not to be generalised further**. It answers
+continuous-distance ownership correctly. When Simon gets a duration instrument
+or Natalie's is audited, define how *that* mark establishes value — do not make
+this view prematurely universal.
 
-## Frozen semantics
+**The mileage model.** `prescribed_distance` is the whole session; components are
+the work inside it. Warm-ups, cool-downs and running recoveries are real running
+and count toward the week; a `standing` recovery does not. **TOTAL** is every mile
+the week asks for, **EASY** is standalone easy sessions only. The `Across the
+week` budget rows are historical audit context and stop counting the moment a
+week authors its days.
 
-Two quantities that kept collapsing into one. They are different questions and a
-completed `3 × 2 mi` answers both differently:
+**The week.** MON easy · TUE quality · WED easy · THU support · FRI easy ·
+SAT long/specific · SUN rest — for José and Hope. Natalie has Sunday work, and
+that is correct: the calendar grammar is per athlete and per block, not a FORM law.
 
-- **RACE-PACE VOLUME** — the sum of qualifying work. `3 × 2 mi` is **6 mi**.
-- **CONTINUOUS DISTANCE OWNED** — the longest **single** uninterrupted
-  qualifying segment. `3 × 2 mi` is **2 mi**, and can never be 6.
-
-A segment qualifies when it is one filed piece, carrying a distance, whose **own
-pace** falls inside the band its prescription asked for. Per segment, never per
-workout average — Hope's third rep came back at 6:59 against a 6:30–6:45 band and
-she still owns two miles, because her first two qualify on their own.
-
-`CONTINUOUS DISTANCE OWNED` is the canonical name. UI copy may wrap; it may not
-rename the concept. The caption was shortened to `MI AT RACE PACE` once and the
-word it dropped was the one carrying the distinction.
-
-**Derived, as of `athlete_continuous_owned`.** Labs reads the view.
-`athlete_marks.current_value` is a stored copy that drifts and is no longer what
-any surface shows.
-
-## Settled, do not relitigate
-
-- Labs is where you coach; the Console is where you build a block.
-- An athlete is not an app user. `delivery` says which.
-- Blank means unchanged. Silence beats filler.
-- A signal whose quiet means two different things is not a signal.
-- RLS answers "what may I read", never "who am I".
-- Lime marks work that moves what an athlete owns, nothing else.
-- The easy budget is a budget, not a schedule. It has no day.
-
-## Known gaps, not scheduled
-
-- **`is_key` currently means "has a day"**, which is true today and will need
-  saying explicitly the moment a dated session is genuinely optional.
-- **Rungs are inferred**, not read. `establishes_checkpoint_id` exists and is
-  unpopulated; Labs derives rung-ness from continuous-at-band matching an
-  unreached checkpoint.
-- **Sixteen tables no surface can write.** `docs/SCHEMA_AHEAD_OF_SURFACES_AUDIT.md`
-  has the ordered list. Three were closed on 3–4 September (portraits, marks,
-  athletes/blocks/weeks).
-- **Facts that arrived without provenance.** Marcus's rungs and both ladders were
-  set by migration with no ledger row. Worth one sweep: which rows claim a state
-  with no corresponding movement or judgment behind them.
-- **Do not let the ladder rewrite the plan.** It happened once, on 4 September:
-  `current_value` was set to 6.1 for José from race-pace VOLUME across broken
-  work, which made his authored 5-mile continuous look like ground he had
-  already covered. Broken work carries volume; continuous work establishes
-  continuous distance. The plan authors the progression, the ladder reports
-  evidence, and the two are never the same statement.
-- **Owned is the longest CONTINUOUS piece held in band.** Not the sum of broken
-  work, and not the shortest rep. Each rep of 3 × 2 mi is two continuous miles,
-  so 3 × 2 owns two.
-
-## The gates
-
-- **Gate A walk** — never done. Both switches are on and the fixture is
-  deactivated; rebuilding it is one command.
-- **Build 41** — unshipped. Until it lands, José's phone shows the app's own
-  plan, not yours.
+**Other standing rules.** Labs is where you coach; the Console is where you build
+a block. An athlete is not an app user — `delivery` says which. Blank means
+unchanged. Silence beats filler. A signal whose quiet means two different things
+is not a signal. Never `unsafe-inline` on `/coach/*`; geometry goes through
+`element.style.setProperty` after render. What is live is evidence, not doctrine:
+nothing is promoted to the method by being in production.
