@@ -125,6 +125,19 @@ export async function loadCoachBench(coachMemberships) {
   [sessionsResponse, piecesResponse].forEach(({ error }) => { if (error) throw error; });
 
   const sessions = sessionsResponse.data || [];
+
+  // Splits with no session attached tell you nothing. The filing usually points
+  // at a week that is already behind us, so its title is fetched on its own.
+  const filedAgainst = [...new Set(completions.map((item) => item.planned_session_id).filter(Boolean))];
+  const pastResponse = filedAgainst.length
+    ? await supabase.from('planned_session_versions').select('planned_session_id, version_number, title')
+        .in('planned_session_id', filedAgainst).order('version_number', { ascending: false })
+    : { data: [] };
+  if (pastResponse.error) throw pastResponse.error;
+  const titleFor = new Map();
+  (pastResponse.data || []).forEach((row) => {
+    if (!titleFor.has(row.planned_session_id)) titleFor.set(row.planned_session_id, row.title);
+  });
   const sessionIds = sessions.map((session) => session.id);
   const versionsResponse = sessionIds.length
     ? await supabase.from('planned_session_versions').select('*')
@@ -166,9 +179,16 @@ export async function loadCoachBench(coachMemberships) {
       // The next KEY session, not the next session. Once easy running is authored
       // as a weekly budget, the very next thing on the calendar is usually an
       // easy run — true, and not what you open the bench to find out.
-      next: mine.filter((session) => session.is_key && session.scheduled_on && session.scheduled_on > today)
+      // Across the week boundary, deliberately. On a Friday the next key session
+      // is Sunday; on a Sunday it is Tuesday, which belongs to next week's rows.
+      // Confining this to the current week made the register go blank exactly
+      // when a coach opens the bench to see what is coming.
+      next: sessions.filter((session) => (session.week_id === currentWeek?.id || session.week_id === nextWeekFor(entry.id)?.id)
+          && session.is_key && session.scheduled_on && session.scheduled_on > today)
+        .map((session) => ({ ...session, currentVersion: withComponents.find((v) => v.planned_session_id === session.id) || null }))
         .sort((a, b) => a.scheduled_on.localeCompare(b.scheduled_on))[0] || null,
       latestCompletion: latest,
+      latestTitle: latest?.planned_session_id ? titleFor.get(latest.planned_session_id) || null : null,
       latestPieces: latest ? (piecesResponse.data || []).filter((piece) => piece.completion_id === latest.id) : [],
       // What the brief needs and the bench does not: everything filed in the
       // last seven days, and everything asked of them in the next seven.

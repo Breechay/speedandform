@@ -22,7 +22,7 @@
 // Nothing in this file writes a style attribute into a template string.
 
 import { authErrorMessage, getAccessContext } from '/private/auth.js';
-import { createRead, loadAthleteRecord, loadAttentionFor, loadCoachBench, setExceptionStatus } from '/private/data.js';
+import { createRead, loadAthleteRecord, loadAttentionFor, loadCoachBench, savePortrait, setExceptionStatus } from '/private/data.js';
 import { escapeHtml } from '/private/record.js';
 import { authoredMiles, dayLabel, rangeLabel, structureOf, titleAlreadySays } from '/private/render.js';
 
@@ -160,8 +160,11 @@ function columnHtml(entry) {
   if (due) {
     registers.push(`<div><div class="lab">TODAY</div><div class="val">${escapeHtml(doseLine(due) || titleOf(due))}</div></div>`);
   } else if (last) {
+    // The session it came from, then the splits. Four paces with nothing in front
+    // of them is a number without a question.
+    const said = [entry.latestTitle, splitsLine(last, entry.latestPieces)].filter(Boolean).join(' · ');
     registers.push(`<div><div class="lab">LAST · ${escapeHtml(dayLabel(last.filed_at.slice(0, 10)).toUpperCase())}</div><div class="val">${
-      escapeHtml(splitsLine(last, entry.latestPieces) || 'Filed')
+      escapeHtml(said || 'Filed')
     }</div></div>`);
   } else {
     registers.push('<div><div class="lab">EVIDENCE</div><div class="val"><span class="dim">Nothing filed since the block opened</span></div></div>');
@@ -622,6 +625,134 @@ function paint() {
   });
 }
 
+
+// ── THE PHOTO LAB ───────────────────────────────────────────────────────────
+//
+// The portrait is the design's central premise and every column has been a
+// monogram since the first build. The bucket, the columns, the policies and the
+// writer all existed; what was missing was somewhere to stand while you decide
+// how a photograph is cropped.
+//
+// So it crops against the real column rather than a preview pane — the sliders
+// write the same custom properties paint() writes, so what moves under your hand
+// is the bench itself. Nothing is saved until you keep it, and what is kept is
+// six numbers on the athlete, not on this browser.
+
+const PL = {};
+let plFile = null;
+let plCrop = null;
+
+const plAthlete = () => bench.find((entry) => entry.slug === PL.who?.value) || null;
+
+function plSync() {
+  const entry = plAthlete();
+  if (!entry) return;
+  plCrop = plCrop || {
+    x: entry.portrait_x ?? 50, y: entry.portrait_y ?? 40,
+    zoom: Math.round((entry.portrait_zoom ?? 1) * 100),
+    exposure: Math.round((entry.portrait_exposure ?? 0.9) * 100),
+    contrast: Math.round((entry.portrait_contrast ?? 1.16) * 100),
+    grade: Math.round((entry.portrait_grade ?? 0.2) * 100)
+  };
+  PL.x.value = plCrop.x; PL.y.value = plCrop.y; PL.z.value = plCrop.zoom;
+  PL.e.value = plCrop.exposure; PL.c.value = plCrop.contrast; PL.g.value = plCrop.grade;
+  PL.xv.textContent = `${plCrop.x}%`; PL.yv.textContent = `${plCrop.y}%`;
+  PL.zv.textContent = `${plCrop.zoom}%`; PL.ev.textContent = `${plCrop.exposure}%`;
+  PL.cv.textContent = `${plCrop.contrast}%`; PL.gv.textContent = `${plCrop.grade}%`;
+  plApply();
+}
+
+// Straight onto the live column, through the CSSOM. Same properties paint()
+// writes, so the preview and the saved state cannot disagree.
+function plApply() {
+  const entry = plAthlete();
+  if (!entry || !plCrop) return;
+  document.querySelectorAll(`[data-portrait="${entry.slug}"]`).forEach((img) => {
+    if (plFile) { img.setAttribute('src', plFile.url); img.classList.add('has-photo'); }
+    img.style.setProperty('--px', `${plCrop.x}%`);
+    img.style.setProperty('--py', `${plCrop.y}%`);
+    img.style.setProperty('--pz', String(plCrop.zoom / 100));
+    img.style.setProperty('--exp', String(plCrop.exposure / 100));
+    img.style.setProperty('--con', String(plCrop.contrast / 100));
+    img.style.setProperty('--grade', String(plCrop.grade / 100));
+  });
+}
+
+function bindPhotoLab() {
+  ['who', 'file', 'x', 'y', 'z', 'e', 'c', 'g', 'xv', 'yv', 'zv', 'ev', 'cv', 'gv', 'note'].forEach((key) => {
+    PL[key] = document.getElementById('pl' + key.charAt(0).toUpperCase() + key.slice(1));
+  });
+  const panel = document.getElementById('plPanel');
+  const toggle = document.getElementById('plToggle');
+  if (!panel || !toggle) return;
+
+  const open = (on) => {
+    panel.classList.toggle('on', on);
+    toggle.setAttribute('aria-expanded', String(on));
+    if (on) {
+      PL.who.innerHTML = bench.slice().sort(benchOrder)
+        .map((entry) => `<option value="${escapeHtml(entry.slug)}">${escapeHtml(entry.first_name)}</option>`).join('');
+      plFile = null; plCrop = null; plSync();
+    }
+  };
+  toggle.addEventListener('click', () => open(!panel.classList.contains('on')));
+  document.getElementById('plClose').addEventListener('click', () => open(false));
+  PL.who.addEventListener('change', () => { plFile = null; plCrop = null; plSync(); });
+
+  PL.file.addEventListener('change', () => {
+    const chosen = PL.file.files[0];
+    if (!chosen) return;
+    if (plFile?.url) URL.revokeObjectURL(plFile.url);
+    plFile = { file: chosen, url: URL.createObjectURL(chosen) };
+    PL.note.textContent = `${chosen.name} — not saved yet.`;
+    plApply();
+  });
+
+  const map = { x: 'x', y: 'y', z: 'zoom', e: 'exposure', c: 'contrast', g: 'grade' };
+  Object.entries(map).forEach(([key, field]) => {
+    PL[key].addEventListener('input', () => {
+      if (!plCrop) plSync();
+      plCrop[field] = Number(PL[key].value);
+      PL[`${key}v`].textContent = `${plCrop[field]}%`;
+      plApply();
+    });
+  });
+
+  document.getElementById('plKeep').addEventListener('click', async () => {
+    const entry = plAthlete();
+    if (!entry || !plCrop) return;
+    const button = document.getElementById('plKeep');
+    button.disabled = true; PL.note.textContent = 'Keeping…';
+    try {
+      await savePortrait(entry.id, plFile?.file || null, {
+        x: plCrop.x, y: plCrop.y,
+        zoom: plCrop.zoom / 100, exposure: plCrop.exposure / 100,
+        contrast: plCrop.contrast / 100, grade: plCrop.grade / 100
+      });
+      bench = await loadCoachBench(access.coachMemberships);
+      plFile = null; plCrop = null;
+      render(); open(true);
+      PL.note.textContent = 'Kept. It is the athlete\'s crop now, on every surface.';
+    } catch (error) {
+      PL.note.textContent = error.message;
+    } finally { button.disabled = false; }
+  });
+
+  document.getElementById('plRemove').addEventListener('click', async () => {
+    const entry = plAthlete();
+    if (!entry) return;
+    PL.note.textContent = 'Removing…';
+    try {
+      // The framing survives the photograph. Taking a picture down is not
+      // forgetting how it was cropped.
+      await savePortrait(entry.id, null, { clear: true });
+      bench = await loadCoachBench(access.coachMemberships);
+      plFile = null; plCrop = null;
+      render(); PL.note.textContent = 'Removed. The crop values are kept.';
+    } catch (error) { PL.note.textContent = error.message; }
+  });
+}
+
 // ── the read drawer ─────────────────────────────────────────────────────────
 
 function openRead(exceptionId, completionId) {
@@ -691,7 +822,8 @@ function markNav(view, slug) {
   nav.querySelectorAll('button').forEach((button) => button.classList.remove('on'));
   const which = view === 'bench' ? 'bench' : view === 'brief' ? 'brief' : view === 'block' ? 'block' : null;
   if (which) nav.querySelector(`[data-nav="${which}"]`)?.classList.add('on');
-  nav.querySelector('[data-nav="block"]').hidden = !slug;
+  // Plan stays visible. With nobody chosen it opens the first athlete on the
+  // bench, which is the one who needs you.
 }
 
 async function selectAthlete(slug, { silent = false } = {}) {
@@ -747,7 +879,8 @@ document.addEventListener('click', (event) => {
   if (where === 'console') { location.href = '/coach/console/'; return; }
   if (where === 'bench') { location.hash = '#/bench'; return; }
   if (where === 'brief') { location.hash = '#/brief'; return; }
-  const slug = record?.athlete?.slug || route().slug;
+  const slug = record?.athlete?.slug || route().slug
+    || bench.slice().sort(benchOrder)[0]?.slug;
   if (!slug) return;
   location.hash = where === 'block' ? `#/a/${slug}/block` : `#/a/${slug}`;
 });
@@ -781,6 +914,7 @@ async function boot() {
     if (!access.session) { location.href = '/coach/console/'; return; }
     if (!access.coachMemberships.length) { location.href = '/coach/console/'; return; }
     bench = await loadCoachBench(access.coachMemberships);
+    bindPhotoLab();
     if (!location.hash) location.hash = '#/bench';
     await show();
   } catch (error) { fail(error); }

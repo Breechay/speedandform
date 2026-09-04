@@ -23,6 +23,36 @@
 
   <div id="app"><div class="loading">READING THE BENCH</div></div>
 
+
+  <button class="plToggle" id="plToggle" type="button" aria-expanded="false" aria-controls="plPanel">Photo Lab</button>
+  <aside class="plPanel" id="plPanel" aria-label="Athlete portrait">
+    <div class="plHead">
+      <div><div class="plTitle">Portrait</div>
+        <div class="plHint">Crop against the real column. Nothing is saved until you keep it.</div></div>
+      <button class="plClose" id="plClose" type="button" aria-label="Close">×</button>
+    </div>
+    <div class="plField"><label for="plWho">ATHLETE</label><select id="plWho"></select></div>
+    <div class="plField"><label>PHOTO</label>
+      <label class="plPick">Choose or replace image<input id="plFile" type="file" accept="image/*"></label></div>
+    <div class="plField"><label for="plX">HORIZONTAL</label>
+      <div class="plRow"><input id="plX" type="range" min="0" max="100"><span class="plVal" id="plXv"></span></div></div>
+    <div class="plField"><label for="plY">VERTICAL</label>
+      <div class="plRow"><input id="plY" type="range" min="0" max="100"><span class="plVal" id="plYv"></span></div></div>
+    <div class="plField"><label for="plZ">ZOOM</label>
+      <div class="plRow"><input id="plZ" type="range" min="100" max="260"><span class="plVal" id="plZv"></span></div></div>
+    <div class="plField"><label for="plE">EXPOSURE</label>
+      <div class="plRow"><input id="plE" type="range" min="40" max="180"><span class="plVal" id="plEv"></span></div></div>
+    <div class="plField"><label for="plC">CONTRAST</label>
+      <div class="plRow"><input id="plC" type="range" min="50" max="200"><span class="plVal" id="plCv"></span></div></div>
+    <div class="plField"><label for="plG">COLOUR</label>
+      <div class="plRow"><input id="plG" type="range" min="0" max="100"><span class="plVal" id="plGv"></span></div></div>
+    <div class="plActs">
+      <button id="plRemove" type="button">Remove photo</button>
+      <button id="plKeep" type="button">Keep</button>
+    </div>
+    <div class="plNote" id="plNote">Six values, stored on the athlete. The crop is theirs, not this browser's.</div>
+  </aside>
+
   <div class="shScrim" id="shScrim"></div>
   <aside class="sheet" id="sheet" aria-label="Editor" aria-hidden="true">
     <div class="shHead">
