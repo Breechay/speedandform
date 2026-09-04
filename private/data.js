@@ -343,7 +343,11 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     // The block's pace key, authored once rather than counted off the components.
     // Empty for a block that has not authored one, and the surface derives what
     // it can in that case.
-    supabase.from('block_pace_bands').select('*').eq('athlete_id', athleteId).order('position')
+    supabase.from('block_pace_bands').select('*').eq('athlete_id', athleteId).order('position'),
+    // Standing facts. The newest per facet that nothing has superseded — what is
+    // true about this athlete right now, as distinct from what happened.
+    supabase.from('athlete_standing_observations').select('*').eq('athlete_id', athleteId)
+      .order('observed_on', { ascending: false })
   ];
 
   if (coach) {
@@ -366,7 +370,7 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     gatesResponse, movementResponse, supportResponse, supportItemsResponse,
     verdictsResponse, piecesResponse, judgmentsResponse, judgmentLinksResponse,
     confidenceResponse, confidenceLinksResponse, evidenceFilesResponse, proposalResponse,
-    exceptionsResponse, paceBandsResponse,
+    exceptionsResponse, paceBandsResponse, observationsResponse,
     taskResponse, evidenceResponse, actionsResponse, privateNotesResponse, adminResponse
   ] = responses;
 
@@ -434,6 +438,7 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     decisions: result(decisionsResponse.data, decisionsResponse.error),
     marks,
     paceBands: result(paceBandsResponse.data, paceBandsResponse.error),
+    observations: result(observationsResponse.data, observationsResponse.error),
     primaryMark: marks.find((mark) => mark.is_primary) || marks[0] || null,
     movementReads: result(movementResponse.data, movementResponse.error),
     support: supportResponse.data,
@@ -627,6 +632,26 @@ export async function signPortraits(athletes) {
     portraitUrl: athlete.portrait_path ? byPath.get(athlete.portrait_path) || null : null,
     portraitUnreachable: Boolean(athlete.portrait_path) && !byPath.get(athlete.portrait_path)
   }));
+}
+
+// A standing fact, written the way a judgment is written: sourced, dated, and
+// superseding rather than overwriting. WHAT HELPS for a runner and WHAT I'M
+// SEEING for a strength athlete are the same object, which is why the facets are
+// deliberately small and shared.
+export async function addObservation({ athleteId, facet, source, observation, direction, supersedes }) {
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
+  if (userError) throw userError;
+  const { data, error } = await supabase.from('athlete_observations').insert({
+    athlete_id: athleteId,
+    facet,
+    source: source || 'coach_observed',
+    observation: String(observation || '').trim(),
+    direction: direction || null,
+    supersedes: supersedes || null,
+    authored_by: user.id
+  }).select('*').single();
+  if (error) throw error;
+  return data;
 }
 
 export async function addPrivateNote(athleteId, body) {

@@ -120,20 +120,20 @@
    "goal_seconds": null,
    "home_surface": "form",
    "id": "e8328097-a879-448b-baae-3461f176d166",
-   "portrait_contrast": 1.16,
-   "portrait_exposure": 0.9,
+   "portrait_contrast": 1.14,
+   "portrait_exposure": 1.12,
    "portrait_grade": 0.2,
-   "portrait_path": null,
-   "portrait_x": 50,
+   "portrait_path": "e8328097-a879-448b-baae-3461f176d166/portrait.png",
+   "portrait_x": 53,
    "portrait_y": 40,
-   "portrait_zoom": 1,
+   "portrait_zoom": 1.95,
    "program_name": "Half build",
    "rpe_ceiling": null,
    "slug": "simon",
    "target_event": "HYROX Nashville",
    "target_pace_seconds": null,
    "training_target_seconds": null,
-   "updated_at": "2026-09-04T09:57:01.519441+00:00"
+   "updated_at": "2026-09-04T20:58:24.356337+00:00"
   }
  ],
  "attention": [
@@ -22292,7 +22292,7 @@
    "version_id": "333be908-8fa8-46e7-abd1-cffaf2c6ed27"
   }
  ],
- "dumped_at": "2026-09-04T20:08:42.647591+00:00",
+ "dumped_at": "2026-09-04T21:00:43.077605+00:00",
  "exceptions": [
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",

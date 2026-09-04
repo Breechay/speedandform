@@ -605,16 +605,17 @@ img[data-portrait]{--exp:.9;--con:1.16;--px:50%;--py:40%;--pz:1;--grade:.20}
 .val.rung{color:var(--lime);font-size:12px;margin-top:3px;line-height:1.35}
 
 /* ══ THE PLAN ══
-   TRANCHE A: the grid. No cell borders — the structure comes from fills, which
-   is the whole difference between a training ledger and a spreadsheet. Heavy
-   days sit on a darker band, the current week is a lime column top to bottom,
-   and empty days nearly disappear because an unassigned Monday is not
-   information.
+   The matrix is not the inspector. A cell holds three short lines and the
+   drawer holds everything else, because a hundred and five little articles is
+   not a season anyone can see.
+
+   Hierarchy comes from FILL, never from boxes. Quality days sit on a darker
+   band, easy days recede almost to the ground, and the current week is one
+   continuous vertical region rather than a lime edge drawn per cell.
 
    Not one class here is shared with the bench. `.plate` on a bench column is
    position:absolute; inset:0 with a gradient on it, and the block view reused
-   the name — a full-screen translucent box over the whole page. That was the
-   rectangle over FORM LABS and the reason the hero never rendered. Everything
+   the name — a full-screen translucent box over the whole page. Everything
    below starts `pg` and is scoped under `.planv`. */
 
 .view.planv{height:auto;min-height:100vh}
@@ -628,65 +629,73 @@ img[data-portrait]{--exp:.9;--con:1.16;--px:50%;--py:40%;--pz:1;--grade:.20}
 .pgScroll::-webkit-scrollbar{height:6px}
 .pgScroll::-webkit-scrollbar-thumb{background:#ffffff12;border-radius:3px}
 
-/* Fifteen columns at 96px plus the day rail. Fixed layout so a long session
-   title cannot widen its week and throw every other column out of line. */
-.pg{width:100%;min-width:1560px;border-collapse:separate;border-spacing:0;table-layout:fixed}
-.pg th,.pg td{text-align:left;vertical-align:top;padding:9px 11px}
-.pg thead th{padding:0 11px 12px}
-.pg .d{width:120px;font-size:12px;color:var(--secondary);font-weight:500;padding-left:0;
-  vertical-align:middle}
-.pg .wl{font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:600}
-.pg .wn{display:block;font-size:12.5px;font-weight:600}
-.pg .wd{display:block;font-size:10.5px;color:var(--muted);margin-top:2px}
-.pg .wo{display:block;font-size:9.5px;color:#3a4245;margin-top:3px}
-.pg thead th.cur .wn{color:var(--lime)}
+.pg{width:100%;min-width:1480px;border-collapse:collapse;table-layout:fixed}
+.pg th,.pg td{text-align:left;vertical-align:top;padding:8px 11px}
+.pg thead th{padding:0 11px 10px}
+.pg .d{width:104px;font-size:11px;color:var(--muted);font-weight:500;padding-left:0;
+  vertical-align:middle;letter-spacing:.02em}
+.pg .wl{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:#394144;font-weight:600}
+.pg .wn{display:block;font-size:12px;font-weight:600}
+.pg .wd{display:block;font-size:10px;color:var(--muted);margin-top:2px}
+.pg .wo{display:block;font-size:9px;color:#333b3e;margin-top:2px}
 .pg thead th.down .wn{color:var(--secondary)}
 
-.pg tbody td{background:var(--band-2);border-top:2px solid var(--field);border-right:2px solid var(--field)}
+/* THE CURRENT WEEK IS ONE REGION.
+   Not a lime rule per cell — a single lit column with one cap at the top, so
+   the eye reads a place in the season rather than fifteen highlighted boxes. */
+.pg thead th.cur{box-shadow:inset 0 -2px 0 var(--lime)}
+.pg thead th.cur .wn{color:var(--lime)}
+.pg td.cur{background:var(--curweek)}
+.pg tbody tr.heavy td.cur{background:#18210f}
+
+/* Fills, not boxes. The gap between cells is the page showing through. */
+.pg tbody td{background:var(--band-2);border-right:2px solid var(--field);
+  border-bottom:2px solid var(--field)}
 .pg tbody tr.heavy td{background:var(--heavy)}
-.pg tbody td.cur{background:var(--curweek)}
-.pg tbody tr:first-child td.cur{box-shadow:inset 0 2px 0 var(--lime)}
-.pg tr.easyrow td{background:#0a0e0f;border-top:2px solid var(--field);border-right:2px solid var(--field)}
-.pg tr.easyrow .d{font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);
-  font-weight:600}
-.pg tr.volrow td{background:none;border-right:2px solid var(--field);padding-top:13px;
-  font-size:14px;font-weight:600;font-variant-numeric:tabular-nums}
-.pg tr.volrow td.cur{color:var(--lime);box-shadow:none}
-.pg tr.volrow .d{font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);
-  font-weight:600}
+.pg tbody tr.easyrow td{background:#0a0d0e}
 
-/* A cell is words. Name, then what it asks for, then a rule, then what came
-   back. The rule is the only line in the grid, and it separates prescription
-   from evidence — the one distinction a cell must never blur. */
-.pg .s{display:block}
-.pg .s+.s{margin-top:11px;padding-top:11px;border-top:1px solid #ffffff0f}
-.pg .s b{display:block;font-size:12.5px;font-weight:500;line-height:1.34;letter-spacing:-.004em}
-.pg .s i{display:block;font-style:normal;font-size:11px;color:var(--secondary);margin-top:3px;
-  line-height:1.45;font-variant-numeric:tabular-nums}
-.pg .s u{display:block;text-decoration:none;font-size:11px;color:var(--text);margin-top:8px;
-  padding-top:7px;border-top:1px solid #ffffff14;line-height:1.45;font-variant-numeric:tabular-nums}
-.pg .s u::before{content:"RAN ";font-size:8.5px;letter-spacing:.16em;color:var(--muted);font-weight:600}
-.pg tr.easyrow .s u::before{content:none}
-.pg .s.canx{opacity:.34}
+/* THE ROW RHYTHM.
+   Tuesday, Thursday and Saturday carry the argument; Monday, Wednesday and
+   Friday carry the athlete to them. Easy recedes on purpose. */
+.pg tbody tr.heavy .d{color:var(--text);font-weight:600}
+.pg tbody tr.light td .s b{color:var(--secondary);font-weight:400}
+.pg tbody tr.light td .s i{color:#4c5457}
+
+.pg .s{display:block;cursor:pointer}
+.pg .s+.s{margin-top:9px;padding-top:9px;border-top:1px solid #ffffff0d}
+.pg .s b{display:block;font-size:12px;font-weight:600;line-height:1.25;letter-spacing:.015em}
+.pg .s i{display:block;font-style:normal;font-size:10.5px;color:var(--secondary);margin-top:3px;
+  line-height:1.35;font-variant-numeric:tabular-nums}
+.pg .s u{display:block;text-decoration:none;font-size:10.5px;color:var(--muted);margin-top:5px;
+  font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.pg .s:hover b{color:var(--lime)}
+.pg .s.canx{opacity:.3}
 .pg .s.canx b{text-decoration:line-through}
-/* An allocation is authored work the athlete placed. It is quieter than a dated
-   prescription because the week, not the day, is what was authored. */
-.pg .s.alloc b{color:var(--secondary);font-weight:400}
-.pg .s.orphan b{color:var(--coral);font-weight:400}
-.pg tr.easyrow .s b{color:var(--secondary);font-weight:400}
-.pg tr.easyrow .s i{color:var(--muted)}
-.pg .none{color:#232a2c;font-size:13px}
+.pg .s.alloc b{font-weight:500}
 
-.pgFoot{padding:22px 30px 60px;font-size:12.5px;color:var(--secondary);line-height:1.65;max-width:92ch}
-.pgFoot b{color:var(--text);font-weight:500}
+/* Lime means ownership-moving, and nothing else. A session that is merely
+   continuous at the band gets a hairline: visible, not signalling. */
+.pg .s.own{padding-left:9px;border-left:1px solid #ffffff20}
+.pg .s.rung{padding-left:9px;border-left:2px solid var(--lime)}
+.pg .s.rung b{color:var(--lime)}
+.pg .none{color:#1d2325;font-size:12px}
+
+.pg tr.prow td{background:#0a0d0e;border-right:2px solid var(--field);border-bottom:2px solid var(--field);
+  font-size:10.5px;letter-spacing:.04em;color:var(--secondary);padding:7px 11px}
+.pg tr.prow td.cur{color:var(--lime)}
+.pg tr.prow .d,.pg tr.easyrow .d,.pg tr.volrow .d{font-size:9px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--muted);font-weight:600}
+.pg tr.volrow td{background:none;border:0;padding-top:12px;font-size:13px;font-weight:600;
+  font-variant-numeric:tabular-nums}
+.pg tr.volrow td.cur{color:var(--lime);background:none}
+.pg tr.volrow.easyline td{padding-top:3px;font-size:11.5px;color:var(--muted);font-weight:500}
+.pg tr.volrow.easyline td.cur{color:var(--lime)}
+
+.pgFoot{padding:22px 30px 60px;font-size:12px;color:var(--muted);line-height:1.65;max-width:92ch}
+.pgFoot b{color:var(--secondary);font-weight:500}
 
 @media (max-width:900px){.pgHead{padding:74px 16px 16px}.pgWrap{padding:0 16px}
   .pgFoot{padding-left:16px;padding-right:16px}}
-.pg .s em{display:block;font-style:normal;font-size:10.5px;color:var(--muted);margin-top:2px;
-  font-variant-numeric:tabular-nums}
-.pg .s.superseded{opacity:.45}
-.pg tr.volrow.easyline td{padding-top:4px;font-size:12px;color:var(--secondary);font-weight:500}
-.pg tr.volrow.easyline td.cur{color:var(--lime)}
 
 /* ══ THE PLAN · TRANCHE B ══
    Who this is, what the block asks, and what the numbers on the cells mean.
@@ -731,3 +740,170 @@ img[data-portrait]{--exp:.9;--con:1.16;--px:50%;--py:40%;--pz:1;--grade:.20}
   margin-top:7px;line-height:1.5}
 @media (max-width:1000px){.phero,.pbands,.prhythm{grid-template-columns:1fr;gap:20px 2px}
   .phero{padding-left:16px;padding-right:16px}.pbands,.prhythm{margin-left:16px;margin-right:16px}}
+
+/* The session, over the matrix. The grid stays lit behind it — losing the season
+   while you read the day is the one thing the drawer must not cost. */
+.dScrim{position:fixed;inset:0;z-index:80;background:#00000078;opacity:0;pointer-events:none;
+  transition:opacity .22s var(--ease)}
+.dScrim.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(430px,100vw);z-index:81;
+  background:var(--field-2);border-left:1px solid var(--edge);display:flex;flex-direction:column;
+  transform:translateX(101%);transition:transform .26s var(--ease);overscroll-behavior:contain}
+.drawer.on{transform:none}
+.dHead{padding:24px 26px 18px;border-bottom:1px solid var(--edge);display:flex;
+  align-items:flex-start;justify-content:space-between;gap:14px}
+.dWhen{font-size:9.5px;letter-spacing:.18em;color:var(--muted);font-weight:600;text-transform:uppercase}
+.dHead h2{font-family:var(--serif);font-weight:400;font-size:25px;letter-spacing:-.012em;
+  margin:9px 0 0;line-height:1.15}
+.dRung{margin-top:9px;font-size:9.5px;letter-spacing:.14em;color:var(--lime);font-weight:600;
+  text-transform:uppercase}
+.dClose{font-size:22px;color:var(--secondary);line-height:1;padding:0 4px}
+.dClose:hover{color:var(--text)}
+.dBody{padding:20px 26px 40px;overflow-y:auto;flex:1}
+.dFigs{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:18px}
+.dFigs div{background:var(--band-2);padding:13px 15px}
+.dFigs b{display:block;font-size:9px;letter-spacing:.17em;color:var(--muted);font-weight:600}
+.dFigs strong{display:block;font-family:var(--serif);font-weight:400;font-size:25px;margin-top:6px;
+  letter-spacing:-.015em;font-variant-numeric:tabular-nums}
+.dIntent{margin:0 0 20px;font-size:14px;line-height:1.55;color:var(--text)}
+.dLab{font-size:9.5px;letter-spacing:.18em;color:var(--muted);font-weight:600;margin:22px 0 10px}
+.dLab:first-of-type{margin-top:0}
+.dParts{display:flex;flex-direction:column;gap:1px}
+.dPart{display:grid;grid-template-columns:82px 1fr;gap:4px 14px;background:var(--band-2);
+  padding:11px 14px;align-items:baseline}
+.dPart b{font-size:9px;letter-spacing:.14em;color:var(--muted);font-weight:600;text-transform:uppercase}
+.dPart span{font-size:14px;font-variant-numeric:tabular-nums}
+.dPart em{grid-column:2;font-style:normal;font-size:11.5px;color:var(--secondary);
+  font-variant-numeric:tabular-nums}
+.dPart em:empty{display:none}
+.dText{margin:0;font-size:13.5px;line-height:1.55;color:var(--secondary);font-variant-numeric:tabular-nums}
+.dSaid{margin:10px 0 0;font-family:var(--serif);font-size:15px;line-height:1.5;color:var(--text)}
+.dNone{margin:0;font-size:13px;color:var(--muted)}
+.dRevs{display:flex;flex-direction:column;gap:9px}
+.dRev{display:grid;grid-template-columns:26px 1fr;gap:12px;align-items:baseline}
+.dRev b{font-size:10px;color:var(--muted);font-weight:600}
+.dRev span{font-size:12.5px;color:var(--secondary);line-height:1.45}
+.pg .s{cursor:pointer}
+.pg .s:hover b{color:var(--lime)}
+@media (max-width:760px){.drawer{width:100vw}}
+
+/* ══ THE BENCH · HIERARCHY PASS ══
+   Three reads from ten feet: who, what they have established, where judgment is
+   useful. The column is a plate an athlete occupies, not a card with fields.
+
+   A photoless column is a designed plate, not a missing one. A hundred-and-
+   eighty-pixel ghost initial next to José's photograph made the bench look
+   half-built; a graphic field with a solid mark reads as a choice. */
+.col .body{position:absolute;inset:auto 0 0;padding:0 19px 22px;display:flex;
+  flex-direction:column;gap:0}
+.col .name{font-family:var(--serif);font-weight:400;font-size:40px;letter-spacing:-.015em;
+  line-height:.94;text-shadow:0 1px 22px #00000090}
+.col .owned{display:flex;align-items:baseline;gap:8px;margin-top:14px}
+.col .owned b{font-size:34px;font-weight:600;letter-spacing:-.03em;line-height:1;
+  font-variant-numeric:tabular-nums;color:var(--lime)}
+.col .owned b.none{color:var(--muted);font-weight:400}
+.col .owned span{font-size:9.5px;letter-spacing:.16em;color:var(--secondary);font-weight:600}
+.col .colFoot{margin-top:20px;padding-top:15px;border-top:1px solid #ffffff1a;
+  display:flex;flex-direction:column;gap:11px;min-height:104px}
+/* Quiet by design. This is "your judgment is useful here", not an alert. */
+.col .asked{font-size:12.5px;color:var(--secondary);display:flex;align-items:baseline;gap:8px}
+.col .asked em{font-style:normal;font-size:10.5px;color:var(--muted);letter-spacing:.04em}
+.col .asked.live{color:var(--text)}
+.col .asked.live::before{content:"";width:5px;height:5px;border-radius:50%;
+  background:var(--lime);flex:0 0 auto;transform:translateY(-2px)}
+.col .nextUp{display:flex;flex-direction:column;gap:2px}
+.col .nextUp b{font-size:9px;letter-spacing:.17em;color:var(--muted);font-weight:600}
+.col .nextUp span{font-size:13.5px;color:var(--text);font-variant-numeric:tabular-nums;
+  letter-spacing:-.005em}
+.col .nextUp em{font-style:normal;font-size:10.5px;color:var(--lime);letter-spacing:.03em}
+.col .outIn{font-size:10.5px;color:var(--muted);letter-spacing:.03em;margin-top:auto}
+
+/* The photoless plate. A wash, a horizon and a solid mark — no ghost letter. */
+.col .mono{display:none}
+.col:not(.shot) .plate::after{content:"";position:absolute;left:0;right:0;top:46%;height:1px;
+  background:linear-gradient(90deg,#ffffff00,#ffffff26 30%,#ffffff10 70%,#ffffff00)}
+.col:not(.shot) .plate{background:
+  radial-gradient(120% 70% at 22% 10%,#39444a,#1a2124 44%,#0c1012 78%,#080b0c)}
+/* The floor has to carry type, not decorate the photograph. Hope's "Filed,
+   unread" was sitting on her shoe. Two stops do the work: a long soft fall from
+   the middle, then a near-solid base under the whole text block. */
+.col:not(.shot) .scrim{background:linear-gradient(180deg,#00000000 30%,#000000b0 78%,#000000e8)}
+.col.shot .scrim{background:linear-gradient(180deg,
+  #00000000 14%,#00000052 34%,#000000a6 52%,#000000e0 64%,#000000f2 74%,#000000fa)}
+.col.shot .body{text-shadow:0 1px 16px #000000b0}
+
+/* ══ THE ATHLETE · HIERARCHY PASS ══
+   One dominant thought. The photograph is the anchor; the right side carries the
+   experiment, and everything else sits underneath it at a lower weight. */
+.thesis{margin-top:26px;padding-bottom:28px;border-bottom:1px solid #ffffff12}
+.thesis h1{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.1vw,42px);
+  letter-spacing:-.02em;line-height:1.1;margin:12px 0 0;max-width:20ch}
+.thesis .state{display:flex;align-items:flex-end;gap:44px;margin-top:30px}
+.owns{display:flex;align-items:flex-end;gap:12px}
+.owns b{font-size:clamp(56px,6.4vw,86px);font-weight:600;letter-spacing:-.045em;line-height:.82;
+  color:var(--lime);font-variant-numeric:tabular-nums}
+.owns span{font-size:9.5px;letter-spacing:.16em;color:var(--secondary);font-weight:600;
+  line-height:1.5;padding-bottom:5px}
+.nextQ{padding-bottom:5px}
+.nextQ p{margin:7px 0 0;font-size:17px;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+
+/* The ladder supports the sentence; it is not the sentence. */
+.rail{padding-top:20px}
+.rung .work{font-size:14px;font-weight:500;margin-top:11px}
+.rung .at{font-size:11px}
+.rung .state{font-size:9px;letter-spacing:.15em;margin-top:6px}
+.rung.next .state{color:var(--lime)}
+.rung.done .state{color:var(--secondary)}
+.rung .state:empty{display:none}
+
+/* Evidence and reports are evidence and reports, not magazine features. */
+.cols .h{margin-bottom:2px}
+.horizon .fig{font-size:30px}
+.evWork{font-size:15px;font-weight:500}
+.pane .mono{display:none}
+
+/* ══ THE PLAN · THE IDENTITY STRIP ══
+   Bench is a full photographic plate. The athlete page is a large one. The plan
+   is a small one at the upper left, and then the season spreads across the desk.
+   Moving Bench → José → Plan should feel like getting closer to his work, not
+   like loading three unrelated pages — so the portrait travels and shrinks.
+
+   Everything that is reference rather than argument — the band copy, the week
+   rhythm, what a normal week looks like — moves below the matrix. */
+.pstrip{display:flex;align-items:center;gap:38px;padding:4px 30px 22px;
+  border-bottom:1px solid #ffffff10}
+.pstrip .pfrm{width:52px;height:66px;flex:0 0 52px}
+.pstrip .pfrm span{font-size:26px}
+.pstrip .pwho{gap:14px;flex:0 0 auto}
+.pstrip .pwho h1{font-size:30px}
+.pstrip .prace{margin-top:6px;font-size:10px;letter-spacing:.1em}
+.pq{flex:1 1 auto;font-family:var(--serif);font-weight:400;font-size:19px;line-height:1.3;
+  letter-spacing:-.01em;color:var(--text);max-width:34ch}
+.powns{display:flex;align-items:baseline;gap:8px;flex:0 0 auto}
+.powns b{font-size:40px;font-weight:600;letter-spacing:-.04em;color:var(--lime);
+  font-variant-numeric:tabular-nums;line-height:1}
+.powns span{font-size:9px;letter-spacing:.16em;color:var(--secondary);font-weight:600}
+.phorizon{flex:0 0 auto}
+.phorizon b{display:block;font-size:9px;letter-spacing:.16em;color:var(--muted);font-weight:600}
+.phorizon span{display:block;font-size:13px;margin-top:5px;font-variant-numeric:tabular-nums;
+  color:var(--secondary)}
+.pkey{display:flex;gap:22px;flex:0 0 auto;padding-left:22px;border-left:1px solid #ffffff12}
+.pkey div b{display:block;font-size:8.5px;letter-spacing:.15em;color:var(--muted);font-weight:600}
+.pkey div span{display:block;font-size:13px;margin-top:5px;font-variant-numeric:tabular-nums}
+.prhythm{margin-top:28px}
+@media (max-width:1200px){.pstrip{flex-wrap:wrap;gap:22px}.pq{flex-basis:100%;order:9}}
+
+/* Standing facts. Quieter than evidence, because they do not change often —
+   and a fact that stays true does not need to shout every time you open the page. */
+.stands{display:flex;flex-direction:column;gap:15px;margin-top:13px}
+.stand{padding-left:12px;border-left:1px solid #ffffff1e}
+.standTop{display:flex;align-items:baseline;gap:10px}
+.standTop b{font-size:9px;letter-spacing:.15em;color:var(--lime);font-weight:600}
+.standTop span{font-size:10px;color:var(--muted);letter-spacing:.03em}
+.stand p{margin:6px 0 0;font-size:13.5px;line-height:1.5;color:var(--text);max-width:46ch}
+
+/* Canonical rest. A day meant to be empty, not a day with nothing in it. */
+.pg tr.restrow td{background:none;border:0;padding:7px 11px;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:#333b3e}
+.pg tr.restrow .d{font-size:11px;letter-spacing:.02em;text-transform:none;color:#333b3e;
+  font-weight:400}

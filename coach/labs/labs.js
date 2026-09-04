@@ -22,7 +22,7 @@
 // Nothing in this file writes a style attribute into a template string.
 
 import { authErrorMessage, getAccessContext } from '/private/auth.js';
-import { createRead, loadAthleteRecord, loadAttentionFor, loadCoachBench, rungFor, savePortrait, setExceptionStatus } from '/private/data.js';
+import { addObservation, createRead, loadAthleteRecord, loadAttentionFor, loadCoachBench, rungFor, savePortrait, setExceptionStatus } from '/private/data.js';
 import { escapeHtml } from '/private/record.js';
 import { authoredMiles, dayLabel, initials, rangeLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
 
@@ -255,59 +255,67 @@ function standing(entry) {
   return { word: 'On track', tone: 'ok', because: `Filed ${when}. Nothing outstanding.` };
 }
 
-function columnHtml(entry) {
-  const out = weeksOut(entry);
-  const race = [entry.block?.race_place || entry.block?.race_name || entry.target_event,
-    out == null ? null : `in ${out} week${out === 1 ? '' : 's'}`].filter(Boolean).join(' ');
-  const read = standing(entry);
-  const last = entry.latestCompletion;
-  const mark = entry.mark;
+// THE BENCH IS AN INSTRUMENT, NOT AN INBOX.
+//
+// The column used to carry a verdict, the last key session's prescription, its
+// execution, the next key session's prescription, the ladder movement, an unread
+// flag and the instrument — an athlete record poured into a column, everything
+// competing at the same weight, and the whole thing reading as a task list with
+// red words on it. "Where is my judgment useful" is a subtler question than an
+// alert, and a bench that shouts is a bench you stop looking at.
+//
+// So three reads, and they work from ten feet away:
+//
+//     JOSÉ                who
+//     2 MI OWNED          what he has established
+//     NEEDS A READ        where judgment is useful, quietly
+//     NEXT · 5 MI · SEP 8 what is coming
+//
+// Everything else — the splits, the verdict, the prescription, the athlete's own
+// words — is one click away on his page, which is where a thing gets read.
 
-  const lastLine = last ? (() => {
-    const asked = entry.latestVersion
-      ? [entry.latestVersion.title, structureOf(entry.latestVersion)]
-          .filter(Boolean).filter((part, i, all) => i === 0 || !titleAlreadySays(all[0], part)).join(' · ')
-      : 'Filed';
-    const came = splitsLine(last, entry.latestPieces);
-    const verdict = heldTheBand(last, entry.latestPieces, entry.latestVersion);
-    return `<div><div class="lab">LAST KEY · ${escapeHtml(dayLabel(last.filed_at.slice(0, 10)).toUpperCase())}</div>
-      <div class="val">${escapeHtml(asked)}</div>
-      ${came ? `<div class="val out">${escapeHtml(came)}${verdict ? `, ${escapeHtml(verdict)}` : ''}</div>` : ''}</div>`;
-  })() : '';
-
-  const nextLine = entry.next ? (() => {
-    const shape = [titleOf(entry.next), doseLine(entry.next)]
-      .filter(Boolean).filter((part, i, all) => i === 0 || !titleAlreadySays(all[0], part)).join(' · ');
-    // A rung is not just another key session. When the next one would move the
-    // ladder, the card says so — it is the difference between a Thursday and the
-    // first time an athlete owns anything.
-    const rung = rungFor(entry.next, entry.mark);
-    return `<div><div class="lab">NEXT KEY · ${escapeHtml(dayLabel(entry.next.scheduled_on).toUpperCase())}</div>
-      <div class="val dim">${escapeHtml(shape)}</div>
-      ${rung ? `<div class="val rung">${rung.first
-        ? 'First rung. Nothing owned until this lands.'
-        : `Moves the ladder to ${escapeHtml(Number(rung.rung.value))}.`}</div>` : ''}</div>`;
-  })() : '';
-
+// What the coach is being asked for, in three words or none. Silence is a
+// legitimate answer and the commonest one: an athlete who is simply training
+// says nothing here.
+function askedOf(entry) {
   const item = entry.topItem;
-  const noteClass = item && item.kind === 'athlete_report' ? 'note amb' : 'note';
-  const figure = mark?.current_value != null
-    ? `<b>${escapeHtml(Number(mark.current_value))}</b><span>${escapeHtml(String(mark.unit || '').toUpperCase())} OWNED${
-        entry.markTarget ? ` · NEEDS ${escapeHtml(Number(entry.markTarget))}` : ''}</span>`
-    : '<b class="none">—</b><span>NOTHING ESTABLISHED</span>';
+  if (!item) return null;
+  const when = item.occurred_at ? dayLabel(item.occurred_at.slice(0, 10)) : null;
+  switch (item.kind) {
+    case 'athlete_report':    return { word: 'Needs a read', when, live: true };
+    case 'recovery_flag':     return { word: 'Recovery did not settle', when, live: true };
+    case 'unread_session':    return { word: 'Filed, unread', when, live: false };
+    case 'missing_direction': return { word: 'Due without instructions', when, live: true };
+    default:                  return { word: item.title || 'Waiting on you', when, live: false };
+  }
+}
 
-  return `<button class="col${entry.attention.length ? ' needs' : ''}" type="button" data-slug="${escapeHtml(entry.slug)}">
-    <div class="plate${plateOf(entry.slug)}"></div><div class="mono">${escapeHtml((entry.first_name || '?')[0])}</div>
+function columnHtml(entry) {
+  const mark = entry.mark;
+  const out = weeksOut(entry);
+  const asked = askedOf(entry);
+  const next = entry.next;
+  const nextLine = next ? [shortDose(next.currentVersion) || titleOf(next),
+    next.scheduled_on ? dayLabel(next.scheduled_on) : null].filter(Boolean).join(' · ') : null;
+  const rung = next ? rungFor(next, mark) : null;
+
+  return `<button class="col${entry.portraitUrl ? ' shot' : ''}" type="button" data-slug="${escapeHtml(entry.slug)}">
+    <div class="plate${plateOf(entry.slug)}"></div>
     <img data-portrait="${escapeHtml(entry.slug)}" alt="">
     <div class="tint"></div><div class="scrim"></div>
     <div class="body">
-      <div class="nameBlk"><div class="name">${escapeHtml(entry.first_name)}</div>
-        <div class="meta">${escapeHtml(entry.goal_label || 'No goal set')}</div>
-        <div class="week">${escapeHtml(race)}</div></div>
-      <div class="verdict ${read.tone}"><b>${escapeHtml(read.word)}.</b> ${escapeHtml(read.because)}</div>
-      <div class="regs">${lastLine}${nextLine}</div>
-      <div class="${noteClass}">${escapeHtml(noteFor(item))}</div>
-      <div class="inst">${figure}</div>
+      <div class="name">${escapeHtml(entry.first_name)}</div>
+      <div class="owned">${mark?.current_value != null
+        ? `<b>${escapeHtml(Number(mark.current_value))}</b><span>${escapeHtml(String(mark.unit || 'mi').toUpperCase())} OWNED</span>`
+        : '<b class="none">—</b><span>NOTHING ESTABLISHED</span>'}</div>
+      <div class="colFoot">
+        ${asked ? `<div class="asked${asked.live ? ' live' : ''}">${escapeHtml(asked.word)}${
+          asked.when ? `<em>${escapeHtml(asked.when)}</em>` : ''}</div>` : ''}
+        ${nextLine ? `<div class="nextUp"><b>NEXT</b><span>${escapeHtml(nextLine)}</span>${
+          rung ? '<em>Moves what he owns</em>' : ''}</div>` : ''}
+        ${out == null ? '' : `<div class="outIn">${escapeHtml(entry.block?.race_place
+          || entry.block?.race_name || entry.target_event || 'Race')} · ${escapeHtml(out)} weeks</div>`}
+      </div>
     </div>
   </button>`;
 }
@@ -351,31 +359,30 @@ function ladderHtml() {
   const mark = record.primaryMark;
   const rungs = (mark?.checkpoints || []).slice().sort((a, b) => a.position - b.position);
   if (!rungs.length) return '';
-  const stateWord = { reached: 'REACHED', current: 'CURRENT', proposed: 'AHEAD', repeated: 'REPEATED', retired: 'RETIRED' };
+  // `current` on a checkpoint means current TARGET, and printing it under a rung
+  // the athlete has not reached read as current capability — the page said he
+  // owns two while the ladder said five was current. OWNED is what he has; NEXT
+  // is what is being asked.
+  const stateWord = { reached: 'OWNED', current: 'NEXT', proposed: '', repeated: 'REPEATED', retired: 'RETIRED' };
   const cls = (state) => state === 'reached' ? 'rung done' : state === 'current' ? 'rung next' : 'rung';
-  return `<div class="h">${escapeHtml(String(mark.label || 'The ladder').toUpperCase())}${
-    mark.current_question ? `<span class="qual"> · ${escapeHtml(mark.current_question)}</span>` : ''
-  }</div>
+  // No question here. The page already asked it, in the size it deserves.
+  return `<div class="h">${escapeHtml(String(mark.label || 'The ladder').toUpperCase())}</div>
   <div class="rail" data-rungs="${rungs.length}">${rungs.map((rung) => `
     <div class="${cls(rung.state)}"><div class="dot"></div>
       <div class="work">${escapeHtml(Number(rung.value))}${mark.unit ? ` ${escapeHtml(mark.unit)}` : ''}</div>
       <div class="at">${escapeHtml(rung.label || '')}</div>
-      <div class="state">${escapeHtml(stateWord[rung.state] || String(rung.state).toUpperCase())}</div></div>`).join('')}
+      <div class="state">${escapeHtml(stateWord[rung.state] ?? String(rung.state).toUpperCase())}</div></div>`).join('')}
   </div>`;
 }
 
 // What the plan asks of this week. The authored number only — the watch total is
 // Strava, and Strava is not ours until laps ingest lands. A comparison drawn
 // against a number the system does not hold would be hand-written.
-function loadHtml() {
-  const week = record.currentWeek;
-  if (!week) return '';
-  const sessions = record.sessionsByWeek?.[week.id] || [];
-  const miles = sessions.reduce((total, session) => total + (authoredMiles(session.currentVersion) || 0), 0);
-  if (!miles) return '';
-  return `<div class="loop cont"><span class="then">AUTHORED</span>
-    <span><b>${Number(miles.toFixed(1))} mi</b> in week ${escapeHtml(week.week_number)}, across ${sessions.length} session${sessions.length === 1 ? '' : 's'}.</span></div>`;
-}
+// The week's authored mileage used to sit under the ladder as "AUTHORED 39 mi in
+// week 2, across 4 sessions" — accounting language on a page whose whole job is
+// one coaching thought. Weekly load is a fact about the plan, and the plan has a
+// surface. It lives there.
+function loadHtml() { return ''; }
 
 // The newest filing, and the facts that belong to it.
 //
@@ -424,16 +431,99 @@ function openHtml() {
     </div>`).join('');
 }
 
+// THE ATHLETE PAGE HAS ONE DOMINANT THOUGHT.
+//
+// The photograph said JOSÉ and the right-hand side said goal, ladder, authored,
+// latest evidence, what helps, open, symptom — an editorial portrait with a
+// dashboard pushed against it, and nothing to look at first. The page already
+// knows what it is about, and it is not a goal label:
+//
+//     RACE PACE DURABILITY
+//     How far can he hold 6:30–6:45 without it coming apart?
+//     2 MI  continuously owned
+//     NEXT  5 mi continuous · Sep 8
+//
+// The ladder supports that sentence. It is not the sentence.
+//
+// And the ladder's own words were dangerous: it marked 5 mi CURRENT while the
+// page said he owns 2. Five is not current ownership — it is the next question.
+// `mark_checkpoints.state` calls the next unreached rung `current`, meaning
+// current target; the surface was reading it as current capability. Two is
+// OWNED, five is NEXT, and nothing else is emphasised.
+
+// ── STANDING FACTS ──────────────────────────────────────────────────────────
+//
+// Everything else on this page is an event: a session, a filing, a report. This
+// is the other kind of knowledge — what is true about this athlete right now,
+// which no amount of scrolling through evidence will tell you. José tolerates
+// heat badly. Hope goes under her band when she feels good. Those are the things
+// a coach carries in their head and a coaching system should not make them.
+//
+// Superseded, never overwritten, the same as a judgment: the view hands back the
+// newest per facet that nothing has replaced, so the history stays and the page
+// shows what stands.
+//
+// FACETS are deliberately small and deliberately shared with strength athletes.
+// WHAT HELPS for a runner and WHAT I'M SEEING for Rod and Devin are one object.
+const FACETS = [
+  ['helps', 'WHAT HELPS'],
+  ['body', 'BODY'],
+  ['capacity', 'CAPACITY'],
+  ['practice', 'PRACTICE'],
+  ['pattern', 'PATTERN'],
+  ['aspiration', 'WANTS'],
+  ['means', 'MEANS']
+];
+const FACET_WORD = new Map(FACETS);
+const SOURCE_WORD = { athlete_reported: 'They said', coach_observed: 'You saw', system_detected: 'The rule found' };
+
+function observationsHtml() {
+  const rows = (record.observations || []).slice()
+    .sort((a, b) => String(b.observed_on).localeCompare(String(a.observed_on)));
+  const first = record.athlete?.first_name || '';
+  return `<div class="hRow">
+      <div class="h">WHAT HELPS ${escapeHtml(String(first).toUpperCase())}</div>
+      <button class="act quiet" type="button" data-observe="new">Add</button>
+    </div>
+    ${rows.length
+      ? `<div class="stands">${rows.map((row) => `<div class="stand" data-observation="${escapeHtml(row.id)}">
+          <div class="standTop">
+            <b>${escapeHtml(FACET_WORD.get(row.facet) || String(row.facet).toUpperCase())}</b>
+            <span>${escapeHtml(SOURCE_WORD[row.source] || row.source)} · ${
+              escapeHtml(dayLabel(String(row.observed_on).slice(0, 10)))}</span>
+          </div>
+          <p>${escapeHtml(row.observation)}</p>
+        </div>`).join('')}</div>`
+      : `<p class="empty section">Nothing standing yet. A standing fact is what stays true between
+         sessions — how ${escapeHtml(first)} responds to heat, what his week can absorb, what he is
+         actually training for. Not an event.</p>`}`;
+}
+
 function athleteHtml() {
   const athlete = record.athlete;
   const block = record.block;
   const week = record.currentWeek;
+  const mark = record.primaryMark;
   const race = raceLine(athlete, block);
   const standing = week && block?.total_weeks ? `week ${week.week_number} of ${block.total_weeks}` : '';
+  const owned = mark?.current_value != null ? Number(mark.current_value) : null;
+
+  // The next question, not the next session: the first coming session that would
+  // move what he owns, falling back to the next rung the ladder has not reached.
+  const coming = (record.sessions || [])
+    .filter((session) => session.scheduled_on && session.scheduled_on >= today()
+      && session.state !== 'cancelled')
+    .sort((a, b) => a.scheduled_on.localeCompare(b.scheduled_on));
+  const nextRungSession = coming.find((session) => rungFor(session, mark));
+  const nextRung = (mark?.checkpoints || []).slice().sort((a, b) => a.position - b.position)
+    .find((rung) => rung.state !== 'reached');
+  const nextLine = nextRungSession
+    ? `${shortDose(nextRungSession.currentVersion)} continuous · ${dayLabel(nextRungSession.scheduled_on)}`
+    : nextRung ? `${Number(nextRung.value)} ${mark?.unit || 'mi'}` : null;
 
   return `<main class="view on"><div class="stage">
     <div class="pane">
-      <div class="plate${plateOf(athlete.slug)}"></div><div class="mono">${escapeHtml((athlete.first_name || '?')[0])}</div>
+      <div class="plate${plateOf(athlete.slug)}"></div>
       <img data-portrait="${escapeHtml(athlete.slug)}" alt="">
       <div class="tint"></div><div class="paneFloor"></div>
       <div class="plateName">
@@ -443,24 +533,32 @@ function athleteHtml() {
       </div>
     </div>
     <div class="fold">
-      <button class="back" type="button" data-nav="bench">← Bench</button>
-      <button class="back alt" type="button" data-nav="plan">The plan →</button>
-
-      <div class="section">
-        <div class="h">GOAL</div>
-        <p class="goalLine">${athlete.goal_label ? escapeHtml(athlete.goal_label) : '<span class="dim">Not set</span>'}</p>
+      <div class="hRow">
+        <button class="back" type="button" data-nav="bench">← Bench</button>
+        <button class="back alt" type="button" data-nav="plan">The plan →</button>
       </div>
 
-      <div class="rule"></div>
+      <div class="thesis">
+        <div class="h">${escapeHtml(CAP(block?.name || 'The block'))}</div>
+        <h1>${escapeHtml(mark?.current_question || block?.goal_statement || athlete.goal_label || '')}</h1>
+        <div class="state">
+          <div class="owns">
+            <b>${owned != null ? escapeHtml(owned) : '—'}</b>
+            <span>${escapeHtml(String(mark?.unit || 'mi').toUpperCase())}<br>CONTINUOUSLY OWNED</span>
+          </div>
+          ${nextLine ? `<div class="nextQ"><div class="h">NEXT</div>
+            <p>${escapeHtml(nextLine)}</p></div>` : ''}
+        </div>
+      </div>
+
       ${ladderHtml()}
       ${loadHtml()}
-      <div class="rule"></div>
 
+      <div class="rule"></div>
       <div class="cols">
         <div>${evidenceHtml()}</div>
         <div>
-          <div class="h">WHAT HELPS ${escapeHtml(String(athlete.first_name).toUpperCase())}</div>
-          <p class="empty section">Standing facts have no table yet. This section fills when they do.</p>
+          ${observationsHtml()}
           <div class="rule tight"></div>
           ${openHtml()}
         </div>
@@ -718,22 +816,104 @@ function workLine(version) {
   return [quantity, band].filter(Boolean).join(' · ');
 }
 
-// A session states the work it asks for and, separately, what it costs the week.
-// Six miles at race pace inside a nine and a half mile Tuesday is two facts and
-// they are not interchangeable: the first is the training, the second is the
-// mileage. The session line appears only where the two differ.
-function sessionLine(version) {
-  const total = authoredMiles(version);
-  const work = workMiles(version);
-  if (total == null) return '';
-  if (work != null && Math.abs(total - work) < 0.05) return '';
-  return `${Number(total.toFixed(1))} mi session`;
+// Continuous at a band. This is the shape that can move what an athlete owns:
+// one uninterrupted piece with a prescription attached. Three by two miles is six
+// miles of race-pace volume and two miles of continuous distance, and only the
+// second is what the ladder asks about. A one-sided ceiling is not a band — the
+// weekly easy budget has the same shape and cannot establish anything.
+function continuousAtBand(version) {
+  const parts = workParts(version);
+  if (parts.length !== 1) return false;
+  const part = parts[0];
+  return part.shape === 'continuous' && part.distance != null
+    && part.pace_low_seconds != null && part.pace_high_seconds != null;
 }
 
-// What came back. Pace is computed only where both distance and clock are on
-// file; a session filed by hand with neither says its miles and its RPE and
-// stops. Splits are read out of the pieces in seconds per mile and never
-// recomputed from a rounded distance.
+// ── THE MATRIX IS NOT THE INSPECTOR ─────────────────────────────────────────
+//
+// A cell is ninety-six pixels wide. Fifteen of them across and seven down is a
+// hundred and five cells, and when each one is a little article — title, dose,
+// band, session distance, splits, RPE — the eye has nowhere to land and the
+// season stops being visible, which is the only thing the matrix is for.
+//
+// So the resting cell holds three short lines at most, and everything else is a
+// click away in the drawer. The Pfitzinger table reads because its cells are
+// terse; ours were terse until we made them explain themselves.
+//
+//     3 × 2 MI          the dose, or the session's name if it has one
+//     6:30–6:45         the rule
+//     ✓ 6:29 avg        what came back, at block scale
+
+const CAP = (text) => String(text || '').toUpperCase();
+
+// A session with a name is a session whose name carries meaning — The Blind
+// Mile, Durability Read. A session called "5 mi at race pace" is its own dose
+// twice over, so the dose leads and the title is not printed at all.
+const isNamed = (title) => !/^[\d\s×x]/.test(String(title || ''))
+  && !/^(easy|long run|off|rest)\b/i.test(String(title || ''));
+
+// The dose in as few characters as carry it.
+function shortDose(version) {
+  const parts = workParts(version);
+  if (!parts.length) return '';
+  const magnitude = (part) => {
+    if (part.distance != null) {
+      const each = part.distance_unit === 'km' ? Number(part.distance) * 0.621371 : Number(part.distance);
+      return `${Number(each.toFixed(2))} MI`;
+    }
+    if (part.duration_seconds != null) return `${Math.round(part.duration_seconds / 60)} MIN`;
+    return '';
+  };
+  if (parts.length === 1) {
+    const part = parts[0];
+    const reps = part.shape === 'repetitions' ? (part.repeat_count || 1) : 1;
+    const one = magnitude(part);
+    return reps > 1 ? `${reps} × ${one}` : one;
+  }
+  // A long run and its finish are one distance to the eye. The finish is the rule.
+  const total = parts.reduce((sum, part) => {
+    const reps = part.shape === 'repetitions' ? (part.repeat_count || 1) : 1;
+    if (part.distance == null) return sum;
+    const each = part.distance_unit === 'km' ? Number(part.distance) * 0.621371 : Number(part.distance);
+    return sum + each * reps;
+  }, 0);
+  return total ? `${Number(total.toFixed(2))} MI` : '';
+}
+
+// The rule the dose is run to. One line, and only where there is one.
+function shortRule(version, title) {
+  const parts = workParts(version);
+  const banded = parts.find((part) => part.pace_low != null && part.pace_high != null);
+  if (banded) {
+    if (parts.length > 1 && banded.distance != null) {
+      return `${Number(banded.distance)} mi @ ${banded.pace_low}–${banded.pace_high}`;
+    }
+    return `${banded.pace_low}–${banded.pace_high}`;
+  }
+  const ceiling = parts.find((part) => part.pace_low != null && part.pace_high == null);
+  if (ceiling) return 'Easy';
+  if (/^long run/i.test(String(title || ''))) return 'Long';
+  return '';
+}
+
+// What came back, at block scale. Not the splits — the one number that says
+// whether the session happened and roughly how.
+function compactRan(completion, pieces) {
+  if (!completion) return '';
+  if (completion.status === 'skipped') return '× skipped';
+  const reps = pieces.filter((piece) => piece.kind === 'rep' && piece.pace_seconds != null);
+  if (reps.length) {
+    const mean = reps.reduce((sum, piece) => sum + piece.pace_seconds, 0) / reps.length;
+    return `✓ ${clock(mean)} avg`;
+  }
+  if (completion.actual_distance && completion.duration_seconds) {
+    return `✓ ${clock(Number(completion.duration_seconds) / Number(completion.actual_distance))}`;
+  }
+  if (completion.rpe != null) return `✓ RPE ${completion.rpe}`;
+  return '✓';
+}
+
+// The full line, for the drawer, where there is room for it.
 function ranLine(completion, pieces) {
   if (!completion) return '';
   const bits = [];
@@ -747,43 +927,51 @@ function ranLine(completion, pieces) {
   if (completion.surface === 'treadmill') bits.push('treadmill');
   const splits = pieces.filter((piece) => piece.kind === 'rep' && piece.pace_seconds != null)
     .sort((a, b) => a.position - b.position).map((piece) => clock(piece.pace_seconds));
-  const tail = splits.length ? splits.join(' · ') : (completion.rep_paces || '');
-  return [bits.join(' · '), tail].filter(Boolean).join(' — ');
+  return [bits.join(' · '), splits.join(' · ')].filter(Boolean).join(' — ');
 }
 
-// A prescription, and whatever came back against it.
 function prescribedCell(session, context) {
   const version = session.currentVersion;
   const classes = ['s'];
   if (session.state === 'cancelled') classes.push('canx');
-  const completion = context.completionFor(session.id);
-  const ran = session.state === 'cancelled' ? '' : ranLine(completion, context.piecesFor(completion?.id));
+  // LIME MEANS ONE THING: this session moves what the athlete owns.
+  //
+  // It used to mean two — a lime title for anything continuous at the band, a
+  // lime bar for the subset the ladder was asking for — and two meanings in one
+  // colour is no meaning at all. Ten lime cells across the block taught the eye
+  // that lime was "race pace", which is what the band column already says.
+  //
+  // So `own` keeps its own quiet mark: a hairline rule, because the shape that
+  // CAN establish a distance is worth seeing and is not the same claim as one
+  // that WILL. Only a rung is lime.
+  if (continuousAtBand(version)) classes.push('own');
+  const rung = session.state === 'cancelled' ? null : rungFor(session, context.mark);
+  if (rung) classes.push('rung');
   const title = titleOf(session);
-  const dose = workLine(version);
-  const whole = sessionLine(version);
+  const dose = shortDose(version);
+  const named = isNamed(title);
+  const head = named ? title : (dose || title);
+  const rule = named ? [dose, shortRule(version, title)].filter(Boolean).join(' · ')
+                     : shortRule(version, title);
+  const completion = context.completionFor(session.id);
+  const back = session.state === 'cancelled' ? ''
+    : compactRan(completion, context.piecesFor(completion?.id));
   return `<span class="${classes.join(' ')}" data-session="${escapeHtml(session.id)}">
-    <b>${escapeHtml(title)}</b>
-    ${dose && !titleAlreadySays(title, dose) ? `<i>${escapeHtml(dose)}</i>` : ''}
-    ${whole ? `<em>${escapeHtml(whole)}</em>` : ''}
-    ${ran ? `<u>${escapeHtml(ran)}</u>` : ''}</span>`;
+    <b>${escapeHtml(named ? head : CAP(head))}</b>
+    ${rule ? `<i>${escapeHtml(rule)}</i>` : ''}
+    ${back ? `<u>${escapeHtml(back)}</u>` : ''}</span>`;
 }
 
-// A run carrying no planned_session_id. Ten of the twelve filings on 4 September
-// are these, and calling them unplanned would be wrong: the week authors easy
-// running as one quantity with no day, and the athlete places it. So a filing
-// inside a week that carries an easy budget is an ALLOCATION against that
-// budget — authored work, athlete-placed — and only a filing with no budget to
-// draw on is genuinely unprescribed.
-//
-// Nothing here fabricates a dated planned_session, and nothing here counts
-// toward authored volume. The budget was already counted once as eighteen miles;
-// an allocation is the spending of it, not more of it.
+// A run the athlete placed himself against the week's authored easy quantity.
+// The matrix says the miles and nothing else — "from the weekly budget" is
+// implementation history, and it does not belong on the primary surface.
 function allocationCell(completion, context, budgeted) {
-  const ran = ranLine(completion, context.piecesFor(completion.id));
-  return `<span class="s ${budgeted ? 'alloc' : 'orphan'}" data-completion="${escapeHtml(completion.id)}">
-    <b>${budgeted ? 'Easy' : 'No prescription'}</b>
-    ${budgeted ? '<i>from the weekly budget</i>' : ''}
-    ${ran ? `<u>${escapeHtml(ran)}</u>` : ''}</span>`;
+  const back = compactRan(completion, context.piecesFor(completion.id));
+  const miles = completion.actual_distance != null ? `${Number(completion.actual_distance)} MI` : 'RAN';
+  return `<span class="s alloc" data-completion="${escapeHtml(completion.id)}">
+    <b>${escapeHtml(miles)}</b>
+    <i>${budgeted ? 'Easy' : 'No prescription'}</i>
+    ${back ? `<u>${escapeHtml(back)}</u>` : ''}</span>`;
 }
 
 // ── TRANCHE B: who this is, and what the block is asking ────────────────────
@@ -826,8 +1014,18 @@ function paceBands() {
 // The volume horizon. Not a score — the range this particular block moves them
 // across, which is the second progression running underneath the ladder and the
 // one the easy days were authored to express.
-function volumeHorizon(weeks, milesFor) {
-  const totals = weeks.map(milesFor).filter((miles) => miles > 0);
+// The volume horizon. Not a score — the range this block moves them across.
+//
+// It read "35 mi → 58 mi peak", and 35 was a lie of omission. Weeks 1 and 2 are
+// in the past and their easy days were never authored by day, so their totals
+// are the shape of an authoring gap rather than of anyone's training. Both
+// athletes entered this block running about 45 a week.
+//
+// So the horizon is drawn only from weeks that actually author their easy
+// running. A week whose easy is still a dateless budget has no total worth
+// quoting, and quoting it tells a false story about where an athlete started.
+function volumeHorizon(weeks, milesFor, authored) {
+  const totals = weeks.filter(authored).map(milesFor).filter((miles) => miles > 0);
   if (totals.length < 2) return null;
   const first = Math.round(totals[0]);
   const peak = Math.round(Math.max(...totals));
@@ -900,6 +1098,7 @@ function planHtml() {
   const completions = record.completions || [];
   const pieces = record.pieces || [];
   const context = {
+    mark: record.primaryMark,
     completionFor: (sessionId) => completions.find((item) => item.planned_session_id === sessionId) || null,
     piecesFor: (completionId) => completionId ? pieces.filter((piece) => piece.completion_id === completionId) : []
   };
@@ -939,7 +1138,23 @@ function planHtml() {
       ${out == null ? '' : `<span class="wo">${escapeHtml(out)}</span>`}</th>`;
   }).join('');
 
-  const rows = WEEK_DAYS.map((day, index) => `<tr class="${HEAVY_DAYS.has(day) ? 'heavy' : ''}">
+  // What the week is for, in one line. `training_weeks.intent` already exists and
+  // is null on every row in the database, so this renders nothing today rather
+  // than inventing a sentence per week. The slot stays: a plan whose weeks cannot
+  // say what they are for is a calendar, and this row is where that gets fixed.
+  const purposeRow = weeks.some((week) => String(week.intent || '').trim())
+    ? `<tr class="prow"><th class="d">This week is for</th>${weeks.map((week) => `<td class="${
+        isCurrent(week) ? 'cur' : ''}">${week.intent ? escapeHtml(week.intent) : '<span class="none">·</span>'}</td>`).join('')}</tr>`
+    : '';
+
+  // A day nothing is ever authored on is not a training row. Sunday is canonical
+  // rest across all fifteen weeks, and giving it the same height as Saturday says
+  // it is a day with nothing in it rather than a day that is meant to be empty.
+  const everAuthored = (index) => weeks.some((week) => week.starts_on
+    && forWeek(week).some((session) => session.scheduled_on === addDays(week.starts_on, index)));
+
+  const rows = WEEK_DAYS.map((day, index) => everAuthored(index)
+    ? `<tr class="${HEAVY_DAYS.has(day) ? 'heavy' : 'light'}">
       <th class="d">${day}</th>
       ${weeks.map((week) => {
         const on = week.starts_on ? addDays(week.starts_on, index) : null;
@@ -949,7 +1164,9 @@ function planHtml() {
           + ran.map((item) => allocationCell(item, context, budgetFor(week).length > 0)).join('');
         return `<td class="${isCurrent(week) ? 'cur' : ''}">${inside || '<span class="none">·</span>'}</td>`;
       }).join('')}
-    </tr>`).join('');
+    </tr>`
+    : `<tr class="restrow"><th class="d">${day}</th>
+      <td colspan="${weeks.length}">Rest</td></tr>`).join('');
 
   // The budget sits outside the dated days and never gets one. It is the week's
   // easy running as one authored quantity, placed by the athlete.
@@ -965,11 +1182,10 @@ function planHtml() {
         const budget = budgetFor(week);
         const spent = allocatedIn(week);
         const done = datedEasy(week);
-        return `<td class="${isCurrent(week) ? 'cur' : ''}">${budget.length
-          ? budget.map((session) => `<span class="s ${done ? 'superseded' : ''}">
-              <b>${done ? 'Authored by day' : 'Easy'}</b>
-              <i>${escapeHtml(workLine(session.currentVersion))}</i>
-              ${!done && spent ? `<u>${escapeHtml(`${Number(spent.toFixed(2))} mi allocated`)}</u>` : ''}</span>`).join('')
+        return `<td class="${isCurrent(week) ? 'cur' : ''}">${budget.length && !done
+          ? budget.map((session) => `<span class="s alloc">
+              <b>${escapeHtml(CAP(shortDose(session.currentVersion)))}</b><i>Easy</i>
+              ${spent ? `<u>${escapeHtml(`✓ ${Number(spent.toFixed(1))}`)}</u>` : ''}</span>`).join('')
           : '<span class="none">·</span>'}</td>`;
       }).join('')}</tr>` : '';
 
@@ -988,7 +1204,7 @@ function planHtml() {
 
   const mark = record.primaryMark;
   const owned = mark?.current_value != null ? Number(mark.current_value) : null;
-  const horizon = volumeHorizon(weeks, milesFor);
+  const horizon = volumeHorizon(weeks, milesFor, datedEasy);
   const bands = paceBands();
   const observed = observedWeek(weeks, current);
   const soFar = thisWeekSoFar(current);
@@ -1004,7 +1220,7 @@ function planHtml() {
         block.race_name ? ` to ${escapeHtml(block.race_name)}` : ''}</span>
     </div>
 
-    <div class="phero">
+    <div class="pstrip">
       <div class="pwho">
         <div class="pfrm"><span>${escapeHtml(initials(athlete.first_name))}</span>
           <img data-portrait="${escapeHtml(athlete.slug)}" alt=""></div>
@@ -1013,22 +1229,20 @@ function planHtml() {
             current ? ` · week ${escapeHtml(current.week_number)} of ${escapeHtml(block.total_weeks)}` : ''}</div>
         </div>
       </div>
-      <div><div class="plab">THE QUESTION</div>
-        <h2>${escapeHtml(mark?.current_question || block.goal_statement || '')}</h2>
-        ${horizon ? `<p>${escapeHtml(horizon)} — the volume this block moves them across, which is
-          a different progression from the one below and is not scored against it.</p>` : ''}</div>
-      <div><div class="plab">OWNS TODAY</div>
-        <h2 class="pfig">${owned != null ? `${escapeHtml(owned)} <small>mi continuous</small>` : '—'}</h2>
-        <p>${owned != null
-          ? `The longest single piece held inside the band without coming apart.${
-              rungs ? ` ${escapeHtml(rungs)} session${rungs === 1 ? '' : 's'} in this plan move that number and nothing else does.` : ''}`
-          : 'Nothing established yet.'}</p></div>
+      <div class="pq">${escapeHtml(mark?.current_question || block.goal_statement || '')}</div>
+      <div class="powns">
+        <b>${owned != null ? escapeHtml(owned) : '—'}</b>
+        <span>${escapeHtml(String(mark?.unit || 'mi').toUpperCase())} OWNED</span>
+      </div>
+      ${horizon ? `<div class="phorizon"><b>VOLUME</b><span>${escapeHtml(horizon)}</span></div>` : ''}
+      <div class="pkey">${bands.map((band) => `<div>
+        <b>${escapeHtml(band.label)}</b><span>${escapeHtml(band.value)}</span></div>`).join('')}</div>
     </div>
 
-    <div class="pbands">${bands.map((band) => `<div>
-      <b>${escapeHtml(band.label)}</b><strong>${escapeHtml(band.value)}</strong>
-      <em>${escapeHtml(band.line)}</em></div>`).join('')}</div>
-
+    <div class="pgWrap"><div class="pgScroll"><table class="pg">
+      <thead><tr><th class="d"><span class="wl">weeks out</span></th>${head}</tr></thead>
+      <tbody>${purposeRow}${rows}${budgetRow}${volume}</tbody>
+    </table></div></div>
     <div class="prhythm">
       <div><b>THE WEEK</b><strong>${escapeHtml(weekRhythm(weeks, forWeek))}</strong>
         <em>Read off what the block authors on each weekday, not a template.</em></div>
@@ -1043,21 +1257,117 @@ function planHtml() {
              ${escapeHtml(Number(milesFor(current).toFixed(0)))} asked.</em>`
         : '<strong>—</strong><em>Nothing filed this week.</em>'}</div>
     </div>
-    <div class="pgWrap"><div class="pgScroll"><table class="pg">
-      <thead><tr><th class="d"><span class="wl">weeks out</span></th>${head}</tr></thead>
-      <tbody>${rows}${budgetRow}${volume}</tbody>
-    </table></div></div>
+    <div class="pbands">${bands.map((band) => `<div>
+      <b>${escapeHtml(band.label)}</b><strong>${escapeHtml(band.value)}</strong>
+      <em>${escapeHtml(band.line)}</em></div>`).join('')}</div>
+
     <div class="pgFoot">
       <b>Struck through</b> is cancelled and stays visible, so you can see what was withdrawn.
       <b>Easy · from the weekly budget</b> is authored work the athlete placed himself. The week
       authors the quantity; the day is his. Those miles are counted once, in the budget, and never
       again in <b>Miles</b>.
       A middle dot is a day with nothing authored and nothing filed, not a rest day.
+      <b>A lime bar</b> marks a rung — a session that would move what this athlete owns. A lime
+      title is continuous work inside the band, the shape that can establish a distance at all;
+      the bar is the subset the ladder is actually asking for.
       <b>Total</b> is every mile the week asks for, warm-ups and jog recoveries included.
       <b>Easy</b> is standalone easy running only — a warm-up belongs to its quality session.
     </div>
   </main>`;
 }
+// ── THE SESSION, OVER THE MATRIX ────────────────────────────────────────────
+//
+// A cell is 96 pixels wide and holds a title, a dose, a session distance and
+// what came back. That is as much as it should hold. Everything else about the
+// session — its anatomy piece by piece, its band, its recoveries, why it was
+// revised, what the athlete said — needs room, and navigating away to get it
+// costs the thing the matrix exists for: you lose the season while you read the
+// day.
+//
+// So the session opens over the grid and the grid stays lit behind it. Escape
+// and the scrim close it. Nothing here writes, yet — Revise is tranche D and the
+// drawer is where it will live.
+
+let openSession = null;
+
+function anatomyRows(version) {
+  const parts = (version?.components || []).slice().sort((a, b) => a.position - b.position);
+  if (!parts.length) return '<p class="dNone">No anatomy authored.</p>';
+  const clockOf = (secs) => secs % 60 === 0 ? `${secs / 60} min` : `${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}`;
+  return `<div class="dParts">${parts.map((part) => {
+    const reps = part.shape === 'repetitions' ? (part.repeat_count || 1) : 1;
+    const magnitude = part.distance != null
+      ? `${Number(part.distance)} ${part.distance_unit || 'mi'}`
+      : part.duration_seconds != null ? clockOf(part.duration_seconds) : '—';
+    const band = bandOf(part);
+    const rest = part.recovery_seconds
+      ? `${clockOf(part.recovery_seconds)} ${part.recovery_kind || ''}`.trim() : null;
+    return `<div class="dPart">
+      <b>${escapeHtml(part.role.replace('_', ' '))}</b>
+      <span>${escapeHtml(reps > 1 ? `${reps} × ${magnitude}` : magnitude)}</span>
+      <em>${escapeHtml([band, rest ? `${rest} between` : null].filter(Boolean).join(' · ') || '')}</em>
+    </div>`;
+  }).join('')}</div>`;
+}
+
+function drawerHtml(session) {
+  if (!session) return '';
+  const version = session.currentVersion;
+  const versions = (session.versions || []).slice().sort((a, b) => b.version_number - a.version_number);
+  const completion = (record.completions || []).find((item) => item.planned_session_id === session.id) || null;
+  const pieces = completion ? (record.pieces || []).filter((piece) => piece.completion_id === completion.id) : [];
+  const rung = rungFor(session, record.primaryMark);
+  const week = (record.weeks || []).find((item) => item.id === session.week_id);
+  const whole = authoredMiles(version);
+  const work = workMiles(version);
+  return `<div class="dHead">
+      <div>
+        <div class="dWhen">${escapeHtml([week ? `Week ${week.week_number}` : null,
+          session.scheduled_on ? dayLabel(session.scheduled_on) : session.day_label].filter(Boolean).join(' · '))}</div>
+        <h2>${escapeHtml(titleOf(session))}</h2>
+        ${rung ? '<div class="dRung">Moves what you own</div>' : ''}
+      </div>
+      <button class="dClose" type="button" data-drawer="close" aria-label="Close">×</button>
+    </div>
+    <div class="dBody">
+      ${whole != null ? `<div class="dFigs">
+        <div><b>SESSION</b><strong>${escapeHtml(Number(whole.toFixed(2)))} mi</strong></div>
+        ${work != null ? `<div><b>WORK</b><strong>${escapeHtml(Number(work.toFixed(2)))} mi</strong></div>` : ''}
+      </div>` : ''}
+      ${version?.intent ? `<p class="dIntent">${escapeHtml(version.intent)}</p>` : ''}
+      <div class="dLab">ANATOMY</div>
+      ${anatomyRows(version)}
+      ${version?.details ? `<div class="dLab">DETAILS</div><p class="dText">${escapeHtml(version.details)}</p>` : ''}
+      <div class="dLab">WHAT CAME BACK</div>
+      ${completion
+        ? `<p class="dText">${escapeHtml(ranLine(completion, pieces) || 'Filed with no measurements.')}</p>
+           ${completion.athlete_note ? `<p class="dSaid">“${escapeHtml(completion.athlete_note)}”</p>` : ''}`
+        : '<p class="dNone">Nothing filed.</p>'}
+      ${versions.length > 1 ? `<div class="dLab">REVISIONS</div>
+        <div class="dRevs">${versions.map((item) => `<div class="dRev">
+          <b>v${escapeHtml(item.version_number)}</b>
+          <span>${escapeHtml(item.change_reason || (item.version_number === 1 ? 'Authored.' : ''))}</span>
+        </div>`).join('')}</div>` : ''}
+    </div>`;
+}
+
+function showSession(sessionId) {
+  const session = (record?.sessions || []).find((item) => item.id === sessionId);
+  if (!session) return;
+  openSession = sessionId;
+  const drawer = document.getElementById('sessionDrawer');
+  drawer.innerHTML = drawerHtml(session);
+  drawer.classList.add('on');
+  document.getElementById('sessionScrim').classList.add('on');
+  drawer.querySelector('.dClose')?.focus();
+}
+
+function closeSessionDrawer() {
+  openSession = null;
+  document.getElementById('sessionDrawer')?.classList.remove('on');
+  document.getElementById('sessionScrim')?.classList.remove('on');
+}
+
 // ── paint: every geometric value, after render, through the CSSOM ───────────
 
 function paint() {
@@ -1237,10 +1547,57 @@ function closeSheet() {
   sheet.setAttribute('aria-hidden', 'true'); pending = null;
 }
 
+// A standing fact goes in through the same drawer a read does, because it is the
+// same act: you looked at something and concluded something. The difference is
+// only that a read answers a report and this answers the athlete.
+function openObservation() {
+  pending = { kind: 'observation' };
+  document.getElementById('shKind').textContent = 'STANDING FACT';
+  document.getElementById('shTitle').textContent = `What is true about ${record.athlete.first_name}`;
+  document.getElementById('shSub').textContent = 'Superseded, never overwritten.';
+  document.getElementById('shNote').textContent = 'Shown on the athlete page until something replaces it.';
+  document.getElementById('shBody').innerHTML = `
+    <div class="f"><label for="obFacet">WHICH KIND</label>
+      <select id="obFacet">${FACETS.map(([key, word]) =>
+        `<option value="${escapeHtml(key)}">${escapeHtml(word)}</option>`).join('')}</select></div>
+    <div class="f"><label for="obSource">WHOSE FACT</label>
+      <select id="obSource">
+        <option value="coach_observed">You saw it</option>
+        <option value="athlete_reported">They said it</option>
+      </select></div>
+    <div class="f"><label for="obText">THE SENTENCE</label>
+      <textarea id="obText" placeholder="Heat costs him more than distance does."></textarea>
+      <p class="hint">One fact, in the words you would use standing next to them.</p></div>
+    <p class="hint err" id="obError"></p>`;
+  sheet.classList.add('on'); shScrim.classList.add('on'); sheet.setAttribute('aria-hidden', 'false');
+  document.getElementById('obText').focus();
+}
+
+async function keepObservation() {
+  const error = document.getElementById('obError');
+  const text = document.getElementById('obText').value.trim();
+  if (!text) { error.textContent = 'A standing fact needs a sentence.'; return; }
+  const button = document.getElementById('shSave');
+  button.disabled = true; error.textContent = '';
+  try {
+    await addObservation({
+      athleteId: record.athlete.id,
+      facet: document.getElementById('obFacet').value,
+      source: document.getElementById('obSource').value,
+      observation: text
+    });
+    closeSheet();
+    await selectAthlete(record.athlete.slug, { silent: true });
+  } catch (failure) {
+    error.textContent = failure.message;
+  } finally { button.disabled = false; }
+}
+
 // One write, then one status change, then the record is re-read. The read is
 // what clears the item; the status change is what records that it was cleared
 // and why. Both name the evidence.
 async function keepRead() {
+  if (pending?.kind === 'observation') { await keepObservation(); return; }
   if (!pending) { closeSheet(); return; }
   const error = document.getElementById('readError');
   const text = document.getElementById('readText').value.trim();
@@ -1296,6 +1653,7 @@ async function selectAthlete(slug, { silent = false } = {}) {
 }
 
 function render() {
+  closeSessionDrawer();
   const { view, slug } = route();
   if (view === 'bench') app.innerHTML = benchHtml();
   else if (view === 'brief') app.innerHTML = briefHtml();
@@ -1327,6 +1685,14 @@ document.addEventListener('click', (event) => {
     return;
   }
 
+  if (event.target.closest('[data-drawer="close"]') || event.target.closest('#sessionScrim')) {
+    closeSessionDrawer(); return;
+  }
+  const cell = event.target.closest('[data-session]');
+  if (cell) { showSession(cell.dataset.session); return; }
+
+  if (event.target.closest('[data-observe]')) { openObservation(); return; }
+
   const read = event.target.closest('[data-read]');
   if (read) { openRead(read.dataset.read, read.dataset.completion); return; }
 
@@ -1349,7 +1715,11 @@ document.getElementById('shClose').addEventListener('click', closeSheet);
 document.getElementById('shCancel').addEventListener('click', closeSheet);
 shScrim.addEventListener('click', closeSheet);
 document.getElementById('shSave').addEventListener('click', keepRead);
-document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeSheet(); });
+document.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape') return;
+  if (openSession) { closeSessionDrawer(); return; }
+  closeSheet();
+});
 window.addEventListener('hashchange', () => { show().catch(fail); });
 
 // Signed portrait URLs last an hour and this tab stays open all day. Re-signing
