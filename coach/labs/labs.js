@@ -24,7 +24,7 @@
 import { authErrorMessage, getAccessContext } from '/private/auth.js';
 import { createRead, loadAthleteRecord, loadAttentionFor, loadCoachBench, rungFor, savePortrait, setExceptionStatus } from '/private/data.js';
 import { escapeHtml } from '/private/record.js';
-import { authoredMiles, dayLabel, rangeLabel, structureOf, titleAlreadySays } from '/private/render.js';
+import { authoredMiles, dayLabel, rangeLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
 
 const app = document.getElementById('app');
 const nav = document.getElementById('nav');
@@ -718,6 +718,18 @@ function workLine(version) {
   return [quantity, band].filter(Boolean).join(' · ');
 }
 
+// A session states the work it asks for and, separately, what it costs the week.
+// Six miles at race pace inside a nine and a half mile Tuesday is two facts and
+// they are not interchangeable: the first is the training, the second is the
+// mileage. The session line appears only where the two differ.
+function sessionLine(version) {
+  const total = authoredMiles(version);
+  const work = workMiles(version);
+  if (total == null) return '';
+  if (work != null && Math.abs(total - work) < 0.05) return '';
+  return `${Number(total.toFixed(1))} mi session`;
+}
+
 // What came back. Pace is computed only where both distance and clock are on
 // file; a session filed by hand with neither says its miles and its RPE and
 // stops. Splits are read out of the pieces in seconds per mile and never
@@ -748,9 +760,11 @@ function prescribedCell(session, context) {
   const ran = session.state === 'cancelled' ? '' : ranLine(completion, context.piecesFor(completion?.id));
   const title = titleOf(session);
   const dose = workLine(version);
+  const whole = sessionLine(version);
   return `<span class="${classes.join(' ')}" data-session="${escapeHtml(session.id)}">
     <b>${escapeHtml(title)}</b>
     ${dose && !titleAlreadySays(title, dose) ? `<i>${escapeHtml(dose)}</i>` : ''}
+    ${whole ? `<em>${escapeHtml(whole)}</em>` : ''}
     ${ran ? `<u>${escapeHtml(ran)}</u>` : ''}</span>`;
 }
 
@@ -791,8 +805,23 @@ function planHtml() {
 
   const forWeek = (week) => (record.sessionsByWeek?.[week.id] || []);
   const budgetFor = (week) => forWeek(week).filter((session) => !session.scheduled_on);
-  const milesFor = (week) => forWeek(week).reduce((total, session) =>
-    total + (session.state === 'cancelled' ? 0 : (authoredMiles(session.currentVersion) || 0)), 0);
+  const datedEasy = (week) => forWeek(week).some((session) =>
+    session.scheduled_on && /^easy$/i.test(String(session.currentVersion?.title || '').trim()));
+  // Once a week authors its easy days, its budget is history rather than
+  // prescription. The rows stay as the record of how the easy running was
+  // authored before it had days, and stop being counted.
+  const milesFor = (week) => forWeek(week).reduce((total, session) => {
+    if (session.state === 'cancelled') return total;
+    if (!session.scheduled_on && datedEasy(week)) return total;
+    return total + (authoredMiles(session.currentVersion) || 0);
+  }, 0);
+  // Standalone easy running, wherever it falls. A warm-up counts toward the
+  // week's mileage and never toward this: it belongs to its quality session.
+  const easyFor = (week) => forWeek(week).reduce((total, session) => {
+    if (session.state === 'cancelled' || !session.scheduled_on) return total;
+    if (!/^easy/i.test(String(session.currentVersion?.title || '').trim())) return total;
+    return total + (authoredMiles(session.currentVersion) || 0);
+  }, 0);
   const isCurrent = (week) => week.id === current?.id;
   // A cutback week is one carrying materially less than the block's heaviest.
   // Derived, because nothing in training_weeks says "this one is lighter".
@@ -833,15 +862,25 @@ function planHtml() {
     ? `<tr class="easyrow"><th class="d">Across the week</th>${weeks.map((week) => {
         const budget = budgetFor(week);
         const spent = allocatedIn(week);
+        const done = datedEasy(week);
         return `<td class="${isCurrent(week) ? 'cur' : ''}">${budget.length
-          ? budget.map((session) => `<span class="s"><b>Easy</b>
+          ? budget.map((session) => `<span class="s ${done ? 'superseded' : ''}">
+              <b>${done ? 'Authored by day' : 'Easy'}</b>
               <i>${escapeHtml(workLine(session.currentVersion))}</i>
-              ${spent ? `<u>${escapeHtml(`${Number(spent.toFixed(2))} mi allocated`)}</u>` : ''}</span>`).join('')
+              ${!done && spent ? `<u>${escapeHtml(`${Number(spent.toFixed(2))} mi allocated`)}</u>` : ''}</span>`).join('')
           : '<span class="none">·</span>'}</td>`;
       }).join('')}</tr>` : '';
 
-  const volume = `<tr class="volrow"><th class="d">Miles</th>${weeks.map((week) => {
+  // Two lines, not one. TOTAL is every mile the week asks for, warm-ups
+  // included. EASY is standalone easy running only. The gap between them is how
+  // much of the week is consumed by structured running, and it widens through
+  // the ownership block and narrows at the cutback without a word.
+  const volume = `<tr class="volrow"><th class="d">Total</th>${weeks.map((week) => {
     const miles = milesFor(week);
+    return `<td class="${isCurrent(week) ? 'cur' : ''}">${miles ? Number(miles.toFixed(0)) : '·'}</td>`;
+  }).join('')}</tr>
+  <tr class="volrow easyline"><th class="d">Easy</th>${weeks.map((week) => {
+    const miles = easyFor(week);
     return `<td class="${isCurrent(week) ? 'cur' : ''}">${miles ? Number(miles.toFixed(0)) : '·'}</td>`;
   }).join('')}</tr>`;
 
@@ -862,7 +901,8 @@ function planHtml() {
       authors the quantity; the day is his. Those miles are counted once, in the budget, and never
       again in <b>Miles</b>.
       A middle dot is a day with nothing authored and nothing filed, not a rest day.
-      <b>Miles</b> is what the authored components sum to, not a target.
+      <b>Total</b> is every mile the week asks for, warm-ups and jog recoveries included.
+      <b>Easy</b> is standalone easy running only — a warm-up belongs to its quality session.
     </div>
   </main>`;
 }

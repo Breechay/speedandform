@@ -682,3 +682,8 @@ img[data-portrait]{--exp:.9;--con:1.16;--px:50%;--py:40%;--pz:1;--grade:.20}
 
 @media (max-width:900px){.pgHead{padding:74px 16px 16px}.pgWrap{padding:0 16px}
   .pgFoot{padding-left:16px;padding-right:16px}}
+.pg .s em{display:block;font-style:normal;font-size:10.5px;color:var(--muted);margin-top:2px;
+  font-variant-numeric:tabular-nums}
+.pg .s.superseded{opacity:.45}
+.pg tr.volrow.easyline td{padding-top:4px;font-size:12px;color:var(--secondary);font-weight:500}
+.pg tr.volrow.easyline td.cur{color:var(--lime)}

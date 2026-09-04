@@ -95,12 +95,21 @@ export function structureOf(version, { plain = false } = {}) {
   }).join(plain ? ', then ' : ' → ');
 }
 
-// The authored distance of a session, summed from its components. Prescribed
-// distance on the version is the headline; the components are the work, and a
-// repetition counts once per rep.
+// The authored distance of a whole session.
+//
+// `prescribed_distance` is the expected TOTAL SESSION DISTANCE and the
+// components describe the work inside it. That ruling landed on 4 September and
+// it inverted this function: summing the components used to be the answer, and
+// it undercounted every session by its warm-up, its cool-down and its running
+// recoveries. Hills + strides types three minutes of running and is five miles.
+//
+// So the version's own number wins wherever it exists, and the components are
+// the fallback for a session authored before the distinction, or one authored
+// in time rather than distance.
 export function authoredMiles(version) {
+  if (version?.prescribed_distance != null) return Number(version.prescribed_distance);
   const parts = (version?.components || []);
-  if (!parts.length) return version?.prescribed_distance != null ? Number(version.prescribed_distance) : null;
+  if (!parts.length) return null;
   let miles = 0;
   let sawDistance = false;
   parts.forEach((part) => {
@@ -110,6 +119,21 @@ export function authoredMiles(version) {
     miles += each * reps;
     sawDistance = true;
   });
-  if (!sawDistance) return version?.prescribed_distance != null ? Number(version.prescribed_distance) : null;
-  return Number(miles.toFixed(2));
+  return sawDistance ? Number(miles.toFixed(2)) : null;
+}
+
+// The work inside the session, as distinct from the session. Six miles at race
+// pace inside a nine-and-a-half mile Tuesday: the first number is what the
+// session asks the athlete to do, the second is what it costs the week.
+export function workMiles(version) {
+  const parts = (version?.components || []).filter((part) => part.role === 'work');
+  let miles = 0;
+  let saw = false;
+  parts.forEach((part) => {
+    if (part.distance == null) return;
+    const each = part.distance_unit === 'km' ? Number(part.distance) * 0.621371 : Number(part.distance);
+    miles += each * (part.shape === 'repetitions' ? (part.repeat_count || 1) : 1);
+    saw = true;
+  });
+  return saw ? Number(miles.toFixed(2)) : null;
 }
