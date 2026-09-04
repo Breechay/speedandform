@@ -52,8 +52,12 @@ session. Updated 4 September.
 - **Facts that arrived without provenance.** Marcus's rungs and both ladders were
   set by migration with no ledger row. Worth one sweep: which rows claim a state
   with no corresponding movement or judgment behind them.
-- **The plan's ladder starts below where José is.** He owns 6.1; his next two
-  rung sessions are 5 and 7. The 5 re-proves ground he holds.
+- **Do not let the ladder rewrite the plan.** It happened once, on 4 September:
+  `current_value` was set to 6.1 for José from race-pace VOLUME across broken
+  work, which made his authored 5-mile continuous look like ground he had
+  already covered. Broken work carries volume; continuous work establishes
+  continuous distance. The plan authors the progression, the ladder reports
+  evidence, and the two are never the same statement.
 
 ## The gates
 

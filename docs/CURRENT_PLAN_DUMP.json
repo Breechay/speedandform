@@ -590,19 +590,6 @@
  ],
  "checkpoints": [
   {
-   "athlete_id": "10000000-0000-4000-8000-000000000002",
-   "evidence_completion_id": null,
-   "id": "54698d18-db18-451f-92bb-19c4336cce63",
-   "label": "1",
-   "mark_id": "20000000-0000-4000-8000-000000000002",
-   "moved_at": null,
-   "moved_by": null,
-   "position": 1,
-   "source": "legacy",
-   "state": "current",
-   "value": 1
-  },
-  {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
    "evidence_completion_id": null,
    "id": "afe2f291-06de-458b-b28c-59d9baf63748",
@@ -612,19 +599,6 @@
    "moved_by": null,
    "position": 1,
    "source": "legacy",
-   "state": "reached",
-   "value": 1
-  },
-  {
-   "athlete_id": "10000000-0000-4000-8000-000000000003",
-   "evidence_completion_id": null,
-   "id": "307e9975-68ff-421c-bf42-0573c183a5f4",
-   "label": "1",
-   "mark_id": "20000000-0000-4000-8000-000000000003",
-   "moved_at": "2026-08-29T09:35:04.562+00:00",
-   "moved_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
-   "position": 1,
-   "source": "override",
    "state": "reached",
    "value": 1
   },
@@ -642,6 +616,45 @@
    "value": 3
   },
   {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "evidence_completion_id": null,
+   "id": "307e9975-68ff-421c-bf42-0573c183a5f4",
+   "label": "1",
+   "mark_id": "20000000-0000-4000-8000-000000000003",
+   "moved_at": "2026-08-29T09:35:04.562+00:00",
+   "moved_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "position": 1,
+   "source": "override",
+   "state": "reached",
+   "value": 1
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000002",
+   "evidence_completion_id": null,
+   "id": "54698d18-db18-451f-92bb-19c4336cce63",
+   "label": "1",
+   "mark_id": "20000000-0000-4000-8000-000000000002",
+   "moved_at": null,
+   "moved_by": null,
+   "position": 1,
+   "source": "legacy",
+   "state": "current",
+   "value": 1
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "evidence_completion_id": null,
+   "id": "efbc5b5e-49f7-4c75-a611-492306b326a1",
+   "label": "2",
+   "mark_id": "20000000-0000-4000-8000-000000000004",
+   "moved_at": null,
+   "moved_by": null,
+   "position": 2,
+   "source": "legacy",
+   "state": "current",
+   "value": 2
+  },
+  {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
    "evidence_completion_id": null,
    "id": "21000000-0000-4000-8000-000000000002",
@@ -653,6 +666,19 @@
    "source": "legacy",
    "state": "proposed",
    "value": 5
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "evidence_completion_id": null,
+   "id": "097bb7ee-6a44-4254-93f7-25790b7dc079",
+   "label": "2",
+   "mark_id": "20000000-0000-4000-8000-000000000003",
+   "moved_at": null,
+   "moved_by": null,
+   "position": 2,
+   "source": "legacy",
+   "state": "current",
+   "value": 2
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -670,28 +696,15 @@
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
    "evidence_completion_id": null,
-   "id": "097bb7ee-6a44-4254-93f7-25790b7dc079",
-   "label": "2",
+   "id": "4524d08b-051b-461f-88c6-2c20304adc3e",
+   "label": "5",
    "mark_id": "20000000-0000-4000-8000-000000000003",
    "moved_at": null,
    "moved_by": null,
-   "position": 2,
+   "position": 3,
    "source": "legacy",
-   "state": "reached",
-   "value": 2
-  },
-  {
-   "athlete_id": "10000000-0000-4000-8000-000000000004",
-   "evidence_completion_id": null,
-   "id": "efbc5b5e-49f7-4c75-a611-492306b326a1",
-   "label": "2",
-   "mark_id": "20000000-0000-4000-8000-000000000004",
-   "moved_at": null,
-   "moved_by": null,
-   "position": 2,
-   "source": "legacy",
-   "state": "reached",
-   "value": 2
+   "state": "proposed",
+   "value": 5
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -703,7 +716,20 @@
    "moved_by": null,
    "position": 3,
    "source": "legacy",
-   "state": "reached",
+   "state": "proposed",
+   "value": 5
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000002",
+   "evidence_completion_id": null,
+   "id": "dad75e23-62df-4754-b7df-e17339c16497",
+   "label": "5",
+   "mark_id": "20000000-0000-4000-8000-000000000002",
+   "moved_at": null,
+   "moved_by": null,
+   "position": 3,
+   "source": "legacy",
+   "state": "proposed",
    "value": 5
   },
   {
@@ -720,43 +746,17 @@
    "value": 6
   },
   {
-   "athlete_id": "10000000-0000-4000-8000-000000000002",
+   "athlete_id": "10000000-0000-4000-8000-000000000001",
    "evidence_completion_id": null,
-   "id": "dad75e23-62df-4754-b7df-e17339c16497",
-   "label": "5",
-   "mark_id": "20000000-0000-4000-8000-000000000002",
-   "moved_at": null,
-   "moved_by": null,
-   "position": 3,
-   "source": "legacy",
-   "state": "proposed",
-   "value": 5
-  },
-  {
-   "athlete_id": "10000000-0000-4000-8000-000000000003",
-   "evidence_completion_id": null,
-   "id": "4524d08b-051b-461f-88c6-2c20304adc3e",
-   "label": "5",
-   "mark_id": "20000000-0000-4000-8000-000000000003",
-   "moved_at": null,
-   "moved_by": null,
-   "position": 3,
-   "source": "legacy",
-   "state": "current",
-   "value": 5
-  },
-  {
-   "athlete_id": "10000000-0000-4000-8000-000000000004",
-   "evidence_completion_id": null,
-   "id": "6b8ea713-01ab-46c5-92d2-b776f94f4a23",
-   "label": "6",
-   "mark_id": "20000000-0000-4000-8000-000000000004",
+   "id": "21000000-0000-4000-8000-000000000004",
+   "label": "8",
+   "mark_id": "20000000-0000-4000-8000-000000000001",
    "moved_at": null,
    "moved_by": null,
    "position": 4,
    "source": "legacy",
-   "state": "reached",
-   "value": 6
+   "state": "proposed",
+   "value": 8
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -764,6 +764,19 @@
    "id": "436c3fda-a6e9-467b-bbe4-b1f2072ae21d",
    "label": "6",
    "mark_id": "20000000-0000-4000-8000-000000000003",
+   "moved_at": null,
+   "moved_by": null,
+   "position": 4,
+   "source": "legacy",
+   "state": "proposed",
+   "value": 6
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "evidence_completion_id": null,
+   "id": "6b8ea713-01ab-46c5-92d2-b776f94f4a23",
+   "label": "6",
+   "mark_id": "20000000-0000-4000-8000-000000000004",
    "moved_at": null,
    "moved_by": null,
    "position": 4,
@@ -783,19 +796,6 @@
    "source": "legacy",
    "state": "proposed",
    "value": 6
-  },
-  {
-   "athlete_id": "10000000-0000-4000-8000-000000000001",
-   "evidence_completion_id": null,
-   "id": "21000000-0000-4000-8000-000000000004",
-   "label": "8",
-   "mark_id": "20000000-0000-4000-8000-000000000001",
-   "moved_at": null,
-   "moved_by": null,
-   "position": 4,
-   "source": "legacy",
-   "state": "proposed",
-   "value": 8
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -824,19 +824,6 @@
    "value": 10
   },
   {
-   "athlete_id": "10000000-0000-4000-8000-000000000004",
-   "evidence_completion_id": null,
-   "id": "b12192b4-a1ea-4a44-9c9e-5768bb19a8e5",
-   "label": "8",
-   "mark_id": "20000000-0000-4000-8000-000000000004",
-   "moved_at": null,
-   "moved_by": null,
-   "position": 5,
-   "source": "legacy",
-   "state": "current",
-   "value": 8
-  },
-  {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
    "evidence_completion_id": null,
    "id": "5956fe45-4b6b-4c95-ba92-69f9a40e9547",
@@ -852,9 +839,22 @@
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
    "evidence_completion_id": null,
-   "id": "a74b2714-10be-48a2-b9c7-79e9ecf4a4f6",
-   "label": "10",
+   "id": "b12192b4-a1ea-4a44-9c9e-5768bb19a8e5",
+   "label": "8",
    "mark_id": "20000000-0000-4000-8000-000000000004",
+   "moved_at": null,
+   "moved_by": null,
+   "position": 5,
+   "source": "legacy",
+   "state": "proposed",
+   "value": 8
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000002",
+   "evidence_completion_id": null,
+   "id": "773176c6-c60e-448f-94ce-25aff2d07001",
+   "label": "10",
+   "mark_id": "20000000-0000-4000-8000-000000000002",
    "moved_at": null,
    "moved_by": null,
    "position": 6,
@@ -876,6 +876,19 @@
    "value": 12
   },
   {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "evidence_completion_id": null,
+   "id": "a74b2714-10be-48a2-b9c7-79e9ecf4a4f6",
+   "label": "10",
+   "mark_id": "20000000-0000-4000-8000-000000000004",
+   "moved_at": null,
+   "moved_by": null,
+   "position": 6,
+   "source": "legacy",
+   "state": "proposed",
+   "value": 10
+  },
+  {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
    "evidence_completion_id": null,
    "id": "5164dea0-b323-422d-b8e0-086a570b9bac",
@@ -889,17 +902,17 @@
    "value": 10
   },
   {
-   "athlete_id": "10000000-0000-4000-8000-000000000002",
+   "athlete_id": "10000000-0000-4000-8000-000000000001",
    "evidence_completion_id": null,
-   "id": "773176c6-c60e-448f-94ce-25aff2d07001",
-   "label": "10",
-   "mark_id": "20000000-0000-4000-8000-000000000002",
+   "id": "21000000-0000-4000-8000-000000000007",
+   "label": "13.1",
+   "mark_id": "20000000-0000-4000-8000-000000000001",
    "moved_at": null,
    "moved_by": null,
-   "position": 6,
+   "position": 7,
    "source": "legacy",
    "state": "proposed",
-   "value": 10
+   "value": 13.1
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -920,19 +933,6 @@
    "id": "16d41f4e-9e96-4ebd-81e3-eac6598d7d87",
    "label": "13.1",
    "mark_id": "20000000-0000-4000-8000-000000000004",
-   "moved_at": null,
-   "moved_by": null,
-   "position": 7,
-   "source": "legacy",
-   "state": "proposed",
-   "value": 13.1
-  },
-  {
-   "athlete_id": "10000000-0000-4000-8000-000000000001",
-   "evidence_completion_id": null,
-   "id": "21000000-0000-4000-8000-000000000007",
-   "label": "13.1",
-   "mark_id": "20000000-0000-4000-8000-000000000001",
    "moved_at": null,
    "moved_by": null,
    "position": 7,
@@ -16588,7 +16588,7 @@
    "version_id": "0fd58189-126c-43d7-94c3-1d6091dab342"
   }
  ],
- "dumped_at": "2026-09-04T10:05:29.471782+00:00",
+ "dumped_at": "2026-09-04T10:07:21.492506+00:00",
  "exceptions": [
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -16607,28 +16607,6 @@
  "marks": [
   {
    "active": true,
-   "athlete_id": "10000000-0000-4000-8000-000000000004",
-   "authored_by": null,
-   "block_id": null,
-   "claim": "Our goal here is to see how far he can hold 6:30\u20136:45 in one run.",
-   "claim_note": "Easily your best session to date.",
-   "claim_state": "working",
-   "created_at": "2026-08-24T19:20:16.029027+00:00",
-   "current_question": "How far can he hold 6:30\u20136:45 without it coming apart?",
-   "current_value": 6.1,
-   "established_proof_state": "derived",
-   "evidence_surface_requirement": "any",
-   "id": "20000000-0000-4000-8000-000000000004",
-   "is_primary": true,
-   "label": "at race pace",
-   "mark_type": "even_repetitions",
-   "next_test": "6\u20138 miles straight at race pace.",
-   "target_value": 13.1,
-   "unit": "mi",
-   "updated_at": "2026-09-04T09:35:40.165283+00:00"
-  },
-  {
-   "active": true,
    "athlete_id": "10000000-0000-4000-8000-000000000002",
    "authored_by": null,
    "block_id": null,
@@ -16642,12 +16620,34 @@
    "evidence_surface_requirement": "outdoor",
    "id": "20000000-0000-4000-8000-000000000002",
    "is_primary": true,
-   "label": "at race pace",
+   "label": "continuous at race pace",
    "mark_type": "outdoor_goal_pace_miles",
    "next_test": "Goal-pace miles closed outside, with the conditions written down.",
    "target_value": 13.1,
    "unit": "mi",
-   "updated_at": "2026-09-04T09:35:40.165283+00:00"
+   "updated_at": "2026-09-04T10:07:14.418277+00:00"
+  },
+  {
+   "active": true,
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "authored_by": null,
+   "block_id": null,
+   "claim": "Our goal here is to see how far he can hold 6:30\u20136:45 in one run.",
+   "claim_note": "Easily your best session to date.",
+   "claim_state": "working",
+   "created_at": "2026-08-24T19:20:16.029027+00:00",
+   "current_question": "How far can he hold 6:30\u20136:45 without it coming apart?",
+   "current_value": 1,
+   "established_proof_state": "derived",
+   "evidence_surface_requirement": "any",
+   "id": "20000000-0000-4000-8000-000000000004",
+   "is_primary": true,
+   "label": "continuous at race pace",
+   "mark_type": "even_repetitions",
+   "next_test": "6\u20138 miles straight at race pace.",
+   "target_value": 13.1,
+   "unit": "mi",
+   "updated_at": "2026-09-04T10:07:14.418277+00:00"
   },
   {
    "active": true,
@@ -16659,17 +16659,17 @@
    "claim_state": "working",
    "created_at": "2026-08-24T19:20:16.029027+00:00",
    "current_question": "How far can she hold 6:30\u20136:45 without it coming apart?",
-   "current_value": 4,
+   "current_value": 1,
    "established_proof_state": "derived",
    "evidence_surface_requirement": "any",
    "id": "20000000-0000-4000-8000-000000000003",
    "is_primary": true,
-   "label": "at race pace",
+   "label": "continuous at race pace",
    "mark_type": "race_pace_miles",
    "next_test": "6\u20138 miles straight at race pace.",
    "target_value": 13.1,
    "unit": "mi",
-   "updated_at": "2026-09-04T09:35:40.165283+00:00"
+   "updated_at": "2026-09-04T10:07:14.418277+00:00"
   },
   {
    "active": true,
