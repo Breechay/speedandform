@@ -581,11 +581,34 @@ export async function savePortrait(athleteId, file, crop = {}) {
 //
 // Degrades to no portrait rather than throwing. The columns and the bucket may
 // not exist yet, and an athlete without a photograph is a monogram.
+// A signed URL carries a fresh token every time it is minted, and a fresh string
+// in an <img src> is a fresh download: the photograph blanks, then redraws. The
+// portraits were "appearing and disappearing" on every navigation because every
+// navigation re-signed them, not because anything was expiring. So a path is
+// signed once and the same string is handed back until the signature is nearly
+// spent. The browser then sees the same src it already has, and does nothing.
+const PORTRAIT_SIGNED_FOR = 3600;
+const PORTRAIT_RESIGN_WITHIN = 300;
+const signedPortraits = new Map();
+
 export async function signPortraits(athletes) {
-  const paths = athletes.map((athlete) => athlete.portrait_path).filter(Boolean);
-  if (!paths.length) return athletes.map((athlete) => ({ ...athlete, portraitUrl: null }));
-  const { data, error } = await supabase.storage.from('athlete-portraits').createSignedUrls(paths, 3600);
-  const byPath = error ? new Map() : new Map((data || []).map((item) => [item.path, item.signedUrl]));
+  const now = Date.now();
+  const fresh = (path) => {
+    const held = signedPortraits.get(path);
+    return held && held.expires - now > PORTRAIT_RESIGN_WITHIN * 1000 ? held.url : null;
+  };
+  const paths = [...new Set(athletes.map((athlete) => athlete.portrait_path).filter(Boolean))];
+  const wanted = paths.filter((path) => !fresh(path));
+  if (wanted.length) {
+    const { data, error } = await supabase.storage.from('athlete-portraits')
+      .createSignedUrls(wanted, PORTRAIT_SIGNED_FOR);
+    if (!error) {
+      (data || []).forEach((item) => {
+        if (item.signedUrl) signedPortraits.set(item.path, { url: item.signedUrl, expires: now + PORTRAIT_SIGNED_FOR * 1000 });
+      });
+    }
+  }
+  const byPath = new Map(paths.map((path) => [path, fresh(path)]).filter(([, url]) => url));
   // A pointer that exists and could not be signed is not the same state as no
   // photograph. The monogram is drawn for both, but only one of them is a fault.
   return athletes.map((athlete) => ({

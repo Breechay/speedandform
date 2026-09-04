@@ -318,7 +318,17 @@ function columnHtml(entry) {
 // unread symptom off the right edge of the screen. Position is how you find
 // someone, so this is a real trade — but a bench whose first column is never the
 // urgent one is a queue you have to scroll to use.
+//
+// Coach-delivered athletes lead, and that is not a favour to Simon. Attention
+// items are produced by the app: a filing, an unread report, a symptom. An
+// athlete who does not use the app cannot generate one, so sorting by attention
+// puts every coach-delivered athlete permanently last — the bench quietly ranks
+// people by how much software they touch. They are also the only ones the app
+// will never remind you about, which makes burying them the exact wrong answer.
+// So delivery decides the first band, and urgency orders inside it.
 function benchOrder(a, b) {
+  const delivered = (entry) => entry.delivery === 'coach' ? 0 : 1;
+  if (delivered(a) !== delivered(b)) return delivered(a) - delivered(b);
   const urgency = (entry) => entry.topItem ? (entry.topItem.priority ?? 99) : 999;
   if (urgency(a) !== urgency(b)) return urgency(a) - urgency(b);
   const race = (entry) => entry.block?.race_on || '9999-12-31';
