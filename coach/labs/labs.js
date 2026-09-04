@@ -24,7 +24,7 @@
 import { authErrorMessage, getAccessContext } from '/private/auth.js';
 import { createRead, loadAthleteRecord, loadAttentionFor, loadCoachBench, rungFor, savePortrait, setExceptionStatus } from '/private/data.js';
 import { escapeHtml } from '/private/record.js';
-import { authoredMiles, dayLabel, rangeLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
+import { authoredMiles, dayLabel, initials, rangeLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
 
 const app = document.getElementById('app');
 const nav = document.getElementById('nav');
@@ -786,6 +786,108 @@ function allocationCell(completion, context, budgeted) {
     ${ran ? `<u>${escapeHtml(ran)}</u>` : ''}</span>`;
 }
 
+// ── TRANCHE B: who this is, and what the block is asking ────────────────────
+//
+// The grid says what happens. It cannot say why, and a coach opening the plan
+// on a Friday is asking a question the calendar has no room for: what is this
+// block for, what does this athlete own today, and what do the numbers on those
+// cells mean.
+//
+// One athlete, always. The reference carries a JOSÉ/HOPE switcher to show that
+// everything here resolves per athlete; the route already carries the athlete,
+// so there is no switcher.
+
+// The pace key. Authored on the block where one exists — including the band the
+// block deliberately does NOT prescribe, which is a fact no component can carry.
+// Derived from the components otherwise, so every other athlete still gets one.
+function paceBands() {
+  const authored = (record.paceBands || []).slice().sort((a, b) => a.position - b.position);
+  if (authored.length) {
+    return authored.map((band) => ({ label: band.label, value: band.value, line: band.when_line }));
+  }
+  const parts = (record.sessions || [])
+    .flatMap((session) => (session.currentVersion?.components || []))
+    .filter((part) => part.role === 'work' && part.pace_low != null);
+  const tally = new Map();
+  parts.forEach((part) => {
+    const key = `${part.pace_low}|${part.pace_high || ''}`;
+    tally.set(key, (tally.get(key) || 0) + 1);
+  });
+  return [...tally.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3).map(([key, count]) => {
+    const [low, high] = key.split('|');
+    return {
+      label: high ? 'BANDED WORK' : 'CEILING',
+      value: high ? `${low}–${high} /mi` : `${low} /mi or slower`,
+      line: `${count} component${count === 1 ? '' : 's'} in this block.`
+    };
+  });
+}
+
+// The volume horizon. Not a score — the range this particular block moves them
+// across, which is the second progression running underneath the ladder and the
+// one the easy days were authored to express.
+function volumeHorizon(weeks, milesFor) {
+  const totals = weeks.map(milesFor).filter((miles) => miles > 0);
+  if (totals.length < 2) return null;
+  const first = Math.round(totals[0]);
+  const peak = Math.round(Math.max(...totals));
+  return peak > first ? `${first} mi → ${peak} mi peak` : null;
+}
+
+// The week, as a rhythm rather than a list. Read off what the block actually
+// authors on each weekday, so an athlete whose week is shaped differently gets
+// their own sentence rather than this one.
+function weekRhythm(weeks, forWeek) {
+  const kind = new Map();
+  WEEK_DAYS.forEach((day, index) => {
+    const seen = weeks.flatMap((week) => {
+      const on = week.starts_on ? addDays(week.starts_on, index) : null;
+      return on ? forWeek(week).filter((session) => session.scheduled_on === on) : [];
+    }).filter((session) => session.state !== 'cancelled');
+    if (!seen.length) { kind.set(day, 'off'); return; }
+    const easy = seen.filter((session) => /^easy/i.test(String(session.currentVersion?.title || '')));
+    const long = seen.filter((session) => /long run|continuous/i.test(String(session.currentVersion?.title || '')));
+    if (long.length > seen.length / 2) kind.set(day, 'long');
+    else if (easy.length > seen.length / 2) kind.set(day, 'easy');
+    else kind.set(day, 'quality');
+  });
+  return WEEK_DAYS.map((day) => `${day.slice(0, 3)} ${kind.get(day)}`).join(' · ');
+}
+
+// What a normal week has actually looked like — filed evidence, not prescription.
+// The most recent complete week with anything in it.
+function observedWeek(weeks, current) {
+  const filed = record.completions || [];
+  const done = weeks.filter((week) => week.ends_on && (!current || week.week_number < current.week_number));
+  for (const week of done.slice().reverse()) {
+    const mine = filed.filter((item) => {
+      const on = filedOn(item);
+      return on >= week.starts_on && on <= week.ends_on;
+    }).sort((a, b) => a.filed_at.localeCompare(b.filed_at));
+    if (!mine.length) continue;
+    const miles = mine.reduce((total, item) => total + Number(item.actual_distance || 0), 0);
+    const days = mine.map((item) => {
+      const date = new Date(item.filed_at);
+      return `${SHORT_DAY[date.getDay()]} ${item.actual_distance != null ? Number(item.actual_distance) : '—'}`;
+    }).join(' · ');
+    return { week, days, miles, runs: mine.length };
+  }
+  return null;
+}
+
+function thisWeekSoFar(current) {
+  if (!current) return null;
+  const mine = (record.completions || []).filter((item) => {
+    const on = filedOn(item);
+    return on >= current.starts_on && on <= current.ends_on;
+  }).sort((a, b) => a.filed_at.localeCompare(b.filed_at));
+  const miles = mine.reduce((total, item) => total + Number(item.actual_distance || 0), 0);
+  return { runs: mine.length, miles, days: mine.map((item) => {
+    const date = new Date(item.filed_at);
+    return `${SHORT_DAY[date.getDay()]} ${item.actual_distance != null ? Number(item.actual_distance) : '—'}`;
+  }).join(' · ') };
+}
+
 function planHtml() {
   const block = record.block;
   const weeks = (record.weeks || []).slice().sort((a, b) => a.week_number - b.week_number);
@@ -884,12 +986,62 @@ function planHtml() {
     return `<td class="${isCurrent(week) ? 'cur' : ''}">${miles ? Number(miles.toFixed(0)) : '·'}</td>`;
   }).join('')}</tr>`;
 
+  const mark = record.primaryMark;
+  const owned = mark?.current_value != null ? Number(mark.current_value) : null;
+  const horizon = volumeHorizon(weeks, milesFor);
+  const bands = paceBands();
+  const observed = observedWeek(weeks, current);
+  const soFar = thisWeekSoFar(current);
+  const rungs = weeks.reduce((count, week) => count
+    + forWeek(week).filter((session) => session.state !== 'cancelled'
+      && rungFor(session, mark)).length, 0);
+
   return `<main class="view on planv">
     <div class="pgHead">
       <button class="back" type="button" data-nav="athlete">← ${escapeHtml(athlete.first_name)}</button>
       <h3>${escapeHtml(block.name || 'The block')}</h3>
       <span class="pgSub">${escapeHtml(block.total_weeks)} weeks${
         block.race_name ? ` to ${escapeHtml(block.race_name)}` : ''}</span>
+    </div>
+
+    <div class="phero">
+      <div class="pwho">
+        <div class="pfrm"><span>${escapeHtml(initials(athlete.first_name))}</span>
+          <img data-portrait="${escapeHtml(athlete.slug)}" alt=""></div>
+        <div><h1>${escapeHtml(athlete.first_name)}</h1>
+          <div class="prace">${escapeHtml(raceLine(athlete, block))}${
+            current ? ` · week ${escapeHtml(current.week_number)} of ${escapeHtml(block.total_weeks)}` : ''}</div>
+        </div>
+      </div>
+      <div><div class="plab">THE QUESTION</div>
+        <h2>${escapeHtml(mark?.current_question || block.goal_statement || '')}</h2>
+        ${horizon ? `<p>${escapeHtml(horizon)} — the volume this block moves them across, which is
+          a different progression from the one below and is not scored against it.</p>` : ''}</div>
+      <div><div class="plab">OWNS TODAY</div>
+        <h2 class="pfig">${owned != null ? `${escapeHtml(owned)} <small>mi continuous</small>` : '—'}</h2>
+        <p>${owned != null
+          ? `The longest single piece held inside the band without coming apart.${
+              rungs ? ` ${escapeHtml(rungs)} session${rungs === 1 ? '' : 's'} in this plan move that number and nothing else does.` : ''}`
+          : 'Nothing established yet.'}</p></div>
+    </div>
+
+    <div class="pbands">${bands.map((band) => `<div>
+      <b>${escapeHtml(band.label)}</b><strong>${escapeHtml(band.value)}</strong>
+      <em>${escapeHtml(band.line)}</em></div>`).join('')}</div>
+
+    <div class="prhythm">
+      <div><b>THE WEEK</b><strong>${escapeHtml(weekRhythm(weeks, forWeek))}</strong>
+        <em>Read off what the block authors on each weekday, not a template.</em></div>
+      <div><b>A NORMAL WEEK, OBSERVED</b>${observed
+        ? `<strong>${escapeHtml(observed.days)}</strong>
+           <em>${escapeHtml(`${Number(observed.miles.toFixed(2))} mi across ${observed.runs} run${observed.runs === 1 ? '' : 's'}`)},
+             week ${escapeHtml(observed.week.week_number)}. Filed, not prescribed.</em>`
+        : '<strong>—</strong><em>Nothing filed yet.</em>'}</div>
+      <div><b>THIS WEEK SO FAR</b>${soFar && soFar.runs
+        ? `<strong>${escapeHtml(soFar.days)}</strong>
+           <em>${escapeHtml(`${Number(soFar.miles.toFixed(2))} mi`)} against
+             ${escapeHtml(Number(milesFor(current).toFixed(0)))} asked.</em>`
+        : '<strong>—</strong><em>Nothing filed this week.</em>'}</div>
     </div>
     <div class="pgWrap"><div class="pgScroll"><table class="pg">
       <thead><tr><th class="d"><span class="wl">weeks out</span></th>${head}</tr></thead>

@@ -22292,7 +22292,7 @@
    "version_id": "333be908-8fa8-46e7-abd1-cffaf2c6ed27"
   }
  ],
- "dumped_at": "2026-09-04T20:02:57.723931+00:00",
+ "dumped_at": "2026-09-04T20:08:42.647591+00:00",
  "exceptions": [
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -22396,6 +22396,92 @@
    "target_value": 13.1,
    "unit": "mi",
    "updated_at": "2026-09-02T23:58:18.930443+00:00"
+  }
+ ],
+ "pace_bands": [
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "authored_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "block_id": "9c9ff5be-0fd9-45d0-a57a-bcbe2e281012",
+   "created_at": "2026-09-04T20:07:11.045702+00:00",
+   "high_seconds": null,
+   "id": "1408237c-95c0-4f28-b07f-8c134c387792",
+   "label": "EASY",
+   "low_seconds": 525,
+   "position": 1,
+   "updated_at": "2026-09-04T20:07:11.045702+00:00",
+   "value": "8:45 /mi or slower",
+   "when_line": "Build the volume that supports the work. There is no floor \u2014 slower is never wrong."
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "authored_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "block_id": "00fab01f-0d00-44a9-85d7-c84876706da7",
+   "created_at": "2026-09-04T20:07:11.045702+00:00",
+   "high_seconds": null,
+   "id": "83f9b2ea-bac7-4ab5-b2a7-763e07ce5c6a",
+   "label": "EASY",
+   "low_seconds": 525,
+   "position": 1,
+   "updated_at": "2026-09-04T20:07:11.045702+00:00",
+   "value": "8:45 /mi or slower",
+   "when_line": "Build the volume that supports the work. There is no floor \u2014 slower is never wrong."
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "authored_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "block_id": "9c9ff5be-0fd9-45d0-a57a-bcbe2e281012",
+   "created_at": "2026-09-04T20:07:11.045702+00:00",
+   "high_seconds": 405,
+   "id": "505dd635-19bc-4015-9616-d7f65eb5edb1",
+   "label": "RACE WORK",
+   "low_seconds": 390,
+   "position": 2,
+   "updated_at": "2026-09-04T20:07:11.045702+00:00",
+   "value": "6:30\u20136:45 /mi",
+   "when_line": "Extend how far the pace can be carried. 6:45 is the target and 6:30 is the fastest that still counts; under 6:30 is not a better session, it is a different one."
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "authored_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "block_id": "00fab01f-0d00-44a9-85d7-c84876706da7",
+   "created_at": "2026-09-04T20:07:11.045702+00:00",
+   "high_seconds": 405,
+   "id": "de441f58-8a97-48f8-b6cd-8c0c989c040c",
+   "label": "RACE WORK",
+   "low_seconds": 390,
+   "position": 2,
+   "updated_at": "2026-09-04T20:07:11.045702+00:00",
+   "value": "6:30\u20136:45 /mi",
+   "when_line": "Extend how far the pace can be carried. 6:45 is the target and 6:30 is the fastest that still counts; under 6:30 is not a better session, it is a different one."
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "authored_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "block_id": "9c9ff5be-0fd9-45d0-a57a-bcbe2e281012",
+   "created_at": "2026-09-04T20:07:11.045702+00:00",
+   "high_seconds": null,
+   "id": "2610ad1c-068c-458b-a13b-54682ea7f98d",
+   "label": "THRESHOLD",
+   "low_seconds": 375,
+   "position": 3,
+   "updated_at": "2026-09-04T20:07:11.045702+00:00",
+   "value": "\u22486:15 /mi",
+   "when_line": "Keep the ceiling alive while this block spends more of its work on race pace. You already have pace above race pace \u2014 the harder problem is carrying the target farther."
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "authored_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "block_id": "00fab01f-0d00-44a9-85d7-c84876706da7",
+   "created_at": "2026-09-04T20:07:11.045702+00:00",
+   "high_seconds": null,
+   "id": "d0876ba7-6d6c-4500-a4c1-1a8485168457",
+   "label": "THRESHOLD",
+   "low_seconds": 375,
+   "position": 3,
+   "updated_at": "2026-09-04T20:07:11.045702+00:00",
+   "value": "\u22486:15 /mi",
+   "when_line": "Keep the ceiling alive while this block spends more of its work on race pace. You already have pace above race pace \u2014 the harder problem is carrying the target farther."
   }
  ],
  "pieces": [

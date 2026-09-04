@@ -16,6 +16,7 @@ select json_build_object(
   'completions', (select coalesce(json_agg(c),'[]') from session_completions c),
   'pieces', (select coalesce(json_agg(p),'[]') from session_pieces p),
   'marks', (select coalesce(json_agg(m),'[]') from athlete_marks m where m.active),
+  'pace_bands', (select coalesce(json_agg(p order by p.position),'[]') from block_pace_bands p),
   'checkpoints', (select coalesce(json_agg(k order by k.position),'[]') from mark_checkpoints k),
   'attention', (select coalesce(json_agg(t),'[]') from coach_attention t),
   'exceptions', (select coalesce(json_agg(e),'[]') from session_exception_state e)

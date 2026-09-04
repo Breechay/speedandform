@@ -687,3 +687,47 @@ img[data-portrait]{--exp:.9;--con:1.16;--px:50%;--py:40%;--pz:1;--grade:.20}
 .pg .s.superseded{opacity:.45}
 .pg tr.volrow.easyline td{padding-top:4px;font-size:12px;color:var(--secondary);font-weight:500}
 .pg tr.volrow.easyline td.cur{color:var(--lime)}
+
+/* ══ THE PLAN · TRANCHE B ══
+   Who this is, what the block asks, and what the numbers on the cells mean.
+   Three columns that do not compete: the athlete, the question, the answer so
+   far. Then the pace key, then the week as a rhythm. */
+.phero{display:grid;grid-template-columns:1.25fr 1fr .95fr;gap:46px;align-items:start;
+  padding:4px 30px 26px}
+.pwho{display:flex;gap:20px;align-items:center}
+/* A frame, not a badge. The portrait is the design's premise and a 74px circle
+   was treating it as an avatar. */
+.pfrm{width:80px;height:100px;flex:0 0 80px;border-radius:3px;position:relative;overflow:hidden;
+  background:radial-gradient(78% 44% at 50% 8%,#ffffff10,#ffffff00 62%),
+             radial-gradient(120% 80% at 50% 18%,#2a3236,#161c1e 46%,#0b0f10)}
+.pfrm span{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--serif);
+  font-size:44px;color:#ffffff12}
+.pfrm img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;
+  object-position:var(--px,50%) var(--py,40%);
+  filter:saturate(var(--grade,.2)) contrast(var(--con,1.16)) brightness(var(--exp,.9))}
+.pfrm img.has-photo{display:block}
+.pwho h1{font-family:var(--serif);font-weight:400;font-size:42px;letter-spacing:-.022em;
+  margin:0;line-height:.95}
+.prace{font-size:11px;letter-spacing:.12em;color:var(--secondary);margin-top:11px;
+  text-transform:uppercase}
+.plab{font-size:9.5px;letter-spacing:.18em;color:var(--muted);font-weight:600}
+.phero h2{font-family:var(--serif);font-weight:400;font-size:24px;letter-spacing:-.012em;
+  margin:10px 0 0;line-height:1.22}
+.phero h2.pfig{font-size:42px;letter-spacing:-.024em;font-variant-numeric:tabular-nums}
+.phero h2.pfig small{font-family:var(--sans);font-size:13px;letter-spacing:.06em;
+  color:var(--secondary);font-weight:500}
+.phero p{font-size:13px;color:var(--secondary);margin:10px 0 0;line-height:1.55;max-width:44ch}
+
+.pbands,.prhythm{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:0 30px 2px}
+.prhythm{margin-bottom:26px}
+.pbands div,.prhythm div{background:var(--band-2);padding:15px 18px}
+.pbands b,.prhythm b{display:block;font-size:9.5px;letter-spacing:.17em;color:var(--muted);
+  font-weight:600}
+.pbands strong{display:block;font-family:var(--serif);font-weight:400;font-size:27px;
+  letter-spacing:-.015em;margin-top:8px;font-variant-numeric:tabular-nums}
+.prhythm strong{display:block;font-size:13.5px;font-weight:500;margin-top:8px;
+  font-variant-numeric:tabular-nums;line-height:1.4}
+.pbands em,.prhythm em{display:block;font-style:normal;font-size:12px;color:var(--secondary);
+  margin-top:7px;line-height:1.5}
+@media (max-width:1000px){.phero,.pbands,.prhythm{grid-template-columns:1fr;gap:20px 2px}
+  .phero{padding-left:16px;padding-right:16px}.pbands,.prhythm{margin-left:16px;margin-right:16px}}

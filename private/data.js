@@ -339,7 +339,11 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     // which drops the exception's own id — and the id is what reviewing one
     // needs. So the rows are read directly.
     supabase.from('session_exception_state').select('*').eq('athlete_id', athleteId)
-      .order('created_at', { ascending: false })
+      .order('created_at', { ascending: false }),
+    // The block's pace key, authored once rather than counted off the components.
+    // Empty for a block that has not authored one, and the surface derives what
+    // it can in that case.
+    supabase.from('block_pace_bands').select('*').eq('athlete_id', athleteId).order('position')
   ];
 
   if (coach) {
@@ -362,7 +366,7 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     gatesResponse, movementResponse, supportResponse, supportItemsResponse,
     verdictsResponse, piecesResponse, judgmentsResponse, judgmentLinksResponse,
     confidenceResponse, confidenceLinksResponse, evidenceFilesResponse, proposalResponse,
-    exceptionsResponse,
+    exceptionsResponse, paceBandsResponse,
     taskResponse, evidenceResponse, actionsResponse, privateNotesResponse, adminResponse
   ] = responses;
 
@@ -429,6 +433,7 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     reads: result(readsResponse.data, readsResponse.error),
     decisions: result(decisionsResponse.data, decisionsResponse.error),
     marks,
+    paceBands: result(paceBandsResponse.data, paceBandsResponse.error),
     primaryMark: marks.find((mark) => mark.is_primary) || marks[0] || null,
     movementReads: result(movementResponse.data, movementResponse.error),
     support: supportResponse.data,
