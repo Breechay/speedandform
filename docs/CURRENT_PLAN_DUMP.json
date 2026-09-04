@@ -645,7 +645,7 @@
    "goal_label": "Sub-1:30",
    "goal_statement": "Run under 1:30 at Orlando",
    "id": "9c9ff5be-0fd9-45d0-a57a-bcbe2e281012",
-   "name": "Half build",
+   "name": "Race Pace Durability",
    "purpose": "race_build",
    "race_name": "OUC Half",
    "race_on": "2026-12-05",
@@ -655,7 +655,7 @@
    "status": "active",
    "target_event": "OUC Half Marathon \u00b7 Orlando",
    "total_weeks": 15,
-   "updated_at": "2026-09-02T23:58:18.930443+00:00",
+   "updated_at": "2026-09-04T19:22:22.678543+00:00",
    "week_starts_on": 1
   },
   {
@@ -668,7 +668,7 @@
    "goal_label": "Sub-1:30",
    "goal_statement": "Run under 1:30 at Orlando",
    "id": "00fab01f-0d00-44a9-85d7-c84876706da7",
-   "name": "Half build",
+   "name": "Race Pace Durability",
    "purpose": "race_build",
    "race_name": "OUC Half",
    "race_on": "2026-12-05",
@@ -678,7 +678,7 @@
    "status": "active",
    "target_event": "OUC Half Marathon \u00b7 Orlando",
    "total_weeks": 15,
-   "updated_at": "2026-09-02T23:58:18.930443+00:00",
+   "updated_at": "2026-09-04T19:22:22.678543+00:00",
    "week_starts_on": 1
   },
   {
@@ -17162,7 +17162,7 @@
    "version_id": "0fd58189-126c-43d7-94c3-1d6091dab342"
   }
  ],
- "dumped_at": "2026-09-04T14:49:14.234299+00:00",
+ "dumped_at": "2026-09-04T19:23:22.55842+00:00",
  "exceptions": [
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",

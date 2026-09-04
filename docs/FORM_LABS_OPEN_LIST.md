@@ -16,6 +16,23 @@ session. Updated 4 September.
 - **José: Full or Half.** The Sep 1 handoff says Orlando *Full* Marathon; the
   database and everything else say OUC Half. Same date. Unresolved.
 - **Rod and Devin.** Waiting on the strength evidence grammar, not on a build.
+- **Where the threshold cell lives.** ≈6:15 is real and intentional for both
+  athletes, and no component in either block prescribes it — the number exists
+  only in the reference mock. `training_blocks.purpose` is an enum, so there is
+  nowhere to author it. Same question as the pace bands below.
+- **Pace bands as a block-level fact.** `6:30–6:45` is repeated on 54 components
+  per athlete; changing race pace means editing all 54. Brice's own note: it
+  belongs on the block once and gets inherited.
+- **Ownership eligibility.** `athlete_continuous_owned` counts any segment inside
+  "the band its prescription asked for", and the weekly easy budget carries a
+  one-sided `8:45 or slower`. Nothing exploits it today because easy filings
+  carry no pieces, but the guard is missing. A two-sided-band test is a decent
+  temporary fix and must not become doctrine — the robust model is explicit
+  eligibility on the prescription (`counts_toward_mark`, or the existing
+  `establishes_checkpoint_id` direction), not guessing from whether both pace
+  numbers happen to be non-null. Brice's call.
+- **Is Marcus running Race Pace Durability?** See
+  `docs/FORM_LABS_METHOD_OBJECT.md`.
 
 ## Next to build
 
@@ -29,6 +46,13 @@ session. Updated 4 September.
    SEEING for Rod and Devin. Same object.
 4. **Note to self**, wired to `coach_private_notes`, per athlete.
 5. **Week view** — the coming seven days per athlete, reachable in one click.
+
+**Recorded, not scheduled:** the method object. Hope's and José's blocks are the
+first two applications of a coaching method now named **Race Pace Durability**,
+which is the thing that may eventually be sold. The block is an instance; the
+method never rewrites an athlete; promotion is explicit and one-directional.
+Concept, four laws, minimum schema and what not to build are in
+`docs/FORM_LABS_METHOD_OBJECT.md`.
 
 ## Frozen semantics
 
