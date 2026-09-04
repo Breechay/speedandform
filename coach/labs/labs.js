@@ -22,7 +22,7 @@
 // Nothing in this file writes a style attribute into a template string.
 
 import { authErrorMessage, getAccessContext } from '/private/auth.js';
-import { addObservation, createRead, loadAthleteRecord, loadAttentionFor, loadCoachBench, rungFor, savePortrait, setExceptionStatus } from '/private/data.js';
+import { addObservation, createRead, loadAthleteRecord, loadAttentionFor, loadCoachBench, reviseSession, rungFor, savePortrait, setExceptionStatus } from '/private/data.js';
 import { escapeHtml } from '/private/record.js';
 import { authoredMiles, dayLabel, initials, rangeLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
 
@@ -307,7 +307,7 @@ function columnHtml(entry) {
       <div class="name">${escapeHtml(entry.first_name)}</div>
       <div class="owned">${mark?.current_value != null
         ? `<b>${escapeHtml(Number(mark.current_value))}</b><span>${escapeHtml(String(mark.unit || 'mi').toUpperCase())} OWNED</span>`
-        : '<b class="none">—</b><span>NOTHING ESTABLISHED</span>'}</div>
+        : '<b class="none">—</b><span>NOT YET ESTABLISHED</span>'}</div>
       <div class="colFoot">
         ${asked ? `<div class="asked${asked.live ? ' live' : ''}">${escapeHtml(asked.word)}${
           asked.when ? `<em>${escapeHtml(asked.when)}</em>` : ''}</div>` : ''}
@@ -1310,6 +1310,34 @@ function anatomyRows(version) {
   }).join('')}</div>`;
 }
 
+// WHAT MAY BE REVISED, AND WHY THE ANSWER IS NOT "ANYTHING".
+//
+// A revision changes what is being ASKED. It cannot change what happened: a
+// session with a filing against it has evidence pointing at a prescription, and
+// re-authoring that prescription would make the evidence describe work nobody
+// was ever asked to do. Same for a session in the past with no filing — the day
+// went by, and rewriting Tuesday on Friday is a different act from planning.
+//
+// So: future, unfiled, not cancelled. Everything else is read-only here and
+// goes through the Console, where re-authoring is deliberate.
+function revisable(session) {
+  if (session.state === 'cancelled') return { can: false, why: 'Cancelled' };
+  const filed = (record.completions || []).some((item) => item.planned_session_id === session.id);
+  if (filed) return { can: false, why: 'Filed — history is not revised' };
+  if (!session.scheduled_on) return { can: false, why: 'No date' };
+  if (session.scheduled_on < today()) return { can: false, why: 'Past' };
+  return { can: true, why: '' };
+}
+
+// The one dose a revision may move from here: a single distance-carrying work
+// piece. Composite work — a long run with a race-pace finish, a pyramid — has an
+// anatomy that a number cannot express, and guessing which piece the coach meant
+// is how a plan quietly stops matching itself. Those say so and route on.
+function soleWorkDistance(version) {
+  const parts = workParts(version).filter((part) => part.distance != null);
+  return workParts(version).length === 1 && parts.length === 1 ? parts[0] : null;
+}
+
 function drawerHtml(session) {
   if (!session) return '';
   const version = session.currentVersion;
@@ -1327,7 +1355,12 @@ function drawerHtml(session) {
         <h2>${escapeHtml(titleOf(session))}</h2>
         ${rung ? '<div class="dRung">Moves what you own</div>' : ''}
       </div>
-      <button class="dClose" type="button" data-drawer="close" aria-label="Close">×</button>
+      <div class="dActs">
+        ${revisable(session).can
+          ? `<button class="act" type="button" data-revise="${escapeHtml(session.id)}">Revise</button>`
+          : `<span class="dLocked">${escapeHtml(revisable(session).why)}</span>`}
+        <button class="dClose" type="button" data-drawer="close" aria-label="Close">×</button>
+      </div>
     </div>
     <div class="dBody">
       ${whole != null ? `<div class="dFigs">
@@ -1547,6 +1580,116 @@ function closeSheet() {
   sheet.setAttribute('aria-hidden', 'true'); pending = null;
 }
 
+// REVISE.
+//
+// Title, dose, intent, reason. The reason is not optional and it is not
+// bookkeeping: it is the thing that is still legible in six weeks when someone
+// asks why Tuesday is five miles instead of four. The RPC enforces it.
+//
+// Components are carried forward untouched unless the dose changes, and when it
+// does only the one work piece moves — the total is recomputed from the parts
+// rather than typed, so a session can never again declare a distance its own
+// anatomy does not add up to.
+function openRevise(sessionId) {
+  const session = (record?.sessions || []).find((item) => item.id === sessionId);
+  if (!session || !revisable(session).can) return;
+  const version = session.currentVersion;
+  const dose = soleWorkDistance(version);
+  pending = { kind: 'revise', sessionId };
+  document.getElementById('shKind').textContent = 'REVISE';
+  document.getElementById('shTitle').textContent = titleOf(session);
+  document.getElementById('shSub').textContent = [
+    session.scheduled_on ? dayLabel(session.scheduled_on) : '',
+    `v${version?.version_number ?? 1}`
+  ].filter(Boolean).join(' · ');
+  document.getElementById('shNote').textContent = 'Appends a version. Nothing is overwritten.';
+  document.getElementById('shBody').innerHTML = `
+    <div class="f"><label for="rvTitle">TITLE</label>
+      <input id="rvTitle" type="text" value="${escapeHtml(version?.title || '')}"></div>
+    ${dose
+      ? `<div class="f"><label for="rvDose">THE WORK</label>
+          <input id="rvDose" type="number" step="0.1" min="0"
+            value="${escapeHtml(Number(dose.distance))}">
+          <p class="hint">${escapeHtml(dose.distance_unit || 'mi')}${
+            dose.pace_low ? ` at ${dose.pace_low}${dose.pace_high ? `–${dose.pace_high}` : ' or slower'}` : ''
+          }. The session total is recomputed from the pieces, never typed.</p></div>`
+      : `<div class="f"><label>THE WORK</label>
+          <p class="hint">${escapeHtml(structureOf(version) || 'No typed anatomy')} — composite work is
+          re-authored in the Console, where each piece can be changed on purpose.</p></div>`}
+    <div class="f"><label for="rvIntent">INTENT</label>
+      <textarea id="rvIntent" placeholder="Blank keeps the sentence it already has."></textarea></div>
+    <div class="f"><label for="rvReason">WHY</label>
+      <input id="rvReason" type="text" placeholder="Still legible in six weeks.">
+      <p class="hint">Required. A revision without a reason is a mystery later.</p></div>
+    <p class="hint err" id="rvError"></p>`;
+  sheet.classList.add('on'); shScrim.classList.add('on'); sheet.setAttribute('aria-hidden', 'false');
+  document.getElementById('rvTitle').focus();
+}
+
+async function keepRevision() {
+  const session = (record?.sessions || []).find((item) => item.id === pending.sessionId);
+  const version = session?.currentVersion;
+  const error = document.getElementById('rvError');
+  const title = document.getElementById('rvTitle').value.trim();
+  const reason = document.getElementById('rvReason').value.trim();
+  if (!title) { error.textContent = 'A session needs a title.'; return; }
+  if (!reason) { error.textContent = 'A revision needs a reason.'; return; }
+
+  const doseField = document.getElementById('rvDose');
+  const dose = soleWorkDistance(version);
+  let components = null;
+  let total = authoredMiles(version);
+  if (dose && doseField) {
+    const next = Number(doseField.value);
+    if (!(next > 0)) { error.textContent = 'The work needs a distance.'; return; }
+    components = (version.components || []).slice().sort((a, b) => a.position - b.position)
+      .map((part) => {
+        const wire = {
+          role: part.role, shape: part.shape, position: part.position,
+          ...(part.distance != null ? { distance: Number(part.distance), distanceUnit: part.distance_unit } : {}),
+          ...(part.duration_seconds != null ? { durationSeconds: part.duration_seconds } : {}),
+          ...(part.pace_low_seconds != null ? { paceLowSeconds: part.pace_low_seconds } : {}),
+          ...(part.pace_high_seconds != null ? { paceHighSeconds: part.pace_high_seconds } : {}),
+          ...(part.recovery_kind ? { recoveryKind: part.recovery_kind } : {}),
+          ...(part.recovery_seconds != null ? { recoverySeconds: part.recovery_seconds } : {}),
+          ...(part.repeat_count != null ? { repeatCount: part.repeat_count } : {})
+        };
+        if (part.id === dose.id) wire.distance = next;
+        return wire;
+      });
+    // The total follows the parts. This is the rule the whole 4 September
+    // normalisation existed to establish, and the editor must not be the one
+    // place that breaks it.
+    total = components.reduce((sum, part) => {
+      const reps = part.shape === 'repetitions' ? (part.repeatCount || 1) : 1;
+      if (part.distance != null) {
+        return sum + (part.distanceUnit === 'km' ? part.distance * 0.621371 : part.distance) * reps;
+      }
+      if (part.durationSeconds != null) return sum + (part.durationSeconds * reps) / (part.paceLowSeconds || 525);
+      return sum;
+    }, 0);
+    total = Number(total.toFixed(2));
+  }
+
+  const button = document.getElementById('shSave');
+  button.disabled = true; error.textContent = '';
+  try {
+    await reviseSession(pending.sessionId, {
+      title,
+      intent: document.getElementById('rvIntent').value.trim() || null,
+      changeReason: reason,
+      prescribedDistance: total,
+      distanceUnit: version?.distance_unit || 'mi',
+      components
+    });
+    closeSheet();
+    await selectAthlete(record.athlete.slug, { silent: true });
+    showSession(session.id);
+  } catch (failure) {
+    error.textContent = failure.message;
+  } finally { button.disabled = false; }
+}
+
 // A standing fact goes in through the same drawer a read does, because it is the
 // same act: you looked at something and concluded something. The difference is
 // only that a read answers a report and this answers the athlete.
@@ -1598,6 +1741,7 @@ async function keepObservation() {
 // and why. Both name the evidence.
 async function keepRead() {
   if (pending?.kind === 'observation') { await keepObservation(); return; }
+  if (pending?.kind === 'revise') { await keepRevision(); return; }
   if (!pending) { closeSheet(); return; }
   const error = document.getElementById('readError');
   const text = document.getElementById('readText').value.trim();
@@ -1690,6 +1834,9 @@ document.addEventListener('click', (event) => {
   }
   const cell = event.target.closest('[data-session]');
   if (cell) { showSession(cell.dataset.session); return; }
+
+  const revise = event.target.closest('[data-revise]');
+  if (revise) { closeSessionDrawer(); openRevise(revise.dataset.revise); return; }
 
   if (event.target.closest('[data-observe]')) { openObservation(); return; }
 

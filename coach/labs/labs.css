@@ -907,3 +907,7 @@ img[data-portrait]{--exp:.9;--con:1.16;--px:50%;--py:40%;--pz:1;--grade:.20}
   text-transform:uppercase;color:#333b3e}
 .pg tr.restrow .d{font-size:11px;letter-spacing:.02em;text-transform:none;color:#333b3e;
   font-weight:400}
+
+.dActs{display:flex;align-items:center;gap:14px;flex:0 0 auto}
+.dLocked{font-size:9.5px;letter-spacing:.13em;color:var(--muted);font-weight:600;
+  text-transform:uppercase}
