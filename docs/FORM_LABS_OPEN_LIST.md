@@ -23,6 +23,17 @@ session. Updated 4 September.
 - **Pace bands as a block-level fact.** `6:30–6:45` is repeated on 54 components
   per athlete; changing race pace means editing all 54. Brice's own note: it
   belongs on the block once and gets inherited.
+- **Ownership eligibility — now demonstrated, not theoretical.** Filing one test
+  session for Simon on 4 September put him in `athlete_continuous_owned` at
+  1.66 mi. He has **no mark and no checkpoints**: the view groups by athlete off
+  any two-sided band and has no relationship to what the athlete's experiment is
+  actually asking. His is a duration question. It is invisible today only because
+  the bench reads `mark.current_value` and he has no mark — it becomes visible
+  the moment he gets one. Cancelling the session did not remove him, because the
+  view does not look at session state either. Brice's call, and the model he
+  named is the answer: eligibility belongs to the prescription
+  (`counts_toward_mark`, or `establishes_checkpoint_id`), not to whether both
+  pace numbers happen to be non-null.
 - **Ownership eligibility.** `athlete_continuous_owned` counts any segment inside
   "the band its prescription asked for", and the weekly easy budget carries a
   one-sided `8:45 or slower`. Nothing exploits it today because easy filings
@@ -36,14 +47,13 @@ session. Updated 4 September.
 
 ## Next to build
 
-1. **File evidence.** Promoted to second verb after Read. For a coach-delivered
-   athlete it is the only path evidence has — not a bridge to ingest any more.
-2. **Cell click → session in place.** The matrix should open a drawer over the
-   block rather than navigating away: prescription, evidence, athlete report,
-   revise. The block stays visible behind it.
-3. **Standing observations on the surfaces.** `athlete_observations` exists and
-   nothing reads or writes it yet. WHAT HELPS on the athlete page; WHAT I'M
-   SEEING for Rod and Devin. Same object.
+1. ~~**File evidence.**~~ **Built 4 September.** From the session drawer, on the
+   existing `file_session` path: status, distance, time, RPE, surface, their
+   words, and splits where the session has reps. Proven end to end for Simon.
+2. ~~**Cell click → session in place.**~~ **Built.** The drawer opens over the lit
+   matrix: prescription, anatomy, evidence, revision history, Revise and File.
+3. ~~**Standing observations on the surfaces.**~~ **Built.** WHAT HELPS reads
+   `athlete_standing_observations` and Add writes one. Simon carries the first two.
 4. **Note to self**, wired to `coach_private_notes`, per athlete.
 5. **Week view** — the coming seven days per athlete, reachable in one click.
 

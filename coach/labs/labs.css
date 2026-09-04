@@ -911,3 +911,9 @@ img[data-portrait]{--exp:.9;--con:1.16;--px:50%;--py:40%;--pz:1;--grade:.20}
 .dActs{display:flex;align-items:center;gap:14px;flex:0 0 auto}
 .dLocked{font-size:9.5px;letter-spacing:.13em;color:var(--muted);font-weight:600;
   text-transform:uppercase}
+
+/* An audit condition. It states an order of events; it does not judge the
+   evidence, and it never leaves the inspector. */
+.dAudit{margin-top:22px;padding:9px 12px;border-left:2px solid var(--coral);
+  background:#ff735f0d;font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--coral);font-weight:600}

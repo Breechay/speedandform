@@ -22,7 +22,7 @@
 // Nothing in this file writes a style attribute into a template string.
 
 import { authErrorMessage, getAccessContext } from '/private/auth.js';
-import { addObservation, createRead, loadAthleteRecord, loadAttentionFor, loadCoachBench, reviseSession, rungFor, savePortrait, setExceptionStatus } from '/private/data.js';
+import { addObservation, createRead, fileForAthlete, loadAthleteRecord, loadAttentionFor, loadCoachBench, reviseSession, rungFor, savePortrait, setExceptionStatus } from '/private/data.js';
 import { escapeHtml } from '/private/record.js';
 import { authoredMiles, dayLabel, initials, rangeLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
 
@@ -1310,6 +1310,24 @@ function anatomyRows(version) {
   }).join('')}</div>`;
 }
 
+// Evidence is filed against work that has happened. A session in the future has
+// nothing to say yet, a cancelled one was withdrawn, and one already filed is
+// corrected rather than filed twice — corrections go through correct_session,
+// which keeps the previous reading.
+//
+// This exists for Simon more than anyone. He is coach-delivered by design: no
+// app, no filing of his own, and until this the loop could author his training
+// and never hear back. A coaching surface that cannot receive evidence is a
+// publisher.
+function fileable(session) {
+  if (session.state === 'cancelled') return { can: false, why: 'Cancelled' };
+  if (!session.scheduled_on) return { can: false, why: 'No date' };
+  if (session.scheduled_on > today()) return { can: false, why: 'Not yet' };
+  const filed = (record.completions || []).some((item) => item.planned_session_id === session.id);
+  if (filed) return { can: false, why: 'Filed' };
+  return { can: true, why: '' };
+}
+
 // WHAT MAY BE REVISED, AND WHY THE ANSWER IS NOT "ANYTHING".
 //
 // A revision changes what is being ASKED. It cannot change what happened: a
@@ -1338,6 +1356,24 @@ function soleWorkDistance(version) {
   return workParts(version).length === 1 && parts.length === 1 ? parts[0] : null;
 }
 
+// An audit condition, not a coaching warning.
+//
+// Six sessions on the record carry a current prescription written after their
+// evidence was filed — RPE and band backfills on 25 to 28 August, all of them
+// legitimate appends. Nothing was mutated and the evidence is not invalid; the
+// version history already says exactly what happened. But a reader looking at
+// the prescription beside the filing deserves to know the order they arrived in.
+//
+// It lives here and nowhere else. On the bench or the resting matrix it would
+// read as a fault with the athlete, which it is not. The Revise guard prevents
+// the condition from being created again.
+function revisedAfterFiling(session, completion) {
+  if (!completion) return false;
+  const version = session.currentVersion;
+  if (!version?.created_at || (version.version_number ?? 1) < 2) return false;
+  return version.created_at > completion.filed_at;
+}
+
 function drawerHtml(session) {
   if (!session) return '';
   const version = session.currentVersion;
@@ -1356,9 +1392,11 @@ function drawerHtml(session) {
         ${rung ? '<div class="dRung">Moves what you own</div>' : ''}
       </div>
       <div class="dActs">
+        ${fileable(session).can
+          ? `<button class="act" type="button" data-file="${escapeHtml(session.id)}">File evidence</button>` : ''}
         ${revisable(session).can
-          ? `<button class="act" type="button" data-revise="${escapeHtml(session.id)}">Revise</button>`
-          : `<span class="dLocked">${escapeHtml(revisable(session).why)}</span>`}
+          ? `<button class="act quiet" type="button" data-revise="${escapeHtml(session.id)}">Revise</button>`
+          : (fileable(session).can ? '' : `<span class="dLocked">${escapeHtml(revisable(session).why)}</span>`)}
         <button class="dClose" type="button" data-drawer="close" aria-label="Close">×</button>
       </div>
     </div>
@@ -1376,6 +1414,7 @@ function drawerHtml(session) {
         ? `<p class="dText">${escapeHtml(ranLine(completion, pieces) || 'Filed with no measurements.')}</p>
            ${completion.athlete_note ? `<p class="dSaid">“${escapeHtml(completion.athlete_note)}”</p>` : ''}`
         : '<p class="dNone">Nothing filed.</p>'}
+      ${revisedAfterFiling(session, completion) ? `<div class="dAudit">Prescription revised after filing</div>` : ''}
       ${versions.length > 1 ? `<div class="dLab">REVISIONS</div>
         <div class="dRevs">${versions.map((item) => `<div class="dRev">
           <b>v${escapeHtml(item.version_number)}</b>
@@ -1580,6 +1619,133 @@ function closeSheet() {
   sheet.setAttribute('aria-hidden', 'true'); pending = null;
 }
 
+// FILE EVIDENCE.
+//
+// The smallest thing that closes the loop, on the filing path that already
+// exists. No readiness score, no completion percentage, no second evidence
+// model: status, what was actually run, how hard it felt, what they said, and
+// the splits where the session had reps to split.
+//
+// Splits are the part that matters. A distance and a clock make a session; the
+// per-rep paces are what a verdict is computed from, and `athlete_continuous_owned`
+// reads pieces and nothing else. So a session with repetitions asks for them,
+// one line per rep, and a steady run does not pretend to have any.
+function openFiling(sessionId) {
+  const session = (record?.sessions || []).find((item) => item.id === sessionId);
+  if (!session || !fileable(session).can) return;
+  const version = session.currentVersion;
+  const reps = workParts(version).find((part) => part.shape === 'repetitions');
+  const asked = authoredMiles(version);
+  pending = { kind: 'file', sessionId };
+  document.getElementById('shKind').textContent = 'FILE EVIDENCE';
+  document.getElementById('shTitle').textContent = titleOf(session);
+  document.getElementById('shSub').textContent = [
+    session.scheduled_on ? dayLabel(session.scheduled_on) : '',
+    asked != null ? `asked for ${Number(asked)} mi` : ''
+  ].filter(Boolean).join(' · ');
+  document.getElementById('shNote').textContent = 'Appended. A correction later keeps this reading.';
+  document.getElementById('shBody').innerHTML = `
+    <div class="f"><label for="flStatus">WHAT HAPPENED</label>
+      <select id="flStatus">
+        <option value="completed">Completed</option>
+        <option value="partial">Partial</option>
+        <option value="changed">Changed — did something else</option>
+        <option value="skipped">Did not complete</option>
+      </select></div>
+    <div class="fRow">
+      <div class="f"><label for="flDist">DISTANCE</label>
+        <input id="flDist" type="number" step="0.01" min="0" placeholder="${escapeHtml(asked != null ? Number(asked) : '')}">
+        <p class="hint">Whole session, miles.</p></div>
+      <div class="f"><label for="flTime">TIME</label>
+        <input id="flTime" type="text" placeholder="1:04:12 or 64:12">
+        <p class="hint">Blank if unknown.</p></div>
+    </div>
+    <div class="fRow">
+      <div class="f"><label for="flRpe">RPE</label>
+        <input id="flRpe" type="number" min="1" max="10" placeholder="1–10"></div>
+      <div class="f"><label for="flSurface">SURFACE</label>
+        <select id="flSurface"><option value="">—</option><option value="outdoor">Outdoor</option>
+          <option value="treadmill">Treadmill</option><option value="track">Track</option></select></div>
+    </div>
+    ${reps ? `<div class="f"><label for="flSplits">SPLITS</label>
+      <textarea id="flSplits" placeholder="6:31&#10;6:28&#10;6:30"></textarea>
+      <p class="hint">One pace per line, in the order they were run. ${
+        escapeHtml(reps.repeat_count || '')} asked for. These are what a verdict reads —
+        and the only thing continuous ownership is computed from.</p></div>` : ''}
+    <div class="f"><label for="flSaid">WHAT THEY SAID</label>
+      <textarea id="flSaid" placeholder="Their words, not your summary."></textarea></div>
+    <p class="hint err" id="flError"></p>`;
+  sheet.classList.add('on'); shScrim.classList.add('on'); sheet.setAttribute('aria-hidden', 'false');
+  document.getElementById('flDist').focus();
+}
+
+// "1:04:12", "64:12" and "3840" all mean the same thing to a coach typing fast.
+function seconds(text) {
+  const raw = String(text || '').trim();
+  if (!raw) return null;
+  const parts = raw.split(':').map(Number);
+  if (parts.some((part) => !Number.isFinite(part))) return null;
+  return parts.reduce((total, part) => total * 60 + part, 0);
+}
+
+async function keepFiling() {
+  const session = (record?.sessions || []).find((item) => item.id === pending.sessionId);
+  const version = session?.currentVersion;
+  const error = document.getElementById('flError');
+  const status = document.getElementById('flStatus').value;
+  const distance = Number(document.getElementById('flDist').value) || null;
+  const duration = seconds(document.getElementById('flTime').value);
+  const rpe = Number(document.getElementById('flRpe').value) || null;
+  if (status !== 'skipped' && !distance && !duration) {
+    error.textContent = 'A filing needs a distance or a time. Skipped needs neither.';
+    return;
+  }
+
+  // Pieces carry their own pace, which is the whole point: a rep is judged on
+  // what it ran, never on the session average. Distance comes from what was
+  // asked for, because the coach is typing paces off a watch, not re-measuring.
+  const repPart = workParts(version).find((part) => part.shape === 'repetitions');
+  const splitField = document.getElementById('flSplits');
+  const pieces = [];
+  if (repPart && splitField) {
+    const each = repPart.distance != null
+      ? (repPart.distance_unit === 'km' ? Number(repPart.distance) * 0.621371 : Number(repPart.distance))
+      : null;
+    splitField.value.split(/[\n,]/).map((line) => line.trim()).filter(Boolean).forEach((line) => {
+      const pace = seconds(line);
+      if (!pace) return;
+      pieces.push({
+        kind: 'rep', paceSeconds: pace,
+        ...(each ? { distance: Number(each.toFixed(2)), distanceUnit: 'mi',
+                     durationSeconds: Math.round(pace * each) } : {})
+      });
+    });
+    if (splitField.value.trim() && !pieces.length) {
+      error.textContent = 'Splits read as paces — 6:31 per line.'; return;
+    }
+  }
+
+  const button = document.getElementById('shSave');
+  button.disabled = true; error.textContent = '';
+  try {
+    await fileForAthlete({
+      athleteId: record.athlete.id,
+      plannedSessionId: session.id,
+      status,
+      actualDistance: distance,
+      durationSeconds: duration,
+      rpe,
+      surface: document.getElementById('flSurface').value || null,
+      athleteNote: document.getElementById('flSaid').value.trim() || null
+    }, pieces);
+    closeSheet();
+    await selectAthlete(record.athlete.slug, { silent: true });
+    showSession(session.id);
+  } catch (failure) {
+    error.textContent = failure.message;
+  } finally { button.disabled = false; }
+}
+
 // REVISE.
 //
 // Title, dose, intent, reason. The reason is not optional and it is not
@@ -1742,6 +1908,7 @@ async function keepObservation() {
 async function keepRead() {
   if (pending?.kind === 'observation') { await keepObservation(); return; }
   if (pending?.kind === 'revise') { await keepRevision(); return; }
+  if (pending?.kind === 'file') { await keepFiling(); return; }
   if (!pending) { closeSheet(); return; }
   const error = document.getElementById('readError');
   const text = document.getElementById('readText').value.trim();
@@ -1834,6 +2001,9 @@ document.addEventListener('click', (event) => {
   }
   const cell = event.target.closest('[data-session]');
   if (cell) { showSession(cell.dataset.session); return; }
+
+  const file = event.target.closest('[data-file]');
+  if (file) { closeSessionDrawer(); openFiling(file.dataset.file); return; }
 
   const revise = event.target.closest('[data-revise]');
   if (revise) { closeSessionDrawer(); openRevise(revise.dataset.revise); return; }
