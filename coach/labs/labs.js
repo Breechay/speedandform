@@ -145,50 +145,114 @@ function noteFor(item) {
   }
 }
 
+// What the last key session SAID. Prescription, then what came back, then a
+// verdict in four words.
+//
+// The bench was answering "what state is this athlete in" — goal, last filed,
+// instrument — when the question you open it with is "what did the hard work say
+// and what does the next one ask". Splits without the band they were run against
+// are a number with no question attached, and "10 mi" for a long run with two at
+// race pace is the wrong session entirely.
+function heldTheBand(completion, pieces, version) {
+  const work = (version?.components || []).find((part) => part.role === 'work' && part.pace_low_seconds != null);
+  const reps = pieces.filter((piece) => piece.kind === 'rep' && piece.pace_seconds != null);
+  if (!work || !reps.length) return null;
+  const inside = reps.filter((piece) => piece.pace_seconds >= work.pace_low_seconds
+    && piece.pace_seconds <= (work.pace_high_seconds ?? Infinity)).length;
+  const asked = work.repeat_count || work.repeat_target;
+  const short = asked && reps.length < asked ? `, stopped at ${reps.length} of ${asked}` : '';
+  if (inside === reps.length) return `held the band${short}`;
+  // Which way it missed, not just that it did. Running under a band is a
+  // different conversation from falling off it, and "1 of 4 inside" tells you
+  // neither.
+  const fast = reps.filter((piece) => piece.pace_seconds < work.pace_low_seconds).length;
+  const slow = reps.length - inside - fast;
+  const way = fast > slow ? 'under' : 'over';
+  if (inside === 0) return `${way} the band throughout${short}`;
+  return `${inside} of ${reps.length} inside, the rest ${way}${short}`;
+}
+
+// THE COLUMN TAKES A POSITION.
+//
+// A coach opening five athletes on a Friday is asking one thing: is this athlete
+// on track, and does anything need me? The card used to show a goal, a date,
+// some splits and an unread flag, and leave the judging to be done five times
+// from a screen that already had the answer. An overview that will not say
+// "this one is fine" is making you do its job.
+//
+// So the verdict comes first and the evidence sits under it. Weeks to the race,
+// not week of the block — 13 weeks out is how you think about whether there is
+// time; week 2 of 15 is bookkeeping. And every number against its target,
+// because 6.1 owned reads as failure next to 13.1 until you can see both.
+
+function weeksOut(entry) {
+  if (!entry.block?.race_on) return null;
+  const days = (new Date(`${entry.block.race_on}T12:00:00`) - new Date()) / 86400000;
+  return Math.max(0, Math.round(days / 7));
+}
+
+// The position, and the sentence that earns it. Derived only from what the card
+// already holds: did the last key session land in its band, is anything of
+// theirs unread, has anything been filed at all.
+function standing(entry) {
+  const report = (entry.attention || []).find((item) => item.kind === 'athlete_report');
+  if (report) {
+    return { word: 'Needs you', tone: 'amb',
+      because: `Something reported ${dayLabel(report.occurred_at.slice(0, 10))} and nobody has read it.` };
+  }
+  if (!entry.latestCompletion) {
+    return { word: 'No evidence', tone: 'dim',
+      because: 'Nothing filed since the block opened. No evidence is not no ability.' };
+  }
+  const verdict = heldTheBand(entry.latestCompletion, entry.latestPieces, entry.latestVersion);
+  const when = dayLabel(entry.latestCompletion.filed_at.slice(0, 10));
+  if (verdict?.startsWith('held the band')) {
+    return { word: 'On track', tone: 'ok', because: `Held the band ${when}${verdict.includes('stopped') ? ' and stopped where he was told to' : ''}.` };
+  }
+  if (verdict?.includes('under')) {
+    return { word: 'Running hot', tone: 'amb',
+      because: `${sentence(verdict)} ${when}. Faster is not better here — the band is the instruction.` };
+  }
+  if (verdict?.includes('over')) {
+    return { word: 'Drifting', tone: 'amb', because: `${sentence(verdict)} ${when}.` };
+  }
+  const unread = (entry.attention || []).filter((item) => item.kind === 'unread_session').length;
+  if (unread) return { word: 'Unread', tone: 'dim', because: `Filed ${when} and waiting on your reply.` };
+  return { word: 'On track', tone: 'ok', because: `Filed ${when}. Nothing outstanding.` };
+}
+
 function columnHtml(entry) {
-  const race = raceLine(entry, entry.block);
-  const week = entry.currentWeek && entry.block?.total_weeks
-    ? `Week ${entry.currentWeek.week_number} of ${entry.block.total_weeks}` : '';
-  const due = entry.today;
+  const out = weeksOut(entry);
+  const race = [entry.block?.race_place || entry.block?.race_name || entry.target_event,
+    out == null ? null : `in ${out} week${out === 1 ? '' : 's'}`].filter(Boolean).join(' ');
+  const read = standing(entry);
   const last = entry.latestCompletion;
+  const mark = entry.mark;
 
-  const registers = [];
-  registers.push(`<div><div class="lab">GOAL</div><div class="goal">${
-    entry.goal_label ? escapeHtml(entry.goal_label) : '<span class="dim">Not set</span>'
-  }</div></div>`);
+  const lastLine = last ? (() => {
+    const asked = entry.latestVersion
+      ? [entry.latestVersion.title, structureOf(entry.latestVersion)]
+          .filter(Boolean).filter((part, i, all) => i === 0 || !titleAlreadySays(all[0], part)).join(' · ')
+      : 'Filed';
+    const came = splitsLine(last, entry.latestPieces);
+    const verdict = heldTheBand(last, entry.latestPieces, entry.latestVersion);
+    return `<div><div class="lab">LAST KEY · ${escapeHtml(dayLabel(last.filed_at.slice(0, 10)).toUpperCase())}</div>
+      <div class="val">${escapeHtml(asked)}</div>
+      ${came ? `<div class="val out">${escapeHtml(came)}${verdict ? `, ${escapeHtml(verdict)}` : ''}</div>` : ''}</div>`;
+  })() : '';
 
-  if (due) {
-    registers.push(`<div><div class="lab">TODAY</div><div class="val">${escapeHtml(doseLine(due) || titleOf(due))}</div></div>`);
-  } else if (last) {
-    // The session it came from, then the splits. Four paces with nothing in front
-    // of them is a number without a question.
-    const said = [entry.latestTitle, splitsLine(last, entry.latestPieces)].filter(Boolean).join(' · ');
-    registers.push(`<div><div class="lab">LAST · ${escapeHtml(dayLabel(last.filed_at.slice(0, 10)).toUpperCase())}</div><div class="val">${
-      escapeHtml(said || 'Filed')
-    }</div></div>`);
-  } else {
-    registers.push('<div><div class="lab">EVIDENCE</div><div class="val"><span class="dim">Nothing filed since the block opened</span></div></div>');
-  }
+  const nextLine = entry.next ? (() => {
+    const shape = [titleOf(entry.next), doseLine(entry.next)]
+      .filter(Boolean).filter((part, i, all) => i === 0 || !titleAlreadySays(all[0], part)).join(' · ');
+    return `<div><div class="lab">NEXT KEY · ${escapeHtml(String(entry.next.day_label).slice(0, 3).toUpperCase())}</div>
+      <div class="val dim">${escapeHtml(shape)}</div></div>`;
+  })() : '';
 
-  if (entry.next) {
-    // NEXT KEY, because it is. "NEXT" reads as the very next thing on their
-    // calendar and invites you to think the week is three sessions long.
-    registers.push(`<div><div class="lab">NEXT KEY · ${escapeHtml(String(entry.next.day_label).slice(0, 3).toUpperCase())}</div><div class="val dim">${
-      escapeHtml(doseLine(entry.next) || titleOf(entry.next))
-    }</div></div>`);
-  }
-
-  // The note is the top of this athlete's queue, in the queue's own words. An
-  // athlete's own report reads coral; everything else is the coach's own list.
   const item = entry.topItem;
   const noteClass = item && item.kind === 'athlete_report' ? 'note amb' : 'note';
-  const note = noteFor(item);
-
-  // Null is a state and not a gap. An athlete with nothing established gets the
-  // em dash rather than a number, and the caption says so in words.
-  const mark = entry.mark;
   const figure = mark?.current_value != null
-    ? `<b>${escapeHtml(Number(mark.current_value))}</b><span>${escapeHtml(instrumentWords(mark))}</span>`
+    ? `<b>${escapeHtml(Number(mark.current_value))}</b><span>${escapeHtml(String(mark.unit || '').toUpperCase())} OWNED${
+        entry.markTarget ? ` · NEEDS ${escapeHtml(Number(entry.markTarget))}` : ''}</span>`
     : '<b class="none">—</b><span>NOTHING ESTABLISHED</span>';
 
   return `<button class="col${entry.attention.length ? ' needs' : ''}" type="button" data-slug="${escapeHtml(entry.slug)}">
@@ -197,9 +261,11 @@ function columnHtml(entry) {
     <div class="tint"></div><div class="scrim"></div>
     <div class="body">
       <div class="nameBlk"><div class="name">${escapeHtml(entry.first_name)}</div>
-        <div class="meta">${escapeHtml(race)}</div><div class="week">${escapeHtml(week)}</div></div>
-      <div class="regs">${registers.join('')}</div>
-      <div class="${noteClass}">${escapeHtml(note)}</div>
+        <div class="meta">${escapeHtml(entry.goal_label || 'No goal set')}</div>
+        <div class="week">${escapeHtml(race)}</div></div>
+      <div class="verdict ${read.tone}"><b>${escapeHtml(read.word)}.</b> ${escapeHtml(read.because)}</div>
+      <div class="regs">${lastLine}${nextLine}</div>
+      <div class="${noteClass}">${escapeHtml(noteFor(item))}</div>
       <div class="inst">${figure}</div>
     </div>
   </button>`;

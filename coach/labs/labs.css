@@ -583,3 +583,18 @@ img[data-portrait]{--exp:.9;--con:1.16;--px:50%;--py:40%;--pz:1;--grade:.20}
   .bAsk{flex-direction:column;gap:9px}
   .bCopy{margin-top:0}
 }
+
+/* What came back, under what was asked. The outcome line is the quieter of the
+   two because the prescription is what gives it meaning. */
+.val.out{color:var(--secondary);font-size:12.5px;margin-top:3px}
+.regs{min-height:196px}
+
+/* The verdict, which is the reason the column exists. It sits directly under
+   the name because it is the first thing read and the last thing computed. */
+.verdict{font-size:13px;line-height:1.42;color:var(--secondary);padding-top:14px;
+  height:56px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+.verdict b{font-weight:600}
+.verdict.ok b{color:var(--lime)}
+.verdict.amb b{color:var(--coral)}
+.verdict.dim b{color:var(--secondary)}
+.regs{min-height:168px;padding-top:15px}

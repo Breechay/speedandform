@@ -113,13 +113,17 @@ export async function loadCoachBench(coachMemberships) {
   const latestIds = athleteIds
     .map((id) => completions.find((item) => item.athlete_id === id)?.id)
     .filter(Boolean);
+  // Widened deliberately: the filing the bench shows is chosen further down, by
+  // which prescription can be judged, and its pieces have to already be here.
+  const candidateIds = athleteIds.flatMap((id) =>
+    completions.filter((item) => item.athlete_id === id).slice(0, 6).map((item) => item.id));
 
   const [sessionsResponse, piecesResponse] = await Promise.all([
     weekIds.length
       ? supabase.from('planned_sessions').select('*').in('week_id', weekIds).order('position')
       : Promise.resolve({ data: [] }),
-    latestIds.length
-      ? supabase.from('session_pieces').select('*').in('completion_id', latestIds).order('position')
+    candidateIds.length
+      ? supabase.from('session_pieces').select('*').in('completion_id', candidateIds).order('position')
       : Promise.resolve({ data: [] })
   ]);
   [sessionsResponse, piecesResponse].forEach(({ error }) => { if (error) throw error; });
@@ -130,13 +134,21 @@ export async function loadCoachBench(coachMemberships) {
   // at a week that is already behind us, so its title is fetched on its own.
   const filedAgainst = [...new Set(completions.map((item) => item.planned_session_id).filter(Boolean))];
   const pastResponse = filedAgainst.length
-    ? await supabase.from('planned_session_versions').select('planned_session_id, version_number, title')
+    ? await supabase.from('planned_session_versions').select('*')
         .in('planned_session_id', filedAgainst).order('version_number', { ascending: false })
     : { data: [] };
   if (pastResponse.error) throw pastResponse.error;
-  const titleFor = new Map();
+  const versionFor = new Map();
   (pastResponse.data || []).forEach((row) => {
-    if (!titleFor.has(row.planned_session_id)) titleFor.set(row.planned_session_id, row.title);
+    if (!versionFor.has(row.planned_session_id)) versionFor.set(row.planned_session_id, row);
+  });
+  const pastVersionIds = [...versionFor.values()].map((row) => row.id);
+  const pastPartsResponse = pastVersionIds.length
+    ? await supabase.from('planned_session_components').select('*').in('version_id', pastVersionIds).order('position')
+    : { data: [] };
+  if (pastPartsResponse.error) throw pastPartsResponse.error;
+  versionFor.forEach((row) => {
+    row.components = (pastPartsResponse.data || []).filter((part) => part.version_id === row.id);
   });
   const sessionIds = sessions.map((session) => session.id);
   const versionsResponse = sessionIds.length
@@ -167,7 +179,18 @@ export async function loadCoachBench(coachMemberships) {
         ...session,
         currentVersion: withComponents.find((version) => version.planned_session_id === session.id) || null
       }));
-    const latest = completions.find((item) => item.athlete_id === entry.id) || null;
+    const mineFiled = completions.filter((item) => item.athlete_id === entry.id);
+    // The last filing against KEY work. An easy run filed yesterday is true and
+    // it is not the argument; the bench is for what the hard work said.
+    // Preferred: the newest filing whose prescription carries a band, because
+    // that is the one that can be judged. José filed twice on 25 August — a
+    // banded 4 × 1 mi and an unbanded 4 × 1 km — and showing the second one gave
+    // four paces with nothing to hold them against.
+    const banded = (id) => (versionFor.get(id)?.components || [])
+      .some((part) => part.role === 'work' && part.pace_low_seconds != null);
+    const latest = mineFiled.find((item) => item.planned_session_id && banded(item.planned_session_id))
+      || mineFiled.find((item) => item.planned_session_id && versionFor.has(item.planned_session_id))
+      || mineFiled[0] || null;
     return {
       ...entry,
       block,
@@ -188,7 +211,13 @@ export async function loadCoachBench(coachMemberships) {
         .map((session) => ({ ...session, currentVersion: withComponents.find((v) => v.planned_session_id === session.id) || null }))
         .sort((a, b) => a.scheduled_on.localeCompare(b.scheduled_on))[0] || null,
       latestCompletion: latest,
-      latestTitle: latest?.planned_session_id ? titleFor.get(latest.planned_session_id) || null : null,
+      latestVersion: latest?.planned_session_id ? versionFor.get(latest.planned_session_id) || null : null,
+      // 6.1 owned means nothing without 13.1. The target is the top rung.
+      markTarget: (() => {
+        const rungs = entry.mark?.checkpoints || [];
+        if (entry.mark?.target_value != null) return Number(entry.mark.target_value);
+        return rungs.length ? Math.max(...rungs.map((rung) => Number(rung.value))) : null;
+      })(),
       latestPieces: latest ? (piecesResponse.data || []).filter((piece) => piece.completion_id === latest.id) : [],
       // What the brief needs and the bench does not: everything filed in the
       // last seven days, and everything asked of them in the next seven.
