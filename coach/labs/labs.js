@@ -444,7 +444,7 @@ function athleteHtml() {
     </div>
     <div class="fold">
       <button class="back" type="button" data-nav="bench">← Bench</button>
-      <button class="back alt" type="button" data-nav="block">The block →</button>
+      <button class="back alt" type="button" data-nav="plan">The plan →</button>
 
       <div class="section">
         <div class="h">GOAL</div>
@@ -615,128 +615,257 @@ function dayChip(session) {
   return sentence(label.toLowerCase());
 }
 
-// ── THE PLAN, AS A MATRIX ───────────────────────────────────────────────────
+// ── THE PLAN ────────────────────────────────────────────────────────────────
 //
-// Weeks across, days down, the whole block as one object. A coach spreading the
-// season across a desk sees the argument before reading any cell: quality on
-// Tuesdays, distance on Sundays, the down week as a gap in the volume row.
+// TRANCHE A: the matrix mechanics. Every week of the block across, seven days
+// down, the budget outside the dated days, volume in the footer. The hero, the
+// pace bands, the week rhythm, the rung marks and THIS WEEK IS FOR are tranches
+// B and C and are deliberately absent here rather than half-built.
 //
-// The card strip it replaces showed the sequence and never the organism. You
-// could not scan across Tuesdays. You could not see where the recovery weeks
-// fell. Everything was the same size, which meant nothing had weight.
+// Built to `the-plan-6.html` as a contract. Three deviations from it, all
+// declared before writing rather than discovered after:
 //
-// Two rules the matrix keeps that a spreadsheet would not:
+//   The reference stops at W14. José and Hope are fifteen-week blocks, and a
+//   column dropped because the table got wide is a week of someone's life that
+//   the plan does not mention. Every week renders.
 //
-// Empty days stay empty. José is not assigned Mondays, and filling them to make
-// the grid look complete would be inventing training. The em dashes are true.
+//   The reference's volume row holds a flat 45 for eleven of fourteen weeks.
+//   The authored components do not sum to that. This row reports what is
+//   authored; whether the plan should hold 45 is a coaching decision and not
+//   the view's to make.
 //
-// The easy budget gets its own row, "Across the week", because it is a budget
-// and not a schedule. Spreading eighteen miles across Monday to Friday would be
-// fake calendar precision about miles that are his to place.
+//   The reference draws Monday, Wednesday and Friday as dated prescriptions.
+//   They are not, and they are not orphans either. The plan has two kinds of
+//   authored work: KEY SESSIONS, dated and changing week to week — Tuesday
+//   quality, Thursday quality or support, Saturday long — and EASY RUNNING,
+//   authored once a week as a quantity the athlete places around that spine.
+//   A Monday easy run is an ALLOCATION against the week's budget: authored work
+//   whose day the athlete chose. So the cell says "from the weekly budget", not
+//   "nothing was asked", and the Across the week row stays because it is the
+//   source those allocations are drawn from.
+//
+// One athlete per route, always. José and Hope share a plan by coincidence, not
+// by design, and "you own 2 mi" printed under someone else's initial is the one
+// thing that must never ship. The reference carries a JOSÉ/HOPE switcher to
+// demonstrate that everything resolves per athlete; there is none here, because
+// the route already carries the athlete.
+//
+// GEOMETRY: no cell writes a style attribute. Everything is class-driven, which
+// is what style-src 'self' leaves available.
+//
+// NAMING: not one class here is shared with the bench. `.plate` on a bench
+// column is `position:absolute; inset:0` with a gradient on it, and the block
+// view reused the name — which is why a translucent rectangle sat over FORM LABS
+// and why the hero never appeared. The plan's names all start `pg`.
 
 const WEEK_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 // Saturday, not Sunday. Hope, José and Simon run their long day on a Saturday;
 // the block was authored on the wrong weekday from the start and 25 sessions
-// moved on 4 September. Derived would be better than a constant — the heavy days
-// are whichever ones hold the key work — but the block is authored to a rhythm
-// and naming it is honest until an athlete's rhythm differs.
-const KEY_DAYS = new Set(['Tuesday', 'Saturday']);
+// moved on 4 September.
+const HEAVY_DAYS = new Set(['Tuesday', 'Thursday', 'Saturday']);
 
-function cellHtml(sessions, mark) {
-  if (!sessions.length) return '<span class="none">—</span>';
-  return sessions.map((session) => {
-    const classes = ['s'];
-    if (session.state === 'cancelled') classes.push('canx');
-    // Lime is reserved for work that moves what the athlete owns. A planned
-    // race-pace session is not automatically owned.
-    if (rungFor(session, mark)) classes.push('own');
-    const miles = authoredMiles(session.currentVersion);
-    return `<span class="${classes.join(' ')}" data-session="${escapeHtml(session.id)}">
-      <b>${escapeHtml(titleOf(session))}</b>
-      <i>${escapeHtml(miles ? `${Number(miles)} mi` : doseLine(session))}</i></span>`;
-  }).join('');
+const addDays = (iso, count) => {
+  const date = new Date(`${iso}T12:00:00`);
+  date.setDate(date.getDate() + count);
+  return date.toISOString().slice(0, 10);
+};
+
+// The local calendar day a filing belongs to. filed_at is the activity's own
+// start instant; the day it lands on is the day the athlete ran.
+const filedOn = (completion) => {
+  const date = new Date(completion.filed_at);
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+};
+
+// Weeks until the race, counted from the end of the week. A coach thinks in
+// weeks out; "week 2 of 15" is bookkeeping, "13 to go" is the clock.
+function weeksOutOf(week, raceOn) {
+  if (!raceOn || !week?.ends_on) return null;
+  const days = (new Date(`${raceOn}T12:00:00`) - new Date(`${week.ends_on}T12:00:00`)) / 86400000;
+  return Math.max(0, Math.ceil(days / 7));
 }
 
-function blockHtml() {
+// The band a component asks for, in the words it was authored in. A one-sided
+// band is a ceiling and reads as one: 8:45 or slower has no floor.
+const bandOf = (part) => {
+  if (!part || part.pace_low == null) return null;
+  return part.pace_high ? `${part.pace_low}–${part.pace_high}` : `${part.pace_low} or slower`;
+};
+
+const workParts = (version) => (version?.components || [])
+  .filter((part) => part.role === 'work').sort((a, b) => a.position - b.position);
+
+// What the session asks for, in one line, off the typed components — never off
+// the title. A single work piece states its quantity and its band; anything
+// composite states its structure, because "3 min work" is a lie about eight
+// twelve-second hills.
+function workLine(version) {
+  const parts = workParts(version);
+  if (!parts.length) return '';
+  if (parts.length > 1) return structureOf(version) || '';
+  const part = parts[0];
+  const reps = part.shape === 'repetitions' ? (part.repeat_count || 1) : 1;
+  const band = bandOf(part);
+  let quantity = null;
+  if (part.distance != null) {
+    const each = part.distance_unit === 'km' ? Number(part.distance) * 0.621371 : Number(part.distance);
+    quantity = `${Number((each * reps).toFixed(2))} mi${reps > 1 ? ' work' : ''}`;
+  } else if (part.duration_seconds != null) {
+    const seconds = Number(part.duration_seconds) * reps;
+    quantity = `${seconds % 60 === 0 ? seconds / 60 : Math.round(seconds / 60)} min${reps > 1 ? ' work' : ''}`;
+  }
+  if (!quantity) return structureOf(version) || '';
+  return [quantity, band].filter(Boolean).join(' · ');
+}
+
+// What came back. Pace is computed only where both distance and clock are on
+// file; a session filed by hand with neither says its miles and its RPE and
+// stops. Splits are read out of the pieces in seconds per mile and never
+// recomputed from a rounded distance.
+function ranLine(completion, pieces) {
+  if (!completion) return '';
+  const bits = [];
+  if (completion.actual_distance != null) {
+    bits.push(`${Number(completion.actual_distance)} ${completion.distance_unit || 'mi'}`);
+  }
+  if (completion.actual_distance && completion.duration_seconds) {
+    bits.push(`${clock(Number(completion.duration_seconds) / Number(completion.actual_distance))}/mi`);
+  }
+  if (completion.rpe != null) bits.push(`RPE ${completion.rpe}`);
+  if (completion.surface === 'treadmill') bits.push('treadmill');
+  const splits = pieces.filter((piece) => piece.kind === 'rep' && piece.pace_seconds != null)
+    .sort((a, b) => a.position - b.position).map((piece) => clock(piece.pace_seconds));
+  const tail = splits.length ? splits.join(' · ') : (completion.rep_paces || '');
+  return [bits.join(' · '), tail].filter(Boolean).join(' — ');
+}
+
+// A prescription, and whatever came back against it.
+function prescribedCell(session, context) {
+  const version = session.currentVersion;
+  const classes = ['s'];
+  if (session.state === 'cancelled') classes.push('canx');
+  const completion = context.completionFor(session.id);
+  const ran = session.state === 'cancelled' ? '' : ranLine(completion, context.piecesFor(completion?.id));
+  const title = titleOf(session);
+  const dose = workLine(version);
+  return `<span class="${classes.join(' ')}" data-session="${escapeHtml(session.id)}">
+    <b>${escapeHtml(title)}</b>
+    ${dose && !titleAlreadySays(title, dose) ? `<i>${escapeHtml(dose)}</i>` : ''}
+    ${ran ? `<u>${escapeHtml(ran)}</u>` : ''}</span>`;
+}
+
+// A run carrying no planned_session_id. Ten of the twelve filings on 4 September
+// are these, and calling them unplanned would be wrong: the week authors easy
+// running as one quantity with no day, and the athlete places it. So a filing
+// inside a week that carries an easy budget is an ALLOCATION against that
+// budget — authored work, athlete-placed — and only a filing with no budget to
+// draw on is genuinely unprescribed.
+//
+// Nothing here fabricates a dated planned_session, and nothing here counts
+// toward authored volume. The budget was already counted once as eighteen miles;
+// an allocation is the spending of it, not more of it.
+function allocationCell(completion, context, budgeted) {
+  const ran = ranLine(completion, context.piecesFor(completion.id));
+  return `<span class="s ${budgeted ? 'alloc' : 'orphan'}" data-completion="${escapeHtml(completion.id)}">
+    <b>${budgeted ? 'Easy' : 'No prescription'}</b>
+    ${budgeted ? '<i>from the weekly budget</i>' : ''}
+    ${ran ? `<u>${escapeHtml(ran)}</u>` : ''}</span>`;
+}
+
+function planHtml() {
   const block = record.block;
   const weeks = (record.weeks || []).slice().sort((a, b) => a.week_number - b.week_number);
-  if (!block || !weeks.length) {
-    return '<main class="view on"><div class="plate"><div class="failed"><h1>No active block.</h1><p>Nothing is authored for this athlete yet.</p></div></div></main>';
-  }
   const athlete = record.athlete;
-  const mark = record.primaryMark;
+  if (!block || !weeks.length) {
+    return `<main class="view on planv"><div class="failed"><h1>No active block.</h1>
+      <p>Nothing is authored for ${escapeHtml(athlete?.first_name || 'this athlete')} yet.</p></div></main>`;
+  }
   const current = record.currentWeek;
-  const filed = new Set((record.completions || []).map((item) => item.planned_session_id).filter(Boolean));
+  const completions = record.completions || [];
+  const pieces = record.pieces || [];
+  const context = {
+    completionFor: (sessionId) => completions.find((item) => item.planned_session_id === sessionId) || null,
+    piecesFor: (completionId) => completionId ? pieces.filter((piece) => piece.completion_id === completionId) : []
+  };
+  const unattached = completions.filter((item) => !item.planned_session_id);
 
   const forWeek = (week) => (record.sessionsByWeek?.[week.id] || []);
-  const onDay = (week, day) => forWeek(week)
-    .filter((session) => session.scheduled_on && String(session.day_label).slice(0, 3).toUpperCase() === day.slice(0, 3).toUpperCase());
   const budgetFor = (week) => forWeek(week).filter((session) => !session.scheduled_on);
-  const milesFor = (week) => forWeek(week)
-    .reduce((total, session) => total + (session.state === 'cancelled' ? 0 : (authoredMiles(session.currentVersion) || 0)), 0);
+  const milesFor = (week) => forWeek(week).reduce((total, session) =>
+    total + (session.state === 'cancelled' ? 0 : (authoredMiles(session.currentVersion) || 0)), 0);
+  const isCurrent = (week) => week.id === current?.id;
+  // A cutback week is one carrying materially less than the block's heaviest.
+  // Derived, because nothing in training_weeks says "this one is lighter".
+  const heaviest = Math.max(...weeks.map(milesFor), 0);
 
   const head = weeks.map((week) => {
-    const down = milesFor(week) > 0 && milesFor(week) < 0.75 * Math.max(...weeks.map(milesFor));
-    return `<th class="${week.id === current?.id ? 'cur' : ''}">
+    const out = weeksOutOf(week, block.race_on);
+    const miles = milesFor(week);
+    const down = miles > 0 && heaviest > 0 && miles < 0.8 * heaviest;
+    return `<th class="${[isCurrent(week) ? 'cur' : '', down ? 'down' : ''].filter(Boolean).join(' ')}">
       <span class="wn">W${escapeHtml(week.week_number)}</span>
       <span class="wd">${escapeHtml(dayLabel(week.starts_on))}</span>
-      ${down ? '<span class="wr">down</span>' : ''}</th>`;
+      ${out == null ? '' : `<span class="wo">${escapeHtml(out)}</span>`}</th>`;
   }).join('');
 
-  // Only days that ever hold something get a row. Wednesday and Friday sitting
-  // empty across fifteen columns is not information, it is furniture.
-  const livedDays = WEEK_DAYS.filter((day) => weeks.some((week) => onDay(week, day).length));
-  const rows = livedDays.map((day) => `<tr class="${KEY_DAYS.has(day) ? 'keyrow' : ''}">
+  const rows = WEEK_DAYS.map((day, index) => `<tr class="${HEAVY_DAYS.has(day) ? 'heavy' : ''}">
       <th class="d">${day}</th>
-      ${weeks.map((week) => `<td class="${week.id === current?.id ? 'cur' : ''}">${
-        cellHtml(onDay(week, day), mark)}</td>`).join('')}
+      ${weeks.map((week) => {
+        const on = week.starts_on ? addDays(week.starts_on, index) : null;
+        const asked = on ? forWeek(week).filter((session) => session.scheduled_on === on) : [];
+        const ran = on ? unattached.filter((item) => filedOn(item) === on) : [];
+        const inside = asked.map((session) => prescribedCell(session, context)).join('')
+          + ran.map((item) => allocationCell(item, context, budgetFor(week).length > 0)).join('');
+        return `<td class="${isCurrent(week) ? 'cur' : ''}">${inside || '<span class="none">·</span>'}</td>`;
+      }).join('')}
     </tr>`).join('');
 
+  // The budget sits outside the dated days and never gets one. It is the week's
+  // easy running as one authored quantity, placed by the athlete.
+  // The source the daily easy cells are drawn from, and how much of it has been
+  // spent. Prescribed is authored; allocated is what the athlete placed.
+  const allocatedIn = (week) => unattached
+    .filter((item) => week.starts_on && week.ends_on
+      && filedOn(item) >= week.starts_on && filedOn(item) <= week.ends_on)
+    .reduce((total, item) => total + Number(item.actual_distance || 0), 0);
+
   const budgetRow = weeks.some((week) => budgetFor(week).length)
-    ? `<tr><th class="d">Across the week</th>${weeks.map((week) => {
+    ? `<tr class="easyrow"><th class="d">Across the week</th>${weeks.map((week) => {
         const budget = budgetFor(week);
-        return `<td class="easyc ${week.id === current?.id ? 'cur' : ''}">${budget.length
-          ? budget.map((session) => `<span class="s"><b>Easy</b><i>${escapeHtml(doseLine(session) || titleOf(session))}</i></span>`).join('')
-          : '<span class="none">—</span>'}</td>`;
+        const spent = allocatedIn(week);
+        return `<td class="${isCurrent(week) ? 'cur' : ''}">${budget.length
+          ? budget.map((session) => `<span class="s"><b>Easy</b>
+              <i>${escapeHtml(workLine(session.currentVersion))}</i>
+              ${spent ? `<u>${escapeHtml(`${Number(spent.toFixed(2))} mi allocated`)}</u>` : ''}</span>`).join('')
+          : '<span class="none">·</span>'}</td>`;
       }).join('')}</tr>` : '';
 
-  const volume = `<tr class="volrow"><th class="d">Weekly volume</th>${weeks.map((week) => {
+  const volume = `<tr class="volrow"><th class="d">Miles</th>${weeks.map((week) => {
     const miles = milesFor(week);
-    return `<td class="${week.id === current?.id ? 'cur' : ''}">${miles ? `${Number(miles.toFixed(0))} mi` : '—'}</td>`;
+    return `<td class="${isCurrent(week) ? 'cur' : ''}">${miles ? Number(miles.toFixed(0)) : '·'}</td>`;
   }).join('')}</tr>`;
 
-  const owned = mark?.current_value != null ? `${Number(mark.current_value)} ${mark.unit || ''}`.trim() : null;
-  const nextRung = (mark?.checkpoints || []).find((rung) => rung.state === 'current');
-
-  return `<main class="view on">
-    <div class="hero">
-      <div class="who">
-        <img class="heroPortrait" data-portrait="${escapeHtml(athlete.slug)}" alt="">
-        <div><h1>${escapeHtml(athlete.first_name)}</h1>
-          <div class="race">${escapeHtml([block.race_name, block.race_place].filter(Boolean).join(' · ') || athlete.target_event || '')}${
-            block.race_on ? ` · ${escapeHtml(dayLabel(block.race_on))}` : ''}</div>
-          <div class="wk">WEEK ${escapeHtml(current?.week_number ?? '—')} / ${escapeHtml(block.total_weeks)}</div></div>
-      </div>
-      <div><div class="lab">BLOCK</div>
-        <h2>${escapeHtml(block.name || 'The block')}</h2>
-        <p>${escapeHtml(block.goal_statement || '')}</p></div>
-      <div><div class="lab">CURRENT EXPERIMENT</div>
-        <h2>${escapeHtml(mark?.current_question || athlete.goal_label || '')}</h2>
-        <p>${owned ? `Owns ${escapeHtml(owned)} today${nextRung ? `. The next rung is ${escapeHtml(Number(nextRung.value))}.` : '.'}` : 'Nothing established yet.'}</p></div>
+  return `<main class="view on planv">
+    <div class="pgHead">
+      <button class="back" type="button" data-nav="athlete">← ${escapeHtml(athlete.first_name)}</button>
+      <h3>${escapeHtml(block.name || 'The block')}</h3>
+      <span class="pgSub">${escapeHtml(block.total_weeks)} weeks${
+        block.race_name ? ` to ${escapeHtml(block.race_name)}` : ''}</span>
     </div>
-
-    <div class="plate">
-      <div class="plateHead">
-        <button class="back" type="button" data-nav="athlete">← ${escapeHtml(athlete.first_name)}</button>
-        <h3>${escapeHtml(block.total_weeks)} weeks</h3></div>
-      <div class="scroll"><table>
-        <thead><tr><th class="d"></th>${head}</tr></thead>
-        <tbody>${rows}${budgetRow}${volume}</tbody>
-      </table></div>
+    <div class="pgWrap"><div class="pgScroll"><table class="pg">
+      <thead><tr><th class="d"><span class="wl">weeks out</span></th>${head}</tr></thead>
+      <tbody>${rows}${budgetRow}${volume}</tbody>
+    </table></div></div>
+    <div class="pgFoot">
+      <b>Struck through</b> is cancelled and stays visible, so you can see what was withdrawn.
+      <b>Easy · from the weekly budget</b> is authored work the athlete placed himself. The week
+      authors the quantity; the day is his. Those miles are counted once, in the budget, and never
+      again in <b>Miles</b>.
+      A middle dot is a day with nothing authored and nothing filed, not a rest day.
+      <b>Miles</b> is what the authored components sum to, not a target.
     </div>
   </main>`;
 }
-
 // ── paint: every geometric value, after render, through the CSSOM ───────────
 
 function paint() {
@@ -949,7 +1078,9 @@ async function keepRead() {
 function route() {
   const hash = location.hash.replace(/^#\/?/, '');
   const [kind, slug, leaf] = hash.split('/');
-  if (kind === 'a' && slug) return { view: leaf === 'block' ? 'block' : 'athlete', slug };
+  // `block` is the route this view used to answer to. It still resolves, so a
+  // link kept in a note from last week opens the plan rather than nothing.
+  if (kind === 'a' && slug) return { view: (leaf === 'plan' || leaf === 'block') ? 'plan' : 'athlete', slug };
   if (kind === 'brief') return { view: 'brief' };
   return { view: 'bench' };
 }
@@ -957,7 +1088,7 @@ function route() {
 function markNav(view, slug) {
   nav.hidden = false;
   nav.querySelectorAll('button').forEach((button) => button.classList.remove('on'));
-  const which = view === 'bench' ? 'bench' : view === 'brief' ? 'brief' : view === 'block' ? 'block' : null;
+  const which = view === 'bench' ? 'bench' : view === 'brief' ? 'brief' : view === 'plan' ? 'plan' : null;
   if (which) nav.querySelector(`[data-nav="${which}"]`)?.classList.add('on');
   // Plan stays visible. With nobody chosen it opens the first athlete on the
   // bench, which is the one who needs you.
@@ -976,7 +1107,7 @@ function render() {
   const { view, slug } = route();
   if (view === 'bench') app.innerHTML = benchHtml();
   else if (view === 'brief') app.innerHTML = briefHtml();
-  else if (view === 'block') app.innerHTML = blockHtml();
+  else if (view === 'plan') app.innerHTML = planHtml();
   else app.innerHTML = athleteHtml();
   markNav(view, slug);
   paint();
@@ -1019,7 +1150,7 @@ document.addEventListener('click', (event) => {
   const slug = record?.athlete?.slug || route().slug
     || bench.slice().sort(benchOrder)[0]?.slug;
   if (!slug) return;
-  location.hash = where === 'block' ? `#/a/${slug}/block` : `#/a/${slug}`;
+  location.hash = where === 'plan' ? `#/a/${slug}/plan` : `#/a/${slug}`;
 });
 
 document.getElementById('shClose').addEventListener('click', closeSheet);

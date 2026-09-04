@@ -8,3 +8,7 @@ mockupc/media/*.orig.mp4
 # Apple signing key + generated client secret. Never committed: publish = "." means
 # anything tracked here is downloadable from speedandform.com.
 keys/
+
+# Render harness: production dump wired into the real modules so a surface can
+# be checked without a session. Rebuilt from scripts/dump_plan.sh output.
+harness/
