@@ -1,131 +1,141 @@
-# The authored plan, W1–W15, both athletes
+# The authored plan, W1–W15 — recalculated on the easy curve
 
-4 September, revised. **Nothing authored. Nothing in production changed.**
-Approved in principle: warm-ups and cool-downs on every quality session,
-Mon/Wed/Fri easy, Sunday rest, a rising volume floor toward 55–60, no 12-mile
-rung. This is the table to approve before any of it is written.
+4 September, third pass. **Nothing authored. Nothing in production changed.**
 
----
+Rebuilt on your principle: the easy-volume curve is smooth, the total is not,
+Sunday stays rest, no ceiling on an easy day. My 10-mile cap was an assumption I
+had no business making and it is gone — W12 runs 11 / 10 / 9.
 
-## First, the warm-up convention — I should not guess this
+The canonical week, both athletes, all fifteen weeks:
 
-You cautioned against inferring 20/10 from an average. Here is what is actually
-on file. Eight pairs, and they are perfectly consistent:
-
-| where | warm-up | cool-down |
-|---|---|---|
-| W1, W2, W3 Tuesday — the race-pace sessions | **20 min** | **10 min** |
-| W14 Tuesday — race week | **15 min** | **10 min** |
-
-**Nothing else in the block has one.** No Thursday session, ever. No Saturday
-session, ever. So the convention I can see is: *20/10 around a race-pace
-Tuesday, 15/10 in the taper.* Everything past that is a question, not a
-convention, and the table below assumes answers I need you to confirm:
-
-- **Thursdays.** The Wave, The Governor, VO₂ intervals, Hills + strides, The
-  Kick, VO₂ touch — I have assumed 20/10 on all of them. Hills and VO₂ plausibly
-  want drills and strides in the warm-up rather than twenty easy minutes, which
-  is workout architecture and deserves authoring rather than a default.
-- **The Saturday continuous race-pace runs** — 8, 10 and 12 miles at 6:30–6:45.
-  I have assumed 20/10. Nobody starts a twelve-mile race-pace run cold, but the
-  number is yours.
-- **Sessions titled "Easy"** — W8 Tue *Easy week 6 mi*, W8 Thu *Easy 5 mi*,
-  W12 Thu, W14 Thu. Assumed none: they *are* easy days.
-- **Plain long runs** — assumed none. The run warms itself up.
-
-`+20/10` in the table marks a warm-up I am proposing, not one you wrote.
+    MON easy · TUE quality · WED easy · THU quality/support · FRI easy · SAT long/specific · SUN rest
 
 ---
 
-## The table
+## The ruling I need first: `prescribed_distance` means two different things
 
-Both athletes run the same key sessions, so both tables are the same except
-W1. Easy days rise 18 → 29 across the block. Nothing below 5, nothing above 10.
+Eight sessions declare a distance their own components do not add up to.
 
-| Wk | Mon | Tuesday | Wed | Thursday | Fri | Saturday | Sun | key | easy | **total** | target | gap |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| W1 | 7 | 4 × 1 mi @ 6:25–6:30 · *and* 4 × 1 km `+20/10` | 6 | — *(Hope: 4 × 1 km `+20/10`)* | 5 | Long run 9 *(Hope 12)* | rest | 22 | 18 | **40** | 45 | −5 |
-| W2 | 7 | 3 × 2 mi @ RP | 6 | Clean Rhythm 4 × 6 min `+20/10` | 6 | Long run 10 | rest | 27 | 19 | **46** | 46 | — |
-| W3 | 8 | **5 mi @ RP** · rung | 7 | Hills + strides `+20/10` | 6 | Long run 7 → 2 @ RP | rest | 21 | 21 | **42** | 48 | −6 |
-| W4 | 8 | Easy week 6 mi | 7 | **6 mi @ RP** `+20/10` · rung | 6 | Long run 9 → 2 @ RP | rest | 26 | 21 | **47** | 50 | −3 |
-| W5 | 8 | 7 mi @ RP `+20/10` | 7 | The Wave `+20/10` | 7 | Long run 11 → 2 @ RP | rest | 30 | 22 | **52** | 52 | — |
-| W6 | 9 | The Blind Mile 2 mi `+20/10` | 8 | The Governor `+20/10` | 7 | Long run 12 → 2 @ RP | rest | 26 | 24 | **50** | 54 | −4 |
-| W7 | 7 | ~~2 × 4 mi @ RP~~ cancelled | 6 | Pressure to Pace `+20/10` | 6 | Long run 7 | rest | 18 | 19 | **37** | 46 | **−9** |
-| W8 | 9 | Easy week 6 mi | 8 | Easy 5 mi | 8 | **8 mi continuous @ RP** `+20/10` · rung | rest | 22 | 25 | **47** | 52 | −5 |
-| W9 | 9 | 4 mi @ RP `+20/10` | 9 | VO₂ 5 × 3 min `+20/10` | 8 | **10 mi continuous @ RP** `+20/10` · rung | rest | 26 | 26 | **52** | 55 | −3 |
-| W10 | 10 | Durability Read `+20/10` | 9 | Settle 2 × 8 min `+20/10` | 8 | Long run 12 → 3 @ RP | rest | 29 | 27 | **56** | 56 | **—** |
-| W11 | 10 | ~~2 × 5 mi @ RP~~ cancelled | 9 | The Kick `+20/10` | 8 | **12 mi continuous @ RP** `+20/10` | rest | 23 | 27 | **50** | 50 | **—** |
-| W12 | 10 | 4 mi @ RP `+20/10` | 10 | Easy 5 mi | 9 | Long run 8 → 4 @ RP | rest | 24 | 29 | **53** | 59 | −6 |
-| W13 | 10 | 6 mi @ RP `+20/10` | 9 | VO₂ touch `+20/10` | 9 | Long run 6 → 4 @ RP | rest | 24 | 28 | **52** | 54 | −2 |
-| W14 | 7 | 4 mi @ RP `15/10` | 6 | Easy 4 mi | 5 | **— nothing authored** | rest | 11 | 18 | **29** | 40 | **−11** |
-| W15 | 6 | **— nothing authored** | 5 | **—** | 3 | **— the race** | rest | 0 | 14 | **14** | 34 | **−20** |
+| | title | components | prescribed | gap |
+|---|---|---|---|---|
+| W3 THU | Hills + strides | 0.3 | 5.0 | **+4.7** |
+| W13 THU | VO₂ touch | 0.8 | 5.0 | **+4.2** |
+| W9 THU | VO₂ intervals | 1.7 | 6.0 | **+4.3** |
+| W10 THU | Settle · maintenance | 2.5 | 6.0 | +3.5 |
+| W6 TUE | The Blind Mile | 2.0 | 5.0 | +3.0 |
+| W5 THU | The Wave | 3.1 | 6.0 | +2.9 |
+| W6 THU | The Governor | 2.7 | 5.0 | +2.3 |
+| W1 TUE | 3 to 6 × 1 km | 2.5 | 4.0 | +1.5 |
 
-Your two hardest weeks land exactly: **W10 = 56**, **W11 = 50**.
+*Hills + strides* types eight twelve-second hills and four twenty-second strides
+— three minutes of running — and declares five miles. The five is obviously
+right and the components are obviously the hard pieces inside it; the jog back
+down the hill, the recoveries and the cool-down were never typed.
 
----
+But the same column means the opposite elsewhere. **W1 Tuesday's `4 × 1 mi at
+race pace` declares 4.00 and carries a typed 20-minute warm-up and 10-minute
+cool-down on top of it** — so there, `prescribed_distance` is the *work only*.
 
-## Why the rest fall short, and the three levers
+So the column is the session total on some rows and the work on others, and no
+weekly figure is trustworthy until it means one thing. Both readings are below:
 
-The gaps are not random. They sit exactly where the block is thin:
+- **A** — components only, plus a proposed 20/10 where none is typed. Conservative.
+- **B** — `prescribed_distance` where it is larger, plus the same 20/10.
 
-- **W7 (−9) and W11** — a Tuesday is cancelled.
-- **W8 (−5) and W12 (−6)** — a Tuesday or Thursday is deliberately *Easy*, which
-  is correct around a rung but leaves the week light.
-- **W3 (−6)** — Hills + strides is a 4-mile Thursday.
-- **W6 (−4)** — The Blind Mile is a 2-mile Tuesday.
-- **W14 (−11), W15 (−20)** — not ramp questions. Those weeks are unauthored.
-
-**The structural fact:** three easy days capped at 10 miles give at most 30 easy
-miles. With a key load of 21–29, three easy days and Sunday rest, the ceiling is
-**51–59**, and only W5 and W10 have enough key load to reach the top of it.
-
-**Sunday rest and a 58–60 peak are not compatible on this key-session load.**
-Three levers, with their exact sizes:
-
-**1 · Sunday runs easy on the build weeks — the cleanest, +5 or +6 per week.**
-Five easy miles on Sunday, W3 through W13 only, closes almost every gap:
-W3 47, W4 52, W6 55, W8 52, W9 57, W12 58, W13 57. At 55–60 mpw, six running
-days is ordinary. I recommend this. You said Sunday stays rest unless you change
-it, so it is yours to change.
-
-**2 · The volume-peak week gets the block's longest run — +4 in W12 alone.**
-W12 is meant to be the aerobic peak and its Saturday is 12 miles; W10's is 15.
-A 16-mile long run in W12 is aerobic volume, not key difficulty, and puts the
-longest run of the block in the week designed to carry the most.
-
-**3 · Larger easy days.** Going to 11–12 closes it arithmetically. I would not:
-that is the thing that stops being easy running.
-
-Levers 1 and 2 together give W12 = **62**, which is above your ceiling — so
-probably lever 1 alone, or lever 1 on the build weeks with lever 2 only in W12
-and Sunday rest that week.
+They differ by up to 5 miles a week and the truth is per-session, not per-column.
 
 ---
 
-## The two weeks that need authoring, not allocating
+### JOSE
 
-Proposals, entirely mine, and the least confident thing in this document.
+| Wk | easy M/W/F | easy | key A | key B | **total A** | **total B** |
+|---|---|---|---|---|---|---|
+| W1 | 7/7/5 | 19 | 22 | 24 | **41** | **43** |
+| W2 | 8/7/5 | 20 | 27 | 28 | **47** | **48** |
+| W3 | 8/7/6 | 21 | 21 | 26 | **42** | **47** |
+| W4 | 8/7/7 | 22 | 26 | 26 | **48** | **48** |
+| W5 | 8/8/7 | 23 | 30 | 33 | **53** | **56** |
+| W6 | 9/8/7 | 24 | 26 | 31 | **50** | **55** |
+| W7 | 7/7/5 | 19 | 18 | 18 | **37** | **37** |
+| W8 | 9/8/7 | 24 | 22 | 22 | **46** | **46** |
+| W9 | 9/8/8 | 25 | 26 | 30 | **51** | **55** |
+| W10 | 10/8/8 | 26 | 29 | 34 | **55** | **60** |
+| W11 | 9/8/7 | 24 | 23 | 25 | **47** | **49** |
+| W12 | 11/10/9 | 30 | 24 | 24 | **54** | **54** |
+| W13 | 10/8/8 | 26 | 24 | 28 | **50** | **54** |
+| W14 | 6/6/4 | 16 | 11 | 11 | **27** | **27** |
+| W15 | 5/4/3 | 12 | 0 | 0 | **12** | **12** |
 
-**W14 Saturday** — Nov 28, seven days out. The last long run in the block is
-currently W13's 10 miles, three weeks from Orlando. Proposed:
-`Long run 10 mi → 3 mi @ 6:30–6:45`. That makes W14 **39**, on target.
+### HOPE
 
-**W15 — race week.** Nov 30 to Dec 6, the race on Saturday 5 December.
-Proposed: Mon easy 6 · Tue `2 × 1 mi @ RP` with 15/10 · Wed easy 5 ·
-Thu easy 4 with strides · Fri easy 3 shakeout · **Sat OUC Half — 13.1** ·
-Sun rest. About **37** including the race.
+| Wk | easy M/W/F | easy | key A | key B | **total A** | **total B** |
+|---|---|---|---|---|---|---|
+| W1 | 7/7/5 | 19 | 25 | 27 | **44** | **46** |
+| W2 | 8/7/5 | 20 | 27 | 28 | **47** | **48** |
+| W3 | 8/7/6 | 21 | 21 | 26 | **42** | **47** |
+| W4 | 8/7/7 | 22 | 26 | 26 | **48** | **48** |
+| W5 | 8/8/7 | 23 | 30 | 33 | **53** | **56** |
+| W6 | 9/8/7 | 24 | 26 | 31 | **50** | **55** |
+| W7 | 7/7/5 | 19 | 18 | 18 | **37** | **37** |
+| W8 | 9/8/7 | 24 | 22 | 22 | **46** | **46** |
+| W9 | 9/8/8 | 25 | 26 | 30 | **51** | **55** |
+| W10 | 10/8/8 | 26 | 29 | 34 | **55** | **60** |
+| W11 | 9/8/7 | 24 | 23 | 25 | **47** | **49** |
+| W12 | 11/10/9 | 30 | 24 | 24 | **54** | **54** |
+| W13 | 10/8/8 | 26 | 24 | 28 | **50** | **54** |
+| W14 | 6/6/4 | 16 | 11 | 11 | **27** | **27** |
+| W15 | 5/4/3 | 12 | 0 | 0 | **12** | **12** |
+
+
+---
+
+## What the totals say
+
+**A: peak 55 in W10, W12 at 54.** **B: peak 60 in W10, W12 at 54.**
+
+The easy curve is doing everything it can — it rises 19 → 30 without a break and
+tops out at 11 / 10 / 9. Two things follow, and neither is fixable by moving easy
+miles around:
+
+**W12 does not become the aerobic-volume peak.** It lands at 54 on both readings,
+below W10's 55–60, because its key column is the lightest of the late block: a
+4-mile Tuesday, an *Easy 5* Thursday, and a Saturday of 8 → 4 at race pace —
+**12 miles, against W10's 15**. You asked whether W12 could be the largest
+aerobic expression *if the honest total lands near the high 50s*. It does not.
+The one change that would do it without touching a hard piece is W12's long run:
+at 16 miles it becomes 58, and the block's longest run would sit in the week
+designed to carry the most aerobic work. That is a real coaching decision and
+I am not making it.
+
+**W10 is the peak on both readings**, which is coherent — biggest long run, two
+real quality sessions — but it means the volume peak and the durability block
+land in the same fortnight rather than being separated as you wanted.
+
+`W14` and `W15` read 27 and 12 because they are still unauthored. I have dropped
+my *10 mi with 3 at race pace* proposal — you are right that it is a coaching
+decision for when we finish the end of the block, not a way to fix a total.
+
+---
+
+## For Labs, noted not built
+
+Two lines under the matrix rather than one number: **TOTAL** oscillating with the
+demands of the block, **EASY** rising smoothly underneath it. That is the training
+story in one trace, and it is the argument for the whole easy-day authoring. Added
+to tranche C.
 
 ---
 
 ## What I need before writing anything
 
-1. **Thursdays and the Saturday race-pace runs** — 20/10, or something with
-   drills and strides in it? This is workout architecture and I will not default it.
-2. **Sunday.** Easy 5 on the build weeks, or rest throughout and a peak near 55?
-3. **W12's long run** — 12 as authored, or 16 as the block's longest?
-4. **W14 Saturday and W15** — the proposals above, or your own.
-5. **Hope** — the table is identical to José's, which is what "same canonical
-   shape" means and what her 45.64 supports. Confirm, or give her her own totals.
+1. **`prescribed_distance` — session total, or work?** Per session if it varies.
+   Nothing else can be settled until this one is.
+2. **Thursday warm-ups.** Still `+20/10` proposed everywhere. If *Hills + strides*
+   already means five miles including its jogs, it needs no warm-up added — only
+   its recoveries typed. That is workout architecture.
+3. **W12's long run** — 12 as authored, or 16 and W12 becomes the aerobic peak
+   at 58?
+4. **W14 Saturday and W15.** Open, not proposed.
+5. **Hope** — identical to José except W1. Confirm.
 
-Not settled here and unchanged: the ladder stays **1 · 2 · 5 · 6 · 8 · 10 · 13.1**.
-The twelve-mile continuous establishes nothing and does not need to.
+The ladder stays **1 · 2 · 5 · 6 · 8 · 10 · 13.1**, unchanged.
