@@ -78,6 +78,21 @@ before.
 **A storefront, pricing, or anything athlete-facing.** Not in scope. Labs is
 preserving a working method that may become a product.
 
+## What the two live blocks now hold — and why it is not the method
+
+As of 4 September both blocks carry fully authored daily running for W3–W13 on
+the canonical rhythm, with totals `43 · 48 · 54 · 50 · 39 · 46 · 52 · 53 · 48 ·
+58 · 50` over an easy curve of `21 · 22 · 23 · 24 · 23 · 24 · 25 · 26 · 24 · 30
+· 26`.
+
+**That is an implementation, not the method.** The weekly rhythm is almost
+certainly method-level. The mileages are almost certainly not — they are where
+Hope and José are in September 2026, and a second athlete entering Race Pace
+Durability at 30 miles a week would need a different tier of the same argument.
+
+Nothing here is promoted by being live. Law 3 holds: promotion is explicit,
+one-directional, and a button a coach presses.
+
 ## Open questions for Brice
 
 - **Is Marcus a third application?** Same goal, same 6:30–6:45 band, mark asking

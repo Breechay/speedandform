@@ -54,6 +54,40 @@ method never rewrites an athlete; promotion is explicit and one-directional.
 Concept, four laws, minimum schema and what not to build are in
 `docs/FORM_LABS_METHOD_OBJECT.md`.
 
+## Settled 4 September — the mileage model
+
+`prescribed_distance` is the **expected total session distance**. The components
+describe the work inside it. A `6 mi at race pace` work component lives inside a
+9.4-mile session.
+
+- Warm-ups, cool-downs and running recoveries are real running and count toward
+  the week. A `jog`, `float` or `easy` recovery is running; a `standing` one is not.
+- **TOTAL** is every mile the week asks for. **EASY** is standalone easy sessions
+  only — a warm-up belongs to its quality session and never to EASY.
+- The weekly `Across the week` budget rows survive as **historical/audit context
+  only**. They stop being counted the moment a week authors its days.
+
+Both athlete blocks now carry **fully authored daily running, W3–W13**, on one
+canonical rhythm:
+
+    MON easy · TUE quality · WED easy · THU support-quality · FRI easy · SAT long/specific · SUN rest
+
+    TOTAL   43 · 48 · 54 · 50 · 39 · 46 · 52 · 53 · 48 · 58 · 50
+    EASY    21 · 22 · 23 · 24 · 23 · 24 · 25 · 26 · 24 · 30 · 26
+
+W7 is the cutback, made by withdrawing structured load rather than gutting the
+aerobic base. **W12 is the aerobic peak** — a 16-mile Saturday, 58.4 total.
+Hope and José share the architecture exactly.
+
+**W14 and W15 are deliberately unresolved.** The taper and race week are a
+coaching decision, not a mileage one.
+
+**None of this is promoted to the method.** These mileages are evidence from the
+first two applications of Race Pace Durability, not doctrine. José's `10/8/8`,
+the 16-mile W12 and the rest become part of the method when Brice decides they
+generalise — through `PROMOTE TO METHOD`, never by being live. See
+`docs/FORM_LABS_METHOD_OBJECT.md`.
+
 ## Frozen semantics
 
 Two quantities that kept collapsing into one. They are different questions and a
