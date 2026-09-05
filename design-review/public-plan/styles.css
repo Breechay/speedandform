@@ -234,12 +234,23 @@ body[data-state="complete"] .step.race span{border-color:var(--lime);color:var(-
 .dev button.on{background:#ffffff12;color:var(--text)}
 
 /* ═══════════════════════════════════════════════════════════════════════
-   FIVE WEEKS, AND WHAT KIND OF DAY IT IS.
+   FIVE WEEKS, IN FULL.
 
-   The differentiation is typographic. No category colours: FORM has one accent
-   and it means "this can establish something". A five-colour discipline system
-   would be a second visual language competing with the first.
+   The window buys the room the fifteen never had, so the prescription lives in
+   the grid again. Density is the point; cards are not.
+
+   Key sessions are marked by a thin rule on the left edge and by weight — ONE
+   neutral accent, not a colour per discipline. The reference image tints Tuesday
+   blue, Thursday orange and Saturday green; that is a second visual language
+   competing with the one where lime means "this can establish something", and
+   the brief forbids a category colour system. Reported rather than adopted.
    ═══════════════════════════════════════════════════════════════════════ */
+
+.weekNav{display:flex;align-items:center;gap:18px}
+.windowLabel{text-align:center;min-width:200px}
+.windowLabel b{display:block;font-size:13px;font-weight:500;color:#cdd4d5;letter-spacing:.01em}
+.windowLabel span{display:block;margin-top:3px;font-size:10px;letter-spacing:.1em;color:#6e787b}
+.circle[disabled]{opacity:.3;cursor:default}
 
 .rail{display:flex;align-items:center;gap:14px;margin:0 0 12px;padding-left:2px}
 .rail #railLabel{font-size:9px;letter-spacing:.2em;color:#5b6467;text-transform:uppercase}
@@ -248,50 +259,65 @@ body[data-state="complete"] .step.race span{border-color:var(--lime);color:var(-
 .rail #rail span.in{background:#394346}
 .rail #rail span.now{background:var(--lime)}
 
-.matrix tbody td{vertical-align:top;text-align:left;padding:14px 16px 15px;height:auto}
-.matrix tbody td b{display:block;font-size:15px;font-weight:400;color:#cdd4d5;letter-spacing:.005em;
-  font-variant-numeric:tabular-nums}
-.matrix tbody td em{display:block;font-style:normal;font-size:8.5px;letter-spacing:.22em;
-  text-transform:uppercase;color:#6e787b;margin-bottom:7px}
-.matrix tbody td i{display:block;font-style:normal;font-size:11px;color:#7f888b;margin-top:5px}
+.matrix thead th.wk u{display:block;text-decoration:none;font-size:8.5px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--lime);margin-bottom:5px}
+.matrix thead th b{font-size:13px}
+.matrix thead th span{margin-top:5px;font-size:10px}
 
-/* Easy days recede. They are one number and nothing else — the band lives in the
-   pace key, once, not in sixty-six cells. */
-.matrix tbody td.d-easy b{font-size:13px;color:#899193;font-weight:400}
-.matrix tbody td.d-rest{color:#3f484b}
-.matrix tbody td.d-rest b{font-size:11px;color:#414a4d}
+.matrix tbody td{vertical-align:top;text-align:left;padding:11px 14px 12px;height:auto;
+  border-left:2px solid transparent}
+.matrix tbody td b{display:block;font-size:13px;font-weight:400;color:#dfe4e2;line-height:1.35;
+  letter-spacing:.005em;font-variant-numeric:tabular-nums}
+.matrix tbody td i{display:block;font-style:normal;font-size:11px;line-height:1.5;
+  color:#7d868a;margin-top:2px}
+.matrix tbody th{font-size:12px;color:#9aa2a4;font-weight:400;vertical-align:top;padding-top:12px}
 
-/* The three days that carry the week. Identity first, then the work. */
-.matrix tbody td.d-rp em,
-.matrix tbody td.d-long em,
-.matrix tbody td.d-support em{color:#9aa4a7}
+/* Easy days: one statement and its ceiling. They recede by weight, not by size. */
+.matrix tbody td.d-easy b{color:#aeb6b3}
+.matrix tbody td.d-rest b{color:#4a5356;font-size:12px}
+.matrix tbody td.d-rest i{color:#333c3f}
+
+/* The three days that carry the week. A thin neutral rule, and more contrast. */
+.matrix tbody td.d-rp,
+.matrix tbody td.d-support,
+.matrix tbody td.d-long,
+.matrix tbody td.d-race{border-left-color:#3d474a}
 .matrix tbody td.d-rp b,
-.matrix tbody td.d-long b{font-size:17px;color:#eef1ef;font-weight:500}
-.matrix tbody td.d-support b{font-size:15px;color:#dbe1e0}
-.matrix tbody td.d-race em{color:var(--lime)}
-.matrix tbody td.d-race b{font-size:17px;color:var(--lime);font-weight:500}
+.matrix tbody td.d-long b,
+.matrix tbody td.d-race b{color:#f1f4f1}
 
-/* An authored question. The state above already says it is a question; the cell
-   only needs to be unmistakable. */
-.matrix tbody td.asked em{color:var(--lime)}
+/* An authored question. The narrative above the matrix says it is a question;
+   the cell only has to be unmistakable. */
+.matrix tbody td.asked{border-left-color:var(--lime)}
 .matrix tbody td.asked b{color:var(--lime)}
 
 .matrix tbody td[data-w]{cursor:pointer;transition:background .14s}
-.matrix tbody td[data-w]:hover{background:#ffffff08}
-.matrix tbody td[data-w]:focus-visible{outline:1px solid var(--lime);outline-offset:-1px}
-.matrix tbody tr.total td{text-align:center;vertical-align:middle;padding:14px 10px}
+.matrix tbody td[data-w]:hover{background:#ffffff07}
+.matrix tbody td[data-w]:focus-visible{outline:1px solid var(--lime);outline-offset:-2px}
+.matrix tbody tr.total th{line-height:1.25;font-size:9px;letter-spacing:.18em;
+  text-transform:uppercase;color:#6e787b}
+.matrix tbody tr.total td{text-align:left;vertical-align:middle;padding:13px 14px;
+  font-size:14px;color:#dfe4e2}
 
-/* THE SESSION, beneath the window — the five weeks never leave the screen. */
+/* PLAN INFORMATION — the decoding key, so the matrix need not repeat itself. */
+.paceKey{margin:0}
+.paceKey div{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
+  padding:11px 0;border-bottom:1px solid var(--hair-2)}
+.paceKey div:last-child{border-bottom:0}
+.paceKey dt{font-size:12px;color:#9aa2a4}
+.paceKey dd{margin:0;font-size:13px;color:#e4e9e5;font-variant-numeric:tabular-nums}
+
+/* THE SESSION, beneath the window — for intent, which a cell cannot carry. */
 .inspector{margin-top:1px;border:1px solid var(--line);border-top:0;background:#0a1113;
-  padding:20px 24px 22px}
-.insHead{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:14px}
+  padding:18px 22px 20px}
+.insHead{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:12px}
 .insHead em{display:block;font-style:normal;font-size:8.5px;letter-spacing:.22em;
-  text-transform:uppercase;color:#6e787b;margin-bottom:7px}
-.insHead h4{margin:0;font-size:19px;font-weight:400;color:var(--text);letter-spacing:-.005em}
-.insClose{background:none;border:0;color:#5f696c;font-size:20px;line-height:1;cursor:pointer;padding:0 2px}
+  text-transform:uppercase;color:#6e787b;margin-bottom:6px}
+.insHead h4{margin:0;font-size:18px;font-weight:400;color:var(--text)}
+.insClose{background:none;border:0;color:#5f696c;font-size:20px;line-height:1;cursor:pointer}
 .insClose:hover{color:var(--text)}
 .inspector p{margin:0}
-.insWork{font-size:14px;color:#dbe1e0;line-height:1.6;font-variant-numeric:tabular-nums}
-.insBook,.insTotal{font-size:11.5px;color:#7f888b;margin-top:5px !important}
-.insIntent{margin-top:14px !important;font-size:13px;line-height:1.55;color:#9aa2a4;max-width:66ch}
-.insRule{margin-top:8px !important;font-size:11.5px;letter-spacing:.02em;color:#6e787b}
+.insWork{font-size:13.5px;color:#dbe1e0;line-height:1.6}
+.insBook,.insTotal{font-size:11.5px;color:#7f888b;margin-top:4px !important}
+.insIntent{margin-top:12px !important;font-size:13px;line-height:1.55;color:#9aa2a4;max-width:66ch}
+.insRule{margin-top:7px !important;font-size:11.5px;color:#6e787b}

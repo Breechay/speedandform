@@ -47,11 +47,10 @@
     <section class="plan-section" id="plan">
       <div class="plan-head">
         <h2>THE 15-WEEK PLAN</h2>
-        <div class="week-now">
-          <span>Week 3 · Sep 7 – Sep 13</span>
-          <span class="pill">THIS WEEK</span>
-          <button class="circle" aria-label="Previous week">‹</button>
-          <button class="circle" aria-label="Next week">›</button>
+        <div class="weekNav">
+          <button class="circle" id="back" type="button" aria-label="Previous week">‹</button>
+          <div class="windowLabel" id="windowLabel"></div>
+          <button class="circle" id="fwd" type="button" aria-label="Next week">›</button>
         </div>
       </div>
 
@@ -89,9 +88,8 @@
       </article>
 
       <article class="dimensions">
-        <div class="section-kicker">TWO DIMENSIONS</div>
-        <div class="dimension"><div class="dim-icon">▥</div><div><b>Volume</b><p>Builds from ~45 miles to a peak around 60 miles.</p></div></div>
-        <div class="dimension"><div class="dim-icon">◎</div><div><b>Specificity</b><p>Broken race pace → continuous race pace → race.</p></div></div>
+        <div class="section-kicker">PLAN INFORMATION</div>
+        <dl class="paceKey" id="paceKey"></dl>
       </article>
     </section>
   </main>

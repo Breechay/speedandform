@@ -59,76 +59,99 @@ const isRacePace = (c) => c.pace_low_seconds === RP_LO && c.pace_high_seconds ==
 const isStride = (c) => c.shape === 'repetitions' && c.duration_seconds != null
   && c.duration_seconds <= 30 && c.pace_low_seconds == null;
 
-// The matrix is a scan, not a database. Each cell answers: what kind of day, and
-// what is the primary thing to do. Everything else lives in the inspector.
+// THE CELL, IN FULL.
 //
-// Classified on the SHAPE of the work, not on a distance threshold. An earlier
-// version called a session a long run only if its aerobic piece was over eight
-// miles, so W12 — four easy miles then twelve at the band — fell through to the
-// threshold branch and rendered `null × 4 MI`. A long run is a continuous
-// aerobic piece, whatever its length.
+// Five columns buy the room the fifteen never had, so the prescription goes back
+// into the grid: pace, recovery, bookends, total. Book-like density, not cards.
+//
+// Notation is semantic, never a generic component arrow. A long run is
+// `16 mi · last 3 @ 6:30–6:45`, not `13 mi → 3 mi`; strides are
+// `7 mi easy + 4 × 20 s strides`, not `7 mi → 4 × 20 s`.
+// A one-sided pace means two different things depending on which side of race
+// pace it sits. Easy is a ceiling — 8:45 or slower, and slower is never wrong.
+// Threshold is a target the block approaches — ≈6:15. Rendering both as
+// "or slower" told an athlete that a threshold session had no floor.
+const band = (c) => {
+  if (c.rpe_low != null) return `RPE ${c.rpe_low}${c.rpe_high ? `–${c.rpe_high}` : ''}`;
+  if (c.pace_low_seconds == null) return '';
+  if (c.pace_high_seconds) return `${clock(c.pace_low_seconds)}–${clock(c.pace_high_seconds)}`;
+  return c.pace_low_seconds > RP_HI
+    ? `${clock(c.pace_low_seconds)} or slower`
+    : `≈${clock(c.pace_low_seconds)}`;
+};
+const rest = (c) => {
+  if (!c.recovery_seconds) return '';
+  const t = c.recovery_seconds % 60 === 0
+    ? `${c.recovery_seconds / 60} min` : `${c.recovery_seconds} s`;
+  return `${t}${c.recovery_kind ? ` ${c.recovery_kind}` : ''}`;
+};
+const lower = (c) => span(c).toLowerCase();
+
 function read(session) {
-  if (!session) return { kind: 'rest', label: '', head: 'Rest', sub: '' };
-  const work = (session.components || []).filter((c) => c.role === 'work');
+  if (!session) return { kind: 'rest', head: 'Rest', lines: ['—'] };
+  const parts = session.components || [];
+  const work = parts.filter((c) => c.role === 'work');
+  const wu = parts.find((c) => c.role === 'warm_up');
+  const cd = parts.find((c) => c.role === 'cool_down');
+  const book = [wu && `WU ${lower(wu)}`, cd && `CD ${lower(cd)}`].filter(Boolean).join(' · ');
+  const total = `${+session.distance} mi total`;
   const strides = work.find(isStride);
-  const total = `${+session.distance} MI`;
-
-  if (session.role === 'easy' || session.role === 'support') {
-    return strides
-      ? { kind: 'easy', label: 'Easy + strides', head: total,
-          sub: `${strides.repeat_count} × ${span(strides)}` }
-      : { kind: 'easy', label: '', head: total, sub: '' };
-  }
-
   const rpCont = work.find((c) => c.shape === 'continuous' && isRacePace(c));
   const aerobic = work.find((c) => c.shape === 'continuous' && !isRacePace(c)
     && c.pace_low_seconds != null && c.pace_low_seconds > RP_HI);
   const reps = work.find((c) => c.shape === 'repetitions' && !isStride(c));
 
-  // A long run is an aerobic continuous piece, sometimes finishing at the band.
+  // Easy running, with or without strides. Quiet, and it does not repeat its own
+  // distance back as a total.
+  if (session.role === 'easy' || session.role === 'support') {
+    const base = work.find((c) => c.shape === 'continuous') || work[0];
+    if (strides) {
+      return { kind: 'easy', head: `${+session.distance} mi easy + ${
+        strides.repeat_count} × ${lower(strides)} strides`,
+        lines: [base && band(base) ? `@ ${band(base)}` : ''].filter(Boolean) };
+    }
+    return { kind: 'easy', head: `${+session.distance} mi easy`,
+             lines: [base && band(base) ? `@ ${band(base)}` : ''].filter(Boolean) };
+  }
+
+  // The long run, sometimes finishing at the band.
   if (aerobic) {
-    return { kind: 'long', label: 'Long run', head: total,
-             sub: rpCont ? `Last ${+rpCont.distance} @ RP` : '',
-             asks: session.asks };
+    const head = rpCont
+      ? `${+session.distance} mi · last ${+rpCont.distance} @ ${band(rpCont)}`
+      : `${+session.distance} mi long run`;
+    const lines = rpCont
+      ? [`${+aerobic.distance} mi easy + ${+rpCont.distance} mi at race pace`]
+      : [`@ ${band(aerobic)}`];
+    if (book) lines.push(book);
+    lines.push(total);
+    return { kind: 'long', head, lines, asks: session.asks };
   }
-  // Continuous at the band with nothing aerobic around it: either an ask, or the
-  // race, which is the only session that asks nothing of the athlete.
+
   if (rpCont) {
-    return session.asks == null && +rpCont.distance >= 13
-      ? { kind: 'race', label: 'Race', head: `${+rpCont.distance} MI`, sub: '' }
-      : { kind: 'rp', label: 'Race pace', head: `${+rpCont.distance} MI CONTINUOUS`,
-          sub: '', asks: session.asks };
+    const race = session.asks == null && +rpCont.distance >= 13;
+    const lines = [];
+    if (book) lines.push(book);
+    lines.push(total);
+    return { kind: race ? 'race' : 'rp',
+             head: race ? `${+rpCont.distance} mi race @ ${band(rpCont)}`
+                        : `${+rpCont.distance} mi continuous @ ${band(rpCont)}`,
+             lines, asks: session.asks };
   }
+
   if (reps) {
     const n = reps.repeat_count > 1 ? `${reps.repeat_count} × ` : '';
-    if (isRacePace(reps)) {
-      return { kind: 'rp', label: 'Race pace', head: `${n}${span(reps)}`,
-               sub: '', asks: session.asks };
-    }
-    if (reps.rpe_low != null) {
-      return { kind: 'support', label: 'Hills', head: `${n}${span(reps)}`, sub: '' };
-    }
+    const lines = [];
+    if (rest(reps)) lines.push(`${rest(reps)} recovery`);
+    if (book) lines.push(book);
+    lines.push(total);
     const faster = reps.pace_high_seconds != null && reps.pace_high_seconds < RP_LO;
-    return { kind: 'support', label: faster ? 'VO₂' : 'Threshold',
-             head: `${n}${span(reps)}`, sub: '' };
+    const kind = isRacePace(reps) ? 'rp' : 'support';
+    return { kind, head: `${n}${lower(reps)} @ ${band(reps)}`, lines,
+             asks: session.asks, note: !isRacePace(reps) && !faster && reps.rpe_low == null
+               ? 'threshold' : undefined };
   }
-  return { kind: 'easy', label: '', head: total, sub: '' };
+  return { kind: 'easy', head: `${+session.distance} mi easy`, lines: [] };
 }
-
-// The whole prescription, for the inspector only.
-const recovery = (c) => {
-  if (!c.recovery_seconds) return '';
-  const rest = c.recovery_seconds % 60 === 0
-    ? `${c.recovery_seconds / 60} min` : `${c.recovery_seconds} s`;
-  return `${rest}${c.recovery_kind ? ` ${c.recovery_kind}` : ''}`;
-};
-const target = (c) => {
-  if (c.rpe_low != null) return `RPE ${c.rpe_low}${c.rpe_high ? `–${c.rpe_high}` : ''}`;
-  if (c.pace_low_seconds == null) return '';
-  return c.pace_high_seconds
-    ? `${clock(c.pace_low_seconds)}–${clock(c.pace_high_seconds)}/mi`
-    : `${clock(c.pace_low_seconds)}/mi or slower`;
-};
 
 // FIVE WEEKS, NOT FIFTEEN.
 //
@@ -153,31 +176,37 @@ function matrix(current, complete) {
   const shown = windowFor(current);
   const byDay = (week) => Object.fromEntries(week.sessions.map((s) => [s.day, s]));
   const cur = (w) => (!complete && w.week_number === current ? ' cur' : '');
+  const span7 = (n) => {
+    const from = startOf(n), to = new Date(startOf(n));
+    to.setDate(to.getDate() + 6);
+    const show = (d) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    return `${show(from)} – ${show(to)}`;
+  };
 
-  el('matHead').innerHTML = '<th>WEEK</th>' + shown.map((w) =>
-    `<th class="wk${cur(w)}"><b>W${w.week_number}</b><span>${esc(
-      startOf(w.week_number).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }))}</span></th>`).join('');
+  el('matHead').innerHTML = '<th>DAY</th>' + shown.map((w) =>
+    `<th class="wk${cur(w)}">${cur(w) ? '<u>This week</u>' : ''}<b>W${w.week_number}</b>` +
+    `<span>${esc(span7(w.week_number))}</span></th>`).join('');
 
   el('matBody').innerHTML = DAYS.map((day) =>
     `<tr><th>${day[0] + day.slice(1).toLowerCase()}</th>` + shown.map((w) => {
       const session = byDay(w)[day];
       const r = read(session);
       return `<td class="d-${r.kind}${cur(w)}${r.asks != null ? ' asked' : ''}"${
-        session ? ` data-w="${w.week_number}" data-day="${day}" tabindex="0"` : ''}>${
-        r.label ? `<em>${esc(r.label)}</em>` : ''}<b>${esc(r.head)}</b>${
-        r.sub ? `<i>${esc(r.sub)}</i>` : ''}</td>`;
+        session ? ` data-w="${w.week_number}" data-day="${day}" tabindex="0"` : ''}>` +
+        `<b>${esc(r.head)}</b>${r.lines.map((l) => `<i>${esc(l)}</i>`).join('')}</td>`;
     }).join('') + '</tr>').join('')
-    + '<tr class="total"><th>TOTAL</th>' + shown.map((w) =>
-      `<td class="${cur(w).trim()}">${esc(+w.total_distance)}</td>`).join('') + '</tr>';
+    + '<tr class="total"><th>Week<br>total</th>' + shown.map((w) =>
+      `<td class="${cur(w).trim()}">${esc(+w.total_distance)} mi</td>`).join('') + '</tr>';
 
-  // The rail: where these five weeks sit in the fifteen. One line, no second table.
-  el('rail').innerHTML = plan.weeks.map((w) => {
-    const inside = shown.some((x) => x.week_number === w.week_number);
-    const now = !complete && w.week_number === current;
-    return `<span class="${now ? 'now' : inside ? 'in' : ''}"></span>`;
-  }).join('');
-  el('railLabel').textContent =
-    `W${shown[0].week_number}–W${shown[shown.length - 1].week_number} of ${plan.weeks.length}`;
+  // The control says which five weeks these are and what dates they cover.
+  const first = shown[0].week_number, last = shown[shown.length - 1].week_number;
+  const from = startOf(first);
+  const to = new Date(startOf(last)); to.setDate(to.getDate() + 6);
+  const show = (d) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  el('windowLabel').innerHTML =
+    `<b>Weeks ${first} – ${last}</b><span>${esc(show(from))} – ${esc(show(to))}</span>`;
+  el('back').disabled = first === 1 && current === 1;
+  el('fwd').disabled = current === plan.weeks.length;
 }
 
 // THE SESSION, WHOLE — beneath the window, so the five weeks stay on screen.
@@ -271,11 +300,42 @@ const MOMENTS = {
   })
 };
 
+// PLAN INFORMATION — the decoding key, derived from the plan's own components
+// rather than typed, so a plan authored at other paces explains itself.
+//
+// The values are the plan's. The sentence explaining what each band is FOR is
+// authored coaching copy that lives on the athletes' blocks and not on the plan,
+// so it is deliberately absent here rather than invented. See the findings note.
+function paceKey() {
+  const seen = new Map();
+  plan.weeks.forEach((w) => w.sessions.forEach((s) => (s.components || []).forEach((c) => {
+    if (c.role !== 'work' || c.pace_low_seconds == null) return;
+    const key = `${c.pace_low_seconds}-${c.pace_high_seconds ?? ''}`;
+    if (!seen.has(key)) seen.set(key, c);
+  })));
+  const rows = [...seen.values()].sort((a, b) => b.pace_low_seconds - a.pace_low_seconds)
+    .map((c) => {
+      const value = c.pace_high_seconds
+        ? `${clock(c.pace_low_seconds)}–${clock(c.pace_high_seconds)} / mi`
+        : c.pace_low_seconds > RP_HI
+          ? `${clock(c.pace_low_seconds)} / mi or slower`
+          : `≈${clock(c.pace_low_seconds)} / mi`;
+      let name = 'Race pace';
+      if (c.pace_low_seconds > RP_HI) name = 'Easy pace';
+      else if (!c.pace_high_seconds) name = 'Threshold';
+      else if (c.pace_high_seconds < RP_LO) name = 'VO₂';
+      return { name, value };
+    });
+  el('paceKey').innerHTML = rows.map((r) =>
+    `<div><dt>${esc(r.name)}</dt><dd>${esc(r.value)}</dd></div>`).join('');
+}
+
 function render(state, week) {
   document.body.dataset.state = state;
   const complete = state === 'complete';
   matrix(week, complete);
   steps(week, complete);
+  paceKey();
   if (complete) {
     el('doneDates').textContent = `${weekOne.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} – ${
       raceOn.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} · the prescription becomes a record.`;
@@ -285,8 +345,7 @@ function render(state, week) {
     el('momentKicker').textContent = moment.kicker;
     el('momentTitle').innerHTML = moment.title;
     el('momentBody').textContent = moment.body;
-    document.querySelector('.week-now span').textContent = `Week ${week} · ${range(week)}`;
-    document.querySelector('.week-now .pill').textContent = state === 'race' ? 'RACE WEEK' : 'THIS WEEK';
+
   }
   document.querySelectorAll('.dev button').forEach((b) =>
     b.classList.toggle('on', b.dataset.state === state));
@@ -351,9 +410,9 @@ document.addEventListener('keydown', (event) => {
 });
 
 // The arrows move ONE week, not one page of five.
-document.querySelectorAll('.week-now .circle').forEach((button, i) => {
-  button.addEventListener('click', () => {
-    const next = Math.min(plan.weeks.length, Math.max(1, viewing + (i ? 1 : -1)));
+[['back', -1], ['fwd', 1]].forEach(([id, step]) => {
+  el(id).addEventListener('click', () => {
+    const next = Math.min(plan.weeks.length, Math.max(1, viewing + step));
     if (next === viewing) return;
     el('inspector').hidden = true;
     render(document.body.dataset.state, next);
@@ -367,7 +426,9 @@ if (asked === 'auto') {
   const [live, week] = today();
   render(live, week);
 } else if (asked && FIXED[asked]) {
-  render(asked, FIXED[asked]);
+  // ?week= lets a capture reach any window without clicking through. Review only.
+  const wanted = Number(params.get('week'));
+  render(asked, wanted >= 1 && wanted <= plan.weeks.length ? wanted : FIXED[asked]);
 } else if (REVIEW) {
   render('build', FIXED.build);
 } else {
