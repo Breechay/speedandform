@@ -4,6 +4,10 @@ A frozen, self-contained copy of the current coach surface, for design work that
 happens outside the repo. Open it, inspect it, rewrite its CSS, argue with it.
 Nothing here can reach production.
 
+**Start with `BRIEF.md`** — what this product is, where it is going, and the six
+things that are genuinely hard. Then `COMPROMISES.md` (what was seen and left
+alone) and `FINDINGS_V1.md` (the first design pass, audited).
+
 **This is the real renderer.** `assets/js/labs.js` is `coach/labs/labs.js` copied
 without modification, and it reaches its data through an import map that swaps
 `/private/data.js` and `/private/auth.js` for read-only stubs. The stylesheet is
@@ -73,6 +77,25 @@ that presses that toggle for you — `assets/js/review.js`, review-package only:
 | `?as=athlete#/a/jose/plan` | Athlete — Full Plan |
 | `?as=athlete#/a/jose/week/8` | Athlete — Week |
 | `?as=coach#/a/jose/week/8` | Coach, explicitly (the default) |
+
+### Design variants
+
+`?css=<name>` layers `assets/css/design-<name>.css` **on top of** the shipped
+stylesheet. Layering rather than replacing is deliberate: a variant that forks
+`labs.css` stops being comparable the moment production moves, and the point of
+this package is that both are the same renderer.
+
+| | |
+| --- | --- |
+| `#/a/jose/week/8` | The shipped surface |
+| `?css=v1#/a/jose/week/8` | Design pass V1 — see `FINDINGS_V1.md` |
+| `?css=v1&as=athlete#/a/jose/week/8` | V1, athlete lens |
+
+To start your own: `cp assets/css/design-v1.css assets/css/design-v2.css`, then
+`?css=v2`. Combine freely with `?as=`.
+
+`screenshots/shipped/` and `screenshots/v1/` are the same nine captures of each,
+so any two can be diffed directly.
 
 Athlete view collapses navigation to `Plan`, and `#/bench`, `#/a/:slug/brief` and
 the athlete record all redirect to that athlete's plan.

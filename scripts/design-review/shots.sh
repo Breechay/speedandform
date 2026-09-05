@@ -11,6 +11,14 @@ CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 OUT="${OUT:-$(cd "$(dirname "$0")/../.." && pwd)/form-labs-design-review/screenshots}"
 BASE="${BASE:-http://localhost:4321/form-labs-design-review/}"
 FRAME="${FRAME:-${BASE}frame.html}"
+# CSS variant to capture, e.g. VARIANT=v1 → ?css=v1. Empty = the shipped sheet.
+VARIANT="${VARIANT:-}"
+u() { # u <extra-query-or-empty> <hash>
+  q=""
+  [ -n "$VARIANT" ] && q="css=$VARIANT"
+  [ -n "$1" ] && { [ -n "$q" ] && q="$q&$1" || q="$1"; }
+  [ -n "$q" ] && printf '%s?%s%s' "$BASE" "$q" "$2" || printf '%s%s' "$BASE" "$2"
+}
 mkdir -p "$OUT"
 
 shot() {
@@ -46,12 +54,12 @@ shot() {
   printf '%-34s %s\n' "$name" "$(sips -g pixelWidth -g pixelHeight "$capture" 2>/dev/null | awk '/pixel/{printf "%s ", $2}')"
 }
 
-shot 01-plan-desktop-1600         1600 1600 "$BASE#/a/jose/plan"
-shot 02-week-desktop-1600         1600 1100 "$BASE#/a/jose/week/8"
-shot 03-week-phone-portrait-390    390  844 "$BASE#/a/jose/week/8"
-shot 04-week-phone-landscape-844   844  390 "$BASE#/a/jose/week/8"
-shot 05-athlete-week-desktop-1600 1600 1100 "$BASE?as=athlete#/a/jose/week/8"
-shot 06-athlete-week-phone-390     390  844 "$BASE?as=athlete#/a/jose/week/8"
-shot 07-athlete-plan-desktop-1600 1600 1600 "$BASE?as=athlete#/a/jose/plan"
-shot 08-week-laptop-1280          1280  800 "$BASE#/a/jose/week/8"
-shot 09-week-tablet-1024          1024  768 "$BASE#/a/jose/week/8"
+shot 01-plan-desktop-1600         1600 1600 "$(u '' '#/a/jose/plan')"
+shot 02-week-desktop-1600         1600 1100 "$(u '' '#/a/jose/week/8')"
+shot 03-week-phone-portrait-390    390  844 "$(u '' '#/a/jose/week/8')"
+shot 04-week-phone-landscape-844   844  390 "$(u '' '#/a/jose/week/8')"
+shot 05-athlete-week-desktop-1600 1600 1100 "$(u 'as=athlete' '#/a/jose/week/8')"
+shot 06-athlete-week-phone-390     390  844 "$(u 'as=athlete' '#/a/jose/week/8')"
+shot 07-athlete-plan-desktop-1600 1600 1600 "$(u 'as=athlete' '#/a/jose/plan')"
+shot 08-week-laptop-1280          1280  800 "$(u '' '#/a/jose/week/8')"
+shot 09-week-tablet-1024          1024  768 "$(u '' '#/a/jose/week/8')"

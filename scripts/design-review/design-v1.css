@@ -1,0 +1,221 @@
+/* ═══════════════════════════════════════════════════════════════════
+   DESIGN PASS V1 — Brice, 4 September 2026
+   Loaded ON TOP of labs.css by ?css=v1. Purely additive: V1 was written as
+   an append to the stylesheet, so layering it reproduces it exactly.
+   Nothing here is in production. See FINDINGS_V1.md for what it fixed and
+   the three defects it introduced.
+   ═══════════════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════════════
+   DESIGN REVIEW V1 · WEEK VIEW
+   This section is intentionally review-package-only. It changes no data,
+   prescription semantics or interaction contracts. The goal is to test a
+   calmer Week surface before porting any approved decisions back to Labs.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.weekv{
+  --week-max:1440px;
+  --week-pad:clamp(20px,2.2vw,34px);
+}
+
+/* The week is one instrument, not a dashboard of cards. */
+.weekv .wHero,
+.weekv .wSum,
+.weekv .wWork{
+  width:min(calc(100% - (var(--week-pad) * 2)),var(--week-max));
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.weekv .wHero{
+  grid-template-columns:minmax(250px,320px) minmax(380px,1fr) auto;
+  gap:clamp(34px,4vw,74px);
+  padding:78px 0 34px;
+  border-bottom:1px solid #ffffff0a;
+}
+.weekv .wWho{gap:16px;align-items:center}
+.weekv .wWho .pfrm{width:64px;height:80px;flex-basis:64px;border-radius:2px}
+.weekv .wWho h1{font-size:42px}
+.weekv .wWho .back{font-size:11px;color:var(--secondary);margin-bottom:8px}
+.weekv .wWhen{margin-top:10px;font-size:9.5px;letter-spacing:.16em}
+
+.weekv .wAsk{padding-top:0}
+.weekv .wAsk h2{font-size:clamp(25px,2.25vw,34px);max-width:25ch;line-height:1.16}
+
+/* Ownership and next ask should read as one progression, not two controls. */
+.weekv .wState{margin-top:24px;gap:0;align-items:center}
+.weekv .wOwned{gap:9px;align-items:center}
+.weekv .wOwned b{font-size:50px;line-height:.8}
+.weekv .wOwned span{padding:0;line-height:1.35}
+.weekv .wOwned::after{
+  content:"→";
+  display:block;
+  margin:0 22px;
+  color:#4d5558;
+  font-size:22px;
+  font-weight:300;
+}
+.weekv .wNext{display:flex;align-items:baseline;gap:10px}
+.weekv .wNext b{font-size:8.5px}
+.weekv .wNext strong{font-size:22px;margin:0}
+.weekv .wStep{align-self:start;padding-top:1px;gap:8px}
+.weekv .wStep button{background:#0a0d0e;border-color:#ffffff16;padding:8px 13px}
+
+/* A single factual strip. Equal boxes made every fact look equally important. */
+.weekv .wSum{
+  display:flex;
+  gap:0;
+  margin-top:18px;
+  background:#0a0d0e;
+  border-top:1px solid #ffffff09;
+  border-bottom:1px solid #ffffff09;
+  overflow:hidden;
+}
+.weekv .wSum div{
+  flex:1 1 0;
+  min-width:150px;
+  background:transparent;
+  padding:17px 20px 16px;
+  border-right:1px solid #ffffff09;
+}
+.weekv .wSum div:last-child{border-right:0}
+.weekv .wSum b{font-size:8.5px;letter-spacing:.18em}
+.weekv .wSum strong{font-size:23px;margin-top:7px}
+.weekv .wSum em{font-size:10px;margin-top:5px}
+.weekv .wSum .wOwn{background:linear-gradient(180deg,#d8ff6808,#d8ff6802)}
+
+/* The days are the content. Remove the redundant rail and give the work the width. */
+.weekv .wWork{
+  display:block;
+  margin-top:22px;
+  margin-bottom:88px;
+}
+.weekv .wRail{display:none !important}
+.weekv .wDays{gap:1px}
+.weekv .wday{
+  grid-template-columns:136px minmax(0,1fr);
+  gap:28px;
+  min-height:82px;
+  padding:18px 22px;
+  background:#0b0f10;
+  border-top:1px solid #ffffff08;
+  transition:background .16s ease,box-shadow .16s ease;
+}
+.weekv .wday:first-child{border-top:0}
+.weekv .wday:hover{background:#0d1212}
+.weekv .wday.now{
+  background:linear-gradient(90deg,#152010 0,#11180f 42%,#0d1210 100%);
+  box-shadow:inset 2px 0 0 var(--lime);
+}
+.weekv .wday.rest{min-height:54px;background:transparent;padding-top:14px;padding-bottom:14px}
+.weekv .wdayName{font-size:13px}
+.weekv .wdayName em{font-size:9.5px;margin-top:6px}
+.weekv .wNow{margin-top:9px;padding:2px 7px;font-size:8px}
+
+.weekv .wdayBody .s{max-width:920px}
+.weekv .wdayBody .s b{font-size:16px;line-height:1.28}
+.weekv .wdayBody .s i{font-size:12px;line-height:1.5;color:#9aa1a3}
+.weekv .wdayBody .s small{font-size:10px;color:#535b5e;letter-spacing:.07em}
+.weekv .wdayBody .s u{font-size:12px;border-top-color:#ffffff0d;max-width:75ch}
+.weekv .wdayBody .s q{font-size:12px;line-height:1.55;max-width:72ch;color:#899194}
+.weekv .wdayBody .s mark{display:inline-block;margin-top:9px;padding:3px 7px 2px;border:1px solid #d8ff6838;border-radius:999px;font-size:8.5px;letter-spacing:.12em}
+
+/* Athlete view should feel like the same instrument, simply without coach machinery. */
+body[data-view-as="athlete"] .weekv .wHero{padding-top:72px}
+
+/* Tablet: keep hierarchy, lose the giant desktop gap. */
+@media (max-width:1100px){
+  .weekv .wHero{grid-template-columns:minmax(230px,290px) minmax(0,1fr);gap:34px 44px}
+  .weekv .wStep{grid-column:1 / -1;justify-self:end;margin-top:-18px}
+  .weekv .wAsk h2{font-size:28px}
+  .weekv .wSum{overflow-x:auto}
+  .weekv .wSum div{flex:0 0 190px}
+}
+
+/* Phone portrait: question first, then one compact progression statement. */
+@media (max-width:760px){
+  .weekv{--week-pad:14px}
+  .weekv .wHero{
+    grid-template-columns:1fr;
+    gap:20px;
+    padding:78px 0 22px;
+  }
+  .weekv .wStep{grid-row:1;grid-column:1;justify-self:start;margin:0 0 3px;gap:6px}
+  .weekv .wWho{align-items:flex-start}
+  .weekv .wWho .pfrm{width:52px;height:64px;flex-basis:52px}
+  .weekv .wWho h1{font-size:38px}
+  .weekv .wWhen{font-size:9px;line-height:1.45}
+  .weekv .wAsk h2{font-size:24px;max-width:18ch}
+  .weekv .wState{margin-top:18px}
+  .weekv .wOwned b{font-size:46px}
+  .weekv .wOwned::after{margin:0 16px;font-size:19px}
+  .weekv .wNext{display:block}
+  .weekv .wNext strong{font-size:20px;margin-top:5px}
+
+  .weekv .wSum{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    overflow:visible;
+    margin-top:14px;
+  }
+  .weekv .wSum div{min-width:0;padding:15px 16px;border-bottom:1px solid #ffffff09}
+  .weekv .wSum div:nth-child(2n){border-right:0}
+  .weekv .wSum div:nth-last-child(-n+2){border-bottom:0}
+  .weekv .wSum strong{font-size:22px}
+
+  .weekv .wWork{margin-top:18px;margin-bottom:92px}
+  .weekv .wday{grid-template-columns:1fr;gap:9px;min-height:0;padding:17px 18px}
+  .weekv .wdayName{display:flex;align-items:baseline;gap:9px}
+  .weekv .wdayName em{margin-top:0}
+  .weekv .wNow{margin-top:0;margin-left:auto}
+  .weekv .wdayBody .s b{font-size:15px}
+  .weekv .wdayBody .s i{font-size:11.5px}
+}
+
+/* Phone landscape is a different composition, not portrait squashed sideways.
+   Keep the hero shallow enough that the first day is visible in 390px of height. */
+@media (orientation:landscape) and (max-height:500px) and (max-width:950px){
+  .weekv{--week-pad:14px}
+  .weekv .wHero{
+    grid-template-columns:210px minmax(0,1fr) auto;
+    gap:22px;
+    padding:48px 0 10px;
+    align-items:center;
+  }
+  .weekv .wWho{gap:10px;align-items:center}
+  .weekv .wWho .pfrm{width:38px;height:48px;flex-basis:38px}
+  .weekv .wWho .back{font-size:9px;margin-bottom:3px}
+  .weekv .wWho h1{font-size:27px;line-height:1}
+  .weekv .wWhen{font-size:7.5px;margin-top:5px;letter-spacing:.12em;white-space:nowrap}
+  .weekv .wAsk h2{font-size:18px;line-height:1.18;max-width:32ch}
+  .weekv .wState{margin-top:8px}
+  .weekv .wOwned b{font-size:34px}
+  .weekv .wOwned span{font-size:7px}
+  .weekv .wOwned::after{font-size:14px;margin:0 10px}
+  .weekv .wNext b{font-size:7px}
+  .weekv .wNext strong{font-size:15px}
+  .weekv .wStep{grid-column:auto;grid-row:auto;justify-self:end;margin:0;gap:4px}
+  .weekv .wStep button{padding:6px 9px;font-size:9px}
+
+  .weekv .wSum{
+    display:flex;
+    margin-top:8px;
+    height:58px;
+    overflow-x:auto;
+  }
+  .weekv .wSum div{flex:1 0 125px;padding:9px 12px}
+  .weekv .wSum b{font-size:6.8px}
+  .weekv .wSum strong{font-size:17px;margin-top:3px}
+  .weekv .wSum em{display:none}
+
+  .weekv .wWork{margin-top:8px;margin-bottom:54px}
+  .weekv .wday{grid-template-columns:92px minmax(0,1fr);gap:14px;min-height:54px;padding:10px 14px}
+  .weekv .wdayName{display:block;font-size:10px}
+  .weekv .wdayName em{display:block;font-size:7px;margin-top:3px}
+  .weekv .wNow{display:inline-block;margin:4px 0 0;font-size:6.5px}
+  .weekv .wdayBody .s b{font-size:11.5px}
+  .weekv .wdayBody .s i{font-size:9px;margin-top:2px}
+  .weekv .wdayBody .s small{font-size:7.5px;margin-top:3px}
+  .weekv .wdayBody .s u{font-size:8.5px;margin-top:4px;padding-top:4px}
+  .weekv .wdayBody .s q{font-size:8.5px;margin-top:4px;line-height:1.35}
+  .weekv .wdayBody .s mark{font-size:6.5px;margin-top:4px;padding:2px 5px}
+}

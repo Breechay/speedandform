@@ -181,8 +181,13 @@ for athlete in sorted(dump['athletes'], key=lambda a: a['slug']):
 for f in ('auth.js', 'data.js', 'review.js'):
     shutil.copyfile(os.path.join(ROOT, 'scripts/design-review', f),
                     os.path.join(OUT, 'assets/js', f))
-for f in ('README.md', 'COMPROMISES.md', 'frame.html'):
+for f in ('README.md', 'COMPROMISES.md', 'BRIEF.md', 'FINDINGS_V1.md', 'frame.html'):
     shutil.copyfile(os.path.join(ROOT, 'scripts/design-review', f), os.path.join(OUT, f))
+# Design variants, layered on top of the shipped stylesheet by ?css=<name>.
+for f in os.listdir(os.path.join(ROOT, 'scripts/design-review')):
+    if f.startswith('design-') and f.endswith('.css'):
+        shutil.copyfile(os.path.join(ROOT, 'scripts/design-review', f),
+                        os.path.join(OUT, 'assets/css', f))
 
 html = open(os.path.join(ROOT, 'coach/labs/index.html')).read()
 html = html.replace('/assets/labs/fonts/', 'assets/fonts/')
