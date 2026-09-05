@@ -63,7 +63,7 @@ let count = visibleCount();
 let left = 1;
 let live = 1;
 let complete = false;
-let animating = false;
+let inFlight = null;   // lands the step currently in motion, if any
 
 // A column stops being readable below about 215px: that is what
 // `5 mi continuous @ 6:30–6:45` needs to stay on one line, and it is the
@@ -75,12 +75,19 @@ let animating = false;
 // columns at 188px and broke four lines. It also meant a 1000px laptop window —
 // the common one — got three weeks with 300px columns, nearly a hundred pixels
 // of slack in each. Both ends of the same missing rung.
+//
+// The five-week step is the one deliberate exception: it starts at 990 rather
+// than the 1200 the rule would give it, because a laptop window is worth a
+// fifth week. The cost is measured, not assumed — at 990 exactly four cells in
+// seventy-six take a second line, all of them the long race-pace and strides
+// prescriptions, and the row was already the tallest in the table, so the plan
+// does not grow by a pixel.
 function visibleCount() {
   const w = window.innerWidth;
   if (w < 600) return 1;
   if (w < 770) return 2;
-  if (w < 990) return 3;
-  if (w < 1200) return 4;
+  if (w < 900) return 3;
+  if (w < 990) return 4;
   if (w < 1440) return 5;
   return 6;
 }
@@ -152,9 +159,17 @@ function paint() {
 
 // One step is one week, at every width. Six columns move as a block; they do
 // not scroll past each other.
+//
+// A tap arriving mid-motion LANDS the step in flight and begins its own. It is
+// never queued and never dropped: refusing taps while the track was moving
+// meant six quick thumb taps moved three weeks, which is exactly what a frozen
+// control feels like. On a phone, where one tap is one week out of fifteen,
+// that is the difference between paging the plan and fighting it.
 function step(direction) {
-  if (animating || !direction) return;
+  if (!direction) return;
   const track = el('track');
+  if (inFlight) inFlight();
+
   const next = clamp(left + direction);
   if (next === left) {           // the end of the plan: acknowledge, don't move
     track.classList.add('animating');
@@ -168,18 +183,23 @@ function step(direction) {
   // path: no duration, no wait, the week is simply there.
   const ms = parseFloat(getComputedStyle(track).transitionDuration) * 1000;
   if (!ms) { paint(); return; }
-  animating = true;
   track.style.transform = `translate3d(${direction > 0 ? -200 : 0}%,0,0)`;
-  const done = () => { clearTimeout(guard); animating = false; paint(); };
+
+  const done = () => {
+    clearTimeout(guard);
+    track.removeEventListener('transitionend', onEnd);
+    inFlight = null;
+    paint();
+  };
+  const onEnd = (e) => {
+    if (e.target === track && e.propertyName === 'transform') done();
+  };
   // A transition that never starts never ends, so the repaint is never left to
   // the event alone — that is how a single dropped frame used to strand the
   // window one week behind the label.
   const guard = setTimeout(done, ms + 140);
-  track.addEventListener('transitionend', function once(e) {
-    if (e.target !== track || e.propertyName !== 'transform') return;
-    track.removeEventListener('transitionend', once);
-    done();
-  });
+  track.addEventListener('transitionend', onEnd);
+  inFlight = done;
 }
 
 el('prev').addEventListener('click', () => step(-1));
@@ -190,11 +210,11 @@ el('next').addEventListener('click', () => step(1));
 let drag = null;
 const viewport = () => el('viewport');
 viewport().addEventListener('pointerdown', (e) => {
-  if (animating || e.button) return;
+  if (inFlight || e.button) return;
   drag = { id: e.pointerId, x: e.clientX, y: e.clientY, dx: 0, locked: false };
 });
 viewport().addEventListener('pointermove', (e) => {
-  if (!drag || animating || e.pointerId !== drag.id) return;
+  if (!drag || inFlight || e.pointerId !== drag.id) return;
   const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
   if (!drag.locked) {
     if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;

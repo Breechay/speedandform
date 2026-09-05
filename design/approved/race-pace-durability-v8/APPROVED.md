@@ -35,11 +35,19 @@ Brice, handing these over:
   | Viewport | Weeks | Column |
   | --- | --- | --- |
   | ≥1440 | 6 | 215px |
-  | ≥1200 | 5 | 215px |
-  | ≥990 | 4 | 216px |
+  | ≥990 | 5 | 173–262px |
+  | ≥900 | 4 | 193–215px |
   | ≥770 | 3 | 221px |
   | ≥600 | 2 | 247px |
   | below | 1 | the mobile sheet |
+
+  The five-week step starts at 990 rather than the 1200 the rule would give it,
+  because Brice asked for five on a laptop and a laptop window is worth a fifth
+  week. The cost is measured: at 990, four cells in seventy-six take a second
+  line — the long race-pace and strides prescriptions — and since that row was
+  already the tallest in the table, the plan does not grow by a pixel. Every `@`
+  is bound to the band it governs with a no-break space, so a wrap can never
+  leave the target dangling on the line above its own number.
 
   This replaces the brief's 6/3/2/1, which was wrong at both ends: it jumped
   from three straight to six at 1280, putting six columns at 188px and wrapping

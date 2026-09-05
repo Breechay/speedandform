@@ -38,6 +38,10 @@ export function notation(plan) {
   // pace it sits. Easy is a ceiling — 8:45 or slower, and slower is never wrong.
   // Threshold is a target the block approaches — ≈6:15. Rendering both as
   // "or slower" told an athlete that a threshold session had no floor.
+  // A no-break space after every `@`. Once five columns are narrow enough to
+  // wrap, `5 mi continuous @` / `6:30-6:45` left the target dangling on the
+  // line above the number it governs. Bound, the break falls before the `@`
+  // and the pace arrives whole.
   const band = (c) => {
     if (c.rpe_low != null) return `RPE ${c.rpe_low}${c.rpe_high ? `–${c.rpe_high}` : ''}`;
     if (c.pace_low_seconds == null) return '';
@@ -81,32 +85,32 @@ export function notation(plan) {
       const base = work.find((c) => c.shape === 'continuous');
       return { kind, label, head: `${+session.distance} mi easy + ${
         strides.repeat_count} × ${lower(strides)} strides`,
-        lines: [base && band(base) ? `@ ${band(base)}` : '', total].filter(Boolean) };
+        lines: [base && band(base) ? `@ ${band(base)}` : '', total].filter(Boolean) };
     }
     if (aerobic) {
       if (rpCont) {
         return { kind, label, head: `${+session.distance} mi`,
-          lines: [`last ${+rpCont.distance} mi @ ${band(rpCont)}`,
+          lines: [`last ${+rpCont.distance} mi @ ${band(rpCont)}`,
                   `${+aerobic.distance} mi easy + ${+rpCont.distance} mi race pace`,
                   book, total].filter(Boolean) };
       }
       return { kind, label, head: `${+aerobic.distance} mi easy`,
-               lines: [`@ ${band(aerobic)}`] };
+               lines: [`@ ${band(aerobic)}`] };
     }
     if (rpCont) {
       return { kind, label,
-        head: kind === 'race' ? `${+rpCont.distance} mi @ ${band(rpCont)}`
-                              : `${+rpCont.distance} mi continuous @ ${band(rpCont)}`,
+        head: kind === 'race' ? `${+rpCont.distance} mi @ ${band(rpCont)}`
+                              : `${+rpCont.distance} mi continuous @ ${band(rpCont)}`,
         lines: [book, total].filter(Boolean) };
     }
     if (reps) {
       const n = reps.repeat_count > 1 ? `${reps.repeat_count} × ` : '';
-      return { kind, label, head: `${n}${lower(reps)} @ ${band(reps)}`,
+      return { kind, label, head: `${n}${lower(reps)} @ ${band(reps)}`,
         lines: [rest(reps), book, total].filter(Boolean) };
     }
     const base = work[0];
     return { kind, label, head: `${+session.distance} mi easy`,
-             lines: [base && band(base) ? `@ ${band(base)}` : ''].filter(Boolean) };
+             lines: [base && band(base) ? `@ ${band(base)}` : ''].filter(Boolean) };
   }
 
   // Lime means one thing: this can establish something. A day earns it by

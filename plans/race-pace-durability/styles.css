@@ -210,7 +210,11 @@ footer{height:55px;display:flex;align-items:flex-end;gap:18px;color:#9da6a8;font
 
   h1{font-size:39px;line-height:1.03;max-width:330px;margin:0 0 20px;padding-top:4px;font-weight:580}
   .eyebrow{font-size:11.5px;letter-spacing:.26em}
-  .mobile-hero-actions{display:flex;gap:10px;margin-top:20px;align-items:center;flex-wrap:nowrap}
+  /* Shrink to its buttons. As a full-width block it spanned the whole row and
+     sat over the week arrows, which the plan head pulls up into this same band
+     with a negative margin — the arrows were painted, and dead. */
+  .mobile-hero-actions{display:flex;gap:10px;margin-top:20px;align-items:center;
+    flex-wrap:nowrap;width:max-content}
   .share-icon-btn{width:34px;height:34px;border-radius:50%;border:1px solid #39464a;
     background:transparent;color:#d9dfdc;display:grid;place-items:center;font-size:15px;
     line-height:1;padding:0}
@@ -223,7 +227,10 @@ footer{height:55px;display:flex;align-items:flex-end;gap:18px;color:#9da6a8;font
   .plan-head{align-items:center;justify-content:flex-end;margin:-48px 0 14px;
     min-height:38px;pointer-events:none}
   .plan-head h2{display:none}
-  .week-now{gap:8px;margin-left:auto;pointer-events:auto}
+  /* And lifted, so the arrows win the hit test outright rather than by tree
+     order. pointer-events:auto only says this subtree MAY be hit; it says
+     nothing about what is painted over it. */
+  .week-now{gap:8px;margin-left:auto;pointer-events:auto;position:relative;z-index:2}
   .circle{width:34px;height:34px;background:transparent;border-color:#334044;font-size:18px}
   .range{min-width:56px;text-align:center;font-size:10.5px;color:#8f999b;letter-spacing:.16em}
 
