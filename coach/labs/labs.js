@@ -2423,7 +2423,11 @@ function markNav(view, slug) {
   nav.querySelectorAll('button').forEach((button) => {
     button.hidden = !asCoach() && button.dataset.nav !== 'plan';
   });
-  document.getElementById('plToggle').hidden = !asCoach();
+  // Photo Lab crops a portrait against the real bench column — that is what the
+  // panel says and what the six stored values are for. It was appearing on every
+  // coach surface, so the Plan carried a control that belongs to a different
+  // screen. It lives on the bench.
+  document.getElementById('plToggle').hidden = !asCoach() || view !== 'bench';
   nav.querySelectorAll('button').forEach((button) => button.classList.remove('on'));
   const which = view === 'bench' ? 'bench' : view === 'brief' ? 'brief'
     : (view === 'plan' || view === 'week') ? 'plan' : null;

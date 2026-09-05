@@ -618,6 +618,22 @@ img[data-portrait]{--exp:.9;--con:1.16;--px:50%;--py:40%;--pz:1;--grade:.20}
    the name — a full-screen translucent box over the whole page. Everything
    below starts `pg` and is scoped under `.planv`. */
 
+/* THE PLAN AND THE WEEK SCROLL.
+   `body` is locked to the viewport with overflow:hidden for the bench, which is
+   a full-height rack of columns that must not scroll. But when the root element
+   is `visible`, the viewport takes its overflow from BODY — so that lock became
+   the page's lock, and above 1100px the Plan could not be scrolled with a wheel
+   or a trackpad at all. It still moved programmatically, which is why the scroll
+   restore kept working and hid this: `hidden` permits scripted scrolling and
+   refuses the user's.
+
+   Below 1100px a media query already set `body{overflow:auto}`, so it worked on
+   a narrow window and failed on a wide one — the width dependence Brice saw.
+
+   Scoped to the surface that needs it rather than lifted globally, so the bench
+   keeps its lock. */
+body:has(.view.planv){overflow:auto}
+
 .view.planv{height:auto;min-height:100vh}
 
 .pgHead{display:flex;align-items:baseline;gap:20px;padding:78px 30px 18px}
