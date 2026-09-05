@@ -55,6 +55,14 @@ both of which are the DATA being right and the fixture being approximate:
 
 - **W2 Thursday** is authored `Hills · 8 × 45 s @ RPE 8–9 · 2 min easy`.
   The fixture calls it `SPEED · 8 × 45 s @ 5K effort · 90 s recovery`.
-- **W15 Saturday** `Race` does not take the lime accent, because the accent is
-  applied to the authored label `Race pace` only. Reproduced from the fixture,
-  which does the same. Open question, not a decision.
+- **The lime accent is wider here than in the fixture, deliberately.** The
+  fixture accents the exact title `RACE PACE`. Brice: *"i think long runs with
+  race pace should also have the lime treatment no?"* — so a day now earns the
+  accent by CARRYING race-pace work, read from its components, not by being
+  titled with it. That lights 20 sessions: all fifteen Tuesdays, the four
+  Saturdays that finish at race pace, and the race. It leaves threshold, VO₂,
+  hills, strides, easy days and plain long runs dark.
+
+  This is what makes lime honest again. W12's ask — twelve continuous miles at
+  race pace — is a Saturday long run, and under the fixture's rule it rendered
+  grey while a three-mile Tuesday rendered lime.

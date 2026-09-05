@@ -54,7 +54,7 @@ export function notation(plan) {
   };
   const lower = (c) => span(c).toLowerCase();
 
-  function read(session) {
+  function describe(session) {
     if (!session) return { kind: 'rest', label: 'Rest', head: '—', lines: [] };
     const parts = session.components || [];
     const work = parts.filter((c) => c.role === 'work');
@@ -107,6 +107,17 @@ export function notation(plan) {
     const base = work[0];
     return { kind, label, head: `${+session.distance} mi easy`,
              lines: [base && band(base) ? `@ ${band(base)}` : ''].filter(Boolean) };
+  }
+
+  // Lime means one thing: this can establish something. A day earns it by
+  // CARRYING race-pace work, not by being titled with it — which is how the
+  // Saturday long run that finishes at race pace gets the same mark as Tuesday.
+  // W12's ask is exactly that session, and it used to render grey.
+  function read(session) {
+    const r = describe(session);
+    r.racePace = (session?.components || [])
+      .some((c) => c.role === 'work' && isRacePace(c));
+    return r;
   }
 
   return { read, clock };

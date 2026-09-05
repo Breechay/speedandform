@@ -42,7 +42,7 @@ function session(week, day, mobile) {
     ? r.lines[r.lines.length - 1] : '';
   const details = totalLine ? r.lines.slice(0, -1) : r.lines;
   return `<div class="${mobile ? 'mobile-session' : 'cell'}${r.kind === 'rest' ? ' rest' : ''}">
-    <div class="session-title${r.kind === 'rp' ? ' accent-title' : ''}">${esc(r.label)}</div>
+    <div class="session-title${r.racePace ? ' accent-title' : ''}">${esc(r.label)}</div>
     <div class="primary">${esc(r.head)}</div>
     ${details.map((l) => `<div class="detail">${esc(l)}</div>`).join('')}
     ${totalLine ? `<div class="total">${esc(totalLine)}</div>` : ''}

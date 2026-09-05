@@ -38,7 +38,7 @@ function cell(week, day) {
   const total = last && /mi total$/.test(last) ? last : '';
   const details = total ? r.lines.slice(0, -1) : r.lines;
   return `<div class="cell${r.kind === 'rest' ? ' rest' : ''}">
-    <div class="s-title${r.kind === 'rp' ? ' race' : ''}">${esc(r.label)}</div>
+    <div class="s-title${r.racePace ? ' race' : ''}">${esc(r.label)}</div>
     <div class="primary">${esc(r.head)}</div>
     ${details.map((l) => `<div class="detail">${esc(l)}</div>`).join('')}
     ${total ? `<div class="total">${esc(total)}</div>` : ''}
