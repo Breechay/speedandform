@@ -88,7 +88,7 @@ const rest = (c) => {
 const lower = (c) => span(c).toLowerCase();
 
 function read(session) {
-  if (!session) return { kind: 'rest', head: 'Rest', lines: ['—'] };
+  if (!session) return { kind: 'rest', label: 'Rest', head: '', lines: [] };
   const parts = session.components || [];
   const work = parts.filter((c) => c.role === 'work');
   const wu = parts.find((c) => c.role === 'warm_up');
@@ -101,81 +101,72 @@ function read(session) {
     && c.pace_low_seconds != null && c.pace_low_seconds > RP_HI);
   const reps = work.find((c) => c.shape === 'repetitions' && !isStride(c));
 
-  // Easy running, with or without strides. Quiet, and it does not repeat its own
-  // distance back as a total.
-  if (session.role === 'easy' || session.role === 'support') {
-    const base = work.find((c) => c.shape === 'continuous') || work[0];
-    if (strides) {
-      return { kind: 'easy', head: `${+session.distance} mi easy + ${
-        strides.repeat_count} × ${lower(strides)} strides`,
-        lines: [base && band(base) ? `@ ${band(base)}` : ''].filter(Boolean) };
-    }
-    return { kind: 'easy', head: `${+session.distance} mi easy`,
-             lines: [base && band(base) ? `@ ${band(base)}` : ''].filter(Boolean) };
-  }
+  // The label is the session's own, authored on the plan. Nothing here decides
+  // what kind of session this is; it only decides how to say the numbers.
+  const label = session.label || '';
+  const kind = /race pace finish/i.test(label) ? 'long'
+    : /^long run/i.test(label) ? 'long'
+    : /^race$/i.test(label) ? 'race'
+    : /^race pace/i.test(label) ? 'rp'
+    : /aerobic|recovery/i.test(label) ? 'easy' : 'support';
 
-  // The long run, sometimes finishing at the band.
+  if (strides) {
+    const base = work.find((c) => c.shape === 'continuous');
+    return { kind, label, head: `${+session.distance} mi easy + ${
+      strides.repeat_count} × ${lower(strides)} strides`,
+      lines: [base && band(base) ? `@ ${band(base)}` : ''].filter(Boolean) };
+  }
   if (aerobic) {
-    const head = rpCont
-      ? `${+session.distance} mi · last ${+rpCont.distance} @ ${band(rpCont)}`
-      : `${+session.distance} mi long run`;
-    const lines = rpCont
-      ? [`${+aerobic.distance} mi easy + ${+rpCont.distance} mi at race pace`]
-      : [`@ ${band(aerobic)}`];
-    if (book) lines.push(book);
-    lines.push(total);
-    return { kind: 'long', head, lines, asks: session.asks };
+    if (rpCont) {
+      return { kind, label, head: `${+session.distance} mi`,
+        lines: [`last ${+rpCont.distance} mi @ ${band(rpCont)}`,
+                `${+aerobic.distance} mi easy + ${+rpCont.distance} mi race pace`,
+                book, total].filter(Boolean), asks: session.asks };
+    }
+    return { kind, label, head: `${+aerobic.distance} mi easy`,
+             lines: [`@ ${band(aerobic)}`] };
   }
-
   if (rpCont) {
-    const race = session.asks == null && +rpCont.distance >= 13;
-    const lines = [];
-    if (book) lines.push(book);
-    lines.push(total);
-    return { kind: race ? 'race' : 'rp',
-             head: race ? `${+rpCont.distance} mi race @ ${band(rpCont)}`
-                        : `${+rpCont.distance} mi continuous @ ${band(rpCont)}`,
-             lines, asks: session.asks };
+    return { kind, label,
+      head: kind === 'race' ? `${+rpCont.distance} mi @ ${band(rpCont)}`
+                            : `${+rpCont.distance} mi continuous @ ${band(rpCont)}`,
+      lines: [book, total].filter(Boolean), asks: session.asks };
   }
-
   if (reps) {
     const n = reps.repeat_count > 1 ? `${reps.repeat_count} × ` : '';
-    const lines = [];
-    if (rest(reps)) lines.push(`${rest(reps)} recovery`);
-    if (book) lines.push(book);
-    lines.push(total);
-    const faster = reps.pace_high_seconds != null && reps.pace_high_seconds < RP_LO;
-    const kind = isRacePace(reps) ? 'rp' : 'support';
-    return { kind, head: `${n}${lower(reps)} @ ${band(reps)}`, lines,
-             asks: session.asks, note: !isRacePace(reps) && !faster && reps.rpe_low == null
-               ? 'threshold' : undefined };
+    return { kind, label, head: `${n}${lower(reps)} @ ${band(reps)}`,
+      lines: [rest(reps), book, total].filter(Boolean), asks: session.asks };
   }
-  return { kind: 'easy', head: `${+session.distance} mi easy`, lines: [] };
+  const base = work[0];
+  return { kind, label, head: `${+session.distance} mi easy`,
+           lines: [base && band(base) ? `@ ${band(base)}` : ''].filter(Boolean) };
 }
 
-// FIVE WEEKS, NOT FIFTEEN.
+// SIX WEEKS, MOVING FORWARD.
 //
-// Fifteen columns of real prescription was fifteen weeks of decoded data. Five
-// weeks of understandable coaching is worth more, and the arrows already existed
-// because moving through the plan is the point.
+// The window does not centre the week you are looking at — it starts there. You
+// arrive on your own week and the next five are the runway in front of it, which
+// is how a printed plan reads. An arrow advances the whole window by one week,
+// not by six.
 //
-// The window centres the selected week and pins at the ends, so W1 and W15 stay
-// reachable without it sliding off the block.
-const WINDOW = 5;
-let viewing = 3;
+// `viewing` is the left edge. `live` is the week today actually falls in, and it
+// keeps its THIS WEEK mark wherever the window moves: the viewport moving does
+// not change what week it is.
+const WINDOW = 6;
+let viewing = 1;
+let live = 1;
 
-function windowFor(week) {
+function windowFor(left) {
   const last = plan.weeks.length;
-  const half = Math.floor(WINDOW / 2);
-  const from = Math.min(Math.max(1, week - half), Math.max(1, last - WINDOW + 1));
+  const from = Math.min(Math.max(1, left), Math.max(1, last - WINDOW + 1));
   return plan.weeks.filter((w) => w.week_number >= from && w.week_number < from + WINDOW);
 }
 
-function matrix(current, complete) {
-  viewing = current;
-  const shown = windowFor(current);
+function matrix(left, complete) {
+  const shown = windowFor(left);
+  viewing = shown[0].week_number;
   const byDay = (week) => Object.fromEntries(week.sessions.map((s) => [s.day, s]));
-  const cur = (w) => (!complete && w.week_number === current ? ' cur' : '');
+  const now = (w) => (!complete && w.week_number === live ? ' cur' : '');
   const span7 = (n) => {
     const from = startOf(n), to = new Date(startOf(n));
     to.setDate(to.getDate() + 6);
@@ -184,29 +175,35 @@ function matrix(current, complete) {
   };
 
   el('matHead').innerHTML = '<th>DAY</th>' + shown.map((w) =>
-    `<th class="wk${cur(w)}">${cur(w) ? '<u>This week</u>' : ''}<b>W${w.week_number}</b>` +
+    `<th class="wk${now(w)}">${now(w) ? '<u>This week</u>' : ''}<b>W${w.week_number}</b>` +
     `<span>${esc(span7(w.week_number))}</span></th>`).join('');
 
   el('matBody').innerHTML = DAYS.map((day) =>
     `<tr><th>${day[0] + day.slice(1).toLowerCase()}</th>` + shown.map((w) => {
       const session = byDay(w)[day];
       const r = read(session);
-      return `<td class="d-${r.kind}${cur(w)}${r.asks != null ? ' asked' : ''}"${
+      return `<td class="d-${r.kind}${now(w)}${r.asks != null ? ' asked' : ''}"${
         session ? ` data-w="${w.week_number}" data-day="${day}" tabindex="0"` : ''}>` +
-        `<b>${esc(r.head)}</b>${r.lines.map((l) => `<i>${esc(l)}</i>`).join('')}</td>`;
+        `<em>${esc(r.label)}</em>${r.head ? `<b>${esc(r.head)}</b>` : ''}` +
+        r.lines.map((l) => `<i>${esc(l)}</i>`).join('') + '</td>';
     }).join('') + '</tr>').join('')
     + '<tr class="total"><th>Week<br>total</th>' + shown.map((w) =>
-      `<td class="${cur(w).trim()}">${esc(+w.total_distance)} mi</td>`).join('') + '</tr>';
+      `<td class="${now(w).trim()}">${esc(+w.total_distance)} mi</td>`).join('') + '</tr>';
 
-  // The control says which five weeks these are and what dates they cover.
   const first = shown[0].week_number, last = shown[shown.length - 1].week_number;
   const from = startOf(first);
   const to = new Date(startOf(last)); to.setDate(to.getDate() + 6);
   const show = (d) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
   el('windowLabel').innerHTML =
     `<b>Weeks ${first} – ${last}</b><span>${esc(show(from))} – ${esc(show(to))}</span>`;
-  el('back').disabled = first === 1 && current === 1;
-  el('fwd').disabled = current === plan.weeks.length;
+  el('back').disabled = first === 1;
+  el('fwd').disabled = last === plan.weeks.length;
+
+  el('rail').innerHTML = plan.weeks.map((w) => {
+    const inside = w.week_number >= first && w.week_number <= last;
+    return `<span class="${!complete && w.week_number === live ? 'now' : inside ? 'in' : ''}"></span>`;
+  }).join('');
+  el('railLabel').textContent = `W${first}–W${last} of ${plan.weeks.length}`;
 }
 
 // THE SESSION, WHOLE — beneath the window, so the five weeks stay on screen.
@@ -330,10 +327,11 @@ function paceKey() {
     `<div><dt>${esc(r.name)}</dt><dd>${esc(r.value)}</dd></div>`).join('');
 }
 
-function render(state, week) {
+function render(state, week, keepWindow) {
   document.body.dataset.state = state;
   const complete = state === 'complete';
-  matrix(week, complete);
+  if (!keepWindow) live = week;
+  matrix(keepWindow ? week : live, complete);
   steps(week, complete);
   paceKey();
   if (complete) {
@@ -410,14 +408,37 @@ document.addEventListener('keydown', (event) => {
 });
 
 // The arrows move ONE week, not one page of five.
-[['back', -1], ['fwd', 1]].forEach(([id, step]) => {
-  el(id).addEventListener('click', () => {
-    const next = Math.min(plan.weeks.length, Math.max(1, viewing + step));
-    if (next === viewing) return;
-    el('inspector').hidden = true;
-    render(document.body.dataset.state, next);
-  });
-});
+// The arrows advance the WINDOW by one week. They do not change which week it
+// is — `live` stays where the calendar put it.
+function slide(step) {
+  const next = Math.min(plan.weeks.length - WINDOW + 1, Math.max(1, viewing + step));
+  if (next === viewing) return;
+  el('inspector').hidden = true;
+  render(document.body.dataset.state, next, true);
+}
+el('back').addEventListener('click', () => slide(-1));
+el('fwd').addEventListener('click', () => slide(1));
+
+// Trackpad and touch, sideways over the plan. Horizontal intent only, so a
+// normal vertical scroll past the matrix is never hijacked.
+let wheelLock = 0;
+el('plan').addEventListener('wheel', (event) => {
+  if (Math.abs(event.deltaX) < Math.abs(event.deltaY) * 1.5) return;
+  event.preventDefault();
+  const now = Date.now();
+  if (now - wheelLock < 260) return;
+  wheelLock = now;
+  slide(event.deltaX > 0 ? 1 : -1);
+}, { passive: false });
+
+let touchX = null;
+el('plan').addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+el('plan').addEventListener('touchend', (e) => {
+  if (touchX == null) return;
+  const dx = e.changedTouches[0].clientX - touchX;
+  touchX = null;
+  if (Math.abs(dx) > 48) slide(dx < 0 ? 1 : -1);
+}, { passive: true });
 
 // The opening moment.
 const params = REVIEW ? new URLSearchParams(location.search) : new URLSearchParams();
@@ -426,14 +447,20 @@ if (asked === 'auto') {
   const [live, week] = today();
   render(live, week);
 } else if (asked && FIXED[asked]) {
-  // ?week= lets a capture reach any window without clicking through. Review only.
-  const wanted = Number(params.get('week'));
-  render(asked, wanted >= 1 && wanted <= plan.weeks.length ? wanted : FIXED[asked]);
+  render(asked, FIXED[asked]);
 } else if (REVIEW) {
   render('build', FIXED.build);
 } else {
   const [live, week] = today();
   render(live, week);
+}
+
+// Review-only: ?week= slides the WINDOW so a capture can reach any six weeks. It
+// moves the viewport and nothing else — THIS WEEK stays where the calendar put
+// it, which is the same rule the arrows follow.
+const wanted = Number(params.get('week'));
+if (wanted >= 1 && wanted <= plan.weeks.length) {
+  render(document.body.dataset.state, wanted, true);
 }
 
 // Review-only: ?open=3-TUE opens that session so a capture can reach it.
