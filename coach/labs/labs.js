@@ -1227,22 +1227,18 @@ function planHtml() {
   // easy running as one authored quantity, placed by the athlete.
   // The source the daily easy cells are drawn from, and how much of it has been
   // spent. Prescribed is authored; allocated is what the athlete placed.
-  const allocatedIn = (week) => unattached
-    .filter((item) => week.starts_on && week.ends_on
-      && filedOn(item) >= week.starts_on && filedOn(item) <= week.ends_on)
-    .reduce((total, item) => total + Number(item.actual_distance || 0), 0);
-
-  const budgetRow = weeks.some((week) => budgetFor(week).length)
-    ? `<tr class="easyrow"><th class="d">Across the week</th>${weeks.map((week) => {
-        const budget = budgetFor(week);
-        const spent = allocatedIn(week);
-        const done = datedEasy(week);
-        return `<td class="${isCurrent(week) ? 'cur' : ''}">${budget.length && !done
-          ? budget.map((session) => `<span class="s alloc">
-              <b>${escapeHtml(CAP(shortDose(session.currentVersion)))}</b><i>Easy</i>
-              ${spent ? `<u>${escapeHtml(`✓ ${Number(spent.toFixed(1))}`)}</u>` : ''}</span>`).join('')
-          : '<span class="none">·</span>'}</td>`;
-      }).join('')}</tr>` : '';
+  // The weekly budget has finished its job.
+  //
+  // It was how the easy running was authored before it had days, and while the
+  // block ran on it the row WAS the prescription. Now that thirteen of fifteen
+  // weeks author their easy days, rendering it beside them shows a superseded
+  // prescription next to the real one — and TOTAL and EASY already carry the
+  // numbers underneath it.
+  //
+  // The rows are not deleted. They remain the record of how this block was
+  // authored before it had days, readable in the database and in the drawer, and
+  // W1 and W2 keep their evidence in the day cells where the athlete placed it.
+  const budgetRow = '';
 
   // Two lines, not one. TOTAL is every mile the week asks for, warm-ups
   // included. EASY is standalone easy running only. The gap between them is how
@@ -1318,16 +1314,15 @@ function planHtml() {
       <em>${escapeHtml(band.line)}</em></div>`).join('')}</div>
 
     <div class="pgFoot">
-      <b>Struck through</b> is cancelled and stays visible, so you can see what was withdrawn.
-      <b>Easy · from the weekly budget</b> is authored work the athlete placed himself. The week
-      authors the quantity; the day is his. Those miles are counted once, in the budget, and never
-      again in <b>Miles</b>.
-      A middle dot is a day with nothing authored and nothing filed, not a rest day.
       <b>A lime bar</b> marks a rung — a session that would move what this athlete owns. A lime
-      title is continuous work inside the band, the shape that can establish a distance at all;
-      the bar is the subset the ladder is actually asking for.
+      title is work whose evidence the mark will read; the bar is the subset the ladder is
+      actually asking for.
+      <b>Struck through</b> is cancelled and stays visible, so you can see what was withdrawn.
+      A middle dot is a day with nothing authored and nothing filed, not a rest day.
       <b>Total</b> is every mile the week asks for, warm-ups and jog recoveries included.
       <b>Easy</b> is standalone easy running only — a warm-up belongs to its quality session.
+      Weeks 1 and 2 authored their easy running as one weekly quantity rather than by day, so
+      their easy days are the runs as filed.
     </div>
   </main>`;
 }
