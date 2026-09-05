@@ -232,3 +232,14 @@ body[data-state="complete"] .step.race span{border-color:var(--lime);color:var(-
 .dev button{padding:6px 13px;border-radius:999px;border:0;background:transparent;
   color:var(--muted);font-size:10.5px;letter-spacing:.1em;cursor:pointer;text-transform:uppercase}
 .dev button.on{background:#ffffff12;color:var(--text)}
+
+/* THE FULL PRESCRIPTION IN A CELL.
+   Provisional: this exists so the real 15 weeks can be seen at the level a
+   runner would execute them, and the composition judged against that rather
+   than against an abbreviation of it. */
+.matrix tbody td{vertical-align:top;padding:11px 10px;text-align:left}
+.matrix tbody td b{display:block;font-size:12px;font-weight:500;color:#e4e9e5;letter-spacing:.01em}
+.matrix tbody td i{display:block;font-style:normal;font-size:10px;line-height:1.45;color:#8b9497;margin-top:3px}
+.matrix tbody td mark{display:inline-block;margin-top:5px;background:none;color:var(--lime);
+  font-size:8.5px;letter-spacing:.14em;text-transform:uppercase}
+.matrix tbody tr.total td{text-align:center;vertical-align:middle}

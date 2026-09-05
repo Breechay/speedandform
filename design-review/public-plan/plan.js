@@ -8,12 +8,16 @@
 // The page has four moments and one composition. The architecture never moves;
 // the meaning changes.
 
-const plan = await (await fetch('plan.json')).json();
+import { publishedPlan } from './source.js';
+
+// Live, not a fixture. Changing a value in the canonical plan changes this page
+// without anyone editing HTML.
+const plan = await publishedPlan('race-pace-durability');
 const DAYS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 const RUNGS = [2, 5, 6, 8, 12, 13.1];
 
-const weekOne = new Date(`${plan.first_run.week_one_starts_on}T00:00:00`);
-const raceOn = new Date(`${plan.first_run.race_on}T00:00:00`);
+const weekOne = new Date(`${plan.running.starts_on}T00:00:00`);
+const raceOn = new Date(`${plan.running.race_on}T00:00:00`);
 const el = (id) => document.getElementById(id);
 const esc = (v) => String(v ?? '').replace(/[&<>"]/g, (c) =>
   ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -32,31 +36,57 @@ const range = (week) => {
 
 // A day's cell is the notation, not the prose. Distances for easy days, the
 // title for anything the week is proving something with.
-function cell(session) {
-  if (!session) return '';
-  if (session.role === 'easy') return `${+session.distance} MI`;
-  if (session.asks != null) return `${+session.asks} MI CONT`;
+// THE PRESCRIPTION, WHOLE.
+//
+// Written to show what a runner actually needs to execute the session, not what
+// fits the matrix. Where the two disagree, this renders the session and the
+// composition is what gets reconsidered — the point of this pass is to find out
+// where the approved layout breaks under the real thing.
+//
+// FORM notation: → progression · × repetitions · / recovery · @ target ·
+// WU / CD bookends.
+const pace = (c) => {
+  if (c.pace_low_seconds == null) return '';
+  const clock = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+  return c.pace_high_seconds
+    ? `${clock(c.pace_low_seconds)}–${clock(c.pace_high_seconds)}`
+    : `${clock(c.pace_low_seconds)} or slower`;
+};
+const span = (c) => {
+  if (c.distance != null) return `${+c.distance} mi`;
+  if (c.duration_seconds == null) return '';
+  return c.duration_seconds % 60 === 0
+    ? `${c.duration_seconds / 60} min` : `${c.duration_seconds} s`;
+};
+const recovery = (c) => {
+  if (!c.recovery_seconds) return '';
+  const rest = c.recovery_seconds % 60 === 0
+    ? `${c.recovery_seconds / 60} min` : `${c.recovery_seconds} s`;
+  return ` / ${rest}${c.recovery_kind ? ` ${c.recovery_kind}` : ''}`;
+};
 
-  const work = (session.components || []).filter((c) => c.role === 'work');
-  const main = work.find((c) => c.shape === 'repetitions') || work[0];
-  if (!main) return `${+session.distance} MI`;
+function prescription(session) {
+  if (!session) return { head: 'Rest', lines: [] };
+  const parts = session.components || [];
+  const work = parts.filter((c) => c.role === 'work');
+  const wu = parts.find((c) => c.role === 'warm_up');
+  const cd = parts.find((c) => c.role === 'cool_down');
 
-  // A long run that finishes at the band: the tail is what the day is for.
-  const tail = work.find((c) => c.shape === 'continuous' && c.pace_high_seconds);
-  if (tail && work.length > 1) return `${+session.distance} · LAST ${+tail.distance} RP`;
+  const head = work.map((c) => {
+    const reps = c.shape === 'repetitions' && c.repeat_count > 1 ? `${c.repeat_count} × ` : '';
+    return `${reps}${span(c)}`;
+  }).join(' → ') || `${+session.distance} mi`;
 
-  if (main.shape === 'repetitions') {
-    // Distance reps say miles; time reps say the unit they were authored in.
-    // Dividing 45 seconds by 60 gave `0.75 MIN`, and a VO₂ rep authored in
-    // seconds with no distance gave `5 × 0 MI` — both from assuming the shape.
-    if (main.distance != null) return `${main.repeat_count} × ${+main.distance} MI`;
-    if (main.duration_seconds != null) {
-      return main.duration_seconds % 60 === 0
-        ? `${main.repeat_count} × ${main.duration_seconds / 60} MIN`
-        : `${main.repeat_count} × ${main.duration_seconds} S`;
-    }
-  }
-  return `${+session.distance} MI`;
+  const lines = [];
+  work.forEach((c) => {
+    const target = pace(c) || (c.rpe_low ? `RPE ${c.rpe_low}${c.rpe_high ? `–${c.rpe_high}` : ''}` : '');
+    if (target) lines.push(`${work.length > 1 ? `${span(c)} ` : ''}@ ${target}${recovery(c)}`);
+    else if (recovery(c)) lines.push(recovery(c).replace(' / ', 'recovery '));
+  });
+  const book = [wu && `WU ${span(wu)}`, cd && `CD ${span(cd)}`].filter(Boolean).join(' · ');
+  if (book) lines.push(book);
+  if (session.distance != null) lines.push(`${+session.distance} mi total`);
+  return { head, lines, asks: session.asks };
 }
 
 function matrix(current, complete) {
@@ -68,8 +98,12 @@ function matrix(current, complete) {
   el('matHead').innerHTML = '<th>WEEK</th>' + plan.weeks.map((w) =>
     `<th${mark(w)}><b>W${w.week_number}</b><span>${esc(
       startOf(w.week_number).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }))}</span></th>`).join('');
-  const rows = DAYS.map((day) => `<tr><th>${day[0] + day.slice(1).toLowerCase()}</th>` + plan.weeks.map((w) =>
-    `<td${mark(w)}>${esc(cell(byDay(w)[day]) || 'Rest')}</td>`).join('') + '</tr>').join('');
+  const rows = DAYS.map((day) => `<tr><th>${day[0] + day.slice(1).toLowerCase()}</th>` + plan.weeks.map((w) => {
+    const p = prescription(byDay(w)[day]);
+    return `<td${mark(w)}><b>${esc(p.head)}</b>${
+      p.lines.map((line) => `<i>${esc(line)}</i>`).join('')}${
+      p.asks != null ? `<mark>asks ${esc(+p.asks)} mi</mark>` : ''}</td>`;
+  }).join('') + '</tr>').join('');
   el('matBody').innerHTML = rows + '<tr class="total"><th>TOTAL</th>' + plan.weeks.map((w) =>
     `<td${mark(w)}>${esc(+w.total_distance)}</td>`).join('') + '</tr>';
 }
