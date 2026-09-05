@@ -96,10 +96,16 @@ document.title = `${title} · ${version}`;
 
 // Opened to be printed. The fonts must be down before the dialog measures the
 // page, or the first print lays out in a fallback and the columns move.
-// `#preview` renders the edition without opening the print dialog — the hash,
-// not a query string, because the dev server rewrites `.html` and drops the
-// query on the way through.
+//
+// Not behind requestAnimationFrame. That waits for a painted FRAME, and a tab
+// that never paints — opened in the background, or a viewer that renders
+// off-screen — would sit there with no dialog and no explanation. The print
+// engine lays the page out itself; all it needed was the fonts.
+//
+// `#preview` renders the edition without opening the dialog — the hash, not a
+// query string, because the dev server rewrites `.html` and drops the query on
+// the way through.
 if (!location.hash.includes('preview')) {
   await document.fonts.ready;
-  requestAnimationFrame(() => window.print());
+  window.print();
 }

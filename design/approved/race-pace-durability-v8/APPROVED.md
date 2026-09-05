@@ -55,6 +55,13 @@ both of which are the DATA being right and the fixture being approximate:
 
 - **W2 Thursday** is authored `Hills · 8 × 45 s @ RPE 8–9 · 2 min easy`.
   The fixture calls it `SPEED · 8 × 45 s @ 5K effort · 90 s recovery`.
+
+  **Resolved: the canonical Plan wins.** It was authored deliberately in
+  `20260905120000_race_pace_durability_is_a_plan.sql` as
+  `Hills 8 × 45 s + strides`, carrying its own intent — *"Strength above the
+  pace, bought cheaply."* The fixture was the hand-typed approximation. Brice:
+  *"Do not modify canonical training just to match the old fixture."* The page
+  shows HILLS.
 - **The lime accent is wider here than in the fixture, deliberately.** The
   fixture accents the exact title `RACE PACE`. Brice: *"i think long runs with
   race pace should also have the lime treatment no?"* — so a day now earns the
