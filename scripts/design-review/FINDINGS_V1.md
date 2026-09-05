@@ -1,5 +1,10 @@
 # Design pass V1 — audit
 
+> Superseded by **V2** (`?css=v2`, `SPEC_V2.md`), which closes all three defects
+> below and both judgment calls. V1 stays loadable — the arrow joining
+> `2 MI YOU OWN` to `NEXT ASK` and the shallow landscape composition are its
+> ideas, and V2 keeps both.
+
 Brice's first pass, 4 September. Loaded with **`?css=v1`**. 215 lines of CSS
 appended to the stylesheet; no markup, data, routing or permission logic touched
 (verified — `labs.css` was the only file that differed).

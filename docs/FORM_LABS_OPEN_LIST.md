@@ -43,14 +43,15 @@ Two things.
 - **Is Marcus running Race Pace Durability?** Same goal, same band, a mark asking
   the same question with an outdoor qualifier. A coaching judgment, not a rename.
 
-- **The design pass.** Implementation is frozen and the current surface is
-  exported to `form-labs-design-review/` — the real renderer, read-only, real
-  data, one command to rebuild (`scripts/build_design_review.py`). Design
-  decisions get made there in HTML and CSS and are ported back deliberately.
-  `COMPROMISES.md` in the package is the list of what was seen and left alone;
-  the rail's column, the hero's proportions, `2 MI YOU OWN`, and phone landscape
-  are the four that matter. Nothing about Week View should be styled in the repo
-  until that pass produces decisions.
+- **`is_key` is dead and two surfaces were moved off it.** It was overwritten on
+  4 September to mean "has a date". `planned_sessions.role` now carries what a
+  session IS — `key` · `easy` · `support` · `rest` — authored, never inferred
+  from a title. `is_key` itself is still in the schema, still wrong, and now
+  documented as historical. Removing it is a later sweep.
+- **One session's role is a coaching call, not mine.** Marcus's 8 December
+  `Race week` — a 3-mile day with no intent, on his race date — was classified
+  `key` by the backfill because unclassified falls to key rather than
+  disappearing into easy running. If it is a shakeout it should be `easy`.
 
 ## LATER
 
@@ -111,6 +112,17 @@ and count toward the week; a `standing` recovery does not. **TOTAL** is every mi
 the week asks for, **EASY** is standalone easy sessions only. The `Across the
 week` budget rows are historical audit context and stop counting the moment a
 week authors its days.
+
+**The Week View.** Design pass V2, shipped 5 September. A measure of 1180px
+rather than a full-width row; density follows the authored session **role**, so
+a day the week is proving something with gets a bay and a day that carries the
+athlete there gets a line; **lime is off `today`** — today is the only lit row,
+luminance not accent, and lime means only *this can establish something*.
+Consecutive easy days compose into one **recovery block** with a total, and the
+days stay inside it with their own numbers, because nine miles is what goes in
+the watch on Monday. Grouping is consecutive-only: folding easy days across a
+key session would misstate the week's sequence. `scripts/design-review/SPEC_V2.md`
+carries the measurements; `KINGS.md` carries the argument.
 
 **The week.** MON easy · TUE quality · WED easy · THU support · FRI easy ·
 SAT long/specific · SUN rest — for José and Hope. Natalie has Sunday work, and

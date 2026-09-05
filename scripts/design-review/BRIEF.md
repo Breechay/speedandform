@@ -127,8 +127,10 @@ attention. That is a design problem long before it is an engineering one.
 
 ## 6. What is genuinely hard
 
-These are the open problems. They are not bugs, and the first two are the reason
-this package exists.
+These were the open problems when this brief was written. **Design pass V2
+shipped on 5 September and closed 1, 2, 3, 5 and 6**; they are kept because the
+reasoning still governs, and because a later pass that reopens one should know
+what it is reopening. `SPEC_V2.md` describes what replaced them.
 
 1. **The instrument is mostly empty and nobody has decided whether that is
    right.** At 1600px the week uses about 60% of the width. Some of that restraint

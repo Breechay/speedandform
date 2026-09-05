@@ -1,5 +1,12 @@
 # Known visual compromises
 
+> **Mostly closed.** Design pass V2 shipped on 5 September and items 1–7 below
+> are either solved or superseded — the measure replaced the drawn row, density
+> now follows the authored session role, lime came off `today`, and consecutive
+> easy days compose into a recovery block. `SPEC_V2.md` is the current
+> description of the surface; this file is kept as the record of what the
+> problems were. Items 8–11 stand.
+
 Things I saw, understood, and deliberately did not solve — because Brice's
 instruction was to freeze functionality and stop refining Week View, and because
 several of them are design questions rather than defects. Listed so the design

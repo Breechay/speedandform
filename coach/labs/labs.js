@@ -671,7 +671,7 @@ const spokenDay = (iso) => LONG_DAY[new Date(`${iso}T12:00:00`).getDay()];
 
 function askFor(entry) {
   const report = (entry.attention || []).find((item) => item.kind === 'athlete_report');
-  const firstKey = (entry.coming || []).find((session) => session.is_key && session.scheduled_on);
+  const firstKey = (entry.coming || []).find((session) => session.role === 'key' && session.scheduled_on);
   // A sentence speaks in full weekdays. The tabular line above it does not.
   const when = firstKey ? spokenDay(firstKey.scheduled_on) : 'the next hard one';
   if (report) {
@@ -1063,6 +1063,16 @@ function prescribedCell(session, context) {
   const rung = session.state === 'cancelled' ? null : rungFor(session, mark);
   if (rung) classes.push('rung');
 
+  // What KIND of day this is, authored on the session and never re-derived here.
+  // The Week View draws a key session with more presence than an easy one, and
+  // the shortest way to that distinction is `title !== 'Easy'` — which would
+  // mean the layout changes when a title is reworded, and the next session type
+  // FORM invents becomes a key session for having an unfamiliar name.
+  //
+  // Not the same claim as `own`. A long run can be the week's whole argument and
+  // point at no mark; a two-mile touch can be eligible and be nobody's headline.
+  classes.push(`r-${session.role || 'key'}`);
+
   const easy = /^easy/i.test(title);
   const named = isNamed(title);
   const dose = shortDose(version);
@@ -1357,15 +1367,16 @@ function weekHtml(weekNumber) {
     piecesFor: (id) => id ? pieces.filter((piece) => piece.completion_id === id) : []
   };
   const forWeek = (item) => (record.sessionsByWeek?.[item.id] || []);
+  const isEasy = (session) => session.role === 'easy';
   const milesFor = (item) => forWeek(item).reduce((sum, session) => {
     if (session.state === 'cancelled') return sum;
     if (!session.scheduled_on && forWeek(item).some((other) => other.scheduled_on
-      && /^easy$/i.test(String(other.currentVersion?.title || '').trim()))) return sum;
+      && isEasy(other))) return sum;
     return sum + (authoredMiles(session.currentVersion) || 0);
   }, 0);
   const easyFor = (item) => forWeek(item).reduce((sum, session) => {
     if (session.state === 'cancelled' || !session.scheduled_on) return sum;
-    if (!/^easy/i.test(String(session.currentVersion?.title || '').trim())) return sum;
+    if (!isEasy(session)) return sum;
     return sum + (authoredMiles(session.currentVersion) || 0);
   }, 0);
 
@@ -1374,7 +1385,7 @@ function weekHtml(weekNumber) {
   const unattached = completions.filter((item) => !item.planned_session_id);
   const isNow = week.id === record.currentWeek?.id;
 
-  const days = WEEK_DAYS.map((day, index) => {
+  const dayRows = WEEK_DAYS.map((day, index) => {
     const on = week.starts_on ? addDays(week.starts_on, index) : null;
     const asked = on ? forWeek(week).filter((session) => session.scheduled_on === on
       && (session.state !== 'cancelled' || context.completionFor(session.id))) : [];
@@ -1384,11 +1395,63 @@ function weekHtml(weekNumber) {
     // Not `today` — that is the module's clock, and shadowing it here put the
     // whole view in a temporal dead zone the moment the week rendered.
     const isToday = on === today();
-    return `<article class="wday${body ? '' : ' rest'}${isToday ? ' now' : ''}">
-      <header class="wdayName">${day}<em>${on ? escapeHtml(dayLabel(on)) : ''}</em>
+    return {
+      day, on, asked,
+      // A day is easy running only when everything asked of it is. A day that
+      // is easy plus anything else is not a day you can fold into a block.
+      easy: asked.length > 0 && asked.every((session) => isEasy(session)
+        && session.state !== 'cancelled'),
+      miles: asked.reduce((sum, session) => sum + (authoredMiles(session.currentVersion) || 0), 0),
+      html: `<article class="wday${body ? '' : ' rest'}${isToday ? ' now' : ''}">
+      <header class="wdayName"><span class="dLong">${day}</span><span class="dShort">${
+        escapeHtml(day.slice(0, 3))}</span><em>${on ? escapeHtml(dayLabel(on)) : ''}</em>
         ${isToday ? '<span class="wNow">today</span>' : ''}</header>
       <div class="wdayBody">${body || '<span class="none">Rest</span>'}</div>
-    </article>`;
+    </article>`
+    };
+  });
+
+  // THE RECOVERY BLOCK.
+  //
+  // Five easy days are five nearly identical rows saying one thing: 35 miles of
+  // easy running, distributed like this. So consecutive easy days are composed
+  // into one object with a total, and the days stay inside it — chronological,
+  // selectable, each still carrying its own number.
+  //
+  // The number stays because the athlete runs Monday, not the week: nine miles
+  // is what goes into the watch. Brice's ruling — compose them, never replace
+  // them with a total.
+  //
+  // Only CONSECUTIVE days, and only ones the block agrees about. Folding easy
+  // days together across a key session would say the week ran in an order it
+  // did not, which is a lie about sequence rather than a compression of it.
+  const groups = [];
+  dayRows.forEach((row) => {
+    const run = groups[groups.length - 1];
+    if (row.easy && run?.easy) run.rows.push(row);
+    else groups.push({ easy: row.easy, rows: [row] });
+  });
+
+  const days = groups.map((group) => {
+    // One easy day is a day, not a block. A header over a single row would be
+    // ceremony around a fact the row already states.
+    if (!group.easy || group.rows.length < 2) return group.rows.map((row) => row.html).join('');
+    const miles = group.rows.reduce((sum, row) => sum + row.miles, 0);
+    // The days are the distribution. Printing MON 9 · TUE 6 in the header AND
+    // the rows underneath would say it twice; the rows are already in order and
+    // already carry their number, so they become the ticks.
+    // No inline style attribute, and no count passed to CSS: the columns are
+    // `grid-auto-flow:column`, so the layout counts the days itself. A style=
+    // here would need 'unsafe-inline' in the /coach/* CSP, which is never
+    // happening.
+    return `<section class="wRun">
+      <header class="wRunHead">
+        <b>Easy volume</b>
+        <strong>${escapeHtml(Number(miles.toFixed(1)))} mi</strong>
+        <em>${escapeHtml(group.rows.length)} days</em>
+      </header>
+      <div class="wRunDays">${group.rows.map((row) => row.html).join('')}</div>
+    </section>`;
   }).join('');
 
   const prev = weeks.find((item) => item.week_number === week.week_number - 1);

@@ -252,7 +252,7 @@ export async function loadCoachBench(coachMemberships) {
       next: (() => {
         const coming = sessions
           .filter((session) => (session.week_id === currentWeek?.id || session.week_id === nextWeekFor(entry.id)?.id)
-            && session.is_key && session.scheduled_on && session.scheduled_on > today
+            && session.role === 'key' && session.scheduled_on && session.scheduled_on > today
             && session.scheduled_on <= weekAhead)
           .map((session) => ({ ...session, currentVersion: withComponents.find((v) => v.planned_session_id === session.id) || null }))
           .sort((a, b) => a.scheduled_on.localeCompare(b.scheduled_on));
