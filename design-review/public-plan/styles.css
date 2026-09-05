@@ -194,9 +194,9 @@ footer{height:55px;display:flex;align-items:flex-end;gap:18px;color:#9da6a8;font
   .topbar .actions{display:none}
 
   .hero{position:relative;margin:4px 0 14px;padding-top:0}
-  /* Pulled 8px up and 8px out from the baseline position, so the folio sits
-     level with the wordmark and closer to the trim than the body copy is. */
-  .mobile-folio{display:block;position:absolute;top:-58px;right:-8px;width:118px;
+  /* Pulled 13px up and 13px out from the baseline position, so the folio rides
+     slightly above the wordmark and closer to the trim than the body copy is. */
+  .mobile-folio{display:block;position:absolute;top:-63px;right:-13px;width:118px;
     padding:0 0 0 18px;border-left:1px solid #182326;background:transparent;text-align:left}
   .mobile-folio .folio-current{display:block;color:var(--lime);font-size:8px;
     letter-spacing:.22em;margin-bottom:7px}
