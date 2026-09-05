@@ -544,7 +544,7 @@ function athleteHtml() {
         <div class="state">
           <div class="owns">
             <b>${owned != null ? escapeHtml(owned) : '—'}</b>
-            <span>${escapeHtml(String(mark?.unit || 'mi').toUpperCase())}<br>CONTINUOUSLY OWNED</span>
+            <span>${escapeHtml(String(mark?.unit || 'mi').toUpperCase())} YOU OWN<br>CONTINUOUSLY</span>
           </div>
           ${nextLine ? `<div class="nextQ"><div class="h">NEXT</div>
             <p>${escapeHtml(nextLine)}</p></div>` : ''}
@@ -982,6 +982,16 @@ function prescribedCell(session, context) {
   // shows its whole anatomy; a session whose title is its own dose shows the
   // rule it runs to.
   const anatomy = named ? (structureOf(version) || '') : shortRule(version, title);
+  // The warm-up and cool-down, subordinate to the work but present, because an
+  // athlete reading this cell has to run the whole session and the total will
+  // otherwise look like arithmetic nobody explained.
+  const around = (version?.components || [])
+    .filter((part) => part.role === 'warm_up' || part.role === 'cool_down')
+    .sort((a, b) => a.position - b.position)
+    .map((part) => `${part.role === 'warm_up' ? 'WU' : 'CD'} ${
+      part.duration_seconds != null ? Math.round(part.duration_seconds / 60)
+        : Number(part.distance)}`)
+    .join(' · ');
   const total = authoredMiles(version);
   const work = workMiles(version);
   const whole = total != null && (work == null || Math.abs(total - work) > 0.05)
@@ -1001,6 +1011,7 @@ function prescribedCell(session, context) {
   return `<span class="${classes.join(' ')}" data-session="${escapeHtml(session.id)}">
     <b>${escapeHtml(named ? head : CAP(head))}</b>
     ${anatomy ? `<i>${escapeHtml(anatomy)}</i>` : ''}
+    ${around ? `<small>${escapeHtml(around)}</small>` : ''}
     ${whole ? `<em>${escapeHtml(whole)}</em>` : ''}
     ${rule ? `<q>${escapeHtml(rule)}</q>` : ''}
     ${ran ? `<u>${escapeHtml(ran)}</u>` : ''}
@@ -1283,7 +1294,7 @@ function planHtml() {
       <div class="pq">${escapeHtml(mark?.current_question || block.goal_statement || '')}</div>
       <div class="powns">
         <b>${owned != null ? escapeHtml(owned) : '—'}</b>
-        <span>${escapeHtml(String(mark?.unit || 'mi').toUpperCase())} OWNED</span>
+        <span>${escapeHtml(String(mark?.unit || 'mi').toUpperCase())} YOU OWN</span>
       </div>
       ${horizon ? `<div class="phorizon"><b>VOLUME</b><span>${escapeHtml(horizon)}</span></div>` : ''}
       <div class="pkey">${bands.map((band) => `<div>
