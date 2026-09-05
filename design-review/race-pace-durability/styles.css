@@ -15,7 +15,12 @@
   --serif:Georgia,"Times New Roman",serif;
 }
 *{box-sizing:border-box}
-html,body{margin:0;background:radial-gradient(1200px 540px at 55% 0%,#0a1518 0%,var(--bg) 56%,#060c0e 100%);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+/* A gradient is a background IMAGE, and an image is sized to the element's box.
+   Rubber-band overscroll goes beyond that box, and what shows there is the
+   background COLOUR — which was never set, so it was the canvas default: white.
+   A dark base under the gradient closes the seam at both ends. */
+html{background-color:var(--bg)}
+html,body{margin:0;background-image:radial-gradient(1200px 540px at 55% 0%,#0a1518 0%,var(--bg) 56%,#060c0e 100%);background-repeat:no-repeat;color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased}
 body{min-width:1180px}
 button,a{font:inherit}
 button{cursor:pointer}
@@ -69,9 +74,8 @@ h1{font-size:47px;line-height:1.02;margin:0 0 10px;letter-spacing:-.035em;font-w
 .matrix tbody td{height:34px;text-align:center;background:#0e1517;color:#d0d6d7;font-size:12px;border-top:1px solid #121a1d;border-right:1px solid #131b1e}
 .matrix tbody td:nth-child(4){background:linear-gradient(90deg,rgba(139,184,56,.16),rgba(80,104,32,.18));color:#f3f6ef}
 .matrix tbody tr.total th,.matrix tbody tr.total td{height:56px;background:#081012;border-top:1px solid #223034;font-weight:600;color:#f1f4ef}
-.matrix tbody tr.total th{font-size:12px;letter-spacing:.18em;color:#afb7b9;vertical-align:top;padding-top:9px}
+.matrix tbody tr.total th{font-size:12px;letter-spacing:.18em;color:#afb7b9;cursor:help}
 .matrix tbody tr.total td:nth-child(4){color:var(--lime)}
-.matrix-note{position:absolute;left:12px;bottom:8px;width:78px;color:#616b6e;font-size:8.5px;line-height:1.28;letter-spacing:.02em}
 
 .method-grid{display:grid;grid-template-columns:1.08fr 1.48fr .84fr;margin-top:34px;border-bottom:1px solid #2a3639;padding-bottom:28px}
 .method-grid article{min-height:224px;padding:0 38px}

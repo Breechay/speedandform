@@ -1,4 +1,4 @@
-# Race Pace Durability — static pass 2
+# Race Pace Durability — static pass 3
 
 Working copy of `design/reference/`. **Three approved changes, nothing else.**
 No data wiring, no responsive work, no new pages, no production change.
@@ -40,11 +40,18 @@ so it ran to the edge of its cell and the rule landed on the unit. The strip is
 now `1fr 1fr 1fr 1.34fr 1.02fr`: the race-pace metric takes the extra, nothing
 else changes, and no typeface got smaller. **21px of clearance at every width.**
 
-**2c · `Weekly miles (approx)` moved under TOTAL.** It was pinned bottom-right,
-directly beneath W15's `28`, where it read as a footnote to the last week rather
-than a caption for the row. Now bottom-left inside the TOTAL label's own column:
-label to the top of the cell, caption beneath it, 8.5px and dimmed so it stays a
-caption. It ends exactly at the label column's edge and never crosses into W1.
+**2c · `Weekly miles (approx)` is gone from the layout.** It was pinned
+bottom-right under W15's `28`, reading as a footnote to the last week rather than
+a caption for the row. Moving it under `TOTAL` fixed the meaning and still added
+clutter to a row that is already legible, so it is removed. The fact survives as
+the `TOTAL` cell's own tooltip — hover, with a `help` cursor — which costs no
+space and adds no element. `TOTAL` is centred again.
+
+**2d · No white seam on overscroll.** A gradient is a background *image*, sized
+to the element's box; rubber-banding past that box shows the background
+*colour*, which was never set, so it fell through to the canvas default — white.
+A dark base colour under the gradient closes it at both ends. Checked
+`coach/labs/labs.css` for the same bug: it uses a solid colour, so it is safe.
 
 **3 · Variation 1 — refined borders.** The grid is complete and every line is
 still there; only its contrast drops. Outer `#223034` → `#162023`; cell rules
