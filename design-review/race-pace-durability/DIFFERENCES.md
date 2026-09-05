@@ -1,4 +1,4 @@
-# Race Pace Durability — static pass 1
+# Race Pace Durability — static pass 2
 
 Working copy of `design/reference/`. **Three approved changes, nothing else.**
 No data wiring, no responsive work, no new pages, no production change.
@@ -9,10 +9,13 @@ Screenshots: `screenshots/` at 1600, 1280, 390 portrait, 844 landscape.
 
 ## What I changed
 
-**1 · The removed image tile's space collapsed.** The tile was already gone from
-the markup, but `.hero{padding-left:230px}` still reserved its column, so the
-title started 230px in from nothing. Removed — the title now begins at the page
-edge, which is what "that space can simply collapse" asked for.
+**1 · The title sits in from the edge, and stays there.** Pass 1 collapsed the
+removed tile's 230px reservation entirely and put the title hard left. Wrong
+call: the indent was not the tile's space, it was the composition — the title
+reads better almost off-centre. Restored as `clamp(0px, 14.4vw, 230px)`, which
+holds it at **16.5–17.1% of the viewport from 1280 to 1600**, against the
+reference's 17.4%. It cannot re-create the old overflow, because the columns now
+divide what is left instead of demanding a minimum.
 
 **2 · The top-right overflow.** Measured at 1600: the page was **24px wider than
 the viewport**, and the last metric — `12 MI · LONGEST CONTINUOUS AT RACE PACE` —
@@ -29,7 +32,19 @@ the space they are given rather than demanding a minimum. `.hero-stats` and
 `.metric` got `min-width:0` for the same reason, and the metric's side padding
 went 22/24 → 18/20 so five metrics breathe in the narrower strip.
 
-Now zero overflow at 1600, 1440 and 1280.
+Now zero overflow at 1280, 1440, 1600 and 2000.
+
+**2b · `/MI` was touching its own divider.** Five equal columns gave
+`6:30–6:45 /MI` — much the longest string in the strip — the same width as `3`,
+so it ran to the edge of its cell and the rule landed on the unit. The strip is
+now `1fr 1fr 1fr 1.34fr 1.02fr`: the race-pace metric takes the extra, nothing
+else changes, and no typeface got smaller. **21px of clearance at every width.**
+
+**2c · `Weekly miles (approx)` moved under TOTAL.** It was pinned bottom-right,
+directly beneath W15's `28`, where it read as a footnote to the last week rather
+than a caption for the row. Now bottom-left inside the TOTAL label's own column:
+label to the top of the cell, caption beneath it, 8.5px and dimmed so it stays a
+caption. It ends exactly at the label column's edge and never crosses into W1.
 
 **3 · Variation 1 — refined borders.** The grid is complete and every line is
 still there; only its contrast drops. Outer `#223034` → `#162023`; cell rules
@@ -45,11 +60,11 @@ cell division and losing it merges the totals into Sunday.
 | --- | --- |
 | **1 · Global frame** | **Matches.** Same field, gradient, shell padding, footer rule. |
 | **2 · Navigation** | **Matches** in layout and type. `Share Plan` and `Download PDF` use text glyphs (`⇧`, `▣`) where the reference has drawn icons. Inherited from the prototype, not introduced here. |
-| **3 · Hero** | **Differs, approved.** No image tile; title starts at x=34 rather than x=267. |
-| **4 · Metrics** | **Differs, consequence of 3.** The strip is wider — x 681→1562 against roughly 790→1500 in the reference — because the hero's left column no longer carries the tile's 230px. Same five metrics, same order, same dividers, same lime. **If you want the reference's tighter strip back, that is a ratio change, and I have not made it: it is a design decision, not an overflow fix.** |
+| **3 · Hero** | **Differs, approved.** No image tile. The title's indent is kept and now scales — x=264 at 1600 against x=267 in the reference. |
+| **4 · Metrics** | **Matches.** Strip x 807→1566 against roughly 790→1500 in the reference. Same five metrics, order, dividers and lime, with the race-pace column widened so its unit clears the rule. |
 | **5 · Plan heading / week control** | **Matches.** `THE 15-WEEK PLAN`, `Week 3 · Sep 7 – Sep 13`, `THIS WEEK` pill, both circles. |
-| **6 · Matrix** | **Matches**, quieter borders. One difference in our favour: the reference image shows an empty 16th column past W15; the real table has none and fills to the edge. |
-| **7 · Methodology** | **Matches.** All three sections, same order, same copy. `WHY THIS BLOCK EXISTS` wraps to 5 lines rather than 6 — its column is wider now, same cause as 4. Dimension icons are glyphs (`▥`, `◎`) where the reference has drawn icons. |
+| **6 · Matrix** | **Matches**, quieter borders. Two intentional differences: the caption moved from under W15 to under TOTAL, and the reference image's empty 16th column past W15 does not exist in the real table, which fills to the edge. |
+| **7 · Methodology** | **Matches.** All three sections, same order, same copy. Dimension icons are glyphs (`▥`, `◎`) where the reference has drawn icons. |
 | **8 · Footer** | **Matches.** |
 
 ---
