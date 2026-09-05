@@ -942,3 +942,11 @@ img[data-portrait]{--exp:.9;--con:1.16;--px:50%;--py:40%;--pz:1;--grade:.20}
    session's argument. */
 .pg .s small{display:block;font-size:9.5px;letter-spacing:.09em;color:#4e5659;margin-top:4px;
   font-variant-numeric:tabular-nums}
+
+/* The anatomy has two voices. Easy running recedes; the work the session is
+   about is brighter. Neither is lime — lime still means ownership alone. */
+.pg .s i .ae{color:#5c6467}
+.pg .s i .aw{color:var(--text)}
+.pg .s i .ar{color:#3c4447}
+.pg .s i{line-height:1.55}
+.pg .s b{margin-bottom:1px}

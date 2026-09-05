@@ -949,6 +949,72 @@ function ranLine(completion, pieces) {
 //
 // The drawer is the exhaustive record — athlete report, RPE, attachments,
 // revision history. It deepens the plan; it is not required to decode it.
+// NOTATION OVER PROSE.
+//
+// "Run the first part easy. The last 2.0 miles at race pace, off tired legs."
+// is five lines of wrapped sentence in a 100px column, repeated on eight
+// Saturdays, describing arithmetic the components already hold. Written as
+// notation it is shorter, more precise, and scannable across fifteen weeks:
+//
+//     13 MI
+//     11 MI EASY → 2 MI @ 6:30–6:45
+//
+// Read down Saturday and the progression is visible without a word of
+// explanation: 7+2 → 9+2 → 11+2 → 12+2 → 12+3 → 12+4 → 6+4 → race.
+//
+// The grammar, and it is the same everywhere in the plan:
+//   →   progression within a session      ×   repetitions
+//   /   recovery                          @   target
+//   WU · CD   the bookends                EASY   easy running
+//
+// Prose survives only where notation cannot carry the meaning — perception,
+// restraint, technique. The Blind Mile keeps its sentence, because "no watch"
+// is not expressible in symbols and is the entire session.
+//
+// Derived from the authored components. Nothing here is a string keyed off a
+// title, and nothing changes a prescription.
+function anatomyOf(version) {
+  const parts = workParts(version);
+  if (!parts.length) return null;
+  const banded = parts.some((part) => part.pace_low_seconds != null && part.pace_high_seconds != null);
+
+  const magnitude = (part) => {
+    if (part.distance != null) {
+      const each = part.distance_unit === 'km' ? Number(part.distance) * 0.621371 : Number(part.distance);
+      // Decimals should mean precision. 2, never 2.0.
+      return `${Number(each.toFixed(2))} MI`;
+    }
+    if (part.duration_seconds != null) {
+      const secs = part.duration_seconds;
+      return secs < 60 ? `${secs}S` : (secs % 60 === 0 ? `${secs / 60} MIN` : `${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}`);
+    }
+    return '';
+  };
+
+  return parts.map((part) => {
+    const reps = part.shape === 'repetitions' ? (part.repeat_count || 1) : 1;
+    let text = reps > 1 ? `${reps} × ${magnitude(part)}` : magnitude(part);
+    if (part.pace_low_seconds != null && part.pace_high_seconds != null) {
+      text += ` @ ${part.pace_low}–${part.pace_high}`;
+    } else if (part.pace_low_seconds != null) {
+      text += ' EASY';
+    } else if (banded && part.distance != null && part.shape === 'continuous') {
+      // The easy portion of a long run: unbanded distance in front of banded
+      // work. Deliberately restricted to DISTANCE. Pressure to Pace opens with
+      // thirty unbanded minutes and its intent calls them a cost, not easy
+      // running — calling that EASY would rewrite the session.
+      text += ' EASY';
+    }
+    if (part.recovery_seconds) {
+      const rest = part.recovery_seconds % 60 === 0
+        ? `${part.recovery_seconds / 60} MIN` : `${part.recovery_seconds}S`;
+      text += ` / ${rest}${part.recovery_kind ? ` ${part.recovery_kind.toUpperCase()}` : ''}`;
+    }
+    const race = part.pace_low_seconds != null && part.pace_high_seconds != null;
+    return `<span class="${race ? 'aw' : 'ae'}">${escapeHtml(text)}</span>`;
+  }).join('<span class="ar"> → </span>');
+}
+
 function prescribedCell(session, context) {
   const version = session.currentVersion;
   const title = titleOf(session);
@@ -981,7 +1047,9 @@ function prescribedCell(session, context) {
   // Everything else states what the athlete is actually doing. A named session
   // shows its whole anatomy; a session whose title is its own dose shows the
   // rule it runs to.
-  const anatomy = named ? (structureOf(version) || '') : shortRule(version, title);
+  const parts = workParts(version);
+  const anatomy = parts.length > 1 || named ? anatomyOf(version) : null;
+  const fallback = anatomy ? '' : shortRule(version, title);
   // The warm-up and cool-down, subordinate to the work but present, because an
   // athlete reading this cell has to run the whole session and the total will
   // otherwise look like arithmetic nobody explained.
@@ -1006,7 +1074,13 @@ function prescribedCell(session, context) {
   // session was withdrawn is reasoning, not a rule, and a column ninety-six
   // pixels wide turns it into a wall. Those stay in the drawer, whole.
   const details = String(version?.details || '').trim();
-  let rule = details && details.length <= 100 ? details : '';
+  // A session with no pace and no effort has nothing else telling the athlete
+  // what to do, so its instruction gets more room than a cue on a session that
+  // already states its target. The Blind Mile's rule is 106 characters and was
+  // being dropped for a hundred-character cap written for cues.
+  const targeted = workParts(version).some((part) =>
+    part.pace_low_seconds != null || part.rpe_low != null) || version?.rpe_low != null;
+  let rule = details && details.length <= (targeted ? 100 : 160) ? details : '';
 
   // A session with no pace and no effort is not necessarily under-authored. The
   // Blind Mile's whole idea is that it has no target — "calibrate internal half
@@ -1015,14 +1089,15 @@ function prescribedCell(session, context) {
   //
   // So where a session states no target at all, its intent becomes the rule. It
   // is the only thing in the record telling the athlete what to do.
-  const targeted = workParts(version).some((part) =>
-    part.pace_low_seconds != null || part.rpe_low != null)
-    || version?.rpe_low != null;
   if (!rule && !targeted && version?.intent) rule = version.intent;
+  // Once the structure is notation, the sentence describing that structure is
+  // saying it twice. "Off tired legs" is a real cue and belongs in the drawer,
+  // not on eight consecutive Saturdays.
+  if (anatomy && parts.length > 1 && targeted) rule = '';
 
   return `<span class="${classes.join(' ')}" data-session="${escapeHtml(session.id)}">
     <b>${escapeHtml(named ? head : CAP(head))}</b>
-    ${anatomy ? `<i>${escapeHtml(anatomy)}</i>` : ''}
+    ${anatomy ? `<i>${anatomy}</i>` : (fallback ? `<i>${escapeHtml(fallback)}</i>` : '')}
     ${around ? `<small>${escapeHtml(around)}</small>` : ''}
     ${whole ? `<em>${escapeHtml(whole)}</em>` : ''}
     ${rule ? `<q>${escapeHtml(rule)}</q>` : ''}
