@@ -261,8 +261,13 @@ async function share() {
 // PDF. The print edition is a separate sheet — landscape, a cover and three
 // spreads of five weeks — rendered from this same plan and handed to the
 // browser's own printer.
+//
+// Absolute, like every other path into this directory. The route is served at
+// both /plans/race-pace-durability and /plans/race-pace-durability/, and a
+// relative path resolves one directory up from the slashless form — which is
+// the form an athlete gets handed. It 404s and nothing on the page runs.
 ['pdf', 'pdfMobile'].forEach((id) => el(id)?.addEventListener('click', () => {
-  window.open('print.html', '_blank', 'noopener');
+  window.open('/plans/race-pace-durability/print.html', '_blank', 'noopener');
 }));
 
 // ─────────────────────────────────────────────────────────────────────────
