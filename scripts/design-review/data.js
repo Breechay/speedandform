@@ -33,6 +33,7 @@ export async function savePortrait() {}
 
 const readOnly = (what) => { throw new Error(
   `${what} is not available in the design-review package. It renders the plan; it never changes it.`); };
+export async function setSessionAsk() { readOnly('Changing what a session asks'); }
 export async function addObservation() { readOnly('Recording an observation'); }
 export async function reviseSession() { readOnly('Revising a prescription'); }
 export async function fileForAthlete() { readOnly('Filing evidence'); }
@@ -41,15 +42,24 @@ export async function fileForAthlete() { readOnly('Filing evidence'); }
 // single continuous banded piece matching an unreached checkpoint; drift here
 // and the package shows lime on the wrong Saturdays.
 export function rungFor(session, mark) {
+  const rungs = (mark?.checkpoints || []).slice().sort((a, b) => a.position - b.position);
+  const earned = rungs.filter((r) => r.state === 'reached');
+  const opening = rungs[0];
+  const nothingEarnedYet = earned.every((r) => r.id === opening?.id);
+
+  // AUTHORED FIRST — a session says what it asks, it is not deduced from shape.
+  if (session?.asks_checkpoint_id) {
+    const asked = rungs.find((r) => r.id === session.asks_checkpoint_id);
+    if (!asked || asked.state === 'reached') return null;
+    return { rung: asked, first: nothingEarnedYet };
+  }
+
   const parts = (session?.currentVersion?.components || []).filter((p) => p.role === 'work');
   if (parts.length !== 1) return null;
   const work = parts[0];
   if (work.shape !== 'continuous' || work.pace_low_seconds == null || work.distance == null) return null;
   if (work.pace_high_seconds == null) return null;
-  const rungs = (mark?.checkpoints || []).slice().sort((a, b) => a.position - b.position);
   const match = rungs.find((r) => Math.abs(Number(r.value) - Number(work.distance)) < 0.05);
   if (!match || match.state === 'reached') return null;
-  const earned = rungs.filter((r) => r.state === 'reached');
-  const opening = rungs[0];
-  return { rung: match, first: earned.every((r) => r.id === opening?.id) };
+  return { rung: match, first: nothingEarnedYet };
 }

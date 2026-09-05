@@ -44,6 +44,13 @@ const sanctioned = [
   'supabase/migrations/20260829120000_ladder_is_capability.sql',
   // Adds the provenance columns and backfills them. Never touches state.
   'supabase/migrations/20260829180000_checkpoint_provenance.sql',
+  // Reshapes the ladder as part of assigning Race Pace Durability v1: the
+  // unreached ten becomes twelve, because ten and twelve could not both be asked
+  // with an absorption week between them. Writes `value`, never `state`, and
+  // records a movement row for each change so the ladder can say who moved it
+  // and why. Ideally the ladder change would have been its own migration; it is
+  // declared here rather than hidden.
+  'supabase/migrations/20260905130000_hope_and_jose_are_assignments.sql',
 ];
 
 // A sanctioned migration may reshape the ladder or add provenance. Only the two

@@ -22,7 +22,7 @@
 // Nothing in this file writes a style attribute into a template string.
 
 import { authErrorMessage, getAccessContext } from '/private/auth.js';
-import { addObservation, createRead, fileForAthlete, loadAthleteRecord, loadAttentionFor, loadCoachBench, reviseSession, rungFor, savePortrait, setExceptionStatus } from '/private/data.js';
+import { addObservation, createRead, fileForAthlete, loadAthleteRecord, loadAttentionFor, loadCoachBench, reviseSession, rungFor, savePortrait, setExceptionStatus, setSessionAsk } from '/private/data.js';
 import { escapeHtml } from '/private/record.js';
 import { authoredMiles, dayLabel, initials, rangeLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
 
@@ -368,6 +368,12 @@ function columnHtml(entry) {
 // will never remind you about, which makes burying them the exact wrong answer.
 // So delivery decides the first band, and urgency orders inside it.
 function benchOrder(a, b) {
+  // Attention first, and it is authored. Every derived proxy — delivery, queue
+  // urgency, race date — puts Marcus high, because he has an active block and a
+  // nearer race than Simon. The decision is that he sits last while his coaching
+  // is paused, and no amount of sorting logic can work that out.
+  const attention = (entry) => entry.attention_position ?? 99;
+  if (attention(a) !== attention(b)) return attention(a) - attention(b);
   const delivered = (entry) => entry.delivery === 'coach' ? 0 : 1;
   if (delivered(a) !== delivered(b)) return delivered(a) - delivered(b);
   const urgency = (entry) => entry.topItem ? (entry.topItem.priority ?? 99) : 999;
@@ -2220,6 +2226,33 @@ async function keepFiling() {
 // does only the one work piece moves — the total is recomputed from the parts
 // rather than typed, so a session can never again declare a distance its own
 // anatomy does not add up to.
+// A revision of a session that ASKS something has to say what happens to the
+// question. Change the eight-mile session to six and leave the ask pointing at
+// rung eight, and the ladder waits forever on a question nobody will now put.
+//
+// No default. The first option is empty on purpose: keeping the ask has to be a
+// choice a coach made, not the choice they failed to make.
+function askField(session) {
+  const mark = record?.primaryMark;
+  const rungs = mark?.checkpoints || [];
+  const rung = rungs.find((item) => item.id === session.asks_checkpoint_id);
+  if (!rung) return '';
+  const unit = mark?.unit || 'mi';
+  const others = rungs.filter((item) => item.id !== rung.id && item.state !== 'reached')
+    .slice().sort((a, b) => a.position - b.position);
+  return `<div class="f"><label for="rvAsk">THIS SESSION ASKS ${
+      escapeHtml(Number(rung.value))} ${escapeHtml(unit)}</label>
+    <select id="rvAsk">
+      <option value="">—</option>
+      <option value="keep">Keep the question</option>
+      <option value="remove">Remove it — this no longer asks anything</option>
+      ${others.map((item) => `<option value="${escapeHtml(item.id)}">Change to ${
+        escapeHtml(Number(item.value))} ${escapeHtml(unit)}</option>`).join('')}
+    </select>
+    <p class="hint">Required. Changing the work and changing the question are not
+    the same decision, so this one is made out loud.</p></div>`;
+}
+
 function openRevise(sessionId) {
   const session = (record?.sessions || []).find((item) => item.id === sessionId);
   if (!session || !revisable(session).can) return;
@@ -2248,6 +2281,7 @@ function openRevise(sessionId) {
           re-authored in the Console, where each piece can be changed on purpose.</p></div>`}
     <div class="f"><label for="rvIntent">INTENT</label>
       <textarea id="rvIntent" placeholder="Blank keeps the sentence it already has."></textarea></div>
+    ${askField(session)}
     <div class="f"><label for="rvReason">WHY</label>
       <input id="rvReason" type="text" placeholder="Still legible in six weeks.">
       <p class="hint">Required. A revision without a reason is a mystery later.</p></div>
@@ -2264,6 +2298,11 @@ async function keepRevision() {
   const reason = document.getElementById('rvReason').value.trim();
   if (!title) { error.textContent = 'A session needs a title.'; return; }
   if (!reason) { error.textContent = 'A revision needs a reason.'; return; }
+  const askField = document.getElementById('rvAsk');
+  if (askField && !askField.value) {
+    error.textContent = 'Say what happens to the question this session asks.';
+    return;
+  }
 
   const doseField = document.getElementById('rvDose');
   const dose = soleWorkDistance(version);
@@ -2316,6 +2355,11 @@ async function keepRevision() {
       distanceUnit: version?.distance_unit || 'mi',
       components
     });
+    // The question, after the work. A revision that changed the session and left
+    // the ask behind is the failure this guard exists for.
+    if (askField && askField.value !== 'keep') {
+      await setSessionAsk(pending.sessionId, askField.value === 'remove' ? null : askField.value);
+    }
     closeSheet();
     await selectAthlete(record.athlete.slug, { silent: true });
     showSession(session.id);

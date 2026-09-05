@@ -69,6 +69,22 @@ export async function loadCoachRoster(coachMemberships) {
 // establishes; when asks_checkpoint_id lands this reads the column
 // instead and stops inferring.
 export function rungFor(session, mark) {
+  const rungs = (mark?.checkpoints || []).slice().sort((a, b) => a.position - b.position);
+  const earned = rungs.filter((rung) => rung.state === 'reached');
+  const opening = rungs[0];
+  const nothingEarnedYet = earned.every((rung) => rung.id === opening?.id);
+
+  // AUTHORED FIRST. A session says what it asks; it is not deduced from its
+  // shape. Everything below this is the old inference, kept only for sessions
+  // authored before the ask existed — and it cannot see W12's Saturday at all,
+  // because that session has two work components (four easy, then twelve at the
+  // band) and the inference requires exactly one.
+  if (session?.asks_checkpoint_id) {
+    const asked = rungs.find((rung) => rung.id === session.asks_checkpoint_id);
+    if (!asked || asked.state === 'reached') return null;
+    return { rung: asked, first: nothingEarnedYet };
+  }
+
   const parts = (session?.currentVersion?.components || []).filter((part) => part.role === 'work');
   if (parts.length !== 1) return null;
   const work = parts[0];
@@ -79,7 +95,6 @@ export function rungFor(session, mark) {
   // so her easy running was reading as the session that would move her to the
   // ten-mile rung. Ownership needs a band with a floor to fall out of.
   if (work.pace_high_seconds == null) return null;
-  const rungs = (mark?.checkpoints || []).slice().sort((a, b) => a.position - b.position);
   const match = rungs.find((rung) => Math.abs(Number(rung.value) - Number(work.distance)) < 0.05);
   if (!match || match.state === 'reached') return null;
   // "First" means nothing above the opening rung has been earned yet — not
@@ -87,9 +102,6 @@ export function rungFor(session, mark) {
   // current, but no authored session anywhere is a continuous two miles in band,
   // so that rung cannot be moved and the five on 8 September really is the first
   // thing he can own.
-  const earned = rungs.filter((rung) => rung.state === 'reached');
-  const opening = rungs[0];
-  const nothingEarnedYet = earned.every((rung) => rung.id === opening?.id);
   return { rung: match, first: nothingEarnedYet };
 }
 
@@ -806,6 +818,17 @@ export async function authorSession(payload) {
   });
   if (error) throw error;
   return { id: data };
+}
+
+// What a session ASKS is authored, and a revision must not leave it stale. If
+// the eight-mile session becomes six and the ask still points at rung eight, the
+// ladder is waiting on a question nobody is going to put.
+export async function setSessionAsk(plannedSessionId, checkpointId) {
+  const { error } = await supabase
+    .from('planned_sessions')
+    .update({ asks_checkpoint_id: checkpointId })
+    .eq('id', plannedSessionId);
+  if (error) throw error;
 }
 
 export async function reviseSession(plannedSessionId, payload) {
