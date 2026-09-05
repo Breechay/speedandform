@@ -1026,7 +1026,8 @@ function prescribedCell(session, context) {
   // different claims, and only the second is lime.
   const eligible = (version?.components || []).some((part) => part.counts_toward_mark_id);
   if (eligible) classes.push('own');
-  const rung = session.state === 'cancelled' ? null : rungFor(session, context.mark);
+  const mark = context.mark;
+  const rung = session.state === 'cancelled' ? null : rungFor(session, mark);
   if (rung) classes.push('rung');
 
   const easy = /^easy/i.test(title);
@@ -1062,8 +1063,12 @@ function prescribedCell(session, context) {
     .join(' · ');
   const total = authoredMiles(version);
   const work = workMiles(version);
+  // Name, then work, then target, then logistics. The warm-up, the cool-down and
+  // the session total are what you need to execute and not what the session is
+  // about, so they are one quiet line rather than two more things to parse.
   const whole = total != null && (work == null || Math.abs(total - work) > 0.05)
-    ? `${Number(total.toFixed(1))} mi session` : '';
+    ? `${Number(total.toFixed(1))} MI` : '';
+  const logistics = [around, whole].filter(Boolean).join(' · ');
   const completion = context.completionFor(session.id);
   const ran = session.state === 'cancelled' ? ''
     : ranLine(completion, context.piecesFor(completion?.id));
@@ -1098,11 +1103,10 @@ function prescribedCell(session, context) {
   return `<span class="${classes.join(' ')}" data-session="${escapeHtml(session.id)}">
     <b>${escapeHtml(named ? head : CAP(head))}</b>
     ${anatomy ? `<i>${anatomy}</i>` : (fallback ? `<i>${escapeHtml(fallback)}</i>` : '')}
-    ${around ? `<small>${escapeHtml(around)}</small>` : ''}
-    ${whole ? `<em>${escapeHtml(whole)}</em>` : ''}
+    ${logistics ? `<small>${escapeHtml(logistics)}</small>` : ''}
     ${rule ? `<q>${escapeHtml(rule)}</q>` : ''}
     ${ran ? `<u>${escapeHtml(ran)}</u>` : ''}
-    ${rung ? '<mark>moves what you own</mark>' : ''}</span>`;
+    ${rung ? `<mark>moves → ${escapeHtml(Number(rung.rung.value))} ${escapeHtml(mark?.unit || 'mi')}</mark>` : ''}</span>`;
 }
 
 // A run the athlete placed himself against the week's authored easy quantity.
@@ -1311,7 +1315,20 @@ function planHtml() {
       <th class="d">${day}</th>
       ${weeks.map((week) => {
         const on = week.starts_on ? addDays(week.starts_on, index) : null;
-        const asked = on ? forWeek(week).filter((session) => session.scheduled_on === on) : [];
+        // THE PLAN IS THE CURRENT TRUTH, NOT THE REVISION LEDGER.
+        //
+        // A withdrawn future session read as a ghost workout floating above the
+        // real one, and it asks the athlete a question with no good answer: was
+        // I supposed to do that? did I miss it? A prescription we replaced
+        // before it was ever run is authorship mechanics, and the athlete has no
+        // business decoding those.
+        //
+        // A cancelled session that WAS performed stays, because then it is not a
+        // withdrawn idea — it is evidence, and evidence is never hidden. The
+        // record of every withdrawal survives in the session and its versions.
+        const asked = on ? forWeek(week).filter((session) => session.scheduled_on === on
+          && (session.state !== 'cancelled'
+            || (record.completions || []).some((item) => item.planned_session_id === session.id))) : [];
         const ran = on ? unattached.filter((item) => filedOn(item) === on) : [];
         const inside = asked.map((session) => prescribedCell(session, context)).join('')
           + ran.map((item) => allocationCell(item, context, budgetFor(week).length > 0)).join('');
