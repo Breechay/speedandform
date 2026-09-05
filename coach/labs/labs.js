@@ -1006,7 +1006,19 @@ function prescribedCell(session, context) {
   // session was withdrawn is reasoning, not a rule, and a column ninety-six
   // pixels wide turns it into a wall. Those stay in the drawer, whole.
   const details = String(version?.details || '').trim();
-  const rule = details && details.length <= 100 ? details : '';
+  let rule = details && details.length <= 100 ? details : '';
+
+  // A session with no pace and no effort is not necessarily under-authored. The
+  // Blind Mile's whole idea is that it has no target — "calibrate internal half
+  // effort so a dead watch does not erase race execution" IS the prescription,
+  // and it was sitting in the intent where the athlete could not see it.
+  //
+  // So where a session states no target at all, its intent becomes the rule. It
+  // is the only thing in the record telling the athlete what to do.
+  const targeted = workParts(version).some((part) =>
+    part.pace_low_seconds != null || part.rpe_low != null)
+    || version?.rpe_low != null;
+  if (!rule && !targeted && version?.intent) rule = version.intent;
 
   return `<span class="${classes.join(' ')}" data-session="${escapeHtml(session.id)}">
     <b>${escapeHtml(named ? head : CAP(head))}</b>
