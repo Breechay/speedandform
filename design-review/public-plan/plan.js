@@ -152,7 +152,7 @@ function read(session) {
 // `viewing` is the left edge. `live` is the week today actually falls in, and it
 // keeps its THIS WEEK mark wherever the window moves: the viewport moving does
 // not change what week it is.
-const WINDOW = 6;
+const WINDOW = 7;   // 6 → 7, to isolate the effect of column width. Nothing else changed.
 let viewing = 1;
 let live = 1;
 
