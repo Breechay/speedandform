@@ -2,24 +2,21 @@
 
 The single place. Not the chat. Brice edits, Code re-reads at the start of a
 session. Rewritten 4 September, after Tranche C and the ownership-eligibility
-fix closed. Everything resolved has been removed rather than struck through;
+fix closed; amended the same evening, after the coach/athlete lens and the
+design-review export. Everything resolved has been removed rather than struck through;
 the archaeology lives in git.
 
 ---
 
 ## BLOCKING
 
-Three things, and only the first two stop work.
+Two things.
 
 - **Simon's cycle.** He is real in production — coach-delivered, eight weeks to
   HYROX Nashville, all eight weeks generated, a portrait, two standing facts, and
   **zero sessions**. Send the cycle (2 × 10 → 2 × 12 → 2 × 15 → 25 min at
   6:00–6:08) and it gets authored. His experiment is a duration question; he must
   not land on the continuous-distance ladder.
-- **W14 and W15.** The taper and race week are unauthored for José and Hope. W14
-  has no Saturday and W15 is entirely empty — the block currently stops three
-  weeks out and the race is not in it. A coaching decision, and the next thing to
-  do inside Labs rather than to Labs.
 - **José: Full or Half.** The 1 September handoff says Orlando *Full*; the
   database and everything since say OUC Half, same date. Unresolved, and it has
   been unresolved for four days.
@@ -38,7 +35,6 @@ Three things, and only the first two stop work.
   has the three cheap fixes. Nothing is urgent while development is local.
 - **Note to self** — `coach_private_notes` exists, the panel exists, nothing is
   wired.
-- **Week view** — the coming seven days per athlete, one click.
 - **Marcus and Natalie have no instrument audit.** Neither is connected to an
   eligibility model, deliberately. Marcus is `outdoor_goal_pace_miles` with no
   established value; Natalie is `longest_continuous_distance` at 3. Their marks
@@ -46,6 +42,15 @@ Three things, and only the first two stop work.
 - **Marcus and Natalie have no portrait.** Two of five plates on the bench.
 - **Is Marcus running Race Pace Durability?** Same goal, same band, a mark asking
   the same question with an outdoor qualifier. A coaching judgment, not a rename.
+
+- **The design pass.** Implementation is frozen and the current surface is
+  exported to `form-labs-design-review/` — the real renderer, read-only, real
+  data, one command to rebuild (`scripts/build_design_review.py`). Design
+  decisions get made there in HTML and CSS and are ported back deliberately.
+  `COMPROMISES.md` in the package is the list of what was seen and left alone;
+  the rail's column, the hero's proportions, `2 MI YOU OWN`, and phone landscape
+  are the four that matter. Nothing about Week View should be styled in the repo
+  until that pass produces decisions.
 
 ## LATER
 
@@ -110,6 +115,15 @@ week authors its days.
 **The week.** MON easy · TUE quality · WED easy · THU support · FRI easy ·
 SAT long/specific · SUN rest — for José and Hope. Natalie has Sunday work, and
 that is correct: the calendar grammar is per athlete and per block, not a FORM law.
+
+**The lens.** One canonical `PLAN → WEEK → SESSION` renderer. `viewAs` controls
+capabilities and peripheral coaching material and must never fork prescription
+rendering — verified byte-identical, and that is the test if it is ever in doubt.
+Athlete view is **prescription read-only, not read-only**: the athlete cannot
+author or alter the work, and athlete-owned reporting — RPE, a note, an answer to
+the week's question, evidence — is a write this mode is expected to grow into.
+The toggle is a Labs preview instrument; a signed-in athlete's identity decides
+their view and never a control they are given.
 
 **Other standing rules.** Labs is where you coach; the Console is where you build
 a block. An athlete is not an app user — `delivery` says which. Blank means
