@@ -233,13 +233,65 @@ body[data-state="complete"] .step.race span{border-color:var(--lime);color:var(-
   color:var(--muted);font-size:10.5px;letter-spacing:.1em;cursor:pointer;text-transform:uppercase}
 .dev button.on{background:#ffffff12;color:var(--text)}
 
-/* THE FULL PRESCRIPTION IN A CELL.
-   Provisional: this exists so the real 15 weeks can be seen at the level a
-   runner would execute them, and the composition judged against that rather
-   than against an abbreviation of it. */
-.matrix tbody td{vertical-align:top;padding:11px 10px;text-align:left}
-.matrix tbody td b{display:block;font-size:12px;font-weight:500;color:#e4e9e5;letter-spacing:.01em}
-.matrix tbody td i{display:block;font-style:normal;font-size:10px;line-height:1.45;color:#8b9497;margin-top:3px}
-.matrix tbody td mark{display:inline-block;margin-top:5px;background:none;color:var(--lime);
-  font-size:8.5px;letter-spacing:.14em;text-transform:uppercase}
-.matrix tbody tr.total td{text-align:center;vertical-align:middle}
+/* ═══════════════════════════════════════════════════════════════════════
+   FIVE WEEKS, AND WHAT KIND OF DAY IT IS.
+
+   The differentiation is typographic. No category colours: FORM has one accent
+   and it means "this can establish something". A five-colour discipline system
+   would be a second visual language competing with the first.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.rail{display:flex;align-items:center;gap:14px;margin:0 0 12px;padding-left:2px}
+.rail #railLabel{font-size:9px;letter-spacing:.2em;color:#5b6467;text-transform:uppercase}
+.rail #rail{display:flex;gap:3px;align-items:center}
+.rail #rail span{width:26px;height:2px;background:#1d2427;border-radius:1px}
+.rail #rail span.in{background:#394346}
+.rail #rail span.now{background:var(--lime)}
+
+.matrix tbody td{vertical-align:top;text-align:left;padding:14px 16px 15px;height:auto}
+.matrix tbody td b{display:block;font-size:15px;font-weight:400;color:#cdd4d5;letter-spacing:.005em;
+  font-variant-numeric:tabular-nums}
+.matrix tbody td em{display:block;font-style:normal;font-size:8.5px;letter-spacing:.22em;
+  text-transform:uppercase;color:#6e787b;margin-bottom:7px}
+.matrix tbody td i{display:block;font-style:normal;font-size:11px;color:#7f888b;margin-top:5px}
+
+/* Easy days recede. They are one number and nothing else — the band lives in the
+   pace key, once, not in sixty-six cells. */
+.matrix tbody td.d-easy b{font-size:13px;color:#899193;font-weight:400}
+.matrix tbody td.d-rest{color:#3f484b}
+.matrix tbody td.d-rest b{font-size:11px;color:#414a4d}
+
+/* The three days that carry the week. Identity first, then the work. */
+.matrix tbody td.d-rp em,
+.matrix tbody td.d-long em,
+.matrix tbody td.d-support em{color:#9aa4a7}
+.matrix tbody td.d-rp b,
+.matrix tbody td.d-long b{font-size:17px;color:#eef1ef;font-weight:500}
+.matrix tbody td.d-support b{font-size:15px;color:#dbe1e0}
+.matrix tbody td.d-race em{color:var(--lime)}
+.matrix tbody td.d-race b{font-size:17px;color:var(--lime);font-weight:500}
+
+/* An authored question. The state above already says it is a question; the cell
+   only needs to be unmistakable. */
+.matrix tbody td.asked em{color:var(--lime)}
+.matrix tbody td.asked b{color:var(--lime)}
+
+.matrix tbody td[data-w]{cursor:pointer;transition:background .14s}
+.matrix tbody td[data-w]:hover{background:#ffffff08}
+.matrix tbody td[data-w]:focus-visible{outline:1px solid var(--lime);outline-offset:-1px}
+.matrix tbody tr.total td{text-align:center;vertical-align:middle;padding:14px 10px}
+
+/* THE SESSION, beneath the window — the five weeks never leave the screen. */
+.inspector{margin-top:1px;border:1px solid var(--line);border-top:0;background:#0a1113;
+  padding:20px 24px 22px}
+.insHead{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:14px}
+.insHead em{display:block;font-style:normal;font-size:8.5px;letter-spacing:.22em;
+  text-transform:uppercase;color:#6e787b;margin-bottom:7px}
+.insHead h4{margin:0;font-size:19px;font-weight:400;color:var(--text);letter-spacing:-.005em}
+.insClose{background:none;border:0;color:#5f696c;font-size:20px;line-height:1;cursor:pointer;padding:0 2px}
+.insClose:hover{color:var(--text)}
+.inspector p{margin:0}
+.insWork{font-size:14px;color:#dbe1e0;line-height:1.6;font-variant-numeric:tabular-nums}
+.insBook,.insTotal{font-size:11.5px;color:#7f888b;margin-top:5px !important}
+.insIntent{margin-top:14px !important;font-size:13px;line-height:1.55;color:#9aa2a4;max-width:66ch}
+.insRule{margin-top:8px !important;font-size:11.5px;letter-spacing:.02em;color:#6e787b}

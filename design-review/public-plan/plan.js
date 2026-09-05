@@ -36,80 +36,183 @@ const range = (week) => {
 
 // A day's cell is the notation, not the prose. Distances for easy days, the
 // title for anything the week is proving something with.
-// THE PRESCRIPTION, WHOLE.
+// WHAT KIND OF DAY IS THIS.
 //
-// Written to show what a runner actually needs to execute the session, not what
-// fits the matrix. Where the two disagree, this renders the session and the
-// composition is what gets reconsidered — the point of this pass is to find out
-// where the approved layout breaks under the real thing.
+// Derived from what the session is made of, never from the weekday. Tuesday is
+// race pace in this plan and Thursday rotates through four different things; a
+// renderer that assumed the calendar would be wrong the first time a plan moved
+// its key days.
 //
-// FORM notation: → progression · × repetitions · / recovery · @ target ·
-// WU / CD bookends.
-const pace = (c) => {
-  if (c.pace_low_seconds == null) return '';
-  const clock = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
-  return c.pace_high_seconds
-    ? `${clock(c.pace_low_seconds)}–${clock(c.pace_high_seconds)}`
-    : `${clock(c.pace_low_seconds)} or slower`;
-};
+// The bands come from the plan itself, so a plan authored at 7:00–7:15 labels
+// its own work correctly without a line changing here.
+const RP_LO = plan.plan.race_pace_low_seconds;
+const RP_HI = plan.plan.race_pace_high_seconds;
+
+const clock = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 const span = (c) => {
-  if (c.distance != null) return `${+c.distance} mi`;
+  if (c.distance != null) return `${+c.distance} MI`;
   if (c.duration_seconds == null) return '';
   return c.duration_seconds % 60 === 0
-    ? `${c.duration_seconds / 60} min` : `${c.duration_seconds} s`;
+    ? `${c.duration_seconds / 60} MIN` : `${c.duration_seconds} S`;
 };
+const isRacePace = (c) => c.pace_low_seconds === RP_LO && c.pace_high_seconds === RP_HI;
+const isStride = (c) => c.shape === 'repetitions' && c.duration_seconds != null
+  && c.duration_seconds <= 30 && c.pace_low_seconds == null;
+
+// The matrix is a scan, not a database. Each cell answers: what kind of day, and
+// what is the primary thing to do. Everything else lives in the inspector.
+//
+// Classified on the SHAPE of the work, not on a distance threshold. An earlier
+// version called a session a long run only if its aerobic piece was over eight
+// miles, so W12 — four easy miles then twelve at the band — fell through to the
+// threshold branch and rendered `null × 4 MI`. A long run is a continuous
+// aerobic piece, whatever its length.
+function read(session) {
+  if (!session) return { kind: 'rest', label: '', head: 'Rest', sub: '' };
+  const work = (session.components || []).filter((c) => c.role === 'work');
+  const strides = work.find(isStride);
+  const total = `${+session.distance} MI`;
+
+  if (session.role === 'easy' || session.role === 'support') {
+    return strides
+      ? { kind: 'easy', label: 'Easy + strides', head: total,
+          sub: `${strides.repeat_count} × ${span(strides)}` }
+      : { kind: 'easy', label: '', head: total, sub: '' };
+  }
+
+  const rpCont = work.find((c) => c.shape === 'continuous' && isRacePace(c));
+  const aerobic = work.find((c) => c.shape === 'continuous' && !isRacePace(c)
+    && c.pace_low_seconds != null && c.pace_low_seconds > RP_HI);
+  const reps = work.find((c) => c.shape === 'repetitions' && !isStride(c));
+
+  // A long run is an aerobic continuous piece, sometimes finishing at the band.
+  if (aerobic) {
+    return { kind: 'long', label: 'Long run', head: total,
+             sub: rpCont ? `Last ${+rpCont.distance} @ RP` : '',
+             asks: session.asks };
+  }
+  // Continuous at the band with nothing aerobic around it: either an ask, or the
+  // race, which is the only session that asks nothing of the athlete.
+  if (rpCont) {
+    return session.asks == null && +rpCont.distance >= 13
+      ? { kind: 'race', label: 'Race', head: `${+rpCont.distance} MI`, sub: '' }
+      : { kind: 'rp', label: 'Race pace', head: `${+rpCont.distance} MI CONTINUOUS`,
+          sub: '', asks: session.asks };
+  }
+  if (reps) {
+    const n = reps.repeat_count > 1 ? `${reps.repeat_count} × ` : '';
+    if (isRacePace(reps)) {
+      return { kind: 'rp', label: 'Race pace', head: `${n}${span(reps)}`,
+               sub: '', asks: session.asks };
+    }
+    if (reps.rpe_low != null) {
+      return { kind: 'support', label: 'Hills', head: `${n}${span(reps)}`, sub: '' };
+    }
+    const faster = reps.pace_high_seconds != null && reps.pace_high_seconds < RP_LO;
+    return { kind: 'support', label: faster ? 'VO₂' : 'Threshold',
+             head: `${n}${span(reps)}`, sub: '' };
+  }
+  return { kind: 'easy', label: '', head: total, sub: '' };
+}
+
+// The whole prescription, for the inspector only.
 const recovery = (c) => {
   if (!c.recovery_seconds) return '';
   const rest = c.recovery_seconds % 60 === 0
     ? `${c.recovery_seconds / 60} min` : `${c.recovery_seconds} s`;
-  return ` / ${rest}${c.recovery_kind ? ` ${c.recovery_kind}` : ''}`;
+  return `${rest}${c.recovery_kind ? ` ${c.recovery_kind}` : ''}`;
+};
+const target = (c) => {
+  if (c.rpe_low != null) return `RPE ${c.rpe_low}${c.rpe_high ? `–${c.rpe_high}` : ''}`;
+  if (c.pace_low_seconds == null) return '';
+  return c.pace_high_seconds
+    ? `${clock(c.pace_low_seconds)}–${clock(c.pace_high_seconds)}/mi`
+    : `${clock(c.pace_low_seconds)}/mi or slower`;
 };
 
-function prescription(session) {
-  if (!session) return { head: 'Rest', lines: [] };
-  const parts = session.components || [];
-  const work = parts.filter((c) => c.role === 'work');
-  const wu = parts.find((c) => c.role === 'warm_up');
-  const cd = parts.find((c) => c.role === 'cool_down');
+// FIVE WEEKS, NOT FIFTEEN.
+//
+// Fifteen columns of real prescription was fifteen weeks of decoded data. Five
+// weeks of understandable coaching is worth more, and the arrows already existed
+// because moving through the plan is the point.
+//
+// The window centres the selected week and pins at the ends, so W1 and W15 stay
+// reachable without it sliding off the block.
+const WINDOW = 5;
+let viewing = 3;
 
-  const head = work.map((c) => {
-    const reps = c.shape === 'repetitions' && c.repeat_count > 1 ? `${c.repeat_count} × ` : '';
-    return `${reps}${span(c)}`;
-  }).join(' → ') || `${+session.distance} mi`;
-
-  const lines = [];
-  work.forEach((c) => {
-    const target = pace(c) || (c.rpe_low ? `RPE ${c.rpe_low}${c.rpe_high ? `–${c.rpe_high}` : ''}` : '');
-    if (target) lines.push(`${work.length > 1 ? `${span(c)} ` : ''}@ ${target}${recovery(c)}`);
-    else if (recovery(c)) lines.push(recovery(c).replace(' / ', 'recovery '));
-  });
-  const book = [wu && `WU ${span(wu)}`, cd && `CD ${span(cd)}`].filter(Boolean).join(' · ');
-  if (book) lines.push(book);
-  if (session.distance != null) lines.push(`${+session.distance} mi total`);
-  return { head, lines, asks: session.asks };
+function windowFor(week) {
+  const last = plan.weeks.length;
+  const half = Math.floor(WINDOW / 2);
+  const from = Math.min(Math.max(1, week - half), Math.max(1, last - WINDOW + 1));
+  return plan.weeks.filter((w) => w.week_number >= from && w.week_number < from + WINDOW);
 }
 
 function matrix(current, complete) {
+  viewing = current;
+  const shown = windowFor(current);
   const byDay = (week) => Object.fromEntries(week.sessions.map((s) => [s.day, s]));
-  // `cur` is the approved stylesheet's own class. The current week used to be
-  // pinned to the fourth column by nth-child; it is a class now so the week can
-  // move on its own, and the appearance is unchanged.
-  const mark = (week) => (!complete && week.week_number === current ? ' class="cur"' : '');
-  el('matHead').innerHTML = '<th>WEEK</th>' + plan.weeks.map((w) =>
-    `<th${mark(w)}><b>W${w.week_number}</b><span>${esc(
+  const cur = (w) => (!complete && w.week_number === current ? ' cur' : '');
+
+  el('matHead').innerHTML = '<th>WEEK</th>' + shown.map((w) =>
+    `<th class="wk${cur(w)}"><b>W${w.week_number}</b><span>${esc(
       startOf(w.week_number).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }))}</span></th>`).join('');
-  const rows = DAYS.map((day) => `<tr><th>${day[0] + day.slice(1).toLowerCase()}</th>` + plan.weeks.map((w) => {
-    const p = prescription(byDay(w)[day]);
-    return `<td${mark(w)}><b>${esc(p.head)}</b>${
-      p.lines.map((line) => `<i>${esc(line)}</i>`).join('')}${
-      p.asks != null ? `<mark>asks ${esc(+p.asks)} mi</mark>` : ''}</td>`;
-  }).join('') + '</tr>').join('');
-  el('matBody').innerHTML = rows + '<tr class="total"><th>TOTAL</th>' + plan.weeks.map((w) =>
-    `<td${mark(w)}>${esc(+w.total_distance)}</td>`).join('') + '</tr>';
+
+  el('matBody').innerHTML = DAYS.map((day) =>
+    `<tr><th>${day[0] + day.slice(1).toLowerCase()}</th>` + shown.map((w) => {
+      const session = byDay(w)[day];
+      const r = read(session);
+      return `<td class="d-${r.kind}${cur(w)}${r.asks != null ? ' asked' : ''}"${
+        session ? ` data-w="${w.week_number}" data-day="${day}" tabindex="0"` : ''}>${
+        r.label ? `<em>${esc(r.label)}</em>` : ''}<b>${esc(r.head)}</b>${
+        r.sub ? `<i>${esc(r.sub)}</i>` : ''}</td>`;
+    }).join('') + '</tr>').join('')
+    + '<tr class="total"><th>TOTAL</th>' + shown.map((w) =>
+      `<td class="${cur(w).trim()}">${esc(+w.total_distance)}</td>`).join('') + '</tr>';
+
+  // The rail: where these five weeks sit in the fifteen. One line, no second table.
+  el('rail').innerHTML = plan.weeks.map((w) => {
+    const inside = shown.some((x) => x.week_number === w.week_number);
+    const now = !complete && w.week_number === current;
+    return `<span class="${now ? 'now' : inside ? 'in' : ''}"></span>`;
+  }).join('');
+  el('railLabel').textContent =
+    `W${shown[0].week_number}–W${shown[shown.length - 1].week_number} of ${plan.weeks.length}`;
 }
 
-// The progression moves through time. Past is quiet, the live question is lime,
-// what has not been asked yet is dim. Complete reads as a finished journey.
+// THE SESSION, WHOLE — beneath the window, so the five weeks stay on screen.
+function inspect(weekNumber, day) {
+  const week = plan.weeks.find((w) => w.week_number === weekNumber);
+  const session = week?.sessions.find((s) => s.day === day);
+  const panel = el('inspector');
+  if (!session) { panel.hidden = true; return; }
+  const r = read(session);
+  const parts = session.components || [];
+  const line = (c) => {
+    const reps = c.shape === 'repetitions' && c.repeat_count > 1 ? `${c.repeat_count} × ` : '';
+    const t = target(c);
+    const rec = recovery(c);
+    return `${reps}${span(c).toLowerCase()}${t ? ` @ ${t}` : ''}${rec ? ` / ${rec}` : ''}`;
+  };
+  const wu = parts.find((c) => c.role === 'warm_up');
+  const cd = parts.find((c) => c.role === 'cool_down');
+  const book = [wu && `WU ${span(wu).toLowerCase()}`, cd && `CD ${span(cd).toLowerCase()}`]
+    .filter(Boolean).join(' · ');
+  panel.innerHTML = `
+    <div class="insHead">
+      <div><em>W${weekNumber} · ${esc(day[0] + day.slice(1).toLowerCase())}${
+        r.label ? ` · ${esc(r.label)}` : ''}</em>
+        <h4>${esc(session.title)}</h4></div>
+      <button class="insClose" type="button" aria-label="Close">×</button>
+    </div>
+    ${parts.filter((c) => c.role === 'work').map((c) => `<p class="insWork">${esc(line(c))}</p>`).join('')}
+    ${book ? `<p class="insBook">${esc(book)}</p>` : ''}
+    <p class="insTotal">${esc(+session.distance)} mi total</p>
+    ${session.intent ? `<p class="insIntent">${esc(session.intent)}</p>` : ''}
+    ${session.details ? `<p class="insRule">${esc(session.details)}</p>` : ''}`;
+  panel.hidden = false;
+}
+
 function steps(current, complete) {
   const asked = plan.weeks.filter((w) => w.sessions.some((s) => s.asks != null)
     && w.week_number <= current).flatMap((w) => w.sessions.filter((s) => s.asks != null).map((s) => +s.asks));
@@ -234,15 +337,47 @@ if (REVIEW) document.getElementById('dev').addEventListener('click', (event) => 
 // Capture hook, development only: ?state=ask renders that moment directly so a
 // screenshot can reach it without a click. The live page will derive its state
 // from the date and carry no switcher at all.
-const asked = REVIEW ? new URLSearchParams(location.search).get('state') : null;
+// Selecting a session opens it beneath the window; the five weeks stay put.
+document.addEventListener('click', (event) => {
+  if (event.target.closest('.insClose')) { el('inspector').hidden = true; return; }
+  const cell = event.target.closest('#matBody td[data-w]');
+  if (cell) inspect(Number(cell.dataset.w), cell.dataset.day);
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') el('inspector').hidden = true;
+  if (event.key === 'Enter' && event.target.matches('#matBody td[data-w]')) {
+    inspect(Number(event.target.dataset.w), event.target.dataset.day);
+  }
+});
+
+// The arrows move ONE week, not one page of five.
+document.querySelectorAll('.week-now .circle').forEach((button, i) => {
+  button.addEventListener('click', () => {
+    const next = Math.min(plan.weeks.length, Math.max(1, viewing + (i ? 1 : -1)));
+    if (next === viewing) return;
+    el('inspector').hidden = true;
+    render(document.body.dataset.state, next);
+  });
+});
+
+// The opening moment.
+const params = REVIEW ? new URLSearchParams(location.search) : new URLSearchParams();
+const asked = params.get('state');
 if (asked === 'auto') {
   const [live, week] = today();
   render(live, week);
 } else if (asked && FIXED[asked]) {
   render(asked, FIXED[asked]);
 } else if (REVIEW) {
-  render('build', 3);
+  render('build', FIXED.build);
 } else {
   const [live, week] = today();
   render(live, week);
+}
+
+// Review-only: ?open=3-TUE opens that session so a capture can reach it.
+const opening = params.get('open');
+if (opening) {
+  const [week, day] = opening.split('-');
+  inspect(Number(week), day);
 }
