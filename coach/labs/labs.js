@@ -930,36 +930,81 @@ function ranLine(completion, pieces) {
   return [bits.join(' · '), splits.join(' · ')].filter(Boolean).join(' — ');
 }
 
+// A CELL IS A WORKOUT, NOT A FILENAME.
+//
+// "THE GOVERNOR · 6:30–6:45" is a name and a band, and a coach reading the
+// season cannot tell what the athlete is being asked to do. The anatomy is
+// already typed — six thirty-second efforts with ninety-second jogs, then
+// fifteen minutes at race pace — and it was being thrown away in favour of a
+// shorter cell. Density is the point of the matrix: the whole argument from ten
+// feet, the exact session from ten inches.
+//
+// So the tiers are:
+//
+//   easy day          8 MI · Easy                    and nothing else
+//   ordinary quality  5 MI · 6:30–6:45 · 8.4 session
+//   named session     THE GOVERNOR · full anatomy · rule · session total
+//   filed             + RAN, with the splits
+//   rung              + MOVES WHAT YOU OWN
+//
+// The drawer is the exhaustive record — athlete report, RPE, attachments,
+// revision history. It deepens the plan; it is not required to decode it.
 function prescribedCell(session, context) {
   const version = session.currentVersion;
+  const title = titleOf(session);
   const classes = ['s'];
   if (session.state === 'cancelled') classes.push('canx');
-  // LIME MEANS ONE THING: this session moves what the athlete owns.
-  //
-  // It used to mean two — a lime title for anything continuous at the band, a
-  // lime bar for the subset the ladder was asking for — and two meanings in one
-  // colour is no meaning at all. Ten lime cells across the block taught the eye
-  // that lime was "race pace", which is what the band column already says.
-  //
-  // So `own` keeps its own quiet mark: a hairline rule, because the shape that
-  // CAN establish a distance is worth seeing and is not the same claim as one
-  // that WILL. Only a rung is lime.
-  if (continuousAtBand(version)) classes.push('own');
+
+  // Eligibility is authored now. A component that points at the mark is evidence
+  // the mark will read; a rung is the subset that would move the ladder. Two
+  // different claims, and only the second is lime.
+  const eligible = (version?.components || []).some((part) => part.counts_toward_mark_id);
+  if (eligible) classes.push('own');
   const rung = session.state === 'cancelled' ? null : rungFor(session, context.mark);
   if (rung) classes.push('rung');
-  const title = titleOf(session);
-  const dose = shortDose(version);
+
+  const easy = /^easy/i.test(title);
   const named = isNamed(title);
+  const dose = shortDose(version);
   const head = named ? title : (dose || title);
-  const rule = named ? [dose, shortRule(version, title)].filter(Boolean).join(' · ')
-                     : shortRule(version, title);
+
+  // Easy days stay terse. Their whole prescription is a distance and a ceiling,
+  // and printing an anatomy for them would be noise pretending to be rigour.
+  if (easy) {
+    const back = context.completionFor(session.id);
+    const ran = compactRan(back, context.piecesFor(back?.id));
+    return `<span class="${classes.join(' ')}" data-session="${escapeHtml(session.id)}">
+      <b>${escapeHtml(CAP(head))}</b><i>Easy</i>
+      ${ran ? `<u>${escapeHtml(ran)}</u>` : ''}</span>`;
+  }
+
+  // Everything else states what the athlete is actually doing. A named session
+  // shows its whole anatomy; a session whose title is its own dose shows the
+  // rule it runs to.
+  const anatomy = named ? (structureOf(version) || '') : shortRule(version, title);
+  const total = authoredMiles(version);
+  const work = workMiles(version);
+  const whole = total != null && (work == null || Math.abs(total - work) > 0.05)
+    ? `${Number(total.toFixed(1))} mi session` : '';
   const completion = context.completionFor(session.id);
-  const back = session.state === 'cancelled' ? ''
-    : compactRan(completion, context.piecesFor(completion?.id));
+  const ran = session.state === 'cancelled' ? ''
+    : ranLine(completion, context.piecesFor(completion?.id));
+
+  // The execution rule, where there is one short enough to be a rule. "Run the
+  // first part easy. The last 2 miles at race pace, off tired legs." changes how
+  // the session is run and belongs in the cell. A paragraph explaining why a
+  // session was withdrawn is reasoning, not a rule, and a column ninety-six
+  // pixels wide turns it into a wall. Those stay in the drawer, whole.
+  const details = String(version?.details || '').trim();
+  const rule = details && details.length <= 100 ? details : '';
+
   return `<span class="${classes.join(' ')}" data-session="${escapeHtml(session.id)}">
     <b>${escapeHtml(named ? head : CAP(head))}</b>
-    ${rule ? `<i>${escapeHtml(rule)}</i>` : ''}
-    ${back ? `<u>${escapeHtml(back)}</u>` : ''}</span>`;
+    ${anatomy ? `<i>${escapeHtml(anatomy)}</i>` : ''}
+    ${whole ? `<em>${escapeHtml(whole)}</em>` : ''}
+    ${rule ? `<q>${escapeHtml(rule)}</q>` : ''}
+    ${ran ? `<u>${escapeHtml(ran)}</u>` : ''}
+    ${rung ? '<mark>moves what you own</mark>' : ''}</span>`;
 }
 
 // A run the athlete placed himself against the week's authored easy quantity.
@@ -1010,6 +1055,16 @@ function paceBands() {
     };
   });
 }
+
+// The strip carries the rule, not the essay. The whole authored line sits under
+// the matrix where there is room for it; up here it is the sentence that changes
+// what an athlete does — "slower is never wrong", "under 6:30 is a different
+// session". Taken from the authored text, never rewritten.
+const firstSentence = (text) => {
+  const line = String(text || '').trim();
+  const stop = line.search(/[.!?](\s|$)/);
+  return stop === -1 ? line : line.slice(0, stop + 1);
+};
 
 // The volume horizon. Not a score — the range this particular block moves them
 // across, which is the second progression running underneath the ladder and the
@@ -1236,7 +1291,8 @@ function planHtml() {
       </div>
       ${horizon ? `<div class="phorizon"><b>VOLUME</b><span>${escapeHtml(horizon)}</span></div>` : ''}
       <div class="pkey">${bands.map((band) => `<div>
-        <b>${escapeHtml(band.label)}</b><span>${escapeHtml(band.value)}</span></div>`).join('')}</div>
+        <b>${escapeHtml(band.label)}</b><span>${escapeHtml(band.value)}</span>
+        ${band.line ? `<em>${escapeHtml(firstSentence(band.line))}</em>` : ''}</div>`).join('')}</div>
     </div>
 
     <div class="pgWrap"><div class="pgScroll"><table class="pg">
