@@ -36,16 +36,26 @@ const shScrim = document.getElementById('shScrim');
 // One prescription, two capabilities. The renderer is shared on purpose: if the
 // athlete's plan were drawn by different code it would drift within a fortnight,
 // and the first anyone would know is an athlete running a session the coach
-// thinks he replaced. So the lens changes what you can DO and what peripheral
-// material you can see — never what the work says.
+// thinks he replaced. So `viewAs` changes what you can DO and what peripheral
+// coaching material you can see — it must never fork prescription rendering.
 //
 // The athlete sees the prescription, the session, what they filed, and the
 // question their block is asking. They do not see how the prescription came to
 // be: revisions, version numbers, audit conditions, the coach's reads. That is
 // not secrecy, it is scope — authorship mechanics are the coach's instrument and
 // decoding them is not part of running on Tuesday.
-let lens = 'coach';
-const asCoach = () => lens === 'coach';
+//
+// The law is PRESCRIPTION read-only, not read-only. The distinction matters
+// because the athlete's half of this surface is not finished: RPE, a note, a
+// photograph, an answer to the week's question are all athlete-owned reporting,
+// and every one of them is a write this mode must be able to grow into. What
+// the athlete can never do is author or alter the work.
+//
+// The toggle itself is a Labs instrument — a coach checking what he is about to
+// send. A signed-in athlete does not receive a control that offers them the
+// coach's eyes; their identity decides their `viewAs`, and nothing else does.
+let viewAs = 'coach';
+const asCoach = () => viewAs === 'coach';
 
 let access = null;
 let bench = [];
@@ -2343,7 +2353,7 @@ function route() {
 
 function markNav(view, slug) {
   nav.hidden = false;
-  document.getElementById('lens').hidden = false;
+  document.getElementById('viewAs').hidden = false;
   // Bench, Brief and the Console are the coach's surfaces. An athlete has one
   // plan and one week; showing them doors into other people's records would be
   // a different product with a permissions bug in it.
@@ -2392,7 +2402,7 @@ function render() {
 
 async function show() {
   const { view, slug } = route();
-  // The lens is not a route. Landing on a coach surface while looking through
+  // `viewAs` is not a route. Landing on a coach surface while looking through
   // the athlete's eyes goes to the plan rather than rendering a page the athlete
   // would never be given.
   if (!asCoach() && (view === 'bench' || view === 'brief' || view === 'athlete')) {
@@ -2457,12 +2467,12 @@ document.addEventListener('click', (event) => {
   location.hash = where === 'plan' ? `#/a/${slug}/plan` : `#/a/${slug}`;
 });
 
-document.getElementById('lens').addEventListener('click', (event) => {
-  const button = event.target.closest('[data-lens]');
-  if (!button || button.dataset.lens === lens) return;
-  lens = button.dataset.lens;
-  document.querySelectorAll('#lens button').forEach((item) =>
-    item.classList.toggle('on', item.dataset.lens === lens));
+document.getElementById('viewAs').addEventListener('click', (event) => {
+  const button = event.target.closest('[data-view-as]');
+  if (!button || button.dataset.viewAs === viewAs) return;
+  viewAs = button.dataset.viewAs;
+  document.querySelectorAll('#viewAs button').forEach((item) =>
+    item.classList.toggle('on', item.dataset.viewAs === viewAs));
   closeSessionDrawer(); closeSheet();
   show().catch(fail);
 });
