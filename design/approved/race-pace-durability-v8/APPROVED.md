@@ -26,8 +26,26 @@ Brice, handing these over:
   narrative moment block, the 15-week rail, and any hover treatment on a cell.
 - The prescription lives **inside the cell** — title, primary, detail, total.
   That is why the separate session inspector is gone: the cell is the inspector.
-- Six weeks at ≥1280, three at ≥900, two at ≥600, one below. One step moves the
-  whole week, not a column.
+- One step moves the whole week, not a column.
+- **The week count is derived, not chosen.** A column stops being readable below
+  about 215px — what `5 mi continuous @ 6:30–6:45` needs to stay on one line,
+  and the longest line the plan can author. Every step in the ladder is the
+  width at which the next column would fall under it:
+
+  | Viewport | Weeks | Column |
+  | --- | --- | --- |
+  | ≥1440 | 6 | 215px |
+  | ≥1200 | 5 | 215px |
+  | ≥990 | 4 | 216px |
+  | ≥770 | 3 | 221px |
+  | ≥600 | 2 | 247px |
+  | below | 1 | the mobile sheet |
+
+  This replaces the brief's 6/3/2/1, which was wrong at both ends: it jumped
+  from three straight to six at 1280, putting six columns at 188px and wrapping
+  four lines, while a 1000px laptop window — the common one — got three weeks
+  with 300px columns and a hundred pixels of slack in each. Measured on the live
+  page: no wrapped line and no horizontal overflow at any width from 390 to 1920.
 - Mobile is a single-week editorial sheet, with the week's identity said once in
   the folio beside the title. The folio is **right-aligned**, where the fixture
   left-aligns it: its top sits on the wordmark's and its right edge on the right

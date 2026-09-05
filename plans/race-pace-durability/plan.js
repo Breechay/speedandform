@@ -65,11 +65,23 @@ let live = 1;
 let complete = false;
 let animating = false;
 
+// A column stops being readable below about 215px: that is what
+// `5 mi continuous @ 6:30–6:45` needs to stay on one line, and it is the
+// longest line the plan can author. So the ladder is not round numbers — every
+// step is the width at which the next column would drop under 215 and start
+// wrapping the prescription.
+//
+// The old 6/3/2/1 jumped straight from three to six at 1280, which put six
+// columns at 188px and broke four lines. It also meant a 1000px laptop window —
+// the common one — got three weeks with 300px columns, nearly a hundred pixels
+// of slack in each. Both ends of the same missing rung.
 function visibleCount() {
   const w = window.innerWidth;
   if (w < 600) return 1;
-  if (w < 900) return 2;
-  if (w < 1280) return 3;
+  if (w < 770) return 2;
+  if (w < 990) return 3;
+  if (w < 1200) return 4;
+  if (w < 1440) return 5;
   return 6;
 }
 const maxLeft = () => Math.max(1, LAST - count + 1);
