@@ -661,24 +661,24 @@ img[data-portrait]{--exp:.9;--con:1.16;--px:50%;--py:40%;--pz:1;--grade:.20}
 .pg tbody tr.light td .s b{color:var(--secondary);font-weight:400}
 .pg tbody tr.light td .s i{color:#4c5457}
 
-.pg .s{display:block;cursor:pointer}
-.pg .s+.s{margin-top:9px;padding-top:9px;border-top:1px solid #ffffff0d}
-.pg .s b{display:block;font-size:12px;font-weight:600;line-height:1.25;letter-spacing:.015em}
-.pg .s i{display:block;font-style:normal;font-size:10.5px;color:var(--secondary);margin-top:3px;
+.planv .s{display:block;cursor:pointer}
+.planv .s+.s{margin-top:9px;padding-top:9px;border-top:1px solid #ffffff0d}
+.planv .s b{display:block;font-size:12px;font-weight:600;line-height:1.25;letter-spacing:.015em}
+.planv .s i{display:block;font-style:normal;font-size:10.5px;color:var(--secondary);margin-top:3px;
   line-height:1.35;font-variant-numeric:tabular-nums}
-.pg .s u{display:block;text-decoration:none;font-size:10.5px;color:var(--muted);margin-top:5px;
+.planv .s u{display:block;text-decoration:none;font-size:10.5px;color:var(--muted);margin-top:5px;
   font-variant-numeric:tabular-nums;letter-spacing:.01em}
-.pg .s:hover b{color:var(--lime)}
-.pg .s.canx{opacity:.3}
-.pg .s.canx b{text-decoration:line-through}
-.pg .s.alloc b{font-weight:500}
+.planv .s:hover b{color:var(--lime)}
+.planv .s.canx{opacity:.3}
+.planv .s.canx b{text-decoration:line-through}
+.planv .s.alloc b{font-weight:500}
 
 /* Lime means ownership-moving, and nothing else. A session that is merely
    continuous at the band gets a hairline: visible, not signalling. */
-.pg .s.own{padding-left:9px;border-left:1px solid #ffffff20}
-.pg .s.rung{padding-left:9px;border-left:2px solid var(--lime)}
-.pg .s.rung b{color:var(--lime)}
-.pg .none{color:#1d2325;font-size:12px}
+.planv .s.own{padding-left:9px;border-left:1px solid #ffffff20}
+.planv .s.rung{padding-left:9px;border-left:2px solid var(--lime)}
+.planv .s.rung b{color:var(--lime)}
+.planv .none{color:#1d2325;font-size:12px}
 
 .pg tr.prow td{background:#0a0d0e;border-right:2px solid var(--field);border-bottom:2px solid var(--field);
   font-size:10.5px;letter-spacing:.04em;color:var(--secondary);padding:7px 11px}
@@ -783,8 +783,8 @@ img[data-portrait]{--exp:.9;--con:1.16;--px:50%;--py:40%;--pz:1;--grade:.20}
 .dRev{display:grid;grid-template-columns:26px 1fr;gap:12px;align-items:baseline}
 .dRev b{font-size:10px;color:var(--muted);font-weight:600}
 .dRev span{font-size:12.5px;color:var(--secondary);line-height:1.45}
-.pg .s{cursor:pointer}
-.pg .s:hover b{color:var(--lime)}
+.planv .s{cursor:pointer}
+.planv .s:hover b{color:var(--lime)}
 @media (max-width:760px){.drawer{width:100vw}}
 
 /* ══ THE BENCH · HIERARCHY PASS ══
@@ -921,43 +921,88 @@ img[data-portrait]{--exp:.9;--con:1.16;--px:50%;--py:40%;--pz:1;--grade:.20}
 /* Session anatomy in the cell. Vertical growth is the price of being able to
    coach from the season view, and it is worth paying — a name without its
    structure is a filename. */
-.pg .s i{line-height:1.4}
-.pg .s em{display:block;font-style:normal;font-size:10px;color:#5a6265;margin-top:3px;
+.planv .s i{line-height:1.4}
+.planv .s em{display:block;font-style:normal;font-size:10px;color:#5a6265;margin-top:3px;
   font-variant-numeric:tabular-nums;letter-spacing:.01em}
 /* The execution rule — the line that changes how the session is run. */
-.pg .s q{display:block;quotes:none;font-size:10px;line-height:1.4;color:var(--secondary);
+.planv .s q{display:block;quotes:none;font-size:10px;line-height:1.4;color:var(--secondary);
   margin-top:5px;padding-left:7px;border-left:1px solid #ffffff1a}
-.pg .s u{color:var(--text)}
+.planv .s u{color:var(--text)}
 .pkey div em{display:block;font-style:normal;font-size:10px;color:var(--muted);margin-top:4px;
   line-height:1.4;max-width:26ch}
 .pkey{align-items:flex-start}
 
 /* `mark` carries a browser default of yellow highlighter, and losing this rule
    turned "moves what you own" into a fluorescent block in every rung cell. */
-.pg .s mark{display:block;background:none;color:var(--lime);font-size:9px;letter-spacing:.13em;
+.planv .s mark{display:block;background:none;color:var(--lime);font-size:9px;letter-spacing:.13em;
   font-weight:600;margin-top:7px;text-transform:uppercase;line-height:1.3}
-.pg .s.canx mark{color:var(--muted)}
+.planv .s.canx mark{color:var(--muted)}
 
 /* WU and CD: present, subordinate. The athlete has to run them; they are not the
    session's argument. */
-.pg .s small{display:block;font-size:9.5px;letter-spacing:.09em;color:#4e5659;margin-top:4px;
+.planv .s small{display:block;font-size:9.5px;letter-spacing:.09em;color:#4e5659;margin-top:4px;
   font-variant-numeric:tabular-nums}
 
 /* The anatomy has two voices. Easy running recedes; the work the session is
    about is brighter. Neither is lime — lime still means ownership alone. */
-.pg .s i .ae{color:#5c6467}
-.pg .s i .aw{color:var(--text)}
-.pg .s i .ar{color:#3c4447}
-.pg .s i{line-height:1.55}
-.pg .s b{margin-bottom:1px}
+.planv .s i .ae{color:#5c6467}
+.planv .s i .aw{color:var(--text)}
+.planv .s i .ar{color:#3c4447}
+.planv .s i{line-height:1.55}
+.planv .s b{margin-bottom:1px}
 
 /* Logistics: what you need to run the session, not what it is about. */
-.pg .s small{display:block;font-size:9.5px;letter-spacing:.08em;color:#454d50;margin-top:6px;
+.planv .s small{display:block;font-size:9.5px;letter-spacing:.08em;color:#454d50;margin-top:6px;
   font-variant-numeric:tabular-nums;line-height:1.4}
-/* An execution constraint is not more anatomy. It reads as a note in a hand. */
-.pg .s q{display:block;quotes:none;font-family:var(--serif);font-style:italic;font-size:11.5px;
-  line-height:1.45;color:var(--secondary);margin-top:9px;padding-left:0;border-left:0;
-  letter-spacing:0}
+/* An execution constraint is not more anatomy — but it is not a different
+   typeface either. A second family inside the instrument makes the eye
+   re-adjust where it should be scanning. Weight and colour carry it. */
+.planv .s q{display:block;quotes:none;font-style:italic;font-size:10.5px;line-height:1.45;
+  color:var(--secondary);margin-top:8px;padding-left:0;border-left:0;letter-spacing:.005em}
 /* What this session can establish, said in three words instead of four lines. */
-.pg .s mark{display:block;background:none;color:var(--lime);font-size:9.5px;letter-spacing:.11em;
+.planv .s mark{display:block;background:none;color:var(--lime);font-size:9.5px;letter-spacing:.11em;
   font-weight:600;margin-top:7px;text-transform:uppercase;line-height:1.3}
+
+/* ══ THE WEEK ══
+   The middle magnification. Seven days at full width, the anatomy unwrapped,
+   and the question the week is asking above them. Same objects as the matrix
+   with room to be read on a Tuesday morning rather than scanned from ten feet. */
+.pg thead th[data-week-to]{cursor:pointer}
+.pg thead th[data-week-to]:hover .wn{color:var(--lime)}
+.wStep{margin-left:auto;display:flex;gap:2px}
+.wStep button{padding:5px 12px;border:1px solid var(--edge);border-radius:999px;font-size:13px;
+  color:var(--secondary);line-height:1}
+.wStep button:hover{color:var(--lime);border-color:#4a5255}
+
+.wSum{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:2px;margin:0 30px 2px}
+.wSum div{background:var(--band-2);padding:15px 18px}
+.wSum b{display:block;font-size:9px;letter-spacing:.17em;color:var(--muted);font-weight:600}
+.wSum strong{display:block;font-family:var(--serif);font-weight:400;font-size:28px;margin-top:7px;
+  letter-spacing:-.018em;font-variant-numeric:tabular-nums}
+.wSum em{display:block;font-style:normal;font-size:11.5px;color:var(--secondary);margin-top:6px;
+  line-height:1.45}
+.wSum .wOwn strong{color:var(--lime)}
+
+.wIntent{margin:2px 30px 0;padding:15px 18px;background:#d8ff6808;border-left:2px solid var(--lime);
+  font-size:14px;line-height:1.5;color:var(--text)}
+
+.wDays{margin:26px 30px 60px;display:flex;flex-direction:column;gap:2px}
+.wday{display:grid;grid-template-columns:150px minmax(0,1fr);gap:26px;background:var(--band-2);
+  padding:17px 20px;align-items:baseline}
+.wday.rest{background:none;padding:9px 20px}
+.wday.now{background:var(--curweek);box-shadow:inset 2px 0 0 var(--lime)}
+.wdayName{font-size:13px;color:var(--text);font-weight:500}
+.wday.rest .wdayName{color:var(--muted);font-weight:400}
+.wdayName em{display:block;font-style:normal;font-size:10.5px;letter-spacing:.1em;color:var(--muted);
+  margin-top:4px;text-transform:uppercase}
+/* The cell grammar, unchanged — only the room it gets. */
+.wdayBody .s b{font-size:15px;letter-spacing:0}
+.wdayBody .s i{font-size:12.5px;margin-top:5px}
+.wdayBody .s small{font-size:10.5px;margin-top:7px}
+.wdayBody .s u{font-size:12px;margin-top:8px}
+.wdayBody .s q{font-size:12.5px;margin-top:9px;max-width:64ch}
+.wdayBody .s mark{font-size:10px;margin-top:9px}
+.wdayBody .s+.s{margin-top:15px;padding-top:15px}
+.wdayBody .none{color:var(--muted);font-size:12px}
+@media (max-width:760px){.wday{grid-template-columns:1fr;gap:8px}
+  .wSum,.wIntent{margin-left:16px;margin-right:16px}.wDays{margin-left:16px;margin-right:16px}}

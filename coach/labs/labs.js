@@ -37,7 +37,14 @@ let record = null;
 let attention = [];
 let pending = null;
 
-const today = () => new Date().toISOString().slice(0, 10);
+// Local, not UTC. toISOString rolls over at 8pm Eastern, so every surface that
+// asks "is this today" — the week view's marker, whether a session can be filed,
+// whether it can still be revised — was four hours ahead of the athlete from
+// evening onward. Caught by the week view putting the lime bar on Saturday.
+const today = () => {
+  const now = new Date();
+  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+};
 const sentence = (text) => text.charAt(0).toUpperCase() + text.slice(1);
 
 // ── reading the rows ────────────────────────────────────────────────────────
@@ -1243,6 +1250,116 @@ function thisWeekSoFar(current) {
   }).join(' · ') };
 }
 
+// ── THE WEEK ────────────────────────────────────────────────────────────────
+//
+// PLAN → WEEK → SESSION. The same objects at three magnifications, and the
+// middle one is the surface a coach and an athlete actually operate from.
+//
+// The plan answers what am I getting into and where is this going. It is not
+// what you read on a Tuesday morning, and a fifteen-week matrix asked to be both
+// ends up good at neither. So a week gets its own scale: seven days at full
+// width, the anatomy unwrapped, and the question the week is asking above them.
+//
+// Nothing new is computed here. It is the same cells, given room.
+
+function weekSummary(week, forWeek, milesFor, easyFor, mark) {
+  const sessions = forWeek(week).filter((session) => session.state !== 'cancelled'
+    || (record.completions || []).some((item) => item.planned_session_id === session.id));
+  // What this week asks that no other week does: the work that can move the mark.
+  const owning = sessions.map((session) => rungFor(session, mark)).filter(Boolean);
+  const banded = sessions.filter((session) => workParts(session.currentVersion)
+    .some((part) => part.counts_toward_mark_id));
+  const total = milesFor(week);
+  const easy = easyFor(week);
+  return {
+    total, easy,
+    quality: Number((total - easy).toFixed(1)),
+    owning: owning.length ? owning[0].rung : null,
+    banded: banded.length
+  };
+}
+
+function weekHtml(weekNumber) {
+  const block = record.block;
+  const weeks = (record.weeks || []).slice().sort((a, b) => a.week_number - b.week_number);
+  const week = weeks.find((item) => String(item.week_number) === String(weekNumber));
+  const athlete = record.athlete;
+  if (!week) return `<main class="view on planv"><div class="failed"><h1>No such week.</h1></div></main>`;
+
+  const mark = record.primaryMark;
+  const completions = record.completions || [];
+  const pieces = record.pieces || [];
+  const context = {
+    mark,
+    completionFor: (id) => completions.find((item) => item.planned_session_id === id) || null,
+    piecesFor: (id) => id ? pieces.filter((piece) => piece.completion_id === id) : []
+  };
+  const forWeek = (item) => (record.sessionsByWeek?.[item.id] || []);
+  const milesFor = (item) => forWeek(item).reduce((sum, session) => {
+    if (session.state === 'cancelled') return sum;
+    if (!session.scheduled_on && forWeek(item).some((other) => other.scheduled_on
+      && /^easy$/i.test(String(other.currentVersion?.title || '').trim()))) return sum;
+    return sum + (authoredMiles(session.currentVersion) || 0);
+  }, 0);
+  const easyFor = (item) => forWeek(item).reduce((sum, session) => {
+    if (session.state === 'cancelled' || !session.scheduled_on) return sum;
+    if (!/^easy/i.test(String(session.currentVersion?.title || '').trim())) return sum;
+    return sum + (authoredMiles(session.currentVersion) || 0);
+  }, 0);
+
+  const sum = weekSummary(week, forWeek, milesFor, easyFor, mark);
+  const out = weeksOutOf(week, block?.race_on);
+  const unattached = completions.filter((item) => !item.planned_session_id);
+  const isNow = week.id === record.currentWeek?.id;
+
+  const days = WEEK_DAYS.map((day, index) => {
+    const on = week.starts_on ? addDays(week.starts_on, index) : null;
+    const asked = on ? forWeek(week).filter((session) => session.scheduled_on === on
+      && (session.state !== 'cancelled' || context.completionFor(session.id))) : [];
+    const ran = on ? unattached.filter((item) => filedOn(item) === on) : [];
+    const body = asked.map((session) => prescribedCell(session, context)).join('')
+      + ran.map((item) => allocationCell(item, context, true)).join('');
+    // Not `today` — that is the module's clock, and shadowing it here put the
+    // whole view in a temporal dead zone the moment the week rendered.
+    const isToday = on === today();
+    return `<div class="wday${body ? '' : ' rest'}${isToday ? ' now' : ''}">
+      <div class="wdayName">${day}<em>${on ? escapeHtml(dayLabel(on)) : ''}</em></div>
+      <div class="wdayBody">${body || '<span class="none">Rest</span>'}</div>
+    </div>`;
+  }).join('');
+
+  const prev = weeks.find((item) => item.week_number === week.week_number - 1);
+  const next = weeks.find((item) => item.week_number === week.week_number + 1);
+
+  return `<main class="view on planv weekv">
+    <div class="pgHead">
+      <button class="back" type="button" data-nav="plan">← ${escapeHtml(block?.name || 'The plan')}</button>
+      <h3>Week ${escapeHtml(week.week_number)}</h3>
+      <span class="pgSub">${escapeHtml(rangeLabel(week.starts_on, week.ends_on))}${
+        out == null ? '' : ` · ${escapeHtml(out)} week${out === 1 ? '' : 's'} out`}${
+        isNow ? ' · this week' : ''}</span>
+      <span class="wStep">
+        ${prev ? `<button type="button" data-week-to="${escapeHtml(prev.week_number)}">←</button>` : ''}
+        ${next ? `<button type="button" data-week-to="${escapeHtml(next.week_number)}">→</button>` : ''}
+      </span>
+    </div>
+
+    <div class="wSum">
+      <div><b>TOTAL</b><strong>${escapeHtml(Number(sum.total.toFixed(1)))} mi</strong></div>
+      <div><b>EASY</b><strong>${escapeHtml(Number(sum.easy.toFixed(1)))} mi</strong></div>
+      <div><b>THE WORK</b><strong>${escapeHtml(Number(sum.quality.toFixed(1)))} mi</strong>
+        <em>${escapeHtml(sum.banded)} session${sum.banded === 1 ? '' : 's'} at 6:30–6:45</em></div>
+      ${sum.owning ? `<div class="wOwn"><b>THIS WEEK CAN ESTABLISH</b>
+        <strong>${escapeHtml(Number(sum.owning.value))} ${escapeHtml(mark?.unit || 'mi')}</strong>
+        <em>${escapeHtml(mark?.current_question || '')}</em></div>` : ''}
+    </div>
+
+    ${week.intent ? `<div class="wIntent">${escapeHtml(week.intent)}</div>` : ''}
+
+    <div class="wDays">${days}</div>
+  </main>`;
+}
+
 function planHtml() {
   const block = record.block;
   const weeks = (record.weeks || []).slice().sort((a, b) => a.week_number - b.week_number);
@@ -1289,7 +1406,8 @@ function planHtml() {
     const out = weeksOutOf(week, block.race_on);
     const miles = milesFor(week);
     const down = miles > 0 && heaviest > 0 && miles < 0.8 * heaviest;
-    return `<th class="${[isCurrent(week) ? 'cur' : '', down ? 'down' : ''].filter(Boolean).join(' ')}">
+    return `<th class="${[isCurrent(week) ? 'cur' : '', down ? 'down' : ''].filter(Boolean).join(' ')}"
+      data-week-to="${escapeHtml(week.week_number)}">
       <span class="wn">W${escapeHtml(week.week_number)}</span>
       <span class="wd">${escapeHtml(dayLabel(week.starts_on))}</span>
       ${out == null ? '' : `<span class="wo">${escapeHtml(out)}</span>`}</th>`;
@@ -2110,6 +2228,7 @@ function route() {
   const [kind, slug, leaf] = hash.split('/');
   // `block` is the route this view used to answer to. It still resolves, so a
   // link kept in a note from last week opens the plan rather than nothing.
+  if (kind === 'a' && slug && leaf === 'week') return { view: 'week', slug, week: hash.split('/')[3] };
   if (kind === 'a' && slug) return { view: (leaf === 'plan' || leaf === 'block') ? 'plan' : 'athlete', slug };
   if (kind === 'brief') return { view: 'brief' };
   return { view: 'bench' };
@@ -2118,7 +2237,8 @@ function route() {
 function markNav(view, slug) {
   nav.hidden = false;
   nav.querySelectorAll('button').forEach((button) => button.classList.remove('on'));
-  const which = view === 'bench' ? 'bench' : view === 'brief' ? 'brief' : view === 'plan' ? 'plan' : null;
+  const which = view === 'bench' ? 'bench' : view === 'brief' ? 'brief'
+    : (view === 'plan' || view === 'week') ? 'plan' : null;
   if (which) nav.querySelector(`[data-nav="${which}"]`)?.classList.add('on');
   // Plan stays visible. With nobody chosen it opens the first athlete on the
   // bench, which is the one who needs you.
@@ -2139,6 +2259,7 @@ function render() {
   if (view === 'bench') app.innerHTML = benchHtml();
   else if (view === 'brief') app.innerHTML = briefHtml();
   else if (view === 'plan') app.innerHTML = planHtml();
+  else if (view === 'week') app.innerHTML = weekHtml(route().week);
   else app.innerHTML = athleteHtml();
   markNav(view, slug);
   paint();
@@ -2171,6 +2292,12 @@ document.addEventListener('click', (event) => {
   }
   const cell = event.target.closest('[data-session]');
   if (cell) { showSession(cell.dataset.session); return; }
+
+  const toWeek = event.target.closest('[data-week-to]');
+  if (toWeek) {
+    const slug = record?.athlete?.slug || route().slug;
+    if (slug) { location.hash = `#/a/${slug}/week/${toWeek.dataset.weekTo}`; return; }
+  }
 
   const file = event.target.closest('[data-file]');
   if (file) { closeSessionDrawer(); openFiling(file.dataset.file); return; }
