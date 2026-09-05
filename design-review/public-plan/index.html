@@ -12,109 +12,69 @@
     <div class="brand">FORM <span>LABS</span></div>
     <nav class="topnav" aria-label="Primary">
       <a href="#plan">The Plan</a>
-      <a href="#method">The Method</a>
-      <a href="#field">The Field</a>
     </nav>
     <div class="actions">
-      <button class="btn ghost" type="button"><span class="icon">⇧</span> Share Plan</button>
-      <button class="btn lime" type="button"><span class="icon">▣</span> Download PDF</button>
+      <button class="btn" id="share" type="button">⇧ &nbsp; Share Plan</button>
+      <button class="btn lime" id="pdf" type="button">▣ &nbsp; Download PDF</button>
     </div>
   </header>
 
   <main>
-    <section class="hero" aria-labelledby="title">
+    <section class="hero">
+      <div class="mobile-folio" id="folio" aria-live="polite"></div>
       <div class="hero-copy">
-        <h1 id="title">Race Pace Durability</h1>
-        <div class="eyebrow">HALF MARATHON · 15 WEEKS</div>
-        <p class="subline">Hold the pace. Lower the cost. Extend the distance.</p>
+        <h1>Race Pace Durability</h1>
+        <div class="eyebrow" id="eyebrow"></div>
       </div>
-
-      <div class="hero-stats" aria-label="Plan metrics">
-        <div class="metric"><strong>45<span> MI</span></strong><small>STARTING<br>VOLUME<br><em>(approx)</em></small></div>
-        <div class="metric"><strong>~60<span> MI</span></strong><small>PEAK<br>VOLUME<br><em>(approx)</em></small></div>
-        <div class="metric"><strong>3</strong><small>KEY DAYS<br><b>TUE · THU · SAT</b></small></div>
-        <div class="metric wide"><strong>6:30–6:45<span> /MI</span></strong><small>RACE PACE<br>WORK</small></div>
-        <div class="metric"><strong>12<span> MI</span></strong><small>LONGEST<br>CONTINUOUS<br>AT RACE PACE</small></div>
+      <div class="mobile-hero-actions">
+        <button class="share-icon-btn" id="shareMobile" type="button" aria-label="Share plan" title="Share plan">↗</button>
+        <button class="btn lime" id="pdfMobile" type="button">▣ &nbsp; Download PDF</button>
       </div>
     </section>
 
-    <div class="done" id="done">
+    <div class="done" id="done" hidden>
       <div class="status">Completed · v1</div>
       <h3>The plan has been run.</h3>
       <p id="doneDates"></p>
     </div>
 
-    <section class="plan-section" id="plan">
+    <section class="plan-section" id="plan" tabindex="0" aria-label="Training plan">
       <div class="plan-head">
-        <h2>THE 15-WEEK PLAN</h2>
-        <div class="weekNav">
-          <button class="circle" id="back" type="button" aria-label="Previous week">‹</button>
-          <div class="windowLabel" id="windowLabel"></div>
-          <button class="circle" id="fwd" type="button" aria-label="Next week">›</button>
+        <h2 id="planTitle"></h2>
+        <div class="week-now">
+          <button class="circle" id="prev" type="button" aria-label="Previous week">‹</button>
+          <span class="range" id="range" aria-live="polite"></span>
+          <button class="circle" id="next" type="button" aria-label="Next week">›</button>
         </div>
       </div>
 
-      <div class="moment" id="moment">
-        <div>
-          <div class="kicker" id="momentKicker">Build</div>
-          <h3 id="momentTitle"></h3>
-          <p id="momentBody"></p>
+      <div class="motion-viewport" id="viewport">
+        <div class="motion-track" id="track">
+          <div class="sheet" id="prevSheet" aria-hidden="true"></div>
+          <div class="sheet" id="curSheet"></div>
+          <div class="sheet" id="nextSheet" aria-hidden="true"></div>
         </div>
       </div>
-
-      <div class="rail"><span id="railLabel"></span><div id="rail" aria-hidden="true"></div></div>
-
-      <div class="matrix-wrap">
-        <table class="matrix" aria-label="Race Pace Durability — five-week window">
-          <thead><tr id="matHead"><th>WEEK</th></tr></thead>
-          <tbody id="matBody"></tbody>
-        </table>
-      </div>
-
-      <aside class="inspector" id="inspector" hidden></aside>
-    </section>
-
-    <section class="method-grid" id="method">
-      <article class="why">
-        <div class="section-kicker">WHY THIS BLOCK EXISTS</div>
-        <h3>Speed isn’t the problem.<br>Carrying it is.</h3>
-        <p>The previous block developed threshold capacity. This block shifts the emphasis toward race-pace durability: progressively extending how far 6:30–6:45/mi can be carried continuously while threshold work remains in the program to maintain the ceiling.</p>
-      </article>
-
-      <article class="progression">
-        <div class="section-kicker">THE PROGRESSION</div>
-        <p>Race-pace miles progress from broken into continuous.</p>
-        <div class="steps" id="steps" aria-label="progression"></div>
-      </article>
-
-      <article class="dimensions">
-        <div class="section-kicker">PLAN INFORMATION</div>
-        <dl class="paceKey" id="paceKey"></dl>
-      </article>
     </section>
   </main>
-
-    <section class="field" id="field">
-      <div class="section-kicker">THE FIELD</div>
-      <h3>Real athletes. Real execution. Real outcomes.</h3>
-      <p class="lede">The plan stays the plan. What each athlete established belongs to their assignment.</p>
-      <div class="athletes" id="athletes"></div>
-    </section>
 
   <footer>
     <div class="footer-brand">FORM <span>LABS</span></div>
     <div class="footer-rule"></div>
     <div class="footer-copy">A higher standard for distance running.</div>
-    <div class="version">Race Pace Durability · v1 · Sep 2026</div>
+    <div class="version" id="version"></div>
   </footer>
 </div>
-  <div class="dev" id="dev" aria-label="Prototype state (development only)">
-    <button data-state="build">W3 · Build</button>
-    <button data-state="ask">W4 · Ask</button>
-    <button data-state="race">W15 · Race</button>
-    <button data-state="complete">Complete</button>
-    <button data-state="auto">Auto</button>
-  </div>
-  <script type="module" src="plan.js"></script>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<div class="dev" id="dev" aria-label="Prototype state (development only)">
+  <button data-state="build">W3 · Build</button>
+  <button data-state="ask">W4 · Ask</button>
+  <button data-state="race">W15 · Race</button>
+  <button data-state="complete">Complete</button>
+  <button data-state="auto">Auto</button>
+</div>
+<script type="module" src="plan.js"></script>
 </body>
 </html>

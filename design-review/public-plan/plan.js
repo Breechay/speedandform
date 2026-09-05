@@ -5,16 +5,17 @@
 // established belongs to their assignments and has no business on a page about
 // the method.
 //
-// The page has four moments and one composition. The architecture never moves;
-// the meaning changes.
+// The composition is the approved baseline. One title, one week window, and the
+// prescription itself inside the cell. There is no metric strip, no tagline, no
+// explanatory chapter and no narrative block; the work is the argument.
 
 import { publishedPlan } from './source.js';
+import { notation } from './notation.js';
 
 // Live, not a fixture. Changing a value in the canonical plan changes this page
 // without anyone editing HTML.
 const plan = await publishedPlan('race-pace-durability');
 const DAYS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-const RUNGS = [2, 5, 6, 8, 12, 13.1];
 
 const weekOne = new Date(`${plan.running.starts_on}T00:00:00`);
 const raceOn = new Date(`${plan.running.race_on}T00:00:00`);
@@ -27,324 +28,256 @@ const startOf = (week) => {
   day.setDate(day.getDate() + (week - 1) * 7);
   return day;
 };
-const range = (week) => {
-  const from = startOf(week), to = new Date(startOf(week));
-  to.setDate(to.getDate() + 6);
-  const show = (d) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-  return `${show(from)} – ${show(to)}`;
-};
+const show = (d) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 
-// A day's cell is the notation, not the prose. Distances for easy days, the
-// title for anything the week is proving something with.
-// WHAT KIND OF DAY IS THIS.
-//
-// Derived from what the session is made of, never from the weekday. Tuesday is
-// race pace in this plan and Thursday rotates through four different things; a
-// renderer that assumed the calendar would be wrong the first time a plan moved
-// its key days.
-//
-// The bands come from the plan itself, so a plan authored at 7:00–7:15 labels
-// its own work correctly without a line changing here.
-const RP_LO = plan.plan.race_pace_low_seconds;
-const RP_HI = plan.plan.race_pace_high_seconds;
+// The notation is shared with the print edition.
+const { read } = notation(plan);
 
-const clock = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
-const span = (c) => {
-  if (c.distance != null) return `${+c.distance} MI`;
-  if (c.duration_seconds == null) return '';
-  return c.duration_seconds % 60 === 0
-    ? `${c.duration_seconds / 60} MIN` : `${c.duration_seconds} S`;
-};
-const isRacePace = (c) => c.pace_low_seconds === RP_LO && c.pace_high_seconds === RP_HI;
-const isStride = (c) => c.shape === 'repetitions' && c.duration_seconds != null
-  && c.duration_seconds <= 30 && c.pace_low_seconds == null;
-
-// THE CELL, IN FULL.
-//
-// Five columns buy the room the fifteen never had, so the prescription goes back
-// into the grid: pace, recovery, bookends, total. Book-like density, not cards.
-//
-// Notation is semantic, never a generic component arrow. A long run is
-// `16 mi · last 3 @ 6:30–6:45`, not `13 mi → 3 mi`; strides are
-// `7 mi easy + 4 × 20 s strides`, not `7 mi → 4 × 20 s`.
-// A one-sided pace means two different things depending on which side of race
-// pace it sits. Easy is a ceiling — 8:45 or slower, and slower is never wrong.
-// Threshold is a target the block approaches — ≈6:15. Rendering both as
-// "or slower" told an athlete that a threshold session had no floor.
-const band = (c) => {
-  if (c.rpe_low != null) return `RPE ${c.rpe_low}${c.rpe_high ? `–${c.rpe_high}` : ''}`;
-  if (c.pace_low_seconds == null) return '';
-  if (c.pace_high_seconds) return `${clock(c.pace_low_seconds)}–${clock(c.pace_high_seconds)}`;
-  return c.pace_low_seconds > RP_HI
-    ? `${clock(c.pace_low_seconds)} or slower`
-    : `≈${clock(c.pace_low_seconds)}`;
-};
-const rest = (c) => {
-  if (!c.recovery_seconds) return '';
-  const t = c.recovery_seconds % 60 === 0
-    ? `${c.recovery_seconds / 60} min` : `${c.recovery_seconds} s`;
-  return `${t}${c.recovery_kind ? ` ${c.recovery_kind}` : ''}`;
-};
-const lower = (c) => span(c).toLowerCase();
-
-function read(session) {
-  if (!session) return { kind: 'rest', label: 'Rest', head: '', lines: [] };
-  const parts = session.components || [];
-  const work = parts.filter((c) => c.role === 'work');
-  const wu = parts.find((c) => c.role === 'warm_up');
-  const cd = parts.find((c) => c.role === 'cool_down');
-  const book = [wu && `WU ${lower(wu)}`, cd && `CD ${lower(cd)}`].filter(Boolean).join(' · ');
-  const total = `${+session.distance} mi total`;
-  const strides = work.find(isStride);
-  const rpCont = work.find((c) => c.shape === 'continuous' && isRacePace(c));
-  const aerobic = work.find((c) => c.shape === 'continuous' && !isRacePace(c)
-    && c.pace_low_seconds != null && c.pace_low_seconds > RP_HI);
-  const reps = work.find((c) => c.shape === 'repetitions' && !isStride(c));
-
-  // The label is the session's own, authored on the plan. Nothing here decides
-  // what kind of session this is; it only decides how to say the numbers.
-  const label = session.label || '';
-  const kind = /race pace finish/i.test(label) ? 'long'
-    : /^long run/i.test(label) ? 'long'
-    : /^race$/i.test(label) ? 'race'
-    : /^race pace/i.test(label) ? 'rp'
-    : /aerobic|recovery/i.test(label) ? 'easy' : 'support';
-
-  if (strides) {
-    const base = work.find((c) => c.shape === 'continuous');
-    return { kind, label, head: `${+session.distance} mi easy + ${
-      strides.repeat_count} × ${lower(strides)} strides`,
-      lines: [base && band(base) ? `@ ${band(base)}` : ''].filter(Boolean) };
-  }
-  if (aerobic) {
-    if (rpCont) {
-      return { kind, label, head: `${+session.distance} mi`,
-        lines: [`last ${+rpCont.distance} mi @ ${band(rpCont)}`,
-                `${+aerobic.distance} mi easy + ${+rpCont.distance} mi race pace`,
-                book, total].filter(Boolean), asks: session.asks };
-    }
-    return { kind, label, head: `${+aerobic.distance} mi easy`,
-             lines: [`@ ${band(aerobic)}`] };
-  }
-  if (rpCont) {
-    return { kind, label,
-      head: kind === 'race' ? `${+rpCont.distance} mi @ ${band(rpCont)}`
-                            : `${+rpCont.distance} mi continuous @ ${band(rpCont)}`,
-      lines: [book, total].filter(Boolean), asks: session.asks };
-  }
-  if (reps) {
-    const n = reps.repeat_count > 1 ? `${reps.repeat_count} × ` : '';
-    return { kind, label, head: `${n}${lower(reps)} @ ${band(reps)}`,
-      lines: [rest(reps), book, total].filter(Boolean), asks: session.asks };
-  }
-  const base = work[0];
-  return { kind, label, head: `${+session.distance} mi easy`,
-           lines: [base && band(base) ? `@ ${band(base)}` : ''].filter(Boolean) };
+// A session, typeset. Title, the one line that matters, the qualifiers, then
+// the total set quietly apart — the same four registers on every surface.
+function session(week, day, mobile) {
+  const found = week.sessions.find((s) => s.day === day);
+  const r = read(found);
+  const totalLine = r.lines.length && /mi total$/.test(r.lines[r.lines.length - 1])
+    ? r.lines[r.lines.length - 1] : '';
+  const details = totalLine ? r.lines.slice(0, -1) : r.lines;
+  return `<div class="${mobile ? 'mobile-session' : 'cell'}${r.kind === 'rest' ? ' rest' : ''}">
+    <div class="session-title${r.kind === 'rp' ? ' accent-title' : ''}">${esc(r.label)}</div>
+    <div class="primary">${esc(r.head)}</div>
+    ${details.map((l) => `<div class="detail">${esc(l)}</div>`).join('')}
+    ${totalLine ? `<div class="total">${esc(totalLine)}</div>` : ''}
+  </div>`;
 }
 
-// SIX WEEKS, MOVING FORWARD.
+// ─────────────────────────────────────────────────────────────────────────
+// THE WINDOW.
 //
-// The window does not centre the week you are looking at — it starts there. You
-// arrive on your own week and the next five are the runway in front of it, which
-// is how a printed plan reads. An arrow advances the whole window by one week,
-// not by six.
-//
-// `viewing` is the left edge. `live` is the week today actually falls in, and it
-// keeps its THIS WEEK mark wherever the window moves: the viewport moving does
-// not change what week it is.
-const WINDOW = 7;   // 6 → 7, to isolate the effect of column width. Nothing else changed.
-let viewing = 1;
+// `left` is the leftmost week on screen — the window does not centre the week
+// you are looking at, it starts there, which is how a printed plan reads.
+// `live` is the week today actually falls in, and it keeps its THIS WEEK mark
+// wherever the window moves: the viewport moving does not change what week it is.
+const weeks = plan.weeks;
+const LAST = weeks.length;
+
+let count = visibleCount();
+let left = 1;
 let live = 1;
+let complete = false;
+let animating = false;
 
-function windowFor(left) {
-  const last = plan.weeks.length;
-  const from = Math.min(Math.max(1, left), Math.max(1, last - WINDOW + 1));
-  return plan.weeks.filter((w) => w.week_number >= from && w.week_number < from + WINDOW);
+function visibleCount() {
+  const w = window.innerWidth;
+  if (w < 600) return 1;
+  if (w < 900) return 2;
+  if (w < 1280) return 3;
+  return 6;
+}
+const maxLeft = () => Math.max(1, LAST - count + 1);
+const clamp = (v) => Math.min(maxLeft(), Math.max(1, v));
+const at = (n) => weeks.find((w) => w.week_number === n);
+const isNow = (w) => !complete && w.week_number === live;
+
+function desktopSheet(start) {
+  const win = weeks.slice(start - 1, start - 1 + count);
+  const cols = '<col class="row-label">' + win.map(() => '<col>').join('');
+  const head = '<th>DAY</th>' + win.map((w) =>
+    `<th class="${isNow(w) ? 'cur' : ''}"><b>W${w.week_number}</b>` +
+    `<span>${esc(show(startOf(w.week_number)))}</span></th>`).join('');
+  let body = '';
+  DAYS.forEach((day) => {
+    body += `<tr><th>${day[0] + day.slice(1).toLowerCase()}</th>` + win.map((w) =>
+      `<td class="${isNow(w) ? 'cur' : ''}">${session(w, day, false)}</td>`).join('') + '</tr>';
+  });
+  body += '<tr class="total"><th>WEEK TOTAL</th>' + win.map((w) =>
+    `<td class="${isNow(w) ? 'cur' : ''}"><div class="cell"><div class="primary">${
+      esc(+w.total_distance)} mi</div></div></td>`).join('') + '</tr>';
+  return `<table class="matrix" aria-label="Weeks ${win[0].week_number} through ${
+    win[win.length - 1].week_number}"><colgroup>${cols}</colgroup>` +
+    `<thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
 }
 
-function matrix(left, complete) {
-  const shown = windowFor(left);
-  viewing = shown[0].week_number;
-  const byDay = (week) => Object.fromEntries(week.sessions.map((s) => [s.day, s]));
-  const now = (w) => (!complete && w.week_number === live ? ' cur' : '');
-  const span7 = (n) => {
-    const from = startOf(n), to = new Date(startOf(n));
-    to.setDate(to.getDate() + 6);
-    const show = (d) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    return `${show(from)} – ${show(to)}`;
-  };
-
-  el('matHead').innerHTML = '<th>DAY</th>' + shown.map((w) =>
-    `<th class="wk${now(w)}">${now(w) ? '<u>This week</u>' : ''}<b>W${w.week_number}</b>` +
-    `<span>${esc(span7(w.week_number))}</span></th>`).join('');
-
-  el('matBody').innerHTML = DAYS.map((day) =>
-    `<tr><th>${day[0] + day.slice(1).toLowerCase()}</th>` + shown.map((w) => {
-      const session = byDay(w)[day];
-      const r = read(session);
-      return `<td class="d-${r.kind}${now(w)}${r.asks != null ? ' asked' : ''}"${
-        session ? ` data-w="${w.week_number}" data-day="${day}" tabindex="0"` : ''}>` +
-        `<em>${esc(r.label)}</em>${r.head ? `<b>${esc(r.head)}</b>` : ''}` +
-        r.lines.map((l) => `<i>${esc(l)}</i>`).join('') + '</td>';
-    }).join('') + '</tr>').join('')
-    + '<tr class="total"><th>Week<br>total</th>' + shown.map((w) =>
-      `<td class="${now(w).trim()}">${esc(+w.total_distance)} mi</td>`).join('') + '</tr>';
-
-  const first = shown[0].week_number, last = shown[shown.length - 1].week_number;
-  const from = startOf(first);
-  const to = new Date(startOf(last)); to.setDate(to.getDate() + 6);
-  const show = (d) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-  el('windowLabel').innerHTML =
-    `<b>Weeks ${first} – ${last}</b><span>${esc(show(from))} – ${esc(show(to))}</span>`;
-  el('back').disabled = first === 1;
-  el('fwd').disabled = last === plan.weeks.length;
-
-  el('rail').innerHTML = plan.weeks.map((w) => {
-    const inside = w.week_number >= first && w.week_number <= last;
-    return `<span class="${!complete && w.week_number === live ? 'now' : inside ? 'in' : ''}"></span>`;
-  }).join('');
-  el('railLabel').textContent = `W${first}–W${last} of ${plan.weeks.length}`;
+// One week, read as a page rather than scanned as a grid. Which week it is, is
+// said once, in the folio beside the title — not repeated above the days.
+function mobileSheet(start) {
+  const w = at(start);
+  return `<div class="mobile-week">` + DAYS.map((day) =>
+    `<div class="mobile-day"><div class="mobile-day-name">${
+      day[0] + day.slice(1).toLowerCase()}</div>${session(w, day, true)}</div>`).join('') +
+    `<div class="mobile-week-total"><span>WEEK TOTAL</span><strong>${
+      esc(+w.total_distance)} mi</strong></div></div>`;
 }
 
-// THE SESSION, WHOLE — beneath the window, so the five weeks stay on screen.
-function inspect(weekNumber, day) {
-  const week = plan.weeks.find((w) => w.week_number === weekNumber);
-  const session = week?.sessions.find((s) => s.day === day);
-  const panel = el('inspector');
-  if (!session) { panel.hidden = true; return; }
-  const r = read(session);
-  const parts = session.components || [];
-  const line = (c) => {
-    const reps = c.shape === 'repetitions' && c.repeat_count > 1 ? `${c.repeat_count} × ` : '';
-    const t = target(c);
-    const rec = recovery(c);
-    return `${reps}${span(c).toLowerCase()}${t ? ` @ ${t}` : ''}${rec ? ` / ${rec}` : ''}`;
-  };
-  const wu = parts.find((c) => c.role === 'warm_up');
-  const cd = parts.find((c) => c.role === 'cool_down');
-  const book = [wu && `WU ${span(wu).toLowerCase()}`, cd && `CD ${span(cd).toLowerCase()}`]
-    .filter(Boolean).join(' · ');
-  panel.innerHTML = `
-    <div class="insHead">
-      <div><em>W${weekNumber} · ${esc(day[0] + day.slice(1).toLowerCase())}${
-        r.label ? ` · ${esc(r.label)}` : ''}</em>
-        <h4>${esc(session.title)}</h4></div>
-      <button class="insClose" type="button" aria-label="Close">×</button>
-    </div>
-    ${parts.filter((c) => c.role === 'work').map((c) => `<p class="insWork">${esc(line(c))}</p>`).join('')}
-    ${book ? `<p class="insBook">${esc(book)}</p>` : ''}
-    <p class="insTotal">${esc(+session.distance)} mi total</p>
-    ${session.intent ? `<p class="insIntent">${esc(session.intent)}</p>` : ''}
-    ${session.details ? `<p class="insRule">${esc(session.details)}</p>` : ''}`;
-  panel.hidden = false;
+const sheet = (start) => (count === 1 ? mobileSheet(clamp(start)) : desktopSheet(clamp(start)));
+
+function label() {
+  if (count === 1) {
+    const w = at(left);
+    const to = new Date(startOf(left)); to.setDate(to.getDate() + 6);
+    el('range').textContent = `${String(left).padStart(2, '0')} / ${LAST}`;
+    el('folio').innerHTML = (isNow(w) ? '<span class="folio-current">THIS WEEK</span>' : '') +
+      `<span class="folio-week">Week ${left}</span>` +
+      `<span class="folio-date">${esc(show(startOf(left)))} – ${esc(show(to))}</span>`;
+  } else {
+    const last = Math.min(LAST, left + count - 1);
+    el('range').textContent = `Weeks ${left}–${last}`;
+    el('folio').innerHTML = '';
+  }
+  el('prev').disabled = left <= 1;
+  el('next').disabled = left >= maxLeft();
 }
 
-function steps(current, complete) {
-  const asked = plan.weeks.filter((w) => w.sessions.some((s) => s.asks != null)
-    && w.week_number <= current).flatMap((w) => w.sessions.filter((s) => s.asks != null).map((s) => +s.asks));
-  const live = plan.weeks.find((w) => w.week_number === current)?.sessions.find((s) => s.asks != null)?.asks;
-  // Race week is not "only 13.1 matters". Every rung behind it is the path that
-  // led here, so nothing is dimmed and the race carries the accent.
-  const racing = document.body.dataset.state === 'race';
-  el('steps').innerHTML = RUNGS.map((value, i) => {
-    let cls = 'step';
-    if (complete) cls += value === 13.1 ? ' race' : '';
-    else if (racing) cls += value === 13.1 ? ' race' : ' past';
-    else if (value === live) cls += ' now';
-    else if (value === 2 || asked.includes(value)) cls += ' past';
-    else cls += ' future';
-    if (value === 13.1 && !complete && !racing) cls += ' race';
-    return `${i ? '<i>→</i>' : ''}<div class="${cls}"><span>${value}</span><small>${
-      value === 13.1 ? 'RACE' : 'MI'}</small></div>`;
-  }).join('');
+// Typeset the three sheets and park the track on the middle one — both in the
+// same task. Letting a frame paint between them showed the week after next for
+// one frame, which is what a step used to look like.
+function paint() {
+  el('prevSheet').innerHTML = sheet(left - 1);
+  el('curSheet').innerHTML = sheet(left);
+  el('nextSheet').innerHTML = sheet(left + 1);
+  label();
+  el('track').classList.remove('animating');
+  el('track').style.transform = 'translate3d(-100%,0,0)';
 }
 
-// THE FIELD is placeholder only. It stays that way until there is evidence:
-// inventing a race result on a page whose entire argument is "here are the
-// receipts" would be the one unforgivable thing this page could do.
-function field() {
-  el('athletes').innerHTML = ['José', 'Hope'].map((name) => `
-    <article class="athlete">
-      <h4>${esc(name.toUpperCase())}</h4>
-      <div class="evrow">
-        <div class="ev"><b>Entered</b><strong>2 mi</strong></div>
-        <div class="ev"><b>The questions</b><strong>5 · 6 · 8 · 12</strong></div>
-        <div class="ev pending"><b>Race</b><strong>—</strong></div>
-      </div>
-      <p class="read"><em>Coach read</em>Written after the race, from what the
-      assignment actually recorded. Nothing here is generated.</p>
-    </article>`).join('');
+// One step is one week, at every width. Six columns move as a block; they do
+// not scroll past each other.
+function step(direction) {
+  if (animating || !direction) return;
+  const track = el('track');
+  const next = clamp(left + direction);
+  if (next === left) {           // the end of the plan: acknowledge, don't move
+    track.classList.add('animating');
+    track.style.transform = 'translate3d(-100%,0,0)';
+    return;
+  }
+  left = next;
+  track.classList.add('animating');
+  // Asked of the element rather than assumed, so reduced motion, a print
+  // context and a browser with transitions switched off all take the same
+  // path: no duration, no wait, the week is simply there.
+  const ms = parseFloat(getComputedStyle(track).transitionDuration) * 1000;
+  if (!ms) { paint(); return; }
+  animating = true;
+  track.style.transform = `translate3d(${direction > 0 ? -200 : 0}%,0,0)`;
+  const done = () => { clearTimeout(guard); animating = false; paint(); };
+  // A transition that never starts never ends, so the repaint is never left to
+  // the event alone — that is how a single dropped frame used to strand the
+  // window one week behind the label.
+  const guard = setTimeout(done, ms + 140);
+  track.addEventListener('transitionend', function once(e) {
+    if (e.target !== track || e.propertyName !== 'transform') return;
+    track.removeEventListener('transitionend', once);
+    done();
+  });
 }
 
-const MOMENTS = {
-  build: (w) => ({
-    kicker: 'Build',
-    title: 'Building the ability to carry the pace.',
-    body: 'This week accumulates race-pace volume and asks nothing. It is what makes the next question answerable.'
-  }),
-  ask: (w) => {
-    const ask = plan.weeks.find((x) => x.week_number === w).sessions.find((s) => s.asks != null);
-    return {
-      kicker: 'The question',
-      title: `${+ask.asks} mi<span class="band">Continuously · 6:30–6:45 /mi</span>`,
-      body: `Can you carry the prescribed pace for ${+ask.asks} uninterrupted miles?`
-    };
-  },
-  race: () => ({
-    kicker: 'Race week',
-    title: 'The work is done.',
-    body: `${raceOn.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} · the answer is 13.1.`
-  })
-};
+el('prev').addEventListener('click', () => step(-1));
+el('next').addEventListener('click', () => step(1));
 
-// PLAN INFORMATION — the decoding key, derived from the plan's own components
-// rather than typed, so a plan authored at other paces explains itself.
-//
-// The values are the plan's. The sentence explaining what each band is FOR is
-// authored coaching copy that lives on the athletes' blocks and not on the plan,
-// so it is deliberately absent here rather than invented. See the findings note.
-function paceKey() {
-  const seen = new Map();
-  plan.weeks.forEach((w) => w.sessions.forEach((s) => (s.components || []).forEach((c) => {
-    if (c.role !== 'work' || c.pace_low_seconds == null) return;
-    const key = `${c.pace_low_seconds}-${c.pace_high_seconds ?? ''}`;
-    if (!seen.has(key)) seen.set(key, c);
-  })));
-  const rows = [...seen.values()].sort((a, b) => b.pace_low_seconds - a.pace_low_seconds)
-    .map((c) => {
-      const value = c.pace_high_seconds
-        ? `${clock(c.pace_low_seconds)}–${clock(c.pace_high_seconds)} / mi`
-        : c.pace_low_seconds > RP_HI
-          ? `${clock(c.pace_low_seconds)} / mi or slower`
-          : `≈${clock(c.pace_low_seconds)} / mi`;
-      let name = 'Race pace';
-      if (c.pace_low_seconds > RP_HI) name = 'Easy pace';
-      else if (!c.pace_high_seconds) name = 'Threshold';
-      else if (c.pace_high_seconds < RP_LO) name = 'VO₂';
-      return { name, value };
-    });
-  el('paceKey').innerHTML = rows.map((r) =>
-    `<div><dt>${esc(r.name)}</dt><dd>${esc(r.value)}</dd></div>`).join('');
+// DRAG. The track follows the finger within one sheet's width, and resists at
+// the two ends of the plan so the edge is felt rather than announced.
+let drag = null;
+const viewport = () => el('viewport');
+viewport().addEventListener('pointerdown', (e) => {
+  if (animating || e.button) return;
+  drag = { id: e.pointerId, x: e.clientX, y: e.clientY, dx: 0, locked: false };
+});
+viewport().addEventListener('pointermove', (e) => {
+  if (!drag || animating || e.pointerId !== drag.id) return;
+  const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+  if (!drag.locked) {
+    if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+    if (Math.abs(dy) >= Math.abs(dx)) { drag = null; return; }  // it was a scroll
+    drag.locked = true;
+    viewport().setPointerCapture?.(e.pointerId);
+  }
+  drag.dx = dx;
+  const edge = (left <= 1 && dx > 0) || (left >= maxLeft() && dx < 0);
+  el('track').classList.remove('animating');
+  el('track').style.transform = `translate3d(calc(-100% + ${dx * (edge ? 0.28 : 1)}px),0,0)`;
+});
+function release() {
+  if (!drag) return;
+  const dx = drag.locked ? drag.dx : 0;
+  drag = null;
+  const threshold = Math.min(110, viewport().clientWidth * 0.2);
+  if (Math.abs(dx) > threshold) { step(dx < 0 ? 1 : -1); return; }
+  el('track').classList.add('animating');
+  el('track').style.transform = 'translate3d(-100%,0,0)';
 }
+viewport().addEventListener('pointerup', release);
+viewport().addEventListener('pointercancel', release);
 
+// Trackpad, sideways over the plan. Horizontal intent only, so a normal
+// vertical scroll past the matrix is never hijacked.
+let wheelLock = 0;
+viewport().addEventListener('wheel', (e) => {
+  if (Math.abs(e.deltaX) <= Math.abs(e.deltaY) || Math.abs(e.deltaX) < 18) return;
+  e.preventDefault();
+  const now = Date.now();
+  if (now - wheelLock < 820) return;
+  wheelLock = now;
+  step(e.deltaX > 0 ? 1 : -1);
+}, { passive: false });
+
+el('plan').addEventListener('keydown', (e) => {
+  if (e.target.closest('button')) return;
+  if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
+});
+
+let resizing;
+window.addEventListener('resize', () => {
+  clearTimeout(resizing);
+  resizing = setTimeout(() => {
+    const was = count;
+    count = visibleCount();
+    if (was === count) return;
+    left = clamp(left);
+    paint();
+  }, 120);
+});
+
+// ─────────────────────────────────────────────────────────────────────────
+// SHARE. The canonical address, handed to whatever the device uses to share.
+const canonical = () => location.origin + location.pathname;
+function toast(message) {
+  const t = el('toast');
+  t.textContent = message;
+  t.hidden = false;
+  clearTimeout(toast.timer);
+  toast.timer = setTimeout(() => { t.hidden = true; }, 2200);
+}
+async function share() {
+  const url = canonical();
+  const data = { title: `${plan.plan.name} · FORM LABS`, url };
+  if (navigator.share) {
+    try { await navigator.share(data); return; } catch (e) { if (e.name === 'AbortError') return; }
+  }
+  try { await navigator.clipboard.writeText(url); toast('Link copied'); }
+  catch { toast(url); }
+}
+['share', 'shareMobile'].forEach((id) => el(id)?.addEventListener('click', share));
+
+// PDF. The print edition is a separate sheet — landscape, a cover and three
+// spreads of five weeks — rendered from this same plan and handed to the
+// browser's own printer.
+['pdf', 'pdfMobile'].forEach((id) => el(id)?.addEventListener('click', () => {
+  window.open('print.html', '_blank', 'noopener');
+}));
+
+// ─────────────────────────────────────────────────────────────────────────
+// THE FOUR MOMENTS. Nothing in the composition moves between them; what changes
+// is whether a week is marked, and whether the page speaks in the past tense.
 function render(state, week, keepWindow) {
   document.body.dataset.state = state;
-  const complete = state === 'complete';
-  if (!keepWindow) live = week;
-  matrix(keepWindow ? week : live, complete);
-  steps(week, complete);
-  paceKey();
+  complete = state === 'complete';
+  if (!keepWindow) { live = week; left = clamp(week); }
+  el('done').hidden = !complete;
   if (complete) {
-    el('doneDates').textContent = `${weekOne.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} – ${
-      raceOn.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} · the prescription becomes a record.`;
-    field();
-  } else {
-    const moment = MOMENTS[state](week);
-    el('momentKicker').textContent = moment.kicker;
-    el('momentTitle').innerHTML = moment.title;
-    el('momentBody').textContent = moment.body;
-
+    el('doneDates').textContent = `${show(weekOne)} – ${raceOn.toLocaleDateString('en-US',
+      { month: 'short', day: 'numeric', year: 'numeric' })} · the prescription becomes a record.`;
   }
+  paint();
   document.querySelectorAll('.dev button').forEach((b) =>
     b.classList.toggle('on', b.dataset.state === state));
 }
@@ -352,120 +285,52 @@ function render(state, week, keepWindow) {
 // The week is derived, never edited. Nobody updates this page on a Monday.
 function today() {
   const now = new Date();
-  if (now > raceOn) return ['complete', 15];
-  const week = Math.min(15, Math.max(1, Math.floor((now - weekOne) / 604800000) + 1));
-  const asks = plan.weeks.find((w) => w.week_number === week)?.sessions.some((s) => s.asks != null);
-  return [week === 15 ? 'race' : asks ? 'ask' : 'build', week];
+  if (now > raceOn) return ['complete', LAST];
+  const week = Math.min(LAST, Math.max(1, Math.floor((now - weekOne) / 604800000) + 1));
+  const asks = at(week)?.sessions.some((s) => s.asks != null);
+  return [week === LAST ? 'race' : asks ? 'ask' : 'build', week];
 }
+
+el('eyebrow').textContent = `${plan.plan.discipline.replace(/_/g, ' ').toUpperCase()} · ${LAST} WEEKS`;
+el('planTitle').textContent = `THE ${LAST}-WEEK PLAN`;
+// The version's date is the date the version was CUT, not the date training
+// starts. They are two different facts and the footer is stating the first.
+const cutAt = plan.version?.cut_at ? new Date(plan.version.cut_at) : weekOne;
+el('version').textContent = `${plan.plan.name} · v${plan.version?.version_number ?? 1} · ${
+  cutAt.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}`;
 
 // The switcher and ?state= are DESIGN-REVIEW ONLY. The public page derives its
 // state from the date and carries no way to override it — a plan that can be
 // told what week it is would be a plan someone forgot to update.
 const REVIEW = location.pathname.includes('/design-review/');
-if (!REVIEW) document.getElementById('dev').remove();
+if (!REVIEW) el('dev').remove();
 
-// Representative weeks for the review switcher, derived from the plan rather
-// than typed. If an ask moves, the shortcut follows it; nothing here is a fact
-// about the plan, only a way to reach a moment.
-const firstAsk = plan.weeks.find((w) => w.sessions.some((s) => s.asks != null))?.week_number;
-const lastWeek = plan.weeks[plan.weeks.length - 1].week_number;
-const FIXED = {
-  build: Math.max(1, (firstAsk ?? 4) - 1),
-  ask: firstAsk ?? 4,
-  race: lastWeek,
-  complete: lastWeek
-};
+const firstAsk = weeks.find((w) => w.sessions.some((s) => s.asks != null))?.week_number;
+const FIXED = { build: Math.max(1, (firstAsk ?? 4) - 1), ask: firstAsk ?? 4, race: LAST, complete: LAST };
+
 // Guarded, because the element is removed outside design review — attaching to
 // it unguarded threw before render() ever ran, so the public build showed the
 // bare HTML skeleton and nothing else.
-if (REVIEW) document.getElementById('dev').addEventListener('click', (event) => {
+if (REVIEW) el('dev').addEventListener('click', (event) => {
   const button = event.target.closest('[data-state]');
   if (!button) return;
-  const state = button.dataset.state;
-  if (state === 'auto') {
-    const [live, week] = today();
-    render(live, week);
-    document.querySelectorAll('.dev button').forEach((b) => b.classList.toggle('on', b.dataset.state === 'auto'));
+  if (button.dataset.state === 'auto') {
+    const [state, week] = today();
+    render(state, week);
+    document.querySelectorAll('.dev button').forEach((b) =>
+      b.classList.toggle('on', b.dataset.state === 'auto'));
     return;
   }
-  render(state, FIXED[state]);
+  render(button.dataset.state, FIXED[button.dataset.state]);
 });
 
-// Capture hook, development only: ?state=ask renders that moment directly so a
-// screenshot can reach it without a click. The live page will derive its state
-// from the date and carry no switcher at all.
-// Selecting a session opens it beneath the window; the five weeks stay put.
-document.addEventListener('click', (event) => {
-  if (event.target.closest('.insClose')) { el('inspector').hidden = true; return; }
-  const cell = event.target.closest('#matBody td[data-w]');
-  if (cell) inspect(Number(cell.dataset.w), cell.dataset.day);
-});
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') el('inspector').hidden = true;
-  if (event.key === 'Enter' && event.target.matches('#matBody td[data-w]')) {
-    inspect(Number(event.target.dataset.w), event.target.dataset.day);
-  }
-});
-
-// The arrows move ONE week, not one page of five.
-// The arrows advance the WINDOW by one week. They do not change which week it
-// is — `live` stays where the calendar put it.
-function slide(step) {
-  const next = Math.min(plan.weeks.length - WINDOW + 1, Math.max(1, viewing + step));
-  if (next === viewing) return;
-  el('inspector').hidden = true;
-  render(document.body.dataset.state, next, true);
-}
-el('back').addEventListener('click', () => slide(-1));
-el('fwd').addEventListener('click', () => slide(1));
-
-// Trackpad and touch, sideways over the plan. Horizontal intent only, so a
-// normal vertical scroll past the matrix is never hijacked.
-let wheelLock = 0;
-el('plan').addEventListener('wheel', (event) => {
-  if (Math.abs(event.deltaX) < Math.abs(event.deltaY) * 1.5) return;
-  event.preventDefault();
-  const now = Date.now();
-  if (now - wheelLock < 260) return;
-  wheelLock = now;
-  slide(event.deltaX > 0 ? 1 : -1);
-}, { passive: false });
-
-let touchX = null;
-el('plan').addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
-el('plan').addEventListener('touchend', (e) => {
-  if (touchX == null) return;
-  const dx = e.changedTouches[0].clientX - touchX;
-  touchX = null;
-  if (Math.abs(dx) > 48) slide(dx < 0 ? 1 : -1);
-}, { passive: true });
-
-// The opening moment.
 const params = REVIEW ? new URLSearchParams(location.search) : new URLSearchParams();
 const asked = params.get('state');
-if (asked === 'auto') {
-  const [live, week] = today();
-  render(live, week);
-} else if (asked && FIXED[asked]) {
-  render(asked, FIXED[asked]);
-} else if (REVIEW) {
-  render('build', FIXED.build);
-} else {
-  const [live, week] = today();
-  render(live, week);
-}
+if (asked && asked !== 'auto' && FIXED[asked]) render(asked, FIXED[asked]);
+else if (!asked && REVIEW) render('build', FIXED.build);
+else { const [state, week] = today(); render(state, week); }
 
 // Review-only: ?week= slides the WINDOW so a capture can reach any six weeks. It
-// moves the viewport and nothing else — THIS WEEK stays where the calendar put
-// it, which is the same rule the arrows follow.
+// moves the viewport and nothing else — THIS WEEK stays where the calendar put it.
 const wanted = Number(params.get('week'));
-if (wanted >= 1 && wanted <= plan.weeks.length) {
-  render(document.body.dataset.state, wanted, true);
-}
-
-// Review-only: ?open=3-TUE opens that session so a capture can reach it.
-const opening = params.get('open');
-if (opening) {
-  const [week, day] = opening.split('-');
-  inspect(Number(week), day);
-}
+if (wanted >= 1 && wanted <= LAST) { left = clamp(wanted); paint(); }

@@ -1,9 +1,16 @@
-/* The page carries its own Inter.
-   It asked for Inter and took whatever the machine had — which measured 408px
-   against Helvetica's 448 for the title alone, so the composition was a
-   different width on every computer. Georgia is left as the serif: it is on
-   effectively every machine this will open on, and shipping a second family to
-   replace a system font it already matches would be weight for nothing. */
+/* RACE PACE DURABILITY — the public plan.
+ *
+ * The composition is the approved v8 baseline: a title, a week window, and
+ * nothing between the reader and the work. Everything the earlier page put
+ * around the matrix — the metric strip, the tagline, WHY THIS BLOCK EXISTS,
+ * THE PROGRESSION, PLAN INFORMATION, the narrative moment — is gone, and is
+ * not to come back. The prescription moved INTO the cell, which is why the
+ * inspector went with them.
+ */
+
+/* The page carries its own Inter. It used to ask for Inter and take whatever
+   the machine had, which measured 408px against Helvetica's 448 for the title
+   alone — a different composition on every computer. */
 @font-face{
   font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;
   src:url(fonts/inter-latin.woff2) format('woff2');
@@ -17,340 +24,212 @@
 
 :root{
   --bg:#071012;
-  --bg2:#090f11;
-  --panel:#0d1416;
-  --cell:#0e1517;
-  --cell2:#101719;
   --line:#223034;
-  --line2:#192326;
+  --line2:#172124;
   --text:#f4f6f2;
   --soft:#b7bec0;
   --muted:#727d80;
   --lime:#c8ff45;
-  --lime2:#dcff72;
   --sans:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   --serif:Georgia,"Times New Roman",serif;
+  --motion:700ms cubic-bezier(.2,.58,.22,1);
 }
 *{box-sizing:border-box}
-/* A gradient is a background IMAGE, and an image is sized to the element's box.
-   Rubber-band overscroll goes beyond that box, and what shows there is the
-   background COLOUR — which was never set, so it was the canvas default: white.
-   A dark base under the gradient closes the seam at both ends. */
+/* A gradient is a background IMAGE, sized to the element's box. Rubber-band
+   overscroll goes past that box, and what shows there is the background
+   COLOUR — which was never set, so it was the canvas default: white. */
 html{background-color:var(--bg)}
-html,body{margin:0;background-image:radial-gradient(1200px 540px at 55% 0%,#0a1518 0%,var(--bg) 56%,#060c0e 100%);background-repeat:no-repeat;color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased}
-body{min-width:1180px}
+html,body{
+  margin:0;
+  background-image:radial-gradient(1200px 540px at 55% 0%,#0a1518 0%,var(--bg) 56%,#060c0e 100%);
+  background-repeat:no-repeat;
+  color:var(--text);
+  font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;
+}
+body{min-height:100vh}
 button,a{font:inherit}
 button{cursor:pointer}
-.page-shell{width:100%;min-height:100vh;padding:18px 34px 18px}
+
+.page-shell{width:100%;padding:18px 34px 18px}
 .topbar{height:48px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;margin-bottom:14px}
 .brand,.footer-brand{font-size:15px;letter-spacing:.44em;font-weight:500;white-space:nowrap}
 .brand span,.footer-brand span{color:var(--lime)}
 .topnav{display:flex;gap:30px;align-items:center}
 .topnav a{font-size:12px;color:#a2abad;text-decoration:none}
 .actions{justify-self:end;display:flex;gap:14px}
-.btn{height:38px;padding:0 18px;border-radius:22px;border:1px solid #485357;background:transparent;color:var(--text);font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:8px}
+.btn{height:38px;padding:0 18px;border-radius:22px;border:1px solid #485357;
+  background:transparent;color:var(--text);font-size:13px;font-weight:540}
 .btn.lime{background:var(--lime);border-color:var(--lime);color:#0a0d0e;padding-inline:22px}
-.btn .icon{font-size:15px}
 
-/* The title sits at the page edge, per the reference header. The earlier
-   off-centre indent was for a composition with an image tile beside it; this
-   header has the metric strip carrying the right-hand weight instead.
-   The column floors become 0 because 570 + 760 + 30 exceeded the shell at
-   1280 and overflowed the last metric off the right edge by 24px at 1600.
-   The 1.03 / 1.47 ratio is unchanged, so the proportion is the reference's. */
-.hero{display:grid;grid-template-columns:minmax(0,1.03fr) minmax(0,1.47fr);align-items:center;gap:30px;margin:4px 0 26px}
-.hero-copy{min-width:0}
-h1{font-size:47px;line-height:1.02;margin:0 0 10px;letter-spacing:-.035em;font-weight:650}
-.eyebrow{font-size:17px;letter-spacing:.32em;color:#ced3d4;margin-bottom:10px}
-.subline{font-size:18px;color:#aab2b4;margin:0;line-height:1.4}
-/* `6:30–6:45 /MI` is the one metric whose value is a fixed string that cannot
-   wrap or shrink, and this page loads no webfont — it asks for Inter and takes
-   whatever the machine has. So a column sized by ratio fits on one computer and
-   clips the unit on another. That column is `auto`: it takes exactly the width
-   its own text needs, in whatever font actually rendered, and the four flexible
-   columns divide what is left. It cannot be cut again. */
-.hero-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr)) auto auto minmax(0,1.12fr);border-left:1px solid #4b575a;min-width:0}
-.metric{padding:7px 22px 2px 22px;border-right:1px solid #4b575a;min-height:92px;min-width:0}
-.metric:last-child{border-right:0}
-.metric strong{display:block;color:var(--lime);font-size:30px;line-height:1;letter-spacing:-.035em;font-weight:700;white-space:nowrap}
-.metric strong span{font-size:15px;color:#c6cdce;letter-spacing:.02em;font-weight:500}
-.metric small{display:block;margin-top:9px;color:#9ca5a7;font-size:11px;line-height:1.45;letter-spacing:.16em}
-.metric small em{font-style:normal;letter-spacing:0;color:#778183}
-.metric small b{color:#d6dcdd;font-weight:500;letter-spacing:.06em;white-space:nowrap}
-.metric.wide strong{font-size:28px}
+.hero{display:block;margin:22px 0 34px;padding:0}
+.hero-copy{max-width:860px}
+.mobile-folio,.mobile-hero-actions{display:none}
+h1{font-size:51px;line-height:1.01;margin:0 0 16px;letter-spacing:-.038em;font-weight:610}
+.eyebrow{font-size:16px;letter-spacing:.34em;color:#d1d6d4}
 
-.plan-section{margin-top:0}
-.plan-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 16px 2px}
-.plan-head h2,.section-kicker{font-size:16px;letter-spacing:.38em;font-weight:500;margin:0}
-.week-now{display:flex;align-items:center;gap:14px;color:#c0c8ca;font-size:16px}
-.pill{display:inline-flex;align-items:center;height:31px;padding:0 18px;border:1px solid var(--lime);border-radius:18px;color:var(--lime);font-size:11px;letter-spacing:.1em;font-weight:700}
-.circle{width:40px;height:40px;border-radius:50%;border:1px solid #3b474a;background:#101719;color:#dae0e1;font-size:23px;line-height:1}
-.matrix-wrap{position:relative;border:1px solid #162023;background:rgba(7,12,14,.38)}
-.matrix{width:100%;border-collapse:collapse;table-layout:fixed;font-variant-numeric:tabular-nums}
-.matrix col.row-label{width:88px}
-.matrix thead th{height:57px;background:#0b1214;border-right:1px solid #131b1e;color:#f5f6f2;font-size:12px;text-align:center;font-weight:500;vertical-align:middle}
-.matrix thead th:first-child{text-align:left;padding-left:14px;color:#c5cbcc;letter-spacing:.08em}
-.matrix thead b{display:block;font-size:13px;line-height:1.1}
-.matrix thead span{display:block;margin-top:7px;color:#8d9799;font-size:11px}
-.matrix thead .cur{background:linear-gradient(180deg,rgba(147,197,52,.18),rgba(65,85,26,.18));border-top:2px solid var(--lime)}
-.matrix thead .cur b,.matrix thead .cur span{color:var(--lime)}
-.matrix tbody th{height:34px;padding-left:12px;text-align:left;background:#0a1012;color:#f2f4ef;font-size:12px;font-weight:500;border-top:1px solid #121a1d;border-right:1px solid #131b1e}
-.matrix tbody td{height:34px;text-align:center;background:#0e1517;color:#d0d6d7;font-size:12px;border-top:1px solid #121a1d;border-right:1px solid #131b1e}
-.matrix tbody td.cur{background:linear-gradient(90deg,rgba(139,184,56,.16),rgba(80,104,32,.18));color:#f3f6ef}
-.matrix tbody tr.total th,.matrix tbody tr.total td{height:56px;background:#081012;border-top:1px solid #223034;font-weight:600;color:#f1f4ef}
-.matrix tbody tr.total th{font-size:12px;letter-spacing:.18em;color:#afb7b9}
-.matrix tbody tr.total td.cur{color:var(--lime)}
-
-.method-grid{display:grid;grid-template-columns:1.08fr 1.48fr .84fr;margin-top:34px;border-bottom:1px solid #2a3639;padding-bottom:28px}
-.method-grid article{min-height:224px;padding:0 38px}
-.method-grid article:first-child{padding-left:2px}
-.method-grid article+article{border-left:1px solid #283437}
-.section-kicker{color:#cfd5d6;font-size:13px;margin:0 0 16px}
-.why h3{font-family:var(--serif);font-size:31px;line-height:1.08;font-weight:400;margin:0 0 14px;letter-spacing:-.02em}
-.why p,.progression>p,.dimension p{font-size:15px;line-height:1.55;color:#aab3b5;margin:0}
-.progression>p{margin-bottom:30px}
-.steps{display:flex;align-items:flex-start;gap:13px}
-.steps i{font-style:normal;color:#667174;margin-top:26px}
-.step{text-align:center}
-.step span{display:grid;place-items:center;width:66px;height:66px;border:1px solid #606b6f;border-radius:50%;font-family:var(--serif);font-size:27px;background:#0b1214}
-.step small{display:block;margin-top:9px;color:#98a2a4;font-size:11px;letter-spacing:.08em}
-.step.active span{border-color:var(--lime);color:var(--lime);box-shadow:0 0 20px rgba(200,255,69,.12)}
-.step.active small{color:#f1f3ef}
-.dimensions{padding-right:2px!important}
-.dimension{display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:center;margin:14px 0 20px}
-.dim-icon{width:62px;height:62px;border:1px solid #a8b0b2;border-radius:50%;display:grid;place-items:center;font-size:25px;color:#fff}
-.dimension b{display:block;font-size:14px;margin-bottom:4px}
-.dimension p{font-size:14px}
-footer{height:55px;display:flex;align-items:flex-end;gap:18px;color:#9da6a8;font-size:11px;padding-top:17px}
-.footer-brand{font-size:11px}
-.footer-rule{height:24px;width:1px;background:#566164;margin-left:3px}
-.footer-copy{padding-bottom:2px}
-.version{margin-left:auto;padding-bottom:2px}
-
-@media print{
-  @page{size:landscape;margin:8mm}
-  body{background:#fff;color:#111;min-width:0}
-  .topbar .topnav,.actions,.week-now .circle{display:none}
-  .page-shell{padding:0}
-}
-
-/* ═══════════════════════════════════════════════════════════════════════
-   LIFECYCLE — the same page, at four moments in its life.
-
-   The architecture never moves. The meaning of the page changes.
-
-   Nothing above this line is altered: the hero, the measure, the matrix, the
-   metric strip and the methodology sections are the approved composition, and a
-   state is not permission to redesign them. Everything here either adds a line
-   that was not there or quiets one that was.
-   ═══════════════════════════════════════════════════════════════════════ */
-
-/* THE MOMENT — one line above the matrix. Not a card, not a banner: it sits in
-   the space the plan heading already occupies. */
-.moment{
-  display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:30px;
-  margin:0 0 16px;padding-left:2px;
-}
-.moment .kicker{
-  font-size:10.5px;letter-spacing:.3em;color:var(--lime);margin-bottom:8px;
-  text-transform:uppercase;
-}
-.moment h3{
-  margin:0;font-size:20px;font-weight:500;letter-spacing:.01em;color:var(--text);
-  line-height:1.15;
-}
-.moment p{margin:8px 0 0;font-size:12.5px;color:var(--muted);max-width:62ch;line-height:1.5}
-
-/* THE ASK. The one week that puts a question gets to say it at the size of an
-   answer — in the negative space beside the matrix heading, not in a new box. */
-body[data-state="ask"] .moment h3{
-  font-family:var(--serif);font-weight:400;font-size:64px;line-height:.92;
-  letter-spacing:-.03em;color:var(--lime);
-}
-body[data-state="ask"] .moment .kicker{color:var(--muted)}
-body[data-state="ask"] .moment .band{
-  display:block;margin-top:10px;font-size:11px;letter-spacing:.22em;color:#c6cdce;
-}
-
-/* RACE WEEK. The page gets quieter rather than louder — but the progression is
-   the one thing that must get LOUDER, because race week is not "only W15
-   matters", it is "everything led here". The matrix recedes; the path does not. */
-body[data-state="race"] .moment h3{font-size:26px;letter-spacing:.02em}
-body[data-state="race"] .step span{border-color:#7b868a;color:#dfe4e5;background:#0d1518}
-body[data-state="race"] .step small{color:#8d9599}
-body[data-state="race"] .steps i{color:#8f9a9e}
-body[data-state="race"] .step.race span{
-  border-color:var(--lime);color:var(--lime);
-  box-shadow:0 0 34px rgba(200,255,69,.18);
-}
-body[data-state="race"] .step.race small{color:var(--lime)}
-body[data-state="race"] .matrix tbody td:not(.cur),
-body[data-state="race"] .matrix thead th:not(.cur){opacity:.34;transition:opacity .3s}
-body[data-state="race"] .matrix tbody th{opacity:.5}
-
-/* COMPLETE. No current week anywhere, and the plan becomes an artifact. */
-body[data-state="complete"] .week-now,
-body[data-state="complete"] .moment{display:none}
-body[data-state="complete"] .cur{background:none !important;border-top-color:transparent !important;color:inherit !important}
-.done{display:none;margin:2px 0 22px;padding-left:2px}
-body[data-state="complete"] .done{display:block}
+/* COMPLETE is the one moment that speaks. It is not a description of the week;
+   it is the page changing tense, and it exists only after the race. */
+.done{margin:0 0 24px;padding-left:2px}
 .done .status{font-size:10.5px;letter-spacing:.3em;color:var(--lime);text-transform:uppercase}
 .done h3{margin:9px 0 6px;font-family:var(--serif);font-weight:400;font-size:38px;letter-spacing:-.02em}
 .done p{margin:0;color:var(--muted);font-size:13px}
 
-/* THE FIELD — the chapter that does not exist until there is evidence. */
-.field{display:none;margin-top:36px;padding-top:30px;border-top:1px solid var(--line)}
-body[data-state="complete"] .field{display:block}
-.field .section-kicker{margin-bottom:14px}
-.field h3{margin:0 0 6px;font-family:var(--serif);font-weight:400;font-size:31px;letter-spacing:-.02em}
-.field .lede{margin:0 0 26px;color:var(--muted);font-size:13.5px}
-.athletes{display:grid;grid-template-columns:1fr 1fr;gap:0}
-.athlete{padding:24px 34px 26px 0}
-.athlete+.athlete{border-left:1px solid var(--line);padding-left:34px;padding-right:0}
-.athlete h4{margin:0 0 18px;font-size:15px;letter-spacing:.22em;font-weight:500}
-.evrow{display:grid;grid-template-columns:auto auto auto;gap:0 34px;justify-content:start;margin-bottom:20px}
-.ev b{display:block;font-size:8.5px;letter-spacing:.2em;color:var(--muted);margin-bottom:7px}
-.ev strong{font-size:17px;font-weight:500;font-variant-numeric:tabular-nums}
-.ev.pending strong{color:#4e5659}
-.read{border-top:1px solid var(--hair-2);padding-top:14px;font-size:12.5px;line-height:1.55;color:#8b9295;max-width:46ch}
-.read em{font-style:normal;color:#5b6467;letter-spacing:.16em;font-size:9px;display:block;margin-bottom:8px;text-transform:uppercase}
+.plan-section{margin-bottom:22px}
+.plan-section:focus{outline:none}
+.plan-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 17px 2px}
+.plan-head h2{font-size:16px;letter-spacing:.38em;font-weight:500;margin:0}
+.week-now{display:flex;align-items:center;gap:14px;color:#c0c8ca;font-size:15px}
+.range{min-width:150px;text-align:center}
+.circle{width:40px;height:40px;border-radius:50%;border:1px solid #3b474a;background:#101719;
+  color:#dae0e1;font-size:23px;line-height:1;display:grid;place-items:center}
+.circle:disabled{opacity:.2;cursor:default}
 
-/* THE PROGRESSION, moving through time. Past quiet, present lime, future dim. */
-/* The circle is `.step span`. A glow on the outer div draws a square. */
-.step.past span{border-color:#394346;color:#8d9599}
-.step.past small{color:#6d7679}
-.step.future span{border-color:#222a2d;color:#495255;background:#080e10}
-.step.future small{color:#4d5659}
-.step.now span{border-color:var(--lime);color:var(--lime);box-shadow:0 0 20px rgba(200,255,69,.12)}
-.step.now small{color:#f1f3ef}
-body[data-state="complete"] .step span{border-color:#4a5457;color:#c3cacb}
-body[data-state="complete"] .step.race span{border-color:var(--lime);color:var(--lime)}
+/* THE WHOLE WEEK MOVES, OR NOTHING DOES.
+   Three sheets on one track, parked on the middle one. A step animates the
+   track by exactly one sheet, then the sheets are re-typeset and the track is
+   parked again in the SAME task — a repaint between those two would flash the
+   week after next. */
+.motion-viewport{position:relative;width:100%;overflow:hidden;touch-action:pan-y;
+  border-top:1px solid #293639;border-bottom:1px solid #293639}
+.motion-track{display:flex;width:100%;will-change:transform;transform:translate3d(-100%,0,0)}
+.motion-track.animating{transition:transform var(--motion)}
+.sheet{flex:0 0 100%;min-width:0}
 
-/* Development only. Never ships. */
+.matrix{width:100%;border-collapse:collapse;table-layout:fixed;font-variant-numeric:tabular-nums}
+.matrix col.row-label{width:82px}
+.matrix thead th{height:60px;border-right:1px solid rgba(34,48,52,.54);color:#f5f6f2;
+  font-size:12px;text-align:center;font-weight:500;vertical-align:middle;background:rgba(8,15,17,.26)}
+.matrix thead th:first-child{text-align:left;padding-left:12px;color:#c5cbcc;letter-spacing:.08em}
+.matrix thead b{display:block;font-size:13px;line-height:1.1;font-weight:560}
+.matrix thead span{display:block;margin-top:7px;color:#8d9799;font-size:11px;font-weight:430}
+.matrix thead .cur{position:relative;
+  background:linear-gradient(180deg,rgba(147,197,52,.075),rgba(65,85,26,.045))}
+.matrix thead .cur:before{content:"THIS WEEK";position:absolute;top:5px;left:0;right:0;
+  color:var(--lime);font-size:8px;letter-spacing:.22em;font-weight:620}
+.matrix thead .cur:after{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--lime)}
+.matrix thead .cur b{padding-top:11px}
+.matrix tbody th{padding:0 12px;text-align:left;color:#e9ece8;font-size:12px;font-weight:500;
+  border-top:1px solid rgba(28,39,42,.78);border-right:1px solid rgba(27,37,40,.66);
+  background:rgba(8,15,17,.18)}
+.matrix tbody td{vertical-align:top;border-top:1px solid rgba(28,39,42,.78);
+  border-right:1px solid rgba(27,37,40,.48);background:rgba(14,21,23,.46)}
+.matrix tbody td.cur{background:linear-gradient(90deg,rgba(139,184,56,.055),rgba(80,104,32,.065))}
+
+.cell{min-height:78px;padding:10px 14px 11px}
+.session-title{font-size:10px;line-height:1.15;letter-spacing:.19em;font-weight:680;
+  color:#e4e9e6;text-transform:uppercase;margin-bottom:8px}
+/* Lime still means one thing: this can establish something. Race-pace work is
+   the establishing work, so it is the only title that carries the accent. */
+.accent-title{color:var(--lime)}
+.primary{color:#c5cdca;font-size:12.5px;line-height:1.38;font-weight:430}
+.detail{color:#899496;font-size:10.8px;line-height:1.44;margin-top:2px;font-weight:390}
+.total{color:#606b6d;font-size:9.8px;line-height:1.35;margin-top:5px;font-weight:390}
+.rest .session-title{color:#687275;font-weight:560}
+.rest .primary{color:#aeb7b8}
+
+.matrix tbody tr.total th,.matrix tbody tr.total td{height:52px;background:rgba(8,16,18,.58);
+  border-top:1px solid #2b383b;font-weight:560}
+.matrix tbody tr.total th{font-size:11px;letter-spacing:.18em;color:#9fa9ab}
+.matrix tbody tr.total .cell{min-height:0;padding-top:16px}
+.matrix tbody tr.total td.cur .primary{color:var(--lime)}
+
+/* MOBILE — one week, read as a page rather than scanned as a grid. */
+.mobile-week{display:none}
+.mobile-day{display:grid;grid-template-columns:52px 1fr;gap:16px;padding:17px 0 18px;
+  border-bottom:1px solid #1d292c}
+.mobile-day-name{font-size:11px;color:#dce1de;padding-top:1px}
+.mobile-session .session-title{font-size:10px;margin-bottom:7px}
+.mobile-session .primary{font-size:14px}
+.mobile-session .detail{font-size:12px}
+.mobile-session .total{font-size:10.5px}
+.mobile-week-total{display:flex;align-items:baseline;justify-content:space-between;
+  padding:19px 0 4px;border-top:1px solid #2b383b}
+.mobile-week-total span{font-size:11px;letter-spacing:.18em;color:#9fa9ab}
+.mobile-week-total strong{font-size:14px;font-weight:560;color:#e9ece8}
+
+footer{height:55px;display:flex;align-items:flex-end;gap:18px;color:#9da6a8;font-size:11px;padding-top:17px}
+.footer-brand{font-size:11px}
+.footer-rule{height:24px;width:1px;background:#566164}
+.version{margin-left:auto}
+
+.toast{position:fixed;left:50%;bottom:70px;transform:translateX(-50%);z-index:95;
+  padding:9px 18px;border:1px solid var(--line);border-radius:999px;background:#0a1113f2;
+  color:var(--soft);font-size:11.5px;letter-spacing:.06em;backdrop-filter:blur(6px)}
+
 .dev{position:fixed;left:50%;transform:translateX(-50%);bottom:14px;z-index:90;
   display:flex;gap:2px;padding:3px;border:1px solid var(--line);border-radius:999px;
   background:#0a1113ee;backdrop-filter:blur(6px)}
 .dev button{padding:6px 13px;border-radius:999px;border:0;background:transparent;
-  color:var(--muted);font-size:10.5px;letter-spacing:.1em;cursor:pointer;text-transform:uppercase}
+  color:var(--muted);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase}
 .dev button.on{background:#ffffff12;color:var(--text)}
 
-/* ═══════════════════════════════════════════════════════════════════════
-   SIX WEEKS, TYPESET.
-
-   Narrower columns so the eye reads ACROSS the training rather than down five
-   wide panels. The plan gets its own measure and is centred; the hero keeps the
-   full width, which it earns.
-
-   The label is the hierarchy. Small, letter-spaced, editorial — a session says
-   what it is before it says how far. No badges, no cards, no colour per
-   discipline: the key days are marked by a hairline and by weight, and lime
-   stays scarce.
-   ═══════════════════════════════════════════════════════════════════════ */
-
-/* The plan shares the header's left edge. A 1180 measure centred inside a wider
-   shell indented the matrix 176px away from the title, which read as a mistake
-   rather than as composure — the reference has every element on one left edge.
-   The cap only bites on very wide screens. */
-.plan-section{--plan-measure:1560px}
-.plan-section .plan-head,
-.plan-section .moment,
-.plan-section .rail,
-.plan-section .matrix-wrap,
-.plan-section .inspector{
-  width:min(100%,var(--plan-measure));margin-left:auto;margin-right:auto;
+@media (max-width:1279px){
+  .page-shell{padding-inline:26px}
+  h1{font-size:46px}
+  .matrix col.row-label{width:74px}
+  .cell{padding-inline:13px}
 }
+@media (max-width:899px){
+  .page-shell{padding:16px 20px}
+  .topbar{grid-template-columns:1fr auto;height:auto;row-gap:12px}
+  .topnav{display:none}
+  .actions{grid-column:2}
+  .hero{margin-top:30px}
+  h1{font-size:42px}
+  .eyebrow{font-size:14px}
+  .done h3{font-size:30px}
+  .plan-head h2{font-size:14px}
+  .week-now{font-size:13px}
+  .range{min-width:120px}
+  .matrix col.row-label{width:66px}
+  .cell{padding:10px 12px}
+  .session-title{font-size:9px}
+  .primary{font-size:12px}
+}
+@media (max-width:599px){
+  .page-shell{padding:14px 20px 18px}
+  .topbar{position:relative;display:flex;justify-content:flex-start;align-items:flex-start;min-height:54px}
+  .brand{font-size:12px;padding-top:2px}
+  .topbar .actions{display:none}
 
-.weekNav{display:flex;align-items:center;gap:16px}
-.windowLabel{text-align:center;min-width:190px}
-.windowLabel b{display:block;font-size:12.5px;font-weight:500;color:#cdd4d5}
-.windowLabel span{display:block;margin-top:3px;font-size:9.5px;letter-spacing:.1em;color:#6e787b}
-.circle[disabled]{opacity:.25;cursor:default}
+  .hero{position:relative;margin:4px 0 14px;padding-top:0}
+  .mobile-folio{display:block;position:absolute;top:-50px;right:0;width:118px;
+    padding:0 0 0 18px;border-left:1px solid #182326;background:transparent;text-align:left}
+  .mobile-folio .folio-current{display:block;color:var(--lime);font-size:8px;
+    letter-spacing:.22em;margin-bottom:7px}
+  .mobile-folio .folio-week{display:block;color:#eef2ef;font-size:17px;font-weight:540;letter-spacing:.03em}
+  .mobile-folio .folio-date{display:block;margin-top:8px;color:#7f898b;font-size:11px}
 
-.rail{display:flex;align-items:center;gap:12px;margin:0 0 10px}
-.rail #railLabel{font-size:8.5px;letter-spacing:.2em;color:#5b6467;text-transform:uppercase}
-.rail #rail{display:flex;gap:3px;align-items:center}
-.rail #rail span{width:20px;height:2px;background:#1b2225;border-radius:1px}
-.rail #rail span.in{background:#333d40}
-.rail #rail span.now{background:var(--lime)}
+  h1{font-size:39px;line-height:1.03;max-width:330px;margin:0 0 20px;padding-top:4px;font-weight:580}
+  .eyebrow{font-size:11.5px;letter-spacing:.26em}
+  .mobile-hero-actions{display:flex;gap:10px;margin-top:20px;align-items:center;flex-wrap:nowrap}
+  .share-icon-btn{width:34px;height:34px;border-radius:50%;border:1px solid #39464a;
+    background:transparent;color:#d9dfdc;display:grid;place-items:center;font-size:15px;
+    line-height:1;padding:0}
+  .mobile-hero-actions .btn{height:34px;padding:0 12px;font-size:10.5px;border-radius:18px}
+  .mobile-hero-actions .btn.lime{padding-inline:15px}
 
-.matrix{table-layout:fixed}
-.matrix thead th.wk u{display:block;text-decoration:none;font-size:7.5px;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--lime);margin-bottom:4px}
-.matrix thead th b{font-size:12.5px}
-.matrix thead th span{margin-top:4px;font-size:9px;letter-spacing:.02em}
-.matrix thead th:first-child,.matrix tbody th{width:66px}
+  .done{margin-bottom:18px}
+  .done h3{font-size:26px}
 
-.matrix tbody td{vertical-align:top;text-align:left;padding:9px 11px 10px;height:auto;
-  border-left:2px solid transparent}
-.matrix tbody td em{display:block;font-style:normal;font-size:7.5px;letter-spacing:.17em;
-  text-transform:uppercase;color:#697376;margin-bottom:5px;line-height:1.3}
-.matrix tbody td b{display:block;font-size:12.5px;font-weight:400;color:#dfe4e2;
-  line-height:1.35;font-variant-numeric:tabular-nums}
-.matrix tbody td i{display:block;font-style:normal;font-size:10px;line-height:1.5;
-  color:#78817f;margin-top:2px}
-.matrix tbody th{font-size:11.5px;color:#98a09f;font-weight:400;vertical-align:top;padding-top:10px}
+  .plan-head{align-items:center;justify-content:flex-end;margin:-48px 0 14px;
+    min-height:38px;pointer-events:none}
+  .plan-head h2{display:none}
+  .week-now{gap:8px;margin-left:auto;pointer-events:auto}
+  .circle{width:34px;height:34px;background:transparent;border-color:#334044;font-size:18px}
+  .range{min-width:56px;text-align:center;font-size:10.5px;color:#8f999b;letter-spacing:.16em}
 
-.matrix tbody td.d-easy em{color:#525b5e}
-.matrix tbody td.d-easy b{color:#a8b0ad}
-.matrix tbody td.d-rest em{color:#414a4d}
+  .matrix{display:none}
+  .mobile-week{display:block}
+  .motion-viewport{border-top:1px solid #2c393c;border-bottom:0;margin-top:0}
 
-/* The three days that carry the week: a hairline, a brighter label, more weight
-   on the prescription. Toned down from the reference's five bright bars. */
-.matrix tbody td.d-rp,
-.matrix tbody td.d-support,
-.matrix tbody td.d-long,
-.matrix tbody td.d-race{border-left-color:#333d40}
-.matrix tbody td.d-rp em,
-.matrix tbody td.d-support em,
-.matrix tbody td.d-long em,
-.matrix tbody td.d-race em{color:#939d9f}
-.matrix tbody td.d-rp b,
-.matrix tbody td.d-long b,
-.matrix tbody td.d-race b{color:#f2f5f2}
-
-/* An authored question. A fine lime rule and a lime label — the prescription
-   itself already says `5 mi continuous @ 6:30–6:45`. */
-.matrix tbody td.asked{border-left-color:var(--lime)}
-.matrix tbody td.asked em{color:var(--lime)}
-
-/* No hover fill. Sweeping the cursor across six weeks lit up cell after
-   cell, which made reading the table feel like scrubbing a menu. The
-   pointer says it is selectable; the keyboard ring says where focus is. */
-.matrix tbody td[data-w]{cursor:pointer}
-.matrix tbody td[data-w]:hover em{color:#c3cbc9}
-.matrix tbody td[data-w]:focus-visible{outline:1px solid var(--lime);outline-offset:-2px}
-.matrix tbody tr.total th{line-height:1.25;font-size:8.5px;letter-spacing:.16em;
-  text-transform:uppercase;color:#6e787b}
-.matrix tbody tr.total td{text-align:left;vertical-align:middle;padding:12px 11px;
-  font-size:13px;color:#dfe4e2}
-
-.paceKey{margin:0}
-.paceKey div{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
-  padding:11px 0;border-bottom:1px solid var(--hair-2)}
-.paceKey div:last-child{border-bottom:0}
-.paceKey dt{font-size:12px;color:#9aa2a4}
-.paceKey dd{margin:0;font-size:13px;color:#e4e9e5;font-variant-numeric:tabular-nums}
-
-.inspector{margin-top:1px;border:1px solid var(--line);border-top:0;background:#0a1113;
-  padding:18px 22px 20px}
-.insHead{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:12px}
-.insHead em{display:block;font-style:normal;font-size:8.5px;letter-spacing:.22em;
-  text-transform:uppercase;color:#6e787b;margin-bottom:6px}
-.insHead h4{margin:0;font-size:18px;font-weight:400;color:var(--text)}
-.insClose{background:none;border:0;color:#5f696c;font-size:20px;line-height:1;cursor:pointer}
-.insClose:hover{color:var(--text)}
-.inspector p{margin:0}
-.insWork{font-size:13.5px;color:#dbe1e0;line-height:1.6}
-.insBook,.insTotal{font-size:11.5px;color:#7f888b;margin-top:4px !important}
-.insIntent{margin-top:12px !important;font-size:13px;line-height:1.55;color:#9aa2a4;max-width:66ch}
-.insRule{margin-top:7px !important;font-size:11.5px;color:#6e787b}
-
-/* The narrative above the matrix is off in every live state. It restated what
-   the grid already shows and sat between the reader and the work. The ask does
-   not need announcing either: W4's Tuesday reads `5 mi continuous @ 6:30–6:45`
-   in lime, which is the question, said as a prescription.
-
-   COMPLETE keeps its line — "The plan has been run" is not a description of the
-   week, it is the page changing tense. */
-.moment{display:none}
-.plan-section .rail{margin-top:16px}
+  footer{height:auto;padding-top:34px;flex-wrap:wrap;align-items:center;gap:8px}
+  .footer-copy{display:none}
+  .footer-rule{display:none}
+  .version{width:100%;margin-left:0;color:#687275;padding-top:2px}
+}
+@media (prefers-reduced-motion:reduce){
+  :root{--motion:0ms linear}
+  .motion-track.animating{transition:none}
+}
