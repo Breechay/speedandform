@@ -66,7 +66,7 @@ export async function loadCoachRoster(coachMemberships) {
 // A rung is a continuous run held in band for a distance the ladder is asking
 // for — not a long run, not an interval set. Derived here from the components
 // and the checkpoints because `planned_sessions` does not yet name the rung it
-// establishes; when establishes_checkpoint_id lands this reads the column
+// establishes; when asks_checkpoint_id lands this reads the column
 // instead and stops inferring.
 export function rungFor(session, mark) {
   const parts = (session?.currentVersion?.components || []).filter((part) => part.role === 'work');
@@ -932,8 +932,14 @@ export async function judgeClaim(payload) {
 const CHECKPOINT_SOURCES = ['automatic', 'coach', 'override'];
 const CHECKPOINT_DECISIONS = ['advance', 'repeatDose', 'reduce', 'replace', 'hold'];
 
+const CHECKPOINT_INTERPRETATIONS = ['pace', 'durability', 'load', 'environment', 'insufficient_evidence'];
+
 export async function moveCheckpoint(checkpointId, state, provenance = {}) {
-  const { source, decision = 'advance', reason, evidenceCompletionId, ruleId, ruleVersion } = provenance;
+  const { source, decision = 'advance', reason, evidenceCompletionId, ruleId, ruleVersion,
+          interpretation } = provenance;
+  if (interpretation && !CHECKPOINT_INTERPRETATIONS.includes(interpretation)) {
+    throw new Error('An interpretation is pace, durability, load, environment or insufficient evidence.');
+  }
   if (!CHECKPOINT_SOURCES.includes(source)) {
     throw new Error('A rung cannot move without saying what moved it.');
   }
@@ -966,6 +972,7 @@ export async function moveCheckpoint(checkpointId, state, provenance = {}) {
     evidence_completion_id: evidenceCompletionId || null,
     rule_id: ruleId || null,
     rule_version: ruleVersion || null,
+    interpretation: interpretation || null,
     reason: String(reason).trim(),
     moved_by: source === 'automatic' ? null : (user?.id || null)
   });
@@ -976,6 +983,11 @@ export async function moveCheckpoint(checkpointId, state, provenance = {}) {
     throw ledgerError;
   }
 
+  // A HOLD is a ruling that the rung did NOT move. Writing the filing onto the
+  // checkpoint anyway would record the attempt that failed to establish it as
+  // the evidence that established it — the ladder would cite its own refusal.
+  // The movement ledger keeps the evidence for a hold; the checkpoint does not.
+  const established = decision !== 'hold' && state !== before.state;
   const { error } = await supabase
     .from('mark_checkpoints')
     .update({
@@ -983,7 +995,7 @@ export async function moveCheckpoint(checkpointId, state, provenance = {}) {
       source,
       moved_at: new Date().toISOString(),
       moved_by: source === 'automatic' ? null : (user?.id || null),
-      evidence_completion_id: evidenceCompletionId || null
+      ...(established ? { evidence_completion_id: evidenceCompletionId || null } : {})
     })
     .eq('id', checkpointId);
   if (error) throw error;
