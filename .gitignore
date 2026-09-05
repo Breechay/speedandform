@@ -17,3 +17,4 @@ harness/
 # real renderer plus the plan dump — 12 MB of copies, rebuildable in one
 # command. The sources that are not copies live in scripts/design-review/.
 form-labs-design-review/
+form-labs-design-review.zip
