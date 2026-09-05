@@ -1,4 +1,4 @@
-# Race Pace Durability — static pass 3
+# Race Pace Durability — static pass 4
 
 Working copy of `design/reference/`. **Three approved changes, nothing else.**
 No data wiring, no responsive work, no new pages, no production change.
@@ -34,18 +34,28 @@ went 22/24 → 18/20 so five metrics breathe in the narrower strip.
 
 Now zero overflow at 1280, 1440, 1600 and 2000.
 
-**2b · `/MI` was touching its own divider.** Five equal columns gave
-`6:30–6:45 /MI` — much the longest string in the strip — the same width as `3`,
-so it ran to the edge of its cell and the rule landed on the unit. The strip is
-now `1fr 1fr 1fr 1.34fr 1.02fr`: the race-pace metric takes the extra, nothing
-else changes, and no typeface got smaller. **21px of clearance at every width.**
+**2b · `/MI` could still be cut, and the cause was not the ratio.**
+`6:30–6:45 /MI` and `TUE · THU · SAT` are fixed strings that cannot wrap or
+shrink — and **this page loads no webfont.** It asks for Inter and takes whatever
+the machine happens to have: `<link>` elements for fonts in the document, 0. So a
+column sized by ratio fits on one computer and clips the unit on another, which
+is exactly why it looked right in my captures and wrong on Brice's screen.
 
-**2c · `Weekly miles (approx)` is gone from the layout.** It was pinned
+Both of those columns are now `auto` — each takes precisely the width its own
+text needs, in whatever font actually rendered, and the three flexible columns
+divide what is left. Measured across Inter, Helvetica, Verdana, Georgia and
+Courier New: text width moves 135px → 185px and the cell tracks it exactly, so
+**clearance is a constant 23px** and the unit cannot be cut in any font.
+
+`white-space:nowrap` on the key-days line, which the reference has on one line.
+
+**2c · `Weekly miles (approx)` is gone.** It was pinned
 bottom-right under W15's `28`, reading as a footnote to the last week rather than
 a caption for the row. Moving it under `TOTAL` fixed the meaning and still added
-clutter to a row that is already legible, so it is removed. The fact survives as
-the `TOTAL` cell's own tooltip — hover, with a `help` cursor — which costs no
-space and adds no element. `TOTAL` is centred again.
+clutter to a row that is already legible, so it is removed. The tooltip idea is dropped too, on
+Brice's call — no `title`, no help cursor, nothing on hover. `TOTAL` is centred
+again and the row carries no caption. It gets revisited only if an athlete
+actually asks what the number is.
 
 **2d · No white seam on overscroll.** A gradient is a background *image*, sized
 to the element's box; rubber-banding past that box shows the background
@@ -92,6 +102,13 @@ and there is no responsive CSS in the prototype at all — only a print block. S
 The 390 and 844 screenshots are of that, and they are honest: this is what the
 approved prototype does at those sizes. Responsive was explicitly out of scope
 for this pass, so nothing was invented to hide it.
+
+**The page loads no webfont, and that is a fidelity risk beyond one metric.**
+The stack is `Inter, ui-sans-serif, -apple-system, …` with nothing fetched, so
+every machine renders this page in whatever it has. The metrics no longer break
+because of it, but the *typography* still differs from the reference on any
+machine without Inter. Fixing it means shipping or linking Inter, which is an
+addition rather than a reproduction — so it waits for your word.
 
 **Two icon sets are text glyphs.** `⇧ ▣` in the header and `▥ ◎` in TWO
 DIMENSIONS. The reference has properly drawn marks. Replacing them means drawing

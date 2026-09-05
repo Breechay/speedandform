@@ -45,14 +45,20 @@ button{cursor:pointer}
 h1{font-size:47px;line-height:1.02;margin:0 0 10px;letter-spacing:-.035em;font-weight:650}
 .eyebrow{font-size:17px;letter-spacing:.32em;color:#ced3d4;margin-bottom:10px}
 .subline{font-size:18px;color:#aab2b4;margin:0;line-height:1.4}
-.hero-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,1.34fr) minmax(0,1.02fr);border-left:1px solid #4b575a;min-width:0}
-.metric{padding:7px 20px 2px 22px;border-right:1px solid #4b575a;min-height:92px;min-width:0}
+/* `6:30–6:45 /MI` is the one metric whose value is a fixed string that cannot
+   wrap or shrink, and this page loads no webfont — it asks for Inter and takes
+   whatever the machine has. So a column sized by ratio fits on one computer and
+   clips the unit on another. That column is `auto`: it takes exactly the width
+   its own text needs, in whatever font actually rendered, and the four flexible
+   columns divide what is left. It cannot be cut again. */
+.hero-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr)) auto auto minmax(0,1.12fr);border-left:1px solid #4b575a;min-width:0}
+.metric{padding:7px 22px 2px 22px;border-right:1px solid #4b575a;min-height:92px;min-width:0}
 .metric:last-child{border-right:0}
 .metric strong{display:block;color:var(--lime);font-size:30px;line-height:1;letter-spacing:-.035em;font-weight:700;white-space:nowrap}
 .metric strong span{font-size:15px;color:#c6cdce;letter-spacing:.02em;font-weight:500}
 .metric small{display:block;margin-top:9px;color:#9ca5a7;font-size:11px;line-height:1.45;letter-spacing:.16em}
 .metric small em{font-style:normal;letter-spacing:0;color:#778183}
-.metric small b{color:#d6dcdd;font-weight:500;letter-spacing:.06em}
+.metric small b{color:#d6dcdd;font-weight:500;letter-spacing:.06em;white-space:nowrap}
 .metric.wide strong{font-size:28px}
 
 .plan-section{margin-top:0}
@@ -74,7 +80,7 @@ h1{font-size:47px;line-height:1.02;margin:0 0 10px;letter-spacing:-.035em;font-w
 .matrix tbody td{height:34px;text-align:center;background:#0e1517;color:#d0d6d7;font-size:12px;border-top:1px solid #121a1d;border-right:1px solid #131b1e}
 .matrix tbody td:nth-child(4){background:linear-gradient(90deg,rgba(139,184,56,.16),rgba(80,104,32,.18));color:#f3f6ef}
 .matrix tbody tr.total th,.matrix tbody tr.total td{height:56px;background:#081012;border-top:1px solid #223034;font-weight:600;color:#f1f4ef}
-.matrix tbody tr.total th{font-size:12px;letter-spacing:.18em;color:#afb7b9;cursor:help}
+.matrix tbody tr.total th{font-size:12px;letter-spacing:.18em;color:#afb7b9}
 .matrix tbody tr.total td:nth-child(4){color:var(--lime)}
 
 .method-grid{display:grid;grid-template-columns:1.08fr 1.48fr .84fr;margin-top:34px;border-bottom:1px solid #2a3639;padding-bottom:28px}
