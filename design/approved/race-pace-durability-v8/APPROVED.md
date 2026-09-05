@@ -29,7 +29,11 @@ Brice, handing these over:
 - Six weeks at ≥1280, three at ≥900, two at ≥600, one below. One step moves the
   whole week, not a column.
 - Mobile is a single-week editorial sheet, with the week's identity said once in
-  the folio beside the title.
+  the folio beside the title. The folio is **right-aligned**, where the fixture
+  left-aligns it: its top sits on the wordmark's and its right edge on the right
+  edge of the forward arrow. Left-aligned ragged text has no right edge to align
+  — only the longest line reaches the margin, and the longest line is a different
+  length every week, so the block appeared to breathe in and out while paging.
 - Print carries **no THIS WEEK mark**. A sheet on a wall in November must not
   still be pointing at September.
 

@@ -194,10 +194,15 @@ footer{height:55px;display:flex;align-items:flex-end;gap:18px;color:#9da6a8;font
   .topbar .actions{display:none}
 
   .hero{position:relative;margin:4px 0 14px;padding-top:0}
-  /* Pulled 13px up and 13px out from the baseline position, so the folio rides
-     slightly above the wordmark and closer to the trim than the body copy is. */
-  .mobile-folio{display:block;position:absolute;top:-63px;right:-13px;width:118px;
-    padding:0 0 0 18px;border-left:1px solid #182326;background:transparent;text-align:left}
+  /* The folio is aligned, not nudged: its top sits on the wordmark's, and its
+     right edge on the right edge of the forward arrow.
+     Right-aligned, which the fixture was not. Left-aligned ragged text has no
+     right edge to align — only the longest line reaches the margin, and the
+     longest line is a different length every week, so the block would appear
+     to breathe in and out as you page through. Right-aligned, all three lines
+     end on the arrow and the rule holds still. */
+  .mobile-folio{display:block;position:absolute;top:-68px;right:0;width:112px;
+    padding:0 0 0 18px;border-left:1px solid #182326;background:transparent;text-align:right}
   .mobile-folio .folio-current{display:block;color:var(--lime);font-size:8px;
     letter-spacing:.22em;margin-bottom:7px}
   .mobile-folio .folio-week{display:block;color:#eef2ef;font-size:17px;font-weight:540;letter-spacing:.03em}
