@@ -1,0 +1,207 @@
+:root{
+  --bg:#071012;
+  --bg2:#090f11;
+  --panel:#0d1416;
+  --cell:#0e1517;
+  --cell2:#101719;
+  --line:#223034;
+  --line2:#192326;
+  --text:#f4f6f2;
+  --soft:#b7bec0;
+  --muted:#727d80;
+  --lime:#c8ff45;
+  --lime2:#dcff72;
+  --sans:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --serif:Georgia,"Times New Roman",serif;
+}
+*{box-sizing:border-box}
+/* A gradient is a background IMAGE, and an image is sized to the element's box.
+   Rubber-band overscroll goes beyond that box, and what shows there is the
+   background COLOUR — which was never set, so it was the canvas default: white.
+   A dark base under the gradient closes the seam at both ends. */
+html{background-color:var(--bg)}
+html,body{margin:0;background-image:radial-gradient(1200px 540px at 55% 0%,#0a1518 0%,var(--bg) 56%,#060c0e 100%);background-repeat:no-repeat;color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+body{min-width:1180px}
+button,a{font:inherit}
+button{cursor:pointer}
+.page-shell{width:100%;min-height:100vh;padding:18px 34px 18px}
+.topbar{height:48px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;margin-bottom:14px}
+.brand,.footer-brand{font-size:15px;letter-spacing:.44em;font-weight:500;white-space:nowrap}
+.brand span,.footer-brand span{color:var(--lime)}
+.topnav{display:flex;gap:30px;align-items:center}
+.topnav a{font-size:12px;color:#a2abad;text-decoration:none}
+.actions{justify-self:end;display:flex;gap:14px}
+.btn{height:38px;padding:0 18px;border-radius:22px;border:1px solid #485357;background:transparent;color:var(--text);font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:8px}
+.btn.lime{background:var(--lime);border-color:var(--lime);color:#0a0d0e;padding-inline:22px}
+.btn .icon{font-size:15px}
+
+/* The upper-left image tile is removed, so its 230px reservation collapses and
+   the title starts at the page edge — the one approved deviation.
+   The column floors become 0 because 570 + 760 + 30 exceeded the shell at
+   1280 and overflowed the last metric off the right edge by 24px at 1600.
+   The 1.03 / 1.47 ratio is unchanged, so the proportion is the reference's. */
+.hero{display:grid;grid-template-columns:minmax(0,1.03fr) minmax(0,1.47fr);align-items:center;gap:30px;margin:4px 0 26px;padding-left:clamp(0px,14.4vw,230px)}
+.hero-copy{min-width:0}
+h1{font-size:47px;line-height:1.02;margin:0 0 10px;letter-spacing:-.035em;font-weight:650}
+.eyebrow{font-size:17px;letter-spacing:.32em;color:#ced3d4;margin-bottom:10px}
+.subline{font-size:18px;color:#aab2b4;margin:0;line-height:1.4}
+/* `6:30–6:45 /MI` is the one metric whose value is a fixed string that cannot
+   wrap or shrink, and this page loads no webfont — it asks for Inter and takes
+   whatever the machine has. So a column sized by ratio fits on one computer and
+   clips the unit on another. That column is `auto`: it takes exactly the width
+   its own text needs, in whatever font actually rendered, and the four flexible
+   columns divide what is left. It cannot be cut again. */
+.hero-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr)) auto auto minmax(0,1.12fr);border-left:1px solid #4b575a;min-width:0}
+.metric{padding:7px 22px 2px 22px;border-right:1px solid #4b575a;min-height:92px;min-width:0}
+.metric:last-child{border-right:0}
+.metric strong{display:block;color:var(--lime);font-size:30px;line-height:1;letter-spacing:-.035em;font-weight:700;white-space:nowrap}
+.metric strong span{font-size:15px;color:#c6cdce;letter-spacing:.02em;font-weight:500}
+.metric small{display:block;margin-top:9px;color:#9ca5a7;font-size:11px;line-height:1.45;letter-spacing:.16em}
+.metric small em{font-style:normal;letter-spacing:0;color:#778183}
+.metric small b{color:#d6dcdd;font-weight:500;letter-spacing:.06em;white-space:nowrap}
+.metric.wide strong{font-size:28px}
+
+.plan-section{margin-top:0}
+.plan-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 16px 2px}
+.plan-head h2,.section-kicker{font-size:16px;letter-spacing:.38em;font-weight:500;margin:0}
+.week-now{display:flex;align-items:center;gap:14px;color:#c0c8ca;font-size:16px}
+.pill{display:inline-flex;align-items:center;height:31px;padding:0 18px;border:1px solid var(--lime);border-radius:18px;color:var(--lime);font-size:11px;letter-spacing:.1em;font-weight:700}
+.circle{width:40px;height:40px;border-radius:50%;border:1px solid #3b474a;background:#101719;color:#dae0e1;font-size:23px;line-height:1}
+.matrix-wrap{position:relative;border:1px solid #162023;background:rgba(7,12,14,.38)}
+.matrix{width:100%;border-collapse:collapse;table-layout:fixed;font-variant-numeric:tabular-nums}
+.matrix col.row-label{width:88px}
+.matrix thead th{height:57px;background:#0b1214;border-right:1px solid #131b1e;color:#f5f6f2;font-size:12px;text-align:center;font-weight:500;vertical-align:middle}
+.matrix thead th:first-child{text-align:left;padding-left:14px;color:#c5cbcc;letter-spacing:.08em}
+.matrix thead b{display:block;font-size:13px;line-height:1.1}
+.matrix thead span{display:block;margin-top:7px;color:#8d9799;font-size:11px}
+.matrix thead .cur{background:linear-gradient(180deg,rgba(147,197,52,.18),rgba(65,85,26,.18));border-top:2px solid var(--lime)}
+.matrix thead .cur b,.matrix thead .cur span{color:var(--lime)}
+.matrix tbody th{height:34px;padding-left:12px;text-align:left;background:#0a1012;color:#f2f4ef;font-size:12px;font-weight:500;border-top:1px solid #121a1d;border-right:1px solid #131b1e}
+.matrix tbody td{height:34px;text-align:center;background:#0e1517;color:#d0d6d7;font-size:12px;border-top:1px solid #121a1d;border-right:1px solid #131b1e}
+.matrix tbody td.cur{background:linear-gradient(90deg,rgba(139,184,56,.16),rgba(80,104,32,.18));color:#f3f6ef}
+.matrix tbody tr.total th,.matrix tbody tr.total td{height:56px;background:#081012;border-top:1px solid #223034;font-weight:600;color:#f1f4ef}
+.matrix tbody tr.total th{font-size:12px;letter-spacing:.18em;color:#afb7b9}
+.matrix tbody tr.total td.cur{color:var(--lime)}
+
+.method-grid{display:grid;grid-template-columns:1.08fr 1.48fr .84fr;margin-top:34px;border-bottom:1px solid #2a3639;padding-bottom:28px}
+.method-grid article{min-height:224px;padding:0 38px}
+.method-grid article:first-child{padding-left:2px}
+.method-grid article+article{border-left:1px solid #283437}
+.section-kicker{color:#cfd5d6;font-size:13px;margin:0 0 16px}
+.why h3{font-family:var(--serif);font-size:31px;line-height:1.08;font-weight:400;margin:0 0 14px;letter-spacing:-.02em}
+.why p,.progression>p,.dimension p{font-size:15px;line-height:1.55;color:#aab3b5;margin:0}
+.progression>p{margin-bottom:30px}
+.steps{display:flex;align-items:flex-start;gap:13px}
+.steps i{font-style:normal;color:#667174;margin-top:26px}
+.step{text-align:center}
+.step span{display:grid;place-items:center;width:66px;height:66px;border:1px solid #606b6f;border-radius:50%;font-family:var(--serif);font-size:27px;background:#0b1214}
+.step small{display:block;margin-top:9px;color:#98a2a4;font-size:11px;letter-spacing:.08em}
+.step.active span{border-color:var(--lime);color:var(--lime);box-shadow:0 0 20px rgba(200,255,69,.12)}
+.step.active small{color:#f1f3ef}
+.dimensions{padding-right:2px!important}
+.dimension{display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:center;margin:14px 0 20px}
+.dim-icon{width:62px;height:62px;border:1px solid #a8b0b2;border-radius:50%;display:grid;place-items:center;font-size:25px;color:#fff}
+.dimension b{display:block;font-size:14px;margin-bottom:4px}
+.dimension p{font-size:14px}
+footer{height:55px;display:flex;align-items:flex-end;gap:18px;color:#9da6a8;font-size:11px;padding-top:17px}
+.footer-brand{font-size:11px}
+.footer-rule{height:24px;width:1px;background:#566164;margin-left:3px}
+.footer-copy{padding-bottom:2px}
+.version{margin-left:auto;padding-bottom:2px}
+
+@media print{
+  @page{size:landscape;margin:8mm}
+  body{background:#fff;color:#111;min-width:0}
+  .topbar .topnav,.actions,.week-now .circle{display:none}
+  .page-shell{padding:0}
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LIFECYCLE — the same page, at four moments in its life.
+
+   The architecture never moves. The meaning of the page changes.
+
+   Nothing above this line is altered: the hero, the measure, the matrix, the
+   metric strip and the methodology sections are the approved composition, and a
+   state is not permission to redesign them. Everything here either adds a line
+   that was not there or quiets one that was.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* THE MOMENT — one line above the matrix. Not a card, not a banner: it sits in
+   the space the plan heading already occupies. */
+.moment{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:30px;
+  margin:0 0 16px;padding-left:2px;
+}
+.moment .kicker{
+  font-size:10.5px;letter-spacing:.3em;color:var(--lime);margin-bottom:8px;
+  text-transform:uppercase;
+}
+.moment h3{
+  margin:0;font-size:20px;font-weight:500;letter-spacing:.01em;color:var(--text);
+  line-height:1.15;
+}
+.moment p{margin:8px 0 0;font-size:12.5px;color:var(--muted);max-width:62ch;line-height:1.5}
+
+/* THE ASK. The one week that puts a question gets to say it at the size of an
+   answer — in the negative space beside the matrix heading, not in a new box. */
+body[data-state="ask"] .moment h3{
+  font-family:var(--serif);font-weight:400;font-size:64px;line-height:.92;
+  letter-spacing:-.03em;color:var(--lime);
+}
+body[data-state="ask"] .moment .kicker{color:var(--muted)}
+body[data-state="ask"] .moment .band{
+  display:block;margin-top:10px;font-size:11px;letter-spacing:.22em;color:#c6cdce;
+}
+
+/* RACE WEEK. The page gets quieter rather than louder. */
+body[data-state="race"] .moment h3{font-size:26px;letter-spacing:.02em}
+body[data-state="race"] .matrix tbody td:not(.cur),
+body[data-state="race"] .matrix thead th:not(.cur){opacity:.34;transition:opacity .3s}
+body[data-state="race"] .matrix tbody th{opacity:.5}
+
+/* COMPLETE. No current week anywhere, and the plan becomes an artifact. */
+body[data-state="complete"] .week-now,
+body[data-state="complete"] .moment{display:none}
+body[data-state="complete"] .cur{background:none !important;border-top-color:transparent !important;color:inherit !important}
+.done{display:none;margin:2px 0 22px;padding-left:2px}
+body[data-state="complete"] .done{display:block}
+.done .status{font-size:10.5px;letter-spacing:.3em;color:var(--lime);text-transform:uppercase}
+.done h3{margin:9px 0 6px;font-family:var(--serif);font-weight:400;font-size:38px;letter-spacing:-.02em}
+.done p{margin:0;color:var(--muted);font-size:13px}
+
+/* THE FIELD — the chapter that does not exist until there is evidence. */
+.field{display:none;margin-top:36px;padding-top:30px;border-top:1px solid var(--line)}
+body[data-state="complete"] .field{display:block}
+.field .section-kicker{margin-bottom:14px}
+.field h3{margin:0 0 6px;font-family:var(--serif);font-weight:400;font-size:31px;letter-spacing:-.02em}
+.field .lede{margin:0 0 26px;color:var(--muted);font-size:13.5px}
+.athletes{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.athlete{padding:24px 34px 26px 0}
+.athlete+.athlete{border-left:1px solid var(--line);padding-left:34px;padding-right:0}
+.athlete h4{margin:0 0 18px;font-size:15px;letter-spacing:.22em;font-weight:500}
+.evrow{display:grid;grid-template-columns:auto auto auto;gap:0 34px;justify-content:start;margin-bottom:20px}
+.ev b{display:block;font-size:8.5px;letter-spacing:.2em;color:var(--muted);margin-bottom:7px}
+.ev strong{font-size:17px;font-weight:500;font-variant-numeric:tabular-nums}
+.ev.pending strong{color:#4e5659}
+.read{border-top:1px solid var(--hair-2);padding-top:14px;font-size:12.5px;line-height:1.55;color:#8b9295;max-width:46ch}
+.read em{font-style:normal;color:#5b6467;letter-spacing:.16em;font-size:9px;display:block;margin-bottom:8px;text-transform:uppercase}
+
+/* THE PROGRESSION, moving through time. Past quiet, present lime, future dim. */
+/* The circle is `.step span`. A glow on the outer div draws a square. */
+.step.past span{border-color:#394346;color:#8d9599}
+.step.past small{color:#6d7679}
+.step.future span{border-color:#222a2d;color:#495255;background:#080e10}
+.step.future small{color:#4d5659}
+.step.now span{border-color:var(--lime);color:var(--lime);box-shadow:0 0 20px rgba(200,255,69,.12)}
+.step.now small{color:#f1f3ef}
+body[data-state="complete"] .step span{border-color:#4a5457;color:#c3cacb}
+body[data-state="complete"] .step.race span{border-color:var(--lime);color:var(--lime)}
+
+/* Development only. Never ships. */
+.dev{position:fixed;left:50%;transform:translateX(-50%);bottom:14px;z-index:90;
+  display:flex;gap:2px;padding:3px;border:1px solid var(--line);border-radius:999px;
+  background:#0a1113ee;backdrop-filter:blur(6px)}
+.dev button{padding:6px 13px;border-radius:999px;border:0;background:transparent;
+  color:var(--muted);font-size:10.5px;letter-spacing:.1em;cursor:pointer;text-transform:uppercase}
+.dev button.on{background:#ffffff12;color:var(--text)}
