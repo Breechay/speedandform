@@ -1358,45 +1358,96 @@ function weekHtml(weekNumber) {
     // Not `today` — that is the module's clock, and shadowing it here put the
     // whole view in a temporal dead zone the moment the week rendered.
     const isToday = on === today();
-    return `<div class="wday${body ? '' : ' rest'}${isToday ? ' now' : ''}">
-      <div class="wdayName">${day}<em>${on ? escapeHtml(dayLabel(on)) : ''}${
-        isToday ? '<span class="wNow">today</span>' : ''}</em></div>
+    return `<article class="wday${body ? '' : ' rest'}${isToday ? ' now' : ''}">
+      <header class="wdayName">${day}<em>${on ? escapeHtml(dayLabel(on)) : ''}</em>
+        ${isToday ? '<span class="wNow">today</span>' : ''}</header>
       <div class="wdayBody">${body || '<span class="none">Rest</span>'}</div>
-    </div>`;
+    </article>`;
   }).join('');
 
   const prev = weeks.find((item) => item.week_number === week.week_number - 1);
   const next = weeks.find((item) => item.week_number === week.week_number + 1);
 
+  // THE WEEK IS WHERE YOU WORK.
+  //
+  // The matrix is the map and the session is the act; this is the surface a
+  // coach and an athlete actually operate from, so it gets the question, what
+  // they own, what is next, and then seven days with room to be read.
+  //
+  // No week list down the side. Fifteen identical links duplicating a navigator
+  // that is already better than they are, taking 180px from the training. The
+  // Full Plan is the way back and the arrows are the way across.
+  //
+  // The context rail carries only panels with something authoritative behind
+  // them. No progress bar — two of 13.1 is arithmetically true and reads as a
+  // completion metric, and ownership is not one: five miles is not 38% of an
+  // answer. No empty notes box inviting input that goes nowhere.
+  const nextRung = (mark?.checkpoints || []).slice().sort((a, b) => a.position - b.position)
+    .find((item) => item.state !== 'reached');
+  const owned = mark?.current_value != null ? Number(mark.current_value) : null;
+  const keySessions = forWeek(week).filter((session) => session.scheduled_on
+    && session.state !== 'cancelled'
+    && !/^(easy|off|rest)/i.test(String(session.currentVersion?.title || '').trim()));
+  const standing = (record.observations || []).slice(0, 2);
+
   return `<main class="view on planv weekv">
-    <div class="pgHead">
-      <button class="back" type="button" data-nav="plan">← ${escapeHtml(block?.name || 'The plan')}</button>
-      <h3>Week ${escapeHtml(week.week_number)}</h3>
-      <span class="pgSub">${escapeHtml(rangeLabel(week.starts_on, week.ends_on))}${
-        out == null ? '' : ` · ${escapeHtml(out)} week${out === 1 ? '' : 's'} out`}${
-        isNow ? ' · this week' : ''}</span>
-      <span class="wStep">
-        ${prev ? `<button type="button" data-week-to="${escapeHtml(prev.week_number)}">←</button>` : ''}
-        ${next ? `<button type="button" data-week-to="${escapeHtml(next.week_number)}">→</button>` : ''}
-      </span>
+    <div class="wHero">
+      <div class="wWho">
+        <div class="pfrm"><span>${escapeHtml(initials(athlete.first_name))}</span>
+          <img data-portrait="${escapeHtml(athlete.slug)}" alt=""></div>
+        <div>
+          <button class="back" type="button" data-nav="plan">← ${escapeHtml(block?.name || 'Full plan')}</button>
+          <h1>Week ${escapeHtml(week.week_number)}</h1>
+          <div class="wWhen">${escapeHtml(rangeLabel(week.starts_on, week.ends_on))}${
+            out == null ? '' : ` · ${escapeHtml(out)} week${out === 1 ? '' : 's'} out`}${
+            isNow ? ' · this week' : ''}</div>
+        </div>
+      </div>
+      <div class="wAsk">
+        <h2>${escapeHtml(mark?.current_question || block?.goal_statement || '')}</h2>
+        <div class="wState">
+          <div class="wOwned"><b>${owned != null ? escapeHtml(owned) : '—'}</b>
+            <span>${escapeHtml(String(mark?.unit || 'mi').toUpperCase())}<br>YOU OWN</span></div>
+          ${nextRung ? `<div class="wNext"><b>NEXT ASK</b>
+            <strong>${escapeHtml(Number(nextRung.value))} ${escapeHtml(mark?.unit || 'mi')}</strong></div>` : ''}
+        </div>
+      </div>
+      <div class="wStep">
+        ${prev ? `<button type="button" data-week-to="${escapeHtml(prev.week_number)}">← W${escapeHtml(prev.week_number)}</button>` : ''}
+        ${next ? `<button type="button" data-week-to="${escapeHtml(next.week_number)}">W${escapeHtml(next.week_number)} →</button>` : ''}
+      </div>
     </div>
 
     <div class="wSum">
       <div><b>TOTAL</b><strong>${escapeHtml(Number(sum.total.toFixed(1)))} mi</strong></div>
       <div><b>${sum.easyFiled ? 'EASY, AS FILED' : 'EASY'}</b>
-        <strong>${escapeHtml(Number(sum.easy.toFixed(1)))} mi</strong>
-        ${sum.easyFiled ? '<em>Placed by him against the week\'s budget.</em>' : ''}</div>
-      <div><b>KEY SESSIONS</b><strong>${escapeHtml(sum.key)}</strong>
-        ${sum.longDay ? `<em>Longest day ${escapeHtml(Number(sum.longDay.toFixed(1)))} mi${
-          sum.longIsSpecific ? ', with race pace in it' : ''}.</em>` : ''}</div>
-      ${sum.rung ? `<div class="wOwn"><b>THIS WEEK CAN ESTABLISH</b>
-        <strong>${escapeHtml(Number(sum.rung.value))} ${escapeHtml(mark?.unit || 'mi')}</strong>
-        <em>${escapeHtml(mark?.current_question || '')}</em></div>` : ''}
+        <strong>${escapeHtml(Number(sum.easy.toFixed(1)))} mi</strong></div>
+      <div><b>KEY SESSIONS</b><strong>${escapeHtml(sum.key)}</strong></div>
+      ${sum.longDay ? `<div><b>LONGEST DAY</b>
+        <strong>${escapeHtml(Number(sum.longDay.toFixed(1)))} mi</strong>
+        ${sum.longIsSpecific ? '<em>with race pace in it</em>' : ''}</div>` : ''}
+      ${sum.rung ? `<div class="wOwn"><b>CAN ESTABLISH</b>
+        <strong>${escapeHtml(Number(sum.rung.value))} ${escapeHtml(mark?.unit || 'mi')}</strong></div>` : ''}
     </div>
 
-    ${week.intent ? `<div class="wIntent">${escapeHtml(week.intent)}</div>` : ''}
-
-    <div class="wDays">${days}</div>
+    <div class="wWork">
+      <div class="wDays">${days}</div>
+      <aside class="wRail">
+        ${week.intent ? `<section><h3>This week is for</h3><p>${escapeHtml(week.intent)}</p></section>` : ''}
+        ${keySessions.length ? `<section><h3>Key sessions</h3>
+          ${keySessions.map((session) => {
+            const rung = rungFor(session, mark);
+            return `<div class="rKey" data-session="${escapeHtml(session.id)}">
+              <b>${escapeHtml(weekdayOf(session.scheduled_on))}</b>
+              <span>${escapeHtml(titleOf(session))}</span>
+              ${rung ? `<em>moves → ${escapeHtml(Number(rung.rung.value))} ${escapeHtml(mark?.unit || 'mi')}</em>`
+                : (session.currentVersion?.intent ? `<em>${escapeHtml(session.currentVersion.intent)}</em>` : '')}
+            </div>`;
+          }).join('')}</section>` : ''}
+        ${standing.length ? `<section><h3>What helps ${escapeHtml(athlete.first_name)}</h3>
+          ${standing.map((row) => `<p class="rFact">${escapeHtml(row.observation)}</p>`).join('')}</section>` : ''}
+      </aside>
+    </div>
   </main>`;
 }
 
