@@ -90,6 +90,14 @@ the athlete record all redirect to that athlete's plan.
 The layout breakpoint is **760px**: below it the nav and the `viewAs` control move
 to the bottom of the screen and the right rail is dropped.
 
+**Capturing a phone width.** Chrome headless clamps its layout viewport to a
+500px minimum: `--window-size=390` reports `innerWidth=500` and then crops the
+image to 390, which silently turns every phone screenshot into a cropped tablet.
+`scripts/design-review/shots.sh` renders anything under 500px inside
+`frame.html`, an exactly-sized iframe, and crops the frame back out. If you
+capture phone widths any other way, verify `innerWidth` before believing the
+picture.
+
 ## What is real and what is not
 
 **Real:** every athlete, block, week, session, prescription component, pace band,

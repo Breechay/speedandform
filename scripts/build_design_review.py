@@ -181,7 +181,7 @@ for athlete in sorted(dump['athletes'], key=lambda a: a['slug']):
 for f in ('auth.js', 'data.js', 'review.js'):
     shutil.copyfile(os.path.join(ROOT, 'scripts/design-review', f),
                     os.path.join(OUT, 'assets/js', f))
-for f in ('README.md', 'COMPROMISES.md'):
+for f in ('README.md', 'COMPROMISES.md', 'frame.html'):
     shutil.copyfile(os.path.join(ROOT, 'scripts/design-review', f), os.path.join(OUT, f))
 
 html = open(os.path.join(ROOT, 'coach/labs/index.html')).read()

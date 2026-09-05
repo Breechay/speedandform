@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>capture frame</title>
+<style>
+  html,body{margin:0;padding:0;background:#07090a;overflow:hidden}
+  /* The iframe is the real viewport. Headless Chrome refuses to lay out below
+     500px — it clamps to 500 and then crops the image, which silently turns a
+     phone screenshot into a cropped tablet. An iframe has its own layout
+     viewport at whatever size it is given, so this is the honest way to render
+     390px without a browser driver. Centred, so a centred crop recovers it.
+
+     Parameters travel in the HASH, not the query: the dev server serving this
+     rewrites clean URLs and drops query strings. */
+  iframe{display:block;border:0;position:absolute;top:0;left:50%;transform:translateX(-50%)}
+</style>
+</head>
+<body>
+<script>
+  // #<width>/<height>/<encodeURIComponent(url)>
+  var parts = location.hash.slice(1).split('/');
+  var f = document.createElement('iframe');
+  f.setAttribute('width', parts[0] || '390');
+  f.setAttribute('height', parts[1] || '844');
+  f.src = decodeURIComponent(parts.slice(2).join('/'));
+  document.body.appendChild(f);
+</script>
+</body>
+</html>
