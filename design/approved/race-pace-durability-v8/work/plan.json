@@ -1,0 +1,3216 @@
+{
+ "first_run": {
+  "assignments": 2,
+  "race_on": "2026-12-05",
+  "week_one_starts_on": "2026-08-24"
+ },
+ "plan": {
+  "authored_by": null,
+  "created_at": "2026-09-05T18:05:05.143212+00:00",
+  "discipline": "half_marathon",
+  "entry_volume": 45,
+  "for_whom": "A runner already comfortable around 45 miles a week, with enough speed above half-marathon pace that race pace is not the speed problem, durable enough for three meaningful days, already owning about two continuous miles at race pace.",
+  "id": "134bbedf-89e5-459f-8b65-f678b2aa3a7e",
+  "name": "Race Pace Durability",
+  "peak_volume": 60,
+  "question": "How far can you carry 6:30\u20136:45 before it comes apart?",
+  "race_pace_high_seconds": 405,
+  "race_pace_low_seconds": 390,
+  "slug": "race-pace-durability",
+  "status": "published",
+  "total_weeks": 15,
+  "updated_at": "2026-09-05T18:05:05.143212+00:00"
+ },
+ "version": {
+  "cut_at": "2026-09-05T18:05:05.143212+00:00",
+  "cut_by": null,
+  "id": "11c8e8da-817e-4c3e-ba6a-ed2e40c5a804",
+  "plan_id": "134bbedf-89e5-459f-8b65-f678b2aa3a7e",
+  "summary": "Volume 45 to 60 with peaks at W9 and W11. Specificity broken to continuous: 5, 6 and 8 on Tuesday, then 12 inside the Saturday long run at W12. Four asks. Race pace does not get faster because the athlete succeeds.",
+  "version_number": 1
+ },
+ "weeks": [
+  {
+   "intent": null,
+   "phase": "build",
+   "sessions": [
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 6,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "MON",
+     "details": null,
+     "distance": 6,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 1200,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": true,
+       "distance": 1,
+       "duration_seconds": null,
+       "pace_high_seconds": 405,
+       "pace_low_seconds": 390,
+       "recovery_kind": "float",
+       "recovery_seconds": 180,
+       "repeat_count": 4,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "cool_down",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "TUE",
+     "details": "Under 6:30 is a different session.",
+     "distance": 8,
+     "intent": "Meet the band. Short enough that holding it is a matter of attention, not durability.",
+     "role": "key",
+     "title": "4 \u00d7 1 mi at race pace"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 6,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "WED",
+     "details": null,
+     "distance": 6,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 1200,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 480,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 375,
+       "recovery_kind": "easy",
+       "recovery_seconds": 180,
+       "repeat_count": 3,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "cool_down",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "THU",
+     "details": null,
+     "distance": 8,
+     "intent": "The ceiling stays where the last block left it.",
+     "role": "key",
+     "title": "Threshold 3 \u00d7 8 min"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 5,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "FRI",
+     "details": null,
+     "distance": 5,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 12,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "SAT",
+     "details": null,
+     "distance": 12,
+     "intent": "Time on the legs at a pace that costs nothing.",
+     "role": "key",
+     "title": "Long run"
+    }
+   ],
+   "total_distance": 45,
+   "week_number": 1
+  },
+  {
+   "intent": null,
+   "phase": "build",
+   "sessions": [
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 6,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "MON",
+     "details": null,
+     "distance": 6,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 1200,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": true,
+       "distance": 2,
+       "duration_seconds": null,
+       "pace_high_seconds": 405,
+       "pace_low_seconds": 390,
+       "recovery_kind": "float",
+       "recovery_seconds": 180,
+       "repeat_count": 3,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "cool_down",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "TUE",
+     "details": "Under 6:30 is a different session.",
+     "distance": 10,
+     "intent": "Twice the rep, the same band. The question is whether 6:45 still feels like 6:45 in the third repetition.",
+     "role": "key",
+     "title": "3 \u00d7 2 mi at race pace"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 6,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "WED",
+     "details": null,
+     "distance": 6,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 1200,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 45,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": "easy",
+       "recovery_seconds": 120,
+       "repeat_count": 8,
+       "role": "work",
+       "rpe_high": 9,
+       "rpe_low": 8,
+       "shape": "repetitions"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "cool_down",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "THU",
+     "details": null,
+     "distance": 7,
+     "intent": "Strength above the pace, bought cheaply.",
+     "role": "key",
+     "title": "Hills 8 \u00d7 45 s + strides"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 6,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "FRI",
+     "details": null,
+     "distance": 6,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 13,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "SAT",
+     "details": null,
+     "distance": 13,
+     "intent": "Time on the legs at a pace that costs nothing.",
+     "role": "key",
+     "title": "Long run"
+    }
+   ],
+   "total_distance": 48,
+   "week_number": 2
+  },
+  {
+   "intent": null,
+   "phase": "build",
+   "sessions": [
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 6,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "MON",
+     "details": null,
+     "distance": 6,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 1200,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": true,
+       "distance": 2,
+       "duration_seconds": null,
+       "pace_high_seconds": 405,
+       "pace_low_seconds": 390,
+       "recovery_kind": "float",
+       "recovery_seconds": 180,
+       "repeat_count": 4,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "cool_down",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "TUE",
+     "details": "Under 6:30 is a different session.",
+     "distance": 12,
+     "intent": "Eight miles of race pace, broken. The most volume at the band so far.",
+     "role": "key",
+     "title": "4 \u00d7 2 mi at race pace"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 6,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "WED",
+     "details": null,
+     "distance": 6,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 1200,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 375,
+       "recovery_kind": "easy",
+       "recovery_seconds": 180,
+       "repeat_count": 2,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "cool_down",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "THU",
+     "details": null,
+     "distance": 8,
+     "intent": "Longer at threshold, fewer repetitions.",
+     "role": "key",
+     "title": "Threshold 2 \u00d7 10 min"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 6,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "FRI",
+     "details": null,
+     "distance": 6,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 13,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "SAT",
+     "details": null,
+     "distance": 13,
+     "intent": "Time on the legs at a pace that costs nothing.",
+     "role": "key",
+     "title": "Long run"
+    }
+   ],
+   "total_distance": 51,
+   "week_number": 3
+  },
+  {
+   "intent": null,
+   "phase": "ask",
+   "sessions": [
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 6,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "MON",
+     "details": null,
+     "distance": 6,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": 5,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 1200,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": true,
+       "distance": 5,
+       "duration_seconds": null,
+       "pace_high_seconds": 405,
+       "pace_low_seconds": 390,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "cool_down",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "TUE",
+     "details": "Under 6:30 is a different session.",
+     "distance": 9,
+     "intent": "The first continuous question. Five miles, unbroken, inside the band \u2014 and the week is lighter so the legs answer it rather than the fatigue.",
+     "role": "key",
+     "title": "5 mi continuous at race pace"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 6,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "WED",
+     "details": null,
+     "distance": 6,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 6,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 20,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": "easy",
+       "recovery_seconds": 60,
+       "repeat_count": 4,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      }
+     ],
+     "day": "THU",
+     "details": null,
+     "distance": 6,
+     "intent": "A little mechanical brightness. Relaxed, not fast.",
+     "role": "easy",
+     "title": "Easy with strides"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 7,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "FRI",
+     "details": null,
+     "distance": 7,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 12,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "SAT",
+     "details": null,
+     "distance": 12,
+     "intent": "Time on the legs at a pace that costs nothing.",
+     "role": "key",
+     "title": "Long run"
+    }
+   ],
+   "total_distance": 46,
+   "week_number": 4
+  },
+  {
+   "intent": null,
+   "phase": "build",
+   "sessions": [
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 7,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "MON",
+     "details": null,
+     "distance": 7,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 1200,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": true,
+       "distance": 1,
+       "duration_seconds": null,
+       "pace_high_seconds": 405,
+       "pace_low_seconds": 390,
+       "recovery_kind": "float",
+       "recovery_seconds": 120,
+       "repeat_count": 5,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "cool_down",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "TUE",
+     "details": "Under 6:30 is a different session.",
+     "distance": 9,
+     "intent": "Back to broken work with a shorter float. Volume returns; the recovery shrinks.",
+     "role": "key",
+     "title": "5 \u00d7 1 mi at race pace"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 6,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "WED",
+     "details": null,
+     "distance": 6,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 1200,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 480,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 375,
+       "recovery_kind": "easy",
+       "recovery_seconds": 180,
+       "repeat_count": 4,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "cool_down",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "THU",
+     "details": null,
+     "distance": 9,
+     "intent": "The largest threshold dose of the block.",
+     "role": "key",
+     "title": "Threshold 4 \u00d7 8 min"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 7,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "FRI",
+     "details": null,
+     "distance": 7,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 15,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "SAT",
+     "details": null,
+     "distance": 15,
+     "intent": "Time on the legs at a pace that costs nothing.",
+     "role": "key",
+     "title": "Long run"
+    }
+   ],
+   "total_distance": 53,
+   "week_number": 5
+  },
+  {
+   "intent": null,
+   "phase": "ask",
+   "sessions": [
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 8,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "MON",
+     "details": null,
+     "distance": 8,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": 6,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 1200,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": true,
+       "distance": 6,
+       "duration_seconds": null,
+       "pace_high_seconds": 405,
+       "pace_low_seconds": 390,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "cool_down",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "TUE",
+     "details": "Under 6:30 is a different session.",
+     "distance": 10,
+     "intent": "One mile further than the last answer.",
+     "role": "key",
+     "title": "6 mi continuous at race pace"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 8,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "WED",
+     "details": null,
+     "distance": 8,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 7,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 20,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": "easy",
+       "recovery_seconds": 60,
+       "repeat_count": 4,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      }
+     ],
+     "day": "THU",
+     "details": null,
+     "distance": 7,
+     "intent": "A little mechanical brightness. Relaxed, not fast.",
+     "role": "easy",
+     "title": "Easy with strides"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 7,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "FRI",
+     "details": null,
+     "distance": 7,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 16,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "SAT",
+     "details": null,
+     "distance": 16,
+     "intent": "Time on the legs at a pace that costs nothing.",
+     "role": "key",
+     "title": "Long run"
+    }
+   ],
+   "total_distance": 56,
+   "week_number": 6
+  },
+  {
+   "intent": null,
+   "phase": "absorb",
+   "sessions": [
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 6,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "MON",
+     "details": null,
+     "distance": 6,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 1200,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": true,
+       "distance": 2,
+       "duration_seconds": null,
+       "pace_high_seconds": 405,
+       "pace_low_seconds": 390,
+       "recovery_kind": "float",
+       "recovery_seconds": 120,
+       "repeat_count": 4,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "cool_down",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "TUE",
+     "details": "Under 6:30 is a different session.",
+     "distance": 12,
+     "intent": "Familiar work in a lighter week. Nothing new is being asked.",
+     "role": "key",
+     "title": "4 \u00d7 2 mi at race pace"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 6,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "WED",
+     "details": null,
+     "distance": 6,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 1200,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 180,
+       "pace_high_seconds": 360,
+       "pace_low_seconds": 350,
+       "recovery_kind": "easy",
+       "recovery_seconds": 180,
+       "repeat_count": 5,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "cool_down",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "THU",
+     "details": null,
+     "distance": 8,
+     "intent": "A brief visit well above the pace, so the top does not go quiet.",
+     "role": "key",
+     "title": "VO\u2082 5 \u00d7 3 min"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 5,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "FRI",
+     "details": null,
+     "distance": 5,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 13,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "SAT",
+     "details": null,
+     "distance": 13,
+     "intent": "Time on the legs at a pace that costs nothing.",
+     "role": "key",
+     "title": "Long run"
+    }
+   ],
+   "total_distance": 50,
+   "week_number": 7
+  },
+  {
+   "intent": null,
+   "phase": "build",
+   "sessions": [
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 7,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "MON",
+     "details": null,
+     "distance": 7,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 1200,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": true,
+       "distance": 2,
+       "duration_seconds": null,
+       "pace_high_seconds": 405,
+       "pace_low_seconds": 390,
+       "recovery_kind": "float",
+       "recovery_seconds": 120,
+       "repeat_count": 4,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "cool_down",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "TUE",
+     "details": "Under 6:30 is a different session.",
+     "distance": 12,
+     "intent": "The largest broken dose in the block, and the last week before eight continuous.",
+     "role": "key",
+     "title": "4 \u00d7 2 mi at race pace"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 7,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "WED",
+     "details": null,
+     "distance": 7,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 1200,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 720,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 375,
+       "recovery_kind": "easy",
+       "recovery_seconds": 180,
+       "repeat_count": 2,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "cool_down",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "THU",
+     "details": null,
+     "distance": 9,
+     "intent": "The ceiling, held one more time before specificity takes over.",
+     "role": "key",
+     "title": "Threshold 2 \u00d7 12 min"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 7,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "FRI",
+     "details": null,
+     "distance": 7,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 13,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": true,
+       "distance": 3,
+       "duration_seconds": null,
+       "pace_high_seconds": 405,
+       "pace_low_seconds": 390,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "SAT",
+     "details": null,
+     "distance": 16,
+     "intent": "Finish at the band off thirteen easy miles. Not a test \u2014 a rehearsal of the ending.",
+     "role": "key",
+     "title": "Long run \u2014 last 3 at race pace"
+    }
+   ],
+   "total_distance": 58,
+   "week_number": 8
+  },
+  {
+   "intent": null,
+   "phase": "ask",
+   "sessions": [
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 8,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "MON",
+     "details": null,
+     "distance": 8,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": 8,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 1200,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": true,
+       "distance": 8,
+       "duration_seconds": null,
+       "pace_high_seconds": 405,
+       "pace_low_seconds": 390,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "cool_down",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "TUE",
+     "details": "Under 6:30 is a different session.",
+     "distance": 12,
+     "intent": "Eight unbroken. The first continuous question in five weeks, and the block's largest so far.",
+     "role": "key",
+     "title": "8 mi continuous at race pace"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 8,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "WED",
+     "details": null,
+     "distance": 8,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 7,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 20,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": "easy",
+       "recovery_seconds": 60,
+       "repeat_count": 4,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      }
+     ],
+     "day": "THU",
+     "details": null,
+     "distance": 7,
+     "intent": "A little mechanical brightness. Relaxed, not fast.",
+     "role": "easy",
+     "title": "Easy with strides"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 8,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "FRI",
+     "details": null,
+     "distance": 8,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 13,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": true,
+       "distance": 4,
+       "duration_seconds": null,
+       "pace_high_seconds": 405,
+       "pace_low_seconds": 390,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "SAT",
+     "details": null,
+     "distance": 17,
+     "intent": "The longest day of the block, finished at the band.",
+     "role": "key",
+     "title": "Long run \u2014 last 4 at race pace"
+    }
+   ],
+   "total_distance": 60,
+   "week_number": 9
+  },
+  {
+   "intent": null,
+   "phase": "absorb",
+   "sessions": [
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 7,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "MON",
+     "details": null,
+     "distance": 7,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 1200,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": true,
+       "distance": 2,
+       "duration_seconds": null,
+       "pace_high_seconds": 405,
+       "pace_low_seconds": 390,
+       "recovery_kind": "float",
+       "recovery_seconds": 120,
+       "repeat_count": 3,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "cool_down",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "TUE",
+     "details": "Under 6:30 is a different session.",
+     "distance": 10,
+     "intent": "Contact with the band, nothing more. The week is for absorbing eight.",
+     "role": "key",
+     "title": "3 \u00d7 2 mi at race pace"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 8,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "WED",
+     "details": null,
+     "distance": 8,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 1200,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 45,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": "easy",
+       "recovery_seconds": 120,
+       "repeat_count": 10,
+       "role": "work",
+       "rpe_high": 9,
+       "rpe_low": 8,
+       "shape": "repetitions"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "cool_down",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "THU",
+     "details": null,
+     "distance": 8,
+     "intent": "Strength above the pace, bought cheaply.",
+     "role": "key",
+     "title": "Hills 10 \u00d7 45 s"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 7,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "FRI",
+     "details": null,
+     "distance": 7,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 14,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "SAT",
+     "details": null,
+     "distance": 14,
+     "intent": "Time on the legs at a pace that costs nothing.",
+     "role": "key",
+     "title": "Long run"
+    }
+   ],
+   "total_distance": 54,
+   "week_number": 10
+  },
+  {
+   "intent": null,
+   "phase": "build",
+   "sessions": [
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 9,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "MON",
+     "details": null,
+     "distance": 9,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 1200,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": true,
+       "distance": 1,
+       "duration_seconds": null,
+       "pace_high_seconds": 405,
+       "pace_low_seconds": 390,
+       "recovery_kind": "float",
+       "recovery_seconds": 120,
+       "repeat_count": 4,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "cool_down",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "TUE",
+     "details": "Under 6:30 is a different session.",
+     "distance": 8,
+     "intent": "Light and sharp. Saturday is the week.",
+     "role": "key",
+     "title": "4 \u00d7 1 mi at race pace"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 9,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "WED",
+     "details": null,
+     "distance": 9,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 7,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 20,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": "easy",
+       "recovery_seconds": 60,
+       "repeat_count": 4,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      }
+     ],
+     "day": "THU",
+     "details": null,
+     "distance": 7,
+     "intent": "A little mechanical brightness. Relaxed, not fast.",
+     "role": "easy",
+     "title": "Easy with strides"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 9,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "FRI",
+     "details": null,
+     "distance": 9,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 12,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": true,
+       "distance": 6,
+       "duration_seconds": null,
+       "pace_high_seconds": 405,
+       "pace_low_seconds": 390,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "SAT",
+     "details": null,
+     "distance": 18,
+     "intent": "Six at the band after twelve easy. Six is already owned; the question is what twelve miles of fatigue does to it.",
+     "role": "key",
+     "title": "Long run \u2014 last 6 at race pace"
+    }
+   ],
+   "total_distance": 60,
+   "week_number": 11
+  },
+  {
+   "intent": null,
+   "phase": "ask",
+   "sessions": [
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 8,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "MON",
+     "details": null,
+     "distance": 8,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 1200,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": true,
+       "distance": 1,
+       "duration_seconds": null,
+       "pace_high_seconds": 405,
+       "pace_low_seconds": 390,
+       "recovery_kind": "float",
+       "recovery_seconds": 120,
+       "repeat_count": 3,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "cool_down",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "TUE",
+     "details": "Under 6:30 is a different session.",
+     "distance": 7,
+     "intent": "Small and quiet. Nothing is proved on Tuesday this week.",
+     "role": "key",
+     "title": "3 \u00d7 1 mi at race pace"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 8,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "WED",
+     "details": null,
+     "distance": 8,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 6,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 20,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": "easy",
+       "recovery_seconds": 60,
+       "repeat_count": 4,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      }
+     ],
+     "day": "THU",
+     "details": null,
+     "distance": 6,
+     "intent": "A little mechanical brightness. Relaxed, not fast.",
+     "role": "easy",
+     "title": "Easy with strides"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 7,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "FRI",
+     "details": null,
+     "distance": 7,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": 12,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 4,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": true,
+       "distance": 12,
+       "duration_seconds": null,
+       "pace_high_seconds": 405,
+       "pace_low_seconds": 390,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "SAT",
+     "details": "Under 6:30 is a different session.",
+     "distance": 16,
+     "intent": "The block's closing statement. Twelve unbroken inside the band, three weeks out, off four easy miles.",
+     "role": "key",
+     "title": "12 mi continuous at race pace"
+    }
+   ],
+   "total_distance": 52,
+   "week_number": 12
+  },
+  {
+   "intent": null,
+   "phase": "taper",
+   "sessions": [
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 5,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "MON",
+     "details": null,
+     "distance": 5,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 1200,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": true,
+       "distance": 2,
+       "duration_seconds": null,
+       "pace_high_seconds": 405,
+       "pace_low_seconds": 390,
+       "recovery_kind": "float",
+       "recovery_seconds": 120,
+       "repeat_count": 3,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "cool_down",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "TUE",
+     "details": "Under 6:30 is a different session.",
+     "distance": 10,
+     "intent": "Familiar work at a smaller dose.",
+     "role": "key",
+     "title": "3 \u00d7 2 mi at race pace"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 4,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "WED",
+     "details": null,
+     "distance": 4,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 1200,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 480,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 375,
+       "recovery_kind": "easy",
+       "recovery_seconds": 180,
+       "repeat_count": 2,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "cool_down",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "THU",
+     "details": null,
+     "distance": 8,
+     "intent": "A short reminder of the ceiling.",
+     "role": "key",
+     "title": "Threshold 2 \u00d7 8 min"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 5,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "FRI",
+     "details": null,
+     "distance": 5,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 12,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "SAT",
+     "details": null,
+     "distance": 12,
+     "intent": "Time on the legs at a pace that costs nothing.",
+     "role": "key",
+     "title": "Long run"
+    }
+   ],
+   "total_distance": 44,
+   "week_number": 13
+  },
+  {
+   "intent": null,
+   "phase": "taper",
+   "sessions": [
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 5,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "MON",
+     "details": null,
+     "distance": 5,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 1200,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": true,
+       "distance": 1,
+       "duration_seconds": null,
+       "pace_high_seconds": 405,
+       "pace_low_seconds": 390,
+       "recovery_kind": "float",
+       "recovery_seconds": 120,
+       "repeat_count": 3,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "cool_down",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "TUE",
+     "details": "Under 6:30 is a different session.",
+     "distance": 7,
+     "intent": "Rhythm, not a test.",
+     "role": "key",
+     "title": "3 \u00d7 1 mi at race pace"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 4,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "WED",
+     "details": null,
+     "distance": 4,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 5,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 20,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": "easy",
+       "recovery_seconds": 60,
+       "repeat_count": 4,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      }
+     ],
+     "day": "THU",
+     "details": null,
+     "distance": 5,
+     "intent": "A little mechanical brightness. Relaxed, not fast.",
+     "role": "easy",
+     "title": "Easy with strides"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 5,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "FRI",
+     "details": null,
+     "distance": 5,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 10,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "SAT",
+     "details": null,
+     "distance": 10,
+     "intent": "Rhythm, not a test. The durability question has already been answered.",
+     "role": "key",
+     "title": "Long run \u2014 short"
+    }
+   ],
+   "total_distance": 36,
+   "week_number": 14
+  },
+  {
+   "intent": null,
+   "phase": "race",
+   "sessions": [
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 4,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "MON",
+     "details": null,
+     "distance": 4,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 900,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": 1,
+       "duration_seconds": null,
+       "pace_high_seconds": 405,
+       "pace_low_seconds": 390,
+       "recovery_kind": "easy",
+       "recovery_seconds": 120,
+       "repeat_count": 2,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 600,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "cool_down",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "TUE",
+     "details": "Under 6:30 is a different session.",
+     "distance": 6,
+     "intent": "One touch of the band. Familiar, cheap, and finished wanting more. Deliberately not eligible \u2014 this is touching the system, not testing ownership.",
+     "role": "key",
+     "title": "2 \u00d7 1 mi at race pace"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 3,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "WED",
+     "details": null,
+     "distance": 3,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 4,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 20,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": "easy",
+       "recovery_seconds": 60,
+       "repeat_count": 4,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "repetitions"
+      }
+     ],
+     "day": "THU",
+     "details": null,
+     "distance": 4,
+     "intent": "Short and unhurried. Nothing to gain today, something to lose.",
+     "role": "easy",
+     "title": "Easy with strides"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": 3,
+       "duration_seconds": null,
+       "pace_high_seconds": null,
+       "pace_low_seconds": 525,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "FRI",
+     "details": null,
+     "distance": 3,
+     "intent": "Aerobic base. There is no floor \u2014 slower is never wrong.",
+     "role": "easy",
+     "title": "Easy"
+    },
+    {
+     "asks": null,
+     "components": [
+      {
+       "counts_toward_mark": false,
+       "distance": null,
+       "duration_seconds": 900,
+       "pace_high_seconds": null,
+       "pace_low_seconds": null,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "warm_up",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      },
+      {
+       "counts_toward_mark": true,
+       "distance": 13.1,
+       "duration_seconds": null,
+       "pace_high_seconds": 405,
+       "pace_low_seconds": 390,
+       "recovery_kind": null,
+       "recovery_seconds": null,
+       "repeat_count": null,
+       "role": "work",
+       "rpe_high": null,
+       "rpe_low": null,
+       "shape": "continuous"
+      }
+     ],
+     "day": "SAT",
+     "details": null,
+     "distance": 13.1,
+     "intent": "Thirteen point one, continuous, at the pace this whole block has been learning to carry.",
+     "role": "key",
+     "title": "Race \u2014 13.1"
+    }
+   ],
+   "total_distance": 33.1,
+   "week_number": 15
+  }
+ ]
+}

@@ -60,6 +60,14 @@
   status = 200
   force = true
 
+# The published plan. A 200 rewrite so the slashless URL — the one an athlete is
+# actually handed — serves the page rather than bouncing through a redirect.
+[[redirects]]
+  from = "/plans/race-pace-durability"
+  to = "/plans/race-pace-durability/index.html"
+  status = 200
+  force = true
+
 [[redirects]]
   from = "/auth/record-callback"
   to = "/auth/record-callback/index.html"

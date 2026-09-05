@@ -299,10 +299,13 @@ const cutAt = plan.version?.cut_at ? new Date(plan.version.cut_at) : weekOne;
 el('version').textContent = `${plan.plan.name} · v${plan.version?.version_number ?? 1} · ${
   cutAt.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}`;
 
-// The switcher and ?state= are DESIGN-REVIEW ONLY. The public page derives its
-// state from the date and carries no way to override it — a plan that can be
-// told what week it is would be a plan someone forgot to update.
-const REVIEW = location.pathname.includes('/design-review/');
+// The switcher, ?state= and ?week= are DEVELOPMENT ONLY, and the gate is the
+// HOSTNAME rather than the path — the page now lives at its public address, and
+// a gate keyed on where the file sits would have shipped the switcher with it.
+// The published plan derives its state from the date and carries no way to
+// override it: a plan that can be told what week it is would be a plan someone
+// forgot to update.
+const REVIEW = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
 if (!REVIEW) el('dev').remove();
 
 const firstAsk = weeks.find((w) => w.sessions.some((s) => s.asks != null))?.week_number;

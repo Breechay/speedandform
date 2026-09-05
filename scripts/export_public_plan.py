@@ -71,7 +71,7 @@ for w in weeks:
     if abs(total - (w['total_distance'] or 0)) > 0.001:
         sys.exit(f"week {w['week_number']} sums to {total}, declares {w['total_distance']}")
 
-out = 'design-review/public-plan/plan.json'
+out = 'design/approved/race-pace-durability-v8/work/plan.json'
 os.makedirs(os.path.dirname(out), exist_ok=True)
 with open(out, 'w') as fh:
     json.dump(payload, fh, indent=1)
