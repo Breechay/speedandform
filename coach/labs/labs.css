@@ -1062,3 +1062,14 @@ img[data-portrait]{--exp:.9;--con:1.16;--px:50%;--py:40%;--pz:1;--grade:.20}
   .wdayName em{margin-top:0}
   .wNow{margin-top:0}
 }
+
+/* The lens. Quiet, and always visible, because a coach looking at an athlete's
+   plan should never have to wonder which eyes they are using. */
+.lens{position:fixed;top:24px;right:132px;z-index:60;display:flex;gap:2px;padding:2px;
+  border:1px solid var(--edge);border-radius:999px;background:#0c1011cc;
+  backdrop-filter:saturate(1.2) blur(6px)}
+.lens button{padding:5px 13px;border-radius:999px;font-size:11px;font-weight:600;
+  letter-spacing:.03em;color:var(--muted)}
+.lens button.on{background:#ffffff12;color:var(--text)}
+.lens button:hover{color:var(--text)}
+@media (max-width:900px){.lens{right:16px;top:auto;bottom:16px}}

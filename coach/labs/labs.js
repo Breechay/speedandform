@@ -31,6 +31,22 @@ const nav = document.getElementById('nav');
 const sheet = document.getElementById('sheet');
 const shScrim = document.getElementById('shScrim');
 
+// COACH VIEW / ATHLETE VIEW.
+//
+// One prescription, two capabilities. The renderer is shared on purpose: if the
+// athlete's plan were drawn by different code it would drift within a fortnight,
+// and the first anyone would know is an athlete running a session the coach
+// thinks he replaced. So the lens changes what you can DO and what peripheral
+// material you can see — never what the work says.
+//
+// The athlete sees the prescription, the session, what they filed, and the
+// question their block is asking. They do not see how the prescription came to
+// be: revisions, version numbers, audit conditions, the coach's reads. That is
+// not secrecy, it is scope — authorship mechanics are the coach's instrument and
+// decoding them is not part of running on Tuesday.
+let lens = 'coach';
+const asCoach = () => lens === 'coach';
+
 let access = null;
 let bench = [];
 let record = null;
@@ -490,7 +506,7 @@ function observationsHtml() {
   const first = record.athlete?.first_name || '';
   return `<div class="hRow">
       <div class="h">WHAT HELPS ${escapeHtml(String(first).toUpperCase())}</div>
-      <button class="act quiet" type="button" data-observe="new">Add</button>
+      ${asCoach() ? '<button class="act quiet" type="button" data-observe="new">Add</button>' : ''}
     </div>
     ${rows.length
       ? `<div class="stands">${rows.map((row) => `<div class="stand" data-observation="${escapeHtml(row.id)}">
@@ -1444,7 +1460,7 @@ function weekHtml(weekNumber) {
                 : (session.currentVersion?.intent ? `<em>${escapeHtml(session.currentVersion.intent)}</em>` : '')}
             </div>`;
           }).join('')}</section>` : ''}
-        ${standing.length ? `<section><h3>What helps ${escapeHtml(athlete.first_name)}</h3>
+        ${asCoach() && standing.length ? `<section><h3>What helps ${escapeHtml(athlete.first_name)}</h3>
           ${standing.map((row) => `<p class="rFact">${escapeHtml(row.observation)}</p>`).join('')}</section>` : ''}
       </aside>
     </div>
@@ -1589,7 +1605,7 @@ function planHtml() {
 
   return `<main class="view on planv">
     <div class="pgHead">
-      <button class="back" type="button" data-nav="athlete">← ${escapeHtml(athlete.first_name)}</button>
+      ${asCoach() ? `<button class="back" type="button" data-nav="athlete">← ${escapeHtml(athlete.first_name)}</button>` : ''}
       <h3>${escapeHtml(block.name || 'The block')}</h3>
       <span class="pgSub">${escapeHtml(block.total_weeks)} weeks${
         block.race_name ? ` to ${escapeHtml(block.race_name)}` : ''}</span>
@@ -1767,11 +1783,11 @@ function drawerHtml(session) {
         ${rung ? '<div class="dRung">Moves what you own</div>' : ''}
       </div>
       <div class="dActs">
-        ${fileable(session).can
+        ${asCoach() && fileable(session).can
           ? `<button class="act" type="button" data-file="${escapeHtml(session.id)}">File evidence</button>` : ''}
-        ${revisable(session).can
+        ${asCoach() && revisable(session).can
           ? `<button class="act quiet" type="button" data-revise="${escapeHtml(session.id)}">Revise</button>`
-          : (fileable(session).can ? '' : `<span class="dLocked">${escapeHtml(revisable(session).why)}</span>`)}
+          : (!asCoach() || fileable(session).can ? '' : `<span class="dLocked">${escapeHtml(revisable(session).why)}</span>`)}
         <button class="dClose" type="button" data-drawer="close" aria-label="Close">×</button>
       </div>
     </div>
@@ -1789,8 +1805,8 @@ function drawerHtml(session) {
         ? `<p class="dText">${escapeHtml(ranLine(completion, pieces) || 'Filed with no measurements.')}</p>
            ${completion.athlete_note ? `<p class="dSaid">“${escapeHtml(completion.athlete_note)}”</p>` : ''}`
         : '<p class="dNone">Nothing filed.</p>'}
-      ${revisedAfterFiling(session, completion) ? `<div class="dAudit">Prescription revised after filing</div>` : ''}
-      ${versions.length > 1 ? `<div class="dLab">REVISIONS</div>
+      ${asCoach() && revisedAfterFiling(session, completion) ? `<div class="dAudit">Prescription revised after filing</div>` : ''}
+      ${asCoach() && versions.length > 1 ? `<div class="dLab">REVISIONS</div>
         <div class="dRevs">${versions.map((item) => `<div class="dRev">
           <b>v${escapeHtml(item.version_number)}</b>
           <span>${escapeHtml(item.change_reason || (item.version_number === 1 ? 'Authored.' : ''))}</span>
@@ -2327,6 +2343,14 @@ function route() {
 
 function markNav(view, slug) {
   nav.hidden = false;
+  document.getElementById('lens').hidden = false;
+  // Bench, Brief and the Console are the coach's surfaces. An athlete has one
+  // plan and one week; showing them doors into other people's records would be
+  // a different product with a permissions bug in it.
+  nav.querySelectorAll('button').forEach((button) => {
+    button.hidden = !asCoach() && button.dataset.nav !== 'plan';
+  });
+  document.getElementById('plToggle').hidden = !asCoach();
   nav.querySelectorAll('button').forEach((button) => button.classList.remove('on'));
   const which = view === 'bench' ? 'bench' : view === 'brief' ? 'brief'
     : (view === 'plan' || view === 'week') ? 'plan' : null;
@@ -2368,6 +2392,13 @@ function render() {
 
 async function show() {
   const { view, slug } = route();
+  // The lens is not a route. Landing on a coach surface while looking through
+  // the athlete's eyes goes to the plan rather than rendering a page the athlete
+  // would never be given.
+  if (!asCoach() && (view === 'bench' || view === 'brief' || view === 'athlete')) {
+    const who = slug || record?.athlete?.slug || bench.slice().sort(benchOrder)[0]?.slug;
+    if (who) { location.hash = `#/a/${who}/plan`; return; }
+  }
   if (view === 'bench' || view === 'brief') { render(); return; }
   if (record?.athlete?.slug !== slug) { await selectAthlete(slug); return; }
   render();
@@ -2424,6 +2455,16 @@ document.addEventListener('click', (event) => {
     || bench.slice().sort(benchOrder)[0]?.slug;
   if (!slug) return;
   location.hash = where === 'plan' ? `#/a/${slug}/plan` : `#/a/${slug}`;
+});
+
+document.getElementById('lens').addEventListener('click', (event) => {
+  const button = event.target.closest('[data-lens]');
+  if (!button || button.dataset.lens === lens) return;
+  lens = button.dataset.lens;
+  document.querySelectorAll('#lens button').forEach((item) =>
+    item.classList.toggle('on', item.dataset.lens === lens));
+  closeSessionDrawer(); closeSheet();
+  show().catch(fail);
 });
 
 document.getElementById('shClose').addEventListener('click', closeSheet);
