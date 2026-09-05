@@ -14521,34 +14521,6 @@
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
    "counts_toward_mark_id": "20000000-0000-4000-8000-000000000003",
-   "created_at": "2026-08-31T11:28:09.132833+00:00",
-   "distance": 5,
-   "distance_unit": "mi",
-   "duration_seconds": null,
-   "id": "eec4ec3c-7783-41ea-b8b7-7745a6958a84",
-   "pace_high": "6:45",
-   "pace_high_seconds": 405,
-   "pace_low": "6:30",
-   "pace_low_seconds": 390,
-   "position": 1,
-   "recovery_kind": "float",
-   "recovery_seconds": 180,
-   "repeat_ceiling": null,
-   "repeat_count": 2,
-   "repeat_minimum": null,
-   "repeat_progression": null,
-   "repeat_target": null,
-   "role": "work",
-   "rpe_default_version": null,
-   "rpe_high": 8,
-   "rpe_low": 7,
-   "rpe_source": "authored",
-   "shape": "repetitions",
-   "version_id": "cd84f5ec-0308-4517-9af9-aebad24fc819"
-  },
-  {
-   "athlete_id": "10000000-0000-4000-8000-000000000003",
-   "counts_toward_mark_id": "20000000-0000-4000-8000-000000000003",
    "created_at": "2026-09-04T20:00:56.144402+00:00",
    "distance": null,
    "distance_unit": null,
@@ -14657,6 +14629,34 @@
    "rpe_source": "authored",
    "shape": "continuous",
    "version_id": "5fa21db6-2405-491d-b729-25feaf457f64"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-08-31T11:28:09.132833+00:00",
+   "distance": 5,
+   "distance_unit": "mi",
+   "duration_seconds": null,
+   "id": "eec4ec3c-7783-41ea-b8b7-7745a6958a84",
+   "pace_high": "6:45",
+   "pace_high_seconds": 405,
+   "pace_low": "6:30",
+   "pace_low_seconds": 390,
+   "position": 1,
+   "recovery_kind": "float",
+   "recovery_seconds": 180,
+   "repeat_ceiling": null,
+   "repeat_count": 2,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": 8,
+   "rpe_low": 7,
+   "rpe_source": "authored",
+   "shape": "repetitions",
+   "version_id": "cd84f5ec-0308-4517-9af9-aebad24fc819"
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -16877,34 +16877,6 @@
    "distance": 4,
    "distance_unit": "mi",
    "duration_seconds": null,
-   "id": "3801e175-6baf-40a6-a5bd-98b92f84d236",
-   "pace_high": "6:45",
-   "pace_high_seconds": 405,
-   "pace_low": "6:30",
-   "pace_low_seconds": 390,
-   "position": 1,
-   "recovery_kind": "float",
-   "recovery_seconds": 180,
-   "repeat_ceiling": null,
-   "repeat_count": 2,
-   "repeat_minimum": null,
-   "repeat_progression": null,
-   "repeat_target": null,
-   "role": "work",
-   "rpe_default_version": null,
-   "rpe_high": 8,
-   "rpe_low": 7,
-   "rpe_source": "authored",
-   "shape": "repetitions",
-   "version_id": "bbb80fff-24e4-4c41-8672-fb104dcf2fe1"
-  },
-  {
-   "athlete_id": "10000000-0000-4000-8000-000000000003",
-   "counts_toward_mark_id": "20000000-0000-4000-8000-000000000003",
-   "created_at": "2026-08-31T11:28:09.132833+00:00",
-   "distance": 4,
-   "distance_unit": "mi",
-   "duration_seconds": null,
    "id": "7862977f-8f18-46c5-85c0-5d2f5c5304f1",
    "pace_high": "6:45",
    "pace_high_seconds": 405,
@@ -17429,34 +17401,6 @@
    "rpe_source": "authored",
    "shape": "continuous",
    "version_id": "bae19bc7-8ab9-4408-bce7-57f9074b681e"
-  },
-  {
-   "athlete_id": "10000000-0000-4000-8000-000000000004",
-   "counts_toward_mark_id": "20000000-0000-4000-8000-000000000004",
-   "created_at": "2026-08-31T11:28:09.132833+00:00",
-   "distance": 5,
-   "distance_unit": "mi",
-   "duration_seconds": null,
-   "id": "d2940c86-ef63-4f9c-9700-9d395d09a46e",
-   "pace_high": "6:45",
-   "pace_high_seconds": 405,
-   "pace_low": "6:30",
-   "pace_low_seconds": 390,
-   "position": 1,
-   "recovery_kind": "float",
-   "recovery_seconds": 180,
-   "repeat_ceiling": null,
-   "repeat_count": 2,
-   "repeat_minimum": null,
-   "repeat_progression": null,
-   "repeat_target": null,
-   "role": "work",
-   "rpe_default_version": null,
-   "rpe_high": 8,
-   "rpe_low": 7,
-   "rpe_source": "authored",
-   "shape": "repetitions",
-   "version_id": "6fb75ee7-6d0e-4579-9c7a-fe0214b8d415"
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -18385,34 +18329,6 @@
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
    "counts_toward_mark_id": "20000000-0000-4000-8000-000000000004",
-   "created_at": "2026-08-31T11:28:09.132833+00:00",
-   "distance": 4,
-   "distance_unit": "mi",
-   "duration_seconds": null,
-   "id": "3fe457bd-2736-4fcc-b16b-60b76c9e4237",
-   "pace_high": "6:45",
-   "pace_high_seconds": 405,
-   "pace_low": "6:30",
-   "pace_low_seconds": 390,
-   "position": 1,
-   "recovery_kind": "float",
-   "recovery_seconds": 180,
-   "repeat_ceiling": null,
-   "repeat_count": 2,
-   "repeat_minimum": null,
-   "repeat_progression": null,
-   "repeat_target": null,
-   "role": "work",
-   "rpe_default_version": null,
-   "rpe_high": 8,
-   "rpe_low": 7,
-   "rpe_source": "authored",
-   "shape": "repetitions",
-   "version_id": "a150d7e3-4b31-4cca-beb0-147dd22f93e0"
-  },
-  {
-   "athlete_id": "10000000-0000-4000-8000-000000000004",
-   "counts_toward_mark_id": "20000000-0000-4000-8000-000000000004",
    "created_at": "2026-09-04T20:00:56.144402+00:00",
    "distance": null,
    "distance_unit": null,
@@ -18581,6 +18497,34 @@
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
    "counts_toward_mark_id": null,
+   "created_at": "2026-08-31T11:28:09.132833+00:00",
+   "distance": 4,
+   "distance_unit": "mi",
+   "duration_seconds": null,
+   "id": "3fe457bd-2736-4fcc-b16b-60b76c9e4237",
+   "pace_high": "6:45",
+   "pace_high_seconds": 405,
+   "pace_low": "6:30",
+   "pace_low_seconds": 390,
+   "position": 1,
+   "recovery_kind": "float",
+   "recovery_seconds": 180,
+   "repeat_ceiling": null,
+   "repeat_count": 2,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": 8,
+   "rpe_low": 7,
+   "rpe_source": "authored",
+   "shape": "repetitions",
+   "version_id": "a150d7e3-4b31-4cca-beb0-147dd22f93e0"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "counts_toward_mark_id": null,
    "created_at": "2026-09-04T21:56:19.45347+00:00",
    "distance": 7,
    "distance_unit": "mi",
@@ -18744,34 +18688,6 @@
    "rpe_low": null,
    "rpe_source": null,
    "shape": "continuous",
-   "version_id": "298ea3b2-3869-45fb-ad65-b75fcb3439ce"
-  },
-  {
-   "athlete_id": "10000000-0000-4000-8000-000000000004",
-   "counts_toward_mark_id": null,
-   "created_at": "2026-09-04T21:56:19.45347+00:00",
-   "distance": null,
-   "distance_unit": null,
-   "duration_seconds": 300,
-   "id": "c2b3def4-88fa-4d2c-b7c8-bb86b67b3ea3",
-   "pace_high": "6:45",
-   "pace_high_seconds": 405,
-   "pace_low": "6:30",
-   "pace_low_seconds": 390,
-   "position": 2,
-   "recovery_kind": "easy",
-   "recovery_seconds": 180,
-   "repeat_ceiling": null,
-   "repeat_count": 3,
-   "repeat_minimum": null,
-   "repeat_progression": null,
-   "repeat_target": null,
-   "role": "work",
-   "rpe_default_version": null,
-   "rpe_high": null,
-   "rpe_low": null,
-   "rpe_source": null,
-   "shape": "repetitions",
    "version_id": "298ea3b2-3869-45fb-ad65-b75fcb3439ce"
   },
   {
@@ -19144,34 +19060,6 @@
    "created_at": "2026-09-04T21:56:19.45347+00:00",
    "distance": null,
    "distance_unit": null,
-   "duration_seconds": 300,
-   "id": "3f038793-191f-4289-a629-095136a9cd9f",
-   "pace_high": "6:45",
-   "pace_high_seconds": 405,
-   "pace_low": "6:30",
-   "pace_low_seconds": 390,
-   "position": 2,
-   "recovery_kind": "easy",
-   "recovery_seconds": 180,
-   "repeat_ceiling": null,
-   "repeat_count": 3,
-   "repeat_minimum": null,
-   "repeat_progression": null,
-   "repeat_target": null,
-   "role": "work",
-   "rpe_default_version": null,
-   "rpe_high": null,
-   "rpe_low": null,
-   "rpe_source": null,
-   "shape": "repetitions",
-   "version_id": "c94f49ea-a2ef-416e-a043-f2c3a64486ec"
-  },
-  {
-   "athlete_id": "10000000-0000-4000-8000-000000000003",
-   "counts_toward_mark_id": null,
-   "created_at": "2026-09-04T21:56:19.45347+00:00",
-   "distance": null,
-   "distance_unit": null,
    "duration_seconds": 600,
    "id": "b6692bdb-b76d-4dab-8cb0-16fe491e3d07",
    "pace_high": null,
@@ -19503,6 +19391,62 @@
    "version_id": "a57283af-a262-4e6d-a73d-f54565e02066"
   },
   {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-04T21:56:19.45347+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 300,
+   "id": "c2b3def4-88fa-4d2c-b7c8-bb86b67b3ea3",
+   "pace_high": "6:45",
+   "pace_high_seconds": 405,
+   "pace_low": "6:30",
+   "pace_low_seconds": 390,
+   "position": 2,
+   "recovery_kind": "easy",
+   "recovery_seconds": 180,
+   "repeat_ceiling": null,
+   "repeat_count": 3,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "repetitions",
+   "version_id": "298ea3b2-3869-45fb-ad65-b75fcb3439ce"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-04T21:56:19.45347+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 300,
+   "id": "3f038793-191f-4289-a629-095136a9cd9f",
+   "pace_high": "6:45",
+   "pace_high_seconds": 405,
+   "pace_low": "6:30",
+   "pace_low_seconds": 390,
+   "position": 2,
+   "recovery_kind": "easy",
+   "recovery_seconds": 180,
+   "repeat_ceiling": null,
+   "repeat_count": 3,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "repetitions",
+   "version_id": "c94f49ea-a2ef-416e-a043-f2c3a64486ec"
+  },
+  {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
    "counts_toward_mark_id": null,
    "created_at": "2026-09-05T01:20:30.342236+00:00",
@@ -19669,6 +19613,1014 @@
    "rpe_source": null,
    "shape": "continuous",
    "version_id": "0a72e93d-b4cf-4af0-b487-974c6977c15d"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 1500,
+   "id": "d4953a5a-7cf6-492d-a954-d4063762b2c6",
+   "pace_high": null,
+   "pace_high_seconds": null,
+   "pace_low": null,
+   "pace_low_seconds": null,
+   "position": 1,
+   "recovery_kind": null,
+   "recovery_seconds": null,
+   "repeat_ceiling": null,
+   "repeat_count": null,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "warm_up",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "continuous",
+   "version_id": "372f8e3a-2ea4-4f3e-93fb-c7f92b253752"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 12,
+   "id": "c72c2c05-2b8e-440e-9352-df00f8605366",
+   "pace_high": null,
+   "pace_high_seconds": null,
+   "pace_low": null,
+   "pace_low_seconds": null,
+   "position": 2,
+   "recovery_kind": "standing",
+   "recovery_seconds": 180,
+   "repeat_ceiling": null,
+   "repeat_count": 8,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": 9,
+   "rpe_low": 8,
+   "rpe_source": null,
+   "shape": "repetitions",
+   "version_id": "372f8e3a-2ea4-4f3e-93fb-c7f92b253752"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 20,
+   "id": "49b74f31-2fd7-4580-aa9e-a99fd0a7a5e4",
+   "pace_high": null,
+   "pace_high_seconds": null,
+   "pace_low": null,
+   "pace_low_seconds": null,
+   "position": 3,
+   "recovery_kind": "easy",
+   "recovery_seconds": 60,
+   "repeat_ceiling": null,
+   "repeat_count": 4,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": 8,
+   "rpe_low": 7,
+   "rpe_source": null,
+   "shape": "repetitions",
+   "version_id": "372f8e3a-2ea4-4f3e-93fb-c7f92b253752"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 780,
+   "id": "6d3011fe-51b8-4768-a5ff-92647f87f4fe",
+   "pace_high": null,
+   "pace_high_seconds": null,
+   "pace_low": null,
+   "pace_low_seconds": null,
+   "position": 4,
+   "recovery_kind": null,
+   "recovery_seconds": null,
+   "repeat_ceiling": null,
+   "repeat_count": null,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "cool_down",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "continuous",
+   "version_id": "372f8e3a-2ea4-4f3e-93fb-c7f92b253752"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 1500,
+   "id": "3fe46f60-e190-4c4e-998c-ff605dd1ec81",
+   "pace_high": null,
+   "pace_high_seconds": null,
+   "pace_low": null,
+   "pace_low_seconds": null,
+   "position": 1,
+   "recovery_kind": null,
+   "recovery_seconds": null,
+   "repeat_ceiling": null,
+   "repeat_count": null,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "warm_up",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "continuous",
+   "version_id": "4e919f83-7136-4179-8836-82e3acebd4f4"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 12,
+   "id": "cca225a7-dfb6-4182-8504-46c43c8dc390",
+   "pace_high": null,
+   "pace_high_seconds": null,
+   "pace_low": null,
+   "pace_low_seconds": null,
+   "position": 2,
+   "recovery_kind": "standing",
+   "recovery_seconds": 180,
+   "repeat_ceiling": null,
+   "repeat_count": 8,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": 9,
+   "rpe_low": 8,
+   "rpe_source": null,
+   "shape": "repetitions",
+   "version_id": "4e919f83-7136-4179-8836-82e3acebd4f4"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 20,
+   "id": "924f6576-39a1-49ff-af2d-44e0d54cd5b7",
+   "pace_high": null,
+   "pace_high_seconds": null,
+   "pace_low": null,
+   "pace_low_seconds": null,
+   "position": 3,
+   "recovery_kind": "easy",
+   "recovery_seconds": 60,
+   "repeat_ceiling": null,
+   "repeat_count": 4,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": 8,
+   "rpe_low": 7,
+   "rpe_source": null,
+   "shape": "repetitions",
+   "version_id": "4e919f83-7136-4179-8836-82e3acebd4f4"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 780,
+   "id": "223204d4-d57f-4753-85b4-3c82d8438a4c",
+   "pace_high": null,
+   "pace_high_seconds": null,
+   "pace_low": null,
+   "pace_low_seconds": null,
+   "position": 4,
+   "recovery_kind": null,
+   "recovery_seconds": null,
+   "repeat_ceiling": null,
+   "repeat_count": null,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "cool_down",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "continuous",
+   "version_id": "4e919f83-7136-4179-8836-82e3acebd4f4"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 1200,
+   "id": "44c53550-0351-48ef-ad18-48bf0b4698f9",
+   "pace_high": null,
+   "pace_high_seconds": null,
+   "pace_low": null,
+   "pace_low_seconds": null,
+   "position": 1,
+   "recovery_kind": null,
+   "recovery_seconds": null,
+   "repeat_ceiling": null,
+   "repeat_count": null,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "warm_up",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "continuous",
+   "version_id": "7f1fc0a9-ee3e-49b9-a605-43ab55e36b76"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 180,
+   "id": "ce114590-f136-45b6-b3d3-6ff858fd0bfe",
+   "pace_high": "6:00",
+   "pace_high_seconds": 360,
+   "pace_low": "5:50",
+   "pace_low_seconds": 350,
+   "position": 2,
+   "recovery_kind": "jog",
+   "recovery_seconds": 150,
+   "repeat_ceiling": null,
+   "repeat_count": 5,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "repetitions",
+   "version_id": "7f1fc0a9-ee3e-49b9-a605-43ab55e36b76"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 600,
+   "id": "f943862c-5a3a-4654-9f88-248108e5cecd",
+   "pace_high": null,
+   "pace_high_seconds": null,
+   "pace_low": null,
+   "pace_low_seconds": null,
+   "position": 3,
+   "recovery_kind": null,
+   "recovery_seconds": null,
+   "repeat_ceiling": null,
+   "repeat_count": null,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "cool_down",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "continuous",
+   "version_id": "7f1fc0a9-ee3e-49b9-a605-43ab55e36b76"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 1200,
+   "id": "d0e2e0ae-026c-4a11-aa69-f1009283b39c",
+   "pace_high": null,
+   "pace_high_seconds": null,
+   "pace_low": null,
+   "pace_low_seconds": null,
+   "position": 1,
+   "recovery_kind": null,
+   "recovery_seconds": null,
+   "repeat_ceiling": null,
+   "repeat_count": null,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "warm_up",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "continuous",
+   "version_id": "60b7bf5f-26b3-4891-9392-6edc4c8bda61"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 180,
+   "id": "cea7f922-fb75-48e0-b81d-b9fc1ef61622",
+   "pace_high": "6:00",
+   "pace_high_seconds": 360,
+   "pace_low": "5:50",
+   "pace_low_seconds": 350,
+   "position": 2,
+   "recovery_kind": "jog",
+   "recovery_seconds": 150,
+   "repeat_ceiling": null,
+   "repeat_count": 5,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "repetitions",
+   "version_id": "60b7bf5f-26b3-4891-9392-6edc4c8bda61"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 600,
+   "id": "3465bf18-e161-4748-a15f-36df42991999",
+   "pace_high": null,
+   "pace_high_seconds": null,
+   "pace_low": null,
+   "pace_low_seconds": null,
+   "position": 3,
+   "recovery_kind": null,
+   "recovery_seconds": null,
+   "repeat_ceiling": null,
+   "repeat_count": null,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "cool_down",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "continuous",
+   "version_id": "60b7bf5f-26b3-4891-9392-6edc4c8bda61"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 1200,
+   "id": "333416c3-af35-4a07-978d-816a4b256344",
+   "pace_high": null,
+   "pace_high_seconds": null,
+   "pace_low": null,
+   "pace_low_seconds": null,
+   "position": 1,
+   "recovery_kind": null,
+   "recovery_seconds": null,
+   "repeat_ceiling": null,
+   "repeat_count": null,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "warm_up",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "continuous",
+   "version_id": "556f4a64-e719-478c-b4d8-0a0225b741e3"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 120,
+   "id": "27c152cd-1844-4d72-9fff-193af619245a",
+   "pace_high": "6:00",
+   "pace_high_seconds": 360,
+   "pace_low": "5:50",
+   "pace_low_seconds": 350,
+   "position": 2,
+   "recovery_kind": "standing",
+   "recovery_seconds": 180,
+   "repeat_ceiling": null,
+   "repeat_count": 3,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "repetitions",
+   "version_id": "556f4a64-e719-478c-b4d8-0a0225b741e3"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 20,
+   "id": "69f51095-31c7-41d9-9105-ce43337e49b4",
+   "pace_high": null,
+   "pace_high_seconds": null,
+   "pace_low": null,
+   "pace_low_seconds": null,
+   "position": 3,
+   "recovery_kind": "easy",
+   "recovery_seconds": 60,
+   "repeat_ceiling": null,
+   "repeat_count": 4,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": 8,
+   "rpe_low": 7,
+   "rpe_source": null,
+   "shape": "repetitions",
+   "version_id": "556f4a64-e719-478c-b4d8-0a0225b741e3"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 600,
+   "id": "53b59001-eea4-4e9e-bcbe-1ae8c13aa9df",
+   "pace_high": null,
+   "pace_high_seconds": null,
+   "pace_low": null,
+   "pace_low_seconds": null,
+   "position": 4,
+   "recovery_kind": null,
+   "recovery_seconds": null,
+   "repeat_ceiling": null,
+   "repeat_count": null,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "cool_down",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "continuous",
+   "version_id": "556f4a64-e719-478c-b4d8-0a0225b741e3"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 1200,
+   "id": "163c35f1-b6a5-4c49-8f3b-da023acea487",
+   "pace_high": null,
+   "pace_high_seconds": null,
+   "pace_low": null,
+   "pace_low_seconds": null,
+   "position": 1,
+   "recovery_kind": null,
+   "recovery_seconds": null,
+   "repeat_ceiling": null,
+   "repeat_count": null,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "warm_up",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "continuous",
+   "version_id": "8f77f401-70fb-44b1-9131-f708af16c63e"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 120,
+   "id": "39697df5-fde2-434e-85df-7070646a543e",
+   "pace_high": "6:00",
+   "pace_high_seconds": 360,
+   "pace_low": "5:50",
+   "pace_low_seconds": 350,
+   "position": 2,
+   "recovery_kind": "standing",
+   "recovery_seconds": 180,
+   "repeat_ceiling": null,
+   "repeat_count": 3,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "repetitions",
+   "version_id": "8f77f401-70fb-44b1-9131-f708af16c63e"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 20,
+   "id": "f7891e98-d28f-4640-b096-fafca94e5729",
+   "pace_high": null,
+   "pace_high_seconds": null,
+   "pace_low": null,
+   "pace_low_seconds": null,
+   "position": 3,
+   "recovery_kind": "easy",
+   "recovery_seconds": 60,
+   "repeat_ceiling": null,
+   "repeat_count": 4,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": 8,
+   "rpe_low": 7,
+   "rpe_source": null,
+   "shape": "repetitions",
+   "version_id": "8f77f401-70fb-44b1-9131-f708af16c63e"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 600,
+   "id": "c89be91b-16b1-44e4-9495-40d423dab9e5",
+   "pace_high": null,
+   "pace_high_seconds": null,
+   "pace_low": null,
+   "pace_low_seconds": null,
+   "position": 4,
+   "recovery_kind": null,
+   "recovery_seconds": null,
+   "repeat_ceiling": null,
+   "repeat_count": null,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "cool_down",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "continuous",
+   "version_id": "8f77f401-70fb-44b1-9131-f708af16c63e"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 1800,
+   "id": "50e39583-ba91-47c4-829b-5d549363b930",
+   "pace_high": "7:30",
+   "pace_high_seconds": 450,
+   "pace_low": "7:15",
+   "pace_low_seconds": 435,
+   "position": 1,
+   "recovery_kind": null,
+   "recovery_seconds": null,
+   "repeat_ceiling": null,
+   "repeat_count": null,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "continuous",
+   "version_id": "d82e7fa9-cb19-4fbd-a1fa-ffe6bcaea48e"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 600,
+   "id": "21b81d25-a473-44e2-8d16-bd3208e5e1ce",
+   "pace_high": null,
+   "pace_high_seconds": null,
+   "pace_low": null,
+   "pace_low_seconds": null,
+   "position": 3,
+   "recovery_kind": null,
+   "recovery_seconds": null,
+   "repeat_ceiling": null,
+   "repeat_count": null,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "cool_down",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "continuous",
+   "version_id": "d82e7fa9-cb19-4fbd-a1fa-ffe6bcaea48e"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 1800,
+   "id": "68991f26-4f10-40ea-82db-f7166667401a",
+   "pace_high": "7:30",
+   "pace_high_seconds": 450,
+   "pace_low": "7:15",
+   "pace_low_seconds": 435,
+   "position": 1,
+   "recovery_kind": null,
+   "recovery_seconds": null,
+   "repeat_ceiling": null,
+   "repeat_count": null,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "continuous",
+   "version_id": "66159aa8-b4f6-4221-b121-486f66e69da9"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 600,
+   "id": "10bfcb84-ea39-43c5-b568-fdff3f84845f",
+   "pace_high": null,
+   "pace_high_seconds": null,
+   "pace_low": null,
+   "pace_low_seconds": null,
+   "position": 3,
+   "recovery_kind": null,
+   "recovery_seconds": null,
+   "repeat_ceiling": null,
+   "repeat_count": null,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "cool_down",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "continuous",
+   "version_id": "66159aa8-b4f6-4221-b121-486f66e69da9"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 1200,
+   "id": "e02e0929-a882-4555-b6eb-f5b41abe7851",
+   "pace_high": "7:30",
+   "pace_high_seconds": 450,
+   "pace_low": "7:15",
+   "pace_low_seconds": 435,
+   "position": 1,
+   "recovery_kind": null,
+   "recovery_seconds": null,
+   "repeat_ceiling": null,
+   "repeat_count": null,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "continuous",
+   "version_id": "24644ea1-55b5-41e1-af01-fba57131284c"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 600,
+   "id": "0a4b244a-3e70-4948-8755-0809486a6d31",
+   "pace_high": null,
+   "pace_high_seconds": null,
+   "pace_low": null,
+   "pace_low_seconds": null,
+   "position": 3,
+   "recovery_kind": null,
+   "recovery_seconds": null,
+   "repeat_ceiling": null,
+   "repeat_count": null,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "cool_down",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "continuous",
+   "version_id": "24644ea1-55b5-41e1-af01-fba57131284c"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 1200,
+   "id": "a5c46152-d847-4812-8254-285d94aef977",
+   "pace_high": "7:30",
+   "pace_high_seconds": 450,
+   "pace_low": "7:15",
+   "pace_low_seconds": 435,
+   "position": 1,
+   "recovery_kind": null,
+   "recovery_seconds": null,
+   "repeat_ceiling": null,
+   "repeat_count": null,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "continuous",
+   "version_id": "05e0deaf-8cb0-4b8a-ac30-ed60fcf0e38c"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 600,
+   "id": "564af421-37d0-42ed-ac6c-105cad2e6b61",
+   "pace_high": null,
+   "pace_high_seconds": null,
+   "pace_low": null,
+   "pace_low_seconds": null,
+   "position": 3,
+   "recovery_kind": null,
+   "recovery_seconds": null,
+   "repeat_ceiling": null,
+   "repeat_count": null,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "cool_down",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "continuous",
+   "version_id": "05e0deaf-8cb0-4b8a-ac30-ed60fcf0e38c"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "counts_toward_mark_id": "20000000-0000-4000-8000-000000000003",
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 480,
+   "id": "f77d40b9-76f6-44e2-8b13-5a6a908b1d27",
+   "pace_high": "6:45",
+   "pace_high_seconds": 405,
+   "pace_low": "6:30",
+   "pace_low_seconds": 390,
+   "position": 2,
+   "recovery_kind": "jog",
+   "recovery_seconds": 120,
+   "repeat_ceiling": null,
+   "repeat_count": 2,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "repetitions",
+   "version_id": "24644ea1-55b5-41e1-af01-fba57131284c"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "counts_toward_mark_id": "20000000-0000-4000-8000-000000000003",
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 480,
+   "id": "3951b74b-8197-4d8d-a952-80a8b127dfcc",
+   "pace_high": "6:45",
+   "pace_high_seconds": 405,
+   "pace_low": "6:30",
+   "pace_low_seconds": 390,
+   "position": 2,
+   "recovery_kind": "float",
+   "recovery_seconds": 120,
+   "repeat_ceiling": null,
+   "repeat_count": 3,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "repetitions",
+   "version_id": "d82e7fa9-cb19-4fbd-a1fa-ffe6bcaea48e"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "counts_toward_mark_id": "20000000-0000-4000-8000-000000000004",
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 480,
+   "id": "9e1d2a06-0202-4e3d-ab3f-4c52f1e9a88b",
+   "pace_high": "6:45",
+   "pace_high_seconds": 405,
+   "pace_low": "6:30",
+   "pace_low_seconds": 390,
+   "position": 2,
+   "recovery_kind": "jog",
+   "recovery_seconds": 120,
+   "repeat_ceiling": null,
+   "repeat_count": 2,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "repetitions",
+   "version_id": "05e0deaf-8cb0-4b8a-ac30-ed60fcf0e38c"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "counts_toward_mark_id": "20000000-0000-4000-8000-000000000004",
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "distance": null,
+   "distance_unit": null,
+   "duration_seconds": 480,
+   "id": "c00466bf-77d5-4e1f-83d9-1c4bcff4a647",
+   "pace_high": "6:45",
+   "pace_high_seconds": 405,
+   "pace_low": "6:30",
+   "pace_low_seconds": 390,
+   "position": 2,
+   "recovery_kind": "float",
+   "recovery_seconds": 120,
+   "repeat_ceiling": null,
+   "repeat_count": 3,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "rpe_source": null,
+   "shape": "repetitions",
+   "version_id": "66159aa8-b4f6-4221-b121-486f66e69da9"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-08-31T11:28:09.132833+00:00",
+   "distance": 4,
+   "distance_unit": "mi",
+   "duration_seconds": null,
+   "id": "3801e175-6baf-40a6-a5bd-98b92f84d236",
+   "pace_high": "6:45",
+   "pace_high_seconds": 405,
+   "pace_low": "6:30",
+   "pace_low_seconds": 390,
+   "position": 1,
+   "recovery_kind": "float",
+   "recovery_seconds": 180,
+   "repeat_ceiling": null,
+   "repeat_count": 2,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": 8,
+   "rpe_low": 7,
+   "rpe_source": "authored",
+   "shape": "repetitions",
+   "version_id": "bbb80fff-24e4-4c41-8672-fb104dcf2fe1"
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "counts_toward_mark_id": null,
+   "created_at": "2026-08-31T11:28:09.132833+00:00",
+   "distance": 5,
+   "distance_unit": "mi",
+   "duration_seconds": null,
+   "id": "d2940c86-ef63-4f9c-9700-9d395d09a46e",
+   "pace_high": "6:45",
+   "pace_high_seconds": 405,
+   "pace_low": "6:30",
+   "pace_low_seconds": 390,
+   "position": 1,
+   "recovery_kind": "float",
+   "recovery_seconds": 180,
+   "repeat_ceiling": null,
+   "repeat_count": 2,
+   "repeat_minimum": null,
+   "repeat_progression": null,
+   "repeat_target": null,
+   "role": "work",
+   "rpe_default_version": null,
+   "rpe_high": 8,
+   "rpe_low": 7,
+   "rpe_source": "authored",
+   "shape": "repetitions",
+   "version_id": "6fb75ee7-6d0e-4579-9c7a-fe0214b8d415"
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -24291,7 +25243,7 @@
    "version_id": "10667cd7-c6bf-4631-9998-bafa1f6f3500"
   }
  ],
- "dumped_at": "2026-09-05T01:20:47.855308+00:00",
+ "dumped_at": "2026-09-05T01:50:06.158374+00:00",
  "exceptions": [
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -25096,7 +26048,10 @@
    "scheduled_on": "2026-08-23",
    "state": "completed",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "12000000-0000-4000-8000-000000000001"
+   "week_id": "12000000-0000-4000-8000-000000000001",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
@@ -25110,7 +26065,10 @@
    "scheduled_on": "2026-08-25",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "12000000-0000-4000-8000-000000000001"
+   "week_id": "12000000-0000-4000-8000-000000000001",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
@@ -25124,7 +26082,10 @@
    "scheduled_on": "2026-08-27",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "12000000-0000-4000-8000-000000000001"
+   "week_id": "12000000-0000-4000-8000-000000000001",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
@@ -25138,7 +26099,10 @@
    "scheduled_on": "2026-08-30",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "47be1442-06c1-4933-a521-2c72eade8c1a"
+   "week_id": "47be1442-06c1-4933-a521-2c72eade8c1a",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
@@ -25152,7 +26116,10 @@
    "scheduled_on": "2026-09-01",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "47be1442-06c1-4933-a521-2c72eade8c1a"
+   "week_id": "47be1442-06c1-4933-a521-2c72eade8c1a",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
@@ -25166,7 +26133,10 @@
    "scheduled_on": "2026-09-03",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "47be1442-06c1-4933-a521-2c72eade8c1a"
+   "week_id": "47be1442-06c1-4933-a521-2c72eade8c1a",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
@@ -25180,7 +26150,10 @@
    "scheduled_on": "2026-09-06",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "c4e3241e-e324-46b8-8054-daadb41cd31b"
+   "week_id": "c4e3241e-e324-46b8-8054-daadb41cd31b",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
@@ -25194,7 +26167,10 @@
    "scheduled_on": "2026-09-08",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "c4e3241e-e324-46b8-8054-daadb41cd31b"
+   "week_id": "c4e3241e-e324-46b8-8054-daadb41cd31b",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
@@ -25208,7 +26184,10 @@
    "scheduled_on": "2026-09-10",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "c4e3241e-e324-46b8-8054-daadb41cd31b"
+   "week_id": "c4e3241e-e324-46b8-8054-daadb41cd31b",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
@@ -25222,7 +26201,10 @@
    "scheduled_on": "2026-09-13",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "dad95df3-da27-4d17-be71-7ea053c71941"
+   "week_id": "dad95df3-da27-4d17-be71-7ea053c71941",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
@@ -25236,7 +26218,10 @@
    "scheduled_on": "2026-09-15",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "dad95df3-da27-4d17-be71-7ea053c71941"
+   "week_id": "dad95df3-da27-4d17-be71-7ea053c71941",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
@@ -25250,7 +26235,10 @@
    "scheduled_on": "2026-09-17",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "dad95df3-da27-4d17-be71-7ea053c71941"
+   "week_id": "dad95df3-da27-4d17-be71-7ea053c71941",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
@@ -25264,7 +26252,10 @@
    "scheduled_on": "2026-09-20",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "893d74d3-58e0-4eb5-ba2e-18d6674f9097"
+   "week_id": "893d74d3-58e0-4eb5-ba2e-18d6674f9097",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
@@ -25278,7 +26269,10 @@
    "scheduled_on": "2026-09-22",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "893d74d3-58e0-4eb5-ba2e-18d6674f9097"
+   "week_id": "893d74d3-58e0-4eb5-ba2e-18d6674f9097",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
@@ -25292,7 +26286,10 @@
    "scheduled_on": "2026-09-24",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "893d74d3-58e0-4eb5-ba2e-18d6674f9097"
+   "week_id": "893d74d3-58e0-4eb5-ba2e-18d6674f9097",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
@@ -25306,7 +26303,10 @@
    "scheduled_on": "2026-09-27",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "f86440e4-31c0-4cfe-9663-554874b6db98"
+   "week_id": "f86440e4-31c0-4cfe-9663-554874b6db98",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
@@ -25320,7 +26320,10 @@
    "scheduled_on": "2026-09-29",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "f86440e4-31c0-4cfe-9663-554874b6db98"
+   "week_id": "f86440e4-31c0-4cfe-9663-554874b6db98",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
@@ -25334,7 +26337,10 @@
    "scheduled_on": "2026-10-01",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "f86440e4-31c0-4cfe-9663-554874b6db98"
+   "week_id": "f86440e4-31c0-4cfe-9663-554874b6db98",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
@@ -25348,7 +26354,10 @@
    "scheduled_on": "2026-10-04",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "a2f8d36f-654f-4b97-9eac-2c6992374dd9"
+   "week_id": "a2f8d36f-654f-4b97-9eac-2c6992374dd9",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
@@ -25362,7 +26371,10 @@
    "scheduled_on": "2026-10-06",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "a2f8d36f-654f-4b97-9eac-2c6992374dd9"
+   "week_id": "a2f8d36f-654f-4b97-9eac-2c6992374dd9",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
@@ -25376,7 +26388,10 @@
    "scheduled_on": "2026-10-08",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "a2f8d36f-654f-4b97-9eac-2c6992374dd9"
+   "week_id": "a2f8d36f-654f-4b97-9eac-2c6992374dd9",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
@@ -25390,7 +26405,10 @@
    "scheduled_on": "2026-10-11",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "309cab82-e0d1-481e-80d7-1b3d33239024"
+   "week_id": "309cab82-e0d1-481e-80d7-1b3d33239024",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000001",
@@ -25404,7 +26422,10 @@
    "scheduled_on": "2026-10-13",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "309cab82-e0d1-481e-80d7-1b3d33239024"
+   "week_id": "309cab82-e0d1-481e-80d7-1b3d33239024",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25418,7 +26439,10 @@
    "scheduled_on": "2026-09-06",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "182215fe-7872-40f3-94e3-c09631eecae9"
+   "week_id": "182215fe-7872-40f3-94e3-c09631eecae9",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25432,7 +26456,10 @@
    "scheduled_on": "2026-09-08",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "f87d8a9c-cafd-404d-b4a6-e48a3e6e361c"
+   "week_id": "f87d8a9c-cafd-404d-b4a6-e48a3e6e361c",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25446,7 +26473,10 @@
    "scheduled_on": "2026-09-10",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "f87d8a9c-cafd-404d-b4a6-e48a3e6e361c"
+   "week_id": "f87d8a9c-cafd-404d-b4a6-e48a3e6e361c",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25460,7 +26490,10 @@
    "scheduled_on": "2026-09-13",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "f87d8a9c-cafd-404d-b4a6-e48a3e6e361c"
+   "week_id": "f87d8a9c-cafd-404d-b4a6-e48a3e6e361c",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25474,7 +26507,10 @@
    "scheduled_on": "2026-09-15",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "905f6bdd-c1e6-4b37-9a64-2eb9e9dad5e6"
+   "week_id": "905f6bdd-c1e6-4b37-9a64-2eb9e9dad5e6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25488,7 +26524,10 @@
    "scheduled_on": "2026-09-17",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "905f6bdd-c1e6-4b37-9a64-2eb9e9dad5e6"
+   "week_id": "905f6bdd-c1e6-4b37-9a64-2eb9e9dad5e6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25502,7 +26541,10 @@
    "scheduled_on": "2026-09-20",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "905f6bdd-c1e6-4b37-9a64-2eb9e9dad5e6"
+   "week_id": "905f6bdd-c1e6-4b37-9a64-2eb9e9dad5e6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25516,7 +26558,10 @@
    "scheduled_on": "2026-09-22",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "b55cc2f5-6c25-4dd6-970b-c8199011d50b"
+   "week_id": "b55cc2f5-6c25-4dd6-970b-c8199011d50b",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25530,7 +26575,10 @@
    "scheduled_on": "2026-09-24",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "b55cc2f5-6c25-4dd6-970b-c8199011d50b"
+   "week_id": "b55cc2f5-6c25-4dd6-970b-c8199011d50b",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25544,7 +26592,10 @@
    "scheduled_on": "2026-09-27",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "b55cc2f5-6c25-4dd6-970b-c8199011d50b"
+   "week_id": "b55cc2f5-6c25-4dd6-970b-c8199011d50b",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25558,7 +26609,10 @@
    "scheduled_on": "2026-09-29",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "2f4a1ab9-99aa-4e90-b478-2b63d0dc68b6"
+   "week_id": "2f4a1ab9-99aa-4e90-b478-2b63d0dc68b6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25572,7 +26626,10 @@
    "scheduled_on": "2026-10-01",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "2f4a1ab9-99aa-4e90-b478-2b63d0dc68b6"
+   "week_id": "2f4a1ab9-99aa-4e90-b478-2b63d0dc68b6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25586,7 +26643,10 @@
    "scheduled_on": "2026-10-04",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "2f4a1ab9-99aa-4e90-b478-2b63d0dc68b6"
+   "week_id": "2f4a1ab9-99aa-4e90-b478-2b63d0dc68b6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25600,7 +26660,10 @@
    "scheduled_on": "2026-10-06",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "6feb56b6-d93d-4c86-bbf0-274b48ac93c4"
+   "week_id": "6feb56b6-d93d-4c86-bbf0-274b48ac93c4",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25614,7 +26677,10 @@
    "scheduled_on": "2026-10-08",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "6feb56b6-d93d-4c86-bbf0-274b48ac93c4"
+   "week_id": "6feb56b6-d93d-4c86-bbf0-274b48ac93c4",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25628,7 +26694,10 @@
    "scheduled_on": "2026-10-11",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "6feb56b6-d93d-4c86-bbf0-274b48ac93c4"
+   "week_id": "6feb56b6-d93d-4c86-bbf0-274b48ac93c4",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25642,7 +26711,10 @@
    "scheduled_on": "2026-10-13",
    "state": "cancelled",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "90a2e417-2a22-4d30-a562-c294e59f8ff0"
+   "week_id": "90a2e417-2a22-4d30-a562-c294e59f8ff0",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25656,7 +26728,10 @@
    "scheduled_on": "2026-10-15",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "90a2e417-2a22-4d30-a562-c294e59f8ff0"
+   "week_id": "90a2e417-2a22-4d30-a562-c294e59f8ff0",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25670,7 +26745,10 @@
    "scheduled_on": "2026-10-18",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "90a2e417-2a22-4d30-a562-c294e59f8ff0"
+   "week_id": "90a2e417-2a22-4d30-a562-c294e59f8ff0",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25684,7 +26762,10 @@
    "scheduled_on": "2026-10-20",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "63cf83c2-e838-4f80-92ce-3457ee35ab35"
+   "week_id": "63cf83c2-e838-4f80-92ce-3457ee35ab35",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25698,7 +26779,10 @@
    "scheduled_on": "2026-10-22",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "63cf83c2-e838-4f80-92ce-3457ee35ab35"
+   "week_id": "63cf83c2-e838-4f80-92ce-3457ee35ab35",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25712,7 +26796,10 @@
    "scheduled_on": "2026-10-25",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "63cf83c2-e838-4f80-92ce-3457ee35ab35"
+   "week_id": "63cf83c2-e838-4f80-92ce-3457ee35ab35",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25726,7 +26813,10 @@
    "scheduled_on": "2026-10-27",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "5e2f5be6-c22b-42b7-9ac1-e98fda596462"
+   "week_id": "5e2f5be6-c22b-42b7-9ac1-e98fda596462",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25740,7 +26830,10 @@
    "scheduled_on": "2026-10-29",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "5e2f5be6-c22b-42b7-9ac1-e98fda596462"
+   "week_id": "5e2f5be6-c22b-42b7-9ac1-e98fda596462",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25754,7 +26847,10 @@
    "scheduled_on": "2026-11-01",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "5e2f5be6-c22b-42b7-9ac1-e98fda596462"
+   "week_id": "5e2f5be6-c22b-42b7-9ac1-e98fda596462",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25768,7 +26864,10 @@
    "scheduled_on": "2026-11-03",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "f9c03711-aa03-4d3a-a69f-b5e994b05664"
+   "week_id": "f9c03711-aa03-4d3a-a69f-b5e994b05664",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25782,7 +26881,10 @@
    "scheduled_on": "2026-11-05",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "f9c03711-aa03-4d3a-a69f-b5e994b05664"
+   "week_id": "f9c03711-aa03-4d3a-a69f-b5e994b05664",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25796,7 +26898,10 @@
    "scheduled_on": "2026-11-08",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "f9c03711-aa03-4d3a-a69f-b5e994b05664"
+   "week_id": "f9c03711-aa03-4d3a-a69f-b5e994b05664",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25810,7 +26915,10 @@
    "scheduled_on": "2026-11-10",
    "state": "cancelled",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "282d6b45-c131-40b2-a9ca-77f8080c2b42"
+   "week_id": "282d6b45-c131-40b2-a9ca-77f8080c2b42",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25824,7 +26932,10 @@
    "scheduled_on": "2026-11-12",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "282d6b45-c131-40b2-a9ca-77f8080c2b42"
+   "week_id": "282d6b45-c131-40b2-a9ca-77f8080c2b42",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25838,7 +26949,10 @@
    "scheduled_on": "2026-11-15",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "282d6b45-c131-40b2-a9ca-77f8080c2b42"
+   "week_id": "282d6b45-c131-40b2-a9ca-77f8080c2b42",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25852,7 +26966,10 @@
    "scheduled_on": "2026-11-17",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "97a617a1-99f9-42c1-9821-efda7ecff20a"
+   "week_id": "97a617a1-99f9-42c1-9821-efda7ecff20a",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25866,7 +26983,10 @@
    "scheduled_on": "2026-11-19",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "97a617a1-99f9-42c1-9821-efda7ecff20a"
+   "week_id": "97a617a1-99f9-42c1-9821-efda7ecff20a",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25880,7 +27000,10 @@
    "scheduled_on": "2026-11-22",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "97a617a1-99f9-42c1-9821-efda7ecff20a"
+   "week_id": "97a617a1-99f9-42c1-9821-efda7ecff20a",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25894,7 +27017,10 @@
    "scheduled_on": "2026-11-24",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "d7683f2b-0bf0-4a28-898e-0e4d23a20609"
+   "week_id": "d7683f2b-0bf0-4a28-898e-0e4d23a20609",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25908,7 +27034,10 @@
    "scheduled_on": "2026-11-26",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "d7683f2b-0bf0-4a28-898e-0e4d23a20609"
+   "week_id": "d7683f2b-0bf0-4a28-898e-0e4d23a20609",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25922,7 +27051,10 @@
    "scheduled_on": "2026-11-29",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "d7683f2b-0bf0-4a28-898e-0e4d23a20609"
+   "week_id": "d7683f2b-0bf0-4a28-898e-0e4d23a20609",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25936,7 +27068,10 @@
    "scheduled_on": "2026-12-01",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "ae88cd91-104b-479c-be7c-6d9323656d59"
+   "week_id": "ae88cd91-104b-479c-be7c-6d9323656d59",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25950,7 +27085,10 @@
    "scheduled_on": "2026-12-03",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "ae88cd91-104b-479c-be7c-6d9323656d59"
+   "week_id": "ae88cd91-104b-479c-be7c-6d9323656d59",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25964,21 +27102,10 @@
    "scheduled_on": "2026-12-06",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "ae88cd91-104b-479c-be7c-6d9323656d59"
-  },
-  {
-   "athlete_id": "10000000-0000-4000-8000-000000000002",
-   "created_at": "2026-08-25T15:12:03.499835+00:00",
-   "created_by": null,
-   "day_label": "TUE",
-   "establishes_checkpoint_id": null,
-   "id": "a2ce18af-5db5-404f-965d-38db75f9af4c",
-   "is_key": true,
-   "position": 1,
-   "scheduled_on": "2026-12-08",
-   "state": "published",
-   "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "a6f4efa8-0537-458c-a553-170ee84a6d62"
+   "week_id": "ae88cd91-104b-479c-be7c-6d9323656d59",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -25992,21 +27119,27 @@
    "scheduled_on": "2026-12-08",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "a6f4efa8-0537-458c-a553-170ee84a6d62"
+   "week_id": "a6f4efa8-0537-458c-a553-170ee84a6d62",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
-   "created_at": "2026-08-25T15:27:15.719487+00:00",
+   "created_at": "2026-08-25T15:12:03.499835+00:00",
    "created_by": null,
-   "day_label": "THU",
+   "day_label": "TUE",
    "establishes_checkpoint_id": null,
-   "id": "1519febe-0b0b-4eca-9a86-8969531f3f70",
+   "id": "a2ce18af-5db5-404f-965d-38db75f9af4c",
    "is_key": true,
-   "position": 3,
-   "scheduled_on": "2026-12-10",
+   "position": 1,
+   "scheduled_on": "2026-12-08",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "a6f4efa8-0537-458c-a553-170ee84a6d62"
+   "week_id": "a6f4efa8-0537-458c-a553-170ee84a6d62",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -26020,7 +27153,27 @@
    "scheduled_on": "2026-12-10",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "a6f4efa8-0537-458c-a553-170ee84a6d62"
+   "week_id": "a6f4efa8-0537-458c-a553-170ee84a6d62",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000002",
+   "created_at": "2026-08-25T15:27:15.719487+00:00",
+   "created_by": null,
+   "day_label": "THU",
+   "establishes_checkpoint_id": null,
+   "id": "1519febe-0b0b-4eca-9a86-8969531f3f70",
+   "is_key": true,
+   "position": 3,
+   "scheduled_on": "2026-12-10",
+   "state": "published",
+   "updated_at": "2026-09-04T09:35:36.452444+00:00",
+   "week_id": "a6f4efa8-0537-458c-a553-170ee84a6d62",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000002",
@@ -26034,7 +27187,10 @@
    "scheduled_on": "2026-12-13",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "a6f4efa8-0537-458c-a553-170ee84a6d62"
+   "week_id": "a6f4efa8-0537-458c-a553-170ee84a6d62",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26048,7 +27204,10 @@
    "scheduled_on": "2026-08-25",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "9b000b2f-dd2b-4539-9422-354509919f30"
+   "week_id": "9b000b2f-dd2b-4539-9422-354509919f30",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26062,7 +27221,10 @@
    "scheduled_on": "2026-08-27",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "9b000b2f-dd2b-4539-9422-354509919f30"
+   "week_id": "9b000b2f-dd2b-4539-9422-354509919f30",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26076,7 +27238,10 @@
    "scheduled_on": "2026-08-29",
    "state": "changed",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "9b000b2f-dd2b-4539-9422-354509919f30"
+   "week_id": "9b000b2f-dd2b-4539-9422-354509919f30",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26090,7 +27255,10 @@
    "scheduled_on": "2026-09-01",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "09a70db3-94ae-4dfa-be47-98e4eee13870"
+   "week_id": "09a70db3-94ae-4dfa-be47-98e4eee13870",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26104,7 +27272,10 @@
    "scheduled_on": "2026-09-03",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "09a70db3-94ae-4dfa-be47-98e4eee13870"
+   "week_id": "09a70db3-94ae-4dfa-be47-98e4eee13870",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26118,7 +27289,10 @@
    "scheduled_on": "2026-09-05",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "09a70db3-94ae-4dfa-be47-98e4eee13870"
+   "week_id": "09a70db3-94ae-4dfa-be47-98e4eee13870",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26132,7 +27306,10 @@
    "scheduled_on": "2026-09-07",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "576486d8-4d8c-4601-9b24-5ce8a85fa056"
+   "week_id": "576486d8-4d8c-4601-9b24-5ce8a85fa056",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26146,7 +27323,10 @@
    "scheduled_on": "2026-09-08",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "576486d8-4d8c-4601-9b24-5ce8a85fa056"
+   "week_id": "576486d8-4d8c-4601-9b24-5ce8a85fa056",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26160,7 +27340,10 @@
    "scheduled_on": "2026-09-09",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "576486d8-4d8c-4601-9b24-5ce8a85fa056"
+   "week_id": "576486d8-4d8c-4601-9b24-5ce8a85fa056",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26174,7 +27357,10 @@
    "scheduled_on": "2026-09-10",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "576486d8-4d8c-4601-9b24-5ce8a85fa056"
+   "week_id": "576486d8-4d8c-4601-9b24-5ce8a85fa056",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26188,7 +27374,10 @@
    "scheduled_on": "2026-09-11",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "576486d8-4d8c-4601-9b24-5ce8a85fa056"
+   "week_id": "576486d8-4d8c-4601-9b24-5ce8a85fa056",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26202,7 +27391,10 @@
    "scheduled_on": "2026-09-12",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "576486d8-4d8c-4601-9b24-5ce8a85fa056"
+   "week_id": "576486d8-4d8c-4601-9b24-5ce8a85fa056",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26216,7 +27408,10 @@
    "scheduled_on": "2026-09-14",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "5e11918d-20d1-4f36-b910-36d6e6347fbe"
+   "week_id": "5e11918d-20d1-4f36-b910-36d6e6347fbe",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26230,7 +27425,10 @@
    "scheduled_on": "2026-09-15",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "5e11918d-20d1-4f36-b910-36d6e6347fbe"
+   "week_id": "5e11918d-20d1-4f36-b910-36d6e6347fbe",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26244,7 +27442,10 @@
    "scheduled_on": "2026-09-16",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "5e11918d-20d1-4f36-b910-36d6e6347fbe"
+   "week_id": "5e11918d-20d1-4f36-b910-36d6e6347fbe",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26258,7 +27459,10 @@
    "scheduled_on": "2026-09-17",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "5e11918d-20d1-4f36-b910-36d6e6347fbe"
+   "week_id": "5e11918d-20d1-4f36-b910-36d6e6347fbe",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26272,7 +27476,10 @@
    "scheduled_on": "2026-09-18",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "5e11918d-20d1-4f36-b910-36d6e6347fbe"
+   "week_id": "5e11918d-20d1-4f36-b910-36d6e6347fbe",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26286,7 +27493,10 @@
    "scheduled_on": "2026-09-19",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "5e11918d-20d1-4f36-b910-36d6e6347fbe"
+   "week_id": "5e11918d-20d1-4f36-b910-36d6e6347fbe",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26300,7 +27510,10 @@
    "scheduled_on": "2026-09-21",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "8712036d-31c1-43b4-bd2e-02ba91d0b6fb"
+   "week_id": "8712036d-31c1-43b4-bd2e-02ba91d0b6fb",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26314,7 +27527,10 @@
    "scheduled_on": "2026-09-22",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "8712036d-31c1-43b4-bd2e-02ba91d0b6fb"
+   "week_id": "8712036d-31c1-43b4-bd2e-02ba91d0b6fb",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26328,7 +27544,10 @@
    "scheduled_on": "2026-09-23",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "8712036d-31c1-43b4-bd2e-02ba91d0b6fb"
+   "week_id": "8712036d-31c1-43b4-bd2e-02ba91d0b6fb",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26342,7 +27561,10 @@
    "scheduled_on": "2026-09-24",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "8712036d-31c1-43b4-bd2e-02ba91d0b6fb"
+   "week_id": "8712036d-31c1-43b4-bd2e-02ba91d0b6fb",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26356,7 +27578,10 @@
    "scheduled_on": "2026-09-25",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "8712036d-31c1-43b4-bd2e-02ba91d0b6fb"
+   "week_id": "8712036d-31c1-43b4-bd2e-02ba91d0b6fb",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26370,7 +27595,10 @@
    "scheduled_on": "2026-09-26",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "8712036d-31c1-43b4-bd2e-02ba91d0b6fb"
+   "week_id": "8712036d-31c1-43b4-bd2e-02ba91d0b6fb",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26384,7 +27612,10 @@
    "scheduled_on": "2026-09-28",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "f4889921-4242-4d94-b08c-ab51df451d6d"
+   "week_id": "f4889921-4242-4d94-b08c-ab51df451d6d",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26398,7 +27629,10 @@
    "scheduled_on": "2026-09-29",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "f4889921-4242-4d94-b08c-ab51df451d6d"
+   "week_id": "f4889921-4242-4d94-b08c-ab51df451d6d",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26412,7 +27646,10 @@
    "scheduled_on": "2026-09-30",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "f4889921-4242-4d94-b08c-ab51df451d6d"
+   "week_id": "f4889921-4242-4d94-b08c-ab51df451d6d",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26426,7 +27663,10 @@
    "scheduled_on": "2026-10-01",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "f4889921-4242-4d94-b08c-ab51df451d6d"
+   "week_id": "f4889921-4242-4d94-b08c-ab51df451d6d",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26440,7 +27680,10 @@
    "scheduled_on": "2026-10-02",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "f4889921-4242-4d94-b08c-ab51df451d6d"
+   "week_id": "f4889921-4242-4d94-b08c-ab51df451d6d",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26454,7 +27697,10 @@
    "scheduled_on": "2026-10-03",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "f4889921-4242-4d94-b08c-ab51df451d6d"
+   "week_id": "f4889921-4242-4d94-b08c-ab51df451d6d",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26468,7 +27714,10 @@
    "scheduled_on": "2026-10-05",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "0a892850-1f3e-4e31-a39a-110457ac806b"
+   "week_id": "0a892850-1f3e-4e31-a39a-110457ac806b",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26481,8 +27730,28 @@
    "position": 1,
    "scheduled_on": "2026-10-06",
    "state": "cancelled",
-   "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "0a892850-1f3e-4e31-a39a-110457ac806b"
+   "updated_at": "2026-09-05T01:44:18.246517+00:00",
+   "week_id": "0a892850-1f3e-4e31-a39a-110457ac806b",
+   "withdrawn_at": "2026-09-03T20:44:54.190341+00:00",
+   "withdrawn_by": null,
+   "withdrawn_reason": "Reconstructed 4 September, after the fact. Both Tuesdays were withdrawn in one action on 3 September and nothing replaced either. W7 is the major cutback and W11 protects the twelve-mile continuous on its Saturday; in both weeks the Tuesday quality was the thing the week could least afford."
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "created_at": "2026-09-05T01:45:31.487037+00:00",
+   "created_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "day_label": "TUE",
+   "establishes_checkpoint_id": null,
+   "id": "3a7c47ea-6cab-46ed-a60f-9a871fcca8b6",
+   "is_key": false,
+   "position": 8,
+   "scheduled_on": "2026-10-06",
+   "state": "published",
+   "updated_at": "2026-09-05T01:45:31.487037+00:00",
+   "week_id": "0a892850-1f3e-4e31-a39a-110457ac806b",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26496,7 +27765,10 @@
    "scheduled_on": "2026-10-07",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "0a892850-1f3e-4e31-a39a-110457ac806b"
+   "week_id": "0a892850-1f3e-4e31-a39a-110457ac806b",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26510,7 +27782,10 @@
    "scheduled_on": "2026-10-08",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "0a892850-1f3e-4e31-a39a-110457ac806b"
+   "week_id": "0a892850-1f3e-4e31-a39a-110457ac806b",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26524,7 +27799,10 @@
    "scheduled_on": "2026-10-09",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "0a892850-1f3e-4e31-a39a-110457ac806b"
+   "week_id": "0a892850-1f3e-4e31-a39a-110457ac806b",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26538,7 +27816,10 @@
    "scheduled_on": "2026-10-10",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "0a892850-1f3e-4e31-a39a-110457ac806b"
+   "week_id": "0a892850-1f3e-4e31-a39a-110457ac806b",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26552,7 +27833,10 @@
    "scheduled_on": "2026-10-12",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "1eec0e84-ccfc-4f8b-9a7f-b8a3941577f6"
+   "week_id": "1eec0e84-ccfc-4f8b-9a7f-b8a3941577f6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26566,7 +27850,10 @@
    "scheduled_on": "2026-10-13",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "1eec0e84-ccfc-4f8b-9a7f-b8a3941577f6"
+   "week_id": "1eec0e84-ccfc-4f8b-9a7f-b8a3941577f6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26580,7 +27867,10 @@
    "scheduled_on": "2026-10-14",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "1eec0e84-ccfc-4f8b-9a7f-b8a3941577f6"
+   "week_id": "1eec0e84-ccfc-4f8b-9a7f-b8a3941577f6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26594,7 +27884,10 @@
    "scheduled_on": "2026-10-15",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "1eec0e84-ccfc-4f8b-9a7f-b8a3941577f6"
+   "week_id": "1eec0e84-ccfc-4f8b-9a7f-b8a3941577f6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26608,7 +27901,10 @@
    "scheduled_on": "2026-10-16",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "1eec0e84-ccfc-4f8b-9a7f-b8a3941577f6"
+   "week_id": "1eec0e84-ccfc-4f8b-9a7f-b8a3941577f6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26622,7 +27918,10 @@
    "scheduled_on": "2026-10-17",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "1eec0e84-ccfc-4f8b-9a7f-b8a3941577f6"
+   "week_id": "1eec0e84-ccfc-4f8b-9a7f-b8a3941577f6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26636,7 +27935,10 @@
    "scheduled_on": "2026-10-19",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "595b11fb-f7d7-4de6-8b6c-c0264d5eeb9e"
+   "week_id": "595b11fb-f7d7-4de6-8b6c-c0264d5eeb9e",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26650,7 +27952,10 @@
    "scheduled_on": "2026-10-20",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "595b11fb-f7d7-4de6-8b6c-c0264d5eeb9e"
+   "week_id": "595b11fb-f7d7-4de6-8b6c-c0264d5eeb9e",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26664,7 +27969,10 @@
    "scheduled_on": "2026-10-21",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "595b11fb-f7d7-4de6-8b6c-c0264d5eeb9e"
+   "week_id": "595b11fb-f7d7-4de6-8b6c-c0264d5eeb9e",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26678,7 +27986,10 @@
    "scheduled_on": "2026-10-22",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "595b11fb-f7d7-4de6-8b6c-c0264d5eeb9e"
+   "week_id": "595b11fb-f7d7-4de6-8b6c-c0264d5eeb9e",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26692,7 +28003,10 @@
    "scheduled_on": "2026-10-23",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "595b11fb-f7d7-4de6-8b6c-c0264d5eeb9e"
+   "week_id": "595b11fb-f7d7-4de6-8b6c-c0264d5eeb9e",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26706,7 +28020,10 @@
    "scheduled_on": "2026-10-24",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "595b11fb-f7d7-4de6-8b6c-c0264d5eeb9e"
+   "week_id": "595b11fb-f7d7-4de6-8b6c-c0264d5eeb9e",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26720,7 +28037,10 @@
    "scheduled_on": "2026-10-26",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "d94c9e91-e876-41a6-a271-c0593f49a865"
+   "week_id": "d94c9e91-e876-41a6-a271-c0593f49a865",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26734,7 +28054,10 @@
    "scheduled_on": "2026-10-27",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "d94c9e91-e876-41a6-a271-c0593f49a865"
+   "week_id": "d94c9e91-e876-41a6-a271-c0593f49a865",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26748,7 +28071,10 @@
    "scheduled_on": "2026-10-28",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "d94c9e91-e876-41a6-a271-c0593f49a865"
+   "week_id": "d94c9e91-e876-41a6-a271-c0593f49a865",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26762,7 +28088,10 @@
    "scheduled_on": "2026-10-29",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "d94c9e91-e876-41a6-a271-c0593f49a865"
+   "week_id": "d94c9e91-e876-41a6-a271-c0593f49a865",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26776,7 +28105,10 @@
    "scheduled_on": "2026-10-30",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "d94c9e91-e876-41a6-a271-c0593f49a865"
+   "week_id": "d94c9e91-e876-41a6-a271-c0593f49a865",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26790,7 +28122,10 @@
    "scheduled_on": "2026-10-31",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "d94c9e91-e876-41a6-a271-c0593f49a865"
+   "week_id": "d94c9e91-e876-41a6-a271-c0593f49a865",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26804,7 +28139,10 @@
    "scheduled_on": "2026-11-02",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "fc989b59-0d0b-47d1-8a91-2418a8bdba44"
+   "week_id": "fc989b59-0d0b-47d1-8a91-2418a8bdba44",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26817,8 +28155,28 @@
    "position": 1,
    "scheduled_on": "2026-11-03",
    "state": "cancelled",
-   "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "fc989b59-0d0b-47d1-8a91-2418a8bdba44"
+   "updated_at": "2026-09-05T01:44:18.246517+00:00",
+   "week_id": "fc989b59-0d0b-47d1-8a91-2418a8bdba44",
+   "withdrawn_at": "2026-09-03T20:44:54.190341+00:00",
+   "withdrawn_by": null,
+   "withdrawn_reason": "Reconstructed 4 September, after the fact. Both Tuesdays were withdrawn in one action on 3 September and nothing replaced either. W7 is the major cutback and W11 protects the twelve-mile continuous on its Saturday; in both weeks the Tuesday quality was the thing the week could least afford."
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "created_at": "2026-09-05T01:45:31.487037+00:00",
+   "created_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "day_label": "TUE",
+   "establishes_checkpoint_id": null,
+   "id": "b3c0ab35-987f-4814-b472-6b09392f9ced",
+   "is_key": false,
+   "position": 8,
+   "scheduled_on": "2026-11-03",
+   "state": "published",
+   "updated_at": "2026-09-05T01:45:31.487037+00:00",
+   "week_id": "fc989b59-0d0b-47d1-8a91-2418a8bdba44",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26832,7 +28190,10 @@
    "scheduled_on": "2026-11-04",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "fc989b59-0d0b-47d1-8a91-2418a8bdba44"
+   "week_id": "fc989b59-0d0b-47d1-8a91-2418a8bdba44",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26846,7 +28207,10 @@
    "scheduled_on": "2026-11-05",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "fc989b59-0d0b-47d1-8a91-2418a8bdba44"
+   "week_id": "fc989b59-0d0b-47d1-8a91-2418a8bdba44",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26860,7 +28224,10 @@
    "scheduled_on": "2026-11-06",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "fc989b59-0d0b-47d1-8a91-2418a8bdba44"
+   "week_id": "fc989b59-0d0b-47d1-8a91-2418a8bdba44",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26874,7 +28241,10 @@
    "scheduled_on": "2026-11-07",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "fc989b59-0d0b-47d1-8a91-2418a8bdba44"
+   "week_id": "fc989b59-0d0b-47d1-8a91-2418a8bdba44",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26888,7 +28258,10 @@
    "scheduled_on": "2026-11-09",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "3552c493-af95-47d6-9147-76056da7cb3e"
+   "week_id": "3552c493-af95-47d6-9147-76056da7cb3e",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26902,7 +28275,10 @@
    "scheduled_on": "2026-11-10",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "3552c493-af95-47d6-9147-76056da7cb3e"
+   "week_id": "3552c493-af95-47d6-9147-76056da7cb3e",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26916,7 +28292,10 @@
    "scheduled_on": "2026-11-11",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "3552c493-af95-47d6-9147-76056da7cb3e"
+   "week_id": "3552c493-af95-47d6-9147-76056da7cb3e",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26930,7 +28309,10 @@
    "scheduled_on": "2026-11-12",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "3552c493-af95-47d6-9147-76056da7cb3e"
+   "week_id": "3552c493-af95-47d6-9147-76056da7cb3e",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26944,7 +28326,10 @@
    "scheduled_on": "2026-11-13",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "3552c493-af95-47d6-9147-76056da7cb3e"
+   "week_id": "3552c493-af95-47d6-9147-76056da7cb3e",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26958,7 +28343,10 @@
    "scheduled_on": "2026-11-14",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "3552c493-af95-47d6-9147-76056da7cb3e"
+   "week_id": "3552c493-af95-47d6-9147-76056da7cb3e",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26972,7 +28360,10 @@
    "scheduled_on": "2026-11-16",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "c79e35cf-eff1-405f-8010-c1c6132be7e6"
+   "week_id": "c79e35cf-eff1-405f-8010-c1c6132be7e6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -26986,7 +28377,10 @@
    "scheduled_on": "2026-11-17",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "c79e35cf-eff1-405f-8010-c1c6132be7e6"
+   "week_id": "c79e35cf-eff1-405f-8010-c1c6132be7e6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27000,7 +28394,10 @@
    "scheduled_on": "2026-11-18",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "c79e35cf-eff1-405f-8010-c1c6132be7e6"
+   "week_id": "c79e35cf-eff1-405f-8010-c1c6132be7e6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27014,7 +28411,10 @@
    "scheduled_on": "2026-11-19",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "c79e35cf-eff1-405f-8010-c1c6132be7e6"
+   "week_id": "c79e35cf-eff1-405f-8010-c1c6132be7e6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27028,7 +28428,10 @@
    "scheduled_on": "2026-11-20",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "c79e35cf-eff1-405f-8010-c1c6132be7e6"
+   "week_id": "c79e35cf-eff1-405f-8010-c1c6132be7e6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27042,7 +28445,10 @@
    "scheduled_on": "2026-11-21",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "c79e35cf-eff1-405f-8010-c1c6132be7e6"
+   "week_id": "c79e35cf-eff1-405f-8010-c1c6132be7e6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27056,7 +28462,10 @@
    "scheduled_on": "2026-11-23",
    "state": "published",
    "updated_at": "2026-09-04T21:56:19.45347+00:00",
-   "week_id": "501e06ee-9834-4a07-a21a-646bdf9adbaa"
+   "week_id": "501e06ee-9834-4a07-a21a-646bdf9adbaa",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27070,7 +28479,10 @@
    "scheduled_on": "2026-11-24",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "501e06ee-9834-4a07-a21a-646bdf9adbaa"
+   "week_id": "501e06ee-9834-4a07-a21a-646bdf9adbaa",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27084,7 +28496,10 @@
    "scheduled_on": "2026-11-25",
    "state": "published",
    "updated_at": "2026-09-04T21:56:19.45347+00:00",
-   "week_id": "501e06ee-9834-4a07-a21a-646bdf9adbaa"
+   "week_id": "501e06ee-9834-4a07-a21a-646bdf9adbaa",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27098,7 +28513,10 @@
    "scheduled_on": "2026-11-26",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "501e06ee-9834-4a07-a21a-646bdf9adbaa"
+   "week_id": "501e06ee-9834-4a07-a21a-646bdf9adbaa",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27112,7 +28530,10 @@
    "scheduled_on": "2026-11-27",
    "state": "published",
    "updated_at": "2026-09-04T21:56:19.45347+00:00",
-   "week_id": "501e06ee-9834-4a07-a21a-646bdf9adbaa"
+   "week_id": "501e06ee-9834-4a07-a21a-646bdf9adbaa",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27126,7 +28547,10 @@
    "scheduled_on": "2026-11-28",
    "state": "published",
    "updated_at": "2026-09-04T21:56:19.45347+00:00",
-   "week_id": "501e06ee-9834-4a07-a21a-646bdf9adbaa"
+   "week_id": "501e06ee-9834-4a07-a21a-646bdf9adbaa",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27140,7 +28564,10 @@
    "scheduled_on": "2026-11-30",
    "state": "published",
    "updated_at": "2026-09-04T21:56:19.45347+00:00",
-   "week_id": "776ace6b-5968-42ab-92d9-b64c02037059"
+   "week_id": "776ace6b-5968-42ab-92d9-b64c02037059",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27154,7 +28581,10 @@
    "scheduled_on": "2026-12-01",
    "state": "published",
    "updated_at": "2026-09-04T21:56:19.45347+00:00",
-   "week_id": "776ace6b-5968-42ab-92d9-b64c02037059"
+   "week_id": "776ace6b-5968-42ab-92d9-b64c02037059",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27168,7 +28598,10 @@
    "scheduled_on": "2026-12-02",
    "state": "published",
    "updated_at": "2026-09-04T21:56:19.45347+00:00",
-   "week_id": "776ace6b-5968-42ab-92d9-b64c02037059"
+   "week_id": "776ace6b-5968-42ab-92d9-b64c02037059",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27182,7 +28615,10 @@
    "scheduled_on": "2026-12-03",
    "state": "published",
    "updated_at": "2026-09-04T21:56:19.45347+00:00",
-   "week_id": "776ace6b-5968-42ab-92d9-b64c02037059"
+   "week_id": "776ace6b-5968-42ab-92d9-b64c02037059",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27196,49 +28632,10 @@
    "scheduled_on": "2026-12-05",
    "state": "published",
    "updated_at": "2026-09-04T21:56:19.45347+00:00",
-   "week_id": "776ace6b-5968-42ab-92d9-b64c02037059"
-  },
-  {
-   "athlete_id": "10000000-0000-4000-8000-000000000003",
-   "created_at": "2026-09-04T01:52:57.040204+00:00",
-   "created_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
-   "day_label": "WEEK",
-   "establishes_checkpoint_id": null,
-   "id": "576f57dd-0c3e-4e00-a08d-921135d6bc86",
-   "is_key": false,
-   "position": 4,
-   "scheduled_on": null,
-   "state": "published",
-   "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "9b000b2f-dd2b-4539-9422-354509919f30"
-  },
-  {
-   "athlete_id": "10000000-0000-4000-8000-000000000003",
-   "created_at": "2026-09-04T01:52:57.040204+00:00",
-   "created_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
-   "day_label": "WEEK",
-   "establishes_checkpoint_id": null,
-   "id": "cd1e3d1e-7d72-443d-ad8c-2baac85b7aff",
-   "is_key": false,
-   "position": 4,
-   "scheduled_on": null,
-   "state": "published",
-   "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "595b11fb-f7d7-4de6-8b6c-c0264d5eeb9e"
-  },
-  {
-   "athlete_id": "10000000-0000-4000-8000-000000000003",
-   "created_at": "2026-09-04T01:52:57.040204+00:00",
-   "created_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
-   "day_label": "WEEK",
-   "establishes_checkpoint_id": null,
-   "id": "108becf1-c81b-43da-a2a8-d01c1d1b75cc",
-   "is_key": false,
-   "position": 4,
-   "scheduled_on": null,
-   "state": "published",
-   "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "d94c9e91-e876-41a6-a271-c0593f49a865"
+   "week_id": "776ace6b-5968-42ab-92d9-b64c02037059",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27252,7 +28649,10 @@
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "fc989b59-0d0b-47d1-8a91-2418a8bdba44"
+   "week_id": "fc989b59-0d0b-47d1-8a91-2418a8bdba44",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27266,7 +28666,10 @@
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "3552c493-af95-47d6-9147-76056da7cb3e"
+   "week_id": "3552c493-af95-47d6-9147-76056da7cb3e",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27280,7 +28683,10 @@
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "c79e35cf-eff1-405f-8010-c1c6132be7e6"
+   "week_id": "c79e35cf-eff1-405f-8010-c1c6132be7e6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27294,21 +28700,10 @@
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "501e06ee-9834-4a07-a21a-646bdf9adbaa"
-  },
-  {
-   "athlete_id": "10000000-0000-4000-8000-000000000003",
-   "created_at": "2026-09-04T01:52:57.040204+00:00",
-   "created_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
-   "day_label": "WEEK",
-   "establishes_checkpoint_id": null,
-   "id": "6c442571-28ee-4a2c-b7c0-b8b223514f0c",
-   "is_key": false,
-   "position": 4,
-   "scheduled_on": null,
-   "state": "published",
-   "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "1eec0e84-ccfc-4f8b-9a7f-b8a3941577f6"
+   "week_id": "501e06ee-9834-4a07-a21a-646bdf9adbaa",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27322,7 +28717,10 @@
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "0a892850-1f3e-4e31-a39a-110457ac806b"
+   "week_id": "0a892850-1f3e-4e31-a39a-110457ac806b",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27330,13 +28728,16 @@
    "created_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
    "day_label": "WEEK",
    "establishes_checkpoint_id": null,
-   "id": "92fbc3a6-2edf-446c-b91a-160a384b8a48",
+   "id": "6c442571-28ee-4a2c-b7c0-b8b223514f0c",
    "is_key": false,
    "position": 4,
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "f4889921-4242-4d94-b08c-ab51df451d6d"
+   "week_id": "1eec0e84-ccfc-4f8b-9a7f-b8a3941577f6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27344,13 +28745,16 @@
    "created_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
    "day_label": "WEEK",
    "establishes_checkpoint_id": null,
-   "id": "5701e771-a962-415e-ac91-59032509833c",
+   "id": "cd1e3d1e-7d72-443d-ad8c-2baac85b7aff",
    "is_key": false,
    "position": 4,
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "8712036d-31c1-43b4-bd2e-02ba91d0b6fb"
+   "week_id": "595b11fb-f7d7-4de6-8b6c-c0264d5eeb9e",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27358,13 +28762,16 @@
    "created_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
    "day_label": "WEEK",
    "establishes_checkpoint_id": null,
-   "id": "7464c970-faba-41b7-8e7f-9b41a2d54413",
+   "id": "108becf1-c81b-43da-a2a8-d01c1d1b75cc",
    "is_key": false,
    "position": 4,
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "5e11918d-20d1-4f36-b910-36d6e6347fbe"
+   "week_id": "d94c9e91-e876-41a6-a271-c0593f49a865",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27378,7 +28785,10 @@
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "576486d8-4d8c-4601-9b24-5ce8a85fa056"
+   "week_id": "576486d8-4d8c-4601-9b24-5ce8a85fa056",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000003",
@@ -27392,21 +28802,78 @@
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "09a70db3-94ae-4dfa-be47-98e4eee13870"
+   "week_id": "09a70db3-94ae-4dfa-be47-98e4eee13870",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
-   "athlete_id": "10000000-0000-4000-8000-000000000004",
-   "created_at": "2026-08-26T01:49:59.587224+00:00",
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "created_at": "2026-09-04T01:52:57.040204+00:00",
    "created_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
-   "day_label": "TUE",
+   "day_label": "WEEK",
    "establishes_checkpoint_id": null,
-   "id": "e95b8765-54ef-44d9-aaaa-7a0cf1341fae",
-   "is_key": true,
-   "position": 2,
-   "scheduled_on": "2026-08-25",
+   "id": "576f57dd-0c3e-4e00-a08d-921135d6bc86",
+   "is_key": false,
+   "position": 4,
+   "scheduled_on": null,
    "state": "published",
-   "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "13fea25c-a4e4-412e-b758-baec22363708"
+   "updated_at": "2026-09-04T01:52:57.040204+00:00",
+   "week_id": "9b000b2f-dd2b-4539-9422-354509919f30",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "created_at": "2026-09-04T01:52:57.040204+00:00",
+   "created_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "day_label": "WEEK",
+   "establishes_checkpoint_id": null,
+   "id": "92fbc3a6-2edf-446c-b91a-160a384b8a48",
+   "is_key": false,
+   "position": 4,
+   "scheduled_on": null,
+   "state": "published",
+   "updated_at": "2026-09-04T01:52:57.040204+00:00",
+   "week_id": "f4889921-4242-4d94-b08c-ab51df451d6d",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "created_at": "2026-09-04T01:52:57.040204+00:00",
+   "created_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "day_label": "WEEK",
+   "establishes_checkpoint_id": null,
+   "id": "5701e771-a962-415e-ac91-59032509833c",
+   "is_key": false,
+   "position": 4,
+   "scheduled_on": null,
+   "state": "published",
+   "updated_at": "2026-09-04T01:52:57.040204+00:00",
+   "week_id": "8712036d-31c1-43b4-bd2e-02ba91d0b6fb",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "created_at": "2026-09-04T01:52:57.040204+00:00",
+   "created_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "day_label": "WEEK",
+   "establishes_checkpoint_id": null,
+   "id": "7464c970-faba-41b7-8e7f-9b41a2d54413",
+   "is_key": false,
+   "position": 4,
+   "scheduled_on": null,
+   "state": "published",
+   "updated_at": "2026-09-04T01:52:57.040204+00:00",
+   "week_id": "5e11918d-20d1-4f36-b910-36d6e6347fbe",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27420,7 +28887,27 @@
    "scheduled_on": "2026-08-25",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "13fea25c-a4e4-412e-b758-baec22363708"
+   "week_id": "13fea25c-a4e4-412e-b758-baec22363708",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "created_at": "2026-08-26T01:49:59.587224+00:00",
+   "created_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "day_label": "TUE",
+   "establishes_checkpoint_id": null,
+   "id": "e95b8765-54ef-44d9-aaaa-7a0cf1341fae",
+   "is_key": true,
+   "position": 2,
+   "scheduled_on": "2026-08-25",
+   "state": "published",
+   "updated_at": "2026-09-04T09:35:36.452444+00:00",
+   "week_id": "13fea25c-a4e4-412e-b758-baec22363708",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27434,7 +28921,10 @@
    "scheduled_on": "2026-08-29",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "13fea25c-a4e4-412e-b758-baec22363708"
+   "week_id": "13fea25c-a4e4-412e-b758-baec22363708",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27448,7 +28938,10 @@
    "scheduled_on": "2026-09-01",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "29ec12e5-1101-4d34-ae89-20ad06cd5d58"
+   "week_id": "29ec12e5-1101-4d34-ae89-20ad06cd5d58",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27462,7 +28955,10 @@
    "scheduled_on": "2026-09-03",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "29ec12e5-1101-4d34-ae89-20ad06cd5d58"
+   "week_id": "29ec12e5-1101-4d34-ae89-20ad06cd5d58",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27476,7 +28972,10 @@
    "scheduled_on": "2026-09-05",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "29ec12e5-1101-4d34-ae89-20ad06cd5d58"
+   "week_id": "29ec12e5-1101-4d34-ae89-20ad06cd5d58",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27490,7 +28989,10 @@
    "scheduled_on": "2026-09-07",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "7eacfc37-81d6-4d85-921e-3f65a07df9a7"
+   "week_id": "7eacfc37-81d6-4d85-921e-3f65a07df9a7",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27504,7 +29006,10 @@
    "scheduled_on": "2026-09-08",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "7eacfc37-81d6-4d85-921e-3f65a07df9a7"
+   "week_id": "7eacfc37-81d6-4d85-921e-3f65a07df9a7",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27518,7 +29023,10 @@
    "scheduled_on": "2026-09-09",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "7eacfc37-81d6-4d85-921e-3f65a07df9a7"
+   "week_id": "7eacfc37-81d6-4d85-921e-3f65a07df9a7",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27532,7 +29040,10 @@
    "scheduled_on": "2026-09-10",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "7eacfc37-81d6-4d85-921e-3f65a07df9a7"
+   "week_id": "7eacfc37-81d6-4d85-921e-3f65a07df9a7",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27546,7 +29057,10 @@
    "scheduled_on": "2026-09-11",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "7eacfc37-81d6-4d85-921e-3f65a07df9a7"
+   "week_id": "7eacfc37-81d6-4d85-921e-3f65a07df9a7",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27560,7 +29074,10 @@
    "scheduled_on": "2026-09-12",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "7eacfc37-81d6-4d85-921e-3f65a07df9a7"
+   "week_id": "7eacfc37-81d6-4d85-921e-3f65a07df9a7",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27574,7 +29091,10 @@
    "scheduled_on": "2026-09-14",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "359c6fe4-4822-4436-a6c7-dc873281e857"
+   "week_id": "359c6fe4-4822-4436-a6c7-dc873281e857",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27588,7 +29108,10 @@
    "scheduled_on": "2026-09-15",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "359c6fe4-4822-4436-a6c7-dc873281e857"
+   "week_id": "359c6fe4-4822-4436-a6c7-dc873281e857",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27602,7 +29125,10 @@
    "scheduled_on": "2026-09-16",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "359c6fe4-4822-4436-a6c7-dc873281e857"
+   "week_id": "359c6fe4-4822-4436-a6c7-dc873281e857",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27616,7 +29142,10 @@
    "scheduled_on": "2026-09-17",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "359c6fe4-4822-4436-a6c7-dc873281e857"
+   "week_id": "359c6fe4-4822-4436-a6c7-dc873281e857",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27630,7 +29159,10 @@
    "scheduled_on": "2026-09-18",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "359c6fe4-4822-4436-a6c7-dc873281e857"
+   "week_id": "359c6fe4-4822-4436-a6c7-dc873281e857",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27644,7 +29176,10 @@
    "scheduled_on": "2026-09-19",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "359c6fe4-4822-4436-a6c7-dc873281e857"
+   "week_id": "359c6fe4-4822-4436-a6c7-dc873281e857",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27658,7 +29193,10 @@
    "scheduled_on": "2026-09-21",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "61044e83-2c38-4596-85b2-4c372ed21f84"
+   "week_id": "61044e83-2c38-4596-85b2-4c372ed21f84",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27672,7 +29210,10 @@
    "scheduled_on": "2026-09-22",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "61044e83-2c38-4596-85b2-4c372ed21f84"
+   "week_id": "61044e83-2c38-4596-85b2-4c372ed21f84",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27686,7 +29227,10 @@
    "scheduled_on": "2026-09-23",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "61044e83-2c38-4596-85b2-4c372ed21f84"
+   "week_id": "61044e83-2c38-4596-85b2-4c372ed21f84",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27700,7 +29244,10 @@
    "scheduled_on": "2026-09-24",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "61044e83-2c38-4596-85b2-4c372ed21f84"
+   "week_id": "61044e83-2c38-4596-85b2-4c372ed21f84",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27714,7 +29261,10 @@
    "scheduled_on": "2026-09-25",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "61044e83-2c38-4596-85b2-4c372ed21f84"
+   "week_id": "61044e83-2c38-4596-85b2-4c372ed21f84",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27728,7 +29278,10 @@
    "scheduled_on": "2026-09-26",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "61044e83-2c38-4596-85b2-4c372ed21f84"
+   "week_id": "61044e83-2c38-4596-85b2-4c372ed21f84",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27742,7 +29295,10 @@
    "scheduled_on": "2026-09-28",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "e72db703-abaa-4d01-bd3b-2a323511f3b4"
+   "week_id": "e72db703-abaa-4d01-bd3b-2a323511f3b4",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27756,7 +29312,10 @@
    "scheduled_on": "2026-09-29",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "e72db703-abaa-4d01-bd3b-2a323511f3b4"
+   "week_id": "e72db703-abaa-4d01-bd3b-2a323511f3b4",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27770,7 +29329,10 @@
    "scheduled_on": "2026-09-30",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "e72db703-abaa-4d01-bd3b-2a323511f3b4"
+   "week_id": "e72db703-abaa-4d01-bd3b-2a323511f3b4",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27784,7 +29346,10 @@
    "scheduled_on": "2026-10-01",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "e72db703-abaa-4d01-bd3b-2a323511f3b4"
+   "week_id": "e72db703-abaa-4d01-bd3b-2a323511f3b4",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27798,7 +29363,10 @@
    "scheduled_on": "2026-10-02",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "e72db703-abaa-4d01-bd3b-2a323511f3b4"
+   "week_id": "e72db703-abaa-4d01-bd3b-2a323511f3b4",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27812,7 +29380,10 @@
    "scheduled_on": "2026-10-03",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "e72db703-abaa-4d01-bd3b-2a323511f3b4"
+   "week_id": "e72db703-abaa-4d01-bd3b-2a323511f3b4",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27826,7 +29397,27 @@
    "scheduled_on": "2026-10-05",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "80b0e565-16f4-45ba-a29e-bd0ec72809f0"
+   "week_id": "80b0e565-16f4-45ba-a29e-bd0ec72809f0",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "created_at": "2026-09-05T01:45:31.487037+00:00",
+   "created_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "day_label": "TUE",
+   "establishes_checkpoint_id": null,
+   "id": "360143a7-3423-439a-8043-6810bf1a9606",
+   "is_key": false,
+   "position": 8,
+   "scheduled_on": "2026-10-06",
+   "state": "published",
+   "updated_at": "2026-09-05T01:45:31.487037+00:00",
+   "week_id": "80b0e565-16f4-45ba-a29e-bd0ec72809f0",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27839,8 +29430,11 @@
    "position": 1,
    "scheduled_on": "2026-10-06",
    "state": "cancelled",
-   "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "80b0e565-16f4-45ba-a29e-bd0ec72809f0"
+   "updated_at": "2026-09-05T01:44:18.246517+00:00",
+   "week_id": "80b0e565-16f4-45ba-a29e-bd0ec72809f0",
+   "withdrawn_at": "2026-09-03T20:44:54.190341+00:00",
+   "withdrawn_by": null,
+   "withdrawn_reason": "Reconstructed 4 September, after the fact. Both Tuesdays were withdrawn in one action on 3 September and nothing replaced either. W7 is the major cutback and W11 protects the twelve-mile continuous on its Saturday; in both weeks the Tuesday quality was the thing the week could least afford."
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27854,7 +29448,10 @@
    "scheduled_on": "2026-10-07",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "80b0e565-16f4-45ba-a29e-bd0ec72809f0"
+   "week_id": "80b0e565-16f4-45ba-a29e-bd0ec72809f0",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27868,7 +29465,10 @@
    "scheduled_on": "2026-10-08",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "80b0e565-16f4-45ba-a29e-bd0ec72809f0"
+   "week_id": "80b0e565-16f4-45ba-a29e-bd0ec72809f0",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27882,7 +29482,10 @@
    "scheduled_on": "2026-10-09",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "80b0e565-16f4-45ba-a29e-bd0ec72809f0"
+   "week_id": "80b0e565-16f4-45ba-a29e-bd0ec72809f0",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27896,7 +29499,10 @@
    "scheduled_on": "2026-10-10",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "80b0e565-16f4-45ba-a29e-bd0ec72809f0"
+   "week_id": "80b0e565-16f4-45ba-a29e-bd0ec72809f0",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27910,7 +29516,10 @@
    "scheduled_on": "2026-10-12",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "459ac9a1-bd46-4834-a10a-471bb512b425"
+   "week_id": "459ac9a1-bd46-4834-a10a-471bb512b425",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27924,7 +29533,10 @@
    "scheduled_on": "2026-10-13",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "459ac9a1-bd46-4834-a10a-471bb512b425"
+   "week_id": "459ac9a1-bd46-4834-a10a-471bb512b425",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27938,7 +29550,10 @@
    "scheduled_on": "2026-10-14",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "459ac9a1-bd46-4834-a10a-471bb512b425"
+   "week_id": "459ac9a1-bd46-4834-a10a-471bb512b425",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27952,7 +29567,10 @@
    "scheduled_on": "2026-10-15",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "459ac9a1-bd46-4834-a10a-471bb512b425"
+   "week_id": "459ac9a1-bd46-4834-a10a-471bb512b425",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27966,7 +29584,10 @@
    "scheduled_on": "2026-10-16",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "459ac9a1-bd46-4834-a10a-471bb512b425"
+   "week_id": "459ac9a1-bd46-4834-a10a-471bb512b425",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27980,7 +29601,10 @@
    "scheduled_on": "2026-10-17",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "459ac9a1-bd46-4834-a10a-471bb512b425"
+   "week_id": "459ac9a1-bd46-4834-a10a-471bb512b425",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -27994,7 +29618,10 @@
    "scheduled_on": "2026-10-19",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "d9668ef2-2d06-45b9-b5fc-7847ff0db9cd"
+   "week_id": "d9668ef2-2d06-45b9-b5fc-7847ff0db9cd",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28008,7 +29635,10 @@
    "scheduled_on": "2026-10-20",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "d9668ef2-2d06-45b9-b5fc-7847ff0db9cd"
+   "week_id": "d9668ef2-2d06-45b9-b5fc-7847ff0db9cd",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28022,7 +29652,10 @@
    "scheduled_on": "2026-10-21",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "d9668ef2-2d06-45b9-b5fc-7847ff0db9cd"
+   "week_id": "d9668ef2-2d06-45b9-b5fc-7847ff0db9cd",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28036,7 +29669,10 @@
    "scheduled_on": "2026-10-22",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "d9668ef2-2d06-45b9-b5fc-7847ff0db9cd"
+   "week_id": "d9668ef2-2d06-45b9-b5fc-7847ff0db9cd",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28050,7 +29686,10 @@
    "scheduled_on": "2026-10-23",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "d9668ef2-2d06-45b9-b5fc-7847ff0db9cd"
+   "week_id": "d9668ef2-2d06-45b9-b5fc-7847ff0db9cd",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28064,7 +29703,10 @@
    "scheduled_on": "2026-10-24",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "d9668ef2-2d06-45b9-b5fc-7847ff0db9cd"
+   "week_id": "d9668ef2-2d06-45b9-b5fc-7847ff0db9cd",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28078,7 +29720,10 @@
    "scheduled_on": "2026-10-26",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "0dcc841c-bc60-4ff0-842e-5fcb87730272"
+   "week_id": "0dcc841c-bc60-4ff0-842e-5fcb87730272",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28092,7 +29737,10 @@
    "scheduled_on": "2026-10-27",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "0dcc841c-bc60-4ff0-842e-5fcb87730272"
+   "week_id": "0dcc841c-bc60-4ff0-842e-5fcb87730272",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28106,7 +29754,10 @@
    "scheduled_on": "2026-10-28",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "0dcc841c-bc60-4ff0-842e-5fcb87730272"
+   "week_id": "0dcc841c-bc60-4ff0-842e-5fcb87730272",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28120,7 +29771,10 @@
    "scheduled_on": "2026-10-29",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "0dcc841c-bc60-4ff0-842e-5fcb87730272"
+   "week_id": "0dcc841c-bc60-4ff0-842e-5fcb87730272",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28134,7 +29788,10 @@
    "scheduled_on": "2026-10-30",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "0dcc841c-bc60-4ff0-842e-5fcb87730272"
+   "week_id": "0dcc841c-bc60-4ff0-842e-5fcb87730272",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28148,7 +29805,10 @@
    "scheduled_on": "2026-10-31",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "0dcc841c-bc60-4ff0-842e-5fcb87730272"
+   "week_id": "0dcc841c-bc60-4ff0-842e-5fcb87730272",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28162,7 +29822,10 @@
    "scheduled_on": "2026-11-02",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "f501d1a2-a0c2-4d6a-a624-4c73d69abeb6"
+   "week_id": "f501d1a2-a0c2-4d6a-a624-4c73d69abeb6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28175,8 +29838,28 @@
    "position": 1,
    "scheduled_on": "2026-11-03",
    "state": "cancelled",
-   "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "f501d1a2-a0c2-4d6a-a624-4c73d69abeb6"
+   "updated_at": "2026-09-05T01:44:18.246517+00:00",
+   "week_id": "f501d1a2-a0c2-4d6a-a624-4c73d69abeb6",
+   "withdrawn_at": "2026-09-03T20:44:54.190341+00:00",
+   "withdrawn_by": null,
+   "withdrawn_reason": "Reconstructed 4 September, after the fact. Both Tuesdays were withdrawn in one action on 3 September and nothing replaced either. W7 is the major cutback and W11 protects the twelve-mile continuous on its Saturday; in both weeks the Tuesday quality was the thing the week could least afford."
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "created_at": "2026-09-05T01:45:31.487037+00:00",
+   "created_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "day_label": "TUE",
+   "establishes_checkpoint_id": null,
+   "id": "166fc7d9-8cb8-44a2-9b44-5bd06711195f",
+   "is_key": false,
+   "position": 8,
+   "scheduled_on": "2026-11-03",
+   "state": "published",
+   "updated_at": "2026-09-05T01:45:31.487037+00:00",
+   "week_id": "f501d1a2-a0c2-4d6a-a624-4c73d69abeb6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28190,7 +29873,10 @@
    "scheduled_on": "2026-11-04",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "f501d1a2-a0c2-4d6a-a624-4c73d69abeb6"
+   "week_id": "f501d1a2-a0c2-4d6a-a624-4c73d69abeb6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28204,7 +29890,10 @@
    "scheduled_on": "2026-11-05",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "f501d1a2-a0c2-4d6a-a624-4c73d69abeb6"
+   "week_id": "f501d1a2-a0c2-4d6a-a624-4c73d69abeb6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28218,7 +29907,10 @@
    "scheduled_on": "2026-11-06",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "f501d1a2-a0c2-4d6a-a624-4c73d69abeb6"
+   "week_id": "f501d1a2-a0c2-4d6a-a624-4c73d69abeb6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28232,7 +29924,10 @@
    "scheduled_on": "2026-11-07",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "f501d1a2-a0c2-4d6a-a624-4c73d69abeb6"
+   "week_id": "f501d1a2-a0c2-4d6a-a624-4c73d69abeb6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28246,7 +29941,10 @@
    "scheduled_on": "2026-11-09",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "9e3026e5-1eba-4738-b5c3-5d76eca2466f"
+   "week_id": "9e3026e5-1eba-4738-b5c3-5d76eca2466f",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28260,7 +29958,10 @@
    "scheduled_on": "2026-11-10",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "9e3026e5-1eba-4738-b5c3-5d76eca2466f"
+   "week_id": "9e3026e5-1eba-4738-b5c3-5d76eca2466f",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28274,7 +29975,10 @@
    "scheduled_on": "2026-11-11",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "9e3026e5-1eba-4738-b5c3-5d76eca2466f"
+   "week_id": "9e3026e5-1eba-4738-b5c3-5d76eca2466f",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28288,7 +29992,10 @@
    "scheduled_on": "2026-11-12",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "9e3026e5-1eba-4738-b5c3-5d76eca2466f"
+   "week_id": "9e3026e5-1eba-4738-b5c3-5d76eca2466f",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28302,7 +30009,10 @@
    "scheduled_on": "2026-11-13",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "9e3026e5-1eba-4738-b5c3-5d76eca2466f"
+   "week_id": "9e3026e5-1eba-4738-b5c3-5d76eca2466f",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28316,7 +30026,10 @@
    "scheduled_on": "2026-11-14",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "9e3026e5-1eba-4738-b5c3-5d76eca2466f"
+   "week_id": "9e3026e5-1eba-4738-b5c3-5d76eca2466f",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28330,7 +30043,10 @@
    "scheduled_on": "2026-11-16",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "de5c6450-3888-445b-9a7b-94e9e5dcaa30"
+   "week_id": "de5c6450-3888-445b-9a7b-94e9e5dcaa30",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28344,7 +30060,10 @@
    "scheduled_on": "2026-11-17",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "de5c6450-3888-445b-9a7b-94e9e5dcaa30"
+   "week_id": "de5c6450-3888-445b-9a7b-94e9e5dcaa30",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28358,7 +30077,10 @@
    "scheduled_on": "2026-11-18",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "de5c6450-3888-445b-9a7b-94e9e5dcaa30"
+   "week_id": "de5c6450-3888-445b-9a7b-94e9e5dcaa30",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28372,7 +30094,10 @@
    "scheduled_on": "2026-11-19",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "de5c6450-3888-445b-9a7b-94e9e5dcaa30"
+   "week_id": "de5c6450-3888-445b-9a7b-94e9e5dcaa30",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28386,7 +30111,10 @@
    "scheduled_on": "2026-11-20",
    "state": "published",
    "updated_at": "2026-09-04T20:00:56.144402+00:00",
-   "week_id": "de5c6450-3888-445b-9a7b-94e9e5dcaa30"
+   "week_id": "de5c6450-3888-445b-9a7b-94e9e5dcaa30",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28400,7 +30128,10 @@
    "scheduled_on": "2026-11-21",
    "state": "published",
    "updated_at": "2026-09-04T10:16:23.086067+00:00",
-   "week_id": "de5c6450-3888-445b-9a7b-94e9e5dcaa30"
+   "week_id": "de5c6450-3888-445b-9a7b-94e9e5dcaa30",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28414,7 +30145,10 @@
    "scheduled_on": "2026-11-23",
    "state": "published",
    "updated_at": "2026-09-04T21:56:19.45347+00:00",
-   "week_id": "cbe02268-21c5-455f-bdf0-bc99f7b1792d"
+   "week_id": "cbe02268-21c5-455f-bdf0-bc99f7b1792d",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28428,7 +30162,10 @@
    "scheduled_on": "2026-11-24",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "cbe02268-21c5-455f-bdf0-bc99f7b1792d"
+   "week_id": "cbe02268-21c5-455f-bdf0-bc99f7b1792d",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28442,7 +30179,10 @@
    "scheduled_on": "2026-11-25",
    "state": "published",
    "updated_at": "2026-09-04T21:56:19.45347+00:00",
-   "week_id": "cbe02268-21c5-455f-bdf0-bc99f7b1792d"
+   "week_id": "cbe02268-21c5-455f-bdf0-bc99f7b1792d",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28456,7 +30196,10 @@
    "scheduled_on": "2026-11-26",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "cbe02268-21c5-455f-bdf0-bc99f7b1792d"
+   "week_id": "cbe02268-21c5-455f-bdf0-bc99f7b1792d",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28470,7 +30213,10 @@
    "scheduled_on": "2026-11-27",
    "state": "published",
    "updated_at": "2026-09-04T21:56:19.45347+00:00",
-   "week_id": "cbe02268-21c5-455f-bdf0-bc99f7b1792d"
+   "week_id": "cbe02268-21c5-455f-bdf0-bc99f7b1792d",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28484,7 +30230,10 @@
    "scheduled_on": "2026-11-28",
    "state": "published",
    "updated_at": "2026-09-04T21:56:19.45347+00:00",
-   "week_id": "cbe02268-21c5-455f-bdf0-bc99f7b1792d"
+   "week_id": "cbe02268-21c5-455f-bdf0-bc99f7b1792d",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28498,7 +30247,10 @@
    "scheduled_on": "2026-11-30",
    "state": "published",
    "updated_at": "2026-09-04T21:56:19.45347+00:00",
-   "week_id": "8b684d89-7582-48ef-9fa1-9bc0abb0dec4"
+   "week_id": "8b684d89-7582-48ef-9fa1-9bc0abb0dec4",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28512,7 +30264,10 @@
    "scheduled_on": "2026-12-01",
    "state": "published",
    "updated_at": "2026-09-04T21:56:19.45347+00:00",
-   "week_id": "8b684d89-7582-48ef-9fa1-9bc0abb0dec4"
+   "week_id": "8b684d89-7582-48ef-9fa1-9bc0abb0dec4",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28526,7 +30281,10 @@
    "scheduled_on": "2026-12-02",
    "state": "published",
    "updated_at": "2026-09-04T21:56:19.45347+00:00",
-   "week_id": "8b684d89-7582-48ef-9fa1-9bc0abb0dec4"
+   "week_id": "8b684d89-7582-48ef-9fa1-9bc0abb0dec4",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28540,7 +30298,10 @@
    "scheduled_on": "2026-12-03",
    "state": "published",
    "updated_at": "2026-09-04T21:56:19.45347+00:00",
-   "week_id": "8b684d89-7582-48ef-9fa1-9bc0abb0dec4"
+   "week_id": "8b684d89-7582-48ef-9fa1-9bc0abb0dec4",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28554,7 +30315,10 @@
    "scheduled_on": "2026-12-04",
    "state": "published",
    "updated_at": "2026-09-04T21:56:19.45347+00:00",
-   "week_id": "8b684d89-7582-48ef-9fa1-9bc0abb0dec4"
+   "week_id": "8b684d89-7582-48ef-9fa1-9bc0abb0dec4",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28568,7 +30332,10 @@
    "scheduled_on": "2026-12-05",
    "state": "published",
    "updated_at": "2026-09-04T21:56:19.45347+00:00",
-   "week_id": "8b684d89-7582-48ef-9fa1-9bc0abb0dec4"
+   "week_id": "8b684d89-7582-48ef-9fa1-9bc0abb0dec4",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28582,7 +30349,10 @@
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "13fea25c-a4e4-412e-b758-baec22363708"
+   "week_id": "13fea25c-a4e4-412e-b758-baec22363708",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28596,7 +30366,10 @@
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "29ec12e5-1101-4d34-ae89-20ad06cd5d58"
+   "week_id": "29ec12e5-1101-4d34-ae89-20ad06cd5d58",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28610,7 +30383,10 @@
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "7eacfc37-81d6-4d85-921e-3f65a07df9a7"
+   "week_id": "7eacfc37-81d6-4d85-921e-3f65a07df9a7",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28624,7 +30400,10 @@
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "359c6fe4-4822-4436-a6c7-dc873281e857"
+   "week_id": "359c6fe4-4822-4436-a6c7-dc873281e857",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28638,7 +30417,10 @@
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "61044e83-2c38-4596-85b2-4c372ed21f84"
+   "week_id": "61044e83-2c38-4596-85b2-4c372ed21f84",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28652,7 +30434,10 @@
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "e72db703-abaa-4d01-bd3b-2a323511f3b4"
+   "week_id": "e72db703-abaa-4d01-bd3b-2a323511f3b4",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28666,7 +30451,10 @@
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "80b0e565-16f4-45ba-a29e-bd0ec72809f0"
+   "week_id": "80b0e565-16f4-45ba-a29e-bd0ec72809f0",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28680,7 +30468,10 @@
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "459ac9a1-bd46-4834-a10a-471bb512b425"
+   "week_id": "459ac9a1-bd46-4834-a10a-471bb512b425",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28694,7 +30485,10 @@
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "d9668ef2-2d06-45b9-b5fc-7847ff0db9cd"
+   "week_id": "d9668ef2-2d06-45b9-b5fc-7847ff0db9cd",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28708,7 +30502,10 @@
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "0dcc841c-bc60-4ff0-842e-5fcb87730272"
+   "week_id": "0dcc841c-bc60-4ff0-842e-5fcb87730272",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28722,7 +30519,10 @@
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "f501d1a2-a0c2-4d6a-a624-4c73d69abeb6"
+   "week_id": "f501d1a2-a0c2-4d6a-a624-4c73d69abeb6",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28736,7 +30536,10 @@
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "9e3026e5-1eba-4738-b5c3-5d76eca2466f"
+   "week_id": "9e3026e5-1eba-4738-b5c3-5d76eca2466f",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28750,7 +30553,10 @@
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "de5c6450-3888-445b-9a7b-94e9e5dcaa30"
+   "week_id": "de5c6450-3888-445b-9a7b-94e9e5dcaa30",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "10000000-0000-4000-8000-000000000004",
@@ -28764,7 +30570,10 @@
    "scheduled_on": null,
    "state": "published",
    "updated_at": "2026-09-04T01:52:57.040204+00:00",
-   "week_id": "cbe02268-21c5-455f-bdf0-bc99f7b1792d"
+   "week_id": "cbe02268-21c5-455f-bdf0-bc99f7b1792d",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -28778,7 +30587,10 @@
    "scheduled_on": "2026-08-25",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "cfdd9f35-1d99-43e0-b120-9fb82cd7d043"
+   "week_id": "cfdd9f35-1d99-43e0-b120-9fb82cd7d043",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -28792,7 +30604,10 @@
    "scheduled_on": "2026-08-25",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "cfdd9f35-1d99-43e0-b120-9fb82cd7d043"
+   "week_id": "cfdd9f35-1d99-43e0-b120-9fb82cd7d043",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -28806,7 +30621,10 @@
    "scheduled_on": "2026-08-30",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "cfdd9f35-1d99-43e0-b120-9fb82cd7d043"
+   "week_id": "cfdd9f35-1d99-43e0-b120-9fb82cd7d043",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -28820,7 +30638,10 @@
    "scheduled_on": "2026-09-01",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "f9f9e06d-3ef1-417e-b5c8-61e26931164b"
+   "week_id": "f9f9e06d-3ef1-417e-b5c8-61e26931164b",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -28834,7 +30655,10 @@
    "scheduled_on": "2026-09-03",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "f9f9e06d-3ef1-417e-b5c8-61e26931164b"
+   "week_id": "f9f9e06d-3ef1-417e-b5c8-61e26931164b",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -28848,7 +30672,10 @@
    "scheduled_on": "2026-09-06",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "f9f9e06d-3ef1-417e-b5c8-61e26931164b"
+   "week_id": "f9f9e06d-3ef1-417e-b5c8-61e26931164b",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -28862,7 +30689,10 @@
    "scheduled_on": "2026-09-08",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "fcb569c7-0e16-4acb-991c-b4e6410de254"
+   "week_id": "fcb569c7-0e16-4acb-991c-b4e6410de254",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -28876,7 +30706,10 @@
    "scheduled_on": "2026-09-10",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "fcb569c7-0e16-4acb-991c-b4e6410de254"
+   "week_id": "fcb569c7-0e16-4acb-991c-b4e6410de254",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -28890,7 +30723,10 @@
    "scheduled_on": "2026-09-13",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "fcb569c7-0e16-4acb-991c-b4e6410de254"
+   "week_id": "fcb569c7-0e16-4acb-991c-b4e6410de254",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -28904,7 +30740,10 @@
    "scheduled_on": "2026-09-15",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "7f81cff7-35ba-4091-b778-5e283b79bcd4"
+   "week_id": "7f81cff7-35ba-4091-b778-5e283b79bcd4",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -28918,7 +30757,10 @@
    "scheduled_on": "2026-09-17",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "7f81cff7-35ba-4091-b778-5e283b79bcd4"
+   "week_id": "7f81cff7-35ba-4091-b778-5e283b79bcd4",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -28932,7 +30774,10 @@
    "scheduled_on": "2026-09-20",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "7f81cff7-35ba-4091-b778-5e283b79bcd4"
+   "week_id": "7f81cff7-35ba-4091-b778-5e283b79bcd4",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -28946,7 +30791,10 @@
    "scheduled_on": "2026-09-22",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "d7da245a-f1cd-49bc-9029-f2e6ffde676e"
+   "week_id": "d7da245a-f1cd-49bc-9029-f2e6ffde676e",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -28960,7 +30808,10 @@
    "scheduled_on": "2026-09-24",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "d7da245a-f1cd-49bc-9029-f2e6ffde676e"
+   "week_id": "d7da245a-f1cd-49bc-9029-f2e6ffde676e",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -28974,7 +30825,10 @@
    "scheduled_on": "2026-09-27",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "d7da245a-f1cd-49bc-9029-f2e6ffde676e"
+   "week_id": "d7da245a-f1cd-49bc-9029-f2e6ffde676e",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -28988,7 +30842,10 @@
    "scheduled_on": "2026-09-29",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "6385a20a-1ec3-45c0-ae52-4d7dcb6f7be3"
+   "week_id": "6385a20a-1ec3-45c0-ae52-4d7dcb6f7be3",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29002,7 +30859,10 @@
    "scheduled_on": "2026-10-01",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "6385a20a-1ec3-45c0-ae52-4d7dcb6f7be3"
+   "week_id": "6385a20a-1ec3-45c0-ae52-4d7dcb6f7be3",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29016,7 +30876,10 @@
    "scheduled_on": "2026-10-04",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "6385a20a-1ec3-45c0-ae52-4d7dcb6f7be3"
+   "week_id": "6385a20a-1ec3-45c0-ae52-4d7dcb6f7be3",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29030,7 +30893,10 @@
    "scheduled_on": "2026-10-06",
    "state": "cancelled",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "e31c0de1-ad1e-4874-9b16-644c48eba640"
+   "week_id": "e31c0de1-ad1e-4874-9b16-644c48eba640",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29044,7 +30910,10 @@
    "scheduled_on": "2026-10-08",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "e31c0de1-ad1e-4874-9b16-644c48eba640"
+   "week_id": "e31c0de1-ad1e-4874-9b16-644c48eba640",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29058,7 +30927,10 @@
    "scheduled_on": "2026-10-11",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "e31c0de1-ad1e-4874-9b16-644c48eba640"
+   "week_id": "e31c0de1-ad1e-4874-9b16-644c48eba640",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29072,7 +30944,10 @@
    "scheduled_on": "2026-10-13",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "835160b0-79b0-48d8-b8d6-15ae5ca4537a"
+   "week_id": "835160b0-79b0-48d8-b8d6-15ae5ca4537a",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29086,7 +30961,10 @@
    "scheduled_on": "2026-10-15",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "835160b0-79b0-48d8-b8d6-15ae5ca4537a"
+   "week_id": "835160b0-79b0-48d8-b8d6-15ae5ca4537a",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29100,7 +30978,10 @@
    "scheduled_on": "2026-10-18",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "835160b0-79b0-48d8-b8d6-15ae5ca4537a"
+   "week_id": "835160b0-79b0-48d8-b8d6-15ae5ca4537a",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29114,7 +30995,10 @@
    "scheduled_on": "2026-10-20",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "1599613b-0132-426f-8a97-d35fec93cdda"
+   "week_id": "1599613b-0132-426f-8a97-d35fec93cdda",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29128,7 +31012,10 @@
    "scheduled_on": "2026-10-22",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "1599613b-0132-426f-8a97-d35fec93cdda"
+   "week_id": "1599613b-0132-426f-8a97-d35fec93cdda",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29142,7 +31029,10 @@
    "scheduled_on": "2026-10-25",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "1599613b-0132-426f-8a97-d35fec93cdda"
+   "week_id": "1599613b-0132-426f-8a97-d35fec93cdda",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29156,7 +31046,10 @@
    "scheduled_on": "2026-10-27",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "3f206ad2-e1f8-4505-bec3-1e400d0b5c18"
+   "week_id": "3f206ad2-e1f8-4505-bec3-1e400d0b5c18",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29170,7 +31063,10 @@
    "scheduled_on": "2026-10-29",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "3f206ad2-e1f8-4505-bec3-1e400d0b5c18"
+   "week_id": "3f206ad2-e1f8-4505-bec3-1e400d0b5c18",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29184,7 +31080,10 @@
    "scheduled_on": "2026-11-01",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "3f206ad2-e1f8-4505-bec3-1e400d0b5c18"
+   "week_id": "3f206ad2-e1f8-4505-bec3-1e400d0b5c18",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29198,7 +31097,10 @@
    "scheduled_on": "2026-11-03",
    "state": "cancelled",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "70be0e76-ef32-4a76-810b-180c9378e697"
+   "week_id": "70be0e76-ef32-4a76-810b-180c9378e697",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29212,7 +31114,10 @@
    "scheduled_on": "2026-11-05",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "70be0e76-ef32-4a76-810b-180c9378e697"
+   "week_id": "70be0e76-ef32-4a76-810b-180c9378e697",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29226,7 +31131,10 @@
    "scheduled_on": "2026-11-08",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "70be0e76-ef32-4a76-810b-180c9378e697"
+   "week_id": "70be0e76-ef32-4a76-810b-180c9378e697",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29240,7 +31148,10 @@
    "scheduled_on": "2026-11-10",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "f722c41f-65ae-46a0-bb55-216b29736549"
+   "week_id": "f722c41f-65ae-46a0-bb55-216b29736549",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29254,7 +31165,10 @@
    "scheduled_on": "2026-11-12",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "f722c41f-65ae-46a0-bb55-216b29736549"
+   "week_id": "f722c41f-65ae-46a0-bb55-216b29736549",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29268,7 +31182,10 @@
    "scheduled_on": "2026-11-15",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "f722c41f-65ae-46a0-bb55-216b29736549"
+   "week_id": "f722c41f-65ae-46a0-bb55-216b29736549",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29282,7 +31199,10 @@
    "scheduled_on": "2026-11-17",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "4b5df84b-3a85-4347-a991-8d427196fc2b"
+   "week_id": "4b5df84b-3a85-4347-a991-8d427196fc2b",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29296,7 +31216,10 @@
    "scheduled_on": "2026-11-19",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "4b5df84b-3a85-4347-a991-8d427196fc2b"
+   "week_id": "4b5df84b-3a85-4347-a991-8d427196fc2b",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29310,7 +31233,10 @@
    "scheduled_on": "2026-11-22",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "4b5df84b-3a85-4347-a991-8d427196fc2b"
+   "week_id": "4b5df84b-3a85-4347-a991-8d427196fc2b",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29324,7 +31250,10 @@
    "scheduled_on": "2026-11-24",
    "state": "published",
    "updated_at": "2026-09-03T20:44:54.190341+00:00",
-   "week_id": "4ef686da-e706-44a9-bc1f-87311bad34c2"
+   "week_id": "4ef686da-e706-44a9-bc1f-87311bad34c2",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "21cbc6e2-b3b7-4b63-a7e9-ffb5f68d0f77",
@@ -29338,7 +31267,10 @@
    "scheduled_on": "2026-11-26",
    "state": "published",
    "updated_at": "2026-09-04T09:35:36.452444+00:00",
-   "week_id": "4ef686da-e706-44a9-bc1f-87311bad34c2"
+   "week_id": "4ef686da-e706-44a9-bc1f-87311bad34c2",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   },
   {
    "athlete_id": "e8328097-a879-448b-baae-3461f176d166",
@@ -29352,7 +31284,10 @@
    "scheduled_on": "2026-09-04",
    "state": "cancelled",
    "updated_at": "2026-09-04T21:16:54.352701+00:00",
-   "week_id": "8c802d29-2df4-499d-a8fb-c3fa3ecaa3fd"
+   "week_id": "8c802d29-2df4-499d-a8fb-c3fa3ecaa3fd",
+   "withdrawn_at": null,
+   "withdrawn_by": null,
+   "withdrawn_reason": null
   }
  ],
  "versions": [
@@ -38531,6 +40466,300 @@
    "rpe_low": null,
    "shape": null,
    "title": "Easy \u2014 18 mi across the week",
+   "version_number": 1
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "authored_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "change_reason": "The session had no target of any kind. A twelve-second hill has no pace, so effort is the instrument \u2014 and the hills and the strides want different efforts.",
+   "coach_note": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "details": "Hard up the hill, walk down, start each one rested. The strides are relaxed speed, not effort \u2014 a stride run hard is a ninth hill.",
+   "distance_unit": "mi",
+   "id": "372f8e3a-2ea4-4f3e-93fb-c7f92b253752",
+   "intent": "Build power and economy before any volume of fast running. The base speed sits under everything else.",
+   "pace_high": null,
+   "pace_low": null,
+   "planned_session_id": "1513e769-238e-4f98-947d-4ecb7583c1f9",
+   "prescribed_distance": 5.02,
+   "prescribed_duration_minutes": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "shape": null,
+   "title": "Hills + strides",
+   "version_number": 4
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "authored_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "change_reason": "The session had no target of any kind. A twelve-second hill has no pace, so effort is the instrument \u2014 and the hills and the strides want different efforts.",
+   "coach_note": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "details": "Hard up the hill, walk down, start each one rested. The strides are relaxed speed, not effort \u2014 a stride run hard is a ninth hill.",
+   "distance_unit": "mi",
+   "id": "4e919f83-7136-4179-8836-82e3acebd4f4",
+   "intent": "Build power and economy before any volume of fast running. The base speed sits under everything else.",
+   "pace_high": null,
+   "pace_low": null,
+   "planned_session_id": "6c74e14b-ced6-4460-b3b5-61b5ba572219",
+   "prescribed_distance": 5.02,
+   "prescribed_duration_minutes": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "shape": null,
+   "title": "Hills + strides",
+   "version_number": 4
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "authored_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "change_reason": "The session had no target. Derived from this block's own threshold of about 6:15 rather than a textbook: three-minute repetitions sit above threshold, not at it.",
+   "coach_note": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "details": "If the fifth is slower than the first, the first was too fast.",
+   "distance_unit": "mi",
+   "id": "7f1fc0a9-ee3e-49b9-a605-43ab55e36b76",
+   "intent": "Raise the ceiling the half is run just beneath.",
+   "pace_high": null,
+   "pace_low": null,
+   "planned_session_id": "e6f6a85e-9c4a-4a97-ac61-d3983e41f3b7",
+   "prescribed_distance": 6.29,
+   "prescribed_duration_minutes": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "shape": null,
+   "title": "VO\u2082 intervals",
+   "version_number": 4
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "authored_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "change_reason": "The session had no target. Derived from this block's own threshold of about 6:15 rather than a textbook: three-minute repetitions sit above threshold, not at it.",
+   "coach_note": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "details": "If the fifth is slower than the first, the first was too fast.",
+   "distance_unit": "mi",
+   "id": "60b7bf5f-26b3-4891-9392-6edc4c8bda61",
+   "intent": "Raise the ceiling the half is run just beneath.",
+   "pace_high": null,
+   "pace_low": null,
+   "planned_session_id": "f92f57d1-9505-4010-bdb5-bc307e09d7e8",
+   "prescribed_distance": 6.29,
+   "prescribed_duration_minutes": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "shape": null,
+   "title": "VO\u2082 intervals",
+   "version_number": 4
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "authored_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "change_reason": "The session had no target. Same band as the VO\u2082 intervals it maintains \u2014 the intent says volume is cut and speed is not, so the pace does not move.",
+   "coach_note": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "details": "Two weeks out. Sharp, short, and finished long before it costs anything.",
+   "distance_unit": "mi",
+   "id": "556f4a64-e719-478c-b4d8-0a0225b741e3",
+   "intent": "Keep the top end live while the fatigue clears. Volume is cut; speed is not.",
+   "pace_high": null,
+   "pace_low": null,
+   "planned_session_id": "a4c7f5f2-0213-411a-8443-0ae8e219528f",
+   "prescribed_distance": 4.61,
+   "prescribed_duration_minutes": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "shape": null,
+   "title": "VO\u2082 touch",
+   "version_number": 4
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "authored_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "change_reason": "The session had no target. Same band as the VO\u2082 intervals it maintains \u2014 the intent says volume is cut and speed is not, so the pace does not move.",
+   "coach_note": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "details": "Two weeks out. Sharp, short, and finished long before it costs anything.",
+   "distance_unit": "mi",
+   "id": "8f77f401-70fb-44b1-9131-f708af16c63e",
+   "intent": "Keep the top end live while the fatigue clears. Volume is cut; speed is not.",
+   "pace_high": null,
+   "pace_low": null,
+   "planned_session_id": "a70c7102-48bd-4d78-8433-4fe6f17d3167",
+   "prescribed_distance": 4.61,
+   "prescribed_duration_minutes": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "shape": null,
+   "title": "VO\u2082 touch",
+   "version_number": 4
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "authored_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "change_reason": "The opening thirty minutes was an unlabelled duration, so it would have been run easy and the session would have measured nothing. It is the cost the name refers to: steady, not easy, and deliberately not threshold.",
+   "coach_note": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "details": "The first thirty minutes are the point. Arrive at race pace already tired.",
+   "distance_unit": "mi",
+   "id": "d82e7fa9-cb19-4fbd-a1fa-ffe6bcaea48e",
+   "intent": "Preserve half pace after consequential non-threshold cost.",
+   "pace_high": null,
+   "pace_low": null,
+   "planned_session_id": "56314047-74ba-4eea-8836-3b4c124af52f",
+   "prescribed_distance": 8.72,
+   "prescribed_duration_minutes": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "shape": null,
+   "title": "Pressure to Pace",
+   "version_number": 4
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "authored_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "change_reason": "The opening thirty minutes was an unlabelled duration, so it would have been run easy and the session would have measured nothing. It is the cost the name refers to: steady, not easy, and deliberately not threshold.",
+   "coach_note": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "details": "The first thirty minutes are the point. Arrive at race pace already tired.",
+   "distance_unit": "mi",
+   "id": "66159aa8-b4f6-4221-b121-486f66e69da9",
+   "intent": "Preserve half pace after consequential non-threshold cost.",
+   "pace_high": null,
+   "pace_low": null,
+   "planned_session_id": "bd061ace-b1c6-4ecc-bc65-2132b5ed5ed4",
+   "prescribed_distance": 8.72,
+   "prescribed_duration_minutes": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "shape": null,
+   "title": "Pressure to Pace",
+   "version_number": 4
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "authored_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "change_reason": "Same fix as Pressure to Pace, and it matters more here: a read that is meant to be standardised cannot have an opening block left to interpretation. Twenty minutes at the same steady band, which is the lower cost the intent asks for.",
+   "coach_note": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "details": "Run it the same way every time. It is a measurement, not a workout.",
+   "distance_unit": "mi",
+   "id": "24644ea1-55b5-41e1-af01-fba57131284c",
+   "intent": "A standardised late-half read. Reveal whether the durability is present, at lower cost than the session that built it.",
+   "pace_high": null,
+   "pace_low": null,
+   "planned_session_id": "458f8bad-bfd6-4dd5-b4d5-993aa88e8123",
+   "prescribed_distance": 6.12,
+   "prescribed_duration_minutes": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "shape": null,
+   "title": "Durability Read",
+   "version_number": 4
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "authored_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "change_reason": "Same fix as Pressure to Pace, and it matters more here: a read that is meant to be standardised cannot have an opening block left to interpretation. Twenty minutes at the same steady band, which is the lower cost the intent asks for.",
+   "coach_note": null,
+   "created_at": "2026-09-05T01:45:03.778497+00:00",
+   "details": "Run it the same way every time. It is a measurement, not a workout.",
+   "distance_unit": "mi",
+   "id": "05e0deaf-8cb0-4b8a-ac30-ed60fcf0e38c",
+   "intent": "A standardised late-half read. Reveal whether the durability is present, at lower cost than the session that built it.",
+   "pace_high": null,
+   "pace_low": null,
+   "planned_session_id": "797993d5-cf9b-4c78-8572-869a395024e1",
+   "prescribed_distance": 6.12,
+   "prescribed_duration_minutes": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "shape": null,
+   "title": "Durability Read",
+   "version_number": 4
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "authored_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "change_reason": null,
+   "coach_note": null,
+   "created_at": "2026-09-05T01:45:31.487037+00:00",
+   "details": null,
+   "distance_unit": null,
+   "id": "b4df312c-0e76-4fca-a5b7-75a19a9c7ca5",
+   "intent": "The cutback is the session. Six weeks of work is absorbed by not adding a seventh.",
+   "pace_high": null,
+   "pace_low": null,
+   "planned_session_id": "3a7c47ea-6cab-46ed-a60f-9a871fcca8b6",
+   "prescribed_distance": null,
+   "prescribed_duration_minutes": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "shape": null,
+   "title": "Off",
+   "version_number": 1
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000003",
+   "authored_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "change_reason": null,
+   "coach_note": null,
+   "created_at": "2026-09-05T01:45:31.487037+00:00",
+   "details": null,
+   "distance_unit": null,
+   "id": "42ea8f1b-5c1c-4971-bf23-2cd506056513",
+   "intent": "Saturday is twelve continuous miles at race pace. Tuesday is off so that can be what it is.",
+   "pace_high": null,
+   "pace_low": null,
+   "planned_session_id": "b3c0ab35-987f-4814-b472-6b09392f9ced",
+   "prescribed_distance": null,
+   "prescribed_duration_minutes": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "shape": null,
+   "title": "Off",
+   "version_number": 1
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "authored_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "change_reason": null,
+   "coach_note": null,
+   "created_at": "2026-09-05T01:45:31.487037+00:00",
+   "details": null,
+   "distance_unit": null,
+   "id": "6bf3a6fd-088e-43a0-84c5-068dea68ea88",
+   "intent": "The cutback is the session. Six weeks of work is absorbed by not adding a seventh.",
+   "pace_high": null,
+   "pace_low": null,
+   "planned_session_id": "360143a7-3423-439a-8043-6810bf1a9606",
+   "prescribed_distance": null,
+   "prescribed_duration_minutes": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "shape": null,
+   "title": "Off",
+   "version_number": 1
+  },
+  {
+   "athlete_id": "10000000-0000-4000-8000-000000000004",
+   "authored_by": "79d1520c-7c7c-4cd2-bd31-229a3cc56158",
+   "change_reason": null,
+   "coach_note": null,
+   "created_at": "2026-09-05T01:45:31.487037+00:00",
+   "details": null,
+   "distance_unit": null,
+   "id": "7619574e-385d-4453-bcdd-70eeacec65bf",
+   "intent": "Saturday is twelve continuous miles at race pace. Tuesday is off so that can be what it is.",
+   "pace_high": null,
+   "pace_low": null,
+   "planned_session_id": "166fc7d9-8cb8-44a2-9b44-5bd06711195f",
+   "prescribed_distance": null,
+   "prescribed_duration_minutes": null,
+   "rpe_high": null,
+   "rpe_low": null,
+   "shape": null,
+   "title": "Off",
    "version_number": 1
   },
   {

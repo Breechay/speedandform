@@ -1262,20 +1262,56 @@ function thisWeekSoFar(current) {
 //
 // Nothing new is computed here. It is the same cells, given room.
 
-function weekSummary(week, forWeek, milesFor, easyFor, mark) {
-  const sessions = forWeek(week).filter((session) => session.state !== 'cancelled'
-    || (record.completions || []).some((item) => item.planned_session_id === session.id));
-  // What this week asks that no other week does: the work that can move the mark.
-  const owning = sessions.map((session) => rungFor(session, mark)).filter(Boolean);
-  const banded = sessions.filter((session) => workParts(session.currentVersion)
-    .some((part) => part.counts_toward_mark_id));
-  const total = milesFor(week);
-  const easy = easyFor(week);
+// THE SHAPE OF THE WEEK, NOT ITS ACCOUNTING.
+//
+// The first version read TOTAL 39 · EASY 0 · THE WORK 39 for a week containing
+// four easy runs and a long run, which is not merely unhelpful — it is false.
+// EASY counted only sessions authored by day, and weeks 1 and 2 placed their
+// easy running as allocations against a budget, so the number was zero and the
+// remainder was labelled work.
+//
+// A summary should say what kind of week this is. How far, how much of it is
+// easy however it was placed, how many sessions carry the argument, how long the
+// long day is, and — only when one exists — what the week can establish.
+function weekSummary(week, forWeek, milesFor, mark) {
+  const filed = record.completions || [];
+  const live = forWeek(week).filter((session) => session.state !== 'cancelled'
+    || filed.some((item) => item.planned_session_id === session.id));
+  const titleOfSession = (session) => String(session.currentVersion?.title || '').trim();
+  const isEasyish = (session) => /^(easy|off|rest)/i.test(titleOfSession(session));
+
+  // Easy running however it was placed. A week whose easy days are authored and
+  // a week whose easy miles were allocated against a budget are the same week to
+  // an athlete, and the summary should not report one of them as zero.
+  const datedEasy = live.filter((session) => session.scheduled_on && isEasyish(session))
+    .reduce((sum, session) => sum + (authoredMiles(session.currentVersion) || 0), 0);
+  const allocated = (record.completions || [])
+    .filter((item) => !item.planned_session_id && week.starts_on && week.ends_on
+      && filedOn(item) >= week.starts_on && filedOn(item) <= week.ends_on)
+    .reduce((sum, item) => sum + Number(item.actual_distance || 0), 0);
+
+  const key = live.filter((session) => session.scheduled_on && !isEasyish(session));
+  // The long day is whichever day actually holds the longest run, read off the
+  // sessions rather than off a weekday name. Natalie's block puts hers on a
+  // Sunday, and a summary that asks "what is Saturday" would be describing
+  // José's week while looking at hers.
+  const longest = live.filter((session) => session.scheduled_on && !isEasyish(session))
+    .reduce((best, session) => {
+      const miles = authoredMiles(session.currentVersion) || 0;
+      return miles > (best.miles || 0) ? { session, miles } : best;
+    }, {});
+  const longDay = longest.miles || 0;
+  const rung = key.map((session) => rungFor(session, mark)).find(Boolean);
+
   return {
-    total, easy,
-    quality: Number((total - easy).toFixed(1)),
-    owning: owning.length ? owning[0].rung : null,
-    banded: banded.length
+    total: milesFor(week),
+    easy: datedEasy || allocated,
+    easyFiled: !datedEasy && allocated > 0,
+    key: key.length,
+    longDay,
+    longIsSpecific: Boolean(longest.session
+      && workParts(longest.session.currentVersion).some((part) => part.pace_high_seconds != null)),
+    rung: rung ? rung.rung : null
   };
 }
 
@@ -1307,7 +1343,7 @@ function weekHtml(weekNumber) {
     return sum + (authoredMiles(session.currentVersion) || 0);
   }, 0);
 
-  const sum = weekSummary(week, forWeek, milesFor, easyFor, mark);
+  const sum = weekSummary(week, forWeek, milesFor, mark);
   const out = weeksOutOf(week, block?.race_on);
   const unattached = completions.filter((item) => !item.planned_session_id);
   const isNow = week.id === record.currentWeek?.id;
@@ -1323,7 +1359,8 @@ function weekHtml(weekNumber) {
     // whole view in a temporal dead zone the moment the week rendered.
     const isToday = on === today();
     return `<div class="wday${body ? '' : ' rest'}${isToday ? ' now' : ''}">
-      <div class="wdayName">${day}<em>${on ? escapeHtml(dayLabel(on)) : ''}</em></div>
+      <div class="wdayName">${day}<em>${on ? escapeHtml(dayLabel(on)) : ''}${
+        isToday ? '<span class="wNow">today</span>' : ''}</em></div>
       <div class="wdayBody">${body || '<span class="none">Rest</span>'}</div>
     </div>`;
   }).join('');
@@ -1346,11 +1383,14 @@ function weekHtml(weekNumber) {
 
     <div class="wSum">
       <div><b>TOTAL</b><strong>${escapeHtml(Number(sum.total.toFixed(1)))} mi</strong></div>
-      <div><b>EASY</b><strong>${escapeHtml(Number(sum.easy.toFixed(1)))} mi</strong></div>
-      <div><b>THE WORK</b><strong>${escapeHtml(Number(sum.quality.toFixed(1)))} mi</strong>
-        <em>${escapeHtml(sum.banded)} session${sum.banded === 1 ? '' : 's'} at 6:30–6:45</em></div>
-      ${sum.owning ? `<div class="wOwn"><b>THIS WEEK CAN ESTABLISH</b>
-        <strong>${escapeHtml(Number(sum.owning.value))} ${escapeHtml(mark?.unit || 'mi')}</strong>
+      <div><b>${sum.easyFiled ? 'EASY, AS FILED' : 'EASY'}</b>
+        <strong>${escapeHtml(Number(sum.easy.toFixed(1)))} mi</strong>
+        ${sum.easyFiled ? '<em>Placed by him against the week\'s budget.</em>' : ''}</div>
+      <div><b>KEY SESSIONS</b><strong>${escapeHtml(sum.key)}</strong>
+        ${sum.longDay ? `<em>Longest day ${escapeHtml(Number(sum.longDay.toFixed(1)))} mi${
+          sum.longIsSpecific ? ', with race pace in it' : ''}.</em>` : ''}</div>
+      ${sum.rung ? `<div class="wOwn"><b>THIS WEEK CAN ESTABLISH</b>
+        <strong>${escapeHtml(Number(sum.rung.value))} ${escapeHtml(mark?.unit || 'mi')}</strong>
         <em>${escapeHtml(mark?.current_question || '')}</em></div>` : ''}
     </div>
 
@@ -2253,8 +2293,14 @@ async function selectAthlete(slug, { silent = false } = {}) {
   render();
 }
 
+// Where you were reading. Studying week ten and opening it should not cost you
+// your place in the season on the way back.
+let planScroll = 0;
+
 function render() {
   closeSessionDrawer();
+  const scroller = document.querySelector('.pgScroll');
+  if (scroller) planScroll = scroller.scrollLeft;
   const { view, slug } = route();
   if (view === 'bench') app.innerHTML = benchHtml();
   else if (view === 'brief') app.innerHTML = briefHtml();
@@ -2263,6 +2309,10 @@ function render() {
   else app.innerHTML = athleteHtml();
   markNav(view, slug);
   paint();
+  if (view === 'plan') {
+    const back = document.querySelector('.pgScroll');
+    if (back && planScroll) back.scrollLeft = planScroll;
+  }
 }
 
 async function show() {
