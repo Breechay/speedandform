@@ -1,3 +1,20 @@
+/* The page carries its own Inter.
+   It asked for Inter and took whatever the machine had — which measured 408px
+   against Helvetica's 448 for the title alone, so the composition was a
+   different width on every computer. Georgia is left as the serif: it is on
+   effectively every machine this will open on, and shipping a second family to
+   replace a system font it already matches would be weight for nothing. */
+@font-face{
+  font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;
+  src:url(fonts/inter-latin.woff2) format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;
+  src:url(fonts/inter-latin-ext.woff2) format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
 :root{
   --bg:#071012;
   --bg2:#090f11;
@@ -154,8 +171,18 @@ body[data-state="ask"] .moment .band{
   display:block;margin-top:10px;font-size:11px;letter-spacing:.22em;color:#c6cdce;
 }
 
-/* RACE WEEK. The page gets quieter rather than louder. */
+/* RACE WEEK. The page gets quieter rather than louder — but the progression is
+   the one thing that must get LOUDER, because race week is not "only W15
+   matters", it is "everything led here". The matrix recedes; the path does not. */
 body[data-state="race"] .moment h3{font-size:26px;letter-spacing:.02em}
+body[data-state="race"] .step span{border-color:#7b868a;color:#dfe4e5;background:#0d1518}
+body[data-state="race"] .step small{color:#8d9599}
+body[data-state="race"] .steps i{color:#8f9a9e}
+body[data-state="race"] .step.race span{
+  border-color:var(--lime);color:var(--lime);
+  box-shadow:0 0 34px rgba(200,255,69,.18);
+}
+body[data-state="race"] .step.race small{color:var(--lime)}
 body[data-state="race"] .matrix tbody td:not(.cur),
 body[data-state="race"] .matrix thead th:not(.cur){opacity:.34;transition:opacity .3s}
 body[data-state="race"] .matrix tbody th{opacity:.5}

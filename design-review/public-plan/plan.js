@@ -80,13 +80,17 @@ function steps(current, complete) {
   const asked = plan.weeks.filter((w) => w.sessions.some((s) => s.asks != null)
     && w.week_number <= current).flatMap((w) => w.sessions.filter((s) => s.asks != null).map((s) => +s.asks));
   const live = plan.weeks.find((w) => w.week_number === current)?.sessions.find((s) => s.asks != null)?.asks;
+  // Race week is not "only 13.1 matters". Every rung behind it is the path that
+  // led here, so nothing is dimmed and the race carries the accent.
+  const racing = document.body.dataset.state === 'race';
   el('steps').innerHTML = RUNGS.map((value, i) => {
     let cls = 'step';
     if (complete) cls += value === 13.1 ? ' race' : '';
+    else if (racing) cls += value === 13.1 ? ' race' : ' past';
     else if (value === live) cls += ' now';
     else if (value === 2 || asked.includes(value)) cls += ' past';
     else cls += ' future';
-    if (value === 13.1 && !complete) cls += ' race';
+    if (value === 13.1 && !complete && !racing) cls += ' race';
     return `${i ? '<i>→</i>' : ''}<div class="${cls}"><span>${value}</span><small>${
       value === 13.1 ? 'RACE' : 'MI'}</small></div>`;
   }).join('');
@@ -120,7 +124,7 @@ const MOMENTS = {
     return {
       kicker: 'The question',
       title: `${+ask.asks} mi<span class="band">Continuously · 6:30–6:45 /mi</span>`,
-      body: `Can the prescribed pace be carried for ${+ask.asks} uninterrupted miles?`
+      body: `Can you carry the prescribed pace for ${+ask.asks} uninterrupted miles?`
     };
   },
   race: () => ({
@@ -160,8 +164,27 @@ function today() {
   return [week === 15 ? 'race' : asks ? 'ask' : 'build', week];
 }
 
-const FIXED = { build: 3, ask: 4, race: 15, complete: 15 };
-document.getElementById('dev').addEventListener('click', (event) => {
+// The switcher and ?state= are DESIGN-REVIEW ONLY. The public page derives its
+// state from the date and carries no way to override it — a plan that can be
+// told what week it is would be a plan someone forgot to update.
+const REVIEW = location.pathname.includes('/design-review/');
+if (!REVIEW) document.getElementById('dev').remove();
+
+// Representative weeks for the review switcher, derived from the plan rather
+// than typed. If an ask moves, the shortcut follows it; nothing here is a fact
+// about the plan, only a way to reach a moment.
+const firstAsk = plan.weeks.find((w) => w.sessions.some((s) => s.asks != null))?.week_number;
+const lastWeek = plan.weeks[plan.weeks.length - 1].week_number;
+const FIXED = {
+  build: Math.max(1, (firstAsk ?? 4) - 1),
+  ask: firstAsk ?? 4,
+  race: lastWeek,
+  complete: lastWeek
+};
+// Guarded, because the element is removed outside design review — attaching to
+// it unguarded threw before render() ever ran, so the public build showed the
+// bare HTML skeleton and nothing else.
+if (REVIEW) document.getElementById('dev').addEventListener('click', (event) => {
   const button = event.target.closest('[data-state]');
   if (!button) return;
   const state = button.dataset.state;
@@ -177,12 +200,15 @@ document.getElementById('dev').addEventListener('click', (event) => {
 // Capture hook, development only: ?state=ask renders that moment directly so a
 // screenshot can reach it without a click. The live page will derive its state
 // from the date and carry no switcher at all.
-const asked = new URLSearchParams(location.search).get('state');
+const asked = REVIEW ? new URLSearchParams(location.search).get('state') : null;
 if (asked === 'auto') {
   const [live, week] = today();
   render(live, week);
 } else if (asked && FIXED[asked]) {
   render(asked, FIXED[asked]);
-} else {
+} else if (REVIEW) {
   render('build', 3);
+} else {
+  const [live, week] = today();
+  render(live, week);
 }
