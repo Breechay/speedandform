@@ -716,6 +716,20 @@ a{color:inherit}
 .week-grid:has(+ .timeline),
 .watch-grid:has(+ .watch-grid),
 .watch-grid:has(+ .watch-key){border-bottom:0}
+
+/* Display type sets its own last line: without this a long deck drops one short
+   word onto a line of its own, which reads as a break rather than a decision. */
+h1,h2,h3,.bigq,.pattern h3,.hero-deck{text-wrap:balance}
+p,.reader p{text-wrap:pretty}
+
+/* The six-week table is wider than a phone. It scrolls — say so, rather than
+   letting the reader find the edge by accident. */
+.plan-table-wrap::after{
+  content:"Scroll for the rest of the week \2192";
+  position:sticky;left:0;display:block;padding:10px 0 2px;
+  font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+}
+@media(min-width:1200px){.plan-table-wrap::after{content:none}}
 </style>
 </head>
 <body>
