@@ -1,0 +1,1117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>FORM Labs · Raise the Ceiling · Living Study 02 v5</title>
+<style>
+:root{
+  --bg:#07110f;
+  --bg2:#0a1717;
+  --ink:#f2f4ef;
+  --ink2:#b9c1bd;
+  --muted:#75807c;
+  --line:rgba(236,244,238,.12);
+  --line2:rgba(236,244,238,.07);
+  --lime:#c9ff36;
+  --soft:#0d1d1c;
+}
+*{box-sizing:border-box}
+/* Overscroll seam. A gradient is a background IMAGE, sized to its element's box; rubber-band
+   scrolling goes past that box and shows the background COLOR underneath, which defaults to white.
+   Setting it on `html` is what paints the overscroll. Same fix the plan page already carries. */
+html{background-color:#07110f}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at 78% 14%, rgba(201,255,54,.06), transparent 24%),
+    linear-gradient(180deg,var(--bg),#081314 48%,#061011);
+  color:var(--ink);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  overflow-x:hidden;
+}
+a{color:inherit}
+.wrap{width:min(1500px,calc(100vw - 96px));margin:0 auto}
+.kicker{
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  font-weight:800;color:var(--lime)
+}
+
+.hero-shell{
+  position:relative;z-index:2;min-height:94vh;
+  display:flex;flex-direction:column;padding:24px 0 30px;
+}
+
+.wordmark{
+  color:var(--ink);text-decoration:none;font-size:23px;letter-spacing:-.055em;font-weight:950;white-space:nowrap;
+}
+.wordmark span{color:var(--lime)}
+.status{
+  font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);
+  display:flex;align-items:center;gap:11px;font-weight:600;
+}
+.status i{
+  width:6px;height:6px;border-radius:50%;background:var(--lime);
+  animation:pulse 3.4s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.24}}
+.hero-shell .hero-grid{margin-top:auto}
+.hero-foot{
+  margin-top:auto;padding-top:clamp(28px,3.4vh,46px);
+  /* Same columns as .hero-grid so the plan link lands under the question column
+     rather than floating in the gutter between the two. */
+  display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:end;
+}
+.hero-foot > *:last-child{padding-left:34px}
+.contents .kicker{margin-bottom:15px}
+.contents-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 44px}
+.contents-grid a{
+  display:flex;align-items:baseline;gap:12px;border-top:1px solid var(--line2);
+  padding:7px 0;color:var(--ink2);text-decoration:none;font-size:14px;
+}
+.contents-grid a:hover{color:var(--lime)}
+.contents-grid b{
+  color:var(--muted);font-size:10px;letter-spacing:.12em;
+  font-variant-numeric:tabular-nums;
+}
+.hero-plan-link{
+  color:var(--lime);text-decoration:none;font-size:12px;letter-spacing:.12em;
+  text-transform:uppercase;white-space:nowrap;padding-bottom:7px;
+}
+
+.hero{
+  min-height:94vh;
+  padding:0;
+  position:relative;
+  display:block;
+  border-bottom:1px solid var(--line);
+}
+.hero:before{
+  content:"";
+  position:absolute;inset:0;
+  background:
+    linear-gradient(90deg,transparent 0 57%,rgba(201,255,54,.025) 57% 58%,transparent 58%),
+    repeating-linear-gradient(90deg,transparent 0 95px,rgba(255,255,255,.018) 96px);
+  pointer-events:none;
+}
+.hero-grid{
+  width:100%;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:48px;
+  align-items:end;
+}
+.hero h1{
+  margin:18px 0 18px;
+  max-width:1050px;
+  font-size:clamp(72px,10.8vw,182px);
+  line-height:.78;
+  letter-spacing:-.072em;
+  font-weight:880;
+}
+.hero h1 span{display:block}
+.hero h1 .lime{color:var(--lime)}
+.hero-deck{
+  max-width:760px;
+  color:var(--ink2);
+  font-size:clamp(20px,2vw,34px);
+  line-height:1.15;
+  letter-spacing:-.025em;
+}
+.hero-side{
+  min-height:520px;
+  display:flex;flex-direction:column;
+  justify-content:flex-end;
+  /* No hairline here: the hero's lime band already marks this column split, and
+     two markers a few pixels apart read as an accident. */
+  padding-left:34px;
+}
+.hero-side .bigq{
+  margin-top:auto;
+  font-size:clamp(36px,4.3vw,68px);
+  line-height:.95;
+  letter-spacing:-.045em;
+  font-weight:780;
+}
+.hero-side .bigq em{font-style:normal;color:var(--lime)}
+.hero-meta{
+  margin-top:42px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+}
+.hero-meta div{border-top:1px solid var(--line);padding-top:13px}
+.hero-meta small{
+  display:block;color:var(--muted);font-size:9px;
+  letter-spacing:.15em;text-transform:uppercase;margin-bottom:7px
+}
+.hero-meta b{font-size:14px;line-height:1.35}
+.section{
+  padding:100px 0;
+  border-bottom:1px solid var(--line);
+}
+.section h2{
+  margin:12px 0 28px;
+  font-size:clamp(54px,7vw,118px);
+  line-height:.87;
+  letter-spacing:-.06em;
+}
+.section .intro{
+  max-width:880px;
+  color:var(--ink2);
+  font-size:clamp(19px,1.75vw,28px);
+  line-height:1.35;
+}
+.split-2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  border-top:1px solid var(--line);
+  margin-top:56px;
+}
+.athlete{
+  padding:36px 38px 28px 0;
+}
+.athlete + .athlete{
+  border-left:1px solid var(--line);
+  padding-left:38px;padding-right:0;
+}
+.athlete .name{
+  display:flex;justify-content:space-between;gap:18px;align-items:center;
+  margin-bottom:26px
+}
+.athlete .name b{font-size:14px;letter-spacing:.08em}
+.athlete .name span{
+  color:var(--muted);font-size:10px;letter-spacing:.12em;text-transform:uppercase
+}
+.statline{
+  display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;
+  margin:16px 0 24px
+}
+.statline strong{
+  font-size:clamp(44px,5.5vw,88px);
+  letter-spacing:-.055em;line-height:.9
+}
+.statline span{color:var(--muted);font-size:13px;padding-bottom:7px}
+.athlete p{color:var(--ink2);font-size:17px;line-height:1.58;margin:0 0 18px}
+.athlete blockquote{
+  margin:28px 0 0;
+  font-size:clamp(26px,3.2vw,48px);
+  line-height:1.05;
+  letter-spacing:-.04em;
+  font-weight:700
+}
+.athlete blockquote em{font-style:normal;color:var(--lime)}
+.success{
+  padding:92px 0 94px;
+  background:linear-gradient(180deg,rgba(201,255,54,.04),transparent);
+  border-bottom:1px solid var(--line);
+}
+.success-grid{
+  display:grid;grid-template-columns:.75fr 1.25fr;gap:56px;align-items:end
+}
+.success .poster{
+  font-size:clamp(62px,8vw,140px);
+  line-height:.82;letter-spacing:-.065em;font-weight:860
+}
+.success .poster em{display:block;font-style:normal;color:var(--lime)}
+.success .story{
+  max-width:800px
+}
+.success .story p{color:var(--ink2);font-size:18px;line-height:1.55}
+.arc{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  margin-top:38px
+}
+.arc div{padding:18px 18px 18px 0}
+.arc div+div{border-left:1px solid var(--line);padding-left:18px}
+.arc small{display:block;color:var(--muted);font-size:9px;letter-spacing:.14em;margin-bottom:8px}
+.arc b{font-size:15px;line-height:1.35}
+.pattern{
+  padding:110px 0 108px;
+  border-bottom:1px solid var(--line);
+}
+.pattern-num{
+  font-size:clamp(92px,15vw,250px);
+  font-weight:900;
+  line-height:.72;
+  letter-spacing:-.08em;
+  color:var(--lime);
+  /* line-height:.72 puts the cap above the line box, so the kicker ends up
+     sitting on the digits. Both values are in em so they hold at every size. */
+  margin-top:.17em;
+  /* The tilde carries a wide left sidebearing at this weight; without this the
+     number reads as indented from the kicker above it. */
+  text-indent:-.055em;
+}
+.pattern h3{
+  margin:28px 0 10px;
+  font-size:clamp(34px,4.2vw,70px);
+  letter-spacing:-.05em;line-height:.95
+}
+.pattern p{
+  max-width:780px;color:var(--ink2);font-size:18px;line-height:1.55
+}
+.pattern .cases{
+  margin-top:42px;
+  display:grid;grid-template-columns:1fr 1fr;
+  border-top:1px solid var(--line)
+}
+.pattern .cases div{padding:26px 30px 22px 0}
+.pattern .cases div+div{border-left:1px solid var(--line);padding-left:30px}
+.pattern .cases small{color:var(--muted);font-size:10px;letter-spacing:.14em}
+.pattern .cases b{display:block;font-size:32px;margin-top:8px;letter-spacing:-.035em}
+.hyrox-splits{
+  margin-top:48px;
+  display:grid;grid-template-columns:repeat(8,1fr);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line)
+}
+.hyrox-splits div{padding:22px 12px}
+.hyrox-splits div+div{border-left:1px solid var(--line)}
+.hyrox-splits small{
+  display:block;color:var(--muted);font-size:9px;letter-spacing:.12em;margin-bottom:7px
+}
+.hyrox-splits b{font-size:clamp(20px,2.4vw,38px);letter-spacing:-.035em}
+.skill{
+  padding:112px 0 100px;
+  border-bottom:1px solid var(--line);
+}
+.skill h2{max-width:1100px}
+.skill .quote{
+  margin-top:38px;
+  max-width:920px;
+  font-size:clamp(30px,4.5vw,72px);
+  line-height:.98;letter-spacing:-.045em;font-weight:760
+}
+.skill .quote em{font-style:normal;color:var(--lime)}
+.ceiling{
+  padding:130px 0 120px;
+  border-bottom:1px solid var(--line);
+}
+.ceiling-grid{
+  display:grid;grid-template-columns:.82fr 1.18fr;gap:70px;align-items:center
+}
+.ceiling h2{margin-top:10px}
+.instrument{
+  position:relative;
+  min-height:690px;
+  border-left:1px solid var(--line);
+  border-right:1px solid var(--line);
+  background:
+    linear-gradient(180deg,rgba(201,255,54,.04),transparent 28%),
+    repeating-linear-gradient(180deg,transparent 0 84px,rgba(255,255,255,.035) 85px);
+}
+.instrument .axis{
+  position:absolute;left:-42px;top:0;bottom:0;
+  display:flex;flex-direction:column;justify-content:space-between;
+  color:var(--muted);font-size:9px;letter-spacing:.13em;writing-mode:vertical-rl;
+  transform:rotate(180deg)
+}
+.instrument .band{
+  position:absolute;left:0;right:0;
+  border-top:1px solid var(--line);
+  padding:12px 20px;
+}
+.instrument .band small{color:var(--muted);font-size:9px;letter-spacing:.13em}
+.instrument .band b{display:block;font-size:18px;margin-top:4px}
+.instrument .ceiling-line{
+  top:20%;
+  border-color:var(--lime);
+  box-shadow:0 -28px 55px rgba(201,255,54,.06)
+}
+.instrument .sustain{top:53%}
+.instrument .race{top:72%}
+.instrument .easy{top:90%}
+/* The room is the GAP between the ceiling line and the pace being practised, so it must live
+   strictly inside that gap. Sharing a top coordinate with the band above it put the display type
+   on that band's label. Bands sit at 20% and 53%; the label occupies the clear space between
+   them and never touches either. */
+.instrument .room{
+  position:absolute;left:20px;right:20px;top:30%;height:20%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  color:var(--lime);font-size:clamp(19px,2.1vw,34px);font-weight:800;
+  line-height:1.02;letter-spacing:-.04em;text-align:center;
+  pointer-events:none;
+}
+/* The arrow reads as part of the label, so it sits in the label's own flow rather than being
+   positioned against the instrument, where it landed on a band. */
+.instrument .arrow{
+  font-size:clamp(24px,2.4vw,38px);line-height:1;color:var(--lime)
+}
+.week{
+  padding:110px 0 120px;
+  border-bottom:1px solid var(--line);
+}
+.week-grid{
+  margin-top:50px;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)
+}
+.week-card{padding:30px 24px 32px 0;min-height:240px}
+.week-card+.week-card{border-left:1px solid var(--line);padding-left:24px}
+.week-card small{color:var(--lime);font-size:10px;letter-spacing:.14em}
+.week-card h4{
+  margin:18px 0 12px;
+  font-size:clamp(28px,3.4vw,48px);line-height:.95;letter-spacing:-.045em
+}
+.week-card p{color:var(--ink2);font-size:15px;line-height:1.5}
+.timeline{
+  margin-top:64px;
+  display:grid;grid-template-columns:repeat(6,1fr);
+  border-top:1px solid var(--line)
+}
+.timeline div{padding:22px 18px 20px 0;min-height:146px}
+.timeline div+div{border-left:1px solid var(--line);padding-left:18px}
+.timeline small{color:var(--muted);font-size:9px;letter-spacing:.13em}
+.timeline b{display:block;font-size:20px;margin:10px 0 6px}
+.timeline p{margin:0;color:var(--ink2);font-size:12px;line-height:1.4}
+.test{
+  padding:120px 0 130px;
+  border-bottom:1px solid var(--line)
+}
+.test .huge{
+  font-size:clamp(84px,14vw,235px);
+  line-height:.74;letter-spacing:-.08em;font-weight:900;
+}
+.test .huge em{display:block;font-style:normal;color:var(--lime)}
+.test .sub{
+  max-width:840px;margin-top:38px;color:var(--ink2);font-size:20px;line-height:1.5
+}
+.test-grid{
+  margin-top:54px;
+  display:grid;grid-template-columns:1fr 1fr;
+  border-top:1px solid var(--line)
+}
+.test-grid div{padding:28px 30px 20px 0}
+.test-grid div+div{border-left:1px solid var(--line);padding-left:30px}
+.test-grid small{color:var(--muted);font-size:9px;letter-spacing:.13em}
+.test-grid b{display:block;font-size:26px;margin:9px 0}
+.test-grid p{color:var(--ink2);font-size:14px;line-height:1.5}
+.living{
+  padding:92px 0 120px;
+}
+.living h2{max-width:1150px}
+.living-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border-top:1px solid var(--line);margin-top:46px
+}
+.living-grid section{padding:28px 32px 20px 0}
+.living-grid section+section{border-left:1px solid var(--line);padding-left:32px}
+.living-grid small{color:var(--lime);font-size:10px;letter-spacing:.14em}
+.living-grid h4{font-size:26px;margin:12px 0}
+.living-grid p{color:var(--ink2);font-size:15px;line-height:1.55}
+.footer{
+  padding:28px 0 36px;border-top:1px solid var(--line);
+  color:var(--muted);font-size:10px;letter-spacing:.12em;text-transform:uppercase
+}
+
+.reader{
+  padding:104px 0 100px;
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,255,255,.012),transparent);
+}
+.reader-grid{
+  display:grid;
+  grid-template-columns:.78fr 1.22fr;
+  gap:72px;
+  align-items:start;
+}
+.reader h2{
+  margin:12px 0 24px;
+  font-size:clamp(58px,7vw,116px);
+  line-height:.86;
+  letter-spacing:-.06em;
+}
+.reader h2 em{display:block;font-style:normal;color:var(--lime)}
+.reader-copy{
+  padding-top:28px;
+  border-top:1px solid var(--line);
+}
+.reader-copy .lead{
+  font-size:clamp(24px,2.6vw,42px);
+  line-height:1.08;
+  letter-spacing:-.035em;
+  font-weight:730;
+  margin-bottom:32px;
+}
+.reader-copy p{color:var(--ink2);font-size:17px;line-height:1.6;max-width:760px}
+.reader-signals{
+  margin-top:32px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border-top:1px solid var(--line);
+}
+.reader-signals div{padding:22px 24px 20px 0}
+.reader-signals div:nth-child(even){border-left:1px solid var(--line);padding-left:24px}
+.reader-signals small{display:block;color:var(--lime);font-size:9px;letter-spacing:.14em;margin-bottom:8px}
+.reader-signals b{font-size:16px;line-height:1.38}
+.plan{
+  padding:112px 0 118px;
+  border-bottom:1px solid var(--line);
+}
+.plan-head{
+  display:grid;
+  grid-template-columns:.72fr 1.28fr;
+  gap:58px;
+  align-items:end;
+}
+.plan-title{
+  margin:12px 0 0;
+  font-size:clamp(60px,8.5vw,142px);
+  line-height:.8;
+  letter-spacing:-.07em;
+  font-weight:880;
+}
+.plan-title em{display:block;font-style:normal;color:var(--lime)}
+.plan-intro{max-width:760px;color:var(--ink2);font-size:18px;line-height:1.55}
+.plan-table-wrap{margin-top:48px;overflow-x:auto;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.plan-table{width:100%;min-width:1120px;border-collapse:collapse}
+.plan-table th,.plan-table td{
+  text-align:left;vertical-align:top;
+  padding:19px 18px 20px 0;
+  border-bottom:1px solid var(--line2);
+}
+.plan-table th+th,.plan-table td+td{border-left:1px solid var(--line2);padding-left:18px}
+.plan-table th{
+  color:var(--muted);
+  font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:700
+}
+.plan-table td{font-size:14px;line-height:1.42;color:var(--ink2)}
+.plan-table td:first-child{color:var(--lime);font-weight:800}
+.plan-table b{color:var(--ink)}
+.plan-note{
+  display:grid;grid-template-columns:220px 1fr;gap:28px;
+  padding-top:28px;margin-top:8px
+}
+.plan-note small{color:var(--lime);font-size:10px;letter-spacing:.14em;font-weight:800}
+.plan-note p{margin:0;color:var(--ink2);font-size:16px;line-height:1.55;max-width:860px}
+.apply{
+  padding:112px 0 116px;
+  border-bottom:1px solid var(--line);
+}
+.apply h2{
+  margin:12px 0 22px;
+  max-width:1100px;
+  font-size:clamp(56px,7.5vw,124px);
+  line-height:.84;letter-spacing:-.065em
+}
+.apply h2 em{font-style:normal;color:var(--lime)}
+.apply-grid{
+  margin-top:46px;
+  display:grid;grid-template-columns:repeat(5,1fr);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)
+}
+.apply-grid div{padding:25px 20px 24px 0;min-height:190px}
+.apply-grid div+div{border-left:1px solid var(--line);padding-left:20px}
+.apply-grid small{color:var(--lime);font-size:10px;letter-spacing:.14em}
+.apply-grid b{display:block;font-size:21px;line-height:1.05;margin:14px 0 10px;letter-spacing:-.03em}
+.apply-grid p{margin:0;color:var(--ink2);font-size:13px;line-height:1.45}
+.follow{
+  margin-top:44px;
+  max-width:900px;
+  font-size:clamp(24px,3vw,46px);
+  line-height:1.08;letter-spacing:-.04em;font-weight:720
+}
+.follow em{font-style:normal;color:var(--lime)}
+
+
+.season-paths{
+  padding:112px 0 118px;
+  border-bottom:1px solid var(--line);
+  background:
+    linear-gradient(180deg,rgba(201,255,54,.025),transparent 48%),
+    radial-gradient(circle at 50% 8%,rgba(201,255,54,.045),transparent 30%);
+}
+.season-paths h2{
+  margin:12px 0 24px;
+  max-width:1200px;
+  font-size:clamp(58px,7.4vw,126px);
+  line-height:.84;
+  letter-spacing:-.065em;
+}
+.season-paths h2 em{font-style:normal;color:var(--lime)}
+.season-paths .season-lead{
+  max-width:850px;
+  color:var(--ink2);
+  font-size:clamp(19px,1.9vw,29px);
+  line-height:1.4;
+}
+.path-grid{
+  margin-top:52px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.path{
+  padding:32px 34px 30px 0;
+}
+.path + .path{
+  border-left:1px solid var(--line);
+  padding-left:34px;
+  padding-right:0;
+}
+.path small{
+  display:block;
+  color:var(--lime);
+  font-size:10px;
+  letter-spacing:.14em;
+  margin-bottom:12px;
+}
+.path h4{
+  margin:0 0 18px;
+  font-size:clamp(30px,3.5vw,54px);
+  line-height:.96;
+  letter-spacing:-.045em;
+}
+.path-line{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+  margin:22px 0;
+  color:var(--ink);
+  font-weight:750;
+  font-size:14px;
+}
+.path-line span{color:var(--muted);font-weight:600}
+.path p{
+  margin:0;
+  color:var(--ink2);
+  font-size:15px;
+  line-height:1.55;
+}
+.season-law{
+  margin-top:34px;
+  display:grid;
+  grid-template-columns:220px 1fr;
+  gap:28px;
+  align-items:start;
+}
+.season-law small{
+  color:var(--lime);
+  font-size:10px;
+  letter-spacing:.14em;
+  font-weight:800;
+}
+.season-law p{
+  margin:0;
+  max-width:900px;
+  color:var(--ink2);
+  font-size:18px;
+  line-height:1.5;
+}
+
+
+
+.watch{
+  padding:112px 0 118px;border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(201,255,54,.025),transparent);
+}
+.watch h2{
+  margin:12px 0 20px;font-size:clamp(58px,7.5vw,126px);
+  line-height:.83;letter-spacing:-.066em;
+}
+.watch h2 em{font-style:normal;color:var(--lime)}
+.watch-deck{max-width:720px;color:var(--ink2);font-size:18px;line-height:1.5}
+.watch-grid{
+  margin-top:42px;display:grid;grid-template-columns:1.08fr repeat(4,1fr);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.watch-grid + .watch-grid{margin-top:18px}
+.watch-label,.watch-cell{padding:22px 18px 22px 0;min-height:150px}
+.watch-cell{border-left:1px solid var(--line2);padding-left:18px}
+.watch-label small,.watch-cell small{
+  display:block;color:var(--muted);font-size:9px;letter-spacing:.14em;margin-bottom:10px;
+}
+.watch-label small{color:var(--lime)}
+.watch-label b{font-size:18px;line-height:1.25}
+.watch-cell b{display:block;font-size:20px;letter-spacing:-.025em;margin-bottom:18px}
+.watch-cell span{color:var(--ink2);font-size:13px;line-height:1.45}
+.watch-cell.open{background:rgba(255,255,255,.012)}
+.watch-cell.open span{color:var(--muted)}
+.watch-key{
+  margin-top:34px;display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line);
+}
+.watch-key div{padding:20px 18px 8px 0}
+.watch-key div+div{border-left:1px solid var(--line2);padding-left:18px}
+.watch-key small{display:block;color:var(--lime);font-size:9px;letter-spacing:.14em;margin-bottom:8px}
+.watch-key b{font-size:14px;line-height:1.4}
+.watch-inline{color:var(--lime);letter-spacing:.06em;font-size:.8em}
+
+@media(max-width:950px){
+  /* The hero's column marks describe a two-column hero. In one column they are
+     lines drawn across the headline. */
+  .hero:before{display:none}
+  .hero-grid,.success-grid,.ceiling-grid,.reader-grid,.plan-head,.path-grid{grid-template-columns:1fr}
+  .hero-foot{grid-template-columns:1fr}
+  .hero-foot > *:last-child{padding-left:0}
+  .watch-grid{grid-template-columns:1fr 1fr}
+  .watch-label{grid-column:1/-1;border-bottom:1px solid var(--line);min-height:auto}
+  .watch-key{grid-template-columns:1fr 1fr}
+  .hero-side{min-height:0;border-left:0;border-top:1px solid var(--line);padding:28px 0 0}
+  .split-2,.pattern .cases,.test-grid,.living-grid{grid-template-columns:1fr}
+  .athlete+.athlete,.pattern .cases div+div,.test-grid div+div,.living-grid section+section,.path + .path{
+    border-left:0;border-top:1px solid var(--line);padding-left:0
+  }
+  .week-grid{grid-template-columns:1fr 1fr}
+  .week-card:nth-child(odd){border-left:0;padding-left:0}
+  .timeline{grid-template-columns:1fr 1fr}
+  .timeline div:nth-child(odd){border-left:0;padding-left:0}
+  .hyrox-splits{grid-template-columns:repeat(4,1fr)}
+  .apply-grid{grid-template-columns:1fr 1fr}
+  .apply-grid div:nth-child(odd){border-left:0;padding-left:0}
+  .hyrox-splits div:nth-child(5){border-left:0}
+}
+@media(max-width:620px){
+  .wrap{width:min(100% - 32px,1500px)}
+  .hero{min-height:86vh}
+  .hero h1{font-size:clamp(64px,20vw,110px)}
+  .section,.success,.pattern,.skill,.ceiling,.week,.test,.living{padding-top:72px;padding-bottom:72px}
+  .hero-meta,.week-grid,.timeline{grid-template-columns:1fr}
+  .week-card+.week-card,.timeline div+div{border-left:0;border-top:1px solid var(--line);padding-left:0}
+  .hyrox-splits{grid-template-columns:1fr 1fr}
+  .hyrox-splits div:nth-child(odd){border-left:0}
+  .instrument{min-height:620px}
+  .instrument .room{top:31%;height:18%;font-size:17px;gap:7px}
+  .instrument .arrow{font-size:21px}
+  .instrument .band b{font-size:15px;line-height:1.3}
+  .instrument .axis{left:-30px}
+  .arc{grid-template-columns:1fr 1fr}
+  .reader-signals,.apply-grid,.contents-grid,.watch-grid,.watch-key{grid-template-columns:1fr}
+  .reader-signals div:nth-child(even),.apply-grid div+div{border-left:0;border-top:1px solid var(--line);padding-left:0}
+  .plan-note{grid-template-columns:1fr}
+  .arc div:nth-child(odd){border-left:0;padding-left:0}
+}
+
+/* THE STICKY MASTHEAD — the Bridge's treatment, brought to the studies.
+   The mark and the study's live status are the two things worth keeping on screen through a long
+   page: one says whose building you are in, the other says the study is still moving. A gradient
+   that fades to nothing plus a small backdrop blur means the page passes UNDER it rather than
+   being cut off by a bar, which is what keeps it from reading as chrome. */
+.masthead{
+  position:fixed;top:0;left:0;right:0;z-index:40;
+  height:62px;padding:0 clamp(22px,4vw,48px);
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  background:linear-gradient(180deg,rgba(7,17,15,.94),rgba(7,17,15,.55),transparent);
+  backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);
+  pointer-events:none;
+}
+.masthead > *{pointer-events:auto}
+/* Out of the hero on purpose: a fixed element is still clipped by an ancestor
+   with overflow:clip, and the hero has one. */
+/* The hero no longer sits under a masthead that is in the flow, so it reclaims that space. */
+.hero-shell{padding-top:78px}
+
+/* NO TWO RULES IN A ROW (Brice, 2026-09-08).
+   Where a block that closes with a rule is immediately followed by a block that
+   opens with one, the reader sees two parallel lines bounding nothing. The
+   closing rule gives way — the opening rule is the one that means something. */
+.hyrox-splits:has(+ .split-2),
+.week-grid:has(+ .timeline),
+.watch-grid:has(+ .watch-grid),
+.watch-grid:has(+ .watch-key){border-bottom:0}
+</style>
+</head>
+<body>
+<div class="masthead">
+      <a class="wordmark" href="/labs/" aria-label="FORM">FORM<span>.</span></a>
+      <div class="status"><i aria-hidden="true"></i>In progress · updated Sep 07</div>
+</div>
+
+
+
+<section class="hero" id="top">
+  <div class="wrap hero-shell">
+
+
+    <div class="hero-grid">
+      <div>
+        <div class="kicker">LIVING STUDY 02</div>
+        <h1>
+          <span>THEY'RE</span>
+          <span>ALREADY</span>
+          <span class="lime">FAST.</span>
+        </h1>
+        <div class="hero-deck">
+          Simon and Lisa can already run fast. This study asks a simpler question: can the same fast running start to feel easier, so they can use more of it when it matters?
+        </div>
+      </div>
+      <aside class="hero-side">
+        <div class="kicker">THE QUESTION</div>
+        <div class="bigq">CAN FAST<br/><em>FEEL EASIER?</em></div>
+        <div class="hero-meta">
+          <div><small>ATHLETES</small><b>Simon F Robin<br/>Lisa Zelenak</b></div>
+          <div><small>BLOCK</small><b>Raise the Ceiling<br/>6 weeks · 10K expression</b></div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="hero-foot">
+      <nav class="contents" aria-label="In this study">
+        <div class="kicker">IN THIS STUDY</div>
+        <div class="contents-grid">
+          <a href="#why-you"><b>01</b><span>Why this matters to you</span></a>
+          <a href="#starting-point"><b>02</b><span>Where Simon + Lisa start</span></a>
+          <a href="#skill"><b>03</b><span>Running is a skill</span></a>
+          <a href="#instrument"><b>04</b><span>What raise the ceiling means</span></a>
+          <a href="#the-plan"><b>05</b><span>The six-week plan</span></a>
+          <a href="#watch"><b>06</b><span>What we're watching</span></a>
+        </div>
+      </nav>
+      <a class="hero-plan-link" href="#the-plan">See the plan ↓</a>
+    </div>
+  </div>
+</section>
+
+<section class="reader" id="why-you">
+  <div class="wrap reader-grid">
+    <div>
+      <div class="kicker">WHY THIS SHOULD MATTER TO YOU</div>
+      <h2>YOUR PACE<br/>DOESN'T HAVE<br/>TO BE <em>6:00.</em></h2>
+    </div>
+    <div class="reader-copy">
+      <div class="lead">Their paces are their paces. But you may know the feeling: you can run fast, yet fast still takes too much out of you.</div>
+      <p>Maybe you can hit a fast pace for a few minutes, but it gets ugly when the rep gets longer. Maybe you start every workout too fast. Maybe you already run plenty of miles and still do not feel any faster.</p>
+      <p>Simon and Lisa give us two real examples. We will keep the pace, the workout and how it felt side by side, then see what actually changes over six weeks.</p>
+      <div class="reader-signals">
+        <div><small>YOU MIGHT RECOGNIZE THIS</small><b>I can hit the pace, but it still feels hard every time.</b></div>
+        <div><small>OR THIS</small><b>I start fast, then spend the rest of the workout hanging on.</b></div>
+        <div><small>OR THIS</small><b>I can run farther, but faster running has not gotten easier.</b></div>
+        <div><small>THE QUESTION</small><b>Can I make my normal fast pace feel easier?</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="starting-point">
+  <div class="wrap">
+    <div class="kicker">THE STARTING POINT</div>
+    <h2>THEY DON'T NEED<br/>TO START OVER.</h2>
+    <p class="intro">Both athletes are already fit and already race well. We are not rebuilding them. We are taking what already works and asking what can improve next.</p>
+
+    <div class="split-2">
+      <article class="athlete">
+        <div class="name"><b>SIMON F ROBIN</b><span>ROAD RACING</span></div>
+        <div class="statline"><strong>17:36</strong><span>5K · 5:41/mi</span></div>
+        <div class="statline"><strong>1:26:13</strong><span>Half · 6:34/mi</span></div>
+        <p>Simon spent a long time trying to break 1:30 for the half. An eight-week FORM block got him to 1:26:13. Most threshold work sat around 6:12 to 6:20 per mile. Long runs stayed easy, with short steady finishes on some weeks.</p>
+        <blockquote>THE FIRST BLOCK<br/><em>WORKED.</em></blockquote>
+      </article>
+
+      <article class="athlete">
+        <div class="name"><b>LISA ZELENAK</b><span>HYROX · PRO WOMEN</span></div>
+        <div class="statline"><strong>1:09:54</strong><span>HYROX D.C. 2026</span></div>
+        <div class="statline"><strong>34:13</strong><span>8 recorded 1K runs</span></div>
+        <p>Lisa is already a strong HYROX athlete. In D.C. she finished 44th of 289 and 4th in her age group. We are not trying to make her suffer more. We want to see if the running between stations can take less out of her.</p>
+        <blockquote>THE ATHLETE ISN'T<br/><em>THE PROBLEM.</em></blockquote>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="success">
+  <div class="wrap success-grid">
+    <div class="poster">SUCCESS<br/><em>CREATES</em><br/>A NEW<br/>QUESTION.</div>
+    <div class="story">
+      <div class="kicker">SIMON · WHAT CAME BEFORE</div>
+      <p>Simon's last block was simple: controlled threshold, easy long runs, and some steady running near the end of selected long runs. It worked. He finally broke 1:30 and ran 1:26:13.</p>
+      <p>That does not mean we keep doing the same block forever. The race showed us something new. Now we can ask a better question.</p>
+      <div class="arc">
+        <div><small>THRESHOLD</small><b>6:12–6:20<br/>→ 6:00 direction</b></div>
+        <div><small>LONG RUN</small><b>Mostly easy</b></div>
+        <div><small>LATE STEADY</small><b>13–30 min<br/>controlled</b></div>
+        <div><small>RESULT</small><b>1:26:13<br/>6:34/mi</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pattern">
+  <div class="wrap">
+    <div class="kicker">A FORM FIELD OBSERVATION</div>
+    <div class="pattern-num">~30</div>
+    <h3>SECONDS PER MILE.</h3>
+    <p>With more than one FORM athlete, half-marathon pace has ended up about 30 seconds per mile slower than the threshold pace they could repeat in training.</p>
+    <p><strong>Not a formula. An observation.</strong> If it keeps appearing, we keep studying it.</p>
+    <div class="cases">
+      <div><small>SIMON</small><b>Threshold ~6:12–6:20 → Half 6:34/mi</b></div>
+      <div><small>SAM</small><b>~1:19–1:20 half · similar coaching observation</b></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="kicker">LISA · RACE EVIDENCE</div>
+    <h2>EIGHT KILOMETERS.<br/>SEVEN STATIONS BETWEEN THEM.</h2>
+    <p class="intro">An average misses a lot. HYROX puts a workout station between every kilometer, so the useful part is seeing how each run changed from the first one to the last one.</p>
+    <div class="hyrox-splits">
+      <div><small>RUN 1</small><b>3:29</b></div>
+      <div><small>RUN 2</small><b>4:08</b></div>
+      <div><small>RUN 3</small><b>4:28</b></div>
+      <div><small>RUN 4</small><b>4:26</b></div>
+      <div><small>RUN 5</small><b>4:30</b></div>
+      <div><small>RUN 6</small><b>4:26</b></div>
+      <div><small>RUN 7</small><b>4:35</b></div>
+      <div><small>RUN 8</small><b>4:13</b></div>
+    </div>
+    <div class="split-2">
+      <article class="athlete">
+        <div class="name"><b>WHAT WE CAN SAY</b><span>OBSERVATION</span></div>
+        <p>Her eight runs totaled 34:13. HYRESULT lists 4:31/km when Roxzone is included. Her final kilometer was 4:13, the second-fastest run she recorded that day.</p>
+      </article>
+      <article class="athlete">
+        <div class="name"><b>WHAT WE DON'T PRETEND TO KNOW</b><span>RESTRAINT</span></div>
+        <p>We are not going to call her HYROX pace her threshold pace. A HYROX kilometer comes with stations, transitions and race fatigue around it. We keep those things separate and watch what the training actually changes.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="skill" id="skill">
+  <div class="wrap">
+    <div class="kicker">THE PRACTICE</div>
+    <h2>RUNNING IS<br/>A SKILL.</h2>
+    <div class="quote">“It really taught me how to <em>not push</em>, just lightly increase cadence and stride.”</div>
+    <p class="intro" style="margin-top:34px">The goal is not to push harder every time. The goal is to run fast with less wasted effort. A golfer practices a swing. A swimmer practices a stroke. Runners can practice how they move too.</p>
+  </div>
+</section>
+
+<section class="ceiling" id="instrument">
+  <div class="wrap ceiling-grid">
+    <div>
+      <div class="kicker">THE INSTRUMENT</div>
+      <h2>CREATE<br/>MORE ROOM<br/>ABOVE IT.</h2>
+      <p class="intro">Think of it this way: if 6:00 pace is close to your limit, it feels expensive. If you become capable of running faster than that, 6:00 can start to feel more normal. That extra room is what we are trying to build.</p>
+    </div>
+    <div class="instrument" aria-label="Conceptual ceiling instrument">
+      <div class="axis">FASTER ↑</div>
+      <div class="band ceiling-line"><small>FASTER RUNNING</small><b>Running faster than Tuesday's pace</b></div>
+      <div class="room"><span>THE ROOM WE'RE<br/>TRYING TO CREATE</span><span class="arrow">↑</span></div>
+      <div class="band sustain"><small>THE PACE WE'RE PRACTICING</small><b>Simon: 6:00 direction · Lisa: 7:00–7:10 study band</b></div>
+      <div class="band race"><small>WHAT THE EVENT ASKS TODAY</small><b>The pace the race already asks for</b></div>
+      <div class="band easy"><small>EASY + LONG RUNNING</small><b>Easy miles keep the base strong</b></div>
+    </div>
+  </div>
+</section>
+
+<section class="week">
+  <div class="wrap">
+    <div class="kicker">THE WEEK</div>
+    <h2>THREE JOBS.<br/>ONE EXPERIMENT.</h2>
+    <div class="week-grid">
+      <article class="week-card">
+        <small>TUESDAY</small>
+        <h4>HOLD FAST PACE LONGER.</h4>
+        <p>Start with fast running broken into pieces. Then make the pieces longer. Eventually remove the break. We want the pace to stay controlled as the reset disappears.</p>
+      </article>
+      <article class="week-card">
+        <small>THURSDAY</small>
+        <h4>PRACTICE FASTER THAN TUESDAY.</h4>
+        <p>Thursday is faster than Tuesday. Simon and Lisa get the same FORM track target. We watch how close each athlete can get without turning it into a race.</p>
+      </article>
+      <article class="week-card">
+        <small>SATURDAY</small>
+        <h4>KEEP THE EASY MILES.</h4>
+        <p>Most Saturdays stay easy. One week adds a controlled faster finish. The long run still has one job: keep the endurance they already built.</p>
+      </article>
+      <article class="week-card">
+        <small>OCT 10</small>
+        <h4>SEE WHAT CHANGED.</h4>
+        <p>The 10K gives us one clean look at the result. We are not giving them a number they have to hit. We want to see what six weeks of training actually changed.</p>
+      </article>
+    </div>
+
+    <div class="timeline">
+      <div><small>W1 · SEP 01</small><b>2 × 10</b><p>Entry read.</p></div>
+      <div><small>W2 · SEP 08</small><b>2 × 12 / 2 × 10</b><p>Simon extends. Lisa returns after HYROX.</p></div>
+      <div><small>W3 · SEP 15</small><b>25 CONT. / 2 × 12</b><p>First continuous read for Simon.</p></div>
+      <div><small>W4 · SEP 22</small><b>2 × 12 / 25 CONT.</b><p>Lisa reaches continuous. Long run adds one tired-leg touch.</p></div>
+      <div><small>W5 · SEP 29</small><b>25 CONT. / 25 CONT.</b><p>Same prescription. Does it cost less?</p></div>
+      <div><small>W6 · OCT 06</small><b>12 MIN TOUCH</b><p>Reduce. Then express.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="plan" id="the-plan">
+  <div class="wrap">
+    <div class="plan-head">
+      <div>
+        <div class="kicker">THE PLAN · WORKING BLOCK</div>
+        <div class="plan-title">RAISE<br/>THE <em>CEILING.</em></div>
+      </div>
+      <div class="plan-intro">
+        This is the actual six-week plan. Tuesday uses each athlete's own pace. Thursday gives both athletes the same FORM track target. Saturday keeps the easy and long running in place.
+      </div>
+    </div>
+
+    <div class="plan-table-wrap">
+      <table class="plan-table" aria-label="Raise the Ceiling six week plan">
+        <thead>
+          <tr><th>Week</th><th>Tuesday · Simon</th><th>Tuesday · Lisa</th><th>Thursday</th><th>Saturday</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>W1 · Sep 01</td><td><b>2 × 10 min</b><br/>entry read filed</td><td><b>2 × 10 min</b><br/>entry read</td><td>Filed</td><td>Easy long</td></tr>
+          <tr><td>W2 · Sep 08</td><td><b>2 × 12 min</b></td><td><b>2 × 10 min</b><br/>post-HYROX re-entry</td><td><b>Pyramid Intervals</b><br/>fixed FORM standard</td><td>Easy long</td></tr>
+          <tr><td>W3 · Sep 15</td><td><b>25 min continuous</b></td><td><b>2 × 12 min</b></td><td><b>Speed Demons</b><br/>fixed FORM standard</td><td>Easy long</td></tr>
+          <tr><td>W4 · Sep 22</td><td><b>2 × 12 min</b><br/>2 min recovery</td><td><b>25 min continuous</b></td><td><b>Gauntlet</b><br/>fixed FORM standard</td><td>Long + 15–20 min controlled finish</td></tr>
+          <tr><td>W5 · Sep 29</td><td><b>25 min continuous</b></td><td><b>25 min continuous</b></td><td><b>Nice and Easy</b><br/>fixed FORM standard</td><td>Easy long · no proving</td></tr>
+          <tr><td>W6 · Oct 06</td><td><b>1 × 12 min</b><br/>touch</td><td><b>1 × 12 min</b><br/>touch</td><td>Easy + <b>4 × 100m strides</b></td><td><b>10K expression · Oct 10</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="plan-note">
+      <small>DO NOT COPY THEIR PACES</small>
+      <p>Simon is working around a 6:00/mi direction. Lisa is currently around 7:00–7:10/mi while we confirm one earlier workout. Those are their numbers, not yours. Thursday is different: both athletes get the same FORM track target, and we record what each can actually do.</p>
+    </div>
+  </div>
+</section>
+
+<section class="apply">
+  <div class="wrap">
+    <div class="kicker">TAKE THE QUESTION · NOT THE NUMBERS</div>
+    <h2>HOW TO USE<br/>THE IDEA <em>YOURSELF.</em></h2>
+    <p class="intro">Do not copy their paces or assume you need the same six weeks. Copy the idea instead.</p>
+    <div class="apply-grid">
+      <div><small>01</small><b>FIND A CONTROLLED FAST PACE.</b><p>Pick a pace you can repeat without hanging on for dear life.</p></div>
+      <div><small>02</small><b>MAKE IT LAST LONGER.</b><p>Before making it faster, see if you can hold the same pace for longer.</p></div>
+      <div><small>03</small><b>KEEP SOME SPEED ABOVE IT.</b><p>Touch some faster running so your Tuesday pace is not the fastest thing you ever do.</p></div>
+      <div><small>04</small><b>KEEP EASY RUNNING EASY.</b><p>Keep easy days easy and keep your long run. Faster work does not replace endurance.</p></div>
+      <div><small>05</small><b>REPEAT THE SAME ASK.</b><p>Repeat the same workout later. If it feels easier or stays smoother, that matters even if the pace did not change.</p></div>
+    </div>
+    <div class="follow"><span class="watch-inline">WEEK 1 → WEEK 5 → 10K</span></div>
+  </div>
+</section>
+
+<section class="watch" id="watch">
+  <div class="wrap">
+    <div class="kicker">WHAT WE'RE WATCHING</div>
+    <h2>SAME PACE.<br/>LONGER.<br/><em>THEN EASIER?</em></h2>
+    <p class="watch-deck">Every time the workout comes back, we compare the same four things.</p>
+
+    <div class="watch-grid">
+      <div class="watch-label"><small>SIMON</small><b>~6:00/mi direction</b></div>
+      <div class="watch-cell"><small>SEP 08</small><b>2 × 12 min</b><span>How hard?<br/>How controlled?</span></div>
+      <div class="watch-cell"><small>SEP 15</small><b>25 min continuous</b><span>No reset.<br/>What happens late?</span></div>
+      <div class="watch-cell open"><small>SEP 29</small><b>25 min continuous</b><span>Same ask.<br/>OPEN</span></div>
+      <div class="watch-cell open"><small>OCT 10</small><b>10K</b><span>What carried over?<br/>OPEN</span></div>
+    </div>
+
+    <div class="watch-grid">
+      <div class="watch-label"><small>LISA</small><b>7:00–7:10/mi working band</b></div>
+      <div class="watch-cell"><small>SEP 08</small><b>2 × 10 min</b><span>How hard?<br/>How controlled?</span></div>
+      <div class="watch-cell"><small>SEP 22</small><b>25 min continuous</b><span>No reset.<br/>What happens late?</span></div>
+      <div class="watch-cell open"><small>SEP 29</small><b>25 min continuous</b><span>Same ask.<br/>OPEN</span></div>
+      <div class="watch-cell open"><small>OCT 10</small><b>10K</b><span>What carried over?<br/>OPEN</span></div>
+    </div>
+
+    <div class="watch-key">
+      <div><small>PACE</small><b>Did the pace stay together?</b></div>
+      <div><small>EFFORT</small><b>Did it feel easier?</b></div>
+      <div><small>CONTROL</small><b>Did the last minutes look like the first?</b></div>
+      <div><small>RESERVE</small><b>Was there anything left?</b></div>
+    </div>
+  </div>
+</section>
+
+<section class="test">
+  <div class="wrap">
+    <div class="kicker">THE EXPRESSION EVENT</div>
+    <div class="huge">10K.<em>OCT 10.</em></div>
+    <p class="sub">The point of six weeks is not to prove the plan was right. The race gives the study another piece of evidence. We preserve the result, the pacing shape, the athlete's experience, the conditions and what the race changes next.</p>
+    <div class="test-grid">
+      <div><small>SIMON</small><b>Projection ≠ target</b><p>The current draft projects roughly 36:20 from the evidence available. He is not told to chase the projection.</p></div>
+      <div><small>LISA</small><b>Projection ≠ target</b><p>The current draft projects roughly 43:15. Same rule: open controlled, let the race reveal what converted.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="season-paths">
+  <div class="wrap">
+    <div class="kicker">PLAN ≠ SEASON</div>
+    <h2>THE STUDY ENDS<br/>AT THE SAME PLACE.<br/><em>THEIR SEASONS DO NOT.</em></h2>
+    <p class="season-lead">Simon and Lisa can run the same six-week experiment and still leave it into completely different next chapters. The Plan answers one question. The Season decides what question comes next.</p>
+
+    <div class="path-grid">
+      <article class="path">
+        <small>SIMON</small>
+        <h4>OCT 10 → NASHVILLE</h4>
+        <div class="path-line">
+          <b>RAISE THE CEILING</b><span>→</span><b>10K</b><span>→</span><b>NEXT BLOCK</b><span>→</span><b>HYROX NASHVILLE</b>
+        </div>
+        <p><strong>Dec 9–13, 2026.</strong> Roughly two months sit between the 10K and Nashville. The 10K becomes evidence for what to preserve, convert or integrate next. The calendar does not choose that block automatically.</p>
+      </article>
+
+      <article class="path">
+        <small>LISA</small>
+        <h4>OCT 10 → MIAMI BEACH</h4>
+        <div class="path-line">
+          <b>RAISE THE CEILING</b><span>→</span><b>10K</b><span>→</span><b>NEXT QUESTION</b><span>→</span><b>HYROX MIAMI BEACH</b>
+        </div>
+        <p><strong>Mar 26–28, 2027.</strong> Lisa has a much longer runway. There is no reason to rush directly into HYROX-specific work. The study can first tell us what she actually needs next.</p>
+      </article>
+    </div>
+
+    <div class="season-law">
+      <small>THE SYSTEM</small>
+      <p><strong>Same Plan. Different Seasons.</strong> A reusable method should not dictate an athlete's entire year. Evidence from the block becomes raw material for the next coaching question.</p>
+    </div>
+  </div>
+</section>
+
+<section class="living">
+  <div class="wrap">
+    <div class="kicker">LIVING STUDY</div>
+    <h2>THE PAGE CHANGES<br/>WHEN THE ATHLETES DO.</h2>
+    <p class="intro">This is the opening state. Tuesday evidence will be filed into the room. The same prescription can mean something different for Simon and Lisa, and the study should preserve both without forcing a composite score.</p>
+
+    <div class="living-grid">
+      <section>
+        <small>SHARED LAYER</small>
+        <h4>QUESTION · PRESCRIPTION</h4>
+        <p>Asked once. The block can share a training structure without pretending the athletes share the same history, cost or limiter.</p>
+      </section>
+      <section>
+        <small>INDIVIDUAL LAYER</small>
+        <h4>OUTPUT · COST · READ · NEXT</h4>
+        <p>Recorded twice. Effort, limiter and reserve remain separate subjective signals. The athlete's words live beside the numbers.</p>
+      </section>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">FORM LABS · RAISE THE CEILING · LIVING STUDY 02 · PLAIN LANGUAGE + HERO SYSTEM PASS · SEP 07 2026</div>
+</footer>
+
+
+<script>
+/* The status line writes itself.
+   A typed date is wrong the day after it is typed, and this one is the page's claim to be alive.
+   It prefers the newest `data-filed` on the page -- so once evidence arrives from the canonical
+   record, the same code keeps working with no edit -- and falls back to when the document itself
+   last changed, which for a hand-authored study is exactly when it was last updated. */
+(function () {
+  var el = document.querySelector('.status');
+  if (!el) return;
+  var filed = [].slice.call(document.querySelectorAll('[data-filed]'))
+    .map(function (n) { return new Date(n.getAttribute('data-filed')); })
+    .filter(function (d) { return !isNaN(d); });
+  var when = filed.length ? new Date(Math.max.apply(null, filed)) : new Date(document.lastModified);
+  if (isNaN(when)) return;
+  var month = when.toLocaleString('en-US', { month: 'short' });
+  var day = String(when.getDate()).padStart(2, '0');
+  var dot = el.querySelector('i');
+  el.textContent = 'In progress \u00B7 updated ' + month + ' ' + day;
+  if (dot) el.insertBefore(dot, el.firstChild);
+})();
+</script>
+</body>
+</html>

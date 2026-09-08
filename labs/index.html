@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>FORM Labs — The Bridge</title>
+<meta name="description" content="FORM Labs: two live studies, two training questions, one way of thinking about running." />
+<style>
+:root{--bg:#07110f;--deep:#030807;--ink:#f2f4ef;--muted:#8f9a95;--line:rgba(242,244,239,.14);--lime:#c9ff36;--soft:#101b18;--max:1440px}
+*{box-sizing:border-box}
+/* Overscroll seam. A gradient is a background IMAGE, sized to its element's box; rubber-band
+   scrolling goes past that box and shows the background COLOR underneath, which defaults to white.
+   Setting it on `html` is what paints the overscroll. Same fix the plan page already carries. */
+html{background-color:#07110f}
+html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased} a{color:inherit;text-decoration:none} button{font:inherit}
+::selection{background:var(--lime);color:#07110f}
+.shell{max-width:var(--max);margin:auto;padding:0 clamp(22px,4vw,64px)}
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:var(--lime)}
+.muted{color:var(--muted)}
+.rule{height:1px;background:var(--line)}
+
+/* mast */
+.mast{position:fixed;z-index:20;top:0;left:0;right:0;height:62px;display:flex;align-items:center;background:linear-gradient(180deg,rgba(3,8,7,.92),rgba(3,8,7,.52),transparent);backdrop-filter:blur(5px)}
+.mast .shell{width:100%;display:flex;justify-content:space-between;align-items:center}.brand{font-weight:950;letter-spacing:-.055em;font-size:23px}.brand span{color:var(--lime)}
+.mast nav{display:flex;gap:22px;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#b6bfba}.mast nav a:hover{color:var(--lime)}
+
+/* entrance */
+.entrance{min-height:100svh;display:grid;align-items:stretch;background:radial-gradient(circle at 50% 38%,rgba(201,255,54,.045),transparent 26%),var(--deep);overflow:hidden;position:relative}
+.entrance:after{content:"";position:absolute;left:50%;top:62px;bottom:0;width:1px;background:linear-gradient(transparent,var(--lime) 24%,rgba(201,255,54,.3) 76%,transparent)}
+.entrance-grid{width:100%;max-width:var(--max);margin:auto;padding:92px clamp(22px,4vw,64px) 38px;display:grid;grid-template-columns:1fr minmax(260px,.62fr) 1fr;min-height:100svh}
+.wing{display:flex;flex-direction:column;justify-content:flex-end;padding:0 clamp(0px,2vw,34px) 5vh;position:relative;z-index:2}.wing.right{text-align:right;align-items:flex-end}
+.wing .question{font-size:clamp(39px,5vw,78px);line-height:.91;letter-spacing:-.065em;font-weight:900;max-width:590px;margin:18px 0 24px}.wing p{max-width:450px;font-size:clamp(15px,1.25vw,19px);line-height:1.55;color:#b3bcb7;margin:0 0 32px}.right p{margin-left:auto}
+.door-link{display:inline-flex;align-items:center;gap:12px;border-top:1px solid var(--line);padding-top:14px;font-size:12px;letter-spacing:.13em;text-transform:uppercase;font-weight:800}.door-link b{color:var(--lime);font-size:18px}.door-link:hover{color:var(--lime)}
+.center{display:flex;flex-direction:column;justify-content:center;text-align:center;align-items:center;padding:0 20px;position:relative;z-index:3}.center .tiny{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#87918c}.center h1{font-size:clamp(58px,7.4vw,120px);line-height:.78;letter-spacing:-.075em;margin:22px -8vw 20px;font-weight:950;white-space:nowrap}.center h1 i{font-style:normal;color:var(--lime)}.center .sub{font-size:13px;line-height:1.55;color:#aeb7b2;max-width:270px}.scroll{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.17em;text-transform:uppercase;color:#65706b;z-index:4}
+
+/* thesis */
+.thesis{padding:15vh 0 13vh;background:var(--bg)}
+.thesis h2{font-size:clamp(58px,9.2vw,148px);line-height:.83;letter-spacing:-.075em;margin:24px 0 42px;max-width:1220px;font-weight:950}.thesis h2 .accent{color:var(--lime)}
+.thesis-copy{display:grid;grid-template-columns:1.2fr .8fr;gap:9vw;align-items:start}.thesis-copy p{font-size:clamp(20px,2.1vw,32px);line-height:1.25;letter-spacing:-.025em;margin:0;max-width:720px}.thesis-copy .aside{font-size:14px;line-height:1.65;color:#98a39d;border-left:1px solid var(--line);padding-left:22px}
+
+/* rooms */
+.rooms{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--deep)}
+.room{min-height:82vh;display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line)}.room:last-child{border-bottom:0}.room-copy{padding:clamp(60px,8vw,130px) clamp(22px,5vw,80px);display:flex;flex-direction:column;justify-content:center}.room-copy h3{font-size:clamp(50px,7vw,105px);line-height:.86;letter-spacing:-.07em;margin:15px 0 28px;font-weight:950}.room-copy p{font-size:17px;line-height:1.58;color:#adb7b2;max-width:560px}.room-copy .line{margin:30px 0 20px;height:1px;background:var(--line);max-width:560px}.room-copy .bigq{font-size:clamp(24px,2.7vw,41px);line-height:1.08;letter-spacing:-.04em;color:var(--ink);font-weight:750}
+.room-visual{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at center,rgba(201,255,54,.07),transparent 45%),#091310;border-left:1px solid var(--line)}
+.room:nth-child(even) .room-visual{order:-1;border-left:0;border-right:1px solid var(--line)}
+.instrument{width:min(72%,620px);aspect-ratio:1;position:relative;border:1px solid rgba(201,255,54,.28);border-radius:50%;display:flex;align-items:center;justify-content:center}.instrument:before,.instrument:after{content:"";position:absolute;border:1px solid var(--line);border-radius:50%;inset:12%}.instrument:after{inset:28%}.instrument .word{font-size:clamp(30px,4.2vw,70px);font-weight:950;letter-spacing:-.06em;text-align:center;line-height:.9;z-index:2}.instrument .word span{display:block;color:var(--lime)}.orbit{position:absolute;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#89948e}.o1{top:5%;left:50%;transform:translateX(-50%)}.o2{right:-5%;top:50%;transform:rotate(90deg)}.o3{bottom:5%;left:50%;transform:translateX(-50%)}.o4{left:-6%;top:50%;transform:rotate(-90deg)}
+
+/* crossover */
+.cross{padding:17vh 0 16vh;background:var(--lime);color:#07110f;overflow:hidden}.cross .eyebrow{color:#07110f}.cross h2{font-size:clamp(62px,10vw,160px);line-height:.79;letter-spacing:-.08em;margin:24px 0 45px;font-weight:950;max-width:1320px}.cross-grid{display:grid;grid-template-columns:1fr 1fr;gap:8vw}.cross p{font-size:clamp(18px,1.7vw,27px);line-height:1.35;margin:0;max-width:560px}.cross .small{font-size:14px;line-height:1.6;opacity:.7}
+
+/* skill */
+.skill{padding:16vh 0;background:var(--deep)}.skill h2{font-size:clamp(70px,11vw,170px);line-height:.8;letter-spacing:-.08em;margin:20px 0 70px;font-weight:950}.skill h2 span{color:var(--lime)}.analogies{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.analogy{padding:35px 28px 42px;border-right:1px solid var(--line)}.analogy:last-child{border-right:0}.analogy b{display:block;font-size:clamp(25px,2.3vw,38px);letter-spacing:-.04em;margin-bottom:12px}.analogy p{color:#97a19c;line-height:1.55;margin:0;font-size:14px}.skill-bottom{display:grid;grid-template-columns:1.15fr .85fr;gap:9vw;margin-top:72px}.skill-bottom .lead{font-size:clamp(27px,3.1vw,48px);line-height:1.08;letter-spacing:-.045em;margin:0}.skill-bottom .body{font-size:16px;line-height:1.65;color:#a7b0ab;margin:0}
+
+/* choose */
+.choose{padding:15vh 0}.choose-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:52px}.choose h2{font-size:clamp(50px,7vw,108px);line-height:.85;letter-spacing:-.07em;margin:16px 0 0;font-weight:950}.choose-head p{max-width:410px;color:#9ba59f;line-height:1.55;margin:0}.plan-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line)}.plan{padding:clamp(36px,5vw,72px);min-height:480px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}.plan+ .plan{border-left:1px solid var(--line)}.plan:before{content:"";position:absolute;width:330px;height:330px;border:1px solid rgba(201,255,54,.12);border-radius:50%;right:-140px;top:-140px}.plan h3{font-size:clamp(40px,4.6vw,70px);line-height:.9;letter-spacing:-.06em;margin:18px 0 22px}.plan .problem{font-size:19px;line-height:1.4;max-width:460px;color:#c0c7c3}.plan .meta{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding-top:18px;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#88938d}.plan:hover{background:#0b1713}.plan:hover h3{color:var(--lime)}
+
+/* participate */
+.participate{padding:15vh 0;background:#0a1512;border-top:1px solid var(--line)}.participate-grid{display:grid;grid-template-columns:1fr .85fr;gap:10vw}.participate h2{font-size:clamp(56px,8vw,120px);line-height:.82;letter-spacing:-.075em;margin:18px 0 34px}.participate .lead{font-size:20px;line-height:1.5;max-width:630px;color:#c0c7c3}.criteria{border-top:1px solid var(--line);margin-top:12px}.criterion{display:grid;grid-template-columns:34px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.45}.criterion b{color:var(--lime);font-size:11px;letter-spacing:.1em}.participate .note{font-size:12px;color:#7e8983;line-height:1.55;margin-top:24px}
+
+/* map */
+.map{padding:10vh 0 13vh;background:var(--deep)}.map h2{font-size:clamp(42px,5vw,78px);letter-spacing:-.055em;margin:14px 0 45px}.five{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.five a,.five div{padding:28px 18px;min-height:130px;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between}.five>*:last-child{border-right:0}.five strong{font-size:15px;letter-spacing:-.02em}.five span{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#7f8a84}.five a:hover{background:var(--lime);color:#07110f}.five a:hover span{color:#07110f}.footer{display:flex;justify-content:space-between;gap:30px;padding-top:40px;color:#66716b;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+
+@media(max-width:900px){.mast nav{display:none}.entrance-grid{grid-template-columns:1fr 1fr;padding-top:110px}.center{grid-column:1/-1;grid-row:1;min-height:38vh}.center h1{margin:18px 0;font-size:clamp(64px,15vw,120px)}.wing{grid-row:2;min-height:48vh;padding:40px 20px}.entrance:after{top:110px}.thesis-copy,.skill-bottom,.participate-grid{grid-template-columns:1fr;gap:45px}.room{grid-template-columns:1fr}.room-visual,.room:nth-child(even) .room-visual{order:0;min-height:62vw;border:0;border-top:1px solid var(--line)}.cross-grid{grid-template-columns:1fr;gap:35px}.analogies{grid-template-columns:1fr}.analogy{border-right:0;border-bottom:1px solid var(--line)}.analogy:last-child{border-bottom:0}.choose-head{display:block}.choose-head p{margin-top:28px}.five{grid-template-columns:1fr 1fr}.five>*{border-bottom:1px solid var(--line)}}
+@media(max-width:620px){.entrance-grid{display:block;padding-top:100px}.center{min-height:58vh}.center .sub{max-width:310px}.entrance:after{display:none}.wing,.wing.right{text-align:left;align-items:flex-start;min-height:55vh;padding:60px 0;border-top:1px solid var(--line)}.wing.right p{margin-left:0}.wing .question{font-size:52px}.scroll{display:none}.thesis,.cross,.skill,.choose,.participate{padding:100px 0}.thesis h2{font-size:62px}.plan-grid{grid-template-columns:1fr}.plan+.plan{border-left:0;border-top:1px solid var(--line)}.plan{min-height:420px}.five{grid-template-columns:1fr}.five>*{border-right:0!important}.footer{display:block;line-height:1.8}.footer span{display:block}}
+</style>
+</head>
+<body>
+<header class="mast"><div class="shell"><a class="brand" href="https://speedandform.com/" aria-label="Speed &amp; Form home">FORM<span>.</span></a><nav><a href="#bridge">The Bridge</a><a href="#studies">Studies</a><a href="#plans">Plans</a><a href="#skill">Practice</a><a href="#participate">Participate</a></nav></div></header>
+
+<main id="top">
+<section class="entrance" aria-label="FORM Labs entrance">
+  <div class="entrance-grid">
+    <article class="wing">
+      <div class="eyebrow">Study 01 · Durability</div>
+      <div class="question">HOW LONG<br>CAN YOU<br>KEEP IT?</div>
+      <p>Hope and José can access the pace. The study asks what happens as recovery disappears, continuous distance grows and the race begins to take something back.</p>
+      <a class="door-link" href="/labs/speed-that-endures/">Enter Speed That Endures <b>↗</b></a>
+    </article>
+
+    <div class="center">
+      <div class="tiny">FORM Labs · Live Studies</div>
+      <h1>THE<br><i>BRIDGE</i></h1>
+      <div class="sub">Two different training problems. One way of thinking about the athlete.</div>
+    </div>
+
+    <article class="wing right">
+      <div class="eyebrow">Study 02 · Ceiling</div>
+      <div class="question">HOW MUCH<br>MORE IS<br>ABOVE IT?</div>
+      <p>Simon and Lisa are already fit and already race well. This study asks something else: can the fast running they already have start to feel easier?</p>
+      <a class="door-link" href="/labs/raise-the-ceiling/">Enter Simon + Lisa <b>↗</b></a>
+    </article>
+  </div>
+  <a class="scroll" href="#bridge">Enter the center ↓</a>
+</section>
+
+<section class="thesis" id="bridge"><div class="shell">
+  <div class="eyebrow">The center room</div>
+  <h2>THE PLAN IS<br><span class="accent">NOT</span> THE POINT.</h2>
+  <div class="thesis-copy">
+    <p>A training plan is a tool. The question is whether it is the right tool for the athlete standing in front of you.</p>
+    <div class="aside">FORM authors methods so they can be repeated, inspected and learned from. But a season is composed around a person. Sometimes you need the whole progression. Sometimes you enter halfway through. Sometimes the calendar forces two ideas to overlap. Evidence decides what happens next.</div>
+  </div>
+</div></section>
+
+<section class="rooms" id="studies">
+  <article class="room">
+    <div class="room-copy">
+      <div class="eyebrow">Room 01 · Hope + José</div>
+      <h3>SPEED THAT<br>ENDURES.</h3>
+      <p>They can already run 6:30–6:45. The question is whether they can keep it as the rests get shorter and the work gets longer.</p>
+      <div class="line"></div>
+      <div class="bigq">The pace stays.<br>The context gets harder.</div>
+      <p>Broken reps, then continuous miles, then the same pace late in a long run, then the race. Faster running stays in the week so lasting longer is not the only thing they practise.</p>
+      <a class="door-link" href="/labs/speed-that-endures/">Open the live study <b>↗</b></a>
+    </div>
+    <div class="room-visual"><div class="instrument"><span class="orbit o1">Access</span><span class="orbit o2">Cost</span><span class="orbit o3">Fatigue</span><span class="orbit o4">Reserve</span><div class="word">6:30–6:45<span>HOW FAR?</span></div></div></div>
+  </article>
+
+  <article class="room" id="ceiling-study">
+    <div class="room-copy">
+      <div class="eyebrow">Room 02 · Simon + Lisa</div>
+      <h3>RAISE THE<br>CEILING.</h3>
+      <p>Here the question changes. Instead of asking how long one pace can last, we ask whether that pace can start to feel easier — without giving up the endurance underneath it.</p>
+      <div class="line"></div>
+      <div class="bigq">Make a fast pace ordinary.<br>Then ask for a faster one.</div>
+      <p>Tuesday raises what they can sustain. Thursday keeps faster running available above it. Saturday keeps the easy miles. The 10K shows what changed — it is not a pass or fail.</p>
+      <a class="door-link" href="/labs/raise-the-ceiling/">Open the live study <b>↗</b></a>
+    </div>
+    <div class="room-visual"><div class="instrument"><span class="orbit o1">Power</span><span class="orbit o2">Economy</span><span class="orbit o3">Mechanics</span><span class="orbit o4">Chassis</span><div class="word">FASTER<span>AT WHAT COST?</span></div></div></div>
+  </article>
+</section>
+
+<section class="cross"><div class="shell">
+  <div class="eyebrow">Where the rooms meet</div>
+  <h2>THE BODY DOESN'T KNOW WHAT WE NAMED THE PLAN.</h2>
+  <div class="cross-grid">
+    <p>The names help us organize the question. The athlete is still one system.</p>
+    <p class="small">Hope and José still need work above race pace. Simon and Lisa still need endurance. The difference is emphasis: what are we trying to change now, what are we protecting, and what evidence would make us change course?</p>
+  </div>
+</div></section>
+
+<section class="skill" id="skill"><div class="shell">
+  <div class="eyebrow">The practice</div>
+  <h2>RUNNING IS<br>A <span>SKILL.</span></h2>
+  <div class="analogies">
+    <div class="analogy"><b>A golfer practices the swing.</b><p>The movement itself is worthy of attention, not merely the score at the end.</p></div>
+    <div class="analogy"><b>A swimmer practices the stroke.</b><p>Fitness matters. So does how the body organizes itself to express that fitness.</p></div>
+    <div class="analogy"><b>A runner should practice running.</b><p>Rhythm, posture, relaxation, awareness and control can be observed and refined while the athlete trains.</p></div>
+  </div>
+  <div class="skill-bottom">
+    <p class="lead">Performance does not mean there is nothing left to learn.</p>
+    <p class="body">An already fast athlete can become more organized. An already strong athlete can waste less. An athlete with plenty of intensity can learn to channel it. FORM is interested in the numbers, but also in the runner producing them.</p>
+  </div>
+</div></section>
+
+<section class="choose" id="plans"><div class="shell">
+  <div class="choose-head"><div><div class="eyebrow">The instruments</div><h2>FOLLOW THE<br>WORK YOURSELF.</h2></div><p>You do not have to be inside a study to learn from it. Start with the problem that sounds most like yours.</p></div>
+  <div class="plan-grid">
+    <a class="plan" href="/plans/race-pace-durability/" target="_blank" rel="noopener">
+      <div><div class="eyebrow">Plan 01 · Live</div><h3>RACE PACE<br>DURABILITY</h3><div class="problem">I can touch the pace. I lose access to it before the distance ends.</div></div>
+      <div class="meta"><span>Inspect the plan</span><span>15 weeks ↗</span></div>
+    </a>
+    <div class="plan" aria-label="Raise the Ceiling plan in authoring">
+      <div><div class="eyebrow">Plan 02 · Authoring</div><h3>RAISE THE<br>CEILING</h3><div class="problem">I have endurance. I want more speed, economy and room above my longer-race pace.</div></div>
+      <div class="meta"><span>Public plan coming</span><span>6 weeks</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="participate" id="participate"><div class="shell participate-grid">
+  <div><div class="eyebrow">Future participants</div><h2>BECOME PART<br>OF THE WORK.</h2><p class="lead">FORM Labs may occasionally open a study when another athlete can help answer a useful question. The point is not to collect bodies. The point is to collect good evidence from athletes who can execute the work.</p><p class="note">No open study is being advertised here yet. This room exists so the door can open when the right question and the right athlete meet.</p></div>
+  <div class="criteria">
+    <div class="criterion"><b>01</b><span>An established running practice. The exact mileage requirement depends on the study.</span></div>
+    <div class="criterion"><b>02</b><span>Consistency. You can follow structure without needing the structure to chase you.</span></div>
+    <div class="criterion"><b>03</b><span>Evidence. You can report what happened, how it felt and what changed without turning every session into a verdict.</span></div>
+    <div class="criterion"><b>04</b><span>Fit. Your current training problem actually belongs to the question the study is asking.</span></div>
+  </div>
+</div></section>
+
+<section class="map"><div class="shell">
+  <div class="eyebrow">Five doors · one building</div><h2>MOVE THROUGH THE WORK.</h2>
+  <div class="five">
+    <a href="#bridge"><strong>The Bridge</strong><span>Thinking</span></a>
+    <a href="/labs/speed-that-endures/"><strong>Hope + José</strong><span>Study 01</span></a>
+    <a href="/labs/raise-the-ceiling/"><strong>Simon + Lisa</strong><span>Study 02</span></a>
+    <a href="/plans/race-pace-durability/" target="_blank" rel="noopener"><strong>Race Pace Durability</strong><span>Plan 01</span></a>
+    <div><strong>Raise the Ceiling</strong><span>Plan 02 · soon</span></div>
+  </div>
+  <div class="footer"><span>FORM Labs · Miami · 2026</span><span>Notes will become the passages between rooms.</span></div>
+</div></section>
+</main>
+</body></html>
