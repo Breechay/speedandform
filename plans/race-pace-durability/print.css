@@ -7,7 +7,7 @@
  * and a sheet pinned to a wall in November must not still be pointing at
  * September. */
 @page{size:11in 8.5in;margin:0}
-:root{--bg:#071012;--text:#f3f5f1;--muted:#7d8889;--line:#293639;--lime:#c8ff45}
+:root{--bg:#071012;--text:#f3f5f1;--muted:#7d8889;--line:#293639;--lime:#c9ff36}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--text);
   font-family:Inter,Arial,Helvetica,sans-serif;
