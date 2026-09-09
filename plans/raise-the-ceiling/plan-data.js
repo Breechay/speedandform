@@ -57,7 +57,7 @@ export const plan = {
      expressed by how close each athlete gets to a standard that does not move. */
   thursday: [
     { week: 1, date: 'Sep 03', name: 'Filed', reps: null,
-      note: 'Already run and filed before the study opened.' },
+      note: 'Already run and filed.' },
     { week: 2, date: 'Sep 10', name: 'Pyramid Intervals', reps: [
       '2 × 300m · 50–52s · 90s',
       '2 × 400m · 1:08–1:12 · 2 min',
@@ -87,10 +87,10 @@ export const plan = {
      invent mileage. */
   saturday: [
     { week: 1, title: 'Easy long',  note: 'Conversational throughout.' },
-    { week: 2, title: 'Easy long',  note: 'Conversational throughout. No finishing efforts.' },
-    { week: 3, title: 'Easy long',  note: 'Conversational throughout. No finishing efforts.' },
-    { week: 4, title: 'Long, with a controlled faster finish',
-      note: 'Final 15–20 minutes at the Tuesday band. Not faster. The only session that asks for the pace on tired legs, and it sits deliberately the week before the two 25-minute efforts.' },
+    { week: 2, title: 'Easy long',  note: 'Conversational. No finishing efforts.' },
+    { week: 3, title: 'Easy long',  note: 'Conversational. No finishing efforts.' },
+    { week: 4, title: 'Long + controlled finish',
+      note: 'Final 15–20 min at the Tuesday band. Not faster.' },
     { week: 5, title: 'Easy long',  note: 'No proving.' },
     { week: 6, title: '10K · Oct 10', note: 'The test.' }
   ],
@@ -114,14 +114,14 @@ export const plan = {
       name: 'Simon',
       units: 'km',
       band: { km: '3:44 /km', mi: '6:00 /mi' },
-      bandKind: 'Working direction',
-      bandNote: 'Hold the floor of the effort, not the ceiling. If it feels controlled and slightly boring, that is the session working. Nothing here should require a decision to survive.',
+      bandKind: 'Working band',
+      cue: 'Hold the floor of the effort, not the ceiling. If it feels controlled and slightly boring, that is the session working. Nothing here should require a decision to survive.',
       tuesday: [
         { week: 1, work: '2 × 10 min', note: 'Filed.' },
         { week: 2, work: '2 × 12 min', note: null },
-        { week: 3, work: '25 min continuous', note: 'The first read.' },
-        { week: 4, work: '2 × 12 min', note: 'Recovery cut to 2 min.' },
-        { week: 5, work: '25 min continuous', note: 'The same 25 minutes. Does it cost less now?' },
+        { week: 3, work: '25 min continuous', note: 'First read.' },
+        { week: 4, work: '2 × 12 min', note: '2 min recovery.' },
+        { week: 5, work: '25 min continuous', note: 'The same 25 minutes.' },
         { week: 6, work: '1 × 12 min', note: 'A touch, not a session.' }
       ]
     },
@@ -131,13 +131,13 @@ export const plan = {
       units: 'mi',
       band: { mi: '7:00–7:10 /mi', km: '4:21–4:25 /km' },
       bandKind: 'Working band',
-      bandNote: 'Drawn from her own August evidence, where the eight-minute sets sat at 7:11 and 7:07. A 6:47 rep shows there is more available. That is deliberately not the band. The band is the study.',
+      cue: 'Drawn from her own August evidence, where the eight-minute sets sat at 7:11 and 7:07. A 6:47 rep shows there is more available. That is deliberately not the band. The band is the study.',
       tuesday: [
-        { week: 1, work: '2 × 10 min', note: 'The entry read.' },
-        { week: 2, work: '2 × 10 min', note: 'Repeated on purpose. She raced five days earlier — enough for a controlled session, not enough for a step up.' },
+        { week: 1, work: '2 × 10 min', note: 'Entry read.' },
+        { week: 2, work: '2 × 10 min', note: 'Post-race re-entry. Repeated on purpose.' },
         { week: 3, work: '2 × 12 min', note: null },
-        { week: 4, work: '25 min continuous', note: 'Her first. Same volume as her August work, with the rests removed.' },
-        { week: 5, work: '25 min continuous', note: 'The same 25 minutes. Does it cost less now?' },
+        { week: 4, work: '25 min continuous', note: 'Her first.' },
+        { week: 5, work: '25 min continuous', note: 'The same 25 minutes.' },
         { week: 6, work: '1 × 12 min', note: 'A touch, not a session.' }
       ]
     }
