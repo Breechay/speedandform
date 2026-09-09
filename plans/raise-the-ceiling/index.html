@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-booting>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -47,15 +47,22 @@
             <button type="button" data-unit="mi" aria-pressed="false">mi</button>
           </div>
         </div>
-        <div class="week-now">
-          <button class="circle" id="prev" type="button" data-step="-1" aria-label="Previous week">&lsaquo;</button>
+        <div class="week-now" id="stepper">
+          <button class="circle" id="prev" type="button" data-step="-1" aria-label="Earlier weeks">&lsaquo;</button>
           <span class="range" id="range"></span>
-          <button class="circle" id="next" type="button" data-step="1" aria-label="Next week">&rsaquo;</button>
+          <button class="circle" id="next" type="button" data-step="1" aria-label="Later weeks">&rsaquo;</button>
         </div>
       </div>
 
       <div class="band" id="band"></div>
-      <div id="sheet"></div>
+      <div class="motion-viewport">
+        <div class="motion-track" id="track">
+          <div class="sheet" id="prevSheet"></div>
+          <div class="sheet" id="curSheet"></div>
+          <div class="sheet" id="nextSheet"></div>
+        </div>
+      </div>
+      <noscript><p class="no-js-note" style="display:block">The six weeks are drawn from the plan data by the page. Without scripting you can read the same block, week by week, in <a href="/labs/raise-the-ceiling/">the living study</a>.</p></noscript>
     </section>
 
     <section class="plan-context">

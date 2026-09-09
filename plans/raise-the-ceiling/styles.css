@@ -435,14 +435,18 @@ footer{height:55px;display:flex;align-items:flex-end;gap:18px;color:#9da6a8;font
 /* The Race Pace Durability sheet tucks .plan-head up with a -48px margin so its
    two small arrows sit beside the hero. The athlete switch is much wider than
    two arrows, and tucked up there it landed on top of "SIX WEEKS. ONE 10K.".
-   It gets its own row instead. */
-.week-now{display:none}
-@media(max-width:900px){
+   It gets its own row instead. Which weeks are on screen is decided by
+   visibleCount(), the same rule RPD uses — not by a breakpoint invented here. */
+@media(max-width:599px){
   .plan-head{margin:6px 0 14px;pointer-events:auto;flex-wrap:wrap;
     align-items:center;justify-content:space-between;gap:12px}
-  .week-now{display:flex}
+  .plan-head h2{display:none}
+  .week-now{margin-left:0}
   .lenses{order:1}
   .band{margin-top:2px}
+}
+@media(min-width:600px) and (max-width:900px){
+  .plan-head{flex-wrap:wrap;gap:12px}
 }
 
 /* Cell min-heights exist to keep the desktop grid's rows aligned. Stacked on a
@@ -450,3 +454,18 @@ footer{height:55px;display:flex;align-items:flex-end;gap:18px;color:#9da6a8;font
 .mobile-session .cell,
 .mobile-session .matrix tbody tr[data-day="THU"] .cell{min-height:0;padding:0}
 .mobile-week .mobile-day{align-items:start}
+
+/* The module script is deferred, so for one frame the plan area is empty and
+   "About this plan" rides up into the hole where the plan belongs. Reserving
+   the geometry means the page never briefly presents the essay as the main
+   object. The value is the rendered height, not a guess. */
+html[data-booting] .motion-viewport{min-height:404px}
+@media(max-width:599px){html[data-booting] .motion-viewport{min-height:560px}}
+.no-js-note{display:none;margin:0;padding:22px 0;border-top:1px solid var(--line);
+  color:#929d9f;font-size:12.5px;line-height:1.7}
+.no-js-note a{color:var(--lime)}
+
+/* .week-now sets display:flex, which beats the UA's [hidden]{display:none} on
+   specificity — so the stepper stayed on screen at widths where all six weeks
+   already fit and there was nothing to step to. */
+.week-now[hidden]{display:none}
