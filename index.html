@@ -1,155 +1,470 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#0b0b0a">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <title>Speed &amp; Form · Run Development with Brice</title>
-  <meta name="description" content="Run Development with Brice. Eight weeks. Begin.">
-  <link rel="canonical" href="https://speedandform.com/">
-  <link rel="icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Speed &amp; Form · Run Development with Brice">
-  <meta property="og:description" content="Run Development with Brice. Eight weeks. Begin.">
-  <meta property="og:url" content="https://speedandform.com/">
-  <meta property="og:site_name" content="Speed &amp; Form">
-  <meta property="og:image" content="https://speedandform.com/og/default.jpg?v=rd26">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Hope, mid-stride. Run Development with Brice.">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="preload" as="image" href="/media/run-development.jpg?v=rd26" fetchpriority="high">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,380;9..144,460;9..144,560&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/home.css?v=rd56">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Speed &amp; Form &middot; Run Development with Brice</title>
+<meta name="description" content="Run Development with Brice. Eight weeks. Begin.">
+<link rel="canonical" href="https://speedandform.com/">
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#020806">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Speed &amp; Form &middot; Run Development with Brice">
+<meta property="og:description" content="Run Development with Brice. Eight weeks. Begin.">
+<meta property="og:url" content="https://speedandform.com/">
+<meta property="og:site_name" content="Speed &amp; Form">
+<meta property="og:image" content="https://speedandform.com/og/default.jpg?v=rd26">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Hope, mid-stride. Run Development with Brice.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" as="image" href="/media/run-development.jpg?v=rd26" fetchpriority="high">
+<style>
+:root {
+  --paper:#ece6da;
+  --paper2:#f4efe7;
+  --ink:#11100e;
+  --body:#5f5a52;
+  --muted:#8b847a;
+  --dark:#060807;
+  --backdrop:#020806;
+  --field:#07110f;
+  --bone:#f2eee5;
+  --lime:#c9ff36;
+  /* Lime has no paper value. #c9ff36 on #ece6da measures 1.06:1 — the period is
+     not dim, it is absent. --lime stays the field colour; --lime-ink is the same
+     hue carried onto paper at 3.21:1, enough for a mark and a small eyebrow.
+     Needs ratifying into the design system as a paired token. */
+  --lime-ink:#6b8a0f;
+  --rule:rgba(17,16,14,.14);
+  --drule:rgba(242,238,229,.14);
+  --max:1260px;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif;
+  --serif:Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,"SFMono-Regular",Menlo,Monaco,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{background:var(--dark);scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+.wrap{width:min(var(--max),calc(100% - 64px));margin:0 auto}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+.wordmark{font-family:var(--sans);font-weight:800;letter-spacing:-.055em;font-size:24px}
+.wordmark i{font-style:normal;color:var(--lime)}
+
+/* HEADER */
+.header{position:absolute;z-index:20;top:0;left:0;right:0;color:#fff}
+.header-inner{height:78px;display:flex;align-items:center;justify-content:space-between}
+.header-right{display:flex;gap:24px;align-items:center;font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase}
+.header-right a{opacity:.76} .header-right a:hover{opacity:1;color:var(--lime)}
+
+/* HERO */
+.hero{position:relative;min-height:100svh;background:#111;display:flex;align-items:end;overflow:hidden;color:white}
+.hero img,.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  /* The film is ground, not subject. Dropping brightness is what lets the type
+     sit on it confidently; the contrast lift keeps it from going muddy. */
+  filter:grayscale(1) contrast(1.16) brightness(.58);transform:scale(1.02)}
+
+/* SCRIMS. The old gradient faded to .12 by 78% width — which is exactly where
+   the header nav sits, in the brightest part of the frame. Three layers now:
+   a top scrim so the mark and nav always have ground, the left-to-right wash
+   the headline reads against, and the floor under the offer. */
+.hero::before{content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.7),rgba(0,0,0,.26) 110px,rgba(0,0,0,.12) 190px),
+    linear-gradient(90deg,rgba(0,0,0,.8) 0%,rgba(0,0,0,.64) 44%,rgba(0,0,0,.52) 78%,rgba(0,0,0,.52) 100%),
+    linear-gradient(0deg,rgba(0,0,0,.84),rgba(0,0,0,.12) 52%)}
+
+/* One line system per surface. A 95px column grid works on the Labs studies
+   because their field is flat; over a photographic film the verticals read as
+   seams in the video rather than as structure. The hatch below is the mark that
+   ties this page to the rest of the site. */
+
+/* THE HATCH + THE GRAIN. Both are lifted from the live page, at its own values —
+   scanlines at 1px/4px with the retina half-pixel variant, and the fractal-noise
+   plate over the top. On the phone the film holds up on its own; past 700px it
+   is being asked to fill a screen it was never encoded for, so the glass does the
+   work and the film only has to suggest motion. */
+.hero-hatch{position:absolute;inset:0;z-index:2;pointer-events:none;
+  background-image:repeating-linear-gradient(to bottom,rgba(9,9,8,.26) 0,rgba(9,9,8,.26) 1px,transparent 1px,transparent 4px);
+  opacity:0}
+.hero-grain{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;
+  background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22180%22%20height%3D%22180%22%3E%3Cfilter%20id%3D%22n%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.85%22%20numOctaves%3D%223%22%20stitchTiles%3D%22stitch%22%2F%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22180%22%20height%3D%22180%22%20filter%3D%22url%28%23n%29%22%20opacity%3D%220.55%22%2F%3E%3C%2Fsvg%3E");
+  background-size:180px 180px;background-repeat:repeat}
+@media (-webkit-min-device-pixel-ratio:2),(min-resolution:2dppx){
+  .hero-hatch{background-image:repeating-linear-gradient(to bottom,rgba(9,9,8,.2) 0,rgba(9,9,8,.2) .5px,transparent .5px,transparent 2px)}
+  .hero-grain{background-size:120px 120px}
+}
+
+/* THE VEIL, phone only. Modelled on the live page's own .veil (home.css:76):
+   a 0deg ramp that is nearly opaque at the floor, releases through the middle,
+   and comes back a little at the top for the header. The point is that the
+   darkness sits ON the copy rather than over the whole frame, so the film still
+   reads as an image above the fold line.
+
+   Stops are placed on measurement, not feel: at 390 the copy block runs from 5%
+   to 55% up from the bottom, so the ramp holds density to 46% and is gone by 82%.
+   The left-to-right wash eases off here because the veil is now doing that work. */
+@media(max-width:700px){
+  .hero::before{background:
+    linear-gradient(180deg,rgba(9,9,8,.66),rgba(9,9,8,.2) 96px,rgba(9,9,8,.06) 170px),
+    linear-gradient(90deg,rgba(9,9,8,.58) 0%,rgba(9,9,8,.44) 44%,rgba(9,9,8,.34) 78%,rgba(9,9,8,.34) 100%),
+    linear-gradient(0deg,
+      rgba(9,9,8,.93) 0%,
+      rgba(9,9,8,.88) 26%,
+      rgba(9,9,8,.62) 46%,
+      rgba(9,9,8,.3) 58%,
+      rgba(9,9,8,.08) 70%,
+      rgba(9,9,8,0) 82%)}
+}
+
+@media(min-width:701px){
+  /* Heads and torso, not hips: object-fit centres by default and the runner's
+     head was cropped off the top. */
+  .hero video,.hero img{object-position:50% 18%;
+    filter:grayscale(1) contrast(1.3) brightness(.26)}
+  .hero::before{background:
+    linear-gradient(180deg,rgba(0,0,0,.78),rgba(0,0,0,.42) 130px,rgba(0,0,0,.32) 220px),
+    linear-gradient(90deg,rgba(0,0,0,.88) 0%,rgba(0,0,0,.78) 44%,rgba(0,0,0,.7) 78%,rgba(0,0,0,.7) 100%),
+    linear-gradient(0deg,rgba(0,0,0,.9),rgba(0,0,0,.34) 52%)}
+  .hero-hatch{opacity:1}
+  .hero-grain{opacity:.05}
+}
+.hero-copy{position:relative;z-index:3;padding:0 0 74px}
+.hero-kicker{color:rgba(255,255,255,.72);margin-bottom:15px}
+.hero h1{font-family:var(--serif);font-size:clamp(74px,10.4vw,160px);font-weight:400;line-height:.78;letter-spacing:-.065em;margin:0}
+.hero-sub{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:end;margin-top:34px;border-top:1px solid rgba(255,255,255,.2);padding-top:18px}
+.hero-sub p{margin:0;max-width:560px;font-size:17px;line-height:1.55;color:rgba(255,255,255,.8)}
+.offer{display:grid;grid-template-columns:auto auto;gap:8px 28px;text-align:right;
+  /* The label is 9px and the value 17px. Without this they align on the box top,
+     so TERM floats above "8 weeks" instead of sitting on its line. */
+  align-items:baseline}
+.offer small{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.offer strong{font-size:17px;font-weight:520}
+.begin{display:inline-flex;align-items:center;gap:12px;margin-top:26px;border:1px solid rgba(255,255,255,.45);padding:12px 16px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+.begin:hover{border-color:var(--lime);color:var(--lime)}
+
+/* PRACTICE */
+.practice{background:var(--paper);padding:108px 0 120px}
+.practice-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:74px;align-items:start}
+.practice-title h2{font-family:var(--serif);font-weight:400;font-size:clamp(62px,8vw,112px);line-height:.84;letter-spacing:-.06em;margin:18px 0 26px}
+.practice-title p{max-width:510px;font-size:18px;line-height:1.62;color:var(--body);margin:0}
+.practice-photo{margin-top:18px;position:relative}
+.practice-photo img{width:100%;height:min(720px,66vw);object-fit:cover;filter:grayscale(1) contrast(1.05)}
+.practice-photo figcaption{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:12px}
+.arguments{margin-top:54px;border-top:1px solid var(--rule)}
+.argument{display:grid;grid-template-columns:58px 1fr;gap:18px;padding:20px 0;border-bottom:1px solid rgba(17,16,14,.08)}
+.argument:last-child{border-bottom:0}
+.argument b{font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--muted)}
+.argument strong{display:block;font-family:var(--serif);font-size:28px;font-weight:400;line-height:1.08;margin-bottom:7px}
+.argument p{font-size:14px;line-height:1.58;color:var(--body);margin:0;max-width:650px}
+
+/* COACH */
+.coach{background:var(--dark);color:var(--bone);padding:106px 0 110px}
+.coach-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:72px;align-items:center}
+.coach img{width:100%;height:600px;object-fit:cover;filter:grayscale(1) contrast(1.1)}
+.coach-copy h2{font-family:var(--serif);font-size:clamp(58px,7vw,96px);font-weight:400;line-height:.87;letter-spacing:-.055em;margin:16px 0 28px}
+.coach-copy p{font-size:17px;line-height:1.62;color:#aaa59c;max-width:530px;margin:0 0 20px}
+.quote{padding-top:24px;margin-top:28px;border-top:1px solid var(--drule);font-family:var(--serif);font-size:31px;line-height:1.16;color:var(--bone)}
+
+/* INSTRUMENT */
+.instrument{background:var(--backdrop);color:#f2f4ef;padding:108px 0 116px;overflow:hidden}
+.instrument-head{display:grid;grid-template-columns:1fr .8fr;gap:64px;align-items:end}
+.instrument h2{font-family:var(--serif);font-weight:400;font-size:clamp(58px,7vw,102px);line-height:.86;letter-spacing:-.06em;margin:18px 0 0}
+.instrument-head p{margin:0;color:#9aa59f;font-size:16px;line-height:1.6;max-width:520px}
+.app-stage{display:grid;grid-template-columns:auto auto 1fr;gap:0 64px;align-items:end;margin-top:76px}
+
+/* THE SCREENS — drawn, not screenshotted.
+   Every value below is the FORM app study at 1:1 (390pt device, CS_09 states
+   #s-two and #s-four). Nothing here is re-measured for the web: the screen is
+   quoted material and keeps the app's own type, spacing and hairlines.
+   --k scales a whole screen; --h is how much of the device the page shows
+   before it dissolves into the backdrop. Those two are the only dials. */
+.ap-slot{position:relative;width:calc(390px * var(--k));height:calc(var(--h) * var(--k))}
+.ap-device{position:absolute;left:0;bottom:0;width:390px;height:var(--h);
+  background:var(--field);border:1px solid rgba(242,244,239,.22);border-bottom:0;
+  border-radius:48px 48px 0 0;overflow:hidden;
+  transform:scale(var(--k));transform-origin:bottom left}
+.ap-device::after{content:"";position:absolute;left:0;right:0;bottom:0;height:130px;
+  background:linear-gradient(to top,var(--backdrop),rgba(2,8,6,0));pointer-events:none}
+.ap-today{--k:1;--h:500px}
+.ap-week{--k:.84;--h:570px;margin-bottom:-52px}
+.ap-island{position:absolute;top:16px;left:50%;transform:translateX(-50%);width:122px;height:34px;border-radius:22px;background:#000;z-index:6}
+.ap-status{position:absolute;z-index:5;top:0;left:0;right:0;height:48px;padding:16px 24px 0;display:flex;justify-content:space-between;font-size:11px;color:#d8ded9}
+.ap-screen{position:absolute;inset:48px 0 0;padding:22px 24px 0;font-family:var(--sans);text-align:left}
+.ap-mark{font-size:23px;line-height:1;font-weight:700;letter-spacing:-.045em;color:#f2f4ef}
+.ap-mark i{font-style:normal;color:var(--lime)}
+.ap-eyebrow{font-family:var(--sans);font-size:9px;letter-spacing:.16em;font-weight:700;color:var(--lime)}
+
+.ap-work{margin-top:56px}
+.ap-work h3{margin:10px 0 0;font-size:39px;line-height:.98;letter-spacing:-.05em;font-weight:630;color:#f2f4ef}
+.ap-target{margin-top:13px;font-size:21px;font-variant-numeric:tabular-nums}
+.ap-cue{margin:15px 0 0;color:#88938d;font-size:13px;line-height:1.48}
+.ap-foot{margin-top:25px;padding-top:16px;border-top:1px solid rgba(242,244,239,.14);font-size:12px;color:var(--lime)}
+
+.ap-head{margin-top:52px}
+.ap-head h3{margin:9px 0 0;font-size:34px;line-height:1.01;letter-spacing:-.045em;font-weight:620;color:#f2f4ef}
+.ap-head p{margin:12px 0 0;color:#88938d;font-size:13px;line-height:1.48}
+.ap-list{margin-top:28px;border-top:1px solid rgba(242,244,239,.14)}
+.ap-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:15px;align-items:center;padding:15px 0;border-bottom:1px solid rgba(242,244,239,.075)}
+.ap-row:last-child{border-bottom:0}
+.ap-row strong{display:block;font-size:14px;font-weight:580;color:#f2f4ef}
+.ap-row small{display:block;margin-top:4px;color:#88938d;font-size:10px;line-height:1.35}
+.ap-row i{font-style:normal;color:#68736d}
+.ap-row.on strong,.ap-row.on i{color:var(--lime)}
+
+.access{align-self:stretch;display:flex;flex-direction:column;justify-content:flex-end}
+.access-list{border-top:1px solid var(--drule)}
+.access a{display:grid;grid-template-columns:1fr auto;gap:18px;padding:18px 0;border-bottom:1px solid rgba(242,244,239,.075);align-items:center}
+.access a:last-child{border-bottom:0}
+.access strong{font-weight:560;font-size:17px}
+.access span{color:var(--lime);font-size:20px}
+.access small{display:block;color:#839089;font-size:11px;margin-top:4px}
+
+/* BEGIN — the intake is the live one. Questions, wording, option sets and the
+   send path are carried over unchanged; only the skin is new. */
+.intake{background:var(--paper2);padding:108px 0 114px}
+.intake-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:82px;align-items:start}
+.intake-copy h2{font-family:var(--serif);font-weight:400;font-size:clamp(58px,7vw,98px);line-height:.88;letter-spacing:-.06em;margin:16px 0 24px}
+.intake-copy p{font-size:17px;line-height:1.58;color:var(--body);max-width:470px;margin:0}
+
+.pane{display:none}.pane.on{display:block}
+.q{display:none}.q.on{display:block}
+.q.leaving{display:block;opacity:0;transform:translateY(-16px);transition:opacity .2s,transform .2s}
+.q h2{font-size:clamp(27px,3.4vw,34px);line-height:1.08;letter-spacing:-.035em;margin:0 0 8px;font-weight:600}
+.hint{margin:0 0 20px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.grp{margin-bottom:22px}
+.grp label{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{background:transparent;border:1px solid rgba(17,16,14,.15);padding:12px 15px;text-align:left;color:var(--ink);font-size:15px}
+.opt:hover{border-color:rgba(17,16,14,.4)}
+.opt[aria-pressed="true"]{background:var(--ink);color:var(--paper2);border-color:var(--ink)}
+.ta,.ti{width:100%;border:0;border-bottom:1px solid rgba(17,16,14,.18);background:transparent;border-radius:0;padding:6px 0 10px;font-size:17px;outline:none;resize:vertical;color:var(--ink)}
+.ti{margin-bottom:16px}
+.ask-line{margin:26px 0 10px;font-size:15px;color:var(--body)}
+.drop{display:flex;justify-content:space-between;align-items:center;gap:18px;border:1px solid rgba(17,16,14,.15);padding:15px 16px;margin-bottom:24px}
+.drop b{display:block;font-weight:560;font-size:15px}
+.drop span{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.drop.has{border-color:var(--ink)}
+.cta{border:0;background:none;padding:0;margin-top:26px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);display:inline-flex;align-items:center;gap:10px}
+.cta .arrow svg{width:15px;height:15px;display:block}
+.cta:hover{color:#486000}
+.cta[disabled]{opacity:.32;pointer-events:none}
+.ghost{border:0;background:none;padding:0;margin-left:26px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.step-note,.need,.send-err{margin:14px 0 0;font-size:13px;color:var(--muted)}
+.need,.send-err{color:#8a4a3a}
+.send-err a{text-decoration:underline}
+.q-back{border:0;background:none;padding:0;margin-top:30px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ticks{display:flex;gap:10px;margin-top:38px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:rgba(17,16,14,.24)}
+.tick.done{color:rgba(17,16,14,.45)}
+.tick.now{color:var(--ink)}
+.kind{margin:0 0 12px;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.kind .sep{margin:0 8px}
+#rHead,.done-title{font-size:clamp(24px,5.2vw,34px);line-height:1.1;letter-spacing:-.03em;margin:0 0 26px;font-weight:600}
+.rows .row{padding:14px 0;border-bottom:1px solid rgba(17,16,14,.12)}
+.rows .row:last-child{border-bottom:0}
+.rows .row label{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.rows .row p{margin:0;font-size:clamp(17px,4.4vw,21px);line-height:1.34;font-family:var(--sans);color:var(--ink)}
+.rows .row p.quote{font-family:var(--sans);font-size:clamp(17px,4.4vw,21px);line-height:1.34;color:var(--ink);border:0;padding:0;margin:0}
+.rows .row small{display:block;margin-top:6px;font-size:13px;color:var(--muted)}
+.done-copy{font-size:17px;line-height:1.58;color:var(--body);max-width:470px;margin:0}
+.hidden{display:none}
+
+/* FOOTER */
+.footer{background:var(--paper);padding:36px 0 42px;border-top:1px solid var(--rule)}
+/* The header mark sits on film, the footer mark on paper. Same mark, two grounds,
+   so the period needs the paper value here or it disappears into the cream. */
+.footer .wordmark i{color:var(--lime-ink)}
+.footer-row{display:flex;justify-content:space-between;align-items:center;gap:24px}
+.footer nav{display:flex;gap:22px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* RESPONSIVE */
+@media(max-width:1000px){
+  .practice-grid,.coach-grid,.instrument-head,.intake-grid{grid-template-columns:1fr}
+  .practice-grid,.coach-grid,.intake-grid{gap:42px}
+  .practice-photo img{height:64vw;min-height:460px}
+  .coach img{height:62vw;min-height:460px}
+  .app-stage{grid-template-columns:auto 1fr;gap:26px 44px;margin-top:60px}
+  .ap-today{--k:.82;--h:490px;grid-column:1;grid-row:1}
+  .ap-week{--k:.6;--h:560px;margin:0;grid-column:1;grid-row:2;justify-self:end}
+  .ap-week .ap-device{left:auto;right:0;transform-origin:bottom right}
+  .access{grid-column:2;grid-row:1/3;align-self:end}
+  .hero-sub{grid-template-columns:1fr}
+  .offer{text-align:left;justify-content:start}
+}
+@media(max-width:700px){
+  .wrap{width:calc(100% - 34px)}
+  .header-inner{height:64px}
+  .header-right{gap:14px}
+  .header-right .hide-mobile{display:none}
+  .hero{min-height:92svh}
+  .hero-copy{padding-bottom:42px}
+  /* "Development" is 5.35em wide in this face at this tracking. At 20vw it
+     rendered 417px into 356px of rail and .hero{overflow:hidden} swallowed the
+     difference, so the word was cut rather than scrolling. 16.4vw fits it at
+     390, 360 and 320 with margin. */
+  .hero h1{font-size:clamp(46px,16.4vw,94px);line-height:.84}
+  .hero-sub{gap:22px;margin-top:24px}
+  .hero-sub p{font-size:15px}
+  .practice,.coach,.instrument,.intake{padding:76px 0 82px}
+  .practice-title h2,.coach-copy h2,.instrument h2,.intake-copy h2{font-size:clamp(54px,15vw,78px)}
+  .practice-title p,.coach-copy p,.instrument-head p,.intake-copy p{font-size:15px}
+  .practice-photo img,.coach img{height:116vw;min-height:0}
+  .argument{grid-template-columns:36px 1fr;padding:17px 0}
+  .argument strong{font-size:23px}
+  .app-stage{grid-template-columns:1fr;gap:24px 0;margin-top:44px}
+  .ap-today{--k:.82;--h:470px;grid-column:1;grid-row:auto}
+  .ap-week{--k:.6;--h:540px;grid-column:1;grid-row:auto}
+  .access{order:-1;grid-column:1;grid-row:auto;align-self:auto;margin-bottom:6px}
+  .choices{grid-template-columns:1fr}
+  .q h3{font-size:29px}
+  .footer-row{align-items:flex-start}
+  .footer nav{display:grid;gap:8px;text-align:right}
+}
+</style>
 </head>
 <body>
-  <a class="skip" href="#begin">Begin</a>
-
-  <section class="inst" aria-label="Run Development">
-    <div class="film-stack" aria-hidden="true">
-      <div class="film film-a"><video id="filmA" src="/media/run-development.mp4?v=rd16" poster="/media/run-development.jpg?v=rd26" autoplay muted loop playsinline preload="auto" disablepictureinpicture></video></div>
-      <div class="film film-b"><video id="filmB" src="/media/practice.mp4?v=rd16" poster="/media/practice.jpg?v=rd26" autoplay muted loop playsinline preload="none" disablepictureinpicture></video></div>
+<header class="header">
+  <div class="wrap header-inner">
+    <a href="#top" class="wordmark">FORM<i>.</i></a>
+    <div class="header-right">
+      <a class="hide-mobile" href="#practice">The practice</a>
+      <a class="hide-mobile" href="#instrument">The instrument</a>
+      <a href="#begin">Begin</a>
+      <a href="/athlete/">Sign in →</a>
     </div>
-    <div class="dim" aria-hidden="true"></div>
-    <div class="veil" aria-hidden="true"></div>
-    <div class="glass" aria-hidden="true"></div>
-    <div class="hatch" aria-hidden="true"></div>
-    <div class="grain" aria-hidden="true"></div>
+  </div>
+</header>
 
-    <div class="bar">
-      <a class="id" href="/" aria-label="FORM">FORM</a>
-      <div class="bar-actions">
-        <button class="back" id="back" type="button">Back</button>
-        <a class="signin" href="/athlete/">Sign in <span aria-hidden="true">→</span></a>
+<main id="top">
+<section class="hero">
+  <video id="filmA" src="/media/run-development.mp4?v=rd16" poster="/media/run-development.jpg?v=rd26" autoplay muted loop playsinline preload="auto" disablepictureinpicture></video>
+  <div class="hero-hatch" aria-hidden="true"></div>
+  <div class="hero-grain" aria-hidden="true"></div>
+  <div class="wrap hero-copy">
+    <div class="hero-kicker eyebrow">Brice · Miami + Remote</div>
+    <h1>Run<br>Development</h1>
+    <div class="hero-sub">
+      <p>Eight weeks of coaching built around your race, your current fitness, and the time you actually have to train. You run it. I adjust it as we learn more.</p>
+      <div class="offer">
+        <small>Term</small><strong>8 weeks</strong>
+        <small>Fee</small><strong>$1,200</strong>
       </div>
     </div>
+    <a href="#begin" class="begin">Begin <span>→</span></a>
+  </div>
+</section>
 
-    <main class="plates" id="plates" aria-label="Run Development overview">
-      <section class="plate plate-work" data-plate="0" aria-label="01 The Work">
-        <div class="plate-inner hero-in">
-          <p class="plate-index">01 / THE WORK</p>
-          <h1>Run<br>Development</h1>
-          <p class="with">With Brice</p>
-          <div class="hr"></div>
-          <p class="terms"><span>8 Weeks</span><span class="sep">·</span><span class="fee">$1,200</span></p>
-        </div>
-      </section>
+<section class="practice" id="practice">
+  <div class="wrap practice-grid">
+    <div class="practice-title">
+      <div class="eyebrow">01 / The Practice</div>
+      <h2>I develop<br>runners.</h2>
+      <p>I look at where you are, give you the work, see how it goes, and decide what comes next. The point is not more training. It is better training, repeated long enough to become yours.</p>
+      <div class="arguments">
+        <div class="argument"><b>01</b><div><strong>I watch for ease.</strong><p>When the stride agrees with itself, speed stops looking forced.</p></div></div>
+        <div class="argument"><b>02</b><div><strong>You are an accumulation.</strong><p>No session stands alone. The order of the work matters.</p></div></div>
+        <div class="argument"><b>03</b><div><strong>I want the quiet weeks.</strong><p>Fresh enough to train again. Good work without a recovery bill every day.</p></div></div>
+      </div>
+    </div>
+    <figure class="practice-photo">
+      <img src="/assets/home/practice/running-practice.webp" loading="lazy" decoding="async" alt="Runner in practice">
+      <figcaption>FORM · In practice · Miami</figcaption>
+    </figure>
+  </div>
+</section>
 
-      <section class="plate plate-practice" data-plate="1" aria-label="02 The Practice">
-        <div class="plate-inner practice-in">
-          <p class="plate-index">02 / THE PRACTICE</p>
-          <div class="thesis" id="thesis" tabindex="0" role="group" aria-label="The practice, in four arguments">
-            <article class="arg on" data-arg="0">
-              <h2>I develop runners.</h2>
-              <p class="practice-copy">Training is an argument made over time. <br class="pc-break">I assess where you are, prescribe the work,<br class="pc-break">observe what it establishes, and decide what comes next.</p>
-            </article>
-            <article class="arg" data-arg="1" aria-hidden="true">
-              <h2>I watch for ease.</h2>
-              <p class="practice-copy">Foot landing, arm swing, the rhythm between them. Never one thing at a time. What I am reading is whether the whole stride agrees with itself, and speed is what shows up when it does.</p>
-            </article>
-            <article class="arg" data-arg="2" aria-hidden="true">
-              <h2>You are an accumulation.</h2>
-              <p class="practice-copy">No session stands by itself. Each one is written on top of the last, and that order carries most of the effect. Swap one and the running still happened. The thread I was reading did not.</p>
-            </article>
-            <article class="arg" data-arg="3" aria-hidden="true">
-              <h2>I want the quiet weeks.</h2>
-              <p class="practice-copy">Fresh, fed, slept, moving well. That is the week worth having, not the heroic one. Stack eight of them and the same paces cost less. More ground, less negotiation.</p>
-            </article>
-          </div>
-          <div class="practice-foot">
-            <button class="arg-count" id="argCount" type="button" aria-label="Next argument"><span id="argNow">01</span><span class="sep">/</span><span>04</span></button>
-            <a class="practice-link" href="https://www.instagram.com/form.practice/" target="_blank" rel="noreferrer">@form.practice</a>
-          </div>
-        </div>
-      </section>
-      <section class="plate plate-instrument" data-plate="2" aria-label="03 The instrument">
-        <div class="paper" aria-hidden="true"></div>
-        <div class="instrument-grain" aria-hidden="true"></div>
-        <div class="dial" id="dial" aria-hidden="true">
-          <div class="disc" id="disc">
-            <div class="session on" data-day="1">
-              <div class="kick">builds <em>start</em></div>
-              <div class="name">Pressure to Pace</div>
-              <div class="line">30 min steady · 6:49–7:03 /mi</div>
-              <div class="line">3 × 8 min · 5:43 /mi</div>
-              <div class="line">2 min float between</div>
-              <div class="today">TUESDAY</div>
+<section class="coach">
+  <div class="wrap coach-grid">
+    <img src="/assets/home/practice/coaching-track.webp" loading="lazy" decoding="async" alt="Coaching at the track">
+    <div class="coach-copy">
+      <div class="eyebrow">02 / Coaching</div>
+      <h2>Hands on when it matters.</h2>
+      <p>I like to see the running. We meet at the track, establish the cues, then the week gives you enough repetition to make them normal.</p>
+      <p>The app carries the work. The coaching decides what changes.</p>
+      <div class="quote">“The goal is not more training. The goal is better training.”</div>
+    </div>
+  </div>
+</section>
+
+<section class="instrument" id="instrument">
+  <div class="wrap">
+    <div class="instrument-head">
+      <div>
+        <div class="eyebrow" style="color:var(--lime)">03 / The Instrument</div>
+        <h2>Every session is built for something.</h2>
+      </div>
+      <p>Today, and the week it belongs to.</p>
+    </div>
+
+    <div class="app-stage">
+
+      <!-- TODAY — CS_09 #s-two -->
+      <div class="ap-slot ap-today">
+        <div class="ap-device">
+          <div class="ap-island"></div>
+          <div class="ap-status"><span>6:18</span><span>&#9679;&#9679;&#9679;</span></div>
+          <div class="ap-screen">
+            <div class="ap-mark">JOS&Eacute;<i>.</i></div>
+            <div class="ap-work">
+              <div class="ap-eyebrow">TODAY &middot; RACE PACE</div>
+              <h3>4 &times; 2 mi</h3>
+              <div class="ap-target">6:30&ndash;6:45 /mi</div>
+              <p class="ap-cue">Start near 6:45. Let the pace come to you.</p>
             </div>
-            <div class="session" data-day="1">
-              <div class="kick">builds <em>settle</em></div>
-              <div class="name">Clean Rhythm</div>
-              <div class="line">4 × 6 min · 7:15 /mi</div>
-              <div class="line">2 min recovery easy</div>
-              <div class="today">TUESDAY</div>
-            </div>
-            <div class="session" data-day="5">
-              <div class="kick">builds <em>hold</em></div>
-              <div class="name">Long aerobic support</div>
-              <div class="line">85–100 min · 6:38–7:03 /mi</div>
-              <div class="line">last 15 min · 6:11–6:25 /mi</div>
-              <div class="today">SATURDAY</div>
-            </div>
-            <div class="session" data-day="1">
-              <div class="kick">builds <em>finish</em></div>
-              <div class="name">Race rehearsal</div>
-              <div class="line">controlled work at race pace</div>
-              <div class="today">TUESDAY</div>
-            </div>
+            <div class="ap-foot">Open plan context &rarr;</div>
           </div>
         </div>
-        <aside class="placard" id="placard" aria-hidden="true">
-          <p class="pl-eyebrow">The plan</p>
-          <h3 class="pl-title">Half Marathon</h3>
-          <p class="pl-race">West Palm Beach · Dec 13 · 1:15:00</p>
-          <ol class="pl-week">
-            <li><b>MON</b><span>Easy</span></li>
-            <li><b>TUE</b><span class="key">Intervals</span></li>
-            <li><b>WED</b><span>Easy</span></li>
-            <li><b>THU</b><span>Speed</span></li>
-            <li><b>FRI</b><span>Easy</span></li>
-            <li><b>SAT</b><span class="long">Long run</span></li>
-            <li><b>SUN</b><span class="rest">Rest</span></li>
-          </ol>
-          <p class="pl-line">Five days. Intervals Tuesday. Long Saturday. The rest stays easy.</p>
-        </aside>
-        <button class="week-tab" id="weekTab" type="button" aria-expanded="false" aria-controls="placard"><span>W1</span></button>
-        <div class="instrument-scrim" aria-hidden="true"></div>
-        <div class="dragon-tail" aria-hidden="true">
-          <img src="/media/dragon-tail.webp?v=rd36" alt="" width="1024" height="1536" decoding="async" loading="lazy" fetchpriority="low">
+      </div>
+
+      <!-- THIS WEEK — CS_09 #s-four -->
+      <div class="ap-slot ap-week">
+        <div class="ap-device">
+          <div class="ap-island"></div>
+          <div class="ap-status"><span>6:18</span><span>&#9679;&#9679;&#9679;</span></div>
+          <div class="ap-screen">
+            <div class="ap-mark">JOS&Eacute;<i>.</i></div>
+            <div class="ap-head">
+              <div class="ap-eyebrow">WEEK 03</div>
+              <h3>Build the hold.</h3>
+              <p>Sep 06&ndash;12</p>
+            </div>
+            <div class="ap-list">
+              <div class="ap-row on"><div><strong>TUE &middot; 4 &times; 2 mi</strong><small>6:30&ndash;6:45 /mi &middot; 3 min float</small></div><i>&rarr;</i></div>
+              <div class="ap-row"><div><strong>THU &middot; Threshold</strong><small>2 &times; 10 min</small></div><i></i></div>
+              <div class="ap-row"><div><strong>SAT &middot; 13 mi easy</strong><small>Long aerobic support</small></div><i></i></div>
+            </div>
+          </div>
         </div>
-        <div class="plate-inner instrument-in">
-          <p class="plate-index">03 / THE INSTRUMENT</p>
-          <h2>Every session is built for something.</h2>
-          <a class="instrument-meta" href="https://apps.apple.com/us/app/id6761313085">FORM · iOS</a>
+      </div>
+
+      <div class="access">
+        <div class="access-list">
+          <a href="https://apps.apple.com/us/app/id6761313085"><div><strong>Open FORM</strong><small>Today's work and your record</small></div><span>&rarr;</span></a>
+          <a href="/plans/race-pace-durability/"><div><strong>Race Pace Durability</strong><small>A plan, written out in full</small></div><span>&rarr;</span></a>
+          <a href="/labs/"><div><strong>FORM Labs</strong><small>The studies, and what we are learning</small></div><span>&rarr;</span></a>
+          <a href="/library"><div><strong>Library</strong><small>The thinking behind the work</small></div><span>&rarr;</span></a>
         </div>
-      </section>
-      <section class="plate plate-ask" data-plate="3" aria-label="04 The start">
-        <div class="plate-inner ask-in">
-          <p class="plate-index">04 / THE START</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="intake" id="begin">
+  <div class="wrap intake-grid">
+    <div class="intake-copy">
+      <div class="eyebrow">04 / Begin</div>
+      <h2>Tell me what you're training for.</h2>
+      <p>Give me enough to understand where you are and what you want to change. I will tell you what makes sense next.</p>
+    </div>
+
+    <div class="questionnaire">
+      <div class="pane on" id="p-ask">
+
+        <div class="q on" data-q="0">
           <h2>What are you trying to do?</h2>
           <p class="hint">Choose one to begin</p>
           <div class="opts" data-key="goal" data-mode="one">
@@ -164,154 +479,320 @@
             <button class="opt" type="button" aria-pressed="false">Not sure yet</button>
           </div>
         </div>
-      </section>
-    </main>
 
-    <div class="begin-slot" id="beginSlot">
-      <button class="cta persistent-begin" id="begin" type="button">Begin <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
-    </div>
-    <nav class="plate-cue" id="plateCue" aria-label="The work, the practice, the instrument, then the question">
-      <button type="button" data-cue="0" class="on" aria-current="true">01</button>
-      <button type="button" data-cue="1">02</button>
-      <button type="button" data-cue="2">03</button>
-      <button type="button" data-cue="3">04</button>
-    </nav>
-
-    <div class="mode-panes" id="modePanes" aria-live="polite">
-      <div class="pane" id="p-ask">
-        <div class="ask-inner">
-          <div class="q on" data-q="0">
-            <h2>What are you trying to do?</h2>
-            <p class="hint">Choose one to begin</p>
-            <div class="opts" data-key="goal" data-mode="one">
-              <button class="opt" type="button" aria-pressed="false">Run better</button>
-              <button class="opt" type="button" aria-pressed="false">Run faster</button>
-              <button class="opt" type="button" aria-pressed="false">Run longer</button>
-              <button class="opt" type="button" aria-pressed="false">Run more consistently</button>
-              <button class="opt" type="button" aria-pressed="false">Stop getting hurt</button>
-              <button class="opt" type="button" aria-pressed="false">Prepare for a race</button>
-              <button class="opt" type="button" aria-pressed="false">Balance running and lifting</button>
-              <button class="opt" type="button" aria-pressed="false">Return to running</button>
-              <button class="opt" type="button" aria-pressed="false">Not sure yet</button>
+        <div class="q" data-q="1">
+          <h2>What does your running look like now?</h2>
+          <div class="grp"><label>Days a week</label>
+            <div class="opts" data-key="days" data-mode="one">
+              <button class="opt" type="button" aria-pressed="false">0&ndash;1</button>
+              <button class="opt" type="button" aria-pressed="false">2</button>
+              <button class="opt" type="button" aria-pressed="false">3</button>
+              <button class="opt" type="button" aria-pressed="false">4</button>
+              <button class="opt" type="button" aria-pressed="false">5</button>
+              <button class="opt" type="button" aria-pressed="false">6&ndash;7</button>
             </div>
           </div>
-
-          <div class="q" data-q="1">
-            <h2>What does your running look like now?</h2>
-            <div class="grp"><label>Days a week</label>
-              <div class="opts" data-key="days" data-mode="one">
-                <button class="opt" type="button" aria-pressed="false">0–1</button>
-                <button class="opt" type="button" aria-pressed="false">2</button>
-                <button class="opt" type="button" aria-pressed="false">3</button>
-                <button class="opt" type="button" aria-pressed="false">4</button>
-                <button class="opt" type="button" aria-pressed="false">5</button>
-                <button class="opt" type="button" aria-pressed="false">6–7</button>
-              </div>
+          <div class="grp"><label>Weekly distance</label>
+            <div class="opts" data-key="vol" data-mode="one">
+              <button class="opt" type="button" aria-pressed="false">Under 10 mi</button>
+              <button class="opt" type="button" aria-pressed="false">10&ndash;20 mi</button>
+              <button class="opt" type="button" aria-pressed="false">20&ndash;30 mi</button>
+              <button class="opt" type="button" aria-pressed="false">30&ndash;45 mi</button>
+              <button class="opt" type="button" aria-pressed="false">45+ mi</button>
             </div>
-            <div class="grp"><label>Weekly distance</label>
-              <div class="opts" data-key="vol" data-mode="one">
-                <button class="opt" type="button" aria-pressed="false">Under 10 mi</button>
-                <button class="opt" type="button" aria-pressed="false">10–20 mi</button>
-                <button class="opt" type="button" aria-pressed="false">20–30 mi</button>
-                <button class="opt" type="button" aria-pressed="false">30–45 mi</button>
-                <button class="opt" type="button" aria-pressed="false">45+ mi</button>
-              </div>
-            </div>
-            <div class="grp"><label>Longest run lately</label>
-              <div class="opts" data-key="long" data-mode="one">
-                <button class="opt" type="button" aria-pressed="false">Under 4 mi</button>
-                <button class="opt" type="button" aria-pressed="false">4–6 mi</button>
-                <button class="opt" type="button" aria-pressed="false">6–10 mi</button>
-                <button class="opt" type="button" aria-pressed="false">10–15 mi</button>
-                <button class="opt" type="button" aria-pressed="false">15+ mi</button>
-              </div>
-            </div>
-            <p class="step-note" id="runningNeed">Choose one in each.</p>
-            <button class="cta" id="runningNext" type="button" data-next disabled>Continue <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
           </div>
-
-          <div class="q" data-q="2">
-            <h2>What else are you training?</h2>
-            <p class="hint">Choose any, or continue</p>
-            <div class="opts" data-key="other" data-mode="many">
-              <button class="opt" type="button" aria-pressed="false">Strength</button>
-              <button class="opt" type="button" aria-pressed="false">HYROX or mixed</button>
-              <button class="opt" type="button" aria-pressed="false">Cycling</button>
-              <button class="opt" type="button" aria-pressed="false">Swimming</button>
-              <button class="opt" type="button" aria-pressed="false">A sport</button>
-              <button class="opt" type="button" aria-pressed="false">Nothing regularly</button>
+          <div class="grp"><label>Longest run lately</label>
+            <div class="opts" data-key="long" data-mode="one">
+              <button class="opt" type="button" aria-pressed="false">Under 4 mi</button>
+              <button class="opt" type="button" aria-pressed="false">4&ndash;6 mi</button>
+              <button class="opt" type="button" aria-pressed="false">6&ndash;10 mi</button>
+              <button class="opt" type="button" aria-pressed="false">10&ndash;15 mi</button>
+              <button class="opt" type="button" aria-pressed="false">15+ mi</button>
             </div>
-            <button class="cta" type="button" data-next>Continue <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
           </div>
-
-          <div class="q" data-q="3">
-            <h2>What isn’t going the way you want?</h2>
-            <p class="hint">A sentence is enough. Leave blank if nothing.</p>
-            <textarea class="ta" id="issue" rows="3" placeholder=""></textarea>
-            <button class="cta" type="button" data-next>Continue <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
-          </div>
-
-          <div class="q" data-q="4">
-            <h2>Anything I should see?</h2>
-            <div class="drop" id="drop">
-              <div>
-                <b id="dropT">A recent running video</b>
-                <span>Optional. Front, side or behind</span>
-              </div>
-              <span>Choose file</span>
-            </div>
-            <div class="grp">
-              <label>Where you train</label>
-              <div class="opts" data-key="city" data-mode="one">
-                <button class="opt" type="button" aria-pressed="false">Miami</button>
-                <button class="opt" type="button" aria-pressed="false">Somewhere else</button>
-              </div>
-            </div>
-            <div class="reach">
-              <p class="ask-line">Where should I reply?</p>
-              <input class="ti" id="em" type="email" autocomplete="email" placeholder="Email">
-              <label class="hint" for="nm">Your name, if you’d like</label>
-              <input class="ti" id="nm" autocomplete="name" placeholder="">
-            </div>
-            <p class="need" id="needMail" hidden>Email so Brice can reply.</p>
-            <button class="cta" type="button" data-next>Done <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
-          </div>
-
-          <div class="ticks" id="ticks"></div>
+          <p class="step-note" id="runningNeed">Choose one in each.</p>
+          <button class="cta" id="runningNext" type="button" data-next disabled>Continue <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
         </div>
+
+        <div class="q" data-q="2">
+          <h2>What else are you training?</h2>
+          <p class="hint">Choose any, or continue</p>
+          <div class="opts" data-key="other" data-mode="many">
+            <button class="opt" type="button" aria-pressed="false">Strength</button>
+            <button class="opt" type="button" aria-pressed="false">HYROX or mixed</button>
+            <button class="opt" type="button" aria-pressed="false">Cycling</button>
+            <button class="opt" type="button" aria-pressed="false">Swimming</button>
+            <button class="opt" type="button" aria-pressed="false">A sport</button>
+            <button class="opt" type="button" aria-pressed="false">Nothing regularly</button>
+          </div>
+          <button class="cta" type="button" data-next>Continue <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
+        </div>
+
+        <div class="q" data-q="3">
+          <h2>What isn&rsquo;t going the way you want?</h2>
+          <p class="hint">A sentence is enough. Leave blank if nothing.</p>
+          <textarea class="ta" id="issue" rows="3" placeholder=""></textarea>
+          <button class="cta" type="button" data-next>Continue <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
+        </div>
+
+        <div class="q" data-q="4">
+          <h2>Anything I should see?</h2>
+          <div class="drop" id="drop">
+            <div>
+              <b id="dropT">A recent running video</b>
+              <span>Optional. Front, side or behind</span>
+            </div>
+            <span>Choose file</span>
+          </div>
+          <div class="grp"><label>Where you train</label>
+            <div class="opts" data-key="city" data-mode="one">
+              <button class="opt" type="button" aria-pressed="false">Miami</button>
+              <button class="opt" type="button" aria-pressed="false">Somewhere else</button>
+            </div>
+          </div>
+          <p class="ask-line">Where should I reply?</p>
+          <input class="ti" id="em" type="email" autocomplete="email" placeholder="Email">
+          <label class="hint" for="nm">Your name, if you&rsquo;d like</label>
+          <input class="ti" id="nm" autocomplete="name" placeholder="">
+          <p class="need" id="needMail" hidden>Email so Brice can reply.</p>
+          <button class="cta" type="button" data-next>Done <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
+        </div>
+
+        <button class="q-back" id="back" type="button">&larr; Back</button>
+        <div class="ticks" id="ticks"></div>
       </div>
 
       <div class="pane" id="p-read">
-        <div class="rc">
-          <p class="kind"><span id="rKind">Run Development</span><span class="sep">·</span><span id="rMoney">8 Weeks · $1,200</span></p>
-          <h2 id="rHead">Here is what you told me.</h2>
-          <div class="rows" id="rRows"></div>
-          <div class="send">
-            <button class="cta" id="sendBtn" type="button" data-send-to="briceikouebe@gmail.com">Send to Brice <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
-            <button class="ghost" id="editBtn" type="button">Change an answer</button>
-          </div>
-          <p class="send-err" id="sendErr" hidden>It did not send. Try again.</p>
+        <p class="kind"><span id="rKind">Run Development</span><span class="sep">&middot;</span><span id="rMoney">8 Weeks &middot; $1,200</span></p>
+        <h2 id="rHead">Here is what you told me.</h2>
+        <div class="rows" id="rRows"></div>
+        <div class="send">
+          <button class="cta" id="sendBtn" type="button" data-send-to="briceikouebe@gmail.com">Send to Brice <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
+          <button class="ghost" id="editBtn" type="button">Change an answer</button>
         </div>
+        <p class="send-err" id="sendErr" hidden>It did not send. Try again.</p>
       </div>
 
       <div class="pane" id="p-done">
-        <div class="rc">
-          <p class="kind">Received</p>
-          <h2 class="done-title">It’s with Brice.</h2>
-          <p class="done-copy">He reads it himself, usually within a day, and replies with what he would do first. His reply comes from briceikouebe@gmail.com.</p>
-          <button class="cta" id="restart" type="button">Back to the start <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
-        </div>
+        <p class="kind">Received</p>
+        <h2 class="done-title">It&rsquo;s with Brice.</h2>
+        <p class="done-copy">He reads it himself, usually within a day, and replies with what he would do first. His reply comes from briceikouebe@gmail.com.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+</main>
 
-  <form name="run-development" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
-    <input type="hidden" name="form-name" value="run-development">
-    <p class="hidden"><label>Don’t fill this<input name="bot-field"></label></p>
-    <input name="offer"><input name="price"><input name="goal"><input name="days"><input name="volume"><input name="longest"><input name="other"><input name="issue"><input name="city"><input name="name"><input name="email"><input name="video-name"><input type="file" name="video" accept="video/*">
-  </form>
-  <input type="file" id="pick" accept="video/*" hidden>
+<form name="run-development" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="run-development">
+  <p class="hidden"><label>Don&rsquo;t fill this<input name="bot-field"></label></p>
+  <input name="offer"><input name="price"><input name="goal"><input name="days"><input name="volume"><input name="longest"><input name="other"><input name="issue"><input name="city"><input name="name"><input name="email"><input name="video-name"><input type="file" name="video" accept="video/*">
+</form>
+<input type="file" id="pick" accept="video/*" hidden>
 
-  <script src="/home.js?v=rd54"></script>
+<footer class="footer">
+  <div class="wrap footer-row">
+    <div>
+      <div class="wordmark" style="color:var(--ink)">FORM<i>.</i></div>
+      <div style="font-size:12px;color:var(--muted);margin-top:5px">Brice at Speed & Form · Miami</div>
+    </div>
+    <nav>
+      <a href="/plans/">Plans</a>
+      <a href="/labs/">Labs</a>
+      <a href="/library">Library</a>
+      <a href="/athlete/">Sign in</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+/* The intake engine, lifted from the plate page. The five questions, their
+   wording, the option sets, the review and the send path are unchanged. What
+   was removed is everything that belonged to the plates: film sync, scroll
+   snap, the placard, the overlay modes. The intake now lives inline. */
+(function () {
+  var $ = function (s) { return document.querySelector(s); };
+  var $$ = function (s) { return [].slice.call(document.querySelectorAll(s)); };
+
+  var A = { other: [] };
+  var qi = 0;
+  var QN = 5;
+  var BRICE = "briceikouebe@gmail.com";
+  var sending = false;
+  var qTimer = 0;
+
+  function pane(id) {
+    $$(".pane").forEach(function (p) { p.classList.toggle("on", p.id === id); });
+  }
+
+  function paintTicks() {
+    var box = $("#ticks");
+    if (!box) return;
+    if (!box.children.length) {
+      box.innerHTML = Array.from({ length: QN }, function (_, j) {
+        return '<span class="tick">' + String(j + 1).padStart(2, "0") + "</span>";
+      }).join("");
+    }
+    [].slice.call(box.children).forEach(function (el, j) {
+      el.classList.toggle("done", j < qi);
+      el.classList.toggle("now", j === qi);
+    });
+    $("#back").style.visibility = qi === 0 ? "hidden" : "visible";
+  }
+
+  function showQ(i, immediate) {
+    var next = Math.max(0, Math.min(QN - 1, i));
+    var qs = $$(".q");
+    var from = qs[qi];
+    window.clearTimeout(qTimer);
+    qs.forEach(function (q) { q.classList.remove("leaving"); });
+    if (immediate || next === qi || !from) {
+      qi = next;
+      qs.forEach(function (q, j) { q.classList.toggle("on", j === qi); });
+      paintTicks();
+      return;
+    }
+    from.classList.remove("on");
+    from.classList.add("leaving");
+    qi = next;
+    paintTicks();
+    qTimer = window.setTimeout(function () {
+      from.classList.remove("leaving");
+      qs.forEach(function (q, j) { q.classList.toggle("on", j === qi); });
+    }, 140);
+  }
+
+  $$(".opts").forEach(function (box) {
+    var key = box.dataset.key;
+    var many = box.dataset.mode === "many";
+    box.addEventListener("click", function (e) {
+      var b = e.target.closest(".opt");
+      if (!b) return;
+      if (many) {
+        var none = b.textContent === "Nothing regularly";
+        var turningOn = b.getAttribute("aria-pressed") !== "true";
+        if (none) {
+          $$('[data-key="other"] .opt').forEach(function (x) { x.setAttribute("aria-pressed", "false"); });
+          if (turningOn) b.setAttribute("aria-pressed", "true");
+        } else {
+          $$('[data-key="other"] .opt').forEach(function (x) { if (x.textContent === "Nothing regularly") x.setAttribute("aria-pressed", "false"); });
+          b.setAttribute("aria-pressed", turningOn ? "true" : "false");
+        }
+        A.other = $$('[data-key="other"] .opt[aria-pressed="true"]').map(function (x) { return x.textContent; });
+        return;
+      }
+      $$('[data-key="' + key + '"] .opt').forEach(function (x) {
+        x.setAttribute("aria-pressed", x.textContent === b.textContent ? "true" : "false");
+      });
+      A[key] = b.textContent;
+      if (key === "days" || key === "vol" || key === "long") updateRunningNext();
+      if (key === "goal") window.setTimeout(function () { showQ(1); }, 300);
+    });
+  });
+
+  function updateRunningNext() {
+    var ready = !!(A.days && A.vol && A.long);
+    var next = $("#runningNext"), note = $("#runningNeed");
+    if (next) next.disabled = !ready;
+    if (note) note.hidden = ready;
+  }
+
+  $$("[data-next]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      if (qi === 3) A.issue = $("#issue").value.trim();
+      if (qi === 4) {
+        A.name = $("#nm").value.trim();
+        A.mail = $("#em").value.trim();
+        var need = $("#needMail");
+        if (!/.+@.+\..+/.test(A.mail)) { need.hidden = false; $("#em").focus(); return; }
+        need.hidden = true;
+        build();
+        pane("p-read");
+        return;
+      }
+      showQ(qi + 1);
+    });
+  });
+
+  $("#back").addEventListener("click", function () { if (qi > 0) showQ(qi - 1); });
+  $("#editBtn").addEventListener("click", function () { pane("p-ask"); showQ(0, true); });
+  $("#drop").addEventListener("click", function () { $("#pick").click(); });
+  $("#pick").addEventListener("change", function (e) {
+    var f = e.target.files && e.target.files[0];
+    if (!f) return;
+    A.vid = f.name; A.file = f; $("#dropT").textContent = f.name; $("#drop").classList.add("has");
+  });
+
+  function offer() {
+    var lift = A.other.indexOf("Strength") > -1 || A.other.indexOf("HYROX or mixed") > -1;
+    var days = parseInt((A.days || "0").replace(/\D.*$/, ""), 10) || 0;
+    return A.goal === "Balance running and lifting" || (lift && days >= 4);
+  }
+
+  function build() {
+    var both = offer();
+    $("#rKind").textContent = both ? "Run + Strength" : "Run Development";
+    $("#rMoney").textContent = both ? "8 Weeks \u00b7 $1,800" : "8 Weeks \u00b7 $1,200";
+    $("#rHead").textContent = "Here is what you told me.";
+    var now = [];
+    if (A.days) now.push(A.days + " days running");
+    if (A.vol) now.push(/week/.test(A.vol) ? A.vol : A.vol + " a week");
+    if (A.long) now.push("longest " + A.long.replace(" mi", "") + " mi");
+    var other = A.other.filter(function (x) { return x !== "Nothing regularly"; });
+    var rows = [];
+    if (A.goal) rows.push(["You want to", A.goal.toLowerCase() + ".", ""]);
+    if (now.length) rows.push(["Right now", now.join(" \u00b7 "), other.length ? ("Also training: " + other.join(", ").toLowerCase()) : ""]);
+    if (A.issue) rows.push(["The issue", '"' + A.issue + '"', "", true]);
+    if (A.vid) rows.push(["Attached", A.vid, ""]);
+    if (A.city) rows.push(["Where you train", A.city, ""]);
+    $("#rRows").innerHTML = rows.map(function (r) {
+      return '<div class="row"><label>' + r[0] + "</label><p" + (r[3] ? ' class="quote"' : "") + ">" + r[1] + "</p>" + (r[2] ? "<small>" + r[2] + "</small>" : "") + "</div>";
+    }).join("");
+  }
+
+  function payload() {
+    var both = offer();
+    return { offer:both?"Run + Strength":"Run Development",price:both?"8 weeks \u00b7 $1,800":"8 weeks \u00b7 $1,200",goal:A.goal||"",days:A.days||"",volume:A.vol||"",longest:A.long||"",other:(A.other||[]).join(", "),issue:A.issue||"",city:A.city||"",name:A.name||"",email:A.mail||"","video-name":A.vid||"" };
+  }
+
+  /* A 200 from the mail relay is not proof of delivery — the relay answers 200
+     while it waits for a one-time address confirmation. Gate on success, and
+     never dead-end: hand back a prefilled email so the answers survive. */
+  function sendToBrice() {
+    if (sending) return;
+    sending = true;
+    var btn = $("#sendBtn"), err = $("#sendErr"), data = payload();
+    btn.disabled = true; err.hidden = true;
+    var dest = (btn.getAttribute("data-send-to") || BRICE).trim() || BRICE;
+    var mail = new FormData();
+    mail.append("_subject", data.offer + " — " + (data.name || "new start")); mail.append("_template", "table"); mail.append("_captcha", "false");
+    if (data.email) mail.append("_replyto", data.email);
+    Object.keys(data).forEach(function (k) { mail.append(k, data[k]); });
+    var netlify = new FormData(); netlify.append("form-name", "run-development"); Object.keys(data).forEach(function (k) { netlify.append(k, data[k]); }); if (A.file) netlify.append("video", A.file);
+    var emailed = fetch("https://formsubmit.co/ajax/" + encodeURIComponent(dest), { method:"POST", body:mail, headers:{Accept:"application/json"} }).then(function (r) { return r.json().then(function (j) { return { ok:r.ok, j:j }; }); });
+    var stored = fetch("/", { method:"POST", body:netlify }).catch(function () { return null; });
+    Promise.all([emailed, stored]).then(function (res) {
+      var j = res[0] && res[0].j, sent = res[0] && res[0].ok && String(j && j.success) === "true";
+      if (sent) { pane("p-done"); return; }
+      fail(err, btn, data);
+    }).catch(function () { fail(err, btn, data); });
+  }
+
+  function fail(err, btn, data) {
+    var lines = Object.keys(data).filter(function (k) { return data[k]; })
+      .map(function (k) { return k + ": " + data[k]; }).join("\n");
+    var href = "mailto:" + BRICE
+      + "?subject=" + encodeURIComponent(data.offer + " — " + (data.name || "new start"))
+      + "&body=" + encodeURIComponent(lines);
+    err.hidden = false;
+    err.innerHTML = 'It did not send. <a href="' + href + '">Send it as an email instead</a> — your answers are already in it.';
+    btn.disabled = false; sending = false;
+  }
+
+  $("#sendBtn").addEventListener("click", sendToBrice);
+  pane("p-ask");
+  showQ(0, true);
+})();
+</script>
 </body>
 </html>

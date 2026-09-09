@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Plans &middot; FORM</title>
+<meta name="description" content="Training plans from FORM, written out in full. Free to read, free to run.">
+<link rel="canonical" href="https://speedandform.com/plans/">
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#ece6da">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Plans &middot; FORM">
+<meta property="og:description" content="Training plans from FORM, written out in full.">
+<meta property="og:url" content="https://speedandform.com/plans/">
+<meta property="og:site_name" content="Speed &amp; Form">
+<style>
+:root{
+  --paper:#ece6da;--ink:#11100e;--body:#5f5a52;--muted:#8b847a;
+  --lime:#c9ff36;--rule:rgba(17,16,14,.14);--hair:rgba(17,16,14,.08);
+  --max:1260px;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif;
+  --serif:Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,"SFMono-Regular",Menlo,Monaco,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{background:var(--paper);scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(var(--max),calc(100% - 64px));margin:0 auto}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+.wordmark{font-family:var(--sans);font-weight:800;letter-spacing:-.055em;font-size:24px}
+.wordmark i{font-style:normal;color:var(--lime-ink)}
+
+.header-inner{height:78px;display:flex;align-items:center;justify-content:space-between}
+.header-right{display:flex;gap:24px;align-items:center;font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.header-right a:hover{color:var(--ink)}
+
+.head{padding:64px 0 8px}
+.head h1{font-family:var(--serif);font-weight:400;font-size:clamp(58px,9vw,124px);line-height:.86;letter-spacing:-.06em;margin:16px 0 0}
+.head p{max-width:560px;font-size:18px;line-height:1.62;color:var(--body);margin:26px 0 0}
+
+/* One rule opens the list. The entry does not draw its own on top of it. */
+.plans{margin-top:64px;border-top:1px solid var(--rule)}
+.plan{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;padding:44px 0;border-bottom:1px solid var(--hair)}
+.plan:last-child{border-bottom:0}
+.plan h2{font-family:var(--serif);font-weight:400;font-size:clamp(38px,5.2vw,68px);line-height:.94;letter-spacing:-.05em;margin:14px 0 0}
+.plan .says{margin:18px 0 0;max-width:620px;font-size:17px;line-height:1.6;color:var(--body)}
+.facts{display:flex;flex-wrap:wrap;gap:0 34px;margin-top:26px}
+.facts div{padding-top:11px;border-top:1px solid var(--rule);min-width:112px}
+.facts small{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.facts b{display:block;margin-top:6px;font-size:16px;font-weight:560}
+.open{display:inline-flex;align-items:center;gap:11px;border:1px solid rgba(17,16,14,.28);padding:13px 17px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
+.open:hover{border-color:var(--ink)}
+
+/* Not a promise, and not a placeholder. What is being written now is visible in
+   Labs, so the honest move is to point at it rather than list an empty slot. */
+.elsewhere{margin-top:58px;padding-top:26px;border-top:1px solid var(--rule);display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end}
+.elsewhere p{margin:10px 0 0;max-width:620px;font-size:17px;line-height:1.6;color:var(--body)}
+.elsewhere a.textlink{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(17,16,14,.3);padding-bottom:3px}
+
+.footer{margin-top:96px;padding:36px 0 42px;border-top:1px solid var(--rule)}
+.footer-row{display:flex;justify-content:space-between;align-items:center;gap:24px}
+.footer nav{display:flex;gap:22px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.footer nav a:hover{color:var(--ink)}
+
+@media(max-width:820px){
+  .plan,.elsewhere{grid-template-columns:1fr;gap:26px;align-items:start}
+  .head{padding-top:44px}
+}
+@media(max-width:700px){
+  .wrap{width:calc(100% - 34px)}
+  .header-inner{height:64px}
+  .header-right{gap:14px}
+  .head p,.plan .says,.elsewhere p{font-size:16px}
+  .facts{gap:0 22px}
+  .facts div{min-width:calc(50% - 22px)}
+  .footer-row{align-items:flex-start}
+  .footer nav{display:grid;gap:8px;text-align:right}
+}
+</style>
+</head>
+<body>
+<header class="wrap header-inner">
+  <a href="/" class="wordmark">FORM<i>.</i></a>
+  <div class="header-right">
+    <a href="/labs/">Labs</a>
+    <a href="/#begin">Begin</a>
+    <a href="/athlete/">Sign in &rarr;</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="head">
+    <div class="eyebrow">Plans</div>
+    <h1>Written out<br>in full.</h1>
+    <p>A plan is a method, not a calendar to buy. Every session says what it is for, and the paces are real numbers you can run. Free to read. Free to run.</p>
+  </div>
+
+  <div class="plans">
+    <article class="plan">
+      <div>
+        <div class="eyebrow" style="color:var(--lime-ink)">Half marathon &middot; Sub-1:30</div>
+        <h2>Race Pace Durability</h2>
+        <p class="says">Sub-1:30 is not really a pace problem. Most runners who want it can already touch 6:52 a mile. The question is whether it is still there at mile eleven. So the key sessions are run at 6:30&ndash;6:45, faster than goal pace, to build the margin that makes race day hold.</p>
+        <div class="facts">
+          <div><small>Length</small><b>15 weeks</b></div>
+          <div><small>Opens at</small><b>45 mi / week</b></div>
+          <div><small>Peaks near</small><b>60 mi / week</b></div>
+          <div><small>Fee</small><b>Free</b></div>
+        </div>
+      </div>
+      <a class="open" href="/plans/race-pace-durability/">Open the plan &rarr;</a>
+    </article>
+  </div>
+
+  <div class="elsewhere">
+    <div>
+      <div class="eyebrow">Being written now</div>
+      <p>Other blocks are being run by athletes right now and are not finished enough to hand to a stranger. You can watch them happen in Labs, week by week, while they are still open questions.</p>
+    </div>
+    <a class="textlink" href="/labs/">Open FORM Labs &rarr;</a>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-row">
+    <div>
+      <div class="wordmark">FORM<i>.</i></div>
+      <div style="font-size:12px;color:var(--muted);margin-top:5px">Brice at Speed &amp; Form &middot; Miami</div>
+    </div>
+    <nav>
+      <a href="/plans/">Plans</a>
+      <a href="/labs/">Labs</a>
+      <a href="/library">Library</a>
+      <a href="/athlete/">Sign in</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

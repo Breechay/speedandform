@@ -133,3 +133,8 @@
 # New site rooms (2026 rebuild)
 /forge-sculpt.html      /forge-sculpt/              301
 /forge-sculpt/train     /forge-sculpt/train/        301
+
+# The film + dial + placard page. Replaced at / by Run Development, not deleted:
+# plate 03 is still the instrument recording.
+/plates                 /plates.html                200
+/plates/                /plates.html                200
