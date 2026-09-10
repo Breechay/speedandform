@@ -4,6 +4,8 @@
 Supersedes `FORM_ECOSYSTEM_STATE_v2.md`. Status words are used literally, per v2 §0:
 `LIVE` means a person can reach it in production and someone checked.
 
+**This document is STATE — what is true right now.** For the full execution sequence, the athlete-app semantic hierarchy, and the iOS authority-sweep rulings, see `FORM_ECOSYSTEM_MASTER_ROADMAP_v1_2026-09-08.md` (`FORM APP Redesign/`) — ROADMAP, what happens next. The two are cross-referenced, not merged: this document does not restate the roadmap's iOS-side findings, and the roadmap's public-site status claims should be read as of 2026-09-08, one day before this document. (2026-09-09 stabilization pass.)
+
 ---
 
 # 1. THE PUBLIC SITE — `LIVE`
@@ -83,8 +85,8 @@ deliberate overrides, and divergence from the shared progression. The Plan stays
 the reusable method. `public_plan()` stays the reusable-plan projection; a
 resolved-plan projection is added rather than contaminating it with athlete data.
 
-Full transcription packet: `docs/RAISE_THE_CEILING_CANONICAL_v1.md` in the site
-repo, derived from `RAISE_THE_CEILING_plan_v4.md`.
+Full transcription packet: `docs/FORM_RAISE_THE_CEILING_SPEC_v1.md` in the site
+repo (renamed 2026-09-09 from `RAISE_THE_CEILING_CANONICAL_v1.md` — its own text said "NOT canonical yet"), derived from `RAISE_THE_CEILING_plan_v4.md`.
 
 ---
 

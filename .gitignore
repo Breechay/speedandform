@@ -18,9 +18,18 @@ harness/
 # command. The sources that are not copies live in scripts/design-review/.
 form-labs-design-review/
 form-labs-design-review.zip
-form-labs-design-review-v2.zip
-form-labs-design-review-v1/
-form-labs-design-review-v3.zip
-form-labs-plan-html/
-form-labs-plan-html.zip
 design-review/public-plan/plan.json
+
+# Consolidated 2026-09-09 physical reorg pass: dated design-review/plan-html
+# snapshots that used to sit loose at the repo root now live under _generated/
+# (see _generated/README.md). form-labs-design-review/ itself stays covered
+# above — the generator still writes there.
+_generated/
+
+# Whole-repo backup zips (self-referential — a zip of this repo sitting inside
+# it). Added 2026-09-09 physical reorg pass per the original audit's own
+# recommendation. speedandform-source.zip lived at root; now archived under
+# 90_ARCHIVE/Backups/ (see that folder's README) but still worth ignoring by
+# pattern wherever a future one lands.
+speedandform-source.zip
+90_ARCHIVE/

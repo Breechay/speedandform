@@ -1,7 +1,7 @@
 /* RAISE THE CEILING — the public plan manifest.
  *
  * One authored Plan, two athlete views. Derived exactly from
- * docs/RAISE_THE_CEILING_CANONICAL_v1.md, which was derived from
+ * docs/FORM_RAISE_THE_CEILING_SPEC_v1.md, which was derived from
  * RAISE_THE_CEILING_plan_v4.md. Nothing here is invented.
  *
  * This file is deliberately shaped like the object the database does not have
