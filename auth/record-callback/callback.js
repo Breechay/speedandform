@@ -1,4 +1,5 @@
 import { authErrorMessage, finishAuthCallback, setPassword } from '/private/auth.js';
+import { supabase } from '/private/supabase-client.js';
 
 const title = document.getElementById('callbackTitle');
 const status = document.getElementById('callbackStatus');
@@ -7,9 +8,45 @@ const retry = document.getElementById('callbackRetry');
 try {
   const url = new URL(window.location.href);
   const recovery = url.searchParams.get('mode') === 'recovery' || url.searchParams.get('type') === 'recovery';
+  const returnTo = url.searchParams.get('return_to') || '';
+  const calendarReturn = returnTo.includes('calendar_return=1');
+  let calendarTokens = null;
+
+  // Calendar consent is still a normal Supabase Google OAuth flow, but this is
+  // the one moment the provider refresh token exists. Capture it in memory and
+  // hand it straight to the server before the ordinary callback finishes.
+  if (calendarReturn && url.searchParams.get('code')) {
+    const { data, error } = await supabase.auth.exchangeCodeForSession(url.searchParams.get('code'));
+    if (error) throw error;
+    calendarTokens = {
+      accessToken: data?.session?.provider_token || null,
+      refreshToken: data?.session?.provider_refresh_token || null
+    };
+    const clean = new URL(window.location.href);
+    clean.searchParams.delete('code');
+    window.history.replaceState({}, '', clean);
+  }
+
   const destination = await finishAuthCallback();
 
-  if (!recovery) {
+  if (calendarReturn) {
+    if (!calendarTokens?.refreshToken || !calendarTokens?.accessToken) {
+      throw new Error('Google did not return offline Calendar access. Open Account → Calendar and approve access again.');
+    }
+    status.textContent = 'Connecting Google Calendar…';
+    const { data, error } = await supabase.functions.invoke('google-calendar-sync', {
+      body: {
+        action: 'connect',
+        providerRefreshToken: calendarTokens.refreshToken,
+        providerAccessToken: calendarTokens.accessToken
+      }
+    });
+    calendarTokens = null;
+    if (error) throw error;
+    if (data?.error) throw new Error(data.error);
+    status.textContent = 'Calendar connected. Taking you back to the Console…';
+    window.location.replace('/coach/labs/?calendar=connected');
+  } else if (!recovery) {
     status.textContent = 'Signed in. Taking you there…';
     window.location.replace(destination);
   } else {
