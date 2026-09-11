@@ -16,9 +16,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
-      - name: Make patch script version-safe
+      - name: Align patch script with current study markup
         shell: bash
-        run: sed -i "/'js version')/d" scripts/update_speed_endures_sep11.py
+        run: |
+          sed -i "/'js version')/d" scripts/update_speed_endures_sep11.py
+          sed -i 's/Target · 6:30–6:45/6:30–6:45 \/mi/' scripts/update_speed_endures_sep11.py
+          sed -i 's/José 6:30–6:45 · Hope 6:45–7:00/José 6:30–6:45 \/mi · Hope 6:45–7:00 \/mi/' scripts/update_speed_endures_sep11.py
       - name: Patch study
         run: python scripts/update_speed_endures_sep11.py
       - name: Verify output
