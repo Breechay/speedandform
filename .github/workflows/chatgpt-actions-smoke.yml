@@ -1,0 +1,13 @@
+name: ChatGPT actions smoke
+on:
+  push:
+    branches:
+      - chatgpt/rpd-w3-threshold-spine
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Smoke
+        run: echo ok
