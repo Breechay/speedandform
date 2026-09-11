@@ -49,20 +49,120 @@
   stroke-width: 1.55;
   fill: none;
 }
-.ccAccountMenu {
-  margin: 4px 0 2px;
-  padding: 7px 10px 9px 37px;
-  border-radius: 10px;
-  background: rgba(4,10,20,.28);
+
+/* Account is a real modal surface. The rail only contains the door. */
+.ccAccount details[open]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 940;
+  background: rgba(2,6,14,.72);
+  backdrop-filter: blur(5px);
 }
-.ccAccountMenu button {
-  width: 100%;
-  padding: 7px 0;
-  color: #98a7c2;
-  font-size: 11px;
+.ccAccount details[open] .ccAccountMenu {
+  display: block;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 941;
+  width: min(480px, calc(100vw - 36px));
+  max-height: calc(100dvh - 48px);
+  margin: 0;
+  padding: 0 0 14px;
+  overflow-y: auto;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(137,158,205,.18);
+  border-radius: 18px;
+  background:
+    radial-gradient(ellipse 520px 250px at 75% 0,#274b8130,transparent 70%),
+    linear-gradient(155deg,#111c31,#0c1526 72%);
+  box-shadow: 0 32px 110px rgba(0,0,0,.58), inset 0 1px 0 rgba(255,255,255,.04);
 }
-.ccAccountMenu button:hover { color: #eef2fb; }
-.ccAccountState { margin: 7px 0 0; max-width: 21ch; }
+.ccAccountModalHead {
+  min-height: 72px;
+  padding: 18px 20px 15px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.ccAccountModalHead small {
+  display: block;
+  margin-bottom: 4px;
+  color: #7183a3;
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.ccAccountModalHead strong {
+  color: #eef2fb;
+  font-size: 19px;
+  font-weight: 550;
+  letter-spacing: -.02em;
+}
+.ccAccountModalHead button {
+  width: 34px !important;
+  height: 34px;
+  padding: 0 !important;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(137,158,205,.13) !important;
+  border-radius: 9px;
+  background: rgba(255,255,255,.025) !important;
+  color: #95a5c0 !important;
+}
+.ccAccountModalHead button:hover { background: rgba(255,255,255,.055) !important; color: #eef2fb !important; }
+.ccAccountModalHead svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; }
+.ccAccountSectionLabel {
+  padding: 18px 22px 7px;
+  color: #7889a8;
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.ccAccountSecurityLabel {
+  margin-top: 8px;
+  padding-top: 17px;
+  border-top: 1px solid rgba(255,255,255,.065);
+}
+.ccAccountMenu > button:not([data-account-close]) {
+  width: calc(100% - 28px);
+  min-height: 44px;
+  margin: 0 14px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: #aebbd0;
+  text-align: left;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+.ccAccountMenu > button:not([data-account-close]):hover,
+.ccAccountMenu > button:not([data-account-close]):focus-visible {
+  background: rgba(255,255,255,.035);
+  color: #eef2fb;
+  outline: none;
+}
+.ccAccountMenu > button:disabled {
+  opacity: .42;
+  cursor: default;
+}
+.ccAccountMenu #calendarConnect:not([hidden]):not(:disabled) {
+  color: #dce7f8;
+  background: rgba(128,145,219,.08);
+}
+.ccAccountState {
+  margin: 7px 22px 5px;
+  max-width: 38ch;
+  color: #7183a2;
+  font-size: 10px;
+  line-height: 1.55;
+}
 
 /* Collapse button should read as one icon, not a random text glyph. */
 [data-collapse-rail] {
@@ -146,6 +246,28 @@
 .ccOpsWeek .ccDays { margin-top: 0; }
 .ccOpsWeekSource { margin-top: 13px; }
 
+/* Tasks belong to the dossier card system, not between cards as loose chrome. */
+.ccTodoPanel.ccCard {
+  min-height: 0;
+  margin: 0;
+  padding: 28px;
+  border: 1px solid #718ed026;
+  border-radius: 22px;
+  background:
+    radial-gradient(ellipse 640px 250px at 78% 115%,#244f9235,transparent 75%),
+    linear-gradient(145deg,#15213a,#101a2e 70%);
+  box-shadow: inset 0 1px 0 #c6d7ff08,0 14px 32px #02071025;
+}
+.ccTodoPanel.ccCard .ccTodoHead { margin-bottom: 15px; }
+.ccTodoPanel.ccCard .ccTodoHead h2 { color: #d7e0f2; font-size: 14px; font-weight: 500; }
+.ccTodoPanel.ccCard .ccTodoRows { gap: 0; }
+.ccTodoPanel.ccCard .ccTodoRow {
+  padding: 13px 0;
+  border-top: 1px solid rgba(255,255,255,.055);
+}
+.ccTodoPanel.ccCard .ccTodoRow:first-child { border-top: 0; }
+.ccTodoPanel.ccCard .ccTodoEmpty { padding: 10px 0 2px; }
+
 /* Consistency card: it is a small instrument, not a poster. */
 .ccConsistency {
   min-height: 0;
@@ -167,7 +289,27 @@
   padding-top: 18px;
   border-top-color: rgba(255,255,255,.06);
 }
-.ccConsistencyChoices { margin: 10px 0 7px; }
+.ccConsistencyChoices {
+  display: grid;
+  grid-template-columns: repeat(8, 36px);
+  gap: 7px;
+  width: max-content;
+  max-width: 100%;
+  margin: 10px 0 9px;
+}
+.ccConsistencyChoices button {
+  width: 36px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  padding: 0 !important;
+  display: grid !important;
+  place-items: center;
+  border-radius: 9px;
+  text-align: center;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.ccConsistencyChoices button.on { color: #111827; }
 .ccConsistencyFact { max-width: 44ch; }
 
 /* Collapsed rail keeps the same clean footer semantics. */
@@ -175,12 +317,14 @@
 .railCollapsed .ccRailUtilities .ccRailAction,
 .railCollapsed .ccRailUtilities .ccAccount summary { justify-content: center; }
 .railCollapsed .ccRailUtilities span,
-.railCollapsed .ccRailUtilities .ccAccount summary span,
-.railCollapsed .ccAccountMenu { display: none; }
+.railCollapsed .ccRailUtilities .ccAccount summary span { display: none; }
+.railCollapsed .ccAccount details[open] .ccAccountMenu { display: block; }
 
 @media (max-width: 840px) {
   .ccOpsWeek .ccOpsAllWeek { grid-template-columns: auto 1fr; }
   .ccOpsWeek .ccOpsAllWeek small { grid-column: 2; }
   .ccConsistency { grid-template-columns: 1fr; padding: 24px; }
   .ccConsistencyOps { grid-column: auto; }
+  .ccConsistencyChoices { grid-template-columns: repeat(4, 36px); }
+  .ccAccount details[open] .ccAccountMenu { width: calc(100vw - 20px); }
 }
