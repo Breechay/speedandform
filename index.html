@@ -32,7 +32,7 @@
   --field:#07110f;
   --bone:#f2eee5;
   --lime:#c9ff36;
-  /* Lime has no paper value. #c9ff36 on #ece6da measures 1.06:1 — the period is
+  /* Lime has no paper value. #c9ff36 on #ece6da measures 1.06:1; the period is
      not dim, it is absent. --lime stays the field colour; --lime-ink is the same
      hue carried onto paper at 3.21:1, enough for a mark and a small eyebrow.
      Needs ratifying into the design system as a paired token. */
@@ -68,7 +68,7 @@ button{cursor:pointer}
      sit on it confidently; the contrast lift keeps it from going muddy. */
   filter:grayscale(1) contrast(1.16) brightness(.58);transform:scale(1.02)}
 
-/* SCRIMS. The old gradient faded to .12 by 78% width — which is exactly where
+/* SCRIMS. The old gradient faded to .12 by 78% width, which is exactly where
    the header nav sits, in the brightest part of the frame. Three layers now:
    a top scrim so the mark and nav always have ground, the left-to-right wash
    the headline reads against, and the floor under the offer. */
@@ -83,7 +83,7 @@ button{cursor:pointer}
    seams in the video rather than as structure. The hatch below is the mark that
    ties this page to the rest of the site. */
 
-/* THE HATCH + THE GRAIN. Both are lifted from the live page, at its own values —
+/* THE HATCH + THE GRAIN. Both are lifted from the live page at its own values:
    scanlines at 1px/4px with the retina half-pixel variant, and the fractal-noise
    plate over the top. On the phone the film holds up on its own; past 700px it
    is being asked to fill a screen it was never encoded for, so the glass does the
@@ -177,7 +177,7 @@ button{cursor:pointer}
 .instrument-head p{margin:0;color:#9aa59f;font-size:16px;line-height:1.6;max-width:520px}
 .app-stage{display:grid;grid-template-columns:auto auto 1fr;gap:0 64px;align-items:end;margin-top:76px}
 
-/* THE SCREENS — drawn, not screenshotted.
+/* THE SCREENS: drawn, not screenshotted.
    Every value below is the FORM app study at 1:1 (390pt device, CS_09 states
    #s-two and #s-four). Nothing here is re-measured for the web: the screen is
    quoted material and keeps the app's own type, spacing and hairlines.
@@ -224,7 +224,7 @@ button{cursor:pointer}
 .access span{color:var(--lime);font-size:20px}
 .access small{display:block;color:#839089;font-size:11px;margin-top:4px}
 
-/* BEGIN — the intake is the live one. Questions, wording, option sets and the
+/* BEGIN: the intake is the live one. Questions, wording, option sets and the
    send path are carried over unchanged; only the skin is new. */
 .intake{background:var(--paper2);padding:108px 0 114px}
 .intake-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:82px;align-items:start}
@@ -755,7 +755,7 @@ button{cursor:pointer}
     return { offer:both?"Run + Strength":"Run Development",price:both?"8 weeks \u00b7 $1,800":"8 weeks \u00b7 $1,200",goal:A.goal||"",days:A.days||"",volume:A.vol||"",longest:A.long||"",other:(A.other||[]).join(", "),issue:A.issue||"",city:A.city||"",name:A.name||"",email:A.mail||"","video-name":A.vid||"" };
   }
 
-  /* A 200 from the mail relay is not proof of delivery — the relay answers 200
+  /* A 200 from the mail relay is not proof of delivery; the relay answers 200
      while it waits for a one-time address confirmation. Gate on success, and
      never dead-end: hand back a prefilled email so the answers survive. */
   function sendToBrice() {
@@ -765,7 +765,7 @@ button{cursor:pointer}
     btn.disabled = true; err.hidden = true;
     var dest = (btn.getAttribute("data-send-to") || BRICE).trim() || BRICE;
     var mail = new FormData();
-    mail.append("_subject", data.offer + " — " + (data.name || "new start")); mail.append("_template", "table"); mail.append("_captcha", "false");
+    mail.append("_subject", data.offer + ": " + (data.name || "new start")); mail.append("_template", "table"); mail.append("_captcha", "false");
     if (data.email) mail.append("_replyto", data.email);
     Object.keys(data).forEach(function (k) { mail.append(k, data[k]); });
     var netlify = new FormData(); netlify.append("form-name", "run-development"); Object.keys(data).forEach(function (k) { netlify.append(k, data[k]); }); if (A.file) netlify.append("video", A.file);
@@ -782,10 +782,10 @@ button{cursor:pointer}
     var lines = Object.keys(data).filter(function (k) { return data[k]; })
       .map(function (k) { return k + ": " + data[k]; }).join("\n");
     var href = "mailto:" + BRICE
-      + "?subject=" + encodeURIComponent(data.offer + " — " + (data.name || "new start"))
+      + "?subject=" + encodeURIComponent(data.offer + ": " + (data.name || "new start"))
       + "&body=" + encodeURIComponent(lines);
     err.hidden = false;
-    err.innerHTML = 'It did not send. <a href="' + href + '">Send it as an email instead</a> — your answers are already in it.';
+    err.innerHTML = 'It did not send. <a href="' + href + '">Send it as an email instead</a>; your answers are already in it.';
     btn.disabled = false; sending = false;
   }
 

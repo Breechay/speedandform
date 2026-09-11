@@ -1,6 +1,26 @@
 import { callbackUrl, supabase, SUPABASE_PUBLISHABLE_KEY, SUPABASE_URL } from './supabase-client.js';
 
 const ALLOWED_DESTINATIONS = ['/athlete/', '/coach/'];
+const LAST_WORKSPACE_KEY = 'form-last-workspace';
+
+export function rememberWorkspace(workspace) {
+  if (workspace !== 'coach' && workspace !== 'athlete') return;
+  try { window.localStorage.setItem(LAST_WORKSPACE_KEY, workspace); } catch {}
+}
+
+export function resolveAuthorizedWorkspace(access) {
+  const hasCoach = Boolean(access?.coachMemberships?.length);
+  const hasAthlete = Boolean(access?.athleteMemberships?.length);
+  if (hasCoach && !hasAthlete) return 'coach';
+  if (hasAthlete && !hasCoach) return 'athlete';
+  if (!hasCoach && !hasAthlete) return null;
+  try {
+    const remembered = window.localStorage.getItem(LAST_WORKSPACE_KEY);
+    return remembered === 'coach' || remembered === 'athlete' ? remembered : 'choose';
+  } catch {
+    return 'choose';
+  }
+}
 
 export function safeReturnTo(value) {
   if (!value) return '/athlete/';
@@ -186,20 +206,39 @@ export function authErrorMessage(error) {
 // Apple signs him in as a different one. Password first, link second, Apple third.
 export async function renderDoorway(container, { destination, label }) {
   const apple = (await enabledProviders()).apple === true;
-  container.innerHTML = `<section class="auth-page"><div class="auth-card doorway">
-    <h1 class="auth-mark">FORM<span class="sr-only"> ${label}</span></h1>
-    <form id="passwordForm" class="form-grid">
-      <label class="field-label">Email<input class="field-input" type="email" name="email" autocomplete="email" required placeholder="you@example.com"></label>
-      <label class="field-label">Password<input class="field-input" type="password" name="password" autocomplete="current-password" placeholder="Your password"></label>
-      <button class="button primary" type="submit">Sign in <span class="icon-arrow">&rarr;</span></button>
-    </form>
-    <div class="auth-alts">
-      <button class="link-button" id="magicInstead" type="button">Email me a link instead</button>
-      <button class="link-button" id="forgotPassword" type="button">Set or reset my password</button>
-      ${apple ? '<button class="link-button" id="appleSignIn" type="button">Sign in with Apple</button>' : ''}
+  container.innerHTML = `<section class="auth-page auth-doorway-page">
+    <div class="auth-intro" aria-label="FORM private access">
+      <div class="auth-brand"><span>FORM</span><small>Private access</small></div>
+      <div class="auth-intro-copy">
+        <p>One account · the right workspace</p>
+        <h1>Return to your work.</h1>
+        <span>Coaches enter the Console. Athletes enter their training space. FORM recognizes the account and opens the right experience automatically.</span>
+        <div class="auth-destinations" aria-hidden="true">
+          <div><b>Coach Console</b><small>Roster, weeks, evidence, measurements and private coaching notes.</small></div>
+          <div><b>Athlete</b><small>Training plan, upcoming work, filed results and the athlete-facing record.</small></div>
+        </div>
+      </div>
+      <footer>Speed &amp; Form</footer>
     </div>
-    <p class="status-message" id="authStatus" role="status"></p>
-  </div></section>`;
+    <div class="auth-side"><div class="auth-wrap"><div class="auth-card doorway">
+      <div class="auth-head"><div><h2>Welcome back.</h2><p>Sign in once. FORM will take you to the workspace connected to your account.</p></div>
+        <span class="auth-secure" aria-label="Secure sign in"><i></i></span></div>
+      <form id="passwordForm" class="form-grid auth-form">
+        <label class="field-label">Email<input class="field-input" type="email" name="email" autocomplete="email" required placeholder="you@example.com"></label>
+        <label class="field-label"><span class="auth-label-row"><span>Password</span><button class="link-button" id="forgotPassword" type="button">Set or reset password</button></span>
+          <input class="field-input" type="password" name="password" autocomplete="current-password" placeholder="Enter password"></label>
+        <p class="auth-persistence">This device stays signed in until you sign out.</p>
+        <button class="button primary" type="submit">Sign in <span class="icon-arrow">&rarr;</span></button>
+      </form>
+      <div class="auth-divider">or</div>
+      <div class="auth-alts">
+        <button class="button auth-secondary" id="magicInstead" type="button">Email me a sign-in link</button>
+        ${apple ? '<button class="button auth-secondary" id="appleSignIn" type="button">Sign in with Apple</button>' : ''}
+      </div>
+      <p class="auth-magic-note">No coach or athlete choice is needed here. Access follows the memberships connected to your account.</p>
+      <p class="status-message" id="authStatus" role="status"></p>
+    </div></div></div>
+  </section>`;
 
   const status = () => document.getElementById('authStatus');
   const say = (text, kind = '') => {
@@ -220,7 +259,10 @@ export async function renderDoorway(container, { destination, label }) {
       return;
     }
     button.disabled = true; say('Signing in.');
-    try { await signInWithPassword(emailValue(), password); window.location.reload(); }
+    // Land where the door says to land. A reload put a signing-in coach back on
+    // the page that holds the door, which is the authoring Console, so the daily
+    // surface was never where signing in ended up.
+    try { await signInWithPassword(emailValue(), password); window.location.assign(safeReturnTo(destination)); }
     catch (error) { say(authErrorMessage(error), 'error'); button.disabled = false; }
   });
 

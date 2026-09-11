@@ -41,9 +41,13 @@ function session(week, day, mobile) {
   const totalLine = r.lines.length && /mi total$/.test(r.lines[r.lines.length - 1])
     ? r.lines[r.lines.length - 1] : '';
   const details = totalLine ? r.lines.slice(0, -1) : r.lines;
-  return `<div class="${mobile ? 'mobile-session' : 'cell'}${r.kind === 'rest' ? ' rest' : ''}">
-    <div class="session-title${r.racePace ? ' accent-title' : ''}">${esc(r.label)}</div>
+  const standard = (r.standardRows || []).map((row) =>
+    `<div class="standard-row"><span>${esc(row.work)}</span><span>${esc(row.recovery)}</span></div>`
+  ).join('');
+  return `<div class="${mobile ? 'mobile-session' : 'cell'} ${esc(r.kind)}">
+    ${r.label ? `<div class="session-title${r.racePace ? ' accent-title' : ''}">${esc(r.label)}</div>` : ''}
     <div class="primary">${esc(r.head)}</div>
+    ${standard ? `<div class="standard-sets">${standard}</div>` : ''}
     ${details.map((l) => `<div class="detail">${esc(l)}</div>`).join('')}
     ${totalLine ? `<div class="total">${esc(totalLine)}</div>` : ''}
   </div>`;
@@ -58,6 +62,7 @@ function session(week, day, mobile) {
 // wherever the window moves: the viewport moving does not change what week it is.
 const weeks = plan.weeks;
 const LAST = weeks.length;
+const VERSION = plan.version?.number ?? plan.version?.version_number ?? 1;
 
 let count = visibleCount();
 let left = 1;
@@ -104,7 +109,7 @@ function desktopSheet(start) {
     `<span>${esc(show(startOf(w.week_number)))}</span></th>`).join('');
   let body = '';
   DAYS.forEach((day) => {
-    body += `<tr><th>${day[0] + day.slice(1).toLowerCase()}</th>` + win.map((w) =>
+    body += `<tr data-day="${day}"><th>${day[0] + day.slice(1).toLowerCase()}</th>` + win.map((w) =>
       `<td class="${isNow(w) ? 'cur' : ''}">${session(w, day, false)}</td>`).join('') + '</tr>';
   });
   body += '<tr class="total"><th>WEEK TOTAL</th>' + win.map((w) =>
@@ -290,18 +295,6 @@ async function share() {
 }
 ['share', 'shareMobile'].forEach((id) => el(id)?.addEventListener('click', share));
 
-// PDF. The print edition is a separate sheet — landscape, a cover and three
-// spreads of five weeks — rendered from this same plan and handed to the
-// browser's own printer.
-//
-// Absolute, like every other path into this directory. The route is served at
-// both /plans/race-pace-durability and /plans/race-pace-durability/, and a
-// relative path resolves one directory up from the slashless form — which is
-// the form an athlete gets handed. It 404s and nothing on the page runs.
-['pdf', 'pdfMobile'].forEach((id) => el(id)?.addEventListener('click', () => {
-  window.open('/plans/race-pace-durability/print.html', '_blank', 'noopener');
-}));
-
 // ─────────────────────────────────────────────────────────────────────────
 // THE FOUR MOMENTS. Nothing in the composition moves between them; what changes
 // is whether a week is marked, and whether the page speaks in the past tense.
@@ -330,10 +323,11 @@ function today() {
 
 el('eyebrow').textContent = `${plan.plan.discipline.replace(/_/g, ' ').toUpperCase()} · ${LAST} WEEKS`;
 el('planTitle').textContent = `THE ${LAST}-WEEK PLAN`;
+el('doneStatus').textContent = `Completed · v${VERSION}`;
 // The version's date is the date the version was CUT, not the date training
 // starts. They are two different facts and the footer is stating the first.
 const cutAt = plan.version?.cut_at ? new Date(plan.version.cut_at) : weekOne;
-el('version').textContent = `${plan.plan.name} · v${plan.version?.version_number ?? 1} · ${
+el('version').textContent = `${plan.plan.name} · v${VERSION} · ${
   cutAt.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}`;
 
 // The switcher, ?state= and ?week= are DEVELOPMENT ONLY, and the gate is the

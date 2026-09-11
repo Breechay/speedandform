@@ -917,6 +917,146 @@ body:has(.view.planv){overflow:auto}
 .standTop b{font-size:9px;letter-spacing:.15em;color:var(--lime);font-weight:600}
 .standTop span{font-size:10px;color:var(--muted);letter-spacing:.03em}
 .stand p{margin:6px 0 0;font-size:13.5px;line-height:1.5;color:var(--text);max-width:46ch}
+.privateNotes{display:flex;flex-direction:column;gap:14px;margin-top:13px}
+.privateNote{padding-left:12px;border-left:1px solid #ffffff1e}
+.privateNote time{display:block;font-size:9px;letter-spacing:.13em;color:var(--muted);font-weight:600;
+  text-transform:uppercase}
+.privateNote p{margin:5px 0 0;font-size:13px;line-height:1.5;color:var(--secondary);white-space:pre-wrap}
+
+/* ── Coach Console dossier ────────────────────────────────────────────────
+   The reference file supplies the composition, not its storage model. Every
+   value in this shell still comes from private/data.js. */
+body:has(.ccApp){overflow:auto;background:
+  radial-gradient(ellipse 850px 560px at 68% -5%,#214a8738,transparent 72%),
+  linear-gradient(140deg,#080d1a,#0b1326 65%,#091020);color:#f2f4ff}
+body:has(.loading){background:radial-gradient(ellipse 850px 560px at 68% -5%,#214a8738,transparent 72%),
+  linear-gradient(140deg,#080d1a,#0b1326 65%,#091020)}
+body:has(.loading)>.mark,body:has(.loading)>.stamp,body:has(.loading)>.viewAs,
+body:has(.loading)>.navSet,body:has(.loading)>.plToggle,body:has(.loading)>.grain{display:none!important}
+body:has(.ccApp)>.mark,body:has(.ccApp)>.stamp,body:has(.ccApp)>.viewAs,
+body:has(.ccApp)>.navSet,body:has(.ccApp)>.plToggle,body:has(.ccApp)>.grain{display:none!important}
+.srOnly{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.ccApp{min-height:100vh;height:auto!important;display:grid!important;grid-template-columns:218px minmax(0,1fr);
+  gap:38px;padding:14px 36px 48px 14px;background:transparent;font-family:var(--sans)}
+.ccRail{position:sticky;top:14px;height:calc(100vh - 28px);padding:29px 9px 18px;border:1px solid #7a98d31b;
+  border-radius:18px;background:radial-gradient(ellipse at 40% 0,#223c6926,transparent 55%),
+  linear-gradient(175deg,#101a30,#0d1728);box-shadow:0 16px 46px #02050d20;display:flex;flex-direction:column}
+.ccBrand{padding:0 8px 47px;font-size:15px;font-weight:600;letter-spacing:-.02em;display:flex;align-items:center;
+  justify-content:space-between;gap:6px;white-space:nowrap}.ccBrand button{padding:5px;color:#a7b4cf;font-size:15px}
+.ccRailLabel{padding:0 10px 17px;color:#8fa1c2;font-size:10px;font-weight:700;letter-spacing:.18em}
+.ccRailLabel span{margin-left:7px;color:#657795}
+.ccRoster{display:flex;flex-direction:column;gap:6px}
+.ccAthlete{width:100%;min-height:64px;padding:10px;border:1px solid transparent;border-radius:13px;
+  display:grid;grid-template-columns:35px minmax(0,1fr);gap:11px;align-items:center;background:transparent}
+.ccAthlete:hover{background:#ffffff04}.ccAthlete.active{background:radial-gradient(ellipse at 0 50%,#7669e536,transparent 80%),
+  linear-gradient(100deg,#252e50,#16223a);border-color:#a99bec52;box-shadow:inset 0 1px 0 #d6cfff10,0 8px 22px #02071724}
+.ccAvatar,.ccMastAvatar{display:grid;place-items:center;background:linear-gradient(145deg,#253453,#18253e);
+  border:1px solid #8098d318;color:#aebde4;overflow:hidden}
+.ccAvatar{width:35px;height:38px;border-radius:9px;font-size:11px}.ccAthlete.active .ccAvatar{color:#e7e3ff;
+  background:linear-gradient(145deg,#625caa77,#334e814d);border-color:#a394ef40}
+.ccAthlete>span:last-child{min-width:0}.ccAthlete b{display:block;font-size:14px;font-weight:600;color:#e9edf9}
+.ccAthlete small{display:block;margin-top:2px;color:#9baccc;font-size:11px;line-height:1.35;white-space:normal}
+.ccRailFoot{margin-top:auto;padding:28px 7px 0;display:grid;gap:4px}.ccRailFoot button{padding:7px 4px;color:#8297b8;font-size:12px}
+.ccApp.railCollapsed{grid-template-columns:76px minmax(0,1fr)}.ccApp.railCollapsed .ccRail{padding-inline:10px}
+.ccApp.railCollapsed .ccBrand{justify-content:center;padding-inline:0}.ccApp.railCollapsed .ccBrand span,
+.ccApp.railCollapsed .ccRailLabel,.ccApp.railCollapsed .ccAthlete>span:last-child,.ccApp.railCollapsed .ccRailFoot{display:none}
+.ccApp.railCollapsed .ccAthlete{display:block;min-height:56px;padding:8px 10px}.ccApp.railCollapsed .ccAvatar{width:35px}
+.ccWorkspace{min-width:0;padding-top:20px}.ccContent{width:100%;max-width:1080px;margin:0 auto}
+.ccMast{height:52px;margin:0 4px 25px;display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:center}
+.ccMastAvatar{position:relative;width:40px;height:40px;border-radius:11px;font-size:12px}
+.ccMastAvatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none}
+.ccMastAvatar img.has-photo{display:block}.ccMast h1{margin:0;font-size:27px;line-height:1;font-weight:600;letter-spacing:-.04em}
+.ccMast p{margin:5px 0 0;color:#8798b8;font-size:11px}.ccMenu{padding:8px;color:#a8b5d1;font-size:16px;letter-spacing:.15em}
+.ccPanelGrid{display:grid;grid-template-columns:1fr;gap:26px}
+.ccCard{position:relative;isolation:isolate;border:1px solid #718ed026;border-radius:22px;
+  background:radial-gradient(ellipse 640px 250px at 78% 115%,#244f9235,transparent 75%),
+  linear-gradient(145deg,#15213a,#101a2e 70%);box-shadow:inset 0 1px 0 #c6d7ff08,0 14px 32px #02071025;overflow:hidden}
+.ccCard>header{display:flex;align-items:center;justify-content:space-between;gap:18px}.ccCard h2{margin:0;color:#d7e0f2;
+  font-size:14px;font-weight:500}.ccCard header p{margin:4px 0 0;color:#8fa2c3;font-size:12px}.ccQuiet{padding:9px 13px;
+  border:1px solid #8aa4d421;border-radius:10px;color:#c0cce0;text-decoration:none;font-size:12px}
+.ccWeekHeading{display:flex;align-items:center;gap:14px}.ccWeekNav{display:flex;gap:4px}.ccWeekNav button{width:27px;height:27px;
+  border:1px solid #8199ca18;border-radius:8px;background:#ffffff03;color:#91a3c1;font-size:12px}.ccWeekNav button:hover:not(:disabled){
+  border-color:#8fa9dd38;color:#d3dbed}.ccWeekNav button:disabled{opacity:.25;cursor:default}
+.ccWeek{padding:28px}.ccDays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;margin-top:18px}
+.ccDay{min-height:146px;padding:11px 9px;border:1px solid #7795ce0e;border-radius:12px;
+  background:linear-gradient(180deg,#25335045,#16223c33)}
+.ccDayName{display:flex;justify-content:space-between;color:#99aed0;font-size:9px;letter-spacing:.08em}.ccDayName b{font-weight:500}
+.ccDay.today .ccDayName b{padding:1px 5px;border-radius:6px;background:linear-gradient(145deg,#aa92ef,#7076e5);
+  box-shadow:0 0 15px #8675e82b;color:#fff}
+.ccSession{width:100%;min-height:72px;margin-top:13px;padding:9px 8px;border:1px solid #7f99d52e;border-left:2px solid #9787ec;
+  border-radius:8px;background:linear-gradient(145deg,#2e3e644f,#2234513b);color:#e0e9fa;font-size:12px;line-height:1.4}
+.ccSession.quality{border-left-color:#7edbd0}.ccSession.long{border-left-color:#c6a177}
+.ccDistance{min-height:310px;padding:35px 34px 29px;display:flex;flex-direction:column;justify-content:center;gap:32px}
+.ccDistanceTop{display:flex;align-items:center;justify-content:space-between;gap:24px}.ccDistanceTotal{display:flex;align-items:baseline;gap:12px}
+.ccDistanceTotal strong{font-size:clamp(58px,6vw,82px);font-weight:450;line-height:1;letter-spacing:-.065em;color:#d9f8f1}
+.ccDistanceTotal span{color:#9aaac4;font-size:14px}.ccPace{color:#b7b2dc;font-size:20px;letter-spacing:-.025em}
+.ccTrack{position:relative;height:72px;margin:0 28px}.ccLine,.ccFill{position:absolute;left:0;top:14px;height:3px;border-radius:3px}
+.ccLine{width:100%;background:#8093c72d}.ccFill{width:var(--position);background:linear-gradient(90deg,#829add,#a1e5d8);
+  box-shadow:0 0 18px #83b7de22}.ccOrigin{position:absolute;left:-4px;top:10px;width:10px;height:10px;border:1px solid #8192b2;
+  border-radius:50%;background:#132038}.ccMark{position:absolute;left:var(--position);top:0;transform:translateX(-50%);min-width:54px;
+  padding:0;border:0;background:transparent;display:flex;flex-direction:column;align-items:center}.ccMark b{display:grid;place-items:center;
+  min-width:31px;height:31px;padding:0 5px;border:1px solid #9e93d44d;border-radius:50%;background:linear-gradient(150deg,#243357,#18243f);
+  box-shadow:0 0 0 6px #132038;color:#bdc6df;font-size:12px;font-weight:500}.ccMark.next b{border-color:#b3a3ee8a;color:#e0d4fc}
+.ccMark small{max-width:100px;margin-top:12px;color:#99acce;font-size:9px;line-height:1.25;white-space:nowrap}.ccEvidence{align-self:flex-start;
+  min-height:34px;padding:6px 11px;border:1px solid #9baae514;border-radius:8px;background:#9fa5d407;color:#91a8c9;font-size:12px}
+.ccRelationshipWeek{min-height:220px;display:flex;flex-direction:column}.ccRelationshipWeek>p{max-width:60ch;margin:auto 0 0;
+  padding-top:28px;color:#becae0;font-size:14px;line-height:1.65}
+.ccConsistency{min-height:286px;padding:38px;display:grid;grid-template-columns:180px minmax(0,1fr);gap:34px;align-items:center}
+.ccConsistencyDose{display:flex;align-items:baseline;gap:9px}.ccConsistencyDose strong{font-size:76px;font-weight:450;line-height:1;
+  letter-spacing:-.065em;color:#d9f8f1}.ccConsistencyDose span{color:#9aaac4;font-size:13px;line-height:1.45}
+.ccConsistencyCount p,.ccPhysique>div p,.ccFunctional>p{margin:0 0 14px;color:#91a5c5;font-size:12px}
+.ccConsistencyCount strong{font-size:42px;font-weight:500;color:#d9def0}.ccConsistencyCount span{margin-left:10px;color:#899bb9;font-size:12px}
+.ccInstrumentNote{grid-column:1/-1;max-width:64ch;margin:0;color:#8194b4;font-size:12px;line-height:1.55}
+.ccInstrumentFoot{grid-column:1/-1;min-height:34px;display:flex;align-items:center}.ccInstrumentFoot>span{color:#7184a4;font-size:11px}
+.ccPhysique{min-height:286px;padding:38px;display:grid;grid-template-columns:minmax(180px,.72fr) minmax(240px,1fr);align-items:center;gap:48px}
+.ccMeasureCurrent strong{font-size:clamp(46px,5vw,76px);font-weight:450;line-height:1;color:#b4f0e9}.ccMeasureCurrent>span{margin-left:8px;color:#91a5c5}
+.ccMeasureCurrent>small{display:block;margin-top:18px;color:#8295b5;font-size:11px;line-height:1.5}.ccMeasureSide{display:flex;flex-direction:column;
+  align-items:flex-start;gap:16px}.ccMeasureSide>p{margin:0;color:#91a5c5;font-size:13px;line-height:1.6}.ccAddReading{padding:8px 12px;
+  border:1px solid #86a0d327;border-radius:9px;background:#ffffff03;color:#b4c2da;font-size:11px}.ccMeasureTrend{display:flex;align-items:flex-end;
+  gap:20px}.ccMeasureTrend>span{display:grid;grid-template-columns:8px auto;column-gap:7px;align-items:center}.ccMeasureTrend i{width:7px;height:7px;
+  border-radius:50%;background:#a5e8dc;box-shadow:0 0 12px #94d9cf38}.ccMeasureTrend b{color:#d8e1ef;font-size:13px;font-weight:500}
+.ccMeasureTrend small{grid-column:2;color:#7184a3;font-size:9px}.ccMeasureDetails{color:#7f92b1;font-size:10px}.ccMeasureDetails summary{cursor:pointer}
+.ccMeasureDetails ol{display:grid;gap:8px;margin:12px 0 0;padding:0;list-style:none}.ccMeasureDetails li{display:grid;grid-template-columns:52px 46px 1fr;
+  gap:8px}.ccMeasureDetails li b{color:#cbd7e9;font-weight:500}.ccMeasureDetails li span{color:#7083a2}.ccFunctional{min-height:260px;padding:38px;display:flex;flex-direction:column;justify-content:center}
+.ccFunctional h2{font-size:32px;font-weight:500;letter-spacing:-.035em;color:#e4e9f6}.ccFunctional span{margin-top:22px;color:#91a5c5;font-size:13px}
+.ccBaseline{min-height:286px;padding:38px;display:flex;flex-direction:column;justify-content:center}.ccBaseline>p{margin:0 0 16px;
+  color:#91a5c5;font-size:12px}.ccBaseline h2{max-width:520px;margin:0;font-size:34px;font-weight:500;letter-spacing:-.04em;color:#e4e9f6}
+.ccBaselineLine{display:flex;align-items:center;gap:15px;margin-top:42px;color:#8295b5;font-size:12px}.ccBaselineLine i{display:block;width:76px;
+  height:3px;border-radius:3px;background:linear-gradient(90deg,#a4e8dd,#95a7df);box-shadow:0 0 16px #85d8ca20}
+.ccNotes{min-height:270px;padding:28px;display:flex;flex-direction:column}.ccNotes header span{color:#7588aa;font-size:10px;letter-spacing:.06em}
+.ccNoteHistory{display:grid;gap:13px;margin:20px 0 8px}.ccNoteHistory article{display:grid;
+  grid-template-columns:70px minmax(0,1fr);gap:14px;padding-bottom:4px}
+.ccNoteHistory time{color:#7185a7;font-size:10px;text-transform:uppercase}.ccNoteHistory p{margin:0;color:#cbd5e9;font-size:14px;line-height:1.6;white-space:pre-wrap}
+#ccNoteForm{display:flex;flex-direction:column;margin-top:18px}#ccNoteBody{width:100%;height:auto;min-height:58px;max-height:280px;padding:8px 0 16px;
+  resize:none;overflow-y:auto;border:0;background:transparent;color:#d9e1f2;font:15px/1.75 var(--sans);caret-color:#baabff}
+#ccNoteBody:focus{outline:0}#ccNoteBody::placeholder{color:#667997}#ccNoteForm>div{display:flex;align-items:center;justify-content:space-between;gap:18px}
+#ccNoteStatus{min-height:1em;margin-right:auto;color:#7183a2;font-size:10px}.ccNoteShortcut{color:#596b88;font-size:9px;letter-spacing:.04em}
+#ccNoteForm button{padding:8px 13px;border:1px solid #948bd34a;border-radius:9px;
+  background:#8f82d814;color:#d9d5f5;font-size:11px}.ccNotes:focus-within{border-color:#a194e546}
+.ccMedia{min-height:150px;padding:28px}.ccMedia p{margin:25px 0 0;color:#91a5c5;font-size:13px}
+.ccLoading .ccMast p{color:#6f82a3}.ccLoadWeek{min-height:220px;padding:28px}.ccLoadWeek>i,.ccLoadInstrument>i,
+.ccLoadNotes>i{display:block;width:92px;height:10px;border-radius:8px;background:#91a8d31b}.ccLoadDays{display:grid;
+  grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;margin-top:30px}.ccLoadDays span{display:block;height:122px;border-radius:11px;
+  background:linear-gradient(145deg,#2a395a30,#1c2a4430)}.ccLoadInstrument{min-height:286px;padding:38px;display:flex;
+  flex-direction:column;justify-content:center}.ccLoadInstrument b{display:block;width:110px;height:58px;margin-top:30px;border-radius:12px;
+  background:#a1dcd21a}.ccLoadInstrument span{display:block;width:min(480px,72%);height:3px;margin-top:42px;background:#8198c624}
+.ccLoadNotes{min-height:300px;padding:28px}.ccLoadNotes span{display:block;width:76%;height:11px;margin-top:28px;border-radius:7px;
+  background:#8fa5ce14}.ccLoadNotes span+span{width:58%;margin-top:13px}.ccLoading .ccPanelGrid>.ccCard{overflow:hidden}
+.ccLoading .ccPanelGrid>.ccCard::after{content:"";position:absolute;inset:0;transform:translateX(-100%);
+  background:linear-gradient(100deg,transparent,#b6d5ff08,transparent);animation:ccRead 1.4s ease-in-out infinite}
+@keyframes ccRead{to{transform:translateX(100%)}}
+@media(prefers-reduced-motion:reduce){.ccLoading .ccPanelGrid>.ccCard::after{animation:none}}
+@media(max-width:980px){.ccApp{grid-template-columns:190px minmax(0,1fr);gap:18px;padding-right:18px}.ccWorkspace{padding-top:10px}
+  .ccBrand{padding-bottom:35px}.ccAthlete{grid-template-columns:32px minmax(0,1fr);gap:8px;padding-inline:7px}.ccAvatar{width:32px}}
+@media(max-width:760px){.ccApp{grid-template-columns:64px minmax(0,1fr);gap:12px;padding:8px 10px 30px 8px}.ccRail{top:8px;
+  height:calc(100vh - 16px);padding:12px 5px}.ccAthlete{padding:7px}.ccAvatar{width:34px}.ccWeek,.ccDistance,.ccNotes,.ccMedia{padding:21px}
+  .ccBrand,.ccRailLabel,.ccAthlete>span:last-child,.ccRailFoot{display:none}.ccAthlete{display:block;min-height:56px}
+  .ccDays{overflow-x:auto;grid-template-columns:repeat(7,105px)}
+  .ccDistance{min-height:285px}.ccDistanceTop{align-items:flex-start}.ccDistanceTotal{flex-wrap:wrap;gap:7px}.ccPace{font-size:16px}
+  .ccConsistency{grid-template-columns:1fr;padding:24px}.ccInstrumentNote{grid-column:auto}.ccPhysique{grid-template-columns:1fr;align-items:flex-start;padding:24px}
+  .ccLoadDays{overflow:hidden;grid-template-columns:repeat(7,105px)}
+  .ccTrack{margin-inline:5px}.ccMark small{font-size:8px}.ccNoteHistory article{grid-template-columns:1fr}.ccNoteHistory time{margin-bottom:-7px}}
 
 /* Canonical rest. A day meant to be empty, not a day with nothing in it. */
 .pg tr.restrow td{background:none;border:0;padding:7px 11px;font-size:10px;letter-spacing:.16em;

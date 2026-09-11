@@ -1,4 +1,4 @@
-import { bindAccountSecurity, authErrorMessage, getAccessContext, renderDoorway, signOut } from '/private/auth.js';
+import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorkspace, renderDoorway, signOut } from '/private/auth.js';
 import { addPrivateNote, authorSession, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask, reviseSession } from '/private/data.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
 import { MONTHS, dayLabel, initials, rangeLabel, structureOf, titleAlreadySays } from '/private/render.js';
@@ -63,7 +63,7 @@ let attentionOrder = false;
 
 async function authView() {
   document.body.classList.add('auth-only');
-  await renderDoorway(app, { destination: '/coach/', label: 'Coach sign in' });
+  await renderDoorway(app, { destination: '/coach/labs/', label: 'Coach sign in' });
 }
 
 function pendingView(email) {
@@ -1763,6 +1763,7 @@ async function boot() {
     document.getElementById('userInitials').textContent = (email[0] || 'B').toUpperCase();
     if (!access.coachMemberships.length && access.athleteMemberships.length) { window.location.replace('/athlete/'); return; }
     if (!access.coachMemberships.length) { pendingView(access.session.user.email || 'This account'); return; }
+    rememberWorkspace('coach');
     roster = await loadCoachRoster(access.coachMemberships);
     const requested = new URLSearchParams(location.search).get('athlete');
     selectedId = roster.find((athlete) => athlete.slug === requested)?.id || roster[0]?.id;

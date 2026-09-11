@@ -1,4 +1,4 @@
-import { bindAccountSecurity, authErrorMessage, getAccessContext, renderDoorway, signOut } from '/private/auth.js';
+import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorkspace, renderDoorway, resolveAuthorizedWorkspace, signOut } from '/private/auth.js';
 import { changeEmail, fileSession, loadAthleteRecord, updateCompletion } from '/private/data.js';
 import { escapeHtml, renderAthleteRecord } from '/private/record.js';
 
@@ -25,6 +25,20 @@ function pendingView(email) {
     <div><p class="eyebrow">Signed in</p><h1>Your record is not linked yet.</h1><p>${escapeHtml(email)} is secure, but it has not been matched to an athlete record. Brice can link it without creating another account.</p></div>
     <a class="button" href="mailto:brice@speedandform.com?subject=Link%20my%20FORM%20record">Ask Brice to link this email <span class="icon-arrow">→</span></a>
   </div></section>`;
+}
+
+function workspaceChoiceView() {
+  app.innerHTML = `<section class="auth-page"><div class="auth-card workspace-chooser">
+    <p class="eyebrow">FORM access</p><h1>Choose a workspace.</h1>
+    <p>This account can enter both sides of FORM.</p>
+    <button class="button primary" type="button" data-workspace="coach">Coach Console <span>→</span></button>
+    <button class="button" type="button" data-workspace="athlete">Athlete Record <span>→</span></button>
+  </div></section>`;
+  app.querySelectorAll('[data-workspace]').forEach((button) => button.addEventListener('click', () => {
+    const workspace = button.dataset.workspace;
+    rememberWorkspace(workspace);
+    window.location.replace(workspace === 'coach' ? '/coach/labs/' : '/athlete/');
+  }));
 }
 
 function bindRecordActions() {
@@ -130,8 +144,15 @@ async function boot() {
     signedInEmail = access.session.user.email || '';
     userEmail.textContent = signedInEmail;
     signOutButton.hidden = false;
-    if (!access.athleteMemberships.length && access.coachMemberships.length) { window.location.replace('/coach/'); return; }
+    // The public Sign in link is shared by athletes and coaches. When an
+    // authenticated coach comes through that doorway, hand them directly to
+    // the daily Console instead of the retired /coach surface. `replace`
+    // keeps the doorway out of browser history and avoids a legacy-page flash.
+    const workspace = resolveAuthorizedWorkspace(access);
+    if (workspace === 'coach') { window.location.replace('/coach/labs/'); return; }
+    if (workspace === 'choose') { workspaceChoiceView(); return; }
     if (!access.athleteMemberships.length) { pendingView(access.session.user.email || 'This account'); return; }
+    rememberWorkspace('athlete');
     await renderRecord(access.athleteMemberships[0].athlete_id);
   } catch (error) {
     app.innerHTML = `<section class="auth-page"><div class="auth-card"><p class="eyebrow">Could not open the record</p><h1>Try that again.</h1><p class="status-message error">${escapeHtml(authErrorMessage(error))}</p><button class="button" type="button" id="retry">Retry</button></div></section>`;

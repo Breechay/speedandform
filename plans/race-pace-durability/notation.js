@@ -25,14 +25,18 @@ export function notation(plan) {
 
   const clock = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
   const span = (c) => {
-    if (c.distance != null) return `${+c.distance} MI`;
+    if (c.distance != null) {
+      if (c.distance_unit === 'km' && +c.distance < 1) return `${Math.round(+c.distance * 1000)}M`;
+      return `${+c.distance} ${(c.distance_unit || 'mi').toUpperCase()}`;
+    }
     if (c.duration_seconds == null) return '';
     return c.duration_seconds % 60 === 0
       ? `${c.duration_seconds / 60} MIN` : `${c.duration_seconds} S`;
   };
   const isRacePace = (c) => c.pace_low_seconds === RP_LO && c.pace_high_seconds === RP_HI;
-  const isStride = (c) => c.shape === 'repetitions' && c.duration_seconds != null
-    && c.duration_seconds <= 30 && c.pace_low_seconds == null;
+  const isStride = (c) => c.shape === 'repetitions' && c.pace_low_seconds == null
+    && ((c.duration_seconds != null && c.duration_seconds <= 30)
+      || (c.distance_unit === 'km' && c.distance != null && +c.distance <= .15));
 
   // Notation is semantic, never a generic component arrow. A long run is
   // `16 mi · last 3 @ your race-pace band`, not `13 mi → 3 mi`; strides are
@@ -57,6 +61,23 @@ export function notation(plan) {
     return `${t}${c.recovery_kind ? ` ${c.recovery_kind}` : ''}`;
   };
   const lower = (c) => span(c).toLowerCase();
+  const standardRecovery = (value) => {
+    const raw = value.replace(/\s+recovery$/i, '').trim();
+    if (/^full$/i.test(raw)) return 'full';
+    const seconds = raw.match(/^(\d+)s$/i);
+    if (seconds) return `r${seconds[1]}`;
+    const minutes = raw.match(/^(\d+)\s+min$/i);
+    if (minutes) return `r${minutes[1]}:00`;
+    return `r${raw}`;
+  };
+  const standardRows = (session) => (session.details || '').split('\n').flatMap((line) => {
+    const match = line.trim().match(/^(\d+)\s*x\s*(\d+)m\s+in\s+([^/]+?)(?:\s*\/\s*(.+))?$/i);
+    if (!match) return [];
+    return [{
+      work: `${match[1]} × ${match[2]}m · ${match[3].trim().replaceAll('-', '–')}`,
+      recovery: match[4] ? standardRecovery(match[4]) : ''
+    }];
+  });
 
   function describe(session) {
     if (!session) return { kind: 'rest', label: 'Rest', head: '—', lines: [] };
@@ -82,6 +103,27 @@ export function notation(plan) {
       : /aerobic|recovery/i.test(label) ? 'easy' : 'support';
     const isThreshold = /^threshold/i.test(label);
 
+    // A fixed Thursday standard is authored in rep distance + absolute rep
+    // time. Its equivalent pace fields exist for structured comparison, not
+    // for presentation. The authored detail lines therefore remain the display
+    // language and the named workout remains one semantic session.
+    if (/^absolute speed standard$/i.test(label)) {
+      return { kind: 'absolute', label: '', head: session.title,
+        standardRows: standardRows(session), lines: [book, total].filter(Boolean) };
+    }
+
+    // Controlled aerobic-power work is effort-authored, not pace-authored.
+    // Do not let its structured comparison band replace "controlled hard".
+    if (/controlled hard/i.test(session.details || '') && reps) {
+      const n = reps.repeat_count > 1 ? `${reps.repeat_count} × ` : '';
+      if (/^hills$/i.test(label)) {
+        return { kind, label, head: `${n}${lower(reps)} uphill · controlled hard`,
+          lines: ['jog down / ~2 min easy', book, total].filter(Boolean) };
+      }
+      return { kind, label, head: `${n}${lower(reps)} controlled hard`,
+        lines: [rest(reps), book, total].filter(Boolean) };
+    }
+
     if (strides) {
       const base = work.find((c) => c.shape === 'continuous');
       return { kind, label, head: `${+session.distance} mi easy + ${
@@ -91,7 +133,7 @@ export function notation(plan) {
     if (aerobic) {
       if (rpCont) {
         return { kind, label, head: `${+session.distance} mi`,
-          lines: [`last ${+rpCont.distance} mi @ ${band(rpCont)}`,
+          lines: [`last ${+rpCont.distance} mi continuous @ ${band(rpCont)}`,
                   `${+aerobic.distance} mi easy + ${+rpCont.distance} mi race pace`,
                   book, total].filter(Boolean) };
       }

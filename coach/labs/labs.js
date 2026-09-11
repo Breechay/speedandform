@@ -11,7 +11,6 @@
 // /coach/ stays live.
 //
 // Three views in one document, so navigating costs no round trip:
-//   #/bench            every athlete, one column each
 //   #/a/:slug          one athlete
 //   #/a/:slug/block    the whole campaign
 //
@@ -21,8 +20,8 @@
 // travels through element.style.setProperty in paint(), which the CSP allows.
 // Nothing in this file writes a style attribute into a template string.
 
-import { authErrorMessage, getAccessContext } from '/private/auth.js';
-import { addObservation, createRead, fileForAthlete, loadAthleteRecord, loadAttentionFor, loadCoachBench, reviseSession, rungFor, savePortrait, setExceptionStatus, setSessionAsk } from '/private/data.js';
+import { authErrorMessage, getAccessContext, rememberWorkspace } from '/private/auth.js';
+import { addAthleteMeasurement, addObservation, addPrivateNote, createRead, fileForAthlete, loadAthleteRecord, loadAttentionFor, loadCoachBench, loadConsolePreferences, reviseSession, rungFor, saveConsolePreferences, savePortrait, setExceptionStatus, setSessionAsk } from '/private/data.js?v=3';
 import { escapeHtml } from '/private/record.js';
 import { authoredMiles, dayLabel, initials, rangeLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
 
@@ -62,6 +61,9 @@ let bench = [];
 let record = null;
 let attention = [];
 let pending = null;
+let consolePreferences = null;
+let dossierWeekId = null;
+let athleteLoadToken = 0;
 
 // Local, not UTC. toISOString rolls over at 8pm Eastern, so every surface that
 // asks "is this today" — the week view's marker, whether a session can be filed,
@@ -538,72 +540,233 @@ function observationsHtml() {
          actually training for. Not an event.</p>`}`;
 }
 
+// Private notes are scratch space for the coach, not evidence and not a standing
+// fact. Keep them visibly separate from both. They are append-only here: a note
+// that mattered enough to keep should not quietly change underneath the record.
+function privateNotesHtml() {
+  if (!asCoach()) return '';
+  const notes = (record.privateNotes || []).slice(0, 4);
+  return `<div class="hRow">
+      <div class="h">PRIVATE NOTES</div>
+      <button class="act quiet" type="button" data-private-note="new">Add</button>
+    </div>
+    ${notes.length
+      ? `<div class="privateNotes">${notes.map((note) => `<article class="privateNote">
+          <time datetime="${escapeHtml(note.created_at)}">${escapeHtml(dayLabel(note.created_at.slice(0, 10)))}</time>
+          <p>${escapeHtml(note.body)}</p>
+        </article>`).join('')}</div>`
+      : `<p class="empty section">No private notes. These stay with the coach and are never shown to the athlete.</p>`}`;
+}
+
+function dossierRosterHtml(activeSlug) {
+  // loadCoachRoster has already applied the coach's stable presentation order.
+  // Attention appears in the record; it never rearranges this navigation.
+  const ordered = bench;
+  return `<aside class="ccRail">
+    <div class="ccBrand"><span>Coach Console</span><button type="button" data-collapse-rail aria-label="${
+      consolePreferences?.rail_collapsed ? 'Expand athlete rail' : 'Collapse athlete rail'}">▥</button></div>
+    <div class="ccRailLabel">ATHLETES <span>${escapeHtml(ordered.length)}</span></div>
+    <div class="ccRoster">${ordered.map((entry) => {
+      const next = entry.next;
+      const context = next
+        ? [next.scheduled_on ? dayLabel(next.scheduled_on) : null,
+          shortDose(next.currentVersion) || titleOf(next)].filter(Boolean).join(' · ')
+        : entry.mark?.current_value != null
+          ? `${Number(entry.mark.current_value)} ${entry.mark.unit || ''} established`
+          : '';
+      return `<button class="ccAthlete${entry.slug === activeSlug ? ' active' : ''}" type="button"
+        data-slug="${escapeHtml(entry.slug)}">
+        <span class="ccAvatar">${escapeHtml(initials(entry.first_name))}</span>
+        <span><b>${escapeHtml(entry.first_name)}</b>${context ? `<small>${escapeHtml(context)}</small>` : ''}</span>
+      </button>`;
+    }).join('')}</div>
+  </aside>`;
+}
+
+function dossierWeekHtml() {
+  const orderedWeeks = (record.weeks || []).slice().sort((a, b) => a.starts_on.localeCompare(b.starts_on));
+  const week = orderedWeeks.find((item) => item.id === dossierWeekId) || record.currentWeek;
+  if (!week) {
+    const baseline = (record.baselines || [])[0];
+    return `<section class="ccCard ccWeek ccRelationshipWeek">
+      <header><div><h2>This week</h2></div><a class="ccQuiet" href="/coach/console/">＋ Add work</a></header>
+      ${baseline?.strength_schedule ? `<p>${escapeHtml(baseline.strength_schedule)}</p>` : ''}
+    </section>`;
+  }
+  const sessions = record.sessionsByWeek?.[week.id] || [];
+  const weekIndex = orderedWeeks.findIndex((item) => item.id === week.id);
+  const previous = weekIndex > 0 ? orderedWeeks[weekIndex - 1] : null;
+  const next = weekIndex >= 0 && weekIndex < orderedWeeks.length - 1 ? orderedWeeks[weekIndex + 1] : null;
+  const days = WEEK_DAYS.map((name, index) => {
+    const date = addDays(week.starts_on, index);
+    const mine = sessions.filter((session) => session.scheduled_on === date && session.state !== 'cancelled');
+    return `<div class="ccDay${date === today() ? ' today' : ''}">
+      <div class="ccDayName"><span>${escapeHtml(name.slice(0, 3).toUpperCase())}</span><b>${escapeHtml(Number(date.slice(8)))}</b></div>
+      ${mine.map((session) => `<button class="ccSession ${escapeHtml(characterOf(session))}" type="button"
+        data-session="${escapeHtml(session.id)}"><span>${escapeHtml(shortDose(session.currentVersion) || titleOf(session))}</span></button>`).join('')}
+    </div>`;
+  }).join('');
+  return `<section class="ccCard ccWeek">
+    <header><div class="ccWeekHeading"><div><h2>${week.id === record.currentWeek?.id ? 'This week' : 'Week'}</h2>
+      <p>${escapeHtml(rangeLabel(week.starts_on, week.ends_on))}</p></div>
+      <nav class="ccWeekNav" aria-label="Choose week">
+        <button type="button" data-dossier-week="${escapeHtml(previous?.id || '')}" ${previous ? '' : 'disabled'} aria-label="Previous week">←</button>
+        <button type="button" data-dossier-week="${escapeHtml(next?.id || '')}" ${next ? '' : 'disabled'} aria-label="Next week">→</button>
+      </nav></div>
+      <a class="ccQuiet" href="/coach/console/">＋ Add work</a></header>
+    <div class="ccDays">${days}</div>
+  </section>`;
+}
+
+function distanceInstrumentHtml() {
+  const mark = record.primaryMark;
+  const owned = mark?.current_value != null ? Number(mark.current_value) : null;
+  const target = mark?.target_value != null ? Number(mark.target_value) : 13.1;
+  const future = (mark?.checkpoints || []).slice().sort((a, b) => a.position - b.position)
+    .filter((rung) => rung.state !== 'reached' && Number(rung.value) <= target);
+  const askDateFor = (rung) => (record.sessions || []).filter((session) => session.scheduled_on)
+    .filter((session) => continuousAtBand(session.currentVersion))
+    .sort((a, b) => a.scheduled_on.localeCompare(b.scheduled_on))
+    .find((session) => rungFor(session, mark)?.rung?.id === rung.id)?.scheduled_on || null;
+  const bands = paceBands();
+  const pace = bands.find((band) => /race/i.test(String(band.label)))?.value || bands[0]?.value || '';
+  const completedIds = new Set((record.completions || []).map((completion) => completion.planned_session_id).filter(Boolean));
+  const broken = (record.currentSessions || []).filter((session) => session.scheduled_on && session.scheduled_on <= today())
+    .map((session) => ({ session, miles: workMiles(session.currentVersion) }))
+    .filter((item) => item.miles && item.session.currentVersion?.components?.some((part) => part.shape === 'repetitions'))
+    .sort((a, b) => b.session.scheduled_on.localeCompare(a.session.scheduled_on))[0];
+  return `<section class="ccCard ccDistance">
+    <div class="ccDistanceTop"><div class="ccDistanceTotal"><strong>${owned == null ? '—' : escapeHtml(owned)}</strong>
+      <span>${escapeHtml(mark?.unit || 'mi')} continuous</span></div>
+      ${pace ? `<div class="ccPace">${escapeHtml(pace)}</div>` : ''}</div>
+    <div class="ccTrack" aria-label="${owned == null ? 'No continuous distance established' : `${owned} continuous miles established`}">
+      <i class="ccLine"></i>${owned != null ? `<i class="ccFill" data-position="${Math.min(100, owned / target * 100)}"></i>` : ''}
+      <i class="ccOrigin"></i>
+      ${future.map((rung) => `<span class="ccMark${rung.state === 'current' ? ' next' : ''}"
+        data-position="${Math.min(100, Number(rung.value) / target * 100)}">
+        <b>${escapeHtml(Number(rung.value))}</b><small>${escapeHtml(askDateFor(rung) ? dayLabel(askDateFor(rung)) : '')}</small></span>`).join('')}
+    </div>
+    ${broken ? `<button class="ccEvidence" type="button" data-session="${escapeHtml(broken.session.id)}">${
+      escapeHtml(Number(broken.miles.toFixed(1)))} ${escapeHtml(mark?.unit || 'mi')} ${
+      completedIds.has(broken.session.id) ? 'filed' : 'planned'} in reps · ${escapeHtml(dayLabel(broken.session.scheduled_on))} →</button>` : ''}
+  </section>`;
+}
+
+function consistencyInstrumentHtml() {
+  const week = record.currentWeek;
+  const filedDays = week ? [...new Set((record.completions || [])
+    .map(filedOn).filter((date) => date >= week.starts_on && date <= week.ends_on))] : [];
+  const minutePart = (record.currentSessions || []).flatMap((session) => session.currentVersion?.components || [])
+    .find((part) => part.role === 'work' && part.duration_seconds != null);
+  const dose = minutePart ? Math.round(Number(minutePart.duration_seconds) / 60) : null;
+  const baseline = (record.baselines || [])[0];
+  const latestOutdoor = (record.completions || []).filter((completion) => completion.actual_distance != null
+    && /outdoor|road|track|trail/i.test(String(completion.surface || '')))
+    .sort((a, b) => String(b.filed_at).localeCompare(String(a.filed_at)))[0];
+  if (record.athlete.slug === 'valerie') {
+    return `<section class="ccCard ccBaseline">
+      <p>Running baseline</p><h2>Starting point to establish.</h2>
+      <div class="ccBaselineLine"><i></i><span>No continuous dose or distance has been established yet.</span></div>
+    </section>`;
+  }
+  return `<section class="ccCard ccConsistency">
+    <div class="ccConsistencyDose"><strong>${dose == null ? '—' : escapeHtml(dose)}</strong><span>min<br>per run</span></div>
+    <div class="ccConsistencyCount"><p>Running days${week ? ` · ${escapeHtml(rangeLabel(week.starts_on, week.ends_on))}` : ''}</p>
+      <strong>${filedDays.length ? escapeHtml(filedDays.length) : '—'}</strong><span>${filedDays.length ? 'days filed' : 'baseline to establish'}</span></div>
+    <div class="ccInstrumentFoot">${latestOutdoor ? `<button type="button" class="ccEvidence"${latestOutdoor.planned_session_id
+      ? ` data-session="${escapeHtml(latestOutdoor.planned_session_id)}"` : ''}>${
+      escapeHtml(Number(latestOutdoor.actual_distance))} ${escapeHtml(latestOutdoor.distance_unit || 'mi')} outdoors · ${
+      escapeHtml(dayLabel(latestOutdoor.filed_at.slice(0, 10)))} →</button>` : '<span>Outdoor-distance evidence will appear when filed.</span>'}</div>
+    ${baseline?.running_history ? `<p class="ccInstrumentNote">${escapeHtml(baseline.running_history)}</p>` : ''}
+  </section>`;
+}
+
+function physiqueInstrumentHtml() {
+  const readings = (record.measurements || []).filter((item) => item.measurement_type === 'body_fat')
+    .slice().sort((a, b) => String(b.measured_at).localeCompare(String(a.measured_at))
+      || String(b.created_at).localeCompare(String(a.created_at)));
+  const current = readings[0] || null;
+  return `<section class="ccCard ccPhysique">
+    <div class="ccMeasureCurrent"><p>${current ? 'Body-fat reading' : 'Body fat'}</p><strong>${current ? escapeHtml(Number(current.value)) : 'Baseline'}</strong>${current ? '<span>%</span>' : ''}
+      ${current ? `<small>${escapeHtml(dayLabel(current.measured_at))}${current.method ? ` · ${escapeHtml(current.method)}` : ''}${
+        current.source ? ` · ${escapeHtml(current.source)}` : ''}</small>` : ''}</div>
+    <div class="ccMeasureSide">${current && readings.length > 1
+      ? `<div class="ccMeasureTrend">${readings.slice().reverse().map((item) => `<span><i></i><b>${escapeHtml(Number(item.value))}%</b><small>${
+        escapeHtml(dayLabel(item.measured_at))}</small></span>`).join('')}</div>`
+      : ''}
+      <button class="ccAddReading" type="button" data-add-measurement>＋ ${current ? 'Add reading' : 'Add first reading'}</button>
+      ${readings.length ? `<details class="ccMeasureDetails"><summary>Details</summary><ol>${readings.map((item) => `<li><time>${
+        escapeHtml(dayLabel(item.measured_at))}</time><b>${escapeHtml(Number(item.value))}%</b><span>${escapeHtml([
+          item.method, item.source].filter(Boolean).join(' · '))}</span></li>`).join('')}</ol></details>` : ''}</div>
+  </section>`;
+}
+
+function functionalInstrumentHtml() {
+  const baseline = (record.baselines || [])[0];
+  return `<section class="ccCard ccFunctional"><p>Functional strength</p><h2>Establish the starting point.</h2>
+    ${baseline?.strength_schedule ? `<span>${escapeHtml(baseline.strength_schedule)}</span>` : ''}</section>`;
+}
+
+function athleteInstrumentHtml() {
+  const slug = record.athlete.slug;
+  if (slug === 'jose' || slug === 'hope') return distanceInstrumentHtml();
+  if (slug === 'natalie' || slug === 'valerie') return consistencyInstrumentHtml();
+  if (slug === 'rod' || slug === 'devin') return physiqueInstrumentHtml();
+  return functionalInstrumentHtml();
+}
+
+function dossierNotesHtml() {
+  const notes = record.privateNotes || [];
+  return `<section class="ccCard ccNotes">
+    <header><h2>Notes</h2><span>Private to coaches</span></header>
+    ${notes.length ? `<div class="ccNoteHistory">${notes.slice(0, 3).map((note) => `<article><time>${
+      escapeHtml(dayLabel(note.created_at.slice(0, 10)))}</time><p>${escapeHtml(note.body)}</p></article>`).join('')}</div>` : ''}
+    <form id="ccNoteForm"><label class="srOnly" for="ccNoteBody">New private note</label>
+      <textarea id="ccNoteBody" rows="1" placeholder="Add note…"></textarea>
+      <div><span id="ccNoteStatus" aria-live="polite"></span>
+        <span class="ccNoteShortcut">⌘ Enter</span><button type="submit">Add note</button></div></form>
+  </section>`;
+}
+
+function dossierMediaHtml() {
+  const files = record.evidenceFiles || [];
+  return `<section class="ccCard ccMedia"><header><h2>Photos &amp; movement</h2></header>
+    <p>${files.length ? `${files.length} canonical evidence file${files.length === 1 ? '' : 's'} on this record.`
+      : 'Portraits, progress photos and movement clips will appear here when they are filed as evidence.'}</p></section>`;
+}
+
 function athleteHtml() {
   const athlete = record.athlete;
-  const block = record.block;
-  const week = record.currentWeek;
-  const mark = record.primaryMark;
-  const race = raceLine(athlete, block);
-  const standing = week && block?.total_weeks ? `week ${week.week_number} of ${block.total_weeks}` : '';
-  const owned = mark?.current_value != null ? Number(mark.current_value) : null;
+  const showConsolePortrait = !['jose', 'hope', 'simon'].includes(athlete.slug);
+  return `<main class="view on ccApp${consolePreferences?.rail_collapsed ? ' railCollapsed' : ''}">
+    ${dossierRosterHtml(athlete.slug)}
+    <div class="ccWorkspace"><div class="ccContent">
+      <header class="ccMast"><div class="ccMastAvatar"><span>${escapeHtml(initials(athlete.first_name))}</span>
+        ${showConsolePortrait ? `<img data-portrait="${escapeHtml(athlete.slug)}" alt="">` : ''}</div>
+        <div><h1>${escapeHtml(athlete.first_name)}</h1><p>${escapeHtml(raceLine(athlete, record.block))}</p></div>
+      </header>
+      <div class="ccPanelGrid">${dossierWeekHtml()}${athleteInstrumentHtml()}${dossierNotesHtml()}${dossierMediaHtml()}</div>
+    </div></div>
+  </main>`;
+}
 
-  // The next question, not the next session: the first coming session that would
-  // move what he owns, falling back to the next rung the ladder has not reached.
-  const coming = (record.sessions || [])
-    .filter((session) => session.scheduled_on && session.scheduled_on >= today()
-      && session.state !== 'cancelled')
-    .sort((a, b) => a.scheduled_on.localeCompare(b.scheduled_on));
-  const nextRungSession = coming.find((session) => rungFor(session, mark));
-  const nextRung = (mark?.checkpoints || []).slice().sort((a, b) => a.position - b.position)
-    .find((rung) => rung.state !== 'reached');
-  const nextLine = nextRungSession
-    ? `${shortDose(nextRungSession.currentVersion)} continuous · ${dayLabel(nextRungSession.scheduled_on)}`
-    : nextRung ? `${Number(nextRung.value)} ${mark?.unit || 'mi'}` : null;
-
-  return `<main class="view on"><div class="stage">
-    <div class="pane">
-      <div class="plate${plateOf(athlete.slug)}"></div>
-      <img data-portrait="${escapeHtml(athlete.slug)}" alt="">
-      <div class="tint"></div><div class="paneFloor"></div>
-      <div class="plateName">
-        <h1>${escapeHtml(athlete.first_name)}</h1>
-        <div class="race">${escapeHtml(race)}</div>
-        <div class="pr">${escapeHtml(standing)}</div>
+// Changing athletes must not tear down the Console and briefly reveal Labs'
+// older full-screen reader. Keep the navigation, identity and geometry stable;
+// only the record-dependent panels wait for the canonical read.
+function dossierLoadingHtml(entry) {
+  return `<main class="view on ccApp ccLoading${consolePreferences?.rail_collapsed ? ' railCollapsed' : ''}" aria-busy="true">
+    ${dossierRosterHtml(entry.slug)}
+    <div class="ccWorkspace"><div class="ccContent">
+      <header class="ccMast"><div class="ccMastAvatar"><span>${escapeHtml(initials(entry.first_name))}</span></div>
+        <div><h1>${escapeHtml(entry.first_name)}</h1><p>Opening record</p></div>
+      </header>
+      <div class="ccPanelGrid" aria-label="Opening ${escapeHtml(entry.first_name)}'s record">
+        <section class="ccCard ccLoadWeek"><i></i><div class="ccLoadDays">${'<span></span>'.repeat(7)}</div></section>
+        <section class="ccCard ccLoadInstrument"><i></i><b></b><span></span></section>
+        <section class="ccCard ccLoadNotes"><i></i><span></span><span></span></section>
       </div>
-    </div>
-    <div class="fold">
-      <div class="hRow">
-        <button class="back" type="button" data-nav="bench">← Bench</button>
-        <button class="back alt" type="button" data-nav="plan">The plan →</button>
-      </div>
-
-      <div class="thesis">
-        <div class="h">${escapeHtml(CAP(block?.name || 'The block'))}</div>
-        <h1>${escapeHtml(mark?.current_question || block?.goal_statement || athlete.goal_label || '')}</h1>
-        <div class="state">
-          <div class="owns">
-            <b>${owned != null ? escapeHtml(owned) : '—'}</b>
-            <span>${escapeHtml(String(mark?.unit || 'mi').toUpperCase())} YOU OWN<br>CONTINUOUSLY</span>
-          </div>
-          ${nextLine ? `<div class="nextQ"><div class="h">NEXT</div>
-            <p>${escapeHtml(nextLine)}</p></div>` : ''}
-        </div>
-      </div>
-
-      ${ladderHtml()}
-      ${loadHtml()}
-
-      <div class="rule"></div>
-      <div class="cols">
-        <div>${evidenceHtml()}</div>
-        <div>
-          ${observationsHtml()}
-          <div class="rule tight"></div>
-          ${openHtml()}
-        </div>
-      </div>
-    </div>
-  </div></main>`;
+    </div></div>
+  </main>`;
 }
 
 
@@ -865,6 +1028,7 @@ function continuousAtBand(version) {
   if (parts.length !== 1) return false;
   const part = parts[0];
   return part.shape === 'continuous' && part.distance != null
+    && (part.repeat_count || 1) === 1
     && part.pace_low_seconds != null && part.pace_high_seconds != null;
 }
 
@@ -1933,6 +2097,9 @@ function paint() {
   document.querySelectorAll('[data-height]').forEach((bar) => {
     bar.querySelector('i')?.style.setProperty('--h', `${Math.max(3, Number(bar.dataset.height))}px`);
   });
+  document.querySelectorAll('[data-position]').forEach((item) => {
+    item.style.setProperty('--position', `${Number(item.dataset.position)}%`);
+  });
 }
 
 
@@ -2087,6 +2254,7 @@ function openRead(exceptionId, completionId) {
 function closeSheet() {
   sheet.classList.remove('on'); shScrim.classList.remove('on');
   sheet.setAttribute('aria-hidden', 'true'); pending = null;
+  document.getElementById('shSave').textContent = 'Keep';
 }
 
 // FILE EVIDENCE.
@@ -2394,6 +2562,79 @@ function openObservation() {
   document.getElementById('obText').focus();
 }
 
+function openPrivateNote() {
+  pending = { kind: 'private-note' };
+  document.getElementById('shKind').textContent = 'PRIVATE NOTE';
+  document.getElementById('shTitle').textContent = `A note about ${record.athlete.first_name}`;
+  document.getElementById('shSub').textContent = 'Visible to coaches only.';
+  document.getElementById('shNote').textContent = 'Saved to the canonical athlete record.';
+  document.getElementById('shBody').innerHTML = `
+    <div class="f"><label for="pnBody">NOTE</label>
+      <textarea id="pnBody" placeholder="What do you want to remember next time you open this record?"></textarea>
+      <p class="hint">A note is private scratch space. Use a standing fact when the sentence should guide future coaching.</p></div>
+    <p class="hint err" id="pnError"></p>`;
+  sheet.classList.add('on'); shScrim.classList.add('on'); sheet.setAttribute('aria-hidden', 'false');
+  document.getElementById('pnBody').focus();
+}
+
+async function keepPrivateNote() {
+  const error = document.getElementById('pnError');
+  const body = document.getElementById('pnBody').value.trim();
+  if (!body) { error.textContent = 'A private note needs a sentence.'; return; }
+  const button = document.getElementById('shSave');
+  button.disabled = true; error.textContent = '';
+  try {
+    await addPrivateNote(record.athlete.id, body);
+    closeSheet();
+    await selectAthlete(record.athlete.slug, { silent: true });
+  } catch (failure) {
+    error.textContent = failure.message;
+  } finally { button.disabled = false; }
+}
+
+function openMeasurement() {
+  pending = { kind: 'measurement' };
+  document.getElementById('shKind').textContent = 'BODY FAT';
+  document.getElementById('shTitle').textContent = `Add a reading for ${record.athlete.first_name}`;
+  document.getElementById('shSub').textContent = 'Raw measurement only. Interpretation stays in Notes.';
+  document.getElementById('shNote').textContent = 'Stored on the canonical athlete record.';
+  document.getElementById('shBody').innerHTML = `
+    <div class="f"><label for="msValue">VALUE · %</label><input id="msValue" type="number" min="0.1" max="100" step="0.1" inputmode="decimal" required></div>
+    <div class="f"><label for="msDate">MEASUREMENT DATE</label><input id="msDate" type="date" value="${escapeHtml(today())}" required></div>
+    <div class="f"><label for="msMethod">METHOD / SOURCE</label><input id="msMethod" type="text" placeholder="Smart scale estimate" required></div>
+    <p class="hint err" id="msError"></p>`;
+  sheet.classList.add('on'); shScrim.classList.add('on'); sheet.setAttribute('aria-hidden', 'false');
+  document.getElementById('shSave').textContent = 'Add reading';
+  document.getElementById('msValue').focus();
+}
+
+async function keepMeasurement() {
+  const error = document.getElementById('msError');
+  const value = Number(document.getElementById('msValue').value);
+  const measuredAt = document.getElementById('msDate').value;
+  const method = document.getElementById('msMethod').value.trim();
+  if (!(value > 0 && value <= 100)) { error.textContent = 'Enter a body-fat percentage between 0 and 100.'; return; }
+  if (!measuredAt) { error.textContent = 'Choose the measurement date.'; return; }
+  if (!method) { error.textContent = 'Name the method or source.'; return; }
+  const button = document.getElementById('shSave');
+  button.disabled = true; error.textContent = '';
+  try {
+    await addAthleteMeasurement({
+      athleteId: record.athlete.id,
+      measurementType: 'body_fat',
+      value,
+      unit: '%',
+      measuredAt,
+      method,
+      source: 'coach_entered'
+    });
+    closeSheet();
+    await selectAthlete(record.athlete.slug, { silent: true });
+  } catch (failure) {
+    error.textContent = failure.message;
+  } finally { button.disabled = false; }
+}
+
 async function keepObservation() {
   const error = document.getElementById('obError');
   const text = document.getElementById('obText').value.trim();
@@ -2418,6 +2659,8 @@ async function keepObservation() {
 // what clears the item; the status change is what records that it was cleared
 // and why. Both name the evidence.
 async function keepRead() {
+  if (pending?.kind === 'measurement') { await keepMeasurement(); return; }
+  if (pending?.kind === 'private-note') { await keepPrivateNote(); return; }
   if (pending?.kind === 'observation') { await keepObservation(); return; }
   if (pending?.kind === 'revise') { await keepRevision(); return; }
   if (pending?.kind === 'file') { await keepFiling(); return; }
@@ -2471,9 +2714,9 @@ function markNav(view, slug) {
   // panel says and what the six stored values are for. It was appearing on every
   // coach surface, so the Plan carried a control that belongs to a different
   // screen. It lives on the bench.
-  document.getElementById('plToggle').hidden = !asCoach() || view !== 'bench';
+  document.getElementById('plToggle').hidden = true;
   nav.querySelectorAll('button').forEach((button) => button.classList.remove('on'));
-  const which = view === 'bench' ? 'bench' : view === 'brief' ? 'brief'
+  const which = view === 'brief' ? 'brief'
     : (view === 'plan' || view === 'week') ? 'plan' : null;
   if (which) nav.querySelector(`[data-nav="${which}"]`)?.classList.add('on');
   // Plan stays visible. With nobody chosen it opens the first athlete on the
@@ -2482,11 +2725,32 @@ function markNav(view, slug) {
 
 async function selectAthlete(slug, { silent = false } = {}) {
   const entry = bench.find((item) => item.slug === slug);
-  if (!entry) { location.hash = '#/bench'; return; }
-  if (!silent) app.innerHTML = '<div class="loading">READING THE RECORD</div>';
-  record = await loadAthleteRecord(entry.id, { coach: true });
-  attention = await loadAttentionFor(entry.id);
+  if (!entry) {
+    const fallback = bench[0]?.slug;
+    if (fallback) location.hash = `#/a/${fallback}`;
+    return;
+  }
+  const token = ++athleteLoadToken;
+  if (!silent) {
+    app.innerHTML = dossierLoadingHtml(entry);
+    markNav('athlete', slug);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+  const [nextRecord, nextAttention] = await Promise.all([
+    loadAthleteRecord(entry.id, { coach: true }),
+    loadAttentionFor(entry.id)
+  ]);
+  if (token !== athleteLoadToken || route().slug !== slug) return;
+  record = nextRecord;
+  attention = nextAttention;
+  dossierWeekId = record.currentWeek?.id || null;
   render();
+  if (!silent) window.scrollTo({ top: 0, behavior: 'auto' });
+  if (consolePreferences?.layout?.last_athlete_slug !== slug) {
+    const layout = { ...(consolePreferences?.layout || {}), last_athlete_slug: slug };
+    consolePreferences = { ...(consolePreferences || {}), layout };
+    saveConsolePreferences({ layout }).then((saved) => { consolePreferences = saved; }).catch(() => {});
+  }
 }
 
 // Where you were reading. Studying week ten and opening it should not cost you
@@ -2513,6 +2777,12 @@ function render() {
 
 async function show() {
   const { view, slug } = route();
+  if (view === 'bench') {
+    const preferred = consolePreferences?.layout?.last_athlete_slug;
+    const destination = bench.some((entry) => entry.slug === preferred) ? preferred : bench[0]?.slug;
+    if (destination) location.hash = `#/a/${destination}`;
+    return;
+  }
   // `viewAs` is not a route. Landing on a coach surface while looking through
   // the athlete's eyes goes to the plan rather than rendering a page the athlete
   // would never be given.
@@ -2520,7 +2790,7 @@ async function show() {
     const who = slug || record?.athlete?.slug || bench.slice().sort(benchOrder)[0]?.slug;
     if (who) { location.hash = `#/a/${who}/plan`; return; }
   }
-  if (view === 'bench' || view === 'brief') { render(); return; }
+  if (view === 'brief') { render(); return; }
   if (record?.athlete?.slug !== slug) { await selectAthlete(slug); return; }
   render();
 }
@@ -2546,6 +2816,14 @@ document.addEventListener('click', (event) => {
   const cell = event.target.closest('[data-session]');
   if (cell) { showSession(cell.dataset.session); return; }
 
+  const dossierWeek = event.target.closest('[data-dossier-week]');
+  if (dossierWeek) {
+    if (!dossierWeek.dataset.dossierWeek) return;
+    dossierWeekId = dossierWeek.dataset.dossierWeek;
+    render();
+    return;
+  }
+
   const toWeek = event.target.closest('[data-week-to]');
   if (toWeek) {
     const slug = record?.athlete?.slug || route().slug;
@@ -2560,6 +2838,18 @@ document.addEventListener('click', (event) => {
 
   if (event.target.closest('[data-observe]')) { openObservation(); return; }
 
+  if (event.target.closest('[data-private-note]')) { openPrivateNote(); return; }
+
+  if (event.target.closest('[data-add-measurement]')) { openMeasurement(); return; }
+
+  if (event.target.closest('[data-collapse-rail]')) {
+    const next = !consolePreferences?.rail_collapsed;
+    consolePreferences = { ...(consolePreferences || {}), rail_collapsed: next };
+    render();
+    saveConsolePreferences({ rail_collapsed: next }).then((saved) => { consolePreferences = saved; }).catch(() => {});
+    return;
+  }
+
   const read = event.target.closest('[data-read]');
   if (read) { openRead(read.dataset.read, read.dataset.completion); return; }
 
@@ -2570,12 +2860,40 @@ document.addEventListener('click', (event) => {
   if (!go) return;
   const where = go.dataset.nav;
   if (where === 'console') { location.href = '/coach/console/'; return; }
-  if (where === 'bench') { location.hash = '#/bench'; return; }
   if (where === 'brief') { location.hash = '#/brief'; return; }
   const slug = record?.athlete?.slug || route().slug
     || bench.slice().sort(benchOrder)[0]?.slug;
   if (!slug) return;
   location.hash = where === 'plan' ? `#/a/${slug}/plan` : `#/a/${slug}`;
+});
+
+document.addEventListener('submit', async (event) => {
+  if (event.target.id !== 'ccNoteForm') return;
+  event.preventDefault();
+  const body = document.getElementById('ccNoteBody')?.value.trim();
+  const status = document.getElementById('ccNoteStatus');
+  const button = event.target.querySelector('button[type="submit"]');
+  if (!body) { status.textContent = 'Write something before keeping the note.'; return; }
+  button.disabled = true; status.textContent = 'Keeping…';
+  try {
+    await addPrivateNote(record.athlete.id, body);
+    await selectAthlete(record.athlete.slug, { silent: true });
+  } catch (failure) {
+    status.textContent = failure.message;
+    button.disabled = false;
+  }
+});
+
+document.addEventListener('input', (event) => {
+  if (event.target.id !== 'ccNoteBody') return;
+  event.target.style.height = 'auto';
+  event.target.style.height = `${Math.min(event.target.scrollHeight, 280)}px`;
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.target.id !== 'ccNoteBody' || event.key !== 'Enter' || !(event.metaKey || event.ctrlKey)) return;
+  event.preventDefault();
+  document.getElementById('ccNoteForm')?.requestSubmit();
 });
 
 document.getElementById('viewAs').addEventListener('click', (event) => {
@@ -2607,7 +2925,7 @@ document.addEventListener('visibilitychange', () => {
 });
 
 function fail(error) {
-  app.innerHTML = `<div class="failed"><p class="h">COULD NOT OPEN THE BENCH</p>
+  app.innerHTML = `<div class="failed"><p class="h">COULD NOT OPEN THE CONSOLE</p>
     <h1>Try that again.</h1><p>${escapeHtml(authErrorMessage(error))}</p>
     <button type="button" id="retry">Retry</button></div>`;
   document.getElementById('retry').addEventListener('click', () => window.location.reload());
@@ -2620,9 +2938,17 @@ async function boot() {
     access = await getAccessContext();
     if (!access.session) { location.href = '/coach/console/'; return; }
     if (!access.coachMemberships.length) { location.href = '/coach/console/'; return; }
-    bench = await loadCoachBench(access.coachMemberships);
+    rememberWorkspace('coach');
+    [bench, consolePreferences] = await Promise.all([
+      loadCoachBench(access.coachMemberships),
+      loadConsolePreferences()
+    ]);
     bindPhotoLab();
-    if (!location.hash) location.hash = '#/bench';
+    if (!location.hash || route().view === 'bench') {
+      const preferred = consolePreferences?.layout?.last_athlete_slug;
+      const destination = bench.some((entry) => entry.slug === preferred) ? preferred : bench[0]?.slug;
+      if (destination) location.hash = `#/a/${destination}`;
+    }
     await show();
   } catch (error) { fail(error); }
 }

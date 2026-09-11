@@ -36,6 +36,13 @@ The distance was carried inside the band with sufficient control.
 - The session records `establishes_checkpoint_id`.
 - **The canonical plan remains valid.** Nothing accelerates.
 
+**Note:** ESTABLISHED is not a binary state. Starting with W9, there is a distinction between:
+
+- **Execution established** — the distance was carried inside the band with sufficient control
+- **Durability corroborated** — the capability can be re-accessed under compounding fatigue
+
+This distinction is pre-registered in `W9_HYPOTHESIS_PRE_REGISTRATION.md`. An athlete can have execution established but durability not yet corroborated — this is the fractional-credit case the method has been looking for.
+
 ### CARRIED, NOT ESTABLISHED
 
 The distance was completed, but execution gives reason not to call it owned —

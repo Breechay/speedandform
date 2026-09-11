@@ -8,7 +8,7 @@ function result(data, error) {
 export async function loadCoachRoster(coachMemberships) {
   const athleteIds = coachMemberships.map((item) => item.athlete_id);
   if (!athleteIds.length) return [];
-  const [attentionResponse, markResponse, checkpointResponse, confidenceResponse, ownedResponse] = await Promise.all([
+  const [attentionResponse, markResponse, checkpointResponse, confidenceResponse, ownedResponse, preferenceResponse] = await Promise.all([
     supabase.from('coach_attention').select('*').in('athlete_id', athleteIds)
       .order('priority').order('occurred_at', { ascending: false, nullsFirst: false }),
     supabase.from('athlete_marks').select('*').in('athlete_id', athleteIds).eq('active', true).eq('is_primary', true),
@@ -16,14 +16,17 @@ export async function loadCoachRoster(coachMemberships) {
     supabase.from('mark_standing_confidence').select('*').in('athlete_id', athleteIds),
     // What they own, derived. athlete_marks.current_value is a stored copy that
     // drifts the moment anything is filed; this is computed from the pieces.
-    supabase.from('athlete_continuous_owned').select('*').in('athlete_id', athleteIds)
+    supabase.from('athlete_continuous_owned').select('*').in('athlete_id', athleteIds),
+    // Optional until the roster reconciliation migration is applied. A missing
+    // preference table must not take the existing Console down during rollout.
+    supabase.from('console_preferences').select('*').maybeSingle()
   ]);
   if (attentionResponse.error) throw attentionResponse.error;
   if (markResponse.error) throw markResponse.error;
   if (checkpointResponse.error) throw checkpointResponse.error;
   const attention = attentionResponse.data || [];
   // Ordered by what actually needs the coach, not by a stored priority column.
-  return coachMemberships.map((membership) => {
+  const rows = coachMemberships.map((membership) => {
     const items = attention.filter((item) => item.athlete_id === membership.athlete_id);
     return {
       ...membership.athletes,
@@ -47,10 +50,47 @@ export async function loadCoachRoster(coachMemberships) {
       })()
     };
   });
+  const preferenceMissing = preferenceResponse.error
+    && ['42P01', 'PGRST205'].includes(preferenceResponse.error.code);
+  if (preferenceResponse.error && !preferenceMissing) throw preferenceResponse.error;
+  const preference = preferenceResponse.data || null;
+  if (!preference) return rows;
+  const hidden = new Set(preference.hidden_athlete_ids || []);
+  const visible = rows.filter((row) => !hidden.has(row.id));
+  const position = new Map((preference.roster_order || []).map((id, index) => [id, index]));
+  return visible.sort((a, b) => (position.get(a.id) ?? 999) - (position.get(b.id) ?? 999)
+    || a.first_name.localeCompare(b.first_name));
   // Roster order is stable. Attention sorts the queue, never the navigation:
   // tabs that rearrange themselves whenever an exception opens or closes teach
   // the coach that position means nothing, and the position is how you find
   // someone. The attention is shown on the tab instead of moving it.
+}
+
+export async function loadConsolePreferences() {
+  const { data, error } = await supabase.from('console_preferences').select('*').maybeSingle();
+  if (error && ['42P01', 'PGRST205'].includes(error.code)) return null;
+  if (error) throw error;
+  return data || null;
+}
+
+export async function saveConsolePreferences(patch) {
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
+  if (userError) throw userError;
+  if (!user) throw new Error('Sign in before changing Console preferences.');
+  const { data: current, error: currentError } = await supabase.from('console_preferences')
+    .select('*').eq('user_id', user.id).maybeSingle();
+  if (currentError) throw currentError;
+  const { data, error } = await supabase.from('console_preferences').upsert({
+    user_id: user.id,
+    roster_order: current?.roster_order || [],
+    hidden_athlete_ids: current?.hidden_athlete_ids || [],
+    rail_collapsed: current?.rail_collapsed || false,
+    layout: current?.layout || {},
+    ...patch,
+    updated_at: new Date().toISOString()
+  }).select('*').single();
+  if (error) throw error;
+  return data;
 }
 
 // THE BENCH. One column per athlete, and every column is composed to the same
@@ -321,6 +361,8 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     supabase.from('planned_session_versions').select('*').eq('athlete_id', athleteId).order('version_number', { ascending: false }),
     supabase.from('planned_session_components').select('*').eq('athlete_id', athleteId).order('position'),
     supabase.from('athlete_baselines').select('*').eq('athlete_id', athleteId).order('captured_at', { ascending: false }),
+    supabase.from('athlete_measurements').select('*').eq('athlete_id', athleteId)
+      .order('measured_at', { ascending: false }).order('created_at', { ascending: false }),
     supabase.from('session_completions').select('*').eq('athlete_id', athleteId).order('filed_at', { ascending: false }),
     supabase.from('directions').select('*').eq('athlete_id', athleteId).in('delivery_state', ['published', 'delivered_externally']).order('published_at', { ascending: false }),
     supabase.from('reads').select('*').eq('athlete_id', athleteId).in('delivery_state', ['published', 'delivered_externally']).order('published_at', { ascending: false }),
@@ -377,7 +419,7 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
 
   const [
     athleteResponse, blockResponse, weeksResponse, sessionsResponse, versionsResponse,
-    componentsResponse, baselinesResponse, completionsResponse, directionsResponse, readsResponse,
+    componentsResponse, baselinesResponse, measurementsResponse, completionsResponse, directionsResponse, readsResponse,
     decisionsResponse, marksResponse, signalsResponse, checkpointsResponse,
     gatesResponse, movementResponse, supportResponse, supportItemsResponse,
     verdictsResponse, piecesResponse, judgmentsResponse, judgmentLinksResponse,
@@ -444,6 +486,7 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     nextSessions: nextWeek ? sessions.filter((item) => item.week_id === nextWeek.id) : [],
     sessions,
     baselines: result(baselinesResponse.data, baselinesResponse.error),
+    measurements: result(measurementsResponse.data, measurementsResponse.error),
     completions: result(completionsResponse.data, completionsResponse.error),
     directions: result(directionsResponse.data, directionsResponse.error),
     reads: result(readsResponse.data, readsResponse.error),
@@ -672,6 +715,24 @@ export async function addPrivateNote(athleteId, body) {
   const { data, error } = await supabase.from('coach_private_notes').insert({
     athlete_id: athleteId,
     body: String(body || '').trim(),
+    authored_by: user.id
+  }).select('*').single();
+  if (error) throw error;
+  return data;
+}
+
+export async function addAthleteMeasurement({ athleteId, measurementType, value, unit, measuredAt, method, source }) {
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
+  if (userError) throw userError;
+  if (!user) throw new Error('Sign in before adding a measurement.');
+  const { data, error } = await supabase.from('athlete_measurements').insert({
+    athlete_id: athleteId,
+    measurement_type: measurementType,
+    value: Number(value),
+    unit,
+    measured_at: measuredAt,
+    method: String(method || '').trim() || null,
+    source: String(source || '').trim(),
     authored_by: user.id
   }).select('*').single();
   if (error) throw error;

@@ -113,6 +113,28 @@ Threshold work develops the sustainable ceiling so race pace remains submaximal.
 
 Easy long running builds the floor. Later long runs ask for race pace after prior mileage so fresh access and late access are not confused.
 
+## W9: The First Durability Experiment
+
+W9 is special. It is the first week that asks **two different questions** about
+race-pace capability:
+
+- **Tuesday:** Can you carry 8 continuous miles at RP without the cost materially rising?
+- **Saturday:** Can you access RP again late in the week and late in a long run after Tuesday already happened?
+
+This makes W9 the first canonical plan week where the distinction between
+"execution established" and "durability corroborated" becomes concrete. The
+hypothesis and evidence framework for W9 is pre-registered in
+`W9_HYPOTHESIS_PRE_REGISTRATION.md` before any athlete reaches it.
+
+The key innovation is **fractional credit**: an athlete can have execution
+established (Tuesday supports continuous capability) but durability not yet
+corroborated (Saturday does not support durability under compounding fatigue).
+
+This is not a regression to pass/fail thinking. It is the recognition that
+**ESTABLISHED should not mean merely "the stopwatch says yes."** The cost of
+execution matters, and repeatability under fatigue is a separate question from
+single-session performance.
+
 ---
 
 ## Decision rule

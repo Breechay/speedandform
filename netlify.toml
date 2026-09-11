@@ -43,20 +43,18 @@
   status = 200
 
 # Private athlete system
-# 200 rewrites, not 301s: Netlify matches "/coach" and "/coach/" as the same
+# 200 rewrites, not 301s: Netlify matches "/athlete" and "/athlete/" as the same
 # path, so a redirect between them loops forever. A rewrite cannot loop, and
-# force = true still makes the private product win over legacy coach.html.
+# force = true still makes the private product win over any legacy file.
 # The pages reference assets by absolute path, so serving them at the
 # slashless URL resolves correctly.
+#
+# /coach is deliberately NOT here. It was claimed twice — once by this file and
+# once by _redirects — and against production it served neither: legacy
+# coach.html won the address. One rule, in _redirects, forced past the file.
 [[redirects]]
   from = "/athlete"
   to = "/athlete/index.html"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/coach"
-  to = "/coach/index.html"
   status = 200
   force = true
 

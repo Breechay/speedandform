@@ -69,6 +69,11 @@
 /robots.txt
   Cache-Control: no-cache, must-revalidate
 
+# The published training plan is a download, not an in-browser PDF viewer.
+/plans/race-pace-durability/race-pace-durability.pdf
+  Content-Disposition: attachment; filename="FORM-Race-Pace-Durability.pdf"
+  Content-Type: application/pdf
+
 # Mockup A — do not index
 /mockupA
   X-Robots-Tag: noindex, nofollow
