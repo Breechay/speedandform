@@ -11,12 +11,15 @@ export function notation(plan) {
   // WHAT KIND OF DAY IS THIS.
   //
   // Derived from what the session is made of, never from the weekday. Tuesday is
-  // race pace in this plan and Thursday rotates through four different things; a
+  // race pace in this plan and Thursday rotates through different things; a
   // renderer that assumed the calendar would be wrong the first time a plan moved
   // its key days.
   //
-  // The bands come from the plan itself, so a plan authored at 7:00–7:15 labels
-  // its own work correctly without a line changing here.
+  // The Plan is public method, not an athlete prescription. The canonical payload
+  // still carries reference pace values so components can be classified, but
+  // athlete-facing numbers belong to the athlete assignment. Public notation says
+  // "your race-pace band" and "your current threshold" instead of presenting one
+  // athlete's numbers as the method.
   const RP_LO = plan.plan.race_pace_low_seconds;
   const RP_HI = plan.plan.race_pace_high_seconds;
 
@@ -32,17 +35,14 @@ export function notation(plan) {
     && c.duration_seconds <= 30 && c.pace_low_seconds == null;
 
   // Notation is semantic, never a generic component arrow. A long run is
-  // `16 mi · last 3 @ 6:30–6:45`, not `13 mi → 3 mi`; strides are
+  // `16 mi · last 3 @ your race-pace band`, not `13 mi → 3 mi`; strides are
   // `7 mi easy + 4 × 20 s strides`, not `7 mi → 4 × 20 s`.
   // A one-sided pace means two different things depending on which side of race
-  // pace it sits. Easy is a ceiling — 8:45 or slower, and slower is never wrong.
-  // Threshold is a target the block approaches — ≈6:15. Rendering both as
-  // "or slower" told an athlete that a threshold session had no floor.
-  // A no-break space after every `@`. Once five columns are narrow enough to
-  // wrap, `5 mi continuous @` / `6:30-6:45` left the target dangling on the
-  // line above the number it governs. Bound, the break falls before the `@`
-  // and the pace arrives whole.
+  // pace it sits. Easy is a ceiling — 8:45 or slower. Threshold is an athlete-
+  // relative target and is rendered from the session label rather than leaking a
+  // reference value from the generic Plan.
   const band = (c) => {
+    if (isRacePace(c)) return 'your race-pace band';
     if (c.rpe_low != null) return `RPE ${c.rpe_low}${c.rpe_high ? `–${c.rpe_high}` : ''}`;
     if (c.pace_low_seconds == null) return '';
     if (c.pace_high_seconds) return `${clock(c.pace_low_seconds)}–${clock(c.pace_high_seconds)}`;
@@ -80,6 +80,7 @@ export function notation(plan) {
       : /^race$/i.test(label) ? 'race'
       : /^race pace/i.test(label) ? 'rp'
       : /aerobic|recovery/i.test(label) ? 'easy' : 'support';
+    const isThreshold = /^threshold/i.test(label);
 
     if (strides) {
       const base = work.find((c) => c.shape === 'continuous');
@@ -105,7 +106,8 @@ export function notation(plan) {
     }
     if (reps) {
       const n = reps.repeat_count > 1 ? `${reps.repeat_count} × ` : '';
-      return { kind, label, head: `${n}${lower(reps)} @ ${band(reps)}`,
+      const target = isThreshold ? 'your current threshold' : band(reps);
+      return { kind, label, head: `${n}${lower(reps)} @ ${target}`,
         lines: [rest(reps), book, total].filter(Boolean) };
     }
     const base = work[0];
