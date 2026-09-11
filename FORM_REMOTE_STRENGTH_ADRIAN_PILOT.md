@@ -22,18 +22,34 @@ The standalone public plan is **Adrian — Hypertrophy Week 01**.
 
 Week 01 is intentionally a baseline week, not a progression block yet.
 
-- Day 01 — Chest + Triceps
-- Day 02 — Legs
-- Day 03 — Shoulders + Arms
-- Day 04 — Second Exposure / Frame + Arms
+Adrian's running week established the strength slots. His normal running pattern is easy Monday, easy + strides Tuesday, workout Wednesday, easy Thursday, easy + strides Friday, long workout Saturday, and gym Sunday. Strength therefore protects the Wednesday and Saturday quality anchors and uses:
+
+- Monday — Upper A / chest + frame
+- Thursday — Lower + Core / main lower-body exposure
+- Friday — Upper B / width + arms
+- Sunday — Lower Support + Core / deliberately low-fatigue after the Saturday long workout
 
 Primary physical objective:
 
 > Expand his frame while staying lean, then develop his arms.
 
-Training emphasis: upper chest, lateral delts, arms, enough back work to widen the frame, and one meaningful lower-body hypertrophy exposure.
+Training emphasis: upper chest, lateral delts, arms, enough back work to widen the frame, one meaningful lower-body hypertrophy exposure, and one lighter lower/core support session that should not interfere with running.
 
 The HTML plan is the source of truth for the exact exercises, sets, rep ranges, rules, and visual reference. Do not duplicate those details elsewhere unless a product surface needs them.
+
+## Pilot learning: running schedule controls strength placement
+
+The first live change to the pilot came from Adrian's existing run structure, not from adding product complexity.
+
+When run training has established quality anchors, strength should fit around them rather than ask the athlete to redesign the whole week. For Adrian:
+
+- Wednesday workout stays protected.
+- Saturday long workout stays protected.
+- Thursday is the principal leg-strength day because it follows Wednesday quality.
+- Sunday remains a lower/core day because that matches his existing routine, but it must stay controlled enough not to compromise Monday.
+- Monday and Friday carry the frame / chest / shoulders / arms emphasis.
+
+This is an important pilot principle: **adapt the prescription to the athlete's real week before building software around an imagined ideal week.**
 
 ## Product boundary
 
