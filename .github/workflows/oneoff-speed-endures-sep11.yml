@@ -18,21 +18,7 @@ jobs:
           ref: main
       - name: Make patch script version-safe
         shell: bash
-        run: |
-          python <<'PY'
-          from pathlib import Path
-          p = Path('scripts/update_speed_endures_sep11.py')
-          s = p.read_text()
-          old = """one('FORM LABS. SPEED THAT ENDURES · v7.4', 'FORM LABS. SPEED THAT ENDURES · v7.5', 'css version')
-one('FORM LABS. SPEED THAT ENDURES · v7.4', 'FORM LABS. SPEED THAT ENDURES · v7.5', 'js version')"""
-          new = """n = s.count('FORM LABS. SPEED THAT ENDURES · v7.4')
-if n < 1:
-    raise SystemExit('study version: no v7.4 marker found')
-s = s.replace('FORM LABS. SPEED THAT ENDURES · v7.4', 'FORM LABS. SPEED THAT ENDURES · v7.5')"""
-          if old not in s:
-              raise SystemExit('version patch block not found')
-          p.write_text(s.replace(old, new, 1))
-          PY
+        run: sed -i "/'js version')/d" scripts/update_speed_endures_sep11.py
       - name: Patch study
         run: python scripts/update_speed_endures_sep11.py
       - name: Verify output
