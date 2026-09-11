@@ -5,7 +5,8 @@ const ICONS = {
   account: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-4 3.1-6 7-6s6.2 2 7 6"/></svg>'
 };
 
-let scheduled = false;
+let retryTimer = null;
+let retries = 0;
 
 function iconizeButton(button, icon) {
   if (!button || button.dataset.polishedIcon === icon) return;
@@ -23,10 +24,10 @@ function polishCalendarControls() {
 
 function polishRailUtilities() {
   const rail = document.querySelector('.ccRail');
-  if (!rail) return;
+  if (!rail) return false;
   const calendar = rail.querySelector('.ccRailAction');
   const account = rail.querySelector('.ccAccount');
-  if (!calendar || !account) return;
+  if (!calendar || !account) return false;
 
   let utilities = rail.querySelector('.ccRailUtilities');
   if (!utilities) {
@@ -38,7 +39,7 @@ function polishRailUtilities() {
   if (account.parentElement !== utilities) utilities.appendChild(account);
 
   const summary = account.querySelector('summary');
-  if (!summary) return;
+  if (!summary) return true;
   if (!summary.querySelector('svg')) summary.innerHTML = `${ICONS.account}<span>Account</span>`;
   if (!summary.dataset.accountToggleBound) {
     summary.dataset.accountToggleBound = '1';
@@ -48,19 +49,29 @@ function polishRailUtilities() {
       if (details) details.open = !details.open;
     });
   }
+  return true;
 }
 
 function run() {
-  scheduled = false;
   polishCalendarControls();
-  polishRailUtilities();
+  const ready = polishRailUtilities();
+  if (!ready && retries < 20 && !retryTimer) {
+    retries += 1;
+    retryTimer = window.setTimeout(() => {
+      retryTimer = null;
+      run();
+    }, 150);
+  }
 }
 
-function schedule() {
-  if (scheduled) return;
-  scheduled = true;
-  requestAnimationFrame(run);
-}
-
-new MutationObserver(schedule).observe(document.documentElement, { childList: true, subtree: true });
-schedule();
+// The Console renders asynchronously, but this layer must never watch the entire
+// document continuously. A bounded startup retry plus interaction-driven refresh
+// is enough for the controls that are created later.
+run();
+window.addEventListener('load', run, { once: true });
+document.addEventListener('click', (event) => {
+  if (event.target.closest('[data-open-coaching-calendar], [data-ops-week], [data-calendar-step]')) {
+    window.setTimeout(run, 0);
+  }
+}, true);
+window.addEventListener('form:calendar-synced', run);
