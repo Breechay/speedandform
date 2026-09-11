@@ -1,21 +1,9 @@
 -- Race Pace Durability · revision after W3 evidence
---
 -- The method is shared; pace is athlete-relative.
--- Public notation says "your race-pace band" / "your current threshold".
--- This migration changes the METHOD's Thursday ceiling progression without
--- rewriting an already-published Plan Version in place.
---
--- W1-W3 are history. From W5 forward the threshold spine becomes:
---   W3  2 × 10  (already completed in the study)
---   W5  3 × 10
---   W8  2 × 15
---   W10 3 × 10
---   W13 2 × 8   (taper touch)
--- W7 remains the controlled VO2 session. Major RP asks stay protected.
---
--- This cuts a new Plan Version and republishes the public METHOD only.
--- Existing athlete assignments remain pinned to the version they were assigned
--- against; moving an athlete to this revision is a separate coaching decision.
+-- W1-W3 are history. Future Thursday ceiling work is now explicit:
+-- W5 3 × 10 threshold · W7 5 × 3 VO2 · W8 2 × 15 threshold
+-- W10 3 × 10 threshold · W13 2 × 8 threshold.
+-- This cuts a new public Plan Version. Existing athlete assignments stay pinned.
 
 do $$
 declare
@@ -37,15 +25,14 @@ begin
     raise exception 'race-pace-durability plan not found';
   end if;
 
-  -- If this exact revision already exists, leave it alone.
   select id into new_v
     from public.training_plan_versions
    where plan_id = p_id
-     and summary = 'W3 evidence revision: athlete-relative public pace language; threshold spine 2x10 -> 3x10 -> 2x15 -> 3x10 -> 2x8.'
+     and summary = 'W3 evidence revision: athlete-relative public pace language; threshold spine 2x10 -> 3x10 -> 2x15 -> 3x10 -> 2x8; W7 VO2 5x3 preserved.'
    limit 1;
 
   if new_v is not null then
-    raise notice 'RPD threshold-spine revision already exists: %', new_v;
+    raise notice 'RPD W3 revision already exists: %', new_v;
     return;
   end if;
 
@@ -71,11 +58,10 @@ begin
   values (
     p_id,
     next_version,
-    'W3 evidence revision: athlete-relative public pace language; threshold spine 2x10 -> 3x10 -> 2x15 -> 3x10 -> 2x8.'
+    'W3 evidence revision: athlete-relative public pace language; threshold spine 2x10 -> 3x10 -> 2x15 -> 3x10 -> 2x8; W7 VO2 5x3 preserved.'
   )
   returning id into new_v;
 
-  -- Clone the currently published version exactly before changing anything.
   for ow in
     select * from public.training_plan_weeks
      where version_id = old_v
@@ -118,100 +104,92 @@ begin
     end loop;
   end loop;
 
-  -- The plan question is method-level, not athlete-number-level.
   update public.training_plans
      set question = 'How far can you carry your race-pace band before it comes apart?',
          updated_at = now()
    where id = p_id;
 
-  -- W5 · 3 × 10 threshold
   update public.training_plan_sessions s
-     set title = 'Threshold 3 × 10 min',
-         label = 'Threshold',
-         intent = 'Add threshold time without turning the session into a race.'
+     set title = 'Threshold 3 × 10 min', label = 'Threshold',
+         intent = 'Add threshold time without turning the session into a race.',
+         details = null
     from public.training_plan_weeks w
-   where s.plan_week_id = w.id
-     and w.version_id = new_v
-     and w.week_number = 5
-     and s.day_of_week = 'THU';
+   where s.plan_week_id=w.id and w.version_id=new_v and w.week_number=5 and s.day_of_week='THU';
 
-  update public.training_plan_components c
-     set shape = 'repetitions', distance = null, distance_unit = 'mi',
-         duration_seconds = 600, repeat_count = 3,
-         pace_low_seconds = 375, pace_high_seconds = null,
-         rpe_low = null, rpe_high = null,
-         recovery_kind = 'easy', recovery_seconds = 180
-    from public.training_plan_sessions s
-    join public.training_plan_weeks w on w.id = s.plan_week_id
-   where c.plan_session_id = s.id
-     and c.role = 'work'
-     and w.version_id = new_v
-     and w.week_number = 5
-     and s.day_of_week = 'THU';
-
-  -- W8 · 2 × 15 threshold: same 30 minutes, fewer resets.
   update public.training_plan_sessions s
-     set title = 'Threshold 2 × 15 min',
-         label = 'Threshold',
-         intent = 'Keep the same threshold volume with fewer escapes.'
+     set title = 'VO₂ 5 × 3 min', label = 'Aerobic power',
+         intent = 'One controlled higher-ceiling session between threshold steps.',
+         details = null
     from public.training_plan_weeks w
-   where s.plan_week_id = w.id
-     and w.version_id = new_v
-     and w.week_number = 8
-     and s.day_of_week = 'THU';
+   where s.plan_week_id=w.id and w.version_id=new_v and w.week_number=7 and s.day_of_week='THU';
 
-  update public.training_plan_components c
-     set shape = 'repetitions', distance = null, distance_unit = 'mi',
-         duration_seconds = 900, repeat_count = 2,
-         pace_low_seconds = 375, pace_high_seconds = null,
-         rpe_low = null, rpe_high = null,
-         recovery_kind = 'easy', recovery_seconds = 180
-    from public.training_plan_sessions s
-    join public.training_plan_weeks w on w.id = s.plan_week_id
-   where c.plan_session_id = s.id
-     and c.role = 'work'
-     and w.version_id = new_v
-     and w.week_number = 8
-     and s.day_of_week = 'THU';
-
-  -- W10 · replace hills with a threshold re-establishment after the W9 ask.
   update public.training_plan_sessions s
-     set title = 'Threshold 3 × 10 min',
-         label = 'Threshold',
-         intent = 'Re-establish the ceiling after the eight-mile ask.'
+     set title = 'Threshold 2 × 15 min', label = 'Threshold',
+         intent = 'Keep the same threshold volume with fewer escapes.',
+         details = null
     from public.training_plan_weeks w
-   where s.plan_week_id = w.id
-     and w.version_id = new_v
-     and w.week_number = 10
-     and s.day_of_week = 'THU';
+   where s.plan_week_id=w.id and w.version_id=new_v and w.week_number=8 and s.day_of_week='THU';
 
-  -- W10 used to be hills. Collapse whatever its work component shape was into
-  -- the authored threshold repetition without touching warm-up/cool-down rows.
-  update public.training_plan_components c
-     set shape = 'repetitions', distance = null, distance_unit = 'mi',
-         duration_seconds = 600, repeat_count = 3,
-         pace_low_seconds = 375, pace_high_seconds = null,
-         rpe_low = null, rpe_high = null,
-         recovery_kind = 'easy', recovery_seconds = 180
-    from public.training_plan_sessions s
-    join public.training_plan_weeks w on w.id = s.plan_week_id
-   where c.plan_session_id = s.id
-     and c.role = 'work'
-     and w.version_id = new_v
-     and w.week_number = 10
-     and s.day_of_week = 'THU';
-
-  -- W13 remains 2 × 8, now explicitly the taper touch of the same spine.
   update public.training_plan_sessions s
-     set intent = 'Touch the threshold ceiling while reducing the cost into the taper.'
+     set title = 'Threshold 3 × 10 min', label = 'Threshold',
+         intent = 'Re-establish the ceiling after the eight-mile ask.',
+         details = null
     from public.training_plan_weeks w
-   where s.plan_week_id = w.id
-     and w.version_id = new_v
-     and w.week_number = 13
-     and s.day_of_week = 'THU';
+   where s.plan_week_id=w.id and w.version_id=new_v and w.week_number=10 and s.day_of_week='THU';
 
-  -- Publish the new method version on the same dates, then retire the previous
-  -- public projection. Athlete assignments are intentionally untouched.
+  update public.training_plan_sessions s
+     set title = 'Threshold 2 × 8 min', label = 'Threshold',
+         intent = 'Touch the threshold ceiling while reducing the cost into the taper.',
+         details = null
+    from public.training_plan_weeks w
+   where s.plan_week_id=w.id and w.version_id=new_v and w.week_number=13 and s.day_of_week='THU';
+
+  delete from public.training_plan_components c
+   using public.training_plan_sessions s, public.training_plan_weeks w
+   where c.plan_session_id=s.id and s.plan_week_id=w.id
+     and c.role='work' and w.version_id=new_v
+     and w.week_number in (5,7,8,10,13) and s.day_of_week='THU';
+
+  insert into public.training_plan_components
+    (plan_session_id, position, role, shape, duration_seconds, repeat_count,
+     pace_low_seconds, pace_high_seconds, recovery_kind, recovery_seconds,
+     counts_toward_mark)
+  select s.id, 2, 'work', 'repetitions', 600, 3, 375, null, 'easy', 180, false
+    from public.training_plan_sessions s join public.training_plan_weeks w on w.id=s.plan_week_id
+   where w.version_id=new_v and w.week_number=5 and s.day_of_week='THU';
+
+  insert into public.training_plan_components
+    (plan_session_id, position, role, shape, duration_seconds, repeat_count,
+     pace_low_seconds, pace_high_seconds, recovery_kind, recovery_seconds,
+     counts_toward_mark)
+  select s.id, 2, 'work', 'repetitions', 180, 5, 350, 360, 'easy', 180, false
+    from public.training_plan_sessions s join public.training_plan_weeks w on w.id=s.plan_week_id
+   where w.version_id=new_v and w.week_number=7 and s.day_of_week='THU';
+
+  insert into public.training_plan_components
+    (plan_session_id, position, role, shape, duration_seconds, repeat_count,
+     pace_low_seconds, pace_high_seconds, recovery_kind, recovery_seconds,
+     counts_toward_mark)
+  select s.id, 2, 'work', 'repetitions', 900, 2, 375, null, 'easy', 180, false
+    from public.training_plan_sessions s join public.training_plan_weeks w on w.id=s.plan_week_id
+   where w.version_id=new_v and w.week_number=8 and s.day_of_week='THU';
+
+  insert into public.training_plan_components
+    (plan_session_id, position, role, shape, duration_seconds, repeat_count,
+     pace_low_seconds, pace_high_seconds, recovery_kind, recovery_seconds,
+     counts_toward_mark)
+  select s.id, 2, 'work', 'repetitions', 600, 3, 375, null, 'easy', 180, false
+    from public.training_plan_sessions s join public.training_plan_weeks w on w.id=s.plan_week_id
+   where w.version_id=new_v and w.week_number=10 and s.day_of_week='THU';
+
+  insert into public.training_plan_components
+    (plan_session_id, position, role, shape, duration_seconds, repeat_count,
+     pace_low_seconds, pace_high_seconds, recovery_kind, recovery_seconds,
+     counts_toward_mark)
+  select s.id, 2, 'work', 'repetitions', 480, 2, 375, null, 'easy', 180, false
+    from public.training_plan_sessions s join public.training_plan_weeks w on w.id=s.plan_week_id
+   where w.version_id=new_v and w.week_number=13 and s.day_of_week='THU';
+
   insert into public.plan_publications
     (plan_id, plan_version_id, slug, starts_on, race_on, race_name,
      published_at, published_by)
@@ -219,44 +197,45 @@ begin
     (p_id, new_v, old_pub.slug, old_pub.starts_on, old_pub.race_on,
      old_pub.race_name, now(), old_pub.published_by);
 
-  update public.plan_publications
-     set revoked_at = now()
-   where id = old_pub.id;
-
-  raise notice 'RPD Plan Version % published from prior version %', next_version, old_v;
+  update public.plan_publications set revoked_at=now() where id=old_pub.id;
 end $$;
 
--- Proofs: one live publication, fifteen weeks, and the new Thursday spine.
+-- Transactional proofs.
 do $$
 declare
   payload jsonb;
   live_count integer;
-  spine_count integer;
+  week_count integer;
+  threshold_count integer;
+  vo2_count integer;
+  changed_work_count integer;
 begin
   select count(*) into live_count
-    from public.plan_publications pub
-    join public.training_plans p on p.id = pub.plan_id
-   where p.slug = 'race-pace-durability'
-     and pub.published_at is not null
-     and pub.revoked_at is null;
-
-  if live_count <> 1 then
-    raise exception 'expected exactly one live RPD publication, found %', live_count;
-  end if;
+    from public.plan_publications pub join public.training_plans p on p.id=pub.plan_id
+   where p.slug='race-pace-durability' and pub.published_at is not null and pub.revoked_at is null;
+  if live_count <> 1 then raise exception 'expected one live RPD publication, found %',live_count; end if;
 
   select public.public_plan('race-pace-durability') into payload;
-  if payload is null or jsonb_array_length(payload->'weeks') <> 15 then
-    raise exception 'RPD public payload did not return fifteen weeks';
-  end if;
+  select jsonb_array_length(payload->'weeks') into week_count;
+  if payload is null or week_count <> 15 then raise exception 'expected 15 public weeks, found %',week_count; end if;
 
-  select count(*) into spine_count
-    from jsonb_array_elements(payload->'weeks') w,
-         jsonb_array_elements(w->'sessions') s
-   where (w->>'week_number')::int in (5,8,10,13)
-     and s->>'day' = 'THU'
-     and s->>'label' = 'Threshold';
+  select count(*) into threshold_count
+    from jsonb_array_elements(payload->'weeks') w, jsonb_array_elements(w->'sessions') s
+   where (w->>'week_number')::int in (5,8,10,13) and s->>'day'='THU' and s->>'label'='Threshold';
+  if threshold_count <> 4 then raise exception 'expected 4 threshold-spine sessions, found %',threshold_count; end if;
 
-  if spine_count <> 4 then
-    raise exception 'threshold spine did not publish cleanly; found % expected 4', spine_count;
-  end if;
+  select count(*) into vo2_count
+    from jsonb_array_elements(payload->'weeks') w, jsonb_array_elements(w->'sessions') s
+   where (w->>'week_number')::int=7 and s->>'day'='THU' and s->>'title'='VO₂ 5 × 3 min';
+  if vo2_count <> 1 then raise exception 'expected W7 VO2 5x3, found %',vo2_count; end if;
+
+  select count(*) into changed_work_count
+    from public.training_plan_components c
+    join public.training_plan_sessions s on s.id=c.plan_session_id
+    join public.training_plan_weeks w on w.id=s.plan_week_id
+    join public.plan_publications pub on pub.plan_version_id=w.version_id
+    join public.training_plans p on p.id=pub.plan_id
+   where p.slug='race-pace-durability' and pub.revoked_at is null
+     and w.week_number in (5,7,8,10,13) and s.day_of_week='THU' and c.role='work';
+  if changed_work_count <> 5 then raise exception 'expected exactly 5 changed Thursday work components, found %',changed_work_count; end if;
 end $$;
