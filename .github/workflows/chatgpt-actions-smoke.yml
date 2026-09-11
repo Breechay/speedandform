@@ -1,13 +1,31 @@
-name: ChatGPT actions smoke
+name: Speed That Endures Sep 11 patch
 on:
   push:
     branches:
       - chatgpt/rpd-w3-threshold-spine
 permissions:
-  contents: read
+  contents: write
 jobs:
-  smoke:
+  patch:
     runs-on: ubuntu-latest
     steps:
-      - name: Smoke
-        run: echo ok
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Patch study
+        run: python scripts/update_speed_endures_sep11.py
+      - name: Verify scope
+        shell: bash
+        run: |
+          git diff --check
+          test "$(git diff --name-only | wc -l | tr -d ' ')" = "1"
+          git diff --name-only | grep -qx 'labs/speed-that-endures/index.html'
+      - name: Commit to main
+        shell: bash
+        run: |
+          git config user.name "Brice Ikouebe"
+          git config user.email "briceikouebe@gmail.com"
+          git rm scripts/update_speed_endures_sep11.py
+          git add labs/speed-that-endures/index.html
+          git commit -m "Study: file Hope W3 and progress the ceiling [skip ci]"
+          git push origin HEAD:main
