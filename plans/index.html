@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Plans &middot; FORM</title>
-<meta name="description" content="Training plans from FORM, written out in full. Free to read, free to run.">
+<meta name="description" content="Free FORM running plans built as progressions: each session has a job, each week builds on what the work establishes, and form remains part of the practice.">
 <link rel="canonical" href="https://speedandform.com/plans/">
 <link rel="icon" href="/favicon.ico">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#ece6da">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Plans &middot; FORM">
-<meta property="og:description" content="Training plans from FORM, written out in full.">
+<meta property="og:description" content="See how the work builds. Free running plans from FORM, written as progressive arguments rather than collections of workouts.">
 <meta property="og:url" content="https://speedandform.com/plans/">
 <meta property="og:site_name" content="Speed &amp; Form">
 <style>
@@ -30,22 +30,33 @@ a{color:inherit;text-decoration:none}
 .wrap{width:min(var(--max),calc(100% - 64px));margin:0 auto}
 .eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase}
 .wordmark{font-family:var(--sans);font-weight:800;letter-spacing:-.055em;font-size:24px}
-.wordmark i{font-style:normal;color:var(--lime-ink)}
+.wordmark i{font-style:normal;color:var(--ink)}
 
 .header-inner{height:78px;display:flex;align-items:center;justify-content:space-between}
 .header-right{display:flex;gap:24px;align-items:center;font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
 .header-right a:hover{color:var(--ink)}
 
 .head{padding:64px 0 8px}
-.head h1{font-family:var(--serif);font-weight:400;font-size:clamp(58px,9vw,124px);line-height:.86;letter-spacing:-.06em;margin:16px 0 0}
-.head p{max-width:560px;font-size:18px;line-height:1.62;color:var(--body);margin:26px 0 0}
+.head h1{font-family:var(--serif);font-weight:400;font-size:clamp(58px,9vw,124px);line-height:.86;letter-spacing:-.06em;margin:16px 0 0;max-width:9ch}
+.head p{max-width:650px;font-size:18px;line-height:1.62;color:var(--body);margin:26px 0 0}
 
-/* One rule opens the list. The entry does not draw its own on top of it. */
-.plans{margin-top:64px;border-top:1px solid var(--rule)}
+.method{margin-top:64px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);display:grid;grid-template-columns:180px repeat(3,1fr)}
+.method-label{padding:28px 28px 30px 0}
+.method-step{padding:28px 28px 30px;border-left:1px solid var(--hair)}
+.method-step b{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.method-step h3{font-family:var(--serif);font-weight:400;font-size:25px;line-height:1.05;letter-spacing:-.035em;margin:0 0 12px}
+.method-step p{margin:0;color:var(--body);font-size:14px;line-height:1.58}
+.form-read{margin-top:24px;padding:23px 0 0;border-top:1px solid var(--hair);display:grid;grid-template-columns:180px minmax(0,1fr) auto;gap:28px;align-items:start}
+.form-read h3{font-family:var(--serif);font-size:27px;line-height:1.05;letter-spacing:-.035em;font-weight:400;margin:0}
+.form-read p{margin:0;max-width:650px;color:var(--body);font-size:15px;line-height:1.6}
+.textlink{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(17,16,14,.3);padding-bottom:3px}
+
+.plans{margin-top:76px;border-top:1px solid var(--rule)}
 .plan{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;padding:44px 0;border-bottom:1px solid var(--hair)}
 .plan:last-child{border-bottom:0}
 .plan h2{font-family:var(--serif);font-weight:400;font-size:clamp(38px,5.2vw,68px);line-height:.94;letter-spacing:-.05em;margin:14px 0 0}
-.plan .says{margin:18px 0 0;max-width:620px;font-size:17px;line-height:1.6;color:var(--body)}
+.plan .says{margin:18px 0 0;max-width:700px;font-size:17px;line-height:1.6;color:var(--body)}
+.plan .progression{margin-top:20px;font-family:var(--mono);font-size:10px;line-height:1.55;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
 .facts{display:flex;flex-wrap:wrap;gap:0 34px;margin-top:26px}
 .facts div{padding-top:11px;border-top:1px solid var(--rule);min-width:112px}
 .facts small{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
@@ -53,17 +64,18 @@ a{color:inherit;text-decoration:none}
 .open{display:inline-flex;align-items:center;gap:11px;border:1px solid rgba(17,16,14,.28);padding:13px 17px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
 .open:hover{border-color:var(--ink)}
 
-/* Not a promise, and not a placeholder. What is being written now is visible in
-   Labs, so the honest move is to point at it rather than list an empty slot. */
 .elsewhere{margin-top:58px;padding-top:26px;border-top:1px solid var(--rule);display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end}
-.elsewhere p{margin:10px 0 0;max-width:620px;font-size:17px;line-height:1.6;color:var(--body)}
-.elsewhere a.textlink{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(17,16,14,.3);padding-bottom:3px}
+.elsewhere p{margin:10px 0 0;max-width:650px;font-size:17px;line-height:1.6;color:var(--body)}
 
 .footer{margin-top:96px;padding:36px 0 42px;border-top:1px solid var(--rule)}
 .footer-row{display:flex;justify-content:space-between;align-items:center;gap:24px}
 .footer nav{display:flex;gap:22px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .footer nav a:hover{color:var(--ink)}
 
+@media(max-width:900px){
+  .method{grid-template-columns:1fr 1fr}.method-label{grid-column:1/-1;padding-bottom:18px}.method-step{border-top:1px solid var(--hair)}.method-step:nth-of-type(2){border-left:0;padding-left:0}.method-step:nth-of-type(4){grid-column:1/-1;border-left:0;padding-left:0}
+  .form-read{grid-template-columns:1fr;gap:14px}
+}
 @media(max-width:820px){
   .plan,.elsewhere{grid-template-columns:1fr;gap:26px;align-items:start}
   .head{padding-top:44px}
@@ -73,6 +85,7 @@ a{color:inherit;text-decoration:none}
   .header-inner{height:64px}
   .header-right{gap:14px}
   .head p,.plan .says,.elsewhere p{font-size:16px}
+  .method{grid-template-columns:1fr}.method-label,.method-step,.method-step:nth-of-type(2),.method-step:nth-of-type(4){grid-column:auto;border-left:0;padding:22px 0;border-top:1px solid var(--hair)}.method-label{border-top:0}
   .facts{gap:0 22px}
   .facts div{min-width:calc(50% - 22px)}
   .footer-row{align-items:flex-start}
@@ -93,20 +106,49 @@ a{color:inherit;text-decoration:none}
 <main class="wrap">
   <div class="head">
     <div class="eyebrow">Plans</div>
-    <h1>Written out<br>in full.</h1>
-    <p>A plan is a method, not a calendar to buy. Every session says what it is for, and the paces are real numbers you can run. Free to read. Free to run.</p>
+    <h1>See how the work builds.</h1>
+    <p>Training is an argument made over time. Each block starts with what you can already do, asks for one new thing, and builds on what the work establishes. Free to read. Free to run.</p>
+  </div>
+
+  <section class="method" aria-label="How FORM plans work">
+    <div class="method-label"><div class="eyebrow">How to use these</div></div>
+    <div class="method-step">
+      <b>01</b>
+      <h3>Start with a form read.</h3>
+      <p>Your form is part of the training. Establish the one or two cues worth practising inside the block.</p>
+    </div>
+    <div class="method-step">
+      <b>02</b>
+      <h3>Run the progression.</h3>
+      <p>Each session has a job. The next ask builds on what the previous work was meant to establish.</p>
+    </div>
+    <div class="method-step">
+      <b>03</b>
+      <h3>Let evidence decide.</h3>
+      <p>If the work says something different than the plan expected, change the prescription rather than forcing the story.</p>
+    </div>
+  </section>
+
+  <div class="form-read">
+    <div class="eyebrow">Form + mechanics</div>
+    <h3>Pair the plan with Brice&rsquo;s eye on your running.</h3>
+    <div>
+      <p>Send a short running video for a one-time form read. The point is not to rebuild your stride from a checklist. It is to identify the cues that matter for you, then practise them inside the work.</p>
+      <a class="textlink" href="/#begin" style="display:inline-block;margin-top:14px">Start with Brice &rarr;</a>
+    </div>
   </div>
 
   <div class="plans">
     <article class="plan">
       <div>
-        <div class="eyebrow" style="color:var(--lime-ink)">Half marathon &middot; Sub-1:30</div>
+        <div class="eyebrow">Half marathon &middot; Sub-1:30</div>
         <h2>Race Pace Durability</h2>
-        <p class="says">Sub-1:30 is not really a pace problem. Most runners who want it can already touch 6:52 a mile. The question is whether it is still there at mile eleven. So the key sessions are run at 6:30&ndash;6:45, faster than goal pace, to build the margin that makes race day hold.</p>
+        <p class="says">Target pace is not the thing that changes. The resets disappear. Broken race-pace work becomes continuous distance, then the same pace is asked for late in a long run.</p>
+        <div class="progression">5 &rarr; 6 &rarr; 8 &rarr; 12 continuous miles at 6:30&ndash;6:45/mi</div>
         <div class="facts">
           <div><small>Length</small><b>15 weeks</b></div>
-          <div><small>Opens at</small><b>45 mi / week</b></div>
-          <div><small>Peaks near</small><b>60 mi / week</b></div>
+          <div><small>Progression</small><b>Broken &rarr; continuous &rarr; late</b></div>
+          <div><small>Volume</small><b>45 &rarr; 60 mpw</b></div>
           <div><small>Fee</small><b>Free</b></div>
         </div>
       </div>
@@ -114,13 +156,13 @@ a{color:inherit;text-decoration:none}
     </article>
     <article class="plan">
       <div>
-        <div class="eyebrow" style="color:var(--lime-ink)">10K &middot; Six weeks</div>
+        <div class="eyebrow">10K &middot; Six weeks</div>
         <h2>Raise the Ceiling</h2>
-        <p class="says">Simon and Lisa can already run fast. This asks a simpler question: can the same fast running start to feel easier, so there is more of it available when it matters? Tuesday raises what they can sustain, Thursday keeps faster running above it, Saturday keeps the endurance underneath. One 10K at the end says what changed.</p>
+        <p class="says">Tuesday extends what you can sustain. Thursday keeps faster running available above it. Saturday holds the endurance underneath. The block raises capacity above the pace you already know, then the 10K shows what changed.</p>
         <div class="facts">
           <div><small>Length</small><b>6 weeks</b></div>
           <div><small>Authored days</small><b>Tue &middot; Thu &middot; Sat</b></div>
-          <div><small>Expression</small><b>10K &middot; Oct 10</b></div>
+          <div><small>Expression</small><b>10K &middot; Oct 24</b></div>
           <div><small>Fee</small><b>Free</b></div>
         </div>
       </div>
@@ -130,8 +172,8 @@ a{color:inherit;text-decoration:none}
 
   <div class="elsewhere">
     <div>
-      <div class="eyebrow">Being written now</div>
-      <p>Both of these are being run right now by the athletes they were written for. You can watch them happen in Labs, week by week, while they are still open questions.</p>
+      <div class="eyebrow">Being run now</div>
+      <p>Both plans are being run by the athletes they were written for. Follow the weekly evidence in Labs while the questions are still open.</p>
     </div>
     <a class="textlink" href="/labs/">Open FORM Labs &rarr;</a>
   </div>
