@@ -7,10 +7,12 @@
 //
 // The composition is the approved baseline. One title, one week window, and the
 // prescription itself inside the cell. There is no metric strip, no tagline, no
-// explanatory chapter and no narrative block; the work is the argument.
+// explanatory chapter. A short progression summary and optional execution cues
+// support the prescription without changing its canonical training data.
 
 import { publishedPlan } from './source.js';
 import { notation } from './notation.js';
+import { executionCue } from './execution.js';
 
 // Live, not a fixture. Changing a value in the canonical plan changes this page
 // without anyone editing HTML.
@@ -49,6 +51,7 @@ function session(week, day, mobile) {
     <div class="primary">${esc(r.head)}</div>
     ${standard ? `<div class="standard-sets">${standard}</div>` : ''}
     ${details.map((l) => `<div class="detail">${esc(l)}</div>`).join('')}
+    ${executionCue(week.week_number, day, r.racePace) ? `<details class="execution"><summary>Pacing practice</summary><p>${esc(executionCue(week.week_number, day, r.racePace))}</p></details>` : ''}
     ${totalLine ? `<div class="total">${esc(totalLine)}</div>` : ''}
   </div>`;
 }
