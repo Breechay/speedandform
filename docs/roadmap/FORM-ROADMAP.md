@@ -8,23 +8,25 @@ Race Pace Durability stays free. Optional support is available while the study r
 
 **Release status: LIVE September 12, 2026, 13:39 UTC.** PR #91 merged as 2e1e41518e60a99472d323790caaf5956378fd44. Netlify production deploy 6aa55611d51fa8cad546ebac published successfully. The uploaded working tree matched merged main. Support-page desktop layout, awaiting-results copy, free links, support anchor and manual email destination were verified in the live browser. Phone visual verification and third-party share-cache testing remain open.
 
+**Plan/app audit completed September 12.** `docs/audits/PLAN-APP-AUDIT-RESULTS.md` records the actual shipped FORM iOS compile unit, live Supabase ownership/RLS/RPC paths, rolled-back synthetic isolation/replay tests, and the smallest safe plan-guided release. The backend already has the authoritative plan feed and idempotent filing door; the shipped iOS app is not yet wired to them. A correction-audit defect and prescription-version interpretation risk were found; an integrity migration is staged and transaction-tested, not yet applied.
+
 The previous “wait until race results to offer it” draft is superseded. Transparent unfinished development is deliberate. Delivery and claims must still be accurate.
 
 ## Next three actions
-1. Brice: capture one useful movement clip, its cue/date and permission to share (MEDIA-01).
-2. App agent: run the plan-app audit in this repo AND the actual FORM app repo/build. Identify manual judgment currently supplied by Brice.
-3. Site agent: complete phone verification, then align web pacing guidance with the printable/PDF edition.
+1. App/backend agent: apply and re-verify the staged evidence-integrity migration, then add explicit immutable session-version receipt semantics before native filing is called reliable.
+2. App agent: bridge the shipped FORM iOS app to `athlete_plan_feed()` + `record_session_from_form()` behind a beta gate; do not regenerate Race Pace Durability locally.
+3. Site/app agents: align web pacing guidance with the printable/PDF edition and, after the native bridge exists, the app from the same versioned source.
 
 ## Ownership
 | Surface | Role / source |
 | --- | --- |
-| Public plan | Published work; plans/race-pace-durability/source.js reads canonical source |
-| Pacing practice | Editorial web layer: execution.js; not yet canonical app/PDF content |
+| Public plan | Published work; `plans/race-pace-durability/source.js` reads canonical public source |
+| Pacing practice | Editorial web layer: `execution.js`; not yet canonical app/PDF content |
 | Athlete assignment | Individual band/schedule/version in existing private model; do not create duplicate tables |
-| Filing | Athlete identity + assigned session/version + dated measured evidence and athlete report |
-| Console | coach/labs/ and private/data.js; actual active paths must be verified |
-| Study | labs/speed-that-endures/index.html; Brice selects and interprets public evidence |
-| App | Locate real iOS repo/build; web source is not proof of app capability |
+| Filing | Athlete identity + assigned session/version + dated measured evidence and athlete report; current backend filing RPC is `record_session_from_form()` |
+| Console | `/coach/labs/` + `/private/data.js`; active scripts verified in the plan/app audit |
+| Study | `labs/speed-that-endures/index.html`; Brice selects and interprets public evidence |
+| App | Active repo is `Breechay/FORM-iOS`; shipped target compiles `FORMApp.swift`. `FORM/**` is reference/refactor material today, not proof of shipped behavior |
 
 Hope and José currently receive Brice's attention. Their successful use does not prove a stranger can run the plan without a coach watching.
 
@@ -41,10 +43,13 @@ LIVE = published; stated validation limits still apply. STAGED = implemented, pr
 | OFFER-02 | OPEN | Brice | Decide if manual support is enough. Card checkout needs verified account/link, receipt and terms. Never invent payment handles. |
 | OFFER-03 | OPEN | Brice | Keep contribution records privately: contact, amount/date, receipt and promised version. Never commit customer details. |
 | PDF-01 | OPEN | Site/app agents | Version web pacing notes into print/PDF and app from a common source; regenerate and visually verify. Current PDF is only the training sheet. |
-| APP-01 | OPEN | App agent | Execute PLAN-APP-AUDIT-BRIEF.md; map acquisition to filing, next work, console and editorial publication. |
-| APP-02 | VERIFY | App agent | Prove existing filing/console path with synthetic accounts, isolation, retries and corrections. |
-| APP-03 | OPEN | Brice + app agent | Approve bounded repeat/progress/change rules with versions, evidence, reasons, override and unresolved states. |
-| APP-04 | OPEN | App agent | Prove plan-guided versus coached boundaries; support payment never implies human review. |
+| APP-01 | LIVE | App agent | Plan/app audit completed. See `docs/audits/PLAN-APP-AUDIT-RESULTS.md`; exact repo/schema versions and unverified device scope are recorded. |
+| APP-02 | VERIFY | App/backend agents | Synthetic rolled-back tests passed own/cross-athlete isolation, own plan feed, idempotent receipt replay, structured pieces and athlete/coach boundary. Re-test after integrity migration and prove the real native bridge on another device. |
+| APP-03 | BLOCKED | Brice + app agent | Approve bounded repeat/progress/change rules only after explicit immutable session-version receipt exists. Pacing error, W9 split state, W12 qualifying segment, missing-report, surface and absence policies remain product decisions. |
+| APP-04 | VERIFY | App agent | Backend mode boundary is strong: athletes cannot author work/judgments and support payment grants nothing. Native self-guided enrollment/unresolved-state UX is still missing. |
+| APP-05 | OPEN | App agent | Ship the smallest native beta bridge: shared identity → `athlete_plan_feed()` → exact assigned version → `record_session_from_form()` receipt → same evidence visible in Labs. No autonomous prescription changes in v1. |
+| INTEGRITY-01 | STAGED | Backend agent | `20260912143000_rpd_evidence_revision_integrity.sql`: fixes coach correction reason stamping and scopes mark ownership to the version effective at filing. Candidate passed rolled-back synthetic correction test; preflight ownership values for Hope/José were unchanged. Apply, then repeat tests. |
+| INTEGRITY-02 | OPEN | Backend/app agents | Persist explicit `planned_session_version_id` on the filing receipt and protect it as completion identity. Backfill/history and all derived views must remain stable. This is a release blocker for reliable native plan-guided filing. |
 | MEDIA-01 | BLOCKED | Brice | Supply real 5–10s clip, session/date, observation, cue and sharing permission; attach to that exact note. |
 | MEDIA-02 | OPEN | Brice | Capture comparable early/late footage during a repeat session; publish only if useful. |
 | MEDIA-03 | OPEN | Brice | Optional Ceiling Thursday clip showing rhythm/recovery; no new plan hero video required. |
@@ -80,7 +85,7 @@ Trigger: official results and athlete accounts available.
 The account has five active reminders, so no new standalone task was created. The existing Tuesday Labs reminder now includes up to two roadmap/media/app actions. The existing late-run/race-day reminder includes post-race site, offer, PDF and app updates. Their original schedules were preserved.
 
 Review next actions weekly. Limit reminders to three concrete tasks and suppress completed work. Post-race reminders request verification/publication, never auto-fill results.
-After releases update statuses and actual deployment evidence here. Historical audit: docs/audits/2026-09-12-ecosystem-audit.md.
+After releases update statuses and actual deployment evidence here. Historical audit: `docs/audits/2026-09-12-ecosystem-audit.md`. Plan/app audit: `docs/audits/PLAN-APP-AUDIT-RESULTS.md`.
 PR: https://github.com/Breechay/speedandform/pull/91
-Test: node scripts/test-ceiling-navigation.mjs.
+Test: `node scripts/test-ceiling-navigation.mjs`.
 The support page is an explicitly authorized exception to the original audit's “no new page yet.”
