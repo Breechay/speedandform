@@ -6,7 +6,7 @@ Seven established public routes: homepage, Plans, two plans, Labs and two studie
 
 Race Pace Durability stays free. Optional support is available while the study runs: $79 suggested, any amount welcome. Free and supporting readers get the same current plan. Support is arranged by email with Brice; no card checkout or extra coaching entitlement.
 
-**Release status: PR #91 prepared; production verification pending.** Check GitHub and the live routes before updating this claim. The date of a document is not deployment evidence.
+**Release status: LIVE September 12, 2026, 13:39 UTC.** PR #91 merged as 2e1e41518e60a99472d323790caaf5956378fd44. Netlify production deploy 6aa55611d51fa8cad546ebac published successfully. The uploaded working tree matched merged main. Support-page desktop layout, awaiting-results copy, free links, support anchor and manual email destination were verified in the live browser. Phone visual verification and third-party share-cache testing remain open.
 
 The previous “wait until race results to offer it” draft is superseded. Transparent unfinished development is deliberate. Delivery and claims must still be accurate.
 
@@ -29,15 +29,15 @@ The previous “wait until race results to offer it” draft is superseded. Tran
 Hope and José currently receive Brice's attention. Their successful use does not prove a stranger can run the plan without a coach watching.
 
 ## Work register
-STAGED = implemented, production unverified. OPEN = not done. VERIFY = code exists, end-to-end claim unproven. BLOCKED = named dependency. Complete items with dated evidence, not just a checkbox.
+LIVE = published; stated validation limits still apply. STAGED = implemented, production unverified. OPEN = not done. VERIFY = code exists, end-to-end claim unproven. BLOCKED = named dependency. Complete items with dated evidence, not just a checkbox.
 
 | ID | Status | Owner | Next action / done when |
 | --- | --- | --- | --- |
-| SITE-01 | STAGED | Site agent | Ceiling paging: six tests pass. Verify 390/650/720px and desktop in browser. |
-| SITE-02 | STAGED | Site agent | Cost-lens specificity fix: verify screenshot defect at 375–430px and enlarged text. |
-| SITE-03 | STAGED | Site agent | Six share images, metadata, dates, plan/assignment copy, links, removed unsupported centerpiece. Verify production assets and share caches. |
-| SITE-04 | STAGED | Site agent | Pacing details + study interpretation. Check early reps, continuous and late sessions; preserve volumes and targets. |
-| OFFER-01 | STAGED | Site agent | Support page + free access + manual email support. Verify all actions. |
+| SITE-01 | LIVE | Site agent | Ceiling paging: six tests pass. Verify 390/650/720px and desktop in browser. |
+| SITE-02 | LIVE | Site agent | Cost-lens specificity fix: verify screenshot defect at 375–430px and enlarged text. |
+| SITE-03 | LIVE | Site agent | Six share images, metadata, dates, plan/assignment copy, links, removed unsupported centerpiece. Verify production assets and share caches. |
+| SITE-04 | LIVE | Site agent | Pacing details + study interpretation. Check early reps, continuous and late sessions; preserve volumes and targets. |
+| OFFER-01 | LIVE | Site agent | Support page + free access + manual email support. Verify all actions. |
 | OFFER-02 | OPEN | Brice | Decide if manual support is enough. Card checkout needs verified account/link, receipt and terms. Never invent payment handles. |
 | OFFER-03 | OPEN | Brice | Keep contribution records privately: contact, amount/date, receipt and promised version. Never commit customer details. |
 | PDF-01 | OPEN | Site/app agents | Version web pacing notes into print/PDF and app from a common source; regenerate and visually verify. Current PDF is only the training sheet. |
@@ -77,6 +77,8 @@ Trigger: official results and athlete accounts available.
 - [ ] Publish conclusion, then athlete-approved share cards, with full evidence public.
 
 ## Maintenance
+The account has five active reminders, so no new standalone task was created. The existing Tuesday Labs reminder now includes up to two roadmap/media/app actions. The existing late-run/race-day reminder includes post-race site, offer, PDF and app updates. Their original schedules were preserved.
+
 Review next actions weekly. Limit reminders to three concrete tasks and suppress completed work. Post-race reminders request verification/publication, never auto-fill results.
 After releases update statuses and actual deployment evidence here. Historical audit: docs/audits/2026-09-12-ecosystem-audit.md.
 PR: https://github.com/Breechay/speedandform/pull/91
