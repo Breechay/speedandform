@@ -4,7 +4,8 @@
  * nothing between the reader and the work. Everything the earlier page put
  * around the matrix — the metric strip, the tagline, WHY THIS BLOCK EXISTS,
  * THE PROGRESSION, PLAN INFORMATION, the narrative moment — is gone, and is
- * not to come back. The prescription moved INTO the cell, which is why the
+ * not to come back as a second dashboard. September 12 adds compact progression,
+ * optional pacing and support. The prescription remains in the cell, which is why the
  * inspector went with them.
  */
 
@@ -402,3 +403,4 @@ footer{height:55px;display:flex;align-items:flex-end;gap:18px;color:#9da6a8;font
 .pacing-guide{margin:24px 0;padding:20px 0;border-top:1px solid var(--line);max-width:72ch;line-height:1.6}
 .pacing-guide summary{cursor:pointer;color:var(--text)}
 .pacing-guide p{color:var(--muted)}
+.support-link{font-size:13px;margin:24px 0}.support-link a{color:var(--soft);text-underline-offset:4px}
