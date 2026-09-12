@@ -8,13 +8,15 @@ Race Pace Durability stays free. Optional support is available while the study r
 
 **Release status: LIVE September 12, 2026, 13:39 UTC.** PR #91 merged as 2e1e41518e60a99472d323790caaf5956378fd44. Netlify production deploy 6aa55611d51fa8cad546ebac published successfully. The uploaded working tree matched merged main. Support-page desktop layout, awaiting-results copy, free links, support anchor and manual email destination were verified in the live browser. Phone visual verification and third-party share-cache testing remain open.
 
-**Plan/app audit completed September 12.** `docs/audits/PLAN-APP-AUDIT-RESULTS.md` records the actual shipped FORM iOS compile unit, live Supabase ownership/RLS/RPC paths, rolled-back synthetic isolation/replay tests, and the smallest safe plan-guided release. The backend already has the authoritative plan feed and idempotent filing door; the shipped iOS app is not yet wired to them. A correction-audit defect and prescription-version interpretation risk were found; an integrity migration is staged and transaction-tested, not yet applied.
+**Plan/app audit completed September 12.** `docs/audits/PLAN-APP-AUDIT-RESULTS.md` records the actual shipped FORM iOS compile unit, live Supabase ownership/RLS/RPC paths, rolled-back synthetic isolation/replay tests, and the smallest safe plan-guided release. The backend already has the authoritative plan feed and idempotent filing door; the shipped iOS app is not yet wired to them.
+
+**Evidence-integrity follow-up is now live.** `rpd_evidence_revision_integrity` fixes correction-reason stamping and prevents later prescription revisions from changing old mark evidence. `explicit_session_version_receipt` adds immutable `planned_session_version_id` to FORM filing receipts, requires it for new planned FORM filings, protects it as completion identity and makes mark/verdict reads prefer that exact version. A rolled-back acceptance test proved missing-version rejection, idempotent replay, version immutability and old-evidence stability after a later prescription revision. Hope and José retained the same established values and qualifying-segment counts after migration.
 
 The previous “wait until race results to offer it” draft is superseded. Transparent unfinished development is deliberate. Delivery and claims must still be accurate.
 
 ## Next three actions
-1. App/backend agent: apply and re-verify the staged evidence-integrity migration, then add explicit immutable session-version receipt semantics before native filing is called reliable.
-2. App agent: bridge the shipped FORM iOS app to `athlete_plan_feed()` + `record_session_from_form()` behind a beta gate; do not regenerate Race Pace Durability locally.
+1. App agent: build a beta-gated native FORM Athlete System client using the authoritative `athlete_plan_feed()` and version-aware `record_session_from_form()` contract; do not regenerate Race Pace Durability locally.
+2. App agent: establish a safe FORM Athlete System identity handoff/token-refresh path in iOS, then prove exact assigned-version read → filing → Labs visibility in simulator/CI and on a physical device.
 3. Site/app agents: align web pacing guidance with the printable/PDF edition and, after the native bridge exists, the app from the same versioned source.
 
 ## Ownership
@@ -23,10 +25,10 @@ The previous “wait until race results to offer it” draft is superseded. Tran
 | Public plan | Published work; `plans/race-pace-durability/source.js` reads canonical public source |
 | Pacing practice | Editorial web layer: `execution.js`; not yet canonical app/PDF content |
 | Athlete assignment | Individual band/schedule/version in existing private model; do not create duplicate tables |
-| Filing | Athlete identity + assigned session/version + dated measured evidence and athlete report; current backend filing RPC is `record_session_from_form()` |
+| Filing | Athlete identity + assigned session + exact immutable session version + dated measured evidence and athlete report; backend filing RPC is `record_session_from_form()` |
 | Console | `/coach/labs/` + `/private/data.js`; active scripts verified in the plan/app audit |
 | Study | `labs/speed-that-endures/index.html`; Brice selects and interprets public evidence |
-| App | Active repo is `Breechay/FORM-iOS`; shipped target compiles `FORMApp.swift`. `FORM/**` is reference/refactor material today, not proof of shipped behavior |
+| App | Active repo is `Breechay/FORM-iOS`; shipped target includes `FORMApp.swift` plus compiled modular files under `FORM/**`. Native RPD delivery is not yet wired to the FORM Athlete System |
 
 Hope and José currently receive Brice's attention. Their successful use does not prove a stranger can run the plan without a coach watching.
 
@@ -44,12 +46,12 @@ LIVE = published; stated validation limits still apply. STAGED = implemented, pr
 | OFFER-03 | OPEN | Brice | Keep contribution records privately: contact, amount/date, receipt and promised version. Never commit customer details. |
 | PDF-01 | OPEN | Site/app agents | Version web pacing notes into print/PDF and app from a common source; regenerate and visually verify. Current PDF is only the training sheet. |
 | APP-01 | LIVE | App agent | Plan/app audit completed. See `docs/audits/PLAN-APP-AUDIT-RESULTS.md`; exact repo/schema versions and unverified device scope are recorded. |
-| APP-02 | VERIFY | App/backend agents | Synthetic rolled-back tests passed own/cross-athlete isolation, own plan feed, idempotent receipt replay, structured pieces and athlete/coach boundary. Re-test after integrity migration and prove the real native bridge on another device. |
-| APP-03 | BLOCKED | Brice + app agent | Approve bounded repeat/progress/change rules only after explicit immutable session-version receipt exists. Pacing error, W9 split state, W12 qualifying segment, missing-report, surface and absence policies remain product decisions. |
+| APP-02 | VERIFY | App/backend agents | Synthetic isolation/replay tests and post-integrity version-receipt acceptance tests pass. Prove the real native bridge in CI/simulator and on another physical device. |
+| APP-03 | BLOCKED | Brice + app agent | Approve bounded repeat/progress/change rules. Pacing error, W9 split state, W12 qualifying segment, missing-report, surface and absence policies remain product decisions; do not automate them by inference. |
 | APP-04 | VERIFY | App agent | Backend mode boundary is strong: athletes cannot author work/judgments and support payment grants nothing. Native self-guided enrollment/unresolved-state UX is still missing. |
-| APP-05 | OPEN | App agent | Ship the smallest native beta bridge: shared identity → `athlete_plan_feed()` → exact assigned version → `record_session_from_form()` receipt → same evidence visible in Labs. No autonomous prescription changes in v1. |
-| INTEGRITY-01 | STAGED | Backend agent | `20260912143000_rpd_evidence_revision_integrity.sql`: fixes coach correction reason stamping and scopes mark ownership to the version effective at filing. Candidate passed rolled-back synthetic correction test; preflight ownership values for Hope/José were unchanged. Apply, then repeat tests. |
-| INTEGRITY-02 | OPEN | Backend/app agents | Persist explicit `planned_session_version_id` on the filing receipt and protect it as completion identity. Backfill/history and all derived views must remain stable. This is a release blocker for reliable native plan-guided filing. |
+| APP-05 | OPEN | App agent | Ship the smallest native beta bridge: shared identity → `athlete_plan_feed()` → exact assigned version → version-aware `record_session_from_form()` receipt → same evidence visible in Labs. No autonomous prescription changes in v1. |
+| INTEGRITY-01 | LIVE | Backend agent | `rpd_evidence_revision_integrity` is applied. Coach correction reasons now land on the exact revisions they create; mark evidence is scoped to the effective filing version for legacy rows. Reverified after apply. |
+| INTEGRITY-02 | LIVE | Backend/app agents | `explicit_session_version_receipt` is applied. New planned FORM filings require immutable `planned_session_version_id`; replay cannot switch prescriptions; identity guard protects it; mark/verdict reads prefer it. Rolled-back acceptance test passed and Hope/José values were unchanged. |
 | MEDIA-01 | BLOCKED | Brice | Supply real 5–10s clip, session/date, observation, cue and sharing permission; attach to that exact note. |
 | MEDIA-02 | OPEN | Brice | Capture comparable early/late footage during a repeat session; publish only if useful. |
 | MEDIA-03 | OPEN | Brice | Optional Ceiling Thursday clip showing rhythm/recovery; no new plan hero video required. |
@@ -86,6 +88,6 @@ The account has five active reminders, so no new standalone task was created. Th
 
 Review next actions weekly. Limit reminders to three concrete tasks and suppress completed work. Post-race reminders request verification/publication, never auto-fill results.
 After releases update statuses and actual deployment evidence here. Historical audit: `docs/audits/2026-09-12-ecosystem-audit.md`. Plan/app audit: `docs/audits/PLAN-APP-AUDIT-RESULTS.md`.
-PR: https://github.com/Breechay/speedandform/pull/91
+PR #91: public support release. PR #92: plan/app audit and first integrity repair.
 Test: `node scripts/test-ceiling-navigation.mjs`.
 The support page is an explicitly authorized exception to the original audit's “no new page yet.”
