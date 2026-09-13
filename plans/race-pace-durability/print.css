@@ -1,6 +1,6 @@
 /* THE PRINT EDITION.
  *
- * Four landscape pages: a cover and three spreads of five weeks. The whole plan
+ * Five landscape pages: a cover, three training spreads and pacing notes. The whole plan
  * at once, which is the thing a screen window deliberately does not do.
  *
  * There is no THIS WEEK mark here. A printed page has no idea what week it is,
@@ -67,3 +67,5 @@ tbody td{vertical-align:top;border-top:1px solid rgba(32,44,47,.9);
   #edition{display:contents}
   .page{box-shadow:0 1px 0 #1a2427,0 18px 44px #0000006e}
 }
+
+.pacing-page h1{font-size:34px;margin:24px 0 12px;letter-spacing:-.04em}.pacing-page h2{font-size:11px;color:var(--lime);letter-spacing:.15em}.pacing-columns{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:16px}.pacing-columns p{font-size:11px;line-height:1.5;color:#c7cfcb;margin:0 0 16px}.pacing-columns h3{font-size:11px;color:var(--lime);margin:0 0 4px}
