@@ -44,7 +44,7 @@ LIVE = published; stated validation limits still apply. STAGED = implemented, pr
 | OFFER-01 | LIVE | Site agent | Support page + free access + manual email support. Verify all actions. |
 | OFFER-02 | OPEN | Brice | Decide if manual support is enough. Card checkout needs verified account/link, receipt and terms. Never invent payment handles. |
 | OFFER-03 | OPEN | Brice | Keep contribution records privately: contact, amount/date, receipt and promised version. Never commit customer details. |
-| PDF-01 | STAGED | Site agent | Five-page PDF includes shared pacing appendix; visually checked and training sheets preserved. Native pacing delivery remains APP-05. |
+| PDF-01 | LIVE | Site agent | Five-page PDF includes shared pacing appendix; visually checked and training sheets preserved. Native pacing delivery remains APP-05. |
 | APP-01 | LIVE | App agent | Plan/app audit completed. See `docs/audits/PLAN-APP-AUDIT-RESULTS.md`; exact repo/schema versions and unverified device scope are recorded. |
 | APP-02 | VERIFY | App/backend agents | Synthetic isolation/replay tests and post-integrity version-receipt acceptance tests pass. Prove the real native bridge in CI/simulator and on another physical device. |
 | APP-03 | BLOCKED | Brice + app agent | Approve bounded repeat/progress/change rules. Pacing error, W9 split state, W12 qualifying segment, missing-report, surface and absence policies remain product decisions; do not automate them by inference. |
@@ -56,9 +56,9 @@ LIVE = published; stated validation limits still apply. STAGED = implemented, pr
 | MEDIA-02 | OPEN | Brice | Capture comparable early/late footage during a repeat session; publish only if useful. |
 | MEDIA-03 | OPEN | Brice | Optional Ceiling Thursday clip showing rhythm/recovery; no new plan hero video required. |
 | SHARE-01 | OPEN | Site agent | Dated W3 decision card using actual evidence. Keep threshold separate from RP sessions. Generic progression OG card exists; decision card does not. |
-| COPY-01 | STAGED | Site agent | Signal labels clarified in Ceiling. Shared Question/Prescription; individual Output/Cost/Read/Next; pace/effort/control/reserve/limiter are inputs. |
-| COPY-02 | STAGED | Site agent | Removed remaining unsupported Ceiling numerical forecasts; race plan stays open. |
-| COPY-03 | STAGED | Site agent | Homepage description now names coaching, plans and living studies; hero/photo unchanged. |
+| COPY-01 | LIVE | Site agent | Signal labels clarified in Ceiling. Shared Question/Prescription; individual Output/Cost/Read/Next; pace/effort/control/reserve/limiter are inputs. |
+| COPY-02 | LIVE | Site agent | Removed remaining unsupported Ceiling numerical forecasts; race plan stays open. |
+| COPY-03 | LIVE | Site agent | Homepage description now names coaching, plans and living studies; hero/photo unchanged. |
 | UI-01 | OPEN | Site agent | Navigation/folios/focus/footers, tiny Ceiling notation, lime hierarchy, Bridge title scale. Diagnose with screenshots; preserve distinct compositions. |
 | RESEARCH-01 | OPEN | Research agent | Verify citations and claim scope. Original audit did not do this. |
 | LIBRARY-01 | OPEN | Site agent | Scoped review of existing articles, mechanical language and stale schedules before adding educational pages. |
@@ -93,4 +93,4 @@ Test: `node scripts/test-ceiling-navigation.mjs`.
 The support page is an explicitly authorized exception to the original audit's “no new page yet.”
 
 ## September 13 follow-up
-See [release checks and current app review](../audits/2026-09-13-RPD-FOLLOWUP.md). PDF/copy changes are staged pending this batch deployment. Six navigation tests passed. Phone visual gate remains open because this browser cannot set a phone viewport; do not mark it verified. Real media is deferred by Brice.
+See [release checks and current app review](../audits/2026-09-13-RPD-FOLLOWUP.md). PDF/copy changes are LIVE: PR #94 merged as 1e3eaa12f2a105327813d62e2d4811b8935ef328; clean-export Netlify deploy 6aa5fdb6a06f6aaa582eeded published September 13 at 01:35 UTC. Live support description and exact downloaded PDF SHA-256 were verified. First attempt 6aa5fd72b05d020a919629b9 failed before build because an uploaded worktree pointer was not portable; deploy clean git exports, never worktree metadata. Six navigation tests passed. Phone visual gate remains open because this browser cannot set a phone viewport; do not mark it verified. Real media is deferred by Brice.
