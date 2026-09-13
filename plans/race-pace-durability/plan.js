@@ -12,7 +12,12 @@
 
 import { publishedPlan } from './source.js';
 import { notation } from './notation.js';
-import { executionCue } from './execution.js';
+import { executionCue, executionGuide } from './execution.js';
+
+// Keep the static no-JS fallback, and refresh from the shared print/PDF source.
+document.querySelectorAll('.pacing-guide p').forEach((p, i) => {
+  if (executionGuide[i]) p.textContent = executionGuide[i];
+});
 
 // Live, not a fixture. Changing a value in the canonical plan changes this page
 // without anyone editing HTML.

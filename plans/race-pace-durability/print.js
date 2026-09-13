@@ -1,4 +1,4 @@
-// THE PRINT EDITION — the whole plan on four landscape pages.
+// THE PRINT EDITION — the whole plan on five landscape pages.
 //
 // Same plan, same notation module, different medium. A screen shows a window
 // because you can move it; paper cannot move, so paper gets all fifteen weeks.
@@ -9,6 +9,7 @@
 
 import { publishedPlan } from './source.js';
 import { notation } from './notation.js';
+import { executionGuide, executionExamples, executionVersion } from './execution.js';
 
 const plan = await publishedPlan('race-pace-durability');
 const { read } = notation(plan);
@@ -89,7 +90,7 @@ document.getElementById('edition').innerHTML = `
       <div>${esc(version)} · ${esc(show(weekOne))} – ${esc(raceOn.toLocaleDateString('en-US',
         { month: 'short', day: 'numeric', year: 'numeric' }))}</div>
     </div>
-  </section>` + spreads.map(spread).join('');
+  </section>` + spreads.map(spread).join('') + `<section class="page pacing-page"><div class="brand">FORM <span>LABS</span></div><h1>Practise the race.</h1><h2>START · SETTLE · HOLD · FINISH</h2><div class="pacing-columns"><div>${executionGuide.map(p => `<p>${esc(p)}</p>`).join('')}</div><div>${executionExamples.map(({label,cue}) => `<h3>${esc(label)}</h3><p>${esc(cue)}</p>`).join('')}</div></div><div class="page-foot">Pacing notes · ${executionVersion} · Follow your assigned band. Training volume and targets are unchanged.</div></section>`;
 
 // The file the browser offers to save is named by the print job's title.
 document.title = `${title} · ${version}`;
