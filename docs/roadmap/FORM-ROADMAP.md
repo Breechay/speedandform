@@ -172,3 +172,11 @@ HYROX-02: publication authorized; deployment receipt and live checks pending. Do
 - Remove the small repeated FORM HYROX eyebrow above the main title, per Brice. Main title and mast remain.
 - Exact string removal only; no layout rules, inputs or scripts changed. Prior divider/footer release verified live at 67c73e1e / Netlify 6aa77a4ed849ba0008514d5c.
 - Next: verify deployment receipt and live absence of duplicate label. Independent review prompt requested for further evidence-based coaching improvements; no new training claims added here.
+
+
+### HYROX review improvements — September 14
+- READY: four starting priorities; dated Singles 26/27 rule reminders; adaptable five-day training example with recovery and mixed-work substitution; simpler rehearsal alongside the retained advanced threshold-first example; race-day preparation and fallback plan.
+- Pair explanation now checks later work. Existing later-cost fields explained without pretending they establish causality. All original inputs, IDs and storage schema preserved.
+- Direct links now open their target disclosures, including nested lessons; mobile contents includes starting focus, weekly plan and race day.
+- Sources: official 26/27 Singles PDF (maintain.hyrox.com/rulebooks/HYROX_RulebookSingles_EN.pdf), sections 7–12; Better Health Channel sporting-performance-and-food. Training prescriptions are labelled coaching examples, not validated HYROX programmes or sub-60 standards.
+- Validation: original field/ID preservation, unique IDs, valid fragment targets, JS syntax, existing calculation suites passed. Desktop production review and deployment receipt to follow in release PR. Physical phone/iPad acceptance remains open. No private athlete information added.
