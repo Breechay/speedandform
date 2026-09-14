@@ -135,3 +135,9 @@ HYROX-02: publication authorized; deployment receipt and live checks pending. Do
 - Session addition: READY FOR RELEASE. Reference threshold + reduced circuit, station/run comparison, editable full-race budget. Targets are supplied examples, not validated sub-60 benchmarks. Whiteboard burpee range takes precedence; missing loads/reps/recovery remain explicit.
 - Evidence: Node workbench and session-budget tests, syntax and fragment/ID checks. No athlete information published. Existing record schema/storage preserved; budget edits deliberately temporary.
 - Next: verify production commit and session UI after the single batched release; phone/device visual acceptance remains open.
+
+### HYROX clarity and search pass — September 14
+- Prior worked-session release LIVE: bf111b4; deploy 6aa769e44afe1300082bcede. Live budget 4:10/km + 24:00 + 4:00 = 1:01:20 verified; record unchanged.
+- READY: smaller worked equations, structured rehearsal, controlled-effort cue, compact expandable split fields, clear scenario result, concise method/FAQ. Existing record IDs and schema preserved.
+- Search: descriptive metadata and WebApplication schema, sitemap entry, Labs anchor and print URL. No invented search volumes, ability tiers, FAQ/HowTo rich-result promises or athlete data in URLs. Google documentation reviewed 2026-09-14: FAQ rich results retired May 2026; HowTo retired. HR context: Brandt et al. 2025 (11 recreational athletes); no claim that flat HR is optimal.
+- Validation: workbench/budget tests, syntax, anchors, JSON-LD and storage-field preservation. Next: inspect production desktop interactions and verify release receipt; physical phone acceptance remains open.
