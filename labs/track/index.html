@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/>
+<meta content="dark" name="color-scheme"/>
+<meta content="#07110f" name="theme-color"/>
+<title>Track Workouts, Standards &amp; Time Trials | FORM</title>
+<meta content="The FORM Track room: six named standards with set-by-set targets, a threshold ladder, time trials, and how a mark is recorded." name="description"/>
+<link href="https://speedandform.com/labs/track/" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="Speed &amp; Form" property="og:site_name"/>
+<meta content="Track Workouts, Standards &amp; Time Trials | FORM" property="og:title"/>
+<meta content="Six named standards with set-by-set targets, a threshold ladder, time trials, and how a mark is recorded." property="og:description"/>
+<meta content="https://speedandform.com/labs/track/" property="og:url"/>
+<style>
+@font-face{font-family:Inter;src:url(/assets/labs/fonts/inter-latin.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+
+:root{
+  --bg:#06100e;--deep:#030807;--ink:#f4f6f2;--ink2:#d4dad6;--body:#c2cbc6;--muted:#9ba69f;
+  --line:rgba(242,244,239,.14);--line2:rgba(242,244,239,.075);--lime:#c9ff36;--panel:#0b1713;
+  --sans:Inter,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  --max:1440px;--gutter:clamp(22px,4vw,64px);--mast:62px;
+}
+*{box-sizing:border-box}
+html{min-height:100%;background:#030807;scroll-behavior:smooth;scroll-padding-top:74px}
+body{min-height:100vh;margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:-25vh 0;z-index:-5;background:var(--deep);pointer-events:none}
+a{color:inherit;text-decoration:none} a:hover{color:var(--lime)} ::selection{background:var(--lime);color:#07110f}
+:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+.shell{max-width:var(--max);margin:auto;padding:0 var(--gutter)}
+.eyebrow{font-size:11px;line-height:1.2;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:var(--lime)}
+.muted{color:var(--muted)}
+
+/* Labs mast language, shared with the HYROX page. */
+.mast{position:fixed;z-index:50;top:0;left:0;right:0;height:var(--mast);display:flex;align-items:center;background:linear-gradient(180deg,rgba(3,8,7,.94),rgba(3,8,7,.75));backdrop-filter:saturate(1.15) blur(16px);-webkit-backdrop-filter:saturate(1.15) blur(16px)}
+.mast .shell{width:100%;display:flex;justify-content:space-between;align-items:center;gap:28px}
+.mast-left{display:flex;align-items:center;gap:14px;min-width:0}
+.brand{font-weight:950;letter-spacing:-.055em;font-size:23px}.brand span{color:var(--lime)}
+.crumb{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--body);white-space:nowrap}
+.mast nav{display:flex;gap:27px;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#a8b2ad}
+.mast nav a{position:relative;padding:23px 0 21px;transition:color .18s ease}
+.mast nav a:after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--lime);transition:right .2s ease}
+.mast nav a:hover{color:var(--ink)}.mast nav a:hover:after{right:0}
+.mobile-menu{display:none;position:relative}
+.mobile-menu summary{font-size:13px;padding:14px 0;cursor:pointer;list-style:none}
+.mobile-menu summary::-webkit-details-marker{display:none}
+.mobile-menu>div{position:absolute;right:0;top:42px;min-width:230px;padding:12px 20px;background:#07110f;border:1px solid var(--line);box-shadow:0 12px 32px #0008;max-height:calc(100svh - 100px);overflow-y:auto}
+.mobile-menu a{display:block;padding:12px 0;font-size:15px}
+
+main{padding-top:var(--mast)}
+.hero{min-height:74svh;display:flex;align-items:flex-end;padding:clamp(80px,10vw,144px) 0 clamp(76px,8vw,116px);background:var(--deep);border-bottom:1px solid var(--line)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.72fr);gap:clamp(54px,8vw,126px);align-items:end}
+.hero h1{margin:20px 0 0;font-size:clamp(72px,10.5vw,164px);line-height:.8;letter-spacing:-.078em;font-weight:950;text-transform:uppercase}
+.hero h1 span{display:block;color:var(--lime)}
+.hero-copy{padding-bottom:6px}
+.hero-copy .thesis{font-size:clamp(26px,2.65vw,40px);line-height:1.08;letter-spacing:-.044em;font-weight:760;margin:0 0 26px}
+.hero-copy p{color:var(--body);font-size:16px;line-height:1.64;margin:0;max-width:520px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px 28px;margin-top:28px;font-size:14px}
+.hero-actions a{border-bottom:1px solid var(--lime);padding:12px 0}
+.hero-meta{display:flex;gap:10px 18px;flex-wrap:wrap;margin-top:32px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8e9993}
+.hero-meta b{color:var(--ink);font-weight:650}
+
+.lesson{border-bottom:1px solid var(--line);padding:78px 0 92px}
+.lesson-grid{display:grid;grid-template-columns:152px minmax(0,1fr);gap:30px;align-items:start}
+.rail{padding-top:8px}.rail-inner{position:sticky;top:92px}
+.rail .num{display:block;color:var(--muted);font-size:11px;font-weight:750;letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px}
+.rail .hint{display:block;color:#cbd1cd;font-size:14px;line-height:1.35;max-width:142px}
+.lesson-body{margin-left:-15px;min-width:0}
+.lesson-head{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.85fr);gap:clamp(24px,4vw,56px);align-items:end;margin-bottom:34px}
+.lesson h2{margin:0;font-size:clamp(42px,4.5vw,66px);line-height:1.06;letter-spacing:-.05em;font-weight:900;text-wrap:balance}
+.deck{margin:0;color:var(--body);font-size:18px;line-height:1.6;max-width:48ch;justify-self:end}
+.lead{font-size:clamp(22px,2.2vw,30px);line-height:1.26;letter-spacing:-.035em;color:var(--ink);margin:0 0 30px;max-width:30ch;font-weight:640}
+.lead strong{color:var(--lime);font-weight:640}
+.note{color:var(--body);font-size:15px;line-height:1.66;max-width:68ch}
+.note b{color:var(--ink);font-weight:650}
+.caption{font-size:13px;line-height:1.55;color:var(--muted);max-width:68ch}
+
+/* 01. The room: seven relationships, one per cell. */
+.sequence{display:grid;grid-template-columns:repeat(12,1fr);border:1px solid var(--line);margin-top:34px}
+.seq{min-height:154px;padding:20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.seq:nth-child(-n+4){grid-column:span 3}
+.seq:nth-child(n+5){grid-column:span 4;border-bottom:0}
+.seq:nth-child(4),.seq:nth-child(7){border-right:0}
+.seq b{display:block;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--lime);margin-bottom:26px}
+.seq strong{display:block;font-size:20px;letter-spacing:-.03em;margin-bottom:5px;font-weight:650}
+.seq small{display:block;color:var(--muted);font-size:12px;line-height:1.5}
+
+/* 02. Standards: one sheet per named workout. */
+.standards{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.std{display:flex;flex-direction:column;padding:30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.std-head{margin-bottom:22px}
+.std-head b{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);line-height:1.5}
+.std-head h3{margin:6px 0 0;font-size:clamp(28px,2.6vw,38px);line-height:1.08;letter-spacing:-.045em;font-weight:900;text-transform:uppercase}
+.std-shape{margin:10px 0 0;font-size:16px;line-height:1.5;color:var(--ink);font-variant-numeric:tabular-nums}
+.std-sets{margin:0;display:grid;border-top:1px solid var(--line2)}
+.std-set{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 20px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line2)}
+.std-set:last-child{border-bottom:0}
+.std-set dt{font-size:17px;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
+.std-set dd{margin:0;font-size:17px;color:var(--lime);font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+.std-set .rec{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+.std-foot{margin:0;padding-top:24px;margin-top:auto;font-size:13px;line-height:1.55;color:var(--muted)}
+.std-foot b{color:var(--ink);font-weight:650;font-variant-numeric:tabular-nums}
+
+/* 03 and 04. Ladders read as lists, not cards. */
+.ladder{border-top:1px solid var(--line);margin-top:30px}
+.rung{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:20px;padding:18px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.rung .n{color:var(--lime);font-size:11px;letter-spacing:.12em;font-variant-numeric:tabular-nums}
+.rung strong{font-size:21px;letter-spacing:-.03em;font-weight:650;font-variant-numeric:tabular-nums}
+.rung strong span{display:block;font-size:13px;font-weight:400;letter-spacing:0;color:var(--body);margin-top:5px;line-height:1.5}
+.rung em{font-style:normal;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.rung em.unit{font-size:13px;letter-spacing:0;text-transform:none;font-variant-numeric:tabular-nums}
+
+/* 05. How a mark reads. */
+.marks{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:30px}
+.mark{background:#081411;padding:30px;min-height:250px}
+.mark .big{font-size:clamp(46px,5vw,72px);line-height:.85;color:var(--lime);letter-spacing:-.06em;font-weight:900;font-variant-numeric:tabular-nums}
+.mark h3{font-size:24px;letter-spacing:-.035em;margin:28px 0 12px;font-weight:650}
+.mark p{color:var(--body);font-size:15px;line-height:1.62;margin:0}
+
+/* 06. The ladder principles. */
+.two-up{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:30px}
+.principle{background:#081411;padding:30px;min-height:230px}
+.principle .tag{display:block;color:var(--lime);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:34px}
+.principle h3{font-size:clamp(28px,3vw,42px);line-height:1.05;letter-spacing:-.05em;margin:0 0 14px;font-weight:900}
+.principle p{color:var(--body);line-height:1.6;margin:0;max-width:560px;font-size:15px}
+
+.quick-links{display:flex;flex-wrap:wrap;gap:12px 24px;margin-top:26px;font-size:14px;line-height:1.5}
+.quick-links a{padding:8px 0;border-bottom:1px solid var(--line)}
+
+.footer{padding:48px 0 40px;background:var(--bg);color:var(--body);font-size:14px}
+.footer-grid{display:grid;grid-template-columns:1fr auto;gap:28px 56px;align-items:start}
+.footer-brand{display:flex;align-items:baseline;gap:16px}
+.footer .brand{font-size:28px;color:var(--ink)}
+.footer-brand>span{font-size:12px;letter-spacing:.1em;color:var(--muted)}
+.footer-note{margin:12px 0 0;line-height:1.6}
+.footer-nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px 26px}
+.footer-nav a{display:inline-block;padding:12px 0;color:var(--ink2);min-height:44px}
+.footer-meta{grid-column:1/-1;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:8px;font-size:12px;line-height:1.5;color:var(--muted)}
+.print-url{display:none}
+
+/* One owner per boundary: the grid draws the rule, the last child never doubles it. */
+.lesson:last-of-type{border-bottom:0}
+
+@media(max-width:980px){
+  .mast nav{display:none}.mobile-menu{display:block}
+  .hero{min-height:auto;padding-top:72px}.hero-grid{grid-template-columns:minmax(0,1fr);gap:40px}.hero-copy{max-width:690px}
+  .lesson-grid{grid-template-columns:1fr;gap:0}.rail{display:block;padding:0}.rail-inner{position:static}.rail .hint{display:none}.rail .num{margin:0 0 18px}
+  .lesson-body{margin-left:0}.lesson-head{grid-template-columns:1fr;gap:22px}.deck{justify-self:start}
+  .lesson h2{font-size:clamp(38px,7vw,60px)}
+  .sequence{grid-template-columns:repeat(2,1fr)}.seq:nth-child(4n){border-right:1px solid var(--line)}.seq:nth-child(2n){border-right:0}.seq:nth-child(n+5){border-bottom:1px solid var(--line)}.seq:nth-child(n+7){border-bottom:0}
+  .standards{grid-template-columns:1fr}
+  .marks{grid-template-columns:1fr}
+}
+@media(max-width:650px){
+  :root{--gutter:20px}
+  .crumb{font-size:9px}
+  .hero{padding:52px 0 48px}.hero-grid{gap:30px}.hero h1{font-size:clamp(65px,22vw,100px)}.hero-copy .thesis{font-size:26px;line-height:1.15}
+  .lesson{padding:44px 0 52px}.lesson h2{font-size:clamp(36px,10vw,48px)}
+  .sequence{grid-template-columns:1fr}.seq{min-height:0;padding:18px;border-right:0!important;border-bottom:1px solid var(--line)!important}.seq:last-child{border-bottom:0!important}.seq b{margin-bottom:18px}
+  .std{padding:26px 22px}.std-head h3{font-size:30px}
+  .two-up{grid-template-columns:1fr}.principle{min-height:0;padding:26px 22px}.principle .tag{margin-bottom:24px}.principle h3{font-size:28px;line-height:1.12}
+  .mark{min-height:0;padding:26px 22px}
+  .rung{grid-template-columns:1fr;gap:6px}.rung em{margin-top:4px}
+  .quick-links{gap:8px 18px}
+  .footer{padding:32px 0}.footer-grid{grid-template-columns:1fr;gap:20px}.footer-nav{justify-content:flex-start;gap:6px 22px}.footer-meta{display:block}.footer-meta span{display:block;margin-top:8px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.mast nav a,.mast nav a:after{transition:none!important}}
+@media print{
+  .mast,.hero-actions,.quick-links,.footer-nav{display:none!important}
+  main{padding-top:0}
+  html,body,.hero,.lesson,.footer,.std,.mark,.principle,.sequence,.two-up,.marks,.standards{background:#fff!important;color:#111!important}
+  .hero{min-height:auto;padding:24px 0}.hero h1{font-size:60px}.hero-grid{display:block}
+  .hero h1 span,.eyebrow,.std-set dd,.mark .big,.rung .n,.std-head b,.principle .tag,.lead strong{color:#111!important}
+  .lesson{padding:28px 0;break-inside:auto}.lesson h2{font-size:32px}.lesson-grid{display:block}.rail{display:none}
+  .std,.mark,.principle{break-inside:avoid}
+  .hero-copy p,.deck,.note,.caption,.seq small,.std-foot,.mark p,.principle p,.rung strong span,.rung em{color:#333!important}
+  .print-url{display:block;color:#111}
+  .footer-meta{color:#333}
+}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"FORM Track: standards, threshold and time trials","url":"https://speedandform.com/labs/track/","author":{"@type":"Person","name":"Brice"},"publisher":{"@type":"Organization","name":"Speed & Form"},"description":"Six named track standards with set-by-set targets, a threshold ladder, time trials, and how a mark is recorded."}</script>
+</head>
+<body>
+<header class="mast">
+<div class="shell">
+<div class="mast-left"><a class="brand" href="/">FORM<span>.</span></a><span class="crumb">TRACK</span></div>
+<nav aria-label="Track page sections"><a href="/labs/">Labs</a><a href="#room">The room</a><a href="#standards">Standards</a><a href="#threshold">Threshold</a><a href="#trials">Time trials</a><a href="#marks">Your marks</a><a href="#ladder">Plan &amp; coaching</a></nav>
+<details class="mobile-menu"><summary>Contents</summary><div><a href="/labs/">FORM Labs ↗</a><a href="#room">The room</a><a href="#standards">Standards</a><a href="#threshold">Threshold</a><a href="#trials">Time trials</a><a href="#marks">Your marks</a><a href="#ladder">Plan &amp; coaching</a></div></details>
+</div>
+</header>
+<main>
+<section class="hero">
+<div class="shell hero-grid">
+<div><h1>FORM <span>TRACK.</span></h1></div>
+<div class="hero-copy">
+<p class="thesis">Go run something.</p>
+<p>Standards scored. Thresholds held. Time trials recorded. Track is the free room. You do not need a plan or a coach to run a session and keep the result.</p>
+<div class="hero-actions"><a href="#standards">See the standards ↓</a><a href="#marks">How a mark works ↓</a><a href="#ladder">Plan or coaching ↓</a></div>
+<div class="hero-meta"><span><b>6</b> standards</span><span><b>5</b> threshold holds</span><span><b>5</b> time trials</span></div>
+</div>
+</div>
+</section>
+
+<section class="lesson" id="room">
+<div class="shell lesson-grid">
+<aside class="rail"><div class="rail-inner"><span class="num">01 · The room</span><span class="hint">Same room, different relationship.</span></div></aside>
+<div class="lesson-body">
+<div class="lesson-head"><h2>One room.<br/>Different relationships.</h2><p class="deck">Track is free. A plan decides when you run. Coaching decides what comes next. The room itself does not change.</p></div>
+<p class="lead"><strong>Everyone can enter Track.</strong> What changes is how much of it is decided for you.</p>
+<div class="sequence">
+<div class="seq"><b>00 · Arrival</b><strong>New here</strong><small>Explore Track before you sign in. Nothing is gated behind an account.</small></div>
+<div class="seq"><b>01 · Free</b><strong>Run a session</strong><small>Browse standards, threshold work and time trials. Run one. Sign in to save the mark.</small></div>
+<div class="seq"><b>02 · Standalone</b><strong>Score a standard</strong><small>A session run on its own still counts. It is filed as standalone, not as plan work.</small></div>
+<div class="seq"><b>03 · Plan</b><strong>See it on your week</strong><small>A plan places the session on a day. The same standard you already browsed is the one you run.</small></div>
+<div class="seq"><b>04 · Coached</b><strong>Brice assigns it</strong><small>You can still browse the whole room. Browsing is not a back door to rewriting your prescription.</small></div>
+<div class="seq"><b>05 · Marks</b><strong>What you’ve done</strong><small>Every attempt stays: standards, thresholds held, trials recorded, and when each happened.</small></div>
+<div class="seq"><b>06 · Advisor</b><strong>Work with Brice</strong><small>Your history comes with you. Marks, attempts and prior FORM work stay attached.</small></div>
+</div>
+<p class="caption">A session you ran as a free athlete does not disappear when you buy a plan or hire a coach. The relationship gets richer; the record does not restart.</p>
+</div>
+</div>
+</section>
+
+<section class="lesson" id="standards">
+<div class="shell lesson-grid">
+<aside class="rail"><div class="rail-inner"><span class="num">02 · Standards</span><span class="hint">The target stays fixed.</span></div></aside>
+<div class="lesson-body">
+<div class="lesson-head"><h2>Six standards.<br/>Fixed targets.</h2><p class="deck">A standard is a named session with set targets that do not move. That is what makes a mark comparable to your last one, and to everybody else’s.</p></div>
+<p class="note"><b>Read a sheet like this:</b> reps × distance, the recovery that belongs to that set, and the target time for a single rep. Score is hits out of the reps on the sheet. A standard is added by Brice, and not every good session becomes one.</p>
+<div class="standards">
+
+<article class="std">
+<div class="std-head"><b>Standard 01</b><h3>Nice and Easy</h3><p class="std-shape">200 · 800 · 400</p></div>
+<dl class="std-sets">
+<div class="std-set"><dt>3 × 200 m<span class="rec">Recovery 30 sec</span></dt><dd>29–32 sec</dd></div>
+<div class="std-set"><dt>2 × 800 m<span class="rec">Recovery 4 min</span></dt><dd>2:25–2:30</dd></div>
+<div class="std-set"><dt>1 × 400 m<span class="rec">Finish</span></dt><dd>1:08–1:10</dd></div>
+</dl>
+<p class="std-foot">Scored out of <b>6</b> reps. The opener of the set. It is named for how it should feel, not for how easy the 800s are.</p>
+</article>
+
+<article class="std">
+<div class="std-head"><b>Standard 02</b><h3>Pyramid Intervals</h3><p class="std-shape">300 · 400 · 600 · 400 · 300</p></div>
+<dl class="std-sets">
+<div class="std-set"><dt>2 × 300 m<span class="rec">Recovery 90 sec</span></dt><dd>50–52 sec</dd></div>
+<div class="std-set"><dt>2 × 400 m<span class="rec">Recovery 2 min</span></dt><dd>1:08–1:12</dd></div>
+<div class="std-set"><dt>1 × 600 m<span class="rec">Recovery 2:30</span></dt><dd>1:42–1:45</dd></div>
+<div class="std-set"><dt>2 × 400 m<span class="rec">Recovery 2 min</span></dt><dd>1:08–1:10</dd></div>
+<div class="std-set"><dt>2 × 300 m<span class="rec">Full recovery</span></dt><dd>50–52 sec</dd></div>
+</dl>
+<p class="std-foot">Scored out of <b>9</b> reps. Up and back down. The 600 in the middle is the session.</p>
+</article>
+
+<article class="std">
+<div class="std-head"><b>Standard 03</b><h3>Gauntlet</h3><p class="std-shape">600 · 400 · 300 · 200 · 150</p></div>
+<dl class="std-sets">
+<div class="std-set"><dt>3 × 600 m<span class="rec">Recovery 3 min</span></dt><dd>1:48–1:52</dd></div>
+<div class="std-set"><dt>2 × 400 m<span class="rec">Recovery 2:30</span></dt><dd>1:08–1:12</dd></div>
+<div class="std-set"><dt>3 × 300 m<span class="rec">Recovery 2 min</span></dt><dd>48–52 sec</dd></div>
+<div class="std-set"><dt>2 × 200 m<span class="rec">Recovery 2 min</span></dt><dd>29–32 sec</dd></div>
+<div class="std-set"><dt>2 × 150 m<span class="rec">Full recovery</span></dt><dd>20–22 sec</dd></div>
+</dl>
+<p class="std-foot">Scored out of <b>12</b> reps. 600 down to 150. Everything gets shorter and nothing gets easier.</p>
+</article>
+
+<article class="std">
+<div class="std-head"><b>Standard 04</b><h3>Speed Demons</h3><p class="std-shape">300 · 200 · 100</p></div>
+<dl class="std-sets">
+<div class="std-set"><dt>4 × 300 m<span class="rec">Recovery 2:30</span></dt><dd>50–52 sec</dd></div>
+<div class="std-set"><dt>6 × 200 m<span class="rec">Recovery 90 sec</span></dt><dd>32–34 sec</dd></div>
+<div class="std-set"><dt>8 × 100 m<span class="rec">Recovery 90 sec</span></dt><dd>15–17 sec</dd></div>
+</dl>
+<p class="std-foot">Scored out of <b>18</b> reps. The most reps of any standard. Hold the shape to the last 100.</p>
+</article>
+
+<article class="std">
+<div class="std-head"><b>Standard 05</b><h3>Death</h3><p class="std-shape">600 · 400 · 300 · 200 · 800 · 400</p></div>
+<dl class="std-sets">
+<div class="std-set"><dt>2 × 600 m<span class="rec">Recovery 3 min</span></dt><dd>1:48–1:52</dd></div>
+<div class="std-set"><dt>2 × 400 m<span class="rec">Recovery 2:30</span></dt><dd>1:08–1:12</dd></div>
+<div class="std-set"><dt>3 × 300 m<span class="rec">Recovery 2 min</span></dt><dd>48–52 sec</dd></div>
+<div class="std-set"><dt>3 × 200 m<span class="rec">Recovery 3 min</span></dt><dd>29–32 sec</dd></div>
+<div class="std-set"><dt>1 × 800 m<span class="rec">Recovery 4 min</span></dt><dd>2:25–2:35</dd></div>
+<div class="std-set"><dt>1 × 400 m<span class="rec">Finish</span></dt><dd>1:08–1:12</dd></div>
+</dl>
+<p class="std-foot">Scored out of <b>12</b> reps. The longest sheet. The 800 arrives after the fast work, not before it.</p>
+</article>
+
+<article class="std">
+<div class="std-head"><b>Standard 06</b><h3>Resurrection</h3><p class="std-shape">600 · 400 · 300 · 200</p></div>
+<dl class="std-sets">
+<div class="std-set"><dt>3 × 600 m<span class="rec">Recovery 2:30</span></dt><dd>1:48–1:52</dd></div>
+<div class="std-set"><dt>4 × 400 m<span class="rec">Recovery 1:30</span></dt><dd>1:08–1:12</dd></div>
+<div class="std-set"><dt>4 × 300 m<span class="rec">Recovery 1 min</span></dt><dd>48–52 sec</dd></div>
+<div class="std-set"><dt>4 × 200 m<span class="rec">Recovery 45 sec</span></dt><dd>29–32 sec</dd></div>
+</dl>
+<p class="std-foot">Scored out of <b>15</b> reps. The same rep targets as Gauntlet with far less recovery. The density is the test.</p>
+</article>
+
+</div>
+<p class="caption">Target times are per rep, from the authored session sheets. They are targets, not predictions, and they are not converted to a per-mile or per-kilometer pace here. A rep target and a race pace are different instruments.</p>
+</div>
+</div>
+</section>
+
+<section class="lesson" id="threshold">
+<div class="shell lesson-grid">
+<aside class="rail"><div class="rail-inner"><span class="num">03 · Threshold</span><span class="hint">Held, not scored.</span></div></aside>
+<div class="lesson-body">
+<div class="lesson-head"><h2>Threshold work<br/>is held.</h2><p class="deck">A standard is scored rep by rep. Threshold work is not. You either hold the pace for the whole block or you do not. The mark is the pace you held.</p></div>
+<div class="ladder">
+<div class="rung"><span class="n">01</span><strong>2 × 10 min<span>Twenty minutes of work. The entry rung.</span></strong><em>20 min work</em></div>
+<div class="rung"><span class="n">02</span><strong>2 × 12 min<span>The same shape, four minutes longer.</span></strong><em>24 min work</em></div>
+<div class="rung"><span class="n">03</span><strong>2 × 15 min<span>Thirty minutes in two pieces.</span></strong><em>30 min work</em></div>
+<div class="rung"><span class="n">04</span><strong>25 min continuous<span>Less total work than the rung before it, run in one piece.</span></strong><em>25 min work</em></div>
+<div class="rung"><span class="n">05</span><strong>3 × 10 min<span>Where the ladder ends. Thirty minutes of work, three entries into the effort.</span></strong><em>30 min work</em></div>
+</div>
+<p class="caption">The ladder is not strictly increasing in total work. Twenty-five minutes continuous sits above 2 × 15 in the order, and 3 × 10 closes it.</p>
+</div>
+</div>
+</section>
+
+<section class="lesson" id="trials">
+<div class="shell lesson-grid">
+<aside class="rail"><div class="rail-inner"><span class="num">04 · Time trials</span><span class="hint">One number each.</span></div></aside>
+<div class="lesson-body">
+<div class="lesson-head"><h2>Time trials<br/>are recorded.</h2><p class="deck">No score, no hold. A trial produces one number and a date, and that number is the reference everything else is read against.</p></div>
+<div class="ladder">
+<div class="rung"><span class="n">01</span><strong>1 Mile<span>The sharpest reference. Short enough to be honest about speed.</span></strong><em class="unit">1,609 m</em></div>
+<div class="rung"><span class="n">02</span><strong>2 Mile<span>Long enough that how you pace it decides the result.</span></strong><em class="unit">3,219 m</em></div>
+<div class="rung"><span class="n">03</span><strong>5K<span>The most portable reference. Easiest to repeat under the same conditions.</span></strong><em class="unit">5,000 m</em></div>
+<div class="rung"><span class="n">04</span><strong>10K<span>A longer reference. Conditions matter more, so record them.</span></strong><em class="unit">10,000 m</em></div>
+<div class="rung"><span class="n">05</span><strong>Yasso 800s<span>A repeated 800 protocol. Read it as a session you can compare, not as a marathon prediction.</span></strong><em class="unit">800 m reps</em></div>
+</div>
+<p class="note">A trial is only a reference while it is current. Keep the date and how you ran it. A 5K from last spring and a 5K from last week are not the same evidence, and no fixed offset converts one distance into another.</p>
+</div>
+</div>
+</section>
+
+<section class="lesson" id="marks">
+<div class="shell lesson-grid">
+<aside class="rail"><div class="rail-inner"><span class="num">05 · Your marks</span><span class="hint">Three kinds of record.</span></div></aside>
+<div class="lesson-body">
+<div class="lesson-head"><h2>What you’ve<br/>done.</h2><p class="deck">Three kinds of work, three ways of reading it. Your marks are one list, sorted by what happened rather than by what was planned.</p></div>
+<div class="marks">
+<div class="mark"><span class="big">8 / 9</span><h3>A standard is scored</h3><p>Hits out of total reps. Nine reps in Pyramid Intervals, so nine chances to be inside the target. A missed rep is recorded as a miss, not removed.</p></div>
+<div class="mark"><span class="big">6:17</span><h3>A threshold is held</h3><p>The pace you actually held for the whole block, with the block it belonged to. There is no partial credit and no score out of anything.</p></div>
+<div class="mark"><span class="big">4:58</span><h3>A trial is recorded</h3><p>One time, one date. The conditions belong to the record too, because they decide whether it can be compared to the next one.</p></div>
+</div>
+<p class="note"><b>A full set of hits establishes the standard.</b> It does not retire it. An established mark is the thing the next attempt is measured against. Every attempt carries where it came from: run on its own, or run as part of a plan or an assigned week. That provenance stays attached, so a standalone 12 / 12 is never quietly presented as plan work.</p>
+<p class="caption">Marks are yours. Track does not rank athletes against each other; a standard is fixed so that your attempts are comparable to each other over time.</p>
+</div>
+</div>
+</section>
+
+<section class="lesson" id="ladder">
+<div class="shell lesson-grid">
+<aside class="rail"><div class="rail-inner"><span class="num">06 · Coaching</span><span class="hint">Track, then Plan, then Coaching.</span></div></aside>
+<div class="lesson-body">
+<div class="lesson-head"><h2>Track is useful<br/>on its own.</h2><p class="deck">A plan adds authored sequence. Coaching gives Brice authority over your development. Each step is worth something without the next one.</p></div>
+<div class="two-up">
+<div class="principle"><span class="tag">01 · Product ladder</span><h3>Track → Plan → Coaching.</h3><p>Track is free and complete as a room. A plan provides authored sequence: what to run, in what order, on which day. Coaching is the step where someone takes responsibility for the direction.</p></div>
+<div class="principle"><span class="tag">02 · Universal room</span><h3>Everyone can enter.</h3><p>Free athletes run sessions. Plan athletes see the same canonical sessions connect to their week automatically. Coached athletes browse the whole room and see their marks without gaining a back door to freelance their prescription.</p></div>
+<div class="principle"><span class="tag">03 · Continuity</span><h3>Nothing resets upward.</h3><p>Attempts you made as a free athlete remain when you buy a plan or work with Brice. The relationship gets richer; the athlete record does not restart.</p></div>
+<div class="principle"><span class="tag">04 · Advisor position</span><h3>Manage development, not workouts.</h3><p>Coaching is about decisions over time: choosing the right problem, deciding what comes next, and saying what the evidence means. The workouts are only part of it.</p></div>
+</div>
+<div class="quick-links"><a href="/labs/">FORM Labs ↑</a><a href="/plans/">Plans ↗</a><a href="/#begin">Work with Brice ↗</a></div>
+</div>
+</div>
+</section>
+</main>
+<footer class="footer"><div class="shell footer-grid">
+<div><div class="footer-brand"><a aria-label="FORM home" class="brand" href="/">FORM<span>.</span></a><span>TRACK</span></div><p class="footer-note">A room you can return to.</p></div>
+<nav aria-label="Footer" class="footer-nav"><a href="#standards">Standards ↑</a><a href="#marks">Your marks ↑</a><a href="/labs/hyrox/">FORM HYROX ↗</a></nav>
+<div class="footer-meta"><span>Updated 14 September 2026</span><span>Session sheets authored by Brice. Targets are per rep.</span></div>
+<div class="print-url">speedandform.com/labs/track/</div>
+</div></footer>
+</body>
+</html>
