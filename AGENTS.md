@@ -17,3 +17,6 @@ Brice's standing rule applies to app and site: no double dividers, stacked rules
 
 ## Writing — American spelling
 Use practice, practiced and practicing (never practise, practised or practising) in site/app copy and audit documents. Keep instructions plain and address the reader as “you.”
+
+## Typography is an acceptance rule
+Read [FORM typography standard](docs/FORM_TYPOGRAPHY_STANDARD.md) before any app or site surface work. Preserve readable hierarchy, line lengths, data alignment, responsive stacking and one divider per boundary. Do not trade readability for decorative scale or tiny labels. Use plain punctuation instead of em dashes. The standard is also installed in FORM-iOS; record actual device checks rather than assuming them.
