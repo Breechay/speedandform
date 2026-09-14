@@ -6,6 +6,7 @@ This checkpoint supersedes older release and next-action wording below. Earlier 
 
 | Area | Status | Evidence / next action |
 | --- | --- | --- |
+| Homepage coaching flow | STAGED PR112 | Simon’s attributed result, explicit $1,200 / $1,800 selection, HYROX running positioning, campaign tags, refined intake and footer. Browser preview and mocked delivery checks underway; see HOME-COACHING-FLOW-AUDIT.md. Production not yet updated. |
 | FORM HYROX course + tools | LIVE | PR104, main `330067fc8a4d88c6775c029de03dd7abc3821f1d`; Netlify `6aa77fa41cabd50008ad9e03`, ready at 05:01:39 UTC. Starting priorities, rules, weekly example, rehearsals and race-day guide published. |
 | HYROX search/share | LIVE | PR105, main `4369e39a9b815c60b128c2aa164a92f1de00ef02`; Netlify `6aa78107fc312e0008b5d6df`, published 05:07:35 UTC. Metadata, dedicated share card and American spelling verified. |
 | HYROX visual playbook | LIVE PR106 | Interactive cost comparison and race-budget bars; linked race map; gym alternatives, two strength sessions and three-week example. Arithmetic and ID preservation passed. Main `ba78f54a84e22dd19e7b9c4d0e1cf282b4c9e6ae`; Netlify `6aa7caa8dad55c00088bba45`, published 10:21:46 UTC; desktop interactions checked. See playbook audit. |
