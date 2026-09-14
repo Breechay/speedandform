@@ -15,7 +15,9 @@ Location shown by the official certificates: **Crandon Park**
 - José Santos-De Soto — official net **1:40:23**, **7:39/mi**
   - https://triregistration.com/RunCertificate.php?runresultid=158515
 
-The April result is a prior race baseline, not the start of the 15-week intervention.
+The April result is a prior race reference, not the start of the 15-week intervention and not evidence that Hope and José had equivalent fitness, effort, intent or ability. Their nearly identical official result is useful because it is verified; the training block is allowed to reveal how differently they respond.
+
+Brice recalls that José may have been focused on pacing Hope at Key Biscayne, and that José's January Miami Marathon may be a more useful piece of individual context. Treat both points as **context to verify**, not publication-ready facts. Do not use the one-second result difference to imply equal athletes.
 
 ## Must be locked before publication
 
@@ -23,10 +25,12 @@ The April result is a prior race baseline, not the start of the 15-week interven
 2. Block-entry race-pace band.
 3. Block-entry threshold.
 4. Longest already-established continuous race-pace evidence at entry.
-5. December 5 official result URL, net time, pace and place for each athlete.
-6. December Strava activity links after the activities are public and checked.
-7. Final product price and checkout/delivery boundary.
-8. Confirm whether app delivery is genuinely ready; otherwise keep the offer web + printable only.
+5. Verify José's April race intent/context before describing that result as a fitness baseline, including whether he was deliberately pacing Hope.
+6. Verify José's January Miami Marathon result and decide whether it belongs in his individual context rather than the shared baseline.
+7. December 5 official result URL, net time, pace and place for each athlete.
+8. December Strava activity links after the activities are public and checked.
+9. Final product price and checkout/delivery boundary.
+10. Confirm whether app delivery is genuinely ready; otherwise keep the offer web + printable only.
 
 ## Claims rule
 
@@ -38,8 +42,13 @@ If both athletes break 1:30, a secondary post-race campaign may truthfully use a
 
 The paid value is the execution system rather than hiding a previously public calendar: pace setup rules, the full 15-week architecture, interpretation/progression rules, execution notes, race-week protocol, and coherent web/print delivery. Human review remains coaching and must not be implied by the self-directed product.
 
+The working pace-band calculator lives at `band.html`. It uses the same visual tokens as the study page, a 15-second band grid, Riegel 1.06 only as an honesty check, and two paths: a runner-supplied goal or a deliberately conservative proposal. Under 25 miles per week is a hard stop before a band is rendered.
+
+Commerce infrastructure is being built as a separate entitlement layer. A purchase must never create an athlete membership, coaching relationship or plan assignment by implication.
+
 ## Publication gate
 
 - Keep `noindex,nofollow,noarchive` while this is a preview.
 - Do not link from navigation, Labs, Plans, sitemap or social ads before the evidence gate is cleared.
+- Do not treat `?mode=welcome` as proof of payment. Welcome state must be unlocked only after server-side Stripe verification.
 - When approved after the race, move/rebuild the composition into the chosen public route and replace every `TO LOCK`, `—:—:—`, `pending`, internal warning and draft-price label.
