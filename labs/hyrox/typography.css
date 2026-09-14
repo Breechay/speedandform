@@ -46,3 +46,33 @@
 #gym-library .caption{font-size:14px;line-height:1.6;max-width:65ch}
 @media(max-width:700px){.station{padding:24px 0!important}.stations{border-left:0;border-right:0}.station h3{font-size:26px}.station .station-copy{max-width:none}.station-weights>div{font-size:14px}#build .feel-guide{gap:26px}#build .build-grid{gap:28px}.day-grid{gap:0}.library-detail summary{font-size:22px}#stations .lesson-head .deck,#build .lesson-head .deck,#gym-library .lesson-head .deck{font-size:17px}.station-rules-link{min-height:44px}}
 @media print{.station{padding:16px!important}.station .station-copy,.station .station-rule{font-size:10pt!important;line-height:1.4}.station-label{font-size:8pt}.station h3{font-size:16pt}.station .station-distance{font-size:18pt}.station-weights>div{font-size:10pt}}
+/* Shared reading scale across the full playbook. */
+.lesson-head{display:block;max-width:920px;margin-bottom:40px}
+.lesson h2{font-size:clamp(36px,4.2vw,58px);line-height:1.04;letter-spacing:-.045em;max-width:22ch;margin-bottom:20px}
+.lesson-head .deck{font-size:18px;line-height:1.6;max-width:58ch;margin:0;justify-self:start}
+.lesson .principle h3,.number-card h3,.focus-list h3,.training-path .method-steps h3{font-size:clamp(23px,2vw,28px);line-height:1.18;letter-spacing:-.025em;text-wrap:balance}
+.principle .tag{font-size:11px;line-height:1.5;margin-bottom:18px}
+.principle p,.focus-list p,.training-path .method-steps p{font-size:16px;line-height:1.65;max-width:48ch}
+.principle p+p{margin-top:18px}
+.number-card .caption{font-size:16px;line-height:1.65;max-width:48ch}
+.number-card .micro,.method-steps .micro{font-size:11px;line-height:1.5;letter-spacing:.1em}
+.training-path .method-steps{gap:32px}
+.training-path .method-steps h3{margin:14px 0}
+.training-path .caption{max-width:65ch;font-size:14px;line-height:1.6}
+.lesson-body>details>p,.lesson-body>details>ol,.lesson-body>details>ul,.session-sheet>p,.session-review p{font-size:16px;line-height:1.7;max-width:65ch}
+summary{font-size:22px;line-height:1.3;letter-spacing:-.02em;min-height:48px}
+.session-facts strong{font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.session-sheet h3,.pair-visual h3,.heuristic h3{font-size:24px;line-height:1.2;letter-spacing:-.025em}
+.field{font-size:12px;line-height:1.5;letter-spacing:.035em}
+.field input,.field select,.field textarea{font-size:16px;line-height:1.5;letter-spacing:0}
+.field textarea{line-height:1.65}
+th{font-size:11px;line-height:1.5;letter-spacing:.05em}td{font-size:14px;line-height:1.55}td input{font-size:16px}
+.metric span,.analysis-panel>h3,#saveStatus{font-size:12px;line-height:1.5;letter-spacing:.04em}
+.metric strong{font-size:clamp(28px,3vw,42px);line-height:1.1}
+#benchRead p,.trade-copy,.read{font-size:18px;line-height:1.6;letter-spacing:0;max-width:65ch}
+.inline-note,.note{font-size:14px;line-height:1.6;max-width:65ch}
+.decision-list dt{font-size:17px;line-height:1.4}.decision-list dd{font-size:16px;line-height:1.65;max-width:60ch}
+.rail .num{font-size:11px;line-height:1.5;letter-spacing:.1em}.rail .hint{font-size:14px;line-height:1.5}
+@media(min-width:701px) and (max-width:1100px){.lesson-grid{grid-template-columns:1fr}.lesson-body{margin-left:0}.rail{display:none}.hero-grid{grid-template-columns:1fr;gap:34px}.build-grid,.method-steps{grid-template-columns:1fr!important;gap:28px!important}.build-card{min-height:0}.training-path .method-steps p,#build .build-card p{max-width:60ch}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.lesson{padding:46px 0 52px}.lesson-head{margin-bottom:28px}.lesson h2{font-size:36px;line-height:1.06}.lesson-head .deck{font-size:17px;line-height:1.6}.principle{padding:24px;min-height:0}.two-up,.number-grid,.focus-list,.method-steps,.build-grid,.analysis-pair,.grid,.two{grid-template-columns:1fr!important}.training-path .method-steps{gap:24px}.field{padding:16px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.metric{padding:16px;min-height:100px}.metric strong{font-size:30px}.pair-plot-head{flex-wrap:wrap}.session-facts{grid-template-columns:1fr!important}.hero-copy .thesis{font-size:28px;line-height:1.15}}
+@media print{.lesson h2{font-size:24pt}.lesson-head .deck,.principle p,.number-card .caption{font-size:10pt}.lesson{padding:20pt 0}.field{font-size:9pt}td,th{font-size:9pt}}
