@@ -159,3 +159,10 @@ HYROX-02: publication authorized; deployment receipt and live checks pending. Do
 - Expanded the plain-language change before release: direct athlete voice across course, explicitly marked coach observation, smaller headings, clearer record workflow, quick workout/budget links, return-to-save link, readable station text, compact phone tables and corrected nested disclosure icon state.
 - Pass 1 (production desktop + full source): 6.5/10 editorial assessment; jargon, repetition and weak next-action guidance were the main issues. Pass 2 fixes those findings. Final live visual review follows deployment; no physical-device acceptance claim.
 - Preserved all original IDs, inputs, script references and record schema. Added race-budget anchor; all fragment links resolve. Workbench, budget and station tests passed in the preceding copy pass; this extension changes HTML/CSS only.
+
+
+### HYROX divider and footer correction — September 14
+- Prior release LIVE: 7d353c1c / Netlify 6aa777f74afe1300082d2a5d. User identified duplicate rules missed in the prior visual score; that score did not certify this boundary.
+- Remove nested calculation borders, decorative result rule after input underlines, redundant table-wrapper rules and nested/final disclosure borders. Retain a single section boundary above the footer.
+- Footer now uses readable FORM identity, useful workout/record/rules links and quiet revision metadata.
+- Standing no-double-divider rule added directly to root AGENTS.md for visibility on every task; mirrored in FORM-iOS active branch. Original data fields/scripts preserved. Next: verify production correction and footer/disclosure appearance.

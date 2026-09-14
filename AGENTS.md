@@ -10,3 +10,6 @@ September 12 decision: Race Pace Durability remains free with optional paid supp
 After relevant work update the roadmap: status, evidence, blocker, next action, tested commit and actual deployment state. Maintain one checklist.
 Do not invent results, auto-publish private athlete data, silently change assignments, or promise unverified app features. Measured evidence, athlete reports, coach reads and decisions remain distinct.
 Check remote main and concurrent work before release. Batch verified changes to conserve Netlify credits.
+
+## Visual rule — one divider per boundary
+Brice's standing rule applies to app and site: no double dividers, stacked rules or two nearby lines separating the same content. Choose one owner for each boundary. Never combine a card's bottom border with the next card's top border, a disclosure border with its container border, or an input underline with a decorative result rule. Prefer spacing when the boundary is already clear. During every UI review inspect adjacent components, open/closed disclosures, forms and the footer at desktop and phone widths. Remove duplicate rules before calling the surface ready. Tables may retain one separator per row; this is not a ban on useful structure.
