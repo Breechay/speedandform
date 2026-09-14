@@ -55,3 +55,10 @@ Live main 750249a948bc1a75881e91e2db39ba8a31f886c8; Netlify 6aa8313541dec3000875
 Footer: 5:3:4 proportional desktop composition, smaller mark, adjacent arrows, separate Open FORM line, less vertical space. At 1348px desktop footer height decreased from 433.5 to 380 CSS pixels. Simon: exact shorter quote, 20px supporting typography, padding 76 to 56px desktop and 54 to 40px mobile. Offer descriptions shortened while preserving weekly track coaching and four gym sessions. Coaching paragraph shortened; practice layout retained. Intake has eight equal goal cells, with Stop getting hurt removed and Not sure yet no longer spanning both columns. Run/Run + Strength selector labels match offer names; separate remote option remains.
 
 Validation: production commit verified; actual desktop offer/intake/footer screenshots inspected, live eight-choice DOM and quote verified, desktop document/client widths equal at 1348px. Mocked complete intake regression passed including offer selection, attribution, escaping and failure fallback. No real inquiry sent. Browser zoom shortcuts did not change the viewport, so do not count them as zoom or phone tests. Refreshed phone/tablet and 200% visual checks remain open.
+
+
+## September 14: hero micro-refinement
+
+Restore From in the hero fee label; package descriptions and remote inquiry continue to distinguish delivery. Navigation opacity .76 to .84. CTA border opacity .45 to .36, vertical padding 12 to 10px, minimum touch height retained at 44px. Desktop subject-side scrim opacity .70 to .68 while preserving left/headline and top/bottom overlays. This is a CSS overlay adjustment, not a regrade of the video or a measured midtone increase. Headline, film asset, crop and mobile scrim unchanged.
+
+Source diff is limited to four lines; whitespace check passed. Production verified for main 71e37450f3499bdb9ee648186f5c0f885fc3b889, Netlify 6aa831c7a738ed0008d82e6d. Live desktop hero screenshot inspected; From label, .84 navigation opacity and 44px CTA height verified. Client/scroll widths both 1348px. Mobile and full-film crop review remain open.
