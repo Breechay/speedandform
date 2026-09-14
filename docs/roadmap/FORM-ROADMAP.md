@@ -1,7 +1,23 @@
 # FORM: current state and next actions
-Updated September 13, 2026. Owner: Brice. Maintainer: the agent completing relevant work.
+Updated September 14, 2026. Owner: Brice. Maintainer: the agent completing relevant work.
 
-## Current state
+## Current checkpoint — September 14, 2026
+This checkpoint supersedes older release and next-action wording below. Earlier sections are retained as release history.
+
+| Area | Status | Evidence / next action |
+| --- | --- | --- |
+| FORM HYROX course + tools | LIVE | PR104, main `330067fc8a4d88c6775c029de03dd7abc3821f1d`; Netlify `6aa77fa41cabd50008ad9e03`, ready at 05:01:39 UTC. Starting priorities, rules, weekly example, rehearsals and race-day guide published. |
+| HYROX search/share | READY | Updated metadata, dedicated 1200×630 share card and spelling pass in this release. Verify production receipt in the release PR. Sitemap and canonical already correct. |
+| HYROX device acceptance | OPEN | Desktop navigation and budget checked. Complete physical iPhone/iPad review and real messaging-app preview; social caches may retain earlier cards. |
+| HYROX field use | NEXT | Observe the planned simulation, record actual conditions and outcomes, then refine guidance. No completed study, paid onboarding or client identity inferred. |
+| Workbench sync | OPEN | Browser-local records with JSON backup; no cross-device account sync yet. |
+| Forge delivery | ACTIVE | Private FORM-iOS PR18 remains draft/open at `d7556e8dc8e23ef96da52d4ca1ea73420c35fed4`. App source `0e0abce4` passed 56 Mac tests and unsigned Release build in the prior checkpoint. Next: unlinked-identity recovery/deletion status, then device acceptance. App is not finished. |
+
+See [HYROX search/share audit](../audits/HYROX-SEARCH-SHARE-AUDIT.md) for this release's scope and remaining checks. The owning app current-state document remains authoritative for Forge.
+
+## Earlier checkpoints
+
+## Current state — September 12 history
 Seven established public routes: homepage, Plans, two plans, Labs and two studies. This release adds /plans/race-pace-durability/support/.
 
 Race Pace Durability stays free. Optional support is available while the study runs: $79 suggested, any amount welcome. Free and supporting readers get the same current plan. Support is arranged by email with Brice; no card checkout or extra coaching entitlement.
@@ -14,7 +30,7 @@ Race Pace Durability stays free. Optional support is available while the study r
 
 The previous “wait until race results to offer it” draft is superseded. Transparent unfinished development is deliberate. Delivery and claims must still be accurate.
 
-## Next three actions
+## Earlier app next actions — September 12
 1. App agent: wire the existing e40b173 client into a beta-gated assigned-session screen; preserve exact session/version identity and do not regenerate Race Pace Durability locally.
 2. App agent: establish a safe FORM Athlete System identity handoff/token-refresh path in iOS, then prove exact assigned-version read → filing → Labs visibility in simulator/CI and on a physical device.
 3. App agent: consume the versioned pacing source after the native journey works. Site tester: finish real phone screenshots; media is deferred to Brice.
@@ -180,3 +196,4 @@ HYROX-02: publication authorized; deployment receipt and live checks pending. Do
 - Direct links now open their target disclosures, including nested lessons; mobile contents includes starting focus, weekly plan and race day.
 - Sources: official 26/27 Singles PDF (maintain.hyrox.com/rulebooks/HYROX_RulebookSingles_EN.pdf), sections 7–12; Better Health Channel sporting-performance-and-food. Training prescriptions are labelled coaching examples, not validated HYROX programmes or sub-60 standards.
 - Validation: original field/ID preservation, unique IDs, valid fragment targets, JS syntax, existing calculation suites passed. Desktop production review and deployment receipt to follow in release PR. Physical phone/iPad acceptance remains open. No private athlete information added.
+
