@@ -62,3 +62,18 @@ Validation: production commit verified; actual desktop offer/intake/footer scree
 Restore From in the hero fee label; package descriptions and remote inquiry continue to distinguish delivery. Navigation opacity .76 to .84. CTA border opacity .45 to .36, vertical padding 12 to 10px, minimum touch height retained at 44px. Desktop subject-side scrim opacity .70 to .68 while preserving left/headline and top/bottom overlays. This is a CSS overlay adjustment, not a regrade of the video or a measured midtone increase. Headline, film asset, crop and mobile scrim unchanged.
 
 Source diff is limited to four lines; whitespace check passed. Production verified for main 71e37450f3499bdb9ee648186f5c0f885fc3b889, Netlify 6aa831c7a738ed0008d82e6d. Live desktop hero screenshot inspected; From label, .84 navigation opacity and 44px CTA height verified. Client/scroll widths both 1348px. Mobile and full-film crop review remain open.
+
+
+## September 14: mobile-width audit
+
+Audited a scoped hosted preview of the exact current homepage/media (production implementation 71e37450f3499bdb9ee648186f5c0f885fc3b889). Preview 6aa8326de03dbf2cde3d8261 uses a responsive iframe harness; it is Chrome at phone CSS widths, not physical iOS or Instagram browser emulation.
+
+- Client width equals scroll width at 375, 390, 430 and 768px.
+- Inspected 390px hero/proof, 375px goal/history/contact/review/footer, and 430px full reading flow including practice, coaching and offers.
+- Completed all five intake steps to review using qa@example.invalid. No submission. Run remains selected with HYROX; manual Run + Strength shows $1,800; remote shows fee agreed before starting.
+- Eight goal cells fit with 56 to 66.5px heights at 375px. CTA is 44px high. Longer options wrap within their cells. Optional video helper and email field remain readable.
+- Training example opens/closes at 390px without horizontal overflow.
+- Footer coaching inquiry wraps to two lines at 375px, contained and readable; at 430px it fits one line. Cosmetic variation, not a blocker.
+- Video source is 1080x1920, 20.5 seconds, 10,657,931 bytes. Playback was visible; no slow-network performance claim.
+
+No blocking mobile-width layout defect found; no production source change from this audit. Physical Safari/Instagram browser, keyboard occlusion, reduced-motion behavior on device, 200% text and slow-cellular loading remain unverified. Tagged inbox receipt remains open. Prior mocked attribution/fallback checks are distinct from inbox receipt.
