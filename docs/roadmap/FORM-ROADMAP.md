@@ -128,3 +128,10 @@ Brice approved publication of the revised supplied course. Canonical route is `/
 HYROX-01 now includes the course, paired totals and distance-adjusted early/late pace. Existing JSON records and storage key are preserved. Calculation tests cover unknowns, invalid durations, totals, retention and early/late distance normalization; IDs, fragments and input wiring pass. Exact tested source: blobs in the commit containing this entry. Visual browser checks remain to be performed on the published URL because local file navigation was blocked.
 
 HYROX-02: publication authorized; deployment receipt and live checks pending. Do not call this candidate live until the receipt below is recorded. VIDEO-UI-01 and INTAKE-UI-01 are included. HYROX-03 remains open: records do not sync to Console. Public course contains no athlete dossier or contact data.
+
+
+### HYROX worked sessions — September 14, 2026
+- Previous course release LIVE: main 601c957, Netlify 6aa7663260fee80008360de7. Live browser verified navigation, local save/reload retrieval and pair calculation (6:45 vs 6:35 saves 0:10).
+- Session addition: READY FOR RELEASE. Reference threshold + reduced circuit, station/run comparison, editable full-race budget. Targets are supplied examples, not validated sub-60 benchmarks. Whiteboard burpee range takes precedence; missing loads/reps/recovery remain explicit.
+- Evidence: Node workbench and session-budget tests, syntax and fragment/ID checks. No athlete information published. Existing record schema/storage preserved; budget edits deliberately temporary.
+- Next: verify production commit and session UI after the single batched release; phone/device visual acceptance remains open.
