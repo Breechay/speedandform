@@ -166,3 +166,9 @@ HYROX-02: publication authorized; deployment receipt and live checks pending. Do
 - Remove nested calculation borders, decorative result rule after input underlines, redundant table-wrapper rules and nested/final disclosure borders. Retain a single section boundary above the footer.
 - Footer now uses readable FORM identity, useful workout/record/rules links and quiet revision metadata.
 - Standing no-double-divider rule added directly to root AGENTS.md for visibility on every task; mirrored in FORM-iOS active branch. Original data fields/scripts preserved. Next: verify production correction and footer/disclosure appearance.
+
+
+### HYROX hero redundancy — September 14
+- Remove the small repeated FORM HYROX eyebrow above the main title, per Brice. Main title and mast remain.
+- Exact string removal only; no layout rules, inputs or scripts changed. Prior divider/footer release verified live at 67c73e1e / Netlify 6aa77a4ed849ba0008514d5c.
+- Next: verify deployment receipt and live absence of duplicate label. Independent review prompt requested for further evidence-based coaching improvements; no new training claims added here.
