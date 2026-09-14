@@ -68,11 +68,17 @@ button{cursor:pointer}
      sit on it confidently; the contrast lift keeps it from going muddy. */
   filter:grayscale(1) contrast(1.16) brightness(.58);transform:scale(1.02)}
 
+.hero video{opacity:0;pointer-events:none}
+.hero video.is-playing{opacity:1}
+.film-toggle{position:absolute;right:24px;bottom:16px;z-index:5;min-height:44px;padding:10px 14px;border:1px solid rgba(255,255,255,.55);border-radius:2px;background:rgba(0,0,0,.7);color:#fff;font-size:12px}
+.film-toggle[hidden]{display:none}
+.film-toggle:focus-visible{outline:2px solid var(--lime);outline-offset:4px}
+
 /* SCRIMS. The old gradient faded to .12 by 78% width, which is exactly where
    the header nav sits, in the brightest part of the frame. Three layers now:
    a top scrim so the mark and nav always have ground, the left-to-right wash
    the headline reads against, and the floor under the offer. */
-.hero::before{content:"";position:absolute;inset:0;
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;
   background:
     linear-gradient(180deg,rgba(0,0,0,.7),rgba(0,0,0,.26) 110px,rgba(0,0,0,.12) 190px),
     linear-gradient(90deg,rgba(0,0,0,.8) 0%,rgba(0,0,0,.64) 44%,rgba(0,0,0,.52) 78%,rgba(0,0,0,.52) 100%),
@@ -341,7 +347,9 @@ button{cursor:pointer}
 
 <main id="top">
 <section class="hero">
-  <video id="filmA" src="/media/run-development.mp4?v=rd16" poster="/media/run-development.jpg?v=rd26" autoplay muted loop playsinline preload="auto" disablepictureinpicture></video>
+  <img src="/media/run-development.jpg?v=rd26" alt="" aria-hidden="true">
+  <video id="filmA" src="/media/run-development.mp4?v=rd16" muted loop playsinline preload="metadata" disablepictureinpicture aria-hidden="true" tabindex="-1"></video>
+  <button class="film-toggle" type="button" aria-controls="filmA" hidden>Play background video</button>
   <div class="hero-hatch" aria-hidden="true"></div>
   <div class="hero-grain" aria-hidden="true"></div>
   <div class="wrap hero-copy">
@@ -792,6 +800,52 @@ button{cursor:pointer}
   $("#sendBtn").addEventListener("click", sendToBrice);
   pane("p-ask");
   showQ(0, true);
+})();
+</script>
+<script>
+/* Keep the film decorative; playback always has an independent, reachable control. */
+(function () {
+  var film = document.getElementById('filmA');
+  var button = document.querySelector('.film-toggle');
+  var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var attempt = 0;
+  film.muted = true;
+  film.defaultMuted = true;
+  film.playsInline = true;
+  button.hidden = false;
+  function resting() {
+    film.classList.remove('is-playing');
+    button.textContent = 'Play background video';
+  }
+  function play() {
+    var current = ++attempt;
+    button.textContent = 'Pause background video';
+    // Invoke synchronously in the click event so Safari retains user activation.
+    try {
+      if (film.error) film.load();
+      var pending = film.play();
+      if (pending) pending.catch(function () {
+        if (current === attempt) resting();
+      });
+    } catch (_) { resting(); }
+  }
+  film.addEventListener('playing', function () {
+    film.classList.add('is-playing');
+    button.textContent = 'Pause background video';
+  });
+  film.addEventListener('pause', resting);
+  film.addEventListener('error', resting);
+  button.addEventListener('click', function () {
+    if (button.textContent === 'Pause background video') {
+      ++attempt;
+      film.pause();
+      resting();
+    } else { play(); }
+  });
+  motion.addEventListener('change', function () {
+    if (motion.matches) { ++attempt; film.pause(); resting(); }
+  });
+  if (!motion.matches) play();
 })();
 </script>
 </body>

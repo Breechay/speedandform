@@ -94,3 +94,10 @@ The support page is an explicitly authorized exception to the original audit's â
 
 ## September 13 follow-up
 See [release checks and current app review](../audits/2026-09-13-RPD-FOLLOWUP.md). PDF/copy changes are LIVE: PR #94 merged as 1e3eaa12f2a105327813d62e2d4811b8935ef328; clean-export Netlify deploy 6aa5fdb6a06f6aaa582eeded published September 13 at 01:35 UTC. Live support description and exact downloaded PDF SHA-256 were verified. First attempt 6aa5fd72b05d020a919629b9 failed before build because an uploaded worktree pointer was not portable; deploy clean git exports, never worktree metadata. Six navigation tests passed. Phone visual gate remains open because this browser cannot set a phone viewport; do not mark it verified. Real media is deferred by Brice.
+
+## September 14 homepage playback repair â€” STAGED
+Base inspected: `46a9a6a499727b9d53699a76c620e132b8fc1811`. September 12/13 homepage diffs changed a Labs link and metadata, not video playback. Brice reports intermittent desktop playback (later recovered) and an unresponsive play overlay on iPhone and iPad Chrome. Source confirms no autoplay rejection recovery; the exact production/device trigger remains unknown.
+
+The homepage now retains the poster until `playing`, invokes muted inline playback explicitly, and provides an independent 44px-minimum play/pause control above decorative layers. Reduced-motion preference prevents automatic playback; manual play remains available. Intake/auth and video asset are unchanged.
+
+Validation: both inline scripts pass Node syntax checks; isolated playback checks pass rejected-autoplay retry, reduced-motion/manual play, playing/pause presentation and preference-change pause. Tested source: homepage blob in the commit containing this entry. This is not Safari decoding or visual/device acceptance. Next: review preview at phone/iPad/desktop widths, verify real media playback and reachable controls on iPhone and iPad Chrome, then publish and check production. Deployment: not deployed by this repair; no Netlify credits used.
