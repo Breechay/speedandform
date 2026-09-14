@@ -154,3 +154,8 @@ HYROX-02: publication authorized; deployment receipt and live checks pending. Do
 - READY: Model now gives a question and one next action before expandable calculations. Includes 6:45 versus 6:35 pair comparison. Eight station cards speak directly to the reader with practical cues and an adjustment to test. Pacing uses “you can return to pace.”
 - Validation: five calculation disclosures, eight station cards; existing IDs, inputs, script references and storage schema preserved. Workbench, session and station-budget checks pass. Copy changes only; physical phone/iPad visual acceptance remains open.
 - Next: verify production release for this commit; use the guidance in practice before expanding the tool.
+
+### HYROX whole-page critique — September 14
+- Expanded the plain-language change before release: direct athlete voice across course, explicitly marked coach observation, smaller headings, clearer record workflow, quick workout/budget links, return-to-save link, readable station text, compact phone tables and corrected nested disclosure icon state.
+- Pass 1 (production desktop + full source): 6.5/10 editorial assessment; jargon, repetition and weak next-action guidance were the main issues. Pass 2 fixes those findings. Final live visual review follows deployment; no physical-device acceptance claim.
+- Preserved all original IDs, inputs, script references and record schema. Added race-budget anchor; all fragment links resolve. Workbench, budget and station tests passed in the preceding copy pass; this extension changes HTML/CSS only.
