@@ -46,3 +46,12 @@ Practice copy now describes observation, cues, easy running, recovery, and one a
 Remote has a separate explicit inquiry selection. It carries Remote running and fee agreed before starting through review, email relay, storage attempt and mailto fallback, without mislabeling the inquiry as a Miami package. Scope and fee are discussed personally before commitment. No third price card.
 
 Validation: mocked full intake checks passed for Run, Run + Strength and remote, campaign tags, escaped user input, failed delivery and fallback. All requests mocked; no email sent. CSS unchanged. Prior six-width checks belong to the preceding release; Production verified: main c4e42c8996735791bc82ae08ce4f2d0c3a457043, Netlify 6aa82f7f8dad3c0008bdc571, published September 14 at 17:31:56 UTC. Live desktop at 1348px has equal client/scroll width; offer copy, remote link selection, disclosure opening/closing and intake presentation verified. Updated phone/tablet-width and 200% checks remain open; no claim of refreshed six-width acceptance.
+
+
+## September 14: editorial finishing pass
+
+Live main 750249a948bc1a75881e91e2db39ba8a31f886c8; Netlify 6aa8313541dec30008756784, published 17:39:15 UTC. Includes preceding footer commit 947b825a1cef8663345126bcd30c83344a7c3963.
+
+Footer: 5:3:4 proportional desktop composition, smaller mark, adjacent arrows, separate Open FORM line, less vertical space. At 1348px desktop footer height decreased from 433.5 to 380 CSS pixels. Simon: exact shorter quote, 20px supporting typography, padding 76 to 56px desktop and 54 to 40px mobile. Offer descriptions shortened while preserving weekly track coaching and four gym sessions. Coaching paragraph shortened; practice layout retained. Intake has eight equal goal cells, with Stop getting hurt removed and Not sure yet no longer spanning both columns. Run/Run + Strength selector labels match offer names; separate remote option remains.
+
+Validation: production commit verified; actual desktop offer/intake/footer screenshots inspected, live eight-choice DOM and quote verified, desktop document/client widths equal at 1348px. Mocked complete intake regression passed including offer selection, attribution, escaping and failure fallback. No real inquiry sent. Browser zoom shortcuts did not change the viewport, so do not count them as zoom or phone tests. Refreshed phone/tablet and 200% visual checks remain open.
