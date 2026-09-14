@@ -414,6 +414,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid curr
 
 @media(min-width:701px) and (max-width:1000px){.footer-top{grid-template-columns:1fr;gap:36px}.footer nav{max-width:640px}.footer-mark{font-size:96px}}
 </style>
+<script defer src="/js/coaching-measurement.js"></script>
 </head>
 <body>
 <header class="header">
@@ -709,7 +710,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid curr
         <div><p class="footer-label">Explore the practice</p><a href="/plans/">Training plans <span>↗</span></a><a href="/labs/">Studies &amp; tools <span>↗</span></a><a href="/library">Reading <span>↗</span></a><a class="footer-app" href="https://apps.apple.com/us/app/id6761313085">Open FORM <span>→</span></a></div>
       </nav>
     </div>
-    <div class="footer-bottom"><span>Speed &amp; Form</span><a href="#top">Back to top ↑</a></div>
+    <div class="footer-bottom"><span>Speed &amp; Form · <a href="/privacy.html#website">Privacy</a></span><a href="#top">Back to top ↑</a></div>
   </div>
 </footer>
 
@@ -931,7 +932,11 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid curr
     var stored = fetch("/", { method:"POST", body:netlify }).catch(function () { return null; });
     Promise.all([emailed, stored]).then(function (res) {
       var j = res[0] && res[0].j, sent = res[0] && res[0].ok && String(j && j.success) === "true";
-      if (sent) { pane("p-done"); return; }
+      if (sent) {
+        pane("p-done");
+        try { if (window.formTrackLead) window.formTrackLead(); } catch (_) {}
+        return;
+      }
       fail(err, btn, data);
     }).catch(function () { fail(err, btn, data); });
   }
