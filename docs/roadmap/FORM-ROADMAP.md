@@ -141,3 +141,9 @@ HYROX-02: publication authorized; deployment receipt and live checks pending. Do
 - READY: smaller worked equations, structured rehearsal, controlled-effort cue, compact expandable split fields, clear scenario result, concise method/FAQ. Existing record IDs and schema preserved.
 - Search: descriptive metadata and WebApplication schema, sitemap entry, Labs anchor and print URL. No invented search volumes, ability tiers, FAQ/HowTo rich-result promises or athlete data in URLs. Google documentation reviewed 2026-09-14: FAQ rich results retired May 2026; HowTo retired. HR context: Brandt et al. 2025 (11 recreational athletes); no claim that flat HR is optimal.
 - Validation: workbench/budget tests, syntax, anchors, JSON-LD and storage-field preservation. Next: inspect production desktop interactions and verify release receipt; physical phone acceptance remains open.
+
+### HYROX standalone station planning — September 14
+- Prior clarity release LIVE: 035bfd8 / Netlify 6aa76c883c5fea0008c3ab31; desktop numbers, split detail toggle and exact-hour budget verified.
+- READY: actionable station cues, separate running/strength development, optional weekly station–run practice and readiness-based final-four-week specificity. Does not equate leg burn with measured lactate, prescribe a flat HR trace or declare EMOM/AMRAP universally ineffective.
+- New station planner: editable full-distance illustrative budgets (24:00 total), fresh measured comparison, signed allowance, explicit Apply total and Append to notes actions. No universal fresh-to-race conversion. Preserves record schema; scratch values only persist when appended and saved/exported.
+- Tests: parsing, all-eight total, missing and invalid inputs, signed comparison; existing workbench and budget checks. Next: verify production receipt and planner actions. Actual phone/iPad acceptance remains open.
