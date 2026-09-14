@@ -763,6 +763,35 @@ button{cursor:pointer}
     return { offer:both?"Run + Strength":"Run Development",price:both?"8 weeks \u00b7 $1,800":"8 weeks \u00b7 $1,200",goal:A.goal||"",days:A.days||"",volume:A.vol||"",longest:A.long||"",other:(A.other||[]).join(", "),issue:A.issue||"",city:A.city||"",name:A.name||"",email:A.mail||"","video-name":A.vid||"" };
   }
 
+  function intakeFields(data) {
+    return [
+      ['Name', data.name], ['Email', data.email], ['Location', data.city],
+      ['Goal', data.goal], ['Running days per week', data.days],
+      ['Weekly running volume', data.volume], ['Longest run', data.longest],
+      ['Other training', data.other], ['Main obstacle', data.issue],
+      ['Offer shown', data.offer], ['Duration and fee shown', data.price],
+      ['Video filename (attach separately by email)', data['video-name']]
+    ].filter(function (row) { return row[1]; });
+  }
+
+  function intakeEmail(data) {
+    var lines = ['SPEED & FORM', 'Coaching enquiry', '', data.name || 'New enquiry'];
+    if (data.email) lines.push(data.email);
+    if (data.city) lines.push(data.city);
+    function section(title, rows) {
+      rows = rows.filter(function (row) { return row[1]; });
+      if (!rows.length) return;
+      lines.push('', title);
+      rows.forEach(function (row) { lines.push(row[0] + ': ' + row[1]); });
+    }
+    section('GOAL', [['Wants to', data.goal], ['Main obstacle', data.issue]]);
+    section('CURRENT TRAINING', [['Running days / week', data.days], ['Weekly volume', data.volume], ['Longest run', data.longest], ['Other training', data.other]]);
+    section('OFFER SHOWN', [['Programme', data.offer], ['Duration and fee', data.price]]);
+    lines.push('Enquiry only; no payment or booking confirmed.');
+    if (data['video-name']) lines.push('', 'VIDEO', data['video-name'], 'Please attach the video to this email; the website cannot attach it automatically.');
+    return lines.join('\n');
+  }
+
   /* A 200 from the mail relay is not proof of delivery; the relay answers 200
      while it waits for a one-time address confirmation. Gate on success, and
      never dead-end: hand back a prefilled email so the answers survive. */
@@ -775,7 +804,7 @@ button{cursor:pointer}
     var mail = new FormData();
     mail.append("_subject", data.offer + ": " + (data.name || "new start")); mail.append("_template", "table"); mail.append("_captcha", "false");
     if (data.email) mail.append("_replyto", data.email);
-    Object.keys(data).forEach(function (k) { mail.append(k, data[k]); });
+    intakeFields(data).forEach(function (row) { mail.append(row[0], row[1]); });
     var netlify = new FormData(); netlify.append("form-name", "run-development"); Object.keys(data).forEach(function (k) { netlify.append(k, data[k]); }); if (A.file) netlify.append("video", A.file);
     var emailed = fetch("https://formsubmit.co/ajax/" + encodeURIComponent(dest), { method:"POST", body:mail, headers:{Accept:"application/json"} }).then(function (r) { return r.json().then(function (j) { return { ok:r.ok, j:j }; }); });
     var stored = fetch("/", { method:"POST", body:netlify }).catch(function () { return null; });
@@ -787,8 +816,7 @@ button{cursor:pointer}
   }
 
   function fail(err, btn, data) {
-    var lines = Object.keys(data).filter(function (k) { return data[k]; })
-      .map(function (k) { return k + ": " + data[k]; }).join("\n");
+    var lines = intakeEmail(data);
     var href = "mailto:" + BRICE
       + "?subject=" + encodeURIComponent(data.offer + ": " + (data.name || "new start"))
       + "&body=" + encodeURIComponent(lines);
