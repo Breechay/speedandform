@@ -1,0 +1,15 @@
+const assert=require('node:assert/strict');
+const {seconds,time,analyze}=require('./workbench.js');
+assert.equal(seconds('1:22:16'),4936);
+assert.ok(Number.isNaN(seconds('4:99')));
+assert.equal(seconds(''),null);
+assert.equal(time(null),'—');
+const d={runs:Array.from({length:8},()=>({time:'4:00',station:'3:00',km:''})),threshold:'3:50',rox:'5:00',penalty:'0:00'};
+assert.equal(analyze(d).total,3660);
+assert.equal(analyze(d).retention,null);
+d.runs.forEach(r=>r.km='1');
+assert.equal(analyze(d).pace,240);
+assert.equal(analyze(d).retention,230/240*100);
+d.penalty='';assert.equal(analyze(d).total,null);
+d.runs[0].time='';assert.equal(analyze(d).run,null);
+console.log('PASS: parsing, unknowns, totals, measured distance and retention');

@@ -106,3 +106,17 @@ Validation: both inline scripts pass Node syntax checks; isolated playback check
 Video repair 0834b45 was published via clean export to Netlify deploy 6aa75392f6f826e3b63f2353 at 01:53:35 UTC; Netlify reports ready. Brice subsequently said good to go. Direct automated homepage fetch returned 403; no independent iPad playback claim. PR96 remains unmerged, so preserve its runtime changes in the next main release.
 
 Intake formatting is staged in this follow-up. The received email screenshot matches the existing raw-key mailto fallback; it does not prove relay success or persistence. Future fallback messages have contact, goal, training and offer sections; relay table fields have readable labels. Internal storage keys remain unchanged. Video attachments are explicitly described as needing manual attachment in email. Syntax checks and synthetic missing-field formatting pass; no real email sent, no new provider configured. Next: verify a real submission and relay configuration, then deploy in the next approved batch. No Console lead or payment inferred from an enquiry. No personal enquiry data committed.
+
+
+## September 14 — combined homepage / HYROX candidate — STAGED
+This candidate includes the homepage icon refinement (48f376b9), the intake formatting (373cb807), and the HYROX workbench originally at 48a1dfd9. It preserves the already-published video recovery. Main remains 46a9a6a pending review; no new deployment was performed.
+
+| ID | Status | Evidence / next action |
+| --- | --- | --- |
+| VIDEO-UI-01 | STAGED | Rectangular text control replaced by an accessible icon with 44px target. Syntax and playback-state checks passed at 48f376b9. Device visual check and deployment remain open. |
+| INTAKE-UI-01 | STAGED | Human labels and structured email fallback preserved from 373cb807. Real submission verification remains open. |
+| HYROX-01 | STAGED | Local multi-record coaching notebook, JSON import/export, split chart, measured-distance pace/retention and trial comparison. Study-family typography, root background and stacked phone entry added in this commit. Calculation and static wiring checks pass on its workbench blobs; browser visual/interaction acceptance remains open after security rejected a local-file preview. No bypass attempted. |
+| HYROX-02 | OPEN | Review desktop/iPad/phone save/reload, import/export and print with a disposable record, then approve one combined site deployment. No athlete case is embedded or publicly linked. |
+| HYROX-03 | OPEN | Authenticated Console persistence and longitudinal comparison require a separate implementation. Current records remain local to the browser; exported JSON is the backup. |
+
+The first private import remains identity-unconfirmed and screenshot-transcribed. Missing distances prevent threshold-retention output. Historical collegiate performances do not populate current benchmarks. A following-run gap is descriptive, not proof of station causality. Exact rulebook loads are not embedded.
