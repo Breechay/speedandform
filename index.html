@@ -70,7 +70,12 @@ button{cursor:pointer}
 
 .hero video{opacity:0;pointer-events:none}
 .hero video.is-playing{opacity:1}
-.film-toggle{position:absolute;right:24px;bottom:16px;z-index:5;min-height:44px;padding:10px 14px;border:1px solid rgba(255,255,255,.55);border-radius:2px;background:rgba(0,0,0,.7);color:#fff;font-size:12px}
+.film-toggle{position:absolute;right:24px;bottom:16px;z-index:5;width:44px;height:44px;padding:0;display:grid;place-items:center;border:1px solid rgba(255,255,255,.28);border-radius:50%;background:rgba(0,0,0,.32);color:#fff;cursor:pointer}
+.film-toggle:hover{background:rgba(0,0,0,.55);border-color:rgba(255,255,255,.6)}
+.film-toggle svg{width:16px;height:16px;fill:currentColor;pointer-events:none}
+.film-toggle .film-pause{display:none}
+.film-toggle[data-action="pause"] .film-play{display:none}
+.film-toggle[data-action="pause"] .film-pause{display:block}
 .film-toggle[hidden]{display:none}
 .film-toggle:focus-visible{outline:2px solid var(--lime);outline-offset:4px}
 
@@ -349,7 +354,7 @@ button{cursor:pointer}
 <section class="hero">
   <img src="/media/run-development.jpg?v=rd26" alt="" aria-hidden="true">
   <video id="filmA" src="/media/run-development.mp4?v=rd16" muted loop playsinline preload="metadata" disablepictureinpicture aria-hidden="true" tabindex="-1"></video>
-  <button class="film-toggle" type="button" aria-controls="filmA" hidden>Play background video</button>
+  <button class="film-toggle" type="button" aria-controls="filmA" aria-label="Play background video" title="Play background video" data-action="play" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="film-play" d="M8 5v14l11-7z"/><path class="film-pause" d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg></button>
   <div class="hero-hatch" aria-hidden="true"></div>
   <div class="hero-grain" aria-hidden="true"></div>
   <div class="wrap hero-copy">
@@ -841,13 +846,19 @@ button{cursor:pointer}
   film.defaultMuted = true;
   film.playsInline = true;
   button.hidden = false;
+  function control(action) {
+    button.dataset.action = action;
+    var label = (action === 'pause' ? 'Pause' : 'Play') + ' background video';
+    button.setAttribute('aria-label', label);
+    button.title = label;
+  }
   function resting() {
     film.classList.remove('is-playing');
-    button.textContent = 'Play background video';
+    control('play');
   }
   function play() {
     var current = ++attempt;
-    button.textContent = 'Pause background video';
+    control('pause');
     // Invoke synchronously in the click event so Safari retains user activation.
     try {
       if (film.error) film.load();
@@ -859,12 +870,12 @@ button{cursor:pointer}
   }
   film.addEventListener('playing', function () {
     film.classList.add('is-playing');
-    button.textContent = 'Pause background video';
+    control('pause');
   });
   film.addEventListener('pause', resting);
   film.addEventListener('error', resting);
   button.addEventListener('click', function () {
-    if (button.textContent === 'Pause background video') {
+    if (button.dataset.action === 'pause') {
       ++attempt;
       film.pause();
       resting();
