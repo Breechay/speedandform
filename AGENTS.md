@@ -20,3 +20,6 @@ Use practice, practiced and practicing (never practise, practised or practising)
 
 ## Typography is an acceptance rule
 Read [FORM typography standard](docs/FORM_TYPOGRAPHY_STANDARD.md) before any app or site surface work. Preserve readable hierarchy, line lengths, data alignment, responsive stacking and one divider per boundary. Do not trade readability for decorative scale or tiny labels. Use plain punctuation instead of em dashes. The standard is also installed in FORM-iOS; record actual device checks rather than assuming them.
+
+## Connected surfaces
+Before changing identity, plans, execution or records, read [FORM connected surfaces](docs/FORM_CONNECTED_SURFACES.md). FORM, Forge, speedandform.com and the Console must share a documented, versioned connection. Read [HYROX app brief](docs/HYROX_APP_BRIEF.md) for that extension; it does not replace the active Adrian release gate.
