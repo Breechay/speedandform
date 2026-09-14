@@ -18,3 +18,15 @@ const z={runs:Array.from({length:8},(_,i)=>({time:i<3?'4:00':'5:00',station:'3:0
 assert.equal(analyze(z).early,240);assert.equal(analyze(z).late,240);
 z.runs[0].time='';assert.equal(analyze(z).early,null);
 console.log('PASS: distance-adjusted early/late comparison and missing-run guard');
+const {pairRows}=require('./workbench.js');
+const example={runs:Array.from({length:8},(_,i)=>({time:'4:00',station:'2:00',km:'1',note:''}))};
+const rows=pairRows(example);
+assert.equal(rows[0].total,360);
+assert.equal(rows[6].run,240);
+assert.equal(rows[7].total,120);
+assert.equal(rows[7].run,null);
+assert.equal(rows.reduce((a,r)=>a+r.total,0)+240,8*360);
+example.runs[1].time='';assert.equal(pairRows(example)[0].total,null);assert.equal(pairRows(example)[0].station,120);
+example.runs[1].time='0:00';assert.equal(pairRows(example)[0].complete,false);
+example.runs[1].time='bad';assert.equal(pairRows(example)[0].run,null);
+console.log('PASS record-derived pairs, missing inputs and finish without double counting');

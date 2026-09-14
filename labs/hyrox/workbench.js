@@ -6,11 +6,15 @@ function seconds(s){if(typeof s!=='string'||!s.trim())return null;const p=s.trim
 function time(n){if(!Number.isFinite(n))return '—';n=Math.round(n);const sign=n<0?'−':'';n=Math.abs(n);return sign+(n>=3600?Math.floor(n/3600)+':'+String(Math.floor(n/60)%60).padStart(2,'0'):Math.floor(n/60))+':'+String(n%60).padStart(2,'0');}
 function sum(a){return a.length&&a.every(Number.isFinite)?a.reduce((x,y)=>x+y,0):null;}
 function analyze(d){const runs=d.runs.map(r=>seconds(r.time)),work=d.runs.map(r=>seconds(r.station));const distances=d.runs.map(r=>r.km.trim()?Number(r.km):null);const run=sum(runs),station=sum(work);const km=distances.every(x=>Number.isFinite(x)&&x>0)?sum(distances):null;const pace=run!==null&&km?run/km:null;const early=km&&run!==null?sum(runs.slice(0,3))/sum(distances.slice(0,3)):null,late=km&&run!==null?sum(runs.slice(5,8))/sum(distances.slice(5,8)):null;const threshold=seconds(d.threshold);return {runs,work,run,station,pace,early,late,retention:pace&&threshold>0?threshold/pace*100:null,total:sum([run,station,seconds(d.rox),seconds(d.penalty)])};}
-if(typeof module!=='undefined'&&module.exports){module.exports={seconds,time,analyze};return;}
+function pairRows(d){
+ const clean=v=>{const n=seconds(v);return Number.isFinite(n)&&n>0?n:null;};
+ return d.runs.map((r,i)=>{const station=clean(r.station),run=i<7?clean(d.runs[i+1].time):null;return {index:i,station,run,finish:i===7,complete:station!==null&&(i===7||run!==null),total:station!==null&&(i===7||run!==null)?station+(run||0):null};});
+}
+if(typeof module!=='undefined'&&module.exports){module.exports={seconds,time,analyze,pairRows};return;}
 const $=id=>document.getElementById(id),key='form-hyrox-workbench-v1';
 const fields=['athlete','event','date','division','source','confidence','overall','rox','penalty','conditions','threshold','tenK','oneK','benchmarkDate','benchmarkMethod','target','as','ar','al','bs','br','bl','observed','hypothesis','test','decision'];
 const times=['overall','rox','penalty','threshold','tenK','oneK','target','as','ar','al','bs','br','bl'];
-let records=[],active='',dirty=false,storageBlocked=false;
+let records=[],active='',dirty=false,storageBlocked=false,pairSort='race';
 function cell(tag,text){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e;}
 for(let i=0;i<8;i++){const row=cell('tr');row.append(cell('td',`${i+1}. Run → ${stations[i]}`));for(const [kind,label] of [['time','Run duration'],['km','Measured run distance in km'],['station','Station duration'],['note','Observation']]){const td=cell('td'),input=cell('input');input.id=`${kind}${i}`;input.setAttribute('aria-label',`${label}, pair ${i+1}`);input.placeholder=kind==='km'?'Unknown':kind==='note'?'Optional':'m:ss';input.maxLength=kind==='note'?600:20;td.dataset.label=label;td.append(input);row.append(td);} $('splits').append(row);}
 function snapshot(){const d={version:1,id:active||crypto.randomUUID(),runs:[]};fields.forEach(f=>d[f]=$(f).value);for(let i=0;i<8;i++)d.runs.push({time:$('time'+i).value,km:$('km'+i).value,station:$('station'+i).value,note:$('note'+i).value});return d;}
@@ -18,8 +22,23 @@ function valid(d){return d&&d.version===1&&typeof d.id==='string'&&fields.every(
 function load(d){fields.forEach(f=>$(f).value=d?d[f]:'');if(!d){$('division').selectedIndex=0;$('confidence').selectedIndex=0;}for(let i=0;i<8;i++)for(const k of ['time','km','station','note'])$(k+i).value=d?d.runs[i][k]:'';active=d?d.id:'';dirty=false;draw();$('saveStatus').textContent=d?'Loaded record':'Unsaved record';}
 function refreshList(){const list=$('records');list.replaceChildren(new Option('New record',''));records.forEach(d=>list.add(new Option([d.athlete||'Unnamed',d.event||'Session',d.date].filter(Boolean).join(' · '),d.id)));list.value=active;}
 function metric(label,value){const e=cell('div');e.className='metric';e.append(cell('strong',value),cell('span',label));$('metrics').append(e);}
+function drawPairs(d){
+ const root=$('pair-chart');root.replaceChildren();const rows=pairRows(d),paired=rows.slice(0,7);
+ if(pairSort==='longest')paired.sort((a,b)=>(b.total??-1)-(a.total??-1));
+ const ordered=paired.concat(rows[7]),max=Math.max(1,...rows.map(r=>(r.station||0)+(r.run||0)));
+ for(const r of ordered){
+  const row=cell('div');row.className='pair-plot-row'+(r.complete?'':' incomplete');
+  const head=cell('div');head.className='pair-plot-head';head.append(cell('span',stations[r.index]+(r.finish?' · finish':' → Run '+(r.index+2))),cell('strong',r.complete?time(r.total):'Incomplete'));row.append(head);
+  if(r.station!==null||r.run!==null){const track=cell('div');track.className='pair-track';track.setAttribute('aria-hidden','true');for(const [value,kind] of [[r.station,'station-part'],[r.run,'run-part']]){if(value===null)continue;const part=cell('span');part.className=kind;part.style.width=value/max*100+'%';track.append(part);}row.append(track);}
+  row.append(cell('small','Station '+time(r.station)+(r.finish?' · no following run':' · Run '+time(r.run))));root.append(row);
+ }
+ const missing=rows.slice(0,7).filter(r=>!r.complete).length;
+ $('pair-chart-note').textContent=(missing?missing+' incomplete pair'+(missing===1?'':'s')+'; these are not ranked. Known parts appear alone. ':'All seven pairs entered. ')+(rows[7].station===null?'Wall-ball time is not entered.':'Wall balls are shown separately, outside the pair ranking.');
+}
+$('pair-order').onclick=()=>{pairSort='race';$('pair-order').setAttribute('aria-pressed','true');$('pair-longest').setAttribute('aria-pressed','false');drawPairs(snapshot());};
+$('pair-longest').onclick=()=>{pairSort='longest';$('pair-order').setAttribute('aria-pressed','false');$('pair-longest').setAttribute('aria-pressed','true');drawPairs(snapshot());};
 function draw(){const d=snapshot(),a=analyze(d);let errors=0;for(const id of [...times,...Array.from({length:8},(_,i)=>['time'+i,'station'+i]).flat()]){const e=$(id),n=seconds(e.value),bad=Number.isNaN(n)||(n===0&&!['penalty','al','bl'].includes(id));e.setAttribute('aria-invalid',String(bad));if(bad)errors++;}for(let i=0;i<8;i++){const e=$('km'+i),bad=!!e.value.trim()&&(!Number.isFinite(Number(e.value))||Number(e.value)<=0);e.setAttribute('aria-invalid',String(bad));if(bad)errors++;}
-$('metrics').replaceChildren();metric('Run total · entered splits',time(a.run));metric('Station total · entered splits',time(a.station));metric('Roxzone · entered',time(seconds(d.rox)));metric('Overall · reported',time(seconds(d.overall)));
+drawPairs(d);$('metrics').replaceChildren();metric('Run total · entered splits',time(a.run));metric('Station total · entered splits',time(a.station));metric('Roxzone · entered',time(seconds(d.rox)));metric('Overall · reported',time(seconds(d.overall)));
 const overall=seconds(d.overall);$('reconcile').textContent=errors?'Correct the highlighted durations or distances. Use m:ss or h:mm:ss; unknown stays blank.':a.total===null?'Enter all splits, Roxzone and non-overlapping penalties to reconcile the total. Blank does not mean zero.':overall===null?'Entered components total '+time(a.total)+'. Add the reported overall time to compare.':a.total===overall?'Entered components match the reported overall time.':`Entered components total ${time(a.total)}; difference from reported finish: ${time(a.total-overall)}. Verify timing boundaries, rounding and penalty allocation before interpreting.`;
 $('chart').replaceChildren();const max=Math.max(1,...a.runs.filter(Number.isFinite));a.runs.forEach((v,i)=>{const e=cell('div');e.className='barrow';const b=cell('div');b.className='bar';b.style.width=Number.isFinite(v)?(v/max*100)+'%':'0';e.append(cell('span','Run '+(i+1)),b,cell('span',time(v)));$('chart').append(e);});
 $('benchRead').replaceChildren();const add=t=>$('benchRead').append(cell('p',t));if(a.pace){add(`Distance-normalized running: ${time(a.pace)}/km · ${time(a.pace*1.609344)}/mi.`);if(a.retention!==null)add(`Threshold gap: ${time(a.pace-seconds(d.threshold))}/km. Velocity retention: ${a.retention.toFixed(1)}%. Descriptive only.`);}else add('Add measured distances for all eight runs to calculate normalized pace and threshold retention.');if(seconds(d.tenK)>0)add(`10K reference: ${time(seconds(d.tenK)/10)}/km.`);if(seconds(d.oneK)>0)add(`Fresh 1K reference: ${time(seconds(d.oneK))}.`);
@@ -37,3 +56,4 @@ let printDetails=[];window.addEventListener('beforeprint',()=>{printDetails=[...
 try{const raw=localStorage.getItem(key);if(raw){const parsed=JSON.parse(raw);if(!Array.isArray(parsed)||!parsed.every(valid))throw Error();records=parsed;}}catch(_){storageBlocked=true;}
 refreshList();load();if(storageBlocked)$('saveStatus').textContent='Saved records could not be read. Export new work; existing bytes were preserved.';
 })();
+
