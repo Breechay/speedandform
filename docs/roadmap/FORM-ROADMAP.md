@@ -147,3 +147,10 @@ HYROX-02: publication authorized; deployment receipt and live checks pending. Do
 - READY: actionable station cues, separate running/strength development, optional weekly station–run practice and readiness-based final-four-week specificity. Does not equate leg burn with measured lactate, prescribe a flat HR trace or declare EMOM/AMRAP universally ineffective.
 - New station planner: editable full-distance illustrative budgets (24:00 total), fresh measured comparison, signed allowance, explicit Apply total and Append to notes actions. No universal fresh-to-race conversion. Preserves record schema; scratch values only persist when appended and saved/exported.
 - Tests: parsing, all-eight total, missing and invalid inputs, signed comparison; existing workbench and budget checks. Next: verify production receipt and planner actions. Actual phone/iPad acceptance remains open.
+
+
+### HYROX plain-language decisions — September 14
+- Previous station-planner release LIVE: main 928136a5, Netlify 6aa770caf05cd5000957f495.
+- READY: Model now gives a question and one next action before expandable calculations. Includes 6:45 versus 6:35 pair comparison. Eight station cards speak directly to the reader with practical cues and an adjustment to test. Pacing uses “you can return to pace.”
+- Validation: five calculation disclosures, eight station cards; existing IDs, inputs, script references and storage schema preserved. Workbench, session and station-budget checks pass. Copy changes only; physical phone/iPad visual acceptance remains open.
+- Next: verify production release for this commit; use the guidance in practice before expanding the tool.
