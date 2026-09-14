@@ -389,6 +389,31 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid curr
 @media(max-width:1000px){.intake-grid{grid-template-columns:1fr;gap:36px}.intake-copy h2{max-width:15ch}.intake-copy p{max-width:55ch}}
 @media(max-width:700px){.intake{padding:56px 0}.intake-copy h2{font-size:46px}.questionnaire{padding:24px 18px}.q h2{font-size:26px}.footer{padding-top:48px}.footer-top{grid-template-columns:1fr;gap:40px}.footer nav{gap:28px}.footer-mark{font-size:94px}.footer-bottom{margin-top:32px}.practice-title p,.coach-copy p,.instrument-head p{font-size:17px;line-height:1.6}.hero-sub p{font-size:16px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.opt,.q.leaving{transition:none}}
+
+.drop{width:100%;background:transparent;text-align:left;color:var(--ink)}
+.ask-line{display:block}.questionnaire select:focus-visible{outline-offset:3px}
+.footer nav a span{font-size:18px}
+@media(max-width:420px){.drop{flex-wrap:wrap;gap:10px}.coaching-price{font-size:30px}.result-pace{font-size:20px}}
+
+[data-key="goal"]{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+[data-key="goal"] .opt{height:100%;display:flex;align-items:center}
+[data-key="goal"] .opt:last-child{grid-column:1/-1}
+.instrument{padding:0 0 44px}
+.training-example summary{display:flex;align-items:center;justify-content:space-between;gap:24px;cursor:pointer;list-style:none;border-top:1px solid var(--drule);padding:28px 0;min-height:96px}
+.training-example summary::-webkit-details-marker{display:none}
+.training-example summary small{display:block;font-size:12px;line-height:1.5;color:#aeb8b1;margin-bottom:8px}
+.training-example summary strong{display:block;font-size:clamp(23px,3vw,32px);font-weight:500;line-height:1.2;letter-spacing:-.025em}
+.disclosure-mark{font-size:32px;color:var(--lime)}.training-example[open] .disclosure-mark{transform:rotate(45deg)}
+.training-caption{font-size:17px;line-height:1.6;color:#bbc4bd;max-width:55ch;margin:0}
+.training-example summary:focus-visible{outline:2px solid var(--lime);outline-offset:5px}
+.training-example .app-stage{margin-top:36px}.review-note{font-size:14px;line-height:1.5;color:var(--body);margin:20px 0 0}
+@media(max-width:700px){.instrument{padding:0 0 28px}[data-key="goal"] .opt{min-height:56px;font-size:15px;padding:12px}.training-example summary{padding:24px 0}.questionnaire{padding:24px 18px}}
+
+[data-key="days"]{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+[data-key="days"] .opt{padding:12px 5px;text-align:center;font-size:15px}
+@media(max-width:700px){.hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(0deg,rgba(0,0,0,.8) 0%,rgba(0,0,0,.55) 38%,transparent 76%)}}
+
+@media(min-width:701px) and (max-width:1000px){.footer-top{grid-template-columns:1fr;gap:36px}.footer nav{max-width:640px}.footer-mark{font-size:96px}}
 </style>
 </head>
 <body>
@@ -446,7 +471,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid curr
     <div class="practice-title">
       <div class="eyebrow">01 / The Practice</div>
       <h2>I develop<br>runners.</h2>
-      <p>You might want a faster race, stronger running between HYROX stations, or simply more ease and endurance. We start with your running, then build the work around your goal.</p>
+      <p>Your first 5K, a faster half marathon, stronger running for HYROX, or simply more ease and endurance. We start where you are and build toward what matters to you.</p>
       <div class="arguments">
         <div class="argument"><b>01</b><div><strong>Find your starting point.</strong><p>We look at your recent training and how you move. I give you cues you can use.</p></div></div>
         <div class="argument"><b>02</b><div><strong>Train with a purpose.</strong><p>Your week balances easy running, focused efforts, and longer work as appropriate for you.</p></div></div>
@@ -475,14 +500,9 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid curr
 
 <section class="instrument" id="instrument">
   <div class="wrap">
-    <div class="instrument-head">
-      <div>
-        <div class="eyebrow" style="color:var(--lime)">03 / The Instrument</div>
-        <h2>Every session is built for something.</h2>
-      </div>
-      <p>Today, and the week it belongs to.</p>
-    </div>
-
+    <details class="training-example">
+      <summary><span><small>03 / Your training</small><strong>See how your training is laid out.</strong></span><span class="disclosure-mark" aria-hidden="true">+</span></summary>
+      <p class="training-caption">Example screens from FORM. Your sessions belong to a week, and the week changes as you develop.</p>
     <div class="app-stage">
 
       <!-- TODAY — CS_09 #s-two -->
@@ -533,6 +553,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid curr
         </div>
       </div>
     </div>
+    </details>
   </div>
 </section>
 
@@ -553,7 +574,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid curr
     <div class="intake-copy">
       <div class="eyebrow">04 / Begin</div>
       <h2>Tell me what you're training for.</h2>
-      <p>Tell me where you are and what you want to change. I’ll reply to discuss fit and a first assessment. This is an inquiry, with no payment or booking required.</p>
+      <p>Tell me about your running. I’ll reply to discuss fit and a first assessment.</p>
     </div>
 
     <div class="questionnaire">
@@ -628,26 +649,26 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid curr
         <div class="q" data-q="3">
           <h2>What isn&rsquo;t going the way you want?</h2>
           <p class="hint">A sentence is enough. Leave blank if nothing.</p>
-          <textarea class="ta" id="issue" rows="3" placeholder=""></textarea>
+          <textarea aria-label="What isn’t going the way you want?" class="ta" id="issue" rows="3" placeholder=""></textarea>
           <button class="cta" type="button" data-next>Continue <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
         </div>
 
         <div class="q" data-q="4">
           <h2>Anything I should see?</h2>
-          <div class="drop" id="drop">
+          <button type="button" class="drop" id="drop">
             <div>
               <b id="dropT">A recent running video</b>
               <span>Optional. Front, side or behind</span>
             </div>
             <span>Choose file</span>
-          </div>
+          </button>
           <div class="grp"><label>Where you train</label>
             <div class="opts" data-key="city" data-mode="one">
               <button class="opt" type="button" aria-pressed="false">Miami</button>
               <button class="opt" type="button" aria-pressed="false">Somewhere else</button>
             </div>
           </div>
-          <p class="ask-line">Where should I reply?</p>
+          <label class="ask-line" for="em">Where should I reply?</label>
           <input class="ti" id="em" type="email" autocomplete="email" placeholder="Email">
           <label class="hint" for="nm">Your name, if you&rsquo;d like</label>
           <input class="ti" id="nm" autocomplete="name" placeholder="">
@@ -663,6 +684,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid curr
         <p class="kind"><span id="rKind">Run Development</span><span class="sep">&middot;</span><span id="rMoney">8 Weeks &middot; $1,200</span></p>
         <h2 id="rHead">Here is what you told me.</h2>
         <div class="rows" id="rRows"></div>
+        <p class="review-note">An inquiry only. No payment or booking yet.</p>
         <div class="send">
           <button class="cta" id="sendBtn" type="button" data-send-to="briceikouebe@gmail.com">Send to Brice <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
           <button class="ghost" id="editBtn" type="button">Change an answer</button>
@@ -670,7 +692,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid curr
         <p class="send-err" id="sendErr" hidden>It did not send. Try again.</p>
       </div>
 
-      <div class="pane" id="p-done">
+      <div class="pane" id="p-done" role="status">
         <p class="kind">Received</p>
         <h2 class="done-title">It&rsquo;s with Brice.</h2>
         <p class="done-copy">He reads it himself, usually within a day, and replies with what he would do first. His reply comes from briceikouebe@gmail.com.</p>
@@ -690,7 +712,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid curr
 <footer class="footer">
   <div class="wrap">
     <div class="footer-top">
-      <div><p class="footer-label">Keep practicing.</p><a class="footer-mark" href="#top" aria-label="FORM, back to top">FORM<span>.</span></a><p class="footer-location">Running coaching with Brice.<br>Miami + Remote</p></div>
+      <div><a class="footer-mark" href="#top" aria-label="FORM, back to top">FORM<span>.</span></a><p class="footer-location">Running coaching with Brice.<br>Miami + Remote</p></div>
       <nav aria-label="Footer">
         <div><p class="footer-label">Work with me</p><a href="#begin">Coaching inquiry <span>↗</span></a><a href="/athlete/">Athlete sign in <span>↗</span></a></div>
         <div><p class="footer-label">Explore the practice</p><a href="/plans/">Training plans <span>↗</span></a><a href="/labs/">Studies &amp; tools <span>↗</span></a><a href="/library">Reading <span>↗</span></a></div>
@@ -720,6 +742,10 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid curr
 
   function pane(id) {
     $$(".pane").forEach(function (p) { p.classList.toggle("on", p.id === id); });
+    if (id !== "p-ask") {
+      var heading = $("#" + id + " h2");
+      if (heading) { heading.setAttribute("tabindex", "-1"); heading.focus({preventScroll:true}); heading.scrollIntoView({block:"nearest"}); }
+    }
   }
 
   function paintTicks() {
@@ -733,7 +759,9 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid curr
     [].slice.call(box.children).forEach(function (el, j) {
       el.classList.toggle("done", j < qi);
       el.classList.toggle("now", j === qi);
+      if (j === qi) el.setAttribute("aria-current", "step"); else el.removeAttribute("aria-current");
     });
+    box.setAttribute("aria-label", "Question " + (qi + 1) + " of " + QN);
     $("#back").style.visibility = qi === 0 ? "hidden" : "visible";
   }
 
@@ -756,6 +784,10 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid curr
     qTimer = window.setTimeout(function () {
       from.classList.remove("leaving");
       qs.forEach(function (q, j) { q.classList.toggle("on", j === qi); });
+      var heading = qs[qi].querySelector("h2");
+      heading.setAttribute("tabindex", "-1");
+      heading.focus({preventScroll:true});
+      qs[qi].scrollIntoView({block:"nearest",behavior:"auto"});
     }, 140);
   }
 
