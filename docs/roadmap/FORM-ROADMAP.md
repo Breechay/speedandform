@@ -7,7 +7,8 @@ This checkpoint supersedes older release and next-action wording below. Earlier 
 | Area | Status | Evidence / next action |
 | --- | --- | --- |
 | FORM HYROX course + tools | LIVE | PR104, main `330067fc8a4d88c6775c029de03dd7abc3821f1d`; Netlify `6aa77fa41cabd50008ad9e03`, ready at 05:01:39 UTC. Starting priorities, rules, weekly example, rehearsals and race-day guide published. |
-| HYROX search/share | READY | Updated metadata, dedicated 1200×630 share card and spelling pass in this release. Verify production receipt in the release PR. Sitemap and canonical already correct. |
+| HYROX search/share | LIVE | PR105, main `4369e39a9b815c60b128c2aa164a92f1de00ef02`; Netlify `6aa78107fc312e0008b5d6df`, published 05:07:35 UTC. Metadata, dedicated share card and American spelling verified. |
+| HYROX visual playbook | RELEASE CANDIDATE | Interactive cost comparison and race-budget bars; linked race map; gym alternatives, two strength sessions and three-week example. Arithmetic and ID preservation passed. Production/browser receipt belongs in this release PR. See playbook audit. |
 | HYROX device acceptance | OPEN | Desktop navigation and budget checked. Complete physical iPhone/iPad review and real messaging-app preview; social caches may retain earlier cards. |
 | HYROX field use | NEXT | Observe the planned simulation, record actual conditions and outcomes, then refine guidance. No completed study, paid onboarding or client identity inferred. |
 | Workbench sync | OPEN | Browser-local records with JSON backup; no cross-device account sync yet. |
