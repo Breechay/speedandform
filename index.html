@@ -378,21 +378,21 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid curr
 .step-note,.need,.send-err,.rows .row small{font-size:14px;line-height:1.5;color:var(--body)}.need,.send-err{color:#8a3829}
 .ta:focus-visible,.ti:focus-visible{outline:2px solid var(--ink);outline-offset:5px}
 .rows .row p{overflow-wrap:anywhere}.kind{font-variant-numeric:tabular-nums}.send{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px}.send .ghost{margin:26px 0 0}
-.footer{background:var(--dark);color:var(--bone);padding:64px 0 24px;border:0}
-.footer-top{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
-.footer-label{font-size:13px;line-height:1.5;color:#aeb8b1;margin:0 0 22px}
-.footer-mark{font-size:clamp(74px,9vw,132px);font-weight:800;line-height:.85;letter-spacing:-.075em;display:inline-block}.footer-mark span{color:var(--lime)}
+.footer{background:var(--dark);color:var(--bone);padding:48px 0 20px;border:0}
+.footer-top{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px;align-items:start}
+.footer-label{font-size:12px;line-height:1.5;color:#aeb8b1;margin:0 0 22px}
+.footer-mark{font-size:clamp(74px,8.2vw,120px);font-weight:800;line-height:.85;letter-spacing:-.075em;display:inline-block}.footer-mark span{color:var(--lime)}
 .footer-location{font-size:16px;line-height:1.6;color:#c1c9c3;margin:24px 0 0}
-.footer nav{display:grid;grid-template-columns:1fr 1fr;gap:36px;font-family:var(--sans);font-size:16px;letter-spacing:0;text-transform:none;color:var(--bone);text-align:left}
-.footer nav a{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:48px;line-height:1.5}.footer nav a span{color:#aeb8b1}.footer a:hover{color:var(--lime)}
-.footer-bottom{border-top:1px solid var(--drule);margin-top:52px;padding-top:20px;display:flex;justify-content:space-between;gap:24px;align-items:center;font-size:13px;color:#aeb8b1}.footer-bottom a{padding:12px 0}
+.footer nav{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,4fr);gap:32px;font-family:var(--sans);font-size:16px;letter-spacing:0;text-transform:none;color:var(--bone);text-align:left}
+.footer nav a{display:flex;align-items:center;justify-content:flex-start;gap:18px;min-height:44px;line-height:1.5;width:fit-content;max-width:100%}.footer nav a span{color:#aeb8b1}.footer a:hover{color:var(--lime)}
+.footer-bottom{border-top:1px solid var(--drule);margin-top:28px;padding-top:16px;display:flex;justify-content:space-between;gap:24px;align-items:center;font-size:13px;color:#aeb8b1}.footer-bottom a{padding:12px 0}
 @media(max-width:1000px){.intake-grid{grid-template-columns:1fr;gap:36px}.intake-copy h2{max-width:15ch}.intake-copy p{max-width:55ch}}
 @media(max-width:700px){.intake{padding:56px 0}.intake-copy h2{font-size:46px}.questionnaire{padding:24px 18px}.q h2{font-size:26px}.footer{padding-top:48px}.footer-top{grid-template-columns:1fr;gap:40px}.footer nav{gap:28px}.footer-mark{font-size:94px}.footer-bottom{margin-top:32px}.practice-title p,.coach-copy p,.instrument-head p{font-size:17px;line-height:1.6}.hero-sub p{font-size:16px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.opt,.q.leaving{transition:none}}
 
 .drop{width:100%;background:transparent;text-align:left;color:var(--ink)}
 .ask-line{display:block}.questionnaire select:focus-visible{outline-offset:3px}
-.footer nav a span{font-size:18px}
+.footer nav a span{font-size:18px;flex-shrink:0}.footer nav a.footer-app{margin-top:12px}
 @media(max-width:420px){.drop{flex-wrap:wrap;gap:10px}.coaching-price{font-size:30px}.result-pace{font-size:20px}}
 
 [data-key="goal"]{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -708,7 +708,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid curr
       <div><a class="footer-mark" href="#top" aria-label="FORM, back to top">FORM<span>.</span></a><p class="footer-location">Running coaching with Brice.<br>Miami + Remote</p></div>
       <nav aria-label="Footer">
         <div><p class="footer-label">Work with me</p><a href="#begin">Coaching inquiry <span>↗</span></a><a href="/athlete/">Athlete sign in <span>↗</span></a></div>
-        <div><p class="footer-label">Explore the practice</p><a href="/plans/">Training plans <span>↗</span></a><a href="/labs/">Studies &amp; tools <span>↗</span></a><a href="/library">Reading <span>↗</span></a><a href="https://apps.apple.com/us/app/id6761313085">Open FORM <span>↗</span></a></div>
+        <div><p class="footer-label">Explore the practice</p><a href="/plans/">Training plans <span>↗</span></a><a href="/labs/">Studies &amp; tools <span>↗</span></a><a href="/library">Reading <span>↗</span></a><a class="footer-app" href="https://apps.apple.com/us/app/id6761313085">Open FORM <span>→</span></a></div>
       </nav>
     </div>
     <div class="footer-bottom"><span>Speed &amp; Form</span><a href="#top">Back to top ↑</a></div>
