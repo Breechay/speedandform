@@ -28,4 +28,10 @@ Netlify reports Forms disabled. The inherited email relay and user email fallbac
 
 ## Release follow-up
 
-Pending final preview inspection and release. Do not treat PR existence as production publication.
+PR112 merged as `5210f38deef20affa483ef1487428ef5ebb42708`; tested implementation head `be970e033f092441f61b6cfc3839a69745f4d906`. Branch preview `6aa8213fc9c8d3ae5b35d57f` is ready; public route: https://codex-home-review--zingy-speculoos-16852a.netlify.app/ . Source adds a final first-5K wording clarification beyond that preview. 1024px intake and 768px corrected footer visually inspected. Six-width overflow check passes; mocked send/fallback tests pass. No live inquiry submitted.
+
+A separate manual production-build request was rejected by automatic approval review; it was not retried. A subsequent site-state read showed that the prior GitHub merge had already triggered the normal production deployment. Netlify confirms production `6aa8222b75fb510008166dfb`, commit `5210f38deef20affa483ef1487428ef5ebb42708`, published September 14 at 16:35:05 UTC. Live browser verification confirms the new coaching selector and updated homepage content. No additional manual deployment is needed.
+
+The automatic publication behavior differs from the older comments in netlify.toml. Treat the actual Netlify state as authoritative. This release-state documentation is committed with [skip netlify] to avoid an unnecessary production rebuild.
+
+Subjective design assessment after the refinement passes: homepage about 9/10, intake 9/10, footer 9/10 on inspected layouts. This is not a measured conversion score or a physical-device acceptance claim. Remaining validation is explicitly listed above.
