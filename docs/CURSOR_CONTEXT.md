@@ -4,7 +4,9 @@
 **Doctrine (canonical, lives in iOS repo):** `FORM-iOS/docs/form_field_doctrine.md`, `FORM-iOS/docs/form_web_spec_v2.md`  
 **FORM/Forge architecture:** `FORM-iOS/docs/FORM_FORGE_ARCHITECTURE.md`  
 **Workspace operator kernel:** `FORM-iOS/docs/BRICE_OS/BRICE_OPERATOR_KERNEL.md` (cross-repo only — not web implementation detail)  
-**Denylist:** `docs/DO_NOT_BUILD.md` (this repo)
+**Denylist:** `docs/DO_NOT_BUILD.md` (this repo)  
+**Operational roadmap (canonical, lives in iOS repo):** `FORM-iOS/docs/operations/bridge-season/` — `MILESTONES_v1.csv` owns milestone state, `ROADMAP_v1.md` the rationale, `NOW_v1.md` current attention. Read it there; never from a downloaded copy, and never copy the trio into this repo. Until FORM-iOS PR21 merges it lives on `codex/bridge-season-roadmap-source`; afterwards on main.
+
 
 **RunCards:** Not in this repo. SoT: `FORM-iOS/docs/BRICE_OS/RUNCARDS_CONTEXT.md` (temporary bridge). Do not add RunCards docs here.
 
