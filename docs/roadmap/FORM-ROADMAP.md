@@ -94,3 +94,37 @@ The support page is an explicitly authorized exception to the original audit's �
 
 ## September 13 follow-up
 See [release checks and current app review](../audits/2026-09-13-RPD-FOLLOWUP.md). PDF/copy changes are LIVE: PR #94 merged as 1e3eaa12f2a105327813d62e2d4811b8935ef328; clean-export Netlify deploy 6aa5fdb6a06f6aaa582eeded published September 13 at 01:35 UTC. Live support description and exact downloaded PDF SHA-256 were verified. First attempt 6aa5fd72b05d020a919629b9 failed before build because an uploaded worktree pointer was not portable; deploy clean git exports, never worktree metadata. Six navigation tests passed. Phone visual gate remains open because this browser cannot set a phone viewport; do not mark it verified. Real media is deferred by Brice.
+
+## September 14 homepage playback repair — STAGED
+Base inspected: `46a9a6a499727b9d53699a76c620e132b8fc1811`. September 12/13 homepage diffs changed a Labs link and metadata, not video playback. Brice reports intermittent desktop playback (later recovered) and an unresponsive play overlay on iPhone and iPad Chrome. Source confirms no autoplay rejection recovery; the exact production/device trigger remains unknown.
+
+The homepage now retains the poster until `playing`, invokes muted inline playback explicitly, and provides an independent 44px-minimum play/pause control above decorative layers. Reduced-motion preference prevents automatic playback; manual play remains available. Intake/auth and video asset are unchanged.
+
+Validation: both inline scripts pass Node syntax checks; isolated playback checks pass rejected-autoplay retry, reduced-motion/manual play, playing/pause presentation and preference-change pause. Tested source: homepage blob in the commit containing this entry. This is not Safari decoding or visual/device acceptance. Next: review preview at phone/iPad/desktop widths, verify real media playback and reachable controls on iPhone and iPad Chrome, then publish and check production. Deployment: not deployed by this repair; no Netlify credits used.
+
+## September 14 — video published; intake email formatting staged
+Video repair 0834b45 was published via clean export to Netlify deploy 6aa75392f6f826e3b63f2353 at 01:53:35 UTC; Netlify reports ready. Brice subsequently said good to go. Direct automated homepage fetch returned 403; no independent iPad playback claim. PR96 remains unmerged, so preserve its runtime changes in the next main release.
+
+Intake formatting is staged in this follow-up. The received email screenshot matches the existing raw-key mailto fallback; it does not prove relay success or persistence. Future fallback messages have contact, goal, training and offer sections; relay table fields have readable labels. Internal storage keys remain unchanged. Video attachments are explicitly described as needing manual attachment in email. Syntax checks and synthetic missing-field formatting pass; no real email sent, no new provider configured. Next: verify a real submission and relay configuration, then deploy in the next approved batch. No Console lead or payment inferred from an enquiry. No personal enquiry data committed.
+
+
+## September 14 — combined homepage / HYROX candidate — STAGED
+This candidate includes the homepage icon refinement (48f376b9), the intake formatting (373cb807), and the HYROX workbench originally at 48a1dfd9. It preserves the already-published video recovery. Main remains 46a9a6a pending review; no new deployment was performed.
+
+| ID | Status | Evidence / next action |
+| --- | --- | --- |
+| VIDEO-UI-01 | STAGED | Rectangular text control replaced by an accessible icon with 44px target. Syntax and playback-state checks passed at 48f376b9. Device visual check and deployment remain open. |
+| INTAKE-UI-01 | STAGED | Human labels and structured email fallback preserved from 373cb807. Real submission verification remains open. |
+| HYROX-01 | STAGED | Local multi-record coaching notebook, JSON import/export, split chart, measured-distance pace/retention and trial comparison. Study-family typography, root background and stacked phone entry added in this commit. Calculation and static wiring checks pass on its workbench blobs; browser visual/interaction acceptance remains open after security rejected a local-file preview. No bypass attempted. |
+| HYROX-02 | OPEN | Review desktop/iPad/phone save/reload, import/export and print with a disposable record, then approve one combined site deployment. No athlete case is embedded or publicly linked. |
+| HYROX-03 | OPEN | Authenticated Console persistence and longitudinal comparison require a separate implementation. Current records remain local to the browser; exported JSON is the backup. |
+
+The first private import remains identity-unconfirmed and screenshot-transcribed. Missing distances prevent threshold-retention output. Historical collegiate performances do not populate current benchmarks. A following-run gap is descriptive, not proof of station causality. Exact rulebook loads are not embedded.
+
+
+## September 14 — FORM HYROX course + instrument release candidate
+Brice approved publication of the revised supplied course. Canonical route is `/labs/hyrox/`; Labs links to it, and the earlier workbench URL redirects. The page teaches the model before data entry, uses the study mast with a mobile contents control, simplifies station guidance, and separates historical capacity from current benchmarks. Fixed 10K offsets and unverified current Elite cutoffs were removed.
+
+HYROX-01 now includes the course, paired totals and distance-adjusted early/late pace. Existing JSON records and storage key are preserved. Calculation tests cover unknowns, invalid durations, totals, retention and early/late distance normalization; IDs, fragments and input wiring pass. Exact tested source: blobs in the commit containing this entry. Visual browser checks remain to be performed on the published URL because local file navigation was blocked.
+
+HYROX-02: publication authorized; deployment receipt and live checks pending. Do not call this candidate live until the receipt below is recorded. VIDEO-UI-01 and INTAKE-UI-01 are included. HYROX-03 remains open: records do not sync to Console. Public course contains no athlete dossier or contact data.
