@@ -120,3 +120,11 @@ This candidate includes the homepage icon refinement (48f376b9), the intake form
 | HYROX-03 | OPEN | Authenticated Console persistence and longitudinal comparison require a separate implementation. Current records remain local to the browser; exported JSON is the backup. |
 
 The first private import remains identity-unconfirmed and screenshot-transcribed. Missing distances prevent threshold-retention output. Historical collegiate performances do not populate current benchmarks. A following-run gap is descriptive, not proof of station causality. Exact rulebook loads are not embedded.
+
+
+## September 14 — FORM HYROX course + instrument release candidate
+Brice approved publication of the revised supplied course. Canonical route is `/labs/hyrox/`; Labs links to it, and the earlier workbench URL redirects. The page teaches the model before data entry, uses the study mast with a mobile contents control, simplifies station guidance, and separates historical capacity from current benchmarks. Fixed 10K offsets and unverified current Elite cutoffs were removed.
+
+HYROX-01 now includes the course, paired totals and distance-adjusted early/late pace. Existing JSON records and storage key are preserved. Calculation tests cover unknowns, invalid durations, totals, retention and early/late distance normalization; IDs, fragments and input wiring pass. Exact tested source: blobs in the commit containing this entry. Visual browser checks remain to be performed on the published URL because local file navigation was blocked.
+
+HYROX-02: publication authorized; deployment receipt and live checks pending. Do not call this candidate live until the receipt below is recorded. VIDEO-UI-01 and INTAKE-UI-01 are included. HYROX-03 remains open: records do not sync to Console. Public course contains no athlete dossier or contact data.

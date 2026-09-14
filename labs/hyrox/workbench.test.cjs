@@ -13,3 +13,8 @@ assert.equal(analyze(d).retention,230/240*100);
 d.penalty='';assert.equal(analyze(d).total,null);
 d.runs[0].time='';assert.equal(analyze(d).run,null);
 console.log('PASS: parsing, unknowns, totals, measured distance and retention');
+
+const z={runs:Array.from({length:8},(_,i)=>({time:i<3?'4:00':'5:00',station:'3:00',km:i<3?'1':'1.25'})),threshold:'3:50',rox:'5:00',penalty:'0:00'};
+assert.equal(analyze(z).early,240);assert.equal(analyze(z).late,240);
+z.runs[0].time='';assert.equal(analyze(z).early,null);
+console.log('PASS: distance-adjusted early/late comparison and missing-run guard');
