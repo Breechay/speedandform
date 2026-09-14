@@ -35,3 +35,14 @@ A separate manual production-build request was rejected by automatic approval re
 The automatic publication behavior differs from the older comments in netlify.toml. Treat the actual Netlify state as authoritative. This release-state documentation is committed with [skip netlify] to avoid an unnecessary production rebuild.
 
 Subjective design assessment after the refinement passes: homepage about 9/10, intake 9/10, footer 9/10 on inspected layouts. This is not a measured conversion score or a physical-device acceptance claim. Remaining validation is explicitly listed above.
+
+
+## September 14: offer scope refinement
+
+Brice confirmed the complimentary initial Miami assessment and weekly track coaching, and authorized the proposed four coached gym sessions across eight weeks in Run + Strength. Extra gym sessions are arranged separately. Run remains $1,200; Run + Strength remains $1,800.
+
+Practice copy now describes observation, cues, easy running, recovery, and one adjustment at a time. No measured economy gains or guaranteed eight-week outcomes added. Training example stays collapsed; its four outbound links were removed and Open FORM moved to the footer. Intake questions remain; video guidance is more welcoming.
+
+Remote has a separate explicit inquiry selection. It carries Remote running and fee agreed before starting through review, email relay, storage attempt and mailto fallback, without mislabeling the inquiry as a Miami package. Scope and fee are discussed personally before commitment. No third price card.
+
+Validation: mocked full intake checks passed for Run, Run + Strength and remote, campaign tags, escaped user input, failed delivery and fallback. All requests mocked; no email sent. CSS unchanged. Prior six-width checks belong to the preceding release; refreshed visual/deployment verification pending.
