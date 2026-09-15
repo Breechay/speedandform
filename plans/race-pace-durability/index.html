@@ -52,6 +52,175 @@
 }
 </script>
 <link rel="stylesheet" href="/plans/race-pace-durability/styles.css" />
+<style>
+/* The plan intro should read like one composed editorial module, not three
+   unrelated blocks. This layer intentionally overrides the older compact
+   progression styles without changing the plan matrix below it. */
+.pacing-guide{
+  margin:34px 0 18px;
+  padding:28px 0 0;
+  max-width:none;
+  border-top:1px solid rgba(54,70,74,.72);
+  line-height:1.6;
+}
+.pacing-guide summary{
+  list-style:none;
+  display:grid;
+  gap:8px;
+  width:max-content;
+  max-width:100%;
+  padding:0;
+  color:var(--text);
+  cursor:pointer;
+  font-size:0;
+}
+.pacing-guide summary::-webkit-details-marker{display:none}
+.pacing-guide summary::marker{content:""}
+.pacing-guide summary::before{
+  content:"PRACTISE THE RACE";
+  color:#aab3b4;
+  font-size:10px;
+  font-weight:560;
+  line-height:1;
+  letter-spacing:.24em;
+}
+.pacing-guide summary::after{
+  content:"Start · Settle · Hold · Finish  ↘";
+  color:#f1f4f0;
+  font-size:clamp(27px,3vw,41px);
+  font-weight:520;
+  line-height:1.08;
+  letter-spacing:-.032em;
+  text-wrap:balance;
+}
+.pacing-guide[open] summary::after{content:"Start · Settle · Hold · Finish  ↗"}
+.pacing-guide summary:focus-visible{outline:2px solid var(--lime);outline-offset:7px}
+.pacing-guide > p{
+  max-width:68ch;
+  margin:15px 0 0;
+  color:#8f999b;
+  font-size:12.5px;
+  line-height:1.68;
+}
+.pacing-guide > p:first-of-type{margin-top:24px}
+
+.progression-note{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  grid-template-areas:
+    "label link"
+    "main link"
+    "note link";
+  column-gap:34px;
+  row-gap:6px;
+  max-width:none;
+  margin:0 0 30px;
+  padding:22px 24px 23px;
+  overflow:hidden;
+  border:1px solid rgba(62,80,84,.58);
+  border-radius:18px;
+  background:linear-gradient(180deg,rgba(14,24,27,.76),rgba(8,16,18,.55));
+  box-shadow:inset 0 1px rgba(255,255,255,.018);
+  color:var(--text);
+}
+.progression-note::before{
+  content:"THE PROGRESSION";
+  grid-area:label;
+  align-self:end;
+  color:#aab3b4;
+  font-size:9.5px;
+  font-weight:560;
+  line-height:1;
+  letter-spacing:.23em;
+}
+.progression-note p{
+  grid-area:main;
+  max-width:none;
+  margin:5px 0 0;
+  color:#edf1ed;
+  font-size:clamp(17px,1.8vw,24px);
+  font-weight:480;
+  line-height:1.35;
+  letter-spacing:-.018em;
+  text-wrap:pretty;
+}
+.progression-note p span{color:#aeb7b8}
+.progression-note small{
+  grid-area:note;
+  display:block;
+  margin-top:2px;
+  color:#727d80;
+  font-size:12px;
+  line-height:1.5;
+}
+.progression-note a{
+  grid-area:link;
+  align-self:center;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:42px;
+  margin:0;
+  padding:0 16px;
+  border:1px solid rgba(92,109,113,.5);
+  border-radius:999px;
+  color:var(--lime);
+  font-size:11.5px;
+  font-weight:520;
+  line-height:1.2;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:border-color 160ms ease,background 160ms ease;
+}
+.progression-note a:hover{border-color:#637175;background:rgba(255,255,255,.025)}
+.progression-note a:focus-visible{outline:2px solid var(--lime);outline-offset:4px}
+
+@media(max-width:599px){
+  .support-link{margin:20px 0 0;font-size:11.5px}
+  .pacing-guide{margin:26px 0 14px;padding-top:22px}
+  .pacing-guide summary{width:100%;gap:7px}
+  .pacing-guide summary::before{font-size:8.5px;letter-spacing:.22em}
+  .pacing-guide summary::after{
+    max-width:13ch;
+    font-size:clamp(24px,7.4vw,30px);
+    line-height:1.12;
+  }
+  .pacing-guide > p{font-size:11.5px;line-height:1.62}
+  .pacing-guide > p:first-of-type{margin-top:19px}
+
+  .progression-note{
+    display:block;
+    margin-bottom:18px;
+    padding:18px 18px 19px;
+    border-radius:16px;
+  }
+  .progression-note::before{display:block;margin-bottom:11px;font-size:8.5px}
+  .progression-note p{margin:0;font-size:16px;line-height:1.42;max-width:none}
+  .progression-note small{margin-top:7px;font-size:11.25px;line-height:1.5}
+  .progression-note a{
+    display:inline-flex;
+    min-height:0;
+    margin-top:16px;
+    padding:0;
+    border:0;
+    border-radius:0;
+    font-size:11.5px;
+  }
+  .progression-note a:hover{background:none;border-color:transparent}
+
+  /* Keep week navigation in its own band. The old negative margin pulled the
+     arrows up beside the progression copy and made this whole area feel accidental. */
+  .plan-head{
+    align-items:center;
+    justify-content:flex-end;
+    margin:20px 0 14px;
+    min-height:34px;
+    pointer-events:none;
+  }
+  .week-now{width:100%;justify-content:flex-end;pointer-events:auto}
+}
+</style>
 </head>
 <body>
 <div class="page-shell">
