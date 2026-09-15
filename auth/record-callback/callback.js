@@ -5,10 +5,23 @@ const title = document.getElementById('callbackTitle');
 const status = document.getElementById('callbackStatus');
 const retry = document.getElementById('callbackRetry');
 
+function rpdReturnDestination(value) {
+  if (!value) return null;
+  try {
+    const url = new URL(value, window.location.origin);
+    if (url.origin !== window.location.origin) return null;
+    if (!url.pathname.startsWith('/plans/race-pace-durability/access/')) return null;
+    return `${url.pathname}${url.search}`;
+  } catch {
+    return null;
+  }
+}
+
 try {
   const url = new URL(window.location.href);
   const recovery = url.searchParams.get('mode') === 'recovery' || url.searchParams.get('type') === 'recovery';
   const returnTo = url.searchParams.get('return_to') || '';
+  const rpdReturn = rpdReturnDestination(returnTo);
   const calendarReturn = returnTo.includes('calendar_return=1');
   let calendarTokens = null;
 
@@ -47,8 +60,8 @@ try {
     status.textContent = 'Calendar connected. Taking you back to the Console…';
     window.location.replace('/coach/labs/?calendar=connected');
   } else if (!recovery) {
-    status.textContent = 'Signed in. Taking you there…';
-    window.location.replace(destination);
+    status.textContent = rpdReturn ? 'Purchase email verified. Restoring your plan…' : 'Signed in. Taking you there…';
+    window.location.replace(rpdReturn || destination);
   } else {
     title.textContent = 'Set your password.';
     status.textContent = 'Choose a password for this FORM account.';
