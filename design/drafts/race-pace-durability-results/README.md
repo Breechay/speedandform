@@ -19,6 +19,15 @@ The April result is a prior race reference, not the start of the 15-week interve
 
 Brice recalls that José may have been focused on pacing Hope at Key Biscayne, and that José's January Miami Marathon may be a more useful piece of individual context. Treat both points as **context to verify**, not publication-ready facts. Do not use the one-second result difference to imply equal athletes.
 
+## Working coaching hypotheses — not claims
+
+These are observations to test through the block, not conclusions to protect and not copy for public marketing before the evidence exists.
+
+- **Hope:** Brice currently suspects Hope may have greater underlying half-marathon capability than the shared April result reveals. The block gives her room to demonstrate whether that apparent capability can become durable at her assigned race-pace band.
+- **José:** A competing hypothesis is that José's prior race results may understate some of his ability because of execution, pacing context or inconsistent conversion of fitness into race performance. He is currently focused on stopping that pattern. The block gives him room to test whether what has looked like underperformance is partly a gap between ability and execution.
+- **The comparison stays open:** Hope may remain the more capable runner, José may close or reverse part of the apparent gap, or the two may respond in different ways that make a simple ranking unhelpful. Neither conclusion needs to be decided today.
+- **What resolves it:** session execution, how each athlete responds as continuous race-pace ownership grows, the decisions required along the way, and the verified December race outcomes. Do not retrofit the story to whichever result is easier to market.
+
 ## Must be locked before publication
 
 1. Exact 15-week block start date for each athlete.
