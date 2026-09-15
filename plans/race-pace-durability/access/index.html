@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Race Pace Durability · Restore access · FORM</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="../support/support.css">
+<style>
+.access-shell{max-width:760px}
+.access-card{margin-top:34px;padding:34px;border:1px solid var(--line);background:rgba(255,255,255,.015)}
+.access-card h2{margin-bottom:12px}
+.access-card p{font-size:17px;color:var(--muted);max-width:56ch}
+.access-form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;margin-top:26px}
+.access-form input{min-height:54px;border:1px solid var(--line);background:transparent;color:var(--text);padding:0 16px;font:inherit;border-radius:3px;outline:none}
+.access-form input:focus{border-color:var(--lime);box-shadow:0 0 0 1px var(--lime)}
+.access-form button{border:0;min-height:54px;padding:0 20px;background:var(--lime);color:var(--bg);font:inherit;font-weight:600;border-radius:3px;cursor:pointer}
+.access-form button[disabled]{opacity:.55;cursor:wait}
+.access-status{margin:16px 0 0!important;font-size:14px!important;min-height:22px}
+.access-status[data-state="success"]{color:var(--text)}
+.access-status[data-state="error"]{color:#f0a08d}
+.access-meta{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:34px;padding-top:24px;border-top:1px solid var(--line)}
+.access-meta p{font-size:14px;margin:5px 0 0;color:var(--muted)}
+.access-meta strong{font-size:15px}
+@media(max-width:680px){.access-form,.access-meta{grid-template-columns:1fr}.access-card{padding:26px}}
+</style>
+</head>
+<body>
+<header><a class="mark" href="/">FORM<span>.</span></a><nav aria-label="Main"><a href="/plans/">Plans</a><a href="/labs/">Labs</a></nav></header>
+<main>
+<section class="hero access-shell">
+<p class="eyebrow">Race Pace Durability · Access</p>
+<h1>Your plan follows<br>your email.</h1>
+<p class="lead">Bought Race Pace Durability on another device? Restore the purchase with the email used at checkout.</p>
+<div class="access-card" id="accessCard">
+<p class="eyebrow">Restore purchase</p>
+<h2>No receipt hunting.<br>No new payment.</h2>
+<p>Enter the email you used with Stripe. We’ll send one secure sign-in link. After you open it, this device will recognize your Race Pace Durability purchase.</p>
+<form class="access-form" id="accessForm">
+<input id="accessEmail" type="email" autocomplete="email" inputmode="email" placeholder="Email used at checkout" aria-label="Email used at checkout" required>
+<button id="accessButton" type="submit">Send secure link</button>
+</form>
+<p class="access-status" id="accessStatus" role="status" aria-live="polite"></p>
+<div class="access-meta">
+<div><strong>$79 stays one-time.</strong><p>Restoring access never starts a subscription or charges the card again.</p></div>
+<div><strong>FORM is separate.</strong><p>Your RPD purchase remains yours even if you never subscribe to the FORM app.</p></div>
+</div>
+</div>
+</section>
+<section class="pair" aria-label="Purchase help">
+<div><p class="eyebrow">Why email?</p><h2>It proves the purchase<br>belongs to you.</h2><p>Stripe gives the purchase to the email used at checkout. The secure link proves you control that same address before this browser is allowed to unlock the paid weeks.</p></div>
+<div><p class="eyebrow">Need help?</p><h2>A human is<br>still here.</h2><p>If the purchase used the wrong email or the link does not arrive, email Brice and include the email you used at checkout. Do not send card details.</p><a href="mailto:brice@speedandform.com">brice@speedandform.com ↗</a></div>
+</section>
+</main>
+<footer><a class="mark" href="/">FORM<span>.</span></a><p>Built and coached by Brice.</p><a href="/plans/race-pace-durability/">Race Pace Durability ↗</a></footer>
+<script type="module" src="./access.js"></script>
+</body>
+</html>
