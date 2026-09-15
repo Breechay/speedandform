@@ -32,6 +32,16 @@
   }
   w.rpdSource = function () { return Object.assign({}, source); };
 
+  function sourceParams() {
+    return {
+      rpd_utm_source: source.utm_source || '',
+      rpd_utm_medium: source.utm_medium || '',
+      rpd_utm_campaign: source.utm_campaign || '',
+      rpd_utm_content: source.utm_content || '',
+      rpd_ref: source.ref || ''
+    };
+  }
+
   w.dataLayer = w.dataLayer || [];
   w.gtag = w.gtag || function () { w.dataLayer.push(arguments); };
   w.gtag('js', new Date());
@@ -71,11 +81,11 @@
 
   w.rpdTrack = {
     view: function () {
-      ga('rpd_view', { surface: surface || 'unknown' });
+      ga('rpd_view', Object.assign({ surface: surface || 'unknown' }, sourceParams()));
       meta('ViewContent', { content_name: 'Race Pace Durability', content_type: 'product', value: 79, currency: 'USD' });
     },
     preview: function (detail) {
-      ga('rpd_preview_open', { detail: detail || 'preview' });
+      ga('rpd_preview_open', Object.assign({ detail: detail || 'preview' }, sourceParams()));
       meta('CustomizeProduct', { content_name: 'Race Pace Durability Preview' });
     },
     checkout: function () {
@@ -83,7 +93,7 @@
         currency: 'USD', value: 79,
         items: [{ item_id: 'race-pace-durability', item_name: 'Race Pace Durability', price: 79, quantity: 1 }]
       });
-      ga('rpd_checkout_start', { value: 79, currency: 'USD' });
+      ga('rpd_checkout_start', Object.assign({ value: 79, currency: 'USD' }, sourceParams()));
       meta('InitiateCheckout', { content_name: 'Race Pace Durability', value: 79, currency: 'USD', num_items: 1 });
     },
     purchase: function (transactionId) {
@@ -95,7 +105,7 @@
         currency: 'USD', value: 79,
         items: [{ item_id: 'race-pace-durability', item_name: 'Race Pace Durability', price: 79, quantity: 1 }]
       });
-      ga('rpd_purchase', { transaction_id: transactionId, value: 79, currency: 'USD' });
+      ga('rpd_purchase', Object.assign({ transaction_id: transactionId, value: 79, currency: 'USD' }, sourceParams()));
       meta('Purchase', { content_name: 'Race Pace Durability', value: 79, currency: 'USD' }, { eventID: transactionId });
       try { w.localStorage.setItem(key, '1'); } catch (_) {}
     }
