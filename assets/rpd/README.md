@@ -1,1 +1,3 @@
-RPD-specific web assets.
+# RPD assets
+
+Web assets used by Race Pace Durability acquisition and purchase surfaces.

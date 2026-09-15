@@ -22,7 +22,7 @@
 
 - 15-week half-marathon plan.
 - Athlete-relative race pace; not a sub-1:30-only product.
-- Published workload is still specific: about 45 → 60 miles/week, six days/week.
+- Published workload is specific: about 45 → 60 miles/week, six days/week.
 - Weeks 1–4 free/open preview.
 - Full plan: one-time payment of $79.
 - FORM app is separate and not required to complete RPD.
@@ -67,9 +67,9 @@ Creative A:
 Current direction:
 
 **Ad:** real FORM athletes + `Can you keep the pace?`  
-**Landing:** same question → real FORM practice → here is the plan → here is what you do → here is proof → try it → buy it.
+**Landing:** same question → same athlete image / FORM practice → here is the plan → here is what you do → here is proof → try it → buy it.
 
-The first screen should remain extremely easy to understand:
+First-screen rule:
 - half marathon · 15 weeks
 - `Can you keep the pace?`
 - plain description: a 15-week plan used with FORM runners to help runners hold race pace longer
@@ -79,15 +79,17 @@ The first screen should remain extremely easy to understand:
 - secondary immediate action: full plan / $79
 - one-time payment, no subscription required
 
-### Exact group image — NEXT
+### Exact group image — ASSET READY, PAGE PLACEMENT NEXT
 
-The Meta group image should appear high on the RPD landing page so the page feels like the next frame of the ad.
+The clean athlete photo supplied by Brice has been optimized for web and should appear high on the RPD landing page so the click feels like the next frame of the ad.
+
+Target asset path:
+`assets/rpd/form-runners-miami.webp`
 
 Rules:
-- use a clean site asset, not an Instagram UI screenshot if avoidable;
 - caption truthfully as FORM runners / FORM practice;
 - do not imply every person pictured is personally following RPD unless verified;
-- safe copy territory: `This is FORM.` / `Real runners. Real training.` / `Race Pace Durability is one of the plans we use with FORM runners.`
+- safe language: `This is FORM.` / `Real runners. Real training.` / `Race Pace Durability is one of the plans we use with FORM runners.`
 
 ## A4. English + Spanish parity — PARTIAL
 
@@ -103,22 +105,30 @@ Still open if Spanish traffic matters:
 - Spanish purchase recovery.
 - Spanish athlete workout instructions.
 
-Rule: do not enable a paid ad language whose meaningful destination flow cannot support that language.
+Rule: do not scale a paid language until its meaningful destination flow is understandable in that language.
 
 ## A5. Stripe + ownership — CODED, MUST PROVE
 
 Implemented:
 - live $79 Stripe Payment Link.
+- checkout microcopy states one-time payment for the complete 15-week half-marathon plan.
 - success return with Checkout Session ID.
 - Stripe webhook → Supabase entitlement.
 - paid-browser unlock.
-- thanks page.
+- thanks page with short webhook-confirmation retry behavior.
 - cross-device restore flow by verified checkout email.
 - refund/dispute handlers.
 
+Current acceptance evidence:
+- live Payment Link is active at $79 and redirects to the RPD thanks route.
+- `product_entitlements` currently contains zero rows, so no successful purchase has yet been proven.
+- RLS is enabled on the entitlement table; service-role Edge Functions are the access path.
+
 ### Required test 1 — END-TO-END PURCHASE
 
-Prove, not assume:
+**Human approval required before a real $79 charge. Do not run silently.**
+
+Prove:
 1. complete a controlled/live purchase;
 2. Stripe records payment;
 3. webhook arrives successfully;
@@ -129,7 +139,8 @@ Prove, not assume:
 
 ### Required test 2 — CROSS-DEVICE RESTORE
 
-1. open a second browser/device without the local purchase state;
+After a real entitlement exists:
+1. open a second browser/device without local purchase state;
 2. use Restore Access;
 3. verify checkout email;
 4. attach entitlement;
@@ -150,6 +161,8 @@ Must prove before meaningful spend:
 - verified Purchase appears once with $79 value.
 - URL tags survive ad → page → checkout context as expected.
 
+Current Windsor GA4 read on Sep 15 showed only generic `page_view`, `first_visit`, and `session_start` events, not yet an accepted RPD conversion sequence.
+
 Later, before scale:
 - server-side Meta CAPI Purchase.
 - browser/server event deduplication.
@@ -158,7 +171,22 @@ Later, before scale:
 
 Priority source: authenticated Unbounce trial audit.
 
-Research questions:
+Authenticated workspace status:
+- TinyFish/Unbounce connector exists.
+- first browser audit stopped because the browser profile was not logged into Unbounce.
+- **Human step when convenient:** Brice logs into Unbounce in the connected browser profile. Never paste the password into chat.
+
+Public Unbounce research already supports our current direction:
+- message match between ad and landing page;
+- plain, strong headline and visible CTA;
+- use social proof to build trust;
+- remove unnecessary distractions;
+- use the page to guide one primary action;
+- product pages should make value, price and next step obvious.
+
+Public sources reviewed include Unbounce fitness landing-page examples, product landing-page examples, CTA guidance, copywriting guidance, 2026 landing-page examples, and benchmark material derived from tens of millions of conversions.
+
+Research questions once authenticated:
 - hero/image/copy balance for a $79 fitness digital product;
 - mobile first-screen hierarchy;
 - CTA repetition;
@@ -172,24 +200,16 @@ Research questions:
 - ad-message → page-message match;
 - useful AI/copy suggestions.
 
-Unbounce browser connection exists, but the first audit run stopped because the browser profile was not authenticated to Unbounce. **Next human step when convenient:** Brice logs into Unbounce in the connected browser profile. Then rerun the read-only audit. Do not share password in chat.
-
 Full exploration brief:
 `docs/marketing/UNBOUNCE_SURFACE_EXPLORATION_2026-09-15.md`
 
-## A8. Creative B — NEXT AFTER A IS CLEAN
+## A8. Creative B — SPEC READY
 
-Hypothesis B is not another copy variant of A. It tests **product inspection / trust**:
+Hypothesis B tests **product inspection / trust**, not another social-proof copy variant:
 
 `SEE THE FIRST FOUR WEEKS.`
 
-Possible visual:
-- actual readable Weeks 1–4 product surface / plan crop;
-- simple statement that the beginning is free to try;
-- same $79 full-plan offer;
-- no fake scarcity.
-
-Do not create six weak variants before we have learned from A and one materially different B.
+Use an actual readable Weeks 1–4 product surface / plan crop, the free-preview fact, and the same $79 full-plan offer. No fake scarcity. See the committed Creative B build spec before production.
 
 ## A9. RPD launch gate
 
@@ -206,12 +226,14 @@ Do not enable spend until all critical items are checked:
 - [x] Creative A published into Meta
 - [x] RPD campaign explicitly paused after publication
 - [x] RPD ad set explicitly paused after publication
-- [ ] exact group image added high on landing page from a clean asset
+- [x] clean optimized group-photo asset prepared for site placement
+- [ ] exact group image placed high on English + Spanish landing pages
 - [ ] final phone + desktop visual QA of the RPD page
 - [ ] controlled end-to-end purchase passes
 - [ ] cross-device restore passes
 - [ ] Meta + GA4 ViewContent / checkout / Purchase events visibly verified
 - [ ] Creative A finishes Meta processing/review without a policy/config error
+- [x] Creative B concept/spec documented
 - [ ] Creative B built or deliberately deferred for first spend
 - [ ] final preflight: destination URL, URL tags, Spanish translation, price, copy, CTA and pixel all reviewed
 
@@ -229,12 +251,12 @@ Current live campaign:
 - keep current live creative as the control while it is producing evidence.
 
 Known learning:
-- the paid-social funnel has produced at least one genuine coaching inquiry.
-- do not overwrite the live control just because simpler copy may be better.
+- paid social has produced at least one genuine coaching inquiry.
+- do not overwrite the live control merely because simpler copy may test better.
 
 Next challenger concept, when useful:
 - separate ad/creative, same offer/page/audience where possible;
-- very plain seed language such as `Running coaching in Miami` / `Want to get better at running?`;
+- seed with plain language such as `Running coaching in Miami` / `Want to get better at running?`;
 - let Meta generate conversion-oriented alternatives;
 - keep truthful simple lines and reject invented claims;
 - compare inquiry quality, not just CTR.
@@ -269,7 +291,7 @@ Do not migrate production merely because Unbounce makes a template easy to publi
 # D. FORM app landing page — PARKED RESEARCH
 
 Goal while trial is available:
-- find simple ways to explain `what do I do today?` value;
+- explain `what do I do today?` simply;
 - trial framing for future paid FORM;
 - screenshot vs athlete-photo balance;
 - App Store CTA patterns;
@@ -320,18 +342,18 @@ Build challenger only when we can compare it cleanly against the control.
 
 If Brice says only **continue**, take the first unblocked item below and do as much as possible without inventing facts:
 
-1. Verify Meta Creative A processing/review state and parent pause state.
-2. Add the exact clean group photo high on the RPD English + Spanish landing pages and QA responsive treatment.
-3. Run the controlled Stripe purchase / entitlement / unlock test.
-4. Run cross-device restore test.
-5. Verify Meta + GA4 funnel events in test/debug tools.
-6. If Brice has logged into Unbounce, run the RPD audit and implement the strongest evidence-consistent landing-page improvements.
-7. Build/QA Creative B if still useful.
-8. Run full preflight and only then prepare Test 01 to enable.
+1. Finish the exact group-photo integration on English + Spanish RPD sales pages; remove any temporary asset-upload artifacts; verify production and mobile/desktop rendering.
+2. Simplify remaining coaching-jargon copy on the Weeks 1–4 preview without changing prescription or product truth.
+3. Verify Meta Creative A processing/review state when a connected source can read it; keep parents paused meanwhile.
+4. Verify Meta + GA4 pre-purchase events with test/debug tools where possible.
+5. If Brice has logged into Unbounce, run the authenticated RPD audit and implement only evidence-consistent improvements.
+6. Build/QA Creative B if still useful.
+7. Ask for explicit approval before the real $79 purchase test; after approval, prove purchase → webhook → entitlement → unlock, then cross-device restore.
+8. Run final preflight and only then prepare Test 01 to enable.
 9. Once RPD is launch-ready, harvest and park Unbounce ideas for FORM, Forge, and the coaching challenger.
 10. Continue monitoring the live Miami coaching control without rewriting it mid-test.
 
-If a task requires Brice to log in, supply a secret, approve a charge, or perform a real-money test, mark it clearly and move to the next unblocked item rather than stalling the whole roadmap.
+If a task requires Brice to log in, approve a charge, or perform another human-only action, mark it clearly and move to the next unblocked item rather than stalling the roadmap.
 
 ---
 
