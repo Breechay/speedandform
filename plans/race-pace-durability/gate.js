@@ -1,16 +1,58 @@
 // Race Pace Durability public access gate.
 // Weeks 1–4 remain open. Attempting to move beyond the free preview routes to
-// the purchase page. Navigation moves by the number of weeks currently visible
-// so trackpad / swipe / arrows feel like turning a sheet, not nudging one column.
+// the purchase page unless a Stripe purchase has been verified. Navigation moves
+// by the number of weeks currently visible so trackpad / swipe / arrows feel like
+// turning a sheet, not nudging one column.
 
 const FREE_THROUGH = 4;
 const PURCHASE_URL = '/plans/race-pace-durability/support/';
+const ENTITLEMENT_ENDPOINT = 'https://pbgsjjegycacodiltbhn.supabase.co/functions/v1/rpd-entitlement';
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
 let bypass = false;
 let gesture = null;
 let wheelLock = 0;
+let entitled = false;
+let entitlementChecked = false;
+
+function purchaseSession() {
+  const query = new URLSearchParams(window.location.search).get('purchase_session');
+  if (query && /^cs_[A-Za-z0-9_]+$/.test(query)) return query;
+  try {
+    const stored = window.localStorage.getItem('rpd_purchase_session') || '';
+    return /^cs_[A-Za-z0-9_]+$/.test(stored) ? stored : '';
+  } catch (_) {
+    return '';
+  }
+}
+
+async function verifyPurchase() {
+  if (entitlementChecked) return entitled;
+  entitlementChecked = true;
+  const sessionId = purchaseSession();
+  if (!sessionId) return false;
+
+  try {
+    const response = await fetch(ENTITLEMENT_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'verify', session_id: sessionId })
+    });
+    const data = await response.json().catch(() => ({}));
+    entitled = Boolean(response.ok && data.ok && data.status === 'paid');
+    if (entitled) {
+      try {
+        window.localStorage.setItem('rpd_purchase_session', sessionId);
+        window.localStorage.setItem('rpd_purchase_verified_at', new Date().toISOString());
+      } catch (_) {}
+      document.documentElement.dataset.rpdEntitled = 'true';
+    }
+  } catch (error) {
+    console.error('RPD entitlement verify', error);
+  }
+  return entitled;
+}
 
 function leftWeek() {
   const text = $('#range')?.textContent || '';
@@ -42,7 +84,7 @@ function navigate(direction) {
   const left = leftWeek();
   const size = pageSize();
 
-  if (direction > 0 && left + size > FREE_THROUGH) {
+  if (!entitled && direction > 0 && left + size > FREE_THROUGH) {
     purchase();
     return;
   }
@@ -51,6 +93,7 @@ function navigate(direction) {
 }
 
 function lockTable(table) {
+  if (entitled) return;
   const heads = $$('thead tr th', table).slice(1);
   heads.forEach((head, index) => {
     const hit = head.textContent.match(/W\s*(\d+)/i);
@@ -73,7 +116,7 @@ function lockTable(table) {
 }
 
 function lockMobile() {
-  if (pageSize() !== 1) return;
+  if (entitled || pageSize() !== 1) return;
   const left = leftWeek();
   const sheets = [
     ['#prevSheet', left - 1],
@@ -89,11 +132,13 @@ function lockMobile() {
 }
 
 function lockAll() {
+  if (entitled) return;
   $$('#track .matrix').forEach(lockTable);
   lockMobile();
 }
 
 function normalizeToPreview() {
+  if (entitled) return;
   const left = leftWeek();
   if (left <= FREE_THROUGH) return;
   baseClick(-1, left - FREE_THROUGH);
@@ -117,9 +162,10 @@ function installStyles() {
   document.head.appendChild(style);
 }
 
-function init() {
+async function init() {
   if (!$('#viewport') || !$('#range')) return window.setTimeout(init, 60);
 
+  await verifyPurchase();
   installStyles();
   normalizeToPreview();
   lockAll();
@@ -128,7 +174,7 @@ function init() {
   observer.observe($('#track'), { childList: true, subtree: true });
 
   document.addEventListener('click', (event) => {
-    if (event.target.closest('.rpd-lock,.rpd-mobile-lock,[data-rpd-locked="true"]')) {
+    if (!entitled && event.target.closest('.rpd-lock,.rpd-mobile-lock,[data-rpd-locked="true"]')) {
       event.preventDefault();
       event.stopImmediatePropagation();
       purchase();
