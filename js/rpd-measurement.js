@@ -8,6 +8,29 @@
   var GA_ID = 'G-HKG3MXM668';
   var PIXEL_ID = '147659485878240';
   var surface = d.body && d.body.getAttribute('data-rpd-surface');
+  var sourceKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'ref'];
+  var query = new URLSearchParams(w.location.search);
+  var source = {};
+
+  sourceKeys.forEach(function (key) {
+    var value = query.get(key);
+    if (value) {
+      source[key] = value.slice(0, 240);
+      try { w.sessionStorage.setItem('rpd_' + key, source[key]); } catch (_) {}
+      return;
+    }
+    try {
+      var stored = w.sessionStorage.getItem('rpd_' + key);
+      if (stored) source[key] = stored;
+    } catch (_) {}
+  });
+  if (!source.ref && d.referrer) {
+    try {
+      var ref = new URL(d.referrer);
+      if (ref.hostname && !/^(www\.)?speedandform\.com$/.test(ref.hostname)) source.ref = ref.hostname.slice(0, 240);
+    } catch (_) {}
+  }
+  w.rpdSource = function () { return Object.assign({}, source); };
 
   w.dataLayer = w.dataLayer || [];
   w.gtag = w.gtag || function () { w.dataLayer.push(arguments); };
