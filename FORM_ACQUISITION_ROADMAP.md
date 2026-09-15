@@ -56,6 +56,28 @@ For each paid athlete, record:
 - renewal outcome;
 - referral outcome.
 
+### Athlete-language assumption
+
+Do **not** assume a serious or fast runner is training-literate.
+
+A runner can handle high mileage, run strong race-pace work and improve quickly while knowing little coaching vocabulary. That is not a problem to fix before they can benefit from FORM. It is a design constraint for FORM.
+
+Commercial and athlete-facing language should therefore be deliberately simple:
+
+- outcome first;
+- what they get second;
+- what they have to do third;
+- proof next;
+- method and coaching theory later.
+
+Generic language is acceptable when it is true and instantly understood. A line such as `Running coaching in Miami`, `Can you keep the pace?`, or `Run faster` can be better than an original line that needs decoding.
+
+The coach owns the complexity. The athlete should be able to execute without becoming a coach.
+
+For Meta advertising, use Meta's creative text generation as an ideation source when useful. Keep the clearest truthful options, reject false personalization / guarantees / invented features, and test the simple version rather than polishing internal FORM doctrine into public copy.
+
+See `docs/marketing/ATHLETE_LANGUAGE_RULE.md`.
+
 ### Paid-media learning sequence
 
 Do not scale merely because early CTR or CPC looks good.
@@ -138,6 +160,7 @@ The next client repetitions should answer:
 6. What is the maximum managed roster that preserves excellent coaching?
 7. Which completed athletes still want compatible long runs / workouts afterward?
 8. Does a high-quality alumni / training cohort emerge naturally from managed coaching?
+9. Which simple, no-decoding phrases create the most qualified attention and conversion?
 
 ## 6. Decision gate before shifting to plans / apps
 
