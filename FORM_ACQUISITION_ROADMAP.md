@@ -177,6 +177,27 @@ Increase product-plan / app acquisition only after FORM has enough managed-clien
 
 The managed practice is currently the fastest research surface for learning all of the above.
 
+## 7. Unbounce research window — USE FOR LEARNING, NOT FOUR PARALLEL BUILDS
+
+Brice currently has access to a premium/free-trial Unbounce workspace and wants to use it as a structured conversion-research surface.
+
+Priority order:
+
+1. **Race Pace Durability $79 landing page — active priority**
+2. FORM app landing page — design/positioning ideas only, parked
+3. Forge app landing page — design/positioning ideas only, parked
+4. Alternative coaching homepage / Run Development landing page — challenger concept only, parked
+
+The goal is not to migrate production into Unbounce by default. Use the trial to study template structure, mobile hierarchy, hero patterns, CTA placement, proof, pricing, qualification, FAQ order, and AI copy suggestions. Bring the strongest patterns back into the existing Speed & Form site.
+
+For RPD, the Meta ad and landing page should tell one continuous story: real FORM athletes → `Can you keep the pace?` → 15-week half-marathon plan → try Weeks 1–4 free → one-time payment of $79 for the full plan.
+
+The real group photo is an identity/proof asset because it is one of FORM's strongest-engagement social images. Use it as continuity and proof-of-practice, but do not imply every pictured athlete personally follows RPD unless verified.
+
+Any Unbounce suggestion must still pass the athlete-language and truth rules. Reject fake urgency, guarantees, `marathon` wording, invented personalization, secret/hack framing, or claims that the fixed plan is tailored per buyer.
+
+Full exploration brief: `docs/marketing/UNBOUNCE_SURFACE_EXPLORATION_2026-09-15.md`.
+
 ---
 
 **Operating principle:** Acquire enough excellent athletes to make the system legible. Do not acquire so many that the practice becomes worse.
