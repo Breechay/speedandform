@@ -1,4 +1,4 @@
-/* Public coaching homepage only. Never send intake answers or app records to Meta. */
+/* Public coaching homepage only. Never send intake answers or app records to Meta or GA4. */
 (function (w, d) {
   'use strict';
   if (!/^(www\.)?speedandform\.com$/.test(w.location.hostname)) return;
@@ -35,6 +35,21 @@
 
   if (w.navigator.globalPrivacyControl || w.navigator.doNotTrack === '1' || w.doNotTrack === '1') return;
 
+  /* GA4: page/session attribution plus the accepted coaching inquiry. No intake
+     answers are attached to analytics events. Ad-personalization signals stay off. */
+  var ga = 'G-HKG3MXM668';
+  w.dataLayer = w.dataLayer || [];
+  w.gtag = w.gtag || function () { w.dataLayer.push(arguments); };
+  w.gtag('js', new Date());
+  w.gtag('config', ga, {
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+  var gaScript = d.createElement('script');
+  gaScript.async = true;
+  gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(ga);
+  d.head.appendChild(gaScript);
+
   var pixel = '147659485878240';
   var leadSent = false;
   if (!w.fbq) {
@@ -54,9 +69,8 @@
   w.fbq('trackSingle', pixel, 'PageView');
   w.formTrackLead = function () {
     if (leadSent) return;
-    try {
-      w.fbq('trackSingle', pixel, 'Lead');
-      leadSent = true;
-    } catch (_) { /* Measurement must never interrupt an accepted inquiry. */ }
+    leadSent = true;
+    try { w.fbq('trackSingle', pixel, 'Lead'); } catch (_) { /* Never interrupt an accepted inquiry. */ }
+    try { w.gtag('event', 'generate_lead', { method: 'coaching_inquiry' }); } catch (_) { /* Same rule for GA4. */ }
   };
 })(window, document);
