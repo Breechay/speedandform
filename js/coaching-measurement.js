@@ -4,13 +4,15 @@
   if (!/^(www\.)?speedandform\.com$/.test(w.location.hostname)) return;
 
   /* Inquiry delivery is operational, not advertising measurement. Keep this active
-     even when the visitor has opted out of analytics/tracking. */
-  var FORM_INBOX = 'brice@speedandform.com';
+     even when the visitor has opted out of analytics/tracking. FormSubmit's opaque
+     endpoint is the stable delivery route; the public reply address stays separate. */
+  var FORM_REPLY_ADDRESS = 'brice@speedandform.com';
+  var FORM_ENDPOINT = '33a5c7969281803124c58268d7ae6188';
   var sendButton = d.getElementById('sendBtn');
   var doneCopy = d.querySelector('#p-done .done-copy');
-  if (sendButton) sendButton.setAttribute('data-send-to', FORM_INBOX);
+  if (sendButton) sendButton.setAttribute('data-send-to', FORM_ENDPOINT);
   if (doneCopy) {
-    doneCopy.textContent = 'He reads it himself, usually within a day, and replies with what he would do first. His reply comes from ' + FORM_INBOX + '.';
+    doneCopy.textContent = 'He reads it himself, usually within a day, and replies with what he would do first. His reply comes from ' + FORM_REPLY_ADDRESS + '.';
   }
 
   /* Evidence should read as evidence, not a sales headline. Lead with the verified
@@ -60,13 +62,13 @@
   }
 
   /* The homepage currently uses FormSubmit as the mail relay. Route every coaching
-     inquiry to the FORM Workspace inbox and make the message easier to scan in Gmail.
-     _replyto is still set by the intake code, so Reply addresses the athlete. */
+     inquiry through the confirmed opaque endpoint and make the message easier to scan
+     in Gmail. _replyto is still set by the intake code, so Reply addresses the athlete. */
   var nativeFetch = w.fetch.bind(w);
   w.fetch = function (input, init) {
     var url = typeof input === 'string' ? input : (input && input.url) || '';
     if (/^https:\/\/formsubmit\.co\/ajax\//i.test(url)) {
-      url = 'https://formsubmit.co/ajax/' + encodeURIComponent(FORM_INBOX);
+      url = 'https://formsubmit.co/ajax/' + encodeURIComponent(FORM_ENDPOINT);
       if (init && init.body && typeof FormData !== 'undefined' && init.body instanceof FormData) {
         var form = init.body;
         var name = String(form.get('Name') || 'New inquiry').trim();
