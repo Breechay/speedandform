@@ -3,15 +3,14 @@
 (function (w, d) {
   'use strict';
   if (!/^(www\.)?speedandform\.com$/.test(w.location.hostname)) return;
-  if (w.navigator.globalPrivacyControl || w.navigator.doNotTrack === '1' || w.doNotTrack === '1') return;
 
-  var GA_ID = 'G-HKG3MXM668';
-  var PIXEL_ID = '147659485878240';
-  var surface = d.body && d.body.getAttribute('data-rpd-surface');
   var sourceKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'ref'];
   var query = new URLSearchParams(w.location.search);
   var source = {};
 
+  // First-party campaign continuity must still work when analytics is disabled.
+  // We preserve only explicit campaign/referrer labels used to reconcile the
+  // checkout and entitlement. DNT/GPC still prevents GA/Meta scripts/events below.
   sourceKeys.forEach(function (key) {
     var value = query.get(key);
     if (value) {
@@ -31,6 +30,12 @@
     } catch (_) {}
   }
   w.rpdSource = function () { return Object.assign({}, source); };
+
+  if (w.navigator.globalPrivacyControl || w.navigator.doNotTrack === '1' || w.doNotTrack === '1') return;
+
+  var GA_ID = 'G-HKG3MXM668';
+  var PIXEL_ID = '147659485878240';
+  var surface = d.body && d.body.getAttribute('data-rpd-surface');
 
   function sourceParams() {
     return {
