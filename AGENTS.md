@@ -6,7 +6,7 @@ For public site, Plans, Labs, plan packaging, or app-to-coach work, read:
 4. For UI work: [Surface audit brief](docs/audits/SURFACE-AUDIT-BRIEF.md).
 
 Active user instructions take precedence. Do not call a branch change live without checking production.
-September 12 decision: Race Pace Durability remains free with optional paid support. This supersedes the earlier post-race-only purchase draft and old blanket prohibitions on public payment discussion for this offer. Personal coaching retains its existing flow.
+September 15 decision: Race Pace Durability is a paid 15-week plan with Weeks 1–4 open as the public preview and the complete plan priced at $79 one time. Moving beyond Week 4 should route to the purchase page. The old September 12 optional-support/free-full-plan model is retired. Card checkout is not live yet; the current purchase flow is manual email until a live Stripe account and paid-access delivery are implemented. Personal coaching retains its existing separate flow.
 After relevant work update the roadmap: status, evidence, blocker, next action, tested commit and actual deployment state. Maintain one checklist.
 Do not invent results, auto-publish private athlete data, silently change assignments, or promise unverified app features. Measured evidence, athlete reports, coach reads and decisions remain distinct.
 Check remote main and concurrent work before release. Batch verified changes to conserve Netlify credits.
