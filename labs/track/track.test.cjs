@@ -62,21 +62,15 @@ for (const m of html.matchAll(setRe)) {
   // distance it has to land near the target: within 3 seconds or 5 percent,
   // whichever is larger, which is transcription-rounding territory.
   //
-  // KNOWN OPEN QUESTION, 800 m. On both sheets that carry an 800, the authored
-  // pace band implies about 3:01 to 3:06 for the rep while the authored target
-  // says 2:25 to 2:30. Those are two different reps, not a rounding slip, and
-  // which one is intended is Brice's call. The exception is named here rather
-  // than hidden by loose tolerance, so any NEW inconsistency still fails.
-  const openQuestion = dist === 800;
+  // Every set now reconciles. The 800 m and 150 m bands printed on the source
+  // sheets did not, and were corrected to follow their own rep target, because
+  // master brief 6.2 makes the rep time the standard and the pace equivalent a
+  // derived reading aid. There is no exception left in this check.
   const slack = Math.max(3, 0.05 * tLo);
   for (const [label, impl] of [['per mile', perMi], ['per km', perKm]]) {
-    const ok = impl[0] >= tLo - slack && impl[0] <= tHi + slack
-            && impl[1] >= tLo - slack && impl[1] <= tHi + slack;
-    check(ok || openQuestion,
+    check(impl[0] >= tLo - slack && impl[0] <= tHi + slack
+       && impl[1] >= tLo - slack && impl[1] <= tHi + slack,
       `${dist} m: ${label} band implies ${impl[0].toFixed(1)} to ${impl[1].toFixed(1)} sec, target is ${m[3]}-${m[4]}`);
-    if (openQuestion && ok) {
-      failures.push(`${dist} m now reconciles; remove the named exception in this test`);
-    }
   }
   // The two units must agree with each other.
   check(Math.abs(perMi[0] - perKm[0]) < 1.5 && Math.abs(perMi[1] - perKm[1]) < 1.5,
@@ -84,7 +78,20 @@ for (const m of html.matchAll(setRe)) {
 }
 check(parsed === setCount, `parsed ${parsed} of ${setCount} sets for the pace check`);
 
-// 6. The page must not claim a capability the app does not have. This page is
+// 6. Master brief section 6 and 7 rules that are easy to lose in an edit.
+//    Time trials are four; Yasso 800s is an authored session with its own
+//    evidence, not a trial. And a fixed target means faster is also outside.
+const trialRungs = [...html.matchAll(/<section class="lesson" id="trials">([\s\S]*?)<\/section>/g)]
+  .map((m) => (m[1].match(/<div class="rung">/g) || []).length)[0];
+check(trialRungs === 4, `expected 4 time trials, found ${trialRungs}`);
+check(/<b>4<\/b> time trials/.test(html), 'the hero does not say 4 time trials');
+check(/Yasso 800s is not a time trial/.test(html), 'Yasso 800s is not marked as a session rather than a trial');
+check(/47\.8 is also outside it/.test(html), 'the page does not say that faster than target is outside the standard');
+check(/the authored recovery/.test(html), 'ESTABLISHED does not mention the authored recovery condition');
+check(/The target does not move to meet the athlete/.test(html), 'the core law is missing');
+check(/first extend the uninterrupted hold, then add total volume/.test(html), 'the threshold ordering claim is not stated');
+
+// 7. The page must not claim a capability the app does not have. This page is
 //     partly a design intent and partly authored work that exists today, and
 //     the first version shipped with the intent written in the present tense:
 //     "Sign in to save the mark" promised a surface that is not built. Anything
@@ -108,16 +115,16 @@ check((html.match(/class="state-note"/g) || []).length >= 2,
 check(/not built yet/.test(html), 'the page does not say plainly that the room is not built yet');
 check(/None of it is shipped/.test(html), 'the intent section does not say it is unshipped');
 
-// 7. No athlete other than the coach is named. The source sheets are per athlete.
+// 8. No athlete other than the coach is named. The source sheets are per athlete.
 for (const n of ['Bobby', 'Tinius', 'Sam', 'Erik', 'Breechay']) {
   check(!new RegExp(`\\b${n}\\b`).test(html), `athlete name "${n}" appears on a public page`);
 }
 
-// 8. House style: American spelling, no em dashes.
+// 9. House style: American spelling, no em dashes.
 check(!/—/.test(html), 'em dash in copy');
 check(!/practise|kilometre|colour|centre\b/.test(html), 'British spelling in copy');
 
-// 9. Shell requirements.
+// 10. Shell requirements.
 check(/<title>[^<]+<\/title>/.test(html), 'missing title');
 check(/rel="canonical"/.test(html), 'missing canonical');
 check(/<h1>/.test(html), 'missing h1');
@@ -126,7 +133,7 @@ check(/prefers-reduced-motion/.test(html), 'missing reduced-motion handling');
 check(/@media print/.test(html), 'missing print styles');
 check(!/<script(?! type="application\/ld\+json")/.test(html), 'unexpected script on a static page');
 
-// 10. The page is registered where readers find it.
+// 11. The page is registered where readers find it.
 const root = path.join(__dirname, '..', '..');
 check(fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8').includes('/labs/track/'), 'not in sitemap.xml');
 check(fs.readFileSync(path.join(root, 'labs', 'index.html'), 'utf8').includes('/labs/track/'), 'not linked from the Labs index');
@@ -136,4 +143,4 @@ if (failures.length) {
   for (const f of failures) console.error('  - ' + f);
   process.exit(1);
 }
-console.log(`PASS  ${cards.length} standards, ${setCount} sets with both pace units (800 m target/pace conflict is a named open question), ${new Set(fragments).size} fragments, 0 findings`);
+console.log(`PASS  ${cards.length} standards, ${setCount} sets with both pace units all reconciling, ${new Set(fragments).size} fragments, 0 findings`);
