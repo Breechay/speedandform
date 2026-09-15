@@ -78,6 +78,10 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 
 /* CLOSING */
 .closing-wrap { margin-top: 64px; padding: 40px 0 52px; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); }
+    .coached-wrap { padding: 34px 0 40px; border-bottom: 1px solid var(--line-l); }
+    .coached-label { display: block; font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); margin-bottom: 14px; }
+    .coached-text { display: block; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 15px; line-height: 1.75; color: var(--ink-l); max-width: 54ch; margin: 0 0 18px; }
+    .coached-link { font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink-f); padding-bottom: 3px; }
 .closing { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: 20px; color: var(--ink); letter-spacing: 0.04em; line-height: 1.85; display: block; opacity: 0.72; }
 
 @media (max-width: 480px) {
@@ -182,6 +186,13 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
   <!-- CLOSING -->
   <div class="closing-wrap">
     <span class="closing">Structural work should remain small enough<br>that it never interferes with the running.</span>
+  </div>
+
+  <!-- COACHED ROUTE — this page is the method; the work itself is coached. -->
+  <div class="coached-wrap">
+    <span class="coached-label">Working together</span>
+    <span class="coached-text">This page is the reasoning. If you want the structural work built around your actual running week rather than added on top of it, that is coaching, and it is the same intake as everything else.</span>
+    <a class="coached-link" href="/#begin">Work with Brice &rarr;</a>
   </div>
 
   <div style="padding: 20px 0; display: flex; gap: 20px; flex-wrap: wrap;">
