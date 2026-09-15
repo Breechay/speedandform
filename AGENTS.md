@@ -1,10 +1,11 @@
 # Start here: Speed & Form
 For public site, Plans, Labs, plan packaging, or app-to-coach work, read:
 1. [Current state and roadmap](docs/roadmap/FORM-ROADMAP.md).
-2. [Existing guardrails](docs/DO_NOT_BUILD.md) and [project context](docs/CURSOR_CONTEXT.md).
-3. For app work: [Plan app audit brief](docs/audits/PLAN-APP-AUDIT-BRIEF.md).
-4. For UI work: [Surface audit brief](docs/audits/SURFACE-AUDIT-BRIEF.md).
-5. For any athlete-facing writing, ads, landing pages or onboarding: [Athlete Language Rule](docs/marketing/ATHLETE_LANGUAGE_RULE.md).
+2. [Current commercial execution](docs/marketing/CURRENT_COMMERCIAL_EXECUTION.md) before touching Meta, RPD, the coaching funnel, or the Unbounce exploration.
+3. [Existing guardrails](docs/DO_NOT_BUILD.md) and [project context](docs/CURSOR_CONTEXT.md).
+4. For app work: [Plan app audit brief](docs/audits/PLAN-APP-AUDIT-BRIEF.md).
+5. For UI work: [Surface audit brief](docs/audits/SURFACE-AUDIT-BRIEF.md).
+6. For any athlete-facing writing, ads, landing pages or onboarding: [Athlete Language Rule](docs/marketing/ATHLETE_LANGUAGE_RULE.md).
 
 Active user instructions take precedence. Do not call a branch change live without checking production.
 September 15 decision: Race Pace Durability is a paid 15-week plan with Weeks 1–4 open as the public preview and the complete plan priced at a one-time payment of $79. Moving beyond Week 4 routes to the purchase page. The old September 12 optional-support/free-full-plan model is retired. Live Stripe hosted checkout is connected. Stripe returns successful buyers to the RPD purchase confirmation flow, the Supabase webhook creates the paid entitlement, the same browser unlocks Weeks 5–15, and purchased access can be recovered on another device with the verified checkout email. Personal coaching retains its separate flow.
