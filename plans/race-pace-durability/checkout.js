@@ -7,19 +7,6 @@ function checkoutUrl(button) {
   return base.toString();
 }
 
-function installRestoreLink() {
-  const heroActions = document.querySelector('.hero .actions');
-  if (!heroActions || document.querySelector('.rpd-restore-link')) return;
-  const link = document.createElement('a');
-  link.className = 'rpd-restore-link';
-  link.href = '/plans/race-pace-durability/access/';
-  link.textContent = document.body.dataset.rpdLocale === 'es'
-    ? '¿Ya compraste? Recupera tu acceso →'
-    : 'Already purchased? Restore access →';
-  link.style.cssText = 'display:inline-block;margin-top:6px;font-size:13px;color:var(--muted);text-underline-offset:5px;text-decoration:underline;';
-  heroActions.insertAdjacentElement('afterend', link);
-}
-
 function installPracticeProof() {
   const section = document.querySelector('main > section.pair[aria-label]');
   if (!section || section.dataset.photoInstalled === 'true') return;
@@ -53,7 +40,6 @@ function installPracticeProof() {
 }
 
 installPracticeProof();
-installRestoreLink();
 
 document.addEventListener('click', (event) => {
   const button = event.target.closest('[data-rpd-checkout]');
