@@ -18,7 +18,7 @@
 <meta name="twitter:image" content="https://speedandform.com/og/race-pace-durability.png">
 <link rel="stylesheet" href="support.css">
 </head>
-<body>
+<body data-rpd-surface="offer">
 <header><a class="mark" href="/">FORM<span>.</span></a><nav aria-label="Main"><a href="/plans/">Plans</a><a href="/labs/">Labs</a></nav></header>
 <main>
 <section class="hero">
@@ -26,7 +26,8 @@
 <h1>Make race<br>pace last.</h1>
 <p class="lead">Weeks 1–4 are open.<br>Full 15-week plan · $79 one time.</p>
 <p class="intro">Your pace is individual; the progression is shared. Use the opening four weeks to understand the structure and how the work feels. The full plan carries that progression through continuous race-pace miles, late-run work and race week.</p>
-<div class="actions"><a class="button primary" href="https://buy.stripe.com/bJeaEX1YvfNwgMX3Doffy00">Pay $79 · Full plan <span aria-hidden="true">↗</span></a><a class="button" href="/plans/race-pace-durability/">Preview weeks 1–4 <span aria-hidden="true">←</span></a></div>
+<div class="actions"><a class="button primary" data-rpd-checkout href="https://buy.stripe.com/bJeaEX1YvfNwgMX3Doffy00">Pay $79 · Full plan <span aria-hidden="true">↗</span></a><a class="button" href="/plans/race-pace-durability/">Preview weeks 1–4 <span aria-hidden="true">←</span></a></div>
+<p class="quiet" id="checkoutError" role="status" aria-live="polite"></p>
 <p class="quiet">Secure Stripe checkout · $79 once · No subscription required to complete RPD · Individual coaching is separate.</p>
 </section>
 
@@ -44,7 +45,7 @@
 
 <section id="support" class="offer" aria-labelledby="support-title">
 <div><p class="eyebrow">Full plan</p><h2 id="support-title">Keep going<br>after Week 4.</h2><p>The free preview gives you the opening four weeks. The purchase unlocks the complete 15-week prescription and the full progression through race week.</p><p>This is a self-guided plan. It does not include individual review, plan changes, a promised finish time or one-to-one coaching.</p></div>
-<div class="support-box"><p class="eyebrow">One-time purchase</p><p class="price">$79 <span>once</span></p><p>Complete 15-week Race Pace Durability plan.</p><a class="button primary" href="https://buy.stripe.com/bJeaEX1YvfNwgMX3Doffy00">Pay $79 with Stripe ↗</a><p class="quiet">Secure card checkout. No subscription.</p><p class="quiet">After payment, full-plan access will be sent to the email used at checkout.</p><a href="/plans/race-pace-durability/">Return to the four-week preview ←</a></div>
+<div class="support-box"><p class="eyebrow">One-time purchase</p><p class="price">$79 <span>once</span></p><p>Complete 15-week Race Pace Durability plan.</p><a class="button primary" data-rpd-checkout href="https://buy.stripe.com/bJeaEX1YvfNwgMX3Doffy00">Pay $79 with Stripe ↗</a><p class="quiet">Secure card checkout. No subscription.</p><p class="quiet">A verified payment unlocks the full plan immediately in this browser. Recovery access will use the email from checkout.</p><a href="/plans/race-pace-durability/">Return to the four-week preview ←</a></div>
 </section>
 
 <section aria-labelledby="fit-title"><p class="eyebrow">Before you run it</p><h2 id="fit-title">Have the base<br>for the block.</h2><p class="reading">This is for experienced runners already comfortable with roughly 45 miles a week, six running days and a 12-mile long run. The pace is athlete-relative; the method is not tied to sub-1:30. A faster or slower qualified runner can use the same progression at a different band.</p><p class="reading">The band still has to come from current fitness, not only the finish time you want. The method is shared; the athlete’s actual pace is individual.</p></section>
@@ -55,4 +56,6 @@
 </section>
 </main>
 <footer><a class="mark" href="/">FORM<span>.</span></a><p>Built and coached by Brice.</p><a href="/labs/speed-that-endures/">Follow the study ↗</a></footer>
+<script src="/js/rpd-measurement.js"></script>
+<script type="module" src="/plans/race-pace-durability/checkout.js"></script>
 </body></html>
