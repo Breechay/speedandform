@@ -2,7 +2,7 @@
 
 **Date:** September 15, 2026  
 **Owner:** Speed & Form / FORM  
-**Status:** build in progress — campaign shell exists, spend remains paused
+**Status:** build in progress — ad draft exists, spend remains paused
 
 This file records what is actually implemented versus what is still a launch gate.
 
@@ -23,21 +23,39 @@ Current product law:
 
 See `RPD_OFFER_TRUTH_2026-09-15.md` and `../RACE_PACE_DURABILITY_CANONICAL_v1.md`.
 
-## 2. Public copy — MOSTLY DONE
+## 2. Athlete-language rule — DONE
+
+Standing rule is now documented in `docs/marketing/ATHLETE_LANGUAGE_RULE.md` and linked from `AGENTS.md`.
+
+Do not assume a serious runner knows coaching vocabulary. Public copy should be understandable without decoding. Outcome first, what they get second, what they do third, proof next, method later. Generic language is acceptable when it is true and immediately understood.
+
+Meta copy generation is allowed as an ideation source. Keep clear truthful variants; reject false personalization, guarantees, wrong race distances, invented features or claims.
+
+## 3. Public copy + paid landing page — UPDATED
 
 Updated:
 
 - `plans/race-pace-durability/index.html`
 - `plans/index.html`
 - `plans/race-pace-durability/support/index.html`
+- `es/plans/race-pace-durability/index.html`
 - `pacing.html`
 - Stripe live product description
 
-The main RPD page now states the athlete-relative method explicitly and distinguishes the current study bands from plan constants.
+The paid landing page now continues the ad story in plain language:
 
-Minor stale footer references elsewhere in the library may still call the linked RPD page a “Sub-1:30 Half Marathon Plan.” These are cleanup items, not product logic.
+- hero remains `Can you keep the pace?`
+- states that Race Pace Durability is a 15-week plan used with FORM runners
+- tells the athlete they do not need the training theory to execute it
+- free Weeks 1–4 is the primary cold-traffic CTA; $79 full plan remains visible
+- adds a plain FORM-practice bridge: `This is how we train` / `This is one of the plans we use`
+- explains the progression as shorter efforts → 5 → 6 → 8 → 12 late → race
+- method / qualification / proof remain lower on the page
+- English and Spanish sales pages use the same commercial story
 
-## 3. Paid-plan interaction — DONE
+The exact group image used in Meta still needs to be placed into the landing page from a clean web asset. Do not publish an Instagram UI screenshot as the permanent site asset.
+
+## 4. Paid-plan interaction — DONE
 
 `plans/race-pace-durability/gate.js` supports:
 
@@ -48,19 +66,19 @@ Minor stale footer references elsewhere in the library may still call the linked
 - Crossing the free boundary routes to the purchase page.
 - A verified paid session bypasses the gate and makes Weeks 5–15 available.
 
-## 4. Stripe offer — DONE
+## 5. Stripe offer — DONE
 
 Live Stripe:
 
 - Product: Race Pace Durability.
-- Price: $79 USD one time.
+- Price: $79 USD one-time payment.
 - Payment Link remains the checkout surface.
 - Metadata identifies `race-pace-durability` / `rpd_v1`.
 - Successful buyers return to `/plans/race-pace-durability/thanks/?session_id={CHECKOUT_SESSION_ID}`.
 - No subscription.
 - Tax automation remains off for now.
 
-## 5. Purchase entitlement + delivery — CODED, TEST STILL REQUIRED
+## 6. Purchase entitlement + delivery — CODED, TEST STILL REQUIRED
 
 Implemented:
 
@@ -72,7 +90,7 @@ Implemented:
 - `plans/race-pace-durability/thanks/` confirmation surface.
 - `plans/race-pace-durability/access/` purchase-recovery surface.
 - purchase recovery can attach a paid entitlement to a verified email account without charging again.
-- the shared auth callback now safely returns RPD recovery links to the RPD access surface.
+- the shared auth callback safely returns RPD recovery links to the RPD access surface.
 
 The webhook handles:
 
@@ -88,7 +106,7 @@ The webhook handles:
 
 Do not treat code existence as a successful purchase test.
 
-## 6. Browser funnel measurement — V1 DONE
+## 7. Browser funnel measurement — V1 DONE
 
 `js/rpd-measurement.js` supports:
 
@@ -109,28 +127,18 @@ Still pending before scale:
 - browser/server deduplication when CAPI is added.
 - confirming all events in Meta Events Manager + GA4 DebugView.
 
-## 7. Band selection — INTENTIONALLY NOT AUTOMATED YET
+## 8. Band selection — INTENTIONALLY NOT AUTOMATED YET
 
 Do not expose the existing experimental `save_band` behavior as a universal public calculator.
 
 The method is athlete-relative, but the exact band still needs to be supported by current fitness. Before scale, define the self-guided rule for selecting or validating a band. No agent should invent a formula merely to reduce friction.
 
-## 8. FORM app — OUT OF TEST 01
+## 9. FORM app — OUT OF TEST 01
 
 - RPD is a complete web-owned $79 product.
 - FORM is a separate product moving toward paid access with a trial/trial-like entry.
 - A buyer does not need an ongoing FORM subscription to finish RPD.
 - Native execution can become a later adherence / packaging experiment.
-
-## 9. Homepage Simon evidence — REFINED
-
-The homepage Simon section now treats the result as evidence instead of a loud sales headline:
-
-- primary result: **1:26**
-- secondary context: the goal was sub-1:30
-- pace shown as supporting data
-- Simon quote corrected from `5mn` to **5 min**
-- Strava remains the verification link
 
 ## 10. Meta Test 01 — CAMPAIGN + AD SET CREATED, PAUSED
 
@@ -153,28 +161,44 @@ Ad set:
 - age floor 21; Meta requires a 65 maximum when Advantage+ audience is enabled
 - status: paused
 
-### Current Meta blocker
+## 11. Creative A — DRAFT EXISTS IN ADS MANAGER
 
-Creating the first ad creative was blocked by Meta security error `code 31 / subcode 3858385`. Meta requires the Facebook user who connected the ad account to authenticate in Ads Manager / Security Center before ad-level creation or modification can continue.
+Brice manually opened the Meta ad editor after API writes remained blocked by Meta security code `31 / 3858385`.
 
-Do not repeatedly retry the blocked ad creation. The campaign and ad set remain safely paused and cannot spend.
+Current direction:
 
-## 11. First two creative hypotheses
+- real FORM athlete group photo as the visual
+- Meta visual touch-ups / crop / brightness refinements are acceptable when they preserve the actual people and scene
+- `Can you keep the pace?` is the central cold-traffic question
+- Spanish translation is enabled because a Spanish $79 landing page now exists
+- Meta text generation can supply plain-language variants, with a truth filter
+- campaign and ad set remain off, so publishing the draft does not mean starting spend
 
-**A. Problem recognition**  
-`YOU CAN HIT THE PACE. CAN YOU HOLD IT?`
+Before publishing the ad draft, remove any generated copy that is factually wrong. In particular, reject `15-Week Plan to Marathon Success` because RPD is a half-marathon plan. Also reject any body copy claiming individualized/personalized programming, guaranteed progress, or a simple increase in intensity if that is not what the product provides.
+
+Add URL parameters before publishing:
+
+`utm_source=meta&utm_medium=paid_social&utm_campaign=rpd_purchase_test_01&utm_content=group_photo_v1`
+
+## 12. First two creative hypotheses
+
+**A. Social proof + problem recognition**  
+Real FORM athletes + `Can you keep the pace?`
 
 **B. Product inspection / trust**  
 `SEE THE FIRST FOUR WEEKS.`
 
-No six-variant spray. Build these as two genuinely different buying reasons.
+Do not spray six unrelated ads. Creative A may use several truthful Meta text/headline assets inside one ad, but the visual / buying reason should remain coherent.
 
 ## Launch gate
 
 Before Meta Test 01 spends meaningful money:
 
 - [x] Product truth reconciled.
+- [x] Athlete-language rule established.
 - [x] Weeks 1–4 preview and $79 offer coherent.
+- [x] English paid landing page simplified around the ad story.
+- [x] Spanish paid landing page exists and matches the offer.
 - [x] Stripe live Payment Link exists.
 - [x] Success redirect includes Checkout Session ID.
 - [x] Entitlement store and browser unlock code exist.
@@ -183,11 +207,12 @@ Before Meta Test 01 spends meaningful money:
 - [ ] Cross-device purchase restore passes.
 - [x] Client-side ViewContent / InitiateCheckout / Purchase wiring exists.
 - [ ] Purchase event observed correctly in GA4 + Meta test/debug tools.
-- [ ] Final conversion-page editorial/design pass complete.
-- [ ] Creative A complete.
+- [ ] Exact group image added to landing page from a clean site asset.
+- [ ] Final conversion-page visual QA complete.
+- [ ] Creative A published into the paused campaign after copy + UTM cleanup.
 - [ ] Creative B complete.
 - [x] Meta Sales campaign shell created and paused.
 - [x] Purchase ad set created and paused.
-- [ ] Meta account authentication cleared so the first ad can be created.
+- [x] Brice can enter the Meta ad editor manually.
 
-After the launch gate passes: start the information-buying Meta test, not before.
+After the launch gate passes: enable the information-buying Meta test. Publishing a paused draft is not the same as enabling delivery.
