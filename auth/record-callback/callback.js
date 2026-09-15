@@ -4,6 +4,17 @@ import { supabase } from '/private/supabase-client.js';
 const title = document.getElementById('callbackTitle');
 const status = document.getElementById('callbackStatus');
 const retry = document.getElementById('callbackRetry');
+const RPD_RETURN_KEY = 'form-rpd-auth-return';
+
+function takePendingProductReturn() {
+  try {
+    if (window.sessionStorage.getItem(RPD_RETURN_KEY) !== '1') return null;
+    window.sessionStorage.removeItem(RPD_RETURN_KEY);
+    return '/race-pace-durability/band/?mode=welcome&resume=1';
+  } catch {
+    return null;
+  }
+}
 
 try {
   const url = new URL(window.location.href);
@@ -47,8 +58,11 @@ try {
     status.textContent = 'Calendar connected. Taking you back to the Console…';
     window.location.replace('/coach/labs/?calendar=connected');
   } else if (!recovery) {
-    status.textContent = 'Signed in. Taking you there…';
-    window.location.replace(destination);
+    const productReturn = takePendingProductReturn();
+    status.textContent = productReturn
+      ? 'Signed in. Saving your Race Pace Durability purchase…'
+      : 'Signed in. Taking you there…';
+    window.location.replace(productReturn || destination);
   } else {
     title.textContent = 'Set your password.';
     status.textContent = 'Choose a password for this FORM account.';
