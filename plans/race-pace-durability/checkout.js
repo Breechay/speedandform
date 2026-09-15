@@ -18,9 +18,18 @@ function clientReferenceId(source) {
   return ['rpd', ...parts.map(([key, value]) => `${key}_${value}`)].join('__').slice(0, 200);
 }
 
+function checkoutSource() {
+  const source = typeof window.rpdSource === 'function' ? window.rpdSource() : {};
+  const query = new URLSearchParams(window.location.search);
+  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach((key) => {
+    if (!source[key] && query.get(key)) source[key] = query.get(key).slice(0, 240);
+  });
+  return source;
+}
+
 function checkoutUrl(button) {
   const base = new URL(button.href, window.location.href);
-  const source = typeof window.rpdSource === 'function' ? window.rpdSource() : {};
+  const source = checkoutSource();
   ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach((key) => {
     if (source[key]) base.searchParams.set(key, source[key]);
   });
