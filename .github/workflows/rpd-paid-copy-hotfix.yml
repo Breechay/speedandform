@@ -49,20 +49,6 @@ jobs:
                   '<div class="meta"><span>Inspect the plan</span><span>15 weeks ↗</span></div>',
                   '<div class="meta"><span>Weeks 1–4 open</span><span>$79 full ↗</span></div>')
 
-          # Plans room: stop describing the collection as entirely free.
-          replace('plans/index.html',
-                  '<meta name="description" content="See how the work builds. Free running plans, with each session placed in sequence.">',
-                  '<meta name="description" content="See how the work builds. Running plans, with each session placed in sequence.">')
-          replace('plans/index.html',
-                  '<meta property="og:description" content="See how the work builds. Free running plans, with each session placed in sequence.">',
-                  '<meta property="og:description" content="See how the work builds. Running plans, with each session placed in sequence.">')
-          replace('plans/index.html',
-                  '<meta name="twitter:description" content="See how the work builds. Free running plans, with each session placed in sequence.">',
-                  '<meta name="twitter:description" content="See how the work builds. Running plans, with each session placed in sequence.">')
-          replace('plans/index.html',
-                  '<p>Training is an argument made over time. Each block starts with what you can already do, asks for one new thing, and builds on what the work establishes. Free to read. Free to run.</p>',
-                  '<p>Training is an argument made over time. Each block starts with what you can already do, asks for one new thing, and builds on what the work establishes. Preview the work before you commit.</p>')
-
           # Keep the preview-card generator from recreating stale “all plans are free” language later.
           replace('scripts/build-ecosystem-previews.mjs',
                   "['plans', 'PLANS', ['See how the', 'work builds.'], 'Free to read. Free to run.', 'Training with purpose, in sequence.', true],",
@@ -74,6 +60,6 @@ jobs:
           git config user.name "FORM release bot"
           git config user.email "brice@speedandform.com"
           git rm .github/workflows/rpd-paid-copy-hotfix.yml
-          git add labs/speed-that-endures/index.html labs/index.html plans/index.html scripts/build-ecosystem-previews.mjs
-          git commit -m "Align Labs and Plans with paid Race Pace Durability offer"
+          git add labs/speed-that-endures/index.html labs/index.html scripts/build-ecosystem-previews.mjs
+          git commit -m "Align Labs with paid Race Pace Durability offer"
           git push origin HEAD:main
