@@ -12,7 +12,7 @@ Race Pace Durability is a paid plan with a free four-week preview.
 - Public navigation should never reveal Week 5+ content; attempts to continue beyond the preview route to `/plans/race-pace-durability/support/`, which now functions as the purchase page.
 - On wider screens, horizontal navigation should move by the number of weeks visible instead of shifting only one week at a time.
 
-Card checkout is not live yet because the connected Stripe account is currently sandbox-only. Until live checkout exists, purchase is arranged directly with Brice at `brice@speedandform.com`.
+Live Stripe hosted checkout is active. The purchase page routes to the $79 one-time Payment Link. Stripe collects the buyer email and confirms payment; full-plan delivery is still manual until buyer-specific entitlement exists.
 
 The public PDF is no longer promoted from the plan page. Do not describe the complete plan as free anywhere on the site.
 
@@ -44,14 +44,21 @@ $79 is the live launch price for the complete self-guided block. Treat it as an 
 Do not add artificial feature tiers until demand shows a reason.
 
 ## Access and delivery
-The current web gate is a commercial / UX gate, not a hardened entitlement system. The canonical training data still lives in Supabase and the current public page architecture was originally built for an open plan. Before automated paid delivery, implement and test:
+The current web gate is a commercial / UX gate, not a hardened entitlement system. The canonical training data still lives in Supabase and the current public page architecture was originally built for an open plan.
 
-1. live Stripe checkout or Payment Link
-2. receipt / purchase confirmation
-3. an authenticated or tokenized paid-access path for Weeks 5–15
-4. delivery and recovery if a buyer loses access
-5. refund / support terms
-6. web / PDF / app parity rules
+Live now:
+
+1. live Stripe hosted Payment Link
+2. Stripe checkout confirmation and buyer email capture
+3. public Weeks 1–4 preview with Week 5+ locked
+4. manual post-purchase delivery
+
+Before automated paid delivery, implement and test:
+
+1. an authenticated or tokenized paid-access path for Weeks 5–15
+2. delivery and recovery if a buyer loses access
+3. refund / support terms
+4. web / PDF / app parity rules
 
 Do not claim secure paid entitlement until those pieces are actually live.
 
@@ -59,7 +66,9 @@ Do not claim secure paid entitlement until those pieces are actually live.
 1. Athlete runs / reads Weeks 1–4.
 2. Continuing beyond Week 4 routes to the purchase page.
 3. Purchase page states `$79 one time`, no subscription and no coaching included.
-4. Until live Stripe is connected, the CTA opens an email to Brice to arrange purchase manually.
-5. Keep transaction records privately.
+4. CTA opens Stripe hosted checkout for a real $79 one-time payment.
+5. Stripe records the payment and buyer email.
+6. Speed & Form sends full-plan access manually until automated entitlement is built.
+7. Keep transaction records privately.
 
-When live Stripe becomes available, replace the email CTA with hosted checkout rather than building custom card collection on the site.
+Hosted Stripe checkout is intentionally used instead of custom card collection on the site.
