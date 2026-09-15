@@ -2,13 +2,13 @@
 
 **Date:** September 15, 2026  
 **Owner:** Speed & Form / FORM  
-**Status:** build in progress — do not start meaningful Meta spend yet
+**Status:** build in progress — campaign shell exists, spend remains paused
 
 This file records what is actually implemented versus what is still a launch gate.
 
 ## 1. Product truth — DONE
 
-Race Pace Durability is no longer framed as a sub-1:30-only product.
+Race Pace Durability is not a sub-1:30-only product.
 
 Current product law:
 
@@ -39,7 +39,7 @@ Minor stale footer references elsewhere in the library may still call the linked
 
 ## 3. Paid-plan interaction — DONE
 
-`plans/race-pace-durability/gate.js` now supports:
+`plans/race-pace-durability/gate.js` supports:
 
 - Weeks 1–4 open.
 - Week 5+ gated for non-buyers.
@@ -55,54 +55,42 @@ Live Stripe:
 - Product: Race Pace Durability.
 - Price: $79 USD one time.
 - Payment Link remains the checkout surface.
-- Metadata now identifies `race-pace-durability` / `rpd_v1`.
-- Payment Link now returns successful buyers to:
-  `/plans/race-pace-durability/thanks/?session_id={CHECKOUT_SESSION_ID}`
+- Metadata identifies `race-pace-durability` / `rpd_v1`.
+- Successful buyers return to `/plans/race-pace-durability/thanks/?session_id={CHECKOUT_SESSION_ID}`.
 - No subscription.
 - Tax automation remains off for now.
 
-## 5. Immediate browser access — CODED, ONE SECRET BLOCKER
+## 5. Purchase entitlement + delivery — CODED, TEST STILL REQUIRED
 
 Implemented:
 
-- `plans/race-pace-durability/thanks/index.html`
-- `plans/race-pace-durability/thanks/thanks.js`
-- `product_entitlements` table already exists.
-- `rpd-entitlement` Edge Function now verifies against the entitlement store rather than depending on a Stripe API secret in the browser-return path.
-- Successful verification stores the checkout session locally and unlocks the same browser.
-- The entitlement endpoint health check returns healthy against the database.
+- `product_entitlements` database table.
+- live Stripe webhook destination → Supabase `stripe-rpd-webhook`.
+- Supabase signing-secret configuration completed by Brice on Sep 15.
+- `rpd-entitlement` verification endpoint.
+- browser-local unlock after verified payment.
+- `plans/race-pace-durability/thanks/` confirmation surface.
+- `plans/race-pace-durability/access/` purchase-recovery surface.
+- purchase recovery can attach a paid entitlement to a verified email account without charging again.
+- the shared auth callback now safely returns RPD recovery links to the RPD access surface.
 
-### Remaining manual prerequisite
-
-The live Stripe webhook endpoint exists and points to the deployed Supabase `stripe-rpd-webhook` function, but the webhook verifier still needs the **live Stripe webhook signing secret** in Supabase.
-
-Preferred configuration:
-
-- Supabase Edge Function secret name: `STRIPE_WEBHOOK_SIGNING_SECRET`
-
-Alternative already prepared:
-
-- Supabase Vault secret name: `stripe_rpd_webhook_signing_secret`
-- service-role-only RPC: `public.rpd_webhook_signing_secret()`
-
-Do not store the signing secret in GitHub or client-side JavaScript.
-
-Until that secret is configured, payments still succeed in Stripe but automatic entitlement creation is not reliable. **Do not start paid acquisition until this is resolved and tested.**
-
-## 6. Refund / dispute revocation — CODED, SAME WEBHOOK GATE
-
-The Stripe webhook handles:
+The webhook handles:
 
 - `checkout.session.completed`
 - `checkout.session.async_payment_succeeded`
 - `charge.refunded`
 - `charge.dispute.created`
 
-Once webhook signature verification is active, refunded/disputed purchases can stop presenting as paid entitlements.
+### Still required
 
-## 7. Browser funnel measurement — DONE FOR V1
+- one end-to-end live or controlled purchase test to prove: Stripe → webhook → entitlement → thanks page → Weeks 5–15 unlock.
+- one cross-device restore test using the checkout email.
 
-`js/rpd-measurement.js` now initializes the existing Speed & Form analytics identities on RPD surfaces and supports:
+Do not treat code existence as a successful purchase test.
+
+## 6. Browser funnel measurement — V1 DONE
+
+`js/rpd-measurement.js` supports:
 
 - `rpd_view`
 - Meta `ViewContent`
@@ -115,44 +103,63 @@ Once webhook signature verification is active, refunded/disputed purchases can s
 
 Purchase is fired only after the return-page entitlement verifies and is guarded against refresh re-fire in that browser.
 
-Campaign source values are retained through the RPD browsing session where analytics consent/privacy signals allow it.
-
-### Still pending before scale
+Still pending before scale:
 
 - Meta Conversions API / server-side Purchase.
-- GA4 server-side purchase redundancy if desired.
-- browser/server event deduplication once CAPI exists.
+- browser/server deduplication when CAPI is added.
+- confirming all events in Meta Events Manager + GA4 DebugView.
 
-Client-side V1 is enough to inspect the first tiny diagnostic test only after entitlement works; server-side Purchase should be added before scaling spend.
+## 7. Band selection — INTENTIONALLY NOT AUTOMATED YET
 
-## 8. Band selection — INTENTIONALLY NOT AUTOMATED YET
+Do not expose the existing experimental `save_band` behavior as a universal public calculator.
 
-Do not expose the existing experimental `save_band` behavior as a customer-facing calculator yet.
+The method is athlete-relative, but the exact band still needs to be supported by current fitness. Before scale, define the self-guided rule for selecting or validating a band. No agent should invent a formula merely to reduce friction.
 
-The canonical system says the race-pace band is athlete-relative and authored from fitness evidence. There is not yet an approved universal public formula.
+## 8. FORM app — OUT OF TEST 01
 
-Before scale, Brice must choose a self-guided packaging rule:
-
-1. runner already knows a defensible race-pace band;
-2. a bounded pre-start diagnostic proposes/verifies a band;
-3. an explicitly authored lookup/rule is added after validation.
-
-No agent should invent a formula just to remove friction.
-
-## 9. FORM app — OUT OF TEST 01
-
-Current decision:
-
-- RPD is complete as a web-owned $79 product.
+- RPD is a complete web-owned $79 product.
 - FORM is a separate product moving toward paid access with a trial/trial-like entry.
 - A buyer does not need an ongoing FORM subscription to finish RPD.
-- App execution can be revisited after purchase/adherence evidence exists.
+- Native execution can become a later adherence / packaging experiment.
 
-## 10. Ad / landing-page build — NEXT
+## 9. Homepage Simon evidence — REFINED
 
-Do not produce six variants.
+The homepage Simon section now treats the result as evidence instead of a loud sales headline:
 
-First diagnostic test should compare two genuinely different reasons to care:
+- primary result: **1:26**
+- secondary context: the goal was sub-1:30
+- pace shown as supporting data
+- Simon quote corrected from `5mn` to **5 min**
+- Strava remains the verification link
+
+## 10. Meta Test 01 — CAMPAIGN + AD SET CREATED, PAUSED
+
+Created in the Vinchay Meta ad account:
+
+- Campaign: `FORM · RPD · Purchase Test 01`
+- Campaign ID: `52675684605200`
+- Objective: Sales
+- Bid strategy: lowest cost without cap
+- Campaign daily budget: $25/day
+- Status: paused
+
+Ad set:
+
+- `US · Advantage+ · Purchase`
+- Ad set ID: `52675686707200`
+- Website destination
+- optimized for Purchase using pixel `147659485878240`
+- US
+- age floor 21; Meta requires a 65 maximum when Advantage+ audience is enabled
+- status: paused
+
+### Current Meta blocker
+
+Creating the first ad creative was blocked by Meta security error `code 31 / subcode 3858385`. Meta requires the Facebook user who connected the ad account to authenticate in Ads Manager / Security Center before ad-level creation or modification can continue.
+
+Do not repeatedly retry the blocked ad creation. The campaign and ad set remain safely paused and cannot spend.
+
+## 11. First two creative hypotheses
 
 **A. Problem recognition**  
 `YOU CAN HIT THE PACE. CAN YOU HOLD IT?`
@@ -160,22 +167,27 @@ First diagnostic test should compare two genuinely different reasons to care:
 **B. Product inspection / trust**  
 `SEE THE FIRST FOUR WEEKS.`
 
-The page should sell the athlete-relative method, while Hope/José and sub-1:30 remain concrete public evidence rather than the product boundary.
+No six-variant spray. Build these as two genuinely different buying reasons.
 
 ## Launch gate
 
-Before Meta Test 01 spends meaningful money, all of these must be true:
+Before Meta Test 01 spends meaningful money:
 
 - [x] Product truth reconciled.
-- [x] Weeks 1–4 preview and $79 offer are coherent.
+- [x] Weeks 1–4 preview and $79 offer coherent.
 - [x] Stripe live Payment Link exists.
 - [x] Success redirect includes Checkout Session ID.
 - [x] Entitlement store and browser unlock code exist.
-- [ ] Stripe webhook signing secret is configured in Supabase.
+- [x] Stripe webhook signing secret configured in Supabase by Brice.
 - [ ] One end-to-end purchase/entitlement test passes.
+- [ ] Cross-device purchase restore passes.
 - [x] Client-side ViewContent / InitiateCheckout / Purchase wiring exists.
-- [ ] Purchase event is observed correctly in GA4 + Meta test/debug tools.
-- [ ] Final conversion-page editorial/design pass is complete.
-- [ ] Two launch creatives are complete.
+- [ ] Purchase event observed correctly in GA4 + Meta test/debug tools.
+- [ ] Final conversion-page editorial/design pass complete.
+- [ ] Creative A complete.
+- [ ] Creative B complete.
+- [x] Meta Sales campaign shell created and paused.
+- [x] Purchase ad set created and paused.
+- [ ] Meta account authentication cleared so the first ad can be created.
 
 After the launch gate passes: start the information-buying Meta test, not before.
