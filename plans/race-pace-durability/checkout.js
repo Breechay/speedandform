@@ -7,6 +7,19 @@ function checkoutUrl(button) {
   return base.toString();
 }
 
+function installRestoreLink() {
+  const heroActions = document.querySelector('.hero .actions');
+  if (!heroActions || document.querySelector('.rpd-restore-link')) return;
+  const link = document.createElement('a');
+  link.className = 'rpd-restore-link';
+  link.href = '/plans/race-pace-durability/access/';
+  link.textContent = 'Already purchased? Restore access →';
+  link.style.cssText = 'display:inline-block;margin-top:6px;font-size:13px;color:var(--muted);text-underline-offset:5px;text-decoration:underline;';
+  heroActions.insertAdjacentElement('afterend', link);
+}
+
+installRestoreLink();
+
 document.addEventListener('click', (event) => {
   const button = event.target.closest('[data-rpd-checkout]');
   if (!button) return;
