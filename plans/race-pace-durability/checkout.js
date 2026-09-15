@@ -38,6 +38,12 @@ function checkoutUrl(button) {
   return base.toString();
 }
 
+function installCheckoutLinks() {
+  document.querySelectorAll('[data-rpd-checkout]').forEach((button) => {
+    button.href = checkoutUrl(button);
+  });
+}
+
 function installPracticeProof() {
   const section = document.querySelector('main > section.pair[aria-label]');
   if (!section || section.dataset.photoInstalled === 'true') return;
@@ -71,6 +77,7 @@ function installPracticeProof() {
 }
 
 installPracticeProof();
+installCheckoutLinks();
 
 document.addEventListener('click', (event) => {
   const button = event.target.closest('[data-rpd-checkout]');
@@ -79,5 +86,5 @@ document.addEventListener('click', (event) => {
   if (button.dataset.checkoutBusy === 'true') return;
   button.dataset.checkoutBusy = 'true';
   window.rpdTrack?.checkout?.();
-  window.location.assign(checkoutUrl(button));
+  window.location.assign(button.href);
 });
