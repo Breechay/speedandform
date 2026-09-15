@@ -3,23 +3,23 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Race Pace Durability: Sub-1:30 Half Marathon Training Plan | FORM</title>
-<meta name="description" content="A free 15-week sub-1:30 half marathon plan that progresses from broken race-pace work to 5, 6, 8 and 12 continuous miles at 6:30–6:45/mi." />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="FORM LABS" />
-<meta property="og:title" content="Race Pace Durability: Sub-1:30 Half Marathon Training Plan" />
-<meta property="og:description" content="Keep the pace fixed. Remove the resets. Extend how far race pace remains available as fatigue rises." />
-<meta property="og:url" content="https://speedandform.com/plans/race-pace-durability" />
-<meta property="og:image" content="https://speedandform.com/plans/race-pace-durability/race-pace-durability-share.png" />
-<meta property="og:image:width" content="1600" />
-<meta property="og:image:height" content="1150" />
-<meta property="og:image:alt" content="Screenshot of the FORM LABS Race Pace Durability training plan." />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Race Pace Durability: Sub-1:30 Half Marathon Training Plan" />
-<meta name="twitter:description" content="Keep the pace fixed. Remove the resets. Extend how far race pace remains available as fatigue rises." />
-<meta name="twitter:image" content="https://speedandform.com/plans/race-pace-durability/race-pace-durability-share.png" />
-<meta name="twitter:image:alt" content="Screenshot of the FORM LABS Race Pace Durability training plan." />
-<link rel="canonical" href="https://speedandform.com/plans/race-pace-durability" />
+<title>Race Pace Durability: Sub-1:30 Half Marathon Plan | FORM</title>
+<meta name="description" content="A 15-week progression from broken race-pace work to continuous miles, then the same pace late in a long run.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Speed &amp; Form">
+<meta property="og:title" content="Race Pace Durability: Sub-1:30 Half Marathon Plan | FORM">
+<meta property="og:description" content="A 15-week progression from broken race-pace work to continuous miles, then the same pace late in a long run.">
+<meta property="og:url" content="https://speedandform.com/plans/race-pace-durability/">
+<meta property="og:image" content="https://speedandform.com/og/race-pace-durability.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Race Pace Durability: Sub-1:30 Half Marathon Plan | FORM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Race Pace Durability: Sub-1:30 Half Marathon Plan | FORM">
+<meta name="twitter:description" content="A 15-week progression from broken race-pace work to continuous miles, then the same pace late in a long run.">
+<meta name="twitter:image" content="https://speedandform.com/og/race-pace-durability.png">
+<meta name="twitter:image:alt" content="Race Pace Durability: Sub-1:30 Half Marathon Plan | FORM">
+<link rel="canonical" href="https://speedandform.com/plans/race-pace-durability/">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -31,7 +31,7 @@
       "headline": "Sub-1:30 Half Marathon Training Plan",
       "description": "A free 15-week half marathon plan for experienced runners that keeps race-pace work at 6:30–6:45 per mile while progressing from broken repetitions to continuous and late-run exposure.",
       "url": "https://speedandform.com/plans/race-pace-durability",
-      "image": "https://speedandform.com/plans/race-pace-durability/race-pace-durability-share.png",
+      "image": "https://speedandform.com/og/race-pace-durability.png",
       "author": {"@type": "Organization", "name": "FORM", "url": "https://speedandform.com"},
       "publisher": {"@type": "Organization", "name": "FORM", "url": "https://speedandform.com"},
       "isAccessibleForFree": true,
@@ -52,6 +52,175 @@
 }
 </script>
 <link rel="stylesheet" href="/plans/race-pace-durability/styles.css" />
+<style>
+/* The plan intro should read like one composed editorial module, not three
+   unrelated blocks. This layer intentionally overrides the older compact
+   progression styles without changing the plan matrix below it. */
+.pacing-guide{
+  margin:34px 0 18px;
+  padding:28px 0 0;
+  max-width:none;
+  border-top:1px solid rgba(54,70,74,.72);
+  line-height:1.6;
+}
+.pacing-guide summary{
+  list-style:none;
+  display:grid;
+  gap:8px;
+  width:max-content;
+  max-width:100%;
+  padding:0;
+  color:var(--text);
+  cursor:pointer;
+  font-size:0;
+}
+.pacing-guide summary::-webkit-details-marker{display:none}
+.pacing-guide summary::marker{content:""}
+.pacing-guide summary::before{
+  content:"PRACTISE THE RACE";
+  color:#aab3b4;
+  font-size:10px;
+  font-weight:560;
+  line-height:1;
+  letter-spacing:.24em;
+}
+.pacing-guide summary::after{
+  content:"Start · Settle · Hold · Finish  ↘";
+  color:#f1f4f0;
+  font-size:clamp(27px,3vw,41px);
+  font-weight:520;
+  line-height:1.08;
+  letter-spacing:-.032em;
+  text-wrap:balance;
+}
+.pacing-guide[open] summary::after{content:"Start · Settle · Hold · Finish  ↗"}
+.pacing-guide summary:focus-visible{outline:2px solid var(--lime);outline-offset:7px}
+.pacing-guide > p{
+  max-width:68ch;
+  margin:15px 0 0;
+  color:#8f999b;
+  font-size:12.5px;
+  line-height:1.68;
+}
+.pacing-guide > p:first-of-type{margin-top:24px}
+
+.progression-note{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  grid-template-areas:
+    "label link"
+    "main link"
+    "note link";
+  column-gap:34px;
+  row-gap:6px;
+  max-width:none;
+  margin:0 0 30px;
+  padding:22px 24px 23px;
+  overflow:hidden;
+  border:1px solid rgba(62,80,84,.58);
+  border-radius:18px;
+  background:linear-gradient(180deg,rgba(14,24,27,.76),rgba(8,16,18,.55));
+  box-shadow:inset 0 1px rgba(255,255,255,.018);
+  color:var(--text);
+}
+.progression-note::before{
+  content:"THE PROGRESSION";
+  grid-area:label;
+  align-self:end;
+  color:#aab3b4;
+  font-size:9.5px;
+  font-weight:560;
+  line-height:1;
+  letter-spacing:.23em;
+}
+.progression-note p{
+  grid-area:main;
+  max-width:none;
+  margin:5px 0 0;
+  color:#edf1ed;
+  font-size:clamp(17px,1.8vw,24px);
+  font-weight:480;
+  line-height:1.35;
+  letter-spacing:-.018em;
+  text-wrap:pretty;
+}
+.progression-note p span{color:#aeb7b8}
+.progression-note small{
+  grid-area:note;
+  display:block;
+  margin-top:2px;
+  color:#727d80;
+  font-size:12px;
+  line-height:1.5;
+}
+.progression-note a{
+  grid-area:link;
+  align-self:center;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:42px;
+  margin:0;
+  padding:0 16px;
+  border:1px solid rgba(92,109,113,.5);
+  border-radius:999px;
+  color:var(--lime);
+  font-size:11.5px;
+  font-weight:520;
+  line-height:1.2;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:border-color 160ms ease,background 160ms ease;
+}
+.progression-note a:hover{border-color:#637175;background:rgba(255,255,255,.025)}
+.progression-note a:focus-visible{outline:2px solid var(--lime);outline-offset:4px}
+
+@media(max-width:599px){
+  .support-link{margin:20px 0 0;font-size:11.5px}
+  .pacing-guide{margin:26px 0 14px;padding-top:22px}
+  .pacing-guide summary{width:100%;gap:7px}
+  .pacing-guide summary::before{font-size:8.5px;letter-spacing:.22em}
+  .pacing-guide summary::after{
+    max-width:13ch;
+    font-size:clamp(24px,7.4vw,30px);
+    line-height:1.12;
+  }
+  .pacing-guide > p{font-size:11.5px;line-height:1.62}
+  .pacing-guide > p:first-of-type{margin-top:19px}
+
+  .progression-note{
+    display:block;
+    margin-bottom:18px;
+    padding:18px 18px 19px;
+    border-radius:16px;
+  }
+  .progression-note::before{display:block;margin-bottom:11px;font-size:8.5px}
+  .progression-note p{margin:0;font-size:16px;line-height:1.42;max-width:none}
+  .progression-note small{margin-top:7px;font-size:11.25px;line-height:1.5}
+  .progression-note a{
+    display:inline-flex;
+    min-height:0;
+    margin-top:16px;
+    padding:0;
+    border:0;
+    border-radius:0;
+    font-size:11.5px;
+  }
+  .progression-note a:hover{background:none;border-color:transparent}
+
+  /* Keep week navigation in its own band. The old negative margin pulled the
+     arrows up beside the progression copy and made this whole area feel accidental. */
+  .plan-head{
+    align-items:center;
+    justify-content:flex-end;
+    margin:20px 0 14px;
+    min-height:34px;
+    pointer-events:none;
+  }
+  .week-now{width:100%;justify-content:flex-end;pointer-events:auto}
+}
+</style>
 </head>
 <body>
 <div class="page-shell">
@@ -81,6 +250,20 @@
         <a class="btn lime" id="pdfMobile" href="/plans/race-pace-durability/race-pace-durability.pdf" download="FORM-Race-Pace-Durability.pdf">▣ &nbsp; Download PDF</a>
       </div>
     </section>
+
+    <p class="support-link"><a href="/plans/race-pace-durability/support/">Free to run. Optional support for the work &rarr;</a></p>
+<details class="pacing-guide">
+<summary>Practise the race: Start · Settle · Hold · Finish</summary>
+<p>Enter the slower edge of your assigned band. Find the rhythm. Hold it when you feel good enough to go faster. Finish with control; a fast finish is not required.</p>
+<p>Begin with the broken reps. Check how each rep started as well as its average. The continuous sessions rehearse the same behaviour for longer.</p>
+<p>Once you can find the band reliably, try a short middle section without looking at pace. Keep the watch recording and compare afterward. Start with one mile; extend only when it stays controlled. This is optional practice, not a pass-or-fail test.</p>
+<p>Record the opening split, any drift or correction, effort and reserve. If you opened too fast, that changes how we read a late fade. Your final race strategy comes from these rehearsals, your current assignment and race-day conditions.</p>
+</details>
+<div class="progression-note" aria-label="Planned progression">
+      <p>Broken work <span aria-hidden="true">→</span> 5 continuous <span aria-hidden="true">→</span> 6 <span aria-hidden="true">→</span> 8 <span aria-hidden="true">→</span> 12 late</p>
+      <small>Continuous miles. The final 12 sit inside a 16-mile run.</small>
+      <a href="/labs/speed-that-endures/">Watch this progression being run &rarr;</a>
+    </div>
 
     <div class="done" id="done" hidden>
       <div class="status" id="doneStatus"></div>
@@ -112,7 +295,7 @@
         <div class="context-label">About this plan</div>
         <h2 id="about-plan">Sub-1:30 is a durability demand.</h2>
         <p>You do not need to prove 6:52/mi for one mile. You need it available for 13.1.</p>
-        <p>This 15-week block keeps the specific pace band fixed, removes the resets, and extends how far you can hold <strong>6:30–6:45/mi</strong> continuously.</p>
+        <p>This published sub-1:30 version uses <strong>6:30–6:45/mi</strong> for race-pace work. The band stays fixed while uninterrupted distance grows. Individual assignments in the study can change with the athlete’s response.</p>
       </div>
       <div class="context-note">
         <h3>Before you start</h3>
@@ -132,7 +315,7 @@
   <footer>
     <div class="footer-brand">FORM<span>.</span></div>
     <div class="footer-rule"></div>
-    <div class="footer-copy">A higher standard for distance running. <a href="/labs/speed-that-endures/" style="color:var(--lime)">Follow the study &rarr;</a></div>
+    <div class="footer-copy">Run development with Brice. <a href="/labs/speed-that-endures/" style="color:var(--lime)">Follow the study &rarr;</a></div>
     <div class="version" id="version"></div>
   </footer>
 </div>

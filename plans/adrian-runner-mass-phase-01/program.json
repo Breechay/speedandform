@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "program_id": "adrian_runner_mass_phase1_v1",
+  "athlete": "Adrian",
+  "title": "Runner Mass · Phase 01",
+  "status": "coach_authored",
+  "duration_weeks": 3,
+  "sessions_per_week": 4,
+  "objective": "Add useful mass and strength while preserving the quality of Adrian's running week.",
+  "principle": "Progress only when the strength work stays compatible with the next run. Upper-body progression may move faster than lower-body progression.",
+  "running_context": [
+    {"day":"Monday","run":"Easy hills","strength":"Upper A"},
+    {"day":"Tuesday","run":"Easy + strides","strength":null},
+    {"day":"Wednesday","run":"Workout","strength":null,"protected":true},
+    {"day":"Thursday","run":"Easy","strength":"Lower + Core"},
+    {"day":"Friday","run":"Easy + strides","strength":"Upper B"},
+    {"day":"Saturday","run":"Long workout","strength":null,"protected":true},
+    {"day":"Sunday","run":null,"strength":"Lower Support + Core"}
+  ],
+  "progression_rules": [
+    "Keep 1–2 good reps in reserve. No grinders and no failure.",
+    "Week 01 establishes repeatable loads and clean execution.",
+    "In Week 02, if every prescribed set was clean and the following run was normal, add the smallest practical load or add reps inside the range. Change one variable at a time.",
+    "In Week 03, confirm the Week 02 progression. Do not add load merely because the calendar advanced.",
+    "If lower-body work makes the next run meaningfully heavy, alters mechanics, or creates persistent soreness, repeat or reduce the lower-body dose before progressing.",
+    "Record every set, load, rep result and relevant running response. Missing evidence stays missing."
+  ],
+  "weeks": [
+    {
+      "week": 1,
+      "name": "Baseline",
+      "intent": "Find repeatable loads. Learn the dose. Finish every session able to train again.",
+      "public_path": "/plans/adrian-hypertrophy-week-01/",
+      "days": [
+        {
+          "day_index": 1,
+          "weekday": "Monday",
+          "title": "Upper A",
+          "focus": "Chest + frame",
+          "exercises": [
+            {"name":"Incline Barbell Bench Press","sets":3,"reps":"8–10"},
+            {"name":"Flat Dumbbell Bench Press","sets":3,"reps":"8–12"},
+            {"name":"One-Arm Dumbbell Row","sets":3,"reps":"10 / side"},
+            {"name":"Dumbbell Pullover","sets":2,"reps":"10–12"},
+            {"name":"Dumbbell Lateral Raise","sets":3,"reps":"12–15"},
+            {"name":"Parallel Bar Dips","sets":3,"reps":"8–12"},
+            {"name":"Barbell Curl","sets":3,"reps":"8–10"}
+          ]
+        },
+        {
+          "day_index": 2,
+          "weekday": "Thursday",
+          "title": "Lower + Core",
+          "focus": "Main lower day",
+          "exercises": [
+            {"name":"Back Squat","sets":3,"reps":"8–10"},
+            {"name":"Romanian Deadlift","sets":3,"reps":"8–10"},
+            {"name":"Bulgarian Split Squat","sets":2,"reps":"8 / leg"},
+            {"name":"Standing Calf Raise","sets":3,"reps":"12–15"},
+            {"name":"Dead Bug","sets":3,"reps":"8 / side"},
+            {"name":"Pallof Press","sets":3,"reps":"10 / side"}
+          ]
+        },
+        {
+          "day_index": 3,
+          "weekday": "Friday",
+          "title": "Upper B",
+          "focus": "Width + arms",
+          "exercises": [
+            {"name":"Seated Dumbbell Shoulder Press","sets":3,"reps":"8–10"},
+            {"name":"Incline Dumbbell Bench Press","sets":3,"reps":"10–12"},
+            {"name":"One-Arm Dumbbell Row","sets":3,"reps":"10 / side"},
+            {"name":"Dumbbell Lateral Raise","sets":4,"reps":"10–15"},
+            {"name":"Rear-Delt Dumbbell Fly","sets":3,"reps":"12–15"},
+            {"name":"Incline Dumbbell Curl","sets":3,"reps":"10–12"},
+            {"name":"Dumbbell Skull Crusher","sets":3,"reps":"10–12"}
+          ]
+        },
+        {
+          "day_index": 4,
+          "weekday": "Sunday",
+          "title": "Lower Support + Core",
+          "focus": "Low fatigue",
+          "exercises": [
+            {"name":"Dumbbell Hip Thrust","sets":3,"reps":"10–12"},
+            {"name":"Step-Up","sets":2,"reps":"8 / leg"},
+            {"name":"Standing Calf Raise","sets":3,"reps":"12–15"},
+            {"name":"Dead Bug","sets":3,"reps":"8 / side"},
+            {"name":"Side Plank","sets":2,"reps":"30–45 sec / side"}
+          ]
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "name": "Progress",
+      "intent": "Beat Week 01 by the smallest useful amount without changing the running week.",
+      "public_path": "/plans/adrian-hypertrophy-week-02/",
+      "progression_note": "Use Week 01 loads as the starting reference. If a movement reached the top of its range cleanly, add the smallest practical load. Otherwise add reps inside the range. Lower-body progression requires a normal following run.",
+      "days_from_week": 1
+    },
+    {
+      "week": 3,
+      "name": "Confirm",
+      "intent": "Hold the progression and prove it is compatible with running. No test week and no maximal lifting.",
+      "public_path": "/plans/adrian-hypertrophy-week-03/",
+      "progression_note": "Keep the Week 02 load when it is working and earn the top of the rep range. Add another small step only where recovery and running remain normal. If lower-body work taxed the run week, repeat or trim the dose rather than forcing progression.",
+      "days_from_week": 1
+    }
+  ]
+}

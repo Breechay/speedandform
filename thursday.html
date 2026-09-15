@@ -6,10 +6,10 @@
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Thursday Track | FORM Miami</title>
-<meta name="description" content="FORM speed sessions. Flamingo Park Track, Miami Beach. Thursdays 5:50 AM. Show up in running shoes.">
+<meta name="description" content="FORM speed sessions. Flamingo Park Track, Miami Beach. Thursdays 6:30 AM. Show up in running shoes.">
 <link rel="canonical" href="https://speedandform.com/thursday">
 <meta property="og:title" content="Thursday Track | FORM Miami">
-<meta property="og:description" content="Flamingo Park Track · Thursdays 5:50 AM · Show up in running shoes.">
+<meta property="og:description" content="Flamingo Park Track · Thursdays 6:30 AM · Show up in running shoes.">
 <meta property="og:url" content="https://speedandform.com/thursday">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://speedandform.com/og/default.jpg">
@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="FORM">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Thursday Track | FORM Miami">
-<meta name="twitter:description" content="Flamingo Park Track · Thursdays 5:50 AM · Show up in running shoes.">
+<meta name="twitter:description" content="Flamingo Park Track · Thursdays 6:30 AM · Show up in running shoes.">
 <meta name="twitter:image" content="https://speedandform.com/og/default.jpg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -56,7 +56,7 @@ body {
   display: block; margin-bottom: 16px;
 }
 
-/* Session name — big, changes each week */
+/* Session name: big, changes each week */
 .session-name {
   font-family: 'Cormorant Garamond', serif; font-weight: 300;
   font-size: 64px; letter-spacing: 0.02em; color: var(--ink);
@@ -104,13 +104,6 @@ body {
 .app-note { font-size: 11px; color: var(--ink-f); line-height: 1.6; }
 
 /* Full practice */
-.full-block { padding: 20px 0; border-top: 1px solid var(--line-l); }
-.full-label { font-size: 8px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 14px; }
-.full-row { display: grid; grid-template-columns: 80px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line-l); align-items: baseline; }
-.full-row:first-of-type { border-top: 1px solid var(--line-l); }
-.full-day { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); }
-.full-detail { font-size: 13px; color: var(--ink-l); }
-.full-sub { font-size: 11px; color: var(--ink-f); display: block; margin-top: 2px; }
 
 /* Footer */
 .footer { padding: 24px 0 0; border-top: 1px solid var(--line-l); display: flex; gap: 24px; flex-wrap: wrap; }
@@ -118,7 +111,6 @@ body {
 .footer a:hover { color: var(--ink-l); }
 
 /* Race day state */
-.race-state { display: none; }
 
 @media (max-width: 420px) {
   .nav { padding-left: 24px; padding-right: 24px; }
@@ -154,7 +146,7 @@ body {
       </div>
       <div class="loc">
         <span class="loc-label">When</span>
-        <span class="loc-val">Thursdays · 5:50 AM</span>
+        <span class="loc-val">Thursdays · 6:30 AM</span>
         <span class="loc-sub">Every week · all levels</span>
       </div>
     </div>
@@ -175,7 +167,7 @@ body {
       </div>
       <div class="expect-row">
         <span class="expect-num">—</span>
-        <span class="expect-text">Six sessions rotating — 01 through 06, then back to 01. Tonight's: <span id="thu-session-inline">Nice and Easy</span>.</span>
+        <span class="expect-text" id="thu-rotation-line">Six sessions rotate, 01 through 06, then back to 01. This morning: <span id="thu-session-inline">Nice and Easy</span>.</span>
       </div>
       <div class="expect-row">
         <span class="expect-num">—</span>
@@ -186,84 +178,9 @@ body {
     <div class="app-block">
       <span class="app-label">Track the full practice</span>
       <a class="app-link" href="https://apps.apple.com/us/app/form-practice/id6761313085">Download FORM on iPhone →</a>
-      <span class="app-note">Tuesday threshold · Thursday speed · Saturday long run. All three days, coaching layer, session ledger. Free to start.</span>
+      <span class="app-note">Threshold, speed and long run. Coaching layer, session ledger. Free to start.</span>
     </div>
 
-    <div class="full-block">
-      <span class="full-label">The full week</span>
-      <div class="full-row">
-        <span class="full-day">Tuesday</span>
-        <div>
-          <span class="full-detail">Threshold</span>
-          <span class="full-sub">Flamingo Park · 5:50 AM</span>
-        </div>
-      </div>
-      <div class="full-row">
-        <span class="full-day">Thursday</span>
-        <div>
-          <span class="full-detail">Speed — you're here</span>
-          <span class="full-sub">Flamingo Park · 5:50 AM</span>
-        </div>
-      </div>
-      <div class="full-row">
-        <span class="full-day">Saturday</span>
-        <div>
-          <span class="full-detail">Long Run</span>
-          <span class="full-sub">Hideout, Edgewater · 5:30 AM</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Race week state (Apr 7–12): no Thursday speed during taper -->
-  <div id="state-taper" class="race-state">
-    <span class="eyebrow">Race Week · April 12</span>
-    <div class="session-name">No<br>Speed<br>Today</div>
-    <div class="location-block">
-      <div class="loc">
-        <span class="loc-label">This week</span>
-        <span class="loc-val">Taper — no track session</span>
-        <span class="loc-sub">Protecting the race</span>
-      </div>
-      <div class="loc">
-        <span class="loc-label">Next Thursday</span>
-        <span class="loc-val">Apr 17 · Easy running</span>
-        <span class="loc-sub">Recovery week — no track</span>
-      </div>
-    </div>
-    <div class="app-block">
-      <span class="app-label">Race strategy</span>
-      <a class="app-link" href="/races/key-biscayne-2026">Key Biscayne Half Marathon →</a>
-      <span class="app-note">Pace bands, watch protocol, fueling, three-day countdown.</span>
-    </div>
-    <div class="app-block" style="border-top: 1px solid var(--line-l);">
-      <span class="app-label">Get the app</span>
-      <a class="app-link" href="https://apps.apple.com/us/app/form-practice/id6761313085">Download FORM on iPhone →</a>
-      <span class="app-note">Speed Emergence begins Apr 20. First track session Apr 24.</span>
-    </div>
-  </div>
-
-  <!-- Recovery week state (Apr 13–19): easy running only -->
-  <div id="state-recovery" class="race-state" style="display:none">
-    <span class="eyebrow">Recovery Week · Apr 13–19</span>
-    <div class="session-name">No<br>Track<br>Today</div>
-    <div class="location-block">
-      <div class="loc">
-        <span class="loc-label">This week</span>
-        <span class="loc-val">Easy running only</span>
-        <span class="loc-sub">Let the race settle</span>
-      </div>
-      <div class="loc">
-        <span class="loc-label">Next Thursday</span>
-        <span class="loc-val">Apr 24 · Nice and Easy</span>
-        <span class="loc-sub">Speed Emergence begins</span>
-      </div>
-    </div>
-    <div class="app-block">
-      <span class="app-label">Get the app</span>
-      <a class="app-link" href="https://apps.apple.com/us/app/form-practice/id6761313085">Download FORM on iPhone →</a>
-      <span class="app-note">Speed Emergence begins Apr 20. The app carries all three days.</span>
-    </div>
   </div>
 
   <div class="footer" style="margin-top: 32px;">
@@ -277,7 +194,7 @@ body {
 </div>
 
 <script>
-// Session rotation — cycling 01→06
+// Session rotation, cycling 01 through 06.
 const SESSIONS = [
   { session:'01', name:'Nice and Easy',     nameBreak:'Nice and<br>Easy' },
   { session:'02', name:'Pyramid Intervals', nameBreak:'Pyramid<br>Intervals' },
@@ -287,20 +204,13 @@ const SESSIONS = [
   { session:'06', name:'Resurrection',      nameBreak:'Resurrection' },
 ];
 
-// Known Thursday dates with session index (0-based)
+// Authored Thursdays. A date listed here wins over the rotation, because the
+// rotation is a convenience and the schedule is a coaching decision.
+// Add the next dates as they are decided; do not let this list go stale.
 const THURSDAY_SCHEDULE = [
-  { date:'2026-04-24', idx:0 },
-  { date:'2026-05-01', idx:1 },
-  { date:'2026-05-08', idx:2 },
-  { date:'2026-05-15', idx:3 },
-  { date:'2026-05-22', idx:4 },
-  { date:'2026-05-29', idx:5 },
-  { date:'2026-06-05', idx:0 },
-  { date:'2026-06-12', idx:1 },
-  { date:'2026-06-19', idx:2 },
-  { date:'2026-06-26', idx:3 },
-  { date:'2026-07-03', idx:4 },
-  { date:'2026-07-10', idx:5 },
+  { date:'2026-09-17', idx:3 },              // Speed Demons
+  { date:'2026-09-24', idx:2 },              // Gauntlet
+  { date:'2026-10-01', optional:true },      // Optional morning
 ];
 
 function toYMD(d) {
@@ -316,64 +226,55 @@ function getNextThursday(from) {
 }
 
 (function() {
-  const today         = new Date(); today.setHours(0,0,0,0);
-  const TAPER_START   = new Date('2026-04-07T00:00:00');
-  const RACE_DATE     = new Date('2026-04-12T00:00:00');
-  const RECOVERY_END  = new Date('2026-04-19T00:00:00');
-  const SE_START      = new Date('2026-04-20T00:00:00');
-
-  // ── TAPER (Apr 7–12) ──
-  if (today >= TAPER_START && today <= RACE_DATE) {
-    document.getElementById('state-normal').style.display = 'none';
-    document.getElementById('state-taper').style.display = 'block';
-    return;
-  }
-
-  // ── RECOVERY WEEK (Apr 13–19) ──
-  if (today > RACE_DATE && today <= RECOVERY_END) {
-    document.getElementById('state-normal').style.display = 'none';
-    document.getElementById('state-recovery').style.display = 'block';
-    return;
-  }
-
-  // ── FIND THIS THURSDAY'S SESSION ──
+  const today   = new Date(); today.setHours(0,0,0,0);
   const nextThu = getNextThursday(today);
   const thuYMD  = toYMD(nextThu);
-
-  let session = null;
-  for (const s of THURSDAY_SCHEDULE) {
-    if (s.date === thuYMD) { session = SESSIONS[s.idx]; break; }
-  }
-
-  // Fallback: derive from cycle position
-  if (!session) {
-    const anchor    = new Date('2026-04-24T00:00:00'); // first SE track
-    const weeksDiff = Math.round((nextThu - anchor) / (7 * 24 * 60 * 60 * 1000));
-    if (weeksDiff >= 0) {
-      session = SESSIONS[weeksDiff % 6];
-    } else {
-      session = SESSIONS[0]; // preview before launch
-    }
-  }
-
-  // ── UPDATE DOM ──
   const isThisThursday = today.getDay() === 4;
+
   const eyebrow  = document.getElementById('thu-eyebrow');
   const nameEl   = document.getElementById('thu-session-name');
   const inlineEl = document.getElementById('thu-session-inline');
+  const rotEl    = document.getElementById('thu-rotation-line');
 
-  if (isThisThursday && today >= SE_START) {
-    eyebrow.textContent = 'Tonight · Speed Emergence';
-  } else if (today < SE_START) {
-    const dateStr = nextThu.toLocaleDateString('en-US', { month:'long', day:'numeric' });
-    eyebrow.textContent = 'Speed Emergence · Apr 20 · First track ' + dateStr;
-  } else {
-    const dateStr = nextThu.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' });
-    eyebrow.textContent = dateStr + ' · Speed Emergence';
+  const dayLabel = isThisThursday
+    ? 'This morning'
+    : nextThu.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' });
+
+  const authored = THURSDAY_SCHEDULE.find(function(s) { return s.date === thuYMD; });
+
+  // An authored optional morning names no session, because whether it runs is
+  // Brice's call and the page must not invent one.
+  if (authored && authored.optional) {
+    if (eyebrow) eyebrow.textContent = dayLabel + ' \u00b7 Optional';
+    if (nameEl)  nameEl.innerHTML    = 'Optional';
+    if (rotEl)   rotEl.textContent   = 'This one is optional. Brice will confirm it.';
+    return;
   }
 
-  if (nameEl)   nameEl.innerHTML      = session.nameBreak;
-  if (inlineEl) inlineEl.textContent  = session.name;
+  let session = authored ? SESSIONS[authored.idx] : null;
+
+  // Fallback while the authored list is short: continue the rotation from the
+  // last authored Thursday rather than from a fixed launch date. An authored
+  // optional morning names no session, so it must not consume a rotation slot.
+  if (!session) {
+    const dated = THURSDAY_SCHEDULE.filter(function(s) { return typeof s.idx === 'number'; });
+    const last  = dated[dated.length - 1];
+    if (last) {
+      const anchor  = new Date(last.date + 'T00:00:00');
+      const weeks   = Math.round((nextThu - anchor) / (7 * 24 * 60 * 60 * 1000));
+      const skipped = THURSDAY_SCHEDULE.filter(function(s) {
+        return s.optional && s.date > last.date && s.date < thuYMD;
+      }).length;
+      const step = ((last.idx + weeks - skipped) % 6 + 6) % 6;
+      session = SESSIONS[step];
+    } else {
+      session = SESSIONS[0];
+    }
+  }
+
+  if (eyebrow)  eyebrow.textContent  = dayLabel + ' \u00b7 Speed Emergence';
+  if (nameEl)   nameEl.innerHTML     = session.nameBreak;
+  if (inlineEl) inlineEl.textContent = session.name;
 })();
 </script>
 </body>

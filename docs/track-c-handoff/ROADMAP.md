@@ -8,7 +8,7 @@ If you disagree with a decision here, say so before building; do not silently re
 
 `[ ]` open · `[~]` in progress · `[x]` done · `[—]` cut, kept for the record
 
-Last updated: 19 Aug 2026.
+Last updated: 14 Sep 2026.
 
 ---
 
@@ -72,6 +72,20 @@ Gate: Track C landed. Atmosphere on a surface still being rebuilt is wasted work
 - `[ ]` **E4 · Motion grammar.** 30–90s, 2–6px. *Was that there before,* never *there it goes.*
 - `[ ]` **E5 · One tactile signature.** Soft haptic on filing. Silent. No sound.
 - `[ ]` **E6 · Never show the whole dragon.** Fragments, across surfaces, over years. Never a mascot, never a reward. Reveal on calendar/campaign truth, never on compliance.
+
+---
+
+## TRACK F — the operating layer
+
+Purpose: keep FORM identity, leads, calendar logistics and the Coach Console on one business spine. Personal accounts remain personal.
+
+- `[x]` **F1 · Workspace mail becomes the coaching address.** `brice@speedandform.com` is the public reply address and live intake destination. *14 Sep 2026*
+- `[x]` **F2 · Coach Console Google Calendar plumbing exists.** `google_calendar_connections`, ongoing sync, callback handling and Account → Calendar connect/disconnect are implemented. This is a read-only logistics import, not a future feature. *11 Sep 2026*
+- `[~]` **F3 · Calendar cutover to Workspace.** The operating calendar should be owned by `brice@speedandform.com`, not `briceikouebe@gmail.com`. Re-authorize Google Calendar in the Coach Console against the Workspace account, then prove one live event lands with its Google source IDs. No active Console calendar connection was present when checked on 14 Sep 2026.
+- `[ ]` **F4 · Move active FORM logistics off the personal calendar.** Preserve coaching times for Rod, Devin, Natalie, assessments, Sunday athlete brief and Coach Console evidence blocks. Do not migrate household, travel or social events.
+- `[ ]` **F5 · Phone/iPad continuity.** Add the Workspace Google account to the phone/iPad calendar stack and keep FORM visible beside — not merged into — the personal calendar.
+- `[ ]` **F6 · Lead handoff.** New coaching inquiry → `FORM/Leads` → reply from Workspace → accepted athlete gets a client record and coaching calendar logistics. An inquiry is never treated as a client merely because the form was submitted.
+- `[ ]` **F7 · Preserve source boundaries.** Google Calendar owns logistics. Coach Console reads those logistics. FORM training prescriptions remain separate and must not be inferred from calendar events.
 
 ---
 

@@ -1,3 +1,5 @@
+Scope update September 12: this file remains the personal coaching flow. A separate public optional-support page for Race Pace Durability is now authorized. See docs/roadmap/FORM-ROADMAP.md; the old blanket payment-page prohibition does not apply to that offer.
+
 # After they send — what you actually do
 
 The site ends at the email. There is no `/start`, no token, no cart. That is correct.

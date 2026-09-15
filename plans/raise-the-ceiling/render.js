@@ -7,7 +7,7 @@
  * the week.
  *
  * Window thresholds are the Race Pace Durability sheet's, inherited rather than
- * invented: 599 is where the one-week-per-page read takes over.
+ * invented: 720 matches the one-week mobile sheet breakpoint.
  *
  * Two things this must never do:
  *   · convert a Thursday standard into a pace
@@ -27,7 +27,7 @@ let first = 1;
 
 function visibleCount() {
   const w = window.innerWidth;
-  if (w < 600) return 1;
+  if (w <= 720) return 1; // Matches the mobile-sheet CSS breakpoint.
   if (w < 770) return 2;
   if (w < 900) return 3;
   if (w < 990) return 4;
@@ -45,6 +45,7 @@ function liveWeek() {
   return n >= 1 && n <= LAST ? n : null;
 }
 const live = liveWeek();
+first = count === 1 ? clamp(live || 1) : 1;
 
 /* One shape for a session, so the desktop cell and the phone row can never
    drift apart in what they say. */
@@ -75,7 +76,7 @@ const DAYS = ['Tue', 'Thu', 'Sat'];
 
 function paint() {
   count = visibleCount();
-  first = count === 1 ? clamp(live || 1) : clamp(first);
+  first = clamp(first);
 
   el('lensTabs').innerHTML = plan.athletes.map((a) =>
     `<button class="lens-tab" type="button" role="tab" data-athlete="${a.id}" aria-selected="${
@@ -119,6 +120,8 @@ function paint() {
   el('ctxIdea').textContent = plan.idea;
   el('ctxMethod').textContent = plan.method;
   el('ctxTeaching').textContent = plan.teaching;
+  el('tuesdaySetup').textContent = `Warm-up: ${plan.tuesday.warmUp}. Cool-down: ${plan.tuesday.coolDown}. Recovery: ${plan.tuesday.recovery}`;
+  el('thursdaySetup').textContent = plan.thursdayNote;
 
   document.documentElement.removeAttribute('data-booting');
 }
