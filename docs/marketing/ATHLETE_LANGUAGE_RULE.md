@@ -95,6 +95,23 @@ Use this sequence:
 
 Meta-generated copy is an ideation source, not an authority. It may invent personalization, guarantees, intensity progression, outcomes or features that do not exist. Those must be rejected.
 
+## Language parity across the funnel
+
+Do not translate an ad into a language that the destination cannot support.
+
+If Meta or another platform serves an ad in Spanish, the first paid destination should also be available in Spanish. Preserve the same offer, price, proof and claims across languages. Translation is a usability layer, not a second marketing strategy.
+
+Current RPD rule:
+
+- English offer: `/plans/race-pace-durability/support/`
+- Spanish offer: `/es/plans/race-pace-durability/`
+- a first-time visitor whose primary browser language is Spanish is handed from the English offer to the Spanish offer;
+- a visible EN / ES switch lets the athlete override that choice;
+- campaign query parameters must survive the language handoff;
+- do not enable additional translated ad languages until an equivalent landing experience exists.
+
+For the current Meta test, Spanish is the only additional language approved. Do not turn on the other suggested languages yet.
+
 ## Athlete instructions
 
 Every athlete-facing workout or plan surface should be executable by someone who does not know standard running abbreviations.
@@ -113,8 +130,9 @@ Before publishing athlete-facing copy, ask:
 - Are we asking them to understand the method before showing the benefit?
 - Is the proof/result doing enough of the credibility work?
 - Would a coach need to explain the copy verbally for it to make sense?
+- If an ad is translated, does the click stay in the same language through the first conversion surface?
 
-If the last answer is yes, rewrite it.
+If the last two answers are yes / no in the wrong direction, rewrite or localize before publishing.
 
 ## Working principle
 
