@@ -76,6 +76,7 @@ main{padding-top:var(--mast)}
 .lead strong{color:var(--lime);font-weight:640}
 .note{color:var(--body);font-size:15px;line-height:1.66;max-width:68ch}
 .note b{color:var(--ink);font-weight:650}
+.state-note{margin:22px 0 0;padding:18px 22px;border-left:2px solid var(--lime);background:linear-gradient(90deg,rgba(201,255,54,.05),transparent 70%);color:var(--ink2);font-size:15px;line-height:1.62;max-width:68ch}
 .caption{font-size:13px;line-height:1.55;color:var(--muted);max-width:68ch}
 
 /* 01. The room: seven relationships, one per cell. */
@@ -190,8 +191,8 @@ main{padding-top:var(--mast)}
 <header class="mast">
 <div class="shell">
 <div class="mast-left"><a class="brand" href="/">FORM<span>.</span></a><span class="crumb">TRACK</span></div>
-<nav aria-label="Track page sections"><a href="/labs/">Labs</a><a href="#room">The room</a><a href="#standards">Standards</a><a href="#threshold">Threshold</a><a href="#trials">Time trials</a><a href="#marks">Your marks</a><a href="#ladder">Plan &amp; coaching</a></nav>
-<details class="mobile-menu"><summary>Contents</summary><div><a href="/labs/">FORM Labs ↗</a><a href="#room">The room</a><a href="#standards">Standards</a><a href="#threshold">Threshold</a><a href="#trials">Time trials</a><a href="#marks">Your marks</a><a href="#ladder">Plan &amp; coaching</a></div></details>
+<nav aria-label="Track page sections"><a href="/labs/">Labs</a><a href="#room">The room</a><a href="#standards">Standards</a><a href="#threshold">Threshold</a><a href="#trials">Time trials</a><a href="#marks">Marks</a><a href="#ladder">Plan &amp; coaching</a></nav>
+<details class="mobile-menu"><summary>Contents</summary><div><a href="/labs/">FORM Labs ↗</a><a href="#room">The room</a><a href="#standards">Standards</a><a href="#threshold">Threshold</a><a href="#trials">Time trials</a><a href="#marks">Marks</a><a href="#ladder">Plan &amp; coaching</a></div></details>
 </div>
 </header>
 <main>
@@ -200,8 +201,9 @@ main{padding-top:var(--mast)}
 <div><h1>FORM <span>TRACK.</span></h1></div>
 <div class="hero-copy">
 <p class="thesis">Go run something.</p>
-<p>Standards scored. Thresholds held. Time trials recorded. Track is the free room. You do not need a plan or a coach to run a session and keep the result.</p>
-<div class="hero-actions"><a href="#standards">See the standards ↓</a><a href="#marks">How a mark works ↓</a><a href="#ladder">Plan or coaching ↓</a></div>
+<p>Standards scored. Thresholds held. Time trials recorded. Every standard on this page is free to read and free to run. You do not need a plan or a coach.</p>
+<p class="state-note">The sheets below are the real thing. Take one to the track today and time it yourself. The part of Track that signs you in and keeps your marks is not built yet, and the section that follows describes how it is meant to work, not what the app does now.</p>
+<div class="hero-actions"><a href="#standards">See the standards ↓</a><a href="#marks">How a mark reads ↓</a><a href="#ladder">Plan or coaching ↓</a></div>
 <div class="hero-meta"><span><b>6</b> standards</span><span><b>5</b> threshold holds</span><span><b>5</b> time trials</span></div>
 </div>
 </div>
@@ -209,20 +211,21 @@ main{padding-top:var(--mast)}
 
 <section class="lesson" id="room">
 <div class="shell lesson-grid">
-<aside class="rail"><div class="rail-inner"><span class="num">01 · The room</span><span class="hint">Same room, different relationship.</span></div></aside>
+<aside class="rail"><div class="rail-inner"><span class="num">01 · The plan</span><span class="hint">How Track is meant to work.</span></div></aside>
 <div class="lesson-body">
 <div class="lesson-head"><h2>One room.<br/>Different relationships.</h2><p class="deck">Track is free. A plan decides when you run. Coaching decides what comes next. The room itself does not change.</p></div>
-<p class="lead"><strong>Everyone can enter Track.</strong> What changes is how much of it is decided for you.</p>
+<p class="state-note">This is the intended shape, written down so it can be argued with. None of it is shipped. What exists today is the authored work further down this page.</p>
+<p class="lead"><strong>Everyone will enter the same room.</strong> What changes is how much of it is decided for you.</p>
 <div class="sequence">
-<div class="seq"><b>00 · Arrival</b><strong>New here</strong><small>Explore Track before you sign in. Nothing is gated behind an account.</small></div>
-<div class="seq"><b>01 · Free</b><strong>Run a session</strong><small>Browse standards, threshold work and time trials. Run one. Sign in to save the mark.</small></div>
-<div class="seq"><b>02 · Standalone</b><strong>Score a standard</strong><small>A session run on its own still counts. It is filed as standalone, not as plan work.</small></div>
-<div class="seq"><b>03 · Plan</b><strong>See it on your week</strong><small>A plan places the session on a day. The same standard you already browsed is the one you run.</small></div>
-<div class="seq"><b>04 · Coached</b><strong>Brice assigns it</strong><small>You can still browse the whole room. Browsing is not a back door to rewriting your prescription.</small></div>
-<div class="seq"><b>05 · Marks</b><strong>What you’ve done</strong><small>Every attempt stays: standards, thresholds held, trials recorded, and when each happened.</small></div>
-<div class="seq"><b>06 · Advisor</b><strong>Work with Brice</strong><small>Your history comes with you. Marks, attempts and prior FORM work stay attached.</small></div>
+<div class="seq"><b>00 · Arrival</b><strong>New here</strong><small>Read the standards without an account. That part is true today.</small></div>
+<div class="seq"><b>01 · Free</b><strong>Run a session</strong><small>Browse the standards, threshold work and time trials, then go run one. Saving the mark is the part still to build.</small></div>
+<div class="seq"><b>02 · Standalone</b><strong>Score a standard</strong><small>A session run on its own should still count, filed as standalone rather than as plan work.</small></div>
+<div class="seq"><b>03 · Plan</b><strong>See it on your week</strong><small>A plan should place the session on a day, and the standard you browsed should be the one you run.</small></div>
+<div class="seq"><b>04 · Coached</b><strong>Brice assigns it</strong><small>A coached athlete should still browse the whole room, without that becoming a back door to rewriting the prescription.</small></div>
+<div class="seq"><b>05 · Marks</b><strong>What you’ve done</strong><small>Every attempt should stay: standards, thresholds held, trials recorded, and when each happened.</small></div>
+<div class="seq"><b>06 · Advisor</b><strong>Work with Brice</strong><small>History should come with you. Marks, attempts and prior FORM work stay attached.</small></div>
 </div>
-<p class="caption">A session you ran as a free athlete does not disappear when you buy a plan or hire a coach. The relationship gets richer; the record does not restart.</p>
+<p class="caption">The rule that matters: a session you ran as a free athlete must not disappear when you buy a plan or hire a coach. The relationship gets richer; the record does not restart.</p>
 </div>
 </div>
 </section>
@@ -345,16 +348,16 @@ main{padding-top:var(--mast)}
 
 <section class="lesson" id="marks">
 <div class="shell lesson-grid">
-<aside class="rail"><div class="rail-inner"><span class="num">05 · Your marks</span><span class="hint">Three kinds of record.</span></div></aside>
+<aside class="rail"><div class="rail-inner"><span class="num">05 · Marks</span><span class="hint">Three kinds of record.</span></div></aside>
 <div class="lesson-body">
-<div class="lesson-head"><h2>What you’ve<br/>done.</h2><p class="deck">Three kinds of work, three ways of reading it. Your marks are one list, sorted by what happened rather than by what was planned.</p></div>
+<div class="lesson-head"><h2>How a mark<br/>reads.</h2><p class="deck">Three kinds of work, three ways of reading it. Whether you write it on paper today or the app keeps it later, a mark means the same thing.</p></div>
 <div class="marks">
-<div class="mark"><span class="big">8 / 9</span><h3>A standard is scored</h3><p>Hits out of total reps. Nine reps in Pyramid Intervals, so nine chances to be inside the target. A missed rep is recorded as a miss, not removed.</p></div>
+<div class="mark"><span class="big">8 / 9</span><h3>A standard is scored</h3><p>Hits out of total reps. Nine reps in Pyramid Intervals, so nine chances to land inside the target. A missed rep is a miss, not a rep you drop.</p></div>
 <div class="mark"><span class="big">6:17</span><h3>A threshold is held</h3><p>The pace you actually held for the whole block, with the block it belonged to. There is no partial credit and no score out of anything.</p></div>
 <div class="mark"><span class="big">4:58</span><h3>A trial is recorded</h3><p>One time, one date. The conditions belong to the record too, because they decide whether it can be compared to the next one.</p></div>
 </div>
-<p class="note"><b>A full set of hits establishes the standard.</b> It does not retire it. An established mark is the thing the next attempt is measured against. Every attempt carries where it came from: run on its own, or run as part of a plan or an assigned week. That provenance stays attached, so a standalone 12 / 12 is never quietly presented as plan work.</p>
-<p class="caption">Marks are yours. Track does not rank athletes against each other; a standard is fixed so that your attempts are comparable to each other over time.</p>
+<p class="note"><b>A full set of hits establishes the standard.</b> It does not retire it. An established mark is the thing the next attempt is measured against. And an attempt carries where it came from: run on its own, or run as part of a plan or an assigned week. That is why a standalone 12 / 12 must never be quietly presented as plan work.</p>
+<p class="caption">Your marks are yours. Track is not a leaderboard and will not rank athletes against each other. A standard is fixed so your attempts stay comparable to each other over time.</p>
 </div>
 </div>
 </section>
@@ -377,7 +380,7 @@ main{padding-top:var(--mast)}
 </main>
 <footer class="footer"><div class="shell footer-grid">
 <div><div class="footer-brand"><a aria-label="FORM home" class="brand" href="/">FORM<span>.</span></a><span>TRACK</span></div><p class="footer-note">A room you can return to.</p></div>
-<nav aria-label="Footer" class="footer-nav"><a href="#standards">Standards ↑</a><a href="#marks">Your marks ↑</a><a href="/labs/hyrox/">FORM HYROX ↗</a></nav>
+<nav aria-label="Footer" class="footer-nav"><a href="#standards">Standards ↑</a><a href="#marks">Marks ↑</a><a href="/labs/hyrox/">FORM HYROX ↗</a></nav>
 <div class="footer-meta"><span>Updated 14 September 2026</span><span>Session sheets authored by Brice. Targets are per rep.</span></div>
 <div class="print-url">speedandform.com/labs/track/</div>
 </div></footer>

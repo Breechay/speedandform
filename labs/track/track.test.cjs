@@ -84,16 +84,40 @@ for (const m of html.matchAll(setRe)) {
 }
 check(parsed === setCount, `parsed ${parsed} of ${setCount} sets for the pace check`);
 
-// 6. No athlete other than the coach is named. The source sheets are per athlete.
+// 6. The page must not claim a capability the app does not have. This page is
+//     partly a design intent and partly authored work that exists today, and
+//     the first version shipped with the intent written in the present tense:
+//     "Sign in to save the mark" promised a surface that is not built. Anything
+//     an athlete could read as an available feature has to be true.
+const falseClaims = [
+  'Sign in to save',
+  'Nothing is gated behind an account',
+  'keep the result',
+  'It is filed as standalone',
+  'Every attempt stays',
+  'Your marks are one list',
+  'Marks are yours. Track does not',
+  'Your history comes with you',
+];
+for (const claim of falseClaims) {
+  check(!html.includes(claim), `claims a capability the app does not have: "${claim}"`);
+}
+// The intent sections have to say they are intent, in the reader's path.
+check((html.match(/class="state-note"/g) || []).length >= 2,
+  'the unbuilt parts are not labelled as intent');
+check(/not built yet/.test(html), 'the page does not say plainly that the room is not built yet');
+check(/None of it is shipped/.test(html), 'the intent section does not say it is unshipped');
+
+// 7. No athlete other than the coach is named. The source sheets are per athlete.
 for (const n of ['Bobby', 'Tinius', 'Sam', 'Erik', 'Breechay']) {
   check(!new RegExp(`\\b${n}\\b`).test(html), `athlete name "${n}" appears on a public page`);
 }
 
-// 7. House style: American spelling, no em dashes.
+// 8. House style: American spelling, no em dashes.
 check(!/—/.test(html), 'em dash in copy');
 check(!/practise|kilometre|colour|centre\b/.test(html), 'British spelling in copy');
 
-// 8. Shell requirements.
+// 9. Shell requirements.
 check(/<title>[^<]+<\/title>/.test(html), 'missing title');
 check(/rel="canonical"/.test(html), 'missing canonical');
 check(/<h1>/.test(html), 'missing h1');
@@ -102,7 +126,7 @@ check(/prefers-reduced-motion/.test(html), 'missing reduced-motion handling');
 check(/@media print/.test(html), 'missing print styles');
 check(!/<script(?! type="application\/ld\+json")/.test(html), 'unexpected script on a static page');
 
-// 9. The page is registered where readers find it.
+// 10. The page is registered where readers find it.
 const root = path.join(__dirname, '..', '..');
 check(fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8').includes('/labs/track/'), 'not in sitemap.xml');
 check(fs.readFileSync(path.join(root, 'labs', 'index.html'), 'utf8').includes('/labs/track/'), 'not linked from the Labs index');
