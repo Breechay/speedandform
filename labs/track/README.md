@@ -1,6 +1,8 @@
 # FORM TRACK
 
-Public Track room at `/labs/track/`. Static page, no scripts, no stored records, no athlete data.
+Public Track room at `/labs/track/`, **live since September 15, 2026** (main `29d90b3`). Static page, no scripts, no stored records, no athlete data.
+
+It is live with the 800 m question below still open. Brice authorized that.
 
 Sections: the room (seven relationships), standards, threshold ladder, time trials, how a mark reads, and the Track to Plan to Coaching ladder. Entry points are the Labs index and the HYROX page footer.
 
