@@ -14,7 +14,7 @@
 # to stop publishing, not to stop building.
 
 [build]
-  command = "echo 'no build needed'"
+  command = "node tests/cream-reading.cjs && node scripts/build-cream-reading.cjs"
   publish = "."
 
 # Force Netlify CDN to purge on every deploy
