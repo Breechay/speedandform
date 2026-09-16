@@ -1,6 +1,6 @@
 # FORM referral + offer creative brief
 
-**Version:** 3.0  
+**Version:** 3.1  
 **Date:** September 16, 2026  
 **Destination:** speedandform.com  
 **Market:** Miami  
@@ -18,6 +18,20 @@ Central question:
 
 > How can FORM create running content that the right runner recognizes as useful, and that another person naturally wants to send to a runner they know, while routing each runner to the appropriate depth of help?
 
+## FORM principle
+
+The brand name is meaningful here. FORM is not a promise to make every runner conform to a single visual model.
+
+> **Not everything needs fixing. Some things just cost you more.**
+
+`Cost` can mean unnecessary effort, tension, disrupted rhythm, reduced control, poor repeatability, discomfort, or difficulty sustaining the work. Do not claim a cost merely because software gives a low score or a runner looks different from an idealized model. FORM's job is to observe, combine context and evidence, identify what actually matters, and make the smallest useful intervention.
+
+Working sequence:
+
+**Observe → identify the meaningful cost → change what is worth changing → practice → retest.**
+
+This is ecosystem doctrine as well as a strong creative line. Use it selectively, not as a slogan stamped on every surface.
+
 ## The two offers
 
 ### FORM Analysis — working product, scope/price still open
@@ -32,7 +46,9 @@ Not the promise: perfect form, universal biomechanics, injury diagnosis/preventi
 
 Doctrine:
 
-> **Not everything needs fixing. Find the few things worth changing.**
+> **Not everything needs fixing. Some things just cost you more.**
+
+The analysis should identify whether a meaningful cost exists and which one or two changes are worth attention. It should not generate a defect inventory.
 
 Ochy or similar software may be used as an instrument. The software score is not the product and must not be presented as an objective grade of the runner. FORM sells judgment about what matters and what to do.
 
@@ -144,24 +160,31 @@ Open test: price in film vs ad copy vs landing page.
 
 This should feel like a useful FORM post that happens to be promoted.
 
+Strong opening/creative line to test:
+
+> **Not everything needs fixing.**  
+> **Some things just cost you more.**
+
 Possible structure:
 1. runner moving;
 2. one visible/experienced issue or question;
 3. Brice observing;
-4. one authentic priority/cue in context;
-5. runner practicing/retesting;
-6. selective analysis overlay or Ochy instrument shot only if it clarifies the observation;
-7. close on FORM Analysis.
+4. selective analysis that identifies the meaningful cost rather than scoring the whole runner;
+5. one authentic priority/cue in context;
+6. runner practicing/retesting;
+7. analysis overlay or Ochy instrument shot only if it clarifies the observation;
+8. close on FORM Analysis.
 
-Possible closing language to test:
+Possible resolution language:
 
+**Find what matters.**  
 **FORM ANALYSIS**  
 Understand your running.  
 Miami · speedandform.com
 
 Do not promise that a cue fixed pain, prevented injury, or universally improved efficiency. If the athlete's before/after is not genuinely demonstrated, do not manufacture one.
 
-Hypothesis: demonstrating judgment before asking for a click creates save/share value and makes the bounded specialist product legible.
+Hypothesis: demonstrating selective judgment before asking for a click creates save/share value and makes the bounded specialist product legible. The brand name FORM gains meaning: not aesthetic perfection, but understanding where movement is costing the runner enough to deserve attention.
 
 ### Creative 3 — Referral native
 
@@ -224,6 +247,8 @@ The site should let a visitor self-sort by need without becoming a giant pricing
 
 Run Development remains the flagship managed service. Analysis is not `Run Development Lite`.
 
+The FORM Analysis detail surface should explain the selective-intervention principle in plain language: **not everything needs fixing; some things cost you more.** It should make clear that the service looks for what matters rather than promising a perfect-form score.
+
 Review whether Analysis needs its own detail page and whether the homepage should introduce both doors. Do not build either until scope, price and the complimentary-assessment boundary are resolved.
 
 ## Price questions
@@ -273,14 +298,15 @@ Do not optimize an upsell rate by pushing Analysis clients into coaching they do
 
 1. Does useful coaching outperform pure cinematography as an opening?
 2. Is `Run better. Get faster. Run farther.` understood quickly?
-3. Does a bounded Analysis offer capture people who would reject an 8-week relationship?
-4. Does Analysis cannibalize Run Development or correctly segment a different job?
-5. What exact concern language do Analysis prospects use?
-6. Does showing an analysis instrument increase trust or make FORM look software-led?
-7. Which creative earns meaningful sends/shares?
-8. Does price placement improve qualification enough to offset reduced response?
-9. Does the site preserve the trust of a personal referral?
-10. What is the real cost to serve each offer?
+3. Does `Not everything needs fixing. Some things just cost you more.` create recognition without implying that every runner has a defect?
+4. Does a bounded Analysis offer capture people who would reject an 8-week relationship?
+5. Does Analysis cannibalize Run Development or correctly segment a different job?
+6. What exact concern language do Analysis prospects use?
+7. Does showing an analysis instrument increase trust or make FORM look software-led?
+8. Which creative earns meaningful sends/shares?
+9. Does price placement improve qualification enough to offset reduced response?
+10. Does the site preserve the trust of a personal referral?
+11. What is the real cost to serve each offer?
 
 ## Required output from every reviewing agent
 
@@ -312,6 +338,7 @@ When footage is supplied, include exact source filenames and in/out timestamps.
 - Real coaching/athlete footage is preferred.
 - Referral behavior is strategically important.
 - Software is an instrument, not the coaching authority.
+- FORM does not pursue perfect-form conformity; intervention should follow a meaningful cost.
 - No fabricated evidence or medical claims.
 
 ### Open to challenge/test
@@ -319,6 +346,7 @@ When footage is supplied, include exact source filenames and in/out timestamps.
 - Analysis scope, one vs two contacts, artifact and price;
 - complimentary assessment boundary;
 - `Run better. Get faster. Run farther.`;
+- exact public use/placement of `Not everything needs fixing. Some things just cost you more.`;
 - 12–18 second duration;
 - coaching cue in ad;
 - Ochy/analysis overlay in creative;
