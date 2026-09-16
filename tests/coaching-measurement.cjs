@@ -25,10 +25,23 @@ assert.equal(c.window.dataLayer.length,3);assert.equal(c.window.dataLayer[2][0],
 const html=readFileSync('index.html','utf8');
 const send=html.slice(html.indexOf('  function sendToBrice()'),html.indexOf('\n  function fail('));
 (async()=>{
- const relay=new FormData();relay.append('Name','Endpoint test');relay.append('Offer shown','Run Development');
+ const relay=new FormData();
+ [
+  ['Name','Jorge Tacoronte'],['Email','jorge@example.com'],['Location','Miami'],
+  ['Source','meta'],['Medium','paid_social'],['Campaign','form_miami_run_test01'],['Creative','run_development_video01'],
+  ['Goal','Run longer'],['Running days per week','3'],['Weekly running volume','10–20 mi'],['Longest run','6–10 mi'],
+  ['Other training','Strength'],['Main obstacle','Speed and breath'],['Offer shown','Run Development'],['Duration and fee shown','8 weeks · $1,200'],
+  ['_replyto','jorge@example.com']
+ ].forEach(([k,v])=>relay.append(k,v));
  await c.window.fetch('https://formsubmit.co/ajax/brice%40speedandform.com',{method:'POST',body:relay});
  assert.equal(c.requests.length,1);assert.equal(c.requests[0].input,'https://formsubmit.co/ajax/'+FORM_ENDPOINT);
- assert.equal(relay.get('_subject'),'New FORM inquiry · Endpoint test · Run Development');assert.equal(relay.get('_template'),'box');
+ assert.equal(relay.get('_subject'),'Run Development · Jorge Tacoronte · 8 weeks · $1,200');
+ assert.equal(relay.get('_template'),'table');
+ assert.equal(relay.get('_replyto'),'jorge@example.com');
+ assert.equal(relay.get('Running now'),'3 days/week · 10–20 mi/week · longest 6–10 mi');
+ assert.equal(relay.get('Offer'),'Run Development · 8 weeks · $1,200');
+ assert.equal(relay.get('Source'),'meta / paid_social · form_miami_run_test01 · run_development_video01');
+ assert.equal(relay.get('Running days per week'),null);
  for(const [ok,success,throws,expected] of [[true,true,false,1],[true,'true',false,1],[true,false,false,0],[false,true,false,0],[true,true,true,1]]) {
   let leads=0,done=0,failed=0;
   const ctx={sending:false,$:()=>({getAttribute:()=>'',disabled:false}),payload:()=>({offer:'Run'}),BRICE:'test@example.com',A:{},FormData,Promise,intakeFields:()=>[],pane:()=>done++,fail:()=>failed++,window:{formTrackLead:()=>{leads++;if(throws)throw Error('blocked');}},fetch:async()=>({ok,json:async()=>({success})})};
@@ -36,5 +49,5 @@ const send=html.slice(html.indexOf('  function sendToBrice()'),html.indexOf('\n 
   await new Promise(r=>setImmediate(r));
   assert.equal(leads,expected);assert.equal(done,expected);assert.equal(failed,expected?0:1);
  }
- console.log('PASS: stable FormSubmit endpoint, production/privacy guards, GA4 + Meta page measurement, accepted/rejected relay responses, duplicate click, tracking failure isolation. No intake answers sent to analytics; no network requests sent.');
+ console.log('PASS: stable FormSubmit endpoint, compact table notification, athlete Reply-To, production/privacy guards, GA4 + Meta page measurement, accepted/rejected relay responses, duplicate click, tracking failure isolation. No intake answers sent to analytics; no network requests sent.');
 })();
