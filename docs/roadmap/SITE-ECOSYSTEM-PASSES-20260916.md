@@ -1,6 +1,6 @@
 # Site ecosystem: bounded release passes
 
-Owner: Brice. Created September 16, 2026.
+Owner: Brice. Created September 16, 2026. Pass 1 production receipt updated September 16, 2026.
 
 ## Decision
 
@@ -8,7 +8,7 @@ Brice approved breaking the whole-site project into multiple passes after the la
 
 This document owns the checklist for this project. It supplements, rather than replaces, `FORM-ROADMAP.md` and the existing product and commercial authorities named in `AGENTS.md`. It changes execution order, not coaching doctrine, app behavior, prices, or access rules.
 
-**Current delivery state:** this is a planning document. No pass below is marked implemented, tested, or live. Earlier draft files and screenshots are inputs, not release evidence. The next implementation task is Pass 1 only.
+**Current delivery state: Pass 1 is LIVE.** PR #122, main `c1b56e58f35aaee6b8b3447c5fb2d5fcaba6b116`, Netlify `6aab1cbbc6fa6800086e6e3e`, published September 16 at 22:48:39 UTC. Seven source suites passed; 19 representative production pages and every distinct image URL matched the committed source. Native sharing-app rendering remains unverified. [Release receipt](../audits/SHARE-PREVIEW-RELEASE-20260916.md). Passes 2–6 remain queued; no background execution is implied. The next implementation scope is Pass 2.
 
 ## Boundaries that apply throughout
 
@@ -24,8 +24,8 @@ This document owns the checklist for this project. It supplements, rather than r
 
 | Pass | Scope | State | Implementation / test / production receipt |
 | --- | --- | --- | --- |
-| 1 | Approved share image and link-preview metadata | NEXT | None yet |
-| 2 | Public navigation, Library discovery, and technical SEO | QUEUED | None yet |
+| 1 | Approved share image and link-preview metadata | LIVE; native-preview check open | PR122; main `c1b56e58`; Netlify `6aab1cbbc6fa6800086e6e3e`. 73 defaults, 11 dedicated cards, 91 excluded HTML files unchanged. Seven suites; Actions `35159434946` verified 19 production pages and 10 distinct image URLs at 22:48:55 UTC. [Receipt](../audits/SHARE-PREVIEW-RELEASE-20260916.md). |
+| 2 | Public navigation, Library discovery, and technical SEO | NEXT | None yet |
 | 3 | Track photo and video gallery | QUEUED | None yet |
 | 4 | Educational pages, in small topic batches | QUEUED | None yet |
 | 5 | FORM and Breechay Sculpt / Forge landing pages | QUEUED | None yet |
