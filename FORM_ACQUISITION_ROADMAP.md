@@ -16,9 +16,11 @@ Repeated trusted referrals show two distinct jobs:
 
 These are different jobs, not a cheap and expensive version of the same package. Do not publish a menu of session counts.
 
-Core analysis doctrine:
+Core FORM principle:
 
-> **Not everything needs fixing. Find the few things worth changing.**
+> **Not everything needs fixing. Some things just cost you more.**
+
+The name FORM does not mean visual conformity or chasing a perfect mechanics score. A meaningful `cost` may show up as unnecessary effort, tension, disrupted rhythm, reduced control, poor repeatability, discomfort, or difficulty sustaining the work. Do not invent a cost from an app score or textbook deviation. Combine athlete report, observable behavior, repeatable measurement and coaching context, then intervene only where the evidence makes a change worth pursuing.
 
 Analysis software such as Ochy may assist observation, but software scores are not the product and must not be presented as an objective grade of a runner. The value is coach judgment about what matters now. No medical diagnosis, injury-prevention promise, universal form model or fabricated before/after.
 
@@ -33,7 +35,7 @@ The current complimentary first Run Development track assessment must be disting
 ### Three primary creative hypotheses
 
 1. **Recognition / Run Development:** `Run better. Get faster. Run farther.` Real coaching/running footage; ongoing development is the destination.
-2. **Coaching value / FORM Analysis:** real runner + observation + one authentic priority/cue + practice/retest; selective analysis overlay only when it clarifies the coach's decision.
+2. **Coaching value / FORM Analysis:** `Not everything needs fixing. Some things just cost you more.` Real runner + observation + one authentic priority/cue + practice/retest; selective analysis overlay only when it clarifies the coach's decision.
 3. **Referral native:** content designed to make a trusted connector think `I know who needs this` without `share this` engagement bait or fake text-message theater.
 
 These are mechanisms, not cosmetic variants. Test them separately.
@@ -212,11 +214,12 @@ The next client repetitions should answer:
 7. Does FORM Analysis capture a distinct job or cannibalize people who actually wanted Run Development?
 8. How much paid traffic is required to generate one qualified inquiry and one paid client?
 9. Which creative mechanism produces the strongest qualified demand: recognition, coaching value or referral-native?
-10. Are saves/shares/sends associated with downstream site arrivals or referrals?
-11. What is the maximum managed roster and analysis load that preserves excellent coaching?
-12. Which completed athletes still want compatible long runs / workouts afterward?
-13. Does a high-quality alumni / training cohort emerge naturally from managed coaching?
-14. Which simple, no-decoding phrases create the most qualified attention and conversion?
+10. Does the `some things cost you more` framing attract useful self-recognition without encouraging defect hunting or unsupported biomechanical claims?
+11. Are saves/shares/sends associated with downstream site arrivals or referrals?
+12. What is the maximum managed roster and analysis load that preserves excellent coaching?
+13. Which completed athletes still want compatible long runs / workouts afterward?
+14. Does a high-quality alumni / training cohort emerge naturally from managed coaching?
+15. Which simple, no-decoding phrases create the most qualified attention and conversion?
 
 ## 6. Decision gate before shifting to plans / apps
 
@@ -257,4 +260,4 @@ Full exploration brief: `docs/marketing/UNBOUNCE_SURFACE_EXPLORATION_2026-09-15.
 
 ---
 
-**Operating principle:** Acquire enough excellent athletes to make the system legible. Give each athlete the depth of intervention their actual problem requires. Do not acquire so many that the practice becomes worse.
+**Operating principle:** Acquire enough excellent athletes to make the system legible. Give each athlete the depth of intervention their actual problem requires. **Not everything needs fixing; intervene where something is costing the runner enough to matter.** Do not acquire so many that the practice becomes worse.
