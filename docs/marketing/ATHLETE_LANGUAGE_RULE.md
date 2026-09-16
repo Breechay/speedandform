@@ -1,6 +1,7 @@
 # Athlete Language Rule
 
 **Decision:** September 15, 2026  
+**Voice addition:** September 16, 2026  
 **Applies to:** ads, landing pages, product pages, athlete-facing app copy, onboarding, email, coaching intake, social copy and public plan instructions.
 
 ## Core assumption
@@ -12,6 +13,33 @@ A runner may train at a high level, run substantial mileage, complete demanding 
 FORM therefore writes for execution first, understanding second.
 
 > **The coach owns the complexity. The athlete gets a clear action and a clear reason to care.**
+
+## FORM voice: declarative, not padded
+
+FORM speaks in direct statements when the statement is supported by observed or measured evidence. Do not add `might`, `maybe`, `could`, `I think`, `perhaps`, `can sometimes`, or extra explanatory clauses merely to make a sentence sound cautious or polite. That padding changes Brice's voice and weakens the coaching read.
+
+Examples of the intended cadence:
+
+- `Run better.`
+- `Get faster.`
+- `Run farther.`
+- `Not everything needs fixing. Some things just cost you more.`
+- `You are hitting the pace. It is costing you more than it should.` when the athlete's evidence supports that read.
+- `This change lowered the athlete's heart rate at the same pace.` when that comparison was actually measured.
+
+The rule is **confidence follows evidence**, not `make every sentence absolute`. Never convert an inference, one athlete's response, an app score, or an unmeasured mechanism into a fact. When evidence is incomplete, state exactly what is known instead of filling the sentence with passive hedging.
+
+Prefer:
+
+`At the same pace, his heart rate was lower after the change.`
+
+over:
+
+`This may potentially suggest the change could have improved his running economy.`
+
+The first states the observation. The second adds an unproven mechanism and then hides it behind qualifiers.
+
+FORM's public voice should sound like the coach in the field: **see it, name it, change it, show the result.**
 
 ## Evidence note
 
@@ -59,12 +87,7 @@ Coach-facing and private technical surfaces can use precise coaching vocabulary.
 
 Do not reject a line merely because it is generic.
 
-A simple line that is instantly understood can outperform a more original line that requires interpretation. Generic language is acceptable when it is:
-
-- true;
-- relevant to the actual product;
-- specific enough to the desired outcome;
-- easy to understand in one pass.
+A simple line that is instantly understood can outperform a more original line that requires interpretation. Generic language is acceptable when it is true, relevant to the actual product, specific enough to the desired outcome and easy to understand in one pass.
 
 Examples that are acceptable when they fit the offer:
 
@@ -80,14 +103,7 @@ The burden of differentiation can come from the product, visual system, proof an
 
 Do not force the athlete to understand the thinking in order to trust the work.
 
-The method can stay sophisticated behind a simple surface. Proof should carry much of the credibility:
-
-- verified race results;
-- public training sessions;
-- before/after performance;
-- completed milestones;
-- adherence and execution evidence;
-- transparent study outcomes.
+The method can stay sophisticated behind a simple surface. Proof should carry much of the credibility: verified race results, public training sessions, before/after performance, completed milestones, adherence and execution evidence, and transparent study outcomes.
 
 Explain the method for athletes who want to go deeper, but do not make that understanding a requirement for purchase or execution.
 
@@ -101,8 +117,9 @@ Use this sequence:
 2. let Meta generate multiple plain conversion-oriented alternatives when useful;
 3. keep the lines that are immediately understandable;
 4. remove anything false, inflated, cheesy, inaccurate or inconsistent with the product;
-5. preserve the simplest truthful version;
-6. test it.
+5. remove passive hedging that does not reflect an actual uncertainty;
+6. preserve the simplest truthful version;
+7. test it.
 
 Meta-generated copy is an ideation source, not an authority. It may invent personalization, guarantees, intensity progression, outcomes or features that do not exist. Those must be rejected.
 
@@ -140,6 +157,9 @@ Before publishing athlete-facing copy, ask:
 - Could the same point be said with fewer specialized words?
 - Are we asking them to understand the method before showing the benefit?
 - Is the proof/result doing enough of the credibility work?
+- Did we add qualifiers because the evidence requires them, or merely because the writer is uncomfortable making a direct statement?
+- Does every causal claim go no further than the evidence supports?
+- Would Brice actually say this sentence to an athlete at the track?
 - Would a coach need to explain the copy verbally for it to make sense?
 - If an ad is translated, does the click stay in the same language through the first conversion surface?
 
@@ -147,4 +167,4 @@ If the last two answers are yes / no in the wrong direction, rewrite or localize
 
 ## Working principle
 
-> **Think deeply backstage. Speak simply out front. Get the athlete fit. Let the result prove the work.**
+> **Think deeply backstage. Speak plainly and directly out front. Get the athlete fit. Let the result prove the work.**
