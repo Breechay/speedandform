@@ -1,26 +1,67 @@
 # FORM Acquisition Roadmap
 
-**Updated:** September 15, 2026  
+**Updated:** September 16, 2026  
 **Status:** active operating note for the current Bridge Season
 
-This document exists to keep near-term commercial work focused on learning how FORM acquires the right managed athletes before expanding into plans, apps, memberships, or additional public offers.
+This document exists to keep near-term commercial work focused on learning how FORM acquires the right athletes and delivers the appropriate depth of help before expanding into plans, apps, memberships, or unnecessary public offers.
+
+## September 16 offer + referral checkpoint
+
+A major field realization now changes the acquisition model without replacing Run Development as the flagship managed service.
+
+Repeated trusted referrals show two distinct jobs:
+
+1. **Run Development** — `Develop your running.` The athlete wants FORM to own an 8-week development process: assessment, plan, coaching, feedback and adjustment. Current public price: **$1,200 / 8 weeks**.
+2. **FORM Analysis — working offer** — `Understand your running.` The athlete may already have a plan/coach or may have one specific running concern. FORM observes, identifies the few priorities worth changing, gives usable cues/practice and retests where useful. Exact name, one-vs-two-contact scope, artifact and price are **OPEN**.
+
+These are different jobs, not a cheap and expensive version of the same package. Do not publish a menu of session counts.
+
+Core analysis doctrine:
+
+> **Not everything needs fixing. Find the few things worth changing.**
+
+Analysis software such as Ochy may assist observation, but software scores are not the product and must not be presented as an objective grade of a runner. The value is coach judgment about what matters now. No medical diagnosis, injury-prevention promise, universal form model or fabricated before/after.
+
+The current complimentary first Run Development track assessment must be distinguished from any paid FORM Analysis before the second offer goes live. This is a release gate.
+
+### Acquisition now has three paths
+
+- **Direct recognition:** content/ad → `that is me` → site → appropriate offer → inquiry → encounter/client.
+- **Referral recognition:** content/ad → `I know who needs this` → send/share → runner → site → appropriate offer.
+- **Value first:** useful coaching content → try/save/follow → later inquiry or referral.
+
+### Three primary creative hypotheses
+
+1. **Recognition / Run Development:** `Run better. Get faster. Run farther.` Real coaching/running footage; ongoing development is the destination.
+2. **Coaching value / FORM Analysis:** real runner + observation + one authentic priority/cue + practice/retest; selective analysis overlay only when it clarifies the coach's decision.
+3. **Referral native:** content designed to make a trusted connector think `I know who needs this` without `share this` engagement bait or fake text-message theater.
+
+These are mechanisms, not cosmetic variants. Test them separately.
+
+**Authority for this checkpoint:**
+- `docs/marketing/FORM_COACHING_OFFER_VISION_2026-09-16.md`
+- `docs/marketing/FORM_REFERRAL_CREATIVE_BRIEF_2026-09-16.md`
+
+Any agent touching coaching acquisition, homepage service architecture, Meta creative, form/running analysis, pricing or intake must read both first.
 
 ## 1. Current priority
 
-For now, the primary commercial job is **Run Development client acquisition + excellent delivery**.
+The primary commercial job remains **excellent Run Development delivery + learning how FORM acquires the right paid athletes**. FORM Analysis is a bounded adjacent offer to validate, not permission to create a large service menu.
 
 The working order is:
 
-1. acquire a small number of high-fit managed athletes;
-2. observe conversion, delivery time, outcomes, renewal, referrals, and acquisition cost;
-3. make the funnel repeatable;
-4. only then shift meaningful acquisition effort toward lower-touch plans / app products.
+1. preserve excellent Run Development delivery;
+2. define and field-test the FORM Analysis boundary without publishing unvalidated scope/pricing;
+3. acquire a small number of high-fit paid athletes across the appropriate door;
+4. observe conversion, delivery time, outcomes, renewal/repeat behavior, referrals and acquisition cost;
+5. make the referral/direct acquisition system repeatable;
+6. only then shift meaningful acquisition effort toward lower-touch plans / app products.
 
-Do not let product building replace the harder question: **can FORM reliably turn attention into high-fit paid athletes?**
+Do not let product building replace the harder question: **can FORM reliably turn attention and trusted recommendations into high-fit paid relationships?**
 
 ## 2. Near-term client quota
 
-Working acquisition target:
+Working Run Development acquisition target:
 
 - **2 new Run Development clients per month**
 - **3 per month = stretch**, only while service quality remains high
@@ -28,6 +69,8 @@ Working acquisition target:
 At $1,200 per 8-week block, two new starts per month means roughly four concurrently active athletes once the pipeline is steady; three new starts per month implies roughly six concurrently active athletes.
 
 This is not a permanent roster target. The Bridge Season capacity study still governs the actual ceiling. If judgment, observation, programming, messaging, recovery, or personal life deteriorate, do not keep filling the quota.
+
+FORM Analysis does **not** automatically increase the total capacity ceiling. Track its true coach time, including video/software review and follow-up. Do not fill the calendar with analyses if they crowd out excellent managed coaching or personal practice.
 
 The purpose of the quota is to force enough repetitions to learn the acquisition system, not to maximize volume.
 
@@ -42,19 +85,25 @@ Do not optimize around clicks, likes, or cheap traffic in isolation.
 
 Track:
 
-**paid / organic exposure → site arrival → meaningful engagement → inquiry → qualified inquiry → assessment → paid client → completion → renewal / referral**
+**paid / organic / referral exposure → site arrival → meaningful engagement → offer selected → inquiry → qualified inquiry → assessment/analysis → paid client → completion → renewal/repeat / referral**
 
 For each paid athlete, record:
 
 - acquisition source;
 - first known exposure if available;
+- referred vs direct when known;
+- creative family when attributable;
+- offer selected;
 - cash collected;
 - delivery period;
 - conversion path;
 - coach time / cost to serve;
 - outcome quality;
-- renewal outcome;
+- renewal/repeat outcome;
+- natural Analysis → Run Development transition when it genuinely fits;
 - referral outcome.
+
+Do not push Analysis clients into Run Development merely to improve an upsell metric. A bounded analysis is successful if it solves the bounded job well and is economically worthwhile.
 
 ### Athlete-language assumption
 
@@ -87,10 +136,11 @@ Scale in stages:
 1. verify delivery and measurement;
 2. verify the creative consistently earns attention;
 3. verify clicked traffic actually arrives;
-4. verify the site creates intent;
+4. verify the site creates intent and lets the runner self-sort correctly;
 5. verify inquiries are qualified;
-6. verify qualified inquiries become clients;
-7. only then establish a repeatable CAC and scale spend.
+6. verify qualified inquiries become appropriate paid clients;
+7. verify cost to serve and outcome quality by offer;
+8. only then establish a repeatable CAC and scale spend.
 
 Until client conversion is proven, budget increases are purchases of information, not declarations that the channel works.
 
@@ -100,7 +150,8 @@ A potentially valuable layer is emerging around **curation, not access-for-sale*
 
 Working concept:
 
-- the paid product remains the 8-week managed coaching relationship;
+- the paid managed product remains the 8-week Run Development relationship;
+- FORM Analysis does not automatically confer cohort access;
 - athletes who demonstrate the right fitness, consistency, judgment, and social fit can naturally become part of a small training network;
 - after the managed block, an athlete may no longer need active coaching but can remain connected to compatible long runs or occasional hard sessions;
 - the group itself is **not sold as a membership** and athletes do not pay a recurring fee merely to gain access to strong runners;
@@ -152,30 +203,36 @@ First accumulate several high-fit managed athletes and observe whether the netwo
 
 The next client repetitions should answer:
 
-1. Which source creates the best qualified inquiries: paid Meta, organic Instagram, Google search, referrals, or field relationships?
-2. What is the real inquiry → paid-client conversion rate?
+1. Which source creates the best qualified inquiries: paid Meta, organic Instagram, Google search, trusted referrals, or field relationships?
+2. What is the real inquiry → paid-client conversion rate by offer?
 3. What objections appear repeatedly?
-4. Does the current site answer price, process, group environment, and proof clearly enough?
-5. How much paid traffic is required to generate one qualified inquiry and one paid client?
-6. What is the maximum managed roster that preserves excellent coaching?
-7. Which completed athletes still want compatible long runs / workouts afterward?
-8. Does a high-quality alumni / training cohort emerge naturally from managed coaching?
-9. Which simple, no-decoding phrases create the most qualified attention and conversion?
+4. Does the current site answer price, process, group environment, proof and the difference between Analysis and Run Development clearly enough?
+5. What is the correct boundary between complimentary Run Development assessment and paid FORM Analysis?
+6. What scope and price make FORM Analysis valuable to the athlete and worthwhile for the coach?
+7. Does FORM Analysis capture a distinct job or cannibalize people who actually wanted Run Development?
+8. How much paid traffic is required to generate one qualified inquiry and one paid client?
+9. Which creative mechanism produces the strongest qualified demand: recognition, coaching value or referral-native?
+10. Are saves/shares/sends associated with downstream site arrivals or referrals?
+11. What is the maximum managed roster and analysis load that preserves excellent coaching?
+12. Which completed athletes still want compatible long runs / workouts afterward?
+13. Does a high-quality alumni / training cohort emerge naturally from managed coaching?
+14. Which simple, no-decoding phrases create the most qualified attention and conversion?
 
 ## 6. Decision gate before shifting to plans / apps
 
-Increase product-plan / app acquisition only after FORM has enough managed-client evidence to know:
+Increase product-plan / app acquisition only after FORM has enough coaching evidence to know:
 
 - who converts;
 - why they convert;
+- which job they are hiring FORM to do;
 - what proof matters;
 - which language attracts the right athlete;
 - actual cost to acquire a client;
-- actual cost to serve a client;
-- realistic roster ceiling;
+- actual cost to serve Analysis vs Run Development;
+- realistic roster/calendar ceiling;
 - which parts of coaching can become a lower-touch product without pretending software replaces judgment.
 
-The managed practice is currently the fastest research surface for learning all of the above.
+The managed practice and bounded analysis encounters are currently the fastest research surfaces for learning the above.
 
 ## 7. Unbounce research window — USE FOR LEARNING, NOT FOUR PARALLEL BUILDS
 
@@ -186,7 +243,7 @@ Priority order:
 1. **Race Pace Durability $79 landing page — active priority**
 2. FORM app landing page — design/positioning ideas only, parked
 3. Forge app landing page — design/positioning ideas only, parked
-4. Alternative coaching homepage / Run Development landing page — challenger concept only, parked
+4. Alternative coaching homepage / Run Development + FORM Analysis architecture — challenger concept only until offer boundary is resolved
 
 The goal is not to migrate production into Unbounce by default. Use the trial to study template structure, mobile hierarchy, hero patterns, CTA placement, proof, pricing, qualification, FAQ order, and AI copy suggestions. Bring the strongest patterns back into the existing Speed & Form site.
 
@@ -200,4 +257,4 @@ Full exploration brief: `docs/marketing/UNBOUNCE_SURFACE_EXPLORATION_2026-09-15.
 
 ---
 
-**Operating principle:** Acquire enough excellent athletes to make the system legible. Do not acquire so many that the practice becomes worse.
+**Operating principle:** Acquire enough excellent athletes to make the system legible. Give each athlete the depth of intervention their actual problem requires. Do not acquire so many that the practice becomes worse.
