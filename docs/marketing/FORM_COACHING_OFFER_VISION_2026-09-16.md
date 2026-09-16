@@ -21,6 +21,54 @@ The ecosystem therefore has two coaching jobs:
 
 The two offers must be legible without competing with each other.
 
+## What coaching is
+
+> **Coaching is an external pair of eyes that knows what to look for and how to build a game plan. The quality comes down to how individualized that approach is.**
+
+This is the simple public explanation. The deeper operating model has four parts.
+
+### 1. External eyes
+
+The athlete cannot fully observe themselves while they are inside the work. FORM brings perspective: movement, pacing, training load, execution and patterns across time. The coach's value is not merely seeing more data. It is knowing what deserves attention.
+
+Do not turn this into a blanket claim that self-coached athletes fail or that FORM can predict injury. The useful distinction is perspective: athlete experience from inside the run plus an informed view from outside it.
+
+### 2. The game plan
+
+Observation without a decision is trivia. FORM converts what it sees into the next useful action: what to practice, what pace to hold, what volume to tolerate, when to progress, when to repeat and when to leave something alone.
+
+A runner should know what they are doing and why it matters without having to become their own coach.
+
+### 3. Individualized quality
+
+Quality is not the number of workouts delivered. It is how well the prescription fits the person in front of FORM.
+
+Individualization can include current fitness, movement, training history, available time, life constraints, response to recent work, athlete report, recovery and the actual goal. FORM does not change training merely to prove that it is customized. When the existing answer fits, keep it. When the athlete's response changes the problem, change the plan.
+
+### 4. Data + feel
+
+FORM uses numbers and athlete report together.
+
+> **Data tells us what happened. How it felt tells us how you absorbed it.**
+
+Pace, heart rate, distance, splits, volume and other measurements matter. So does the athlete's description of effort, restriction, control, confidence, soreness and what changed during the session. Neither source automatically overrules the other. Their relationship is often the useful signal.
+
+`How did it feel?` is therefore not small talk. It is part of the coaching record.
+
+## FORM is selective, not corrective by default
+
+The name FORM does not mean forcing every runner toward a single visual ideal.
+
+> **Not everything needs fixing. Some things just cost you more.**
+
+`Cost` is broader than pace. Depending on the runner and context, something can cost unnecessary effort, tension, rhythm, control, repeatability, comfort or the ability to sustain the work. FORM does not declare a cost merely because software labels a segment non-ideal or movement differs from a textbook model. The athlete's report, observation, measurement and context establish what matters.
+
+The operating sequence is:
+
+**Observe → identify what matters → build the game plan → practice → retest → adjust.**
+
+The goal is not perfect form. The goal is better running.
+
 ## Product architecture
 
 ### FORM Analysis
@@ -44,7 +92,7 @@ Working service shape:
 
 Core doctrine:
 
-> **Not everything needs fixing. Find the few things worth changing.**
+> **Not everything needs fixing. Some things just cost you more.**
 
 The desired felt result can be easier, smoother, more controlled or more capable running. Faster and farther may follow when relevant, but should not be guaranteed from a mechanics session.
 
@@ -74,7 +122,7 @@ They answer different questions.
 | | FORM Analysis | Run Development |
 | --- | --- | --- |
 | Athlete question | What is happening when I run? | Can you develop my running? |
-| Scope | Diagnose/observe → prioritize → cue → retest | Assess → plan → coach → adjust → develop |
+| Scope | Observe → prioritize → cue → retest | Assess → plan → coach → adjust → develop |
 | Commitment | Bounded specialist encounter | 8-week coaching relationship |
 | Plan ownership | Athlete may keep their existing plan/coach | FORM owns the running-development process |
 | Output | Priorities and usable practice | Ongoing development and adjusted training |
@@ -228,6 +276,6 @@ Do not force an Analysis client into Run Development to improve an upsell metric
 
 ## Downstream rule
 
-Any future agent changing the coaching funnel, homepage, Meta creative, intake, service pricing, gait/form analysis, or coaching acquisition must read this document and the current creative brief first.
+Any future agent changing the coaching funnel, homepage, Meta creative, intake, service pricing, gait/form analysis, coaching acquisition, coaching logic, athlete feedback or plan adjustment must read this document and the current creative brief first.
 
-This realization is ecosystem-level: **FORM is not one coaching package. It is a practice with different legitimate depths of intervention. The product boundary follows the athlete's job, not the number of sessions.**
+This realization is ecosystem-level: **FORM is an external pair of eyes plus an individualized game plan. It uses data and feel together, intervenes selectively, and offers different legitimate depths of help. The product boundary follows the athlete's job, not the number of sessions.**
