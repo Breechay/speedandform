@@ -1,0 +1,25 @@
+name: Homepage share image review
+on:
+  push:
+    branches: [chatgpt/homepage-share-20260916]
+    paths: [.github/workflows/homepage-share-review.yml]
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Collect exact homepage source and existing film
+        run: |
+          mkdir -p /tmp/homepage-review/media /tmp/homepage-review/docs
+          cp index.html /tmp/homepage-review/
+          cp media/run-development.mp4 media/run-development.jpg /tmp/homepage-review/media/
+          cp docs/roadmap/FORM-ROADMAP.md docs/marketing/ATHLETE_LANGUAGE_RULE.md /tmp/homepage-review/docs/
+          git rev-parse HEAD > /tmp/homepage-review/source-commit.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: homepage-share-source
+          path: /tmp/homepage-review
+          retention-days: 1
