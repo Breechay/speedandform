@@ -2,50 +2,20 @@ name: Share preview release checks
 on:
   push:
     branches: [work/site-ecosystem-2026-09-16, main]
-    paths: ['scripts/share-metadata.cjs', 'tests/share-metadata.cjs', 'og/form-share-20260916.jpg', '.github/workflows/share-previews.yml']
+    paths: ['scripts/*share*.cjs', 'tests/share-metadata.cjs', 'tests/homepage-metadata.cjs', 'og/form-share-20260916.jpg', '.github/workflows/share-previews.yml']
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
   verify:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Reconstitute owner-approved image on the isolated branch
-        run: |
-          if [ -d .github/share-image ]; then
-            test "$GITHUB_REF_NAME" = 'work/site-ecosystem-2026-09-16'
-            python -m pip install --quiet Pillow==11.3.0
-            python - <<'PY'
-          import base64, hashlib, io
-          from pathlib import Path
-          from PIL import Image
-          data=base64.b64decode(''.join(Path(f'.github/share-image/{i}.b64').read_text() for i in range(4)),validate=True)
-          assert hashlib.sha256(data).hexdigest()=='bede66f42dfac48771fdc02bcaeed7d41752fef635a44f76697cef87a0122507'
-          im=Image.open(io.BytesIO(data)).convert('RGB')
-          assert im.size==(1200,630)
-          im.save('og/form-share-20260916.jpg',quality=94,optimize=True,progressive=True)
-          PY
-            rm -r .github/share-image
-          fi
-      - name: Apply metadata without changing page bodies
-        run: |
-          node scripts/share-metadata.cjs
-          python - <<'PY'
-          from pathlib import Path
-          p=Path('tests/homepage-metadata.cjs')
-          text=p.read_text()
-          text=text.replace("'/og/homepage-run-development-20260916.jpg'", "'/og/form-share-20260916.jpg'")
-          p.write_text(text)
-          PY
-      - name: Regression checks
+      - name: Check the committed source without rewriting it
         run: |
           set -o pipefail
           mkdir -p /tmp/share-receipt
@@ -58,33 +28,17 @@ jobs:
             node labs/track/track.test.cjs
             node tests/thursday-schedule.cjs
           } | tee /tmp/share-receipt/tests.txt
-      - name: Save generated source on the isolated branch only
-        if: github.ref_name == 'work/site-ecosystem-2026-09-16'
-        run: |
-          python - <<'PY'
-          import json,subprocess
-          from pathlib import Path
-          m=json.loads(Path('docs/audits/SHARE-METADATA-MANIFEST-20260916.json').read_text())
-          allowed={p['file'] for p in m['pages']}|{'og/form-share-20260916.jpg','docs/audits/SHARE-METADATA-MANIFEST-20260916.json','tests/homepage-metadata.cjs'}|{f'.github/share-image/{i}.b64' for i in range(4)}
-          changed=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines())
-          assert changed <= allowed, f'Unexpected changed files: {changed-allowed}'
-          subprocess.run(['git','add','--',*sorted(allowed)],check=True)
-          PY
-          if ! git diff --cached --quiet; then
-            git config user.name 'github-actions[bot]'
-            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git commit -m 'feat: apply approved share image and static public-page metadata'
-            git push origin HEAD:work/site-ecosystem-2026-09-16
-          fi
-      - name: Exact tested source receipt
-        run: |
+          test ! -d .github/share-image
+          git diff --exit-code
           git rev-parse HEAD > /tmp/share-receipt/commit.txt
-          node tests/share-metadata.cjs
           cp og/form-share-20260916.jpg /tmp/share-receipt/
           cp docs/audits/SHARE-METADATA-MANIFEST-20260916.json /tmp/share-receipt/
-          git diff --exit-code
+      - name: Verify the actual public release after main reaches production
+        if: github.ref_name == 'main'
+        run: node scripts/verify-share-production.cjs /tmp/share-receipt/production.json
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: share-preview-receipt
           path: /tmp/share-receipt/
-          retention-days: 7
+          retention-days: 14
