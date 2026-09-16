@@ -1,0 +1,19 @@
+name: Homepage review workspace
+on:
+  push:
+    branches: [work/homepage-single-runner-20260916]
+    paths: [.github/workflows/homepage-review.yml]
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package review source
+        run: git archive --format=zip HEAD -o /tmp/homepage-repo.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: homepage-repo-source
+          path: /tmp/homepage-repo.zip
+          retention-days: 3
