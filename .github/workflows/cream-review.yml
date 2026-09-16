@@ -1,0 +1,22 @@
+name: Cream reading review
+on:
+  push:
+    branches: [work/cream-reading-20260916]
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Export current source for isolated review
+        run: |
+          mkdir -p /tmp/cream-source
+          git archive HEAD | tar -x -C /tmp/cream-source
+          find /tmp/cream-source -type f \( -iname '*.mp4' -o -iname '*.mov' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.pdf' -o -iname '*.zip' \) -delete
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cream-current-source
+          path: /tmp/cream-source
+          include-hidden-files: true
+          retention-days: 3
