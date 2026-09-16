@@ -74,7 +74,7 @@ def render():
     card.save(OUTPUT, 'JPEG', quality=91, optimize=True, progressive=False, subsampling=0)
     assert Image.open(OUTPUT).size == (W, H)
     assert OUTPUT.stat().st_size < 300_000
-    print(f'{OUTPUT.relative_to(ROOT)}: {W}×{H}, {OUTPUT.stat().st_size():,} bytes, film {STAMP}s')
+    print(f'{OUTPUT.relative_to(ROOT)}: {W}×{H}, {OUTPUT.stat().st_size:,} bytes, film {STAMP}s')
 
 if __name__ == '__main__':
     render()
