@@ -1,6 +1,6 @@
 # Cream reading surfaces: September 16, 2026
 
-Status: IMPLEMENTED AND LOCALLY TESTED. Hosted preview and production verification pending. Owner: Brice.
+Status: LIVE. PR120 merged; production deployment and live navigation/calculator checks verified. Physical-device and live computed-style checks remain open. Owner: Brice.
 
 This is the release checklist and roadmap addendum for Brice's request to carry the homepage's cream material into Library and its older public reading pages. It does not reopen native app design or change the homepage, Labs, Plans, intake, checkout, private records or coaching prescriptions.
 
@@ -22,8 +22,9 @@ The sole Netlify configuration change is the build command. Publish directory, h
 - [x] Original Split Calculator scripts executed at 320, 375, 390, 430, 768, 1024 and 1440px. Verified 5K at 20:00 gives 4:00/km, 6:26/mi and 1:36/400m; Half at 1:30:00 gives 4:16/km; custom 8km at 40:00 gives 5:00/km; invalid-input handling remains visible. Results fit all seven widths.
 - [x] Keyboard focus visible on Library navigation; reduced-motion removes Library hover transitions.
 - [x] Netlify source verified against original blob 9bec4ef34be0aa96f2ba9d8e0dd67d7a57f351cf before changing only the build command.
-- [ ] Hosted build and browser: confirm manifest count/commit, Library to Fueling and Split Calculator, no broken shared CSS request.
-- [ ] Production: confirm released commit/deploy, manifest and actual route styling.
-- [ ] Physical iPhone/iPad Safari and 200% text/zoom acceptance. Browser-width emulation is not a physical-device check.
+- [x] Production metadata verified directly with Netlify: deployment 6aaaf04517863d0008e42935, commit b0ceea9bd950e354fbc1f9c1003392769b0d7c35, state ready, production context, published September 16 at 19:39:03 UTC. Deploy summary confirms 66 generated pages and no redirect/header errors. Hosted PR preview was unavailable (404), so release used the complete local source checks followed by production acceptance. Browser deployment inspection found this commit already published; no duplicate deployment was triggered.
+- [x] Live browser acceptance: Library and Fueling visually show the new cream/dark-text material; navigation to Split Calculator works; 5K at 20:00 produces 4:00/km, 6:26/mi and 1:36/400m. No clipping or missing assets observed in the tested live views. Browser run 4878f4dd-fcd3-48ab-b182-d49a3d6f6ea3 completed with these checks confirmed.
+- [ ] Live browser computed-style, HTML data-attribute and CSS-network inspection: unavailable in the hosted browser tool. The tool also could not resize to an exact viewport. Do not describe its default-width screenshot as a verified 1440px or 390px test. Live manifest extraction returned metadata rather than the JSON body; the deploy receipt and local manifest provide the verified count/source evidence.
+- [ ] Physical iPhone/iPad Safari and 200% text/zoom acceptance. Local browser-width emulation is not a physical-device check.
 
-Base main reviewed: fd18f73494280c4c87e841850714c8db9bfea390. Tested final code blobs: script 67d3a2b3745793c1fff5e806de32ec948c88d079, CSS a925c53545fe733ae4563fc8e7a50f9a06f97564, tests 8b82056f06d23fbd4badbe1501db4ca1a14432f2. Next action: inspect the hosted preview before releasing. No live-state or full accessibility-conformance claim is made by this record.
+Base main reviewed: fd18f73494280c4c87e841850714c8db9bfea390. Tested final code blobs: script 67d3a2b3745793c1fff5e806de32ec948c88d079, CSS a925c53545fe733ae4563fc8e7a50f9a06f97564, tests 8b82056f06d23fbd4badbe1501db4ca1a14432f2. Published source is b0ceea9bd950e354fbc1f9c1003392769b0d7c35; this documentation-only receipt deliberately skips another Netlify deploy. No full accessibility-conformance claim is made.
