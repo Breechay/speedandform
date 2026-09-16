@@ -4,10 +4,23 @@ September 16, 2026. Scope: the homepage's existing coaching selector only.
 
 ## Release state
 
-Implemented and locally tested. Production verification pending. Baseline main:
+**LIVE; production deployment and desktop interaction verified.** Release commit
+`bfb2803556d8c0abe46ea642579aff55ae41f613`, merged through PR #121. Baseline main:
 `fd18f73494280c4c87e841850714c8db9bfea390`. Work branch:
-`work/coaching-selector-20260916`. Record the merged commit and deployment receipt
-below after publication. No new offer, price, form step or analytics event.
+`work/coaching-selector-20260916`. Concurrent reading-page work from PR #120 was
+inspected and preserved; its build explicitly excludes the homepage.
+
+Netlify production receipt: project `zingy-speculoos-16852a`, site
+`f3914a6a-a9ce-465e-8212-f5f42597c469`, deploy `6aaaf0aed76daa00098d6d0b`, state
+`ready`, commit ref matching the release, published `2026-09-16T19:40:45.873Z`.
+The receipt was read from the deployment service, not inferred from the merge.
+
+GitHub Actions run `35141629782` passed the selector suite, all 17 existing
+homepage browser checks, and static regression tests before merge. The temporary
+verification workflow was removed before release. Seven intended files changed.
+The independent live desktop smoke test confirmed the cream popup, all three
+service selections updating the trigger, Escape dismissal and no visible clipping.
+No new offer, price, form step or analytics event. No real inquiry email sent.
 
 ## Change
 
@@ -38,7 +51,7 @@ This implementation is not a claim of screen-reader certification.
 - [x] Review and intercepted submission preserve the selected service and price.
 - [x] Emulated touch selection; native select fallback without enhancement.
 - [x] Existing metadata, measurement and release-invariant Node tests.
-- [ ] Verify published deploy, exact release and live selector interaction.
+- [x] Verify published deploy, exact release and live desktop selector interaction.
 - [ ] Physical iPhone/iPad Safari and VoiceOver. Emulation is not a physical test.
 
 Tests: `python tests/coaching-choice-browser.py`, `python tests/homepage-browser.py`,
