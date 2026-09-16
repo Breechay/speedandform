@@ -4,7 +4,13 @@ Date: September 16, 2026. Owner: Brice. Scope: public homepage only.
 
 ## Release state
 
-**IMPLEMENTED AND TESTED; production verification pending.** The deployment receipt will be recorded here after the actual production check. Source baseline: `996b879d7ae2b8a4538feaa9e1d8d14e021efe71`. Working branch: `work/homepage-single-runner-20260916`.
+**LIVE; production verified.** Release commit: `f8973085ef72e4ee8b8dee872087707e04d2e2fc`, merged through PR #119. Source baseline: `996b879d7ae2b8a4538feaa9e1d8d14e021efe71`.
+
+Netlify receipt: project `zingy-speculoos-16852a`, site `f3914a6a-a9ce-465e-8212-f5f42597c469`, production deploy `6aaad94fec790e0008e54952`, state `ready`, commit ref matching the release, published `2026-09-16T18:01:10.399Z`. Confirmed using the deployment service, not inferred from a successful merge. The public homepage was independently read after publication and contains the revised Work with Brice, Know what matters, coaching review and offer hierarchy. The existing publishing configuration was not changed.
+
+GitHub Actions run `35131315005` also passed the release invariants and browser regression suite on the exact imported public files before merge. Only the 12 reviewed files reached the final diff. The one-time transfer workflow was removed before the squash merge.
+
+The production desktop smoke test observed the full-runner poster, review control, and working training/strength disclosures without visible clipping. The remote browser did not expose network instrumentation or a mobile viewport and could not independently confirm video motion. Actual MP4 decoding and playback were tested locally and in the browser regression suite; these are distinct checks, not claims of live physical-device certification.
 
 ## Decisions
 
@@ -34,8 +40,8 @@ Run Development remains $1,200 for eight weeks of Miami coaching. Run + Strength
 - [x] Decode and play the actual 512-square MP4. Confirm manual playback under reduced motion, user pause across scrolling, offscreen pause and preference-change stop.
 - [x] Check no-JavaScript contact fallback and keyboard skip-link focus.
 - [x] Run `node tests/coaching-measurement.cjs`, `node tests/homepage-metadata.cjs`, `node tests/homepage-release.cjs`.
-- [ ] Verify production release, homepage markers and first-party media URLs after merge.
-- [ ] Physical Safari/iPhone/iPad and Instagram in-app inspection. Local Chromium viewport checks do not close this item.
+- [x] Verify production deploy and exact release commit through Netlify; independently confirm revised homepage content, review poster/control and functioning disclosures after merge. This item does not claim live network or video-motion instrumentation.
+- [ ] Physical Safari/iPhone/iPad and Instagram in-app inspection, including live motion and resource loading. Local Chromium viewport checks do not close this item.
 - [ ] Observe real post-release inquiry and conversion quality. No uplift or quality score claimed from these tests.
 
 Browser checks: `python tests/homepage-browser.py` (requires Python Playwright and Chromium; `CHROMIUM_PATH` may select an installed executable). The test renderer inlines local public assets and intercepts submissions. It does not require production access or send email. The generated `.homepage-qa/` directory is local test output, not part of the website release.
