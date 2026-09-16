@@ -13,6 +13,17 @@ FORM therefore writes for execution first, understanding second.
 
 > **The coach owns the complexity. The athlete gets a clear action and a clear reason to care.**
 
+## Evidence note
+
+This is not only a brand preference. It is consistent with current landing-page conversion evidence.
+
+Unbounce's healthcare / wellness benchmark, built from its wider benchmark dataset of more than 57 million conversions, reports that pages written around a **5th–7th grade reading level** had the strongest median conversion rate in that category (**10.8%**). Their wider benchmark work also reports conversion loss as copy becomes harder to read.
+
+Reference:
+`https://unbounce.com/conversion-benchmark-report/healthcare-wellness-conversion-rate/`
+
+Treat that as directional evidence, not a guarantee that every FORM page should hit a specific readability score. The practical rule remains: **if a simpler truthful sentence says the same thing, prefer it.**
+
 ## Public-copy rule
 
 An athlete should not have to decode FORM before deciding whether something is useful.
