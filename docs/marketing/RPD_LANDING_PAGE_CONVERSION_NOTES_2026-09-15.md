@@ -1,9 +1,25 @@
 # RPD Landing Page Conversion Notes — public Unbounce research
 
-**Date:** September 15, 2026  
-**Status:** public research complete; authenticated workspace audit still pending login
+**Date:** September 16, 2026  
+**Status:** public research refreshed; authenticated workspace audit still pending connector login
 
 This note records conversion patterns worth borrowing while the connected Unbounce browser profile is not yet authenticated. It does not replace the later in-account audit.
+
+## Evidence behind the simpler copy rule
+
+Unbounce's current healthcare / wellness benchmark says pages around a **5th–7th grade reading level** had the strongest median conversion rate in that category (**10.8%**). Their wider benchmark dataset covers more than **57 million conversions**.
+
+References:
+- `https://unbounce.com/conversion-benchmark-report/healthcare-wellness-conversion-rate/`
+- `https://unbounce.com/conversion-benchmark-report/`
+
+This is directional evidence, not a promise that FORM will convert at that rate. It reinforces the operating decision already supported by our own athletes: simplify the athlete-facing surface and let the training/result carry sophistication.
+
+Unbounce also maintains current fitness landing-page and 2026 swipe-file examples. The useful pattern is not visual mimicry; it is disciplined campaign-page focus: one audience, one promise, obvious CTA, visible proof, and low decoding cost.
+
+References:
+- `https://unbounce.com/landing-page-examples/fitness/`
+- `https://unbounce.com/landing-page-examples/best-landing-page-examples/`
 
 ## What survives the research
 
@@ -56,6 +72,20 @@ A $79 product page does not need a long intellectual argument above the fold. Ou
 9. app/coaching distinction
 10. price / checkout
 11. final CTA
+
+## Mobile acceptance recorded Sep 16
+
+A deterministic **390px** render of the current sales composition was inspected and passed:
+- hero stays legible;
+- the FORM group image retains useful composition;
+- CTAs stack cleanly;
+- the four product facts remain readable;
+- fit cards and $79 offer card do not overflow;
+- the page keeps a clear visual hierarchy through the final CTA.
+
+A production-equivalent 390px reconstruction of the free-preview Week 4 surface and Week 5 locked state also showed clean mobile hierarchy and no clipping. Live browser arrow QA confirmed Weeks 1–4 remain readable and Week 5+ never exposes prescription.
+
+The remaining mobile-specific unknown is a physical-device/touch swipe gesture. It is a small interaction risk, not a sales-page visual blocker.
 
 ## Ideas to test later, not silently add now
 
