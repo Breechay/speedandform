@@ -1,51 +1,20 @@
-<!-- FORM sign-in link · Graphite.
-     Email clients strip <style> and CSS variables, so every rule is inline and
-     the layout is tables. Colours are the Graphite tokens written literally. -->
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0;padding:0;background:#141718;">
-  <tr>
-    <td align="center" style="padding:56px 20px;">
-      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:392px;">
-
-        <tr>
-          <td align="center" style="padding-bottom:26px;">
-            <span style="font-family:Georgia,'Times New Roman',serif;font-size:31px;letter-spacing:.3em;text-indent:.3em;color:#d8ff68;">FORM</span>
-          </td>
-        </tr>
-        <tr>
-          <td align="center" style="padding-bottom:34px;">
-            <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
-              <td style="width:26px;height:1px;background:#3b4346;font-size:0;line-height:0;">&nbsp;</td>
-            </tr></table>
-          </td>
-        </tr>
-
-        <tr>
-          <td align="center" style="padding-bottom:30px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.55;color:#a8b0b2;">
-            Your record is one tap away.
-          </td>
-        </tr>
-
-        <tr>
-          <td align="center" style="padding-bottom:26px;">
-            <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
-              <td align="center" style="border-radius:10px;background:#d8ff68;">
-                <a href="{{ .ConfirmationURL }}"
-                   style="display:inline-block;padding:15px 30px;border-radius:10px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;color:#11150f;text-decoration:none;">
-                  Open my record &rarr;
-                </a>
-              </td>
-            </tr></table>
-          </td>
-        </tr>
-
-        <tr>
-          <td align="center" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;line-height:1.6;color:#7f898c;">
-            This link expires shortly and works once.<br>
-            If you did not ask for it, ignore this email.
-          </td>
-        </tr>
-
-      </table>
-    </td>
-  </tr>
+<!-- FORM auth email · customer-facing transactional standard. -->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0;padding:0;background:#f5f5f7;">
+  <tr><td align="center" style="padding:32px 16px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;background:#ffffff;border-radius:20px;">
+      <tr><td style="padding:38px 34px 36px 34px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr><td style="padding-bottom:34px;font-family:Arial,Helvetica,sans-serif;font-size:22px;line-height:26px;font-weight:700;color:#111111;">FORM<span style="color:#9acb19;">.</span></td></tr>
+          <tr><td style="padding-bottom:12px;font-family:Arial,Helvetica,sans-serif;font-size:30px;line-height:36px;font-weight:600;letter-spacing:-.6px;color:#111111;">Your sign-in link.</td></tr>
+          <tr><td style="padding-bottom:28px;font-family:Arial,Helvetica,sans-serif;font-size:17px;line-height:27px;color:#4b4b50;">Use this link to open FORM. It works once and expires shortly.</td></tr>
+          <tr><td style="padding-bottom:26px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" style="border-radius:12px;background:#111111;">
+              <a href="{{ .ConfirmationURL }}" style="display:block;padding:15px 20px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:20px;font-weight:600;color:#ffffff;text-decoration:none;">Open FORM &rarr;</a>
+            </td></tr></table>
+          </td></tr>
+          <tr><td style="border-top:1px solid #e5e5e7;padding-top:22px;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:19px;color:#86868b;">If you didn’t request this link, you can ignore this email. Need help? <a href="mailto:support@speedandform.com" style="color:#111111;text-decoration:underline;">support@speedandform.com</a></td></tr>
+        </table>
+      </td></tr>
+    </table>
+  </td></tr>
 </table>
