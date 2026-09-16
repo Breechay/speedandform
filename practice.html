@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-cream="reading" lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="deploy-id" content="202603161318">
@@ -22,27 +22,26 @@
 <meta name="twitter:description" content="The FORM training board. Weekly schedule, current sessions, and the structure of the practice.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --accent:#c4593a; --line:#d8d2c8; --line-l:#e8e3dc; }
 html, body { height: auto !important; overflow: visible !important; }
-body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 100px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+body { background: var(--cream); color: var(--ink); font-family: var(--cream-sans); font-weight: 400; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 100px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
 
 /* NAV */
-.nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
-.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
-.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+.nav { max-width: var(--cream-width); margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: var(--cream-serif); font-weight: 400; font-size: 1.375rem; letter-spacing: .08em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); }
 
 /* CONTENT */
-.content { max-width: 560px; margin: 0 auto; padding: 52px 32px 0; border-left: 1px solid var(--line-l); }
+.content { max-width: var(--cream-width); margin: 0 auto; padding: 52px 32px 0; border-left: 1px solid var(--line-l); }
 
 /* BOARD HEADER */
 .board-header { margin-bottom: 40px; }
-.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 42px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 6px; }
-.page-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; display: block; margin-bottom: 10px; }
-.board-week { font-size: 9px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
-.board-anchor { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 19px; font-weight: 300; color: var(--ink-l); letter-spacing: 0.02em; display: block; }
+.page-title { font-family: var(--cream-serif); font-weight: 400; font-size: 2.625rem; letter-spacing: 0; color: var(--ink); line-height: 1; margin-bottom: 6px; }
+.page-sub { font-family: var(--cream-serif); font-style: italic; font-size: 1.125rem; font-weight: 400; color: var(--ink-f); letter-spacing: 0; display: block; margin-bottom: 10px; }
+.board-week { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
+.board-anchor { font-family: var(--cream-serif); font-style: italic; font-size: 1.1875rem; font-weight: 400; color: var(--ink-l); letter-spacing: 0; display: block; }
 
 /* DAY ROWS */
 .week-board { border-top: 1px solid var(--line-l); }
@@ -62,25 +61,25 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 }
 
 .day-col { width: 76px; flex-shrink: 0; padding-top: 3px; }
-.day-name { font-size: 8px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-f); display: block; }
-.day-today-label { font-size: 7px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-l); display: none; margin-top: 5px; }
+.day-name { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; }
+.day-today-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-l); display: none; margin-top: 5px; }
 .day-row.today .day-today-label { display: block; }
 
 .day-sessions { flex: 1; }
 .session-line {
-  display: block; font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.55;
+  display: block; font-size: var(--cream-text); color: var(--ink-l); letter-spacing: 0; line-height: 1.55;
 }
 .session-line.primary {
-  font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300;
-  letter-spacing: 0.03em; color: var(--ink); line-height: 1.1; margin-bottom: 4px;
+  font-family: var(--cream-serif); font-size: 1.25rem; font-weight: 400;
+  letter-spacing: 0; color: var(--ink); line-height: 1.1; margin-bottom: 4px;
 }
-.session-line.detail { font-size: 11px; color: var(--ink-f); letter-spacing: 0.04em; line-height: 1.65; }
-.session-line.sub { font-size: 11px; color: var(--ink-f); letter-spacing: 0.03em; }
+.session-line.detail { font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; line-height: 1.65; }
+.session-line.sub { font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; }
 
 /* Anchor sessions — Threshold and Long Run */
 .day-row.anchor { padding-top: 22px; padding-bottom: 22px; }
 .day-row.anchor .session-line.primary {
-  font-size: 23px;
+  font-size: 1.4375rem;
   color: var(--ink);
 }
 
@@ -102,22 +101,23 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 .phase-bar { margin-bottom: 32px; padding: 16px 0; border-top: 1px solid var(--line-l); display: flex; gap: 0; align-items: baseline; flex-wrap: wrap; }
 .phase-bar-col { flex: 1; min-width: 120px; }
 .phase-bar-col.execution { flex: 2; border-top: 1px solid var(--line-l); margin-top: 12px; padding-top: 12px; width: 100%; flex-basis: 100%; border-left: none !important; padding-left: 0 !important; }
-.phase-bar-label { font-size: 7px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 5px; }
-.phase-bar-value { font-size: 12px; color: var(--ink-l); letter-spacing: 0.04em; }
+.phase-bar-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 5px; }
+.phase-bar-value { font-size: var(--cream-note); color: var(--ink-l); letter-spacing: 0; }
 .phase-bar-col + .phase-bar-col { border-left: 1px solid var(--line-l); padding-left: 20px; }
 
 /* PHASE LINE (bottom stamp) */
-.phase-line { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line-l); font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); opacity: 0.55; }
+.phase-line { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line-l); font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); opacity: 0.55; }
 
 @media (max-width: 480px) {
   .nav { padding-left: 24px; padding-right: 24px; }
   .content { padding-left: 24px; padding-right: 24px; border-left: none; }
-  .page-title { font-size: 34px; }
+  .page-title { font-size: 2.125rem; }
   .day-row.today::before { left: -16px; }
   .day-col { width: 80px; }
-  .day-name { letter-spacing: 0.14em; }
+  .day-name { letter-spacing: .08em; }
 }
 </style>
+<link rel="stylesheet" href="/css/cream-reading.css?v=20260916">
 </head>
 <body>
 
@@ -153,8 +153,8 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 
   <div class="week-board" id="week-board">
     <div style="display:flex;align-items:baseline;justify-content:space-between;padding:14px 0 10px;border-bottom:1px solid var(--line-l);margin-bottom:0;">
-      <span style="font-size:8px;font-weight:500;letter-spacing:0.35em;text-transform:uppercase;color:var(--ink-f);">Current Week</span>
-      <a href="https://apps.apple.com/us/app/form-practice/id6761313085" style="font-size:8px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-f);text-decoration:none;border-bottom:1px solid var(--line-l);">Full detail in app →</a>
+      <span style="font-size:var(--cream-label);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-f);">Current Week</span>
+      <a href="https://apps.apple.com/us/app/form-practice/id6761313085" style="font-size:var(--cream-label);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-f);text-decoration:none;border-bottom:1px solid var(--line-l);">Full detail in app →</a>
     </div>
 
     <!-- MONDAY -->

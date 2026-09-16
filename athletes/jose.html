@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-cream="reading" lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="deploy-id" content="202603161318">
@@ -14,42 +14,41 @@
 <meta property="og:url" content="https://speedandform.com/athletes/jose">
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="FORM">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --accent:#c4593a; --line:#d8d2c8; --line-l:#e8e3dc; }
 html, body { height: auto !important; overflow: visible !important; }
-body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding: 0 0 120px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
-.nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
-.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
-.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
-.content { max-width: 560px; margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
-.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 52px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 8px; }
-.athlete-meta { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); margin-bottom: 52px; display: block; }
-.section-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 20px; }
+body { background: var(--cream); color: var(--ink); font-family: var(--cream-sans); font-weight: 400; font-kerning: normal; font-feature-settings: "kern"; padding: 0 0 120px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.nav { max-width: var(--cream-width); margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: var(--cream-serif); font-weight: 400; font-size: 1.375rem; letter-spacing: .08em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); }
+.content { max-width: var(--cream-width); margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
+.page-title { font-family: var(--cream-serif); font-weight: 400; font-size: 3.25rem; letter-spacing: 0; color: var(--ink); line-height: 1; margin-bottom: 8px; }
+.athlete-meta { font-size: var(--cream-small); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); margin-bottom: 52px; display: block; }
+.section-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 20px; }
 /* Threshold table */
 .threshold-table { width: 100%; border-collapse: collapse; }
 .threshold-table thead tr { border-bottom: 1px solid var(--line); }
-.threshold-table th { font-size: 8px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); padding: 0 0 12px; text-align: left; }
+.threshold-table th { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); padding: 0 0 12px; text-align: left; }
 .threshold-table th:last-child { text-align: right; }
 .threshold-table tbody tr { border-bottom: 1px solid var(--line-l); }
-.threshold-table td { padding: 14px 0; font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; vertical-align: top; }
+.threshold-table td { padding: 14px 0; font-size: var(--cream-text); color: var(--ink-l); letter-spacing: 0; vertical-align: top; }
 .threshold-table td:last-child { text-align: right; }
-.td-session { font-size: 11px; color: var(--ink-f); display: block; margin-top: 2px; }
+.td-session { font-size: var(--cream-small); color: var(--ink-f); display: block; margin-top: 2px; }
 .td-pb { font-weight: 500; color: var(--ink); }
-.td-skip-bare { color: var(--line); font-size: 13px; }
-.td-skip-label { color: var(--ink-f); font-size: 10px; font-weight: 400; letter-spacing: 0.06em; }
-.no-data { font-size: 13px; color: var(--ink-f); font-style: italic; font-family: 'Cormorant Garamond', serif; padding: 20px 0; }
+.td-skip-bare { color: var(--cream-muted); font-size: var(--cream-text); }
+.td-skip-label { color: var(--ink-f); font-size: var(--cream-small); font-weight: 400; letter-spacing: 0; }
+.no-data { font-size: var(--cream-text); color: var(--ink-f); font-style: italic; font-family: var(--cream-serif); padding: 20px 0; }
 .rule { width: 100%; height: 1px; background: var(--line-l); margin: 52px 0; }
 /* Race section */
 .race-block { padding: 20px 0; border-top: 1px solid var(--line-l); }
 .race-block:last-of-type { border-bottom: 1px solid var(--line-l); }
-.race-date { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 4px; }
-.race-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; color: var(--ink); display: block; margin-bottom: 4px; text-decoration: none; }
+.race-date { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 4px; }
+.race-name { font-family: var(--cream-serif); font-size: 1.375rem; font-weight: 400; color: var(--ink); display: block; margin-bottom: 4px; text-decoration: none; }
 .race-name:hover { color: var(--ink-l); }
-.race-detail { font-size: 12px; color: var(--ink-f); letter-spacing: 0.03em; }
-.race-result { font-size: 13px; font-weight: 500; color: var(--ink); margin-left: 8px; }
-.loading { font-size: 11px; color: var(--ink-f); letter-spacing: 0.1em; text-transform: uppercase; padding: 20px 0; }
+.race-detail { font-size: var(--cream-note); color: var(--ink-f); letter-spacing: 0; }
+.race-result { font-size: var(--cream-text); font-weight: 500; color: var(--ink); margin-left: 8px; }
+.loading { font-size: var(--cream-small); color: var(--ink-f); letter-spacing: .08em; text-transform: uppercase; padding: 20px 0; }
 
 
 
@@ -57,32 +56,32 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 @media (max-width: 480px) {
   .nav { padding-left: 24px; padding-right: 24px; }
   .content { padding-left: 24px; padding-right: 24px; border-left: none; }
-  .page-title { font-size: 40px; }
+  .page-title { font-size: 2.5rem; }
 }
 
 /* Upcoming block */
 .upcoming-block { padding: 0 0 32px; }
-.ub-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 8px; }
-.ub-session { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 24px; letter-spacing: 0.04em; color: var(--ink); display: block; margin-bottom: 6px; }
-.ub-link { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.ub-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 8px; }
+.ub-session { font-family: var(--cream-serif); font-weight: 400; font-size: 1.5rem; letter-spacing: 0; color: var(--ink); display: block; margin-bottom: 6px; }
+.ub-link { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
 .ub-link:hover { color: var(--ink-l); }
 /* Race fields */
 .race-fields { display: flex; align-items: baseline; gap: 12px; margin-top: 6px; flex-wrap: wrap; }
-.rf-label { font-size: 8px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); }
-.rf-val { font-size: 13px; color: var(--ink-l); }
+.rf-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); }
+.rf-val { font-size: var(--cream-text); color: var(--ink-l); }
 .rf-edit { cursor: pointer; border-bottom: 1px dashed transparent; transition: border-color 0.15s; }
 .rf-edit:hover { border-bottom-color: var(--accent); color: var(--accent); }
-.rf-inp { border: none; border-bottom: 1.5px solid var(--accent); background: transparent; outline: none; font-family: 'Jost', sans-serif; font-size: 13px; color: var(--ink); padding: 1px 2px; width: 120px; }
-.rc-del { background: none; border: none; cursor: pointer; font-size: 14px; color: var(--ink-f); opacity: 0.4; padding: 0 2px; line-height: 1; margin-left: auto; }
+.rf-inp { border: none; border-bottom: 1.5px solid var(--accent); background: transparent; outline: none; font-family: var(--cream-sans); font-size: var(--cream-text); color: var(--ink); padding: 1px 2px; width: 120px; }
+.rc-del { background: none; border: none; cursor: pointer; font-size: var(--cream-text); color: var(--ink-f); opacity: 0.4; padding: 0 2px; line-height: 1; margin-left: auto; }
 .rc-del:hover { opacity: 1; color: var(--accent); }
 /* Race add row */
 .race-add-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line-l); }
-.ra-inp { border: none; border-bottom: 1px solid var(--line); background: transparent; outline: none; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 12px; color: var(--ink); padding: 4px 2px; width: 120px; }
+.ra-inp { border: none; border-bottom: 1px solid var(--line); background: transparent; outline: none; font-family: var(--cream-sans); font-weight: 400; font-size: var(--cream-note); color: var(--ink); padding: 4px 2px; width: 120px; }
 .ra-inp:focus { border-bottom-color: var(--accent); }
-.ra-btn { background: none; border: 1px solid var(--line); cursor: pointer; font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-f); padding: 4px 12px; }
+.ra-btn { background: none; border: 1px solid var(--line); cursor: pointer; font-family: var(--cream-sans); font-size: var(--cream-small); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); padding: 4px 12px; }
 .ra-btn:hover { border-color: var(--ink-l); color: var(--ink); }
 /* Coach toggle */
-.coach-toggle { position: fixed; bottom: 20px; right: 20px; background: none; border: 1px solid var(--line); cursor: pointer; font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-f); padding: 6px 12px; z-index: 100; background: var(--cream); }
+.coach-toggle { position: fixed; bottom: 20px; right: 20px; background: none; border: 1px solid var(--line); cursor: pointer; font-family: var(--cream-sans); font-size: var(--cream-small); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); padding: 6px 12px; z-index: 100; background: var(--cream); }
 .coach-toggle:hover { border-color: var(--ink-l); color: var(--ink); }
 </style>
 <meta property="og:image" content="https://speedandform.com/og/default.jpg">
@@ -92,6 +91,7 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Athlete Record — FORM">
 <meta name="twitter:description" content="Training record and session history.">
+<link rel="stylesheet" href="/css/cream-reading.css?v=20260916">
 </head>
 <body>
 <div class="nav">
@@ -114,9 +114,9 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 
   <div id="form-footer"></div>
   <div style="border-top: 1px solid var(--line-l); margin-top: 64px; padding-top: 24px; display: flex; gap: 32px;">
-    <a href="/athletes" style="font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); text-decoration: none;">Athletes</a>
-    <a href="/practice" style="font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); text-decoration: none;">Practice</a>
-    <a href="/library" style="font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); text-decoration: none;">Library</a>
+    <a href="/athletes" style="font-size: var(--cream-small); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none;">Athletes</a>
+    <a href="/practice" style="font-size: var(--cream-small); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none;">Practice</a>
+    <a href="/library" style="font-size: var(--cream-small); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none;">Library</a>
   </div>
 </div>
 
@@ -213,7 +213,7 @@ function renderCurrentSessionFromSchedule() {
   wrap.style.display = '';
   let html = '<div class="upcoming-block"><span class="ub-label">This Week</span>';
   if (threshold) html += `<span class="ub-session">Threshold · ${threshold.desc}</span>`;
-  if (longrun)   html += `<span class="ub-session" style="display:block;margin-top:4px;font-size:20px;">Long Run · ${longrun.desc}</span>`;
+  if (longrun)   html += `<span class="ub-session" style="display:block;margin-top:4px;font-size:1.25rem;">Long Run · ${longrun.desc}</span>`;
   html += '<a class="ub-link" href="/threshold" style="margin-top:10px;display:inline-block;">Threshold →</a></div>';
   wrap.innerHTML = html;
 }

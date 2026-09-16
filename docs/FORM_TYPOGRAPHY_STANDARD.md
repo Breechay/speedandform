@@ -23,3 +23,7 @@ Do not hide overflow to conceal a layout defect or shrink everything to fit. Use
 Record exactly what was inspected. Source review is not a device test. A numerical design score is not acceptance evidence. If a device or capability is unavailable, leave that check open.
 
 This newer standard takes precedence where older styling instructions require unreadably small labels, excessively tracked text or decorative numerals for data comparisons.
+
+## Public cream pages: September 16 direction
+
+Brice explicitly chose the current homepage cream sections as the reference for Library and related cream pages. These opt in with `html[data-cream]` and load `css/cream-reading.css`: Georgia headings, native system sans body, restrained system mono labels, near-black ink and readable warm-gray secondary text. Do not reintroduce Cormorant/Jost, 8px labels or low-opacity instructions on these surfaces. Dark pages, private apps and native surfaces keep their own systems. See the [cream reading audit](audits/CREAM-READING-20260916.md) and its explicit migration manifest.

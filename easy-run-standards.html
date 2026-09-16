@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-cream="reading" lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="deploy-id" content="202603161318">
@@ -21,26 +21,25 @@
 <meta name="twitter:description" content="Mechanical standards for easy runs. Garmin-based reference ranges for ground contact, cadence, stride length, vertical ratio, and vertical oscillation.">
 <meta name="twitter:image" content="https://speedandform.com/og/default.jpg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --line:#d8d2c8; --line-l:#e8e3dc; }
 html, body { height: auto !important; overflow: visible !important; }
-body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 120px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+body { background: var(--cream); color: var(--ink); font-family: var(--cream-sans); font-weight: 400; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 120px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
 
 .nav { max-width: 700px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
-.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
-.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+.nav-home { font-family: var(--cream-serif); font-weight: 400; font-size: 1.375rem; letter-spacing: .08em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); }
 
 /* PAGE */
 .page { max-width: 700px; margin: 0 auto; padding: 64px 32px 0; }
 
 /* MASTHEAD — centered, matching image */
 .masthead { text-align: center; margin-bottom: 0; }
-.wm { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 15px; letter-spacing: 0.45em; color: var(--ink); display: block; margin-bottom: 28px; }
+.wm { font-family: var(--cream-serif); font-weight: 400; font-size: var(--cream-text); letter-spacing: .08em; color: var(--ink); display: block; margin-bottom: 28px; }
 .full-rule { width: 100%; height: 1px; background: var(--line-l); display: block; margin-bottom: 36px; }
-.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 22px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); display: block; margin-bottom: 10px; }
-.page-sub { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 17px; letter-spacing: 0.04em; color: var(--ink-l); display: block; margin-bottom: 48px; }
+.page-title { font-family: var(--cream-serif); font-weight: 400; font-size: 1.375rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); display: block; margin-bottom: 10px; }
+.page-sub { font-family: var(--cream-serif); font-weight: 400; font-size: 1.0625rem; letter-spacing: 0; color: var(--ink-l); display: block; margin-bottom: 48px; }
 
 /* METRICS GRID — 2-col matching image */
 .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
@@ -51,25 +50,25 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 .metric.full { grid-column: 1 / -1; border-left: none; padding-left: 0; border-bottom: 1px solid var(--line-l); }
 
 .metric-num-title { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; }
-.metric-num { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 17px; color: var(--ink); }
-.metric-title { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 20px; letter-spacing: 0.02em; color: var(--ink); }
+.metric-num { font-family: var(--cream-serif); font-weight: 400; font-size: 1.0625rem; color: var(--ink); }
+.metric-title { font-family: var(--cream-serif); font-weight: 400; font-size: 1.25rem; letter-spacing: 0; color: var(--ink); }
 
-.metric-std-label { font-size: 11px; font-weight: 500; letter-spacing: 0.04em; color: var(--ink); display: block; margin-bottom: 10px; }
+.metric-std-label { font-size: var(--cream-small); font-weight: 500; letter-spacing: 0; color: var(--ink); display: block; margin-bottom: 10px; }
 .metric-ranges { list-style: none; padding: 0; margin-bottom: 16px; }
-.metric-ranges li { font-size: 12px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.75; display: flex; gap: 8px; align-items: baseline; }
-.metric-ranges li::before { content: '•'; color: var(--ink-f); flex-shrink: 0; font-size: 10px; }
+.metric-ranges li { font-size: var(--cream-note); color: var(--ink-l); letter-spacing: 0; line-height: 1.75; display: flex; gap: 8px; align-items: baseline; }
+.metric-ranges li::before { content: '•'; color: var(--ink-f); flex-shrink: 0; font-size: var(--cream-small); }
 
 .metric-interp { padding-top: 12px; }
-.metric-interp p { font-size: 12px; color: var(--ink-f); letter-spacing: 0.03em; line-height: 1.7; }
+.metric-interp p { font-size: var(--cream-note); color: var(--ink-f); letter-spacing: 0; line-height: 1.7; }
 .metric-interp p + p { margin-top: 2px; }
 
 /* CLOSING */
 .closing { text-align: center; padding: 48px 0 0; }
 .closing-rule { width: 100%; height: 1px; background: var(--line-l); display: block; margin-bottom: 36px; }
-.closing-line { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 18px; letter-spacing: 0.06em; color: var(--ink); display: block; margin-bottom: 32px; }
+.closing-line { font-family: var(--cream-serif); font-weight: 400; font-size: 1.125rem; letter-spacing: 0; color: var(--ink); display: block; margin-bottom: 32px; }
 
 .footer-links { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
-.footer-link { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
 .footer-link.primary { color: var(--ink-l); }
 .footer-link:hover { color: var(--ink); }
 
@@ -82,6 +81,7 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
   .metric.full { border-bottom: none; }
 }
 </style>
+<link rel="stylesheet" href="/css/cream-reading.css?v=20260916">
 </head>
 <body>
 
@@ -95,7 +95,7 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
   <div class="masthead">
     <span class="page-title">Easy Runs</span>
     <span class="page-sub">Mechanical Standards (Garmin-Based)</span>
-    <p style="font-size:13px; color:var(--ink-l); letter-spacing:0.02em; line-height:1.7; margin-bottom:44px; margin-top:-28px;">Use these ranges to confirm easy runs are landing correctly. Check after a comfortable session — not during one. If a metric is outside range, treat it as information, not a problem to fix on the same day.</p>
+    <p style="font-size:var(--cream-text); color:var(--ink-l); letter-spacing:0; line-height:1.7; margin-bottom:44px; margin-top:-28px;">Use these ranges to confirm easy runs are landing correctly. Check after a comfortable session — not during one. If a metric is outside range, treat it as information, not a problem to fix on the same day.</p>
   </div>
 
   <div class="metrics-grid">

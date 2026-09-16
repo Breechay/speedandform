@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-cream="reading" lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="deploy-id" content="202603161318">
@@ -21,46 +21,46 @@
 <meta name="twitter:description" content="The race is the expression of what training built. How to approach taper, race week, and race-day execution.">
 <meta name="twitter:image" content="https://speedandform.com/og/default.jpg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --line:#d8d2c8; --line-l:#e8e3dc; }
 html, body { height: auto !important; overflow: visible !important; }
-body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 100px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
-.nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
-.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
-.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
-.content { max-width: 560px; margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
-.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 52px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 6px; }
-.page-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; display: block; margin-bottom: 40px; }
+body { background: var(--cream); color: var(--ink); font-family: var(--cream-sans); font-weight: 400; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 100px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.nav { max-width: var(--cream-width); margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: var(--cream-serif); font-weight: 400; font-size: 1.375rem; letter-spacing: .08em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); }
+.content { max-width: var(--cream-width); margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
+.page-title { font-family: var(--cream-serif); font-weight: 400; font-size: 3.25rem; letter-spacing: 0; color: var(--ink); line-height: 1; margin-bottom: 6px; }
+.page-sub { font-family: var(--cream-serif); font-style: italic; font-size: 1.125rem; font-weight: 400; color: var(--ink-f); letter-spacing: 0; display: block; margin-bottom: 40px; }
 .section-rule { width: 100%; height: 1px; background: var(--line-l); display: block; margin: 40px 0 32px; }
-.section-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
-.section-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 28px; letter-spacing: 0.04em; color: var(--ink); line-height: 1.1; margin-bottom: 16px; display: block; }
-.section-body { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.75; }
+.section-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
+.section-title { font-family: var(--cream-serif); font-weight: 400; font-size: 1.75rem; letter-spacing: 0; color: var(--ink); line-height: 1.1; margin-bottom: 16px; display: block; }
+.section-body { font-size: var(--cream-text); color: var(--ink-l); letter-spacing: 0; line-height: 1.75; }
 .section-body p + p { margin-top: 10px; }
 .section-body a { color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); }
 .week-row { padding: 14px 0; border-bottom: 1px solid var(--line-l); display: grid; grid-template-columns: 80px 1fr; gap: 0 16px; align-items: start; }
 .week-row:first-child { border-top: 1px solid var(--line-l); }
-.week-day { font-size: 8px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-l); padding-top: 2px; }
-.week-desc { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.6; }
-.week-note { font-size: 11px; color: var(--ink-f); letter-spacing: 0.03em; display: block; margin-top: 4px; }
+.week-day { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-l); padding-top: 2px; }
+.week-desc { font-size: var(--cream-text); color: var(--ink-l); letter-spacing: 0; line-height: 1.6; }
+.week-note { font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; display: block; margin-top: 4px; }
 .rule-list { list-style: none; margin-top: 16px; }
-.rule-item { padding: 14px 0; border-bottom: 1px solid var(--line-l); font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.6; }
+.rule-item { padding: 14px 0; border-bottom: 1px solid var(--line-l); font-size: var(--cream-text); color: var(--ink-l); letter-spacing: 0; line-height: 1.6; }
 .rule-item:first-child { border-top: 1px solid var(--line-l); }
 .rule-item a { color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); }
-.rule-label { font-size: 8px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 4px; }
+.rule-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 4px; }
 .closing-rule { width: 100%; height: 1px; background: var(--line-l); display: block; margin: 52px 0 28px; }
-.closing-line { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-l); letter-spacing: 0.02em; display: block; }
+.closing-line { font-family: var(--cream-serif); font-style: italic; font-size: 1.125rem; font-weight: 400; color: var(--ink-l); letter-spacing: 0; display: block; }
 .footer-links { margin-top: 52px; padding-top: 24px; border-top: 1px solid var(--line-l); display: flex; gap: 28px; flex-wrap: wrap; }
-.footer-link { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
 .footer-link:hover { color: var(--ink-l); }
 @media (max-width: 480px) {
   .nav { padding-left: 24px; padding-right: 24px; }
   .content { padding-left: 24px; padding-right: 24px; border-left: none; }
-  .page-title { font-size: 38px; }
+  .page-title { font-size: 2.375rem; }
   .week-row { grid-template-columns: 64px 1fr; }
 }
 </style>
+<link rel="stylesheet" href="/css/cream-reading.css?v=20260916">
 </head>
 <body>
 <div class="nav">

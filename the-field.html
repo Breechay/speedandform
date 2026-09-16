@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-cream="reading" lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="deploy-id" content="202603161318">
@@ -23,7 +23,6 @@
 <meta name="twitter:description" content="The training locations of the FORM practice in Miami. Where the work happens.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -32,7 +31,7 @@
 }
 body {
   background: var(--cream); color: var(--ink);
-  font-family: 'Jost', sans-serif; font-weight: 300;
+  font-family: var(--cream-sans); font-weight: 400;
   font-kerning: normal; font-feature-settings: "kern";
   padding-bottom: 120px;
   overflow-y: auto;
@@ -42,38 +41,38 @@ body {
 
 /* NAV */
 .nav {
-  max-width: 560px; margin: 0 auto;
+  max-width: var(--cream-width); margin: 0 auto;
   padding: 36px 32px 0;
   display: flex; align-items: center; justify-content: space-between;
 }
 .nav-home {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300; font-size: 22px;
-  letter-spacing: 0.12em; color: var(--ink);
+  font-family: var(--cream-serif);
+  font-weight: 400; font-size: 1.375rem;
+  letter-spacing: .08em; color: var(--ink);
   text-decoration: none;
 }
 .nav-label {
-  font-size: 8px; font-weight: 500;
-  letter-spacing: 0.3em; text-transform: uppercase;
+  font-size: var(--cream-label); font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase;
   color: var(--ink-f);
 }
 
 /* CONTENT COLUMN */
 .content {
-  max-width: 560px; margin: 0 auto;
+  max-width: var(--cream-width); margin: 0 auto;
   padding: 52px 32px 0;
   border-left: 1px solid var(--line-l);
 }
 
 .page-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300; font-size: 42px;
-  letter-spacing: 0.04em; color: var(--ink);
+  font-family: var(--cream-serif);
+  font-weight: 400; font-size: 2.625rem;
+  letter-spacing: 0; color: var(--ink);
   line-height: 1; margin-bottom: 12px;
 }
 .page-sub {
-  font-size: 11px; color: var(--ink-f);
-  letter-spacing: 0.05em; line-height: 1.6;
+  font-size: var(--cream-small); color: var(--ink-f);
+  letter-spacing: 0; line-height: 1.6;
   display: block; margin-bottom: 20px;
 }
 
@@ -111,8 +110,8 @@ body {
   );
 }
 .placeholder-label {
-  font-size: 8px; font-weight: 500;
-  letter-spacing: 0.3em; text-transform: uppercase;
+  font-size: var(--cream-label); font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase;
   color: var(--ink-f); position: relative; z-index: 1;
 }
 
@@ -124,21 +123,21 @@ body {
   display: flex; align-items: baseline; justify-content: space-between;
 }
 .field-stamp {
-  font-size: 8px; font-weight: 500;
-  letter-spacing: 0.28em; text-transform: uppercase;
+  font-size: var(--cream-label); font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase;
   color: var(--ink-f); opacity: 0.6;
 }
 .frame-count {
-  font-size: 8px; font-weight: 500;
-  letter-spacing: 0.28em; text-transform: uppercase;
+  font-size: var(--cream-label); font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase;
   color: var(--ink-f); opacity: 0.6;
 }
 
 /* SEO context paragraph — quiet, near bottom */
 .field-context {
   margin-top: 40px;
-  font-size: 12px; color: var(--ink-f);
-  line-height: 1.7; letter-spacing: 0.02em;
+  font-size: var(--cream-note); color: var(--ink-f);
+  line-height: 1.7; letter-spacing: 0;
   max-width: 420px;
 }
 
@@ -151,12 +150,13 @@ body {
 @media (max-width: 480px) {
   .nav { padding-left: 24px; padding-right: 24px; }
   .content { padding-left: 24px; padding-right: 24px; border-left: none; }
-  .page-title { font-size: 34px; }
+  .page-title { font-size: 2.125rem; }
   .frame { padding-top: 36px; }
   .frame-placeholder { padding-top: 36px; }
   .frame-narrow { padding-top: 48px; max-width: 100%; }
 }
 </style>
+<link rel="stylesheet" href="/css/cream-reading.css?v=20260916">
 </head>
 <body>
 
@@ -210,19 +210,19 @@ body {
   <p class="field-context">FORM is a small distance running training group based in Miami. Sessions include weekly threshold workouts, long runs, and structured track work. Runners train to improve their distance running over time.</p>
 
   <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line-l);">
-    <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px;">Session Locations</span>
+    <span style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px;">Session Locations</span>
     <div style="padding: 14px 0; border-bottom: 1px solid var(--line-l); display: grid; grid-template-columns: 90px 1fr; gap: 0; align-items: baseline;">
-      <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f);">Tuesday</span>
-      <a href="https://maps.google.com/?q=Flamingo+Park+Track,+Miami+Beach,+FL" target="_blank" rel="noopener" style="font-size: 13px; color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); letter-spacing: 0.02em;">Flamingo Park Track</a>
+      <span style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f);">Tuesday</span>
+      <a href="https://maps.google.com/?q=Flamingo+Park+Track,+Miami+Beach,+FL" target="_blank" rel="noopener" style="font-size: var(--cream-text); color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); letter-spacing: 0;">Flamingo Park Track</a>
     </div>
     <div style="padding: 14px 0; border-bottom: 1px solid var(--line-l); display: grid; grid-template-columns: 90px 1fr; gap: 0; align-items: baseline;">
-      <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f);">Saturday</span>
-      <a href="https://maps.google.com/?q=The+Hideout+Coffee+House,+Edgewater+Miami+FL" target="_blank" rel="noopener" style="font-size: 13px; color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); letter-spacing: 0.02em;">Hideout, Edgewater</a>
+      <span style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f);">Saturday</span>
+      <a href="https://maps.google.com/?q=The+Hideout+Coffee+House,+Edgewater+Miami+FL" target="_blank" rel="noopener" style="font-size: var(--cream-text); color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); letter-spacing: 0;">Hideout, Edgewater</a>
     </div>
   </div>
 
   <div style="margin-top: 32px; padding-top: 0;">
-    <a href="/practice" style="font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); text-decoration: none;">Practice →</a>
+    <a href="/practice" style="font-size: var(--cream-small); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none;">Practice →</a>
   </div>
 
 </div>

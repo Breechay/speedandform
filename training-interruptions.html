@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-cream="reading" lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="deploy-id" content="202603161318">
@@ -24,7 +24,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -35,31 +34,31 @@
 html, body { height: auto !important; overflow: visible !important; }
 body {
   background: var(--cream); color: var(--ink);
-  font-family: 'Jost', sans-serif; font-weight: 300;
+  font-family: var(--cream-sans); font-weight: 400;
   font-kerning: normal; font-feature-settings: "kern";
   padding-bottom: 120px; overflow-y: auto; -webkit-overflow-scrolling: touch;
 }
 
-.nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
-.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
-.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
-.content { max-width: 560px; margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
+.nav { max-width: var(--cream-width); margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: var(--cream-serif); font-weight: 400; font-size: 1.375rem; letter-spacing: .08em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); }
+.content { max-width: var(--cream-width); margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
 
-.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 42px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 8px; }
-.page-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; margin-bottom: 40px; display: block; }
+.page-title { font-family: var(--cream-serif); font-weight: 400; font-size: 2.625rem; letter-spacing: 0; color: var(--ink); line-height: 1; margin-bottom: 8px; }
+.page-sub { font-family: var(--cream-serif); font-style: italic; font-size: 1.125rem; font-weight: 400; color: var(--ink-f); letter-spacing: 0; margin-bottom: 40px; display: block; }
 
 /* TRIAGE RAIL */
 .triage { border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); padding: 20px 0; margin-bottom: 48px; }
-.triage-q { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px; }
+.triage-q { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px; }
 .triage-levels { display: flex; gap: 0; margin-bottom: 14px; }
 .tl { flex: 1; padding-right: 16px; }
 .tl + .tl { border-left: 1px solid var(--line-l); padding-left: 16px; padding-right: 0; }
-.tl-score { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; color: var(--ink); display: block; line-height: 1; margin-bottom: 4px; }
-.tl-action { font-size: 10px; color: var(--ink-l); letter-spacing: 0.03em; line-height: 1.55; display: block; }
-.triage-note { font-size: 10px; color: var(--ink-f); letter-spacing: 0.03em; line-height: 1.6; border-top: 1px solid var(--line-l); padding-top: 12px; }
+.tl-score { font-family: var(--cream-serif); font-size: 1.625rem; font-weight: 400; color: var(--ink); display: block; line-height: 1; margin-bottom: 4px; }
+.tl-action { font-size: var(--cream-small); color: var(--ink-l); letter-spacing: 0; line-height: 1.55; display: block; }
+.triage-note { font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; line-height: 1.6; border-top: 1px solid var(--line-l); padding-top: 12px; }
 
 /* SECTION LABEL */
-.section-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 20px; }
+.section-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 20px; }
 
 /* BODY MAP + LIST LAYOUT */
 .entry-wrap { display: flex; gap: 32px; align-items: flex-start; margin-bottom: 40px; }
@@ -68,9 +67,9 @@ body {
 .map-col { flex-shrink: 0; width: 162px; }
 .body-map { width: 100%; height: auto; display: block; }
 .map-plate { margin-top: 12px; text-align: center; }
-.map-plate-fig { font-size: 7px; font-weight: 500; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink-f); opacity: 0.55; display: block; margin-bottom: 2px; }
-.map-plate-name { font-size: 8px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-f); opacity: 0.78; display: block; margin-bottom: 6px; }
-.map-caption { font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); opacity: 0.5; display: block; }
+.map-plate-fig { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); opacity: 0.55; display: block; margin-bottom: 2px; }
+.map-plate-name { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); opacity: 0.78; display: block; margin-bottom: 6px; }
+.map-caption { font-size: var(--cream-label); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); opacity: 0.5; display: block; }
 
 /* SVG zones */
 .z {
@@ -89,14 +88,14 @@ body {
   padding: 11px 0; border-bottom: 1px solid var(--line-l);
   cursor: pointer; -webkit-tap-highlight-color: transparent;
   background: none; border-left: none; border-right: none; border-top: none;
-  width: 100%; text-align: left; font-family: 'Jost', sans-serif;
+  width: 100%; text-align: left; font-family: var(--cream-sans);
 }
 .zone-btn:first-child { border-top: 1px solid var(--line-l); }
 .zone-btn.active .zb-name { color: var(--ink); }
 .zone-btn.active .zb-dot { background: var(--ink); }
 .zb-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--line); flex-shrink: 0; transition: background 0.15s; }
-.zb-name { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 300; letter-spacing: 0.03em; color: var(--ink-l); line-height: 1; }
-.zb-freq { font-size: 8px; color: var(--ink-f); letter-spacing: 0.15em; margin-left: auto; flex-shrink: 0; text-transform: uppercase; }
+.zb-name { font-family: var(--cream-serif); font-size: 1.1875rem; font-weight: 400; letter-spacing: 0; color: var(--ink-l); line-height: 1; }
+.zb-freq { font-size: var(--cream-label); color: var(--ink-f); letter-spacing: .08em; margin-left: auto; flex-shrink: 0; text-transform: uppercase; }
 
 /* ZONE BTN — active state already handles dot + name color, add background tint */
 .zone-btn:hover:not(.active) { background: rgba(42,38,32,0.025); }
@@ -109,39 +108,39 @@ body {
 .detail-panel.visible { opacity: 1; }
 
 /* CLEAR SELECTION */
-.clear-btn { display: none; background: none; border: none; padding: 0 0 16px; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); opacity: 0.5; -webkit-tap-highlight-color: transparent; transition: opacity 0.15s; }
+.clear-btn { display: none; background: none; border: none; padding: 0 0 16px; cursor: pointer; font-family: var(--cream-sans); font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); opacity: 0.5; -webkit-tap-highlight-color: transparent; transition: opacity 0.15s; }
 .clear-btn:hover { opacity: 0.8; }
 .clear-btn.visible { display: block; }
-.empty-state { padding: 20px 0; font-size: 13px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; border-top: 1px solid var(--line-l); line-height: 1.55; }
+.empty-state { padding: 20px 0; font-size: var(--cream-text); font-weight: 400; color: var(--ink-f); letter-spacing: 0; border-top: 1px solid var(--line-l); line-height: 1.55; }
 
 /* DETAIL PANEL */
 .detail-panel { display: none; border-top: 1px solid var(--line-l); }
 .detail-panel.open { display: block; }
 
 .detail-head { padding: 28px 0 20px; border-bottom: 1px solid var(--line-l); }
-.detail-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 32px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 6px; }
-.detail-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: var(--ink-f); display: block; }
+.detail-title { font-family: var(--cream-serif); font-weight: 400; font-size: 2rem; letter-spacing: 0; color: var(--ink); line-height: 1; margin-bottom: 6px; }
+.detail-sub { font-family: var(--cream-serif); font-style: italic; font-size: var(--cream-text); color: var(--ink-f); display: block; }
 
 /* RUN TODAY — most prominent */
 .run-today { padding: 18px 0; border-bottom: 1px solid var(--line-l); }
-.rt-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
-.rt-text { font-size: 14px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.65; }
+.rt-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
+.rt-text { font-size: var(--cream-text); color: var(--ink-l); letter-spacing: 0; line-height: 1.65; }
 
 /* STANDARD SECTIONS */
 .ds { padding: 16px 0; border-bottom: 1px solid var(--line-l); }
-.ds-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
+.ds-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
 .ds-list { list-style: none; padding: 0; }
-.ds-list li { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; padding: 3px 0; display: flex; gap: 10px; align-items: baseline; line-height: 1.55; }
+.ds-list li { font-size: var(--cream-text); color: var(--ink-l); letter-spacing: 0; padding: 3px 0; display: flex; gap: 10px; align-items: baseline; line-height: 1.55; }
 .ds-list li::before { content: ''; display: block; width: 3px; height: 3px; border-radius: 50%; background: var(--ink-f); flex-shrink: 0; position: relative; top: 6px; }
 
 /* WHEN TO GET HELP */
 .get-help { padding: 16px 0; border-bottom: 1px solid var(--line-l); background: none; }
-.gh-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
+.gh-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
 
 /* EXPAND TOGGLE */
 .expand-toggle { padding: 16px 0; border-bottom: 1px solid var(--line-l); cursor: pointer; display: flex; align-items: center; justify-content: space-between; -webkit-tap-highlight-color: transparent; user-select: none; }
-.expand-label { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); }
-.expand-icon { font-size: 14px; color: var(--line); transition: transform 0.2s; }
+.expand-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); }
+.expand-icon { font-size: var(--cream-text); color: var(--cream-muted); transition: transform 0.2s; }
 .expand-toggle.open .expand-icon { transform: rotate(180deg); }
 
 /* EXPANDED CONTENT */
@@ -149,62 +148,62 @@ body {
 .expand-body.open { display: block; }
 
 /* LOAD PATTERN DETAIL (inside expanded section) */
-.lp-detail { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.6; }
+.lp-detail { font-size: var(--cream-text); color: var(--ink-l); letter-spacing: 0; line-height: 1.6; }
 .lp-detail p { margin-bottom: 8px; }
 .lp-detail ul { list-style: none; padding: 0; margin-top: 6px; }
-.lp-detail ul li { display: flex; gap: 10px; align-items: baseline; padding: 2px 0; font-size: 12px; color: var(--ink-f); }
+.lp-detail ul li { display: flex; gap: 10px; align-items: baseline; padding: 2px 0; font-size: var(--cream-note); color: var(--ink-f); }
 .lp-detail ul li::before { content: ''; display: block; width: 3px; height: 3px; border-radius: 50%; background: var(--ink-f); flex-shrink: 0; position: relative; top: 5px; }
 
 /* ADJUST LEVELS */
 .adj-row { display: flex; gap: 14px; align-items: baseline; padding: 7px 0; border-bottom: 1px solid var(--line-l); }
 .adj-row:last-child { border-bottom: none; }
-.adj-level { font-size: 8px; font-weight: 500; letter-spacing: 0.15em; color: var(--ink-f); width: 52px; flex-shrink: 0; }
-.adj-text { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.5; }
+.adj-level { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; color: var(--ink-f); width: 52px; flex-shrink: 0; }
+.adj-text { font-size: var(--cream-text); color: var(--ink-l); letter-spacing: 0; line-height: 1.5; }
 
 /* RECOVERY */
 .rec-row { display: flex; gap: 14px; padding: 5px 0; }
-.rec-w { font-size: 9px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-f); width: 72px; flex-shrink: 0; }
-.rec-t { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; }
+.rec-w { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); width: 72px; flex-shrink: 0; }
+.rec-t { font-size: var(--cream-text); color: var(--ink-l); letter-spacing: 0; }
 
 /* CLOSING RULE */
-.detail-rule { padding: 20px 0 16px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; line-height: 1.65; }
+.detail-rule { padding: 20px 0 16px; font-family: var(--cream-serif); font-style: italic; font-size: 1.0625rem; font-weight: 400; color: var(--ink-f); letter-spacing: 0; line-height: 1.65; }
 
 /* LOAD PATTERN LEGEND */
 .load-legend { margin-bottom: 28px; padding: 14px 0 12px; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); }
-.load-legend-label { font-size: 7px; font-weight: 500; letter-spacing: 0.38em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; opacity: 0.8; }
+.load-legend-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; opacity: 0.8; }
 .load-legend-grid { display: flex; flex-direction: column; gap: 4px; }
 .lp-row { display: flex; gap: 10px; align-items: baseline; }
-.lp-name { font-size: 9px; font-weight: 500; letter-spacing: 0.04em; color: var(--ink-l); width: 128px; flex-shrink: 0; }
-.lp-zones { font-size: 9px; color: var(--ink-f); letter-spacing: 0.03em; }
+.lp-name { font-size: var(--cream-label); font-weight: 500; letter-spacing: 0; color: var(--ink-l); width: 128px; flex-shrink: 0; }
+.lp-zones { font-size: var(--cream-label); color: var(--ink-f); letter-spacing: 0; }
 
 /* PAGE CLOSING RULE */
-.page-rule { padding: 20px 0 24px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; line-height: 1.6; margin-top: 8px; }
+.page-rule { padding: 20px 0 24px; font-family: var(--cream-serif); font-style: italic; font-size: var(--cream-text); font-weight: 400; color: var(--ink-f); letter-spacing: 0; line-height: 1.6; margin-top: 8px; }
 
 /* RELATED INTERRUPTIONS */
 .related-row { padding: 12px 0 14px; display: flex; align-items: baseline; gap: 10px; }
-.related-label { font-size: 7px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); flex-shrink: 0; }
+.related-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); flex-shrink: 0; }
 .related-links { display: flex; gap: 8px; flex-wrap: wrap; }
-.related-link { font-size: 11px; color: var(--ink-f); cursor: pointer; letter-spacing: 0.03em; text-decoration: none; border-bottom: 1px solid var(--line-l); padding-bottom: 1px; transition: color 0.15s, border-color 0.15s; }
+.related-link { font-size: var(--cream-small); color: var(--ink-f); cursor: pointer; letter-spacing: 0; text-decoration: none; border-bottom: 1px solid var(--line-l); padding-bottom: 1px; transition: color 0.15s, border-color 0.15s; }
 .related-link:hover { color: var(--ink-l); border-color: var(--ink-f); }
 
 /* FOOTER */
 .footer-links { padding: 20px 0; display: flex; gap: 20px; flex-wrap: wrap; margin-top: 40px; border-top: 1px solid var(--line-l); }
-.footer-link { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
 .footer-link.primary { color: var(--ink-l); }
 
 @media (max-width: 480px) {
   .nav { padding-left: 24px; padding-right: 24px; }
   .content { padding-left: 24px; padding-right: 24px; border-left: none; }
-  .page-title { font-size: 34px; }
+  .page-title { font-size: 2.125rem; }
   .entry-wrap { flex-direction: column; gap: 0; align-items: stretch; margin-bottom: 32px; }
   .map-col { width: 100%; display: flex; flex-direction: column; align-items: center; margin-bottom: 24px; }
   .body-map { width: 140px; height: auto; }
   .map-plate { text-align: center; }
-  .map-caption { font-size: 7px; letter-spacing: 0.18em; }
-  .zb-name { font-size: 17px; }
+  .map-caption { font-size: var(--cream-label); letter-spacing: .08em; }
+  .zb-name { font-size: 1.0625rem; }
   .list-col { width: 100%; }
 }
-.page-breadcrumb { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 12px; }
+.page-breadcrumb { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 12px; }
 </style>
 <script type="application/ld+json">
 {
@@ -216,6 +215,7 @@ body {
   "publisher": { "@type": "Organization", "name": "FORM" }
 }
 </script>
+<link rel="stylesheet" href="/css/cream-reading.css?v=20260916">
 </head>
 <body>
 
@@ -232,19 +232,19 @@ body {
 
   <!-- DECISION LADDER -->
   <div style="padding: 20px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); margin-bottom: 32px;">
-    <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px;">Three Responses to a Problem</span>
+    <span style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px;">Three Responses to a Problem</span>
     <div style="display: flex; flex-direction: column; gap: 12px;">
       <div style="display: flex; gap: 16px; align-items: baseline;">
-        <span style="font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); min-width: 80px;">Reduce</span>
-        <span style="font-size: 13px; color: var(--ink-l); line-height: 1.6;">Lower the intensity and see if rhythm returns.</span>
+        <span style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); min-width: 80px;">Reduce</span>
+        <span style="font-size: var(--cream-text); color: var(--ink-l); line-height: 1.6;">Lower the intensity and see if rhythm returns.</span>
       </div>
       <div style="display: flex; gap: 16px; align-items: baseline;">
-        <span style="font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); min-width: 80px;">Continue Easy</span>
-        <span style="font-size: 13px; color: var(--ink-l); line-height: 1.6;">If the issue disappears at easy effort, finish the run calmly.</span>
+        <span style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); min-width: 80px;">Continue Easy</span>
+        <span style="font-size: var(--cream-text); color: var(--ink-l); line-height: 1.6;">If the issue disappears at easy effort, finish the run calmly.</span>
       </div>
       <div style="display: flex; gap: 16px; align-items: baseline;">
-        <span style="font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); min-width: 80px;">Stop</span>
-        <span style="font-size: 13px; color: var(--ink-l); line-height: 1.6;">If the problem persists even at easy effort, end the run and resume the schedule the next day.</span>
+        <span style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); min-width: 80px;">Stop</span>
+        <span style="font-size: var(--cream-text); color: var(--ink-l); line-height: 1.6;">If the problem persists even at easy effort, end the run and resume the schedule the next day.</span>
       </div>
     </div>
   </div>
@@ -407,16 +407,16 @@ body {
 
   <!-- COMMON PAIN AREAS INDEX -->
   <div style="margin-bottom: 40px; padding: 20px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l);">
-    <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px;">Common running pain areas</span>
+    <span style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px;">Common running pain areas</span>
     <div style="display: flex; flex-direction: column; gap: 0;">
-      <span onclick="selectZone('achilles')" style="font-size: 12px; color: var(--ink-f); letter-spacing: 0.04em; padding: 6px 0; border-bottom: 1px solid var(--line-l); cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">Achilles pain while running</span>
-      <span onclick="selectZone('calf')" style="font-size: 12px; color: var(--ink-f); letter-spacing: 0.04em; padding: 6px 0; border-bottom: 1px solid var(--line-l); cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">Calf tightness while running</span>
-      <span onclick="selectZone('shin')" style="font-size: 12px; color: var(--ink-f); letter-spacing: 0.04em; padding: 6px 0; border-bottom: 1px solid var(--line-l); cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">Shin pain from running</span>
-      <span onclick="selectZone('knee')" style="font-size: 12px; color: var(--ink-f); letter-spacing: 0.04em; padding: 6px 0; border-bottom: 1px solid var(--line-l); cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">Knee pain while running</span>
-      <span onclick="selectZone('itband')" style="font-size: 12px; color: var(--ink-f); letter-spacing: 0.04em; padding: 6px 0; border-bottom: 1px solid var(--line-l); cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">IT band pain while running</span>
-      <span onclick="selectZone('hamstring')" style="font-size: 12px; color: var(--ink-f); letter-spacing: 0.04em; padding: 6px 0; border-bottom: 1px solid var(--line-l); cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">Hamstring pain while running</span>
-      <span onclick="selectZone('back')" style="font-size: 12px; color: var(--ink-f); letter-spacing: 0.04em; padding: 6px 0; border-bottom: 1px solid var(--line-l); cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">Lower back pain while running</span>
-      <span onclick="selectZone('plantar')" style="font-size: 12px; color: var(--ink-f); letter-spacing: 0.04em; padding: 6px 0; cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">Plantar fascia pain while running</span>
+      <span onclick="selectZone('achilles')" style="font-size: var(--cream-note); color: var(--ink-f); letter-spacing: 0; padding: 6px 0; border-bottom: 1px solid var(--line-l); cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">Achilles pain while running</span>
+      <span onclick="selectZone('calf')" style="font-size: var(--cream-note); color: var(--ink-f); letter-spacing: 0; padding: 6px 0; border-bottom: 1px solid var(--line-l); cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">Calf tightness while running</span>
+      <span onclick="selectZone('shin')" style="font-size: var(--cream-note); color: var(--ink-f); letter-spacing: 0; padding: 6px 0; border-bottom: 1px solid var(--line-l); cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">Shin pain from running</span>
+      <span onclick="selectZone('knee')" style="font-size: var(--cream-note); color: var(--ink-f); letter-spacing: 0; padding: 6px 0; border-bottom: 1px solid var(--line-l); cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">Knee pain while running</span>
+      <span onclick="selectZone('itband')" style="font-size: var(--cream-note); color: var(--ink-f); letter-spacing: 0; padding: 6px 0; border-bottom: 1px solid var(--line-l); cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">IT band pain while running</span>
+      <span onclick="selectZone('hamstring')" style="font-size: var(--cream-note); color: var(--ink-f); letter-spacing: 0; padding: 6px 0; border-bottom: 1px solid var(--line-l); cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">Hamstring pain while running</span>
+      <span onclick="selectZone('back')" style="font-size: var(--cream-note); color: var(--ink-f); letter-spacing: 0; padding: 6px 0; border-bottom: 1px solid var(--line-l); cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">Lower back pain while running</span>
+      <span onclick="selectZone('plantar')" style="font-size: var(--cream-note); color: var(--ink-f); letter-spacing: 0; padding: 6px 0; cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='var(--ink-l)'" onmouseout="this.style.color='var(--ink-f)'">Plantar fascia pain while running</span>
     </div>
   </div>
 
@@ -507,7 +507,7 @@ body {
 
   <div style="margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--line-l);">
     <span class="section-label">When a Session Stops Early</span>
-    <div style="font-size: 13px; color: var(--ink-l); line-height: 1.75; letter-spacing: 0.02em;">
+    <div style="font-size: var(--cream-text); color: var(--ink-l); line-height: 1.75; letter-spacing: 0;">
       <p>Sometimes a session begins normally and then stops early.</p>
       <p style="margin-top: 10px;">The rhythm is off. The body is present but the system is not fully online. This is often the result of accumulated fatigue, disrupted sleep, or schedule friction.</p>
       <p style="margin-top: 10px;">Stopping the session is often the correct decision.</p>
@@ -519,7 +519,7 @@ body {
       <li class="rule-item">Let the next threshold session arrive normally</li>
       <li class="rule-item">Focus on sleep and rhythm for the following days</li>
     </ul>
-    <div style="font-size: 13px; color: var(--ink-l); line-height: 1.75; letter-spacing: 0.02em; margin-top: 16px;">
+    <div style="font-size: var(--cream-text); color: var(--ink-l); line-height: 1.75; letter-spacing: 0; margin-top: 16px;">
       <p>Missing one session has almost no impact on a training cycle.</p>
       <p style="margin-top: 10px;">Forcing the wrong one can disrupt several.</p>
       <p style="margin-top: 10px;">If form begins to drift during the run, first reduce intensity and allow the rhythm to settle. If the pattern disappears at easy effort, the run can usually continue as an easy session.</p>

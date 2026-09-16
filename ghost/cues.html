@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-cream="reading" lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="deploy-id" content="202603161318">
@@ -16,44 +16,44 @@
 <meta property="og:site_name" content="FORM">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --line:#d8d2c8; --line-l:#e8e3dc; }
-body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 100px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
-.nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
-.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
-.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
-.content { max-width: 560px; margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
-.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 52px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 10px; }
-.page-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 20px; font-weight: 300; color: var(--ink-l); letter-spacing: 0.02em; display: block; margin-bottom: 36px; }
-.section-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 4px; margin-top: 40px; }
+body { background: var(--cream); color: var(--ink); font-family: var(--cream-sans); font-weight: 400; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 100px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.nav { max-width: var(--cream-width); margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: var(--cream-serif); font-weight: 400; font-size: 1.375rem; letter-spacing: .08em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.content { max-width: var(--cream-width); margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
+.page-title { font-family: var(--cream-serif); font-weight: 400; font-size: 3.25rem; letter-spacing: 0; color: var(--ink); line-height: 1; margin-bottom: 10px; }
+.page-sub { font-family: var(--cream-serif); font-style: italic; font-size: 1.25rem; font-weight: 400; color: var(--ink-l); letter-spacing: 0; display: block; margin-bottom: 36px; }
+.section-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 4px; margin-top: 40px; }
 .section-label:first-of-type { margin-top: 0; }
 .cue-row { padding: 18px 0; border-top: 1px solid var(--line-l); display: flex; gap: 16px; align-items: flex-start; }
 .cue-row:last-of-type { border-bottom: 1px solid var(--line-l); }
 .cue-icon { width: 24px; height: 24px; flex-shrink: 0; opacity: 0.6; margin-top: 2px; }
 .cue-body { flex: 1; }
-.cue-name { font-size: 13px; color: var(--ink); letter-spacing: 0.02em; display: block; margin-bottom: 4px; }
-.cue-desc { font-size: 12px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.65; margin-bottom: 4px; }
-.cue-correction { font-size: 11px; color: var(--ink-f); letter-spacing: 0.03em; line-height: 1.5; font-style: italic; }
-.week-tag { font-size: 8px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); }
+.cue-name { font-size: var(--cream-text); color: var(--ink); letter-spacing: 0; display: block; margin-bottom: 4px; }
+.cue-desc { font-size: var(--cream-note); color: var(--ink-l); letter-spacing: 0; line-height: 1.65; margin-bottom: 4px; }
+.cue-correction { font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; line-height: 1.5; font-style: italic; }
+.week-tag { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); }
 .cheat-block { margin-top: 48px; padding: 24px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); }
-.cheat-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px; }
+.cheat-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px; }
 .cheat-row { display: flex; align-items: baseline; gap: 12px; padding: 8px 0; border-top: 1px solid var(--line-l); }
-.cheat-week { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); min-width: 60px; flex-shrink: 0; }
-.cheat-cue { font-size: 12px; color: var(--ink-l); letter-spacing: 0.02em; flex: 1; }
-.cheat-note { font-size: 11px; color: var(--ink-f); letter-spacing: 0.03em; font-style: italic; }
+.cheat-week { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); min-width: 60px; flex-shrink: 0; }
+.cheat-cue { font-size: var(--cream-note); color: var(--ink-l); letter-spacing: 0; flex: 1; }
+.cheat-note { font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; font-style: italic; }
 .practice-footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line-l); display: flex; justify-content: space-between; align-items: center; }
-.practice-mark { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); }
+.practice-mark { font-size: var(--cream-label); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); }
 .footer-links { margin-top: 32px; display: flex; gap: 28px; flex-wrap: wrap; }
-.footer-link { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
 .footer-link:hover { color: var(--ink-l); }
 @media (max-width: 480px) {
   .nav { padding-left: 24px; padding-right: 24px; }
   .content { padding-left: 24px; padding-right: 24px; border-left: none; }
-  .page-title { font-size: 40px; }
+  .page-title { font-size: 2.5rem; }
 }
 </style>
+<link rel="stylesheet" href="/css/cream-reading.css?v=20260916">
 </head>
 <body>
 <div class="nav">
@@ -64,7 +64,7 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 
   <h1 class="page-title">Running Form Cues</h1>
   <span class="page-sub">Cues in practice order.</span>
-  <p style="font-size: 13px; color: var(--ink-f); letter-spacing: 0.02em; line-height: 1.75; margin-top: 12px; margin-bottom: 32px;">These cues are practiced progressively. Each week adds one layer. The first three are the constants — they apply every week.</p>
+  <p style="font-size: var(--cream-text); color: var(--ink-f); letter-spacing: 0; line-height: 1.75; margin-top: 12px; margin-bottom: 32px;">These cues are practiced progressively. Each week adds one layer. The first three are the constants — they apply every week.</p>
 
   <!-- CHEAT SHEET -->
   <div class="cheat-block">
@@ -79,7 +79,7 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 
 
   <!-- WEEK 1: RHYTHM -->
-  <span class="section-label">Week 1 — Rhythm<span style="margin-left: 14px; font-size: 8px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--line);">Layer — Contact</span></span>
+  <span class="section-label">Week 1 — Rhythm<span style="margin-left: 14px; font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--cream-muted);">Layer — Contact</span></span>
   <div class="cue-row">
     <svg class="cue-icon" viewBox="0 0 24 24" fill="none"><path d="M8 18C8 14 9 10 12 8C15 10 16 14 16 18" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="12" cy="19" rx="5" ry="2.5" stroke="#2a2620" stroke-width="1.2"/><circle cx="12" cy="6" r="1.8" stroke="#2a2620" stroke-width="1.2"/></svg>
     <div class="cue-body">
@@ -106,7 +106,7 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
   </div>
 
   <!-- WEEK 2: GRAVITY -->
-  <span class="section-label">Week 2 — Gravity<span style="margin-left: 14px; font-size: 8px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--line);">Layer — Direction</span></span>
+  <span class="section-label">Week 2 — Gravity<span style="margin-left: 14px; font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--cream-muted);">Layer — Direction</span></span>
   <div class="cue-row">
     <svg class="cue-icon" viewBox="0 0 24 24" fill="none"><line x1="12" y1="3" x2="8" y2="21" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round"/><path d="M8 12L14 10" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round"/><path d="M8 16L13 15" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round"/><circle cx="12" cy="3" r="1.5" stroke="#2a2620" stroke-width="1.2"/></svg>
     <div class="cue-body">
@@ -133,7 +133,7 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
   </div>
 
   <!-- WEEK 3: SPRING -->
-  <span class="section-label">Week 3 — Spring<span style="margin-left: 14px; font-size: 8px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--line);">Layer — Elasticity</span></span>
+  <span class="section-label">Week 3 — Spring<span style="margin-left: 14px; font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--cream-muted);">Layer — Elasticity</span></span>
   <div class="cue-row">
     <svg class="cue-icon" viewBox="0 0 24 24" fill="none"><path d="M12 20L12 12" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round"/><path d="M9 15L12 12L15 15" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 20L17 20" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round"/><path d="M8 7Q10 5 12 7Q14 9 16 7" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg>
     <div class="cue-body">
@@ -166,7 +166,7 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
   </div>
 
   <!-- WEEK 4: PILLAR -->
-  <span class="section-label">Week 4 — Pillar<span style="margin-left: 14px; font-size: 8px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--line);">Layer — Structure</span></span>
+  <span class="section-label">Week 4 — Pillar<span style="margin-left: 14px; font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--cream-muted);">Layer — Structure</span></span>
   <div class="cue-row">
     <svg class="cue-icon" viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="18" rx="1" stroke="#2a2620" stroke-width="1.2" fill="none"/><line x1="12" y1="3" x2="12" y2="21" stroke="#2a2620" stroke-width="0.6" stroke-linecap="round" stroke-dasharray="2 2"/></svg>
     <div class="cue-body">
@@ -193,7 +193,7 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
   </div>
 
   <!-- WEEK 5: GEARS -->
-  <span class="section-label">Week 5 — Gears<span style="margin-left: 14px; font-size: 8px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--line);">Layer — Speed Control</span></span>
+  <span class="section-label">Week 5 — Gears<span style="margin-left: 14px; font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--cream-muted);">Layer — Speed Control</span></span>
   <div class="cue-row">
     <svg class="cue-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#2a2620" stroke-width="1.2"/><line x1="12" y1="12" x2="16" y2="8" stroke="#2a2620" stroke-width="1.4" stroke-linecap="round"/><circle cx="12" cy="12" r="1.2" fill="#2a2620"/></svg>
     <div class="cue-body">
@@ -220,7 +220,7 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
   </div>
 
   <!-- WEEK 6: GHOST -->
-  <span class="section-label">Week 6 — Ghost<span style="margin-left: 14px; font-size: 8px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--line);">Layer — Integration</span></span>
+  <span class="section-label">Week 6 — Ghost<span style="margin-left: 14px; font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--cream-muted);">Layer — Integration</span></span>
   <div class="cue-row">
     <svg class="cue-icon" viewBox="0 0 24 24" fill="none"><path d="M8 18C8 14 9 10 12 8C15 10 16 14 16 18" stroke="#2a2620" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="12" cy="19" rx="5" ry="2.5" stroke="#2a2620" stroke-width="1.2"/><circle cx="12" cy="6" r="1.8" stroke="#2a2620" stroke-width="1.2"/></svg>
     <div class="cue-body">

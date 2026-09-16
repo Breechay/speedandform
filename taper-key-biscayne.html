@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-cream="reading" lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="deploy-id" content="202603281200">
@@ -9,7 +9,6 @@
 <meta name="description" content="14-day taper and race plan for the Key Biscayne Half Marathon. April 12, 2026.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -18,33 +17,33 @@
   --speed: #5a3a1a; --speed-bg: #f0e8dd;
 }
 html, body { height: auto !important; overflow: visible !important; }
-body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding: 0 0 120px; }
+body { background: var(--cream); color: var(--ink); font-family: var(--cream-sans); font-weight: 400; font-kerning: normal; font-feature-settings: "kern"; padding: 0 0 120px; }
 
 /* NAV */
-.nav { max-width: 560px; margin: 0 auto; padding: 32px 32px 0; display: flex; align-items: center; justify-content: space-between; }
-.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
-.nav-lbl { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+.nav { max-width: var(--cream-width); margin: 0 auto; padding: 32px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: var(--cream-serif); font-weight: 400; font-size: 1.375rem; letter-spacing: .08em; color: var(--ink); text-decoration: none; }
+.nav-lbl { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); }
 
 /* HEADER */
 .header { text-align: center; padding: 24px 40px 32px; }
 .header::after { content: ''; display: block; width: 100%; height: 1px; background: var(--line); margin-top: 28px; }
-.header-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 42px; letter-spacing: 0.05em; color: var(--ink); line-height: 1; }
-.header-race { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-f); margin-top: 8px; letter-spacing: 0.04em; }
+.header-title { font-family: var(--cream-serif); font-weight: 400; font-size: 2.625rem; letter-spacing: 0; color: var(--ink); line-height: 1; }
+.header-race { font-family: var(--cream-serif); font-style: italic; font-size: 1.125rem; font-weight: 400; color: var(--ink-f); margin-top: 8px; letter-spacing: 0; }
 
 /* SECTION */
-.section { max-width: 560px; margin: 72px auto 0; padding: 0 32px; }
+.section { max-width: var(--cream-width); margin: 72px auto 0; padding: 0 32px; }
 .section:first-of-type { margin-top: 56px; }
-.section-title { font-family: 'Jost', sans-serif; font-weight: 500; font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--ink-l); margin-bottom: 28px; display: flex; align-items: center; gap: 16px; }
+.section-title { font-family: var(--cream-sans); font-weight: 500; font-size: var(--cream-small); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-l); margin-bottom: 28px; display: flex; align-items: center; gap: 16px; }
 .section-title::after { content: ''; flex: 1; height: 1px; background: var(--line); }
-.phase-subtitle { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 20px; font-weight: 300; color: var(--ink-f); margin-top: -18px; margin-bottom: 28px; letter-spacing: 0.04em; }
+.phase-subtitle { font-family: var(--cream-serif); font-style: italic; font-size: 1.25rem; font-weight: 400; color: var(--ink-f); margin-top: -18px; margin-bottom: 28px; letter-spacing: 0; }
 
 /* WORKOUT ROW */
 .workout { display: grid; grid-template-columns: 130px 1fr; gap: 0 20px; align-items: start; padding: 20px 12px; border-bottom: 1px solid var(--line-l); position: relative; transition: background 0.15s; cursor: pointer; border-left: 2px solid transparent; padding-left: 10px; }
 .workout:first-of-type { border-top: 1px solid var(--line-l); }
 .workout:hover { background: rgba(42,38,32,0.02); }
-.workout-date { font-size: 13px; letter-spacing: 0.02em; color: var(--ink); padding-top: 2px; white-space: nowrap; }
-.workout-desc { font-size: 13.5px; line-height: 1.6; color: var(--ink); }
-.workout-sub { font-size: 12px; color: var(--ink-l); margin-top: 4px; line-height: 1.5; }
+.workout-date { font-size: var(--cream-text); letter-spacing: 0; color: var(--ink); padding-top: 2px; white-space: nowrap; }
+.workout-desc { font-size: var(--cream-text); line-height: 1.6; color: var(--ink); }
+.workout-sub { font-size: var(--cream-note); color: var(--ink-l); margin-top: 4px; line-height: 1.5; }
 
 /* Type-specific left borders */
 .workout[data-type="speed"] { border-left-color: var(--accent); }
@@ -57,16 +56,16 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 
 /* RACE ROW */
 .race-row { display: grid; grid-template-columns: 130px 1fr; gap: 0 20px; padding: 20px 12px; background: #1e2d3e; color: #c9d8e8; margin-top: 20px; border-radius: 0; text-decoration: none; }
-.race-row .race-date { font-size: 13px; letter-spacing: 0.05em; font-weight: 400; padding-top: 2px; color: #7a9db8; }
-.race-row .race-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; letter-spacing: 0.08em; color: #dde8f0; }
-.race-row .race-note { font-size: 10px; color: #5e8298; margin-top: 3px; letter-spacing: 0.05em; }
+.race-row .race-date { font-size: var(--cream-text); letter-spacing: 0; font-weight: 400; padding-top: 2px; color: #7a9db8; }
+.race-row .race-name { font-family: var(--cream-serif); font-size: 1.125rem; font-weight: 400; letter-spacing: 0; color: #dde8f0; }
+.race-row .race-note { font-size: var(--cream-small); color: #5e8298; margin-top: 3px; letter-spacing: 0; }
 
 /* PACE CARD */
 .pace-card { background: white; border: 1px solid var(--line); padding: 24px 28px; margin-bottom: 8px; }
 .pace-card + .pace-card { border-top: none; }
-.pace-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); margin-bottom: 10px; }
-.pace-value { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; letter-spacing: 0.04em; color: var(--ink); line-height: 1; }
-.pace-note { font-size: 12px; color: var(--ink-l); margin-top: 6px; line-height: 1.55; }
+.pace-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); margin-bottom: 10px; }
+.pace-value { font-family: var(--cream-serif); font-size: 2rem; font-weight: 400; letter-spacing: 0; color: var(--ink); line-height: 1; }
+.pace-note { font-size: var(--cream-note); color: var(--ink-l); margin-top: 6px; line-height: 1.55; }
 .pace-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; }
 .pace-grid .pace-card { border-right: none; }
 .pace-grid .pace-card:last-child { border-right: 1px solid var(--line); }
@@ -75,16 +74,16 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 .strategy-block { margin-top: 8px; }
 .strategy-row { display: grid; grid-template-columns: 110px 1fr; gap: 0 20px; padding: 16px 0; border-bottom: 1px solid var(--line-l); align-items: start; }
 .strategy-row:first-of-type { border-top: 1px solid var(--line-l); }
-.strategy-miles { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; color: var(--ink-l); padding-top: 2px; }
-.strategy-pace { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--ink); line-height: 1.2; }
-.strategy-cue { font-size: 12px; color: var(--ink-l); margin-top: 4px; font-style: italic; font-family: 'Cormorant Garamond', serif; }
+.strategy-miles { font-size: var(--cream-small); font-weight: 500; letter-spacing: .08em; color: var(--ink-l); padding-top: 2px; }
+.strategy-pace { font-family: var(--cream-serif); font-size: 1.25rem; font-weight: 400; color: var(--ink); line-height: 1.2; }
+.strategy-cue { font-size: var(--cream-note); color: var(--ink-l); margin-top: 4px; font-style: italic; font-family: var(--cream-serif); }
 
 /* DOCTRINE BLOCK */
 .doctrine { margin-top: 8px; }
 .doctrine-item { padding: 16px 0; border-bottom: 1px solid var(--line-l); display: flex; gap: 16px; align-items: start; }
 .doctrine-item:first-of-type { border-top: 1px solid var(--line-l); }
-.doctrine-dash { color: var(--line); flex-shrink: 0; font-size: 14px; padding-top: 1px; }
-.doctrine-text { font-size: 13px; color: var(--ink); line-height: 1.65; }
+.doctrine-dash { color: var(--cream-muted); flex-shrink: 0; font-size: var(--cream-text); padding-top: 1px; }
+.doctrine-text { font-size: var(--cream-text); color: var(--ink); line-height: 1.65; }
 .doctrine-text strong { font-weight: 500; }
 
 /* SESSION DRAWER */
@@ -94,33 +93,33 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 .drawer.open { transform: translateY(0); }
 .drawer-handle { width: 36px; height: 3px; background: var(--line); border-radius: 2px; margin: 14px auto 0; }
 .drawer-inner { padding: 20px 32px 48px; max-width: 420px; margin: 0 auto; }
-.drawer-date { font-size: 9px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); margin-bottom: 6px; }
-.drawer-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; letter-spacing: 0.04em; color: var(--ink); margin-bottom: 4px; line-height: 1.2; }
-.drawer-sub { font-size: 12px; color: var(--ink-l); margin-bottom: 24px; letter-spacing: 0.03em; }
+.drawer-date { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); margin-bottom: 6px; }
+.drawer-title { font-family: var(--cream-serif); font-size: 1.625rem; font-weight: 400; letter-spacing: 0; color: var(--ink); margin-bottom: 4px; line-height: 1.2; }
+.drawer-sub { font-size: var(--cream-note); color: var(--ink-l); margin-bottom: 24px; letter-spacing: 0; }
 .drawer-rule { height: 1px; background: var(--line-l); margin: 20px 0; }
-.drawer-section-lbl { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); margin-bottom: 12px; display: block; }
-.drawer-structure { font-size: 12px; color: var(--ink-l); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
-.drawer-body { font-size: 13.5px; line-height: 1.85; color: var(--ink); }
+.drawer-section-lbl { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); margin-bottom: 12px; display: block; }
+.drawer-structure { font-size: var(--cream-note); color: var(--ink-l); letter-spacing: 0; text-transform: uppercase; margin-bottom: 8px; }
+.drawer-body { font-size: var(--cream-text); line-height: 1.85; color: var(--ink); }
 .drawer-body p { margin-bottom: 12px; }
 .drawer-body p:last-child { margin-bottom: 0; }
 .drawer-body strong { font-weight: 500; }
-.drawer-body em { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--ink); display: block; margin: 16px 0; }
+.drawer-body em { font-family: var(--cream-serif); font-style: italic; font-size: 1.0625rem; color: var(--ink); display: block; margin: 16px 0; }
 .drawer-cues { margin-top: 16px; }
-.drawer-cue { font-size: 13px; color: var(--ink); line-height: 1.65; padding: 8px 0; border-top: 1px solid var(--line-l); display: flex; gap: 10px; }
-.drawer-cue::before { content: '—'; color: var(--line); flex-shrink: 0; }
-.drawer-close { margin-top: 28px; width: 100%; background: none; border: 1px solid var(--line); color: var(--ink-f); font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; padding: 12px; cursor: pointer; transition: all 0.15s; border-radius: 2px; }
+.drawer-cue { font-size: var(--cream-text); color: var(--ink); line-height: 1.65; padding: 8px 0; border-top: 1px solid var(--line-l); display: flex; gap: 10px; }
+.drawer-cue::before { content: '—'; color: var(--cream-muted); flex-shrink: 0; }
+.drawer-close { margin-top: 28px; width: 100%; background: none; border: 1px solid var(--line); color: var(--ink-f); font-family: var(--cream-sans); font-size: var(--cream-small); letter-spacing: .08em; text-transform: uppercase; padding: 12px; cursor: pointer; transition: all 0.15s; border-radius: 2px; }
 .drawer-close:hover { border-color: var(--ink); color: var(--ink); }
 
 /* LOADING BAR */
 .loading-bar { position: fixed; top: 0; left: 0; height: 2px; width: 0; background: var(--line); transition: width 0.3s; z-index: 500; }
 
 /* TOAST */
-.toast { position: fixed; bottom: 40px; right: 24px; background: var(--ink); color: var(--cream); padding: 10px 16px; font-size: 11px; letter-spacing: 0.1em; border-radius: 2px; opacity: 0; transform: translateY(8px); transition: all 0.3s; z-index: 400; pointer-events: none; }
+.toast { position: fixed; bottom: 40px; right: 24px; background: var(--ink); color: var(--cream); padding: 10px 16px; font-size: var(--cream-small); letter-spacing: .08em; border-radius: 2px; opacity: 0; transform: translateY(8px); transition: all 0.3s; z-index: 400; pointer-events: none; }
 .toast.show { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 500px) {
   .workout { grid-template-columns: 105px 1fr; }
-  .header-title { font-size: 34px; }
+  .header-title { font-size: 2.125rem; }
   .section { padding: 0 20px; }
   .nav { padding: 28px 20px 0; }
   .header { padding: 20px 20px 28px; }
@@ -130,6 +129,7 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
   .strategy-row { grid-template-columns: 90px 1fr; }
 }
 </style>
+<link rel="stylesheet" href="/css/cream-reading.css?v=20260916">
 </head>
 <body>
 
@@ -143,8 +143,8 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 <div class="header">
   <div class="header-title">Key Biscayne</div>
   <div class="header-race">Half Marathon · April 12, 2026</div>
-  <div style="margin-top:10px;font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--ink-f);">14-Day Taper &amp; Race Plan</div>
-  <div style="margin-top:16px;"><a href="#pace" style="font-size:9px;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:var(--ink-f);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px;">↓ Pace &amp; Strategy</a></div>
+  <div style="margin-top:10px;font-size:var(--cream-label);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-f);">14-Day Taper &amp; Race Plan</div>
+  <div style="margin-top:16px;"><a href="#pace" style="font-size:var(--cream-label);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-f);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px;">↓ Pace &amp; Strategy</a></div>
 </div>
 
 
@@ -175,7 +175,7 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 
   <div class="workout" data-type="tune" data-date="Thu Apr 2" data-desc="2 × 2 miles @ race pace" data-sub="3 min jog between · then 4 × 20 sec strides · last hard effort" onclick="openDrawer(this)">
     <div class="workout-date">Thu Apr 2</div>
-    <div><div class="workout-desc">2 × 2 miles @ race pace</div><div class="workout-sub">3 min jog between &nbsp;·&nbsp; then 4 × 20 sec strides &nbsp;·&nbsp; <em style="font-style:italic;font-size:11px;color:var(--ink-f);font-family:inherit;">last hard effort</em></div></div>
+    <div><div class="workout-desc">2 × 2 miles @ race pace</div><div class="workout-sub">3 min jog between &nbsp;·&nbsp; then 4 × 20 sec strides &nbsp;·&nbsp; <em style="font-style:italic;font-size:var(--cream-small);color:var(--ink-f);font-family:inherit;">last hard effort</em></div></div>
   </div>
 
   <div class="workout" data-type="rest" data-date="Fri Apr 3" data-desc="Rest" data-sub="" onclick="openDrawer(this)">

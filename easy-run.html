@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-cream="reading" lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="deploy-id" content="202603161318">
@@ -22,46 +22,46 @@
 <meta name="twitter:description" content="The session that makes hard work possible. Why easy running is the foundation of a durable training week.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --accent:#c4593a; --line:#d8d2c8; --line-l:#e8e3dc; }
 html, body { height: auto !important; overflow: visible !important; }
-body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 100px; }
+body { background: var(--cream); color: var(--ink); font-family: var(--cream-sans); font-weight: 400; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 100px; }
 
-.nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
-.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
-.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+.nav { max-width: var(--cream-width); margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: var(--cream-serif); font-weight: 400; font-size: 1.375rem; letter-spacing: .08em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); }
 
-.content { max-width: 560px; margin: 0 auto; padding: 52px 32px 0; border-left: 1px solid var(--line-l); }
+.content { max-width: var(--cream-width); margin: 0 auto; padding: 52px 32px 0; border-left: 1px solid var(--line-l); }
 
-.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 42px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 8px; }
-.page-def { font-size: 13px; color: var(--ink-l); line-height: 1.65; letter-spacing: 0.02em; margin-bottom: 10px; }
-.page-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; margin-bottom: 36px; display: block; }
+.page-title { font-family: var(--cream-serif); font-weight: 400; font-size: 2.625rem; letter-spacing: 0; color: var(--ink); line-height: 1; margin-bottom: 8px; }
+.page-def { font-size: var(--cream-text); color: var(--ink-l); line-height: 1.65; letter-spacing: 0; margin-bottom: 10px; }
+.page-sub { font-family: var(--cream-serif); font-style: italic; font-size: 1.125rem; font-weight: 400; color: var(--ink-f); letter-spacing: 0; margin-bottom: 36px; display: block; }
 
 /* STANDARD BLOCK */
 .standard { border-top: 1px solid var(--line-l); padding: 20px 0; border-bottom: 1px solid var(--line-l); margin-bottom: 0; }
 .section { border-bottom: 1px solid var(--line-l); padding: 18px 0; }
 .section:last-child { border-bottom: none; }
-.section-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 8px; }
-.section-body { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.7; }
+.section-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 8px; }
+.section-body { font-size: var(--cream-text); color: var(--ink-l); letter-spacing: 0; line-height: 1.7; }
 .section-body p + p { margin-top: 8px; }
 
 /* CLOSING LINE */
 .closing { padding: 24px 0; border-top: 1px solid var(--line-l); margin-top: 0; }
-.closing-line { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 20px; font-weight: 300; color: var(--ink-l); letter-spacing: 0.03em; line-height: 1.5; display: block; }
+.closing-line { font-family: var(--cream-serif); font-style: italic; font-size: 1.25rem; font-weight: 400; color: var(--ink-l); letter-spacing: 0; line-height: 1.5; display: block; }
 
 /* LINKS */
 .footer-links { padding: 20px 0; display: flex; gap: 20px; border-top: 1px solid var(--line-l); }
-.footer-link { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
 .footer-link.primary { color: var(--ink-l); }
 
 @media (max-width: 480px) {
   .nav { padding-left: 24px; padding-right: 24px; }
   .content { padding-left: 24px; padding-right: 24px; border-left: none; padding-top: 36px; }
-  .page-title { font-size: 34px; }
+  .page-title { font-size: 2.125rem; }
 }
 </style>
+<link rel="stylesheet" href="/css/cream-reading.css?v=20260916">
 </head>
 <body>
 
@@ -97,7 +97,7 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
       <span class="section-label">The Rule</span>
       <div class="section-body">
         <p>Easy days stay easy. The rhythm of the week holds because the easy days hold. Nothing borrowed from recovery makes the hard days better.</p>
-        <p style="margin-top: 8px; font-size: 11px; color: var(--ink-f); letter-spacing: 0.04em; font-style: italic;">Common mistake: running easy days too fast.</p>
+        <p style="margin-top: 8px; font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; font-style: italic;">Common mistake: running easy days too fast.</p>
       </div>
     </div>
 

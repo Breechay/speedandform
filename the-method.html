@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-cream="reading" lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="deploy-id" content="202603161318">
@@ -23,35 +23,34 @@
 <meta name="twitter:description" content="How FORM organizes training through repeatable structure, restraint, and consistent work.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --line:#d8d2c8; --line-l:#e8e3dc; }
 body {
   background: var(--cream); color: var(--ink);
-  font-family: 'Jost', sans-serif; font-weight: 300;
+  font-family: var(--cream-sans); font-weight: 400;
   font-kerning: normal; font-feature-settings: "kern";
   padding: 0 0 120px;
   overflow-y: auto; -webkit-overflow-scrolling: touch;
 }
 
-.nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
-.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
-.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+.nav { max-width: var(--cream-width); margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: var(--cream-serif); font-weight: 400; font-size: 1.375rem; letter-spacing: .08em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); }
 
-.content { max-width: 560px; margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
+.content { max-width: var(--cream-width); margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
 
-.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 42px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 14px; }
-.page-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; display: block; margin-bottom: 16px; }
-.page-def { font-size: 13px; color: var(--ink-l); line-height: 1.65; letter-spacing: 0.02em; margin-bottom: 32px; }
+.page-title { font-family: var(--cream-serif); font-weight: 400; font-size: 2.625rem; letter-spacing: 0; color: var(--ink); line-height: 1; margin-bottom: 14px; }
+.page-sub { font-family: var(--cream-serif); font-style: italic; font-size: 1.125rem; font-weight: 400; color: var(--ink-f); letter-spacing: 0; display: block; margin-bottom: 16px; }
+.page-def { font-size: var(--cream-text); color: var(--ink-l); line-height: 1.65; letter-spacing: 0; margin-bottom: 32px; }
 
 /* TABS */
 .tabs { display: flex; border-bottom: 1px solid rgba(0,0,0,0.08); margin-bottom: 52px; }
 .tab {
-  font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase;
+  font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
   color: var(--ink-f); padding: 0 0 14px; margin-right: 36px;
   cursor: pointer; position: relative;
-  font-family: 'Jost', sans-serif;
+  font-family: var(--cream-sans);
   -webkit-tap-highlight-color: transparent;
   user-select: none;
 }
@@ -69,39 +68,40 @@ body {
 .panel.active { display: block; }
 
 /* SECTION HEAD */
-.section-label { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-f); opacity: 0.65; display: block; margin-bottom: 8px; }
-.method-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: 26px; color: var(--ink); letter-spacing: 0.03em; margin-bottom: 28px; display: block; line-height: 1.2; }
+.section-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); opacity: 0.65; display: block; margin-bottom: 8px; }
+.method-title { font-family: var(--cream-serif); font-weight: 400; font-style: italic; font-size: 1.625rem; color: var(--ink); letter-spacing: 0; margin-bottom: 28px; display: block; line-height: 1.2; }
 
 /* DETAIL ROWS */
 .detail-list { margin-top: 0; }
 .detail-row { padding: 16px 0; border-top: 1px solid rgba(0,0,0,0.08); }
 .detail-row:last-child { border-bottom: none; }
-.detail-key { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-f); opacity: 0.65; display: block; margin-bottom: 6px; }
-.detail-val { font-size: 13px; color: var(--ink-l); line-height: 1.68; letter-spacing: 0.02em; }
+.detail-key { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); opacity: 0.65; display: block; margin-bottom: 6px; }
+.detail-val { font-size: var(--cream-text); color: var(--ink-l); line-height: 1.68; letter-spacing: 0; }
 .detail-val strong { font-weight: 500; color: var(--ink); }
 
 /* CLOSING */
 .closing-wrap { margin-top: 36px; padding: 0 0 44px; border-bottom: 1px solid rgba(0,0,0,0.08); text-align: center; }
-.closing { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: 21px; color: var(--ink-l); opacity: 0.75; letter-spacing: 0.04em; line-height: 1.9; display: block; }
+.closing { font-family: var(--cream-serif); font-style: italic; font-weight: 400; font-size: 1.3125rem; color: var(--ink-l); opacity: 0.75; letter-spacing: 0; line-height: 1.9; display: block; }
 
 /* WEEKLY */
-.weekly-intro { font-size: 13px; color: var(--ink-l); line-height: 1.68; letter-spacing: 0.02em; margin-bottom: 32px; }
+.weekly-intro { font-size: var(--cream-text); color: var(--ink-l); line-height: 1.68; letter-spacing: 0; margin-bottom: 32px; }
 .week-row { display: flex; gap: 20px; padding: 16px 0; border-top: 1px solid var(--line-l); align-items: baseline; }
 .week-row:last-of-type { border-bottom: 1px solid var(--line-l); }
-.week-day { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); width: 80px; flex-shrink: 0; padding-top: 1px; }
-.week-val { font-size: 13px; color: var(--ink-l); line-height: 1.65; letter-spacing: 0.02em; }
+.week-day { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); width: 80px; flex-shrink: 0; padding-top: 1px; }
+.week-val { font-size: var(--cream-text); color: var(--ink-l); line-height: 1.65; letter-spacing: 0; }
 .week-val a { color: var(--ink-f); text-decoration: none; }
 .week-row.session .week-day { color: var(--ink); }
 .week-row.session .week-val { color: var(--ink); }
-.weekly-note { padding-bottom: 52px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--ink-f); line-height: 1.7; letter-spacing: 0.02em; margin-top: 40px; }
+.weekly-note { padding-bottom: 52px; font-family: var(--cream-serif); font-style: italic; font-size: 1.0625rem; color: var(--ink-f); line-height: 1.7; letter-spacing: 0; margin-top: 40px; }
 
 @media (max-width: 480px) {
   .nav { padding-left: 24px; padding-right: 24px; }
   .content { padding-left: 24px; padding-right: 24px; border-left: none; }
-  .page-title { font-size: 34px; }
-  .tab { margin-right: 20px; letter-spacing: 0.2em; }
+  .page-title { font-size: 2.125rem; }
+  .tab { margin-right: 20px; letter-spacing: .08em; }
 }
 </style>
+<link rel="stylesheet" href="/css/cream-reading.css?v=20260916">
 </head>
 <body>
 
@@ -233,13 +233,13 @@ body {
     <p class="weekly-note">Most athletes run 4–6 days per week. Easy days stay easy. The rhythm holds.</p>
     <div class="week-row" style="margin-top: 32px; border-top: 1px solid var(--line-l);">
       <span class="week-day" style="color: var(--ink-f);">Strength</span>
-      <span class="week-val"><a href="/strength" style="color: var(--ink-f); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px;">Structural Work →</a>  <a href="/mobility" style="color: var(--ink-f); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px;">Mobility →</a><br><span style="font-size: 10px; color: var(--ink-f); opacity: 0.7;">After easy runs · not before threshold or long run</span></span>
+      <span class="week-val"><a href="/strength" style="color: var(--ink-f); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px;">Structural Work →</a>  <a href="/mobility" style="color: var(--ink-f); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px;">Mobility →</a><br><span style="font-size: var(--cream-small); color: var(--ink-f); opacity: 0.7;">After easy runs · not before threshold or long run</span></span>
     </div>
 
     <!-- SLEEP SECTION -->
     <div id="sleep" style="margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--line-l); scroll-margin-top: 24px;">
       <span class="section-label" style="margin-bottom: 16px;">Sleep</span>
-      <p style="font-size: 13px; color: var(--ink-l); line-height: 1.68; letter-spacing: 0.02em; margin-bottom: 24px;">Sleep is part of the session. Consistency matters more than hero sleep. The body adapts well to repeated sleep and wake timing — irregular bedtimes tend to compromise threshold and long run more than total duration alone.</p>
+      <p style="font-size: var(--cream-text); color: var(--ink-l); line-height: 1.68; letter-spacing: 0; margin-bottom: 24px;">Sleep is part of the session. Consistency matters more than hero sleep. The body adapts well to repeated sleep and wake timing — irregular bedtimes tend to compromise threshold and long run more than total duration alone.</p>
       <div class="detail-list" style="margin-bottom: 24px;">
         <div class="week-row">
           <span class="week-day">Deep sleep</span>
@@ -254,24 +254,24 @@ body {
           <span class="week-val">The main foundation. Most recovery benefit begins here.</span>
         </div>
       </div>
-      <p style="font-size: 13px; color: var(--ink-l); line-height: 1.68; letter-spacing: 0.02em; margin-bottom: 16px;">Poor sleep affects threshold differently than it affects easy running. Threshold asks for coordination, restraint, and inhabited effort — not just energy. A compromised night usually shows in timing and patience before it shows in breathing.</p>
-      <p style="font-size: 13px; color: var(--ink-l); line-height: 1.68; letter-spacing: 0.02em; margin-bottom: 20px;">If sleep was compromised: adjust the session before the session adjusts you. Shorten, reduce, or convert. A controlled easy run protects the week. A broken threshold doesn't.</p>
-      <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: var(--ink-f); line-height: 1.6; letter-spacing: 0.02em;">Use tracking directionally, not as truth. What matters most is total sleep, consistency, and whether rhythm arrives at warm-up.</p>
+      <p style="font-size: var(--cream-text); color: var(--ink-l); line-height: 1.68; letter-spacing: 0; margin-bottom: 16px;">Poor sleep affects threshold differently than it affects easy running. Threshold asks for coordination, restraint, and inhabited effort — not just energy. A compromised night usually shows in timing and patience before it shows in breathing.</p>
+      <p style="font-size: var(--cream-text); color: var(--ink-l); line-height: 1.68; letter-spacing: 0; margin-bottom: 20px;">If sleep was compromised: adjust the session before the session adjusts you. Shorten, reduce, or convert. A controlled easy run protects the week. A broken threshold doesn't.</p>
+      <p style="font-family: var(--cream-serif); font-style: italic; font-size: var(--cream-text); color: var(--ink-f); line-height: 1.6; letter-spacing: 0;">Use tracking directionally, not as truth. What matters most is total sleep, consistency, and whether rhythm arrives at warm-up.</p>
     </div>
   </div>
 
   <div style="padding: 24px 0; margin-top: 32px; border-top: 1px solid var(--line-l);">
-    <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px;">Mechanical Foundation</span>
-    <p style="font-size: 13px; color: var(--ink-l); line-height: 1.7; letter-spacing: 0.02em;">Before intensity, establish mechanics. The <a href="/ghost" style="color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px;">Ghost Protocol</a> is the mechanical layer this method sits on top of.</p>
+    <span style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px;">Mechanical Foundation</span>
+    <p style="font-size: var(--cream-text); color: var(--ink-l); line-height: 1.7; letter-spacing: 0;">Before intensity, establish mechanics. The <a href="/ghost" style="color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px;">Ghost Protocol</a> is the mechanical layer this method sits on top of.</p>
   </div>
 
   <div style="padding: 20px 0; display: flex; gap: 20px; flex-wrap: wrap; border-top: 1px solid var(--line-l);">
-    <a href="/practice" style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-l); text-decoration: none; font-family: 'Jost', sans-serif;">Practice</a>
-    <a href="/threshold" style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: 'Jost', sans-serif;">Threshold</a>
-    <a href="/long-run" style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: 'Jost', sans-serif;">Long Run</a>
-    <a href="/ghost" style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: 'Jost', sans-serif;">Ghost Protocol</a>
-    <a href="/library" style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: 'Jost', sans-serif;">Library</a>
-  <a href="/training-arc" style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: 'Jost', sans-serif;">Training Arc</a>
+    <a href="/practice" style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-l); text-decoration: none; font-family: var(--cream-sans);">Practice</a>
+    <a href="/threshold" style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: var(--cream-sans);">Threshold</a>
+    <a href="/long-run" style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: var(--cream-sans);">Long Run</a>
+    <a href="/ghost" style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: var(--cream-sans);">Ghost Protocol</a>
+    <a href="/library" style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: var(--cream-sans);">Library</a>
+  <a href="/training-arc" style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: var(--cream-sans);">Training Arc</a>
   </div>
 
 </div>

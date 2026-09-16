@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-cream="reading" lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="deploy-id" content="202604031200">
@@ -21,7 +21,6 @@
 <meta name="twitter:description" content="Race pace is not chosen — it is revealed.">
 <meta name="twitter:image" content="https://speedandform.com/og/default.jpg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -31,67 +30,68 @@
 html, body { height: auto !important; overflow: visible !important; }
 body {
   background: var(--cream); color: var(--ink);
-  font-family: 'Jost', sans-serif; font-weight: 300;
+  font-family: var(--cream-sans); font-weight: 400;
   font-kerning: normal; font-feature-settings: "kern";
   padding: 0 0 100px; overflow-y: auto; -webkit-overflow-scrolling: touch;
 }
-.nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
-.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
-.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
-.content { max-width: 560px; margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
-.page-eyebrow { font-size: 9px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 12px; }
-.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 52px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 8px; }
-.page-sub { font-size: 11px; font-weight: 400; letter-spacing: 0.12em; color: var(--ink-f); display: block; margin-bottom: 52px; }
-.section-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 20px; }
+.nav { max-width: var(--cream-width); margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: var(--cream-serif); font-weight: 400; font-size: 1.375rem; letter-spacing: .08em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); }
+.content { max-width: var(--cream-width); margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
+.page-eyebrow { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 12px; }
+.page-title { font-family: var(--cream-serif); font-weight: 400; font-size: 3.25rem; letter-spacing: 0; color: var(--ink); line-height: 1; margin-bottom: 8px; }
+.page-sub { font-size: var(--cream-small); font-weight: 400; letter-spacing: .08em; color: var(--ink-f); display: block; margin-bottom: 52px; }
+.section-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 20px; }
 .rule { width: 100%; height: 1px; background: var(--line-l); margin: 48px 0; }
 .principle { padding: 20px 0; border-top: 1px solid var(--line-l); }
 .principle:last-of-type { border-bottom: 1px solid var(--line-l); }
-.principle-label { font-size: 8px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 6px; }
-.principle-text { font-size: 14px; color: var(--ink-l); line-height: 1.7; }
+.principle-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 6px; }
+.principle-text { font-size: var(--cream-text); color: var(--ink-l); line-height: 1.7; }
 .principle-text strong { font-weight: 500; color: var(--ink); }
 .phase-block { padding: 24px 0; border-top: 1px solid var(--line-l); display: grid; grid-template-columns: 100px 1fr; gap: 20px; align-items: start; }
 .phase-block:last-of-type { border-bottom: 1px solid var(--line-l); }
-.phase-label { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); padding-top: 4px; }
-.phase-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; color: var(--ink); display: block; margin-bottom: 6px; letter-spacing: 0.03em; }
-.phase-rule { font-size: 13px; color: var(--ink-l); line-height: 1.65; margin-bottom: 8px; }
-.phase-note { font-size: 11px; font-style: italic; font-family: 'Cormorant Garamond', serif; color: var(--ink-f); line-height: 1.6; }
+.phase-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); padding-top: 4px; }
+.phase-name { font-family: var(--cream-serif); font-size: 1.375rem; font-weight: 400; color: var(--ink); display: block; margin-bottom: 6px; letter-spacing: 0; }
+.phase-rule { font-size: var(--cream-text); color: var(--ink-l); line-height: 1.65; margin-bottom: 8px; }
+.phase-note { font-size: var(--cream-small); font-style: italic; font-family: var(--cream-serif); color: var(--ink-f); line-height: 1.6; }
 .watch-table { width: 100%; border-collapse: collapse; }
 .watch-table tbody tr { border-bottom: 1px solid var(--line-l); }
 .watch-table tbody tr:first-child { border-top: 1px solid var(--line-l); }
-.watch-table td { padding: 13px 0; vertical-align: top; font-size: 13px; color: var(--ink-l); line-height: 1.55; }
-.watch-table td:first-child { font-size: 8px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; padding-right: 20px; white-space: nowrap; padding-top: 15px; width: 56px; }
+.watch-table td { padding: 13px 0; vertical-align: top; font-size: var(--cream-text); color: var(--ink-l); line-height: 1.55; }
+.watch-table td:first-child { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; padding-right: 20px; white-space: nowrap; padding-top: 15px; width: 56px; }
 .watch-look { color: var(--ink-f); }
-.watch-ignore { color: var(--line); text-decoration: line-through; }
+.watch-ignore { color: var(--cream-muted); text-decoration: line-through; }
 .watch-ignore-text { color: var(--ink-f); opacity: 0.6; }
 .fuel-row { padding: 16px 0; border-top: 1px solid var(--line-l); display: grid; grid-template-columns: 80px 1fr; gap: 16px; align-items: baseline; }
 .fuel-row:last-of-type { border-bottom: 1px solid var(--line-l); }
-.fuel-marker { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
-.fuel-title { font-size: 13px; font-weight: 400; color: var(--ink); display: block; margin-bottom: 3px; }
-.fuel-note { font-size: 12px; color: var(--ink-f); line-height: 1.65; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+.fuel-marker { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.fuel-title { font-size: var(--cream-text); font-weight: 400; color: var(--ink); display: block; margin-bottom: 3px; }
+.fuel-note { font-size: var(--cream-note); color: var(--ink-f); line-height: 1.65; font-family: var(--cream-serif); font-style: italic; }
 .race-index-item { padding: 18px 0; border-top: 1px solid var(--line-l); display: flex; align-items: baseline; justify-content: space-between; gap: 16px; text-decoration: none; }
 .race-index-item:last-of-type { border-bottom: 1px solid var(--line-l); }
-.race-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--ink); display: block; margin-bottom: 3px; letter-spacing: 0.03em; }
-.race-meta { font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-f); }
-.race-arrow { font-size: 12px; color: var(--ink-f); flex-shrink: 0; }
+.race-name { font-family: var(--cream-serif); font-size: 1.25rem; font-weight: 400; color: var(--ink); display: block; margin-bottom: 3px; letter-spacing: 0; }
+.race-meta { font-size: var(--cream-small); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); }
+.race-arrow { font-size: var(--cream-note); color: var(--ink-f); flex-shrink: 0; }
 .race-index-item:hover .race-name { color: var(--ink-l); }
 .race-index-item:hover .race-arrow { color: var(--ink-l); }
 .directive { border: 1px solid var(--line); padding: 28px; }
-.directive-heading { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 20px; color: var(--ink); margin-bottom: 16px; letter-spacing: 0.04em; }
+.directive-heading { font-family: var(--cream-serif); font-weight: 400; font-size: 1.25rem; color: var(--ink); margin-bottom: 16px; letter-spacing: 0; }
 .directive-item { display: flex; gap: 16px; margin-bottom: 10px; align-items: baseline; }
-.directive-phase { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); min-width: 72px; flex-shrink: 0; }
-.directive-instruction { font-size: 13px; color: var(--ink-l); line-height: 1.5; }
-.directive-rule { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: var(--ink); margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--line-l); display: block; line-height: 1.6; }
+.directive-phase { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); min-width: 72px; flex-shrink: 0; }
+.directive-instruction { font-size: var(--cream-text); color: var(--ink-l); line-height: 1.5; }
+.directive-rule { font-family: var(--cream-serif); font-size: 1.125rem; font-style: italic; color: var(--ink); margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--line-l); display: block; line-height: 1.6; }
 .footer-nav { border-top: 1px solid var(--line-l); margin-top: 64px; padding-top: 24px; display: flex; gap: 32px; flex-wrap: wrap; }
-.footer-link { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link { font-size: var(--cream-small); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
 .footer-link:hover { color: var(--ink-l); }
 @media (max-width: 480px) {
   .nav { padding-left: 24px; padding-right: 24px; }
   .content { padding-left: 24px; padding-right: 24px; border-left: none; }
-  .page-title { font-size: 40px; }
+  .page-title { font-size: 2.5rem; }
   .phase-block { grid-template-columns: 1fr; gap: 8px; }
   .directive { padding: 20px; }
 }
 </style>
+<link rel="stylesheet" href="/css/cream-reading.css?v=20260916">
 </head>
 <body>
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-cream="reading" lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="deploy-id" content="202603161318">
@@ -37,68 +37,68 @@
 }
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --line:#d8d2c8; --line-l:#e8e3dc; }
 html, body { height: auto !important; overflow: visible !important; }
-body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 100px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
-.nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
-.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
-.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
-.content { max-width: 560px; margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
-.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 52px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 10px; }
-.page-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 20px; font-weight: 300; color: var(--ink-l); letter-spacing: 0.02em; display: block; margin-bottom: 36px; }
+body { background: var(--cream); color: var(--ink); font-family: var(--cream-sans); font-weight: 400; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 100px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.nav { max-width: var(--cream-width); margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: var(--cream-serif); font-weight: 400; font-size: 1.375rem; letter-spacing: .08em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); }
+.content { max-width: var(--cream-width); margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
+.page-title { font-family: var(--cream-serif); font-weight: 400; font-size: 3.25rem; letter-spacing: 0; color: var(--ink); line-height: 1; margin-bottom: 10px; }
+.page-sub { font-family: var(--cream-serif); font-style: italic; font-size: 1.25rem; font-weight: 400; color: var(--ink-l); letter-spacing: 0; display: block; margin-bottom: 36px; }
 .decision-strip { margin-bottom: 48px; padding: 24px 0; border-top: 1px solid var(--line-l); }
-.decision-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 8px; }
-.decision-intro { font-size: 12px; color: var(--ink-f); letter-spacing: 0.02em; line-height: 1.6; margin-bottom: 20px; }
+.decision-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 8px; }
+.decision-intro { font-size: var(--cream-note); color: var(--ink-f); letter-spacing: 0; line-height: 1.6; margin-bottom: 20px; }
 .decision-cases { display: flex; flex-direction: column; gap: 0; }
 .decision-case { padding: 16px 0; border-top: 1px solid var(--line-l); }
 .decision-case:last-child { border-bottom: 1px solid var(--line-l); margin-bottom: 16px; }
-.case-type { font-size: 13px; color: var(--ink); letter-spacing: 0.02em; display: block; margin-bottom: 3px; }
-.case-eg { font-size: 10px; color: var(--ink-f); letter-spacing: 0.04em; display: block; margin-bottom: 12px; font-style: italic; }
+.case-type { font-size: var(--cream-text); color: var(--ink); letter-spacing: 0; display: block; margin-bottom: 3px; }
+.case-eg { font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; display: block; margin-bottom: 12px; font-style: italic; }
 .case-use, .case-add { display: flex; gap: 12px; margin-bottom: 4px; align-items: baseline; }
-.use-label { font-size: 8px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); min-width: 58px; flex-shrink: 0; }
-.use-val { font-size: 12px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.5; }
-.decision-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; display: block; margin-top: 4px; }
-.intro { font-size: 13px; color: var(--ink-l); line-height: 1.8; letter-spacing: 0.02em; margin-bottom: 48px; }
+.use-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); min-width: 58px; flex-shrink: 0; }
+.use-val { font-size: var(--cream-note); color: var(--ink-l); letter-spacing: 0; line-height: 1.5; }
+.decision-note { font-family: var(--cream-serif); font-style: italic; font-size: var(--cream-text); font-weight: 400; color: var(--ink-f); letter-spacing: 0; display: block; margin-top: 4px; }
+.intro { font-size: var(--cream-text); color: var(--ink-l); line-height: 1.8; letter-spacing: 0; margin-bottom: 48px; }
 .intro p + p { margin-top: 10px; }
 .session-block { padding: 32px 0; border-top: 1px solid var(--line-l); }
 .session-block:last-of-type { border-bottom: 1px solid var(--line-l); }
-.session-day { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 8px; }
-.session-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 30px; letter-spacing: 0.04em; color: var(--ink); display: block; margin-bottom: 16px; line-height: 1; }
+.session-day { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 8px; }
+.session-name { font-family: var(--cream-serif); font-weight: 400; font-size: 1.875rem; letter-spacing: 0; color: var(--ink); display: block; margin-bottom: 16px; line-height: 1; }
 .shoe-traits { margin-bottom: 12px; }
-.shoe-traits-text { font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-f); line-height: 1.6; }
-.shoe-example { font-size: 12px; color: var(--ink-l); letter-spacing: 0.03em; margin-bottom: 6px; }
+.shoe-traits-text { font-size: var(--cream-small); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); line-height: 1.6; }
+.shoe-example { font-size: var(--cream-note); color: var(--ink-l); letter-spacing: 0; margin-bottom: 6px; }
 .shoe-example span { color: var(--ink-f); }
 .shoe-example a { color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px; }
 .shoe-example a:hover { color: var(--ink); border-color: var(--ink-f); }
-.shoe-why { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; line-height: 1.55; display: block; margin-top: 10px; }
+.shoe-why { font-family: var(--cream-serif); font-style: italic; font-size: var(--cream-text); font-weight: 400; color: var(--ink-f); letter-spacing: 0; line-height: 1.55; display: block; margin-top: 10px; }
 .mileage-block { margin-top: 48px; }
-.block-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px; }
+.block-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px; }
 .mileage-row { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--line-l); }
 .mileage-row:first-of-type { border-top: 1px solid var(--line-l); }
-.mileage-type { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; }
-.mileage-num { font-size: 12px; color: var(--ink-f); letter-spacing: 0.03em; }
+.mileage-type { font-size: var(--cream-text); color: var(--ink-l); letter-spacing: 0; }
+.mileage-num { font-size: var(--cream-note); color: var(--ink-f); letter-spacing: 0; }
 .shoe-ref-row { display: flex; align-items: baseline; gap: 14px; padding: 9px 0; border-bottom: 1px solid var(--line-l); flex-wrap: wrap; }
-.shoe-ref-link { font-size: 12px; color: var(--ink-l); letter-spacing: 0.02em; text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px; white-space: nowrap; }
+.shoe-ref-link { font-size: var(--cream-note); color: var(--ink-l); letter-spacing: 0; text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px; white-space: nowrap; }
 .shoe-ref-link:hover { color: var(--ink); border-color: var(--ink-f); }
-.shoe-ref-note { font-size: 11px; color: var(--ink-f); letter-spacing: 0.02em; line-height: 1.5; }
+.shoe-ref-note { font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; line-height: 1.5; }
 .interruption-block { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line-l); }
-.interruption-body { font-size: 13px; color: var(--ink-l); line-height: 1.7; letter-spacing: 0.02em; margin-bottom: 14px; }
-.interruption-link { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px; }
+.interruption-body { font-size: var(--cream-text); color: var(--ink-l); line-height: 1.7; letter-spacing: 0; margin-bottom: 14px; }
+.interruption-link { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px; }
 .interruption-link:hover { color: var(--ink-l); border-color: var(--ink-l); }
 .footer-links { margin-top: 52px; padding-top: 24px; border-top: 1px solid var(--line-l); display: flex; gap: 28px; flex-wrap: wrap; }
-.footer-link { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
 .footer-link:hover { color: var(--ink-l); }
 @media (max-width: 480px) {
   .nav { padding-left: 24px; padding-right: 24px; }
   .content { padding-left: 24px; padding-right: 24px; border-left: none; }
-  .page-title { font-size: 40px; }
+  .page-title { font-size: 2.5rem; }
   .case-use, .case-add { gap: 10px; }
   .use-label { min-width: 52px; }
 }
 </style>
+<link rel="stylesheet" href="/css/cream-reading.css?v=20260916">
 </head>
 <body>
 <div class="nav">
@@ -109,10 +109,10 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
   <h1 class="page-title">Running Shoe Rotation</h1>
   <span class="page-sub">Match the tool to the session.</span>
   <div style="margin-bottom: 40px; padding-bottom: 32px;">
-    <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 14px;">How many running shoes do you need?</span>
-    <p style="font-size: 13px; color: var(--ink-l); line-height: 1.8; letter-spacing: 0.02em; margin-bottom: 10px;">One. A single reliable trainer covers easy runs, long runs, and general mileage. That is enough to start.</p>
-    <p style="font-size: 13px; color: var(--ink-l); line-height: 1.8; letter-spacing: 0.02em; margin-bottom: 10px;">A second shoe becomes useful when you run most days of the week, when your current shoe approaches 400–500 miles, or when you want a lighter option for faster sessions. A full rotation — trainer, workout shoe, race shoe — is optional. Many runners train well with only one or two pairs.</p>
-    <p style="font-size: 13px; color: var(--ink-l); line-height: 1.8; letter-spacing: 0.02em;">Rotation is not required. It simply spreads wear and lets foam recover between runs. Whether that means two different models or two pairs of the same one, both approaches work.</p>
+    <span style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 14px;">How many running shoes do you need?</span>
+    <p style="font-size: var(--cream-text); color: var(--ink-l); line-height: 1.8; letter-spacing: 0; margin-bottom: 10px;">One. A single reliable trainer covers easy runs, long runs, and general mileage. That is enough to start.</p>
+    <p style="font-size: var(--cream-text); color: var(--ink-l); line-height: 1.8; letter-spacing: 0; margin-bottom: 10px;">A second shoe becomes useful when you run most days of the week, when your current shoe approaches 400–500 miles, or when you want a lighter option for faster sessions. A full rotation — trainer, workout shoe, race shoe — is optional. Many runners train well with only one or two pairs.</p>
+    <p style="font-size: var(--cream-text); color: var(--ink-l); line-height: 1.8; letter-spacing: 0;">Rotation is not required. It simply spreads wear and lets foam recover between runs. Whether that means two different models or two pairs of the same one, both approaches work.</p>
   </div>
 
   <div class="decision-strip">
@@ -199,22 +199,22 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 
   <div class="mileage-block" style="border-top: 1px solid var(--line-l); padding-top: 28px; margin-top: 0;">
     <span class="block-label" style="margin-bottom: 10px; display: block;">Drop and load</span>
-    <p style="font-size: 13px; color: var(--ink-l); line-height: 1.8; letter-spacing: 0.02em; margin-bottom: 12px;">Drop is the height difference between heel and forefoot. It changes where the body absorbs each stride.</p>
+    <p style="font-size: var(--cream-text); color: var(--ink-l); line-height: 1.8; letter-spacing: 0; margin-bottom: 12px;">Drop is the height difference between heel and forefoot. It changes where the body absorbs each stride.</p>
     <div style="display: flex; flex-direction: column; gap: 0; margin-bottom: 0;">
       <div style="padding: 9px 0; border-top: 1px solid var(--line-l); display: flex; justify-content: space-between; align-items: baseline; gap: 16px;">
-        <span style="font-size: 11px; color: var(--ink-f); letter-spacing: 0.02em;">Lower drop (0–6mm)</span>
-        <span style="font-size: 11px; color: var(--ink-l); letter-spacing: 0.02em; flex-shrink: 0;">More load on calf and Achilles</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0;">Lower drop (0–6mm)</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-l); letter-spacing: 0; flex-shrink: 0;">More load on calf and Achilles</span>
       </div>
       <div style="padding: 9px 0; border-top: 1px solid var(--line-l); display: flex; justify-content: space-between; align-items: baseline; gap: 16px;">
-        <span style="font-size: 11px; color: var(--ink-f); letter-spacing: 0.02em;">Higher drop (8–12mm)</span>
-        <span style="font-size: 11px; color: var(--ink-l); letter-spacing: 0.02em; flex-shrink: 0;">More load toward the knee</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0;">Higher drop (8–12mm)</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-l); letter-spacing: 0; flex-shrink: 0;">More load toward the knee</span>
       </div>
       <div style="padding: 9px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); display: flex; justify-content: space-between; align-items: baseline; gap: 16px;">
-        <span style="font-size: 11px; color: var(--ink-f); letter-spacing: 0.02em;">Changing drop suddenly</span>
-        <span style="font-size: 11px; color: var(--ink-l); letter-spacing: 0.02em; flex-shrink: 0;">Most common cause of Achilles complaints</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0;">Changing drop suddenly</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-l); letter-spacing: 0; flex-shrink: 0;">Most common cause of Achilles complaints</span>
       </div>
     </div>
-    <p style="font-size: 12px; color: var(--ink-f); font-style: italic; line-height: 1.75; margin-top: 14px; letter-spacing: 0.02em;">Neither is wrong. The issue is transition speed, not the number itself.</p>
+    <p style="font-size: var(--cream-note); color: var(--ink-f); font-style: italic; line-height: 1.75; margin-top: 14px; letter-spacing: 0;">Neither is wrong. The issue is transition speed, not the number itself.</p>
   </div>
 
   <div class="mileage-block">
@@ -232,81 +232,81 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
       <span class="mileage-num">~150–250 miles</span>
     </div>
     <div style="padding: 16px 0; border-top: 1px solid var(--line-l); margin-top: 4px;">
-      <p style="font-size: 12px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.75; margin-bottom: 10px;">Cushioning compresses quietly. Most runners notice the shoe has gone past its life through new aches rather than obvious wear. If you also walk in the same pair, they wear out sooner.</p>
-      <p style="font-size: 11px; color: var(--ink-f); letter-spacing: 0.03em; line-height: 1.7; font-style: italic;">Common signals: new aches mid-cycle · instability underfoot · uneven outsole wear · hip or knee irritation appearing without a clear cause. Replace the pair before problems escalate.</p>
+      <p style="font-size: var(--cream-note); color: var(--ink-l); letter-spacing: 0; line-height: 1.75; margin-bottom: 10px;">Cushioning compresses quietly. Most runners notice the shoe has gone past its life through new aches rather than obvious wear. If you also walk in the same pair, they wear out sooner.</p>
+      <p style="font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; line-height: 1.7; font-style: italic;">Common signals: new aches mid-cycle · instability underfoot · uneven outsole wear · hip or knee irritation appearing without a clear cause. Replace the pair before problems escalate.</p>
     </div>
   </div>
 
   <!-- FOAM RECOVERY + SINGLE SHOE PATH -->
   <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line-l);">
     <span class="block-label">Why rotating running shoes works — the foam</span>
-    <p style="font-size: 13px; color: var(--ink-l); line-height: 1.8; letter-spacing: 0.02em; margin-bottom: 14px;">Midsole foam is not rigid — it compresses under load and needs time to re-expand. A shoe worn on back-to-back days is already partly compressed when you start. Over months, foam that never gets to recover loses its properties ahead of schedule. This is why alternating pairs extends shoe life and changes how the shoe behaves underfoot.</p>
-    <p style="font-size: 13px; color: var(--ink-l); line-height: 1.8; letter-spacing: 0.02em;">Walking accelerates this. Running compresses the foam in a specific, rhythmic pattern — but walking keeps the same zones under load for longer periods across the day. A shoe used for both running and daily walking will reach its functional end noticeably earlier than mileage alone would suggest.</p>
+    <p style="font-size: var(--cream-text); color: var(--ink-l); line-height: 1.8; letter-spacing: 0; margin-bottom: 14px;">Midsole foam is not rigid — it compresses under load and needs time to re-expand. A shoe worn on back-to-back days is already partly compressed when you start. Over months, foam that never gets to recover loses its properties ahead of schedule. This is why alternating pairs extends shoe life and changes how the shoe behaves underfoot.</p>
+    <p style="font-size: var(--cream-text); color: var(--ink-l); line-height: 1.8; letter-spacing: 0;">Walking accelerates this. Running compresses the foam in a specific, rhythmic pattern — but walking keeps the same zones under load for longer periods across the day. A shoe used for both running and daily walking will reach its functional end noticeably earlier than mileage alone would suggest.</p>
   </div>
 
   <!-- IF YOU ONLY WANT ONE SHOE -->
   <div style="margin-top: 40px; padding: 24px; background: rgba(212,194,174,0.12); border: 1px solid var(--line);">
-    <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 14px;">If you only want one shoe</span>
-    <p style="font-size: 13px; color: var(--ink-l); line-height: 1.8; letter-spacing: 0.02em; margin-bottom: 14px;">If changing models feels like a risk — if you trust what you have and don't want to introduce an unknown — that is a reasonable position. The alternative to rotation does not have to be a different shoe.</p>
-    <p style="font-size: 13px; color: var(--ink-l); line-height: 1.8; letter-spacing: 0.02em; margin-bottom: 20px;">Buying a second pair of the same model and alternating between them gives the foam in each pair 24–48 hours to recover between runs. You stay in familiar geometry. Nothing in the fit or feel changes. The only variable removed is compression fatigue.</p>
+    <span style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 14px;">If you only want one shoe</span>
+    <p style="font-size: var(--cream-text); color: var(--ink-l); line-height: 1.8; letter-spacing: 0; margin-bottom: 14px;">If changing models feels like a risk — if you trust what you have and don't want to introduce an unknown — that is a reasonable position. The alternative to rotation does not have to be a different shoe.</p>
+    <p style="font-size: var(--cream-text); color: var(--ink-l); line-height: 1.8; letter-spacing: 0; margin-bottom: 20px;">Buying a second pair of the same model and alternating between them gives the foam in each pair 24–48 hours to recover between runs. You stay in familiar geometry. Nothing in the fit or feel changes. The only variable removed is compression fatigue.</p>
     <div style="border-top: 1px solid var(--line); padding-top: 16px;">
-      <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px;">If you also walk in the same pair</span>
-      <p style="font-size: 12px; color: var(--ink-l); line-height: 1.75; letter-spacing: 0.02em;">Consider keeping a separate pair for daily walking — something inexpensive and cushioned that you don't run in. This lets your running shoe recover fully between sessions and extends its effective life. Running through new aches after 500–600 miles in a shoe you walk in every day is usually the shoe, not the training.</p>
+      <span style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px;">If you also walk in the same pair</span>
+      <p style="font-size: var(--cream-note); color: var(--ink-l); line-height: 1.75; letter-spacing: 0;">Consider keeping a separate pair for daily walking — something inexpensive and cushioned that you don't run in. This lets your running shoe recover fully between sessions and extends its effective life. Running through new aches after 500–600 miles in a shoe you walk in every day is usually the shoe, not the training.</p>
     </div>
-    <span style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; display: block; margin-top: 16px;">Same shoe, fresh foam. That is still a rotation.</span>
+    <span style="font-family: var(--cream-serif); font-style: italic; font-size: var(--cream-text); font-weight: 400; color: var(--ink-f); letter-spacing: 0; display: block; margin-top: 16px;">Same shoe, fresh foam. That is still a rotation.</span>
   </div>
 
   <!-- COMMON MYTHS -->
   <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line-l);">
     <span class="block-label">Common shoe myths</span>
     <div style="padding: 14px 0; border-top: 1px solid var(--line-l);">
-      <span style="font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink); display: block; margin-bottom: 5px;">More expensive shoes prevent injury</span>
-      <p style="font-size: 12px; color: var(--ink-l); line-height: 1.75; letter-spacing: 0.02em;">Price does not guarantee fit, durability, or comfort. A reliable trainer that suits your foot is more useful than a premium shoe that never settles. Most injury comes from load, not footwear cost.</p>
+      <span style="font-size: var(--cream-small); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); display: block; margin-bottom: 5px;">More expensive shoes prevent injury</span>
+      <p style="font-size: var(--cream-note); color: var(--ink-l); line-height: 1.75; letter-spacing: 0;">Price does not guarantee fit, durability, or comfort. A reliable trainer that suits your foot is more useful than a premium shoe that never settles. Most injury comes from load, not footwear cost.</p>
     </div>
     <div style="padding: 14px 0; border-top: 1px solid var(--line-l);">
-      <span style="font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink); display: block; margin-bottom: 5px;">You need multiple shoes to train properly</span>
-      <p style="font-size: 12px; color: var(--ink-l); line-height: 1.75; letter-spacing: 0.02em;">One reliable trainer is enough to begin and to sustain consistent training. Rotation helps with wear management and foam recovery — but it is a refinement, not a prerequisite.</p>
+      <span style="font-size: var(--cream-small); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); display: block; margin-bottom: 5px;">You need multiple shoes to train properly</span>
+      <p style="font-size: var(--cream-note); color: var(--ink-l); line-height: 1.75; letter-spacing: 0;">One reliable trainer is enough to begin and to sustain consistent training. Rotation helps with wear management and foam recovery — but it is a refinement, not a prerequisite.</p>
     </div>
     <div style="padding: 14px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l);">
-      <span style="font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink); display: block; margin-bottom: 5px;">If the shoe looks fine, it still has life</span>
-      <p style="font-size: 12px; color: var(--ink-l); line-height: 1.75; letter-spacing: 0.02em;">Midsoles compress long before outsoles show wear. Most runners discover a shoe is finished not by looking at it, but by feeling something new in the knee or hip that wasn't there before.</p>
+      <span style="font-size: var(--cream-small); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); display: block; margin-bottom: 5px;">If the shoe looks fine, it still has life</span>
+      <p style="font-size: var(--cream-note); color: var(--ink-l); line-height: 1.75; letter-spacing: 0;">Midsoles compress long before outsoles show wear. Most runners discover a shoe is finished not by looking at it, but by feeling something new in the knee or hip that wasn't there before.</p>
     </div>
   </div>
 
   <!-- FIT BASICS -->
   <div style="margin-top: 48px; padding: 24px 20px; background: rgba(212,194,174,0.07); border: 1px solid var(--line-l);">
     <span class="block-label">Fit basics</span>
-    <p style="font-size: 13px; color: var(--ink-l); line-height: 1.8; letter-spacing: 0.02em; margin-bottom: 16px;">A shoe that fits correctly disappears after the first ten minutes. If you are still thinking about the shoe mid-run, something is off.</p>
+    <p style="font-size: var(--cream-text); color: var(--ink-l); line-height: 1.8; letter-spacing: 0; margin-bottom: 16px;">A shoe that fits correctly disappears after the first ten minutes. If you are still thinking about the shoe mid-run, something is off.</p>
     <div style="display: flex; flex-direction: column; gap: 0;">
       <div style="padding: 9px 0; border-top: 1px solid var(--line-l); display: flex; justify-content: space-between; align-items: baseline; gap: 16px;">
-        <span style="font-size: 11px; color: var(--ink-f); line-height: 1.65; letter-spacing: 0.02em;">Toe room</span>
-        <span style="font-size: 11px; color: var(--ink-l); letter-spacing: 0.02em; flex-shrink: 0;">Thumb width in front of longest toe</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); line-height: 1.65; letter-spacing: 0;">Toe room</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-l); letter-spacing: 0; flex-shrink: 0;">Thumb width in front of longest toe</span>
       </div>
       <div style="padding: 9px 0; border-top: 1px solid var(--line-l); display: flex; justify-content: space-between; align-items: baseline; gap: 16px;">
-        <span style="font-size: 11px; color: var(--ink-f); line-height: 1.65; letter-spacing: 0.02em;">Heel</span>
-        <span style="font-size: 11px; color: var(--ink-l); letter-spacing: 0.02em; flex-shrink: 0;">Secure — no lift when walking</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); line-height: 1.65; letter-spacing: 0;">Heel</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-l); letter-spacing: 0; flex-shrink: 0;">Secure — no lift when walking</span>
       </div>
       <div style="padding: 9px 0; border-top: 1px solid var(--line-l); display: flex; justify-content: space-between; align-items: baseline; gap: 16px;">
-        <span style="font-size: 11px; color: var(--ink-f); line-height: 1.65; letter-spacing: 0.02em;">Top of foot</span>
-        <span style="font-size: 11px; color: var(--ink-l); letter-spacing: 0.02em; flex-shrink: 0;">No pressure or hot spots</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); line-height: 1.65; letter-spacing: 0;">Top of foot</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-l); letter-spacing: 0; flex-shrink: 0;">No pressure or hot spots</span>
       </div>
       <div style="padding: 9px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); display: flex; justify-content: space-between; align-items: baseline; gap: 16px;">
-        <span style="font-size: 11px; color: var(--ink-f); line-height: 1.65; letter-spacing: 0.02em;">Width</span>
-        <span style="font-size: 11px; color: var(--ink-l); letter-spacing: 0.02em; flex-shrink: 0;">Foot sits flat — no spillover at the sides</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); line-height: 1.65; letter-spacing: 0;">Width</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-l); letter-spacing: 0; flex-shrink: 0;">Foot sits flat — no spillover at the sides</span>
       </div>
     </div>
-    <p style="font-size: 12px; color: var(--ink-f); font-style: italic; line-height: 1.75; margin-top: 14px; letter-spacing: 0.02em;">Running shoes fit slightly larger than casual shoes. Most people are a half size up from what they wear day to day.</p>
+    <p style="font-size: var(--cream-note); color: var(--ink-f); font-style: italic; line-height: 1.75; margin-top: 14px; letter-spacing: 0;">Running shoes fit slightly larger than casual shoes. Most people are a half size up from what they wear day to day.</p>
   </div>
 
   <!-- SHOE REFERENCE TABLE -->
   <div style="margin-top: 56px;">
     <span class="block-label">Reliable options by role</span>
-    <p style="font-size: 12px; color: var(--ink-f); letter-spacing: 0.02em; line-height: 1.6; margin-bottom: 20px;">These are not recommendations — they are reference points. Shoes within each category perform similar roles. Click any name to search current reviews and availability.</p>
+    <p style="font-size: var(--cream-note); color: var(--ink-f); letter-spacing: 0; line-height: 1.6; margin-bottom: 20px;">These are not recommendations — they are reference points. Shoes within each category perform similar roles. Click any name to search current reviews and availability.</p>
 
     <div style="margin-bottom: 28px;">
       <div style="display: flex; align-items: baseline; gap: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--line-l); margin-bottom: 2px;">
-        <span style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; color: var(--ink); letter-spacing: 0.04em;">Daily Trainers</span>
-        <span style="font-size: 10px; color: var(--ink-f); letter-spacing: 0.1em;">Easy runs · Long runs · Most mileage</span>
+        <span style="font-family: var(--cream-serif); font-weight: 400; font-size: 1.375rem; color: var(--ink); letter-spacing: 0;">Daily Trainers</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); letter-spacing: .08em;">Easy runs · Long runs · Most mileage</span>
       </div>
       <div class="shoe-ref-row"><a href="https://www.google.com/search?q=Brooks+Ghost+running+shoe+review" target="_blank" rel="noopener" class="shoe-ref-link">Brooks Ghost</a><span class="shoe-ref-note">Neutral · consistent cushion across updates · beginner-friendly</span></div>
       <div class="shoe-ref-row"><a href="https://www.google.com/search?q=Asics+Gel-Nimbus+running+shoe+review" target="_blank" rel="noopener" class="shoe-ref-link">Asics Gel-Nimbus</a><span class="shoe-ref-note">High stack · protective on long efforts · reliable fit</span></div>
@@ -318,8 +318,8 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 
     <div style="margin-bottom: 28px;">
       <div style="display: flex; align-items: baseline; gap: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--line-l); margin-bottom: 2px;">
-        <span style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; color: var(--ink); letter-spacing: 0.04em;">Tempo / Speed Trainers</span>
-        <span style="font-size: 10px; color: var(--ink-f); letter-spacing: 0.1em;">Threshold · Workouts · Faster efforts</span>
+        <span style="font-family: var(--cream-serif); font-weight: 400; font-size: 1.375rem; color: var(--ink); letter-spacing: 0;">Tempo / Speed Trainers</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); letter-spacing: .08em;">Threshold · Workouts · Faster efforts</span>
       </div>
       <div class="shoe-ref-row"><a href="https://www.google.com/search?q=Saucony+Endorphin+Speed+running+shoe+review" target="_blank" rel="noopener" class="shoe-ref-link">Saucony Endorphin Speed</a><span class="shoe-ref-note">Nylon plate · propulsive without being a race shoe</span></div>
       <div class="shoe-ref-row"><a href="https://www.google.com/search?q=Hoka+Mach+running+shoe+review" target="_blank" rel="noopener" class="shoe-ref-link">Hoka Mach</a><span class="shoe-ref-note">Firm underfoot · snappy · lighter than Hoka's cushion line</span></div>
@@ -330,8 +330,8 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 
     <div>
       <div style="display: flex; align-items: baseline; gap: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--line-l); margin-bottom: 2px;">
-        <span style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; color: var(--ink); letter-spacing: 0.04em;">Race Shoes</span>
-        <span style="font-size: 10px; color: var(--ink-f); letter-spacing: 0.1em;">Race day · Occasional peak workouts · Use sparingly</span>
+        <span style="font-family: var(--cream-serif); font-weight: 400; font-size: 1.375rem; color: var(--ink); letter-spacing: 0;">Race Shoes</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); letter-spacing: .08em;">Race day · Occasional peak workouts · Use sparingly</span>
       </div>
       <div class="shoe-ref-row"><a href="https://www.google.com/search?q=Nike+Alphafly+running+shoe+review" target="_blank" rel="noopener" class="shoe-ref-link">Nike Alphafly</a><span class="shoe-ref-note">Carbon plate · high stack · aggressive geometry · flagship race shoe</span></div>
       <div class="shoe-ref-row"><a href="https://www.google.com/search?q=Nike+Vaporfly+running+shoe+review" target="_blank" rel="noopener" class="shoe-ref-link">Nike Vaporfly</a><span class="shoe-ref-note">Lighter option in the Nike race line · slightly less aggressive than Alphafly</span></div>
@@ -340,28 +340,28 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
       <div class="shoe-ref-row"><a href="https://www.google.com/search?q=Saucony+Endorphin+Pro+running+shoe+review" target="_blank" rel="noopener" class="shoe-ref-link">Saucony Endorphin Pro</a><span class="shoe-ref-note">Carbon plate · slightly more accessible price point · reliable performer</span></div>
       <div class="shoe-ref-row"><a href="https://www.google.com/search?q=New+Balance+SC+Elite+running+shoe+review" target="_blank" rel="noopener" class="shoe-ref-link">New Balance SC Elite</a><span class="shoe-ref-note">FuelCell · competitive stack · strong option for 5K through marathon</span></div>
     </div>
-    <p style="font-size: 10px; color: var(--ink-f); letter-spacing: 0.03em; line-height: 1.65; margin-top: 18px; font-style: italic;">Models update annually. Search the name for current versions and reviews. Fit matters more than brand — if possible, try before committing to a race shoe.</p>
+    <p style="font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; line-height: 1.65; margin-top: 18px; font-style: italic;">Models update annually. Search the name for current versions and reviews. Fit matters more than brand — if possible, try before committing to a race shoe.</p>
   </div>
 
   <!-- SIGNS A SHOE IS FINISHED -->
   <div style="margin-top: 56px; padding: 28px 20px; background: rgba(212,194,174,0.07); border: 1px solid var(--line-l);">
     <span class="block-label">Signs a shoe is finished</span>
-    <p style="font-size: 13px; color: var(--ink-l); line-height: 1.8; letter-spacing: 0.02em; margin-bottom: 16px;">Knowing when to replace running shoes is usually a body question, not a visual one. Cushioning compresses quietly — the shoe looks fine long after it has stopped performing.</p>
+    <p style="font-size: var(--cream-text); color: var(--ink-l); line-height: 1.8; letter-spacing: 0; margin-bottom: 16px;">Knowing when to replace running shoes is usually a body question, not a visual one. Cushioning compresses quietly — the shoe looks fine long after it has stopped performing.</p>
     <div style="display: flex; flex-direction: column; gap: 0;">
       <div style="padding: 10px 0; border-top: 1px solid var(--line-l); display: flex; gap: 16px; align-items: baseline;">
-        <span style="font-size: 11px; color: var(--ink-f); letter-spacing: 0.03em; line-height: 1.65; flex: 1;">A new ache appearing mid training cycle — without a change in load or sessions</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; line-height: 1.65; flex: 1;">A new ache appearing mid training cycle — without a change in load or sessions</span>
       </div>
       <div style="padding: 10px 0; border-top: 1px solid var(--line-l); display: flex; gap: 16px; align-items: baseline;">
-        <span style="font-size: 11px; color: var(--ink-f); letter-spacing: 0.03em; line-height: 1.65; flex: 1;">Knee or hip irritation on easy runs that were previously comfortable</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; line-height: 1.65; flex: 1;">Knee or hip irritation on easy runs that were previously comfortable</span>
       </div>
       <div style="padding: 10px 0; border-top: 1px solid var(--line-l); display: flex; gap: 16px; align-items: baseline;">
-        <span style="font-size: 11px; color: var(--ink-f); letter-spacing: 0.03em; line-height: 1.65; flex: 1;">Instability underfoot — a sense that the shoe is no longer absorbing impact evenly</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; line-height: 1.65; flex: 1;">Instability underfoot — a sense that the shoe is no longer absorbing impact evenly</span>
       </div>
       <div style="padding: 10px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); display: flex; gap: 16px; align-items: baseline;">
-        <span style="font-size: 11px; color: var(--ink-f); letter-spacing: 0.03em; line-height: 1.65; flex: 1;">The shoe feeling flat or lifeless — rebound that was once present has gone quiet</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; line-height: 1.65; flex: 1;">The shoe feeling flat or lifeless — rebound that was once present has gone quiet</span>
       </div>
     </div>
-    <p style="font-size: 12px; color: var(--ink-l); line-height: 1.75; letter-spacing: 0.02em; margin-top: 16px;">When a reliable routine suddenly feels uncomfortable, the shoe is usually the first variable to check. Replacing the pair is often enough. These ranges shorten when the same pair handles daily walking alongside running.</p>
+    <p style="font-size: var(--cream-note); color: var(--ink-l); line-height: 1.75; letter-spacing: 0; margin-top: 16px;">When a reliable routine suddenly feels uncomfortable, the shoe is usually the first variable to check. Replacing the pair is often enough. These ranges shorten when the same pair handles daily walking alongside running.</p>
   </div>
 
   <div class="interruption-block">
@@ -372,67 +372,67 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
   <!-- SHOE CHANGE PAIN -->
   <div style="margin-top: 48px; padding: 28px 20px; background: rgba(212,194,174,0.07); border: 1px solid var(--line-l);">
     <span class="block-label">If a shoe change causes discomfort</span>
-    <p style="font-size: 13px; color: var(--ink-l); line-height: 1.8; letter-spacing: 0.02em; margin-bottom: 20px;">New discomfort after changing shoes is a loading signal first — not an automatic verdict on the shoe. A different shoe changes how the ankle, calf, and Achilles absorb each stride. The tissue needs time to adjust.</p>
+    <p style="font-size: var(--cream-text); color: var(--ink-l); line-height: 1.8; letter-spacing: 0; margin-bottom: 20px;">New discomfort after changing shoes is a loading signal first — not an automatic verdict on the shoe. A different shoe changes how the ankle, calf, and Achilles absorb each stride. The tissue needs time to adjust.</p>
 
-    <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px;">Common causes</span>
+    <span style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px;">Common causes</span>
     <div style="display: flex; flex-direction: column; gap: 0; margin-bottom: 20px;">
       <div style="padding: 9px 0; border-top: 1px solid var(--line-l); display: flex; gap: 12px; align-items: baseline;">
-        <span style="font-size: 11px; color: var(--ink-f); line-height: 1.65; flex: 1; letter-spacing: 0.02em;">Lower drop than the previous shoe — the calf and Achilles do more work</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); line-height: 1.65; flex: 1; letter-spacing: 0;">Lower drop than the previous shoe — the calf and Achilles do more work</span>
       </div>
       <div style="padding: 9px 0; border-top: 1px solid var(--line-l); display: flex; gap: 12px; align-items: baseline;">
-        <span style="font-size: 11px; color: var(--ink-f); line-height: 1.65; flex: 1; letter-spacing: 0.02em;">Firmer foam — less shock absorption shifts load to the lower leg</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); line-height: 1.65; flex: 1; letter-spacing: 0;">Firmer foam — less shock absorption shifts load to the lower leg</span>
       </div>
       <div style="padding: 9px 0; border-top: 1px solid var(--line-l); display: flex; gap: 12px; align-items: baseline;">
-        <span style="font-size: 11px; color: var(--ink-f); line-height: 1.65; flex: 1; letter-spacing: 0.02em;">More aggressive rocker — changes when and where the foot loads</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); line-height: 1.65; flex: 1; letter-spacing: 0;">More aggressive rocker — changes when and where the foot loads</span>
       </div>
       <div style="padding: 9px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); display: flex; gap: 12px; align-items: baseline;">
-        <span style="font-size: 11px; color: var(--ink-f); line-height: 1.65; flex: 1; letter-spacing: 0.02em;">Transition too abrupt — running full mileage in the new shoe from day one</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); line-height: 1.65; flex: 1; letter-spacing: 0;">Transition too abrupt — running full mileage in the new shoe from day one</span>
       </div>
     </div>
 
-    <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px;">What to do first</span>
+    <span style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px;">What to do first</span>
     <div style="display: flex; flex-direction: column; gap: 0; margin-bottom: 20px;">
       <div style="padding: 9px 0; border-top: 1px solid var(--line-l); display: flex; gap: 12px; align-items: baseline;">
-        <span style="font-size: 11px; color: var(--ink-f); line-height: 1.65; flex: 1; letter-spacing: 0.02em;">Go back to the previous shoe for a few runs — let the tissue settle</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); line-height: 1.65; flex: 1; letter-spacing: 0;">Go back to the previous shoe for a few runs — let the tissue settle</span>
       </div>
       <div style="padding: 9px 0; border-top: 1px solid var(--line-l); display: flex; gap: 12px; align-items: baseline;">
-        <span style="font-size: 11px; color: var(--ink-f); line-height: 1.65; flex: 1; letter-spacing: 0.02em;">Do not also walk in the new shoe — that doubles the daily loading</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); line-height: 1.65; flex: 1; letter-spacing: 0;">Do not also walk in the new shoe — that doubles the daily loading</span>
       </div>
       <div style="padding: 9px 0; border-top: 1px solid var(--line-l); display: flex; gap: 12px; align-items: baseline;">
-        <span style="font-size: 11px; color: var(--ink-f); line-height: 1.65; flex: 1; letter-spacing: 0.02em;">Reduce intensity while the area settles — easy running only</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); line-height: 1.65; flex: 1; letter-spacing: 0;">Reduce intensity while the area settles — easy running only</span>
       </div>
       <div style="padding: 9px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); display: flex; gap: 12px; align-items: baseline;">
-        <span style="font-size: 11px; color: var(--ink-f); line-height: 1.65; flex: 1; letter-spacing: 0.02em;">If symptoms continue after switching back, the issue is bigger than the shoe</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); line-height: 1.65; flex: 1; letter-spacing: 0;">If symptoms continue after switching back, the issue is bigger than the shoe</span>
       </div>
     </div>
 
-    <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px;">Achilles and ankle note</span>
-    <p style="font-size: 13px; color: var(--ink-l); line-height: 1.8; letter-spacing: 0.02em; margin-bottom: 20px;">Achilles discomfort after a shoe change usually means the lower leg is being asked to do more than it was trained for. This is most common when moving to a lower-drop shoe or one with a noticeably different geometry. The Achilles is not damaged — it is loaded differently. The fix is gradual transition, not force.</p>
+    <span style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px;">Achilles and ankle note</span>
+    <p style="font-size: var(--cream-text); color: var(--ink-l); line-height: 1.8; letter-spacing: 0; margin-bottom: 20px;">Achilles discomfort after a shoe change usually means the lower leg is being asked to do more than it was trained for. This is most common when moving to a lower-drop shoe or one with a noticeably different geometry. The Achilles is not damaged — it is loaded differently. The fix is gradual transition, not force.</p>
 
-    <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px;">Reading the signal</span>
+    <span style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px;">Reading the signal</span>
     <div style="display: flex; flex-direction: column; gap: 0;">
       <div style="padding: 9px 0; border-top: 1px solid var(--line-l); display: flex; justify-content: space-between; align-items: baseline; gap: 16px;">
-        <span style="font-size: 11px; color: var(--ink-f); line-height: 1.65; letter-spacing: 0.02em;">Better after switching back to old shoe</span>
-        <span style="font-size: 11px; color: var(--ink-l); letter-spacing: 0.02em; flex-shrink: 0;">New shoe is the trigger</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); line-height: 1.65; letter-spacing: 0;">Better after switching back to old shoe</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-l); letter-spacing: 0; flex-shrink: 0;">New shoe is the trigger</span>
       </div>
       <div style="padding: 9px 0; border-top: 1px solid var(--line-l); display: flex; justify-content: space-between; align-items: baseline; gap: 16px;">
-        <span style="font-size: 11px; color: var(--ink-f); line-height: 1.65; letter-spacing: 0.02em;">Still hurts after switching back</span>
-        <span style="font-size: 11px; color: var(--ink-l); letter-spacing: 0.02em; flex-shrink: 0;">Underlying issue exposed</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); line-height: 1.65; letter-spacing: 0;">Still hurts after switching back</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-l); letter-spacing: 0; flex-shrink: 0;">Underlying issue exposed</span>
       </div>
       <div style="padding: 9px 0; border-top: 1px solid var(--line-l); display: flex; justify-content: space-between; align-items: baseline; gap: 16px;">
-        <span style="font-size: 11px; color: var(--ink-f); line-height: 1.65; letter-spacing: 0.02em;">Only hurts during running, not walking</span>
-        <span style="font-size: 11px; color: var(--ink-l); letter-spacing: 0.02em; flex-shrink: 0;">Loading or geometry issue</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); line-height: 1.65; letter-spacing: 0;">Only hurts during running, not walking</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-l); letter-spacing: 0; flex-shrink: 0;">Loading or geometry issue</span>
       </div>
       <div style="padding: 9px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); display: flex; justify-content: space-between; align-items: baseline; gap: 16px;">
-        <span style="font-size: 11px; color: var(--ink-f); line-height: 1.65; letter-spacing: 0.02em;">Hurts walking too</span>
-        <span style="font-size: 11px; color: var(--ink-l); letter-spacing: 0.02em; flex-shrink: 0;">Back off sooner</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-f); line-height: 1.65; letter-spacing: 0;">Hurts walking too</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-l); letter-spacing: 0; flex-shrink: 0;">Back off sooner</span>
       </div>
     </div>
-    <p style="font-size: 12px; color: var(--ink-f); font-style: italic; line-height: 1.75; margin-top: 16px; letter-spacing: 0.02em;">A shoe does not have to be wrong to be wrong for you right now. It may simply ask for a load your tissues are not prepared for yet.</p>
+    <p style="font-size: var(--cream-note); color: var(--ink-f); font-style: italic; line-height: 1.75; margin-top: 16px; letter-spacing: 0;">A shoe does not have to be wrong to be wrong for you right now. It may simply ask for a load your tissues are not prepared for yet.</p>
   </div>
 
   <div style="margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--line-l);">
-    <p style="font-size: 13px; color: var(--ink-l); line-height: 1.8; letter-spacing: 0.02em; margin-bottom: 6px;">Running shoes are tools. Choose the one that supports the session, replace it before it fails, and keep attention on the training rather than the equipment.</p>
+    <p style="font-size: var(--cream-text); color: var(--ink-l); line-height: 1.8; letter-spacing: 0; margin-bottom: 6px;">Running shoes are tools. Choose the one that supports the session, replace it before it fails, and keep attention on the training rather than the equipment.</p>
   </div>
 
   <div class="footer-links">

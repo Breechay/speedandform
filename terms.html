@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-cream="reading" lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,7 +32,7 @@
     border-bottom: 0.5px solid var(--rule);
   }
   .nav-wordmark {
-    font-size: 11px;
+    font-size: var(--cream-small);
     font-weight: 600;
     letter-spacing: 3px;
     color: var(--ink);
@@ -40,7 +40,7 @@
     text-decoration: none;
   }
   .nav-back {
-    font-size: 12px;
+    font-size: var(--cream-note);
     color: var(--faint);
     text-decoration: none;
     letter-spacing: 0.3px;
@@ -54,7 +54,7 @@
   }
 
   .eyebrow {
-    font-size: 10px;
+    font-size: var(--cream-small);
     font-weight: 500;
     letter-spacing: 2px;
     color: var(--faint);
@@ -63,14 +63,14 @@
   }
   h1 {
     font-family: Georgia, serif;
-    font-size: 36px;
+    font-size: 2.25rem;
     font-weight: normal;
     color: var(--ink);
     line-height: 1.15;
     margin-bottom: 10px;
   }
   .updated {
-    font-size: 12px;
+    font-size: var(--cream-note);
     color: var(--faint);
     margin-bottom: 48px;
   }
@@ -82,7 +82,7 @@
   }
 
   .lead {
-    font-size: 16px;
+    font-size: var(--cream-text);
     color: var(--body-ink);
     line-height: 1.75;
     margin-bottom: 40px;
@@ -91,7 +91,7 @@
   .section { margin-bottom: 40px; }
 
   .section-label {
-    font-size: 9px;
+    font-size: var(--cream-label);
     font-weight: 500;
     letter-spacing: 2px;
     color: var(--faint);
@@ -101,7 +101,7 @@
 
   h2 {
     font-family: Georgia, serif;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: normal;
     color: var(--ink);
     margin-bottom: 14px;
@@ -109,7 +109,7 @@
   }
 
   p {
-    font-size: 15px;
+    font-size: var(--cream-text);
     color: var(--body-ink);
     line-height: 1.8;
     margin-bottom: 14px;
@@ -125,7 +125,7 @@
     margin: 24px 0;
   }
   .callout p {
-    font-size: 14px;
+    font-size: var(--cream-text);
     color: var(--secondary);
     margin-bottom: 0;
   }
@@ -137,7 +137,7 @@
     margin-top: 56px;
   }
   .contact-label {
-    font-size: 9px;
+    font-size: var(--cream-label);
     font-weight: 500;
     letter-spacing: 2px;
     color: rgba(240,237,230,0.4);
@@ -146,18 +146,18 @@
   }
   .contact h3 {
     font-family: Georgia, serif;
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: normal;
     color: #f0ede6;
     margin-bottom: 8px;
   }
   .contact p {
-    font-size: 13px;
+    font-size: var(--cream-text);
     color: rgba(240,237,230,0.55);
     margin-bottom: 16px;
   }
   .contact a {
-    font-size: 14px;
+    font-size: var(--cream-text);
     color: #f0ede6;
     text-decoration: none;
     border-bottom: 0.5px solid rgba(240,237,230,0.3);
@@ -176,7 +176,7 @@
     gap: 12px;
   }
   .footer-wordmark {
-    font-size: 10px;
+    font-size: var(--cream-small);
     font-weight: 500;
     letter-spacing: 2.5px;
     color: var(--faint);
@@ -187,7 +187,7 @@
     gap: 20px;
   }
   .footer-links a {
-    font-size: 11px;
+    font-size: var(--cream-small);
     color: var(--faint);
     text-decoration: none;
   }
@@ -196,9 +196,10 @@
   @media (max-width: 600px) {
     .nav { padding: 16px 20px; }
     .page { padding: 44px 20px 80px; }
-    h1 { font-size: 28px; }
+    h1 { font-size: 1.75rem; }
   }
 </style>
+<link rel="stylesheet" href="/css/cream-reading.css?v=20260916">
 </head>
 <body>
 

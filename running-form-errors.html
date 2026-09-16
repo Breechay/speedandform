@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-cream="reading" lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="deploy-id" content="202603161318">
@@ -38,80 +38,80 @@
   ]
 }
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --accent:#c4593a; --line:#d8d2c8; --line-l:#e8e3dc; }
 html, body { height: auto !important; overflow: visible !important; }
-body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 120px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+body { background: var(--cream); color: var(--ink); font-family: var(--cream-sans); font-weight: 400; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 120px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
 
-.nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
-.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
-.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+.nav { max-width: var(--cream-width); margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: var(--cream-serif); font-weight: 400; font-size: 1.375rem; letter-spacing: .08em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); }
 
-.content { max-width: 560px; margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
+.content { max-width: var(--cream-width); margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
 
-.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 42px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 8px; }
-.page-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; margin-bottom: 12px; display: block; }
-.page-intro { font-size: 13px; line-height: 1.78; color: var(--ink-l); letter-spacing: 0.02em; margin-bottom: 52px; }
+.page-title { font-family: var(--cream-serif); font-weight: 400; font-size: 2.625rem; letter-spacing: 0; color: var(--ink); line-height: 1; margin-bottom: 8px; }
+.page-sub { font-family: var(--cream-serif); font-style: italic; font-size: 1.125rem; font-weight: 400; color: var(--ink-f); letter-spacing: 0; margin-bottom: 12px; display: block; }
+.page-intro { font-size: var(--cream-text); line-height: 1.78; color: var(--ink-l); letter-spacing: 0; margin-bottom: 52px; }
 
 /* INDEX */
 .index-block { padding: 20px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); margin-bottom: 52px; }
-.index-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px; }
+.index-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px; }
 .index-list { display: flex; flex-direction: column; gap: 0; }
-.index-item { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; padding: 7px 0; border-bottom: 1px solid var(--line-l); display: flex; align-items: baseline; gap: 12px; cursor: pointer; text-decoration: none; transition: color 0.15s; }
+.index-item { font-size: var(--cream-text); color: var(--ink-l); letter-spacing: 0; padding: 7px 0; border-bottom: 1px solid var(--line-l); display: flex; align-items: baseline; gap: 12px; cursor: pointer; text-decoration: none; transition: color 0.15s; }
 .index-item:last-child { border-bottom: none; }
 .index-item:hover { color: var(--ink); }
-.index-num { font-size: 9px; font-weight: 500; letter-spacing: 0.15em; color: var(--ink-f); width: 20px; flex-shrink: 0; }
+.index-num { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; color: var(--ink-f); width: 20px; flex-shrink: 0; }
 
 /* ERROR BLOCKS */
 .error-block { margin-bottom: 0; border-bottom: 1px solid var(--line-l); padding: 40px 0; }
 .error-block:first-of-type { border-top: 1px solid var(--line-l); }
-.error-number { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 8px; }
-.error-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 34px; letter-spacing: 0.03em; color: var(--ink); line-height: 1; display: block; }
+.error-number { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 8px; }
+.error-name { font-family: var(--cream-serif); font-weight: 400; font-size: 2.125rem; letter-spacing: 0; color: var(--ink); line-height: 1; display: block; }
 
 /* COLLAPSE PATTERN */
 .error-header { display: flex; align-items: baseline; justify-content: space-between; cursor: pointer; padding: 20px 0; user-select: none; -webkit-tap-highlight-color: transparent; }
 .error-header:hover .error-name { opacity: 0.7; }
-.error-toggle { font-size: 18px; font-weight: 300; color: var(--ink-f); flex-shrink: 0; margin-left: 16px; line-height: 1; transition: transform 0.2s ease; }
+.error-toggle { font-size: 1.125rem; font-weight: 400; color: var(--ink-f); flex-shrink: 0; margin-left: 16px; line-height: 1; transition: transform 0.2s ease; }
 .error-block.open .error-toggle { transform: rotate(45deg); }
 .error-body { display: none; padding-bottom: 28px; }
 .error-block.open .error-body { display: block; }
 
 .error-section { margin-bottom: 20px; }
 .error-section:last-child { margin-bottom: 0; }
-.section-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
+.section-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
 
 /* Symptom list */
 .symptom-list { list-style: none; padding: 0; }
-.symptom-list li { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.6; padding: 4px 0; display: flex; align-items: baseline; gap: 10px; }
+.symptom-list li { font-size: var(--cream-text); color: var(--ink-l); letter-spacing: 0; line-height: 1.6; padding: 4px 0; display: flex; align-items: baseline; gap: 10px; }
 .symptom-list li::before { content: ''; display: block; width: 3px; height: 3px; background: var(--ink-f); border-radius: 50%; flex-shrink: 0; position: relative; top: -1px; }
 
 /* Correction list */
 .correction-list { list-style: none; padding: 0; }
-.correction-list li { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.65; padding: 5px 0; border-bottom: 1px solid var(--line-l); }
+.correction-list li { font-size: var(--cream-text); color: var(--ink-l); letter-spacing: 0; line-height: 1.65; padding: 5px 0; border-bottom: 1px solid var(--line-l); }
 .correction-list li:last-child { border-bottom: none; }
 
 /* Practice links */
 .practice-links { display: flex; gap: 10px; flex-wrap: wrap; }
-.practice-tag { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px; transition: color 0.15s; }
+.practice-tag { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px; transition: color 0.15s; }
 .practice-tag:hover { color: var(--ink); }
 
 /* CLOSING */
 .closing { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line-l); }
-.closing-line { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 19px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; display: block; margin-bottom: 24px; }
+.closing-line { font-family: var(--cream-serif); font-style: italic; font-size: 1.1875rem; font-weight: 400; color: var(--ink-f); letter-spacing: 0; display: block; margin-bottom: 24px; }
 .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
-.footer-link { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
 .footer-link.primary { color: var(--ink-l); }
 
 @media (max-width: 480px) {
   .nav { padding-left: 24px; padding-right: 24px; }
   .content { padding-left: 24px; padding-right: 24px; border-left: none; }
-  .page-title { font-size: 34px; }
-  .error-name { font-size: 28px; }
+  .page-title { font-size: 2.125rem; }
+  .error-name { font-size: 1.75rem; }
 }
-.page-breadcrumb { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 12px; }
+.page-breadcrumb { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 12px; }
 </style>
+<link rel="stylesheet" href="/css/cream-reading.css?v=20260916">
 </head>
 <body>
 
@@ -152,8 +152,8 @@ Pages must remain scannable during a run.
   <p class="page-intro" style="margin-top: 8px; font-style: italic; color: var(--ink-f);">One issue at a time. Correction is incremental.</p>
 
   <div style="padding: 24px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); margin-bottom: 52px;">
-    <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 14px;">If Form Changes During the Run</span>
-    <div style="font-size: 13px; color: var(--ink-l); line-height: 1.75; letter-spacing: 0.02em;">
+    <span style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 14px;">If Form Changes During the Run</span>
+    <div style="font-size: var(--cream-text); color: var(--ink-l); line-height: 1.75; letter-spacing: 0;">
       <p>Sometimes form changes during the run rather than being present from the start.</p>
       <p style="margin-top: 10px;">The stride may begin to feel uneven, posture collapses earlier than usual, or one side begins doing more work than the other.</p>
       <p style="margin-top: 10px;">Do not try to correct everything at once. Instead: reduce intensity, return to one stabilizing cue — posture, arm swing, or foot placement — and allow rhythm to settle.</p>
@@ -173,7 +173,7 @@ Pages must remain scannable during a run.
       <a class="index-item" onclick="openEntry('vertical-bounce')" style="cursor:pointer;"><span class="index-num">05</span>Vertical Bounce</a>
       <a class="index-item" onclick="openEntry('forward-lean')" style="cursor:pointer;"><span class="index-num">06</span>Collapsing Forward Lean</a>
       <a class="index-item" onclick="openEntry('tight-shoulders')" style="cursor:pointer;"><span class="index-num">07</span>Tight Shoulders and High Arms</a>
-      <a class="index-item" onclick="openEntry('hip-bounce-reference')" style="cursor:pointer;"><span class="index-num" style="letter-spacing: 0.08em;">Ref</span>Reducing Hip Bounce</a>
+      <a class="index-item" onclick="openEntry('hip-bounce-reference')" style="cursor:pointer;"><span class="index-num" style="letter-spacing: 0;">Ref</span>Reducing Hip Bounce</a>
     </div>
   </div>
 
@@ -537,48 +537,48 @@ Pages must remain scannable during a run.
 
     <span class="error-number" style="margin-bottom: 4px; display: block;">Reference</span>
     <span class="error-name">Reducing Hip Bounce</span>
-    <span style="display: block; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.08em; margin-bottom: 32px;">Quiet Hips · Horizontal Force · Efficient Stride</span>
+    <span style="display: block; font-family: var(--cream-serif); font-style: italic; font-size: var(--cream-text); font-weight: 400; color: var(--ink-f); letter-spacing: 0; margin-bottom: 32px;">Quiet Hips · Horizontal Force · Efficient Stride</span>
 
     <!-- CUE STRIP -->
     <div style="display: flex; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); padding: 18px 0; margin-bottom: 36px; gap: 0;">
       <div style="flex: 1; padding-right: 16px; border-right: 1px solid var(--line-l);">
-        <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink); display: block; margin-bottom: 6px;">Cadence</span>
-        <span style="font-size: 11px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.5;">Shorter rhythm reduces flight time</span>
+        <span style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); display: block; margin-bottom: 6px;">Cadence</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-l); letter-spacing: 0; line-height: 1.5;">Shorter rhythm reduces flight time</span>
       </div>
       <div style="flex: 1; padding: 0 16px; border-right: 1px solid var(--line-l);">
-        <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink); display: block; margin-bottom: 6px;">Pull</span>
-        <span style="font-size: 11px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.5;">Hamstrings cycle the leg underneath</span>
+        <span style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); display: block; margin-bottom: 6px;">Pull</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-l); letter-spacing: 0; line-height: 1.5;">Hamstrings cycle the leg underneath</span>
       </div>
       <div style="flex: 1; padding-left: 16px;">
-        <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink); display: block; margin-bottom: 6px;">Lean</span>
-        <span style="font-size: 11px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.5;">Gravity moves the body forward</span>
+        <span style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); display: block; margin-bottom: 6px;">Lean</span>
+        <span style="font-size: var(--cream-small); color: var(--ink-l); letter-spacing: 0; line-height: 1.5;">Gravity moves the body forward</span>
       </div>
     </div>
 
     <!-- CADENCE RHYTHM TOOL -->
     <div style="padding: 20px 0; border-bottom: 1px solid var(--line-l); margin-bottom: 36px;">
-      <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 4px;">Cadence Rhythm</span>
-      <span style="font-size: 11px; color: var(--ink-f); letter-spacing: 0.03em; display: block; margin-bottom: 20px;">Use briefly to feel quicker turnover.</span>
+      <span style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 4px;">Cadence Rhythm</span>
+      <span style="font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; display: block; margin-bottom: 20px;">Use briefly to feel quicker turnover.</span>
 
       <div style="display: flex; gap: 28px; align-items: baseline; margin-bottom: 20px;">
-        <button onclick="selectBPM(170)" id="bpm-170" style="font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; letter-spacing: 0.04em; color: var(--ink-f); background: none; border: none; cursor: pointer; padding: 0; min-height: 44px; transition: color 0.15s;">170</button>
-        <button onclick="selectBPM(175)" id="bpm-175" style="font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; letter-spacing: 0.04em; color: var(--ink-f); background: none; border: none; cursor: pointer; padding: 0; min-height: 44px; transition: color 0.15s;">175</button>
-        <button onclick="selectBPM(180)" id="bpm-180" style="font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; letter-spacing: 0.04em; color: var(--ink-f); background: none; border: none; cursor: pointer; padding: 0; min-height: 44px; transition: color 0.15s;">180</button>
+        <button onclick="selectBPM(170)" id="bpm-170" style="font-family: var(--cream-serif); font-size: 1.625rem; font-weight: 400; letter-spacing: 0; color: var(--ink-f); background: none; border: none; cursor: pointer; padding: 0; min-height: 44px; transition: color 0.15s;">170</button>
+        <button onclick="selectBPM(175)" id="bpm-175" style="font-family: var(--cream-serif); font-size: 1.625rem; font-weight: 400; letter-spacing: 0; color: var(--ink-f); background: none; border: none; cursor: pointer; padding: 0; min-height: 44px; transition: color 0.15s;">175</button>
+        <button onclick="selectBPM(180)" id="bpm-180" style="font-family: var(--cream-serif); font-size: 1.625rem; font-weight: 400; letter-spacing: 0; color: var(--ink-f); background: none; border: none; cursor: pointer; padding: 0; min-height: 44px; transition: color 0.15s;">180</button>
       </div>
 
       <div style="display: flex; gap: 24px; align-items: center;">
-        <button onclick="startMetronome()" id="metro-start" style="font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-l); background: none; border: none; cursor: pointer; padding: 0; min-height: 44px; transition: color 0.15s;">Start</button>
-        <button onclick="stopMetronome()" id="metro-stop" style="font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-f); background: none; border: none; cursor: pointer; padding: 0; min-height: 44px; transition: color 0.15s;">Stop</button>
+        <button onclick="startMetronome()" id="metro-start" style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-l); background: none; border: none; cursor: pointer; padding: 0; min-height: 44px; transition: color 0.15s;">Start</button>
+        <button onclick="stopMetronome()" id="metro-stop" style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); background: none; border: none; cursor: pointer; padding: 0; min-height: 44px; transition: color 0.15s;">Stop</button>
       </div>
     </div>
 
     <!-- STRIDE TIMING STRIP -->
     <div style="padding: 20px 0; border-bottom: 1px solid var(--line-l); margin-bottom: 36px;">
-      <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 4px;">Stride Timing</span>
-      <span style="font-size: 11px; color: var(--ink-f); letter-spacing: 0.03em; display: block; margin-bottom: 18px;">Efficient running feels like a quick rhythm.</span>
-      <p style="font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; color: var(--ink); letter-spacing: 0.1em; margin-bottom: 10px;">tap · tap · tap · tap · tap</p>
-      <p style="font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.1em; margin-bottom: 14px;">push · jump · land</p>
-      <p style="font-size: 11px; color: var(--ink-f); letter-spacing: 0.03em; line-height: 1.6;">Efficient runners spend less time pushing upward and more time cycling forward.</p>
+      <span style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 4px;">Stride Timing</span>
+      <span style="font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; display: block; margin-bottom: 18px;">Efficient running feels like a quick rhythm.</span>
+      <p style="font-family: var(--cream-serif); font-size: 1.125rem; font-weight: 400; color: var(--ink); letter-spacing: .08em; margin-bottom: 10px;">tap · tap · tap · tap · tap</p>
+      <p style="font-family: var(--cream-serif); font-size: 1.125rem; font-weight: 400; color: var(--ink-f); letter-spacing: .08em; margin-bottom: 14px;">push · jump · land</p>
+      <p style="font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; line-height: 1.6;">Efficient runners spend less time pushing upward and more time cycling forward.</p>
     </div>
 
     <!-- WHAT THE PROBLEM IS -->
@@ -607,31 +607,31 @@ Pages must remain scannable during a run.
       <span class="section-label">Mechanical Fixes</span>
 
       <div style="padding: 14px 0; border-bottom: 1px solid var(--line-l);">
-        <span style="font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-l); display: block; margin-bottom: 8px;">Cadence</span>
-        <p style="font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.7; margin-bottom: 6px;">Higher cadence reduces aerial time and lowers vertical motion. Typical efficient range: 170–185 steps per minute.</p>
-        <p style="font-size: 11px; color: var(--ink-f); letter-spacing: 0.04em; font-style: italic;">Cue: Light feet. Faster rhythm.</p>
+        <span style="font-size: var(--cream-small); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-l); display: block; margin-bottom: 8px;">Cadence</span>
+        <p style="font-size: var(--cream-text); color: var(--ink-l); letter-spacing: 0; line-height: 1.7; margin-bottom: 6px;">Higher cadence reduces aerial time and lowers vertical motion. Typical efficient range: 170–185 steps per minute.</p>
+        <p style="font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; font-style: italic;">Cue: Light feet. Faster rhythm.</p>
       </div>
 
       <div style="padding: 14px 0; border-bottom: 1px solid var(--line-l);">
-        <span style="font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-l); display: block; margin-bottom: 8px;">Pull the Ground Behind You</span>
-        <p style="font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.7; margin-bottom: 6px;">Many runners push off aggressively, which launches the body upward. Instead: pull the ground behind you. The hamstrings lift the heel immediately after contact, allowing the foot to cycle underneath the hips.</p>
-        <p style="font-size: 11px; color: var(--ink-f); letter-spacing: 0.04em; font-style: italic;">Cue: Heel rises quickly behind.</p>
+        <span style="font-size: var(--cream-small); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-l); display: block; margin-bottom: 8px;">Pull the Ground Behind You</span>
+        <p style="font-size: var(--cream-text); color: var(--ink-l); letter-spacing: 0; line-height: 1.7; margin-bottom: 6px;">Many runners push off aggressively, which launches the body upward. Instead: pull the ground behind you. The hamstrings lift the heel immediately after contact, allowing the foot to cycle underneath the hips.</p>
+        <p style="font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; font-style: italic;">Cue: Heel rises quickly behind.</p>
       </div>
 
       <div style="padding: 14px 0; border-bottom: 1px solid var(--line-l);">
-        <span style="font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-l); display: block; margin-bottom: 8px;">Lean From the Ankles</span>
-        <p style="font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.7; margin-bottom: 6px;">Running perfectly upright encourages vertical motion. A slight forward lean directs momentum horizontally. Lean from the ankles, not the waist — the body remains tall while the entire system tilts slightly forward. Typical lean: 2–3 degrees.</p>
+        <span style="font-size: var(--cream-small); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-l); display: block; margin-bottom: 8px;">Lean From the Ankles</span>
+        <p style="font-size: var(--cream-text); color: var(--ink-l); letter-spacing: 0; line-height: 1.7; margin-bottom: 6px;">Running perfectly upright encourages vertical motion. A slight forward lean directs momentum horizontally. Lean from the ankles, not the waist — the body remains tall while the entire system tilts slightly forward. Typical lean: 2–3 degrees.</p>
       </div>
 
       <div style="padding: 14px 0;">
-        <span style="font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-l); display: block; margin-bottom: 8px;">Quiet Pelvis</span>
-        <p style="font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.7; margin-bottom: 8px;">Hip bounce often reflects instability through the pelvis and trunk. If the pelvis tilts excessively forward, the glutes cannot stabilize the stride.</p>
+        <span style="font-size: var(--cream-small); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-l); display: block; margin-bottom: 8px;">Quiet Pelvis</span>
+        <p style="font-size: var(--cream-text); color: var(--ink-l); letter-spacing: 0; line-height: 1.7; margin-bottom: 8px;">Hip bounce often reflects instability through the pelvis and trunk. If the pelvis tilts excessively forward, the glutes cannot stabilize the stride.</p>
         <ul class="symptom-list" style="margin-bottom: 8px;">
           <li>Neutral pelvis</li>
           <li>Wide ribs</li>
           <li>Quiet torso</li>
         </ul>
-        <p style="font-size: 11px; color: var(--ink-f); letter-spacing: 0.04em; font-style: italic;">Cue: Run as if a low ceiling sits just above your head.</p>
+        <p style="font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; font-style: italic;">Cue: Run as if a low ceiling sits just above your head.</p>
       </div>
     </div>
 
@@ -654,7 +654,7 @@ Pages must remain scannable during a run.
           <polygon points="476,50 468,46 468,54" fill="#a09890"/>
           <polygon points="476,95 468,91 468,99" fill="#a09890"/>
         </svg>
-        <p style="font-size: 10px; color: var(--ink-f); letter-spacing: 0.04em; line-height: 1.5;">Vertical Bounce (A) vs Horizontal Travel (B). Efficient runners minimize vertical movement of the center of mass.</p>
+        <p style="font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; line-height: 1.5;">Vertical Bounce (A) vs Horizontal Travel (B). Efficient runners minimize vertical movement of the center of mass.</p>
       </div>
 
       <!-- Diagram 2: Foot Path -->
@@ -679,7 +679,7 @@ Pages must remain scannable during a run.
           <!-- Ground line -->
           <line x1="240" y1="95" x2="380" y2="95" stroke="#e8e3dc" stroke-width="1"/>
         </svg>
-        <p style="font-size: 10px; color: var(--ink-f); letter-spacing: 0.04em; line-height: 1.5;">Push Up vs Pull Through. Efficient runners cycle the leg underneath rather than launching upward.</p>
+        <p style="font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; line-height: 1.5;">Push Up vs Pull Through. Efficient runners cycle the leg underneath rather than launching upward.</p>
       </div>
     </div>
 
@@ -691,11 +691,11 @@ Pages must remain scannable during a run.
         <li>Straight-leg bounds — reinforce forward travel rather than upward push</li>
         <li>Fast relaxed strides — feel quicker turnover without tension</li>
       </ul>
-      <p style="font-size: 11px; color: var(--ink-f); letter-spacing: 0.04em; font-style: italic; margin-top: 10px;">The emphasis is not height. The emphasis is quick contact timing.</p>
+      <p style="font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; font-style: italic; margin-top: 10px;">The emphasis is not height. The emphasis is quick contact timing.</p>
 
       <!-- Quick Drill -->
       <div style="margin-top: 20px; padding: 14px 0; border-top: 1px solid var(--line-l);">
-        <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px;">Quick Drill</span>
+        <span style="font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px;">Quick Drill</span>
         <ul class="correction-list">
           <li>Run for 20 seconds focusing only on cadence. Let the feet move slightly faster than feels natural.</li>
           <li>Keep the hips quiet. Repeat twice during an easy run.</li>
@@ -706,34 +706,34 @@ Pages must remain scannable during a run.
     <!-- MECHANICAL SIGNALS TABLE -->
     <div class="error-section">
       <span class="section-label">Mechanical Signals</span>
-      <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+      <table style="width: 100%; border-collapse: collapse; font-size: var(--cream-note);">
         <thead>
           <tr style="border-bottom: 1px solid var(--line);">
-            <th style="text-align: left; font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); padding: 0 0 10px; font-family: 'Jost', sans-serif;">Metric</th>
-            <th style="text-align: right; font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); padding: 0 0 10px; font-family: 'Jost', sans-serif;">Efficient Range</th>
+            <th style="text-align: left; font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); padding: 0 0 10px; font-family: var(--cream-sans);">Metric</th>
+            <th style="text-align: right; font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); padding: 0 0 10px; font-family: var(--cream-sans);">Efficient Range</th>
           </tr>
         </thead>
         <tbody>
           <tr style="border-bottom: 1px solid var(--line-l);">
-            <td style="padding: 10px 0; color: var(--ink-l); letter-spacing: 0.02em; font-family: 'Jost', sans-serif; font-weight: 300;">Vertical Oscillation</td>
-            <td style="padding: 10px 0; color: var(--ink-f); text-align: right; letter-spacing: 0.04em; font-family: 'Jost', sans-serif; font-weight: 300;">&lt; 8–10 cm</td>
+            <td style="padding: 10px 0; color: var(--ink-l); letter-spacing: 0; font-family: var(--cream-sans); font-weight: 400;">Vertical Oscillation</td>
+            <td style="padding: 10px 0; color: var(--ink-f); text-align: right; letter-spacing: 0; font-family: var(--cream-sans); font-weight: 400;">&lt; 8–10 cm</td>
           </tr>
           <tr style="border-bottom: 1px solid var(--line-l);">
-            <td style="padding: 10px 0; color: var(--ink-l); letter-spacing: 0.02em; font-family: 'Jost', sans-serif; font-weight: 300;">Vertical Ratio</td>
-            <td style="padding: 10px 0; color: var(--ink-f); text-align: right; letter-spacing: 0.04em; font-family: 'Jost', sans-serif; font-weight: 300;">&lt; 7%</td>
+            <td style="padding: 10px 0; color: var(--ink-l); letter-spacing: 0; font-family: var(--cream-sans); font-weight: 400;">Vertical Ratio</td>
+            <td style="padding: 10px 0; color: var(--ink-f); text-align: right; letter-spacing: 0; font-family: var(--cream-sans); font-weight: 400;">&lt; 7%</td>
           </tr>
           <tr>
-            <td style="padding: 10px 0; color: var(--ink-l); letter-spacing: 0.02em; font-family: 'Jost', sans-serif; font-weight: 300;">Ground Contact Time</td>
-            <td style="padding: 10px 0; color: var(--ink-f); text-align: right; letter-spacing: 0.04em; font-family: 'Jost', sans-serif; font-weight: 300;">&lt; 240 ms</td>
+            <td style="padding: 10px 0; color: var(--ink-l); letter-spacing: 0; font-family: var(--cream-sans); font-weight: 400;">Ground Contact Time</td>
+            <td style="padding: 10px 0; color: var(--ink-f); text-align: right; letter-spacing: 0; font-family: var(--cream-sans); font-weight: 400;">&lt; 240 ms</td>
           </tr>
         </tbody>
       </table>
-      <p style="font-size: 11px; color: var(--ink-f); letter-spacing: 0.03em; line-height: 1.6; margin-top: 12px; font-style: italic;">These numbers describe the outcome of efficient mechanics, not goals themselves.</p>
+      <p style="font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; line-height: 1.6; margin-top: 12px; font-style: italic;">These numbers describe the outcome of efficient mechanics, not goals themselves.</p>
     </div>
 
     <!-- CLOSING PRINCIPLE -->
     <div style="padding-top: 20px; border-top: 1px solid var(--line-l); margin-top: 8px;">
-      <span style="display: block; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 19px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; line-height: 1.5;">Speed does not come from jumping higher.<br>Speed comes from wasting less.</span>
+      <span style="display: block; font-family: var(--cream-serif); font-style: italic; font-size: 1.1875rem; font-weight: 400; color: var(--ink-f); letter-spacing: 0; line-height: 1.5;">Speed does not come from jumping higher.<br>Speed comes from wasting less.</span>
     </div>
 
   </div>

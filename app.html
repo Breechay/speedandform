@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-cream="reading" lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,6 @@
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://speedandform.com/og/default.jpg">
 <meta property="og:site_name" content="FORM">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -30,8 +29,8 @@ html { height: 100%; }
 body {
   background: var(--cream);
   color: var(--ink);
-  font-family: 'Jost', sans-serif;
-  font-weight: 300;
+  font-family: var(--cream-sans);
+  font-weight: 400;
   font-kerning: normal;
   font-feature-settings: "kern";
   min-height: 100%;
@@ -50,17 +49,17 @@ body {
   width: 100%;
 }
 .nav-home {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-size: 22px;
-  letter-spacing: 0.12em;
+  font-family: var(--cream-serif);
+  font-weight: 400;
+  font-size: 1.375rem;
+  letter-spacing: .08em;
   color: var(--ink);
   text-decoration: none;
 }
 .nav-label {
-  font-size: 8px;
+  font-size: var(--cream-label);
   font-weight: 500;
-  letter-spacing: 0.3em;
+  letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--ink-f);
 }
@@ -76,19 +75,19 @@ body {
 
 /* WORDMARK */
 .logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-size: 72px;
-  letter-spacing: 0.14em;
+  font-family: var(--cream-serif);
+  font-weight: 400;
+  font-size: 4.5rem;
+  letter-spacing: .08em;
   line-height: 1;
   color: var(--ink);
   text-align: center;
   margin-bottom: 6px;
 }
 .location {
-  font-size: 8px;
+  font-size: var(--cream-label);
   font-weight: 500;
-  letter-spacing: 0.45em;
+  letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--ink-f);
   text-align: center;
@@ -109,19 +108,19 @@ body {
   margin-bottom: 0;
 }
 .hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-size: 36px;
-  letter-spacing: 0.02em;
+  font-family: var(--cream-serif);
+  font-weight: 400;
+  font-size: 2.25rem;
+  letter-spacing: 0;
   line-height: 1.2;
   color: var(--ink);
   margin-bottom: 12px;
 }
 .hero-body {
-  font-size: 13px;
+  font-size: var(--cream-text);
   color: var(--ink-l);
   line-height: 1.75;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
 }
 
 /* WHAT'S INSIDE ROWS */
@@ -133,9 +132,9 @@ body {
   gap: 16px;
 }
 .inside-label {
-  font-size: 8px;
+  font-size: var(--cream-label);
   font-weight: 500;
-  letter-spacing: 0.28em;
+  letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--ink-f);
   width: 90px;
@@ -143,23 +142,23 @@ body {
   padding-top: 2px;
 }
 .inside-text {
-  font-size: 14px;
+  font-size: var(--cream-text);
   color: var(--ink-l);
   line-height: 1.6;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
 }
 .inside-text em {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--cream-serif);
   font-style: italic;
-  font-size: 16px;
+  font-size: var(--cream-text);
   color: var(--ink);
 }
 
 /* SECTION LABEL */
 .section-label {
-  font-size: 7px;
+  font-size: var(--cream-label);
   font-weight: 500;
-  letter-spacing: 0.35em;
+  letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--ink-f);
   opacity: 0.75;
@@ -174,9 +173,9 @@ body {
   border-top: 1px solid var(--line-l);
 }
 .cta-available {
-  font-size: 8px;
+  font-size: var(--cream-label);
   font-weight: 500;
-  letter-spacing: 0.32em;
+  letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--ink-f);
   display: block;
@@ -184,10 +183,10 @@ body {
 }
 .cta-link {
   display: inline-block;
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-size: 28px;
-  letter-spacing: 0.06em;
+  font-family: var(--cream-serif);
+  font-weight: 400;
+  font-size: 1.75rem;
+  letter-spacing: 0;
   color: var(--ink);
   text-decoration: none;
   border-bottom: 1px solid var(--line);
@@ -199,9 +198,9 @@ body {
   border-color: var(--ink-l);
 }
 .cta-coming {
-  font-size: 10px;
+  font-size: var(--cream-small);
   font-weight: 500;
-  letter-spacing: 0.2em;
+  letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--ink-f);
   margin-top: 10px;
@@ -218,9 +217,9 @@ body {
   flex-wrap: wrap;
 }
 .foot a {
-  font-size: 9px;
+  font-size: var(--cream-label);
   font-weight: 500;
-  letter-spacing: 0.25em;
+  letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--ink-f);
   text-decoration: none;
@@ -237,24 +236,24 @@ body {
   gap: 16px;
 }
 .protocol-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  font-weight: 300;
-  color: var(--line);
+  font-family: var(--cream-serif);
+  font-size: 1.375rem;
+  font-weight: 400;
+  color: var(--cream-muted);
   flex-shrink: 0;
   width: 28px;
   line-height: 1;
 }
 .protocol-name {
-  font-size: 13px;
+  font-size: var(--cream-text);
   color: var(--ink-l);
   flex: 1;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
 }
 .protocol-tag {
-  font-size: 8px;
+  font-size: var(--cream-label);
   font-weight: 500;
-  letter-spacing: 0.22em;
+  letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--ink-f);
   flex-shrink: 0;
@@ -264,10 +263,11 @@ body {
 @media (max-width: 480px) {
   .nav { padding: 28px 24px 0; }
   .page { padding: 56px 24px 80px; }
-  .logo { font-size: 52px; }
-  .hero-title { font-size: 28px; }
+  .logo { font-size: 3.25rem; }
+  .hero-title { font-size: 1.75rem; }
 }
 </style>
+<link rel="stylesheet" href="/css/cream-reading.css?v=20260916">
 </head>
 <body>
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-cream="reading" lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="deploy-id" content="202603161318">
@@ -23,39 +23,38 @@
 <meta name="twitter:description" content="Training moves in phases, not moods. How FORM organizes training cycles across a season.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --accent:#c4593a; --line:#d8d2c8; --line-l:#e8e3dc; }
 html, body { height: auto !important; overflow: visible !important; }
-body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 120px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+body { background: var(--cream); color: var(--ink); font-family: var(--cream-sans); font-weight: 400; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 120px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
 
 /* NAV */
-.nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
-.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
-.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+.nav { max-width: var(--cream-width); margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
+.nav-home { font-family: var(--cream-serif); font-weight: 400; font-size: 1.375rem; letter-spacing: .08em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); }
 
 /* CONTENT */
-.content { max-width: 560px; margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
+.content { max-width: var(--cream-width); margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
 
 /* TITLE */
-.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 42px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 14px; }
-.page-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; margin-bottom: 28px; }
+.page-title { font-family: var(--cream-serif); font-weight: 400; font-size: 2.625rem; letter-spacing: 0; color: var(--ink); line-height: 1; margin-bottom: 14px; }
+.page-sub { font-family: var(--cream-serif); font-style: italic; font-size: 1.125rem; font-weight: 400; color: var(--ink-f); letter-spacing: 0; margin-bottom: 28px; }
 
 /* INTRO */
-.intro { font-size: 13px; line-height: 1.75; color: var(--ink-l); letter-spacing: 0.02em; margin-bottom: 52px; }
+.intro { font-size: var(--cream-text); line-height: 1.75; color: var(--ink-l); letter-spacing: 0; margin-bottom: 52px; }
 
 /* DIVIDER */
 .rule { border: none; border-top: 1px solid var(--line-l); margin: 40px 0; }
 
 /* SECTION LABEL */
-.section-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 20px; margin-top: 40px; }
+.section-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 20px; margin-top: 40px; }
 
 /* SEASON BOARD */
 .season-board { margin-bottom: 48px; }
-.season-year { font-size: 9px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px; }
+.season-year { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px; }
 .season-rail { display: flex; align-items: center; gap: 0; margin-bottom: 12px; }
-.season-name { font-size: 8px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); flex: 1; text-align: center; position: relative; }
+.season-name { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); flex: 1; text-align: center; position: relative; }
 .season-name.current { color: var(--ink-l); }
 .season-name.past { opacity: 0.4; }
 .season-name.future { opacity: 0.35; }
@@ -63,29 +62,29 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 .season-marker { width: 100%; display: flex; justify-content: center; }
 .season-marker-inner { display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .season-tick { width: 1px; height: 10px; background: var(--ink-l); display: block; }
-.season-current-label { font-size: 7px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-l); }
+.season-current-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-l); }
 
 /* PHASE DOCTRINE */
 .phase-list { margin-bottom: 0; }
 .phase-row { padding: 18px 0; border-bottom: 1px solid var(--line-l); }
 .phase-row:first-child { border-top: 1px solid var(--line-l); }
-.phase-name { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); display: block; margin-bottom: 5px; }
-.phase-desc { font-size: 13px; line-height: 1.65; color: var(--ink-l); letter-spacing: 0.02em; }
+.phase-name { font-size: var(--cream-small); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); display: block; margin-bottom: 5px; }
+.phase-desc { font-size: var(--cream-text); line-height: 1.65; color: var(--ink-l); letter-spacing: 0; }
 
 /* CURRENT CYCLE */
 .current-cycle { margin-top: 0; }
-.cycle-name { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 300; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 14px; text-decoration: none; display: block; }
+.cycle-name { font-family: var(--cream-serif); font-size: 1.875rem; font-weight: 400; letter-spacing: 0; color: var(--ink); line-height: 1; margin-bottom: 14px; text-decoration: none; display: block; }
 .cycle-name:hover { color: var(--ink-l); }
-.cycle-meta { font-size: 8px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); display: block; margin-top: 8px; margin-bottom: 28px; }
+.cycle-meta { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-top: 8px; margin-bottom: 28px; }
 
 /* PHASE RAIL */
 .phase-rail { display: flex; align-items: center; gap: 0; margin-bottom: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .phase-rail::-webkit-scrollbar { display: none; }
-.rail-phase { font-size: 7px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; white-space: nowrap; padding: 0 2px; }
+.rail-phase { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; padding: 0 2px; }
 .rail-phase.done { color: var(--ink-f); opacity: 0.45; }
 .rail-phase.active { color: var(--ink-l); }
 .rail-phase.upcoming { color: var(--ink-f); opacity: 0.3; }
-.rail-sep { font-size: 8px; color: var(--line); padding: 0 6px; flex-shrink: 0; }
+.rail-sep { font-size: var(--cream-label); color: var(--cream-muted); padding: 0 6px; flex-shrink: 0; }
 .rail-dot { display: flex; justify-content: center; margin-bottom: 20px; }
 .rail-dot-inner { width: 4px; height: 4px; border-radius: 50%; background: var(--ink-l); }
 
@@ -93,14 +92,14 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 .phase-dot-row { position: relative; height: 14px; margin-bottom: 20px; }
 .phase-dot-mark { position: absolute; width: 1px; height: 10px; background: var(--ink-l); top: 0; }
 
-.cycle-aim-label { font-size: 8px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 8px; }
-.cycle-aim { font-size: 13px; line-height: 1.7; color: var(--ink-l); letter-spacing: 0.02em; margin-bottom: 24px; }
+.cycle-aim-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 8px; }
+.cycle-aim { font-size: var(--cream-text); line-height: 1.7; color: var(--ink-l); letter-spacing: 0; margin-bottom: 24px; }
 
-.cycle-link { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-l); text-decoration: none; display: inline-block; border-bottom: 1px solid var(--line); padding-bottom: 2px; }
+.cycle-link { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-l); text-decoration: none; display: inline-block; border-bottom: 1px solid var(--line); padding-bottom: 2px; }
 
 /* PRACTICE LINE */
 .practice-line-block { margin-bottom: 0; }
-.practice-line-text { font-size: 11px; color: var(--ink-l); letter-spacing: 0.06em; line-height: 1.8; }
+.practice-line-text { font-size: var(--cream-small); color: var(--ink-l); letter-spacing: 0; line-height: 1.8; }
 .practice-line-text span { color: var(--ink-f); }
 
 /* CYCLE ARCHIVE */
@@ -108,27 +107,28 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 .archive-entry { padding: 16px 0; border-bottom: 1px solid var(--line-l); display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
 .archive-entry:first-child { border-top: 1px solid var(--line-l); }
 .archive-left { }
-.archive-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; letter-spacing: 0.03em; color: var(--ink); display: block; line-height: 1; margin-bottom: 3px; text-decoration: none; }
+.archive-name { font-family: var(--cream-serif); font-size: 1.25rem; font-weight: 400; letter-spacing: 0; color: var(--ink); display: block; line-height: 1; margin-bottom: 3px; text-decoration: none; }
 .archive-name:hover { color: var(--ink-l); }
-.archive-phase { font-size: 10px; color: var(--ink-f); letter-spacing: 0.06em; }
-.archive-status { font-size: 7px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); white-space: nowrap; }
+.archive-phase { font-size: var(--cream-small); color: var(--ink-f); letter-spacing: 0; }
+.archive-status { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); white-space: nowrap; }
 .archive-status.current { color: var(--ink-l); }
 .archive-status.upcoming { opacity: 0.45; }
 
 /* CLOSING */
-.closing { margin-top: 52px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; }
+.closing { margin-top: 52px; font-family: var(--cream-serif); font-style: italic; font-size: 1.125rem; font-weight: 400; color: var(--ink-f); letter-spacing: 0; }
 .footer-links { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line-l); display: flex; gap: 28px; flex-wrap: wrap; }
-.footer-link { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
 .footer-link:hover { color: var(--ink-l); }
 
 @media (max-width: 480px) {
   .nav { padding-left: 24px; padding-right: 24px; }
   .content { padding-left: 24px; padding-right: 24px; border-left: none; }
-  .page-title { font-size: 34px; }
+  .page-title { font-size: 2.125rem; }
   .season-rail { gap: 0; }
 }
-.page-breadcrumb { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 12px; }
+.page-breadcrumb { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 12px; }
 </style>
+<link rel="stylesheet" href="/css/cream-reading.css?v=20260916">
 </head>
 <body>
 

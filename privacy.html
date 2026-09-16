@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-cream="reading" lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,35 +17,36 @@
   }
   body { background: var(--bg); color: var(--body-ink); font-family: -apple-system, 'Helvetica Neue', sans-serif; min-height: 100vh; }
   .nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; border-bottom: 0.5px solid var(--rule); }
-  .nav-wordmark { font-size: 11px; font-weight: 600; letter-spacing: 3px; color: var(--ink); text-transform: uppercase; text-decoration: none; }
-  .nav-back { font-size: 12px; color: var(--faint); text-decoration: none; letter-spacing: 0.3px; }
+  .nav-wordmark { font-size: var(--cream-small); font-weight: 600; letter-spacing: 3px; color: var(--ink); text-transform: uppercase; text-decoration: none; }
+  .nav-back { font-size: var(--cream-note); color: var(--faint); text-decoration: none; letter-spacing: 0.3px; }
   .nav-back:hover { color: var(--secondary); }
   .page { max-width: 680px; margin: 0 auto; padding: 64px 24px 120px; }
-  .eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 2px; color: var(--faint); text-transform: uppercase; margin-bottom: 16px; }
-  h1 { font-family: Georgia, serif; font-size: 36px; font-weight: normal; color: var(--ink); line-height: 1.15; margin-bottom: 10px; }
-  .updated { font-size: 12px; color: var(--faint); margin-bottom: 48px; }
+  .eyebrow { font-size: var(--cream-small); font-weight: 500; letter-spacing: 2px; color: var(--faint); text-transform: uppercase; margin-bottom: 16px; }
+  h1 { font-family: Georgia, serif; font-size: 2.25rem; font-weight: normal; color: var(--ink); line-height: 1.15; margin-bottom: 10px; }
+  .updated { font-size: var(--cream-note); color: var(--faint); margin-bottom: 48px; }
   hr { border: none; border-top: 0.5px solid var(--rule); margin: 40px 0; }
-  .lead { font-size: 16px; color: var(--body-ink); line-height: 1.75; margin-bottom: 40px; }
+  .lead { font-size: var(--cream-text); color: var(--body-ink); line-height: 1.75; margin-bottom: 40px; }
   .section { margin-bottom: 40px; }
-  .section-label { font-size: 9px; font-weight: 500; letter-spacing: 2px; color: var(--faint); text-transform: uppercase; margin-bottom: 6px; }
-  h2 { font-family: Georgia, serif; font-size: 20px; font-weight: normal; color: var(--ink); margin-bottom: 14px; line-height: 1.3; }
-  p { font-size: 15px; color: var(--body-ink); line-height: 1.8; margin-bottom: 14px; }
+  .section-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: 2px; color: var(--faint); text-transform: uppercase; margin-bottom: 6px; }
+  h2 { font-family: Georgia, serif; font-size: 1.25rem; font-weight: normal; color: var(--ink); margin-bottom: 14px; line-height: 1.3; }
+  p { font-size: var(--cream-text); color: var(--body-ink); line-height: 1.8; margin-bottom: 14px; }
   p:last-child { margin-bottom: 0; }
   .callout { background: var(--card-bg); border: 0.5px solid var(--rule); border-left: 2px solid rgba(42,34,24,0.4); border-radius: 0 10px 10px 0; padding: 18px 22px; margin: 24px 0; }
-  .callout p { font-size: 14px; color: var(--secondary); margin-bottom: 0; }
+  .callout p { font-size: var(--cream-text); color: var(--secondary); margin-bottom: 0; }
   .contact { background: #2a2218; border-radius: 12px; padding: 28px 30px; margin-top: 56px; }
-  .contact-label { font-size: 9px; font-weight: 500; letter-spacing: 2px; color: rgba(240,237,230,0.4); text-transform: uppercase; margin-bottom: 10px; }
-  .contact h3 { font-family: Georgia, serif; font-size: 18px; font-weight: normal; color: #f0ede6; margin-bottom: 8px; }
-  .contact p { font-size: 13px; color: rgba(240,237,230,0.55); margin-bottom: 16px; }
-  .contact a { font-size: 14px; color: #f0ede6; text-decoration: none; border-bottom: 0.5px solid rgba(240,237,230,0.3); padding-bottom: 1px; }
+  .contact-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: 2px; color: rgba(240,237,230,0.4); text-transform: uppercase; margin-bottom: 10px; }
+  .contact h3 { font-family: Georgia, serif; font-size: 1.125rem; font-weight: normal; color: #f0ede6; margin-bottom: 8px; }
+  .contact p { font-size: var(--cream-text); color: rgba(240,237,230,0.55); margin-bottom: 16px; }
+  .contact a { font-size: var(--cream-text); color: #f0ede6; text-decoration: none; border-bottom: 0.5px solid rgba(240,237,230,0.3); padding-bottom: 1px; }
   .contact a:hover { border-bottom-color: rgba(240,237,230,0.7); }
   .footer { margin-top: 80px; padding-top: 24px; border-top: 0.5px solid var(--rule); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-  .footer-wordmark { font-size: 10px; font-weight: 500; letter-spacing: 2.5px; color: var(--faint); text-transform: uppercase; }
+  .footer-wordmark { font-size: var(--cream-small); font-weight: 500; letter-spacing: 2.5px; color: var(--faint); text-transform: uppercase; }
   .footer-links { display: flex; gap: 20px; }
-  .footer-links a { font-size: 11px; color: var(--faint); text-decoration: none; }
+  .footer-links a { font-size: var(--cream-small); color: var(--faint); text-decoration: none; }
   .footer-links a:hover { color: var(--secondary); }
-  @media (max-width: 600px) { .nav { padding: 16px 20px; } .page { padding: 44px 20px 80px; } h1 { font-size: 28px; } }
+  @media (max-width: 600px) { .nav { padding: 16px 20px; } .page { padding: 44px 20px 80px; } h1 { font-size: 1.75rem; } }
 </style>
+<link rel="stylesheet" href="/css/cream-reading.css?v=20260916">
 </head>
 <body>
 

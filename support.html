@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-cream="reading" lang="en">
 <head>
 <meta charset="UTF-8">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -10,7 +10,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -21,7 +20,7 @@
 html { height: 100%; }
 body {
   background: var(--cream); color: var(--ink);
-  font-family: 'Jost', sans-serif; font-weight: 300;
+  font-family: var(--cream-sans); font-weight: 400;
   font-kerning: normal; font-feature-settings: "kern";
   height: 100%;
   display: flex; flex-direction: column;
@@ -36,9 +35,9 @@ body {
 }
 
 .logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300; font-size: 52px;
-  letter-spacing: 0.14em; line-height: 1;
+  font-family: var(--cream-serif);
+  font-weight: 400; font-size: 3.25rem;
+  letter-spacing: .08em; line-height: 1;
   color: var(--ink); text-align: center;
   margin-bottom: 6px;
   text-decoration: none;
@@ -46,8 +45,8 @@ body {
 .logo:hover { opacity: 0.72; }
 
 .location {
-  font-size: 8px; font-weight: 500;
-  letter-spacing: 0.45em; text-transform: uppercase;
+  font-size: var(--cream-label); font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase;
   color: var(--ink-f); text-align: center;
   margin-bottom: 48px;
 }
@@ -58,8 +57,8 @@ body {
 }
 
 .section-label {
-  font-size: 7px; font-weight: 500;
-  letter-spacing: 0.35em; text-transform: uppercase;
+  font-size: var(--cream-label); font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase;
   color: var(--ink-f); opacity: 0.75;
   display: block; margin-top: 28px; margin-bottom: 18px;
 }
@@ -70,15 +69,15 @@ body {
 }
 
 .row-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px; font-weight: 300;
-  letter-spacing: 0.04em; color: var(--ink);
+  font-family: var(--cream-serif);
+  font-size: 1.375rem; font-weight: 400;
+  letter-spacing: 0; color: var(--ink);
   margin-bottom: 6px;
 }
 
 .row-body {
-  font-size: 11px; font-weight: 300;
-  letter-spacing: 0.03em; line-height: 1.75;
+  font-size: var(--cream-small); font-weight: 400;
+  letter-spacing: 0; line-height: 1.75;
   color: var(--ink-l);
 }
 
@@ -97,16 +96,16 @@ body {
 }
 
 .contact-label {
-  font-size: 7px; font-weight: 500;
-  letter-spacing: 0.35em; text-transform: uppercase;
+  font-size: var(--cream-label); font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase;
   color: var(--ink-f); opacity: 0.75;
   display: block; margin-bottom: 10px;
 }
 
 .contact-email {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 26px; font-weight: 300;
-  letter-spacing: 0.04em; color: var(--ink);
+  font-family: var(--cream-serif);
+  font-size: 1.625rem; font-weight: 400;
+  letter-spacing: 0; color: var(--ink);
   text-decoration: none;
   display: block; margin-bottom: 6px;
   transition: opacity 0.2s ease;
@@ -114,8 +113,8 @@ body {
 .contact-email:hover { opacity: 0.6; }
 
 .contact-note {
-  font-size: 10px; font-weight: 300;
-  letter-spacing: 0.06em; color: var(--ink-f);
+  font-size: var(--cream-small); font-weight: 400;
+  letter-spacing: 0; color: var(--ink-f);
   line-height: 1.6;
 }
 
@@ -125,8 +124,8 @@ body {
 }
 .nav-links { display: flex; gap: 16px; flex-wrap: wrap; }
 .nav-links a {
-  font-size: 10px; font-weight: 500;
-  letter-spacing: 0.22em; text-transform: uppercase;
+  font-size: var(--cream-small); font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase;
   color: var(--ink-l); text-decoration: none;
   transition: opacity 0.2s ease;
 }
@@ -134,11 +133,12 @@ body {
 
 .footer {
   margin-top: 36px;
-  font-size: 9px; font-weight: 300;
-  letter-spacing: 0.1em;
+  font-size: var(--cream-label); font-weight: 400;
+  letter-spacing: .08em;
   color: var(--ink-f); opacity: 0.6;
 }
 </style>
+<link rel="stylesheet" href="/css/cream-reading.css?v=20260916">
 </head>
 <body>
 <div class="page">

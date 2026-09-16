@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-cream="reading" lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="deploy-id" content="202604031200">
@@ -21,7 +21,6 @@
 <meta name="twitter:description" content="Flamingo Park Track · Thursdays 6:30 AM · Show up in running shoes.">
 <meta name="twitter:image" content="https://speedandform.com/og/default.jpg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -31,7 +30,7 @@
 html { height: 100%; }
 body {
   background: var(--cream); color: var(--ink);
-  font-family: 'Jost', sans-serif; font-weight: 300;
+  font-family: var(--cream-sans); font-weight: 400;
   min-height: 100%; display: flex; flex-direction: column;
   padding: 0 0 80px;
 }
@@ -40,8 +39,8 @@ body {
   display: flex; align-items: center; justify-content: space-between;
   max-width: 480px; margin: 0 auto; width: 100%;
 }
-.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
-.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+.nav-home { font-family: var(--cream-serif); font-weight: 400; font-size: 1.375rem; letter-spacing: .08em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); }
 
 .page {
   flex: 1; display: flex; flex-direction: column;
@@ -51,15 +50,15 @@ body {
 
 /* Eyebrow */
 .eyebrow {
-  font-size: 9px; font-weight: 500; letter-spacing: 0.35em;
+  font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em;
   text-transform: uppercase; color: var(--ink-f);
   display: block; margin-bottom: 16px;
 }
 
 /* Session name: big, changes each week */
 .session-name {
-  font-family: 'Cormorant Garamond', serif; font-weight: 300;
-  font-size: 64px; letter-spacing: 0.02em; color: var(--ink);
+  font-family: var(--cream-serif); font-weight: 400;
+  font-size: 4rem; letter-spacing: 0; color: var(--ink);
   line-height: 0.95; margin-bottom: 24px;
 }
 
@@ -72,42 +71,42 @@ body {
 }
 .loc { }
 .loc + .loc { padding-left: 20px; border-left: 1px solid var(--line-l); }
-.loc-label { font-size: 8px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 6px; }
-.loc-val { font-size: 15px; color: var(--ink); display: block; margin-bottom: 3px; }
-.loc-sub { font-size: 11px; color: var(--ink-f); }
+.loc-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 6px; }
+.loc-val { font-size: var(--cream-text); color: var(--ink); display: block; margin-bottom: 3px; }
+.loc-sub { font-size: var(--cream-small); color: var(--ink-f); }
 .loc-link { color: inherit; text-decoration: none; border-bottom: 1px solid var(--line); }
 .loc-link:hover { color: var(--ink-l); }
 
 /* What to expect */
 .expect-block { margin-bottom: 32px; }
-.expect-label { font-size: 8px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 14px; }
+.expect-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 14px; }
 .expect-row { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--line-l); align-items: baseline; }
 .expect-row:first-of-type { border-top: 1px solid var(--line-l); }
-.expect-num { font-size: 10px; color: var(--ink-f); width: 20px; flex-shrink: 0; }
-.expect-text { font-size: 13px; color: var(--ink-l); line-height: 1.6; }
+.expect-num { font-size: var(--cream-small); color: var(--ink-f); width: 20px; flex-shrink: 0; }
+.expect-text { font-size: var(--cream-text); color: var(--ink-l); line-height: 1.6; }
 
 /* App block */
 .app-block {
   padding: 24px 0; border-top: 1px solid var(--line-l);
   margin-bottom: 32px;
 }
-.app-label { font-size: 8px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 14px; }
+.app-label { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 14px; }
 .app-link {
   display: block;
-  font-family: 'Cormorant Garamond', serif; font-weight: 300;
-  font-size: 28px; letter-spacing: 0.04em; color: var(--ink);
+  font-family: var(--cream-serif); font-weight: 400;
+  font-size: 1.75rem; letter-spacing: 0; color: var(--ink);
   text-decoration: none; border-bottom: 1px solid var(--line);
   padding-bottom: 3px; margin-bottom: 10px;
   transition: color 0.15s;
 }
 .app-link:hover { color: var(--ink-l); }
-.app-note { font-size: 11px; color: var(--ink-f); line-height: 1.6; }
+.app-note { font-size: var(--cream-small); color: var(--ink-f); line-height: 1.6; }
 
 /* Full practice */
 
 /* Footer */
 .footer { padding: 24px 0 0; border-top: 1px solid var(--line-l); display: flex; gap: 24px; flex-wrap: wrap; }
-.footer a { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer a { font-size: var(--cream-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
 .footer a:hover { color: var(--ink-l); }
 
 /* Race day state */
@@ -115,11 +114,12 @@ body {
 @media (max-width: 420px) {
   .nav { padding-left: 24px; padding-right: 24px; }
   .page { padding: 44px 24px 0; }
-  .session-name { font-size: 48px; }
+  .session-name { font-size: 3rem; }
   .location-block { grid-template-columns: 1fr; gap: 16px; }
   .loc + .loc { padding-left: 0; border-left: none; border-top: 1px solid var(--line-l); padding-top: 16px; }
 }
 </style>
+<link rel="stylesheet" href="/css/cream-reading.css?v=20260916">
 </head>
 <body>
 
