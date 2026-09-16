@@ -6,6 +6,7 @@ For public site, Plans, Labs, plan packaging, or app-to-coach work, read:
 4. For app work: [Plan app audit brief](docs/audits/PLAN-APP-AUDIT-BRIEF.md).
 5. For UI work: [Surface audit brief](docs/audits/SURFACE-AUDIT-BRIEF.md).
 6. For any athlete-facing writing, ads, landing pages or onboarding: [Athlete Language Rule](docs/marketing/ATHLETE_LANGUAGE_RULE.md).
+7. Before creating or changing any prospect-, buyer-, athlete-, account- or customer-facing email: read [FORM Email Experience Standard](docs/marketing/EMAIL_EXPERIENCE_STANDARD_2026-09-16.md) and [Email Execution Roadmap](docs/marketing/EMAIL_EXECUTION_ROADMAP_2026-09-16.md).
 
 Active user instructions take precedence. Do not call a branch change live without checking production.
 September 15 decision: Race Pace Durability is a paid 15-week plan with Weeks 1–4 open as the public preview and the complete plan priced at a one-time payment of $79. Moving beyond Week 4 routes to the purchase page. The old September 12 optional-support/free-full-plan model is retired. Live Stripe hosted checkout is connected. Stripe returns successful buyers to the RPD purchase confirmation flow, the Supabase webhook creates the paid entitlement, the same browser unlocks Weeks 5–15, and purchased access can be recovered on another device with the verified checkout email. Personal coaching retains its separate flow.
