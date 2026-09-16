@@ -12,6 +12,10 @@ For public site, Plans, Labs, plan packaging, or app-to-coach work, read:
 Active user instructions take precedence. Do not call a branch change live without checking production.
 September 15 decision: Race Pace Durability is a paid 15-week plan with Weeks 1–4 open as the public preview and the complete plan priced at a one-time payment of $79. Moving beyond Week 4 routes to the purchase page. The old September 12 optional-support/free-full-plan model is retired. Live Stripe hosted checkout is connected. Stripe returns successful buyers to the RPD purchase confirmation flow, the Supabase webhook creates the paid entitlement, the same browser unlocks Weeks 5–15, and purchased access can be recovered on another device with the verified checkout email. Personal coaching retains its separate flow.
 September 16 coaching decision: Run Development remains the flagship managed relationship at the current public 8-week / $1,200 structure. A bounded FORM Analysis offer is now an active product hypothesis for runners who have their own training structure or a specific running question. Its name, scope, artifact, one-vs-two-contact shape and price are not approved public facts. Do not publish them until the offer-vision gates are resolved. Analysis software such as Ochy is an instrument, not the authority; never present an aggregate software score as an objective grade of the runner. The current complimentary Run Development assessment must be distinguished from any paid Analysis before launch.
+
+### FORM selective-intervention rule
+**Not everything needs fixing. Some things just cost you more.** FORM does not mean forcing athletes toward one visual ideal. For coaching, analysis, product logic and athlete-facing interpretation, do not label a movement difference as a problem merely because it differs from a textbook model or receives a low software score. Establish a meaningful cost in context first, then make the smallest useful intervention and retest. `Cost` may include unnecessary effort, tension, disrupted rhythm, reduced control/repeatability, discomfort or difficulty sustaining the work. Keep athlete report, observation, measurement, software interpretation and coach decision distinct. Do not turn this principle into unsupported medical or causal claims.
+
 After relevant work update the roadmap: status, evidence, blocker, next action, tested commit and actual deployment state. Maintain one checklist.
 Do not invent results, auto-publish private athlete data, silently change assignments, or promise unverified app features. Measured evidence, athlete reports, coach reads and decisions remain distinct.
 Check remote main and concurrent work before release. Batch verified changes to conserve Netlify credits.
@@ -23,7 +27,7 @@ For ads, landing pages, product pages, emails, onboarding and athlete-facing app
 - lead with the outcome or felt problem, then what they get and what they do;
 - put methodology, physiology and FORM doctrine later;
 - spell out abbreviations and prefer plain language over coaching shorthand;
-- generic copy is acceptable when it is true, relevant and immediately understood;
+- generic language is acceptable when it is true and instantly understood;
 - let verified results and execution proof carry sophistication instead of forcing clever copy;
 - prefer `one-time payment of $79` over `$79 once`, `try Weeks 1–4 free` over `inspect Weeks 1–4`, and `hold race pace longer` over internal phrases such as `race-pace ownership`;
 - Meta copy generation may be used as an ideation source. Keep the clearest truthful lines and reject invented personalization, guarantees, features or claims.
