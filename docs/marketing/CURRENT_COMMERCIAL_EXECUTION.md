@@ -1,16 +1,16 @@
 # Current Commercial Execution — canonical roadmap
 
-**Updated:** September 15, 2026, after RPD webhook v5 deployment/read-back and Creative B static export  
+**Updated:** September 16, 2026  
 **Owner:** Brice / Speed & Form  
-**Instruction:** if Brice says only `continue`, take the first unblocked item in the queue, execute it, record evidence, then keep moving. Do not wait on a human-only blocker if another useful item is available.
+**Instruction:** if Brice says only `continue`, take the first unblocked item below, execute it, record evidence, then keep moving. Do not wait on a human-only blocker if another useful item is available.
 
 ## Operating law
 
-1. **RPD is the active commercial priority.** Make the $79 funnel understandable, trustworthy and operationally recoverable before spend.
-2. **Miami Run Development is a live control.** Do not rewrite the live campaign mid-test; build challengers separately.
-3. **Think deeply backstage. Speak simply out front.** A fit or fast runner may still know very little coaching vocabulary.
-4. **Proof carries sophistication.** Real athletes, sessions and verified outcomes beat clever doctrine.
-5. **Ad → landing page → checkout → delivery is one story.** Message match is a launch requirement.
+1. **RPD is the active commercial priority.** Make the $79 funnel understandable, trustworthy, secure enough for sale, and operationally recoverable before spend.
+2. **Miami Run Development is a live control.** Do not rewrite the live campaign mid-test.
+3. **Think deeply backstage. Speak simply out front.** A fit or fast runner may know almost no coaching vocabulary.
+4. **Proof carries sophistication.** Real athletes, sessions, and verified results beat clever doctrine.
+5. **Ad → landing page → preview → checkout → delivery is one story.** Message match is a launch requirement.
 6. **Unbounce is research, not the production stack by default.** Borrow conversion patterns; implement winners in speedandform.com.
 7. **Real-world conversions outrank platform reporting.** Meta/GA are measurement systems, not the definition of whether a human inquiry happened.
 
@@ -18,24 +18,23 @@
 
 # A. Race Pace Durability — active priority
 
-## Product truth — DONE
+## Product truth — LOCKED
 
 - 15-week half-marathon plan.
-- Athlete-relative race pace; not a sub-1:30-only product.
-- Shared progression, individual pace.
+- Shared progression, athlete-relative race pace; not a sub-1:30-only product.
 - Roughly 45 → 60 miles/week, six days/week.
 - Weeks 1–4 free/open preview.
 - Complete plan: **one-time payment of $79**.
-- RPD is complete on the web; FORM app is separate and not required.
+- Web plan is complete; FORM app is separate and not required.
 - Individual coaching is separate.
-- No guaranteed finish time, fake personalization, fake scarcity or invented urgency.
+- No guaranteed finish time, fake personalization, fake scarcity, invented urgency, or secret/hack language.
 
 Read:
 - `docs/marketing/RPD_OFFER_TRUTH_2026-09-15.md`
 - `docs/RACE_PACE_DURABILITY_CANONICAL_v1.md`
 - `docs/marketing/ATHLETE_LANGUAGE_RULE.md`
 
-## Meta Test 01 — Creative A published; spend paused
+## Meta Test 01 — published, spend still paused
 
 Campaign:
 - `FORM · RPD · Purchase Test 01`
@@ -58,22 +57,21 @@ Creative A:
 - Meta text generation allowed with truth filter
 - intended URL tags:
   `utm_source=meta&utm_medium=paid_social&utm_campaign=rpd_purchase_test_01&utm_content=group_photo_v1`
-- last human-visible state after publication: `Processing`
+- last human-visible state after publication: processing/review
 
 Reject generated copy that says/implies marathon, individualized programming, guaranteed outcome, false urgency, secret/hack, instant transformation, or false training mechanics.
 
-**Do not enable the known parent IDs until review/preflight is confirmed.** The connected automation browser is not authenticated to Meta, and Windsor reporting still does not expose this paused/no-delivery hierarchy reliably.
+**Do not enable campaign/ad set until Creative A review status and mobile QA are confirmed.**
 
-## Landing page continuity — LIVE, desktop QA passed
+## Landing page continuity — LIVE + pre-purchase QA passed
 
-English:
+English sales page:
 `/plans/race-pace-durability/support/`
 
-Spanish:
+Spanish sales page:
 `/es/plans/race-pace-durability/`
 
 Story:
-
 **Ad:** real FORM athletes + `Can you keep the pace?`  
 **Landing:** same question → same real FORM image → what this is → what you do → proof → try → buy.
 
@@ -84,293 +82,276 @@ Proof block:
 - `FORM runners · Miami`
 - `Real runners. Real training.`
 - `This is FORM.`
-- RPD is described truthfully as **one of** the plans used with FORM runners.
+- RPD is truthfully described as **one of** the plans used with FORM runners.
 
-Desktop browser QA passed in English and Spanish. True phone-width / physical-device acceptance remains open because the connected browser cannot resize its viewport.
+Live browser pre-purchase QA on Sep 16 passed:
+- landing page loads;
+- hero/offer copy present;
+- group image loads;
+- Weeks 1–4 CTA routes to free preview;
+- $79 CTA opens Stripe;
+- Stripe shows `Race Pace Durability` at **$79.00**;
+- no broken destination links or price mismatch found;
+- no purchase entered.
 
-## Weeks 1–4 preview — LIVE + gate QA passed
+True phone-width / physical-device acceptance remains open.
+
+## Weeks 1–4 preview — HARDENED + QA PASSED
 
 Route:
 `/plans/race-pace-durability/`
 
-Plain athlete-facing language:
+Plain language:
 - `Run the pace. Hold it longer.`
 - `Try Weeks 1–4 free.`
 - `Pick a pace you can run now.`
-- shorter efforts → 5 → 6 → 8 → 12 late → race.
 
-Live gate QA passed Sep 15:
-- Weeks 1–4 readable for non-buyers;
-- Week 5+ remains locked;
-- no paid prescription leakage found;
-- next-arrow / lock CTA / Full Plan button route non-buyers to the $79 sales page.
+### Important Sep 16 security change
 
-## English / Spanish parity — partial
+The earlier gate was only a commercial UI gate: the browser could still call the public plan RPC and receive Weeks 5–15. That is no longer true.
 
-Done:
-- EN + ES sales page
-- language handoff/switch
-- same offer, price and group-photo proof
+Database migration:
+`supabase/migrations/20260916033000_rpd_paid_plan_server_only.sql`
 
-Open before Spanish is scaled meaningfully:
-- Spanish Weeks 1–4 interface
-- Spanish purchase confirmation
-- Spanish restore-access surface
-- Spanish workout instructions
+Current behavior:
+- `public.public_plan(text)` is no longer executable by `anon` or `authenticated`; only `service_role` can call the complete published plan.
+- public browser uses `public.public_plan_preview(text)`.
+- preview payload still contains 15 week placeholders so the UI can show the full structure/locks.
+- Weeks 1–4 include real prescription.
+- Weeks 5–15 return no sessions, no phase/intent, and no weekly volume.
+- paid browser requests the complete plan through `rpd-entitlement` only after a paid entitlement is verified.
 
-## Stripe checkout — pre-payment path ACCEPTED
+Client source:
+`plans/race-pace-durability/source.js`
+
+Paid delivery function now source-controlled:
+`supabase/functions/rpd-entitlement/index.ts`
+
+Deployed function:
+- `rpd-entitlement` **v8**, ACTIVE
+- action `plan` returns the full `public_plan` only after the supplied Checkout Session resolves to a paid RPD entitlement.
+
+Acceptance evidence:
+- anon role can call `public_plan_preview`;
+- Week 5 preview sessions are empty;
+- anon direct call to `public_plan` returns permission denied;
+- live browser QA after deployment confirmed Weeks 1–4 readable, Week 5+ locked, no paid prescription visible, 15-week structure intact, and upgrade CTA functioning.
+
+This materially upgrades the $79 offer from a frontend-only gate to server-authorized delivery of paid weeks.
+
+## Stripe checkout + entitlement — READY, internal paid test waived
 
 Live Payment Link:
 `https://buy.stripe.com/bJeaEX1YvfNwgMX3Doffy00`
 
+Checkout facts:
 - Race Pace Durability
 - $79 USD
 - one-time payment
 - no subscription
 - no phone collection
-- success return includes `{CHECKOUT_SESSION_ID}`
+- success return carries Checkout Session ID
 
-Production checkout anchors prewrite supported UTM parameters plus a sanitized non-sensitive Stripe `client_reference_id`.
+Attribution preflight already accepted without payment:
+- campaign UTMs are preserved;
+- sanitized `client_reference_id` reaches the Stripe Checkout Session;
+- success return preserves source UTMs.
 
-Accepted production QA session:
-- `cs_live_a1MwavR7AwNwYXKIOl7lltlBlhhEEH94zTh5MfMrjQArKfU2zkQHh2DVbx`
-- amount: 7900 cents
-- unpaid
-- source/client reference preserved
-- success redirect preserved source UTMs
-- no personal/payment data submitted
+Webhook:
+- `stripe-rpd-webhook` ACTIVE v5
+- Stripe endpoint enabled
+- listens for checkout completion/async success/refund/dispute
+- writes campaign source into `product_entitlements.source`
 
-Read:
-`docs/marketing/RPD_ATTRIBUTION_ACCEPTANCE_2026-09-15.md`
+Entitlement store:
+- current count remains 0 paid rows before launch
+- RLS enabled
+- browser does not directly read the entitlement table
 
-## Stripe webhook / entitlement — DEPLOYED + READ BACK
+### Owner decision
+Brice explicitly declined the controlled $79 internal acceptance charge.
 
-Source of truth:
-`supabase/functions/stripe-rpd-webhook/index.ts`
+**Do not ask to run or charge a $79 test again unless Brice explicitly reverses this decision.**
 
-Supabase management recovered on Sep 15. Actions completed:
-1. read existing deployed `stripe-rpd-webhook` v4;
-2. compared it with source-controlled attribution-aware version;
-3. deployed the source-controlled version;
-4. read the deployed function back successfully.
+Residual risk accepted:
+- first genuine customer becomes the first full production proof of payment → webhook → entitlement → unlock → purchase-event → restore.
 
-Current deployed function:
-- slug: `stripe-rpd-webhook`
-- status: ACTIVE
-- version: **5**
-- `verify_jwt=false` because Stripe signature verification is the custom authentication boundary.
-- parses Stripe `client_reference_id` into `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`;
-- merges those labels into `product_entitlements.source`;
-- handles completed/async-success checkout, refunds and disputes.
-
-Stripe live webhook endpoint read-back:
-- endpoint ID `we_1UG0dvHGsg6qTR3LFZTgoyvM`
-- status: enabled
-- URL: `https://pbgsjjegycacodiltbhn.supabase.co/functions/v1/stripe-rpd-webhook`
-- events: `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `charge.refunded`, `charge.dispute.created`.
-
-Database read after deployment:
-- `product_entitlements`: **0 rows**
-- paid rows: **0**
-- `source` column exists as non-null `jsonb`.
-
-No fake/synthetic paid entitlement was created.
-
-## Real purchase acceptance — WAIVED BY OWNER
-
-Brice explicitly declined the controlled $79 acceptance charge on September 15, 2026.
-
-**Do not ask to run or charge a $79 test again unless Brice explicitly changes this decision.**
-
-The prepared checklist remains archived at:
-`docs/marketing/RPD_REAL_PURCHASE_ACCEPTANCE_CHECKLIST_2026-09-15.md`
-
-Residual risk accepted by owner:
-- first genuine customer becomes the first complete production proof of payment → webhook → entitlement → unlock → purchase-event → restore behavior.
-
-First-buyer mitigation:
-- watch Stripe + entitlement state + support inbox closely;
+First-buyer contingency:
+- monitor Stripe + entitlement + support inbox;
 - if payment succeeds but access fails, pause RPD spend immediately;
-- repair/restore access without asking the buyer to pay again;
+- repair/restore access without another charge;
 - resume only after the path is repaired.
 
-The internal paid test is **not** a launch-gate requirement.
+## Measurement — code present; visible pre-purchase acceptance still partial
 
-## Measurement — built; pre-purchase acceptance partial
-
-Client-side:
+Client-side events:
 - Meta `ViewContent`
-- `rpd_view`
+- GA4 `rpd_view`
 - GA4 `begin_checkout`
-- `rpd_checkout_start`
+- GA4 `rpd_checkout_start`
 - Meta `InitiateCheckout`
 - GA4 `purchase`
-- `rpd_purchase`
+- GA4 `rpd_purchase`
 - Meta `Purchase`
-- browser refresh guard
+- refresh guard on Purchase
 
 Privacy:
-- first-party campaign continuity is independent of analytics runtime;
-- DNT/GPC still prevents Meta/GA scripts/events;
-- attribution contains no email, card, health or private athlete data.
+- DNT/GPC intentionally suppresses Meta/GA scripts/events;
+- first-party checkout source continuity still works when analytics is suppressed;
+- no email/card/health/private athlete data is sent into campaign attribution.
 
-GA4 has not yet shown an accepted RPD custom-event sequence. QA browser privacy settings make missing analytics events inconclusive. Verify pre-purchase events where possible before first spend; post-purchase measurement will be observed on the first genuine purchase.
+A tagged Sep 16 browser preflight successfully completed landing → Stripe with no payment. Windsor/GA4 has not yet surfaced the corresponding RPD custom events; this remains inconclusive because automation browsers may expose privacy controls and GA reporting can lag.
 
-CAPI + browser/server dedupe remain later-before-scale work.
+Do not invent Purchase evidence. First genuine purchase will be the first post-purchase measurement acceptance.
 
-## Creative B — STATIC CANDIDATE READY
+## Creative B — READY, intentionally not first launch blocker
 
-Hypothesis: **product inspection / trust**, materially different from Creative A's athlete/identity hook.
-
-Hidden live render board:
-`/ads/rpd/preview/`
+Hypothesis: **product inspection / trust**, distinct from Creative A's athlete/social-proof hook.
 
 Message:
 - `See the first four weeks.`
 - `Run them before you decide.`
-- real RPD prescription detail
+- real RPD Week 4 prescription
 - `Weeks 1–4 free`
 - `Full plan · one-time payment of $79`
 
-A 1080 × 1350 static candidate was exported in the current ChatGPT conversation as:
-`rpd_creative_b_static_v2.png`
+Static candidate exported:
+`rpd_creative_b_static_v2.png` (1080 × 1350)
 
-It uses exact Week 4 plan facts from the canonical plan:
-- Mon Easy 6 mi
-- Tue Race pace 5 mi continuous
-- Wed Easy 6 mi
-- Thu Recovery + strides 6 mi
-- Fri Easy 7 mi
-- Sat Long run 12 mi
-- Week 5 shown locked at $79
+Uses canonical Week 4 facts, not generated workout content.
 
-No generated/fake workout imagery is used. Manual Meta upload is still required because ad-level API mutation remains unreliable.
+Decision for first spend: **Creative B may be deferred.** Do not let manual upload delay Creative A launch. Launch A cleanly first if the remaining gate is green; add B as the second hypothesis after initial delivery or when Brice wants the comparison.
 
-## Unbounce research — blocked only by login
+## English / Spanish parity — sales page done, execution partial
 
-Public research:
-`docs/marketing/RPD_LANDING_PAGE_CONVERSION_NOTES_2026-09-15.md`
+Done:
+- EN + ES sales pages
+- language switch/handoff
+- same offer, price, and group-photo proof
 
-Four-surface brief:
-`docs/marketing/UNBOUNCE_SURFACE_EXPLORATION_2026-09-15.md`
+Open before Spanish is scaled materially:
+- Spanish Weeks 1–4 interface
+- Spanish confirmation
+- Spanish restore-access
+- Spanish workout instructions
 
-Authenticated browser still reaches Unbounce's login wall. Human step when convenient: Brice logs into Unbounce in the connected browser profile. Never send password in chat.
+## Unbounce research — still blocked by connector authentication
 
-Then:
-1. RPD conversion audit
-2. park FORM app ideas
-3. park Forge ideas
-4. park coaching-homepage challenger ideas
+Research docs:
+- `docs/marketing/RPD_LANDING_PAGE_CONVERSION_NOTES_2026-09-15.md`
+- `docs/marketing/UNBOUNCE_SURFACE_EXPLORATION_2026-09-15.md`
+
+TinyFish connector repeatedly reaches the Unbounce login wall even after Brice logs in in his normal browser; the session is not persisting into the connector browser profile.
+
+Do not block RPD launch on Unbounce.
+
+When authenticated access works:
+1. audit RPD first;
+2. park FORM app ideas;
+3. park Forge ideas;
+4. park alternative coaching-homepage ideas.
 
 ## RPD launch gate
 
 - [x] product truth reconciled
-- [x] athlete-language/no-decoding rule
-- [x] EN $79 sales page simplified
-- [x] ES sales page
-- [x] exact Meta group image high on EN + ES
-- [x] desktop visual QA
-- [x] Weeks 1–4 copy simplified
-- [x] Weeks 1–4 / Week 5+ gate QA passed
-- [x] Stripe live Payment Link active
-- [x] landing page → Stripe $79 path accepted
-- [x] landing source → Stripe Checkout Session attribution accepted pre-payment
-- [x] webhook signing secret configured
-- [x] attribution-aware Stripe webhook deployed as Supabase v5 and read back
-- [x] live Stripe webhook endpoint enabled with required event set
-- [x] entitlement/restore code exists
+- [x] no-decoding athlete-language rule
+- [x] EN $79 page
+- [x] ES $79 page
+- [x] real FORM group image continuity
+- [x] desktop landing-page QA
+- [x] pre-purchase landing → Stripe QA
+- [x] Weeks 1–4 preview
+- [x] Weeks 5–15 server-side prescription redaction for public users
+- [x] full paid plan callable only through verified entitlement path
+- [x] preview/paywall browser QA after hardening
+- [x] Stripe Payment Link / price accepted
+- [x] campaign source → Stripe Checkout Session accepted pre-payment
+- [x] Stripe webhook ACTIVE + read back
+- [x] `rpd-entitlement` v8 ACTIVE
 - [x] Creative A published
 - [x] campaign paused
 - [x] ad set paused
-- [x] Creative B live render board built + QA passed
-- [x] Creative B static 4:5 candidate exported
-- [x] controlled $79 test explicitly waived by owner; residual risk documented
-- [ ] phone-width / physical-device landing-page visual QA
+- [x] Creative B asset ready but not required for first launch
+- [x] controlled $79 test explicitly waived by owner
 - [ ] Creative A review completes without policy/config error
-- [ ] RPD pre-purchase Meta/GA4 events visibly accepted where privacy settings allow
-- [ ] Creative B manually uploaded or deliberately deferred from first spend
-- [ ] final preflight: destination, URL tags, translation, price, CTA, pixel
+- [ ] phone-width / physical-device sales + preview QA
+- [ ] final Meta preflight: destination, URL tags, translation, price, CTA, pixel
 
-Only after the remaining gate is green: deliberately enable campaign/ad set and begin the ~$25/day information-buying test.
+**Launch rule:** when those three remaining checks are green, enable Creative A / ad set / campaign and begin the ~$25/day information-buying test. Do not wait for Unbounce or Creative B.
 
 ---
 
-# B. Miami Run Development — live control + measurement discrepancy
+# B. Miami Run Development — LIVE CONTROL
 
 Campaign:
 `FORM · Miami · Run · Test 01`
 
-Latest reported snapshot Sep 15:
-- spend: $12.90
-- impressions: 679
-- clicks: 20
-- link clicks: 9
-- landing-page views: 6
-- genuine coaching inquiries: 1
-- Meta attributed leads: 0
-- GA4 `generate_lead` from `meta / paid_social`: 0
-- GA4 paid-social sessions across Sep 14–15: 5
-- no newer coaching inquiry beyond the known one
+Latest owner-provided snapshot Sep 15:
+- spend: **$20.62**
+- impressions: **1,047**
+- clicks: **37**
+- link clicks: **17**
+- Meta landing-page views: **11**
+- GA4 `meta / paid_social` sessions across Sep 14–15: **13**
+- genuine paid-social coaching inquiries: **1** (Jorge)
+- Meta attributed leads: **0**
+- GA4 `generate_lead`: **0**
+- no newer coaching inquiry beyond Jorge
 
-**Decision: do not change the campaign.** No budget, targeting, creative, or page change from this discrepancy alone.
+Traffic reconciliation improved materially: GA4 caught up from 5 to 13 paid-social sessions, so ad → site measurement now looks credible.
 
-The real-world funnel completed because the inquiry reached the inbox with paid-social campaign source. Platform lead reporting has not credited it.
+The unresolved problem is only the conversion event attribution. One genuine inquiry exists even though Meta/GA have not credited `Lead` / `generate_lead`.
 
-Code-path inspection confirms:
-- FormSubmit delivery is independent of analytics;
-- `formTrackLead()` runs only after FormSubmit reports success;
-- it sends Meta `Lead` + GA4 `generate_lead`;
-- GPC/DNT deliberately suppress those analytics events while allowing the inquiry to deliver.
+**Decision: keep the campaign exactly as-is.** No budget, targeting, creative, or page changes now.
 
-Plausible explanations:
-- reporting lag;
-- GPC/DNT or tracking/ad blocking on the actual lead's browser;
-- client-side event delivery issue.
+Next decision point:
+- ~15–20 Meta landing-page views, or
+- roughly $25–30 spend,
+- unless another genuine inquiry or technical problem occurs first.
 
-Do not weaken privacy behavior to improve attribution.
+If `Lead` / `generate_lead` is still missing at the next measurement checkpoint, run the documented controlled tagged submission while watching Meta Test Events + GA4 Realtime/DebugView before changing acquisition.
 
-If the lead is still absent tomorrow, run one controlled tagged inquiry while watching Meta Test Events + GA4 Realtime/DebugView. Protocol:
+Protocol:
 `docs/marketing/COACHING_MEASUREMENT_ACCEPTANCE_2026-09-15.md`
 
-A manual tagged test proves event delivery, not true Meta campaign attribution, because it does not reproduce a real Meta click ID.
+Do not weaken GPC/DNT behavior just to improve attribution.
 
-Search Console signal reported Sep 15:
-- Sep 14: 2 clicks from 6 impressions.
-
-Encouraging, but too little volume for SEO action.
-
-Working target remains 2 new Run Development starts/month; 3/month is stretch only while delivery quality stays high.
+Working target: 2 new Run Development starts/month; 3/month stretch only while delivery quality stays high.
 
 ---
 
-# C. Unbounce parked surfaces after RPD
+# C. Parked Unbounce surfaces
 
-Use trial for learning, not four simultaneous production builds.
+Use the free trial to harvest patterns, not to create four simultaneous production projects.
 
-Priority:
-1. RPD — active
-2. FORM app landing page — park ideas
-3. Forge landing page — park ideas
-4. coaching homepage challenger — park ideas
+Priority when authenticated:
+1. RPD conversion audit
+2. FORM app landing-page ideas
+3. Forge landing-page ideas
+4. alternative coaching homepage
 
-For each parked surface capture template/pattern names, mobile hierarchy, hero/CTA, proof/pricing sequence, copy worth testing, rejected ideas, and implementation notes. Do not claim unshipped app features.
+Capture for each:
+- template/pattern names
+- mobile hierarchy
+- hero/CTA structure
+- proof/pricing sequence
+- useful AI copy variants
+- rejected hype/false claims
+- implementation notes for speedandform.com
 
 ---
 
 # D. Queue for any future `continue`
 
-Take the first unblocked item; move on when a human/tool blocker appears:
-
-1. Check Creative A review/status when Meta session/data exposes it; parents stay paused.
-2. Run true phone-width / physical-device RPD sales + preview QA when an actual mobile viewport or Brice screenshots are available.
-3. Verify RPD pre-purchase Meta/GA events without inventing Purchase evidence.
-4. Decide whether Creative B joins first spend; if yes, manually upload `rpd_creative_b_static_v2.png`, otherwise record deliberate deferral.
-5. If Unbounce is logged in, run authenticated RPD audit and implement only truthful/high-value improvements.
-6. Run final RPD Meta preflight; enable only when the remaining gate is green.
-7. If Miami coaching Lead / `generate_lead` is still missing tomorrow, run the documented controlled measurement test before changing acquisition.
-8. Continue watching the Miami control without rewriting it.
-9. After RPD launch, harvest/park Unbounce ideas for FORM, Forge and coaching challenger.
-10. On first genuine RPD purchase, monitor Stripe/webhook/entitlement/access closely and execute contingency if access fails.
+1. Check Creative A Meta review/status when available. Keep RPD parents paused until accepted.
+2. Obtain true phone-width / physical-device RPD sales + preview QA; fix only material issues.
+3. Run final Meta preflight: destination, URL tags, Spanish translation, price, CTA, pixel.
+4. If all three are green, enable RPD Creative A / ad set / campaign at the existing ~$25/day test budget.
+5. Continue watching Miami control unchanged until ~15–20 LPVs / $25–30 or a new inquiry.
+6. If Miami `Lead` / `generate_lead` remains absent at checkpoint, run the controlled measurement acceptance test.
+7. On first genuine RPD purchase, monitor Stripe → webhook → entitlement → unlock closely and execute contingency if needed.
+8. Add Creative B only as a deliberate second hypothesis; do not let it delay first spend.
+9. If Unbounce connector authentication starts working, audit RPD first, then park FORM / Forge / coaching ideas.
 
 ## North star
 
