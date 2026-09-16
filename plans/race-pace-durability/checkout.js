@@ -45,7 +45,7 @@ function installCheckoutLinks() {
 }
 
 function installPracticeProof() {
-  const section = document.querySelector('main > section.pair[aria-label]');
+  const section = document.querySelector('main > section.pair[aria-label="FORM runners and the plan"], main > section.pair[aria-label="Corredores FORM y el plan"]');
   if (!section || section.dataset.photoInstalled === 'true') return;
   const spanish = document.body.dataset.rpdLocale === 'es';
   section.dataset.photoInstalled = 'true';
