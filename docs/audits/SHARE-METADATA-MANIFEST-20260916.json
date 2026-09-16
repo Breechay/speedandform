@@ -1,0 +1,1393 @@
+{
+  "version": "20260916-pass1",
+  "defaultImage": "https://speedandform.com/og/form-share-20260916.jpg",
+  "counts": {
+    "pages": 84,
+    "replace": 73,
+    "preserve": 11,
+    "excluded": 91
+  },
+  "pages": [
+    {
+      "file": "anti-rotation.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Anti-Rotation Routine | FORM",
+      "description": "A targeted routine for runners who twist or rotate excessively under load. Four exercises. One running cue.",
+      "bodySha256": "1eb604cbdca5990e05514713d0a00d4830ba30aa5d56ac2241b3f4280938abb0",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "app.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "FORM — App",
+      "description": "Ghost Protocol. Six weeks. Free on iPhone.",
+      "bodySha256": "f792fc700e0956a2ccb4970bc52af070592fe061d614711a6765793085528228",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "athletes.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Athletes | FORM",
+      "description": "The people in the FORM practice. Miami-based runners building consistent training.",
+      "bodySha256": "11173e9219b546792bf48698d8079f8bca9829337707042f123e78b8a285e0b4",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "avoid-injury.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Avoiding Injury | FORM",
+      "description": "Adjust early and stay uninterrupted. Five principles for managing training load and protecting the system.",
+      "bodySha256": "c2719ac0ccc03a6ce7a1ae06ba070d83a90f76b7821e68682b63a892f9290e7d",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "competition.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Competition | FORM",
+      "description": "Races inside the practice. The FORM race calendar and split references for competition.",
+      "bodySha256": "f6d506b8c0496ae99cb81441668d370a348f48ef4b1ff3119974cae9f44f64e4",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "cycles.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Cycles | FORM",
+      "description": "Training moves in phases, not moods. How FORM organizes training cycles across a season.",
+      "bodySha256": "c8fa441f79aa46cb819679a8414ea0f650543bbd2492b37fa9d9319ee166509a",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "easy-run-standards.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Easy Run Standards | FORM",
+      "description": "Mechanical standards for easy runs. Garmin-based reference ranges for ground contact, cadence, stride length, vertical ratio, and vertical oscillation.",
+      "bodySha256": "3012f2293c888de725c6ad7c87b9967b3862a6a30d28ebadf1610a7fea1a9366",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "easy-run.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Easy Run | FORM",
+      "description": "The session that makes hard work possible. Why easy running is the foundation of a durable training week.",
+      "bodySha256": "7c09c668f4124e2174dda25ca7a30f1d9efa3b3edee5b9044314191dfd7912d3",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "es/plans/race-pace-durability/index.html",
+      "action": "preserve",
+      "reason": "Dedicated subject-specific image",
+      "previousImage": "https://speedandform.com/og/race-pace-durability.png",
+      "image": "https://speedandform.com/og/race-pace-durability.png",
+      "title": "Race Pace Durability · ¿Puedes mantener el ritmo?",
+      "description": "Un plan de media maratón de 15 semanas para mantener tu ritmo de carrera por más tiempo. Prueba gratis las semanas 1–4. Plan completo: pago único de $79.",
+      "bodySha256": "c1700985505658c09902cd2aff3d5c71127774d52511d14ecf07a3822d302340",
+      "imageSha256": "b07cd17d094095ae92a7e8404406a07cf3f63af055fe62fe3e74355d5107279a"
+    },
+    {
+      "file": "field-notes.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Field Notes | FORM",
+      "description": "Observations from inside a disciplined training environment. How serious practice shapes runners over time.",
+      "bodySha256": "29b90445b6b3ae80d25a0a515451869fcb39f391e2d6f4bdc87b37bf8d970480",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "form/index.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "FORM — Running, sequenced.",
+      "description": "Your running week, already built — every run with a job, every pace set.",
+      "bodySha256": "d547a32a0697e36e94e8a2cae348759b511513de940b9d702c1a5b01e33b90a5",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "fueling.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Fueling | FORM",
+      "description": "Fuel supports the work. Simple guidance on fueling threshold sessions, long runs, race day, and recovery.",
+      "bodySha256": "37af5090a13e49e64762177a2ae782a67ec8f01b5b4783c3eea13ed2c5caf7b9",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "ghost/cues.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Running Form Cues | Ghost Protocol | FORM",
+      "description": "All running form cues from the Ghost Protocol in one place.",
+      "bodySha256": "eaaedafdc4bd1c44be7c15ec8f64691aa436aac32e8ac768e6b69396ecc0b2ef",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "ghost/index.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "The Ghost Protocol | FORM",
+      "description": "A six-week practice for clean running form. Quiet mechanics, no wasted motion.",
+      "bodySha256": "11803721d2b91ea682832ff276928d876e311e2f6311070a441464d13d38bddd",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "ghost/week-1.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Week 1 — Rhythm | Ghost Protocol | FORM",
+      "description": "Find the beat. Remove urgency.",
+      "bodySha256": "23baeeea2f875520e59500bd1c6af64164665747c51cc275d73db04b78186ffd",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "ghost/week-2.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Week 2 — Gravity | Ghost Protocol | FORM",
+      "description": "Stop pushing. Start falling.",
+      "bodySha256": "ac2cc5330bca9e3fd823068fe6a5f5926c07da177e76864af6a6d2dc1b961091",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "ghost/week-3.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Week 3 — Spring | Ghost Protocol | FORM",
+      "description": "Use the ground. Don't sink into it.",
+      "bodySha256": "cfb7cf2cbaf309a7ead79b7bbf9acb4d2c8e99ac44fb2fb8d51f92610ef24625",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "ghost/week-4.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Week 4 — Pillar | Ghost Protocol | FORM",
+      "description": "Still torso. Moving legs.",
+      "bodySha256": "a97b4793ec4b1d0a43ed132ace836ebbb017f30f25e30e3085612fef692d8066",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "ghost/week-5.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Week 5 — Gears | Ghost Protocol | FORM",
+      "description": "Change speed without changing form.",
+      "bodySha256": "ded32c5b79c8adacbbb616261bd6f7bb4dee868524bad35a965e609409a8f666",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "ghost/week-6.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Week 6 — Ghost | Ghost Protocol | FORM",
+      "description": "Everything together. No thinking.",
+      "bodySha256": "ceb0e3ef8001daf5ecf33e1240c5fb669cb56e4deb11bb136aa1235a1dd6e1c1",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "how-fast-should-i-run.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "How Fast Should I Run | FORM",
+      "description": "Most running should feel comfortable. Pace guidance for easy days, threshold sessions, and long runs.",
+      "bodySha256": "1307781aa8fdacf0b745fe856c719fde8343623031bedc56107da6577dd58f28",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "index.html",
+      "action": "replace",
+      "reason": "Owner supplied a replacement homepage image",
+      "previousImage": "https://speedandform.com/og/homepage-run-development-20260916.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Run better. Get faster. Run farther. | FORM",
+      "description": "Individual running coaching with Brice. A plan built around your fitness, your goal, and your week. Miami + remote. Eight weeks to begin.",
+      "bodySha256": "8b0bed4cd463af6c67d8cc8c0f11543969c17b0c9a602a182e2fed1599a3a8f0",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "labs/hyrox/index.html",
+      "action": "preserve",
+      "reason": "Dedicated subject-specific image",
+      "previousImage": "https://speedandform.com/og/hyrox-v1.png",
+      "image": "https://speedandform.com/og/hyrox-v1.png",
+      "title": "HYROX Training, Pacing & Race Calculator | FORM",
+      "description": "Plan your HYROX training and race strategy. Explore station tips, practice workouts, race-day preparation and a free pacing calculator.",
+      "bodySha256": "a396bed5f0de122423c6b2d0e909134df80d5cd48b6a7100c0b849337a69ebff",
+      "imageSha256": "76ea27eec1f16bc9443c1651330730b32ef55c5b2e7d746801b1e6c9bea13a8f"
+    },
+    {
+      "file": "labs/index.html",
+      "action": "preserve",
+      "reason": "Dedicated subject-specific image",
+      "previousImage": "https://speedandform.com/og/labs.png",
+      "image": "https://speedandform.com/og/labs.png",
+      "title": "FORM Labs · Living studies",
+      "description": "Two open training questions. Follow the work, each athlete’s response, and what changes next.",
+      "bodySha256": "cf4a20a134b9f3dbb567a754aa6d4f4efec1803e6945e60b66ac0b521d28eff2",
+      "imageSha256": "71b488a44a1320b0396f38bd4e00229ed3e0268abf2e96919284be6113ecf43e"
+    },
+    {
+      "file": "labs/raise-the-ceiling/index.html",
+      "action": "preserve",
+      "reason": "Dedicated subject-specific image",
+      "previousImage": "https://speedandform.com/og/raise-the-ceiling-study.png",
+      "image": "https://speedandform.com/og/raise-the-ceiling-study.png",
+      "title": "Raise the Ceiling · FORM Labs",
+      "description": "Simon and Lisa explore whether more available speed changes what they can sustain and carry into a 10K.",
+      "bodySha256": "640b8eb610d9e1eb06a2c250cae82a15432c1b3636bf53b862d77869d99b3c9d",
+      "imageSha256": "7a4ff9173f35523dcea1b19592e5d9451a45227481baa22b48778dcc64eb4a7b"
+    },
+    {
+      "file": "labs/speed-that-endures/index.html",
+      "action": "preserve",
+      "reason": "Dedicated subject-specific image",
+      "previousImage": "https://speedandform.com/og/speed-that-endures.png",
+      "image": "https://speedandform.com/og/speed-that-endures.png",
+      "title": "Speed That Endures · FORM Labs",
+      "description": "José and Hope follow a race-pace progression. See their individual responses and the decisions that change their work.",
+      "bodySha256": "35adce782e1d5579eb99c7fa521271b0bfef088eb7b99bb8c5c2cd7e943022bc",
+      "imageSha256": "41741bb0bd13c0e2bd51d16499744a15df526ea72c22c83368ed1d69d87e63f2"
+    },
+    {
+      "file": "labs/track/index.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Track Workouts, Standards & Time Trials | FORM",
+      "description": "Six named standards with set-by-set targets, a threshold ladder, time trials, and how a mark is recorded.",
+      "bodySha256": "f55f610281215c3e4f68be6ecff56425e793c85b1f0ce50d4973ccb4b2f5f535",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "ledger.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Ledger | FORM",
+      "description": "The FORM training record. A log of sessions, phases, and the history of the practice.",
+      "bodySha256": "93ff6416149e1730731f139966d913289e072db7230fe633a4d129e4d0457fa0",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "library/easy-days/index.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Why easy days stay easy — Speed & Form Library",
+      "description": "Easy running is not the part of the plan you rush through. It is what lets the important work keep improving.",
+      "bodySha256": "be49e26da12eab9b1c7eb43437d1b61ae6c468deafc1920b1943fe20586a0746",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "library/first-half-marathon-goal/index.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "How to set your first half-marathon goal — Speed & Form Library",
+      "description": "Set a first half-marathon goal from recent running, not a guess. Learn how to choose a starting target and adjust it as evidence builds.",
+      "bodySha256": "9f20ac54dec2bec2179a642e26e64a64eba768bb1360e1fcc0b2fc88f0896a5e",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "library/from-lifting-to-running/index.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "How to start running when you already lift — Speed & Form Library",
+      "description": "You do not need to stop lifting to become a runner. You need a running dose that your current training can absorb.",
+      "bodySha256": "9e7e0fda294e5470449f4d0ecbeac641b8f3704648df65216138cc23b592ff12",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "library/half-marathon-week/index.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "How a half-marathon week fits together — Speed & Form Library",
+      "description": "A race plan is not a pile of runs. Each day has a job, and the week works because those jobs support one another.",
+      "bodySha256": "a58d5ac7d4688683e919e8b47da344fb160ccaeae68f8746d8138636814b9658",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "library/physique-volume/index.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Why every area should not get the same volume — Speed & Form Library",
+      "description": "A balanced physique is not built by giving every muscle the same amount of work. It is built by deciding where emphasis belongs.",
+      "bodySha256": "3e8560b0eba895cb5dc11585adc19b970bb40c3c94616d6c4deb61c58a666cf0",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "library/the-two-paces/index.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "The two numbers that organize the whole plan — Speed & Form Library",
+      "description": "Understand threshold pace and an easy-effort ceiling: two guides for keeping demanding runs purposeful and easy days controlled.",
+      "bodySha256": "14211d99c319fd163ec8aa2d0a514baf08b45c54ecca951271883fe6269c2cf8",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "library/when-a-week-goes-wrong/index.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "What to do when the week goes wrong — Speed & Form Library",
+      "description": "Missed a run? Learn how to return to your training week without cramming missed sessions together or turning every day into catch-up work.",
+      "bodySha256": "1f9c2ac4c93b6ea9023516242fb928ad826a68993a86462538d92b971bc4e110",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "library/why-phases/index.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Why the program runs in phases — Speed & Form Library",
+      "description": "Why physique training uses phases: focus the work, maintain what you have built, and move the emphasis in a deliberate order.",
+      "bodySha256": "5827ca3d922444b441d5beff82fa65cd80d7a3e6f4a9316c9750fb65b7766e4c",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "library.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Library | FORM",
+      "description": "Every page in the FORM training system, organized by layer. Practice, reference, planning, culture, and archive.",
+      "bodySha256": "6c03cce4ecef3f42aab9c4ba39abd06a10281ba229b3c607e388f8bb59aa798d",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "long-run-pace.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Long Run Pace | FORM",
+      "description": "How to pace the long run. Steady is threshold held with restraint.",
+      "bodySha256": "e9935d284f9f7068465dfe085bf9cc2d155ef8b648982b4f114dabb1c398d09d",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "long-run.html",
+      "action": "preserve",
+      "reason": "Dedicated subject-specific image",
+      "previousImage": "https://speedandform.com/og/long-run.jpg",
+      "image": "https://speedandform.com/og/long-run.jpg",
+      "title": "Long Run | FORM",
+      "description": "Extended aerobic work that builds endurance and durability. The long run in FORM structure: purpose, pace, and format.",
+      "bodySha256": "46440bf448b2d1dfc19b690dd50f29d4f05b02d3ef3339054cb94467e0e8a27c",
+      "imageSha256": "8f63251408368c8d0da22ca707d1b7800418267aa0585af7b282ffdc436b02db"
+    },
+    {
+      "file": "mechanics-map.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Running Mechanics Map | FORM",
+      "description": "How common running errors relate to each other. Rhythm, stability, and direction — the three root categories of mechanical inefficiency.",
+      "bodySha256": "a854ba3ef969e8050bb30e0c0d7693c1259c7474fb552ae7be295b7e925c4e22",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "miami-running-training.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Running Training in Miami | FORM",
+      "description": "Structured running training in Miami. Threshold sessions and long runs. Year-round.",
+      "bodySha256": "36240650dc9aa966662a2eec98b58e5f424fcb4bf86eb2f0fc78ca06d1013c02",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "mobility.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Mobility | FORM",
+      "description": "The mobility work that supports FORM training. Hip flexors, ankles, calves, mid-back, glutes.",
+      "bodySha256": "be7e46d7b05ccae3475737b5d62068717414d1e6dc955c1c3fdff9d0b0183350",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "next.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Next Cycle — FORM",
+      "description": "Speed Emergence is complete. The next cycle is ready.",
+      "bodySha256": "af769e43f11906fcb029dba7827320ad1b2b281c9ec387f2b9596718ba2a7f03",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "notes.html",
+      "action": "preserve",
+      "reason": "Dedicated subject-specific image",
+      "previousImage": "https://speedandform.com/og/note-001.jpg?v=rd28",
+      "image": "https://speedandform.com/og/note-001.jpg?v=rd28",
+      "title": "The back leg finishes when nothing is rushing it.",
+      "description": "NOTE 001. Hope.",
+      "bodySha256": "9bd1bd2e90918d1424a877970580b64c6e960f6ec5e4e75790111a44554c4568",
+      "imageSha256": "3b111757258be46eda3dd5960112f1c4ce636dccb814a49abdc978117c825dc8"
+    },
+    {
+      "file": "pacing.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Pacing | FORM",
+      "description": "Pace is a reference. Effort is the guide. How to understand pacing across easy, threshold, and long run sessions.",
+      "bodySha256": "f9785ca80feb218ba46fa79558fd57e4bf24c5edaaf48788522abf6bf839624e",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "pain-map.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Runner Pain Map | FORM",
+      "description": "Common running pain signals and their usual mechanical causes.",
+      "bodySha256": "31cf33b3e379eb85f3a8324681a567664c997284e09c619aebf715c1fe9fd3c0",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "plan-speed-emergence.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Speed Emergence | FORM",
+      "description": "Tuesday threshold · Thursday track · Saturday long run. Six Thursday sessions rotating through a six-week cycle.",
+      "bodySha256": "283a22e3ecbe567fe10bb2e6a115bd596f8c3516d488df5458da2b3c0f3f7085",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "plan-spring-2026.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Plan — Spring 2026 | FORM",
+      "description": "The FORM Spring 2026 training plan. Season structure, cycle phases, and race targets.",
+      "bodySha256": "e4f23bacecddf44868af2a6c312b24410889e04ea4f216e5edf2b6e34b74d602",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "plan.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Plan | FORM",
+      "description": "The current FORM training cycle. Session structure, phase targets, and the arc of the current plan.",
+      "bodySha256": "f746f59affebe7c29cbec46f8d388532e0e6d39493abf6b9df5831e62243dcad",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "plans/index.html",
+      "action": "replace",
+      "reason": "Old card says free to read/free to run; paid products now exist",
+      "previousImage": "https://speedandform.com/og/plans.png",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Plans · FORM",
+      "description": "Running plans from FORM. Clear weekly training, simple instructions and a progression you can follow.",
+      "bodySha256": "faae43a70bec89fee49a224685100f587ae3cc50a52d7ca1f4a5880a34fbff69",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "plans/race-pace-durability/index.html",
+      "action": "preserve",
+      "reason": "Dedicated subject-specific image",
+      "previousImage": "https://speedandform.com/og/race-pace-durability.png",
+      "image": "https://speedandform.com/og/race-pace-durability.png",
+      "title": "Race Pace Durability: 15-Week Half Marathon Plan | FORM",
+      "description": "A 15-week half-marathon plan for runners who want to hold race pace longer. Try Weeks 1–4 free. Full plan: one-time payment of $79.",
+      "bodySha256": "091c3f712ffcf47f3e05d07d2920f5dd27aa21117dd3b312ddb316c4e23aeac2",
+      "imageSha256": "b07cd17d094095ae92a7e8404406a07cf3f63af055fe62fe3e74355d5107279a"
+    },
+    {
+      "file": "plans/race-pace-durability/support/index.html",
+      "action": "preserve",
+      "reason": "Dedicated subject-specific image",
+      "previousImage": "https://speedandform.com/og/race-pace-durability.png",
+      "image": "https://speedandform.com/og/race-pace-durability.png",
+      "title": "Race Pace Durability · Can You Keep the Pace?",
+      "description": "A 15-week half-marathon plan for runners who want to hold race pace longer. Try Weeks 1–4 free. Full plan: one-time payment of $79.",
+      "bodySha256": "c6198b3315c2062dde50d83b4da786ae0a31f60cc683b360709875ced058c406",
+      "imageSha256": "b07cd17d094095ae92a7e8404406a07cf3f63af055fe62fe3e74355d5107279a"
+    },
+    {
+      "file": "plans/raise-the-ceiling/index.html",
+      "action": "preserve",
+      "reason": "Dedicated subject-specific image",
+      "previousImage": "https://speedandform.com/og/raise-the-ceiling-plan.png",
+      "image": "https://speedandform.com/og/raise-the-ceiling-plan.png",
+      "title": "Raise the Ceiling: Six-Week 10K Plan | FORM",
+      "description": "Simon and Lisa’s six-week block: individual Tuesday work, fixed Thursday track standards, endurance underneath, then a 10K.",
+      "bodySha256": "1f051a443bf2ccf68041efe19c9fb7a1468519deed2594af878626f1d4f8766b",
+      "imageSha256": "242da3676c160e379b21f53e08a2cb638ad32e55c887df46d7ad71f5cc827d6e"
+    },
+    {
+      "file": "practice.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Practice | FORM",
+      "description": "The FORM training board. Weekly schedule, current sessions, and the structure of the practice.",
+      "bodySha256": "bdc3163a8c830e2710b7088ad7137492c0c91fa084f1614db188026d80016e57",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "principles.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Operating Principles | FORM",
+      "description": "The core operational rules of the FORM training system. Training, execution, rhythm, decisions, and signal vs noise.",
+      "bodySha256": "eae80bd089516e6262fc1673cfbafb2dde1cfb2a52d6adb421f2a35a2b1e9543",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "race-prep.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Race Prep | FORM",
+      "description": "The race is the expression of what training built. How to approach taper, race week, and race-day execution.",
+      "bodySha256": "4fed1e0b01202afe51ed9bc8b28bebcba87de0825de46b8ae84ad5b0fcb5c343",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "race-strategy.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Race Strategy | FORM",
+      "description": "Race pace is not chosen — it is revealed. Pace bands, ceilings, watch protocol, fueling, and the three days before.",
+      "bodySha256": "829c6f4f928b32637c6965db71fa17dbaf593bf3fb5b70f2273e062cf5fe8bd8",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "recovery.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Recovery | FORM",
+      "description": "Adaptation happens after the work. Recovery protects rhythm, sleep, and the ability to absorb training consistently.",
+      "bodySha256": "23d995cdca5f74ae5121bac34de21cfb1b26fb119f4eb93f16f0064058e046ed",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "return.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Returning to Running | FORM",
+      "description": "Rebuilding the system after time away. A structured approach to re-entry after a break from training.",
+      "bodySha256": "b4cd4d4f47fab139cb5fb974f018fb454afb89010f43407888b9f8c4480e7aa1",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "running-form-errors.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Running Form Errors | FORM",
+      "description": "Common mechanical errors and how to correct them. A field guide to running form in the FORM system.",
+      "bodySha256": "0721c20074287318a10506a89610a9644a7c44123a293fd5e70e13fb0d158a6e",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "running-terms.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Running Terms | FORM",
+      "description": "A selective glossary for structured training. Terms used in the FORM system explained clearly.",
+      "bodySha256": "4ce2a70cf42ad85d5aa483441ea6f943dfc08702c3e359e64129b06f06c24eee",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "search.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Search | FORM",
+      "description": "Search the FORM training system.",
+      "bodySha256": "692fafd31789aab9dc9eb8f4a1b7920054ba12c936ebe3b97222056f85781d41",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "sessions.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Sessions | FORM",
+      "description": "The recurring session types in the FORM training week. Threshold, long run, easy runs, and structural work.",
+      "bodySha256": "d19c007841da44d2ca7ccf05f411270b3365d0df785a59e67fd5be71586cb0e0",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "shoes.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Running Shoe Rotation | FORM",
+      "description": "Match the tool to the session. How to rotate training shoes for threshold, long runs, and easy days.",
+      "bodySha256": "c2983718661a53b589aff5ab00fbabd7041154d02954eef5753723ef0d1e2ec1",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "sleep.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Sleep | FORM",
+      "description": "Sleep is where training adaptations consolidate. How rhythm, duration, and consistency of sleep protect the practice over time.",
+      "bodySha256": "3dba8cc3f60b684c81ca95434d6d2aa3b91aa651d3fdad08315d372422563fdf",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "speed.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Speed Sessions | FORM",
+      "description": "Track sessions from the Speed and Form phase. Session structure, rep targets, and track formats.",
+      "bodySha256": "a9f579736fa363f610e93680beb7959e1950f00e720e2228b570931d88512d86",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "split-calculator.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Split Calculator | FORM",
+      "description": "Distance and goal time to watch-ready splits. Pace calculator for race planning and session targets.",
+      "bodySha256": "b5ee1937a0736291928422103ea187ae992540d77bea03d0d6117300ebefe997",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "start.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Start — FORM",
+      "description": "How to begin training with FORM in Miami.",
+      "bodySha256": "ebe2e6031cea9846a470e20c5c16bb0c7da6ca8d0260630edfbbe8070f911101",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "strength-activation.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Activation — Pre-Run Warmup Routine | FORM",
+      "description": "A 4–5 minute pre-run activation sequence for runners: glute bridge, dead bug, lateral band walk, calf raise, A-skip.",
+      "bodySha256": "ffc91bf93206f15750378e446f38986d5b046939f4a8ee1207a1e818adda4018",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "strength-fixes.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Mechanical Fixes — Runner Correction Exercises | FORM",
+      "description": "Targeted exercises for common running mechanics issues: glutes not firing, tight calves, hip drop, and unstable core.",
+      "bodySha256": "de1c94fcdf459d2a0caf7e21d415b8b8ae01642ea468a80af0c17134e6b919f5",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "strength-routine.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Durability Routine — Runner Strength Session | FORM",
+      "description": "The FORM durability routine: split squats, single-leg RDL, calf work, and core. Two rounds, twice a week.",
+      "bodySha256": "3606c5b0bde4545f814196c9961d5a4fe050fe4b1400cb43ba31a028c8209d4e",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "strength.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Structural Work | FORM",
+      "description": "Durability exercises that support running mechanics. The FORM approach to strength and structural work.",
+      "bodySha256": "78372008169796d4447c8de136cc1cb78f4b6497dd0f564f08c375075214ab49",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "the-field.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "The Field | FORM",
+      "description": "The training locations of the FORM practice in Miami. Where the work happens.",
+      "bodySha256": "30eb418617919fecbca4e6714ca1dc74760f8309ecbc1397de2159ceae86fb1e",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "the-method.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "The Method | FORM",
+      "description": "How FORM organizes training through repeatable structure, restraint, and consistent work.",
+      "bodySha256": "dc7cbdd5f4711673fd65c12f3b05345d4a6b1b342fe7e1fc52c5d7d89910eaa4",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "the-work.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "The Work | FORM",
+      "description": "Sessions currently shaping the FORM practice. Coaching philosophy and the work that defines the system.",
+      "bodySha256": "eaa804d21fe26ce4dd649bc4d6ecefb0dc8b4b10169823faab731dc2d58a5bce",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "threshold-training.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Threshold Training | FORM",
+      "description": "What threshold training develops and why. The physiology and structure behind sustained aerobic work.",
+      "bodySha256": "9855103b815696ef3d3fb030ce5677d52e6781bdac01317a2bba11df2d7b0041",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "threshold.html",
+      "action": "preserve",
+      "reason": "Dedicated subject-specific image",
+      "previousImage": "https://speedandform.com/og/threshold.jpg",
+      "image": "https://speedandform.com/og/threshold.jpg",
+      "title": "Threshold | FORM",
+      "description": "Sustained aerobic work that builds the engine. How threshold training fits into the FORM practice and when to run it.",
+      "bodySha256": "3ef672491a37b8012dcd9af7fecc04ee88a3e59ddbd906af4f55fe6ca512c34b",
+      "imageSha256": "90834fb22a0807357ea23d525ce921852fd9285680539f84e251ee5e706e664e"
+    },
+    {
+      "file": "thursday.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Thursday Track | FORM Miami",
+      "description": "Flamingo Park Track · Thursdays 6:30 AM · Show up in running shoes.",
+      "bodySha256": "62d3aecb90d06eaf3542e0f7b21c006b22a9124d750c614d8daccf517c00714b",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "training-arc.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Training Arc | FORM",
+      "description": "How the practice evolves over time. A long-term map of phases, structure, and development in FORM training.",
+      "bodySha256": "7a9d772cfc134c4000352c365c58bf2a637ad337f009e3d3c1c7d413feabdfc0",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "training-interruptions.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Training Interruptions | FORM",
+      "description": "Managing injury and time away from training. How to understand, adjust, and return to rhythm after interruption.",
+      "bodySha256": "c666e8a0e73ebee76ddba36aecaa042662230a57b8e30ff89df9dda791a38e93",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "training-map.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Training Map | FORM",
+      "description": "How the FORM training system fits together. Structure, session types, and how each element connects.",
+      "bodySha256": "ea75ca5a97009217fb406e0c8486b8e442dea00c63ab21b5700049f67a2f4326",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "training-principles.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Training Principles | FORM",
+      "description": "Seven principles that organize the work. The foundations behind FORM training structure and philosophy.",
+      "bodySha256": "e3b7934a2c0490d177b4686bc24ab4fd2fae73b75dfa46060b787ba7df951336",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "training-week.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Training Week | FORM",
+      "description": "How to organize a week of running training. Session distribution, recovery placement, and weekly rhythm.",
+      "bodySha256": "1d5ac5b4c5348dfb89153b88f8003b3bb36f64957d98089f88b8b68d50861ad1",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    },
+    {
+      "file": "troubleshooting.html",
+      "action": "replace",
+      "reason": "Approved default for public page",
+      "previousImage": "https://speedandform.com/og/default.jpg",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "title": "Troubleshooting the Run | FORM",
+      "description": "Small adjustments for when a run feels off.",
+      "bodySha256": "79069a0a8afef4754e5c13e37053910985eaacb3a7d9ae5efff2caba3c1a2220",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+    }
+  ],
+  "excluded": [
+    {
+      "file": "404.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "62b42526d1253e5bb693714dc0cda64a7984e12ae889947070821056b01f552b"
+    },
+    {
+      "file": "_hj.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "a504c0341b39bd0466cd16031e54c1823cad6bfd4c684fc0c221f98eae0b62ea"
+    },
+    {
+      "file": "_squad.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "c4d92d0f38c45183ce739e140493974f20a7faa370a756e3db7a3f4389da4efb"
+    },
+    {
+      "file": "ads/rpd/preview/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "8fd09d27e60667b5ce17f64605b9c661236b24cc792007f4313b51a0a39ad15c"
+    },
+    {
+      "file": "arc.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "e4a41035b3c975f14ce689fa4c8c4d9ab77fbe85e360e9af42cb16f73a336d92"
+    },
+    {
+      "file": "athlete/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "5146522d6debc948dfca6272ff6689f651066dccca87194876443b3225f84a85"
+    },
+    {
+      "file": "athletes/bobby.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "92ea9a0bde85be6dfa16116e35cd9b040a726722ba1dcd5613bfa50721e81e3c"
+    },
+    {
+      "file": "athletes/breech.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "907c9e5dc9521fcf43c382146ece35cb810412b976ff95f437bbd281e4abcced"
+    },
+    {
+      "file": "athletes/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "a43768f1f1602c7f6f551ea6c967eb61b706463d8511184c01fd6bc82e04c444"
+    },
+    {
+      "file": "athletes/jose.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "90b645f19e65871a75b44be874c6a7c2367722f08f1c077756a0dfc95ae14db7"
+    },
+    {
+      "file": "athletes/kyle.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "46a961c2888d814fdbffaa373bd58c5a7f9385b056eb532ddab2d477ccb4b3ed"
+    },
+    {
+      "file": "athletes/lisa.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "bffffe7bf28af5a42b24fcae0ed44ad067b49bfb7aa44a3ffa1c6c67335dc542"
+    },
+    {
+      "file": "athletes/marcus.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "fde2aceaf65eb7c9bb1139454bbe0bca0571881098a8b96e8d4fcd76a867bc63"
+    },
+    {
+      "file": "athletes/megan.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "0c4dc8120956e8d86fbbb221f1b09d99df39e4b0116cd6175ade3bde176b5331"
+    },
+    {
+      "file": "athletes/mike.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "19964efaf4aa610fd301bac98cf1290009d89a82f9b58dff44ed0c8cb7234998"
+    },
+    {
+      "file": "athletes/ryan.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "5732b9d8ce4bc287161d1e3a2edfb80c8af721ebd5b6540778f3cb85f2aeb25c"
+    },
+    {
+      "file": "athletes/sam-p.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "3c617b8b8d9ade896e76358801b6cf8501a342bb3a6bf0e681b21a1c456465d6"
+    },
+    {
+      "file": "athletes/sam-v.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "90bdca2bda07afd1c29e6658f6bdb99841c420ad4b0c602f997bf4d8353aa027"
+    },
+    {
+      "file": "athletes/simon.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "13b546561d7d762c347d09b6acdc796bf846ca413e821c7b53ef2c538ee3a01d"
+    },
+    {
+      "file": "athletes/tinius.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "8815c4fdf5bf9715d11d79ee88f7db8f8fabc5261845d3805135d19f558bf31d"
+    },
+    {
+      "file": "auth/apple/callback.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "a09ab4b5d1d89a0fe99a4f499c52f85ef7b5586aa7587e507e87de4438ea42b1"
+    },
+    {
+      "file": "auth/record-callback/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "ebe67cebd92277b8868f0bb14ee81d790c939afd6df69dd1b4fa238672c39d64"
+    },
+    {
+      "file": "coach.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "558d4903d32d1337705cccc7164dc9a1adc286fb0dacdef6212695dad948b30f"
+    },
+    {
+      "file": "coach/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "ba6d08d5114a3362eb902502be14070c874d38c2fa2022a6f8f2c81fed7bace6"
+    },
+    {
+      "file": "coach/labs/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "fcca7fe50b10d928ce80ec820b7ad368ecacb5b97ca68b42159f4fd7ac19cb6e"
+    },
+    {
+      "file": "design-review/form-notes-archive/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "2786fa47cfdfa71303fbaf618dd37176dbe64259845ac2cd3795ae5174d971b8"
+    },
+    {
+      "file": "design-review/frame.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "413034949c0d479394fa10df87d4116b52eabafcc0f9b93ab712e0d4a4bf297c"
+    },
+    {
+      "file": "design/approved/race-pace-durability-v8/print-template.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "3e59e6631ac3bf003b4d9dabc112a263bac67e45b899d2c853962f7f08e22032"
+    },
+    {
+      "file": "design/approved/race-pace-durability-v8/responsive-motion-v8.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "65ea48b3e73f26bfdc587ed4ba28c871f315df390ca5d41c358198c64239440c"
+    },
+    {
+      "file": "design/approved/race-pace-durability/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "d4352f9c41d4bed10cec99b7a683e92abaa1f83b97cc7f2c6a91d57390e79fd1"
+    },
+    {
+      "file": "design/reference/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "08ef2614fabdaf929b222faf2102c7350e36b7126fe01413dad373586af942ac"
+    },
+    {
+      "file": "docs/design/GRAPHITE_ATHLETE_SYSTEM_REFERENCE.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "27d73cc69f2d721b7a9a1fb333c3f657671f504747ff07eb5154d277b668246b"
+    },
+    {
+      "file": "docs/mocks/natalie-record.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "46b7fa30a72d3982ddbd2fc8677483913fe84d5402362fa44f30aa09382aac92"
+    },
+    {
+      "file": "docs/site/archive/index-2026-07-15-pre-v2.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "344a36a1140ff10b34cbdb110b9a6ccabb162cf127da791469ab9c454bcb00a0"
+    },
+    {
+      "file": "docs/site/mockups/homepage-deltas.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "ff46b359c9ef2f1fc418435db294f70caec372183d5b88b06cd79f42bbe74a2e"
+    },
+    {
+      "file": "docs/site/mockups/homepage-v2.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "9e74c274c2ce29c57c7e784c41733f6b72509c8a7988db9e27df89e8d14ce84f"
+    },
+    {
+      "file": "docs/track-c-handoff/extracts/instrument.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "d99755fbd81655e359e18798ea4d2ae8f8755066eb06e3ba55b84d3a5c030611"
+    },
+    {
+      "file": "docs/track-e-handoff/extracts/dragon.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "cfc46a64622085b57c78fbdb475fb0b29c54d9a2ae090ef62c69159873d3890d"
+    },
+    {
+      "file": "films.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "cf6acdfe8391f03eaa84070b8242a4d356699aa0022b558dc6532a4626d8cd95"
+    },
+    {
+      "file": "forge-app/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "55e64f16a463a66ce1ddfb53334e467c353ab472f5f99da6c82b863879b6c472"
+    },
+    {
+      "file": "forge-sculpt/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "c1481c93657414abb1a96c2e69b72b23582b2a7c6fbf8227bc5e1cce83e9c9d9"
+    },
+    {
+      "file": "forge-sculpt/privacy/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "a000420d2b541adf699d8063cb787700c13f2a618559f61a4433cf25f3d42fa5"
+    },
+    {
+      "file": "forge-sculpt/support/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "eed35755ad2ec0f3db135531837f2bbd10a3fd05667259962b206125f56ba423"
+    },
+    {
+      "file": "forge-sculpt/terms/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "83442a1816729b31f5281ba9103af1ba02f4994cb827b5378aced2ec858306ca"
+    },
+    {
+      "file": "forge-sculpt/train/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "83ec33f7168b1c8a88994fe4a06d9e673cf9bca03135374ab2da25445214da16"
+    },
+    {
+      "file": "form/privacy/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "1795c2eb7bc8c9c4c42e8d92fd513b830edb0bb293ac8445da4f224faea833b7"
+    },
+    {
+      "file": "form/support/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "0195a86e95bb399555c11c20b1514688bccda00a1b4dcbddd526856a687f5c4d"
+    },
+    {
+      "file": "form/terms/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "f80f32b5a014fb608a623614b7878ecd82ff6b1aa7d9038d5b312c271915fc99"
+    },
+    {
+      "file": "form_console_v54b.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "0796fd58b09ac008906d2e9cb416f2c750705c99ed24537bc6ebb9465252fcb3"
+    },
+    {
+      "file": "form_console_v55b.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "dda8df06eb71debea7df4de9a0a5c282fc1aabaf2846746fd780f368eb0bb1e9"
+    },
+    {
+      "file": "google3ef29ca5c705e511.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "1023f8daa40c3252fc65a5516dedc4d8894ed69ad27416e2e5986abb15420b96"
+    },
+    {
+      "file": "mockupA/athletes.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "02a5c1374009ef0838e8efcab82afc3094f6f9315b332b15e68b87b0ecff551b"
+    },
+    {
+      "file": "mockupA/breechay.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "5599fc1dec9bf55987a38031c876035b9aafa832bbfbee901d8db7cddb20d157"
+    },
+    {
+      "file": "mockupA/form.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "1d29af5af79676e556735b1c537c44cc6816db152ae9af935f3e37d9fb3a2abd"
+    },
+    {
+      "file": "mockupA/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "c43a4313b38f1d1853d8d81e325439cbfedeba6d8a34f48684450b086da7e009"
+    },
+    {
+      "file": "mockupA/notes.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "e6441108989f046be74f65029e0da239c1da2c326fae8418725154d2f7032454"
+    },
+    {
+      "file": "mockupA/sent.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "97557f40741ca3a64476f90bc7754a386a2e59967b61c137268ae37650c4fb79"
+    },
+    {
+      "file": "mockupb/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "3d3ecf1c9d3490c2240be32875d3aa4b9ea36951f17eb977d3ca2af859e6102e"
+    },
+    {
+      "file": "mockupc/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "b3f6965327a0988ea71f1566b56878075c82bac98e9b17f6f0e1198ce4991270"
+    },
+    {
+      "file": "perception-manual.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "59c22a75a81f1525578ea4174579efa0538dd237de35d9225f6d817a4456f704"
+    },
+    {
+      "file": "plans/adrian-hypertrophy-week-01/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "035183f4e01c7b85453925b79e78ea58c4eb8ec1bb5cd9664bd75e492b48b6ed"
+    },
+    {
+      "file": "plans/adrian-hypertrophy-week-02/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "3aea9e9479d12ca5b2ee212c4a1438f7f42e749d008afcf64d7a5200294a9841"
+    },
+    {
+      "file": "plans/adrian-hypertrophy-week-03/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "6fca17f05262263b64b6e592eabda3d4b4bd6688bf8c1f036114b883744c3869"
+    },
+    {
+      "file": "plans/adrian-runner-mass-phase-01/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "35b8e1b0d5034d8bea970079ef3af051de666ba07a6ca4639c2e6fc8435a220f"
+    },
+    {
+      "file": "plans/race-pace-durability/access/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "fc285a92cac4f97113b3c6383a4c830c806bbbf1f01e59681b5b59e5714650e0"
+    },
+    {
+      "file": "plans/race-pace-durability/print.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "205e07f5152260841f130c47b9a6550ef0e62e30bd0adf3f1b0f4dc4e2b5e382"
+    },
+    {
+      "file": "plans/race-pace-durability/thanks/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "861e683c344e21db8a0c8f00154dc4b27a9915eef4bbfb572ece94f5e6525fc7"
+    },
+    {
+      "file": "plates.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "6e5ab5e05bdd4e57fe49f1341543cf0e85bb9af331dd631cc7feec88bbb4326f"
+    },
+    {
+      "file": "privacy.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "1814752c07d20765648c671031bc117c953d124835c4cefd6dfece8b4320f628"
+    },
+    {
+      "file": "races/key-biscayne-2026.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "bc307ddcbd81ba1062194eae216553bedc0f9dd7684f88ffff4006c327b2884e"
+    },
+    {
+      "file": "record/index.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "7639c354d050d782a456dff50a7425cee3042f1858aaa5b829ac06511720f5a8"
+    },
+    {
+      "file": "scripts/design-review/frame.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "413034949c0d479394fa10df87d4116b52eabafcc0f9b93ab712e0d4a4bf297c"
+    },
+    {
+      "file": "simon.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "cb319f9abdb388f3ff02a96c6aeaf742c5c851bdfb8bad8951748bd825877b08"
+    },
+    {
+      "file": "studio.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "dcaac5de319a5b44fc49e940363f7affbb20777075c7833b4d005b5a5f2a5594"
+    },
+    {
+      "file": "supabase/templates/confirmation.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "59301ed7f034b9f8b03508f891e3596de70a9c93219b7c0386d390ccb529829c"
+    },
+    {
+      "file": "supabase/templates/email_change.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "8554524f9b4c2487c28cea0f46c0438b2048d3ba39b46b18e386b72792785b2e"
+    },
+    {
+      "file": "supabase/templates/email_changed_notification.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "0493fbaff9e7d5ffdcaac1b0306305d02e2a77a127145545b31379d75a9a5b20"
+    },
+    {
+      "file": "supabase/templates/identity_linked_notification.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "c97d1ce433065c087deebc0efcda55d51f8e18c798a9e7393830027d35ccd4d4"
+    },
+    {
+      "file": "supabase/templates/identity_unlinked_notification.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "3ed3ae85ac1fb1da73b4e296cef43ca4e88ff3085370f15a603720412f71225c"
+    },
+    {
+      "file": "supabase/templates/invite.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "c08bd069f03c827348970edcb8596b81d7884b680089cb690c058010e4a38cc1"
+    },
+    {
+      "file": "supabase/templates/magic_link.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "aad4b73647622b38af4e708cd3fb48611bce0deea06f5d5e5bcaea3699ac6f1d"
+    },
+    {
+      "file": "supabase/templates/mfa_factor_enrolled_notification.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "c7c71eb341a5a5ed22c76151fd706acfe636866df6a016f21833c049e7beb6af"
+    },
+    {
+      "file": "supabase/templates/mfa_factor_unenrolled_notification.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "2691cfee2f91615e762f0d9fd2b2ba7bb05b9488ce222b0f6c180ca8cb46c341"
+    },
+    {
+      "file": "supabase/templates/password_changed_notification.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "3adb70ad270d37612791173524bc88708f00b58e278cf3869034a1f228357e10"
+    },
+    {
+      "file": "supabase/templates/phone_changed_notification.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "d603d3770f2a98d543be2f52b0934db5211a7b91498fc8e25434fcb058e92111"
+    },
+    {
+      "file": "supabase/templates/reauthentication.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "84dbd8b3e76a2da92673282aebae3ce4380f53081c62789b3a78f6a300c124a0"
+    },
+    {
+      "file": "supabase/templates/recovery.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "c28e37efc5ee4a5dda7f5c87bc99a0308945bd4bce16fe13878a13303187ba02"
+    },
+    {
+      "file": "support.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "04bece20d6c7752f26a430451f20d4e3503533522e323df2a6a961591ee02689"
+    },
+    {
+      "file": "taper-key-biscayne.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "1a19d4bea17cb95ec80dae5b3b2b3657dcf029051b0d358642f8e1b0e24f3edd"
+    },
+    {
+      "file": "terms.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "f80f32b5a014fb608a623614b7878ecd82ff6b1aa7d9038d5b312c271915fc99"
+    },
+    {
+      "file": "village-intake.html",
+      "reason": "Outside this public-page allowlist: retain exactly; private, app-specific, delivery, preview, legal or unreviewed route",
+      "sha256": "b4399a37a9bde6af6e746bf4cd93a59ba5961805b507d3e9c6c80f12790e6673"
+    }
+  ]
+}

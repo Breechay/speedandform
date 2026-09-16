@@ -25,7 +25,7 @@ assert.equal(meta('twitter:card'), 'summary_large_image');
 assert.match(meta('robots'), /max-image-preview:large/);
 const imageURL = new URL(meta('og:image'));
 assert.equal(imageURL.origin, 'https://speedandform.com');
-assert.equal(imageURL.pathname, '/og/homepage-run-development-20260916.jpg');
+assert.equal(imageURL.pathname, '/og/form-share-20260916.jpg');
 assert.equal(meta('twitter:image'), imageURL.href);
 assert.equal(meta('og:image:secure_url'), imageURL.href);
 assert.equal(meta('og:image:type'), 'image/jpeg');
