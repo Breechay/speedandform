@@ -61,9 +61,9 @@
     d.head.appendChild(resultStyle);
   }
 
-  /* The homepage currently uses FormSubmit as the mail relay. Route every coaching
-     inquiry through the confirmed opaque endpoint and make the message easier to scan
-     in Gmail. _replyto is still set by the intake code, so Reply addresses the athlete. */
+  /* FormSubmit is only the relay. Keep its opaque endpoint, but make the coach's
+     notification behave like a lead card: compact enough to scan on one phone screen,
+     subject carries the offer/rate, and Reply-To is explicitly the athlete. */
   var nativeFetch = w.fetch.bind(w);
   w.fetch = function (input, init) {
     var url = typeof input === 'string' ? input : (input && input.url) || '';
@@ -71,10 +71,49 @@
       url = 'https://formsubmit.co/ajax/' + encodeURIComponent(FORM_ENDPOINT);
       if (init && init.body && typeof FormData !== 'undefined' && init.body instanceof FormData) {
         var form = init.body;
-        var name = String(form.get('Name') || 'New inquiry').trim();
-        var offer = String(form.get('Offer shown') || 'Coaching').trim();
-        form.set('_subject', 'New FORM inquiry · ' + name + ' · ' + offer);
-        form.set('_template', 'box');
+        var read = function (key) { return String(form.get(key) || '').trim(); };
+        var name = read('Name') || 'New inquiry';
+        var email = read('Email') || read('_replyto');
+        var location = read('Location');
+        var goal = read('Goal');
+        var days = read('Running days per week');
+        var volume = read('Weekly running volume');
+        var longest = read('Longest run');
+        var other = read('Other training');
+        var obstacle = read('Main obstacle');
+        var offer = read('Offer shown') || 'Coaching';
+        var price = read('Duration and fee shown');
+        var source = [read('Source'), read('Medium')].filter(Boolean).join(' / ');
+        var campaign = read('Campaign');
+        var creative = read('Creative');
+        var videoName = read('Video filename (attach separately by email)');
+        var running = [
+          days ? days + ' days/week' : '',
+          volume ? volume + '/week' : '',
+          longest ? 'longest ' + longest : ''
+        ].filter(Boolean).join(' · ');
+        var attribution = [source, campaign, creative].filter(Boolean).join(' · ');
+        var keys = [];
+        form.forEach(function (_, key) { if (keys.indexOf(key) === -1) keys.push(key); });
+        keys.forEach(function (key) {
+          if (key.charAt(0) !== '_' && key !== 'video') form.delete(key);
+        });
+        form.set('_subject', [offer, name, price].filter(Boolean).join(' · '));
+        form.set('_template', 'table');
+        form.set('_captcha', 'false');
+        if (email) form.set('_replyto', email);
+        [
+          ['Name', name],
+          ['Email', email],
+          ['Location', location],
+          ['Wants', goal],
+          ['Running now', running],
+          ['Other training', other],
+          ['Obstacle', obstacle],
+          ['Offer', [offer, price].filter(Boolean).join(' · ')],
+          ['Source', attribution],
+          ['Video', videoName]
+        ].forEach(function (row) { if (row[1]) form.append(row[0], row[1]); });
       }
       return nativeFetch(url, init);
     }
