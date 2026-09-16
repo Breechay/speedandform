@@ -61,7 +61,9 @@ Creative A:
 
 Reject generated copy that says/implies marathon, individualized programming, guaranteed outcome, false urgency, secret/hack, instant transformation, or false training mechanics.
 
-**Do not enable campaign/ad set until Creative A review status and mobile QA are confirmed.**
+Windsor reporting does not return the unpublished/no-delivery RPD hierarchy, so it cannot currently confirm review state. The TinyFish browser is not authenticated to Meta Ads Manager. **Do not infer review approval from time elapsed.**
+
+**Do not enable campaign/ad set until Creative A review status and the last mobile preview check are confirmed.**
 
 ## Landing page continuity — LIVE + pre-purchase QA passed
 
@@ -94,7 +96,19 @@ Live browser pre-purchase QA on Sep 16 passed:
 - no broken destination links or price mismatch found;
 - no purchase entered.
 
-True phone-width / physical-device acceptance remains open.
+### Mobile sales-page visual acceptance — PASSED at 390px
+
+A deterministic 390px render of the current sales composition was inspected on Sep 16. It preserved:
+- readable hero hierarchy;
+- the real FORM group image without destructive cropping;
+- stacked CTAs with clear primary/secondary priority;
+- four offer facts in a legible 2×2 grid;
+- `This is FORM` proof continuity;
+- progression, fit/not-yet cards, deliverables, $79 offer card, and final CTA without overflow or clipping.
+
+No mobile sales-page design change is required before launch.
+
+This was a local 390px render of the current production-equivalent composition, not a physical-device network session. The remaining mobile launch check is the **live free-preview interaction on an actual phone-width/device**, especially horizontal paging/locks.
 
 ## Weeks 1–4 preview — HARDENED + QA PASSED
 
@@ -124,7 +138,7 @@ Current behavior:
 Client source:
 `plans/race-pace-durability/source.js`
 
-Paid delivery function now source-controlled:
+Paid delivery function:
 `supabase/functions/rpd-entitlement/index.ts`
 
 Deployed function:
@@ -259,6 +273,7 @@ When authenticated access works:
 - [x] ES $79 page
 - [x] real FORM group image continuity
 - [x] desktop landing-page QA
+- [x] 390px sales-page visual QA
 - [x] pre-purchase landing → Stripe QA
 - [x] Weeks 1–4 preview
 - [x] Weeks 5–15 server-side prescription redaction for public users
@@ -274,7 +289,7 @@ When authenticated access works:
 - [x] Creative B asset ready but not required for first launch
 - [x] controlled $79 test explicitly waived by owner
 - [ ] Creative A review completes without policy/config error
-- [ ] phone-width / physical-device sales + preview QA
+- [ ] live phone-width/device free-preview paging + lock QA
 - [ ] final Meta preflight: destination, URL tags, translation, price, CTA, pixel
 
 **Launch rule:** when those three remaining checks are green, enable Creative A / ad set / campaign and begin the ~$25/day information-buying test. Do not wait for Unbounce or Creative B.
@@ -286,35 +301,54 @@ When authenticated access works:
 Campaign:
 `FORM · Miami · Run · Test 01`
 
-Latest owner-provided snapshot Sep 15:
-- spend: **$20.62**
-- impressions: **1,047**
-- clicks: **37**
-- link clicks: **17**
-- Meta landing-page views: **11**
-- GA4 `meta / paid_social` sessions across Sep 14–15: **13**
+### Latest connector snapshot — Sep 16
+
+Windsor now reports:
+- spend: **$25.52**
+- impressions: **1,239**
+- clicks: **42**
+- link clicks: **22**
+- reach: **879**
+- frequency: **1.41**
+
+Last known Meta landing-page views from the owner-provided checkpoint: **11**. Windsor's current field set did not expose LPV in the latest read, so do not invent a newer LPV number.
+
+Real-world conversions:
 - genuine paid-social coaching inquiries: **1** (Jorge)
-- Meta attributed leads: **0**
-- GA4 `generate_lead`: **0**
-- no newer coaching inquiry beyond Jorge
+- no newer genuine inquiry found in Gmail
+- Meta attributed leads: still not accepted as reliable evidence
+- GA4 `generate_lead`: still absent in the latest connector read
 
-Traffic reconciliation improved materially: GA4 caught up from 5 to 13 paid-social sessions, so ad → site measurement now looks credible.
-
-The unresolved problem is only the conversion event attribution. One genuine inquiry exists even though Meta/GA have not credited `Lead` / `generate_lead`.
+Traffic-side efficiency remains healthy enough to hold. Frequency is low, so there is no saturation signal.
 
 **Decision: keep the campaign exactly as-is.** No budget, targeting, creative, or page changes now.
 
-Next decision point:
-- ~15–20 Meta landing-page views, or
-- roughly $25–30 spend,
-- unless another genuine inquiry or technical problem occurs first.
+### Controlled measurement acceptance — RUN ONCE, INCONCLUSIVE
 
-If `Lead` / `generate_lead` is still missing at the next measurement checkpoint, run the documented controlled tagged submission while watching Meta Test Events + GA4 Realtime/DebugView before changing acquisition.
+A clearly labeled internal submission was run once on Sep 16:
+- name: `TEST — Measurement Acceptance`
+- success state appeared;
+- no duplicate submission occurred;
+- intake chose Run · $1,200 / 8 weeks;
+- the success UI proved the browser-side form flow completed.
+
+Immediate post-test checks:
+- GA4 still did **not** expose `generate_lead`;
+- Gmail did **not** yet show a matching FormSubmit test email;
+- therefore event/delivery acceptance is **not passed yet**.
+
+Do **not** run repeated test submissions simply to force reporting. Recheck after provider/reporting delay. The known Jorge inquiry already proves the real production mail path can work.
+
+Possible explanations remain:
+- analytics suppressed in the automation browser by DNT/GPC or content blocking;
+- GA4 reporting lag;
+- FormSubmit/Gmail delivery/indexing lag;
+- client-side analytics request not delivered.
+
+Do not weaken privacy behavior or change acquisition from this test alone.
 
 Protocol:
 `docs/marketing/COACHING_MEASUREMENT_ACCEPTANCE_2026-09-15.md`
-
-Do not weaken GPC/DNT behavior just to improve attribution.
 
 Working target: 2 new Run Development starts/month; 3/month stretch only while delivery quality stays high.
 
@@ -344,11 +378,11 @@ Capture for each:
 # D. Queue for any future `continue`
 
 1. Check Creative A Meta review/status when available. Keep RPD parents paused until accepted.
-2. Obtain true phone-width / physical-device RPD sales + preview QA; fix only material issues.
+2. Get one actual phone/device check of the live RPD free-preview paging + Week 5 lock. Sales-page 390px visual QA is already accepted.
 3. Run final Meta preflight: destination, URL tags, Spanish translation, price, CTA, pixel.
 4. If all three are green, enable RPD Creative A / ad set / campaign at the existing ~$25/day test budget.
-5. Continue watching Miami control unchanged until ~15–20 LPVs / $25–30 or a new inquiry.
-6. If Miami `Lead` / `generate_lead` remains absent at checkpoint, run the controlled measurement acceptance test.
+5. Continue watching Miami control unchanged; current spend is already inside the $25–30 checkpoint band, but the known 1 real inquiry and low frequency argue for holding rather than editing.
+6. Recheck the single controlled coaching measurement submission after reporting/delivery delay; do not repeat it automatically.
 7. On first genuine RPD purchase, monitor Stripe → webhook → entitlement → unlock closely and execute contingency if needed.
 8. Add Creative B only as a deliberate second hypothesis; do not let it delay first spend.
 9. If Unbounce connector authentication starts working, audit RPD first, then park FORM / Forge / coaching ideas.
