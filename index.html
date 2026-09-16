@@ -92,6 +92,7 @@
 }
 </script>
 <link rel="stylesheet" href="/css/homepage.css?v=20260916-single-runner">
+<link rel="stylesheet" href="/css/coaching-choice.css?v=20260916-picker">
 <script defer src="/js/coaching-measurement.js?v=20260916-single-runner"></script>
 </head>
 <body>
@@ -481,7 +482,7 @@
 
   $("#coachingChoice").addEventListener("change", function () { if ($("#p-read").classList.contains("on")) build(); });
   $$("[data-coaching]").forEach(function (link) {
-    link.addEventListener("click", function () { $("#coachingChoice").value = link.dataset.coaching; if ($("#p-read").classList.contains("on")) build(); });
+    link.addEventListener("click", function () { $("#coachingChoice").value = link.dataset.coaching; $("#coachingChoice").dispatchEvent(new Event("change", {bubbles:true})); });
   });
 
   function build() {
@@ -584,6 +585,7 @@
   showQ(0, true);
 })();
 </script>
+<script defer src="/js/coaching-choice.js?v=20260916-picker"></script>
 <script defer src="/js/homepage-motion.js?v=20260916-single-runner"></script>
 </body>
 </html>
