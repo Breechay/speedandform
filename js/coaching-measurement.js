@@ -12,53 +12,7 @@
   var doneCopy = d.querySelector('#p-done .done-copy');
   if (sendButton) sendButton.setAttribute('data-send-to', FORM_ENDPOINT);
   if (doneCopy) {
-    doneCopy.textContent = 'He reads it himself, usually within a day, and replies with what he would do first. His reply comes from ' + FORM_REPLY_ADDRESS + '.';
-  }
-
-  /* Evidence should read as evidence, not a sales headline. Lead with the verified
-     result, make the goal secondary, and typeset pace as supporting data. This is
-     intentionally scoped to Simon so the global coaching links keep their voice. */
-  var simon = d.getElementById('simon');
-  if (simon) {
-    var grid = simon.querySelector('.result-grid');
-    if (grid) {
-      grid.innerHTML = '' +
-        '<div>' +
-          '<p class="eyebrow">Simon Robin · Key Biscayne Half · April 12, 2026</p>' +
-          '<h2 id="simon-title">1:26.</h2>' +
-          '<p class="result-goal">The goal was sub-1:30.</p>' +
-          '<div class="result-metrics" aria-label="Verified average race pace">' +
-            '<div class="result-metric"><span>Pace / mile</span><strong>6:35</strong></div>' +
-            '<div class="result-metric"><span>Pace / km</span><strong>4:05</strong></div>' +
-          '</div>' +
-          '<p class="result-note">Moving time and average pace from Simon’s Strava activity.</p>' +
-        '</div>' +
-        '<div class="result-account">' +
-          '<blockquote>“I managed to cut 5 min in just 3 months.”</blockquote>' +
-          '<p class="result-attribution">Simon Robin · With FORM</p>' +
-          '<a class="text-link" href="https://strava.app.link/2pHXuAvLq6b" target="_blank" rel="noopener noreferrer">View run on Strava ↗</a>' +
-        '</div>';
-    }
-
-    var resultStyle = d.createElement('style');
-    resultStyle.id = 'simon-result-polish';
-    resultStyle.textContent = [
-      '.result{padding:76px 0 82px;background:var(--paper2)}',
-      '.result-grid{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(280px,.82fr);gap:clamp(52px,7vw,104px);align-items:end}',
-      '.result h2{font-family:var(--serif);font-size:clamp(78px,9vw,132px);font-weight:400;line-height:.8;letter-spacing:-.065em;margin:24px 0 20px}',
-      '.result-goal{font-size:18px;line-height:1.5;color:var(--body);margin:0}',
-      '.result-metrics{display:flex;gap:48px;margin:38px 0 14px;padding-top:16px;border-top:1px solid var(--rule)}',
-      '.result-metric{min-width:126px}',
-      '.result-metric span{display:block;font-family:var(--mono);font-size:9px;line-height:1.4;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}',
-      '.result-metric strong{display:block;font-family:var(--mono);font-size:23px;line-height:1;font-weight:500;letter-spacing:-.035em;font-variant-numeric:tabular-nums}',
-      '.result-note{font-size:13px;line-height:1.55;color:var(--body);max-width:42ch;margin:0}',
-      '.result-account{border-top:1px solid var(--rule);padding-top:25px}',
-      '.result blockquote{margin:0;font-family:var(--serif);font-size:clamp(25px,2.35vw,34px);font-weight:400;line-height:1.22;max-width:21ch;letter-spacing:-.03em}',
-      '.result-attribution{font-family:var(--mono);font-size:10px;line-height:1.5;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:19px 0 34px}',
-      '.result .text-link{display:inline-block;padding:8px 0 4px;font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid currentColor;line-height:1.5}',
-      '@media(max-width:760px){.result-grid{grid-template-columns:1fr;gap:42px}.result{padding:48px 0 56px}.result h2{font-size:clamp(72px,24vw,104px);margin:20px 0 18px}.result-goal{font-size:16px}.result-metrics{gap:28px;margin-top:30px}.result-metric{min-width:0}.result-metric strong{font-size:20px}.result blockquote{font-size:27px}.result-attribution{margin-bottom:24px}}'
-    ].join('\n');
-    d.head.appendChild(resultStyle);
+    doneCopy.textContent = 'I’ll read it and reply personally from ' + FORM_REPLY_ADDRESS + '.';
   }
 
   /* FormSubmit is only the relay. Keep its opaque endpoint, but make the coach's
