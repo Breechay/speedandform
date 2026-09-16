@@ -47,9 +47,9 @@ with sync_playwright() as p:
  pg.close()
  for outcome in ['success','rejected','network','timeout']:
   pg=load(b);to_review(pg)
-  pg.select_option('#coachingChoice','both');assert '$1,800' in pg.locator('#rMoney').inner_text()
-  pg.select_option('#coachingChoice','remote');assert 'fee agreed' in pg.locator('#rMoney').inner_text().lower()
-  pg.select_option('#coachingChoice','run')
+  pg.locator('#coachingChoiceTrigger').click();pg.locator('#coachingChoiceOption-1').click();assert '$1,800' in pg.locator('#rMoney').inner_text()
+  pg.locator('#coachingChoiceTrigger').click();pg.locator('#coachingChoiceOption-2').click();assert 'fee agreed' in pg.locator('#rMoney').inner_text().lower()
+  pg.locator('#coachingChoiceTrigger').click();pg.locator('#coachingChoiceOption-0').click()
   pg.locator('#editBtn').click();pg.get_by_role('button',name='Run better',exact=True).click();pg.wait_for_timeout(500)
   # Back/edit preserves already selected running volume.
   assert pg.locator('#runningNext').is_enabled()
@@ -85,7 +85,7 @@ with sync_playwright() as p:
  pg.locator('#analysisToggle').scroll_into_view_if_needed();pg.wait_for_timeout(1000)
  assert pg.evaluate('filmA.paused && !analysisVideo.paused')
  pg.evaluate('scrollTo(0,0)');pg.wait_for_timeout(1300);assert pg.evaluate('analysisVideo.paused && !filmA.paused')
- pg.emulate_media(reduced_motion='reduce');pg.wait_for_timeout(100);assert pg.evaluate('filmA.paused && analysisVideo.paused')
+ pg.emulate_media(reduced_motion='reduce');pg.wait_for_function('filmA.paused && analysisVideo.paused',timeout=3000)
  passed('Offscreen films pause, on-screen film plays, preference change stops both');pg.close()
  pg=load(b,js=False);assert pg.locator('.no-script').is_visible();assert not pg.locator('.questionnaire').is_visible();passed('No-JavaScript email path and visible content');pg.close()
  pg=load(b);pg.keyboard.press('Tab');assert pg.locator('.skip-link').evaluate('x=>x===document.activeElement');pg.keyboard.press('Enter');assert pg.evaluate('document.activeElement.id')=='main-content';passed('Keyboard skip link moves focus to main');pg.close()
