@@ -1,0 +1,25 @@
+name: App preview polish
+on:
+  push:
+    branches: [work/app-preview-polish]
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Export the bounded source delta
+        run: |
+          mkdir -p /tmp/app-polish-source
+          git bundle create /tmp/app-polish-source/source.bundle HEAD ^6827f20cd2b416578abca14cb08561dbb3423dc4
+          git rev-parse HEAD > /tmp/app-polish-source/commit.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: app-polish-source
+          path: /tmp/app-polish-source/
+          retention-days: 2
