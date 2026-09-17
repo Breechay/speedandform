@@ -1,0 +1,81 @@
+name: Foundation guide release checks
+on:
+  push:
+    branches: [work/guide-foundations-pass4, main]
+    paths: ['easy-run.html','threshold-training.html','long-run-pace.html','running-form-errors.html','css/guide-foundations.css','js/guide-tools.js','scripts/*guide*.cjs','tests/guide*','docs/audits/GUIDES-MANIFEST-20260917.json','.github/workflows/guide-foundations.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Source and critical-flow regression checks
+        run: |
+          set -o pipefail
+          mkdir -p /tmp/guide-receipt
+          {
+            node tests/guide-foundations.cjs
+            node tests/track-gallery.cjs
+            node tests/discovery.cjs
+            node tests/share-metadata.cjs
+            node tests/homepage-metadata.cjs
+            node tests/homepage-release.cjs
+            node tests/coaching-measurement.cjs
+            node tests/cream-reading.cjs
+            node labs/track/track.test.cjs
+            node tests/thursday-schedule.cjs
+          } | tee /tmp/guide-receipt/source-tests.txt
+          node scripts/build-guides.cjs
+          node scripts/build-discovery.cjs
+          git diff --exit-code
+      - name: Install explicit browser dependencies
+        run: |
+          python -m pip install Pillow==11.3.0 playwright==1.58.0
+          python -m playwright install --with-deps chromium
+      - name: Guide browser acceptance
+        env:
+          GUIDE_ARTIFACTS: /tmp/guide-receipt/guides
+        run: python tests/guide-browser.py
+      - name: Existing gallery, discovery and homepage acceptance
+        env:
+          TRACK_GALLERY_ARTIFACTS: /tmp/guide-receipt/gallery
+          DISCOVERY_ARTIFACTS: /tmp/guide-receipt/discovery
+        run: |
+          python tests/track-gallery-browser.py
+          python tests/discovery-browser.py
+          export CHROMIUM_PATH="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
+          python tests/homepage-browser.py
+          cp .homepage-qa/browser-qa.json /tmp/guide-receipt/homepage-browser.json
+      - name: Verify actual production pages and tools
+        if: github.ref_name == 'main'
+        env:
+          GUIDE_LIVE_ARTIFACTS: /tmp/guide-receipt/live
+        run: |
+          node scripts/verify-guides-production.cjs /tmp/guide-receipt/production.json
+          node scripts/verify-discovery-production.cjs /tmp/guide-receipt/discovery-production.json
+          node scripts/verify-share-production.cjs /tmp/guide-receipt/share-production.json
+          node scripts/verify-track-production.cjs /tmp/guide-receipt/gallery-production.json
+          python tests/guide-live.py
+      - name: Save exact tested commit and evidence
+        if: always()
+        run: |
+          mkdir -p /tmp/guide-receipt
+          git rev-parse HEAD > /tmp/guide-receipt/commit.txt
+          cp docs/audits/GUIDES-MANIFEST-20260917.json /tmp/guide-receipt/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: foundation-guide-receipt
+          path: /tmp/guide-receipt/
+          retention-days: 14

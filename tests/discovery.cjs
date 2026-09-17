@@ -3,6 +3,7 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const s=require('../scripts/share-metadata.cjs'),cat=require('../scripts/discovery-catalog.cjs'),search=require('../js/discovery-search.js');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
 const m=JSON.parse(read('docs/audits/DISCOVERY-MANIFEST-20260916.json'));
+const editorial=require('../scripts/guide-state.cjs');
 const base=process.env.DISCOVERY_BASELINE||m.baseCommit;
 const original=f=>cp.execFileSync('git',['show',base+':'+f],{cwd:root,encoding:'utf8',maxBuffer:10000000});
 const scripts=h=>(h.match(/<script\b[^>]*>[\s\S]*?<\/script>/gi)||[]).filter(x=>!x.includes('application/ld+json')).join('\n');
@@ -23,8 +24,8 @@ const locs=[...read('sitemap.xml').matchAll(/<loc>(.*?)<\/loc>/g)].map(x=>x[1]);
 for(const {file,url} of m.sitemap){assert.equal(s.canonical(read(file),file),url);assert.equal([...s.head(read(file)).matchAll(/<link\b[^>]*>/gi)].filter(x=>s.attrs(x[0]).rel==='canonical').length,1,file+' explicit canonical');assert.ok(locs.includes(url));assert.ok(!/noindex/i.test(s.meta(read(file),'robots')));assert.ok(!cat.ARCHIVE.some(r=>url===s.ORIGIN+'/'+r));}
 for(const x of ['/plans/','/labs/','/labs/speed-that-endures/','/library/easy-days/','/form/'])assert.ok(locs.includes(s.ORIGIN+x),x);
 assert.ok(!locs.some(x=>/\/search$|\/app$|\/adrian/.test(x)));
-for(const row of m.untouchedHtml)assert.equal(s.sha(read(row.file)),row.sha256,row.file+' untouched');
-for(const row of m.changedHtml){const h=read(row.file),old=original(row.file);assert.equal(s.sha(old),row.beforeSha256,row.file+' baseline');assert.equal(s.sha(h),row.afterSha256,row.file+' approved source');
+for(const row of m.untouchedHtml)if(!editorial.verify(row.file,read(row.file)))assert.equal(s.sha(read(row.file)),row.sha256,row.file+' untouched');
+for(const row of m.changedHtml){const h=read(row.file),old=original(row.file);assert.equal(s.sha(old),row.beforeSha256,row.file+' baseline');if(editorial.verify(row.file,h))continue;assert.equal(s.sha(h),row.afterSha256,row.file+' approved source');
  if(['library.html','search.html','404.html'].includes(row.file))continue;
  assert.equal(scripts(h),scripts(old),row.file+' scripts unchanged');
  let clean=body(h).replace(/\n?<nav class="site-wayfinding"[\s\S]*?<\/nav>/g,'').replace(/\n?<aside class="discovery-return" data-discovery-archive>[\s\S]*?<\/aside>/g,'');

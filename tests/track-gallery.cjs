@@ -4,16 +4,17 @@ const ROOT=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(ROOT,f
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 const cfg=JSON.parse(read('track/albums.json')),m=JSON.parse(read('track/media-manifest.json'));
 const html=f=>read(f),s=require('../scripts/share-metadata.cjs');
+const editorial=require('../scripts/guide-state.cjs');
 const old=process.env.GALLERY_BASELINE||'2c966476fe760eee5fb2b7e63ef719862c295ccc';
 const original=f=>cp.execFileSync('git',['show',old+':'+f],{cwd:ROOT,maxBuffer:10_000_000});
 const files=cp.execFileSync('git',['ls-tree','-r','--name-only',old],{cwd:ROOT,encoding:'utf8'}).trim().split('\n');
-for(const f of files.filter(f=>f.endsWith('.html')&&!['library.html','thursday.html'].includes(f)))assert.equal(sha(fs.readFileSync(path.join(ROOT,f))),sha(original(f)),f+' unchanged');
+for(const f of files.filter(f=>f.endsWith('.html')&&!['library.html','thursday.html'].includes(f)))if(!editorial.verify(f,read(f)))assert.equal(sha(fs.readFileSync(path.join(ROOT,f))),sha(original(f)),f+' unchanged');
 for(const f of ['css/cream-reading.css','css/homepage.css','js/homepage-motion.js','js/coaching-measurement.js','netlify.toml','_redirects','_headers','plans/race-pace-durability/source.js'])assert.equal(sha(fs.readFileSync(path.join(ROOT,f))),sha(original(f)),f+' protected');
 const clean=h=>h.replace(/<nav class="site-wayfinding"[\s\S]*?<\/nav>/g,'');
 assert.equal(clean(html('thursday.html')),clean(original('thursday.html').toString()),'Only Thursday navigation changes');
 assert.ok(html('thursday.html').includes('href="/track/"'),'Gallery discoverable from the actual session page');
 const stripLibrary=h=>h.replace(/<script[^>]*id="discovery-schema"[\s\S]*?<\/script>/g,'').replace(/<li><a class="discovery-link" href="\/track\/">[\s\S]*?<\/li>/,'');
-assert.equal(stripLibrary(html('library.html')),stripLibrary(original('library.html').toString()),'Existing Library content preserved, one catalog addition');
+if(!editorial.verify('library.html',html('library.html')))assert.equal(stripLibrary(html('library.html')),stripLibrary(original('library.html').toString()),'Existing Library content preserved, one catalog addition');
 assert.deepEqual(m.albums.map(a=>a.slug).sort(),cfg.albums.filter(a=>a.published===true).map(a=>a.slug).sort());
 let mediaCount=0,assetCount=0;
 for(const a of m.albums){

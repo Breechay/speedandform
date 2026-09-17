@@ -8,7 +8,9 @@ const manifest=JSON.parse(fs.readFileSync(path.join(root,'docs/audits/SHARE-META
 // Pass 1 remains an immutable historical receipt. Later approved edits carry their own exact snapshots.
 const dp=path.join(root,'docs/audits/DISCOVERY-MANIFEST-20260916.json');
 const later=fs.existsSync(dp)?JSON.parse(fs.readFileSync(dp,'utf8')).changedHtml:[];
-const updates=new Map(later.map(r=>[r.file,r]));
+const editorial=require('../scripts/guide-state.cjs');
+const updates=new Map([...later.map(r=>[r.file,r]),...editorial.updates]);
+for(const [file] of editorial.updates)editorial.verify(file,fs.readFileSync(path.join(root,file),'utf8'));
 assert.deepEqual(manifest.counts,{pages:84,replace:73,preserve:11,excluded:91});
 assert.equal(new Set(s.PAGES).size,84);
 const required=['og:type','og:title','og:description','og:url','og:site_name','og:locale','og:image','og:image:secure_url','og:image:type','og:image:width','og:image:height','og:image:alt','twitter:card','twitter:title','twitter:description','twitter:image','twitter:image:alt'];

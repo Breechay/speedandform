@@ -1,0 +1,216 @@
+{
+  "version": 1,
+  "batch": "Pass 4A: four foundation guides",
+  "baseCommit": "adaaa8c48f01303710aa6a53ee9258ecc48b72a8",
+  "pages": [
+    {
+      "file": "easy-run.html",
+      "beforeSha256": "3832655d64f4acf0c020a0c91315aced39fb91c235cd1d6501b3a9646d7563d0",
+      "afterSha256": "d280a4e16352606ad0d39145edf02fed3b7f68a58b82075b4a1026b9dcd735c5",
+      "bodySha256": "c6bc9a92f7108fe82a9280e82e4400028daea7212b89346bf12fa8c8dce8d5b3",
+      "preview": {
+        "title": "Easy Running: How Easy, How Long & Why It Matters | FORM",
+        "description": "Use conversation, effort, and recovery to keep easy runs easy. A practical session example, common adjustments, and clear guidance for hot or tired days."
+      },
+      "retainedIds": [],
+      "reason": "Reviewed foundation-guide rewrite; accessible progressive enhancement; unchanged canonical and sharing image"
+    },
+    {
+      "file": "threshold-training.html",
+      "beforeSha256": "de79ddefb239d6c7fa41a5846e03d9036b7cf7a7d23947ed50456c248cba3f27",
+      "afterSha256": "8c10efc90ede49827e72c29f563dc12574d379ec6bf194e41a0b08fb9a17f13c",
+      "bodySha256": "6a9351246f6b883a3ade3db56ba1d1d7819561f13518ac2752114b564425cb98",
+      "preview": {
+        "title": "Threshold Running: Effort, Workouts & Progression | FORM",
+        "description": "Understand threshold running, choose a manageable session, and know when to adjust. Controlled effort, practical examples, and the difference from race pace."
+      },
+      "retainedIds": [],
+      "reason": "Reviewed foundation-guide rewrite; accessible progressive enhancement; unchanged canonical and sharing image"
+    },
+    {
+      "file": "long-run-pace.html",
+      "beforeSha256": "7c2d9c4a9adf230097ed198b8f6163284d04e3059d63b7c78f95e7925ae80141",
+      "afterSha256": "26a71d2b861f979e891b4cd097a10634e3a5712462ae10dd8296281555d39a66",
+      "bodySha256": "c85ee3e1ef11350579a5f8a990c9a9936223b05a143e9953e9bd3201db13d2cd",
+      "preview": {
+        "title": "Long-Run Pacing: Effort, Duration & Strong Finishes | FORM",
+        "description": "Choose a manageable long run, separate easy effort from steady finishes, and adjust when fatigue or heat changes the day. Examples for a repeatable training week."
+      },
+      "retainedIds": [],
+      "reason": "Reviewed foundation-guide rewrite; accessible progressive enhancement; unchanged canonical and sharing image"
+    },
+    {
+      "file": "running-form-errors.html",
+      "beforeSha256": "c2980f02ed65631774aad8bbe542eff7637b3279e3a25fd52531d5a65b6703a9",
+      "afterSha256": "7f58cd2b7199d6238869df544803cf5754a172d58e84315f9bcb5f1475739a86",
+      "bodySha256": "c557816a6af37cf001d7be90f00a0e4fd2e45148eca3196faa3b6e4d1fe98ff8",
+      "preview": {
+        "title": "Running Form: What to Change, What to Leave Alone | FORM",
+        "description": "Learn what to notice in your running form, how to test one useful cue, and when to leave a movement alone. Includes cadence practice without a universal target."
+      },
+      "retainedIds": [
+        "overstriding",
+        "hip-collapse",
+        "heel-strike",
+        "arm-crossover",
+        "vertical-bounce",
+        "forward-lean",
+        "tight-shoulders",
+        "hip-bounce-reference",
+        "bpm-170",
+        "bpm-175",
+        "bpm-180",
+        "metro-start",
+        "metro-stop"
+      ],
+      "reason": "Reviewed foundation-guide rewrite; accessible progressive enhancement; unchanged canonical and sharing image"
+    },
+    {
+      "file": "library.html",
+      "beforeSha256": "126511ace78a516b4d6a80215c10692767da38496d047e69908532b659b307bb",
+      "afterSha256": "91fd38adf85177a6d46c71c8cfdfff5a933b508f6eb3e84ae54a15f52407f52b",
+      "bodySha256": "f4cdaecdbd94c2cf0f9a4f8f2f1b9de92bacb09e3c7446000904252d563de789",
+      "preview": {
+        "title": "Running Guides & Training Tools | FORM Library",
+        "description": "Understand your running. Explore clear guides to pace, running form, strength, race preparation, and recovery, plus plans and studies from Brice."
+      },
+      "retainedIds": [
+        "discovery-schema",
+        "main",
+        "discovery-search",
+        "discovery-query",
+        "start",
+        "heading-start",
+        "training",
+        "heading-training",
+        "movement",
+        "heading-movement",
+        "race",
+        "heading-race",
+        "recovery",
+        "heading-recovery",
+        "practice",
+        "heading-practice"
+      ],
+      "reason": "Four catalog labels/descriptions and matching ItemList"
+    }
+  ],
+  "sources": [
+    {
+      "file": "easy-run.html",
+      "references": [
+        [
+          "Persinger et al. (2004)",
+          "Consistency of the talk test for exercise prescription",
+          "https://pubmed.ncbi.nlm.nih.gov/15354048/",
+          "Supports speaking comfort as an intensity guide in a small laboratory study."
+        ],
+        [
+          "Rotstein et al. (2004)",
+          "Perceived speech difficulty during exercise and its relation to exercise intensity and physiological responses",
+          "https://pubmed.ncbi.nlm.nih.gov/15221401/",
+          "Found substantial individual variation. Speech is not a precise substitute for physiological testing."
+        ],
+        [
+          "Esteve-Lanao et al. (2007)",
+          "Impact of training intensity distribution on performance in endurance athletes",
+          "https://pubmed.ncbi.nlm.nih.gov/17685689/",
+          "A small randomized study of subelite runners; supports substantial low-intensity work, not a universal weekly ratio."
+        ],
+        [
+          "Racinais et al. (2015)",
+          "Consensus recommendations on training and competing in the heat",
+          "https://pubmed.ncbi.nlm.nih.gov/26069301/",
+          "Heat adds strain. Conditions and preparation matter."
+        ],
+        [
+          "NHS",
+          "Knee pain and other running injuries",
+          "https://www.nhs.uk/live-well/exercise/knee-pain-and-other-running-injuries/",
+          "General injury guidance and when to stop or seek assessment."
+        ]
+      ]
+    },
+    {
+      "file": "threshold-training.html",
+      "references": [
+        [
+          "Faude, Kindermann & Meyer (2009)",
+          "Lactate threshold concepts: how valid are they?",
+          "https://pubmed.ncbi.nlm.nih.gov/19453206/",
+          "Reviews distinct threshold definitions. A coaching effort cue cannot identify an exact laboratory boundary."
+        ],
+        [
+          "Emhoff et al. (2013)",
+          "Direct and indirect lactate oxidation in trained and untrained men",
+          "https://pubmed.ncbi.nlm.nih.gov/23788576/",
+          "Human tracer research demonstrating lactate use as an exercise fuel."
+        ],
+        [
+          "Racinais et al. (2015)",
+          "Consensus recommendations on training and competing in the heat",
+          "https://pubmed.ncbi.nlm.nih.gov/26069301/",
+          "Guidance on the added strain of hot conditions."
+        ]
+      ]
+    },
+    {
+      "file": "long-run-pace.html",
+      "references": [
+        [
+          "Unhjem (2024)",
+          "Changes in running economy and attainable maximal oxygen consumption in response to prolonged running: The impact of training status",
+          "https://pubmed.ncbi.nlm.nih.gov/38671555/",
+          "A one-hour laboratory comparison. Supports individual differences under duration, not a particular long-run prescription."
+        ],
+        [
+          "NHS",
+          "Knee pain and other running injuries",
+          "https://www.nhs.uk/live-well/exercise/knee-pain-and-other-running-injuries/",
+          "Gradual progression and general injury guidance."
+        ],
+        [
+          "Thomas, Erdman & Burke (2016)",
+          "Nutrition and Athletic Performance",
+          "https://pubmed.ncbi.nlm.nih.gov/26920240/",
+          "Position statement on individualizing food, fluid, and fuel for exercise."
+        ],
+        [
+          "Racinais et al. (2015)",
+          "Consensus recommendations on training and competing in the heat",
+          "https://pubmed.ncbi.nlm.nih.gov/26069301/",
+          "Heat preparation, hydration, and physiological strain."
+        ]
+      ]
+    },
+    {
+      "file": "running-form-errors.html",
+      "references": [
+        [
+          "Heiderscheit et al. (2011)",
+          "Effects of step rate manipulation on joint mechanics during running",
+          "https://pubmed.ncbi.nlm.nih.gov/20581720/",
+          "Laboratory changes at a fixed speed in 45 healthy runners. Loading effects are not the same as demonstrated injury prevention."
+        ],
+        [
+          "Zhang et al. (2025)",
+          "Effects of habitual foot strike patterns on patellofemoral joint and Achilles tendon loading in recreational runner",
+          "https://pubmed.ncbi.nlm.nih.gov/39701021/",
+          "A comparison of habitual patterns: a load trade-off, not evidence that everyone should switch."
+        ],
+        [
+          "Snyder & Farley (2011)",
+          "Energetically optimal stride frequency in running: the effects of incline and decline",
+          "https://pubmed.ncbi.nlm.nih.gov/21613526/",
+          "Preferred step frequency and energy cost depend on the running task."
+        ],
+        [
+          "NHS",
+          "Knee pain and other running injuries",
+          "https://www.nhs.uk/live-well/exercise/knee-pain-and-other-running-injuries/",
+          "General guidance for painful running and seeking assessment."
+        ]
+      ]
+    }
+  ]
+}
