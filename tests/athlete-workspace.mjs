@@ -36,14 +36,14 @@ has(today,'This website is your read-only reference.');
 const plan = renderAthleteWorkspace(base,{view:'plan'});
 has(plan,'Week 1'); has(plan,'General aerobic'); has(plan,'Race pace');
 has(plan,'Browsing another week does not change your current position.');
-has(plan,'RECEIVED');
+has(plan,'RECEIVED'); has(plan,'Record in FORM');
 
 const history = renderAthleteWorkspace(base,{view:'history'});
 has(history,'What reached your record.'); has(history,'Session received'); has(history,'Coach read');
 has(history,'No record received does not automatically mean a session was missed.');
 
 const account = renderAthleteWorkspace(base,{view:'account',email:'jose@example.com'});
-has(account,'Signed in as'); has(account,'jose@example.com'); has(account,'Training delivery'); has(account,'FORM');
+has(account,'Signed in as'); has(account,'jose@example.com'); has(account,'Training app'); has(account,'FORM');
 
 // Match Adrian's current production metadata exactly enough to prevent a remote
 // strength athlete from being mislabeled as a runner simply because the legacy
