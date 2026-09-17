@@ -1,8 +1,8 @@
 name: Coaching funnel release checks
 on:
   push:
-    branches: [work/coaching-funnel-measurement-20260917, main]
-    paths: ['index.html','js/coaching-measurement.js','js/coaching-choice.js','css/homepage.css','css/coaching-choice.css','tests/coaching-funnel-browser.py','tests/coaching-measurement.cjs','.github/workflows/coaching-funnel.yml']
+    branches: [work/coaching-funnel-measurement-20260917, work/coaching-message-match-20260917, main]
+    paths: ['index.html','js/coaching-measurement.js','js/coaching-choice.js','css/homepage.css','css/coaching-choice.css','tests/coaching-funnel-browser.py','tests/coaching-measurement.cjs','tests/coaching-copy.cjs','tests/coaching-copy-browser.py','.github/workflows/coaching-funnel.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -17,6 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
@@ -30,15 +31,23 @@ jobs:
           node tests/coaching-measurement.cjs
           node tests/homepage-release.cjs
           node tests/homepage-metadata.cjs
+          node tests/coaching-copy.cjs
+      - name: Prove this release changes only approved homepage copy
+        if: github.ref_name == 'work/coaching-message-match-20260917'
+        env:
+          FORM_COPY_BASELINE: 780f409ed521f3c6290c19e0d80279331bf4eecc
+        run: node tests/coaching-copy.cjs
       - name: Install isolated browser runtime
         run: |
           python -m pip install playwright==1.58.0 Pillow==11.3.0
           python -m playwright install --with-deps ${{ matrix.browser }}
-      - name: Exact homepage funnel with intercepted collectors and relay
+      - name: Exact homepage funnel and copy with intercepted collectors and relay
         env:
           FORM_QA_BROWSER: ${{ matrix.browser }}
           FORM_QA_ARTIFACTS: /tmp/coaching-funnel-receipt
-        run: python tests/coaching-funnel-browser.py
+        run: |
+          python tests/coaching-copy-browser.py
+          python tests/coaching-funnel-browser.py
       - name: Existing homepage layout and functionality regression
         if: matrix.browser == 'chromium'
         run: |
@@ -49,6 +58,7 @@ jobs:
         run: |
           mkdir -p /tmp/coaching-funnel-receipt
           git rev-parse HEAD > /tmp/coaching-funnel-receipt/commit.txt
+          git hash-object index.html > /tmp/coaching-funnel-receipt/index-blob.txt
           if [ -d .homepage-qa ]; then cp -R .homepage-qa /tmp/coaching-funnel-receipt/homepage; fi
       - uses: actions/upload-artifact@v4
         if: always()
