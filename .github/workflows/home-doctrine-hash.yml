@@ -1,4 +1,4 @@
-name: Compute homepage doctrine receipt hashes
+name: Verify homepage doctrine share receipt
 on:
   push:
     branches: [work/share-home-doctrine-receipt-20260917]
@@ -6,16 +6,19 @@ on:
 permissions:
   contents: read
 jobs:
-  hash:
+  verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Print exact homepage hashes
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify share and homepage contracts
         run: |
-          node - <<'NODE'
-          const fs=require('node:fs'),crypto=require('node:crypto');
-          const html=fs.readFileSync('index.html','utf8');
-          const sha=x=>crypto.createHash('sha256').update(x).digest('hex');
-          console.log('SOURCE_SHA256='+sha(html));
-          console.log('BODY_SHA256='+sha(html.slice(html.toLowerCase().indexOf('</head>'))));
-          NODE
+          node tests/share-metadata.cjs
+          node tests/homepage-metadata.cjs
+          node tests/homepage-release.cjs
+          node tests/coaching-measurement.cjs
+          node tests/cream-reading.cjs
+          node labs/track/track.test.cjs
+          node tests/thursday-schedule.cjs
