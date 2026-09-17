@@ -11,7 +11,8 @@ const updates=new Map(receipt.pages.map(row=>[row.file,{
   sourceRevision:receipt.sourceRevision,
   afterSha256:row.sourceSha256,
   bodySha256:row.bodySha256,
-  preview:row.preview
+  preview:row.preview,
+  allowShareTransformRewrite:true
 }]));
 function verify(file,html){
   const row=updates.get(file);
