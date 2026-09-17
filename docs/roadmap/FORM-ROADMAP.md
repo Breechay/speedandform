@@ -1,6 +1,8 @@
 # FORM: current state and next actions
 Updated September 14, 2026. Owner: Brice. Maintainer: the agent completing relevant work.
 
+Website ecosystem release status and the single checklist: [bounded release passes](SITE-ECOSYSTEM-PASSES-20260916.md). Pass 1 is live; Pass 2 source and browser acceptance is recorded in [discovery release](../audits/DISCOVERY-RELEASE-20260916.md). That receipt owns production status.
+
 ## Current checkpoint — September 14, 2026
 This checkpoint supersedes older release and next-action wording below. Earlier sections are retained as release history.
 

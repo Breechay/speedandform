@@ -1,3 +1,7 @@
+# Pass 2: verified app alias; the static legacy file must not shadow it.
+/app /form/ 301!
+/app.html /form/ 301!
+
 /labs/hyrox-workbench /labs/hyrox/ 301!
 /labs/hyrox-workbench/ /labs/hyrox/ 301!
 # ── Labs is where you land ───────────────────────────────────────────────────

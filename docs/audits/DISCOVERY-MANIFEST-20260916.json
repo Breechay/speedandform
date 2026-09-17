@@ -1,0 +1,1365 @@
+{
+  "version": "20260916-p2",
+  "baseCommit": "05b76ab2b08cfc37f448f637f19e3aa0c9c3d03a",
+  "searchEntries": 46,
+  "sitemap": [
+    {
+      "file": "anti-rotation.html",
+      "url": "https://speedandform.com/anti-rotation"
+    },
+    {
+      "file": "avoid-injury.html",
+      "url": "https://speedandform.com/avoid-injury"
+    },
+    {
+      "file": "easy-run-standards.html",
+      "url": "https://speedandform.com/easy-run-standards"
+    },
+    {
+      "file": "easy-run.html",
+      "url": "https://speedandform.com/easy-run"
+    },
+    {
+      "file": "es/plans/race-pace-durability/index.html",
+      "url": "https://speedandform.com/es/plans/race-pace-durability/"
+    },
+    {
+      "file": "field-notes.html",
+      "url": "https://speedandform.com/field-notes"
+    },
+    {
+      "file": "forge-sculpt/index.html",
+      "url": "https://speedandform.com/forge-sculpt/"
+    },
+    {
+      "file": "form/index.html",
+      "url": "https://speedandform.com/form/"
+    },
+    {
+      "file": "fueling.html",
+      "url": "https://speedandform.com/fueling"
+    },
+    {
+      "file": "ghost/cues.html",
+      "url": "https://speedandform.com/ghost/cues"
+    },
+    {
+      "file": "ghost/index.html",
+      "url": "https://speedandform.com/ghost"
+    },
+    {
+      "file": "ghost/week-1.html",
+      "url": "https://speedandform.com/ghost/week-1"
+    },
+    {
+      "file": "ghost/week-2.html",
+      "url": "https://speedandform.com/ghost/week-2"
+    },
+    {
+      "file": "ghost/week-3.html",
+      "url": "https://speedandform.com/ghost/week-3"
+    },
+    {
+      "file": "ghost/week-4.html",
+      "url": "https://speedandform.com/ghost/week-4"
+    },
+    {
+      "file": "ghost/week-5.html",
+      "url": "https://speedandform.com/ghost/week-5"
+    },
+    {
+      "file": "ghost/week-6.html",
+      "url": "https://speedandform.com/ghost/week-6"
+    },
+    {
+      "file": "how-fast-should-i-run.html",
+      "url": "https://speedandform.com/how-fast-should-i-run"
+    },
+    {
+      "file": "index.html",
+      "url": "https://speedandform.com/"
+    },
+    {
+      "file": "labs/hyrox/index.html",
+      "url": "https://speedandform.com/labs/hyrox/"
+    },
+    {
+      "file": "labs/index.html",
+      "url": "https://speedandform.com/labs/"
+    },
+    {
+      "file": "labs/raise-the-ceiling/index.html",
+      "url": "https://speedandform.com/labs/raise-the-ceiling/"
+    },
+    {
+      "file": "labs/speed-that-endures/index.html",
+      "url": "https://speedandform.com/labs/speed-that-endures/"
+    },
+    {
+      "file": "labs/track/index.html",
+      "url": "https://speedandform.com/labs/track/"
+    },
+    {
+      "file": "library.html",
+      "url": "https://speedandform.com/library"
+    },
+    {
+      "file": "library/easy-days/index.html",
+      "url": "https://speedandform.com/library/easy-days/"
+    },
+    {
+      "file": "library/first-half-marathon-goal/index.html",
+      "url": "https://speedandform.com/library/first-half-marathon-goal/"
+    },
+    {
+      "file": "library/from-lifting-to-running/index.html",
+      "url": "https://speedandform.com/library/from-lifting-to-running/"
+    },
+    {
+      "file": "library/half-marathon-week/index.html",
+      "url": "https://speedandform.com/library/half-marathon-week/"
+    },
+    {
+      "file": "library/physique-volume/index.html",
+      "url": "https://speedandform.com/library/physique-volume/"
+    },
+    {
+      "file": "library/the-two-paces/index.html",
+      "url": "https://speedandform.com/library/the-two-paces/"
+    },
+    {
+      "file": "library/when-a-week-goes-wrong/index.html",
+      "url": "https://speedandform.com/library/when-a-week-goes-wrong/"
+    },
+    {
+      "file": "library/why-phases/index.html",
+      "url": "https://speedandform.com/library/why-phases/"
+    },
+    {
+      "file": "long-run-pace.html",
+      "url": "https://speedandform.com/long-run-pace"
+    },
+    {
+      "file": "long-run.html",
+      "url": "https://speedandform.com/long-run"
+    },
+    {
+      "file": "mechanics-map.html",
+      "url": "https://speedandform.com/mechanics-map"
+    },
+    {
+      "file": "mobility.html",
+      "url": "https://speedandform.com/mobility"
+    },
+    {
+      "file": "notes.html",
+      "url": "https://speedandform.com/notes"
+    },
+    {
+      "file": "pacing.html",
+      "url": "https://speedandform.com/pacing"
+    },
+    {
+      "file": "pain-map.html",
+      "url": "https://speedandform.com/pain-map"
+    },
+    {
+      "file": "plans/index.html",
+      "url": "https://speedandform.com/plans/"
+    },
+    {
+      "file": "plans/race-pace-durability/index.html",
+      "url": "https://speedandform.com/plans/race-pace-durability/"
+    },
+    {
+      "file": "plans/race-pace-durability/support/index.html",
+      "url": "https://speedandform.com/plans/race-pace-durability/support/"
+    },
+    {
+      "file": "plans/raise-the-ceiling/index.html",
+      "url": "https://speedandform.com/plans/raise-the-ceiling/"
+    },
+    {
+      "file": "principles.html",
+      "url": "https://speedandform.com/principles"
+    },
+    {
+      "file": "race-prep.html",
+      "url": "https://speedandform.com/race-prep"
+    },
+    {
+      "file": "race-strategy.html",
+      "url": "https://speedandform.com/race-strategy"
+    },
+    {
+      "file": "recovery.html",
+      "url": "https://speedandform.com/recovery"
+    },
+    {
+      "file": "return.html",
+      "url": "https://speedandform.com/return"
+    },
+    {
+      "file": "running-form-errors.html",
+      "url": "https://speedandform.com/running-form-errors"
+    },
+    {
+      "file": "running-terms.html",
+      "url": "https://speedandform.com/running-terms"
+    },
+    {
+      "file": "sessions.html",
+      "url": "https://speedandform.com/sessions"
+    },
+    {
+      "file": "shoes.html",
+      "url": "https://speedandform.com/shoes"
+    },
+    {
+      "file": "sleep.html",
+      "url": "https://speedandform.com/sleep"
+    },
+    {
+      "file": "split-calculator.html",
+      "url": "https://speedandform.com/split-calculator"
+    },
+    {
+      "file": "strength-activation.html",
+      "url": "https://speedandform.com/strength-activation"
+    },
+    {
+      "file": "strength-fixes.html",
+      "url": "https://speedandform.com/strength-fixes"
+    },
+    {
+      "file": "strength-routine.html",
+      "url": "https://speedandform.com/strength-routine"
+    },
+    {
+      "file": "strength.html",
+      "url": "https://speedandform.com/strength"
+    },
+    {
+      "file": "the-method.html",
+      "url": "https://speedandform.com/the-method"
+    },
+    {
+      "file": "the-work.html",
+      "url": "https://speedandform.com/the-work"
+    },
+    {
+      "file": "threshold-training.html",
+      "url": "https://speedandform.com/threshold-training"
+    },
+    {
+      "file": "threshold.html",
+      "url": "https://speedandform.com/threshold"
+    },
+    {
+      "file": "thursday.html",
+      "url": "https://speedandform.com/thursday"
+    },
+    {
+      "file": "training-arc.html",
+      "url": "https://speedandform.com/training-arc"
+    },
+    {
+      "file": "training-interruptions.html",
+      "url": "https://speedandform.com/training-interruptions"
+    },
+    {
+      "file": "training-map.html",
+      "url": "https://speedandform.com/training-map"
+    },
+    {
+      "file": "training-principles.html",
+      "url": "https://speedandform.com/training-principles"
+    },
+    {
+      "file": "training-week.html",
+      "url": "https://speedandform.com/training-week"
+    },
+    {
+      "file": "troubleshooting.html",
+      "url": "https://speedandform.com/troubleshooting"
+    }
+  ],
+  "changedHtml": [
+    {
+      "file": "404.html",
+      "reason": "Useful search and public routes; removes stale all-plans-free claim",
+      "beforeSha256": "62b42526d1253e5bb693714dc0cda64a7984e12ae889947070821056b01f552b",
+      "afterSha256": "d48d1cf5a08791e2ba82893ee3b1e315ffc4857336ec5f31b3b2766164597580",
+      "bodySha256": "afcdf1257b7c8df5687fb2f2995a1e77d5d0d04375b9843cd0c5b87c09f54b7f",
+      "preview": {
+        "title": "",
+        "description": ""
+      }
+    },
+    {
+      "file": "anti-rotation.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "b49a30115c35bf2f1cbe1464d34a7d85c47da8f18b8b0d02d9455e6cdcd7018b",
+      "afterSha256": "e90ed3ff8a34e1311b872fe40f1572fa8d9f85d9d5c83bed98d0154db9c21656",
+      "bodySha256": "4fd09b1e1ea0f8a38d380c30356f34c6ad6c4938dacefec179de6851c7731c97",
+      "preview": {
+        "title": "Anti-Rotation Routine | FORM",
+        "description": "A targeted routine for runners who twist or rotate excessively under load. Four exercises. One running cue."
+      }
+    },
+    {
+      "file": "avoid-injury.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "4384b067f631747cd77360830dd1c91d6744d03a0bf39dc9b65136a3f3e4ea58",
+      "afterSha256": "0d57c08eadd44fb02843179c1948ac2e8eca2ce9ebc84055e0fdb827658fa678",
+      "bodySha256": "a836df5a75020baaeb738a360f4d3b1672a0423a597d6fbc046627ecc0f0301b",
+      "preview": {
+        "title": "Avoiding Injury | FORM",
+        "description": "Adjust early and stay uninterrupted. Five principles for managing training load and protecting the system."
+      }
+    },
+    {
+      "file": "competition.html",
+      "reason": "Historical context notice; original route and record retained",
+      "beforeSha256": "cb8f677e42115b76f3f055aacf638b18eff4dd16945a37a33c79c1cc52366041",
+      "afterSha256": "3abf965baac572b3738e9e1884892f9e1777ae6fe19f164bb615edcce0c1a042",
+      "bodySha256": "2f9e42aa4106f9a5e334c16412bc71ae541e924c2a5ea042b8eaa89ccdac0877",
+      "preview": {
+        "title": "Competition | FORM",
+        "description": "Races inside the practice. The FORM race calendar and split references for competition."
+      }
+    },
+    {
+      "file": "cycles.html",
+      "reason": "Historical context notice; original route and record retained",
+      "beforeSha256": "94440045ca469b6e1c1a1497890e6e6109055f6a7eda34f9aa0f0d628532ad90",
+      "afterSha256": "e2689c41e58d3a8eeb50aa4a9ce573e5d0035ccb2f2687a5e2e92d0b8bacf9be",
+      "bodySha256": "6624c055ca4b18329ceb6d7d539ce271b120abf7f68980b05aae5d59a6abe724",
+      "preview": {
+        "title": "Cycles | FORM",
+        "description": "Training moves in phases, not moods. How FORM organizes training cycles across a season."
+      }
+    },
+    {
+      "file": "easy-run.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "cd183937cee3a49c2c66b1ebf5e7ec84a130bd69e86313c7f1ac5fcf6fb57f54",
+      "afterSha256": "3832655d64f4acf0c020a0c91315aced39fb91c235cd1d6501b3a9646d7563d0",
+      "bodySha256": "4f18d2bbf0e0a630ffd7e65b51a3b51791ed4986cd757fe281c409203051d992",
+      "preview": {
+        "title": "Easy Run | FORM",
+        "description": "The session that makes hard work possible. Why easy running is the foundation of a durable training week."
+      }
+    },
+    {
+      "file": "forge-sculpt/index.html",
+      "reason": "Canonical added from existing public OG URL; public wayfinding retained",
+      "beforeSha256": "c1481c93657414abb1a96c2e69b72b23582b2a7c6fbf8227bc5e1cce83e9c9d9",
+      "afterSha256": "7a26e66a28181b2135d32c5d7d27cf812c155b784ec1e3e6a90884090aca8880",
+      "bodySha256": "a1b34b3b39045a7c040d6fc11bfc6f0c3ca93849c9539661e23a57236e26f9fa",
+      "preview": {
+        "title": "",
+        "description": ""
+      }
+    },
+    {
+      "file": "fueling.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "85114ecf3c2cdb5cd97074219ab97af14ee752aa89e67981b84cf36e73f6f7ab",
+      "afterSha256": "bd3a505168332fcff7aac3ee8b39d5b6bfabd1f0b5cdd2469be37a5f6063d725",
+      "bodySha256": "90006aa6248d5e9e3b2517f2497d1914f8253d6b01e397f681a6a71bf4421cdf",
+      "preview": {
+        "title": "Fueling | FORM",
+        "description": "Fuel supports the work. Simple guidance on fueling threshold sessions, long runs, race day, and recovery."
+      }
+    },
+    {
+      "file": "ghost/cues.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "8fa0e577707db4a7c582a26cbb3694192499987e2404917538617402f3f7c70f",
+      "afterSha256": "1619457901c253bf78122b389841dab22e5487cc62c936ac2d6ced56b025580a",
+      "bodySha256": "318eabd2d5fb67d606a7918c3b2caabc6ebf74a4b5b39361df02f3ce21063fca",
+      "preview": {
+        "title": "Running Form Cues | Ghost Protocol | FORM",
+        "description": "All running form cues from the Ghost Protocol in one place."
+      }
+    },
+    {
+      "file": "how-fast-should-i-run.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "3fbd2f44ca4df766292ca7e1b2f1b5142686046959adb233640bd5979f3f4489",
+      "afterSha256": "8e97db6d2c8e8c56e9438aa98588dd7cae6593c31317ac64a00c1edee1f0cea3",
+      "bodySha256": "50c6c9904ffc8b53dc3a8aad39f10159fe89c1aadbe80edba606727507b08f3a",
+      "preview": {
+        "title": "How Fast Should I Run | FORM",
+        "description": "Most running should feel comfortable. Pace guidance for easy days, threshold sessions, and long runs."
+      }
+    },
+    {
+      "file": "index.html",
+      "reason": "Library in the header and current track door in the footer; acquisition content unchanged",
+      "beforeSha256": "800da763640cd273e9bf7439b825523d9383e81a9554f5da91839e15cf876f81",
+      "afterSha256": "5685a97812d1724644cf548351f3dcf146da2f8149dc8f65e00dd55168e532a2",
+      "bodySha256": "a07c004075748a0fd692778f14edb71224f324c66e4feba14d33e79e3b6cef42",
+      "preview": {
+        "title": "Run better. Get faster. Run farther. | FORM",
+        "description": "Individual running coaching with Brice. A plan built around your fitness, your goal, and your week. Miami + remote. Eight weeks to begin."
+      }
+    },
+    {
+      "file": "library.html",
+      "reason": "Athlete-facing topic index and static discovery links",
+      "beforeSha256": "76879199d6b28263fa7d3eb8c9628491db9657e12b41ed7700999b559b1b5bc2",
+      "afterSha256": "69093a6dc1d5d427270604221e96a28ceb92d998f6c6fe7f5f5d78eb56e21b02",
+      "bodySha256": "b57f6d48295c74c11bf7b11163f034aaf83a65a6c575b6d624ae14967a3bbf2b",
+      "preview": {
+        "title": "Running Guides & Training Tools | FORM Library",
+        "description": "Understand your running. Explore clear guides to pace, running form, strength, race preparation, and recovery, plus plans and studies from Brice."
+      }
+    },
+    {
+      "file": "library/easy-days/index.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "1db2b0c9976d8beef83130c093a4bcf4f0be8c525ba157875e0477c506dd44ab",
+      "afterSha256": "d1a34e646a7cdd11f02433dd44ad28b896ff0c0fd0dbda42e3cb8bf87cb3e167",
+      "bodySha256": "6b66938c1bf35765a16a48968e5a1477b3373b5720f1a4a3a7ab18f3df9b5a04",
+      "preview": {
+        "title": "Why easy days stay easy — Speed & Form Library",
+        "description": "Easy running is not the part of the plan you rush through. It is what lets the important work keep improving."
+      }
+    },
+    {
+      "file": "library/first-half-marathon-goal/index.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "ac24dc28dc515a843b5ebbe22e3a18ca412860c7dec1d04a1822a76536b79c2d",
+      "afterSha256": "4d88ded1f04f72dfd5ad2bdce6901629af3ce83774d0064fd3b919532495ac93",
+      "bodySha256": "cb5cfb47acf01180106356432d1850dddb5678452bdc519f37fd1a8d300c241b",
+      "preview": {
+        "title": "How to set your first half-marathon goal — Speed & Form Library",
+        "description": "Set a first half-marathon goal from recent running, not a guess. Learn how to choose a starting target and adjust it as evidence builds."
+      }
+    },
+    {
+      "file": "library/from-lifting-to-running/index.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "ca4f19bd185204c0e06627f830ac94b5358c155fe36b349bb02e561bc3b6e888",
+      "afterSha256": "e321613c0155a40129c6368abf0b4c1fecc14ddd2160f5372d3531f0bb40f7c2",
+      "bodySha256": "ae016415a23a78fc4505e8b97705c9dcf3157b3c86928b7481a6653d1f44337c",
+      "preview": {
+        "title": "How to start running when you already lift — Speed & Form Library",
+        "description": "You do not need to stop lifting to become a runner. You need a running dose that your current training can absorb."
+      }
+    },
+    {
+      "file": "library/half-marathon-week/index.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "9bbf929b0e6e10361a693404eb5faccdb3d7ec28881af7bc26a69742e3be6ac1",
+      "afterSha256": "bfa7bee51fbdd7fff75b59ffecfeb075f880548f79e3f0e78c9c15b6f2b909fb",
+      "bodySha256": "46604825752ad724b38188586d1552f1aa039233bb7a4458740b1bf7fa143f9d",
+      "preview": {
+        "title": "How a half-marathon week fits together — Speed & Form Library",
+        "description": "A race plan is not a pile of runs. Each day has a job, and the week works because those jobs support one another."
+      }
+    },
+    {
+      "file": "library/physique-volume/index.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "357ef7854e6b715e39f3fee7268677877c4dac71f915ababdae2c5fa8adf5fac",
+      "afterSha256": "b7245e3028ae1b13c19a9a84c24d2ee7657936f7a4bfa6af073a7b175209d7c8",
+      "bodySha256": "82a0a208fa143fcddfb1a14ac476aa7f3e7e7df7c5dd0a98d3b98c238dd72265",
+      "preview": {
+        "title": "Why every area should not get the same volume — Speed & Form Library",
+        "description": "A balanced physique is not built by giving every muscle the same amount of work. It is built by deciding where emphasis belongs."
+      }
+    },
+    {
+      "file": "library/the-two-paces/index.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "015b52ae47cfd2f515d80522a55615ef015868025266ac0ec926deb463e0473f",
+      "afterSha256": "d0062e2c04b15afc77c2b148de88c241c58ff36e939ed793301ddb984051c2e6",
+      "bodySha256": "8e0343fd94de7326c8fe4e3d9a9c2798568769622b43fd2270f028a1a80e7ae7",
+      "preview": {
+        "title": "The two numbers that organize the whole plan — Speed & Form Library",
+        "description": "Understand threshold pace and an easy-effort ceiling: two guides for keeping demanding runs purposeful and easy days controlled."
+      }
+    },
+    {
+      "file": "library/when-a-week-goes-wrong/index.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "9d2ba2cc989437852b208ed6c07c7009b66979d48ac9f5c7e34ffd5007b392cf",
+      "afterSha256": "945161b05804fd1d0cdebdc801a90748469209d434994bcf90574f2b0ce3ee60",
+      "bodySha256": "9e52258c1e9f07bec4b2ea6d4da7abf460e058e0c8f75114ec592c7b65a4cc0d",
+      "preview": {
+        "title": "What to do when the week goes wrong — Speed & Form Library",
+        "description": "Missed a run? Learn how to return to your training week without cramming missed sessions together or turning every day into catch-up work."
+      }
+    },
+    {
+      "file": "library/why-phases/index.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "46e95b2e4463d4bd654b995f404b3f9cb3aab65bfaf35ac5692e6e6d34cc5e19",
+      "afterSha256": "fef2b519787fe363a2856206fb957c83a1646fae767c4859ab2c0a90ae77c43a",
+      "bodySha256": "81e065a510a1553418d1d438afccdf12bfbe5cb50b6829b2629d8b0cf9a7bfb7",
+      "preview": {
+        "title": "Why the program runs in phases — Speed & Form Library",
+        "description": "Why physique training uses phases: focus the work, maintain what you have built, and move the emphasis in a deliberate order."
+      }
+    },
+    {
+      "file": "long-run-pace.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "f29028ba048e5f18f5fc57a41508fd721528ed3aeb81f89755b7f6fa21d946f2",
+      "afterSha256": "7c2d9c4a9adf230097ed198b8f6163284d04e3059d63b7c78f95e7925ae80141",
+      "bodySha256": "2bd3ac49387c7231b080405ecafdb656bf115dc8d38be7f8a65ad859c2ee5361",
+      "preview": {
+        "title": "Long Run Pace | FORM",
+        "description": "How to pace the long run. Steady is threshold held with restraint."
+      }
+    },
+    {
+      "file": "mobility.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "9eb71d9c1091ca14c60a1aca63d8d2599cad53c50ca7f80372e88f8267b805c8",
+      "afterSha256": "064ac6e558ddeddb5660f1ed2f2d71a601c882bb38152f30c6cfdf1891c13dba",
+      "bodySha256": "6ecd25353773f3c2f0cb600f94c0e12560e8501456453a31b585801c4f36356b",
+      "preview": {
+        "title": "Mobility | FORM",
+        "description": "The mobility work that supports FORM training. Hip flexors, ankles, calves, mid-back, glutes."
+      }
+    },
+    {
+      "file": "pacing.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "a464d269c31d67397b4b955ac9bbd1cf56aa520d4cdea41ad5434c2643f9ed11",
+      "afterSha256": "b7631554e22683c8d413c5215848ab90f69e2a5b1d5480279f99d93be197403a",
+      "bodySha256": "0e7fdde7f306573c8d0aa3f098912e9444b504df99b4246483adab9d7a045a00",
+      "preview": {
+        "title": "Pacing | FORM",
+        "description": "Pace is a reference. Effort is the guide. How to understand pacing across easy, threshold, and long run sessions."
+      }
+    },
+    {
+      "file": "plan-speed-emergence.html",
+      "reason": "Historical context notice; original route and record retained",
+      "beforeSha256": "d1a5882c0a6366d9d30f596f3f232357b1edbfe66bda6763931537c3bd800fae",
+      "afterSha256": "4fe6986fada0bcdeb36146655fc28fe2c51235dd40a4602221346c581002c225",
+      "bodySha256": "4833546f721a03c418021e8906df45f45b438a9408e00d455754384f97c99568",
+      "preview": {
+        "title": "Speed Emergence | FORM",
+        "description": "Tuesday threshold · Thursday track · Saturday long run. Six Thursday sessions rotating through a six-week cycle."
+      }
+    },
+    {
+      "file": "plan-spring-2026.html",
+      "reason": "Historical context notice; original route and record retained",
+      "beforeSha256": "8c2c1fa43d84d84fd4c9e8b320ac81429f36524b6d9baa74cc63e3ba06a39eea",
+      "afterSha256": "544409f1d13fa5dd4a67b6bdbfe605fbfddccd68595ffc62c2198e4200f3cc0a",
+      "bodySha256": "ab496ee96020e8408e59949b35321492518fe85ea26a61f786a4a4bac235711b",
+      "preview": {
+        "title": "Plan — Spring 2026 | FORM",
+        "description": "The FORM Spring 2026 training plan. Season structure, cycle phases, and race targets."
+      }
+    },
+    {
+      "file": "plan.html",
+      "reason": "Historical context notice; original route and record retained",
+      "beforeSha256": "f716f3dba4f5ee7b92e95d6e9cde1db383c048f991b482fce43ecabfe6a92aba",
+      "afterSha256": "e1fd7fd169223dbb6b58f399cf0632fce235f9198ba3bb190ac00a0a4faa4b2a",
+      "bodySha256": "d944541d85f22e7ad085c1b6149a06bdd9ebf59e388066509ec012ee4a03ceb5",
+      "preview": {
+        "title": "Plan | FORM",
+        "description": "The current FORM training cycle. Session structure, phase targets, and the arc of the current plan."
+      }
+    },
+    {
+      "file": "practice.html",
+      "reason": "Historical context notice; original route and record retained",
+      "beforeSha256": "919ac38ce1375e8d35ff070d408f00285b8eed65aa2b8f4d396551e8ac1d6b6b",
+      "afterSha256": "f3e27d509597849be2791034197eb827481284afb7316bf04e3a69404a36ac73",
+      "bodySha256": "f396aff78cd3db9e319a61f9a16da3ac9fcd31dbc5eb84d2349d2085b84fdaa1",
+      "preview": {
+        "title": "Practice | FORM",
+        "description": "The FORM training board. Weekly schedule, current sessions, and the structure of the practice."
+      }
+    },
+    {
+      "file": "race-prep.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "32bed3230db6a122c668c14fa9fa3f29f20851ec3e9fcbd90b773c53c4eed6c8",
+      "afterSha256": "6c7c234acaa50797ddd5a8aaf6eaa2b652b1be4af1a768cfdc2b698bc3ff3d36",
+      "bodySha256": "d42da4de9c06cfc445c94ee5ecfe5fa5ec992dd05d6753b1ddf0cb3e2c6c6947",
+      "preview": {
+        "title": "Race Prep | FORM",
+        "description": "The race is the expression of what training built. How to approach taper, race week, and race-day execution."
+      }
+    },
+    {
+      "file": "race-strategy.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "a126e01a8dac4d32bfcd6bf847a2e9b604a6bf6a3030537e11dce32703ead4dc",
+      "afterSha256": "9b1e52da8508dbecd4b6f58205d44fcf4627ff15ee8c6bd697eb60d8795ee7a1",
+      "bodySha256": "f4d2c2095073706526bf3a39061f9b7d97b98bfa9c502d70108598c26b724882",
+      "preview": {
+        "title": "Race Strategy | FORM",
+        "description": "Race pace is not chosen — it is revealed. Pace bands, ceilings, watch protocol, fueling, and the three days before."
+      }
+    },
+    {
+      "file": "races/key-biscayne-2026.html",
+      "reason": "Historical context notice; original route and record retained",
+      "beforeSha256": "bc307ddcbd81ba1062194eae216553bedc0f9dd7684f88ffff4006c327b2884e",
+      "afterSha256": "22d633ff4cd3193fa63d617e1d3ed9625cfdd9b1e6c35beaad209110b2675c5d",
+      "bodySha256": "a5a2222516360b2c4f48a122f5d3a9023ffe2337ca4333184d6ab2660fada683",
+      "preview": {
+        "title": "Key Biscayne Half Marathon 2026 | FORM",
+        "description": "Race strategy for April 12. Pace bands, watch protocol, fueling, three-day countdown."
+      }
+    },
+    {
+      "file": "recovery.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "3b18165e8be654187aa973f985f72df287ceb667eb5471e1d63dfa77c487f8d5",
+      "afterSha256": "513f904c8f77a6e0bb9c149f1e0b80d928e1c49eeef0ddbfd075f13bcb9e04e5",
+      "bodySha256": "52435927356c8c3e2cd2491f1c0be1d3f9437561524759871deb9d975394ec6e",
+      "preview": {
+        "title": "Recovery | FORM",
+        "description": "Adaptation happens after the work. Recovery protects rhythm, sleep, and the ability to absorb training consistently."
+      }
+    },
+    {
+      "file": "return.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "efbf470fe3cd8b2170d41699dde1b50c6ad543b2d30722ecd622b199c1fabe9c",
+      "afterSha256": "17dd34bdada5ce13a4e70988e5925f325a609b78f8e43ac2dfccd8c7744299d6",
+      "bodySha256": "c47da64b0ce49c1d97aebbdffbe0dbddbba4db26ce73c98f1c95e7d3026d0504",
+      "preview": {
+        "title": "Returning to Running | FORM",
+        "description": "Rebuilding the system after time away. A structured approach to re-entry after a break from training."
+      }
+    },
+    {
+      "file": "running-form-errors.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "9f245cf287296c8b4438de520418a7af17f8babb3cbd7af10383388ef496aa39",
+      "afterSha256": "c2980f02ed65631774aad8bbe542eff7637b3279e3a25fd52531d5a65b6703a9",
+      "bodySha256": "ffdce6c018483d64900ad6094d7ae5c5e0d50889b6f7390acdd75cd6c1155dcb",
+      "preview": {
+        "title": "Running Form Errors | FORM",
+        "description": "Common mechanical errors and how to correct them. A field guide to running form in the FORM system."
+      }
+    },
+    {
+      "file": "running-terms.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "648f6409817d83ed3c510effa507a108ca643bc8e7e3e380c2d31107f9d5142c",
+      "afterSha256": "de4dc39aced2907ef22a4c7440b2098388273c1dd66672ab7dc7720eced12f0b",
+      "bodySha256": "0c6fa750481e95c066b170fd563c799680d8506bf321fa807e87c0ff11e21b0f",
+      "preview": {
+        "title": "Running Terms | FORM",
+        "description": "A selective glossary for structured training. Terms used in the FORM system explained clearly."
+      }
+    },
+    {
+      "file": "search.html",
+      "reason": "Safe, query-aware public search with explicit loading, failure, retry and empty states",
+      "beforeSha256": "4b1d954a5d885e87d48ba983e077a8783ad29559881f75d93560e2631e43b4e6",
+      "afterSha256": "1e00f8926aca2c4d90b6053410469d37d21c4a9cd5d3990ec313d1d872f6bf9e",
+      "bodySha256": "1df09f9404f0c4dce045708f80d107917d69c477f194c5c55e9716282eedc5e9",
+      "preview": {
+        "title": "Search | FORM",
+        "description": "Search the FORM training system."
+      }
+    },
+    {
+      "file": "sessions.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "b9d735e3a3ed710f2423d8c551bef61ef59027679028828ed7c275c71b019ff3",
+      "afterSha256": "9898d4cfb8ae924bd44ed88c593ef1d1e5226017b428d85e908070ac0c26b912",
+      "bodySha256": "67caf8fcfa0d30272d500376050b726682bac9945bf799709b5a0f636da1ad2d",
+      "preview": {
+        "title": "Sessions | FORM",
+        "description": "The recurring session types in the FORM training week. Threshold, long run, easy runs, and structural work."
+      }
+    },
+    {
+      "file": "shoes.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "84fe7ea2487972529da4276384878b858ee015fbe29ec4effa50c377aba71481",
+      "afterSha256": "e8f15abc20881b752ba7f3fc42a0a9472f9ce575c69f568d6d1f910a88058939",
+      "bodySha256": "7944c2a937e6c14b255fc27024939f3f9abf5c4d1687694f48f6bfc3c45f21e1",
+      "preview": {
+        "title": "Running Shoe Rotation | FORM",
+        "description": "Match the tool to the session. How to rotate training shoes for threshold, long runs, and easy days."
+      }
+    },
+    {
+      "file": "sleep.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "347007fecd93a1e128a497efec950d9275dc10ccccc897b93b3dcb248c9fe2f3",
+      "afterSha256": "8b675ba0dab0646e849c614e4541ed0b288dcfd018cba81a2495ddc9642b6112",
+      "bodySha256": "9014750a86290a016de960d1c264f01a0e430915ba63b0e29fb10ce9e87806ba",
+      "preview": {
+        "title": "Sleep | FORM",
+        "description": "Sleep is where training adaptations consolidate. How rhythm, duration, and consistency of sleep protect the practice over time."
+      }
+    },
+    {
+      "file": "split-calculator.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "e4f1709d17a4982696597bace4744f3e06daf1709b75f3322c6b5ef5816d6655",
+      "afterSha256": "51da30b82ab64b44c41438df73c3f0ac32ffd6d073e0514452a470722254fe3b",
+      "bodySha256": "58c8e989dd6dc6097d454994741e4d04cdb99debd556b095dd70924a6c107c5f",
+      "preview": {
+        "title": "Split Calculator | FORM",
+        "description": "Distance and goal time to watch-ready splits. Pace calculator for race planning and session targets."
+      }
+    },
+    {
+      "file": "start.html",
+      "reason": "Historical context notice; original route and record retained",
+      "beforeSha256": "59e8552364afc83782eeb840f4eac92c5145b37c7501bb716172174da9721747",
+      "afterSha256": "122acb343eab48d41c9342c86c76c3775cb9c74b215561b87c405640a80658ec",
+      "bodySha256": "0520b1932b6a21b2bf8d3c10d08859bf9f0535cc47ccaabbda23bf87c9b314a0",
+      "preview": {
+        "title": "Start — FORM",
+        "description": "How to begin training with FORM in Miami."
+      }
+    },
+    {
+      "file": "strength-activation.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "60cf669b878c8b39786734bdd820fd3789e680dbf6864c8d4b2812b1a03bf193",
+      "afterSha256": "ade290e5e28a5c429a556bd311dab2f59391aec1cb59438385f451f6a25bbd7a",
+      "bodySha256": "60d9c450d3864b1381f254506e9f19ebb20d83026b44a9081754dcb717b1b90c",
+      "preview": {
+        "title": "Activation — Pre-Run Warmup Routine | FORM",
+        "description": "A 4–5 minute pre-run activation sequence for runners: glute bridge, dead bug, lateral band walk, calf raise, A-skip."
+      }
+    },
+    {
+      "file": "strength-routine.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "fb75affcdb06a4dc3c3d23c274b36cb6f7ff7fe245535c43b86b0dcdf8fac2d5",
+      "afterSha256": "e8776d0eae8754b52b4cb1aa0e6068c1eb2dc18b7b731a22a0472f9ef02546d5",
+      "bodySha256": "00f8db59d21ae0206bcaffc5eb7d86617013ececbca141cbd88a00f50d2eca2f",
+      "preview": {
+        "title": "Durability Routine — Runner Strength Session | FORM",
+        "description": "The FORM durability routine: split squats, single-leg RDL, calf work, and core. Two rounds, twice a week."
+      }
+    },
+    {
+      "file": "strength.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "156364569eb8431a6be8656ddbc2d022785df484e92c0e53d4eccd76b9afbfe0",
+      "afterSha256": "28c7a1a39ba99c5fb3f2ce66a493a3015db0533117044470330cfed47c210fdf",
+      "bodySha256": "d3aeb51a3786985da4cb428bc7fc7513b74ba609a7afeb32f20354b739ce0e7d",
+      "preview": {
+        "title": "Structural Work | FORM",
+        "description": "Durability exercises that support running mechanics. The FORM approach to strength and structural work."
+      }
+    },
+    {
+      "file": "taper-key-biscayne.html",
+      "reason": "Historical context notice; original route and record retained",
+      "beforeSha256": "1a19d4bea17cb95ec80dae5b3b2b3657dcf029051b0d358642f8e1b0e24f3edd",
+      "afterSha256": "babc4f1e2e4eb13a234d3e8f388a6af250f40cf4e2a263ba33d53be92319e594",
+      "bodySha256": "a9ed77e0fc712e1fe35a134fd269b6811e30652efdade8c162de01914d395471",
+      "preview": {
+        "title": "",
+        "description": ""
+      }
+    },
+    {
+      "file": "the-field.html",
+      "reason": "Historical context notice; original route and record retained",
+      "beforeSha256": "6f8b290edd6fe88bc7e14fa35fb1a8e033819dc42f24774a73952f1e48e5944f",
+      "afterSha256": "67478bd9e8102cb0687117b575e9b9e2cdaac75e5ce7f3b89a24a460d6d7459b",
+      "bodySha256": "f896ac606042350455c83b8b2bfb672aa1549e5c66e7785f482317d1c336fbad",
+      "preview": {
+        "title": "The Field | FORM",
+        "description": "The training locations of the FORM practice in Miami. Where the work happens."
+      }
+    },
+    {
+      "file": "threshold-training.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "561e87506a2aade060c5ac191a72814e323e5101d40eb079b59eee5f1f651fb1",
+      "afterSha256": "de79ddefb239d6c7fa41a5846e03d9036b7cf7a7d23947ed50456c248cba3f27",
+      "bodySha256": "a26cea313100539c7f3b5f17c311a0f67dd31acf262daeb9dac4858886657982",
+      "preview": {
+        "title": "Threshold Training | FORM",
+        "description": "What threshold training develops and why. The physiology and structure behind sustained aerobic work."
+      }
+    },
+    {
+      "file": "thursday.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "927c2e63d074b12d782f249568c7386f5215ee5d79e2f22b7ab46f006a8ce21c",
+      "afterSha256": "0026cd20b26879bc2666672778716a3437548ab0fca80399279f1f4e6d0e9f88",
+      "bodySha256": "3caa42737ea6b3e01d23f368743b8eda8c9452cd4724d07b95d2022d5594401f",
+      "preview": {
+        "title": "Thursday Track | FORM Miami",
+        "description": "Flamingo Park Track · Thursdays 6:30 AM · Show up in running shoes."
+      }
+    },
+    {
+      "file": "training-arc.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "919e310e967893955eae6c4102f4998c34e12728ef70eac983e28d4f5965ca49",
+      "afterSha256": "fce773285696a69e871f9feabe26442a852e34042a0f8e59da56e0ff79cfad65",
+      "bodySha256": "e933e6f3fbeadebd108f557fd4fd446dbaf166ed4ca63201a369f581b0c79259",
+      "preview": {
+        "title": "Training Arc | FORM",
+        "description": "How the practice evolves over time. A long-term map of phases, structure, and development in FORM training."
+      }
+    },
+    {
+      "file": "training-interruptions.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "39265d22e3e954acb969ac0120caec96906959d1af924ed0f2a5fba966e4394c",
+      "afterSha256": "f9198bd5010fe99883b5444b088712ff5955f33a383b4370f40afbad99366c74",
+      "bodySha256": "62e2030dfb97ee6b57165cd2e99318c523fdbee33d0a70fe28517e0839fb462d",
+      "preview": {
+        "title": "Training Interruptions | FORM",
+        "description": "Managing injury and time away from training. How to understand, adjust, and return to rhythm after interruption."
+      }
+    },
+    {
+      "file": "training-week.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "593893c9bcc5d24dc3184d61a538b2ae8413afa6a51a5c2c1dff8a80023dcfba",
+      "afterSha256": "3c7dd6e9ff8a29f96bf3e7d09f6ef77916975765761ed57ea89f27fc67cc7e6e",
+      "bodySha256": "a04c025cc4bac09feb6b37043d7a080e12aa66c5b4763587c6e2f68df5303653",
+      "preview": {
+        "title": "Training Week | FORM",
+        "description": "How to organize a week of running training. Session distribution, recovery placement, and weekly rhythm."
+      }
+    },
+    {
+      "file": "troubleshooting.html",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
+      "beforeSha256": "fb3f81bae3193f147a95d7522e9bc10feacfe391d2e9f3f86ece0f1f34141862",
+      "afterSha256": "9c4518b459f38532140d41563259e4b94c5afd56e34069d0883471f940b14c43",
+      "bodySha256": "211c9368a8076e1800780cdca5162a1c75234b46f59c1d9b14e43721e200100b",
+      "preview": {
+        "title": "Troubleshooting the Run | FORM",
+        "description": "Small adjustments for when a run feels off."
+      }
+    }
+  ],
+  "retainedArchives": [
+    "practice",
+    "start",
+    "plan",
+    "plan-spring-2026",
+    "cycles",
+    "the-field",
+    "competition",
+    "plan-speed-emergence",
+    "taper-key-biscayne",
+    "races/key-biscayne-2026"
+  ],
+  "omittedFromDiscovery": [
+    "athletes",
+    "ledger",
+    "app"
+  ],
+  "untouchedHtml": [
+    {
+      "file": "_hj.html",
+      "sha256": "a504c0341b39bd0466cd16031e54c1823cad6bfd4c684fc0c221f98eae0b62ea"
+    },
+    {
+      "file": "_squad.html",
+      "sha256": "c4d92d0f38c45183ce739e140493974f20a7faa370a756e3db7a3f4389da4efb"
+    },
+    {
+      "file": "ads/rpd/preview/index.html",
+      "sha256": "8fd09d27e60667b5ce17f64605b9c661236b24cc792007f4313b51a0a39ad15c"
+    },
+    {
+      "file": "app.html",
+      "sha256": "facd0cb0cbea7eb5d533e14b88de9753c828ff2458ee1f96f466054dbce23579"
+    },
+    {
+      "file": "arc.html",
+      "sha256": "e4a41035b3c975f14ce689fa4c8c4d9ab77fbe85e360e9af42cb16f73a336d92"
+    },
+    {
+      "file": "athlete/index.html",
+      "sha256": "5146522d6debc948dfca6272ff6689f651066dccca87194876443b3225f84a85"
+    },
+    {
+      "file": "athletes.html",
+      "sha256": "d72014870d52890bae798b3d1642b7baedb43dc5397d3beabbaa5a0cf2c8e852"
+    },
+    {
+      "file": "athletes/bobby.html",
+      "sha256": "92ea9a0bde85be6dfa16116e35cd9b040a726722ba1dcd5613bfa50721e81e3c"
+    },
+    {
+      "file": "athletes/breech.html",
+      "sha256": "907c9e5dc9521fcf43c382146ece35cb810412b976ff95f437bbd281e4abcced"
+    },
+    {
+      "file": "athletes/index.html",
+      "sha256": "a43768f1f1602c7f6f551ea6c967eb61b706463d8511184c01fd6bc82e04c444"
+    },
+    {
+      "file": "athletes/jose.html",
+      "sha256": "90b645f19e65871a75b44be874c6a7c2367722f08f1c077756a0dfc95ae14db7"
+    },
+    {
+      "file": "athletes/kyle.html",
+      "sha256": "46a961c2888d814fdbffaa373bd58c5a7f9385b056eb532ddab2d477ccb4b3ed"
+    },
+    {
+      "file": "athletes/lisa.html",
+      "sha256": "bffffe7bf28af5a42b24fcae0ed44ad067b49bfb7aa44a3ffa1c6c67335dc542"
+    },
+    {
+      "file": "athletes/marcus.html",
+      "sha256": "fde2aceaf65eb7c9bb1139454bbe0bca0571881098a8b96e8d4fcd76a867bc63"
+    },
+    {
+      "file": "athletes/megan.html",
+      "sha256": "0c4dc8120956e8d86fbbb221f1b09d99df39e4b0116cd6175ade3bde176b5331"
+    },
+    {
+      "file": "athletes/mike.html",
+      "sha256": "19964efaf4aa610fd301bac98cf1290009d89a82f9b58dff44ed0c8cb7234998"
+    },
+    {
+      "file": "athletes/ryan.html",
+      "sha256": "5732b9d8ce4bc287161d1e3a2edfb80c8af721ebd5b6540778f3cb85f2aeb25c"
+    },
+    {
+      "file": "athletes/sam-p.html",
+      "sha256": "3c617b8b8d9ade896e76358801b6cf8501a342bb3a6bf0e681b21a1c456465d6"
+    },
+    {
+      "file": "athletes/sam-v.html",
+      "sha256": "90bdca2bda07afd1c29e6658f6bdb99841c420ad4b0c602f997bf4d8353aa027"
+    },
+    {
+      "file": "athletes/simon.html",
+      "sha256": "13b546561d7d762c347d09b6acdc796bf846ca413e821c7b53ef2c538ee3a01d"
+    },
+    {
+      "file": "athletes/tinius.html",
+      "sha256": "8815c4fdf5bf9715d11d79ee88f7db8f8fabc5261845d3805135d19f558bf31d"
+    },
+    {
+      "file": "auth/apple/callback.html",
+      "sha256": "a09ab4b5d1d89a0fe99a4f499c52f85ef7b5586aa7587e507e87de4438ea42b1"
+    },
+    {
+      "file": "auth/record-callback/index.html",
+      "sha256": "ebe67cebd92277b8868f0bb14ee81d790c939afd6df69dd1b4fa238672c39d64"
+    },
+    {
+      "file": "coach.html",
+      "sha256": "558d4903d32d1337705cccc7164dc9a1adc286fb0dacdef6212695dad948b30f"
+    },
+    {
+      "file": "coach/index.html",
+      "sha256": "ba6d08d5114a3362eb902502be14070c874d38c2fa2022a6f8f2c81fed7bace6"
+    },
+    {
+      "file": "coach/labs/index.html",
+      "sha256": "fcca7fe50b10d928ce80ec820b7ad368ecacb5b97ca68b42159f4fd7ac19cb6e"
+    },
+    {
+      "file": "design-review/form-notes-archive/index.html",
+      "sha256": "2786fa47cfdfa71303fbaf618dd37176dbe64259845ac2cd3795ae5174d971b8"
+    },
+    {
+      "file": "design-review/frame.html",
+      "sha256": "413034949c0d479394fa10df87d4116b52eabafcc0f9b93ab712e0d4a4bf297c"
+    },
+    {
+      "file": "design/approved/race-pace-durability-v8/print-template.html",
+      "sha256": "3e59e6631ac3bf003b4d9dabc112a263bac67e45b899d2c853962f7f08e22032"
+    },
+    {
+      "file": "design/approved/race-pace-durability-v8/responsive-motion-v8.html",
+      "sha256": "65ea48b3e73f26bfdc587ed4ba28c871f315df390ca5d41c358198c64239440c"
+    },
+    {
+      "file": "design/approved/race-pace-durability/index.html",
+      "sha256": "d4352f9c41d4bed10cec99b7a683e92abaa1f83b97cc7f2c6a91d57390e79fd1"
+    },
+    {
+      "file": "design/reference/index.html",
+      "sha256": "08ef2614fabdaf929b222faf2102c7350e36b7126fe01413dad373586af942ac"
+    },
+    {
+      "file": "docs/design/GRAPHITE_ATHLETE_SYSTEM_REFERENCE.html",
+      "sha256": "27d73cc69f2d721b7a9a1fb333c3f657671f504747ff07eb5154d277b668246b"
+    },
+    {
+      "file": "docs/mocks/natalie-record.html",
+      "sha256": "46b7fa30a72d3982ddbd2fc8677483913fe84d5402362fa44f30aa09382aac92"
+    },
+    {
+      "file": "docs/site/archive/index-2026-07-15-pre-v2.html",
+      "sha256": "344a36a1140ff10b34cbdb110b9a6ccabb162cf127da791469ab9c454bcb00a0"
+    },
+    {
+      "file": "docs/site/mockups/homepage-deltas.html",
+      "sha256": "ff46b359c9ef2f1fc418435db294f70caec372183d5b88b06cd79f42bbe74a2e"
+    },
+    {
+      "file": "docs/site/mockups/homepage-v2.html",
+      "sha256": "9e74c274c2ce29c57c7e784c41733f6b72509c8a7988db9e27df89e8d14ce84f"
+    },
+    {
+      "file": "docs/track-c-handoff/extracts/instrument.html",
+      "sha256": "d99755fbd81655e359e18798ea4d2ae8f8755066eb06e3ba55b84d3a5c030611"
+    },
+    {
+      "file": "docs/track-e-handoff/extracts/dragon.html",
+      "sha256": "cfc46a64622085b57c78fbdb475fb0b29c54d9a2ae090ef62c69159873d3890d"
+    },
+    {
+      "file": "easy-run-standards.html",
+      "sha256": "0fb64c3f67f8320686f5287d03bee7817c632064c5eb65a7de7e1585b38ea383"
+    },
+    {
+      "file": "es/plans/race-pace-durability/index.html",
+      "sha256": "053ad59fd5d6d7dc964376d11dfb8cb2b7df52f67d6ffa7a62d00039d6f0646d"
+    },
+    {
+      "file": "field-notes.html",
+      "sha256": "d386e38cf53254d287adcfe39262d1df1835419bc7b0de5a4af114e3b358f3a1"
+    },
+    {
+      "file": "films.html",
+      "sha256": "cf6acdfe8391f03eaa84070b8242a4d356699aa0022b558dc6532a4626d8cd95"
+    },
+    {
+      "file": "forge-app/index.html",
+      "sha256": "55e64f16a463a66ce1ddfb53334e467c353ab472f5f99da6c82b863879b6c472"
+    },
+    {
+      "file": "forge-sculpt/privacy/index.html",
+      "sha256": "a000420d2b541adf699d8063cb787700c13f2a618559f61a4433cf25f3d42fa5"
+    },
+    {
+      "file": "forge-sculpt/support/index.html",
+      "sha256": "eed35755ad2ec0f3db135531837f2bbd10a3fd05667259962b206125f56ba423"
+    },
+    {
+      "file": "forge-sculpt/terms/index.html",
+      "sha256": "83442a1816729b31f5281ba9103af1ba02f4994cb827b5378aced2ec858306ca"
+    },
+    {
+      "file": "forge-sculpt/train/index.html",
+      "sha256": "83ec33f7168b1c8a88994fe4a06d9e673cf9bca03135374ab2da25445214da16"
+    },
+    {
+      "file": "form/index.html",
+      "sha256": "d05652a6587c16764e44c97ad9f470f52467db28b2931baba522e1430219cc08"
+    },
+    {
+      "file": "form/privacy/index.html",
+      "sha256": "1795c2eb7bc8c9c4c42e8d92fd513b830edb0bb293ac8445da4f224faea833b7"
+    },
+    {
+      "file": "form/support/index.html",
+      "sha256": "0195a86e95bb399555c11c20b1514688bccda00a1b4dcbddd526856a687f5c4d"
+    },
+    {
+      "file": "form/terms/index.html",
+      "sha256": "f80f32b5a014fb608a623614b7878ecd82ff6b1aa7d9038d5b312c271915fc99"
+    },
+    {
+      "file": "form_console_v54b.html",
+      "sha256": "0796fd58b09ac008906d2e9cb416f2c750705c99ed24537bc6ebb9465252fcb3"
+    },
+    {
+      "file": "form_console_v55b.html",
+      "sha256": "dda8df06eb71debea7df4de9a0a5c282fc1aabaf2846746fd780f368eb0bb1e9"
+    },
+    {
+      "file": "ghost/index.html",
+      "sha256": "83a12a9da9f8bc3c86e362b4e65f3f92a858d3cde1dfac961863f58f6809304f"
+    },
+    {
+      "file": "ghost/week-1.html",
+      "sha256": "dc977aaae84eac3b53f91d85e8dd056ce1092c9514e3abe16e8a795ffa5bd0d7"
+    },
+    {
+      "file": "ghost/week-2.html",
+      "sha256": "ca6bac35911ae246adff1882213d4df49218e01e6b13bac98b3ce8307669dc5c"
+    },
+    {
+      "file": "ghost/week-3.html",
+      "sha256": "dc61fa94bf30c8573270b0a302087a5f0b3bf34a5cc8a225ac174e6b75fdaeaa"
+    },
+    {
+      "file": "ghost/week-4.html",
+      "sha256": "c6ffc7c78227526827b2cde7e555a37854a8d5d5a383d6643a4e285f8506d5a7"
+    },
+    {
+      "file": "ghost/week-5.html",
+      "sha256": "8adb77e714c5b67e0de170090d99efbdbdbc0e13e8d8e076a99cfb1dc5e27fac"
+    },
+    {
+      "file": "ghost/week-6.html",
+      "sha256": "a00725557d50468eb97eb3b4ce923f521c607fb55a1580669a8815225031be51"
+    },
+    {
+      "file": "google3ef29ca5c705e511.html",
+      "sha256": "1023f8daa40c3252fc65a5516dedc4d8894ed69ad27416e2e5986abb15420b96"
+    },
+    {
+      "file": "labs/hyrox/index.html",
+      "sha256": "39a97a77049c7e1c1f95c8d44dd3733545828a6c769876910e91ddf466005279"
+    },
+    {
+      "file": "labs/index.html",
+      "sha256": "c6743d7e982a5bee5698fe5a0e7aca48c4c2967e60eed7a962add20a69dc7657"
+    },
+    {
+      "file": "labs/raise-the-ceiling/index.html",
+      "sha256": "970d628266e134d2ab2d3c1d1c3771e037cd17dee7463d346b6f72cf87f06751"
+    },
+    {
+      "file": "labs/speed-that-endures/index.html",
+      "sha256": "493b90012abb1a09034983581ba2cfa3fbc4d36c53779a70e554b0acae0a5c98"
+    },
+    {
+      "file": "labs/track/index.html",
+      "sha256": "8eca8b188e8f4d67f54c8f3f68e93bcc406dc29e2fe3fbf60e67369e1b06909a"
+    },
+    {
+      "file": "ledger.html",
+      "sha256": "d80eed42bc7783811ad3d5a0ef47aaa076ce3d7666adb693a6c4a4c8040ac3dd"
+    },
+    {
+      "file": "long-run.html",
+      "sha256": "3c5a5dc7e9d035f946292501db13eee79b904b48d1f33ddf01b0d57c2033b51e"
+    },
+    {
+      "file": "mechanics-map.html",
+      "sha256": "2346965d65a293571de51bd2c8212d0d4f0f6d75fd3ada71e2ca5a79b98e0589"
+    },
+    {
+      "file": "miami-running-training.html",
+      "sha256": "367b42dc0b50246da6dfa3a44e5ef9f68571f5e7e4896b929f7f1c6697f1a3f2"
+    },
+    {
+      "file": "mockupA/athletes.html",
+      "sha256": "02a5c1374009ef0838e8efcab82afc3094f6f9315b332b15e68b87b0ecff551b"
+    },
+    {
+      "file": "mockupA/breechay.html",
+      "sha256": "5599fc1dec9bf55987a38031c876035b9aafa832bbfbee901d8db7cddb20d157"
+    },
+    {
+      "file": "mockupA/form.html",
+      "sha256": "1d29af5af79676e556735b1c537c44cc6816db152ae9af935f3e37d9fb3a2abd"
+    },
+    {
+      "file": "mockupA/index.html",
+      "sha256": "c43a4313b38f1d1853d8d81e325439cbfedeba6d8a34f48684450b086da7e009"
+    },
+    {
+      "file": "mockupA/notes.html",
+      "sha256": "e6441108989f046be74f65029e0da239c1da2c326fae8418725154d2f7032454"
+    },
+    {
+      "file": "mockupA/sent.html",
+      "sha256": "97557f40741ca3a64476f90bc7754a386a2e59967b61c137268ae37650c4fb79"
+    },
+    {
+      "file": "mockupb/index.html",
+      "sha256": "3d3ecf1c9d3490c2240be32875d3aa4b9ea36951f17eb977d3ca2af859e6102e"
+    },
+    {
+      "file": "mockupc/index.html",
+      "sha256": "b3f6965327a0988ea71f1566b56878075c82bac98e9b17f6f0e1198ce4991270"
+    },
+    {
+      "file": "next.html",
+      "sha256": "364ffe593def7cac346fb1423af946dc198b3c1519e7cfe6ccc12a08a4470b83"
+    },
+    {
+      "file": "notes.html",
+      "sha256": "16153083575c3b65cc99d7906989c5599d8915b2f8d31af3f33cc92f8d7bddce"
+    },
+    {
+      "file": "pain-map.html",
+      "sha256": "02dda9e69c332ea0a84c8cbcf206b79d6ff19737bb264bc44cd0414da9186a72"
+    },
+    {
+      "file": "perception-manual.html",
+      "sha256": "59c22a75a81f1525578ea4174579efa0538dd237de35d9225f6d817a4456f704"
+    },
+    {
+      "file": "plans/adrian-hypertrophy-week-01/index.html",
+      "sha256": "035183f4e01c7b85453925b79e78ea58c4eb8ec1bb5cd9664bd75e492b48b6ed"
+    },
+    {
+      "file": "plans/adrian-hypertrophy-week-02/index.html",
+      "sha256": "3aea9e9479d12ca5b2ee212c4a1438f7f42e749d008afcf64d7a5200294a9841"
+    },
+    {
+      "file": "plans/adrian-hypertrophy-week-03/index.html",
+      "sha256": "6fca17f05262263b64b6e592eabda3d4b4bd6688bf8c1f036114b883744c3869"
+    },
+    {
+      "file": "plans/adrian-runner-mass-phase-01/index.html",
+      "sha256": "35b8e1b0d5034d8bea970079ef3af051de666ba07a6ca4639c2e6fc8435a220f"
+    },
+    {
+      "file": "plans/index.html",
+      "sha256": "84fcf1471f17271f343fee76793abd2d17dffdc5c4f84aa63b6e4e446c4ba011"
+    },
+    {
+      "file": "plans/race-pace-durability/access/index.html",
+      "sha256": "fc285a92cac4f97113b3c6383a4c830c806bbbf1f01e59681b5b59e5714650e0"
+    },
+    {
+      "file": "plans/race-pace-durability/index.html",
+      "sha256": "5d86893b52de28d2170c8948ea704f66ac8289b2a902a08e1759d7153c29a0ae"
+    },
+    {
+      "file": "plans/race-pace-durability/print.html",
+      "sha256": "205e07f5152260841f130c47b9a6550ef0e62e30bd0adf3f1b0f4dc4e2b5e382"
+    },
+    {
+      "file": "plans/race-pace-durability/support/index.html",
+      "sha256": "821fbcb11fe4d1397c624a566d67a0ca388649553c81f481f7df00d87736ffdd"
+    },
+    {
+      "file": "plans/race-pace-durability/thanks/index.html",
+      "sha256": "861e683c344e21db8a0c8f00154dc4b27a9915eef4bbfb572ece94f5e6525fc7"
+    },
+    {
+      "file": "plans/raise-the-ceiling/index.html",
+      "sha256": "bb273ca617d769c2651d092d646bbbd4ffff4f899b24cdb8e53a2af667b05733"
+    },
+    {
+      "file": "plates.html",
+      "sha256": "6e5ab5e05bdd4e57fe49f1341543cf0e85bb9af331dd631cc7feec88bbb4326f"
+    },
+    {
+      "file": "principles.html",
+      "sha256": "ad80694a9efa0ac315dac838344f20550dadd31ca7f3a2fc91171e9c563b4ef7"
+    },
+    {
+      "file": "privacy.html",
+      "sha256": "1814752c07d20765648c671031bc117c953d124835c4cefd6dfece8b4320f628"
+    },
+    {
+      "file": "record/index.html",
+      "sha256": "7639c354d050d782a456dff50a7425cee3042f1858aaa5b829ac06511720f5a8"
+    },
+    {
+      "file": "scripts/design-review/frame.html",
+      "sha256": "413034949c0d479394fa10df87d4116b52eabafcc0f9b93ab712e0d4a4bf297c"
+    },
+    {
+      "file": "simon.html",
+      "sha256": "cb319f9abdb388f3ff02a96c6aeaf742c5c851bdfb8bad8951748bd825877b08"
+    },
+    {
+      "file": "speed.html",
+      "sha256": "bb8fefb8f793a2db166686af7c0a5a68864a4c4f8ddb7b0dd8f2505e6174e00d"
+    },
+    {
+      "file": "strength-fixes.html",
+      "sha256": "3eda458b71af426a269f9541eac41da678da2340cdb71c0dd799b1aa0e2969ae"
+    },
+    {
+      "file": "studio.html",
+      "sha256": "dcaac5de319a5b44fc49e940363f7affbb20777075c7833b4d005b5a5f2a5594"
+    },
+    {
+      "file": "supabase/templates/confirmation.html",
+      "sha256": "59301ed7f034b9f8b03508f891e3596de70a9c93219b7c0386d390ccb529829c"
+    },
+    {
+      "file": "supabase/templates/email_change.html",
+      "sha256": "8554524f9b4c2487c28cea0f46c0438b2048d3ba39b46b18e386b72792785b2e"
+    },
+    {
+      "file": "supabase/templates/email_changed_notification.html",
+      "sha256": "0493fbaff9e7d5ffdcaac1b0306305d02e2a77a127145545b31379d75a9a5b20"
+    },
+    {
+      "file": "supabase/templates/identity_linked_notification.html",
+      "sha256": "c97d1ce433065c087deebc0efcda55d51f8e18c798a9e7393830027d35ccd4d4"
+    },
+    {
+      "file": "supabase/templates/identity_unlinked_notification.html",
+      "sha256": "3ed3ae85ac1fb1da73b4e296cef43ca4e88ff3085370f15a603720412f71225c"
+    },
+    {
+      "file": "supabase/templates/invite.html",
+      "sha256": "c08bd069f03c827348970edcb8596b81d7884b680089cb690c058010e4a38cc1"
+    },
+    {
+      "file": "supabase/templates/magic_link.html",
+      "sha256": "aad4b73647622b38af4e708cd3fb48611bce0deea06f5d5e5bcaea3699ac6f1d"
+    },
+    {
+      "file": "supabase/templates/mfa_factor_enrolled_notification.html",
+      "sha256": "c7c71eb341a5a5ed22c76151fd706acfe636866df6a016f21833c049e7beb6af"
+    },
+    {
+      "file": "supabase/templates/mfa_factor_unenrolled_notification.html",
+      "sha256": "2691cfee2f91615e762f0d9fd2b2ba7bb05b9488ce222b0f6c180ca8cb46c341"
+    },
+    {
+      "file": "supabase/templates/password_changed_notification.html",
+      "sha256": "3adb70ad270d37612791173524bc88708f00b58e278cf3869034a1f228357e10"
+    },
+    {
+      "file": "supabase/templates/phone_changed_notification.html",
+      "sha256": "d603d3770f2a98d543be2f52b0934db5211a7b91498fc8e25434fcb058e92111"
+    },
+    {
+      "file": "supabase/templates/reauthentication.html",
+      "sha256": "84dbd8b3e76a2da92673282aebae3ce4380f53081c62789b3a78f6a300c124a0"
+    },
+    {
+      "file": "supabase/templates/recovery.html",
+      "sha256": "c28e37efc5ee4a5dda7f5c87bc99a0308945bd4bce16fe13878a13303187ba02"
+    },
+    {
+      "file": "support.html",
+      "sha256": "04bece20d6c7752f26a430451f20d4e3503533522e323df2a6a961591ee02689"
+    },
+    {
+      "file": "terms.html",
+      "sha256": "f80f32b5a014fb608a623614b7878ecd82ff6b1aa7d9038d5b312c271915fc99"
+    },
+    {
+      "file": "the-method.html",
+      "sha256": "59f43782f3973612fa1c27d970451de2242bfcb1a2960fccd53f27a068733428"
+    },
+    {
+      "file": "the-work.html",
+      "sha256": "709f83c50c7bded0ffc1b9c7e5fa6d0536c0dcb9725bd65dd2864f11a40e6b0c"
+    },
+    {
+      "file": "threshold.html",
+      "sha256": "ed3a94c2a3f786ec1140aed7c390969386ddd1b517ab7169da6a8a29dbe5549f"
+    },
+    {
+      "file": "training-map.html",
+      "sha256": "bc667e88ac9bcc0dea3b8154ef6c5e72bb53637598ea98abd1245d6d5af9a39e"
+    },
+    {
+      "file": "training-principles.html",
+      "sha256": "9864a394a26658e4f48dcaf98eb1a2d46efa72efe1934c61d6a9349ffa542464"
+    },
+    {
+      "file": "village-intake.html",
+      "sha256": "b4399a37a9bde6af6e746bf4cd93a59ba5961805b507d3e9c6c80f12790e6673"
+    }
+  ]
+}

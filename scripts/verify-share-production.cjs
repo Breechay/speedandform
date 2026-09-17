@@ -6,6 +6,8 @@ const assert=require('node:assert/strict');
 const s=require('./share-metadata.cjs');
 const root=path.resolve(__dirname,'..');
 const manifest=JSON.parse(fs.readFileSync(path.join(root,'docs/audits/SHARE-METADATA-MANIFEST-20260916.json'),'utf8'));
+const discovery=path.join(root,'docs/audits/DISCOVERY-MANIFEST-20260916.json');
+const updates=new Map((fs.existsSync(discovery)?JSON.parse(fs.readFileSync(discovery,'utf8')).changedHtml:[]).map(r=>[r.file,r]));
 const cases={
  'index.html':'/', 'library.html':'/library', 'easy-run.html':'/easy-run',
  'threshold.html':'/threshold', 'long-run.html':'/long-run', 'notes.html':'/notes',
@@ -37,7 +39,8 @@ async function image(url){
  return {url,status:res.status,type:expected.type,width:expected.width,height:expected.height,bytes:buf.length,sha256:s.sha(buf)};
 }
 async function page(file,route){
- const expected=manifest.pages.find(p=>p.file===file);assert.ok(expected);
+ const recorded=manifest.pages.find(p=>p.file===file);assert.ok(recorded);
+ const expected={...recorded,title:updates.get(file)?.preview?.title||recorded.title,description:updates.get(file)?.preview?.description||recorded.description};
  const res=await get(s.ORIGIN+route);const html=await res.text();
  assert.ok((res.headers.get('content-type')||'').includes('text/html'));
  const fields={'og:image':expected.image,'og:image:secure_url':expected.image,'twitter:image':expected.image,'twitter:card':'summary_large_image','og:title':expected.title,'twitter:title':expected.title,'og:description':expected.description,'twitter:description':expected.description};
@@ -52,11 +55,10 @@ async function page(file,route){
 }
 (async()=>{
  fs.mkdirSync(path.dirname(output),{recursive:true});
- // A merge may finish before the existing hosting build. Retry only the versioned
- // image and homepage until they both match, then check the representative set.
+ // Wait for the actual metadata release, not only an image shared by multiple passes.
  let ready=false;
  for(let n=1;n<=24;n++){
-  try {await image(s.ORIGIN+s.DEFAULT_IMAGE);await page('index.html','/');ready=true;break;}
+  try {await image(s.ORIGIN+s.DEFAULT_IMAGE);await page('index.html','/');await page('library.html','/library');ready=true;break;}
   catch(e){report.attempts.push({attempt:n,at:new Date().toISOString(),error:e.message});write();console.log(`Waiting for production (${n}/24): ${e.message}`);if(n<24)await sleep(15000);}
  }
  assert.ok(ready,'Production did not reach the tested release within the verification window');

@@ -1,0 +1,65 @@
+name: Discovery release checks
+on:
+  push:
+    branches: [work/site-discovery-pass2, main]
+    paths: ['**/*.html', 'scripts/*discovery*.cjs', 'scripts/verify-share-production.cjs', 'tests/discovery*', 'tests/share-metadata.cjs', 'css/discovery.css', 'js/discovery-search.js', 'search-index.json', 'sitemap.xml', 'robots.txt', '_headers', '_redirects', 'docs/audits/DISCOVERY-MANIFEST-20260916.json', '.github/workflows/discovery-review.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Check committed sources and stable release boundaries
+        run: |
+          set -o pipefail
+          mkdir -p /tmp/discovery-receipt
+          {
+            node tests/discovery.cjs
+            node tests/share-metadata.cjs
+            node tests/homepage-metadata.cjs
+            node tests/homepage-release.cjs
+            node tests/coaching-measurement.cjs
+            node tests/cream-reading.cjs
+            node labs/track/track.test.cjs
+            node tests/thursday-schedule.cjs
+          } | tee /tmp/discovery-receipt/source-tests.txt
+          node scripts/build-discovery.cjs
+          git diff --exit-code
+          git rev-parse HEAD > /tmp/discovery-receipt/commit.txt
+          cp docs/audits/DISCOVERY-MANIFEST-20260916.json /tmp/discovery-receipt/
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser test runtime
+        run: |
+          python -m pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium
+      - name: Discovery browser acceptance
+        env:
+          DISCOVERY_ARTIFACTS: /tmp/discovery-receipt/screens
+        run: python tests/discovery-browser.py
+      - name: Existing homepage interaction and intake acceptance
+        run: |
+          export CHROMIUM_PATH="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
+          python tests/homepage-browser.py
+          cp .homepage-qa/browser-qa.json /tmp/discovery-receipt/homepage-browser.json
+          git diff --exit-code
+      - name: Verify actual production routes and metadata
+        if: github.ref_name == 'main'
+        run: |
+          node scripts/verify-discovery-production.cjs /tmp/discovery-receipt/production.json
+          node scripts/verify-share-production.cjs /tmp/discovery-receipt/share-production.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: discovery-receipt
+          path: /tmp/discovery-receipt/
+          retention-days: 14
