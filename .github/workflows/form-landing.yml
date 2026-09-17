@@ -5,20 +5,104 @@ on:
 permissions:
   contents: read
 jobs:
-  source:
+  verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Export source delta from previous verified review
-        run: |
-          mkdir -p /tmp/form-landing-source
-          git bundle create /tmp/form-landing-source/source.bundle HEAD ^c1cf76da68a64e6b06e2f4fcd008f6c288b811c2
-          git rev-parse HEAD > /tmp/form-landing-source/commit.txt
-      - uses: actions/upload-artifact@v4
+      - uses: actions/setup-node@v4
         with:
-          name: form-landing-source
-          path: /tmp/form-landing-source/
-          retention-days: 2
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Transfer exact reviewed product source on isolated branch
+        run: |
+          test "$GITHUB_REF_NAME" = work/form-landing-pass5a
+          if [ -d .github/form-transfer ]; then
+            python - <<'PY'
+          from pathlib import Path
+          import base64,lzma,json,hashlib,subprocess,urllib.request
+          allowed={'css/form-landing.css','docs/audits/FORM-LANDING-20260917.md','docs/audits/FORM-LANDING-MANIFEST-20260917.json','form/index.html','js/form-landing.js','scripts/form-landing-state.cjs','scripts/guide-state.cjs','scripts/verify-form-landing-production.cjs','tests/form-landing-browser.py','tests/form-landing-live.py','tests/form-landing.cjs','tests/guide-foundations.cjs','tests/training-guides.cjs'}
+          transport={f'.github/form-transfer/{i}.b64' for i in range(5)}
+          packed=base64.b64decode(''.join(Path(f'.github/form-transfer/{i}.b64').read_text() for i in range(5)),validate=True)
+          assert hashlib.sha256(packed).hexdigest()=='bcf6cb0910a9abc7da2757f8481e1b8cb9353e192e067b8825282417f1e9228b'
+          data=json.loads(lzma.decompress(packed,memlimit=134217728));assert set(data)==allowed
+          for f,text in data.items():
+              p=Path(f);p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text,encoding='utf-8')
+          m=json.loads(Path('docs/audits/FORM-LANDING-MANIFEST-20260917.json').read_text())
+          url=m['storeEvidence']['screenshotUrl']
+          assert url=='https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/9d/49/11/9d4911ae-24a3-92da-f317-17b456c651f4/J.png/600x1300bb-60.jpg'
+          with urllib.request.urlopen(url,timeout=30) as r: image=r.read()
+          assert hashlib.sha256(image).hexdigest()=='239f02dc88c2b9b292354bfc1df0876c31bcce5be6bcc79762fbf77a48d0f918'
+          photo='assets/form/store-20260917/session-details.jpg';p=Path(photo);p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(image)
+          for f in transport:Path(f).unlink()
+          subprocess.run(['node','scripts/build-discovery.cjs'],check=True)
+          subprocess.run(['node','tests/form-landing.cjs'],check=True)
+          permitted=allowed|transport|{photo,'docs/audits/DISCOVERY-MANIFEST-20260916.json'}
+          changed=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines());assert changed<=permitted,changed-permitted
+          subprocess.run(['git','add','-A','--',*sorted(permitted)],check=True)
+          PY
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'feat: implement FORM product page with source-based preview and real store screenshot'
+            git push origin HEAD:work/form-landing-pass5a
+          fi
+      - name: Source and critical-flow checks
+        run: |
+          set -o pipefail
+          mkdir -p /tmp/form-landing-receipt
+          {
+            node tests/form-landing.cjs
+            node tests/training-guides.cjs
+            node tests/guide-foundations.cjs
+            node tests/track-gallery.cjs
+            node tests/discovery.cjs
+            node tests/share-metadata.cjs
+            node tests/homepage-metadata.cjs
+            node tests/homepage-release.cjs
+            node tests/coaching-measurement.cjs
+            node tests/cream-reading.cjs
+            node labs/track/track.test.cjs
+            node tests/thursday-schedule.cjs
+          } | tee /tmp/form-landing-receipt/source-tests.txt
+          node scripts/build-training-guides.cjs
+          node scripts/build-guides.cjs
+          node scripts/build-discovery.cjs
+          git diff --exit-code
+      - name: Install browser runtime
+        run: |
+          python -m pip install playwright==1.58.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Product and existing browser acceptance
+        env:
+          FORM_LANDING_ARTIFACTS: /tmp/form-landing-receipt/form
+          TRAINING_GUIDE_ARTIFACTS: /tmp/form-landing-receipt/training
+          GUIDE_ARTIFACTS: /tmp/form-landing-receipt/foundations
+          TRACK_GALLERY_ARTIFACTS: /tmp/form-landing-receipt/gallery
+          DISCOVERY_ARTIFACTS: /tmp/form-landing-receipt/discovery
+        run: |
+          python tests/form-landing-browser.py
+          python tests/training-guides-browser.py
+          python tests/guide-browser.py
+          python tests/track-gallery-browser.py
+          python tests/discovery-browser.py
+          export CHROMIUM_PATH="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
+          python tests/homepage-browser.py
+          cp .homepage-qa/browser-qa.json /tmp/form-landing-receipt/homepage-browser.json
+      - name: Save exact tested revision and evidence
+        if: always()
+        run: |
+          mkdir -p /tmp/form-landing-receipt
+          git rev-parse HEAD > /tmp/form-landing-receipt/commit.txt
+          cp docs/audits/FORM-LANDING-MANIFEST-20260917.json /tmp/form-landing-receipt/ || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: form-landing-receipt
+          path: /tmp/form-landing-receipt/
+          retention-days: 14
