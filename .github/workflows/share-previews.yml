@@ -4,13 +4,19 @@ on:
     branches: [work/site-ecosystem-2026-09-16, main]
     paths:
       - index.html
+      - the-method.html
+      - running-terms.html
+      - css/method.css
       - scripts/*share*.cjs
       - scripts/guide-state.cjs
       - scripts/rpd-story-state.cjs
       - scripts/protected-site-baseline.cjs
+      - scripts/run-development-method-state.cjs
       - tests/share-metadata.cjs
       - tests/homepage-metadata.cjs
+      - tests/run-development-method.cjs
       - docs/audits/HOME-DOCTRINE-RECEIPT-20260917.json
+      - docs/audits/RUN-DEVELOPMENT-METHOD-RECEIPT-20260917.json
       - docs/audits/RPD-STORY-SHARE-RECEIPT-20260917.json
       - docs/audits/LATER-EXCLUDED-SITE-RECEIPT-20260917.json
       - og/form-share-20260916.jpg
@@ -35,6 +41,7 @@ jobs:
             node tests/share-metadata.cjs
             node tests/homepage-metadata.cjs
             node tests/homepage-release.cjs
+            node tests/run-development-method.cjs
             node tests/coaching-measurement.cjs
             node tests/cream-reading.cjs
             node labs/track/track.test.cjs
@@ -46,6 +53,7 @@ jobs:
           cp og/form-share-20260916.jpg /tmp/share-receipt/
           cp docs/audits/SHARE-METADATA-MANIFEST-20260916.json /tmp/share-receipt/
           cp docs/audits/HOME-DOCTRINE-RECEIPT-20260917.json /tmp/share-receipt/
+          cp docs/audits/RUN-DEVELOPMENT-METHOD-RECEIPT-20260917.json /tmp/share-receipt/
           cp docs/audits/RPD-STORY-SHARE-RECEIPT-20260917.json /tmp/share-receipt/
           cp docs/audits/LATER-EXCLUDED-SITE-RECEIPT-20260917.json /tmp/share-receipt/
       - name: Verify the actual public release after main reaches production
