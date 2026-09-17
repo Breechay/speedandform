@@ -3,19 +3,23 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const cp = require('node:child_process');
 const html = fs.readFileSync('index.html', 'utf8');
-const changes = [
-  ['<body>', '<body data-coaching-copy="20260917-coaching-clarity">'],
-  ['For your next race, stronger running for HYROX, or simply more ease and endurance. Individual coaching built around you.', 'I watch you run, build your plan, and coach you through it. Weekly track coaching in Miami, with adjustments as you develop.'],
-  ['<span>Start with a conversation.</span>', '<span class="hero-reassurance" style="display:block;line-height:1.6">Your first Miami track assessment is complimentary.<br>Start with a conversation.</span>'],
-  ['      <p>Tell me about your running and what you want to change. I read every inquiry myself.</p>', '      <p>Tell me about your running and what you want to change. I read every inquiry myself.</p>\n      <p class="review-note" id="inquiry-reassurance">An inquiry only. No payment or booking yet.</p>']
-];
-for (const [, text] of changes) assert.equal(html.split(text).length, 2, 'Approved copy must occur once');
+const changes = [];
+assert.equal((html.match(/<h1>Run<br>Development<\/h1>/g) || []).length, 1);
+assert.equal((html.match(/class="hero-benefit">Run better.<\/strong>/g) || []).length, 1);
+assert.equal((html.match(/<strong>8 weeks · \$1,200<\/strong>/g) || []).length, 1);
+assert.doesNotMatch(html, /hero-kicker/);
+assert.doesNotMatch(html, /hero-reassurance/);
+assert.doesNotMatch(html, /first Miami track assessment is complimentary/i);
 assert.ok(html.indexOf('id="inquiry-reassurance"') < html.indexOf('class="questionnaire"'), 'Reassurance must precede the inquiry');
 assert.match(html, /<h1>Run<br>Development<\/h1>/);
-assert.match(html, /class="hero-benefit">Run better\. Get faster\. Run farther\./);
-assert.match(html, /<small>Miami coaching<\/small><strong>8 weeks · \$1,200<\/strong>/);
+assert.match(html, /class="hero-benefit">Run better\.<\/strong>/);
+assert.match(html, /<div class="offer"><strong>8 weeks · \$1,200<\/strong><\/div>/);
+assert.match(html, /<dt>Plan<\/dt><dd>Your week\.<\/dd>/);
+assert.match(html, /<dt>Practice<\/dt><dd>Weekly track\.<\/dd>/);
+assert.match(html, /<dt>Adjust<\/dt><dd>As you develop\.<\/dd>/);
+assert.match(html, /assets\/home\/practice\/coaching-track\.webp/);
+assert.doesNotMatch(html, /id="analysisVideo"/);
 assert.match(html, /data-coaching="remote">Discuss remote coaching/);
-assert.match(html, /class="hero-kicker eyebrow">Running coaching with Brice · Miami \+ Remote/);
 // Release-scoped proof: every inline script, media URL, metadata field, field
 // option and mailto fallback field is preserved. Only one final LF may differ.
 // A local display/line-height override preserves the new reassurance below 360px.

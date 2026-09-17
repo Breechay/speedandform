@@ -54,28 +54,15 @@ try:
                 page.wait_for_function("""() => [...document.styleSheets].some(s => (s.href || '').includes('/css/meta-landing.css'))""")
 
                 assert page.locator('.hero').get_attribute('data-landing-variant') == 'meta-paid-v1'
-                # .eyebrow intentionally renders uppercase; textContent verifies the authored copy.
-                assert page.locator('.hero-kicker').text_content() == 'Run Development · Brice · Miami'
-                assert page.locator('.hero h1').inner_text() == 'Run better.\nGet faster.\nRun farther.'
-                assert page.locator('.hero-sub > p').inner_text() == 'Individual running coaching built around how you run now and where you want to go.'
+                assert page.locator('.hero h1').inner_text() == 'Run\nDevelopment'
+                assert page.locator('.hero-benefit').inner_text() == 'Run better.'
                 assert page.locator('.offer strong').inner_text() == '8 weeks · $1,200'
                 cta = ' '.join(page.locator('.hero-actions .begin').text_content().split())
-                assert cta == 'Tell me about your running →', repr(cta)
+                assert cta == 'Work with Brice →', repr(cta)
                 assert page.locator('.hero-actions .begin').get_attribute('href') == '#begin'
-                reassurance = page.locator('.hero-reassurance').inner_text()
-                assert 'First Miami track assessment complimentary.' in reassurance
-                assert 'An inquiry only. No payment or booking yet.' in reassurance
-
-                if w <= 600:
-                    assert not page.locator('.hero-kicker').is_visible()
-                    assert not page.locator('.hero-sub > p').is_visible()
-                    assert not page.locator('.offer small').is_visible()
-                    assert not page.locator('.hero-reassurance').is_visible()
-                else:
-                    assert page.locator('.hero-kicker').is_visible()
-                    assert page.locator('.hero-sub > p').is_visible()
-                    assert page.locator('.offer small').is_visible()
-                    assert page.locator('.hero-reassurance').is_visible()
+                assert page.locator('.hero-kicker').count() == 0
+                assert page.locator('.hero-reassurance').count() == 0
+                assert page.locator('.offer small').count() == 0
 
                 media = page.evaluate("""() => {
                   const v = document.querySelector('#filmA');

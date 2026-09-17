@@ -21,31 +21,13 @@ with sync_playwright() as p:
             page.evaluate('Promise.all([...document.images].map(i=>i.decode().catch(()=>{})))')
             page.screenshot(path=str(OUT/f'hero-viewport-{w}.png'))
             assert page.locator('body').get_attribute('data-coaching-copy') == '20260917-coaching-clarity'
-            assert page.locator('.hero-benefit').inner_text() == 'Run better. Get faster. Run farther.'
-            assert 'I watch you run, build your plan, and coach you through it.' in page.locator('.hero-sub').inner_text()
-            assert 'Weekly track coaching in Miami, with adjustments as you develop.' in page.locator('.hero-sub').inner_text()
-            reassurance = page.locator('.hero-reassurance').inner_text()
-            print('Reassurance',ENGINE,w,repr(reassurance),flush=True)
-            # Exact HTML is asserted by coaching-copy.cjs. Browsers may expose
-            # line breaks differently; verify both sentences remain authored.
-            assert 'Your first Miami track assessment is complimentary.' in reassurance, repr(reassurance)
-            assert 'Start with a conversation.' in reassurance, repr(reassurance)
+            assert page.locator('.hero-benefit').inner_text() == 'Run better.'
             assert page.locator('.hero-actions .begin').get_attribute('href') == '#begin'
-
-            if w <= 600:
-                # Mobile first fold is deliberately only title, proposition,
-                # fee and one action. Explanatory copy remains in the DOM and
-                # appears again below the fold.
-                assert not page.locator('.hero-kicker').is_visible()
-                assert not page.locator('.hero-reassurance').is_visible()
-                assert not page.locator('.offer small').is_visible()
-                assert page.locator('.hero-benefit').is_visible()
-                assert page.locator('.offer strong').is_visible()
-                assert page.evaluate("getComputedStyle(document.querySelector('.hero-sub>p')).fontSize === '0px'")
-            else:
-                assert page.locator('.hero-kicker').is_visible()
-                assert page.locator('.hero-reassurance').is_visible()
-                assert page.locator('.offer small').is_visible()
+            assert page.locator('.hero-benefit').is_visible()
+            assert page.locator('.offer strong').is_visible()
+            assert page.locator('.hero-kicker').count() == 0
+            assert page.locator('.hero-reassurance').count() == 0
+            assert page.locator('.offer small').count() == 0
 
             assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
             bounds = page.evaluate('''() => {
@@ -81,7 +63,7 @@ with sync_playwright() as p:
                 if not any(known in e for known in known_offline_module_errors)
             ]
             assert not unexpected_errors, unexpected_errors
-            report.append({'width':w,'height':h,'pass':True,'bounds':bounds,'reassurance':reassurance,'cta_in_initial_viewport':bounds['button']['bottom']<=h})
+            report.append({'width':w,'height':h,'pass':True,'bounds':bounds,'cta_in_initial_viewport':bounds['button']['bottom']<=h})
             print('PASS', ENGINE, w, 'mobile density, CTA, inquiry reassurance, remote selector and no overflow', flush=True)
             page.close()
     finally:

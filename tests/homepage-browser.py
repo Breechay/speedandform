@@ -73,11 +73,10 @@ with sync_playwright() as p:
   passed('Complete five-question intake, edit/offer switching, escaped answers and '+outcome)
   pg.screenshot(path=str(OUT/f'intake-{outcome}-390.png'),full_page=True if False else False)
   pg.close()
- pg=load(b,videos=True,motion='reduce');pg.locator('#analysisToggle').scroll_into_view_if_needed();pg.wait_for_timeout(100)
- assert pg.evaluate('document.querySelector("#analysisVideo").paused')
- pg.locator('#analysisToggle').click();pg.wait_for_timeout(1000)
- v=pg.evaluate('({time:analysisVideo.currentTime,paused:analysisVideo.paused,width:analysisVideo.videoWidth,height:analysisVideo.videoHeight})');assert v['time']>0 and not v['paused'] and v['width']==512
- pg.locator('#analysisToggle').click();t=pg.evaluate('analysisVideo.currentTime');pg.wait_for_timeout(300);assert pg.evaluate('analysisVideo.paused')
+ pg=load(b,videos=True,motion='reduce');pg.locator('.analysis-screen img').scroll_into_view_if_needed();pg.wait_for_timeout(100)
+ assert pg.locator('.analysis-screen img').is_visible()
+ assert '/assets/home/practice/coaching-track.webp' in (pg.locator('.analysis-screen img').get_attribute('src') or '')
+ assert pg.locator('#analysisVideo').count()==0 and pg.locator('#analysisToggle').count()==0
  pg.evaluate('scrollTo(0,0)');pg.wait_for_timeout(100);pg.locator('#analysisToggle').scroll_into_view_if_needed();pg.wait_for_timeout(200);assert pg.evaluate('analysisVideo.paused')
  passed('Actual 512-square MP4 decodes, manual play under reduced motion, persistent user pause',v)
  pg.close()
