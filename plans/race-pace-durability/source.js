@@ -1,55 +1,35 @@
-// The public preview and the paid plan use two different doors.
-//
-// `public_plan_preview` is intentionally callable with the publishable key and
-// contains full prescription only for Weeks 1–4. Weeks 5–15 are placeholders.
-// A verified Stripe purchase can request the complete published plan through the
-// entitlement Edge Function. The plan tables themselves remain behind RLS.
-const URL = 'https://pbgsjjegycacodiltbhn.supabase.co';
-const KEY = 'sb_publishable_5Dg5TUvnh2mEo-zCYAbgmw_WHNXKDqj';
-const ENTITLEMENT_ENDPOINT = `${URL}/functions/v1/rpd-entitlement`;
-
-function purchaseSession() {
-  const query = new URLSearchParams(window.location.search).get('purchase_session');
-  if (query && /^cs_[A-Za-z0-9_]+$/.test(query)) return query;
-  try {
-    const stored = window.localStorage.getItem('rpd_purchase_session') || '';
-    return /^cs_[A-Za-z0-9_]+$/.test(stored) ? stored : '';
-  } catch (_) {
-    return '';
-  }
-}
-
-async function paidPlan(sessionId) {
-  const response = await fetch(ENTITLEMENT_ENDPOINT, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ action: 'plan', session_id: sessionId })
-  });
-  const data = await response.json().catch(() => ({}));
-  if (!response.ok || !data.ok || !data.plan) throw new Error(data.error || 'paid plan unavailable');
-  return data.plan;
-}
-
-async function previewPlan(slug) {
-  const response = await fetch(`${URL}/rest/v1/rpc/public_plan_preview`, {
-    method: 'POST',
-    headers: { apikey: KEY, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ p_slug: slug })
-  });
-  if (!response.ok) throw new Error(`the plan could not be read (${response.status})`);
-  const plan = await response.json();
-  if (!plan) throw new Error('no published plan at that address');
-  return plan;
-}
+import { resolvePlanAccess } from '/private/plan-access.js';
+export { resolvePlanAccess } from '/private/plan-access.js';
 
 export async function publishedPlan(slug) {
-  const sessionId = purchaseSession();
-  if (sessionId) {
-    try {
-      return await paidPlan(sessionId);
-    } catch (error) {
-      console.warn('RPD paid plan unavailable; rendering the public preview', error);
-    }
-  }
-  return previewPlan(slug);
+  if (slug !== 'race-pace-durability') throw new Error('Unknown plan');
+  return (await resolvePlanAccess()).plan;
 }
+
+export function showPlanError(error) {
+  document.documentElement.dataset.rpdEntitled = 'false';
+  document.getElementById('rpdLoading')?.remove();
+  document.querySelectorAll('#pdf,#pdfMobile,#rpdPreviewNote').forEach(node => { node.hidden = true; });
+  const host = document.getElementById('track') || document.getElementById('edition');
+  if (host) {
+    host.style.transform = 'none';
+    host.innerHTML = `<section class="rpd-access-message" role="status"><h2>${error?.code === 'sign-in' ? 'Sign in to check your access.' : 'We couldn’t check your access.'}</h2><p>Your training has not changed. Try again or open your account. There is no need to make another payment.</p><div><button type="button" class="btn" id="rpdRetry">Try again</button><a class="btn" href="/athlete/">Open account →</a></div></section>`;
+    document.getElementById('rpdRetry').addEventListener('click', () => location.reload());
+  }
+  document.querySelectorAll('#prev,#next').forEach(button => { button.disabled = true; });
+  return null;
+}
+
+// Remove authorized prescription immediately, before loading the next account.
+function clearAndReload() {
+  showPlanError({ code: 'account-changed' });
+  setTimeout(() => location.reload(), 0);
+}
+document.addEventListener('form:account-changed', clearAndReload);
+document.addEventListener('form:access-unavailable', () => showPlanError());
+window.addEventListener('pagehide', () => {
+  if (document.documentElement.dataset.rpdEntitled === 'true') {
+    const host = document.getElementById('track') || document.getElementById('edition');
+    if (host) host.replaceChildren();
+  }
+});
