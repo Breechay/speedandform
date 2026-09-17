@@ -1,4 +1,4 @@
-name: Inventory later runtime hashes
+name: Verify historical release lineage
 on:
   push:
     branches: [work/reconcile-release-lineage-20260917]
@@ -6,18 +6,35 @@ on:
 permissions:
   contents: read
 jobs:
-  hash:
+  verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Print exact later runtime hashes
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run historical source gates against exact current lineage
         run: |
-          node - <<'NODE'
-          const fs=require('node:fs'),crypto=require('node:crypto');
-          const sha=x=>crypto.createHash('sha256').update(x).digest('hex');
-          for(const file of ['css/homepage.css','js/coaching-choice.js','_headers']){
-            const b=fs.readFileSync(file);
-            console.log('FILE='+file);
-            console.log('SHA256='+sha(b));
-          }
-          NODE
+          set -o pipefail
+          node tests/sculpt-landing.cjs
+          node tests/form-landing.cjs
+          node tests/training-guides.cjs
+          node tests/guide-foundations.cjs
+          node tests/track-gallery.cjs
+          node tests/discovery.cjs
+          node tests/contact-notes.cjs
+          node tests/ask-header.cjs
+          node tests/share-metadata.cjs
+          node tests/homepage-metadata.cjs
+          node tests/homepage-release.cjs
+          node tests/run-development-method.cjs
+          node tests/coaching-measurement.cjs
+          node tests/cream-reading.cjs
+          node labs/track/track.test.cjs
+          node tests/thursday-schedule.cjs
+          node scripts/build-training-guides.cjs
+          node scripts/build-guides.cjs
+          node scripts/build-discovery.cjs
+          git diff --exit-code
