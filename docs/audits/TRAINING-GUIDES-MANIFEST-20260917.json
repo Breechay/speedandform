@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "baseCommit": "c1cf76da68a64e6b06e2f4fcd008f6c288b811c2",
+  "scope": "Pass 4B: four training-support guides and their four Library entries",
+  "pages": [
+    {
+      "file": "training-week.html",
+      "beforeSha256": "3c7dd6e9ff8a29f96bf3e7d09f6ef77916975765761ed57ea89f27fc67cc7e6e",
+      "afterSha256": "c64cb77b231b8dc0ce94449c18cf5bc185716fb3978b5f0f02489296aef98153",
+      "bodySha256": "4a9e08f94584fb1e38b2bf67f7871113179e5585f9c044c270df86a4e70375c5",
+      "retainedIds": [],
+      "preview": {
+        "title": "How to Structure a Running Week | FORM",
+        "description": "Fit easy runs, harder sessions, long runs and strength into a repeatable week. See a four-run example, simpler options, and what to change when life interrupts."
+      }
+    },
+    {
+      "file": "strength.html",
+      "beforeSha256": "28c7a1a39ba99c5fb3f2ce66a493a3015db0533117044470330cfed47c210fdf",
+      "afterSha256": "f7e5b2ef1a3e253b5c298e4f79a8dca2c6f1a8cbcbee302383fafb80f00a8bb4",
+      "bodySha256": "9167afe2c8b235f4be55f7f81d7e135a6708fe345ecf06a3a7d7c5dd8f28635f",
+      "retainedIds": [],
+      "preview": {
+        "title": "Strength Training for Runners: What to Do and Where It Fits | FORM",
+        "description": "A practical introduction to strength training for runners: four movement patterns, a small starting session, progression, and placement around important runs."
+      }
+    },
+    {
+      "file": "recovery.html",
+      "beforeSha256": "513f904c8f77a6e0bb9c149f1e0b80d928e1c49eeef0ddbfd075f13bcb9e04e5",
+      "afterSha256": "87560747359fb8943ef8b6fa62040b0bf696a797694ca06e92894d038516315e",
+      "bodySha256": "91b4111e0cdbed867084c983c9777743f54544b6fc3e04662fdf7a6de200eb3e",
+      "retainedIds": [],
+      "preview": {
+        "title": "Recovery for Runners: Run Easy, Reduce or Rest? | FORM",
+        "description": "Decide when to keep a run easy, reduce the session, or rest. Practical recovery priorities, post-race guidance, and signs that deserve medical assessment."
+      }
+    },
+    {
+      "file": "fueling.html",
+      "beforeSha256": "bd3a505168332fcff7aac3ee8b39d5b6bfabd1f0b5cdd2469be37a5f6063d725",
+      "afterSha256": "3e15d8b3bb7931b7d32da7b16851fa3bf5028028cb807673743422a208a7eba4",
+      "bodySha256": "eea575b48789da3b06de34e02019ba93f348e49651eb07a0d05cb308d1a92817",
+      "retainedIds": [],
+      "preview": {
+        "title": "Fueling for Runners: Before, During and After a Run | FORM",
+        "description": "What to eat before running, when to take carbohydrates during a run, and how to recover afterward. Includes a simple calculator for gels, food and sports drinks."
+      }
+    },
+    {
+      "file": "library.html",
+      "beforeSha256": "91fd38adf85177a6d46c71c8cfdfff5a933b508f6eb3e84ae54a15f52407f52b",
+      "afterSha256": "860df035df80038be43efaeb2c016557af0fea002536a282bea4e1c45bdc389c",
+      "bodySha256": "c123484789a58df16ac52ce6d4ea2d4c91a980a42867a571ed71997b905279de",
+      "retainedIds": [
+        "discovery-schema",
+        "main",
+        "discovery-search",
+        "discovery-query",
+        "start",
+        "heading-start",
+        "training",
+        "heading-training",
+        "movement",
+        "heading-movement",
+        "race",
+        "heading-race",
+        "recovery",
+        "heading-recovery",
+        "practice",
+        "heading-practice"
+      ],
+      "preview": {
+        "title": "Running Guides & Training Tools | FORM Library",
+        "description": "Understand your running. Explore clear guides to pace, running form, strength, race preparation, and recovery, plus plans and studies from Brice."
+      }
+    }
+  ]
+}

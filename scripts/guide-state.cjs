@@ -7,5 +7,7 @@ const allowed=['easy-run.html','threshold-training.html','long-run-pace.html','r
 assert.deepEqual(manifest.pages.map(p=>p.file).sort(),allowed.sort(),'Only the four guides and their Library descriptions are approved');
 assert.equal(manifest.baseCommit,'adaaa8c48f01303710aa6a53ee9258ecc48b72a8');
 const updates=new Map(manifest.pages.map(p=>[p.file,p]));
-function verify(file,html){const row=updates.get(file);if(!row)return false;assert.equal(sha(html),row.afterSha256,file+' exact Pass 4 editorial source');return true;}
-module.exports={manifest,updates,verify};
+const subsequent=require('./training-guide-state.cjs');
+function verify(file,html){if(subsequent.verify(file,html))return true;const row=updates.get(file);if(!row)return false;assert.equal(sha(html),row.afterSha256,file+' exact Pass 4 editorial source');return true;}
+const latestUpdates=new Map([...updates,...subsequent.updates]);
+module.exports={manifest,updates,latestUpdates,verify};
