@@ -1,55 +1,36 @@
 name: Track gallery release checks
 on:
   push:
-    branches: [work/track-gallery-pass3]
+    branches: [work/track-gallery-pass3, main]
+    paths: ['track/**','media/track/**','scripts/*track*','tests/track*','tests/discovery-browser.py','css/track-gallery.css','js/track-gallery.js','.github/workflows/track-gallery.yml']
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
   verify:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install review runtime
+      - name: Install explicit review dependencies
         run: |
           python -m pip install Pillow==11.3.0 playwright==1.58.0
           python -m playwright install --with-deps chromium
           sudo apt-get install -y ffmpeg
-      - name: Apply owner-requested gallery refinement on isolated branch
-        run: |
-          test "$GITHUB_REF_NAME" = work/track-gallery-pass3
-          if [ -f .github/gallery-refine.py ]; then
-            python .github/gallery-refine.py
-            rm .github/gallery-refine.py
-            python scripts/prepare-track-media.py
-            node scripts/build-track-gallery.cjs
-            node scripts/build-discovery.cjs
-            python - <<'PY'
-          import subprocess
-          allowed={'scripts/prepare-track-media.py','scripts/build-track-gallery.cjs','js/track-gallery.js','css/track-gallery.css','tests/discovery-browser.py','tests/track-gallery.cjs','tests/track-gallery-browser.py','track/albums.json','track/media-manifest.json','track/index.html','track/from-practice/index.html','docs/audits/DISCOVERY-MANIFEST-20260916.json','.github/gallery-refine.py'}
-          changed=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()
-          assert all(f in allowed or f.startswith('media/track/') for f in changed),changed
-          subprocess.run(['git','add','-A','--',*sorted(allowed),'media/track/'],check=True)
-          PY
-            git config user.name 'github-actions[bot]'
-            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git commit -m 'refine: quiet gallery copy and choose complete 6.3s film thumbnail'
-            git push origin HEAD:work/track-gallery-pass3
-          fi
-      - name: Source and existing critical-flow checks
+      - name: Source and critical-flow regression checks
         run: |
           set -o pipefail
           mkdir -p /tmp/gallery-receipt
+          test ! -e .github/gallery-refine.py
           {
             python tests/track-poster.py
             node tests/track-gallery.cjs
@@ -77,16 +58,24 @@ jobs:
           export CHROMIUM_PATH="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
           python tests/homepage-browser.py
           cp .homepage-qa/browser-qa.json /tmp/gallery-receipt/homepage-browser.json
-      - name: Save source and review evidence
+      - name: Verify the actual published release
+        if: github.ref_name == 'main'
+        env:
+          GALLERY_LIVE_ARTIFACTS: /tmp/gallery-receipt/live
+        run: |
+          node scripts/verify-track-production.cjs /tmp/gallery-receipt/production.json
+          node scripts/verify-discovery-production.cjs /tmp/gallery-receipt/discovery-production.json
+          node scripts/verify-share-production.cjs /tmp/gallery-receipt/share-production.json
+          python tests/track-gallery-live.py
+      - name: Save exact tested commit and manifest
         if: always()
         run: |
           mkdir -p /tmp/gallery-receipt
           git rev-parse HEAD > /tmp/gallery-receipt/commit.txt
           cp track/media-manifest.json /tmp/gallery-receipt/
-          tar --exclude=.git --exclude=node_modules --exclude=.homepage-qa -czf /tmp/gallery-receipt/source.tar.gz .
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: gallery-receipt
           path: /tmp/gallery-receipt/
-          retention-days: 7
+          retention-days: 14
