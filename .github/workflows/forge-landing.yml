@@ -28,7 +28,7 @@ jobs:
           d=json.loads(raw);assert d['resultCount']==1;app=d['results'][0];assert app['trackId']==6790569283
           for i,u in enumerate(app.get('screenshotUrls',[])[:8]):
               assert urllib.parse.urlparse(u).hostname.endswith('mzstatic.com')
-              p.joinpath(f'store-{i}.jpg').write_bytes(get(u))
+              p.joinpath(f'store-{i}.jpg').write_bytes(get(u.replace('320x480bb.jpg','600x1300bb-60.jpg')))
           p.joinpath('captured-at.txt').write_text(datetime.datetime.now(datetime.timezone.utc).isoformat())
           print(json.dumps({k:app.get(k) for k in ['trackName','version','currentVersionReleaseDate','minimumOsVersion','price','formattedPrice','trackViewUrl','screenshotUrls']},indent=2))
           PY
