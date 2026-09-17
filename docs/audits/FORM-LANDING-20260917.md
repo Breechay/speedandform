@@ -4,7 +4,17 @@ Owner: Brice. Single release register: `docs/roadmap/SITE-ECOSYSTEM-PASSES-20260
 
 ## Release state
 
-IMPLEMENTED on an isolated work branch. No production claim until final browser acceptance, merge and actual Netlify/HTTP verification are recorded here.
+**LIVE September 17, 2026 at 09:28:49.462 UTC.** PR #127 merged the tested page as `6990f39cc6c07050f396de4b6c13334b6a256be5`. Netlify deployment `6aabb2c4b9f8d90008d38b92` is the ready, current production deployment of the existing site `f3914a6a-a9ce-465e-8212-f5f42597c469` at speedandform.com. Its deployment record names that exact release commit. The existing main-branch integration published it; no additional manual production deployment was executed.
+
+Read-only branch CI `35198064646` passed at `4565b35ac49c84270b7fa73b23a8c59f2e6d8a8f`. The downloaded acceptance artifact `10486617328` records that same revision. Main CI **`35205320031` passed on the actual release commit**, including twelve source/critical-flow suites and **120 FORM page browser checks** at 375, 390, 430, 768, 1024 and 1440 pixels. Keyboard tabs, Home/End/wrapping, direct fragments, 200% text reflow, no-JavaScript reading, reduced motion, click hooks and runtime errors were checked. Regression coverage passed 219 training-guide, 188 foundation-guide, 110 gallery, 61 discovery and 17 homepage/intake/media checks. Together these are 715 served test-page browser checks, not 715 physical-device tests.
+
+Actual production GET verification started at `2026-09-17T09:30:50.276Z`. The new `/form/` HTML and all three page assets matched the exact reviewed SHA-256 hashes by `09:30:51.160Z`. No retry or HTML normalization was needed for this page. The eight prior guides and their assets, all **72 canonical pages**, six discovery assets, six route cases, **19 shared-page previews and ten image URLs**, and **two gallery pages with twenty resources** were reverified successfully by `09:31:06.235Z`. Gallery checks included the downloadable photo ZIP and the original film.
+
+The actual public-page Chromium suite then passed **29 live browser checks** at 390 and 1440 pixels: real HTTP response and release marker, contained layout, current App Store destination, visible preview label, loaded official screenshot, all five interactive session panels, direct fragments, keyboard navigation, appearance and coaching distinctions, retained help routes, and no runtime JavaScript errors. Public-site screenshots were downloaded and visually reviewed alongside the accepted desktop and phone screenshots.
+
+Main artifact `10489936687`, `form-landing-receipt`, preserves the source commit, exact manifest, source results, browser reports, screenshots, six production reports and live browser report. It has fourteen-day retention; this document preserves the permanent release facts. No source bundle, credentials or font files are included in that final artifact. The documentation-only closure commit does not alter or redeploy the released site.
+
+**Coverage limits:** physical iPhone/iPad, Safari, screen-reader output and native App Store/share-sheet behavior remain unverified. No actual inquiry, payment, signup, email or external share was sent. No conversion, indexing or ranking improvement is claimed. Pass 5B and Pass 6 remain separate.
 
 ## One public route
 
@@ -38,9 +48,9 @@ The SoftwareApplication schema carries truthful identity and platform metadata w
 
 One existing HTML page changes. **176 other HTML files**, the Library/catalog/search index, all 72 sitemap addresses, shared cream/Labs/app styles, the eight guides, gallery, original media, coaching/checkout and private systems stay unchanged. The old discovery manifest refreshes only this page's exact source checksum; historical narrative release receipts remain intact. Earlier regression tests accept exactly the pinned product snapshot, not an unbounded exception.
 
-Local source acceptance passed twelve suites. In-memory Chromium rendering was used for initial design critique; it is not a served-page or production test. The local browser's administrator policy blocks localhost navigation, so complete HTTP/browser acceptance runs in the repository's existing GitHub Actions environment instead. The review shortened repeated hero copy, brought the mobile title into two lines and corrected genuine 200% narrow-column reflow rather than concealing overflow.
+Local source acceptance passed twelve suites. In-memory Chromium rendering was used for initial design critique; it was not a served-page or production test. The local browser's administrator policy blocks localhost navigation, so complete HTTP/browser acceptance ran in the repository's existing GitHub Actions environment. The review shortened repeated hero copy, brought the mobile title into two lines and corrected genuine 200% narrow-column reflow rather than concealing overflow.
 
-Final test counts, screenshots, CI commit, merged commit, production deploy and HTTP/browser results will be appended after verification. Physical iPhone/iPad, Safari, screen-reader output and native App Store/share-sheet behavior are not covered by Chromium viewport tests. No actual inquiry, payment, signup, email or external share is sent in testing.
+The first served-browser review caught a session-tab accessible name including the visual selection marker. Explicit accessible names now remain stable while the selected appearance changes; the test was not weakened. Revision `4565b35` passed the repaired case and the full regression suite. Final release verification is recorded above rather than inferred from the working branch.
 
 ## Maintenance
 
