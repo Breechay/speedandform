@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "albums": [
+    {
+      "slug": "from-practice",
+      "title": "From practice.",
+      "kind": "selection",
+      "date": null,
+      "published": true,
+      "description": "An earlier selection from the track and the road. Four photographs and a short, silent film.",
+      "note": "This is an undated selection of photographs and film previously featured on FORM, not a new session album.",
+      "downloadNote": "These are the available web editions, not camera originals.",
+      "cover": "beside-the-track",
+      "publicationBasis": "Owner-directed gallery reuse of existing public site media, authorized in the September 16 site-ecosystem request. This records reuse authority, not independently verified individual model releases.",
+      "media": [
+        {"id":"beside-the-track","type":"photo","source":"assets/home/practice/coaching-track.webp","sourcePage":"/","sourceSha256":"c4d82857917c21095088b3f1a906ccd46b094fddde8b8bc5f32187ede6e4e503","title":"Beside the track","alt":"Runners gathered beside the track, pausing for a conversation.","downloadApproved":true},
+        {"id":"side-by-side","type":"photo","source":"assets/images/field-track-session.webp","sourcePage":"/the-field","sourceSha256":"b3fbcd7592f364e2773c7181aeff0f8b404f4f4e252367f85141e229db5df40c","title":"Side by side","alt":"Two runners moving side by side on the track.","downloadApproved":true},
+        {"id":"in-stride","type":"photo","source":"assets/home/practice/running-practice.webp","sourcePage":"/","sourceSha256":"9a5d2e86992ea243cd7df3a899d3f1be9b51f0ed83e13ae432add591fc5d2cda","title":"In stride","alt":"A black-and-white photograph of runners passing a leafy roadside.","downloadApproved":true},
+        {"id":"on-the-road","type":"photo","source":"assets/images/field-long-run.webp","sourcePage":"/the-field","sourceSha256":"3cd8dfecc2ecad8a447e336d33e6b5d4f57cc3ae00c88da0c6d83bba3ca2cb73","title":"On the road","alt":"A group of runners seen from behind along a palm-lined road.","downloadApproved":true},
+        {"id":"run-development","type":"video","source":"media/run-development.mp4","sourcePage":"/","sourceSha256":"66f80e694521f15cf794097ac4725eacaeeaaa2c11baf952be2b1900d69a791c","posterSource":"media/run-development.jpg","title":"Running, in motion","alt":"A silent film of runners in motion, seen from the side and along their route.","silent":true,"downloadApproved":true}
+      ]
+    }
+  ]
+}

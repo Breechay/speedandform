@@ -1,23 +1,99 @@
-name: Track gallery review
+name: Track gallery release checks
 on:
   push:
     branches: [work/track-gallery-pass3]
 permissions:
   contents: read
 jobs:
-  review:
+  verify:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Package source for bounded gallery work
-        run: |
-          mkdir -p /tmp/gallery-source
-          tar --exclude=.git --exclude=node_modules -czf /tmp/gallery-source/source.tar.gz .
-          git rev-parse HEAD > /tmp/gallery-source/commit.txt
-      - uses: actions/upload-artifact@v4
+      - uses: actions/setup-node@v4
         with:
-          name: gallery-source
-          path: /tmp/gallery-source/
-          retention-days: 2
+          node-version: '20'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install bounded media and browser tooling
+        run: |
+          python -m pip install Pillow==11.3.0 playwright==1.58.0
+          python -m playwright install --with-deps chromium
+      - name: Integrate explicitly approved gallery discovery and prepare assets
+        run: |
+          test "$GITHUB_REF_NAME" = work/track-gallery-pass3
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/discovery-catalog.cjs');s=p.read_text()
+          if "['track/','Track photographs" not in s:
+            s=s.replace("  ['thursday','Run with us'", "  ['track/','Track photographs & films','Open an album, view photographs and clips, and save the available files.','photos pictures videos gallery albums track community','Gallery'],\n  ['thursday','Run with us'")
+            s=s.replace('const EXTRA = [', "const GALLERY_ALBUMS = require('../track/albums.json').albums.filter(a=>a.published===true).map(a=>'track/'+a.slug+'/');\nconst EXTRA = [...GALLERY_ALBUMS,")
+            p.write_text(s)
+          p=Path('scripts/build-discovery.cjs');s=p.read_text()
+          if 'pageWayfinding' not in s:
+            s=s.replace("'Guide & tools','Field note'", "'Guide & tools','Field note','Gallery'")
+            s=s.replace("for(const file of navFiles){let h=read(file);", "for(const file of navFiles){let h=read(file);const pageWayfinding=file==='thursday.html'?wayfinding.replace('<a href=\"/thursday\">Run with us</a>','<a href=\"/track/\">Photos &amp; films</a>'):wayfinding;")
+            s=s.replace('replace(/<nav class="site-wayfinding"[\\s\\S]*?<\\/nav>/,wayfinding)', 'replace(/<nav class="site-wayfinding"[\\s\\S]*?<\\/nav>/,pageWayfinding)')
+            s=s.replace("match[0]+'\\n'+wayfinding", "match[0]+'\\n'+pageWayfinding")
+            p.write_text(s)
+          PY
+          python scripts/prepare-track-media.py
+          node scripts/build-track-gallery.cjs
+          node scripts/build-discovery.cjs
+      - name: Source and existing critical-flow checks
+        run: |
+          set -o pipefail
+          mkdir -p /tmp/gallery-receipt
+          {
+            node tests/track-gallery.cjs
+            node tests/discovery.cjs
+            node tests/share-metadata.cjs
+            node tests/homepage-metadata.cjs
+            node tests/homepage-release.cjs
+            node tests/coaching-measurement.cjs
+            node tests/cream-reading.cjs
+            node labs/track/track.test.cjs
+            node tests/thursday-schedule.cjs
+          } | tee /tmp/gallery-receipt/source-tests.txt
+      - name: Save validated generated files on the isolated branch only
+        run: |
+          test "$GITHUB_REF_NAME" = work/track-gallery-pass3
+          git add -- track media/track scripts/discovery-catalog.cjs scripts/build-discovery.cjs library.html thursday.html search-index.json sitemap.xml docs/audits/DISCOVERY-MANIFEST-20260916.json
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'feat: generate approved gallery editions, album pages and discovery'
+            git push origin HEAD:work/track-gallery-pass3
+          fi
+          node scripts/build-track-gallery.cjs
+          node scripts/build-discovery.cjs
+          git diff --exit-code
+      - name: Gallery browser acceptance
+        env:
+          TRACK_GALLERY_ARTIFACTS: /tmp/gallery-receipt/gallery
+        run: python tests/track-gallery-browser.py
+      - name: Existing discovery and homepage acceptance
+        env:
+          DISCOVERY_ARTIFACTS: /tmp/gallery-receipt/discovery
+        run: |
+          python tests/discovery-browser.py
+          export CHROMIUM_PATH="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
+          python tests/homepage-browser.py
+          cp .homepage-qa/browser-qa.json /tmp/gallery-receipt/homepage-browser.json
+      - name: Save exact source and review evidence
+        if: always()
+        run: |
+          mkdir -p /tmp/gallery-receipt
+          git rev-parse HEAD > /tmp/gallery-receipt/commit.txt
+          tar --exclude=.git --exclude=node_modules --exclude=.homepage-qa -czf /tmp/gallery-receipt/source.tar.gz .
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gallery-receipt
+          path: /tmp/gallery-receipt/
+          retention-days: 7
