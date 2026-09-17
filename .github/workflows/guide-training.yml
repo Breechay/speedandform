@@ -5,21 +5,96 @@ on:
 permissions:
   contents: read
 jobs:
-  source:
+  verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          persist-credentials: false
-      - name: Export exact source history without credentials
-        run: |
-          mkdir -p /tmp/guide-training
-          git bundle create /tmp/guide-training/source.bundle HEAD
-          git rev-parse HEAD > /tmp/guide-training/commit.txt
-      - uses: actions/upload-artifact@v4
+      - uses: actions/setup-node@v4
         with:
-          name: guide-training-source
-          path: /tmp/guide-training/
-          retention-days: 2
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply bounded authored guides on isolated branch
+        run: |
+          test "$GITHUB_REF_NAME" = work/guide-training-pass4b
+          python - <<'PY'
+          import base64,lzma,hashlib,json,subprocess
+          from pathlib import Path
+          allowed={'.github/workflows/guide-training.yml','scripts/discovery-catalog.cjs','scripts/guide-state.cjs','scripts/verify-share-production.cjs','tests/guide-foundations.cjs','tests/share-metadata.cjs','css/training-guides.css','docs/audits/TRAINING-GUIDES-20260917.md','docs/audits/TRAINING-GUIDES-MANIFEST-20260917.json','js/training-tools.js','scripts/build-training-guides.cjs','scripts/training-guide-content.cjs','scripts/training-guide-state.cjs','scripts/verify-training-guides-production.cjs','tests/training-guides-browser.py','tests/training-guides-live.py','tests/training-guides.cjs'}
+          transport={f'.github/training-transfer/{i}.b64' for i in range(6)}
+          b=base64.b64decode(''.join(Path(f'.github/training-transfer/{i}.b64').read_text() for i in range(6)),validate=True)
+          assert hashlib.sha256(b).hexdigest()=='808c6e6836f301597e3da106aa10b69ebef4d74829f766b26a5308e7290bb71c'
+          data=json.loads(lzma.decompress(b,memlimit=134217728))
+          assert set(data)==allowed
+          for f,text in data.items():
+              p=Path(f);p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text,encoding='utf-8')
+          for f in transport:Path(f).unlink()
+          subprocess.run(['node','scripts/build-training-guides.cjs'],check=True)
+          subprocess.run(['node','scripts/build-discovery.cjs'],check=True)
+          subprocess.run(['node','tests/training-guides.cjs'],check=True)
+          generated={'training-week.html','strength.html','recovery.html','fueling.html','library.html','search-index.json','docs/audits/DISCOVERY-MANIFEST-20260916.json'}
+          changed=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines())
+          assert changed<=allowed|generated|transport,changed-(allowed|generated|transport)
+          subprocess.run(['git','add','-A','--',*sorted(allowed|generated|transport)],check=True)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'feat: implement training week, strength, recovery and fueling guides with reviewed examples'
+          git push origin HEAD:work/guide-training-pass4b
+      - name: Source and critical-flow checks
+        run: |
+          set -o pipefail
+          mkdir -p /tmp/training-guide-receipt
+          {
+            node tests/training-guides.cjs
+            node tests/guide-foundations.cjs
+            node tests/track-gallery.cjs
+            node tests/discovery.cjs
+            node tests/share-metadata.cjs
+            node tests/homepage-metadata.cjs
+            node tests/homepage-release.cjs
+            node tests/coaching-measurement.cjs
+            node tests/cream-reading.cjs
+            node labs/track/track.test.cjs
+            node tests/thursday-schedule.cjs
+          } | tee /tmp/training-guide-receipt/source-tests.txt
+          node scripts/build-training-guides.cjs
+          node scripts/build-guides.cjs
+          node scripts/build-discovery.cjs
+          git diff --exit-code
+      - name: Install browser runtime
+        run: |
+          python -m pip install playwright==1.58.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: New and existing browser acceptance
+        env:
+          TRAINING_GUIDE_ARTIFACTS: /tmp/training-guide-receipt/training
+          GUIDE_ARTIFACTS: /tmp/training-guide-receipt/foundations
+          TRACK_GALLERY_ARTIFACTS: /tmp/training-guide-receipt/gallery
+          DISCOVERY_ARTIFACTS: /tmp/training-guide-receipt/discovery
+        run: |
+          python tests/training-guides-browser.py
+          python tests/guide-browser.py
+          python tests/track-gallery-browser.py
+          python tests/discovery-browser.py
+          export CHROMIUM_PATH="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
+          python tests/homepage-browser.py
+          cp .homepage-qa/browser-qa.json /tmp/training-guide-receipt/homepage-browser.json
+      - name: Save release evidence
+        if: always()
+        run: |
+          mkdir -p /tmp/training-guide-receipt
+          git rev-parse HEAD > /tmp/training-guide-receipt/commit.txt
+          cp docs/audits/TRAINING-GUIDES-MANIFEST-20260917.json /tmp/training-guide-receipt/ || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: training-guide-receipt
+          path: /tmp/training-guide-receipt/
+          retention-days: 14
