@@ -141,3 +141,11 @@
 
 /tests/*
   X-Robots-Tag: noindex, nofollow
+
+# Pass 6A: public reader feed and local-only question composition
+/field-notes/feed.xml
+  Content-Type: application/rss+xml; charset=utf-8
+  X-Content-Type-Options: nosniff
+
+/ask/*
+  Referrer-Policy: no-referrer

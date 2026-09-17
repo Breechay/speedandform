@@ -56,6 +56,7 @@ const GROUPS = [
   ['labs/track/','Track workouts and standards','Browse the authored sessions and their execution standards.','track intervals sprint speed workouts','Workouts'],
   ['track/','Track photographs & films','Open an album, view photographs and clips, and save the available files.','photos pictures videos gallery albums track community','Gallery'],
   ['thursday','Run with us','Find the current Thursday track-session details and joining information.','miami flamingo south beach group join thursday community','Community'],
+  ['field-notes','Field Notes','Short reflections on training decisions, ordinary runs, and running together.','notes essays questions newsletter feed practice','Field note'],
   ['notes','A note from the track','One observation, the adjustment, and the athlete’s response.','coaching note evidence form video','Field note'],
   ['form/','FORM running app','Explore the running app and its current store destination.','iphone ios mobile app form','App'],
   ['forge-sculpt/','Breechay Sculpt / Forge','Explore the strength program and its app.','forge breechay sculpt strength app','App'],
@@ -64,7 +65,8 @@ const GROUPS = [
 const ARCHIVE = ['practice','start','plan','plan-spring-2026','cycles','the-field','competition','plan-speed-emergence','taper-key-biscayne','races/key-biscayne-2026'];
 const PRESERVE_ONLY = ['athletes','ledger','app'];
 const GALLERY_ALBUMS = require('../track/albums.json').albums.filter(a=>a.published===true).map(a=>'track/'+a.slug+'/');
-const EXTRA = [...GALLERY_ALBUMS,'','library','plans/race-pace-durability/support/','es/plans/race-pace-durability/','labs/','field-notes','the-method','the-work','training-principles','training-map','principles','mechanics-map','easy-run-standards','pain-map','strength-fixes','threshold','long-run','ghost','ghost/week-1','ghost/week-2','ghost/week-3','ghost/week-4','ghost/week-5','ghost/week-6'];
+const NOTE_PAGES = require('./field-notes-content.cjs').filter(n=>n.published===true).map(n=>'field-notes/'+n.slug+'/');
+const EXTRA = [...GALLERY_ALBUMS,...NOTE_PAGES,'ask/','','library','plans/race-pace-durability/support/','es/plans/race-pace-durability/','labs/','field-notes','the-method','the-work','training-principles','training-map','principles','mechanics-map','easy-run-standards','pain-map','strength-fixes','threshold','long-run','ghost','ghost/week-1','ghost/week-2','ghost/week-3','ghost/week-4','ghost/week-5','ghost/week-6'];
 function fileFor(route) { return !route?'index.html':route.endsWith('/')?route+'index.html':route==='ghost'?'ghost/index.html':route+'.html'; }
 const entries = GROUPS.flatMap(([group,, , rows]) => rows.map(([route,title,description,keywords,type='Guide'])=>({route,url:'/'+route,file:fileFor(route),title,description,keywords:keywords.split(' '),category:group,type})));
 module.exports={GROUPS,ARCHIVE,PRESERVE_ONLY,EXTRA,entries,fileFor};

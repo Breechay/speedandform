@@ -1,4 +1,5 @@
 'use strict';
+const contact=require('../scripts/contact-notes-state.cjs');
 const protectedBaseline=require('../scripts/protected-site-baseline.cjs');
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),cp=require('node:child_process');
 const s=require('../scripts/share-metadata.cjs'),cat=require('../scripts/discovery-catalog.cjs'),search=require('../js/discovery-search.js');
@@ -26,7 +27,7 @@ for(const {file,url} of m.sitemap){assert.equal(s.canonical(read(file),file),url
 for(const x of ['/plans/','/labs/','/labs/speed-that-endures/','/library/easy-days/','/form/'])assert.ok(locs.includes(s.ORIGIN+x),x);
 assert.ok(!locs.some(x=>/\/search$|\/app$|\/adrian/.test(x)));
 for(const row of m.untouchedHtml)if(!editorial.verify(row.file,read(row.file)))assert.equal(s.sha(read(row.file)),row.sha256,row.file+' untouched');
-for(const row of m.changedHtml){const h=read(row.file),old=original(row.file);assert.equal(s.sha(old),row.beforeSha256,row.file+' baseline');if(editorial.verify(row.file,h))continue;assert.equal(s.sha(h),row.afterSha256,row.file+' approved source');
+for(const row of m.changedHtml){const h=read(row.file);if(protectedBaseline.verify(row.file,h))continue;const old=original(row.file);assert.equal(s.sha(old),row.beforeSha256,row.file+' baseline');if(editorial.verify(row.file,h))continue;assert.equal(s.sha(h),row.afterSha256,row.file+' approved source');
  if(['library.html','search.html','404.html'].includes(row.file))continue;
  assert.equal(scripts(h),scripts(old),row.file+' scripts unchanged');
  let clean=body(h).replace(/\n?<nav class="site-wayfinding"[\s\S]*?<\/nav>/g,'').replace(/\n?<aside class="discovery-return" data-discovery-archive>[\s\S]*?<\/aside>/g,'');

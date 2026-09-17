@@ -1,0 +1,97 @@
+name: Contact and Field Notes review
+on:
+  push:
+    branches: [work/contact-notes-pass6, main]
+    paths: ['ask/**','field-notes.html','field-notes/**','css/contact-notes.css','js/contact-notes.js','js/question-contexts.json','scripts/*contact-notes*','scripts/field-notes-content.cjs','tests/contact-notes*','docs/audits/CONTACT-NOTES*','.github/workflows/contact-notes.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Source acceptance and deterministic publishing
+        run: |
+          set -o pipefail
+          mkdir -p /tmp/contact-notes-receipt
+          for name in contact-notes sculpt-landing form-landing training-guides guide-foundations track-gallery discovery share-metadata homepage-metadata homepage-release coaching-measurement cream-reading thursday-schedule; do node tests/$name.cjs; done | tee /tmp/contact-notes-receipt/source-tests.txt
+          node labs/track/track.test.cjs | tee -a /tmp/contact-notes-receipt/source-tests.txt
+          node scripts/build-contact-notes.cjs
+          node scripts/build-training-guides.cjs
+          node scripts/build-guides.cjs
+          node scripts/build-discovery.cjs
+          git diff --exit-code
+      - name: Install browser runtime
+        run: |
+          python -m pip install playwright==1.58.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium webkit
+      - name: Chromium reading and contact acceptance
+        env:
+          BROWSER: chromium
+          CONTACT_NOTES_ARTIFACTS: /tmp/contact-notes-receipt/chromium
+        run: python tests/contact-notes-browser.py
+      - name: WebKit reading and contact acceptance
+        env:
+          BROWSER: webkit
+          CONTACT_NOTES_ARTIFACTS: /tmp/contact-notes-receipt/webkit
+        run: python tests/contact-notes-browser.py
+      - name: Existing public journeys and privacy regressions
+        env:
+          SCULPT_ARTIFACTS: /tmp/contact-notes-receipt/sculpt
+          FORM_LANDING_ARTIFACTS: /tmp/contact-notes-receipt/form
+          TRAINING_GUIDE_ARTIFACTS: /tmp/contact-notes-receipt/training
+          GUIDE_ARTIFACTS: /tmp/contact-notes-receipt/foundations
+          TRACK_GALLERY_ARTIFACTS: /tmp/contact-notes-receipt/gallery
+          DISCOVERY_ARTIFACTS: /tmp/contact-notes-receipt/discovery
+          FORM_QA_ARTIFACTS: /tmp/contact-notes-receipt/coaching
+          FORM_QA_BROWSER: chromium
+        run: |
+          python tests/sculpt-landing-browser.py
+          python tests/form-landing-browser.py
+          python tests/training-guides-browser.py
+          python tests/guide-browser.py
+          python tests/track-gallery-browser.py
+          python tests/discovery-browser.py
+          python tests/coaching-funnel-browser.py
+          export CHROMIUM_PATH="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
+          python tests/homepage-browser.py
+          cp .homepage-qa/browser-qa.json /tmp/contact-notes-receipt/homepage-browser.json
+      - name: Verify actual public page and asset bytes
+        if: github.ref_name == 'main'
+        run: |
+          node scripts/verify-contact-notes-production.cjs /tmp/contact-notes-receipt/production.json
+          node scripts/verify-sculpt-production.cjs /tmp/contact-notes-receipt/sculpt-production.json
+          node scripts/verify-form-landing-production.cjs /tmp/contact-notes-receipt/form-production.json
+          node scripts/verify-training-guides-production.cjs /tmp/contact-notes-receipt/training-production.json
+          node scripts/verify-guides-production.cjs /tmp/contact-notes-receipt/foundations-production.json
+          node scripts/verify-discovery-production.cjs /tmp/contact-notes-receipt/discovery-production.json
+          node scripts/verify-share-production.cjs /tmp/contact-notes-receipt/share-production.json
+          node scripts/verify-track-production.cjs /tmp/contact-notes-receipt/gallery-production.json
+      - name: Real public Chromium and WebKit acceptance without sending
+        if: github.ref_name == 'main'
+        run: |
+          CONTACT_NOTES_LIVE=1 BROWSER=chromium CONTACT_NOTES_ARTIFACTS=/tmp/contact-notes-receipt/live-chromium python tests/contact-notes-browser.py
+          CONTACT_NOTES_LIVE=1 BROWSER=webkit CONTACT_NOTES_ARTIFACTS=/tmp/contact-notes-receipt/live-webkit python tests/contact-notes-browser.py
+      - name: Preserve exact source and evidence
+        if: always()
+        run: |
+          mkdir -p /tmp/contact-notes-receipt
+          git rev-parse HEAD > /tmp/contact-notes-receipt/commit.txt
+          cp docs/audits/CONTACT-NOTES-MANIFEST-20260917.json /tmp/contact-notes-receipt/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: contact-notes-receipt
+          path: /tmp/contact-notes-receipt/
+          retention-days: 14

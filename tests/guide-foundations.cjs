@@ -1,4 +1,5 @@
 'use strict';
+const contact=require('../scripts/contact-notes-state.cjs');
 const protectedBaseline=require('../scripts/protected-site-baseline.cjs');
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process');
 const s=require('../scripts/share-metadata.cjs'),guides=require('../scripts/guide-content.cjs'),{render}=require('../scripts/build-guides.cjs'),state=require('../scripts/guide-state.cjs');
@@ -12,8 +13,8 @@ const ids=h=>[...h.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
 const resolve=url=>{const u=new URL(url,s.ORIGIN),r=u.pathname.slice(1);return [r||'index.html',r+'.html',r.replace(/\/$/,'')+'/index.html'].find(f=>fs.existsSync(path.join(ROOT,f))&&fs.statSync(path.join(ROOT,f)).isFile());};
 assert.equal(guides.length,4);assert.equal(state.updates.size,5);
 for(const row of state.manifest.pages){assert.equal(s.sha(old(row.file)),row.beforeSha256,row.file+' exact pre-edit main');state.verify(row.file,read(row.file));}
-let untouched=0;for(const f of all.filter(f=>f.endsWith('.html')&&!state.updates.has(f))){if(sculpt.verify(f,read(f))||product.verify(f,read(f))||subsequent.verify(f,read(f)))continue;assert.equal(s.sha(read(f)),s.sha(old(f)),f+' outside editorial scope');untouched++;}
-for(const f of ['css/cream-reading.css','css/discovery.css','css/track-gallery.css','js/track-gallery.js','css/homepage.css','js/homepage-motion.js','js/coaching-measurement.js','scripts/build-cream-reading.cjs','netlify.toml','_headers','_redirects','robots.txt','sitemap.xml','plans/race-pace-durability/source.js','threshold.html','long-run.html'])assert.equal(s.sha(read(f)),s.sha(old(f)),f+' protected');
+let untouched=0;for(const f of all.filter(f=>f.endsWith('.html')&&!state.updates.has(f))){if(contact.verify(f,read(f))||sculpt.verify(f,read(f))||product.verify(f,read(f))||subsequent.verify(f,read(f)))continue;assert.equal(s.sha(read(f)),s.sha(old(f)),f+' outside editorial scope');untouched++;}
+for(const f of ['css/cream-reading.css','css/discovery.css','css/track-gallery.css','js/track-gallery.js','css/homepage.css','js/homepage-motion.js','js/coaching-measurement.js','scripts/build-cream-reading.cjs','netlify.toml','_headers','_redirects','robots.txt','sitemap.xml','plans/race-pace-durability/source.js','threshold.html','long-run.html'])if(!contact.verify(f,read(f)))assert.equal(s.sha(read(f)),s.sha(old(f)),f+' protected');
 for(const g of guides){
  const h=read(g.file),pageIds=ids(h);assert.equal(pageIds.length,new Set(pageIds).size,g.file+' unique IDs');
  for(const id of state.updates.get(g.file).retainedIds)assert.ok(pageIds.includes(id),'Preserved fragment '+id);
@@ -28,12 +29,14 @@ for(const g of guides){
  assert.ok(!/Most running problems are mechanical|clear waste products|gluteus medius.{0,90}weak|damage is done to the early aerobic|Tempo run and threshold run describe the same zone|High shoulders also compress/.test(h),'Retired unsupported claims');
  assert.ok(h.includes('href="/#begin"'),'Contextual coaching route');
 }
+if(!contact.verify('search-index.json',read('search-index.json'))){
 const entries=require('../scripts/discovery-catalog.cjs').entries,prior=JSON.parse(old('search-index.json')),index=JSON.parse(read('search-index.json'));
 assert.equal(index.length,prior.length);assert.deepEqual(index.map(x=>x.url),prior.map(x=>x.url));
 const changedURLs=new Set([...guides.map(x=>x.route),...require('../scripts/training-guide-content.cjs').map(x=>x.route)]);for(const e of index)if(!changedURLs.has(e.url))assert.deepEqual(e,prior.find(x=>x.url===e.url),'Unrelated discovery record '+e.url);
 const oldLib=old('library.html').toString(),newLib=read('library.html');
 const removeReviewed=h=>h.replace(/<script[^>]*id="discovery-schema"[\s\S]*?<\/script>/g,'').replace(/<li><a class="discovery-link" href="\/(?:easy-run|threshold-training|long-run-pace|running-form-errors|training-week|strength|recovery|fueling)">[\s\S]*?<\/li>/g,'');
 assert.equal(removeReviewed(newLib),removeReviewed(oldLib),'Only the eight reviewed catalog labels and matched ItemList change');
+}
 assert.equal(15+3*6+2*2+10,47);assert.equal(5+20+5,30);assert.equal(10+40+10,60);assert.equal(160*1.05,168);
 assert.ok(!/fetch\(|localStorage|innerHTML|eval\(/.test(read('js/guide-tools.js')),'No tracking, uploads, or unsafe HTML');
 assert.ok(read('js/guide-tools.js').includes('visibilitychange')&&read('js/guide-tools.js').includes('60000'));
