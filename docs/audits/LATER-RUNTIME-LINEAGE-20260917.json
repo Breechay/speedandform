@@ -36,6 +36,13 @@
       "sourceRevision": "a8a778a0ce30d8eca12f7ac43efcd84583164bec",
       "pullRequest": 128,
       "reason": "Approved coaching-funnel measurement runtime."
+    },
+    {
+      "file": "css/coaching-choice.css",
+      "afterSha256": "ea22aeb193b2b9f1e061b84b53df74015de937253a159935aeaa402356ed58c6",
+      "sourceRevision": "adec1c431081f49e6b7a7374691037b60022bb07",
+      "pullRequest": 142,
+      "reason": "Reviewed homepage doctrine coaching-selector presentation."
     }
   ],
   "notes": [
