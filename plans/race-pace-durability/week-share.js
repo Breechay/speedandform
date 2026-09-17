@@ -1,6 +1,5 @@
 import { resolvePlanAccess } from '/private/plan-access.js';
 
-const FREE_THROUGH = 4;
 const range = document.getElementById('range');
 const shareButtons = ['share', 'shareMobile'].map(id => document.getElementById(id)).filter(Boolean);
 
@@ -33,10 +32,12 @@ function waitForRange(previous = '') {
 async function openRequestedWeek() {
   const target = requestedWeek();
   if (!target) return;
-  const access = await resolvePlanAccess().catch(() => null);
-  if (target > FREE_THROUGH && !access?.entitled) return;
-
+  // Resolve identity first so the gate knows whether it is opening authored
+  // content or the intentionally locked public placeholder. The week parameter
+  // itself never grants access.
+  await resolvePlanAccess().catch(() => null);
   await waitForRange();
+
   for (let attempts = 0; attempts < 16; attempts += 1) {
     const visible = visibleWeeks();
     if (!visible || (target >= visible.first && target <= visible.last)) return;
