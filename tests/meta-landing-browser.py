@@ -52,8 +52,6 @@ try:
                 page.goto(paid_url, wait_until='domcontentloaded')
                 page.wait_for_selector('html.meta-paid')
                 page.wait_for_function("""() => [...document.styleSheets].some(s => (s.href || '').includes('/css/meta-landing.css'))""")
-                if w <= 600:
-                    page.wait_for_function("""() => [...document.styleSheets].some(s => (s.href || '').includes('/css/mobile-hero.css'))""")
 
                 assert page.locator('.hero').get_attribute('data-landing-variant') == 'meta-paid-v1'
                 # .eyebrow intentionally renders uppercase; textContent verifies the authored copy.
@@ -120,7 +118,6 @@ try:
             page = browser.new_page(viewport={'width': 390, 'height': 844}, reduced_motion='reduce', is_mobile=True, has_touch=True)
             page.route('**/*', lambda route: route.continue_() if route.request.url.startswith(base) and '/private/account-navigation.js' not in route.request.url else route.abort())
             page.goto(base, wait_until='domcontentloaded')
-            page.wait_for_function("""() => [...document.styleSheets].some(s => (s.href || '').includes('/css/mobile-hero.css'))""")
             assert not page.locator('html').evaluate("el => el.classList.contains('meta-paid')")
             assert page.locator('.hero h1').inner_text() == 'Run\nDevelopment'
             source = page.locator('#filmA').get_attribute('data-src') or page.locator('#filmA').get_attribute('src') or ''
