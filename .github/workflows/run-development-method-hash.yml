@@ -1,4 +1,4 @@
-name: Compute Run Development method receipt
+name: Verify Run Development method release state
 on:
   push:
     branches: [work/run-development-method-20260917]
@@ -6,19 +6,21 @@ on:
 permissions:
   contents: read
 jobs:
-  hash:
+  verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Print exact release hashes
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify source, share and release contracts
         run: |
-          node - <<'NODE'
-          const fs=require('node:fs'),crypto=require('node:crypto');
-          const sha=x=>crypto.createHash('sha256').update(x).digest('hex');
-          for(const file of ['index.html','the-method.html','running-terms.html','css/method.css']){
-            const text=fs.readFileSync(file,'utf8');
-            console.log('FILE='+file);
-            console.log('SOURCE_SHA256='+sha(text));
-            if(file.endsWith('.html')) console.log('BODY_SHA256='+sha(text.slice(text.toLowerCase().indexOf('</head>'))));
-          }
-          NODE
+          node tests/share-metadata.cjs
+          node tests/homepage-metadata.cjs
+          node tests/homepage-release.cjs
+          node tests/run-development-method.cjs
+          node tests/coaching-measurement.cjs
+          node tests/cream-reading.cjs
+          node labs/track/track.test.cjs
+          node tests/thursday-schedule.cjs
+          git diff --exit-code
