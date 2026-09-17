@@ -11,7 +11,7 @@ report={'engine':ENGINE,'checks':[],'errors':[]}
 def check(name,value):
     assert value,name
     report['checks'].append(name)
-HARNESS='''<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/private/graphite.css"><link rel="stylesheet" href="/athlete/workspace.css"></head><body><main id="app"></main><script type="module">
+HARNESS='''<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/private/graphite.css"><link rel="stylesheet" href="/athlete/workspace.css"></head><body><main id="app"></main><script type="module">
 import {renderAthleteWorkspace} from '/athlete/workspace.js';
 const p=new URLSearchParams(location.search),kind=p.get('kind')||'running',view=p.get('view')||'today';
 const week={id:'w1',week_number:1,starts_on:'2026-09-14',ends_on:'2026-09-20',intent:'Build the week without forcing it.'};
@@ -30,7 +30,7 @@ try:
           page=ctx.new_page(); page.on('pageerror',lambda e:report['errors'].append(str(e)))
           def route(r):
             path=urlsplit(r.request.url).path
-            if path=='/__workspace': return r.fulfill(status=200,content_type='text/html',body=HARNESS)
+            if path=='/__workspace': return r.fulfill(status=200,headers={'Content-Type':'text/html; charset=utf-8'},body=HARNESS)
             if r.request.url.startswith(BASE+'/'):
               file=(ROOT/path.lstrip('/')).resolve()
               if file.is_relative_to(ROOT) and file.is_file(): return r.fulfill(path=str(file))
