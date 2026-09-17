@@ -1,0 +1,31 @@
+{
+  "version": "20260917-later-excluded-site",
+  "pages": [
+    {
+      "file": "athlete/index.html",
+      "sourceRevision": "ed13379d57f7bf5e73512454ffcaa6fa0e648636",
+      "pullRequest": 141,
+      "afterSha256": "de71ea9ea2d7854e7dd04ec70b6019e4d3ac4d5fdbc5b139d9d60ccec241d680",
+      "reason": "Pass 3 replaced the duplicate athlete filing/editor shell with the reviewed read-only Today / Plan / History / Account workspace."
+    },
+    {
+      "file": "races/key-biscayne-2026.html",
+      "sourceRevision": "06b487cd7776813fbf139b2665028bdcfa086595",
+      "pullRequest": 123,
+      "afterSha256": "22d633ff4cd3193fa63d617e1d3ed9625cfdd9b1e6c35beaad209110b2675c5d",
+      "reason": "The published athlete-facing Library/discovery release added the reviewed canonical/discovery treatment while preserving the race record."
+    },
+    {
+      "file": "taper-key-biscayne.html",
+      "sourceRevision": "06b487cd7776813fbf139b2665028bdcfa086595",
+      "pullRequest": 123,
+      "afterSha256": "babc4f1e2e4eb13a234d3e8f388a6af250f40cf4e2a263ba33d53be92319e594",
+      "reason": "The published athlete-facing Library/discovery release added the reviewed canonical/discovery treatment while preserving the taper record."
+    }
+  ],
+  "notes": [
+    "These pages are excluded from the original September 16 share-metadata transform and remain excluded.",
+    "This receipt only records exact later approved source bytes so the historical share verifier does not mistake intentional releases for unreviewed drift.",
+    "No page content is modified by this receipt."
+  ]
+}

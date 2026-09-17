@@ -1,0 +1,18 @@
+{
+  "version": "20260917-home-doctrine",
+  "file": "index.html",
+  "sourceCommit": "adec1c431081f49e6b7a7374691037b60022bb07",
+  "sourceSha256": "ebe5c93fd12f6509564202953bd0f2f50ea98c3cbd4a67f3dd7e1bdbeae7141d",
+  "bodySha256": "1145dc4ee6d72fceb31cf18107986fa265f04c6e3bb88d161d8394e0dcdf50ed",
+  "preview": {
+    "title": "Run better. | FORM",
+    "description": "Run Development with Brice. Individual running coaching in Miami + remote. Eight weeks to begin."
+  },
+  "doctrine": "docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md",
+  "notes": [
+    "This is a later approved homepage snapshot. It does not mutate the immutable September 16 share-preview receipt.",
+    "The homepage sequence is hero → I develop runners → coaching/practice → training → offer → inquiry.",
+    "Simon evidence remains valid elsewhere but is not forced into the second homepage position.",
+    "The source receipt records merged main state only. Production hosting is verified separately."
+  ]
+}

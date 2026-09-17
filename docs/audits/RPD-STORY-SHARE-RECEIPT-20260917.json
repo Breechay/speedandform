@@ -1,0 +1,39 @@
+{
+  "version": "20260917-rpd-story-share",
+  "sourceRevision": "352909c841ce75dca306d08a300b31ccee9caf78",
+  "pullRequest": 137,
+  "pages": [
+    {
+      "file": "es/plans/race-pace-durability/index.html",
+      "sourceSha256": "00310bb7f7517c4b6ee09205c9565a160944f688f7f28259e3913fa51743901b",
+      "bodySha256": "840ea460932d31a13973c459cef11608ec2285eb9678c738eee9a3b1585f8068",
+      "preview": {
+        "title": "Race Pace Durability · 15 semanas para sostener el ritmo",
+        "description": "Empieza con esfuerzos repetibles a ritmo de carrera, alarga el trabajo continuo y luego practica encontrar ese ritmo al final de tiradas largas. Semanas 1–4 gratis. Plan completo: $79 una sola vez."
+      }
+    },
+    {
+      "file": "plans/race-pace-durability/index.html",
+      "sourceSha256": "8646cf6450afa8b71c7ba24df41b536277c63892e7612606eae30b27b0a89536",
+      "bodySha256": "4b2925737d179db484df011ea8d05113d6648aa62e55813483189b0965c17aaf",
+      "preview": {
+        "title": "Race Pace Durability: 15-Week Half Marathon Plan | FORM",
+        "description": "A 15-week half-marathon plan that progresses from repeatable race-pace work to longer continuous running and late long-run work. Try Weeks 1–4 free. Full plan: one-time payment of $79."
+      }
+    },
+    {
+      "file": "plans/race-pace-durability/support/index.html",
+      "sourceSha256": "5eb8a76cff1b7bdab89ccad01476e9777f8918a0017354d8913078817a1ba6b5",
+      "bodySha256": "289219fd3e80fadf1810c705b38be381541e35aa3ace874c2ad2f23016204b3a",
+      "preview": {
+        "title": "Race Pace Durability · 15 Weeks to Carry the Pace",
+        "description": "Start with repeatable efforts at race pace, extend the uninterrupted work, then practice finding the pace late in long runs. Weeks 1–4 are free. Full plan: $79 one time."
+      }
+    }
+  ],
+  "notes": [
+    "These pages were intentionally rewritten in PR #137 and verified there in Chromium and WebKit.",
+    "This receipt only registers the later exact source and share-preview state; it does not modify product copy, price, checkout, entitlement or assignments.",
+    "The September 16 share-preview manifest remains an immutable historical receipt."
+  ]
+}
