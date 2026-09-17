@@ -1,0 +1,25 @@
+name: Contact and Field Notes review
+on:
+  push:
+    branches: [work/contact-notes-pass6]
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Export current source delta for local review
+        run: |
+          mkdir -p /tmp/contact-notes-source
+          git bundle create /tmp/contact-notes-source/source.bundle HEAD ^6827f20cd2b416578abca14cb08561dbb3423dc4
+          git rev-parse HEAD > /tmp/contact-notes-source/commit.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: contact-notes-source
+          path: /tmp/contact-notes-source/
+          retention-days: 2
