@@ -78,7 +78,9 @@ try:
                 # The paid treatment must not rewrite the coaching doctrine below the fold.
                 assert page.locator('#simon').count() == 0
                 assert page.locator('#practice h2').inner_text() == 'I develop\nrunners.'
-                assert page.locator('#practice .practice-manifesto').inner_text() == 'Reveal what wants to be set free.'
+                assert page.locator('.wind-line').inner_text() == 'Like a kite upon the wind.'
+                assert page.locator('.coach-axiom strong').inner_text() == 'Form is multiplied by every step.'
+                assert page.locator('.method-close p').inner_text() == 'Reveal what wants to be set free.'
 
                 bounds = page.evaluate("""() => {
                   const box = s => {const r=document.querySelector(s).getBoundingClientRect();return {x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height};};
