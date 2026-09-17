@@ -27,17 +27,32 @@ with sync_playwright() as p:
             reassurance = page.locator('.hero-reassurance').inner_text()
             print('Reassurance',ENGINE,w,repr(reassurance),flush=True)
             # Exact HTML is asserted by coaching-copy.cjs. Browsers may expose
-            # line breaks differently; verify both visible sentences and bounds.
+            # line breaks differently; verify both sentences remain authored.
             assert 'Your first Miami track assessment is complimentary.' in reassurance, repr(reassurance)
             assert 'Start with a conversation.' in reassurance, repr(reassurance)
-            assert page.locator('.hero-reassurance').is_visible()
             assert page.locator('.hero-actions .begin').get_attribute('href') == '#begin'
+
+            if w <= 600:
+                # Mobile first fold is deliberately only title, proposition,
+                # fee and one action. Explanatory copy remains in the DOM and
+                # appears again below the fold.
+                assert not page.locator('.hero-kicker').is_visible()
+                assert not page.locator('.hero-reassurance').is_visible()
+                assert not page.locator('.offer small').is_visible()
+                assert page.locator('.hero-benefit').is_visible()
+                assert page.locator('.offer strong').is_visible()
+                assert page.evaluate("getComputedStyle(document.querySelector('.hero-sub>p')).fontSize === '0px'")
+            else:
+                assert page.locator('.hero-kicker').is_visible()
+                assert page.locator('.hero-reassurance').is_visible()
+                assert page.locator('.offer small').is_visible()
+
             assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
             bounds = page.evaluate('''() => {
               const box = s => {const r=document.querySelector(s).getBoundingClientRect();return {x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height};};
-              return {hero:box('.hero'),button:box('.hero-actions .begin'),note:box('.hero-reassurance')};
+              return {hero:box('.hero'),button:box('.hero-actions .begin'),benefit:box('.hero-benefit'),fee:box('.offer strong')};
             }''')
-            for key in ('button','note'):
+            for key in ('button','benefit','fee'):
                 assert bounds[key]['x'] >= 0 and bounds[key]['right'] <= w + 1, bounds
                 assert bounds[key]['bottom'] <= bounds['hero']['bottom'], bounds
             assert bounds['button']['height'] >= 44
@@ -67,7 +82,7 @@ with sync_playwright() as p:
             ]
             assert not unexpected_errors, unexpected_errors
             report.append({'width':w,'height':h,'pass':True,'bounds':bounds,'reassurance':reassurance,'cta_in_initial_viewport':bounds['button']['bottom']<=h})
-            print('PASS', ENGINE, w, 'copy, CTA, inquiry reassurance, remote selector and no overflow', flush=True)
+            print('PASS', ENGINE, w, 'mobile density, CTA, inquiry reassurance, remote selector and no overflow', flush=True)
             page.close()
     finally:
         browser.close()
