@@ -1,0 +1,25 @@
+name: One-off homepage simplification
+on:
+  push:
+    branches: [work/mobile-hero-cut-20260917]
+    paths: ['scripts/oneoff-homepage-simplify-20260917.cjs','.github/workflows/oneoff-homepage-simplify-20260917.yml']
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/mobile-hero-cut-20260917
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/oneoff-homepage-simplify-20260917.cjs
+      - name: Commit simplified homepage
+        run: |
+          git config user.name "Breechay"
+          git config user.email "briceikouebe@gmail.com"
+          git add index.html tests/coaching-copy.cjs tests/coaching-copy-browser.py tests/meta-landing-browser.py tests/homepage-browser.py
+          git commit -m "refine: simplify homepage decisions" || exit 0
+          git push origin HEAD:work/mobile-hero-cut-20260917
