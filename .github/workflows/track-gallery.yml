@@ -20,45 +20,35 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install bounded media and browser tooling
+      - name: Install review runtime
         run: |
           python -m pip install Pillow==11.3.0 playwright==1.58.0
           python -m playwright install --with-deps chromium
-          sudo apt-get install -y ffmpeg
-      - name: Apply reviewed gallery corrections
+      - name: Correct history focus and capture decoded media
         run: |
           test "$GITHUB_REF_NAME" = work/track-gallery-pass3
           python - <<'PY'
           from pathlib import Path
-          import json
           p=Path('js/track-gallery.js');s=p.read_text()
-          s=s.replace("dialog.addEventListener('keydown',event=>{", """dialog.addEventListener('keydown',event=>{
-            if(event.key==='Tab'){
-              const focusable=[...dialog.querySelectorAll('button:not(:disabled),a[href],input,video[controls]')].filter(n=>n.getClientRects().length>0);
-              const first=focusable[0],last=focusable[focusable.length-1];
-              if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();return;}
-              if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();return;}
-            }""")
-          p.write_text(s)
-          p=Path('css/track-gallery.css');s=p.read_text()
-          s=s.replace('.viewer-stage img,.viewer-stage video{width:100%;height:100%;object-fit:contain}', '.viewer-stage img,.viewer-stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:4px 16px}')
-          s=s.replace('@media(max-width:767px){', '.track-frame[data-media="video"]{grid-column:1/-1;display:grid;grid-template-columns:1fr 2fr;gap:24px}.track-frame[data-media="video"] figcaption{display:flex;flex-direction:column;justify-content:center;align-items:start;gap:18px;padding:20px}.track-frame[data-media="video"] .track-frame-title{display:block;font:400 40px/1.15 var(--serif);letter-spacing:-.035em;margin:8px 0}.track-frame[data-media="video"] .track-video-note{font-size:15px;margin-top:12px}\n@media(max-width:767px){')
-          s=s.replace('.track-frame[data-shape=wide]{grid-column:span 2}.track-frame-link img{height:250px}', '.track-frame{grid-column:span 2}.track-frame[data-media="video"]{display:block}.track-frame[data-media="video"] figcaption{padding:14px 0}.track-frame[data-media="video"] .track-frame-title{font-size:30px}.track-frame[data-shape=wide]{grid-column:span 2}.track-frame-link img{height:auto;max-height:600px;object-fit:contain}')
-          s=s.replace('.track-frame-link img{height:220px}', '.track-frame-link img{height:auto}')
-          p.write_text(s)
-          p=Path('scripts/build-track-gallery.cjs');s=p.read_text().replace('data-shape="${wide?', 'data-media="${m.type}" data-shape="${wide?');p.write_text(s)
-          p=Path('track/albums.json');c=json.loads(p.read_text());a=c['albums'][0]
-          a['description']='A few moments from the track and the road.'
-          a['note']='An earlier selection, collected across sessions.'
-          a['downloadNote']='Downloads are web editions, not camera originals.'
-          p.write_text(json.dumps(c,indent=2,ensure_ascii=False)+'\n')
+          if 'focusReturn' not in s:
+            s=s.replace('let index=-1, invoking=null,', 'let focusReturn=null;\n  let index=-1, invoking=null,')
+            s=s.replace('const restore=invoking;invoking=null;if(restore?.isConnected)restore.focus({preventScroll:true});', 'if(invoking)focusReturn=invoking;invoking=null;if(focusReturn?.isConnected)focusReturn.focus({preventScroll:true});')
+            s=s.replace('event.preventDefault();invoking=link;', 'event.preventDefault();focusReturn=null;invoking=link;')
+            s=s.replace("window.addEventListener('popstate',()=>{ownsHistory=Boolean(history.state?.trackGallery);sync();});", "window.addEventListener('popstate',()=>{ownsHistory=Boolean(history.state?.trackGallery);sync();if(!dialog.open)requestAnimationFrame(()=>{if(focusReturn?.isConnected)focusReturn.focus({preventScroll:true});focusReturn=null;});});")
+            p.write_text(s)
           p=Path('tests/track-gallery-browser.py');s=p.read_text()
-          s=s.replace("page.wait_for_function(\"document.querySelector('.viewer-stage img')?.naturalWidth>0\")", "page.wait_for_function(\"document.querySelector('.viewer-stage img')?.naturalWidth>0\");check(f'Viewer photograph has painted area at {width}',page.locator('.viewer-stage img').evaluate('(i)=>i.getBoundingClientRect().height>100&&i.getBoundingClientRect().width>100'));check(f'Viewer controls remain in viewport at {width}',page.locator('.viewer-bottom').evaluate('(e)=>e.getBoundingClientRect().bottom<=innerHeight+1'))")
-          p.write_text(s)
+          if 'decode()' not in s:
+            s=s.replace("page.screenshot(path=str(OUT/f'viewer-{width}.png'))", "page.locator('.viewer-stage img').evaluate('(i)=>i.decode()');page.evaluate('()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))');page.screenshot(path=str(OUT/f'viewer-{width}.png'))")
+            s=s.replace("check('Focus returns to initiating image',", "page.wait_for_function(\"document.activeElement.dataset.frame==='beside-the-track'\");check('Focus returns to initiating image',")
+            p.write_text(s)
           PY
-          python scripts/prepare-track-media.py
-          node scripts/build-track-gallery.cjs
-          node scripts/build-discovery.cjs
+          git add -- js/track-gallery.js tests/track-gallery-browser.py
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'fix: preserve initiating frame focus across closing history navigation'
+            git push origin HEAD:work/track-gallery-pass3
+          fi
       - name: Source and existing critical-flow checks
         run: |
           set -o pipefail
@@ -74,16 +64,6 @@ jobs:
             node labs/track/track.test.cjs
             node tests/thursday-schedule.cjs
           } | tee /tmp/gallery-receipt/source-tests.txt
-      - name: Save validated corrections on the isolated branch only
-        run: |
-          test "$GITHUB_REF_NAME" = work/track-gallery-pass3
-          git add -- track media/track scripts/build-track-gallery.cjs js/track-gallery.js css/track-gallery.css library.html thursday.html search-index.json sitemap.xml docs/audits/DISCOVERY-MANIFEST-20260916.json tests/track-gallery-browser.py
-          if ! git diff --cached --quiet; then
-            git config user.name 'github-actions[bot]'
-            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git commit -m 'fix: visible gallery media, keyboard containment and mobile album flow'
-            git push origin HEAD:work/track-gallery-pass3
-          fi
           node scripts/build-track-gallery.cjs
           node scripts/build-discovery.cjs
           git diff --exit-code
