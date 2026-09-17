@@ -65,19 +65,19 @@ lacks(share, 'resolvePlanAccess');
 lacks(share, 'rpd_purchase_session');
 lacks(share, 'localStorage');
 lacks(share, 'session_id');
-
-// The renderer, not a post-load click loop, owns public week presentation.
-has(planJs, "new URLSearchParams(location.search).get('week')");
-has(planJs, 'const sharedWeek');
-has(planJs, 'left = clamp(sharedWeek); paint();');
-has(planJs, 'window.formRpdViewWeek');
-lacks(planJs, 'live = sharedWeek');
 lacks(share, 'button.click()');
 lacks(share, 'waitForRange');
+lacks(share, 'openRequestedWeek');
 
-// Future shared weeks may open a redacted placeholder, never prescription data.
+// The renderer stays date-derived. The access gate is the one owner that opens
+// a shared week after identity/entitlement has resolved.
+lacks(planJs, "new URLSearchParams(location.search).get('week')");
+lacks(planJs, 'window.formRpdViewWeek');
 has(gate, 'SHARED_WEEK');
 has(gate, 'resolvePlanAccess');
+has(gate, 'function openSharedWeek()');
+has(gate, 'openSharedWeek();');
+has(gate, 'baseClick(delta > 0 ? 1 : -1, Math.abs(delta));');
 has(gate, 'rpd-mobile-lock');
 has(gate, 'Full plan · $79');
 lacks(gate, 'SYNTHETIC');
