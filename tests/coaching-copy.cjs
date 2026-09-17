@@ -20,6 +20,9 @@ assert.match(html, /<dt>Adjust<\/dt><dd>As you develop\.<\/dd>/);
 assert.match(html, /assets\/home\/practice\/coaching-track\.webp/);
 assert.doesNotMatch(html, /id="analysisVideo"/);
 assert.match(html, /data-coaching="remote">Discuss remote coaching/);
+assert.doesNotMatch(html, /We change what matters, practice it/);
+assert.doesNotMatch(html, /Running coaching with Brice\.<br>Miami \+ Remote/);
+assert.match(html, /<p class="training-caption">One session belongs to a week\.<\/p>/);
 // Release-scoped proof: every inline script, media URL, metadata field, field
 // option and mailto fallback field is preserved. Only one final LF may differ.
 // A local display/line-height override preserves the new reassurance below 360px.
