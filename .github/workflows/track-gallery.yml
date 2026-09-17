@@ -1,0 +1,23 @@
+name: Track gallery review
+on:
+  push:
+    branches: [work/track-gallery-pass3]
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Package source for bounded gallery work
+        run: |
+          mkdir -p /tmp/gallery-source
+          tar --exclude=.git --exclude=node_modules -czf /tmp/gallery-source/source.tar.gz .
+          git rev-parse HEAD > /tmp/gallery-source/commit.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gallery-source
+          path: /tmp/gallery-source/
+          retention-days: 2
