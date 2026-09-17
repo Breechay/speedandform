@@ -29,18 +29,6 @@
   var film = document.getElementById('filmA');
   if (film) film.setAttribute('data-src', '/media/practice.mp4?v=rd16');
 
-  var kicker = hero.querySelector('.hero-kicker');
-  if (kicker) kicker.textContent = 'Run Development · Brice · Miami';
-  var heading = hero.querySelector('h1');
-  if (heading) heading.innerHTML = 'Run better.<br>Get faster.<br>Run farther.';
-  var intro = hero.querySelector('.hero-sub > p');
-  if (intro) intro.textContent = 'Individual running coaching built around how you run now and where you want to go.';
-  var offerLabel = hero.querySelector('.offer small');
-  if (offerLabel) offerLabel.textContent = 'Individual coaching';
-  var begin = hero.querySelector('.begin');
-  if (begin) begin.innerHTML = 'Tell me about your running <span aria-hidden="true">→</span>';
-  var reassurance = hero.querySelector('.hero-reassurance');
-  if (reassurance) reassurance.innerHTML = 'First Miami track assessment complimentary.<br>An inquiry only. No payment or booking yet.';
 })();
 
 /* Progressive, select-only combobox. The original select remains the inquiry's

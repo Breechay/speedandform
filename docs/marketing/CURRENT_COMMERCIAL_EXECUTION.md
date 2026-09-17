@@ -2,12 +2,15 @@
 
 **Updated:** September 16, 2026  
 **Owner:** Brice / Speed & Form  
+
+> **September 17 coaching doctrine:** `docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md` is now required reading for Run Development acquisition and homepage work. Keep the offer facts and measurement contracts here; use the manifesto for coaching philosophy, voice and page sequencing. The Miami campaign landing page was not static through the full test, so later analysis must identify the landing revision when comparing session quality.
+
 **Instruction:** if Brice says only `continue`, take the first unblocked item below, execute it, record evidence, then keep moving. Do not wait on a human-only blocker if another useful item is available.
 
 ## Operating law
 
 1. **RPD is live and is the active commercial-product test.** Do not redesign from the first handful of visits.
-2. **Miami Run Development is the live coaching control.** Do not rewrite a campaign that is attracting traffic and has produced a genuine inquiry.
+2. **Miami Run Development is the live coaching control.** Keep campaign budget/audience changes evidence-led. September 17 intentionally compresses the landing experience after direct mobile review and weak post-click engagement; do not treat the landing page as unchanged across the entire test.
 3. **Think deeply backstage. Speak simply out front.** A fit runner may know very little coaching vocabulary.
 4. **Proof carries sophistication.** Real athletes, real sessions, verified outcomes.
 5. **Ad → landing → preview → checkout → access → email is one story.** Message match is required.
@@ -15,6 +18,7 @@
 7. **Email is part of the product.** Every outward email must follow the 9+/10 experience and deliverability standard.
 
 Read first:
+- `docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md`
 - `docs/marketing/ATHLETE_LANGUAGE_RULE.md`
 - `docs/marketing/RPD_OFFER_TRUTH_2026-09-15.md`
 - `docs/RACE_PACE_DURABILITY_CANONICAL_v1.md`
@@ -121,6 +125,11 @@ Do not add merely because it exists. Add it deliberately after Creative A establ
 ---
 
 # B. Miami Run Development — LIVE CONTROL
+
+## September 17 landing doctrine pass
+
+Source work on `work/mobile-hero-cut-20260917` deliberately reduces explanation density. The intended sequence is **hero → I develop runners → coaching/practice → training → offer → inquiry**. Simon remains valid evidence elsewhere but is no longer forced into position two on the homepage. The hero uses `Run Development` / `Run better.` / fee / one action. This is a source-state note only until production deployment is separately verified.
+
 
 Campaign: `FORM · Miami · Run · Test 01`
 

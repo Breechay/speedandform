@@ -1,5 +1,8 @@
 # FORM Acquisition Roadmap
 
+> **Run Development doctrine:** read `docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md` before generating coaching philosophy, identity copy or athlete-development language.
+
+
 **Updated:** September 16, 2026  
 **Status:** active operating note for the current Bridge Season
 
@@ -11,7 +14,7 @@ A major field realization now changes the acquisition model without replacing Ru
 
 Repeated trusted referrals show two distinct jobs:
 
-1. **Run Development** — `Develop your running.` The athlete wants FORM to own an 8-week development process: assessment, plan, coaching, feedback and adjustment. Current public price: **$1,200 / 8 weeks**.
+1. **Run Development** — `Develop your running.` FORM looks for ease, chooses the change that matters most, layers the work, and uses repeated exposure until better movement and habits belong to the athlete. Current public price: **$1,200 / 8 weeks**.
 2. **FORM Analysis — working offer** — `Understand your running.` The athlete may already have a plan/coach or may have one specific running concern. FORM observes, identifies the few priorities worth changing, gives usable cues/practice and retests where useful. Exact name, one-vs-two-contact scope, artifact and price are **OPEN**.
 
 These are different jobs, not a cheap and expensive version of the same package. Do not publish a menu of session counts.
@@ -34,7 +37,7 @@ The current complimentary first Run Development track assessment must be disting
 
 ### Three primary creative hypotheses
 
-1. **Recognition / Run Development:** `Run better. Get faster. Run farther.` Real coaching/running footage; ongoing development is the destination.
+1. **Recognition / Run Development:** `Run Development` / `Run better.` Real coaching/running footage. Speed, distance and endurance can appear through the athlete need, footage and later proof rather than being stacked into the opening line.
 2. **Coaching value / FORM Analysis:** `Not everything needs fixing. Some things just cost you more.` Real runner + observation + one authentic priority/cue + practice/retest; selective analysis overlay only when it clarifies the coach's decision.
 3. **Referral native:** content designed to make a trusted connector think `I know who needs this` without `share this` engagement bait or fake text-message theater.
 
@@ -121,7 +124,7 @@ Commercial and athlete-facing language should therefore be deliberately simple:
 - proof next;
 - method and coaching theory later.
 
-Generic language is acceptable when it is true and instantly understood. A line such as `Running coaching in Miami`, `Can you keep the pace?`, or `Run faster` can be better than an original line that needs decoding.
+Generic language is acceptable for utility when it is true and instantly understood. Identity language must come from the actual practice in `docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md`; do not let plain utility copy become a generic definition of FORM.
 
 The coach owns the complexity. The athlete should be able to execute without becoming a coach.
 
@@ -260,4 +263,4 @@ Full exploration brief: `docs/marketing/UNBOUNCE_SURFACE_EXPLORATION_2026-09-15.
 
 ---
 
-**Operating principle:** Acquire enough excellent athletes to make the system legible. Give each athlete the depth of intervention their actual problem requires. **Not everything needs fixing; intervene where something is costing the runner enough to matter.** Do not acquire so many that the practice becomes worse.
+**Operating principle:** Acquire enough excellent athletes to make the system legible without making the practice worse. **Reveal what wants to be set free:** notice what is fighting the runner, change what matters most, repeat the better pattern, and let the athlete own it.

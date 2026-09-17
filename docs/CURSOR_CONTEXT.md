@@ -1,5 +1,8 @@
 # Cursor / agent context — speedandform (web)
 
+> **Run Development doctrine:** read `docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md` before generating coaching philosophy, identity copy or athlete-development language.
+
+
 **Purpose:** Thin orientation for the **Netlify / static site** and any **SPA sub-apps** (`/form`, `/forge`, etc.) in this repo.  
 **Doctrine (canonical, lives in iOS repo):** `FORM-iOS/docs/form_field_doctrine.md`, `FORM-iOS/docs/form_web_spec_v2.md`  
 **FORM/Forge architecture:** `FORM-iOS/docs/FORM_FORGE_ARCHITECTURE.md`  

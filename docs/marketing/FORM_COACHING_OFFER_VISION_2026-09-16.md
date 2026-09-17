@@ -4,6 +4,9 @@
 **Status:** active strategic direction; product details marked OPEN remain hypotheses until field-tested  
 **Applies to:** speedandform.com, Run Development, FORM Analysis, Instagram/Meta acquisition, referrals, assessments, future app/Console connections
 
+> **September 17 doctrine overlay:** read [`docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md`](../FORM_RUN_DEVELOPMENT_MANIFESTO.md). It is the newer authority for how Run Development is understood and described: ease, fluidity, selective high-impact change, layered cues, repeated exposure, internal state and athlete ownership. Product facts and evidence boundaries in this document remain valid; generic descriptions of coaching do not override the manifesto.
+
+
 ## The realization
 
 FORM has been treating the 8-week Run Development block as the primary public coaching door. Field evidence now shows a second, legitimate job that should not be forced into an 8-week relationship.
@@ -23,9 +26,9 @@ The two offers must be legible without competing with each other.
 
 ## What coaching is
 
-> **Coaching is an external pair of eyes that knows what to look for and how to build a game plan. The quality comes down to how individualized that approach is.**
+> **Look for ease. Change what matters most. Repeat it until it belongs to the runner.**
 
-This is the simple public explanation. The deeper operating model has four parts.
+Run Development is not defined by the number of workouts delivered. Brice watches for fluidity, rhythm and what is fighting the movement, chooses the highest-value change rather than correcting everything, layers cues, and uses repeated exposure until the athlete owns more of the running. The deeper operating model below explains how that judgment becomes a plan.
 
 ### 1. External eyes
 
@@ -105,15 +108,14 @@ Current public structure: **8 weeks · $1,200**.
 Best fit: a runner who wants FORM to take responsibility for the development process rather than only inspect one problem.
 
 The relationship can include:
-- initial observation/assessment;
-- individual running plan;
-- mostly easy running used to practice cues and build consistency;
-- appropriate threshold/speed work;
-- endurance/long-run development;
-- ongoing feedback and adjustment;
+- observation for ease, fluidity, rhythm and the highest-value limiter;
+- layered form cues and strength work when they materially change the runner;
+- frequent low-dose running, including ten-minute runs when that is the useful exposure;
+- appropriate threshold, speed and endurance work as the athlete is ready to express more;
+- athlete report, internal state and training response alongside the numbers;
 - race or capability goals where relevant.
 
-The point is not to hand over workouts. The point is to make the athlete a better runner.
+The point is not to hand over workouts. The point is to develop the runner until more of the running belongs to them.
 
 ## Why both offers can coexist
 
@@ -189,9 +191,10 @@ These are hypotheses to test, not cosmetic variants.
 
 **Spine:**
 
-> Run better.  
-> Get faster.  
-> Run farther.
+> Run Development  
+> Run better.
+
+Speed, distance and endurance can appear through the footage, athlete need and later proof. Do not stack every possible benefit into the opening line.
 
 Use real running and coaching footage. Controlled → sharper → sustained. Close on Run Development / individual running coaching / Miami / speedandform.com.
 
@@ -278,4 +281,4 @@ Do not force an Analysis client into Run Development to improve an upsell metric
 
 Any future agent changing the coaching funnel, homepage, Meta creative, intake, service pricing, gait/form analysis, coaching acquisition, coaching logic, athlete feedback or plan adjustment must read this document and the current creative brief first.
 
-This realization is ecosystem-level: **FORM is an external pair of eyes plus an individualized game plan. It uses data and feel together, intervenes selectively, and offers different legitimate depths of help. The product boundary follows the athlete's job, not the number of sessions.**
+This realization is ecosystem-level: **FORM develops the runner. Look for ease, identify what is fighting the movement, change what matters most, repeat the better pattern, and let the athlete own it. Different products can offer different depths of that judgment without reducing coaching to session count.**

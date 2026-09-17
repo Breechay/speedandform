@@ -21,33 +21,28 @@ with sync_playwright() as p:
             page.evaluate('Promise.all([...document.images].map(i=>i.decode().catch(()=>{})))')
             page.screenshot(path=str(OUT/f'hero-viewport-{w}.png'))
             assert page.locator('body').get_attribute('data-coaching-copy') == '20260917-coaching-clarity'
-            assert page.locator('.hero-benefit').inner_text() == 'Run better. Get faster. Run farther.'
-            assert 'I watch you run, build your plan, and coach you through it.' in page.locator('.hero-sub').inner_text()
-            assert 'Weekly track coaching in Miami, with adjustments as you develop.' in page.locator('.hero-sub').inner_text()
-            reassurance = page.locator('.hero-reassurance').inner_text()
-            print('Reassurance',ENGINE,w,repr(reassurance),flush=True)
-            # Exact HTML is asserted by coaching-copy.cjs. Browsers may expose
-            # line breaks differently; verify both visible sentences and bounds.
-            assert 'Your first Miami track assessment is complimentary.' in reassurance, repr(reassurance)
-            assert 'Start with a conversation.' in reassurance, repr(reassurance)
-            assert page.locator('.hero-reassurance').is_visible()
+            assert page.locator('.hero-benefit').inner_text() == 'Run better.'
             assert page.locator('.hero-actions .begin').get_attribute('href') == '#begin'
+            assert page.locator('.hero-benefit').is_visible()
+            assert page.locator('.offer strong').is_visible()
+            assert page.locator('.hero-kicker').count() == 0
+            assert page.locator('.hero-reassurance').count() == 0
+            assert page.locator('.offer small').count() == 0
+
             assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
             bounds = page.evaluate('''() => {
               const box = s => {const r=document.querySelector(s).getBoundingClientRect();return {x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height};};
-              return {hero:box('.hero'),button:box('.hero-actions .begin'),note:box('.hero-reassurance')};
+              return {hero:box('.hero'),button:box('.hero-actions .begin'),benefit:box('.hero-benefit'),fee:box('.offer strong')};
             }''')
-            for key in ('button','note'):
+            for key in ('button','benefit','fee'):
                 assert bounds[key]['x'] >= 0 and bounds[key]['right'] <= w + 1, bounds
                 assert bounds[key]['bottom'] <= bounds['hero']['bottom'], bounds
             assert bounds['button']['height'] >= 44
             page.locator('.hero').screenshot(path=str(OUT/f'hero-full-{w}.png'))
             page.locator('.hero-actions .begin').click()
             page.wait_for_timeout(300)
-            assert page.locator('#inquiry-reassurance').is_visible()
-            assert page.locator('#inquiry-reassurance').inner_text() == 'An inquiry only. No payment or booking yet.'
+            assert page.locator('#inquiry-reassurance').count() == 0
             assert page.locator('#p-ask .q.on[data-q="0"]').is_visible()
-            assert page.evaluate('''() => !!(document.querySelector('#inquiry-reassurance').compareDocumentPosition(document.querySelector('.questionnaire')) & Node.DOCUMENT_POSITION_FOLLOWING)''')
             page.screenshot(path=str(OUT/f'intake-arrival-{w}.png'))
             assert 'Discuss remote coaching' in page.locator('[data-coaching="remote"]').inner_text()
             page.locator('[data-coaching="remote"]').click()
@@ -66,8 +61,8 @@ with sync_playwright() as p:
                 if not any(known in e for known in known_offline_module_errors)
             ]
             assert not unexpected_errors, unexpected_errors
-            report.append({'width':w,'height':h,'pass':True,'bounds':bounds,'reassurance':reassurance,'cta_in_initial_viewport':bounds['button']['bottom']<=h})
-            print('PASS', ENGINE, w, 'copy, CTA, inquiry reassurance, remote selector and no overflow', flush=True)
+            report.append({'width':w,'height':h,'pass':True,'bounds':bounds,'cta_in_initial_viewport':bounds['button']['bottom']<=h})
+            print('PASS', ENGINE, w, 'sparse copy, CTA, remote selector and no overflow', flush=True)
             page.close()
     finally:
         browser.close()

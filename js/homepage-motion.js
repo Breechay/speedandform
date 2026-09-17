@@ -74,12 +74,11 @@
     paint();
   }
   install('filmA', '.film-toggle', 'background video', true);
-  install('analysisVideo', '#analysisToggle', 'running review', false);
   document.addEventListener('visibilitychange', function () { entries.forEach(function (s) { s.sync(); }); });
   function preferenceChanged() {
     entries.forEach(function (s) { if (reduce.matches) s.manual = false; s.sync(); });
   }
   if (reduce.addEventListener) reduce.addEventListener('change', preferenceChanged);
-  else if (reduce.addListener) reduce.addListener(preferenceChanged);
+  else if (reduce.addListener) reduce.addListener('change', preferenceChanged);
   if (connection && connection.addEventListener) connection.addEventListener('change', preferenceChanged);
 }());

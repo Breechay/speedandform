@@ -54,18 +54,15 @@ try:
                 page.wait_for_function("""() => [...document.styleSheets].some(s => (s.href || '').includes('/css/meta-landing.css'))""")
 
                 assert page.locator('.hero').get_attribute('data-landing-variant') == 'meta-paid-v1'
-                # .eyebrow intentionally renders uppercase; textContent verifies the authored copy.
-                assert page.locator('.hero-kicker').text_content() == 'Run Development · Brice · Miami'
-                assert page.locator('.hero h1').inner_text() == 'Run better.\nGet faster.\nRun farther.'
-                assert page.locator('.hero-sub > p').inner_text() == 'Individual running coaching built around how you run now and where you want to go.'
+                assert page.locator('.hero h1').inner_text() == 'Run\nDevelopment'
+                assert page.locator('.hero-benefit').inner_text() == 'Run better.'
                 assert page.locator('.offer strong').inner_text() == '8 weeks · $1,200'
                 cta = ' '.join(page.locator('.hero-actions .begin').text_content().split())
-                assert cta == 'Tell me about your running →', repr(cta)
+                assert cta == 'Work with Brice →', repr(cta)
                 assert page.locator('.hero-actions .begin').get_attribute('href') == '#begin'
-                reassurance = page.locator('.hero-reassurance').inner_text()
-                assert 'First Miami track assessment complimentary.' in reassurance
-                assert 'An inquiry only. No payment or booking yet.' in reassurance
-                assert page.locator('.hero-reassurance').is_visible()
+                assert page.locator('.hero-kicker').count() == 0
+                assert page.locator('.hero-reassurance').count() == 0
+                assert page.locator('.offer small').count() == 0
 
                 media = page.evaluate("""() => {
                   const v = document.querySelector('#filmA');
@@ -78,17 +75,17 @@ try:
                 assert '/media/practice.mp4' in media['film'], media
                 assert '/media/practice.jpg' in media['poster'], media
 
-                # The paid treatment must not rewrite evidence below the fold.
-                assert page.locator('#simon h2').inner_text() == '1:26.'
-                assert page.locator('#simon .result-goal').inner_text() == 'The goal was sub-1:30.'
-                assert page.locator('#simon .result-metrics').inner_text().replace('\n', ' ').find('6:35') >= 0
+                # The paid treatment must not rewrite the coaching doctrine below the fold.
+                assert page.locator('#simon').count() == 0
+                assert page.locator('#practice h2').inner_text() == 'I develop\nrunners.'
+                assert page.locator('#practice .practice-manifesto').inner_text() == 'Reveal what wants to be set free.'
 
                 bounds = page.evaluate("""() => {
                   const box = s => {const r=document.querySelector(s).getBoundingClientRect();return {x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height};};
-                  return {hero:box('.hero'), button:box('.hero-actions .begin'), note:box('.hero-reassurance')};
+                  return {hero:box('.hero'), button:box('.hero-actions .begin'), heading:box('.hero h1'), fee:box('.offer strong')};
                 }""")
                 assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
-                for key in ('button', 'note'):
+                for key in ('button', 'heading', 'fee'):
                     assert bounds[key]['x'] >= 0 and bounds[key]['right'] <= w + 1, bounds
                     assert bounds[key]['bottom'] <= bounds['hero']['bottom'] + 1, bounds
                 assert bounds['button']['height'] >= 44
@@ -100,10 +97,11 @@ try:
                 unexpected = [e for e in errors if 'Failed to fetch dynamically imported module' not in e]
                 assert not unexpected, unexpected
                 report.append({'width': w, 'height': h, 'pass': True, 'bounds': bounds, 'media': media})
-                print('PASS', ENGINE, w, 'paid hero, continuation media, vetted proof and inquiry entry', flush=True)
+                print('PASS', ENGINE, w, 'sparse paid hero, continuation media, manifesto flow and inquiry entry', flush=True)
                 page.close()
 
-            # Direct/organic traffic must retain the existing homepage state.
+            # Direct/organic traffic must retain the existing homepage state,
+            # with the same sparse mobile density treatment.
             page = browser.new_page(viewport={'width': 390, 'height': 844}, reduced_motion='reduce', is_mobile=True, has_touch=True)
             page.route('**/*', lambda route: route.continue_() if route.request.url.startswith(base) and '/private/account-navigation.js' not in route.request.url else route.abort())
             page.goto(base, wait_until='domcontentloaded')
@@ -113,7 +111,10 @@ try:
             assert '/media/run-development.mp4' in source, source
             direct_cta = ' '.join(page.locator('.hero-actions .begin').text_content().split())
             assert direct_cta == 'Work with Brice →', repr(direct_cta)
-            print('PASS', ENGINE, 'direct traffic retains default homepage', flush=True)
+            assert not page.locator('.hero-kicker').is_visible()
+            assert not page.locator('.hero-reassurance').is_visible()
+            assert page.locator('.hero-benefit').is_visible()
+            print('PASS', ENGINE, 'direct traffic retains default homepage with sparse mobile first fold', flush=True)
             page.close()
         finally:
             browser.close()
