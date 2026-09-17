@@ -5,6 +5,9 @@ ROOT=Path(__file__).resolve().parents[1]
 def html_for_test(include_video=False):
     html=(ROOT/'index.html').read_text()
     html=re.sub(r'<link rel="stylesheet" href="(/[^\"]+)"[^>]*>',lambda m:'<style>'+ (ROOT/urlsplit(m[1]).path.lstrip('/')).read_text()+'</style>',html)
+    mobile=ROOT/'css/mobile-hero.css'
+    if mobile.is_file():
+        html=html.replace('</head>','<style>'+mobile.read_text()+'</style></head>')
     html=re.sub(r'<script[^>]*src="(/[^\"]+)"[^>]*></script>',lambda m:'<script>'+ (ROOT/urlsplit(m[1]).path.lstrip('/')).read_text()+'</script>',html)
     def inline(m):
         prefix,path=m[1],m[2]; fp=ROOT/urlsplit(path).path.lstrip('/')
