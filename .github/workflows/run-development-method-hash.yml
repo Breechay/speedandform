@@ -15,7 +15,7 @@ jobs:
           node - <<'NODE'
           const fs=require('node:fs'),crypto=require('node:crypto');
           const sha=x=>crypto.createHash('sha256').update(x).digest('hex');
-          for(const file of ['index.html','the-method.html','css/method.css']){
+          for(const file of ['index.html','the-method.html','running-terms.html','css/method.css']){
             const text=fs.readFileSync(file,'utf8');
             console.log('FILE='+file);
             console.log('SOURCE_SHA256='+sha(text));
