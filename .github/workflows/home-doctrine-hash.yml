@@ -1,4 +1,4 @@
-name: Verify homepage doctrine share receipt
+name: Inspect later RPD story share snapshots
 on:
   push:
     branches: [work/share-home-doctrine-receipt-20260917]
@@ -6,19 +6,22 @@ on:
 permissions:
   contents: read
 jobs:
-  verify:
+  inspect:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - name: Verify share and homepage contracts
+      - name: Print exact RPD story hashes and previews
         run: |
-          node tests/share-metadata.cjs
-          node tests/homepage-metadata.cjs
-          node tests/homepage-release.cjs
-          node tests/coaching-measurement.cjs
-          node tests/cream-reading.cjs
-          node labs/track/track.test.cjs
-          node tests/thursday-schedule.cjs
+          node - <<'NODE'
+          const fs=require('node:fs'),crypto=require('node:crypto');
+          const share=require('./scripts/share-metadata.cjs');
+          const sha=x=>crypto.createHash('sha256').update(x).digest('hex');
+          for(const file of ['es/plans/race-pace-durability/index.html','plans/race-pace-durability/index.html','plans/race-pace-durability/support/index.html']){
+            const html=fs.readFileSync(file,'utf8');
+            console.log('FILE='+file);
+            console.log('SOURCE_SHA256='+sha(html));
+            console.log('BODY_SHA256='+sha(html.slice(html.toLowerCase().indexOf('</head>'))));
+            console.log('TITLE='+share.meta(html,'og:title'));
+            console.log('DESCRIPTION='+share.meta(html,'og:description'));
+          }
+          NODE
