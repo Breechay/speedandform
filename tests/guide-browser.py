@@ -41,10 +41,11 @@ try:
     if width in [390,1440]:page.screenshot(path=str(OUT/f'{route}-{width}.png'),full_page=True)
   for route in ROUTES:
    page.set_viewport_size({'width':390,'height':844});page.goto(BASE+'/'+route);page.keyboard.press('Tab');check(route+': skip link first',page.evaluate("document.activeElement.className==='guide-skip'"));page.keyboard.press('Enter');check(route+': skip reaches main',page.evaluate("document.activeElement.id==='main'"))
-   page.locator('.guide-ref').first.click();check(route+': citation opens source disclosure',page.locator('#sources details').evaluate('(e)=>e.open'));check(route+': source fragment reached',urlsplit(page.url).fragment.startswith('source-'))
+   page.locator('.guide-ref:visible').first.click();page.wait_for_function("document.querySelector('#sources details').open");check(route+': citation opens source disclosure',page.locator('#sources details').evaluate('(e)=>e.open'));check(route+': source fragment reached',urlsplit(page.url).fragment.startswith('source-'))
    for width in [390,1440]:
     page.set_viewport_size({'width':width,'height':960});page.goto(BASE+'/'+route);page.evaluate("document.body.style.zoom='2'");check(f'{route}: 200 percent at {width}',page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
-  page.set_viewport_size({'width':390,'height':844});page.goto(BASE+'/running-form-errors#hip-collapse');check('Old form fragment opens the right disclosure',page.locator('#hip-collapse').evaluate('(d)=>d.open'))
+  page.set_viewport_size({'width':390,'height':844});page.goto(BASE+'/running-form-errors#hip-collapse');page.wait_for_function("document.querySelector('#hip-collapse').open");check('Old form fragment opens the right disclosure',page.locator('#hip-collapse').evaluate('(d)=>d.open'))
+  page.locator('#overstriding summary').click();page.locator('#overstriding .guide-ref').click();page.wait_for_function("document.querySelector('#sources details').open");check('A citation inside an opened observation reaches its source',urlsplit(page.url).fragment=='source-1')
   # Real browser Web Audio startup, input validation and cleanup. No microphone or device access.
   page.locator('#cadence-practice summary').click();page.locator('#metro-start').click();check('Blank cadence is rejected',page.locator('#metro-bpm').get_attribute('aria-invalid')=='true')
   page.locator('#metro-bpm').fill('99');page.locator('#metro-start').click();check('Out-of-range cadence is rejected',page.locator('#metro-status').inner_text().startswith('Enter a whole'))
@@ -54,7 +55,7 @@ try:
   page.locator('#cadence-practice summary').click();page.locator('#metro-start').click();page.wait_for_function("document.querySelector('#metro-status').textContent.startsWith('Playing')");page.locator('#metro-bpm').fill('172');check('Changing cadence stops the previous rhythm',page.locator('#metro-stop').is_disabled())
   page.locator('#metro-start').click();page.wait_for_function("document.querySelector('#metro-status').textContent.startsWith('Playing')");page.evaluate("Object.defineProperty(document,'hidden',{configurable:true,value:true});document.dispatchEvent(new Event('visibilitychange'))");check('Hidden tab stops practice',page.locator('#metro-stop').is_disabled())
   page.goto(BASE+'/running-form-errors');page.evaluate("Object.defineProperty(window,'AudioContext',{value:undefined});Object.defineProperty(window,'webkitAudioContext',{value:undefined})");page.locator('#cadence-practice summary').click();page.locator('#metro-bpm').fill('164');page.locator('#metro-start').click();check('Unsupported audio has honest recovery',page.locator('#metro-status').inner_text().startswith('Audio could not start') and page.locator('#metro-start').is_enabled())
-  # Timed practice ends, including cancellation while resume is pending.
+  # The real timer path is advanced without waiting a minute during every release.
   page.goto(BASE+'/running-form-errors');page.clock.install();page.locator('#cadence-practice summary').click();page.locator('#metro-bpm').fill('164');page.locator('#metro-start').click();page.wait_for_function("document.querySelector('#metro-status').textContent.startsWith('Playing')");page.clock.fast_forward(61000);check('Audio stops at the practice time limit',page.locator('#metro-status').inner_text()=='Practice complete.')
   nojs=browser.new_context(java_script_enabled=False);np=nojs.new_page();nojs.route('**/*',lambda r:r.continue_() if r.request.url.startswith(BASE+'/') else r.abort())
   for route in ROUTES:
