@@ -43,7 +43,7 @@ try:
             if width in [390,1440]:page.screenshot(path=str(OUT/f'{name}-{width}.png'),full_page=True)
         if width in [390,1440]:
             page.locator('[data-frame]').first.click()
-            page.wait_for_function("document.querySelector('.viewer-stage img')?.naturalWidth>0")
+            page.wait_for_function("document.querySelector('.viewer-stage img')?.naturalWidth>0");check(f'Viewer photograph has painted area at {width}',page.locator('.viewer-stage img').evaluate('(i)=>i.getBoundingClientRect().height>100&&i.getBoundingClientRect().width>100'));check(f'Viewer controls remain in viewport at {width}',page.locator('.viewer-bottom').evaluate('(e)=>e.getBoundingClientRect().bottom<=innerHeight+1'))
             check(f'Viewer contained at {width}',page.locator('dialog').evaluate('(d)=>d.scrollWidth<=innerWidth+1'))
             check(f'Viewer close visible at {width}',page.locator('#viewer-close').is_visible())
             page.screenshot(path=str(OUT/f'viewer-{width}.png'))
@@ -104,7 +104,7 @@ try:
     full=base+album['media'][0]['full']['url'];page.route(full,lambda r:r.abort())
     page.locator('[data-frame]').first.click();page.wait_for_selector('#viewer-failure:not([hidden])')
     check('Failed image has retry and save path',page.locator('#viewer-retry').is_visible() and page.locator('#viewer-download').is_visible())
-    page.unroute(full);page.locator('#viewer-retry').click();page.wait_for_function("document.querySelector('.viewer-stage img')?.naturalWidth>0")
+    page.unroute(full);page.locator('#viewer-retry').click();page.wait_for_function("document.querySelector('.viewer-stage img')?.naturalWidth>0");check(f'Viewer photograph has painted area at {width}',page.locator('.viewer-stage img').evaluate('(i)=>i.getBoundingClientRect().height>100&&i.getBoundingClientRect().width>100'));check(f'Viewer controls remain in viewport at {width}',page.locator('.viewer-bottom').evaluate('(e)=>e.getBoundingClientRect().bottom<=innerHeight+1'))
     check('Image retry recovers in same place',page.locator('#viewer-failure').is_hidden() and page.locator('#viewer-counter').inner_text()=='1 / 5')
     page.keyboard.press('Escape');page.wait_for_function("!document.querySelector('dialog').open")
     for width in [390,1440]:

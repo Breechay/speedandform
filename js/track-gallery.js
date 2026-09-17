@@ -61,6 +61,12 @@
   buttons.close.addEventListener('click',close);
   dialog.addEventListener('cancel',event=>{event.preventDefault();close();});
   dialog.addEventListener('keydown',event=>{
+  if(event.key==='Tab'){
+    const focusable=[...dialog.querySelectorAll('button:not(:disabled),a[href],input,video[controls]')].filter(n=>n.getClientRects().length>0);
+    const first=focusable[0],last=focusable[focusable.length-1];
+    if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();return;}
+    if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();return;}
+  }
     if(event.target.tagName==='VIDEO'||event.target.tagName==='INPUT')return;
     if(event.key==='ArrowLeft'){event.preventDefault();change(index-1);}
     if(event.key==='ArrowRight'){event.preventDefault();change(index+1);}
