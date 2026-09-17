@@ -1,0 +1,40 @@
+name: Forge landing release checks
+on:
+  push:
+    branches: [work/forge-landing-pass5b]
+permissions:
+  contents: read
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Capture source and official public release evidence
+        run: |
+          mkdir -p /tmp/forge-source
+          git bundle create /tmp/forge-source/source.bundle HEAD ^6827f20cd2b416578abca14cb08561dbb3423dc4
+          git rev-parse HEAD > /tmp/forge-source/commit.txt
+          python - <<'PY'
+          from pathlib import Path
+          import json,urllib.request,urllib.parse,datetime
+          p=Path('/tmp/forge-source')
+          def get(u):
+              with urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'Mozilla/5.0'}),timeout=30) as r:return r.read()
+          raw=get('https://itunes.apple.com/lookup?id=6790569283&country=us');p.joinpath('apple-lookup.json').write_bytes(raw)
+          d=json.loads(raw);assert d['resultCount']==1;app=d['results'][0];assert app['trackId']==6790569283
+          for i,u in enumerate(app.get('screenshotUrls',[])[:8]):
+              assert urllib.parse.urlparse(u).hostname.endswith('mzstatic.com')
+              p.joinpath(f'store-{i}.jpg').write_bytes(get(u))
+          p.joinpath('captured-at.txt').write_text(datetime.datetime.now(datetime.timezone.utc).isoformat())
+          print(json.dumps({k:app.get(k) for k in ['trackName','version','currentVersionReleaseDate','minimumOsVersion','price','formattedPrice','trackViewUrl','screenshotUrls']},indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: forge-source
+          path: /tmp/forge-source/
+          retention-days: 2
