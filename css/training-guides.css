@@ -1,4 +1,5 @@
 /* Scoped additions to the established reading system. No global or app changes. */
+[data-guide="20260917-p4b"] .guide-signals p{font-size:17px}
 [data-guide="20260917-p4b"] .training-week-board{padding:0;margin:0;list-style:none}
 [data-guide="20260917-p4b"] .training-week-board li{display:grid;grid-template-columns:48px minmax(0,1fr);gap:20px;padding:17px 0}
 [data-guide="20260917-p4b"] .training-week-board li+li{border-top:1px solid var(--line)}
