@@ -1,4 +1,4 @@
-name: Contact live request diagnosis
+name: Contact live acceptance
 on:
   push:
     branches: [work/contact-browser-diagnostic]
@@ -15,6 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: 3d855371acf765f27e673bf3edc760107caada4d
           persist-credentials: false
       - uses: actions/setup-python@v5
         with:
@@ -23,35 +24,26 @@ jobs:
         run: |
           python -m pip install playwright==1.58.0
           python -m playwright install --with-deps ${{ matrix.browser }}
-      - name: Preserve the original assertion and record blocked requests
+      - name: Test the actual public pages without permitting collectors
         env:
           CONTACT_NOTES_LIVE: '1'
           BROWSER: ${{ matrix.browser }}
-          CONTACT_NOTES_ARTIFACTS: /tmp/contact-live-diagnostic
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          import hashlib
-          p=Path('tests/contact-notes-browser.py')
-          text=p.read_text()
-          old="report['result']='FAIL';report['failure']=repr(e);raise"
-          new="report['blockedRequests']=[{'method':m,'url':u} for m,u in traffic if m!='GET' or not u.startswith(BASE+'/')];report['result']='FAIL';report['failure']=repr(e);raise"
-          assert text.count(old)==1
-          print('Original acceptance SHA-256:',hashlib.sha256(p.read_bytes()).hexdigest())
-          exec(compile(text.replace(old,new),str(p),'exec'),{'__file__':str(p.resolve()),'__name__':'__main__'})
-          PY
-      - name: Print the exact failure and blocked requests
+          CONTACT_NOTES_ARTIFACTS: /tmp/contact-live-acceptance
+        run: python tests/contact-notes-browser.py
+      - name: Preserve the source and request decisions
         if: always()
         run: |
+          mkdir -p /tmp/contact-live-acceptance
+          git rev-parse HEAD > /tmp/contact-live-acceptance/tested-commit.txt
           python - <<'PY'
           import json,pathlib
-          p=pathlib.Path('/tmp/contact-live-diagnostic/browser.json')
+          p=pathlib.Path('/tmp/contact-live-acceptance/browser.json')
           if p.exists():
               d=json.loads(p.read_text());print(json.dumps({k:d.get(k) for k in ['engine','result','failure','errors','blockedRequests']},indent=2))
           PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: contact-live-diagnostic-${{ matrix.browser }}
-          path: /tmp/contact-live-diagnostic/
-          retention-days: 2
+          name: contact-live-acceptance-${{ matrix.browser }}
+          path: /tmp/contact-live-acceptance/
+          retention-days: 14
