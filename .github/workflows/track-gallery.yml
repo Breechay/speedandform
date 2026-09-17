@@ -24,29 +24,25 @@ jobs:
         run: |
           python -m pip install Pillow==11.3.0 playwright==1.58.0
           python -m playwright install --with-deps chromium
-      - name: Correct history focus and capture decoded media
+      - name: Apply owner-requested gallery refinement on isolated branch
         run: |
           test "$GITHUB_REF_NAME" = work/track-gallery-pass3
-          python - <<'PY'
-          from pathlib import Path
-          p=Path('js/track-gallery.js');s=p.read_text()
-          if 'focusReturn' not in s:
-            s=s.replace('let index=-1, invoking=null,', 'let focusReturn=null;\n  let index=-1, invoking=null,')
-            s=s.replace('const restore=invoking;invoking=null;if(restore?.isConnected)restore.focus({preventScroll:true});', 'if(invoking)focusReturn=invoking;invoking=null;if(focusReturn?.isConnected)focusReturn.focus({preventScroll:true});')
-            s=s.replace('event.preventDefault();invoking=link;', 'event.preventDefault();focusReturn=null;invoking=link;')
-            s=s.replace("window.addEventListener('popstate',()=>{ownsHistory=Boolean(history.state?.trackGallery);sync();});", "window.addEventListener('popstate',()=>{ownsHistory=Boolean(history.state?.trackGallery);sync();if(!dialog.open)requestAnimationFrame(()=>{if(focusReturn?.isConnected)focusReturn.focus({preventScroll:true});focusReturn=null;});});")
-            p.write_text(s)
-          p=Path('tests/track-gallery-browser.py');s=p.read_text()
-          if 'decode()' not in s:
-            s=s.replace("page.screenshot(path=str(OUT/f'viewer-{width}.png'))", "page.locator('.viewer-stage img').evaluate('(i)=>i.decode()');page.evaluate('()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))');page.screenshot(path=str(OUT/f'viewer-{width}.png'))")
-            s=s.replace("check('Focus returns to initiating image',", "page.wait_for_function(\"document.activeElement.dataset.frame==='beside-the-track'\");check('Focus returns to initiating image',")
-            p.write_text(s)
+          if [ -f .github/gallery-refine.py ]; then
+            python .github/gallery-refine.py
+            rm .github/gallery-refine.py
+            python scripts/prepare-track-media.py
+            node scripts/build-track-gallery.cjs
+            node scripts/build-discovery.cjs
+            python - <<'PY'
+          import subprocess
+          allowed={'scripts/prepare-track-media.py','scripts/build-track-gallery.cjs','js/track-gallery.js','css/track-gallery.css','tests/discovery-browser.py','tests/track-gallery.cjs','tests/track-gallery-browser.py','track/albums.json','track/media-manifest.json','track/index.html','track/from-practice/index.html','docs/audits/DISCOVERY-MANIFEST-20260916.json','.github/gallery-refine.py'}
+          changed=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()
+          assert all(f in allowed or f.startswith('media/track/') for f in changed),changed
+          subprocess.run(['git','add','-A','--',*sorted(allowed),'media/track/'],check=True)
           PY
-          git add -- js/track-gallery.js tests/track-gallery-browser.py
-          if ! git diff --cached --quiet; then
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git commit -m 'fix: preserve initiating frame focus across closing history navigation'
+            git commit -m 'refine: quiet gallery copy and choose complete 6.3s film thumbnail'
             git push origin HEAD:work/track-gallery-pass3
           fi
       - name: Source and existing critical-flow checks
@@ -54,6 +50,7 @@ jobs:
           set -o pipefail
           mkdir -p /tmp/gallery-receipt
           {
+            python tests/track-poster.py
             node tests/track-gallery.cjs
             node tests/discovery.cjs
             node tests/share-metadata.cjs
@@ -79,11 +76,12 @@ jobs:
           export CHROMIUM_PATH="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
           python tests/homepage-browser.py
           cp .homepage-qa/browser-qa.json /tmp/gallery-receipt/homepage-browser.json
-      - name: Save exact source and review evidence
+      - name: Save source and review evidence
         if: always()
         run: |
           mkdir -p /tmp/gallery-receipt
           git rev-parse HEAD > /tmp/gallery-receipt/commit.txt
+          cp track/media-manifest.json /tmp/gallery-receipt/
           tar --exclude=.git --exclude=node_modules --exclude=.homepage-qa -czf /tmp/gallery-receipt/source.tar.gz .
       - uses: actions/upload-artifact@v4
         if: always()
