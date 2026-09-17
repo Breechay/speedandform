@@ -36,6 +36,10 @@
     {
       "file": "css/method.css",
       "sourceSha256": "209597db1d8782e4c2c064456990dc6bc68d72bc5cffed35ec849eb86d073299"
+    },
+    {
+      "file": "css/homepage.css",
+      "sourceSha256": "a0d9824b99a0cec267ff91943c8dcf9fad81b5d7ee2bff52ac3c8d6b56c9980f"
     }
   ],
   "previousHomepageReceipt": "docs/audits/HOME-DOCTRINE-RECEIPT-20260917.json",
@@ -48,6 +52,7 @@
     "Public copy preserves the evidence boundary: form is treated as repeated movement and possible cost, not a universal guarantee of speed or injury prevention.",
     "Browser acceptance used Chromium and WebKit at 320, 390, 768 and 1440 CSS-pixel widths. These are not physical-device tests.",
     "This receipt records source acceptance only. Production hosting must be verified separately.",
-    "The legacy /the-method#sleep link in running terms now points to the dedicated /sleep guide because the rebuilt Method route no longer owns session-specific sleep guidance."
+    "The legacy /the-method#sleep link in running terms now points to the dedicated /sleep guide because the rebuilt Method route no longer owns session-specific sleep guidance.",
+    "The current homepage stylesheet is part of the exact PR #144 method release and is protected by source hash for historical cross-release tests."
   ]
 }
