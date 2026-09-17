@@ -29,20 +29,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Save the exact staged source on this isolated branch
+      - name: Save application source on this isolated branch only
         run: |
           test "$GITHUB_REF_NAME" = work/email-updates-pass6b
           python - <<'PY'
           import json,lzma,base64,hashlib,subprocess
           from pathlib import Path
-          allowed={'.github/workflows/email-updates.yml','docs/audits/EMAIL-UPDATES-20260917.md','docs/publishing/EMAIL-UPDATES.md','newsletter/activation-headers.toml','newsletter/config.example.env','newsletter/updates.css','newsletter/updates.js','supabase/functions/email-updates/core.mjs','supabase/functions/email-updates/deno.json','supabase/functions/email-updates/email.mjs','supabase/functions/email-updates/index.ts','supabase/migrations/20260917181000_email_updates.sql','tests/email-updates.cjs','tests/newsletter/browser.py','tests/newsletter/helpers.cjs','tests/newsletter/server.cjs','updates/index.html'}
+          allowed={'docs/audits/EMAIL-UPDATES-20260917.md','docs/publishing/EMAIL-UPDATES.md','newsletter/activation-headers.toml','newsletter/config.example.env','newsletter/updates.css','newsletter/updates.js','supabase/functions/email-updates/core.mjs','supabase/functions/email-updates/deno.json','supabase/functions/email-updates/email.mjs','supabase/functions/email-updates/index.ts','supabase/migrations/20260917181000_email_updates.sql','tests/email-updates.cjs','tests/newsletter/browser.py','tests/newsletter/helpers.cjs','tests/newsletter/server.cjs','updates/index.html'}
           transfer={f'.github/email-transfer/{i}.b64' for i in range(3)}
           packed=base64.b64decode(''.join(Path(f'.github/email-transfer/{i}.b64').read_text() for i in range(3)),validate=True)
           assert hashlib.sha256(packed).hexdigest()=='0dce6fd7763f6b8f867109a80adc6c547822dc585ff2bcee1e6a2920a0756cd6'
-          data=json.loads(lzma.decompress(packed,memlimit=134217728));assert set(data)==allowed
+          data=json.loads(lzma.decompress(packed,memlimit=134217728));assert set(data)==allowed|{'.github/workflows/email-updates.yml'}
           for f,text in data.items():
-              p=Path(f)
-              if f!='.github/workflows/email-updates.yml':assert not p.exists(),f
+              if f=='.github/workflows/email-updates.yml':continue
+              p=Path(f);assert not p.exists(),f
               p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text,encoding='utf-8')
           for f in transfer:Path(f).unlink()
           changed=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines())|set(subprocess.check_output(['git','ls-files','--others','--exclude-standard'],text=True).splitlines())
