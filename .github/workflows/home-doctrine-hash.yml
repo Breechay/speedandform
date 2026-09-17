@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Verify share and homepage contracts
+      - name: Verify share, homepage and later exact snapshots
         run: |
           node tests/share-metadata.cjs
           node tests/homepage-metadata.cjs
