@@ -23,6 +23,7 @@ for(const a of m.albums){
  const keys=['og:image','og:title','og:description','og:image:alt','twitter:image','twitter:card'];
  for(const key of keys)assert.equal([...s.head(h).matchAll(/<meta\b[^>]*>/g)].filter(t=>{const v=s.attrs(t[0]);return(v.name||v.property)===key;}).length,1);
  assert.equal(s.canonical(h),s.ORIGIN+route);assert.equal(s.meta(h,'og:image'),s.ORIGIN+a.share.url);
+ assert.ok(!/No signup needed|Downloads are web editions|Silent film\. Play to watch|undefined/.test(h),'Removed UI copy stays removed');
  assert.equal((h.match(/<h1\b/g)||[]).length,1);assert.ok(h.includes('aria-labelledby="viewer-title"'));
  const schema=JSON.parse(h.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);assert.equal(schema.mainEntity.itemListElement.length,a.media.length);
  for(const item of a.media){mediaCount++;const selected=source.media.find(x=>x.id===item.id);
@@ -30,7 +31,7 @@ for(const a of m.albums){
   assert.equal(sha(fs.readFileSync(path.join(ROOT,selected.source))),selected.sourceSha256,'Original media preserved');
   for(const asset of [item.thumb,item.preview,item.full,item.download].filter(Boolean)){assetCount++;const bytes=fs.readFileSync(path.join(ROOT,asset.url));assert.equal(sha(bytes),asset.sha256);assert.equal(bytes.length,asset.bytes);}
   assert.ok(item.thumb.bytes<200000,'Small preview images');
-  if(item.type==='video'){assert.ok(item.silent);assert.ok(item.duration>0);assert.ok(h.includes('Silent film'));}
+  if(item.type==='video'){assert.ok(item.silent);assert.ok(item.duration>0);assert.deepEqual(item.posterSelection,Object.fromEntries(['posterTime','posterSource','posterSha256'].filter(k=>k in selected).map(k=>[k,selected[k]])));}
   if(item.download)assert.ok(selected.downloadApproved===true);
  }
  const si=s.imageInfo(ROOT,s.ORIGIN+a.share.url);assert.equal(si.width,1200);assert.equal(si.height,630);assert.equal(si.type,'image/jpeg');

@@ -23,7 +23,7 @@
     stopMedia();index=i;const item=media[i];failure.hidden=true;
     el('viewer-title').textContent=item.title;
     el('viewer-album').textContent=album.title.replace(/\.$/,'');
-    el('viewer-caption').textContent=item.alt+(item.type==='video'?' Silent film.':'');
+    el('viewer-caption').textContent=item.alt;
     el('viewer-counter').textContent=(i+1)+' / '+media.length;
     buttons.prev.disabled=i===0;buttons.next.disabled=i===media.length-1;
     const download=el('viewer-download');download.hidden=!item.download;

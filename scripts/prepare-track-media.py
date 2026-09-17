@@ -1,10 +1,10 @@
 """Prepare explicitly selected, owner-approved media. Never discover media by scanning folders.
 
-Requires Pillow and ffprobe. Outputs are versioned, metadata-free web editions;
+Requires Pillow, ffmpeg and ffprobe. Outputs are versioned, metadata-free web editions;
 existing media bytes are never changed. The build writes no remote data.
 """
 from pathlib import Path
-import hashlib, json, subprocess, zipfile, io, re, shutil
+import hashlib, json, subprocess, zipfile, io, re, shutil, math
 from PIL import Image, ImageOps
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / 'track/albums.json'
@@ -49,6 +49,31 @@ def validate_album(a):
         p=source_file(m['source'])
         assert digest(p.read_bytes())==m.get('sourceSha256'), f'Source changed: {p}'
 
+def video_probe(src):
+    return json.loads(subprocess.check_output([
+        'ffprobe','-v','error','-show_entries',
+        'format=duration:stream=codec_type,width,height','-of','json',str(src)
+    ],text=True))
+
+def poster_image(src,item,probe):
+    """Choose an exact film time OR a checksum-verified custom image, never a silent fallback."""
+    timestamp=item.get('posterTime');custom=item.get('posterSource')
+    if (timestamp is not None)==bool(custom):
+        raise ValueError('Choose exactly one of posterTime or posterSource')
+    if custom:
+        file=source_file(custom)
+        if digest(file.read_bytes())!=item.get('posterSha256'):
+            raise ValueError('Custom poster needs its reviewed posterSha256')
+        return ImageOps.exif_transpose(Image.open(file)).convert('RGB')
+    duration=float(probe['format']['duration'])
+    if type(timestamp) not in (int,float) or not math.isfinite(timestamp) or not 0<=timestamp<duration:
+        raise ValueError('posterTime must be a finite second within this film')
+    data=subprocess.check_output([
+        'ffmpeg','-v','error','-ss',format(timestamp,'.6f'),'-i',str(src),
+        '-frames:v','1','-f','image2pipe','-vcodec','png','pipe:1'
+    ])
+    return Image.open(io.BytesIO(data)).convert('RGB')
+
 def build():
     config=json.loads(MANIFEST.read_text()); assert config['version']==1
     previous=json.loads((ROOT/'track/media-manifest.json').read_text()) if (ROOT/'track/media-manifest.json').exists() else {'albums':[]}
@@ -60,12 +85,13 @@ def build():
         # A version changes with selected source, captions or removal; never overwrite an immutable URL.
         rev=digest(json.dumps(a,sort_keys=True,ensure_ascii=False).encode())[:12]
         folder=OUT/a['slug']/rev;folder.mkdir(parents=True,exist_ok=True)
-        album={k:a[k] for k in ['slug','title','kind','date','description','note','downloadNote','cover']}
+        album={k:a[k] for k in ['slug','title','kind','date','description','note','cover']}
         album['revision']=rev;album['media']=[]
         photos=[]
         for i,m in enumerate(a['media'],1):
-            src=source_file(m['source']); poster=source_file(m['posterSource']) if m['type']=='video' else src
-            image=Image.open(poster);image=ImageOps.exif_transpose(image).convert('RGB')
+            src=source_file(m['source'])
+            probe=video_probe(src) if m['type']=='video' else None
+            image=poster_image(src,m,probe) if probe else ImageOps.exif_transpose(Image.open(src)).convert('RGB')
             item={k:m[k] for k in ['id','type','title','alt']};item['number']=i
             item['width'],item['height']=image.size
             item['thumb']=write_image(folder/(m['id']+'-640.jpg'),image,(640,640),84)
@@ -76,7 +102,7 @@ def build():
                 if m.get('downloadApproved') is True:
                     item['download']=exported;photos.append((f'FORM-{a["slug"]}-{i:02}.jpg',ROOT/exported['url'].lstrip('/')))
             else:
-                probe=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=codec_type,width,height','-of','json',str(src)],text=True))
+                item['posterSelection']={k:m[k] for k in ('posterTime','posterSource','posterSha256') if k in m}
                 streams=probe['streams']; video=next(s for s in streams if s['codec_type']=='video')
                 item['width'],item['height']=video['width'],video['height']
                 item['duration']=round(float(probe['format']['duration']),3)

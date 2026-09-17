@@ -8,9 +8,8 @@
       "date": null,
       "description": "A few moments from the track and the road.",
       "note": "An earlier selection, collected across sessions.",
-      "downloadNote": "Downloads are web editions, not camera originals.",
       "cover": "beside-the-track",
-      "revision": "2c65bd1029af",
+      "revision": "5a3a58977d72",
       "media": [
         {
           "id": "beside-the-track",
@@ -21,28 +20,28 @@
           "width": 2048,
           "height": 1289,
           "thumb": {
-            "url": "/media/track/from-practice/2c65bd1029af/beside-the-track-640.jpg",
+            "url": "/media/track/from-practice/5a3a58977d72/beside-the-track-640.jpg",
             "bytes": 44174,
             "sha256": "c03683c4af66edb4c3b2c68fe6cd881e103be11a9c81971826318df3fbc4a601",
             "width": 640,
             "height": 403
           },
           "preview": {
-            "url": "/media/track/from-practice/2c65bd1029af/beside-the-track-1440.jpg",
+            "url": "/media/track/from-practice/5a3a58977d72/beside-the-track-1440.jpg",
             "bytes": 208733,
             "sha256": "ef9f8d5f9a8c167ecd1c65da8e72f521618cf0822c510ca9dcb3bedb7e08d06f",
             "width": 1440,
             "height": 906
           },
           "full": {
-            "url": "/media/track/from-practice/2c65bd1029af/beside-the-track.jpg",
+            "url": "/media/track/from-practice/5a3a58977d72/beside-the-track.jpg",
             "bytes": 448076,
             "sha256": "ae1ad680d8a1eb9f34083b19ae9d482490057d15785410e924cae5053bd13c70",
             "width": 2048,
             "height": 1289
           },
           "download": {
-            "url": "/media/track/from-practice/2c65bd1029af/beside-the-track.jpg",
+            "url": "/media/track/from-practice/5a3a58977d72/beside-the-track.jpg",
             "bytes": 448076,
             "sha256": "ae1ad680d8a1eb9f34083b19ae9d482490057d15785410e924cae5053bd13c70",
             "width": 2048,
@@ -58,28 +57,28 @@
           "width": 1024,
           "height": 1536,
           "thumb": {
-            "url": "/media/track/from-practice/2c65bd1029af/side-by-side-640.jpg",
+            "url": "/media/track/from-practice/5a3a58977d72/side-by-side-640.jpg",
             "bytes": 43832,
             "sha256": "d7130d7a6b037402c1640698842914d58917e6c536e2618b7f3d706aa5956ea3",
             "width": 427,
             "height": 640
           },
           "preview": {
-            "url": "/media/track/from-practice/2c65bd1029af/side-by-side-1440.jpg",
+            "url": "/media/track/from-practice/5a3a58977d72/side-by-side-1440.jpg",
             "bytes": 218361,
             "sha256": "b69aae601c360658763188c13b435f5c48f47243bcba28edc725be7270bf22f5",
             "width": 960,
             "height": 1440
           },
           "full": {
-            "url": "/media/track/from-practice/2c65bd1029af/side-by-side.jpg",
+            "url": "/media/track/from-practice/5a3a58977d72/side-by-side.jpg",
             "bytes": 306232,
             "sha256": "df60e2593ffc28c3e991f4f88c54dce022f0a886d0fd548ae5359656c1a8975d",
             "width": 1024,
             "height": 1536
           },
           "download": {
-            "url": "/media/track/from-practice/2c65bd1029af/side-by-side.jpg",
+            "url": "/media/track/from-practice/5a3a58977d72/side-by-side.jpg",
             "bytes": 306232,
             "sha256": "df60e2593ffc28c3e991f4f88c54dce022f0a886d0fd548ae5359656c1a8975d",
             "width": 1024,
@@ -95,28 +94,28 @@
           "width": 2048,
           "height": 1350,
           "thumb": {
-            "url": "/media/track/from-practice/2c65bd1029af/in-stride-640.jpg",
+            "url": "/media/track/from-practice/5a3a58977d72/in-stride-640.jpg",
             "bytes": 46631,
             "sha256": "3d887df896907240578c9b76afccd7fb0fbe084477aa5fe57bc7837c3d957c2e",
             "width": 640,
             "height": 422
           },
           "preview": {
-            "url": "/media/track/from-practice/2c65bd1029af/in-stride-1440.jpg",
+            "url": "/media/track/from-practice/5a3a58977d72/in-stride-1440.jpg",
             "bytes": 299216,
             "sha256": "365e22141fe67fd34baf6130c845acb14e519607c34d3a934628d40413440c42",
             "width": 1440,
             "height": 949
           },
           "full": {
-            "url": "/media/track/from-practice/2c65bd1029af/in-stride.jpg",
+            "url": "/media/track/from-practice/5a3a58977d72/in-stride.jpg",
             "bytes": 859414,
             "sha256": "3c664f142c788cfdbb4a5c8cd6c4cee04fb54168fa33139c487a35e57dc3737d",
             "width": 2048,
             "height": 1350
           },
           "download": {
-            "url": "/media/track/from-practice/2c65bd1029af/in-stride.jpg",
+            "url": "/media/track/from-practice/5a3a58977d72/in-stride.jpg",
             "bytes": 859414,
             "sha256": "3c664f142c788cfdbb4a5c8cd6c4cee04fb54168fa33139c487a35e57dc3737d",
             "width": 2048,
@@ -132,28 +131,28 @@
           "width": 1222,
           "height": 1853,
           "thumb": {
-            "url": "/media/track/from-practice/2c65bd1029af/on-the-road-640.jpg",
+            "url": "/media/track/from-practice/5a3a58977d72/on-the-road-640.jpg",
             "bytes": 42224,
             "sha256": "8b0c308a70880545c681e29d3ea685e95f5abb8a7d04525ebe4f7f593527bf9b",
             "width": 422,
             "height": 640
           },
           "preview": {
-            "url": "/media/track/from-practice/2c65bd1029af/on-the-road-1440.jpg",
+            "url": "/media/track/from-practice/5a3a58977d72/on-the-road-1440.jpg",
             "bytes": 241300,
             "sha256": "998a5081cc379f2ab19fc4ee0ce72d62bc108916b7be35ee21b6804f5ee8d2ed",
             "width": 950,
             "height": 1440
           },
           "full": {
-            "url": "/media/track/from-practice/2c65bd1029af/on-the-road.jpg",
+            "url": "/media/track/from-practice/5a3a58977d72/on-the-road.jpg",
             "bytes": 602707,
             "sha256": "4affc8e214dbeb5686a7e5999ea15fe1123ca3b5ff087dc236bc3bc8e0fb63f2",
             "width": 1222,
             "height": 1853
           },
           "download": {
-            "url": "/media/track/from-practice/2c65bd1029af/on-the-road.jpg",
+            "url": "/media/track/from-practice/5a3a58977d72/on-the-road.jpg",
             "bytes": 602707,
             "sha256": "4affc8e214dbeb5686a7e5999ea15fe1123ca3b5ff087dc236bc3bc8e0fb63f2",
             "width": 1222,
@@ -164,23 +163,26 @@
           "id": "run-development",
           "type": "video",
           "title": "Running, in motion",
-          "alt": "A silent film of runners in motion, seen from the side and along their route.",
+          "alt": "Two runners moving along the road, filmed from the side.",
           "number": 5,
           "width": 1080,
           "height": 1920,
           "thumb": {
-            "url": "/media/track/from-practice/2c65bd1029af/run-development-640.jpg",
-            "bytes": 36451,
-            "sha256": "dcd9cbfc8c741f4649deb4f0163597bdb2649eb84e9c6b11c2f74f2d46df964e",
+            "url": "/media/track/from-practice/5a3a58977d72/run-development-640.jpg",
+            "bytes": 29311,
+            "sha256": "4aae9207f411a931ca340c32ae4fc242f398597f0cf1e5cf24e6f7c3f3f68dff",
             "width": 360,
             "height": 640
           },
           "preview": {
-            "url": "/media/track/from-practice/2c65bd1029af/run-development-1440.jpg",
-            "bytes": 89272,
-            "sha256": "bedfa1caadf03b2b3130b122bf6efa2381e3c7c7026bd2a9dd1b191b4034e171",
-            "width": 720,
-            "height": 1280
+            "url": "/media/track/from-practice/5a3a58977d72/run-development-1440.jpg",
+            "bytes": 120202,
+            "sha256": "1e3fd06d6a03179e5cf644dea9d1cdfe68f432013542d1d6f2e903b550cf898f",
+            "width": 810,
+            "height": 1440
+          },
+          "posterSelection": {
+            "posterTime": 6.3
           },
           "duration": 20.5,
           "silent": true,
@@ -197,7 +199,7 @@
         }
       ],
       "share": {
-        "url": "/media/track/from-practice/2c65bd1029af/share.jpg",
+        "url": "/media/track/from-practice/5a3a58977d72/share.jpg",
         "bytes": 137500,
         "sha256": "6d6a02d0b154936fb3f59745129dc6bf6f9482f84170c2ec57aa9a63bf1e4227",
         "width": 1200,
@@ -205,7 +207,7 @@
         "alt": "Runners gathered beside the track, pausing for a conversation."
       },
       "photoArchive": {
-        "url": "/media/track/from-practice/2c65bd1029af/photos.zip",
+        "url": "/media/track/from-practice/5a3a58977d72/photos.zip",
         "bytes": 2216955,
         "sha256": "a9592c2ec8bfe61d46384f6ccafc8af4d36b98d1048761f1286b084a3063d00b"
       }

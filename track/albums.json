@@ -9,7 +9,6 @@
       "published": true,
       "description": "A few moments from the track and the road.",
       "note": "An earlier selection, collected across sessions.",
-      "downloadNote": "Downloads are web editions, not camera originals.",
       "cover": "beside-the-track",
       "publicationBasis": "Owner-directed gallery reuse of existing public site media, authorized in the September 16 site-ecosystem request. This records reuse authority, not independently verified individual model releases.",
       "media": [
@@ -59,11 +58,11 @@
           "source": "media/run-development.mp4",
           "sourcePage": "/",
           "sourceSha256": "66f80e694521f15cf794097ac4725eacaeeaaa2c11baf952be2b1900d69a791c",
-          "posterSource": "media/run-development.jpg",
           "title": "Running, in motion",
-          "alt": "A silent film of runners in motion, seen from the side and along their route.",
+          "alt": "Two runners moving along the road, filmed from the side.",
           "silent": true,
-          "downloadApproved": true
+          "downloadApproved": true,
+          "posterTime": 6.3
         }
       ]
     }
