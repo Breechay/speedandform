@@ -48,9 +48,9 @@ async function shareCurrentView() {
   } catch {}
 }
 
-// The plan renderer owns which week is on screen. This helper only serializes
-// that visible presentation state. The URL never carries identity, purchase
-// session, entitlement, or a private athlete assignment.
+// Sharing names the visible week only. Opening a shared week is owned by the
+// access gate after identity/entitlement resolves, so this helper cannot race
+// the renderer or manufacture access state.
 document.addEventListener('click', event => {
   if (!shareButtons.some(button => button === event.target.closest('button'))) return;
   event.preventDefault();
