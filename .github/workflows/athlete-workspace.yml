@@ -1,0 +1,42 @@
+name: Athlete workspace acceptance
+on:
+  push:
+    branches: [work/athlete-workspace-20260917]
+  pull_request:
+    paths:
+      - 'athlete/**'
+      - 'tests/athlete-workspace.mjs'
+      - '.github/workflows/athlete-workspace.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: athlete-workspace-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Workspace source and renderer checks
+        run: |
+          node tests/athlete-workspace.mjs
+          node tests/athlete-access.cjs
+      - name: Preserve exact review source
+        if: always()
+        run: |
+          mkdir -p /tmp/athlete-workspace
+          git rev-parse HEAD > /tmp/athlete-workspace/commit.txt
+          git archive --format=zip HEAD -- athlete private tests/athlete-workspace.mjs .github/workflows/athlete-workspace.yml > /tmp/athlete-workspace/source.zip
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: athlete-workspace-review
+          path: /tmp/athlete-workspace/
+          retention-days: 5
