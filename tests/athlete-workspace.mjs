@@ -45,12 +45,20 @@ has(history,'No record received does not automatically mean a session was missed
 const account = renderAthleteWorkspace(base,{view:'account',email:'jose@example.com'});
 has(account,'Signed in as'); has(account,'jose@example.com'); has(account,'Training delivery'); has(account,'FORM');
 
+// Match Adrian's current production metadata exactly enough to prevent a remote
+// strength athlete from being mislabeled as a runner simply because the legacy
+// delivery/home fields still say coach/form.
 const strength = structuredClone(base);
-strength.athlete = {id:'a2',display_name:'Adrian',account_label:'Remote strength',delivery:'forge',home_surface:'strength',program_name:'Breechay Sculpt'};
+strength.athlete = {id:'a2',display_name:'Adrian Gandara',account_label:'Adrian',delivery:'coach',home_surface:'form',program_name:'Runner Mass · Phase 1'};
 strength.block = null; strength.weeks=[]; strength.currentWeek=null; strength.sessionsByWeek={}; strength.completions=[]; strength.reads=[];
 const adrian = renderAthleteWorkspace(strength,{view:'today'});
-has(adrian,'Strength development'); has(adrian,'Your next block is not published here yet.'); has(adrian,'Forge remains the place to record completed sessions.');
+has(adrian,'Strength development'); has(adrian,'Runner Mass · Phase 1'); has(adrian,'Your next block is not published here yet.'); has(adrian,'Forge remains the place to record completed sessions.');
 lacks(adrian,'Run development'); lacks(adrian,'mi planned');
+
+const physique = structuredClone(strength);
+physique.athlete = {id:'a3',display_name:'Rod',account_label:'Rod',delivery:'coach',home_surface:'form',program_name:'Strength & Physique'};
+const rod = renderAthleteWorkspace(physique,{view:'today'});
+has(rod,'Strength development'); lacks(rod,'Run development');
 
 const emptyHistory = renderAthleteWorkspace(strength,{view:'history'});
 has(emptyHistory,'No history has reached this account yet.'); has(emptyHistory,'Forge records');
