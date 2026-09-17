@@ -15,13 +15,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Read only the published pages and preserve exact response differences
+      - name: Inspect the actual public email response
         run: |
           mkdir -p /tmp/contact-delivery
           node - <<'JS'
           const fs=require('fs'),assert=require('assert/strict');
           const m=require('./docs/audits/CONTACT-NOTES-MANIFEST-20260917.json');
-          (async()=>{const rows=[];for(const p of m.pages){const u=p.file==='404.html'?'https://speedandform.com/404.html':p.url;const r=await fetch(u,{headers:{'User-Agent':'FORM-Delivery-Inspection/1.0','Cache-Control':'no-cache'},signal:AbortSignal.timeout(20000)});assert.equal(new URL(r.url).origin,'https://speedandform.com');const h=await r.text();fs.writeFileSync('/tmp/contact-delivery/'+p.file.replaceAll('/','_'),h);rows.push({file:p.file,status:r.status,url:r.url,type:r.headers.get('content-type')});}fs.writeFileSync('/tmp/contact-delivery/responses.json',JSON.stringify(rows,null,2));})().catch(e=>{console.error(e);process.exitCode=1});
+          (async()=>{const rows=[];for(const p of m.pages){const u=p.file==='404.html'?'https://speedandform.com/404.html':p.url;const r=await fetch(u,{headers:{'User-Agent':'FORM-Delivery-Inspection/1.0','Cache-Control':'no-cache'},signal:AbortSignal.timeout(20000)});assert.equal(new URL(r.url).origin,'https://speedandform.com');const h=await r.text();fs.writeFileSync('/tmp/contact-delivery/'+p.file.replaceAll('/','_'),h);const row={file:p.file,status:r.status,url:r.url,type:r.headers.get('content-type'),cacheControl:r.headers.get('cache-control'),referrerPolicy:r.headers.get('referrer-policy'),emailObfuscation:h.includes('email-protection')};rows.push(row);console.log(JSON.stringify(row));}fs.writeFileSync('/tmp/contact-delivery/responses.json',JSON.stringify(rows,null,2));})().catch(e=>{console.error(e);process.exitCode=1});
           JS
           python - <<'PY'
           from pathlib import Path
