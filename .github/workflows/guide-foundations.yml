@@ -1,0 +1,100 @@
+name: Foundation guide release checks
+on:
+  push:
+    branches: [work/guide-foundations-pass4]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Transfer bounded authored guide sources on isolated branch
+        run: |
+          test "$GITHUB_REF_NAME" = work/guide-foundations-pass4
+          if [ -d .github/guide-transfer ]; then
+            python - <<'PY'
+          import base64,lzma,hashlib,json,subprocess
+          from pathlib import Path
+          allowed={'scripts/guide-content.cjs','scripts/build-guides.cjs','scripts/guide-state.cjs','css/guide-foundations.css','js/guide-tools.js','tests/guide-foundations.cjs','tests/guide-browser.py','scripts/verify-guides-production.cjs','tests/guide-live.py','docs/audits/FOUNDATION-GUIDES-20260917.md','docs/audits/GUIDES-MANIFEST-20260917.json','scripts/discovery-catalog.cjs','tests/share-metadata.cjs','tests/discovery.cjs','tests/track-gallery.cjs','scripts/verify-share-production.cjs'}
+          b=base64.b64decode(''.join(Path(f'.github/guide-transfer/{i}.b64').read_text() for i in range(4)),validate=True)
+          assert hashlib.sha256(b).hexdigest()=='6e9862aa35f8a8aa3f24b062856cb064bc1d8c057161760a502c58b8070c9a56'
+          data=json.loads(lzma.decompress(b,memlimit=134217728))
+          assert set(data)==allowed
+          for f,text in data.items():
+            p=Path(f);p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text,encoding='utf-8')
+          for i in range(4):Path(f'.github/guide-transfer/{i}.b64').unlink()
+          subprocess.run(['node','scripts/build-guides.cjs'],check=True)
+          subprocess.run(['node','scripts/build-discovery.cjs'],check=True)
+          subprocess.run(['node','tests/guide-foundations.cjs'],check=True)
+          generated={'easy-run.html','threshold-training.html','long-run-pace.html','running-form-errors.html','library.html','search-index.json','docs/audits/DISCOVERY-MANIFEST-20260916.json'}
+          transport={f'.github/guide-transfer/{i}.b64' for i in range(4)}
+          changed=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines())
+          assert changed<=allowed|generated|transport,changed-(allowed|generated|transport)
+          subprocess.run(['git','add','-A','--',*sorted(allowed|generated|transport)],check=True)
+          PY
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'feat: publishable foundation guides with evidence and preserved tools'
+            git push origin HEAD:work/guide-foundations-pass4
+          fi
+      - name: Source and critical-flow regression checks
+        run: |
+          set -o pipefail
+          mkdir -p /tmp/guide-receipt
+          {
+            node tests/guide-foundations.cjs
+            node tests/track-gallery.cjs
+            node tests/discovery.cjs
+            node tests/share-metadata.cjs
+            node tests/homepage-metadata.cjs
+            node tests/homepage-release.cjs
+            node tests/coaching-measurement.cjs
+            node tests/cream-reading.cjs
+            node labs/track/track.test.cjs
+            node tests/thursday-schedule.cjs
+          } | tee /tmp/guide-receipt/source-tests.txt
+          node scripts/build-guides.cjs
+          node scripts/build-discovery.cjs
+          git diff --exit-code
+      - name: Install explicit browser dependencies
+        run: |
+          python -m pip install Pillow==11.3.0 playwright==1.58.0
+          python -m playwright install --with-deps chromium
+      - name: Guide browser acceptance
+        env:
+          GUIDE_ARTIFACTS: /tmp/guide-receipt/guides
+        run: python tests/guide-browser.py
+      - name: Existing gallery, discovery and homepage acceptance
+        env:
+          TRACK_GALLERY_ARTIFACTS: /tmp/guide-receipt/gallery
+          DISCOVERY_ARTIFACTS: /tmp/guide-receipt/discovery
+        run: |
+          python tests/track-gallery-browser.py
+          python tests/discovery-browser.py
+          export CHROMIUM_PATH="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
+          python tests/homepage-browser.py
+          cp .homepage-qa/browser-qa.json /tmp/guide-receipt/homepage-browser.json
+      - name: Save exact tested commit and evidence
+        if: always()
+        run: |
+          mkdir -p /tmp/guide-receipt
+          git rev-parse HEAD > /tmp/guide-receipt/commit.txt
+          cp docs/audits/GUIDES-MANIFEST-20260917.json /tmp/guide-receipt/ || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: foundation-guide-receipt
+          path: /tmp/guide-receipt/
+          retention-days: 14
