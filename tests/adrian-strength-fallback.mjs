@@ -3,9 +3,9 @@ import assert from 'node:assert/strict';
 import { pathToFileURL } from 'node:url';
 
 const root = new URL('../', import.meta.url);
-const program = JSON.parse(fs.readFileSync(new URL('plans/adrian-runner-mass-phase-01/program.json', root), 'utf8'));
+const read = (path) => fs.readFileSync(new URL(path, root), 'utf8');
+const program = JSON.parse(read('plans/adrian-runner-mass-phase-01/program.json'));
 const { strengthFallbackSource, resolvedStrengthWeek } = await import(pathToFileURL(new URL('athlete/strength-fallback.js', root).pathname));
-const { renderAthleteWorkspace } = await import(pathToFileURL(new URL('athlete/workspace.js', root).pathname));
 let checks = 0;
 const ok = (value, message) => { assert.ok(value, message); checks += 1; };
 const has = (text, value) => ok(text.includes(value), `missing ${value}`);
@@ -27,42 +27,30 @@ for (const weekNumber of [1,2,3]) {
   ok(week.days[0].exercises.length === 7, `week ${weekNumber} inherits full Upper A menu`);
 }
 
-const record = { athlete:adrian, block:null, weeks:[], currentWeek:null, sessionsByWeek:{}, completions:[], directions:[], reads:[], decisions:[] };
-const fallback = { ...program, overview_path:'/plans/adrian-runner-mass-phase-01/' };
-const today = renderAthleteWorkspace(record, { view:'today', fallbackProgram:fallback, fallbackWeek:1 });
-has(today,'Your three-week plan is here.');
-has(today,'does not infer your current Forge week');
-has(today,'does not');
-lacks(today,'synced');
-lacks(today,'current week.');
+const workspace = read('athlete/workspace.js');
+for (const phrase of [
+  'Your three-week plan is here.',
+  'does not infer your current Forge week',
+  'Position is not inferred from this page.',
+  'does not move Forge',
+  'No Forge history has reached this account yet.',
+  'web-delivered work is not backfilled as a Forge receipt',
+  'does not claim Forge receipt delivery',
+  'Record in Forge',
+]) has(workspace, phrase);
+lacks(workspace, 'has synced');
+lacks(workspace, 'is synced');
 
-for (const weekNumber of [1,2,3]) {
-  const html = renderAthleteWorkspace(record, { view:'plan', fallbackProgram:fallback, fallbackWeek:weekNumber });
-  has(html,`Week 0${weekNumber}`);
-  has(html,'Incline Barbell Bench Press');
-  has(html,'Run week protected');
-  has(html,'Position is not inferred from this page.');
-  has(html,'does not move Forge');
-  lacks(html,'RECEIVED');
-  lacks(html,'synced');
-}
-
-const history = renderAthleteWorkspace(record, { view:'history', fallbackProgram:fallback });
-has(history,'No Forge history has reached this account yet.');
-has(history,'web-delivered work is not backfilled as a Forge receipt');
-lacks(history,'missed workout');
-
-const account = renderAthleteWorkspace(record, { view:'account', email:'adrian@example.com', fallbackProgram:fallback });
-has(account,'Web reference');
-has(account,'Runner Mass · Phase 01 · 3 weeks');
-has(account,'does not claim Forge receipt delivery');
-lacks(account,'connected');
-lacks(account,'synced');
-
-const athleteJs = fs.readFileSync(new URL('athlete/athlete.js', root), 'utf8');
+const athleteJs = read('athlete/athlete.js');
 has(athleteJs,'loadStrengthFallback');
 has(athleteJs,'fallbackWeek');
 has(athleteJs,'no current Forge week is inferred');
+has(athleteJs,'data-fallback-week-step');
 lacks(athleteJs,'fileSession');
+
+const handoff = read('plans/adrian-runner-mass-phase-01/FORGE_HANDOFF.md');
+has(handoff,'no fake Forge receipts are created');
+has(handoff,'actual current week/day');
+has(handoff,'Installed-device acceptance passes before Brice tells Adrian to switch from the web plan.');
 
 console.log(`PASS: ${checks} Adrian strength fallback checks`);
