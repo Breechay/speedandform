@@ -45,7 +45,7 @@ function build(){
   change(file,h,'Public wayfinding; original navigation, article content, IDs and scripts retained');
  }
  // Eight newer articles had no canonical at all. Their existing OG URL supplies the canonical.
- for(const e of entries.filter(e=>e.file.startsWith('library/'))){let h=read(e.file);if(!/<link\b[^>]*rel=["']canonical["']/i.test(h)){
+ for(const e of entries.filter(e=>e.file.startsWith('library/')||e.file==='forge-sculpt/index.html')){let h=read(e.file);if(!/<link\b[^>]*rel=["']canonical["']/i.test(h)){
   h=h.replace('</head>',`<link rel="canonical" href="${O+e.url}">\n</head>`);
   if(share.DESCRIPTIONS[e.file])h=h.replace(/<meta\b[^>]*name="description"[^>]*>/i,'<meta name="description" content="'+esc(share.DESCRIPTIONS[e.file])+'">');
   change(e.file,h,'Canonical added from existing public OG URL; public wayfinding retained');
@@ -73,7 +73,7 @@ function build(){
  // Preserve the original Pass 1 receipt. New release snapshots cover only explicitly changed files.
  const dest='docs/audits/DISCOVERY-MANIFEST-20260916.json',prior=fs.existsSync(path.join(ROOT,dest))?JSON.parse(read(dest)):null;
  const rows=new Map((prior?.changedHtml||[]).map(e=>[e.file,e]));for(const [file,entry] of changed)rows.set(file,{...entry,beforeSha256:rows.get(file)?.beforeSha256||beforeFiles.get(file),afterSha256:hash(read(file)),bodySha256:hash(read(file).slice(read(file).toLowerCase().indexOf('</head>'))),preview:{title:share.meta(read(file),'og:title'),description:share.meta(read(file),'og:description')}});
- const manifest={version:V,baseCommit:'d86ee61739de9ad3c97515bd64b9a9409c8dd89c',searchEntries:index.length,sitemap:urls,changedHtml:[...rows.values()].sort((a,b)=>a.file.localeCompare(b.file)),retainedArchives:ARCHIVE,omittedFromDiscovery:PRESERVE_ONLY,untouchedHtml:[...beforeFiles].filter(([f])=>!rows.has(f)).map(([file,sha256])=>({file,sha256}))};
+ const manifest={version:V,baseCommit:'05b76ab2b08cfc37f448f637f19e3aa0c9c3d03a',searchEntries:index.length,sitemap:urls,changedHtml:[...rows.values()].sort((a,b)=>a.file.localeCompare(b.file)),retainedArchives:ARCHIVE,omittedFromDiscovery:PRESERVE_ONLY,untouchedHtml:[...beforeFiles].filter(([f])=>!rows.has(f)).map(([file,sha256])=>({file,sha256}))};
  write(dest,JSON.stringify(manifest,null,2)+'\n');console.log(`Discovery: ${index.length} search entries, ${urls.length} canonical sitemap URLs, ${rows.size} scoped HTML changes.`);
  return manifest;
 }

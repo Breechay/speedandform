@@ -20,7 +20,7 @@ for(const e of index){assert.ok(e.title&&e.description);assert.ok(resolve(e.url)
 assert.ok(!read('robots.txt').includes('Disallow: /assets/'));
 assert.ok(!read('sitemap.xml').includes('<lastmod>'),'Do not invent refresh dates');
 const locs=[...read('sitemap.xml').matchAll(/<loc>(.*?)<\/loc>/g)].map(x=>x[1]);assert.equal(locs.length,m.sitemap.length);assert.equal(new Set(locs).size,locs.length);
-for(const {file,url} of m.sitemap){assert.equal(s.canonical(read(file),file),url);assert.ok(locs.includes(url));assert.ok(!/noindex/i.test(s.meta(read(file),'robots')));assert.ok(!cat.ARCHIVE.some(r=>url===s.ORIGIN+'/'+r));}
+for(const {file,url} of m.sitemap){assert.equal(s.canonical(read(file),file),url);assert.equal([...s.head(read(file)).matchAll(/<link\b[^>]*>/gi)].filter(x=>s.attrs(x[0]).rel==='canonical').length,1,file+' explicit canonical');assert.ok(locs.includes(url));assert.ok(!/noindex/i.test(s.meta(read(file),'robots')));assert.ok(!cat.ARCHIVE.some(r=>url===s.ORIGIN+'/'+r));}
 for(const x of ['/plans/','/labs/','/labs/speed-that-endures/','/library/easy-days/','/form/'])assert.ok(locs.includes(s.ORIGIN+x),x);
 assert.ok(!locs.some(x=>/\/search$|\/app$|\/adrian/.test(x)));
 for(const row of m.untouchedHtml)assert.equal(s.sha(read(row.file)),row.sha256,row.file+' untouched');

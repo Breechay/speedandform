@@ -1,6 +1,6 @@
 {
   "version": "20260916-p2",
-  "baseCommit": "d86ee61739de9ad3c97515bd64b9a9409c8dd89c",
+  "baseCommit": "05b76ab2b08cfc37f448f637f19e3aa0c9c3d03a",
   "searchEntries": 46,
   "sitemap": [
     {
@@ -349,6 +349,17 @@
       "preview": {
         "title": "Easy Run | FORM",
         "description": "The session that makes hard work possible. Why easy running is the foundation of a durable training week."
+      }
+    },
+    {
+      "file": "forge-sculpt/index.html",
+      "reason": "Canonical added from existing public OG URL; public wayfinding retained",
+      "beforeSha256": "c1481c93657414abb1a96c2e69b72b23582b2a7c6fbf8227bc5e1cce83e9c9d9",
+      "afterSha256": "7a26e66a28181b2135d32c5d7d27cf812c155b784ec1e3e6a90884090aca8880",
+      "bodySha256": "a1b34b3b39045a7c040d6fc11bfc6f0c3ca93849c9539661e23a57236e26f9fa",
+      "preview": {
+        "title": "",
+        "description": ""
       }
     },
     {
@@ -1029,10 +1040,6 @@
     {
       "file": "forge-app/index.html",
       "sha256": "55e64f16a463a66ce1ddfb53334e467c353ab472f5f99da6c82b863879b6c472"
-    },
-    {
-      "file": "forge-sculpt/index.html",
-      "sha256": "c1481c93657414abb1a96c2e69b72b23582b2a7c6fbf8227bc5e1cce83e9c9d9"
     },
     {
       "file": "forge-sculpt/privacy/index.html",
