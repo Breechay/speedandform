@@ -16,7 +16,10 @@ assert.ok(!html.includes('id="pick"'));assert.ok(!html.includes('id="drop"'));
 assert.ok(!html.includes('fetch("/", { method:"POST"'));
 assert.match(html,/AbortController/);assert.match(html,/15000/);
 assert.match(html,/checkValidity\(\)/);assert.match(html,/escapeHTML\(r\[1\]\)/);
-assert.match(html,/An inquiry only. No payment or booking yet./);
+assert.doesNotMatch(html,/An inquiry only\. No payment or booking yet\./);
+assert.doesNotMatch(html,/I read every inquiry myself\./);
+assert.doesNotMatch(html,/Coaching you’re interested in/);
+assert.doesNotMatch(html,/first Miami track assessment is complimentary/i);
 assert.match(html,/Moving time and average pace from Simon/);
 assert.ok(!measurement.includes('var simon ='));assert.ok(!measurement.includes('result-grid'));
 assert.match(css,/prefers-reduced-motion:reduce/);assert.match(css,/grid-template-areas:"heading" "film" "body"/);
@@ -27,4 +30,4 @@ for(const m of html.matchAll(/(?:src|data-src|poster|href)="(\/(?!\/)[^"?#]*)(?:
  if(!pathname)continue;
  assert.ok(fs.existsSync(pathname)||fs.existsSync(pathname+'.html')||fs.existsSync(pathname+'/index.html'),'Local destination exists: '+m[1]);
 }
-console.log('PASS: one hero film; track photograph coaching visual; deferred motion; preserved offers and relay; native evidence; all local homepage links/assets resolve.');
+console.log('PASS: sparse hero; static track coaching visual; simplified inquiry; preserved offers and relay; all local homepage links/assets resolve.');
