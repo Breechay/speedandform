@@ -1,3 +1,16 @@
+/* Mobile first-fold density reduction. Keep this stylesheet independent of the
+   desktop composition and load it before any paid-social variant stylesheet. */
+(function () {
+  'use strict';
+  if (document.getElementById('mobileHeroStyles')) return;
+  var stylesheet = document.createElement('link');
+  stylesheet.id = 'mobileHeroStyles';
+  stylesheet.rel = 'stylesheet';
+  stylesheet.media = '(max-width:600px)';
+  stylesheet.href = '/css/mobile-hero.css?v=20260917-cut1';
+  document.head.appendChild(stylesheet);
+})();
+
 /* Paid-social landing continuation. This runs before homepage-motion.js, so a
    paid visit can swap the hero film before the lazy video source is consumed.
    Organic/referral visits do not change. */
