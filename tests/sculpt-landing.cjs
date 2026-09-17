@@ -1,7 +1,8 @@
 'use strict';
+const protectedBaseline=require('../scripts/protected-site-baseline.cjs');
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),cp=require('node:child_process');
 const s=require('../scripts/share-metadata.cjs'),state=require('../scripts/sculpt-landing-state.cjs');
-const ROOT=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(ROOT,f),'utf8'),old=f=>cp.execFileSync('git',['show',state.manifest.baseCommit+':'+f],{cwd:ROOT,maxBuffer:30_000_000});
+const ROOT=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(ROOT,f),'utf8'),old=f=>cp.execFileSync('git',['show',protectedBaseline(f,state.manifest.baseCommit)+':'+f],{cwd:ROOT,maxBuffer:30_000_000});
 const h=read('forge-sculpt/index.html'),ids=t=>[...t.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
 state.verify('forge-sculpt/index.html',h);assert.equal(s.sha(old('forge-sculpt/index.html')),state.manifest.pages[0].beforeSha256);
 const form=read('form/index.html');assert.equal(form,old('form/index.html').toString().replace('>RUNNER<span>','>JOSÉ<span>'),'Only the requested FORM identity changes');

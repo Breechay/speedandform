@@ -1,9 +1,10 @@
 'use strict';
+const protectedBaseline=require('../scripts/protected-site-baseline.cjs');
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),cp=require('node:child_process');
 const s=require('../scripts/share-metadata.cjs'),state=require('../scripts/form-landing-state.cjs');
 const sculpt=require('../scripts/sculpt-landing-state.cjs');
 const ROOT=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(ROOT,f),'utf8');
-const old=f=>cp.execFileSync('git',['show',state.manifest.baseCommit+':'+f],{cwd:ROOT,maxBuffer:20_000_000});
+const old=f=>cp.execFileSync('git',['show',protectedBaseline(f,state.manifest.baseCommit)+':'+f],{cwd:ROOT,maxBuffer:20_000_000});
 const h=read('form/index.html'),ids=t=>[...t.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
 assert.equal(s.sha(old('form/index.html')),state.manifest.pages[0].beforeSha256);state.verify('form/index.html',h);
 let count=0;for(const f of cp.execFileSync('git',['ls-tree','-r','--name-only',state.manifest.baseCommit],{cwd:ROOT,encoding:'utf8'}).trim().split('\n').filter(f=>f.endsWith('.html')&&f!=='form/index.html')){if(sculpt.verify(f,read(f)))continue;assert.equal(s.sha(read(f)),s.sha(old(f)),f+' unchanged by Pass 5A');count++;}
