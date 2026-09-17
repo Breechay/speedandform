@@ -1,5 +1,8 @@
 # FORM Acquisition Roadmap
 
+> **Run Development doctrine:** read `docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md` before generating coaching philosophy, identity copy or athlete-development language.
+
+
 **Updated:** September 16, 2026  
 **Status:** active operating note for the current Bridge Season
 

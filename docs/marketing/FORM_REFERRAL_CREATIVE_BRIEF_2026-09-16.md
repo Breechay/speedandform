@@ -1,5 +1,8 @@
 # FORM referral + offer creative brief
 
+> **Run Development doctrine:** read `docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md` before generating coaching philosophy, identity copy or athlete-development language.
+
+
 **Version:** 3.1  
 **Date:** September 16, 2026  
 **Destination:** speedandform.com  

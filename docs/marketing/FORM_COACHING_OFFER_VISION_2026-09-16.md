@@ -4,6 +4,9 @@
 **Status:** active strategic direction; product details marked OPEN remain hypotheses until field-tested  
 **Applies to:** speedandform.com, Run Development, FORM Analysis, Instagram/Meta acquisition, referrals, assessments, future app/Console connections
 
+> **September 17 doctrine overlay:** read [`docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md`](../FORM_RUN_DEVELOPMENT_MANIFESTO.md). It is the newer authority for how Run Development is understood and described: ease, fluidity, selective high-impact change, layered cues, repeated exposure, internal state and athlete ownership. Product facts and evidence boundaries in this document remain valid; generic descriptions of coaching do not override the manifesto.
+
+
 ## The realization
 
 FORM has been treating the 8-week Run Development block as the primary public coaching door. Field evidence now shows a second, legitimate job that should not be forced into an 8-week relationship.
@@ -189,9 +192,10 @@ These are hypotheses to test, not cosmetic variants.
 
 **Spine:**
 
-> Run better.  
-> Get faster.  
-> Run farther.
+> Run Development  
+> Run better.
+
+Speed, distance and endurance can appear through the footage, athlete need and later proof. Do not stack every possible benefit into the opening line.
 
 Use real running and coaching footage. Controlled → sharper → sustained. Close on Run Development / individual running coaching / Miami / speedandform.com.
 

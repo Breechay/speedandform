@@ -1,5 +1,8 @@
 # Homepage: one runner, one coherent coaching path
 
+> **Superseded for current homepage sequence:** September 17 source doctrine is `docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md`. This audit remains a historical release receipt; its proof-first/Simon placement is not a current content requirement.
+
+
 Date: September 16, 2026. Owner: Brice. Scope: public homepage only.
 
 ## Release state

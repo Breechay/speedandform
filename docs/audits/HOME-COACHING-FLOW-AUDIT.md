@@ -1,5 +1,8 @@
 # Homepage coaching flow and visual review
 
+> **Superseded for current homepage sequence:** September 17 source doctrine is `docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md`. This audit remains a historical release receipt; its proof-first/Simon placement is not a current content requirement.
+
+
 September 14, 2026. PR112. Scope: root homepage; other public routes and auth behavior unchanged.
 
 ## Observed defects and changes

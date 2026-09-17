@@ -75,10 +75,10 @@ try:
                 assert '/media/practice.mp4' in media['film'], media
                 assert '/media/practice.jpg' in media['poster'], media
 
-                # The paid treatment must not rewrite evidence below the fold.
-                assert page.locator('#simon h2').inner_text() == '1:26.'
-                assert page.locator('#simon .result-goal').inner_text() == 'The goal was sub-1:30.'
-                assert page.locator('#simon .result-metrics').inner_text().replace('\n', ' ').find('6:35') >= 0
+                # The paid treatment must not rewrite the coaching doctrine below the fold.
+                assert page.locator('#simon').count() == 0
+                assert page.locator('#practice h2').inner_text() == 'I develop\nrunners.'
+                assert page.locator('#practice .practice-manifesto').inner_text() == 'Reveal what wants to be set free.'
 
                 bounds = page.evaluate("""() => {
                   const box = s => {const r=document.querySelector(s).getBoundingClientRect();return {x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height};};
@@ -97,7 +97,7 @@ try:
                 unexpected = [e for e in errors if 'Failed to fetch dynamically imported module' not in e]
                 assert not unexpected, unexpected
                 report.append({'width': w, 'height': h, 'pass': True, 'bounds': bounds, 'media': media})
-                print('PASS', ENGINE, w, 'sparse paid hero, continuation media, vetted proof and inquiry entry', flush=True)
+                print('PASS', ENGINE, w, 'sparse paid hero, continuation media, manifesto flow and inquiry entry', flush=True)
                 page.close()
 
             # Direct/organic traffic must retain the existing homepage state,

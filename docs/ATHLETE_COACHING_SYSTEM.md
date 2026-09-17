@@ -1,5 +1,8 @@
 # THE ATHLETE COACHING SYSTEM — standing rules
 
+> **Run Development doctrine:** read `docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md` before generating coaching philosophy, identity copy or athlete-development language.
+
+
 Binding on Natalie's record, the Coach Desk, the share card, and every coaching
 surface that follows. Written from corrections Brice made in review, so they do
 not have to be made again.
