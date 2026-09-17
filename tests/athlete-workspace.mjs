@@ -65,10 +65,13 @@ has(emptyHistory,'No history has reached this account yet.'); has(emptyHistory,'
 
 const athleteJs = read('athlete/athlete.js');
 lacks(athleteJs,'fileSession'); lacks(athleteJs,'updateCompletion'); lacks(athleteJs,'fileDialog');
+lacks(athleteJs,'recordNav'); lacks(athleteJs,'navSignOut');
 has(athleteJs,'renderAthleteWorkspace'); has(athleteJs,"['today','plan','history','account']");
 
+const workspaceJs = read('athlete/workspace.js');
+for (const label of ['Today','Plan','History','Account']) has(workspaceJs,label);
 const index = read('athlete/index.html');
-for (const label of ['Today','Plan','History','Account']) has(index,label);
+lacks(index,'record-nav'); lacks(index,'data-nav-view');
 lacks(index,'How did it go?'); lacks(index,'File this session'); lacks(index,'Optional screenshot');
 
 console.log(`PASS: ${checks} athlete workspace checks`);
