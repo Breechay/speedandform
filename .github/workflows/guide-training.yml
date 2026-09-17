@@ -1,56 +1,26 @@
 name: Training guide release checks
 on:
   push:
-    branches: [work/guide-training-pass4b]
+    branches: [work/guide-training-pass4b, main]
+    paths: ['training-week.html','strength.html','recovery.html','fueling.html','library.html','scripts/*guide*.cjs','scripts/training-*.cjs','css/training-guides.css','js/training-tools.js','tests/training-*','tests/guide-foundations.cjs','docs/audits/TRAINING-GUIDES*','.github/workflows/guide-training.yml']
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
   verify:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Apply bounded authored guides on isolated branch
-        run: |
-          test "$GITHUB_REF_NAME" = work/guide-training-pass4b
-          python - <<'PY'
-          import base64,lzma,hashlib,json,subprocess
-          from pathlib import Path
-          allowed={'.github/workflows/guide-training.yml','scripts/discovery-catalog.cjs','scripts/guide-state.cjs','scripts/verify-share-production.cjs','tests/guide-foundations.cjs','tests/share-metadata.cjs','css/training-guides.css','docs/audits/TRAINING-GUIDES-20260917.md','docs/audits/TRAINING-GUIDES-MANIFEST-20260917.json','js/training-tools.js','scripts/build-training-guides.cjs','scripts/training-guide-content.cjs','scripts/training-guide-state.cjs','scripts/verify-training-guides-production.cjs','tests/training-guides-browser.py','tests/training-guides-live.py','tests/training-guides.cjs'}
-          transport={f'.github/training-transfer/{i}.b64' for i in range(6)}
-          b=base64.b64decode(''.join(Path(f'.github/training-transfer/{i}.b64').read_text() for i in range(6)),validate=True)
-          assert hashlib.sha256(b).hexdigest()=='808c6e6836f301597e3da106aa10b69ebef4d74829f766b26a5308e7290bb71c'
-          data=json.loads(lzma.decompress(b,memlimit=134217728))
-          assert set(data)==allowed
-          # Actions may write site sources, not workflows. The authorized connector
-          # will set the final read-only workflow separately after source acceptance.
-          data.pop('.github/workflows/guide-training.yml')
-          allowed.remove('.github/workflows/guide-training.yml')
-          for f,text in data.items():
-              p=Path(f);p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text,encoding='utf-8')
-          for f in transport:Path(f).unlink()
-          subprocess.run(['node','scripts/build-training-guides.cjs'],check=True)
-          subprocess.run(['node','scripts/build-discovery.cjs'],check=True)
-          subprocess.run(['node','tests/training-guides.cjs'],check=True)
-          generated={'training-week.html','strength.html','recovery.html','fueling.html','library.html','search-index.json','docs/audits/DISCOVERY-MANIFEST-20260916.json'}
-          changed=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines())
-          assert changed<=allowed|generated|transport,changed-(allowed|generated|transport)
-          subprocess.run(['git','add','-A','--',*sorted(allowed|generated|transport)],check=True)
-          PY
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'feat: implement training week, strength, recovery and fueling guides with reviewed examples'
-          git push origin HEAD:work/guide-training-pass4b
       - name: Source and critical-flow checks
         run: |
           set -o pipefail
@@ -90,12 +60,23 @@ jobs:
           export CHROMIUM_PATH="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
           python tests/homepage-browser.py
           cp .homepage-qa/browser-qa.json /tmp/training-guide-receipt/homepage-browser.json
+      - name: Verify actual production
+        if: github.ref_name == 'main'
+        env:
+          TRAINING_GUIDE_LIVE_ARTIFACTS: /tmp/training-guide-receipt/live
+        run: |
+          node scripts/verify-training-guides-production.cjs /tmp/training-guide-receipt/production.json
+          node scripts/verify-guides-production.cjs /tmp/training-guide-receipt/foundations-production.json
+          node scripts/verify-discovery-production.cjs /tmp/training-guide-receipt/discovery-production.json
+          node scripts/verify-share-production.cjs /tmp/training-guide-receipt/share-production.json
+          node scripts/verify-track-production.cjs /tmp/training-guide-receipt/gallery-production.json
+          python tests/training-guides-live.py
       - name: Save release evidence
         if: always()
         run: |
           mkdir -p /tmp/training-guide-receipt
           git rev-parse HEAD > /tmp/training-guide-receipt/commit.txt
-          cp docs/audits/TRAINING-GUIDES-MANIFEST-20260917.json /tmp/training-guide-receipt/ || true
+          cp docs/audits/TRAINING-GUIDES-MANIFEST-20260917.json /tmp/training-guide-receipt/
       - uses: actions/upload-artifact@v4
         if: always()
         with:
