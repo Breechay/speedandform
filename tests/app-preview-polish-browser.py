@@ -5,6 +5,8 @@ from pathlib import Path
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlsplit, unquote
 import json, os, threading
+from io import BytesIO
+from PIL import Image
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[1]
 LIVE=os.environ.get('APP_POLISH_LIVE')=='1'; ENGINE=os.environ.get('BROWSER','chromium')
@@ -55,6 +57,14 @@ try:
    check(f'FORM {w}: José retained',page.locator('.fl-athlete').inner_text()=='JOSÉ.')
    check(f'FORM {w}: no overflow',page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
    circles(page,f'FORM {w}')
+   mark=Image.open(BytesIO(page.locator('.fl-mark').first.screenshot())).convert('RGB')
+   whites=[];limes=[]
+   for y in range(mark.height):
+    for x in range(mark.width):
+     r,g,b=mark.getpixel((x,y))
+     if min(r,g,b)>220:whites.append(y)
+     if g>200 and r>130 and b<110:limes.append(y)
+   check(f'FORM {w}: period sits on the lettering baseline',bool(whites and limes) and abs(max(whites)-max(limes))<=3)
    if w in [390,1440]:
     page.locator('.fl-header').screenshot(path=str(OUT/f'form-header-{w}.png'));page.locator('.fl-preview').screenshot(path=str(OUT/f'jose-{w}.png'));page.locator('.fl-footer').screenshot(path=str(OUT/f'form-footer-{w}.png'))
   page.set_viewport_size({'width':390,'height':960});page.goto(BASE+'/form/');page.add_style_tag(content='.fl-mark,.fl-athlete{font-family:Georgia,serif!important}')

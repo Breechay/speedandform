@@ -10,7 +10,7 @@ const edits=new Map([
   ['font:400 245px/.95 Georgia,serif;letter-spacing:-.09em;', 'font:500 245px/.95 var(--sans);letter-spacing:-.075em;font-variant-numeric:lining-nums tabular-nums;']
  ]],
  ['css/form-landing.css',[
-  ['.fl-mark span,.fl-athlete span{color:var(--fl-lime)}', '.fl-mark span,.fl-athlete span{display:inline-block;width:.18em;height:.18em;margin-left:.035em;line-height:0;letter-spacing:0;border-radius:50%;background:var(--fl-lime);color:transparent;vertical-align:baseline}'],
+  ['.fl-mark span,.fl-athlete span{color:var(--fl-lime)}', '.fl-mark span,.fl-athlete span{display:inline-block;width:.18em;height:.18em;margin-left:.035em;line-height:0;letter-spacing:0;border-radius:50%;background:var(--fl-lime);color:transparent;vertical-align:baseline;position:relative;top:.18em}'],
   ['/* FORM public product room.', '@media(forced-colors:active){.fl-mark span,.fl-athlete span{background:CanvasText!important;forced-color-adjust:none}}\n/* FORM public product room.']
  ]]
 ]);
@@ -18,7 +18,7 @@ function transform(file,source){for(const [from,to] of edits.get(file)||[]){asse
 function original(file){return cp.execFileSync('git',['show',BASE+':'+file],{cwd:ROOT,encoding:'utf8',maxBuffer:30_000_000});}
 function verify(file,content){if(!edits.has(file))return false;assert.equal(String(content),transform(file,original(file)),file+' exact requested visual correction');return true;}
 function apply(){
- for(const [file] of edits){const source=original(file),after=transform(file,source),p=path.join(ROOT,file),current=fs.readFileSync(p,'utf8');assert.ok(current===source||current===after,file+' unexpected concurrent edit');fs.writeFileSync(p,after);}
+ for(const [file] of edits){const source=original(file),after=transform(file,source),p=path.join(ROOT,file),current=fs.readFileSync(p,'utf8');const previous=file==='css/form-landing.css'?after.replace(';position:relative;top:.18em',''):null;assert.ok(current===source||current===after||current===previous,file+' unexpected concurrent edit');fs.writeFileSync(p,after);}
  // Advance existing exact snapshots only; never regenerate scientific, product or commercial claims.
  for(const file of ['FORM-LANDING-MANIFEST-20260917.json','SCULPT-LANDING-MANIFEST-20260917.json']){
   const p=path.join(ROOT,'docs/audits',file),m=JSON.parse(fs.readFileSync(p,'utf8'));
