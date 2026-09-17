@@ -22,6 +22,13 @@ try:
         page.goto(url,wait_until='networkidle')
         check(f'Live album contained at {width}',page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
         check(f'Clean public copy at {width}',not any(t in page.locator('body').inner_text() for t in ['No signup needed','Downloads are web editions','Silent film. Play to watch']))
+        # Walk the album like a visitor before photographing the entire page.
+        # A full-page screenshot alone does not trigger offscreen lazy images.
+        images=page.locator('main img')
+        for i in range(images.count()):
+            image=images.nth(i);image.scroll_into_view_if_needed();image.evaluate('(i)=>i.decode()')
+        check(f'Every album image loads at {width}',images.evaluate_all('(images)=>images.every(i=>i.complete&&i.naturalWidth>0)'))
+        page.evaluate('scrollTo(0,0)');page.evaluate('()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))')
         page.screenshot(path=str(OUT/f'album-{width}.png'),full_page=True)
         film=page.locator('[data-media=video]');film.scroll_into_view_if_needed();film.locator('img').evaluate('(i)=>i.decode()')
         check(f'Complete live thumbnail at {width}',film.locator('img').evaluate('(i)=>Math.abs(i.clientWidth/i.clientHeight-i.naturalWidth/i.naturalHeight)<.01'))
