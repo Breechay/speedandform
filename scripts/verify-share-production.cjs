@@ -8,7 +8,7 @@ const root=path.resolve(__dirname,'..');
 const manifest=JSON.parse(fs.readFileSync(path.join(root,'docs/audits/SHARE-METADATA-MANIFEST-20260916.json'),'utf8'));
 const discovery=path.join(root,'docs/audits/DISCOVERY-MANIFEST-20260916.json');
 const editorial=require('./guide-state.cjs');
-const updates=new Map([...(fs.existsSync(discovery)?JSON.parse(fs.readFileSync(discovery,'utf8')).changedHtml:[]).map(r=>[r.file,r]),...editorial.updates]);
+const updates=new Map([...(fs.existsSync(discovery)?JSON.parse(fs.readFileSync(discovery,'utf8')).changedHtml:[]).map(r=>[r.file,r]),...editorial.latestUpdates]);
 const cases={
  'index.html':'/', 'library.html':'/library', 'easy-run.html':'/easy-run',
  'threshold.html':'/threshold', 'long-run.html':'/long-run', 'notes.html':'/notes',

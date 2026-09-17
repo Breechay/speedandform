@@ -1,0 +1,85 @@
+name: Training guide release checks
+on:
+  push:
+    branches: [work/guide-training-pass4b, main]
+    paths: ['training-week.html','strength.html','recovery.html','fueling.html','library.html','scripts/*guide*.cjs','scripts/training-*.cjs','css/training-guides.css','js/training-tools.js','tests/training-*','tests/guide-foundations.cjs','docs/audits/TRAINING-GUIDES*','.github/workflows/guide-training.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Source and critical-flow checks
+        run: |
+          set -o pipefail
+          mkdir -p /tmp/training-guide-receipt
+          {
+            node tests/training-guides.cjs
+            node tests/guide-foundations.cjs
+            node tests/track-gallery.cjs
+            node tests/discovery.cjs
+            node tests/share-metadata.cjs
+            node tests/homepage-metadata.cjs
+            node tests/homepage-release.cjs
+            node tests/coaching-measurement.cjs
+            node tests/cream-reading.cjs
+            node labs/track/track.test.cjs
+            node tests/thursday-schedule.cjs
+          } | tee /tmp/training-guide-receipt/source-tests.txt
+          node scripts/build-training-guides.cjs
+          node scripts/build-guides.cjs
+          node scripts/build-discovery.cjs
+          git diff --exit-code
+      - name: Install browser runtime
+        run: |
+          python -m pip install playwright==1.58.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: New and existing browser acceptance
+        env:
+          TRAINING_GUIDE_ARTIFACTS: /tmp/training-guide-receipt/training
+          GUIDE_ARTIFACTS: /tmp/training-guide-receipt/foundations
+          TRACK_GALLERY_ARTIFACTS: /tmp/training-guide-receipt/gallery
+          DISCOVERY_ARTIFACTS: /tmp/training-guide-receipt/discovery
+        run: |
+          python tests/training-guides-browser.py
+          python tests/guide-browser.py
+          python tests/track-gallery-browser.py
+          python tests/discovery-browser.py
+          export CHROMIUM_PATH="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
+          python tests/homepage-browser.py
+          cp .homepage-qa/browser-qa.json /tmp/training-guide-receipt/homepage-browser.json
+      - name: Verify actual production
+        if: github.ref_name == 'main'
+        env:
+          TRAINING_GUIDE_LIVE_ARTIFACTS: /tmp/training-guide-receipt/live
+        run: |
+          node scripts/verify-training-guides-production.cjs /tmp/training-guide-receipt/production.json
+          node scripts/verify-guides-production.cjs /tmp/training-guide-receipt/foundations-production.json
+          node scripts/verify-discovery-production.cjs /tmp/training-guide-receipt/discovery-production.json
+          node scripts/verify-share-production.cjs /tmp/training-guide-receipt/share-production.json
+          node scripts/verify-track-production.cjs /tmp/training-guide-receipt/gallery-production.json
+          python tests/training-guides-live.py
+      - name: Save release evidence
+        if: always()
+        run: |
+          mkdir -p /tmp/training-guide-receipt
+          git rev-parse HEAD > /tmp/training-guide-receipt/commit.txt
+          cp docs/audits/TRAINING-GUIDES-MANIFEST-20260917.json /tmp/training-guide-receipt/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: training-guide-receipt
+          path: /tmp/training-guide-receipt/
+          retention-days: 14
