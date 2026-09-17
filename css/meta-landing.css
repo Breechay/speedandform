@@ -1,5 +1,5 @@
 /* Paid-social continuation state. Default homepage remains untouched unless the
-   incoming URL is identified as paid social in the inline head gate. */
+   incoming URL is identified as paid social. */
 html.meta-paid .hero>img,
 html.meta-paid .hero>video{object-position:center 46%}
 html.meta-paid .hero-copy{padding-bottom:50px}
@@ -9,9 +9,6 @@ html.meta-paid .hero-sub{grid-template-columns:minmax(0,1fr) auto;align-items:en
 html.meta-paid .hero-sub>p{max-width:48ch;font-size:18px;line-height:1.58;color:#d6d9d2}
 html.meta-paid .hero-actions{margin-top:24px}
 html.meta-paid .hero-reassurance{max-width:30ch}
-html.meta-paid .result.meta-result h2{display:flex;align-items:baseline;gap:.22em;flex-wrap:wrap;font-size:clamp(56px,6.8vw,100px);line-height:.98;letter-spacing:-.055em}
-html.meta-paid .result.meta-result h2 i{font-family:var(--sans);font-style:normal;font-size:.42em;letter-spacing:0;color:var(--body)}
-html.meta-paid .result.meta-result .result-goal{font-weight:500}
 
 @media(max-width:800px){
   html.meta-paid .hero h1{font-size:clamp(68px,12.4vw,94px)}
@@ -31,9 +28,6 @@ html.meta-paid .result.meta-result .result-goal{font-weight:500}
   html.meta-paid .begin{width:100%;min-height:52px}
   html.meta-paid .hero-actions>span{font-size:12px;line-height:1.55;max-width:34ch}
   html.meta-paid .film-toggle{bottom:10px}
-  html.meta-paid .result{padding-top:42px}
-  html.meta-paid .result.meta-result h2{font-size:clamp(42px,12vw,58px);gap:.16em;margin:18px 0 10px}
-  html.meta-paid .result.meta-result .result-goal{font-size:20px}
 }
 
 @media(max-width:359px){
