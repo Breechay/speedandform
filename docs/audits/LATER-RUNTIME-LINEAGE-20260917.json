@@ -22,6 +22,13 @@
       "sourceRevision": "adec1c431081f49e6b7a7374691037b60022bb07",
       "pullRequest": 142,
       "reason": "Approved Run Development doctrine homepage motion behavior."
+    },
+    {
+      "file": "plans/race-pace-durability/source.js",
+      "afterSha256": "47b985469f55739c8f0300d6206db3f94be2033cd74ca7bdc599f286eb123130",
+      "sourceRevision": "977fbf6db086ce8c3c27c0486b4ee219f69821c7",
+      "pullRequest": 136,
+      "reason": "Reviewed account-aware RPD access source."
     }
   ],
   "notes": [
