@@ -2,9 +2,17 @@
 
 Owner: Brice. Scope: the first four explanatory Library guides. The single release register remains `docs/roadmap/SITE-ECOSYSTEM-PASSES-20260916.md`.
 
-## Release state
+## Release receipt
 
-PREPARED. Source, browser, merge and production verification receipts are not yet complete. A saved draft or screenshot is not a deployed release.
+**LIVE September 17, 2026 at 04:27:38.402 UTC.** PR #125 merged as `ce36b2e609f6b4f57f6962aa3928f339df6ef085`. Netlify production deploy `6aab6c2e902549000956329d` is ready on the existing site `f3914a6a-a9ce-465e-8212-f5f42597c469`; its record names that exact release commit. The existing main-branch publish performed the deployment. No additional manual production deployment was triggered.
+
+Read-only branch CI `35181822997` passed on `2b60817c3eb797f35df29809e8715584f0df7897`. Merged-main CI `35181987634` passed **ten source/regression suites, 188 guide browser checks, 110 gallery checks, 61 discovery checks and 17 homepage/intake/media checks**, then verified the actual published site.
+
+Production verification began at `2026-09-17T04:29:19.535Z`. All four revised guides and three exact public assets (guide CSS, guide JS, unchanged cream CSS) passed by `04:29:21.613Z`. The existing discovery checks passed all **72 canonical pages, six public resources and six route cases** by `04:29:27.433Z`; the sharing recheck passed **19 pages and ten distinct image URLs** by `04:29:35.644Z`; gallery checks passed **two pages and twenty resources**, including the photo ZIP and film, by `04:29:48.276Z`. No readiness retries were needed.
+
+The actual live Chromium guide test then passed **37 checks**: all four guides at 390 and 1440 pixels, HTTP responses, contained layouts, readable body type, citation links revealing their sources, the retained form bookmark, no prescribed metronome default, actual audio startup/Stop controls and no runtime errors. These are browser viewport checks, not physical-device claims.
+
+Artifact `10481110342`, `foundation-guide-receipt`, from main run `35181987634` contains the exact source commit, editorial manifest, test output, browser reports, screenshots and four production reports. Retention is fourteen days; this document preserves the permanent receipt. The final workflow has read-only permissions, no transfer fragments, no source-writing bootstrap and no deployment step. The review archive contains no source archive or font files.
 
 ## The four routes
 
@@ -40,14 +48,18 @@ No new athlete result, testimonial, diagnosis, medical credential or app capabil
 
 ## Boundaries and maintenance
 
-Four guide HTML sources and four Library labels plus their matching ItemList are the only intended existing HTML changes. `GUIDES-MANIFEST-20260917.json` records exact before/after hashes against main `adaaa8c48f01303710aa6a53ee9258ecc48b72a8`. Original Pass 1 and Pass 2 release receipts retain their evidence. Prior regression suites accept only the five exact later HTML snapshots, and the new suite checks each against its original baseline and verifies every other HTML file is unchanged.
+Four guide HTML sources and four Library labels plus their matching ItemList are the only intended existing HTML changes. `GUIDES-MANIFEST-20260917.json` records exact before/after hashes against main `adaaa8c48f01303710aa6a53ee9258ecc48b72a8`. **172 other HTML files remain byte-identical.** Original Pass 1, Pass 2 and Pass 3 release receipts retain their evidence. Prior regression suites accept only the five exact later HTML snapshots, and the new suite checks each against its original baseline and verifies every other HTML file is unchanged.
 
 The scoped guide stylesheet inherits the existing cream material, ink and typography. The shared cream CSS/build, discovery CSS/search code, gallery, homepage media/layout/measurement, Labs, native app pages, paid-plan source, intake, private delivery and operational tools remain unchanged. Canonical URLs and the approved social images are preserved. The catalog count and sitemap addresses do not change.
 
 Content is authored in `scripts/guide-content.cjs`; `scripts/build-guides.cjs` generates only the four guides. Review catalog wording and run the discovery generator when those labels change. Update the new editorial manifest deliberately after a reviewed change; do not overwrite historical receipts or weaken preservation tests. The Netlify build does not acquire a new content-generation dependency.
 
-## Acceptance to record
+## Acceptance details and remaining scope
 
-Run the new content/boundary test, the existing nine source suites, thumbnail validation, guide browser checks and unchanged discovery/gallery/homepage browser suites. After publication, verify all four actual pages, the new CSS and JS, preserved cream bytes, canonical/share metadata, disclosure navigation and cadence controls. Record live server checks separately from viewport tests.
+The six-width review covers 375, 390, 430, 768, 1024 and 1440 pixels. It tests all opened disclosures, first-screen answers, keyboard skip links, visible and disclosed source references, 200% zoom, old bookmarks, real Web Audio startup and cleanup, input/error states, the practice time limit and no-JavaScript reading. Existing gallery and homepage tests intercept external requests and submissions.
 
-Physical iPhone/iPad, Safari, screen-reader output and third-party preview caches must remain explicitly open unless actually tested. No ranking, indexing, conversion or numerical design-score claim follows from a passing test. No real inquiry, email, payment or external message is part of acceptance.
+The initial review exposed narrow-column overflow at 200% zoom; the examples now reflow and text wraps without clipping. Two test-harness assumptions were corrected without weakening checks: source links inside closed disclosures are first exposed through their controls; stopped status inside a closed disclosure is read from DOM text rather than rendered innerText, which is empty while hidden. The initial missing attribute-decoder export was replaced by the module's exported attribute parser. Final branch and merged-main runs passed afterward.
+
+**No real inquiry, email, payment, signup or external message was sent.** Physical iPhone/iPad, Safari, screen-reader output and third-party preview caches remain unverified. No ranking, indexing, conversion or numerical design-score gain is claimed.
+
+This closes the first four-guide batch, not the entire Library. Further educational batches, the two app landing pages and contact/newsletter work remain queued in the single release register. Do not restart the whole-site audit before the next bounded batch.

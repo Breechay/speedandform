@@ -1,6 +1,6 @@
 # Site ecosystem: bounded release passes
 
-Owner: Brice. Created September 16, 2026. Pass 3 production receipt updated September 17, 2026 UTC (September 16 in Miami).
+Owner: Brice. Created September 16, 2026. Pass 4A production receipt updated September 17, 2026.
 
 ## Decision
 
@@ -8,7 +8,7 @@ Brice approved breaking the whole-site project into multiple passes after the la
 
 This document owns the checklist for this project. It supplements, rather than replaces, `FORM-ROADMAP.md` and the existing product and commercial authorities named in `AGENTS.md`. It changes execution order, not coaching doctrine, app behavior, prices, or access rules.
 
-**Current delivery state: Passes 1, 2 and 3 are LIVE.** Pass 3: PR #124, main `41648a26a126fc333815bd093381af22ae3aeb74`, Netlify `6aab5fedc4ff640008146717`, published September 17 at 03:35:22.532 UTC. Nine Node suites plus thumbnail validation, 110 gallery browser checks, 61 discovery checks, 17 homepage checks and 15 actual live-gallery checks passed. Exact public media/downloads, all 72 canonical pages and existing sharing metadata were reverified. [Pass 3 release receipt](../audits/TRACK-GALLERY-RELEASE-20260917.md). [Pass 2 receipt](../audits/DISCOVERY-RELEASE-20260916.md) and [Pass 1 receipt](../audits/SHARE-PREVIEW-RELEASE-20260916.md) remain historical release records. Physical-device and native sharing-app checks remain open. Pass 4 is next; Passes 4–6 remain unstarted here. No background execution is implied.
+**Current delivery state: Passes 1, 2, 3 and the first educational batch (4A) are LIVE.** Pass 4A: PR #125, main `ce36b2e609f6b4f57f6962aa3928f339df6ef085`, Netlify `6aab6c2e902549000956329d`, published September 17 at 04:27:38.402 UTC. Ten source suites, 188 guide browser checks, 110 gallery checks, 61 discovery checks, 17 homepage checks and 37 actual live-guide checks passed. The four guides, three exact guide assets, all 72 canonical pages and prior gallery/share delivery were reverified. [Pass 4A receipt](../audits/FOUNDATION-GUIDES-20260917.md). Earlier [gallery](../audits/TRACK-GALLERY-RELEASE-20260917.md), [discovery](../audits/DISCOVERY-RELEASE-20260916.md) and [sharing](../audits/SHARE-PREVIEW-RELEASE-20260916.md) receipts remain historical release records. Physical-device and native sharing-app checks remain open. Further educational batches and Passes 5–6 are queued, not running in the background.
 
 ## Boundaries that apply throughout
 
@@ -27,7 +27,7 @@ This document owns the checklist for this project. It supplements, rather than r
 | 1 | Approved share image and link-preview metadata | LIVE; native-preview check open | PR122; main `c1b56e58`; Netlify `6aab1cbbc6fa6800086e6e3e`. 73 defaults, 11 dedicated cards, 91 excluded HTML files unchanged. Seven suites; Actions `35159434946` verified 19 production pages and 10 distinct image URLs at 22:48:55 UTC. [Receipt](../audits/SHARE-PREVIEW-RELEASE-20260916.md). |
 | 2 | Public navigation, Library discovery, and technical SEO | LIVE; physical-device checks open | PR123; main `06b487cd`; Netlify `6aab454727ac1b000895ccc2`. Eight suites; 61 discovery and 17 homepage browser checks. Main Actions `35171527097` verified 70 canonical pages, six resources, six route cases, 19 shared-page previews and 10 image URLs by September 17 at 01:43:01 UTC. [Receipt](../audits/DISCOVERY-RELEASE-20260916.md). |
 | 3 | Track photo and video gallery | LIVE; native-device checks open | PR124; main `41648a26`; Netlify `6aab5fedc4ff640008146717`. Main Actions `35178718009`: 110 gallery, 61 discovery, 17 homepage and 15 live-gallery checks; nine Node suites plus thumbnail validation. Two gallery pages and 20 public resources match tested bytes. [Receipt](../audits/TRACK-GALLERY-RELEASE-20260917.md); [publishing runbook](../publishing/TRACK-GALLERY.md). Starter is an undated earlier selection. New dated albums need real selected media. Timestamp/custom-thumbnail selection is implemented; a visual authoring picker remains later. |
-| 4 | Educational pages, in small topic batches | NEXT | Begin with easy running, threshold training, the long run and running form. No article rewrite shipped in Pass 3. |
+| 4 | Educational pages, in small topic batches | 4A LIVE; subsequent batches QUEUED | PR125; main `ce36b2e6`; Netlify `6aab6c2e902549000956329d`. `/easy-run`, `/threshold-training`, `/long-run-pace`, `/running-form-errors` and matching Library labels. Main Actions `35181987634`: ten source suites, 188 guide, 110 gallery, 61 discovery, 17 homepage and 37 live-guide checks. Four guides and three assets verified; existing discovery/share/gallery delivery preserved. [Receipt](../audits/FOUNDATION-GUIDES-20260917.md). Next proposed bounded batch: training week, strength, recovery and fueling; inspect their actual delivery/tool roles before editing. Other Library topics remain queued, not implicitly rewritten. |
 | 5 | FORM and Breechay Sculpt / Forge landing pages | QUEUED | None yet |
 | 6 | Contact, Field Notes, opt-in updates, and final journey review | QUEUED | None yet |
 
