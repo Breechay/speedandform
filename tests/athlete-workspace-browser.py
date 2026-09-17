@@ -15,7 +15,9 @@ HARNESS='''<!doctype html><html><head><meta name="viewport" content="width=devic
 import {renderAthleteWorkspace} from '/athlete/workspace.js';
 const p=new URLSearchParams(location.search),kind=p.get('kind')||'running',view=p.get('view')||'today';
 const week={id:'w1',week_number:1,starts_on:'2026-09-14',ends_on:'2026-09-20',intent:'Build the week without forcing it.'};
-const record={athlete:{id:'a1',display_name:kind==='strength'?'Adrian':'José',account_label:kind==='strength'?'Remote strength':'Run Development',delivery:kind==='strength'?'forge':'form_app',home_surface:kind,program_name:kind==='strength'?'Breechay Sculpt':'Race Pace Durability'},block:kind==='strength'?null:{id:'b1',current_week:1,total_weeks:15,goal_statement:'Half marathon · Dec 5'},weeks:kind==='strength'?[]:[week],currentWeek:kind==='strength'?null:week,sessionsByWeek:kind==='strength'?{}:{w1:[{id:'s1',day_label:'Mon',currentVersion:{title:'General aerobic',prescribed_distance:6,distance_unit:'mi',intent:'Easy and conversational.'}},{id:'s2',day_label:'Tue',currentVersion:{title:'Race pace',prescribed_distance:9,distance_unit:'mi',intent:'5 mi continuous at your race-pace band.'}}]},completions:kind==='strength'?[]:[{id:'c1',planned_session_id:'s1',status:'completed',actual_distance:6,distance_unit:'mi',filed_at:'2026-09-14T12:00:00Z',athlete_note:'Smooth.'}],directions:[],reads:kind==='strength'?[]:[{published_at:'2026-09-15T12:00:00Z',athlete_text:'The work is landing.'}],decisions:[]};
+const strengthAthlete={id:'a1',display_name:'Adrian',account_label:'Adrian',delivery:'coach',home_surface:'form',program_name:'Runner Mass · Phase 1'};
+const runAthlete={id:'a1',display_name:'José',account_label:'Run Development',delivery:'app',home_surface:'form',program_name:'FORM'};
+const record={athlete:kind==='strength'?strengthAthlete:runAthlete,block:kind==='strength'?null:{id:'b1',current_week:1,total_weeks:15,goal_statement:'Half marathon · Dec 5'},weeks:kind==='strength'?[]:[week],currentWeek:kind==='strength'?null:week,sessionsByWeek:kind==='strength'?{}:{w1:[{id:'s1',day_label:'Mon',currentVersion:{title:'General aerobic',prescribed_distance:6,distance_unit:'mi',intent:'Easy and conversational.'}},{id:'s2',day_label:'Tue',currentVersion:{title:'Race pace',prescribed_distance:9,distance_unit:'mi',intent:'5 mi continuous at your race-pace band.'}}]},completions:kind==='strength'?[]:[{id:'c1',planned_session_id:'s1',status:'completed',actual_distance:6,distance_unit:'mi',filed_at:'2026-09-14T12:00:00Z',athlete_note:'Smooth.'}],directions:[],reads:kind==='strength'?[]:[{published_at:'2026-09-15T12:00:00Z',athlete_text:'The work is landing.'}],decisions:[]};
 document.getElementById('app').innerHTML=renderAthleteWorkspace(record,{view,email:(kind==='strength'?'adrian':'jose')+'@example.com'});document.documentElement.dataset.ready='true';
 </script></body></html>'''
 try:
@@ -37,10 +39,11 @@ try:
           ctx.route('**/*',route)
           page.goto(f'{BASE}/__workspace?kind={kind}&view={view}');page.wait_for_function("document.documentElement.dataset.ready==='true'")
           check(f'{kind} {view} {width}: no horizontal overflow',page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
-          check(f'{kind} {view} {width}: four destinations',page.locator('[data-athlete-view]').count()==4)
+          check(f'{kind} {view} {width}: four destinations',page.locator('.athlete-tabs [data-athlete-view]').count()==4)
           check(f'{kind} {view} {width}: no filing control','File this session' not in page.locator('body').inner_text())
           if kind=='strength':
             check(f'strength {view} {width}: no run identity','Run development' not in page.locator('body').inner_text())
+            check(f'strength {view} {width}: strength identity','Strength development' in page.locator('body').inner_text())
           if width in [390,1440] and view in ['today','plan']:
             page.screenshot(path=str(OUT/f'{ENGINE}-{kind}-{view}-{width}.png'),full_page=True)
           ctx.close()
