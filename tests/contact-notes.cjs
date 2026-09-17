@@ -1,4 +1,5 @@
 'use strict';
+const polish=require('../scripts/app-preview-polish.cjs');
 const protectedBaseline=require('../scripts/protected-site-baseline.cjs');
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process');
 const s=require('../scripts/share-metadata.cjs'),state=require('../scripts/contact-notes-state.cjs');
@@ -11,8 +12,8 @@ const pages=state.manifest.pages;assert.equal(pages.length,9);assert.equal(publi
 assert.deepEqual(pages.filter(p=>p.beforeSha256).map(p=>p.file).sort(),['404.html','field-notes.html','library.html','search.html']);
 for(const row of [...pages,...state.manifest.assets,...state.manifest.integration]){state.verify(row.file,fs.readFileSync(path.join(ROOT,row.file)));if(row.beforeSha256)assert.equal(s.sha(old(row.file)),row.beforeSha256,row.file+' original source');}
 const changed=new Set(pages.map(p=>p.file));let preserved=0;
-for(const f of cp.execFileSync('git',['ls-tree','-r','--name-only',state.manifest.baseCommit],{cwd:ROOT,encoding:'utf8'}).trim().split('\n').filter(f=>f.endsWith('.html')&&!changed.has(f))){assert.equal(s.sha(read(f)),s.sha(old(f)),f+' protected HTML');preserved++;}
-for(const f of ['netlify.toml','robots.txt','_redirects','css/cream-reading.css','css/homepage.css','js/coaching-measurement.js','js/coaching-choice.js','js/homepage-motion.js','css/form-landing.css','js/form-landing.js','css/sculpt-landing.css','js/sculpt-landing.js','track/albums.json','track/media-manifest.json','css/track-gallery.css','js/track-gallery.js','js/guide-tools.js','js/training-tools.js','plans/race-pace-durability/source.js','forge-sculpt/train/data/forge-portal-programs.json'])assert.equal(s.sha(read(f)),s.sha(old(f)),f+' not changed by publishing');
+for(const f of cp.execFileSync('git',['ls-tree','-r','--name-only',state.manifest.baseCommit],{cwd:ROOT,encoding:'utf8'}).trim().split('\n').filter(f=>f.endsWith('.html')&&!changed.has(f))){if(!polish.verify(f,read(f))){assert.equal(s.sha(read(f)),s.sha(old(f)),f+' protected HTML');preserved++;}}
+for(const f of ['netlify.toml','robots.txt','_redirects','css/cream-reading.css','css/homepage.css','js/coaching-measurement.js','js/coaching-choice.js','js/homepage-motion.js','css/form-landing.css','js/form-landing.js','css/sculpt-landing.css','js/sculpt-landing.js','track/albums.json','track/media-manifest.json','css/track-gallery.css','js/track-gallery.js','js/guide-tools.js','js/training-tools.js','plans/race-pace-durability/source.js','forge-sculpt/train/data/forge-portal-programs.json'])if(!polish.verify(f,read(f)))assert.equal(s.sha(read(f)),s.sha(old(f)),f+' not changed by publishing');
 // The public Library keeps every earlier entry and question. Only one new index joins it.
 const beforeIndex=JSON.parse(old('search-index.json')),afterIndex=JSON.parse(read('search-index.json'));
 assert.equal(afterIndex.length,beforeIndex.length+1);assert.deepEqual(afterIndex.filter(e=>e.url!=='/field-notes'),beforeIndex);
