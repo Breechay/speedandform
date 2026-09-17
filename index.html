@@ -388,7 +388,7 @@
     [].slice.call(box.children).forEach(function (el, j) {
       el.classList.toggle("done", j < qi);
       el.classList.toggle("now", j === qi);
-      if (j === qi) el.setAttribute("aria-current", "step"); else el.removeAttribute("aria-current");
+      if (j === qi) el.setAttribute("aria-current", "step"); else el.removeAttribute("aria-current", "step");
     });
     box.setAttribute("aria-label", "Question " + (qi + 1) + " of " + QN);
     $("#back").style.visibility = qi === 0 ? "hidden" : "visible";
@@ -536,7 +536,7 @@
       rows.forEach(function (row) { lines.push(row[0] + ': ' + row[1]); });
     }
     section('GOAL', [['Wants to', data.goal], ['Main obstacle', data.issue]]);
-    section('CURRENT TRAINING', [['Running days / week', data.days], ['Weekly volume', data.volume], ['Longest run', data.longest]]);
+    section('CURRENT TRAINING', [['Running days / week', data.days], ['Weekly volume', data.volume], ['Longest run', data.longest], ['Other training', data.other]]);
     section('OFFER SHOWN', [['Program', data.offer], ['Duration and fee', data.price]]);
     section('SOURCE', [['Source', data.utm_source], ['Medium', data.utm_medium], ['Campaign', data.utm_campaign], ['Creative', data.utm_content]]);
     lines.push('Inquiry only; no payment or booking confirmed.');
