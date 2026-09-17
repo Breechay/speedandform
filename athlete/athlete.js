@@ -1,6 +1,7 @@
 import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorkspace, renderDoorway, resolveAuthorizedWorkspace, signOut } from '/private/auth.js';
 import { changeEmail, loadAthleteRecord } from '/private/data.js';
 import { escapeHtml } from '/private/record.js';
+import { loadStrengthFallback } from '/athlete/strength-fallback.js';
 import { renderAthleteWorkspace } from '/athlete/workspace.js';
 
 const app = document.getElementById('app');
@@ -10,6 +11,8 @@ const emailDialog = document.getElementById('emailDialog');
 const emailForm = document.getElementById('emailForm');
 let signedInEmail = '';
 let record = null;
+let fallbackProgram = null;
+let fallbackWeek = 1;
 let shownWeekId = null;
 let activeView = ['today','plan','history','account'].includes(location.hash.slice(1)) ? location.hash.slice(1) : 'today';
 
@@ -53,6 +56,12 @@ function bindWeekNav() {
     const next = weeks[at + Number(button.dataset.weekStep)];
     if (next) { shownWeekId = next.id; renderFrom(); }
   }));
+  app.querySelectorAll('[data-fallback-week-step]').forEach((button) => button.addEventListener('click', () => {
+    if (!fallbackProgram?.weeks?.length) return;
+    const index = Math.max(0, fallbackProgram.weeks.findIndex((entry) => entry.week === fallbackWeek));
+    const next = fallbackProgram.weeks[index + Number(button.dataset.fallbackWeekStep)];
+    if (next) { fallbackWeek = next.week; renderFrom(); }
+  }));
 }
 
 function bindWorkspaceActions() {
@@ -69,9 +78,13 @@ function bindWorkspaceActions() {
 }
 
 function renderFrom() {
-  app.innerHTML = renderAthleteWorkspace(record, { view: activeView, shownWeekId, email: signedInEmail });
-  // Once the athlete workspace is available, Account owns security and sign-out.
-  // Keep the top-bar sign-out only for signed-in accounts whose workspace is not linked yet.
+  app.innerHTML = renderAthleteWorkspace(record, {
+    view: activeView,
+    shownWeekId,
+    email: signedInEmail,
+    fallbackProgram,
+    fallbackWeek,
+  });
   signOutButton.hidden = true;
   bindWorkspaceActions();
 }
@@ -79,6 +92,11 @@ function renderFrom() {
 async function renderRecord(athleteId) {
   app.innerHTML = '<div class="loading" aria-label="Loading your training"></div>';
   record = await loadAthleteRecord(athleteId);
+  // The fallback is a readable coach-authored source, not a native receipt or
+  // position signal. Failure to load it must never prevent the private record
+  // from opening, and no current Forge week is inferred from the calendar.
+  fallbackProgram = await loadStrengthFallback(record.athlete).catch(() => null);
+  fallbackWeek = fallbackProgram?.weeks?.[0]?.week || 1;
   shownWeekId = record.currentWeek?.id || record.weeks?.[0]?.id || null;
   renderFrom();
 }
