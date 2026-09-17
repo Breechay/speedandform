@@ -189,6 +189,10 @@ export async function getAccessContext() {
 export async function signOut() {
   const { error } = await supabase.auth.signOut();
   if (error) throw error;
+  // A later account must not inherit this browser's previous purchase/workspace.
+  try {
+    ['rpd_purchase_session', 'rpd_purchase_verified_at', 'form-last-workspace'].forEach(key => localStorage.removeItem(key));
+  } catch {}
   window.location.assign('/athlete/');
 }
 

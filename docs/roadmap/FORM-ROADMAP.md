@@ -1,4 +1,6 @@
 # FORM: current state and next actions
+
+Private athlete/account execution: [twelve bounded passes](ATHLETE-ECOSYSTEM-PASSES-20260917.md). Pass 1 is in verification; its receipt owns web deployment status. Native acceptance gates are unchanged.
 Updated September 14, 2026. Owner: Brice. Maintainer: the agent completing relevant work.
 
 Website ecosystem release status and the single checklist: [bounded release passes](SITE-ECOSYSTEM-PASSES-20260916.md). Pass 1 is live; Pass 2 source and browser acceptance is recorded in [discovery release](../audits/DISCOVERY-RELEASE-20260916.md). That receipt owns production status.

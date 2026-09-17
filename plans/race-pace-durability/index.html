@@ -57,6 +57,7 @@
 }
 </script>
 <link rel="stylesheet" href="/plans/race-pace-durability/styles.css" />
+<link rel="stylesheet" href="/plans/race-pace-durability/access.css" />
 </head>
 <body data-rpd-surface="preview">
 <div class="page-shell">
@@ -67,10 +68,11 @@
     <nav class="topnav" aria-label="Primary">
       <a href="#plan">The Plan</a>
       <a href="/plans/">All plans</a>
+      <a href="/athlete/" data-form-account>Sign in →</a>
     </nav>
     <div class="actions">
       <button class="btn" id="share" type="button">⇧ &nbsp; Share Plan</button>
-      <a class="btn lime" id="pdf" href="/plans/race-pace-durability/support/">↗ &nbsp; Full Plan · $79</a>
+      <a class="btn lime" id="pdf" hidden href="/plans/race-pace-durability/support/">↗ &nbsp; Full Plan · $79</a>
     </div>
   </header>
 
@@ -83,7 +85,8 @@
       </div>
       <div class="mobile-hero-actions">
         <button class="share-icon-btn" id="shareMobile" type="button" aria-label="Share plan" title="Share plan">↗</button>
-        <a class="btn lime" id="pdfMobile" href="/plans/race-pace-durability/support/">↗ &nbsp; Full Plan · $79</a>
+        <a class="btn lime" id="pdfMobile" hidden href="/plans/race-pace-durability/support/">↗ &nbsp; Full Plan · $79</a>
+        <a class="rpd-mobile-account" data-form-account href="/athlete/">Sign in →</a>
       </div>
     </section>
 
@@ -93,13 +96,14 @@
       <p id="doneDates"></p>
     </div>
 
+    <p id="rpdLoading" class="rpd-loading" role="status">Loading the plan…</p>
     <section class="plan-section" id="plan" tabindex="0" aria-label="Training plan">
       <div class="plan-head">
         <h2 id="planTitle"></h2>
         <div class="week-now">
-          <button class="circle" id="prev" type="button" aria-label="Previous weeks">‹</button>
+          <button class="circle" id="prev" disabled type="button" aria-label="Previous weeks">‹</button>
           <span class="range" id="range" aria-live="polite"></span>
-          <button class="circle" id="next" type="button" aria-label="Next weeks or unlock full plan">›</button>
+          <button class="circle" id="next" disabled type="button" aria-label="Next weeks or unlock full plan">›</button>
         </div>
       </div>
 
@@ -119,7 +123,7 @@
         <p>This plan is for runners who are already training consistently and want to run a stronger half marathon.</p>
         <p>Choose a race pace your recent running supports. Over 15 weeks, the workouts ask you to hold that pace for longer.</p>
       </div>
-      <div class="context-note">
+      <div class="context-note" id="rpdPreviewNote" hidden>
         <h3>Try Weeks 1–4 free</h3>
         <p><strong>Run the first four weeks before you decide.</strong></p>
         <p>If the plan fits your training, a one-time payment of <strong>$79</strong> unlocks Weeks 5–15 through race day.</p>
@@ -161,5 +165,6 @@
 <script src="/js/rpd-measurement.js"></script>
 <script type="module" src="/plans/race-pace-durability/plan.js"></script>
 <script type="module" src="/plans/race-pace-durability/gate.js"></script>
+<script type="module" src="/private/account-navigation.js"></script>
 </body>
 </html>
