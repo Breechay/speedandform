@@ -18,7 +18,7 @@
 [data-guide="20260917-p4b"] .training-fuel-bands strong{font:500 24px/1.3 var(--reading-sans);letter-spacing:-.025em;font-variant-numeric:tabular-nums}
 [data-guide="20260917-p4b"] .training-fuel-bands span{grid-column:2;font-size:16px;line-height:1.65;color:var(--ink-l)}
 [data-guide="20260917-p4b"] .training-fuel-equation{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:24px 0;flex-wrap:wrap}
-[data-guide="20260917-p4b"] .training-fuel-equation span{font-size:14px;line-height:1.5;flex:1;min-width:115px;color:var(--ink-l)}
+[data-guide="20260917-p4b"] .training-fuel-equation span{font-size:14px;line-height:1.5;flex:1;min-width:0;color:var(--ink-l)}
 [data-guide="20260917-p4b"] .training-fuel-equation strong{display:block;font:500 30px/1.3 var(--reading-sans);letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:var(--ink)}
 [data-guide="20260917-p4b"] .training-fuel-equation b{font-weight:400;font-size:20px}
 [data-guide="20260917-p4b"] .training-calculator{padding:28px;background:var(--paper2);margin:28px 0}
@@ -26,10 +26,10 @@
 [data-guide="20260917-p4b"] .training-inputs label{display:block;font:500 15px/1.5 var(--reading-sans);margin:0 0 8px}
 [data-guide="20260917-p4b"] .training-inputs label span{font-weight:400;color:var(--ink-l)}
 [data-guide="20260917-p4b"] .training-inputs input{display:block;width:100%;min-width:0;border:1px solid var(--line);border-radius:0;background:var(--cream);color:var(--ink);padding:12px;font:400 19px/1.3 var(--reading-sans);font-variant-numeric:tabular-nums}
-[data-guide="20260917-p4b"] .training-calculator button{font:500 16px/1.4 var(--reading-sans);background:var(--ink);color:var(--cream);border:0;border-radius:0;min-height:48px;padding:12px 22px;cursor:pointer}
+[data-guide="20260917-p4b"] .training-calculator button{font:500 16px/1.4 var(--reading-sans);background:var(--ink);color:var(--cream);border:0;border-radius:0;min-height:48px;padding:12px 22px;cursor:pointer;max-width:100%;overflow-wrap:anywhere}
 [data-guide="20260917-p4b"] #fuel-result{margin-top:22px}
 [data-guide="20260917-p4b"] #fuel-result strong{font-variant-numeric:tabular-nums}
 [data-guide="20260917-p4b"] .training-input-error{margin:18px 0 0;font-weight:500}
 @media(max-width:767px){[data-guide="20260917-p4b"] .training-patterns{grid-template-columns:1fr;gap:24px;padding:22px}[data-guide="20260917-p4b"] .training-fuel-bands>div{grid-template-columns:1fr;gap:8px}[data-guide="20260917-p4b"] .training-fuel-bands span{grid-column:1}[data-guide="20260917-p4b"] .training-calculator{padding:22px}[data-guide="20260917-p4b"] .training-inputs{grid-template-columns:1fr;gap:18px}[data-guide="20260917-p4b"] .training-fuel-equation{display:grid;grid-template-columns:24px minmax(0,1fr);gap:14px}[data-guide="20260917-p4b"] .training-fuel-equation>span:first-child{grid-column:2}[data-guide="20260917-p4b"] .training-week-board li{gap:14px;grid-template-columns:40px minmax(0,1fr)}}
-@media(max-width:340px){[data-guide="20260917-p4b"] .training-calculator,[data-guide="20260917-p4b"] .training-patterns,[data-guide="20260917-p4b"] .training-safety{padding:14px}[data-guide="20260917-p4b"] .training-fuel-equation span{min-width:0}[data-guide="20260917-p4b"] .training-week-board li{grid-template-columns:1fr;gap:4px}}
+@media(max-width:340px){[data-guide="20260917-p4b"] .training-calculator,[data-guide="20260917-p4b"] .training-patterns,[data-guide="20260917-p4b"] .training-safety{padding:14px}[data-guide="20260917-p4b"] .training-week-board li{grid-template-columns:1fr;gap:4px}}
 @media(prefers-reduced-motion:reduce){[data-guide="20260917-p4b"]{scroll-behavior:auto}}
