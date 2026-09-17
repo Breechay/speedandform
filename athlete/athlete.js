@@ -1,19 +1,17 @@
 import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorkspace, renderDoorway, resolveAuthorizedWorkspace, signOut } from '/private/auth.js';
-import { changeEmail, fileSession, loadAthleteRecord, updateCompletion } from '/private/data.js';
-import { escapeHtml, renderAthleteRecord } from '/private/record.js';
+import { changeEmail, loadAthleteRecord } from '/private/data.js';
+import { escapeHtml } from '/private/record.js';
+import { renderAthleteWorkspace } from '/athlete/workspace.js';
 
 const app = document.getElementById('app');
 const signOutButton = document.getElementById('signOut');
 const userEmail = document.getElementById('userEmail');
-const fileDialog = document.getElementById('fileDialog');
-const fileForm = document.getElementById('fileForm');
-const fileStatus = document.getElementById('fileStatus');
-const recordNav = document.getElementById('recordNav');
 const emailDialog = document.getElementById('emailDialog');
 const emailForm = document.getElementById('emailForm');
 let signedInEmail = '';
 let record = null;
 let shownWeekId = null;
+let activeView = ['today','plan','history','account'].includes(location.hash.slice(1)) ? location.hash.slice(1) : 'today';
 
 async function authView() {
   document.body.classList.add('auth-only');
@@ -22,17 +20,16 @@ async function authView() {
 
 function pendingView(email) {
   app.innerHTML = `<section class="auth-page"><div class="auth-card access-pending">
-    <div><p class="eyebrow">Signed in</p><h1>Your record is not linked yet.</h1><p>${escapeHtml(email)} is secure, but it has not been matched to an athlete record. Brice can link it without creating another account.</p></div>
-    <a class="button" href="mailto:brice@speedandform.com?subject=Link%20my%20FORM%20record">Ask Brice to link this email <span class="icon-arrow">→</span></a>
+    <div><p class="eyebrow">Signed in</p><h1>Your training is not linked yet.</h1><p>${escapeHtml(email)} is secure, but it has not been matched to an athlete workspace. Brice can link it without creating another account.</p></div>
+    <a class="button" href="mailto:brice@speedandform.com?subject=Link%20my%20FORM%20training">Ask Brice to link this email <span class="icon-arrow">→</span></a>
   </div></section>`;
 }
 
 function workspaceChoiceView() {
   app.innerHTML = `<section class="auth-page"><div class="auth-card workspace-chooser">
-    <p class="eyebrow">FORM access</p><h1>Choose a workspace.</h1>
-    <p>This account can enter both sides of FORM.</p>
+    <p class="eyebrow">FORM access</p><h1>Choose a workspace.</h1><p>This account can enter both sides of FORM.</p>
     <button class="button primary" type="button" data-workspace="coach">Coach Console <span>→</span></button>
-    <button class="button" type="button" data-workspace="athlete">Athlete Record <span>→</span></button>
+    <button class="button" type="button" data-workspace="athlete">My training <span>→</span></button>
   </div></section>`;
   app.querySelectorAll('[data-workspace]').forEach((button) => button.addEventListener('click', () => {
     const workspace = button.dataset.workspace;
@@ -41,56 +38,25 @@ function workspaceChoiceView() {
   }));
 }
 
-function bindRecordActions() {
-  app.querySelectorAll('[data-file-session]').forEach((button) => button.addEventListener('click', () => {
-    const completion = record.completions.find((item) => item.id === button.dataset.completionId);
-    fileForm.reset();
-    fileForm.elements.plannedSessionId.value = button.dataset.fileSession;
-    fileForm.elements.completionId.value = completion?.id || '';
-    document.getElementById('fileTitle').textContent = completion ? 'Update this run' : 'How did it go?';
-    document.getElementById('evidenceField').hidden = Boolean(completion);
-    fileStatus.textContent = ''; fileStatus.className = 'status-message';
-    if (completion) {
-      fileForm.elements.status.value = completion.status;
-      fileForm.elements.actualDistance.value = completion.actual_distance ?? '';
-      fileForm.elements.durationMinutes.value = completion.duration_seconds ? Math.round(completion.duration_seconds / 60) : '';
-      fileForm.elements.felt.value = completion.felt || '';
-      fileForm.elements.kneeDuring.value = completion.knee_during || '';
-      fileForm.elements.kneeAfter.value = completion.knee_after || '';
-      fileForm.elements.recoveredNextDay.value = completion.recovered_next_day === null ? '' : (completion.recovered_next_day ? 'yes' : 'no');
-      fileForm.elements.stravaUrl.value = completion.strava_url || '';
-      fileForm.elements.athleteNote.value = completion.athlete_note || '';
-    }
-    fileDialog.showModal();
-  }));
+function setView(view, { push = true } = {}) {
+  if (!['today','plan','history','account'].includes(view)) return;
+  activeView = view;
+  if (push) history.replaceState(null, '', `#${view}`);
+  renderFrom();
 }
 
 function bindWeekNav() {
-  app.querySelectorAll('[data-week]').forEach((button) => button.addEventListener('click', () => {
-    shownWeekId = button.dataset.week; renderFrom();
-  }));
   app.querySelectorAll('[data-week-step]').forEach((button) => button.addEventListener('click', () => {
     const weeks = (record.weeks || []).slice().sort((a, b) => a.week_number - b.week_number);
-    const at = weeks.findIndex((entry) => entry.id === (shownWeekId || record.currentWeek?.id));
+    const current = weeks.find((entry) => entry.id === shownWeekId) || record.currentWeek || weeks[0];
+    const at = weeks.findIndex((entry) => entry.id === current?.id);
     const next = weeks[at + Number(button.dataset.weekStep)];
     if (next) { shownWeekId = next.id; renderFrom(); }
   }));
 }
 
-function renderFrom() {
-  app.innerHTML = renderAthleteRecord(record, { interactive: true, email: signedInEmail, shownWeekId });
-  bindRecordActions();
-  bindWeekNav();
-}
-
-async function renderRecord(athleteId) {
-  app.innerHTML = '<div class="loading" aria-label="Loading your record"></div>';
-  record = await loadAthleteRecord(athleteId);
-  app.innerHTML = renderAthleteRecord(record, { interactive: true, email: signedInEmail, shownWeekId });
-  bindRecordActions();
-  // The record has its own nav, so the bare sign-out button steps aside.
-  recordNav.hidden = false;
-  signOutButton.hidden = true;
+function bindWorkspaceActions() {
+  app.querySelectorAll('[data-athlete-view]').forEach((button) => button.addEventListener('click', () => setView(button.dataset.athleteView)));
   bindWeekNav();
   document.getElementById('accountSignOut')?.addEventListener('click', signOut);
   bindAccountSecurity();
@@ -102,39 +68,27 @@ async function renderRecord(athleteId) {
   });
 }
 
-fileDialog.querySelectorAll('[data-close-dialog]').forEach((button) => button.addEventListener('click', () => fileDialog.close()));
-fileForm.addEventListener('submit', async (event) => {
-  event.preventDefault();
-  const data = new FormData(fileForm);
-  const submit = fileForm.querySelector('button[type="submit"]');
-  const recovery = data.get('recoveredNextDay');
-  const payload = {
-    athleteId: record.athlete.id,
-    plannedSessionId: data.get('plannedSessionId'),
-    status: data.get('status'),
-    actualDistance: Number(data.get('actualDistance')) || null,
-    distanceUnit: 'mi',
-    durationSeconds: Number(data.get('durationMinutes')) ? Number(data.get('durationMinutes')) * 60 : null,
-    felt: data.get('felt'), kneeDuring: data.get('kneeDuring'), kneeAfter: data.get('kneeAfter'),
-    recoveredNextDay: recovery === '' ? null : recovery === 'yes',
-    athleteNote: data.get('athleteNote'), stravaUrl: data.get('stravaUrl')
-  };
-  submit.disabled = true; fileStatus.textContent = 'Saving…'; fileStatus.className = 'status-message';
-  try {
-    const completionId = data.get('completionId');
-    if (completionId) await updateCompletion(completionId, payload);
-    else await fileSession(payload, data.get('evidence')?.size ? data.get('evidence') : null);
-    fileStatus.textContent = 'Saved.'; fileStatus.className = 'status-message success';
-    await renderRecord(record.athlete.id);
-    fileDialog.close();
-  } catch (error) {
-    fileStatus.textContent = error.message || 'That could not be saved.'; fileStatus.className = 'status-message error'; submit.disabled = false;
-  }
-});
+function renderFrom() {
+  app.innerHTML = renderAthleteWorkspace(record, { view: activeView, shownWeekId, email: signedInEmail });
+  // Once the athlete workspace is available, Account owns security and sign-out.
+  // Keep the top-bar sign-out only for signed-in accounts whose workspace is not linked yet.
+  signOutButton.hidden = true;
+  bindWorkspaceActions();
+}
+
+async function renderRecord(athleteId) {
+  app.innerHTML = '<div class="loading" aria-label="Loading your training"></div>';
+  record = await loadAthleteRecord(athleteId);
+  shownWeekId = record.currentWeek?.id || record.weeks?.[0]?.id || null;
+  renderFrom();
+}
 
 signOutButton.addEventListener('click', signOut);
-document.getElementById('navSignOut').addEventListener('click', signOut);
-recordNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => { recordNav.open = false; }));
+
+window.addEventListener('hashchange', () => {
+  const next = location.hash.slice(1);
+  if (record && ['today','plan','history','account'].includes(next) && next !== activeView) setView(next, { push: false });
+});
 
 async function boot() {
   try {
@@ -144,10 +98,6 @@ async function boot() {
     signedInEmail = access.session.user.email || '';
     userEmail.textContent = signedInEmail;
     signOutButton.hidden = false;
-    // The public Sign in link is shared by athletes and coaches. When an
-    // authenticated coach comes through that doorway, hand them directly to
-    // the daily Console instead of the retired /coach surface. `replace`
-    // keeps the doorway out of browser history and avoids a legacy-page flash.
     const workspace = resolveAuthorizedWorkspace(access);
     if (workspace === 'coach') { window.location.replace('/coach/labs/'); return; }
     if (workspace === 'choose') { workspaceChoiceView(); return; }
@@ -155,7 +105,7 @@ async function boot() {
     rememberWorkspace('athlete');
     await renderRecord(access.athleteMemberships[0].athlete_id);
   } catch (error) {
-    app.innerHTML = `<section class="auth-page"><div class="auth-card"><p class="eyebrow">Could not open the record</p><h1>Try that again.</h1><p class="status-message error">${escapeHtml(authErrorMessage(error))}</p><button class="button" type="button" id="retry">Retry</button></div></section>`;
+    app.innerHTML = `<section class="auth-page"><div class="auth-card"><p class="eyebrow">Could not open your training</p><h1>Try that again.</h1><p class="status-message error">${escapeHtml(authErrorMessage(error))}</p><button class="button" type="button" id="retry">Retry</button></div></section>`;
     document.getElementById('retry').addEventListener('click', () => window.location.reload());
   }
 }
@@ -167,7 +117,7 @@ emailForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   const status = document.getElementById('emailStatus');
   const submit = emailForm.querySelector('button[type="submit"]');
-  submit.disabled = true; status.className = 'status-message'; status.textContent = 'Sending the confirmation\u2026';
+  submit.disabled = true; status.className = 'status-message'; status.textContent = 'Sending the confirmation…';
   try {
     const next = await changeEmail(new FormData(emailForm).get('email'));
     status.textContent = `Check ${next}. The change takes effect once you confirm it.`;
