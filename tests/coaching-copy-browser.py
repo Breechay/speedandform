@@ -19,11 +19,18 @@ with sync_playwright() as p:
             page.route('**/*', lambda route: route.abort())
             page.set_content(html_for_test(), wait_until='load')
             page.evaluate('Promise.all([...document.images].map(i=>i.decode().catch(()=>{})))')
+            page.screenshot(path=str(OUT/f'hero-viewport-{w}.png'))
             assert page.locator('body').get_attribute('data-coaching-copy') == '20260917-coaching-clarity'
             assert page.locator('.hero-benefit').inner_text() == 'Run better. Get faster. Run farther.'
             assert 'I watch you run, build your plan, and coach you through it.' in page.locator('.hero-sub').inner_text()
             assert 'Weekly track coaching in Miami, with adjustments as you develop.' in page.locator('.hero-sub').inner_text()
-            assert page.locator('.hero-reassurance').inner_text() == 'Your first Miami track assessment is complimentary.\nStart with a conversation.'
+            reassurance = page.locator('.hero-reassurance').inner_text()
+            print('Reassurance',ENGINE,w,repr(reassurance),flush=True)
+            # Exact HTML is asserted by coaching-copy.cjs. Browsers may expose
+            # line breaks differently; verify both visible sentences and bounds.
+            assert 'Your first Miami track assessment is complimentary.' in reassurance, repr(reassurance)
+            assert 'Start with a conversation.' in reassurance, repr(reassurance)
+            assert page.locator('.hero-reassurance').is_visible()
             assert page.locator('.hero-actions .begin').get_attribute('href') == '#begin'
             assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
             bounds = page.evaluate('''() => {
@@ -34,7 +41,6 @@ with sync_playwright() as p:
                 assert bounds[key]['x'] >= 0 and bounds[key]['right'] <= w + 1, bounds
                 assert bounds[key]['bottom'] <= bounds['hero']['bottom'], bounds
             assert bounds['button']['height'] >= 44
-            page.screenshot(path=str(OUT/f'hero-viewport-{w}.png'))
             page.locator('.hero').screenshot(path=str(OUT/f'hero-full-{w}.png'))
             page.locator('.hero-actions .begin').click()
             page.wait_for_timeout(300)
@@ -48,7 +54,7 @@ with sync_playwright() as p:
             assert page.locator('#coachingChoice').input_value() == 'remote'
             assert 'Discuss coaching' in page.locator('#coachingChoiceTrigger').inner_text()
             assert not errors, errors
-            report.append({'width':w,'height':h,'pass':True,'bounds':bounds,'cta_in_initial_viewport':bounds['button']['bottom']<=h})
+            report.append({'width':w,'height':h,'pass':True,'bounds':bounds,'reassurance':reassurance,'cta_in_initial_viewport':bounds['button']['bottom']<=h})
             print('PASS', ENGINE, w, 'copy, CTA, inquiry reassurance, remote selector and no overflow', flush=True)
             page.close()
     finally:
