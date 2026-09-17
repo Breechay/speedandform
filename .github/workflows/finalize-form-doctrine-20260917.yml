@@ -1,0 +1,30 @@
+name: Finalize FORM doctrine
+on:
+  push:
+    branches: [work/mobile-hero-cut-20260917]
+    paths: [.github/workflows/finalize-form-doctrine-20260917.yml]
+permissions:
+  contents: write
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/mobile-hero-cut-20260917
+      - run: python scripts/finalize-form-doctrine-20260917.py
+      - name: Verify source contracts
+        run: |
+          node --check js/coaching-choice.js
+          node --check js/coaching-measurement.js
+          node tests/coaching-measurement.cjs
+          node tests/homepage-release.cjs
+          node tests/homepage-metadata.cjs
+          node tests/coaching-copy.cjs
+      - name: Commit final doctrine cleanup
+        run: |
+          git config user.name "Breechay"
+          git config user.email "briceikouebe@gmail.com"
+          git add index.html tests/homepage-metadata.cjs FORM_ACQUISITION_ROADMAP.md docs/marketing/FORM_COACHING_OFFER_VISION_2026-09-16.md docs/marketing/FORM_REFERRAL_CREATIVE_BRIEF_2026-09-16.md docs/roadmap/COACHING-FUNNEL-MEASUREMENT-20260917.md docs/FORM_CONNECTED_SURFACES.md
+          git commit -m "Finish FORM doctrine propagation"
+          git push origin HEAD:work/mobile-hero-cut-20260917
