@@ -12,6 +12,8 @@ assert.doesNotMatch(html, /id="inquiry-reassurance"/);
 assert.doesNotMatch(html, /An inquiry only\. No payment or booking yet\./);
 assert.doesNotMatch(html, /I read every inquiry myself\./);
 assert.doesNotMatch(html, /Coaching you’re interested in/);
+assert.doesNotMatch(html, /Run better\. Get faster\. Run farther\./);
+assert.match(html, /<meta property="og:title" content="Run better\. \| FORM">/);
 assert.match(html, /<label class="coaching-select-label sr-only" for="coachingChoice">Coaching<\/label>/);
 assert.match(html, /<h1>Run<br>Development<\/h1>/);
 assert.match(html, /class="hero-benefit">Run better\.<\/strong>/);
@@ -35,4 +37,4 @@ assert.match(html, /<p class="training-caption">One session belongs to a week\.<
 assert.match(html, /<h2>Tell me about<br>your running\.<\/h2>/);
 assert.doesNotMatch(html, /Your next step<br>starts here/);
 assert.doesNotMatch(html, /footer-location/);
-console.log('PASS: manifesto-first homepage, sparse hero, concise offer, static track proof, simplified inquiry, and footer.');
+console.log('PASS: manifesto-first homepage, doctrine-aligned share copy, sparse hero, concise offer, static track proof, simplified inquiry, and footer.');
