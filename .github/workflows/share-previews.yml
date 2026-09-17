@@ -2,7 +2,7 @@ name: Share preview release checks
 on:
   push:
     branches: [work/site-ecosystem-2026-09-16, main]
-    paths: ['scripts/*share*.cjs', 'tests/share-metadata.cjs', 'tests/homepage-metadata.cjs', 'og/form-share-20260916.jpg', '.github/workflows/share-previews.yml']
+    paths: ['index.html', 'scripts/*share*.cjs', 'scripts/protected-site-baseline.cjs', 'tests/share-metadata.cjs', 'tests/homepage-metadata.cjs', 'docs/audits/HOME-DOCTRINE-RECEIPT-20260917.json', 'og/form-share-20260916.jpg', '.github/workflows/share-previews.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -33,6 +33,7 @@ jobs:
           git rev-parse HEAD > /tmp/share-receipt/commit.txt
           cp og/form-share-20260916.jpg /tmp/share-receipt/
           cp docs/audits/SHARE-METADATA-MANIFEST-20260916.json /tmp/share-receipt/
+          cp docs/audits/HOME-DOCTRINE-RECEIPT-20260917.json /tmp/share-receipt/
       - name: Verify the actual public release after main reaches production
         if: github.ref_name == 'main'
         run: node scripts/verify-share-production.cjs /tmp/share-receipt/production.json
