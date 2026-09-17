@@ -5,6 +5,7 @@ const fs=require('node:fs');
 const method=fs.readFileSync('the-method.html','utf8');
 const home=fs.readFileSync('index.html','utf8');
 const css=fs.readFileSync('css/method.css','utf8');
+const terms=fs.readFileSync('running-terms.html','utf8');
 
 for(const phrase of [
   'Develop the runner.',
@@ -44,5 +45,7 @@ assert.match(css,/\.method-wind/);
 assert.match(css,/\.method-principle-grid/);
 assert.match(css,/@media\(max-width:600px\)/);
 assert.match(css,/prefers-reduced-motion:reduce/);
+assert.match(terms,/href="\/sleep">Sleep and training →<\/a>/);
+assert.doesNotMatch(terms,/\/the-method#sleep/);
 
 console.log('PASS: Run Development method architecture, evidence boundary, modern reading type and homepage handoff.');
