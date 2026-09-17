@@ -388,7 +388,7 @@
     [].slice.call(box.children).forEach(function (el, j) {
       el.classList.toggle("done", j < qi);
       el.classList.toggle("now", j === qi);
-      if (j === qi) el.setAttribute("aria-current", "step"); else el.removeAttribute("aria-current", "step");
+      if (j === qi) el.setAttribute("aria-current", "step"); else el.removeAttribute("aria-current");
     });
     box.setAttribute("aria-label", "Question " + (qi + 1) + " of " + QN);
     $("#back").style.visibility = qi === 0 ? "hidden" : "visible";
