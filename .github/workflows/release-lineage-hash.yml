@@ -1,0 +1,23 @@
+name: Inventory later runtime hashes
+on:
+  push:
+    branches: [work/reconcile-release-lineage-20260917]
+    paths: [.github/workflows/release-lineage-hash.yml]
+permissions:
+  contents: read
+jobs:
+  hash:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Print exact later runtime hashes
+        run: |
+          node - <<'NODE'
+          const fs=require('node:fs'),crypto=require('node:crypto');
+          const sha=x=>crypto.createHash('sha256').update(x).digest('hex');
+          for(const file of ['css/homepage.css','js/coaching-choice.js','_headers']){
+            const b=fs.readFileSync(file);
+            console.log('FILE='+file);
+            console.log('SHA256='+sha(b));
+          }
+          NODE
