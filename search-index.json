@@ -553,6 +553,22 @@
     "type": "Workouts"
   },
   {
+    "url": "/track/",
+    "title": "Track photographs & films",
+    "description": "Open an album, view photographs and clips, and save the available files.",
+    "keywords": [
+      "photos",
+      "pictures",
+      "videos",
+      "gallery",
+      "albums",
+      "track",
+      "community"
+    ],
+    "category": "practice",
+    "type": "Gallery"
+  },
+  {
     "url": "/thursday",
     "title": "Run with us",
     "description": "Find the current Thursday track-session details and joining information.",

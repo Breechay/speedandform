@@ -1,7 +1,7 @@
 {
   "version": "20260916-p2",
   "baseCommit": "05b76ab2b08cfc37f448f637f19e3aa0c9c3d03a",
-  "searchEntries": 46,
+  "searchEntries": 47,
   "sitemap": [
     {
       "file": "anti-rotation.html",
@@ -260,6 +260,14 @@
       "url": "https://speedandform.com/thursday"
     },
     {
+      "file": "track/from-practice/index.html",
+      "url": "https://speedandform.com/track/from-practice/"
+    },
+    {
+      "file": "track/index.html",
+      "url": "https://speedandform.com/track/"
+    },
+    {
       "file": "training-arc.html",
       "url": "https://speedandform.com/training-arc"
     },
@@ -410,8 +418,8 @@
       "file": "library.html",
       "reason": "Athlete-facing topic index and static discovery links",
       "beforeSha256": "76879199d6b28263fa7d3eb8c9628491db9657e12b41ed7700999b559b1b5bc2",
-      "afterSha256": "69093a6dc1d5d427270604221e96a28ceb92d998f6c6fe7f5f5d78eb56e21b02",
-      "bodySha256": "b57f6d48295c74c11bf7b11163f034aaf83a65a6c575b6d624ae14967a3bbf2b",
+      "afterSha256": "126511ace78a516b4d6a80215c10692767da38496d047e69908532b659b307bb",
+      "bodySha256": "cc7e4d155834ada4dbfa408a77b5a30f800250a02d2d1843dca3c4e6d57116e7",
       "preview": {
         "title": "Running Guides & Training Tools | FORM Library",
         "description": "Understand your running. Explore clear guides to pace, running form, strength, race preparation, and recovery, plus plans and studies from Brice."
@@ -795,8 +803,8 @@
       "file": "thursday.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "927c2e63d074b12d782f249568c7386f5215ee5d79e2f22b7ab46f006a8ce21c",
-      "afterSha256": "0026cd20b26879bc2666672778716a3437548ab0fca80399279f1f4e6d0e9f88",
-      "bodySha256": "3caa42737ea6b3e01d23f368743b8eda8c9452cd4724d07b95d2022d5594401f",
+      "afterSha256": "43e24643e715e1efae265d2c194e71d3632556d1b982d2cdd1eb64e22ad08e9b",
+      "bodySha256": "b8f8641b7444ba7ad6971f5f6c9633db93d05cee62ae37f2e08ec15f8018c607",
       "preview": {
         "title": "Thursday Track | FORM Miami",
         "description": "Flamingo Park Track · Thursdays 6:30 AM · Show up in running shoes."
@@ -1348,6 +1356,14 @@
     {
       "file": "threshold.html",
       "sha256": "ed3a94c2a3f786ec1140aed7c390969386ddd1b517ab7169da6a8a29dbe5549f"
+    },
+    {
+      "file": "track/from-practice/index.html",
+      "sha256": "f97341697210eadecd7e3f240b44ec510d9a69c6f812fd4c912a321027969b07"
+    },
+    {
+      "file": "track/index.html",
+      "sha256": "9328889d925d660273516d96fda7be3d8cc8272f38e1302dda1dbe68b5211b89"
     },
     {
       "file": "training-map.html",
