@@ -2,6 +2,7 @@
 const contact=require('./contact-notes-state.cjs');
 const concurrent=require('./protected-site-baseline.cjs');
 const rpdStory=require('./rpd-story-state.cjs');
+const laterExcluded=require('./later-excluded-share-state.cjs');
 // Explicit later editorial snapshots. Older release receipts retain their original hashes.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const {sha}=require('./share-metadata.cjs');
@@ -13,6 +14,6 @@ const updates=new Map(manifest.pages.map(p=>[p.file,p]));
 const subsequent=require('./training-guide-state.cjs');
 const product=require('./form-landing-state.cjs');
 const sculpt=require('./sculpt-landing-state.cjs');
-function verify(file,html){if(concurrent.verify(file,html))return true;if(contact.verify(file,html))return true;if(rpdStory.verify(file,html))return true;if(sculpt.verify(file,html)||product.verify(file,html)||subsequent.verify(file,html))return true;const row=updates.get(file);if(!row)return false;assert.equal(sha(html),row.afterSha256,file+' exact Pass 4 editorial source');return true;}
-const latestUpdates=new Map([...updates,...subsequent.updates,...product.updates,...sculpt.updates,...contact.updates,...rpdStory.updates,...concurrent.updates]);
+function verify(file,html){if(concurrent.verify(file,html))return true;if(contact.verify(file,html))return true;if(rpdStory.verify(file,html))return true;if(laterExcluded.verify(file,html))return true;if(sculpt.verify(file,html)||product.verify(file,html)||subsequent.verify(file,html))return true;const row=updates.get(file);if(!row)return false;assert.equal(sha(html),row.afterSha256,file+' exact Pass 4 editorial source');return true;}
+const latestUpdates=new Map([...updates,...subsequent.updates,...product.updates,...sculpt.updates,...contact.updates,...rpdStory.updates,...laterExcluded.updates,...concurrent.updates]);
 module.exports={manifest,updates,latestUpdates,verify};
