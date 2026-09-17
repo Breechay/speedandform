@@ -1,0 +1,87 @@
+{
+  "version": "20260917-p5b",
+  "baseCommit": "7eb2106a4ab2ef29fa26b98bbc062dfed900c192",
+  "pages": [
+    {
+      "file": "forge-sculpt/index.html",
+      "beforeSha256": "7a26e66a28181b2135d32c5d7d27cf812c155b784ec1e3e6a90884090aca8880",
+      "afterSha256": "c0ca8b2249b5aaaed1de3c26c32e90b224246acf25d28ac4bfdb33a4dedf7c6f",
+      "bodySha256": "da0b167cf7aa7990519004cb3fb931c66d5694f3b7252e82ae874733f8da68ad"
+    }
+  ],
+  "formIdentity": {
+    "file": "form/index.html",
+    "from": "RUNNER",
+    "to": "JOSÉ",
+    "beforeSha256": "7172c67d0fab2424009fb06f12d1d4c4c5eebf2ec5bdbfa2e225c0cc8fa56051",
+    "afterSha256": "cabbb4196b34bdbbd308aab3cb200dc6152f0fdd46cf110cf2eb3bb0d5a7c3a7"
+  },
+  "assets": [
+    {
+      "file": "css/sculpt-landing.css",
+      "sha256": "735b07a834aa1d921746c5c92c6f8e61aaec8f13afc5552d1744537a4bd730f8"
+    },
+    {
+      "file": "js/sculpt-landing.js",
+      "sha256": "08eb59290688d810a20cc99c62f2de93e7fe6ef462384a34bbfd6936d0dc4863"
+    },
+    {
+      "file": "assets/forge/hero-light.webp",
+      "sha256": "0171c8789e0f99d8c6d8364264ee1b9ae1d0791797766d9141d59f76eecbe9f5"
+    },
+    {
+      "file": "assets/forge/store-20260917/today.jpg",
+      "sha256": "8e5c5392188de4a8498fe05ca69889a6e5bfaf560daa89b94225128d5afd913f"
+    },
+    {
+      "file": "assets/forge/og-sculpt-20260917.jpg",
+      "sha256": "cf228e40062e7c7820133d8d4c624d0454cf91310bb32b14b4cb297101673296"
+    },
+    {
+      "file": "assets/forge/fonts/jost-latin-400-normal.woff2",
+      "sha256": "f94cffda16515fbb1667a2662d6b46f5610a942fd02fe88d67ff98f776288962"
+    },
+    {
+      "file": "assets/forge/fonts/jost-latin-500-normal.woff2",
+      "sha256": "98dce4f076fe71a123a7cd44470e6f05e969cb6d7c9b2717766ad103e3597297"
+    },
+    {
+      "file": "assets/forge/fonts/jetbrains-mono-latin-400-normal.woff2",
+      "sha256": "14425ba9c695763c1547f48a206b7aa60350a33ae23de09f0407877f3fcd89eb"
+    }
+  ],
+  "retainedFragments": [
+    "nav",
+    "top",
+    "problem",
+    "mechanism",
+    "curriculum",
+    "today",
+    "demo",
+    "forgePlate",
+    "author",
+    "price",
+    "notify",
+    "questions",
+    "final"
+  ],
+  "storeEvidence": {
+    "id": 6790569283,
+    "version": "3.4",
+    "released": "2026-09-15T01:25:38Z",
+    "capturedAt": "2026-09-17T09:48:16.145394+00:00",
+    "lookup": "https://itunes.apple.com/lookup?id=6790569283&country=us",
+    "screenshotUrl": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/86/e3/a2/86e3a2ad-9576-26b3-232b-f6f0505c367e/E.png/600x1300bb-60.jpg"
+  },
+  "sourceEvidence": {
+    "repo": "Breechay/FORM-iOS",
+    "branch": "codex/forge-adrian-access-reconciliation",
+    "commit": "66f7ddaa1b840519dbca1c78e70e44b196826512",
+    "documents": [
+      "AGENTS.md",
+      "docs/FORGE_ADRIAN_CURRENT_STATE.md",
+      ".cursor/rules/forge-aesthetic-standard.mdc"
+    ],
+    "notes": "Website illustration using the owner-requested example identity. Not a new native release, assignment or receipt."
+  }
+}

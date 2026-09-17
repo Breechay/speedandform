@@ -38,6 +38,7 @@ try:
         check(f'Readable body at {width}',page.locator('.fl-intro').evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)>=17'))
         check(f'Native field material at {width}',page.locator('body').evaluate('(e)=>getComputedStyle(e).backgroundColor')=='rgb(7, 17, 15)')
         for img in page.locator('img').all():img.scroll_into_view_if_needed();img.evaluate('(i)=>i.decode()')
+        check(f'José identity at {width}',page.locator('.fl-athlete').inner_text()=='JOSÉ.')
         check(f'Official screenshot loaded at {width}',page.locator('.fl-store-screen img').evaluate('(i)=>i.complete&&i.naturalWidth==600&&i.naturalHeight==1299'))
         check(f'Preview label visible at {width}',page.get_by_text('Design preview',exact=True).is_visible())
         check(f'All tabs present at {width}',page.get_by_role('tab').count()==5)

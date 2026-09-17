@@ -20,6 +20,7 @@ try:
         check(f'Current app destination at {width}',page.locator('.fl-hero .fl-button').get_attribute('href')=='https://apps.apple.com/us/app/form-running-plans/id6761313085')
         check(f'Preview clearly identified at {width}',page.get_by_text('Design preview',exact=True).is_visible())
         for image in page.locator('img').all():image.scroll_into_view_if_needed();image.evaluate('(i)=>i.decode()')
+        check(f'José identity at {width}',page.locator('.fl-athlete').inner_text()=='JOSÉ.')
         check(f'Official screenshot loaded at {width}',page.locator('.fl-store-screen img').evaluate('(i)=>i.naturalWidth===600&&i.naturalHeight===1299'))
         for name in ['Threshold','Interval','Speed','Long Run','Easy']:
             page.get_by_role('tab',name=name,exact=True).click();check(f'{name} panel works at {width}',page.get_by_role('tabpanel').count()==1 and page.get_by_role('tabpanel').get_attribute('data-session')==name)

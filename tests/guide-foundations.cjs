@@ -4,13 +4,14 @@ const s=require('../scripts/share-metadata.cjs'),guides=require('../scripts/guid
 const ROOT=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(ROOT,f),'utf8');
 const subsequent=require('../scripts/training-guide-state.cjs');
 const product=require('../scripts/form-landing-state.cjs');
+const sculpt=require('../scripts/sculpt-landing-state.cjs');
 const base=state.manifest.baseCommit,old=f=>cp.execFileSync('git',['show',base+':'+f],{cwd:ROOT,maxBuffer:20_000_000});
 const all=cp.execFileSync('git',['ls-tree','-r','--name-only',base],{cwd:ROOT,encoding:'utf8'}).trim().split('\n');
 const ids=h=>[...h.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
 const resolve=url=>{const u=new URL(url,s.ORIGIN),r=u.pathname.slice(1);return [r||'index.html',r+'.html',r.replace(/\/$/,'')+'/index.html'].find(f=>fs.existsSync(path.join(ROOT,f))&&fs.statSync(path.join(ROOT,f)).isFile());};
 assert.equal(guides.length,4);assert.equal(state.updates.size,5);
 for(const row of state.manifest.pages){assert.equal(s.sha(old(row.file)),row.beforeSha256,row.file+' exact pre-edit main');state.verify(row.file,read(row.file));}
-let untouched=0;for(const f of all.filter(f=>f.endsWith('.html')&&!state.updates.has(f))){if(product.verify(f,read(f))||subsequent.verify(f,read(f)))continue;assert.equal(s.sha(read(f)),s.sha(old(f)),f+' outside editorial scope');untouched++;}
+let untouched=0;for(const f of all.filter(f=>f.endsWith('.html')&&!state.updates.has(f))){if(sculpt.verify(f,read(f))||product.verify(f,read(f))||subsequent.verify(f,read(f)))continue;assert.equal(s.sha(read(f)),s.sha(old(f)),f+' outside editorial scope');untouched++;}
 for(const f of ['css/cream-reading.css','css/discovery.css','css/track-gallery.css','js/track-gallery.js','css/homepage.css','js/homepage-motion.js','js/coaching-measurement.js','scripts/build-cream-reading.cjs','netlify.toml','_headers','_redirects','robots.txt','sitemap.xml','plans/race-pace-durability/source.js','threshold.html','long-run.html'])assert.equal(s.sha(read(f)),s.sha(old(f)),f+' protected');
 for(const g of guides){
  const h=read(g.file),pageIds=ids(h);assert.equal(pageIds.length,new Set(pageIds).size,g.file+' unique IDs');
