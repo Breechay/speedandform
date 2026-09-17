@@ -5,7 +5,7 @@ BROWSER=webkit exercises WebKit, not physical Safari. No browser-policy override
 from pathlib import Path
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlsplit, unquote, parse_qs
-import os, json, threading, xml.etree.ElementTree as ET
+import os, json, re, threading, xml.etree.ElementTree as ET
 from playwright.sync_api import sync_playwright
 R=Path(__file__).resolve().parents[1]
 LIVE=os.environ.get('CONTACT_NOTES_LIVE')=='1';ENGINE=os.environ.get('BROWSER','chromium')
@@ -29,16 +29,27 @@ else:
 # Always resolve from the repository, not the process working directory.
 paths=['/field-notes','/ask/']+['/'+p.relative_to(R).as_posix()[:-10] for p in sorted((R/'field-notes').glob('*/index.html'))]
 widths=[390,1440] if LIVE else [375,390,430,768,1024,1440]
+# Diagnosis 35232904590 identified automatic Cloudflare script injection on
+# public reading pages. The script stays BLOCKED, never downloaded or executed.
+# Unknown destinations, data submissions and any injection on Ask still fail.
+def known_blocked_host_script(row):
+    return (LIVE and row['method']=='GET' and row['resourceType']=='script'
+        and re.fullmatch(r'https://static\.cloudflareinsights\.com/beacon\.min\.js(?:/v[0-9a-f]+)?',row['url']) is not None
+        and row['frame'].startswith(BASE+'/')
+        and urlsplit(row['frame']).path.rstrip('/')!='/ask')
 try:
     with sync_playwright() as pw:
         opts={'headless':True}
         if ENGINE=='chromium' and os.environ.get('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
         browser=getattr(pw,ENGINE).launch(**opts)
-        ctx=browser.new_context(reduced_motion='reduce');traffic=[]
+        ctx=browser.new_context(reduced_motion='reduce');traffic=[];blocked=[]
         def guard(route):
-            req=route.request;traffic.append((req.method,req.url))
-            if req.method=='GET' and req.url.startswith(BASE+'/'):route.continue_()
-            else:route.abort()
+            req=route.request;allowed=req.method=='GET' and req.url.startswith(BASE+'/')
+            traffic.append((req.method,req.url,allowed))
+            if allowed:route.continue_()
+            else:
+                blocked.append({'method':req.method,'url':req.url,'frame':req.frame.url,'resourceType':req.resource_type})
+                route.abort()
         ctx.route('**/*',guard);page=ctx.new_page();page.on('pageerror',lambda e:report['errors'].append(str(e)))
         for w in widths:
             page.set_viewport_size({'width':w,'height':900})
@@ -102,11 +113,16 @@ try:
         nj=browser.new_context(java_script_enabled=False);nj.route('**/*',guard);p2=nj.new_page()
         for path in paths:
             p2.goto(BASE+path);check(path+': no-JavaScript reading and real destinations',p2.locator('h1').is_visible() and p2.locator('a[href="mailto:brice@speedandform.com"]').count()==(1 if path=='/ask/' else 0))
-        check('No scripts throw',not report['errors']);check('No message or analytics requests made',all(method=='GET' and url.startswith(BASE+'/') for method,url in traffic))
+        report['blockedRequests']=blocked
+        check('No scripts throw',not report['errors'])
+        check('No submission requests attempted',all(method=='GET' for method,url,allowed in traffic))
+        check('Only same-site GET requests permitted',all(not allowed or (method=='GET' and url.startswith(BASE+'/')) for method,url,allowed in traffic))
+        check('Blocked requests are only known hosting scripts outside Ask',all(known_blocked_host_script(row) for row in blocked))
+        check('Ask never requests a hosting analytics script',all(urlsplit(row['frame']).path.rstrip('/')!='/ask' for row in blocked))
         nj.close();ctx.close();browser.close()
     report['result']='PASS'
 except Exception as e:
-    report['result']='FAIL';report['failure']=repr(e);raise
+    report['result']='FAIL';report['failure']=repr(e);report['blockedRequests']=locals().get('blocked',[]);raise
 finally:
     (OUT/'browser.json').write_text(json.dumps(report,indent=2)+'\n')
     if server:server.shutdown()
