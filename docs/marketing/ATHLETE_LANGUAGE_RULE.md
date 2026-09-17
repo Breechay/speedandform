@@ -1,8 +1,10 @@
 # Athlete Language Rule
 
 **Decision:** September 15, 2026  
-**Voice addition:** September 16, 2026  
+**Voice additions:** September 16–17, 2026  
 **Applies to:** ads, landing pages, product pages, athlete-facing app copy, onboarding, email, coaching intake, social copy and public plan instructions.
+
+Read `docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md` before writing identity or philosophy copy for Run Development or FORM coaching.
 
 ## Core assumption
 
@@ -21,9 +23,10 @@ FORM speaks in direct statements when the statement is supported by observed or 
 Examples of the intended cadence:
 
 - `Run better.`
-- `Get faster.`
-- `Run farther.`
 - `Not everything needs fixing. Some things just cost you more.`
+- `I look for ease.`
+- `Running should click.`
+- `Repeat it until it belongs to you.`
 - `You are hitting the pace. It is costing you more than it should.` when the athlete's evidence supports that read.
 - `This change lowered the athlete's heart rate at the same pace.` when that comparison was actually measured.
 
@@ -40,6 +43,24 @@ over:
 The first states the observation. The second adds an unproven mechanism and then hides it behind qualifiers.
 
 FORM's public voice should sound like the coach in the field: **see it, name it, change it, show the result.**
+
+## Say it once
+
+A recurring failure mode is explaining every sentence twice.
+
+Avoid this pattern:
+1. make the point;
+2. explain the point;
+3. reassure the reader about the explanation;
+4. narrate what happens next.
+
+If the first sentence works, stop. Let spacing, imagery, sequence and the next interaction carry meaning.
+
+Examples of information that should normally appear only when relevant:
+- payment reassurance after someone enters a purchase flow, not in the first hero;
+- assessment logistics after someone begins an inquiry, not beside the first CTA;
+- service-selection labels only when the athlete is actually choosing between services;
+- process explanations only when the interface cannot make the action obvious by itself.
 
 ## Evidence note
 
@@ -66,6 +87,8 @@ Public copy should usually answer, in this order:
 
 The first screen, first sentence and first ad frame should normally live in levels 1–3, not level 5.
 
+For the coaching homepage specifically, proof does not have to interrupt the philosophy immediately after the hero. Establish what FORM is and how Brice sees running first; place verified athlete evidence later where it supports an idea the visitor already understands.
+
 ## No-decoding standard
 
 Prefer language a runner understands without coaching knowledge.
@@ -83,23 +106,33 @@ Prefer:
 
 Coach-facing and private technical surfaces can use precise coaching vocabulary. Athlete-facing surfaces may introduce technical terms after the plain-language meaning is already clear.
 
-## Generic is allowed
+## Generic utility is allowed; generic identity is not
 
-Do not reject a line merely because it is generic.
+Do not reject a line merely because it is simple or familiar.
 
-A simple line that is instantly understood can outperform a more original line that requires interpretation. Generic language is acceptable when it is true, relevant to the actual product, specific enough to the desired outcome and easy to understand in one pass.
+Generic language is useful when it performs a utility job: button labels, prices, instructions, navigation, plan directions, form fields and plain offer statements.
 
-Examples that are acceptable when they fit the offer:
+Generic language is **not** a substitute for the sections that explain what FORM believes, what Brice notices, or why the coaching feels different. Identity copy must come from the real practice.
 
-- `Can you keep the pace?`
+Acceptable utility examples:
+
+- `Work with Brice.`
 - `Run faster.`
 - `Running coaching in Miami.`
 - `Hold your goal pace longer.`
 - `Train for a faster half marathon.`
 
-The burden of differentiation can come from the product, visual system, proof and result rather than from clever copy.
+Identity examples should sound like Brice:
 
-## Proof carries the sophistication
+- `I look for ease.`
+- `Running should click.`
+- `Not five things at once.`
+- `Ten minutes counts.`
+- `Reveal what wants to be set free.`
+
+Standing identity test: **could this sentence sit unchanged on 500 other coaching websites?** If yes, it should probably not carry FORM's philosophy.
+
+## Proof carries sophistication
 
 Do not force the athlete to understand the thinking in order to trust the work.
 
@@ -154,17 +187,20 @@ Before publishing athlete-facing copy, ask:
 
 - Could a fit runner with little coaching vocabulary understand this immediately?
 - Does the first sentence tell them why they should care?
-- Could the same point be said with fewer specialized words?
+- Could the same point be said with fewer words?
+- Did we say the same thing twice?
+- Are we revealing information before it matters?
 - Are we asking them to understand the method before showing the benefit?
 - Is the proof/result doing enough of the credibility work?
 - Did we add qualifiers because the evidence requires them, or merely because the writer is uncomfortable making a direct statement?
 - Does every causal claim go no further than the evidence supports?
 - Would Brice actually say this sentence to an athlete at the track?
+- If this is identity copy, could it sit unchanged on hundreds of other coaching websites?
 - Would a coach need to explain the copy verbally for it to make sense?
 - If an ad is translated, does the click stay in the same language through the first conversion surface?
 
-If the last two answers are yes / no in the wrong direction, rewrite or localize before publishing.
+Rewrite when the answer points toward clutter, decoding, generic identity language or unsupported certainty.
 
 ## Working principle
 
-> **Think deeply backstage. Speak plainly and directly out front. Get the athlete fit. Let the result prove the work.**
+> **Think deeply backstage. Speak plainly and directly out front. Say it once. Let the practice reveal itself.**
