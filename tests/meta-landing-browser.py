@@ -59,7 +59,9 @@ try:
                 assert page.locator('.hero h1').inner_text() == 'Run better.\nGet faster.\nRun farther.'
                 assert page.locator('.hero-sub > p').inner_text() == 'Individual running coaching built around how you run now and where you want to go.'
                 assert page.locator('.offer strong').inner_text() == '8 weeks · $1,200'
-                assert page.locator('.hero-actions .begin').inner_text() == 'Tell me about your running →'
+                cta = ' '.join(page.locator('.hero-actions .begin').text_content().split())
+                assert cta == 'Tell me about your running →', repr(cta)
+                assert page.locator('.hero-actions .begin').get_attribute('href') == '#begin'
                 reassurance = page.locator('.hero-reassurance').inner_text()
                 assert 'First Miami track assessment complimentary.' in reassurance
                 assert 'An inquiry only. No payment or booking yet.' in reassurance
@@ -109,7 +111,8 @@ try:
             assert page.locator('.hero h1').inner_text() == 'Run\nDevelopment'
             source = page.locator('#filmA').get_attribute('data-src') or page.locator('#filmA').get_attribute('src') or ''
             assert '/media/run-development.mp4' in source, source
-            assert page.locator('.hero-actions .begin').inner_text() == 'Work with Brice →'
+            direct_cta = ' '.join(page.locator('.hero-actions .begin').text_content().split())
+            assert direct_cta == 'Work with Brice →', repr(direct_cta)
             print('PASS', ENGINE, 'direct traffic retains default homepage', flush=True)
             page.close()
         finally:
