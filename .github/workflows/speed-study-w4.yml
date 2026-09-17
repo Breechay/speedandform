@@ -21,12 +21,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Verify previous release before the intentional study edit
+        run: |
+          # This historical release test requires every other HTML file to be
+          # byte-identical to its old baseline. Run it BEFORE changing the study;
+          # the next step checks that the study is our sole runtime edit.
+          node tests/app-preview-polish.cjs
       - name: Render only the study from the supplied evidence
         run: |
           node scripts/update-speed-study-w4.cjs
           node tests/speed-study-w4.cjs
           node tests/cream-reading.cjs
-          node tests/app-preview-polish.cjs
           test "$(git diff --name-only)" = "labs/speed-that-endures/index.html"
       - uses: actions/setup-python@v5
         with:
