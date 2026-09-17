@@ -1,5 +1,6 @@
 'use strict';
 const contact=require('../scripts/contact-notes-state.cjs');
+const current=require('../scripts/current-release-state.cjs');
 const protectedBaseline=require('../scripts/protected-site-baseline.cjs');
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process');
 const s=require('../scripts/share-metadata.cjs'),guides=require('../scripts/guide-content.cjs'),{render}=require('../scripts/build-guides.cjs'),state=require('../scripts/guide-state.cjs');
@@ -13,8 +14,8 @@ const ids=h=>[...h.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
 const resolve=url=>{const u=new URL(url,s.ORIGIN),r=u.pathname.slice(1);return [r||'index.html',r+'.html',r.replace(/\/$/,'')+'/index.html'].find(f=>fs.existsSync(path.join(ROOT,f))&&fs.statSync(path.join(ROOT,f)).isFile());};
 assert.equal(guides.length,4);assert.equal(state.updates.size,5);
 for(const row of state.manifest.pages){assert.equal(s.sha(old(row.file)),row.beforeSha256,row.file+' exact pre-edit main');state.verify(row.file,read(row.file));}
-let untouched=0;for(const f of all.filter(f=>f.endsWith('.html')&&!state.updates.has(f))){if(contact.verify(f,read(f))||sculpt.verify(f,read(f))||product.verify(f,read(f))||subsequent.verify(f,read(f)))continue;assert.equal(s.sha(read(f)),s.sha(old(f)),f+' outside editorial scope');untouched++;}
-for(const f of ['css/cream-reading.css','css/discovery.css','css/track-gallery.css','js/track-gallery.js','css/homepage.css','js/homepage-motion.js','js/coaching-measurement.js','scripts/build-cream-reading.cjs','netlify.toml','_headers','_redirects','robots.txt','sitemap.xml','plans/race-pace-durability/source.js','threshold.html','long-run.html'])if(!contact.verify(f,read(f)))assert.equal(s.sha(read(f)),s.sha(old(f)),f+' protected');
+let untouched=0;for(const f of all.filter(f=>f.endsWith('.html')&&!state.updates.has(f))){if(current.verify(f,read(f)))continue;assert.equal(s.sha(read(f)),s.sha(old(f)),f+' outside editorial scope');untouched++;}
+for(const f of ['css/cream-reading.css','css/discovery.css','css/track-gallery.css','js/track-gallery.js','css/homepage.css','js/homepage-motion.js','js/coaching-measurement.js','scripts/build-cream-reading.cjs','netlify.toml','_headers','_redirects','robots.txt','sitemap.xml','plans/race-pace-durability/source.js','threshold.html','long-run.html'])if(!current.verify(f,read(f)))assert.equal(s.sha(read(f)),s.sha(old(f)),f+' protected');
 for(const g of guides){
  const h=read(g.file),pageIds=ids(h);assert.equal(pageIds.length,new Set(pageIds).size,g.file+' unique IDs');
  for(const id of state.updates.get(g.file).retainedIds)assert.ok(pageIds.includes(id),'Preserved fragment '+id);
