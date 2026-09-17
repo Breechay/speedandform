@@ -12,79 +12,53 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: work/mobile-hero-cut-20260917
-      - name: Simplify homepage copy and coaching visual
+      - name: Remove remaining explanatory copy
         run: |
           python - <<'PY'
           from pathlib import Path
-          import re
-
           p = Path('index.html')
           s = p.read_text()
           replacements = [
-            ('    <div class="hero-kicker eyebrow">Running coaching with Brice · Miami + Remote</div>\n', ''),
-            ('      <p><strong class="hero-benefit">Run better. Get faster. Run farther.</strong>I watch you run, build your plan, and coach you through it. Weekly track coaching in Miami, with adjustments as you develop.</p>', '      <p><strong class="hero-benefit">Run better.</strong></p>'),
-            ('        <small>Miami coaching</small><strong>8 weeks · $1,200</strong>', '        <strong>8 weeks · $1,200</strong>'),
-            ('    <div class="hero-actions"><a href="#begin" class="begin">Work with Brice <span aria-hidden="true">→</span></a><span class="hero-reassurance" style="display:block;line-height:1.6">Your first Miami track assessment is complimentary.<br>Start with a conversation.</span></div>', '    <div class="hero-actions"><a href="#begin" class="begin">Work with Brice <span aria-hidden="true">→</span></a></div>'),
             ('      <p>You’re putting in the work. You want to know what will actually make a difference. We start with your running, your goal, and what is getting in the way.</p>', '      <p>We start with your running, your goal, and what is getting in the way.</p>'),
             ('        <div class="argument"><b>01</b><div><strong>Know what matters.</strong><p>I watch you run and listen to how it feels. We find the few priorities worth your attention.</p></div></div>', '        <div class="argument"><b>01</b><div><strong>Know what matters.</strong><p>Find the few priorities worth your attention.</p></div></div>'),
             ('        <div class="argument"><b>02</b><div><strong>Have a plan that fits.</strong><p>Your fitness, goal, schedule, and other training belong in the same picture. That is where I build your week.</p></div></div>', '        <div class="argument"><b>02</b><div><strong>Have a plan that fits.</strong><p>Your goal, fitness, schedule, and other training in one week.</p></div></div>'),
-            ('        <div class="argument"><b>03</b><div><strong>Build from your response.</strong><p>Your numbers show what happened. How it felt tells me how you absorbed it. I use both to decide what comes next.</p></div></div>', '        <div class="argument"><b>03</b><div><strong>Adjust as you develop.</strong><p>What happens next comes from how you respond.</p></div></div>'),
-            ('    <figure class="analysis-figure">\n      <div class="analysis-screen"><video id="analysisVideo" data-src="/media/form-analysis-track-square.mp4" poster="/media/form-analysis-track-poster.jpg" width="512" height="512" preload="none" muted loop playsinline aria-label="A side-on running review with joint-angle overlays. A demonstration of observation, not a before-and-after comparison."></video></div>\n      <figcaption class="analysis-caption"><div><span>FORM · Track review</span><small>Video analysis assisted by Ochy.</small></div><button class="film-control" id="analysisToggle" type="button" aria-controls="analysisVideo" aria-label="Play running review" hidden>Play</button></figcaption>\n    </figure>', '    <figure class="analysis-figure">\n      <div class="analysis-screen"><img src="/assets/home/practice/coaching-track.webp" width="2048" height="1365" loading="lazy" decoding="async" alt="Brice coaching at the track in Miami"></div>\n      <figcaption class="analysis-caption"><div><span>FORM · Track · Miami</span></div></figcaption>\n    </figure>'),
-            ('      <p>I watch you run, try a few cues and short efforts, and see how you respond. Then we put that into practice through your weekly training.</p>\n      <p>In Miami, we meet at the track. Training elsewhere? Your recent training, running video, and check-ins give us a place to start.</p>', '      <p>We use the track to see what matters and carry it into your week.</p>'),
-            ('<div class="form-principle"><p><span>Not everything needs fixing.</span><span>Some things just cost you more.</span></p><small>We change what matters, practice it, and see how you respond. The goal is better running, not a perfect-looking stride.</small></div>', '<div class="form-principle"><p><span>Not everything needs fixing.</span><span>Some things just cost you more.</span></p></div>'),
-            ('    <p class="training-caption">One session belongs to a week. The week changes as you develop. This is an example, not a prescription for your running.</p>', '    <p class="training-caption">An example week, not a prescription.</p>'),
-            ('        <dl class="scope-list"><div><dt>A plan</dt><dd>Your running week, built around your goal, fitness, and other training.</dd></div><div><dt>Practice</dt><dd>Weekly track coaching in Miami. Work on the things that matter to you.</dd></div><div><dt>Feedback</dt><dd>Check-ins and adjustments as we learn how you respond.</dd></div></dl>', '        <dl class="scope-list"><div><dt>Plan</dt><dd>Your week</dd></div><div><dt>Practice</dt><dd>Weekly track</dd></div><div><dt>Adjust</dt><dd>As you develop</dd></div></dl>'),
-            ('      <div class="first-step"><h3>Let’s start with your running.</h3><p>Tell me what you want to do and where you are now. I’ll reply personally to discuss the fit and a first assessment.</p><a class="button-link" href="#begin" data-coaching="run">Work with Brice <span aria-hidden="true">→</span></a><p class="assessment-note">Your first Miami track assessment is complimentary. Meet, run, and decide whether ongoing coaching is the right fit.</p></div>', '      <div class="first-step"><a class="button-link" href="#begin" data-coaching="run">Work with Brice <span aria-hidden="true">→</span></a></div>'),
+            ('        <div class="argument"><b>03</b><div><strong>Build from your response.</strong><p>Your numbers show what happened. How it felt tells me how you absorbed it. I use both to decide what comes next.</p></div></div>', '        <div class="argument"><b>03</b><div><strong>Adjust as you develop.</strong><p>What comes next follows how you respond.</p></div></div>'),
             ('      <h2>Your next step<br>starts here.</h2>\n      <p>Tell me about your running and what you want to change. I read every inquiry myself.</p>\n      <p class="review-note" id="inquiry-reassurance">An inquiry only. No payment or booking yet.</p>', '      <h2>Tell me about<br>your running.</h2>'),
+            ('    <noscript><p class="no-script">Email <a href="mailto:brice@speedandform.com">brice@speedandform.com</a> with your running goal, current training, and location. Brice will reply personally.</p><style>.questionnaire{display:none}</style></noscript>', '    <noscript><p class="no-script">Email <a href="mailto:brice@speedandform.com">brice@speedandform.com</a> with your running goal, current training, and location.</p><style>.questionnaire{display:none}</style></noscript>'),
             ('      <label class="coaching-select-label" for="coachingChoice">Coaching you’re interested in</label>', '      <label class="coaching-select-label sr-only" for="coachingChoice">Coaching</label>'),
             ('          <p class="hint">Choose one to continue</p>\n', ''),
             ('          <p class="hint">No running video needed to get started. We can arrange that by email.</p>\n', ''),
             ('          <label class="hint" for="nm">Your name, if you&rsquo;d like</label>', '          <label class="hint" for="nm">Name (optional)</label>'),
             ('        <p class="review-note">An inquiry only. No payment or booking yet.</p>\n', ''),
             ('        <p class="done-copy">I’ll read it and reply personally from brice@speedandform.com.</p>', '        <p class="done-copy">I’ll reply from brice@speedandform.com.</p>'),
-            ('      <div><a class="footer-mark" href="#top" aria-label="FORM, back to top">FORM<span>.</span></a><p class="footer-location">Running coaching with Brice.<br>Miami + Remote</p></div>', '      <div><a class="footer-mark" href="#top" aria-label="FORM, back to top">FORM<span>.</span></a></div>'),
+            ('<p>Selected sessions from an illustrative week. Your paces and volume are individual.</p>', ''),
+            ('<p>Everything in Run Development, plus strength programming and four coached gym sessions across eight weeks. Running and lifting managed together.</p>', '<p>Strength programming + four coached gym sessions, alongside your running.</p>'),
           ]
           for old, new in replacements:
               if old not in s:
-                  raise SystemExit('missing index fragment: ' + old[:90])
+                  raise SystemExit('missing fragment: ' + old[:100])
               s = s.replace(old, new, 1)
           p.write_text(s)
-
-          # Paid traffic changes the film, not the language.
-          p = Path('js/coaching-choice.js')
-          s = p.read_text()
-          start = s.index('/* Paid-social landing continuation.')
-          marker = '/* Progressive, select-only combobox.'
-          end = s.index(marker)
-          paid = '''/* Paid-social landing continuation. The ad and page share the same sparse\n   language; paid traffic advances the visual with the Practice film. */\n(function () {\n  'use strict';\n  var params;\n  try { params = new URLSearchParams(window.location.search); } catch (_) { return; }\n  var source = (params.get('utm_source') || '').toLowerCase();\n  var medium = (params.get('utm_medium') || '').toLowerCase();\n  var paid = medium === 'paid_social' || source === 'meta' || source === 'facebook_ads' || source === 'instagram_ads';\n  if (!paid) return;\n\n  document.documentElement.classList.add('meta-paid');\n  if (!document.getElementById('metaLandingStyles')) {\n    var stylesheet = document.createElement('link');\n    stylesheet.id = 'metaLandingStyles';\n    stylesheet.rel = 'stylesheet';\n    stylesheet.href = '/css/meta-landing.css?v=20260917-v2';\n    document.head.appendChild(stylesheet);\n  }\n\n  var hero = document.querySelector('.hero');\n  if (!hero) return;\n  hero.setAttribute('data-landing-variant', 'meta-paid-v2');\n  window.formLandingVariant = 'meta-paid-v2';\n  var poster = hero.querySelector('img');\n  if (poster) poster.src = '/media/practice.jpg?v=rd26';\n  var film = document.getElementById('filmA');\n  if (film) film.setAttribute('data-src', '/media/practice.mp4?v=rd16');\n})();\n\n'''
-          p.write_text(s[:start] + paid + s[end:])
-
-          Path('css/meta-landing.css').write_text('''/* Paid social changes the visual continuation only. */\nhtml.meta-paid .hero>img,\nhtml.meta-paid .hero>video{object-position:center 46%}\n''')
 
           p = Path('css/coaching-choice.css')
           s = p.read_text()
           if '.sr-only{' not in s:
-              s = s.replace('/* One boundary, native paper, clear service and fee hierarchy. */', '/* One boundary, native paper, clear service and fee hierarchy. */\n.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}\n.analysis-screen img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.04)}')
-          s = s.replace('  html.meta-paid .hero-sub>p{display:none}\n  html.meta-paid .hero-sub{margin-top:24px;padding-top:18px}\n', '')
+              s = s.replace('/* One boundary, native paper, clear service and fee hierarchy. */', '/* One boundary, native paper, clear service and fee hierarchy. */\n.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}')
+          if '.analysis-screen img{' not in s:
+              s = s.replace('.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}', '.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}\n.analysis-screen img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.04)}')
           p.write_text(s)
 
-          # Browser copy acceptance now verifies absence of explanatory clutter.
           p = Path('tests/coaching-copy-browser.py')
           s = p.read_text()
           s = s.replace("            assert page.locator('#inquiry-reassurance').is_visible()\n            assert page.locator('#inquiry-reassurance').inner_text() == 'An inquiry only. No payment or booking yet.'\n", "            assert page.locator('#inquiry-reassurance').count() == 0\n")
           s = s.replace("            assert page.evaluate('''() => !!(document.querySelector('#inquiry-reassurance').compareDocumentPosition(document.querySelector('.questionnaire')) & Node.DOCUMENT_POSITION_FOLLOWING)''')\n", '')
           s = s.replace("mobile density, CTA, inquiry reassurance, remote selector and no overflow", "sparse copy, CTA, remote selector and no overflow")
           p.write_text(s)
-
-          # Paid-state test follows the new variant identity.
-          p = Path('tests/meta-landing-browser.py')
-          s = p.read_text().replace("'meta-paid-v1'", "'meta-paid-v2'")
-          p.write_text(s)
           PY
       - name: Commit compression
         run: |
           git config user.name "Breechay"
           git config user.email "briceikouebe@gmail.com"
-          git add index.html js/coaching-choice.js css/meta-landing.css css/coaching-choice.css tests/coaching-copy-browser.py tests/meta-landing-browser.py
-          git commit -m "Simplify homepage language and coaching flow"
+          git add index.html css/coaching-choice.css tests/coaching-copy-browser.py
+          git commit -m "Finish homepage compression pass"
           git push origin HEAD:work/mobile-hero-cut-20260917
