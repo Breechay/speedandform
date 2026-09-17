@@ -1,40 +1,23 @@
 name: App preview polish
 on:
   push:
-    branches: [work/app-preview-polish]
+    branches: [work/app-preview-polish, main]
+    paths: ['forge-sculpt/index.html','form/index.html','css/sculpt-landing.css','css/form-landing.css','scripts/app-preview-polish.cjs','tests/app-preview-polish*','.github/workflows/app-preview-polish.yml']
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
   verify:
     runs-on: ubuntu-latest
     timeout-minutes: 12
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Apply and save the exact three-file visual correction
-        run: |
-          test "$GITHUB_REF_NAME" = work/app-preview-polish
-          node scripts/app-preview-polish.cjs --apply
-          node tests/app-preview-polish.cjs
-          python - <<'PY'
-          import subprocess
-          allowed={'css/form-landing.css','css/sculpt-landing.css','forge-sculpt/index.html','docs/audits/FORM-LANDING-MANIFEST-20260917.json','docs/audits/SCULPT-LANDING-MANIFEST-20260917.json','tests/sculpt-landing.cjs','tests/contact-notes.cjs','tests/ask-header.cjs'}
-          changed=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines())
-          assert changed<=allowed,changed-allowed
-          subprocess.run(['git','add','--',*sorted(allowed)],check=True)
-          PY
-          if ! git diff --cached --quiet; then
-            git config user.name 'github-actions[bot]'
-            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git commit -m 'fix: round FORM dots and simplify the Sculpt preview'
-            git push origin HEAD:work/app-preview-polish
-          fi
       - name: Source and earlier-release protections
         run: |
           set -o pipefail
@@ -56,6 +39,16 @@ jobs:
           BROWSER=webkit APP_POLISH_ARTIFACTS=/tmp/app-polish-receipt/webkit python tests/app-preview-polish-browser.py
           SCULPT_ARTIFACTS=/tmp/app-polish-receipt/sculpt python tests/sculpt-landing-browser.py
           FORM_LANDING_ARTIFACTS=/tmp/app-polish-receipt/form python tests/form-landing-browser.py
+      - name: Verify published app HTML and assets
+        if: github.ref_name == 'main'
+        run: |
+          node scripts/verify-sculpt-production.cjs /tmp/app-polish-receipt/sculpt-production.json
+          node scripts/verify-form-landing-production.cjs /tmp/app-polish-receipt/form-production.json
+      - name: Verify actual live shapes and type in both engines
+        if: github.ref_name == 'main'
+        run: |
+          APP_POLISH_LIVE=1 BROWSER=chromium APP_POLISH_ARTIFACTS=/tmp/app-polish-receipt/live-chromium python tests/app-preview-polish-browser.py
+          APP_POLISH_LIVE=1 BROWSER=webkit APP_POLISH_ARTIFACTS=/tmp/app-polish-receipt/live-webkit python tests/app-preview-polish-browser.py
       - name: Save tested source
         if: always()
         run: |
