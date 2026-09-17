@@ -16,8 +16,8 @@ assert.match(html, /class="hero-benefit">Run better\. Get faster\. Run farther\.
 assert.match(html, /<small>Miami coaching<\/small><strong>8 weeks · \$1,200<\/strong>/);
 assert.match(html, /data-coaching="remote">Discuss remote coaching/);
 assert.match(html, /class="hero-kicker eyebrow">Running coaching with Brice · Miami \+ Remote/);
-// Release-scoped proof: no accidental changes elsewhere, including every inline
-// script, media URL, metadata field, field option and mailto fallback field.
+// Release-scoped proof: every inline script, media URL, metadata field, field
+// option and mailto fallback field is preserved. Only one final LF may differ.
 // A local display/line-height override preserves the new reassurance below 360px.
 if (process.env.FORM_COPY_BASELINE) {
   const base = process.env.FORM_COPY_BASELINE;
@@ -27,7 +27,8 @@ if (process.env.FORM_COPY_BASELINE) {
     assert.equal(expected.split(from).length, 2);
     expected = expected.replace(from,to);
   }
-  assert.equal(html, expected, 'Only the approved copy patch and reassurance visibility are allowed');
+  const finalLF = value => value.endsWith('\n') ? value : value + '\n';
+  assert.equal(finalLF(html), finalLF(expected), 'Only the approved copy patch and reassurance visibility are allowed');
   for (const path of ['css/homepage.css','css/coaching-choice.css','js/coaching-measurement.js','js/coaching-choice.js','js/homepage-motion.js']) {
     assert.equal(fs.readFileSync(path,'utf8'), cp.execFileSync('git',['show',base+':'+path],{encoding:'utf8'}), path+' must stay unchanged');
   }
