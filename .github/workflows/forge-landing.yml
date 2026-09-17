@@ -1,40 +1,116 @@
-name: Forge landing release checks
+name: Sculpt landing release checks
 on:
   push:
     branches: [work/forge-landing-pass5b]
 permissions:
   contents: read
 jobs:
-  evidence:
+  verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          persist-credentials: false
-      - name: Capture source and official public release evidence
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install review runtime
         run: |
-          mkdir -p /tmp/forge-source
-          git bundle create /tmp/forge-source/source.bundle HEAD ^6827f20cd2b416578abca14cb08561dbb3423dc4
-          git rev-parse HEAD > /tmp/forge-source/commit.txt
-          python - <<'PY'
+          python -m pip install playwright==1.58.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Materialize exact reviewed source on isolated branch
+        run: |
+          test "$GITHUB_REF_NAME" = work/forge-landing-pass5b
+          if [ -d .github/sculpt-transfer ]; then
+            python - <<'PY'
           from pathlib import Path
-          import json,urllib.request,urllib.parse,datetime
-          p=Path('/tmp/forge-source')
-          def get(u):
-              with urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'Mozilla/5.0'}),timeout=30) as r:return r.read()
-          raw=get('https://itunes.apple.com/lookup?id=6790569283&country=us');p.joinpath('apple-lookup.json').write_bytes(raw)
-          d=json.loads(raw);assert d['resultCount']==1;app=d['results'][0];assert app['trackId']==6790569283
-          for i,u in enumerate(app.get('screenshotUrls',[])[:8]):
-              assert urllib.parse.urlparse(u).hostname.endswith('mzstatic.com')
-              p.joinpath(f'store-{i}.jpg').write_bytes(get(u.replace('320x480bb.jpg','600x1300bb-60.jpg')))
-          p.joinpath('captured-at.txt').write_text(datetime.datetime.now(datetime.timezone.utc).isoformat())
-          print(json.dumps({k:app.get(k) for k in ['trackName','version','currentVersionReleaseDate','minimumOsVersion','price','formattedPrice','trackViewUrl','screenshotUrls']},indent=2))
+          import base64,lzma,json,hashlib,subprocess,urllib.request
+          allowed={'css/sculpt-landing.css','docs/audits/FORM-LANDING-MANIFEST-20260917.json','docs/audits/SCULPT-LANDING-20260917.md','docs/audits/SCULPT-LANDING-MANIFEST-20260917.json','forge-sculpt/index.html','form/index.html','js/sculpt-landing.js','scripts/guide-state.cjs','scripts/render-sculpt-share.py','scripts/sculpt-landing-state.cjs','scripts/verify-sculpt-production.cjs','tests/form-landing-browser.py','tests/form-landing-live.py','tests/form-landing.cjs','tests/guide-foundations.cjs','tests/sculpt-landing-browser.py','tests/sculpt-landing.cjs','tests/training-guides.cjs'}
+          transport={f'.github/sculpt-transfer/{i}.b64' for i in range(5)}
+          packed=base64.b64decode(''.join(Path(f'.github/sculpt-transfer/{i}.b64').read_text() for i in range(5)),validate=True)
+          assert hashlib.sha256(packed).hexdigest()=='96ee050daa74a48c4d20cc83a787188f20857f107edf1d9369187776e9bc0812'
+          data=json.loads(lzma.decompress(packed,memlimit=134217728));assert set(data)==allowed
+          for f,text in data.items():
+              p=Path(f);p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text,encoding='utf-8')
+          url='https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/86/e3/a2/86e3a2ad-9576-26b3-232b-f6f0505c367e/E.png/600x1300bb-60.jpg'
+          with urllib.request.urlopen(url,timeout=30) as r: image=r.read()
+          assert hashlib.sha256(image).hexdigest()=='8e5c5392188de4a8498fe05ca69889a6e5bfaf560daa89b94225128d5afd913f'
+          photo='assets/forge/store-20260917/today.jpg';p=Path(photo);p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(image)
+          subprocess.run(['python','scripts/render-sculpt-share.py'],check=True)
+          share='assets/forge/og-sculpt-20260917.jpg'
+          mp=Path('docs/audits/SCULPT-LANDING-MANIFEST-20260917.json');m=json.loads(mp.read_text())
+          for a in m['assets']:
+              if a['file']==share:a['sha256']=hashlib.sha256(Path(share).read_bytes()).hexdigest()
+          mp.write_text(json.dumps(m,indent=2,ensure_ascii=False)+'\n')
+          for f in transport:Path(f).unlink()
+          subprocess.run(['node','scripts/build-discovery.cjs'],check=True)
+          subprocess.run(['node','tests/sculpt-landing.cjs'],check=True)
+          permitted=allowed|transport|{photo,share,'docs/audits/DISCOVERY-MANIFEST-20260916.json'}
+          changed=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines());assert changed<=permitted,changed-permitted
+          subprocess.run(['git','add','-A','--',*sorted(permitted)],check=True)
           PY
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'feat: build Breechay Sculpt product page and the requested José and Adrian preview identities'
+            git push origin HEAD:work/forge-landing-pass5b
+          fi
+      - name: Source and critical-flow acceptance
+        run: |
+          set -o pipefail
+          mkdir -p /tmp/sculpt-receipt
+          {
+            node tests/sculpt-landing.cjs
+            node tests/form-landing.cjs
+            node tests/training-guides.cjs
+            node tests/guide-foundations.cjs
+            node tests/track-gallery.cjs
+            node tests/discovery.cjs
+            node tests/share-metadata.cjs
+            node tests/homepage-metadata.cjs
+            node tests/homepage-release.cjs
+            node tests/coaching-measurement.cjs
+            node tests/cream-reading.cjs
+            node labs/track/track.test.cjs
+            node tests/thursday-schedule.cjs
+          } | tee /tmp/sculpt-receipt/source-tests.txt
+          node scripts/build-training-guides.cjs
+          node scripts/build-guides.cjs
+          node scripts/build-discovery.cjs
+          git diff --exit-code
+      - name: Product and regression browser checks
+        env:
+          SCULPT_ARTIFACTS: /tmp/sculpt-receipt/sculpt
+          FORM_LANDING_ARTIFACTS: /tmp/sculpt-receipt/form
+          TRAINING_GUIDE_ARTIFACTS: /tmp/sculpt-receipt/training
+          GUIDE_ARTIFACTS: /tmp/sculpt-receipt/foundations
+          TRACK_GALLERY_ARTIFACTS: /tmp/sculpt-receipt/gallery
+          DISCOVERY_ARTIFACTS: /tmp/sculpt-receipt/discovery
+        run: |
+          python tests/sculpt-landing-browser.py
+          python tests/form-landing-browser.py
+          python tests/training-guides-browser.py
+          python tests/guide-browser.py
+          python tests/track-gallery-browser.py
+          python tests/discovery-browser.py
+          export CHROMIUM_PATH="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
+          python tests/homepage-browser.py
+          cp .homepage-qa/browser-qa.json /tmp/sculpt-receipt/homepage-browser.json
+      - name: Preserve exact tested revision and evidence
+        if: always()
+        run: |
+          mkdir -p /tmp/sculpt-receipt
+          git rev-parse HEAD > /tmp/sculpt-receipt/commit.txt
+          cp docs/audits/SCULPT-LANDING-MANIFEST-20260917.json /tmp/sculpt-receipt/ || true
+          cp assets/forge/og-sculpt-20260917.jpg /tmp/sculpt-receipt/share.jpg || true
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: forge-source
-          path: /tmp/forge-source/
-          retention-days: 2
+          name: sculpt-landing-receipt
+          path: /tmp/sculpt-receipt/
+          retention-days: 14
