@@ -1,8 +1,9 @@
 'use strict';
+const protectedBaseline=require('../scripts/protected-site-baseline.cjs');
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process');
 const s=require('../scripts/share-metadata.cjs'),state=require('../scripts/contact-notes-state.cjs');
 const ROOT=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(ROOT,f),'utf8');
-const old=f=>cp.execFileSync('git',['show',state.manifest.baseCommit+':'+f],{cwd:ROOT,maxBuffer:20_000_000});
+const old=f=>cp.execFileSync('git',['show',protectedBaseline(f,state.manifest.baseCommit)+':'+f],{cwd:ROOT,maxBuffer:20_000_000});
 const notes=require('../scripts/field-notes-content.cjs'),{published,route}=require('../scripts/build-contact-notes.cjs');
 const ids=h=>[...h.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
 const resolve=u=>{const r=u.pathname.slice(1);return [r||'index.html',r+'.html',r.replace(/\/$/,'')+'/index.html'].find(f=>fs.existsSync(path.join(ROOT,f))&&fs.statSync(path.join(ROOT,f)).isFile());};

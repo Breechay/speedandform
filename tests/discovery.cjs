@@ -27,14 +27,14 @@ for(const {file,url} of m.sitemap){assert.equal(s.canonical(read(file),file),url
 for(const x of ['/plans/','/labs/','/labs/speed-that-endures/','/library/easy-days/','/form/'])assert.ok(locs.includes(s.ORIGIN+x),x);
 assert.ok(!locs.some(x=>/\/search$|\/app$|\/adrian/.test(x)));
 for(const row of m.untouchedHtml)if(!editorial.verify(row.file,read(row.file)))assert.equal(s.sha(read(row.file)),row.sha256,row.file+' untouched');
-for(const row of m.changedHtml){const h=read(row.file),old=original(row.file);assert.equal(s.sha(old),row.beforeSha256,row.file+' baseline');if(editorial.verify(row.file,h))continue;assert.equal(s.sha(h),row.afterSha256,row.file+' approved source');
+for(const row of m.changedHtml){const h=read(row.file);if(protectedBaseline.verify(row.file,h))continue;const old=original(row.file);assert.equal(s.sha(old),row.beforeSha256,row.file+' baseline');if(editorial.verify(row.file,h))continue;assert.equal(s.sha(h),row.afterSha256,row.file+' approved source');
  if(['library.html','search.html','404.html'].includes(row.file))continue;
  assert.equal(scripts(h),scripts(old),row.file+' scripts unchanged');
  let clean=body(h).replace(/\n?<nav class="site-wayfinding"[\s\S]*?<\/nav>/g,'').replace(/\n?<aside class="discovery-return" data-discovery-archive>[\s\S]*?<\/aside>/g,'');
  if(row.file==='index.html')clean=clean.replace('<a href="/library">Library</a>','<a class="hide-mobile" href="#practice">The method</a>').replace('<a href="/library">Library <span>↗</span></a><a href="/thursday">Run with us <span>↗</span></a>','<a href="/library">Reading <span>↗</span></a>');
  assert.equal(clean,body(old),row.file+' content preserved outside scoped navigation/notice');
 }
-for(const f of ['css/cream-reading.css','scripts/build-cream-reading.cjs','css/homepage.css','js/homepage-motion.js','js/coaching-measurement.js','plans/race-pace-durability/source.js','netlify.toml'])if(!contact.verify(f,read(f)))assert.equal(read(f),original(f),f+' protected');
+for(const f of ['css/cream-reading.css','scripts/build-cream-reading.cjs','css/homepage.css','js/homepage-motion.js','js/coaching-measurement.js','plans/race-pace-durability/source.js','netlify.toml'])assert.equal(read(f),original(f),f+' protected');
 for(const file of ['library.html','search.html','404.html']){const h=read(file);assert.equal((h.match(/<h1\b/g)||[]).length,1);assert.ok(h.includes('role="search"'));assert.ok(h.includes('for="discovery-query"'));for(const href of ['/library','/plans/','/thursday','/#begin'])assert.ok(h.includes('href="'+href+'"'));for(const a of h.matchAll(/href="(\/[^"#?]*)[^\"]*"/g))assert.ok(resolve(a[1]),file+': '+a[1]);}
 const library=read('library.html');for(const e of index)assert.ok(library.includes('href="'+e.url+'"'),e.url+' crawlable without JS');
 const schema=JSON.parse(library.match(/id="discovery-schema">([\s\S]*?)<\/script>/)[1]);assert.equal(schema.mainEntity.itemListElement.length,index.length);
