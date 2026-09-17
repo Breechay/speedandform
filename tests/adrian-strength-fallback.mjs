@@ -38,8 +38,8 @@ for (const phrase of [
   'does not claim Forge receipt delivery',
   'Record in Forge',
 ]) has(workspace, phrase);
-lacks(workspace, 'has synced');
-lacks(workspace, 'is synced');
+lacks(workspace, '>Synced<');
+lacks(workspace, '>Connected<');
 
 const athleteJs = read('athlete/athlete.js');
 has(athleteJs,'loadStrengthFallback');
