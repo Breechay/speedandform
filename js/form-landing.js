@@ -5,7 +5,7 @@
  const panels=Array.from(host.querySelectorAll('[data-session]'));
  if(panels.length!==5)return;
  const buttons=panels.map((panel,i)=>{
-  const button=document.createElement('button');button.type='button';button.textContent=panel.dataset.session;
+  const button=document.createElement('button');button.type='button';button.textContent=panel.dataset.session;button.setAttribute('aria-label',panel.dataset.session);
   button.id='tab-'+panel.id;button.setAttribute('role','tab');button.setAttribute('aria-controls',panel.id);
   panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby',button.id);panel.tabIndex=0;
   tabs.appendChild(button);button.addEventListener('click',()=>select(i,false));
