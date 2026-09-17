@@ -2,14 +2,14 @@ name: Email updates acceptance
 on:
   push:
     branches: [work/email-updates-pass6b]
+    paths: ['newsletter/**','updates/**','supabase/functions/email-updates/**','supabase/migrations/20260917181000_email_updates.sql','tests/email-updates.cjs','tests/newsletter/**','.github/workflows/email-updates.yml']
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
   verify:
     runs-on: ubuntu-latest
     timeout-minutes: 12
-    permissions:
-      contents: write
     services:
       postgres:
         image: postgres:17
@@ -26,33 +26,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Save application source on this isolated branch only
-        run: |
-          test "$GITHUB_REF_NAME" = work/email-updates-pass6b
-          python - <<'PY'
-          import json,lzma,base64,hashlib,subprocess
-          from pathlib import Path
-          allowed={'docs/audits/EMAIL-UPDATES-20260917.md','docs/publishing/EMAIL-UPDATES.md','newsletter/activation-headers.toml','newsletter/config.example.env','newsletter/updates.css','newsletter/updates.js','supabase/functions/email-updates/core.mjs','supabase/functions/email-updates/deno.json','supabase/functions/email-updates/email.mjs','supabase/functions/email-updates/index.ts','supabase/migrations/20260917181000_email_updates.sql','tests/email-updates.cjs','tests/newsletter/browser.py','tests/newsletter/helpers.cjs','tests/newsletter/server.cjs','updates/index.html'}
-          transfer={f'.github/email-transfer/{i}.b64' for i in range(3)}
-          packed=base64.b64decode(''.join(Path(f'.github/email-transfer/{i}.b64').read_text() for i in range(3)),validate=True)
-          assert hashlib.sha256(packed).hexdigest()=='0dce6fd7763f6b8f867109a80adc6c547822dc585ff2bcee1e6a2920a0756cd6'
-          data=json.loads(lzma.decompress(packed,memlimit=134217728));assert set(data)==allowed|{'.github/workflows/email-updates.yml'}
-          for f,text in data.items():
-              if f=='.github/workflows/email-updates.yml':continue
-              p=Path(f);assert not p.exists(),f
-              p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text,encoding='utf-8')
-          for f in transfer:Path(f).unlink()
-          changed=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines())|set(subprocess.check_output(['git','ls-files','--others','--exclude-standard'],text=True).splitlines())
-          assert changed<=allowed|transfer,changed-(allowed|transfer)
-          subprocess.run(['git','add','-A','--',*sorted(allowed|transfer)],check=True)
-          PY
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'feat: stage opt-in email confirmation, unsubscribe, secure state and browser recovery'
-          git push origin HEAD:work/email-updates-pass6b
       - name: Disposable database test dependency
         run: npm install --prefix /tmp/newsletter-deps pg@8.16.3
       - name: Real database and isolated provider acceptance
@@ -81,6 +58,7 @@ jobs:
         run: |
           mkdir -p /tmp/newsletter-receipt
           git rev-parse HEAD > /tmp/newsletter-receipt/commit.txt
+          git diff --exit-code
       - uses: actions/upload-artifact@v4
         if: always()
         with:
