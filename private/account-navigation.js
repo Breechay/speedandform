@@ -1,6 +1,6 @@
 import { accountDestination, hasAccountHint, resolvePlanAccess } from './plan-access.js';
 const spanish = document.documentElement.lang.startsWith('es');
-const links = [...document.querySelectorAll('[data-form-account]')];
+const links = [...document.querySelectorAll('a[data-form-account]')];
 let access = null;
 
 async function render() {
