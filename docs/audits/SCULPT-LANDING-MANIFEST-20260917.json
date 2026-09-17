@@ -5,8 +5,8 @@
     {
       "file": "forge-sculpt/index.html",
       "beforeSha256": "7a26e66a28181b2135d32c5d7d27cf812c155b784ec1e3e6a90884090aca8880",
-      "afterSha256": "c0ca8b2249b5aaaed1de3c26c32e90b224246acf25d28ac4bfdb33a4dedf7c6f",
-      "bodySha256": "da0b167cf7aa7990519004cb3fb931c66d5694f3b7252e82ae874733f8da68ad"
+      "afterSha256": "b7f363813eaa614cbbdc77e74f35a53810b3cadd3a71454164e205ff6af72b69",
+      "bodySha256": "0345c41d58c2e2f472e1990bb9acca9db9b88fa2f4e4c17bc64d5bfe8d7cff87"
     }
   ],
   "formIdentity": {
@@ -19,7 +19,7 @@
   "assets": [
     {
       "file": "css/sculpt-landing.css",
-      "sha256": "735b07a834aa1d921746c5c92c6f8e61aaec8f13afc5552d1744537a4bd730f8"
+      "sha256": "589e49ce6b589287c20a682eaf862001c462fa5c52da7ce1476e782eacb18969"
     },
     {
       "file": "js/sculpt-landing.js",
