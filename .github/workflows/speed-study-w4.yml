@@ -1,0 +1,53 @@
+name: Speed study W4 evidence
+on:
+  push:
+    branches: [work/speed-study-w4]
+    paths: ['scripts/update-speed-study-w4.cjs','labs/speed-that-endures/evidence/2026-09-15-w4.json','tests/speed-study-w4*','.github/workflows/speed-study-w4.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: speed-study-w4-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  render-and-verify:
+    if: github.ref_name == 'work/speed-study-w4'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Render only the study from the supplied evidence
+        run: |
+          node scripts/update-speed-study-w4.cjs
+          node tests/speed-study-w4.cjs
+          node tests/cream-reading.cjs
+          node tests/app-preview-polish.cjs
+          test "$(git diff --name-only)" = "labs/speed-that-endures/index.html"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Browser runtime
+        run: |
+          python -m pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium webkit
+      - name: Phone, tablet and desktop in two browser engines
+        run: |
+          BROWSER=chromium STUDY_ARTIFACTS=/tmp/speed-study-w4/chromium python tests/speed-study-w4-browser.py
+          BROWSER=webkit STUDY_ARTIFACTS=/tmp/speed-study-w4/webkit python tests/speed-study-w4-browser.py
+      - name: Commit the verified static page to this work branch only
+        run: |
+          git add labs/speed-that-endures/index.html
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'study: record Hope and Jose five-mile continuous evidence from September 15 [skip netlify]'
+          git push origin HEAD:work/speed-study-w4
+          git rev-parse HEAD | tee /tmp/speed-study-w4/verified-commit.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: speed-study-w4-proof
+          path: /tmp/speed-study-w4/
+          retention-days: 14

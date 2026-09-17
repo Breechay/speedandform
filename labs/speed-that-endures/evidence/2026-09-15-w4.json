@@ -1,0 +1,56 @@
+{
+  "study": "Speed That Endures",
+  "sessionDate": "2026-09-15",
+  "publishedDate": "2026-09-17",
+  "week": 4,
+  "ask": "5 mi continuous at each athlete's own race-pace band",
+  "jose": {
+    "distanceMiles": 5,
+    "durationSeconds": 2020.8,
+    "timeLabel": "33:40.8",
+    "paceLabel": "6:44",
+    "band": "6:30–6:45",
+    "mileSplitsSeconds": null,
+    "effort": "Hard · athlete report",
+    "athleteReport": "Breathing felt controlled; legs tired and maintaining form became harder near the end. He chose not to chase sub-6:40 pace.",
+    "quote": "I just wanted to keep it fluid",
+    "reserve": "Not quantified"
+  },
+  "hope": {
+    "distanceMiles": 5,
+    "durationSeconds": 2057.9,
+    "timeLabel": "34:17.9",
+    "paceLabel": "6:52",
+    "band": "6:45–7:00",
+    "mileSplitsSeconds": [408.9, 409.8, 413.4, 411.7, 414.1],
+    "mileSplitLabels": ["6:48.9", "6:49.8", "6:53.4", "6:51.7", "6:54.1"],
+    "effort": null,
+    "limiter": null,
+    "reserve": null,
+    "coachInstruction": "We want that pace and number to feel incredibly familiar."
+  },
+  "next": {
+    "racePaceDate": "2026-09-22",
+    "racePaceWork": "5 × 1 mi",
+    "floatSeconds": 120,
+    "thresholdDate": "2026-09-24",
+    "thresholdWork": "3 × 10 min",
+    "nextContinuousDate": "2026-09-29",
+    "nextContinuousMiles": 6,
+    "paceDecision": "Keep each athlete's band. Do not make race pace faster because five miles were completed."
+  },
+  "provenance": {
+    "measurements": "Athlete-shared Garmin interval screenshots, corroborated by Strava activity screenshots for September 15, 2026.",
+    "experience": "Athlete and coach messages supplied by Brice with this publication request. Only selected training-relevant excerpts are published; raw conversations and health details are not.",
+    "limitations": [
+      "These are the five-mile work segments, not whole-activity averages including warm-up and cool-down.",
+      "Jose's aggregate work pace does not verify every mile or instantaneous pace against the band.",
+      "Hope's five recorded one-mile splits all fall within her assigned band; they are not a complete instantaneous pace trace.",
+      "The coach asked Hope about 9/10 effort; no numeric athlete confirmation is supplied, so no rating is assigned.",
+      "Breathing and form observations are athlete-reported, not measured oxygen cost or independently observed biomechanics.",
+      "The reported five-mile heart rate and whole-activity heart rate have different scopes and are not used as a matched improvement comparison.",
+      "No new Strava activity URLs were supplied. Do not reuse previous-week links for this session.",
+      "A recorded study observation is not an app-filed receipt and does not change athlete records or assignments."
+    ]
+  }
+}
