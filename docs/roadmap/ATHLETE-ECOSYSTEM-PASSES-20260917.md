@@ -6,8 +6,8 @@ Owner: Brice. Approved in the September 17 conversation. This is the implementat
 
 | Pass | Deliverable | State |
 | --- | --- | --- |
-| 1 | Account recognition and verified plan access | IN VERIFICATION. Additive account-access RPC deployed; 24 database checks passed with all synthetic records rolled back. Local Node suite: 44 checks. Browser acceptance and web production release still pending. [Receipt](../audits/ATHLETE-ACCESS-20260917.md). |
-| 2 | RPD explanation in English/Spanish and week-sharing view | QUEUED. Preserve current pricing and assignment versions. |
+| 1 | Account recognition and verified plan access | LIVE; real signed-in owner phone walk OPEN. Main `977fbf6d`; Netlify production deploy `6aac3d827221730008e755da`, published September 17 at 19:20:58 UTC from that exact commit. Additive account-access RPC deployed; 24 database authorization checks passed with synthetic fixtures rolled back. Source suite: 44 new access checks plus acquisition regressions. Branch and main acceptance passed Chromium and WebKit, including coach/assigned athlete/verified buyer access, stranger preview lock, guest purchase recovery, failure states, account switching/sign-out, six responsive widths, and actual anonymous production lock/API checks. No real purchase, workout, invitation, assignment or athlete result was created. [Receipt](../audits/ATHLETE-ACCESS-20260917.md). |
+| 2 | RPD explanation in English/Spanish and week-sharing view | ACTIVE NEXT. Preserve current pricing and assignment versions. |
 | 3 | Read-only athlete website: Today, Plan, History, Account | QUEUED. App filing remains authoritative. |
 | 4 | Remote strength athlete web experience and usable fallback | QUEUED. Do not claim native receipt delivery from a link. |
 | 5 | Four-runner identity and assignment reconciliation | QUEUED. Preserve each plan, calendar, version and evidence history. |
