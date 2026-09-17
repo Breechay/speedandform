@@ -1,5 +1,6 @@
 'use strict';
 const contact=require('../scripts/contact-notes-state.cjs');
+const current=require('../scripts/current-release-state.cjs');
 const protectedBaseline=require('../scripts/protected-site-baseline.cjs');
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),crypto=require('node:crypto'),cp=require('node:child_process');
 const ROOT=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(ROOT,f),'utf8');
@@ -11,7 +12,7 @@ const old=process.env.GALLERY_BASELINE||'2c966476fe760eee5fb2b7e63ef719862c295cc
 const original=f=>cp.execFileSync('git',['show',protectedBaseline(f,old)+':'+f],{cwd:ROOT,maxBuffer:10_000_000});
 const files=cp.execFileSync('git',['ls-tree','-r','--name-only',old],{cwd:ROOT,encoding:'utf8'}).trim().split('\n');
 for(const f of files.filter(f=>f.endsWith('.html')&&!['library.html','thursday.html'].includes(f)))if(!editorial.verify(f,read(f)))assert.equal(sha(fs.readFileSync(path.join(ROOT,f))),sha(original(f)),f+' unchanged');
-for(const f of ['css/cream-reading.css','css/homepage.css','js/homepage-motion.js','js/coaching-measurement.js','netlify.toml','_redirects','_headers','plans/race-pace-durability/source.js'])if(!contact.verify(f,read(f)))assert.equal(sha(fs.readFileSync(path.join(ROOT,f))),sha(original(f)),f+' protected');
+for(const f of ['css/cream-reading.css','css/homepage.css','js/homepage-motion.js','js/coaching-measurement.js','netlify.toml','_redirects','_headers','plans/race-pace-durability/source.js'])if(!current.verify(f,read(f)))assert.equal(sha(fs.readFileSync(path.join(ROOT,f))),sha(original(f)),f+' protected');
 const clean=h=>h.replace(/<nav class="site-wayfinding"[\s\S]*?<\/nav>/g,'');
 assert.equal(clean(html('thursday.html')),clean(original('thursday.html').toString()),'Only Thursday navigation changes');
 assert.ok(html('thursday.html').includes('href="/track/"'),'Gallery discoverable from the actual session page');
