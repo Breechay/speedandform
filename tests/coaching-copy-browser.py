@@ -55,9 +55,16 @@ with sync_playwright() as p:
             assert 'Discuss coaching' in page.locator('#coachingChoiceTrigger').inner_text()
             # html_for_test() inlines classic scripts with document.write. The
             # existing account-navigation ES module is therefore parsed as a
-            # classic script in this offline harness only; its import syntax is
-            # covered by its own app surface, not this copy acceptance test.
-            unexpected_errors = [e for e in errors if "Cannot use import statement outside a module" not in e]
+            # classic script in this offline harness only. Chromium and WebKit
+            # use different wording for that same known parser mismatch.
+            known_offline_module_errors = (
+                'Cannot use import statement outside a module',
+                "Unexpected token '{'. import call expects one or two arguments.",
+            )
+            unexpected_errors = [
+                e for e in errors
+                if not any(known in e for known in known_offline_module_errors)
+            ]
             assert not unexpected_errors, unexpected_errors
             report.append({'width':w,'height':h,'pass':True,'bounds':bounds,'reassurance':reassurance,'cta_in_initial_viewport':bounds['button']['bottom']<=h})
             print('PASS', ENGINE, w, 'copy, CTA, inquiry reassurance, remote selector and no overflow', flush=True)
