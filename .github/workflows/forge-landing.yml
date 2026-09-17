@@ -1,72 +1,26 @@
 name: Sculpt landing release checks
 on:
   push:
-    branches: [work/forge-landing-pass5b]
+    branches: [work/forge-landing-pass5b, main]
+    paths: ['forge-sculpt/index.html','form/index.html','css/sculpt-landing.css','js/sculpt-landing.js','assets/forge/store-20260917/**','assets/forge/og-sculpt-20260917.jpg','scripts/sculpt-landing-state.cjs','scripts/verify-sculpt-production.cjs','tests/sculpt-landing*','docs/audits/SCULPT-LANDING*','.github/workflows/forge-landing.yml']
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
   verify:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    permissions:
-      contents: write
-      actions: read
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Recover the original inspected screenshot
-        uses: actions/download-artifact@v4
-        with:
-          name: forge-source
-          run-id: 35207088651
-          github-token: ${{ github.token }}
-          path: /tmp/forge-original-evidence
-      - name: Install review runtime
-        run: |
-          python -m pip install playwright==1.58.0 Pillow==11.3.0
-          python -m playwright install --with-deps chromium
-      - name: Materialize exact reviewed source on isolated branch
-        run: |
-          test "$GITHUB_REF_NAME" = work/forge-landing-pass5b
-          if [ -d .github/sculpt-transfer ]; then
-            python - <<'PY'
-          from pathlib import Path
-          import base64,lzma,json,hashlib,subprocess
-          allowed={'css/sculpt-landing.css','docs/audits/FORM-LANDING-MANIFEST-20260917.json','docs/audits/SCULPT-LANDING-20260917.md','docs/audits/SCULPT-LANDING-MANIFEST-20260917.json','forge-sculpt/index.html','form/index.html','js/sculpt-landing.js','scripts/guide-state.cjs','scripts/render-sculpt-share.py','scripts/sculpt-landing-state.cjs','scripts/verify-sculpt-production.cjs','tests/form-landing-browser.py','tests/form-landing-live.py','tests/form-landing.cjs','tests/guide-foundations.cjs','tests/sculpt-landing-browser.py','tests/sculpt-landing.cjs','tests/training-guides.cjs'}
-          transport={f'.github/sculpt-transfer/{i}.b64' for i in range(5)}
-          packed=base64.b64decode(''.join(Path(f'.github/sculpt-transfer/{i}.b64').read_text() for i in range(5)),validate=True)
-          assert hashlib.sha256(packed).hexdigest()=='96ee050daa74a48c4d20cc83a787188f20857f107edf1d9369187776e9bc0812'
-          data=json.loads(lzma.decompress(packed,memlimit=134217728));assert set(data)==allowed
-          for f,text in data.items():
-              p=Path(f);p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text,encoding='utf-8')
-          image=Path('/tmp/forge-original-evidence/store-1.jpg').read_bytes()
-          assert hashlib.sha256(image).hexdigest()=='8e5c5392188de4a8498fe05ca69889a6e5bfaf560daa89b94225128d5afd913f'
-          photo='assets/forge/store-20260917/today.jpg';p=Path(photo);p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(image)
-          subprocess.run(['python','scripts/render-sculpt-share.py'],check=True)
-          share='assets/forge/og-sculpt-20260917.jpg'
-          mp=Path('docs/audits/SCULPT-LANDING-MANIFEST-20260917.json');m=json.loads(mp.read_text())
-          for a in m['assets']:
-              if a['file']==share:a['sha256']=hashlib.sha256(Path(share).read_bytes()).hexdigest()
-          mp.write_text(json.dumps(m,indent=2,ensure_ascii=False)+'\n')
-          for f in transport:Path(f).unlink()
-          subprocess.run(['node','scripts/build-discovery.cjs'],check=True)
-          subprocess.run(['node','tests/sculpt-landing.cjs'],check=True)
-          permitted=allowed|transport|{photo,share,'docs/audits/DISCOVERY-MANIFEST-20260916.json'}
-          changed=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines());assert changed<=permitted,changed-permitted
-          subprocess.run(['git','add','-A','--',*sorted(permitted)],check=True)
-          PY
-            git config user.name 'github-actions[bot]'
-            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git commit -m 'feat: build Breechay Sculpt product page and the requested José and Adrian preview identities'
-            git push origin HEAD:work/forge-landing-pass5b
-          fi
       - name: Source and critical-flow acceptance
         run: |
           set -o pipefail
@@ -90,6 +44,10 @@ jobs:
           node scripts/build-guides.cjs
           node scripts/build-discovery.cjs
           git diff --exit-code
+      - name: Install browser runtime
+        run: |
+          python -m pip install playwright==1.58.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
       - name: Product and regression browser checks
         env:
           SCULPT_ARTIFACTS: /tmp/sculpt-receipt/sculpt
@@ -108,13 +66,24 @@ jobs:
           export CHROMIUM_PATH="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
           python tests/homepage-browser.py
           cp .homepage-qa/browser-qa.json /tmp/sculpt-receipt/homepage-browser.json
+      - name: Verify actual public pages and media
+        if: github.ref_name == 'main'
+        run: |
+          node scripts/verify-sculpt-production.cjs /tmp/sculpt-receipt/production.json
+          node scripts/verify-form-landing-production.cjs /tmp/sculpt-receipt/form-production.json
+          node scripts/verify-training-guides-production.cjs /tmp/sculpt-receipt/training-production.json
+          node scripts/verify-guides-production.cjs /tmp/sculpt-receipt/foundations-production.json
+          node scripts/verify-discovery-production.cjs /tmp/sculpt-receipt/discovery-production.json
+          node scripts/verify-share-production.cjs /tmp/sculpt-receipt/share-production.json
+          node scripts/verify-track-production.cjs /tmp/sculpt-receipt/gallery-production.json
+          SCULPT_LIVE=1 SCULPT_ARTIFACTS=/tmp/sculpt-receipt/live python tests/sculpt-landing-browser.py
       - name: Preserve exact tested revision and evidence
         if: always()
         run: |
           mkdir -p /tmp/sculpt-receipt
           git rev-parse HEAD > /tmp/sculpt-receipt/commit.txt
-          cp docs/audits/SCULPT-LANDING-MANIFEST-20260917.json /tmp/sculpt-receipt/ || true
-          cp assets/forge/og-sculpt-20260917.jpg /tmp/sculpt-receipt/share.jpg || true
+          cp docs/audits/SCULPT-LANDING-MANIFEST-20260917.json /tmp/sculpt-receipt/
+          cp assets/forge/og-sculpt-20260917.jpg /tmp/sculpt-receipt/share.jpg
       - uses: actions/upload-artifact@v4
         if: always()
         with:
