@@ -1,0 +1,46 @@
+name: Athlete ecosystem acceptance
+on:
+  push:
+    branches: [work/athlete-ecosystem-20260917]
+  pull_request:
+    paths:
+      - 'athlete/**'
+      - 'private/plan-access.js'
+      - 'private/account-navigation.js'
+      - 'plans/race-pace-durability/**'
+      - 'tests/athlete-ecosystem*'
+      - '.github/workflows/athlete-ecosystem.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: athlete-ecosystem-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run ecosystem acceptance when present
+        shell: bash
+        run: |
+          if [ -f tests/athlete-ecosystem.cjs ]; then node tests/athlete-ecosystem.cjs; fi
+      - name: Preserve exact review source
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p /tmp/ecosystem-review
+          git rev-parse HEAD > /tmp/ecosystem-review/commit.txt
+          git archive --format=zip HEAD -- AGENTS.md index.html athlete private plans docs css js tests scripts supabase netlify.toml _headers _redirects .github/workflows > /tmp/ecosystem-review/source.zip
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: athlete-ecosystem-review-source
+          path: /tmp/ecosystem-review/
+          retention-days: 3
