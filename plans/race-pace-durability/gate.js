@@ -1,11 +1,13 @@
 // Race Pace Durability public access gate.
 // Weeks 1–4 remain open. Attempting to move beyond the free preview routes to
-// the purchase page unless account or purchase access has been verified. Navigation moves
-// by the number of weeks currently visible so trackpad / swipe / arrows feel like
-// turning a sheet, not nudging one column.
+// the purchase page unless account or purchase access has been verified. A
+// shared ?week= link may open the redacted locked placeholder for that week;
+// the query parameter never grants prescription access.
 
 const FREE_THROUGH = 4;
 const PURCHASE_URL = '/plans/race-pace-durability/support/';
+const requested = Number(new URLSearchParams(location.search).get('week'));
+const SHARED_WEEK = Number.isInteger(requested) && requested >= 1 && requested <= 15 ? requested : null;
 import { resolvePlanAccess } from './source.js';
 import { accountDestination } from '/private/plan-access.js';
 const $ = (selector, root = document) => root.querySelector(selector);
@@ -45,12 +47,26 @@ function baseClick(direction, times) {
   window.setTimeout(lockAll, 420);
 }
 
+function openSharedWeek() {
+  if (!SHARED_WEEK) return;
+  const current = leftWeek();
+  const delta = SHARED_WEEK - current;
+  if (!delta) return;
+  baseClick(delta > 0 ? 1 : -1, Math.abs(delta));
+}
+
 function navigate(direction) {
   if (!direction || !available) return;
   const left = leftWeek();
   const size = pageSize();
 
   if (!entitled && direction > 0 && left + size > FREE_THROUGH) {
+    // A deliberate shared week is allowed to reveal only the locked/redacted
+    // placeholder. Ordinary preview navigation still goes directly to purchase.
+    if (SHARED_WEEK && SHARED_WEEK > FREE_THROUGH) {
+      baseClick(direction, size);
+      return;
+    }
     purchase();
     return;
   }
@@ -108,7 +124,7 @@ function lockAll() {
 }
 
 function normalizeToPreview() {
-  if (entitled) return;
+  if (entitled || (SHARED_WEEK && SHARED_WEEK > FREE_THROUGH)) return;
   const left = leftWeek();
   if (left <= FREE_THROUGH) return;
   baseClick(-1, left - FREE_THROUGH);
@@ -157,6 +173,7 @@ async function init() {
   }
   $('#next').setAttribute('aria-label', entitled ? 'Next weeks' : 'Next weeks or unlock full plan');
   installStyles();
+  openSharedWeek();
   normalizeToPreview();
   lockAll();
 
