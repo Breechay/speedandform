@@ -18,7 +18,7 @@ jobs:
       - name: Run historical source gates against exact current lineage
         run: |
           set -o pipefail
-          sha256sum js/coaching-measurement.js js/homepage-motion.js js/coaching-choice.js plans/race-pace-durability/source.js css/homepage.css _headers
+          sha256sum css/coaching-choice.css js/coaching-measurement.js js/homepage-motion.js js/coaching-choice.js plans/race-pace-durability/source.js css/homepage.css _headers
           node tests/sculpt-landing.cjs
           node tests/form-landing.cjs
           node tests/training-guides.cjs
