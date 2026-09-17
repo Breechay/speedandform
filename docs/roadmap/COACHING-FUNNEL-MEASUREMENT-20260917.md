@@ -1,5 +1,8 @@
 # Coaching funnel measurement and message match: September 17, 2026
 
+> **Historical copy-phase receipt:** this document records the earlier September 17 measurement/message-match phase. It does **not** define the current homepage copy. Current Run Development doctrine and sequencing live in `docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md` and `docs/marketing/CURRENT_COMMERCIAL_EXECUTION.md`. Preserve the measurement contract below; treat the old hero/supporting/reassurance copy as superseded.
+
+
 ## Current decision
 
 Brice approved the bounded ad-to-homepage clarification after pointing out that homepage copy had already changed during the live campaign. Earlier campaign results cover multiple homepage versions. Do not treat them as a verdict on the latest page or as a controlled A/B comparison.

@@ -63,7 +63,7 @@ Ochy or similar software may be used as an instrument. The software score is not
 
 Current structure: **8 weeks · $1,200**.
 
-Assessment → individual running plan → mostly easy practice/consistency → appropriate speed/threshold work → endurance → feedback → adjustment.
+Look for ease → choose what matters most → layer the cue → repeat until it belongs → progress the work.
 
 The point is not to hand the athlete workouts. It is to develop the runner.
 
@@ -133,21 +133,16 @@ These are different mechanisms, not three edits of one commercial.
 
 **Spine:**
 
+# Run Development
 # Run better.
-# Get faster.
-# Run farther.
 
-Footage does the explaining.
-
-**Run better:** full-body mechanics, Brice observing, authentic coaching interaction.  
-**Get faster:** track rep, acceleration, timing, controlled hard running.  
-**Run farther:** wider sustained running, continuation, composure.
+Footage does the explaining. Show the practice rather than naming every possible benefit: Brice observing, a cue or adjustment, the athlete moving with more connection, then the work continuing. Speed and distance can appear as evidence inside the film instead of additional headline claims.
 
 Working rhythm for a 12–18s master:
-- 0:00–0:04 Run better.
-- 0:04–0:08 Get faster.
-- 0:08–0:12 Run farther.
-- 0:12–0:15/18 close.
+- 0:00–0:04 recognition / running;
+- 0:04–0:09 observation or one useful cue;
+- 0:09–0:13 practice / continuation;
+- 0:13–0:15/18 Run Development close.
 
 Working close:
 
@@ -300,7 +295,7 @@ Do not optimize an upsell rate by pushing Analysis clients into coaching they do
 ## What the first tests should teach
 
 1. Does useful coaching outperform pure cinematography as an opening?
-2. Is `Run better. Get faster. Run farther.` understood quickly?
+2. Does `Run Development` / `Run better.` create enough recognition without over-explaining the benefit?
 3. Does `Not everything needs fixing. Some things just cost you more.` create recognition without implying that every runner has a defect?
 4. Does a bounded Analysis offer capture people who would reject an 8-week relationship?
 5. Does Analysis cannibalize Run Development or correctly segment a different job?
@@ -348,7 +343,7 @@ When footage is supplied, include exact source filenames and in/out timestamps.
 - `FORM Analysis` name;
 - Analysis scope, one vs two contacts, artifact and price;
 - complimentary assessment boundary;
-- `Run better. Get faster. Run farther.`;
+- exact `Run Development` / `Run better.` opening treatment and which later proof should carry speed/distance;
 - exact public use/placement of `Not everything needs fixing. Some things just cost you more.`;
 - 12–18 second duration;
 - coaching cue in ad;
