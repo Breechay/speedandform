@@ -1,0 +1,37 @@
+/* Paid-social continuation state. Default homepage remains untouched unless the
+   incoming URL is identified as paid social. */
+html.meta-paid .hero>img,
+html.meta-paid .hero>video{object-position:center 46%}
+html.meta-paid .hero-copy{padding-bottom:50px}
+html.meta-paid .hero-kicker{color:#d9ddd4}
+html.meta-paid .hero h1{font-size:clamp(76px,8.2vw,126px);line-height:.89;max-width:9ch;letter-spacing:-.06em}
+html.meta-paid .hero-sub{grid-template-columns:minmax(0,1fr) auto;align-items:end;margin-top:33px;padding-top:22px}
+html.meta-paid .hero-sub>p{max-width:48ch;font-size:18px;line-height:1.58;color:#d6d9d2}
+html.meta-paid .hero-actions{margin-top:24px}
+html.meta-paid .hero-reassurance{max-width:30ch}
+
+@media(max-width:800px){
+  html.meta-paid .hero h1{font-size:clamp(68px,12.4vw,94px)}
+  html.meta-paid .hero-sub{grid-template-columns:1fr}
+}
+
+@media(max-width:600px){
+  html.meta-paid .hero{min-height:92svh}
+  html.meta-paid .hero-copy{padding:136px 0 42px}
+  html.meta-paid .hero-kicker{margin-bottom:16px}
+  html.meta-paid .hero h1{font-size:15.2vw;line-height:.91;max-width:8.6ch}
+  html.meta-paid .hero-sub{margin-top:22px;padding-top:17px;gap:15px}
+  html.meta-paid .hero-sub>p{font-size:15.5px;line-height:1.58;max-width:34ch}
+  html.meta-paid .offer{gap:11px}
+  html.meta-paid .offer strong{font-size:16px}
+  html.meta-paid .hero-actions{display:grid;grid-template-columns:1fr;gap:11px;margin-top:20px}
+  html.meta-paid .begin{width:100%;min-height:52px}
+  html.meta-paid .hero-actions>span{font-size:12px;line-height:1.55;max-width:34ch}
+  html.meta-paid .film-toggle{bottom:10px}
+}
+
+@media(max-width:359px){
+  html.meta-paid .hero-copy{padding-top:124px}
+  html.meta-paid .hero h1{font-size:15vw}
+  html.meta-paid .hero-actions>span{display:block}
+}
