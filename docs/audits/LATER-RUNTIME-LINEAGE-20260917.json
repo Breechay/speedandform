@@ -15,6 +15,13 @@
       "sourceRevision": "51f0bfb74095f23cdd78460a3086aa14d3d53682",
       "pullRequest": 138,
       "reason": "Approved unlinked updates-page hosting headers; exact current source."
+    },
+    {
+      "file": "js/homepage-motion.js",
+      "afterSha256": "3f37ae9c4f58c7f43085eb4d49408d6711e4745e4e92c7ad31801bcd11d5d63a",
+      "sourceRevision": "adec1c431081f49e6b7a7374691037b60022bb07",
+      "pullRequest": 142,
+      "reason": "Approved Run Development doctrine homepage motion behavior."
     }
   ],
   "notes": [
