@@ -5,21 +5,65 @@ on:
 permissions:
   contents: read
 jobs:
-  source:
+  verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 12
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          persist-credentials: false
-      - name: Export the bounded source delta
-        run: |
-          mkdir -p /tmp/app-polish-source
-          git bundle create /tmp/app-polish-source/source.bundle HEAD ^6827f20cd2b416578abca14cb08561dbb3423dc4
-          git rev-parse HEAD > /tmp/app-polish-source/commit.txt
-      - uses: actions/upload-artifact@v4
+      - uses: actions/setup-node@v4
         with:
-          name: app-polish-source
-          path: /tmp/app-polish-source/
-          retention-days: 2
+          node-version: '22'
+      - name: Apply and save the exact three-file visual correction
+        run: |
+          test "$GITHUB_REF_NAME" = work/app-preview-polish
+          node scripts/app-preview-polish.cjs --apply
+          node tests/app-preview-polish.cjs
+          python - <<'PY'
+          import subprocess
+          allowed={'css/form-landing.css','css/sculpt-landing.css','forge-sculpt/index.html','docs/audits/FORM-LANDING-MANIFEST-20260917.json','docs/audits/SCULPT-LANDING-MANIFEST-20260917.json','tests/sculpt-landing.cjs','tests/contact-notes.cjs','tests/ask-header.cjs'}
+          changed=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines())
+          assert changed<=allowed,changed-allowed
+          subprocess.run(['git','add','--',*sorted(allowed)],check=True)
+          PY
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'fix: round FORM dots and simplify the Sculpt preview'
+            git push origin HEAD:work/app-preview-polish
+          fi
+      - name: Source and earlier-release protections
+        run: |
+          set -o pipefail
+          mkdir -p /tmp/app-polish-receipt
+          for name in app-preview-polish sculpt-landing form-landing contact-notes ask-header training-guides guide-foundations track-gallery discovery share-metadata homepage-metadata homepage-release coaching-measurement cream-reading thursday-schedule; do node tests/$name.cjs; done | tee /tmp/app-polish-receipt/source-tests.txt
+          node labs/track/track.test.cjs | tee -a /tmp/app-polish-receipt/source-tests.txt
+          node scripts/build-discovery.cjs
+          git diff --exit-code
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Browser runtime
+        run: |
+          python -m pip install playwright==1.58.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium webkit
+      - name: Visual corrections in both engines and existing app interactions
+        run: |
+          BROWSER=chromium APP_POLISH_ARTIFACTS=/tmp/app-polish-receipt/chromium python tests/app-preview-polish-browser.py
+          BROWSER=webkit APP_POLISH_ARTIFACTS=/tmp/app-polish-receipt/webkit python tests/app-preview-polish-browser.py
+          SCULPT_ARTIFACTS=/tmp/app-polish-receipt/sculpt python tests/sculpt-landing-browser.py
+          FORM_LANDING_ARTIFACTS=/tmp/app-polish-receipt/form python tests/form-landing-browser.py
+      - name: Save tested source
+        if: always()
+        run: |
+          mkdir -p /tmp/app-polish-receipt
+          git rev-parse HEAD > /tmp/app-polish-receipt/commit.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: app-polish-receipt
+          path: /tmp/app-polish-receipt/
+          retention-days: 14
