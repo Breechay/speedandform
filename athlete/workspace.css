@@ -33,7 +33,7 @@
 .athlete-session-copy>b{font-size:14px;font-variant-numeric:tabular-nums}
 .athlete-session-copy p{grid-column:1/-1;margin:4px 0 0;color:var(--secondary);font-size:13px;line-height:1.55}
 .athlete-session.received{opacity:.78}
-.athlete-readonly{margin:22px 0 0;color:var(--muted);font-size:12px}
+.athlete-readonly{margin:22px 0 0;color:var(--muted);font-size:12px;line-height:1.55}
 .athlete-history>h2{max-width:720px}
 .athlete-muted{max-width:680px;color:var(--secondary);line-height:1.65}
 .athlete-history-list{margin-top:30px;border-top:1px solid var(--edge)}
@@ -51,7 +51,17 @@
 .athlete-account-rows span{color:var(--secondary);font-size:12px}
 .athlete-account-rows b{font-size:13px;font-weight:700;overflow-wrap:anywhere}
 .athlete-account-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}
-.record-nav-panel a.active{background:var(--raised-2)}
+.fallback-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.85fr);gap:36px;padding:26px 0;border-top:1px solid var(--edge);border-bottom:1px solid var(--edge)}
+.fallback-hero p{margin:0;font-size:15px;line-height:1.65}.fallback-hero p:last-child{color:var(--secondary)}
+.fallback-status{margin:22px 0 0;padding:18px 20px;border:1px solid var(--edge);border-radius:12px;background:var(--raised)}
+.fallback-status strong{font-size:13px}.fallback-status p{margin:5px 0 0;color:var(--secondary);font-size:12px;line-height:1.6}
+.fallback-status a{display:inline-block;margin-top:12px;color:var(--lime);font-size:12px;font-weight:760;text-decoration:none}
+.fallback-days{border-top:1px solid var(--edge)}
+.fallback-day{padding:24px 0;border-bottom:1px solid var(--edge)}
+.fallback-day-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:18px}
+.fallback-day-head span{color:var(--secondary);font-size:10px;font-weight:760;text-transform:uppercase;letter-spacing:.09em}.fallback-day-head h3{margin:4px 0 0;font-size:18px}.fallback-day-head small{color:var(--muted);font-size:11px;text-align:right}
+.fallback-exercises{display:grid;gap:0}.fallback-exercises>div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;padding:10px 0;border-top:1px solid rgba(255,255,255,.055);font-size:13px}.fallback-exercises b{font-variant-numeric:tabular-nums;font-weight:700}
+.fallback-rules{margin-top:34px;border-top:1px solid var(--edge);padding-top:26px}.fallback-rules>div{display:grid;grid-template-columns:44px minmax(0,1fr);gap:16px;padding:13px 0;border-bottom:1px solid var(--edge)}.fallback-rules b{color:var(--lime);font-size:10px;letter-spacing:.08em}.fallback-rules p{margin:0;color:var(--secondary);font-size:13px;line-height:1.6}
 @media(max-width:700px){
   .athlete-workspace{width:min(100% - 28px,980px);padding-top:12px}
   .athlete-topbar{height:58px;padding:0 14px}
@@ -62,12 +72,13 @@
   .athlete-tabs::-webkit-scrollbar{display:none}
   .athlete-tab{flex:1;min-width:76px;padding-inline:10px}
   .athlete-workspace-main{padding-top:30px}
-  .today-context{grid-template-columns:1fr;gap:18px}
+  .today-context,.fallback-hero{grid-template-columns:1fr;gap:18px}
   .athlete-session{grid-template-columns:72px minmax(0,1fr);gap:14px;padding:18px 0}
   .athlete-session-copy{grid-template-columns:1fr}
   .athlete-session-copy>b{grid-row:auto}
   .athlete-history-list article{grid-template-columns:82px minmax(0,1fr);gap:14px}
   .athlete-account-rows>div{grid-template-columns:1fr;gap:5px}
   .plan-title-row{align-items:flex-end}
+  .fallback-day-head{display:block}.fallback-day-head small{display:block;margin-top:5px;text-align:left}.fallback-exercises>div{grid-template-columns:minmax(0,1fr) auto;gap:12px}
 }
 @media(prefers-reduced-motion:reduce){.athlete-view{animation:none}}
