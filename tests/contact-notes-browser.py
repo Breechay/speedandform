@@ -72,7 +72,7 @@ try:
         check('Copy keeps complete text',page.evaluate('window.__copied')==query['body'][0])
         page.evaluate("Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{throw Error('Denied')}}})")
         page.locator('#question-copy').click();page.locator('.cn-manual-copy').wait_for()
-        check('Denied clipboard gets selected manual fallback',page.locator('.cn-manual-copy').input_value()==query['body'][0] and page.locator('.cn-manual-copy').evaluate('e=>document.activeElement===e&&e.selectionEnd===e.value.length'))
+        check('Denied clipboard gets selected manual fallback',page.locator('.cn-manual-copy').input_value()==query['body'][0].replace('\r\n','\n') and page.locator('.cn-manual-copy').evaluate('e=>document.activeElement===e&&e.selectionEnd===e.value.length'))
         page.locator('#question').fill('A revised question');check('Editing clears stale copied draft',page.locator('.cn-manual-copy').count()==0)
         page.locator('#question').fill('é'*1000);check('Long draft is not truncated into a mailto',not 'body=' in page.locator('#question-email').get_attribute('href') and 'copy the text' in page.locator('#question-status').inner_text())
         page.locator('#question-copy').click();page.locator('.cn-manual-copy').wait_for();check('Long copy fallback preserves all 1000 characters',page.locator('.cn-manual-copy').input_value().endswith('é'*1000))
