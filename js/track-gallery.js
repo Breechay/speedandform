@@ -8,6 +8,7 @@
   if(!Array.isArray(album.media) || !album.media.length) return;
   const media=album.media, stage=el('viewer-stage'), failure=el('viewer-failure');
   const canonical=document.querySelector('link[rel="canonical"]').href;
+  let focusReturn=null;
   let index=-1, invoking=null, ownsHistory=false, mediaElement=null, pointer=null;
   const frameHash=i=>'#frame-'+media[i].id;
   const fromHash=()=>media.findIndex(m=>'#frame-'+m.id===location.hash);
@@ -40,7 +41,7 @@
   function change(i){if(i<0||i>=media.length)return;history.replaceState(history.state,'',frameHash(i));show(i);}
   function closeUI(){
     stopMedia();index=-1;document.body.style.overflow='';if(dialog.open)dialog.close();
-    const restore=invoking;invoking=null;if(restore?.isConnected)restore.focus({preventScroll:true});
+    if(invoking)focusReturn=invoking;invoking=null;if(focusReturn?.isConnected)focusReturn.focus({preventScroll:true});
   }
   function close(){
     if(!dialog.open)return;
@@ -55,7 +56,7 @@
   document.querySelectorAll('[data-frame]').forEach(link=>link.addEventListener('click',event=>{
     if(event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
     const i=media.findIndex(m=>m.id===link.dataset.frame);if(i<0)return;
-    event.preventDefault();invoking=link;ownsHistory=true;
+    event.preventDefault();focusReturn=null;invoking=link;ownsHistory=true;
     history.pushState({...history.state,trackGallery:true},'',frameHash(i));show(i,true);
   }));
   buttons.close.addEventListener('click',close);
@@ -73,7 +74,7 @@
   });
   buttons.prev.addEventListener('click',()=>change(index-1));buttons.next.addEventListener('click',()=>change(index+1));
   el('viewer-retry').addEventListener('click',()=>show(index,true));
-  window.addEventListener('popstate',()=>{ownsHistory=Boolean(history.state?.trackGallery);sync();});
+  window.addEventListener('popstate',()=>{ownsHistory=Boolean(history.state?.trackGallery);sync();if(!dialog.open)requestAnimationFrame(()=>{if(focusReturn?.isConnected)focusReturn.focus({preventScroll:true});focusReturn=null;});});
   window.addEventListener('hashchange',sync);
   stage.addEventListener('pointerdown',event=>{
     pointer=(event.isPrimary&&event.pointerType!=='mouse'&&media[index]?.type==='photo')?{x:event.clientX,y:event.clientY,id:event.pointerId}:null;
