@@ -1,0 +1,89 @@
+name: FORM landing release checks
+on:
+  push:
+    branches: [work/form-landing-pass5a, main]
+    paths: ['form/index.html','css/form-landing.css','js/form-landing.js','assets/form/store-20260917/**','scripts/form-landing-state.cjs','scripts/verify-form-landing-production.cjs','tests/form-landing*','docs/audits/FORM-LANDING*','.github/workflows/form-landing.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Source and critical-flow checks
+        run: |
+          set -o pipefail
+          mkdir -p /tmp/form-landing-receipt
+          {
+            node tests/form-landing.cjs
+            node tests/training-guides.cjs
+            node tests/guide-foundations.cjs
+            node tests/track-gallery.cjs
+            node tests/discovery.cjs
+            node tests/share-metadata.cjs
+            node tests/homepage-metadata.cjs
+            node tests/homepage-release.cjs
+            node tests/coaching-measurement.cjs
+            node tests/cream-reading.cjs
+            node labs/track/track.test.cjs
+            node tests/thursday-schedule.cjs
+          } | tee /tmp/form-landing-receipt/source-tests.txt
+          node scripts/build-training-guides.cjs
+          node scripts/build-guides.cjs
+          node scripts/build-discovery.cjs
+          git diff --exit-code
+      - name: Install browser runtime
+        run: |
+          python -m pip install playwright==1.58.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Product and existing browser acceptance
+        env:
+          FORM_LANDING_ARTIFACTS: /tmp/form-landing-receipt/form
+          TRAINING_GUIDE_ARTIFACTS: /tmp/form-landing-receipt/training
+          GUIDE_ARTIFACTS: /tmp/form-landing-receipt/foundations
+          TRACK_GALLERY_ARTIFACTS: /tmp/form-landing-receipt/gallery
+          DISCOVERY_ARTIFACTS: /tmp/form-landing-receipt/discovery
+        run: |
+          python tests/form-landing-browser.py
+          python tests/training-guides-browser.py
+          python tests/guide-browser.py
+          python tests/track-gallery-browser.py
+          python tests/discovery-browser.py
+          export CHROMIUM_PATH="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
+          python tests/homepage-browser.py
+          cp .homepage-qa/browser-qa.json /tmp/form-landing-receipt/homepage-browser.json
+      - name: Verify the actual public release
+        if: github.ref_name == 'main'
+        env:
+          FORM_LANDING_LIVE_ARTIFACTS: /tmp/form-landing-receipt/live
+        run: |
+          node scripts/verify-form-landing-production.cjs /tmp/form-landing-receipt/production.json
+          node scripts/verify-training-guides-production.cjs /tmp/form-landing-receipt/training-production.json
+          node scripts/verify-guides-production.cjs /tmp/form-landing-receipt/foundations-production.json
+          node scripts/verify-discovery-production.cjs /tmp/form-landing-receipt/discovery-production.json
+          node scripts/verify-share-production.cjs /tmp/form-landing-receipt/share-production.json
+          node scripts/verify-track-production.cjs /tmp/form-landing-receipt/gallery-production.json
+          python tests/form-landing-live.py
+      - name: Save exact tested revision and evidence
+        if: always()
+        run: |
+          mkdir -p /tmp/form-landing-receipt
+          git rev-parse HEAD > /tmp/form-landing-receipt/commit.txt
+          cp docs/audits/FORM-LANDING-MANIFEST-20260917.json /tmp/form-landing-receipt/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: form-landing-receipt
+          path: /tmp/form-landing-receipt/
+          retention-days: 14

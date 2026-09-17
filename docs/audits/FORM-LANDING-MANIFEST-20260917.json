@@ -1,0 +1,56 @@
+{
+  "version": "20260917-p5a",
+  "baseCommit": "6827f20cd2b416578abca14cb08561dbb3423dc4",
+  "pages": [
+    {
+      "file": "form/index.html",
+      "beforeSha256": "d05652a6587c16764e44c97ad9f470f52467db28b2931baba522e1430219cc08",
+      "afterSha256": "7172c67d0fab2424009fb06f12d1d4c4c5eebf2ec5bdbfa2e225c0cc8fa56051",
+      "bodySha256": "21f0447fa1311e6480bdd3c1553a638084e9b941dd869790ff232173e77fc46f",
+      "preview": {
+        "title": "FORM Running App | Know Today’s Run",
+        "description": "Know today’s run and how it fits your training. Explore the FORM running app, its session types, and a record of the work you actually did."
+      }
+    }
+  ],
+  "retainedFragments": [
+    "main",
+    "top",
+    "download",
+    "how",
+    "demo",
+    "instruments",
+    "faq"
+  ],
+  "assets": [
+    {
+      "file": "css/form-landing.css",
+      "sha256": "2d0381819ed612ef1944e6cfa4f4ad9a8daf81f80ba8cf180c95b3d37867f5f8"
+    },
+    {
+      "file": "js/form-landing.js",
+      "sha256": "6d6989ccfe171885795b063bed55d88b4f4d3bf4e65104f84c7dc4a4a895fa79"
+    },
+    {
+      "file": "assets/form/store-20260917/session-details.jpg",
+      "sha256": "239f02dc88c2b9b292354bfc1df0876c31bcce5be6bcc79762fbf77a48d0f918"
+    }
+  ],
+  "storeEvidence": {
+    "id": 6761313085,
+    "version": "40",
+    "currentVersionReleaseDate": "2026-09-01T16:23:39Z",
+    "source": "https://itunes.apple.com/lookup?id=6761313085&country=us",
+    "capturedAt": "2026-09-17T07:39:21.919605+00:00",
+    "screenshotUrl": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/9d/49/11/9d4911ae-24a3-92da-f317-17b456c651f4/J.png/600x1300bb-60.jpg"
+  },
+  "designEvidence": {
+    "repo": "Breechay/FORM-iOS",
+    "ref": "work/today-field",
+    "observedCommit": "efc1f8c83c6b31ac4e0d39d7cb42874da6e14a9a",
+    "materialSource": "docs/FORM_MATERIAL_LAW_v1.md",
+    "todaySource": "FORM/Today/FORMFieldTodayView.swift",
+    "todayBlob": "8f00cba65860cc55d659b3dd6679b472bc6c5e9d",
+    "status": "source-based design preview; not verified as the App Store release"
+  }
+}
