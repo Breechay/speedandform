@@ -1,7 +1,8 @@
 name: Athlete ecosystem acceptance
 on:
   push:
-    branches: [work/athlete-ecosystem-20260917]
+    branches: [work/athlete-ecosystem-20260917, main]
+    paths: ['index.html','private/auth.js','private/plan-access.js','private/account-navigation.js','plans/race-pace-durability/**','supabase/migrations/*rpd_account_access*','tests/athlete-access*','scripts/verify-athlete-access-production.cjs','.github/workflows/athlete-ecosystem.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -12,23 +13,13 @@ jobs:
   acceptance:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Integrate exact source edits on this isolated branch
-        if: github.ref_name == 'work/athlete-ecosystem-20260917'
-        run: |
-          if [ -f .harness/apply-athlete-access.py ]; then
-            python .harness/apply-athlete-access.py
-            git rm .harness/apply-athlete-access.py
-            git add index.html private/auth.js plans/race-pace-durability/index.html plans/race-pace-durability/plan.js plans/race-pace-durability/gate.js docs/roadmap/FORM-ROADMAP.md
-            git -c user.name='FORM release' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Integrate verified account access into existing public surfaces'
-            git push origin HEAD:work/athlete-ecosystem-20260917
-          fi
       - name: Access tests and acquisition protections
         run: |
           mkdir -p /tmp/athlete-access
@@ -46,12 +37,20 @@ jobs:
         run: BROWSER=chromium ACCESS_ARTIFACTS=/tmp/athlete-access/chromium python tests/athlete-access-browser.py
       - name: WebKit account and access journeys
         run: BROWSER=webkit ACCESS_ARTIFACTS=/tmp/athlete-access/webkit python tests/athlete-access-browser.py
-      - name: Preserve source and receipt
+      - name: Published assets and anonymous server boundaries
+        if: github.ref_name == 'main'
+        run: node scripts/verify-athlete-access-production.cjs /tmp/athlete-access/production.json
+      - name: Actual anonymous production journey in both engines
+        if: github.ref_name == 'main'
+        run: |
+          BROWSER=chromium ACCESS_ARTIFACTS=/tmp/athlete-access/live-chromium python tests/athlete-access-live.py
+          BROWSER=webkit ACCESS_ARTIFACTS=/tmp/athlete-access/live-webkit python tests/athlete-access-live.py
+      - name: Preserve exact source and receipt
         if: always()
         run: |
           mkdir -p /tmp/athlete-access
           git rev-parse HEAD > /tmp/athlete-access/commit.txt
-          git archive --format=zip HEAD -- index.html private athlete plans css js tests docs supabase .github/workflows > /tmp/athlete-access/source.zip
+          git archive --format=zip HEAD -- index.html private athlete plans css js tests docs supabase scripts .github/workflows > /tmp/athlete-access/source.zip
       - uses: actions/upload-artifact@v4
         if: always()
         with:
