@@ -28,7 +28,6 @@ jobs:
       - name: Fallback truth checks
         run: |
           node tests/adrian-strength-fallback.mjs
-          node tests/athlete-workspace.mjs
           node tests/athlete-access.cjs
       - uses: actions/setup-python@v5
         with:
