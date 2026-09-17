@@ -10,6 +10,7 @@ jobs:
     timeout-minutes: 15
     permissions:
       contents: write
+      actions: read
     steps:
       - uses: actions/checkout@v4
         with:
@@ -20,6 +21,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Recover the original inspected screenshot
+        uses: actions/download-artifact@v4
+        with:
+          name: forge-source
+          run-id: 35207088651
+          github-token: ${{ github.token }}
+          path: /tmp/forge-original-evidence
       - name: Install review runtime
         run: |
           python -m pip install playwright==1.58.0 Pillow==11.3.0
@@ -30,7 +38,7 @@ jobs:
           if [ -d .github/sculpt-transfer ]; then
             python - <<'PY'
           from pathlib import Path
-          import base64,lzma,json,hashlib,subprocess,urllib.request
+          import base64,lzma,json,hashlib,subprocess
           allowed={'css/sculpt-landing.css','docs/audits/FORM-LANDING-MANIFEST-20260917.json','docs/audits/SCULPT-LANDING-20260917.md','docs/audits/SCULPT-LANDING-MANIFEST-20260917.json','forge-sculpt/index.html','form/index.html','js/sculpt-landing.js','scripts/guide-state.cjs','scripts/render-sculpt-share.py','scripts/sculpt-landing-state.cjs','scripts/verify-sculpt-production.cjs','tests/form-landing-browser.py','tests/form-landing-live.py','tests/form-landing.cjs','tests/guide-foundations.cjs','tests/sculpt-landing-browser.py','tests/sculpt-landing.cjs','tests/training-guides.cjs'}
           transport={f'.github/sculpt-transfer/{i}.b64' for i in range(5)}
           packed=base64.b64decode(''.join(Path(f'.github/sculpt-transfer/{i}.b64').read_text() for i in range(5)),validate=True)
@@ -38,9 +46,7 @@ jobs:
           data=json.loads(lzma.decompress(packed,memlimit=134217728));assert set(data)==allowed
           for f,text in data.items():
               p=Path(f);p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text,encoding='utf-8')
-          url='https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/86/e3/a2/86e3a2ad-9576-26b3-232b-f6f0505c367e/E.png/600x1300bb-60.jpg'
-          with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0'}),timeout=30) as r: image=r.read()
-          print('Apple image sha256:',hashlib.sha256(image).hexdigest(),'bytes:',len(image))
+          image=Path('/tmp/forge-original-evidence/store-1.jpg').read_bytes()
           assert hashlib.sha256(image).hexdigest()=='8e5c5392188de4a8498fe05ca69889a6e5bfaf560daa89b94225128d5afd913f'
           photo='assets/forge/store-20260917/today.jpg';p=Path(photo);p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(image)
           subprocess.run(['python','scripts/render-sculpt-share.py'],check=True)
