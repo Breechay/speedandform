@@ -132,6 +132,24 @@ Identity examples should sound like Brice:
 
 Standing identity test: **could this sentence sit unchanged on 500 other coaching websites?** If yes, it should probably not carry FORM's philosophy.
 
+## Put depth in the right place
+
+Do not make the homepage carry every good idea.
+
+For Run Development:
+- the homepage establishes the felt practice in a few specific beats;
+- /the-method explains the deeper coaching logic;
+- Field Notes and Labs show the thinking in concrete situations;
+- the internal manifesto preserves the full doctrine and evidence rules.
+
+Repeating the same philosophy in longer words on every surface is not depth. It is duplication.
+
+Use **ease** precisely. Ease does not mean every run should feel comfortable. It means the athlete is not spending unnecessary effort fighting their own movement. A demanding workout can still look organized, confident and connected.
+
+Protected identity lines now also include:
+- Form is multiplied by every step.
+- Like a kite upon the wind.
+
 ## Proof carries sophistication
 
 Do not force the athlete to understand the thinking in order to trust the work.

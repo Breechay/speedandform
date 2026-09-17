@@ -5,6 +5,8 @@ Updated September 14, 2026. Owner: Brice. Maintainer: the agent completing relev
 
 **September 17 homepage doctrine source:** [`FORM Run Development Manifesto`](../FORM_RUN_DEVELOPMENT_MANIFESTO.md) is canonical for coaching philosophy and identity language. The active homepage refinement removes the forced Simon second-position proof block, goes hero → `I develop runners`, replaces generic practice copy with Brice's ease/layering/repetition language, and keeps Simon's evidence available elsewhere. Branch/source state is not a production claim; release receipt still owns deployment status.
 
+**September 17 method refinement:** branch `work/run-development-method-20260917` deepens the existing sparse homepage without changing the hero, $1,200 / 8-week offer, intake, measurement behavior or paid-social continuation. It adds the kite / form-multiplied / next-rep language and rebuilds `/the-method` from the stale March schedule page into the deeper public coaching philosophy. The old Flamingo/Hideout schedule copy is removed from that route; session guidance remains on its dedicated training pages. Status is source-staged until browser acceptance, exact receipt and actual production verification close.
+
 
 Website ecosystem release status and the single checklist: [bounded release passes](SITE-ECOSYSTEM-PASSES-20260916.md). Pass 1 is live; Pass 2 source and browser acceptance is recorded in [discovery release](../audits/DISCOVERY-RELEASE-20260916.md). That receipt owns production status.
 

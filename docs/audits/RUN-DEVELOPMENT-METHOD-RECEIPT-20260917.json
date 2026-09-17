@@ -1,0 +1,53 @@
+{
+  "version": "20260917-run-development-method",
+  "testedRevision": "8eb7cc59e5250e5b5c89d34f89eccc5747731735",
+  "hashRevision": "5f21d3f1e589b51a07a1b820427f8f643d9abd84",
+  "browserRun": 35286070882,
+  "pages": [
+    {
+      "file": "index.html",
+      "sourceSha256": "278627224c88de71766504a05fb1d2d950572d31dd92e93fcec84315b2eedf51",
+      "bodySha256": "079d0aebe42787ae1cb540e18c022bda9eba5d1ab34743d729ba629f765c3d73",
+      "preview": {
+        "title": "Run better. | FORM",
+        "description": "Run Development with Brice. Individual running coaching in Miami + remote. Eight weeks to begin."
+      }
+    },
+    {
+      "file": "the-method.html",
+      "sourceSha256": "a4016c12a3f4672d43a60ddd208853ffe9071cbbfe28d6270a531dbc8e735fff",
+      "bodySha256": "4b93da5c25199e2fe2e1660dec53dcbb55e95d649f717fb7c93486da01cf2465",
+      "preview": {
+        "title": "The Method | Run Development by FORM",
+        "description": "Look for ease. Change what matters most. Repeat it until it belongs to the runner."
+      }
+    },
+    {
+      "file": "running-terms.html",
+      "sourceSha256": "5b2d2f32af764f842c49d7f645ebb3e0cf400018064811331b7bef0513df15bb",
+      "bodySha256": "a66c81c1909455c8986407d86f4f59a48fc61bc625beeb599776261bf8686f8e",
+      "preview": {
+        "title": "Running Terms | FORM",
+        "description": "A selective glossary for structured training. Terms used in the FORM system explained clearly."
+      }
+    }
+  ],
+  "assets": [
+    {
+      "file": "css/method.css",
+      "sourceSha256": "209597db1d8782e4c2c064456990dc6bc68d72bc5cffed35ec849eb86d073299"
+    }
+  ],
+  "previousHomepageReceipt": "docs/audits/HOME-DOCTRINE-RECEIPT-20260917.json",
+  "doctrine": "docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md",
+  "notes": [
+    "This is a later approved source snapshot. It does not mutate the earlier homepage-doctrine or September 16 share-preview receipts.",
+    "The homepage hero, coaching price, inquiry questions, measurement implementation and paid-social media handoff are unchanged by this pass.",
+    "The homepage adds only enough philosophy to make the practice legible; /the-method carries the deeper public explanation.",
+    "The Method route replaces stale March schedule/location copy with the current Run Development philosophy. Session guidance remains on dedicated training pages.",
+    "Public copy preserves the evidence boundary: form is treated as repeated movement and possible cost, not a universal guarantee of speed or injury prevention.",
+    "Browser acceptance used Chromium and WebKit at 320, 390, 768 and 1440 CSS-pixel widths. These are not physical-device tests.",
+    "This receipt records source acceptance only. Production hosting must be verified separately.",
+    "The legacy /the-method#sleep link in running terms now points to the dedicated /sleep guide because the rebuilt Method route no longer owns session-specific sleep guidance."
+  ]
+}

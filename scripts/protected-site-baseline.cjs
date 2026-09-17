@@ -2,10 +2,13 @@
 // Exact reviewed changes. Never exclude these files from checks.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{sha}=require('./share-metadata.cjs');
 const measurementRef='a8a778a0ce30d8eca12f7ac43efcd84583164bec';
-const homepageReceipt=JSON.parse(fs.readFileSync(path.join(__dirname,'../docs/audits/HOME-DOCTRINE-RECEIPT-20260917.json'),'utf8'));
-assert.equal(homepageReceipt.file,'index.html','Homepage doctrine receipt must be scoped to index.html');
-assert.equal(homepageReceipt.version,'20260917-home-doctrine','Expected September 17 homepage doctrine receipt');
-const homepageRef=homepageReceipt.sourceCommit;
+const priorHomepageReceipt=JSON.parse(fs.readFileSync(path.join(__dirname,'../docs/audits/HOME-DOCTRINE-RECEIPT-20260917.json'),'utf8'));
+assert.equal(priorHomepageReceipt.version,'20260917-home-doctrine','Keep the earlier homepage doctrine receipt immutable');
+const methodReceipt=JSON.parse(fs.readFileSync(path.join(__dirname,'../docs/audits/RUN-DEVELOPMENT-METHOD-RECEIPT-20260917.json'),'utf8'));
+assert.equal(methodReceipt.version,'20260917-run-development-method','Expected current Run Development method receipt');
+const homepageReceipt=methodReceipt.pages.find(row=>row.file==='index.html');
+assert.ok(homepageReceipt,'Run Development method receipt must include index.html');
+const homepageRef=methodReceipt.testedRevision;
 // One scoped /ask/* response policy; tests/ask-header.cjs also proves the exact append.
 const askHeaderRef='64234d254d1efb6e5b895141e61070df83c5c512';
 function protectedBaseline(file, originalRef) {

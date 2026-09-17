@@ -2,6 +2,8 @@
 
 > **Historical copy-phase receipt:** this document records the earlier September 17 measurement/message-match phase. It does **not** define the current homepage copy. Current Run Development doctrine and sequencing live in `docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md` and `docs/marketing/CURRENT_COMMERCIAL_EXECUTION.md`. Preserve the measurement contract below; treat the old hero/supporting/reassurance copy as superseded.
 
+> **New sequential copy boundary, September 17:** the Run Development method pass changes the homepage philosophy/method layer again while preserving the hero, price, intake, measurement code and paid-social media handoff. The source marker advances to `20260917-method-1`. Do not compare campaign performance across this boundary as if the landing page were static. Treat September 17 as mixed until an actual production publication time is recorded; use the next complete day for daily-only comparisons.
+
 
 ## Current decision
 
