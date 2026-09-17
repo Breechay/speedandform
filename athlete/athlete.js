@@ -6,7 +6,6 @@ import { renderAthleteWorkspace } from '/athlete/workspace.js';
 const app = document.getElementById('app');
 const signOutButton = document.getElementById('signOut');
 const userEmail = document.getElementById('userEmail');
-const recordNav = document.getElementById('recordNav');
 const emailDialog = document.getElementById('emailDialog');
 const emailForm = document.getElementById('emailForm');
 let signedInEmail = '';
@@ -71,12 +70,9 @@ function bindWorkspaceActions() {
 
 function renderFrom() {
   app.innerHTML = renderAthleteWorkspace(record, { view: activeView, shownWeekId, email: signedInEmail });
-  recordNav.hidden = false;
+  // Once the athlete workspace is available, Account owns security and sign-out.
+  // Keep the top-bar sign-out only for signed-in accounts whose workspace is not linked yet.
   signOutButton.hidden = true;
-  recordNav.querySelectorAll('[data-nav-view]').forEach((link) => {
-    link.classList.toggle('active', link.dataset.navView === activeView);
-    link.setAttribute('aria-current', link.dataset.navView === activeView ? 'page' : 'false');
-  });
   bindWorkspaceActions();
 }
 
@@ -88,12 +84,6 @@ async function renderRecord(athleteId) {
 }
 
 signOutButton.addEventListener('click', signOut);
-document.getElementById('navSignOut').addEventListener('click', signOut);
-recordNav.querySelectorAll('[data-nav-view]').forEach((link) => link.addEventListener('click', (event) => {
-  event.preventDefault();
-  recordNav.open = false;
-  setView(link.dataset.navView);
-}));
 
 window.addEventListener('hashchange', () => {
   const next = location.hash.slice(1);
