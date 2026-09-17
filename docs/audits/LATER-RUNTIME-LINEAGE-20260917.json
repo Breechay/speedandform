@@ -1,0 +1,25 @@
+{
+  "version": "20260917-later-runtime-lineage",
+  "purpose": "Exact later runtime states used by historical release-protection tests. These are not wildcard exclusions.",
+  "files": [
+    {
+      "file": "js/coaching-choice.js",
+      "afterSha256": "75d55eb4498391316638651e86d528900cbe4c6650901eb9ac8bdf4697f77364",
+      "sourceRevision": "dc0350e66a6045e1ff9ff26da12d55253e6f43f1",
+      "pullRequest": 139,
+      "reason": "Approved paid-social landing continuation runtime."
+    },
+    {
+      "file": "_headers",
+      "afterSha256": "3c49af5dab52dd18918dec0496a995bc6418ceba6e8899e0fb97c0eaf86f26fa",
+      "sourceRevision": "51f0bfb74095f23cdd78460a3086aa14d3d53682",
+      "pullRequest": 138,
+      "reason": "Approved unlinked updates-page hosting headers; exact current source."
+    }
+  ],
+  "notes": [
+    "Historical tests may accept one of these files only when the current bytes match the registered SHA-256 exactly.",
+    "css/homepage.css is owned by the separate RUN-DEVELOPMENT-METHOD receipt because PR #144 changed it.",
+    "No production deployment is implied by this receipt."
+  ]
+}
