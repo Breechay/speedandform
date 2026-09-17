@@ -128,7 +128,7 @@
     {
       "file": "_headers",
       "beforeSha256": "406ad6d1ab35aaffe7ad1fb245036eebf40b77202f982841a484135e1ddf4d9a",
-      "afterSha256": "c98218120f82c02e3e4e46b35cb29dcb56446a1dd550f40416a0394ccf97c611"
+      "afterSha256": "82e73d3adcbcdd4143798a2f7fd730a4d40f5a70e3a5164efcf56289048dc678"
     },
     {
       "file": "scripts/build-discovery.cjs",
