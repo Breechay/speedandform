@@ -43,6 +43,13 @@
       "sourceRevision": "adec1c431081f49e6b7a7374691037b60022bb07",
       "pullRequest": 142,
       "reason": "Reviewed homepage doctrine coaching-selector presentation."
+    },
+    {
+      "file": "scripts/build-discovery.cjs",
+      "afterSha256": "6156f0ce0a18780bcc166b0f58ca0a6d4ef16af1df24fe2630a09e595b988a7f",
+      "sourceRevision": "9bd4be70aec3d041affabcc041a84148cc947a2b",
+      "pullRequest": null,
+      "reason": "Current lineage-repair revision: ordinary verification preserves the immutable September 16 discovery receipt; --apply is required to rewrite it."
     }
   ],
   "notes": [
