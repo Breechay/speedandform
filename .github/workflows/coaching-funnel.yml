@@ -1,8 +1,8 @@
 name: Coaching funnel release checks
 on:
   push:
-    branches: [work/coaching-funnel-measurement-20260917, work/coaching-message-match-20260917, main]
-    paths: ['index.html','js/coaching-measurement.js','js/coaching-choice.js','css/homepage.css','css/coaching-choice.css','tests/coaching-funnel-browser.py','tests/coaching-measurement.cjs','tests/coaching-copy.cjs','tests/coaching-copy-browser.py','.github/workflows/coaching-funnel.yml']
+    branches: [work/coaching-funnel-measurement-20260917, work/coaching-message-match-20260917, work/meta-landing-verification-20260917, main]
+    paths: ['index.html','js/coaching-measurement.js','js/coaching-choice.js','css/homepage.css','css/coaching-choice.css','css/meta-landing.css','tests/coaching-funnel-browser.py','tests/coaching-measurement.cjs','tests/coaching-copy.cjs','tests/coaching-copy-browser.py','tests/meta-landing-browser.py','.github/workflows/coaching-funnel.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -28,6 +28,7 @@ jobs:
       - name: Existing source and delivery contracts
         run: |
           node --check js/coaching-measurement.js
+          node --check js/coaching-choice.js
           node tests/coaching-measurement.cjs
           node tests/homepage-release.cjs
           node tests/homepage-metadata.cjs
@@ -41,13 +42,14 @@ jobs:
         run: |
           python -m pip install playwright==1.58.0 Pillow==11.3.0
           python -m playwright install --with-deps ${{ matrix.browser }}
-      - name: Exact homepage funnel and copy with intercepted collectors and relay
+      - name: Exact homepage funnel, copy and paid-social continuation
         env:
           FORM_QA_BROWSER: ${{ matrix.browser }}
           FORM_QA_ARTIFACTS: /tmp/coaching-funnel-receipt
         run: |
           python tests/coaching-copy-browser.py
           python tests/coaching-funnel-browser.py
+          python tests/meta-landing-browser.py
       - name: Existing homepage layout and functionality regression
         if: matrix.browser == 'chromium'
         run: |
