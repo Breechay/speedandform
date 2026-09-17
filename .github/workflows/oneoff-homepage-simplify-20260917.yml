@@ -20,6 +20,6 @@ jobs:
         run: |
           git config user.name "Breechay"
           git config user.email "briceikouebe@gmail.com"
-          git add index.html tests/coaching-copy.cjs tests/coaching-copy-browser.py tests/meta-landing-browser.py tests/homepage-browser.py
+          git add index.html css/coaching-choice.css css/meta-landing.css js/coaching-choice.js tests/coaching-copy.cjs tests/coaching-copy-browser.py tests/meta-landing-browser.py tests/homepage-browser.py
           git commit -m "refine: simplify homepage decisions" || exit 0
           git push origin HEAD:work/mobile-hero-cut-20260917
