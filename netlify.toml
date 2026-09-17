@@ -551,3 +551,11 @@
   from = "/mockupc/"
   to = "/mockupc/index.html"
   status = 200
+
+# Ask owns a plain email route even when JavaScript is unavailable.
+# Repeat the scoped policy here: the global TOML header overrides _headers.
+[[headers]]
+  for = "/ask/*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate, no-transform"
+    Referrer-Policy = "no-referrer"

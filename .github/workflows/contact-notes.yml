@@ -1,8 +1,8 @@
 name: Contact and Field Notes review
 on:
   push:
-    branches: [work/contact-notes-pass6, main]
-    paths: ['ask/**','field-notes.html','field-notes/**','css/contact-notes.css','js/contact-notes.js','js/question-contexts.json','scripts/*contact-notes*','scripts/field-notes-content.cjs','tests/contact-notes*','docs/audits/CONTACT-NOTES*','.github/workflows/contact-notes.yml']
+    branches: [work/contact-notes-pass6, work/ask-header-repair, main]
+    paths: ['ask/**','field-notes.html','field-notes/**','css/contact-notes.css','js/contact-notes.js','js/question-contexts.json','scripts/*contact-notes*','scripts/field-notes-content.cjs','scripts/protected-site-baseline.cjs','tests/contact-notes*','tests/ask-header.cjs','netlify.toml','docs/audits/CONTACT-NOTES*','.github/workflows/contact-notes.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -25,8 +25,18 @@ jobs:
         run: |
           set -o pipefail
           mkdir -p /tmp/contact-notes-receipt
-          for name in contact-notes sculpt-landing form-landing training-guides guide-foundations track-gallery discovery share-metadata homepage-metadata homepage-release coaching-measurement cream-reading thursday-schedule; do node tests/$name.cjs; done | tee /tmp/contact-notes-receipt/source-tests.txt
+          for name in ask-header contact-notes sculpt-landing form-landing training-guides guide-foundations track-gallery discovery share-metadata homepage-metadata homepage-release coaching-measurement cream-reading thursday-schedule; do node tests/$name.cjs; done | tee /tmp/contact-notes-receipt/source-tests.txt
           node labs/track/track.test.cjs | tee -a /tmp/contact-notes-receipt/source-tests.txt
+          python - <<'PY'
+          import tomllib,subprocess
+          from pathlib import Path
+          before=tomllib.loads(subprocess.check_output(['git','show','4ee97b910d6f2e7498b3ebb748fe4bce4310bdb4:netlify.toml'],text=True))
+          after=tomllib.loads(Path('netlify.toml').read_text())
+          scoped=after['headers'].pop()
+          assert scoped=={'for':'/ask/*','values':{'Cache-Control':'no-cache, no-store, must-revalidate, no-transform','Referrer-Policy':'no-referrer'}}
+          assert before==after
+          print('PASS: TOML parsing confirms only the Ask response policy changes.')
+          PY
           node scripts/build-contact-notes.cjs
           node scripts/build-training-guides.cjs
           node scripts/build-guides.cjs
