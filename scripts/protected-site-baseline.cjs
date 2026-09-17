@@ -1,11 +1,14 @@
 'use strict';
-// Exact independently released changes. Never exclude these files from checks.
+// Exact reviewed changes. Never exclude these files from checks.
 const assert=require('node:assert/strict'),{sha}=require('./share-metadata.cjs');
 const measurementRef='a8a778a0ce30d8eca12f7ac43efcd84583164bec';
 const homepageRef='4554f3acb0dd67060b916e662d11a9d115ecc633';
+// One scoped /ask/* response policy; tests/ask-header.cjs also proves the exact append.
+const askHeaderRef='64234d254d1efb6e5b895141e61070df83c5c512';
 function protectedBaseline(file, originalRef) {
   if(file==='js/coaching-measurement.js')return measurementRef;
   if(file==='index.html')return homepageRef;
+  if(file==='netlify.toml')return askHeaderRef;
   return originalRef;
 }
 const updates=new Map([['index.html',{file:'index.html',sourceCommit:homepageRef,
