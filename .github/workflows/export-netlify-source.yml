@@ -1,0 +1,21 @@
+name: Export Netlify source
+on:
+  push:
+    branches: [ops/netlify-deploy-20260917]
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Package source
+        run: |
+          tar --exclude=.git --exclude=.github/workflows/export-netlify-source.yml -czf /tmp/speedandform-source.tgz .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: netlify-source
+          path: /tmp/speedandform-source.tgz
+          retention-days: 1
