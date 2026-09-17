@@ -10,7 +10,7 @@
 // explanatory chapter. A short progression summary and optional execution cues
 // support the prescription without changing its canonical training data.
 
-import { publishedPlan } from './source.js';
+import { publishedPlan, showPlanError } from './source.js';
 import { notation } from './notation.js';
 import { executionCue, executionGuide } from './execution.js';
 
@@ -21,7 +21,13 @@ document.querySelectorAll('.pacing-guide p').forEach((p, i) => {
 
 // Live, not a fixture. Changing a value in the canonical plan changes this page
 // without anyone editing HTML.
-const plan = await publishedPlan('race-pace-durability');
+const plan = await publishedPlan('race-pace-durability').catch(showPlanError);
+if (plan) {
+let accessActive = true;
+const suspendAccess = () => { accessActive = false; };
+document.addEventListener('form:account-changed', suspendAccess);
+document.addEventListener('form:access-unavailable', suspendAccess);
+window.addEventListener('pagehide', suspendAccess);
 const DAYS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
 const weekOne = new Date(`${plan.running.starts_on}T00:00:00`);
@@ -162,6 +168,7 @@ function label() {
 // same task. Letting a frame paint between them showed the week after next for
 // one frame, which is what a step used to look like.
 function paint() {
+  if (!accessActive) return;
   el('prevSheet').innerHTML = sheet(left - 1);
   el('curSheet').innerHTML = sheet(left);
   el('nextSheet').innerHTML = sheet(left + 1);
@@ -179,7 +186,7 @@ function paint() {
 // control feels like. On a phone, where one tap is one week out of fifteen,
 // that is the difference between paging the plan and fighting it.
 function step(direction) {
-  if (!direction) return;
+  if (!accessActive || !direction) return;
   const track = el('track');
   if (inFlight) inFlight();
 
@@ -376,3 +383,5 @@ else { const [state, week] = today(); render(state, week); }
 // moves the viewport and nothing else — THIS WEEK stays where the calendar put it.
 const wanted = Number(params.get('week'));
 if (wanted >= 1 && wanted <= LAST) { left = clamp(wanted); paint(); }
+
+} // A failed access check is a recoverable state, never an empty prescription.

@@ -1,12 +1,13 @@
 // Race Pace Durability public access gate.
 // Weeks 1–4 remain open. Attempting to move beyond the free preview routes to
-// the purchase page unless a Stripe purchase has been verified. Navigation moves
+// the purchase page unless account or purchase access has been verified. Navigation moves
 // by the number of weeks currently visible so trackpad / swipe / arrows feel like
 // turning a sheet, not nudging one column.
 
 const FREE_THROUGH = 4;
 const PURCHASE_URL = '/plans/race-pace-durability/support/';
-const ENTITLEMENT_ENDPOINT = 'https://pbgsjjegycacodiltbhn.supabase.co/functions/v1/rpd-entitlement';
+import { resolvePlanAccess } from './source.js';
+import { accountDestination } from '/private/plan-access.js';
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
@@ -14,46 +15,10 @@ let bypass = false;
 let gesture = null;
 let wheelLock = 0;
 let entitled = false;
-let entitlementChecked = false;
-
-function purchaseSession() {
-  const query = new URLSearchParams(window.location.search).get('purchase_session');
-  if (query && /^cs_[A-Za-z0-9_]+$/.test(query)) return query;
-  try {
-    const stored = window.localStorage.getItem('rpd_purchase_session') || '';
-    return /^cs_[A-Za-z0-9_]+$/.test(stored) ? stored : '';
-  } catch (_) {
-    return '';
-  }
-}
-
-async function verifyPurchase() {
-  if (entitlementChecked) return entitled;
-  entitlementChecked = true;
-  const sessionId = purchaseSession();
-  if (!sessionId) return false;
-
-  try {
-    const response = await fetch(ENTITLEMENT_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'verify', session_id: sessionId })
-    });
-    const data = await response.json().catch(() => ({}));
-    entitled = Boolean(response.ok && data.ok && data.status === 'paid');
-    if (entitled) {
-      try {
-        window.localStorage.setItem('rpd_purchase_session', sessionId);
-        window.localStorage.setItem('rpd_purchase_verified_at', new Date().toISOString());
-      } catch (_) {}
-      document.documentElement.dataset.rpdEntitled = 'true';
-    }
-  } catch (error) {
-    console.error('RPD entitlement verify', error);
-  }
-  return entitled;
-}
-
+let available = true;
+const suspend = () => { available = false; };
+document.addEventListener('form:account-changed', suspend);
+document.addEventListener('form:access-unavailable', suspend);
 function leftWeek() {
   const text = $('#range')?.textContent || '';
   const hit = text.match(/\d+/);
@@ -67,6 +32,7 @@ function pageSize() {
 }
 
 function purchase() {
+  if (!available) return;
   window.location.assign(PURCHASE_URL);
 }
 
@@ -80,7 +46,7 @@ function baseClick(direction, times) {
 }
 
 function navigate(direction) {
-  if (!direction) return;
+  if (!direction || !available) return;
   const left = leftWeek();
   const size = pageSize();
 
@@ -100,8 +66,10 @@ function lockTable(table) {
     const week = hit ? Number(hit[1]) : null;
     if (!week || week <= FREE_THROUGH) return;
 
-    head.classList.add('rpd-locked-head');
-    head.innerHTML = `<b>W${week}</b><span>FULL PLAN</span>`;
+    if (!head.classList.contains('rpd-locked-head')) {
+      head.classList.add('rpd-locked-head');
+      head.innerHTML = `<b>W${week}</b><span>FULL PLAN</span>`;
+    }
 
     $$('tbody tr', table).forEach((row, rowIndex) => {
       const cell = row.children[index + 1];
@@ -127,12 +95,14 @@ function lockMobile() {
   sheets.forEach(([selector, week]) => {
     const sheet = $(selector);
     if (!sheet || week <= FREE_THROUGH || week < 1) return;
+    if (sheet.dataset.lockedWeek === String(week) && sheet.querySelector('.rpd-mobile-lock')) return;
+    sheet.dataset.lockedWeek = String(week);
     sheet.innerHTML = `<button class="rpd-mobile-lock" type="button" aria-label="Unlock the full plan"><span>WEEK ${week}</span><strong>Full plan · $79</strong><em>Unlock weeks ${FREE_THROUGH + 1}–15 →</em></button>`;
   });
 }
 
 function lockAll() {
-  if (entitled) return;
+  if (!available || entitled) return;
   $$('#track .matrix').forEach(lockTable);
   lockMobile();
 }
@@ -163,9 +133,29 @@ function installStyles() {
 }
 
 async function init() {
-  if (!$('#viewport') || !$('#range')) return window.setTimeout(init, 60);
-
-  await verifyPurchase();
+  let access;
+  try { access = await resolvePlanAccess(); } catch { return; }
+  if (!$('#range')?.textContent) return window.setTimeout(init, 60);
+  if (!available) return;
+  entitled = access.entitled;
+  $('#rpdLoading')?.remove();
+  $$('#pdf,#pdfMobile,#rpdPreviewNote').forEach(node => { node.hidden = false; });
+  document.documentElement.dataset.rpdEntitled = String(entitled);
+  if (entitled) {
+    $('.rpd-mobile-account').hidden = true;
+    const destination = access.signedIn ? accountDestination(access) : { href: '/plans/race-pace-durability/support/', label: 'Plan details' };
+    $$('#pdf,#pdfMobile').forEach(link => {
+      link.textContent = `${destination.label} →`;
+      link.href = destination.href;
+      link.classList.remove('lime');
+    });
+    const note = $('#rpdPreviewNote');
+    if (note) {
+      note.innerHTML = '<h3>All 15 weeks are available.</h3><p></p>';
+      note.querySelector('p').textContent = access.mode === 'purchased' ? 'Your full web plan is ready to read. Use the week arrows to browse the training.' : 'This is the published plan. Individual paces and coach-authored changes remain in the athlete’s assigned training.';
+    }
+  }
+  $('#next').setAttribute('aria-label', entitled ? 'Next weeks' : 'Next weeks or unlock full plan');
   installStyles();
   normalizeToPreview();
   lockAll();
