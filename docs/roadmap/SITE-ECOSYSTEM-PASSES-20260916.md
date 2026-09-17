@@ -1,6 +1,6 @@
 # Site ecosystem: bounded release passes
 
-Owner: Brice. Created September 16, 2026. Pass 1 production receipt updated September 16, 2026.
+Owner: Brice. Created September 16, 2026. Pass 2 production receipt updated September 17, 2026 UTC (September 16 in Miami).
 
 ## Decision
 
@@ -8,7 +8,7 @@ Brice approved breaking the whole-site project into multiple passes after the la
 
 This document owns the checklist for this project. It supplements, rather than replaces, `FORM-ROADMAP.md` and the existing product and commercial authorities named in `AGENTS.md`. It changes execution order, not coaching doctrine, app behavior, prices, or access rules.
 
-**Current delivery state: Pass 1 is LIVE.** PR #122, main `c1b56e58f35aaee6b8b3447c5fb2d5fcaba6b116`, Netlify `6aab1cbbc6fa6800086e6e3e`, published September 16 at 22:48:39 UTC. Seven source suites passed; 19 representative production pages and every distinct image URL matched the committed source. Native sharing-app rendering remains unverified. [Release receipt](../audits/SHARE-PREVIEW-RELEASE-20260916.md). Pass 2 is implemented on the isolated branch; its release receipt owns the pending final verification and production status. Passes 3–6 remain queued; no background execution is implied.
+**Current delivery state: Passes 1 and 2 are LIVE.** Pass 2: PR #123, main `06b487cd7776813fbf139b2665028bdcfa086595`, Netlify `6aab454727ac1b000895ccc2`, published September 17 at 01:41:38.556 UTC. Eight source suites, 61 discovery browser checks, 17 homepage/intake/media checks, 70 production canonical pages, six public resources and six route checks passed. Sharing was reverified across 19 pages and 10 image URLs. [Pass 2 release receipt](../audits/DISCOVERY-RELEASE-20260916.md). [Pass 1 release receipt](../audits/SHARE-PREVIEW-RELEASE-20260916.md) remains the historical image-release record. Physical-device and native sharing-app checks remain open. Pass 3 is next and not started; Passes 4–6 remain queued. No background execution is implied.
 
 ## Boundaries that apply throughout
 
@@ -25,8 +25,8 @@ This document owns the checklist for this project. It supplements, rather than r
 | Pass | Scope | State | Implementation / test / production receipt |
 | --- | --- | --- | --- |
 | 1 | Approved share image and link-preview metadata | LIVE; native-preview check open | PR122; main `c1b56e58`; Netlify `6aab1cbbc6fa6800086e6e3e`. 73 defaults, 11 dedicated cards, 91 excluded HTML files unchanged. Seven suites; Actions `35159434946` verified 19 production pages and 10 distinct image URLs at 22:48:55 UTC. [Receipt](../audits/SHARE-PREVIEW-RELEASE-20260916.md). |
-| 2 | Public navigation, Library discovery, and technical SEO | IMPLEMENTED; production pending | [Discovery release and acceptance](../audits/DISCOVERY-RELEASE-20260916.md). Final commit, deployment and live checks pending. |
-| 3 | Track photo and video gallery | QUEUED | None yet |
+| 2 | Public navigation, Library discovery, and technical SEO | LIVE; physical-device checks open | PR123; main `06b487cd`; Netlify `6aab454727ac1b000895ccc2`. Eight suites; 61 discovery and 17 homepage browser checks. Main Actions `35171527097` verified 70 canonical pages, six resources, six route cases, 19 shared-page previews and 10 image URLs by September 17 at 01:43:01 UTC. [Receipt](../audits/DISCOVERY-RELEASE-20260916.md). |
+| 3 | Track photo and video gallery | NEXT | Not started. Authentic selected media is required to publish a dated album. |
 | 4 | Educational pages, in small topic batches | QUEUED | None yet |
 | 5 | FORM and Breechay Sculpt / Forge landing pages | QUEUED | None yet |
 | 6 | Contact, Field Notes, opt-in updates, and final journey review | QUEUED | None yet |
