@@ -13,6 +13,10 @@ $('retry-status').addEventListener('click',init);
 $('signup').addEventListener('submit',async e=>{e.preventDefault();if(loading)return;const email=$('email').value.trim().toLowerCase();if(!$('email').checkValidity()){$('form-status').textContent=errorText.invalid_email;$('email').focus();return;}if(!$('consent').checked){$('form-status').textContent=errorText.consent_required;$('consent').focus();return;}if(!proof){$('form-status').textContent=errorText.verification_required;return;}
 if(lastEmail!==email||!requestId){lastEmail=email;requestId=crypto.randomUUID();}loading=true;$('submit').disabled=true;$('form-status').textContent='Sending your request…';
 try{const v=await request('subscribe',{email,consent:true,version,requestId,proof,website:$('website').value});if(v.state!=='received')throw Error('unavailable');result('Check your inbox.','If confirmation is needed, look for a message from FORM. You are only subscribed after confirming your email.','Request received');$('email').value='';$('consent').checked=false;}catch(e){$('form-status').textContent=errorText[e.message]||errorText.unavailable;resetProof();}finally{loading=false;$('submit').disabled=false;}});
+// Email links can be opened in a tab already showing this page. Reload a
+// purpose-specific fragment so it receives the same explicit-action screen.
+// Ordinary navigation, including the skip link, stays in this document.
+window.addEventListener('hashchange',()=>{const next=new URLSearchParams(location.hash.slice(1));if(next.has('confirm')||next.has('unsubscribe'))location.reload();});
 const fragment=new URLSearchParams(location.hash.slice(1));const action=fragment.has('confirm')?'confirm':fragment.has('unsubscribe')?'unsubscribe':null;let token=action?fragment.get(action):null;
 // Fragments never reach the server. Clear them before loading any remote service.
 if(location.hash||location.search)history.replaceState(null,'',location.pathname);
