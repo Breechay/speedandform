@@ -20,7 +20,7 @@ with sync_playwright() as p:
             page.set_content(html_for_test(), wait_until='load')
             page.evaluate('Promise.all([...document.images].map(i=>i.decode().catch(()=>{})))')
             page.screenshot(path=str(OUT/f'hero-viewport-{w}.png'))
-            assert page.locator('body').get_attribute('data-coaching-copy') == '20260917-coaching-clarity'
+            assert page.locator('body').get_attribute('data-coaching-copy') == '20260917-method-1'
             assert page.locator('.hero-benefit').inner_text() == 'Run better.'
             assert page.locator('.hero-actions .begin').get_attribute('href') == '#begin'
             assert page.locator('.hero-benefit').is_visible()
