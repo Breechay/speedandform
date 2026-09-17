@@ -67,7 +67,7 @@ function session(week, day, mobile) {
   </div>`;
 }
 
-// ────────────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────
 // THE WINDOW.
 //
 // `left` is the leftmost week on screen — the window does not centre the week
@@ -152,12 +152,12 @@ function label() {
     const w = at(left);
     const to = new Date(startOf(left)); to.setDate(to.getDate() + 6);
     el('range').textContent = `${String(left).padStart(2, '0')} / ${LAST}`;
-    el('folio').innerHTML = (isNw(w) ? '<span class="folio-current">THIS WEEK</span>' : '') +
+    el('folio').innerHTML = (isNow(w) ? '<span class="folio-current">THIS WEEK</span>' : '') +
       `<span class="folio-week">Week ${left}</span>` +
       `<span class="folio-date">${esc(show(startOf(left)))} – ${esc(show(to))}</span>`;
   } else {
     const last = Math.min(LAST, left + count - 1);
-    el('range').textContent = `Weeks ${left} –${last}`;
+    el('range').textContent = `Weeks ${left}–${last}`;
     el('folio').innerHTML = '';
   }
   el('prev').disabled = left <= 1;
@@ -180,9 +180,10 @@ function paint() {
 // One step is one week, at every width. Six columns move as a block; they do
 // not scroll past each other.
 //
-/ A tap arriving mid-motion LANDS the step in flight and begins its own. It is
+// A tap arriving mid-motion LANDS the step in flight and begins its own. It is
 // never queued and never dropped: refusing taps while the track was moving
-// meant six quick thumb taps moved three weeks, which is exactly what a frozen control feels like. On a phone, where one tap is one week out of fifteen,
+// meant six quick thumb taps moved three weeks, which is exactly what a frozen
+// control feels like. On a phone, where one tap is one week out of fifteen,
 // that is the difference between paging the plan and fighting it.
 function step(direction) {
   if (!accessActive || !direction) return;
@@ -215,13 +216,13 @@ function step(direction) {
   };
   // A transition that never starts never ends, so the repaint is never left to
   // the event alone — that is how a single dropped frame used to strand the
-  // window one week behind.
+  // window one week behind the label.
   const guard = setTimeout(done, ms + 140);
   track.addEventListener('transitionend', onEnd);
   inFlight = done;
 }
 
- el('prev').addEventListener('click', () => step(-1));
+el('prev').addEventListener('click', () => step(-1));
 el('next').addEventListener('click', () => step(1));
 
 // DRAG. The track follows the finger within one sheet's width, and resists at
@@ -309,7 +310,7 @@ async function share() {
 }
 ['share', 'shareMobile'].forEach((id) => el(id)?.addEventListener('click', share));
 
-// ────────────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────
 // THE FOUR MOMENTS. Nothing in the composition moves between them; what changes
 // is whether a week is marked, and whether the page speaks in the past tense.
 function render(state, week, keepWindow) {
@@ -335,7 +336,7 @@ function today() {
   return [week === LAST ? 'race' : asks ? 'ask' : 'build', week];
 }
 
- el('eyebrow').textContent = `${plan.plan.discipline.replace(/_/g, ' ').toUpperCase()} · ${LAST} WEEKS`;
+el('eyebrow').textContent = `${plan.plan.discipline.replace(/_/g, ' ').toUpperCase()} · ${LAST} WEEKS`;
 el('planTitle').textContent = `THE ${LAST}-WEEK PLAN`;
 el('doneStatus').textContent = `Completed · v${VERSION}`;
 // The version's date is the date the version was CUT, not the date training
@@ -344,11 +345,12 @@ const cutAt = plan.version?.cut_at ? new Date(plan.version.cut_at) : weekOne;
 el('version').textContent = `${plan.plan.name} · v${VERSION} · ${
   cutAt.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}`;
 
-// The state switcher remains development-only. `?week=` is different: it is a
-// public presentation control used by week-specific share links. It can move the
-// viewport, but it cannot change the date-derived current week, plan data or
-// entitlement. The access gate still decides whether a future week is authored
-// content or a locked placeholder.
+// The switcher, ?state= and ?week= are DEVELOPMENT ONLY, and the gate is the
+// HOSTNAME rather than the path — the page now lives at its public address, and
+// a gate keyed on where the file sits would have shipped the switcher with it.
+// The published plan derives its state from the date and carries no way to
+// override it: a plan that can be told what week it is would be a plan someone
+// forgot to update.
 const REVIEW = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
 if (!REVIEW) el('dev').remove();
 
@@ -371,26 +373,15 @@ if (REVIEW) el('dev').addEventListener('click', (event) => {
   render(button.dataset.state, FIXED[button.dataset.state]);
 });
 
-const reviewParams = REVIEW ? new URLSearchParams(location.search) : new URLSearchParams();
-const asked = reviewParams.get('state');
+const params = REVIEW ? new URLSearchParams(location.search) : new URLSearchParams();
+const asked = params.get('state');
 if (asked && asked !== 'auto' && FIXED[asked]) render(asked, FIXED[asked]);
 else if (!asked && REVIEW) render('build', FIXED.build);
 else { const [state, week] = today(); render(state, week); }
 
-// A shared week selects the window directly instead of synthesizing navigation
-// clicks after load. The live marker remains date-derived because only `left`
-// changes. The gate applies the same access decision to whichever week is shown.
-const sharedWeek = Number(new URLSearchParams(location.search).get('week'));
-if (sharedWeek >= 1 && sharedWeek <= LAST) { left = clamp(sharedWeek); paint(); }
-
-// Small public presentation hook for the share helper and automated acceptance.
-// It moves only the viewport and never mutates `live`, plan content or access.
-window.formRpdViewWeek = (week) => {
-  const wanted = Number(week);
-  if (!Number.isInteger(wanted) || wanted < 1 || wanted > LAST) return false;
-  left = clamp(wanted);
-  paint();
-  return true;
-};
+// Review-only: ?week= slides the WINDOW so a capture can reach any six weeks. It
+// moves the viewport and nothing else — THIS WEEK stays where the calendar put it.
+const wanted = Number(params.get('week'));
+if (wanted >= 1 && wanted <= LAST) { left = clamp(wanted); paint(); }
 
 } // A failed access check is a recoverable state, never an empty prescription.
