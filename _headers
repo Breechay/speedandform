@@ -122,3 +122,22 @@
   Cache-Control: no-cache, no-store, must-revalidate
   Pragma: no-cache
   Expires: 0
+
+# Pass 2: discovery controls (not an access-control mechanism)
+/search
+  X-Robots-Tag: noindex, follow
+
+/search.html
+  X-Robots-Tag: noindex, follow
+
+/404.html
+  X-Robots-Tag: noindex, follow
+
+/docs/*
+  X-Robots-Tag: noindex, nofollow
+
+/scripts/*
+  X-Robots-Tag: noindex, nofollow
+
+/tests/*
+  X-Robots-Tag: noindex, nofollow
