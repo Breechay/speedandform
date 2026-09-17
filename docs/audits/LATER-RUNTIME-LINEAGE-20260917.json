@@ -29,6 +29,13 @@
       "sourceRevision": "977fbf6db086ce8c3c27c0486b4ee219f69821c7",
       "pullRequest": 136,
       "reason": "Reviewed account-aware RPD access source."
+    },
+    {
+      "file": "js/coaching-measurement.js",
+      "afterSha256": "19ca72554ebbcfbb382922ddc45a2116662e66759672de7a77a8ca24e7aeb26b",
+      "sourceRevision": "a8a778a0ce30d8eca12f7ac43efcd84583164bec",
+      "pullRequest": 128,
+      "reason": "Approved coaching-funnel measurement runtime."
     }
   ],
   "notes": [
