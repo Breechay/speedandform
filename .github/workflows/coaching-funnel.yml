@@ -1,0 +1,58 @@
+name: Coaching funnel release checks
+on:
+  push:
+    branches: [work/coaching-funnel-measurement-20260917, main]
+    paths: ['index.html','js/coaching-measurement.js','js/coaching-choice.js','css/homepage.css','css/coaching-choice.css','tests/coaching-funnel-browser.py','tests/coaching-measurement.cjs','.github/workflows/coaching-funnel.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Existing source and delivery contracts
+        run: |
+          node --check js/coaching-measurement.js
+          node tests/coaching-measurement.cjs
+          node tests/homepage-release.cjs
+          node tests/homepage-metadata.cjs
+      - name: Install isolated browser runtime
+        run: |
+          python -m pip install playwright==1.58.0 Pillow==11.3.0
+          python -m playwright install --with-deps ${{ matrix.browser }}
+      - name: Exact homepage funnel with intercepted collectors and relay
+        env:
+          FORM_QA_BROWSER: ${{ matrix.browser }}
+          FORM_QA_ARTIFACTS: /tmp/coaching-funnel-receipt
+        run: python tests/coaching-funnel-browser.py
+      - name: Existing homepage layout and functionality regression
+        if: matrix.browser == 'chromium'
+        run: |
+          export CHROMIUM_PATH="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
+          python tests/homepage-browser.py
+      - name: Preserve revision and evidence
+        if: always()
+        run: |
+          mkdir -p /tmp/coaching-funnel-receipt
+          git rev-parse HEAD > /tmp/coaching-funnel-receipt/commit.txt
+          if [ -d .homepage-qa ]; then cp -R .homepage-qa /tmp/coaching-funnel-receipt/homepage; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coaching-funnel-${{ matrix.browser }}
+          path: /tmp/coaching-funnel-receipt/
+          retention-days: 14
