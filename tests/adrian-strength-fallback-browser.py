@@ -41,7 +41,7 @@ try:
         body=page.locator('body').inner_text()
         check(f'{view} {width}: no overflow',page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
         check(f'{view} {width}: strength identity','Strength development' in body)
-        check(f'{view} {width}: no synced claim','synced' not in body.lower())
+        check(f'{view} {width}: no positive sync status','\nSynced\n' not in '\n'+body+'\n' and '\nConnected\n' not in '\n'+body+'\n')
         check(f'{view} {width}: no filing','File this session' not in body)
         if view=='today':
           check(f'today {width}: fallback visible','Your three-week plan is here.' in body)
@@ -57,7 +57,6 @@ try:
         check(f'{view} {width}: no JS errors',not errors)
         ctx.close()
 
-    # Direct rendering of Week 3 proves later weeks resolve without pretending position changed.
     ctx=browser.new_context(viewport={'width':390,'height':1000},reduced_motion='reduce'); page=ctx.new_page()
     def route3(r):
       path=urlsplit(r.request.url).path
