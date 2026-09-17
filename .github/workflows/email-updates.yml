@@ -1,0 +1,24 @@
+name: Email updates acceptance
+on:
+  push:
+    branches: [work/email-updates-pass6b]
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - run: |
+          mkdir -p /tmp/email-source
+          git bundle create /tmp/email-source/source.bundle HEAD ^b97bee0690b6bec505a8b082745b668d2161c9cb
+          git rev-parse HEAD > /tmp/email-source/commit.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: email-source
+          path: /tmp/email-source/
+          retention-days: 2
