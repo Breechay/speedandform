@@ -89,7 +89,7 @@ function planView(record, shownWeekId) {
       <div class="plan-week-nav"><button type="button" data-week-step="-1" ${index <= 0 ? 'disabled' : ''} aria-label="Previous week">‹</button><span>${esc(index + 1)} / ${esc(weeks.length)}</span><button type="button" data-week-step="1" ${index >= weeks.length - 1 ? 'disabled' : ''} aria-label="Next week">›</button></div>
     </div>
     ${week.intent ? `<p class="plan-intent">${esc(week.intent)}</p>` : ''}
-    <div class="plan-summary"><span>${sessions.length} sessions</span>${total ? `<span>${Number(total.toFixed(1))} mi planned</span>` : ''}<span>${appName(record)} delivery</span></div>
+    <div class="plan-summary"><span>${sessions.length} sessions</span>${total ? `<span>${Number(total.toFixed(1))} mi planned</span>` : ''}<span>Record in ${appName(record)}</span></div>
     <div class="athlete-session-list">${sessions.map((session) => sessionCard(record, session)).join('') || '<p class="athlete-muted">No sessions have been published for this week.</p>'}</div>
     <p class="athlete-readonly">Your prescription is managed by Brice. Browsing another week does not change your current position.</p>
   </section>`;
@@ -114,7 +114,7 @@ function accountView(record, email) {
     <div class="athlete-account-rows">
       <div><span>Signed in as</span><b>${esc(email || 'Not set')}</b></div>
       <div><span>Coaching</span><b>${esc(athlete.account_label || 'FORM athlete')}</b></div>
-      <div><span>Training delivery</span><b>${appName(record)}</b></div>
+      <div><span>Training app</span><b>${appName(record)}</b></div>
       ${block ? `<div><span>Current block</span><b>Week ${esc(record.currentWeek?.week_number || block.current_week || '—')} of ${esc(block.total_weeks || record.weeks?.length || '—')}</b></div>` : ''}
     </div>
     <div class="athlete-account-actions"><button class="button" id="setPassword" type="button">Set a password</button><button class="button" id="linkApple" type="button" hidden>Link Apple</button><button class="button" id="changeEmail" type="button">Change email</button><a class="button" href="mailto:brice@speedandform.com?subject=FORM%20account%20help">Get help</a><button class="button quiet" id="accountSignOut" type="button">Sign out</button></div>
