@@ -32,6 +32,10 @@ jobs:
           assert hashlib.sha256(b).hexdigest()=='808c6e6836f301597e3da106aa10b69ebef4d74829f766b26a5308e7290bb71c'
           data=json.loads(lzma.decompress(b,memlimit=134217728))
           assert set(data)==allowed
+          # Actions may write site sources, not workflows. The authorized connector
+          # will set the final read-only workflow separately after source acceptance.
+          data.pop('.github/workflows/guide-training.yml')
+          allowed.remove('.github/workflows/guide-training.yml')
           for f,text in data.items():
               p=Path(f);p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text,encoding='utf-8')
           for f in transport:Path(f).unlink()
