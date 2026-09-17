@@ -35,4 +35,4 @@ assert.match(html, /<p class="training-caption">One session belongs to a week\.<
 assert.match(html, /<h2>Tell me about<br>your running\.<\/h2>/);
 assert.doesNotMatch(html, /Your next step<br>starts here/);
 assert.doesNotMatch(html, /footer-location/);
-console.log('PASS: sparse hero, concise coaching offer, static track proof, simplified inquiry, and footer copy.');
+console.log('PASS: manifesto-first homepage, sparse hero, concise offer, static track proof, simplified inquiry, and footer.');
