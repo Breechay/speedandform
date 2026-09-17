@@ -23,3 +23,9 @@ Do not hide overflow to conceal a layout defect or shrink everything to fit. Use
 Record exactly what was inspected. Source review is not a device test. A numerical design score is not acceptance evidence. If a device or capability is unavailable, leave that check open.
 
 This newer standard takes precedence where older styling instructions require unreadably small labels, excessively tracked text or decorative numerals for data comparisons.
+
+## September 17 owner corrections
+
+The FORM wordmark ends with a **round period**, never a font-dependent square. Position it on the lettering baseline, not as a raised middle dot; verify the rendered mark with enlarged text and fallback fonts. Preserve its readable identity text. The website header/footer and José preview were corrected in [PR134's release](audits/APP-PREVIEW-POLISH-20260917.md); this is not a claim that every unrelated or native surface was edited.
+
+Breechay Sculpt's large illustrative phase numerals use its **sans-serif** family. Do not reintroduce a decorative serif 01 or the removed “Sculpt · The Frame” label beneath Adrian. Keep each surface's distinct material and typography rather than making FORM and Sculpt identical.
