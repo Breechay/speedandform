@@ -1,0 +1,21 @@
+name: Compute homepage doctrine receipt hashes
+on:
+  push:
+    branches: [work/share-home-doctrine-receipt-20260917]
+    paths: [.github/workflows/home-doctrine-hash.yml]
+permissions:
+  contents: read
+jobs:
+  hash:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Print exact homepage hashes
+        run: |
+          node - <<'NODE'
+          const fs=require('node:fs'),crypto=require('node:crypto');
+          const html=fs.readFileSync('index.html','utf8');
+          const sha=x=>crypto.createHash('sha256').update(x).digest('hex');
+          console.log('SOURCE_SHA256='+sha(html));
+          console.log('BODY_SHA256='+sha(html.slice(html.toLowerCase().indexOf('</head>'))));
+          NODE
