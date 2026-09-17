@@ -13,10 +13,18 @@ const updates=new Map(receipt.pages.map(row=>[row.file,{
   bodySha256:row.bodySha256,
   preview:row.preview
 }]));
+const artifacts=new Map([
+  ...[...updates.values()],
+  ...receipt.assets.map(row=>[row.file,{
+    file:row.file,
+    sourceRevision:receipt.testedRevision,
+    afterSha256:row.sourceSha256
+  }])
+]);
 function verify(file,text){
-  const row=updates.get(file);
+  const row=artifacts.get(file);
   if(!row)return false;
   assert.equal(sha(text),row.afterSha256,file+' exact reviewed Run Development method source');
   return true;
 }
-module.exports={receipt,updates,verify};
+module.exports={receipt,updates,artifacts,verify};
