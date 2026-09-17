@@ -13,7 +13,10 @@ const DAY_ORDER = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 function deliveryKind(record) {
   const text = [record.athlete?.delivery, record.athlete?.home_surface, record.athlete?.program_name, record.block?.discipline]
     .filter(Boolean).join(' ').toLowerCase();
-  return /forge|sculpt|strength/.test(text) ? 'strength' : 'running';
+  // Strength identity is about the authored program, not whether native Forge
+  // receipt delivery has already been proven. Current roster vocabulary includes
+  // Runner Mass and Strength & Physique before Forge becomes the confirmed delivery surface.
+  return /forge|sculpt|strength|physique|runner\s+mass/.test(text) ? 'strength' : 'running';
 }
 
 function appName(record) { return deliveryKind(record) === 'strength' ? 'Forge' : 'FORM'; }
