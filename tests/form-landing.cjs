@@ -1,5 +1,6 @@
 'use strict';
 const contact=require('../scripts/contact-notes-state.cjs');
+const current=require('../scripts/current-release-state.cjs');
 const protectedBaseline=require('../scripts/protected-site-baseline.cjs');
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),cp=require('node:child_process');
 const s=require('../scripts/share-metadata.cjs'),state=require('../scripts/form-landing-state.cjs');
@@ -8,8 +9,8 @@ const ROOT=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(ROOT,f
 const old=f=>cp.execFileSync('git',['show',protectedBaseline(f,state.manifest.baseCommit)+':'+f],{cwd:ROOT,maxBuffer:20_000_000});
 const h=read('form/index.html'),ids=t=>[...t.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
 assert.equal(s.sha(old('form/index.html')),state.manifest.pages[0].beforeSha256);state.verify('form/index.html',h);
-let count=0;for(const f of cp.execFileSync('git',['ls-tree','-r','--name-only',state.manifest.baseCommit],{cwd:ROOT,encoding:'utf8'}).trim().split('\n').filter(f=>f.endsWith('.html')&&f!=='form/index.html')){if(contact.verify(f,read(f))||sculpt.verify(f,read(f)))continue;assert.equal(s.sha(read(f)),s.sha(old(f)),f+' unchanged by Pass 5A');count++;}
-for(const f of ['css/cream-reading.css','css/homepage.css','js/homepage-motion.js','js/coaching-measurement.js','css/track-gallery.css','js/track-gallery.js','track/albums.json','track/media-manifest.json','netlify.toml','_headers','_redirects','robots.txt','sitemap.xml','search-index.json','scripts/discovery-catalog.cjs','plans/race-pace-durability/source.js'])if(!contact.verify(f,read(f)))assert.equal(s.sha(read(f)),s.sha(old(f)),f+' protected');
+let count=0;for(const f of cp.execFileSync('git',['ls-tree','-r','--name-only',state.manifest.baseCommit],{cwd:ROOT,encoding:'utf8'}).trim().split('\n').filter(f=>f.endsWith('.html')&&f!=='form/index.html')){if(current.verify(f,read(f)))continue;assert.equal(s.sha(read(f)),s.sha(old(f)),f+' unchanged by Pass 5A');count++;}
+for(const f of ['css/cream-reading.css','css/homepage.css','js/homepage-motion.js','js/coaching-measurement.js','css/track-gallery.css','js/track-gallery.js','track/albums.json','track/media-manifest.json','netlify.toml','_headers','_redirects','robots.txt','sitemap.xml','search-index.json','scripts/discovery-catalog.cjs','plans/race-pace-durability/source.js'])if(!current.verify(f,read(f)))assert.equal(s.sha(read(f)),s.sha(old(f)),f+' protected');
 assert.equal((h.match(/<h1\b/g)||[]).length,1);assert.equal((h.match(/<main\b/g)||[]).length,1);assert.equal(ids(h).length,new Set(ids(h)).size);
 for(const id of state.manifest.retainedFragments)assert.ok(ids(h).includes(id),'Preserve #'+id);
 assert.equal(s.canonical(h),'https://speedandform.com/form/');assert.equal(s.meta(h,'og:type'),'website');assert.equal(s.meta(h,'og:title'),'FORM Running App | Know Today’s Run');
