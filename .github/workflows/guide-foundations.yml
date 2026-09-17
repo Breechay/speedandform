@@ -34,6 +34,7 @@ jobs:
           assert set(data)==allowed
           for f,text in data.items():
             p=Path(f);p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text,encoding='utf-8')
+          p=Path('tests/guide-foundations.cjs');p.write_text(p.read_text().replace('s.decode(u[1])','s.attrs(u[0]).href'))
           for i in range(4):Path(f'.github/guide-transfer/{i}.b64').unlink()
           subprocess.run(['node','scripts/build-guides.cjs'],check=True)
           subprocess.run(['node','scripts/build-discovery.cjs'],check=True)
