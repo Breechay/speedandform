@@ -37,11 +37,11 @@ function build(){
  const lost=`<section class="discovery-hero"><p class="discovery-eyebrow">404 · Page not found</p><h1>That page<br>isn’t here.</h1><p class="discovery-dek">The link may have changed. Find what you came for below, or return to the Library.</p>${searchForm()}</section><section class="discovery-section" aria-label="Find your way"><div><h2>Still in the right place.</h2><p>Learn something useful, find your next plan, or join us at the track.</p></div><ul class="discovery-rows">${[{url:'/library',title:'Learn about your running',description:'Guides, questions, and practical references.'},{url:'/plans/',title:'Find a training plan',description:'Read the scope, preview, and access details.'},{url:'/thursday',title:'Run with us',description:'Current track-session information.'},{url:'/#begin',title:'Work with Brice',description:'Coaching built around your running.'}].map(row).join('')}</ul></section>`;
  change('404.html',page('404.html',lost,{noindex:true}),'Useful search and public routes; removes stale all-plans-free claim');
  // Static navigation on reviewed reading surfaces only. Never rewrite their content or scripts.
- const navFiles=new Set(entries.filter(e=>!['Plan','Plans','Study','App','Workouts','Guide & tools','Field note'].includes(e.type)).map(e=>e.file));
- for(const file of navFiles){let h=read(file);if(['library.html','search.html','404.html'].includes(file))continue;
-  if(h.includes('class="site-wayfinding"')){h=h.replace(/<nav class="site-wayfinding"[\s\S]*?<\/nav>/,wayfinding);change(file,h,'Public wayfinding; original navigation, article content, IDs and scripts retained');continue;}
+ const navFiles=new Set(entries.filter(e=>!['Plan','Plans','Study','App','Workouts','Guide & tools','Field note','Gallery'].includes(e.type)).map(e=>e.file));
+ for(const file of navFiles){let h=read(file);const pageWayfinding=file==='thursday.html'?wayfinding.replace('<a href="/thursday">Run with us</a>','<a href="/track/">Photos &amp; films</a>'):wayfinding;if(['library.html','search.html','404.html'].includes(file))continue;
+  if(h.includes('class="site-wayfinding"')){h=h.replace(/<nav class="site-wayfinding"[\s\S]*?<\/nav>/,pageWayfinding);change(file,h,'Public wayfinding; original navigation, article content, IDs and scripts retained');continue;}
   let match=h.match(/<nav class="nav"[\s\S]*?<\/nav>/i)||h.match(/<div class="nav">[\s\S]*?<\/div>/i);if(!match)continue;
-  h=h.replace(match[0],match[0]+'\n'+wayfinding).replace('</head>',`<link rel="stylesheet" href="/css/discovery.css?v=${V}">\n</head>`);
+  h=h.replace(match[0],match[0]+'\n'+pageWayfinding).replace('</head>',`<link rel="stylesheet" href="/css/discovery.css?v=${V}">\n</head>`);
   change(file,h,'Public wayfinding; original navigation, article content, IDs and scripts retained');
  }
  // Eight newer articles had no canonical at all. Their existing OG URL supplies the canonical.

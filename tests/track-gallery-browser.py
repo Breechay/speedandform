@@ -111,7 +111,7 @@ try:
         page.set_viewport_size({'width':width,'height':960});page.goto(base+route);page.evaluate("document.body.style.zoom='2'")
         check(f'Album 200 percent at {width}',page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
     nojs=browser.new_context(java_script_enabled=False);np=nojs.new_page();np.goto(base+route)
-    check('No-JavaScript gallery retains all files',np.locator('[data-frame]').count()==5 and np.locator('a[download]').count()==6)
+    check('No-JavaScript gallery retains all files',np.locator('[data-frame]').count()==5 and np.locator('main a[download]').count()==6)
     with np.expect_download() as dl:np.get_by_role('link',name='Download photos').click()
     check('No-JavaScript download is functional',dl.value.failure() is None)
     check('No runtime script errors',len(report['errors'])==0)

@@ -1,0 +1,214 @@
+{
+  "version": 1,
+  "albums": [
+    {
+      "slug": "from-practice",
+      "title": "From practice.",
+      "kind": "selection",
+      "date": null,
+      "description": "An earlier selection from the track and the road. Four photographs and a short, silent film.",
+      "note": "This is an undated selection of photographs and film previously featured on FORM, not a new session album.",
+      "downloadNote": "These are the available web editions, not camera originals.",
+      "cover": "beside-the-track",
+      "revision": "c120edb555c6",
+      "media": [
+        {
+          "id": "beside-the-track",
+          "type": "photo",
+          "title": "Beside the track",
+          "alt": "Runners gathered beside the track, pausing for a conversation.",
+          "number": 1,
+          "width": 2048,
+          "height": 1289,
+          "thumb": {
+            "url": "/media/track/from-practice/c120edb555c6/beside-the-track-640.jpg",
+            "bytes": 44174,
+            "sha256": "c03683c4af66edb4c3b2c68fe6cd881e103be11a9c81971826318df3fbc4a601",
+            "width": 640,
+            "height": 403
+          },
+          "preview": {
+            "url": "/media/track/from-practice/c120edb555c6/beside-the-track-1440.jpg",
+            "bytes": 208733,
+            "sha256": "ef9f8d5f9a8c167ecd1c65da8e72f521618cf0822c510ca9dcb3bedb7e08d06f",
+            "width": 1440,
+            "height": 906
+          },
+          "full": {
+            "url": "/media/track/from-practice/c120edb555c6/beside-the-track.jpg",
+            "bytes": 448076,
+            "sha256": "ae1ad680d8a1eb9f34083b19ae9d482490057d15785410e924cae5053bd13c70",
+            "width": 2048,
+            "height": 1289
+          },
+          "download": {
+            "url": "/media/track/from-practice/c120edb555c6/beside-the-track.jpg",
+            "bytes": 448076,
+            "sha256": "ae1ad680d8a1eb9f34083b19ae9d482490057d15785410e924cae5053bd13c70",
+            "width": 2048,
+            "height": 1289
+          }
+        },
+        {
+          "id": "side-by-side",
+          "type": "photo",
+          "title": "Side by side",
+          "alt": "Two runners moving side by side on the track.",
+          "number": 2,
+          "width": 1024,
+          "height": 1536,
+          "thumb": {
+            "url": "/media/track/from-practice/c120edb555c6/side-by-side-640.jpg",
+            "bytes": 43832,
+            "sha256": "d7130d7a6b037402c1640698842914d58917e6c536e2618b7f3d706aa5956ea3",
+            "width": 427,
+            "height": 640
+          },
+          "preview": {
+            "url": "/media/track/from-practice/c120edb555c6/side-by-side-1440.jpg",
+            "bytes": 218361,
+            "sha256": "b69aae601c360658763188c13b435f5c48f47243bcba28edc725be7270bf22f5",
+            "width": 960,
+            "height": 1440
+          },
+          "full": {
+            "url": "/media/track/from-practice/c120edb555c6/side-by-side.jpg",
+            "bytes": 306232,
+            "sha256": "df60e2593ffc28c3e991f4f88c54dce022f0a886d0fd548ae5359656c1a8975d",
+            "width": 1024,
+            "height": 1536
+          },
+          "download": {
+            "url": "/media/track/from-practice/c120edb555c6/side-by-side.jpg",
+            "bytes": 306232,
+            "sha256": "df60e2593ffc28c3e991f4f88c54dce022f0a886d0fd548ae5359656c1a8975d",
+            "width": 1024,
+            "height": 1536
+          }
+        },
+        {
+          "id": "in-stride",
+          "type": "photo",
+          "title": "In stride",
+          "alt": "A black-and-white photograph of runners passing a leafy roadside.",
+          "number": 3,
+          "width": 2048,
+          "height": 1350,
+          "thumb": {
+            "url": "/media/track/from-practice/c120edb555c6/in-stride-640.jpg",
+            "bytes": 46631,
+            "sha256": "3d887df896907240578c9b76afccd7fb0fbe084477aa5fe57bc7837c3d957c2e",
+            "width": 640,
+            "height": 422
+          },
+          "preview": {
+            "url": "/media/track/from-practice/c120edb555c6/in-stride-1440.jpg",
+            "bytes": 299216,
+            "sha256": "365e22141fe67fd34baf6130c845acb14e519607c34d3a934628d40413440c42",
+            "width": 1440,
+            "height": 949
+          },
+          "full": {
+            "url": "/media/track/from-practice/c120edb555c6/in-stride.jpg",
+            "bytes": 859414,
+            "sha256": "3c664f142c788cfdbb4a5c8cd6c4cee04fb54168fa33139c487a35e57dc3737d",
+            "width": 2048,
+            "height": 1350
+          },
+          "download": {
+            "url": "/media/track/from-practice/c120edb555c6/in-stride.jpg",
+            "bytes": 859414,
+            "sha256": "3c664f142c788cfdbb4a5c8cd6c4cee04fb54168fa33139c487a35e57dc3737d",
+            "width": 2048,
+            "height": 1350
+          }
+        },
+        {
+          "id": "on-the-road",
+          "type": "photo",
+          "title": "On the road",
+          "alt": "A group of runners seen from behind along a palm-lined road.",
+          "number": 4,
+          "width": 1222,
+          "height": 1853,
+          "thumb": {
+            "url": "/media/track/from-practice/c120edb555c6/on-the-road-640.jpg",
+            "bytes": 42224,
+            "sha256": "8b0c308a70880545c681e29d3ea685e95f5abb8a7d04525ebe4f7f593527bf9b",
+            "width": 422,
+            "height": 640
+          },
+          "preview": {
+            "url": "/media/track/from-practice/c120edb555c6/on-the-road-1440.jpg",
+            "bytes": 241300,
+            "sha256": "998a5081cc379f2ab19fc4ee0ce72d62bc108916b7be35ee21b6804f5ee8d2ed",
+            "width": 950,
+            "height": 1440
+          },
+          "full": {
+            "url": "/media/track/from-practice/c120edb555c6/on-the-road.jpg",
+            "bytes": 602707,
+            "sha256": "4affc8e214dbeb5686a7e5999ea15fe1123ca3b5ff087dc236bc3bc8e0fb63f2",
+            "width": 1222,
+            "height": 1853
+          },
+          "download": {
+            "url": "/media/track/from-practice/c120edb555c6/on-the-road.jpg",
+            "bytes": 602707,
+            "sha256": "4affc8e214dbeb5686a7e5999ea15fe1123ca3b5ff087dc236bc3bc8e0fb63f2",
+            "width": 1222,
+            "height": 1853
+          }
+        },
+        {
+          "id": "run-development",
+          "type": "video",
+          "title": "Running, in motion",
+          "alt": "A silent film of runners in motion, seen from the side and along their route.",
+          "number": 5,
+          "width": 1080,
+          "height": 1920,
+          "thumb": {
+            "url": "/media/track/from-practice/c120edb555c6/run-development-640.jpg",
+            "bytes": 36451,
+            "sha256": "dcd9cbfc8c741f4649deb4f0163597bdb2649eb84e9c6b11c2f74f2d46df964e",
+            "width": 360,
+            "height": 640
+          },
+          "preview": {
+            "url": "/media/track/from-practice/c120edb555c6/run-development-1440.jpg",
+            "bytes": 89272,
+            "sha256": "bedfa1caadf03b2b3130b122bf6efa2381e3c7c7026bd2a9dd1b191b4034e171",
+            "width": 720,
+            "height": 1280
+          },
+          "duration": 20.5,
+          "silent": true,
+          "full": {
+            "url": "/media/run-development.mp4",
+            "bytes": 10657931,
+            "sha256": "66f80e694521f15cf794097ac4725eacaeeaaa2c11baf952be2b1900d69a791c"
+          },
+          "download": {
+            "url": "/media/run-development.mp4",
+            "bytes": 10657931,
+            "sha256": "66f80e694521f15cf794097ac4725eacaeeaaa2c11baf952be2b1900d69a791c"
+          }
+        }
+      ],
+      "share": {
+        "url": "/media/track/from-practice/c120edb555c6/share.jpg",
+        "bytes": 137500,
+        "sha256": "6d6a02d0b154936fb3f59745129dc6bf6f9482f84170c2ec57aa9a63bf1e4227",
+        "width": 1200,
+        "height": 630,
+        "alt": "Runners gathered beside the track, pausing for a conversation."
+      },
+      "photoArchive": {
+        "url": "/media/track/from-practice/c120edb555c6/photos.zip",
+        "bytes": 2216955,
+        "sha256": "a9592c2ec8bfe61d46384f6ccafc8af4d36b98d1048761f1286b084a3063d00b"
+      }
+    }
+  ]
+}
