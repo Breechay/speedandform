@@ -47,6 +47,14 @@ function baseClick(direction, times) {
   window.setTimeout(lockAll, 420);
 }
 
+function openSharedWeek() {
+  if (!SHARED_WEEK) return;
+  const current = leftWeek();
+  const delta = SHARED_WEEK - current;
+  if (!delta) return;
+  baseClick(delta > 0 ? 1 : -1, Math.abs(delta));
+}
+
 function navigate(direction) {
   if (!direction || !available) return;
   const left = leftWeek();
@@ -165,6 +173,7 @@ async function init() {
   }
   $('#next').setAttribute('aria-label', entitled ? 'Next weeks' : 'Next weeks or unlock full plan');
   installStyles();
+  openSharedWeek();
   normalizeToPreview();
   lockAll();
 
