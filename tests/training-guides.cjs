@@ -1,5 +1,6 @@
 'use strict';
 const contact=require('../scripts/contact-notes-state.cjs');
+const current=require('../scripts/current-release-state.cjs');
 const protectedBaseline=require('../scripts/protected-site-baseline.cjs');
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process');
 const {guides,render,VERSION}=require('../scripts/build-training-guides.cjs'),state=require('../scripts/training-guide-state.cjs'),s=require('../scripts/share-metadata.cjs');
@@ -12,8 +13,8 @@ const ids=h=>[...h.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
 const resolve=u=>{const r=u.pathname.slice(1);return [r||'index.html',r+'.html',r.replace(/\/$/,'')+'/index.html'].find(f=>fs.existsSync(path.join(ROOT,f))&&fs.statSync(path.join(ROOT,f)).isFile());};
 assert.equal(guides.length,4);assert.equal(state.updates.size,5);
 for(const row of state.manifest.pages){assert.equal(s.sha(old(row.file)),row.beforeSha256,row.file+' exact baseline');state.verify(row.file,read(row.file));}
-let untouched=0;for(const f of files.filter(f=>f.endsWith('.html')&&!state.updates.has(f))){if(contact.verify(f,read(f))||sculpt.verify(f,read(f))||product.verify(f,read(f)))continue;assert.equal(s.sha(read(f)),s.sha(old(f)),f+' outside Pass 4B');untouched++;}
-for(const f of ['css/cream-reading.css','css/guide-foundations.css','js/guide-tools.js','scripts/build-guides.cjs','scripts/guide-content.cjs','docs/audits/GUIDES-MANIFEST-20260917.json','docs/audits/FOUNDATION-GUIDES-20260917.md','css/discovery.css','js/discovery-search.js','css/track-gallery.css','js/track-gallery.js','track/albums.json','track/media-manifest.json','css/homepage.css','js/homepage-motion.js','js/coaching-measurement.js','netlify.toml','_headers','_redirects','robots.txt','sitemap.xml','plans/race-pace-durability/source.js'])if(!contact.verify(f,read(f)))assert.equal(s.sha(read(f)),s.sha(old(f)),f+' protected');
+let untouched=0;for(const f of files.filter(f=>f.endsWith('.html')&&!state.updates.has(f))){if(current.verify(f,read(f)))continue;assert.equal(s.sha(read(f)),s.sha(old(f)),f+' outside Pass 4B');untouched++;}
+for(const f of ['css/cream-reading.css','css/guide-foundations.css','js/guide-tools.js','scripts/build-guides.cjs','scripts/guide-content.cjs','docs/audits/GUIDES-MANIFEST-20260917.json','docs/audits/FOUNDATION-GUIDES-20260917.md','css/discovery.css','js/discovery-search.js','css/track-gallery.css','js/track-gallery.js','track/albums.json','track/media-manifest.json','css/homepage.css','js/homepage-motion.js','js/coaching-measurement.js','netlify.toml','_headers','_redirects','robots.txt','sitemap.xml','plans/race-pace-durability/source.js'])if(!current.verify(f,read(f)))assert.equal(s.sha(read(f)),s.sha(old(f)),f+' protected');
 for(const g of guides){
  const h=read(g.file);assert.equal(render(g,h),h,'Deterministic '+g.file);assert.ok(h.includes('data-guide="'+VERSION+'"'));
  assert.equal((h.match(/<h1\b/g)||[]).length,1);assert.equal((h.match(/<main\b/g)||[]).length,1);assert.equal(ids(h).length,new Set(ids(h)).size);
