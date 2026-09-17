@@ -1,7 +1,4 @@
-"""Production page code, isolated synthetic auth/data, no live writes.
-The source is served under a non-development hostname so local-only controls
-cannot contaminate layout tests. Real database authorization is tested separately.
-"""
+"""Production page code with isolated synthetic auth/data. No live writes."""
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
 import json, os
@@ -26,6 +23,10 @@ def fixture(full):
  for d in ['MON','TUE','WED','THU','FRI','SAT']] if full or w<=4 else [])} for w in range(1,16)]}
 def session(user):return {'user':{'id':user},'access_token':'synthetic-'+user}
 FIX_DATE="const D=Date;globalThis.Date=class extends D {constructor(...a){super(...(a.length?a:['2026-09-17T12:00:00-04:00']));}};"
+DIAGNOSTICS="""() => ({viewport:innerWidth,scroll:document.documentElement.scrollWidth,fonts:document.fonts.status,
+ elements:['html','body','.page-shell','main','.hero','.hero-copy','h1','.plan-context','.plan-context p','#viewport','#track','.atmosphere'].map(q=>{
+ const e=document.querySelector(q),c=getComputedStyle(e);return {q,box:e.getBoundingClientRect().toJSON(),scroll:e.scrollWidth,
+ whiteSpace:c.whiteSpace,textWrap:c.textWrap,wordBreak:c.wordBreak,overflowWrap:c.overflowWrap,width:c.width,minWidth:c.minWidth,maxWidth:c.maxWidth,display:c.display,grid:c.gridTemplateColumns,font:c.font,overflow:c.overflow,html:e.outerHTML.slice(0,150)}})})"""
 try:
  with sync_playwright() as pw:
   browser=getattr(pw,ENGINE).launch(headless=True)
@@ -66,6 +67,7 @@ try:
   def open_plan(page):
    page.goto(BASE+'/plans/race-pace-durability/')
    page.wait_for_function("document.documentElement.dataset.rpdEntitled!==undefined")
+   page.evaluate('document.fonts.ready')
   for role in ['guest','coach','jose','hope','buyer','stranger','lisa']:
    ctx,page,seen=context_for(role);open_plan(page);full=role in ['coach','jose','hope','buyer']
    check(role+': correct access',page.get_attribute('html','data-rpd-entitled')==str(full).lower())
@@ -92,7 +94,8 @@ try:
     ctx,page,seen=context_for(role,width);open_plan(page)
     overflow=page.evaluate('document.documentElement.scrollWidth>innerWidth+1')
     if overflow:
-     report['overflow']=page.evaluate('Array.from(document.querySelectorAll("body *")).map(e=>({tag:e.tagName,id:e.id,cls:e.className,right:e.getBoundingClientRect().right,width:e.getBoundingClientRect().width})).filter(x=>x.right>innerWidth+1).slice(0,25)')
+     report['layout']=page.evaluate(DIAGNOSTICS)
+     print(json.dumps(report['layout']))
      page.screenshot(path=str(OUT/f'overflow-{role}-{width}.png'),full_page=True)
     check(f'{role} {width}: no horizontal overflow',not overflow)
     page.evaluate("window.__mutations=0;new MutationObserver(r=>window.__mutations+=r.length).observe(document.getElementById('track'),{childList:true,subtree:true})")
@@ -100,7 +103,9 @@ try:
     if role=='coach' and width in [390,1440]:page.screenshot(path=str(OUT/f'coach-{width}.png'),full_page=True)
     page.goto(BASE+'/');page.wait_for_function("document.documentElement.dataset.formAccount!==undefined")
     check(f'{role} home {width}: correct label',page.locator('[data-form-account]').first.inner_text()=={'coach':'Console →','jose':'My training →','guest':'Sign in →'}[role])
-    check(f'{role} home {width}: no header overflow',page.locator('.header').evaluate('e=>e.scrollWidth<=innerWidth+1'));ctx.close()
+    check(f'{role} home {width}: no header overflow',page.locator('.header').evaluate('e=>e.scrollWidth<=innerWidth+1'))
+    if role!='guest' and width==390:page.screenshot(path=str(OUT/f'{role}-home-390.png'))
+    ctx.close()
   for failure in ['network','partial','contradictory']:
    ctx,page,seen=context_for('coach',failure=failure);page.goto(BASE+'/plans/race-pace-durability/');page.locator('#rpdRetry').wait_for()
    check(failure+': no repurchase on failed verification',not page.locator('#pdfMobile').is_visible())
@@ -116,12 +121,12 @@ try:
    ctx.close()
   ctx,page,seen=context_for('coach',legacy=True);open_plan(page);page.locator('#next').click()
   page.evaluate("localStorage.removeItem('form-private-auth');window.__authEvent('SIGNED_OUT',null)")
-  page.wait_for_function("document.documentElement.dataset.rpdEntitled==='false'")
+  page.wait_for_function("document.documentElement.dataset.rpdEntitled==='false' && document.getElementById('curSheet') && !document.getElementById('rpdRetry')")
   check('Sign-out removes previous purchase hint',page.evaluate("localStorage.getItem('rpd_purchase_session')===null"))
   check('Sign-out removes protected prescription','SYNTHETIC W5' not in page.locator('body').inner_text());ctx.close()
   ctx,page,seen=context_for('coach');open_plan(page)
   other=ctx.new_page();other.goto(BASE+'/');other.evaluate('(s)=>localStorage.setItem("form-private-auth",JSON.stringify(s))',session('stranger'))
-  page.wait_for_function("document.documentElement.dataset.rpdEntitled==='false'")
+  page.wait_for_function("document.documentElement.dataset.rpdEntitled==='false' && document.getElementById('curSheet') && !document.getElementById('rpdRetry')")
   check('Cross-tab account switch rechecks permissions','SYNTHETIC W5' not in page.locator('body').inner_text());ctx.close()
   check('No uncaught JavaScript errors',not report['errors']);browser.close()
  report['result']='PASS'
