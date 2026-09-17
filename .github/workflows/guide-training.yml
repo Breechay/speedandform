@@ -1,0 +1,25 @@
+name: Training guide release checks
+on:
+  push:
+    branches: [work/guide-training-pass4b]
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Export exact source history without credentials
+        run: |
+          mkdir -p /tmp/guide-training
+          git bundle create /tmp/guide-training/source.bundle HEAD
+          git rev-parse HEAD > /tmp/guide-training/commit.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: guide-training-source
+          path: /tmp/guide-training/
+          retention-days: 2
