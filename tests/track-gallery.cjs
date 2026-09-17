@@ -1,4 +1,5 @@
 'use strict';
+const protectedBaseline=require('../scripts/protected-site-baseline.cjs');
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),crypto=require('node:crypto'),cp=require('node:child_process');
 const ROOT=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(ROOT,f),'utf8');
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
@@ -6,7 +7,7 @@ const cfg=JSON.parse(read('track/albums.json')),m=JSON.parse(read('track/media-m
 const html=f=>read(f),s=require('../scripts/share-metadata.cjs');
 const editorial=require('../scripts/guide-state.cjs');
 const old=process.env.GALLERY_BASELINE||'2c966476fe760eee5fb2b7e63ef719862c295ccc';
-const original=f=>cp.execFileSync('git',['show',old+':'+f],{cwd:ROOT,maxBuffer:10_000_000});
+const original=f=>cp.execFileSync('git',['show',protectedBaseline(f,old)+':'+f],{cwd:ROOT,maxBuffer:10_000_000});
 const files=cp.execFileSync('git',['ls-tree','-r','--name-only',old],{cwd:ROOT,encoding:'utf8'}).trim().split('\n');
 for(const f of files.filter(f=>f.endsWith('.html')&&!['library.html','thursday.html'].includes(f)))if(!editorial.verify(f,read(f)))assert.equal(sha(fs.readFileSync(path.join(ROOT,f))),sha(original(f)),f+' unchanged');
 for(const f of ['css/cream-reading.css','css/homepage.css','js/homepage-motion.js','js/coaching-measurement.js','netlify.toml','_redirects','_headers','plans/race-pace-durability/source.js'])assert.equal(sha(fs.readFileSync(path.join(ROOT,f))),sha(original(f)),f+' protected');

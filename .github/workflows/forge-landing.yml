@@ -2,7 +2,7 @@ name: Sculpt landing release checks
 on:
   push:
     branches: [work/forge-landing-pass5b, main]
-    paths: ['forge-sculpt/index.html','form/index.html','css/sculpt-landing.css','js/sculpt-landing.js','assets/forge/store-20260917/**','assets/forge/og-sculpt-20260917.jpg','scripts/sculpt-landing-state.cjs','scripts/verify-sculpt-production.cjs','tests/sculpt-landing*','docs/audits/SCULPT-LANDING*','.github/workflows/forge-landing.yml']
+    paths: ['forge-sculpt/index.html','form/index.html','css/sculpt-landing.css','js/sculpt-landing.js','assets/forge/store-20260917/**','assets/forge/og-sculpt-20260917.jpg','scripts/sculpt-landing-state.cjs','scripts/verify-sculpt-production.cjs','scripts/protected-site-baseline.cjs','tests/sculpt-landing*','tests/track-gallery.cjs','tests/discovery.cjs','docs/audits/SCULPT-LANDING*','.github/workflows/forge-landing.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -56,6 +56,8 @@ jobs:
           GUIDE_ARTIFACTS: /tmp/sculpt-receipt/foundations
           TRACK_GALLERY_ARTIFACTS: /tmp/sculpt-receipt/gallery
           DISCOVERY_ARTIFACTS: /tmp/sculpt-receipt/discovery
+          FORM_QA_ARTIFACTS: /tmp/sculpt-receipt/coaching
+          FORM_QA_BROWSER: chromium
         run: |
           python tests/sculpt-landing-browser.py
           python tests/form-landing-browser.py
@@ -63,6 +65,7 @@ jobs:
           python tests/guide-browser.py
           python tests/track-gallery-browser.py
           python tests/discovery-browser.py
+          python tests/coaching-funnel-browser.py
           export CHROMIUM_PATH="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
           python tests/homepage-browser.py
           cp .homepage-qa/browser-qa.json /tmp/sculpt-receipt/homepage-browser.json
