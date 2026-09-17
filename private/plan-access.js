@@ -1,6 +1,6 @@
 // One permission decision for RPD data, navigation and purchase controls.
 // Storage is a discovery hint only. The database/checkout service grants access.
-const URL = 'https://pbgsjjegycacodiltbhn.supabase.co';
+const API_ORIGIN = 'https://pbgsjjegycacodiltbhn.supabase.co';
 const KEY = 'sb_publishable_5Dg5TUvnh2mEo-zCYAbgmw_WHNXKDqj';
 const AUTH_KEY = 'form-private-auth';
 const FULL_MODES = new Set(['coach', 'assigned', 'purchased']);
@@ -52,7 +52,7 @@ async function post(path, body, token) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 12000);
   try {
-    const response = await fetch(`${URL}${path}`, {
+    const response = await fetch(`${API_ORIGIN}${path}`, {
       method: 'POST', cache: 'no-store', signal: controller.signal,
       headers: { apikey: KEY, 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) },
       body: JSON.stringify(body)
