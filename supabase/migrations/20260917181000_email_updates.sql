@@ -90,7 +90,7 @@ begin
  foreach k in array array['hour','day'] loop
    span:=case when k='hour' then interval '1 hour' else interval '1 day' end;
    select hits into n from newsletter_private.quotas where bucket=k and starts_at>now()-span;
-   if n>=case when k='hour' then 10 else 50 end then return '{"code":"rate_limited"}'::jsonb; end if;
+   if n >= (case when k='hour' then 10 else 50 end) then return '{"code":"rate_limited"}'::jsonb; end if;
  end loop;
  foreach k in array array['hour','day'] loop
    span:=case when k='hour' then interval '1 hour' else interval '1 day' end;
@@ -106,7 +106,7 @@ begin
  insert into newsletter_private.outbox(id,subscriber_id,generation,confirm_hash,payload) values(p_id,s.id,s.generation,p_confirm,p_payload) returning * into j;
  insert into newsletter_private.optouts(token_hash,subscriber_id) values(p_optout,s.id);
  return jsonb_build_object('code','send','id',j.id,'payload',j.payload,'state',j.state);
-end $$;
+end; $$;
 
 create function public.newsletter_finish(p_id uuid,p_provider uuid,p_ok boolean) returns jsonb language plpgsql security definer set search_path='' as $$
 declare j newsletter_private.outbox;
@@ -121,7 +121,7 @@ begin
    update newsletter_private.outbox set state='retry',lease_until=now() where id=p_id;
  end if;
  return '{"ok":true}'::jsonb;
-end $$;
+end; $$;
 
 create function public.newsletter_confirm(p_hash text) returns jsonb language plpgsql security definer set search_path='' as $$
 declare j newsletter_private.outbox; s newsletter_private.subscribers;
@@ -137,7 +137,7 @@ begin
  update newsletter_private.subscribers set state='subscribed',confirmed_at=now(),unsubscribed_at=null where id=s.id;
  update newsletter_private.outbox set consumed_at=now() where id=j.id;
  return '{"ok":true}'::jsonb;
-end $$;
+end; $$;
 
 create function public.newsletter_unsubscribe(p_hash text) returns jsonb language plpgsql security definer set search_path='' as $$
 declare sid uuid;
@@ -149,7 +149,7 @@ begin
    unsubscribed_at=now(),generation=generation+1 where id=sid;
  update newsletter_private.outbox set state='canceled',payload=null where subscriber_id=sid and state in ('sending','retry');
  return '{"ok":true}'::jsonb;
-end $$;
+end; $$;
 
 create function public.newsletter_event(p_event text,p_request uuid,p_provider uuid,p_type text) returns jsonb language plpgsql security definer set search_path='' as $$
 declare j newsletter_private.outbox; inserted integer;
@@ -170,7 +170,7 @@ begin
    update newsletter_private.outbox set state='canceled',payload=null where subscriber_id=j.subscriber_id and state in ('sending','retry');
  end if;
  return '{"ok":true}'::jsonb;
-end $$;
+end; $$;
 
 create function public.newsletter_cleanup() returns jsonb language plpgsql security definer set search_path='' as $$
 begin
@@ -178,7 +178,7 @@ begin
  delete from newsletter_private.subscribers where state='pending' and requested_at<now()-interval '7 days';
  delete from newsletter_private.events where created_at<now()-interval '90 days';
  return '{"ok":true}'::jsonb;
-end $$;
+end; $$;
 
 -- Even service_role has no direct table grant. Its only path is these exact RPCs.
 revoke all on function public.newsletter_health() from public,anon,authenticated;
