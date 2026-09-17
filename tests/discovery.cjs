@@ -1,11 +1,12 @@
 'use strict';
+const protectedBaseline=require('../scripts/protected-site-baseline.cjs');
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),cp=require('node:child_process');
 const s=require('../scripts/share-metadata.cjs'),cat=require('../scripts/discovery-catalog.cjs'),search=require('../js/discovery-search.js');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
 const m=JSON.parse(read('docs/audits/DISCOVERY-MANIFEST-20260916.json'));
 const editorial=require('../scripts/guide-state.cjs');
 const base=process.env.DISCOVERY_BASELINE||m.baseCommit;
-const original=f=>cp.execFileSync('git',['show',base+':'+f],{cwd:root,encoding:'utf8',maxBuffer:10000000});
+const original=f=>cp.execFileSync('git',['show',protectedBaseline(f,base)+':'+f],{cwd:root,encoding:'utf8',maxBuffer:10000000});
 const scripts=h=>(h.match(/<script\b[^>]*>[\s\S]*?<\/script>/gi)||[]).filter(x=>!x.includes('application/ld+json')).join('\n');
 const body=h=>h.slice(h.toLowerCase().indexOf('</head>'));
 assert.equal(m.searchEntries,cat.entries.length);

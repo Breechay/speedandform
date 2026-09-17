@@ -9,6 +9,7 @@ assert.equal(manifest.baseCommit,'adaaa8c48f01303710aa6a53ee9258ecc48b72a8');
 const updates=new Map(manifest.pages.map(p=>[p.file,p]));
 const subsequent=require('./training-guide-state.cjs');
 const product=require('./form-landing-state.cjs');
-function verify(file,html){if(product.verify(file,html)||subsequent.verify(file,html))return true;const row=updates.get(file);if(!row)return false;assert.equal(sha(html),row.afterSha256,file+' exact Pass 4 editorial source');return true;}
-const latestUpdates=new Map([...updates,...subsequent.updates,...product.updates]);
+const sculpt=require('./sculpt-landing-state.cjs');
+function verify(file,html){if(sculpt.verify(file,html)||product.verify(file,html)||subsequent.verify(file,html))return true;const row=updates.get(file);if(!row)return false;assert.equal(sha(html),row.afterSha256,file+' exact Pass 4 editorial source');return true;}
+const latestUpdates=new Map([...updates,...subsequent.updates,...product.updates,...sculpt.updates]);
 module.exports={manifest,updates,latestUpdates,verify};

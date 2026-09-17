@@ -1,0 +1,95 @@
+name: Sculpt landing release checks
+on:
+  push:
+    branches: [work/forge-landing-pass5b, main]
+    paths: ['forge-sculpt/index.html','form/index.html','css/sculpt-landing.css','js/sculpt-landing.js','assets/forge/store-20260917/**','assets/forge/og-sculpt-20260917.jpg','scripts/sculpt-landing-state.cjs','scripts/verify-sculpt-production.cjs','scripts/protected-site-baseline.cjs','tests/sculpt-landing*','tests/track-gallery.cjs','tests/discovery.cjs','docs/audits/SCULPT-LANDING*','.github/workflows/forge-landing.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Source and critical-flow acceptance
+        run: |
+          set -o pipefail
+          mkdir -p /tmp/sculpt-receipt
+          {
+            node tests/sculpt-landing.cjs
+            node tests/form-landing.cjs
+            node tests/training-guides.cjs
+            node tests/guide-foundations.cjs
+            node tests/track-gallery.cjs
+            node tests/discovery.cjs
+            node tests/share-metadata.cjs
+            node tests/homepage-metadata.cjs
+            node tests/homepage-release.cjs
+            node tests/coaching-measurement.cjs
+            node tests/cream-reading.cjs
+            node labs/track/track.test.cjs
+            node tests/thursday-schedule.cjs
+          } | tee /tmp/sculpt-receipt/source-tests.txt
+          node scripts/build-training-guides.cjs
+          node scripts/build-guides.cjs
+          node scripts/build-discovery.cjs
+          git diff --exit-code
+      - name: Install browser runtime
+        run: |
+          python -m pip install playwright==1.58.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Product and regression browser checks
+        env:
+          SCULPT_ARTIFACTS: /tmp/sculpt-receipt/sculpt
+          FORM_LANDING_ARTIFACTS: /tmp/sculpt-receipt/form
+          TRAINING_GUIDE_ARTIFACTS: /tmp/sculpt-receipt/training
+          GUIDE_ARTIFACTS: /tmp/sculpt-receipt/foundations
+          TRACK_GALLERY_ARTIFACTS: /tmp/sculpt-receipt/gallery
+          DISCOVERY_ARTIFACTS: /tmp/sculpt-receipt/discovery
+          FORM_QA_ARTIFACTS: /tmp/sculpt-receipt/coaching
+          FORM_QA_BROWSER: chromium
+        run: |
+          python tests/sculpt-landing-browser.py
+          python tests/form-landing-browser.py
+          python tests/training-guides-browser.py
+          python tests/guide-browser.py
+          python tests/track-gallery-browser.py
+          python tests/discovery-browser.py
+          python tests/coaching-funnel-browser.py
+          export CHROMIUM_PATH="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
+          python tests/homepage-browser.py
+          cp .homepage-qa/browser-qa.json /tmp/sculpt-receipt/homepage-browser.json
+      - name: Verify actual public pages and media
+        if: github.ref_name == 'main'
+        run: |
+          node scripts/verify-sculpt-production.cjs /tmp/sculpt-receipt/production.json
+          node scripts/verify-form-landing-production.cjs /tmp/sculpt-receipt/form-production.json
+          node scripts/verify-training-guides-production.cjs /tmp/sculpt-receipt/training-production.json
+          node scripts/verify-guides-production.cjs /tmp/sculpt-receipt/foundations-production.json
+          node scripts/verify-discovery-production.cjs /tmp/sculpt-receipt/discovery-production.json
+          node scripts/verify-share-production.cjs /tmp/sculpt-receipt/share-production.json
+          node scripts/verify-track-production.cjs /tmp/sculpt-receipt/gallery-production.json
+          SCULPT_LIVE=1 SCULPT_ARTIFACTS=/tmp/sculpt-receipt/live python tests/sculpt-landing-browser.py
+      - name: Preserve exact tested revision and evidence
+        if: always()
+        run: |
+          mkdir -p /tmp/sculpt-receipt
+          git rev-parse HEAD > /tmp/sculpt-receipt/commit.txt
+          cp docs/audits/SCULPT-LANDING-MANIFEST-20260917.json /tmp/sculpt-receipt/
+          cp assets/forge/og-sculpt-20260917.jpg /tmp/sculpt-receipt/share.jpg
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sculpt-landing-receipt
+          path: /tmp/sculpt-receipt/
+          retention-days: 14
