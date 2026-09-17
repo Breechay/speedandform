@@ -2,7 +2,7 @@ name: Verify historical release lineage
 on:
   push:
     branches: [work/reconcile-release-lineage-20260917]
-    paths: [.github/workflows/release-lineage-hash.yml]
+    paths: [.github/workflows/release-lineage-hash.yml, 'scripts/**', 'tests/**', 'docs/audits/**']
 permissions:
   contents: read
 jobs:
