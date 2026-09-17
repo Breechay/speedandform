@@ -52,6 +52,8 @@ try:
                 page.goto(paid_url, wait_until='domcontentloaded')
                 page.wait_for_selector('html.meta-paid')
                 page.wait_for_function("""() => [...document.styleSheets].some(s => (s.href || '').includes('/css/meta-landing.css'))""")
+                if w <= 600:
+                    page.wait_for_function("""() => [...document.styleSheets].some(s => (s.href || '').includes('/css/mobile-hero.css'))""")
 
                 assert page.locator('.hero').get_attribute('data-landing-variant') == 'meta-paid-v1'
                 # .eyebrow intentionally renders uppercase; textContent verifies the authored copy.
@@ -65,7 +67,17 @@ try:
                 reassurance = page.locator('.hero-reassurance').inner_text()
                 assert 'First Miami track assessment complimentary.' in reassurance
                 assert 'An inquiry only. No payment or booking yet.' in reassurance
-                assert page.locator('.hero-reassurance').is_visible()
+
+                if w <= 600:
+                    assert not page.locator('.hero-kicker').is_visible()
+                    assert not page.locator('.hero-sub > p').is_visible()
+                    assert not page.locator('.offer small').is_visible()
+                    assert not page.locator('.hero-reassurance').is_visible()
+                else:
+                    assert page.locator('.hero-kicker').is_visible()
+                    assert page.locator('.hero-sub > p').is_visible()
+                    assert page.locator('.offer small').is_visible()
+                    assert page.locator('.hero-reassurance').is_visible()
 
                 media = page.evaluate("""() => {
                   const v = document.querySelector('#filmA');
@@ -85,10 +97,10 @@ try:
 
                 bounds = page.evaluate("""() => {
                   const box = s => {const r=document.querySelector(s).getBoundingClientRect();return {x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height};};
-                  return {hero:box('.hero'), button:box('.hero-actions .begin'), note:box('.hero-reassurance')};
+                  return {hero:box('.hero'), button:box('.hero-actions .begin'), heading:box('.hero h1'), fee:box('.offer strong')};
                 }""")
                 assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
-                for key in ('button', 'note'):
+                for key in ('button', 'heading', 'fee'):
                     assert bounds[key]['x'] >= 0 and bounds[key]['right'] <= w + 1, bounds
                     assert bounds[key]['bottom'] <= bounds['hero']['bottom'] + 1, bounds
                 assert bounds['button']['height'] >= 44
@@ -100,20 +112,25 @@ try:
                 unexpected = [e for e in errors if 'Failed to fetch dynamically imported module' not in e]
                 assert not unexpected, unexpected
                 report.append({'width': w, 'height': h, 'pass': True, 'bounds': bounds, 'media': media})
-                print('PASS', ENGINE, w, 'paid hero, continuation media, vetted proof and inquiry entry', flush=True)
+                print('PASS', ENGINE, w, 'sparse paid hero, continuation media, vetted proof and inquiry entry', flush=True)
                 page.close()
 
-            # Direct/organic traffic must retain the existing homepage state.
+            # Direct/organic traffic must retain the existing homepage state,
+            # with the same sparse mobile density treatment.
             page = browser.new_page(viewport={'width': 390, 'height': 844}, reduced_motion='reduce', is_mobile=True, has_touch=True)
             page.route('**/*', lambda route: route.continue_() if route.request.url.startswith(base) and '/private/account-navigation.js' not in route.request.url else route.abort())
             page.goto(base, wait_until='domcontentloaded')
+            page.wait_for_function("""() => [...document.styleSheets].some(s => (s.href || '').includes('/css/mobile-hero.css'))""")
             assert not page.locator('html').evaluate("el => el.classList.contains('meta-paid')")
             assert page.locator('.hero h1').inner_text() == 'Run\nDevelopment'
             source = page.locator('#filmA').get_attribute('data-src') or page.locator('#filmA').get_attribute('src') or ''
             assert '/media/run-development.mp4' in source, source
             direct_cta = ' '.join(page.locator('.hero-actions .begin').text_content().split())
             assert direct_cta == 'Work with Brice →', repr(direct_cta)
-            print('PASS', ENGINE, 'direct traffic retains default homepage', flush=True)
+            assert not page.locator('.hero-kicker').is_visible()
+            assert not page.locator('.hero-reassurance').is_visible()
+            assert page.locator('.hero-benefit').is_visible()
+            print('PASS', ENGINE, 'direct traffic retains default homepage with sparse mobile first fold', flush=True)
             page.close()
         finally:
             browser.close()
