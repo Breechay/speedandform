@@ -54,7 +54,8 @@ try:
                 page.wait_for_function("""() => [...document.styleSheets].some(s => (s.href || '').includes('/css/meta-landing.css'))""")
 
                 assert page.locator('.hero').get_attribute('data-landing-variant') == 'meta-paid-v1'
-                assert page.locator('.hero-kicker').inner_text() == 'Run Development · Brice · Miami'
+                # .eyebrow intentionally renders uppercase; textContent verifies the authored copy.
+                assert page.locator('.hero-kicker').text_content() == 'Run Development · Brice · Miami'
                 assert page.locator('.hero h1').inner_text() == 'Run better.\nGet faster.\nRun farther.'
                 assert page.locator('.hero-sub > p').inner_text() == 'Individual running coaching built around how you run now and where you want to go.'
                 assert page.locator('.offer strong').inner_text() == '8 weeks · $1,200'
