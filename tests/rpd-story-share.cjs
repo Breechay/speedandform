@@ -11,6 +11,7 @@ const en = read('plans/race-pace-durability/support/index.html');
 const es = read('es/plans/race-pace-durability/index.html');
 const checkout = read('plans/race-pace-durability/checkout.js');
 const viewer = read('plans/race-pace-durability/index.html');
+const planJs = read('plans/race-pace-durability/plan.js');
 const gate = read('plans/race-pace-durability/gate.js');
 const share = read('plans/race-pace-durability/week-share.js');
 
@@ -60,10 +61,19 @@ has(viewer, '/plans/race-pace-durability/week-share.js');
 has(share, "url.searchParams.set('week'");
 has(share, "url.searchParams.delete('purchase_session')");
 has(share, "url.searchParams.delete('state')");
-has(share, 'resolvePlanAccess()');
+lacks(share, 'resolvePlanAccess');
 lacks(share, 'rpd_purchase_session');
 lacks(share, 'localStorage');
 lacks(share, 'session_id');
+
+// The renderer, not a post-load click loop, owns public week presentation.
+has(planJs, "new URLSearchParams(location.search).get('week')");
+has(planJs, 'const sharedWeek');
+has(planJs, 'left = clamp(sharedWeek); paint();');
+has(planJs, 'window.formRpdViewWeek');
+lacks(planJs, 'live = sharedWeek');
+lacks(share, 'button.click()');
+lacks(share, 'waitForRange');
 
 // Future shared weeks may open a redacted placeholder, never prescription data.
 has(gate, 'SHARED_WEEK');
