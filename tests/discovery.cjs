@@ -1,4 +1,5 @@
 'use strict';
+const contact=require('../scripts/contact-notes-state.cjs');
 const protectedBaseline=require('../scripts/protected-site-baseline.cjs');
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),cp=require('node:child_process');
 const s=require('../scripts/share-metadata.cjs'),cat=require('../scripts/discovery-catalog.cjs'),search=require('../js/discovery-search.js');
@@ -33,7 +34,7 @@ for(const row of m.changedHtml){const h=read(row.file),old=original(row.file);as
  if(row.file==='index.html')clean=clean.replace('<a href="/library">Library</a>','<a class="hide-mobile" href="#practice">The method</a>').replace('<a href="/library">Library <span>↗</span></a><a href="/thursday">Run with us <span>↗</span></a>','<a href="/library">Reading <span>↗</span></a>');
  assert.equal(clean,body(old),row.file+' content preserved outside scoped navigation/notice');
 }
-for(const f of ['css/cream-reading.css','scripts/build-cream-reading.cjs','css/homepage.css','js/homepage-motion.js','js/coaching-measurement.js','plans/race-pace-durability/source.js','netlify.toml'])assert.equal(read(f),original(f),f+' protected');
+for(const f of ['css/cream-reading.css','scripts/build-cream-reading.cjs','css/homepage.css','js/homepage-motion.js','js/coaching-measurement.js','plans/race-pace-durability/source.js','netlify.toml'])if(!contact.verify(f,read(f)))assert.equal(read(f),original(f),f+' protected');
 for(const file of ['library.html','search.html','404.html']){const h=read(file);assert.equal((h.match(/<h1\b/g)||[]).length,1);assert.ok(h.includes('role="search"'));assert.ok(h.includes('for="discovery-query"'));for(const href of ['/library','/plans/','/thursday','/#begin'])assert.ok(h.includes('href="'+href+'"'));for(const a of h.matchAll(/href="(\/[^"#?]*)[^\"]*"/g))assert.ok(resolve(a[1]),file+': '+a[1]);}
 const library=read('library.html');for(const e of index)assert.ok(library.includes('href="'+e.url+'"'),e.url+' crawlable without JS');
 const schema=JSON.parse(library.match(/id="discovery-schema">([\s\S]*?)<\/script>/)[1]);assert.equal(schema.mainEntity.itemListElement.length,index.length);

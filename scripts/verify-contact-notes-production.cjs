@@ -1,0 +1,12 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const {sha,ORIGIN}=require('./share-metadata.cjs'),{manifest}=require('./contact-notes-state.cjs');
+const ROOT=path.resolve(__dirname,'..'),out=process.argv[2]||'/tmp/contact-notes-production.json';
+const report={commit:process.env.GITHUB_SHA,startedAt:new Date().toISOString(),pages:[],assets:[],attempts:[]};fs.mkdirSync(path.dirname(out),{recursive:true});
+const save=()=>fs.writeFileSync(out,JSON.stringify(report,null,2)+'\n');
+async function request(url){const r=await fetch(new URL(url,ORIGIN),{headers:{'Cache-Control':'no-cache','User-Agent':'FORM-Publishing-Verification/1.0'},signal:AbortSignal.timeout(20000)});assert.equal(r.status,200);assert.equal(new URL(r.url).origin,ORIGIN);return r;}
+(async()=>{let ready=false;for(let i=0;i<18;i++){try{const r=await request('/ask/');assert.equal(sha(await r.text()),manifest.pages.find(p=>p.file==='ask/index.html').afterSha256);ready=true;break;}catch(e){report.attempts.push(e.message);save();if(i<17)await new Promise(r=>setTimeout(r,10000));}}assert.ok(ready,'Approved Ask page not published');
+for(const row of manifest.pages){const url=row.file==='404.html'?'/404.html':row.url,r=await request(url),h=await r.text();assert.equal(sha(h),row.afterSha256,row.file+' live bytes');report.pages.push({file:row.file,url:r.url,status:r.status,sha256:sha(h)});save();}
+for(const row of manifest.assets){const r=await request('/'+row.file),b=Buffer.from(await r.arrayBuffer());assert.equal(sha(b),row.afterSha256,row.file+' live bytes');if(row.file.endsWith('feed.xml'))assert.ok(r.headers.get('content-type').includes('application/rss+xml'));report.assets.push({file:row.file,status:r.status,sha256:sha(b),type:r.headers.get('content-type')});save();}
+const photo=JSON.parse(fs.readFileSync(path.join(ROOT,'track/media-manifest.json'))).albums[0].media.find(m=>m.id==='beside-the-track');for(const a of [photo.thumb,photo.preview]){const r=await request(a.url);assert.equal(sha(Buffer.from(await r.arrayBuffer())),a.sha256);report.assets.push({file:a.url,status:r.status,sha256:a.sha256});}
+report.result='PASS';report.finishedAt=new Date().toISOString();save();console.log(`PASS: ${report.pages.length} exact live pages, ${report.assets.length} exact assets including typed RSS and existing real photographs.`);})().catch(e=>{report.result='FAIL';report.failure=e.stack;save();console.error(e);process.exitCode=1;});

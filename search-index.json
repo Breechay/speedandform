@@ -586,6 +586,21 @@
     "type": "Community"
   },
   {
+    "url": "/field-notes",
+    "title": "Field Notes",
+    "description": "Short reflections on training decisions, ordinary runs, and running together.",
+    "keywords": [
+      "notes",
+      "essays",
+      "questions",
+      "newsletter",
+      "feed",
+      "practice"
+    ],
+    "category": "practice",
+    "type": "Field note"
+  },
+  {
     "url": "/notes",
     "title": "A note from the track",
     "description": "One observation, the adjustment, and the athlete’s response.",

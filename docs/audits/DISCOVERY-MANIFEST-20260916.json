@@ -1,11 +1,15 @@
 {
   "version": "20260916-p2",
   "baseCommit": "05b76ab2b08cfc37f448f637f19e3aa0c9c3d03a",
-  "searchEntries": 47,
+  "searchEntries": 48,
   "sitemap": [
     {
       "file": "anti-rotation.html",
       "url": "https://speedandform.com/anti-rotation"
+    },
+    {
+      "file": "ask/index.html",
+      "url": "https://speedandform.com/ask/"
     },
     {
       "file": "avoid-injury.html",
@@ -26,6 +30,22 @@
     {
       "file": "field-notes.html",
       "url": "https://speedandform.com/field-notes"
+    },
+    {
+      "file": "field-notes/a-good-session-does-not-need-an-encore/index.html",
+      "url": "https://speedandform.com/field-notes/a-good-session-does-not-need-an-encore/"
+    },
+    {
+      "file": "field-notes/repeat-the-week-notice-what-changes/index.html",
+      "url": "https://speedandform.com/field-notes/repeat-the-week-notice-what-changes/"
+    },
+    {
+      "file": "field-notes/the-group-should-make-the-work-clearer/index.html",
+      "url": "https://speedandform.com/field-notes/the-group-should-make-the-work-clearer/"
+    },
+    {
+      "file": "field-notes/the-ordinary-run-counts/index.html",
+      "url": "https://speedandform.com/field-notes/the-ordinary-run-counts/"
     },
     {
       "file": "forge-sculpt/index.html",
@@ -297,8 +317,8 @@
       "file": "404.html",
       "reason": "Useful search and public routes; removes stale all-plans-free claim",
       "beforeSha256": "62b42526d1253e5bb693714dc0cda64a7984e12ae889947070821056b01f552b",
-      "afterSha256": "d48d1cf5a08791e2ba82893ee3b1e315ffc4857336ec5f31b3b2766164597580",
-      "bodySha256": "afcdf1257b7c8df5687fb2f2995a1e77d5d0d04375b9843cd0c5b87c09f54b7f",
+      "afterSha256": "01d158feac7a6b1f8590b304270281f4a295af30d70f2d7318b7d0acc5d1cbf5",
+      "bodySha256": "5613c57aa8eaca2ecbc646682f4417cab61c703a5dce70e903b0f75589f0d975",
       "preview": {
         "title": "",
         "description": ""
@@ -418,8 +438,8 @@
       "file": "library.html",
       "reason": "Athlete-facing topic index and static discovery links",
       "beforeSha256": "76879199d6b28263fa7d3eb8c9628491db9657e12b41ed7700999b559b1b5bc2",
-      "afterSha256": "860df035df80038be43efaeb2c016557af0fea002536a282bea4e1c45bdc389c",
-      "bodySha256": "c123484789a58df16ac52ce6d4ea2d4c91a980a42867a571ed71997b905279de",
+      "afterSha256": "89cab4179eeed63872bedf8b6fca65d97df7ede1b1210d3ccbc861049ceffeca",
+      "bodySha256": "6ae4080d0840e84e8bec0d3ac4367bb69c07f1bb01e7547c4e5f8bc6cc661ab9",
       "preview": {
         "title": "Running Guides & Training Tools | FORM Library",
         "description": "Understand your running. Explore clear guides to pace, running form, strength, race preparation, and recovery, plus plans and studies from Brice."
@@ -671,8 +691,8 @@
       "file": "search.html",
       "reason": "Safe, query-aware public search with explicit loading, failure, retry and empty states",
       "beforeSha256": "4b1d954a5d885e87d48ba983e077a8783ad29559881f75d93560e2631e43b4e6",
-      "afterSha256": "1e00f8926aca2c4d90b6053410469d37d21c4a9cd5d3990ec313d1d872f6bf9e",
-      "bodySha256": "1df09f9404f0c4dce045708f80d107917d69c477f194c5c55e9716282eedc5e9",
+      "afterSha256": "64e3e074f6e5183c00b18c00a753bc1420622be3aefe693166298c16babdb497",
+      "bodySha256": "f229e9d0413275fab5476ebf4eecab509956bcd0e2608d34ab7fbea01f643678",
       "preview": {
         "title": "Search | FORM",
         "description": "Search the FORM training system."
@@ -894,6 +914,10 @@
       "sha256": "e4a41035b3c975f14ce689fa4c8c4d9ab77fbe85e360e9af42cb16f73a336d92"
     },
     {
+      "file": "ask/index.html",
+      "sha256": "f22f9878f683e52d74b9befb54c63649903e9b4dcf383672cc7241e9e702f861"
+    },
+    {
       "file": "athlete/index.html",
       "sha256": "5146522d6debc948dfca6272ff6689f651066dccca87194876443b3225f84a85"
     },
@@ -1039,7 +1063,23 @@
     },
     {
       "file": "field-notes.html",
-      "sha256": "d386e38cf53254d287adcfe39262d1df1835419bc7b0de5a4af114e3b358f3a1"
+      "sha256": "5a313877074aa5f950d936a8a3241fe01b27be8052e5b300d3d82d04b8203d57"
+    },
+    {
+      "file": "field-notes/a-good-session-does-not-need-an-encore/index.html",
+      "sha256": "be08cd4b2d6901b063c9c50acbe503558312d6ccfaebcf11f482ab5f0b5970b1"
+    },
+    {
+      "file": "field-notes/repeat-the-week-notice-what-changes/index.html",
+      "sha256": "64ba4526be755878a41b2a887a8c718a835a84e34048714abcde4c4883491922"
+    },
+    {
+      "file": "field-notes/the-group-should-make-the-work-clearer/index.html",
+      "sha256": "99247894c47d5872128c5afdf9c615ab8437680053128ed15cedc5e692cb8a3a"
+    },
+    {
+      "file": "field-notes/the-ordinary-run-counts/index.html",
+      "sha256": "688c53f688f814769554a6a6c522237ae645f49e03c95411776185012a30e169"
     },
     {
       "file": "films.html",
