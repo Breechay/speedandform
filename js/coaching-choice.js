@@ -40,18 +40,7 @@
   var begin = hero.querySelector('.begin');
   if (begin) begin.innerHTML = 'Tell me about your running <span aria-hidden="true">→</span>';
   var reassurance = hero.querySelector('.hero-reassurance');
-  if (reassurance) reassurance.innerHTML = 'First Miami track assessment complimentary.<br>No payment today.';
-
-  var result = document.getElementById('simon');
-  if (result) {
-    result.classList.add('meta-result');
-    var resultHeading = result.querySelector('h2');
-    if (resultHeading) resultHeading.innerHTML = '<span>1:30:46</span><i aria-hidden="true">→</i><span>1:26:15</span>';
-    var resultGoal = result.querySelector('.result-goal');
-    if (resultGoal) resultGoal.textContent = '4:31 faster.';
-    var resultNote = result.querySelector('.result-note');
-    if (resultNote) resultNote.textContent = 'Half-marathon progression. Moving time and average pace from Simon’s Strava activity.';
-  }
+  if (reassurance) reassurance.innerHTML = 'First Miami track assessment complimentary.<br>An inquiry only. No payment or booking yet.';
 })();
 
 /* Progressive, select-only combobox. The original select remains the inquiry's
