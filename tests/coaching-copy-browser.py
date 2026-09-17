@@ -41,10 +41,8 @@ with sync_playwright() as p:
             page.locator('.hero').screenshot(path=str(OUT/f'hero-full-{w}.png'))
             page.locator('.hero-actions .begin').click()
             page.wait_for_timeout(300)
-            assert page.locator('#inquiry-reassurance').is_visible()
-            assert page.locator('#inquiry-reassurance').inner_text() == 'An inquiry only. No payment or booking yet.'
+            assert page.locator('#inquiry-reassurance').count() == 0
             assert page.locator('#p-ask .q.on[data-q="0"]').is_visible()
-            assert page.evaluate('''() => !!(document.querySelector('#inquiry-reassurance').compareDocumentPosition(document.querySelector('.questionnaire')) & Node.DOCUMENT_POSITION_FOLLOWING)''')
             page.screenshot(path=str(OUT/f'intake-arrival-{w}.png'))
             assert 'Discuss remote coaching' in page.locator('[data-coaching="remote"]').inner_text()
             page.locator('[data-coaching="remote"]').click()
@@ -64,7 +62,7 @@ with sync_playwright() as p:
             ]
             assert not unexpected_errors, unexpected_errors
             report.append({'width':w,'height':h,'pass':True,'bounds':bounds,'cta_in_initial_viewport':bounds['button']['bottom']<=h})
-            print('PASS', ENGINE, w, 'mobile density, CTA, inquiry reassurance, remote selector and no overflow', flush=True)
+            print('PASS', ENGINE, w, 'sparse copy, CTA, remote selector and no overflow', flush=True)
             page.close()
     finally:
         browser.close()
