@@ -1,8 +1,8 @@
 name: Coaching funnel release checks
 on:
   push:
-    branches: [work/coaching-funnel-measurement-20260917, work/coaching-message-match-20260917, main]
-    paths: ['index.html','js/coaching-measurement.js','js/coaching-choice.js','css/homepage.css','css/coaching-choice.css','css/meta-landing.css','tests/coaching-funnel-browser.py','tests/coaching-measurement.cjs','tests/coaching-copy.cjs','tests/coaching-copy-browser.py','tests/meta-landing-browser.py','tests/homepage-release.cjs','tests/homepage-browser.py','.github/workflows/coaching-funnel.yml']
+    branches: [work/coaching-funnel-measurement-20260917, work/coaching-message-match-20260917, work/run-development-method-20260917, main]
+    paths: ['index.html','js/coaching-measurement.js','js/coaching-choice.js','css/homepage.css','css/coaching-choice.css','css/meta-landing.css','tests/coaching-funnel-browser.py','tests/coaching-measurement.cjs','tests/coaching-copy.cjs','tests/coaching-copy-browser.py','tests/meta-landing-browser.py','tests/homepage-release.cjs','tests/homepage-browser.py','the-method.html','css/method.css','tests/run-development-method.cjs','tests/run-development-method-browser.py','.github/workflows/coaching-funnel.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -33,6 +33,7 @@ jobs:
           node tests/homepage-release.cjs
           node tests/homepage-metadata.cjs
           node tests/coaching-copy.cjs
+          node tests/run-development-method.cjs
       - name: Prove this release changes only approved homepage copy
         if: github.ref_name == 'work/coaching-message-match-20260917'
         env:
@@ -50,6 +51,7 @@ jobs:
           python tests/coaching-copy-browser.py
           python tests/coaching-funnel-browser.py
           python tests/meta-landing-browser.py
+          python tests/run-development-method-browser.py
       - name: Existing homepage layout and functionality regression
         if: matrix.browser == 'chromium'
         run: |
