@@ -14,7 +14,7 @@ const updates=new Map(receipt.pages.map(row=>[row.file,{
   preview:row.preview
 }]));
 const artifacts=new Map([
-  ...[...updates.values()],
+  ...updates.entries(),
   ...receipt.assets.map(row=>[row.file,{
     file:row.file,
     sourceRevision:receipt.testedRevision,
