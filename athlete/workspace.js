@@ -1,3 +1,5 @@
+import { resolvedStrengthWeek } from '/athlete/strength-fallback.js';
+
 const esc = (value) => String(value ?? '')
   .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
   .replaceAll('"', '&quot;').replaceAll("'", '&#039;');
@@ -13,9 +15,6 @@ const DAY_ORDER = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 function deliveryKind(record) {
   const text = [record.athlete?.delivery, record.athlete?.home_surface, record.athlete?.program_name, record.block?.discipline]
     .filter(Boolean).join(' ').toLowerCase();
-  // Strength identity is about the authored program, not whether native Forge
-  // receipt delivery has already been proven. Current roster vocabulary includes
-  // Runner Mass and Strength & Physique before Forge becomes the confirmed delivery surface.
   return /forge|sculpt|strength|physique|runner\s+mass/.test(text) ? 'strength' : 'running';
 }
 
@@ -62,9 +61,19 @@ function noPlan(record) {
   return `<section class="athlete-empty"><p class="eyebrow">Training</p><h2>Your next block is not published here yet.</h2><p>This account is ready. When Brice publishes training for you, it will appear here. ${app} remains the place to record completed sessions.</p><a href="mailto:brice@speedandform.com?subject=My%20FORM%20training" class="button">Ask Brice about your training →</a></section>`;
 }
 
-function todayView(record) {
+function fallbackToday(record, program) {
+  return `<section class="athlete-view athlete-today strength-fallback" id="today">
+    <div class="athlete-view-head"><div><p class="eyebrow">Strength phase</p><h2>Your three-week plan is here.</h2></div><span>${esc(program.duration_weeks)} weeks</span></div>
+    <div class="fallback-hero"><p>${esc(program.objective)}</p><p>${esc(program.principle)}</p></div>
+    <div class="fallback-status" role="note"><strong>Web reference available.</strong><p>This is the coach-authored fallback for ${esc(program.title)}. It does not infer your current Forge week, create a workout receipt, or say anything has synced.</p></div>
+    <div class="today-context"><p>${esc(program.weeks?.[0]?.intent || '')}</p><p class="athlete-app-note">Record completed strength sessions in <strong>Forge</strong> when you are using the accepted app workflow. Until then, this web plan remains the readable fallback.</p></div>
+    <button class="text-action" type="button" data-athlete-view="plan">Open the three-week plan →</button>
+  </section>`;
+}
+
+function todayView(record, fallbackProgram) {
   const week = record.currentWeek || record.weeks?.[0] || null;
-  if (!week) return noPlan(record);
+  if (!week) return fallbackProgram ? fallbackToday(record, fallbackProgram) : noPlan(record);
   const sessions = sessionsForWeek(record, week);
   const todayName = new Intl.DateTimeFormat('en-US', { weekday: 'short' }).format(new Date()).toUpperCase();
   const today = sessions.find((session) => (session.day_label || '').toUpperCase().startsWith(todayName.slice(0,3)));
@@ -77,9 +86,29 @@ function todayView(record) {
   </section>`;
 }
 
-function planView(record, shownWeekId) {
+function fallbackDay(day) {
+  return `<article class="fallback-day"><div class="fallback-day-head"><div><span>${esc(day.weekday)}</span><h3>${esc(day.title)}</h3></div><small>${esc(day.focus)}</small></div>
+    <div class="fallback-exercises">${(day.exercises || []).map((exercise) => `<div><span>${esc(exercise.name)}</span><b>${esc(exercise.sets)} × ${esc(exercise.reps)}</b></div>`).join('')}</div></article>`;
+}
+
+function fallbackPlanView(program, fallbackWeek) {
+  const week = resolvedStrengthWeek(program, fallbackWeek);
+  const index = Math.max(0, program.weeks.findIndex((entry) => entry.week === week.week));
+  return `<section class="athlete-view athlete-plan strength-fallback" id="plan">
+    <div class="plan-title-row"><div><p class="eyebrow">Plan · web fallback</p><h2>Week ${String(week.week).padStart(2, '0')} · ${esc(week.name)}</h2><p>${esc(week.intent)}</p></div>
+      <div class="plan-week-nav"><button type="button" data-fallback-week-step="-1" ${index <= 0 ? 'disabled' : ''} aria-label="Previous week">‹</button><span>${index + 1} / ${program.weeks.length}</span><button type="button" data-fallback-week-step="1" ${index >= program.weeks.length - 1 ? 'disabled' : ''} aria-label="Next week">›</button></div>
+    </div>
+    ${week.progression_note ? `<p class="plan-intent">${esc(week.progression_note)}</p>` : ''}
+    <div class="plan-summary"><span>${week.days.length} strength sessions</span><span>Record in Forge</span><span>Run week protected</span></div>
+    <div class="fallback-days">${week.days.map(fallbackDay).join('')}</div>
+    <div class="fallback-rules"><p class="eyebrow">Progression rules</p>${(program.progression_rules || []).map((rule, i) => `<div><b>${String(i + 1).padStart(2, '0')}</b><p>${esc(rule)}</p></div>`).join('')}</div>
+    <div class="fallback-status"><strong>Position is not inferred from this page.</strong><p>Past web work remains past work. Opening another week here does not move Forge, create a completion, or fabricate earlier app history.</p>${program.overview_path ? `<a href="${esc(program.overview_path)}">Open the standalone phase overview →</a>` : ''}</div>
+  </section>`;
+}
+
+function planView(record, shownWeekId, fallbackProgram, fallbackWeek) {
   const weeks = (record.weeks || []).slice().sort((a,b) => a.week_number - b.week_number);
-  if (!weeks.length) return noPlan(record);
+  if (!weeks.length) return fallbackProgram ? fallbackPlanView(fallbackProgram, fallbackWeek) : noPlan(record);
   const week = weeks.find((item) => item.id === shownWeekId) || record.currentWeek || weeks[0];
   const index = weeks.findIndex((item) => item.id === week.id);
   const sessions = sessionsForWeek(record, week);
@@ -95,19 +124,22 @@ function planView(record, shownWeekId) {
   </section>`;
 }
 
-function historyView(record) {
+function historyView(record, fallbackProgram) {
   const events = [];
   (record.completions || []).forEach((item) => events.push({ date:item.filed_at, type:'Session received', body:[item.actual_distance ? `${item.actual_distance} ${item.distance_unit || ''}` : '', item.athlete_note || ''].filter(Boolean).join(' · ') }));
   (record.reads || []).forEach((item) => events.push({ date:item.published_at || item.created_at, type:'Coach read', body:item.athlete_text }));
   (record.decisions || []).forEach((item) => events.push({ date:item.effective_on, type:'Training change', body:item.athlete_text }));
   events.sort((a,b) => new Date(b.date || 0) - new Date(a.date || 0));
+  const empty = fallbackProgram
+    ? `<div class="athlete-empty compact"><h3>No Forge history has reached this account yet.</h3><p>The three-week web fallback is available under Plan, but web-delivered work is not backfilled as a Forge receipt.</p></div>`
+    : `<div class="athlete-empty compact"><h3>No history has reached this account yet.</h3><p>When ${appName(record)} records or coach-published changes arrive, they will appear here.</p></div>`;
   return `<section class="athlete-view athlete-history" id="history"><p class="eyebrow">History</p><h2>What reached your record.</h2>
     <p class="athlete-muted">Planned work and received records stay distinct. No record received does not automatically mean a session was missed.</p>
-    ${events.length ? `<div class="athlete-history-list">${events.map((event) => `<article><time>${fmt(event.date)}</time><div><b>${esc(event.type)}</b>${event.body ? `<p>${esc(event.body)}</p>` : ''}</div></article>`).join('')}</div>` : `<div class="athlete-empty compact"><h3>No history has reached this account yet.</h3><p>When ${appName(record)} records or coach-published changes arrive, they will appear here.</p></div>`}
+    ${events.length ? `<div class="athlete-history-list">${events.map((event) => `<article><time>${fmt(event.date)}</time><div><b>${esc(event.type)}</b>${event.body ? `<p>${esc(event.body)}</p>` : ''}</div></article>`).join('')}</div>` : empty}
   </section>`;
 }
 
-function accountView(record, email) {
+function accountView(record, email, fallbackProgram) {
   const athlete = record.athlete;
   const block = record.block;
   return `<section class="athlete-view athlete-account" id="account"><p class="eyebrow">Account</p><h2>${esc(athlete.display_name)}</h2>
@@ -116,16 +148,18 @@ function accountView(record, email) {
       <div><span>Coaching</span><b>${esc(athlete.account_label || 'FORM athlete')}</b></div>
       <div><span>Training app</span><b>${appName(record)}</b></div>
       ${block ? `<div><span>Current block</span><b>Week ${esc(record.currentWeek?.week_number || block.current_week || '—')} of ${esc(block.total_weeks || record.weeks?.length || '—')}</b></div>` : ''}
+      ${fallbackProgram ? `<div><span>Web reference</span><b>${esc(fallbackProgram.title)} · ${esc(fallbackProgram.duration_weeks)} weeks</b></div>` : ''}
     </div>
+    ${fallbackProgram ? '<p class="athlete-readonly">A web fallback is available. This account view does not claim Forge receipt delivery or infer your current native position.</p>' : ''}
     <div class="athlete-account-actions"><button class="button" id="setPassword" type="button">Set a password</button><button class="button" id="linkApple" type="button" hidden>Link Apple</button><button class="button" id="changeEmail" type="button">Change email</button><a class="button" href="mailto:brice@speedandform.com?subject=FORM%20account%20help">Get help</a><button class="button quiet" id="accountSignOut" type="button">Sign out</button></div>
   </section>`;
 }
 
-export function renderAthleteWorkspace(record, { view='today', shownWeekId=null, email='' } = {}) {
+export function renderAthleteWorkspace(record, { view='today', shownWeekId=null, email='', fallbackProgram=null, fallbackWeek=1 } = {}) {
   const safeView = ['today','plan','history','account'].includes(view) ? view : 'today';
-  const content = safeView === 'plan' ? planView(record, shownWeekId)
-    : safeView === 'history' ? historyView(record)
-    : safeView === 'account' ? accountView(record, email)
-    : todayView(record);
+  const content = safeView === 'plan' ? planView(record, shownWeekId, fallbackProgram, fallbackWeek)
+    : safeView === 'history' ? historyView(record, fallbackProgram)
+    : safeView === 'account' ? accountView(record, email, fallbackProgram)
+    : todayView(record, fallbackProgram);
   return `<div class="athlete-workspace">${identity(record)}${workspaceNav(safeView)}<main class="athlete-workspace-main">${content}</main></div>`;
 }
