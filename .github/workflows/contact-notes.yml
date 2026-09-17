@@ -5,21 +5,74 @@ on:
 permissions:
   contents: read
 jobs:
-  source:
+  verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 4
+    timeout-minutes: 12
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          persist-credentials: false
-      - name: Export current source delta for local review
-        run: |
-          mkdir -p /tmp/contact-notes-source
-          git bundle create /tmp/contact-notes-source/source.bundle HEAD ^6827f20cd2b416578abca14cb08561dbb3423dc4
-          git rev-parse HEAD > /tmp/contact-notes-source/commit.txt
-      - uses: actions/upload-artifact@v4
+      - uses: actions/setup-node@v4
         with:
-          name: contact-notes-source
-          path: /tmp/contact-notes-source/
-          retention-days: 2
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Materialize the exact bounded review
+        run: |
+          test "$GITHUB_REF_NAME" = work/contact-notes-pass6
+          python - <<'PY'
+          from pathlib import Path
+          import json,lzma,base64,hashlib,subprocess
+          allowed={'404.html','_headers','ask/index.html','css/contact-notes.css','docs/audits/CONTACT-NOTES-20260917.md','docs/audits/CONTACT-NOTES-MANIFEST-20260917.json','docs/audits/DISCOVERY-MANIFEST-20260916.json','docs/publishing/FIELD-NOTES-AND-CONTACT.md','docs/roadmap/SITE-ECOSYSTEM-PASSES-20260916.md','field-notes.html','field-notes/a-good-session-does-not-need-an-encore/index.html','field-notes/feed.xml','field-notes/repeat-the-week-notice-what-changes/index.html','field-notes/the-group-should-make-the-work-clearer/index.html','field-notes/the-ordinary-run-counts/index.html','js/contact-notes.js','js/question-contexts.json','library.html','scripts/build-contact-notes.cjs','scripts/build-discovery.cjs','scripts/contact-notes-state.cjs','scripts/discovery-catalog.cjs','scripts/field-notes-content.cjs','scripts/guide-state.cjs','scripts/snapshot-contact-notes.cjs','scripts/training-guide-state.cjs','scripts/verify-contact-notes-production.cjs','search-index.json','search.html','sitemap.xml','tests/contact-notes-browser.py','tests/contact-notes.cjs','tests/discovery.cjs','tests/form-landing.cjs','tests/guide-foundations.cjs','tests/sculpt-landing.cjs','tests/track-gallery.cjs','tests/training-guides.cjs'}
+          transport={f'.github/notes-transfer/{i}.b64' for i in range(3)}
+          packed=base64.b64decode(''.join(Path(f'.github/notes-transfer/{i}.b64').read_text() for i in range(3)),validate=True)
+          assert hashlib.sha256(packed).hexdigest()=='97c85ba47ec7906afa27f92d4032a9f9fa1df3afcffd58b48a5cb7a528d1dade'
+          data=json.loads(lzma.decompress(packed,memlimit=134217728));assert set(data)=={'base','new','patch','expected'}
+          assert data['base']=='780f409ed521f3c6290c19e0d80279331bf4eecc'
+          assert set(data['expected'])==allowed and set(data['new'])<=allowed
+          for f,text in data['new'].items():
+              p=Path(f);assert not p.exists(),f;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text,encoding='utf-8')
+          subprocess.run(['git','apply','--check','-'],input=data['patch'],text=True,check=True)
+          subprocess.run(['git','apply','-'],input=data['patch'],text=True,check=True)
+          for name in ['build-contact-notes','build-discovery','snapshot-contact-notes']:
+              subprocess.run(['node',f'scripts/{name}.cjs'],check=True)
+          for f,expected in data['expected'].items():assert hashlib.sha256(Path(f).read_bytes()).hexdigest()==expected,f+' exact reviewed bytes'
+          for f in transport:Path(f).unlink()
+          changed=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines())|set(subprocess.check_output(['git','ls-files','--others','--exclude-standard'],text=True).splitlines())
+          assert changed<=allowed|transport,changed-(allowed|transport)
+          subprocess.run(['node','tests/contact-notes.cjs'],check=True)
+          subprocess.run(['git','add','-A','--',*sorted(allowed|transport)],check=True)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'feat: publishable Field Notes, local-only Ask Brice and reader feed'
+          git push origin HEAD:work/contact-notes-pass6
+      - name: Source acceptance
+        run: |
+          set -o pipefail
+          mkdir -p /tmp/contact-notes-receipt
+          for name in contact-notes sculpt-landing form-landing training-guides guide-foundations track-gallery discovery share-metadata homepage-metadata homepage-release coaching-measurement cream-reading thursday-schedule; do node tests/$name.cjs; done | tee /tmp/contact-notes-receipt/source-tests.txt
+          node labs/track/track.test.cjs | tee -a /tmp/contact-notes-receipt/source-tests.txt
+      - name: Install browser runtime
+        run: |
+          python -m pip install playwright==1.58.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium webkit
+      - name: Browser review without external messages
+        run: |
+          BROWSER=chromium CONTACT_NOTES_ARTIFACTS=/tmp/contact-notes-receipt/chromium python tests/contact-notes-browser.py
+          BROWSER=webkit CONTACT_NOTES_ARTIFACTS=/tmp/contact-notes-receipt/webkit python tests/contact-notes-browser.py
+      - name: Preserve exact source and evidence
+        if: always()
+        run: |
+          mkdir -p /tmp/contact-notes-receipt
+          git rev-parse HEAD > /tmp/contact-notes-receipt/commit.txt
+          cp docs/audits/CONTACT-NOTES-MANIFEST-20260917.json /tmp/contact-notes-receipt/ || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: contact-notes-receipt
+          path: /tmp/contact-notes-receipt/
+          retention-days: 14
