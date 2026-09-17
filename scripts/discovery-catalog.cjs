@@ -9,7 +9,7 @@ const GROUPS = [
  ]],
  ['training','Pace & the training week','Understand what each run is for and how the week fits together.',[
   ['library/half-marathon-week/','How a half-marathon week fits together','The relationship between demanding sessions, easy days, and the long run.','half marathon schedule weekly'],
-  ['library/the-two-paces/','Threshold pace and race pace','Two different jobs, and why your training needs both.','two paces threshold race'],
+  ['library/the-two-paces/','Threshold pace and your easy-run ceiling','Two guides for keeping demanding runs purposeful and easy days controlled.','two paces threshold easy ceiling'],
   ['how-fast-should-i-run','How fast should I run?','Pace and effort guidance for the different runs in your week.','pace zones speed'],
   ['easy-run','The easy run','What easy running is for and how to approach it.','easy slow aerobic base'],
   ['threshold-training','Threshold training','A closer look at controlled, sustained running.','tempo lactate threshold'],
