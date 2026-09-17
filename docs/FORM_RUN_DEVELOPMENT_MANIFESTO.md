@@ -234,6 +234,57 @@ On the homepage, establish what FORM is and how it sees running first. Verified 
 
 ---
 
+# September 17 refinement — depth, ease and ownership
+
+## Ease is not easy
+
+Ease is not a synonym for low effort.
+
+A hard workout can demand a great deal from the athlete and still look organized. FORM distinguishes effort from unnecessary resistance. The desired quality is confidence, connection and control inside the work, not the absence of work.
+
+## The eye and the instrument
+
+Brice describes the first recognition of friction as similar to hearing an out-of-tune instrument. Something stands out before the full explanation is available.
+
+That first read is an invitation to investigate, not a diagnosis. Observation is tested against the runner, the task, athlete report and what happens after a change.
+
+## Form is multiplied by every step
+
+A useful movement change can matter because running repeats it thousands of times. The same principle is why FORM does not change movement merely for appearance. The intervention has to earn its place in repeated running.
+
+The goal is not a universal visual model. The goal is less unnecessary cost in the runner in front of you.
+
+## The autonomy standard
+
+The work should stay with the athlete after coaching ends.
+
+A successful engagement leaves behind judgment, not only completed sessions. The runner should increasingly recognize an out-of-tune note for themselves, distinguish effort from unnecessary struggle, understand why a cue or training decision matters, and need fewer reminders because the practice has become their own.
+
+## Public architecture
+
+Use three depths instead of repeating the manifesto everywhere:
+
+1. **Homepage:** felt philosophy and enough method to understand the relationship. Keep the hero sparse. Establish ease, selective intervention, repetition and ownership through short observations.
+2. **/the-method:** the deeper public explanation. This is the home for the out-of-tune instrument, the next-rep test, form multiplied by every step, frequency as exposure, internal state and the autonomy standard.
+3. **Manifesto and coach-facing systems:** the full doctrine, evidence boundaries, raw language and operating rules.
+
+The homepage should point to /the-method when a visitor wants the deeper thinking. A specific Lab study should not carry the burden of explaining the whole coaching philosophy.
+
+## Identity language to avoid
+
+Do not use generic phrases as FORM identity language merely because they are true:
+
+- unlock your potential;
+- reach the next level;
+- transform your running;
+- train smarter;
+- holistic coaching;
+- accountability and support;
+- tailored to your goals;
+- built around your lifestyle.
+
+Utility copy can still be plain and generic when that is the clearest way to label a button, price, field or service.
+
 # Source notes from Brice — preserve the raw thinking
 
 These notes are intentionally closer to Brice's original language than polished public copy.
