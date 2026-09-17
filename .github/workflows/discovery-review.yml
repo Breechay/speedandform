@@ -17,25 +17,26 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Apply inspected mobile refinements on isolated branch
+      - name: Close explicit-canonical acceptance and link the single register
         run: |
           test "$GITHUB_REF_NAME" = work/site-discovery-pass2
           python - <<'PY'
           from pathlib import Path
-          p=Path('scripts/build-discovery.cjs');s=p.read_text()
-          s=s.replace('href="/plans/">Training plans</a>','href="/plans/">Plans</a>')
-          s=s.replace('Try easy running, race pace, strength…','Try easy running…')
-          s=s.replace('${esc(title)}</a>`).join(\'\')}</nav>`+GROUPS', '${esc(({start:"Start here",training:"Pace & training",movement:"Form & strength",race:"Race preparation",recovery:"Recovery",practice:"Plans & studies"})[id])}</a>`).join(\'\')}</nav>`+GROUPS')
-          old="if(['library.html','search.html','404.html'].includes(file)||h.includes('class=\"site-wayfinding\"'))continue;"
-          new="if(['library.html','search.html','404.html'].includes(file))continue;\n  if(h.includes('class=\"site-wayfinding\"')){h=h.replace(/<nav class=\"site-wayfinding\"[\\s\\S]*?<\\/nav>/,wayfinding);change(file,h,'Public wayfinding; original navigation, article content, IDs and scripts retained');continue;}"
-          assert old in s or new in s
-          s=s.replace(old,new);p.write_text(s)
-          p=Path('css/discovery.css');s=p.read_text();extra='@media(max-width:767px){.discovery-topics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 20px}.discovery-nav{gap:4px 16px}.site-wayfinding{gap:4px 16px}}\n'
-          if extra not in s:s+='\n'+extra
+          p=Path('scripts/build-discovery.cjs');s=p.read_text().replace("baseCommit:'d86ee61739de9ad3c97515bd64b9a9409c8dd89c'", "baseCommit:'05b76ab2b08cfc37f448f637f19e3aa0c9c3d03a'")
+          s=s.replace("entries.filter(e=>e.file.startsWith('library/'))", "entries.filter(e=>e.file.startsWith('library/')||e.file==='forge-sculpt/index.html')")
           p.write_text(s)
-          p=Path('tests/discovery-browser.py');s=p.read_text();old="                check(f'{route} contained at {width}',page.evaluate('document.documentElement.scrollWidth <= innerWidth+1'))"
-          extra="\n                if route=='/library':\n                    ys=page.locator('.discovery-nav a').evaluate_all('(links)=>links.map(a=>Math.round(a.getBoundingClientRect().top))')\n                    check(f'Navigation stays on one row at {width}',len(set(ys))==1)\n                    if width==390:check('First useful guide reaches the first mobile screen',page.locator('.discovery-link').first.bounding_box()['y']<960)"
-          if extra not in s:s=s.replace(old,old+extra)
+          p=Path('tests/discovery.cjs');s=p.read_text();needle="assert.equal(s.canonical(read(file),file),url);"
+          check="assert.equal([...s.head(read(file)).matchAll(/<link\\b[^>]*>/gi)].filter(x=>s.attrs(x[0]).rel==='canonical').length,1,file+' explicit canonical');"
+          if check not in s:s=s.replace(needle,needle+check)
+          p.write_text(s)
+          p=Path('scripts/verify-discovery-production.cjs');s=p.read_text();needle="assert.equal(s.canonical(h,file),url,url+' canonical');"
+          check="assert.equal([...s.head(h).matchAll(/<link\\b[^>]*>/gi)].filter(x=>s.attrs(x[0]).rel==='canonical').length,1,url+' explicit canonical');"
+          if check not in s:s=s.replace(needle,needle+check)
+          p.write_text(s)
+          p=Path('docs/roadmap/FORM-ROADMAP.md');s=p.read_text();line='\nWebsite ecosystem release status and the single checklist: [bounded release passes](SITE-ECOSYSTEM-PASSES-20260916.md). Pass 1 is live; Pass 2 source and browser acceptance is recorded in [discovery release](../audits/DISCOVERY-RELEASE-20260916.md). That receipt owns production status.\n'
+          if line not in s:s=s.replace('\n## Current checkpoint',line+'\n## Current checkpoint',1)
+          p.write_text(s)
+          p=Path('docs/roadmap/SITE-ECOSYSTEM-PASSES-20260916.md');s=p.read_text().replace('| 2 | Public navigation, Library discovery, and technical SEO | NEXT | None yet |','| 2 | Public navigation, Library discovery, and technical SEO | IMPLEMENTED; production pending | [Discovery release and acceptance](../audits/DISCOVERY-RELEASE-20260916.md). Final commit, deployment and live checks pending. |').replace('Passes 2–6 remain queued; no background execution is implied. The next implementation scope is Pass 2.', 'Pass 2 is implemented on the isolated branch; its release receipt owns the pending final verification and production status. Passes 3–6 remain queued; no background execution is implied.')
           p.write_text(s)
           PY
           node scripts/build-discovery.cjs
@@ -59,7 +60,7 @@ jobs:
           import json,subprocess
           from pathlib import Path
           m=json.loads(Path('docs/audits/DISCOVERY-MANIFEST-20260916.json').read_text())
-          allowed={r['file'] for r in m['changedHtml']}|{'search-index.json','sitemap.xml','robots.txt','_headers','_redirects','docs/audits/DISCOVERY-MANIFEST-20260916.json','css/discovery.css','scripts/build-discovery.cjs','tests/discovery-browser.py'}
+          allowed={r['file'] for r in m['changedHtml']}|{'search-index.json','sitemap.xml','robots.txt','_headers','_redirects','docs/audits/DISCOVERY-MANIFEST-20260916.json','scripts/build-discovery.cjs','tests/discovery.cjs','scripts/verify-discovery-production.cjs','docs/roadmap/FORM-ROADMAP.md','docs/roadmap/SITE-ECOSYSTEM-PASSES-20260916.md'}
           changed=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines())
           assert changed<=allowed, changed-allowed
           subprocess.run(['git','add','--',*sorted(allowed)],check=True)
@@ -67,7 +68,7 @@ jobs:
           if ! git diff --cached --quiet; then
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git commit -m 'refine: compact public navigation and mobile Library topic links'
+            git commit -m 'fix: require explicit canonical tags and preserve a stable release baseline'
             git push origin HEAD:work/site-discovery-pass2
           fi
           git rev-parse HEAD > /tmp/discovery-receipt/commit.txt
