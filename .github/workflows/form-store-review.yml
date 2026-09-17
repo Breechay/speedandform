@@ -1,0 +1,37 @@
+name: FORM official store evidence
+on:
+  push:
+    branches: [work/form-landing-pass5a]
+    paths: [.github/workflows/form-store-review.yml]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Read official public store metadata and screenshots
+        run: |
+          mkdir -p /tmp/form-store-review
+          python - <<'PY'
+          import json,urllib.request,pathlib,datetime
+          root=pathlib.Path('/tmp/form-store-review')
+          def get(u):
+              with urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'Mozilla/5.0'}),timeout=35) as r:return r.read()
+          raw=get('https://itunes.apple.com/lookup?id=6761313085&country=us')
+          root.joinpath('lookup.json').write_bytes(raw)
+          data=json.loads(raw);assert data['resultCount']==1
+          a=data['results'][0];assert a['trackId']==6761313085
+          root.joinpath('captured-at.txt').write_text(datetime.datetime.now(datetime.timezone.utc).isoformat())
+          for i,u in enumerate(a.get('screenshotUrls',[])[:5]):
+              assert urllib.request.urlparse(u).hostname.endswith('mzstatic.com') if hasattr(urllib.request,'urlparse') else 'mzstatic.com/' in u
+              root.joinpath(f'screen-{i}.jpg').write_bytes(get(u))
+          root.joinpath('selected-screen.jpg').write_bytes(get('https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/9d/49/11/9d4911ae-24a3-92da-f317-17b456c651f4/J.png/600x1300bb-60.jpg'))
+          print(json.dumps({k:a.get(k) for k in ['trackName','version','currentVersionReleaseDate','minimumOsVersion','price','formattedPrice','trackViewUrl','screenshotUrls']},indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: form-store-review
+          path: /tmp/form-store-review/
+          retention-days: 2
