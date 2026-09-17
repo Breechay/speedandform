@@ -27,7 +27,7 @@ function page(file,body,{noindex=false,schema=null}={}){let h=read(file).match(/
  h+=`\n<link rel="stylesheet" href="/css/cream-reading.css?v=20260916"><link rel="stylesheet" href="/css/discovery.css?v=${V}">\n`;
  return `<!doctype html>\n<html lang="en" data-form-reading="20260916" data-discovery="${V}"><head>${h.trim()}</head><body>${header()}<main id="main" class="discovery-wrap">${body}</main>${footer()}${file==='search.html'?`<script src="/js/discovery-search.js?v=${V}" defer></script>`:''}</body></html>\n`;
 }
-function build(){
+function build({writeHistoricalManifest=true}={}){
  const beforeFiles=new Map(share.allHtml(ROOT).map(f=>[f,hash(read(f))]));
  const library=`<section class="discovery-hero"><p class="discovery-eyebrow">The Library</p><h1>Understand your running.</h1><p class="discovery-dek">A question, a useful answer, and somewhere to go next. Explore the guides, training plans, and work behind the practice.</p>${searchForm()}</section><nav class="discovery-topics" aria-label="Library topics">${GROUPS.map(([id,title])=>`<a href="#${id}">${esc(({start:"Start here",training:"Pace & training",movement:"Form & strength",race:"Race preparation",recovery:"Recovery",practice:"Plans & studies"})[id])}</a>`).join('')}</nav>`+GROUPS.map(([id,title,desc])=>`<section class="discovery-section" id="${id}" aria-labelledby="heading-${id}"><div><h2 id="heading-${id}">${esc(title)}</h2><p>${esc(desc)}</p></div><ul class="discovery-rows">${entries.filter(e=>e.category===id).map(row).join('')}</ul></section>`).join('')+`<section class="discovery-help"><h2>Make it work for you.</h2><p>The Library explains the ideas. Coaching puts them into a week built around your running, your goal, and your life.</p><a href="/#begin">Tell Brice what you are training for →</a><p class="discovery-question">Just have a question? <a href="/ask/">Ask Brice directly →</a></p></section><details class="discovery-archive"><summary>Earlier training material</summary><p>These pages are retained as a record. They are not the current group schedule or a new training assignment.</p><a href="/plan-spring-2026">Spring 2026 training cycle</a><a href="/races/key-biscayne-2026">Key Biscayne 2026 race notes</a></details>`;
  const schema={'@context':'https://schema.org','@type':'CollectionPage','@id':O+'/library#page',url:O+'/library',name:'FORM Library',description:'Running guides, plans, studies, and tools from the coaching practice.',mainEntity:{'@type':'ItemList',itemListElement:entries.map((e,i)=>({'@type':'ListItem',position:i+1,name:e.title,url:O+e.url}))}};
@@ -74,7 +74,12 @@ function build(){
  const dest='docs/audits/DISCOVERY-MANIFEST-20260916.json',prior=fs.existsSync(path.join(ROOT,dest))?JSON.parse(read(dest)):null;
  const rows=new Map((prior?.changedHtml||[]).map(e=>[e.file,e]));for(const [file,entry] of changed)rows.set(file,{...entry,beforeSha256:rows.get(file)?.beforeSha256||beforeFiles.get(file),afterSha256:hash(read(file)),bodySha256:hash(read(file).slice(read(file).toLowerCase().indexOf('</head>'))),preview:{title:share.meta(read(file),'og:title'),description:share.meta(read(file),'og:description')}});
  const manifest={version:V,baseCommit:'05b76ab2b08cfc37f448f637f19e3aa0c9c3d03a',searchEntries:index.length,sitemap:urls,changedHtml:[...rows.values()].sort((a,b)=>a.file.localeCompare(b.file)),retainedArchives:ARCHIVE,omittedFromDiscovery:PRESERVE_ONLY,untouchedHtml:[...beforeFiles].filter(([f])=>!rows.has(f)).map(([file,sha256])=>({file,sha256}))};
- write(dest,JSON.stringify(manifest,null,2)+'\n');console.log(`Discovery: ${index.length} search entries, ${urls.length} canonical sitemap URLs, ${rows.size} scoped HTML changes.`);
+ if(writeHistoricalManifest){
+  write(dest,JSON.stringify(manifest,null,2)+'\n');
+ }else if(!prior){
+  throw new Error('Historical discovery manifest is missing. Run with --apply to create it intentionally.');
+ }
+ console.log(`Discovery: ${index.length} search entries, ${urls.length} canonical sitemap URLs, ${rows.size} scoped HTML changes. Historical receipt ${writeHistoricalManifest?'written':'preserved'}.`);
  return manifest;
 }
-if(require.main===module)build();module.exports={build,esc,wayfinding};
+if(require.main===module)build({writeHistoricalManifest:process.argv.includes('--apply')});module.exports={build,esc,wayfinding};
