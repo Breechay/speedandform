@@ -38,6 +38,10 @@ with tempfile.TemporaryDirectory(prefix='form-discovery-') as tmp:
                 response=page.goto(base+route,wait_until='domcontentloaded');page.wait_for_timeout(110)
                 if route.startswith('/search'):page.wait_for_function("document.querySelector('#discovery-status').textContent.includes('result')")
                 check(f'{route} contained at {width}',page.evaluate('document.documentElement.scrollWidth <= innerWidth+1'))
+                if route=='/library':
+                    ys=page.locator('.discovery-nav a').evaluate_all('(links)=>links.map(a=>Math.round(a.getBoundingClientRect().top))')
+                    check(f'Navigation stays on one row at {width}',len(set(ys))==1)
+                    if width==390:check('First useful guide reaches the first mobile screen',page.locator('.discovery-link').first.bounding_box()['y']<960)
                 if width in [390,1440]:
                     name={'/':'home','/library':'library','/search?q=hyrox':'search','/page-does-not-exist-pass2':'404','/library/easy-days/':'article','/thursday':'thursday'}[route]
                     page.screenshot(path=str(OUT/(name+f'-{width}.png')))

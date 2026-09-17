@@ -289,8 +289,8 @@
       "file": "404.html",
       "reason": "Useful search and public routes; removes stale all-plans-free claim",
       "beforeSha256": "62b42526d1253e5bb693714dc0cda64a7984e12ae889947070821056b01f552b",
-      "afterSha256": "22444190f3b464cd029e11774f17dfd3fc874e4f7ff9c14ad954bc89a0b3078d",
-      "bodySha256": "6b16d922a377938169a1ca3edcfb8d714345466732fb6a743fbfd163b8d8f267",
+      "afterSha256": "d48d1cf5a08791e2ba82893ee3b1e315ffc4857336ec5f31b3b2766164597580",
+      "bodySha256": "afcdf1257b7c8df5687fb2f2995a1e77d5d0d04375b9843cd0c5b87c09f54b7f",
       "preview": {
         "title": "",
         "description": ""
@@ -300,8 +300,8 @@
       "file": "anti-rotation.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "b49a30115c35bf2f1cbe1464d34a7d85c47da8f18b8b0d02d9455e6cdcd7018b",
-      "afterSha256": "47e11c00d3019040a6fb53574ad0cde2c2ea2db498c36f939df0dfc7bde0c9c2",
-      "bodySha256": "49d43316a65bc41ea47f7fc486c0a285f3bb10e5955169ef8aff2f3471eb2d84",
+      "afterSha256": "e90ed3ff8a34e1311b872fe40f1572fa8d9f85d9d5c83bed98d0154db9c21656",
+      "bodySha256": "4fd09b1e1ea0f8a38d380c30356f34c6ad6c4938dacefec179de6851c7731c97",
       "preview": {
         "title": "Anti-Rotation Routine | FORM",
         "description": "A targeted routine for runners who twist or rotate excessively under load. Four exercises. One running cue."
@@ -311,8 +311,8 @@
       "file": "avoid-injury.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "4384b067f631747cd77360830dd1c91d6744d03a0bf39dc9b65136a3f3e4ea58",
-      "afterSha256": "d2c05e46eb9a6481d813e47d8cf1c426e6e55e0c3d7fb7ba0b5e32b3d236a4f6",
-      "bodySha256": "7a3a00cbadbeeed5be9a2fcf341913f3b6b7fa62398e03dca1f2a9f06c344b80",
+      "afterSha256": "0d57c08eadd44fb02843179c1948ac2e8eca2ce9ebc84055e0fdb827658fa678",
+      "bodySha256": "a836df5a75020baaeb738a360f4d3b1672a0423a597d6fbc046627ecc0f0301b",
       "preview": {
         "title": "Avoiding Injury | FORM",
         "description": "Adjust early and stay uninterrupted. Five principles for managing training load and protecting the system."
@@ -344,8 +344,8 @@
       "file": "easy-run.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "cd183937cee3a49c2c66b1ebf5e7ec84a130bd69e86313c7f1ac5fcf6fb57f54",
-      "afterSha256": "dac63b27d2665160fa03e1b4f1faf653dd2d9bccb5bf3cd84f3dfb53c741edb4",
-      "bodySha256": "9af3c40efd7dd1f86c5e1ab8df8a28fdd36fd305be616a83ff9784c928829ddc",
+      "afterSha256": "3832655d64f4acf0c020a0c91315aced39fb91c235cd1d6501b3a9646d7563d0",
+      "bodySha256": "4f18d2bbf0e0a630ffd7e65b51a3b51791ed4986cd757fe281c409203051d992",
       "preview": {
         "title": "Easy Run | FORM",
         "description": "The session that makes hard work possible. Why easy running is the foundation of a durable training week."
@@ -355,8 +355,8 @@
       "file": "fueling.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "85114ecf3c2cdb5cd97074219ab97af14ee752aa89e67981b84cf36e73f6f7ab",
-      "afterSha256": "e94c27266a7409506e249c183ef03c694dde2f71a3b194cb1e59e574c6769eae",
-      "bodySha256": "a2e3bb79bd4b79dc6251760ed5c9387d4c0f06e0019c34a161b7409549aaa22f",
+      "afterSha256": "bd3a505168332fcff7aac3ee8b39d5b6bfabd1f0b5cdd2469be37a5f6063d725",
+      "bodySha256": "90006aa6248d5e9e3b2517f2497d1914f8253d6b01e397f681a6a71bf4421cdf",
       "preview": {
         "title": "Fueling | FORM",
         "description": "Fuel supports the work. Simple guidance on fueling threshold sessions, long runs, race day, and recovery."
@@ -366,8 +366,8 @@
       "file": "ghost/cues.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "8fa0e577707db4a7c582a26cbb3694192499987e2404917538617402f3f7c70f",
-      "afterSha256": "294222796d63df0dc7955127a8c19e258e3c9c7be1b2997679f8d9125556c85b",
-      "bodySha256": "fa1a413508fa0170f36b05b1b3ea3016073eec091ea2a3382d5e29448b9330fb",
+      "afterSha256": "1619457901c253bf78122b389841dab22e5487cc62c936ac2d6ced56b025580a",
+      "bodySha256": "318eabd2d5fb67d606a7918c3b2caabc6ebf74a4b5b39361df02f3ce21063fca",
       "preview": {
         "title": "Running Form Cues | Ghost Protocol | FORM",
         "description": "All running form cues from the Ghost Protocol in one place."
@@ -377,8 +377,8 @@
       "file": "how-fast-should-i-run.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "3fbd2f44ca4df766292ca7e1b2f1b5142686046959adb233640bd5979f3f4489",
-      "afterSha256": "f6791d0a1b8063acb27dd1c4704164ea84857eb0a9b79dd1b9821218d780756c",
-      "bodySha256": "0e888f775d17ffe44ea45629065a78d3f7a94aa99dd54d6295f7f110aa9d0450",
+      "afterSha256": "8e97db6d2c8e8c56e9438aa98588dd7cae6593c31317ac64a00c1edee1f0cea3",
+      "bodySha256": "50c6c9904ffc8b53dc3a8aad39f10159fe89c1aadbe80edba606727507b08f3a",
       "preview": {
         "title": "How Fast Should I Run | FORM",
         "description": "Most running should feel comfortable. Pace guidance for easy days, threshold sessions, and long runs."
@@ -399,8 +399,8 @@
       "file": "library.html",
       "reason": "Athlete-facing topic index and static discovery links",
       "beforeSha256": "76879199d6b28263fa7d3eb8c9628491db9657e12b41ed7700999b559b1b5bc2",
-      "afterSha256": "55690056920646eeef7b806c5067871c83c357253bad9ebbca0196f8f61f4b56",
-      "bodySha256": "ca9dbee58d89a8c86958510b7566f259d7200aa752428ecd08f26d8797502094",
+      "afterSha256": "956f69ea97b1414309ad739db518c7638b71a86d31a1985d79c1d40b27af438e",
+      "bodySha256": "2933b63a782656e1423d8087e69025a42e9004f59b4beb084679ed41eb54f69a",
       "preview": {
         "title": "Running Guides & Training Tools | FORM Library",
         "description": "Understand your running. Explore clear guides to pace, running form, strength, race preparation, and recovery, plus plans and studies from Brice."
@@ -408,10 +408,10 @@
     },
     {
       "file": "library/easy-days/index.html",
-      "reason": "Canonical added from existing public OG URL; public wayfinding retained",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "1db2b0c9976d8beef83130c093a4bcf4f0be8c525ba157875e0477c506dd44ab",
-      "afterSha256": "68ec29cbbd51bacce7dac7f8026708d259e18539bd2d1634ab31932e4ffc7e67",
-      "bodySha256": "feb1374bfacdc8824a10cdeb5972fcc3bc2fedb3d8a51cb3cc5f12a6afa54c64",
+      "afterSha256": "d1a34e646a7cdd11f02433dd44ad28b896ff0c0fd0dbda42e3cb8bf87cb3e167",
+      "bodySha256": "6b66938c1bf35765a16a48968e5a1477b3373b5720f1a4a3a7ab18f3df9b5a04",
       "preview": {
         "title": "Why easy days stay easy — Speed & Form Library",
         "description": "Easy running is not the part of the plan you rush through. It is what lets the important work keep improving."
@@ -419,10 +419,10 @@
     },
     {
       "file": "library/first-half-marathon-goal/index.html",
-      "reason": "Canonical added from existing public OG URL; public wayfinding retained",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "ac24dc28dc515a843b5ebbe22e3a18ca412860c7dec1d04a1822a76536b79c2d",
-      "afterSha256": "de2189061cf2e10adca54e3f87b5f803d78878dc71fe92f089c500641e07f887",
-      "bodySha256": "e1b01c6fc0d769bdc209616120926958fe8d437fa3508cd0464343fc4622b7b0",
+      "afterSha256": "4d88ded1f04f72dfd5ad2bdce6901629af3ce83774d0064fd3b919532495ac93",
+      "bodySha256": "cb5cfb47acf01180106356432d1850dddb5678452bdc519f37fd1a8d300c241b",
       "preview": {
         "title": "How to set your first half-marathon goal — Speed & Form Library",
         "description": "Set a first half-marathon goal from recent running, not a guess. Learn how to choose a starting target and adjust it as evidence builds."
@@ -430,10 +430,10 @@
     },
     {
       "file": "library/from-lifting-to-running/index.html",
-      "reason": "Canonical added from existing public OG URL; public wayfinding retained",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "ca4f19bd185204c0e06627f830ac94b5358c155fe36b349bb02e561bc3b6e888",
-      "afterSha256": "f74dec7eb8e2b666d55bf50aae3ee557055bedb4b8b696b821772dd117387b65",
-      "bodySha256": "04ea405421a0f937bf6564abbd72440baf9026e16219ae92627a978a089f0997",
+      "afterSha256": "e321613c0155a40129c6368abf0b4c1fecc14ddd2160f5372d3531f0bb40f7c2",
+      "bodySha256": "ae016415a23a78fc4505e8b97705c9dcf3157b3c86928b7481a6653d1f44337c",
       "preview": {
         "title": "How to start running when you already lift — Speed & Form Library",
         "description": "You do not need to stop lifting to become a runner. You need a running dose that your current training can absorb."
@@ -441,10 +441,10 @@
     },
     {
       "file": "library/half-marathon-week/index.html",
-      "reason": "Canonical added from existing public OG URL; public wayfinding retained",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "9bbf929b0e6e10361a693404eb5faccdb3d7ec28881af7bc26a69742e3be6ac1",
-      "afterSha256": "832c5a2e125ad8383d6be74d6a063e977347f0b67231a8b23677ae9eb7ad9147",
-      "bodySha256": "f6766b286841422e7f47dce6819153ef89b51ccf8c4899690e3b9a0aa866642b",
+      "afterSha256": "bfa7bee51fbdd7fff75b59ffecfeb075f880548f79e3f0e78c9c15b6f2b909fb",
+      "bodySha256": "46604825752ad724b38188586d1552f1aa039233bb7a4458740b1bf7fa143f9d",
       "preview": {
         "title": "How a half-marathon week fits together — Speed & Form Library",
         "description": "A race plan is not a pile of runs. Each day has a job, and the week works because those jobs support one another."
@@ -452,10 +452,10 @@
     },
     {
       "file": "library/physique-volume/index.html",
-      "reason": "Canonical added from existing public OG URL; public wayfinding retained",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "357ef7854e6b715e39f3fee7268677877c4dac71f915ababdae2c5fa8adf5fac",
-      "afterSha256": "190b62f637c4836e7e060ff6c395a9d13cb908757f4c6c4283b27f817fe19892",
-      "bodySha256": "0bf2c33d7790497186d90ca08880fac6cdf44ef12e04515e635bfbd36fe4becc",
+      "afterSha256": "b7245e3028ae1b13c19a9a84c24d2ee7657936f7a4bfa6af073a7b175209d7c8",
+      "bodySha256": "82a0a208fa143fcddfb1a14ac476aa7f3e7e7df7c5dd0a98d3b98c238dd72265",
       "preview": {
         "title": "Why every area should not get the same volume — Speed & Form Library",
         "description": "A balanced physique is not built by giving every muscle the same amount of work. It is built by deciding where emphasis belongs."
@@ -463,10 +463,10 @@
     },
     {
       "file": "library/the-two-paces/index.html",
-      "reason": "Canonical added from existing public OG URL; public wayfinding retained",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "015b52ae47cfd2f515d80522a55615ef015868025266ac0ec926deb463e0473f",
-      "afterSha256": "571745514f5f9242b864c66f34f67a8131f2e34a6ae73e38729901352d5c70a4",
-      "bodySha256": "2e8bf3cda3100329850e24670980a0d3178f03b69a0095998015b9b8a9c69752",
+      "afterSha256": "d0062e2c04b15afc77c2b148de88c241c58ff36e939ed793301ddb984051c2e6",
+      "bodySha256": "8e0343fd94de7326c8fe4e3d9a9c2798568769622b43fd2270f028a1a80e7ae7",
       "preview": {
         "title": "The two numbers that organize the whole plan — Speed & Form Library",
         "description": "Understand threshold pace and an easy-effort ceiling: two guides for keeping demanding runs purposeful and easy days controlled."
@@ -474,10 +474,10 @@
     },
     {
       "file": "library/when-a-week-goes-wrong/index.html",
-      "reason": "Canonical added from existing public OG URL; public wayfinding retained",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "9d2ba2cc989437852b208ed6c07c7009b66979d48ac9f5c7e34ffd5007b392cf",
-      "afterSha256": "ff8d060d9d53675a9b7bf6cfcca63b23613ae4bcddb667eb8bbaf4508e0f7ccb",
-      "bodySha256": "96762a4505b380a53547cf18b68de26bf75e992d023044e9445cf5293e7414bc",
+      "afterSha256": "945161b05804fd1d0cdebdc801a90748469209d434994bcf90574f2b0ce3ee60",
+      "bodySha256": "9e52258c1e9f07bec4b2ea6d4da7abf460e058e0c8f75114ec592c7b65a4cc0d",
       "preview": {
         "title": "What to do when the week goes wrong — Speed & Form Library",
         "description": "Missed a run? Learn how to return to your training week without cramming missed sessions together or turning every day into catch-up work."
@@ -485,10 +485,10 @@
     },
     {
       "file": "library/why-phases/index.html",
-      "reason": "Canonical added from existing public OG URL; public wayfinding retained",
+      "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "46e95b2e4463d4bd654b995f404b3f9cb3aab65bfaf35ac5692e6e6d34cc5e19",
-      "afterSha256": "669c3aa4b1090bf42bc767b239a8ac111319dea3ac97af09b76fe1036419b34b",
-      "bodySha256": "9cfef1c7dc56194c30f7996337c74e9a4124584ac7d7b41e95ead14ee917f10a",
+      "afterSha256": "fef2b519787fe363a2856206fb957c83a1646fae767c4859ab2c0a90ae77c43a",
+      "bodySha256": "81e065a510a1553418d1d438afccdf12bfbe5cb50b6829b2629d8b0cf9a7bfb7",
       "preview": {
         "title": "Why the program runs in phases — Speed & Form Library",
         "description": "Why physique training uses phases: focus the work, maintain what you have built, and move the emphasis in a deliberate order."
@@ -498,8 +498,8 @@
       "file": "long-run-pace.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "f29028ba048e5f18f5fc57a41508fd721528ed3aeb81f89755b7f6fa21d946f2",
-      "afterSha256": "f91aca9535871c20a4e7838c9a344638931249707a3152f7f041b6569533d150",
-      "bodySha256": "590cd2d7ba4162bf4273cff254057f138995c5cc4984bfecb484dc9707dd21f2",
+      "afterSha256": "7c2d9c4a9adf230097ed198b8f6163284d04e3059d63b7c78f95e7925ae80141",
+      "bodySha256": "2bd3ac49387c7231b080405ecafdb656bf115dc8d38be7f8a65ad859c2ee5361",
       "preview": {
         "title": "Long Run Pace | FORM",
         "description": "How to pace the long run. Steady is threshold held with restraint."
@@ -509,8 +509,8 @@
       "file": "mobility.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "9eb71d9c1091ca14c60a1aca63d8d2599cad53c50ca7f80372e88f8267b805c8",
-      "afterSha256": "a568e0c50b5418b1463c3301e7136de2678094d7d12e05c8382f778f6fc206da",
-      "bodySha256": "2282db32fb2e59627e339812d39c1dbe216b30018baed393eec265fa48655e24",
+      "afterSha256": "064ac6e558ddeddb5660f1ed2f2d71a601c882bb38152f30c6cfdf1891c13dba",
+      "bodySha256": "6ecd25353773f3c2f0cb600f94c0e12560e8501456453a31b585801c4f36356b",
       "preview": {
         "title": "Mobility | FORM",
         "description": "The mobility work that supports FORM training. Hip flexors, ankles, calves, mid-back, glutes."
@@ -520,8 +520,8 @@
       "file": "pacing.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "a464d269c31d67397b4b955ac9bbd1cf56aa520d4cdea41ad5434c2643f9ed11",
-      "afterSha256": "526f7693037d36bd5deff9ac1e003e7736af57e4970b2547e90f592f853e2b6e",
-      "bodySha256": "2c9be89c9daefdf16d19a9b0d0dc6e78f19a9beb38720c0092440ca9014d7b61",
+      "afterSha256": "b7631554e22683c8d413c5215848ab90f69e2a5b1d5480279f99d93be197403a",
+      "bodySha256": "0e7fdde7f306573c8d0aa3f098912e9444b504df99b4246483adab9d7a045a00",
       "preview": {
         "title": "Pacing | FORM",
         "description": "Pace is a reference. Effort is the guide. How to understand pacing across easy, threshold, and long run sessions."
@@ -575,8 +575,8 @@
       "file": "race-prep.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "32bed3230db6a122c668c14fa9fa3f29f20851ec3e9fcbd90b773c53c4eed6c8",
-      "afterSha256": "b326f353bbd5e4c9ee4820cadc129946da5fc47dd8fb4ed0368cfed0cd0443ab",
-      "bodySha256": "17ad1c35e55e7edc3ceb01e2508fdd1b4cf1dc825f01c0b51bfff3e37f332be4",
+      "afterSha256": "6c7c234acaa50797ddd5a8aaf6eaa2b652b1be4af1a768cfdc2b698bc3ff3d36",
+      "bodySha256": "d42da4de9c06cfc445c94ee5ecfe5fa5ec992dd05d6753b1ddf0cb3e2c6c6947",
       "preview": {
         "title": "Race Prep | FORM",
         "description": "The race is the expression of what training built. How to approach taper, race week, and race-day execution."
@@ -586,8 +586,8 @@
       "file": "race-strategy.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "a126e01a8dac4d32bfcd6bf847a2e9b604a6bf6a3030537e11dce32703ead4dc",
-      "afterSha256": "b5e692342a42c9e3c3cf2930ab8de222488b2a07526525f87ddee4447f9ee25c",
-      "bodySha256": "c1d1a33ff5166394935e5d0c2b5daaca4f1f4499b2b74ad64c4f670c1b970ed6",
+      "afterSha256": "9b1e52da8508dbecd4b6f58205d44fcf4627ff15ee8c6bd697eb60d8795ee7a1",
+      "bodySha256": "f4d2c2095073706526bf3a39061f9b7d97b98bfa9c502d70108598c26b724882",
       "preview": {
         "title": "Race Strategy | FORM",
         "description": "Race pace is not chosen — it is revealed. Pace bands, ceilings, watch protocol, fueling, and the three days before."
@@ -608,8 +608,8 @@
       "file": "recovery.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "3b18165e8be654187aa973f985f72df287ceb667eb5471e1d63dfa77c487f8d5",
-      "afterSha256": "7c27c59df871b61623678cec3f7388929b5c9809820e86843105cbc06f7c7703",
-      "bodySha256": "bc6b691e53321c7470504f68367f0c8cfef586fd1411fed2cf46bd2d121907bf",
+      "afterSha256": "513f904c8f77a6e0bb9c149f1e0b80d928e1c49eeef0ddbfd075f13bcb9e04e5",
+      "bodySha256": "52435927356c8c3e2cd2491f1c0be1d3f9437561524759871deb9d975394ec6e",
       "preview": {
         "title": "Recovery | FORM",
         "description": "Adaptation happens after the work. Recovery protects rhythm, sleep, and the ability to absorb training consistently."
@@ -619,8 +619,8 @@
       "file": "return.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "efbf470fe3cd8b2170d41699dde1b50c6ad543b2d30722ecd622b199c1fabe9c",
-      "afterSha256": "d85637f7d436ceca0f482dd2c49f9d7c84c2e22f93e0522c5ba2e7820221c537",
-      "bodySha256": "e4373e42078c23495f42322499bcfc9c24590aa0e99edef10435aa611f163dc4",
+      "afterSha256": "17dd34bdada5ce13a4e70988e5925f325a609b78f8e43ac2dfccd8c7744299d6",
+      "bodySha256": "c47da64b0ce49c1d97aebbdffbe0dbddbba4db26ce73c98f1c95e7d3026d0504",
       "preview": {
         "title": "Returning to Running | FORM",
         "description": "Rebuilding the system after time away. A structured approach to re-entry after a break from training."
@@ -630,8 +630,8 @@
       "file": "running-form-errors.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "9f245cf287296c8b4438de520418a7af17f8babb3cbd7af10383388ef496aa39",
-      "afterSha256": "b8fc8151bfea6abc9b9c058f47d41f4ee1eeef227eead3470799136ac0423d2a",
-      "bodySha256": "2db6c82ed398591fb8dbeb0025ebab2ed79681c3f56e96c911d050d1a5be3256",
+      "afterSha256": "c2980f02ed65631774aad8bbe542eff7637b3279e3a25fd52531d5a65b6703a9",
+      "bodySha256": "ffdce6c018483d64900ad6094d7ae5c5e0d50889b6f7390acdd75cd6c1155dcb",
       "preview": {
         "title": "Running Form Errors | FORM",
         "description": "Common mechanical errors and how to correct them. A field guide to running form in the FORM system."
@@ -641,8 +641,8 @@
       "file": "running-terms.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "648f6409817d83ed3c510effa507a108ca643bc8e7e3e380c2d31107f9d5142c",
-      "afterSha256": "e8ab2f1226b5108eaf42f323872652c21807e964027145bf4070d8ac066dd212",
-      "bodySha256": "8fbb6cf58c9ea1f1b0f5c4ebc0a125bbf8598126344ba4a42d20e35d3cffad71",
+      "afterSha256": "de4dc39aced2907ef22a4c7440b2098388273c1dd66672ab7dc7720eced12f0b",
+      "bodySha256": "0c6fa750481e95c066b170fd563c799680d8506bf321fa807e87c0ff11e21b0f",
       "preview": {
         "title": "Running Terms | FORM",
         "description": "A selective glossary for structured training. Terms used in the FORM system explained clearly."
@@ -652,8 +652,8 @@
       "file": "search.html",
       "reason": "Safe, query-aware public search with explicit loading, failure, retry and empty states",
       "beforeSha256": "4b1d954a5d885e87d48ba983e077a8783ad29559881f75d93560e2631e43b4e6",
-      "afterSha256": "c4fc01c8edef39aebe24fc31f45d0a86e9ee254446692f5218d1d11ea27826bf",
-      "bodySha256": "f3ff8bccccfa0a4ebf5b2b2af6651d15a41b5053ac88b256ad4dacf4f33106cc",
+      "afterSha256": "1e00f8926aca2c4d90b6053410469d37d21c4a9cd5d3990ec313d1d872f6bf9e",
+      "bodySha256": "1df09f9404f0c4dce045708f80d107917d69c477f194c5c55e9716282eedc5e9",
       "preview": {
         "title": "Search | FORM",
         "description": "Search the FORM training system."
@@ -663,8 +663,8 @@
       "file": "sessions.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "b9d735e3a3ed710f2423d8c551bef61ef59027679028828ed7c275c71b019ff3",
-      "afterSha256": "508b0256f4fe60f36c7d724f549dd58de4ddad89d02f68eea84ddf4e84d773d3",
-      "bodySha256": "7fe5c5a0d5f8f57dad43f0c2f46ecbe9ed4861fa57c85bcc4649b0bfa57a0336",
+      "afterSha256": "9898d4cfb8ae924bd44ed88c593ef1d1e5226017b428d85e908070ac0c26b912",
+      "bodySha256": "67caf8fcfa0d30272d500376050b726682bac9945bf799709b5a0f636da1ad2d",
       "preview": {
         "title": "Sessions | FORM",
         "description": "The recurring session types in the FORM training week. Threshold, long run, easy runs, and structural work."
@@ -674,8 +674,8 @@
       "file": "shoes.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "84fe7ea2487972529da4276384878b858ee015fbe29ec4effa50c377aba71481",
-      "afterSha256": "b2d321cf13735893cb40ce7bad5f0c200c337f9e72d7478a7df9c019f775e0bf",
-      "bodySha256": "55477b6f644d68e6c147d4f118e7e6484c321fec9989a9451f46d9c043ca14f2",
+      "afterSha256": "e8f15abc20881b752ba7f3fc42a0a9472f9ce575c69f568d6d1f910a88058939",
+      "bodySha256": "7944c2a937e6c14b255fc27024939f3f9abf5c4d1687694f48f6bfc3c45f21e1",
       "preview": {
         "title": "Running Shoe Rotation | FORM",
         "description": "Match the tool to the session. How to rotate training shoes for threshold, long runs, and easy days."
@@ -685,8 +685,8 @@
       "file": "sleep.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "347007fecd93a1e128a497efec950d9275dc10ccccc897b93b3dcb248c9fe2f3",
-      "afterSha256": "998a2082b6c8ddce0522f85eff24fd7ad583e2ea4346d25bb9cc2c1267e832b7",
-      "bodySha256": "be919593cceec21574149e73d36a67580e3f92904e58b267f9c8ab23b8e6f1d5",
+      "afterSha256": "8b675ba0dab0646e849c614e4541ed0b288dcfd018cba81a2495ddc9642b6112",
+      "bodySha256": "9014750a86290a016de960d1c264f01a0e430915ba63b0e29fb10ce9e87806ba",
       "preview": {
         "title": "Sleep | FORM",
         "description": "Sleep is where training adaptations consolidate. How rhythm, duration, and consistency of sleep protect the practice over time."
@@ -696,8 +696,8 @@
       "file": "split-calculator.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "e4f1709d17a4982696597bace4744f3e06daf1709b75f3322c6b5ef5816d6655",
-      "afterSha256": "f2366923db78228e3be91a980ec00c33f1bd4c7281ecd63b5358184e17a82019",
-      "bodySha256": "e79d62dc3599c7453c06771bc8a2c779963bad20f775a10ec6c4f41fccd40075",
+      "afterSha256": "51da30b82ab64b44c41438df73c3f0ac32ffd6d073e0514452a470722254fe3b",
+      "bodySha256": "58c8e989dd6dc6097d454994741e4d04cdb99debd556b095dd70924a6c107c5f",
       "preview": {
         "title": "Split Calculator | FORM",
         "description": "Distance and goal time to watch-ready splits. Pace calculator for race planning and session targets."
@@ -718,8 +718,8 @@
       "file": "strength-activation.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "60cf669b878c8b39786734bdd820fd3789e680dbf6864c8d4b2812b1a03bf193",
-      "afterSha256": "37836e097f20256657a57fce8ebff46a52ddb5643e415ab72909f076f7ad20ef",
-      "bodySha256": "32c2790fbcbf6dc899aa365ac76c510fa3fa426276a318ee033acf1aaac34427",
+      "afterSha256": "ade290e5e28a5c429a556bd311dab2f59391aec1cb59438385f451f6a25bbd7a",
+      "bodySha256": "60d9c450d3864b1381f254506e9f19ebb20d83026b44a9081754dcb717b1b90c",
       "preview": {
         "title": "Activation — Pre-Run Warmup Routine | FORM",
         "description": "A 4–5 minute pre-run activation sequence for runners: glute bridge, dead bug, lateral band walk, calf raise, A-skip."
@@ -729,8 +729,8 @@
       "file": "strength-routine.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "fb75affcdb06a4dc3c3d23c274b36cb6f7ff7fe245535c43b86b0dcdf8fac2d5",
-      "afterSha256": "bc2b38c8dc78d489353db6c62d5c035d39b84ae1496cbc974281b62b6a56c68d",
-      "bodySha256": "4818961ea71792cf52bd52113fc0097dcf12e530b26fd1cb7ed67da44180b02b",
+      "afterSha256": "e8776d0eae8754b52b4cb1aa0e6068c1eb2dc18b7b731a22a0472f9ef02546d5",
+      "bodySha256": "00f8db59d21ae0206bcaffc5eb7d86617013ececbca141cbd88a00f50d2eca2f",
       "preview": {
         "title": "Durability Routine — Runner Strength Session | FORM",
         "description": "The FORM durability routine: split squats, single-leg RDL, calf work, and core. Two rounds, twice a week."
@@ -740,8 +740,8 @@
       "file": "strength.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "156364569eb8431a6be8656ddbc2d022785df484e92c0e53d4eccd76b9afbfe0",
-      "afterSha256": "ab43cc671c2f6c6825391bad6a106f734d568a50a3b50a1ec1c64c0daadf117f",
-      "bodySha256": "68a4319cf99137da3a4b875aac714a57fa3e1721963353d82ee81f93734f54c5",
+      "afterSha256": "28c7a1a39ba99c5fb3f2ce66a493a3015db0533117044470330cfed47c210fdf",
+      "bodySha256": "d3aeb51a3786985da4cb428bc7fc7513b74ba609a7afeb32f20354b739ce0e7d",
       "preview": {
         "title": "Structural Work | FORM",
         "description": "Durability exercises that support running mechanics. The FORM approach to strength and structural work."
@@ -773,8 +773,8 @@
       "file": "threshold-training.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "561e87506a2aade060c5ac191a72814e323e5101d40eb079b59eee5f1f651fb1",
-      "afterSha256": "51fea39999e428816ab8099700b9003a5e3d0934bb400cef4a7fefd76cb48c2c",
-      "bodySha256": "f63584d3a9a7df35d636822d620ee6dd31c0df8b6b6179d9948e2a6d161800f4",
+      "afterSha256": "de79ddefb239d6c7fa41a5846e03d9036b7cf7a7d23947ed50456c248cba3f27",
+      "bodySha256": "a26cea313100539c7f3b5f17c311a0f67dd31acf262daeb9dac4858886657982",
       "preview": {
         "title": "Threshold Training | FORM",
         "description": "What threshold training develops and why. The physiology and structure behind sustained aerobic work."
@@ -784,8 +784,8 @@
       "file": "thursday.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "927c2e63d074b12d782f249568c7386f5215ee5d79e2f22b7ab46f006a8ce21c",
-      "afterSha256": "15fe5171b0cd70c88ad06734dc2d9dfc74a72025e2553aaba42dbc8d68e983ec",
-      "bodySha256": "7ec9ebc35c381696c00c1d05891cd3f11dd32ad9565fcc32374936408a4619ac",
+      "afterSha256": "0026cd20b26879bc2666672778716a3437548ab0fca80399279f1f4e6d0e9f88",
+      "bodySha256": "3caa42737ea6b3e01d23f368743b8eda8c9452cd4724d07b95d2022d5594401f",
       "preview": {
         "title": "Thursday Track | FORM Miami",
         "description": "Flamingo Park Track · Thursdays 6:30 AM · Show up in running shoes."
@@ -795,8 +795,8 @@
       "file": "training-arc.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "919e310e967893955eae6c4102f4998c34e12728ef70eac983e28d4f5965ca49",
-      "afterSha256": "2f58d99e6dadc167298a74bfcc33bf3458e7a3d2d32fd7636523d8dbe51bd588",
-      "bodySha256": "4acfe06e932f4643ff3c7d2e68bae4d37d4dac7cd74ee9f65bb2d38d5dd697ab",
+      "afterSha256": "fce773285696a69e871f9feabe26442a852e34042a0f8e59da56e0ff79cfad65",
+      "bodySha256": "e933e6f3fbeadebd108f557fd4fd446dbaf166ed4ca63201a369f581b0c79259",
       "preview": {
         "title": "Training Arc | FORM",
         "description": "How the practice evolves over time. A long-term map of phases, structure, and development in FORM training."
@@ -806,8 +806,8 @@
       "file": "training-interruptions.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "39265d22e3e954acb969ac0120caec96906959d1af924ed0f2a5fba966e4394c",
-      "afterSha256": "dc8c70543cf36b5e295326d1da5e881eeaab69c0eb1d9e3bc61bdb330659671b",
-      "bodySha256": "e41c78527ba2efd41761c2dbd0be19bd528c64f0cbe6b805b818c807bb9a61c2",
+      "afterSha256": "f9198bd5010fe99883b5444b088712ff5955f33a383b4370f40afbad99366c74",
+      "bodySha256": "62e2030dfb97ee6b57165cd2e99318c523fdbee33d0a70fe28517e0839fb462d",
       "preview": {
         "title": "Training Interruptions | FORM",
         "description": "Managing injury and time away from training. How to understand, adjust, and return to rhythm after interruption."
@@ -817,8 +817,8 @@
       "file": "training-week.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "593893c9bcc5d24dc3184d61a538b2ae8413afa6a51a5c2c1dff8a80023dcfba",
-      "afterSha256": "70c250f5de6f39e22a20940bb6f5100ddd71adaeb0a401c60c39401be3759330",
-      "bodySha256": "0c2b9fb4a9f4322157965107b8ba7426b9880708150167bb6007712398d9b488",
+      "afterSha256": "3c7dd6e9ff8a29f96bf3e7d09f6ef77916975765761ed57ea89f27fc67cc7e6e",
+      "bodySha256": "a04c025cc4bac09feb6b37043d7a080e12aa66c5b4763587c6e2f68df5303653",
       "preview": {
         "title": "Training Week | FORM",
         "description": "How to organize a week of running training. Session distribution, recovery placement, and weekly rhythm."
@@ -828,8 +828,8 @@
       "file": "troubleshooting.html",
       "reason": "Public wayfinding; original navigation, article content, IDs and scripts retained",
       "beforeSha256": "fb3f81bae3193f147a95d7522e9bc10feacfe391d2e9f3f86ece0f1f34141862",
-      "afterSha256": "cf118ee87ee5e92cffef220fd1d0b7674c06da7cce4dca274b89dd0d357e991b",
-      "bodySha256": "89e024ed302f9de03e80382aed828006bcadd833e95db9ad1aa03188d0c6f45f",
+      "afterSha256": "9c4518b459f38532140d41563259e4b94c5afd56e34069d0883471f940b14c43",
+      "bodySha256": "211c9368a8076e1800780cdca5162a1c75234b46f59c1d9b14e43721e200100b",
       "preview": {
         "title": "Troubleshooting the Run | FORM",
         "description": "Small adjustments for when a run feels off."
