@@ -39,7 +39,8 @@ jobs:
           for f,text in data.items():
               p=Path(f);p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text,encoding='utf-8')
           url='https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/86/e3/a2/86e3a2ad-9576-26b3-232b-f6f0505c367e/E.png/600x1300bb-60.jpg'
-          with urllib.request.urlopen(url,timeout=30) as r: image=r.read()
+          with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0'}),timeout=30) as r: image=r.read()
+          print('Apple image sha256:',hashlib.sha256(image).hexdigest(),'bytes:',len(image))
           assert hashlib.sha256(image).hexdigest()=='8e5c5392188de4a8498fe05ca69889a6e5bfaf560daa89b94225128d5afd913f'
           photo='assets/forge/store-20260917/today.jpg';p=Path(photo);p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(image)
           subprocess.run(['python','scripts/render-sculpt-share.py'],check=True)
