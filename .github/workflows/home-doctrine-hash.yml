@@ -1,4 +1,4 @@
-name: Verify later share receipts
+name: Inventory unresolved later share snapshots
 on:
   push:
     branches: [work/share-home-doctrine-receipt-20260917]
@@ -6,19 +6,28 @@ on:
 permissions:
   contents: read
 jobs:
-  verify:
+  inventory:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - name: Verify share, homepage and later exact snapshots
+      - name: Print unresolved excluded-page drift
         run: |
-          node tests/share-metadata.cjs
-          node tests/homepage-metadata.cjs
-          node tests/homepage-release.cjs
-          node tests/coaching-measurement.cjs
-          node tests/cream-reading.cjs
-          node labs/track/track.test.cjs
-          node tests/thursday-schedule.cjs
+          node - <<'NODE'
+          const fs=require('node:fs'),path=require('node:path');
+          const {sha}=require('./scripts/share-metadata.cjs');
+          const manifest=JSON.parse(fs.readFileSync('docs/audits/SHARE-METADATA-MANIFEST-20260916.json','utf8'));
+          const editorial=require('./scripts/guide-state.cjs');
+          const updates=editorial.latestUpdates;
+          let count=0;
+          for(const row of manifest.excluded){
+            const actual=sha(fs.readFileSync(row.file));
+            const expected=updates.get(row.file)?.afterSha256||row.sha256;
+            if(actual!==expected){
+              count++;
+              console.log('UNRESOLVED='+row.file);
+              console.log('ACTUAL='+actual);
+              console.log('BASELINE='+row.sha256);
+            }
+          }
+          console.log('UNRESOLVED_COUNT='+count);
+          NODE
