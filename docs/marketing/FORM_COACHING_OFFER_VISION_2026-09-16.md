@@ -72,6 +72,18 @@ The operating sequence is:
 
 The goal is not perfect form. The goal is better running.
 
+## Development loop refinement
+
+The compact athlete-development loop is:
+
+**See → choose → cue → practice → feel → repeat → own.**
+
+For planning and longer-horizon decisions, that loop sits inside the existing observe → game plan → retest → adjust model. The smaller loop describes what happens in the runner; the larger loop describes how coaching organizes the work.
+
+The end state is not perfect form or permanent dependence on coaching. It is better running that increasingly belongs to the athlete.
+
+Public sequencing follows the same rule: the homepage introduces the felt practice sparsely; /the-method carries the deeper explanation; specific Lab studies remain evidence and investigation surfaces rather than the general coaching manifesto.
+
 ## Product architecture
 
 ### FORM Analysis
