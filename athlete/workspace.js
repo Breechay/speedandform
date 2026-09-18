@@ -1,4 +1,4 @@
-import { resolvedStrengthWeek } from '/athlete/strength-fallback.js';
+import { resolvedStrengthWeek } from './strength-fallback.js';
 
 const esc = (value) => String(value ?? '')
   .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
