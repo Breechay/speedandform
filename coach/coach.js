@@ -2,8 +2,8 @@ import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorksp
 import { addPrivateNote, authorSession, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask, reviseSession } from '/private/data.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
 import { MONTHS, dayLabel, initials, rangeLabel, structureOf, titleAlreadySays } from '/private/render.js';
-import { renderAthleteWorkspace } from '/athlete/workspace.js';
 import { loadStrengthFallback } from '/athlete/strength-fallback.js';
+import { renderDeliveryOverview, renderCoachAthletePreview } from '/coach/delivery-view.js';
 
 // Account states only. The desk no longer labels athletes by a stored state —
 // the queue is derived from the record.
@@ -873,40 +873,14 @@ function heroHtml() {
 // Five bands, in order, and nothing before them. The composition is replaced as a
 // whole rather than patched, because every previous pass moved a component and
 // left the page shape that put the work below the fold.
-function deliveryOverviewHtml() {
-  const delivery = selectedRecord.deliveryOverview;
-  if (!delivery) return '';
-  const receiptTone = delivery.receiptState === 'proven' ? 'proven'
-    : delivery.receiptState === 'not_required' ? 'neutral' : 'open';
-  return `<section class="consoleDelivery" aria-label="Access and delivery">
-    <div><span>Access</span><b>${escapeHtml(delivery.accountLabel)}</b></div>
-    <div><span>Training</span><b>${escapeHtml(delivery.trainingLabel)}</b></div>
-    <div><span>Record in</span><b>${escapeHtml(delivery.recordingTarget)}</b></div>
-    <div class="consoleDelivery__receipt consoleDelivery__receipt--${receiptTone}"><span>Receipt</span><b>${escapeHtml(delivery.receiptLabel)}</b></div>
-  </section>`;
-}
-
-function athletePreviewHtml() {
-  const html = renderAthleteWorkspace(selectedRecord, {
-    view: 'today',
-    email: '',
-    fallbackProgram: selectedRecord.fallbackProgram || null,
-    fallbackWeek: 1
-  });
-  return `<details class="consoleAthletePreview">
-    <summary><span>ATHLETE VIEW</span><b>Preview Today</b><em>coach-owned read-only preview · not a sign-in</em></summary>
-    <div class="consoleAthletePreview__frame" inert aria-label="Athlete-facing Today preview">${html}</div>
-  </details>`;
-}
-
 function deskHtml() {
   return `<div class="coachConsole" id="deskMain">
     <nav class="consoleAthleteTabs" id="squadStrip" aria-label="Athletes"></nav>
     ${heroHtml()}
-    ${deliveryOverviewHtml()}
+    ${renderDeliveryOverview(selectedRecord.deliveryOverview)}
     ${runwayHtml()}
     ${workbenchHtml()}
-    ${athletePreviewHtml()}
+    ${renderCoachAthletePreview(selectedRecord)}
   </div>`;
 }
 
