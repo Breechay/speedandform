@@ -45,6 +45,9 @@ for (const athlete of [
   html = renderAthleteWorkspace(r, { view:'today', email:athlete.slug+'@example.com' });
   has(html, 'Your training is coach-managed.', athlete.slug+' no-plan state is coach-managed');
   has(html, 'No filing is expected on this website.', athlete.slug+' website does not invent filing');
+  has(html, '<span>Delivery</span><b>Coach-managed</b>', athlete.slug+' Today names delivery');
+  has(html, '<span>Training</span><b>Not published here</b>', athlete.slug+' Today names publication state');
+  has(html, '<span>Website</span><b>Read only</b>', athlete.slug+' Today names website authority');
   lacks(html, 'Record completed sessions in Forge', athlete.slug+' does not invent Forge');
   lacks(html, 'Record completed sessions in FORM', athlete.slug+' does not invent FORM');
 
