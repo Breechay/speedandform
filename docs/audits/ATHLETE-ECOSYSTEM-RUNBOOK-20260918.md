@@ -2,7 +2,7 @@
 
 Owner: Brice  
 Scope: bounded athlete/account passes 1–12  
-Release posture: **SOURCE COMPLETE · WEB PRODUCTION HELD · TWO NATIVE DEVICE GATES OPEN**
+Release posture: **SOURCE COMPLETE · SCHEMA LIVE · WEB PRODUCTION HELD · TWO NATIVE DEVICE GATES OPEN**
 
 This is the closure receipt for the September 17–18 athlete ecosystem work. It records what is built, what is live, what is deliberately held, and the exact order to release or operate the system without re-auditing the whole project.
 
@@ -32,7 +32,7 @@ A separate concurrent main commit, `5ca47fd0fea3a6a81c58cafe8eb4ad8fea068d5a`, w
 
 ## 2 · Held database work
 
-Two additive migrations are source-accepted but intentionally unapplied:
+The two additive migrations are now **applied live** in the FORM Athlete System:
 
 ### A. Evidence → review → next instruction
 `supabase/migrations/20260918002500_evidence_review_instruction_chain.sql`
@@ -64,14 +64,12 @@ Acceptance:
 - fixture fully rolled back;
 - source CI green.
 
-### Apply order
-Apply **A, then B**, because that preserves chronological migration order and makes the deployed schema match the repository exactly. Neither migration requires data backfill.
+### Applied migration receipt
+Applied successfully, in order, after the Pass 12 closure:
+1. `evidence_review_instruction_chain` — migration history version `20260918090830`
+2. `form_native_exact_retry_noop` — migration history version `20260918090839`
 
-After each apply:
-1. verify migration appears in the project migration history;
-2. run the corresponding source contract;
-3. perform the smallest rollback/read-only verification possible;
-4. do not create a real athlete completion merely to prove the migration.
+Both were applied through the FORM Athlete System migration API from the exact SQL committed on main. No data backfill was required and no real athlete completion was created merely to prove them.
 
 ## 3 · Web release order
 
@@ -86,11 +84,7 @@ Confirm:
 Do not infer this from a merge to main.
 
 ### Gate 1 — schema
-Apply:
-1. `20260918002500_evidence_review_instruction_chain.sql`
-2. `20260918011500_form_native_exact_retry_noop.sql`
-
-If either fails, stop. Do not deploy the dependent web source.
+**Complete.** Both accepted migrations are live. Do not reapply them.
 
 ### Gate 2 — deploy accepted main
 Deploy the then-current main only after comparing it to this closure receipt. If unrelated main work landed afterward, run its own release checks rather than assuming this receipt accepts it.
@@ -335,3 +329,20 @@ There are only three meaningful next moves:
 3. **Close FORM assigned-plan device gate** — needs Mac/current-head + designated real test account/device.
 
 Everything else is ordinary coaching/product operation, not unfinished Pass 1–12 implementation.
+
+## 12 · September 18 web-release attempt
+
+Brice delegated the next move; the selected path was **web release first**.
+
+Completed:
+- both held Supabase migrations were applied successfully and verified in migration history;
+- current GitHub main was checked for concurrent work. Relative to the Pass 12 closure, the only later main change is a documentation-only Test 02 landing-page master brief;
+- Netlify production was re-read and still serves deploy `6aac3e68f243b00008917eea`, commit `dd8cfef0fb8348290b4ccd79ff681f141b6e4f1e`.
+
+Blocked:
+- the Netlify deploy connector requires an authenticated local-source upload;
+- the available runtime cannot resolve GitHub directly;
+- the visible Netlify browser profile is signed out and has no stored credentials;
+- a strict browser automation attempt stopped without making changes.
+
+Therefore **schema is live, web source is still held**. No production publication claim is made.
