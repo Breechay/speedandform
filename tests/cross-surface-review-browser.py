@@ -147,6 +147,9 @@ try:
         check('RPD desktop: share >=44', min_box(page, '#share'))
         check('RPD desktop: week arrow >=44', min_box(page, '#next'))
       check(f'RPD {width}: no overflow', page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
+      page.locator('#plan').focus()
+      focus = page.locator('#plan').evaluate("e=>({style:getComputedStyle(e).outlineStyle,width:parseFloat(getComputedStyle(e).outlineWidth)})")
+      check(f'RPD {width}: keyboard focus visible', focus['style'] != 'none' and focus['width'] >= 2)
 
       # A verification outage is not rendered as lost access or a repurchase.
       page.evaluate("document.dispatchEvent(new CustomEvent('form:access-unavailable'))")
