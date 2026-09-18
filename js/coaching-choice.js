@@ -1,3 +1,36 @@
+/* Paid-social landing continuation. This runs before homepage-motion.js, so a
+   paid visit can swap the hero film before the lazy video source is consumed.
+   Organic/referral visits do not change. */
+(function () {
+  'use strict';
+  var params;
+  try { params = new URLSearchParams(window.location.search); } catch (_) { return; }
+  var source = (params.get('utm_source') || '').toLowerCase();
+  var medium = (params.get('utm_medium') || '').toLowerCase();
+  var paid = medium === 'paid_social' || source === 'meta' || source === 'facebook_ads' || source === 'instagram_ads';
+  if (!paid) return;
+
+  document.documentElement.classList.add('meta-paid');
+  if (!document.getElementById('metaLandingStyles')) {
+    var stylesheet = document.createElement('link');
+    stylesheet.id = 'metaLandingStyles';
+    stylesheet.rel = 'stylesheet';
+    stylesheet.href = '/css/meta-landing.css?v=20260917-v1';
+    document.head.appendChild(stylesheet);
+  }
+
+  var hero = document.querySelector('.hero');
+  if (!hero) return;
+  hero.setAttribute('data-landing-variant', 'meta-paid-v1');
+  window.formLandingVariant = 'meta-paid-v1';
+
+  var poster = hero.querySelector('img');
+  if (poster) poster.src = '/media/practice.jpg?v=rd26';
+  var film = document.getElementById('filmA');
+  if (film) film.setAttribute('data-src', '/media/practice.mp4?v=rd16');
+
+})();
+
 /* Progressive, select-only combobox. The original select remains the inquiry's
    source of truth and fallback. No pricing, delivery or tracking logic here.
    Keyboard model: WAI-ARIA APG select-only combobox. */
