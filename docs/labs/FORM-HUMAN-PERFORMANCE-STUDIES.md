@@ -70,6 +70,52 @@ Bad:
 Bad:
 > The method is proven.
 
+## 2A. Anti-robot rule
+
+Human Performance Studies can look technical. The writing should not perform technicality.
+
+The copy should feel like someone close to the athlete wrote down what happened, what they think it means, and what they are doing next.
+
+### What makes the voice work
+
+- short sentences;
+- concrete verbs;
+- specific body parts, sessions, dates and outcomes;
+- a willingness to say `we do not know yet`;
+- a sentence can stop once the point is made;
+- the coach sounds confident enough not to decorate the thought.
+
+### What kills the voice
+
+- abstract noun stacks;
+- over-explaining obvious logic;
+- trying to sound scientific when the evidence is ordinary coaching evidence;
+- combining multiple phase ideas into one slogan;
+- phrases that are technically grammatical but nobody would say aloud;
+- turning every training decision into a framework sentence.
+
+If the plain version is accurate, use it.
+
+Prefer:
+> Find the tolerable dose.
+
+Over:
+> Establish the minimum effective loading architecture.
+
+Prefer:
+> Legs stay conservative.
+
+Over:
+> Lower-body fatigue stays bounded by running response.
+
+Prefer:
+> Repeat it. See how he runs after.
+
+Over:
+> Confirm the intervention inside the rising run week.
+
+The page can borrow the **form** of a research file. The prose should stay human.
+
 ## 3. Three writing temperatures
 
 A study page should deliberately move between three registers.
