@@ -10,6 +10,10 @@ const rpdAccessStyles = read('plans/race-pace-durability/access.css');
 const rpdSource = read('plans/race-pace-durability/source.js');
 const restore = read('plans/race-pace-durability/access/access.js');
 const restorePage = read('plans/race-pace-durability/access/index.html');
+const athletePage = read('athlete/index.html');
+const coachPage = read('coach/index.html');
+const recordPage = read('record/index.html');
+const callbackPage = read('auth/record-callback/index.html');
 
 let checks = 0;
 const has = (text, re, message) => { assert.match(text, re, message); checks += 1; };
@@ -47,5 +51,11 @@ lacks(restorePage, /secure sign-in link/i, 'restore page uses plain sign-in lang
 has(restorePage, />Send sign-in link</, 'restore CTA says what it does');
 has(restorePage, /It matches your email<br>to the purchase\./, 'restore copy names the actual email-to-purchase proof');
 lacks(restorePage, /proves the purchase<br>belongs to you/i, 'restore copy does not overstate identity proof');
+
+for (const [name, page] of [['athlete',athletePage],['coach',coachPage],['record',recordPage],['callback',callbackPage]]) {
+  has(page, /\/private\/graphite\.css\?v=43/, name + ' refreshes the shared private stylesheet');
+}
+has(athletePage, /\/athlete\/workspace\.css\?v=2/, 'athlete refreshes workspace CSS');
+has(coachPage, /\/athlete\/workspace\.css\?v=2/, 'coach preview refreshes workspace CSS');
 
 console.log(`PASS: ${checks} cross-surface accessibility/recovery checks`);
