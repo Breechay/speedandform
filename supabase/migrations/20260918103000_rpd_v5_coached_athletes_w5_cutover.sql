@@ -15,6 +15,7 @@
 -- never overwritten.
 
 set local search_path=public,pg_temp;
+select set_config('request.jwt.claims','{"sub":"79d1520c-7c7c-4cd2-bd31-229a3cc56158"}',true);
 
 do $$
 declare
