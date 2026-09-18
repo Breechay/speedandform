@@ -1,9 +1,11 @@
 import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorkspace, renderDoorway, signOut } from '/private/auth.js';
-import { addPrivateNote, authorSession, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask, reviseSession } from '/private/data.js';
+import { addPrivateNote, authorSession, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession } from '/private/data.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
 import { MONTHS, dayLabel, initials, rangeLabel, structureOf, titleAlreadySays } from '/private/render.js';
 import { loadStrengthFallback } from '/athlete/strength-fallback.js';
 import { renderDeliveryOverview, renderCoachAthletePreview } from '/coach/delivery-view.js';
+import { renderCoachReviewChain } from '/coach/review-chain-view.js';
+import { athleteWording, reviewChainFor } from '/private/review-chain.js';
 
 // Account states only. The desk no longer labels athletes by a stored state —
 // the queue is derived from the record.
@@ -30,6 +32,8 @@ const decisionDialog = document.getElementById('decisionDialog');
 const decisionForm = document.getElementById('decisionForm');
 const coachingDialog = document.getElementById('coachingDialog');
 const coachingForm = document.getElementById('coachingForm');
+const reviewNextDialog = document.getElementById('reviewNextDialog');
+const reviewNextForm = document.getElementById('reviewNextForm');
 const noteDialog = document.getElementById('noteDialog');
 const noteForm = document.getElementById('noteForm');
 const shareDialog = document.getElementById('shareDialog');
@@ -50,6 +54,8 @@ const rungDialog = document.getElementById('rungDialog');
 const rungForm = document.getElementById('rungForm');
 let editingCheckpointId = null;
 let judgingCompletionId = null;
+let reviewNextCompletionId = null;
+let reviewNextExistingReadId = null;
 // Set when the session dialog is revising rather than authoring. A revision
 // appends a version; authoring makes the session.
 let revisingSessionId = null;
@@ -497,6 +503,7 @@ function adHocInspectorHtml(completion) {
       completion.duration_seconds ? clock(completion.duration_seconds) : ''
     ].filter(Boolean).join(' \u00b7 '))}</span></p>
     ${evidenceFactsHtml(completion)}
+    ${renderCoachReviewChain(selectedRecord, completion.id)}
     <div class="ins-actions">
       <button type="button" data-correct="${escapeHtml(completion.id)}">CORRECT ENTRY</button>
       <button type="button" data-judge="${escapeHtml(completion.id)}">SAY WHAT THIS DID</button>
@@ -523,6 +530,7 @@ function sessionInspectorHtml(session) {
   if (done) return `<div class="inspect">
     ${head}
     ${evidenceFactsHtml(done)}
+    ${renderCoachReviewChain(selectedRecord, done.id)}
     <div class="ins-actions">
       <button type="button" data-correct="${escapeHtml(done.id)}">CORRECT ENTRY</button>
       <button type="button" data-judge="${escapeHtml(done.id)}">SAY WHAT THIS DID</button>
@@ -987,6 +995,8 @@ function bindDesk() {
     button.addEventListener('click', () => openFile(button.dataset.file)));
   app.querySelectorAll('[data-correct]').forEach((button) =>
     button.addEventListener('click', () => openFile('', button.dataset.correct)));
+  app.querySelectorAll('[data-review-next]').forEach((button) =>
+    button.addEventListener('click', () => openReviewNext(button.dataset.reviewNext)));
   document.getElementById('addPrivateNote')?.addEventListener('click', () => { noteForm.reset(); document.getElementById('noteStatus').textContent = ''; noteDialog.showModal(); });
   document.getElementById('shareExcerpt')?.addEventListener('click', openShare);
 }
@@ -1002,6 +1012,63 @@ async function selectAthlete(athleteId) {
   selectedRecord.fallbackProgram = await loadStrengthFallback(selectedRecord.athlete).catch(() => null);
   app.innerHTML = deskHtml(); bindDesk();
   history.replaceState(null, '', `/coach/?athlete=${encodeURIComponent(selectedRecord.athlete.slug)}`);
+}
+
+function liveSessionsForReview(completion) {
+  const filedOn = String(completion?.filed_at || '').slice(0, 10);
+  const sourceSession = (selectedRecord.sessions || []).find((item) => item.id === completion?.planned_session_id);
+  const after = sourceSession?.scheduled_on || filedOn;
+  const live = (selectedRecord.sessions || [])
+    .filter((session) => session.currentVersion && session.state !== 'cancelled' && !session.withdrawn_at)
+    .sort((a, b) => String(a.scheduled_on || '').localeCompare(String(b.scheduled_on || '')) || a.position - b.position);
+  const future = live.filter((session) => !after || !session.scheduled_on || session.scheduled_on > after);
+  return future.length ? future : live;
+}
+
+function toggleReviewNextDelivery() {
+  const external = reviewNextForm.elements.deliveryState.value === 'delivered_externally';
+  reviewNextForm.querySelector('[data-review-external]').hidden = !external;
+  reviewNextForm.elements.directionDeliveredWording.required = external;
+  reviewNextForm.elements.readDeliveredWording.required = external && !reviewNextExistingReadId;
+}
+
+function openReviewNext(completionId) {
+  reviewNextForm.reset();
+  reviewNextCompletionId = completionId;
+  const completion = (selectedRecord.completions || []).find((item) => item.id === completionId);
+  if (!completion) return;
+  const chain = reviewChainFor(selectedRecord, completionId);
+  reviewNextExistingReadId = chain.read?.id || null;
+
+  const evidenceIds = chain.read?.completionIds?.length ? chain.read.completionIds : [completionId];
+  reviewNextForm.elements.completionIds.innerHTML = (selectedRecord.completions || []).map((item) => {
+    const session = (selectedRecord.sessions || []).find((candidate) => candidate.id === item.planned_session_id);
+    const selected = evidenceIds.includes(item.id) ? ' selected' : '';
+    return `<option value="${escapeHtml(item.id)}"${selected}>${escapeHtml(formatDate(item.filed_at))} · ${escapeHtml(session?.currentVersion?.title || item.status)}</option>`;
+  }).join('');
+
+  const nextSessions = liveSessionsForReview(completion);
+  reviewNextForm.elements.plannedSessionId.innerHTML = nextSessions.map((session) =>
+    `<option value="${escapeHtml(session.id)}">${escapeHtml(session.day_label)} · ${escapeHtml(formatDate(session.scheduled_on))} · ${escapeHtml(session.currentVersion?.title || 'Session')}</option>`
+  ).join('') || '<option value="" disabled>No live session available</option>';
+
+  const readText = chain.read ? athleteWording(chain.read) : '';
+  reviewNextForm.elements.readAthleteText.value = readText;
+  reviewNextForm.elements.questionAnswered.value = chain.read?.question_answered || '';
+  reviewNextForm.elements.readAthleteText.readOnly = Boolean(chain.read);
+  reviewNextForm.elements.questionAnswered.readOnly = Boolean(chain.read);
+  reviewNextForm.elements.completionIds.disabled = Boolean(chain.read);
+  reviewNextForm.elements.deliveryState.value = chain.read?.delivery_state === 'delivered_externally'
+    ? 'delivered_externally' : 'published';
+  reviewNextForm.elements.readDeliveredWording.value = chain.read?.delivered_wording || '';
+  reviewNextForm.elements.readDeliveredWording.readOnly = Boolean(chain.read);
+
+  const session = (selectedRecord.sessions || []).find((item) => item.id === completion.planned_session_id);
+  document.getElementById('reviewNextContext').textContent =
+    `${selectedRecord.athlete.first_name || selectedRecord.athlete.display_name} · ${session?.currentVersion?.title || 'filed evidence'}`;
+  document.getElementById('reviewNextStatus').textContent = '';
+  toggleReviewNextDelivery();
+  reviewNextDialog.showModal();
 }
 
 function openDecision(actionId) {
@@ -1696,6 +1763,7 @@ fileForm.addEventListener('submit', async (event) => {
 dialogs.forEach((dialog) => dialog.querySelectorAll('[data-close-dialog]').forEach((button) => button.addEventListener('click', () => dialog.close())));
 [...coachingForm.elements.objectType].forEach((radio) => radio.addEventListener('change', toggleCoachingFields));
 coachingForm.elements.deliveryState.addEventListener('change', toggleCoachingFields);
+reviewNextForm.elements.deliveryState.addEventListener('change', toggleReviewNextDelivery);
 
 decisionForm.addEventListener('submit', async (event) => {
   event.preventDefault(); const form = new FormData(decisionForm); const status = document.getElementById('decisionStatus'); const button = decisionForm.querySelector('button[type="submit"]');
@@ -1736,6 +1804,48 @@ coachingForm.addEventListener('submit', async (event) => {
     }
     coachingDialog.close(); await refreshSelected(true);
   } catch (error) { status.textContent = error.message; status.className = 'status-message error'; button.disabled = false; }
+});
+
+reviewNextForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const form = new FormData(reviewNextForm);
+  const status = document.getElementById('reviewNextStatus');
+  const button = reviewNextForm.querySelector('button[type="submit"]');
+  button.disabled = true;
+  status.textContent = 'Publishing review and next instruction…';
+  try {
+    const completionIds = reviewNextExistingReadId
+      ? (reviewChainFor(selectedRecord, reviewNextCompletionId).read?.completionIds || [reviewNextCompletionId])
+      : form.getAll('completionIds').filter(Boolean);
+    const executionContext = {};
+    if (form.get('surface')) executionContext.surface = form.get('surface');
+    const priorityTargets = String(form.get('priorityTargets') || '').split('\n').map((line) => line.trim()).filter(Boolean);
+    await publishReviewAndDirection({
+      athleteId: selectedId,
+      completionIds,
+      readAthleteText: form.get('readAthleteText'),
+      questionAnswered: form.get('questionAnswered'),
+      plannedSessionId: form.get('plannedSessionId'),
+      directionAthleteText: form.get('directionAthleteText'),
+      protectedVariable: form.get('protectedVariable'),
+      movableVariable: form.get('movableVariable'),
+      stopOrChangeIf: form.get('stopOrChangeIf'),
+      priorityTargets,
+      executionContext,
+      deliveryState: form.get('deliveryState'),
+      readDeliveredWording: reviewNextExistingReadId ? null : form.get('readDeliveredWording'),
+      directionDeliveredWording: form.get('directionDeliveredWording'),
+      existingReadId: reviewNextExistingReadId
+    });
+    reviewNextDialog.close();
+    reviewNextCompletionId = null;
+    reviewNextExistingReadId = null;
+    await refreshSelected(true);
+  } catch (error) {
+    status.textContent = error.message;
+    status.className = 'status-message error';
+    button.disabled = false;
+  }
 });
 
 noteForm.addEventListener('submit', async (event) => {
