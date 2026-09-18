@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "season_id": "adrian_developed_runner_2026",
-  "canonical_source": "/plans/adrian-developed-runner-2026/program.json",
+  "program_id": "adrian_runner_mass_phase1_v1",
   "legacy_forge_program_id": "adrian_runner_mass_phase1_v1",
   "athlete": "Adrian Gandara",
   "athlete_slug": "adrian",
@@ -9,6 +9,14 @@
   "status": "coach_authored",
   "start_date": "2026-09-14",
   "end_date": "2026-12-31",
+  "duration_weeks": 16,
+  "sessions_per_week": 4,
+  "authority": {
+    "system": "FORM Athlete System",
+    "athlete_slug": "adrian",
+    "rule": "The athlete's authored block, weeks and immutable session versions are the prescription source of truth. This JSON is a web projection and must not independently revise the athlete."
+  },
+  "projection_path": "/plans/adrian-developed-runner-2026/program.json",
   "sessions_per_week_default": 4,
   "objective": "Build a visibly stronger, more substantial runner—more chest depth, arm girth, medial-thigh density, hamstring and calf development—while preserving Adrian's light, elastic and fast running.",
   "primary_constraint": "Running quality remains intact. Strength supports the runner; it never earns the right to degrade the run week.",
