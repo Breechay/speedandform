@@ -45,5 +45,7 @@ has(restore, /Nothing was charged or changed/, 'purchase restore failure does no
 lacks(restore, /Sending a secure link/, 'restore flow uses plain sign-in language');
 lacks(restorePage, /secure sign-in link/i, 'restore page uses plain sign-in language');
 has(restorePage, />Send sign-in link</, 'restore CTA says what it does');
+has(restorePage, /It matches your email<br>to the purchase\./, 'restore copy names the actual email-to-purchase proof');
+lacks(restorePage, /proves the purchase<br>belongs to you/i, 'restore copy does not overstate identity proof');
 
 console.log(`PASS: ${checks} cross-surface accessibility/recovery checks`);
