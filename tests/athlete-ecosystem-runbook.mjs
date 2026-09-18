@@ -24,8 +24,8 @@ has(runbook,/Do not distribute the native assigned-plan beta before this gate cl
 lacks(runbook,/all passes are live/i,'runbook never overclaims production');
 
 has(passes,/\| 11 \|[\s\S]*MERGED \+ ACCEPTED; PRODUCTION HELD/,'Pass 11 is closed without claiming deployment');
-has(passes,/\| 12 \|[\s\S]*COMPLETE; RELEASE HELD/,'Pass 12 is complete without claiming production release');
-has(roadmap,/source-complete through Pass 12/,'master roadmap points at closure state');
+has(passes,/\| 12 \|[\s\S]*COMPLETE; SCHEMA \+ WEB LIVE, ANONYMOUS PROD ACCEPTED/,'Pass 12 records the current live release boundary');
+has(roadmap,/complete through Pass 12; schema and exact current web `main` are now live/,'master roadmap points at closure state');
 has(roadmap,/ATHLETE-ECOSYSTEM-RUNBOOK-20260918\.md/,'master roadmap links runbook');
 
 console.log(`PASS: ${checks} athlete ecosystem closure/runbook checks`);
