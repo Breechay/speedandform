@@ -69,6 +69,22 @@ has(athleteJs,'no current Forge week is inferred');
 has(athleteJs,'data-fallback-week-step');
 lacks(athleteJs,'fileSession');
 
+const adrianStyle = read('plans/adrian-runner-mass-phase-01/plan.css');
+for (const phrase of [
+  '--canvas:#efeee8',
+  '--paper:#fbfaf6',
+  '--ink:#11110f',
+  '--max:760px',
+  'border-radius:22px',
+  'font-family:-apple-system',
+]) has(adrianStyle, phrase);
+lacks(adrianStyle, 'prefers-color-scheme:dark');
+
+const seasonPage = read('plans/adrian-developed-runner-2026/index.html');
+has(seasonPage, 'One season.');
+has(seasonPage, 'class="weekcard"');
+has(seasonPage, 'Strength yields to racing.');
+
 const handoff = read('plans/adrian-runner-mass-phase-01/FORGE_HANDOFF.md');
 has(handoff,'Prescription authority');
 has(handoff,'Do not independently author a second Adrian progression');
