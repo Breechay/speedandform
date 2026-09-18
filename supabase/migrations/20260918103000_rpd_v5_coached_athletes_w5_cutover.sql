@@ -394,4 +394,4 @@ begin
      where a.slug='hope' and m.active and m.is_primary
        and m.current_question='How far can you hold 6:45–7:00 without it coming apart?'
   ) then raise exception 'Hope primary mark still carries the stale race-pace band'; end if;
-end $;
+end $$;
