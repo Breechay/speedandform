@@ -61,7 +61,7 @@ async function sendLink(value) {
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
   button.disabled = true;
-  say('Sending a secure link…');
+  say('Sending a sign-in link…');
   try {
     await sendLink(email.value);
     say('Check your email. Open the FORM link on this device and your purchase will restore automatically.', 'success');
@@ -73,4 +73,7 @@ form.addEventListener('submit', async (event) => {
   }
 });
 
-restore().catch(() => {});
+restore().catch(() => {
+  say('We couldn’t check this purchase right now. Nothing was charged or changed. Try again in a moment.', 'error');
+  button.disabled = false;
+});
