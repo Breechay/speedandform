@@ -25,6 +25,7 @@ declare
   parts jsonb;
   mark_id uuid;
   changed_count integer := 0;
+  hope_target_count integer := 0;
 begin
   select p.id, v.id into v_plan, v5
     from public.training_plans p
@@ -160,6 +161,101 @@ begin
     raise exception 'expected 10 Hope/Jose v5 Thursday revisions, wrote %',changed_count;
   end if;
 
+  -- Hope's latest public study is the athlete-specific authority:
+  -- race pace 6:45–7:00/mi; threshold about 6:20–6:25/mi.
+  --
+  -- Resolve those numbers only into her future W5-W15 occurrence versions.
+  -- The underlying public Plan stays athlete-relative/generic, and W1-W4 evidence
+  -- is untouched. Explicit coach overrides remain authoritative and are skipped.
+  for r in
+    select ps.id occurrence_id,
+           ps.override_reason,
+           s.id plan_session_id,
+           s.title,s.intent,s.details,s.prescribed_distance,s.distance_unit,
+           w.week_number,s.day_of_week
+      from public.planned_sessions ps
+      join public.athletes a on a.id=ps.athlete_id and a.slug='hope'
+      join public.training_weeks aw on aw.id=ps.week_id
+      join public.training_plan_sessions s on s.id=ps.plan_session_id and s.version_id=v5
+      join public.training_plan_weeks w on w.id=s.plan_week_id
+     where ps.state<>'cancelled'
+       and aw.week_number=w.week_number
+       and w.week_number between 5 and 15
+     order by w.week_number,s.position
+  loop
+    if r.override_reason is not null then
+      continue;
+    end if;
+
+    -- Only write a new athlete occurrence version when this session contains a
+    -- race-pace mark component or is one of the v5 threshold-spine Thursdays.
+    if not exists (
+      select 1 from public.training_plan_components c
+       where c.plan_session_id=r.plan_session_id and c.counts_toward_mark
+    ) and not (
+      r.day_of_week='THU' and r.week_number in (5,8,10,13)
+    ) then
+      continue;
+    end if;
+
+    select coalesce(jsonb_agg(jsonb_strip_nulls(jsonb_build_object(
+      'role',c.role,
+      'shape',c.shape,
+      'position',c.position,
+      'distance',c.distance,
+      'distanceUnit',c.distance_unit,
+      'durationSeconds',c.duration_seconds,
+      'repeatCount',c.repeat_count,
+      -- Hope race-pace work: 6:45–7:00.
+      -- Hope threshold-spine work: 6:20–6:25.
+      'paceLowSeconds',case
+        when c.counts_toward_mark then 405
+        when r.day_of_week='THU' and r.week_number in (5,8,10,13) and c.role='work' then 380
+        else c.pace_low_seconds
+      end,
+      'paceHighSeconds',case
+        when c.counts_toward_mark then 420
+        when r.day_of_week='THU' and r.week_number in (5,8,10,13) and c.role='work' then 385
+        else c.pace_high_seconds
+      end,
+      'rpeLow',c.rpe_low,
+      'rpeHigh',c.rpe_high,
+      'recoveryKind',c.recovery_kind,
+      'recoverySeconds',c.recovery_seconds,
+      'countsTowardMarkId',case when c.counts_toward_mark then mark_id end
+    )) order by c.position),'[]'::jsonb)
+    into parts
+    from public.training_plan_components c
+    where c.plan_session_id=r.plan_session_id;
+
+    -- mark_id was most recently loaded for the previous athlete loop; resolve
+    -- Hope's own primary mark explicitly before writing her athlete-specific copy.
+    select id into mark_id
+      from public.athlete_marks
+     where athlete_id=(select id from public.athletes where slug='hope')
+       and active and is_primary
+     limit 1;
+
+    perform public.write_session_version(
+      r.occurrence_id,
+      r.title,
+      r.intent,
+      r.prescribed_distance,
+      r.distance_unit,
+      null,
+      null,
+      null,
+      'Hope study canon effective W5: race pace 6:45–7:00/mi; threshold 6:20–6:25/mi. Earlier evidence remains unchanged.',
+      parts,
+      r.details
+    );
+    hope_target_count := hope_target_count + 1;
+  end loop;
+
+  if hope_target_count = 0 then
+    raise exception 'Hope v5 cutover wrote no study-canon future targets';
+  end if;
+
   -- Proofs: both assignments are v5, W4 remains v4, W5 Thursday is 3 × 10,
   -- and no active future occurrence points at a pre-v5 plan session.
   if exists (
@@ -238,4 +334,47 @@ begin
   ) <> 2 then
     raise exception 'W5 Thursday v5 3 × 10 / 3 min anatomy missing';
   end if;
-end $$;
+
+  if not exists (
+    select 1
+      from public.planned_sessions ps
+      join public.athletes a on a.id=ps.athlete_id and a.slug='hope'
+      join public.training_weeks aw on aw.id=ps.week_id and aw.week_number=5
+      join lateral (
+        select v.* from public.planned_session_versions v
+         where v.planned_session_id=ps.id order by v.version_number desc limit 1
+      ) lv on true
+      join public.planned_session_components c on c.version_id=lv.id
+     where ps.state<>'cancelled'
+       and ps.day_label='TUE'
+       and c.role='work'
+       and c.repeat_count=5
+       and c.distance=1
+       and c.distance_unit='mi'
+       and c.pace_low='6:45'
+       and c.pace_high='7:00'
+       and c.recovery_seconds=120
+       and c.recovery_kind='float'
+  ) then raise exception 'Hope W5 Tuesday does not carry study-canon 6:45–7:00 / 2 min float'; end if;
+
+  if not exists (
+    select 1
+      from public.planned_sessions ps
+      join public.athletes a on a.id=ps.athlete_id and a.slug='hope'
+      join public.training_weeks aw on aw.id=ps.week_id and aw.week_number=5
+      join lateral (
+        select v.* from public.planned_session_versions v
+         where v.planned_session_id=ps.id order by v.version_number desc limit 1
+      ) lv on true
+      join public.planned_session_components c on c.version_id=lv.id
+     where ps.state<>'cancelled'
+       and ps.day_label='THU'
+       and lv.title='Threshold 3 × 10 min'
+       and c.role='work'
+       and c.repeat_count=3
+       and c.duration_seconds=600
+       and c.pace_low='6:20'
+       and c.pace_high='6:25'
+       and c.recovery_seconds=180
+  ) then raise exception 'Hope W5 Thursday does not carry study-canon threshold 6:20–6:25'; end if;
+end $;
