@@ -51,6 +51,7 @@ html,body{
 body{min-height:100vh}
 button,a{font:inherit}
 button{cursor:pointer}
+button:focus-visible,a:focus-visible{outline:2px solid var(--lime);outline-offset:4px}
 
 .page-shell{width:100%;padding:18px 34px 18px;position:relative}
 /* Content rides above the atmosphere. Nothing else about it changes. */
@@ -172,6 +173,7 @@ h1{font-size:51px;line-height:1.01;margin:0 0 16px;letter-spacing:-.038em;font-w
 
 .plan-section{margin-bottom:22px}
 .plan-section:focus{outline:none}
+.plan-section:focus-visible{outline:2px solid var(--lime);outline-offset:6px}
 .plan-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 17px 2px}
 .plan-head h2{font-size:16px;letter-spacing:.38em;font-weight:500;margin:0}
 .week-now{display:flex;align-items:center;gap:14px;color:#c0c8ca;font-size:15px}
