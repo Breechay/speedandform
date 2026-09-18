@@ -1,0 +1,45 @@
+name: Athlete ecosystem closure
+
+on:
+  push:
+    branches: [work/athlete-ecosystem-runbook-20260918]
+  pull_request:
+    paths:
+      - 'docs/audits/ATHLETE-ECOSYSTEM-RUNBOOK-20260918.md'
+      - 'docs/roadmap/ATHLETE-ECOSYSTEM-PASSES-20260917.md'
+      - 'docs/roadmap/FORM-ROADMAP.md'
+      - 'tests/athlete-ecosystem-runbook.mjs'
+      - '.github/workflows/athlete-ecosystem-closure.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  closure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Closure boundaries
+        run: |
+          node tests/athlete-ecosystem-runbook.mjs
+          node tests/cross-surface-review.mjs
+          node tests/form-native-retry-idempotency.mjs
+          node scripts/check-contracts.mjs
+      - name: Preserve closure receipt
+        run: |
+          mkdir -p /tmp/athlete-ecosystem-closure
+          git rev-parse HEAD > /tmp/athlete-ecosystem-closure/commit.txt
+          cp docs/audits/ATHLETE-ECOSYSTEM-RUNBOOK-20260918.md /tmp/athlete-ecosystem-closure/
+          cp docs/roadmap/ATHLETE-ECOSYSTEM-PASSES-20260917.md /tmp/athlete-ecosystem-closure/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: athlete-ecosystem-closure
+          path: /tmp/athlete-ecosystem-closure/
+          retention-days: 7
