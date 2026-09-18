@@ -21,7 +21,9 @@ function esc(value){
   const program=await response.json();
   const week=program.weeks.find(w=>w.week===weekNumber);
   if(!week) throw new Error('Week unavailable');
-  const days=cloneDays(program,week);\n  const sessionCount=document.getElementById('session-count');\n  if(sessionCount) sessionCount.textContent=String(days.length);
+  const days=cloneDays(program,week);
+  const sessionCount=document.getElementById('session-count');
+  if(sessionCount) sessionCount.textContent=String(days.length);
 
   document.title=`Adrian — Developed Runner Week ${String(weekNumber).padStart(2,'0')} | FORM`;
   const eyebrow=document.getElementById('eyebrow');
