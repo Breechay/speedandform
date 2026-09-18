@@ -6,11 +6,11 @@
 
 ## Decision
 
-Adrian's ongoing strength development now has one machine-readable source:
+Adrian's ongoing strength development now has one prescription authority: the live **FORM Athlete System** record for athlete `adrian`.
 
-`/plans/adrian-developed-runner-2026/program.json`
+Migration `adrian_developed_runner_2026` is applied in project `FORM Athlete System`. It created the active block `The Developed Runner · 2026`, 16 authored weeks and 58 published strength sessions from September 14 through December 31.
 
-The prior three-week Runner Mass JSON is retained only as historical Phase 01 evidence.
+`/plans/adrian-developed-runner-2026/program.json` is the unlisted web projection used by plan/study surfaces. It does not outrank or independently revise the athlete record. The prior three-week Runner Mass JSON is retained only as historical Phase 01 evidence.
 
 ## Why the plan changed after Week 01
 
@@ -39,13 +39,17 @@ The final authored day is **December 31, 2026**. January requires a fresh decisi
 
 ## Source consumers
 
-The following now resolve the same canonical season:
-- Adrian athlete web fallback;
+The athlete-system block, weeks and immutable session versions own future prescription.
+
+The following are projections or delivery surfaces of that decision:
+- Adrian athlete website;
 - Week 02 / Week 03 legacy links;
 - generic Week 04–16 season view;
 - season overview;
 - FORM Labs study;
 - Forge handoff contract.
+
+The web projection must be updated with the athlete record, never instead of it.
 
 ## Study standard
 
@@ -65,8 +69,24 @@ No body-mass gain, circumference gain, hypertrophy result or causal success is c
 
 The study page is built so coaching can develop alongside the evidence, but it is deliberately `noindex,nofollow` and not added to the public Labs directory until explicit case-study consent exists.
 
+## Canonical verification
+
+Live verification after the migration:
+
+- active block: `The Developed Runner · 2026`;
+- 16 weeks;
+- 58 published strength sessions;
+- Week 02: 4 sessions;
+- Week 09, November 15 10K race week: 3 sessions;
+- Week 12, December 6 half-marathon race week: 3 sessions;
+- Week 16 closeout: 2 sessions;
+- 0 session completions attached to the new block;
+- 0 Forge strength receipts.
+
+The zeroes matter. The prescription is authored; completed work has not been invented.
+
 ## Native boundary
 
-Forge is not declared synchronized merely because the web source changed.
+Forge is not declared synchronized because the backend or web changed.
 
-The native program must be regenerated / imported from the canonical source and pass installed-device acceptance before it becomes the recording authority for the extended season. Historical receipt identity remains immutable.
+Native delivery must consume the FORM Athlete System assignment/feed path, preserve exact session/version identity, and pass installed-device acceptance before Forge is called current for the extended season. Historical receipt identity remains immutable. The active iOS work should not hand-author a competing 16-week program.
