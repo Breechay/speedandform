@@ -60,7 +60,7 @@ a { color: inherit; }
 /* §9: the record's only nav. Now · Read · Support · Record · Account · Sign out. */
 .record-nav { position: relative; }
 .record-nav > summary {
-  list-style: none; width: 40px; height: 40px; display: grid; place-items: center;
+  list-style: none; width: 44px; height: 44px; display: grid; place-items: center;
   border: 1px solid var(--edge); border-radius: var(--radius-sm); cursor: pointer;
 }
 .record-nav > summary::-webkit-details-marker { display: none; }
@@ -217,7 +217,7 @@ a { color: inherit; }
 }
 .auth-card.doorway .auth-secondary:hover { border-color: rgba(255, 255, 255, .12); background: rgba(255, 255, 255, .04); color: #eef1ff; }
 .auth-magic-note { position: relative; z-index: 1; margin: 10px 0 0; color: #6f7d97; font-size: 11px; line-height: 1.55; }
-.auth-card.doorway .link-button { color: #9faadb; font-size: 12px; text-decoration: none; }
+.auth-card.doorway .link-button { min-height:44px; display:inline-flex; align-items:center; border:0; background:transparent; color:#9faadb; padding:0 2px; font-size:12px; text-decoration:none; cursor:pointer; }
 .auth-card.doorway .link-button:hover { color: #d8d3ff; }
 .workspace-chooser { display: grid; gap: 12px; }
 .workspace-chooser h1 { max-width: none; margin-bottom: 4px; }
@@ -2435,10 +2435,10 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 .part-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(72px, 1fr)); gap: 8px; }
 .part-fields label { display: grid; gap: 3px; font-size: 9.5px; letter-spacing: .11em; text-transform: uppercase;
   color: var(--muted); font-weight: 600; }
-.part-drop { align-self: center; background: none; border: 0; color: var(--muted); font-size: 17px; line-height: 1; padding: 4px; cursor: pointer; }
+.part-drop { align-self:center; width:44px; height:44px; display:grid; place-items:center; background:none; border:0; color:var(--muted); font-size:17px; line-height:1; padding:0; cursor:pointer; }
 .part-drop:hover { color: var(--coral); }
 .parts-actions { display: flex; align-items: center; gap: 14px; margin-top: 12px; }
-.parts-add { font-size: 12px; font-weight: 600; color: var(--lime); }
+.parts-add { min-height:44px; display:inline-flex; align-items:center; border:0; background:transparent; padding:0 4px; font-size:12px; font-weight:600; color:var(--lime); cursor:pointer; }
 .parts-add:hover { text-decoration: underline; }
 .parts-note { font-size: 11.5px; color: var(--muted); }
 .parts-note.changed { color: var(--lime); }
@@ -2539,7 +2539,10 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 }
 .coachReviewChain > div strong { font-size: 13px; line-height: 1.5; }
 .coachReviewChain button {
-  margin-top: 14px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 8px;
   border: 0;
   background: transparent;
   color: var(--lime);
