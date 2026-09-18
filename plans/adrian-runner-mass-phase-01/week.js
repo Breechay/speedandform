@@ -16,14 +16,16 @@ function esc(value){
 
 (async function(){
   const weekNumber=Number(document.body.dataset.week||1);
-  const response=await fetch('/plans/adrian-runner-mass-phase-01/program.json',{cache:'no-store'});
+  const response=await fetch('/plans/adrian-developed-runner-2026/program.json',{cache:'no-store'});
   if(!response.ok) throw new Error('Program unavailable');
   const program=await response.json();
   const week=program.weeks.find(w=>w.week===weekNumber);
   if(!week) throw new Error('Week unavailable');
   const days=cloneDays(program,week);
+  const sessionCount=document.getElementById('session-count');
+  if(sessionCount) sessionCount.textContent=String(days.length);
 
-  document.title=`Adrian — Runner Mass Week ${String(weekNumber).padStart(2,'0')} | FORM`;
+  document.title=`Adrian — Developed Runner Week ${String(weekNumber).padStart(2,'0')} | FORM`;
   const eyebrow=document.getElementById('eyebrow');
   const title=document.getElementById('title');
   const sub=document.getElementById('sub');

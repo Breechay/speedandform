@@ -21,7 +21,7 @@ const week={id:'w4',week_number:4,starts_on:'2026-09-14',ends_on:'2026-09-20',in
 let athlete,record,opts;
 if(kind==='adrian'){
  athlete={id:'a',slug:'adrian',display_name:'Adrian Gandara',program_name:'Runner Mass · Phase 1',delivery:'coach',account_label:'Adrian',home_surface:'form'};
- const fallback=await fetch('/plans/adrian-runner-mass-phase-01/program.json').then(r=>r.json()); fallback.overview_path='/plans/adrian-runner-mass-phase-01/';
+ const fallback=await fetch('/plans/adrian-developed-runner-2026/program.json').then(r=>r.json()); fallback.overview_path='/plans/adrian-developed-runner-2026/';
  record={athlete,block:null,weeks:[],currentWeek:null,sessionsByWeek:{},completions:[],directions:[],reads:[],decisions:[],fallbackProgram:fallback};
  opts={};
 }else{

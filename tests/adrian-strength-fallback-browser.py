@@ -16,7 +16,7 @@ def check(name,value):
 HARNESS='''<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/private/graphite.css"><link rel="stylesheet" href="/athlete/workspace.css"></head><body><main id="app"></main><script type="module">
 import {renderAthleteWorkspace} from '/athlete/workspace.js';
 const p=new URLSearchParams(location.search),view=p.get('view')||'today',week=Number(p.get('week')||1);
-const fallback=await fetch('/plans/adrian-runner-mass-phase-01/program.json').then(r=>r.json()); fallback.overview_path='/plans/adrian-runner-mass-phase-01/';
+const fallback=await fetch('/plans/adrian-developed-runner-2026/program.json').then(r=>r.json()); fallback.overview_path='/plans/adrian-developed-runner-2026/';
 const record={athlete:{id:'a',display_name:'Adrian Gandara',account_label:'Adrian',delivery:'coach',home_surface:'form',program_name:'Runner Mass · Phase 1'},block:null,weeks:[],currentWeek:null,sessionsByWeek:{},completions:[],directions:[],reads:[],decisions:[]};
 document.getElementById('app').innerHTML=renderAthleteWorkspace(record,{view,email:'adrian@example.com',fallbackProgram:fallback,fallbackWeek:week});document.documentElement.dataset.ready='true';
 </script></body></html>'''
@@ -44,7 +44,7 @@ try:
         check(f'{view} {width}: no positive sync status','\nSynced\n' not in '\n'+body+'\n' and '\nConnected\n' not in '\n'+body+'\n')
         check(f'{view} {width}: no filing','File this session' not in body)
         if view=='today':
-          check(f'today {width}: fallback visible','Your three-week plan is here.' in body)
+          check(f'today {width}: fallback visible','Your development season is here.' in body)
           check(f'today {width}: no current inference','does not infer your current Forge week' in body)
         if view=='plan':
           check(f'plan {width}: baseline','Week 01 · Baseline' in body)
@@ -52,7 +52,7 @@ try:
           check(f'plan {width}: position warning','Position is not inferred from this page.' in body)
           check(f'plan {width}: all week navigation',page.locator('[data-fallback-week-step]').count()==2)
         if view=='history': check(f'history {width}: no fabricated receipt','No Forge history has reached this account yet.' in body)
-        if view=='account': check(f'account {width}: web reference','Runner Mass · Phase 01 · 3 weeks' in body)
+        if view=='account': check(f'account {width}: web reference','The Developed Runner · 2026 · 16 weeks' in body)
         if view in ['today','plan']: page.screenshot(path=str(OUT/f'{ENGINE}-{view}-{width}.png'),full_page=True)
         check(f'{view} {width}: no JS errors',not errors)
         ctx.close()
@@ -67,7 +67,7 @@ try:
         return r.fulfill(status=404,body='Not found')
       return r.abort()
     ctx.route('**/*',route3); page.goto(BASE+'/__fallback?view=plan&week=3'); page.wait_for_function("document.documentElement.dataset.ready==='true'")
-    body=page.locator('body').inner_text(); check('Week 3 renders','Week 03 · Confirm' in body); check('Week 3 keeps exercise menu','Incline Barbell Bench Press' in body); check('Week 3 still no receipt','RECEIVED' not in body); ctx.close()
+    body=page.locator('body').inner_text(); check('Week 3 renders','Week 03 · Confirm' in body); check('Week 3 keeps redirected menu','Incline Dumbbell Bench Press' in body); check('Week 3 still no receipt','RECEIVED' not in body); ctx.close()
     browser.close();report['result']='PASS'
 except Exception as e:
   report['result']='FAIL'; report['failure']=str(e); raise

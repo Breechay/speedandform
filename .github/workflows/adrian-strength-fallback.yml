@@ -1,11 +1,13 @@
 name: Adrian strength fallback acceptance
 on:
   push:
-    branches: [work/adrian-strength-fallback-20260917]
+    branches: [work/adrian-strength-fallback-20260917, work/adrian-developed-runner-2026-20260918]
   pull_request:
     paths:
       - 'athlete/**'
       - 'plans/adrian-runner-mass-phase-01/**'
+      - 'plans/adrian-developed-runner-2026/**'
+      - 'supabase/migrations/20260918142106_adrian_developed_runner_2026.sql'
       - 'tests/adrian-strength-fallback*'
       - '.github/workflows/adrian-strength-fallback.yml'
   workflow_dispatch:
@@ -51,7 +53,7 @@ jobs:
         run: |
           mkdir -p /tmp/adrian-fallback
           git rev-parse HEAD > /tmp/adrian-fallback/commit.txt
-          git archive --format=zip HEAD -- athlete plans/adrian-runner-mass-phase-01 tests/adrian-strength-fallback.mjs tests/adrian-strength-fallback-browser.py .github/workflows/adrian-strength-fallback.yml > /tmp/adrian-fallback/source.zip
+          git archive --format=zip HEAD -- athlete plans/adrian-runner-mass-phase-01 plans/adrian-developed-runner-2026 supabase/migrations/20260918142106_adrian_developed_runner_2026.sql tests/adrian-strength-fallback.mjs tests/adrian-strength-fallback-browser.py .github/workflows/adrian-strength-fallback.yml > /tmp/adrian-fallback/source.zip
       - uses: actions/upload-artifact@v4
         if: always()
         with:
