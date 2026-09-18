@@ -6,70 +6,127 @@
   <meta name="theme-color" content="#f1f0eb" />
   <meta name="robots" content="noindex,nofollow" />
   <title>Adrian — The Developed Runner · 2026 | FORM</title>
-  <meta name="description" content="Adrian's September–December 2026 strength development season: build useful tissue and force without taking away the runner." />
+  <meta name="description" content="Adrian's September–December 2026 strength development season, built around the run week." />
   <link rel="canonical" href="https://speedandform.com/plans/adrian-developed-runner-2026/" />
   <link rel="stylesheet" href="/plans/adrian-runner-mass-phase-01/plan.css" />
   <style>
-    .phase{padding:26px 20px;border-bottom:1px solid var(--hair)}
-    .phase-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;margin-bottom:18px}
-    .phase h2{font-size:30px}.phase p{margin:8px 0 0;color:var(--muted);line-height:1.5;max-width:720px}
-    .phase-weeks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-    .phase-weeks a{display:flex;flex-direction:column;gap:5px;padding:14px;border:1px solid var(--soft);border-radius:12px;text-decoration:none;color:var(--ink)}
-    .phase-weeks a:hover{border-color:var(--hair);background:rgba(17,17,15,.025)}
-    .phase-weeks b{font-size:12px}.phase-weeks span{font-size:11px;color:var(--muted);line-height:1.35}
-    .race-list{padding:8px 20px 24px}.race{display:grid;grid-template-columns:100px 1fr;gap:14px;padding:14px 0;border-top:1px solid var(--soft)}
-    .race time{font-size:11px;color:var(--muted);font-weight:800;letter-spacing:.04em;text-transform:uppercase}.race b{display:block;font-size:15px}.race span{font-size:12px;color:var(--muted)}
-    @media(max-width:720px){.phase-weeks{grid-template-columns:1fr 1fr}.phase-head{display:block}.race{grid-template-columns:82px 1fr}}
+    .season-intro{margin:20px;padding:18px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);color:#34332f;font-size:13px;line-height:1.55}
+    .phase{border-bottom:1px solid var(--hair)}
+    .phase:last-of-type{border-bottom:0}
+    .phasehead{padding:25px 20px 4px}
+    .phasehead p{margin:8px 0 0;max-width:580px;color:var(--muted);font-size:13px;line-height:1.5}
+    .phase .weekcards{padding-top:0}
+    .race-list{padding:0}
+    .race-row{display:grid;grid-template-columns:92px minmax(0,1fr);gap:14px;align-items:baseline;padding:13px 0;border-top:1px solid var(--soft)}
+    .race-row:first-child{border-top:0}
+    .race-row time{color:var(--muted);font-size:11px;font-weight:760;letter-spacing:.06em;text-transform:uppercase}
+    .race-row b{display:block;font-size:15px;letter-spacing:-.015em}
+    .race-row span{display:block;margin-top:3px;color:var(--muted);font-size:12px;line-height:1.4}
+    code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em}
+    @media(max-width:520px){
+      .phasehead{padding-top:23px}
+      .season-intro{margin-inline:20px}
+      .race-row{grid-template-columns:78px minmax(0,1fr)}
+    }
   </style>
 </head>
 <body>
-  <main class="shell"><article class="paper">
-    <header class="topbar">
-      <div class="mark">FORM</div>
-      <div class="actions">
-        
-        <button class="pill" type="button" onclick="sharePlan(this)">Share</button>
-        <button class="pill" type="button" onclick="window.print()">PDF</button>
-      </div>
-    </header>
-    <section class="hero">
-      <p class="eyebrow">Adrian · September–December 2026</p>
-      <h1>Developed Runner.</h1>
-      <p class="sub">Build more body around an already proven running engine. Chest depth, sleeves, medial thigh, hamstrings and lower-leg strength — without taking away the lightness and speed.</p>
-    </section>
-    <section class="brief" aria-label="Season summary">
-      <div><strong id="week-count">16</strong><span>Weeks</span></div>
-      <div><strong id="phase-count">5</strong><span>Phases</span></div>
-      <div><strong>Run first</strong><span>Constraint</span></div>
-    </section>
-    <section class="note">
-      <strong>One source of truth</strong><br><br>
-      Every week on this page, the athlete fallback and the study read the same canonical file:
-      <code>/plans/adrian-developed-runner-2026/program.json</code>. Week 01 remains historical evidence; Week 02 onward can evolve only by changing that source.
-    </section>
-    <div id="phases"></div>
-    <section class="day">
-      <div class="dayhead"><div><p class="daynum">Race anchors</p><h2>Strength yields to racing.</h2></div><div class="focus">Running stays primary</div></div>
-      <div id="races" class="race-list"></div>
-    </section>
-    <section class="rules" id="rules" aria-label="Season rules"></section>
-    <footer><span>Developed Runner · 2026</span><span>Speed + Form</span></footer>
-  </article></main>
+  <main class="shell">
+    <article class="paper">
+      <header class="topbar">
+        <div class="mark">FORM</div>
+        <div class="actions">
+          <button class="pill" type="button" onclick="sharePlan(this)">Share</button>
+          <button class="pill" type="button" onclick="window.print()">PDF</button>
+        </div>
+      </header>
+
+      <section class="hero">
+        <p class="eyebrow">Adrian · September–December 2026</p>
+        <h1>Developed Runner.</h1>
+        <p class="sub">Build more body around an already proven running engine. Chest depth, sleeves, medial thigh, hamstrings and lower-leg strength — without taking away the lightness and speed.</p>
+      </section>
+
+      <section class="brief" aria-label="Season summary">
+        <div><strong id="week-count">16</strong><span>Weeks</span></div>
+        <div><strong id="phase-count">5</strong><span>Phases</span></div>
+        <div><strong>Run first</strong><span>Constraint</span></div>
+      </section>
+
+      <section class="season-intro">
+        <strong>One season.</strong><br><br>
+        The strength work develops around the running. Future weeks are authored now, but no week earns the right to make the runner worse. When the run response changes, the strength dose changes first.
+      </section>
+
+      <div id="phases"></div>
+
+      <section class="day">
+        <div class="dayhead">
+          <div>
+            <p class="daynum">Race anchors</p>
+            <h2>Strength yields to racing.</h2>
+          </div>
+          <div class="focus">Running stays primary</div>
+        </div>
+        <div id="races" class="race-list"></div>
+      </section>
+
+      <section class="rules" id="rules" aria-label="Season rules"></section>
+
+      <footer>
+        <span>Developed Runner · 2026</span>
+        <span>Speed + Form</span>
+      </footer>
+    </article>
+  </main>
+
 <script>
 const SOURCE='/plans/adrian-developed-runner-2026/program.json';
 const esc=(v)=>String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
-async function sharePlan(btn){const data={title:document.title,text:'Adrian — The Developed Runner · 2026',url:location.href};if(navigator.share){try{await navigator.share(data)}catch(e){}}else{try{await navigator.clipboard.writeText(location.href);const old=btn.textContent;btn.textContent='Copied';setTimeout(()=>btn.textContent=old,1200)}catch(e){}}}
+async function sharePlan(btn){
+  const data={title:document.title,text:'Adrian — The Developed Runner · 2026',url:location.href};
+  if(navigator.share){try{await navigator.share(data)}catch(e){}}
+  else{try{await navigator.clipboard.writeText(location.href);const old=btn.textContent;btn.textContent='Copied';setTimeout(()=>btn.textContent=old,1200)}catch(e){}}
+}
 (async()=>{
- const r=await fetch(SOURCE,{cache:'no-store'}); if(!r.ok) throw new Error('Season unavailable'); const p=await r.json();
- document.getElementById('week-count').textContent=p.weeks.length;
- document.getElementById('phase-count').textContent=p.phases.length;
- document.getElementById('phases').innerHTML=p.phases.map(ph=>{
-   const weeks=ph.weeks.map(n=>p.weeks.find(w=>w.week===n)).filter(Boolean);
-   return '<section class="phase"><div class="phase-head"><div><p class="daynum">Phase '+String(ph.phase).padStart(2,'0')+'</p><h2>'+esc(ph.name)+'</h2><p>'+esc(ph.intent)+'</p></div></div><div class="phase-weeks">'+weeks.map(w=>'<a href="'+esc(w.public_path)+'"><b>Week '+String(w.week).padStart(2,'0')+' · '+esc(w.name)+'</b><span>'+esc(w.start_date)+' → '+esc(w.end_date)+'</span></a>').join('')+'</div></section>';
- }).join('');
- document.getElementById('races').innerHTML=p.race_anchors.map(x=>'<div class="race"><time>'+esc(x.date||'After 2026')+'</time><div><b>'+esc(x.event)+'</b><span>'+esc(x.role)+'</span></div></div>').join('');
- document.getElementById('rules').innerHTML=p.progression_rules.map((rule,i)=>'<div class="rule"><b>'+String(i+1).padStart(2,'0')+'</b><span>'+esc(rule)+'</span></div>').join('');
-})().catch(err=>{document.getElementById('phases').innerHTML='<section class="day"><p class="sub">Season data could not load.</p></section>';console.error(err)});
+  const r=await fetch(SOURCE,{cache:'no-store'});
+  if(!r.ok) throw new Error('Season unavailable');
+  const p=await r.json();
+
+  document.getElementById('week-count').textContent=p.weeks.length;
+  document.getElementById('phase-count').textContent=p.phases.length;
+
+  document.getElementById('phases').innerHTML=p.phases.map(ph=>{
+    const weeks=ph.weeks.map(n=>p.weeks.find(w=>w.week===n)).filter(Boolean);
+    return '<section class="phase">'+
+      '<div class="phasehead">'+
+        '<p class="daynum">Phase '+String(ph.phase).padStart(2,'0')+'</p>'+
+        '<h2>'+esc(ph.name)+'</h2>'+
+        '<p>'+esc(ph.intent)+'</p>'+
+      '</div>'+
+      '<div class="weekcards">'+weeks.map(w=>
+        '<a class="weekcard" href="'+esc(w.public_path)+'">'+
+          '<span class="weeknum">Week '+String(w.week).padStart(2,'0')+'</span>'+
+          '<span><span class="weektitle">'+esc(w.name)+'</span>'+
+          '<span class="weekdesc">'+esc(w.start_date)+' → '+esc(w.end_date)+'</span></span>'+
+          '<span class="arrow">→</span>'+
+        '</a>'
+      ).join('')+'</div>'+
+    '</section>';
+  }).join('');
+
+  document.getElementById('races').innerHTML=p.race_anchors.map(x=>
+    '<div class="race-row"><time>'+esc(x.date||'After 2026')+'</time>'+
+      '<div><b>'+esc(x.event)+'</b><span>'+esc(x.role)+'</span></div></div>'
+  ).join('');
+
+  document.getElementById('rules').innerHTML=p.progression_rules.map((rule,i)=>
+    '<div class="rule"><b>'+String(i+1).padStart(2,'0')+'</b><span>'+esc(rule)+'</span></div>'
+  ).join('');
+})().catch(err=>{
+  document.getElementById('phases').innerHTML='<section class="day"><p class="sub">Season data could not load.</p></section>';
+  console.error(err);
+});
 </script>
 </body>
 </html>
