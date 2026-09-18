@@ -39,7 +39,10 @@ function identity(record) {
 
 function sessionsForWeek(record, week) {
   if (!week) return [];
-  const all = record.sessionsByWeek?.[week.id] || [];
+  // A week may retain superseded occurrences for evidence/history. Athlete-facing
+  // prescription must only use the live authored occurrence for each day.
+  const all = (record.sessionsByWeek?.[week.id] || [])
+    .filter((session) => session.state !== 'cancelled' && !session.withdrawn_at);
   return DAY_ORDER.map((day) => all.find((session) => (session.day_label || '').toUpperCase().startsWith(day.slice(0,3)))).filter(Boolean);
 }
 
