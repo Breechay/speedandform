@@ -1,0 +1,56 @@
+name: Homepage method bounded release
+on:
+  push:
+    branches: [release/homepage-method-20260918]
+    paths: [.github/workflows/homepage-method-bounded-release.yml]
+permissions:
+  contents: read
+jobs:
+  verify-package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify selected runtime files match main
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          files=(
+            index.html
+            css/homepage.css
+            css/coaching-choice.css
+            css/meta-landing.css
+            css/method.css
+            js/coaching-choice.js
+            js/homepage-motion.js
+            the-method.html
+            running-terms.html
+          )
+          for f in "${files[@]}"; do
+            test "$(git show origin/main:"$f" | sha256sum | awk '{print $1}')" = "$(sha256sum "$f" | awk '{print $1}')" || {
+              echo "Mismatch: $f"
+              exit 1
+            }
+            echo "MATCH $f"
+          done
+          grep -q 'Like a kite upon the wind.' index.html
+          grep -q 'Form is multiplied by every step.' index.html
+          grep -q 'Reveal what wants to be set free.' index.html
+          grep -q 'href="/the-method">Read the method' index.html
+          grep -q 'Develop the runner.' the-method.html
+          ! grep -q 'Simon Robin' index.html
+      - name: Package bounded production tree
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/homepage-method-release
+          mkdir -p /tmp/homepage-method-release
+          git archive --format=tar HEAD | tar -x -C /tmp/homepage-method-release
+          rm -rf /tmp/homepage-method-release/.github
+          cd /tmp
+          zip -qr FORM_Homepage_Method_Release_2026-09-18.zip homepage-method-release
+      - uses: actions/upload-artifact@v4
+        with:
+          name: FORM_Homepage_Method_Release_2026-09-18
+          path: /tmp/FORM_Homepage_Method_Release_2026-09-18.zip
+          retention-days: 14
