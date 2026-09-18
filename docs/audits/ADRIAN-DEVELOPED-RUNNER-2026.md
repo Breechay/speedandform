@@ -1,8 +1,9 @@
 # Adrian · The Developed Runner 2026 — authorship receipt
 
 **Date:** 2026-09-18  
-**Status:** authored on branch `work/adrian-developed-runner-2026-20260918`  
-**Publication:** athlete delivery staged separately from the study; public study remains held pending athlete consent
+**Status:** backend + athlete web delivery live  
+**Production:** PR #159 → `7d625f3976c36b906d597206fb6d2cf1162a5a74` → Netlify `6aad4c85968c990008a3c37b`  
+**Publication:** public study remains held pending explicit athlete consent
 
 ## Decision
 
@@ -67,7 +68,7 @@ No body-mass gain, circumference gain, hypertrophy result or causal success is c
 
 ## Publication boundary
 
-The study draft is preserved on companion branch `work/adrian-developed-runner-study-20260918`. It is intentionally excluded from the delivery branch so a merge cannot expose Adrian's case-study material before explicit consent. It is not added to the public Labs directory.
+The study draft is deliberately separate from athlete delivery and is not present on production. It must remain unlisted from the public Labs directory and unmerged until explicit case-study consent exists.
 
 ## Canonical verification
 
@@ -84,6 +85,16 @@ Live verification after the migration:
 - 0 Forge strength receipts.
 
 The zeroes matter. The prescription is authored; completed work has not been invented.
+
+## Web production receipt
+
+- merged PR: **#159**
+- production commit: `7d625f3976c36b906d597206fb6d2cf1162a5a74`
+- Netlify deploy: `6aad4c85968c990008a3c37b`
+- state: **ready**
+- published: **2026-09-18 14:37 UTC**
+- deploy summary reports the new Developed Runner season page, Week 02, Week 03, Phase 01 index and generic week view among the generated production pages
+- no FORM Labs Adrian study page was included in the deploy
 
 ## Native boundary
 
