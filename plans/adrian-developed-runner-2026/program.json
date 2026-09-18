@@ -79,10 +79,11 @@
       "source": "athlete report"
     },
     {
-      "date": null,
+      "date": "2027-02-13",
       "event": "Mesa Marathon · Mesa, Arizona",
-      "role": "next major marathon after this 2026 block",
-      "source": "athlete report"
+      "role": "main event / next major marathon after Chapter 01",
+      "source": "Mesa Marathon official Quick Info",
+      "source_url": "https://mesamarathon.com/info?tab=quick-info"
     }
   ],
   "publication": {
@@ -123,54 +124,54 @@
   "phases": [
     {
       "phase": 1,
-      "name": "Establish · Redirect · Confirm",
+      "name": "Establish",
       "weeks": [
         1,
         2,
         3
       ],
-      "intent": "Establish tolerance, then redirect the work toward Adrian's actual development needs without losing the running week."
+      "intent": "Find the tolerable dose, then redirect it. Nothing is pushed while the body learns to be loaded at all."
     },
     {
       "phase": 2,
-      "name": "Density + Force",
+      "name": "Density",
       "weeks": [
         4,
         5,
-        6,
-        7
+        6
       ],
-      "intent": "Build three-dimensional tissue and useful force in the chest, arms, medial thigh, hamstrings and lower leg while keeping lower-body fatigue bounded."
+      "intent": "Chest, arms, upper back, medial thigh, hamstrings, calves. Lower set count stays fixed."
     },
     {
       "phase": 3,
-      "name": "10K Integration",
+      "name": "Absorb",
       "weeks": [
+        7,
         8,
         9,
         10
       ],
-      "intent": "Keep strength present around the November 15 10K; race week trims lower-body fatigue instead of chasing gym progress."
+      "intent": "Cut lower volume into the November 15 race, then restore without a rebound spike."
     },
     {
       "phase": 4,
-      "name": "Race Strength",
+      "name": "Rebuild",
       "weeks": [
         11,
         12,
         13
       ],
-      "intent": "Rebuild after the 10K, protect the December 6 half, then restore normal strength rhythm."
+      "intent": "One productive week, then quiet legs for the December 6 half, then read what happened."
     },
     {
       "phase": 5,
-      "name": "Close the Year",
+      "name": "Close",
       "weeks": [
         14,
         15,
         16
       ],
-      "intent": "Finish 2026 with productive development, then close the block with measurements and low fatigue so January can start fresh."
+      "intent": "Return to the most productive dose, then close the block with measurements and low fatigue."
     }
   ],
   "weeks": [
@@ -529,7 +530,7 @@
     },
     {
       "week": 4,
-      "name": "Density I",
+      "name": "Density",
       "phase": 2,
       "start_date": "2026-10-05",
       "end_date": "2026-10-11",
@@ -703,7 +704,7 @@
     },
     {
       "week": 5,
-      "name": "Density II",
+      "name": "Accumulate",
       "phase": 2,
       "start_date": "2026-10-12",
       "end_date": "2026-10-18",
@@ -726,7 +727,7 @@
     {
       "week": 7,
       "name": "Absorb",
-      "phase": 2,
+      "phase": 3,
       "start_date": "2026-10-26",
       "end_date": "2026-11-01",
       "intent": "Keep the movement pattern and absorb the block before race-specific weeks begin.",
@@ -1551,7 +1552,7 @@
     },
     {
       "week": 14,
-      "name": "Year-End Build I",
+      "name": "Build",
       "phase": 5,
       "start_date": "2026-12-14",
       "end_date": "2026-12-20",
@@ -1725,7 +1726,7 @@
     },
     {
       "week": 15,
-      "name": "Year-End Build II",
+      "name": "Build Heavy",
       "phase": 5,
       "start_date": "2026-12-21",
       "end_date": "2026-12-27",
