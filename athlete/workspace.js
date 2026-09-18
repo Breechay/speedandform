@@ -93,11 +93,11 @@ function noPlan(record) {
 
 function fallbackToday(record, program) {
   return `<section class="athlete-view athlete-today strength-fallback" id="today">
-    <div class="athlete-view-head"><div><p class="eyebrow">Strength phase</p><h2>Your three-week plan is here.</h2></div><span>${esc(program.duration_weeks)} weeks</span></div>
+    <div class="athlete-view-head"><div><p class="eyebrow">Development season</p><h2>Your development season is here.</h2></div><span>${esc(program.duration_weeks)} weeks</span></div>
     <div class="fallback-hero"><p>${esc(program.objective)}</p><p>${esc(program.principle)}</p></div>
     <div class="fallback-status" role="note"><strong>Web reference available.</strong><p>This is the coach-authored fallback for ${esc(program.title)}. It does not infer your current Forge week, create a workout receipt, or say anything has synced.</p></div>
     <div class="today-context"><p>${esc(program.weeks?.[0]?.intent || '')}</p><p class="athlete-app-note">Record completed strength sessions in <strong>Forge</strong> when you are using the accepted app workflow. Until then, this web plan remains the readable fallback.</p></div>
-    <button class="text-action" type="button" data-athlete-view="plan">Open the three-week plan →</button>
+    <button class="text-action" type="button" data-athlete-view="plan">Open the 2026 plan →</button>
   </section>`;
 }
 
