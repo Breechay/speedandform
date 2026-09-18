@@ -1,0 +1,29 @@
+name: FORM native backend contract
+
+on:
+  push:
+    branches: [work/form-native-retry-idempotency-20260917]
+  pull_request:
+    paths:
+      - 'supabase/migrations/20260918011500_form_native_exact_retry_noop.sql'
+      - 'tests/form-native-retry-idempotency.mjs'
+      - 'docs/audits/FORM-NATIVE-PASS10-BACKEND-20260917.md'
+      - '.github/workflows/form-native-backend-contract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Exact retry contract
+        run: node tests/form-native-retry-idempotency.mjs
+      - name: Shared repository contracts
+        run: node scripts/check-contracts.mjs
