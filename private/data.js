@@ -5,10 +5,58 @@ function result(data, error) {
   return data || [];
 }
 
+export function deliveryOverviewFor(athlete, {
+  athleteMemberships = [], invites = [], assignments = [], blocks = [],
+  formReceipts = [], forgeReceipts = []
+} = {}) {
+  const activeMembership = athleteMemberships.find((item) =>
+    item.role === 'athlete' && item.status === 'active');
+  const now = Date.now();
+  const openInvite = invites.find((item) => item.role === 'athlete'
+    && !item.claimed_at
+    && (!item.expires_at || new Date(item.expires_at).getTime() > now));
+  const assignment = assignments.slice().sort((a, b) =>
+    String(b.assigned_at || '').localeCompare(String(a.assigned_at || '')))[0] || null;
+  const block = blocks.find((item) => item.status === 'active') || blocks[0] || null;
+  const words = [athlete?.program_name, athlete?.account_label].filter(Boolean).join(' ').toLowerCase();
+  const strength = /forge|sculpt|strength|physique|runner\s+mass/.test(words);
+  const hasWebFallback = athlete?.slug === 'adrian' && /runner\s+mass/.test(words);
+
+  const accountState = activeMembership ? 'linked' : openInvite ? 'invited' : 'not_linked';
+  const accountLabel = activeMembership ? 'Account linked' : openInvite ? 'Invite pending' : 'No athlete account';
+
+  const trainingState = assignment ? 'assigned_plan' : block ? 'coach_block' : hasWebFallback ? 'web_fallback' : 'not_published';
+  const trainingLabel = assignment ? 'Assigned plan'
+    : block ? (block.name || 'Coach-authored block')
+    : hasWebFallback ? 'Web fallback'
+    : 'No private plan';
+
+  const recordingTarget = strength ? 'Forge' : athlete?.delivery === 'app' ? 'FORM' : 'Coach direct';
+  const nativeReceipt = recordingTarget === 'Forge'
+    ? forgeReceipts.slice().sort((a, b) => String(b.received_at || '').localeCompare(String(a.received_at || '')))[0] || null
+    : recordingTarget === 'FORM'
+      ? formReceipts.slice().sort((a, b) => String(b.filed_at || '').localeCompare(String(a.filed_at || '')))[0] || null
+      : null;
+  const receiptState = recordingTarget === 'Coach direct' ? 'not_required' : nativeReceipt ? 'proven' : 'not_proven';
+  const receiptLabel = receiptState === 'proven' ? 'Native receipt proven'
+    : receiptState === 'not_required' ? 'Native receipt not required'
+    : 'Native receipt not yet proven';
+
+  return {
+    accountState, accountLabel, trainingState, trainingLabel,
+    recordingTarget, receiptState, receiptLabel,
+    hasWebFallback, assignment, block, nativeReceipt
+  };
+}
+
 export async function loadCoachRoster(coachMemberships) {
   const athleteIds = coachMemberships.map((item) => item.athlete_id);
   if (!athleteIds.length) return [];
-  const [attentionResponse, markResponse, checkpointResponse, confidenceResponse, ownedResponse, preferenceResponse] = await Promise.all([
+  const [
+    attentionResponse, markResponse, checkpointResponse, confidenceResponse,
+    ownedResponse, preferenceResponse, athleteMembershipResponse, inviteResponse,
+    assignmentResponse, blockResponse, formReceiptResponse, forgeReceiptResponse
+  ] = await Promise.all([
     supabase.from('coach_attention').select('*').in('athlete_id', athleteIds)
       .order('priority').order('occurred_at', { ascending: false, nullsFirst: false }),
     supabase.from('athlete_marks').select('*').in('athlete_id', athleteIds).eq('active', true).eq('is_primary', true),
@@ -19,20 +67,45 @@ export async function loadCoachRoster(coachMemberships) {
     supabase.from('athlete_continuous_owned').select('*').in('athlete_id', athleteIds),
     // Optional until the roster reconciliation migration is applied. A missing
     // preference table must not take the existing Console down during rollout.
-    supabase.from('console_preferences').select('*').maybeSingle()
+    supabase.from('console_preferences').select('*').maybeSingle(),
+    // Delivery status is a coach read, not an authorization shortcut. Never load
+    // invite email here; the Console only needs whether the athlete has claimed.
+    supabase.from('athlete_memberships').select('athlete_id,user_id,role,status,created_at')
+      .in('athlete_id', athleteIds).eq('role', 'athlete'),
+    supabase.from('access_invites').select('athlete_id,role,claimed_at,expires_at,created_at')
+      .in('athlete_id', athleteIds).eq('role', 'athlete'),
+    supabase.from('plan_assignments').select('athlete_id,plan_id,plan_version_id,block_id,starts_on,assigned_at')
+      .in('athlete_id', athleteIds),
+    supabase.from('training_blocks').select('athlete_id,name,status,source,plan_id,plan_version_id')
+      .in('athlete_id', athleteIds).eq('status', 'active'),
+    supabase.from('session_completions').select('athlete_id,source,filed_at,evidence_id')
+      .in('athlete_id', athleteIds).eq('source', 'form').order('filed_at', { ascending: false }),
+    supabase.from('forge_strength_receipts').select('athlete_id,program_id,received_at,receipt_id')
+      .in('athlete_id', athleteIds).order('received_at', { ascending: false })
   ]);
-  if (attentionResponse.error) throw attentionResponse.error;
-  if (markResponse.error) throw markResponse.error;
-  if (checkpointResponse.error) throw checkpointResponse.error;
+  [
+    attentionResponse, markResponse, checkpointResponse, confidenceResponse, ownedResponse,
+    athleteMembershipResponse, inviteResponse, assignmentResponse, blockResponse,
+    formReceiptResponse, forgeReceiptResponse
+  ].forEach(({ error }) => { if (error) throw error; });
   const attention = attentionResponse.data || [];
   // Ordered by what actually needs the coach, not by a stored priority column.
   const rows = coachMemberships.map((membership) => {
     const items = attention.filter((item) => item.athlete_id === membership.athlete_id);
+    const athlete = membership.athletes;
     return {
-      ...membership.athletes,
+      ...athlete,
       membership,
       attention: items,
       topItem: items[0] || null,
+      deliveryOverview: deliveryOverviewFor(athlete, {
+        athleteMemberships: (athleteMembershipResponse.data || []).filter((item) => item.athlete_id === membership.athlete_id),
+        invites: (inviteResponse.data || []).filter((item) => item.athlete_id === membership.athlete_id),
+        assignments: (assignmentResponse.data || []).filter((item) => item.athlete_id === membership.athlete_id),
+        blocks: (blockResponse.data || []).filter((item) => item.athlete_id === membership.athlete_id),
+        formReceipts: (formReceiptResponse.data || []).filter((item) => item.athlete_id === membership.athlete_id),
+        forgeReceipts: (forgeReceiptResponse.data || []).filter((item) => item.athlete_id === membership.athlete_id)
+      }),
       mark: (() => {
         const mark = markResponse.data?.find((item) => item.athlete_id === membership.athlete_id) || null;
         const derived = (ownedResponse?.data || []).find((row) => row.athlete_id === membership.athlete_id);
