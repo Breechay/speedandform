@@ -2,6 +2,8 @@ import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorksp
 import { addPrivateNote, authorSession, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, resolveCoachTask, reviseSession } from '/private/data.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
 import { MONTHS, dayLabel, initials, rangeLabel, structureOf, titleAlreadySays } from '/private/render.js';
+import { loadStrengthFallback } from '/athlete/strength-fallback.js';
+import { renderDeliveryOverview, renderCoachAthletePreview } from '/coach/delivery-view.js';
 
 // Account states only. The desk no longer labels athletes by a stored state —
 // the queue is derived from the record.
@@ -875,8 +877,10 @@ function deskHtml() {
   return `<div class="coachConsole" id="deskMain">
     <nav class="consoleAthleteTabs" id="squadStrip" aria-label="Athletes"></nav>
     ${heroHtml()}
+    ${renderDeliveryOverview(selectedRecord.deliveryOverview)}
     ${runwayHtml()}
     ${workbenchHtml()}
+    ${renderCoachAthletePreview(selectedRecord)}
   </div>`;
 }
 
@@ -992,7 +996,10 @@ async function selectAthlete(athleteId) {
   shownWeekId = null;
   app.innerHTML = '<div class="loading" aria-label="Loading athlete"></div>';
   selectedRecord = await loadAthleteRecord(athleteId, { coach: true });
-  selectedRecord.attention = roster.find((entry) => entry.id === athleteId)?.attention || await loadAttentionFor(athleteId);
+  const rosterEntry = roster.find((entry) => entry.id === athleteId);
+  selectedRecord.attention = rosterEntry?.attention || await loadAttentionFor(athleteId);
+  selectedRecord.deliveryOverview = rosterEntry?.deliveryOverview || null;
+  selectedRecord.fallbackProgram = await loadStrengthFallback(selectedRecord.athlete).catch(() => null);
   app.innerHTML = deskHtml(); bindDesk();
   history.replaceState(null, '', `/coach/?athlete=${encodeURIComponent(selectedRecord.athlete.slug)}`);
 }
@@ -1747,7 +1754,10 @@ shareForm.addEventListener('submit', async (event) => {
 
 async function refreshSelected(animate = false) {
   const access = await getAccessContext(); roster = await loadCoachRoster(access.coachMemberships); selectedRecord = await loadAthleteRecord(selectedId, { coach: true });
-  selectedRecord.attention = roster.find((entry) => entry.id === selectedId)?.attention || [];
+  const rosterEntry = roster.find((entry) => entry.id === selectedId);
+  selectedRecord.attention = rosterEntry?.attention || [];
+  selectedRecord.deliveryOverview = rosterEntry?.deliveryOverview || null;
+  selectedRecord.fallbackProgram = await loadStrengthFallback(selectedRecord.athlete).catch(() => null);
   app.innerHTML = deskHtml(); if (animate) document.querySelector('.situation')?.classList.add('resolve-in'); bindDesk();
 }
 

@@ -1,0 +1,62 @@
+name: Console delivery overview acceptance
+on:
+  push:
+    branches: [work/console-delivery-overview-20260917]
+  pull_request:
+    paths:
+      - 'coach/**'
+      - 'athlete/**'
+      - 'private/**'
+      - 'tests/console-delivery-*'
+      - '.github/workflows/console-delivery-overview.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: console-delivery-overview-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Delivery truth source checks
+        run: |
+          node tests/console-delivery-overview.mjs
+          node tests/four-runner-reconciliation.mjs
+          node tests/athlete-access.cjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser runtime
+        run: |
+          python -m pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium webkit
+      - name: Chromium delivery journeys
+        env:
+          BROWSER: chromium
+          CONSOLE_DELIVERY_ARTIFACTS: /tmp/console-delivery/chromium
+        run: python tests/console-delivery-browser.py
+      - name: WebKit delivery journeys
+        env:
+          BROWSER: webkit
+          CONSOLE_DELIVERY_ARTIFACTS: /tmp/console-delivery/webkit
+        run: python tests/console-delivery-browser.py
+      - name: Preserve review source
+        if: always()
+        run: |
+          mkdir -p /tmp/console-delivery
+          git rev-parse HEAD > /tmp/console-delivery/commit.txt
+          git archive --format=zip HEAD -- coach athlete private tests/console-delivery-overview.mjs tests/console-delivery-browser.py .github/workflows/console-delivery-overview.yml > /tmp/console-delivery/source.zip
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: console-delivery-overview-review
+          path: /tmp/console-delivery/
+          retention-days: 5
