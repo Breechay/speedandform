@@ -40,6 +40,7 @@ has(rpdAccessStyles, /\.circle\{width:44px;height:44px\}/, 'RPD mobile week arro
 
 has(rpdSource, /Your training has not changed\. Try again or open your account\. There is no need to make another payment\./, 'RPD failed verification preserves access truth');
 has(rpdSource, /id="rpdRetry"/, 'RPD failed verification has retry');
+has(restore, /if \(!response\.ok\) \{\n    throw new Error\('Purchase lookup unavailable'\);/, 'restore transport failure is not treated as no purchase');
 has(restore, /Nothing was charged or changed/, 'purchase restore failure does not imply payment or access change');
 lacks(restore, /Sending a secure link/, 'restore flow uses plain sign-in language');
 lacks(restorePage, /secure sign-in link/i, 'restore page uses plain sign-in language');
