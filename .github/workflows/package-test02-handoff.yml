@@ -1,0 +1,76 @@
+name: Package Test 02 handoff
+on:
+  push:
+    branches: [work/package-test02-handoff-20260918]
+    paths: [.github/workflows/package-test02-handoff.yml]
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build handoff package
+        run: |
+          set -euo pipefail
+          root=/tmp/FORM_Landing_Page_Test_02_Handoff_2026-09-18
+          mkdir -p "$root/docs/marketing"
+          cp docs/marketing/FORM_LANDING_PAGE_TEST_02_MASTER_BRIEF_2026-09-18.md "$root/docs/marketing/"
+          cp docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md "$root/docs/"
+          cp docs/marketing/ATHLETE_LANGUAGE_RULE.md "$root/docs/marketing/"
+          cp docs/marketing/FORM_COACHING_OFFER_VISION_2026-09-16.md "$root/docs/marketing/"
+          cat > "$root/README_START_HERE.md" <<'EOF'
+          # FORM Landing Page Test 02 — Handoff
+          
+          This package freezes the September 18, 2026 landing-page strategy work so it can be picked up later without reconstructing the conversation.
+          
+          ## Where we left off
+          
+          - Meta campaign `FORM · Miami · Run · Test 01` was paused at **$70.62 spend**, **2,424 impressions**, **51 link clicks**, and **43 Meta landing-page views**.
+          - Latest campaign-tagged GA4 read discussed in the brief: **70 sessions**, **11 engaged sessions** (~16%).
+          - One known real paid-social coaching inquiry (Jorge); the FORM test lead is excluded from real-inquiry reasoning.
+          - The newer Run Development homepage changes had **not reached production during Test 01**, so visitors continued seeing the older live landing page. Treat Test 01 as the clean old-page baseline.
+          - Do **not** restart paid traffic until the next landing experience is actually deployed and production-verified.
+          
+          ## Recommended restart sequence
+          
+          1. Read `docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md`.
+          2. Read `docs/marketing/FORM_LANDING_PAGE_TEST_02_MASTER_BRIEF_2026-09-18.md`.
+          3. Run the seven independent reviewer roles in the brief separately.
+          4. Synthesize into: **keep / remove / unresolved / experiment / evidence needed**.
+          5. Build only three concepts:
+             - A — Doctrine compressed
+             - B — Coaching-first
+             - C — Outcome-to-method
+          6. Prototype at **390 × 844** first, then desktop.
+          7. Optionally challenge the strongest concept in **Framer** and **Unbounce** before committing to a platform change.
+          8. Implement the selected concept.
+          9. Verify the exact production deploy ID, commit and publication time.
+          10. Only then launch `FORM · Miami · Run · Test 02` with a new landing/version identifier.
+          
+          ## Core editorial filter
+          
+          **Say it once, then move on.**
+          
+          If a sentence could live unchanged on hundreds of running-coach websites, it should not define FORM.
+          
+          The public site should reveal the practice progressively rather than explain everything at once.
+          
+          ## Core lines worth protecting
+          
+          - I develop runners.
+          - I look for ease.
+          - Running should click.
+          - Change what matters most.
+          - Repeat until it belongs to you.
+          - Form is multiplied by every step.
+          - Like a kite upon the wind.
+          - Reveal what wants to be set free.
+          EOF
+          cd /tmp
+          zip -qr FORM_Landing_Page_Test_02_Handoff_2026-09-18.zip FORM_Landing_Page_Test_02_Handoff_2026-09-18
+      - uses: actions/upload-artifact@v4
+        with:
+          name: FORM_Landing_Page_Test_02_Handoff_2026-09-18
+          path: /tmp/FORM_Landing_Page_Test_02_Handoff_2026-09-18.zip
+          retention-days: 14
