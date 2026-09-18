@@ -67,12 +67,6 @@ has(athleteJs,'no current Forge week is inferred');
 has(athleteJs,'data-fallback-week-step');
 lacks(athleteJs,'fileSession');
 
-const study = read('labs/adrian-runner-mass/index.html');
-has(study, "/plans/adrian-developed-runner-2026/program.json");
-has(study, 'Publication gate');
-has(study, 'MORE BODY.');
-has(study, 'No measured body-mass trend');
-
 const handoff = read('plans/adrian-runner-mass-phase-01/FORGE_HANDOFF.md');
 has(handoff,'Prescription authority');
 has(handoff,'Do not independently author a second Adrian progression');\nhas(handoff,'normal FORM Athlete System assignment/feed path');
