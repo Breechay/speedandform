@@ -1,12 +1,13 @@
 name: Athlete workspace acceptance
 on:
   push:
-    branches: [work/athlete-workspace-20260917]
+    branches: [work/athlete-workspace-20260917, work/roster-athlete-experiences-20260917]
   pull_request:
     paths:
       - 'athlete/**'
       - 'tests/athlete-workspace.mjs'
       - 'tests/athlete-workspace-browser.py'
+      - 'tests/roster-athlete-experience.mjs'
       - '.github/workflows/athlete-workspace.yml'
   workflow_dispatch:
 permissions:
@@ -28,6 +29,7 @@ jobs:
       - name: Workspace source and renderer checks
         run: |
           node tests/athlete-workspace.mjs
+          node tests/roster-athlete-experience.mjs
           node tests/athlete-access.cjs
       - uses: actions/setup-python@v5
         with:
@@ -51,7 +53,7 @@ jobs:
         run: |
           mkdir -p /tmp/athlete-workspace
           git rev-parse HEAD > /tmp/athlete-workspace/commit.txt
-          git archive --format=zip HEAD -- athlete private tests/athlete-workspace.mjs tests/athlete-workspace-browser.py .github/workflows/athlete-workspace.yml > /tmp/athlete-workspace/source.zip
+          git archive --format=zip HEAD -- athlete private tests/athlete-workspace.mjs tests/roster-athlete-experience.mjs tests/athlete-workspace-browser.py .github/workflows/athlete-workspace.yml > /tmp/athlete-workspace/source.zip
       - uses: actions/upload-artifact@v4
         if: always()
         with:
