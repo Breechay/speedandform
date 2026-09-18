@@ -18,7 +18,9 @@ ok(source?.source === '/plans/adrian-developed-runner-2026/program.json', 'Adria
 ok(source?.overview === '/plans/adrian-developed-runner-2026/', 'Adrian resolves canonical season overview');
 ok(strengthFallbackSource(rod) === null, 'Other strength athletes do not inherit Adrian fallback');
 
-ok(program.season_id === 'adrian_developed_runner_2026', 'season id preserved');\nok(program.authority?.system === 'FORM Athlete System', 'FORM Athlete System owns prescription authority');\nok(program.duration_weeks === 16, 'fallback-compatible season duration is present');
+ok(program.season_id === 'adrian_developed_runner_2026', 'season id preserved');
+ok(program.authority?.system === 'FORM Athlete System', 'FORM Athlete System owns prescription authority');
+ok(program.duration_weeks === 16, 'fallback-compatible season duration is present');
 ok(program.legacy_forge_program_id === 'adrian_runner_mass_phase1_v1', 'legacy Forge id preserved for receipt continuity');
 ok(program.weeks.length === 16, 'season is authored through year end');
 ok(program.phases.length === 5, 'five season phases authored');
@@ -69,7 +71,8 @@ lacks(athleteJs,'fileSession');
 
 const handoff = read('plans/adrian-runner-mass-phase-01/FORGE_HANDOFF.md');
 has(handoff,'Prescription authority');
-has(handoff,'Do not independently author a second Adrian progression');\nhas(handoff,'normal FORM Athlete System assignment/feed path');
+has(handoff,'Do not independently author a second Adrian progression');
+has(handoff,'normal FORM Athlete System assignment/feed path');
 has(handoff,'Installed-device acceptance');
 
 console.log(`PASS: ${checks} Adrian developed-runner checks`);
