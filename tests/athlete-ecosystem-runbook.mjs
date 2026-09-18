@@ -15,7 +15,7 @@ has(runbook,/6aac3e68f243b00008917eea/,'actual Netlify deploy is recorded');
 has(runbook,/dd8cfef0fb8348290b4ccd79ff681f141b6e4f1e/,'actual deployed commit is recorded');
 has(runbook,/20260918002500_evidence_review_instruction_chain\.sql/,'review-chain migration is named');
 has(runbook,/20260918011500_form_native_exact_retry_noop\.sql/,'retry migration is named');
-has(runbook,/Apply \*\*A, then B\*\*/,'held migrations have an explicit order');
+has(runbook,/Applied successfully, in order/,'applied migrations preserve their explicit order');
 has(runbook,/Do not infer this from a merge to main/,'merge is not deployment approval');
 has(runbook,/Adrian's real invite email\/account decision/,'Forge device gate remains explicit');
 has(runbook,/current-head Mac compile/,'FORM device gate remains explicit');
