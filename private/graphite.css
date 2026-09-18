@@ -2499,3 +2499,67 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   .consoleAthletePreview > summary em { grid-column: 1; }
   .consoleAthletePreview > summary::after { grid-column: 2; grid-row: 1 / span 3; }
 }
+
+
+/* Evidence → review → next instruction lives inside the existing inspector. */
+.coachReviewChain {
+  margin: 24px 0 4px;
+  padding: 18px 0;
+  border-top: 1px solid var(--edge);
+  border-bottom: 1px solid var(--edge);
+}
+.coachReviewChain__label {
+  margin: 0 0 7px;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+.coachReviewChain > p:not(.coachReviewChain__label) {
+  margin: 0;
+  max-width: 760px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.coachReviewChain > div {
+  display: grid;
+  grid-template-columns: 130px minmax(0,1fr);
+  gap: 16px;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid var(--edge);
+}
+.coachReviewChain > div span {
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.coachReviewChain > div strong { font-size: 13px; line-height: 1.5; }
+.coachReviewChain button {
+  margin-top: 14px;
+  border: 0;
+  background: transparent;
+  color: var(--lime);
+  padding: 8px 0;
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: .08em;
+  cursor: pointer;
+}
+.review-chain-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+.review-chain-form > section + section {
+  padding-left: 30px;
+  border-left: 1px solid var(--edge);
+}
+@media (max-width: 760px) {
+  .coachReviewChain > div { grid-template-columns: 1fr; gap: 5px; }
+  .review-chain-form { grid-template-columns: 1fr; gap: 24px; }
+  .review-chain-form > section + section { padding: 24px 0 0; border-left: 0; border-top: 1px solid var(--edge); }
+}
