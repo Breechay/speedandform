@@ -35,6 +35,8 @@ jobs:
           node tests/cross-surface-review.mjs
           node tests/athlete-workspace.mjs
           node tests/athlete-access.cjs
+          node tests/console-delivery-overview.mjs
+          node tests/evidence-review-instruction.mjs
           node scripts/check-contracts.mjs
       - uses: actions/setup-python@v5
         with:
@@ -53,6 +55,16 @@ jobs:
           BROWSER: webkit
           CROSS_SURFACE_ARTIFACTS: /tmp/cross-surface/webkit
         run: python tests/cross-surface-review-browser.py
+      - name: Chromium Console regression
+        env:
+          BROWSER: chromium
+          CONSOLE_DELIVERY_ARTIFACTS: /tmp/cross-surface/console-chromium
+        run: python tests/console-delivery-browser.py
+      - name: WebKit Console regression
+        env:
+          BROWSER: webkit
+          CONSOLE_DELIVERY_ARTIFACTS: /tmp/cross-surface/console-webkit
+        run: python tests/console-delivery-browser.py
       - name: Chromium access regression
         env:
           BROWSER: chromium
@@ -68,7 +80,7 @@ jobs:
         run: |
           mkdir -p /tmp/cross-surface
           git rev-parse HEAD > /tmp/cross-surface/commit.txt
-          git archive --format=zip HEAD -- athlete private plans/race-pace-durability tests/cross-surface-review.mjs tests/cross-surface-review-browser.py tests/athlete-access-browser.py .github/workflows/cross-surface-review.yml > /tmp/cross-surface/source.zip
+          git archive --format=zip HEAD -- athlete coach private plans/race-pace-durability tests/cross-surface-review.mjs tests/cross-surface-review-browser.py tests/athlete-access-browser.py tests/console-delivery-browser.py .github/workflows/cross-surface-review.yml > /tmp/cross-surface/source.zip
       - uses: actions/upload-artifact@v4
         if: always()
         with:
