@@ -31,10 +31,10 @@ Week 01 remains the original baseline.
 
 - Week 02 — **Redirect**: cable access and athlete evidence redirect volume toward chest depth, upper-arm girth, medial thigh, hamstrings and calf / soleus.
 - Week 03 — **Confirm**: repeat the redirected architecture inside the higher run week; lower-body volume does not increase automatically.
-- Weeks 04–07 — **Density + Force**.
-- Weeks 08–10 — **10K Integration**, including a reduced November 15 race week.
-- Weeks 11–13 — **Race Strength**, including a reduced December 6 half-marathon week.
-- Weeks 14–16 — **Close the Year**, ending December 31 with measurements and low fatigue.
+- Weeks 04–06 — **Density**.
+- Weeks 07–10 — **Absorb**, including a reduced November 15 race week and the restoration week after.
+- Weeks 11–13 — **Rebuild**, including a reduced December 6 half-marathon week and the read afterward.
+- Weeks 14–16 — **Close**, ending December 31 with measurements and low fatigue.
 
 January starts from a fresh coaching decision rather than silently extending the 2026 block.
 
