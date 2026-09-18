@@ -26,6 +26,8 @@ At closure, the current production deploy is:
 
 Production is therefore intentionally **behind accepted main**. A merge to main is not evidence that the held athlete ecosystem is live.
 
+The post-merge main acceptance on `7875919a…` confirms this boundary mechanically: all source tests plus Chromium/WebKit synthetic account journeys passed, then the production asset verifier stopped on an exact SHA mismatch for `plans/race-pace-durability/gate.js`. The live anonymous journey was therefore skipped rather than testing the wrong source. That failure is a **release hold signal**, not a source regression.
+
 ## 2 · Held database work
 
 Two additive migrations are source-accepted but intentionally unapplied:
