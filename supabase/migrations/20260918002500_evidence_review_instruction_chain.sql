@@ -59,9 +59,13 @@ begin
     raise exception 'This action publishes coaching; delivery state must be published or delivered externally.';
   end if;
   if p_delivery_state = 'delivered_externally'
-     and (nullif(btrim(coalesce(p_read_delivered_wording, '')), '') is null
-       or nullif(btrim(coalesce(p_direction_delivered_wording, '')), '') is null) then
-    raise exception 'External delivery must preserve the exact wording that was delivered.';
+     and nullif(btrim(coalesce(p_direction_delivered_wording, '')), '') is null then
+    raise exception 'External delivery must preserve the exact instruction wording that was delivered.';
+  end if;
+  if p_existing_read_id is null
+     and p_delivery_state = 'delivered_externally'
+     and nullif(btrim(coalesce(p_read_delivered_wording, '')), '') is null then
+    raise exception 'External delivery must preserve the exact review wording that was delivered.';
   end if;
 
   if p_existing_read_id is null then
