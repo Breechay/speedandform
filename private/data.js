@@ -811,7 +811,8 @@ export async function publishReviewAndDirection(payload) {
     p_execution_context: payload.executionContext || {},
     p_delivery_state: payload.deliveryState || 'published',
     p_read_delivered_wording: payload.readDeliveredWording || null,
-    p_direction_delivered_wording: payload.directionDeliveredWording || null
+    p_direction_delivered_wording: payload.directionDeliveredWording || null,
+    p_existing_read_id: payload.existingReadId || null
   });
   if (error) throw error;
   return data;
