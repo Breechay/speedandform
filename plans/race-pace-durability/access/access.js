@@ -34,7 +34,10 @@ async function restore() {
     body: JSON.stringify({ action: 'restore' })
   });
   const purchase = await response.json().catch(() => ({}));
-  if (!response.ok || !purchase.ok || purchase.status !== 'paid') {
+  if (!response.ok) {
+    throw new Error('Purchase lookup unavailable');
+  }
+  if (!purchase.ok || purchase.status !== 'paid') {
     say('No paid Race Pace Durability purchase was found for this signed-in email. Try the email used at checkout.', 'error');
     return false;
   }
