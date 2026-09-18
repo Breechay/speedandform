@@ -51,6 +51,9 @@ const sanctioned = [
   // and why. Ideally the ladder change would have been its own migration; it is
   // declared here rather than hidden.
   'supabase/migrations/20260905130000_hope_and_jose_are_assignments.sql',
+  // Deliberate coach-authored provisioning of Anthony's initial RPD ladder.
+  // This seeds his checkpoint states with provenance; it is not a silent progression path.
+  'supabase/migrations/20260918101951_provision_anthony_rpd_v5.sql',
 ];
 
 // A sanctioned migration may reshape the ladder or add provenance. Only the two
