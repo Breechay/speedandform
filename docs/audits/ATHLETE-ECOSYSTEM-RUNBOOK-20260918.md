@@ -28,6 +28,8 @@ Production is therefore intentionally **behind accepted main**. A merge to main 
 
 The post-merge main acceptance on `7875919a…` confirms this boundary mechanically: all source tests plus Chromium/WebKit synthetic account journeys passed, then the production asset verifier stopped on an exact SHA mismatch for `plans/race-pace-durability/gate.js`. The live anonymous journey was therefore skipped rather than testing the wrong source. That failure is a **release hold signal**, not a source regression.
 
+A separate concurrent main commit, `5ca47fd0fea3a6a81c58cafe8eb4ad8fea068d5a`, was created to retrigger the existing Netlify Git integration for the Run Development release. At the Pass 12 closure check, Netlify still reported `6aac3e68f243b00008917eea` as the current ready production deploy, so that retry had not yet changed production. Pass 12 itself does not call the Netlify deploy API.
+
 ## 2 · Held database work
 
 Two additive migrations are source-accepted but intentionally unapplied:
