@@ -23,7 +23,8 @@ create or replace function public.publish_review_and_direction(
   p_execution_context jsonb default '{}'::jsonb,
   p_delivery_state text default 'published',
   p_read_delivered_wording text default null,
-  p_direction_delivered_wording text default null
+  p_direction_delivered_wording text default null,
+  p_existing_read_id uuid default null
 ) returns jsonb
 language plpgsql
 security definer
@@ -41,12 +42,14 @@ begin
   if not public.is_coach_member(p_athlete_id) then
     raise exception 'Only this athlete''s coach can publish coaching.';
   end if;
-  if coalesce(cardinality(p_completion_ids), 0) = 0 then
-    raise exception 'A review must point at the evidence it reviewed.';
-  end if;
-  if nullif(btrim(coalesce(p_read_athlete_text, '')), '') is null
-     or nullif(btrim(coalesce(p_question_answered, '')), '') is null then
-    raise exception 'A review needs both athlete wording and the question it answered.';
+  if p_existing_read_id is null then
+    if coalesce(cardinality(p_completion_ids), 0) = 0 then
+      raise exception 'A review must point at the evidence it reviewed.';
+    end if;
+    if nullif(btrim(coalesce(p_read_athlete_text, '')), '') is null
+       or nullif(btrim(coalesce(p_question_answered, '')), '') is null then
+      raise exception 'A review needs both athlete wording and the question it answered.';
+    end if;
   end if;
   if nullif(btrim(coalesce(p_direction_athlete_text, '')), '') is null
      or nullif(btrim(coalesce(p_protected_variable, '')), '') is null then
@@ -61,14 +64,25 @@ begin
     raise exception 'External delivery must preserve the exact wording that was delivered.';
   end if;
 
-  select count(distinct c.id)
-    into v_completion_count
-    from public.session_completions c
-   where c.id = any(p_completion_ids)
-     and c.athlete_id = p_athlete_id;
+  if p_existing_read_id is null then
+    select count(distinct c.id)
+      into v_completion_count
+      from public.session_completions c
+     where c.id = any(p_completion_ids)
+       and c.athlete_id = p_athlete_id;
 
-  if v_completion_count <> cardinality(p_completion_ids) then
-    raise exception 'Every reviewed completion must belong to this athlete.';
+    if v_completion_count <> cardinality(p_completion_ids) then
+      raise exception 'Every reviewed completion must belong to this athlete.';
+    end if;
+  else
+    select r.id into v_read_id
+      from public.reads r
+     where r.id = p_existing_read_id
+       and r.athlete_id = p_athlete_id
+       and r.delivery_state in ('published', 'delivered_externally');
+    if v_read_id is null then
+      raise exception 'The existing review is not a published review for this athlete.';
+    end if;
   end if;
 
   if not exists (
@@ -82,17 +96,19 @@ begin
     raise exception 'The next instruction must point at a live session for this athlete.';
   end if;
 
-  insert into public.reads (
-    athlete_id, athlete_text, question_answered, delivery_state,
-    delivered_wording, authored_by, published_at
-  ) values (
-    p_athlete_id, btrim(p_read_athlete_text), btrim(p_question_answered),
-    p_delivery_state, p_read_delivered_wording, v_user, now()
-  ) returning id into v_read_id;
+  if p_existing_read_id is null then
+    insert into public.reads (
+      athlete_id, athlete_text, question_answered, delivery_state,
+      delivered_wording, authored_by, published_at
+    ) values (
+      p_athlete_id, btrim(p_read_athlete_text), btrim(p_question_answered),
+      p_delivery_state, p_read_delivered_wording, v_user, now()
+    ) returning id into v_read_id;
 
-  insert into public.read_completions (read_id, completion_id)
-  select v_read_id, completion_id
-    from unnest(p_completion_ids) completion_id;
+    insert into public.read_completions (read_id, completion_id)
+    select v_read_id, completion_id
+      from unnest(p_completion_ids) completion_id;
+  end if;
 
   insert into public.directions (
     athlete_id, planned_session_id, protected_variable, movable_variable,
@@ -114,9 +130,9 @@ end;
 $fn$;
 
 revoke all on function public.publish_review_and_direction(
-  uuid, uuid[], text, text, uuid, text, text, text, text, jsonb, jsonb, text, text, text
+  uuid, uuid[], text, text, uuid, text, text, text, text, jsonb, jsonb, text, text, text, uuid
 ) from public, anon;
 
 grant execute on function public.publish_review_and_direction(
-  uuid, uuid[], text, text, uuid, text, text, text, text, jsonb, jsonb, text, text, text
+  uuid, uuid[], text, text, uuid, text, text, text, text, jsonb, jsonb, text, text, text, uuid
 ) to authenticated;
