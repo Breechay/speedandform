@@ -1,0 +1,10 @@
+# Apply to netlify.toml only when the service has passed activation checks.
+# The route handles single-purpose email tokens and must not acquire host beacons.
+[[headers]]
+  for = "/updates/*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate, no-transform"
+    Referrer-Policy = "no-referrer"
+    X-Robots-Tag = "noindex, follow"
+    X-Content-Type-Options = "nosniff"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self'; img-src 'self'; frame-src https://challenges.cloudflare.com; connect-src 'self' https://pbgsjjegycacodiltbhn.supabase.co https://challenges.cloudflare.com; base-uri 'none'; object-src 'none'; form-action 'none'; frame-ancestors 'none'"
