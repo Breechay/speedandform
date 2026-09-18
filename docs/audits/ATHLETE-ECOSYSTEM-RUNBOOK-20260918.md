@@ -2,11 +2,23 @@
 
 Owner: Brice  
 Scope: bounded athlete/account passes 1–12  
-Release posture: **SOURCE COMPLETE · SCHEMA LIVE · WEB PRODUCTION HELD · TWO NATIVE DEVICE GATES OPEN**
+Release posture: **SOURCE COMPLETE · SCHEMA LIVE · WEB PRODUCTION LIVE · ANONYMOUS PROD ACCEPTED · OWNER/ATHLETE AUTH WALKS + TWO NATIVE DEVICE GATES OPEN**
 
 This is the closure receipt for the September 17–18 athlete ecosystem work. It records what is built, what is live, what is deliberately held, and the exact order to release or operate the system without re-auditing the whole project.
 
 ## 1 · Current source and production truth
+
+### Final production receipt — September 18, 2026
+- GitHub `main`: `f068ad39541f9e16972ba13b3832294596f99812`.
+- Netlify production deploy: `6aad0a708ff0b30008753e5c`.
+- Published: 2026-09-18 09:55:10 UTC.
+- Production commit: `f068ad39541f9e16972ba13b3832294596f99812`.
+- State: ready.
+- The production deploy therefore matches exact current `main`, including the RPD v5 Week-5 coached-athlete cutover plus the homepage overscroll-seam fix merged afterward.
+- Strict anonymous production walk: **8/8 PASS** — homepage, RPD Weeks 1–4 preview, Week-5 lock, beyond-preview access routing, no protected-content leak after failed validation, no false “no purchase” state observed, and no tested phone-width horizontal overflow.
+- Brice signed-in production walk: **OPEN**. The available browser profile has no active Speed & Form session or stored credentials; no login was attempted and no data was changed.
+- One consenting-athlete production walk: **OPEN** and still requires that athlete's real authenticated session/consent.
+
 
 ### Website repository
 - Accepted main after Pass 11: `7875919a71e99a3ed801b1b25780b16188f2b76c`.
@@ -24,7 +36,7 @@ At closure, the current production deploy is:
 - state: ready
 - manual deploy: false
 
-Production is therefore intentionally **behind accepted main**. A merge to main is not evidence that the held athlete ecosystem is live.
+Historical note: at Pass 12 closure production was intentionally behind accepted main. That hold has now cleared: production deploy `6aad0a708ff0b30008753e5c` serves exact current `main` `f068ad39…`.
 
 The post-merge main acceptance on `7875919a…` confirms this boundary mechanically: all source tests plus Chromium/WebKit synthetic account journeys passed, then the production asset verifier stopped on an exact SHA mismatch for `plans/race-pace-durability/gate.js`. The live anonymous journey was therefore skipped rather than testing the wrong source. That failure is a **release hold signal**, not a source regression.
 
@@ -298,9 +310,10 @@ Do not distribute the native assigned-plan beta before this gate closes.
 
 Passes 1–12 have now produced the intended source, evidence and operating rules.
 
-The ecosystem is **not equivalent to fully live**:
-- web source after Pass 1 remains held from production;
-- two additive migrations remain held;
+The ecosystem source/schema/web release is now live, but **full authenticated/device acceptance is not yet closed**:
+- anonymous web production acceptance is complete;
+- Brice signed-in production acceptance remains open because no authenticated browser session was available;
+- one consenting-athlete production acceptance remains open;
 - Forge device acceptance is open;
 - FORM assigned-plan device acceptance is open.
 
@@ -324,8 +337,8 @@ A real onboarding/device failure may reopen the smallest affected rule. It does 
 
 There are only three meaningful next moves:
 
-1. **Release web + held migrations** — only when Brice explicitly wants the accepted web ecosystem live.
-2. **Close Adrian Forge device gate** — needs Adrian's actual account + device.
+1. **Close Brice + consenting-athlete authenticated production walks** — web and schema are already live; this requires real authenticated sessions only.
+2. **Close Adrian Forge device gate** — needs Adrian's actual account + physical device.
 3. **Close FORM assigned-plan device gate** — needs Mac/current-head + designated real test account/device.
 
 Everything else is ordinary coaching/product operation, not unfinished Pass 1–12 implementation.
@@ -346,3 +359,21 @@ Blocked:
 - a strict browser automation attempt stopped without making changes.
 
 Therefore **schema is live, web source is still held**. No production publication claim is made.
+
+## 13 · Final September 18 closeout receipt
+
+After the earlier blocked deployment attempt, Netlify's Git integration published exact current `main` automatically.
+
+Closed:
+- web production now matches GitHub `main` `f068ad39…`;
+- schema migrations `20260918090830`, `20260918090839`, and `20260918094221` are present in FORM Athlete System migration history;
+- anonymous production acceptance passed 8/8 without purchase, sign-in, form submission, or protected-data mutation;
+- RPD v5 is canonical from Week 5 for the coached assignments covered by the cutover.
+
+Still physical/authenticated evidence, not implementation work:
+- Brice signed-in owner walk;
+- one consenting-athlete signed-in walk;
+- Adrian / Forge Coach Pilot physical-device acceptance;
+- FORM assigned-plan physical-device acceptance.
+
+Do not create a Pass 13 for these. Record them as acceptance receipts when the real authenticated/device evidence exists.
