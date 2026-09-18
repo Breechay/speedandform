@@ -1,0 +1,44 @@
+name: Four-runner reconciliation acceptance
+on:
+  push:
+    branches: [work/four-runner-reconciliation-20260917]
+  pull_request:
+    paths:
+      - 'athlete/**'
+      - 'private/**'
+      - 'tests/four-runner-reconciliation.mjs'
+      - 'docs/audits/FOUR-RUNNER-RECONCILIATION-20260917.md'
+      - '.github/workflows/four-runner-reconciliation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: four-runner-reconciliation-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Reconciliation source checks
+        run: |
+          node tests/four-runner-reconciliation.mjs
+          node tests/athlete-access.cjs
+      - name: Preserve exact review source
+        if: always()
+        run: |
+          mkdir -p /tmp/four-runner-reconciliation
+          git rev-parse HEAD > /tmp/four-runner-reconciliation/commit.txt
+          git archive --format=zip HEAD -- athlete private tests/four-runner-reconciliation.mjs docs/audits/FOUR-RUNNER-RECONCILIATION-20260917.md .github/workflows/four-runner-reconciliation.yml > /tmp/four-runner-reconciliation/source.zip
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: four-runner-reconciliation-review
+          path: /tmp/four-runner-reconciliation/
+          retention-days: 5
