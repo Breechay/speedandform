@@ -93,6 +93,87 @@
     </form>
   </dialog>
 
+  <dialog class="dialog" id="reviewNextDialog">
+    <form class="dialog-inner" id="reviewNextForm">
+      <div class="dialog-head">
+        <div><p class="eyebrow">Evidence → coaching</p><h2 id="reviewNextContext">Review the evidence. Set what comes next.</h2></div>
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Close">&times;</button>
+      </div>
+
+      <div class="review-chain-form">
+        <section>
+          <p class="eyebrow">01 · What this told us</p>
+          <label class="field-label">Athlete-facing review
+            <textarea class="field-textarea tall" name="readAthleteText" required placeholder="What the completed work tells us, in the words the athlete should receive."></textarea>
+          </label>
+          <label class="field-label">Question this answered
+            <input class="field-input" name="questionAnswered" required placeholder="What did this session establish?">
+          </label>
+          <label class="field-label">Evidence reviewed
+            <select class="field-select" name="completionIds" multiple size="4" required></select>
+          </label>
+        </section>
+
+        <section>
+          <p class="eyebrow">02 · What comes next</p>
+          <label class="field-label">Next instruction
+            <textarea class="field-textarea tall" name="directionAthleteText" required placeholder="How the next session should be approached."></textarea>
+          </label>
+          <label class="field-label">Session
+            <select class="field-select" name="plannedSessionId" required></select>
+          </label>
+          <div class="form-grid two">
+            <label class="field-label">Protect
+              <input class="field-input" name="protectedVariable" required placeholder="Race-pace control">
+            </label>
+            <label class="field-label">Can move
+              <input class="field-input" name="movableVariable" placeholder="Recovery or total volume">
+            </label>
+            <label class="field-label">Stop or change if
+              <input class="field-input" name="stopOrChangeIf" placeholder="Mechanics change or effort rises">
+            </label>
+            <label class="field-label">Where
+              <select class="field-select" name="surface">
+                <option value="">Not specified</option>
+                <option value="outdoor">Outdoor</option>
+                <option value="treadmill">Treadmill</option>
+                <option value="track">Track</option>
+              </select>
+            </label>
+          </div>
+          <label class="field-label">Priority order
+            <textarea class="field-textarea priority-input" name="priorityTargets" placeholder="One target per line, most important first."></textarea>
+          </label>
+        </section>
+      </div>
+
+      <details class="more">
+        <summary>How this reaches the athlete</summary>
+        <label class="field-label">Delivery
+          <select class="field-select" name="deliveryState">
+            <option value="published">Published to the athlete record</option>
+            <option value="delivered_externally">Sent outside FORM</option>
+          </select>
+        </label>
+        <div data-review-external hidden>
+          <label class="field-label">Review wording actually sent
+            <textarea class="field-textarea" name="readDeliveredWording" placeholder="Paste the review exactly as sent."></textarea>
+          </label>
+          <label class="field-label">Instruction wording actually sent
+            <textarea class="field-textarea" name="directionDeliveredWording" placeholder="Paste the next instruction exactly as sent."></textarea>
+          </label>
+        </div>
+      </details>
+
+      <p class="dialog-note">Publishing this chain does not edit the filing, its splits, or the prescription version that produced it.</p>
+      <p class="status-message" id="reviewNextStatus" role="status"></p>
+      <div class="dialog-actions">
+        <button class="button" type="button" data-close-dialog>Cancel</button>
+        <button class="button primary" type="submit">Publish review + next <span class="icon-arrow">&rarr;</span></button>
+      </div>
+    </form>
+  </dialog>
+
   <dialog class="dialog" id="ladderDialog">
     <div class="dialog-inner">
       <div class="dialog-head">
@@ -351,6 +432,6 @@
       <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Publish frozen excerpt <span class="icon-arrow">→</span></button></div>
     </form>
   </dialog>
-  <script type="module" src="/coach/coach.js?v=34"></script>
+  <script type="module" src="/coach/coach.js?v=35"></script>
 </body>
 </html>
