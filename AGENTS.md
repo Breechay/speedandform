@@ -41,6 +41,36 @@ Standing test: **could a fit runner with little coaching vocabulary understand t
 ## Visual rule — one divider per boundary
 Brice's standing rule applies to app and site: no double dividers, stacked rules or two nearby lines separating the same content. Choose one owner for each boundary. Never combine a card's bottom border with the next card's top border, a disclosure border with its container border, or an input underline with a decorative result rule. Prefer spacing when the boundary is already clear. During every UI review inspect adjacent components, open/closed disclosures, forms and the footer at desktop and phone widths. Remove duplicate rules before calling the surface ready. Tables may retain one separator per row; this is not a ban on useful structure.
 
+## Writing voice — do not sound like a robot trying to sound scientific
+
+FORM copy should sound like a coach who understands the work, not a model trying to make simple ideas sound important.
+
+For athlete pages, plans, Labs / Human Performance Studies, method copy and study interpretation:
+
+- prefer the shortest natural sentence that says the real thing;
+- use ordinary coaching words before abstract system words;
+- one sentence should usually carry one idea;
+- one phase name should usually name one job;
+- do not stack three verbs or three concepts just to make a phase sound comprehensive;
+- do not turn simple coaching decisions into pseudo-scientific abstractions;
+- do not use clinical, academic or systems language merely to make the copy feel rigorous;
+- never make the reader decode phrases such as `bounded by running response`, `confirm inside the rising run week`, `development needs`, `dose architecture`, or similar constructions when plain language works;
+- avoid noun piles such as `useful tissue and force development` when the real point is simply `build muscle and get stronger`;
+- do not narrate the methodology twice. State the action, then the reason only if the reason adds something;
+- sophistication should come from the observation and the decision, not from vocabulary;
+- if a line sounds like it was written for a white paper, rewrite it as something Brice could say to the athlete out loud.
+
+Preferred:
+- `Find the tolerable dose. Nothing is pushed while the body learns to be loaded at all.`
+- `Move development toward chest, arms, upper back and medial thigh. Legs stay conservative.`
+- `Running is the constraint, so the strength side yields.`
+
+Avoid:
+- `Learn the dose, redirect it toward the athlete's actual needs, then confirm it inside the rising run week.`
+- `Build useful tissue and force while lower-body fatigue stays bounded by running response.`
+
+Standing test: **Would a smart runner read this once and understand it without translating it? Would Brice actually say it out loud?** If either answer is no, rewrite it.
+
 ## Writing — American spelling
 Use practice, practiced and practicing (never practise, practised or practising) in site/app copy and audit documents. Keep instructions plain and address the reader as “you.”
 
