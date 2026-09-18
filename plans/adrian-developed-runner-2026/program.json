@@ -1,0 +1,1813 @@
+{
+  "schema_version": 2,
+  "season_id": "adrian_developed_runner_2026",
+  "canonical_source": "/plans/adrian-developed-runner-2026/program.json",
+  "legacy_forge_program_id": "adrian_runner_mass_phase1_v1",
+  "athlete": "Adrian Gandara",
+  "athlete_slug": "adrian",
+  "title": "The Developed Runner · 2026",
+  "status": "coach_authored",
+  "start_date": "2026-09-14",
+  "end_date": "2026-12-31",
+  "sessions_per_week_default": 4,
+  "objective": "Build a visibly stronger, more substantial runner—more chest depth, arm girth, medial-thigh density, hamstring and calf development—while preserving Adrian's light, elastic and fast running.",
+  "primary_constraint": "Running quality remains intact. Strength supports the runner; it never earns the right to degrade the run week.",
+  "principle": "More specificity, not more punishment. Upper-body development may progress faster; lower-body progression is earned by a normal following run.",
+  "running_coordination": "The running plan remains owned by Adrian's running coach. This strength plan does not replace, move or invent run workouts. When running load, race demands or recovery conflict with strength, the strength dose yields first.",
+  "current_state": {
+    "as_of": "2026-09-18",
+    "current_week": 1,
+    "next_week": 2,
+    "label": "Week 01 closing · Week 02 authored"
+  },
+  "baseline": {
+    "age": 19,
+    "marathon": {
+      "chip_time": "2:53:39",
+      "average_pace_per_mile": "6:38",
+      "evidence": "Official race result supplied by athlete/coach"
+    },
+    "late_marathon_reference": [
+      {
+        "distance_miles": 20.11,
+        "cumulative_pace_per_mile": "6:30"
+      },
+      {
+        "distance_miles": 23.17,
+        "cumulative_pace_per_mile": "6:31"
+      }
+    ],
+    "current_run_build": {
+      "source": "athlete report",
+      "weeks": [
+        {
+          "week_start": "2026-09-14",
+          "planned_miles": 33
+        },
+        {
+          "week_start": "2026-09-21",
+          "planned_miles": 44
+        },
+        {
+          "week_start": "2026-09-28",
+          "planned_miles": 48
+        }
+      ]
+    },
+    "physique_observation": "Narrow waist and elastic runner frame; glutes already comparatively developed. Highest-value development targets are chest depth, upper-back density, upper-arm girth, adductors/medial thigh, hamstrings and calf/soleus.",
+    "evidence_limit": "No body-mass trend, circumference change or hypertrophy result is claimed until measured."
+  },
+  "race_anchors": [
+    {
+      "date": "2026-11-15",
+      "event": "Rockin Rib Run 10K",
+      "role": "race / speed checkpoint",
+      "source": "athlete report"
+    },
+    {
+      "date": "2026-12-06",
+      "event": "Rotary Half Marathon · Weston",
+      "role": "race / aerobic-strength checkpoint",
+      "source": "athlete report"
+    },
+    {
+      "date": null,
+      "event": "Mesa Marathon · Mesa, Arizona",
+      "role": "next major marathon after this 2026 block",
+      "source": "athlete report"
+    }
+  ],
+  "publication": {
+    "study_path": "/labs/adrian-runner-mass/",
+    "status": "draft_unlisted_until_athlete_consent",
+    "consent_required_for_public_case_study": true,
+    "rule": "The training source may exist before publication. Public case-study exposure, progress imagery and athlete quotes wait for explicit consent."
+  },
+  "measurement_protocol": {
+    "photos": "Every 2 weeks: front relaxed, side relaxed, back relaxed, front lightly flexed; same location, distance, lighting and similar shorts; no pump when possible.",
+    "body_mass": "3–4 morning measurements per week under similar conditions; use weekly average.",
+    "circumferences": [
+      "waist",
+      "chest",
+      "relaxed upper arm",
+      "mid-thigh",
+      "calf"
+    ],
+    "strength_evidence": "Record actual load and reps on representative anchor movements.",
+    "running_evidence": [
+      "normal / flat / heavy next-run report",
+      "key-run execution when available",
+      "soreness altering mechanics or cadence",
+      "persistent fatigue",
+      "race results when relevant"
+    ]
+  },
+  "progression_rules": [
+    "No grinders and no failure. Most lower-body compound work stays around 2 clean reps in reserve.",
+    "Upper-body hypertrophy work may approach 1–2 reps in reserve when recovery is normal.",
+    "Progress reps inside the range before adding load; then add the smallest practical load and keep execution clean.",
+    "Do not add lower-body sets merely because Adrian is disciplined or the calendar advanced.",
+    "If lower-body work makes the next run meaningfully heavy, alters mechanics or creates persistent soreness, hold or reduce the lower-body dose before progressing.",
+    "If grip or setup limits a lower-body movement before the target tissue does, change the loading setup rather than forcing heavier dumbbells.",
+    "Race weeks reduce lower-body volume and eccentric cost before touching upper-body development.",
+    "Record the work and the run response. Missing evidence stays missing."
+  ],
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Establish · Redirect · Confirm",
+      "weeks": [
+        1,
+        2,
+        3
+      ],
+      "intent": "Establish tolerance, then redirect the work toward Adrian's actual development needs without losing the running week."
+    },
+    {
+      "phase": 2,
+      "name": "Density + Force",
+      "weeks": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "intent": "Build three-dimensional tissue and useful force in the chest, arms, medial thigh, hamstrings and lower leg while keeping lower-body fatigue bounded."
+    },
+    {
+      "phase": 3,
+      "name": "10K Integration",
+      "weeks": [
+        8,
+        9,
+        10
+      ],
+      "intent": "Keep strength present around the November 15 10K; race week trims lower-body fatigue instead of chasing gym progress."
+    },
+    {
+      "phase": 4,
+      "name": "Race Strength",
+      "weeks": [
+        11,
+        12,
+        13
+      ],
+      "intent": "Rebuild after the 10K, protect the December 6 half, then restore normal strength rhythm."
+    },
+    {
+      "phase": 5,
+      "name": "Close the Year",
+      "weeks": [
+        14,
+        15,
+        16
+      ],
+      "intent": "Finish 2026 with productive development, then close the block with measurements and low fatigue so January can start fresh."
+    }
+  ],
+  "weeks": [
+    {
+      "week": 1,
+      "name": "Baseline",
+      "phase": 1,
+      "start_date": "2026-09-14",
+      "end_date": "2026-09-20",
+      "intent": "Find repeatable loads. Learn the dose. Finish every session able to train again.",
+      "public_path": "/plans/adrian-hypertrophy-week-01/",
+      "days": [
+        {
+          "day_index": 1,
+          "weekday": "Monday",
+          "title": "Upper A",
+          "focus": "Chest + frame",
+          "exercises": [
+            {
+              "name": "Incline Barbell Bench Press",
+              "sets": 3,
+              "reps": "8–10"
+            },
+            {
+              "name": "Flat Dumbbell Bench Press",
+              "sets": 3,
+              "reps": "8–12"
+            },
+            {
+              "name": "One-Arm Dumbbell Row",
+              "sets": 3,
+              "reps": "10 / side"
+            },
+            {
+              "name": "Dumbbell Pullover",
+              "sets": 2,
+              "reps": "10–12"
+            },
+            {
+              "name": "Dumbbell Lateral Raise",
+              "sets": 3,
+              "reps": "12–15"
+            },
+            {
+              "name": "Parallel Bar Dips",
+              "sets": 3,
+              "reps": "8–12"
+            },
+            {
+              "name": "Barbell Curl",
+              "sets": 3,
+              "reps": "8–10"
+            }
+          ]
+        },
+        {
+          "day_index": 2,
+          "weekday": "Thursday",
+          "title": "Lower + Core",
+          "focus": "Main lower day",
+          "exercises": [
+            {
+              "name": "Back Squat",
+              "sets": 3,
+              "reps": "8–10"
+            },
+            {
+              "name": "Romanian Deadlift",
+              "sets": 3,
+              "reps": "8–10"
+            },
+            {
+              "name": "Bulgarian Split Squat",
+              "sets": 2,
+              "reps": "8 / leg"
+            },
+            {
+              "name": "Standing Calf Raise",
+              "sets": 3,
+              "reps": "12–15"
+            },
+            {
+              "name": "Dead Bug",
+              "sets": 3,
+              "reps": "8 / side"
+            },
+            {
+              "name": "Pallof Press",
+              "sets": 3,
+              "reps": "10 / side"
+            }
+          ]
+        },
+        {
+          "day_index": 3,
+          "weekday": "Friday",
+          "title": "Upper B",
+          "focus": "Width + arms",
+          "exercises": [
+            {
+              "name": "Seated Dumbbell Shoulder Press",
+              "sets": 3,
+              "reps": "8–10"
+            },
+            {
+              "name": "Incline Dumbbell Bench Press",
+              "sets": 3,
+              "reps": "10–12"
+            },
+            {
+              "name": "One-Arm Dumbbell Row",
+              "sets": 3,
+              "reps": "10 / side"
+            },
+            {
+              "name": "Dumbbell Lateral Raise",
+              "sets": 4,
+              "reps": "10–15"
+            },
+            {
+              "name": "Rear-Delt Dumbbell Fly",
+              "sets": 3,
+              "reps": "12–15"
+            },
+            {
+              "name": "Incline Dumbbell Curl",
+              "sets": 3,
+              "reps": "10–12"
+            },
+            {
+              "name": "Dumbbell Skull Crusher",
+              "sets": 3,
+              "reps": "10–12"
+            }
+          ]
+        },
+        {
+          "day_index": 4,
+          "weekday": "Sunday",
+          "title": "Lower Support + Core",
+          "focus": "Low fatigue",
+          "exercises": [
+            {
+              "name": "Dumbbell Hip Thrust",
+              "sets": 3,
+              "reps": "10–12"
+            },
+            {
+              "name": "Step-Up",
+              "sets": 2,
+              "reps": "8 / leg"
+            },
+            {
+              "name": "Standing Calf Raise",
+              "sets": 3,
+              "reps": "12–15"
+            },
+            {
+              "name": "Dead Bug",
+              "sets": 3,
+              "reps": "8 / side"
+            },
+            {
+              "name": "Side Plank",
+              "sets": 2,
+              "reps": "30–45 sec / side"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "name": "Redirect",
+      "phase": 1,
+      "start_date": "2026-09-21",
+      "end_date": "2026-09-27",
+      "intent": "Keep the proven four-day rhythm, but spend the recovery budget where Adrian has the most useful room to develop.",
+      "public_path": "/plans/adrian-hypertrophy-week-02/",
+      "progression_note": "Use Week 01 loads only as reference. New cable/accessory movements start conservatively. Upper body may progress; lower body stays controlled during the 44-mile run week.",
+      "days": [
+        {
+          "day_index": 1,
+          "weekday": "Monday",
+          "title": "Upper A",
+          "focus": "Chest depth + upper frame",
+          "exercises": [
+            {
+              "name": "Incline Dumbbell Bench Press",
+              "sets": 3,
+              "reps": "8–10"
+            },
+            {
+              "name": "Chest-Supported Dumbbell Row",
+              "sets": 3,
+              "reps": "8–12"
+            },
+            {
+              "name": "Neutral-Grip Cable Pulldown",
+              "sets": 3,
+              "reps": "8–12"
+            },
+            {
+              "name": "Low-to-High Cable Fly",
+              "sets": 2,
+              "reps": "12–15"
+            },
+            {
+              "name": "Single-Arm Cable Lateral Raise",
+              "sets": 2,
+              "reps": "12–18 / side"
+            },
+            {
+              "name": "Overhead Cable Triceps Extension",
+              "sets": 3,
+              "reps": "10–15"
+            }
+          ]
+        },
+        {
+          "day_index": 2,
+          "weekday": "Thursday",
+          "title": "Lower A",
+          "focus": "Thigh density + running chassis",
+          "exercises": [
+            {
+              "name": "Bulgarian Split Squat",
+              "sets": 3,
+              "reps": "8 / leg"
+            },
+            {
+              "name": "Dumbbell Romanian Deadlift",
+              "sets": 3,
+              "reps": "8–10"
+            },
+            {
+              "name": "Heel-Elevated Goblet Squat or Leg Press",
+              "sets": 2,
+              "reps": "10–12"
+            },
+            {
+              "name": "Seated Leg Curl",
+              "sets": 2,
+              "reps": "10–12"
+            },
+            {
+              "name": "Bent-Knee Calf Raise",
+              "sets": 3,
+              "reps": "12–15"
+            },
+            {
+              "name": "Cable Hip Adduction",
+              "sets": 2,
+              "reps": "12–15 / side"
+            },
+            {
+              "name": "Pallof Press",
+              "sets": 2,
+              "reps": "10 / side"
+            }
+          ]
+        },
+        {
+          "day_index": 3,
+          "weekday": "Friday",
+          "title": "Upper B",
+          "focus": "Torso thickness + arms",
+          "exercises": [
+            {
+              "name": "Flat Dumbbell Bench Press",
+              "sets": 3,
+              "reps": "8–10"
+            },
+            {
+              "name": "One-Arm Cable Row",
+              "sets": 3,
+              "reps": "10–12 / side"
+            },
+            {
+              "name": "Lat Pulldown",
+              "sets": 3,
+              "reps": "10–12"
+            },
+            {
+              "name": "Mid-Height Cable Fly",
+              "sets": 2,
+              "reps": "12–15"
+            },
+            {
+              "name": "Cable Rear-Delt Fly",
+              "sets": 2,
+              "reps": "12–18"
+            },
+            {
+              "name": "Hammer Curl",
+              "sets": 3,
+              "reps": "8–12"
+            },
+            {
+              "name": "Rope Pressdown",
+              "sets": 2,
+              "reps": "10–15"
+            }
+          ]
+        },
+        {
+          "day_index": 4,
+          "weekday": "Sunday",
+          "title": "Lower B",
+          "focus": "Posterior chain + low fatigue",
+          "exercises": [
+            {
+              "name": "Hip Thrust",
+              "sets": 2,
+              "reps": "8–10"
+            },
+            {
+              "name": "Dumbbell Step-Up",
+              "sets": 2,
+              "reps": "8 / leg"
+            },
+            {
+              "name": "Seated or Lying Leg Curl",
+              "sets": 2,
+              "reps": "10–12"
+            },
+            {
+              "name": "Standing Calf Raise",
+              "sets": 3,
+              "reps": "12–15"
+            },
+            {
+              "name": "Dead Bug",
+              "sets": 3,
+              "reps": "8 / side"
+            },
+            {
+              "name": "Side Plank",
+              "sets": 2,
+              "reps": "45–60 sec / side"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "name": "Confirm",
+      "phase": 1,
+      "start_date": "2026-09-28",
+      "end_date": "2026-10-04",
+      "intent": "Confirm the redirected Week 02 menu inside the 48-mile run week. Do not add lower-body volume.",
+      "public_path": "/plans/adrian-hypertrophy-week-03/",
+      "progression_note": "Repeat the Week 02 architecture. Upper-body reps/load may move when clean. Lower-body progression requires normal running; hold the dose if the mileage increase is already the progression.",
+      "days_from_week": 2
+    },
+    {
+      "week": 4,
+      "name": "Density I",
+      "phase": 2,
+      "start_date": "2026-10-05",
+      "end_date": "2026-10-11",
+      "intent": "Begin the first true development block: denser torso, arms, medial thigh, hamstrings and lower leg with bounded lower-body fatigue.",
+      "public_path": "/plans/adrian-developed-runner-2026/week.html?week=4",
+      "progression_note": "Main upper lifts move slightly heavier. Lower compounds live mostly in 6–8 reps with ~2 reps in reserve. No extra lower sets this week.",
+      "days": [
+        {
+          "day_index": 1,
+          "weekday": "Monday",
+          "title": "Upper A",
+          "focus": "Upper chest + back density",
+          "exercises": [
+            {
+              "name": "Incline Dumbbell Bench Press",
+              "sets": 4,
+              "reps": "6–8"
+            },
+            {
+              "name": "Chest-Supported Dumbbell Row",
+              "sets": 4,
+              "reps": "6–10"
+            },
+            {
+              "name": "Neutral-Grip Cable Pulldown",
+              "sets": 3,
+              "reps": "8–10"
+            },
+            {
+              "name": "Low-to-High Cable Fly",
+              "sets": 2,
+              "reps": "10–15"
+            },
+            {
+              "name": "Single-Arm Cable Lateral Raise",
+              "sets": 3,
+              "reps": "12–18 / side"
+            },
+            {
+              "name": "Overhead Cable Triceps Extension",
+              "sets": 3,
+              "reps": "10–15"
+            }
+          ]
+        },
+        {
+          "day_index": 2,
+          "weekday": "Thursday",
+          "title": "Lower A",
+          "focus": "Force + medial thigh",
+          "exercises": [
+            {
+              "name": "Bulgarian Split Squat",
+              "sets": 3,
+              "reps": "6–8 / leg"
+            },
+            {
+              "name": "Dumbbell Romanian Deadlift",
+              "sets": 3,
+              "reps": "6–8"
+            },
+            {
+              "name": "Heel-Elevated Goblet Squat or Leg Press",
+              "sets": 2,
+              "reps": "8–10"
+            },
+            {
+              "name": "Seated Leg Curl",
+              "sets": 2,
+              "reps": "8–12"
+            },
+            {
+              "name": "Bent-Knee Calf Raise",
+              "sets": 3,
+              "reps": "10–15"
+            },
+            {
+              "name": "Cable Hip Adduction",
+              "sets": 2,
+              "reps": "12–15 / side"
+            },
+            {
+              "name": "Pallof Press",
+              "sets": 2,
+              "reps": "10 / side"
+            }
+          ]
+        },
+        {
+          "day_index": 3,
+          "weekday": "Friday",
+          "title": "Upper B",
+          "focus": "Chest + sleeves",
+          "exercises": [
+            {
+              "name": "Flat Dumbbell Bench Press",
+              "sets": 4,
+              "reps": "6–10"
+            },
+            {
+              "name": "One-Arm Cable Row",
+              "sets": 3,
+              "reps": "8–12 / side"
+            },
+            {
+              "name": "Lat Pulldown",
+              "sets": 3,
+              "reps": "8–10"
+            },
+            {
+              "name": "Mid-Height Cable Fly",
+              "sets": 2,
+              "reps": "10–15"
+            },
+            {
+              "name": "Cable Rear-Delt Fly",
+              "sets": 2,
+              "reps": "12–18"
+            },
+            {
+              "name": "Hammer Curl",
+              "sets": 3,
+              "reps": "8–12"
+            },
+            {
+              "name": "Rope Pressdown",
+              "sets": 3,
+              "reps": "10–15"
+            }
+          ]
+        },
+        {
+          "day_index": 4,
+          "weekday": "Sunday",
+          "title": "Lower B",
+          "focus": "Single-leg + posterior support",
+          "exercises": [
+            {
+              "name": "Dumbbell Step-Up",
+              "sets": 3,
+              "reps": "6–8 / leg"
+            },
+            {
+              "name": "Hip Thrust",
+              "sets": 2,
+              "reps": "6–10"
+            },
+            {
+              "name": "Seated or Lying Leg Curl",
+              "sets": 2,
+              "reps": "8–12"
+            },
+            {
+              "name": "Standing Calf Raise",
+              "sets": 3,
+              "reps": "10–15"
+            },
+            {
+              "name": "Dead Bug",
+              "sets": 3,
+              "reps": "8 / side"
+            },
+            {
+              "name": "Side Plank",
+              "sets": 2,
+              "reps": "45–60 sec / side"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "name": "Density II",
+      "phase": 2,
+      "start_date": "2026-10-12",
+      "end_date": "2026-10-18",
+      "intent": "Accumulate clean reps in the new density block without adding exercise novelty.",
+      "public_path": "/plans/adrian-developed-runner-2026/week.html?week=5",
+      "progression_note": "Rep progression first. Add load only after the top of the range is clean. Lower-body set count stays fixed.",
+      "days_from_week": 4
+    },
+    {
+      "week": 6,
+      "name": "Force",
+      "phase": 2,
+      "start_date": "2026-10-19",
+      "end_date": "2026-10-25",
+      "intent": "Let the same menu become stronger. Do not confuse heavier work with maximal work.",
+      "public_path": "/plans/adrian-developed-runner-2026/week.html?week=6",
+      "progression_note": "Upper-body anchors can take the smallest load increase. Lower compounds stay around 2 reps in reserve; accessories keep hypertrophy ranges.",
+      "days_from_week": 4
+    },
+    {
+      "week": 7,
+      "name": "Absorb",
+      "phase": 2,
+      "start_date": "2026-10-26",
+      "end_date": "2026-11-01",
+      "intent": "Keep the movement pattern and absorb the block before race-specific weeks begin.",
+      "public_path": "/plans/adrian-developed-runner-2026/week.html?week=7",
+      "progression_note": "Reduce lower-body set count about 20–30%. Keep upper quality high. Finish the week feeling better than you started it.",
+      "days": [
+        {
+          "day_index": 1,
+          "weekday": "Monday",
+          "title": "Upper A",
+          "focus": "Keep the frame",
+          "exercises": [
+            {
+              "name": "Incline Dumbbell Bench Press",
+              "sets": 3,
+              "reps": "6–8"
+            },
+            {
+              "name": "Chest-Supported Dumbbell Row",
+              "sets": 3,
+              "reps": "6–10"
+            },
+            {
+              "name": "Neutral-Grip Cable Pulldown",
+              "sets": 2,
+              "reps": "8–10"
+            },
+            {
+              "name": "Low-to-High Cable Fly",
+              "sets": 2,
+              "reps": "10–15"
+            },
+            {
+              "name": "Cable Lateral Raise",
+              "sets": 2,
+              "reps": "12–18"
+            },
+            {
+              "name": "Overhead Cable Triceps Extension",
+              "sets": 2,
+              "reps": "10–15"
+            }
+          ]
+        },
+        {
+          "day_index": 2,
+          "weekday": "Thursday",
+          "title": "Lower A",
+          "focus": "Reduced lower dose",
+          "exercises": [
+            {
+              "name": "Bulgarian Split Squat",
+              "sets": 2,
+              "reps": "6–8 / leg"
+            },
+            {
+              "name": "Dumbbell Romanian Deadlift",
+              "sets": 2,
+              "reps": "6–8"
+            },
+            {
+              "name": "Heel-Elevated Goblet Squat or Leg Press",
+              "sets": 2,
+              "reps": "8–10"
+            },
+            {
+              "name": "Bent-Knee Calf Raise",
+              "sets": 2,
+              "reps": "10–15"
+            },
+            {
+              "name": "Cable Hip Adduction",
+              "sets": 2,
+              "reps": "12–15 / side"
+            },
+            {
+              "name": "Pallof Press",
+              "sets": 2,
+              "reps": "10 / side"
+            }
+          ]
+        },
+        {
+          "day_index": 3,
+          "weekday": "Friday",
+          "title": "Upper B",
+          "focus": "Chest + arms",
+          "exercises": [
+            {
+              "name": "Flat Dumbbell Bench Press",
+              "sets": 3,
+              "reps": "6–10"
+            },
+            {
+              "name": "One-Arm Cable Row",
+              "sets": 3,
+              "reps": "8–12 / side"
+            },
+            {
+              "name": "Lat Pulldown",
+              "sets": 2,
+              "reps": "8–10"
+            },
+            {
+              "name": "Cable Rear-Delt Fly",
+              "sets": 2,
+              "reps": "12–18"
+            },
+            {
+              "name": "Hammer Curl",
+              "sets": 2,
+              "reps": "8–12"
+            },
+            {
+              "name": "Rope Pressdown",
+              "sets": 2,
+              "reps": "10–15"
+            }
+          ]
+        },
+        {
+          "day_index": 4,
+          "weekday": "Sunday",
+          "title": "Lower B",
+          "focus": "Short support",
+          "exercises": [
+            {
+              "name": "Dumbbell Step-Up",
+              "sets": 2,
+              "reps": "6–8 / leg"
+            },
+            {
+              "name": "Seated or Lying Leg Curl",
+              "sets": 2,
+              "reps": "8–12"
+            },
+            {
+              "name": "Standing Calf Raise",
+              "sets": 2,
+              "reps": "10–15"
+            },
+            {
+              "name": "Dead Bug",
+              "sets": 2,
+              "reps": "8 / side"
+            },
+            {
+              "name": "Side Plank",
+              "sets": 2,
+              "reps": "45 sec / side"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "name": "10K Integration",
+      "phase": 3,
+      "start_date": "2026-11-02",
+      "end_date": "2026-11-08",
+      "intent": "Keep strength present while the November 15 10K approaches. No late lower-body accumulation.",
+      "public_path": "/plans/adrian-developed-runner-2026/week.html?week=8",
+      "progression_note": "Upper body stays productive. Lower work is moderate, crisp and familiar; no new exercise should create race-week soreness.",
+      "days": [
+        {
+          "day_index": 1,
+          "weekday": "Monday",
+          "title": "Upper A",
+          "focus": "Maintain development",
+          "exercises": [
+            {
+              "name": "Incline Dumbbell Bench Press",
+              "sets": 3,
+              "reps": "6–8"
+            },
+            {
+              "name": "Chest-Supported Dumbbell Row",
+              "sets": 3,
+              "reps": "6–10"
+            },
+            {
+              "name": "Neutral-Grip Cable Pulldown",
+              "sets": 2,
+              "reps": "8–10"
+            },
+            {
+              "name": "Low-to-High Cable Fly",
+              "sets": 2,
+              "reps": "10–15"
+            },
+            {
+              "name": "Cable Lateral Raise",
+              "sets": 2,
+              "reps": "12–18"
+            },
+            {
+              "name": "Overhead Cable Triceps Extension",
+              "sets": 2,
+              "reps": "10–15"
+            }
+          ]
+        },
+        {
+          "day_index": 2,
+          "weekday": "Thursday",
+          "title": "Lower A",
+          "focus": "Force maintenance",
+          "exercises": [
+            {
+              "name": "Bulgarian Split Squat",
+              "sets": 2,
+              "reps": "6 / leg"
+            },
+            {
+              "name": "Dumbbell Romanian Deadlift",
+              "sets": 2,
+              "reps": "6"
+            },
+            {
+              "name": "Seated Leg Curl",
+              "sets": 2,
+              "reps": "8–10"
+            },
+            {
+              "name": "Bent-Knee Calf Raise",
+              "sets": 2,
+              "reps": "10–12"
+            },
+            {
+              "name": "Cable Hip Adduction",
+              "sets": 2,
+              "reps": "12 / side"
+            },
+            {
+              "name": "Pallof Press",
+              "sets": 2,
+              "reps": "8 / side"
+            }
+          ]
+        },
+        {
+          "day_index": 3,
+          "weekday": "Friday",
+          "title": "Upper B",
+          "focus": "Chest + arms",
+          "exercises": [
+            {
+              "name": "Flat Dumbbell Bench Press",
+              "sets": 3,
+              "reps": "6–10"
+            },
+            {
+              "name": "One-Arm Cable Row",
+              "sets": 3,
+              "reps": "8–12 / side"
+            },
+            {
+              "name": "Lat Pulldown",
+              "sets": 2,
+              "reps": "8–10"
+            },
+            {
+              "name": "Cable Rear-Delt Fly",
+              "sets": 2,
+              "reps": "12–18"
+            },
+            {
+              "name": "Hammer Curl",
+              "sets": 2,
+              "reps": "8–12"
+            },
+            {
+              "name": "Rope Pressdown",
+              "sets": 2,
+              "reps": "10–15"
+            }
+          ]
+        },
+        {
+          "day_index": 4,
+          "weekday": "Sunday",
+          "title": "Lower B",
+          "focus": "Very short support",
+          "exercises": [
+            {
+              "name": "Dumbbell Step-Up",
+              "sets": 2,
+              "reps": "6 / leg"
+            },
+            {
+              "name": "Standing Calf Raise",
+              "sets": 2,
+              "reps": "10–12"
+            },
+            {
+              "name": "Dead Bug",
+              "sets": 2,
+              "reps": "8 / side"
+            },
+            {
+              "name": "Side Plank",
+              "sets": 2,
+              "reps": "45 sec / side"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "name": "10K Race Week",
+      "phase": 3,
+      "start_date": "2026-11-09",
+      "end_date": "2026-11-15",
+      "intent": "Arrive at the 10K with strength maintained and lower-body fatigue low.",
+      "public_path": "/plans/adrian-developed-runner-2026/week.html?week=9",
+      "progression_note": "Three strength exposures only. Tuesday lower work is a primer, not a workout to win. No lower lifting after Tuesday; Sunday is the race.",
+      "days": [
+        {
+          "day_index": 1,
+          "weekday": "Monday",
+          "title": "Upper A",
+          "focus": "Full upper, no fatigue chase",
+          "exercises": [
+            {
+              "name": "Incline Dumbbell Bench Press",
+              "sets": 3,
+              "reps": "6–8"
+            },
+            {
+              "name": "Chest-Supported Dumbbell Row",
+              "sets": 3,
+              "reps": "6–10"
+            },
+            {
+              "name": "Neutral-Grip Cable Pulldown",
+              "sets": 2,
+              "reps": "8–10"
+            },
+            {
+              "name": "Cable Lateral Raise",
+              "sets": 2,
+              "reps": "12–15"
+            },
+            {
+              "name": "Overhead Cable Triceps Extension",
+              "sets": 2,
+              "reps": "10–12"
+            }
+          ]
+        },
+        {
+          "day_index": 2,
+          "weekday": "Tuesday",
+          "title": "Lower Primer",
+          "focus": "Low soreness",
+          "exercises": [
+            {
+              "name": "Bulgarian Split Squat",
+              "sets": 2,
+              "reps": "5 / leg"
+            },
+            {
+              "name": "Dumbbell Romanian Deadlift",
+              "sets": 2,
+              "reps": "5"
+            },
+            {
+              "name": "Bent-Knee Calf Raise",
+              "sets": 2,
+              "reps": "10"
+            },
+            {
+              "name": "Pallof Press",
+              "sets": 2,
+              "reps": "8 / side"
+            }
+          ]
+        },
+        {
+          "day_index": 3,
+          "weekday": "Friday",
+          "title": "Upper B",
+          "focus": "Short upper maintenance",
+          "exercises": [
+            {
+              "name": "Flat Dumbbell Bench Press",
+              "sets": 2,
+              "reps": "6–8"
+            },
+            {
+              "name": "One-Arm Cable Row",
+              "sets": 2,
+              "reps": "8–10 / side"
+            },
+            {
+              "name": "Cable Rear-Delt Fly",
+              "sets": 2,
+              "reps": "12–15"
+            },
+            {
+              "name": "Hammer Curl",
+              "sets": 2,
+              "reps": "8–10"
+            },
+            {
+              "name": "Rope Pressdown",
+              "sets": 2,
+              "reps": "10–12"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "name": "Restore",
+      "phase": 3,
+      "start_date": "2026-11-16",
+      "end_date": "2026-11-22",
+      "intent": "Absorb the 10K, restore normal movement and return to development without a rebound volume spike.",
+      "public_path": "/plans/adrian-developed-runner-2026/week.html?week=10",
+      "progression_note": "Three sessions. Resume normal loading only when the legs feel normal after the race.",
+      "days": [
+        {
+          "day_index": 1,
+          "weekday": "Monday",
+          "title": "Upper A",
+          "focus": "Normal upper work",
+          "exercises": [
+            {
+              "name": "Incline Dumbbell Bench Press",
+              "sets": 3,
+              "reps": "8–10"
+            },
+            {
+              "name": "Chest-Supported Dumbbell Row",
+              "sets": 3,
+              "reps": "8–12"
+            },
+            {
+              "name": "Neutral-Grip Cable Pulldown",
+              "sets": 2,
+              "reps": "8–12"
+            },
+            {
+              "name": "Low-to-High Cable Fly",
+              "sets": 2,
+              "reps": "12–15"
+            },
+            {
+              "name": "Cable Lateral Raise",
+              "sets": 2,
+              "reps": "12–18"
+            },
+            {
+              "name": "Overhead Cable Triceps Extension",
+              "sets": 2,
+              "reps": "10–15"
+            }
+          ]
+        },
+        {
+          "day_index": 2,
+          "weekday": "Thursday",
+          "title": "Lower Restore",
+          "focus": "Return without soreness",
+          "exercises": [
+            {
+              "name": "Bulgarian Split Squat",
+              "sets": 2,
+              "reps": "8 / leg"
+            },
+            {
+              "name": "Dumbbell Romanian Deadlift",
+              "sets": 2,
+              "reps": "8"
+            },
+            {
+              "name": "Seated Leg Curl",
+              "sets": 2,
+              "reps": "10"
+            },
+            {
+              "name": "Bent-Knee Calf Raise",
+              "sets": 2,
+              "reps": "12"
+            },
+            {
+              "name": "Cable Hip Adduction",
+              "sets": 2,
+              "reps": "12 / side"
+            },
+            {
+              "name": "Pallof Press",
+              "sets": 2,
+              "reps": "10 / side"
+            }
+          ]
+        },
+        {
+          "day_index": 3,
+          "weekday": "Friday",
+          "title": "Upper B",
+          "focus": "Torso + arms",
+          "exercises": [
+            {
+              "name": "Flat Dumbbell Bench Press",
+              "sets": 3,
+              "reps": "8–10"
+            },
+            {
+              "name": "One-Arm Cable Row",
+              "sets": 3,
+              "reps": "10–12 / side"
+            },
+            {
+              "name": "Lat Pulldown",
+              "sets": 2,
+              "reps": "10–12"
+            },
+            {
+              "name": "Cable Rear-Delt Fly",
+              "sets": 2,
+              "reps": "12–18"
+            },
+            {
+              "name": "Hammer Curl",
+              "sets": 2,
+              "reps": "8–12"
+            },
+            {
+              "name": "Rope Pressdown",
+              "sets": 2,
+              "reps": "10–15"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "name": "Rebuild",
+      "phase": 4,
+      "start_date": "2026-11-23",
+      "end_date": "2026-11-29",
+      "intent": "One productive week between races: upper-body development returns fully; lower body stays useful and economical.",
+      "public_path": "/plans/adrian-developed-runner-2026/week.html?week=11",
+      "progression_note": "Return to four sessions, but do not chase soreness before the December 6 half.",
+      "days": [
+        {
+          "day_index": 1,
+          "weekday": "Monday",
+          "title": "Upper A",
+          "focus": "Chest depth + back",
+          "exercises": [
+            {
+              "name": "Incline Dumbbell Bench Press",
+              "sets": 4,
+              "reps": "6–8"
+            },
+            {
+              "name": "Chest-Supported Dumbbell Row",
+              "sets": 4,
+              "reps": "6–10"
+            },
+            {
+              "name": "Neutral-Grip Cable Pulldown",
+              "sets": 3,
+              "reps": "8–10"
+            },
+            {
+              "name": "Low-to-High Cable Fly",
+              "sets": 2,
+              "reps": "10–15"
+            },
+            {
+              "name": "Cable Lateral Raise",
+              "sets": 3,
+              "reps": "12–18"
+            },
+            {
+              "name": "Overhead Cable Triceps Extension",
+              "sets": 3,
+              "reps": "10–15"
+            }
+          ]
+        },
+        {
+          "day_index": 2,
+          "weekday": "Thursday",
+          "title": "Lower A",
+          "focus": "Force without tax",
+          "exercises": [
+            {
+              "name": "Bulgarian Split Squat",
+              "sets": 3,
+              "reps": "6–8 / leg"
+            },
+            {
+              "name": "Dumbbell Romanian Deadlift",
+              "sets": 3,
+              "reps": "6–8"
+            },
+            {
+              "name": "Heel-Elevated Goblet Squat or Leg Press",
+              "sets": 2,
+              "reps": "8–10"
+            },
+            {
+              "name": "Seated Leg Curl",
+              "sets": 2,
+              "reps": "8–12"
+            },
+            {
+              "name": "Bent-Knee Calf Raise",
+              "sets": 3,
+              "reps": "10–15"
+            },
+            {
+              "name": "Cable Hip Adduction",
+              "sets": 2,
+              "reps": "12–15 / side"
+            }
+          ]
+        },
+        {
+          "day_index": 3,
+          "weekday": "Friday",
+          "title": "Upper B",
+          "focus": "Chest + sleeves",
+          "exercises": [
+            {
+              "name": "Flat Dumbbell Bench Press",
+              "sets": 4,
+              "reps": "6–10"
+            },
+            {
+              "name": "One-Arm Cable Row",
+              "sets": 3,
+              "reps": "8–12 / side"
+            },
+            {
+              "name": "Lat Pulldown",
+              "sets": 3,
+              "reps": "8–10"
+            },
+            {
+              "name": "Mid-Height Cable Fly",
+              "sets": 2,
+              "reps": "10–15"
+            },
+            {
+              "name": "Cable Rear-Delt Fly",
+              "sets": 2,
+              "reps": "12–18"
+            },
+            {
+              "name": "Hammer Curl",
+              "sets": 3,
+              "reps": "8–12"
+            },
+            {
+              "name": "Rope Pressdown",
+              "sets": 3,
+              "reps": "10–15"
+            }
+          ]
+        },
+        {
+          "day_index": 4,
+          "weekday": "Sunday",
+          "title": "Lower B",
+          "focus": "Short support",
+          "exercises": [
+            {
+              "name": "Dumbbell Step-Up",
+              "sets": 2,
+              "reps": "6–8 / leg"
+            },
+            {
+              "name": "Hip Thrust",
+              "sets": 2,
+              "reps": "6–10"
+            },
+            {
+              "name": "Standing Calf Raise",
+              "sets": 3,
+              "reps": "10–15"
+            },
+            {
+              "name": "Dead Bug",
+              "sets": 2,
+              "reps": "8 / side"
+            },
+            {
+              "name": "Side Plank",
+              "sets": 2,
+              "reps": "45–60 sec / side"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "name": "Half Race Week",
+      "phase": 4,
+      "start_date": "2026-11-30",
+      "end_date": "2026-12-06",
+      "intent": "Maintain strength and arrive at the December 6 half with quiet legs.",
+      "public_path": "/plans/adrian-developed-runner-2026/week.html?week=12",
+      "progression_note": "Three strength exposures. Tuesday lower primer only; no lower-body lifting later in the week. Sunday race replaces Lower B.",
+      "days": [
+        {
+          "day_index": 1,
+          "weekday": "Monday",
+          "title": "Upper A",
+          "focus": "Maintain upper development",
+          "exercises": [
+            {
+              "name": "Incline Dumbbell Bench Press",
+              "sets": 3,
+              "reps": "6–8"
+            },
+            {
+              "name": "Chest-Supported Dumbbell Row",
+              "sets": 3,
+              "reps": "6–10"
+            },
+            {
+              "name": "Neutral-Grip Cable Pulldown",
+              "sets": 2,
+              "reps": "8–10"
+            },
+            {
+              "name": "Cable Lateral Raise",
+              "sets": 2,
+              "reps": "12–15"
+            },
+            {
+              "name": "Overhead Cable Triceps Extension",
+              "sets": 2,
+              "reps": "10–12"
+            }
+          ]
+        },
+        {
+          "day_index": 2,
+          "weekday": "Tuesday",
+          "title": "Lower Primer",
+          "focus": "Low soreness",
+          "exercises": [
+            {
+              "name": "Bulgarian Split Squat",
+              "sets": 2,
+              "reps": "5 / leg"
+            },
+            {
+              "name": "Dumbbell Romanian Deadlift",
+              "sets": 2,
+              "reps": "5"
+            },
+            {
+              "name": "Bent-Knee Calf Raise",
+              "sets": 2,
+              "reps": "10"
+            },
+            {
+              "name": "Pallof Press",
+              "sets": 2,
+              "reps": "8 / side"
+            }
+          ]
+        },
+        {
+          "day_index": 3,
+          "weekday": "Friday",
+          "title": "Upper B",
+          "focus": "Short upper maintenance",
+          "exercises": [
+            {
+              "name": "Flat Dumbbell Bench Press",
+              "sets": 2,
+              "reps": "6–8"
+            },
+            {
+              "name": "One-Arm Cable Row",
+              "sets": 2,
+              "reps": "8–10 / side"
+            },
+            {
+              "name": "Cable Rear-Delt Fly",
+              "sets": 2,
+              "reps": "12–15"
+            },
+            {
+              "name": "Hammer Curl",
+              "sets": 2,
+              "reps": "8–10"
+            },
+            {
+              "name": "Rope Pressdown",
+              "sets": 2,
+              "reps": "10–12"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "name": "Restore + Read",
+      "phase": 4,
+      "start_date": "2026-12-07",
+      "end_date": "2026-12-13",
+      "intent": "Recover from the half, review the running response and re-enter normal strength without forcing the calendar.",
+      "public_path": "/plans/adrian-developed-runner-2026/week.html?week=13",
+      "progression_note": "Three sessions. If the half was treated harder than planned, hold lower loading. This week is for information, not proving toughness.",
+      "days_from_week": 10
+    },
+    {
+      "week": 14,
+      "name": "Year-End Build I",
+      "phase": 5,
+      "start_date": "2026-12-14",
+      "end_date": "2026-12-20",
+      "intent": "Return to the most productive development dose of the season with running still governing lower-body progression.",
+      "public_path": "/plans/adrian-developed-runner-2026/week.html?week=14",
+      "progression_note": "Upper body can push progression. Lower body stays compact, strong and repeatable. Keep glute work at maintenance while chest, arms, medial thigh, hamstrings and calves remain the visual priorities.",
+      "days": [
+        {
+          "day_index": 1,
+          "weekday": "Monday",
+          "title": "Upper A",
+          "focus": "Upper chest + density",
+          "exercises": [
+            {
+              "name": "Incline Dumbbell Bench Press",
+              "sets": 4,
+              "reps": "6–10"
+            },
+            {
+              "name": "Chest-Supported Dumbbell Row",
+              "sets": 4,
+              "reps": "6–10"
+            },
+            {
+              "name": "Neutral-Grip Cable Pulldown",
+              "sets": 3,
+              "reps": "8–12"
+            },
+            {
+              "name": "Low-to-High Cable Fly",
+              "sets": 3,
+              "reps": "10–15"
+            },
+            {
+              "name": "Cable Lateral Raise",
+              "sets": 3,
+              "reps": "12–18"
+            },
+            {
+              "name": "Overhead Cable Triceps Extension",
+              "sets": 3,
+              "reps": "10–15"
+            }
+          ]
+        },
+        {
+          "day_index": 2,
+          "weekday": "Thursday",
+          "title": "Lower A",
+          "focus": "Thigh + calf density",
+          "exercises": [
+            {
+              "name": "Bulgarian Split Squat",
+              "sets": 3,
+              "reps": "6–8 / leg"
+            },
+            {
+              "name": "Dumbbell Romanian Deadlift",
+              "sets": 3,
+              "reps": "6–8"
+            },
+            {
+              "name": "Heel-Elevated Goblet Squat or Leg Press",
+              "sets": 2,
+              "reps": "8–12"
+            },
+            {
+              "name": "Seated Leg Curl",
+              "sets": 2,
+              "reps": "8–12"
+            },
+            {
+              "name": "Bent-Knee Calf Raise",
+              "sets": 3,
+              "reps": "10–15"
+            },
+            {
+              "name": "Cable Hip Adduction",
+              "sets": 3,
+              "reps": "12–15 / side"
+            },
+            {
+              "name": "Pallof Press",
+              "sets": 2,
+              "reps": "10 / side"
+            }
+          ]
+        },
+        {
+          "day_index": 3,
+          "weekday": "Friday",
+          "title": "Upper B",
+          "focus": "Torso thickness + sleeves",
+          "exercises": [
+            {
+              "name": "Flat Dumbbell Bench Press",
+              "sets": 4,
+              "reps": "6–10"
+            },
+            {
+              "name": "One-Arm Cable Row",
+              "sets": 3,
+              "reps": "8–12 / side"
+            },
+            {
+              "name": "Lat Pulldown",
+              "sets": 3,
+              "reps": "8–12"
+            },
+            {
+              "name": "Mid-Height Cable Fly",
+              "sets": 3,
+              "reps": "10–15"
+            },
+            {
+              "name": "Cable Rear-Delt Fly",
+              "sets": 2,
+              "reps": "12–18"
+            },
+            {
+              "name": "Hammer Curl",
+              "sets": 3,
+              "reps": "8–12"
+            },
+            {
+              "name": "Rope Pressdown",
+              "sets": 3,
+              "reps": "10–15"
+            }
+          ]
+        },
+        {
+          "day_index": 4,
+          "weekday": "Sunday",
+          "title": "Lower B",
+          "focus": "Posterior + single-leg support",
+          "exercises": [
+            {
+              "name": "Dumbbell Step-Up",
+              "sets": 3,
+              "reps": "6–8 / leg"
+            },
+            {
+              "name": "Hip Thrust",
+              "sets": 2,
+              "reps": "6–10"
+            },
+            {
+              "name": "Seated or Lying Leg Curl",
+              "sets": 2,
+              "reps": "8–12"
+            },
+            {
+              "name": "Standing Calf Raise",
+              "sets": 3,
+              "reps": "10–15"
+            },
+            {
+              "name": "Dead Bug",
+              "sets": 3,
+              "reps": "8 / side"
+            },
+            {
+              "name": "Side Plank",
+              "sets": 2,
+              "reps": "45–60 sec / side"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 15,
+      "name": "Year-End Build II",
+      "phase": 5,
+      "start_date": "2026-12-21",
+      "end_date": "2026-12-27",
+      "intent": "Progress the year-end build by reps or the smallest load increase while keeping the running feel recognizable.",
+      "public_path": "/plans/adrian-developed-runner-2026/week.html?week=15",
+      "progression_note": "No new movements. Beat Week 14 only where the evidence says to. Do not use holiday schedule disruption as a reason to cram missed work.",
+      "days_from_week": 14
+    },
+    {
+      "week": 16,
+      "name": "Closeout",
+      "phase": 5,
+      "start_date": "2026-12-28",
+      "end_date": "2026-12-31",
+      "intent": "Close the 2026 study block with low fatigue, measurements and a clear record for January.",
+      "public_path": "/plans/adrian-developed-runner-2026/week.html?week=16",
+      "progression_note": "Two sessions only. No failure, no testing. Complete standardized photos, body-mass average and circumferences before January starts fresh.",
+      "days": [
+        {
+          "day_index": 1,
+          "weekday": "Monday",
+          "title": "Upper Closeout",
+          "focus": "Quality + measurements",
+          "exercises": [
+            {
+              "name": "Incline Dumbbell Bench Press",
+              "sets": 3,
+              "reps": "8"
+            },
+            {
+              "name": "Chest-Supported Dumbbell Row",
+              "sets": 3,
+              "reps": "8–10"
+            },
+            {
+              "name": "Neutral-Grip Cable Pulldown",
+              "sets": 2,
+              "reps": "10"
+            },
+            {
+              "name": "Cable Lateral Raise",
+              "sets": 2,
+              "reps": "12–15"
+            },
+            {
+              "name": "Hammer Curl",
+              "sets": 2,
+              "reps": "10"
+            },
+            {
+              "name": "Overhead Cable Triceps Extension",
+              "sets": 2,
+              "reps": "10–12"
+            }
+          ]
+        },
+        {
+          "day_index": 2,
+          "weekday": "Wednesday",
+          "title": "Lower Closeout",
+          "focus": "Quiet legs",
+          "exercises": [
+            {
+              "name": "Bulgarian Split Squat",
+              "sets": 2,
+              "reps": "6 / leg"
+            },
+            {
+              "name": "Dumbbell Romanian Deadlift",
+              "sets": 2,
+              "reps": "6"
+            },
+            {
+              "name": "Bent-Knee Calf Raise",
+              "sets": 2,
+              "reps": "12"
+            },
+            {
+              "name": "Cable Hip Adduction",
+              "sets": 2,
+              "reps": "12 / side"
+            },
+            {
+              "name": "Pallof Press",
+              "sets": 2,
+              "reps": "8 / side"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
