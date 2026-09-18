@@ -12,7 +12,7 @@ const lacks = (text, value) => ok(!text.includes(value), `unexpected ${value}`);
 
 const week1 = { id:'w1', week_number:1, starts_on:'2026-09-14', ends_on:'2026-09-20', intent:'Build the week without forcing it.' };
 const base = {
-  athlete:{ id:'a1', display_name:'José', account_label:'Run Development', delivery:'form_app', home_surface:'running', program_name:'Race Pace Durability' },
+  athlete:{ id:'a1', display_name:'José', account_label:'Run Development', delivery:'app', home_surface:'form', program_name:'Race Pace Durability' },
   block:{ id:'b1', current_week:1, total_weeks:15, goal_statement:'Half marathon · Dec 5' },
   weeks:[week1], currentWeek:week1,
   sessionsByWeek:{ w1:[
@@ -39,11 +39,11 @@ has(plan,'Browsing another week does not change your current position.');
 has(plan,'RECEIVED'); has(plan,'Record in FORM');
 
 const history = renderAthleteWorkspace(base,{view:'history'});
-has(history,'What reached your record.'); has(history,'Session received'); has(history,'Coach read');
+has(history,'What reached your record.'); has(history,'Session received'); has(history,'Coach review');
 has(history,'No record received does not automatically mean a session was missed.');
 
 const account = renderAthleteWorkspace(base,{view:'account',email:'jose@example.com'});
-has(account,'Signed in as'); has(account,'jose@example.com'); has(account,'Training app'); has(account,'FORM');
+has(account,'Signed in as'); has(account,'jose@example.com'); has(account,'Delivery'); has(account,'FORM app'); has(account,'Completed work');
 
 // Match Adrian's current production metadata exactly enough to prevent a remote
 // strength athlete from being mislabeled as a runner simply because the legacy
@@ -52,7 +52,7 @@ const strength = structuredClone(base);
 strength.athlete = {id:'a2',display_name:'Adrian Gandara',account_label:'Adrian',delivery:'coach',home_surface:'form',program_name:'Runner Mass · Phase 1'};
 strength.block = null; strength.weeks=[]; strength.currentWeek=null; strength.sessionsByWeek={}; strength.completions=[]; strength.reads=[];
 const adrian = renderAthleteWorkspace(strength,{view:'today'});
-has(adrian,'Strength development'); has(adrian,'Runner Mass · Phase 1'); has(adrian,'Your next block is not published here yet.'); has(adrian,'Forge remains the place to record completed sessions.');
+has(adrian,'Strength development'); has(adrian,'Runner Mass · Phase 1'); has(adrian,'Your training is coach-managed.'); has(adrian,'No filing is expected on this website.');
 lacks(adrian,'Run development'); lacks(adrian,'mi planned');
 
 const physique = structuredClone(strength);
@@ -60,8 +60,24 @@ physique.athlete = {id:'a3',display_name:'Rod',account_label:'Rod',delivery:'coa
 const rod = renderAthleteWorkspace(physique,{view:'today'});
 has(rod,'Strength development'); lacks(rod,'Run development');
 
+
+// Coach-direct discipline must never be promoted to an app merely because the
+// program sounds like strength or running.
+const rodAccount = renderAthleteWorkspace(physique,{view:'account',email:'rod@example.com'});
+has(rodAccount,'<span>Delivery</span><b>Coach-managed</b>');
+has(rodAccount,'<span>Completed work</span><b>With Brice</b>');
+lacks(rodAccount,'Record in Forge');
+
+const valerie = structuredClone(base);
+valerie.athlete = {id:'a4',display_name:'Valerie',account_label:'Valerie',delivery:'coach',home_surface:'form',program_name:'Run Development'};
+valerie.block=null; valerie.weeks=[]; valerie.currentWeek=null; valerie.sessionsByWeek={}; valerie.completions=[]; valerie.reads=[];
+const valerieToday = renderAthleteWorkspace(valerie,{view:'today'});
+has(valerieToday,'Run development');
+has(valerieToday,'Your training is coach-managed.');
+lacks(valerieToday,'Record completed sessions in FORM');
+
 const emptyHistory = renderAthleteWorkspace(strength,{view:'history'});
-has(emptyHistory,'No history has reached this account yet.'); has(emptyHistory,'Forge records');
+has(emptyHistory,'No history has reached this account yet.'); has(emptyHistory,'When Brice publishes a review, instruction, change, or received record');
 
 const athleteJs = read('athlete/athlete.js');
 lacks(athleteJs,'fileSession'); lacks(athleteJs,'updateCompletion'); lacks(athleteJs,'fileDialog');

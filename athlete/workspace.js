@@ -19,7 +19,23 @@ function deliveryKind(record) {
   return /forge|sculpt|strength|physique|runner\s+mass/.test(text) ? 'strength' : 'running';
 }
 
-function appName(record) { return deliveryKind(record) === 'strength' ? 'Forge' : 'FORM'; }
+function deliveryProfile(record) {
+  const appDelivered = record.athlete?.delivery === 'app';
+  const discipline = deliveryKind(record);
+  const app = discipline === 'strength' ? 'Forge' : 'FORM';
+  return {
+    appDelivered,
+    discipline,
+    app,
+    modeLabel: appDelivered ? `${app} app` : 'Coach-managed',
+    recordLabel: appDelivered ? app : 'With Brice',
+    accountNote: appDelivered
+      ? `${app} is the recording channel for completed ${discipline === 'strength' ? 'strength' : 'running'} sessions.`
+      : 'Brice is managing completed-work records directly. This website is a read-only reference.'
+  };
+}
+
+function appName(record) { return deliveryProfile(record).app; }
 
 function workspaceNav(view) {
   return `<nav class="athlete-tabs" aria-label="Athlete workspace">
@@ -62,8 +78,17 @@ function sessionCard(record, session) {
 }
 
 function noPlan(record) {
-  const app = appName(record);
-  return `<section class="athlete-empty"><p class="eyebrow">Training</p><h2>Your next block is not published here yet.</h2><p>This account is ready. When Brice publishes training for you, it will appear here. ${app} remains the place to record completed sessions.</p><a href="mailto:brice@speedandform.com?subject=My%20FORM%20training" class="button">Ask Brice about your training →</a></section>`;
+  const delivery = deliveryProfile(record);
+  const copy = delivery.appDelivered
+    ? `This account is ready. When Brice publishes training for you, it will appear here. Record completed sessions in ${delivery.app}.`
+    : 'Your training is currently managed directly with Brice. When a web block is published for you, it will appear here. No filing is expected on this website.';
+  return `<section class="athlete-empty"><p class="eyebrow">Training</p><h2>${delivery.appDelivered ? 'Your next block is not published here yet.' : 'Your training is coach-managed.'}</h2><p>${esc(copy)}</p>
+    <div class="athlete-empty-facts" aria-label="Training status">
+      <div><span>Delivery</span><b>${esc(delivery.modeLabel)}</b></div>
+      <div><span>Training</span><b>Not published here</b></div>
+      <div><span>Website</span><b>Read only</b></div>
+    </div>
+    <a href="mailto:brice@speedandform.com?subject=My%20FORM%20training" class="button">Ask Brice about your training →</a></section>`;
 }
 
 function fallbackToday(record, program) {
@@ -102,7 +127,9 @@ function todayView(record, fallbackProgram) {
     <div class="athlete-view-head"><div><p class="eyebrow">Today</p><h2>${today ? 'Your work today.' : 'Your current week.'}</h2></div><span>Week ${esc(week.week_number)}${record.block?.total_weeks ? ` / ${esc(record.block.total_weeks)}` : ''}</span></div>
     ${reviewNote(record)}
     ${next ? `<div class="today-focus">${sessionCard(record, next)}</div>` : '<p class="athlete-muted">No session is authored for today.</p>'}
-    <div class="today-context"><p>${esc(week.intent || 'Follow the authored week and keep the easy work easy.')}</p><p class="athlete-app-note">Record completed ${deliveryKind(record) === 'strength' ? 'strength' : 'running'} sessions in <strong>${appName(record)}</strong>. This website is your read-only reference.</p></div>
+    <div class="today-context"><p>${esc(week.intent || 'Follow the authored week and keep the easy work easy.')}</p><p class="athlete-app-note">${deliveryProfile(record).appDelivered
+      ? `Record completed ${deliveryKind(record) === 'strength' ? 'strength' : 'running'} sessions in <strong>${appName(record)}</strong>. This website is your read-only reference.`
+      : 'Brice is managing completed-work records directly. This website is your read-only reference; no filing is expected here.'}</p></div>
     <button class="text-action" type="button" data-athlete-view="plan">See the full week →</button>
   </section>`;
 }
@@ -139,7 +166,7 @@ function planView(record, shownWeekId, fallbackProgram, fallbackWeek) {
       <div class="plan-week-nav"><button type="button" data-week-step="-1" ${index <= 0 ? 'disabled' : ''} aria-label="Previous week">‹</button><span>${esc(index + 1)} / ${esc(weeks.length)}</span><button type="button" data-week-step="1" ${index >= weeks.length - 1 ? 'disabled' : ''} aria-label="Next week">›</button></div>
     </div>
     ${week.intent ? `<p class="plan-intent">${esc(week.intent)}</p>` : ''}
-    <div class="plan-summary"><span>${sessions.length} sessions</span>${total ? `<span>${Number(total.toFixed(1))} mi planned</span>` : ''}<span>Record in ${appName(record)}</span></div>
+    <div class="plan-summary"><span>${sessions.length} sessions</span>${total ? `<span>${Number(total.toFixed(1))} mi planned</span>` : ''}<span>${deliveryProfile(record).appDelivered ? `Record in ${appName(record)}` : 'Managed by Brice'}</span></div>
     <div class="athlete-session-list">${sessions.map((session) => sessionCard(record, session)).join('') || '<p class="athlete-muted">No sessions have been published for this week.</p>'}</div>
     <p class="athlete-readonly">Your prescription is managed by Brice. Browsing another week does not change your current position.</p>
   </section>`;
@@ -154,7 +181,9 @@ function historyView(record, fallbackProgram) {
   events.sort((a,b) => new Date(b.date || 0) - new Date(a.date || 0));
   const empty = fallbackProgram
     ? `<div class="athlete-empty compact"><h3>No Forge history has reached this account yet.</h3><p>The three-week web fallback is available under Plan, but web-delivered work is not backfilled as a Forge receipt.</p></div>`
-    : `<div class="athlete-empty compact"><h3>No history has reached this account yet.</h3><p>When ${appName(record)} records or coach-published changes arrive, they will appear here.</p></div>`;
+    : `<div class="athlete-empty compact"><h3>No history has reached this account yet.</h3><p>${deliveryProfile(record).appDelivered
+      ? `When ${appName(record)} records or coach-published changes arrive, they will appear here.`
+      : 'When Brice publishes a review, instruction, change, or received record, it will appear here.'}</p></div>`;
   return `<section class="athlete-view athlete-history" id="history"><p class="eyebrow">History</p><h2>What reached your record.</h2>
     <p class="athlete-muted">Planned work and received records stay distinct. No record received does not automatically mean a session was missed.</p>
     ${events.length ? `<div class="athlete-history-list">${events.map((event) => `<article><time>${fmt(event.date)}</time><div><b>${esc(event.type)}</b>${event.body ? `<p>${esc(event.body)}</p>` : ''}</div></article>`).join('')}</div>` : empty}
@@ -164,15 +193,17 @@ function historyView(record, fallbackProgram) {
 function accountView(record, email, fallbackProgram) {
   const athlete = record.athlete;
   const block = record.block;
+  const delivery = deliveryProfile(record);
   return `<section class="athlete-view athlete-account" id="account"><p class="eyebrow">Account</p><h2>${esc(athlete.display_name)}</h2>
     <div class="athlete-account-rows">
       <div><span>Signed in as</span><b>${esc(email || 'Not set')}</b></div>
       <div><span>Coaching</span><b>${esc(athlete.account_label || 'FORM athlete')}</b></div>
-      <div><span>Training app</span><b>${appName(record)}</b></div>
+      <div><span>Delivery</span><b>${esc(delivery.modeLabel)}</b></div>
+      <div><span>Completed work</span><b>${esc(delivery.recordLabel)}</b></div>
       ${block ? `<div><span>Current block</span><b>Week ${esc(record.currentWeek?.week_number || block.current_week || '—')} of ${esc(block.total_weeks || record.weeks?.length || '—')}</b></div>` : ''}
       ${fallbackProgram ? `<div><span>Web reference</span><b>${esc(fallbackProgram.title)} · ${esc(fallbackProgram.duration_weeks)} weeks</b></div>` : ''}
     </div>
-    ${fallbackProgram ? '<p class="athlete-readonly">A web fallback is available. This account view does not claim Forge receipt delivery or infer your current native position.</p>' : ''}
+    <p class="athlete-readonly">${esc(delivery.accountNote)}${fallbackProgram ? ' A web fallback is available; it does not claim Forge receipt delivery or infer your native position.' : ''}</p>
     <div class="athlete-account-actions"><button class="button" id="setPassword" type="button">Set a password</button><button class="button" id="linkApple" type="button" hidden>Link Apple</button><button class="button" id="changeEmail" type="button">Change email</button><a class="button" href="mailto:brice@speedandform.com?subject=FORM%20account%20help">Get help</a><button class="button quiet" id="accountSignOut" type="button">Sign out</button></div>
   </section>`;
 }
