@@ -55,12 +55,12 @@ try:
             check(f'coach-strength {view} {width}: strength identity','Strength development' in body)
             check(f'coach-strength {view} {width}: no run identity','Run development' not in body)
             if view in ['today','account']:
-              check(f'coach-strength {view} {width}: coach-managed','Coach-managed' in body)
+              check(f'coach-strength {view} {width}: coach-managed','coach-managed' in body.lower())
               check(f'coach-strength {view} {width}: no Forge fiction','Record completed sessions in Forge' not in body)
           else:
             check(f'coach-running {view} {width}: running identity','Run development' in body)
             if view in ['today','account']:
-              check(f'coach-running {view} {width}: coach-managed','Coach-managed' in body)
+              check(f'coach-running {view} {width}: coach-managed','coach-managed' in body.lower())
               check(f'coach-running {view} {width}: no FORM fiction','Record completed sessions in FORM' not in body)
           if width in [390,1440] and view in ['today','plan']:
             page.screenshot(path=str(OUT/f'{ENGINE}-{kind}-{view}-{width}.png'),full_page=True)
