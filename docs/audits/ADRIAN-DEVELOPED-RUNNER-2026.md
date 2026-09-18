@@ -3,7 +3,7 @@
 **Date:** 2026-09-18  
 **Status:** backend + athlete web delivery live  
 **Production:** PR #159 → `7d625f3976c36b906d597206fb6d2cf1162a5a74` → Netlify `6aad4c85968c990008a3c37b`  
-**Publication:** public study remains held pending explicit athlete consent
+**Publication:** FORM Human Performance Study 001 is public with Adrian's explicit consent
 
 ## Decision
 
@@ -28,13 +28,13 @@ The response is **not** to increase punishment. Week 02 redirects the same four-
 
 ## 2026 architecture
 
-| Phase | Weeks | Purpose |
+| Block | Weeks | Purpose |
 |---|---:|---|
-| Establish · Redirect · Confirm | 1–3 | establish tolerance, target the right tissue, confirm inside rising mileage |
-| Density + Force | 4–7 | three-dimensional tissue + useful force |
-| 10K Integration | 8–10 | preserve strength around Nov 15 race |
-| Race Strength | 11–13 | rebuild, protect Dec 6 half, restore |
-| Close the Year | 14–16 | productive development, then measurement / low-fatigue closeout |
+| Establish | 1–3 | find the tolerable dose, redirect it, then confirm it |
+| Density | 4–6 | chest, arms, upper back, medial thigh, hamstrings and calves |
+| Absorb | 7–10 | reduce lower cost into the Nov 15 10K, then restore |
+| Rebuild | 11–13 | one productive week, protect the Dec 6 half, then read the response |
+| Close | 14–16 | return to the productive dose, then close with measurements and low fatigue |
 
 The final authored day is **December 31, 2026**. January requires a fresh decision.
 
@@ -47,7 +47,7 @@ The following are projections or delivery surfaces of that decision:
 - Week 02 / Week 03 legacy links;
 - generic Week 04–16 season view;
 - season overview;
-- FORM Labs study, only after the consent gate clears;
+- FORM Human Performance Study 001 at `/labs/adrian-runner-mass/`;
 - Forge handoff contract.
 
 The web projection must be updated with the athlete record, never instead of it.
@@ -68,7 +68,9 @@ No body-mass gain, circumference gain, hypertrophy result or causal success is c
 
 ## Publication boundary
 
-The study draft is deliberately separate from athlete delivery and is not present on production. It must remain unlisted from the public Labs directory and unmerged until explicit case-study consent exists.
+Adrian explicitly consented on September 18, 2026 to public case-study publication, progress photos/clips and selected athlete quotes.
+
+Study 001 is live at `/labs/adrian-runner-mass/`. The page is evidence presentation only: FORM Athlete System still owns prescription, missing measurements remain visible as pending, and public interpretation does not invent completions.
 
 ## Canonical verification
 
@@ -88,13 +90,19 @@ The zeroes matter. The prescription is authored; completed work has not been inv
 
 ## Web production receipt
 
-- merged PR: **#159**
+### Athlete delivery
+- plan delivery PR: **#159**
 - production commit: `7d625f3976c36b906d597206fb6d2cf1162a5a74`
 - Netlify deploy: `6aad4c85968c990008a3c37b`
-- state: **ready**
-- published: **2026-09-18 14:37 UTC**
-- deploy summary reports the new Developed Runner season page, Week 02, Week 03, Phase 01 index and generic week view among the generated production pages
-- no FORM Labs Adrian study page was included in the deploy
+
+### Public study
+- study PR: **#165**
+- production commit: `807de59b6a048695361141a6869e9108d0d52f48`
+- Netlify deploy: `6aada2577071af000809a12d`
+- published: **2026-09-18 20:43 UTC**
+- public route: `https://speedandform.com/labs/adrian-runner-mass/`
+- Labs index and sitemap include the study
+- production deploy summary reports the Adrian study page and Labs index among the generated pages
 
 ## Native boundary
 
