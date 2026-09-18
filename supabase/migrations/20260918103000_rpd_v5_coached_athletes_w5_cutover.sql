@@ -167,6 +167,22 @@ begin
   -- Resolve those numbers only into her future W5-W15 occurrence versions.
   -- The underlying public Plan stays athlete-relative/generic, and W1-W4 evidence
   -- is untouched. Explicit coach overrides remain authoritative and are skipped.
+  select m.id into mark_id
+    from public.athlete_marks m
+    join public.athletes a on a.id=m.athlete_id
+   where a.slug='hope' and m.active and m.is_primary
+   limit 1;
+
+  if mark_id is null then
+    raise exception 'Hope primary race-pace mark is missing';
+  end if;
+
+  update public.athlete_marks m
+     set current_question='How far can you hold 6:45–7:00 without it coming apart?',
+         updated_at=now()
+    from public.athletes a
+   where a.id=m.athlete_id and a.slug='hope' and m.active and m.is_primary;
+
   for r in
     select ps.id occurrence_id,
            ps.override_reason,
@@ -227,14 +243,6 @@ begin
     into parts
     from public.training_plan_components c
     where c.plan_session_id=r.plan_session_id;
-
-    -- mark_id was most recently loaded for the previous athlete loop; resolve
-    -- Hope's own primary mark explicitly before writing her athlete-specific copy.
-    select id into mark_id
-      from public.athlete_marks
-     where athlete_id=(select id from public.athletes where slug='hope')
-       and active and is_primary
-     limit 1;
 
     perform public.write_session_version(
       r.occurrence_id,
@@ -377,4 +385,12 @@ begin
        and c.pace_high='6:25'
        and c.recovery_seconds=180
   ) then raise exception 'Hope W5 Thursday does not carry study-canon threshold 6:20–6:25'; end if;
+
+  if not exists (
+    select 1
+      from public.athlete_marks m
+      join public.athletes a on a.id=m.athlete_id
+     where a.slug='hope' and m.active and m.is_primary
+       and m.current_question='How far can you hold 6:45–7:00 without it coming apart?'
+  ) then raise exception 'Hope primary mark still carries the stale race-pace band'; end if;
 end $;
