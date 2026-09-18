@@ -1,6 +1,6 @@
 # FORM: current state and next actions
 
-Private athlete/account execution: [twelve bounded passes](ATHLETE-ECOSYSTEM-PASSES-20260917.md). The bounded implementation/reconciliation program is source-complete through Pass 12; accepted web work remains intentionally held from production and the two native device gates remain explicit. Release and operating authority: [Athlete ecosystem runbook](../audits/ATHLETE-ECOSYSTEM-RUNBOOK-20260918.md).
+Private athlete/account execution: [twelve bounded passes](ATHLETE-ECOSYSTEM-PASSES-20260917.md). The bounded implementation/reconciliation program is complete through Pass 12; schema and exact current web `main` are now live, anonymous production acceptance is green, and the authenticated owner/athlete walks plus two native physical-device gates remain explicit. Release and operating authority: [Athlete ecosystem runbook](../audits/ATHLETE-ECOSYSTEM-RUNBOOK-20260918.md).
 Updated September 18, 2026. Owner: Brice. Maintainer: the agent completing relevant work.
 
 **September 17 homepage doctrine source:** [`FORM Run Development Manifesto`](../FORM_RUN_DEVELOPMENT_MANIFESTO.md) is canonical for coaching philosophy and identity language. The active homepage refinement removes the forced Simon second-position proof block, goes hero → `I develop runners`, replaces generic practice copy with Brice's ease/layering/repetition language, and keeps Simon's evidence available elsewhere. Branch/source state is not a production claim; release receipt still owns deployment status.
