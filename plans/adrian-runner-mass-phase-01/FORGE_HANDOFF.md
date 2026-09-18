@@ -1,74 +1,88 @@
-# Adrian Runner Mass · Phase 01 — Forge handoff
+# Adrian · The Developed Runner 2026 — Forge handoff
 
-**Canonical athlete-facing source:** `program.json` in this directory.  
-**Forge program id:** `adrian_runner_mass_phase1_v1`  
-**Duration:** 3 weeks  
-**Weekly slots:** Monday Upper A · Thursday Lower + Core · Friday Upper B · Sunday Lower Support + Core.
+**Canonical 2026 source:** `/plans/adrian-developed-runner-2026/program.json`  
+**Season id:** `adrian_developed_runner_2026`  
+**Legacy Forge program id:** `adrian_runner_mass_phase1_v1`  
+**Season:** 2026-09-14 → 2026-12-31
 
-## Chronology law
+## One-source law
 
-The existing `/plans/adrian-hypertrophy-week-01/` is **Week 01 of this three-week phase**. It is not replayed because Forge arrives later.
+Do not independently author a second Adrian progression in Forge, the athlete website, Console, or the study.
 
-When a compatible Forge build is accepted and Adrian redeems coached access:
+The canonical JSON above owns:
+- phase and week names;
+- week dates;
+- exercise identity;
+- sets / rep ranges;
+- race-week reductions;
+- progression rules;
+- running-coordination rules;
+- measurement protocol;
+- race anchors.
 
-- all three weeks should already exist in the app;
-- Adrian should enter at the **actual current week/day** of the real phase;
-- past web-delivered work remains history;
-- no fake Forge receipts are created for work completed before app onboarding;
-- the app start date and the training phase start date may differ and must remain distinguishable.
+The athlete fallback, standalone week pages and FORM Labs study all read this file directly.
 
-## Program content
+The old `/plans/adrian-runner-mass-phase-01/program.json` is now a **historical Phase 01 snapshot**. It preserves the opening artifact but no longer owns Week 02+.
 
-Week 01 = **Baseline**  
-Find clean repeatable loads and preserve normal running.
+## Native continuity
 
-Week 02 = **Progress**  
-Use Week 01 as the reference. If every prescribed set was clean and the following run was normal, add the smallest practical load or add reps inside the existing range. Change one variable at a time.
+Historical Forge receipts may already reference `adrian_runner_mass_phase1_v1`. Do not rewrite those receipts or fabricate replacements.
 
-Week 03 = **Confirm**  
-Hold the Week 02 progression and prove it remains compatible with running. No maximal lifting and no automatic progression because the calendar changed.
+Until a deliberate native migration changes program identity, the legacy id remains the receipt-continuity bridge. The app may project the canonical 2026 source into its own bundled model, but the content must be mechanically derived from the canonical source rather than re-authored by hand.
 
-The exercise menu remains intentionally stable across the three weeks. This makes progression legible and avoids confusing exercise novelty with adaptation.
+A native build that contains only the old three-week menu is stale after this change. In that case the website remains the readable authority until Forge is regenerated and accepted.
 
-## Running constraint
+## Chronology
 
-Adrian supplied this week structure:
+Week 01 remains the original baseline.
 
-- Monday — easy hills
-- Tuesday — easy + strides
-- Wednesday — workout **protected**
-- Thursday — easy + gym
-- Friday — easy + strides
-- Saturday — long workout **protected**
-- Sunday — gym
+- Week 02 — **Redirect**: cable access and athlete evidence redirect volume toward chest depth, upper-arm girth, medial thigh, hamstrings and calf / soleus.
+- Week 03 — **Confirm**: repeat the redirected architecture inside the higher run week; lower-body volume does not increase automatically.
+- Weeks 04–07 — **Density + Force**.
+- Weeks 08–10 — **10K Integration**, including a reduced November 15 race week.
+- Weeks 11–13 — **Race Strength**, including a reduced December 6 half-marathon week.
+- Weeks 14–16 — **Close the Year**, ending December 31 with measurements and low fatigue.
 
-Do not move the main lower session to Tuesday. Thursday remains the main lower slot unless Brice changes the coaching prescription.
+January starts from a fresh coaching decision rather than silently extending the 2026 block.
 
-## Load / progression truth
+## Running authority
 
-Do not invent starting loads from the plan.
+Adrian's running plan remains owned by his running coach.
 
-Forge should let Adrian log the real load and reps. Progression is coach-governed:
+FORM strength does not invent, move or replace run sessions. When the two systems conflict:
+1. protect the key run;
+2. remove unnecessary lower-body fatigue;
+3. hold or reduce lower-body progression;
+4. keep upper-body development where recovery allows.
 
-- clean sets + normal following run → reps or smallest practical load may progress;
-- heavy following run / changed mechanics / persistent soreness → hold or reduce lower-body dose;
-- upper-body progression can move faster than lower-body progression if running remains unaffected.
+Commitment is evidence that Adrian will execute the plan. It is not permission to increase punishment.
 
-## Access
+## Receipt / position law
 
-Adrian is one existing human identity. Do not create a duplicate athlete.
+- actual loads and reps are athlete-recorded evidence;
+- missing loads stay missing;
+- opening a future week on the web does not move Forge;
+- web-delivered sessions are not backfilled as Forge receipts;
+- an old receipt keeps its original program/week/day coordinates;
+- current position must come from explicit coaching / app state, never from guessing from a page view.
 
-His coached grant should expose only `adrian_runner_mass_phase1_v1`. Public/founding/other program access must not be widened by the assignment.
+## Study publication gate
 
-A paywall policy change for the broader beta is a separate product decision. Adrian's assignment should remain correctly scoped even if the public paywall is temporarily paused.
+The study lives at `/labs/adrian-runner-mass/`.
 
-## Acceptance before handoff to Adrian
+It is intentionally unlisted and `noindex` until explicit athlete case-study consent exists. Training delivery does not depend on public publication.
 
-1. Program bundles all three weeks and four weekly sessions.
-2. Program selection can be placed at the actual current week/day.
-3. Adrian's coached access resolves to this program without duplicate identity/history.
-4. Session start/close works.
-5. A real test session produces the intended coach-visible receipt in the distribution channel.
-6. Relaunch preserves access and position.
-7. No past web session is fabricated as an app receipt.
-8. Installed-device acceptance passes before Brice tells Adrian to switch from the web plan.
+## Installed-device acceptance
+
+Before Brice tells Adrian that Forge is again the authoritative recording surface for this season:
+
+1. regenerate / import the canonical 2026 prescription into the native program model;
+2. prove the installed build contains the actual current week and all future authored weeks needed for the handoff;
+3. preserve Adrian's existing identity and history;
+4. verify explicit current week/day placement;
+5. start and close a real test session;
+6. prove one coach-visible receipt with matching program/week/day and no duplicate on retry;
+7. relaunch and prove access / position persist;
+8. verify old web work was not fabricated as native history.
+
+Installed-device acceptance is required. Source parity alone is not athlete acceptance.
