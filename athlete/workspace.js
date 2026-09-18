@@ -1,4 +1,5 @@
 import { resolvedStrengthWeek } from './strength-fallback.js';
+import { athleteWording, latestAthleteReviewChain } from '../private/review-chain.js';
 
 const esc = (value) => String(value ?? '')
   .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
@@ -50,11 +51,12 @@ function sessionCard(record, session) {
   const v = session.currentVersion || {};
   const completion = (record.completions || []).find((item) => item.planned_session_id === session.id);
   const direction = (record.directions || []).find((item) => item.planned_session_id === session.id);
+  const directionWords = direction ? athleteWording(direction) : '';
   const distance = v.prescribed_distance ? `${esc(v.prescribed_distance)} ${esc(v.distance_unit || '')}` : '';
   return `<article class="athlete-session${completion ? ' received' : ''}">
     <div class="athlete-session-day"><span>${esc(session.day_label || '')}</span>${completion ? '<small>RECEIVED</small>' : ''}</div>
     <div class="athlete-session-copy"><h3>${esc(v.title || 'Session')}</h3>${distance ? `<b>${distance}</b>` : ''}
-      ${(direction?.athlete_text || v.intent) ? `<p>${esc(direction?.athlete_text || v.intent)}</p>` : ''}
+      ${(directionWords || v.intent) ? `<p>${esc(directionWords || v.intent)}</p>` : ''}
     </div>
   </article>`;
 }
@@ -74,6 +76,21 @@ function fallbackToday(record, program) {
   </section>`;
 }
 
+function reviewNote(record) {
+  const { read, direction } = latestAthleteReviewChain(record);
+  if (!read) return '';
+  const readWords = athleteWording(read);
+  const directionWords = direction ? athleteWording(direction) : '';
+  const session = direction
+    ? (record.sessions || []).find((item) => item.id === direction.planned_session_id)
+    : null;
+  return `<section class="athlete-review-note" aria-label="Latest coach review">
+    <p class="eyebrow">Coach review</p>
+    <p>${esc(readWords)}</p>
+    ${directionWords ? `<div><span>Next instruction${session?.day_label ? ` · ${esc(session.day_label)}` : ''}</span><strong>${esc(directionWords)}</strong></div>` : ''}
+  </section>`;
+}
+
 function todayView(record, fallbackProgram) {
   const week = record.currentWeek || record.weeks?.[0] || null;
   if (!week) return fallbackProgram ? fallbackToday(record, fallbackProgram) : noPlan(record);
@@ -83,6 +100,7 @@ function todayView(record, fallbackProgram) {
   const next = today || sessions.find((session) => !(record.completions || []).some((c) => c.planned_session_id === session.id)) || sessions[0];
   return `<section class="athlete-view athlete-today" id="today">
     <div class="athlete-view-head"><div><p class="eyebrow">Today</p><h2>${today ? 'Your work today.' : 'Your current week.'}</h2></div><span>Week ${esc(week.week_number)}${record.block?.total_weeks ? ` / ${esc(record.block.total_weeks)}` : ''}</span></div>
+    ${reviewNote(record)}
     ${next ? `<div class="today-focus">${sessionCard(record, next)}</div>` : '<p class="athlete-muted">No session is authored for today.</p>'}
     <div class="today-context"><p>${esc(week.intent || 'Follow the authored week and keep the easy work easy.')}</p><p class="athlete-app-note">Record completed ${deliveryKind(record) === 'strength' ? 'strength' : 'running'} sessions in <strong>${appName(record)}</strong>. This website is your read-only reference.</p></div>
     <button class="text-action" type="button" data-athlete-view="plan">See the full week →</button>
@@ -130,7 +148,8 @@ function planView(record, shownWeekId, fallbackProgram, fallbackWeek) {
 function historyView(record, fallbackProgram) {
   const events = [];
   (record.completions || []).forEach((item) => events.push({ date:item.filed_at, type:'Session received', body:[item.actual_distance ? `${item.actual_distance} ${item.distance_unit || ''}` : '', item.athlete_note || ''].filter(Boolean).join(' · ') }));
-  (record.reads || []).forEach((item) => events.push({ date:item.published_at || item.created_at, type:'Coach read', body:item.athlete_text }));
+  (record.reads || []).forEach((item) => events.push({ date:item.published_at || item.created_at, type:'Coach review', body:athleteWording(item) }));
+  (record.directions || []).forEach((item) => events.push({ date:item.published_at || item.created_at, type:'Next instruction', body:athleteWording(item) }));
   (record.decisions || []).forEach((item) => events.push({ date:item.effective_on, type:'Training change', body:item.athlete_text }));
   events.sort((a,b) => new Date(b.date || 0) - new Date(a.date || 0));
   const empty = fallbackProgram

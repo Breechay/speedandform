@@ -396,6 +396,7 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     supabase.from('session_completions').select('*').eq('athlete_id', athleteId).order('filed_at', { ascending: false }),
     supabase.from('directions').select('*').eq('athlete_id', athleteId).in('delivery_state', ['published', 'delivered_externally']).order('published_at', { ascending: false }),
     supabase.from('reads').select('*').eq('athlete_id', athleteId).in('delivery_state', ['published', 'delivered_externally']).order('published_at', { ascending: false }),
+    supabase.from('read_completions').select('*'),
     supabase.from('decisions').select('*').eq('athlete_id', athleteId).in('delivery_state', ['published', 'delivered_externally']).order('effective_on', { ascending: false }),
     supabase.from('athlete_marks').select('*').eq('athlete_id', athleteId).eq('active', true).order('is_primary', { ascending: false }),
     supabase.from('mark_signals').select('*').eq('athlete_id', athleteId).order('position'),
@@ -450,7 +451,7 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
   const [
     athleteResponse, blockResponse, weeksResponse, sessionsResponse, versionsResponse,
     componentsResponse, baselinesResponse, measurementsResponse, completionsResponse, directionsResponse, readsResponse,
-    decisionsResponse, marksResponse, signalsResponse, checkpointsResponse,
+    readLinksResponse, decisionsResponse, marksResponse, signalsResponse, checkpointsResponse,
     gatesResponse, movementResponse, supportResponse, supportItemsResponse,
     verdictsResponse, piecesResponse, judgmentsResponse, judgmentLinksResponse,
     confidenceResponse, confidenceLinksResponse, evidenceFilesResponse, proposalResponse,
@@ -519,7 +520,11 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     measurements: result(measurementsResponse.data, measurementsResponse.error),
     completions: result(completionsResponse.data, completionsResponse.error),
     directions: result(directionsResponse.data, directionsResponse.error),
-    reads: result(readsResponse.data, readsResponse.error),
+    reads: result(readsResponse.data, readsResponse.error).map((read) => ({
+      ...read,
+      completionIds: result(readLinksResponse.data, readLinksResponse.error)
+        .filter((link) => link.read_id === read.id).map((link) => link.completion_id)
+    })),
     decisions: result(decisionsResponse.data, decisionsResponse.error),
     marks,
     paceBands: result(paceBandsResponse.data, paceBandsResponse.error),
@@ -786,6 +791,29 @@ export async function createDirection(payload) {
     authored_by: user.id,
     published_at: new Date().toISOString()
   }).select('*').single();
+  if (error) throw error;
+  return data;
+}
+
+export async function publishReviewAndDirection(payload) {
+  const priorityTargets = (payload.priorityTargets || []).filter(Boolean);
+  const { data, error } = await supabase.rpc('publish_review_and_direction', {
+    p_athlete_id: payload.athleteId,
+    p_completion_ids: payload.completionIds,
+    p_read_athlete_text: payload.readAthleteText,
+    p_question_answered: payload.questionAnswered,
+    p_planned_session_id: payload.plannedSessionId,
+    p_direction_athlete_text: payload.directionAthleteText,
+    p_protected_variable: payload.protectedVariable,
+    p_movable_variable: payload.movableVariable || null,
+    p_stop_or_change_if: payload.stopOrChangeIf || null,
+    p_priority_targets: priorityTargets.length ? priorityTargets : [payload.protectedVariable],
+    p_execution_context: payload.executionContext || {},
+    p_delivery_state: payload.deliveryState || 'published',
+    p_read_delivered_wording: payload.readDeliveredWording || null,
+    p_direction_delivered_wording: payload.directionDeliveredWording || null,
+    p_existing_read_id: payload.existingReadId || null
+  });
   if (error) throw error;
   return data;
 }
