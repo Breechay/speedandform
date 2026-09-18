@@ -1,6 +1,6 @@
 const FALLBACKS = [
   {
-    match: /runner\s+mass/i,
+    match: /runner\s+mass|developed\s+runner/i,
     source: '/plans/adrian-developed-runner-2026/program.json',
     overview: '/plans/adrian-developed-runner-2026/',
   },
