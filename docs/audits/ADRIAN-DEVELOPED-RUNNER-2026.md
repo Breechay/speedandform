@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-18  
 **Status:** authored on branch `work/adrian-developed-runner-2026-20260918`  
-**Publication:** study held unlisted / noindex pending athlete consent
+**Publication:** athlete delivery staged separately from the study; public study remains held pending athlete consent
 
 ## Decision
 
@@ -46,7 +46,7 @@ The following are projections or delivery surfaces of that decision:
 - Week 02 / Week 03 legacy links;
 - generic Week 04–16 season view;
 - season overview;
-- FORM Labs study;
+- FORM Labs study, only after the consent gate clears;
 - Forge handoff contract.
 
 The web projection must be updated with the athlete record, never instead of it.
@@ -67,7 +67,7 @@ No body-mass gain, circumference gain, hypertrophy result or causal success is c
 
 ## Publication boundary
 
-The study page is built so coaching can develop alongside the evidence, but it is deliberately `noindex,nofollow` and not added to the public Labs directory until explicit case-study consent exists.
+The study draft is preserved on companion branch `work/adrian-developed-runner-study-20260918`. It is intentionally excluded from the delivery branch so a merge cannot expose Adrian's case-study material before explicit consent. It is not added to the public Labs directory.
 
 ## Canonical verification
 
