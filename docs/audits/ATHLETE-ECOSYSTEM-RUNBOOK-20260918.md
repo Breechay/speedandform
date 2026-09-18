@@ -9,12 +9,10 @@ This is the closure receipt for the September 17–18 athlete ecosystem work. It
 ## 1 · Current source and production truth
 
 ### Final production receipt — September 18, 2026
-- GitHub `main`: `f068ad39541f9e16972ba13b3832294596f99812`.
-- Netlify production deploy: `6aad0a708ff0b30008753e5c`.
-- Published: 2026-09-18 09:55:10 UTC.
-- Production commit: `f068ad39541f9e16972ba13b3832294596f99812`.
-- State: ready.
-- The production deploy therefore matches exact current `main`, including the RPD v5 Week-5 coached-athlete cutover plus the homepage overscroll-seam fix merged afterward.
+- Accepted product source through the closeout: `f068ad39541f9e16972ba13b3832294596f99812` (includes the RPD v5 Week-5 coached-athlete cutover plus the homepage overscroll-seam fix).
+- First exact-product production receipt: Netlify `6aad0a708ff0b30008753e5c`, published 2026-09-18 09:55:10 UTC from `f068ad39541f9e16972ba13b3832294596f99812`.
+- Closeout-doc merge then produced Netlify `6aad0af4edfd8700082e70cd`, published 2026-09-18 09:57:20 UTC from `49fd9f88d35bca6dd6bf2b6f2e3f127d37418c63`; that merge changes closure documentation, not product behavior.
+- Strict anonymous acceptance was rerun after that closeout deploy and remained **8/8 PASS**.
 - Strict anonymous production walk: **8/8 PASS** — homepage, RPD Weeks 1–4 preview, Week-5 lock, beyond-preview access routing, no protected-content leak after failed validation, no false “no purchase” state observed, and no tested phone-width horizontal overflow.
 - Brice signed-in production walk: **OPEN**. The available browser profile has no active Speed & Form session or stored credentials; no login was attempted and no data was changed.
 - One consenting-athlete production walk: **OPEN** and still requires that athlete's real authenticated session/consent.
@@ -36,7 +34,7 @@ At closure, the current production deploy is:
 - state: ready
 - manual deploy: false
 
-Historical note: at Pass 12 closure production was intentionally behind accepted main. That hold has now cleared: production deploy `6aad0a708ff0b30008753e5c` serves exact current `main` `f068ad39…`.
+Historical note: at Pass 12 closure production was intentionally behind accepted main. That hold has cleared. Product behavior accepted at `f068ad39…` is live; later closeout-document commits may generate newer Netlify deploy IDs without changing that accepted product source.
 
 The post-merge main acceptance on `7875919a…` confirms this boundary mechanically: all source tests plus Chromium/WebKit synthetic account journeys passed, then the production asset verifier stopped on an exact SHA mismatch for `plans/race-pace-durability/gate.js`. The live anonymous journey was therefore skipped rather than testing the wrong source. That failure is a **release hold signal**, not a source regression.
 
@@ -365,7 +363,7 @@ Therefore **schema is live, web source is still held**. No production publicatio
 After the earlier blocked deployment attempt, Netlify's Git integration published exact current `main` automatically.
 
 Closed:
-- web production now matches GitHub `main` `f068ad39…`;
+- web production contains accepted product source `f068ad39…`; subsequent closeout-document commits do not change product behavior;
 - schema migrations `20260918090830`, `20260918090839`, and `20260918094221` are present in FORM Athlete System migration history;
 - anonymous production acceptance passed 8/8 without purchase, sign-in, form submission, or protected-data mutation;
 - RPD v5 is canonical from Week 5 for the coached assignments covered by the cutover.
