@@ -82,7 +82,13 @@ function noPlan(record) {
   const copy = delivery.appDelivered
     ? `This account is ready. When Brice publishes training for you, it will appear here. Record completed sessions in ${delivery.app}.`
     : 'Your training is currently managed directly with Brice. When a web block is published for you, it will appear here. No filing is expected on this website.';
-  return `<section class="athlete-empty"><p class="eyebrow">Training</p><h2>${delivery.appDelivered ? 'Your next block is not published here yet.' : 'Your training is coach-managed.'}</h2><p>${esc(copy)}</p><a href="mailto:brice@speedandform.com?subject=My%20FORM%20training" class="button">Ask Brice about your training →</a></section>`;
+  return `<section class="athlete-empty"><p class="eyebrow">Training</p><h2>${delivery.appDelivered ? 'Your next block is not published here yet.' : 'Your training is coach-managed.'}</h2><p>${esc(copy)}</p>
+    <div class="athlete-empty-facts" aria-label="Training status">
+      <div><span>Delivery</span><b>${esc(delivery.modeLabel)}</b></div>
+      <div><span>Training</span><b>Not published here</b></div>
+      <div><span>Website</span><b>Read only</b></div>
+    </div>
+    <a href="mailto:brice@speedandform.com?subject=My%20FORM%20training" class="button">Ask Brice about your training →</a></section>`;
 }
 
 function fallbackToday(record, program) {
