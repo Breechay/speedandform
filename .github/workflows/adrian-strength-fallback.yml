@@ -5,7 +5,9 @@ on:
   pull_request:
     paths:
       - 'athlete/**'
-      - 'plans/adrian-runner-mass-phase-01/**'\n      - 'plans/adrian-developed-runner-2026/**'\n      - 'labs/adrian-runner-mass/**'\n      - 'supabase/migrations/20260918142106_adrian_developed_runner_2026.sql'
+      - 'plans/adrian-runner-mass-phase-01/**'
+      - 'plans/adrian-developed-runner-2026/**'
+      - 'supabase/migrations/20260918142106_adrian_developed_runner_2026.sql'
       - 'tests/adrian-strength-fallback*'
       - '.github/workflows/adrian-strength-fallback.yml'
   workflow_dispatch:
