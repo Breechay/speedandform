@@ -1,0 +1,26 @@
+name: Package exact main for deploy
+on:
+  push:
+    branches: [ops/deploy-main-20260918]
+    paths: [.github/workflows/package-main-deploy.yml]
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package exact tree
+        run: |
+          set -euo pipefail
+          git rev-parse HEAD
+          mkdir -p /tmp/site
+          git archive --format=tar HEAD | tar -x -C /tmp/site
+          rm -rf /tmp/site/.github
+          cd /tmp
+          zip -qr speedandform-main-deploy.zip site
+      - uses: actions/upload-artifact@v4
+        with:
+          name: speedandform-main-deploy
+          path: /tmp/speedandform-main-deploy.zip
+          retention-days: 1
