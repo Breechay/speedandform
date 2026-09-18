@@ -1,6 +1,8 @@
 # Adrian · The Developed Runner 2026 — Forge handoff
 
-**Canonical 2026 source:** `/plans/adrian-developed-runner-2026/program.json`  
+**Prescription authority:** FORM Athlete System · active block `The Developed Runner · 2026`  
+**Web projection:** `/plans/adrian-developed-runner-2026/program.json`  
+**Backend migration:** `adrian_developed_runner_2026`  
 **Season id:** `adrian_developed_runner_2026`  
 **Legacy Forge program id:** `adrian_runner_mass_phase1_v1`  
 **Season:** 2026-09-14 → 2026-12-31
@@ -9,18 +11,9 @@
 
 Do not independently author a second Adrian progression in Forge, the athlete website, Console, or the study.
 
-The canonical JSON above owns:
-- phase and week names;
-- week dates;
-- exercise identity;
-- sets / rep ranges;
-- race-week reductions;
-- progression rules;
-- running-coordination rules;
-- measurement protocol;
-- race anchors.
+The active athlete block, its weeks, and its immutable session versions own the actual prescription. Week dates, session identity, exercise dose and future revisions must agree there first.
 
-The athlete fallback, standalone week pages and FORM Labs study all read this file directly.
+The web JSON carries presentation metadata that does not belong in the private plan schema, including phase labels, measurement protocol and study/race editorial framing. It is a projection for the athlete fallback, standalone week pages and FORM Labs study. It must never become a competing coaching authority.
 
 The old `/plans/adrian-runner-mass-phase-01/program.json` is now a **historical Phase 01 snapshot**. It preserves the opening artifact but no longer owns Week 02+.
 
@@ -28,9 +21,9 @@ The old `/plans/adrian-runner-mass-phase-01/program.json` is now a **historical 
 
 Historical Forge receipts may already reference `adrian_runner_mass_phase1_v1`. Do not rewrite those receipts or fabricate replacements.
 
-Until a deliberate native migration changes program identity, the legacy id remains the receipt-continuity bridge. The app may project the canonical 2026 source into its own bundled model, but the content must be mechanically derived from the canonical source rather than re-authored by hand.
+Until a deliberate native migration changes program identity, the legacy id remains the receipt-continuity bridge. Native delivery must receive Adrian's authored prescription through the normal FORM Athlete System assignment/feed path rather than hand-authoring another 16-week copy.
 
-A native build that contains only the old three-week menu is stale after this change. In that case the website remains the readable authority until Forge is regenerated and accepted.
+A native build that contains only the old three-week menu is stale after this change. The FORM Athlete System remains authoritative while the web projection is the readable fallback until Forge is updated and accepted.
 
 ## Chronology
 
@@ -76,8 +69,8 @@ It is intentionally unlisted and `noindex` until explicit athlete case-study con
 
 Before Brice tells Adrian that Forge is again the authoritative recording surface for this season:
 
-1. regenerate / import the canonical 2026 prescription into the native program model;
-2. prove the installed build contains the actual current week and all future authored weeks needed for the handoff;
+1. consume the FORM Athlete System assignment/feed for Adrian without creating a second independent prescription;
+2. prove the installed build resolves the actual current week and the authored future weeks needed for the handoff;
 3. preserve Adrian's existing identity and history;
 4. verify explicit current week/day placement;
 5. start and close a real test session;
