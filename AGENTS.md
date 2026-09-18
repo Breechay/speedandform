@@ -49,3 +49,6 @@ Read [FORM typography standard](docs/FORM_TYPOGRAPHY_STANDARD.md) before any app
 
 ## Connected surfaces
 Before changing identity, plans, execution or records, read [FORM connected surfaces](docs/FORM_CONNECTED_SURFACES.md). FORM, Forge, speedandform.com and the Console must share a documented, versioned connection. Read [HYROX app brief](docs/HYROX_APP_BRIEF.md) for that extension; it does not replace the active Adrian release gate.
+
+### Athlete coaching source-of-truth rule
+For a coached athlete, the canonical future prescription is the athlete's authored assignment / published coach decision in the FORM Athlete System. The public study/site and the native app are projections of that same decision. Never fix drift by hand-editing one surface and leaving the others behind. If Brice changes an athlete-specific band, plan version, future session, recovery or instruction on the study/site, first or simultaneously update the canonical athlete record; FORM must receive it through the normal assignment/feed path. Completed/history evidence stays pinned to the version actually performed. A static public-study change that disagrees with the canonical athlete assignment is a bug, not a new authority.

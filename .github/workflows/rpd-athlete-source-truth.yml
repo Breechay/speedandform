@@ -1,0 +1,30 @@
+name: RPD coached-athlete source truth
+
+on:
+  push:
+    branches: [work/rpd-v5-athlete-cutover-20260918]
+  pull_request:
+    paths:
+      - 'AGENTS.md'
+      - 'docs/FORM_CONNECTED_SURFACES.md'
+      - 'supabase/migrations/20260918103000_rpd_v5_coached_athletes_w5_cutover.sql'
+      - 'tests/athlete-study-source-of-truth.cjs'
+      - '.github/workflows/rpd-athlete-source-truth.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Study and athlete truth
+        run: node tests/athlete-study-source-of-truth.cjs
+      - name: Shared contracts
+        run: node scripts/check-contracts.mjs
