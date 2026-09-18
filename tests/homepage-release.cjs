@@ -2,6 +2,7 @@
 const fs=require('node:fs');const assert=require('node:assert/strict');
 const html=fs.readFileSync('index.html','utf8');
 const css=fs.readFileSync('css/homepage.css','utf8');
+assert.match(css,/body\{margin:0;background:var\(--dark\)/,'Top and bottom overscroll canvas stays dark');
 const motion=fs.readFileSync('js/homepage-motion.js','utf8');
 const measurement=fs.readFileSync('js/coaching-measurement.js','utf8');
 assert.equal((html.match(/<video\b/g)||[]).length,1,'One purposeful homepage film: the hero');
