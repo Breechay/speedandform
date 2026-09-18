@@ -13,18 +13,23 @@ def check(name,value):
     report['checks'].append(name)
 HARNESS='''<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/private/graphite.css"><link rel="stylesheet" href="/athlete/workspace.css"></head><body><main id="app"></main><script type="module">
 import {renderAthleteWorkspace} from '/athlete/workspace.js';
-const p=new URLSearchParams(location.search),kind=p.get('kind')||'running',view=p.get('view')||'today';
+const p=new URLSearchParams(location.search),kind=p.get('kind')||'app-running',view=p.get('view')||'today';
 const week={id:'w1',week_number:1,starts_on:'2026-09-14',ends_on:'2026-09-20',intent:'Build the week without forcing it.'};
-const strengthAthlete={id:'a1',display_name:'Adrian',account_label:'Adrian',delivery:'coach',home_surface:'form',program_name:'Runner Mass · Phase 1'};
-const runAthlete={id:'a1',display_name:'José',account_label:'Run Development',delivery:'app',home_surface:'form',program_name:'FORM'};
-const record={athlete:kind==='strength'?strengthAthlete:runAthlete,block:kind==='strength'?null:{id:'b1',current_week:1,total_weeks:15,goal_statement:'Half marathon · Dec 5'},weeks:kind==='strength'?[]:[week],currentWeek:kind==='strength'?null:week,sessionsByWeek:kind==='strength'?{}:{w1:[{id:'s1',day_label:'Mon',currentVersion:{title:'General aerobic',prescribed_distance:6,distance_unit:'mi',intent:'Easy and conversational.'}},{id:'s2',day_label:'Tue',currentVersion:{title:'Race pace',prescribed_distance:9,distance_unit:'mi',intent:'5 mi continuous at your race-pace band.'}}]},completions:kind==='strength'?[]:[{id:'c1',planned_session_id:'s1',status:'completed',actual_distance:6,distance_unit:'mi',filed_at:'2026-09-14T12:00:00Z',athlete_note:'Smooth.'}],directions:[],reads:kind==='strength'?[]:[{published_at:'2026-09-15T12:00:00Z',athlete_text:'The work is landing.'}],decisions:[]};
-document.getElementById('app').innerHTML=renderAthleteWorkspace(record,{view,email:(kind==='strength'?'adrian':'jose')+'@example.com'});document.documentElement.dataset.ready='true';
+const athletes={
+  'app-running':{id:'a1',display_name:'Natalie',account_label:'Run Development · 8 weeks · Week 1 · Paid',delivery:'app',home_surface:'website',program_name:'Run Development'},
+  'coach-strength':{id:'a2',display_name:'Rod',account_label:'Rod',delivery:'coach',home_surface:'form',program_name:'Strength & Physique'},
+  'coach-running':{id:'a3',display_name:'Valerie',account_label:'Valerie',delivery:'coach',home_surface:'form',program_name:'Run Development'}
+};
+const appRunning=kind==='app-running';
+const hasBlock=appRunning;
+const record={athlete:athletes[kind],block:hasBlock?{id:'b1',current_week:1,total_weeks:8,goal_statement:'Build the half-marathon foundation.'}:null,weeks:hasBlock?[week]:[],currentWeek:hasBlock?week:null,sessionsByWeek:hasBlock?{w1:[{id:'s1',day_label:'Mon',state:'published',currentVersion:{title:'General aerobic',prescribed_distance:4,distance_unit:'mi',intent:'Easy and conversational.'}},{id:'s2',day_label:'Thu',state:'published',currentVersion:{title:'Easy + strides',prescribed_distance:5,distance_unit:'mi',intent:'Relaxed with clean strides.'}}]}:{},completions:hasBlock?[{id:'c1',planned_session_id:'s1',status:'completed',actual_distance:4,distance_unit:'mi',filed_at:'2026-09-14T12:00:00Z',athlete_note:'Smooth.'}]:[],directions:[],reads:hasBlock?[{id:'r1',published_at:'2026-09-15T12:00:00Z',athlete_text:'The work is landing.',delivery_state:'published',completionIds:['c1']}]:[],decisions:[],sessions:hasBlock?[]:[]};
+document.getElementById('app').innerHTML=renderAthleteWorkspace(record,{view,email:kind+'@example.com'});document.documentElement.dataset.ready='true';
 </script></body></html>'''
 try:
   with sync_playwright() as pw:
     browser=getattr(pw,ENGINE).launch(headless=True)
     for width in [390,768,1440]:
-      for kind in ['running','strength']:
+      for kind in ['app-running','coach-strength','coach-running']:
         for view in ['today','plan','history','account']:
           ctx=browser.new_context(viewport={'width':width,'height':1000},reduced_motion='reduce')
           page=ctx.new_page(); page.on('pageerror',lambda e:report['errors'].append(str(e)))
@@ -41,9 +46,22 @@ try:
           check(f'{kind} {view} {width}: no horizontal overflow',page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
           check(f'{kind} {view} {width}: four destinations',page.locator('.athlete-tabs [data-athlete-view]').count()==4)
           check(f'{kind} {view} {width}: no filing control','File this session' not in page.locator('body').inner_text())
-          if kind=='strength':
-            check(f'strength {view} {width}: no run identity','Run development' not in page.locator('body').inner_text())
-            check(f'strength {view} {width}: strength identity','Strength development' in page.locator('body').inner_text())
+          body=page.locator('body').inner_text()
+          if kind=='app-running':
+            check(f'app-running {view} {width}: running identity','Run development' in body)
+            if view=='account':
+              check(f'app-running {width}: app delivery','FORM app' in body and 'Completed work' in body)
+          elif kind=='coach-strength':
+            check(f'coach-strength {view} {width}: strength identity','Strength development' in body)
+            check(f'coach-strength {view} {width}: no run identity','Run development' not in body)
+            if view in ['today','account']:
+              check(f'coach-strength {view} {width}: coach-managed','Coach-managed' in body)
+              check(f'coach-strength {view} {width}: no Forge fiction','Record completed sessions in Forge' not in body)
+          else:
+            check(f'coach-running {view} {width}: running identity','Run development' in body)
+            if view in ['today','account']:
+              check(f'coach-running {view} {width}: coach-managed','Coach-managed' in body)
+              check(f'coach-running {view} {width}: no FORM fiction','Record completed sessions in FORM' not in body)
           if width in [390,1440] and view in ['today','plan']:
             page.screenshot(path=str(OUT/f'{ENGINE}-{kind}-{view}-{width}.png'),full_page=True)
           ctx.close()
