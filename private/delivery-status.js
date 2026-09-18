@@ -23,7 +23,9 @@ export function deliveryOverviewFor(athlete, {
     : hasWebFallback ? 'Web fallback'
     : 'No private plan';
 
-  const recordingTarget = strength ? 'Forge' : athlete?.delivery === 'app' ? 'FORM' : 'Coach direct';
+  const recordingTarget = strength && (athlete?.delivery === 'app' || hasWebFallback)
+    ? 'Forge'
+    : athlete?.delivery === 'app' ? 'FORM' : 'Coach direct';
   const nativeReceipt = recordingTarget === 'Forge'
     ? forgeReceipts.slice().sort((a, b) => String(b.received_at || '').localeCompare(String(a.received_at || '')))[0] || null
     : recordingTarget === 'FORM'
