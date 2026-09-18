@@ -30,13 +30,15 @@ The response is **not** to increase punishment. Week 02 redirects the same four-
 
 | Phase | Weeks | Purpose |
 |---|---:|---|
-| Establish · Redirect · Confirm | 1–3 | establish tolerance, target the right tissue, confirm inside rising mileage |
-| Density + Force | 4–7 | three-dimensional tissue + useful force |
-| 10K Integration | 8–10 | preserve strength around Nov 15 race |
-| Race Strength | 11–13 | rebuild, protect Dec 6 half, restore |
-| Close the Year | 14–16 | productive development, then measurement / low-fatigue closeout |
+| Establish | 1–3 | find the tolerable dose, redirect it, then confirm it |
+| Density | 4–6 | chest, arms, upper back, medial thigh, hamstrings and calves |
+| Absorb | 7–10 | reduce lower cost into the Nov 15 10K, then restore |
+| Rebuild | 11–13 | one productive week, protect the Dec 6 half, then read the response |
+| Close | 14–16 | return to the productive dose, then close with measurements and low fatigue |
 
 The final authored day is **December 31, 2026**. January requires a fresh decision.
+
+**Display-name cleanup · Sep 18:** these block/week labels are presentation metadata only. No exercise, date, set or rep prescription changed. Week 04 is now **Density**, Week 05 **Accumulate**, Week 14 **Build**, and Week 15 **Build Heavy**.
 
 ## Source consumers
 
