@@ -3,7 +3,7 @@
 .athlete-identity h1{margin:8px 0 8px;font-family:var(--serif);font-size:clamp(42px,7vw,68px);font-weight:500;line-height:.98;letter-spacing:-.045em}
 .athlete-identity>p:last-child{max-width:680px;margin:0;color:var(--secondary);font-size:16px;line-height:1.6}
 .athlete-tabs{position:sticky;top:0;z-index:35;display:flex;gap:4px;margin:0 -8px;padding:12px 8px;background:rgba(8,11,12,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--edge)}
-.athlete-tab{min-height:42px;padding:0 14px;border:0;border-radius:9px;background:transparent;color:var(--secondary);font-size:13px;font-weight:760;cursor:pointer}
+.athlete-tab{min-height:44px;padding:0 14px;border:0;border-radius:9px;background:transparent;color:var(--secondary);font-size:13px;font-weight:760;cursor:pointer}
 .athlete-tab:hover{background:var(--field-2);color:var(--text)}
 .athlete-tab.active{background:var(--raised);color:var(--text)}
 .athlete-workspace-main{padding-top:40px}
@@ -16,10 +16,10 @@
 .today-context{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,.8fr);gap:36px;margin-top:28px;padding-top:24px;border-top:1px solid var(--edge)}
 .today-context p{margin:0;color:var(--secondary);line-height:1.65}
 .athlete-app-note strong{color:var(--text)}
-.text-action{margin-top:26px;padding:0;border:0;background:transparent;color:var(--lime);font:inherit;font-size:13px;font-weight:760;cursor:pointer}
+.text-action{min-height:44px;margin-top:20px;padding:0 2px;display:inline-flex;align-items:center;border:0;background:transparent;color:var(--lime);font:inherit;font-size:13px;font-weight:760;cursor:pointer}
 .plan-title-row>div>p:last-child{margin:9px 0 0;color:var(--secondary)}
 .plan-week-nav{display:flex;align-items:center;gap:9px}
-.plan-week-nav button{width:42px;height:42px;border:1px solid var(--edge);border-radius:50%;background:transparent;color:var(--text);font-size:24px;cursor:pointer}
+.plan-week-nav button{width:44px;height:44px;border:1px solid var(--edge);border-radius:50%;background:transparent;color:var(--text);font-size:24px;cursor:pointer}
 .plan-week-nav button:disabled{opacity:.3;cursor:default}
 .plan-week-nav span{min-width:54px;text-align:center;color:var(--secondary);font-size:12px;font-variant-numeric:tabular-nums}
 .plan-intent{max-width:680px;margin:0 0 24px;color:var(--secondary);font-size:15px;line-height:1.65}

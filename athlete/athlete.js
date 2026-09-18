@@ -23,7 +23,7 @@ async function authView() {
 
 function pendingView(email) {
   app.innerHTML = `<section class="auth-page"><div class="auth-card access-pending">
-    <div><p class="eyebrow">Signed in</p><h1>Your training is not linked yet.</h1><p>${escapeHtml(email)} is secure, but it has not been matched to an athlete workspace. Brice can link it without creating another account.</p></div>
+    <div><p class="eyebrow">Signed in</p><h1>Your training is not linked yet.</h1><p>You’re signed in as ${escapeHtml(email)}, but this account has not been matched to an athlete workspace. Brice can link it without creating another account.</p></div>
     <a class="button" href="mailto:brice@speedandform.com?subject=Link%20my%20FORM%20training">Ask Brice to link this email <span class="icon-arrow">→</span></a>
   </div></section>`;
 }
@@ -90,7 +90,7 @@ function renderFrom() {
 }
 
 async function renderRecord(athleteId) {
-  app.innerHTML = '<div class="loading" aria-label="Loading your training"></div>';
+  app.innerHTML = '<div class="loading" role="status" aria-live="polite"><span class="sr-only">Loading your training…</span></div>';
   record = await loadAthleteRecord(athleteId);
   // The fallback is a readable coach-authored source, not a native receipt or
   // position signal. Failure to load it must never prevent the private record
@@ -123,8 +123,18 @@ async function boot() {
     rememberWorkspace('athlete');
     await renderRecord(access.athleteMemberships[0].athlete_id);
   } catch (error) {
-    app.innerHTML = `<section class="auth-page"><div class="auth-card"><p class="eyebrow">Could not open your training</p><h1>Try that again.</h1><p class="status-message error">${escapeHtml(authErrorMessage(error))}</p><button class="button" type="button" id="retry">Retry</button></div></section>`;
+    app.innerHTML = `<section class="auth-page"><div class="auth-card"><p class="eyebrow">Could not open your training</p><h1>Try that again.</h1><p>Your account and training were not changed.</p><p class="status-message error" role="status">${escapeHtml(authErrorMessage(error))}</p><div class="auth-actions"><button class="button primary" type="button" id="retry">Try again</button><button class="button" type="button" id="useAnotherAccount">Use another account</button></div></div></section>`;
     document.getElementById('retry').addEventListener('click', () => window.location.reload());
+    document.getElementById('useAnotherAccount').addEventListener('click', async () => {
+      const button = document.getElementById('useAnotherAccount');
+      button.disabled = true;
+      try { await signOut(); }
+      catch (signOutError) {
+        button.disabled = false;
+        const status = app.querySelector('.status-message');
+        status.textContent = authErrorMessage(signOutError);
+      }
+    });
   }
 }
 

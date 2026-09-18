@@ -1,0 +1,89 @@
+name: Cross-surface quality acceptance
+
+on:
+  push:
+    branches: [work/cross-surface-review-20260917]
+  pull_request:
+    paths:
+      - 'athlete/**'
+      - 'private/**'
+      - 'plans/race-pace-durability/**'
+      - 'tests/cross-surface-review*'
+      - '.github/workflows/cross-surface-review.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cross-surface-review-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Cross-surface source contracts
+        run: |
+          node tests/cross-surface-review.mjs
+          node tests/athlete-workspace.mjs
+          node tests/athlete-access.cjs
+          node tests/console-delivery-overview.mjs
+          node tests/evidence-review-instruction.mjs
+          node scripts/check-contracts.mjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser runtime
+        run: |
+          python -m pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium webkit
+      - name: Chromium cross-surface journeys
+        env:
+          BROWSER: chromium
+          CROSS_SURFACE_ARTIFACTS: /tmp/cross-surface/chromium
+        run: python tests/cross-surface-review-browser.py
+      - name: WebKit cross-surface journeys
+        env:
+          BROWSER: webkit
+          CROSS_SURFACE_ARTIFACTS: /tmp/cross-surface/webkit
+        run: python tests/cross-surface-review-browser.py
+      - name: Chromium Console regression
+        env:
+          BROWSER: chromium
+          CONSOLE_DELIVERY_ARTIFACTS: /tmp/cross-surface/console-chromium
+        run: python tests/console-delivery-browser.py
+      - name: WebKit Console regression
+        env:
+          BROWSER: webkit
+          CONSOLE_DELIVERY_ARTIFACTS: /tmp/cross-surface/console-webkit
+        run: python tests/console-delivery-browser.py
+      - name: Chromium access regression
+        env:
+          BROWSER: chromium
+          ACCESS_ARTIFACTS: /tmp/cross-surface/access-chromium
+        run: python tests/athlete-access-browser.py
+      - name: WebKit access regression
+        env:
+          BROWSER: webkit
+          ACCESS_ARTIFACTS: /tmp/cross-surface/access-webkit
+        run: python tests/athlete-access-browser.py
+      - name: Preserve review source
+        if: always()
+        run: |
+          mkdir -p /tmp/cross-surface
+          git rev-parse HEAD > /tmp/cross-surface/commit.txt
+          git archive --format=zip HEAD -- athlete coach private plans/race-pace-durability tests/cross-surface-review.mjs tests/cross-surface-review-browser.py tests/athlete-access-browser.py tests/console-delivery-browser.py .github/workflows/cross-surface-review.yml > /tmp/cross-surface/source.zip
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cross-surface-review
+          path: /tmp/cross-surface/
+          retention-days: 5
