@@ -33,6 +33,8 @@ lacks(athlete, /is secure, but it has not been matched/, 'pending account copy a
 has(rpdStyles, /\.topnav a\{min-height:44px/, 'RPD desktop nav is touch sized');
 has(rpdStyles, /\.btn\{min-height:44px;height:auto/, 'RPD desktop buttons are touch sized');
 has(rpdStyles, /\.circle\{width:44px;height:44px/, 'RPD desktop week arrows are touch sized');
+has(rpdStyles, /button:focus-visible,a:focus-visible\{outline:2px solid var\(--lime\)/, 'RPD interactive controls keep visible keyboard focus');
+has(rpdStyles, /\.plan-section:focus-visible\{outline:2px solid var\(--lime\)/, 'RPD keyboard plan surface keeps visible focus');
 has(rpdAccessStyles, /\.share-icon-btn\{min-width:44px\}/, 'RPD mobile share target is touch sized');
 has(rpdAccessStyles, /\.circle\{width:44px;height:44px\}/, 'RPD mobile week arrows are touch sized');
 
