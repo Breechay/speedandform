@@ -43,6 +43,9 @@ const css = `
 #w4-read .w4-source{font-size:13px;line-height:1.6;color:var(--muted);margin:0;padding:22px 0}
 #w4-read .w4-note-link{color:var(--lime);display:inline-block;text-underline-offset:5px;margin-top:12px;font-size:15px}
 #inspect.open{max-height:none}
+/* Narrow phones: keep the horizontally scrollable study-memory track inside the document width. */
+.study-memory-v73{min-width:0;max-width:100%}
+.memory-track{width:100%;max-width:100%;min-width:0}
 @media(max-width:900px){.w4-pair{grid-template-columns:1fr}.w4-athlete,.w4-athlete+.w4-athlete{border-left:0;padding:28px 0}.w4-athlete+.w4-athlete{border-top:1px solid var(--line)}#w4-read .cr-grid{grid-template-columns:1fr}#w4-read .cr-grid>div{border-right:0;border-top:1px solid var(--line);padding:22px 0}.w4-splits b{font-size:17px}}
 @media(max-width:380px){.w4-splits{gap:5px}.w4-splits b{font-size:14px}}
 `;
