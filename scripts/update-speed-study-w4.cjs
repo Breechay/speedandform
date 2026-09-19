@@ -47,7 +47,7 @@ const css = `
 .study-memory-v73{min-width:0;max-width:100%}
 .memory-track{width:100%;max-width:100%;min-width:0}
 @media(max-width:900px){.w4-pair{grid-template-columns:1fr}.w4-athlete,.w4-athlete+.w4-athlete{border-left:0;padding:28px 0}.w4-athlete+.w4-athlete{border-top:1px solid var(--line)}#w4-read .cr-grid{grid-template-columns:1fr}#w4-read .cr-grid>div{border-right:0;border-top:1px solid var(--line);padding:22px 0}.w4-splits b{font-size:17px}}
-@media(max-width:380px){.w4-splits{gap:5px}.w4-splits b{font-size:14px}.memory-track{margin-right:0;padding-right:0}.hero-photo{overflow:hidden}}
+@media(max-width:380px){.w4-splits{gap:5px}.w4-splits b{font-size:14px}.memory-track{margin-right:0;padding-right:0}.hero-photo{overflow:hidden}.cases-readout-v7 h3{font-size:clamp(40px,13vw,46px);letter-spacing:-.055em}}
 `;
 function currentRead() {
  return `${MARK}
