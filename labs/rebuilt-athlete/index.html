@@ -34,7 +34,7 @@
   "headline":"The Rebuilt Athlete · FORM Human Performance Study 002",
   "description":"An open longitudinal FORM study of rebuilding body, engine, range and practice after an April 2026 tibial fracture, before a race is chosen.",
   "datePublished":"2026-09-18",
-  "dateModified":"2026-09-18",
+  "dateModified":"2026-09-19",
   "mainEntityOfPage":"https://speedandform.com/labs/rebuilt-athlete/",
   "image":"https://speedandform.com/og/form-share-20260916.jpg",
   "author":{"@type":"Person","name":"Brice Ikouebe","url":"https://speedandform.com/"},
@@ -347,7 +347,7 @@ html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:20p
 .doormeter{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 4px}
 .doormeter__label{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--graphite)}
 .doormeter__frac{font-family:var(--f-mono);font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--blue)}
-.doormeter__bar{height:4px;background:rgba(21,19,15,.12);position:relative;margin-top:4px;margin-bottom:2px}
+.doormeter__bar{height:4px;background:rgba(21,19,15,.12);position:relative;margin-top:8px;margin-bottom:2px}
 .doormeter__bar i{position:absolute;left:0;top:0;bottom:0;background:var(--blue)}
 .targets{list-style:none;margin:7px 0 0;padding:0;border-top:0}
 .targets li{display:flex;justify-content:space-between;gap:14px;align-items:baseline;
@@ -485,7 +485,7 @@ p,li,dd,figcaption{hyphens:none}
           <div><dt>Tibia</dt><dd>Healing · load progressive</dd></div>
           <div><dt>Running</dt><dd>Easy, treadmill-primary</dd></div>
           <div><dt>Strength</dt><dd>Forge Sculpt · Phase 02 / Week 01</dd></div>
-          <div><dt>Movement</dt><dd class="pending">Ashtanga / Yin, returning</dd></div>
+          <div><dt>Movement</dt><dd class="pending">Ashtanga · Yin · Core, returning</dd></div>
           <div><dt>Practice</dt><dd>Morning pages · zazen</dd></div>
           <div><dt>Race Pace Durability</dt><dd class="pending">Entry not yet earned</dd></div>
           <div><dt>Previous evidence</dt><dd class="pending">44.00 mi high week · 13.24 mi long run · threshold 6:04 - 6:09 / mi</dd></div>
@@ -587,7 +587,7 @@ p,li,dd,figcaption{hyphens:none}
       <div><dt>Watch estimate</dt><dd>51 VO₂</dd></div>
       <div><dt>Body destination</dt><dd>180 lb · 8–10%</dd></div>
       <div><dt>Strength</dt><dd>Forge P02 / W01</dd></div>
-      <div><dt>Movement</dt><dd class="muted">Ashtanga + Yin returning</dd></div>
+      <div><dt>Movement</dt><dd class="muted">Ashtanga + Yin + Core returning</dd></div>
       <div><dt>Race</dt><dd class="muted">Not selected</dd></div>
     </dl>
   </div>
@@ -619,7 +619,7 @@ p,li,dd,figcaption{hyphens:none}
         <span class="card__n mono">RANGE</span>
         <h3 class="card__t">Strong + mobile</h3>
         <p>A pull, a press, a hinge, a single-leg movement, calf/soleus, trunk.</p>
-        <p class="sub">Ashtanga and Yin logged as sessions; one standardized mobility read every 4–6 weeks.</p>
+        <p class="sub">Ashtanga, Yin and core are sharpness work. Sessions are logged, not scored; one standardized mobility / trunk read every 4–6 weeks.</p>
       </div>
       <div class="card">
         <span class="card__n mono">PRACTICE</span>
@@ -719,15 +719,26 @@ p,li,dd,figcaption{hyphens:none}
       <p class="sec__note">Filed every two weeks</p>
     </div>
     <p class="prose" style="margin-bottom:22px">Every filing follows the same grammar: <span class="mono" style="font-size:12px">BODY · ENGINE · RANGE · PRACTICE · COST · READ · NEXT</span>. Cost and Next keep a filing from becoming a scoreboard. They record what progress took from another system and what changes because of it.</p>
+    <p class="lbl lbl--ink" style="margin:0 0 10px">What to record</p>
+    <div class="panelgrid" style="margin-bottom:22px" aria-label="Study 002 recording protocol">
+      <div><b>Body mass</b><span>3–4 morning weights per week under similar conditions. File the 7-day average.</span></div>
+      <div><b>Body fat</b><span>Same device / method and similar conditions each two-week filing. Read the trend, not one number.</span></div>
+      <div><b>Photography</b><span>Every 2 weeks: front, side, back and front lightly flexed. Same light, distance, time and similar shorts; no pump when possible.</span></div>
+      <div><b>Circumferences</b><span>Every 4 weeks: waist, chest, relaxed upper arm, mid-thigh and calf.</span></div>
+      <div><b>Engine</b><span>Weekly running volume and time, longest run, continuous-run capacity and watch VO₂. Key-session work splits when specificity returns.</span></div>
+      <div><b>Strength</b><span>Forge receipts. Record load and reps, then preserve representative anchor movements across filings.</span></div>
+      <div><b>Sharpness</b><span>Ashtanga, Yin and core sessions. One comparable mobility / trunk read every 4–6 weeks.</span></div>
+      <div><b>Practice / read</b><span>Morning pages, zazen, useful sleep / nutrition context and one short note in the athlete&apos;s own words. No streak score.</span></div>
+    </div>
     <div class="tabs" role="tablist" aria-label="Evidence channels">
       <button id="tab-body" role="tab" aria-selected="true" aria-controls="panel-body" class="is-active" data-tab="body">Body</button><button id="tab-engine" role="tab" aria-selected="false" aria-controls="panel-engine" tabindex="-1" data-tab="engine">Engine</button><button id="tab-strength" role="tab" aria-selected="false" aria-controls="panel-strength" tabindex="-1" data-tab="strength">Strength</button>
-      <button id="tab-movement" role="tab" aria-selected="false" aria-controls="panel-movement" tabindex="-1" data-tab="movement">Movement</button><button id="tab-practice" role="tab" aria-selected="false" aria-controls="panel-practice" tabindex="-1" data-tab="practice">Practice</button><button id="tab-nutrition" role="tab" aria-selected="false" aria-controls="panel-nutrition" tabindex="-1" data-tab="nutrition">Nutrition</button>
+      <button id="tab-movement" role="tab" aria-selected="false" aria-controls="panel-movement" tabindex="-1" data-tab="movement">Movement / Core</button><button id="tab-practice" role="tab" aria-selected="false" aria-controls="panel-practice" tabindex="-1" data-tab="practice">Practice</button><button id="tab-nutrition" role="tab" aria-selected="false" aria-controls="panel-nutrition" tabindex="-1" data-tab="nutrition">Nutrition</button>
       <button id="tab-cost" role="tab" aria-selected="false" aria-controls="panel-cost" tabindex="-1" data-tab="cost">Cost</button><button id="tab-read" role="tab" aria-selected="false" aria-controls="panel-read" tabindex="-1" data-tab="read">Read</button><button id="tab-next" role="tab" aria-selected="false" aria-controls="panel-next" tabindex="-1" data-tab="next">Next</button>
     </div>
-    <div class="panel" id="panel-body" data-panel="body" role="tabpanel" aria-labelledby="tab-body"><div class="panelgrid"><div><b>7-day average weight</b><span>Filed each cycle. Baseline pending.</span></div><div><b>Body fat</b><span>Same method each filing. Destination is 8–10%.</span></div><div><b>Progress photography</b><span>Front, side and back under standardized conditions.</span></div></div></div>
+    <div class="panel" id="panel-body" data-panel="body" role="tabpanel" aria-labelledby="tab-body"><div class="panelgrid"><div><b>7-day average weight</b><span>Filed each cycle. Baseline collection open.</span></div><div><b>Body fat</b><span>Same method each filing. Destination is 8–10%.</span></div><div><b>Progress photography</b><span>Front, side, back and front lightly flexed under standardized conditions.</span></div><div><b>Circumferences</b><span>Waist, chest, relaxed upper arm, mid-thigh and calf every 4 weeks.</span></div></div></div>
     <div class="panel" id="panel-engine" data-panel="engine" role="tabpanel" aria-labelledby="tab-engine" hidden><div class="panelgrid"><div><b>Current continuous run</b><span>60 min easy treadmill.</span></div><div><b>Watch estimate</b><span>51 VO₂. Device reading, not a ceiling.</span></div><div><b>Historical evidence</b><span>44.00 mi high week. Garmin records 29.16, 33.22, 30.14 and 27.60 mi in the next four full calendar weeks. VO₂ export peaks at 67 in Feb 2025.</span></div><div><b>Long-range aim</b><span>VO₂ 68. No deadline. Not a workout target.</span></div><div class="sparkwrap"><b>VO₂ arc</b><svg class="spark" viewBox="0 0 220 60" role="img" aria-label="VO2 estimate from historic peak of 67 to current 51, aiming for 68 with no deadline"><line x1="10" y1="50" x2="210" y2="50" stroke="var(--rule)" stroke-width="1"/><circle cx="20" cy="16" r="3" fill="var(--faint)"/><text x="20" y="10" class="spark__t" text-anchor="middle">67</text><text x="20" y="58" class="spark__lbl" text-anchor="middle">Feb 25</text><line x1="20" y1="16" x2="110" y2="34" stroke="var(--rule-hard)" stroke-width="1.4"/><circle cx="110" cy="34" r="4" fill="var(--ink)"/><text x="110" y="24" class="spark__t" text-anchor="middle">51</text><text x="110" y="58" class="spark__lbl" text-anchor="middle">Now</text><line x1="110" y1="34" x2="200" y2="12" stroke="var(--rule)" stroke-width="1.4" stroke-dasharray="3 3"/><circle cx="200" cy="12" r="3" fill="var(--blue)" fill-opacity=".5"/><text x="200" y="8" class="spark__t" text-anchor="middle" fill="var(--blue)">68</text><text x="200" y="58" class="spark__lbl" text-anchor="middle">Aim</text></svg></div></div></div>
     <div class="panel" id="panel-strength" data-panel="strength" role="tabpanel" aria-labelledby="tab-strength" hidden><div class="panelgrid"><div><b>Current block</b><span>Forge Sculpt Phase 02, Week 01.</span></div><div><b>Receipt standard</b><span>Exercise, load, reps and repeatable execution.</span></div><div><b>Question</b><span>Can useful mass and strength rise while running returns?</span></div></div></div>
-    <div class="panel" id="panel-movement" data-panel="movement" role="tabpanel" aria-labelledby="tab-movement" hidden><div class="panelgrid"><div><b>Ashtanga</b><span>Sessions recorded, not scored.</span></div><div><b>Yin</b><span>Sessions recorded, not scored.</span></div><div><b>Mobility read</b><span>One comparable sequence every 4–6 weeks.</span></div></div></div>
+    <div class="panel" id="panel-movement" data-panel="movement" role="tabpanel" aria-labelledby="tab-movement" hidden><div class="panelgrid"><div><b>Ashtanga</b><span>Sessions recorded, not scored.</span></div><div><b>Yin</b><span>Sessions recorded, not scored.</span></div><div><b>Core</b><span>Anti-rotation, trunk control and single-leg organization. Sessions recorded, not scored.</span></div><div><b>Mobility / trunk read</b><span>One comparable sequence every 4–6 weeks.</span></div></div></div>
     <div class="panel" id="panel-practice" data-panel="practice" role="tabpanel" aria-labelledby="tab-practice" hidden><div class="panelgrid"><div><b>Morning pages</b><span>20 minutes.</span></div><div><b>Zazen</b><span>10 minutes seated.</span></div><div><b>Environment</b><span>Recorded as context. No streak or discipline score.</span></div></div></div>
     <div class="panel" id="panel-nutrition" data-panel="nutrition" role="tabpanel" aria-labelledby="tab-nutrition" hidden><div class="panelgrid"><div><b>Purpose</b><span>Enough context to explain body-composition movement.</span></div><div><b>Not required</b><span>No permanent photo diary of every meal.</span></div><div><b>Read with</b><span>Body mass, recovery and training load.</span></div></div></div>
     <div class="panel" id="panel-cost" data-panel="cost" role="tabpanel" aria-labelledby="tab-cost" hidden><div class="panelgrid"><div><b>Cost</b><span>What did progress in one system ask from another?</span></div><div><b>Baseline example</b><span>Strength and faster running waited while the tibia governed.</span></div><div><b>Rule</b><span>A gain is not automatically a win if another system becomes unstable.</span></div></div></div>
@@ -747,7 +758,7 @@ p,li,dd,figcaption{hyphens:none}
   "date": "2026-09",
   "phase": {"n": "00", "label": "Reconstitution"},
   "door": {"met": 2, "total": 6},
-  "body": {"weight_lb": 180, "bodyfat_target_pct": [8, 10], "bodyfat_actual_pct": null},
+  "body": {"weight_lb": null, "weight_target_lb": 180, "bodyfat_target_pct": [8, 10], "bodyfat_actual_pct": null},
   "engine": {
     "vo2_estimate": 51,
     "vo2_historic_peak": 67,
@@ -758,6 +769,7 @@ p,li,dd,figcaption{hyphens:none}
   "previous_evidence": {"high_week_mi": 44.00, "long_run_mi": 13.24, "threshold_pace_per_mi": ["6:04", "6:09"]},
   "strength": {"block": "Forge Sculpt", "phase": 2, "week": 1},
   "tibia": {"status": "healing", "note": "load progressive"},
+  "sharpness": {"ashtanga_sessions": null, "yin_sessions": null, "core_sessions": null, "mobility_trunk_read": null},
   "practice": {"morning_pages_min": 20, "zazen_min": 10}
 }
         </script>
