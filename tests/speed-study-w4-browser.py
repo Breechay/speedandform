@@ -31,6 +31,9 @@ try:
     assert expected in text,expected
    assert page.locator('.w4-splits li').count()==5
    dimensions=page.evaluate('({width:innerWidth,scrollWidth:document.documentElement.scrollWidth})')
+   if dimensions['scrollWidth']>dimensions['width']+1:
+    offenders=page.evaluate("""() => [...document.querySelectorAll('body *')].map(e=>{const r=e.getBoundingClientRect();return {tag:e.tagName,cls:e.className,id:e.id,left:r.left,right:r.right,width:r.width,scroll:e.scrollWidth,text:(e.textContent||'').trim().slice(0,80)}}).filter(x=>x.right>innerWidth+1 || x.left<-1).sort((a,b)=>Math.max(b.right-innerWidth,-b.left)-Math.max(a.right-innerWidth,-a.left)).slice(0,20)""")
+    print('OVERFLOW',width,json.dumps(offenders,ensure_ascii=False),flush=True)
    assert dimensions['scrollWidth']<=dimensions['width']+1,f'page overflow {width}: {dimensions}'
    for box in page.locator('#w4-read .w4-athlete').all():
     assert box.evaluate('(e)=>e.scrollWidth<=e.clientWidth+1'),f'athlete overflow {width}'
