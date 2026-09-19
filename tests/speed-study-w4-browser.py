@@ -34,6 +34,8 @@ try:
    if dimensions['scrollWidth']>dimensions['width']+1:
     offenders=page.evaluate("""() => [...document.querySelectorAll('body *')].map(e=>{const r=e.getBoundingClientRect();return {tag:e.tagName,cls:e.className,id:e.id,left:r.left,right:r.right,width:r.width,scroll:e.scrollWidth,text:(e.textContent||'').trim().slice(0,80)}}).filter(x=>x.right>innerWidth+1 || x.left<-1).sort((a,b)=>Math.max(b.right-innerWidth,-b.left)-Math.max(a.right-innerWidth,-a.left)).slice(0,20)""")
     print('OVERFLOW',width,json.dumps(offenders,ensure_ascii=False),flush=True)
+    edge=page.evaluate("""() => [...document.querySelectorAll('body *')].map(e=>{const r=e.getBoundingClientRect(),cs=getComputedStyle(e);return {tag:e.tagName,cls:e.className,id:e.id,left:r.left,right:r.right,width:r.width,overflowX:cs.overflowX,pos:cs.position,text:(e.textContent||'').trim().slice(0,80)}}).filter(x=>x.right>innerWidth+1 && x.right<innerWidth+100 && x.left>-100).sort((a,b)=>a.right-b.right).slice(0,50)""")
+    print('EDGE',width,json.dumps(edge,ensure_ascii=False),flush=True)
    assert dimensions['scrollWidth']<=dimensions['width']+1,f'page overflow {width}: {dimensions}'
    for box in page.locator('#w4-read .w4-athlete').all():
     assert box.evaluate('(e)=>e.scrollWidth<=e.clientWidth+1'),f'athlete overflow {width}'
