@@ -13,7 +13,7 @@
 <meta content="index,follow,max-image-preview:large" name="robots"/>
 <!-- Share image follows the convention already used on /plans/race-pace-durability. -->
 <meta content="2026-08-23" property="article:published_time"/>
-<meta content="2026-09-12" property="article:modified_time"/>
+<meta content="2026-09-17" property="article:modified_time"/>
 <meta content="Running" property="article:section"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -46,7 +46,7 @@
   "description":"Running durability explained. why the cost of holding race pace rises even when the pace does not, how to build training that makes speed last, and two athletes running the method in public.",
   "inLanguage":"en",
   "datePublished":"2026-08-23",
-  "dateModified":"2026-09-12",
+  "dateModified":"2026-09-17",
   "author":{"@type":"Organization","name":"FORM Labs","url":"https://speedandform.com"},
   "publisher":{"@type":"Organization","name":"Speed and Form","url":"https://speedandform.com"},
   "mainEntityOfPage":{"@type":"WebPage","@id":"https://speedandform.com/labs/speed-that-endures"},
@@ -1310,12 +1310,44 @@ h1,h2,h3,.display-claim,.cost-claim,.statement b,.kite-quote{text-wrap:balance}
   .cost-v7 .lenses>*:first-child{padding-left:0}
   .cost-v7 .lens-foot b{white-space:normal}
 }
+
+/* Sep 15 paired continuous read: the existing study material, not a new dashboard. */
+#w4-read{scroll-margin-top:88px}
+#w4-read .w4-lede{font-size:clamp(19px,1.7vw,26px);line-height:1.5;max-width:64ch;color:var(--ink-2);margin:0 0 34px}
+.w4-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line)}
+.w4-athlete{min-width:0;padding:32px 32px 36px 0}
+.w4-athlete+.w4-athlete{border-left:1px solid var(--line);padding-left:32px;padding-right:0}
+.w4-athlete h4{font-size:13px;letter-spacing:.14em;margin:0 0 18px;color:var(--lime)}
+.w4-pace{font-size:clamp(54px,5.5vw,84px);font-weight:600;line-height:1;letter-spacing:-.055em;font-variant-numeric:tabular-nums}
+.w4-pace span{font-size:20px;font-weight:450;letter-spacing:-.01em;color:var(--muted);margin-left:7px}
+.w4-measure{font-size:19px;color:var(--ink-2);margin:12px 0 10px;font-variant-numeric:tabular-nums}
+.w4-band{font-size:14px;color:var(--muted);margin:0 0 24px}
+.w4-athlete p.w4-read-text{font-size:17px;line-height:1.6;color:var(--ink-2);margin:20px 0 0}
+.w4-athlete blockquote{margin:24px 0 0;border-left:2px solid var(--lime-dim);padding-left:18px;font-size:22px;line-height:1.35;color:var(--ink)}
+.w4-athlete blockquote cite{display:block;font-style:normal;font-size:13px;color:var(--muted);margin-top:12px}
+.w4-splits{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;list-style:none;padding:0;margin:24px 0}
+.w4-splits li{min-width:0;border-top:1px solid var(--line);padding-top:12px}
+.w4-splits small{display:block;font-size:11px;color:var(--muted);margin-bottom:7px}
+.w4-splits b{font-size:clamp(14px,1.45vw,20px);font-weight:500;white-space:nowrap;font-variant-numeric:tabular-nums;letter-spacing:-.025em}
+.w4-note{border-top:1px solid var(--line);padding:24px 0;font-size:16px;line-height:1.6;color:var(--ink-2)}
+.w4-note p{margin:0 0 12px;max-width:82ch}.w4-note p:last-child{margin-bottom:0}
+.w4-note strong{color:var(--ink)}
+#w4-read .cr-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+#w4-read .w4-source{font-size:13px;line-height:1.6;color:var(--muted);margin:0;padding:22px 0}
+#w4-read .w4-note-link{color:var(--lime);display:inline-block;text-underline-offset:5px;margin-top:12px;font-size:15px}
+#inspect.open{max-height:none}
+/* Narrow phones: keep the horizontally scrollable study-memory track inside the document width. */
+.study-memory-v73{min-width:0;max-width:100%}
+.memory-track{width:100%;max-width:100%;min-width:0}
+@media(max-width:900px){.w4-pair{grid-template-columns:1fr}.w4-athlete,.w4-athlete+.w4-athlete{border-left:0;padding:28px 0}.w4-athlete+.w4-athlete{border-top:1px solid var(--line)}#w4-read .cr-grid{grid-template-columns:1fr}#w4-read .cr-grid>div{border-right:0;border-top:1px solid var(--line);padding:22px 0}.w4-splits b{font-size:17px}}
+@media(max-width:380px){.w4-splits{gap:5px}.w4-splits b{font-size:14px}.memory-track{margin-right:0;padding-right:0}.hero-photo{overflow:hidden}.cases-readout-v7 h3{font-size:clamp(40px,13vw,46px);letter-spacing:-.055em}}
+
 </style>
 </head>
 <body>
 <div class="masthead">
 <a class="wordmark" href="/" aria-label="FORM home">FORM<span>.</span></a>
-<div class="status"><i aria-hidden="true"></i>In progress · updated Sep 12</div>
+<div class="status"><i aria-hidden="true"></i>In progress · updated Sep 17</div>
 </div>
 
 <div aria-hidden="true" id="progress"></div>
@@ -1334,7 +1366,7 @@ h1,h2,h3,.display-claim,.cost-claim,.statement b,.kite-quote{text-wrap:balance}
 </nav>
 <article itemscope="" itemtype="https://schema.org/Article">
 <meta content="2026-08-23" itemprop="datePublished"/>
-<meta content="2026-09-12" itemprop="dateModified"/>
+<meta content="2026-09-17" itemprop="dateModified"/>
 <!-- ══════════════════════════ HERO ══════════════════════════ -->
 <header class="hero bleed" id="top">
 <div class="hero-photo">
@@ -1361,7 +1393,7 @@ h1,h2,h3,.display-claim,.cost-claim,.statement b,.kite-quote{text-wrap:balance}
 <li><a href="#cases"><b>04</b>Two athletes, one question</a></li>
 <li><a href="#orlando"><b>08</b>Orlando → Donna</a></li>
 </ol>
-<a class="plan-link" href="#note-w3">Sep 11 · Why Hope’s band changed &rarr;</a>
+<a class="plan-link" href="#w4-read">Sep 15 · Five miles. No reset. &rarr;</a>
 <a class="plan-link" href="/plans/race-pace-durability/">Open the 15-week plan &rarr;</a>
 </nav>
 
@@ -1583,18 +1615,35 @@ h1,h2,h3,.display-claim,.cost-claim,.statement b,.kite-quote{text-wrap:balance}
 <h3>SAME PRESCRIPTION.<br/><em>DIFFERENT RESPONSE.</em></h3>
 <p>Both athletes reached the shared band in W2. José finished with his fastest rep and reported reserve. Hope held the first two reps, then faded late. That was not a ranking; it was the first signal that one shared number might not be the right long-term prescription.</p>
 </div>
-<div class="current-read-v73" aria-label="Current study read">
-  <div class="cr-head">
-    <span>CURRENT READ · SEP 11</span>
-    <h3>SAME METHOD.<br/><em>TWO PACES.</em></h3>
+<!-- FORM STUDY W4 · 2026-09-15 · published 2026-09-17 -->
+<section class="current-read-v73" id="w4-read" aria-labelledby="w4-h" data-filed="2026-09-15">
+  <div class="cr-head"><span>CURRENT READ · SEP 15 · W4</span><h3 id="w4-h">FIVE MILES.<br/><em>NO RESET.</em></h3></div>
+  <p class="w4-lede">José ran five continuous miles at 6:44/mi. Hope ran them at 6:52/mi. Both averages are inside their own bands. The recovery is gone. The pace is still there.</p>
+  <div class="w4-pair">
+    <section class="w4-athlete" aria-label="José's five-mile result">
+      <h4>JOSÉ</h4><div class="w4-pace">6:44<span>/mi</span></div>
+      <p class="w4-measure">33:40.8 · 5.00 mi continuous</p><p class="w4-band">Assigned band · 6:30–6:45 /mi</p>
+      <p class="w4-read-text">The five-mile average held. José reported that his breathing felt controlled while his legs tired and keeping his form became harder near the end. He chose not to chase sub-6:40.</p>
+      <blockquote>“I just wanted to keep it fluid”<cite>José · athlete report after the run</cite></blockquote>
+      <p class="w4-read-text">Completion and cost are different facts. He completed the distance; he did not describe it as easy. His individual mile splits are not part of this record.</p>
+    </section>
+    <section class="w4-athlete" aria-label="Hope's five-mile result">
+      <h4>HOPE</h4><div class="w4-pace">6:52<span>/mi</span></div>
+      <p class="w4-measure">34:17.9 · 5.00 mi continuous</p><p class="w4-band">Assigned band · 6:45–7:00 /mi</p>
+      <ol class="w4-splits" aria-label="Hope's recorded one-mile splits"><li><small>MILE 1</small><b>6:48.9</b></li><li><small>MILE 2</small><b>6:49.8</b></li><li><small>MILE 3</small><b>6:53.4</b></li><li><small>MILE 4</small><b>6:51.7</b></li><li><small>MILE 5</small><b>6:54.1</b></li></ol>
+      <p class="w4-read-text">All five recorded miles stayed inside her revised band. The first was 6:48.9; the last was 6:54.1. A 5.2-second spread, without leaving the band.</p>
+      <p class="w4-read-text">She asked whether next week should be faster. The answer was no: keep it around 6:50.</p>
+      <blockquote>“We want that pace and number to feel incredibly familiar.”<cite>Brice · coaching instruction, not an athlete effort rating</cite></blockquote>
+    </section>
   </div>
+  <div class="w4-note"><p><strong>What this adds:</strong> five miles of continuous execution at each athlete’s race-pace average. W3’s eight broken miles and W4’s five continuous miles answer different questions; removing the recovery changed the task.</p><p><strong>What it does not establish:</strong> low cost, every instant inside the band, or readiness to hold it for 13.1 miles. José’s late effort is his report, not a measured change in mechanics. Hope’s effort was not numerically confirmed.</p><a class="w4-note-link" href="#note-w4">Read the output, cost and next step →</a></div>
   <div class="cr-grid">
-    <div><small>JOSÉ · W3</small><b>6:42 · 6:43 · 6:43 · 6:43</b><p>Eight broken race-pace miles at his 6:30–6:45 band. One second per mile of spread.</p></div>
-    <div><small>HOPE · W3</small><b>6:50 · 6:50 · 6:53 · 6:50</b><p>Eight broken miles with no late fade. Three seconds per mile of spread.</p></div>
-    <div><small>CEILING CHECK · 2 × 10 MIN</small><b>José 6:15 · 6:14<br/>Hope 6:22 · 6:24</b><p>The threshold work preserves roughly the same separation seen in the race-pace sessions. The plan now progresses that ceiling deliberately rather than touching it at random.</p></div>
-    <div class="next"><small>DECISION · SEP 11</small><b>HOPE → 6:45–7:00 /MI</b><p>José stays 6:30–6:45. W4 removes the reset: five continuous miles at each athlete’s own band.</p></div>
+    <div class="next"><small>SEP 22 · RACE-PACE SUPPORT</small><b>5 × 1 mi<br/>2 min floats</b><p>Keep each athlete’s band. Broken work between continuous asks, not a faster race-pace target.</p></div>
+    <div><small>SEP 24 · CEILING WORK</small><b>3 × 10 min<br/>Threshold</b><p>The next threshold step remains separate from race-pace work, as confirmed in the coaching messages.</p></div>
+    <div><small>SEP 29 · NEXT PLANNED ASK</small><b>6 mi continuous</b><p>The next continuous distance stays ahead, not already established. The athlete’s response still informs the next move.</p></div>
   </div>
-</div>
+  <p class="w4-source">Source: athlete-shared Garmin work-segment summaries and Strava screenshots, 15 September 2026; selected post-run coaching messages. These figures exclude warm-up and cool-down. Published 17 September. Earlier reads remain in Lab Notes.</p>
+</section>
 </div>
 </section>
 <!-- ══════════════════════════ 05 · THE SEASON ══════════════════════════ -->
@@ -1631,8 +1680,8 @@ h1,h2,h3,.display-claim,.cost-claim,.statement b,.kite-quote{text-wrap:balance}
 <span class="seg" style="--w:8.3%"></span>
 <span class="seg" style="--w:25.6%"></span>
 <span class="seg" style="--w:4.2%"></span>
-<span aria-hidden="true" class="today" style="left:14.4%"></span>
-<span class="today-tag" style="left:calc(14.4% + 10px)">Sep 08 · W3</span>
+<span aria-hidden="true" class="today" style="left:13.7%"></span>
+<span class="today-tag" style="left:calc(13.7% + 10px)">Sep 15 · W4</span>
 </div>
 <div class="field-phases">
 <div class="phase now">
@@ -1708,7 +1757,7 @@ h1,h2,h3,.display-claim,.cost-claim,.statement b,.kite-quote{text-wrap:balance}
 <div class="rung now" style="--w:38%">
 <div class="mi num">5</div>
 <div class="track"><i></i></div>
-<div class="lab"><div class="k">W4 · first continuous ask</div><div class="v">Remove the recovery.</div><div class="dt">Sep 15</div></div>
+<div class="lab"><div class="k">W4 · first continuous ask · recorded</div><div class="v">José 6:44/mi · Hope 6:52/mi.</div><div class="dt">Sep 15 · 5 mi each</div></div>
 </div>
 <div class="rung" style="--w:46%">
 <div class="mi num">6</div>
@@ -1740,7 +1789,7 @@ h1,h2,h3,.display-claim,.cost-claim,.statement b,.kite-quote{text-wrap:balance}
 <div class="cal-col">
 <header>Race-pace specificity · Tue</header>
 <div class="ev"><div class="d">Sep 08<br/>W3</div><div><b>4 × 2 mi · 3 min float</b><small>Eight miles broken. More exposure before the first continuous ask.</small></div></div>
-<div class="ev ask"><div class="d">Sep 15<br/>W4</div><div><b>5 mi continuous</b><small>First continuous ask.</small></div></div>
+<div class="ev ask"><div class="d">Sep 15<br/>W4</div><div><b>5 mi continuous · recorded</b><small>José 6:44/mi · Hope 6:52/mi. Work-segment averages.</small></div></div>
 <div class="ev"><div class="d">Sep 22<br/>W5</div><div><b>5 × 1 mi · 2 min float</b><small>Broken support between asks.</small></div></div>
 <div class="ev ask"><div class="d">Sep 29<br/>W6</div><div><b>6 mi continuous</b><small>Second continuous ask.</small></div></div>
 <div class="ev"><div class="d">Oct 06<br/>W7</div><div><b>4 × 2 mi · 2 min float</b><small>Repeatability with less recovery.</small></div></div>
@@ -1789,31 +1838,8 @@ h1,h2,h3,.display-claim,.cost-claim,.statement b,.kite-quote{text-wrap:balance}
 <div><h2 id="notes-h">ONE WORKOUT.<br/>TWO RESPONSES.</h2></div>
 <aside><p class="small">We ask the same question once. Then we read each runner on their own terms.</p></aside>
 </div>
-<div class="live" style="margin-top:104px">
-<div class="d">Sep 08 / 09 · W3 · paired filed</div>
-<div>
-<div class="k">Eight broken race-pace miles held by both athletes.</div>
-<p>José ran 6:42 · 6:43 · 6:43 · 6:43. Hope ran 6:50 · 6:50 · 6:53 · 6:50. Their paired 2 × 10 threshold work landed at 6:15 · 6:14 for José and 6:22 · 6:24 for Hope.</p>
-</div>
-<div class="st">Filed</div>
-</div>
-<div class="synth">
-<div>
-<div class="k">What W3 established</div>
-<b>Same method. Two repeatable race paces.</b>
-<p>José keeps 6:30–6:45. Hope moves to 6:45–7:00. The useful result is not one shared number; it is that each athlete now has a repeatable band to carry into the continuous asks.</p>
-</div>
-<div>
-<div class="k">What threshold added</div>
-<b>There is measurable room above race pace.</b>
-<p>José's threshold work sat around 6:15. Hope's sat around 6:23. In both athletes, race pace is roughly half a minute per mile below that ceiling. That is an observation, not a formula.</p>
-</div>
-<div>
-<div class="k">What changes next</div>
-<b>Remove the reset. Do not make the pace faster.</b>
-<p>W4 asks for five continuous miles at each athlete's own band. The Thursday lane now progresses threshold deliberately so the ceiling can keep moving while race pace stays stable.</p>
-</div>
-</div>
+<div class="live" style="margin-top:72px"><div class="d">Sep 15 · W4 · paired record</div><div><div class="k">Five continuous miles, at two individual paces.</div><p>José: 33:40.8 at 6:44/mi. Hope: 34:17.9 at 6:52/mi, with all five recorded mile splits inside her band. The work stayed continuous; its cost is read separately.</p></div><div class="st">Recorded</div></div>
+<div class="synth"><div><div class="k">What W4 adds</div><b>The pace survived without the reset.</b><p>Five continuous miles now sit beside W3’s eight broken miles. This is a new condition, not less of the same session.</p></div><div><div class="k">What the athlete adds</div><b>The finish can cost more even when the pace holds.</b><p>José reported tiring legs and more effort to hold form late. Hope’s splits stayed inside her band; no numeric effort rating was confirmed.</p></div><div><div class="k">What changes next</div><b>Keep the pace. Change the session.</b><p>Sep 22: 5 × 1 mile with 2-minute floats. Sep 24: 3 × 10 minutes threshold. The next planned continuous ask is six miles on Sep 29.</p></div></div>
 <div class="grammar">
 <p class="tag">The grammar</p>
 <div>
@@ -1842,11 +1868,7 @@ h1,h2,h3,.display-claim,.cost-claim,.statement b,.kite-quote{text-wrap:balance}
 <span class="q">Can the target band remain organised across eight miles of broken work?</span>
 <span class="st">Filed</span>
 </button>
-<button aria-controls="inspect" aria-expanded="false" class="entry" data-key="w4" id="note-w4">
-<span class="d">Sep 15 · W4</span><span class="mk">5 mi</span>
-<span class="q">What changes when the recovery disappears and the band has to stay continuous?</span>
-<span class="st">Scheduled</span>
-</button>
+<button aria-controls="inspect" aria-expanded="false" class="entry" data-key="w4" data-state="filed" id="note-w4"><span class="d">Sep 15 · W4</span><span class="mk">5 mi</span><span class="q">Five continuous miles: José 6:44/mi · Hope 6:52/mi. What did holding the pace cost?</span><span class="st">Recorded</span></button>
 <button aria-controls="inspect" aria-expanded="false" class="entry" data-key="w6" id="note-w6">
 <span class="d">Sep 29 · W6</span><span class="mk">6 mi</span>
 <span class="q">Can the same velocity stay economical for one more uninterrupted mile?</span>
@@ -1925,22 +1947,13 @@ h1,h2,h3,.display-claim,.cost-claim,.statement b,.kite-quote{text-wrap:balance}
   <div class="memory-track" aria-label="Study evidence timeline">
     <div class="memory-step filed"><span>SEP 01 · W2</span><b>3 × 2</b><small>FILED</small></div>
     <div class="memory-step filed"><span>SEP 08 / 09 · W3</span><b>4 × 2</b><small>FILED</small></div>
-    <div class="memory-step"><span>SEP 15 · W4</span><b>5 CONT.</b><small>FUTURE</small></div>
+    <div class="memory-step filed"><span>SEP 15 · W4</span><b>5 CONT.</b><small>RECORDED</small></div>
     <div class="memory-step"><span>SEP 29 · W6</span><b>6 CONT.</b><small>FUTURE</small></div>
     <div class="memory-step"><span>OCT 20 · W9</span><b>8 CONT.</b><small>FUTURE</small></div>
     <div class="memory-step"><span>NOV 14 · W12</span><b>12 LATE</b><small>FUTURE</small></div>
     <div class="memory-step"><span>DEC 05</span><b>13.1</b><small>TEST 01</small></div>
   </div>
-  <div class="memory-athletes">
-    <section>
-      <header><b>JOSÉ</b><span>2 FILED READS</span></header>
-      <div class="memory-facts"><span><small>OUTPUT</small>4/4 × 2 mi in band</span><span><small>EFFORT</small>Hard · controlled</span><span><small>LIMITER</small>Not isolated</span><span><small>RESERVE</small>Chose not to push</span></div>
-    </section>
-    <section>
-      <header><b>HOPE</b><span>2 FILED READS</span></header>
-      <div class="memory-facts"><span><small>OUTPUT</small>4/4 × 2 mi around 6:50</span><span><small>EFFORT</small>Not reported</span><span><small>LIMITER</small>Not isolated</span><span><small>RESERVE</small>Not reported</span></div>
-    </section>
-  </div>
+  <div class="memory-athletes"><section><header><b>JOSÉ</b><span>3 RACE-PACE READS</span></header><div class="memory-facts"><span><small>OUTPUT</small>5 mi continuous · 6:44/mi</span><span><small>EFFORT</small>Hard · reported</span><span><small>LIMITER</small>Legs / holding form · reported</span><span><small>RESERVE</small>Not quantified</span></div></section><section><header><b>HOPE</b><span>3 RACE-PACE READS</span></header><div class="memory-facts"><span><small>OUTPUT</small>5 mi continuous · 6:52/mi</span><span><small>EFFORT</small>Not reported</span><span><small>LIMITER</small>Not isolated</span><span><small>RESERVE</small>Not reported</span></div></section></div>
   <div class="memory-carry">
     <div><small>WHAT WE KEEP</small><b>The athlete's own experience stays beside the numbers.</b><p>Effort, limiter and reserve are not decoration. They help explain what race-pace work can cost two different runners.</p></div>
     <div><small>WHAT CAN CHANGE</small><b>The shared plan is allowed to branch.</b><p>Every filed read can support the next step, repeat the step, or create a different question for one athlete.</p></div>
@@ -2071,7 +2084,7 @@ h1,h2,h3,.display-claim,.cost-claim,.statement b,.kite-quote{text-wrap:balance}
 <div class="foot-meta">
 <span>Speed That Endures</span>
 <span>José + Hope · two athletes · one question</span>
-<span>In progress · last updated Sep 12 2026</span>
+<span>In progress · last updated Sep 17 2026</span>
 </div>
 </div>
 <div><a class="foot-plan" href="/plans/race-pace-durability/">Open the 15-week plan &rarr;</a><p><a href="/labs/">Other studies &rarr;</a> &nbsp; <a href="/#practice">How I coach &rarr;</a></p></div>
@@ -2122,21 +2135,37 @@ const evidence = {
        effort:"Not reported",limiter:"Not isolated",reserve:"Not reported"}
   },
   w4:{
-    title:"Sep 15 · W4 · 5 mi continuous",
-    q:"What changes when the recovery disappears and the target band has to stay continuous?",
-    pr:"5 mi continuous · José 6:30–6:45 /mi · Hope 6:45–7:00 /mi",
-    prs:"First uninterrupted exposure at the full training band.",
-    j:{out:"Scheduled.",outs:"José's five-mile execution and continuity populate here.",
-       cost:"Scheduled.",costs:"Compare the cost against the broken exposures without forcing a single score.",
-       read:"Open.",reads:"The session establishes what continuous durability currently looks like for José.",
-       next:"Repeat or extend.",nexts:"Only after José's response is filed.",
-       effort:"-",limiter:"-",reserve:"-"},
-    h:{out:"Scheduled.",outs:"Hope's five-mile execution and continuity populate here.",
-       cost:"Scheduled.",costs:"Compare the cost against the broken exposures without forcing a single score.",
-       read:"Open.",reads:"The session establishes what continuous durability currently looks like for Hope.",
-       next:"Repeat or extend.",nexts:"Only after Hope's response is filed.",
-       effort:"-",limiter:"-",reserve:"-"}
+  "title": "Sep 15 · W4 · 5 mi continuous · recorded",
+  "q": "What changes when the recoveries disappear and each athlete carries their own band for five continuous miles?",
+  "pr": "5 mi continuous · José 6:30–6:45 /mi · Hope 6:45–7:00 /mi",
+  "prs": "Work-segment results from Garmin, with Strava context and athlete/coach messages. Both athletes recorded approximately 20 minutes of warm-up and 20 minutes of cool-down; those are outside the five-mile work segment.",
+  "j": {
+    "out": "5.00 mi continuous · 33:40.8 · 6:44 /mi",
+    "outs": "The five-mile average is inside his assigned band. The supplied Garmin summary does not include his individual mile splits.",
+    "cost": "Hard. The finish took more work.",
+    "costs": "José reported controlled breathing, tiring legs and more effort to maintain form late. These are his observations, not a measured change in running economy.",
+    "read": "Five-mile execution, with rising reported cost.",
+    "reads": "He kept the work continuous and chose not to chase sub-6:40. This is evidence at five miles, not proof that the pace is already inexpensive or available for 13.1.",
+    "next": "5 × 1 mi · 2 min floats · same band",
+    "nexts": "Sep 22: broken race-pace work. Sep 24: 3 × 10 min threshold, as the coach confirmed. Do not turn race-pace work into a faster test.",
+    "effort": "Hard · reported",
+    "limiter": "Legs / holding form · reported",
+    "reserve": "Not quantified"
   },
+  "h": {
+    "out": "5.00 mi continuous · 34:17.9 · 6:52 /mi",
+    "outs": "Mile splits: 6:48.9 · 6:49.8 · 6:53.4 · 6:51.7 · 6:54.1. All five recorded miles are inside 6:45–7:00 /mi; the fastest-to-slowest spread is 5.2 seconds.",
+    "cost": "No numeric effort rating recorded.",
+    "costs": "The coach asked about 9/10 effort, but the supplied conversation does not contain a numeric athlete confirmation. Limiter and reserve are left unassigned.",
+    "read": "Her revised band carried into continuous work.",
+    "reads": "The final mile was 5.2 seconds slower than the first and remained inside her band. A single completion does not establish low cost or full-race readiness.",
+    "next": "5 × 1 mi · 2 min floats · about 6:50 /mi",
+    "nexts": "Hope asked whether next week should be faster. Brice confirmed the same pace: make it familiar. The shared Week 5 threshold session remains 3 × 10 min.",
+    "effort": "Not reported",
+    "limiter": "Not isolated",
+    "reserve": "Not reported"
+  }
+},
   w6:{
     title:"Sep 29 · W6 · 6 mi continuous",
     q:"Can the same velocity remain economical for one more uninterrupted mile?",
@@ -2384,26 +2413,6 @@ const evidence = {
 
 </script>
 
-<script>
-/* The status line writes itself.
-   A typed date is wrong the day after it is typed, and this one is the page's claim to be alive.
-   It prefers the newest `data-filed` on the page -- so once evidence arrives from the canonical
-   record, the same code keeps working with no edit -- and falls back to when the document itself
-   last changed, which for a hand-authored study is exactly when it was last updated. */
-(function () {
-  var el = document.querySelector('.status');
-  if (!el) return;
-  var filed = [].slice.call(document.querySelectorAll('[data-filed]'))
-    .map(function (n) { return new Date(n.getAttribute('data-filed')); })
-    .filter(function (d) { return !isNaN(d); });
-  var when = filed.length ? new Date(Math.max.apply(null, filed)) : new Date(document.lastModified);
-  if (isNaN(when)) return;
-  var month = when.toLocaleString('en-US', { month: 'short' });
-  var day = String(when.getDate()).padStart(2, '0');
-  var dot = el.querySelector('i');
-  el.textContent = 'In progress \u00B7 updated ' + month + ' ' + day;
-  if (dot) el.insertBefore(dot, el.firstChild);
-})();
-</script>
+<!-- The status states the publication date; session dates remain on their evidence. -->
 </body>
 </html>
