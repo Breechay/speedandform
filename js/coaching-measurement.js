@@ -5,7 +5,7 @@
   var qa = /(?:^\?|&)form_qa=1(?:&|$)/.test(w.location.search || '');
   if ((!production && !qa) || w.__formCoachingMeasurementLoaded) return;
   w.__formCoachingMeasurementLoaded = true;
-  var version = '20260920-intake-4step-1';
+  var version = '20260920-intake-3step-1';
   var ga = 'G-HKG3MXM668';
   var pixel = '147659485878240';
   var leadSent = false;
@@ -93,7 +93,7 @@
     if (privateVisit()) return;
     var fields = { form_id: 'coaching_inquiry', funnel_version: version };
     params = params || {};
-    if (Number.isInteger(params.step_number) && params.step_number >= 1 && params.step_number <= 4) fields.step_number = params.step_number;
+    if (Number.isInteger(params.step_number) && params.step_number >= 1 && params.step_number <= 3) fields.step_number = params.step_number;
     if (['hero', 'header', 'coaching', 'footer', 'other'].indexOf(params.cta_location) !== -1) fields.cta_location = params.cta_location;
     if (name === 'generate_lead') fields.method = 'coaching_inquiry';
     if (qa) {
@@ -179,7 +179,7 @@
     var review = d.querySelector('#p-read.on');
     var question = d.querySelector('#p-ask.on .q.on');
     var step = question ? Number(question.getAttribute('data-q')) + 1 : 0;
-    if (started && previousStep && ((step === previousStep + 1) || (review && previousStep === 4))) {
+    if (started && previousStep && ((step === previousStep + 1) || (review && previousStep === 3))) {
       once('coaching_step_complete', { step_number: previousStep }, 'complete-' + previousStep);
     }
     if (step) previousStep = step;
