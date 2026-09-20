@@ -3,10 +3,24 @@
 > **Run Development doctrine:** read `docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md` before generating coaching philosophy, identity copy or athlete-development language.
 
 
-**Updated:** September 16, 2026  
+**Updated:** September 20, 2026  
 **Status:** active operating note for the current Bridge Season
 
 This document exists to keep near-term commercial work focused on learning how FORM acquires the right athletes and delivers the appropriate depth of help before expanding into plans, apps, memberships, or unnecessary public offers.
+
+## September 20 Plan 03 checkpoint
+
+Marathon Durability is now a frozen method, not the current acquisition priority.
+
+- Run Development delivery and referral learning remain first.
+- Plan 03 stays inspectable while the prospective study develops.
+- Quiet preview or availability can begin after Orlando.
+- Broad paid promotion waits until the Donna record is complete.
+- Working self-guided price is **$99 one time**.
+- Product hook: **Keep the speed. Move it deeper.**
+- The Last 10K remains a study/proof asset, not the sales page.
+
+Do not shift current acquisition attention away from coaching just because Plan 03 is coherent.
 
 ## September 16 offer + referral checkpoint
 
