@@ -274,13 +274,6 @@
         </div>
 
         <div class="q" data-q="3">
-          <h2>What isn&rsquo;t going the way you want?</h2>
-          <p class="hint">A sentence is enough. Leave blank if nothing.</p>
-          <textarea aria-label="What isn’t going the way you want?" class="ta" id="issue" rows="3" maxlength="4000" placeholder=""></textarea>
-          <button class="cta" type="button" data-next>Continue <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
-        </div>
-
-        <div class="q" data-q="4">
           <h2>Where should I reply?</h2>
           <div class="grp"><label>Where you train</label>
             <div class="opts" role="group" aria-label="Where you train" data-key="city" data-mode="one">
@@ -337,7 +330,7 @@
 </footer>
 
 <script>
-/* Five-question intake. Coaching scope is explicitly selected, never inferred
+/* Four-question intake. Coaching scope is explicitly selected, never inferred
    from another sport. Campaign tags accompany the inquiry and email fallback. */
 (function () {
   var $ = function (s) { return document.querySelector(s); };
@@ -349,7 +342,7 @@
   ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach(function (key) { source[key] = (campaign.get(key) || "").slice(0, 120); });
   var A = { other: [] };
   var qi = 0;
-  var QN = 5;
+  var QN = 4;
   var BRICE = "brice@speedandform.com";
   var sending = false;
   var qTimer = 0;
