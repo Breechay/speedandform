@@ -114,3 +114,55 @@ Packaging may simplify words and reorder explanation. It does not change:
 - athlete-specific authority rules;
 - the evidence grammar;
 - the method freeze.
+
+
+## Reference architecture · final September 20 direction
+
+The plan page is not primarily a sales page. It is the **FORM marathon reference**.
+
+A reader should be able to return months later with a question and jump directly to the answer.
+
+### Marathon Durability order
+
+1. FORM marathon strategy
+2. who the method is for
+3. race pacing · 9 / 20 / 54 / 17
+4. why runners fade · failure-mode reference
+5. a week has three jobs
+6. four long runs that explain the plan
+7. set your paces · ceiling / reserve / marathon rhythm
+8. full 16-week schedule
+9. fueling + adjustment rules
+10. short between-blocks on-ramp
+11. coach FAQ
+12. The Last 10K · teaching applied
+
+Giant display type remains welcome only when the sentence teaches a reusable coaching law.
+
+Examples that earn display scale:
+- THE FIRST 20 MILES WRITE THE LAST 10K.
+- FEELING GOOD AT MILE 10 IS NOT A REASON TO SPEED UP.
+- GOAL TIME DOES NOT CREATE CAPABILITY. EVIDENCE DOES.
+- THE PACE IS NOT THE PROGRESSION. THE DEPTH IS.
+
+Supporting logistics such as the two-week race transition should stay visually smaller.
+
+### The Last 10K order
+
+The study is **the teaching applied**, not a second reference article.
+
+1. 30-second study read
+2. exposure shift reminder
+3. teaching applied · four lessons mapped to the Donna block
+4. Orlando · athlete-specific decision gate
+5. two quiet weeks
+6. Donna runway
+7. live record · Hope + José
+8. technical notes collapsed behind disclosure
+9. amendments
+10. Donna finale
+
+The study should increasingly become athlete-led as evidence arrives:
+**prescription → filed output → athlete report → coach read → next**.
+
+Do not fill future telemetry with invented results. Empty states should state exactly what evidence is still awaited.
