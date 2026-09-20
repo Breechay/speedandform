@@ -180,3 +180,32 @@ Do not raise to a higher tier without materially deeper implementation or suppor
 ## Doctrine line
 
 > **The method is frozen. The answer is not.**
+
+## September 20 implementation receipt
+
+Public source has been brought to the freeze:
+- The Last 10K: protocol v1.0, Exposure Instrument, H02/H04 wording, quiet Donna W4 Thursday, rehearsal-gap statement, amendments log, two-athlete limitation and Sub-3 removal.
+- Marathon Durability: method-frozen label, Exposure Instrument, quiet W5/W9 Thursdays, exact W12 Rhythm session and rehearsal-gap statement.
+- Plans index: Plan 03 marked method frozen.
+- Netlify production deploy `6ab0362698aae30008737bdd` is ready.
+
+Still intentionally not finished:
+- dedicated Plan 03 / Last 10K OG image assets;
+- native FORM Exposure Strip implementation;
+- buyer checkout / $99 commercial launch;
+- athlete-specific Donna assignments;
+- Labs-wide ledger.
+
+## Next selected task
+
+**Exposure Instrument Design System v1** is the next bounded task.
+
+It should define one visual primitive and four states:
+1. Act I vs Act II explanatory strip;
+2. plan key-week progression strip;
+3. athlete current / filed / history strip;
+4. 1200×630 share-card composition.
+
+Static comprehension must work before motion. Motion is allowed only for Act I→II transition, week-to-week movement, and prescribed→filed state change.
+
+Do not write new programming while doing this work.
