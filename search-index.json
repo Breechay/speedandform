@@ -499,6 +499,25 @@
     "type": "Plan"
   },
   {
+    "url": "/plans/marathon-durability/",
+    "title": "Marathon Durability",
+    "description": "A 16-week experienced-runner marathon plan: specific contact Tuesday, ceiling Thursday, durability Saturday.",
+    "keywords": [
+      "marathon",
+      "durability",
+      "closing",
+      "10k",
+      "reserve",
+      "rhythm",
+      "long",
+      "run",
+      "16",
+      "week"
+    ],
+    "category": "practice",
+    "type": "Plan"
+  },
+  {
     "url": "/labs/speed-that-endures/",
     "title": "Speed That Endures",
     "description": "Follow the race-pace development study and its evidence.",
@@ -508,6 +527,24 @@
       "durability",
       "case",
       "study"
+    ],
+    "category": "practice",
+    "type": "Study"
+  },
+  {
+    "url": "/labs/the-last-10k/",
+    "title": "The Last 10K",
+    "description": "Follow the Orlando-to-Donna marathon durability study and the closing-10K hypothesis.",
+    "keywords": [
+      "hope",
+      "jose",
+      "donna",
+      "marathon",
+      "durability",
+      "final",
+      "10k",
+      "closing",
+      "miles"
     ],
     "category": "practice",
     "type": "Study"
