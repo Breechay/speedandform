@@ -49,8 +49,10 @@ const GROUPS = [
  ['practice','Plans, studies & the practice','See the work itself, follow a plan, or join a session.',[
   ['plans/','Find a training plan','Compare the published plans and read their scope before choosing.','training plan programs','Plans'],
   ['plans/race-pace-durability/','Race Pace Durability','A 15-week half-marathon plan. Read Weeks 1–4 before purchasing the full plan.','race pace durability rpd half marathon 15 week','Plan'],
-  ['plans/raise-the-ceiling/','Raise the Ceiling','Read the published plan and its weekly work.','raise ceiling threshold','Plan'],\n  ['plans/marathon-durability/','Marathon Durability','A 16-week experienced-runner marathon plan that moves specific pace deeper into the long run.','marathon durability closing 10k long run specific pace 16 week','Plan'],
-  ['labs/speed-that-endures/','Speed That Endures','Follow the race-pace development study and its evidence.','hope jose durability case study','Study'],\n  ['labs/the-last-10k/','The Last 10K','Follow the Orlando-to-Donna marathon durability study and the closing-10K hypothesis.','hope jose donna marathon durability final 10k closing miles','Study'],
+  ['plans/raise-the-ceiling/','Raise the Ceiling','Read the published plan and its weekly work.','raise ceiling threshold','Plan'],
+  ['plans/marathon-durability/','Marathon Durability','A 16-week experienced-runner marathon plan: specific contact Tuesday, ceiling Thursday, durability Saturday.','marathon durability closing 10k reserve rhythm long run 16 week','Plan'],
+  ['labs/speed-that-endures/','Speed That Endures','Follow the race-pace development study and its evidence.','hope jose durability case study','Study'],
+  ['labs/the-last-10k/','The Last 10K','Follow the Orlando-to-Donna marathon durability study and the closing-10K hypothesis.','hope jose donna marathon durability final 10k closing miles','Study'],
   ['labs/raise-the-ceiling/','Raise the Ceiling: the study','The work, observations, and evidence behind the block.','threshold study evidence','Study'],
   ['labs/hyrox/','HYROX: training and race tools','Explore the course, station work, and race-budget tools.','hyrox hybrid sled ski erg','Guide & tools'],
   ['labs/track/','Track workouts and standards','Browse the authored sessions and their execution standards.','track intervals sprint speed workouts','Workouts'],
