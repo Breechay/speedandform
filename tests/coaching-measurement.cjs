@@ -23,6 +23,10 @@ c.window.formTrackLead();c.window.formTrackLead();assert.equal(c.window.fbq.queu
 assert.deepEqual(Array.from(c.window.fbq.queue[3]),['trackSingle','147659485878240','Lead']);
 assert.equal(c.window.dataLayer.length,3);assert.equal(c.window.dataLayer[2][0],'event');assert.equal(c.window.dataLayer[2][1],'generate_lead');
 const html=readFileSync('index.html','utf8');
+assert.match(html,/var QN = 4;/);
+assert.doesNotMatch(html,/data-q=\"4\"/);
+assert.doesNotMatch(html,/id=\"issue\"/);
+assert.match(html,/This starts a conversation\. No payment or booking\./);
 const send=html.slice(html.indexOf('  function sendToBrice()'),html.indexOf('\n  function fail('));
 (async()=>{
  const relay=new FormData();
