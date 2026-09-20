@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Last 10K · Marathon Durability Study · FORM Labs</title>
+<meta name="description" content="A living FORM study following Hope and José from Race Pace Durability through the Orlando Half and into Donna Marathon. The question: can the pace they built remain available deep into 26.2 miles?">
+<link rel="canonical" href="https://speedandform.com/labs/the-last-10k/">
+<meta name="theme-color" content="#07110f">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Last 10K · FORM Labs">
+<meta property="og:description" content="We spent 15 weeks making pace last. Now we move the same question deeper into the marathon.">
+<meta property="og:url" content="https://speedandform.com/labs/the-last-10k/">
+<meta property="og:site_name" content="Speed &amp; Form">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://speedandform.com/og/form-share-20260916.jpg">
+<meta property="og:image:secure_url" content="https://speedandform.com/og/form-share-20260916.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="FORM running development in Miami.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Last 10K · FORM Labs">
+<meta name="twitter:description" content="We spent 15 weeks making pace last. Now we move the same question deeper into the marathon.">
+<meta name="twitter:image" content="https://speedandform.com/og/form-share-20260916.jpg">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"The Last 10K: a living study in marathon durability",
+  "description":"Hope and José move from Race Pace Durability through Orlando and into Donna Marathon. The study follows whether specific pace remains available after substantial prior running.",
+  "datePublished":"2026-09-20",
+  "dateModified":"2026-09-20",
+  "author":{"@type":"Person","name":"Brice Ikouebe","url":"https://speedandform.com/"},
+  "publisher":{"@type":"Organization","name":"FORM","url":"https://speedandform.com/"},
+  "mainEntityOfPage":"https://speedandform.com/labs/the-last-10k/",
+  "about":["Marathon training","Running durability","Race pace","Running economy","Marathon pacing"],
+  "creativeWorkStatus":"In progress",
+  "isAccessibleForFree":true
+}
+</script>
+<style>
+:root{
+  --bg:#07110f;--deep:#030807;--field:#0b1714;--field2:#101f1b;
+  --ink:#f2f4ef;--ink2:#c5cdc8;--muted:#8f9994;--dim:#65716b;
+  --line:rgba(242,244,239,.14);--line2:rgba(242,244,239,.07);--lime:#c9ff36;
+  --max:1500px;--gutter:clamp(22px,4.5vw,70px);
+  --sans:Inter,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}html{background:var(--bg);scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}::selection{background:var(--lime);color:var(--bg)}
+.shell{width:min(var(--max),100%);margin:auto;padding-inline:var(--gutter)}
+.mast{height:70px;position:sticky;top:0;z-index:30;background:rgba(3,8,7,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line2)}
+.mast .shell{height:100%;display:flex;align-items:center;justify-content:space-between}.brand{font-size:25px;font-weight:900;letter-spacing:-.06em}.brand span{color:var(--lime)}
+.mast nav{display:flex;gap:24px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}.mast nav a:hover{color:var(--lime)}
+.tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:700}.tag b{color:var(--lime)}
+.hero{min-height:calc(100svh - 70px);display:flex;align-items:flex-end;background:
+  radial-gradient(circle at 72% 24%,rgba(201,255,54,.08),transparent 29%),
+  linear-gradient(180deg,var(--deep),var(--bg));overflow:hidden}
+.hero .shell{padding-top:10vh;padding-bottom:7vh}
+.hero-state{display:flex;justify-content:space-between;gap:30px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:18px}
+.hero-state span:last-child{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--lime)}
+.hero h1{font-size:clamp(82px,16vw,250px);line-height:.72;letter-spacing:-.085em;margin:7vh 0 5vh;font-weight:950;max-width:8ch}
+.hero h1 span{display:block;color:var(--lime)}
+.hero-bottom{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:9vw;align-items:end}
+.hero-lede{font-size:clamp(27px,3vw,48px);line-height:1.06;letter-spacing:-.045em;max-width:19ch;margin:0}
+.hero-side{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.hero-side div{padding:18px 0}.hero-side div+div{border-left:1px solid var(--line);padding-left:22px}
+.hero-side small{display:block;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}.hero-side b{font-size:15px;font-weight:600}
+.chapter{padding:clamp(90px,12vw,180px) 0;border-bottom:1px solid var(--line)}
+.chapter h2{font-size:clamp(54px,7.6vw,118px);line-height:.86;letter-spacing:-.07em;margin:20px 0 34px;max-width:11ch}
+.chapter h2 em{font-style:normal;color:var(--lime)}
+.dek{font-size:clamp(20px,2vw,30px);line-height:1.25;letter-spacing:-.025em;color:var(--ink2);max-width:760px}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.62fr);gap:8vw;align-items:start}
+.aside{border-left:1px solid var(--line);padding-left:24px;color:var(--muted);font-size:15px;line-height:1.65}
+.sequel{background:var(--deep)}
+.act-grid{margin-top:70px;display:grid;grid-template-columns:1fr 70px 1fr;align-items:center}
+.act{min-height:410px;border:1px solid var(--line);padding:clamp(28px,4vw,58px);display:flex;flex-direction:column;justify-content:space-between;background:rgba(11,23,20,.62)}
+.act .label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}.act h3{font-size:clamp(42px,5vw,78px);line-height:.9;letter-spacing:-.06em;margin:18px 0}.act p{color:var(--muted);max-width:36ch;line-height:1.55;margin:0}
+.act-arrow{text-align:center;color:var(--lime);font-size:34px}
+.ladder{margin-top:32px;border-block:1px solid var(--line);display:grid;grid-template-columns:repeat(6,1fr)}
+.rung{padding:26px 14px;border-right:1px solid var(--line);min-height:136px;display:flex;flex-direction:column;justify-content:space-between}.rung:last-child{border-right:0}
+.rung small{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}.rung b{font-size:clamp(20px,2.2vw,36px);letter-spacing:-.035em}.rung.accent b{color:var(--lime)}
+.bridge-line{padding:clamp(80px,10vw,150px) 0;background:var(--lime);color:var(--bg)}
+.bridge-line .tag{color:rgba(7,17,15,.65)}.bridge-line h2{font-size:clamp(54px,8.4vw,132px);line-height:.82;letter-spacing:-.075em;margin:20px 0 30px;max-width:11ch}.bridge-line p{font-size:clamp(20px,2vw,30px);line-height:1.25;max-width:760px;margin:0}
+.speed-model{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);margin-top:64px}
+.speed{padding:34px;min-height:310px;display:flex;flex-direction:column;justify-content:space-between}.speed+.speed{border-left:1px solid var(--line)}
+.speed .n{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}.speed h3{font-size:clamp(34px,3vw,50px);letter-spacing:-.05em;margin:18px 0}.speed p{color:var(--muted);line-height:1.55;margin:0}.speed strong{font-size:13px;color:var(--lime)}
+.gate{background:var(--field)}
+.gate-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:7vw;margin-top:64px}
+.gate-note{font-size:clamp(24px,2.7vw,42px);line-height:1.1;letter-spacing:-.04em}.gate-note span{color:var(--lime)}
+.record{border-top:1px solid var(--line)}.record-row{display:grid;grid-template-columns:130px 1fr 1fr;padding:18px 0;border-bottom:1px solid var(--line);gap:20px}
+.record-row b{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}.record-row span{font-size:14px;color:var(--ink2)}.record-row .open{color:var(--dim)}
+.between{background:var(--deep)}
+.two-weeks{margin-top:58px;display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line)}
+.week{padding:clamp(32px,4vw,58px);min-height:380px}.week+.week{border-left:1px solid var(--line)}
+.week .num{font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:var(--lime)}.week h3{font-size:clamp(42px,4vw,65px);letter-spacing:-.055em;margin:22px 0}.week p{color:var(--muted);line-height:1.55;max-width:40ch}
+.week ul{list-style:none;padding:0;margin:28px 0 0;border-top:1px solid var(--line)}.week li{padding:12px 0;border-bottom:1px solid var(--line2);font-size:14px;color:var(--ink2)}
+.runway{overflow:hidden}.runway-head{display:grid;grid-template-columns:1fr .7fr;gap:8vw;align-items:end}
+.runway-head p{color:var(--muted);line-height:1.6;margin:0;max-width:50ch}
+.timeline{margin-top:66px;border-top:1px solid var(--line)}
+.phase{display:grid;grid-template-columns:110px 1.1fr 1.7fr 130px;gap:28px;align-items:start;padding:28px 0;border-bottom:1px solid var(--line)}
+.phase .wk{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--lime)}.phase h3{font-size:clamp(26px,2.5vw,40px);margin:0;letter-spacing:-.04em}.phase p{margin:0;color:var(--muted);line-height:1.55}.phase .date{text-align:right;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.phase.major{background:linear-gradient(90deg,rgba(201,255,54,.07),transparent 70%);margin-inline:calc(var(--gutter)*-.35);padding-inline:calc(var(--gutter)*.35)}
+.phase.major h3{color:var(--lime)}
+.hypotheses{background:var(--field)}
+.hyp-grid{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line);margin-top:58px}
+.hyp{padding:32px 32px 36px 0;border-bottom:1px solid var(--line);min-height:235px}.hyp:nth-child(even){padding-left:32px;border-left:1px solid var(--line)}
+.hyp small{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--lime)}.hyp h3{font-size:clamp(27px,2.4vw,38px);letter-spacing:-.04em;margin:14px 0}.hyp p{color:var(--muted);line-height:1.55;margin:0}
+.evidence-grid{display:grid;grid-template-columns:repeat(5,1fr);border-block:1px solid var(--line);margin-top:58px}
+.ev{padding:28px 20px;border-right:1px solid var(--line)}.ev:last-child{border-right:0}.ev small{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}.ev b{display:block;margin-top:12px;font-size:18px}.ev p{color:var(--muted);font-size:13px;line-height:1.5}
+.finale{padding:18vh 0;text-align:center;background:radial-gradient(circle at 50% 35%,rgba(201,255,54,.09),transparent 33%),var(--deep)}
+.finale .tag{margin-bottom:34px}.finale h2{font-size:clamp(100px,22vw,330px);line-height:.68;letter-spacing:-.09em;margin:0;font-weight:950}
+.finale .meta{display:flex;justify-content:center;gap:28px;margin-top:48px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.finale p{font-size:clamp(23px,2.4vw,38px);line-height:1.16;letter-spacing:-.035em;max-width:25ch;margin:48px auto 0}.finale p span{color:var(--lime)}
+.actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:48px}.button{border:1px solid var(--line);padding:15px 20px;font-size:11px;letter-spacing:.13em;text-transform:uppercase}.button.primary{background:var(--lime);color:var(--bg);border-color:var(--lime)}
+footer{padding:34px var(--gutter);max-width:var(--max);margin:auto;display:flex;justify-content:space-between;color:var(--dim);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+@media(max-width:900px){
+  .mast nav{display:none}.hero-bottom,.split,.gate-grid,.runway-head{grid-template-columns:1fr;gap:38px}.hero-side{max-width:560px}
+  .act-grid{grid-template-columns:1fr}.act-arrow{transform:rotate(90deg);padding:12px}.speed-model{grid-template-columns:1fr}.speed+.speed{border-left:0;border-top:1px solid var(--line)}
+  .two-weeks{grid-template-columns:1fr}.week+.week{border-left:0;border-top:1px solid var(--line)}
+  .phase{grid-template-columns:72px 1fr;gap:12px 24px}.phase p{grid-column:2}.phase .date{grid-column:2;text-align:left}
+  .evidence-grid{grid-template-columns:1fr 1fr}.ev{border-bottom:1px solid var(--line)}.ev:nth-child(even){border-right:0}
+}
+@media(max-width:620px){
+  .hero h1{font-size:26vw;margin-top:8vh}.hero-state{align-items:flex-start;flex-direction:column;gap:8px}.hero-bottom{gap:42px}.hero-side{grid-template-columns:1fr}
+  .hero-side div+div{border-left:0;border-top:1px solid var(--line);padding-left:0}
+  .ladder{grid-template-columns:repeat(2,1fr)}.rung:nth-child(even){border-right:0}.rung:nth-child(n+3){border-top:1px solid var(--line)}
+  .record-row{grid-template-columns:1fr}.record-row{gap:7px}.hyp-grid{grid-template-columns:1fr}.hyp:nth-child(even){padding-left:0;border-left:0}
+  .evidence-grid{grid-template-columns:1fr}.ev{border-right:0}.finale .meta{flex-direction:column;gap:8px}.chapter h2{font-size:16vw}
+  footer{flex-direction:column;gap:9px}
+}
+@media(prefers-reduced-motion:no-preference){
+  .hero h1 span{animation:arrive .8s cubic-bezier(.2,.8,.2,1) both}.hero h1 span:nth-child(2){animation-delay:.09s}
+  @keyframes arrive{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body>
+<header class="mast"><div class="shell"><a class="brand" href="/">FORM<span>.</span></a><nav><a href="#sequel">The sequel</a><a href="#gate">Orlando</a><a href="#between">Transition</a><a href="#runway">Donna block</a><a href="/plans/marathon-durability/">Plan ↗</a></nav></div></header>
+
+<main>
+<section class="hero">
+  <div class="shell">
+    <div class="hero-state"><div class="tag"><b>FORM LABS · STUDY 03</b> · Hope + José</div><span>Pre-Orlando hypothesis · Act II provisional</span></div>
+    <h1>THE LAST<span>10K.</span></h1>
+    <div class="hero-bottom">
+      <p class="hero-lede">We spent 15 weeks making pace last. Now we move the same question deeper into the marathon.</p>
+      <div class="hero-side">
+        <div><small>Test 01</small><b>Orlando Half<br>Dec 05 · 2026</b></div>
+        <div><small>Test 02</small><b>Donna Marathon<br>Feb 07 · 2027</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter sequel" id="sequel"><div class="shell">
+  <div class="split">
+    <div><div class="tag"><b>01</b> · The sequel</div><h2>THE PACE STAYS.<br><em>THE CONTEXT CHANGES.</em></h2></div>
+    <div class="aside">Race Pace Durability asked how long each athlete could keep an already-reachable pace as the resets disappeared. Donna asks a different question: how much running can happen before that capability still has to be there?</div>
+  </div>
+  <div class="act-grid">
+    <article class="act"><div><div class="label">Act I · Speed That Endures</div><h3>MAKE THE PACE LAST.</h3><p>Broken work becomes longer continuous exposure until the half marathon answers the question under race conditions.</p></div><div class="tag">Miles at the pace ↑</div></article>
+    <div class="act-arrow">→</div>
+    <article class="act"><div><div class="label">Act II · The Last 10K</div><h3>MAKE IT AVAILABLE LATE.</h3><p>The pace moves inside the long run. The work before it becomes part of the ask.</p></div><div class="tag">Miles before the pace ↑</div></article>
+  </div>
+  <div class="ladder" aria-label="Act I into Act II progression">
+    <div class="rung"><small>Act I</small><b>2 + 2 + 2</b></div><div class="rung"><small>Continuous</small><b>5 · 6 · 8</b></div><div class="rung"><small>Late</small><b>12</b></div>
+    <div class="rung accent"><small>Test 01</small><b>13.1</b></div><div class="rung"><small>Act II</small><b>After 10 → 14–16</b></div><div class="rung accent"><small>Test 02</small><b>26.2</b></div>
+  </div>
+</div></section>
+
+<section class="bridge-line"><div class="shell"><div class="tag">The working theory</div><h2>PROLONG THE ATHLETE.<br>DON'T FLATTEN THE ATHLETE.</h2><p>The marathon gets longer. That does not mean every part of training gets slower. We keep a ceiling above the event, preserve the faster specific reserve built in Act I, and teach marathon rhythm to survive accumulated load.</p></div></section>
+
+<section class="chapter" id="theory"><div class="shell">
+  <div class="split"><div><div class="tag"><b>02</b> · Three speeds</div><h2>ONE RACE.<br><em>THREE JOBS.</em></h2></div><div class="aside">The phrase “race pace” becomes too vague once the half-marathon block becomes a marathon block. The sequel separates the jobs instead of letting one number do all the thinking.</div></div>
+  <div class="speed-model">
+    <article class="speed"><div><div class="n">01 · Ceiling</div><h3>ABOVE THE RACE.</h3><p>Threshold, aerobic power and FORM speed work keep the athlete powerful and economical above marathon demand.</p></div><strong>KEEP RAISING WHAT IS AVAILABLE.</strong></article>
+    <article class="speed"><div><div class="n">02 · Specific reserve</div><h3>WHAT ACT I BUILT.</h3><p>The faster pace established through Race Pace Durability remains a capability to protect and re-access under fatigue.</p></div><strong>DO NOT SOFTEN IT JUST BECAUSE THE EVENT IS LONGER.</strong></article>
+    <article class="speed"><div><div class="n">03 · Marathon rhythm</div><h3>WHAT 26.2 REQUIRES.</h3><p>Race-day rhythm is its own decision. Orlando and the Donna block determine what can be distributed safely across the full distance.</p></div><strong>TRAINING BAND ≠ AUTOMATIC RACE-DAY PACE.</strong></article>
+  </div>
+</div></section>
+
+<section class="chapter gate" id="gate"><div class="shell">
+  <div class="split"><div><div class="tag"><b>03</b> · Decision gate</div><h2>ORLANDO<br><em>WRITES ACT II.</em></h2><p class="dek">The Donna hypothesis exists now. The resolved Donna prescription waits for the race.</p></div><div class="aside">A fast half does not automatically validate the marathon. A disappointing half does not automatically erase the method. The race tells us what each athlete established, what became expensive, and what the next block actually needs.</div></div>
+  <div class="gate-grid">
+    <div class="gate-note">Same race. Same study question. <span>Two independent records.</span></div>
+    <div class="record" aria-label="Orlando evidence fields">
+      <div class="record-row"><b>Output</b><span>Finish · average pace · final 5K</span><span class="open">Awaiting Dec 05</span></div>
+      <div class="record-row"><b>Cost</b><span>Effort · drift · mechanics where useful</span><span class="open">Awaiting race</span></div>
+      <div class="record-row"><b>Athlete</b><span>What the runner experienced</span><span class="open">Awaiting report</span></div>
+      <div class="record-row"><b>Coach read</b><span>What Orlando actually establishes</span><span class="open">Open</span></div>
+      <div class="record-row"><b>Next</b><span>Keep shared Donna work or branch</span><span class="open">Open</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="chapter between" id="between"><div class="shell">
+  <div class="split"><div><div class="tag"><b>04</b> · Between blocks</div><h2>RECOVER.<br><em>THEN RETURN.</em></h2></div><div class="aside">There is no blank space after Orlando. The first two weeks have a job: absorb the race, restore normal movement and frequency, then arrive ready to train again. No performance test belongs here.</div></div>
+  <div class="two-weeks">
+    <article class="week"><div><div class="num">Week 01 · Dec 06–12</div><h3>RECOVER</h3><p>Unload Orlando and the 15-week accumulation. Absence of intensity is intentional, not missing work.</p></div><ul><li>4–5 running days maximum</li><li>~24–30 miles or less if response asks for less</li><li>Easy only · no pace requirement</li><li>Race debrief captured</li><li>No long-run achievement to prove</li></ul></article>
+    <article class="week"><div><div class="num">Week 02 · Dec 13–19</div><h3>RETURN</h3><p>Restore rhythm without creating a new performance question.</p></div><ul><li>5–6 running days</li><li>~34–40 miles</li><li>Easy frequency returns</li><li>Short strides or hills if comfortable</li><li>Relaxed 9–10 mile long run · no test</li></ul></article>
+  </div>
+</div></section>
+
+<section class="chapter runway" id="runway"><div class="shell">
+  <div class="runway-head"><div><div class="tag"><b>05</b> · Donna runway</div><h2>MOVE THE ASK<br><em>DEEPER.</em></h2></div><p>This is the current nine-week season composition, not a universal marathon template. Orlando can change the resolved athlete assignments. The reusable 16-week Marathon Durability method lives separately.</p></div>
+  <div class="timeline">
+    <div class="phase"><div class="wk">W3</div><h3>Raise the ceiling touch</h3><p>6 × 3 min controlled 5K effort · NICE AND EASY Thursday · 12 easy Saturday. Re-open faster mechanics and aerobic power before marathon specificity dominates.</p><div class="date">Dec 20–26</div></div>
+    <div class="phase"><div class="wk">W4</div><h3>Marathon access</h3><p>16 total · last 6 at the resolved specific band. First question: is that capability still there after 10 miles of prior running?</p><div class="date">Dec 27–Jan 02</div></div>
+    <div class="phase"><div class="wk">W5</div><h3>Embed</h3><p>18 total · 2 × 5 miles specific embedded. Leave the pace, settle, then find it again inside the same long run.</p><div class="date">Jan 03–09</div></div>
+    <div class="phase major"><div class="wk">W6 · Major ask</div><h3>Closing 10K</h3><p>20–22 total · final 10K continuous specific. The opening 14–16 miles are deliberately controlled. One late safe rise can test rhythm re-lock without racing the climb.</p><div class="date">Jan 10–16</div></div>
+    <div class="phase"><div class="wk">W7</div><h3>Confirm at lower cost</h3><p>16–18 total · last 6 specific. Not a bigger test. Ask whether something already owned now looks cheaper after the major exposure.</p><div class="date">Jan 17–23</div></div>
+    <div class="phase"><div class="wk">W8</div><h3>Taper</h3><p>Reduce total load. Small specific touch. Easy running and strides. No new claim.</p><div class="date">Jan 24–30</div></div>
+    <div class="phase major"><div class="wk">W9 · Test 02</div><h3>Donna Marathon</h3><p>26.2 miles. The race-day pacing call comes from Orlando plus what W4–W7 actually establish.</p><div class="date">Feb 07 · 2027</div></div>
+  </div>
+</div></section>
+
+<section class="chapter hypotheses" id="hypotheses"><div class="shell">
+  <div class="split"><div><div class="tag"><b>06</b> · Hypotheses</div><h2>WHAT WE THINK.<br><em>BEFORE WE KNOW.</em></h2></div><div class="aside">These are working claims. They are allowed to be wrong. The value of the study is that the work can change the theory rather than being forced to confirm it.</div></div>
+  <div class="hyp-grid">
+    <article class="hyp"><small>H01 · Late access</small><h3>Move the same capability later.</h3><p>If Act I establishes the band continuously, then progressively moving it deeper into longer runs should improve access after accumulated load.</p></article>
+    <article class="hyp"><small>H02 · Ceiling</small><h3>Do not trade speed for distance.</h3><p>Small doses of faster work should preserve speed reserve and keep marathon rhythm below the athlete's available ceiling.</p></article>
+    <article class="hyp"><small>H03 · Restraint</small><h3>The closing 10K starts before mile 20.</h3><p>What the athlete spends early changes what can still be produced late. Pacing restraint is part of durability, not separate from it.</p></article>
+    <article class="hyp"><small>H04 · Cost</small><h3>Progress is not always a bigger ask.</h3><p>After the major closing-10K rehearsal, a smaller late-run task should be repeatable with lower visible cost.</p></article>
+    <article class="hyp"><small>H05 · Individual response</small><h3>One method can become two assignments.</h3><p>Hope and José can begin from the same theory without being forced to remain symmetrical when their evidence diverges.</p></article>
+    <article class="hyp"><small>H06 · Fueling</small><h3>Late pace needs interpretable conditions.</h3><p>Fueling, hydration and environment are part of the long-run record. A late slowdown cannot automatically be called a durability failure.</p></article>
+  </div>
+</div></section>
+
+<section class="chapter" id="evidence"><div class="shell">
+  <div class="split"><div><div class="tag"><b>07</b> · Evidence</div><h2>THE WORK.<br><em>THE RESPONSE.</em></h2></div><div class="aside">The plan asks the question. The filing preserves what happened. The athlete report says what the numbers cannot. The coach read decides what the next week means.</div></div>
+  <div class="evidence-grid">
+    <div class="ev"><small>Output</small><b>What happened?</b><p>Pace, distance, segment splits, completion.</p></div>
+    <div class="ev"><small>Cost</small><b>What did it require?</b><p>Effort, drift, mechanical change where useful.</p></div>
+    <div class="ev"><small>Context</small><b>What surrounded it?</b><p>Fueling, hydration, heat, wind, course, deviations.</p></div>
+    <div class="ev"><small>Athlete</small><b>What did it feel like?</b><p>The runner's own account, not inferred from the watch.</p></div>
+    <div class="ev"><small>Next</small><b>What changes?</b><p>Continue, repeat, reduce, branch or protect.</p></div>
+  </div>
+</div></section>
+
+<section class="finale" id="donna"><div class="shell">
+  <div class="tag"><b>TEST 02 · PRIMARY OBJECTIVE</b></div>
+  <h2>DONNA</h2>
+  <div class="meta"><span>Feb 07 · 2027</span><span>26.2 miles</span><span>Sub-3 horizon</span></div>
+  <p>Can the athlete arrive at mile 20 with enough left that <span>the last 10K is still a race?</span></p>
+  <div class="actions"><a class="button primary" href="/plans/marathon-durability/">Open Marathon Durability →</a><a class="button" href="/labs/speed-that-endures/">Read Act I →</a></div>
+</div></section>
+</main>
+<footer><span>FORM Labs · The Last 10K</span><span>Living study · hypothesis before outcome</span></footer>
+</body>
+</html>
