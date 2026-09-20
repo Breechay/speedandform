@@ -43,6 +43,9 @@ When both **`speedandform`** and **`FORM-iOS`** roots are in the workspace, trea
 
 _Update this line when your sprint changes._
 
+- **September 20 · Plan 03:** Marathon Durability method is frozen; The Last 10K protocol is locked pre-Orlando. Read `docs/MARATHON_DURABILITY_PLAN03_FREEZE_20260920.md` and `docs/FORM_ECOSYSTEM_STATE_v4.md` before touching either route. Do not reopen the architecture.
+- **Next web/design task:** Exposure Instrument Design System v1 — static-first strips for study, plan, OG cards and FORM phone mockups. Native implementation waits for the active phone-acceptance work to reconcile; this repo must not invent a parallel athlete assignment.
+
 - Homepage `/` and `/mockupc` match (`rd48` / `snap48`): W1 tab, tell, weather drift. Cloud parked (`docs/claude-handoff/cloud-parked/`). Race line parked. Live `/` is this plate. Specs: `docs/claude-handoff/INSTRUMENT-PLATE.md`, `SURFACE-AND-WEATHER.md`. Receipt + Zelle: `AFTER-SEND.md`.
 - **Track C (app Today):** Landed. Codex. Do not reopen.
 - **Track E weather:** `docs/track-e-handoff/` — dragon on Today, same treatment as live `/`. Give Codex `FORM-TRACK-E.zip`. Start at `TRACK-E.md`. Do not start E1–E5. Do not reopen C or D.
