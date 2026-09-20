@@ -481,6 +481,7 @@
     if (now.length) rows.push(["Right now", now.join(" \u00b7 "), other.length ? ("Also training: " + other.join(", ").toLowerCase()) : ""]);
     if (A.issue) rows.push(["The issue", '"' + A.issue + '"', "", true]);
     if (A.city) rows.push(["Where you train", A.city, ""]);
+    if (A.mail) rows.push(["Reply to", A.mail, A.name ? A.name : ""]);
     $("#rRows").innerHTML = rows.map(function (r) {
       return '<div class="row"><label>' + r[0] + "</label><p" + (r[3] ? ' class="quote"' : "") + ">" + escapeHTML(r[1]) + "</p>" + (r[2] ? "<small>" + escapeHTML(r[2]) + "</small>" : "") + "</div>";
     }).join("");
