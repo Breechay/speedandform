@@ -1,7 +1,32 @@
 # FORM: current state and next actions
 
 Private athlete/account execution: [twelve bounded passes](ATHLETE-ECOSYSTEM-PASSES-20260917.md). The bounded implementation/reconciliation program is complete through Pass 12; schema and exact current web `main` are now live, anonymous production acceptance is green, and the authenticated owner/athlete walks plus two native physical-device gates remain explicit. Release and operating authority: [Athlete ecosystem runbook](../audits/ATHLETE-ECOSYSTEM-RUNBOOK-20260918.md).
-Updated September 18, 2026. Owner: Brice. Maintainer: the agent completing relevant work.
+Updated September 20, 2026. Owner: Brice. Maintainer: the agent completing relevant work.
+
+## September 20 — FORM Plan 03 method frozen; Donna study protocol locked
+
+**Marathon Durability is now FORM Plan 03.** The reusable 16-week method is frozen in source and live at `/plans/marathon-durability/`; the prospective Donna sequel is live at `/labs/the-last-10k/`. Production deploy `6ab0362698aae30008737bdd` is ready on `speedandform.com` and includes the frozen Plans index. The source-of-truth freeze record is [Marathon Durability Plan 03 freeze](../MARATHON_DURABILITY_PLAN03_FREEZE_20260920.md).
+
+Locked doctrine:
+- Act I increases distance **at** capability; Act II increases distance **before** capability.
+- **Tuesday remembers. Thursday protects. Saturday asks.**
+- Ceiling / Specific Reserve / Marathon Rhythm are three jobs; reserve is not automatically race pace.
+- Fueling is part of the prescribed experimental condition on marathon-specific long runs.
+- The principal Closing-10K rehearsal is intentionally not a full-marathon simulation; Donna is the full-distance test.
+- Evidence grammar is **Observed → Read → Next**, with no composite durability/readiness score.
+- The study protocol is pre-Orlando, timestamped, keeps a visible amendments record, and states the two-athlete case-study limit.
+
+**Public/product state:** the method is frozen, not commercially launched. Working price after proof is **$99 one time**. Quiet preview/availability may begin after Orlando; broad paid promotion waits for a complete Donna record. The plan page remains an inspectable working product, not an outcome-proof claim.
+
+**Open by design until Orlando:** Hope reserve, José reserve, marathon-rhythm assignments, athlete-specific Donna volume, fueling execution and any branching required by race/recovery evidence. Do not pre-resolve these to make the product look complete.
+
+**Implementation backlog earned by the freeze:**
+1. Dedicated 1200×630 OG/share assets for Marathon Durability and The Last 10K using the Exposure Instrument. Current metadata copy is ready but still points at the generic FORM card.
+2. FORM-app translation of the Exposure Instrument: current-week strip, filed strip, historical strips, raw filed evidence and one-line Coach Read/Next. Do not add a score.
+3. Add the Plan 03 study protocol to the canonical athlete-system path before any Hope/José Donna assignment is delivered in-app; the website is not assignment authority.
+4. Labs-wide hypothesis/amendments ledger is **deferred** until the current study/app delivery work is stable. It is an earned future asset, not part of this freeze.
+
+**Next bounded design task:** create the **Exposure Instrument Design System v1** as a reusable static-first visual primitive. It must cover four surfaces without touching native production code yet: plan page, study page, 1200×630 share card, and FORM phone mockups for current/filed/history states. Motion is secondary and only allowed where it explains a state change.
 
 **September 18 FORM native release decisions:** Anthony is now a canonical app-delivered RPD athlete in the FORM Athlete System (migration `20260918101951 · provision_anthony_rpd_v5`), joining the shared calendar at Week 4 with v5 from Week 5; his current race-pace band is 6:45–7:00/mi and threshold band 6:20–6:25/mi, matching the current coaching ruling. No pre-join FORM completion was fabricated. Hope keeps her existing unclaimed invite and must be able to claim/link that existing athlete identity from the native app once the release is live; invite claim must never create a duplicate athlete. FORM must open an assigned RPD athlete on the calendar-derived current program week automatically rather than a stored/default week number. Brice does not need coach-preview in native for this release; add native coach preview to the deferred product backlog, read-only and explicitly coach-owned when revisited. Adrian/Forge remains separate.
 
