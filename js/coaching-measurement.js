@@ -5,7 +5,7 @@
   var qa = /(?:^\?|&)form_qa=1(?:&|$)/.test(w.location.search || '');
   if ((!production && !qa) || w.__formCoachingMeasurementLoaded) return;
   w.__formCoachingMeasurementLoaded = true;
-  var version = '20260917-measurement-1';
+  var version = '20260920-intake-4step-1';
   var ga = 'G-HKG3MXM668';
   var pixel = '147659485878240';
   var leadSent = false;
