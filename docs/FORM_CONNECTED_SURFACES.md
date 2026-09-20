@@ -15,6 +15,19 @@ Every feature involving people, plans or training records must either use the sh
 - **Compatible evolution.** Document schema/version, units, missing-value semantics, source precision, deep-link fallback, migration and rollback. Older clients must fail clearly or retain read-only access rather than silently corrupt new data.
 - **One operating roadmap.** Bridge Season CSV owns milestone state; ROADMAP owns rationale; NOW selects attention. Repo records carry implementation evidence; Console projects the owning sources.
 
+## Marathon Durability / The Last 10K connection rule · September 20, 2026
+
+Plan 03's **method** is frozen on the public site. Athlete-specific Donna assignments are not.
+
+- `/plans/marathon-durability/` is the reusable method.
+- `/labs/the-last-10k/` is the public prospective study and amendment record.
+- Athlete-specific reserve, marathon rhythm, session dose, recovery modification and branch decisions belong first to the canonical athlete assignment / coach decision in the FORM Athlete System.
+- The native app consumes the canonical resolved assignment; the website may then project approved public study evidence.
+- Never let a static study edit become the only place an athlete's future prescription changes.
+- Historical filed evidence remains attached to the exact session/version performed even when later evidence changes future work.
+
+The Exposure Instrument is a presentation primitive, not a new source of truth. Any strip shown across web/native must trace back to the authoritative plan/session/version record.
+
 Before calling any cross-surface feature complete, trace one authorized athlete from assignment to installed execution, offline/retry, received record, Console review and correction. Also prove an unrelated account cannot read or file it. Record the source/build/deploy checked and any untested surface.
 
 Typography and plain-language standards apply independently on every surface. Preserve each product's visual identity, readable responsive hierarchy, American “practice,” and one divider per boundary.
