@@ -286,6 +286,7 @@
           <label class="hint" for="nm">Name (optional)</label>
           <input class="ti" id="nm" autocomplete="name" maxlength="120" placeholder="">
           <p class="need" id="needMail" role="alert" hidden>Enter a valid email so Brice can reply.</p>
+          <p class="hint">This starts a conversation. No payment or booking.</p>
           <button class="cta" type="button" data-next>Review inquiry <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
         </div>
 
@@ -435,8 +436,7 @@
 
   $$("[data-next]").forEach(function (b) {
     b.addEventListener("click", function () {
-      if (qi === 3) A.issue = $("#issue").value.trim();
-      if (qi === 4) {
+      if (qi === 3) {
         A.name = $("#nm").value.trim();
         A.mail = $("#em").value.trim();
         var need = $("#needMail");
