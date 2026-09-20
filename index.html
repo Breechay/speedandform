@@ -260,20 +260,6 @@
         </div>
 
         <div class="q" data-q="2">
-          <h2>What else are you training?</h2>
-          <p class="hint">Choose any, or continue</p>
-          <div class="opts" role="group" aria-label="Other training" data-key="other" data-mode="many">
-            <button class="opt" type="button" aria-pressed="false">Strength</button>
-            <button class="opt" type="button" aria-pressed="false">HYROX or mixed</button>
-            <button class="opt" type="button" aria-pressed="false">Cycling</button>
-            <button class="opt" type="button" aria-pressed="false">Swimming</button>
-            <button class="opt" type="button" aria-pressed="false">A sport</button>
-            <button class="opt" type="button" aria-pressed="false">Nothing regularly</button>
-          </div>
-          <button class="cta" type="button" data-next>Continue <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
-        </div>
-
-        <div class="q" data-q="3">
           <h2>Where should I reply?</h2>
           <div class="grp"><label>Where you train</label>
             <div class="opts" role="group" aria-label="Where you train" data-key="city" data-mode="one">
@@ -331,7 +317,7 @@
 </footer>
 
 <script>
-/* Four-question intake. Coaching scope is explicitly selected, never inferred
+/* Three-question intake. Coaching scope is explicitly selected, never inferred
    from another sport. Campaign tags accompany the inquiry and email fallback. */
 (function () {
   var $ = function (s) { return document.querySelector(s); };
@@ -341,9 +327,9 @@
   var campaign = new URLSearchParams(window.location.search);
   var source = {};
   ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach(function (key) { source[key] = (campaign.get(key) || "").slice(0, 120); });
-  var A = { other: [] };
+  var A = {};
   var qi = 0;
-  var QN = 4;
+  var QN = 3;
   var BRICE = "brice@speedandform.com";
   var sending = false;
   var qTimer = 0;
@@ -436,7 +422,7 @@
 
   $$("[data-next]").forEach(function (b) {
     b.addEventListener("click", function () {
-      if (qi === 3) {
+      if (qi === 2) {
         A.name = $("#nm").value.trim();
         A.mail = $("#em").value.trim();
         var need = $("#needMail");
@@ -475,11 +461,9 @@
     if (A.days) now.push(A.days + " days running");
     if (A.vol) now.push(/week/.test(A.vol) ? A.vol : A.vol + " a week");
     if (A.long) now.push("longest " + A.long.replace(" mi", "") + " mi");
-    var other = A.other.filter(function (x) { return x !== "Nothing regularly"; });
     var rows = [];
     if (A.goal) rows.push(["You want to", A.goal.toLowerCase() + ".", ""]);
-    if (now.length) rows.push(["Right now", now.join(" \u00b7 "), other.length ? ("Also training: " + other.join(", ").toLowerCase()) : ""]);
-    if (A.issue) rows.push(["The issue", '"' + A.issue + '"', "", true]);
+    if (now.length) rows.push(["Right now", now.join(" \u00b7 "), ""]);
     if (A.city) rows.push(["Where you train", A.city, ""]);
     if (A.mail) rows.push(["Reply to", A.mail, A.name ? A.name : ""]);
     $("#rRows").innerHTML = rows.map(function (r) {
@@ -489,7 +473,7 @@
 
   function payload() {
     var selected = offer();
-    return { utm_source:source.utm_source,utm_medium:source.utm_medium,utm_campaign:source.utm_campaign,utm_content:source.utm_content,offer:selected.name,price:selected.price,goal:A.goal||"",days:A.days||"",volume:A.vol||"",longest:A.long||"",other:(A.other||[]).join(", "),issue:A.issue||"",city:A.city||"",name:A.name||"",email:A.mail||"","video-name":A.vid||"" };
+    return { utm_source:source.utm_source,utm_medium:source.utm_medium,utm_campaign:source.utm_campaign,utm_content:source.utm_content,offer:selected.name,price:selected.price,goal:A.goal||"",days:A.days||"",volume:A.vol||"",longest:A.long||"",city:A.city||"",name:A.name||"",email:A.mail||"","video-name":A.vid||"" };
   }
 
   function intakeFields(data) {
@@ -498,7 +482,6 @@
       ['Source', data.utm_source], ['Medium', data.utm_medium], ['Campaign', data.utm_campaign], ['Creative', data.utm_content],
       ['Goal', data.goal], ['Running days per week', data.days],
       ['Weekly running volume', data.volume], ['Longest run', data.longest],
-      ['Other training', data.other], ['Main obstacle', data.issue],
       ['Offer shown', data.offer], ['Duration and fee shown', data.price],
       ['Video filename (attach separately by email)', data['video-name']]
     ].filter(function (row) { return row[1]; });
@@ -514,8 +497,8 @@
       lines.push('', title);
       rows.forEach(function (row) { lines.push(row[0] + ': ' + row[1]); });
     }
-    section('GOAL', [['Wants to', data.goal], ['Main obstacle', data.issue]]);
-    section('CURRENT TRAINING', [['Running days / week', data.days], ['Weekly volume', data.volume], ['Longest run', data.longest], ['Other training', data.other]]);
+    section('GOAL', [['Wants to', data.goal]]);
+    section('CURRENT TRAINING', [['Running days / week', data.days], ['Weekly volume', data.volume], ['Longest run', data.longest]]);
     section('OFFER SHOWN', [['Program', data.offer], ['Duration and fee', data.price]]);
     section('SOURCE', [['Source', data.utm_source], ['Medium', data.utm_medium], ['Campaign', data.utm_campaign], ['Creative', data.utm_content]]);
     lines.push('Inquiry only; no payment or booking confirmed.');
