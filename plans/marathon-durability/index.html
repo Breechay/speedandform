@@ -93,9 +93,9 @@ footer{max-width:var(--max);padding:34px var(--gutter);margin:auto;display:flex;
   .matrix td:nth-of-type(2){font-size:12px;color:var(--muted);margin-bottom:20px}
   .matrix td:nth-of-type(3),.matrix td:nth-of-type(4),.matrix td:nth-of-type(5){padding:13px 0 0;margin-top:13px;border-top:1px solid var(--line2)}
   .matrix td:nth-of-type(3)::before,.matrix td:nth-of-type(4)::before,.matrix td:nth-of-type(5)::before{display:block;margin-bottom:7px;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
-  .matrix td:nth-of-type(3)::before{content:"Tuesday · remember"}
-  .matrix td:nth-of-type(4)::before{content:"Thursday · protect"}
-  .matrix td:nth-of-type(5)::before{content:"Saturday · ask";color:var(--lime)}
+  .matrix td:nth-of-type(3)::before{content:"Tuesday · speed touch"}
+  .matrix td:nth-of-type(4)::before{content:"Thursday · support"}
+  .matrix td:nth-of-type(5)::before{content:"Saturday · key run";color:var(--lime)}
   .matrix td:nth-of-type(5){padding-left:0;background:transparent!important;font-size:15px}
   .matrix tr.ask td:nth-of-type(5){padding:14px 14px 0;margin-top:16px;border-top:1px solid var(--lime-dim);background:rgba(201,255,54,.025)!important}
   .footnote{margin-top:22px}
@@ -120,6 +120,41 @@ footer{max-width:var(--max);padding:34px var(--gutter);margin:auto;display:flex;
   .mobile-contents a:first-child{border-top:0}
 }
 
+
+.quick{background:#ece6da;color:#07110f;border-bottom:0}
+.quick .tag{color:#66705f}.quick .tag b{color:#07110f}
+.quick-grid{border-color:rgba(7,17,15,.18)}
+.quick-grid>div+div{border-left-color:rgba(7,17,15,.14)}
+.quick-grid small{color:#6b8a0f}.quick-grid b{color:#07110f}
+.contrast{display:grid;grid-template-columns:1fr 1fr;margin-top:34px;border-block:1px solid var(--line)}
+.contrast>div{padding:28px 30px 32px 0}.contrast>div+div{padding-left:30px;border-left:1px solid var(--line)}
+.contrast small,.phase-story small{display:block;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--lime);margin-bottom:10px}
+.contrast h3{font-size:26px;letter-spacing:-.035em;margin:0 0 12px}.contrast p{margin:0;color:var(--muted);line-height:1.55}
+.phase-story{display:grid;grid-template-columns:repeat(3,1fr);margin-top:34px;border-block:1px solid var(--line)}
+.phase-story>div{padding:26px 26px 30px 0}.phase-story>div+div{padding-left:26px;border-left:1px solid var(--line)}
+.phase-story b{display:block;font-size:22px;letter-spacing:-.035em;line-height:1.15}.phase-story p{margin:10px 0 0;color:var(--muted);line-height:1.5}
+.coach-faq{background:#08120f}.faq-list{margin-top:46px;border-top:1px solid var(--line)}
+.faq-list details{border-bottom:1px solid var(--line)}.faq-list summary{cursor:pointer;list-style:none;padding:22px 0;font-size:clamp(20px,2vw,28px);letter-spacing:-.03em;font-weight:650}
+.faq-list summary::-webkit-details-marker{display:none}.faq-list p{max-width:760px;margin:0 0 26px;color:var(--muted);font-size:16px;line-height:1.65}
+.mobile-weeks{display:none}
+@media(max-width:760px){
+  .contrast,.phase-story{grid-template-columns:1fr}
+  .contrast>div,.contrast>div+div,.phase-story>div,.phase-story>div+div{padding:22px 0;border-left:0;border-top:1px solid var(--line)}
+  .contrast>div:first-child,.phase-story>div:first-child{border-top:0}
+  .matrix{display:none!important}
+  .mobile-weeks{display:block}
+  .mobile-week{border-bottom:1px solid var(--line)}
+  .mobile-week:first-child{border-top:1px solid var(--line)}
+  .mobile-week summary{list-style:none;cursor:pointer;padding:22px 0;display:grid;grid-template-columns:1fr auto;gap:18px 14px;align-items:start}
+  .mobile-week summary::-webkit-details-marker{display:none}
+  .mw-top{display:flex;align-items:baseline;gap:10px}.mw-top b{font-size:13px;color:var(--lime)}.mw-top small{font-size:11px;color:var(--muted)}
+  .mw-sat{grid-column:1;display:block}.mw-sat small{display:block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);margin-bottom:8px}.mw-sat strong{display:block;font-size:16px;line-height:1.45;color:var(--ink);font-weight:650}
+  .mobile-week summary>i{grid-column:2;grid-row:1/3;font-style:normal;font-size:21px;color:var(--muted)}
+  .mobile-week[open] summary>i{transform:rotate(45deg)}
+  .mobile-week--key summary{padding:24px 14px;margin-inline:-14px;background:rgba(201,255,54,.025)}
+  .mw-more{padding:0 0 24px}.mw-more>div{padding:13px 0;border-top:1px solid var(--line2);font-size:14px;line-height:1.55;color:var(--ink2)}.mw-more small{display:block;margin-bottom:7px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+}
+
 </style>
 </head>
 <body>
@@ -137,38 +172,44 @@ footer{max-width:var(--max);padding:34px var(--gutter);margin:auto;display:flex;
 </details>
 <main>
 <section class="hero"><div class="shell"><div class="hero-grid">
-  <div><div class="tag"><b>FORM PLAN 03</b> · Marathon · 16 weeks</div><h1>MARATHON<br><span>DURABILITY.</span></h1><p class="lead"><strong>Keep the speed. Move it deeper.</strong><br>You can run the pace. You can run the miles. This plan is about still having both when the marathon gets old.</p></div>
+  <div><div class="tag"><b>FORM PLAN 03</b> · Marathon · 16 weeks</div><h1>MARATHON<br><span>DURABILITY.</span></h1><p class="lead"><strong>You're already fast. Now make it last.</strong><br>If your shorter-race fitness is better than what you can still produce late in a marathon, this plan is built for that gap.</p></div>
   <aside class="hero-side"><div class="fact"><small>Length</small><b>16 weeks</b></div><div class="fact"><small>Volume</small><b>~50 → 66 mi / week</b></div><div class="fact"><small>Key days</small><b>Tuesday · Thursday · Saturday</b></div><div class="fact"><small>Audience</small><b>Experienced marathon runner</b></div><div class="status">Method frozen · Sep 20 2026 · open for inspection</div></aside>
 </div></div></section>
 
 <section class="quick" id="overview"><div class="shell">
-  <div class="tag">In plain English</div>
+  <div class="tag">The deal</div>
   <div class="quick-grid">
-    <div><small>The problem</small><b>You can run the pace on fresh legs. Late in a long run, it gets harder to find.</b></div>
-    <div><small>What changes</small><b>We keep faster running in the week, then ask for useful pace later in the long run.</b></div>
-    <div><small>Who this is for</small><b>Runners who already know the mileage, the long runs and the faster work.</b></div>
+    <div><small>The problem</small><b>You can run fast when you're fresh. Late in a long run, the same pace can disappear.</b></div>
+    <div><small>The fix</small><b>Keep a fast touch in the week, then move the important pace work deeper into the long run.</b></div>
+    <div><small>The goal</small><b>Arrive late in the marathon with useful pace still available — not just a bigger pile of tired miles.</b></div>
   </div>
 </div></section>
 
 <section class="section" id="fit"><div class="shell">
   <div class="split"><div><div class="tag"><b>01</b> · Who it's for</div><h2>YOU SHOULD ALREADY KNOW <em>WHAT A BIG WEEK FEELS LIKE.</em></h2></div><div class="copy">This is not where you learn to run six days, build your first long run or guess a goal pace. You should already be doing those things consistently.</div></div>
   <div class="fit-grid">
-    <article class="fit"><h3>Good fit</h3><ul><li>You already have marathon experience or comparable long-run durability.</li><li>~50 miles per week is close to normal, not an emergency jump.</li><li>You can handle six running days and meaningful long runs.</li><li>You have a specific pace supported by current evidence.</li><li>You want to preserve speed while extending marathon durability.</li></ul></article>
-    <article class="fit"><h3>Choose another starting point if</h3><ul><li>You are training to finish your first marathon.</li><li>You are returning from injury or need rehab guidance.</li><li>50–66 miles per week is far beyond your recent training.</li><li>Your target pace exists only because of a desired finish time.</li><li>You need individualized weekly changes rather than a self-guided plan.</li></ul></article>
+    <article class="fit"><h3>This is probably you</h3><ul><li>Your 5K, 10K or half-marathon fitness looks better than your marathon finish.</li><li>~50 miles per week is already normal for you.</li><li>Six running days and 16–18 mile long runs are familiar.</li><li>You have a pace supported by recent racing or workouts — not just a goal you picked.</li><li>You want to keep some speed in the week while getting much better late.</li></ul></article>
+    <article class="fit"><h3>Start somewhere else if</h3><ul><li>This is your first marathon build.</li><li>You are returning from injury or rebuilding basic mileage.</li><li>50–66 miles per week would be a major jump.</li><li>Your target pace only exists because of a finish-time goal.</li><li>You need weekly individualized changes from a coach.</li></ul></article>
   </div>
 </div></section>
 
 <section class="section" id="method"><div class="shell">
-  <div class="split"><div><div class="tag"><b>02</b> · How it works</div><h2>YOU HAVE THE PACE.<br><em>CAN YOU STILL FIND IT LATE?</em></h2></div><div class="copy"><p>Think of pace like a tool you already own. The first job is learning to hold it longer. The marathon job is different: can you still reach for that tool after 10, 14 or 16 miles of running?</p><p><strong>The pace is not the progression. Where you can still find it is.</strong></p></div></div>
+  <div class="split"><div><div class="tag"><b>02</b> · How it works</div><h2>THE PACE STAYS.<br><em>WE MOVE IT LATER.</em></h2></div><div class="copy"><p>Think of the key pace like a marker on a road. Early in the plan you reach it while you are fresh. Later, we keep moving that same marker farther down the road.</p><p><strong>The pace is not the progression. The depth is.</strong></p></div></div>
   <div class="exposure-plan" aria-label="Act I and Act II exposure">
-    <div class="exposure-plan-head"><small>THE METHOD IN ONE LOOK</small><b>Act I makes the fast part longer. Act II puts more running in front of it.</b></div>
+    <div class="exposure-plan-head"><small>THE SHIFT</small><b>Same useful pace. More running before you have to find it.</b></div>
     <div class="exposure-plan-grid">
-      <div><span>ACT I · 13.1</span><div class="pstrip"><i style="--before:16%;--work:64%"></i></div><small>more distance at capability</small></div>
-      <div><span>ACT II · 26.2</span><div class="pstrip"><i style="--before:64%;--work:24%"></i></div><small>more distance before capability</small></div>
+      <div><span>EARLIER IN THE BUILD</span><div class="pstrip"><i style="--before:18%;--work:34%"></i></div><small>find the pace while relatively fresh</small></div>
+      <div><span>DEEPER IN THE BUILD</span><div class="pstrip"><i style="--before:62%;--work:28%"></i></div><small>find the same kind of pace after much more running</small></div>
     </div>
   </div>
-  <div class="progression" aria-label="Marathon Durability progression">
-    <div class="step"><small>01</small><b>Find it late</b></div><div class="step"><small>02</small><b>Leave it. Find it again.</b></div><div class="step"><small>03</small><b>Move it deeper</b></div><div class="step major"><small>04</small><b>Closing 10K</b></div><div class="step"><small>05</small><b>Learn race rhythm</b></div><div class="step"><small>06</small><b>Absorb it</b></div><div class="step major"><small>07</small><b>Race</b></div>
+  <div class="contrast">
+    <div><small>A common response to late fading</small><h3>Just add more miles.</h3><p>More endurance can help. But if the only answer is more easy volume, you may never practice finding useful pace when the run is already expensive.</p></div>
+    <div><small>Plan 03</small><h3>Keep some speed. Move the key work later.</h3><p>Tuesday keeps the faster rhythm familiar. Saturday teaches you to reach useful pace after more running has already happened.</p></div>
+  </div>
+  <div class="phase-story">
+    <div><small>Phase 1</small><b>Learn the pace without wasting energy.</b><p>Keep the faster rhythm familiar and controlled.</p></div>
+    <div><small>Phase 2</small><b>Use it on tired legs.</b><p>Do not make it faster. Move the same job later into the run.</p></div>
+    <div><small>Race day</small><b>Still find it when everyone is slowing.</b><p>That is the question the plan is preparing you to answer.</p></div>
   </div>
   <div class="rules">
     <article class="rule"><small>Tuesday · Remember</small><h3>Touch the faster pace.</h3><p>Enough to keep it familiar. Not enough to turn Tuesday into another test.</p></article>
@@ -188,7 +229,7 @@ footer{max-width:var(--max);padding:34px var(--gutter);margin:auto;display:flex;
     <div><div class="tag"><b>03</b> · The 16 weeks</div><h2>YOU DON'T NEED TO MEMORIZE THE THEORY.<br><em>READ THE JOB OF THE WEEK.</em></h2></div>
     <p>Easy days fill in the mileage. Tuesday keeps the faster pace familiar. Thursday supports it. Saturday tells you what the week is really trying to learn.</p>
   </div>
-  <div class="table-wrap"><table class="matrix" aria-label="Marathon Durability 16-week plan"><thead><tr><th>Week</th><th>Job</th><th>Total</th><th>Tuesday · remember</th><th>Thursday · protect</th><th>Saturday · ask</th></tr></thead><tbody>
+  <div class="table-wrap"><table class="matrix" aria-label="Marathon Durability 16-week plan"><thead><tr><th>Week</th><th>Job</th><th>Total</th><th>Tuesday · speed touch</th><th>Thursday · support</th><th>Saturday · key run</th></tr></thead><tbody>
     <tr><th>W1</th><td>Access</td><td>50 mi</td><td><b>3 × 2 mi reserve</b><br>2 min float</td><td>Threshold · 3 × 8 min</td><td>16 easy</td></tr>
     <tr><th>W2</th><td>Access</td><td>54 mi</td><td><b>2 × 2 mi reserve</b><br>2 min float</td><td><b>NICE AND EASY</b><br>fixed FORM standard</td><td>17 easy</td></tr>
     <tr><th>W3</th><td>Access</td><td>58 mi</td><td><b>5 mi continuous reserve</b></td><td>Easy + strides</td><td>18 easy</td></tr>
@@ -215,8 +256,43 @@ footer{max-width:var(--max);padding:34px var(--gutter);margin:auto;display:flex;
   <div class="weeks"><article class="week"><small>Transition 01</small><h3>Recover</h3><p>4–5 easy running days · roughly 24–30 miles or less · no pace demand · no required long-run achievement.</p></article><article class="week"><small>Transition 02</small><h3>Return</h3><p>5–6 running days · roughly 34–40 miles · easy running · relaxed 9–10 mile long run · one small strides or hill touch if comfortable.</p></article></div>
 </div></section>
 
-<section class="final"><div class="shell"><div class="tag">See the plan being tested</div><h2>THE LAST 10K.</h2><p>The plan is the reusable method. The study follows Hope and José as the same question moves from the half marathon into Donna — what stayed available, what got expensive, and what changed next.</p><div class="actions"><a class="button primary" href="/labs/the-last-10k/">Open the living study →</a><a class="button" href="/plans/">All plans →</a></div></div></section>
+<section class="section coach-faq" id="faq"><div class="shell">
+  <div class="split"><div><div class="tag"><b>05</b> · Coach FAQ</div><h2>THREE THINGS FAST RUNNERS<br><em>ASK FIRST.</em></h2></div><div class="copy">The simple answers matter more than extra theory.</div></div>
+  <div class="faq-list">
+    <details open><summary>Won't all the easy running make me slow?</summary><p>No. Easy running builds the endurance underneath the week; the faster work never disappears. The goal is not to replace speed with mileage. It is to make the speed easier to carry.</p></details>
+    <details><summary>Why isn't the mileage even higher?</summary><p>More mileage can help if you can absorb it. The plan uses enough volume to build the marathon without treating a bigger number as the goal. The key question is what you can still do late, not who logged the most miles.</p></details>
+    <details><summary>What if I feel amazing early on race day?</summary><p>Good. Keep it that way. The marathon rewards patience. Feeling easy at mile 10 is not permission to spend what you will need at mile 22.</p></details>
+  </div>
+</div></section>
+
+<section class="final"><div class="shell"><div class="tag">See the plan meet real runners</div><h2>THE LAST 10K.</h2><p>The plan is the reusable method. The study follows Hope and José as the same question moves from the half marathon into Donna — what stayed available, what got expensive, and what changed next.</p><div class="actions"><a class="button primary" href="/labs/the-last-10k/">Open the living study →</a><a class="button" href="/plans/">All plans →</a></div></div></section>
 </main>
 <footer><span>FORM · Marathon Durability</span><span>Method frozen · Sep 20 2026</span></footer>
+<script>
+(function(){
+  const mq=window.matchMedia('(max-width:760px)');
+  const wrap=document.querySelector('.table-wrap');
+  const table=document.querySelector('.matrix');
+  if(!wrap||!table)return;
+  let cards=null;
+  function build(){
+    if(!mq.matches){ if(cards){cards.remove();cards=null;} table.hidden=false; return; }
+    table.hidden=true;
+    if(cards)return;
+    cards=document.createElement('div'); cards.className='mobile-weeks';
+    [...table.tBodies[0].rows].forEach(row=>{
+      const cells=[...row.cells];
+      const week=cells[0].textContent.trim(), job=cells[1].textContent.trim(), total=cells[2].textContent.trim();
+      const tue=cells[3].innerHTML, thu=cells[4].innerHTML, sat=cells[5].innerHTML;
+      const d=document.createElement('details'); d.className='mobile-week';
+      if(row.classList.contains('ask')||row.classList.contains('race')) d.classList.add('mobile-week--key');
+      d.innerHTML='<summary><span class="mw-top"><b>'+week+'</b><small>'+job+' · '+total+'</small></span><span class="mw-sat"><small>Saturday · key run</small><strong>'+sat+'</strong></span><i>+</i></summary><div class="mw-more"><div><small>Tuesday · speed touch</small>'+tue+'</div><div><small>Thursday · support</small>'+thu+'</div></div>';
+      cards.appendChild(d);
+    });
+    wrap.appendChild(cards);
+  }
+  build(); mq.addEventListener?.('change',build);
+})();
+</script>
 </body>
 </html>
