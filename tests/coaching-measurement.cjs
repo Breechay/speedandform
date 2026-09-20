@@ -27,6 +27,7 @@ assert.match(html,/var QN = 4;/);
 assert.doesNotMatch(html,/data-q=\"4\"/);
 assert.doesNotMatch(html,/id=\"issue\"/);
 assert.match(html,/This starts a conversation\. No payment or booking\./);
+assert.match(html,/rows\.push\(\[\"Reply to\", A\.mail/);
 const send=html.slice(html.indexOf('  function sendToBrice()'),html.indexOf('\n  function fail('));
 (async()=>{
  const relay=new FormData();
