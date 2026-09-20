@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>The Last 10K · Marathon Durability Study · FORM Labs</title>
-<meta name="description" content="A living FORM study following Hope and José from Race Pace Durability through Orlando and into Donna. Act II tests whether the faster capability built in Act I remains available after substantially more prior running.">
+<meta name="description" content="The FORM marathon teaching applied to Hope and José: Orlando, the Donna build, late-race access, fueling, pacing, and what changes from the evidence.">
 <link rel="canonical" href="https://speedandform.com/labs/the-last-10k/">
 <meta name="theme-color" content="#07110f">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The Last 10K · Keep the Speed. Move It Deeper.">
-<meta property="og:description" content="Hope and José already have the pace. The Last 10K asks whether they can still find it when the marathon gets hard.">
+<meta property="og:description" content="FORM’s marathon teaching applied to Hope and José. Can useful pace still show up when the marathon gets hard?">
 <meta property="og:url" content="https://speedandform.com/labs/the-last-10k/">
 <meta property="og:site_name" content="Speed &amp; Form">
 <meta property="og:locale" content="en_US">
@@ -22,7 +22,7 @@
 <meta property="og:image:alt" content="FORM running development in Miami.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Last 10K · Keep the Speed. Move It Deeper.">
-<meta name="twitter:description" content="Hope and José already have the pace. Can they still find it when the marathon gets hard?">
+<meta name="twitter:description" content="FORM’s marathon teaching applied to Hope and José: can useful pace still show up late?">
 <meta name="twitter:image" content="https://speedandform.com/og/form-share-20260916.jpg">
 <script type="application/ld+json">
 {
@@ -227,30 +227,44 @@ footer{padding:34px var(--gutter);max-width:var(--max);margin:auto;display:flex;
   .mobile-phase--major summary{padding:24px 14px;margin-inline:-14px;background:rgba(201,255,54,.03)}
 }
 
+
+.applied-grid{display:grid;grid-template-columns:repeat(2,1fr);margin-top:54px;border-top:1px solid var(--line)}
+.applied-grid article{padding:30px 32px 34px 0;border-bottom:1px solid var(--line)}.applied-grid article:nth-child(even){padding-left:32px;border-left:1px solid var(--line)}
+.applied-grid small,.applied-records small{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--lime)}.applied-grid h3{font-size:clamp(26px,2.5vw,40px);letter-spacing:-.04em;margin:12px 0}.applied-grid p{margin:0;color:var(--muted);line-height:1.6}.applied-grid p b{color:var(--ink)}
+.applied-records{display:grid;grid-template-columns:1fr 1fr;margin-top:34px;border-block:1px solid var(--line)}
+.applied-records article{padding:24px 26px 28px 0}.applied-records article+article{padding-left:26px;border-left:1px solid var(--line)}.applied-records b{display:block;font-size:18px;margin:9px 0}.applied-records p{margin:0;color:var(--muted);font-size:14px}
+.technical{background:#08120f}.technical-dive{margin-top:22px}.technical-dive+ .technical-dive{margin-top:14px}.technical-dive>summary{font-size:12px}
+@media(max-width:700px){
+  .applied-grid,.applied-records{grid-template-columns:1fr}
+  .applied-grid article,.applied-grid article:nth-child(even),.applied-records article,.applied-records article+article{padding:24px 0;border-left:0}
+  .applied-records article+article{border-top:1px solid var(--line)}
+}
+
 </style>
 </head>
 <body>
-<header class="mast"><div class="shell"><a class="brand" href="/">FORM<span>.</span></a><nav><a href="#sequel">The question</a><a href="#gate">Orlando</a><a href="#runway">Donna</a><a href="#hypotheses">What we're testing</a><a href="#evidence">Evidence</a><a href="/plans/marathon-durability/">Plan ↗</a></nav></div></header>
+<header class="mast"><div class="shell"><a class="brand" href="/">FORM<span>.</span></a><nav><a href="#applied">Teaching applied</a><a href="#gate">Orlando</a><a href="#runway">Donna</a><a href="#evidence">Live record</a><a href="#technical">Technical notes</a><a href="/plans/marathon-durability/">Reference ↗</a></nav></div></header>
 
 <details class="mobile-contents">
   <summary><i></i>Contents</summary>
   <div>
-    <a href="#sequel">The question</a>
+    <a href="#applied">Teaching applied</a>
     <a href="#gate">Orlando</a>
-    <a href="#runway">Donna</a>
-    <a href="#hypotheses">What we're testing</a>
-    <a href="#evidence">Evidence</a>
+    <a href="#between">Two quiet weeks</a>
+    <a href="#runway">Donna runway</a>
+    <a href="#evidence">Live record</a>
+    <a href="#technical">Technical notes</a>
     <a href="#amendments">Amendments</a>
-    <a href="/plans/marathon-durability/">Open Plan 03 ↗</a>
+    <a href="/plans/marathon-durability/">Marathon reference ↗</a>
   </div>
 </details>
 <main>
 <section class="hero">
   <div class="shell">
-    <div class="hero-state"><div class="tag"><b>FORM LABS · STUDY 03</b> · Hope + José</div><span>Protocol v1.0 · hypotheses locked Sep 20, 2026 · pre-Orlando</span></div>
+    <div class="hero-state"><div class="tag"><b>FORM LABS · STUDY 03</b> · Hope + José</div><span>Protocol v1.0 · pre-Orlando</span></div>
     <h1>THE LAST<span>10K.</span></h1>
     <div class="hero-bottom">
-      <p class="hero-lede"><strong>What happens when the easy miles run out?</strong><br>Hope and José already have the pace. This study follows what is still there when the marathon gets hard.</p>
+      <p class="hero-lede"><strong>The teaching, applied.</strong><br>The reference says how FORM trains and paces the marathon. This page follows what happens when Hope and José actually do it.</p>
       <div class="hero-side">
         <div><small>Test 01</small><b>Orlando Half<br>Dec 05 · 2026</b></div>
         <div><small>Test 02</small><b>Donna Marathon<br>Feb 07 · 2027</b></div>
@@ -262,24 +276,24 @@ footer{padding:34px var(--gutter);max-width:var(--max);margin:auto;display:flex;
 <section class="study-deal"><div class="shell">
   <div class="tag">The whole study in 30 seconds</div>
   <div class="study-deal-grid">
-    <div><small>They already have speed</small><b>Act I taught them to hold their assigned pace longer without a break.</b></div>
-    <div><small>Now the question moves later</small><b>Act II puts more running in front of the same kind of pace.</b></div>
-    <div><small>Donna is the answer</small><b>Can useful pace still show up after 20 miles — when the marathon is finally expensive?</b></div>
+    <div><small>What they already built</small><b>Act I taught each athlete to hold an assigned faster pace for longer without a reset.</b></div>
+    <div><small>What changes now</small><b>Donna puts more running in front of that capability instead of simply asking for more fast miles.</b></div>
+    <div><small>What decides the story</small><b>Orlando sets the next assignment. Donna answers whether useful pace is still available after 20 miles.</b></div>
   </div>
 </div></section>
 
 <section class="exposure" aria-label="Act I and Act II exposure">
   <div class="shell">
-    <div class="exposure-head"><div class="tag"><b>The shift</b> · same pace · deeper in the run</div><p>The green block is the work we care about. In Act I it gets longer. In Act II it moves farther to the right.</p></div>
+    <div class="exposure-head"><div class="tag"><b>The shift</b> · the lesson being tested</div><p>The green block is the capability. First it got longer. Now more running moves in front of it.</p></div>
     <div class="exposure-grid">
       <div class="exposure-act">
-        <div class="exposure-label"><span>ACT I · HOLD IT LONGER</span><b>MORE DISTANCE AT CAPABILITY</b></div>
+        <div class="exposure-label"><span>ACT I · HOLD IT LONGER</span><b>MORE DISTANCE AT THE CAPABILITY</b></div>
         <div class="strip"><i style="--before:18%;--work:24%"></i></div>
         <div class="strip"><i style="--before:18%;--work:42%"></i></div>
         <div class="strip"><i style="--before:18%;--work:66%"></i></div>
       </div>
       <div class="exposure-act">
-        <div class="exposure-label"><span>ACT II · FIND IT LATER</span><b>MORE DISTANCE BEFORE CAPABILITY</b></div>
+        <div class="exposure-label"><span>ACT II · FIND IT LATER</span><b>MORE DISTANCE BEFORE THE CAPABILITY</b></div>
         <div class="strip"><i style="--before:28%;--work:28%"></i></div>
         <div class="strip"><i style="--before:50%;--work:28%"></i></div>
         <div class="strip"><i style="--before:68%;--work:28%"></i></div>
@@ -288,59 +302,48 @@ footer{padding:34px var(--gutter);max-width:var(--max);margin:auto;display:flex;
   </div>
 </section>
 
-<section class="chapter sequel" id="sequel"><div class="shell">
-  <div class="split">
-    <div><div class="tag"><b>01</b> · The question changed</div><h2>FIRST, HOLD IT LONGER.<br><em>THEN, FIND IT LATER.</em></h2></div>
-    <div class="aside">Think of pace like a tool they already own. Act I taught them to hold it longer. Act II asks whether they can still pull it out after the run has already taken something from them.</div>
-  </div>
-  <div class="ladder" aria-label="Act I into Act II progression">
-    <div class="rung"><small>Act I</small><b>2 + 2 + 2</b></div><div class="rung"><small>Continuous</small><b>5 · 6 · 8</b></div><div class="rung"><small>Late</small><b>12</b></div>
-    <div class="rung accent"><small>Test 01</small><b>13.1</b></div><div class="rung"><small>Act II</small><b>After 10 → 14–16</b></div><div class="rung accent"><small>Test 02</small><b>26.2</b></div>
+<section class="chapter applied" id="applied"><div class="shell">
+  <div class="split"><div><div class="tag"><b>01</b> · Teaching applied</div><h2>THE REFERENCE SAYS WHAT TO DO.<br><em>THIS STUDY SHOWS WHAT HAPPENS.</em></h2></div><div class="aside">Four lessons from the marathon reference become four concrete things we can watch in Hope and José.</div></div>
+  <div class="applied-grid">
+    <article><small>Lesson 01 · Keep a ceiling</small><h3>Faster work does not disappear.</h3><p><b>Applied:</b> W3 reopens aerobic power; later ceiling touches stay in the block when they do not compromise Saturday.</p></article>
+    <article><small>Lesson 02 · Move access later</small><h3>Same capability. Harder moment.</h3><p><b>Applied:</b> W4 final 6 → W5 3 + 3 → W6 final 10K. The fast volume is not endlessly inflated; the context gets deeper.</p></article>
+    <article><small>Lesson 03 · Fuel the test</small><h3>A bad fueling day is a bad durability test.</h3><p><b>Applied:</b> race-intent fueling begins with the marathon-specific long runs and gets filed beside the result.</p></article>
+    <article><small>Lesson 04 · Protect the opening</small><h3>The first 20 miles write the last 10K.</h3><p><b>Applied:</b> the W6 Closing-10K run starts with 14–15 controlled miles. Donna uses the same logic over the full race.</p></article>
   </div>
 </div></section>
 
-<section class="bridge-line"><div class="shell"><div class="tag">The simple rule</div><h2>THE RACE GETS LONGER.<br>THE RUNNER DOESN'T HAVE TO GET SLOWER.</h2><p>Longer marathon work does not mean making every session marathon pace. Faster work keeps room above the race. The long runs teach when useful pace can still show up.</p></div></section>
-
-<section class="closing-lens"><div class="shell">
-  <div class="tag">Why the last 10K matters</div>
-  <h2>THE FIRST 20 MILES SET UP THE PART WE CARE ABOUT.</h2>
-  <div class="mile-line">
-    <div class="mile-first"><small>Mile 0 → 20</small><b>Protect what you will need later.</b></div>
-    <div class="mile-last"><small>Final 10K</small><b>Can the pace still show up now?</b></div>
-  </div>
-  <p>Late fading is not one simple problem. Sometimes the legs go heavy while breathing still feels controlled. Sometimes fueling, pacing, heat or several things at once change the answer. The study keeps the question simple without pretending the cause is always simple.</p>
-</div></section>
+<section class="bridge-line"><div class="shell"><div class="tag">The race lesson under test</div><h2>THE FIRST 20 MILES<br>WRITE THE LAST 10K.</h2><p>Running faster early does not create free time. It spends capacity. The study watches what remains when restraint, fueling and late access have to work together.</p></div></section>
 
 <section class="chapter gate" id="gate"><div class="shell">
-  <div class="split"><div><div class="tag"><b>02</b> · Orlando</div><h2>ORLANDO<br><em>WRITES ACT II.</em></h2><p class="dek">Orlando is not a grade. It tells us what each athlete actually owns before we decide Donna.</p></div><div class="aside">A fast half does not automatically mean “go faster.” A rough half does not automatically mean the method failed. We read what held, what got expensive, why it happened and how the athlete recovered.</div></div>
-  <div class="gate-grid">
-    <div class="gate-note">Same race. Same study question. <span>Two independent records.</span></div>
-    <div class="record" aria-label="Orlando evidence fields">
-      <div class="record-row"><b>Output</b><span>Finish · average pace · final 5K</span><span class="open">Awaiting Dec 05</span></div>
-      <div class="record-row"><b>Cost</b><span>Effort · drift · mechanics where useful</span><span class="open">Awaiting race</span></div>
-      <div class="record-row"><b>Athlete</b><span>What the runner experienced</span><span class="open">Awaiting report</span></div>
-      <div class="record-row"><b>Coach read</b><span>What Orlando actually establishes</span><span class="open">Open</span></div>
-      <div class="record-row"><b>Next</b><span>Keep shared Donna work or branch</span><span class="open">Open</span></div>
-    </div>
-  </div>
+  <div class="split"><div><div class="tag"><b>02</b> · Orlando decides the next assignment</div><h2>TEST 01<br><em>BEFORE ACT II.</em></h2><p class="dek">The Donna method is already defined. The athlete-specific paces are not.</p></div><div class="aside">Orlando tells us what each athlete actually owns after Act I. A fast race does not automatically mean “go faster.” A rough race does not automatically erase the method. We read what held, what got expensive, why, and how they recovered.</div></div>
   <div class="athlete-pair">
-    <article><small>José · Act I band</small><b>6:30–6:45 /mi</b><p>Donna reserve / race rhythm: <strong>resolved after Orlando</strong></p></article>
-    <article><small>Hope · Act I band</small><b>6:45–7:00 /mi</b><p>Donna reserve / race rhythm: <strong>resolved after Orlando</strong></p></article>
+    <article><small>José · current Act I band</small><b>6:30–6:45 /mi</b><p>Donna reserve / marathon rhythm: <strong>resolved after Orlando</strong></p></article>
+    <article><small>Hope · current Act I band</small><b>6:45–7:00 /mi</b><p>Donna reserve / marathon rhythm: <strong>resolved after Orlando</strong></p></article>
+  </div>
+  <div class="gate-grid">
+    <div class="gate-note">One race. <span>Two independent reads.</span></div>
+    <div class="record" aria-label="Orlando evidence fields">
+      <div class="record-row"><b>The run</b><span>Finish · average pace · final 5K</span><span class="open">Awaiting Dec 05</span></div>
+      <div class="record-row"><b>The cost</b><span>Effort · drift · mechanics where useful</span><span class="open">Awaiting race</span></div>
+      <div class="record-row"><b>The context</b><span>Fueling · pacing · course · conditions</span><span class="open">Awaiting race</span></div>
+      <div class="record-row"><b>Coach read</b><span>What Test 01 actually establishes</span><span class="open">Open</span></div>
+      <div class="record-row"><b>Next</b><span>Keep, redefine, protect or branch</span><span class="open">Open</span></div>
+    </div>
   </div>
 </div></section>
 
 <section class="chapter between" id="between"><div class="shell">
-  <div class="split"><div><div class="tag"><b>03</b> · Two quiet weeks</div><h2>TWO WEEKS.<br><em>NO TEST.</em></h2></div><div class="aside">First recover. Then return to normal running. Being tired after a race is not missing work, and nothing in these two weeks needs to prove fitness.</div></div>
+  <div class="split"><div><div class="tag"><b>03</b> · Two quiet weeks</div><h2>RECOVER.<br><em>THEN RETURN.</em></h2></div><div class="aside">No test belongs here. The first week absorbs Orlando. The second restores normal running so the Donna block starts from a body that is ready to train again.</div></div>
   <div class="two-weeks">
-    <article class="week"><div><div class="num">Week 01 · Dec 06–12</div><h3>RECOVER</h3><p>Unload Orlando and the 15-week accumulation. Absence of intensity is intentional, not missing work.</p></div><ul><li>4–5 running days maximum</li><li>~24–30 miles or less if response asks for less</li><li>Easy only · no pace requirement</li><li>Race debrief captured</li><li>No long-run achievement to prove</li></ul></article>
+    <article class="week"><div><div class="num">Week 01 · Dec 06–12</div><h3>RECOVER</h3><p>Unload Orlando and the 15-week accumulation.</p></div><ul><li>4–5 running days maximum</li><li>~24–30 miles or less if response asks for less</li><li>Easy only · no pace requirement</li><li>Race debrief captured</li><li>No long-run achievement to prove</li></ul></article>
     <article class="week"><div><div class="num">Week 02 · Dec 13–19</div><h3>RETURN</h3><p>Restore rhythm without creating a new performance question.</p></div><ul><li>5–6 running days</li><li>~34–40 miles</li><li>Easy frequency returns</li><li>Short strides or hills if comfortable</li><li>Relaxed 9–10 mile long run · no test</li></ul></article>
   </div>
 </div></section>
 
 <section class="chapter runway" id="runway"><div class="shell">
   <div class="runway-head">
-    <div><div class="tag"><b>04</b> · Donna runway</div><h2>THE SAME CAPABILITY.<br><em>LATER IN THE RUN.</em></h2></div>
-    <p>The block does not keep adding more fast miles. It keeps changing what happens before those miles. Orlando decides the exact assignment for each athlete.</p>
+    <div><div class="tag"><b>04</b> · Donna runway</div><h2>HERE IS HOW<br><em>THE TEACHING BECOMES TRAINING.</em></h2></div>
+    <p>The block keeps the FORM marathon strategy visible: ceiling above the race, access moving later, fueling prescribed, and opening cost protected.</p>
   </div>
   <div class="timeline">
     <div class="phase"><div class="wk">W1 · 24–30</div><h3>Recover</h3><p>Easy only. Four to five running days. No pace requirement. Orlando debrief, fueling, body and late-race context are filed before the next performance question begins.</p><div class="date">Dec 06–12</div></div>
@@ -348,87 +351,88 @@ footer{padding:34px var(--gutter);max-width:var(--max);margin:auto;display:flex;
     <div class="phase"><div class="wk">W3 · 42–46</div><h3>Reopen the ceiling</h3><p>Tuesday: 5 × 3 min controlled aerobic-power / 2 min jog. Thursday: easy + 6–8 relaxed strides or short hills. Saturday: 11–13 easy. Reopen range without proving fitness.</p><div class="date">Dec 20–26</div></div>
     <div class="phase"><div class="wk">W4 · 48–52</div><h3>Access</h3><p>Tuesday: 3 × 1.5 mi reserve / 2 min easy. Thursday: 40–50 min easy + 6 × 20 sec relaxed strides. Saturday: <b>16 total · final 6 at the resolved reserve band.</b> Race-intent fueling becomes part of the prescription.</p><div class="date">Dec 27–Jan 02</div></div>
     <div class="phase"><div class="wk">W5 · 52–56</div><h3>Re-access</h3><p>Tuesday: 4 × 1 mi reserve / 90 s float. Thursday: low-cost speed + strides. Saturday: <b>18 total · 7 easy + 3 reserve + 2 easy + 3 reserve + 3 easy.</b> Same six reserve miles, different context.</p><div class="date">Jan 03–09</div></div>
-    <div class="phase major"><div class="wk">W6 · 56–60</div><h3>Closing 10K</h3><p>Tuesday: 2 × 2 mi reserve / 2–3 min easy. Thursday: easy + 4–6 strides. Saturday: <b>20–21 total · 14–15 controlled + final 10K at the resolved reserve band.</b> Flat, clean, fully fueled. No added terrain variable. This deliberately stops short of recreating the race-day 20-mile prelude; Donna is the full-distance test, not the training run.</p><div class="date">Jan 10–16</div></div>
-    <div class="phase"><div class="wk">W7 · 48–53</div><h3>Absorb + confirm</h3><p>Volume drops on purpose. Tuesday: 3 × 1 mi reserve / 90 s float. Thursday: easy + strides; ceiling work only if W6 was unusually well absorbed. Saturday: <b>15–16 total · final 4 reserve.</b> Smaller task, lower expected cost.</p><div class="date">Jan 17–23</div></div>
-    <div class="phase"><div class="wk">W8 · 38–44</div><h3>Taper + race rhythm</h3><p>Volume keeps falling on purpose. Tuesday: 2 × 2 mi at the resolved marathon rhythm with generous recovery. Thursday: easy + strides. Saturday: 10–12 easy. This is rehearsal, not a new test.</p><div class="date">Jan 24–30</div></div>
+    <div class="phase major"><div class="wk">W6 · 56–60</div><h3>Closing 10K</h3><p>Tuesday: 2 × 2 mi reserve / 2–3 min easy. Thursday: easy + 4–6 strides. Saturday: <b>20–21 total · 14–15 controlled + final 10K at the resolved reserve band.</b> Flat, clean, fully fueled. Donna is the full-distance test, not the training run.</p><div class="date">Jan 10–16</div></div>
+    <div class="phase"><div class="wk">W7 · 48–53</div><h3>Absorb + confirm</h3><p>Volume drops on purpose. Tuesday: 3 × 1 mi reserve / 90 s float. Thursday: easy + strides. Saturday: <b>15–16 total · final 4 reserve.</b> Smaller task, lower expected cost.</p><div class="date">Jan 17–23</div></div>
+    <div class="phase"><div class="wk">W8 · 38–44</div><h3>Taper + race rhythm</h3><p>Volume keeps falling on purpose. Tuesday: 2 × 2 mi at the resolved marathon rhythm with generous recovery. Thursday: easy + strides. Saturday: 10–12 easy. Rehearsal, not a new test.</p><div class="date">Jan 24–30</div></div>
     <div class="phase major"><div class="wk">W9 · Race</div><h3>Donna Marathon</h3><p>Small marathon-rhythm touch early in race week, then easy running. Race-day distribution comes from Orlando plus what W4–W7 actually establish.</p><div class="date">Feb 07 · 2027</div></div>
   </div>
-  <div class="runway-law"><b>Tuesday remembers it.</b><b>Thursday protects what sits above it.</b><b>Saturday asks whether it remains.</b></div>
 </div></section>
 
 <section class="chapter" id="evidence"><div class="shell">
-  <div class="split"><div><div class="tag"><b>05</b> · Live record</div><h2>THE RUN FIRST.<br><em>THE STORY SECOND.</em></h2></div><div class="aside">Act II has not started yet. After Orlando, every key session gets the same simple read: what we asked, what happened, how it felt, what changed next.</div></div>
+  <div class="split"><div><div class="tag"><b>05</b> · Live record</div><h2>THE WORKOUT HAPPENS.<br><em>THEN WE READ IT.</em></h2></div><div class="aside">Act II has not started yet. Once it does, every key session keeps the same record so the coaching can change without rewriting the past.</div></div>
   <div class="evidence-grid">
-    <div class="ev"><small>The run</small><b>What actually happened?</b><p>Pace, distance, splits and whether the key work was completed.</p></div>
-    <div class="ev"><small>The cost</small><b>How expensive was it?</b><p>Effort, drift and any clear change in movement when it helps explain the run.</p></div>
-    <div class="ev"><small>The context</small><b>Was it a fair test?</b><p>Fueling, hydration, heat, wind, course and anything that meaningfully changed the day.</p></div>
-    <div class="ev"><small>The athlete</small><b>What did it feel like?</b><p>The runner's own words stay beside the watch data.</p></div>
-    <div class="ev"><small>The next move</small><b>What do we do with it?</b><p>Continue, repeat, reduce, protect or send the two athletes down different paths.</p></div>
+    <div class="ev"><small>The run</small><b>What happened?</b><p>Pace, distance, splits and completion.</p></div>
+    <div class="ev"><small>The cost</small><b>How expensive?</b><p>Effort, drift and clear movement change where useful.</p></div>
+    <div class="ev"><small>The context</small><b>Was it a fair test?</b><p>Fueling, hydration, pacing, heat, wind and course.</p></div>
+    <div class="ev"><small>The athlete</small><b>What did it feel like?</b><p>The runner’s own words stay beside the watch data.</p></div>
+    <div class="ev"><small>The next move</small><b>What changes?</b><p>Continue, repeat, reduce, protect or branch.</p></div>
+  </div>
+  <div class="applied-records">
+    <article><small>HOPE · next filed Act II record</small><b>Awaiting Orlando → Donna assignment</b><p>Prescription · filed output · athlete report · coach read · next.</p></article>
+    <article><small>JOSÉ · next filed Act II record</small><b>Awaiting Orlando → Donna assignment</b><p>Prescription · filed output · athlete report · coach read · next.</p></article>
   </div>
 </div></section>
 
-<section class="chapter" id="theory"><div class="shell">
-  <div class="split"><div><div class="tag"><b>06</b> · Behind the curtain</div><h2>THREE SPEEDS.<br><em>THREE DIFFERENT JOBS.</em></h2></div><div class="aside">One pace cannot explain the whole block. We keep a faster layer above the race, the capability built in Act I, and the rhythm the marathon can actually carry.</div></div>
-  <div class="speed-model">
-    <article class="speed"><div><div class="n">01 · Ceiling</div><h3>ROOM ABOVE RACE PACE.</h3><p>Threshold and faster running keep range above marathon effort.</p></div><strong>KEEP THE ENGINE OPEN.</strong></article>
-    <article class="speed"><div><div class="n">02 · Specific reserve</div><h3>THE FASTER PACE WE ALREADY BUILT.</h3><p>This is the Act I capability. We keep touching it so the marathon block does not erase it.</p></div><strong>KEEP IT AVAILABLE.</strong></article>
-    <article class="speed"><div><div class="n">03 · Marathon rhythm</div><h3>WHAT RACE DAY CAN CARRY.</h3><p>This is the pace that can actually be spread across 26.2. Orlando helps decide it.</p></div><strong>RACE-DAY PACE IS ITS OWN DECISION.</strong></article>
-  </div>
-</div></section>
+<section class="chapter technical" id="technical"><div class="shell">
+  <div class="split"><div><div class="tag"><b>06</b> · Technical notes</div><h2>THE RIGOR IS STILL HERE.<br><em>IT JUST DOESN’T HAVE TO BLOCK THE STORY.</em></h2></div><div class="aside">Open this if you want the three-speed model, hypotheses, failure tests and protocol commitments behind the coaching.</div></div>
 
-<section class="chapter hypotheses" id="hypotheses"><div class="shell">
-  <div class="split">
-    <div><div class="tag"><b>07</b> · What we're testing</div><h2>WHAT WE THINK.<br><em>BEFORE WE KNOW.</em></h2></div>
-    <div class="aside">Four simple questions sit underneath the block. If the running does not support them, we change the idea instead of forcing the result to fit.</div>
-  </div>
-  <div class="plain-hyp">
-    <div><span>01</span><b>Can the pace still show up late?</b></div>
-    <div><span>02</span><b>Can faster work stay available?</b></div>
-    <div><span>03</span><b>Does patience early matter?</b></div>
-    <div><span>04</span><b>Does the smaller task stop being too expensive?</b></div>
-  </div>
-  <details class="deep-dive"><summary>Open the technical hypotheses</summary><div class="hyp-grid">
-    <article class="hyp"><small>H01 · Late access</small><h3>CAN IT STILL SHOW UP LATE?</h3><p>If Act I establishes the reserve continuously, progressively increasing the running before it should preserve or improve access under accumulated load.</p></article>
-    <article class="hyp"><small>H02 · Ceiling preservation</small><h3>CAN FASTER WORK STAY AVAILABLE?</h3><p>Controlled threshold and aerobic-power performance should remain broadly stable through the marathon block without repeatedly degrading Saturday availability.</p></article>
-    <article class="hyp"><small>H03 · Restraint</small><h3>DOES PATIENCE EARLY MATTER?</h3><p>What the athlete spends before the decisive segment changes what remains available when the marathon becomes expensive.</p></article>
-    <article class="hyp"><small>H04 · Cost / absorption</small><h3>DOES THE SMALLER TASK SETTLE?</h3><p>After the principal Closing-10K exposure, a deliberately smaller late-reserve task should be completed without disproportionate cost or prolonged recovery.</p></article>
-  </div></details>
-</div></section>
-
-<section class="chapter disconfirm" id="what-changes"><div class="shell">
-  <div class="split">
-    <div><div class="tag"><b>08</b> · What would change our mind?</div><h2>WHAT WOULD<br><em>PROVE US WRONG?</em></h2></div>
-    <div class="aside">No single watch number gets to decide the story. We compare the run, the athlete's report, fueling, conditions and recovery — then decide what the evidence actually supports.</div>
-  </div>
-  <details class="deep-dive"><summary>Open the study rules and failure tests</summary><div class="falsify-grid">
-    <article><small>H01 weakens if</small><b>Later placement repeatedly removes access.</b><p>The reserve becomes unavailable despite controlled openings, deliberate fueling and otherwise comparable conditions.</p></article>
-    <article><small>H02 weakens if</small><b>Faster performance deteriorates or repeatedly steals from Saturday.</b><p>Comparable threshold/aerobic-power work becomes materially harder or slower, or leaves enough residual fatigue to repeatedly degrade the governing Saturday question.</p></article>
-    <article><small>H03 weakens if</small><b>Opening cost shows no useful relationship to what remains late.</b><p>Across comparable work, late availability varies independently of how conservatively the prior running was distributed.</p></article>
-    <article><small>H04 weakens if</small><b>The reduced task still carries disproportionate cost.</b><p>The smaller W7 ask requires unusually high effort, the reserve disappears, mechanics materially deteriorate, or recovery remains meaningfully impaired.</p></article>
-  </div>
-  <div class="protocol">
-    <div class="protocol-head"><small>What we locked before Orlando</small><b>THE QUESTIONS STAY PUT. THE ANSWERS CAN CHANGE.</b><p>This is a two-athlete coaching case study, not a controlled trial. We can show what happened to Hope and José and whether the idea survived contact with them. We cannot pretend two runners prove a universal rule.</p></div>
-    <div class="protocol-grid">
-      <div><small>Fueling</small><b>From W4, fuel is prescribed.</b><p>Use the race-intent strategy and record product, amount, timing and tolerance. A late fade under improvised fueling does not cleanly answer the durability question.</p></div>
-      <div><small>Orlando decision framework</small><b>Output · cost · distribution · context · recovery · athlete report.</b><p>Each athlete is reassigned independently. The next step can keep, redefine, protect/delay, or branch the reserve/rhythm assignment. No single noisy metric decides the verdict.</p></div>
-      <div><small>Recovery protection</small><b>Abnormal recovery can stop the next Ask.</b><p>Two materially abnormal recovery reports trigger review before the next major Ask. The response can reduce, replace, delay, or proceed only once normal easy-running function returns.</p></div>
-      <div><small>Amendments</small><b>Original claims stay visible.</b><p>Any post-Orlando change keeps the original prescription, date, triggering evidence and revised read. FORM does not silently rewrite what it believed before the outcome.</p></div>
+  <details class="deep-dive technical-dive">
+    <summary>Three speeds · ceiling / reserve / marathon rhythm</summary>
+    <div class="speed-model">
+      <article class="speed"><div><div class="n">01 · Ceiling</div><h3>ROOM ABOVE RACE PACE.</h3><p>Threshold and faster running keep range above marathon effort.</p></div><strong>KEEP THE ENGINE OPEN.</strong></article>
+      <article class="speed"><div><div class="n">02 · Specific reserve</div><h3>THE FASTER PACE ACT I BUILT.</h3><p>This is the capability we keep touching so the marathon block does not erase it.</p></div><strong>KEEP IT AVAILABLE.</strong></article>
+      <article class="speed"><div><div class="n">03 · Marathon rhythm</div><h3>WHAT 26.2 CAN CARRY.</h3><p>This is the pace that can actually be distributed across the marathon. Orlando helps decide it.</p></div><strong>RACE-DAY PACE IS ITS OWN DECISION.</strong></article>
     </div>
-  </div></details>
+  </details>
+
+  <details class="deep-dive technical-dive">
+    <summary>Four hypotheses · what we think before we know</summary>
+    <div class="plain-hyp">
+      <div><span>01</span><b>Can the pace still show up late?</b></div>
+      <div><span>02</span><b>Can faster work stay available?</b></div>
+      <div><span>03</span><b>Does patience early matter?</b></div>
+      <div><span>04</span><b>Does the smaller task settle?</b></div>
+    </div>
+    <div class="hyp-grid">
+      <article class="hyp"><small>H01 · Late access</small><h3>CAN IT STILL SHOW UP LATE?</h3><p>If Act I establishes the reserve continuously, progressively increasing the running before it should preserve or improve access under accumulated load.</p></article>
+      <article class="hyp"><small>H02 · Ceiling preservation</small><h3>CAN FASTER WORK STAY AVAILABLE?</h3><p>Controlled threshold and aerobic-power performance should remain broadly stable through the marathon block without repeatedly degrading Saturday availability.</p></article>
+      <article class="hyp"><small>H03 · Restraint</small><h3>DOES PATIENCE EARLY MATTER?</h3><p>What the athlete spends before the decisive segment changes what remains available when the marathon becomes expensive.</p></article>
+      <article class="hyp"><small>H04 · Cost / absorption</small><h3>DOES THE SMALLER TASK SETTLE?</h3><p>After the principal Closing-10K exposure, a deliberately smaller late-reserve task should be completed without disproportionate cost or prolonged recovery.</p></article>
+    </div>
+  </details>
+
+  <details class="deep-dive technical-dive">
+    <summary>What would change our mind · protocol commitments</summary>
+    <div class="falsify-grid">
+      <article><small>H01 weakens if</small><b>Later placement repeatedly removes access.</b><p>The reserve becomes unavailable despite controlled openings, deliberate fueling and otherwise comparable conditions.</p></article>
+      <article><small>H02 weakens if</small><b>Faster performance deteriorates or repeatedly steals from Saturday.</b><p>Comparable threshold/aerobic-power work becomes materially harder or slower, or repeatedly degrades the governing Saturday question.</p></article>
+      <article><small>H03 weakens if</small><b>Opening cost has no useful relationship to what remains late.</b><p>Across comparable work, late availability varies independently of how conservatively the prior running was distributed.</p></article>
+      <article><small>H04 weakens if</small><b>The reduced task still carries disproportionate cost.</b><p>The smaller W7 ask requires unusually high effort, the reserve disappears, mechanics materially deteriorate, or recovery remains impaired.</p></article>
+    </div>
+    <div class="protocol">
+      <div class="protocol-head"><small>Locked before Orlando</small><b>THE QUESTIONS STAY PUT. THE ANSWERS CAN CHANGE.</b><p>This is a two-athlete coaching case study, not a controlled trial. It can challenge the coaching model; it cannot establish population-level causality.</p></div>
+      <div class="protocol-grid">
+        <div><small>Fueling</small><b>From W4, fuel is prescribed.</b><p>Record product, amount, timing and tolerance.</p></div>
+        <div><small>Decision</small><b>Each athlete is read independently.</b><p>The next step can keep, redefine, protect/delay or branch the assignment.</p></div>
+        <div><small>Recovery</small><b>Abnormal recovery can stop the next Ask.</b><p>Reduce, replace or delay until normal easy-running function returns.</p></div>
+        <div><small>Amendments</small><b>Original claims stay visible.</b><p>Changes preserve the original prescription, date, triggering evidence and revised read.</p></div>
+      </div>
+    </div>
+  </details>
 </div></section>
 
 <section class="chapter amendments" id="amendments"><div class="shell">
-  <div class="split"><div><div class="tag"><b>09</b> · Amendments log</div><h2>WHEN WE CHANGE THE PLAN,<br><em>THE OLD VERSION STAYS VISIBLE.</em></h2></div><div class="aside">The point of a living study is not to look right afterward. It is to keep the record of what we believed before the result arrived.</div></div>
+  <div class="split"><div><div class="tag"><b>07</b> · Amendments log</div><h2>WHEN THE EVIDENCE CHANGES THE PLAN,<br><em>THE OLD VERSION STAYS VISIBLE.</em></h2></div><div class="aside">The point is not to look right afterward. It is to keep the record of what we believed before the result arrived.</div></div>
   <div class="amendment-row"><time datetime="2026-09-20">Sep 20 · 2026</time><b>Protocol v1.0 locked.</b><p>Four hypotheses, Donna runway, fueling rule, decision framework and evidence grammar committed pre-Orlando.</p></div>
-  <div class="amendment-row open"><time>Next entry</time><b>After Orlando · Dec 05.</b><p>The first amendment will record what the race changed, if anything. Protocol v1.0 stays visible either way.</p></div>
+  <div class="amendment-row open"><time>Next entry</time><b>After Orlando · Dec 05.</b><p>The first amendment records what the race changed, if anything. Protocol v1.0 stays visible either way.</p></div>
 </div></section>
 
 <section class="finale" id="donna"><div class="shell">
-  <div class="tag"><b>TEST 02 · PRIMARY OBJECTIVE</b></div>
+  <div class="tag"><b>TEST 02 · THE FULL-DISTANCE ANSWER</b></div>
   <h2>DONNA</h2>
   <div class="meta"><span>Feb 07 · 2027</span><span>26.2 miles</span><span>Race pace · resolved after Orlando</span></div>
-  <p>Can the athlete arrive at mile 20 with enough left that <span>the last 10K is still a race?</span></p>
-  <div class="actions"><a class="button primary" href="/plans/marathon-durability/">Open Marathon Durability →</a><a class="button" href="/labs/speed-that-endures/">Read Act I →</a></div>
+  <p>Can each athlete arrive at mile 20 with enough left that <span>the last 10K is still a race?</span></p>
+  <div class="actions"><a class="button primary" href="/plans/marathon-durability/">Open the marathon reference →</a><a class="button" href="/labs/speed-that-endures/">Read Act I →</a></div>
 </div></section>
 </main>
 <footer><span>FORM Labs · The Last 10K</span><span>Protocol v1.0 · pre-Orlando</span></footer>
