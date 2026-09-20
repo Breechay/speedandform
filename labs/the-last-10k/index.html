@@ -50,15 +50,15 @@
 }
 *{box-sizing:border-box}html{background:var(--bg);scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}::selection{background:var(--lime);color:var(--bg)}
 .shell{width:min(var(--max),100%);margin:auto;padding-inline:var(--gutter)}
-.mast{height:70px;position:sticky;top:0;z-index:30;background:rgba(3,8,7,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line2)}
-.mast .shell{height:100%;display:flex;align-items:center;justify-content:space-between}.brand{font-size:25px;font-weight:900;letter-spacing:-.06em}.brand span{color:var(--lime)}
+.mast{height:62px;position:fixed;top:0;left:0;right:0;z-index:40;background:linear-gradient(180deg,rgba(3,8,7,.92),rgba(3,8,7,.52),transparent);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);pointer-events:none}
+.mast .shell{height:100%;display:flex;align-items:center;justify-content:space-between}.mast .shell>*{pointer-events:auto}.brand{font-size:25px;font-weight:900;letter-spacing:-.06em}.brand span{color:var(--lime)}
 .mast nav{display:flex;gap:24px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}.mast nav a:hover{color:var(--lime)}
 .tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:700}.tag b{color:var(--lime)}
-.hero{min-height:calc(100svh - 70px);display:flex;align-items:flex-end;background:
+.hero{min-height:100svh;display:flex;align-items:flex-end;background:
   radial-gradient(circle at 72% 24%,rgba(201,255,54,.08),transparent 29%),
   linear-gradient(180deg,var(--deep),var(--bg));overflow:hidden}
-.hero .shell{padding-top:10vh;padding-bottom:7vh}
-.hero-state{display:flex;justify-content:space-between;gap:30px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:18px}
+.hero .shell{padding-top:calc(10vh + 62px);padding-bottom:7vh}
+.hero-state{display:flex;justify-content:space-between;gap:30px;align-items:center;padding-bottom:10px}
 .hero-state span:last-child{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--lime)}
 .hero h1{font-size:clamp(82px,16vw,250px);line-height:.72;letter-spacing:-.085em;margin:7vh 0 5vh;font-weight:950;max-width:8ch}
 .hero h1 span{display:block;color:var(--lime)}
@@ -67,7 +67,7 @@
 .hero-side{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .hero-side div{padding:18px 0}.hero-side div+div{border-left:1px solid var(--line);padding-left:22px}
 .hero-side small{display:block;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}.hero-side b{font-size:15px;font-weight:600}
-.chapter{padding:clamp(90px,12vw,180px) 0;border-bottom:1px solid var(--line)}
+.chapter{padding:clamp(76px,9vw,132px) 0;border-bottom:1px solid var(--line)}
 .chapter h2{font-size:clamp(54px,7.6vw,118px);line-height:.86;letter-spacing:-.07em;margin:20px 0 34px;max-width:11ch}
 .chapter h2 em{font-style:normal;color:var(--lime)}
 .dek{font-size:clamp(20px,2vw,30px);line-height:1.25;letter-spacing:-.025em;color:var(--ink2);max-width:760px}
@@ -75,7 +75,7 @@
 .aside{border-left:1px solid var(--line);padding-left:24px;color:var(--muted);font-size:15px;line-height:1.65}
 .sequel{background:var(--deep)}
 .act-grid{margin-top:70px;display:grid;grid-template-columns:1fr 70px 1fr;align-items:center}
-.act{min-height:410px;border:1px solid var(--line);padding:clamp(28px,4vw,58px);display:flex;flex-direction:column;justify-content:space-between;background:rgba(11,23,20,.62)}
+.act{min-height:360px;border-block:1px solid var(--line);padding:clamp(28px,4vw,48px) 0;display:flex;flex-direction:column;justify-content:space-between;background:transparent}
 .act .label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}.act h3{font-size:clamp(42px,5vw,78px);line-height:.9;letter-spacing:-.06em;margin:18px 0}.act p{color:var(--muted);max-width:36ch;line-height:1.55;margin:0}
 .act-arrow{text-align:center;color:var(--lime);font-size:34px}
 .ladder{margin-top:32px;border-block:1px solid var(--line);display:grid;grid-template-columns:repeat(6,1fr)}
@@ -83,7 +83,7 @@
 .rung small{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}.rung b{font-size:clamp(20px,2.2vw,36px);letter-spacing:-.035em}.rung.accent b{color:var(--lime)}
 .bridge-line{padding:clamp(80px,10vw,150px) 0;background:var(--lime);color:var(--bg)}
 .bridge-line .tag{color:rgba(7,17,15,.65)}.bridge-line h2{font-size:clamp(54px,8.4vw,132px);line-height:.82;letter-spacing:-.075em;margin:20px 0 30px;max-width:11ch}.bridge-line p{font-size:clamp(20px,2vw,30px);line-height:1.25;max-width:760px;margin:0}
-.speed-model{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);margin-top:64px}
+.speed-model{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin-top:58px}
 .speed{padding:34px;min-height:310px;display:flex;flex-direction:column;justify-content:space-between}.speed+.speed{border-left:1px solid var(--line)}
 .speed .n{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}.speed h3{font-size:clamp(34px,3vw,50px);letter-spacing:-.05em;margin:18px 0}.speed p{color:var(--muted);line-height:1.55;margin:0}.speed strong{font-size:13px;color:var(--lime)}
 .gate{background:var(--field)}
@@ -92,7 +92,7 @@
 .record{border-top:1px solid var(--line)}.record-row{display:grid;grid-template-columns:130px 1fr 1fr;padding:18px 0;border-bottom:1px solid var(--line);gap:20px}
 .record-row b{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}.record-row span{font-size:14px;color:var(--ink2)}.record-row .open{color:var(--dim)}
 .between{background:var(--deep)}
-.two-weeks{margin-top:58px;display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line)}
+.two-weeks{margin-top:52px;display:grid;grid-template-columns:1fr 1fr;border-block:1px solid var(--line)}
 .week{padding:clamp(32px,4vw,58px);min-height:380px}.week+.week{border-left:1px solid var(--line)}
 .week .num{font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:var(--lime)}.week h3{font-size:clamp(42px,4vw,65px);letter-spacing:-.055em;margin:22px 0}.week p{color:var(--muted);line-height:1.55;max-width:40ch}
 .week ul{list-style:none;padding:0;margin:28px 0 0;border-top:1px solid var(--line)}.week li{padding:12px 0;border-bottom:1px solid var(--line2);font-size:14px;color:var(--ink2)}
@@ -152,7 +152,7 @@ footer{padding:34px var(--gutter);max-width:var(--max);margin:auto;display:flex;
 
 .exposure{padding:clamp(58px,7vw,92px) 0;background:#08120f;border-bottom:1px solid var(--line)}
 .exposure-head{display:flex;justify-content:space-between;gap:32px;align-items:end;margin-bottom:34px}.exposure-head p{margin:0;max-width:520px;color:var(--muted);line-height:1.55}
-.exposure-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line)}
+.exposure-grid{display:grid;grid-template-columns:1fr 1fr;border-block:1px solid var(--line)}
 .exposure-act{padding:28px}.exposure-act+.exposure-act{border-left:1px solid var(--line)}
 .exposure-label{display:flex;justify-content:space-between;gap:20px;margin-bottom:24px}.exposure-label span{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}.exposure-label b{font-size:10px;letter-spacing:.12em;text-transform:uppercase;text-align:right}
 .strip{height:10px;background:rgba(242,244,239,.1);margin:13px 0;position:relative;overflow:hidden}
@@ -168,10 +168,26 @@ footer{padding:34px var(--gutter);max-width:var(--max);margin:auto;display:flex;
 .amendment-row time{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--lime)}.amendment-row b{font-size:17px}.amendment-row p{margin:0;color:var(--muted);line-height:1.55}.amendment-row.open{opacity:.62}
 @media(max-width:900px){.exposure-head{display:block}.exposure-head p{margin-top:16px}.exposure-grid{grid-template-columns:1fr}.exposure-act+.exposure-act{border-left:0;border-top:1px solid var(--line)}.protocol-grid{grid-template-columns:1fr}.protocol-grid>div:nth-child(even){padding-left:0;border-left:0}.amendment-row{grid-template-columns:1fr;gap:8px}}
 
+
+/* Packaging pass: plain-language hierarchy and less box chrome. */
+.hero h1,.chapter h2,.bridge-line h2,.finale h2{text-wrap:balance}
+.hero-lede,.aside,.dek,.phase p,.hyp p,.protocol p{text-wrap:pretty}
+.plain-hyp{display:grid;grid-template-columns:repeat(4,1fr);margin-top:48px;border-block:1px solid var(--line)}
+.plain-hyp>div{padding:22px 22px 24px 0}.plain-hyp>div+div{padding-left:22px;border-left:1px solid var(--line)}
+.plain-hyp span{display:block;font-size:9px;letter-spacing:.14em;color:var(--lime);margin-bottom:10px}.plain-hyp b{font-size:17px;line-height:1.3;letter-spacing:-.02em}
+@media(max-width:900px){.plain-hyp{grid-template-columns:1fr 1fr}.plain-hyp>div:nth-child(3){border-left:0;border-top:1px solid var(--line)}.plain-hyp>div:nth-child(4){border-top:1px solid var(--line)}}
+@media(max-width:620px){
+  .hero .shell{padding-top:110px}
+  .hero-state{gap:7px}
+  .plain-hyp{grid-template-columns:1fr}.plain-hyp>div,.plain-hyp>div+div{padding:18px 0;border-left:0;border-top:1px solid var(--line)}.plain-hyp>div:first-child{border-top:0}
+  .speed{min-height:0;padding:26px 0}.speed+.speed{padding-left:0}
+  .act{min-height:0}
+}
+
 </style>
 </head>
 <body>
-<header class="mast"><div class="shell"><a class="brand" href="/">FORM<span>.</span></a><nav><a href="#sequel">The sequel</a><a href="#gate">Orlando</a><a href="#between">Transition</a><a href="#runway">Donna block</a><a href="/plans/marathon-durability/">Plan ↗</a></nav></div></header>
+<header class="mast"><div class="shell"><a class="brand" href="/">FORM<span>.</span></a><nav><a href="#sequel">The question</a><a href="#gate">Orlando</a><a href="#runway">Donna</a><a href="#evidence">Evidence</a><a href="/plans/marathon-durability/">Plan ↗</a></nav></div></header>
 
 <main>
 <section class="hero">
@@ -179,7 +195,7 @@ footer{padding:34px var(--gutter);max-width:var(--max);margin:auto;display:flex;
     <div class="hero-state"><div class="tag"><b>FORM LABS · STUDY 03</b> · Hope + José</div><span>Protocol v1.0 · hypotheses locked Sep 20, 2026 · pre-Orlando</span></div>
     <h1>THE LAST<span>10K.</span></h1>
     <div class="hero-bottom">
-      <p class="hero-lede">Act I increased how long they could hold the capability. Act II increases how much running can happen before they still have it.</p>
+      <p class="hero-lede">You can have the pace and still lose it when the marathon gets old. This study asks one question: can Hope and José still find it late?</p>
       <div class="hero-side">
         <div><small>Test 01</small><b>Orlando Half<br>Dec 05 · 2026</b></div>
         <div><small>Test 02</small><b>Donna Marathon<br>Feb 07 · 2027</b></div>
@@ -190,7 +206,7 @@ footer{padding:34px var(--gutter);max-width:var(--max);margin:auto;display:flex;
 
 <section class="exposure" aria-label="Act I and Act II exposure">
   <div class="shell">
-    <div class="exposure-head"><div class="tag"><b>60-second read</b> · same capability · different context</div><p>Act I grew the work at the capability. Act II keeps that capability visible while more running happens before it.</p></div>
+    <div class="exposure-head"><div class="tag"><b>In plain English</b> · same tool · harder moment</div><p>Act I made the fast part longer. Act II keeps the fast part about the same and puts more running in front of it.</p></div>
     <div class="exposure-grid">
       <div class="exposure-act">
         <div class="exposure-label"><span>ACT I · 13.1</span><b>MORE DISTANCE AT CAPABILITY</b></div>
@@ -211,12 +227,12 @@ footer{padding:34px var(--gutter);max-width:var(--max);margin:auto;display:flex;
 <section class="chapter sequel" id="sequel"><div class="shell">
   <div class="split">
     <div><div class="tag"><b>01</b> · The sequel</div><h2>THE PACE STAYS.<br><em>THE CONTEXT CHANGES.</em></h2></div>
-    <div class="aside">Race Pace Durability asked how long each athlete could keep an already-reachable pace as the resets disappeared. Donna asks a different question: how much running can happen before that capability still has to be there?</div>
+    <div class="aside">Think of pace like a tool they already own. Act I taught them to hold it longer. Act II asks whether they can still pull it out after the run has already taken something from them.</div>
   </div>
   <div class="act-grid">
-    <article class="act"><div><div class="label">Act I · Speed That Endures</div><h3>MAKE THE PACE LAST.</h3><p>Broken work becomes longer continuous exposure until the half marathon answers the question under race conditions.</p></div><div class="tag">Miles at the pace ↑</div></article>
+    <article class="act"><div><div class="label">Act I · Speed That Endures</div><h3>HOLD IT LONGER.</h3><p>Start with breaks. Remove the breaks. Keep extending how long the pace stays continuous.</p></div><div class="tag">More distance at the pace</div></article>
     <div class="act-arrow">→</div>
-    <article class="act"><div><div class="label">Act II · The Last 10K</div><h3>MAKE IT AVAILABLE LATE.</h3><p>The pace moves inside the long run. The work before it becomes part of the ask.</p></div><div class="tag">Miles before the pace ↑</div></article>
+    <article class="act"><div><div class="label">Act II · The Last 10K</div><h3>FIND IT LATER.</h3><p>Keep the capability. Add more running before it. The question moves deeper into the day.</p></div><div class="tag">More distance before the pace</div></article>
   </div>
   <div class="ladder" aria-label="Act I into Act II progression">
     <div class="rung"><small>Act I</small><b>2 + 2 + 2</b></div><div class="rung"><small>Continuous</small><b>5 · 6 · 8</b></div><div class="rung"><small>Late</small><b>12</b></div>
@@ -224,19 +240,19 @@ footer{padding:34px var(--gutter);max-width:var(--max);margin:auto;display:flex;
   </div>
 </div></section>
 
-<section class="bridge-line"><div class="shell"><div class="tag">The working theory</div><h2>PROLONG THE ATHLETE.<br>DON'T FLATTEN THE ATHLETE.</h2><p>The marathon gets longer. That does not mean every part of training gets slower. We keep a ceiling above the event, preserve the faster specific reserve built in Act I, and teach marathon rhythm to survive accumulated load.</p></div></section>
+<section class="bridge-line"><div class="shell"><div class="tag">The simple rule</div><h2>THE RACE GETS LONGER.<br>THE RUNNER DOESN'T HAVE TO GET SLOWER.</h2><p>Longer marathon work does not mean making every session marathon pace. Faster work keeps room above the race. The long runs teach when useful pace can still show up.</p></div></section>
 
 <section class="chapter" id="theory"><div class="shell">
-  <div class="split"><div><div class="tag"><b>02</b> · Three speeds</div><h2>ONE RACE.<br><em>THREE JOBS.</em></h2></div><div class="aside">The phrase “race pace” becomes too vague once the half-marathon block becomes a marathon block. The sequel separates the jobs instead of letting one number do all the thinking.</div></div>
+  <div class="split"><div><div class="tag"><b>02</b> · Three speeds</div><h2>THREE SPEEDS.<br><em>THREE DIFFERENT JOBS.</em></h2></div><div class="aside">One pace cannot explain the whole block. We keep a faster layer above the race, the capability built in Act I, and the rhythm the marathon can actually carry.</div></div>
   <div class="speed-model">
-    <article class="speed"><div><div class="n">01 · Ceiling</div><h3>ABOVE THE RACE.</h3><p>Threshold, aerobic power and FORM speed work keep the athlete powerful and economical above marathon demand.</p></div><strong>KEEP RAISING WHAT IS AVAILABLE.</strong></article>
-    <article class="speed"><div><div class="n">02 · Specific reserve</div><h3>WHAT ACT I BUILT.</h3><p>The faster pace established through Race Pace Durability remains a capability to protect and re-access under fatigue.</p></div><strong>DO NOT SOFTEN IT JUST BECAUSE THE EVENT IS LONGER.</strong></article>
-    <article class="speed"><div><div class="n">03 · Marathon rhythm</div><h3>WHAT 26.2 REQUIRES.</h3><p>Race-day rhythm is its own decision. Orlando and the Donna block determine what can be distributed safely across the full distance.</p></div><strong>TRAINING BAND ≠ AUTOMATIC RACE-DAY PACE.</strong></article>
+    <article class="speed"><div><div class="n">01 · Ceiling</div><h3>ROOM ABOVE RACE PACE.</h3><p>Threshold and faster running keep range above marathon effort.</p></div><strong>KEEP THE ENGINE OPEN.</strong></article>
+    <article class="speed"><div><div class="n">02 · Specific reserve</div><h3>THE FASTER PACE WE ALREADY BUILT.</h3><p>This is the Act I capability. We keep touching it so the marathon block does not erase it.</p></div><strong>KEEP IT AVAILABLE.</strong></article>
+    <article class="speed"><div><div class="n">03 · Marathon rhythm</div><h3>WHAT RACE DAY CAN CARRY.</h3><p>This is the pace that can actually be spread across 26.2. Orlando helps decide it.</p></div><strong>RACE-DAY PACE IS ITS OWN DECISION.</strong></article>
   </div>
 </div></section>
 
 <section class="chapter gate" id="gate"><div class="shell">
-  <div class="split"><div><div class="tag"><b>03</b> · Decision gate</div><h2>ORLANDO<br><em>WRITES ACT II.</em></h2><p class="dek">The Donna hypothesis exists now. The resolved Donna prescription waits for the race.</p></div><div class="aside">A fast half does not automatically validate the marathon. A disappointing half does not automatically erase the method. The race tells us what each athlete established, what became expensive, and what the next block actually needs.</div></div>
+  <div class="split"><div><div class="tag"><b>03</b> · Decision gate</div><h2>ORLANDO<br><em>WRITES ACT II.</em></h2><p class="dek">Orlando is not a grade. It tells us what each athlete actually owns before we decide Donna.</p></div><div class="aside">A fast half does not automatically mean “go faster.” A rough half does not automatically mean the method failed. We read what held, what got expensive, why it happened and how the athlete recovered.</div></div>
   <div class="gate-grid">
     <div class="gate-note">Same race. Same study question. <span>Two independent records.</span></div>
     <div class="record" aria-label="Orlando evidence fields">
@@ -250,7 +266,7 @@ footer{padding:34px var(--gutter);max-width:var(--max);margin:auto;display:flex;
 </div></section>
 
 <section class="chapter between" id="between"><div class="shell">
-  <div class="split"><div><div class="tag"><b>04</b> · Between blocks</div><h2>RECOVER.<br><em>THEN RETURN.</em></h2></div><div class="aside">There is no blank space after Orlando. The first two weeks have a job: absorb the race, restore normal movement and frequency, then arrive ready to train again. No performance test belongs here.</div></div>
+  <div class="split"><div><div class="tag"><b>04</b> · Between blocks</div><h2>TWO WEEKS.<br><em>NO TEST.</em></h2></div><div class="aside">First recover. Then return to normal running. Being tired after a race is not missing work, and nothing in these two weeks needs to prove fitness.</div></div>
   <div class="two-weeks">
     <article class="week"><div><div class="num">Week 01 · Dec 06–12</div><h3>RECOVER</h3><p>Unload Orlando and the 15-week accumulation. Absence of intensity is intentional, not missing work.</p></div><ul><li>4–5 running days maximum</li><li>~24–30 miles or less if response asks for less</li><li>Easy only · no pace requirement</li><li>Race debrief captured</li><li>No long-run achievement to prove</li></ul></article>
     <article class="week"><div><div class="num">Week 02 · Dec 13–19</div><h3>RETURN</h3><p>Restore rhythm without creating a new performance question.</p></div><ul><li>5–6 running days</li><li>~34–40 miles</li><li>Easy frequency returns</li><li>Short strides or hills if comfortable</li><li>Relaxed 9–10 mile long run · no test</li></ul></article>
@@ -259,8 +275,8 @@ footer{padding:34px var(--gutter);max-width:var(--max);margin:auto;display:flex;
 
 <section class="chapter runway" id="runway"><div class="shell">
   <div class="runway-head">
-    <div><div class="tag"><b>05</b> · Donna runway · working v2</div><h2>MOVE THE ASK<br><em>DEEPER.</em></h2></div>
-    <p>This is the current nine-week season hypothesis, not a universal marathon template. Orlando resolves the reserve band for each athlete. The progression does not chase more and more fast miles; it changes how much running comes before the capability is requested.</p>
+    <div><div class="tag"><b>05</b> · Donna runway</div><h2>THE SAME CAPABILITY.<br><em>LATER IN THE RUN.</em></h2></div>
+    <p>The block does not keep adding more fast miles. It keeps changing what happens before those miles. Orlando decides the exact assignment for each athlete.</p>
   </div>
   <div class="timeline">
     <div class="phase"><div class="wk">W1 · 24–30</div><h3>Recover</h3><p>Easy only. Four to five running days. No pace requirement. Orlando debrief, fueling, body and late-race context are filed before the next performance question begins.</p><div class="date">Dec 06–12</div></div>
@@ -281,18 +297,24 @@ footer{padding:34px var(--gutter);max-width:var(--max);margin:auto;display:flex;
     <div><div class="tag"><b>06</b> · Four hypotheses</div><h2>WHAT WE THINK.<br><em>BEFORE WE KNOW.</em></h2></div>
     <div class="aside">These are claims the work can weaken. Athlete branching and fueling rules are part of the study method; they are not hypotheses pretending to be outcomes.</div>
   </div>
+  <div class="plain-hyp">
+    <div><span>01</span><b>Can the pace still show up late?</b></div>
+    <div><span>02</span><b>Can faster work stay available?</b></div>
+    <div><span>03</span><b>Does patience early matter?</b></div>
+    <div><span>04</span><b>Does the smaller task stop being too expensive?</b></div>
+  </div>
   <div class="hyp-grid">
-    <article class="hyp"><small>H01 · Late access</small><h3>Move the capability later.</h3><p>If Act I establishes the reserve continuously, progressively increasing the running before it should preserve or improve access under accumulated load.</p></article>
-    <article class="hyp"><small>H02 · Ceiling preservation</small><h3>Keep faster performance available.</h3><p>Controlled threshold and aerobic-power performance should remain broadly stable through the marathon block without repeatedly degrading Saturday availability.</p></article>
-    <article class="hyp"><small>H03 · Restraint</small><h3>The closing 10K starts before mile 20.</h3><p>What the athlete spends before the decisive segment changes what remains available when the marathon becomes expensive.</p></article>
-    <article class="hyp"><small>H04 · Cost / absorption</small><h3>The smaller task should not stay expensive.</h3><p>After the principal Closing-10K exposure, a deliberately smaller late-reserve task should be completed without disproportionate cost or prolonged recovery.</p></article>
+    <article class="hyp"><small>H01 · Late access</small><h3>CAN IT STILL SHOW UP LATE?</h3><p>If Act I establishes the reserve continuously, progressively increasing the running before it should preserve or improve access under accumulated load.</p></article>
+    <article class="hyp"><small>H02 · Ceiling preservation</small><h3>CAN FASTER WORK STAY AVAILABLE?</h3><p>Controlled threshold and aerobic-power performance should remain broadly stable through the marathon block without repeatedly degrading Saturday availability.</p></article>
+    <article class="hyp"><small>H03 · Restraint</small><h3>DOES PATIENCE EARLY MATTER?</h3><p>What the athlete spends before the decisive segment changes what remains available when the marathon becomes expensive.</p></article>
+    <article class="hyp"><small>H04 · Cost / absorption</small><h3>DOES THE SMALLER TASK SETTLE?</h3><p>After the principal Closing-10K exposure, a deliberately smaller late-reserve task should be completed without disproportionate cost or prolonged recovery.</p></article>
   </div>
 </div></section>
 
 <section class="chapter disconfirm" id="what-changes"><div class="shell">
   <div class="split">
-    <div><div class="tag"><b>07</b> · What would change our mind?</div><h2>THE STUDY HAS TO BE<br><em>ALLOWED TO LOSE.</em></h2></div>
-    <div class="aside">No one number decides the verdict. We compare execution, athlete report, relevant physiological signals, mechanics where actually observed, fueling, conditions and 24–72 hour recovery.</div>
+    <div><div class="tag"><b>07</b> · What would change our mind?</div><h2>WHAT WOULD<br><em>PROVE US WRONG?</em></h2></div>
+    <div class="aside">No single watch number gets to decide the story. We compare the run, the athlete's report, fueling, conditions and recovery — then decide what the evidence actually supports.</div>
   </div>
   <div class="falsify-grid">
     <article><small>H01 weakens if</small><b>Later placement repeatedly removes access.</b><p>The reserve becomes unavailable despite controlled openings, deliberate fueling and otherwise comparable conditions.</p></article>
@@ -301,7 +323,7 @@ footer{padding:34px var(--gutter);max-width:var(--max);margin:auto;display:flex;
     <article><small>H04 weakens if</small><b>The reduced task still carries disproportionate cost.</b><p>The smaller W7 ask requires unusually high effort, the reserve disappears, mechanics materially deteriorate, or recovery remains meaningfully impaired.</p></article>
   </div>
   <div class="protocol">
-    <div class="protocol-head"><small>Protocol commitments</small><b>THE METHOD IS FROZEN. THE ANSWER IS NOT.</b><p>This is a prospective two-athlete coaching case study, not a controlled trial. It can show what happened to Hope and José under this method and challenge the coaching model; it cannot establish population-level causality.</p></div>
+    <div class="protocol-head"><small>What we locked before Orlando</small><b>THE QUESTIONS STAY PUT. THE ANSWERS CAN CHANGE.</b><p>This is a two-athlete coaching case study, not a controlled trial. We can show what happened to Hope and José and whether the idea survived contact with them. We cannot pretend two runners prove a universal rule.</p></div>
     <div class="protocol-grid">
       <div><small>Fueling</small><b>From W4, fuel is prescribed.</b><p>Use the race-intent strategy and record product, amount, timing and tolerance. A late fade under improvised fueling does not cleanly answer the durability question.</p></div>
       <div><small>Orlando decision framework</small><b>Output · cost · distribution · context · recovery · athlete report.</b><p>Each athlete is reassigned independently. The next step can keep, redefine, protect/delay, or branch the reserve/rhythm assignment. No single noisy metric decides the verdict.</p></div>
@@ -312,7 +334,7 @@ footer{padding:34px var(--gutter);max-width:var(--max);margin:auto;display:flex;
 </div></section>
 
 <section class="chapter" id="evidence"><div class="shell">
-  <div class="split"><div><div class="tag"><b>08</b> · Evidence</div><h2>OBSERVED.<br><em>READ. NEXT.</em></h2></div><div class="aside">The filing preserves what happened before interpretation. The coach read states what we currently think it means. Next states what changes because of it. Raw activity evidence stays available underneath where permission allows.</div></div>
+  <div class="split"><div><div class="tag"><b>08</b> · Evidence</div><h2>WHAT HAPPENED.<br><em>WHAT IT MEANS. WHAT CHANGES.</em></h2></div><div class="aside">First we file the run. Then we say what we think it means. Then we decide the next move. The raw activity stays available underneath where permission allows.</div></div>
   <div class="evidence-grid">
     <div class="ev"><small>Output</small><b>What happened?</b><p>Pace, distance, segment splits, completion.</p></div>
     <div class="ev"><small>Cost</small><b>What did it require?</b><p>Effort, drift, mechanical change where useful.</p></div>
@@ -323,7 +345,7 @@ footer{padding:34px var(--gutter);max-width:var(--max);margin:auto;display:flex;
 </div></section>
 
 <section class="chapter amendments" id="amendments"><div class="shell">
-  <div class="split"><div><div class="tag"><b>09</b> · Amendments log</div><h2>WHAT CHANGED.<br><em>AND WHY.</em></h2></div><div class="aside">Protocol v1.0 was committed before Orlando. Later changes will be appended here rather than overwriting the original claim.</div></div>
+  <div class="split"><div><div class="tag"><b>09</b> · Amendments log</div><h2>WHEN WE CHANGE THE PLAN,<br><em>THE OLD VERSION STAYS VISIBLE.</em></h2></div><div class="aside">The point of a living study is not to look right afterward. It is to keep the record of what we believed before the result arrived.</div></div>
   <div class="amendment-row"><time datetime="2026-09-20">Sep 20 · 2026</time><b>Protocol v1.0 locked.</b><p>Four hypotheses, Donna runway, fueling rule, decision framework and evidence grammar committed pre-Orlando.</p></div>
   <div class="amendment-row open"><time>Next entry</time><b>Awaiting Orlando.</b><p>Original prescription remains visible until evidence requires a change.</p></div>
 </div></section>
@@ -336,6 +358,6 @@ footer{padding:34px var(--gutter);max-width:var(--max);margin:auto;display:flex;
   <div class="actions"><a class="button primary" href="/plans/marathon-durability/">Open Marathon Durability →</a><a class="button" href="/labs/speed-that-endures/">Read Act I →</a></div>
 </div></section>
 </main>
-<footer><span>FORM Labs · The Last 10K</span><span>Working v2 · hypothesis before outcome</span></footer>
+<footer><span>FORM Labs · The Last 10K</span><span>Protocol v1.0 · pre-Orlando</span></footer>
 </body>
 </html>
