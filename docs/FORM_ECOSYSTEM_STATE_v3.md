@@ -1,4 +1,7 @@
 # FORM — ECOSYSTEM STATE
+
+> **Historical:** Superseded by `FORM_ECOSYSTEM_STATE_v4.md` on September 20, 2026. Keep this file for release history; do not use it as current route/product state.
+
 ## v3 · 2026-09-09 · the public site is closed. The work moves to the app.
 
 Supersedes `FORM_ECOSYSTEM_STATE_v2.md`. Status words are used literally, per v2 §0:
