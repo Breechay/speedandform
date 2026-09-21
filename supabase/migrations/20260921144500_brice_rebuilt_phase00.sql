@@ -113,7 +113,7 @@ begin
     insert into public.training_plan_weeks(
       plan_id,version_id,week_number,phase,total_distance,intent
     ) values (
-      v_plan,v_version,w.week_number,'reconstitution',null,w.intent
+      v_plan,v_version,w.week_number,'build',null,w.intent
     ) returning id into v_plan_week;
 
     insert into public.training_plan_sessions(
