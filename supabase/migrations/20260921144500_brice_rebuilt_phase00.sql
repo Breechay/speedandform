@@ -37,7 +37,7 @@ begin
   end if;
 
   if exists (
-    select 1 from public.training_blocks
+    select 1 from public.training_blocks tb
      where tb.athlete_id=v_athlete and tb.status='active'
   ) then
     raise exception 'Brice already has an active training block; refusing to stack a second one';
@@ -248,7 +248,7 @@ begin
     raise exception 'expected 3 Brice weeks';
   end if;
 
-  if (select count(*) from public.planned_sessions where ps.athlete_id=v_athlete and ps.week_id in (
+  if (select count(*) from public.planned_sessions ps where ps.athlete_id=v_athlete and ps.week_id in (
         select tw.id from public.training_weeks tw where tw.block_id=v_block
       )) <> 9 then
     raise exception 'expected 9 Brice running sessions';
