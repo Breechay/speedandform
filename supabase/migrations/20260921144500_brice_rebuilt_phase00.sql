@@ -256,12 +256,12 @@ begin
       s.title,
       s.intent,
       v_week_start + case s.day_of_week when 'TUE' then 1 when 'THU' then 3 when 'SAT' then 5 end,
-      s.position,
-      null,
-      'mi',
-      v_duration_min,
-      2,
-      3,
+      s.position::smallint,
+      null::numeric,
+      'mi'::text,
+      v_duration_min::integer,
+      2::smallint,
+      3::smallint,
       v_parts,
       s.details
     );
