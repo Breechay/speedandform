@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "season_id": "brice_rebuilt_athlete_phase00_20260921",
+  "program_id": "brice_rebuilt_phase00_v1",
+  "athlete": "Brice",
+  "athlete_slug": "brice",
+  "title": "The Rebuilt Athlete · Phase 00",
+  "status": "coach_authored_self_execution",
+  "start_date": "2026-09-21",
+  "end_date": "2026-10-11",
+  "duration_weeks": 3,
+  "authority": {
+    "system": "FORM Athlete System",
+    "rule": "The backend assignment and immutable session versions are the running prescription source of truth. This JSON is a web projection for review and must not independently revise filed athlete evidence."
+  },
+  "study_path": "/labs/rebuilt-athlete/",
+  "week_path": "/plans/rebuilt-athlete-phase-00/",
+  "objective": "Rebuild repeatable easy running, aerobic capacity, lower-leg confidence, strength and whole-body practice without choosing a race.",
+  "run_surface": "outdoors_or_treadmill",
+  "run_surface_rule": "Choose the surface that makes the easy run easiest to execute. Outdoors is welcome; treadmill remains fully valid. Surface is not a progression test.",
+  "run_guardrails": [
+    "Easy running stays conversational at about RPE 2–3/10.",
+    "No pace target in Phase 00.",
+    "Tuesday and Saturday are the running anchors. Thursday is optional.",
+    "No doubles and no makeup minutes.",
+    "Stop or shorten if pain becomes focal, rises, changes stride, swelling appears or the next morning is clearly worse."
+  ],
+  "form_scope": "FORM carries the running prescription and running filing only. Forge owns strength execution and filing. Study 002 integrates the evidence.",
+  "weeks": [
+    {
+      "week": 1,
+      "start_date": "2026-09-21",
+      "end_date": "2026-09-27",
+      "intent": "Establish the repeatable weekly rhythm.",
+      "runs": [
+        {
+          "weekday": "Tuesday",
+          "title": "Easy run",
+          "duration_min": 35,
+          "optional": false
+        },
+        {
+          "weekday": "Thursday",
+          "title": "Optional easy run",
+          "duration_min_range": [
+            25,
+            30
+          ],
+          "optional": true
+        },
+        {
+          "weekday": "Saturday",
+          "title": "Longer easy run",
+          "duration_min": 45,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "start_date": "2026-09-28",
+      "end_date": "2026-10-04",
+      "intent": "Add time, not intensity.",
+      "runs": [
+        {
+          "weekday": "Tuesday",
+          "title": "Easy run",
+          "duration_min": 40,
+          "optional": false
+        },
+        {
+          "weekday": "Thursday",
+          "title": "Optional easy run",
+          "duration_min": 30,
+          "optional": true
+        },
+        {
+          "weekday": "Saturday",
+          "title": "Longer easy run",
+          "duration_min": 55,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "start_date": "2026-10-05",
+      "end_date": "2026-10-11",
+      "intent": "Confirm that the rhythm remains absorbable.",
+      "runs": [
+        {
+          "weekday": "Tuesday",
+          "title": "Easy run",
+          "duration_min": 45,
+          "optional": false
+        },
+        {
+          "weekday": "Thursday",
+          "title": "Optional easy run",
+          "duration_min": 35,
+          "optional": true
+        },
+        {
+          "weekday": "Saturday",
+          "title": "Longer easy run",
+          "duration_min": 65,
+          "optional": false
+        }
+      ]
+    }
+  ],
+  "typical_week": {
+    "Monday": {
+      "strength": "Glute Hinge",
+      "engine": "Stationary bike 25 min easy",
+      "maintenance": [
+        "MOBO 60–120 sec",
+        "Band clamshell 1–2 × 12–15 / side"
+      ]
+    },
+    "Tuesday": {
+      "run": "Easy run",
+      "strength": "Upper Push",
+      "maintenance": [
+        "Run prep with MOBO",
+        "Plantar ball",
+        "Short-lever Copenhagen 2 × 20 sec / side"
+      ]
+    },
+    "Wednesday": {
+      "strength": "Glute Thrust",
+      "engine": "Elliptical 30 min easy",
+      "maintenance": [
+        "MOBO 60–120 sec"
+      ]
+    },
+    "Thursday": {
+      "run": "Optional easy run",
+      "strength": "Pull",
+      "maintenance": [
+        "Short-lever Copenhagen 2 × 20 sec / side"
+      ]
+    },
+    "Friday": {
+      "strength": "Lower Pump + Core",
+      "engine": "Stationary bike 25 min easy",
+      "maintenance": [
+        "MOBO 60–120 sec",
+        "Band clamshell 1–2 × 12–15 / side"
+      ]
+    },
+    "Saturday": {
+      "run": "Longer easy run",
+      "strength": "Full Upper",
+      "maintenance": [
+        "Run prep with MOBO",
+        "Plantar ball",
+        "Gentle calf foam roll"
+      ]
+    },
+    "Sunday": {
+      "recovery": "10-minute restore",
+      "movement": "Walking · Yin · Ashtanga open"
+    }
+  }
+}
