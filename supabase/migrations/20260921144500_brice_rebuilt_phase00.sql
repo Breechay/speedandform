@@ -64,10 +64,22 @@ begin
          updated_at=now()
    where id=v_athlete;
 
-  insert into public.athlete_memberships(athlete_id,user_id,role,status)
-  values (v_athlete,v_coach,'athlete','active')
-  on conflict (athlete_id,user_id,role)
-  do update set status='active';
+  -- Identity ownership is already established and must not be rewritten here.
+  -- Brice's Sign in with Apple user owns the athlete role; briceikouebe@gmail.com
+  -- remains the coach identity. Native filing therefore uses the same athlete-only
+  -- door as every other athlete while Coach Board / Mirror can read the record.
+  if (select count(*) from public.athlete_memberships m
+       where m.athlete_id=v_athlete and m.role='athlete' and m.status='active') <> 1 then
+    raise exception 'Brice must have exactly one active athlete owner before Phase 00 is assigned';
+  end if;
+
+  if not exists (
+    select 1 from public.athlete_memberships m
+     where m.athlete_id=v_athlete and m.user_id=v_coach
+       and m.role='coach' and m.status='active'
+  ) then
+    raise exception 'Brice coach membership missing; refusing to provision a plan the coach cannot mirror';
+  end if;
 
   insert into public.training_plans(
     slug,name,discipline,total_weeks,status,question,for_whom,authored_by
