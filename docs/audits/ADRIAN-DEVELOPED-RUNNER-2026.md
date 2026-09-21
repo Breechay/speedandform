@@ -109,3 +109,27 @@ The zeroes matter. The prescription is authored; completed work has not been inv
 Forge is not declared synchronized because the backend or web changed.
 
 Native delivery must consume the FORM Athlete System assignment/feed path, preserve exact session/version identity, and pass installed-device acceptance before Forge is called current for the extended season. Historical receipt identity remains immutable. The active iOS work should not hand-author a competing 16-week program.
+
+## September 21 field update — the run week is now day-level, not just mileage
+
+Adrian supplied the running-coach schedule for Week 02. The already-authored 44-mile total now has useful structure: Monday 6 easy; Tuesday 6 easy plus short strides; Wednesday roughly 8 miles with 8 × 2 minutes at 6:00/mi and 2-minute jog recoveries; Thursday 6 easy; Friday 6 easy plus strides; Saturday 12 easy; Sunday off running.
+
+He also reported that the prior Saturday long run moved to Sunday, the Sunday strength session was skipped, and travel plus a late return reduced recovery entering Week 02. This is athlete-reported context, not a completed-work claim.
+
+Canonical coaching decision effective September 21:
+- do not make up or compress the missed strength session;
+- make Monday a recovery/easy-run day;
+- Upper A may move one day to Tuesday if recovery is normal;
+- protect Wednesday quality work and Saturday's long run;
+- keep Thursday Lower A controlled with no added volume;
+- keep Friday Upper B as authored;
+- make Sunday Lower B conditional on normal legs after Saturday, otherwise skip it rather than rolling it forward.
+
+The FORM Athlete System was updated first: Week 02 is in progress, the Monday-to-Tuesday move is recorded without rewriting the original session, and the athlete-reported run/recovery context plus coach decision are preserved separately.
+
+### Projection / native consequence
+
+The web projection and public study now distinguish the 44-mile plan from completed running evidence. The public study omits unnecessary personal travel/event detail.
+
+The current Forge build remains the delivered 16-week / 58-session season. The next native ship should consume more than weekly mileage: day-level key-run placement, long-run displacement, recovery disruption, missed-strength handling, and the rule that strength yields without catch-up stacking. Existing session/receipt identity and completed history must remain unchanged.
+

@@ -1001,7 +1001,7 @@ const STUDY = {
  "id": "FRM-001",
  "index": "Study 001",
  "slug": "developed-runner",
- "version": "2026.09.18.1",
+ "version": "2026.09.21.1",
  "status": "active",
  "statusLabel": "Active study",
  "creed": "Develop the body. Preserve the runner.",
@@ -1403,7 +1403,7 @@ const STUDY = {
    "start": "2026-09-21",
    "end": "2026-09-27",
    "intent": "Keep the proven four-day rhythm, but spend the recovery budget where Adrian has the most useful room to develop.",
-   "prog": "Use Week 01 loads only as reference. New cable/accessory movements start conservatively. Upper body may progress; lower body stays controlled during the 44-mile run week.",
+   "prog": "Known run structure: Wednesday quality and Saturday long run are protected. Do not make up the missed Sunday lift. Upper A may move one day if recovery is normal. Lower work stays controlled and yields if the run response is not normal.",
    "days": [
     {
      "d": "Monday",
@@ -3360,6 +3360,14 @@ const STUDY = {
  "strengthPending": "Loads and reps for the remaining Week 01 sessions and all of Week 02 have not been filed.",
  "running": [
   {
+   "date": "2026-09-21",
+   "session": "Week 02 plan · 44 mi · Wed 8 × 2 min @ 6:00 / mi · Sat 12 mi long run",
+   "dist": "44 mi planned",
+   "pace": "Plan, not completion",
+   "time": "7 days",
+   "src": "Athlete-supplied running-coach schedule"
+  },
+  {
    "date": "2026-06-26",
    "session": "2 mi WU · 4 × 1 mi w/ 90 s jog · 2.4 mi CD",
    "dist": "9.01 mi",
@@ -3590,6 +3598,22 @@ const STUDY = {
    "body": "Same four-day rhythm, different targets. Development moves toward chest, arms, upper back and medial thigh. Lower body stays controlled because Week 02 is a 44 mile running week."
   },
   {
+   "id": "week-02-run-structure",
+   "when": "Sep 21",
+   "kind": "Running plan filed",
+   "type": "note",
+   "title": "The 44-mile week now has shape",
+   "body": "The mileage number was already known. The day-level schedule is new: Wednesday is 8 × 2 minutes at 6:00 per mile inside about eight miles, and Saturday is a 12-mile long run. Those two sessions are protected. The prior long run moved to Sunday, so missed strength is not being stacked back into the week."
+  },
+  {
+   "id": "week-02-strength-adjustment",
+   "when": "Sep 21",
+   "kind": "Coach decision",
+   "type": "change",
+   "title": "Strength yields to the actual week",
+   "body": "Monday becomes recovery. Upper A may move to Tuesday if recovery is normal. Thursday lower stays controlled. Sunday lower is conditional on normal legs after the Saturday long run; if not, it is skipped rather than rolled forward."
+  },
+  {
    "id": "race-rockin-rib",
    "when": "Nov 15",
    "kind": "Race anchor",
@@ -3615,11 +3639,11 @@ const STUDY = {
   }
  ],
  "currentRead": {
-  "date": "2026-09-18",
-  "n": "01",
-  "body": "Nothing has been measured. No mass, no circumferences, no standardized photographs. There is no body result to report and there will not be one for weeks.",
-  "running": "All running evidence on file is pre-intervention. It establishes what Adrian was before load, which is the only thing it can do at this point.",
-  "next": "File the baseline. Then repeat the dose that was tolerated and verify it survives a 44 mile week."
+  "date": "2026-09-21",
+  "n": "02",
+  "body": "Body evidence is still missing: no mass trend, circumferences or standardized photo set has been filed. There is still no hypertrophy result to claim.",
+  "running": "Week 02 is no longer just a 44-mile total. The day-level running plan is filed, with Wednesday quality work and Saturday's 12-mile long run as the protected anchors. These are prescriptions, not completed outcomes.",
+  "next": "Let strength yield to the week. Do not make up the missed Sunday lift. Record the Wednesday and Saturday run response, and only keep the Sunday lower session if the long run leaves the legs normal."
  },
  "archive": [],
  "protocol": {
@@ -3627,7 +3651,7 @@ const STUDY = {
   "legacy": "adrian_runner_mass_phase1_v1",
   "version": "Chapter 01 · 2026",
   "implementation": "Adrian · 16 weeks · 58 published sessions",
-  "phase": "Week 01 closing · Week 02 authored",
+  "phase": "Week 02 · active",
   "authority": "FORM Athlete System",
   "running": "Athlete-led · strength yields first",
   "ladder": [
@@ -3649,7 +3673,7 @@ const STUDY = {
    "Missing evidence stays missing."
   ],
   "note": "Adrian is the first documented implementation of this framework, not the prescription itself. His four weekly sessions and his mileage are his dose. The order of authority travels. The numbers do not.",
-  "forge": "Native Forge is not called current until installed-device acceptance proves assignment, session and receipt continuity."
+  "forge": "The current Forge build carries the authored 16-week season through Dec 31. Day-level run context and week-specific strength adjustments are the next native delivery step; until that ships, current-week changes are delivered directly without rewriting completed history."
  },
  "queue": [
   [
