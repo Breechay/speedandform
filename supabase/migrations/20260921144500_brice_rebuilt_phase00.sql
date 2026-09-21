@@ -12,7 +12,7 @@ select set_config(
 
 do $$
 declare
-  coach_id uuid := auth.uid();
+  v_coach uuid := auth.uid();
   v_athlete uuid;
   v_plan uuid;
   v_version uuid;
@@ -21,30 +21,35 @@ declare
   v_plan_week uuid;
   v_plan_session uuid;
   v_occurrence uuid;
-  parts jsonb;
+  v_parts jsonb;
+  v_week_start date;
+  v_duration_min integer;
   w record;
   s record;
-  week_start date;
-  duration_min integer;
 begin
-  if coach_id is null then
+  if v_coach is null then
     raise exception 'Brice auth identity not found';
   end if;
 
-  select a.id into v_athlete from public.athletes a where slug='brice' and active=true;
+  select a.id into v_athlete
+    from public.athletes a
+   where a.slug='brice' and a.active=true;
+
   if v_athlete is null then
     raise exception 'Brice athlete identity missing';
   end if;
 
   if exists (
-    select 1 from public.training_blocks tb
-     where tb.athlete_id=v_athlete and tb.status='active'
+    select 1
+      from public.training_blocks b
+     where b.athlete_id=v_athlete and b.status='active'
   ) then
     raise exception 'Brice already has an active training block; refusing to stack a second one';
   end if;
 
   if exists (
-    select 1 from public.training_plans where slug='brice-rebuilt-athlete-phase-00'
+    select 1 from public.training_plans p
+     where p.slug='brice-rebuilt-athlete-phase-00'
   ) then
     raise exception 'Phase 00 plan already exists; refusing duplicate migration';
   end if;
@@ -60,7 +65,7 @@ begin
    where id=v_athlete;
 
   insert into public.athlete_memberships(athlete_id,user_id,role,status)
-  values (v_athlete,coach_id,'athlete','active')
+  values (v_athlete,v_coach,'athlete','active')
   on conflict (athlete_id,user_id,role)
   do update set status='active';
 
@@ -74,14 +79,16 @@ begin
     'published',
     'Can easy running become repeatable again while lower-leg recovery and Forge strength remain stable?',
     'Brice · post-fracture Phase 00 reconstitution',
-    coach_id
+    v_coach
   ) returning id into v_plan;
 
-  insert into public.training_plan_versions(plan_id,version_number,summary,cut_by)
-  values (
-    v_plan,1,
+  insert into public.training_plan_versions(
+    plan_id,version_number,summary,cut_by
+  ) values (
+    v_plan,
+    1,
     '21 Sep–11 Oct 2026. Tuesday + Saturday easy-run anchors, Thursday optional. Outdoors or treadmill. Time progresses; pace does not.',
-    coach_id
+    v_coach
   ) returning id into v_version;
 
   for w in
@@ -91,13 +98,14 @@ begin
       (3, date '2026-10-05', date '2026-10-11', 'Confirm that the rhythm remains absorbable.', 45, 35, 35, 65)
     ) as x(week_number,starts_on,ends_on,intent,tue_min,thu_min,thu_max,sat_min)
   loop
-    insert into public.training_plan_weeks(plan_id,version_id,week_number,phase,total_distance,intent)
-    values(v_plan,v_version,w.week_number,'reconstitution',null,w.intent)
-    returning id into plan_week_id;
+    insert into public.training_plan_weeks(
+      plan_id,version_id,week_number,phase,total_distance,intent
+    ) values (
+      v_plan,v_version,w.week_number,'reconstitution',null,w.intent
+    ) returning id into v_plan_week;
 
-    -- Tuesday anchor
     insert into public.training_plan_sessions(
-      v_plan,v_version,v_plan_week,day_of_week,role,position,title,intent,details,
+      plan_id,version_id,plan_week_id,day_of_week,role,position,title,intent,details,
       prescribed_distance,distance_unit,label
     ) values (
       v_plan,v_version,v_plan_week,'TUE','easy',1,
@@ -113,9 +121,8 @@ begin
       v_plan_session,1,'work','continuous',w.tue_min*60,2,3,false
     );
 
-    -- Thursday optional
     insert into public.training_plan_sessions(
-      v_plan,v_version,v_plan_week,day_of_week,role,position,title,intent,details,
+      plan_id,version_id,plan_week_id,day_of_week,role,position,title,intent,details,
       prescribed_distance,distance_unit,label
     ) values (
       v_plan,v_version,v_plan_week,'THU','easy',2,
@@ -133,9 +140,8 @@ begin
       v_plan_session,1,'work','continuous',w.thu_max*60,2,3,false
     );
 
-    -- Saturday longer anchor
     insert into public.training_plan_sessions(
-      v_plan,v_version,v_plan_week,day_of_week,role,position,title,intent,details,
+      plan_id,version_id,plan_week_id,day_of_week,role,position,title,intent,details,
       prescribed_distance,distance_unit,label
     ) values (
       v_plan,v_version,v_plan_week,'SAT','easy',3,
@@ -158,7 +164,7 @@ begin
     race_name,race_place,plan_id,plan_version_id
   ) values (
     v_athlete,'coach_authored','The Rebuilt Athlete · Phase 00',1,null,null,1,3,
-    date '2026-09-21',date '2026-10-11','active',coach_id,null,
+    date '2026-09-21',date '2026-10-11','active',v_coach,null,
     'Rebuild repeatable easy running, aerobic capacity and lower-leg confidence without choosing a race.',
     1,'development',null,null,v_plan,v_version
   ) returning id into v_block;
@@ -175,7 +181,7 @@ begin
     ) values (
       v_athlete,v_block,w.week_number,w.starts_on,w.ends_on,w.intent,
       'Phase 00 is successful when easy running becomes ordinary again without destabilizing the lower leg or Forge.',
-      'planned',coach_id
+      'planned',v_coach
     );
   end loop;
 
@@ -184,7 +190,7 @@ begin
   ) values (
     v_plan,v_version,v_athlete,v_block,1,date '2026-09-21',
     'Brice self-executes this three-week development block. FORM owns running prescription and filing only; Forge owns strength; Study 002 integrates evidence.',
-    coach_id
+    v_coach
   );
 
   for s in
@@ -194,31 +200,42 @@ begin
      where ps.plan_id=v_plan and ps.version_id=v_version
      order by pw.week_number,ps.position
   loop
-    select tw.id,tw.starts_on into v_week,week_start
+    select tw.id,tw.starts_on
+      into v_week,v_week_start
       from public.training_weeks tw
-     where tw.athlete_id=v_athlete and tw.block_id=v_block and tw.week_number=s.week_number;
+     where tw.athlete_id=v_athlete
+       and tw.block_id=v_block
+       and tw.week_number=s.week_number;
 
-    select coalesce(jsonb_agg(jsonb_strip_nulls(jsonb_build_object(
-      'role',c.role,
-      'shape',c.shape,
-      'position',c.position,
-      'distance',c.distance,
-      'distanceUnit',c.distance_unit,
-      'durationSeconds',c.duration_seconds,
-      'repeatCount',c.repeat_count,
-      'rpeLow',c.rpe_low,
-      'rpeHigh',c.rpe_high,
-      'recoveryKind',c.recovery_kind,
-      'recoverySeconds',c.recovery_seconds
-    )) order by c.position),'[]'::jsonb)
-      into parts
+    select coalesce(
+      jsonb_agg(
+        jsonb_strip_nulls(
+          jsonb_build_object(
+            'role',c.role,
+            'shape',c.shape,
+            'position',c.position,
+            'distance',c.distance,
+            'distanceUnit',c.distance_unit,
+            'durationSeconds',c.duration_seconds,
+            'repeatCount',c.repeat_count,
+            'rpeLow',c.rpe_low,
+            'rpeHigh',c.rpe_high,
+            'recoveryKind',c.recovery_kind,
+            'recoverySeconds',c.recovery_seconds
+          )
+        ) order by c.position
+      ),
+      '[]'::jsonb
+    )
+      into v_parts
       from public.training_plan_components c
      where c.plan_session_id=s.id;
 
     select (c.duration_seconds/60)::int
-      into duration_min
+      into v_duration_min
       from public.training_plan_components c
-     where c.plan_session_id=s.id and c.position=1;
+     where c.plan_session_id=s.id
+       and c.position=1;
 
     v_occurrence := public.author_session(
       v_athlete,
@@ -226,14 +243,14 @@ begin
       s.day_of_week,
       s.title,
       s.intent,
-      week_start + case s.day_of_week when 'TUE' then 1 when 'THU' then 3 when 'SAT' then 5 end,
+      v_week_start + case s.day_of_week when 'TUE' then 1 when 'THU' then 3 when 'SAT' then 5 end,
       s.position,
       null,
       'mi',
-      duration_min,
+      v_duration_min,
       2,
       3,
-      parts,
+      v_parts,
       s.details
     );
 
@@ -248,9 +265,12 @@ begin
     raise exception 'expected 3 Brice weeks';
   end if;
 
-  if (select count(*) from public.planned_sessions ps where ps.athlete_id=v_athlete and ps.week_id in (
-        select tw.id from public.training_weeks tw where tw.block_id=v_block
-      )) <> 9 then
+  if (
+    select count(*)
+      from public.planned_sessions ps
+     where ps.athlete_id=v_athlete
+       and ps.week_id in (select tw.id from public.training_weeks tw where tw.block_id=v_block)
+  ) <> 9 then
     raise exception 'expected 9 Brice running sessions';
   end if;
 
@@ -259,15 +279,18 @@ begin
       from public.planned_sessions ps
       join public.training_weeks tw on tw.id=ps.week_id
       join lateral (
-        select v.* from public.planned_session_versions v
-         where v.planned_session_id=ps.id
-         order by v.version_number desc limit 1
+        select pv.*
+          from public.planned_session_versions pv
+         where pv.planned_session_id=ps.id
+         order by pv.version_number desc
+         limit 1
       ) lv on true
      where ps.athlete_id=v_athlete
        and tw.week_number=1
        and ps.day_label='TUE'
        and lv.prescribed_duration_minutes=35
-       and lv.rpe_low=2 and lv.rpe_high=3
+       and lv.rpe_low=2
+       and lv.rpe_high=3
   ) then
     raise exception 'Brice W1 Tuesday session anatomy missing';
   end if;
