@@ -23,10 +23,10 @@
   "principle": "More specificity, not more punishment. Upper-body development may progress faster; lower-body progression is earned by a normal following run.",
   "running_coordination": "The running plan remains owned by Adrian's running coach. This strength plan does not replace, move or invent run workouts. When running load, race demands or recovery conflict with strength, the strength dose yields first.",
   "current_state": {
-    "as_of": "2026-09-18",
-    "current_week": 1,
-    "next_week": 2,
-    "label": "Week 01 closing · Week 02 authored"
+    "as_of": "2026-09-21",
+    "current_week": 2,
+    "next_week": 3,
+    "label": "Week 02 active · day-level run structure filed"
   },
   "baseline": {
     "age": 19,
@@ -125,7 +125,8 @@
     "If lower-body work makes the next run meaningfully heavy, alters mechanics or creates persistent soreness, hold or reduce the lower-body dose before progressing.",
     "If grip or setup limits a lower-body movement before the target tissue does, change the loading setup rather than forcing heavier dumbbells.",
     "Race weeks reduce lower-body volume and eccentric cost before touching upper-body development.",
-    "Record the work and the run response. Missing evidence stays missing."
+    "Record the work and the run response. Missing evidence stays missing.",
+    "A displaced long run or recovery disruption can move or remove a strength session; missed work is not stacked merely to preserve session count."
   ],
   "phases": [
     {
@@ -357,7 +358,7 @@
       "end_date": "2026-09-27",
       "intent": "Keep the proven four-day rhythm, but spend the recovery budget where Adrian has the most useful room to develop.",
       "public_path": "/plans/adrian-hypertrophy-week-02/",
-      "progression_note": "Use Week 01 loads only as reference. New cable/accessory movements start conservatively. Upper body may progress; lower body stays controlled during the 44-mile run week.",
+      "progression_note": "Known run structure: Wednesday quality and Saturday long run are protected. Do not make up the missed Sunday lift. Upper A may move one day if recovery is normal. Lower work stays controlled and yields if the run response is not normal.",
       "days": [
         {
           "day_index": 1,
@@ -521,7 +522,51 @@
             }
           ]
         }
-      ]
+      ],
+      "run_context": {
+        "source": "athlete-supplied running-coach schedule",
+        "received_on": "2026-09-21",
+        "status": "planned context, not completion evidence",
+        "planned_miles": 44,
+        "schedule": [
+          {
+            "weekday": "Monday",
+            "run": "6 mi easy",
+            "pace": "7:30–8:15 / mi"
+          },
+          {
+            "weekday": "Tuesday",
+            "run": "6 mi easy + 4–6 × 15 sec strides"
+          },
+          {
+            "weekday": "Wednesday",
+            "run": "2 mi warm-up + 8 × 2 min @ 6:00 / mi with 2 min jog + 1.8 mi cool-down",
+            "approx_total_miles": 8
+          },
+          {
+            "weekday": "Thursday",
+            "run": "6 mi easy"
+          },
+          {
+            "weekday": "Friday",
+            "run": "6 mi easy + strides"
+          },
+          {
+            "weekday": "Saturday",
+            "run": "12 mi easy long run"
+          },
+          {
+            "weekday": "Sunday",
+            "run": "Off running"
+          }
+        ],
+        "prior_day_context": "The prior long run shifted from Saturday to Sunday. The planned Sunday strength session was skipped, and the athlete reported reduced recovery from travel and a late return.",
+        "protected_runs": [
+          "Wednesday quality session",
+          "Saturday long run"
+        ],
+        "strength_adjustment": "Do not make up or compress missed strength. Upper A may move from Monday to Tuesday after the easy run and strides if recovery is normal. Thursday Lower A stays controlled. Friday Upper B stays as written. Sunday Lower B is conditional on normal legs after Saturday; otherwise it is skipped rather than rolled forward."
+      }
     },
     {
       "week": 3,
@@ -1824,5 +1869,49 @@
         }
       ]
     }
-  ]
+  ],
+  "current_week_run_context": {
+    "source": "athlete-supplied running-coach schedule",
+    "received_on": "2026-09-21",
+    "status": "planned context, not completion evidence",
+    "planned_miles": 44,
+    "schedule": [
+      {
+        "weekday": "Monday",
+        "run": "6 mi easy",
+        "pace": "7:30–8:15 / mi"
+      },
+      {
+        "weekday": "Tuesday",
+        "run": "6 mi easy + 4–6 × 15 sec strides"
+      },
+      {
+        "weekday": "Wednesday",
+        "run": "2 mi warm-up + 8 × 2 min @ 6:00 / mi with 2 min jog + 1.8 mi cool-down",
+        "approx_total_miles": 8
+      },
+      {
+        "weekday": "Thursday",
+        "run": "6 mi easy"
+      },
+      {
+        "weekday": "Friday",
+        "run": "6 mi easy + strides"
+      },
+      {
+        "weekday": "Saturday",
+        "run": "12 mi easy long run"
+      },
+      {
+        "weekday": "Sunday",
+        "run": "Off running"
+      }
+    ],
+    "prior_day_context": "The prior long run shifted from Saturday to Sunday. The planned Sunday strength session was skipped, and the athlete reported reduced recovery from travel and a late return.",
+    "protected_runs": [
+      "Wednesday quality session",
+      "Saturday long run"
+    ],
+    "strength_adjustment": "Do not make up or compress missed strength. Upper A may move from Monday to Tuesday after the easy run and strides if recovery is normal. Thursday Lower A stays controlled. Friday Upper B stays as written. Sunday Lower B is conditional on normal legs after Saturday; otherwise it is skipped rather than rolled forward."
+  }
 }
