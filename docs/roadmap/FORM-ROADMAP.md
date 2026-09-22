@@ -1,7 +1,21 @@
 # FORM: current state and next actions
 
 Private athlete/account execution: [twelve bounded passes](ATHLETE-ECOSYSTEM-PASSES-20260917.md). The bounded implementation/reconciliation program is complete through Pass 12; schema and exact current web `main` are now live, anonymous production acceptance is green, and the authenticated owner/athlete walks plus two native physical-device gates remain explicit. Release and operating authority: [Athlete ecosystem runbook](../audits/ATHLETE-ECOSYSTEM-RUNBOOK-20260918.md).
-Updated September 20, 2026. Owner: Brice. Maintainer: the agent completing relevant work.
+Updated September 22, 2026. Owner: Brice. Maintainer: the agent completing relevant work.
+
+## September 22 — Homepage Method link paused; Method redesign queued
+
+The homepage no longer links to `/the-method`. The current Method page remains public and searchable, but it is not ready to carry the homepage's deeper-explanation handoff.
+
+**Roadmap:** redesign `/the-method` as a current FORM teaching page before restoring a homepage link. The redesign should:
+- match the stronger current FORM visual system rather than the older cream-reading treatment;
+- teach the coaching logic clearly enough that a first-time runner can understand it without internal vocabulary;
+- connect observation → smallest useful change → repeated exposure → athlete ownership;
+- distinguish coaching philosophy from a training plan, study, or generic running article;
+- make the relationship to Run Development and the Miami practice obvious without turning the page into a sales page;
+- restore a homepage link only after desktop/mobile visual review and the page earns that role again.
+
+**Homepage film:** restore reliable muted inline autoplay on ordinary visits. Keep Reduced Motion and data-saving behavior respected, preserve the poster fallback and manual play control, and verify on physical iPhone Safari/Chrome before calling the regression closed.
 
 ## September 20 — FORM Plan 03 method frozen; Donna study protocol locked
 

@@ -7,29 +7,47 @@ const fs = require('fs');
 const path = require('path');
 
 const html = fs.readFileSync(path.join(__dirname, '..', 'thursday.html'), 'utf8');
-const src = html.slice(html.indexOf('<script>') + 8, html.indexOf('</script>'));
+const miami = fs.readFileSync(path.join(__dirname, '..', 'miami-running-training.html'), 'utf8');
+const scheduleSource = fs.readFileSync(path.join(__dirname, '..', 'js', 'community-schedule.js'), 'utf8');
+const scriptStart = html.lastIndexOf('<script>') + 8;
+const src = html.slice(scriptStart, html.indexOf('</script>', scriptStart));
 const failures = [];
 const check = (ok, message) => { if (!ok) failures.push(message); };
 
 function renderOn(day) {
   const store = {};
   const RealDate = Date;
+  const elements = {};
+  const make = (id) => elements[id] || (elements[id] = {
+    set textContent(v) { store[id] = v; },
+    get textContent() { return store[id]; },
+    set innerHTML(v) { store[id] = v; },
+    get innerHTML() { return store[id]; },
+    href: ''
+  });
   global.document = {
-    getElementById: (id) => ({
-      set textContent(v) { store[id] = v; },
-      set innerHTML(v) { store[id] = v; },
-    }),
+    getElementById: (id) => make(id),
+    querySelector: (selector) => selector === '.loc-link' ? make('loc-link') : selector === '.loc-sub' ? make('loc-sub') : null,
   };
+  global.window = global;
   global.Date = class extends RealDate {
     constructor(...a) { if (!a.length) super(day + 'T12:00:00'); else super(...a); }
     static now() { return new RealDate(day + 'T12:00:00').getTime(); }
   };
-  try { new Function(src)(); } finally { global.Date = RealDate; }
+  try {
+    new Function(scheduleSource)();
+    new Function(src)();
+  } finally {
+    global.Date = RealDate;
+  }
   return {
     eyebrow: String(store['thu-eyebrow'] || ''),
     name: String(store['thu-session-name'] || '').replace(/<br>/g, ' '),
     inline: store['thu-session-inline'],
     rotation: store['thu-rotation-line'],
+    when: store['thu-when'],
+    audience: store['thu-audience'],
+    location: store['loc-link'],
   };
 }
 
@@ -68,9 +86,15 @@ for (let d = new Date('2026-09-17T00:00:00'); d < new Date('2027-09-16T00:00:00'
   check(names.has(r.name), `${ymd} renders "${r.name}", not one of the six sessions`);
 }
 
-// The time appears once, everywhere, and the old time is gone.
-check(!/5:50/.test(html), 'the old 5:50 AM time survives somewhere on the page');
-check((html.match(/6:30 AM/g) || []).length >= 4, 'expected the 6:30 AM time in the meta tags and the When row');
+// Recurring logistics come from one canonical source.
+check(!/5:50|6:30 AM/.test(html), 'an old Thursday time survives in thursday.html');
+check(!/6:00 AM/.test(html), 'Thursday time is hard-coded in thursday.html instead of the shared schedule');
+check(!/6:00 AM/.test(miami), 'Thursday time is hard-coded in the Miami page instead of the shared schedule');
+check(html.includes('/js/community-schedule.js?v=20260922'), 'Thursday page does not load canonical community schedule');
+check(miami.includes('/js/community-schedule.js?v=20260922'), 'Miami page does not load canonical community schedule');
+global.window = global; new Function(scheduleSource)();
+check(global.FORM_COMMUNITY_SCHEDULE.thursday.time === '6:00 AM', 'canonical Thursday time is not 6:00 AM');
+check(renderOn('2026-09-17').when === 'Thursdays · 6:00 AM', 'Thursday page did not render canonical 6:00 AM time');
 
 // Removed content stays removed.
 for (const stale of ['Hideout', 'Key Biscayne', 'state-taper', 'state-recovery', 'full-block', 'Race Week', 'Apr 20', 'Apr 24']) {
@@ -78,7 +102,7 @@ for (const stale of ['Hideout', 'Key Biscayne', 'state-taper', 'state-recovery',
 }
 
 // Copy rules.
-check(!/Tonight/.test(html), '"Tonight" appears on a page about a 6:30 AM session');
+check(!/Tonight/.test(html), '"Tonight" appears on a page about a morning session');
 check(!/practise|kilometre|colour/.test(html), 'British spelling in copy');
 
 if (failures.length) {
