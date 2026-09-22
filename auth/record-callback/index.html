@@ -5,12 +5,23 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#141718">
+  <meta name="referrer" content="no-referrer">
   <title>Signing in · FORM</title>
   <link rel="stylesheet" href="/private/graphite.css?v=43">
 </head>
 <body>
   <header class="topbar"><a class="brand" href="/"><span class="form-mark">FORM</span><span class="product-name">Private coaching</span></a></header>
-  <main class="auth-page"><section class="auth-card"><p class="eyebrow">Secure sign-in</p><h1 id="callbackTitle">Opening your record.</h1><p id="callbackStatus">Finishing the secure handoff…</p><a class="button" id="callbackRetry" href="/athlete/" hidden>Request a new link</a></section></main>
-  <script type="module" src="/auth/record-callback/callback.js?v=33"></script>
+  <main class="auth-page">
+    <section class="auth-card">
+      <p class="eyebrow">Secure sign-in</p>
+      <h1 id="callbackTitle">Opening FORM.</h1>
+      <p id="callbackStatus">Finishing the secure handoff…</p>
+      <a class="button" id="callbackRetry" href="/athlete/" hidden>Request a new link</a>
+      <p id="callbackStoreWrap" hidden style="margin-top:18px;">
+        <a id="callbackStore" href="https://apps.apple.com/us/app/form-practice/id6761313085">FORM on the App Store</a>
+      </p>
+    </section>
+  </main>
+  <script type="module" src="/auth/record-callback/callback.js?v=34"></script>
 </body>
 </html>
