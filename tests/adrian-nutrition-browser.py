@@ -18,7 +18,9 @@ with sync_playwright() as p:
         page.goto(base+'/plans/adrian-nutrition-phase-01/',wait_until='domcontentloaded')
         assert page.locator('h1').inner_text()=='Fuel Your Work'
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),f'overflow at {w}'
-        page.locator('a[href="#preferences"]').click()
+        assert page.locator('nav[aria-label="Page sections"]').count()==0
+        assert page.locator('#weekends').count()==1
+        page.locator('#preferences summary').click()
         assert page.locator('#preferences').evaluate('(el)=>el.open')
         page.evaluate('document.querySelectorAll("details").forEach(el=>el.open=true)')
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),f'open disclosure overflow {w}'

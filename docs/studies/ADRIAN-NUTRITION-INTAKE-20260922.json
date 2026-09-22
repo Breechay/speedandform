@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "prepared_date": "2026-09-22",
   "athlete": "Adrian Gandara",
   "study_id": "FRM-001",
@@ -7,27 +7,231 @@
   "nutrition_url": "https://speedandform.com/plans/adrian-nutrition-phase-01/",
   "study_url": "https://speedandform.com/labs/adrian-runner-mass/",
   "intervention_started_at": null,
-  "sources": "User-supplied Adrian message screenshots and training screen recording; coach corrections and directions; Athlinks result screenshots and supplied links. The final image-only messages rendered as placeholders and were not used. Relative message timestamps are not measurement dates.",
-  "body_mass": {"lb":156,"kg_rounded":70.8,"status":"athlete-reported working value; standardized baseline mean pending"},
-  "height": {"feet":6,"inches":2,"status":"coach estimate; not independently confirmed"},
-  "age": {"years":19,"status":"existing study dossier"},
-  "setup": {"work_hours":"08:00–17:00 approximately","work_lunch_provided":true,"work_fridge":true,"work_microwave":true,"family_dinner":true,"reported_bedtime":"00:00","reported_wake_time":"05:30","sleep_window_hours":5.5,"sleep_note":"Opportunity between reported times, not measured sleep. Phone emoji suggests phone use, not a measured duration."},
-  "preferences": {"likes":["spaghetti with meat sauce","spaghetti with meatballs","pasta","chili","pizza","meat and cheese","peanut butter","homemade bread","rice","beans","green beans","chicken","beef","elk","tuna","cheese","cream cheese","sour cream"],"dislikes":["Greek yogurt","cottage cheese","Brussels sprouts"],"accepted_by_coach_confirmation":["whole milk","fruit"],"selected_for_first_routine":["bananas","navel oranges","Thorne Whey Protein Isolate Chocolate","spaghetti with meat sauce","green beans"],"correction":"Exclude BOTH Greek yogurt and cottage cheese despite the ambiguous text exchange. Do not invent preferences from cropped text. Selected fruit/flavor are coaching choices, not reported favorites."},
-  "nutrition_decision": {"headline":"Fuel Your Work","subheading":"Prepare the meals you tend to miss.","voice":"second person","breakfast":"2 bread slices about 80 g, 32 g peanut butter, 1 medium navel orange, 1 labeled serving Thorne chocolate whey in 355 mL whole milk","before_run":"1 medium banana; tolerance check; not the full long-run fueling plan","afternoon":"one quarter of the 454 g dry spaghetti + 454 g raw 93% lean beef + 680 g sauce batch","prepare_days":["Sunday","Wednesday"],"daily_protein_guide_g":[130,145],"calorie_target":null,"weight_target":null,"mass_gainer":false,"tongkat_ali":false,"review":"7-day adherence/tolerance review, 2-week intake and mass trend; confirm actual start date","storage":"shallow containers promptly refrigerated; freeze later portions; 40°F fridge; 160°F ground beef; 165°F leftovers"},
-  "supplement": {"product":"Thorne Whey Protein Isolate Chocolate","protein_g_per_labeled_serving":21,"nsf_listing_scoop_g":30.2,"product_url":"https://www.thorne.com/products/dp/whey-protein-isolate-chocolate","certification_url":"https://www.nsfsport.com/certified-products/listing-detail.php?id=1513727","checked_date":"2026-09-22","caveat":"Use current container serving and confirm lot. Certification reduces, not eliminates, risk. Taste/tolerance and medical constraints not yet established."},
+  "sources": "User-supplied Adrian message screenshots and training screen recording; coach corrections and directions; Athlinks result screenshots and supplied links. The weekend eating screenshot was reattached and read for v1.1; other previously excluded image-only messages are not incorporated by this amendment. Relative message timestamps are not measurement dates.",
+  "body_mass": {
+    "lb": 156,
+    "kg_rounded": 70.8,
+    "status": "athlete-reported working value; standardized baseline mean pending"
+  },
+  "height": {
+    "feet": 6,
+    "inches": 2,
+    "status": "coach estimate; not independently confirmed"
+  },
+  "age": {
+    "years": 19,
+    "status": "existing study dossier"
+  },
+  "setup": {
+    "work_hours": "08:00–17:00 approximately",
+    "work_lunch_provided": true,
+    "work_fridge": true,
+    "work_microwave": true,
+    "family_dinner": true,
+    "reported_bedtime": "00:00",
+    "reported_wake_time": "05:30",
+    "sleep_window_hours": 5.5,
+    "sleep_note": "Opportunity between reported times, not measured sleep. Phone emoji suggests phone use, not a measured duration."
+  },
+  "preferences": {
+    "likes": [
+      "spaghetti with meat sauce",
+      "spaghetti with meatballs",
+      "pasta",
+      "chili",
+      "pizza",
+      "meat and cheese",
+      "peanut butter",
+      "homemade bread",
+      "rice",
+      "beans",
+      "green beans",
+      "chicken",
+      "beef",
+      "elk",
+      "tuna",
+      "cheese",
+      "cream cheese",
+      "sour cream",
+      "chicken nuggets"
+    ],
+    "dislikes": [
+      "Greek yogurt",
+      "cottage cheese",
+      "Brussels sprouts"
+    ],
+    "accepted_by_coach_confirmation": [
+      "whole milk",
+      "fruit"
+    ],
+    "selected_for_first_routine": [
+      "bananas",
+      "navel oranges",
+      "Thorne Whey Protein Isolate Chocolate",
+      "spaghetti with meat sauce",
+      "green beans"
+    ],
+    "correction": "Exclude BOTH Greek yogurt and cottage cheese despite the ambiguous text exchange. Do not invent preferences from cropped text. Selected fruit/flavor are coaching choices, not reported favorites.",
+    "weekend_meals_reported": [
+      "Flanigan’s",
+      "burgers",
+      "Cuban restaurants",
+      "eggs",
+      "bacon",
+      "pancakes"
+    ]
+  },
+  "nutrition_decision": {
+    "headline": "Fuel Your Work",
+    "subheading": "Prepare the meals you tend to miss.",
+    "voice": "second person",
+    "breakfast": "2 bread slices about 80 g, 32 g peanut butter, 1 medium navel orange, 1 labeled serving Thorne chocolate whey in 355 mL whole milk",
+    "before_run": "1 medium banana; tolerance check; not the full long-run fueling plan",
+    "afternoon": "one quarter of the 454 g dry spaghetti + 454 g raw 93% lean beef + 680 g sauce batch",
+    "prepare_days": [
+      "Sunday",
+      "Wednesday"
+    ],
+    "daily_protein_guide_g": [
+      130,
+      145
+    ],
+    "calorie_target": null,
+    "weight_target": null,
+    "mass_gainer": false,
+    "tongkat_ali": false,
+    "review": "7-day adherence/tolerance review, 2-week intake and mass trend; confirm actual start date",
+    "storage": "shallow containers promptly refrigerated; freeze later portions; 40°F fridge; 160°F ground beef; 165°F leftovers",
+    "weekend": "Restaurant breakfast/lunch replace those weekday meals. When breakfast is out, move orange and the same milk-and-whey shake to afternoon. Weekend pasta boxes are home dinners, not automatic additional afternoon meals. Freeze the unused pasta box on a nugget night; add rice and green beans and use package instructions. Nugget portion awaits the label.",
+    "copy_rule": "No top navigation row. Concise second-person actions; no routine tell/send/ask Brice commentary. Retain essential safety and evidence notes."
+  },
+  "supplement": {
+    "product": "Thorne Whey Protein Isolate Chocolate",
+    "protein_g_per_labeled_serving": 21,
+    "nsf_listing_scoop_g": 30.2,
+    "product_url": "https://www.thorne.com/products/dp/whey-protein-isolate-chocolate",
+    "certification_url": "https://www.nsfsport.com/certified-products/listing-detail.php?id=1513727",
+    "checked_date": "2026-09-22",
+    "caveat": "Use current container serving and confirm lot. Certification reduces, not eliminates, risk. Taste/tolerance and medical constraints not yet established."
+  },
   "historical_results": [
-    {"date_as_displayed":"2023-12-03","event":"Rotary Half Marathon Run for Tomorrow","result":"1:21:55","detail":"Chip and gun both 1:21:55; 2 / 327 overall.","source_status":"supplied Athlinks detail screenshot","url":"https://www.athlinks.com/event/20597/results/Event/1067372/Course/2422404/Bib/822"},
-    {"date_as_displayed":"2024-11-17","event":"Flanigan's Rockin' Rib Run 10K","result":"35:21","detail":"Listing result. Athlete reports a 35:15 best; do not infer chip/gun difference or a different race.","source_status":"supplied Athlinks search-list screenshot; detail pending","url":"https://www.athlinks.com/search/unclaimed?category=unclaimed&term=adrian%20gandara"},
-    {"date_as_displayed":"2024-12-08","event":"Rotary Half Marathon Run for Tomorrow","result":"1:17:00","detail":"M17 in supplied listing. Exact detail page not yet supplied.","source_status":"supplied Athlinks search-list screenshot; detail pending","url":"https://www.athlinks.com/search/unclaimed?category=unclaimed&term=adrian%20gandara"},
-    {"date_as_displayed":"2024-12-15","event":"AvMed Orange Bowl 5K/10K","result":"17:51","detail":"Combined event title. Course distance still needs the result-detail page; not automatically classified as a 5K.","source_status":"supplied Athlinks search-list screenshot; distance pending","url":"https://www.athlinks.com/search/unclaimed?category=unclaimed&term=adrian%20gandara"},
-    {"date_as_displayed":"2025-04-26","event":"Eugene Marathon Weekend · Half Marathon","result":"1:20:42","detail":"Date as displayed on the event wrapper, not independently verified as the half's race day. M18; 75 / 4610 overall; location label Weston, OR needs reconciliation.","source_status":"supplied Athlinks detail screenshot; event/location metadata caveat","url":"https://www.athlinks.com/event/138769/results/Event/1110368/Course/2597263/Bib/8497?source=internal"},
-    {"date_as_displayed":"2025-12-06","event":"Aden Perry Hero Event 5K","result":"17:43","detail":"Chip 17:43; gun 17:44. M18, Weston, FL; 4 / 238 overall.","source_status":"supplied Athlinks detail screenshot","url":"https://www.athlinks.com/event/391390/results/Event/1129169/Course/2656075/Bib/21327?source=internal"}
+    {
+      "date_as_displayed": "2023-12-03",
+      "event": "Rotary Half Marathon Run for Tomorrow",
+      "result": "1:21:55",
+      "detail": "Chip and gun both 1:21:55; 2 / 327 overall.",
+      "source_status": "supplied Athlinks detail screenshot",
+      "url": "https://www.athlinks.com/event/20597/results/Event/1067372/Course/2422404/Bib/822"
+    },
+    {
+      "date_as_displayed": "2024-11-17",
+      "event": "Flanigan's Rockin' Rib Run 10K",
+      "result": "35:21",
+      "detail": "Listing result. Athlete reports a 35:15 best; do not infer chip/gun difference or a different race.",
+      "source_status": "supplied Athlinks search-list screenshot; detail pending",
+      "url": "https://www.athlinks.com/search/unclaimed?category=unclaimed&term=adrian%20gandara"
+    },
+    {
+      "date_as_displayed": "2024-12-08",
+      "event": "Rotary Half Marathon Run for Tomorrow",
+      "result": "1:17:00",
+      "detail": "M17 in supplied listing. Exact detail page not yet supplied.",
+      "source_status": "supplied Athlinks search-list screenshot; detail pending",
+      "url": "https://www.athlinks.com/search/unclaimed?category=unclaimed&term=adrian%20gandara"
+    },
+    {
+      "date_as_displayed": "2024-12-15",
+      "event": "AvMed Orange Bowl 5K/10K",
+      "result": "17:51",
+      "detail": "Combined event title. Course distance still needs the result-detail page; not automatically classified as a 5K.",
+      "source_status": "supplied Athlinks search-list screenshot; distance pending",
+      "url": "https://www.athlinks.com/search/unclaimed?category=unclaimed&term=adrian%20gandara"
+    },
+    {
+      "date_as_displayed": "2025-04-26",
+      "event": "Eugene Marathon Weekend · Half Marathon",
+      "result": "1:20:42",
+      "detail": "Date as displayed on the event wrapper, not independently verified as the half's race day. M18; 75 / 4610 overall; location label Weston, OR needs reconciliation.",
+      "source_status": "supplied Athlinks detail screenshot; event/location metadata caveat",
+      "url": "https://www.athlinks.com/event/138769/results/Event/1110368/Course/2597263/Bib/8497?source=internal"
+    },
+    {
+      "date_as_displayed": "2025-12-06",
+      "event": "Aden Perry Hero Event 5K",
+      "result": "17:43",
+      "detail": "Chip 17:43; gun 17:44. M18, Weston, FL; 4 / 238 overall.",
+      "source_status": "supplied Athlinks detail screenshot",
+      "url": "https://www.athlinks.com/event/391390/results/Event/1129169/Course/2656075/Bib/21327?source=internal"
+    }
   ],
-  "quarantined_result": {"event":"Race to the Courthouse 5K","date":"2025-04-19","time":"53:02","reason":"Same name but M25 and Hialeah, FL conflict with the study athlete. Excluded from athlete history until identity is resolved.","url":"https://www.athlinks.com/event/377999/results/Event/1109734/Course/2594848/Bib/333?source=internal"},
-  "athlete_reported_history": {"xc_5k":"sub-17 several times; 2023, age 16","ten_k_best":"35:15; reconcile with 35:21 published listing","half_best":"reported 77 minutes, now supported at listing level by 1:17:00 screenshot","mile":"4:57; exact event/distance pending","workouts":["4 x mile at 5:13 average, 2–3 minutes standing recovery","8 x 1 km at 3:10 average, recovery unspecified"],"goal":"sub-35 10K; coordinate with running coach"},
-  "device_estimates": {"COROS_VO2max":65,"threshold_pace_reported":"6:05; conversation interprets min/mile, direct current metric screen pending","predicted_5k":"18:03","historical_threshold":"5:17/mi displayed for June 19–25, 2023; device estimate only","VDOT":54.5,"distinction":"VDOT, watch VO2max, lab VO2max and race performance are not interchangeable. The earlier 37 min / 82 min text is not filed as a PR."},
-  "recovery": {"upper_soreness":"still very sore 4 days after last upper, athlete report","cause":null,"next":"Review performed sets, loads, effort and functional limitation before progression. Do not attribute soreness to protein alone."},
-  "measurement_protocol":"3–4 consistent morning weights per week, weekly average. Photos every 2 weeks, front/side/back relaxed plus front lightly flexed, same conditions and preferably pre-training/no pump. No standardized mass trend, circumferences or photo set has been newly supplied here.",
-  "remaining":["actual intervention start","allergies and medical constraints","commute and exact training times","powder taste and tolerance","lunch/dinner portions and full intake","standardized mass trend and body measurements","actual sleep trend","current training response","race detail/identity discrepancies"],
-  "interpretation_boundary":"One athlete with concurrent changes in food, sleep and strength exposure. No causal nutrition result or muscle gain has yet been measured. Training prescriptions, assignments and history remain unchanged."
+  "quarantined_result": {
+    "event": "Race to the Courthouse 5K",
+    "date": "2025-04-19",
+    "time": "53:02",
+    "reason": "Same name but M25 and Hialeah, FL conflict with the study athlete. Excluded from athlete history until identity is resolved.",
+    "url": "https://www.athlinks.com/event/377999/results/Event/1109734/Course/2594848/Bib/333?source=internal"
+  },
+  "athlete_reported_history": {
+    "xc_5k": "sub-17 several times; 2023, age 16",
+    "ten_k_best": "35:15; reconcile with 35:21 published listing",
+    "half_best": "reported 77 minutes, now supported at listing level by 1:17:00 screenshot",
+    "mile": "4:57; exact event/distance pending",
+    "workouts": [
+      "4 x mile at 5:13 average, 2–3 minutes standing recovery",
+      "8 x 1 km at 3:10 average, recovery unspecified"
+    ],
+    "goal": "sub-35 10K; coordinate with running coach"
+  },
+  "device_estimates": {
+    "COROS_VO2max": 65,
+    "threshold_pace_reported": "6:05; conversation interprets min/mile, direct current metric screen pending",
+    "predicted_5k": "18:03",
+    "historical_threshold": "5:17/mi displayed for June 19–25, 2023; device estimate only",
+    "VDOT": 54.5,
+    "distinction": "VDOT, watch VO2max, lab VO2max and race performance are not interchangeable. The earlier 37 min / 82 min text is not filed as a PR."
+  },
+  "recovery": {
+    "upper_soreness": "still very sore 4 days after last upper, athlete report",
+    "cause": null,
+    "next": "Review performed sets, loads, effort and functional limitation before progression. Do not attribute soreness to protein alone."
+  },
+  "measurement_protocol": "3–4 consistent morning weights per week, weekly average. Photos every 2 weeks, front/side/back relaxed plus front lightly flexed, same conditions and preferably pre-training/no pump. No standardized mass trend, circumferences or photo set has been newly supplied here.",
+  "remaining": [
+    "actual intervention start",
+    "allergies and medical constraints",
+    "commute and exact training times",
+    "powder taste and tolerance",
+    "lunch/dinner portions and full intake",
+    "standardized mass trend and body measurements",
+    "actual sleep trend",
+    "current training response",
+    "race detail/identity discrepancies",
+    "nugget brand and nutrition label before prescribing portion"
+  ],
+  "interpretation_boundary": "One athlete with concurrent changes in food, sleep and strength exposure. No causal nutrition result or muscle gain has yet been measured. Training prescriptions, assignments and history remain unchanged.",
+  "weekend_intake": {
+    "source": "Adrian message screenshot reattached by coach on 2026-09-22; 6196ba8d-fb59-4704-a422-6fec024d892d.png",
+    "status": "athlete report, not an intervention outcome",
+    "restaurant_meals_per_weekend_day_reported": "1–2, mainly breakfast and lunch, with parents",
+    "restaurants_or_meals": [
+      "Flanigan’s",
+      "burgers",
+      "Cuban restaurants",
+      "eggs",
+      "bacon",
+      "pancakes"
+    ],
+    "home_meal": "Air-fried chicken nuggets",
+    "nugget_count_reported": 15,
+    "nugget_count_prescribed": null,
+    "nugget_brand_label": null,
+    "explicit_like": "loves chicken nuggets"
+  },
+  "amendments": [
+    {
+      "version": "1.1",
+      "date": "2026-09-22",
+      "change": "Weekend intake added, top navigation removed, coaching side commentary shortened. Weekday quantities, supplement, food exclusions and training prescriptions unchanged."
+    }
+  ]
 }

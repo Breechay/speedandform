@@ -1,5 +1,12 @@
 # FORM: current state and next actions
 
+## September 22 - Adrian nutrition: concise copy and weekend intake
+
+Nutrition 01 v1.1 removes the top link row and routine tell/send/ask-Brice commentary. Photo instructions are direct. Reattached weekend intake is recorded in the source JSON and study; restaurant meals replace the corresponding workday meals, and weekend prep becomes home dinner. Chicken nuggets are a confirmed like; the reported count is not prescribed. No training, race evidence or measurement result changed.
+
+Source and browser acceptance are performed before release. The production receipt and physical-device check remain separate from source status.
+
+
 ## September 22 - Adrian: Fuel Your Work and intake record
 
 Adrian-only nutrition companion at /plans/adrian-nutrition-phase-01/. Confirmed preferences, whole milk, selected fruit, exact whey and prep instructions are linked from the existing study. Input record: [source and decisions](../studies/ADRIAN-NUTRITION-INTAKE-20260922.json). Athlete-reported values, Athlinks detail screenshots, listing-only records and device estimates remain separate. Same-name identity conflicts are excluded. No strength/run assignment or native app change. Actual nutrition start and outcomes are pending.
