@@ -31,17 +31,39 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Apply exact-source update and verify evidence
+      - name: Reconcile the overlapping W5 entry against verified source
         run: |
           mkdir -p /tmp/ste-w5-qa
           node - <<'JS'
-          const fs=require('node:fs'),assert=require('node:assert/strict');
+          const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require('node:crypto');
+          const {execFileSync}=require('node:child_process');
+          const hash=s=>{const b=Buffer.from(s);return crypto.createHash('sha1').update(Buffer.from(`blob ${b.length}\0`)).update(b).digest('hex');};
+          const page='labs/speed-that-endures/index.html';
+          const current=fs.readFileSync(page,'utf8');
+          const currentSha=hash(current);
+          // This overlapping commit changes only the same W5 study entry. Its HR claims
+          // are not in the supplied screenshots. Recompose W5 while preserving W2-W4.
+          if(currentSha==='9441fd167ff0c476e2440a4b239a347ced4e0c7f') {
+            const original=execFileSync('git',['show','cf23bdd7670122ca6c643a3dfb65d8cf5dc7d77e:'+page],{encoding:'utf8',maxBuffer:8000000});
+            assert.equal(hash(original),'64111021bb29d53daa7cfb9eab4db97280b90b85');
+            fs.writeFileSync(page,original);
+            fs.writeFileSync('/tmp/ste-w5-qa/reconciliation.json',JSON.stringify({supersededPageBlob:currentSha,reason:'Same W5 entry reconciled: unsupported Hope HR removed, W4 continuous record retained, W6 remains next.',unrelatedFilesChanged:false},null,2));
+          } else if(currentSha!=='64111021bb29d53daa7cfb9eab4db97280b90b85') {
+            const receipt='docs/studies/SPEED_THAT_ENDURES_W5_20260922.json';
+            assert.ok(fs.existsSync(receipt),'Unreviewed concurrent study edit. Stop and reconcile.');
+            assert.equal(currentSha,JSON.parse(fs.readFileSync(receipt,'utf8')).resultPageBlob);
+          }
           const p='scripts/studies/ste-w5-update-20260922.cjs';
-          const s=fs.readFileSync(p,'utf8');
+          let s=fs.readFileSync(p,'utf8');
           const old='<b>5 × 1 mi · 2 min float · recorded</b><small>José';
           const corrected='<b>5 × 1 mi · 2 min float</b><small>Recorded · José';
-          if(s.includes(old)) { assert.equal(s.split(old).length,2); fs.writeFileSync(p,s.replace(old,corrected)); }
-          else assert.ok(s.includes(corrected),'Unexpected updater version; reconcile before proceeding.');
+          if(s.includes(old)) { assert.equal(s.split(old).length,2); s=s.replace(old,corrected); }
+          else assert.ok(s.includes(corrected),'Unexpected updater version.');
+          const cssAnchor="once('</style>',css+'</style>');";
+          const css=`\n/* Intrinsic layout: text enlargement follows available space, not only viewport width. */\n#w5-read{container-type:inline-size}\n#w5-context summary{display:list-item;font-size:16px;line-height:1.4;padding:18px 0}\n@container (max-width:850px){\n #w5-read .cr-head{grid-template-columns:1fr;gap:22px}\n #w5-read .cr-head h3{font-size:clamp(48px,9cqi,76px);max-width:100%}\n #w5-read .w4-pair,#w5-read .cr-grid{grid-template-columns:1fr}\n #w5-read .w4-athlete,#w5-read .w4-athlete+.w4-athlete{padding:28px 0;border-left:0}\n #w5-read .w4-athlete+.w4-athlete{border-top:1px solid var(--line)}\n #w5-read .cr-grid>div{min-width:0;padding:22px 0;border-right:0;border-top:1px solid var(--line)}\n #w5-read .cr-grid>div:first-child{border-top:0}\n}\n`;
+          if(s.includes(cssAnchor)) s=s.replace(cssAnchor,"once('</style>',css+"+JSON.stringify(css)+"+'</style>');");
+          else assert.ok(s.includes('Intrinsic layout: text enlargement'),'Unknown CSS patch state.');
+          fs.writeFileSync(p,s);
           JS
           node scripts/studies/ste-w5-update-20260922.cjs | tee /tmp/ste-w5-qa/source-checks.json
           node tests/athlete-study-source-of-truth.cjs
@@ -56,49 +78,58 @@ jobs:
           python - <<'PY'
           import json, time, pathlib
           from playwright.sync_api import sync_playwright
-          out = pathlib.Path('/tmp/ste-w5-qa')
+          out=pathlib.Path('/tmp/ste-w5-qa')
           time.sleep(1)
-          checks = []
+          checks=[]
+          errors=[]
+          result={'checks':checks,'javascriptErrors':errors,'physicalDeviceReview':'not performed'}
           with sync_playwright() as p:
-              browser = p.chromium.launch()
-              page = browser.new_page(reduced_motion='reduce')
-              errors = []
-              page.on('pageerror', lambda error: errors.append(str(error)))
-              for width in [375, 390, 430, 768, 1024, 1440]:
-                  page.set_viewport_size({'width': width, 'height': 1000})
-                  page.goto('http://127.0.0.1:8765/labs/speed-that-endures/index.html#w5-read', wait_until='networkidle')
+              browser=p.chromium.launch()
+              page=browser.new_page(reduced_motion='reduce')
+              page.on('pageerror',lambda error:errors.append(str(error)))
+              try:
+                  for width in [375,390,430,768,1024,1440]:
+                      page.set_viewport_size({'width':width,'height':1000})
+                      page.goto('http://127.0.0.1:8765/labs/speed-that-endures/index.html#w5-read',wait_until='networkidle')
+                      page.locator('#w5-read').scroll_into_view_if_needed()
+                      assert page.locator('#w5-read').count()==1
+                      assert page.locator('#w4-read').count()==1
+                      assert 'Six continuous miles remain' in page.locator('#w5-read').inner_text()
+                      overflow=page.locator('#w5-read').evaluate('(el)=>({scroll:el.scrollWidth,client:el.clientWidth})')
+                      page.locator('#w5-read').screenshot(path=str(out/f'current-{width}.png'))
+                      assert overflow['scroll']<=overflow['client']+2,(width,overflow)
+                      page.locator('#w5-context summary').click()
+                      assert page.locator('#w5-context').get_attribute('open') is not None
+                      assert 'No session heart-rate values' in page.locator('#w5-context').inner_text()
+                      page.locator('#w5-context summary').click()
+                      page.locator('#note-w5').click()
+                      assert 'open' in page.locator('#inspect').get_attribute('class')
+                      assert '6:38.2' in page.locator('#j-out').inner_text()
+                      assert '6:45.6' in page.locator('#h-out').inner_text()
+                      assert '6 mi continuous' in page.locator('#j-next').inner_text()
+                      assert '6 mi continuous' in page.locator('#h-next').inner_text()
+                      page.locator('#inspect').screenshot(path=str(out/f'ledger-{width}.png'))
+                      page.keyboard.press('Escape')
+                      assert page.locator('#note-w5').get_attribute('aria-expanded')=='false'
+                      page.locator('#note-w4').click()
+                      assert '33:40.8' in page.locator('#j-out').inner_text()
+                      assert '34:17.9' in page.locator('#h-out').inner_text()
+                      page.keyboard.press('Escape')
+                      checks.append({'width':width,'currentRead':'pass','newLedger':'pass','priorContinuousRecord':'pass','keyboardClose':'pass','sourceDisclosure':'pass'})
+                  page.set_viewport_size({'width':1440,'height':1100})
+                  page.goto('http://127.0.0.1:8765/labs/speed-that-endures/index.html#w5-read',wait_until='networkidle')
+                  page.evaluate("document.documentElement.style.zoom='2'")
                   page.locator('#w5-read').scroll_into_view_if_needed()
-                  assert page.locator('#w5-read').count() == 1
-                  assert page.locator('#w4-read').count() == 1
-                  assert 'Six continuous miles remain' in page.locator('#w5-read').inner_text()
-                  overflow = page.locator('#w5-read').evaluate('(el) => ({scroll:el.scrollWidth, client:el.clientWidth})')
-                  assert overflow['scroll'] <= overflow['client'] + 2, (width, overflow)
-                  page.locator('#w5-read').screenshot(path=str(out / f'current-{width}.png'))
-                  page.locator('#note-w5').click()
-                  assert page.locator('#inspect').get_attribute('class').find('open') >= 0
-                  assert '6:38.2' in page.locator('#j-out').inner_text()
-                  assert '6:45.6' in page.locator('#h-out').inner_text()
-                  assert '6 mi continuous' in page.locator('#j-next').inner_text()
-                  assert '6 mi continuous' in page.locator('#h-next').inner_text()
-                  page.locator('#inspect').screenshot(path=str(out / f'ledger-{width}.png'))
-                  page.keyboard.press('Escape')
-                  assert page.locator('#note-w5').get_attribute('aria-expanded') == 'false'
-                  page.locator('#note-w4').click()
-                  assert '33:40.8' in page.locator('#j-out').inner_text()
-                  assert '34:17.9' in page.locator('#h-out').inner_text()
-                  page.keyboard.press('Escape')
-                  checks.append({'width': width, 'currentRead': 'pass', 'newLedger': 'pass', 'priorContinuousRecord': 'pass', 'keyboardClose': 'pass'})
-              page.set_viewport_size({'width': 1440, 'height': 1100})
-              page.goto('http://127.0.0.1:8765/labs/speed-that-endures/index.html#w5-read', wait_until='networkidle')
-              page.evaluate("document.documentElement.style.zoom = '2'")
-              page.locator('#w5-read').scroll_into_view_if_needed()
-              overflow = page.locator('#w5-read').evaluate('(el) => ({scroll:el.scrollWidth,client:el.clientWidth})')
-              assert overflow['scroll'] <= overflow['client'] + 2, ('css-zoom-200', overflow)
-              page.locator('#w5-read').screenshot(path=str(out / 'current-css-zoom-200.png'))
-              assert not errors, errors
-              browser.close()
-          (out / 'browser-checks.json').write_text(json.dumps({'checks': checks, 'cssZoom200': 'pass', 'javascriptErrors': errors, 'physicalDeviceReview': 'not performed'}, indent=2))
-          print((out / 'browser-checks.json').read_text())
+                  overflow=page.locator('#w5-read').evaluate('(el)=>({scroll:el.scrollWidth,client:el.clientWidth})')
+                  result['cssZoom200Dimensions']=overflow
+                  page.locator('#w5-read').screenshot(path=str(out/'current-css-zoom-200.png'))
+                  assert overflow['scroll']<=overflow['client']+2,('css-zoom-200',overflow)
+                  result['cssZoom200']='pass'
+                  assert not errors,errors
+              finally:
+                  (out/'browser-checks.json').write_text(json.dumps(result,indent=2))
+                  print(json.dumps(result,indent=2))
+                  browser.close()
           PY
       - name: Commit only the verified study and its source record
         run: |
@@ -110,7 +141,7 @@ jobs:
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m "Record Sep 22 Hope and Jose study: W5 support between five and six continuous miles"
+          git commit -m "Record verified W5 support; preserve completed five and planned six; remove unsupported HR"
           git fetch origin main
           git rebase origin/main
           node - <<'JS'
@@ -119,6 +150,8 @@ jobs:
           const sha=crypto.createHash('sha1').update(Buffer.from(`blob ${b.length}\0`)).update(b).digest('hex');
           const record=JSON.parse(fs.readFileSync('docs/studies/SPEED_THAT_ENDURES_W5_20260922.json','utf8'));
           assert.equal(sha,record.resultPageBlob,'Concurrent page edit needs a fresh review.');
+          assert.ok(!b.toString().includes('174 bpm'));
+          assert.ok(!b.toString().includes('191 bpm'));
           JS
           git push origin HEAD:main
           echo "Verified study commit: $(git rev-parse HEAD)" | tee /tmp/ste-w5-qa/commit.txt
