@@ -1,0 +1,87 @@
+{
+  "id": "adrian_nutrition_01",
+  "version": "2026.09.22.1",
+  "publication_date": "2026-09-22",
+  "actual_start_date": null,
+  "study_id": "FRM-001",
+  "athlete": "Adrian Gandara",
+  "scope": "Adrian only. Do not generalize this page into a runner template.",
+  "nutrition_url": "https://speedandform.com/plans/adrian-nutrition-phase-01/",
+  "study_url": "https://speedandform.com/labs/adrian-runner-mass/",
+  "delivery": {"nutrition": "versioned web support", "native_app": "not integrated or claimed", "running_strength_assignments": "unchanged"},
+  "reported_context": {
+    "age": 19,
+    "height": "approximately 6 ft 2 in, coach estimate; not independently confirmed",
+    "weight_lb": 156,
+    "weight_status": "athlete report, not standardized baseline",
+    "work": "08:00-17:00 approximately",
+    "reported_bedtime": "00:00",
+    "reported_wake": "05:30",
+    "sleep": "5.5 hours between stated bedtime and waking; not measured sleep duration",
+    "work_fridge_microwave": "coach-supplied working setup; no independent facilities verification",
+    "whole_milk": "accepted, coach confirmed",
+    "fruit": "accepted, coach confirmed",
+    "soreness": "four days upper-body soreness reported; actual performed dose, severity and cause not established"
+  },
+  "preferences": {
+    "confirmed_enjoy_or_accept": ["peanut butter", "pasta", "homemade bread", "rice", "beans", "whole milk", "fruit", "cream cheese", "sour cream"],
+    "excluded": ["Greek yogurt", "cottage cheese", "Brussels sprouts"],
+    "existing_meals_not_all_claimed_favorites": ["chicken fricassee", "chicken", "beef", "elk", "sausage", "bacon", "Cuban sandwich", "gyro"],
+    "coach_selected_not_individually_confirmed": ["bananas", "apples", "carrots", "penne", "tomato pasta sauce", "Creamy Vanilla whey"],
+    "additional_screenshot_foods": "Newest screenshots were not available as readable attachments. Await text or readable images; do not infer."
+  },
+  "daily_choices": {
+    "pre_run": "one medium banana 20-30 minutes before; eat with breakfast on non-running mornings",
+    "pre_long_or_hard_extra": "one bread slice with one tablespoon jam; practice tolerance",
+    "breakfast": {"bread_g_approx": 80, "peanut_butter_tbsp": 2, "whole_milk_ml": 240, "whey_powder_g": 32},
+    "lunch_default": {"chicken_cooked_oz": 4, "rice_cooked_cups": 1.5, "beans_cooked_cups": 0.5, "fruit": "one medium apple"},
+    "afternoon": "one quarter of the cooked pasta batch",
+    "dinner_default": {"meat_cooked_oz": 4, "rice_cooked_cups": 1.5, "beans_cooked_cups": 0.5, "carrots_cooked_cups": 1},
+    "portion_status": "concrete starting choices, not proof of daily nutrient adequacy or a food ceiling",
+    "meal_times": "workday organizing targets, not prescribed workout times"
+  },
+  "batch": {"pasta_dry_lb": 1, "ground_beef_raw_lb": 1, "beef_lean_percent": 93, "tomato_sauce_oz": 24, "portions": 4, "prep_days": ["Sunday", "Wednesday"], "weekly_batches": 2, "weekly_portions": 8, "routine_meals": 7, "extra_backup": 1},
+  "supplement": {
+    "brand": "NOW Sports", "product": "Whey Protein Isolate", "flavor": "Creamy Vanilla", "tub_lb": 1.8,
+    "powder_g_per_level_scoop": 32, "protein_g_per_scoop": 25,
+    "label_checked": "2026-09-22",
+    "source": "https://www.nowfoods.com/products/sports-nutrition/whey-protein-isolate-creamy-vanilla-powder",
+    "independent_listing": "https://sport.wetestyoutrust.com/supplement-search/now-foods/now-sports-whey-protein-isolate",
+    "certification": "Informed Sport listing includes Creamy Vanilla batches; actual purchased batch must be verified. Not an NSF or USADA approval claim.",
+    "ingredients_of_note": ["milk", "xylitol", "stevia"],
+    "excluded_from_starting_routine": ["mass gainer", "tongkat ali", "second shake"]
+  },
+  "long_run_fueling": {
+    "existing_running_coach_plan_has_priority": true,
+    "conditional_starting_example": "For 90-105 minutes only, without an existing plan: non-caffeinated 25 g carbohydrate gel at minutes 20, 50 and 80",
+    "total_carbohydrate_g": 75,
+    "carbohydrate_g_per_hour_range": [42.86, 50],
+    "exact_product": "existing athlete gel pending; do not invent",
+    "status": "tolerance practice option, not a new running assignment"
+  },
+  "review": {
+    "first_review": "after seven actual days",
+    "weight": "Monday Wednesday Friday mornings; weekly mean; two-week trend",
+    "track": ["meal completion", "representative lunch/dinner portions", "appetite", "digestion", "actual sleep", "soreness", "run normal/flat/heavy"],
+    "unknowns": ["allergies", "medical dietary restrictions", "exact commute and run/lift timing", "gel product", "selected flavor/vegetable tolerance", "standardized body baseline", "additional unreadable food preferences"],
+    "calorie_target": null,
+    "surplus": null,
+    "weight_gain_deadline": null,
+    "protein_evidence_context": "Around 1.6-2.0 g/kg is approximately 115-142 g/day at reported mass. Menu can exceed; not a ceiling or an excuse for extra shakes.",
+    "causal_limits": "One athlete; simultaneous food, sleep and training changes. Do not attribute later outcomes to nutrition alone."
+  },
+  "historical_race_sources": [
+    {"event": "26th Annual Rotary Half Marathon Run for Tomorrow", "display_date": "2023-12-03", "display_distance": "21.0 Kilometers", "bib": "822", "chip": "1:21:55", "gun": "1:21:55", "places": "2/327 overall; 2/198 male", "status": "source-verified coach-supplied historical result, not asserted personal best", "url": "https://www.athlinks.com/event/20597/results/Event/1067372/Course/2422404/Bib/822"},
+    {"event": "Aden Perry Hero Event 5K", "display_date": "2025-12-06", "display_distance": "5.0 Kilometers", "bib": "21327", "chip": "17:43", "gun": "17:44", "division": "M15-19", "status": "source-verified coach-supplied historical result, not asserted personal best", "url": "https://www.athlinks.com/event/391390/results/Event/1129169/Course/2656075/Bib/21327"},
+    {"event": "Eugene Marathon Weekend", "display_date": "2025-04-26", "display_distance": "13.1 Miles", "bib": "8497", "display_finish": "1:20:42", "gun": null, "division": "M01-19", "status": "source-verified displayed finish; separate gun/net field not established. Date preserved as Athlinks displays, not independently verified start date.", "url": "https://www.athlinks.com/event/138769/results/Event/1110368/Course/2597263/Bib/8497"}
+  ],
+  "quarantined_source": {
+    "event": "The Race To The Courthouse",
+    "url": "https://www.athlinks.com/event/377999/results/Event/1109734/Course/2594848/Bib/333",
+    "status": "exclude from athlete performance record pending identity resolution",
+    "reason": "Same displayed name but M25-29 division conflicts with Adrian's age 19. Name-only search is not identity proof; may be another person or a record error."
+  },
+  "unverified_personal_bests": {"5k": "sub-17 in cross country, athlete report", "10k": "35:15, athlete report", "half": "77 minutes, exact seconds and source pending"},
+  "device_context": {"coros_vo2max": 65, "vo2max_status": "watch estimate, not lab measurement", "threshold_report": "6:05/mi; current direct metric screen pending", "five_k_prediction": "18:03, not a race result", "vdot": 54.5, "vdot_status": "separate training-app metric; not relabeled as VO2max"},
+  "planned_running": {"week": "2026-09-21 to 2026-09-27", "miles": 44, "saturday_long_run_miles": 12, "pace": "7:30-8:29/mi", "status": "screen-recording prescription, not completed work"}
+}
