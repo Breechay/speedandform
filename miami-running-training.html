@@ -796,7 +796,8 @@
         </div>
 
         <div class="info-list" aria-label="Thursday speedwork details">
-          <div class="info-row"><b>Where</b><span>Flamingo Park Track · Miami Beach</span></div>
+          <div class="info-row"><b>When</b><span id="miami-thursday-when">Thursday morning</span></div>
+          <div class="info-row"><b>Where</b><span id="miami-thursday-where">Flamingo Park Track · Miami Beach</span></div>
           <div class="info-row"><b>Who</b><span>All levels · run your own effort</span></div>
           <div class="info-row"><b>Session</b><span>Short repetitions · full recovery · coached structure</span></div>
           <div class="info-row"><b>Bring</b><span>Running shoes. We handle the workout.</span></div>
@@ -941,6 +942,18 @@
     </article>
   </main>
 
+  <script src="/js/community-schedule.js?v=20260922"></script>
+  <script>
+    (() => {
+      const schedule = window.FORM_COMMUNITY_SCHEDULE && window.FORM_COMMUNITY_SCHEDULE.thursday;
+      const when = document.getElementById('miami-thursday-when');
+      const where = document.getElementById('miami-thursday-where');
+      if (schedule) {
+        if (when) when.textContent = schedule.whenLabel;
+        if (where) where.textContent = schedule.locationName + ' · ' + schedule.locationCity;
+      }
+    }());
+  </script>
   <script>
     (() => {
       const link = document.querySelector('[data-email-updates]');
