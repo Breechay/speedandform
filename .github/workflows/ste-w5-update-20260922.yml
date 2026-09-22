@@ -1,0 +1,118 @@
+name: Apply Speed That Endures W5 evidence
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/studies/ste-w5-update-20260922.cjs'
+      - '.github/workflows/ste-w5-update-20260922.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ste-w5-update-20260922
+  cancel-in-progress: false
+
+jobs:
+  update-study:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply exact-source update and verify evidence
+        run: |
+          mkdir -p /tmp/ste-w5-qa
+          node scripts/studies/ste-w5-update-20260922.cjs | tee /tmp/ste-w5-qa/source-checks.json
+          node tests/athlete-study-source-of-truth.cjs
+          node tests/cream-reading.cjs
+      - name: Install isolated browser tooling
+        run: |
+          python -m pip install playwright==1.51.0
+          python -m playwright install --with-deps chromium
+      - name: Check the new record at phone, tablet and desktop widths
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 >/tmp/ste-http.log 2>&1 &
+          python - <<'PY'
+          import json, time, pathlib
+          from playwright.sync_api import sync_playwright
+          out = pathlib.Path('/tmp/ste-w5-qa')
+          time.sleep(1)
+          checks = []
+          with sync_playwright() as p:
+              browser = p.chromium.launch()
+              page = browser.new_page(reduced_motion='reduce')
+              errors = []
+              page.on('pageerror', lambda error: errors.append(str(error)))
+              for width in [375, 390, 430, 768, 1024, 1440]:
+                  page.set_viewport_size({'width': width, 'height': 1000})
+                  page.goto('http://127.0.0.1:8765/labs/speed-that-endures/index.html#w5-read', wait_until='networkidle')
+                  page.locator('#w5-read').scroll_into_view_if_needed()
+                  assert page.locator('#w5-read').count() == 1
+                  assert page.locator('#w4-read').count() == 1
+                  assert 'Six continuous miles remain' in page.locator('#w5-read').inner_text()
+                  overflow = page.locator('#w5-read').evaluate('(el) => ({scroll:el.scrollWidth, client:el.clientWidth})')
+                  assert overflow['scroll'] <= overflow['client'] + 2, (width, overflow)
+                  page.locator('#w5-read').screenshot(path=str(out / f'current-{width}.png'))
+                  page.locator('#note-w5').click()
+                  assert page.locator('#inspect').get_attribute('class').find('open') >= 0
+                  assert '6:38.2' in page.locator('#j-out').inner_text()
+                  assert '6:45.6' in page.locator('#h-out').inner_text()
+                  assert '6 mi continuous' in page.locator('#j-next').inner_text()
+                  assert '6 mi continuous' in page.locator('#h-next').inner_text()
+                  page.locator('#inspect').screenshot(path=str(out / f'ledger-{width}.png'))
+                  page.keyboard.press('Escape')
+                  assert page.locator('#note-w5').get_attribute('aria-expanded') == 'false'
+                  page.locator('#note-w4').click()
+                  assert '33:40.8' in page.locator('#j-out').inner_text()
+                  assert '34:17.9' in page.locator('#h-out').inner_text()
+                  page.keyboard.press('Escape')
+                  checks.append({'width': width, 'currentRead': 'pass', 'newLedger': 'pass', 'priorContinuousRecord': 'pass', 'keyboardClose': 'pass'})
+              page.set_viewport_size({'width': 1440, 'height': 1100})
+              page.goto('http://127.0.0.1:8765/labs/speed-that-endures/index.html#w5-read', wait_until='networkidle')
+              page.evaluate("document.documentElement.style.zoom = '2'")
+              page.locator('#w5-read').scroll_into_view_if_needed()
+              overflow = page.locator('#w5-read').evaluate('(el) => ({scroll:el.scrollWidth,client:el.clientWidth})')
+              assert overflow['scroll'] <= overflow['client'] + 2, ('css-zoom-200', overflow)
+              page.locator('#w5-read').screenshot(path=str(out / 'current-css-zoom-200.png'))
+              assert not errors, errors
+              browser.close()
+          (out / 'browser-checks.json').write_text(json.dumps({'checks': checks, 'cssZoom200': 'pass', 'javascriptErrors': errors, 'physicalDeviceReview': 'not performed'}, indent=2))
+          print((out / 'browser-checks.json').read_text())
+          PY
+      - name: Commit only the verified study and its source record
+        run: |
+          git diff --check
+          git add labs/speed-that-endures/index.html docs/studies/SPEED_THAT_ENDURES_W5_20260922.json docs/roadmap/FORM-ROADMAP.md
+          if git diff --cached --quiet; then
+            echo "The W5 record is already committed."
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "Record Sep 22 Hope and Jose study: W5 support between five and six continuous miles"
+          git fetch origin main
+          git rebase origin/main
+          node - <<'JS'
+          const fs=require('node:fs'),crypto=require('node:crypto'),assert=require('node:assert/strict');
+          const b=fs.readFileSync('labs/speed-that-endures/index.html');
+          const sha=crypto.createHash('sha1').update(Buffer.from(`blob ${b.length}\0`)).update(b).digest('hex');
+          const record=JSON.parse(fs.readFileSync('docs/studies/SPEED_THAT_ENDURES_W5_20260922.json','utf8'));
+          assert.equal(sha,record.resultPageBlob,'Concurrent page edit needs a fresh review.');
+          JS
+          git push origin HEAD:main
+          echo "Verified study commit: $(git rev-parse HEAD)" | tee /tmp/ste-w5-qa/commit.txt
+          echo "Verified study commit: $(git rev-parse HEAD). Source updated; production publication is a separate gate." >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ste-w5-20260922-qa
+          path: /tmp/ste-w5-qa/
+          retention-days: 7
