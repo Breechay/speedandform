@@ -10,7 +10,7 @@ assert.doesNotMatch(html,/id="analysisVideo"/);
 assert.doesNotMatch(html,/id="analysisToggle"/);
 assert.match(html,/class="analysis-screen"><img src="\/assets\/home\/practice\/coaching-track\.webp"/);
 assert.match(html,/FORM · Track practice · Miami/);
-assert.match(html,/id="filmA" data-src="\/media\/run-development.mp4\?v=rd16"/);
+assert.match(html,/id="filmA" data-src="\/media\/run-development.mp4\?v=rd16" autoplay muted loop playsinline/);
 assert.match(html,/data-send-to="33a5c7969281803124c58268d7ae6188"/);
 assert.match(html,/<noscript>/);assert.match(html,/mailto:brice@speedandform.com/);
 assert.ok(!html.includes('id="pick"'));assert.ok(!html.includes('id="drop"'));
@@ -26,12 +26,12 @@ assert.match(html,/I develop<br>runners\./);
 assert.match(html,/Like a kite upon the wind\./);
 assert.match(html,/Form is multiplied by every step\./);
 assert.match(html,/Reveal what wants to be set free\./);
-assert.match(html,/href="\/the-method">Read the method/);
+assert.doesNotMatch(html,/href="\/the-method">Read the method/);
 assert.match(html,/Almost meditative/);
 assert.match(html,/out-of-tune note/);
 assert.ok(!measurement.includes('var simon ='));assert.ok(!measurement.includes('result-grid'));
 assert.match(css,/prefers-reduced-motion:reduce/);assert.match(css,/grid-template-areas:"heading" "film" "body"/);
-assert.match(motion,/IntersectionObserver/);assert.match(motion,/visibilitychange/);assert.match(motion,/saveData/);assert.match(motion,/pausedByUser/);
+assert.match(motion,/IntersectionObserver/);assert.match(motion,/visibilitychange/);assert.match(motion,/saveData/);assert.match(motion,/pausedByUser/);assert.match(motion,/video\.autoplay = true/);assert.match(motion,/inViewport/);
 // All local homepage destinations resolve as files, directory indexes, or known clean-URL aliases.
 for(const m of html.matchAll(/(?:src|data-src|poster|href)="(\/(?!\/)[^"?#]*)(?:[?#][^"]*)?"/g)){
  const pathname=decodeURIComponent(m[1]).replace(/^\//,'');
