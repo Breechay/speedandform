@@ -295,3 +295,7 @@ The [app brief](../HYROX_APP_BRIEF.md) specifies coached and self-coached plan a
 ## Adrian Nutrition 01 v1.1 · final September 22 intake
 
 Weekend restaurant meals replace meals rather than duplicate them. Five workday pasta portions and three freezer backups. Final liked foods and identity exclusions filed; unrelated same-name private details omitted. Product protein and exact NSF listing rechecked. No run/strength/native assignment change. Browser acceptance is attached to the completion branch run; final production verification follows release. Prior v1.0 was production-verified at commit 7ffdd90c129712ee8d300d3923672d27f46412f7 / deploy 6ab30e0f057a0a000874fe67. Physical-device check and actual nutrition response remain open.
+
+### Nutrition 01 v1.2 copy refinement
+
+Owner-directed edit: remove top navigation links and repeated coach-contact explanations. Use direct photo instructions. Preserve meal portions, dietary exclusions, food-safety and medical warnings; move supplement detail into a collapsed footer. Updated browser checks use the disclosure itself. This source note is not a production verification.
