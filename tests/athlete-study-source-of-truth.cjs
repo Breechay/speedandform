@@ -12,7 +12,8 @@ const has=(text,needle,msg)=>{assert.ok(text.includes(needle),msg||needle);check
 has(study,'Sep 22<br/>W5</div><div><b>5 × 1 mi · 2 min float</b>','study W5 Tuesday is canonical');
 has(study,'Sep 24<br/>W5</div><div><b>3 × 10 min threshold</b>','study W5 Thursday is canonical');
 has(study,'Hope is now working at 6:45–7:00','study carries Hope race-pace canon');
-has(study,"Hope's sat around 6:23","study threshold evidence supports Hope threshold canon");
+// Assert the retained W3 evidence rather than a summary sentence retired by the W4 publication.
+has(study,'2 × 10 threshold work at 6:22 · 6:24','study threshold evidence supports Hope threshold canon');
 
 has(migration,"RPD v5 effective W5 by coach decision","private assignment cutover is explicit");
 has(migration,"How far can you hold 6:45–7:00 without it coming apart?","Hope private mark question matches study");
@@ -22,5 +23,12 @@ has(migration,"study-canon 6:45–7:00 / 2 min float","migration proves human-re
 
 has(connected,'One coaching truth.','connected-surfaces doctrine owns the rule');
 has(agents,'Athlete coaching source-of-truth rule','repo agent instructions own the rule');
+
+if (study.includes('id="w5-read"')) {
+  has(study,'Both ran five continuous miles last week.','W5 preserves the completed continuous step');
+  has(study,'Six continuous miles remain next week’s planned step.','W6 remains the planned next step');
+  has(study,'data-key="w4" data-state="filed"','W4 remains a recorded historical result');
+  has(study,'data-key="w5" data-state="filed"','W5 is filed as its own support session');
+}
 
 console.log('PASS:',checks,'athlete study/app source-of-truth checks');
