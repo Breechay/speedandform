@@ -1,9 +1,10 @@
-import { authErrorMessage, finishAuthCallback, setPassword } from '/private/auth.js';
+import { authErrorMessage, finishAuthCallback, getSession, setPassword } from '/private/auth.js';
 import { supabase } from '/private/supabase-client.js';
 
 const title = document.getElementById('callbackTitle');
 const status = document.getElementById('callbackStatus');
 const retry = document.getElementById('callbackRetry');
+const storeWrap = document.getElementById('callbackStoreWrap');
 
 function rpdReturnDestination(value) {
   if (!value) return null;
@@ -17,12 +18,36 @@ function rpdReturnDestination(value) {
   }
 }
 
+function isAppHandoff() {
+  try {
+    return window.sessionStorage.getItem('form-app-signin-handoff') === '1';
+  } catch {
+    return false;
+  }
+}
+
+function clearAppHandoff() {
+  try { window.sessionStorage.removeItem('form-app-signin-handoff'); } catch {}
+}
+
+function appDeepLink(session) {
+  const access = session?.access_token;
+  const refresh = session?.refresh_token;
+  if (!access || !refresh) return null;
+  const fragment = new URLSearchParams({
+    access_token: access,
+    refresh_token: refresh
+  });
+  return `form://coaching-auth#${fragment.toString()}`;
+}
+
 try {
   const url = new URL(window.location.href);
   const recovery = url.searchParams.get('mode') === 'recovery' || url.searchParams.get('type') === 'recovery';
   const returnTo = url.searchParams.get('return_to') || '';
   const rpdReturn = rpdReturnDestination(returnTo);
   const calendarReturn = returnTo.includes('calendar_return=1');
+  const appHandoff = isAppHandoff();
   let calendarTokens = null;
 
   // Calendar consent is still a normal Supabase Google OAuth flow, but this is
@@ -42,7 +67,23 @@ try {
 
   const destination = await finishAuthCallback();
 
-  if (calendarReturn) {
+  if (appHandoff && !recovery && !calendarReturn) {
+    const session = await getSession();
+    const deepLink = appDeepLink(session);
+    clearAppHandoff();
+    if (!deepLink) throw new Error('FORM could not complete the app handoff. Request a new link.');
+
+    title.textContent = 'Opening FORM.';
+    status.textContent = 'Back to your training.';
+    retry.textContent = 'Open FORM →';
+    retry.href = deepLink;
+    retry.hidden = false;
+    storeWrap.hidden = false;
+
+    // Try the one-tap handoff first. The visible button stays in place in case
+    // Safari requires a second user gesture or the app is not installed.
+    window.location.replace(deepLink);
+  } else if (calendarReturn) {
     if (!calendarTokens?.refreshToken || !calendarTokens?.accessToken) {
       throw new Error('Google did not return offline Calendar access. Open Account → Calendar and approve access again.');
     }
@@ -103,8 +144,11 @@ try {
     form.elements.password.focus();
   }
 } catch (error) {
+  clearAppHandoff();
   title.textContent = 'That link did not open.';
   status.textContent = authErrorMessage(error);
   status.className = 'status-message error';
+  retry.textContent = 'Request a new link';
+  retry.href = '/athlete/';
   retry.hidden = false;
 }
