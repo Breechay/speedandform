@@ -37,6 +37,14 @@
   Referrer-Policy: no-referrer
   Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; connect-src 'self' https://pbgsjjegycacodiltbhn.supabase.co; object-src 'none'; base-uri 'self'; frame-ancestors 'none'
 
+/auth/app-signin/*
+  X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
+  Referrer-Policy: no-referrer
+  Cache-Control: no-cache, no-store, must-revalidate, no-transform
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'
+
 /record/*
   X-Robots-Tag: noindex, nofollow
   X-Frame-Options: DENY
