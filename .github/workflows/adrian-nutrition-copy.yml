@@ -1,0 +1,49 @@
+name: Adrian nutrition copy and weekend acceptance
+on:
+  push:
+    branches: [work/adrian-nutrition-copy-weekends-20260922]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: adrian-nutrition-copy-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  refine-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply scoped copy and weekend update
+        run: |
+          python scripts/refine-adrian-nutrition-20260922.py
+          python scripts/refine-adrian-nutrition-20260922.py
+          node tests/cream-reading.cjs
+      - name: Install browser
+        run: |
+          pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium
+      - name: Browser acceptance
+        run: python tests/adrian-nutrition-browser.py
+      - name: Commit accepted source
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add plans/adrian-nutrition-phase-01/index.html labs/adrian-runner-mass/index.html docs/studies/ADRIAN-NUTRITION-INTAKE-20260922.json docs/roadmap/FORM-ROADMAP.md tests/adrian-nutrition-browser.py
+          git diff --cached --quiet || git commit -m 'Simplify Adrian nutrition copy, remove top links, and file weekend routine'
+          git push origin HEAD
+          git rev-parse HEAD > /tmp/adrian-nutrition/commit.txt
+          cp labs/adrian-runner-mass/index.html /tmp/adrian-nutrition/study.html
+          cp plans/adrian-nutrition-phase-01/index.html /tmp/adrian-nutrition/nutrition.html
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: adrian-nutrition-copy-acceptance
+          path: /tmp/adrian-nutrition/
+          retention-days: 7
