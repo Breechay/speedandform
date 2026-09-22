@@ -15,6 +15,10 @@ concurrency:
   group: ste-w5-update-20260922
   cancel-in-progress: false
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   update-study:
     runs-on: ubuntu-latest
@@ -30,6 +34,15 @@ jobs:
       - name: Apply exact-source update and verify evidence
         run: |
           mkdir -p /tmp/ste-w5-qa
+          node - <<'JS'
+          const fs=require('node:fs'),assert=require('node:assert/strict');
+          const p='scripts/studies/ste-w5-update-20260922.cjs';
+          const s=fs.readFileSync(p,'utf8');
+          const old='<b>5 × 1 mi · 2 min float · recorded</b><small>José';
+          const corrected='<b>5 × 1 mi · 2 min float</b><small>Recorded · José';
+          if(s.includes(old)) { assert.equal(s.split(old).length,2); fs.writeFileSync(p,s.replace(old,corrected)); }
+          else assert.ok(s.includes(corrected),'Unexpected updater version; reconcile before proceeding.');
+          JS
           node scripts/studies/ste-w5-update-20260922.cjs | tee /tmp/ste-w5-qa/source-checks.json
           node tests/athlete-study-source-of-truth.cjs
           node tests/cream-reading.cjs
@@ -90,7 +103,7 @@ jobs:
       - name: Commit only the verified study and its source record
         run: |
           git diff --check
-          git add labs/speed-that-endures/index.html docs/studies/SPEED_THAT_ENDURES_W5_20260922.json docs/roadmap/FORM-ROADMAP.md
+          git add labs/speed-that-endures/index.html docs/studies/SPEED_THAT_ENDURES_W5_20260922.json docs/roadmap/FORM-ROADMAP.md scripts/studies/ste-w5-update-20260922.cjs
           if git diff --cached --quiet; then
             echo "The W5 record is already committed."
             exit 0
