@@ -17,10 +17,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Apply scoped intake completion twice for idempotence
+      - name: Apply scoped intake and copy refinement
         run: |
           node scripts/complete-adrian-nutrition-20260922.cjs
-          node scripts/complete-adrian-nutrition-20260922.cjs
+          node scripts/refine-adrian-nutrition-copy-20260922.cjs
+          node scripts/refine-adrian-nutrition-copy-20260922.cjs
           node tests/cream-reading.cjs
       - uses: actions/setup-python@v5
         with:
@@ -35,8 +36,8 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add plans/adrian-nutrition-phase-01/index.html labs/adrian-runner-mass/index.html docs/studies/ADRIAN-NUTRITION-INTAKE-20260922.json docs/roadmap/FORM-ROADMAP.md
-          git diff --cached --quiet || git commit -m 'Complete Adrian weekend meals, preferences and same-name exclusions'
+          git add plans/adrian-nutrition-phase-01/index.html labs/adrian-runner-mass/index.html docs/studies/ADRIAN-NUTRITION-INTAKE-20260922.json docs/roadmap/FORM-ROADMAP.md tests/adrian-nutrition-browser.py
+          git diff --cached --quiet || git commit -m 'Simplify Adrian nutrition actions; remove top navigation and coach-contact commentary'
           git push origin HEAD
           git rev-parse HEAD > /tmp/adrian-nutrition/commit.txt
           cp labs/adrian-runner-mass/index.html /tmp/adrian-nutrition/study.html
