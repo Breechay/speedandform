@@ -6,14 +6,14 @@
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Thursday Track | FORM Miami</title>
-<meta name="description" content="FORM speed sessions. Flamingo Park Track, Miami Beach. Thursdays 6:30 AM. Show up in running shoes.">
+<meta name="description" content="FORM community speedwork at Flamingo Park Track, Miami Beach. Thursdays. Show up in running shoes.">
 <link rel="canonical" href="https://speedandform.com/thursday">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <!-- FORM share metadata: pass 1 -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Thursday Track | FORM Miami">
-<meta property="og:description" content="Flamingo Park Track · Thursdays 6:30 AM · Show up in running shoes.">
+<meta property="og:description" content="Flamingo Park Track · Thursday community speedwork · Show up in running shoes.">
 <meta property="og:url" content="https://speedandform.com/thursday">
 <meta property="og:site_name" content="FORM">
 <meta property="og:locale" content="en_US">
@@ -155,8 +155,8 @@ body {
       </div>
       <div class="loc">
         <span class="loc-label">When</span>
-        <span class="loc-val">Thursdays · 6:30 AM</span>
-        <span class="loc-sub">Every week · all levels</span>
+        <span class="loc-val" id="thu-when">Thursdays</span>
+        <span class="loc-sub" id="thu-audience">Every week · all levels</span>
       </div>
     </div>
 
@@ -202,25 +202,28 @@ body {
 </div>
 </div>
 
+<script src="/js/community-schedule.js?v=20260922"></script>
 <script>
-// Session rotation, cycling 01 through 06.
-const SESSIONS = [
-  { session:'01', name:'Nice and Easy',     nameBreak:'Nice and<br>Easy' },
-  { session:'02', name:'Pyramid Intervals', nameBreak:'Pyramid<br>Intervals' },
-  { session:'03', name:'Gauntlet',          nameBreak:'Gauntlet' },
-  { session:'04', name:'Speed Demons',      nameBreak:'Speed<br>Demons' },
-  { session:'05', name:'Death',             nameBreak:'Death' },
-  { session:'06', name:'Resurrection',      nameBreak:'Resurrection' },
-];
+// Schedule/logistics come from one canonical public source.
+const COMMUNITY = window.FORM_COMMUNITY_SCHEDULE || {};
+const THURSDAY = COMMUNITY.thursday;
+if (!THURSDAY) throw new Error('FORM Thursday schedule unavailable');
 
-// Authored Thursdays. A date listed here wins over the rotation, because the
-// rotation is a convenience and the schedule is a coaching decision.
-// Add the next dates as they are decided; do not let this list go stale.
-const THURSDAY_SCHEDULE = [
-  { date:'2026-09-17', idx:3 },              // Speed Demons
-  { date:'2026-09-24', idx:2 },              // Gauntlet
-  { date:'2026-10-01', optional:true },      // Optional morning
-];
+const SESSIONS = THURSDAY.sessions;
+const THURSDAY_SCHEDULE = THURSDAY.authored;
+
+const whenEl = document.getElementById('thu-when');
+const audienceEl = document.getElementById('thu-audience');
+const locationLink = document.querySelector('.loc-link');
+const locationSub = document.querySelector('.loc-sub');
+
+if (whenEl) whenEl.textContent = THURSDAY.whenLabel;
+if (audienceEl) audienceEl.textContent = 'Every week · ' + THURSDAY.audience;
+if (locationLink) {
+  locationLink.textContent = THURSDAY.locationName;
+  locationLink.href = THURSDAY.mapUrl;
+}
+if (locationSub) locationSub.textContent = THURSDAY.locationCity + ' · ' + THURSDAY.locationDetail;
 
 function toYMD(d) {
   return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
@@ -251,10 +254,8 @@ function getNextThursday(from) {
 
   const authored = THURSDAY_SCHEDULE.find(function(s) { return s.date === thuYMD; });
 
-  // An authored optional morning names no session, because whether it runs is
-  // Brice's call and the page must not invent one.
   if (authored && authored.optional) {
-    if (eyebrow) eyebrow.textContent = dayLabel + ' \u00b7 Optional';
+    if (eyebrow) eyebrow.textContent = dayLabel + ' · Optional';
     if (nameEl)  nameEl.innerHTML    = 'Optional';
     if (rotEl)   rotEl.textContent   = 'This one is optional. Brice will confirm it.';
     return;
@@ -262,9 +263,6 @@ function getNextThursday(from) {
 
   let session = authored ? SESSIONS[authored.idx] : null;
 
-  // Fallback while the authored list is short: continue the rotation from the
-  // last authored Thursday rather than from a fixed launch date. An authored
-  // optional morning names no session, so it must not consume a rotation slot.
   if (!session) {
     const dated = THURSDAY_SCHEDULE.filter(function(s) { return typeof s.idx === 'number'; });
     const last  = dated[dated.length - 1];
@@ -274,17 +272,16 @@ function getNextThursday(from) {
       const skipped = THURSDAY_SCHEDULE.filter(function(s) {
         return s.optional && s.date > last.date && s.date < thuYMD;
       }).length;
-      const step = ((last.idx + weeks - skipped) % 6 + 6) % 6;
+      const step = ((last.idx + weeks - skipped) % SESSIONS.length + SESSIONS.length) % SESSIONS.length;
       session = SESSIONS[step];
     } else {
       session = SESSIONS[0];
     }
   }
 
-  if (eyebrow)  eyebrow.textContent  = dayLabel + ' \u00b7 Speed Emergence';
+  if (eyebrow)  eyebrow.textContent  = dayLabel + ' · Speed Emergence';
   if (nameEl)   nameEl.innerHTML     = session.nameBreak;
   if (inlineEl) inlineEl.textContent = session.name;
-})();
-</script>
+})();</script>
 </body>
 </html>
