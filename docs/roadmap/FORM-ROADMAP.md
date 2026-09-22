@@ -1,5 +1,15 @@
 # FORM: current state and next actions
 
+## September 22 - Adrian: Fuel Your Work and intake record
+
+Adrian-only nutrition companion at /plans/adrian-nutrition-phase-01/. Confirmed preferences, whole milk, selected fruit, exact whey and prep instructions are linked from the existing study. Input record: [source and decisions](../studies/ADRIAN-NUTRITION-INTAKE-20260922.json). Athlete-reported values, Athlinks detail screenshots, listing-only records and device estimates remain separate. Same-name identity conflicts are excluded. No strength/run assignment or native app change. Actual nutrition start and outcomes are pending.
+
+- [x] Source-authored page and dated study update.
+- [x] Protected training/history fields checked unchanged by scoped update.
+- [ ] Production URL verification; source alone is not a live claim.
+- [ ] Physical phone review and first athlete check-in.
+
+
 Private athlete/account execution: [twelve bounded passes](ATHLETE-ECOSYSTEM-PASSES-20260917.md). The bounded implementation/reconciliation program is complete through Pass 12; schema and exact current web `main` are now live, anonymous production acceptance is green, and the authenticated owner/athlete walks plus two native physical-device gates remain explicit. Release and operating authority: [Athlete ecosystem runbook](../audits/ATHLETE-ECOSYSTEM-RUNBOOK-20260918.md).
 Updated September 22, 2026. Owner: Brice. Maintainer: the agent completing relevant work.
 
