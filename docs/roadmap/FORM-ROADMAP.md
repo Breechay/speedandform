@@ -3,6 +3,19 @@
 Private athlete/account execution: [twelve bounded passes](ATHLETE-ECOSYSTEM-PASSES-20260917.md). The bounded implementation/reconciliation program is complete through Pass 12; schema and exact current web `main` are now live, anonymous production acceptance is green, and the authenticated owner/athlete walks plus two native physical-device gates remain explicit. Release and operating authority: [Athlete ecosystem runbook](../audits/ATHLETE-ECOSYSTEM-RUNBOOK-20260918.md).
 Updated September 22, 2026. Owner: Brice. Maintainer: the agent completing relevant work.
 
+## September 22 - Speed That Endures: Week 5 support recorded
+
+September 22 Garmin screenshots and athlete messages are recorded on the existing study. **Sep 15: five continuous miles completed. Sep 22: 5 x 1 mile with two-minute floats. Sep 29: six continuous miles planned.** W5 is support, not another five-mile qualification. Individual bands, athlete assignments and future prescriptions are unchanged.
+
+Jose: 6:38.2/mi work average, 4.1-second rep spread, reported effort 8/10. Hope: 6:45.6/mi work average, 6.0 seconds of slowing; first two reps slightly faster than her band, final three inside. Hope's HR/zone values are not supplied and are not invented. Garmin threshold context stays a device estimate, not a measured economy claim.
+
+Evidence and exact reviewed/result page hashes: [W5 source record](../studies/SPEED_THAT_ENDURES_W5_20260922.json). The scoped workflow validates arithmetic, preserves every earlier/future evidence object and the continuous ladder, and checks script/metadata syntax before commit. Browser acceptance is recorded in the workflow artifact. Source completion does not assert production deployment or a physical-device test.
+
+- [x] Source-grounded W5 record; prior continuous evidence preserved.
+- [x] No band, assignment or future-session changes.
+- [ ] Verify the new source on production before calling the study live.
+- [ ] Physical iPhone/iPad review.
+
 ## September 22 — Homepage Method link paused; Method redesign queued
 
 The homepage no longer links to `/the-method`. The current Method page remains public and searchable, but it is not ready to carry the homepage's deeper-explanation handoff.

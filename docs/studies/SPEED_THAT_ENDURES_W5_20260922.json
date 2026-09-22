@@ -1,0 +1,124 @@
+{
+  "id": "ste-w5-2026-09-22",
+  "date": "2026-09-22",
+  "sourceFiles": [
+    "IMG_7855.png",
+    "IMG_7856.png",
+    "IMG_7857.png",
+    "IMG_7858.png",
+    "IMG_7859.png",
+    "IMG_7860.png",
+    "IMG_7861.png",
+    "IMG_7862.png",
+    "IMG_7863.png",
+    "IMG_7864.png",
+    "IMG_7865.png"
+  ],
+  "sourceType": "User-supplied Garmin screenshots and selected WhatsApp messages; raw chat screenshots are not published.",
+  "reviewedSourceBlob": "64111021bb29d53daa7cfb9eab4db97280b90b85",
+  "resultPageBlob": "dae73bad17fdd75bdb1e6dfa1a18f88fcefad846",
+  "prescriptionChanges": false,
+  "continuousRecord": {
+    "lastCompleted": {
+      "date": "2026-09-15",
+      "miles": 5
+    },
+    "today": "5 x 1 mi with four 2:00 floats; support",
+    "nextPlanned": {
+      "date": "2026-09-29",
+      "miles": 6
+    }
+  },
+  "athletes": {
+    "jose": {
+      "repSeconds": [
+        398.6,
+        398.7,
+        395.9,
+        400,
+        397.9
+      ],
+      "floatSeconds": [
+        120,
+        120,
+        120,
+        120
+      ],
+      "floatPaces": [
+        "9:20",
+        "9:38",
+        "9:31",
+        "9:18"
+      ],
+      "workSeconds": 1991.1,
+      "workAverageSecondsPerMile": 398.22,
+      "effortReported": 8,
+      "noStops": "Athlete-reported",
+      "sessionHeartRate": null
+    },
+    "hope": {
+      "repSeconds": [
+        402.9,
+        404,
+        405.1,
+        407.1,
+        408.9
+      ],
+      "floatSeconds": [
+        120,
+        120,
+        120,
+        120
+      ],
+      "floatPaces": [
+        "8:38",
+        "10:08",
+        "10:11",
+        "10:26"
+      ],
+      "workSeconds": 2028,
+      "workAverageSecondsPerMile": 405.6,
+      "effortReported": null,
+      "sessionHeartRate": null
+    }
+  },
+  "evidence": {
+    "title": "Sep 22 · W5 · 5 × 1 mi / 2:00 floats · recorded",
+    "q": "How did each athlete distribute five one-mile reps with two-minute floats, between the five- and six-mile continuous runs?",
+    "pr": "5 × 1 mi · four 2:00 floats · José 6:30–6:45 /mi · Hope 6:45–7:00 /mi",
+    "prs": "Sep 15: both completed 5 mi continuous. Sep 22: broken support. Sep 29: 6 mi continuous remains planned. Today neither resets nor advances the continuous-distance record. Source: athlete-shared Garmin screenshots and post-run messages dated Sep 22, 2026.",
+    "j": {
+      "out": "5 × 1 mi · 33:11.1 work · 6:38.2 /mi work average",
+      "outs": "Rep times: 6:38.6 · 6:38.7 · 6:35.9 · 6:40.0 · 6:37.9. Spread: 4.1 s. All five inside his band, with no late fade in the recorded rep times. Four 2:00 floats at 9:20 · 9:38 · 9:31 · 9:18 /mi. Warm-up: 20:00, 2.39 mi; cool-down: 9:59.7, 1.08 mi. Garmin total: 9.32 mi, 1:11:10.7. Work-only averages exclude floats, warm-up and cool-down.",
+      "cost": "8/10 · breathing controlled · legs felt weak",
+      "costs": "José reported no stops, poor sleep, nutrition being off, difficulty finding rhythm through the on/off pattern, and an uncertain-feeling close. He noticed less time to feel settled with 2:00 rather than 3:00 floats. These are his reports, not an isolated cause or a measured mechanical change.",
+      "read": "Stable rep times. A demanding session.",
+      "reads": "The output held while his reported effort was high. Those facts can coexist; the splits do not invalidate the sensation. His first 6:38 led him to try to match it. Brice asked for a more patient opening near 6:45 rather than a faster race-pace target. The separate Garmin threshold chart is a device estimate, not this run’s heart-rate trace or a measurement of running economy.",
+      "next": "Sep 29 · 6 mi continuous · same band",
+      "nexts": "The five-mile continuous run is already recorded from Sep 15. Today is support before the planned six, not a five-mile requalification. Sep 24 remains 3 × 10 min threshold. Practice the existing race-pacing instruction without changing the assigned band.",
+      "effort": "8/10 · reported",
+      "limiter": "Legs / finding rhythm · reported",
+      "reserve": "Not quantified"
+    },
+    "h": {
+      "out": "5 × 1 mi · 33:48.0 work · 6:45.6 /mi work average",
+      "outs": "Rep times: 6:42.9 · 6:44.0 · 6:45.1 · 6:47.1 · 6:48.9. The final rep was 6.0 s slower than the first. The first two were slightly faster than her 6:45–7:00 band; the last three were inside it. Four 2:00 floats at 8:38 · 10:08 · 10:11 · 10:26 /mi. Warm-up: 15:00, 1.76 mi. Cool-down and total activity figures are not visible in the supplied screenshots.",
+      "cost": "Hard, but not too bad · mentally more doable",
+      "costs": "Hope said the session went well and felt more manageable mentally. She reported trying to go fast at the start, then remembering Thursday’s coaching and deciding to stay in her range. No numeric effort rating, session heart rate or heart-rate-zone distribution was supplied.",
+      "read": "A small slowing after a fast opening. Her band remained available.",
+      "reads": "The rep times slowed in order, but the last three remained inside her assigned band. This is not evidence that she lost access to that band. Her report records a pacing correction and remembered coaching, not a measured physiological mechanism. The useful correction is a more patient opening, not a new pace target.",
+      "next": "Sep 29 · 6 mi continuous · same band",
+      "nexts": "Keep Sep 15’s five continuous miles recorded and Sep 29’s six continuous miles planned. Brice asked for better pacing distribution. Sep 24 remains 3 × 10 min threshold: his message specifies a restrained first two reps and staying within the prescribed range on the third, not exceeding it.",
+      "effort": "Hard, manageable · reported",
+      "limiter": "Not isolated",
+      "reserve": "Not reported"
+    }
+  },
+  "limits": [
+    "Two-athlete descriptive field record, not a controlled comparison.",
+    "No new physiological mechanism, measured economy or continuous-distance claim.",
+    "No Hope session HR, maximum HR, zone percentages or numeric RPE were supplied.",
+    "Garmin threshold trend remains a separate device estimate.",
+    "Source correction: W4 five continuous miles were already completed; W6 six continuous miles remain planned."
+  ]
+}
