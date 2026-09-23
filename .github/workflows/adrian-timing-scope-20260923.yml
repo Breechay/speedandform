@@ -1,0 +1,69 @@
+name: Adrian scoped timing acceptance
+on:
+  push:
+    branches: [work/adrian-timing-scope-20260923]
+permissions:
+  contents: write
+concurrency:
+  group: adrian-timing-scope-20260923
+  cancel-in-progress: false
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare against current main
+        run: |
+          cp scripts/reconcile-adrian-timing-scope-20260923.py /tmp/adrian-timing-scope.py
+          git fetch origin main
+          git switch --detach origin/main
+          git rev-parse HEAD > /tmp/adrian-timing-base.txt
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install existing acceptance dependencies
+        run: |
+          pip install playwright==1.58.0 beautifulsoup4
+          python -m playwright install --with-deps chromium
+      - name: Apply scoped correction and verify repeatability
+        run: |
+          python /tmp/adrian-timing-scope.py
+          git diff > /tmp/adrian-first.diff
+          python /tmp/adrian-timing-scope.py
+          git diff > /tmp/adrian-second.diff
+          cmp /tmp/adrian-first.diff /tmp/adrian-second.diff
+      - name: Verify recipe amounts and independent assets unchanged
+        run: |
+          python - <<'PY'
+          import subprocess
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          p='plans/adrian-nutrition-phase-01/index.html'
+          old=BeautifulSoup(subprocess.check_output(['git','show','HEAD:'+p],text=True),'html.parser')
+          new=BeautifulSoup(Path(p).read_text(),'html.parser')
+          for selector in ['.recipe-card','#recipe-base','#base-method','#food-safety','#kit','#sleep']:
+              assert [str(e) for e in old.select(selector)] == [str(e) for e in new.select(selector)], selector
+          for p in ['plans/adrian-nutrition-phase-01/shopping.js','plans/adrian-nutrition-phase-01/shopping.css','plans/adrian-nutrition-phase-01/adrian-prep-reminders.ics','plans/adrian-nutrition-phase-01/manifest.webmanifest']:
+              assert subprocess.check_output(['git','show','HEAD:'+p]) == Path(p).read_bytes(), p
+          print('Recipes, amounts, safety, sleep, kit, shopping persistence and calendar file unchanged.')
+          PY
+      - name: Existing six-width acceptance plus timing regression
+        run: python tests/adrian-nutrition-v15.py
+      - name: Save only tested outputs to holding branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add AGENTS.md docs/roadmap/FORM-ROADMAP.md docs/studies/ADRIAN-NUTRITION-HOLD-20260923.md plans/adrian-nutrition-phase-01/index.html plans/adrian-nutrition-phase-01/review-context.json tests/adrian-nutrition-v15.py tests/adrian-nutrition-timing.py
+          test "$(git diff --cached --name-only | wc -l)" -eq 7
+          git diff --cached --check
+          git commit -m 'Adrian: supersede blanket hold with scoped food-timing guidance'
+          git push origin HEAD:refs/heads/work/validated-adrian-timing-scope-20260923
+          echo "VALIDATED_COMMIT=$(git rev-parse HEAD)"
+          echo "VALIDATED_BASE=$(cat /tmp/adrian-timing-base.txt)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: adrian-timing-scope-acceptance
+          path: /tmp/adrian-nutrition-v15/
+          retention-days: 7
