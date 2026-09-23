@@ -11,7 +11,7 @@
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The Two Curves · Simon · FORM Study 003">
-<meta property="og:description" content="1:26:13 half. 17:36 5K. Higher ceiling, longer hold. Block 01, two ceiling reads, HYROX Nashville, and the road to May.">
+<meta property="og:description" content="1:26:13 half. 17:36 5K. Higher ceiling, longer hold. Block 01, two ceiling reads, HYROX Nashville, then the Semi-Marathon de la Loire in Saumur on May 16, 2027.">
 <meta property="og:url" content="https://speedandform.com/labs/the-two-curves/">
 <meta property="og:image" content="https://speedandform.com/labs/the-two-curves/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -100,7 +100,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 
 /* the figure: head over the mast rule, right sole on the card rule */
 .fig{position:absolute;left:0;right:0;top:calc(-1 * var(--over));bottom:0;z-index:70;pointer-events:none}
-.fig img{position:absolute;top:0;left:50%;height:112.99%;width:auto;max-width:none;transform:translateX(calc(-50% + var(--fx,0px)));
+.fig img{position:absolute;top:0;left:50%;height:112.99%;width:auto;max-width:none;transform:translateX(calc(-50% + var(--fx,0px))) scale(.96);transform-origin:50% 100%;
   filter:contrast(1.03) saturate(.94);-webkit-user-select:none;user-select:none;-webkit-user-drag:none}
 
 /* right rail */
@@ -289,7 +289,7 @@ table.rtc{width:100%;border-collapse:collapse}
 .scope p{color:var(--ink-2);margin:0;max-width:52ch}
 .footer{border-top:1px solid var(--rule-hard);padding:30px var(--gut) 60px;display:flex;justify-content:space-between;gap:24px;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--graphite)}
 
-.reveal{opacity:0;transform:translateY(12px);transition:opacity .55s ease,transform .55s ease}.reveal.is-in{opacity:1;transform:none}
+.reveal{opacity:1;transform:none;transition:opacity .55s ease,transform .55s ease}
 [data-i]{transition:opacity .18s ease}
 .swap [data-i],.swap [data-u]{opacity:.25}
 
@@ -449,8 +449,8 @@ table.rtc{width:100%;border-collapse:collapse}
           <div><dt data-i="rb.races">Races</dt><dd data-i="rb.races.v">2 official</dd></div>
           <div><dt data-i="rb.thr">Threshold</dt><dd data-i="rb.thr.v">1 session</dd></div>
           <div><dt data-i="rb.next">Next race</dt><dd data-i="rb.next.v">Gate 01 · 5K · Oct 29</dd></div>
-          <div><dt data-i="rb.b1">Block 01</dt><dd class="no" data-i="rb.b1.v">Opens Oct 26</dd></div>
-          <div><dt data-i="rb.goal">Goal race</dt><dd class="no" data-i="rb.goal.v">May 2027 · tbc</dd></div>
+          <div><dt data-i="rb.b1">Block 01</dt><dd data-i="rb.b1.v">Opens Sep 28</dd></div>
+          <div><dt data-i="rb.goal">Goal race</dt><dd data-i="rb.goal.v">16 May · Saumur</dd></div>
         </dl>
       </div>
       <p class="rail-note" data-i="railnote">Neither curve may cost the other.</p>
@@ -601,7 +601,7 @@ table.rtc{width:100%;border-collapse:collapse}
         <div><span class="lbl" data-i="arc.l">After Block 01</span><h3 data-i="arc.h">The road to May.</h3></div>
       </div>
       <ol class="arc-list" id="arcList"></ol>
-      <p class="arc-note" data-i="arc.n">Everything after November counts back from the race. The May date is still to confirm, so these rows move with it.</p>
+      <p class="arc-note" data-i="arc.n">The goal race is fixed for Sunday May 16 in Saumur. The 15-week race-specific block can now anchor to Monday Feb 1.</p>
     </div>
   </div>
 </section>
@@ -645,7 +645,7 @@ table.rtc{width:100%;border-collapse:collapse}
           <tr><td data-i="r4">Threshold</td><td>2 × 10 min · <span data-u="p:223.7-228.7">3:44–3:49/km</span></td><td data-i="r4.s">Session Sep 4 · effort 7/10</td><td><span class="pill ok" data-i="filed">Filed</span></td></tr>
           <tr><td data-i="r5">Goal</td><td>1:19–1:23</td><td data-i="r5.s">Set by Brice, around 1:20</td><td><span class="pill wait" data-i="working">Working</span></td></tr>
           <tr><td data-i="r6">Goal half pace</td><td><span data-u="p:227-232">3:47–3:52/km</span></td><td data-i="r6.s">About 1:20 over 21.1 km</td><td><span class="pill wait" data-i="working">Working</span></td></tr>
-          <tr><td data-i="r7">Goal race</td><td data-i="r7.v">May 2027</td><td data-i="r7.s">Simon, by text</td><td><span class="pill wait" data-i="tbc">To confirm</span></td></tr>
+          <tr><td data-i="r7">Goal race</td><td data-i="r7.v">16 May 2027 · Saumur</td><td><a href="https://www.marathon-loire.fr/les-courses/semi-marathon" target="_blank" rel="noopener" data-i="r7.s">Official Semi-Marathon de la Loire page</a></td><td><span class="pill ok" data-i="official">Official</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -661,7 +661,7 @@ table.rtc{width:100%;border-collapse:collapse}
     </div>
     <div class="scope">
       <article><h3 data-i="sc1.h">It says</h3><p data-i="sc1.p">His last block worked: 1:26:13, official. The next weeks develop the ceiling and the hold together. Nothing after Block 01 is final until Gate 01 is read.</p></article>
-      <article><h3 data-i="sc2.h">It doesn't claim</h3><p data-i="sc2.p">That 1:20 is already there. That his VO₂max has gone up. That the May date is fixed.</p></article>
+      <article><h3 data-i="sc2.h">It doesn't claim</h3><p data-i="sc2.p">That 1:20 is already there. That his VO₂max has gone up. That later training blocks are fixed before the evidence earns them.</p></article>
     </div>
   </div>
 </section>
@@ -718,8 +718,8 @@ const ARC = [
   {cls:"race", when:{en:"Dec 9–13",fr:"9–13 déc."}, t:{en:"HYROX Nashville",fr:"HYROX Nashville"}, p:{en:"Still on. Exact race day and heat are not filed yet.",fr:"Toujours prévu. Le jour exact et la vague ne sont pas encore au dossier."}},
   {when:{en:"Holidays",fr:"Fêtes"}, t:{en:"Hold what we built",fr:"Garder l’acquis"}, p:{en:"Less load, same rhythm. Protect the work through the calendar.",fr:"Moins de charge, même rythme. Protéger le travail pendant les fêtes."}},
   {cls:"cond", when:{en:"January",fr:"Janvier"}, t:{en:"Read, then build",fr:"Lire, puis construire"}, p:{en:"Use Gate 01, the Turkey Trot and HYROX to decide what gets raised, held or converted next.",fr:"Utiliser la porte 01, le Turkey Trot et HYROX pour décider ce qui monte, ce qui se maintient ou ce qui se convertit ensuite."}},
-  {when:{en:"15 weeks out",fr:"À 15 semaines"}, t:{en:"Race-specific block",fr:"Bloc spécifique course"}, p:{en:"Broken, then continuous, then race pace late in long runs. Counted back from the confirmed May race date.",fr:"Fractionné, puis continu, puis allure course en fin de sortie longue. Compté à rebours depuis la date confirmée du semi de mai."}},
-  {cls:"race", when:{en:"May 2027",fr:"Mai 2027"}, t:{en:"Half marathon",fr:"Semi-marathon"}, p:{en:"Date to confirm. Target around 1:20.",fr:"Date à confirmer. Objectif autour de 1:20."}}
+  {when:{en:"Mon · Feb 1",fr:"Lun. · 1 févr."}, t:{en:"Race-specific · 15 weeks",fr:"Bloc spécifique · 15 semaines"}, p:{en:"The final block now has an anchor: Feb 1 → May 16. Broken work becomes continuous, then race pace arrives late in long runs.",fr:"Le bloc final a désormais son ancrage : 1 févr. → 16 mai. Le travail fractionné devient continu, puis l’allure course arrive en fin de sortie longue."}},
+  {cls:"race", when:{en:"Sun · May 16",fr:"Dim. · 16 mai"}, t:{en:"Semi-Marathon de la Loire · Saumur",fr:"Semi-Marathon de la Loire · Saumur"}, p:{en:"21.1 km · 8:00 start at Pont de Gennes, Gennes-Val-de-Loire → Saumur. Target around 1:20.",fr:"21,1 km · départ à 8h00 au Pont de Gennes, Gennes-Val-de-Loire → Saumur. Objectif autour de 1:20."}}
 ]
 
 /* ============================================================
@@ -744,7 +744,7 @@ const T = {
  "rb.thr":["Threshold","Seuil"],"rb.thr.v":["1 session","1 séance"],
  "rb.next":["Next race","Prochaine course"],"rb.next.v":["Gate 01 · 5K · Oct 29","Porte 01 · 5 km · 29 oct."],
  "rb.b1":["Block 01","Bloc 01"],"rb.b1.v":["Opens {b1}","Début {b1}"],
- "rb.goal":["Goal race","Course objectif"],"rb.goal.v":["May 2027 · tbc","Mai 2027 · à fixer"],
+ "rb.goal":["Goal race","Course objectif"],"rb.goal.v":["16 May · Saumur","16 mai · Saumur"],
  "railnote":["Neither curve may cost the other.","Aucune courbe ne doit coûter à l’autre."],
  "c1.t":["Question","Question"],"c1.p":["Raise the top end and hold race pace longer, in the same weeks.","Relever la vitesse du haut et tenir l’allure course plus longtemps, dans les mêmes semaines."],
  "c1.s":["If one rises and the other falls, the plan changes.","Si l’une monte et l’autre baisse, le plan change."],
@@ -777,7 +777,7 @@ const T = {
  "pa.n":["Tuesday runs around {p:223.7}. Thursday is a FORM track session, the same for both athletes.","Le mardi se court autour de {p:223.7}. Le jeudi est une séance piste FORM, la même pour les deux athlètes."],
  "pb.l":["Now · Study 003","En cours · Étude 003"],"pb.m":["{b1} → {b1end} · 5 weeks · ends with Gate 01","{b1} → {b1end} · 5 semaines · se termine par la porte 01"],"pb.h":["Block 01","Bloc 01"],
  "arc.l":["After Block 01","Après le bloc 01"],"arc.h":["The road to May.","La route jusqu’en mai."],
- "arc.n":["Everything after November counts back from the race. The May date is still to confirm, so these rows move with it.","Tout ce qui suit novembre se compte à rebours depuis la course. La date de mai reste à confirmer, ces lignes bougeront avec elle."],
+ "arc.n":["The goal race is fixed for Sunday May 16 in Saumur. The 15-week race-specific block can now anchor to Monday Feb 1.","La course objectif est fixée au dimanche 16 mai à Saumur. Le bloc spécifique de 15 semaines peut désormais commencer le lundi 1er février."],
  "s3.h":["Filed so far","Au dossier"],"s3.p":["A plan isn't evidence. Only what Simon actually runs goes here.","Un plan n’est pas une preuve. Seul ce que Simon court vraiment arrive ici."],
  "e1.d":["23 Sep 2026","23 sept. 2026"],"e1.k":["Coach note","Note du coach"],"e1.h":["The question changed.","La question a changé."],
  "e1.p":["The April half held together, so this isn't about surviving a half. It's about moving the whole line up.","Le semi d’avril a tenu. Il ne s’agit donc pas de survivre à un semi, mais de faire monter toute la ligne."],
@@ -791,11 +791,11 @@ const T = {
  "r4":["Threshold","Seuil"],"r4.s":["Session Sep 4 · effort 7/10","Séance du 4 sept. · effort 7/10"],
  "r5":["Goal","Objectif"],"r5.s":["Set by Brice, around 1:20","Fixé par Brice, autour de 1:20"],
  "r6":["Goal half pace","Allure semi visée"],"r6.s":["About 1:20 over 21.1 km","Environ 1:20 sur 21,1 km"],
- "r7":["Goal race","Course objectif"],"r7.v":["May 2027","Mai 2027"],"r7.s":["Simon, by text","Simon, par message"],
+ "r7":["Goal race","Course objectif"],"r7.v":["16 May 2027 · Saumur","16 mai 2027 · Saumur"],"r7.s":["Official Semi-Marathon de la Loire page","Page officielle du Semi-Marathon de la Loire"],
  "official":["Official","Officiel"],"derived":["Derived","Déduit"],"filed":["Filed","Au dossier"],"working":["Working","En cours"],"tbc":["To confirm","À confirmer"],
  "s5.h":["What this page says","Ce que dit cette page"],"sc1.h":["It says","Elle dit"],
  "sc1.p":["His last block worked: 1:26:13, official. The next weeks develop the ceiling and the hold together. Nothing after Block 01 is final until Gate 01 is read.","Son dernier bloc a marché&#8239;: 1:26:13, officiel. Les semaines à venir travaillent le plafond et la tenue ensemble. Rien après le bloc 01 n’est définitif avant la lecture de la porte 01."],
- "sc2.h":["It doesn't claim","Elle n’affirme pas"],"sc2.p":["That 1:20 is already there. That his VO₂max has gone up. That the May date is fixed.","Que 1:20 est déjà acquis. Que sa VO₂max a augmenté. Que la date de mai est fixée."],
+ "sc2.h":["It doesn't claim","Elle n’affirme pas"],"sc2.p":["That 1:20 is already there. That his VO₂max has gone up. That later training blocks are fixed before the evidence earns them.","Que 1:20 est déjà acquis. Que sa VO₂max a augmenté. Que les blocs suivants sont figés avant que les preuves ne les justifient."],
  "f1":["FORM · Study 003 · Simon","FORM · Étude 003 · Simon"],"f2":["The Two Curves · living record · updated 23 Sep 2026","Les deux courbes · dossier vivant · mis à jour le 23 sept. 2026"],
  /* generated bits */
  "g.wk":["Wk","Sem."],"g.easy":["Easy","Facile"],"g.off":["Off","Repos"],"g.total":["Total","Total"],
@@ -998,3 +998,8 @@ if(REDUCED){ document.querySelectorAll(".reveal").forEach(x=>x.classList.add("is
 else{
   const o=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("is-in"); o.unobserve(e.target); } }),{rootMargin:"0px 0px -8% 0px"});
   document.querySelectorAll(".reveal").forEach(x=>o.observe(x));
+}
+})();
+</script>
+</body>
+</html>
