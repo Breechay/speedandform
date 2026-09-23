@@ -2,20 +2,23 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="deploy-id" content="202604031200">
+<meta name="deploy-id" content="202609231-thursday-field">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<title>Thursday Track | FORM Miami</title>
-<meta name="description" content="FORM community speedwork at Flamingo Park Track, Miami Beach. Thursdays. Show up in running shoes.">
+<title>Thursday Speedwork | FORM Miami</title>
+<meta name="description" content="FORM Thursday community speedwork at Flamingo Park Track in Miami Beach. See the current session, live schedule and how to join.">
 <link rel="canonical" href="https://speedandform.com/thursday">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#e9e3d6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <!-- FORM share metadata: pass 1 -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Thursday Track | FORM Miami">
-<meta property="og:description" content="Flamingo Park Track · Thursday community speedwork · Show up in running shoes.">
+<meta property="og:title" content="Thursday Speedwork | FORM Miami">
+<meta property="og:description" content="Flamingo Park Track · Thursday community speedwork · Current session and joining details.">
 <meta property="og:url" content="https://speedandform.com/thursday">
-<meta property="og:site_name" content="FORM">
+<meta property="og:site_name" content="Speed &amp; Form">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://speedandform.com/og/form-share-20260916.jpg">
 <meta property="og:image:secure_url" content="https://speedandform.com/og/form-share-20260916.jpg">
@@ -24,183 +27,143 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Two runners in profile in a black-and-white photograph, with FORM, Run Development, and Brice · Miami + Remote.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Thursday Track | FORM Miami">
-<meta name="twitter:description" content="Flamingo Park Track · Thursday community speedwork · Show up in running shoes.">
+<meta name="twitter:title" content="Thursday Speedwork | FORM Miami">
+<meta name="twitter:description" content="Flamingo Park Track · Thursday community speedwork · Current session and joining details.">
 <meta name="twitter:image" content="https://speedandform.com/og/form-share-20260916.jpg">
 <meta name="twitter:image:alt" content="Two runners in profile in a black-and-white photograph, with FORM, Run Development, and Brice · Miami + Remote.">
 <!-- /FORM share metadata -->
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --cream: #f5f2ec; --ink: #2a2620; --ink-l: #6b6459; --ink-f: #a09890;
-  --line: #d8d2c8; --line-l: #e8e3dc;
+:root{
+  --canvas:#dcd6c9;--paper:#ece6d9;--paper-hi:#f2ede3;
+  --ink:#15130f;--ink-2:#343129;--muted:#686358;
+  --hair:rgba(21,19,15,.17);--hair-hard:rgba(21,19,15,.31);
+  --blue:#2e5e8e;--red:#b7352c;--max:780px;
+  --display:"Archivo",Helvetica,Arial,sans-serif;
+  --mono:"Space Mono",ui-monospace,Menlo,monospace;
 }
-html { height: 100%; }
-body {
-  background: var(--cream); color: var(--ink);
-  font-family: 'Jost', sans-serif; font-weight: 300;
-  min-height: 100%; display: flex; flex-direction: column;
-  padding: 0 0 80px;
+*{box-sizing:border-box}
+html{background:var(--canvas);-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}
+body{
+  margin:0;color:var(--ink);
+  background:radial-gradient(circle at 15% 0%,rgba(255,255,255,.24),transparent 34%),var(--canvas);
+  font-family:var(--display);-webkit-font-smoothing:antialiased
 }
-.nav {
-  padding: 32px 32px 0;
-  display: flex; align-items: center; justify-content: space-between;
-  max-width: 480px; margin: 0 auto; width: 100%;
+a{color:inherit}
+.shell{width:min(100%,var(--max));margin:0 auto;padding:14px}
+.sheet{background:var(--paper);border:1px solid rgba(21,19,15,.09);border-radius:22px;overflow:hidden;box-shadow:0 18px 46px rgba(58,49,31,.12)}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 22px 12px}
+.mark{text-decoration:none;font-size:13px;font-weight:900;letter-spacing:.13em}.mark i{font-style:normal;color:var(--red)}
+.topnav{display:flex;align-items:center;gap:16px;font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.topnav a{text-decoration:none;border-bottom:1px solid rgba(21,19,15,.22);padding-bottom:2px}
+.hero{padding:34px 22px 30px;border-bottom:1px solid var(--hair)}
+.coordinate{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-bottom:23px;font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.session-code{color:var(--blue)}
+.hero h1{margin:0;font-size:clamp(58px,14vw,104px);font-weight:900;line-height:.82;letter-spacing:-.07em;text-transform:uppercase}
+.hero h1 i{font-style:normal;color:var(--red)}
+.hero-copy{margin:22px 0 0;max-width:600px;color:var(--muted);font-size:16px;line-height:1.55}
+.session{padding:34px 22px 36px;border-bottom:1px solid var(--hair)}
+.session-label{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--blue)}
+.session-name{margin:9px 0 24px;font-size:clamp(54px,12vw,86px);font-weight:850;line-height:.87;letter-spacing:-.065em}
+.live-note{font-family:var(--mono);font-size:10px;line-height:1.5;color:var(--muted)}
+.logistics{display:grid;grid-template-columns:1.15fr .95fr .75fr;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.loc{padding:17px 16px;min-width:0}.loc:first-child{padding-left:0}.loc+.loc{border-left:1px solid var(--hair)}
+.loc-label{display:block;margin-bottom:7px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.loc-val{display:block;font-size:15.5px;font-weight:750;line-height:1.25}.loc-sub{display:block;margin-top:5px;color:var(--muted);font-size:12.5px;line-height:1.35}
+.loc-link{text-decoration:none;border-bottom:1px solid rgba(21,19,15,.3)}
+.block{padding:30px 22px;border-bottom:1px solid var(--hair)}
+.block-head{display:flex;justify-content:space-between;gap:20px;align-items:baseline;margin-bottom:17px}
+.block-head h2{margin:0;font-size:28px;line-height:1;letter-spacing:-.045em}
+.focus{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:right}
+.expect{border-top:1px solid var(--hair)}
+.expect-row{display:grid;grid-template-columns:32px minmax(0,1fr);gap:12px;padding:15px 0;border-bottom:1px solid var(--hair)}
+.expect-num{font-family:var(--mono);font-size:10px;color:var(--blue);font-weight:700}
+.expect-text{font-size:15.5px;line-height:1.5;color:var(--ink-2)}
+.action{
+  display:flex;justify-content:space-between;gap:20px;align-items:center;
+  margin-top:20px;padding:16px 0 2px;text-decoration:none;
+  border-top:1px solid var(--hair)
 }
-.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
-.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
-
-.page {
-  flex: 1; display: flex; flex-direction: column;
-  align-items: center; padding: 56px 32px 0;
+.action strong{font-size:16px}.action span{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue)}
+.app-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end;padding:26px 22px 28px;background:rgba(255,255,255,.17);border-bottom:1px solid var(--hair)}
+.app-card .eyebrow{margin:0 0 8px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.app-card h2{margin:0;font-size:29px;line-height:1;letter-spacing:-.045em}.app-card p{margin:9px 0 0;max-width:460px;color:var(--muted);font-size:14.5px;line-height:1.5}
+.pill{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--ink);border-radius:999px;padding:12px 17px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;white-space:nowrap}
+footer{display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap;padding:20px 22px 23px;color:var(--muted);font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+footer nav{display:flex;gap:15px;flex-wrap:wrap}footer a{text-decoration:none}footer nav a{border-bottom:1px solid rgba(21,19,15,.2)}
+a:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+@media(max-width:560px){
+  .shell{padding:0}.sheet{border:0;border-radius:0;box-shadow:none;min-height:100vh}
+  .topbar{padding-top:max(18px,env(safe-area-inset-top))}.topnav a:first-child{display:none}
+  .hero{padding-top:38px}.coordinate{align-items:flex-start}.logistics{grid-template-columns:1fr}
+  .loc,.loc:first-child{padding:14px 0}.loc+.loc{border-left:0;border-top:1px solid var(--hair)}
+  .app-card{grid-template-columns:1fr;align-items:start}.pill{justify-self:start}
+  footer{padding-bottom:max(23px,env(safe-area-inset-bottom))}
 }
-.col { width: 100%; max-width: 480px; }
-
-/* Eyebrow */
-.eyebrow {
-  font-size: 9px; font-weight: 500; letter-spacing: 0.35em;
-  text-transform: uppercase; color: var(--ink-f);
-  display: block; margin-bottom: 16px;
-}
-
-/* Session name: big, changes each week */
-.session-name {
-  font-family: 'Cormorant Garamond', serif; font-weight: 300;
-  font-size: 64px; letter-spacing: 0.02em; color: var(--ink);
-  line-height: 0.95; margin-bottom: 24px;
-}
-
-/* Location block */
-.location-block {
-  border-top: 1px solid var(--line-l);
-  border-bottom: 1px solid var(--line-l);
-  padding: 20px 0; margin-bottom: 32px;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
-}
-.loc { }
-.loc + .loc { padding-left: 20px; border-left: 1px solid var(--line-l); }
-.loc-label { font-size: 8px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 6px; }
-.loc-val { font-size: 15px; color: var(--ink); display: block; margin-bottom: 3px; }
-.loc-sub { font-size: 11px; color: var(--ink-f); }
-.loc-link { color: inherit; text-decoration: none; border-bottom: 1px solid var(--line); }
-.loc-link:hover { color: var(--ink-l); }
-
-/* What to expect */
-.expect-block { margin-bottom: 32px; }
-.expect-label { font-size: 8px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 14px; }
-.expect-row { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--line-l); align-items: baseline; }
-.expect-row:first-of-type { border-top: 1px solid var(--line-l); }
-.expect-num { font-size: 10px; color: var(--ink-f); width: 20px; flex-shrink: 0; }
-.expect-text { font-size: 13px; color: var(--ink-l); line-height: 1.6; }
-
-/* App block */
-.app-block {
-  padding: 24px 0; border-top: 1px solid var(--line-l);
-  margin-bottom: 32px;
-}
-.app-label { font-size: 8px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 14px; }
-.app-link {
-  display: block;
-  font-family: 'Cormorant Garamond', serif; font-weight: 300;
-  font-size: 28px; letter-spacing: 0.04em; color: var(--ink);
-  text-decoration: none; border-bottom: 1px solid var(--line);
-  padding-bottom: 3px; margin-bottom: 10px;
-  transition: color 0.15s;
-}
-.app-link:hover { color: var(--ink-l); }
-.app-note { font-size: 11px; color: var(--ink-f); line-height: 1.6; }
-
-/* Full practice */
-
-/* Footer */
-.footer { padding: 24px 0 0; border-top: 1px solid var(--line-l); display: flex; gap: 24px; flex-wrap: wrap; }
-.footer a { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
-.footer a:hover { color: var(--ink-l); }
-
-/* Race day state */
-
-@media (max-width: 420px) {
-  .nav { padding-left: 24px; padding-right: 24px; }
-  .page { padding: 44px 24px 0; }
-  .session-name { font-size: 48px; }
-  .location-block { grid-template-columns: 1fr; gap: 16px; }
-  .loc + .loc { padding-left: 0; border-left: none; border-top: 1px solid var(--line-l); padding-top: 16px; }
-}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
-<link rel="stylesheet" href="/css/discovery.css?v=20260916-p2">
 </head>
 <body>
+<main class="shell">
+<article class="sheet">
+<header class="topbar">
+  <a class="mark" href="/" aria-label="FORM home">FORM<i>.</i></a>
+  <nav class="topnav" aria-label="Page shortcuts"><a href="/miami-running-training">Run Miami</a><a href="/contact">Contact</a></nav>
+</header>
 
-<div class="nav">
-  <a class="nav-home" href="/">FORM</a>
-  <span class="nav-label">Thursday</span>
-</div>
-<nav class="site-wayfinding" aria-label="Explore FORM"><a href="/library">Library</a><a href="/plans/">Plans</a><a href="/track/">Photos &amp; films</a><a href="/#begin">Work with Brice</a></nav>
+<section class="hero">
+  <div class="coordinate"><span>Community speedwork · Miami Beach</span><span>Every Thursday</span></div>
+  <h1>THURSDAY<i>.</i></h1>
+  <p class="hero-copy">Short, faster running with enough recovery to do each repetition well. No specific pace required. Show up in running shoes; the session gives the shape.</p>
+</section>
 
-<div class="page">
-<div class="col">
+<section class="session" id="current-session">
+  <div class="coordinate"><span id="thu-eyebrow">Thursday · live schedule</span><span class="session-code" id="thu-session-code">Session</span></div>
+  <div class="session-label">This week's work</div>
+  <div class="session-name" id="thu-session-name">Session</div>
+  <p class="live-note">The session and logistics below are rendered from FORM's shared community schedule.</p>
 
-  <!-- Dynamic state: normal -->
-  <div id="state-normal">
-    <span class="eyebrow" id="thu-eyebrow">This Thursday · Speed Emergence</span>
-    <div class="session-name" id="thu-session-name">Nice and<br>Easy</div>
-
-    <div class="location-block">
-      <div class="loc">
-        <span class="loc-label">Where</span>
-        <span class="loc-val">
-          <a class="loc-link" href="https://maps.google.com/?q=Flamingo+Park+Track,+Miami+Beach,+FL" target="_blank" rel="noopener">Flamingo Park Track</a>
-        </span>
-        <span class="loc-sub">Miami Beach · track entrance on 11th St</span>
-      </div>
-      <div class="loc">
-        <span class="loc-label">When</span>
-        <span class="loc-val" id="thu-when">Thursdays</span>
-        <span class="loc-sub" id="thu-audience">Every week · all levels</span>
-      </div>
+  <div class="logistics">
+    <div class="loc">
+      <span class="loc-label">Where</span>
+      <span class="loc-val"><a class="loc-link" href="/miami-running-training">Flamingo Park Track</a></span>
+      <span class="loc-sub">Miami Beach</span>
     </div>
-
-    <div class="expect-block">
-      <span class="expect-label">What happens</span>
-      <div class="expect-row">
-        <span class="expect-num">—</span>
-        <span class="expect-text">You run short distances. You rest fully between each one.</span>
-      </div>
-      <div class="expect-row">
-        <span class="expect-num">—</span>
-        <span class="expect-text">No specific pace required. Run the distance and see what the watch says.</span>
-      </div>
-      <div class="expect-row">
-        <span class="expect-num">—</span>
-        <span class="expect-text">Show up in running shoes. We handle the rest.</span>
-      </div>
-      <div class="expect-row">
-        <span class="expect-num">—</span>
-        <span class="expect-text" id="thu-rotation-line">Six sessions rotate, 01 through 06, then back to 01. This morning: <span id="thu-session-inline">Nice and Easy</span>.</span>
-      </div>
-      <div class="expect-row">
-        <span class="expect-num">—</span>
-        <span class="expect-text">You can leave after the first rep.</span>
-      </div>
+    <div class="loc">
+      <span class="loc-label">When</span>
+      <span class="loc-val" id="thu-when">Thursday morning</span>
+      <span class="loc-sub">Weekly community practice</span>
     </div>
-
-    <div class="app-block">
-      <span class="app-label">Track the full practice</span>
-      <a class="app-link" href="https://apps.apple.com/us/app/form-practice/id6761313085">Download FORM on iPhone →</a>
-      <span class="app-note">Threshold, speed and long run. Coaching layer, session ledger. Free to start.</span>
+    <div class="loc">
+      <span class="loc-label">Who</span>
+      <span class="loc-val" id="thu-audience">All levels</span>
+      <span class="loc-sub">Run your effort</span>
     </div>
-
   </div>
+  <noscript><p class="live-note" style="margin-top:14px">JavaScript is off. Open <a href="/miami-running-training">Run Miami</a> or <a href="/contact">contact Brice</a> for current details.</p></noscript>
+</section>
 
-  <div class="footer" style="margin-top: 32px;">
-    <a href="/speed">All sessions →</a>
-    <a href="/practice">This week</a>
-    <a href="/app">App</a>
-    <a href="/">FORM</a>
+<section class="block">
+  <div class="block-head"><h2>What happens.</h2><div class="focus">One useful morning</div></div>
+  <div class="expect">
+    <div class="expect-row"><span class="expect-num">01</span><span class="expect-text">You run short distances. You rest fully between each one.</span></div>
+    <div class="expect-row"><span class="expect-num">02</span><span class="expect-text">No pace is required to arrive. Run the distance and see what the watch says.</span></div>
+    <div class="expect-row"><span class="expect-num">03</span><span class="expect-text" id="thu-rotation-line">This week's session loads from the shared schedule: <span id="thu-session-inline"></span></span></div>
+    <div class="expect-row"><span class="expect-num">04</span><span class="expect-text">You can leave after the first rep. Finishing everything is not the price of belonging.</span></div>
   </div>
+  <a class="action" href="/labs/track/"><strong>See the six authored sessions</strong><span>Track room →</span></a>
+</section>
 
-</div>
-</div>
+<section class="app-card">
+  <div><p class="eyebrow">Keep the full practice</p><h2>FORM on iPhone.</h2><p>Threshold, speed, long run and your training record in one place.</p></div>
+  <a class="pill" href="https://apps.apple.com/us/app/form-practice/id6761313085">Open FORM →</a>
+</section>
+
+<footer>
+  <a href="/">Speed &amp; Form · Miami</a>
+  <nav aria-label="Footer"><a href="/miami-running-training">Run Miami</a><a href="/track/">Photos + films</a><a href="/contact">Contact</a><a href="/privacy">Privacy</a></nav>
+</footer>
+</article>
+</main>
 
 <script src="/js/community-schedule.js?v=20260922"></script>
 <script>
@@ -245,6 +208,7 @@ function getNextThursday(from) {
 
   const eyebrow  = document.getElementById('thu-eyebrow');
   const nameEl   = document.getElementById('thu-session-name');
+  const codeEl   = document.getElementById('thu-session-code');
   const inlineEl = document.getElementById('thu-session-inline');
   const rotEl    = document.getElementById('thu-rotation-line');
 
@@ -256,7 +220,8 @@ function getNextThursday(from) {
 
   if (authored && authored.optional) {
     if (eyebrow) eyebrow.textContent = dayLabel + ' · Optional';
-    if (nameEl)  nameEl.innerHTML    = 'Optional';
+    if (nameEl)  nameEl.textContent  = 'Optional';
+    if (codeEl)  codeEl.textContent  = 'No fixed session';
     if (rotEl)   rotEl.textContent   = 'This one is optional. Brice will confirm it.';
     return;
   }
@@ -280,7 +245,8 @@ function getNextThursday(from) {
   }
 
   if (eyebrow)  eyebrow.textContent  = dayLabel + ' · Speed Emergence';
-  if (nameEl)   nameEl.innerHTML     = session.nameBreak;
+  if (nameEl)   nameEl.textContent   = session.name;
+  if (codeEl)   codeEl.textContent   = 'Session ' + session.session;
   if (inlineEl) inlineEl.textContent = session.name;
 })();</script>
 </body>
