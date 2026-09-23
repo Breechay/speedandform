@@ -1,0 +1,49 @@
+name: Adrian nutrition hold acceptance
+on:
+  push:
+    branches: [work/adrian-plan-hold-20260923]
+permissions:
+  contents: write
+concurrency:
+  group: adrian-plan-hold-20260923
+  cancel-in-progress: false
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare withdrawal against current main
+        run: |
+          cp scripts/pause-adrian-nutrition-20260923.py /tmp/adrian-hold.py
+          cp tests/adrian-nutrition-hold.py /tmp/adrian-hold-test.py
+          git fetch origin main
+          git switch --detach origin/main
+          cp /tmp/adrian-hold-test.py tests/adrian-nutrition-hold.py
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install acceptance dependencies
+        run: |
+          pip install playwright==1.58.0 beautifulsoup4
+          python -m playwright install --with-deps chromium
+      - name: Apply and check repeatability
+        run: |
+          python /tmp/adrian-hold.py
+          git diff > /tmp/first.diff
+          python /tmp/adrian-hold.py
+          git diff > /tmp/second.diff
+          cmp /tmp/first.diff /tmp/second.diff
+          python tests/adrian-nutrition-hold.py
+          python tests/adrian-nutrition-v15.py
+      - name: Save accepted withdrawal without an intermediate production deploy
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add AGENTS.md docs/roadmap/FORM-ROADMAP.md docs/studies/ADRIAN-NUTRITION-HOLD-20260923.md tests/adrian-nutrition-v15.py tests/adrian-nutrition-hold.py
+          git add -A plans/adrian-nutrition-phase-01
+          git diff --cached --check
+          git commit -m 'Adrian: pause nutrition delivery pending review; preserve private details'
+          git push origin HEAD:refs/heads/work/validated-adrian-hold-20260923
+          echo "VALIDATED_COMMIT=$(git rev-parse HEAD)"
+          echo "VALIDATED_BASE=$(git rev-parse HEAD^)"
