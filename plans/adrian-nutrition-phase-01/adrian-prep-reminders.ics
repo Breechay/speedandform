@@ -1,0 +1,97 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//FORM//Adrian Fuel v1.5//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Adrian prep reminders
+X-WR-TIMEZONE:America/New_York
+BEGIN:VTIMEZONE
+TZID:America/New_York
+BEGIN:DAYLIGHT
+DTSTART:20070311T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+TZNAME:EDT
+END:DAYLIGHT
+BEGIN:STANDARD
+DTSTART:20071104T020000
+RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+TZNAME:EST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:adrian-fuel-sunday-v1@speedandform.com
+DTSTAMP:20260923T015225Z
+DTSTART;TZID=America/New_York:20260927T193000
+DURATION:PT5M
+RRULE:FREQ=WEEKLY;BYDAY=SU
+SUMMARY:Freezer check\, then cook
+DESCRIPTION:Check your frozen backup. Cook four using the correct freezer p
+ ath. Start earlier when needed to protect bedtime.\nhttps://speedandform.c
+ om/plans/adrian-nutrition-phase-01/
+URL:https://speedandform.com/plans/adrian-nutrition-phase-01/
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:PT0M
+DESCRIPTION:Freezer check\, then cook
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:adrian-fuel-beef-v1@speedandform.com
+DTSTAMP:20260923T015225Z
+DTSTART;TZID=America/New_York:20260929T053500
+DURATION:PT5M
+RRULE:FREQ=WEEKLY;BYDAY=TU
+SUMMARY:Check Wednesday\, then thaw beef
+DESCRIPTION:Only when Wednesday cooking is needed: move one half-pound raw 
+ beef portion to the fridge. Skip when using frozen meal backups.\nhttps://
+ speedandform.com/plans/adrian-nutrition-phase-01/
+URL:https://speedandform.com/plans/adrian-nutrition-phase-01/
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:PT0M
+DESCRIPTION:Check Wednesday\, then thaw beef
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:adrian-fuel-wednesday-v1@speedandform.com
+DTSTAMP:20260923T015225Z
+DTSTART;TZID=America/New_York:20260923T193000
+DURATION:PT5M
+RRULE:FREQ=WEEKLY;BYDAY=WE
+SUMMARY:Cook two\, or use your backups
+DESCRIPTION:Cook two only when needed. Using frozen Thursday and Friday mea
+ ls? Skip cooking\; move Thursday’s box to the fridge.\nhttps://speedandf
+ orm.com/plans/adrian-nutrition-phase-01/
+URL:https://speedandform.com/plans/adrian-nutrition-phase-01/
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:PT0M
+DESCRIPTION:Cook two\, or use your backups
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:adrian-fuel-pack-v1@speedandform.com
+DTSTAMP:20260923T015225Z
+DTSTART;TZID=America/New_York:20260923T203000
+DURATION:PT5M
+RRULE:FREQ=WEEKLY;BYDAY=SU,MO,TU,WE,TH
+SUMMARY:Pack tomorrow
+DESCRIPTION:Freeze the empty bag. Tomorrow’s meal in the fridge. Bread an
+ d orange ready. Thaw a frozen meal when needed.\nhttps://speedandform.com/
+ plans/adrian-nutrition-phase-01/
+URL:https://speedandform.com/plans/adrian-nutrition-phase-01/
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:PT0M
+DESCRIPTION:Pack tomorrow
+END:VALARM
+END:VEVENT
+END:VCALENDAR

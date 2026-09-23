@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "nutrition_revision": "1.4",
+  "nutrition_revision": "1.5",
   "prepared_date": "2026-09-22",
   "athlete": "Adrian Gandara",
   "study_id": "FRM-001",
@@ -40,14 +40,15 @@
     "weekends_off_work": "Athlete message screenshot supplied by coach in this conversation.",
     "existing_long_run_gel_routine": "Coach confirmed in this conversation; exact products and dose are not replaced or inferred.",
     "morning_run_and_lift_context": "Coach-supplied conversation context; not a new instruction to pair sessions.",
-    "strength_change_authorized": false
+    "strength_change_authorized": false,
+    "instant_pot_owned": "Coach confirmed; model/capacity not specified."
   },
   "nutrition_delivery": {
     "voice": "second person, Adrian only",
     "workday_breakfast": "One labeled chocolate whey serving in 12 fl oz whole milk at home after planned training; two bread slices with 32 g peanut butter and one navel orange at home or on arrival at work.",
     "weekends": "Family restaurant meals replace home meals. Explicit Saturday/Sunday and late-lunch instructions. No mandatory second pasta box on Saturday.",
     "initial_prep": "Sunday four portions: three refrigerated Mon-Wed and one frozen backup. Wednesday half batch: two refrigerated Thu-Fri.",
-    "carryover": "When one spare remains, thaw for Monday; Sunday cook four, refrigerate Tue-Wed, freeze Thu-Fri, skip Wednesday cook. Unexpected surplus prompts inventory adjustment.",
+    "carryover": "Backup: thaw Sunday for Monday, cook four Sunday, refrigerate Tue/Wed, freeze Thu/Fri, skip Wednesday cook.",
     "base_full_batch": {
       "dry_pasta_g": 454,
       "raw_93_percent_lean_beef_g": 454,
@@ -62,7 +63,7 @@
     },
     "recipes": [
       "Classic spaghetti with meat sauce and Parmesan",
-      "Creamy tomato penne, stovetop",
+      "Creamy tomato penne, Instant Pot Saut\u00e9 lid-off sauce and separately boiled pasta",
       "Cheesy beef pasta, stovetop"
     ],
     "recipe_equivalence": "Different cream/cheese finishes are not calorie/protein-equivalent. These adaptations have not been kitchen-tested for Adrian; observe taste, yield, appetite and digestion.",
@@ -85,7 +86,7 @@
     {
       "url": "https://eatinginaninstant.com/instant-pot-ground-beef-pasta/",
       "credit": "Kate / Eating in an Instant",
-      "adaptation": "stovetop; no pressure-cooker ownership assumed",
+      "adaptation": "Saut\u00e9 with lid off; no pressure cooking or quick release.",
       "image_role": "publisher reference photo, not Adrian evidence"
     },
     {
@@ -98,7 +99,7 @@
   "privacy_boundary": "This public reference manifest contains no credentials, athlete emails, backend tokens, or private completed-session logs. Hiding HTML is not access control. Future Forge completion review must use authenticated, authorized data access, not a public JSON export.",
   "interpretation_boundary": "Authored program, athlete reports, supplied result screenshots, listing-only results, device estimates and completed outcomes remain separate. Nutrition, sleep and strength may change together; this record does not isolate a causal nutrition effect.",
   "shopping": {
-    "revision": "1.4",
+    "revision": "1.5",
     "static_html": true,
     "check_state": "Browser-local only; no Forge sync or adherence receipt",
     "first_cycle": "Five workday meals and one frozen backup; not eight mandatory meals",
@@ -109,6 +110,25 @@
       "maximum_prescribed_home_shakes_fl_oz": 84,
       "four_backup_milk_fl_oz": 32
     },
-    "existing_gels_unchanged": true
+    "existing_gels_unchanged": true,
+    "storage_key": "form.adrian.nutrition.1.4.shopping"
+  },
+  "visual_delivery": {
+    "next_marker": "Clock guidance, never completion",
+    "eaten_log": false,
+    "sms_recipient": null,
+    "sms_status": "Prepared draft and copy fallback; choose Brice until a verified number is provided.",
+    "calendar": "Four optional weekly ICS alerts in America/New_York. Tuesday and Wednesday check for a backup week. No calendar writes.",
+    "athlete_photos": "Only approved local dated batches replace publisher photos. Slots start empty.",
+    "editorial_trim": "Further trim is a separate editorial pass."
+  },
+  "purchase_links": {
+    "checked_on": "2026-09-22",
+    "containers": "https://www.target.com/p/-/A-52119450",
+    "container_quantity": 5,
+    "bag": "https://www.target.com/p/-/A-94740609",
+    "thermometer": "https://www.thermoworks.com/products/thermopop-2",
+    "shaker": "https://www.amazon.com/dp/B07TK681SZ",
+    "verification": "Identity and purchase controls checked; no cart or checkout executed."
   }
 }
