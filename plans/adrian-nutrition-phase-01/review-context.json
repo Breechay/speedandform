@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "nutrition_revision": "1.5",
+  "nutrition_revision": "1.5.1",
   "prepared_date": "2026-09-22",
   "athlete": "Adrian Gandara",
   "study_id": "FRM-001",
@@ -51,7 +51,7 @@
   },
   "nutrition_delivery": {
     "voice": "second person, Adrian only",
-    "workday_breakfast": "By 8 a.m. regardless of later training: one labeled chocolate whey serving in 12 fl oz whole milk, two bread slices with 32 g peanut butter, and one navel orange. On a morning with a run and lift back-to-back, one bread slice is eaten between the run and lift; the second slice, peanut butter, orange and shake follow the lift.",
+    "workday_breakfast": "By 8 a.m. regardless of later training: 12 fl oz whole milk, two bread slices with 32 g peanut butter and one navel orange. Powder is pending review of the products already owned; no automatic Thorne purchase or second shake. For back-to-back morning run/lift, eat one of the two bread slices between them and finish breakfast afterward.",
     "weekends": "Family restaurant meals replace home meals. Explicit Saturday/Sunday and late-lunch instructions. No mandatory second pasta box on Saturday.",
     "initial_prep": "Sunday four portions: three refrigerated Mon-Wed and one frozen backup. Wednesday half batch: two refrigerated Thu-Fri.",
     "carryover": "When one spare remains, thaw for Monday; Sunday cook four, refrigerate Tue-Wed, freeze Thu-Fri, skip Wednesday cook. Unexpected surplus prompts inventory adjustment.",
@@ -82,7 +82,8 @@
     "calorie_surplus_measured": false,
     "automatic_day14_calorie_addition": false,
     "bedtime_progression": "First three nights phone 23:00 / lights out 23:30, both 30 minutes earlier every three nights to 21:00 / 21:30; opportunity is not measured sleep.",
-    "evening_training": "Eat the 3:30 prepared meal before leaving work. If it was missed and hunger is already affecting the session, use the backup sandwich and water before training. Family dinner follows evening training."
+    "evening_training": "Eat the 3:30 prepared meal before leaving work. If it was missed and hunger is already affecting the session, use the backup sandwich and water before training. Family dinner follows evening training.",
+    "supplement_status": "Bone-broth protein and creatine use reported, products/doses unverified. Leave unreviewed powders out pending label review. No new creatine prescription."
   },
   "recipe_references": [
     {
@@ -104,9 +105,9 @@
   ],
   "machine_readability": "All athlete-facing instructions are static HTML, including native details contents. The HTML head links this JSON. Read the public authored program JSON without depending on JavaScript rendering; use authorized repository access for pinned native sources.",
   "privacy_boundary": "This public reference manifest contains no credentials, athlete emails, backend tokens, or private completed-session logs. Hiding HTML is not access control. Future Forge completion review must use authenticated, authorized data access, not a public JSON export.",
-  "interpretation_boundary": "Authored program, athlete reports, supplied result screenshots, listing-only results, device estimates and completed outcomes remain separate. The Sep 22 hunger report is an adherence/timing signal, not a causal finding. Nutrition, sleep and strength may change together; this record does not isolate a causal nutrition effect.",
+  "interpretation_boundary": "Authored program, athlete reports, supplied result screenshots, listing-only results, device estimates and completed outcomes remain separate. The Sep 22 hunger report is an adherence/timing signal, not a causal finding. Nutrition, sleep and strength may change together; this record does not isolate a causal nutrition effect. Creatine exposure is now reported; start date and dose are unknown. Account for possible water-related weight changes without attributing measured outcomes to this supplement.",
   "shopping": {
-    "revision": "1.4",
+    "revision": "1.5.1",
     "static_html": true,
     "check_state": "Browser-local only; no Forge sync or adherence receipt",
     "first_cycle": "Five workday meals and one frozen backup; not eight mandatory meals",
@@ -117,6 +118,62 @@
       "maximum_prescribed_home_shakes_fl_oz": 84,
       "four_backup_milk_fl_oz": 32
     },
-    "existing_gels_unchanged": true
+    "existing_gels_unchanged": true,
+    "powder_purchase": "Check existing products before buying; existing whey checkbox key retained, no auto-check or adherence inference."
+  },
+  "updated_date": "2026-09-23",
+  "latest_observation_record": "docs/studies/ADRIAN-NUTRITION-OBSERVATIONS-20260923.json",
+  "reported_food_and_supplements_20260923": {
+    "space_balls": {
+      "product": "LesserEvil Space Balls, Real Organic Cheddar",
+      "preference": "explicitly liked",
+      "portion_consumed": null,
+      "frequency": null,
+      "nutrition_verified": false
+    },
+    "power_crunch": {
+      "product": "Power Crunch Triple Chocolate",
+      "availability": "athlete reports popular in household",
+      "protein_g": {
+        "value": 13,
+        "verification": "visible front wrapper"
+      },
+      "calories": {
+        "value": 210,
+        "verification": "athlete report; back nutrition label not supplied"
+      },
+      "portion_consumed": null,
+      "frequency": null
+    },
+    "bone_broth_protein": {
+      "description": "chocolate bone-broth protein powder",
+      "owned_reported": true,
+      "use_reported": true,
+      "timing": "after a workout, in the same shake as creatine",
+      "brand": null,
+      "protein_source_and_amino_acid_profile": null,
+      "grams_per_use": null,
+      "protein_g_per_serving": null,
+      "first_use_date": null,
+      "frequency": null,
+      "lot_and_independent_testing": null,
+      "equivalent_to_whey_confirmed": false
+    },
+    "creatine": {
+      "owned_reported": true,
+      "use_reported": true,
+      "timing": "after a workout, in the same shake as chocolate bone-broth protein",
+      "brand": null,
+      "form": null,
+      "grams_per_use": null,
+      "first_use_date": null,
+      "frequency": null,
+      "loading_phase_reported": null,
+      "lot_and_independent_testing": null,
+      "response_or_tolerance_confirmed": false,
+      "new_dose_prescribed": false
+    },
+    "reported_workout_date": null,
+    "full_plan_start_confirmed": false
   }
 }

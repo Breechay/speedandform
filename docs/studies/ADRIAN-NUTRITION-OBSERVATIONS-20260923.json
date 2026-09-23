@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "record_type": "dated_athlete_report",
+  "recorded_on": "2026-09-23",
+  "athlete": "Adrian Gandara",
+  "study_id": "FRM-001",
+  "source": "Two athlete-message screenshots supplied by Brice on 2026-09-23. Screenshots are not republished.",
+  "source_evidence": [
+    {
+      "file": "IMG_7904.jpeg",
+      "observed": "Preference for LesserEvil Space Balls Real Organic Cheddar; reports chocolate bone-broth protein and creatine at home, used together in a shake after working out."
+    },
+    {
+      "file": "IMG_7905.jpeg",
+      "observed": "Power Crunch Triple Chocolate wrapper shows 13 g protein. Athlete says the bars are extremely popular at home, reports 210 calories and describes a light wafer."
+    }
+  ],
+  "space_balls": {
+    "product": "LesserEvil Space Balls, Real Organic Cheddar",
+    "preference": "explicitly liked",
+    "portion_consumed": null,
+    "frequency": null,
+    "nutrition_verified": false
+  },
+  "power_crunch": {
+    "product": "Power Crunch Triple Chocolate",
+    "availability": "athlete reports popular in household",
+    "protein_g": {
+      "value": 13,
+      "verification": "visible front wrapper"
+    },
+    "calories": {
+      "value": 210,
+      "verification": "athlete report; back nutrition label not supplied"
+    },
+    "portion_consumed": null,
+    "frequency": null
+  },
+  "bone_broth_protein": {
+    "description": "chocolate bone-broth protein powder",
+    "owned_reported": true,
+    "use_reported": true,
+    "timing": "after a workout, in the same shake as creatine",
+    "brand": null,
+    "protein_source_and_amino_acid_profile": null,
+    "grams_per_use": null,
+    "protein_g_per_serving": null,
+    "first_use_date": null,
+    "frequency": null,
+    "lot_and_independent_testing": null,
+    "equivalent_to_whey_confirmed": false
+  },
+  "creatine": {
+    "owned_reported": true,
+    "use_reported": true,
+    "timing": "after a workout, in the same shake as chocolate bone-broth protein",
+    "brand": null,
+    "form": null,
+    "grams_per_use": null,
+    "first_use_date": null,
+    "frequency": null,
+    "loading_phase_reported": null,
+    "lot_and_independent_testing": null,
+    "response_or_tolerance_confirmed": false,
+    "new_dose_prescribed": false
+  },
+  "reported_workout_date": null,
+  "full_plan_start_confirmed": false,
+  "coaching_response": [
+    "Record food preferences and supplement exposure without inferring daily adherence or a start date.",
+    "Ask for both products, ingredient/facts panels, serving directions, lot numbers, actual amount, frequency and first use.",
+    "Keep meals; pause the automatic Thorne purchase and unreviewed powder instruction. Do not add another shake for snacks.",
+    "No new creatine dose, loading phase, training change or performance claim."
+  ],
+  "interpretation": "Creatine may alter scale weight through water retention. Exposure timing must be considered alongside food, training and sleep; no observed weight or muscle gain is attributed to creatine or to the food plan by this record.",
+  "supporting_sources": [
+    {
+      "url": "https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-HealthProfessional/",
+      "purpose": "General protein-quality and creatine/weight interpretation; not an analysis of the unknown products."
+    },
+    {
+      "url": "https://www.usada.org/substances/supplement-connect/",
+      "purpose": "Product and independent-testing review; certification lowers but does not eliminate risk."
+    }
+  ],
+  "privacy": "No screenshots, profile photos, phone numbers, email addresses or private workout records are published."
+}
