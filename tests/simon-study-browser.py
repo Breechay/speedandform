@@ -31,8 +31,10 @@ def record_page(page, name, width, lang, expected_source='live', screenshot=True
         assert 'thirty-two' in page.locator('#history').inner_text()
         assert 'not an assigned sixth week' in page.locator('#gate').inner_text()
     if screenshot:
-        page.screenshot(path=str(OUT / (name + '-full.png')), full_page=True)
-        page.locator('#history').screenshot(path=str(OUT / (name + '-history.png')))
+        # CSS resolution preserves the layout while avoiding WebKit's 32767-pixel
+        # image limit on the long study at a two-times device pixel ratio.
+        page.screenshot(path=str(OUT / (name + '-full.png')), full_page=True, scale='css')
+        page.locator('#history').screenshot(path=str(OUT / (name + '-history.png')), scale='css')
     report['cases'].append({'name': name, 'width': width, 'language': lang, 'source': page.locator('#planSource').get_attribute('data-source-state'), 'overflow_px': overflow})
 
 with sync_playwright() as p:
@@ -70,7 +72,7 @@ with sync_playwright() as p:
     assert nojs.locator('#gridPlan .gp-row').count()==5
     assert nojs.locator('#history').is_visible() and nojs.locator('#gate').is_visible()
     assert 'thirty-two' in nojs.locator('#history').inner_text()
-    nojs.screenshot(path=str(OUT/'no-javascript-full.png'),full_page=True)
+    nojs.screenshot(path=str(OUT/'no-javascript-full.png'),full_page=True,scale='css')
     report['cases'].append({'name':'no-javascript','result':'full approved block and evidence readable'})
     nojs.close()
     page=browser.new_page(viewport={'width':768,'height':1024})
@@ -78,7 +80,7 @@ with sync_playwright() as p:
     page.add_style_tag(content='body{zoom:2}')
     page.wait_for_timeout(600)
     # Record enlarged layout separately; it is not a native Dynamic Type claim.
-    page.screenshot(path=str(OUT/'text-zoom-200.png'),full_page=True)
+    page.screenshot(path=str(OUT/'text-zoom-200.png'),full_page=True,scale='css')
     report['cases'].append({'name':'200-percent-css-zoom','result':'screenshot recorded'})
     page.close();browser.close()
     browser=p.webkit.launch()
