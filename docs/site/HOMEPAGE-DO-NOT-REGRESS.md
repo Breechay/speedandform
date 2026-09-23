@@ -1,12 +1,15 @@
 # HOMEPAGE — DO-NOT-REGRESS
 
+> **ARCHIVE / HISTORICAL BASELINE · 23 September 2026**  
+> This file records regression lessons and old baselines. It is **not** the current visual specification for `/`. Use `docs/BRAND.md`, `docs/SITE-AUDIT-2026-09-23.md`, the current homepage source, and current tests for active decisions. Preserve the lessons below; do not restore their old typography, layout or counts merely because they are documented here.
+
 > **2026-08-18:** `/` is now the Run Development instrument (`index.html` + `home.css` + `home.js`): 01 film, 02 film, 03 first question, then Begin. The counts below are the **July 2026 marketing homepage**, archived in `docs/site/archive/`. Do not use them to “fix” the live instrument back into that page.
 
 **Baseline captured:** 2026-07-15, against `index.html` @ 67,611 bytes / 810 lines.
 **v2 applied:** 2026-07-15. File now 69,905 bytes. All invariants below verified held
 post-change; the five deltas verified applied. Counts in the table are the **live**
 numbers and remain the list to verify against.
-**Companion to:** `HANDOFF.md` (site-wide), `HOMEPAGE-DECISION-RECORD.md` (rulings).
+**Historical companion:** `HANDOFF.md` and `HOMEPAGE-DECISION-RECORD.md`. Current authority is `docs/BRAND.md`.
 
 > **Verify against THIS list, before your diff, and paste the counts.**
 > A checklist built from what you changed will always pass.
