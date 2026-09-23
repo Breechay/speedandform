@@ -163,30 +163,6 @@ body {
 .coach-mode .cs-name { cursor: pointer; border-bottom: 1px dashed var(--line); display: inline-block; transition: border-color 0.15s, color 0.15s; }
 .coach-mode .cs-name:hover { border-bottom-color: var(--ink-l); color: var(--ink); }
 </style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Event",
-  "name": "FORM Threshold Session",
-  "description": "Weekly threshold training session at Flamingo Park Track, Miami.",
-  "eventSchedule": {
-    "@type": "Schedule",
-    "repeatFrequency": "P1W",
-    "byDay": "https://schema.org/Tuesday",
-    "startTime": "05:50"
-  },
-  "location": {
-    "@type": "Place",
-    "name": "Flamingo Park Track",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Miami Beach",
-      "addressRegion": "FL"
-    }
-  },
-  "organizer": { "@type": "Organization", "name": "FORM" }
-}
-</script>
 </head>
 <body>
 
@@ -212,7 +188,7 @@ body {
     Run your effort. Finish neutral.
     <span style="display: block; font-size: 11px; color: var(--ink-f); letter-spacing: 0.04em; font-style: italic; margin-top: 8px; font-weight: 300;">Common mistake: turning threshold into a race.</span>
   </div>
-  <span class="session-meta">Tuesday · 5:50 AM · <a href="https://maps.google.com/?q=Flamingo+Park+Track,+Miami+Beach,+FL" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--line);">Flamingo Park Track</a></span>
+  <span class="session-meta">Inside your coached week · <a href="/miami-running-training" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--line);">Run with FORM in Miami</a></span>
 
   <div class="links">
     <a class="hub-link" href="/ledger">
@@ -379,7 +355,7 @@ function openDrawer() {
   const num  = document.getElementById('cs-number').textContent;
   const name = document.getElementById('cs-name').textContent;
   document.getElementById('d-title').textContent = num && name ? num + ' · ' + name : (name || num || 'Threshold');
-  document.getElementById('d-sub').textContent = 'Tuesday · 5:50 AM · Flamingo Park Track';
+  document.getElementById('d-sub').textContent = 'Inside your coached week';
   document.getElementById('drawer-overlay').classList.add('open');
   document.getElementById('drawer').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -391,9 +367,10 @@ function closeDrawer() {
   document.body.style.overflow = '';
 }
 
-// Swipe down to dismiss
-(function(){
+// Swipe down to dismiss (runs after the drawer markup below exists)
+document.addEventListener('DOMContentLoaded', function(){
   const drawer = document.getElementById('drawer');
+  if (!drawer) return;
   let startY = 0, currentY = 0, dragging = false;
   drawer.addEventListener('touchstart', e => { startY = e.touches[0].clientY; dragging = true; }, { passive: true });
   drawer.addEventListener('touchmove', e => {
@@ -409,7 +386,7 @@ function closeDrawer() {
     drawer.style.transform = '';
     if (diff > 80) closeDrawer();
   });
-})();
+});
 
 function showToast(msg) {
   const t = document.getElementById('toast');
