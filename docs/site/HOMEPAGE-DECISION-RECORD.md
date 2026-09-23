@@ -1,12 +1,15 @@
 # HOMEPAGE — DECISION RECORD
 
+> **ARCHIVE / SUPERSEDED FOR CURRENT SITE DESIGN · 23 September 2026**  
+> Retained as a historical decision record. Do **not** use this file as current visual or sitewide doctrine. Current authority is `docs/BRAND.md` plus `docs/SITE-AUDIT-2026-09-23.md`, with production source and tests deciding implementation details. Where this record conflicts with those newer sources, the newer sources win.
+
 **Date:** 2026-07-15
-**Status:** POSITIONING-V7 held. No V8. Do not write one.
+**Status:** Historical positioning record. Superseded as current site doctrine.
 **Read before:** any homepage work, any positioning proposal, any "north star" brief.
 
 ---
 
-## Current production (2026-08-18)
+## Historical production snapshot (2026-08-18)
 
 `/` is the **Run Development instrument**: three full-viewport snap plates, then Begin, then the five-question intake, then send to Brice. This is a later product decision by Brice. It does not reopen POSITIONING-V7, and it is not a portrait brief.
 
