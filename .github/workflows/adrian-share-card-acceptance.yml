@@ -1,0 +1,37 @@
+name: Adrian share-card acceptance
+on:
+  push:
+    branches: [work/adrian-share-card-20260923]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser acceptance tools
+        run: |
+          pip install playwright==1.58.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Run Adrian acceptance
+        run: python tests/adrian-nutrition-v15.py
+      - name: Verify share card and privacy metadata
+        run: |
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          p=Path('og/adrian-nutrition-20260923.jpg')
+          assert p.exists()
+          assert Image.open(p).size==(1200,630)
+          h=Path('plans/adrian-nutrition-phase-01/index.html').read_text()
+          assert '<meta name="robots" content="noindex,follow">' in h
+          assert 'https://speedandform.com/og/adrian-nutrition-20260923.jpg' in h
+          assert 'summary_large_image' in h
+          s=Path('labs/adrian-runner-mass/index.html').read_text()
+          assert 'A 19-year-old distance runner.' in s
+          assert 'A 2:53:39 marathoner.' not in s
+          PY
