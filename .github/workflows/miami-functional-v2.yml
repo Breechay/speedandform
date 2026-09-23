@@ -1,0 +1,36 @@
+name: Miami functional v2 acceptance
+on:
+  push:
+    branches: [work/miami-running-v2-20260923]
+    paths: ['.github/workflows/miami-functional-v2.yml', 'scripts/apply-miami-functional-v2.cjs', 'tests/miami-community-schedule.cjs']
+permissions:
+  contents: write
+concurrency:
+  group: miami-functional-v2-20260923
+  cancel-in-progress: false
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply the bounded functional repair
+        run: node scripts/apply-miami-functional-v2.cjs
+      - name: Validate schedule, metadata, and protected pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tests/miami-community-schedule.cjs
+          node tests/cream-reading.cjs
+          while IFS= read -r test; do echo "Running $test"; node "$test"; done < <(find tests -type f -iname '*share*.cjs')
+          git diff --check
+          git diff --stat
+      - name: Commit accepted source to the working branch only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/miami-functional-v2.yml scripts/apply-miami-functional-v2.cjs
+          git add miami-running-training.html scripts/guide-state.cjs scripts/miami-functional-v2-state.cjs tests/miami-community-schedule.cjs docs/audits/MIAMI-FUNCTIONAL-V2-RECEIPT-20260923.json docs/roadmap/FORM-ROADMAP.md
+          git commit -m 'Miami: repair shared Thursday schedule and readable community information'
+          git push origin HEAD:work/miami-running-v2-20260923
+          git rev-parse HEAD

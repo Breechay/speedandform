@@ -1,0 +1,48 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'..');
+const html=fs.readFileSync(path.join(root,'miami-running-training.html'),'utf8');
+const canonical=fs.readFileSync(path.join(root,'js/community-schedule.js'),'utf8');
+const scripts=[...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)];
+const executable=scripts.filter(m=>!m[1].includes('application/ld+json')&&!/\bsrc\s*=/.test(m[1])).map(m=>m[2]);
+assert.ok(executable.length>=1);
+for(const source of executable)new vm.Script(source);
+for(const match of scripts.filter(m=>m[1].includes('application/ld+json')))JSON.parse(match[2]);
+assert.ok(html.includes('/js/community-schedule.js'));
+assert.ok(!html.includes('data-email-updates'));
+assert.ok(!html.includes('/email-updates/status'));
+assert.ok(!html.includes('email updates will also'));
+assert.ok(!html.includes('Email run announcements will also'));
+assert.ok(!html.includes('Email run alerts are being prepared'));
+assert.match(html,/<div\s+class="route-note"[^>]*>\s*<span>/);
+assert.match(html,/--max:860px/);
+assert.match(html,/\.session-card p\{font-size:15\.5px/);
+function execute(override,missing=false){
+ const nodes={'miami-thursday-when':{textContent:''},'miami-thursday-where':{textContent:''}},appended=[];
+ const context=vm.createContext({window:{},document:{getElementById:id=>nodes[id]||null,querySelector:()=>null,createElement:()=>({}),head:{appendChild:el=>appended.push(el)}}});
+ if(!missing)vm.runInContext(canonical,context);
+ if(override)context.window.FORM_COMMUNITY_SCHEDULE={thursday:override};
+ for(const source of executable)vm.runInContext(source,context);
+ return {nodes,events:appended.map(el=>JSON.parse(el.textContent)),schedule:context.window.FORM_COMMUNITY_SCHEDULE?.thursday};
+}
+const live=execute();
+assert.equal(live.nodes['miami-thursday-when'].textContent,live.schedule.whenLabel);
+assert.equal(live.nodes['miami-thursday-where'].textContent,live.schedule.locationName+' · '+live.schedule.locationCity);
+assert.equal(live.events.length,1);
+assert.equal(live.events[0]['@type'],'SportsEvent');
+assert.equal(live.events[0].eventSchedule.startTime,live.schedule.time24);
+assert.equal(live.events[0].location.name,live.schedule.locationName);
+const changed=execute({weekday:'Friday',whenLabel:'Fridays · 7:15 AM',time24:'07:15',locationName:'Test Track',locationCity:'Test City'});
+assert.equal(changed.nodes['miami-thursday-when'].textContent,'Fridays · 7:15 AM');
+assert.equal(changed.nodes['miami-thursday-where'].textContent,'Test Track · Test City');
+assert.equal(changed.events[0].eventSchedule.startTime,'07:15');
+assert.equal(changed.events[0].eventSchedule.byDay,'https://schema.org/Friday');
+assert.equal(changed.events[0].location.name,'Test Track');
+assert.equal(execute(null,true).events.length,0,'Missing schedule is safe');
+// Prove this regression test catches the original syntax error.
+assert.throws(()=>new vm.Script('(() => { }());'),SyntaxError);
+const share=require('../scripts/share-metadata.cjs');
+assert.equal(share.meta(html,'og:image'),'https://speedandform.com/og/form-share-20260916.jpg');
+assert.equal(share.transform(html,'miami-running-training.html',root),html);
+assert.equal(require('../scripts/guide-state.cjs').verify('miami-running-training.html',html),true);
+console.log('Miami PASS: JavaScript syntax, canonical and changed schedule, safe missing schedule, recurring schema, readable layout declarations, no dormant email flow, share idempotence, and reviewed source receipt.');
