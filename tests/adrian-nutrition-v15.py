@@ -1,3 +1,11 @@
+# A held page must pass withdrawal checks, not be restored for active-plan tests.
+import json as _hold_json, runpy as _hold_runpy
+from pathlib import Path as _HoldPath
+_hold_root = _HoldPath(__file__).resolve().parents[1]
+if _hold_json.loads((_hold_root/'plans/adrian-nutrition-phase-01/review-context.json').read_text()).get('release_status') == 'paused_pending_clinician_review':
+    _hold_runpy.run_path(str(_hold_root/'tests/adrian-nutrition-hold.py'), run_name='__main__')
+    raise SystemExit(0)
+
 import http.server, threading, json, re, sys
 from pathlib import Path
 from playwright.sync_api import sync_playwright

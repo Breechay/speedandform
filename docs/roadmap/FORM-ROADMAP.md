@@ -333,3 +333,8 @@ Bounded source repair: the shared Thursday schedule renders again; the Instagram
 Source acceptance is recorded in `docs/audits/MIAMI-FUNCTIONAL-V2-RECEIPT-20260923.json` and `tests/miami-community-schedule.cjs`. The release is not a new copy pass. Miami now has its dedicated `RUN MIAMI.` 1200×630 share card wired into page metadata and the share-preserve registry. HYROX keeps its current working share card; Speed That Endures and the homepage are unchanged. The personal Miami copy pass remains held for Brice's five answers. A successful branch check is not proof of a production deployment; verify the production commit before calling this live.
 
 Acceptance note: the dedicated Miami regression and 71-page reading checks pass. The broad share suite fails on the same pre-existing Library snapshot mismatch on both base `84eed912` and the candidate. The Library file and original share test remain unchanged. This release does not claim the entire sitewide share suite passed.
+
+
+### 23 September 2026 · Adrian nutrition delivery hold
+- Nutrition companion v1.5.2: previous instructions withdrawn pending clinician review. See [release hold](../studies/ADRIAN-NUTRITION-HOLD-20260923.md). No private medical details published. Training app and imported reminders are not changed by this release.
+- Gate: explicit coach-authorized replacement after individualized guidance. Use `python tests/adrian-nutrition-hold.py`; verify production before calling this live.
