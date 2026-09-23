@@ -304,3 +304,12 @@ Weekend restaurant meals replace meals rather than duplicate them. Five workday 
 ### Nutrition 01 v1.2 copy refinement
 
 Owner-directed edit: remove top navigation links and repeated coach-contact explanations. Use direct photo instructions. Preserve meal portions, dietary exclusions, food-safety and medical warnings; move supplement detail into a collapsed footer. Updated browser checks use the disclosure itself. This source note is not a production verification.
+
+
+## September 23: Miami community-page functional repair
+
+Bounded source repair: the shared Thursday schedule renders again; the Instagram note no longer overlaps; unbuilt email promises, the hidden email CTA and its readiness request are removed; body text is larger and the desktop sheet is wider; the existing coaching price and organization identity are represented consistently. Recurring event metadata reads the same schedule object.
+
+Source acceptance is recorded in `docs/audits/MIAMI-FUNCTIONAL-V2-RECEIPT-20260923.json` and `tests/miami-community-schedule.cjs`. The release is not a new copy pass. Existing Miami/HYROX share images are deliberately retained; the supplied newer Miami card and missing newer HYROX card remain separate asset work. Speed That Endures and the homepage are unchanged. A successful branch check is not proof of a production deployment; verify the production commit before calling this live.
+
+Acceptance note: the dedicated Miami regression and 71-page reading checks pass. The broad share suite fails on the same pre-existing Library snapshot mismatch on both base `84eed912` and the candidate. The Library file and original share test remain unchanged. This release does not claim the entire sitewide share suite passed.
