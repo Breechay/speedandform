@@ -487,18 +487,6 @@
     "type": "Plan"
   },
   {
-    "url": "/plans/raise-the-ceiling/",
-    "title": "Raise the Ceiling",
-    "description": "Read the published plan and its weekly work.",
-    "keywords": [
-      "raise",
-      "ceiling",
-      "threshold"
-    ],
-    "category": "practice",
-    "type": "Plan"
-  },
-  {
     "url": "/plans/marathon-durability/",
     "title": "Marathon Durability",
     "description": "A 16-week experienced-runner marathon plan: specific contact Tuesday, ceiling Thursday, durability Saturday.",
@@ -545,18 +533,6 @@
       "10k",
       "closing",
       "miles"
-    ],
-    "category": "practice",
-    "type": "Study"
-  },
-  {
-    "url": "/labs/raise-the-ceiling/",
-    "title": "Raise the Ceiling: the study",
-    "description": "The work, observations, and evidence behind the block.",
-    "keywords": [
-      "threshold",
-      "study",
-      "evidence"
     ],
     "category": "practice",
     "type": "Study"
@@ -678,5 +654,55 @@
     ],
     "category": "practice",
     "type": "App"
+  },
+  {
+    "url": "/labs/adrian-runner-mass/",
+    "title": "The Developed Runner",
+    "description": "Follow Adrian as strength and useful mass are added around an already-proven running engine.",
+    "keywords": [
+      "adrian",
+      "developed",
+      "runner",
+      "strength",
+      "mass",
+      "marathon",
+      "study"
+    ],
+    "category": "practice",
+    "type": "Study"
+  },
+  {
+    "url": "/labs/rebuilt-athlete/",
+    "title": "The Rebuilt Athlete",
+    "description": "Follow the return from a complete tibial fracture as running, strength, body composition and capacity are rebuilt.",
+    "keywords": [
+      "rebuilt",
+      "athlete",
+      "tibia",
+      "fracture",
+      "return",
+      "running",
+      "study"
+    ],
+    "category": "practice",
+    "type": "Study"
+  },
+  {
+    "url": "/labs/the-two-curves/",
+    "title": "The Two Curves",
+    "description": "Follow Simon as half-marathon race-pace duration and the ceiling above it are developed together.",
+    "keywords": [
+      "simon",
+      "two",
+      "curves",
+      "ceiling",
+      "durability",
+      "half",
+      "marathon",
+      "1:20",
+      "study"
+    ],
+    "category": "practice",
+    "type": "Study"
   }
 ]
