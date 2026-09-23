@@ -1,0 +1,39 @@
+name: Adrian pre-run safety rule acceptance
+on:
+  push:
+    branches: [work/adrian-prerun-safety-rule-20260923]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install acceptance browser
+        run: |
+          pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium
+      - name: Run existing six-width acceptance
+        run: python tests/adrian-nutrition-v15.py
+      - name: Verify pre-run rules
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          p=Path("plans/adrian-nutrition-phase-01/index.html").read_text()
+          c=json.loads(Path("plans/adrian-nutrition-phase-01/review-context.json").read_text())
+          assert "v1.5.3" in p
+          assert "20 to 30 minutes before your run" not in p
+          assert "One before each run." not in p
+          assert "Keep your no-food window" in p
+          assert "Honey Stinger waffle" in p
+          assert "emergency room" not in p.lower()
+          assert "anaphyl" not in p.lower()
+          assert c["nutrition_revision"]=="1.5.3"
+          assert "several hours before running" in c["confirmed_for_this_revision"]["pre_run_food_rule"]["rule"]
+          print("pre-run safety rule verified")
+          PY
