@@ -39,7 +39,10 @@ with sync_playwright() as p:
  assert page.locator('#shop-progress').evaluate('(e)=>e.value')==2
  page.locator('#shop-check-jam').check();page.reload(wait_until='domcontentloaded');page.locator('#shopping>summary').click();assert page.locator('#shop-progress').evaluate('(e)=>e.value')==3
  page.locator('#shop-clear').click();page.reload(wait_until='domcontentloaded');page.locator('#shopping>summary').click();assert page.locator('.shop input:checked').count()==0 and page.locator('#shop-progress').evaluate('(e)=>e.value')==0
- page.locator('#shop-check-bread').focus();assert page.locator('#shop-check-bread').evaluate("e=>e.matches(':focus-visible')")
+ # Tab into the first checkbox: focus-visible depends on genuine keyboard modality.
+ page.locator('#shop-clear').focus();page.keyboard.press('Tab')
+ assert page.locator('#shop-check-bread').evaluate("e=>e===document.activeElement && e.matches(':focus-visible')")
+ assert page.locator('#shop-check-bread').evaluate("e=>getComputedStyle(e).outlineStyle!=='none' && parseFloat(getComputedStyle(e).outlineWidth)>=2")
  tile=page.locator('.shop-day').evaluate_all('(es)=>es.map(e=>({top:e.getBoundingClientRect().top,icon:e.querySelector("svg").getBoundingClientRect().top,name:e.querySelector("b").getBoundingClientRect().top}))')
  for key in ['top','icon','name']:assert max(t[key] for t in tile)-min(t[key] for t in tile)<2
  report['shopping_persistence_reset_focus_alignment']='passed'
