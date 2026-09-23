@@ -22,3 +22,89 @@
 
 /* The skip link is invisible, not merely positioned outside a screenshot. */
 .skip-link{transform:none;clip-path:inset(50%);width:1px;height:1px;overflow:hidden;white-space:nowrap}.skip-link:focus{clip-path:none;width:auto;height:auto;overflow:visible}
+
+/* ===== v2 · September 23 refinement layer =====
+   One type system with the rest of FORM: Inter Tight says what something means,
+   JetBrains Mono says what happened (prices, weeks, captions, labels).
+   Nothing below changes content, structure or scripts. */
+@font-face{font-family:"Inter Tight";src:url("https://cdn.jsdelivr.net/fontsource/fonts/inter-tight:vf@5.3.0/latin-wght-normal.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url("/assets/site/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url("/assets/site/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+:root{--sans:"Inter Tight",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;--serif:var(--sans);--mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;--ease:cubic-bezier(.22,.61,.36,1);--pill:999px}
+body{font-feature-settings:"ss01","cv11";text-rendering:optimizeLegibility}
+
+/* Display type: one weight, one tracking, everywhere. */
+.hero h1,.practice-title h2,.wind-line,.coach-heading h2,.method-close p,.coaching-options h2,.intake-copy h2{font-weight:750;letter-spacing:-.042em;word-spacing:.04em;line-height:.94}
+.hero h1{font-size:clamp(78px,10.2vw,150px);letter-spacing:-.046em;line-height:.9}
+.hero h1 .dot{letter-spacing:0;margin-left:.02em}
+.hero h1 .dot{color:var(--lime)}
+.practice-title h2{font-size:clamp(56px,6vw,86px)}
+.wind-line{font-size:clamp(46px,5.8vw,80px);line-height:.96}
+.coach-heading h2{font-size:clamp(52px,5.2vw,74px)}
+.method-close p{font-size:clamp(40px,5vw,68px);line-height:.98}
+.coaching-options h2{font-size:clamp(50px,5.8vw,82px)}
+.intake-copy h2{font-size:clamp(46px,4.8vw,70px);line-height:.96}
+.argument strong,.form-principle p,.coach-axiom strong{font-weight:650;letter-spacing:-.03em}
+.argument strong{font-size:24px;line-height:1.2}
+.form-principle p{font-size:26px;line-height:1.24}
+.coach-axiom strong{font-size:28px;line-height:1.16}
+.training-example summary strong{font-weight:650;font-size:24px;letter-spacing:-.03em}
+.q h2,#rHead,.done-title,.coaching-option-grid h3,.week-example h3{font-weight:650;letter-spacing:-.035em}
+
+/* Measured information speaks mono. */
+.eyebrow,.practice-photo figcaption,.analysis-caption span,.argument b,.ticks,.kind,.footer-label,.training-example summary small{font-family:var(--mono);font-weight:400;letter-spacing:.08em}
+.offer strong{font-family:var(--mono);font-weight:500;font-size:19px;letter-spacing:-.01em}
+.coaching-price{font-family:var(--mono);font-weight:500;font-size:40px;letter-spacing:-.04em}
+.coaching-price span{font-family:var(--sans)}
+.session-example .example-work,.session-example .example-pace{font-family:var(--mono);font-weight:500;letter-spacing:-.03em}
+
+/* Hero: retain the scanline hatch. It masks motion/compression in the source film and reads as intentional texture. */
+.hero>img,.hero>video{filter:grayscale(1) contrast(1.14) brightness(.6)}
+.hero-sub{border-top-color:rgba(242,238,229,.16)}
+.hero-benefit{font-weight:600;font-size:26px;letter-spacing:-.03em}
+
+/* Controls: pill buttons and chips, like the app. */
+.begin,.button-link,.cta{border-radius:var(--pill);padding-inline:26px;gap:28px;font-weight:600;letter-spacing:-.01em;transition:background .2s var(--ease),transform .2s var(--ease)}
+.begin:active,.button-link:active,.cta:active{transform:scale(.98)}
+.opt{border-radius:var(--pill);padding:11px 18px;border-color:rgba(17,16,14,.28);transition:background .15s var(--ease),color .15s var(--ease),border-color .15s var(--ease),transform .15s var(--ease)}
+.opt:active{transform:scale(.97)}
+#coachingChoice{border-radius:14px;border-color:rgba(17,16,14,.3);padding-left:16px}
+.film-toggle{background:rgba(0,0,0,.35);border-color:rgba(255,255,255,.3);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+
+/* Photography: a quiet frame, not a box. */
+.practice-photo img,.analysis-screen{border-radius:4px}
+.week-example{border-radius:6px}
+
+/* Rhythm: one generous vertical measure. */
+.practice{padding:128px 0}
+.wind{padding:112px 0 120px}
+.coach{padding:128px 0 88px}
+.coaching-options{padding:120px 0 96px}
+.intake{padding:120px 0 128px}
+
+/* The kite line is Squires' phrase; credit it. */
+.wind-credit{font:11px/1.6 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:22px}
+
+/* Arrival: headlines and frames rise into place once, where supported. */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion:no-preference){
+    .practice-title h2,.wind-line,.coach-heading h2,.method-close p,.coaching-options h2,.intake-copy h2,.practice-photo,.analysis-figure{animation:v2-rise linear both;animation-timeline:view();animation-range:entry 0% entry 42%}
+  }
+}
+@keyframes v2-rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+
+@media(max-width:600px){
+  .hero h1{font-size:15.2vw;line-height:.9}
+  .hero-benefit{font-size:21px}
+  .practice-title h2{font-size:58px}
+  .wind-line{font-size:50px}
+  .coach-heading h2{font-size:54px}
+  .method-close p{font-size:44px}
+  .coaching-options h2{font-size:44px}
+  .intake-copy h2{font-size:50px}
+  .argument strong{font-size:23px}
+  .coaching-price{font-size:36px}
+  .practice{padding:80px 0 72px}.wind{padding:72px 0 76px}.coach{padding:80px 0 52px}.coaching-options{padding:76px 0 60px}.intake{padding:76px 0 84px}
+  .button-link{border-radius:var(--pill)}
+}
+@media(max-width:359px){.coaching-options h2,.intake-copy h2{font-size:46px}.coach-heading h2{font-size:48px}}
