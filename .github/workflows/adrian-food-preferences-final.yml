@@ -1,0 +1,177 @@
+name: Adrian final food-preference copy
+on:
+  push:
+    branches: [work/adrian-food-preferences-final-20260922]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: adrian-food-preferences-final-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  refine-and-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply only approved preference and wording changes
+        run: |
+          mkdir -p /tmp/adrian-preferences
+          python - <<'PY'
+          import json, re, copy
+          from pathlib import Path
+          page=Path('plans/adrian-nutrition-phase-01/index.html')
+          datafile=Path('docs/studies/ADRIAN-NUTRITION-INTAKE-20260922.json')
+          studyfile=Path('labs/adrian-runner-mass/index.html')
+          html=page.read_text()
+          note='Tell Brice what to add or remove. Your messages update this list; opening the page does not save changes.'
+          assert '<h1>Fuel Your Work</h1>' in html
+          assert 'Take photos of 2 normal work lunches.' in html
+          assert '<nav class="nav"' not in html
+          before_page=html
+          html=html.replace('your mom’s bread','bread').replace("your mom's bread",'bread')
+          if '<li>Mushrooms.</li>' not in html:
+              assert html.count('<li>Brussels sprouts.</li>')==1
+              html=html.replace('<li>Brussels sprouts.</li>','<li>Brussels sprouts.</li><li>Mushrooms.</li>')
+          if note not in html:
+              anchor='<p class="small">Both yogurt exclusions'
+              assert html.count(anchor)==1
+              html=html.replace(anchor,'<p>'+note+'</p>'+anchor)
+          html=html.replace('v1.2','v1.3').replace('<strong>Version:</strong> 1.2,','<strong>Version:</strong> 1.3,')
+          assert html.count(note)==1
+          assert 'your mom’s bread' not in html
+          assert '<li>Mushrooms.</li>' in html
+          assert 'Tell Brice when food before a run' not in html
+          # Every change in the daily instructions is the requested bread wording.
+          before_day=before_page.split('<section id="your-day">',1)[1].split('<aside>',1)[0]
+          after_day=html.split('<section id="your-day">',1)[1].split('<aside>',1)[0]
+          assert after_day==before_day.replace('your mom’s bread','bread').replace("your mom's bread",'bread')
+          data=json.loads(datafile.read_text()); olddata=copy.deepcopy(data)
+          def preferences(p):
+              if 'mushrooms' not in p['dislikes']:p['dislikes'].append('mushrooms')
+              p['likes']=['bread' if x=='homemade bread' else x for x in p['likes']]
+              p['update_note']=note
+              addition=' Mushrooms are excluded by the coach’s September 22 clarification. Athlete-facing bread wording is simply bread.'
+              if addition not in p['correction']:p['correction']+=addition
+          preferences(data['preferences']);data['version']='1.3'
+          for key in olddata:
+              if key not in {'version','preferences'}:assert data[key]==olddata[key],key
+          source=studyfile.read_text()
+          pos=source.index('{',source.index('const STUDY = '))
+          study,end=json.JSONDecoder().raw_decode(source[pos:]);oldstudy=copy.deepcopy(study)
+          assert study['id']=='FRM-001'
+          assert study['version'] in ['2026.09.22.2','2026.09.22.3']
+          study['version']='2026.09.22.3'
+          preferences(study['intake20260922']['preferences'])
+          study['intake20260922']['version']='1.3'
+          assert study['intake20260922']['preferences']==data['preferences']
+          old_exclusion='Greek yogurt, cottage cheese and Brussels sprouts are excluded.'
+          new_exclusion='Greek yogurt, cottage cheese, Brussels sprouts and mushrooms are excluded.'
+          study['adherence']=[x.replace(old_exclusion,new_exclusion) for x in study['adherence']]
+          for key in oldstudy:
+              if key not in {'version','adherence','intake20260922'}:assert study[key]==oldstudy[key],key
+          for key in oldstudy['intake20260922']:
+              if key not in {'version','preferences'}:assert study['intake20260922'][key]==oldstudy['intake20260922'][key],key
+          source=source[:pos]+json.dumps(study,ensure_ascii=False,indent=1)+source[pos+end:]
+          # Update the static public intake exclusion sentence too.
+          source=source.replace(old_exclusion,new_exclusion)
+          page.write_text(html)
+          datafile.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
+          studyfile.write_text(source)
+          roadmap=Path('docs/roadmap/FORM-ROADMAP.md');text=roadmap.read_text()
+          heading='## September 22 - Adrian food-preference copy, v1.3'
+          if heading not in text:
+              note_text='\n'+heading+'\n\nMushrooms added to the exclusion list and the structured study intake. Bread is now named simply bread in the breakfast and preferences. The owner-approved food-list update note is restored verbatim. Header links remain removed and lunch copy remains “Take photos of 2 normal work lunches.” No meal quantities, training assignments, race history or outcomes changed. Acceptance artifacts are attached to the Adrian final food-preference copy workflow. A production claim requires checking the published URL after the tested commit is released.\n\n'
+              text=text.replace('\n','\n'+note_text,1);roadmap.write_text(text)
+          Path('/tmp/adrian-preferences/nutrition.html').write_text(html)
+          Path('/tmp/adrian-preferences/study.html').write_text(source)
+          print('Source checks passed; only preferences, bread wording, version labels and release notes changed.')
+          PY
+          node - <<'JS'
+          const fs=require('fs'),vm=require('vm');
+          for(const f of ['plans/adrian-nutrition-phase-01/index.html','labs/adrian-runner-mass/index.html']){
+            for(const m of fs.readFileSync(f,'utf8').matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)){
+              if(/application\/ld\+json/.test(m[1]))JSON.parse(m[2]);else if(!/src=/.test(m[1]))new vm.Script(m[2]);
+            }
+          }
+          console.log('Inline script and metadata checks passed.');
+          JS
+      - name: Install browser
+        run: |
+          pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium
+      - name: Browser acceptance
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import http.server,threading,json
+          from playwright.sync_api import sync_playwright
+          root=Path.cwd();out=Path('/tmp/adrian-preferences')
+          class Handler(http.server.SimpleHTTPRequestHandler):
+              def __init__(self,*args,**kwargs):super().__init__(*args,directory=str(root),**kwargs)
+              def log_message(self,*args):pass
+          server=http.server.ThreadingHTTPServer(('127.0.0.1',0),Handler)
+          threading.Thread(target=server.serve_forever,daemon=True).start()
+          base=f'http://127.0.0.1:{server.server_port}'
+          note='Tell Brice what to add or remove. Your messages update this list; opening the page does not save changes.'
+          checks=[]
+          with sync_playwright() as p:
+              browser=p.chromium.launch()
+              for width in [375,390,430,768,1024,1440]:
+                  page=browser.new_page(viewport={'width':width,'height':950},reduced_motion='reduce')
+                  errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
+                  page.goto(base+'/plans/adrian-nutrition-phase-01/',wait_until='domcontentloaded')
+                  assert page.locator('.hero a').count()==0
+                  assert page.get_by_text('Take photos of 2 normal work lunches.',exact=True).count()==1
+                  assert 'your mom’s bread' not in page.locator('body').inner_text()
+                  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+                  page.locator('#preferences summary').click()
+                  assert page.locator('#preferences').evaluate('(el)=>el.open')
+                  assert page.locator('#preferences').get_by_text('Mushrooms.',exact=True).count()==1
+                  assert page.locator('#preferences').get_by_text(note,exact=True).count()==1
+                  if width in [390,1440]:page.locator('#preferences').screenshot(path=str(out/f'preferences-{width}.png'))
+                  page.evaluate('document.querySelectorAll("details").forEach(el=>el.open=true)')
+                  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+                  assert not errors,errors
+                  checks.append({'width':width,'open_closed_disclosures':'pass','overflow':False,'page_errors':errors})
+                  page.close()
+              page=browser.new_page(viewport={'width':1440,'height':950},reduced_motion='reduce')
+              page.goto(base+'/plans/adrian-nutrition-phase-01/',wait_until='domcontentloaded')
+              page.evaluate('document.body.style.zoom="2";document.querySelectorAll("details").forEach(el=>el.open=true)')
+              assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),'200% zoom overflow'
+              page.close()
+              page=browser.new_page(viewport={'width':390,'height':950},reduced_motion='reduce')
+              errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
+              page.goto(base+'/labs/adrian-runner-mass/',wait_until='domcontentloaded')
+              page.wait_for_selector('#evidence',timeout=20000)
+              assert 'Brussels sprouts and mushrooms are excluded' in page.locator('#intake-20260922').inner_text()
+              assert not errors,errors
+              checks.append({'study_render':'pass','200_percent_zoom':'pass','protected_data':'unchanged'})
+              browser.close()
+          server.shutdown()
+          (out/'checks.json').write_text(json.dumps(checks,indent=2))
+          print(json.dumps(checks,indent=2))
+          PY
+      - name: Commit only accepted page and intake changes
+        run: |
+          git diff --check
+          git diff --stat
+          git diff > /tmp/adrian-preferences/source.diff
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add plans/adrian-nutrition-phase-01/index.html docs/studies/ADRIAN-NUTRITION-INTAKE-20260922.json labs/adrian-runner-mass/index.html docs/roadmap/FORM-ROADMAP.md
+          git diff --cached --quiet || git commit -m 'Adrian: plain bread wording, exclude mushrooms, preserve approved preference note'
+          git push origin HEAD
+          git rev-parse HEAD | tee /tmp/adrian-preferences/commit.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: adrian-preferences-v13
+          path: /tmp/adrian-preferences/
+          retention-days: 7
