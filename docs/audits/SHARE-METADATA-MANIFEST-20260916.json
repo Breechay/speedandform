@@ -287,12 +287,12 @@
       "file": "labs/speed-that-endures/index.html",
       "action": "preserve",
       "reason": "Dedicated subject-specific image",
-      "previousImage": "https://speedandform.com/og/speed-that-endures.png",
-      "image": "https://speedandform.com/og/speed-that-endures.png",
+      "previousImage": "https://speedandform.com/og/speed-that-endures-20260923.jpg",
+      "image": "https://speedandform.com/og/speed-that-endures-20260923.jpg",
       "title": "Speed That Endures · FORM Labs",
       "description": "José and Hope follow a race-pace progression. See their individual responses and the decisions that change their work.",
-      "bodySha256": "35adce782e1d5579eb99c7fa521271b0bfef088eb7b99bb8c5c2cd7e943022bc",
-      "imageSha256": "41741bb0bd13c0e2bd51d16499744a15df526ea72c22c83368ed1d69d87e63f2"
+      "bodySha256": "84cfd6ff44089a6b60df2b47b1ad1977425321b19471a21d98403ac23dc4e551",
+      "imageSha256": "e675b842e132366e1a1c365710a86827f4a0c0a40a15169e5ff895673cde3353"
     },
     {
       "file": "labs/track/index.html",
