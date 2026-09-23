@@ -140,31 +140,6 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 }
 
 </style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Event",
-  "name": "FORM Long Run",
-  "description": "Weekly long run from Hideout, Edgewater, Miami.",
-  "eventSchedule": {
-    "@type": "Schedule",
-    "repeatFrequency": "P1W",
-    "byDay": "https://schema.org/Saturday",
-    "startTime": "05:30"
-  },
-  "location": {
-    "@type": "Place",
-    "name": "Hideout",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Miami",
-      "addressRegion": "FL",
-      "addressCountry": "US"
-    }
-  },
-  "organizer": { "@type": "Organization", "name": "FORM" }
-}
-</script>
 </head>
 <body>
 
@@ -193,13 +168,13 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
     </div>
 
     <div style="padding: 14px 0; border-top: 1px solid var(--line-l);">
-      <span style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 6px;">Saturday as a fixed anchor</span>
-      <p style="font-size: 13px; color: var(--ink-l); line-height: 1.75; letter-spacing: 0.02em;">The long run is fixed on Saturday for the same reason threshold is fixed on Tuesday — the schedule is not adjusted to accommodate mood or condition. The repetition trains the body to produce on a specific day. Over a cycle, the system learns to arrive ready. That reliability is itself an adaptation.</p>
+      <span style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 6px;">A repeatable anchor</span>
+      <p style="font-size: 13px; color: var(--ink-l); line-height: 1.75; letter-spacing: 0.02em;">The long run works because it returns. Give it a dependable place in the week, then move the day when recovery, life or the training block requires it. The adaptation comes from accumulated duration and good execution, not from Saturday itself.</p>
     </div>
 
     <div style="padding: 14px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l);">
       <span style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 6px;">Finishing neutral</span>
-      <p style="font-size: 13px; color: var(--ink-l); line-height: 1.75; letter-spacing: 0.02em;">The long run is not a race rehearsal. It ends at Hideout, not at an empty tank. A runner who finishes knowing they could keep going has done it correctly. A runner who finishes depleted has taken from next week to pay for this one. The system rewards runners who manage effort across weeks, not sessions.</p>
+      <p style="font-size: 13px; color: var(--ink-l); line-height: 1.75; letter-spacing: 0.02em;">The long run is not a race rehearsal. It ends with something left, not at an empty tank. A runner who finishes knowing they could keep going has done it correctly. A runner who finishes depleted has taken from next week to pay for this one. The system rewards runners who manage effort across weeks, not sessions.</p>
     </div>
   </div>
 
@@ -209,7 +184,7 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
   </div>
 
   <div class="session-standard">Easy early. Steady later. Finish neutral.</div>
-  <span class="session-meta">Saturday · 5:30 AM · <a href="https://maps.google.com/?q=The+Hideout+Coffee+House,+Edgewater+Miami+FL" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--line);">Hideout, Edgewater</a></span>
+  <span class="session-meta">About once a month · a new route around Miami · <a href="https://www.instagram.com/form.practice/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--line);">@form.practice</a></span>
 
   <div class="links">
     <a class="hub-link" href="/long-run-pace">
@@ -566,7 +541,7 @@ document.querySelector('.current-session').addEventListener('click', function() 
 function openDrawer() {
   const name = document.getElementById('cs-name').textContent;
   document.getElementById('d-title').textContent = name || 'Long Run';
-  document.getElementById('d-sub').textContent = 'Saturday · 5:30 AM · Hideout, Edgewater';
+  document.getElementById('d-sub').textContent = 'About once a month · route on @form.practice';
   document.getElementById('drawer-overlay').classList.add('open');
   document.getElementById('drawer').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -578,9 +553,10 @@ function closeDrawer() {
   document.body.style.overflow = '';
 }
 
-// Swipe down to dismiss
-(function(){
+// Swipe down to dismiss (runs after the drawer markup below exists)
+document.addEventListener('DOMContentLoaded', function(){
   const drawer = document.getElementById('drawer');
+  if (!drawer) return;
   let startY = 0, currentY = 0, dragging = false;
   drawer.addEventListener('touchstart', e => { startY = e.touches[0].clientY; dragging = true; }, { passive: true });
   drawer.addEventListener('touchmove', e => {
@@ -596,7 +572,7 @@ function closeDrawer() {
     drawer.style.transform = '';
     if (diff > 80) closeDrawer();
   });
-})();
+});
 
 // Initialize
 lrRender();
@@ -615,7 +591,7 @@ function showToast(msg) {
 <div class="drawer" id="drawer">
   <div class="drawer-handle"></div>
   <div class="drawer-inner">
-    <span class="drawer-eyebrow">This Saturday</span>
+    <span class="drawer-eyebrow">Long run</span>
     <div class="drawer-title" id="d-title"></div>
     <div class="drawer-sub" id="d-sub"></div>
     <div class="drawer-rule"></div>
