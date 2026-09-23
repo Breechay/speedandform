@@ -1,20 +1,19 @@
 {
-  "id": "/plans/adrian-nutrition-phase-01/",
-  "name": "Adrian \u00b7 Fuel",
+  "name": "Adrian \u00b7 Fuel Your Work",
   "short_name": "Fuel",
-  "start_url": "/plans/adrian-nutrition-phase-01/#your-day",
-  "scope": "/plans/adrian-nutrition-phase-01/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#f4f1e9",
   "theme_color": "#f4f1e9",
   "icons": [
     {
-      "src": "./fuel-192.png",
-      "sizes": "192x192",
+      "src": "fuel-icon-180.png",
+      "sizes": "180x180",
       "type": "image/png"
     },
     {
-      "src": "./fuel-512.png",
+      "src": "fuel-icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

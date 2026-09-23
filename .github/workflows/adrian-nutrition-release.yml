@@ -30,7 +30,7 @@ jobs:
           pip install playwright==1.58.0
           python -m playwright install --with-deps chromium
       - name: Browser acceptance
-        run: python tests/adrian-nutrition-browser.py
+        run: python tests/adrian-nutrition-v15.py
       - name: Commit generated study source only after acceptance
         run: |
           git config user.name 'github-actions[bot]'
