@@ -17,25 +17,28 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Apply and test when revision is present
+      - name: Install acceptance tools
+        run: |
+          pip install beautifulsoup4 pillow icalendar playwright==1.58.0
+          python -m playwright install --with-deps chromium
+      - name: Apply and validate the handoffs
         run: |
           mkdir -p /tmp/adrian-v15
-          if [ -f scripts/apply-adrian-v15.py ]; then
-            pip install beautifulsoup4 playwright==1.58.0
-            python -m playwright install --with-deps chromium
-            python scripts/apply-adrian-v15.py
-            python scripts/apply-adrian-v15.py
-            python tests/adrian-nutrition-v15.py
-            node tests/cream-reading.cjs
-            git config user.name 'github-actions[bot]'
-            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git add plans/adrian-nutrition-phase-01
-            git diff --cached --quiet || git commit -m 'Adrian v1.5: accepted day rail, cooking, carryover and purchase links'
-            git push origin HEAD
-          fi
-          mkdir -p /tmp/adrian-v15/source/plans /tmp/adrian-v15/source/tests
+          python scripts/apply-adrian-v15.py
+          python scripts/apply-adrian-v15.py
+          node --check plans/adrian-nutrition-phase-01/visual.js
+          node --check plans/adrian-nutrition-phase-01/shopping.js
+          python tests/adrian-nutrition-v15.py
+          node tests/cream-reading.cjs
+      - name: Commit accepted static source
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add plans/adrian-nutrition-phase-01
+          git diff --cached --quiet || git commit -m 'Adrian v1.5: accepted day rail, cooking, carryover and purchase links'
+          git push origin HEAD
+          mkdir -p /tmp/adrian-v15/source/plans
           cp -r plans/adrian-nutrition-phase-01 /tmp/adrian-v15/source/plans/
-          cp tests/adrian-nutrition-v14.py /tmp/adrian-v15/source/tests/
           git rev-parse HEAD > /tmp/adrian-v15/commit.txt
       - uses: actions/upload-artifact@v4
         if: always()
