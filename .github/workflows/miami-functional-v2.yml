@@ -15,7 +15,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Apply the bounded functional repair
-        run: node scripts/apply-miami-functional-v2.cjs
+        run: |
+          node scripts/apply-miami-functional-v2.cjs
+          node <<'NODE'
+          const fs=require('node:fs'),{sha}=require('./scripts/share-metadata.cjs');
+          const file='miami-running-training.html',html=fs.readFileSync(file,'utf8').replace(/[\t ]+$/gm,'');
+          fs.writeFileSync(file,html);
+          const p='docs/audits/MIAMI-FUNCTIONAL-V2-RECEIPT-20260923.json',r=JSON.parse(fs.readFileSync(p,'utf8'));
+          r.pages[0].afterSha256=sha(html);r.pages[0].bodySha256=sha(html.slice(html.toLowerCase().indexOf('</head>')));
+          fs.writeFileSync(p,JSON.stringify(r,null,2)+'\n');
+          NODE
       - name: Validate the repaired page
         run: |
           node tests/miami-community-schedule.cjs
