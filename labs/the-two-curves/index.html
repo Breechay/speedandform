@@ -201,6 +201,17 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .trio .day.tue{color:var(--blue)}.trio .day.thu{color:var(--red)}.trio .day.sat{color:var(--graphite)}
 .trio h3{font-size:clamp(24px,2.3vw,36px);margin:14px 0 10px;text-transform:uppercase;font-variation-settings:"wdth" 110,"wght" 900;line-height:.95;letter-spacing:-.015em}
 .trio p{color:var(--ink-2);margin:0;max-width:40ch}
+.bridge{display:grid;grid-template-columns:minmax(180px,.42fr) minmax(0,1.58fr);gap:clamp(24px,4vw,56px);margin:clamp(28px,3.5vw,46px) 0 0;padding:22px 0;border-top:1px solid var(--rule-hard);border-bottom:1px solid var(--rule-hard)}
+.bridge__lead h3{font-size:clamp(24px,2.2vw,34px);margin:8px 0 0;text-transform:uppercase;font-variation-settings:"wdth" 110,"wght" 900;line-height:.95}
+.bridge__body{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule-hard);border:1px solid var(--rule-hard)}
+.bridge__body article{background:var(--paper);padding:18px 20px}
+.bridge__body b{display:block;font-family:var(--f-mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;margin-bottom:8px}
+.bridge__body p{margin:0;color:var(--ink-2);font-size:13px;line-height:1.58}
+.bridge__body article:nth-child(1) b{color:var(--red)}
+.bridge__body article:nth-child(2) b{color:var(--ink)}
+.bridge__body article:nth-child(3) b{color:var(--blue)}
+@media(max-width:900px){.bridge{grid-template-columns:1fr}.bridge__body{grid-template-columns:1fr}}
+
 
 .tools{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 36px;margin:clamp(34px,4vw,52px) 0 18px}
 .keys{display:grid;grid-template-columns:repeat(4,auto);gap:0;border:1px solid var(--rule-hard)}
@@ -568,13 +579,34 @@ table.rtc{width:100%;border-collapse:collapse}
   <div class="shell">
     <div class="sec-head">
       <div class="sec-num">02</div>
-      <div><h2 class="display" data-i="s2.h">The whole plan</h2><p data-i="s2.p">Everything from today to the May half. The next eleven weeks are written session by session. After that, each block is written from what the last one showed.</p></div>
+      <div><h2 class="display" data-i="s2.h">The whole plan</h2><p data-i="s2.p">Block 01 is the opening move: Tuesday already starts the conversion by extending goal half pace while Thursday raises the ceiling. The later bridge — more threshold duration and race pace under prior mileage — is written only after Gate 01 shows what Simon actually absorbed.</p></div>
     </div>
 
     <div class="trio">
       <article><div class="day tue" data-i="tr1.d">Tuesday · the hold</div><h3 data-i="tr1.h">Race pace, longer.</h3><p data-i="tr1.p">Goal half pace, {p:227-232}. The pieces get longer and the breaks get shorter until it is one piece.</p></article>
       <article><div class="day thu" data-i="tr2.d">Thursday · the ceiling</div><h3 data-i="tr2.h">Faster than race pace.</h3><p data-i="tr2.p">Around his current 5K pace, {p:209-214}. Short, hard, controlled. This is the room above.</p></article>
       <article><div class="day sat" data-i="tr3.d">Saturday · the base</div><h3 data-i="tr3.h">Long and easy.</h3><p data-i="tr3.p">Easy means {p:295} or slower. It builds the base and keeps Tuesday and Thursday readable.</p></article>
+    </div>
+
+    <div class="bridge">
+      <div class="bridge__lead">
+        <span class="lbl" data-i="br.l">What connects the curves</span>
+        <h3 data-i="br.h">Conversion durability.</h3>
+      </div>
+      <div class="bridge__body">
+        <article>
+          <b data-i="br1.h">1 · Make room above</b>
+          <p data-i="br1.p">Ceiling work raises the fast end. That creates room, but room alone does not make a faster half marathon.</p>
+        </article>
+        <article>
+          <b data-i="br2.h">2 · Make the middle sustainable</b>
+          <p data-i="br2.p">Threshold is the bridge. Longer controlled work should make goal half pace sit farther below what Simon can sustain aerobically.</p>
+        </article>
+        <article>
+          <b data-i="br3.h">3 · Make race pace survive context</b>
+          <p data-i="br3.p">Race pace first grows in continuity, then later appears after prior mileage. That is how the faster pace becomes race durability, not just workout speed.</p>
+        </article>
+      </div>
     </div>
 
     <div class="tools">
@@ -665,7 +697,7 @@ table.rtc{width:100%;border-collapse:collapse}
       <div><h2 class="display" data-i="s5.h">What this page says</h2></div>
     </div>
     <div class="scope">
-      <article><h3 data-i="sc1.h">It says</h3><p data-i="sc1.p">His last block worked: 1:26:13, official. The next weeks develop the ceiling and the hold together. Nothing after Block 01 is final until Gate 01 is read.</p></article>
+      <article><h3 data-i="sc1.h">It says</h3><p data-i="sc1.p">His last block worked: 1:26:13, official. Block 01 raises the ceiling while race-pace continuity grows. The next conversion step is threshold duration plus race pace after prior mileage; that step is conditional on Gate 01.</p></article>
       <article><h3 data-i="sc2.h">It doesn't claim</h3><p data-i="sc2.p">That 1:20 is already there. That his VO₂max has gone up. That later training blocks are fixed before the evidence earns them.</p></article>
     </div>
   </div>
@@ -719,6 +751,7 @@ const B1 = [
 
 const ARC = [
   {cls:"gate", when:{en:"Thu · Oct 29",fr:"Jeu. · 29 oct."}, t:{en:"Gate 01 · 5K effort",fr:"Porte 01 · effort 5 km"}, p:{en:"Read both curves after four weeks: {d:8} at goal half pace on Tuesday, then a 5K ceiling effort Thursday.",fr:"Lire les deux courbes après quatre semaines : {d:8} à l’allure semi visée mardi, puis un effort plafond sur 5 km jeudi."}},
+  {cls:"cond", when:{en:"Nov · after Gate 01",fr:"Nov. · après la porte 01"}, t:{en:"Conversion bridge",fr:"Pont de conversion"}, p:{en:"If the ceiling moved and Tuesday stayed controlled, keep extending the hold, add longer threshold-duration work, and begin placing selected race-pace work after prior mileage. If the cost is too high, the bridge waits.",fr:"Si le plafond a monté et que mardi reste contrôlé, continuer à allonger la tenue, ajouter du travail au seuil plus long et commencer à placer certaines séquences à allure course après des kilomètres déjà courus. Si le coût est trop élevé, le pont attend."}},
   {cls:"gate", when:{en:"Thanksgiving · Nov 26",fr:"Thanksgiving · 26 nov."}, t:{en:"Turkey Trot · tbc",fr:"Turkey Trot · à confirmer"}, p:{en:"A second 5K ceiling read four weeks later. Race name is still to confirm.",fr:"Une deuxième lecture du plafond sur 5 km quatre semaines plus tard. Le nom de la course reste à confirmer."}},
   {cls:"race", when:{en:"Dec 9–13",fr:"9–13 déc."}, t:{en:"HYROX Nashville",fr:"HYROX Nashville"}, p:{en:"Still on. Exact race day and heat are not filed yet.",fr:"Toujours prévu. Le jour exact et la vague ne sont pas encore au dossier."}},
   {when:{en:"Holidays",fr:"Fêtes"}, t:{en:"Hold what we built",fr:"Garder l’acquis"}, p:{en:"Less load, same rhythm. Protect the work through the calendar.",fr:"Moins de charge, même rythme. Protéger le travail pendant les fêtes."}},
@@ -772,7 +805,11 @@ const T = {
  "sp.a":["Open on Strava ↗","Voir sur Strava ↗"],
  "cr.l":["Coach read · Sep 23","Lecture du coach · 23 sept."],
  "cr.p":["We thought Simon faded late. The race says he didn't. He held {p:245} for the whole half. The job now is to move that line toward {p:227-232} while the ceiling rises with it.","On pensait que Simon faiblissait en fin de course. La course dit le contraire. Il a tenu {p:245} sur tout le semi. Le travail maintenant&#8239;: amener cette ligne vers {p:227-232}, pendant que le plafond monte avec elle."],
- "s2.h":["The whole plan","Le plan complet"],"s2.p":["Block 01 is written session by session. The road to May stays visible, but each later block is written from what the last one showed.","Le bloc 01 est écrit séance par séance. La route vers mai reste visible, mais chaque bloc suivant s’écrit à partir de ce que le précédent a montré."],
+ "s2.h":["The whole plan","Le plan complet"],"s2.p":["Block 01 is the opening move: Tuesday already starts the conversion by extending goal half pace while Thursday raises the ceiling. The later bridge — more threshold duration and race pace under prior mileage — is written only after Gate 01 shows what Simon actually absorbed.","Le bloc 01 est le premier mouvement : mardi commence déjà la conversion en allongeant l’allure semi visée pendant que jeudi relève le plafond. Le pont suivant — davantage de durée au seuil et de l’allure course après des kilomètres déjà courus — ne s’écrit qu’après la porte 01, selon ce que Simon a réellement absorbé."],
+ "br.l":["What connects the curves","Ce qui relie les courbes"],"br.h":["Conversion durability.","Durabilité de conversion."],
+ "br1.h":["1 · Make room above","1 · Créer de la marge au-dessus"],"br1.p":["Ceiling work raises the fast end. That creates room, but room alone does not make a faster half marathon.","Le travail de plafond relève le haut. Cela crée de la marge, mais cette marge seule ne produit pas un semi plus rapide."],
+ "br2.h":["2 · Make the middle sustainable","2 · Rendre le milieu soutenable"],"br2.p":["Threshold is the bridge. Longer controlled work should make goal half pace sit farther below what Simon can sustain aerobically.","Le seuil est le pont. Un travail contrôlé plus long doit placer l’allure semi visée plus loin sous ce que Simon peut soutenir sur le plan aérobie."],
+ "br3.h":["3 · Make race pace survive context","3 · Faire survivre l’allure course au contexte"],"br3.p":["Race pace first grows in continuity, then later appears after prior mileage. That is how the faster pace becomes race durability, not just workout speed.","L’allure course gagne d’abord en continuité, puis apparaît plus tard après des kilomètres déjà courus. C’est ainsi qu’une allure plus rapide devient de la durabilité de course, et pas seulement de la vitesse à l’entraînement."],
  "tr1.d":["Tuesday · the hold","Mardi · la tenue"],"tr1.h":["Race pace, longer.","L’allure course, plus longtemps."],"tr1.p":["Goal half pace, {p:227-232}. The pieces get longer and the breaks get shorter until it is one piece.","Allure semi visée, {p:227-232}. Les blocs s’allongent, les récups raccourcissent, jusqu’à ne faire qu’un seul bloc."],
  "tr2.d":["Thursday · the ceiling","Jeudi · le plafond"],"tr2.h":["Faster than race pace.","Plus vite que l’allure course."],"tr2.p":["Around his current 5K pace, {p:209-214}. Short, hard, controlled. This is the room above.","Autour de son allure 5 km actuelle, {p:209-214}. Court, dur, contrôlé. C’est l’espace au-dessus."],
  "tr3.d":["Saturday · the base","Samedi · la base"],"tr3.h":["Long and easy.","Long et facile."],"tr3.p":["Easy means {p:295} or slower. It builds the base and keeps Tuesday and Thursday readable.","Facile, c’est {p:295} ou plus lent. Ça construit la base et garde mardi et jeudi lisibles."],
@@ -799,7 +836,7 @@ const T = {
  "r7":["Goal race","Course objectif"],"r7.v":["16 May 2027 · Saumur","16 mai 2027 · Saumur"],"r7.s":["Official Semi-Marathon de la Loire page","Page officielle du Semi-Marathon de la Loire"],
  "official":["Official","Officiel"],"derived":["Derived","Déduit"],"filed":["Filed","Au dossier"],"working":["Working","En cours"],"tbc":["To confirm","À confirmer"],
  "s5.h":["What this page says","Ce que dit cette page"],"sc1.h":["It says","Elle dit"],
- "sc1.p":["His last block worked: 1:26:13, official. The next weeks develop the ceiling and the hold together. Nothing after Block 01 is final until Gate 01 is read.","Son dernier bloc a marché&#8239;: 1:26:13, officiel. Les semaines à venir travaillent le plafond et la tenue ensemble. Rien après le bloc 01 n’est définitif avant la lecture de la porte 01."],
+ "sc1.p":["His last block worked: 1:26:13, official. Block 01 raises the ceiling while race-pace continuity grows. The next conversion step is threshold duration plus race pace after prior mileage; that step is conditional on Gate 01.","Son dernier bloc a marché&#8239;: 1:26:13, officiel. Le bloc 01 relève le plafond pendant que la continuité à allure course augmente. L’étape suivante de conversion est davantage de durée au seuil plus de l’allure course après des kilomètres déjà courus ; elle dépend de la porte 01."],
  "sc2.h":["It doesn't claim","Elle n’affirme pas"],"sc2.p":["That 1:20 is already there. That his VO₂max has gone up. That later training blocks are fixed before the evidence earns them.","Que 1:20 est déjà acquis. Que sa VO₂max a augmenté. Que les blocs suivants sont figés avant que les preuves ne les justifient."],
  "f1":["FORM · Study 003 · Simon","FORM · Étude 003 · Simon"],"f2":["The Two Curves · living record · updated 23 Sep 2026","Les deux courbes · dossier vivant · mis à jour le 23 sept. 2026"],
  /* generated bits */
