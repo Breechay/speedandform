@@ -1,4 +1,4 @@
-# Pass 2: verified app alias; the static legacy file must not shadow it.
+# Study 002 share card: source SVG rendered as a stable JPEG by Netlify Image CDN.\n/og/rebuilt-athlete-study-002-20260923.jpg /.netlify/images?url=%2Fog%2Frebuilt-athlete-study-002-20260923.svg&w=1200&h=630&fit=fill&fm=jpg&q=92 200\n\n# Pass 2: verified app alias; the static legacy file must not shadow it.
 /app /form/ 301!
 /app.html /form/ 301!
 
