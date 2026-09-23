@@ -1,0 +1,98 @@
+name: Adrian study share-card acceptance
+on:
+  push:
+    branches: [work/adrian-study-share-final-20260923]
+permissions:
+  contents: write
+jobs:
+  render-test:
+    if: "!contains(github.event.head_commit.message, 'render accepted Adrian study card')"
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser tools
+        run: |
+          pip install playwright==1.58.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Render study card from filed baseline photo
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          from playwright.sync_api import sync_playwright
+          study=Path('labs/adrian-runner-mass/index.html').read_text()
+          m=re.search(r'<figure class="stage__athlete">\s*<img src="(data:image/webp;base64,[^"]+)"',study)
+          assert m, 'baseline photo missing'
+          photo=m.group(1)
+          html=f'''<!doctype html><html><head><meta charset="utf-8">
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+          <style>
+          *{{box-sizing:border-box}}html,body{{margin:0;width:1200px;height:630px;overflow:hidden}}
+          body{{background:#e9e3d6;color:#15130f;font-family:Archivo,Arial,sans-serif}}
+          .card{{position:relative;width:1200px;height:630px;overflow:hidden}}
+          .mark{{position:absolute;left:55px;top:38px;font:900 italic 37px/1 Arial,sans-serif;letter-spacing:-2px;transform:skew(-9deg)}}
+          .eyebrow{{position:absolute;left:56px;top:109px;font:400 14px/1.2 "Space Mono",monospace;letter-spacing:2.8px}}
+          .eyebrow b{{color:#be3227;font-weight:400}}
+          h1{{position:absolute;left:54px;top:132px;margin:0;width:610px;font:900 78px/.93 Archivo,Arial,sans-serif;letter-spacing:-3px;text-transform:uppercase}}
+          .metrics{{position:absolute;left:56px;top:413px;width:578px;height:83px;border-top:1px solid #6e695d;border-bottom:1px solid #6e695d;display:grid;grid-template-columns:70px 174px 153px 181px}}
+          .metrics>div{{padding:15px 14px;border-left:1px solid #9b9588}}
+          .metrics>div:first-child{{border-left:0;padding-left:0}}
+          .metrics small{{display:block;font:400 11px/1.2 "Space Mono",monospace;letter-spacing:2px;color:#6e695d;margin-bottom:8px}}
+          .metrics strong{{display:block;font:700 24px/1 "Space Mono",monospace}}
+          .metrics .status strong{{font-size:16px;color:#2e5e8e;margin-top:6px}}.red{{color:#be3227}}
+          .claim{{position:absolute;left:56px;top:529px;font:900 34px/1 Archivo,Arial,sans-serif;letter-spacing:-1px;text-transform:uppercase}}
+          .site{{position:absolute;left:56px;top:580px;font:400 12px/1 "Space Mono",monospace;letter-spacing:2.5px;color:#6e695d}}
+          .photo{{position:absolute;right:30px;top:18px;width:455px;height:612px;object-fit:contain;object-position:center bottom;filter:contrast(1.03) saturate(.96)}}
+          .call{{position:absolute;color:#2e5e8e;font:400 13px/1.15 "Space Mono",monospace;letter-spacing:.5px;text-transform:uppercase;text-align:right}}
+          .c1{{left:640px;top:190px;width:100px}}.c2{{left:640px;top:408px;width:100px}}
+          .line{{position:absolute;height:1px;background:#2e5e8e;transform-origin:left center}}.l1{{left:735px;top:204px;width:225px;transform:rotate(9deg)}}.l2{{left:735px;top:424px;width:245px;transform:rotate(20deg)}}
+          .dot{{position:absolute;width:8px;height:8px;border-radius:50%;background:#2e5e8e;box-shadow:0 0 0 4px rgba(46,94,142,.15)}}.d1{{left:953px;top:237px}}.d2{{left:969px;top:498px}}
+          .stamp{{position:absolute;right:25px;top:26px;border:2px solid #be3227;color:#be3227;padding:9px 15px 8px;font:700 16px/1 "Space Mono",monospace;transform:rotate(-4deg);z-index:3}}
+          </style></head><body><div class="card">
+          <div class="mark">FORM</div><div class="eyebrow">STUDY 001 · <b>ACTIVE STUDY</b></div>
+          <h1>The<br>Developed<br>Runner.</h1>
+          <div class="metrics"><div><small>AGE</small><strong>19</strong></div><div><small>MARATHON</small><strong>2:53:39</strong></div><div><small>PACE</small><strong>6:38 <span style="font-size:13px">/ mi</span></strong></div><div class="status"><small>STATUS</small><strong>Active study <span class="red">●</span></strong></div></div>
+          <div class="claim">More body. Same runner.</div><div class="site">SPEEDANDFORM.COM/LABS</div>
+          <img class="photo" src="{photo}" alt="">
+          <div class="call c1">Upper-back<br>density</div><div class="line l1"></div><div class="dot d1"></div>
+          <div class="call c2">Posterior-<br>chain</div><div class="line l2"></div><div class="dot d2"></div>
+          <div class="stamp">Case open</div>
+          </div></body></html>'''
+          p=Path('/tmp/adrian-study-card.html'); p.write_text(html)
+          out=Path('og/adrian-study-001-20260923.jpg'); out.parent.mkdir(exist_ok=True)
+          with sync_playwright() as pw:
+              b=pw.chromium.launch()
+              pg=b.new_page(viewport={'width':1200,'height':630},device_scale_factor=1)
+              pg.goto(p.as_uri(),wait_until='networkidle')
+              pg.screenshot(path=str(out),type='jpeg',quality=92,full_page=False)
+              b.close()
+          PY
+      - name: Run Adrian nutrition acceptance
+        run: python tests/adrian-nutrition-v15.py
+      - name: Verify study metadata and card
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          p=Path('og/adrian-study-001-20260923.jpg')
+          im=Image.open(p)
+          assert im.size==(1200,630) and im.format=='JPEG'
+          h=Path('labs/adrian-runner-mass/index.html').read_text()
+          assert '2:53:39 marathoner' in h
+          assert 'og/adrian-study-001-20260923.jpg' in h
+          assert '<meta name="robots" content="index,follow,max-image-preview:large">' in h
+          n=Path('plans/adrian-nutrition-phase-01/index.html').read_text()
+          assert '<meta name="robots" content="noindex,follow">' in n
+          PY
+      - name: Commit accepted card
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add og/adrian-study-001-20260923.jpg
+          git diff --cached --quiet || git commit -m 'Adrian study: render accepted Adrian study card'
+          git push origin HEAD
