@@ -33,13 +33,21 @@ This is the operating record for the September house cleanup. The goal is not vi
    - The original S+F seal is preserved as a vector at `/assets/brand/sf-seal.svg`.
    - `docs/BRAND.md` is the house rulebook.
 
-## Do next, in order
+## Final refinement · 23 September
 
-1. **Film Thursday.** Proof is still the largest opportunity. Keep filming the work rather than inventing more pages.
-2. **Add Contact to mature footers as those rooms are touched.** Do not mass-template the site just to tick a box.
-3. **Plans shelf.** Keep it to the offers that are actually available. Price and access should be obvious.
-4. **File athlete proof.** Results, session evidence and study conclusions should accumulate in Labs.
-5. **Legacy cleanup.** Move obvious internal mockups and design-review artifacts out of the public publish surface when safe.
+- **Thursday** now belongs visually to the Run Miami field-sheet room: Archivo + Space Mono, paper field, compact live-session hierarchy, direct Run Miami and Contact doors.
+- The HTML fallback no longer names a session. The live page gets its time, location and session from the shared community schedule; September 24 resolves to **Gauntlet**.
+- **Plans** now exposes only public states: **Paid plan**, **Free plan**, **Open plan**. Internal language such as “method frozen · open to inspect” is removed.
+- The duplicate Race Pace Durability promo under the shelf is removed. Coaching and Labs remain secondary paths, not competing products.
+- Historical homepage governance files are explicitly marked archive/superseded so they cannot overrule this house system accidentally.
+- The current roadmap entry for Thursday is reconciled to the 6:00 AM shared schedule and this field-sheet refinement.
+
+## Next work is evidence, not redesign
+
+1. **Film Thursday.** Proof is now the largest opportunity.
+2. **File athlete proof.** Results, session evidence and study conclusions should accumulate in Labs.
+3. **Add Contact to mature footers when those rooms are naturally touched.** Do not mass-template the site merely for consistency.
+4. **Legacy repository cleanup** can continue separately from public design work.
 
 ## Cache decision
 
@@ -48,3 +56,8 @@ Do **not** globally switch `/js/*` to year-long immutable caching yet. The share
 ## Film rule
 
 For Thursday films: one clear sentence from Brice, real work, one useful cue, recovery/human texture, and a simple route back to `/thursday`. Get written permission from people who are identifiable in the final cut.
+
+
+## Current critic gate
+
+The primary public rooms are now the intended reference set: Home, Run Miami, Thursday, Plans, Labs, Library, Contact and The Method. Future changes should improve a specific user task or add evidence; visual novelty alone is not sufficient reason to reopen them.
