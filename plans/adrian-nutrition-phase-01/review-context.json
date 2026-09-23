@@ -26,7 +26,10 @@
     "authored_sessions": 58,
     "run_context_as_of": "2026-09-21",
     "run_context_week": 2,
-    "run_context_dates": ["2026-09-21", "2026-09-27"],
+    "run_context_dates": [
+      "2026-09-21",
+      "2026-09-27"
+    ],
     "planned_run_miles": 44,
     "run_ownership": "Adrian's running coach; planned context is not completed mileage.",
     "nutrition_revision_changes_training": false,
@@ -45,23 +48,67 @@
     "weekends": "Family restaurant meals replace home meals. Explicit Saturday/Sunday and late-lunch instructions. No mandatory second pasta box on Saturday.",
     "initial_prep": "Sunday four portions: three refrigerated Mon-Wed and one frozen backup. Wednesday half batch: two refrigerated Thu-Fri.",
     "carryover": "When one spare remains, thaw for Monday; Sunday cook four, refrigerate Tue-Wed, freeze Thu-Fri, skip Wednesday cook. Unexpected surplus prompts inventory adjustment.",
-    "base_full_batch": {"dry_pasta_g":454,"raw_93_percent_lean_beef_g":454,"crushed_tomatoes_g":794,"portions":4},
-    "base_half_batch": {"dry_pasta_g":227,"raw_93_percent_lean_beef_g":227,"crushed_tomatoes_g":397,"portions":2},
-    "recipes": ["Classic spaghetti with meat sauce and Parmesan", "Creamy tomato penne, stovetop", "Cheesy beef pasta, stovetop"],
+    "base_full_batch": {
+      "dry_pasta_g": 454,
+      "raw_93_percent_lean_beef_g": 454,
+      "crushed_tomatoes_g": 794,
+      "portions": 4
+    },
+    "base_half_batch": {
+      "dry_pasta_g": 227,
+      "raw_93_percent_lean_beef_g": 227,
+      "crushed_tomatoes_g": 397,
+      "portions": 2
+    },
+    "recipes": [
+      "Classic spaghetti with meat sauce and Parmesan",
+      "Creamy tomato penne, stovetop",
+      "Cheesy beef pasta, stovetop"
+    ],
     "recipe_equivalence": "Different cream/cheese finishes are not calorie/protein-equivalent. These adaptations have not been kitchen-tested for Adrian; observe taste, yield, appetite and digestion.",
     "long_run_fuel": "Retain established routine. No GU recommendation or new gel timing.",
     "photo_checkin": "Two complete photo-days: one normal workday and Saturday. Replaces four isolated meal photos.",
-    "protein_guide_g": [130,145],
+    "protein_guide_g": [
+      130,
+      145
+    ],
     "calorie_surplus_measured": false,
     "automatic_day14_calorie_addition": false,
     "bedtime_progression": "First three nights phone 23:00 / lights out 23:30, both 30 minutes earlier every three nights to 21:00 / 21:30; opportunity is not measured sleep."
   },
   "recipe_references": [
-    {"url":"https://www.sandravalvassori.com/spaghetti-with-meat-sauce/","credit":"Sandra Valvassori","image_role":"publisher reference photo, not Adrian evidence"},
-    {"url":"https://eatinginaninstant.com/instant-pot-ground-beef-pasta/","credit":"Kate / Eating in an Instant","adaptation":"stovetop; no pressure-cooker ownership assumed","image_role":"publisher reference photo, not Adrian evidence"},
-    {"url":"https://cookthestory.com/easy-cheesy-ground-beef-pasta/","credit":"Christine Pittman / COOKtheSTORY","image_role":"publisher reference photo, not Adrian evidence"}
+    {
+      "url": "https://www.sandravalvassori.com/spaghetti-with-meat-sauce/",
+      "credit": "Sandra Valvassori",
+      "image_role": "publisher reference photo, not Adrian evidence"
+    },
+    {
+      "url": "https://eatinginaninstant.com/instant-pot-ground-beef-pasta/",
+      "credit": "Kate / Eating in an Instant",
+      "adaptation": "stovetop; no pressure-cooker ownership assumed",
+      "image_role": "publisher reference photo, not Adrian evidence"
+    },
+    {
+      "url": "https://cookthestory.com/easy-cheesy-ground-beef-pasta/",
+      "credit": "Christine Pittman / COOKtheSTORY",
+      "image_role": "publisher reference photo, not Adrian evidence"
+    }
   ],
   "machine_readability": "All athlete-facing instructions are static HTML, including native details contents. The HTML head links this JSON. Read the public authored program JSON without depending on JavaScript rendering; use authorized repository access for pinned native sources.",
   "privacy_boundary": "This public reference manifest contains no credentials, athlete emails, backend tokens, or private completed-session logs. Hiding HTML is not access control. Future Forge completion review must use authenticated, authorized data access, not a public JSON export.",
-  "interpretation_boundary": "Authored program, athlete reports, supplied result screenshots, listing-only results, device estimates and completed outcomes remain separate. Nutrition, sleep and strength may change together; this record does not isolate a causal nutrition effect."
+  "interpretation_boundary": "Authored program, athlete reports, supplied result screenshots, listing-only results, device estimates and completed outcomes remain separate. Nutrition, sleep and strength may change together; this record does not isolate a causal nutrition effect.",
+  "shopping": {
+    "revision": "1.4",
+    "static_html": true,
+    "check_state": "Browser-local only; no Forge sync or adherence receipt",
+    "first_cycle": "Five workday meals and one frozen backup; not eight mandatory meals",
+    "starting_stock": {
+      "bread_slices": 22,
+      "peanut_butter_g": 352,
+      "milk_fl_oz": 128,
+      "maximum_prescribed_home_shakes_fl_oz": 84,
+      "four_backup_milk_fl_oz": 32
+    },
+    "existing_gels_unchanged": true
+  }
 }
