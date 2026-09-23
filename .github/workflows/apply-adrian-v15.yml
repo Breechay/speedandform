@@ -13,7 +13,19 @@ jobs:
       - uses: actions/checkout@v4
       - name: Rebuild exact handoff zip
         run: |
-          cat .handoff/adrian-v15.part-* > /tmp/adrian-v15.b64
+          cat \
+            .handoff/adrian-v15.part-00 \
+            .handoff/adrian-v15.part-01 \
+            .handoff/adrian-v15.part-02-00 \
+            .handoff/adrian-v15.part-02-01 \
+            .handoff/adrian-v15.part-02-02 \
+            .handoff/adrian-v15.part-02-03 \
+            .handoff/adrian-v15.part-02-04 \
+            .handoff/adrian-v15.part-02-05 \
+            .handoff/adrian-v15.part-02-06 \
+            .handoff/adrian-v15.part-03 \
+            .handoff/adrian-v15.part-04 \
+            .handoff/adrian-v15.part-05 > /tmp/adrian-v15.b64
           base64 -d /tmp/adrian-v15.b64 > /tmp/adrian-nutrition-v15.zip
           echo "cdaf6d3cf3aab56a0f56e2624e098d0b459ddfbe1d66fe7dccbeafd2003b93a5  /tmp/adrian-nutrition-v15.zip" | sha256sum -c -
       - name: Apply package to current main
