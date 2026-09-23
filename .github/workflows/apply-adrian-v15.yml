@@ -1,0 +1,49 @@
+name: Apply Adrian nutrition v1.5
+on:
+  push:
+    branches: [work/apply-adrian-v15-20260922]
+permissions:
+  contents: write
+jobs:
+  validate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild exact handoff zip
+        run: |
+          cat .handoff/adrian-v15.part-* > /tmp/adrian-v15.b64
+          base64 -d /tmp/adrian-v15.b64 > /tmp/adrian-nutrition-v15.zip
+          echo "cdaf6d3cf3aab56a0f56e2624e098d0b459ddfbe1d66fe7dccbeafd2003b93a5  /tmp/adrian-nutrition-v15.zip" | sha256sum -c -
+      - name: Apply package to current main
+        run: |
+          git fetch origin main
+          git switch --detach origin/main
+          unzip -o /tmp/adrian-nutrition-v15.zip -d .
+          rm -f HANDOFF.md
+          rm -f .github/workflows/adrian-nutrition-v14.yml
+          sed -i 's#python tests/adrian-nutrition-browser.py#python tests/adrian-nutrition-v15.py#g' .github/workflows/adrian-nutrition-release.yml .github/workflows/adrian-nutrition-completion.yml
+          sed -i 's#tests/adrian-nutrition-browser.py#tests/adrian-nutrition-v15.py#g' .github/workflows/adrian-nutrition-completion.yml
+          if grep -R -n -E 'adrian-nutrition-browser\.py|adrian-nutrition-v14\.py' .github/workflows; then
+            echo "Legacy Adrian nutrition test still referenced by a workflow"
+            exit 1
+          fi
+          grep -q 'v1.5' plans/adrian-nutrition-phase-01/index.html
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser acceptance dependencies
+        run: |
+          pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium
+      - name: Run exact v1.5 acceptance
+        run: python tests/adrian-nutrition-v15.py
+      - name: Publish validated commit to holding branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A plans/adrian-nutrition-phase-01 tests/adrian-nutrition-v15.py .github/workflows
+          git diff --cached --quiet && { echo "No v1.5 changes to commit"; exit 1; }
+          git commit -m 'Adrian v1.5: day rail, first week, cook steps, freezer check, trimmed copy'
+          git push origin HEAD:refs/heads/work/validated-adrian-v15-20260922
