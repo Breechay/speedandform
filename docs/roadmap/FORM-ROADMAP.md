@@ -1,5 +1,23 @@
 # FORM: current state and next actions
 
+## September 23 — Study 003 live; active Labs set reconciled
+
+**The Two Curves is Simon's active study now.** Block 01 opens Monday **Sep 28, 2026** in the same calendar already assigned in FORM. The public study is `/labs/the-two-curves/`; the athlete app remains prescription authority. The study follows two variables in parallel: race-pace duration on Tuesday and the ceiling above it on Thursday.
+
+**Filed baseline evidence before Block 01:** Key Biscayne Half official net **1:26:13** on Apr 12; Miami Lexus Corporate Run official **17:36** 5K on Apr 23; Sep 4 threshold baseline **2 × 10 min at 6:00–6:08/mi**, RPE 7, with the athlete reporting that the second rep felt easier. The April half did not show a major late collapse, so the old “fades late” working read is superseded by race evidence.
+
+**Current Simon road:** Week 1 begins Sep 28; Gate 01 is a **5K effort Oct 29**; a **Turkey Trot on Nov 26** is the intended second ceiling read, with event name still TBC; **HYROX Nashville remains on for Dec 9–13**, exact race day/heat TBC; holiday and January work then lead into the race-specific half-marathon block. The exact May half-marathon date remains TBC, so the final 15-week block must be anchored backward from the confirmed race date rather than guessed forward.
+
+**Labs public state:** four active studies/rooms — **Speed That Endures**, **The Developed Runner**, **The Rebuilt Athlete**, **The Two Curves**. **The Last 10K** remains Speed That Endures Act II rather than a fifth room. **Raise the Ceiling is archived as of Sep 23**: its study and plan URLs remain loadable for history, are noindex, and carry an archive banner pointing Simon to Study 003. It is removed from active Labs, Plans, Library, search index and sitemap.
+
+Open:
+- [ ] Turkey Trot event name / registration link.
+- [ ] HYROX Nashville exact race day and heat.
+- [ ] Simon's exact May half-marathon race/date.
+- [ ] Simon Sep 15 and Sep 22 Tuesday results, if source evidence is supplied; do not invent them.
+- [ ] Lisa continuation/ownership after Raise the Ceiling archive; no new public claim until Brice decides it.
+- [ ] Physical-phone visual review of Study 003 and its link preview.
+
 ## September 22 - Adrian food-preference copy, v1.3
 
 Mushrooms added to the exclusion list and the structured study intake. Bread is now named simply bread in the breakfast and preferences. The owner-approved food-list update note is restored verbatim. Header links remain removed and lunch copy remains “Take photos of 2 normal work lunches.” No meal quantities, training assignments, race history or outcomes changed. Acceptance artifacts are attached to the Adrian final food-preference copy workflow. A production claim requires checking the published URL after the tested commit is released.
