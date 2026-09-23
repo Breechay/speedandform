@@ -220,6 +220,33 @@ details.plan-detail>summary::-webkit-details-marker{display:none}.plan-body{padd
 @media(max-width:900px){.key-strip{grid-template-columns:1fr 1fr}.key-strip>div:nth-child(3){border-left:0;border-top:1px solid var(--rule)}.key-strip>div:nth-child(4){border-top:1px solid var(--rule)}.arc-head{grid-template-columns:1fr}.season-roadmap{grid-template-columns:repeat(7,220px)}}
 @media(max-width:760px){.plan-toolbar{align-items:flex-start;flex-direction:column}.week-card>summary{grid-template-columns:60px 1fr 22px}.week-card>summary i{display:none}.week-card__body{padding-left:0}.dayline{grid-template-columns:46px 1fr}.dayline>strong{grid-column:2;text-align:left;color:var(--graphite)}.season-note,.evidence-card{grid-template-columns:1fr}}
 
+
+/* race evidence wall */
+.race-anchor-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule-hard);border:1px solid var(--rule-hard)}
+.race-anchor{background:var(--paper);padding:clamp(24px,3vw,42px)}
+.race-anchor--ceiling{background:linear-gradient(180deg,rgba(190,50,39,.035),rgba(255,255,255,0)),var(--paper)}
+.race-anchor__top{display:flex;justify-content:space-between;gap:18px;align-items:center}
+.race-anchor__top a{font-family:var(--f-mono);font-size:9px;letter-spacing:.11em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--rule-hard)}
+.race-anchor h3{font-size:clamp(22px,2.3vw,34px);margin:22px 0 8px;text-transform:uppercase}
+.race-anchor__number{font-family:var(--f-mono);font-size:clamp(48px,6vw,92px);line-height:1;font-weight:700;letter-spacing:-.055em;margin:10px 0 22px}
+.race-anchor--ceiling .race-anchor__number{color:var(--red)}
+.race-anchor__stats{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin-bottom:18px}
+.race-anchor__stats span{padding:11px 10px;border-left:1px solid var(--rule);font-family:var(--f-mono);font-size:9px;line-height:1.45;text-transform:uppercase;letter-spacing:.06em}
+.race-anchor__stats span:nth-child(odd){border-left:0}.race-anchor__stats span:nth-child(n+3){border-top:1px solid var(--rule)}
+.race-anchor__stats b{display:block;font-size:13px;color:var(--ink);margin-bottom:2px}
+.race-anchor p{margin:0;color:var(--ink-2);font-size:14px;line-height:1.62}
+.split-read{display:grid;grid-template-columns:minmax(260px,.7fr) minmax(0,1.3fr);gap:clamp(28px,5vw,70px);margin-top:clamp(34px,5vw,68px);padding-top:24px;border-top:2px solid var(--ink)}
+.split-read__lead h3{font-size:clamp(28px,3vw,46px);margin:8px 0 12px}.split-read__lead p{color:var(--ink-2);margin:0 0 16px}
+.split-read__lead a{font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--ink)}
+.split-strip{display:grid;grid-template-columns:repeat(7,1fr);border-top:1px solid var(--rule-hard);border-left:1px solid var(--rule-hard)}
+.split-strip>div{min-height:82px;padding:12px 9px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);display:flex;flex-direction:column;justify-content:space-between}
+.split-strip b{font-family:var(--f-mono);font-size:9px;color:var(--graphite)}.split-strip span{font-family:var(--f-mono);font-weight:700;font-size:14px}
+.split-strip .kick{background:rgba(46,94,142,.07)}.split-strip .kick span{color:var(--blue)}
+.coach-read{display:grid;grid-template-columns:150px 1fr;gap:28px;margin-top:26px;padding:20px 0;border-top:1px solid var(--rule-hard);border-bottom:1px solid var(--rule-hard)}
+.coach-read p{font-size:clamp(18px,1.7vw,25px);line-height:1.38;margin:0;max-width:52ch}
+@media(max-width:900px){.race-anchor-grid,.split-read{grid-template-columns:1fr}.split-strip{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:600px){.race-anchor__stats{grid-template-columns:1fr}.race-anchor__stats span{border-left:0!important;border-top:1px solid var(--rule)}.race-anchor__stats span:first-child{border-top:0}.split-strip{grid-template-columns:repeat(3,1fr)}.coach-read{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -248,8 +275,8 @@ details.plan-detail>summary::-webkit-details-marker{display:none}.plan-body{padd
       <p class="wall__q">Can the ceiling rise while race-pace duration rises, without either curve undermining the other?</p>
 
       <dl class="metrics">
-        <div><dt>Half</dt><dd>1:26 <small>filed</small></dd></div>
-        <div><dt>5K</dt><dd>17:35 <small>reported</small></dd></div>
+        <div><dt>Half</dt><dd>1:26:13 <small>official</small></dd></div>
+        <div><dt>5K</dt><dd>17:36 <small>official</small></dd></div>
         <div><dt>Goal</dt><dd>1:19–1:23</dd></div>
         <div><dt>Threshold</dt><dd>3:44–3:49 <small>/km · filed</small></dd></div>
       </dl>
@@ -302,7 +329,7 @@ details.plan-detail>summary::-webkit-details-marker{display:none}.plan-body{padd
     <div class="journal">
       <div class="journal__date">23 SEP 2026<br>Before Week 01<br>Coach record</div>
       <div class="journal__entry">
-        Simon's last durability block moved the half from roughly 1:31 to 1:26 in three months. He fades late, not early. He can handle easy running and distance. His 17:35 5K says there is speed above the half. The next question is whether we can create <em>more room above the pace</em> while teaching the pace to last longer.
+        Simon's last durability block moved the half to an official 1:26:13. The race record changes the read: this was not a late collapse. His Strava full-mile splits stayed between 6:29 and 6:40, then he closed the final 0.1 at 5:57. Eleven days later he ran an official 17:36 5K. The open problem is therefore sharper: <em>can the whole sustainable pace line move upward while the ceiling also rises?</em>
       </div>
     </div>
     <div class="known-grid">
@@ -310,7 +337,8 @@ details.plan-detail>summary::-webkit-details-marker{display:none}.plan-body{padd
         <div class="lbl">What is now known</div>
         <h3>The previous durability block worked.</h3>
         <ul>
-          <li>The half moved by roughly five minutes across the prior three-month block.</li>
+          <li>April 12 · Miami Key Biscayne Half Marathon: official net 1:26:13 at 6:34/mi, 15th of 987 overall.</li>
+          <li>April 23 · Miami Lexus Corporate Run 5K: official 17:36 at 5:41/mi, 14th overall.</li>
           <li>The next half-marathon performance envelope is 1:19–1:23, with approximately 1:20 as the central working question.</li>
           <li>Simon trains in kilometers. The study and athlete-facing prescription stay metric-native.</li>
         </ul>
@@ -351,14 +379,14 @@ details.plan-detail>summary::-webkit-details-marker{display:none}.plan-body{padd
       <table class="dossier">
         <thead><tr><th>Metric</th><th>Current value</th><th>Source</th><th class="state">State</th></tr></thead>
         <tbody>
-          <tr><td>Half marathon</td><td>1:26</td><td>Athlete-reported / coach record</td><td><span class="pill filed">Filed</span></td></tr>
+          <tr><td>Half marathon</td><td>1:26:13 net · 6:34/mi</td><td><a href="https://triregistration.com/IndividualRunResults.php?runresultid=158204" target="_blank" rel="noopener">Official Key Biscayne result · Apr 12, 2026</a></td><td><span class="pill filed">Official</span></td></tr>
           <tr><td>Half, prior</td><td>~1:31</td><td>Coach record</td><td><span class="pill filed">Filed</span></td></tr>
-          <tr><td>5K</td><td>17:35 · ~3:31/km</td><td>Athlete-reported</td><td><span class="pill filed">Filed</span></td></tr>
+          <tr><td>5K</td><td>17:36 · official display 5:41/mi · ~3:31/km</td><td><a href="https://events.hakuapp.com/?registration_number=EA41EB7EF322" target="_blank" rel="noopener">2026 Miami Lexus Corporate Run · Apr 23, 2026</a></td><td><span class="pill filed">Official</span></td></tr>
           <tr><td>Goal envelope</td><td>1:19–1:23</td><td>Coach-set · athlete text supports ~1:20 as dream outcome</td><td><span class="pill filed">Filed</span></td></tr>
           <tr><td>Working half pace</td><td>3:47–3:52/km</td><td>Coach-authored working band centered near ~1:20</td><td><span class="pill awaiting">Working</span></td></tr>
           <tr><td>Threshold baseline</td><td>2 × 10 min @ 3:44–3:49/km · 6:00–6:08/mi</td><td>Sep 04 coach import · RPE 7 · “Felt controlled. Second rep was easier than the first.”</td><td><span class="pill filed">Filed</span></td></tr>
           <tr><td>Race date</td><td>May 2027</td><td>Athlete text</td><td><span class="pill awaiting">Exact date awaiting</span></td></tr>
-          <tr><td>Pattern</td><td>Fades late, not early</td><td>Coach observation across prior block</td><td><span class="pill filed">Filed</span></td></tr>
+          <tr><td>Race pattern</td><td>No major late collapse in the Apr 12 half</td><td>Strava athlete record: full miles 6:29–6:40; final 0.1 at 5:57. Earlier “late fade” working read is superseded by race evidence.</td><td><span class="pill filed">Filed</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -366,10 +394,75 @@ details.plan-detail>summary::-webkit-details-marker{display:none}.plan-body{padd
   </div>
 </section>
 
-<section class="sec reveal" id="method">
+
+<section class="sec reveal" id="race-anchors">
   <div class="shell">
     <div class="sec-head">
       <div class="sec-num">03</div>
+      <div><h2 class="display">Race anchors</h2><p class="prose">Two official results, eleven days apart. One establishes what Simon could sustain for the half. The other shows what sat above it.</p></div>
+    </div>
+
+    <div class="race-anchor-grid">
+      <article class="race-anchor">
+        <div class="race-anchor__top">
+          <span class="lbl">12 APR 2026 · OFFICIAL</span>
+          <a href="https://triregistration.com/IndividualRunResults.php?runresultid=158204" target="_blank" rel="noopener">Source ↗</a>
+        </div>
+        <h3>Miami Key Biscayne Half Marathon</h3>
+        <div class="race-anchor__number">1:26:13</div>
+        <div class="race-anchor__stats">
+          <span><b>6:34/mi</b> official pace</span>
+          <span><b>15 / 987</b> overall</span>
+          <span><b>14 / 586</b> men</span>
+          <span><b>7 / 104</b> M30–34</span>
+        </div>
+        <p>Official gun time was 1:26:16. The separate Strava activity shows 13.11 mi in 1:26:15 moving time, 6:35/mi average, 170 bpm average heart rate and 210 ft of elevation gain.</p>
+      </article>
+
+      <article class="race-anchor race-anchor--ceiling">
+        <div class="race-anchor__top">
+          <span class="lbl">23 APR 2026 · OFFICIAL</span>
+          <a href="https://events.hakuapp.com/?registration_number=EA41EB7EF322" target="_blank" rel="noopener">Source ↗</a>
+        </div>
+        <h3>Miami Lexus Corporate Run · 5K</h3>
+        <div class="race-anchor__number">17:36</div>
+        <div class="race-anchor__stats">
+          <span><b>5:41/mi</b> official display</span>
+          <span><b>14</b> overall</span>
+          <span><b>14 / 6,178</b> men</span>
+          <span><b>~3:31/km</b> derived</span>
+        </div>
+        <p>This result replaces the earlier athlete-reported 17:35 working number. The difference is one second; the source hierarchy is the important change.</p>
+      </article>
+    </div>
+
+    <div class="split-read">
+      <div class="split-read__lead">
+        <span class="lbl">KEY BISCAYNE · STRAVA SUPPORTING RECORD</span>
+        <h3>The race did not come apart.</h3>
+        <p>The full-mile splits stayed inside an 11-second band. Mile 13 was the slowest full mile at 6:40, followed by a 5:57/mi final 0.1. Heart rate rose as expected while pace stayed organized.</p>
+        <a href="https://www.strava.com/activities/18079367134" target="_blank" rel="noopener">Open Strava activity ↗</a>
+      </div>
+      <div class="split-strip" aria-label="Key Biscayne mile splits">
+        <div><b>1</b><span>6:35</span></div><div><b>2</b><span>6:37</span></div><div><b>3</b><span>6:38</span></div>
+        <div><b>4</b><span>6:35</span></div><div><b>5</b><span>6:33</span></div><div><b>6</b><span>6:35</span></div>
+        <div><b>7</b><span>6:29</span></div><div><b>8</b><span>6:33</span></div><div><b>9</b><span>6:36</span></div>
+        <div><b>10</b><span>6:34</span></div><div><b>11</b><span>6:31</span></div><div><b>12</b><span>6:35</span></div>
+        <div><b>13</b><span>6:40</span></div><div class="kick"><b>.1</b><span>5:57</span></div>
+      </div>
+    </div>
+
+    <div class="coach-read">
+      <span class="lbl">CURRENT READ</span>
+      <p>The prior hypothesis was “Simon fades late.” The April race does not support that as the primary explanation. He already demonstrated solid half-marathon durability at ~4:05/km. The sharper question is whether training can move that sustainable line toward 3:47–3:52/km while the high-aerobic ceiling is developed in parallel.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec reveal" id="method">
+  <div class="shell">
+    <div class="sec-head">
+      <div class="sec-num">04</div>
       <div><h2 class="display">The method</h2><p class="prose">The plan name is descriptive. The study name is editorial. <strong>The Two Curves</strong> is the study; <strong>Ceiling × Durability</strong> is the training method underneath it.</p></div>
     </div>
     <div class="method-grid">
@@ -410,7 +503,7 @@ details.plan-detail>summary::-webkit-details-marker{display:none}.plan-body{padd
 <section class="sec reveal" id="prescription">
   <div class="shell">
     <div class="sec-head">
-      <div class="sec-num">04</div>
+      <div class="sec-num">05</div>
       <div><h2 class="display">Block 01</h2><p class="prose">Five weeks are authored. That is deliberate. This is the amount of plan the evidence currently supports.</p></div>
     </div>
 
@@ -519,7 +612,7 @@ details.plan-detail>summary::-webkit-details-marker{display:none}.plan-body{padd
 <section class="sec reveal" id="evidence">
   <div class="shell">
     <div class="sec-head">
-      <div class="sec-num">05</div>
+      <div class="sec-num">06</div>
       <div><h2 class="display">Filed to date</h2><p class="prose">A plan is not evidence. Nothing moves onto this wall until Simon actually does it and the record can say what happened.</p></div>
     </div>
     <div class="evidence-card">
@@ -540,7 +633,7 @@ details.plan-detail>summary::-webkit-details-marker{display:none}.plan-body{padd
 <section class="sec reveal" id="scope">
   <div class="shell">
     <div class="sec-head">
-      <div class="sec-num">06</div>
+      <div class="sec-num">07</div>
       <div><h2 class="display">Scope</h2><p class="prose">The page is allowed to be unfinished because the athlete is still answering it.</p></div>
     </div>
     <div class="scope">
@@ -550,7 +643,7 @@ details.plan-detail>summary::-webkit-details-marker{display:none}.plan-body{padd
       </article>
       <article>
         <h3>What this page does not claim</h3>
-        <p>It does not claim that VO₂max has increased, that 1:20 is already available for a half marathon, that the unresolved threshold number is known, or that the May race date is fixed. Those become facts only when the evidence supports them.</p>
+        <p>It does not claim that VO₂max has increased, that 1:20 is already available for a half marathon, or that the May race date is fixed. The Sep 4 threshold baseline and the April race anchors are now filed; future conclusions still wait on Block 01 evidence.</p>
       </article>
     </div>
   </div>
