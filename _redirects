@@ -4,6 +4,20 @@
 
 /labs/hyrox-workbench /labs/hyrox/ 301!
 /labs/hyrox-workbench/ /labs/hyrox/ 301!
+
+# ── Current public doors · Sep 23, 2026 ───────────────────────────────────────
+# Old practice pages described a retired timetable. Keep the URLs, not the promise.
+/start                     /miami-running-training   301!
+/start.html                /miami-running-training   301!
+/practice                  /miami-running-training   301!
+/practice.html             /miami-running-training   301!
+/speed                     /thursday                 301!
+/speed.html                /thursday                 301!
+/plan-speed-emergence      /plans/                   301!
+/plan-speed-emergence.html /plans/                   301!
+/the-field                 /miami-running-training   301!
+/the-field.html            /miami-running-training   301!
+/contact                   /contact.html              200
 # ── Labs is where you land ───────────────────────────────────────────────────
 #
 # Signing in as a coach lands in the seven-dossier Console, not on the dormant
@@ -32,8 +46,8 @@
 /next                   /next.html                  200
 /threshold              /threshold.html             200
 /long-run               /long-run.html              200
-/practice               /practice.html              200
-/start                  /start.html                 200
+/practice               /miami-running-training    301!
+/start                  /miami-running-training    301!
 /the-method             /the-method.html            200
 /plan                   /plan.html                  200
 /strength               /strength.html              200
@@ -44,7 +58,7 @@
 /ledger                 /ledger.html                200
 /athletes               /athletes.html              200
 /athletes/              /athletes.html              301
-/the-field              /the-field.html             200
+/the-field              /miami-running-training    301!
 /easy-run               /easy-run.html              200
 /competition            /competition.html           200
 /strength-routine       /strength-routine.html      200
@@ -70,7 +84,7 @@
 /?page_id=*             /       301
 /running-form-errors    /running-form-errors.html   200
 /sessions               /sessions.html              200
-/speed                  /speed.html                 200
+/speed                  /thursday                  301!
 /shoes                  /shoes.html                 200
 /training-principles   /training-principles.html   200
 /training-week         /training-week.html          200
@@ -121,7 +135,7 @@
 /support                /form/support/              301
 /plan-spring-2026       /plan-spring-2026.html      200
 /thursday               /thursday.html              200
-/plan-speed-emergence   /plan-speed-emergence.html  200
+/plan-speed-emergence   /plans/                    301!
 
 # Interactive homepage mockup (does not replace production index)
 /mockupA                /mockupA/index.html         200
