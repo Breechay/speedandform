@@ -254,12 +254,12 @@
       "file": "labs/hyrox/index.html",
       "action": "preserve",
       "reason": "Dedicated subject-specific image",
-      "previousImage": "https://speedandform.com/og/hyrox-v1.png",
-      "image": "https://speedandform.com/og/hyrox-v1.png",
+      "previousImage": "https://speedandform.com/og/hyrox-20260923.jpg",
+      "image": "https://speedandform.com/og/hyrox-20260923.jpg",
       "title": "HYROX Training, Pacing & Race Calculator | FORM",
       "description": "Plan your HYROX training and race strategy. Explore station tips, practice workouts, race-day preparation and a free pacing calculator.",
-      "bodySha256": "a396bed5f0de122423c6b2d0e909134df80d5cd48b6a7100c0b849337a69ebff",
-      "imageSha256": "76ea27eec1f16bc9443c1651330730b32ef55c5b2e7d746801b1e6c9bea13a8f"
+      "bodySha256": "124c062ae3f9a98e7347772c2bfa28851074432d85b7b4aa3aa21ff3a4c5bb35",
+      "imageSha256": "8893baff1d374d39e4b8c0e2164e27d35bb6e52c2a396d2b6966149f032fdeab"
     },
     {
       "file": "labs/index.html",

@@ -10,7 +10,7 @@ const PAGES = `anti-rotation.html app.html athletes.html avoid-injury.html compe
 // Explicit exceptions. A new dedicated card must be reviewed, never silently replaced.
 const PRESERVE = {
   'es/plans/race-pace-durability/index.html': '/og/race-pace-durability.png',
-  'labs/hyrox/index.html': '/og/hyrox-v1.png',
+  'labs/hyrox/index.html': '/og/hyrox-20260923.jpg',
   'labs/index.html': '/og/labs.png',
   'labs/raise-the-ceiling/index.html': '/og/raise-the-ceiling-study.png',
   'labs/speed-that-endures/index.html': '/og/speed-that-endures-20260923.jpg',
