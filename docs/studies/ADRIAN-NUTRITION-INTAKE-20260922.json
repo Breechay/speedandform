@@ -1,5 +1,5 @@
 {
-  "version": "1.2",
+  "version": "1.3",
   "prepared_date": "2026-09-22",
   "athlete": "Adrian Gandara",
   "study_id": "FRM-001",
@@ -42,7 +42,7 @@
       "pizza",
       "meat and cheese",
       "peanut butter",
-      "homemade bread",
+      "bread",
       "rice",
       "beans",
       "green beans",
@@ -62,7 +62,8 @@
     "dislikes": [
       "Greek yogurt",
       "cottage cheese",
-      "Brussels sprouts"
+      "Brussels sprouts",
+      "mushrooms"
     ],
     "accepted_by_coach_confirmation": [
       "whole milk",
@@ -75,7 +76,8 @@
       "spaghetti with meat sauce",
       "green beans"
     ],
-    "correction": "Exclude BOTH Greek yogurt and cottage cheese despite the ambiguous text exchange. Do not invent preferences from cropped text. Selected fruit/flavor are coaching choices, not reported favorites."
+    "correction": "Exclude BOTH Greek yogurt and cottage cheese despite the ambiguous text exchange. Do not invent preferences from cropped text. Selected fruit/flavor are coaching choices, not reported favorites. Mushrooms are excluded by the coach’s September 22 clarification. Athlete-facing bread wording is simply bread.",
+    "update_note": "Tell Brice what to add or remove. Your messages update this list; opening the page does not save changes."
   },
   "nutrition_decision": {
     "headline": "Fuel Your Work",

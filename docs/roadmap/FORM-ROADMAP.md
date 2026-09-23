@@ -1,5 +1,10 @@
 # FORM: current state and next actions
 
+## September 22 - Adrian food-preference copy, v1.3
+
+Mushrooms added to the exclusion list and the structured study intake. Bread is now named simply bread in the breakfast and preferences. The owner-approved food-list update note is restored verbatim. Header links remain removed and lunch copy remains “Take photos of 2 normal work lunches.” No meal quantities, training assignments, race history or outcomes changed. Acceptance artifacts are attached to the Adrian final food-preference copy workflow. A production claim requires checking the published URL after the tested commit is released.
+
+
 ## September 22 - Adrian: Fuel Your Work and intake record
 
 Adrian-only nutrition companion at /plans/adrian-nutrition-phase-01/. Confirmed preferences, whole milk, selected fruit, exact whey and prep instructions are linked from the existing study. Input record: [source and decisions](../studies/ADRIAN-NUTRITION-INTAKE-20260922.json). Athlete-reported values, Athlinks detail screenshots, listing-only records and device estimates remain separate. Same-name identity conflicts are excluded. No strength/run assignment or native app change. Actual nutrition start and outcomes are pending.
