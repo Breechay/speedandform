@@ -51,7 +51,7 @@
   },
   "nutrition_delivery": {
     "voice": "second person, Adrian only",
-    "workday_breakfast": "By 8 a.m. regardless of later training: one labeled chocolate whey serving in 12 fl oz whole milk, two bread slices with 32 g peanut butter, and one navel orange. If a morning run and lift are back-to-back, one of the two bread slices may move into the gap; total remains two slices.",
+    "workday_breakfast": "By 8 a.m. regardless of later training: one labeled chocolate whey serving in 12 fl oz whole milk, two bread slices with 32 g peanut butter, and one navel orange. On a morning with a run and lift back-to-back, one bread slice is eaten between the run and lift; the second slice, peanut butter, orange and shake follow the lift.",
     "weekends": "Family restaurant meals replace home meals. Explicit Saturday/Sunday and late-lunch instructions. No mandatory second pasta box on Saturday.",
     "initial_prep": "Sunday four portions: three refrigerated Mon-Wed and one frozen backup. Wednesday half batch: two refrigerated Thu-Fri.",
     "carryover": "When one spare remains, thaw for Monday; Sunday cook four, refrigerate Tue-Wed, freeze Thu-Fri, skip Wednesday cook. Unexpected surplus prompts inventory adjustment.",
