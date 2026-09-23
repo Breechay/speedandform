@@ -1,0 +1,45 @@
+name: Adrian nutrition v1.5 acceptance
+on:
+  push:
+    branches: [work/adrian-nutrition-v15-20260922]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: adrian-nutrition-v15
+  cancel-in-progress: false
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply and test when revision is present
+        run: |
+          mkdir -p /tmp/adrian-v15
+          if [ -f scripts/apply-adrian-v15.py ]; then
+            pip install beautifulsoup4 playwright==1.58.0
+            python -m playwright install --with-deps chromium
+            python scripts/apply-adrian-v15.py
+            python scripts/apply-adrian-v15.py
+            python tests/adrian-nutrition-v15.py
+            node tests/cream-reading.cjs
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add plans/adrian-nutrition-phase-01
+            git diff --cached --quiet || git commit -m 'Adrian v1.5: accepted day rail, cooking, carryover and purchase links'
+            git push origin HEAD
+          fi
+          mkdir -p /tmp/adrian-v15/source/plans /tmp/adrian-v15/source/tests
+          cp -r plans/adrian-nutrition-phase-01 /tmp/adrian-v15/source/plans/
+          cp tests/adrian-nutrition-v14.py /tmp/adrian-v15/source/tests/
+          git rev-parse HEAD > /tmp/adrian-v15/commit.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: adrian-v15-acceptance
+          path: /tmp/adrian-v15/
+          retention-days: 7
