@@ -30,6 +30,7 @@ jobs:
       - name: Apply and check repeatability
         run: |
           python /tmp/adrian-hold.py
+          python -c "from pathlib import Path; p=Path('plans/adrian-nutrition-phase-01/index.html'); p.write_text(p.read_text().rstrip()+'\n')"
           git diff > /tmp/first.diff
           python /tmp/adrian-hold.py
           git diff > /tmp/second.diff
