@@ -1,0 +1,48 @@
+name: Adrian nutrition v1.4 visual acceptance
+on:
+  push:
+    branches: [work/adrian-nutrition-v14-20260922]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: adrian-nutrition-v14-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  author-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Author static visual without changing training
+        run: |
+          node scripts/refine-adrian-nutrition-v14.cjs
+          node scripts/refine-adrian-nutrition-v14.cjs
+          node --check plans/adrian-nutrition-phase-01/shopping.js
+          node tests/cream-reading.cjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser acceptance dependencies
+        run: |
+          pip install playwright==1.58.0 beautifulsoup4
+          python -m playwright install --with-deps chromium
+      - name: Check phone, desktop, reloads, safety text and photos
+        run: python tests/adrian-nutrition-v14.py
+      - name: Commit only accepted nutrition source
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add plans/adrian-nutrition-phase-01/index.html plans/adrian-nutrition-phase-01/review-context.json
+          git diff --cached --quiet || git commit -m 'Adrian: materialize tested visual shopping and recipe directions'
+          git push origin HEAD
+          git rev-parse HEAD > /tmp/adrian-v14/commit.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: adrian-nutrition-v14-acceptance
+          path: /tmp/adrian-v14/
+          retention-days: 7

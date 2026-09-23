@@ -1,0 +1,7 @@
+/* Grocery checks only: browser-local, no telemetry, health records or Forge writes. */
+(function(){'use strict';var root=document.querySelector('.shop');if(!root)return;var inputs=Array.from(root.querySelectorAll('input[data-shop-key]'));var status=root.querySelector('#shop-status'),note=root.querySelector('#shop-storage-note');var key='form.adrian.nutrition.1.4.shopping',available=true;
+function updateStatus(){status.textContent=inputs.filter(function(input){return input.checked;}).length+' of '+inputs.length+' items checked';}
+function storageUnavailable(){available=false;note.textContent='Your browser is not saving checks. You can still use the list, but they may reset when you leave. Nothing is sent to Brice or Forge.';}
+function save(){if(!available)return;try{var checked=inputs.filter(function(input){return input.checked;}).map(function(input){return input.dataset.shopKey;});window.localStorage.setItem(key,JSON.stringify(checked));}catch(error){storageUnavailable();}}
+try{var saved=JSON.parse(window.localStorage.getItem(key)||'[]');if(Array.isArray(saved)){inputs.forEach(function(input){input.checked=saved.indexOf(input.dataset.shopKey)!==-1;});}}catch(error){storageUnavailable();}
+inputs.forEach(function(input){input.addEventListener('change',function(){updateStatus();save();});});root.querySelector('#shop-clear').addEventListener('click',function(){inputs.forEach(function(input){input.checked=false;});if(available){try{window.localStorage.removeItem(key);}catch(error){storageUnavailable();}}updateStatus();});updateStatus();})();
