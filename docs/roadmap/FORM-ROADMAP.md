@@ -6,16 +6,16 @@
 
 **Filed baseline evidence before Block 01:** Key Biscayne Half official net **1:26:13** on Apr 12; Miami Lexus Corporate Run official **17:36** 5K on Apr 23; Sep 4 threshold baseline **2 × 10 min at 6:00–6:08/mi**, RPE 7, with the athlete reporting that the second rep felt easier. The April half did not show a major late collapse, so the old “fades late” working read is superseded by race evidence.
 
-**Current Simon road:** Week 1 begins Sep 28; Gate 01 is a **5K effort Oct 29**; a **Turkey Trot on Nov 26** is the intended second ceiling read, with event name still TBC; **HYROX Nashville remains on for Dec 9–13**, exact race day/heat TBC; holiday and January work then lead into the race-specific half-marathon block. The exact May half-marathon date remains TBC, so the final 15-week block must be anchored backward from the confirmed race date rather than guessed forward.
+**Current Simon road:** Week 1 begins Sep 28; Gate 01 is a **5K effort Oct 29**; a **Turkey Trot on Nov 26** is the intended second ceiling read, with event name still TBC; **HYROX Nashville remains on for Dec 9–13**, exact race day/heat TBC; holiday and January work then lead into the race-specific half-marathon block. The goal race is now confirmed: **Semi-Marathon de la Loire, Saumur, France — Sunday May 16, 2027**. The official event page lists a 21.1 km race starting at 8:00 from Pont de Gennes, Gennes-Val-de-Loire, and finishing in Saumur. The final 15-week race-specific block therefore anchors to **Monday Feb 1, 2027**; the intervening blocks remain evidence-led rather than pre-authored.
 
 **Labs public state:** four active studies/rooms — **Speed That Endures**, **The Developed Runner**, **The Rebuilt Athlete**, **The Two Curves**. **The Last 10K** remains Speed That Endures Act II rather than a fifth room. **Raise the Ceiling is archived as of Sep 23**: its study and plan URLs remain loadable for history, are noindex, and carry an archive banner pointing Simon to Study 003. It is removed from active Labs, Plans, Library, search index and sitemap.
 
 Open:
 - [ ] Turkey Trot event name / registration link.
 - [ ] HYROX Nashville exact race day and heat.
-- [ ] Simon's exact May half-marathon race/date.
+- [x] Simon goal race confirmed: **Semi-Marathon de la Loire · Saumur · May 16, 2027**.
 - [ ] Simon Sep 15 and Sep 22 Tuesday results, if source evidence is supplied; do not invent them.
-- [ ] Lisa continuation/ownership after Raise the Ceiling archive; no new public claim until Brice decides it.
+- [ ] **Lisa next plan:** Raise the Ceiling is archived; author a new Lisa-specific plan when Brice returns to it. Park for now. Do not inherit Simon's Two Curves prescription or infer her next block from the archived shared study.
 - [ ] Physical-phone visual review of Study 003 and its link preview.
 
 ## September 22 - Adrian food-preference copy, v1.3
