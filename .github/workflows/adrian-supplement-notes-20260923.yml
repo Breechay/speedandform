@@ -1,0 +1,56 @@
+name: Adrian supplement notes acceptance
+on:
+  push:
+    branches: [work/adrian-supplement-notes-20260923]
+permissions:
+  contents: write
+concurrency:
+  group: adrian-supplement-notes-20260923
+  cancel-in-progress: false
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply scoped observations to current main
+        run: |
+          cp scripts/record-adrian-supplements-20260923.py /tmp/adrian-notes.py
+          git fetch origin main
+          git switch --detach origin/main
+          git rev-parse HEAD > /tmp/adrian-notes-base.txt
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install existing acceptance dependencies
+        run: |
+          pip install playwright==1.58.0 beautifulsoup4
+          python -m playwright install --with-deps chromium
+      - name: Apply once and verify idempotence
+        run: |
+          python /tmp/adrian-notes.py
+          git diff > /tmp/adrian-notes-first.diff
+          python /tmp/adrian-notes.py
+          git diff > /tmp/adrian-notes-second.diff
+          cmp /tmp/adrian-notes-first.diff /tmp/adrian-notes-second.diff
+          python /tmp/adrian-notes.py --verify
+      - name: Existing six-width browser acceptance
+        run: python tests/adrian-nutrition-v15.py
+      - name: Commit only validated page and observation records
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add plans/adrian-nutrition-phase-01/index.html plans/adrian-nutrition-phase-01/review-context.json docs/studies/ADRIAN-NUTRITION-OBSERVATIONS-20260923.json
+          test "$(git diff --cached --name-only | wc -l)" -eq 3
+          git diff --cached --check
+          git commit -m 'Adrian: record reported snacks, bone-broth protein and creatine; await label review'
+          git push origin HEAD:refs/heads/work/validated-adrian-supplements-20260923
+          echo "VALIDATED_COMMIT=$(git rev-parse HEAD)"
+          echo "VALIDATED_TREE=$(git rev-parse HEAD^{tree})"
+          echo "VALIDATED_BASE=$(cat /tmp/adrian-notes-base.txt)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: adrian-supplement-notes-acceptance
+          path: /tmp/adrian-nutrition-v15/
+          retention-days: 7
