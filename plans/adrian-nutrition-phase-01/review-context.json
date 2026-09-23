@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "nutrition_revision": "1.4",
+  "nutrition_revision": "1.5",
   "prepared_date": "2026-09-22",
   "athlete": "Adrian Gandara",
   "study_id": "FRM-001",
@@ -39,12 +39,19 @@
   "confirmed_for_this_revision": {
     "weekends_off_work": "Athlete message screenshot supplied by coach in this conversation.",
     "existing_long_run_gel_routine": "Coach confirmed in this conversation; exact products and dose are not replaced or inferred.",
-    "morning_run_and_lift_context": "Coach-supplied conversation context; not a new instruction to pair sessions.",
-    "strength_change_authorized": false
+    "morning_run_and_lift_context": "Training can occur in the morning or evening. Nutrition timing must not assume the run and lift are always morning sessions.",
+    "strength_change_authorized": false,
+    "evening_fueling_report": {
+      "source": "Athlete voice note supplied by coach on 2026-09-23; athlete report, not an app completion receipt.",
+      "reported_event_date": "2026-09-22",
+      "report": "Adrian reported completing his run and strides, then lifting at night. He stopped after the first four of seven exercises because he was very hungry, tired and thirsty after a long gap without eating. He also reported cooked food had been sitting in the microwave for about two hours.",
+      "interpretation": "Evidence of a meal-timing/adherence problem on that day. It does not establish the cause of fatigue, prove a calorie deficit, or change the authored strength prescription.",
+      "response": "Breakfast is no longer conditional on training time. The 3:30 meal anchors evening training, the backup meal is used when that meal was missed, and room-temperature food holding is clarified."
+    }
   },
   "nutrition_delivery": {
     "voice": "second person, Adrian only",
-    "workday_breakfast": "One labeled chocolate whey serving in 12 fl oz whole milk at home after planned training; two bread slices with 32 g peanut butter and one navel orange at home or on arrival at work.",
+    "workday_breakfast": "By 8 a.m. regardless of later training: one labeled chocolate whey serving in 12 fl oz whole milk, two bread slices with 32 g peanut butter, and one navel orange. If a morning run and lift are back-to-back, one of the two bread slices may move into the gap; total remains two slices.",
     "weekends": "Family restaurant meals replace home meals. Explicit Saturday/Sunday and late-lunch instructions. No mandatory second pasta box on Saturday.",
     "initial_prep": "Sunday four portions: three refrigerated Mon-Wed and one frozen backup. Wednesday half batch: two refrigerated Thu-Fri.",
     "carryover": "When one spare remains, thaw for Monday; Sunday cook four, refrigerate Tue-Wed, freeze Thu-Fri, skip Wednesday cook. Unexpected surplus prompts inventory adjustment.",
@@ -74,7 +81,8 @@
     ],
     "calorie_surplus_measured": false,
     "automatic_day14_calorie_addition": false,
-    "bedtime_progression": "First three nights phone 23:00 / lights out 23:30, both 30 minutes earlier every three nights to 21:00 / 21:30; opportunity is not measured sleep."
+    "bedtime_progression": "First three nights phone 23:00 / lights out 23:30, both 30 minutes earlier every three nights to 21:00 / 21:30; opportunity is not measured sleep.",
+    "evening_training": "Eat the 3:30 prepared meal before leaving work. If it was missed and hunger is already affecting the session, use the backup sandwich and water before training. Family dinner follows evening training."
   },
   "recipe_references": [
     {
@@ -96,7 +104,7 @@
   ],
   "machine_readability": "All athlete-facing instructions are static HTML, including native details contents. The HTML head links this JSON. Read the public authored program JSON without depending on JavaScript rendering; use authorized repository access for pinned native sources.",
   "privacy_boundary": "This public reference manifest contains no credentials, athlete emails, backend tokens, or private completed-session logs. Hiding HTML is not access control. Future Forge completion review must use authenticated, authorized data access, not a public JSON export.",
-  "interpretation_boundary": "Authored program, athlete reports, supplied result screenshots, listing-only results, device estimates and completed outcomes remain separate. Nutrition, sleep and strength may change together; this record does not isolate a causal nutrition effect.",
+  "interpretation_boundary": "Authored program, athlete reports, supplied result screenshots, listing-only results, device estimates and completed outcomes remain separate. The Sep 22 hunger report is an adherence/timing signal, not a causal finding. Nutrition, sleep and strength may change together; this record does not isolate a causal nutrition effect.",
   "shopping": {
     "revision": "1.4",
     "static_html": true,
