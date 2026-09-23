@@ -1,0 +1,27 @@
+{
+  "version": "20260923-miami-functional-v2",
+  "baseRevision": "84eed9121fd135650ebc149aadedd421cda16a66",
+  "scope": "Functional repair and legibility only. Personal copy rewrite held. Existing share images retained.",
+  "pending": "The supplied Miami card is not included in this functional release. The absent newer HYROX card does not block the functional repair. Speed That Endures remains unchanged.",
+  "pages": [
+    {
+      "file": "miami-running-training.html",
+      "afterSha256": "f25f812872a451fa0cdd15d6061f2103237e8c8c976069e0373a079bd687a803",
+      "bodySha256": "d3050142c702e0415d98172cc35406425882bc49caec570c0a04b3b7ed9a85a3",
+      "preview": {
+        "title": "Running Coach Miami | Community Speedwork + Personal Coaching | FORM",
+        "description": "Run with FORM in Miami: Thursday community speedwork, monthly long-run pop-ups, and individual running coaching with Brice."
+      },
+      "allowShareTransformRewrite": true
+    }
+  ],
+  "inheritedSitewideFailure": {
+    "test": "tests/share-metadata.cjs",
+    "baselineRevision": "84eed9121fd135650ebc149aadedd421cda16a66",
+    "message": "library.html exact Pass 6A source",
+    "actualSha256": "2fc838fa7f04ad28c3adcdf01c18d56fe083e25ab92c63796e85544d9dd3a0a0",
+    "expectedSha256": "89cab4179eeed63872bedf8b6fca65d97df7ede1b1210d3ccbc861049ceffeca",
+    "baselineAndCandidateBothFail": true,
+    "libraryUnchanged": true
+  }
+}
