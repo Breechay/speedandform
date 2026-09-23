@@ -1,5 +1,8 @@
 # Speed & Form · house system
 
+> **CURRENT AUTHORITY · 23 September 2026**  
+> This is the active sitewide brand and public-surface doctrine. It supersedes earlier homepage positioning and do-not-regress documents wherever they conflict. Historical files remain in the repo as evidence, not current art direction.
+
 **One house, many rooms.** FORM should feel authored, not templated. A study may feel like a marked-up research sheet, a guide may feel like a quiet book, and the homepage may feel like a film. The visitor should still know whose house they are in.
 
 ## The house
@@ -43,7 +46,7 @@ One wordmark per surface. The seal may sit with either wordmark.
 
 There are two different things and they must never be confused.
 
-**Public schedule:** Thursday logistics come only from `/js/community-schedule.js`. If the time changes there, every public surface should follow it. Monthly long runs are announced only when confirmed.
+**Public schedule:** Thursday logistics and session selection come only from `/js/community-schedule.js`. If the time, place or authored session changes there, every public surface should follow it. The HTML fallback must be neutral rather than naming a potentially stale session. Monthly long runs are announced only when confirmed.
 
 **Authored training architecture:** a plan may deliberately prescribe Tuesday, Thursday and Saturday. Those weekdays belong to that program. They do **not** become the public FORM schedule.
 
@@ -57,10 +60,20 @@ Never copy a public time or location into a new page when it can be read from th
 | Labs, paper studies | Archivo + Space Mono + handwriting | Paper `#e9e3d6`, annotation blue/red |
 | Labs, dark studies | Inter / Inter Tight | Dark field + lime |
 | Library and guides | Cormorant Garamond + Jost | Cream `#f5f2ec` |
-| Miami + Thursday | Archivo + Space Mono | Paper field sheet |
+| Miami + Thursday | Archivo + Space Mono | Paper field sheet; Thursday is the compact live-session sibling of Run Miami |
 | Athlete plans | Their authored training-sheet system | Usually cream, restrained accent |
 
 A new room may choose its own type and composition. It keeps the house constants.
+
+## Public product states
+
+Customer-facing product language uses three states only:
+
+- **Paid plan** — show the preview, full price and direct path to the product.
+- **Free plan** — say free plainly. Do not make the visitor infer that from a missing price.
+- **Open plan** — the full plan is available to read without a purchase. Say that plainly.
+
+Internal labels such as *frozen*, *inspect*, *candidate*, *implementation*, *live PR* or *method state* belong in operating documents, never on the Plans shelf.
 
 ## Doorways and footers
 
