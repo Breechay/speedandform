@@ -184,13 +184,13 @@
 
 [[redirects]]
   from = "/practice"
-  to = "/practice.html"
-  status = 200
+  to = "/miami-running-training"
+  status = 301
 
 [[redirects]]
   from = "/start"
-  to = "/start.html"
-  status = 200
+  to = "/miami-running-training"
+  status = 301
 
 [[redirects]]
   from = "/the-method"
@@ -239,8 +239,8 @@
 
 [[redirects]]
   from = "/the-field"
-  to = "/the-field.html"
-  status = 200
+  to = "/miami-running-training"
+  status = 301
 
 [[redirects]]
   from = "/easy-run"
@@ -284,8 +284,8 @@
 
 [[redirects]]
   from = "/speed"
-  to = "/speed.html"
-  status = 200
+  to = "/thursday"
+  status = 301
 
 [[redirects]]
   from = "/shoes"
@@ -320,6 +320,11 @@
 [[redirects]]
   from = "/miami-running-training"
   to = "/miami-running-training.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact.html"
   status = 200
 
 [[redirects]]
