@@ -541,7 +541,7 @@ table.rtc{width:100%;border-collapse:collapse}
       <div>
         <span class="lbl" data-i="ch.l">Two races, one line</span>
         <h3 data-i="ch.h">Two ends of one line.</h3>
-        <p data-i="ch.p">Both races sit on the same pace line. The left end is his ceiling. The right end is what he can hold. A 1:20 half means lifting the right end to {p:227.5}. Gate 01 and the Turkey Trot are measurement dates, not predicted paces, so they stay off this axis.</p>
+        <p data-i="ch.p">Both races sit on the same pace line. The left end is his ceiling. The right end is what he can hold. A 1:20 half means lifting the right end to {p:227.5}. The red 5:15–5:20/mi band is a long-range ceiling horizon, not a Gate 01 prediction.</p>
       </div>
       <svg class="chart" id="chart" viewBox="0 0 720 350" role="img" aria-label="Current 5K and half-marathon relationship with Saumur half-marathon target"></svg>
     </div>
@@ -766,7 +766,7 @@ const T = {
  "a2.gap":["11 days","11 jours"],"a2.gapl":["after the half","après le semi"],
  "a2.p":["Replaces the 17:35 he reported. One second off, and now it's the official number.","Remplace le 17:35 annoncé. Une seconde d’écart, mais c’est désormais le chiffre officiel."],
  "ch.l":["Two races, one line","Deux courses, une ligne"],"ch.h":["Two ends of one line.","Deux bouts d’une même ligne."],
- "ch.p":["Both races sit on the same pace line. The left end is his ceiling. The right end is what he can hold. A 1:20 half means lifting the right end to {p:227.5}. Gate 01 and the Turkey Trot are measurement dates, not predicted paces, so they stay off this axis.","Les deux courses sont sur la même ligne d’allure. Le bout gauche, c’est son plafond. Le bout droit, ce qu’il peut tenir. Un semi en 1:20, c’est monter le bout droit à {p:227.5}. La porte 01 et le Turkey Trot sont des dates de mesure, pas des allures prédites : ils restent donc hors de cet axe."],
+ "ch.p":["Both races sit on the same pace line. The left end is his ceiling. The right end is what he can hold. A 1:20 half means lifting the right end to {p:227.5}. The red 5:15–5:20/mi band is a long-range ceiling horizon, not a Gate 01 prediction.","Les deux courses sont sur la même ligne d’allure. Le bout gauche, c’est son plafond. Le bout droit, ce qu’il peut tenir. Un semi en 1:20, c’est monter le bout droit à {p:227.5}. La bande rouge 5:15–5:20/mi est un horizon de plafond à long terme, pas une prédiction pour la porte 01."],
  "sp.l":["Key Biscayne, mile by mile","Key Biscayne, mile par mile"],"sp.h":["The race didn't come apart.","La course n’a pas lâché."],
  "sp.p":["All thirteen full miles landed within 11 seconds of each other. The slowest was the 13th. He ran the last stretch at {p:222}.","Les treize miles complets tiennent dans 11 secondes. Le plus lent a été le 13e. Il a couru le dernier bout à {p:222}."],
  "sp.a":["Open on Strava ↗","Voir sur Strava ↗"],
@@ -907,13 +907,16 @@ function renderSplits(){
 }
 
 function renderChart(){
-  // This graphic shows only measured/target pace relationships.
-  // Gate 01 and the Turkey Trot are dates of observation, not predicted y-values.
+  // Pace relationship only. Dates live in the plan; this graph carries current anchors,
+  // the Saumur hold target, and a clearly-labeled long-range ceiling horizon.
   const W=720,H=350,pl=62,pr=34,pt=30,pb=54;
   const x0=Math.log(4), x1=Math.log(25), X=km=>pl+(Math.log(km)-x0)/(x1-x0)*(W-pl-pr);
-  const yFast=200, ySlow=256, Y=s=>pt+(s-yFast)/(ySlow-yFast)*(H-pt-pb);
+  const yFast=192, ySlow=256, Y=s=>pt+(s-yFast)/(ySlow-yFast)*(H-pt-pb);
   const p5={km:5,s:1056/5}, ph={km:21.0975,s:5173/21.0975}, goal={km:21.0975,s:4800/21.0975};
-  const tick = unit==="km" ? [205,215,225,235,245,255] : [5*60+30,5*60+45,6*60,6*60+15,6*60+30,6*60+45].map(s=>s/MI);
+  const horizonFast=315/MI, horizonSlow=320/MI; // 5:15–5:20/mi
+  const tick = unit==="km"
+    ? [195,205,215,225,235,245,255]
+    : [5*60+15,5*60+30,5*60+45,6*60,6*60+15,6*60+30,6*60+45].map(s=>s/MI);
 
   let g = `<rect x="${pl}" y="${pt}" width="${W-pl-pr}" height="${H-pt-pb}" fill="rgba(255,255,255,.12)" stroke="rgba(21,19,15,.18)"/>`;
 
@@ -936,30 +939,37 @@ function renderChart(){
   g+=`<line x1="${X(p5.km)}" y1="${Y(p5.s)}" x2="${X(ph.km)}" y2="${Y(ph.s)}"
        stroke="#15130F" stroke-width="2" stroke-linecap="round" opacity=".82"/>`;
 
-  // 5K anchor / ceiling direction.
-  g+=`<circle cx="${X(p5.km)}" cy="${Y(p5.s)}" r="7" fill="#BE3227"/>`;
-  g+=`<path d="M${X(p5.km)} ${Y(p5.s)-11} L${X(p5.km)} ${Y(p5.s)-48}"
-       stroke="#BE3227" stroke-width="2" stroke-linecap="round"/>`;
-  g+=`<path d="M${X(p5.km)-5} ${Y(p5.s)-40} L${X(p5.km)} ${Y(p5.s)-49} L${X(p5.km)+5} ${Y(p5.s)-40}"
-       fill="none" stroke="#BE3227" stroke-width="2"/>`;
-  g+=`<text class="red-label" x="${X(p5.km)+12}" y="${Y(p5.s)-35}">${t("g.ceil")} ↑</text>`;
-  g+=`<text class="data-label" x="${X(p5.km)+12}" y="${Y(p5.s)-12}">CURRENT 5K</text>`;
-  g+=`<text class="data-value" x="${X(p5.km)+12}" y="${Y(p5.s)+4}">17:36 · ${unit==="km"?"3:31/km":"5:41/mi"}</text>`;
+  // Long-range ceiling horizon: a band, not a promised result.
+  const hzTop=Math.min(Y(horizonFast),Y(horizonSlow)), hzBottom=Math.max(Y(horizonFast),Y(horizonSlow));
+  g+=`<rect x="${X(p5.km)-9}" y="${hzTop}" width="18" height="${Math.max(7,hzBottom-hzTop)}"
+       fill="rgba(190,50,39,.08)" stroke="#BE3227" stroke-width="1.5" stroke-dasharray="3 3"/>`;
+  g+=`<text class="red-label" x="${X(p5.km)+24}" y="${(hzTop+hzBottom)/2+3}">
+       CEILING HORIZON · ${unit==="km"?"3:16–3:19/km":"5:15–5:20/mi"}</text>`;
 
-  // Half anchor / hold direction.
+  // Current 5K anchor; labels shifted right to clear the line.
+  g+=`<circle cx="${X(p5.km)}" cy="${Y(p5.s)}" r="7" fill="#BE3227"/>`;
+  g+=`<path d="M${X(p5.km)} ${Y(p5.s)-11} L${X(p5.km)} ${hzBottom+7}"
+       stroke="#BE3227" stroke-width="2" stroke-linecap="round"/>`;
+  g+=`<path d="M${X(p5.km)-5} ${hzBottom+14} L${X(p5.km)} ${hzBottom+6} L${X(p5.km)+5} ${hzBottom+14}"
+       fill="none" stroke="#BE3227" stroke-width="2"/>`;
+  g+=`<text class="red-label" x="${X(p5.km)+24}" y="${Y(p5.s)-37}">${t("g.ceil")} ↑</text>`;
+  g+=`<text class="data-label" x="${X(p5.km)+24}" y="${Y(p5.s)-16}">CURRENT 5K</text>`;
+  g+=`<text class="data-value" x="${X(p5.km)+24}" y="${Y(p5.s)+2}">17:36 · ${unit==="km"?"3:31/km":"5:41/mi"}</text>`;
+
+  // Half anchor; labels shifted left to clear the line.
   g+=`<circle cx="${X(ph.km)}" cy="${Y(ph.s)}" r="7" fill="#2E5E8E"/>`;
   g+=`<path d="M${X(ph.km)} ${Y(ph.s)-11} L${X(ph.km)} ${Y(goal.s)+11}"
        stroke="#2E5E8E" stroke-width="2" stroke-linecap="round"/>`;
   g+=`<path d="M${X(ph.km)-5} ${Y(goal.s)+18} L${X(ph.km)} ${Y(goal.s)+9} L${X(ph.km)+5} ${Y(goal.s)+18}"
        fill="none" stroke="#2E5E8E" stroke-width="2"/>`;
-  g+=`<text class="blue-label" x="${X(ph.km)-12}" y="${Y(ph.s)+34}" text-anchor="end">${t("g.hold")} ↑</text>`;
-  g+=`<text class="data-label" x="${X(ph.km)-12}" y="${Y(ph.s)+17}" text-anchor="end">CURRENT HALF</text>`;
-  g+=`<text class="data-value" x="${X(ph.km)-12}" y="${Y(ph.s)+2}" text-anchor="end">1:26:13 · ${unit==="km"?"4:05/km":"6:34/mi"}</text>`;
+  g+=`<text class="blue-label" x="${X(ph.km)-24}" y="${Y(ph.s)+35}" text-anchor="end">${t("g.hold")} ↑</text>`;
+  g+=`<text class="data-label" x="${X(ph.km)-24}" y="${Y(ph.s)+18}" text-anchor="end">CURRENT HALF</text>`;
+  g+=`<text class="data-value" x="${X(ph.km)-24}" y="${Y(ph.s)+2}" text-anchor="end">1:26:13 · ${unit==="km"?"4:05/km":"6:34/mi"}</text>`;
 
-  // Saumur target: one ring, one destination, no extra prediction layer.
+  // Saumur target.
   g+=`<circle cx="${X(goal.km)}" cy="${Y(goal.s)}" r="8" fill="none" stroke="#2E5E8E" stroke-width="2" stroke-dasharray="3 3"/>`;
-  g+=`<text class="blue-label" x="${X(goal.km)-12}" y="${Y(goal.s)-17}" text-anchor="end">SAUMUR · MAY 16</text>`;
-  g+=`<text class="data-value" x="${X(goal.km)-12}" y="${Y(goal.s)-2}" text-anchor="end">GOAL ~1:20 · ${unit==="km"?"3:48/km":"6:06/mi"}</text>`;
+  g+=`<text class="blue-label" x="${X(goal.km)-24}" y="${Y(goal.s)-18}" text-anchor="end">SAUMUR · MAY 16</text>`;
+  g+=`<text class="data-value" x="${X(goal.km)-24}" y="${Y(goal.s)-3}" text-anchor="end">GOAL ~1:20 · ${unit==="km"?"3:48/km":"6:06/mi"}</text>`;
 
   document.getElementById("chart").innerHTML = g;
 }
