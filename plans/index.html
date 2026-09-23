@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Plans · FORM</title>
-<meta name="description" content="Running plans from FORM. Clear weekly training, simple instructions and a progression you can follow.">
+<title>Running Plans | FORM</title>
+<meta name="description" content="Compare FORM running plans for the half marathon, 10K and marathon. See the scope, access and price before you start.">
 <link rel="canonical" href="https://speedandform.com/plans/">
 <link rel="icon" href="/favicon.ico">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#ece6da">
 <!-- FORM share metadata: pass 1 -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Plans · FORM">
-<meta property="og:description" content="Running plans from FORM. Clear weekly training, simple instructions and a progression you can follow.">
+<meta property="og:title" content="Running Plans | FORM">
+<meta property="og:description" content="Compare FORM running plans for the half marathon, 10K and marathon. See the scope, access and price before you start.">
 <meta property="og:url" content="https://speedandform.com/plans/">
 <meta property="og:site_name" content="Speed &amp; Form">
 <meta property="og:locale" content="en_US">
@@ -23,8 +23,8 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Two runners in profile in a black-and-white photograph, with FORM, Run Development, and Brice · Miami + Remote.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Plans · FORM">
-<meta name="twitter:description" content="Running plans from FORM. Clear weekly training, simple instructions and a progression you can follow.">
+<meta name="twitter:title" content="Running Plans | FORM">
+<meta name="twitter:description" content="Compare FORM running plans for the half marathon, 10K and marathon. See the scope, access and price before you start.">
 <meta name="twitter:image" content="https://speedandform.com/og/form-share-20260916.jpg">
 <meta name="twitter:image:alt" content="Two runners in profile in a black-and-white photograph, with FORM, Run Development, and Brice · Miami + Remote.">
 <!-- /FORM share metadata -->
@@ -44,7 +44,7 @@ a{color:inherit;text-decoration:none}
 .wrap{width:min(var(--max),calc(100% - 64px));margin:0 auto}
 .eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase}
 .wordmark{font-family:var(--sans);font-weight:800;letter-spacing:-.055em;font-size:24px}
-.wordmark i{font-style:normal;color:var(--ink)}
+.wordmark i{font-style:normal;color:var(--lime)}
 .header-inner{height:78px;display:flex;align-items:center;justify-content:space-between}
 .header-right{display:flex;gap:24px;align-items:center;font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
 .header-right a:hover{color:var(--ink)}
@@ -62,13 +62,20 @@ a{color:inherit;text-decoration:none}
 .textlink{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(17,16,14,.3);padding-bottom:3px}
 .plans{margin-top:76px;border-top:1px solid var(--rule)}
 .plan{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;padding:44px 0;border-bottom:1px solid var(--hair)}
-.plan:last-child{border-bottom:0}.plan h2{font-family:var(--serif);font-weight:400;font-size:clamp(38px,5.2vw,68px);line-height:.94;letter-spacing:-.05em;margin:14px 0 0}
+.plan:last-child{border-bottom:0}
+.plan-state{display:inline-flex;align-items:center;gap:8px;margin-bottom:15px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.plan-state::before{content:"";width:7px;height:7px;border:1px solid currentColor;border-radius:50%}
+.plan[data-state="paid"] .plan-state{color:var(--ink)}.plan[data-state="paid"] .plan-state::before{background:var(--lime);border-color:var(--ink)}
+.plan[data-state="paid"] .open{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.plan[data-state="paid"] .open:hover{background:#000}
+.plan[data-state="free"] .plan-state::before{background:var(--ink)}
+.plan[data-state="open"] .plan-state::before{background:transparent}.plan h2{font-family:var(--serif);font-weight:400;font-size:clamp(38px,5.2vw,68px);line-height:.94;letter-spacing:-.05em;margin:14px 0 0}
 .plan .says{margin:18px 0 0;max-width:700px;font-size:17px;line-height:1.6;color:var(--body)}
 .plan .progression{margin-top:20px;font-family:var(--mono);font-size:10px;line-height:1.55;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
 .facts{display:flex;flex-wrap:wrap;gap:0 34px;margin-top:26px}.facts div{padding-top:11px;border-top:1px solid var(--rule);min-width:112px}
 .facts small{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .facts b{display:block;margin-top:6px;font-size:16px;font-weight:560}
-.open{display:inline-flex;align-items:center;gap:11px;border:1px solid rgba(17,16,14,.28);padding:13px 17px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}.open:hover{border-color:var(--ink)}
+.open{display:inline-flex;align-items:center;gap:11px;border:1px solid rgba(17,16,14,.28);padding:13px 17px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}.open:hover{border-color:var(--ink);transform:translateY(-1px)}
 .elsewhere{margin-top:58px;padding-top:26px;border-top:1px solid var(--rule);display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end}
 .elsewhere p{margin:10px 0 0;max-width:650px;font-size:17px;line-height:1.6;color:var(--body)}
 .footer{margin-top:96px;padding:36px 0 42px;border-top:1px solid var(--rule)}.footer-row{display:flex;justify-content:space-between;align-items:center;gap:24px}.footer nav{display:flex;gap:22px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.footer nav a:hover{color:var(--ink)}
@@ -80,18 +87,18 @@ a{color:inherit;text-decoration:none}
 <body>
 <header class="wrap header-inner">
   <a href="/" class="wordmark">FORM<i>.</i></a>
-  <div class="header-right"><a href="/labs/">Labs</a><a href="/#begin">Begin</a><a href="/athlete/">Sign in &rarr;</a></div>
+  <div class="header-right"><a href="/labs/">Labs</a><a href="/contact">Contact</a><a href="/athlete/">Sign in &rarr;</a></div>
 </header>
 <main class="wrap">
   <div class="head">
     <div class="eyebrow">Plans</div>
     <h1>Pick a goal. Follow the work.</h1>
-    <p>FORM plans tell you what to run each week and how the training builds toward a race. Start with the plan that matches where you are now.</p>
+    <p>Three authored plans. One paid, one free, one open to read. Start with the scope that matches where you are now, then follow the work.</p>
   </div>
   <div class="plans">
-    <article class="plan">
+    <article class="plan" data-state="paid">
       <div>
-        <div class="eyebrow">Half marathon · 15 weeks</div>
+        <div class="plan-state">Paid plan</div><div class="eyebrow">Half marathon · 15 weeks</div>
         <h2>Race Pace Durability</h2>
         <p class="says">For runners who are already training consistently and want to hold race pace for longer. Your pace comes from your current fitness. The plan builds from shorter efforts to longer race-pace running, including late in long runs.</p>
         <div class="progression">Intervals &rarr; 5 miles &rarr; 6 miles &rarr; 8 miles &rarr; 12 miles late &rarr; race</div>
@@ -99,35 +106,34 @@ a{color:inherit;text-decoration:none}
           <div><small>Length</small><b>15 weeks</b></div>
           <div><small>Runs</small><b>6 days / week</b></div>
           <div><small>Volume</small><b>45 &rarr; 60 miles / week</b></div>
-          <div><small>Access</small><b>Weeks 1–4 free · full plan $79</b></div>
+          <div><small>Preview</small><b>Weeks 1–4 free</b></div><div><small>Price</small><b>$79 full plan</b></div>
         </div>
       </div>
-      <a class="open" href="/plans/race-pace-durability/">Try weeks 1–4 free &rarr;</a>
+      <a class="open" href="/plans/race-pace-durability/">Preview 4 weeks &rarr;</a>
     </article>
-    <article class="plan">
+    <article class="plan" data-state="free">
       <div>
-        <div class="eyebrow">10K · Six weeks</div>
+        <div class="plan-state">Free plan</div><div class="eyebrow">10K · Six weeks</div>
         <h2>Raise the Ceiling</h2>
         <p class="says">Six weeks of training for a faster 10K. One harder aerobic session, one faster session and one long run anchor the week.</p>
-        <div class="facts"><div><small>Length</small><b>6 weeks</b></div><div><small>Key days</small><b>Tue · Thu · Sat</b></div><div><small>Goal race</small><b>10K</b></div><div><small>Fee</small><b>Free</b></div></div>
+        <div class="facts"><div><small>Length</small><b>6 weeks</b></div><div><small>Key days</small><b>Tue · Thu · Sat</b></div><div><small>Goal race</small><b>10K</b></div><div><small>Access</small><b>Full plan · free</b></div></div>
       </div>
-      <a class="open" href="/plans/raise-the-ceiling/">Open the plan &rarr;</a>
+      <a class="open" href="/plans/raise-the-ceiling/">Use the free plan &rarr;</a>
     </article>
-    <article class="plan">
+    <article class="plan" data-state="open">
       <div>
-        <div class="eyebrow">Marathon · 16 weeks</div>
+        <div class="plan-state">Open plan</div><div class="eyebrow">Marathon · 16 weeks</div>
         <h2>Marathon Durability</h2>
         <p class="says">For experienced runners who already own the distance and have a pace supported by current evidence. Keep the speed. Move it deeper into the marathon without turning the rest of your training slow.</p>
         <div class="progression">Access &rarr; Embed &rarr; Re-access &rarr; Closing 10K &rarr; Rhythm &rarr; Confirm &rarr; Race</div>
-        <div class="facts"><div><small>Length</small><b>16 weeks</b></div><div><small>Key days</small><b>Tue · Thu · Sat</b></div><div><small>Volume</small><b>50 &rarr; 66 miles / week</b></div><div><small>Edition</small><b>Method frozen · open to inspect</b></div></div>
+        <div class="facts"><div><small>Length</small><b>16 weeks</b></div><div><small>Key days</small><b>Tue · Thu · Sat</b></div><div><small>Volume</small><b>50 &rarr; 66 miles / week</b></div><div><small>Access</small><b>Full plan · open to read</b></div></div>
       </div>
-      <a class="open" href="/plans/marathon-durability/">Open the plan &rarr;</a>
+      <a class="open" href="/plans/marathon-durability/">Read the 16-week plan &rarr;</a>
     </article>
   </div>
-  <div class="form-read"><div class="eyebrow">Coaching with Brice</div><h3>Want the training adjusted for you?</h3><div><p>Tell me what you are training for. You can include a short running video.</p><a class="textlink" href="/#begin" style="display:inline-block;margin-top:14px">Tell me about your running &rarr;</a></div></div>
-  <div class="elsewhere"><div><div class="eyebrow">Being run now</div><p>Some FORM plans are being used by athletes right now. Labs shows the sessions, progress and race results as they happen.</p></div><a class="textlink" href="/labs/">Open FORM Labs &rarr;</a></div>
+  <div class="form-read"><div class="eyebrow">Coaching with Brice</div><h3>Want the week adjusted around you?</h3><div><p>A plan gives the structure. Coaching changes the structure when your running, recovery or evidence changes.</p><a class="textlink" href="/#begin" style="display:inline-block;margin-top:14px">Work with Brice &rarr;</a></div></div>
+  <div class="elsewhere"><div><div class="eyebrow">See the proof</div><p>FORM Labs follows the questions behind the plans: the work, the athlete response and what changes next.</p></div><a class="textlink" href="/labs/">Open FORM Labs &rarr;</a></div>
 </main>
-<p style="max-width:70ch;margin:32px auto;padding:0 24px"><a href="/plans/race-pace-durability/support/">Race Pace Durability · try weeks 1–4 free · full 15 weeks $79 &rarr;</a></p>
-<footer class="footer"><div class="wrap footer-row"><div><div class="wordmark">FORM<i>.</i></div><div style="font-size:12px;color:var(--muted);margin-top:5px">Brice at Speed &amp; Form · Miami</div></div><nav><a href="/plans/">Plans</a><a href="/labs/">Labs</a><a href="/library">Library</a><a href="/athlete/">Sign in</a></nav></div></footer>
+<footer class="footer"><div class="wrap footer-row"><div><div class="wordmark">FORM<i>.</i></div><div style="font-size:12px;color:var(--muted);margin-top:5px">Speed &amp; Form · Miami</div></div><nav><a href="/labs/">Labs</a><a href="/library">Library</a><a href="/contact">Contact</a><a href="/athlete/">Sign in</a></nav></div></footer>
 </body>
 </html>
