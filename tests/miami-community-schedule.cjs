@@ -47,7 +47,7 @@ const manifest=JSON.parse(fs.readFileSync(path.join(root,'docs/audits/SHARE-META
 const row=manifest.pages.find(row=>row.file==='miami-running-training.html');
 assert.ok(row);
 for(const key of ['og:image','og:image:secure_url','twitter:image'])assert.equal(share.meta(html,key),row.image);
-assert.equal(share.meta(html,'og:image'),'https://speedandform.com/og/form-share-20260916.jpg');
+assert.equal(share.meta(html,'og:image'),'https://speedandform.com/og/miami-running-training-20260923.jpg');
 assert.equal(share.meta(html,'og:image:alt'),share.meta(html,'twitter:image:alt'));
 assert.equal(share.meta(html,'og:url'),share.canonical(html,row.file));
 const info=share.imageInfo(root,row.image);

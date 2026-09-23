@@ -11,7 +11,7 @@ const later=fs.existsSync(dp)?JSON.parse(fs.readFileSync(dp,'utf8')).changedHtml
 const editorial=require('../scripts/guide-state.cjs');
 const updates=new Map([...later.map(r=>[r.file,r]),...editorial.latestUpdates]);
 for(const [file] of editorial.latestUpdates)editorial.verify(file,fs.readFileSync(path.join(root,file),'utf8'));
-assert.deepEqual(manifest.counts,{pages:84,replace:73,preserve:11,excluded:91});
+assert.deepEqual(manifest.counts,{pages:84,replace:72,preserve:12,excluded:91});
 assert.equal(new Set(s.PAGES).size,84);
 const required=['og:type','og:title','og:description','og:url','og:site_name','og:locale','og:image','og:image:secure_url','og:image:type','og:image:width','og:image:height','og:image:alt','twitter:card','twitter:title','twitter:description','twitter:image','twitter:image:alt'];
 for(const row of manifest.pages){
@@ -59,4 +59,4 @@ const withScript=home.replace('</head>',fixture+'\n</head>');
 assert.ok(s.transform(withScript,'index.html',root).includes(fixture));
 const duplicate=home.replace('</head>','<meta property="og:image" content="wrong">\n</head>');
 assert.equal([...s.head(duplicate).matchAll(/<meta\b[^>]*>/gi)].filter(m=>s.attrs(m[0]).property==='og:image').length,2);
-console.log(`PASS: ${manifest.counts.pages} public previews, 73 approved defaults, 11 dedicated cards, ${manifest.counts.excluded} excluded pages, JPEG dimensions, versioned body snapshots, schema consistency, no-op repeat and refusal guards.`);
+console.log(`PASS: ${manifest.counts.pages} public previews, 72 approved defaults, 12 dedicated cards, ${manifest.counts.excluded} excluded pages, JPEG dimensions, versioned body snapshots, schema consistency, no-op repeat and refusal guards.`);

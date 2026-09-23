@@ -1,0 +1,19 @@
+{
+  "version": "20260923-miami-share-card",
+  "baseRevision": "a38d1b8e6e217b3f0c6a221d77026f51774f0bab",
+  "scope": "Dedicated Miami share card and social metadata only. The accepted Miami functional body is unchanged. Personal copy pass remains held.",
+  "pages": [
+    {
+      "file": "miami-running-training.html",
+      "bodySha256": "d3050142c702e0415d98172cc35406425882bc49caec570c0a04b3b7ed9a85a3",
+      "image": "https://speedandform.com/og/miami-running-training-20260923.jpg",
+      "imageSha256": "259e464a51fcff6d0336ff33b682c5a6bcbf414c7a542cc055d28089d29f7348",
+      "preview": {
+        "title": "Run Miami with FORM | Thursday speedwork, long runs, coaching",
+        "description": "Run with FORM in Miami: Thursday community speedwork, monthly long-run pop-ups, and individual running coaching with Brice."
+      },
+      "alt": "RUN MIAMI. Three ways into FORM: Thursday speedwork at Flamingo Park Track, monthly long-run pop-ups around Miami, and personal coaching with Brice.",
+      "allowShareTransformRewrite": true
+    }
+  ]
+}

@@ -3,8 +3,8 @@
   "defaultImage": "https://speedandform.com/og/form-share-20260916.jpg",
   "counts": {
     "pages": 84,
-    "replace": 73,
-    "preserve": 11,
+    "replace": 72,
+    "preserve": 12,
     "excluded": 91
   },
   "pages": [
@@ -450,14 +450,14 @@
     },
     {
       "file": "miami-running-training.html",
-      "action": "replace",
-      "reason": "Approved default for public page",
-      "previousImage": "https://speedandform.com/og/default.jpg",
-      "image": "https://speedandform.com/og/form-share-20260916.jpg",
-      "title": "Running Training in Miami | FORM",
-      "description": "Structured running training in Miami. Threshold sessions and long runs. Year-round.",
-      "bodySha256": "36240650dc9aa966662a2eec98b58e5f424fcb4bf86eb2f0fc78ca06d1013c02",
-      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d"
+      "action": "preserve",
+      "reason": "Dedicated subject-specific image",
+      "previousImage": "https://speedandform.com/og/miami-running-training-20260923.jpg",
+      "image": "https://speedandform.com/og/miami-running-training-20260923.jpg",
+      "title": "Run Miami with FORM | Thursday speedwork, long runs, coaching",
+      "description": "Run with FORM in Miami: Thursday community speedwork, monthly long-run pop-ups, and individual running coaching with Brice.",
+      "bodySha256": "d3050142c702e0415d98172cc35406425882bc49caec570c0a04b3b7ed9a85a3",
+      "imageSha256": "259e464a51fcff6d0336ff33b682c5a6bcbf414c7a542cc055d28089d29f7348"
     },
     {
       "file": "mobility.html",
