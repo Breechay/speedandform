@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "nutrition_revision": "1.5.7",
+  "nutrition_revision": "1.5.8",
   "prepared_date": "2026-09-22",
   "athlete": "Adrian Gandara",
   "study_id": "FRM-001",
@@ -116,9 +116,9 @@
   ],
   "machine_readability": "All athlete-facing instructions are static HTML, including native details contents. The HTML head links this JSON. Read the public authored program JSON without depending on JavaScript rendering; use authorized repository access for pinned native sources.",
   "privacy_boundary": "This public reference manifest contains no credentials, athlete emails, backend tokens, or private completed-session logs. Hiding HTML is not access control. Future Forge completion review must use authenticated, authorized data access, not a public JSON export.",
-  "interpretation_boundary": "Keep athlete reports, arithmetic checks, label observations, measured outcomes and decisions separate. The completed food log totals 3271 kcal from athlete estimates; dinner is explicitly a guess. Earlier 1300 and 2260 totals are included subtotals. This establishes neither a measured surplus nor a new target, full adherence or muscle gain. Supplement brands and labels are known in current_supplement_labels; actual doses, start dates and frequency remain unknown. Consumption is not preference confirmation or clinical clearance. Meal order does not establish timing relative to exercise. Private clinical history stays off public surfaces. The active working energy target is approximately 3,000 kcal/day by coach decision, not a measured maintenance requirement or inferred surplus. The 3,271 kcal completed day remains an observation, not the target.",
+  "interpretation_boundary": "Keep athlete reports, arithmetic checks, label observations, measured outcomes and decisions separate. The completed food log totals 3271 kcal from athlete estimates; dinner is explicitly a guess. Earlier 1300 and 2260 totals are included subtotals. This establishes neither a measured surplus nor a new target, full adherence or muscle gain. Supplement brands and labels are known in current_supplement_labels; actual doses, start dates and frequency remain unknown. Consumption is not preference confirmation or clinical clearance. Meal order does not establish timing relative to exercise. Private clinical history stays off public surfaces. The active working energy target is approximately 3,000 kcal/day by coach decision, not a measured maintenance requirement or inferred surplus. The 3,271 kcal completed day remains an observation, not the target. The athlete-facing development range is approximately 3,000-3,400 kcal/day as a possible phase range, not a directive to eat 3,400 now. Current target remains ~3,000 and upward changes require response data.",
   "shopping": {
-    "revision": "1.5.7",
+    "revision": "1.5.8",
     "static_html": true,
     "check_state": "Browser-local only; no Forge sync or adherence receipt",
     "first_cycle": "Five workday meals and one frozen backup; not eight mandatory meals",
@@ -304,7 +304,7 @@
     "daily_protein_g": null,
     "meal_timing_relative_to_exercise_confirmed": false,
     "full_plan_start_confirmed": false,
-    "coaching_response": "Food day received. Working target for this phase is about 3,000 kcal/day, not 3,271. Close is enough; do not force an exact number. Preserve the existing food/exercise timing boundary and review measurements, appetite and training response before changing the target."
+    "coaching_response": "Food day received. Start near 3,000 kcal/day. The possible development range is about 3,000-3,400 kcal/day, but 3,400 is not the current target. Review 10-14 days of weight trend, measurements, appetite and training response before moving upward, usually by about 150-250 kcal/day."
   },
   "previous_intake_reports": [
     {
@@ -369,7 +369,28 @@
       "digestion",
       "running and lifting response"
     ],
-    "food_timing_rule_unchanged": true
+    "food_timing_rule_unchanged": true,
+    "development_range_kcal_per_day": [
+      3000,
+      3400
+    ],
+    "development_range_status": "possible_phase_range_not_current_prescription",
+    "current_starting_target_kcal_per_day": 3000,
+    "upward_adjustment_step_kcal_per_day": [
+      150,
+      250
+    ],
+    "review_window_days": [
+      10,
+      14
+    ],
+    "move_up_only_if": [
+      "intake is reasonably consistent near the current target",
+      "weekly-average weight and desired body measurements are not moving enough",
+      "appetite and meal comfort can support more intake",
+      "running and lifting response remain acceptable"
+    ],
+    "range_explanation": "Start near 3,000 kcal/day. The likely development range may extend toward 3,400 kcal/day if measured response shows Adrian needs more energy for running plus hypertrophy. Do not jump to the top automatically."
   },
   "latest_coach_decision_record": "docs/studies/ADRIAN-NUTRITION-DECISION-20260924.json"
 }

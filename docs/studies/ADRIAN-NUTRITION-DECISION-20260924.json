@@ -19,14 +19,30 @@
       "digestion",
       "running and lifting response"
     ],
-    "automatic_adjustment": false
+    "automatic_adjustment": false,
+    "possible_development_range_kcal_per_day": [
+      3000,
+      3400
+    ],
+    "current_target_remains_kcal_per_day": 3000,
+    "range_status": "possible phase range, not current upper prescription",
+    "review_window_days": [
+      10,
+      14
+    ],
+    "typical_upward_step_kcal_per_day": [
+      150,
+      250
+    ],
+    "range_instruction": "Start around 3,000. If response is too flat after a consistent 10-14 day read and meal comfort/training remain good, increase gradually rather than jumping straight to 3,400."
   },
   "evidence_context": {
     "completed_day_record": "docs/studies/ADRIAN-NUTRITION-DAYLOG-20260923.json",
     "completed_day_reported_kcal": 3271,
     "relationship": "The 3,271 kcal day is an observation, not the target. The ~3,000 kcal target is a subsequent coach decision.",
     "measured_maintenance_kcal": null,
-    "measured_surplus_kcal": null
+    "measured_surplus_kcal": null,
+    "range_rationale": "Higher intake may be needed because the phase combines substantial running with hypertrophy goals, but Adrian-specific need is determined from response rather than assumed from activity alone."
   },
   "boundaries": {
     "new_pre_run_food_prescription": false,

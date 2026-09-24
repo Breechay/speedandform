@@ -1,6 +1,6 @@
 # Adrian nutrition: current release scope
 
-Current revision: 1.5.7. Status: active_with_individual_timing_review.
+Current revision: 1.5.8. Status: active_with_individual_timing_review.
 
 The blanket v1.5.2 website hold is superseded by the owner-directed scoped correction. This file keeps its old path so agent links do not break. Its earlier hold and resume instructions are historical, not the current publishing rule.
 
@@ -29,3 +29,7 @@ Run `python tests/adrian-nutrition-labels.py` in addition to existing timing/bro
 ## Working intake target · 24 September
 
 [Coach decision](ADRIAN-NUTRITION-DECISION-20260924.json): approximately 3,000 kcal/day for the current phase. The 3,271 kcal completed day remains an observation, not the target. Do not force an exact number or use the target to reintroduce pre-run food. Review weight trend, measurements, appetite, digestion and training response before changing it. No supplement dose, native assignment or exercise-timing rule changed.
+
+## Development range · 24 September
+
+Current target remains approximately 3,000 kcal/day. Athlete-facing possible phase range is approximately 3,000-3,400 kcal/day, reflecting the possibility that substantial running plus hypertrophy work requires more intake. The upper end is not automatically prescribed. Review 10-14 days of consistent intake, weekly-average weight, body measurements, appetite/meal comfort and training response; if response is too flat and tolerance is good, adjust gradually by roughly 150-250 kcal/day. Existing no-pre-run-food and exercise-timing boundaries remain unchanged.

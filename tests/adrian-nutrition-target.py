@@ -6,7 +6,7 @@ c=json.loads((r/'plans/adrian-nutrition-phase-01/review-context.json').read_text
 d=json.loads((r/'docs/studies/ADRIAN-NUTRITION-DECISION-20260924.json').read_text())
 x=json.loads((r/'docs/studies/ADRIAN-NUTRITION-DAYLOG-20260923.json').read_text())
 s=BeautifulSoup((r/'plans/adrian-nutrition-phase-01/index.html').read_text(),'html.parser')
-assert c['nutrition_revision']=='1.5.7'
+assert c['nutrition_revision']=='1.5.8'
 assert c['working_energy_target']['kcal_per_day']==3000
 assert c['working_energy_target']['precision']=='approximate'
 assert c['working_energy_target']['do_not_force_exact_number'] is True

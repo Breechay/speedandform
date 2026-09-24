@@ -1,5 +1,11 @@
 # FORM: current state and next actions
 
+## September 24 - Adrian nutrition development range, v1.5.8
+
+Athlete-facing framing now shows the arc: **start ~3,000 kcal/day; possible development range ~3,000-3,400 kcal/day**. The upper end is not the current prescription. Review 10-14 days of weight trend, measurements, appetite/meal comfort and running/lifting response before increasing; typical step 150-250 kcal/day. This is meant to normalize that more intake may be required for a high-activity runner trying to add mass without turning 3,400 into a mandatory number. Pre-run food boundary, supplements and training assignments are unchanged.
+
+Acceptance run: https://github.com/Breechay/speedandform/actions/runs/35956660770. Production verification follows promotion.
+
 ## September 24 - Adrian working intake target, v1.5.7
 
 Coach decision: aim around **3,000 kcal/day** in the current runner-mass nutrition phase. This is intentionally approximate; 3,271 from the completed log is evidence, not the target, and Adrian is not asked to force-feed to an exact number. Review weight trend, measurements, appetite, digestion and training response before adjustment. Existing no-pre-run-food / individualized timing boundary remains unchanged. Decision: [energy target record](../studies/ADRIAN-NUTRITION-DECISION-20260924.json).
