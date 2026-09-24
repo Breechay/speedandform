@@ -1,0 +1,53 @@
+name: Adrian September 24 measurements
+on:
+  push:
+    branches: [work/adrian-measurements-20260924]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: adrian-measurements-20260924
+  cancel-in-progress: false
+jobs:
+  update-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply and prove idempotency
+        run: |
+          mkdir -p /tmp/adrian-measurements-20260924
+          node scripts/apply-adrian-measurements-20260924.cjs
+          sha256sum labs/adrian-runner-mass/index.html docs/roadmap/FORM-ROADMAP.md > /tmp/adrian-before.sha
+          node scripts/apply-adrian-measurements-20260924.cjs
+          sha256sum labs/adrian-runner-mass/index.html docs/roadmap/FORM-ROADMAP.md > /tmp/adrian-after.sha
+          diff -u /tmp/adrian-before.sha /tmp/adrian-after.sha
+          git diff --check
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser
+        run: |
+          pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium
+      - name: Verify body evidence and responsive rendering
+        run: python tests/adrian-measurements-20260924.py
+      - name: Commit only accepted projections
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add labs/adrian-runner-mass/index.html docs/roadmap/FORM-ROADMAP.md
+          git diff --cached --quiet || git commit -m 'File Adrian Sep 24 self-measurements across study; preserve earlier evidence'
+          git push origin HEAD
+          git rev-parse HEAD > /tmp/adrian-measurements-20260924/commit.txt
+          cp labs/adrian-runner-mass/index.html /tmp/adrian-measurements-20260924/study.html
+          cp docs/studies/ADRIAN-MEASUREMENTS-20260924.json /tmp/adrian-measurements-20260924/source.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: adrian-measurements-20260924-acceptance
+          path: /tmp/adrian-measurements-20260924/
+          retention-days: 7
