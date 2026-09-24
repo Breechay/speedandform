@@ -82,3 +82,6 @@ Before changing identity, plans, execution or records, read [FORM connected surf
 
 ### Athlete coaching source-of-truth rule
 For a coached athlete, the canonical future prescription is the athlete's authored assignment / published coach decision in the FORM Athlete System. The public study/site and the native app are projections of that same decision. Never fix drift by hand-editing one surface and leaving the others behind. If Brice changes an athlete-specific band, plan version, future session, recovery or instruction on the study/site, first or simultaneously update the canonical athlete record; FORM must receive it through the normal assignment/feed path. Completed/history evidence stays pinned to the version actually performed. A static public-study change that disagrees with the canonical athlete assignment is a bug, not a new authority.
+
+## Simon / Study 003
+Before any Simon plan, evidence or study edit, read [Study 003 protocol](docs/studies/SIMON-STUDY-003.md). R2 supersedes the earlier automatic Thursday escalation and October 27 continuous test. Preserve historical evidence, very easy recoveries, the separated Gate 01 window, and the approved-publication/app parity contract.

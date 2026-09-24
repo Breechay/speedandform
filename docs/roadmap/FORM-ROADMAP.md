@@ -1,5 +1,25 @@
 # FORM: current state and next actions
 
+## September 23 · Simon evidence revision R2
+
+**Current authority:** [Study 003 protocol](../studies/SIMON-STUDY-003.md), canonical plan version 2, revision `SIMON-003-R2-20260923`. This supersedes earlier same-day Simon training recommendations below, not other athletes. Tuesday retains the first four ladder steps with two-minute very easy recoveries. Thursdays: 5×3, repeat 5×3, 4×4 if recovered, reduced 4×3, then 5K. Oct 27 is easy; Oct 29 is the 5K; a 6–8 km continuous read is a Nov 3-or-later candidate requiring coach approval after recovery. Planned totals are 63 / 67 / 70 / 62 / 52 km, not minimums. No new completed evidence or mark ownership was invented.
+
+Historical March 25 is 32 broken minutes with a favourable activity report, not a continuous or laboratory test. March 11 remains a partial recording with reason unknown. Historical 45 mi/week is a coach report, not current-volume verification. A better hold with an unchanged 5K is progress. No arbitrary 175-bpm cap, universal drift threshold, fixed threshold-to-half offset or automatic peak mileage is adopted.
+
+The study reads an explicitly approved publication matching the app assignment; saved snapshots are fallbacks, not authoring sources. Public/private drift returns review_required instead of exposing private updates. Generic paid-plan access remains closed. Release receipts belong in docs/audits/SIMON-STUDY-003-R2-RELEASE.json.
+
+Open, one operating checklist:
+- [ ] Confirm recent running continuity, comfortable long-run duration and hard HYROX/lower-body load before starting the full dose.
+- [ ] Clarify why March 11 ended and whether another recording exists; reconcile March 3 caption vs moving time.
+- [ ] File Sep 15/22 evidence only if supplied.
+- [ ] Review Oct 29 and recovery, then explicitly author or defer the candidate continuous read.
+- [ ] Confirm Turkey Trot event/distance/registration and Nashville division/day/heat; neither is invented.
+- [ ] Lisa next plan remains parked and separate. Raise the Ceiling stays archived.
+- [ ] Confirm this data revision on the physical iPhone. No app binary change is required for these prescriptions.
+
+Saumur remains May 16, 2027; February 1 anchors the 15-week specific calendar, not pre-approved workout numbers.
+
+
 ## September 23 — Study 003 live; active Labs set reconciled
 
 **The Two Curves is Simon's active study now.** Block 01 opens Monday **Sep 28, 2026** in the same calendar already assigned in FORM. The public study is `/labs/the-two-curves/`; the athlete app remains prescription authority. The study follows two variables in parallel: race-pace duration on Tuesday and the ceiling above it on Thursday.

@@ -162,6 +162,7 @@ async function refreshApprovedPublication(){
  for(const [,attrs,body] of scripts){if(attrs.includes('application/ld+json'))JSON.parse(body);else if(body.trim())new vm.Script(body);}
  assert.deepEqual([...html.matchAll(/<img\b[^>]*src="([^"]+)"/g)].map(m=>hash(m[1])),beforeImages,'Image bytes changed');
  assert.ok(html.includes('scale(.98)')&&html.includes('.reveal{opacity:1'),'Preserve figure and fail-open content');
+ html=require('./refine-simon-r2.cjs')(html);
  fs.writeFileSync(FILE,html);
  if(!process.argv.includes('--refresh-only')){
   const a=path.join(ROOT,'AGENTS.md');let text=fs.readFileSync(a,'utf8');
