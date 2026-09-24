@@ -61,7 +61,8 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add AGENTS.md docs/roadmap/FORM-ROADMAP.md docs/studies/ADRIAN-NUTRITION-HOLD-20260923.md plans/adrian-nutrition-phase-01/index.html plans/adrian-nutrition-phase-01/review-context.json plans/adrian-nutrition-phase-01/adrian-prep-reminders.ics tests/adrian-nutrition-v15.py tests/adrian-nutrition-timing.py
           test "$(git diff --cached --name-only | wc -l)" -eq 8
-          git diff --cached --check
+          git diff --cached --check -- . ':(exclude)plans/adrian-nutrition-phase-01/adrian-prep-reminders.ics'
+          git -c core.whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol diff --cached --check -- plans/adrian-nutrition-phase-01/adrian-prep-reminders.ics
           git commit -m 'Adrian: supersede blanket hold with scoped food-timing guidance'
           git push origin HEAD:refs/heads/work/validated-adrian-timing-scope-20260923
           echo "VALIDATED_COMMIT=$(git rev-parse HEAD)"
