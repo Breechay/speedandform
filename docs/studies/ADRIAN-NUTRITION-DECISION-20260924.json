@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "record_type": "coach_nutrition_decision",
+  "decision_id": "adrian-working-energy-target-20260924",
+  "recorded_on": "2026-09-24",
+  "athlete": "Adrian Gandara",
+  "study_id": "FRM-001",
+  "decision": {
+    "working_energy_target_kcal_per_day": 3000,
+    "precision": "approximate",
+    "phase": "current nutrition / runner-mass development phase",
+    "owner": "Brice / coach",
+    "instruction": "Aim around 3,000 kcal per day. Close is enough; do not force a meal solely to hit an exact number.",
+    "exercise_timing_boundary": "This target does not add food before runs, between sessions, or automatically immediately after exercise. Existing individualized food/exercise timing guidance remains unchanged.",
+    "review_inputs": [
+      "weekly morning-weight trend",
+      "baseline and repeat body measurements",
+      "appetite and meal comfort",
+      "digestion",
+      "running and lifting response"
+    ],
+    "automatic_adjustment": false
+  },
+  "evidence_context": {
+    "completed_day_record": "docs/studies/ADRIAN-NUTRITION-DAYLOG-20260923.json",
+    "completed_day_reported_kcal": 3271,
+    "relationship": "The 3,271 kcal day is an observation, not the target. The ~3,000 kcal target is a subsequent coach decision.",
+    "measured_maintenance_kcal": null,
+    "measured_surplus_kcal": null
+  },
+  "boundaries": {
+    "new_pre_run_food_prescription": false,
+    "new_supplement_dose": false,
+    "training_assignment_changed": false,
+    "medical_clearance_claimed": false,
+    "target_is_measured_energy_requirement": false
+  }
+}

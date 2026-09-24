@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "nutrition_revision": "1.5.6",
+  "nutrition_revision": "1.5.7",
   "prepared_date": "2026-09-22",
   "athlete": "Adrian Gandara",
   "study_id": "FRM-001",
@@ -116,9 +116,9 @@
   ],
   "machine_readability": "All athlete-facing instructions are static HTML, including native details contents. The HTML head links this JSON. Read the public authored program JSON without depending on JavaScript rendering; use authorized repository access for pinned native sources.",
   "privacy_boundary": "This public reference manifest contains no credentials, athlete emails, backend tokens, or private completed-session logs. Hiding HTML is not access control. Future Forge completion review must use authenticated, authorized data access, not a public JSON export.",
-  "interpretation_boundary": "Keep athlete reports, arithmetic checks, label observations, measured outcomes and decisions separate. The completed food log totals 3271 kcal from athlete estimates; dinner is explicitly a guess. Earlier 1300 and 2260 totals are included subtotals. This establishes neither a measured surplus nor a new target, full adherence or muscle gain. Supplement brands and labels are known in current_supplement_labels; actual doses, start dates and frequency remain unknown. Consumption is not preference confirmation or clinical clearance. Meal order does not establish timing relative to exercise. Private clinical history stays off public surfaces.",
+  "interpretation_boundary": "Keep athlete reports, arithmetic checks, label observations, measured outcomes and decisions separate. The completed food log totals 3271 kcal from athlete estimates; dinner is explicitly a guess. Earlier 1300 and 2260 totals are included subtotals. This establishes neither a measured surplus nor a new target, full adherence or muscle gain. Supplement brands and labels are known in current_supplement_labels; actual doses, start dates and frequency remain unknown. Consumption is not preference confirmation or clinical clearance. Meal order does not establish timing relative to exercise. Private clinical history stays off public surfaces. The active working energy target is approximately 3,000 kcal/day by coach decision, not a measured maintenance requirement or inferred surplus. The 3,271 kcal completed day remains an observation, not the target.",
   "shopping": {
-    "revision": "1.5.6",
+    "revision": "1.5.7",
     "static_html": true,
     "check_state": "Browser-local only; no Forge sync or adherence receipt",
     "first_cycle": "Five workday meals and one frozen backup; not eight mandatory meals",
@@ -304,7 +304,7 @@
     "daily_protein_g": null,
     "meal_timing_relative_to_exercise_confirmed": false,
     "full_plan_start_confirmed": false,
-    "coaching_response": "Food day received. Keep the existing plan and timing boundary; obtain baseline measurements, comfortable meal-size feedback and the exact Chobani product/preference."
+    "coaching_response": "Food day received. Working target for this phase is about 3,000 kcal/day, not 3,271. Close is enough; do not force an exact number. Preserve the existing food/exercise timing boundary and review measurements, appetite and training response before changing the target."
   },
   "previous_intake_reports": [
     {
@@ -353,5 +353,23 @@
       "calf"
     ],
     "values_inferred": false
-  }
+  },
+  "working_energy_target": {
+    "source_record": "docs/studies/ADRIAN-NUTRITION-DECISION-20260924.json",
+    "kcal_per_day": 3000,
+    "precision": "approximate",
+    "owner": "coach decision",
+    "status": "active_working_target",
+    "not_measured_maintenance_or_surplus": true,
+    "do_not_force_exact_number": true,
+    "review_before_change": [
+      "weekly morning-weight trend",
+      "body measurements",
+      "appetite and meal comfort",
+      "digestion",
+      "running and lifting response"
+    ],
+    "food_timing_rule_unchanged": true
+  },
+  "latest_coach_decision_record": "docs/studies/ADRIAN-NUTRITION-DECISION-20260924.json"
 }

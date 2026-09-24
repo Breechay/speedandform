@@ -1,5 +1,11 @@
 # FORM: current state and next actions
 
+## September 24 - Adrian working intake target, v1.5.7
+
+Coach decision: aim around **3,000 kcal/day** in the current runner-mass nutrition phase. This is intentionally approximate; 3,271 from the completed log is evidence, not the target, and Adrian is not asked to force-feed to an exact number. Review weight trend, measurements, appetite, digestion and training response before adjustment. Existing no-pre-run-food / individualized timing boundary remains unchanged. Decision: [energy target record](../studies/ADRIAN-NUTRITION-DECISION-20260924.json).
+
+Acceptance run: https://github.com/Breechay/speedandform/actions/runs/35956112800. Production verification follows promotion.
+
 ## September 23 - Adrian completed food log, v1.5.6
 
 3271 kcal is the athlete-reported completed day, including a guessed 600 kcal dinner. The 1300 and 2260 reports reconcile as included subtotals. Record: [completed food day](../studies/ADRIAN-NUTRITION-DAYLOG-20260923.json). Specific Chobani preference and baseline measurements remain open. Family dinner participation recorded; no first-cook, surplus, adherence or training-outcome claim. Existing live companion, recipes, portions, product labels and no-pre-run-food boundary are preserved. No native assignment, message or calendar writes.

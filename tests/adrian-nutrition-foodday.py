@@ -6,7 +6,7 @@ r=Path(__file__).resolve().parents[1]
 c=json.loads((r/'plans/adrian-nutrition-phase-01/review-context.json').read_text())
 x=json.loads((r/'docs/studies/ADRIAN-NUTRITION-DAYLOG-20260923.json').read_text())
 s=BeautifulSoup((r/'plans/adrian-nutrition-phase-01/index.html').read_text(),'html.parser')
-assert c['nutrition_revision']=='1.5.6'
+assert c['nutrition_revision']=='1.5.7'
 assert c['release_status']=='active_with_individual_timing_review'
 assert s.html['data-nutrition-version']==c['nutrition_revision']
 assert len(x['items'])==12

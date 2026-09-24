@@ -1,6 +1,6 @@
 # Adrian nutrition: current release scope
 
-Current revision: 1.5.6. Status: active_with_individual_timing_review.
+Current revision: 1.5.7. Status: active_with_individual_timing_review.
 
 The blanket v1.5.2 website hold is superseded by the owner-directed scoped correction. This file keeps its old path so agent links do not break. Its earlier hold and resume instructions are historical, not the current publishing rule.
 
@@ -25,3 +25,7 @@ Run `python tests/adrian-nutrition-labels.py` in addition to existing timing/bro
 ## Completed food-day follow-up
 
 [Completed day record](ADRIAN-NUTRITION-DAYLOG-20260923.json): 3271 kcal reported and arithmetically reconciled with the earlier 1300 and 2260 subtotals. Dinner at 600 kcal is explicitly a guess. Keep earlier observations immutable. Chobani consumption does not reverse the Greek yogurt exclusion; exact product and liking remain to confirm. Mother-made dinner is family participation, not Adrian first-cook evidence. Measurements remain requested. No new calorie, protein, supplement or exercise-timing prescription. Run tests/adrian-nutrition-foodday.py alongside the existing checks.
+
+## Working intake target · 24 September
+
+[Coach decision](ADRIAN-NUTRITION-DECISION-20260924.json): approximately 3,000 kcal/day for the current phase. The 3,271 kcal completed day remains an observation, not the target. Do not force an exact number or use the target to reintroduce pre-run food. Review weight trend, measurements, appetite, digestion and training response before changing it. No supplement dose, native assignment or exercise-timing rule changed.
