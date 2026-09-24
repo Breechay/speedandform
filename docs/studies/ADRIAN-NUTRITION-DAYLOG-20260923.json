@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "record_type": "athlete_report_completed_food_day",
+  "record_id": "adrian-food-day-20260923",
+  "recorded_on": "2026-09-23",
+  "athlete": "Adrian Gandara",
+  "study_id": "FRM-001",
+  "source": {
+    "type": "coach_supplied_message_screenshot",
+    "file": "IMG_7969.jpeg",
+    "reported_day": "2026-09-23",
+    "date_basis": "Continuation of the same-day 1300 and 2260 reports in the coach conversation; no absolute date is visible in this screenshot.",
+    "completion_basis": "Athlete lists 3271 and then says the end.",
+    "original_published": false
+  },
+  "items": [
+    {
+      "sequence_in_message": 1,
+      "food_as_reported": "Peanut butter and jelly sandwich",
+      "calories_kcal_reported": 400,
+      "portion_weight_g": null,
+      "time_consumed": null,
+      "estimate_status": "athlete-reported value; not independently verified",
+      "protein_g_reported": null
+    },
+    {
+      "sequence_in_message": 2,
+      "food_as_reported": "Chobani 20 g protein yogurt",
+      "calories_kcal_reported": 170,
+      "portion_weight_g": null,
+      "time_consumed": null,
+      "estimate_status": "athlete-reported value; not independently verified",
+      "protein_g_reported": 20
+    },
+    {
+      "sequence_in_message": 3,
+      "food_as_reported": "Coffee with creamer",
+      "calories_kcal_reported": 40,
+      "portion_weight_g": null,
+      "time_consumed": null,
+      "estimate_status": "athlete-reported value; not independently verified",
+      "protein_g_reported": null
+    },
+    {
+      "sequence_in_message": 4,
+      "food_as_reported": "Cheddar balls",
+      "calories_kcal_reported": 130,
+      "portion_weight_g": null,
+      "time_consumed": null,
+      "estimate_status": "athlete-reported value; not independently verified",
+      "protein_g_reported": null
+    },
+    {
+      "sequence_in_message": 5,
+      "food_as_reported": "Power Crunch bar",
+      "calories_kcal_reported": 210,
+      "portion_weight_g": null,
+      "time_consumed": null,
+      "estimate_status": "athlete-reported value; not independently verified",
+      "protein_g_reported": null
+    },
+    {
+      "sequence_in_message": 6,
+      "food_as_reported": "Pretzels and peanut butter",
+      "calories_kcal_reported": 350,
+      "portion_weight_g": null,
+      "time_consumed": null,
+      "estimate_status": "athlete-reported value; not independently verified",
+      "protein_g_reported": null
+    },
+    {
+      "sequence_in_message": 7,
+      "food_as_reported": "Rice, beans, rotisserie chicken and plantains",
+      "calories_kcal_reported": 960,
+      "portion_weight_g": null,
+      "time_consumed": null,
+      "estimate_status": "athlete-reported value; not independently verified",
+      "protein_g_reported": null
+    },
+    {
+      "sequence_in_message": 8,
+      "food_as_reported": "Cinnamon Honey Stinger",
+      "calories_kcal_reported": 140,
+      "portion_weight_g": null,
+      "time_consumed": null,
+      "estimate_status": "athlete-reported value; not independently verified",
+      "protein_g_reported": null
+    },
+    {
+      "sequence_in_message": 9,
+      "food_as_reported": "Banana",
+      "calories_kcal_reported": 105,
+      "portion_weight_g": null,
+      "time_consumed": null,
+      "estimate_status": "athlete-reported value; not independently verified",
+      "protein_g_reported": null
+    },
+    {
+      "sequence_in_message": 10,
+      "food_as_reported": "Probiotic smoothie",
+      "calories_kcal_reported": 110,
+      "portion_weight_g": null,
+      "time_consumed": null,
+      "estimate_status": "athlete-reported value; not independently verified",
+      "protein_g_reported": null
+    },
+    {
+      "sequence_in_message": 11,
+      "food_as_reported": "Spaghetti with meat sauce",
+      "calories_kcal_reported": 600,
+      "portion_weight_g": null,
+      "time_consumed": null,
+      "estimate_status": "explicit complete guess by athlete",
+      "protein_g_reported": null
+    },
+    {
+      "sequence_in_message": 12,
+      "food_as_reported": "85% cocoa dark chocolate",
+      "calories_kcal_reported": 56,
+      "portion_weight_g": null,
+      "time_consumed": null,
+      "estimate_status": "athlete-reported value; not independently verified",
+      "protein_g_reported": null
+    }
+  ],
+  "total_kcal_reported": 3271,
+  "sum_of_listed_kcal": 3271,
+  "arithmetic_verified": true,
+  "actual_intake_independently_measured": false,
+  "completeness": "athlete reports completed day; not a weighed or independently complete food record",
+  "reconciliation": {
+    "prior_record": "docs/studies/ADRIAN-NUTRITION-LABELS-20260923.json",
+    "first_six_items_kcal": 1300,
+    "through_lunch_kcal": 2260,
+    "remaining_listed_items_kcal": 1011,
+    "rule": "Same reported day. The earlier totals are running subtotals, not additional intake. Preserve the prior record as it was known then."
+  },
+  "meal_context": {
+    "lunch": "Earlier report identifies La Granja; completed list adds plantains to rice, beans and rotisserie chicken. The 960 kcal is the athlete estimate, not verified restaurant nutrition.",
+    "earlier_lunch_feedback": "Athlete previously said the large lunch was difficult to finish.",
+    "dinner": "Athlete reports his mother made spaghetti per the coach request; 600 kcal explicitly marked a complete guess.",
+    "self_prepared_first_batch_confirmed": false,
+    "family_participation": "reported, not evidence that the exact authored recipe or portions were used"
+  },
+  "preference_followup": {
+    "chobani": {
+      "reported_eaten": true,
+      "reported_product_description": "Chobani 20 g protein yogurt",
+      "reported_kcal": 170,
+      "exact_product_format_and_flavor": null,
+      "explicitly_liked": null,
+      "tolerance_or_safety_confirmed": false,
+      "greek_yogurt_exclusion_reversed": false,
+      "next_question": "Which Chobani product and flavor was it, and did you like it?"
+    },
+    "other_new_foods": "Pretzels with peanut butter, coffee with creamer, probiotic smoothie and 85% dark chocolate are intake reports, not blanket preference or health-benefit claims."
+  },
+  "unknowns": {
+    "daily_protein_g": null,
+    "daily_carbohydrate_g": null,
+    "daily_fat_g": null,
+    "energy_expenditure_kcal": null,
+    "energy_surplus_kcal": null,
+    "supplement_use_on_this_day": null,
+    "run_outcome": null,
+    "symptom_or_tolerance_outcome": null,
+    "meal_to_run_intervals_minutes": null
+  },
+  "measurements": {
+    "status": "still_requested_not_supplied_in_this_message",
+    "source": "Coach reply in the screenshot; existing measurement set in authored program and study.",
+    "baseline_set": [
+      "morning weight trend",
+      "waist",
+      "chest",
+      "relaxed upper arm",
+      "mid-thigh",
+      "calf"
+    ],
+    "values_inferred": false
+  },
+  "interpretation": "Useful completed self-report and evidence of family participation. One day does not establish habitual intake, adequate intake, surplus, full plan adherence or muscle gain. Do not set 3271 as a daily target or reward force-finishing large meals.",
+  "boundaries": {
+    "keep_page_live": true,
+    "new_pre_run_food_prescribed": false,
+    "meal_timing_inferred_from_list_order": false,
+    "new_calorie_target": false,
+    "new_supplement_dose": false,
+    "training_assignment_changed": false,
+    "full_plan_start_date_established_by_this_message": false,
+    "clinical_history_published": false,
+    "screenshots_published": false
+  }
+}

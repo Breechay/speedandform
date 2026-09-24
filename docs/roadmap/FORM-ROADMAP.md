@@ -1,5 +1,11 @@
 # FORM: current state and next actions
 
+## September 23 - Adrian completed food log, v1.5.6
+
+3271 kcal is the athlete-reported completed day, including a guessed 600 kcal dinner. The 1300 and 2260 reports reconcile as included subtotals. Record: [completed food day](../studies/ADRIAN-NUTRITION-DAYLOG-20260923.json). Specific Chobani preference and baseline measurements remain open. Family dinner participation recorded; no first-cook, surplus, adherence or training-outcome claim. Existing live companion, recipes, portions, product labels and no-pre-run-food boundary are preserved. No native assignment, message or calendar writes.
+
+Acceptance run: https://github.com/Breechay/speedandform/actions/runs/35952202541. Production verification follows promotion and is not established by this source note.
+
 ## September 23 · Simon evidence revision R2
 
 **Current authority:** [Study 003 protocol](../studies/SIMON-STUDY-003.md), canonical plan version 2, revision `SIMON-003-R2-20260923`. This supersedes earlier same-day Simon training recommendations below, not other athletes. Tuesday retains the first four ladder steps with two-minute very easy recoveries. Thursdays: 5×3, repeat 5×3, 4×4 if recovered, reduced 4×3, then 5K. Oct 27 is easy; Oct 29 is the 5K; a 6–8 km continuous read is a Nov 3-or-later candidate requiring coach approval after recovery. Planned totals are 63 / 67 / 70 / 62 / 52 km, not minimums. No new completed evidence or mark ownership was invented.

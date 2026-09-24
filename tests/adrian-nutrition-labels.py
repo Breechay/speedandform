@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 r=Path(__file__).resolve().parents[1];d=r/'plans/adrian-nutrition-phase-01'
 s=BeautifulSoup((d/'index.html').read_text(),'html.parser');c=json.loads((d/'review-context.json').read_text())
 x=json.loads((r/'docs/studies/ADRIAN-NUTRITION-LABELS-20260923.json').read_text())
-assert c['nutrition_revision']=='1.5.5'
+assert c['nutrition_revision']=='1.5.6'
 assert c['release_status']=='active_with_individual_timing_review'
 assert s.select_one('#food-timing') and not s.select_one('#plan-hold')
 assert len(s.select('.reference > details'))==10

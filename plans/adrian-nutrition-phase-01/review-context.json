@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "nutrition_revision": "1.5.5",
+  "nutrition_revision": "1.5.6",
   "prepared_date": "2026-09-22",
   "athlete": "Adrian Gandara",
   "study_id": "FRM-001",
@@ -116,9 +116,9 @@
   ],
   "machine_readability": "All athlete-facing instructions are static HTML, including native details contents. The HTML head links this JSON. Read the public authored program JSON without depending on JavaScript rendering; use authorized repository access for pinned native sources.",
   "privacy_boundary": "This public reference manifest contains no credentials, athlete emails, backend tokens, or private completed-session logs. Hiding HTML is not access control. Future Forge completion review must use authenticated, authorized data access, not a public JSON export.",
-  "interpretation_boundary": "Keep athlete reports, observations, measured outcomes and decisions separate. Publication does not confirm adherence or causation. The food-timing constraint is reported practice, not clinical clearance. Brands, doses and start dates for reported supplements remain unknown; do not attribute weight or lean-mass changes to them. Private medical history is not published. Later intake totals are self-reported partial-day figures, not measured surplus. Label servings are not actual consumed doses or individual clearance.",
+  "interpretation_boundary": "Keep athlete reports, arithmetic checks, label observations, measured outcomes and decisions separate. The completed food log totals 3271 kcal from athlete estimates; dinner is explicitly a guess. Earlier 1300 and 2260 totals are included subtotals. This establishes neither a measured surplus nor a new target, full adherence or muscle gain. Supplement brands and labels are known in current_supplement_labels; actual doses, start dates and frequency remain unknown. Consumption is not preference confirmation or clinical clearance. Meal order does not establish timing relative to exercise. Private clinical history stays off public surfaces.",
   "shopping": {
-    "revision": "1.5.5",
+    "revision": "1.5.6",
     "static_html": true,
     "check_state": "Browser-local only; no Forge sync or adherence receipt",
     "first_cycle": "Five workday meals and one frozen backup; not eight mandatory meals",
@@ -133,7 +133,7 @@
     "powder_purchase": "Check existing products before buying; existing whey checkbox key retained, no auto-check or adherence inference."
   },
   "updated_date": "2026-09-23",
-  "latest_observation_record": "docs/studies/ADRIAN-NUTRITION-LABELS-20260923.json",
+  "latest_observation_record": "docs/studies/ADRIAN-NUTRITION-DAYLOG-20260923.json",
   "reported_food_and_supplements_20260923": {
     "space_balls": {
       "product": "LesserEvil Space Balls, Real Organic Cheddar",
@@ -289,23 +289,69 @@
     }
   },
   "latest_intake_report": {
-    "source_file": "IMG_7964.jpeg",
-    "date_basis": "Same-day coach conversation context; screenshot says Today, without an absolute date.",
+    "source_record": "docs/studies/ADRIAN-NUTRITION-DAYLOG-20260923.json",
+    "source_file": "IMG_7969.jpeg",
     "reported_day": "2026-09-23",
-    "before_lunch_reported_kcal": 1300,
-    "later_running_total_reported_kcal": 2260,
-    "later_report_context": "Reported before the planned run and dinner; not a claim of eating immediately before running.",
-    "message_time_visible": "2:51 PM",
-    "lunch_reported": "Rice, beans and rotisserie chicken from La Granja.",
-    "meal_size_feedback": "Athlete described the large lunch as difficult to finish.",
-    "portion_weights_or_complete_food_log_supplied": false,
+    "completeness": "athlete reports completed day; not a weighed or independently complete food record",
+    "daily_total_kcal_reported": 3271,
+    "sum_of_listed_kcal": 3271,
     "calories_independently_verified": false,
-    "daily_total_kcal": null,
-    "energy_expenditure_kcal": null,
+    "before_lunch_reported_kcal": 1300,
+    "through_lunch_reported_kcal": 2260,
+    "dinner_kcal_reported": 600,
+    "dinner_estimate_status": "explicit guess",
     "surplus_kcal": null,
-    "run_completed_from_this_message": false,
+    "daily_protein_g": null,
+    "meal_timing_relative_to_exercise_confirmed": false,
     "full_plan_start_confirmed": false,
-    "interpretation": "An intake self-report plus a meal-size concern. No calorie target, measured surplus, muscle gain, or success from forcing food is inferred.",
-    "coaching_response": "Record the full day and comfortable meal sizes. Do not force a larger meal to beat a number or add pre-run food."
+    "coaching_response": "Food day received. Keep the existing plan and timing boundary; obtain baseline measurements, comfortable meal-size feedback and the exact Chobani product/preference."
+  },
+  "previous_intake_reports": [
+    {
+      "source_file": "IMG_7964.jpeg",
+      "date_basis": "Same-day coach conversation context; screenshot says Today, without an absolute date.",
+      "reported_day": "2026-09-23",
+      "before_lunch_reported_kcal": 1300,
+      "later_running_total_reported_kcal": 2260,
+      "later_report_context": "Reported before the planned run and dinner; not a claim of eating immediately before running.",
+      "message_time_visible": "2:51 PM",
+      "lunch_reported": "Rice, beans and rotisserie chicken from La Granja.",
+      "meal_size_feedback": "Athlete described the large lunch as difficult to finish.",
+      "portion_weights_or_complete_food_log_supplied": false,
+      "calories_independently_verified": false,
+      "daily_total_kcal": null,
+      "energy_expenditure_kcal": null,
+      "surplus_kcal": null,
+      "run_completed_from_this_message": false,
+      "full_plan_start_confirmed": false,
+      "interpretation": "An intake self-report plus a meal-size concern. No calorie target, measured surplus, muscle gain, or success from forcing food is inferred.",
+      "coaching_response": "Record the full day and comfortable meal sizes. Do not force a larger meal to beat a number or add pre-run food."
+    }
+  ],
+  "food_preference_followup": {
+    "chobani": {
+      "reported_eaten": true,
+      "reported_product_description": "Chobani 20 g protein yogurt",
+      "reported_kcal": 170,
+      "exact_product_format_and_flavor": null,
+      "explicitly_liked": null,
+      "tolerance_or_safety_confirmed": false,
+      "greek_yogurt_exclusion_reversed": false,
+      "next_question": "Which Chobani product and flavor was it, and did you like it?"
+    },
+    "other_new_foods": "Pretzels with peanut butter, coffee with creamer, probiotic smoothie and 85% dark chocolate are intake reports, not blanket preference or health-benefit claims."
+  },
+  "baseline_measurements_followup": {
+    "status": "still_requested_not_supplied_in_this_message",
+    "source": "Coach reply in the screenshot; existing measurement set in authored program and study.",
+    "baseline_set": [
+      "morning weight trend",
+      "waist",
+      "chest",
+      "relaxed upper arm",
+      "mid-thigh",
+      "calf"
+    ],
+    "values_inferred": false
   }
 }

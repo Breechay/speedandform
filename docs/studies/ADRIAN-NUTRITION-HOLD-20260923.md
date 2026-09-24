@@ -1,6 +1,6 @@
 # Adrian nutrition: current release scope
 
-Current revision: 1.5.5. Status: active_with_individual_timing_review.
+Current revision: 1.5.6. Status: active_with_individual_timing_review.
 
 The blanket v1.5.2 website hold is superseded by the owner-directed scoped correction. This file keeps its old path so agent links do not break. Its earlier hold and resume instructions are historical, not the current publishing rule.
 
@@ -21,3 +21,7 @@ Acceptance run: https://github.com/Breechay/speedandform/actions/runs/3593658540
 [Photographed label record](ADRIAN-NUTRITION-LABELS-20260923.json) identifies the two owned products. Designs for Health Chocolate: 27 g powder, 110 kcal, 21 g protein. BulkSupplements creatine monohydrate: 5 g per labeled serving. Actual amounts, first use, frequency, lot verification and individual approval remain open. Do not interpret the manufacturer's complete-protein description as measured whey-equivalence, or call this product pure incomplete collagen. The 1,300 and 2,260 kcal figures are partial-day athlete reports; lunch was difficult to finish. Do not turn this into a new calorie target or forced feeding.
 
 Run `python tests/adrian-nutrition-labels.py` in addition to existing timing/browser tests. Native assignments and clinical details remain unchanged.
+
+## Completed food-day follow-up
+
+[Completed day record](ADRIAN-NUTRITION-DAYLOG-20260923.json): 3271 kcal reported and arithmetically reconciled with the earlier 1300 and 2260 subtotals. Dinner at 600 kcal is explicitly a guess. Keep earlier observations immutable. Chobani consumption does not reverse the Greek yogurt exclusion; exact product and liking remain to confirm. Mother-made dinner is family participation, not Adrian first-cook evidence. Measurements remain requested. No new calorie, protein, supplement or exercise-timing prescription. Run tests/adrian-nutrition-foodday.py alongside the existing checks.
