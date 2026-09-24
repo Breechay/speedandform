@@ -1,15 +1,17 @@
-# Adrian nutrition delivery hold · 23 September 2026
+# Adrian nutrition: current release scope
 
-Status: paused_pending_clinician_review. Revision: 1.5.2.
+Current revision: 1.5.4. Status: active_with_individual_timing_review.
 
-The athlete-facing nutrition HTML and current review-context JSON withdraw earlier prescriptions. The old reminder download is removed. Prior content remains in version history, not an active recommendation.
+The blanket v1.5.2 website hold is superseded by the owner-directed scoped correction. This file keeps its old path so agent links do not break. Its earlier hold and resume instructions are historical, not the current publishing rule.
 
-Do not restore this page from an earlier ZIP, generator, deployment or snapshot merely to pass legacy active-plan tests. Run tests/adrian-nutrition-hold.py for the paused state. The existing v1.5 entry point routes to that test while the hold is active.
+Keep the companion, meal-prep recipes, shopping tools, preferences, sleep routine and check-ins available. Do not treat a reported history as a new event, an adverse outcome of this plan or proof of nonadherence. Do not invent a diagnosis or a trigger.
 
-Resume only after individualized treating-clinician guidance is reviewed, the relevant food/supplement/exercise instructions are reconciled, and Brice explicitly authorizes a replacement release. Do not invent a substitute menu, supplement dose, safe interval or food/exercise experiment.
+Food-around-exercise timing remains individual: no added pre-run snack, between-session food, assumed lifting exemption, fixed fasting duration or automatically immediate post-exercise meal. Clinician-confirmed guidance is still needed to resolve food suitability and timing before and after exercise. This publishing correction is not exercise clearance and does not say fasting guarantees protection. The coach can fit adequate intake around that guidance without replacing the whole companion with a shutdown page.
 
-This commit does not change canonical FORM/Forge assignments, contact the athlete, notify another coach, or revoke imported phone reminders. Brice must communicate the hold directly. Prior assignment visibility is not exercise clearance.
+The review-context JSON owns this web companion's release and timing state. No FORM/Forge assignment, completed record, dose or calorie target changes in this correction. The web page is not proof of a native-app update. No calendar writes or messages are sent; previous phone imports are not altered by a web edit. The existing prep download remains available, without a new food-around-exercise prescription.
 
-Privacy: the underlying medical details, screenshots and clinical documents must remain outside this public repository and public study. A noindex tag or collapsed section is not privacy protection.
+Private history, screenshots and clinical records stay outside this public repository, its commit messages and the public study. Preferences and prior product use are reports, not safety clearance.
 
-Release: verify the held page and review JSON on the production URL after promotion. Preserve concurrent site work. Do not claim deployment before verification.
+Acceptance: run tests/adrian-nutrition-v15.py and tests/adrian-nutrition-timing.py. The historical hold test applies only to an explicitly held release. Preserve concurrent work and verify production before claiming the correction is live.
+
+Acceptance run: https://github.com/Breechay/speedandform/actions/runs/35936585400

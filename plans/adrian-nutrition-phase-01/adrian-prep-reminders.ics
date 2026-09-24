@@ -1,0 +1,64 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Speed & Form//Adrian Nutrition 01//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:Adrian · Fuel Your Work
+BEGIN:VEVENT
+UID:adrian-fuel-sunday-cook@speedandform.com
+DTSTAMP:20260922T120000Z
+DTSTART:20260927T193000
+DURATION:PT1H
+RRULE:FREQ=WEEKLY;BYDAY=SU
+SUMMARY:Freezer check, then cook this week's boxes
+DESCRIPTION:Backup still in the freezer? Cook 4 and skip Wednesday. No backup? Cook 4 now and 2 on Wednesday. Label every lid. Pack Monday's breakfast.
+URL:https://speedandform.com/plans/adrian-nutrition-phase-01/#prep-cycle
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Cook this week's boxes
+TRIGGER:PT0M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:adrian-fuel-tuesday-beef@speedandform.com
+DTSTAMP:20260922T120000Z
+DTSTART:20260929T053500
+DURATION:PT5M
+RRULE:FREQ=WEEKLY;BYDAY=TU
+SUMMARY:Move ½ lb beef to the fridge
+DESCRIPTION:On a tray, in the fridge. Never on the counter. Skip this if you are skipping Wednesday's cook.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Move ½ lb beef to the fridge
+TRIGGER:PT0M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:adrian-fuel-wednesday-cook@speedandform.com
+DTSTAMP:20260922T120000Z
+DTSTART:20260930T193000
+DURATION:PT45M
+RRULE:FREQ=WEEKLY;BYDAY=WE
+SUMMARY:Cook 2 boxes (half batch)
+DESCRIPTION:Half-batch column. Thursday and Friday boxes. Label the lids.
+URL:https://speedandform.com/plans/adrian-nutrition-phase-01/#recipes
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Cook 2 boxes tonight
+TRIGGER:PT0M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:adrian-fuel-nightly-pack@speedandform.com
+DTSTAMP:20260922T120000Z
+DTSTART:20260927T203000
+DURATION:PT5M
+RRULE:FREQ=WEEKLY;BYDAY=SU,MO,TU,WE,TH
+SUMMARY:Bag in the freezer, box in the fridge
+DESCRIPTION:Lunch bag in the freezer. Tomorrow's box in the fridge. Bread and orange ready.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Bag in the freezer, box in the fridge
+TRIGGER:PT0M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

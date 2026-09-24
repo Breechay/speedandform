@@ -63,3 +63,8 @@ for must in ['160°F','165°F','within 2 hours','1 to 2 days','lot number','dark
     assert must in body_text, must
 res['not_a_constructions']=len(re.findall(r"\bnot (a|an|the|evidence|claims?|permission|proof)\b",body_text,re.I))
 print(json.dumps(res,indent=1))
+
+# Verify the scoped food-timing contract for the current companion release.
+if json.loads((root/'plans/adrian-nutrition-phase-01/review-context.json').read_text()).get('release_status') == 'active_with_individual_timing_review':
+    import runpy
+    runpy.run_path(str(root/'tests/adrian-nutrition-timing.py'), run_name='__main__')

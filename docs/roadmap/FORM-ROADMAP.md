@@ -1,5 +1,14 @@
 # FORM: current state and next actions
 
+## September 23 - Adrian nutrition: scoped timing correction, v1.5.4
+
+The blanket v1.5.2 website hold is superseded. Keep the food companion available, preserving recipes, portions, preferences, shopping state and sleep tools. Remove only conflicting exercise-adjacent instructions; no new fasting interval, food trial, immediate post-exercise meal or lifting-only exemption. Clinical guidance resolves food/timing; the coach then fits adequate meals around it. No diagnosis, current incident or plan-caused outcome is inferred. Private details stay off the site and repository. FORM/Forge assignments and imported phone reminders are unchanged.
+
+Current release rule: [Adrian nutrition scope](../studies/ADRIAN-NUTRITION-HOLD-20260923.md). Web release authority: `plans/adrian-nutrition-phase-01/review-context.json`.
+
+Acceptance and validated output commit: https://github.com/Breechay/speedandform/actions/runs/35936585400. Six-width browser and targeted timing checks must pass before promotion. Production verification is separate and must follow promotion; this source note is not a live claim. Remaining input: individualized food/exercise timing guidance and coach placement of meals. Do not silently restore the old blanket hold.
+
+
 ## September 23 — Study 003 live; active Labs set reconciled
 
 **The Two Curves is Simon's active study now.** Block 01 opens Monday **Sep 28, 2026** in the same calendar already assigned in FORM. The public study is `/labs/the-two-curves/`; the athlete app remains prescription authority. The study follows two variables in parallel: race-pace duration on Tuesday and the ceiling above it on Thursday.

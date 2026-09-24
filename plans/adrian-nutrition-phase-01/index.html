@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-nutrition-version="1.5.4" data-nutrition-status="active_with_individual_timing_review">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -196,7 +196,7 @@
 <link rel="stylesheet" href="./shopping.css?v=1.5">
 </head>
 <body><main class="page">
-<header class="masthead"><a class="brand" href="/" aria-label="FORM">FORM<i aria-hidden="true"></i></a><div class="stamp">Adrian · Nutrition 01<br>23 September 2026 · v1.5.3</div></header>
+<header class="masthead"><a class="brand" href="/" aria-label="FORM">FORM<i aria-hidden="true"></i></a><div class="stamp">Adrian · Nutrition 01<br>23 September 2026 · v1.5.4</div></header>
 
 <div class="hero">
 <p class="label">Your first nutrition phase</p>
@@ -208,6 +208,7 @@
 <section id="your-day" class="part" aria-labelledby="day-title">
 <h2 class="block-title" id="day-title">Your day, start to finish.</h2>
 <p class="lede">Pick the day. Tap a line for more.</p>
+<p class="small" id="food-timing"><strong>Food timing comes first.</strong> This page adds no pre-run snack. Use meals and snacks only within your clinician's food and exercise guidance. Brice will fit them around the agreed window before and after running or lifting.</p>
 <div class="rail-tabs" role="tablist" aria-label="Day type">
 <button role="tab" id="tab-work" aria-controls="day-work" aria-selected="true">Workday</button>
 <button role="tab" id="tab-sat" aria-controls="day-sat" aria-selected="false" tabindex="-1">Saturday</button>
@@ -216,11 +217,11 @@
 
 <div class="rail-day" id="day-work" role="tabpanel" aria-labelledby="tab-work">
 <ol>
-<li class="k-train" data-at="05:30"><span class="t">Morning</span><span class="dot"></span><div class="what"><b>Running today? Keep your no-food window</b><p>This page adds no pre-run snack. For an early run, eat breakfast afterward. For a later run, finish earlier meals soon enough to preserve the several-hour no-food gap you already use.</p></div></li>
-<li class="k-food" data-at="07:30"><span class="t">By 8:00</span><span class="dot"></span><div class="what"><b>Eat breakfast</b><p><strong>12 fl oz</strong> whole milk. Powder waits for the <a href="#powder">label check</a>. <strong>2 slices</strong> bread + <strong>2 tbsp</strong> peanut butter + <strong>1</strong> navel orange.</p><details><summary>Morning run + lift back-to-back</summary><p>If the run comes first, keep your established no-food window through the run. Do not insert food between the run and lift from this page. Eat breakfast after the combined session.</p></details><details><summary>Powder you already own</summary><p>Send the labels for your bone-broth protein and creatine, plus how much you used. Keep breakfast; no second powder or extra shake. <a href="#powder">Details</a>.</p></details></div></li>
-<li class="k-food" data-at="12:30"><span class="t">12:30</span><span class="dot"></span><div class="what"><b>Work lunch</b><p>Eat the whole meal, not only the meat.</p></div></li>
-<li class="k-food" data-at="15:30"><span class="t">3:30</span><span class="dot"></span><div class="what"><b>Your pasta box</b><p>Carry it in the frozen bag, into the work fridge on arrival. Reheat to 165°F.</p><details><summary>Training tonight</summary><p><strong>Running:</strong> keep your established several-hour no-food window. If the 3:30 box falls inside it, save the box for after the run; do not add a pre-run snack from this page. <strong>Lifting without a run:</strong> the 3:30 box can stay.</p></details><details><summary>Box crowding out dinner</summary><p>Tell Brice after your first three boxes. Don't drop dinner or cut the box on your own.</p></details></div></li>
-<li class="k-food" data-at="18:30"><span class="t">6:30<small>or after training</small></span><span class="dot"></span><div class="what"><b>Family dinner</b><p><strong>4 to 6 oz</strong> meat, <strong>1½ cups</strong> rice, <strong>½ cup</strong> beans, <strong>1 cup</strong> green beans. Pasta night: pasta replaces the rice and beans.</p></div></li>
+<li class="k-train" data-at="05:30"><span class="t">Morning</span><span class="dot"></span><div class="what"><b>No added pre-run snack</b><p>You already avoid eating before runs. This page will not insert a snack or set a different interval.</p></div></li>
+<li class="k-food"><span class="t">Breakfast<small>agreed time</small></span><span class="dot"></span><div class="what"><b>Eat breakfast</b><p><strong>12 fl oz</strong> whole milk. Powder waits for the <a href="#powder">label check</a>. <strong>2 slices</strong> bread + <strong>2 tbsp</strong> peanut butter + <strong>1</strong> navel orange.</p><details><summary>Morning run + lift back-to-back</summary><p>This page adds no snack between sessions. Arrange breakfast with Brice using your agreed food timing, rather than assuming it belongs immediately after exercise.</p></details><details><summary>Powder you already own</summary><p>Send the labels for your bone-broth protein and creatine, plus how much you used. Keep breakfast; no second powder or extra shake. <a href="#powder">Details</a>.</p></details></div></li>
+<li class="k-food"><span class="t">12:30</span><span class="dot"></span><div class="what"><b>Work lunch</b><p>Eat the whole meal, not only the meat.</p></div></li>
+<li class="k-food"><span class="t">3:30</span><span class="dot"></span><div class="what"><b>Your pasta box</b><p>Carry it in the frozen bag, into the work fridge on arrival. Reheat to 165°F.</p><details><summary>Training tonight</summary><p>The food-timing rule above applies to runs and lifts. If 3:30 conflicts, keep the box refrigerated and have Brice move it. Do not use a last-minute sandwich as a workaround.</p></details><details><summary>Box crowding out dinner</summary><p>Tell Brice after your first three boxes. Don't drop dinner or cut the box on your own.</p></details></div></li>
+<li class="k-food"><span class="t">6:30<small>or agreed time</small></span><span class="dot"></span><div class="what"><b>Family dinner</b><p><strong>4 to 6 oz</strong> meat, <strong>1½ cups</strong> rice, <strong>½ cup</strong> beans, <strong>1 cup</strong> green beans. Pasta night: pasta replaces the rice and beans.</p></div></li>
 <li class="k-train" data-at="20:00"><span class="t">Evening</span><span class="dot"></span><div class="what"><b>Pack tomorrow</b><p>Bag in the freezer. Tomorrow's box in the fridge. Bread and orange ready.</p></div></li>
 <li class="k-sleep" data-at="22:30"><span class="t">Tonight</span><span class="dot"></span><div class="what"><b>Phone away</b><p>At <a href="#sleep">your bedtime step</a>. Lights out 30 minutes later.</p></div></li>
 </ol>
@@ -228,8 +229,8 @@
 
 <div class="rail-day" id="day-sat" role="tabpanel" aria-labelledby="tab-sat" hidden>
 <ol>
-<li class="k-train"><span class="t">Morning</span><span class="dot"></span><div class="what"><b>Long run</b><p>Keep your established pre-run no-food rule. This page does not add or change a pre-run food. You reported using a little Honey Stinger waffle before long runs; that is recorded as prior practice, not a new recommendation. Drink to thirst.</p></div></li>
-<li class="k-food"><span class="t">After</span><span class="dot"></span><div class="what"><b>Breakfast</b><div class="who"><div><span>At home</span>Milk, bread, peanut butter, orange. <a href="#powder">Powder check</a>.</div><div><span>Out with your parents</span>3 eggs, 2 pancakes, a glass of whole milk</div></div><details><summary>Breakfast out is over an hour away</summary><p>Have milk and some of your breakfast bread at home first. Keep the rest for breakfast. Powder waits for the label check.</p></details></div></li>
+<li class="k-train"><span class="t">Morning</span><span class="dot"></span><div class="what"><b>Long run</b><p>Use your agreed food-timing plan. This page adds no waffle, gel, powder or snack around the run. Drink to thirst.</p></div></li>
+<li class="k-food"><span class="t">Breakfast<small>agreed time</small></span><span class="dot"></span><div class="what"><b>Breakfast</b><div class="who"><div><span>At home</span>Milk, bread, peanut butter, orange. <a href="#powder">Powder check</a>.</div><div><span>Out with your parents</span>3 eggs, 2 pancakes, a glass of whole milk</div></div><details><summary>Breakfast out is over an hour away</summary><p>Tell Brice when the family meal will be. Keep breakfast planned without moving food into your exercise window. Powder still waits for review.</p></details></div></li>
 <li class="k-food"><span class="t">Lunch</span><span class="dot"></span><div class="what"><b>Your usual burger or Cuban</b><p>Home with nothing planned? Your backup box, or the sandwich.</p></div></li>
 <li class="k-food"><span class="t">3:30</span><span class="dot"></span><div class="what"><b>The afternoon rule</b><div class="fork"><div><span>Lunch done by 1:30</span>A box or the sandwich.</div><div><span>Lunch later, still full</span>Skip it. Keep dinner. Hungry later? Sandwich.</div></div></div></li>
 <li class="k-food"><span class="t">6:30</span><span class="dot"></span><div class="what"><b>Dinner</b><p>Nugget night: your usual nuggets + <strong>1½ cups</strong> rice + <strong>1 cup</strong> green beans. Send Brice a photo of the nugget label once.</p></div></li>
@@ -240,7 +241,7 @@
 
 <div class="rail-day" id="day-sun" role="tabpanel" aria-labelledby="tab-sun" hidden>
 <ol>
-<li class="k-train"><span class="t">Morning</span><span class="dot"></span><div class="what"><b>Assigned sessions only</b><p>No run today? Banana with breakfast. Running today? Keep your established no-food window and eat after the run.</p></div></li>
+<li class="k-train"><span class="t">Morning</span><span class="dot"></span><div class="what"><b>Assigned sessions only</b><p>Use the same food-timing rule on weekends. This page adds no food before or between sessions.</p></div></li>
 <li class="k-food"><span class="t">Breakfast<small>+ lunch</small></span><span class="dot"></span><div class="what"><b>Home or out</b><p>Same as Saturday. Keep your family plans.</p></div></li>
 <li class="k-train"><span class="t">Before<small>shopping</small></span><span class="dot"></span><div class="what"><b>Check the freezer</b><p>A backup box still there changes this week. <a href="#prep-cycle">Freezer check</a>.</p></div></li>
 <li class="k-food"><span class="t">3:30</span><span class="dot"></span><div class="what"><b>The afternoon rule</b><div class="fork"><div><span>Lunch done by 1:30</span>Backup box or the sandwich.</div><div><span>Lunch later, still full</span>Skip it. Keep dinner.</div></div></div></li>
@@ -269,6 +270,7 @@
 
 <section class="section" id="recipes" aria-labelledby="recipes-title">
 <h2 id="recipes-title">Three meals worth repeating.</h2>
+<p class="small">Meal-prep reference. Use ingredients and meal times that fit your clinician's guidance; these recipes do not identify a trigger or clear a food around exercise.</p>
 <p>Start with <strong>01</strong>. Next cook, try <strong>02</strong>, then <strong>03</strong>. Then repeat your favorite. One recipe per batch.</p>
 <div class="recipe-grid">
 <article class="recipe-card" id="recipe-01"><figure><img src="https://www.sandravalvassori.com/wp-content/uploads/2024/01/Spaghetti-Meat-Sauce-100-2.jpg" alt="Spaghetti topped with rich meat sauce and grated Parmesan" width="900" height="1200" loading="lazy" decoding="async"><figcaption>Inspiration: <a href="https://www.sandravalvassori.com/spaghetti-with-meat-sauce/" target="_blank" rel="noopener">Sandra Valvassori ↗</a></figcaption></figure><div class="caption"><p class="label">01 · Start here</p><h3>Spaghetti with meat sauce.</h3><p>Soften onion, brown beef, build a real tomato sauce.</p></div><details><summary>Cook Recipe 01</summary><div class="inside"><p><strong>Finish:</strong> ¼ cup / 20 g grated Parmesan (half batch: 2 tbsp / 10 g).</p><ol><li>Make <a href="#base-method">the sauce</a>.</li><li>Boil the spaghetti. Save a mug of pasta water.</li><li>Back in the pot: sauce and Parmesan. Toss 1 minute on low. Too dry? Pasta water, 1 tbsp at a time.</li><li>Divide into 4 boxes (half batch: 2). Label. Into the fridge.</li></ol><p><strong>Cue:</strong> the sauce clings. No puddle underneath.</p></div></details></article>
@@ -456,7 +458,7 @@
 <li><strong>No box:</strong> 2 slices bread, 2 tbsp peanut butter, 1 tbsp jam, 8 fl oz whole milk. It replaces the missing meal, not breakfast. No extra scoop.</li>
 <li><strong>No milk with you:</strong> eat the sandwich and buy 8 fl oz of milk.</li>
 <li><strong>Missed Wednesday cook:</strong> the frozen backup Thursday, the sandwich Friday. Don't eat Sunday's boxes on Friday.</li>
-<li><strong>Evening run:</strong> keep your established several-hour no-food window. If the 3:30 box lands inside it, save the box for after the run. Do not use the backup sandwich as a pre-run workaround. <strong>Lift without a run:</strong> the 3:30 box or backup can stay.</li>
+<li><strong>Evening run or lift:</strong> use the <a href="#food-timing">food-timing rule</a>. Brice can move a meal that conflicts with training. Do not add a pre-session sandwich or assume a meal belongs immediately afterward.</li>
 <li><strong>Rest day:</strong> keep every meal.</li>
 <li><strong>Snacks you enjoy:</strong> Space Balls and Power Crunch can sit alongside your meals. Keep the 3:30 box or sandwich; a snack does not require another shake.</li>
 </ul></div></details>
@@ -475,10 +477,10 @@
 <p><strong>Get prompt medical care</strong> for severe or worsening muscle pain, marked weakness, dark urine or feeling unwell. One is enough. <a href="#sources">Source 9</a></p>
 </div></details>
 
-<details id="preferences"><summary>Your food preferences</summary><div class="inside"><div class="prefs"><div><h3>Foods you like</h3><ul><li>Spaghetti with meat sauce or meatballs; pasta.</li><li>Chili; meat and cheese; pizza.</li><li>Peanut butter and bread.</li><li>Rice, beans and green beans.</li><li>Chicken, beef, elk and tuna.</li><li>Chicken nuggets, burgers, eggs, bacon and pancakes.</li><li>Cheese, cream cheese and sour cream.</li><li>LesserEvil Space Balls, Real Organic Cheddar.</li></ul></div><div><h3>Leave these out</h3><ul><li>Greek yogurt.</li><li>Cottage cheese.</li><li>Brussels sprouts.</li><li>Mushrooms.</li></ul><h3>Already confirmed</h3><p>Whole milk and fruit are fine. Work gives you lunch and has a fridge and microwave. Your mom usually makes dinner. Weekends off, often eating out with your parents.</p></div></div><p><strong>Also at home:</strong> Power Crunch Triple Chocolate wafers are popular in your house. The wrapper shows 13 g protein; you reported 210 calories. Send the back label to confirm the serving.</p><p>Something in a recipe not working for you? Tell Brice. He'll swap it for something you like.</p></div></details>
+<details id="preferences"><summary>Your food preferences</summary><div class="inside"><div class="prefs"><div><h3>Foods you like</h3><ul><li>Spaghetti with meat sauce or meatballs; pasta.</li><li>Chili; meat and cheese; pizza.</li><li>Peanut butter and bread.</li><li>Rice, beans and green beans.</li><li>Chicken, beef, elk and tuna.</li><li>Chicken nuggets, burgers, eggs, bacon and pancakes.</li><li>Cheese, cream cheese and sour cream.</li><li>LesserEvil Space Balls, Real Organic Cheddar.</li></ul></div><div><h3>Leave these out</h3><ul><li>Greek yogurt.</li><li>Cottage cheese.</li><li>Brussels sprouts.</li><li>Mushrooms.</li></ul><h3>Already confirmed</h3><p>Whole milk and fruit are accepted preferences, not confirmed safe exercise foods. Work gives you lunch and has a fridge and microwave. Your mom usually makes dinner. Weekends off, often eating out with your parents.</p></div></div><p><strong>Also at home:</strong> Power Crunch Triple Chocolate wafers are popular in your house. The wrapper shows 13 g protein; you reported 210 calories. Send the back label to confirm the serving.</p><p>Something in a recipe not working for you? Tell Brice. He'll swap it for something you like.</p></div></details>
 
 <details id="scope"><summary>For Brice · plan record and sources</summary><div class="inside">
-<p><strong>Version 1.5.3</strong>, 23 September 2026. Adrian's first web nutrition companion. Recipes, portions, prep rhythm and timing are coaching judgments to test for adherence, taste and tolerance. No research tested this exact routine, and no calorie estimate is presented as a measured surplus.</p>
+<p><strong>Version 1.5.4</strong>, 23 September 2026. Adrian's first web nutrition companion. Recipes, portions, prep rhythm and timing are coaching judgments to test for adherence, taste and tolerance. No research tested this exact routine, and no calorie estimate is presented as a measured surplus.</p>
 <p>His running coach owns the run plan. His Forge strength program and records are unchanged. This update records supplements Adrian already used; it adds no training or new supplement dose. 156 lb is an athlete-reported working value, not a standardized baseline.</p>
 <p>Still to observe: start date, full intake and usual portions, powder tolerance, weight trend, sleep and recovery response, the nugget label. <a href="/labs/adrian-runner-mass/#intake-20260922">Dated study update ↗</a></p>
 <p id="supplement-note-20260923"><strong>23 September:</strong> snacks and post-workout bone-broth protein + creatine are athlete reports. Brands, doses, frequency and first-use date remain unverified. Record creatine exposure when interpreting weight or lean-mass changes. This does not confirm the full food plan has started. <a href="/docs/studies/ADRIAN-NUTRITION-OBSERVATIONS-20260923.json">Dated observation record</a>.</p>
@@ -499,7 +501,7 @@
 </div></details>
 </section>
 
-<footer class="footer"><a href="/labs/adrian-runner-mass/">FORM / Your study</a><span>Adrian only · Nutrition 01 · v1.5.3</span></footer>
+<footer class="footer"><a href="/labs/adrian-runner-mass/">FORM / Your study</a><span>Adrian only · Nutrition 01 · v1.5.4</span></footer>
 </main>
 <script>
 (function(){

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "nutrition_revision": "1.5.3",
+  "nutrition_revision": "1.5.4",
   "prepared_date": "2026-09-22",
   "athlete": "Adrian Gandara",
   "study_id": "FRM-001",
@@ -38,26 +38,30 @@
   },
   "confirmed_for_this_revision": {
     "weekends_off_work": "Athlete message screenshot supplied by coach in this conversation.",
-    "existing_long_run_gel_routine": "Coach confirmed in this conversation; exact products and dose are not replaced or inferred.",
+    "existing_long_run_gel_routine": "Previously reported use remains historical context. Product suitability and timing are not medically cleared by this page.",
     "morning_run_and_lift_context": "Training can occur in the morning or evening. Nutrition timing must not assume the run and lift are always morning sessions.",
     "strength_change_authorized": false,
     "evening_fueling_report": {
       "source": "Athlete voice note supplied by coach on 2026-09-23; athlete report, not an app completion receipt.",
       "reported_event_date": "2026-09-22",
       "report": "Adrian reported completing his run and strides, then lifting at night. He stopped after the first four of seven exercises because he was very hungry, tired and thirsty after a long gap without eating. He also reported cooked food had been sitting in the microwave for about two hours.",
-      "interpretation": "Evidence of a meal-timing/adherence problem on that day. It does not establish the cause of fatigue, prove a calorie deficit, or change the authored strength prescription.",
-      "response": "Breakfast is no longer conditional on training time. The 3:30 meal anchors evening training, the backup meal is used when that meal was missed, and room-temperature food holding is clarified."
+      "interpretation": "Athlete report of hunger, thirst and tiredness, with incomplete timing context. Not proof of nonadherence, a cause of fatigue or a measured calorie deficit.",
+      "response": "Breakfast is no longer conditional on training time. The 3:30 meal anchors evening training, the backup meal is used when that meal was missed, and room-temperature food holding is clarified.",
+      "prior_response_status": "The earlier food-before-training response is superseded by the individualized timing rule. Retain the earlier response only as a dated decision, not active advice.",
+      "current_response": "Fit adequate meals around clinician-confirmed food/exercise guidance; no automatic pre-session snack, lifting exemption or immediate post-exercise meal."
     },
     "pre_run_food_rule": {
       "source": "Athlete report supplied by coach on 2026-09-23.",
-      "rule": "Athlete reports he avoids food for several hours before running. Exact interval is intentionally not specified by this plan.",
+      "rule": "Athlete reports avoiding food for several hours before running. This remains a report, not a verified safety interval or a new fasting prescription.",
       "honey_stinger": "Athlete reports a small Honey Stinger waffle before prior long runs. Recorded as prior practice, not a newly prescribed or guaranteed-safe exception.",
-      "trigger_status": "No trigger food is identified by this public nutrition plan."
+      "trigger_status": "No trigger food is identified by this public nutrition plan.",
+      "interval_confirmed": false,
+      "lifting_exception_confirmed": false
     }
   },
   "nutrition_delivery": {
     "voice": "second person, Adrian only",
-    "workday_breakfast": "For an early run, breakfast follows the run or combined run/lift session. For a later run, breakfast remains earlier in the day but must preserve the athlete's established several-hour no-food interval before running. This plan does not insert food between a run and lift.",
+    "workday_breakfast": "Retain breakfast as a meal reference. Its timing follows individualized clinician guidance before and after exercise, not a fixed 8 a.m. deadline, between-session snack or immediate post-exercise instruction.",
     "weekends": "Family restaurant meals replace home meals. Explicit Saturday/Sunday and late-lunch instructions. No mandatory second pasta box on Saturday.",
     "initial_prep": "Sunday four portions: three refrigerated Mon-Wed and one frozen backup. Wednesday half batch: two refrigerated Thu-Fri.",
     "carryover": "When one spare remains, thaw for Monday; Sunday cook four, refrigerate Tue-Wed, freeze Thu-Fri, skip Wednesday cook. Unexpected surplus prompts inventory adjustment.",
@@ -79,7 +83,7 @@
       "Cheesy beef pasta, stovetop"
     ],
     "recipe_equivalence": "Different cream/cheese finishes are not calorie/protein-equivalent. These adaptations have not been kitchen-tested for Adrian; observe taste, yield, appetite and digestion.",
-    "long_run_fuel": "No new pre-run food is prescribed. Preserve the athlete's established no-food rule before running. A small Honey Stinger waffle is recorded only as athlete-reported prior long-run practice; this plan does not designate it as a safe exception.",
+    "long_run_fuel": "No new food, gel, waffle, powder or snack is prescribed around exercise. Prior Honey Stinger use is an athlete report only, not a confirmed safe exception.",
     "photo_checkin": "Two complete photo-days: one normal workday and Saturday. Replaces four isolated meal photos.",
     "protein_guide_g": [
       130,
@@ -88,8 +92,9 @@
     "calorie_surplus_measured": false,
     "automatic_day14_calorie_addition": false,
     "bedtime_progression": "First three nights phone 23:00 / lights out 23:30, both 30 minutes earlier every three nights to 21:00 / 21:30; opportunity is not measured sleep.",
-    "evening_training": "For an evening run, preserve the athlete's established several-hour no-food interval; if the 15:30 meal falls inside it, save the meal for after the run and do not add a backup sandwich before running. For lifting without a run, the 15:30 meal or backup remains available.",
-    "supplement_status": "Bone-broth protein and creatine use reported, products/doses unverified. Leave unreviewed powders out pending label review. No new creatine prescription."
+    "evening_training": "Runs and lifts use the same individual timing review. If the afternoon meal conflicts, keep it refrigerated and have the coach reschedule it within clinician guidance. No last-minute sandwich workaround or automatic meal immediately afterward.",
+    "supplement_status": "Bone-broth protein and creatine use reported, products/doses unverified. Leave unreviewed powders out pending label review. No new creatine prescription.",
+    "reference_scope": "Recipes, portions, shopping and prep tools remain available as references. Foods and times must fit individualized clinical guidance; no food is diagnosed as a trigger or medically cleared by this page."
   },
   "recipe_references": [
     {
@@ -111,9 +116,9 @@
   ],
   "machine_readability": "All athlete-facing instructions are static HTML, including native details contents. The HTML head links this JSON. Read the public authored program JSON without depending on JavaScript rendering; use authorized repository access for pinned native sources.",
   "privacy_boundary": "This public reference manifest contains no credentials, athlete emails, backend tokens, or private completed-session logs. Hiding HTML is not access control. Future Forge completion review must use authenticated, authorized data access, not a public JSON export.",
-  "interpretation_boundary": "Authored program, athlete reports, supplied result screenshots, listing-only results, device estimates and completed outcomes remain separate. The Sep 22 hunger report is an adherence/timing signal, not a causal finding. Nutrition, sleep and strength may change together; this record does not isolate a causal nutrition effect. Creatine exposure is now reported; start date and dose are unknown. Account for possible water-related weight changes without attributing measured outcomes to this supplement. The pre-run food interval is an athlete-reported safety constraint; exact timing and trigger identification are not inferred here.",
+  "interpretation_boundary": "Keep athlete reports, observations, measured outcomes and decisions separate. Publication does not confirm adherence or causation. The food-timing constraint is reported practice, not clinical clearance. Brands, doses and start dates for reported supplements remain unknown; do not attribute weight or lean-mass changes to them. Private medical history is not published.",
   "shopping": {
-    "revision": "1.5.3",
+    "revision": "1.5.4",
     "static_html": true,
     "check_state": "Browser-local only; no Forge sync or adherence receipt",
     "first_cycle": "Five workday meals and one frozen backup; not eight mandatory meals",
@@ -181,5 +186,25 @@
     },
     "reported_workout_date": null,
     "full_plan_start_confirmed": false
-  }
+  },
+  "release_status": "active_with_individual_timing_review",
+  "release_scope": "Owner-directed correction of an overbroad website hold. The companion remains available; this is not an incident report, outcome finding or medical clearance.",
+  "food_timing": {
+    "source": "Athlete-reported existing practice supplied by the coach, not a clinician-verified interval.",
+    "before_exercise_minutes": null,
+    "after_exercise_minutes": null,
+    "clinician_guidance_reviewed": false,
+    "applies_to": [
+      "running",
+      "lifting"
+    ],
+    "new_pre_run_snack_prescribed": false,
+    "new_between_session_food_prescribed": false,
+    "automatic_immediate_post_exercise_meal": false,
+    "new_food_or_supplement_trials_authorized": false,
+    "clock_driven_food_prompts_enabled": false,
+    "meal_reference_available": true,
+    "next_action": "Confirm individualized food and exercise guidance with the treating clinician; the coach then fits adequate meals around it. Do not infer a safe interval, trigger or exception."
+  },
+  "training_app_updated": false
 }
