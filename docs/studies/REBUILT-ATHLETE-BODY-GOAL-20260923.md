@@ -17,4 +17,12 @@ Historical measurements and completed training stay unchanged. The 180 lb protei
 The visible study and its embedded structured body record were updated together in `labs/rebuilt-athlete/index.html`. Actual weight and body-fat fields remain null until appropriate evidence is filed. This note records the owner decision for future agents. Native assignment changes or app synchronization are not claimed; no assigned workout was changed. Existing raster social artwork was not regenerated.
 
 ## Acceptance
-Current goal anchors, embedded-image preservation, measured-value preservation, JSON parsing and inline JavaScript syntax are checked before commit. Production deployment and rendered/device checks require separate verification. Source success alone is not a live-release claim.
+Current goal anchors, embedded-image preservation, measured-value preservation, JSON parsing and inline JavaScript syntax passed in GitHub Actions run `35942800253`.
+
+## Production receipt
+- Tested source: `fbb39b05c8ce5cc61ed4ac8a1178dd9a6c4a6d69` on `main`.
+- Netlify site: `f3914a6a-a9ce-465e-8212-f5f42597c469` (`speedandform.com`).
+- Production deploy: `6ab47beae42dc000086764a1`, ready and published September 24, 2026 at 01:25:30 UTC (September 23 in Miami).
+- Live browser run `03a42790-09b9-49fe-a9b9-8e836430ff06` confirmed the study statement, body destination and BODY card show 185 lb, preferred 180–185 lb and explicitly aspirational 8–10% body fat.
+- No clipping or overlap reported in the observed desktop goal areas. A narrow mobile viewport was not successfully exercised; mobile/device acceptance remains open. No blanket responsive-design claim.
+- This receipt supersedes the roadmap entry's pending production check. Native integration and raster social-card updates remain outside this patch.
