@@ -1,123 +1,38 @@
 name: Update Study 002 body goal
-
 on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths:
-      - '.github/workflows/update-study002-body-goal-20260923.yml'
-
+    paths: ['.github/workflows/update-study002-body-goal-20260923.yml']
 permissions:
-  contents: write
-
-concurrency:
-  group: study002-body-goal-20260923
-  cancel-in-progress: false
-
+  contents: read
 jobs:
-  update:
+  inspect:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           ref: main
-          fetch-depth: 0
-      - name: Apply the owner's revised goal without changing measurements or training
-        shell: bash
+      - name: Read current goal anchors
         run: |
           python3 - <<'PY'
           from pathlib import Path
           import re
-          import subprocess
-          import tempfile
-
-          page = Path('labs/rebuilt-athlete/index.html')
-          original = page.read_text(encoding='utf-8')
-          text = original
-          edits = [
-            ('quiet knee, 180 lb, 8–10% body fat, public log.', 'quiet knee, a 185 lb target within 180–185 lb, aspirational 8–10% body fat, public log.'),
-            ('<b>target:</b> 180 lb · 8–10% body fat.', '<b>target:</b> 185 lb · preferred range 180–185 lb · aspirational 8–10% body fat.'),
-            ('<span class="tile-label">Rebuild target</span><span class="tile-value">180</span><span class="tile-note">lb target · from 187.6 lb baseline</span>', '<span class="tile-label">Rebuild target</span><span class="tile-value">185</span><span class="tile-note">lb target · preferred range 180–185 lb</span>'),
-            ('<span class="tile-label">Body-fat target</span>', '<span class="tile-label">Body-fat aspiration</span>'),
-            ('<strong>180 lb / 8–10% BF remains the body target.</strong>', '<strong>185 lb is the target. 180–185 lb is the preferred range.</strong>'),
-            ('The target clarifies the rebuild without becoming a clearance shortcut.', '8–10% body fat remains an aspiration, not a required scale reading or a clearance shortcut.'),
-            ('<span>180 lb target</span><span>8–10% body fat</span>', '<span>185 lb target</span><span>180–185 lb preferred range</span><span>8–10% body-fat aspiration</span>'),
-            ('<span class="label">Body target</span><strong>180 lb · 8–10% BF</strong>', '<span class="label">Body target</span><strong>185 lb · 180–185 lb preferred range</strong>'),
-            ('Comfortable 8:00/mi running, 180 lb, 8–10% body fat, better obstacle durability and integrated triathlon/obstacle capacity', 'Comfortable 8:00/mi running, a 185 lb target within a preferred 180–185 lb range, aspirational 8–10% body fat, better obstacle durability and integrated triathlon/obstacle capacity'),
-            ('The weight/body-composition targets stay <strong>180 lb · 8–10% BF</strong>, but they are direction-of-travel markers—not a reason to hurry tissue.', 'The bodyweight target is <strong>185 lb</strong>, with a preferred <strong>180–185 lb</strong> range. <strong>8–10% body fat is aspirational</strong>, not a required scale reading or a reason to hurry tissue.')
-          ]
-          changed = 0
-          for old, new in edits:
-              count = text.count(old)
-              if count:
-                  text = text.replace(old, new)
-                  changed += count
-                  print(f'Updated {count} occurrence(s): {old[:100]}')
-              elif new not in text:
-                  raise SystemExit(f'Source drift: expected goal text is absent: {old[:120]}')
-
-          marker = '<!-- study002-body-goal-20260923: 185 lb target; 180–185 lb preferred range; 8–10% BF aspiration. Historical observations and training unchanged. -->'
-          if marker not in text:
-              if '</head>' not in text:
-                  raise SystemExit('Missing head closing tag')
-              text = text.replace('</head>', marker + '\n</head>', 1)
-
-          # Protect all embedded images, clinical/date anchors, and script syntax.
-          data_uri = r'data:image/[^\s\"\'<>]+'
-          assert re.findall(data_uri, original) == re.findall(data_uri, text), 'Embedded image changed'
-          assert original.count('2026-07-28') == text.count('2026-07-28'), 'Day 1 anchor changed'
-          assert original.count('187.6') == text.count('187.6') + 1, 'Unexpected baseline edit'
-          assert 'Clinical clearance, 0–2/10 pain, no new effusion, next-morning response, and clean mechanics still decide the impact ladder.' in text
-          for old, _ in edits:
-              assert old not in text, f'Old current-goal wording remains: {old[:100]}'
-          with tempfile.TemporaryDirectory() as tmp:
-              for n, match in enumerate(re.finditer(r'<script\b([^>]*)>(.*?)</script\s*>', text, re.I | re.S)):
-                  attrs, code = match.groups()
-                  if not code.strip() or 'application/ld+json' in attrs or 'application/json' in attrs:
-                      continue
-                  suffix = '.mjs' if 'module' in attrs else '.js'
-                  candidate = Path(tmp) / f'inline-{n}{suffix}'
-                  candidate.write_text(code, encoding='utf-8')
-                  subprocess.run(['node', '--check', str(candidate)], check=True)
-          page.write_text(text, encoding='utf-8')
-
-          note = Path('docs/studies/REBUILT-ATHLETE-BODY-GOAL-20260923.md')
-          note.parent.mkdir(parents=True, exist_ok=True)
-          note.write_text('''# Rebuilt Athlete: body-goal revision
-
-          Owner decision: Brice, September 23, 2026.
-
-          ## Current goal
-
-          - Headline bodyweight target: **185 lb**, replacing 180 lb.
-          - Preferred range: **180–185 lb**. The lower end is not a compulsory finish line.
-          - Body fat: **8–10% as an aspiration**, not a required smart-scale reading, diagnosis, clearance gate or reason to force weight loss.
-          - Preserve the fuller, more muscular build the athlete likes. Additional muscle is welcome within his chosen weight preference; a sustained 190 lb baseline is not his objective.
-
-          ## Evidence and next decision
-
-          The athlete reports liking how he looks. New photos and comparable morning readings are pending. Do not convert a single evening measurement into an established morning baseline, diagnose a body-composition change, or prescribe a five-pound cut from it. No calorie deficit, new training load, or clinical clearance was authorized by this goal revision.
-
-          Preserve earlier dated measurements and the target that applied to historical entries. Do not rewrite the surgery timeline, Day 1, completed work, or injury evidence. This is an aspiration update, not a change to an assigned workout.
-
-          ## Surface scope and evidence
-
-          This change updates the current target text and search/social descriptions in `labs/rebuilt-athlete/index.html`, including the dynamically inserted target note. Embedded images are unchanged. The existing raster social card has not been regenerated. Native app and canonical athlete-assignment sync are not claimed by this website patch. Any future goal field in those systems must use this owner decision rather than reinstating 180 lb.
-
-          Acceptance: exact source anchors, unchanged embedded images and clinical/day anchors, and inline JavaScript syntax are checked before committing. Deployment and visual/device checks must be reported separately; a source commit alone is not live proof.
-          '''.replace('\n          ', '\n'), encoding='utf-8')
-          print(f'Applied {changed} goal-text changes. Historical data and clinical guidance preserved.')
+          path = Path('labs/rebuilt-athlete/index.html')
+          text = path.read_text()
+          text = re.sub(r'data:image/[^\s\"\'<>]+', '[EMBEDDED_IMAGE]', text)
+          print('STUDY_GOAL_SOURCE_BEGIN')
+          lines = text.splitlines()
+          targets = set()
+          for n, line in enumerate(lines):
+              if re.search(r'180|185|8.{0,6}10|goal|target|body.?fat|body.?comp', line, re.I) and len(line) < 3000:
+                  targets.update(range(max(0,n-1),min(len(lines),n+2)))
+          for n in sorted(targets):
+              print(f'{n+1}: {lines[n]}')
+          print('STUDY_GOAL_SOURCE_END')
+          print('STUDY_RELATED_FILES')
+          for root in ['docs/studies','assets/data']:
+              for f in Path(root).glob('*'):
+                  if any(s in f.name.lower() for s in ['rebuilt','brice','002']):
+                      print(f)
           PY
-      - name: Commit the scoped update
-        shell: bash
-        run: |
-          git config user.name 'Speed & Form Automation'
-          git config user.email 'actions@speedandform.com'
-          git add labs/rebuilt-athlete/index.html docs/studies/REBUILT-ATHLETE-BODY-GOAL-20260923.md
-          if git diff --cached --quiet; then
-            echo 'Goal already current.'
-            exit 0
-          fi
-          git diff --cached --stat
-          git commit -m 'Set Rebuilt Athlete goal to 185 lb with preferred 180–185 lb range'
-          git push origin HEAD:main
