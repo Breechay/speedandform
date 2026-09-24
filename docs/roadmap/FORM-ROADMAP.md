@@ -1,5 +1,18 @@
 # FORM: current state and next actions
 
+## September 24 - Adrian first circumference checkpoint
+
+Five self-measured circumferences, taken September 24 and confirmed in inches by Brice. Source: [dated measurement record](../studies/ADRIAN-MEASUREMENTS-20260924.json). The generator updates STUDY.measurements, the athlete summary, body evidence, current read and collection queue together. Historical missing-baseline and prior reading entries are preserved. This is an early-block checkpoint, not a pre-intervention baseline or a growth result. Relaxed thigh is not silently relabeled mid-thigh. Run, strength, nutrition, assignments and native code are unchanged.
+
+- [x] Dated source and connected study projections authored.
+- [x] Generator validates exact values, missing-value semantics and preserved history/prescriptions.
+- [ ] Production verification follows acceptance and promotion; a branch is not live.
+- [ ] Confirm tape locations, side and capture conditions for repeat measurements.
+- [ ] Standardized mass trend, comparison photos and physical-phone review remain open.
+
+Acceptance run: https://github.com/Breechay/speedandform/actions/runs/36049546578. Tested source commit: 75f65e10bef21caa2fcdb6303910d886adcc33b4.
+
+
 ## September 24 - Adrian nutrition development range, v1.5.8
 
 Athlete-facing framing now shows the arc: **start ~3,000 kcal/day; possible development range ~3,000-3,400 kcal/day**. The upper end is not the current prescription. Review 10-14 days of weight trend, measurements, appetite/meal comfort and running/lifting response before increasing; typical step 150-250 kcal/day. This is meant to normalize that more intake may be required for a high-activity runner trying to add mass without turning 3,400 into a mandatory number. Pre-run food boundary, supplements and training assignments are unchanged.
