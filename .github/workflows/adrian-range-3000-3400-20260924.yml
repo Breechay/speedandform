@@ -1,0 +1,50 @@
+name: Adrian development range acceptance
+on:
+  push:
+    branches: [work/adrian-range-3000-3400-20260924]
+permissions:
+  contents: write
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare current main
+        run: |
+          cp scripts/set-adrian-development-range-20260924.py /tmp/adrian-range.py
+          cp tests/adrian-nutrition-range.py /tmp/adrian-range-test.py
+          git fetch origin main
+          git switch --detach origin/main
+          test "$(git rev-parse HEAD)" = 9e4fd9f994abce1a881192483fd3a34cbe0081c5
+          cp /tmp/adrian-range-test.py tests/adrian-nutrition-range.py
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install acceptance dependencies
+        run: |
+          pip install playwright==1.58.0 beautifulsoup4
+          python -m playwright install --with-deps chromium
+      - name: Apply range and run scoped checks
+        run: |
+          python /tmp/adrian-range.py
+          git diff > /tmp/first.diff
+          python /tmp/adrian-range.py
+          git diff > /tmp/second.diff
+          cmp /tmp/first.diff /tmp/second.diff
+          python tests/adrian-nutrition-range.py
+          python tests/adrian-nutrition-target.py
+          python tests/adrian-nutrition-foodday.py
+          python tests/adrian-nutrition-labels.py
+          python tests/adrian-nutrition-timing.py
+      - name: Six-width browser acceptance
+        run: python tests/adrian-nutrition-v15.py
+      - name: Publish validated range release
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/studies/ADRIAN-NUTRITION-DECISION-20260924.json docs/studies/ADRIAN-NUTRITION-HOLD-20260923.md docs/roadmap/FORM-ROADMAP.md plans/adrian-nutrition-phase-01/index.html plans/adrian-nutrition-phase-01/review-context.json tests/adrian-nutrition-range.py tests/adrian-nutrition-target.py tests/adrian-nutrition-foodday.py tests/adrian-nutrition-labels.py tests/adrian-nutrition-timing.py
+          test "$(git diff --cached --name-only | wc -l)" -eq 10
+          git diff --cached --check
+          git commit -m 'Adrian v1.5.8: show 3000-3400 development range'
+          git push origin HEAD:refs/heads/work/validated-adrian-range-3000-3400-20260924
