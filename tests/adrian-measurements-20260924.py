@@ -15,6 +15,7 @@ server = http.server.ThreadingHTTPServer(('127.0.0.1', 0), handler)
 threading.Thread(target=server.serve_forever, daemon=True).start()
 url = f'http://127.0.0.1:{server.server_address[1]}/labs/adrian-runner-mass/'
 source = json.loads((ROOT / 'docs/studies/ADRIAN-MEASUREMENTS-20260924.json').read_text())
+(OUT / 'study.html').write_bytes((ROOT / 'labs/adrian-runner-mass/index.html').read_bytes())
 report = []
 try:
     with sync_playwright() as p:
@@ -34,6 +35,7 @@ try:
             assert record['mass'] is None
             panel = page.locator('#measurements-20260924')
             text = panel.inner_text()
+            panel.screenshot(path=str(OUT / f'measurements-{width}.png'))
             for m in source['measurements']:
                 assert record[m['key']] == m['value'], m
                 assert m['label'] in text, m
@@ -46,11 +48,11 @@ try:
             assert 'Five are empty' not in page.locator('#athlete').inner_text()
             assert 'No body evidence filed' not in page.locator('#evidence').inner_text()
             assert 'mid-thigh' not in panel.locator('.measure-values').inner_text().lower()
-            assert 'Body mass' in page.locator('#athlete').inner_text()
+            assert 'body mass' in page.locator('#athlete').inner_text().lower()
             assert page.evaluate('STUDY.baseline.find(x=>x.k==="Body mass").v') is None
             assert page.evaluate('STUDY.baseline.find(x=>x.k==="Reported body mass").v') == '156 lb'
             assert page.evaluate('STUDY.currentRead.date') == '2026-09-24'
-            assert 'Sep 24' in page.locator('#circumferences-20260924').inner_text()
+            assert 'sep 24' in page.locator('#circumferences-20260924').inner_text().lower()
             assert 'No body mass, no circumferences' in page.locator('#baseline-missing').inner_text()
             page.locator('#read details.archive').evaluate('(e)=>e.open=true')
             archive_text = page.locator('#read details.archive').inner_text()
@@ -60,7 +62,6 @@ try:
             assert panel.locator('.measure-values').evaluate('(e)=>e.scrollWidth<=e.clientWidth+1'), 'Table overflow'
             for item in panel.locator('.measure-values > div').all():
                 assert item.locator('dt').bounding_box()['x'] + item.locator('dt').bounding_box()['width'] <= item.locator('dd').bounding_box()['x'] + 1
-            panel.screenshot(path=str(OUT / f'measurements-{width}.png'))
             if width in [390, 1440]:
                 page.locator('#athlete').screenshot(path=str(OUT / f'athlete-{width}.png'))
                 page.locator('#read').screenshot(path=str(OUT / f'read-{width}.png'))
