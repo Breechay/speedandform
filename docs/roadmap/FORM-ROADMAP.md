@@ -371,3 +371,7 @@ Acceptance note: the dedicated Miami regression and 71-page reading checks pass.
 ### 23 September 2026 · Adrian nutrition delivery hold
 - Nutrition companion v1.5.2: previous instructions withdrawn pending clinician review. See [release hold](../studies/ADRIAN-NUTRITION-HOLD-20260923.md). No private medical details published. Training app and imported reminders are not changed by this release.
 - Gate: explicit coach-authorized replacement after individualized guidance. Use `python tests/adrian-nutrition-hold.py`; verify production before calling this live.
+
+## Rebuilt Athlete body goal · 2026-09-23
+
+Owner-approved aspiration revision: 185 lb target; 180–185 lb preferred range; 8–10% body fat aspirational. Visible study and embedded body record updated together. Measurements, completed work and native assignments unchanged. See `docs/studies/REBUILT-ATHLETE-BODY-GOAL-20260923.md`. Automated source/JSON/JavaScript checks run in the goal-update workflow; production and device verification remain separate release checks.
