@@ -1,0 +1,57 @@
+name: Adrian label follow-up acceptance
+on:
+  push:
+    branches: [work/adrian-labels-20260923]
+permissions:
+  contents: write
+concurrency:
+  group: adrian-labels-20260923
+  cancel-in-progress: false
+jobs:
+  validate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare on current main without changing production
+        run: |
+          cp scripts/record-adrian-labels-20260923.py /tmp/adrian-labels.py
+          git fetch origin main
+          git switch --detach origin/main
+          git rev-parse HEAD > /tmp/adrian-labels-base.txt
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install existing test dependencies
+        run: |
+          pip install playwright==1.58.0 beautifulsoup4
+          python -m playwright install --with-deps chromium
+      - name: Apply and verify repeatability
+        run: |
+          python /tmp/adrian-labels.py
+          sed -i 's/clear lot\/expiry details/clear lot number and expiry details/g' plans/adrian-nutrition-phase-01/index.html
+          git diff > /tmp/first.diff
+          python /tmp/adrian-labels.py
+          git diff > /tmp/second.diff
+          cmp /tmp/first.diff /tmp/second.diff
+          python tests/adrian-nutrition-labels.py
+      - name: Six-width browser acceptance
+        run: python tests/adrian-nutrition-v15.py
+      - name: Publish tested source to holding branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add plans/adrian-nutrition-phase-01/index.html plans/adrian-nutrition-phase-01/review-context.json docs/studies/ADRIAN-NUTRITION-LABELS-20260923.json docs/studies/ADRIAN-NUTRITION-CURRENT.md docs/studies/ADRIAN-NUTRITION-HOLD-20260923.md docs/roadmap/FORM-ROADMAP.md AGENTS.md tests/adrian-nutrition-labels.py
+          test "$(git diff --cached --name-only | wc -l)" -eq 8
+          git diff --cached --check
+          git commit -m 'Adrian v1.5.4: record supplement labels and intake; keep live without pre-run feeding'
+          git push origin HEAD:refs/heads/work/validated-adrian-labels-20260923
+          echo "VALIDATED_COMMIT=$(git rev-parse HEAD)"
+          echo "VALIDATED_BASE=$(cat /tmp/adrian-labels-base.txt)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: adrian-labels-acceptance
+          path: /tmp/adrian-nutrition-v15/
+          retention-days: 7
