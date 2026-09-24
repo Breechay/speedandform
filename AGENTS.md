@@ -85,3 +85,5 @@ For a coached athlete, the canonical future prescription is the athlete's author
 
 ## Simon / Study 003
 Before any Simon plan, evidence or study edit, read [Study 003 protocol](docs/studies/SIMON-STUDY-003.md). R2 supersedes the earlier automatic Thursday escalation and October 27 continuous test. Preserve historical evidence, very easy recoveries, the separated Gate 01 window, and the approved-publication/app parity contract.
+## Adrian nutrition: current release and timing
+The blanket v1.5.2 website hold is superseded. Read [current release scope](docs/studies/ADRIAN-NUTRITION-HOLD-20260923.md) and the current review-context JSON. Keep the companion available; do not recreate the blanket shutdown from historical notes. Do not reinsert pre-run snacks, between-session food, a lifting exemption, a fixed fasting interval or immediate post-exercise meals without individualized clinical guidance. No reported history is automatically a new incident or a plan-caused outcome. Keep private medical details off public surfaces. Native assignments are unchanged.

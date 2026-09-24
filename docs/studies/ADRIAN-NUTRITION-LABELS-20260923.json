@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "record_type": "label_photo_and_athlete_report_followup",
+  "recorded_on": "2026-09-23",
+  "athlete": "Adrian Gandara",
+  "study_id": "FRM-001",
+  "source": "Five product photographs and one message screenshot supplied by Brice. Originals are not published.",
+  "source_files": [
+    "IMG_4657.jpeg",
+    "IMG_4658.jpeg",
+    "IMG_4659.jpeg",
+    "IMG_4660.jpeg",
+    "IMG_4661.jpeg",
+    "IMG_7964.jpeg"
+  ],
+  "follows_record": "docs/studies/ADRIAN-NUTRITION-OBSERVATIONS-20260923.json",
+  "bone_broth_protein": {
+    "brand": "Designs for Health",
+    "product": "Bone Broth Protein",
+    "flavor": "Chocolate",
+    "label_verified_from_supplied_photos": true,
+    "serving_size_powder_g": 27,
+    "serving_description": "approximately one scoop",
+    "servings_per_container": 30,
+    "net_weight_g": 810,
+    "per_labeled_serving": {
+      "calories_kcal": 110,
+      "protein_g": 21,
+      "carbohydrate_g": 3,
+      "fiber_g": 1,
+      "fat_g": 1.5,
+      "iron_mg": 1,
+      "sodium_mg": 150,
+      "potassium_mg": 150
+    },
+    "ingredients_as_photographed": [
+      "Bone broth collagen protein (HydroBEEF)",
+      "Natural flavors",
+      "Cocoa powder",
+      "Medium chain triglycerides",
+      "Steviol glycosides (from organic Stevia rebaudiana leaf)",
+      "Silicon dioxide"
+    ],
+    "protein_source": "Collagen-rich beef protein isolate; not whey.",
+    "manufacturer_claim": "Side label describes HydroBEEF as containing both complete and collagen proteins. Manufacturer webpage describes all essential amino acids. These are manufacturer statements, not an independent amino-acid assay.",
+    "quantitative_amino_acid_profile": null,
+    "leucine_g_per_serving": null,
+    "equivalent_to_whey_confirmed": false,
+    "not_assumed_to_be_pure_collagen_or_incomplete": true,
+    "label_mixing_information": "27 g in 8 ounces of water or another beverage; label information only, not a prescribed drink or timing.",
+    "actual_powder_g_per_use": null,
+    "frequency": null,
+    "first_use_date": null,
+    "lot_number": null,
+    "expiry_date": null,
+    "lot_note": "Lot and expiry not visible in the supplied protein photos.",
+    "independent_product_or_lot_testing_verified": false,
+    "individual_use_or_timing_cleared": false,
+    "source_files": [
+      "IMG_4657.jpeg",
+      "IMG_4658.jpeg",
+      "IMG_4659.jpeg"
+    ]
+  },
+  "creatine": {
+    "brand": "BulkSupplements.com",
+    "product": "Creatine Monohydrate Powder",
+    "flavor": "Unflavored",
+    "label_verified_from_supplied_photos": true,
+    "form": "Creatine monohydrate",
+    "labeled_serving_g": 5,
+    "label_serving_description": "2 tsp (about 5 g)",
+    "servings_per_container": 200,
+    "net_weight_g": 1000,
+    "other_ingredients_as_photographed": "None",
+    "actual_g_per_use": null,
+    "frequency": null,
+    "first_use_date": null,
+    "loading_phase_reported": null,
+    "new_dose_prescribed": false,
+    "new_loading_phase_prescribed": false,
+    "lot_number": null,
+    "expiry_date": null,
+    "lot_note": "A lot/expiry stamp is photographed; angled print needs confirmation before an exact lot is used for verification.",
+    "independent_product_or_lot_testing_verified": false,
+    "individual_use_or_timing_cleared": false,
+    "source_files": [
+      "IMG_4660.jpeg",
+      "IMG_4661.jpeg"
+    ]
+  },
+  "intake_report": {
+    "source_file": "IMG_7964.jpeg",
+    "date_basis": "Same-day coach conversation context; screenshot says Today, without an absolute date.",
+    "reported_day": "2026-09-23",
+    "before_lunch_reported_kcal": 1300,
+    "later_running_total_reported_kcal": 2260,
+    "later_report_context": "Reported before the planned run and dinner; not a claim of eating immediately before running.",
+    "message_time_visible": "2:51 PM",
+    "lunch_reported": "Rice, beans and rotisserie chicken from La Granja.",
+    "meal_size_feedback": "Athlete described the large lunch as difficult to finish.",
+    "portion_weights_or_complete_food_log_supplied": false,
+    "calories_independently_verified": false,
+    "daily_total_kcal": null,
+    "energy_expenditure_kcal": null,
+    "surplus_kcal": null,
+    "run_completed_from_this_message": false,
+    "full_plan_start_confirmed": false,
+    "interpretation": "An intake self-report plus a meal-size concern. No calorie target, measured surplus, muscle gain, or success from forcing food is inferred.",
+    "coaching_response": "Record the full day and comfortable meal sizes. Do not force a larger meal to beat a number or add pre-run food."
+  },
+  "boundaries": {
+    "keep_page_live": true,
+    "new_prerun_food_or_supplement_prescription": false,
+    "fasting_interval_prescribed": null,
+    "automatic_immediate_postexercise_or_lifting_exception": false,
+    "timing_owner": "Treating clinician; coach implements reviewed guidance.",
+    "training_assignment_changed": false,
+    "native_app_sync_claimed": false,
+    "medical_history_published": false,
+    "label_information_is_not_individual_clearance": true
+  },
+  "sources": [
+    {
+      "url": "https://www.designsforhealth.com/products/bone-broth-protein",
+      "role": "Manufacturer identity and protein description; photographed package controls recorded macros."
+    },
+    {
+      "url": "https://www.bulksupplements.com/products/creatine-monohydrate",
+      "role": "Manufacturer identity only. Website dosing/marketing is not adopted."
+    },
+    {
+      "url": "https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-HealthProfessional/",
+      "role": "General protein-quality and creatine/weight interpretation, not individual approval."
+    }
+  ],
+  "privacy": "No screenshots, home images, clinical history, diagnosis claims, contact details or private exercise logs are copied into the public repository."
+}

@@ -18,6 +18,19 @@ Open, one operating checklist:
 - [ ] Confirm this data revision on the physical iPhone. No app binary change is required for these prescriptions.
 
 Saumur remains May 16, 2027; February 1 anchors the 15-week specific calendar, not pre-approved workout numbers.
+## September 23 - Adrian supplement labels and intake, v1.5.5
+
+Both product labels are recorded; actual dose, frequency and first-use dates remain unknown. Reported intake was 1,300 kcal before lunch and 2,260 later in the afternoon, with a large lunch difficult to finish. These are not measured surplus or a calorie target. Preserve the concurrently released individual-timing rules and keep the page available with no pre-run feeding. Source: [label/intake record](../studies/ADRIAN-NUTRITION-LABELS-20260923.json).
+
+Acceptance run: https://github.com/Breechay/speedandform/actions/runs/35937414859. Label, timing and six-width browser checks gate promotion. Production must be verified separately against the tested commit. Remaining input: actual supplement use and lot verification, complete food-day record and clinician guidance. No training assignment or native sync claim.
+
+## September 23 - Adrian nutrition: scoped timing correction, v1.5.4
+
+The blanket v1.5.2 website hold is superseded. Keep the food companion available, preserving recipes, portions, preferences, shopping state and sleep tools. Remove only conflicting exercise-adjacent instructions; no new fasting interval, food trial, immediate post-exercise meal or lifting-only exemption. Clinical guidance resolves food/timing; the coach then fits adequate meals around it. No diagnosis, current incident or plan-caused outcome is inferred. Private details stay off the site and repository. FORM/Forge assignments and imported phone reminders are unchanged.
+
+Current release rule: [Adrian nutrition scope](../studies/ADRIAN-NUTRITION-HOLD-20260923.md). Web release authority: `plans/adrian-nutrition-phase-01/review-context.json`.
+
+Acceptance and validated output commit: https://github.com/Breechay/speedandform/actions/runs/35936585400. Six-width browser and targeted timing checks must pass before promotion. Production verification is separate and must follow promotion; this source note is not a live claim. Remaining input: individualized food/exercise timing guidance and coach placement of meals. Do not silently restore the old blanket hold.
 
 
 ## September 23 — Study 003 live; active Labs set reconciled
@@ -353,3 +366,8 @@ Bounded source repair: the shared Thursday schedule renders again; the Instagram
 Source acceptance is recorded in `docs/audits/MIAMI-FUNCTIONAL-V2-RECEIPT-20260923.json` and `tests/miami-community-schedule.cjs`. The release is not a new copy pass. Miami now has its dedicated `RUN MIAMI.` 1200×630 share card wired into page metadata and the share-preserve registry. HYROX keeps its current working share card; Speed That Endures and the homepage are unchanged. The personal Miami copy pass remains held for Brice's five answers. A successful branch check is not proof of a production deployment; verify the production commit before calling this live.
 
 Acceptance note: the dedicated Miami regression and 71-page reading checks pass. The broad share suite fails on the same pre-existing Library snapshot mismatch on both base `84eed912` and the candidate. The Library file and original share test remain unchanged. This release does not claim the entire sitewide share suite passed.
+
+
+### 23 September 2026 · Adrian nutrition delivery hold
+- Nutrition companion v1.5.2: previous instructions withdrawn pending clinician review. See [release hold](../studies/ADRIAN-NUTRITION-HOLD-20260923.md). No private medical details published. Training app and imported reminders are not changed by this release.
+- Gate: explicit coach-authorized replacement after individualized guidance. Use `python tests/adrian-nutrition-hold.py`; verify production before calling this live.
