@@ -1,0 +1,117 @@
+name: Simon Study 003 R2
+on:
+  push:
+    branches: [work/simon-evidence-hardening-20260923]
+    paths:
+      - scripts/studies/build-simon-r2.cjs
+      - scripts/studies/refine-simon-r2.cjs
+      - labs/the-two-curves/plan-projection.js
+      - labs/the-two-curves/evidence.json
+      - tests/simon-study-r2.cjs
+      - tests/simon-study-browser.py
+      - .github/workflows/simon-study-r2.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: simon-study-r2-review
+  cancel-in-progress: false
+jobs:
+  build-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+      - name: Reconcile concurrent main without discarding other athlete work
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'FORM Study Review'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          if ! git merge-base --is-ancestor origin/main HEAD; then
+            if ! git merge --no-commit --no-ff origin/main; then
+              python - <<'PY'
+          import pathlib, subprocess, tempfile
+          conflicts = subprocess.check_output(['git','diff','--name-only','--diff-filter=U'], text=True).splitlines()
+          allowed = {'AGENTS.md', 'docs/roadmap/FORM-ROADMAP.md'}
+          if not conflicts or not set(conflicts).issubset(allowed):
+              raise SystemExit('Unexpected merge conflict; manual review required: '+repr(conflicts))
+          for name in conflicts:
+              versions = [subprocess.check_output(['git','show',f':{stage}:{name}']) for stage in (1,2,3)]
+              with tempfile.TemporaryDirectory() as tmp:
+                  base, ours, theirs = [pathlib.Path(tmp)/n for n in ('base','ours','theirs')]
+                  for path, data in zip((base,ours,theirs), versions): path.write_bytes(data)
+                  merged = subprocess.check_output(['git','merge-file','--union','-p',str(ours),str(base),str(theirs)])
+              if b'<<<<<<<' in merged or b'>>>>>>>' in merged:
+                  raise SystemExit('Unresolved conflict in '+name)
+              # Preserve every existing nonblank line from both scoped additions.
+              merged_lines = set(merged.splitlines())
+              for source in versions[1:]:
+                  missing = [line for line in source.splitlines() if line.strip() and line not in merged_lines]
+                  if missing: raise SystemExit('Concurrent document content lost in '+name)
+              pathlib.Path(name).write_bytes(merged)
+              subprocess.run(['git','add','--',name], check=True)
+          PY
+            fi
+            git commit -m 'Merge main into Simon release; preserve both athlete documentation updates'
+          fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Build from the approved publication
+        run: |
+          mkdir -p /tmp/simon-study-qa
+          node --check scripts/studies/build-simon-r2.cjs
+          node --check labs/the-two-curves/plan-projection.js
+          node scripts/studies/build-simon-r2.cjs | tee /tmp/simon-study-qa/build.json
+          node tests/simon-study-r2.cjs /tmp/simon-study-qa/contract.json
+          node tests/cream-reading.cjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Browser tooling
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium webkit
+      - name: Responsive and failure-state acceptance
+        run: |
+          python -m http.server 8765 >/tmp/simon-study-server.log 2>&1 &
+          python tests/simon-study-browser.py
+      - name: Public access contract
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'),assert=require('assert/strict');
+          const api='https://pbgsjjegycacodiltbhn.supabase.co/rest/v1/rpc/';
+          const headers={apikey:'sb_publishable_5Dg5TUvnh2mEo-zCYAbgmw_WHNXKDqj','Content-Type':'application/json'};
+          (async()=>{
+            const r=await fetch(api+'study_003_plan',{method:'POST',headers,body:'{}'});assert.equal(r.status,200);const p=await r.json();assert.equal(p.state,'published');assert.equal(p.payload.version.number,2);
+            const denied=await fetch(api+'public_plan',{method:'POST',headers,body:JSON.stringify({p_slug:'race-pace-durability'})});assert.ok([401,403,404].includes(denied.status));
+            const arbitrary=await fetch(api+'study_003_plan',{method:'POST',headers,body:JSON.stringify({p_slug:'race-pace-durability'})});assert.ok([400,404].includes(arbitrary.status));
+            fs.writeFileSync('/tmp/simon-study-qa/access.json',JSON.stringify({approved_projection:r.status,version:p.payload.version.number,paid_plan_denied:denied.status,arbitrary_slug_denied:arbitrary.status},null,2));
+          })().catch(e=>{console.error(e);process.exitCode=1});
+          NODE
+      - name: Commit only generated study projections and pointers
+        run: |
+          set -euo pipefail
+          git config user.name 'FORM Study Review'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add labs/the-two-curves/index.html labs/the-two-curves/published-plan.json labs/the-two-curves/published-plan.js AGENTS.md docs/roadmap/FORM-ROADMAP.md scripts/studies/build-simon-r2.cjs
+          if ! git diff --cached --quiet; then
+            git commit -m 'Study 003: publish reviewed evidence, recovery-led plan and agent protocol'
+          fi
+          git fetch origin ${{ github.ref_name }}
+          # Do not rebase after testing: retain the resolved merge tree.
+          # A concurrent branch change must fail this check instead of being overwritten.
+          git merge-base --is-ancestor origin/${{ github.ref_name }} HEAD
+          git push origin HEAD:${{ github.ref_name }}
+          git rev-parse HEAD > /tmp/simon-study-qa/tested-commit.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: simon-study-r2-acceptance
+          path: /tmp/simon-study-qa/
+          retention-days: 14

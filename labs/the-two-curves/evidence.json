@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "publication": "SIMON-003-EVIDENCE-20260923",
+  "approved_by": "Coach instruction in the September 23 study review",
+  "scope": "Approved historical study excerpts. Not a complete activity history and not an automated publication of private filings.",
+  "archive": {
+    "uploaded_name": "Archive(20260923-230652).zip",
+    "earlier_review_alias": "Archive(20260923-230710).zip",
+    "sha256": "f569106fc9659a4b0153edaee668b77bf8cf489a04f5ae7f7e5084257ab2ac61",
+    "screenshot_count": 18,
+    "manifest_verified_against_uploaded_bytes": true,
+    "raw_fit_tcx_csv_available": false,
+    "year_qualification": "Garmin screenshots omit year. The 2026 context is supplied by the coach; March 25 also matches the dated Strava record."
+  },
+  "coach_report": {
+    "historical_weekly_miles_approx": 45,
+    "period": "Earlier half-marathon preparation, not verified current September volume",
+    "recent_weekly_volume": null,
+    "recent_hyrox_load": null,
+    "race_intent": "Secure sub-1:30 after exploring more ambitious 1:15-1:20 training goals; those goals do not prove fitness at those times.",
+    "faster_long_run_fades": "Coach observation, not directly documented by the two Garmin activities in this archive."
+  },
+  "sessions": [
+    {"date":"2026-02-10","source":"Athlete-written Strava description supplied by coach","state":"described","work":[{"minutes":10,"pace_s_km":223},{"minutes":10,"pace_s_km":235},{"minutes":10,"pace_s_km":240}],"observation":"Slower repetitions after the fastest opening. A precise threshold violation or sole causal trigger is not established."},
+    {"date":"2026-02-24","source":"Athlete-written Strava description supplied by coach","state":"described","work":[{"minutes":14,"pace_s_km":235},{"minutes":14,"pace_s_km":231}],"observation":"Second repetition described as faster. RPE and next-day recovery not supplied."},
+    {"date":"2026-03-03","source":"Strava caption and summary screenshots supplied by coach","state":"description_recording_unresolved","described_work":[{"minutes":20,"pace_s_km":234},{"minutes":8,"pace_s_km":236}],"described_recovery_seconds":180,"recorded_moving_seconds":2449,"described_all_components_seconds":3660,"observation":"Description totals 61 minutes including warm-up and cooldown; moving recording is 40:49. Preserve both. Do not label all described steps device-confirmed."},
+    {
+      "date":"2026-03-11","source_files":["IMG_7938.PNG","IMG_7939.PNG","IMG_7940.PNG","IMG_7941.PNG","IMG_7942.PNG","IMG_7943.PNG","IMG_7944.PNG","IMG_7945.PNG","IMG_7946.PNG"],
+      "state":"partial_recording_reason_unknown","title":"Miami Beach - Run Workout 3x12",
+      "steps":[{"role":"warm_up","seconds":900,"distance_mi":1.92,"pace_s_mi":470},{"role":"work","seconds":720,"distance_mi":1.92,"pace_s_mi":376},{"role":"recovery","seconds":90,"distance_mi":0.08,"pace_s_mi":1168},{"role":"work","seconds":577.6,"distance_mi":1.53,"pace_s_mi":377}],
+      "recorded_total_seconds":2287.7,"recorded_distance_mi":5.44,"recorded_work_seconds":1297.6,"whole_activity_hr_avg":157,"recorded_hr_max":181,
+      "ending_reason":null,"additional_recording":null,"next_day_recovery":null,
+      "observation":"21:37.6 of work recorded, not 36 minutes. Two work-step mean paces are similar. Do not infer physiological failure, an internal stop, or heat causation from the incomplete recording."
+    },
+    {"date":"2026-03-18","source":"Athlete-written Strava description supplied by coach","state":"described","work":[{"minutes":15,"pace_s_km":232},{"minutes":15,"pace_s_km":229}],"observation":"Two substantial pieces, second described as faster. No rep-specific RPE or subsequent recovery supplied."},
+    {
+      "date":"2026-03-25","source_files":["IMG_7947.PNG","IMG_7948.PNG","IMG_7949.PNG","IMG_7950.PNG","IMG_7951.PNG","IMG_7952.PNG","IMG_7953.PNG","IMG_7954.PNG","IMG_7955.PNG"],
+      "state":"recorded_intervals_and_activity_self_report","location_context":"Placentia / LA",
+      "steps":[{"role":"warm_up","seconds":900,"distance_mi":1.99,"pace_s_mi":452},{"role":"work","seconds":1200,"distance_mi":3.21,"pace_s_mi":373},{"role":"recovery","seconds":180,"distance_mi":0.25,"pace_s_mi":720},{"role":"work","seconds":720,"distance_mi":1.95,"pace_s_mi":370},{"role":"cool_down","seconds":195.1,"distance_mi":0.35,"pace_s_mi":558}],
+      "recorded_total_seconds":3195.2,"recorded_distance_mi":7.75,"recorded_work_seconds":1920,"longest_work_piece_seconds":1200,"derived_work_distance_km_approx":8.3,
+      "activity_self_report":{"feel":"Strong","effort_label":"Moderate","score":3,"scale_max":10,"entry_timing_verified":false},
+      "whole_activity_hr_avg":158,"recorded_hr_max":177,"exact_work_hr_drift":null,"next_day_recovery":null,
+      "resolved_discrepancy":"Garmin records 3:15.1 cooldown instead of the caption's ten minutes. Both faster blocks are present in full.",
+      "observation":"Historical 32 minutes of broken running near the working band with favourable subjective response. Not continuous 8 km, not a laboratory threshold, and not proof of current half-marathon readiness."
+    },
+    {"date":"2026-09-04","source":"Existing FORM coach_import with separately stored session pieces; reviewed in the connected system","state":"recorded_coach_import","work":[{"seconds":604,"distance_mi":1.65,"pace_s_mi":366},{"seconds":600,"distance_mi":1.66,"pace_s_mi":362}],"session_rpe":7,"athlete_note":"Felt controlled. Second rep was easier than the first.","original_activity_link":null,"conditions":null,"next_day_recovery":null,"observation":"Cancelled loop-test prescription does not erase the existing filing. Preserve source history. Provisional field reference, not a confirmed threshold; do not retroactively grant mark eligibility."}
+  ],
+  "race_anchors": [
+    {"date":"2026-04-12","distance_km":21.0975,"net_seconds":5173,"official_display_pace_mi":"6:34","source":"https://triregistration.com/IndividualRunResults.php?runresultid=158204"},
+    {"date":"2026-04-23","distance_km":5,"seconds":1056,"official_display_pace_mi":"5:41","source":"https://events.hakuapp.com/?registration_number=EA41EB7EF322"}
+  ],
+  "rules": [
+    "Keep prescribed, recorded, athlete-reported, derived, interpreted, and proposed values distinct.",
+    "Do not compare whole-activity average heart rates as matched work-block economy.",
+    "No exact drift or physiology was reconstructed from screenshots.",
+    "Garmin effort is activity-level. Do not equate its 3/10 directly with another system's RPE 7 without checking reporting context.",
+    "A race goal, watch zone, execution score, or stamina estimate is not proof of threshold, reserve, or VO2max.",
+    "Historical volume does not confirm recent readiness; a new comparison needs context and recovery."
+  ]
+}
