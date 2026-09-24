@@ -24,20 +24,48 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.ref_name }}
-          fetch-depth: 20
+          fetch-depth: 0
+      - name: Reconcile concurrent main without discarding other athlete work
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'FORM Study Review'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          if ! git merge-base --is-ancestor origin/main HEAD; then
+            if ! git merge --no-commit --no-ff origin/main; then
+              python - <<'PY'
+          import pathlib, subprocess, tempfile
+          conflicts = subprocess.check_output(['git','diff','--name-only','--diff-filter=U'], text=True).splitlines()
+          allowed = {'AGENTS.md', 'docs/roadmap/FORM-ROADMAP.md'}
+          if not conflicts or not set(conflicts).issubset(allowed):
+              raise SystemExit('Unexpected merge conflict; manual review required: '+repr(conflicts))
+          for name in conflicts:
+              versions = [subprocess.check_output(['git','show',f':{stage}:{name}']) for stage in (1,2,3)]
+              with tempfile.TemporaryDirectory() as tmp:
+                  base, ours, theirs = [pathlib.Path(tmp)/n for n in ('base','ours','theirs')]
+                  for path, data in zip((base,ours,theirs), versions): path.write_bytes(data)
+                  merged = subprocess.check_output(['git','merge-file','--union','-p',str(ours),str(base),str(theirs)])
+              if b'<<<<<<<' in merged or b'>>>>>>>' in merged:
+                  raise SystemExit('Unresolved conflict in '+name)
+              # Both branches only add scoped entries to these two documents.
+              # Every nonblank source line must survive the union.
+              merged_lines = set(merged.splitlines())
+              for source in versions[1:]:
+                  missing = [line for line in source.splitlines() if line.strip() and line not in merged_lines]
+                  if missing: raise SystemExit('Concurrent document content lost in '+name)
+              pathlib.Path(name).write_bytes(merged)
+              subprocess.run(['git','add','--',name], check=True)
+          PY
+            fi
+            git commit -m 'Merge main into Simon release; preserve both athlete documentation updates'
+          fi
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
       - name: Build from the approved publication
         run: |
           mkdir -p /tmp/simon-study-qa
-          node - <<'NODE'
-          const fs=require('fs');const p='scripts/studies/build-simon-r2.cjs';let c=fs.readFileSync(p,'utf8');
-          if(!c.includes("html=require('./refine-simon-r2.cjs')(html)")){
-            const anchor=' fs.writeFileSync(FILE,html);';if(!c.includes(anchor))throw Error('Builder write anchor missing');
-            c=c.replace(anchor," html=require('./refine-simon-r2.cjs')(html);\n"+anchor);fs.writeFileSync(p,c);
-          }
-          NODE
           node --check scripts/studies/build-simon-r2.cjs
           node --check labs/the-two-curves/plan-projection.js
           node scripts/studies/build-simon-r2.cjs | tee /tmp/simon-study-qa/build.json
@@ -74,10 +102,10 @@ jobs:
           git add labs/the-two-curves/index.html labs/the-two-curves/published-plan.json labs/the-two-curves/published-plan.js AGENTS.md docs/roadmap/FORM-ROADMAP.md scripts/studies/build-simon-r2.cjs
           if ! git diff --cached --quiet; then
             git commit -m 'Study 003: publish reviewed evidence, recovery-led plan and agent protocol'
-            git fetch origin ${{ github.ref_name }}
-            git rebase origin/${{ github.ref_name }}
-            git push origin HEAD:${{ github.ref_name }}
           fi
+          git fetch origin ${{ github.ref_name }}
+          git rebase origin/${{ github.ref_name }}
+          git push origin HEAD:${{ github.ref_name }}
           git rev-parse HEAD > /tmp/simon-study-qa/tested-commit.txt
       - uses: actions/upload-artifact@v4
         if: always()
