@@ -5,34 +5,103 @@ on:
     branches: [main]
     paths: ['.github/workflows/update-study002-body-goal-20260923.yml']
 permissions:
-  contents: read
+  contents: write
+concurrency:
+  group: study002-body-goal-20260923
+  cancel-in-progress: false
 jobs:
-  inspect:
+  update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           ref: main
-      - name: Read current goal anchors
+      - name: Apply and validate the owner's goal revision
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          import re
-          path = Path('labs/rebuilt-athlete/index.html')
-          text = path.read_text()
-          text = re.sub(r'data:image/[^\s\"\'<>]+', '[EMBEDDED_IMAGE]', text)
-          print('STUDY_GOAL_SOURCE_BEGIN')
-          lines = text.splitlines()
-          targets = set()
-          for n, line in enumerate(lines):
-              if re.search(r'180|185|8.{0,6}10|goal|target|body.?fat|body.?comp', line, re.I) and len(line) < 3000:
-                  targets.update(range(max(0,n-1),min(len(lines),n+2)))
-          for n in sorted(targets):
-              print(f'{n+1}: {lines[n]}')
-          print('STUDY_GOAL_SOURCE_END')
-          print('STUDY_RELATED_FILES')
-          for root in ['docs/studies','assets/data']:
-              for f in Path(root).glob('*'):
-                  if any(s in f.name.lower() for s in ['rebuilt','brice','002']):
-                      print(f)
+          import json, re, subprocess, tempfile
+          page = Path('labs/rebuilt-athlete/index.html')
+          before = page.read_text(encoding='utf-8')
+          after = before
+          edits = [
+            ('180&nbsp;lb. 8–10% body fat. Real strength.', '185&nbsp;lb. 8–10% body fat as an aspiration. Real strength.'),
+            ('<p class="lbl">Body goal</p><p class="v mono">180<small>lb · 8–10%</small>', '<p class="lbl">Body goal</p><p class="v mono">185<small>lb · preferred 180–185</small>'),
+            ('Desired body: 180&nbsp;lb at 8–10% body fat.', 'Desired body: 185&nbsp;lb, within a preferred 180–185&nbsp;lb range. 8–10% body fat remains an aspiration.'),
+            ('<dt>Body destination</dt><dd>180 lb · 8–10%</dd>', '<dt>Body destination</dt><dd>185 lb · 180–185 lb range</dd>'),
+            ('<h3 class="card__t">180&nbsp;lb · 8–10%</h3>', '<h3 class="card__t">185&nbsp;lb</h3>\n        <p>Preferred range: 180–185 lb. Body-fat aspiration: 8–10%.</p>'),
+            ('No skeletal-muscle-mass target. The test is holding composition while running improves.', 'Keep the fuller build while running improves. No fixed muscle-mass target and no need to force weight down to 180 lb.'),
+            ('Same device / method and similar conditions each two-week filing. Read the trend, not one number.', 'Use an appropriate, consistent method when available. 8–10% is an aspiration, not a required smart-scale reading.'),
+            ('Same method each filing. Destination is 8–10%.', '8–10% remains aspirational. One device reading does not decide whether the build is working.'),
+            ('"body": {"weight_lb": null, "weight_target_lb": 180, "bodyfat_target_pct": [8, 10], "bodyfat_actual_pct": null}', '"body": {"weight_lb": null, "weight_target_lb": 185, "weight_preferred_range_lb": [180, 185], "bodyfat_target_pct": [8, 10], "bodyfat_target_status": "aspirational", "bodyfat_actual_pct": null, "goal_revised_on": "2026-09-23", "goal_note": "Preserve the fuller build; 180 lb is not a compulsory destination. A sustained 190 lb baseline is not the objective. Comparable morning readings and photos are pending."}')
+          ]
+          changes = 0
+          for old, new in edits:
+              count = after.count(old)
+              if count:
+                  if count != 1:
+                      raise SystemExit(f'Ambiguous anchor ({count} matches): {old}')
+                  after = after.replace(old, new, 1)
+                  changes += 1
+              elif new not in after:
+                  raise SystemExit(f'Source drift: {old}')
+          # Preserve all image bytes, dated history, training and measured values.
+          image_pattern = r'data:image/[^\s\"\'<>]+'
+          assert re.findall(image_pattern, before) == re.findall(image_pattern, after)
+          for protected in ['"weight_lb": null', '"bodyfat_actual_pct": null', '"energy_rule": "no intentional calorie cut during rebuild"']:
+              assert before.count(protected) == after.count(protected) == 1
+          assert re.findall(r'20\d{2}-\d{2}-\d{2}', before) == [d for d in re.findall(r'20\d{2}-\d{2}-\d{2}', after) if d != '2026-09-23'] or changes == 0 or after.count('2026-09-23') == before.count('2026-09-23') + 1
+          with tempfile.TemporaryDirectory() as tmp:
+              for n, match in enumerate(re.finditer(r'<script\b([^>]*)>(.*?)</script\s*>', after, re.I | re.S)):
+                  attrs, code = match.groups()
+                  if not code.strip():
+                      continue
+                  if 'application/ld+json' in attrs or 'application/json' in attrs:
+                      json.loads(code)
+                      continue
+                  suffix = '.mjs' if 'module' in attrs else '.js'
+                  candidate = Path(tmp) / f'inline-{n}{suffix}'
+                  candidate.write_text(code, encoding='utf-8')
+                  subprocess.run(['node', '--check', str(candidate)], check=True)
+          page.write_text(after, encoding='utf-8')
+          note = Path('docs/studies/REBUILT-ATHLETE-BODY-GOAL-20260923.md')
+          note.parent.mkdir(parents=True, exist_ok=True)
+          note.write_text('''# Rebuilt Athlete: body-goal revision
+
+          Owner decision: Brice, September 23, 2026.
+
+          ## Current goal
+          - Headline weight target: **185 lb**, replacing 180 lb.
+          - Preferred range: **180–185 lb**. The lower end is not a compulsory finish line.
+          - Body fat: **8–10% as an aspiration**, not a mandatory device reading or clearance gate.
+          - Keep the fuller build the athlete likes. Additional muscle is welcome within his weight preference; a sustained 190 lb baseline is not his objective.
+
+          ## Evidence and decisions
+          The athlete reports liking how he looks. Comparable morning weights and photos are pending. Do not treat an evening measurement as an established morning baseline, infer verified fat or muscle gain, or prescribe a five-pound cut from it. This revision does not authorize a calorie deficit, changed workouts, or clinical clearance.
+
+          Historical measurements and completed training stay unchanged. The 180 lb protein calculation is a labeled nutrition reference, not the current bodyweight goal.
+
+          ## Connected source and scope
+          The visible study and its embedded structured body record were updated together in `labs/rebuilt-athlete/index.html`. Actual weight and body-fat fields remain null until appropriate evidence is filed. This note records the owner decision for future agents. Native assignment changes or app synchronization are not claimed; no assigned workout was changed. Existing raster social artwork was not regenerated.
+
+          ## Acceptance
+          Current goal anchors, embedded-image preservation, measured-value preservation, JSON parsing and inline JavaScript syntax are checked before commit. Production deployment and rendered/device checks require separate verification. Source success alone is not a live-release claim.
+          '''.replace('\n          ', '\n'), encoding='utf-8')
+          roadmap = Path('docs/roadmap/FORM-ROADMAP.md')
+          if roadmap.exists():
+              prior = roadmap.read_text(encoding='utf-8')
+              marker = '## Rebuilt Athlete body goal · 2026-09-23'
+              if marker not in prior:
+                  roadmap.write_text(prior.rstrip() + '\n\n' + marker + '\n\nOwner-approved aspiration revision: 185 lb target; 180–185 lb preferred range; 8–10% body fat aspirational. Visible study and embedded body record updated together. Measurements, completed work and native assignments unchanged. See `docs/studies/REBUILT-ATHLETE-BODY-GOAL-20260923.md`. Automated source/JSON/JavaScript checks run in the goal-update workflow; production and device verification remain separate release checks.\n', encoding='utf-8')
+          print(f'Updated {changes} verified goal anchors; measurements, images and training preserved.')
           PY
+      - name: Commit scoped source changes
+        run: |
+          git config user.name 'Speed & Form Automation'
+          git config user.email 'actions@speedandform.com'
+          git add labs/rebuilt-athlete/index.html docs/studies/REBUILT-ATHLETE-BODY-GOAL-20260923.md
+          if [ -f docs/roadmap/FORM-ROADMAP.md ]; then git add docs/roadmap/FORM-ROADMAP.md; fi
+          if git diff --cached --quiet; then exit 0; fi
+          git diff --cached --stat
+          git commit -m 'Revise Rebuilt Athlete goal to 185 lb and preserve fuller build'
+          git push origin HEAD:main
