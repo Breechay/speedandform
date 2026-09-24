@@ -1,0 +1,88 @@
+{
+  "study": "FORM Study 003 · The Two Curves",
+  "revision": "SIMON-003-R2-20260923",
+  "status": "released_and_production_verified",
+  "verified_date_utc": "2026-09-24",
+  "owner_local_date": "2026-09-23",
+  "release": {
+    "pull_request": 174,
+    "tested_branch_head": "644ed4dfe1136899086cbfe3fa95cbcb0c368e64",
+    "merge_commit": "c4f7a9473a943122656ddfd59276e9a89ab1234c",
+    "base_preserved": "1e3e0bf0a10d9f063771cf27440e2d078bc6233f",
+    "acceptance_run": 35937653809,
+    "acceptance_result": "success",
+    "netlify_site_id": "f3914a6a-a9ce-465e-8212-f5f42597c469",
+    "netlify_deploy_id": "6ab46c7e8e7f7b0008a7495e",
+    "netlify_deploy_state": "ready",
+    "netlify_commit_ref": "c4f7a9473a943122656ddfd59276e9a89ab1234c",
+    "published_at_utc": "2026-09-24T00:19:30.438Z",
+    "url": "https://speedandform.com/labs/the-two-curves/",
+    "note": "This receipt is a documentation follow-up to the verified content deployment. No canonical plan writes were repeated while recovering the interrupted release. Concurrent main changes were merged and tested, not reset."
+  },
+  "canonical_plan": {
+    "version": 2,
+    "publication_state": "published",
+    "revision": "SIMON-003-R2-20260923",
+    "starts_on": "2026-09-28",
+    "ends_on": "2026-11-01",
+    "distance_unit": "km",
+    "canonical_pace_seconds_unit": "mi",
+    "weekly_planned_totals_km": [63, 67, 70, 62, 52],
+    "tuesday": ["4 × 1.6 km", "4 × 2 km, if earned", "3 × 3 km, if earned", "2 × 4 km, if earned", "8 km easy; protect the 5K read"],
+    "tuesday_recovery": "Two minutes very easy jogging; no brisk float or automatic 90-second reduction.",
+    "thursday": ["5 × 3 min", "Repeat 5 × 3 min", "4 × 4 min, if recovered", "Reduced 4 × 3 min", "5K read on Oct 29"],
+    "saturday_km": [18, 20, 21, 16, 14],
+    "saturday_intent": "Easy, with duration yielding to current readiness and recovery.",
+    "next_continuity_read": "Nov 3 or later: candidate 6–8 km after recovery and coach approval. Not an assigned sixth week.",
+    "history": "Existing completions and performed versions preserved; no new historical completion or ownership invented."
+  },
+  "production_browser_acceptance": {
+    "run_id": "748e8d1f-33ef-4e97-8ffa-1e46093a29ff",
+    "result": "passed",
+    "plan_source_display": "Approved plan checked · version 2",
+    "checks": [
+      "Content below hero, historical evidence and Gate window visible",
+      "March 25 recorded as 32 broken minutes, longest piece 20 minutes, Strong/Moderate 3/10 activity report",
+      "March 11 retained as partial recording, reason unknown",
+      "All five weeks, revised sessions and weekly totals match approved publication",
+      "Oct 27 easy, Oct 29 5K, subsequent continuous read explicitly unassigned",
+      "French history and Gate copy translate",
+      "MI/KM plan conversion works; returned to English/km",
+      "Runner cutout and FORM logo decode"
+    ]
+  },
+  "automated_acceptance": {
+    "chromium_widths": [375, 390, 430, 768, 1024, 1440],
+    "webkit_mobile_french": "passed",
+    "interactive_language_and_units": "passed",
+    "network_failure_saved_state": "passed",
+    "publication_drift_warning": "passed",
+    "no_javascript_full_plan_and_evidence": "passed",
+    "public_access_isolation": "Approved study publication accessible; generic paid-plan and arbitrary-slug requests denied.",
+    "cream_reading_regression": "passed",
+    "scope": "Browser emulation and server/publication verification, not a physical iPhone or native app build test."
+  },
+  "agent_entry_points": [
+    "AGENTS.md",
+    "labs/the-two-curves/AGENTS.md",
+    "docs/studies/SIMON-STUDY-003.md",
+    "docs/roadmap/FORM-ROADMAP.md"
+  ],
+  "guardrails": [
+    "The approved canonical athlete assignment owns future prescriptions; the study is a projection, not a competing plan.",
+    "Saved web snapshots remain readable but are labelled unverified when the live publication cannot be checked.",
+    "Historical exposure, current readiness, measured output, athlete report, coach interpretation and hypothesis remain separate.",
+    "A better hold with an unchanged 5K is progress; no mandatory 5K improvement or 5:15–5:20/mi qualification.",
+    "No arbitrary 175-bpm cap, universal HR-drift cutoff, inferred maximum HR, fixed threshold-to-half offset or automatic peak mileage.",
+    "Later fast long-run work replaces another quality demand rather than creating a third escalating hard day.",
+    "HTML comments are not private storage; only non-sensitive agent pointers belong there."
+  ],
+  "remaining_checks_not_release_failures": [
+    "Confirm the revised assignment on the physical iPhone; no app binary change was needed for these prescription edits.",
+    "Confirm recent running continuity, comfortable long-run duration and hard HYROX/lower-body load before the full dose.",
+    "Clarify March 11 missing remainder and March 3 caption/time mismatch when evidence becomes available.",
+    "Coach must explicitly assign or defer the post-5K continuous read.",
+    "Turkey Trot identity/distance and Nashville exact division/day/heat remain to confirm.",
+    "Lisa next plan stays parked and separate; Raise the Ceiling remains archived."
+  ]
+}
