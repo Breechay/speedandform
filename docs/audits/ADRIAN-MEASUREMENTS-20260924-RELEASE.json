@@ -1,0 +1,31 @@
+{
+  "record_id": "adrian-circumferences-20260924",
+  "study_version": "2026.09.24.1",
+  "status": "published_and_verified",
+  "verified_on": "2026-09-24",
+  "source_record": "docs/studies/ADRIAN-MEASUREMENTS-20260924.json",
+  "published_commit": "318b20b22a824ef3d309c3bcd0c167d428a2bc45",
+  "acceptance_run": "https://github.com/Breechay/speedandform/actions/runs/36049546578",
+  "accepted_widths": [375, 390, 430, 768, 1024, 1440],
+  "enlarged_text_390px": "passed",
+  "javascript_errors": [],
+  "screenshot_review": "390px and 1440px measurement panels inspected",
+  "netlify": {
+    "site_id": "f3914a6a-a9ce-465e-8212-f5f42597c469",
+    "deploy_id": "6ab57cdf7586f20008c46ae6",
+    "state": "ready",
+    "context": "production",
+    "published_at": "2026-09-24T19:41:33.594Z",
+    "commit_ref": "318b20b22a824ef3d309c3bcd0c167d428a2bc45"
+  },
+  "public_url": "https://speedandform.com/labs/adrian-runner-mass/",
+  "live_browser_verification": {
+    "run_id": "a818386b-d5a8-44c5-a269-2e0e8f7915e3",
+    "version": "2026.09.24.1",
+    "values_in_inches": {"waist":31,"chest":35.75,"arm_relaxed":11,"thigh_relaxed":20,"calf":15.75}
+  },
+  "extraction_limit": "A separate selector-scoped text fetch did not resolve the JavaScript-generated sections. Live verification rests on the interactive browser result and the matching Netlify production commit, not that text fetch.",
+  "roadmap_closure": "Closes the production-verification item in the September 24 first circumference checkpoint entry. This documentation-only receipt does not require another site publish.",
+  "still_open": ["Tape locations, side and capture conditions", "Standardized body-mass trend", "Standardized comparison photos", "Physical iPhone review"],
+  "scope": "Measurements and public study presentation only; training, nutrition and native assignments remain unchanged."
+}
