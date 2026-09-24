@@ -48,8 +48,7 @@ jobs:
                   merged = subprocess.check_output(['git','merge-file','--union','-p',str(ours),str(base),str(theirs)])
               if b'<<<<<<<' in merged or b'>>>>>>>' in merged:
                   raise SystemExit('Unresolved conflict in '+name)
-              # Both branches only add scoped entries to these two documents.
-              # Every nonblank source line must survive the union.
+              # Preserve every existing nonblank line from both scoped additions.
               merged_lines = set(merged.splitlines())
               for source in versions[1:]:
                   missing = [line for line in source.splitlines() if line.strip() and line not in merged_lines]
@@ -97,6 +96,7 @@ jobs:
           NODE
       - name: Commit only generated study projections and pointers
         run: |
+          set -euo pipefail
           git config user.name 'FORM Study Review'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add labs/the-two-curves/index.html labs/the-two-curves/published-plan.json labs/the-two-curves/published-plan.js AGENTS.md docs/roadmap/FORM-ROADMAP.md scripts/studies/build-simon-r2.cjs
@@ -104,7 +104,9 @@ jobs:
             git commit -m 'Study 003: publish reviewed evidence, recovery-led plan and agent protocol'
           fi
           git fetch origin ${{ github.ref_name }}
-          git rebase origin/${{ github.ref_name }}
+          # Do not rebase after testing: retain the resolved merge tree.
+          # A concurrent branch change must fail this check instead of being overwritten.
+          git merge-base --is-ancestor origin/${{ github.ref_name }} HEAD
           git push origin HEAD:${{ github.ref_name }}
           git rev-parse HEAD > /tmp/simon-study-qa/tested-commit.txt
       - uses: actions/upload-artifact@v4
