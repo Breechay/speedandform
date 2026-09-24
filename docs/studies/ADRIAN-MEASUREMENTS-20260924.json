@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "record_id": "adrian-circumferences-20260924",
+  "study_id": "FRM-001",
+  "athlete": "Adrian Gandara",
+  "measured_on": "2026-09-24",
+  "recorded_on": "2026-09-24",
+  "unit": "in",
+  "source": {
+    "kind": "athlete_self_measurement",
+    "description": "Adrian's message supplied by Brice; Brice confirmed the measurement date and inches on September 24, 2026.",
+    "date_confirmed": true,
+    "unit_confirmed": true,
+    "independently_verified": false,
+    "publication": "Brice explicitly requested this study update; the message screenshot itself is not republished."
+  },
+  "reference_role": "first_recorded_circumference_checkpoint",
+  "pre_intervention_baseline": false,
+  "context": "Collected during the authored block that opened September 14, not before the intervention. No earlier circumference comparison is filed.",
+  "measurements": [
+    {"key":"waist","label":"Waist","source_label":"waist","value":31,"unit":"in","state":null,"side":null,"landmark":null},
+    {"key":"chest","label":"Chest","source_label":"chest","value":35.75,"unit":"in","state":null,"side":null,"landmark":null},
+    {"key":"arm","label":"Arm, relaxed","source_label":"relaxed arm","value":11,"unit":"in","state":"relaxed","side":null,"landmark":null},
+    {"key":"thigh","label":"Thigh, relaxed","source_label":"relaxed thigh","value":20,"unit":"in","state":"relaxed","side":null,"landmark":null},
+    {"key":"calf","label":"Calf","source_label":"calf","value":15.75,"unit":"in","state":null,"side":null,"landmark":null}
+  ],
+  "conditions": {
+    "time_of_day": null,
+    "relation_to_training": null,
+    "pump_status": null,
+    "repeated_readings": null,
+    "standardization_confirmed": false
+  },
+  "comparison": {
+    "previous_comparable_record": null,
+    "change": null,
+    "interpretation": "First recorded checkpoint only. These values do not establish muscle growth, body-fat change or a treatment effect."
+  },
+  "next_collection": "Confirm the tape locations, side and capture conditions before the next comparison. Preserve relaxed arm and relaxed thigh; do not relabel the thigh as mid-thigh without confirmation.",
+  "scope": "Approved public study evidence only. No run, strength, nutrition or native assignment change. No automatic FORM or Forge synchronization is claimed.",
+  "projection": {
+    "path": "labs/adrian-runner-mass/index.html",
+    "field": "STUDY.measurements",
+    "generator": "scripts/apply-adrian-measurements-20260924.cjs"
+  }
+}
