@@ -1,0 +1,59 @@
+name: Adrian completed food day acceptance
+on:
+  push:
+    branches: [work/adrian-foodday-20260923]
+permissions:
+  contents: write
+concurrency:
+  group: adrian-foodday-20260923
+  cancel-in-progress: false
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare against current main
+        run: |
+          cp scripts/record-adrian-foodday-20260923.py /tmp/adrian-foodday.py
+          cp tests/adrian-nutrition-foodday.py /tmp/adrian-foodday-test.py
+          git fetch origin main
+          git switch --detach origin/main
+          git rev-parse HEAD > /tmp/adrian-foodday-base.txt
+          cp /tmp/adrian-foodday-test.py tests/adrian-nutrition-foodday.py
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install acceptance dependencies
+        run: |
+          pip install playwright==1.58.0 beautifulsoup4
+          python -m playwright install --with-deps chromium
+      - name: Record and verify repeatability
+        run: |
+          python /tmp/adrian-foodday.py
+          git diff > /tmp/adrian-foodday-first.diff
+          python /tmp/adrian-foodday.py
+          git diff > /tmp/adrian-foodday-second.diff
+          cmp /tmp/adrian-foodday-first.diff /tmp/adrian-foodday-second.diff
+          python tests/adrian-nutrition-foodday.py
+          python tests/adrian-nutrition-labels.py
+          python tests/adrian-nutrition-timing.py
+      - name: Six-width browser acceptance
+        run: python tests/adrian-nutrition-v15.py
+      - name: Publish only validated outputs to holding branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/studies/ADRIAN-NUTRITION-DAYLOG-20260923.json docs/studies/ADRIAN-NUTRITION-HOLD-20260923.md docs/roadmap/FORM-ROADMAP.md plans/adrian-nutrition-phase-01/index.html plans/adrian-nutrition-phase-01/review-context.json tests/adrian-nutrition-foodday.py tests/adrian-nutrition-labels.py tests/adrian-nutrition-timing.py
+          test "$(git diff --cached --name-only | wc -l)" -eq 8
+          git diff --cached --check
+          git commit -m 'Adrian v1.5.6: reconcile completed food day and pending measurements'
+          git push origin HEAD:refs/heads/work/validated-adrian-foodday-20260923
+          echo "VALIDATED_COMMIT=$(git rev-parse HEAD)"
+          echo "VALIDATED_BASE=$(cat /tmp/adrian-foodday-base.txt)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: adrian-foodday-acceptance
+          path: /tmp/adrian-nutrition-v15/
+          retention-days: 7
