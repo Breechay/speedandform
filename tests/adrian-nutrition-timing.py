@@ -6,7 +6,7 @@ r = Path(__file__).resolve().parents[1]
 h = (r/'plans/adrian-nutrition-phase-01/index.html').read_text()
 s = BeautifulSoup(h, 'html.parser')
 c = json.loads((r/'plans/adrian-nutrition-phase-01/review-context.json').read_text())
-assert c['nutrition_revision'] == '1.5.4'
+assert c['nutrition_revision'] == '1.5.5'
 assert c['release_status'] == 'active_with_individual_timing_review'
 assert s.html['data-nutrition-version'] == c['nutrition_revision']
 assert s.select_one('#plan-hold') is None
@@ -32,7 +32,7 @@ for phrase in ['160°F', '165°F', 'within 2 hours', 'lot number', 'dark urine',
 assert chr(8212) not in text
 assert (r/'plans/adrian-nutrition-phase-01/adrian-prep-reminders.ics').exists()
 assert '## Active Adrian nutrition delivery hold' not in (r/'AGENTS.md').read_text()
-assert 'Current revision: 1.5.4.' in (r/'docs/studies/ADRIAN-NUTRITION-HOLD-20260923.md').read_text()
+assert 'Current revision: 1.5.5.' in (r/'docs/studies/ADRIAN-NUTRITION-HOLD-20260923.md').read_text()
 ids = [e['id'] for e in s.select('[id]')]
 assert len(ids) == len(set(ids))
 for a in s.select('a[href^="#"]'):

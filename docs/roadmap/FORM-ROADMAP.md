@@ -1,5 +1,11 @@
 # FORM: current state and next actions
 
+## September 23 - Adrian supplement labels and intake, v1.5.5
+
+Both product labels are recorded; actual dose, frequency and first-use dates remain unknown. Reported intake was 1,300 kcal before lunch and 2,260 later in the afternoon, with a large lunch difficult to finish. These are not measured surplus or a calorie target. Preserve the concurrently released individual-timing rules and keep the page available with no pre-run feeding. Source: [label/intake record](../studies/ADRIAN-NUTRITION-LABELS-20260923.json).
+
+Acceptance run: https://github.com/Breechay/speedandform/actions/runs/35937414859. Label, timing and six-width browser checks gate promotion. Production must be verified separately against the tested commit. Remaining input: actual supplement use and lot verification, complete food-day record and clinician guidance. No training assignment or native sync claim.
+
 ## September 23 - Adrian nutrition: scoped timing correction, v1.5.4
 
 The blanket v1.5.2 website hold is superseded. Keep the food companion available, preserving recipes, portions, preferences, shopping state and sleep tools. Remove only conflicting exercise-adjacent instructions; no new fasting interval, food trial, immediate post-exercise meal or lifting-only exemption. Clinical guidance resolves food/timing; the coach then fits adequate meals around it. No diagnosis, current incident or plan-caused outcome is inferred. Private details stay off the site and repository. FORM/Forge assignments and imported phone reminders are unchanged.
