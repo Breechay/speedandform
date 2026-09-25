@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "nutrition_revision": "1.5.8",
+  "nutrition_revision": "1.5.9",
   "prepared_date": "2026-09-22",
   "athlete": "Adrian Gandara",
   "study_id": "FRM-001",
@@ -116,9 +116,9 @@
   ],
   "machine_readability": "All athlete-facing instructions are static HTML, including native details contents. The HTML head links this JSON. Read the public authored program JSON without depending on JavaScript rendering; use authorized repository access for pinned native sources.",
   "privacy_boundary": "This public reference manifest contains no credentials, athlete emails, backend tokens, or private completed-session logs. Hiding HTML is not access control. Future Forge completion review must use authenticated, authorized data access, not a public JSON export.",
-  "interpretation_boundary": "Keep athlete reports, arithmetic checks, label observations, measured outcomes and decisions separate. The completed food log totals 3271 kcal from athlete estimates; dinner is explicitly a guess. Earlier 1300 and 2260 totals are included subtotals. This establishes neither a measured surplus nor a new target, full adherence or muscle gain. Supplement brands and labels are known in current_supplement_labels; actual doses, start dates and frequency remain unknown. Consumption is not preference confirmation or clinical clearance. Meal order does not establish timing relative to exercise. Private clinical history stays off public surfaces. The active working energy target is approximately 3,000 kcal/day by coach decision, not a measured maintenance requirement or inferred surplus. The 3,271 kcal completed day remains an observation, not the target. The athlete-facing development range is approximately 3,000-3,400 kcal/day as a possible phase range, not a directive to eat 3,400 now. Current target remains ~3,000 and upward changes require response data.",
+  "interpretation_boundary": "Keep athlete reports, arithmetic checks, label observations, measured outcomes and decisions separate. The completed food log totals 3271 kcal from athlete estimates; dinner is explicitly a guess. Earlier 1300 and 2260 totals are included subtotals. This establishes neither a measured surplus nor a new target, full adherence or muscle gain. Supplement brands and labels are known in current_supplement_labels; actual doses, start dates and frequency remain unknown. Consumption is not preference confirmation or clinical clearance. Meal order does not establish timing relative to exercise. Private clinical history stays off public surfaces. The active working energy target is now approximately 3,400 kcal/day by coach decision, not a measured maintenance requirement or inferred surplus. The September 24 athlete-reported day totals 3,510 kcal from listed estimates and is an observation, not proof of surplus or hypertrophy. Use repeated weight and circumference data plus appetite, digestion and training response to interpret the phase.",
   "shopping": {
-    "revision": "1.5.8",
+    "revision": "1.5.9",
     "static_html": true,
     "check_state": "Browser-local only; no Forge sync or adherence receipt",
     "first_cycle": "Five workday meals and one frozen backup; not eight mandatory meals",
@@ -132,8 +132,8 @@
     "existing_gels_unchanged": true,
     "powder_purchase": "Check existing products before buying; existing whey checkbox key retained, no auto-check or adherence inference."
   },
-  "updated_date": "2026-09-23",
-  "latest_observation_record": "docs/studies/ADRIAN-NUTRITION-DAYLOG-20260923.json",
+  "updated_date": "2026-09-25",
+  "latest_observation_record": "docs/studies/ADRIAN-INTAKE-UPDATE-20260925.json",
   "reported_food_and_supplements_20260923": {
     "space_balls": {
       "product": "LesserEvil Space Balls, Real Organic Cheddar",
@@ -272,7 +272,7 @@
       "net_weight_g": 1000,
       "other_ingredients_as_photographed": "None",
       "actual_g_per_use": null,
-      "frequency": null,
+      "frequency": "Athlete reports one included little spoon in each protein shake and currently about two shakes per day; spoon-to-gram equivalence not confirmed.",
       "first_use_date": null,
       "loading_phase_reported": null,
       "new_dose_prescribed": false,
@@ -285,26 +285,20 @@
       "source_files": [
         "IMG_4660.jpeg",
         "IMG_4661.jpeg"
-      ]
+      ],
+      "hydration_behavior": "Athlete reports intentionally drinking plenty of water while using creatine.",
+      "use_update_source": "docs/studies/ADRIAN-INTAKE-UPDATE-20260925.json"
     }
   },
   "latest_intake_report": {
-    "source_record": "docs/studies/ADRIAN-NUTRITION-DAYLOG-20260923.json",
-    "source_file": "IMG_7969.jpeg",
-    "reported_day": "2026-09-23",
-    "completeness": "athlete reports completed day; not a weighed or independently complete food record",
-    "daily_total_kcal_reported": 3271,
-    "sum_of_listed_kcal": 3271,
+    "source_record": "docs/studies/ADRIAN-INTAKE-UPDATE-20260925.json",
+    "reported_day": "2026-09-24",
+    "completeness": "athlete-reported list; not weighed or independently complete",
+    "daily_total_kcal_reported": 3510,
+    "sum_of_listed_kcal": 3510,
     "calories_independently_verified": false,
-    "before_lunch_reported_kcal": 1300,
-    "through_lunch_reported_kcal": 2260,
-    "dinner_kcal_reported": 600,
-    "dinner_estimate_status": "explicit guess",
     "surplus_kcal": null,
-    "daily_protein_g": null,
-    "meal_timing_relative_to_exercise_confirmed": false,
-    "full_plan_start_confirmed": false,
-    "coaching_response": "Food day received. Start near 3,000 kcal/day. The possible development range is about 3,000-3,400 kcal/day, but 3,400 is not the current target. Review 10-14 days of weight trend, measurements, appetite and training response before moving upward, usually by about 150-250 kcal/day."
+    "coaching_response": "Target about 3,400 kcal consistently. Close is enough; do not force an exact number. Review the weekly weight pattern, measurements, appetite, digestion and training response."
   },
   "previous_intake_reports": [
     {
@@ -355,42 +349,36 @@
     "values_inferred": false
   },
   "working_energy_target": {
-    "source_record": "docs/studies/ADRIAN-NUTRITION-DECISION-20260924.json",
-    "kcal_per_day": 3000,
+    "source_record": "docs/studies/ADRIAN-INTAKE-UPDATE-20260925.json",
+    "kcal_per_day": 3400,
     "precision": "approximate",
     "owner": "coach decision",
     "status": "active_working_target",
     "not_measured_maintenance_or_surplus": true,
     "do_not_force_exact_number": true,
+    "weigh_ins_per_week": [
+      1,
+      3
+    ],
+    "weigh_in_conditions": "morning, comparable conditions when practical",
     "review_before_change": [
-      "weekly morning-weight trend",
-      "body measurements",
+      "weekly weight pattern",
+      "repeat body measurements",
       "appetite and meal comfort",
       "digestion",
       "running and lifting response"
     ],
-    "food_timing_rule_unchanged": true,
-    "development_range_kcal_per_day": [
-      3000,
-      3400
-    ],
-    "development_range_status": "possible_phase_range_not_current_prescription",
-    "current_starting_target_kcal_per_day": 3000,
-    "upward_adjustment_step_kcal_per_day": [
-      150,
-      250
-    ],
-    "review_window_days": [
-      10,
-      14
-    ],
-    "move_up_only_if": [
-      "intake is reasonably consistent near the current target",
-      "weekly-average weight and desired body measurements are not moving enough",
-      "appetite and meal comfort can support more intake",
-      "running and lifting response remain acceptable"
-    ],
-    "range_explanation": "Start near 3,000 kcal/day. The likely development range may extend toward 3,400 kcal/day if measured response shows Adrian needs more energy for running plus hypertrophy. Do not jump to the top automatically."
+    "food_timing_rule_unchanged": true
   },
-  "latest_coach_decision_record": "docs/studies/ADRIAN-NUTRITION-DECISION-20260924.json"
+  "latest_coach_decision_record": "docs/studies/ADRIAN-NUTRITION-DECISION-20260924.json",
+  "latest_weight_report": {
+    "source_record": "docs/studies/ADRIAN-INTAKE-UPDATE-20260925.json",
+    "date": "2026-09-25",
+    "weight_lb": 156.8,
+    "status": "single athlete-reported reading; not a trend",
+    "weigh_ins_per_week": [
+      1,
+      3
+    ]
+  }
 }
