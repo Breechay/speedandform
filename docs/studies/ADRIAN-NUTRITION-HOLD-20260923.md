@@ -1,3 +1,12 @@
+
+## Active target and monitoring · 25 September
+
+The September 24 ~3,000 kcal starting decision is now historical. Brice subsequently instructed Adrian to target **about 3,400 kcal/day consistently**. Close is enough; this is not a measured maintenance requirement or an exact quota to force. Adrian reports **3,510 kcal on September 24**, with no snacking and easier subjective food volume, plus a **156.8 lb** morning reading on September 25. These are athlete reports, not a measured surplus or hypertrophy result. Collect **1–3 comparable morning weights per week** and read the pattern alongside repeat circumferences, appetite, digestion and running/lifting response.
+
+Creatine use is now reported as **one included little spoon per protein shake, about two shakes/day currently**. The photographed product label lists 5 g per serving, but the athlete has not confirmed that his spoonful equals that serving, so do not infer 10 g/day. He reports intentionally drinking plenty of water while using it. No new creatine dose or special hydration prescription is created from that report.
+
+Source: [September 25 intake update](ADRIAN-INTAKE-UPDATE-20260925.json).
+
 # Adrian nutrition: current release scope
 
 Current revision: 1.5.8. Status: active_with_individual_timing_review.
