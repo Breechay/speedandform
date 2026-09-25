@@ -1,0 +1,21 @@
+name: FORM Apple linking server regression
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'supabase/functions/coaching-link-apple/**'
+      - 'supabase/tests/coaching_apple_linking.sql'
+      - '.github/workflows/form-apple-linking.yml'
+permissions:
+  contents: read
+jobs:
+  mocked-edge-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test supabase/functions/coaching-link-apple/handler.test.mjs
+      - run: echo 'Mocked Auth/HTTP tests only. No real Apple, phone, deployed database or signed native build test is claimed.' >> "$GITHUB_STEP_SUMMARY"

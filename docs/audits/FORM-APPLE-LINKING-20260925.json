@@ -1,0 +1,40 @@
+{
+  "status": "server_deployed_native_source_prepared_device_gate_open",
+  "athlete_retry_authorized": false,
+  "server": {
+    "project_ref": "pbgsjjegycacodiltbhn",
+    "migrations": ["20260925110850_coaching_apple_account_linking", "20260925111649_coaching_apple_single_owner_static"],
+    "function": "coaching-link-apple",
+    "version": 1,
+    "verify_jwt_gateway": false,
+    "authentication": "Every POST independently verifies the caller through Auth /user and fresh Apple ID token plus nonce through Auth token exchange. Only a service-role transaction writes the bridge.",
+    "anonymous_production_smoke": {"http_status": 401, "code": "sign_in_required"},
+    "database_contract": "passed in live PostgreSQL with generated synthetic fixtures and rollback",
+    "mocked_http_tests": {"passed": 24, "failed": 0},
+    "first_test_correction": "The first rollback-only test hit the existing one-active-owner index. The second applied migration preserves that constraint by resolving Apple as an alias, not inserting a second owner."
+  },
+  "native": {
+    "repository": "Breechay/FORM-iOS",
+    "branch": "fix/apple-account-linking-20260925",
+    "source_commit": "d656aa50fbe1f36e53c546e59f4e942caead8c73",
+    "local_policy_checks": 19,
+    "swift_parse_passed": true,
+    "complete_xcode_build_passed": false,
+    "ci_attempts": [36129525205,36129762835],
+    "ci_limit": "GitHub jobs ended before executing build steps. No compiler result or runner-cause claim is made.",
+    "one_time_installer_removed": true,
+    "signed_build_published": false,
+    "physical_iphone_passed": false
+  },
+  "limits": [
+    "No actual athlete Apple ownership was inferred or linked during implementation.",
+    "No athlete plans, prescribed sessions, history or coach roles were changed.",
+    "No athlete emails were sent.",
+    "This is not an Auth-user or purchase-account merge. Coach/admin/commerce privileges do not transfer.",
+    "Website Apple membership projection and account-deletion semantics need a separate compatibility review before claiming all-surface account merging.",
+    "Email-link lifetime was not changed.",
+    "Mocked Auth tests and database-role tests do not prove real Apple authorization or the installed app."
+  ],
+  "next_gate": "Build the native source with Xcode, review account-switch/refresh/callback safety, and perform controlled email setup plus Apple-only return on a physical iPhone before athlete retries.",
+  "checklist": "docs/roadmap/FORM-AUTH-RECOVERY-20260924.md"
+}
