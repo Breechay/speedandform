@@ -1,5 +1,10 @@
 # FORM: current state and next actions
 
+## September 25 - Adrian intake and monitoring update, nutrition v1.5.9
+
+Coach instruction now targets **about 3,400 kcal/day consistently**; this supersedes the September 24 ~3,000 starting target without rewriting its history. Adrian reports **3,510 kcal on Sep 24**, no snacking and easier subjective food volume, plus **156.8 lb on Sep 25**. Collect **1-3 comparable morning weights/week** and interpret the pattern with repeat circumferences, appetite, digestion and running/lifting response. Creatine use is reported as one included little spoon per shake and about two shakes/day; the photographed label's 5 g serving is not assigned to that spoon until confirmed. No run/strength assignment or native sync change. Source: [Sep 25 update](../studies/ADRIAN-INTAKE-UPDATE-20260925.json).
+
+
 ## September 24 - Adrian first circumference checkpoint
 
 Five self-measured circumferences, taken September 24 and confirmed in inches by Brice. Source: [dated measurement record](../studies/ADRIAN-MEASUREMENTS-20260924.json). The generator updates STUDY.measurements, the athlete summary, body evidence, current read and collection queue together. Historical missing-baseline and prior reading entries are preserved. This is an early-block checkpoint, not a pre-intervention baseline or a growth result. Relaxed thigh is not silently relabeled mid-thigh. Run, strength, nutrition, assignments and native code are unchanged.
