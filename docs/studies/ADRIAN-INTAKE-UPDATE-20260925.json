@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "record_type": "athlete_report_and_coach_nutrition_update",
+  "record_id": "adrian-intake-update-20260925",
+  "recorded_on": "2026-09-25",
+  "athlete": "Adrian Gandara",
+  "study_id": "FRM-001",
+  "source": {
+    "type": "coach_supplied_message_screenshots",
+    "files": [
+      "IMG_8165.png",
+      "IMG_8157.jpeg",
+      "IMG_8166.jpeg",
+      "IMG_8167.png"
+    ],
+    "screenshots_public": false
+  },
+  "weight": {
+    "value_lb": 156.8,
+    "date": "2026-09-25",
+    "status": "single athlete-reported reading",
+    "trend": false
+  },
+  "intake": {
+    "reported_day": "2026-09-24",
+    "items": [
+      [
+        "Cheddar cheese",
+        300
+      ],
+      [
+        "Spaghetti, Parmesan, meat sauce",
+        1000
+      ],
+      [
+        "Chobani 30 g protein",
+        220
+      ],
+      [
+        "Protein shake",
+        445
+      ],
+      [
+        "Spaghetti, meat sauce, burger patty, Parmesan",
+        800
+      ],
+      [
+        "Protein shake",
+        445
+      ],
+      [
+        "Avocado-oil potato chips",
+        150
+      ],
+      [
+        "1 cup milk",
+        150
+      ]
+    ],
+    "reported_total_kcal": 3510,
+    "listed_sum_kcal": 3510,
+    "independently_verified": false,
+    "athlete_response": [
+      "reports no snacking that day",
+      "reports surprise at reaching this intake with a relatively small number of foods"
+    ]
+  },
+  "coach_decision": {
+    "working_energy_target_kcal_per_day": 3400,
+    "precision": "approximate",
+    "instruction": "Target about 3,400 kcal consistently. Close is enough; do not force an exact number.",
+    "weigh_ins_per_week": [
+      1,
+      3
+    ],
+    "weigh_in_conditions": "Morning, under comparable conditions when practical; use the weekly pattern rather than reacting to one reading.",
+    "review_inputs": [
+      "weekly weight pattern",
+      "repeat circumferences",
+      "appetite and meal comfort",
+      "digestion",
+      "running response",
+      "lifting response"
+    ],
+    "food_timing_rule_unchanged": true
+  },
+  "creatine": {
+    "use_reported": true,
+    "form": "creatine monohydrate",
+    "product_label_serving_g": 5,
+    "reported_amount": "one included little spoon per protein shake",
+    "reported_shakes_per_day_currently": 2,
+    "inferred_grams_per_day": null,
+    "reason_not_converted_to_grams": "The athlete described the included spoon but did not confirm that his spoonful equals the photographed 5 g labeled serving.",
+    "hydration_behavior": "Athlete reports making sure to drink plenty of water because he is taking creatine.",
+    "new_dose_prescribed": false
+  },
+  "interpretation": "This is an intake/adherence and monitoring update, not evidence of hypertrophy or a measured calorie surplus. The 3,400 kcal target is a coach decision and not a measured energy requirement.",
+  "scope": "Update study and nutrition source-of-truth/public surfaces. No run or strength assignment change and no automatic FORM/Forge synchronization."
+}
