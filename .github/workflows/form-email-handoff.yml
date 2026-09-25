@@ -1,0 +1,32 @@
+name: FORM email handoff regression
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'auth/app-signin/**'
+      - 'auth/record-callback/**'
+      - 'private/auth.js'
+      - 'private/supabase-client.js'
+      - 'tests/form-email-handoff.test.mjs'
+      - '.github/workflows/form-email-handoff.yml'
+  pull_request:
+    paths:
+      - 'auth/**'
+      - 'private/auth.js'
+      - 'private/supabase-client.js'
+      - 'tests/form-email-handoff.test.mjs'
+      - '.github/workflows/form-email-handoff.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test session restoration and native URL construction with synthetic credentials
+        run: node --test tests/form-email-handoff.test.mjs

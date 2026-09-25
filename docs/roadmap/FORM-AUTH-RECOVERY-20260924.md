@@ -13,15 +13,18 @@ Email landing now waits for an explicit Continue tap rather than consuming a one
 - [x] Root cause identified in the actual sender/client/callback contract.
 - [x] Node regression suite: 27 passing cases with mocked Auth/DOM dependencies. Run: node --test tests/form-email-handoff.test.mjs.
 - [x] Both affected canonical email-account memberships re-read as active and bound to the intended athlete invitation. One account is still awaiting email verification; membership alone is not successful login.
-- [x] Authenticated-role backend checks: each account resolves its intended athlete and returns a plan feed; the first account also checked for nonempty block/weeks/sessions.
-- [ ] Verify this source commit is the published Netlify deploy, not merely a branch or queued build.
+- [x] Authenticated-role backend checks: each account resolves its intended athlete and returns a plan feed; one feed also checked for nonempty block/weeks/sessions.
+- [x] Netlify reports tested source 91687a50fd784ba3d788f737f7ac14166f827467 published as production deploy 6ab5d6a8d949000008703278 at 2026-09-25T02:04:38.511Z. Public asset extraction returned no usable bodies; no independent body-hash or production browser claim is made.
+- [ ] CI regression workflow added; verify its first run separately.
 - [ ] Real iPhone check: fresh email, Continue, Signed in, Open FORM, then correct athlete Week Home on the installed app. Browser runtime navigation was blocked in the local test environment; no real-browser or physical-device pass is claimed.
 - [ ] Confirm repeat app launch and correct filing identity without reinstalling.
 - [ ] Permanent Apple enrollment: explicit verified linking of an authenticated Apple identity to the athlete account. Do not infer ownership from timestamps or a screenshot of an Apple email.
 - [ ] Read and verify the actual hosted Auth link lifetime before claiming a one-hour change. No expiration setting was modified here.
 
+Release evidence: [machine-readable receipt](../audits/FORM-AUTH-RECOVERY-20260924-RELEASE.json). This is the sole checklist for the auth repair; the receipt records evidence, not a second task list.
+
 Do not send more athlete retries until the applicable verification gate is complete. Do not claim that work continues between chat turns unless an actual scheduled task or running CI job exists. The website repair is not a native app release, and it is not the permanent Apple enrollment repair.
 
 ## Deployment and rollback
 
-Prepared against main d982480a3c2d1dc9b66e03e80b3801fc4c945ec2. Previously published deploy: 6ab57cdf7586f20008c46ae6, source 318b20b22a824ef3d309c3bcd0c167d428a2bc45. The intervening main change was an unrelated release receipt only. Publish these changes atomically; preserve concurrent changes. Record actual production proof separately after deployment. Roll back only this repair's auth assets/helper if necessary; do not reverse canonical memberships or modify athlete training.
+Prepared against main d982480a3c2d1dc9b66e03e80b3801fc4c945ec2. Previously published deploy: 6ab57cdf7586f20008c46ae6, source 318b20b22a824ef3d309c3bcd0c167d428a2bc45. The intervening main change was an unrelated release receipt only. Source assets were published atomically. Roll back only this repair's auth assets/helper if necessary; do not reverse canonical memberships or modify athlete training. Receipt/CI-only changes use [skip netlify] and are not new production deployments.

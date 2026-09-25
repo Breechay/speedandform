@@ -1,0 +1,37 @@
+{
+  "status": "web_fix_published_device_gate_open",
+  "athlete_retry_authorized": false,
+  "source_commit": "91687a50fd784ba3d788f737f7ac14166f827467",
+  "production": {
+    "provider": "Netlify",
+    "site_id": "f3914a6a-a9ce-465e-8212-f5f42597c469",
+    "deploy_id": "6ab5d6a8d949000008703278",
+    "commit_ref": "91687a50fd784ba3d788f737f7ac14166f827467",
+    "state": "ready",
+    "context": "production",
+    "published_at": "2026-09-25T02:04:38.511Z",
+    "proof": "Netlify get-deploy returned published production with the exact tested commit."
+  },
+  "verification": {
+    "local_node_regression": {"passed": 27, "failed": 0, "auth_transport": "mocked", "dom": "mocked"},
+    "source_blob_hashes_match_local_tested_files": true,
+    "affected_memberships_checked": true,
+    "authenticated_role_identity_and_plan_feed_checks_passed": true,
+    "production_browser_test_passed": false,
+    "physical_ios_verified": false,
+    "installed_app_build_verified": false,
+    "ci_workflow_added": true,
+    "ci_result": "pending"
+  },
+  "limits": [
+    "Local Chromium navigation was blocked by the runtime, including localhost; no browser pass is claimed.",
+    "Production JavaScript extraction returned no usable bodies; exact deployed commit was verified through Netlify.",
+    "Membership and database permission checks do not establish email ownership or successful phone login.",
+    "No new athlete emails were sent during this repair.",
+    "No native app binary was built or published."
+  ],
+  "apple_enrollment_hardened": false,
+  "auth_link_expiry_changed": false,
+  "next_gate": "One controlled physical iPhone test before asking affected athletes to retry: fresh email, Continue, Signed in, Open FORM, correct athlete Week Home, reopen, correct filing identity.",
+  "checklist": "docs/roadmap/FORM-AUTH-RECOVERY-20260924.md"
+}
