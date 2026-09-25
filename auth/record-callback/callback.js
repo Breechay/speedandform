@@ -1,5 +1,6 @@
 import { authErrorMessage, finishAuthCallback, getSession, setPassword } from '/private/auth.js';
 import { supabase } from '/private/supabase-client.js';
+import { acceptImplicitReturn } from './session-handoff.js?v=2';
 
 const title = document.getElementById('callbackTitle');
 const status = document.getElementById('callbackStatus');
@@ -43,12 +44,21 @@ function appDeepLink(session) {
 
 try {
   const url = new URL(window.location.href);
-  const recovery = url.searchParams.get('mode') === 'recovery' || url.searchParams.get('type') === 'recovery';
+  const returnedFragment = new URLSearchParams(url.hash.replace(/^#/, ''));
+  const recovery = url.searchParams.get('mode') === 'recovery'
+    || url.searchParams.get('type') === 'recovery' || returnedFragment.get('type') === 'recovery';
   const returnTo = url.searchParams.get('return_to') || '';
   const rpdReturn = rpdReturnDestination(returnTo);
   const calendarReturn = returnTo.includes('calendar_return=1');
   const appHandoff = isAppHandoff();
   let calendarTokens = null;
+
+  // Admin-generated email links return access/refresh tokens, not a PKCE code.
+  // Restore and verify that session BEFORE finishAuthCallback reads it or claims
+  // membership. Previously the valid first tap was incorrectly called expired.
+  await acceptImplicitReturn(supabase.auth, url.toString(), (cleanURL) => {
+    window.history.replaceState({}, '', cleanURL);
+  });
 
   // Calendar consent is still a normal Supabase Google OAuth flow, but this is
   // the one moment the provider refresh token exists. Capture it in memory and
@@ -70,19 +80,18 @@ try {
   if (appHandoff && !recovery && !calendarReturn) {
     const session = await getSession();
     const deepLink = appDeepLink(session);
-    clearAppHandoff();
     if (!deepLink) throw new Error('FORM could not complete the app handoff. Request a new link.');
 
-    title.textContent = 'Opening FORM.';
-    status.textContent = 'Back to your training.';
+    title.textContent = 'Signed in.';
+    status.textContent = 'Tap Open FORM to continue in the app.';
     retry.textContent = 'Open FORM →';
     retry.href = deepLink;
     retry.hidden = false;
     storeWrap.hidden = false;
+    retry.addEventListener('click', clearAppHandoff, { once: true });
 
-    // Try the one-tap handoff first. The visible button stays in place in case
-    // Safari requires a second user gesture or the app is not installed.
-    window.location.replace(deepLink);
+    // A real tap gives iOS the user gesture it needs to open a custom scheme.
+    // Keep this verified handoff on screen; never re-use the one-time email URL.
   } else if (calendarReturn) {
     if (!calendarTokens?.refreshToken || !calendarTokens?.accessToken) {
       throw new Error('Google did not return offline Calendar access. Open Account → Calendar and approve access again.');
