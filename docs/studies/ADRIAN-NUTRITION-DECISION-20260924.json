@@ -50,5 +50,8 @@
     "training_assignment_changed": false,
     "medical_clearance_claimed": false,
     "target_is_measured_energy_requirement": false
-  }
+  },
+  "superseded_on": "2026-09-25",
+  "superseded_by": "docs/studies/ADRIAN-INTAKE-UPDATE-20260925.json",
+  "supersession_note": "Historical September 24 decision preserved. Coach subsequently instructed Adrian to target about 3,400 kcal consistently."
 }
