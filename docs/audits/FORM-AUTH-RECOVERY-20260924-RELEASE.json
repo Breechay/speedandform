@@ -21,7 +21,10 @@
     "physical_ios_verified": false,
     "installed_app_build_verified": false,
     "ci_workflow_added": true,
-    "ci_result": "pending"
+    "ci_result": "success",
+    "ci_run_id": 36085042069,
+    "ci_head_sha": "ef45f3a930cc27747f65cd9b0ea59a6969bddaaf",
+    "ci_run_url": "https://github.com/Breechay/speedandform/actions/runs/36085042069"
   },
   "limits": [
     "Local Chromium navigation was blocked by the runtime, including localhost; no browser pass is claimed.",

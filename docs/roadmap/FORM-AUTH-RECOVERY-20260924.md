@@ -15,7 +15,7 @@ Email landing now waits for an explicit Continue tap rather than consuming a one
 - [x] Both affected canonical email-account memberships re-read as active and bound to the intended athlete invitation. One account is still awaiting email verification; membership alone is not successful login.
 - [x] Authenticated-role backend checks: each account resolves its intended athlete and returns a plan feed; one feed also checked for nonempty block/weeks/sessions.
 - [x] Netlify reports tested source 91687a50fd784ba3d788f737f7ac14166f827467 published as production deploy 6ab5d6a8d949000008703278 at 2026-09-25T02:04:38.511Z. Public asset extraction returned no usable bodies; no independent body-hash or production browser claim is made.
-- [ ] CI regression workflow added; verify its first run separately.
+- [x] GitHub Actions FORM email handoff regression run 36085042069 completed successfully on ef45f3a930cc27747f65cd9b0ea59a6969bddaaf. This runs the same synthetic Node suite, not a physical-device test.
 - [ ] Real iPhone check: fresh email, Continue, Signed in, Open FORM, then correct athlete Week Home on the installed app. Browser runtime navigation was blocked in the local test environment; no real-browser or physical-device pass is claimed.
 - [ ] Confirm repeat app launch and correct filing identity without reinstalling.
 - [ ] Permanent Apple enrollment: explicit verified linking of an authenticated Apple identity to the athlete account. Do not infer ownership from timestamps or a screenshot of an Apple email.
