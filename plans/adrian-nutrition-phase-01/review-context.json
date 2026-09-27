@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "nutrition_revision": "1.5.9",
+  "nutrition_revision": "1.5.10",
   "prepared_date": "2026-09-22",
   "athlete": "Adrian Gandara",
   "study_id": "FRM-001",
@@ -84,7 +84,7 @@
     ],
     "recipe_equivalence": "Different cream/cheese finishes are not calorie/protein-equivalent. These adaptations have not been kitchen-tested for Adrian; observe taste, yield, appetite and digestion.",
     "long_run_fuel": "No new food, gel, waffle, powder or snack is prescribed around exercise. Prior Honey Stinger use is an athlete report only, not a confirmed safe exception.",
-    "photo_checkin": "Two complete photo-days: one normal workday and Saturday. Replaces four isolated meal photos.",
+    "photo_checkin": "Calibration window Sep 26–Oct 4: log all food and drink daily, then move to 2–3 spot-check days per week initially and occasional audits once the pattern is stable.",
     "protein_guide_g": [
       130,
       145
@@ -116,9 +116,9 @@
   ],
   "machine_readability": "All athlete-facing instructions are static HTML, including native details contents. The HTML head links this JSON. Read the public authored program JSON without depending on JavaScript rendering; use authorized repository access for pinned native sources.",
   "privacy_boundary": "This public reference manifest contains no credentials, athlete emails, backend tokens, or private completed-session logs. Hiding HTML is not access control. Future Forge completion review must use authenticated, authorized data access, not a public JSON export.",
-  "interpretation_boundary": "Keep athlete reports, arithmetic checks, label observations, measured outcomes and decisions separate. The completed food log totals 3271 kcal from athlete estimates; dinner is explicitly a guess. Earlier 1300 and 2260 totals are included subtotals. This establishes neither a measured surplus nor a new target, full adherence or muscle gain. Supplement brands and labels are known in current_supplement_labels; actual doses, start dates and frequency remain unknown. Consumption is not preference confirmation or clinical clearance. Meal order does not establish timing relative to exercise. Private clinical history stays off public surfaces. The active working energy target is now approximately 3,400 kcal/day by coach decision, not a measured maintenance requirement or inferred surplus. The September 24 athlete-reported day totals 3,510 kcal from listed estimates and is an observation, not proof of surplus or hypertrophy. Use repeated weight and circumference data plus appetite, digestion and training response to interpret the phase.",
+  "interpretation_boundary": "Keep athlete reports, arithmetic checks, label observations, measured outcomes and decisions separate. The active working energy target is approximately 3,400 kcal/day by coach decision, not a measured maintenance requirement or inferred surplus. The September 23 day totals 3,271 kcal from athlete estimates; the September 24 day totals 3,510 kcal; and the September 26 report states 4,380 kcal while its listed items sum to 4,370 kcal. The September 26 day is a high-intake/appetite observation, not a new target or evidence of hypertrophy. Alcohol contributed 500 reported kcal and is tagged separately. Daily intake logging runs Sep 26–Oct 4, after which monitoring becomes intermittent. Use repeated weight/circumference data plus appetite, digestion and training response to interpret the phase. Consumption is not preference confirmation or clinical clearance; meal order does not establish timing relative to exercise; private clinical history stays off public surfaces.",
   "shopping": {
-    "revision": "1.5.9",
+    "revision": "1.5.10",
     "static_html": true,
     "check_state": "Browser-local only; no Forge sync or adherence receipt",
     "first_cycle": "Five workday meals and one frozen backup; not eight mandatory meals",
@@ -132,8 +132,8 @@
     "existing_gels_unchanged": true,
     "powder_purchase": "Check existing products before buying; existing whey checkbox key retained, no auto-check or adherence inference."
   },
-  "updated_date": "2026-09-25",
-  "latest_observation_record": "docs/studies/ADRIAN-INTAKE-UPDATE-20260925.json",
+  "updated_date": "2026-09-27",
+  "latest_observation_record": "docs/studies/ADRIAN-NUTRITION-DAYLOG-20260926.json",
   "reported_food_and_supplements_20260923": {
     "space_balls": {
       "product": "LesserEvil Space Balls, Real Organic Cheddar",
@@ -291,16 +291,29 @@
     }
   },
   "latest_intake_report": {
-    "source_record": "docs/studies/ADRIAN-INTAKE-UPDATE-20260925.json",
-    "reported_day": "2026-09-24",
+    "source_record": "docs/studies/ADRIAN-NUTRITION-DAYLOG-20260926.json",
+    "reported_day": "2026-09-26",
     "completeness": "athlete-reported list; not weighed or independently complete",
-    "daily_total_kcal_reported": 3510,
-    "sum_of_listed_kcal": 3510,
+    "daily_total_kcal_reported": 4380,
+    "sum_of_listed_kcal": 4370,
+    "arithmetic_difference_kcal": 10,
     "calories_independently_verified": false,
     "surplus_kcal": null,
-    "coaching_response": "Target about 3,400 kcal consistently. Close is enough; do not force an exact number. Review the weekly weight pattern, measurements, appetite, digestion and training response."
+    "athlete_response": "Surprised that it does not feel so hard to hit these.",
+    "alcohol_reported_kcal": 500,
+    "coaching_response": "Keep the working target around 3,400 kcal/day while daily calibration logging runs Sep 26–Oct 4. Treat this as an observation, not a new target."
   },
   "previous_intake_reports": [
+    {
+      "source_record": "docs/studies/ADRIAN-INTAKE-UPDATE-20260925.json",
+      "reported_day": "2026-09-24",
+      "completeness": "athlete-reported list; not weighed or independently complete",
+      "daily_total_kcal_reported": 3510,
+      "sum_of_listed_kcal": 3510,
+      "calories_independently_verified": false,
+      "surplus_kcal": null,
+      "coaching_response": "Target about 3,400 kcal consistently. Close is enough; do not force an exact number. Review the weekly weight pattern, measurements, appetite, digestion and training response."
+    },
     {
       "source_file": "IMG_7964.jpeg",
       "date_basis": "Same-day coach conversation context; screenshot says Today, without an absolute date.",
@@ -370,7 +383,7 @@
     ],
     "food_timing_rule_unchanged": true
   },
-  "latest_coach_decision_record": "docs/studies/ADRIAN-NUTRITION-DECISION-20260924.json",
+  "latest_coach_decision_record": "docs/studies/ADRIAN-INTAKE-UPDATE-20260925.json",
   "latest_weight_report": {
     "source_record": "docs/studies/ADRIAN-INTAKE-UPDATE-20260925.json",
     "date": "2026-09-25",
@@ -380,5 +393,16 @@
       1,
       3
     ]
+  },
+  "latest_monitoring_protocol": "docs/studies/ADRIAN-NUTRITION-CALIBRATION-20260927.json",
+  "calibration_protocol": {
+    "source_record": "docs/studies/ADRIAN-NUTRITION-CALIBRATION-20260927.json",
+    "start_date": "2026-09-26",
+    "end_date": "2026-10-04",
+    "daily_logging": true,
+    "target_kcal_per_day": 3400,
+    "target_status": "unchanged working target",
+    "primary_read": "7-day intake average/pattern plus weight, measurements, appetite, digestion and training response",
+    "after_window": "2–3 spot-check days per week initially, then occasional audits once stable"
   }
 }
