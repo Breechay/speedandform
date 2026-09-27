@@ -36,6 +36,7 @@ One wordmark per surface. The seal may sit with either wordmark.
 - Lime `#c9ff36` is a signal, not decoration. Usually one meaningful use per view: the period, a live state, or one focal accent. Never a full background.
 - Measured things — prices, dates, weeks, paces, coordinates, technical captions — use a monospace when the room supports it.
 - Brice's voice is short, specific and human. First person when it is him. No corporate "we believe" language.
+- Approved coaching descriptor: **RUN DEVELOPMENT · GAIT RETRAINING · PROGRAMMING**. Use it as a quiet supporting line on coaching surfaces after the main promise is clear. `Run Development` stays the umbrella; `gait retraining` names deliberate movement change; `programming` names the authored training structure.
 - Photography is real: real athletes, real sessions, real Miami. No stock.
 - Motion arrives once and then gets out of the way.
 - No decorative glitch, HUD or scanline systems. **Exception:** the homepage hero film may retain a subtle scanline/grain treatment when it materially improves imperfect source footage. That exception belongs to the film, not the interface.
