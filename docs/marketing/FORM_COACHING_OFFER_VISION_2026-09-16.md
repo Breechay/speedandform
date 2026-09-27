@@ -5,6 +5,8 @@
 **Applies to:** speedandform.com, Run Development, FORM Analysis, Instagram/Meta acquisition, referrals, assessments, future app/Console connections
 
 > **September 17 doctrine overlay:** read [`docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md`](../FORM_RUN_DEVELOPMENT_MANIFESTO.md). It is the newer authority for how Run Development is understood and described: ease, fluidity, selective high-impact change, layered cues, repeated exposure, internal state and athlete ownership. Product facts and evidence boundaries in this document remain valid; generic descriptions of coaching do not override the manifesto.
+>
+> **September 27 terminology overlay:** `gait retraining` is the approved technical name for the deliberate movement-change work already inside Brice's practice. It is a method within Run Development, not a third offer and not a promise that every runner needs correction. FORM Analysis may include a bounded gait-retraining recommendation when the evidence supports one, but the two offers remain distinguished by scope and relationship. Approved supporting descriptor: **RUN DEVELOPMENT · GAIT RETRAINING · PROGRAMMING**.
 
 
 ## The realization
