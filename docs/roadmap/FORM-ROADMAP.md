@@ -1,5 +1,17 @@
 # FORM: current state and next actions
 
+## September 27 - Run Development gait retraining terminology
+
+Homepage and coaching doctrine now name **gait retraining** as the deliberate movement-change work already inside Run Development. The approved supporting descriptor is **RUN DEVELOPMENT · GAIT RETRAINING · PROGRAMMING**. The hero remains `Run Development / Run better`; gait retraining is defined in the Coaching section and repeated quietly in the offer. Canonical doctrine, brand rules, agent instructions and the coaching-offer vision were updated together. No price, intake, plan, athlete assignment, app behavior or FORM Analysis product scope changed.
+
+- [x] Homepage production copy and supporting styling shipped.
+- [x] Canonical Run Development manifesto distinguishes running form, gait analysis, gait retraining and running economy.
+- [x] Brand, agent and coaching-offer docs record the terminology and selective-intervention guardrail.
+- [x] Tested candidate: PR #175 head `2c8a0e084bb36680e23264fcbef80e13f7dc29d6`; release merged to main at `eb94676bb77c388b2e21d8253d1d5d24316519d1`.
+- [x] Production: Netlify deploy `6ab99195e447e700085f6a3d`, ready and published September 27 at 21:58:57 UTC.
+- [ ] CI baseline blocker: PR #175's `RPD coached-athlete source truth` check failed on the pre-existing/stale W4 assertion in `tests/athlete-study-source-of-truth.cjs`; this release did not touch the study or that test.
+- [ ] Next: reconcile the stale W4 source-of-truth assertion separately. Do not fold that repair into gait-retraining doctrine work.
+
 ## September 25 - Adrian intake and monitoring update, nutrition v1.5.9
 
 Coach instruction now targets **about 3,400 kcal/day consistently**; this supersedes the September 24 ~3,000 starting target without rewriting its history. Adrian reports **3,510 kcal on Sep 24**, no snacking and easier subjective food volume, plus **156.8 lb on Sep 25**. Collect **1-3 comparable morning weights/week** and interpret the pattern with repeat circumferences, appetite, digestion and running/lifting response. Creatine use is reported as one included little spoon per shake and about two shakes/day; the photographed label's 5 g serving is not assigned to that spoon until confirmed. No run/strength assignment or native sync change. Source: [Sep 25 update](../studies/ADRIAN-INTAKE-UPDATE-20260925.json).
