@@ -1,6 +1,6 @@
 # FORM Run Development Manifesto
 
-**Decision date:** September 17, 2026  
+**Decision date:** September 17, 2026 · terminology refined September 27, 2026  
 **Owner:** Brice / Speed & Form  
 **Status:** canonical source doctrine for Run Development, FORM coaching language, homepage philosophy and downstream product interpretation.
 
@@ -33,6 +33,12 @@ Brice's image for the desired feeling:
 ---
 
 # I develop runners
+
+A concise technical descriptor for the practice is:
+
+> **RUN DEVELOPMENT · GAIT RETRAINING · PROGRAMMING**
+
+`Run Development` remains the umbrella. `Gait retraining` names the deliberate movement-change work. `Programming` names the authored training structure. The descriptor supports the philosophy; it does not replace `Run Development` as the public promise.
 
 ## 1. Look for ease
 
@@ -97,6 +103,18 @@ Examples Brice watches and coaches include:
 - anything that creates visible or reported unnecessary effort.
 
 Strength can be part of form development. Bulgarian split squats, single-leg RDLs and other structural work may be used to build the stability the runner needs to express better movement.
+
+### Gait retraining
+
+`Gait retraining` is the technical name for the movement-change work already inside Run Development. In FORM, it means deliberately changing a runner's posture, rhythm, mechanics or movement strategy through a useful cue, practice, feedback and repeated exposure until the new pattern can hold under running load.
+
+Keep the terms distinct:
+- **running form** is the runner's movement expression;
+- **gait analysis** is observing or measuring that movement;
+- **gait retraining** is the deliberate process of changing a useful part of the pattern;
+- **running economy** is the energetic cost of running at a given speed and is an outcome or measurement, not another name for gait retraining.
+
+Gait retraining does not mean forcing every athlete toward one ideal visual model. The selective-intervention rule still governs: change what has a meaningful cost in context, then retest.
 
 ### Coaching belief versus public claim
 
@@ -175,7 +193,11 @@ Approved high-level expression:
 > **Run Development**  
 > **Run better.**
 
-Then reveal the practice gradually.
+Approved supporting descriptor, after the page has established the main promise:
+
+> **RUN DEVELOPMENT · GAIT RETRAINING · PROGRAMMING**
+
+Use it as quiet supporting identity copy, not as the hero headline. Then reveal the practice gradually.
 
 For the `I develop runners` section, prefer Brice-specific observations over generic service language.
 
