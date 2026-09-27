@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "record_type": "athlete_report_completed_food_day",
+  "record_id": "adrian-food-day-20260926",
+  "recorded_on": "2026-09-27",
+  "athlete": "Adrian Gandara",
+  "study_id": "FRM-001",
+  "source": {
+    "type": "coach_supplied_message_screenshot",
+    "file": "IMG_8336.jpeg",
+    "conversation_date": "2026-09-27",
+    "reported_day": "2026-09-26",
+    "date_basis": "Screenshot says Yesterday in the coach conversation dated 2026-09-27.",
+    "screenshots_public": false
+  },
+  "items": [
+    {
+      "sequence_in_message": 1,
+      "food_as_reported": "Honey Stinger cinnamon waffle",
+      "calories_kcal_reported": 140,
+      "estimate_status": "athlete-reported value; not independently verified",
+      "protein_g_reported": null
+    },
+    {
+      "sequence_in_message": 2,
+      "food_as_reported": "3 fried eggs + chocolate milk",
+      "calories_kcal_reported": 500,
+      "estimate_status": "athlete-reported value; not independently verified",
+      "protein_g_reported": null
+    },
+    {
+      "sequence_in_message": 3,
+      "food_as_reported": "Croquetas",
+      "calories_kcal_reported": 600,
+      "estimate_status": "athlete-reported value; not independently verified",
+      "protein_g_reported": null
+    },
+    {
+      "sequence_in_message": 4,
+      "food_as_reported": "Cafe con leche",
+      "calories_kcal_reported": 150,
+      "estimate_status": "athlete-reported value; not independently verified",
+      "protein_g_reported": null
+    },
+    {
+      "sequence_in_message": 5,
+      "food_as_reported": "Banana",
+      "calories_kcal_reported": 105,
+      "estimate_status": "athlete-reported value; not independently verified",
+      "protein_g_reported": null
+    },
+    {
+      "sequence_in_message": 6,
+      "food_as_reported": "Doritos",
+      "calories_kcal_reported": 600,
+      "estimate_status": "athlete-reported value; not independently verified",
+      "protein_g_reported": null
+    },
+    {
+      "sequence_in_message": 7,
+      "food_as_reported": "Vodka (doing what it takes)",
+      "calories_kcal_reported": 500,
+      "estimate_status": "athlete-reported value; not independently verified",
+      "protein_g_reported": null
+    },
+    {
+      "sequence_in_message": 8,
+      "food_as_reported": "Gatorade",
+      "calories_kcal_reported": 190,
+      "estimate_status": "athlete-reported value; not independently verified",
+      "protein_g_reported": null
+    },
+    {
+      "sequence_in_message": 9,
+      "food_as_reported": "Burgers + hot dogs",
+      "calories_kcal_reported": 1370,
+      "estimate_status": "athlete-reported value; not independently verified",
+      "protein_g_reported": null
+    },
+    {
+      "sequence_in_message": 10,
+      "food_as_reported": "Saltine crackers",
+      "calories_kcal_reported": 45,
+      "estimate_status": "athlete-reported value; not independently verified",
+      "protein_g_reported": null
+    },
+    {
+      "sequence_in_message": 11,
+      "food_as_reported": "Oikos protein shake",
+      "calories_kcal_reported": 170,
+      "estimate_status": "athlete-reported value; not independently verified",
+      "protein_g_reported": null
+    }
+  ],
+  "reported_total_kcal": 4380,
+  "sum_of_listed_kcal": 4370,
+  "arithmetic_verified": false,
+  "arithmetic_difference_kcal": 10,
+  "arithmetic_note": "The athlete wrote 4,380 kcal; the listed item values sum to 4,370 kcal. Preserve both values rather than silently correcting the report.",
+  "alcohol": {
+    "present": true,
+    "item": "Vodka",
+    "reported_kcal": 500,
+    "interpretation": "Included in total energy but tagged separately from food/recovery intake."
+  },
+  "athlete_response": "Just surprised that it does not feel so hard to hit these.",
+  "unknowns": {
+    "daily_protein_g": null,
+    "daily_carbohydrate_g": null,
+    "daily_fat_g": null,
+    "energy_expenditure_kcal": null,
+    "energy_surplus_kcal": null,
+    "meal_times": null,
+    "training_or_rest_day": null
+  },
+  "interpretation": "High-intake self-report and useful appetite/adherence evidence. It does not establish a new calorie target, measured surplus or muscle gain. The active working target remains about 3,400 kcal/day while the calibration window is collected.",
+  "boundaries": {
+    "new_calorie_target": false,
+    "compensatory_restriction_next_day": false,
+    "training_assignment_changed": false,
+    "supplement_dose_changed": false,
+    "screenshots_published": false
+  }
+}
