@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "record_type": "coach_nutrition_monitoring_protocol",
+  "record_id": "adrian-nutrition-calibration-20260927",
+  "recorded_on": "2026-09-27",
+  "athlete": "Adrian Gandara",
+  "study_id": "FRM-001",
+  "working_target": {
+    "kcal_per_day": 3400,
+    "precision": "approximate",
+    "status": "unchanged during calibration",
+    "instruction": "Aim around 3,400 kcal/day consistently. Close is enough; do not force an exact number and do not treat a high day as a new target."
+  },
+  "calibration_window": {
+    "start_date": "2026-09-26",
+    "end_date": "2026-10-04",
+    "calendar_days": 9,
+    "daily_log": true,
+    "capture": [
+      "everything eaten and drunk",
+      "athlete-used calorie total",
+      "protein when known from a label or clear amount",
+      "training or rest day",
+      "morning body weight when available",
+      "appetite and ease of eating",
+      "digestion",
+      "run or lift response",
+      "unusual factors such as alcohol"
+    ],
+    "primary_read": "Use the 7-day intake average/pattern with body and training response; do not overreact to one day."
+  },
+  "after_window": {
+    "initial_frequency": "2 to 3 spot-check days per week",
+    "later_frequency": "occasional audits once the pattern is stable",
+    "return_to_daily_when": [
+      "the calorie target changes",
+      "weight or circumference trajectory becomes unclear or unexpectedly fast/flat",
+      "training performance or recovery changes meaningfully",
+      "adherence becomes uncertain"
+    ]
+  },
+  "review_inputs": [
+    "7-day intake pattern",
+    "1 to 3 comparable morning weights per week",
+    "repeat circumference measurements with the same method",
+    "appearance/photo checkpoints when scheduled",
+    "appetite and meal comfort",
+    "digestion",
+    "running response",
+    "lifting response"
+  ],
+  "source_records": [
+    "docs/studies/ADRIAN-NUTRITION-DAYLOG-20260923.json",
+    "docs/studies/ADRIAN-INTAKE-UPDATE-20260925.json",
+    "docs/studies/ADRIAN-NUTRITION-DAYLOG-20260926.json"
+  ],
+  "scope": "Monitoring only. No run or strength prescription change and no new supplement dose."
+}
