@@ -16,7 +16,7 @@
     mode: "instagram",
     url: "https://ig.me/m/form.practice",
     label: "I'm in",
-    note: "Send us a message on Instagram and we'll see you there.",
+    note: "Message @form.practice to be counted in.",
   };
 
   // Strava is where the club lives (discovery, activities). It is never the RSVP.
@@ -187,7 +187,7 @@
     if (!r.cancelled) rows.push(fact("Weather", esc(WEATHER)));
     const action = r.cancelled
       ? `<div class="action"><p><strong>This run is cancelled.</strong></p></div>`
-      : `<div class="action"><a class="btn" href="${esc(JOIN.url)}" rel="noopener">${esc(JOIN.label)}</a><p>${esc(JOIN.note)}</p></div>`;
+      : `<div class="action sticky"><a class="btn" href="${esc(JOIN.url)}" rel="noopener">${esc(JOIN.label)}</a><p>${esc(JOIN.note)}</p></div>`;
     return `
       <a class="back" href="/run">← All runs</a>
       <header class="run-head"><div class="eyebrow${r.cancelled ? " is-cancelled" : ""}">${r.cancelled ? "Cancelled" : esc(eyebrow(r))}</div><h1>${esc(r.title)}</h1></header>

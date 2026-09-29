@@ -9,6 +9,8 @@
 - **Evidence:** local preview against production data: Track Thursday Oct 1 and Long Run 01 render; unknown slug shows "This run isn't posted."
 - **Blocker:** Long Run 02 is not published in the run database yet, so `/run/long-run-02` shows "not posted" until Brice publishes it with its facts.
 - **Next action:** publish Long Run 02; Brice publishes this branch in Netlify; the Story links to `speedandform.com/run/long-run-02`.
+- **Follow-up (not a Saturday blocker, Chat 2026-09-29):** exact run URLs serve the generic `/run` `<title>`, canonical and Open Graph tags, so a shared `/run/long-run-02` link previews as "Run with FORM". Give each run its own server-rendered metadata (e.g. "Long Run 02 · Saturday, Oct 3 | FORM", distance / time / Miami, an event image when there is one), e.g. a Netlify edge function that reads the run.
+- **Rule:** never hard-code a run into the site. Coach publishes the run → app and website both read it → the Story points to its URL.
 
 ## September 27 - Run Development gait retraining terminology
 
