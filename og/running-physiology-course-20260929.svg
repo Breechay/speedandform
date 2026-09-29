@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<rect width="1200" height="630" fill="#ece6da"/>
+<line x1="70" y1="110" x2="1130" y2="110" stroke="#b8afa1" stroke-width="1"/>
+<line x1="70" y1="565" x2="1130" y2="565" stroke="#b8afa1" stroke-width="1"/>
+<text x="70" y="84" fill="#11100e" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="800" letter-spacing="-1">FORM.</text>
+<text x="930" y="82" fill="#655f56" font-family="Menlo, Monaco, monospace" font-size="17" letter-spacing="1">LIBRARY / COURSE 01</text>
+<text x="70" y="230" fill="#11100e" font-family="Georgia, 'Times New Roman', serif" font-size="70" font-weight="700">RUNNING PHYSIOLOGY</text>
+<text x="70" y="310" fill="#11100e" font-family="Georgia, 'Times New Roman', serif" font-size="70" font-weight="700">TRAINING SCIENCE</text>
+<text x="73" y="368" fill="#657c18" font-family="Menlo, Monaco, monospace" font-size="17" letter-spacing="1">A CURATED VIDEO COURSE FOR RUNNERS + COACHES</text>
+<text x="73" y="425" fill="#11100e" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">VO₂MAX  ·  THRESHOLD  ·  RUNNING ECONOMY  ·  BIOMECHANICS</text>
+<text x="73" y="468" fill="#11100e" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">STRENGTH  ·  TENDON  ·  BONE  ·  PROGRAMMING</text>
+<text x="670" y="525" fill="#6b6459" font-family="Georgia, 'Times New Roman', serif" font-size="28">Understand what training is doing,</text>
+<text x="670" y="558" fill="#6b6459" font-family="Georgia, 'Times New Roman', serif" font-size="28">not just what workout to run.</text>
+<text x="70" y="605" fill="#655f56" font-family="Menlo, Monaco, monospace" font-size="16">SPEEDANDFORM.COM</text>
+<text x="950" y="605" fill="#655f56" font-family="Menlo, Monaco, monospace" font-size="16">FREE · WATCH IN ORDER</text>
+</svg>
