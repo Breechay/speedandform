@@ -1,5 +1,12 @@
 # FORM: current state and next actions
 
+## September 29 - Lisa: Raise the Ceiling revised for an ankle interruption
+
+- **Status:** plan page updated on branch `lisa-ankle-revision` to match Lisa's canonical FORM assignment (revised in production the same day through `revise_session`). Preview only until published.
+- **What changed:** Week 03 is a hold (no threshold, sprints only if comfortable, 60 min easy or off); she re-enters at 2 × 12, then the same 25-minute continuous ask twice; Saturdays now carry authored long aerobic doses (60 → 75 → 90 → 75 min); the block extends to seven weeks and the 10K moves from Oct 24 to Oct 31.
+- **Scope:** the plan page is now Lisa's (Simon moved to Study 003 on Sep 23; the archived study keeps his record and now links to Lisa's revised plan).
+- **Next action:** Brice publishes in Netlify.
+
 ## September 27 - Run Development gait retraining terminology
 
 Homepage and coaching doctrine now name **gait retraining** as the deliberate movement-change work already inside Run Development. The approved supporting descriptor is **RUN DEVELOPMENT · GAIT RETRAINING · PROGRAMMING**. The hero remains `Run Development / Run better`; gait retraining is defined in the Coaching section and repeated quietly in the offer. Canonical doctrine, brand rules, agent instructions and the coaching-offer vision were updated together. No price, intake, plan, athlete assignment, app behavior or FORM Analysis product scope changed.
