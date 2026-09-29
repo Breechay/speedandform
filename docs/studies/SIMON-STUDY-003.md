@@ -44,6 +44,19 @@ The plan retains 20-minute warm-ups and 10-minute cooldowns on quality days. Ses
 
 This is a coach-reviewed conditional plan, not an automatic readiness algorithm. Before Week 1, confirm recent running continuity, comfortable long-run duration, hard HYROX/leg work and current recovery. If current readiness is lower than the historical background, reduce the plan. Never protect the quality sessions at all costs while stripping away all easy support.
 
+## Week 1 filed: September 29
+
+Simon completed **4 x 1.6 km** in **5:57.0, 5:59.4, 6:01.7 and 6:34.8**, for **24:32.9 across 6.40 km**, a derived work average of about **3:50/km**. The prescribed working band remains **3:47-3:52/km**.
+
+This is not a clean four-rep within-band pacing read. The first three reps were slightly faster than the band. Before the fourth, another coach told Simon his heart rate appeared too high for threshold work. Simon did not clarify that this was **working half-marathon pace, not threshold**, and deliberately slowed the final repetition. No numeric heart-rate series was supplied with the screenshot.
+
+Therefore:
+- the final 4:07/km rep is **not filed as a physiological fade**;
+- the session average landing inside the band does **not erase the mixed distribution**;
+- the first three reps show ready access to the working pace neighborhood;
+- heart rate remains context, not a fixed cap or pass/fail gate in this plan;
+- Week 2's **4 x 2 km** remains conditional on normal recovery and controlled execution, exactly as authored. No faster band is created from this session.
+
 ## Gate 01 is a window
 
 1. **Oct 29:** current 5K reference after an easy Tuesday and lighter preceding week. Record splits, course, conditions, execution and subsequent recovery. High race effort is expected here; it is not graded like a controlled Tuesday.
