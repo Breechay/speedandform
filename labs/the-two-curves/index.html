@@ -688,10 +688,10 @@ Historical evidence is qualified in evidence.json. Hidden comments are not priva
       <div class="entry__date"><span data-i="e2.d">04 Sep 2026</span><br><span class="pill ok" data-i="filed">Filed</span></div>
       <div><h3 data-i="e2.h">Recorded pieces. Provisional reference.</h3><p><span data-i="e2.p">The existing coach import records repetitions at <span class="u">3:47/km</span> and <span class="u">3:45/km</span>, with RPE 7. Original activity, conditions and next-day recovery are not linked. In his words:</span> <q data-i="hand.q">Felt controlled. Second rep was easier than the first.</q></p></div>
     </article>
-    <div class="empty">
-      <div><h3 data-i="e3.h">Block 01: nothing filed yet.</h3><p data-i="e3.p">It opens Sep 28. The first new filing belongs here.</p></div>
-      <div class="zero">00</div>
-    </div>
+    <article class="entry">
+      <div class="entry__date"><span data-i="e3.d">29 Sep 2026</span><br><span class="pill ok" data-i="filed">Filed</span></div>
+      <div><h3 data-i="e3.h">Average in band. Distribution deliberately interrupted.</h3><p data-i="e3.p">Simon ran 4 × 1.6 km in 5:57.0 · 5:59.4 · 6:01.7 · 6:34.8. The 6.40 km work average was about 3:50/km, inside the 3:47–3:52/km working band. The first three were slightly faster than the band; the fourth was intentionally slowed after another coach interpreted a high heart rate as a threshold problem. This was working half pace, not threshold. No fixed HR cap is used here, and the last rep is not read as a physiological fade.</p></div>
+    </article>
   </div>
 </section>
 
@@ -713,6 +713,7 @@ Historical evidence is qualified in evidence.json. Hidden comments are not priva
           <tr><td data-i="r5">Goal</td><td>1:19–1:23</td><td data-i="r5.s">Set by Brice, around 1:20</td><td><span class="pill wait" data-i="working">Working</span></td></tr>
           <tr><td data-i="r6">Experimental working band</td><td><span data-u="p:227-232">3:47–3:52/km</span></td><td data-i="r6.s">Narrower than the 1:19-1:23 goal envelope. Not established race pace.</td><td><span class="pill wait" data-i="working">Working</span></td></tr>
           <tr><td data-i="r7">Goal race</td><td data-i="r7.v">16 May 2027 · Saumur</td><td><a href="https://www.marathon-loire.fr/les-courses/semi-marathon" target="_blank" rel="noopener" data-i="r7.s">Official Semi-Marathon de la Loire page</a></td><td><span class="pill ok" data-i="official">Official</span></td></tr>
+          <tr><td data-i="r8">W1 working-pace read</td><td>4 × 1.6 km · 24:32.9 · <span data-u="p:230.140625">3:50/km</span> avg</td><td data-i="r8.s">Garmin workout summary · Sep 29. Rep 4 was deliberately slowed after outside HR-based advice; not filed as spontaneous fade.</td><td><span class="pill ok" data-i="filed">Filed</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -736,7 +737,7 @@ Historical evidence is qualified in evidence.json. Hidden comments are not priva
 
 <footer class="footer">
   <span data-i="f1">FORM · Study 003 · Simon</span>
-  <span data-i="f2">The Two Curves · living record · updated 23 Sep 2026</span>
+  <span data-i="f2">The Two Curves · living record · updated 29 Sep 2026</span>
 </footer>
 
 <script src="/labs/the-two-curves/plan-projection.js"></script>
@@ -1268,13 +1269,17 @@ const T = {
   "The existing coach import records repetitions at {p:227.4218563588642} and {p:224.93637158991487}, with RPE 7. Original activity, conditions and next-day recovery are not linked. In his words:",
   "L’import du coach contient des répétitions à {p:227.4218563588642} et {p:224.93637158991487}, avec un effort de 7/10. L’activité originale, les conditions et la récupération du lendemain ne sont pas liées. Ses mots :"
  ],
+ "e3.d": [
+  "29 Sep 2026",
+  "29 sept. 2026"
+ ],
  "e3.h": [
-  "Block 01: nothing filed yet.",
-  "Bloc 01&#8239;: rien au dossier."
+  "Average in band. Distribution deliberately interrupted.",
+  "Moyenne dans la plage. Répartition volontairement interrompue."
  ],
  "e3.p": [
-  "It opens {b1}. The first new filing belongs here.",
-  "Il commence le {b1}. Le premier nouveau dépôt appartient à cette étude."
+  "Simon ran 4 × 1.6 km in 5:57.0 · 5:59.4 · 6:01.7 · 6:34.8. The 6.40 km work average was about {p:230.140625}, inside the {p:227-232} working band. The first three were slightly faster than the band; the fourth was intentionally slowed after another coach interpreted a high heart rate as a threshold problem. This was working half pace, not threshold. No fixed HR cap is used here, and the last rep is not read as a physiological fade.",
+  "Simon a couru 4 × 1,6 km en 5:57.0 · 5:59.4 · 6:01.7 · 6:34.8. La moyenne des 6,40 km de travail est d’environ {p:230.140625}, dans la plage de travail {p:227-232}. Les trois premières répétitions étaient légèrement plus rapides ; la quatrième a été volontairement ralentie après qu’un autre coach a interprété une fréquence cardiaque élevée comme un problème de seuil. Il s’agissait de l’allure de travail du semi, pas du seuil. Aucun plafond fixe de fréquence cardiaque n’est utilisé ici et la dernière répétition n’est pas interprétée comme une défaillance physiologique."
  ],
  "s4.h": [
   "The record",
@@ -1396,13 +1401,21 @@ const T = {
   "It does not establish a laboratory threshold, a VO₂max gain, the cause of an incomplete recording, current 45-mile weeks, or a guaranteed 1:20 half. Later work stays conditional.",
   "Il n’établit ni un seuil de laboratoire, ni un gain de VO₂max, ni la cause d’un enregistrement incomplet, ni un volume actuel de 45 miles, ni un semi garanti en 1h20. La suite reste conditionnelle."
  ],
+ "r8": [
+  "W1 working-pace read",
+  "Lecture W1 de l’allure de travail"
+ ],
+ "r8.s": [
+  "Garmin workout summary · Sep 29. Rep 4 was deliberately slowed after outside HR-based advice; not filed as spontaneous fade.",
+  "Résumé Garmin · 29 sept. La 4e répétition a été volontairement ralentie après un conseil externe fondé sur la fréquence cardiaque ; elle n’est pas classée comme une baisse spontanée."
+ ],
  "f1": [
   "FORM · Study 003 · Simon",
   "FORM · Étude 003 · Simon"
  ],
  "f2": [
-  "The Two Curves · living record · updated 23 Sep 2026",
-  "Les deux courbes · dossier vivant · mis à jour le 23 sept. 2026"
+  "The Two Curves · living record · updated 29 Sep 2026",
+  "Les deux courbes · dossier vivant · mis à jour le 29 sept. 2026"
  ],
  "g.wk": [
   "Wk",
