@@ -19,6 +19,7 @@ const GROUPS = [
   ['training-arc','The longer view','How training emphasis changes across a block of work.','season development progression'],
   ['pacing','Running by effort','Keep the purpose of the run in view when pace changes.','heat hills effort pace'],
   ['running-terms','Running terms, explained','A reference for the vocabulary used throughout the Library.','glossary definitions vocabulary'],
+  ['library/running-physiology-course/','Running physiology & training science course','A free, ordered lecture course on endurance physiology, biomechanics, strength, tissue adaptation and programming.','running physiology training science vo2 vo2max lactate threshold economy biomechanics strength tendon bone course lectures youtube','Course'],
  ]],
  ['movement','Running form & strength','Explore movement, cues, and the strength work around your running.',[
   ['ghost/cues','Running form cues','Short cues from the six-week mechanics practice.','cadence technique stride posture form'],
