@@ -18,6 +18,11 @@
 /the-field                 /miami-running-training   301!
 /the-field.html            /miami-running-training   301!
 /contact                   /contact.html              200
+
+# ── Run with FORM · Sep 29, 2026 ─────────────────────────────────────────────
+# One URL per run: /run/<slug>. Real files under /run (run.js, run.css) are served as-is;
+# every other /run path renders the door, which reads the slug.
+/run/*                     /run/index.html            200
 # ── Labs is where you land ───────────────────────────────────────────────────
 #
 # Signing in as a coach lands in the seven-dossier Console, not on the dormant
