@@ -69,3 +69,5 @@ a{color:inherit}
   .fact dt{padding-top:0}
   .big{gap:28px}
 }
+.foot{padding:6px 22px 22px}
+.foot a{display:inline-flex;align-items:center;min-height:44px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none}

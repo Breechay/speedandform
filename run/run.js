@@ -19,6 +19,10 @@
     note: "Send us a message on Instagram and we'll see you there.",
   };
 
+  // Strava is where the club lives (discovery, activities). It is never the RSVP.
+  const STRAVA = "https://strava.app.link/xvSVVKcCP6b";
+  const footer = `<footer class="foot"><a href="${STRAVA}" rel="noopener">FORM on Strava ↗</a></footer>`;
+
   const MEET_POINTS = { "Flamingo Park Track": "Bench by the bleachers", "The Labs": "Front entrance" };
   const WEATHER = "We call it by 5:00 AM. If there's lightning, we delay or cancel the run here.";
   const TURNAROUNDS = "Self-supported. Start with the group. Take the distance that fits your day.";
@@ -192,7 +196,7 @@
   }
 
   function render(html, title) {
-    app.innerHTML = html;
+    app.innerHTML = html + footer;
     if (title) document.title = title;
   }
 
