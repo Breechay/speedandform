@@ -24,11 +24,23 @@ has(migration,"study-canon 6:45–7:00 / 2 min float","migration proves human-re
 has(connected,'One coaching truth.','connected-surfaces doctrine owns the rule');
 has(agents,'Athlete coaching source-of-truth rule','repo agent instructions own the rule');
 
-if (study.includes('id="w5-read"')) {
-  has(study,'Both ran five continuous miles last week.','W5 preserves the completed continuous step');
-  has(study,'Six continuous miles remain next week’s planned step.','W6 remains the planned next step');
-  has(study,'data-key="w4" data-state="filed"','W4 remains a recorded historical result');
-  has(study,'data-key="w5" data-state="filed"','W5 is filed as its own support session');
-}
+// Headline copy changes as new evidence is published. Check the retained W5
+// record, not a former headline calling the now-completed six-mile step future.
+const w5Start = study.indexOf('\n  w5:{');
+const w6Start = study.indexOf('\n  w6:{', w5Start);
+assert.ok(w5Start >= 0 && w6Start > w5Start, 'retained W5/W6 evidence boundaries exist'); checks++;
+const w5 = study.slice(w5Start, w6Start);
+has(w5,'Sep 15: both completed 5 mi continuous.','W5 preserves the completed continuous step');
+has(w5,'Sep 29: 6 mi continuous remains planned.','W5 preserves what was planned at the time, not a new current prescription');
+has(study,'data-key="w4" data-state="filed"','W4 remains a recorded historical result');
+has(study,'data-key="w5" data-state="filed"','W5 is filed as its own support session');
+
+const w9Start = study.indexOf('\n  w9:{', w6Start);
+assert.ok(w9Start > w6Start, 'retained W6 evidence boundary exists'); checks++;
+const w6 = study.slice(w6Start, w9Start);
+has(w6,'Sep 29 · W6 · 6 mi continuous · recorded','W6 is now recorded, not reset to planned');
+has(w6,'6.00 mi continuous · 39:16.0 · 6:33 /mi','W6 retains the first athlete work-segment output');
+has(w6,'6.00 mi continuous · 40:53.8 · 6:49 /mi','W6 retains the second athlete work-segment output');
+has(w6,'Oct 06 · 4 × 2 mi / 2:00 floats · same band','W6 retains the next authored step without a faster band');
 
 console.log('PASS:',checks,'athlete study/app source-of-truth checks');
