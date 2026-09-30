@@ -1,0 +1,22 @@
+name: Operating console contract
+on:
+  pull_request:
+    paths:
+      - 'coach/ops/**'
+      - 'tests/operating-console.test.mjs'
+      - 'supabase/migrations/*operating_console*.sql'
+      - 'docs/operations/CONSOLE*'
+      - '.github/workflows/operating-console.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node --test tests/operating-console.test.mjs
+      - run: node --input-type=module --check < coach/ops/console.js && node --input-type=module --check < coach/ops/entry.js

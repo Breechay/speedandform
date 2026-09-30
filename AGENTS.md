@@ -1,4 +1,8 @@
 # Start here: Speed & Form
+
+## Operating console and daily operations
+Before changing Brice's priorities, open loops, daily brief, calendar projections or cross-surface operating records, read [Operating Console contract](docs/operations/CONSOLE-CONTRACT.md). `/coach/ops/` and the scheduled daily brief share the same private `operating_console_read` projection. Current athlete decisions include both `published` and `delivered_externally`; do not resurrect old Calendar or automation prescriptions. Change the owning source, read it back and record the private receipt. Do not publish private financial, health or athlete operating facts in this repository. [Console release checklist](docs/operations/CONSOLE-ACCEPTANCE-20260930.md) separates tested code, actual publication and remaining checks. Existing athlete dossiers stay at `/coach/labs/`; Increments access is not yet an integration.
+
 For public site, Plans, Labs, plan packaging, or app-to-coach work, read:
 1. [FORM Run Development Manifesto](docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md) before describing FORM coaching philosophy, Run Development, movement/form work, athlete development, coaching voice or homepage identity.
 2. [Current state and roadmap](docs/roadmap/FORM-ROADMAP.md).

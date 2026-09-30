@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="same-origin">
+  <meta name="theme-color" content="#f4f1e9">
+  <title>Operating Console | FORM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/coach/ops/console.css?v=1">
+</head>
+<body>
+<a class="skip" href="#main">Skip to your day</a>
+<div class="shell">
+  <header class="masthead">
+    <a class="wordmark" href="/" aria-label="FORM home">FORM<span aria-hidden="true" class="period"></span></a>
+    <span class="eyebrow">Operating console</span>
+    <div class="header-actions"><button id="refresh" type="button" hidden>Refresh</button><button id="signout" type="button" hidden>Sign out</button></div>
+  </header>
+  <main id="main">
+    <section id="gate" class="gate" aria-labelledby="gate-title">
+      <p class="eyebrow">Private workspace</p><h1 id="gate-title">A place to<br>get oriented.</h1>
+      <p class="intro">Your priorities, people and open loops. Use the same coach account you use in the FORM Console.</p>
+      <form id="signin-form"><label>Email<input type="email" name="email" autocomplete="username" required></label><label>Password<input type="password" name="password" autocomplete="current-password" minlength="8"></label><div class="form-actions"><button class="primary" type="submit">Sign in</button><button type="button" id="magic">Email a sign-in link</button></div></form>
+      <p id="gate-message" class="muted" role="status">Checking your existing sign-in.</p>
+      <p class="small">This is not a public page of your records. Private data loads only after owner authorization.</p>
+    </section>
+    <section id="workspace" hidden>
+      <div class="day-heading"><div><p id="date" class="eyebrow"></p><h1 id="page-title">Today.</h1><p class="intro">Choose the few things that move the day forward.</p></div><p id="freshness" class="small"></p></div>
+      <nav class="tabs" aria-label="Workspace views"><button type="button" data-tab="today" aria-current="page">Today</button><button type="button" data-tab="areas">All areas</button><button type="button" data-tab="waiting">Waiting <span id="waiting-count"></span></button><button type="button" data-tab="sources">Sources <span id="source-count"></span></button></nav>
+      <p id="message" role="status" aria-live="polite"></p>
+      <section id="view" aria-labelledby="page-title"></section>
+      <details class="capture"><summary>Add an open loop</summary><form id="capture-form"><label>What needs to happen?<input name="title" maxlength="240" required placeholder="A concrete next action"></label><label>What does finished look like?<textarea name="next_action" maxlength="2000" rows="2"></textarea></label><div class="form-grid"><label>Area<select name="area"><option value="form">FORM</option><option value="coaching">Coaching</option><option value="training">My training</option><option value="money">Money</option><option value="home">Home & life</option><option value="learning">Learning</option></select></label><label>Who moves it?<select name="actor"><option value="brice">Me</option><option value="agent">Agent</option><option value="other">Someone else</option></select></label><label>Due, when real<input name="due_on" type="date"></label></div><label class="check"><input type="checkbox" name="focus">Consider for today</label><button class="primary" type="submit">Save to console</button></form></details>
+      <footer><a href="/coach/labs/">Athlete dossiers ↗</a><a href="/labs/rebuilt-athlete/">My Study ↗</a><a href="https://calendar.google.com/calendar/u/0/r" target="_blank" rel="noopener">Calendar ↗</a><span>Private records. One owning source for each fact.</span></footer>
+    </section>
+  </main>
+</div>
+<dialog id="editor"><form id="edit-form"><div class="section-head"><h2>Edit the next step</h2><button type="button" id="close-editor" aria-label="Close editor">Close</button></div><input name="id" type="hidden"><input name="revision" type="hidden"><label>Title<input name="title" maxlength="240" required></label><label>Finish condition<textarea name="next_action" maxlength="2000" rows="2"></textarea></label><label>Context<textarea name="body" maxlength="12000" rows="3"></textarea></label><div class="form-grid"><label>State<select name="status"><option value="queued">Ready</option><option value="active">In progress</option><option value="waiting">Waiting</option><option value="done">Done</option><option value="cancelled">Parked</option></select></label><label>Priority (1 first)<input name="priority" type="number" min="1" max="100" required></label><label>Due date<input name="due_on" type="date"></label></div><div class="form-grid"><label>Area<select name="area"><option value="form">FORM</option><option value="coaching">Coaching</option><option value="training">My training</option><option value="money">Money</option><option value="home">Home &amp; life</option><option value="learning">Learning</option></select></label><label>Who moves it?<select name="actor"><option value="brice">Me</option><option value="agent">Agent</option><option value="other">Someone else</option></select></label><label>Focus date<input name="focus_on" type="date"></label></div><label>Waiting on<input name="waiting_on" maxlength="500" placeholder="Name the person or missing input"></label><label>Review date<input name="review_on" type="date"></label><p id="edit-message" role="status"></p><button class="primary" type="submit">Save changes</button></form></dialog>
+<script type="module" src="/coach/ops/console.js?v=1"></script>
+</body>
+</html>
