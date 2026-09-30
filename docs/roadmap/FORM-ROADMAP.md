@@ -8,7 +8,7 @@ The homepage now leads with “Run better. Feel stronger.”, Brice’s introduc
 - [x] Source checks, 42 Chromium route/width views, enlarged text, failed/accepted retry, privacy and anonymous database isolation verified.
 - [x] Published with explicit user authorization: PR #182 merged at `2c2e8c1f4305ee2b671bc5247408a2d1e88dcec8`; Netlify production deploy `6abd817a8a5d7f56db4cba49` published September 30 at 21:39:19 UTC. Homepage navigation and all six commercial pages verified live.
 - [x] Remote Chromium commercial checks and athlete ecosystem closure passed on the source tree `8c11b15fe4b04e1faf490bcaa2ac7865a473a240`.
-- [ ] WebKit CI remains in runtime installation; physical iPhone review remains open. See release evidence for the separate historical receipt-check limitations.
+- [ ] Later audit found WebKit 200% text reflow failure; repair PR #183 is under verification. Physical iPhone review remains open. See release evidence for the separate historical receipt-check limitations.
 - [ ] Google Search account forecasts, conversion setup and authorized spend remain a later action; draft campaign and stop criteria are ready.
 - [ ] New service invoices follow confirmed fit, capacity and scope. No fabricated checkout or booked appointment.
 
@@ -16,6 +16,8 @@ Latest cross-stream reconciliation: keep all offers available and Google Ads lim
 
 See [offer and acquisition decisions](../marketing/COMMERCIAL-OFFERS-20260930.md) and [release evidence](../audits/COMMERCIAL-RELEASE-20260930.md).
 
+
+Commercial quality and reviewer handoff: [working standard](../marketing/COMMERCIAL-WORKING-STANDARD.md). The private console and existing Daily Operating Brief now own the connected Bridge Season daily rhythm, Wednesday blocker check and Sunday review. Initial publication is complete; samples, delivery readiness, broader photography categories and full private lifecycle tracking remain open.
 
 ## September 27 - Run Development gait retraining terminology
 
