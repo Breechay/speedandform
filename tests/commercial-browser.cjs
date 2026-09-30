@@ -49,8 +49,13 @@ const artifacts=process.env.SF_QA_ARTIFACTS||'/tmp/sf-commercial-qa';fs.mkdirSyn
  }
  // Large type must remain accessible; no overflow hidden used to conceal it.
  await page.setViewportSize({width:390,height:900});await page.goto(origin+'/coaching/strength/');
- await page.evaluate(()=>{const styles=[...document.querySelectorAll('h1,h2,h3,p,a,label,input,textarea,select,button,summary,li,dt,dd,.sf-price')].map(e=>[e,parseFloat(getComputedStyle(e).fontSize)]);styles.forEach(([e,size])=>e.style.setProperty('font-size',size*2+'px','important'));});
- assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,'200% text reflows');
+ await page.evaluate(()=>{const styles=[...document.querySelectorAll('h1,h2,h3,p,a,label,legend,input,textarea,select,button,summary,li,dt,dd,.sf-price')].map(e=>[e,parseFloat(getComputedStyle(e).fontSize)]);styles.forEach(([e,size])=>e.style.setProperty('font-size',size*2+'px','important'));});
+ const textOverflow=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth+1, nodes:[...document.querySelectorAll('body *')].filter(e=>{const b=e.getBoundingClientRect();return b.width>0&&b.right>innerWidth+1;}).slice(0,15).map(e=>({tag:e.tagName,cls:e.className,width:e.getBoundingClientRect().width,text:e.textContent.slice(0,80)}))}));
+ if(textOverflow.overflow){
+  console.log('REFLOW DIAGNOSTIC',await page.evaluate(()=>({viewport:innerWidth,root:document.documentElement.scrollWidth,body:document.body.scrollWidth,internal:[...document.querySelectorAll('body *')].filter(e=>e.clientWidth>0&&e.scrollWidth>e.clientWidth+1).map(e=>({tag:e.tagName,cls:e.className,client:e.clientWidth,scroll:e.scrollWidth,text:e.textContent.slice(0,90)})).slice(-25)})));
+  await page.screenshot({path:path.join(artifacts,'strength-enlarged-failure.png'),fullPage:true});
+ }
+ assert.equal(textOverflow.overflow,false,'200% text reflows: '+JSON.stringify(textOverflow.nodes));
  // Real form code, rejected receipt, retained values, then accepted retry.
  await page.goto(origin+'/coaching/strength/?utm_source=google&utm_medium=cpc&utm_campaign=strength_test');
  await page.locator('#inquiry-name').fill('QA Example');await page.locator('#inquiry-email').fill('qa@example.invalid');
@@ -65,6 +70,14 @@ const artifacts=process.env.SF_QA_ARTIFACTS||'/tmp/sf-commercial-qa';fs.mkdirSyn
  assert.equal(await page.evaluate(()=>window.dataLayer.filter(x=>x[1]==='generate_lead').length),1);
  assert.ok(await page.locator('.sf-form [type=submit]').isDisabled());
  const measurement=await page.evaluate(()=>JSON.stringify(window.dataLayer));assert.ok(!measurement.includes('qa@example')&&!measurement.includes('Edgewater'));
+ // Visible package choices preserve first-session and remote offer routing.
+ for(const [route,choice,expected] of [['/coaching/strength/','first','strength-first'],['/coaching/miami/','remote','remote']]){
+  await page.goto(origin+route);await page.locator('input[name=program][value='+choice+']').check();
+  await page.locator('#inquiry-name').fill('Choice QA');await page.locator('#inquiry-email').fill('choice@example.invalid');
+  await page.locator('#inquiry-location').fill('Miami');await page.locator('#inquiry-goal').fill('Please explain the selected coaching option.');
+  await page.locator('.sf-form [type=submit]').click();await page.waitForSelector('.sf-form-status[data-state=received]');
+  assert.equal(submissions.at(-1).p_payload.offer,expected);
+ }
  // Existing running intake still completes with the new receiver.
  await page.goto(origin+'/');await page.locator('[data-key=goal] .opt').first().click();
  for(const k of ['days','vol','long'])await page.locator('[data-key='+k+'] .opt').first().click();
