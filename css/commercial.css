@@ -6,3 +6,9 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 /* Enlarged text remains readable instead of being clipped or horizontally hidden. */
 h1,h2,h3,a,.sf-price{overflow-wrap:anywhere}.sf-header-inner,.sf-nav{flex-wrap:wrap}.sf-nav{max-width:100%}.sf-grid>*,.sf-inquiry-grid>*,.sf-footer-grid>*{min-width:0}.sf-button{max-width:100%;line-height:1.4}
+
+/* Let native form controls shrink inside grid tracks when text is enlarged. */
+.sf-field,.sf-form-pair,.sf-hero-grid>*,.sf-section-heading>*{min-width:0}
+.sf-field{grid-template-columns:minmax(0,1fr)}
+.sf-field input,.sf-field textarea,.sf-field select{max-width:100%}
+.sf-field label,.sf-faq summary,p,li,dt,dd{overflow-wrap:anywhere}

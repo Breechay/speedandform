@@ -50,7 +50,8 @@ const artifacts=process.env.SF_QA_ARTIFACTS||'/tmp/sf-commercial-qa';fs.mkdirSyn
  // Large type must remain accessible; no overflow hidden used to conceal it.
  await page.setViewportSize({width:390,height:900});await page.goto(origin+'/coaching/strength/');
  await page.evaluate(()=>{const styles=[...document.querySelectorAll('h1,h2,h3,p,a,label,input,textarea,select,button,summary,li,dt,dd,.sf-price')].map(e=>[e,parseFloat(getComputedStyle(e).fontSize)]);styles.forEach(([e,size])=>e.style.setProperty('font-size',size*2+'px','important'));});
- assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,'200% text reflows');
+ const textOverflow=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth+1, nodes:[...document.querySelectorAll('body *')].filter(e=>{const b=e.getBoundingClientRect();return b.width>0&&b.right>innerWidth+1;}).slice(0,15).map(e=>({tag:e.tagName,cls:e.className,width:e.getBoundingClientRect().width,text:e.textContent.slice(0,80)}))}));
+ assert.equal(textOverflow.overflow,false,'200% text reflows: '+JSON.stringify(textOverflow.nodes));
  // Real form code, rejected receipt, retained values, then accepted retry.
  await page.goto(origin+'/coaching/strength/?utm_source=google&utm_medium=cpc&utm_campaign=strength_test');
  await page.locator('#inquiry-name').fill('QA Example');await page.locator('#inquiry-email').fill('qa@example.invalid');
