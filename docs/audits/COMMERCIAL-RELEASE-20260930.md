@@ -38,3 +38,5 @@ The reported free/full-plan contradiction was not present in current source or l
 Owner follow-up: session duration is 45–60 minutes. Complimentary Miami running assessment is now the inquiry entry point, arranged by email and separate from the eight paid sessions. The public representative sample remains a different, unfinished proof asset.
 
 Brice requested current-athlete examples. Three running-page cards cover Natalie’s half-marathon goal, Valerie’s outdoor 5K goal and Hope/José’s already-public September 29 six-mile study. Homepage links to the examples. Goals and recorded outcomes remain distinct; no private health details or new athlete imagery are included.
+
+Owner clarified whole-week delivery: running assignments, cues, targeted exercises, video feedback, long-term programming context and adjustment of training load/recovery. Homepage scope and running page now describe that relationship; Hope and José are identified as remote coaching examples. No guaranteed efficiency/speed claim was added.
