@@ -12,6 +12,8 @@ The homepage now leads with “Run better. Feel stronger.”, Brice’s introduc
 - [ ] Google Search account forecasts, conversion setup and authorized spend remain a later action; draft campaign and stop criteria are ready.
 - [ ] New service invoices follow confirmed fit, capacity and scope. No fabricated checkout or booked appointment.
 
+Latest cross-stream reconciliation: keep all offers available and Google Ads limited to running coaching. The current offer document owns the remaining readiness checklist: photography project categories and real samples, Analysis/AI demonstrations, delivery readiness and full private sales/delivery tracking. Pages and basic offer/source intake are already live; the complete lifecycle tracker is not. No public pricing or deployment changed in this documentation update.
+
 See [offer and acquisition decisions](../marketing/COMMERCIAL-OFFERS-20260930.md) and [release evidence](../audits/COMMERCIAL-RELEASE-20260930.md).
 
 

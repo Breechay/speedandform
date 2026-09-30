@@ -2,6 +2,27 @@
 
 Brice requested the homepage redesign, original favicon/SF identity across the public site, separate commercial landing pages, strength packaging with practical travel, SEO research and a Google Search alternative to the prior Instagram test. This supersedes earlier instructions to freeze the homepage hero. FORM and Forge remain product names; this does not rename their native applications.
 
+## Broader launch direction reconciled September 30
+
+Brice's latest direction is to make the full range available and learn from real buyer response. Do not gate photography, AI, Analysis or strength on another offer making its first sale. Running remains the main identity. Google Ads, when separately authorized, is for running coaching only, with running-specific conversion goals rather than all website inquiries.
+
+The initial six commercial pages were published September 30, before the October 1–4 preparation targets. Those targets now concern completing evidence, delivery readiness and measurement, not rebuilding or republishing pages that are already live. See the release receipt. The currently advertised pilot prices are public starting offers, not market-validated prices or proof of bookings; settle any revisions with Brice before the next release.
+
+### Remaining readiness work
+
+- Photography: keep `/work/photo-video/` as the canonical route. Add distinguishable project types for fitness/coaches, athlete portraits, founder work, classes/events and food/cafe/hospitality. The current receiver records a general `photo` offer and free text; it does not yet provide this category breakdown. Broader work uses an agreed quote, not an automatic promise of the fitness package's scope or price.
+- Portfolio: select real work and confirm commercial portfolio permission. Prepare an honestly labeled Hideout self-produced case study. Existing public track photographs are shown as practice work; prior publication alone does not establish permission for every new commercial use. Do not publish fabricated campaigns or generated portfolio proof.
+- FORM Analysis: replace or supplement the illustrative outline with a representative review and verify the material-submission, payment and delivery process before accepting a paid project.
+- AI setup: add a working sample with fictional data and a concrete acceptance test. The current page explains a workflow; it is not a functioning demonstration or a verified client case study.
+- Plans: preserve the existing RPD purchase/access flow. This release checked source and access contracts but did not perform a live paid purchase.
+- Measurement: intake already records offer, landing path and campaign tags, and emits an accepted-only lead event. It does not yet implement the full commercial lifecycle dashboard described below. Extend existing private operating records; do not create a parallel CRM or put prospect records in this public repository.
+
+### Commercial learning contract
+
+Track exposure, inquiry, qualified conversation, booking/order, payment, delivery and repeat/referral separately for each offer. Include total working hours, direct costs and Brice's assessment of whether he wants more of this work. An inquiry is not a sale, and missing data is not zero. Keep paid, organic and direct/referral acquisition separate; a lightly exposed offer has not failed. Keep photography subtypes distinct without creating duplicate city/neighborhood landing pages.
+
+The compact weekly review and first-month checkpoint belong to the existing private operating workspace. The other stream reports saving them and October 1–4 preparation tasks; this repository reconciliation does not claim an independent read-back of those private records or change today's priorities. Do not duplicate those tasks. Use the live publication date for page availability, and actual exposure/payment dates for commercial learning.
+
 ## Offers and routes
 
 | Offer | Public scope | Price | Next action |

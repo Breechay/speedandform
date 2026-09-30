@@ -13,6 +13,8 @@ The current offers, travel policy, inquiry contract and proposed Search pilot ar
 
 Release verification is in [COMMERCIAL-RELEASE-20260930.md](../audits/COMMERCIAL-RELEASE-20260930.md).
 
+**Latest launch direction:** make the full portfolio available; do not defer an offer until another sells. The pages are already published. Remaining preparation is authentic samples, broader photography categories, delivery readiness and private lifecycle measurement. Google Ads remains running-coaching-only and unlaunched. The readiness checklist in the current offer document distinguishes implemented intake tracking from the proposed full sales/delivery tracker.
+
 ## Operating law
 
 1. **RPD is live and is the active commercial-product test.** Do not redesign from the first handful of visits.
