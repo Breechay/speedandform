@@ -12,3 +12,11 @@ h1,h2,h3,a,.sf-price{overflow-wrap:anywhere}.sf-header-inner,.sf-nav{flex-wrap:w
 .sf-field{grid-template-columns:minmax(0,1fr)}
 .sf-field input,.sf-field textarea,.sf-field select{max-width:100%}
 .sf-field label,.sf-faq summary,p,li,dt,dd{overflow-wrap:anywhere}
+
+/* Short program choices stay visible and wrap at large text sizes. */
+.sf-program{min-width:0;margin:0;padding:0;border:0}
+.sf-program legend{font-size:16px;font-weight:600;margin-bottom:8px;padding:0;overflow-wrap:anywhere}
+.sf-program-options{display:grid;gap:8px;min-width:0}
+.sf-program-options label{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border:1px solid #8c9783;border-radius:4px;background:#f8f6ef;font-size:16px;line-height:1.5;cursor:pointer}
+.sf-program-options input{flex:0 0 20px;width:20px;height:20px;margin:3px 0 0;accent-color:var(--ink)}
+.sf-program-options span{min-width:0;overflow-wrap:anywhere}
