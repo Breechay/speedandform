@@ -49,11 +49,11 @@ Every task has an owner, one next action, finish condition, evidence and review 
 
 ## Tonight's audit and handoff
 
-The initial homepage and six commercial routes are live in Netlify deploy `6abd817a8a5d7f56db4cba49` (September 30, 21:39:19 UTC). The console shell is live and shows its intended owner sign-in gate. No fresh signed-in browser acceptance or live paid purchase is claimed. Chromium source/browser checks passed; original WebKit CI failed the strength page's 200% text-reflow check. PR #183 addresses grid sizing and adds diagnostic overflow output; inspect its current result before calling the defect fixed or deployed.
+The initial homepage and six commercial routes are live in Netlify deploy `6abd817a8a5d7f56db4cba49` (September 30, 21:39:19 UTC). The console shell is live and shows its intended owner sign-in gate. No fresh signed-in browser acceptance or live paid purchase is claimed. Chromium source/browser checks passed; original WebKit CI failed the strength page's 200% text-reflow check. PR #183 subsequently fixed the native package-dropdown overflow with wrapping radio choices. Both engines passed run `36789074719`; merged `865c202`, repair published in deploy `6abd95f9720ef10dcc94287c` and live choices verified.
 
 Current useful gaps, in priority order:
 
-- Enlarged-text WebKit reflow: verify the repair in both browser engines and publish once verified.
+- Enlarged-text WebKit reflow: repaired and published; retain the regression checks. Physical iPhone review remains open.
 - Photography categories: fitness, athlete/founder, event/class and food/hospitality must be distinguishable in intake without silently labeling all as fitness. Broader work needs a quote; do not extend the $350 scope accidentally.
 - Authentic samples: representative Analysis output, a working AI demo, and selected permission-cleared photography including Hideout. Illustrative examples are currently labeled; do not turn them into client claims.
 - Complete sales/delivery tracking: offer/source inquiry capture exists; the full private commercial lifecycle dashboard does not. Extend current records, preserving actual transaction authority.
@@ -63,7 +63,7 @@ The pages have a usable starting structure, not a measured conversion rating. Do
 
 ## Reviewer prompt for Claude
 
-Fetch current `Breechay/speedandform` and inspect branch/head plus uncommitted work before editing. Read AGENTS.md, the current commercial offer document, this standard and the commercial release receipt. Inspect PR #183 and avoid duplicating its fix. Review the homepage and `/coaching/miami/`, `/coaching/strength/`, `/analysis/`, `/work/`, `/work/photo-video/`, `/work/ai-setup/` as a warm referral and a cold prospect.
+Fetch current `Breechay/speedandform` and inspect branch/head plus uncommitted work before editing. Read AGENTS.md, the current commercial offer document, this standard and the commercial release receipt. PR #183 is merged and published; preserve its wrapping package choices and regression checks. Review the homepage and `/coaching/miami/`, `/coaching/strength/`, `/analysis/`, `/work/`, `/work/photo-video/`, `/work/ai-setup/` as a warm referral and a cold prospect.
 
 Prioritize reproducible blockers, clarity, relevant proof, scope/cost, mobile typography, keyboard/focus, error/retry behavior and accepted-only lead capture. Preserve running as the main identity, original SF house mark, FORM/Forge app names, paid-plan access, existing private records and inquiry-first service flow. Do not redesign for novelty or invent customers, sample results, capacity or discounts. Keep public data public and private data private.
 

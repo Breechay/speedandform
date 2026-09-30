@@ -8,7 +8,7 @@ The homepage now leads with “Run better. Feel stronger.”, Brice’s introduc
 - [x] Source checks, 42 Chromium route/width views, enlarged text, failed/accepted retry, privacy and anonymous database isolation verified.
 - [x] Published with explicit user authorization: PR #182 merged at `2c2e8c1f4305ee2b671bc5247408a2d1e88dcec8`; Netlify production deploy `6abd817a8a5d7f56db4cba49` published September 30 at 21:39:19 UTC. Homepage navigation and all six commercial pages verified live.
 - [x] Remote Chromium commercial checks and athlete ecosystem closure passed on the source tree `8c11b15fe4b04e1faf490bcaa2ac7865a473a240`.
-- [ ] Later audit found WebKit 200% text reflow failure; repair PR #183 is under verification. Physical iPhone review remains open. See release evidence for the separate historical receipt-check limitations.
+- [x] PR #183 fixed WebKit 200% package-control overflow with wrapping radio choices. Both browser engines passed on `18a8ccb`; merged `865c202`, production deploy `6abd95f9720ef10dcc94287c`. Live choices verified. Physical iPhone and historical receipt limitations remain in the release evidence.
 - [ ] Google Search account forecasts, conversion setup and authorized spend remain a later action; draft campaign and stop criteria are ready.
 - [ ] New service invoices follow confirmed fit, capacity and scope. No fabricated checkout or booked appointment.
 
