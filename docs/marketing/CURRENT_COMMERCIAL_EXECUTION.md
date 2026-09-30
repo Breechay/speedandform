@@ -1,11 +1,17 @@
 # Current Commercial Execution — canonical roadmap
 
-**Updated:** September 16, 2026  
+**Updated:** September 30, 2026
 **Owner:** Brice / Speed & Form  
 
 > **September 17 coaching doctrine:** `docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md` is now required reading for Run Development acquisition and homepage work. Keep the offer facts and measurement contracts here; use the manifesto for coaching philosophy, voice and page sequencing. The Miami campaign landing page was not static through the full test, so later analysis must identify the landing revision when comparing session quality.
 
 **Instruction:** if Brice says only `continue`, take the first unblocked item below, execute it, record evidence, then keep moving. Do not wait on a human-only blocker if another useful item is available.
+
+## September 30 commercial site update
+
+The current offers, travel policy, inquiry contract and proposed Search pilot are in [COMMERCIAL-OFFERS-20260930.md](COMMERCIAL-OFFERS-20260930.md). This supersedes the earlier hero/design freeze and unapproved Analysis pricing hypothesis. Speed & Form is the public house identity; FORM and Forge remain product names. Running and strength lead the homepage. The new service pages take inquiries into the existing private operating console. No ad spend was changed. Older descriptions below of a “live” campaign are historical, not a claim about its present delivery status.
+
+Release verification is in [COMMERCIAL-RELEASE-20260930.md](../audits/COMMERCIAL-RELEASE-20260930.md).
 
 ## Operating law
 

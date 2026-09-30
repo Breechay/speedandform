@@ -1,4 +1,4 @@
-/* Public coaching homepage only. Never send intake answers or app records to Meta or GA4. */
+/* Public commercial pages only. Never send intake answers or app records to Meta or GA4. */
 (function (w, d) {
   'use strict';
   var production = /^(www\.)?speedandform\.com$/.test(w.location.hostname);
@@ -93,6 +93,7 @@
     if (privateVisit()) return;
     var fields = { form_id: 'coaching_inquiry', funnel_version: version };
     params = params || {};
+    if (['run','both','remote','strength','strength-first','analysis','photo','ai'].indexOf(params.offer) !== -1) fields.offer = params.offer;
     if (Number.isInteger(params.step_number) && params.step_number >= 1 && params.step_number <= 3) fields.step_number = params.step_number;
     if (['hero', 'header', 'coaching', 'footer', 'other'].indexOf(params.cta_location) !== -1) fields.cta_location = params.cta_location;
     if (name === 'generate_lead') fields.method = 'coaching_inquiry';
@@ -105,15 +106,15 @@
   }
 
   /* Preserve the existing, accepted-submission callback as the single lead source.
-     The intake invokes this only after HTTP success AND relay success:true. */
-  w.formTrackLead = function () {
+     The intake invokes this only after an accepted database receipt. */
+  w.formTrackLead = function (offer) {
     if (leadSent) return;
     leadSent = true;
     if (privateVisit()) return;
     if (!qa) {
       try { if (w.fbq) w.fbq('trackSingle', pixel, 'Lead'); } catch (_) { /* Never interrupt an accepted inquiry. */ }
     }
-    emit('generate_lead');
+    emit('generate_lead', { offer:offer });
   };
 
   if (privateVisit()) return;

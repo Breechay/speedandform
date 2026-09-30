@@ -1,8 +1,12 @@
 {
   "version": "20260916-p2",
   "baseCommit": "05b76ab2b08cfc37f448f637f19e3aa0c9c3d03a",
-  "searchEntries": 48,
+  "searchEntries": 58,
   "sitemap": [
+    {
+      "file": "analysis/index.html",
+      "url": "https://speedandform.com/analysis/"
+    },
     {
       "file": "anti-rotation.html",
       "url": "https://speedandform.com/anti-rotation"
@@ -14,6 +18,14 @@
     {
       "file": "avoid-injury.html",
       "url": "https://speedandform.com/avoid-injury"
+    },
+    {
+      "file": "coaching/miami/index.html",
+      "url": "https://speedandform.com/coaching/miami/"
+    },
+    {
+      "file": "coaching/strength/index.html",
+      "url": "https://speedandform.com/coaching/strength/"
     },
     {
       "file": "easy-run-standards.html",
@@ -100,6 +112,10 @@
       "url": "https://speedandform.com/"
     },
     {
+      "file": "labs/adrian-runner-mass/index.html",
+      "url": "https://speedandform.com/labs/adrian-runner-mass/"
+    },
+    {
       "file": "labs/hyrox/index.html",
       "url": "https://speedandform.com/labs/hyrox/"
     },
@@ -108,12 +124,20 @@
       "url": "https://speedandform.com/labs/"
     },
     {
-      "file": "labs/raise-the-ceiling/index.html",
-      "url": "https://speedandform.com/labs/raise-the-ceiling/"
+      "file": "labs/rebuilt-athlete/index.html",
+      "url": "https://speedandform.com/labs/rebuilt-athlete/"
     },
     {
       "file": "labs/speed-that-endures/index.html",
       "url": "https://speedandform.com/labs/speed-that-endures/"
+    },
+    {
+      "file": "labs/the-last-10k/index.html",
+      "url": "https://speedandform.com/labs/the-last-10k/"
+    },
+    {
+      "file": "labs/the-two-curves/index.html",
+      "url": "https://speedandform.com/labs/the-two-curves/"
     },
     {
       "file": "labs/track/index.html",
@@ -142,6 +166,10 @@
     {
       "file": "library/physique-volume/index.html",
       "url": "https://speedandform.com/library/physique-volume/"
+    },
+    {
+      "file": "library/running-physiology-course/index.html",
+      "url": "https://speedandform.com/library/running-physiology-course/"
     },
     {
       "file": "library/the-two-paces/index.html",
@@ -188,16 +216,16 @@
       "url": "https://speedandform.com/plans/"
     },
     {
+      "file": "plans/marathon-durability/index.html",
+      "url": "https://speedandform.com/plans/marathon-durability/"
+    },
+    {
       "file": "plans/race-pace-durability/index.html",
       "url": "https://speedandform.com/plans/race-pace-durability/"
     },
     {
       "file": "plans/race-pace-durability/support/index.html",
       "url": "https://speedandform.com/plans/race-pace-durability/support/"
-    },
-    {
-      "file": "plans/raise-the-ceiling/index.html",
-      "url": "https://speedandform.com/plans/raise-the-ceiling/"
     },
     {
       "file": "principles.html",
@@ -310,6 +338,18 @@
     {
       "file": "troubleshooting.html",
       "url": "https://speedandform.com/troubleshooting"
+    },
+    {
+      "file": "work/ai-setup/index.html",
+      "url": "https://speedandform.com/work/ai-setup/"
+    },
+    {
+      "file": "work/index.html",
+      "url": "https://speedandform.com/work/"
+    },
+    {
+      "file": "work/photo-video/index.html",
+      "url": "https://speedandform.com/work/photo-video/"
     }
   ],
   "changedHtml": [
@@ -438,8 +478,8 @@
       "file": "library.html",
       "reason": "Athlete-facing topic index and static discovery links",
       "beforeSha256": "76879199d6b28263fa7d3eb8c9628491db9657e12b41ed7700999b559b1b5bc2",
-      "afterSha256": "89cab4179eeed63872bedf8b6fca65d97df7ede1b1210d3ccbc861049ceffeca",
-      "bodySha256": "6ae4080d0840e84e8bec0d3ac4367bb69c07f1bb01e7547c4e5f8bc6cc661ab9",
+      "afterSha256": "85c058c9a277b53d0de571f509e079bd25775f147a191f4cd9ef9044d910add6",
+      "bodySha256": "02622c13818b9b51d93a71036cedaee7244dd001b3aef76662f541d38d7c782e",
       "preview": {
         "title": "Running Guides & Training Tools | FORM Library",
         "description": "Understand your running. Explore clear guides to pace, running form, strength, race preparation, and recovery, plus plans and studies from Brice."
@@ -906,6 +946,10 @@
       "sha256": "8fd09d27e60667b5ce17f64605b9c661236b24cc792007f4313b51a0a39ad15c"
     },
     {
+      "file": "analysis/index.html",
+      "sha256": "11aefdd93d4840c02ca6f6a911f3ca1c8b9387d0140f3e13a7acb15d36cd1181"
+    },
+    {
       "file": "app.html",
       "sha256": "facd0cb0cbea7eb5d533e14b88de9753c828ff2458ee1f96f466054dbce23579"
     },
@@ -919,7 +963,7 @@
     },
     {
       "file": "athlete/index.html",
-      "sha256": "5146522d6debc948dfca6272ff6689f651066dccca87194876443b3225f84a85"
+      "sha256": "b39effa39a36578e03312d6c740da925a7f2a8517dd573c89540e126600d8024"
     },
     {
       "file": "athletes.html",
@@ -982,12 +1026,16 @@
       "sha256": "8815c4fdf5bf9715d11d79ee88f7db8f8fabc5261845d3805135d19f558bf31d"
     },
     {
+      "file": "auth/app-signin/index.html",
+      "sha256": "083586a0e7f74976c2c7322a10001608c135fb6d7ea1191094df10ce052e01d0"
+    },
+    {
       "file": "auth/apple/callback.html",
       "sha256": "a09ab4b5d1d89a0fe99a4f499c52f85ef7b5586aa7587e507e87de4438ea42b1"
     },
     {
       "file": "auth/record-callback/index.html",
-      "sha256": "ebe67cebd92277b8868f0bb14ee81d790c939afd6df69dd1b4fa238672c39d64"
+      "sha256": "aa98a2f607cfffec36daea000b43d3ea19744123b00fb7eee4c6804a284f9e19"
     },
     {
       "file": "coach.html",
@@ -995,11 +1043,27 @@
     },
     {
       "file": "coach/index.html",
-      "sha256": "ba6d08d5114a3362eb902502be14070c874d38c2fa2022a6f8f2c81fed7bace6"
+      "sha256": "e0e983d9741fc1c7cee0895765b29e32c7d819459396be1632fce9c02a2608f9"
     },
     {
       "file": "coach/labs/index.html",
-      "sha256": "fcca7fe50b10d928ce80ec820b7ad368ecacb5b97ca68b42159f4fd7ac19cb6e"
+      "sha256": "7552537bbf2480f9d9bb6c15f67f133c06a8e7af03f9eb86c2071b72dfca76ea"
+    },
+    {
+      "file": "coach/ops/index.html",
+      "sha256": "48b379d2fe50da88ccf3e8455ec0345dbec4f52a5aa47ecd4e9401905ab4579d"
+    },
+    {
+      "file": "coaching/miami/index.html",
+      "sha256": "1318242a017a1a5ad3938c802bb779f81f89970c89620205ba4e189a4a7aa033"
+    },
+    {
+      "file": "coaching/strength/index.html",
+      "sha256": "99584a8130413015711530a3a2be0a7e50527bbf801132e0352f9dfdc16a2ed4"
+    },
+    {
+      "file": "contact.html",
+      "sha256": "bf85dfc039530c53bb1c9dc2a263b72567c5a2057422840ecf19a4e568238b00"
     },
     {
       "file": "design-review/form-notes-archive/index.html",
@@ -1059,11 +1123,11 @@
     },
     {
       "file": "es/plans/race-pace-durability/index.html",
-      "sha256": "053ad59fd5d6d7dc964376d11dfb8cb2b7df52f67d6ffa7a62d00039d6f0646d"
+      "sha256": "00310bb7f7517c4b6ee09205c9565a160944f688f7f28259e3913fa51743901b"
     },
     {
       "file": "field-notes.html",
-      "sha256": "5a313877074aa5f950d936a8a3241fe01b27be8052e5b300d3d82d04b8203d57"
+      "sha256": "6415232edbe554982602df2f315fef67db119e46029084f7b0aee0735627af95"
     },
     {
       "file": "field-notes/a-good-session-does-not-need-an-encore/index.html",
@@ -1111,15 +1175,15 @@
     },
     {
       "file": "form/privacy/index.html",
-      "sha256": "1795c2eb7bc8c9c4c42e8d92fd513b830edb0bb293ac8445da4f224faea833b7"
+      "sha256": "151338d7522025f1596d033488b84332334173eebc50e08ef5f6a7971995947e"
     },
     {
       "file": "form/support/index.html",
-      "sha256": "0195a86e95bb399555c11c20b1514688bccda00a1b4dcbddd526856a687f5c4d"
+      "sha256": "2c819ba13e6ce1c8edeeb7fe3d2582fa6629c52da4f3b54512e83c4621972a47"
     },
     {
       "file": "form/terms/index.html",
-      "sha256": "f80f32b5a014fb608a623614b7878ecd82ff6b1aa7d9038d5b312c271915fc99"
+      "sha256": "a4a4e33d6c0810d53bdb2d960f5eb0130088771f51dfcce04663a4956da3de1f"
     },
     {
       "file": "form_console_v54b.html",
@@ -1155,27 +1219,43 @@
     },
     {
       "file": "ghost/week-6.html",
-      "sha256": "a00725557d50468eb97eb3b4ce923f521c607fb55a1580669a8815225031be51"
+      "sha256": "c8dcbdf58e99829eea79dcb954b24b4885d30aaeb834416f66f4b0438822ea00"
     },
     {
       "file": "google3ef29ca5c705e511.html",
       "sha256": "1023f8daa40c3252fc65a5516dedc4d8894ed69ad27416e2e5986abb15420b96"
     },
     {
+      "file": "labs/adrian-runner-mass/index.html",
+      "sha256": "e064ab2ab6e15f22afb75b23eb44114d01837364b2e0ce9886d4e36fb7ab4198"
+    },
+    {
       "file": "labs/hyrox/index.html",
-      "sha256": "39a97a77049c7e1c1f95c8d44dd3733545828a6c769876910e91ddf466005279"
+      "sha256": "e8338f8362b06b874a5730d048f3c49c8d630c7adc6e60199913626d477ebe47"
     },
     {
       "file": "labs/index.html",
-      "sha256": "c6743d7e982a5bee5698fe5a0e7aca48c4c2967e60eed7a962add20a69dc7657"
+      "sha256": "52a66fd90e5c031360da15e8c1a5d748a82a2023e08152db22cafe8131187d94"
     },
     {
       "file": "labs/raise-the-ceiling/index.html",
-      "sha256": "970d628266e134d2ab2d3c1d1c3771e037cd17dee7463d346b6f72cf87f06751"
+      "sha256": "9fef00004bb2465327907e98b23692d87e1d8b77a6e2345f80bc978e946d949f"
+    },
+    {
+      "file": "labs/rebuilt-athlete/index.html",
+      "sha256": "79ae92f7bbbe5b01543affe97cd0fd249899dec3387d00b321c03b20bf78ac5d"
     },
     {
       "file": "labs/speed-that-endures/index.html",
-      "sha256": "493b90012abb1a09034983581ba2cfa3fbc4d36c53779a70e554b0acae0a5c98"
+      "sha256": "c00496cd1a6bd909054d1667e4dac1436433e32f034bf02f5170c7c0d83a2192"
+    },
+    {
+      "file": "labs/the-last-10k/index.html",
+      "sha256": "a29855202d8b6ca84b21b7142708ecb1f581d58868cb4fcb6b6d8bde2de9167c"
+    },
+    {
+      "file": "labs/the-two-curves/index.html",
+      "sha256": "cc3d4f5002b4aa837199c99e2f83fe9f917107d2037835f1b97102baffd3c4e5"
     },
     {
       "file": "labs/track/index.html",
@@ -1186,8 +1266,12 @@
       "sha256": "d80eed42bc7783811ad3d5a0ef47aaa076ce3d7666adb693a6c4a4c8040ac3dd"
     },
     {
+      "file": "library/running-physiology-course/index.html",
+      "sha256": "d95b3790ef0baf2b9ed1965d6208f84f2ef258790ce419836cefd2672bf6aa6f"
+    },
+    {
       "file": "long-run.html",
-      "sha256": "3c5a5dc7e9d035f946292501db13eee79b904b48d1f33ddf01b0d57c2033b51e"
+      "sha256": "07da698ff682481522b590b0b281b67ab0a2fbc257feffbe60d7c0367a4dfa62"
     },
     {
       "file": "mechanics-map.html",
@@ -1195,7 +1279,7 @@
     },
     {
       "file": "miami-running-training.html",
-      "sha256": "367b42dc0b50246da6dfa3a44e5ef9f68571f5e7e4896b929f7f1c6697f1a3f2"
+      "sha256": "f43d80ca4d24b03cc90f7ab45ade92ec14ff758974629f8ea26b859ab38c3e39"
     },
     {
       "file": "mockupA/athletes.html",
@@ -1246,32 +1330,56 @@
       "sha256": "59c22a75a81f1525578ea4174579efa0538dd237de35d9225f6d817a4456f704"
     },
     {
+      "file": "plans/adrian-developed-runner-2026/index.html",
+      "sha256": "f1b88579e7a887728c9616315b521ad0799a13cb5a9d61b966c58019e03d0550"
+    },
+    {
+      "file": "plans/adrian-developed-runner-2026/week.html",
+      "sha256": "1d16bdf3a0b5d47e7c211ba0693592abec7d43a4e63074f81b6f02b7d783512e"
+    },
+    {
       "file": "plans/adrian-hypertrophy-week-01/index.html",
       "sha256": "035183f4e01c7b85453925b79e78ea58c4eb8ec1bb5cd9664bd75e492b48b6ed"
     },
     {
       "file": "plans/adrian-hypertrophy-week-02/index.html",
-      "sha256": "3aea9e9479d12ca5b2ee212c4a1438f7f42e749d008afcf64d7a5200294a9841"
+      "sha256": "070b7935709cf7017278241eb0d524f8c8de92e3cda9f01ff03b39bfef1c988c"
     },
     {
       "file": "plans/adrian-hypertrophy-week-03/index.html",
-      "sha256": "6fca17f05262263b64b6e592eabda3d4b4bd6688bf8c1f036114b883744c3869"
+      "sha256": "01e2d1cd04c8d661e9610c8bd98254e80a3251c9e9728c1eebba0ee7748d0538"
+    },
+    {
+      "file": "plans/adrian-nutrition-phase-01/index.html",
+      "sha256": "daad594f10080de76107280c1aef0b0db12a4e15d6b89d90773bf38110480644"
     },
     {
       "file": "plans/adrian-runner-mass-phase-01/index.html",
-      "sha256": "35b8e1b0d5034d8bea970079ef3af051de666ba07a6ca4639c2e6fc8435a220f"
+      "sha256": "c496fa282511d6dc00a59adadb96251506b94556775b90945884f42f54a2cfbe"
+    },
+    {
+      "file": "plans/devin-week-01/index.html",
+      "sha256": "4b8cce5c37018d87733eaa7cd4e5d03fc7f18730d65253975d00999a5c0f7e72"
+    },
+    {
+      "file": "plans/elijah-nov-11/index.html",
+      "sha256": "7fffc06e5d9ae822cac801ecde817ef47b16ddd5e056f53ee6f3ae5603396e50"
     },
     {
       "file": "plans/index.html",
-      "sha256": "84fcf1471f17271f343fee76793abd2d17dffdc5c4f84aa63b6e4e446c4ba011"
+      "sha256": "4bfaf8e48125babb46a83ddc0497b96710ea83a7d8c400c9c27185208f6c3083"
+    },
+    {
+      "file": "plans/marathon-durability/index.html",
+      "sha256": "2dec01c785ca6b2b0047b50c587d5d7ec3db1dc0d0f7456853cf427aad5c6add"
     },
     {
       "file": "plans/race-pace-durability/access/index.html",
-      "sha256": "fc285a92cac4f97113b3c6383a4c830c806bbbf1f01e59681b5b59e5714650e0"
+      "sha256": "2f2b65b2f7918cc7cf7153363bab072e44327f02db014e8dc26f39b74e035d15"
     },
     {
       "file": "plans/race-pace-durability/index.html",
-      "sha256": "5d86893b52de28d2170c8948ea704f66ac8289b2a902a08e1759d7153c29a0ae"
+      "sha256": "8646cf6450afa8b71c7ba24df41b536277c63892e7612606eae30b27b0a89536"
     },
     {
       "file": "plans/race-pace-durability/print.html",
@@ -1279,7 +1387,7 @@
     },
     {
       "file": "plans/race-pace-durability/support/index.html",
-      "sha256": "821fbcb11fe4d1397c624a566d67a0ca388649553c81f481f7df00d87736ffdd"
+      "sha256": "e2882022ceb4ba4550bede4c9f376b6a8d7a27adfc81b7df114b94eec210f9c4"
     },
     {
       "file": "plans/race-pace-durability/thanks/index.html",
@@ -1287,7 +1395,39 @@
     },
     {
       "file": "plans/raise-the-ceiling/index.html",
-      "sha256": "bb273ca617d769c2651d092d646bbbd4ffff4f899b24cdb8e53a2af667b05733"
+      "sha256": "4db0c58b2af6a3ac6a83c8c1f8a0bcbf075cb93b95aeb94d01e7e3dcdb1ec659"
+    },
+    {
+      "file": "plans/rebuilt-athlete-phase-00-friday/index.html",
+      "sha256": "0b219f56c4b7d1019e2bd05d54adf51613d7ebfceb8053f6decb110834798bd0"
+    },
+    {
+      "file": "plans/rebuilt-athlete-phase-00-monday/index.html",
+      "sha256": "8ddcee0a771580261808e93c228779d4634eccf8fb854b41828c3605cb910661"
+    },
+    {
+      "file": "plans/rebuilt-athlete-phase-00-saturday/index.html",
+      "sha256": "6c4a7c229b42351a38a1d0979ef27de4d613c526da2889ffc7f24203f24ae167"
+    },
+    {
+      "file": "plans/rebuilt-athlete-phase-00-sunday/index.html",
+      "sha256": "d6e626ed2880b29202e3731c89b10f12a6a38f7b82269f9e890a7405252774d5"
+    },
+    {
+      "file": "plans/rebuilt-athlete-phase-00-thursday/index.html",
+      "sha256": "5e2219002a696cff37136f7f9fb2b7577636d421471e45899524deede3825512"
+    },
+    {
+      "file": "plans/rebuilt-athlete-phase-00-tuesday/index.html",
+      "sha256": "c133692039abb1d2674f91dfc97d87c98a712e8d822c9912a9e651d721a0a33f"
+    },
+    {
+      "file": "plans/rebuilt-athlete-phase-00-wednesday/index.html",
+      "sha256": "43184211059c3d68795188190c53dffd46e44f8846f52b9020ab900312876f4c"
+    },
+    {
+      "file": "plans/rebuilt-athlete-phase-00/index.html",
+      "sha256": "7f3d2fa2eb4ab3fce0e3d0021eb89de55621075d4b1ae80faf0c4e5bfb9573cf"
     },
     {
       "file": "plates.html",
@@ -1299,11 +1439,11 @@
     },
     {
       "file": "privacy.html",
-      "sha256": "1814752c07d20765648c671031bc117c953d124835c4cefd6dfece8b4320f628"
+      "sha256": "4bc1fe60df8d590a021579b069c6f4b603bdf30e25cc47aeb3f6a754b7a3882d"
     },
     {
       "file": "record/index.html",
-      "sha256": "7639c354d050d782a456dff50a7425cee3042f1858aaa5b829ac06511720f5a8"
+      "sha256": "c62b8bb3ad7372ed9b01041c8250ab3f05f66ec31ee52ba4e85c2e72e6fa9a2a"
     },
     {
       "file": "scripts/design-review/frame.html",
@@ -1351,7 +1491,7 @@
     },
     {
       "file": "supabase/templates/magic_link.html",
-      "sha256": "aad4b73647622b38af4e708cd3fb48611bce0deea06f5d5e5bcaea3699ac6f1d"
+      "sha256": "4295a622b47243c6dc1461650f910a9d8c68c9a69aac53f56730952aca9b7fcf"
     },
     {
       "file": "supabase/templates/mfa_factor_enrolled_notification.html",
@@ -1383,19 +1523,19 @@
     },
     {
       "file": "terms.html",
-      "sha256": "f80f32b5a014fb608a623614b7878ecd82ff6b1aa7d9038d5b312c271915fc99"
+      "sha256": "a4a4e33d6c0810d53bdb2d960f5eb0130088771f51dfcce04663a4956da3de1f"
     },
     {
       "file": "the-method.html",
-      "sha256": "59f43782f3973612fa1c27d970451de2242bfcb1a2960fccd53f27a068733428"
+      "sha256": "a4016c12a3f4672d43a60ddd208853ffe9071cbbfe28d6270a531dbc8e735fff"
     },
     {
       "file": "the-work.html",
-      "sha256": "709f83c50c7bded0ffc1b9c7e5fa6d0536c0dcb9725bd65dd2864f11a40e6b0c"
+      "sha256": "45af2f7c8e009ef2defad3f1dba9a2f9e48a6ab4492ed67d5fe7d9ced832bf7a"
     },
     {
       "file": "threshold.html",
-      "sha256": "ed3a94c2a3f786ec1140aed7c390969386ddd1b517ab7169da6a8a29dbe5549f"
+      "sha256": "27048b84c22518cdab5d4480d90526383fb1777e6ebe97f63e5bf1a7ec5d5d1c"
     },
     {
       "file": "track/from-practice/index.html",
@@ -1411,11 +1551,27 @@
     },
     {
       "file": "training-principles.html",
-      "sha256": "9864a394a26658e4f48dcaf98eb1a2d46efa72efe1934c61d6a9349ffa542464"
+      "sha256": "d24e12804a486dc9e9201dde1afb661377cdb840696e8ac3e5520667e00e37c4"
+    },
+    {
+      "file": "updates/index.html",
+      "sha256": "7c7e16bce44f0d3160455e26e881f090788dfa7ae2775dfa64b107beb86191e3"
     },
     {
       "file": "village-intake.html",
       "sha256": "b4399a37a9bde6af6e746bf4cd93a59ba5961805b507d3e9c6c80f12790e6673"
+    },
+    {
+      "file": "work/ai-setup/index.html",
+      "sha256": "f9350833d95169141eb88949471350172c745cfadb773e09f9fbf8db640c8915"
+    },
+    {
+      "file": "work/index.html",
+      "sha256": "2699f1bd26163f5c51890cbc089cd6ffd9e35938c5af74e9fb5faa0583846224"
+    },
+    {
+      "file": "work/photo-video/index.html",
+      "sha256": "d429a4fbdfa8053e738863f38bd99001ddea34639fbc88c8428038789fa2afd7"
     }
   ]
 }

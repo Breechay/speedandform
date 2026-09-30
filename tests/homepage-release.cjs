@@ -5,17 +5,17 @@ const css=fs.readFileSync('css/homepage.css','utf8');
 assert.match(css,/body\{margin:0;background:var\(--dark\)/,'Top and bottom overscroll canvas stays dark');
 const motion=fs.readFileSync('js/homepage-motion.js','utf8');
 const measurement=fs.readFileSync('js/coaching-measurement.js','utf8');
-assert.equal((html.match(/<video\b/g)||[]).length,1,'One purposeful homepage film: the hero');
+assert.equal((html.match(/<video\b/g)||[]).length,0,'Static, legible first fold');
 assert.doesNotMatch(html,/id="analysisVideo"/);
 assert.doesNotMatch(html,/id="analysisToggle"/);
 assert.match(html,/class="analysis-screen"><img src="\/assets\/home\/practice\/coaching-track\.webp"/);
 assert.match(html,/FORM · Track practice · Miami/);
-assert.match(html,/id="filmA" data-src="\/media\/run-development.mp4\?v=rd16" autoplay muted loop playsinline/);
+assert.match(html,/class="home-hero-photo"/);
 assert.match(html,/data-send-to="33a5c7969281803124c58268d7ae6188"/);
 assert.match(html,/<noscript>/);assert.match(html,/mailto:brice@speedandform.com/);
 assert.ok(!html.includes('id="pick"'));assert.ok(!html.includes('id="drop"'));
 assert.ok(!html.includes('fetch("/", { method:"POST"'));
-assert.match(html,/AbortController/);assert.match(html,/15000/);
+const intake=fs.readFileSync('js/commercial-inquiry.js','utf8');assert.match(intake,/AbortController/);assert.match(intake,/15000/);
 assert.match(html,/checkValidity\(\)/);assert.match(html,/escapeHTML\(r\[1\]\)/);
 assert.doesNotMatch(html,/An inquiry only\. No payment or booking yet\./);
 assert.doesNotMatch(html,/I read every inquiry myself\./);
@@ -38,4 +38,4 @@ for(const m of html.matchAll(/(?:src|data-src|poster|href)="(\/(?!\/)[^"?#]*)(?:
  if(!pathname)continue;
  assert.ok(fs.existsSync(pathname)||fs.existsSync(pathname+'.html')||fs.existsSync(pathname+'/index.html'),'Local destination exists: '+m[1]);
 }
-console.log('PASS: sparse hero; static track coaching visual; simplified inquiry; preserved offers and relay; all local homepage links/assets resolve.');
+console.log('PASS: sparse hero; static track coaching visual; simplified inquiry; preserved offers and private-console receiver; all local homepage links/assets resolve.');

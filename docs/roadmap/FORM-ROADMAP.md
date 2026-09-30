@@ -1,5 +1,18 @@
 # FORM: current state and next actions
 
+## September 30 - Speed & Form commercial site
+
+The homepage now leads with “Run better. Feel stronger.”, Brice’s introduction and the original SF mark. Separate pages cover Miami/online running, standalone strength, remote FORM Analysis, photography and AI setup, with a work directory. New inquiries use one validated create-only receiver into the existing private operating console, carrying the offer/source, next action and next-day follow-up. The strength offer includes a location/access/travel agreement before payment. Existing paid plans and native app identities are unchanged.
+
+- [x] Homepage, six commercial pages, shared public identity, search metadata and inquiry connection authored.
+- [x] Source checks, 42 Chromium route/width views, enlarged text, failed/accepted retry, privacy and anonymous database isolation verified.
+- [ ] GitHub push blocked by automatic approval review pending explicit destination authorization. Netlify preview/production remain pending. A local build is not a live site.
+- [ ] Google Search account forecasts, conversion setup and authorized spend remain a later action; draft campaign and stop criteria are ready.
+- [ ] New service invoices follow confirmed fit, capacity and scope. No fabricated checkout or booked appointment.
+
+See [offer and acquisition decisions](../marketing/COMMERCIAL-OFFERS-20260930.md) and [release evidence](../audits/COMMERCIAL-RELEASE-20260930.md).
+
+
 ## September 27 - Run Development gait retraining terminology
 
 Homepage and coaching doctrine now name **gait retraining** as the deliberate movement-change work already inside Run Development. The approved supporting descriptor is **RUN DEVELOPMENT · GAIT RETRAINING · PROGRAMMING**. The hero remains `Run Development / Run better`; gait retraining is defined in the Coaching section and repeated quietly in the offer. Canonical doctrine, brand rules, agent instructions and the coaching-offer vision were updated together. No price, intake, plan, athlete assignment, app behavior or FORM Analysis product scope changed.

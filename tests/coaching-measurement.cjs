@@ -47,12 +47,12 @@ const send=html.slice(html.indexOf('  function sendToBrice()'),html.indexOf('\n 
  assert.equal(relay.get('Offer'),'Run Development · 8 weeks · $1,200');
  assert.equal(relay.get('Source'),'meta / paid_social · form_miami_run_test01 · run_development_video01');
  assert.equal(relay.get('Running days per week'),null);
- for(const [ok,success,throws,expected] of [[true,true,false,1],[true,'true',false,1],[true,false,false,0],[false,true,false,0],[true,true,true,1]]) {
+ for(const [accepted,reject,throws,expected] of [[true,false,false,1],[false,false,false,0],[false,true,false,0],[true,false,true,1]]) {
   let leads=0,done=0,failed=0;
-  const ctx={sending:false,$:()=>({getAttribute:()=>'',disabled:false}),payload:()=>({offer:'Run'}),BRICE:'test@example.com',A:{},FormData,Promise,intakeFields:()=>[],pane:()=>done++,fail:()=>failed++,window:{formTrackLead:()=>{leads++;if(throws)throw Error('blocked');}},fetch:async()=>({ok,json:async()=>({success})})};
+  const ctx={sending:false,$:()=>({value:'run',getAttribute:()=>'',disabled:false}),payload:()=>({offer:'Run',city:'Miami'}),BRICE:'test@example.com',A:{},FormData,Promise,intakeFields:()=>[],pane:()=>done++,fail:()=>failed++,window:{sfSubmitInquiry:async()=>{if(reject)throw Error('offline');return {accepted};},formTrackLead:()=>{leads++;if(throws)throw Error('blocked');}}};
   vm.runInNewContext(send+'\nsendToBrice();sendToBrice();',ctx);
   await new Promise(r=>setImmediate(r));
   assert.equal(leads,expected);assert.equal(done,expected);assert.equal(failed,expected?0:1);
  }
- console.log('PASS: stable FormSubmit endpoint, compact table notification, athlete Reply-To, production/privacy guards, GA4 + Meta page measurement, accepted/rejected relay responses, duplicate click, tracking failure isolation. No intake answers sent to analytics; no network requests sent.');
+ console.log('PASS: stable FormSubmit endpoint, compact table notification, athlete Reply-To, production/privacy guards, GA4 + Meta page measurement, accepted/rejected console receipts, duplicate click, tracking failure isolation. No intake answers sent to analytics; no network requests sent.');
 })();

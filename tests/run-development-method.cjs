@@ -34,7 +34,7 @@ assert.doesNotMatch(method,/form is almost always the limiter|fix your form and 
 assert.ok((method.match(/<meta property="og:title"/g)||[]).length===1);
 assert.ok((method.match(/<meta name="twitter:title"/g)||[]).length===1);
 
-assert.match(home,/href="\/the-method">Read the method/);
+assert.doesNotMatch(home,/href="\/the-method">Read the method/);
 assert.match(home,/Like a kite upon the wind\./);
 assert.match(home,/Form is multiplied by every step\./);
 assert.match(home,/Reveal what wants to be set free\./);

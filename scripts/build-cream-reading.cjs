@@ -35,7 +35,15 @@ function declarations(css, selector = '') {
       /color\s*:\s*var\(--ink(?:-f|-l)?\)/i.test(css) ? `${prefix}1` : m);
 }
 function transformHtml(html, file) {
-  if (/data-form-reading=/.test(html) || !eligible(file, html)) return html;
+  if (/data-form-reading=/.test(html)) {
+    // Authored pages may add CSS after the original theme link. Keep the theme
+    // after that CSS without touching article text, scripts, or navigation.
+    const link = html.match(/<link\b[^>]*href="\/css\/cream-reading\.css[^\"]*"[^>]*>/i);
+    if (link && html.indexOf(link[0]) < html.slice(0,html.indexOf('</head>')).lastIndexOf('</style>'))
+      return html.replace(link[0],'').replace('</head>',link[0]+'\n</head>');
+    return html;
+  }
+  if (!eligible(file, html)) return html;
   // Protect even HTML-looking template strings inside scripts, byte for byte.
   const pieces = html.split(/(<script\b[^>]*>[\s\S]*?<\/script\s*>)/gi);
   let next = pieces.map(piece => /^<script\b/i.test(piece) ? piece : piece
