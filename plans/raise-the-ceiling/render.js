@@ -56,7 +56,7 @@ function work(day, w) {
   }
   if (day === 'Thu') {
     const s = plan.thursday[w - 1];
-    return { title: s.name, note: s.note, reps: s.reps };
+    return { title: s.name, note: s.note || null, reps: s.reps };
   }
   const s = plan.saturday[w - 1];
   return { title: s.title, note: s.note, reps: null };
