@@ -27,7 +27,7 @@
    One type system with the rest of FORM: Inter Tight says what something means,
    JetBrains Mono says what happened (prices, weeks, captions, labels).
    Nothing below changes content, structure or scripts. */
-@font-face{font-family:"Inter Tight";src:url("https://cdn.jsdelivr.net/fontsource/fonts/inter-tight:vf@5.3.0/latin-wght-normal.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Inter Tight";src:url("/assets/site/fonts/inter-tight-latin-variable.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
 @font-face{font-family:"JetBrains Mono";src:url("/assets/site/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:"JetBrains Mono";src:url("/assets/site/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
 :root{--sans:"Inter Tight",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;--serif:var(--sans);--mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;--ease:cubic-bezier(.22,.61,.36,1);--pill:999px}

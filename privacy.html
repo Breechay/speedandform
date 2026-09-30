@@ -47,11 +47,12 @@
   .footer-links a:hover { color: var(--secondary); }
   @media (max-width: 600px) { .nav { padding: 16px 20px; } .page { padding: 44px 20px 80px; } h1 { font-size: 28px; } }
 </style>
+<link rel="stylesheet" href="/css/sf-brand.css?v=20260930">
 </head>
 <body>
 
 <nav class="nav">
-  <a class="nav-wordmark" href="/">FORM</a>
+  <a class="nav-wordmark sf-brand" href="/" aria-label="Speed and Form home"><span class="sf-brand-name">Speed &amp; Form</span></a>
   <a class="nav-back" href="/">← speedandform.com</a>
 </nav>
 
@@ -247,18 +248,11 @@
   <hr>
   <div class="section" id="website">
     <p class="section-label">09</p>
-    <h2>Coaching Website</h2>
-    <p>When you submit a coaching inquiry at speedandform.com, we use the contact details,
-      running information and optional video you provide to respond and discuss coaching.
-      The inquiry is sent through FormSubmit for email delivery, with a submission also
-      attempted through our hosting provider, Netlify. Advertising source tags may accompany
-      the inquiry so we can understand where it came from.</p>
-    <p>The coaching homepage uses Meta Pixel to measure page visits and accepted inquiry
-      submissions and help us evaluate and improve our Facebook and Instagram advertising.
-      Meta may receive information such as the page URL, IP address, browser information and
-      cookie identifiers. Our event code does not send your intake answers, uploaded video,
-      name or email address to Meta. App training records are not used for this measurement.</p>
-    <p>We do not load this pixel when your browser sends Global Privacy Control or Do Not Track.
+    <h2>Website inquiries</h2>
+    <p>When you inquire about coaching, analysis, photography or AI setup at speedandform.com, we use the contact details and information you provide to respond and discuss the work. New commercial inquiries are stored in Brice’s private operating console using Supabase. They do not create an athlete account, book a session, take payment or subscribe you to marketing email. Some older contact forms use FormSubmit for email delivery.</p>
+    <p>The form includes the selected offer, the page you used and advertising source tags when available. A random submission identifier helps avoid duplicate inquiries on retry. The browser keeps that identifier and source tags in session storage; contact details are not saved there. Please do not include medical records, passwords or other sensitive information.</p>
+    <p>Public commercial pages use Google Analytics and Meta Pixel to measure page visits and accepted inquiry submissions. These services may receive the page URL, IP address, browser information and cookie identifiers. Our event code does not send your intake answers, name or email address to these services. App training records are not used for website advertising measurement.</p>
+    <p>We do not load these measurement tools when your browser sends Global Privacy Control or Do Not Track.
       You can also block advertising trackers in your browser. Learn about Meta's processing
       and controls in <a href="https://www.facebook.com/privacy/policy/">Meta's privacy policy</a>.
       Contact brice@speedandform.com to request deletion of your coaching inquiry.</p>
@@ -272,7 +266,7 @@
   </div>
 
   <div class="footer">
-    <span class="footer-wordmark">FORM</span>
+    <a class="sf-brand" href="/" aria-label="Speed and Form home"><span class="sf-brand-name">Speed &amp; Form</span></a>
     <div class="footer-links">
       <a href="/privacy">Privacy</a>
       <a href="/terms">Terms</a>

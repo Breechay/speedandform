@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://speedandform.com/analysis/</loc></url>
   <url><loc>https://speedandform.com/anti-rotation</loc></url>
   <url><loc>https://speedandform.com/ask/</loc></url>
   <url><loc>https://speedandform.com/avoid-injury</loc></url>
-  <url><loc>https://speedandform.com/contact</loc></url>
+  <url><loc>https://speedandform.com/coaching/miami/</loc></url>
+  <url><loc>https://speedandform.com/coaching/strength/</loc></url>
   <url><loc>https://speedandform.com/easy-run-standards</loc></url>
   <url><loc>https://speedandform.com/easy-run</loc></url>
   <url><loc>https://speedandform.com/es/plans/race-pace-durability/</loc></url>
@@ -26,10 +28,10 @@
   <url><loc>https://speedandform.com/how-fast-should-i-run</loc></url>
   <url><loc>https://speedandform.com/</loc></url>
   <url><loc>https://speedandform.com/labs/adrian-runner-mass/</loc></url>
-  <url><loc>https://speedandform.com/labs/rebuilt-athlete/</loc></url>
   <url><loc>https://speedandform.com/labs/hyrox/</loc></url>
   <url><loc>https://speedandform.com/labs/</loc></url>
-<url><loc>https://speedandform.com/labs/speed-that-endures/</loc></url>
+  <url><loc>https://speedandform.com/labs/rebuilt-athlete/</loc></url>
+  <url><loc>https://speedandform.com/labs/speed-that-endures/</loc></url>
   <url><loc>https://speedandform.com/labs/the-last-10k/</loc></url>
   <url><loc>https://speedandform.com/labs/the-two-curves/</loc></url>
   <url><loc>https://speedandform.com/labs/track/</loc></url>
@@ -38,23 +40,22 @@
   <url><loc>https://speedandform.com/library/first-half-marathon-goal/</loc></url>
   <url><loc>https://speedandform.com/library/from-lifting-to-running/</loc></url>
   <url><loc>https://speedandform.com/library/half-marathon-week/</loc></url>
-  <url><loc>https://speedandform.com/library/running-physiology-course/</loc></url>
   <url><loc>https://speedandform.com/library/physique-volume/</loc></url>
+  <url><loc>https://speedandform.com/library/running-physiology-course/</loc></url>
   <url><loc>https://speedandform.com/library/the-two-paces/</loc></url>
   <url><loc>https://speedandform.com/library/when-a-week-goes-wrong/</loc></url>
   <url><loc>https://speedandform.com/library/why-phases/</loc></url>
   <url><loc>https://speedandform.com/long-run-pace</loc></url>
   <url><loc>https://speedandform.com/long-run</loc></url>
-  <url><loc>https://speedandform.com/miami-running-training</loc></url>
   <url><loc>https://speedandform.com/mechanics-map</loc></url>
   <url><loc>https://speedandform.com/mobility</loc></url>
   <url><loc>https://speedandform.com/notes</loc></url>
   <url><loc>https://speedandform.com/pacing</loc></url>
   <url><loc>https://speedandform.com/pain-map</loc></url>
   <url><loc>https://speedandform.com/plans/</loc></url>
+  <url><loc>https://speedandform.com/plans/marathon-durability/</loc></url>
   <url><loc>https://speedandform.com/plans/race-pace-durability/</loc></url>
   <url><loc>https://speedandform.com/plans/race-pace-durability/support/</loc></url>
-<url><loc>https://speedandform.com/plans/marathon-durability/</loc></url>
   <url><loc>https://speedandform.com/principles</loc></url>
   <url><loc>https://speedandform.com/race-prep</loc></url>
   <url><loc>https://speedandform.com/race-strategy</loc></url>
@@ -83,4 +84,7 @@
   <url><loc>https://speedandform.com/training-principles</loc></url>
   <url><loc>https://speedandform.com/training-week</loc></url>
   <url><loc>https://speedandform.com/troubleshooting</loc></url>
+  <url><loc>https://speedandform.com/work/ai-setup/</loc></url>
+  <url><loc>https://speedandform.com/work/</loc></url>
+  <url><loc>https://speedandform.com/work/photo-video/</loc></url>
 </urlset>

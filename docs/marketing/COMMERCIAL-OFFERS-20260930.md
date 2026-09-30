@@ -1,0 +1,77 @@
+# Speed & Form commercial release · September 30, 2026
+
+Brice requested the homepage redesign, original favicon/SF identity across the public site, separate commercial landing pages, strength packaging with practical travel, SEO research and a Google Search alternative to the prior Instagram test. This supersedes earlier instructions to freeze the homepage hero. FORM and Forge remain product names; this does not rename their native applications.
+
+## Offers and routes
+
+| Offer | Public scope | Price | Next action |
+| --- | --- | --- | --- |
+| Run Development, `/coaching/miami/` | Individual running coaching, movement work, programming and adjustments; Miami or remote delivery agreed first | $1,200 / 8 weeks | Inquiry, fit and schedule, then payment |
+| Run + Strength, same page | Run Development, integrated strength programming and four coached gym sessions | $1,800 / 8 weeks | Inquiry and gym/location agreement |
+| Strength coaching, `/coaching/strength/` | Eight weekly 60-minute sessions, individual programming between sessions, weekly check-in and adjustments | $1,200 / 8 weeks | Confirm neighborhood, gym, equipment, access and schedule |
+| Strength first session | One 60-minute assessment and coached training session; becomes session one of the block if joined within seven days | $150, credited toward the $1,200 block | Same location gate |
+| FORM Analysis, `/analysis/` | Up to four 30-second clips plus two weeks of training; 10–15-minute recorded explanation, 2–3 priorities, two-week practice outline, one email clarification within seven days | $149 remote pilot | Confirm fit and footage, then payment instructions |
+| Fitness photography, `/work/photo-video/` | 90 minutes, one Miami location, 15 edited photos, high-resolution and web versions, one minor editing revision | $350 pilot | Brief, location/usage agreement, then booking |
+| AI operations, `/work/ai-setup/` | One agreed workflow, up to two existing tools, simple tracker/dashboard, documentation, 30-minute handoff, one revision and seven days of fixes | $900 pilot | Confirm access, scope and acceptance test before payment |
+| Race Pace Durability, `/plans/` | Existing 15-week plan and prerequisites; weeks 1–4 remain free | $79 | Existing checkout and entitlement path |
+
+Service pages accept inquiries; they do not take payment or claim a date is booked. Existing RPD checkout is preserved. Do not substitute invented payment links. Invoice/payment setup for the new pilots follows the agreed scope and delivery capacity.
+
+The $149 Analysis pilot is specifically a remote, asynchronous review. It is distinct from the earlier $250–400 specialist/in-person concept, which was never approved as public pricing. It is also distinct from the complimentary Run Development fit conversation. The sample on the page is an explicitly illustrative deliverable outline, not a fabricated client result. No diagnosis, universal ideal form, injury prediction or running-economy guarantee.
+
+Photography pilot is photo-only. Video, paid advertising rights, third-party licensing, extra photos, venue fees and permits require a separate quote. The visible portfolio uses existing published track photography and is labeled as practice work, not paid client campaigns. Delivery target is five business days after the shoot. Booking and rescheduling terms are agreed before payment.
+
+Analysis delivery target is five business days after payment and usable materials. AI delivery target is seven business days after agreed scope, access and materials. AI work starts in client-owned accounts; subscriptions are extra and approved first. No autonomous messages by default, no sensitive/regulated workflows in this pilot, no claimed client savings or results.
+
+## Strength travel economics
+
+The public offer does not promise a citywide free travel radius. Brice walks or uses rideshare. Ask for neighborhood and gym first; do not collect full home addresses on the public form. Check outside-trainer permission, equipment and guest admission before accepting payment. Offer a practical shared meeting location where possible; otherwise quote a fixed travel supplement for the block. Never pass on an unagreed surge fare after a session.
+
+Illustrative internal calculation, not a claim about Uber fares: $1,200 less eight $20 round trips leaves $1,040 before gym fees, payment fees and tax. Eight coached hours, four hours of travel and four hours of programming/admin would mean $65 per working hour before those other costs. If round trips cost $40 and take an hour, the same block leaves $880 across 20 working hours, or $44/hour. These are scenarios; check the actual route and time before quoting.
+
+Keep the first offer to weekly sessions. Cluster nearby clients and agree on a home base before expanding the service area. If a trip makes the economics poor, propose the shared gym/location or decline the location. The $150 first session credit is not a ninth free session: the remaining block is seven sessions and $1,050. The public 24-hour rescheduling rule and planned absences are confirmed in the booking agreement.
+
+## Website inquiry contract v1
+
+The website submits to `submit_website_inquiry(uuid,jsonb)`. The create-only function accepts a fixed offer list, bounded contact/message data and a stable random submission ID. It chooses the configured owner from the private `operating_sources` entry `website-inquiries-v1`; the browser cannot select an owner, status or record ID. There is no new CRM or athlete table.
+
+Accepted submissions create one queued `operating_items` task with the offer, contact details, original message, landing path, UTM source fields, next action and next-day due/review dates. Retries with the same UUID return a receipt without duplicating the task. The UI shows received only after a successful database receipt. Failures preserve the form and expose a prefilled email fallback. New service inquiries and homepage running inquiries use this same receiver.
+
+Anonymous users cannot read or directly insert operating records. The public RPC is an invoker wrapper around a narrowly granted definer in a non-exposed schema. It has bounded payloads, honeypot validation and serialized limits of five submissions/email/day and 40 total/hour. These are basic abuse controls, not a claim of comprehensive bot prevention; add a verified challenge if real abuse appears. The routing source can be set unavailable to stop intake without exposing the console.
+
+Console receipt is the operational source of truth. New forms do not promise an email notification was delivered. Brice reviews the existing console and replies by email. Contact details stay out of GA4 and Meta events. Measurement honors GPC/DNT. Explicit `form_qa=1` blocks live writes. Session storage holds the random retry ID and campaign tags, never contact details.
+
+Follow up from the same operating item. Use queued/active/waiting/done and next action/review date; a submitted inquiry is not a sale. Do not make someone an athlete or provision access from an email string.
+
+## Search and acquisition
+
+Use one substantive page per distinct offer, descriptive search titles, one main heading, canonical URLs, original photography, crawlable internal links, the sitemap and on-site search. These are discoverability basics, not a ranking promise. No cloned neighborhood doorway pages, invented reviews, street address, or LocalBusiness opening hours. `/strength` remains the educational guide; the commercial offer is `/coaching/strength/`. `/studio.html` remains private.
+
+Relevant research checked September 30:
+
+- [Google Search Essentials](https://developers.google.com/search/docs/essentials): helpful content and the words people use in titles, main headings and descriptive links.
+- [Google title links](https://developers.google.com/search/docs/appearance/title-link): clear page titles and a distinct main visual title.
+- [Nielsen Norman Group homepage principles](https://www.nngroup.com/articles/homepage-design-principles/): explain the offering and make the organization and useful next actions recognizable. The shorter personal promise and visible coaching paths are design inferences, not measured conversion gains.
+- [Google Search campaign creation](https://support.google.com/google-ads/answer/9510373): Search can reach people looking for specific services. Keyword volume, costs and lead quality still require account forecasts and a real test.
+- [Google presence targeting](https://support.google.com/google-ads/answer/9376662): use presence in the target area for the local test, rather than assuming interest in Miami means the person trains here.
+- [Mindful Nutrition & Fitness](https://www.mindfulnutritionandfitness.com/personal-training): advertised $95 single hour and $680 eight-pack, with at-home rates starting at $100 and varying by location when reviewed.
+- [Personal Trainer Miami](https://www.personaltrainer-miami.com/services): advertised $240 single hour, with lower per-session rates for larger prepaid packs when reviewed.
+
+Those two sellers show a range of public asking prices, not a representative market average or proof that the proposed package will sell. The $1,200 strength block prices eight coached sessions plus individual programming and adjustments. Validate with conversations and paid starts.
+
+### Google Search pilot draft, not launched
+
+Start with running coaching, one clear landing page and one buyer intent. Keep organic Instagram for proof and referrals. Do not divide a small budget across every offer. The channel recommendation is a hypothesis based on intent, not evidence that Google will outperform the prior Instagram campaign.
+
+- Landing page: `https://speedandform.com/coaching/miami/?utm_source=google&utm_medium=cpc&utm_campaign=miami_running_pilot`.
+- Search network only initially; separate any later partner/display experiments. Location: agreed practical Miami service area with presence targeting. No blanket promise to travel anywhere in Miami.
+- Initial exact/phrase candidates: `[running coach miami]`, `"running coach miami"`, `[private running coach miami]`, `"run coach miami"`. These are research candidates, not verified search volume.
+- Initial exclusions to review: jobs, salary, certification, course certification, free training plan, shoes. Do not exclude beginner/5K terms; they may be suitable clients. Review actual search terms before expanding.
+- Headlines, all within 30 characters: `Running Coach in Miami`; `Run Development With Brice`; `8 Weeks. Built Around You.`; `Run Better With a Coach`; `Miami & Online Coaching`.
+- Descriptions, under 90 characters: `Individual running coaching with Brice. Eight weeks, $1,200. Start a conversation.` and `Build movement, endurance and confidence. Coaching for your goal and current running.`
+- Sitelinks: Running coaching, Run + Strength (same-page offer), FORM Analysis, Training plans. Do not send paid-running traffic to AI or photography.
+- Conversion readiness: the site emits `generate_lead` only after an accepted receipt, with a fixed offer code. Inspect the real account before choosing/importing the Google Ads conversion action. A page view, CTA click or email fallback is not a lead. Qualify and record actual starts in the console.
+- Provisional experiment cap: $100–150 only after Keyword Planner/account forecasts, location and conversion configuration are reviewed and Brice authorizes spend. This is not a forecast or daily-budget setting. Daily budgets can overdeliver; agree on and enforce the experiment stop condition.
+- Review search terms and inquiry quality first. Zero good inquiries at the agreed cap means stop and investigate. One lead does not establish channel superiority. Use contribution margin and actual close rate before scaling; do not compare a $149 review sale and a $1,200 coaching start as equal business outcomes.
+
+No ads were created, enabled, paused or repriced in this release. No paid campaign performance improvement is claimed. Next acquisition work is one running-client conversation, two relevant photography pilot conversations, and one bounded AI workflow conversation, within real delivery capacity.

@@ -19,7 +19,7 @@ assert.ok(search.rank(index,'threshhold').some(e=>e.title.includes('Threshold'))
 assert.deepEqual(search.rank(index,'zzyyxxxq'),[]);assert.deepEqual(search.rank(index,'the and of'),[]);
 assert.equal(search.normalize('JOSÉ'),'jose');
 const resolve=url=>{let p=new URL(url,s.ORIGIN).pathname.replace(/^\//,'');return [p,p+'.html',p+'/index.html'].find(f=>fs.existsSync(path.join(root,f))&&fs.statSync(path.join(root,f)).isFile());};
-for(const e of index){assert.ok(e.title&&e.description);assert.ok(resolve(e.url),e.url);assert.ok(!/\b(?:5:50|Hideout|free forever|pending approval)\b/i.test(JSON.stringify(e)));assert.ok(!/\/(?:coach|athlete|private|auth|record|adrian|purchase-success|mockup)/.test(e.url));}
+for(const e of index){assert.ok(e.title&&e.description);assert.ok(resolve(e.url),e.url);assert.ok(!/\b(?:5:50|Hideout|free forever|pending approval)\b/i.test(JSON.stringify(e)));assert.ok(!/^\/(?:coach(?:\/|$)|athletes?(?:\/|$)|private(?:\/|$)|auth(?:\/|$)|record(?:\/|$)|adrian(?:\/|$)|purchase-success(?:\/|$)|mockup)/.test(e.url));}
 assert.ok(!read('robots.txt').includes('Disallow: /assets/'));
 assert.ok(!read('sitemap.xml').includes('<lastmod>'),'Do not invent refresh dates');
 const locs=[...read('sitemap.xml').matchAll(/<loc>(.*?)<\/loc>/g)].map(x=>x[1]);assert.equal(locs.length,m.sitemap.length);assert.equal(new Set(locs).size,locs.length);

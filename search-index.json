@@ -1,5 +1,94 @@
 [
   {
+    "url": "/coaching/miami/",
+    "title": "Running coaching in Miami & online",
+    "description": "Individual Run Development with Brice. Eight weeks, $1,200.",
+    "keywords": [
+      "run",
+      "coach",
+      "personal",
+      "running",
+      "miami",
+      "online",
+      "remote"
+    ],
+    "category": "coaching",
+    "type": "Service"
+  },
+  {
+    "url": "/coaching/strength/",
+    "title": "Strength coaching in Miami",
+    "description": "Eight coached sessions and individual programming over eight weeks. $1,200.",
+    "keywords": [
+      "strength",
+      "trainer",
+      "personal",
+      "training",
+      "gym",
+      "miami"
+    ],
+    "category": "coaching",
+    "type": "Service"
+  },
+  {
+    "url": "/analysis/",
+    "title": "FORM Analysis",
+    "description": "A one-time remote running review with Brice. $149 pilot.",
+    "keywords": [
+      "running",
+      "form",
+      "video",
+      "analysis",
+      "gait",
+      "review"
+    ],
+    "category": "coaching",
+    "type": "Service"
+  },
+  {
+    "url": "/work/photo-video/",
+    "title": "Fitness photography in Miami",
+    "description": "90 minutes, one location and 15 edited photographs. $350 pilot.",
+    "keywords": [
+      "fitness",
+      "photographer",
+      "photography",
+      "coach",
+      "trainer",
+      "portraits",
+      "miami"
+    ],
+    "category": "coaching",
+    "type": "Service"
+  },
+  {
+    "url": "/work/ai-setup/",
+    "title": "AI operations setup",
+    "description": "One recurring business workflow, documentation and handoff. $900 pilot.",
+    "keywords": [
+      "ai",
+      "setup",
+      "business",
+      "automation",
+      "operations"
+    ],
+    "category": "coaching",
+    "type": "Service"
+  },
+  {
+    "url": "/work/",
+    "title": "Work with Brice",
+    "description": "Compare coaching, analysis, photography, AI setup and training plans.",
+    "keywords": [
+      "hire",
+      "brice",
+      "work",
+      "services"
+    ],
+    "category": "coaching",
+    "type": "Service"
+  },
+  {
     "url": "/library/from-lifting-to-running/",
     "title": "I lift. How do I start running?",
     "description": "Add running without treating every session like another hard gym day.",
@@ -545,6 +634,57 @@
     "type": "Study"
   },
   {
+    "url": "/labs/adrian-runner-mass/",
+    "title": "The Developed Runner",
+    "description": "Follow Adrian as strength and useful mass are added around an already-proven running engine.",
+    "keywords": [
+      "adrian",
+      "developed",
+      "runner",
+      "strength",
+      "mass",
+      "marathon",
+      "study"
+    ],
+    "category": "practice",
+    "type": "Study"
+  },
+  {
+    "url": "/labs/rebuilt-athlete/",
+    "title": "The Rebuilt Athlete",
+    "description": "Follow the return from a complete tibial fracture as running, strength, body composition and capacity are rebuilt.",
+    "keywords": [
+      "brice",
+      "rebuilt",
+      "athlete",
+      "tibia",
+      "fracture",
+      "return",
+      "running",
+      "study"
+    ],
+    "category": "practice",
+    "type": "Study"
+  },
+  {
+    "url": "/labs/the-two-curves/",
+    "title": "The Two Curves",
+    "description": "Follow Simon as half-marathon race-pace duration and the ceiling above it are developed together.",
+    "keywords": [
+      "simon",
+      "two",
+      "curves",
+      "ceiling",
+      "durability",
+      "half",
+      "marathon",
+      "1:20",
+      "study"
+    ],
+    "category": "practice",
+    "type": "Study"
+  },
+  {
     "url": "/labs/the-last-10k/",
     "title": "The Last 10K",
     "description": "Follow the Orlando-to-Donna marathon durability study and the closing-10K hypothesis.",
@@ -679,55 +819,5 @@
     ],
     "category": "practice",
     "type": "App"
-  },
-  {
-    "url": "/labs/adrian-runner-mass/",
-    "title": "The Developed Runner",
-    "description": "Follow Adrian as strength and useful mass are added around an already-proven running engine.",
-    "keywords": [
-      "adrian",
-      "developed",
-      "runner",
-      "strength",
-      "mass",
-      "marathon",
-      "study"
-    ],
-    "category": "practice",
-    "type": "Study"
-  },
-  {
-    "url": "/labs/rebuilt-athlete/",
-    "title": "The Rebuilt Athlete",
-    "description": "Follow the return from a complete tibial fracture as running, strength, body composition and capacity are rebuilt.",
-    "keywords": [
-      "rebuilt",
-      "athlete",
-      "tibia",
-      "fracture",
-      "return",
-      "running",
-      "study"
-    ],
-    "category": "practice",
-    "type": "Study"
-  },
-  {
-    "url": "/labs/the-two-curves/",
-    "title": "The Two Curves",
-    "description": "Follow Simon as half-marathon race-pace duration and the ceiling above it are developed together.",
-    "keywords": [
-      "simon",
-      "two",
-      "curves",
-      "ceiling",
-      "durability",
-      "half",
-      "marathon",
-      "1:20",
-      "study"
-    ],
-    "category": "practice",
-    "type": "Study"
   }
 ]

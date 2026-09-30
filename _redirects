@@ -1,3 +1,10 @@
+# Commercial landing pages · one canonical trailing-slash URL each
+/coaching/miami.html /coaching/miami/ 301!
+/coaching/strength.html /coaching/strength/ 301!
+/analysis.html /analysis/ 301!
+/work/photo-video.html /work/photo-video/ 301!
+/work/ai-setup.html /work/ai-setup/ 301!
+/work.html /work/ 301!
 # Pass 2: verified app alias; the static legacy file must not shadow it.
 /app /form/ 301!
 /app.html /form/ 301!
