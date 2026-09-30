@@ -36,7 +36,7 @@ const artifacts=process.env.SF_QA_ARTIFACTS||'/tmp/sf-commercial-qa';fs.mkdirSyn
    const button=page.locator(route==='/'?'.hero .begin':'.sf-hero .sf-button');
    assert.ok(await button.isVisible());
    if(route==='/'&&width<=430)assert.ok((await button.boundingBox()).y<650,'Home CTA is in first fold');
-   if([390,1440].includes(width)&&['/','/coaching/strength/','/work/photo-video/'].includes(route))
+   if([390,1440].includes(width)&&['/','/coaching/miami/','/coaching/strength/','/work/photo-video/'].includes(route))
      await page.screenshot({path:path.join(artifacts,(route==='/'?'home':route.split('/').filter(Boolean).join('-'))+'-'+width+'.png')});
   }
  }

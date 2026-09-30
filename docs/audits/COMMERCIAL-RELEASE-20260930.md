@@ -40,3 +40,5 @@ Owner follow-up: session duration is 45–60 minutes. Complimentary Miami runnin
 Brice requested current-athlete examples. Three running-page cards cover Natalie’s half-marathon goal, Valerie’s outdoor 5K goal and Hope/José’s already-public September 29 six-mile study. Homepage links to the examples. Goals and recorded outcomes remain distinct; no private health details or new athlete imagery are included.
 
 Owner clarified whole-week delivery: running assignments, cues, targeted exercises, video feedback, long-term programming context and adjustment of training load/recovery. Homepage scope and running page now describe that relationship; Hope and José are identified as remote coaching examples. No guaranteed efficiency/speed claim was added.
+
+Brice supplied screenshots of José’s programming feedback. The running page uses the exact excerpt “body feels good and it feels sustainable... great programming”, attributed to José with the harder/easier-week context. Raw chats, profile photos and the photographed textbook are not public assets. The textbook exchange is not treated as independent scientific validation.
