@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["L5VBZ7L4U2.com.speedandform.app"],
+        "components": [
+          { "/": "/run", "comment": "Run with FORM door" },
+          { "/": "/run/*", "comment": "An exact run" }
+        ]
+      }
+    ]
+  }
+}

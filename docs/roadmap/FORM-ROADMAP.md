@@ -1,5 +1,17 @@
 # FORM: current state and next actions
 
+## September 29 - Run with FORM web door (/run)
+
+- **Status:** built on branch `run-with-form-web`; preview only (production publishing is manual in Netlify). Not live.
+- **What:** `/run` lists upcoming FORM group runs and past runs; `/run/<slug>` is the exact run page (when, meet time and run time, venue + exact meet point + map link, host, warm-up, distance, pace, turnarounds, weather rule). Past runs show distance and runner count only, never names. Reads the same published runs as the FORM app, live from Supabase, as any visitor can.
+- **I'm in:** an honest handoff to an Instagram message (`JOIN` in `run/run.js`) until the app is on the App Store; no fake web RSVP.
+- **Universal Links:** `/.well-known/apple-app-site-association` for `L5VBZ7L4U2.com.speedandform.app`, paths `/run` and `/run/*`, served as JSON.
+- **Evidence:** local preview against production data: Track Thursday Oct 1 and Long Run 01 render; unknown slug shows "This run isn't posted."
+- **Blocker:** Long Run 02 is not published in the run database yet, so `/run/long-run-02` shows "not posted" until Brice publishes it with its facts.
+- **Next action:** publish Long Run 02; Brice publishes this branch in Netlify; the Story links to `speedandform.com/run/long-run-02`.
+- **Follow-up (not a Saturday blocker, Chat 2026-09-29):** exact run URLs serve the generic `/run` `<title>`, canonical and Open Graph tags, so a shared `/run/long-run-02` link previews as "Run with FORM". Give each run its own server-rendered metadata (e.g. "Long Run 02 · Saturday, Oct 3 | FORM", distance / time / Miami, an event image when there is one), e.g. a Netlify edge function that reads the run.
+- **Rule:** never hard-code a run into the site. Coach publishes the run → app and website both read it → the Story points to its URL.
+
 ## September 27 - Run Development gait retraining terminology
 
 Homepage and coaching doctrine now name **gait retraining** as the deliberate movement-change work already inside Run Development. The approved supporting descriptor is **RUN DEVELOPMENT · GAIT RETRAINING · PROGRAMMING**. The hero remains `Run Development / Run better`; gait retraining is defined in the Coaching section and repeated quietly in the offer. Canonical doctrine, brand rules, agent instructions and the coaching-offer vision were updated together. No price, intake, plan, athlete assignment, app behavior or FORM Analysis product scope changed.
