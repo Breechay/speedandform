@@ -10,7 +10,7 @@ The initial six commercial pages were published September 30, before the October
 
 ### Remaining readiness work
 
-- Running scope: Brice explicitly approved eight private Miami running sessions on September 30, one each week in the $1,200 eight-week block. Homepage and running page now state that commitment; Run + Strength includes those eight running sessions plus four gym sessions. Still confirm session duration, remote touchpoints, sustainable feedback/response cadence and the end-of-block process before promising them. Remote delivery is agreed separately.
+- Running scope: Brice explicitly approved eight private Miami running sessions on September 30, one each week in the $1,200 eight-week block. Homepage and running page now state that commitment; Run + Strength includes those eight running sessions plus four gym sessions. Private running sessions are 45–60 minutes, also confirmed by Brice. Still confirm remote touchpoints, sustainable feedback/response cadence and the end-of-block process before promising them. Remote delivery is agreed separately.
 
 - Photography: keep `/work/photo-video/` as the canonical route. Add distinguishable project types for fitness/coaches, athlete portraits, founder work, classes/events and food/cafe/hospitality. The current receiver records a general `photo` offer and free text; it does not yet provide this category breakdown. Broader work uses an agreed quote, not an automatic promise of the fitness package's scope or price.
 - Portfolio: select real work and confirm commercial portfolio permission. Prepare an honestly labeled Hideout self-produced case study. Existing public track photographs are shown as practice work; prior publication alone does not establish permission for every new commercial use. Do not publish fabricated campaigns or generated portfolio proof.
@@ -98,3 +98,6 @@ Start with running coaching, one clear landing page and one buyer intent. Keep o
 - Review search terms and inquiry quality first. Zero good inquiries at the agreed cap means stop and investigate. One lead does not establish channel superiority. Use contribution margin and actual close rate before scaling; do not compare a $149 review sale and a $1,200 coaching start as equal business outcomes.
 
 No ads were created, enabled, paused or repriced in this release. No paid campaign performance improvement is claimed. Next acquisition work is one running-client conversation, two relevant photography pilot conversations, and one bounded AI workflow conversation, within real delivery capacity.
+
+
+September 30 owner clarification: private running sessions are typically 45–60 minutes. Miami prospects may start with a complimentary running assessment: discuss the goal, observe their running and decide whether Brice can help, with no obligation to buy. Arrange the assessment after inquiry; do not invent a guaranteed duration, instant booking or remote video-review deliverable. It is separate from the eight paid sessions. This is not the public coaching demonstration/sample, and it does not make the paid $149 FORM Analysis free.
