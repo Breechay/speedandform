@@ -46,6 +46,21 @@
   }
   document.querySelectorAll('[data-inquiry-form]').forEach(function(form){
     var sending=false,accepted=false;
+    // Package-specific links select a visible choice; neutral links preserve it.
+    document.querySelectorAll('a[data-inquiry-program]').forEach(function(link){
+      link.addEventListener('click',function(event){
+        if(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;
+        var choice=Array.from(form.querySelectorAll('input[name="program"]')).find(function(input){
+          return input.value===link.dataset.inquiryProgram;
+        });
+        if(!choice)return;
+        event.preventDefault();
+        choice.checked=true;
+        choice.dispatchEvent(new Event('change',{bubbles:true}));
+        choice.focus({preventScroll:true});
+        choice.closest('fieldset').scrollIntoView({block:'center',behavior:'instant'});
+      });
+    });
     form.addEventListener('submit',async function(event){
       event.preventDefault();
       if(sending||accepted||!form.reportValidity())return;

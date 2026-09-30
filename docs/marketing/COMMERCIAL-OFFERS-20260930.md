@@ -10,6 +10,8 @@ The initial six commercial pages were published September 30, before the October
 
 ### Remaining readiness work
 
+- Running scope: Brice explicitly approved eight private Miami running sessions on September 30, one each week in the $1,200 eight-week block. Homepage and running page now state that commitment; Run + Strength includes those eight running sessions plus four gym sessions. Still confirm session duration, remote touchpoints, sustainable feedback/response cadence and the end-of-block process before promising them. Remote delivery is agreed separately.
+
 - Photography: keep `/work/photo-video/` as the canonical route. Add distinguishable project types for fitness/coaches, athlete portraits, founder work, classes/events and food/cafe/hospitality. The current receiver records a general `photo` offer and free text; it does not yet provide this category breakdown. Broader work uses an agreed quote, not an automatic promise of the fitness package's scope or price.
 - Portfolio: select real work and confirm commercial portfolio permission. Prepare an honestly labeled Hideout self-produced case study. Existing public track photographs are shown as practice work; prior publication alone does not establish permission for every new commercial use. Do not publish fabricated campaigns or generated portfolio proof.
 - FORM Analysis: replace or supplement the illustrative outline with a representative review and verify the material-submission, payment and delivery process before accepting a paid project.
@@ -27,7 +29,7 @@ The compact weekly review and first-month checkpoint belong to the existing priv
 
 | Offer | Public scope | Price | Next action |
 | --- | --- | --- | --- |
-| Run Development, `/coaching/miami/` | Individual running coaching, movement work, programming and adjustments; Miami or remote delivery agreed first | $1,200 / 8 weeks | Inquiry, fit and schedule, then payment |
+| Run Development, `/coaching/miami/` | Miami: eight private running sessions, one each week, plus movement work, individual programming and adjustments. Remote contact format agreed separately | $1,200 / 8 weeks | Inquiry, fit and schedule, then payment |
 | Run + Strength, same page | Run Development, integrated strength programming and four coached gym sessions | $1,800 / 8 weeks | Inquiry and gym/location agreement |
 | Strength coaching, `/coaching/strength/` | Eight weekly 60-minute sessions, individual programming between sessions, weekly check-in and adjustments | $1,200 / 8 weeks | Confirm neighborhood, gym, equipment, access and schedule |
 | Strength first session | One 60-minute assessment and coached training session; becomes session one of the block if joined within seven days | $150, credited toward the $1,200 block | Same location gate |

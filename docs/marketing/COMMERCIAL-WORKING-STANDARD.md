@@ -68,3 +68,18 @@ Fetch current `Breechay/speedandform` and inspect branch/head plus uncommitted w
 Prioritize reproducible blockers, clarity, relevant proof, scope/cost, mobile typography, keyboard/focus, error/retry behavior and accepted-only lead capture. Preserve running as the main identity, original SF house mark, FORM/Forge app names, paid-plan access, existing private records and inquiry-first service flow. Do not redesign for novelty or invent customers, sample results, capacity or discounts. Keep public data public and private data private.
 
 Return findings ranked by severity with route/element, buyer impact and smallest useful change. If implementing, use an isolated branch, test affected journeys in Chromium/WebKit, review phone/desktop visuals and update the owning docs. Report source/test/merge/deploy separately. Do not launch ads, spend, send messages, change prices or publish private information. Coordinate a single verified deployment with the active release owner. A repository review pack may contain public page code/assets and these docs; it must exclude credentials, private console exports and athlete/financial records. The later ZIP should be generated from the exact reviewed commit rather than a stale second copy.
+
+
+## September 30 independent review reconciliation
+
+Treat each review as an observation with a date and access limit. Agreement among reviews is not evidence of conversion uplift. Some reviewers quoted the retired homepage or stale Plans text; the current live Plans page already shows four free preview weeks, $79 for the full RPD plan, and share metadata.
+
+Confirmed against source and live interaction: the Run + Strength link left Run Development selected; the strength first-session link left the eight-week block selected. Repair these links so the chosen package is selected, focused and visible. Preserve manual switching and neutral inquiry links. Keep running comparisons on the running page; other service secondary actions should lead to their included scope. Put plan cards before methodology, preserving prerequisites, prices and paid access.
+
+The repeated proof request is useful: one finished, permission-cleared coaching demonstration can support running and Analysis. Keep the existing sample task; do not invent client footage, results, credentials or years of experience. The current labeled outline is not that finished sample.
+
+Brice subsequently approved eight private running sessions for the Miami eight-week block on September 30. State one each week, alongside individual programming, feedback and adjustments. Run + Strength includes those eight running sessions plus four gym sessions. Still confirm session duration, remote contact format, sustainable feedback/response cadence and end-of-block review/continuation before making additional promises. Existing scope, availability, travel and payment agreement still applies to every inquiry.
+
+Keep the current personal running-led identity and all offers available. Do not adopt an umbrella consulting rebrand, invented strict/clinical positioning, an automatic Analysis credit or discount, or unverified exclusions. Analysis remains useful as a distinct service, not a required trial. A current cafe event channel must not be inferred from historical Hideout work.
+
+After delivery and phone checks, a small warm-referral test can ask whether relevant runners understand the offer and next step. Record exposure where known, questions, fit, agreed scope, booking/payment, delivery effort and reasons for hesitation in the existing private records. Small numbers support qualitative learning, not a winning-channel or pricing verdict. Brice owns outreach; no automated messages or new ad spend follows from this review.
