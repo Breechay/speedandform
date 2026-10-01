@@ -5,8 +5,9 @@
 
 - [x] Owner decision: remove the track texture and match the opening to the footer’s solid forest. Original portrait/top-left corner and copy remain.
 - [x] Homepage source/metadata and exact build passed. Chromium at six widths and 200% text: no horizontal overflow.
-- [ ] Publish the bounded background change and confirm production.
-- [ ] Separately preview a more expressive homepage section using the already-public Hope/José study, stronger typography and a compact evidence view. This exploration is not approved for publication yet.
+- [x] Published and verified. Source `74217a29e4ebe6fc38f28ec5d90c6a52791b42a4`; exported tree `5e2c298beff2d412541e246f22b2c54d3392e286`. Netlify `6abe9fc1248dc69630b7f99f`; Chromium/WebKit release workflow `36903274103` passed. Actual production browser confirms opening and footer both `rgb(40,60,50)`, no background image, stylesheet `20261001-solid-opening`, original portrait and 160px top-left corner.
+- [x] Separate expressive homepage preview built at `design/experiments/home-study-feature-20261001/` on the design branch: public Hope/José historical progression, large typography and an expandable coaching read. Six widths and enlarged study text passed no-overflow checks.
+- [ ] Brice reviews the study/typography preview before any further homepage publication.
 
 ## October 1 - Final portrait corner and quieter track
 
