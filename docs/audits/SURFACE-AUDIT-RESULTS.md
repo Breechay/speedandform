@@ -42,3 +42,8 @@ The initial phone crop put the bright mist behind the text. A stronger mobile-on
 ## Release receipt
 
 Base refresh: PR #190 merged as `564e2ed860fd3ac0efad520199a4b5319bc1fc0b`. Tested head `e31d03b1b7a09016166fe026c73cc346bfc0de4c` and tree `2d653744b6a5700c6cb5aa17e95c97e783344eed`; Chromium/WebKit workflow `36871882955`, ecosystem closure and RPD source-truth checks all passed. Publication was held to incorporate the owner’s first-fold follow-up. The combined production receipt follows after inspection; a merge alone is not publication.
+
+
+The combined refresh was first published as Netlify deploy `6abe69c2d3f1b32cbe3efc45` at `2026-10-01T14:10:27.440Z`, from the clean source export of merged main `34bc1d2cb22f7f7298d766db601c3fced706b82f`. Live visual inspection confirmed the supplied background, CSS curve and original photo. That inspection also found the wrapper crossing the main landmark boundary: later sections rendered outside main. The correction places the complete opening inside main and positions the global header over it; visual geometry is retained. Browser assertions now require the coaching and inquiry sections inside the single main landmark. Final corrected publication is recorded below after verification.
+
+Deployment note: export the verified commit with `git archive` before using the Netlify MCP uploader. A Git worktree’s `.git` pointer is not portable; first attempt `6abe6974a5810d3172797530` failed during repository preparation. The source-export upload completed normally.
