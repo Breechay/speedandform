@@ -69,3 +69,6 @@
 
 .home-intake-alternative{font-size:17px;line-height:1.65;max-width:35ch;margin-top:26px;color:var(--ink)}.home-intake-alternative a{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
 @media(max-width:700px){.study-distance{width:100%;padding:0;margin:0}.distance-ring{aspect-ratio:auto;min-height:0;padding:0;border:0;border-radius:0;display:grid;grid-template-columns:auto 1fr;column-gap:28px;justify-content:start;align-items:center}.distance-ring:before{display:none}.distance-ring>.study-label{grid-column:1/-1;justify-self:start}.distance-number{font-size:76px;margin:8px 0}.distance-number span{font-size:20px}.distance-caption{text-align:left;font-size:21px;margin:0}.home-strength-grid{gap:20px}.home-strength-grid>div{display:contents}.home-strength-grid .eyebrow{grid-row:1;margin:0}.home-strength-grid h2{grid-row:2;margin:0}.home-strength-grid>div>p:nth-of-type(2){grid-row:3;margin:0}.home-strength-grid>figure{grid-row:4}.home-strength-grid>div>p:nth-of-type(3){grid-row:5;margin:0}.home-strength-price{grid-row:6}.home-strength-grid .button-link{grid-row:7;justify-self:start}.home-strength-grid .home-small{grid-row:8}}
+
+/* Owner-preferred three-part promise: preserve the large readable hierarchy. */
+.sf-home-hero h1{font-size:clamp(52px,6vw,86px)}@media(max-width:600px){.sf-home-hero h1{font-size:clamp(48px,12.5vw,68px)}}

@@ -66,9 +66,9 @@
     const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],types={easy:'Easy',tue:'Hold',thu:'Ceiling',sat:'Long'};
     let h='<div class="gp-h" role="columnheader">Week</div>'+days.map(d=>`<div class="gp-h" role="columnheader">${d}</div>`).join('')+'<div class="gp-h r" role="columnheader">Total</div>';
     fromPublication(raw).forEach((w,i)=>{
-      h+=`<div class="gp-row ${w.gate?'gate':''}" role="row"><div class="gp-wk"><b>Wk 0${i+1}</b><strong>${esc(w.name.en)}</strong></div>`;
-      w.days.forEach((d,k)=>{h+=d.type==='off'?`<div class="gp-d off" data-day="${days[k]}"><span class="body">—</span></div>`:`<div class="gp-d ${d.type}" data-day="${days[k]}"><span class="t">${types[d.type]}</span><span class="body">${d.type==='easy'?esc(d.lbl.en):format(d.en)}</span><span class="km">${d.km} km</span></div>`;});
-      h+=`<div class="gp-tot">${w.days.reduce((n,d)=>n+(d.km||0),0)} km<small>planned estimate</small></div></div>`;
+      h+=`<div class="gp-row ${w.gate?'gate':''}" role="row"><div class="gp-wk" role="cell"><b>Wk 0${i+1}</b><strong>${esc(w.name.en)}</strong></div>`;
+      w.days.forEach((d,k)=>{h+=d.type==='off'?`<div class="gp-d off" role="cell" data-day="${days[k]}"><span class="body">—</span></div>`:`<div class="gp-d ${d.type}" role="cell" data-day="${days[k]}"><span class="t">${types[d.type]}</span><span class="body">${d.type==='easy'?esc(d.lbl.en):format(d.en)}</span><span class="km">${d.km} km</span></div>`;});
+      h+=`<div class="gp-tot" role="cell">${w.days.reduce((n,d)=>n+(d.km||0),0)} km<small>planned estimate</small></div></div>`;
     });return h;
   }
   return {MI,validate,fromPublication,read,format,fallbackGrid};

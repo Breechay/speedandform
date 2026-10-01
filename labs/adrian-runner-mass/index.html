@@ -53,11 +53,11 @@
   --kraft-dk:#A88C5F;
   --ink:#15130F;
   --ink-2:#39352D;
-  --graphite:#6E695D;
-  --faint:#948F81;
+  --graphite:#514B40;
+  --faint:#514B40;
   --rule:rgba(21,19,15,.20);
   --rule-hard:rgba(21,19,15,.42);
-  --red:#BE3227;
+  --red:#9E2920;
   --blue:#2E5E8E;
   --paper-shadow:rgba(60,50,30,.16);
 
@@ -76,7 +76,7 @@
    A system dark preference must not recolor the dossier on iPhone. */
 :root[data-theme="dark"]{
   --paper:#E9E3D6; --paper-hi:#F2EDE2; --paper-lo:#DED7C7;
-  --ink:#15130F; --ink-2:#39352D; --graphite:#6E695D;
+  --ink:#15130F; --ink-2:#39352D; --graphite:#514B40;
   --rule:rgba(21,19,15,.20); --rule-hard:rgba(21,19,15,.42);
   --paper-shadow:rgba(60,50,30,.16);
 }
@@ -849,7 +849,7 @@ html{scroll-behavior:smooth;scroll-padding-top:20px}
 .st-pill--filed{border-color:var(--blue);color:var(--blue)}
 .st-pill--official{border-color:var(--ink);color:var(--ink);background:var(--ink);color:var(--paper-hi)}
 .st-pill--pending{border-style:dashed}
-.st-pill--coach{border-color:var(--kraft-dk);color:var(--kraft-dk)}
+.st-pill--coach{border-color:var(--kraft-dk);color:#66502d}
 .v-pending{color:var(--faint);font-family:var(--f-mono);font-size:.78em;letter-spacing:.14em;text-transform:uppercase}
 
 /* season ---------------------------------------------------------------- */
@@ -4402,7 +4402,7 @@ function wall(){
   <div class="wall__lead">
     <p class="studyid"><b>${S.index.toUpperCase()}</b><span aria-hidden="true">·</span><span class="st">${S.statusLabel.toUpperCase()}</span></p>
     <h1 class="wall__title display letterpress">${S.title.map(w=>`<span>${w}</span>`).join("")}</h1>
-    <p class="wall__q">${S.question}</p>
+    <p class="wall__q">You want to build muscle and a fuller frame without losing your running. Adrian’s study asks how those goals can work together.</p>
     <dl class="metrics">
       <div><dt class="lbl">Age</dt><dd class="v">${a.age}</dd></div>
       <div><dt class="lbl">Marathon</dt><dd class="v">${a.marathon}</dd></div>

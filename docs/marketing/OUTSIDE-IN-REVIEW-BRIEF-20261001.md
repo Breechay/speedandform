@@ -11,7 +11,7 @@ Routes: home; `/coaching/miami/`; `/coaching/strength/`; `/analysis/`; `/work/`;
 ## Current decisions and evidence
 
 - House palette forest/chalk, SF emblem alone. Distinct dark/lime study feature. Strong readable typography, one separator per boundary, reduced-motion behavior.
-- Hero keeps “Run better. Feel stronger.” Use the owner-supplied Photoshop Brice portrait, preserve the visible elbow and original pixels, slightly centered by CSS, top-left-only rounded corner. New WebP files are resized/encoded only.
+- Owner-selected hero: “Run farther. Feel smoother. Get stronger.” Use the owner-supplied Photoshop Brice portrait, preserve the visible elbow and original pixels, slightly centered by CSS, top-left-only rounded corner. New WebP files are resized/encoded only.
 - Header emblem is now 76×32 CSS px desktop and 62×28 phone; footer remains 174×64. Render screenshots at `docs/audits/20261001-outside-in/` and scratch `qa-outside-in/` show actual proportions.
 - Running: longer/smoother runs, race readiness, useful movement changes, weekly structure and learning what to do next. Brice changes what matters, not every difference from a textbook.
 - Strength: build muscle, get stronger or work toward lower body fat. Eight weekly sessions, programming and check-ins. Practical nutrition support includes current food notes, grocery/meal-prep help and adjustments; not daily unlimited contact or a medical nutrition product.

@@ -13,7 +13,7 @@ function meta(key) {
 }
 assert.equal([...head.matchAll(/<title>/g)].length, 1);
 assert.match(head, /<title>Running &amp; Strength Coach in Miami \| Speed &amp; Form<\/title>/);
-assert.equal(meta('og:title'), 'Run better. Feel stronger. | Speed &amp; Form');
+assert.equal(meta('og:title'), 'Run farther. Feel smoother. Get stronger. | Speed &amp; Form');
 assert.equal(meta('twitter:title'), meta('og:title'));
 assert.ok(meta('description').length <= 160);
 assert.equal(meta('og:description'), meta('twitter:description'));
