@@ -18,15 +18,15 @@
   },
   "projection_path": "/plans/adrian-developed-runner-2026/program.json",
   "sessions_per_week_default": 4,
-  "objective": "Build a visibly stronger, more substantial runner—more chest depth, arm girth, medial-thigh density, hamstring and calf development—while preserving Adrian's light, elastic and fast running.",
+  "objective": "Build a visibly stronger, more substantial runner—more chest/back profile depth, upper-trap thickness, rounded shoulders, arm girth and thigh/adductor/hamstring density—while preserving Adrian's light, elastic and fast running. Calves are maintained rather than prioritized in the next density block.",
   "primary_constraint": "Running quality remains intact. Strength supports the runner; it never earns the right to degrade the run week.",
   "principle": "More specificity, not more punishment. Upper-body development may progress faster; lower-body progression is earned by a normal following run.",
   "running_coordination": "The running plan remains owned by Adrian's running coach. This strength plan does not replace, move or invent run workouts. When running load, race demands or recovery conflict with strength, the strength dose yields first.",
   "current_state": {
-    "as_of": "2026-09-21",
-    "current_week": 2,
-    "next_week": 3,
-    "label": "Week 02 active · day-level run structure filed"
+    "as_of": "2026-10-01",
+    "current_week": 3,
+    "next_week": 4,
+    "label": "Week 03 active · Density refinement authored for Weeks 04–06"
   },
   "baseline": {
     "age": 19,
@@ -62,8 +62,8 @@
         }
       ]
     },
-    "physique_observation": "Narrow waist and elastic runner frame; glutes already comparatively developed. Highest-value development targets are chest depth, upper-back density, upper-arm girth, adductors/medial thigh, hamstrings and calf/soleus.",
-    "evidence_limit": "No body-mass trend, circumference change or hypertrophy result is claimed until measured."
+    "physique_observation": "Narrow waist and elastic runner frame. October 1 coach visual checkpoint suggests calves are already comparatively developed; next development emphasis is upper-trap thickness, chest/back profile depth, rounded shoulder cap, upper-arm girth and thigh/adductor/hamstring girth. This is a visual programming observation, not a measured hypertrophy result.",
+    "evidence_limit": "The October 1 photo is not a standardized before/after capture. No body-composition or hypertrophy result is claimed from appearance alone; repeat mass/circumferences and standardized photos remain the comparison evidence."
   },
   "race_anchors": [
     {
@@ -585,15 +585,15 @@
       "phase": 2,
       "start_date": "2026-10-05",
       "end_date": "2026-10-11",
-      "intent": "Begin the first true development block: denser torso, arms, medial thigh, hamstrings and lower leg with bounded lower-body fatigue.",
+      "intent": "Begin the first true development block: build torso depth, upper traps, rounded shoulders and thigh girth while keeping lower-body fatigue bounded by the run.",
       "public_path": "/plans/adrian-developed-runner-2026/week.html?week=4",
-      "progression_note": "Main upper lifts move slightly heavier. Lower compounds live mostly in 6–8 reps with ~2 reps in reserve. No extra lower sets this week.",
+      "progression_note": "New specificity, not a punishment increase. Add direct traps and shoulder-cap work; shift lower-body recovery budget from calf volume toward thigh/adductor work. Progress reps first.",
       "days": [
         {
           "day_index": 1,
           "weekday": "Monday",
           "title": "Upper A",
-          "focus": "Upper chest + back density",
+          "focus": "Upper chest + back density + traps",
           "exercises": [
             {
               "name": "Incline Dumbbell Bench Press",
@@ -609,6 +609,11 @@
               "name": "Neutral-Grip Cable Pulldown",
               "sets": 3,
               "reps": "8–10"
+            },
+            {
+              "name": "Cable or Dumbbell Shrug",
+              "sets": 3,
+              "reps": "10–15"
             },
             {
               "name": "Low-to-High Cable Fly",
@@ -654,14 +659,14 @@
               "reps": "8–12"
             },
             {
-              "name": "Bent-Knee Calf Raise",
+              "name": "Cable Hip Adduction",
               "sets": 3,
-              "reps": "10–15"
+              "reps": "12–15 / side"
             },
             {
-              "name": "Cable Hip Adduction",
+              "name": "Bent-Knee Calf Raise",
               "sets": 2,
-              "reps": "12–15 / side"
+              "reps": "10–15"
             },
             {
               "name": "Pallof Press",
@@ -674,7 +679,7 @@
           "day_index": 3,
           "weekday": "Friday",
           "title": "Upper B",
-          "focus": "Chest + sleeves",
+          "focus": "Chest + shoulder cap + back thickness",
           "exercises": [
             {
               "name": "Flat Dumbbell Bench Press",
@@ -687,7 +692,7 @@
               "reps": "8–12 / side"
             },
             {
-              "name": "Lat Pulldown",
+              "name": "Seated Dumbbell Shoulder Press",
               "sets": 3,
               "reps": "8–10"
             },
@@ -698,7 +703,7 @@
             },
             {
               "name": "Cable Rear-Delt Fly",
-              "sets": 2,
+              "sets": 3,
               "reps": "12–18"
             },
             {
@@ -717,7 +722,7 @@
           "day_index": 4,
           "weekday": "Sunday",
           "title": "Lower B",
-          "focus": "Single-leg + posterior support",
+          "focus": "Single-leg + posterior + thigh support",
           "exercises": [
             {
               "name": "Dumbbell Step-Up",
@@ -735,9 +740,9 @@
               "reps": "8–12"
             },
             {
-              "name": "Standing Calf Raise",
-              "sets": 3,
-              "reps": "10–15"
+              "name": "Leg Extension",
+              "sets": 2,
+              "reps": "12–15"
             },
             {
               "name": "Dead Bug",
@@ -759,9 +764,9 @@
       "phase": 2,
       "start_date": "2026-10-12",
       "end_date": "2026-10-18",
-      "intent": "Accumulate clean reps in the new density block without adding exercise novelty.",
+      "intent": "Accumulate clean reps in the density menu: chest and back thickness, traps and shoulder cap, plus thigh/adductor/hamstring development. Calves stay at maintenance.",
       "public_path": "/plans/adrian-developed-runner-2026/week.html?week=5",
-      "progression_note": "Rep progression first. Add load only after the top of the range is clean. Lower-body set count stays fixed.",
+      "progression_note": "Repeat the same menu. Accumulate clean reps before load. Calves remain maintenance; lower-body set count does not rise just because Week 4 went well.",
       "days_from_week": 4
     },
     {
@@ -770,9 +775,9 @@
       "phase": 2,
       "start_date": "2026-10-19",
       "end_date": "2026-10-25",
-      "intent": "Let the same menu become stronger. Do not confuse heavier work with maximal work.",
+      "intent": "Let the same density menu become stronger without turning it into maximal work. Preserve the run and progress only where execution stays clean.",
       "public_path": "/plans/adrian-developed-runner-2026/week.html?week=6",
-      "progression_note": "Upper-body anchors can take the smallest load increase. Lower compounds stay around 2 reps in reserve; accessories keep hypertrophy ranges.",
+      "progression_note": "Use the smallest load increase only after clean top-of-range work. Upper body can progress faster; lower body still needs a normal following run.",
       "days_from_week": 4
     },
     {

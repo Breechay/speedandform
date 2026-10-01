@@ -79,3 +79,9 @@ Before Brice tells Adrian that Forge is again the authoritative recording surfac
 8. verify old web work was not fabricated as native history.
 
 Installed-device acceptance is required. Source parity alone is not athlete acceptance.
+
+## October 1 handoff note — do not fork the Density revision
+
+Week 03 stays on its existing session versions. Weeks 04–06 now have newer canonical FORM Athlete System session versions reflecting the Density refinement: traps, torso depth, shoulder cap and thigh girth prioritized; calves at maintenance. Forge must resolve the latest assigned immutable session version from the athlete feed. Do not copy the older Week 04 menu into native code.
+
+The next Forge pass should remain execution-first: current week/day, exact session/version identity, start/close receipt, retry idempotency and coach-visible receipt before optional nutrition/body logging. Texting Brice remains a valid coaching input path. Nutrition, meal/calorie, bodyweight and measurement entry should be added only where the observed workflow shows they reduce friction rather than create another obligation.

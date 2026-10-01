@@ -133,3 +133,11 @@ The web projection and public study now distinguish the 44-mile plan from comple
 
 The current Forge build remains the delivered 16-week / 58-session season. The next native ship should consume more than weekly mileage: day-level key-run placement, long-run displacement, recovery disruption, missed-strength handling, and the rule that strength yields without catch-up stacking. Existing session/receipt identity and completed history must remain unchanged.
 
+
+## October 1 physique checkpoint — Density refinement
+
+Brice supplied a new progress photo and explicitly refined the next physique emphasis. The image is not a standardized before/after capture, so it does not establish hypertrophy. It is used as a coach programming observation: calves appear comparatively developed; the next emphasis is upper traps, chest/back profile depth, rounded shoulders, upper-arm girth and thigh/adductor/hamstring girth.
+
+Week 03 remains unchanged. FORM Athlete System was updated first for future Weeks 04–06: 12 new immutable session versions were created. Upper A adds direct shrug/trap work; Upper B replaces the second vertical pull with seated dumbbell shoulder press and increases rear-delt work; Lower A shifts one calf set to direct adduction; Lower B replaces calf work with low-systemic-cost leg extension. Calves are maintenance, not a current development priority. Running remains the constraint and lower-body set count does not rise automatically.
+
+The web season projection and Study 001 mirror this decision. No completed session or receipt was rewritten.

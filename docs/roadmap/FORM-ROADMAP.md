@@ -1,5 +1,12 @@
 # FORM: current state and next actions
 
+## October 1 - Adrian Density refinement and Forge sequencing
+
+A new athlete progress photo sharpened the next programming target without being treated as outcome evidence. Canonical FORM Athlete System Weeks 04–06 now prioritize upper traps, chest/back profile depth, rounded shoulders and thigh/adductor/hamstring girth; calves move to maintenance. Week 03 is unchanged. Twelve future session versions were created and read back from the canonical database before the web projection/study was updated. Source record: [Adrian Density refinement](../studies/ADRIAN-DENSITY-REFINE-20261001.json).
+
+Forge remains a delivery project, not a second authoring system. One-week follow-up is scheduled to begin the connection pass after more real usage. First gate: assignment/feed → current week/day → immutable session version → start/close receipt → coach-visible idempotent receipt. Nutrition, meal/calorie, weight and measurement entry remain optional later layers driven by observed usage; athlete texting remains valid.
+
+
 ## October 1 afternoon - Adrian intake strategy and training-day report
 
 Source: [October 1 afternoon athlete report](../studies/ADRIAN-INTAKE-TRAINING-UPDATE-20261001-PM.json). Adrian reports a protein shake around 690 kcal after adding an egg and one tablespoon of olive oil, estimated by him at about 190 added kcal with no noticeable taste change. He later reports a roughly 1,600 kcal meal and describes a good workout day of one hour walking, one hour running and one hour of legs. These are athlete reports, not verified calorie totals or measured energy expenditure.
