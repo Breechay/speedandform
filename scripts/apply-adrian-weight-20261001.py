@@ -11,65 +11,13 @@ SOURCE = ROOT / SOURCE_PATH
 VERSION = '2026.10.01.1'
 RECORD_ID = 'adrian-weight-update-20261001'
 EXPECTED_BLOB = 'd396c6e06e555429853a518cd16fc4e331d3e413'
-record = {
-    'schema_version': 1,
-    'record_type': 'athlete_weight_report_and_coach_followup',
-    'record_id': RECORD_ID,
-    'study_id': 'FRM-001',
-    'athlete': 'Adrian Gandara',
-    'filed_on': '2026-10-01',
-    'source': {
-        'type': 'owner_supplied_message_screenshot',
-        'screenshot_published': False,
-        'athlete_quote': '160LBS STARTING WEIGHT',
-        'displayed_message_time': 'Today 8:21 AM',
-        'report_date_context': 'Filed October 1 in America/New_York; Today is relative to the supplied screenshot, not an independently verified measurement date.'
-    },
-    'weight': {
-        'value_lb': 160,
-        'precision': 'whole pounds as reported',
-        'status': 'athlete report',
-        'measurement_date': None,
-        'measurement_time': None,
-        'conditions': None,
-        'standardized': False,
-        'athlete_label': 'starting weight',
-        'label_meaning_confirmed': False,
-        'replaces_earlier_baseline': False,
-        'pre_intervention_baseline': False
-    },
-    'comparison': {
-        'previous_source': 'docs/studies/ADRIAN-INTAKE-UPDATE-20260925.json',
-        'previous_report_date': '2026-09-25',
-        'previous_value_lb': 156.8,
-        'difference_between_reported_values_lb': 3.2,
-        'comparable_conditions_confirmed': False,
-        'weight_gain_rate': None,
-        'muscle_gain': None,
-        'note': 'A difference between two reported values, not a confirmed rate of weight gain or a body-composition result.'
-    },
-    'coach_followup': {
-        'quote': 'Let’s grab some tape measurements again this week too',
-        'action': 'Repeat tape measurements this week',
-        'status': 'requested, not completed',
-        'new_circumference_values': None,
-        'reference_source': 'docs/studies/ADRIAN-MEASUREMENTS-20260924.json',
-        'existing_method': 'Compare waist, chest, relaxed arm, relaxed thigh and calf with the same tape locations and conditions; confirm the previously undocumented side and landmarks.'
-    },
-    'monitoring_unchanged': {
-        'working_target_kcal_approx': 3400,
-        'daily_intake_logging_through': '2026-10-04',
-        'comparable_morning_weights_per_week': [1, 3]
-    },
-    'scope': {
-        'public_study_projection_only': True,
-        'historical_records_preserved': True,
-        'training_or_nutrition_prescription_changed': False,
-        'native_assignment_or_sync_changed': False,
-        'private_console_updated': False,
-        'calendar_or_message_sent': False
-    }
-}
+record = json.loads(SOURCE.read_text())
+assert record['record_id'] == RECORD_ID and record['weight']['value_lb'] == 160
+assert record['source']['athlete_quote'] == '160LBS STARTING WEIGHT'
+assert record['weight']['measurement_date'] is None
+assert record['comparison']['previous_value_lb'] == 156.8
+assert record['coach_followup']['new_circumference_values'] is None
+assert record['monitoring_unchanged']['working_target_kcal_approx'] == 3400
 
 def parse_study(text):
     start = text.index('{', text.index('const STUDY = '))
@@ -88,7 +36,6 @@ if study['version'] == VERSION:
     print('PASS: October 1 weight report already applied; unchanged.')
     raise SystemExit(0)
 assert hashlib.sha1(f'blob {len(raw)}\0'.encode() + raw).hexdigest() == EXPECTED_BLOB, 'Study changed concurrently; reconcile before applying.'
-assert not SOURCE.exists(), 'Do not overwrite a filed report.'
 assert study['version'] == '2026.09.30.1'
 assert study['currentRead']['date'] == '2026-09-30'
 assert 'bodyMassReport' not in study
@@ -170,7 +117,6 @@ once('''  const reads = [
 ''')
 assert parse_study(html)[2] == study
 PAGE.write_text(html)
-SOURCE.write_text(json.dumps(record, ensure_ascii=False, indent=2) + '\n')
 roadmap = ROOT / 'docs/roadmap/FORM-ROADMAP.md'
 text = roadmap.read_text()
 heading = '## October 1 - Adrian 160 lb report and tape follow-up'
