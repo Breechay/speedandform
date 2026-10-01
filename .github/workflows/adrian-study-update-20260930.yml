@@ -5,6 +5,7 @@ on:
     paths:
       - .github/workflows/adrian-study-update-20260930.yml
       - scripts/apply-adrian-study-update-20260930.py
+      - scripts/finalize-adrian-study-update-20260930.py
   workflow_dispatch:
 permissions:
   contents: write
@@ -27,8 +28,10 @@ jobs:
         run: |
           mkdir -p /tmp/adrian-study-update-20260930
           python scripts/apply-adrian-study-update-20260930.py
+          python scripts/finalize-adrian-study-update-20260930.py
           sha256sum labs/adrian-runner-mass/index.html docs/studies/ADRIAN-ATHLETE-UPDATE-20260930.json docs/roadmap/FORM-ROADMAP.md > /tmp/adrian-before.sha
           python scripts/apply-adrian-study-update-20260930.py
+          python scripts/finalize-adrian-study-update-20260930.py
           sha256sum labs/adrian-runner-mass/index.html docs/studies/ADRIAN-ATHLETE-UPDATE-20260930.json docs/roadmap/FORM-ROADMAP.md > /tmp/adrian-after.sha
           diff -u /tmp/adrian-before.sha /tmp/adrian-after.sha
           git diff --check
@@ -86,17 +89,27 @@ jobs:
                 for box in panel.locator('h3, p').all():
                   r = box.bounding_box()
                   assert r and r['x'] >= -1 and r['x'] + r['width'] <= width + 1, (engine_name, width, r)
-                assert not errors, errors
                 if width in [375, 390, 1440]:
                   page.screenshot(path=str(out / f'{engine_name}-{width}-intake.png'))
                 page.get_by_role('tab', name='Running', exact=True).click()
                 assert page.locator('#tab-2').get_attribute('aria-selected') == 'true'
                 assert page.locator('#pan-2').is_visible()
-                run_row = page.get_by_text('12 × 400 m; faster than the reported ~82-second prescription', exact=True)
-                assert run_row.count() == 1 and run_row.is_visible()
+                assert 'Running session records' in page.locator('#pan-2').inner_text()
+                run_row = page.locator('.sess--reports > li').first
+                assert run_row.is_visible()
+                run_text = run_row.inner_text()
+                for expected in ['Filed', '12 × 400 m', '~82-second', 'last 69 s', 'recoveries']:
+                  assert expected in run_text, expected
                 run_row.scroll_into_view_if_needed()
+                for box in run_row.locator(':scope > span').all():
+                  r = box.bounding_box()
+                  assert r and r['x'] >= -1 and r['x'] + r['width'] <= width + 1, (engine_name, width, r)
+                load = run_row.locator('.load')
+                assert load.evaluate('(el) => el.scrollWidth <= el.clientWidth + 1'), (engine_name, width, 'split text clipped')
                 if width in [390, 1440]:
                   page.screenshot(path=str(out / f'{engine_name}-{width}-running.png'))
+                  page.locator('#read').scroll_into_view_if_needed()
+                  page.screenshot(path=str(out / f'{engine_name}-{width}-current-read.png'))
                 if width == 390:
                   page.evaluate("document.querySelector('#adrian-update-20260930').style.fontSize = '200%'; document.querySelectorAll('#adrian-update-20260930 p').forEach(x => {x.style.fontSize='34px';x.style.lineHeight='1.6'})")
                   panel.scroll_into_view_if_needed()
@@ -104,22 +117,30 @@ jobs:
                     r = box.bounding_box()
                     assert r['x'] >= -1 and r['x'] + r['width'] <= width + 1
                   page.screenshot(path=str(out / f'{engine_name}-390-enlarged.png'))
+                assert not errors, errors
                 reports.append({'browser':engine_name, 'width':width, 'status':'passed', 'runtime_errors':errors})
                 page.close()
               browser.close()
           server.shutdown()
           (out / 'browser-acceptance.json').write_text(json.dumps(reports, indent=2))
-          print('PASS: 12 responsive browser views, enlarged-text checks, source parity and no runtime errors')
+          print('PASS: 12 responsive browser views, visible unclipped splits, enlarged text and no runtime errors')
           PY
       - name: Commit only accepted study projections
         run: |
           python <<'PY'
           from pathlib import Path
+          import os,re
           p = Path('docs/roadmap/FORM-ROADMAP.md')
           text = p.read_text()
-          old = '- [ ] Acceptance checks must pass before the workflow commits the projections.'
-          assert text.count(old) == 1
-          text = text.replace(old, '- [x] Source/history preservation, idempotency, JavaScript parsing and 12 Chromium/WebKit responsive views passed before this commit. Enlarged text was also checked; physical-phone review is not claimed.')
+          pending = '- [ ] Acceptance checks must pass before the workflow commits the projections.'
+          prior = '- [x] Source/history preservation, idempotency, JavaScript parsing and 12 Chromium/WebKit responsive views passed before this commit. Enlarged text was also checked; physical-phone review is not claimed.'
+          accepted = '- [x] Source/history preservation, idempotency, JavaScript parsing and 12 Chromium/WebKit responsive views passed. Running split text is visible without clipping on the checked phone widths. Enlarged text was also checked; physical-phone review is not claimed.'
+          old = next((s for s in [pending, prior, accepted] if s in text), None)
+          assert old and text.count(old) == 1
+          text = text.replace(old, accepted, 1)
+          receipt = f"Acceptance run: https://github.com/Breechay/speedandform/actions/runs/{os.environ['GITHUB_RUN_ID']}. Tested source commit: {os.environ['GITHUB_SHA']}."
+          text,count = re.subn(r'Acceptance run: https://github.com/Breechay/speedandform/actions/runs/\d+\. Tested source commit: [a-f0-9]+\.', lambda m: receipt, text, count=1)
+          assert count == 1
           p.write_text(text)
           PY
           git config user.name 'github-actions[bot]'
@@ -129,11 +150,13 @@ jobs:
           import subprocess
           files = set(subprocess.check_output(['git','diff','--cached','--name-only'], text=True).splitlines())
           expected = {'labs/adrian-runner-mass/index.html','docs/studies/ADRIAN-ATHLETE-UPDATE-20260930.json','docs/roadmap/FORM-ROADMAP.md'}
-          assert files == expected, files
+          assert files <= expected, files
           PY
           git diff --cached --check
-          git commit -m 'File Adrian Sep 30 intake and interval report; preserve plans and prior evidence'
-          git push origin HEAD
+          if ! git diff --cached --quiet; then
+            git commit -m 'Finalize Adrian report display and verified mobile acceptance'
+            git push origin HEAD
+          fi
           git rev-parse HEAD > /tmp/adrian-study-update-20260930/accepted-commit.txt
           cp docs/studies/ADRIAN-ATHLETE-UPDATE-20260930.json /tmp/adrian-study-update-20260930/source.json
           cp labs/adrian-runner-mass/index.html /tmp/adrian-study-update-20260930/study.html
