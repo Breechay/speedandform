@@ -36,12 +36,15 @@ jobs:
           node tests/athlete-access.cjs
           node tests/run-development-method.cjs
           node tests/cream-reading.cjs
+      - name: Build the public pages as deployed
+        run: node scripts/build-cream-reading.cjs && node scripts/build-commercial.cjs && node scripts/build-sf-brand.cjs
       - name: Install isolated browser runtime
         run: |
           npm install --prefix /tmp/sf-browser-check --no-audit --no-fund playwright@1.58.2
           /tmp/sf-browser-check/node_modules/.bin/playwright install --with-deps ${{ matrix.browser }}
       - name: Responsive pages and inquiry behavior with all traffic intercepted
         env:
+          SF_QA_BRAND_BUILD: "1"
           FORM_QA_BROWSER: ${{ matrix.browser }}
           PLAYWRIGHT_MODULE: /tmp/sf-browser-check/node_modules/playwright
           SF_QA_ARTIFACTS: /tmp/sf-commercial-qa
