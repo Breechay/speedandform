@@ -33,7 +33,7 @@ Rollback: revert the site release commit. To pause only new inquiry delivery, se
 
 Source/live reproduction confirmed that Run + Strength and strength first-session CTAs did not select their corresponding form options. The repair selects and focuses the chosen radio and brings its group into view, while neutral CTAs preserve manual choices. Hero secondary links stay within the current service decision. Plans now presents the existing product cards before the methodology, with the same prerequisites, four-week RPD preview and $79 price.
 
-The reported free/full-plan contradiction was not present in current source or live page. Share metadata is also present. Brice explicitly approved eight private Miami running sessions during this review. Homepage and running page now state one each week, with programming and adjustments; remote delivery remains separately agreed. No new pricing, proof claim, discount, outreach or ad spend was introduced. Browser regression now follows the actual package buttons through intercepted receipt payloads, checks visibility/focus and manual overrides, and checks plan order/reflow. CI and production receipt to be appended after verification.
+The reported free/full-plan contradiction was not present in current source or live page. Share metadata is also present. Brice explicitly approved eight private Miami running sessions during this review. Homepage and running page now state one each week, with programming and adjustments; remote delivery remains separately agreed. No new pricing, proof claim, discount, outreach or ad spend was introduced. Browser regression now follows the actual package buttons through intercepted receipt payloads, checks visibility/focus and manual overrides, and checks plan order/reflow. Final acceptance and production receipt are recorded below.
 
 Owner follow-up: session duration is 45–60 minutes. Complimentary Miami running assessment is now the inquiry entry point, arranged by email and separate from the eight paid sessions. The public representative sample remains a different, unfinished proof asset.
 
@@ -42,3 +42,12 @@ Brice requested current-athlete examples. Three running-page cards cover Natalie
 Owner clarified whole-week delivery: running assignments, cues, targeted exercises, video feedback, long-term programming context and adjustment of training load/recovery. Homepage scope and running page now describe that relationship; Hope and José are identified as remote coaching examples. No guaranteed efficiency/speed claim was added.
 
 Brice supplied screenshots of José’s programming feedback. The running page uses the exact excerpt “body feels good and it feels sustainable... great programming”, attributed to José with the harder/easier-week context. Raw chats, profile photos and the photographed textbook are not public assets. The textbook exchange is not treated as independent scientific validation.
+
+
+### Verified release receipt
+
+- PR #184 merged as `eb4612dea35641e84d489a9d9b7dd489a1cddc26`.
+- Final tested head `c8d067ace6cbb81307c92bfb14c1a0fffa253f8b` passed Chromium and WebKit in workflow `36793863190`; ecosystem closure also passed. Local release files were byte-compared with the remote head and merged main.
+- Netlify production deploy `6abda2d9f8d147f419ebbbd7` is ready and published at `2026-10-01T00:01:45.802Z` (September 30, 8:01 PM America/New_York), from a clean merged-main source upload.
+- Live browser checked the running story cards and quote, the complimentary assessment and whole-week/eight-session scope, Run + Strength selecting `both`, the strength first session selecting `first`, and the Plans cards preceding methodology with the $79/four-week-preview terms preserved. The homepage example link was followed to `/coaching/miami/#coaching-examples`; the finished section was visually inspected.
+- No live inquiry, payment, outreach or ad campaign was submitted. Physical iPhone review and a representative finished Analysis delivery remain open. Public athlete examples are coaching context and documented observations, not a finished Analysis deliverable.
