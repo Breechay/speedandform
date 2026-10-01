@@ -1,11 +1,3 @@
-/* Original image; SVG clipping changes only the viewport silhouette. */
-.home-opening .sf-home-hero{padding-top:108px;padding-bottom:0}
-.home-hero-grid{width:100%;max-width:none;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:center}
-.sf-home-hero .hero-copy{padding:34px 0 60px;margin-left:max(48px,calc((100vw - 1280px)/2));z-index:1}
-.sf-home-hero h1{font-size:clamp(58px,6.25vw,90px)}
-.home-hero-photo{align-self:stretch;position:relative;margin:0}
-.home-portrait-curve{border-radius:0;clip-path:url(#sweep-mask);width:100%;height:100%;min-height:650px;aspect-ratio:auto;background:transparent}
-.home-portrait img{width:210%;left:-18%;top:0}
-.home-opening .home-hero-photo figcaption{position:absolute;bottom:22px;left:28px;right:32px;max-width:440px;margin:0;text-shadow:0 1px 5px #000}
-@media(max-width:1100px) and (min-width:601px){.sf-home-hero .hero-copy{margin-left:32px}.home-portrait-curve{min-height:580px}.home-portrait img{width:260%;left:-34%;top:0}.sf-home-hero h1{font-size:7vw}}
-@media(max-width:600px){.home-opening .sf-home-hero{padding-top:98px;padding-bottom:0}.home-hero-grid{grid-template-columns:1fr;gap:24px}.sf-home-hero .hero-copy{margin:0 20px;padding:8px 0 0}.sf-home-hero h1{font-size:clamp(52px,13.2vw,77px)}.home-hero-photo{width:100%}.home-portrait-curve{height:auto;min-height:0;aspect-ratio:4/5;width:100%;margin:0}.home-portrait img{width:240%;left:-26%;top:0}.home-opening .home-hero-photo figcaption{left:24px;right:24px;bottom:16px}}
+/* Original photograph, rectangular crop, one rounded corner. */
+.home-portrait-curve{clip-path:none;border-radius:72px 0 0 0}
+@media(max-width:600px){.home-portrait-curve{border-top-left-radius:48px}}

@@ -1,11 +1,11 @@
 # FORM: current state and next actions
 
 
-## October 1 - Sweeping portrait mask study
+## October 1 - Single-corner portrait preview
 
-- [x] Owner-requested preview at `design/experiments/sweep-mask-20261001/`: original Brice photograph, asymmetric SVG clip, photo flush to right edge, existing copy and track background.
-- [x] Chromium rendering at 390, 768, 1024 and 1440px: no horizontal overflow. Desktop and phone screenshots saved beside the preview. This is a local design study, not a production change or physical-device acceptance.
-- [ ] Owner review of the sweep before replacing the published portrait treatment. Current production remains the verified forest/track release below.
+- [x] Brice rejected the sweeping mask. Revised `design/experiments/sweep-mask-20261001/` restores the published layout and original rectangular crop with only the top-left corner rounded (72px desktop, 48px phone). No SVG mask or other rounded corners.
+- [x] Chromium rendering at 390, 768, 1024 and 1440px: no horizontal overflow. Desktop and phone screenshots saved beside the preview. Local design preview only; current production remains the verified forest/track release below.
+- [ ] Review the revised preview before publication.
 
 ## October 1 - Forest-and-chalk public house
 
