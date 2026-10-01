@@ -31,3 +31,5 @@ h1{font-size:clamp(60px,7.6vw,110px);font-weight:820;line-height:.94;letter-spac
 @media(max-width:700px){.sf-hero-work .sf-hero-image img,.sf-hero-coaching-miami .sf-hero-image img,.sf-hero-work-photo-video .sf-hero-image img{aspect-ratio:3/2}}
 
 .sf-hero-work .sf-hero-image img{aspect-ratio:3/2}
+
+.sf-photo-story figure:first-child img{aspect-ratio:5/3;height:auto;object-fit:contain}
