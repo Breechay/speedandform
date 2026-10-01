@@ -44,6 +44,7 @@ jobs:
           if (!count) throw new Error('No inline study script checked');
           console.log('PASS: study JavaScript and JSON-LD parse');
           JS
+          cp docs/studies/ADRIAN-ATHLETE-UPDATE-20260930.json /tmp/adrian-study-update-20260930/source.json
       - name: Install browser test dependencies
         run: |
           pip install playwright==1.58.0
@@ -86,10 +87,13 @@ jobs:
                   r = box.bounding_box()
                   assert r and r['x'] >= -1 and r['x'] + r['width'] <= width + 1, (engine_name, width, r)
                 assert not errors, errors
-                if width in [390, 1440]:
+                if width in [375, 390, 1440]:
                   page.screenshot(path=str(out / f'{engine_name}-{width}-intake.png'))
+                page.get_by_role('tab', name='Running', exact=True).click()
+                assert page.locator('#tab-2').get_attribute('aria-selected') == 'true'
+                assert page.locator('#pan-2').is_visible()
                 run_row = page.get_by_text('12 × 400 m; faster than the reported ~82-second prescription', exact=True)
-                assert run_row.count() == 1
+                assert run_row.count() == 1 and run_row.is_visible()
                 run_row.scroll_into_view_if_needed()
                 if width in [390, 1440]:
                   page.screenshot(path=str(out / f'{engine_name}-{width}-running.png'))
