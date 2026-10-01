@@ -30,3 +30,7 @@ Routes: home; `/coaching/miami/`; `/coaching/strength/`; `/analysis/`; `/work/`;
 Return at most five ranked findings. Each needs exact location, visitor need, evidence, a proposed rewrite/design change and its tradeoff. Separate implement-now fixes from evidence/delivery work that needs real material. No invented clinical effects, guarantees, testimonials, scarcity, cadence/footstrike standards, or fabricated before/after data. Gemini’s example José1:32:15→6:28 eight-mile/cadence figures are fictional and must not be used.
 
 Search/recognition/flow are hypotheses to test with real visitors and inquiries, not a promise of improved conversion. Make recommendations selective enough to review and ship coherently.
+
+## Final owner steering and release
+
+Plans, Labs and five linked study openings also received a recognition-first narrative pass. Preserve their individual visual rooms and conditional study states. The Last 10K remains a future test; Act I is still underway. Three independent reviews were completed and applied selectively; the final owner-selected headline takes precedence over earlier suggestions. See the October 1 outside-in audit for exact checks and publication receipt.

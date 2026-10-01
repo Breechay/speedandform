@@ -8,7 +8,7 @@
 - [x] Hope/José preview names its audience, compares April half results with September 29 six-mile training, and distinguishes training from race performance. Homepage/running example share an approved public projection. Study source changes stop the build until the projection is reviewed. Daily reminder check enabled for new conclusions/results.
 - [x] Local copy, study parity, metadata, protected reading, six-width/200% text/inquiry checks and nine-route accessibility review passed.
 - [x] Owner portrait/elbow and header emblem proportions reviewed at phone/desktop. Three independent reviews completed; inquiry routing, mobile study/strength sequencing, Plans shelf and Adrian public-study proof refined.
-- [ ] Final dual-browser release, combined publication and production verification.
+- [x] Owner-selected three-part hero and visitor-led Plans/Labs/study openings published. Expanded16-route accessibility/overflow check passed; study evidence and prescriptions unchanged. Chromium/WebKit `36916817991`, ecosystem `36916818101` and athlete truth `36916818427` passed for head `260d05b8b31dc6df7eb4f9238cd859e4bf4e70c6`. Merged source `b5bf35285f04c9500272272d37d1be7874dcb38e`, tree `c1559273f5f75c35b86e1e815f49f06bd33b4838`, Netlify `6abeb98bad5ae8300f9e0c63` ready3:50:49PMNewYork. Actual live home, six commercial pages, Plans and six Labs/study entry points verified. [Release receipt](../audits/OUTSIDE-IN-20261001.md). Physical-device review remains separate.
 
 ## October 1 - Owner correction: reader-first copy and Strava photograph
 
