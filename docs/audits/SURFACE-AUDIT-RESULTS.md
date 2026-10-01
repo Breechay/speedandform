@@ -58,3 +58,10 @@ Deployment note: export the verified commit with `git archive` before using the 
 - No production inquiry or purchase was submitted. The audit’s simulated delivery, privacy and retry evidence remains distinct from live delivery testing.
 
 The post-publication documentation commit uses `[skip netlify]` to avoid paying for another unchanged-site deploy solely to record this receipt.
+
+
+## October 1 follow-up: owner-approved portrait corner
+
+Brice rejected the sweeping SVG mask and approved a larger top-left-only curve from his marked screenshot. The original crop remains, with 160px corner on desktop and 100px on phone; the other three corners are square. The track stays green. Neutral charcoal gradient overlays quiet its desktop haze and reduce color intensity, preserving the photograph pixels and stronger mobile contrast treatment.
+
+Homepage source/metadata suites and the configured Netlify build passed. Chromium renders at 375, 390, 430, 768, 1024 and 1440px had no horizontal overflow; 200% text and reduced motion passed the same check. Desktop and phone screenshots: `20261001-house/corner-desktop.jpg` and `corner-phone.jpg`. Sampled text contrast was at least 5.75:1 on phone and 9.10:1 on desktop. Physical-device review remains separate. No live inquiry was sent. Publication verification is pending; stylesheet version `20261001-track-corner`.
