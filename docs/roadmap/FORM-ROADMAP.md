@@ -1,6 +1,13 @@
 # FORM: current state and next actions
 
 
+## October 1 - Solid opening, richer homepage exploration
+
+- [x] Owner decision: remove the track texture and match the opening to the footer’s solid forest. Original portrait/top-left corner and copy remain.
+- [x] Homepage source/metadata and exact build passed. Chromium at six widths and 200% text: no horizontal overflow.
+- [ ] Publish the bounded background change and confirm production.
+- [ ] Separately preview a more expressive homepage section using the already-public Hope/José study, stronger typography and a compact evidence view. This exploration is not approved for publication yet.
+
 ## October 1 - Final portrait corner and quieter track
 
 - [x] Brice approved the enlarged top-left corner after rejecting the sweeping mask. Original photograph and crop remain; 160px desktop / 100px phone corner, other three square.
