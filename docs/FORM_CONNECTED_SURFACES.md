@@ -31,3 +31,10 @@ The Exposure Instrument is a presentation primitive, not a new source of truth. 
 Before calling any cross-surface feature complete, trace one authorized athlete from assignment to installed execution, offline/retry, received record, Console review and correction. Also prove an unrelated account cannot read or file it. Record the source/build/deploy checked and any untested surface.
 
 Typography and plain-language standards apply independently on every surface. Preserve each product's visual identity, readable responsive hierarchy, American “practice,” and one divider per boundary.
+
+
+## Public Thursday gathering connection v1 · October 1, 2026
+
+`/thursday` reads the existing anonymous `collective_public_runs` projection filtered to `series_id=track-thursday`. Collective owns the dated gathering, time/place changes and cancellation. The website does not create or confirm occurrences. Only published public fields are requested; no membership, attendance or personal records are read. Date selection and displayed times use America/New_York, independent of the visitor’s time zone.
+
+`js/community-schedule.js` still owns usual recurring logistics and explicitly authored workout names. Its historical October 1 optional-workout entry does not override the published Collective gathering. Automatic rotation is no longer presented as an authored future workout. Confirmed gathering / workout pending are separate states; no upcoming public occurrence and failed reads both show that a date is not confirmed, with contact guidance. Existing community-page recurring schema describes the usual schedule, not a dated confirmation. Test changed time/place, cancellation, absent/unavailable records and daylight-saving transitions before release.

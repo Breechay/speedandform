@@ -1,0 +1,19 @@
+{
+  "version": "20261001-miami-commercial",
+  "purpose": "Community search intent, canonical coaching handoff and approved eight-session scope. The damaged legacy Miami image is replaced with the existing reviewed SF card; historical receipts remain unchanged.",
+  "pages": [
+    {
+      "file": "miami-running-training.html",
+      "afterSha256": "20c0acf5d1412ea38a532673381c7a0ea5df1247802469ef38b2527e7eadd56d",
+      "bodySha256": "8b90423c354d307b153f117d171c271931fbf99caa2440c72f20c07b63d035bc",
+      "image": "https://speedandform.com/og/speed-and-form-20260930.jpg",
+      "imageSha256": "e8524d995e65dee96af762b369d47beca1bb06a6bcd2dccbed7cb385369e05be",
+      "preview": {
+        "title": "Miami Running Group & Thursday Speedwork | Speed & Form",
+        "description": "Thursday community speedwork at Flamingo Park Track and occasional long-run pop-ups around Miami. All levels welcome; check the next gathering."
+      },
+      "alt": "Speed & Form. Running and strength coaching with Brice. Miami and online.",
+      "allowShareTransformRewrite": true
+    }
+  ]
+}

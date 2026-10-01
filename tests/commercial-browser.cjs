@@ -13,6 +13,9 @@ const artifacts=process.env.SF_QA_ARTIFACTS||'/tmp/sf-commercial-qa';fs.mkdirSyn
  page.on('pageerror',e=>errors.push(e.message));
  await context.route('**/*',async route=>{
   const request=route.request(),u=new URL(request.url());
+  if(u.pathname==='/rest/v1/collective_public_runs'){
+   return route.fulfill({contentType:'application/json',body:JSON.stringify([{title:'Track Thursday',starts_at:new Date(Date.now()+86400000).toISOString(),meet_at:new Date(Date.now()+85500000).toISOString(),meet_name:'Flamingo Park Track',meet_address:'11 St & Jefferson Ave',group_facts:{level:'All levels',meet_point:'Bench by the bleachers'},status:'scheduled'}])});
+  }
   if(u.pathname==='/rest/v1/rpc/submit_website_inquiry'){
    const data=request.postDataJSON();submissions.push(data);
    return route.fulfill({status:mode==='accept'?200:503,contentType:'application/json',body:JSON.stringify(mode==='accept'?{accepted:true,submission_id:data.p_submission_id,version:1}:{message:'Temporary failure'})});
@@ -55,6 +58,17 @@ const artifacts=process.env.SF_QA_ARTIFACTS||'/tmp/sf-commercial-qa';fs.mkdirSyn
   assert.ok((await page.locator('.plan[data-state=paid]').innerText()).includes('$79 full plan'));
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,'Plans fit at '+width);
  }
+ // The public gathering and workout remain separate at phone and desktop widths.
+ for(const width of [390,1440])for(const route of ['/thursday','/miami-running-training']){
+  await page.setViewportSize({width,height:900});await page.goto(origin+route);
+  if(route==='/thursday'){
+   await page.evaluate(()=>window.FORM_THURSDAY_READY);
+   assert.equal(await page.locator('#thu-gathering-status').innerText(),'Gathering confirmed');
+   assert.equal(await page.locator('#thu-session-name').innerText(),'Workout to be confirmed');
+  }
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,route+' fits at '+width);
+  await page.screenshot({path:path.join(artifacts,route.slice(1)+'-'+width+'.png'),fullPage:true});
+ }
  // Specific package links carry the visible selection and keyboard focus into the form.
  await page.setViewportSize({width:390,height:900});
  for(const [route,choices] of [
@@ -71,8 +85,10 @@ const artifacts=process.env.SF_QA_ARTIFACTS||'/tmp/sf-commercial-qa';fs.mkdirSyn
   }
   const manual=route.includes('strength')?'block':'remote';
   await page.locator('input[name=program][value='+manual+']').check();
-  await page.locator('.sf-hero .sf-button').click();
-  assert.equal(await page.locator('input[name=program]:checked').inputValue(),manual,'Neutral CTA preserves manual choice');
+  if(route.includes('strength')){
+   await page.locator('.sf-hero .sf-button').click();
+   assert.equal(await page.locator('input[name=program]:checked').inputValue(),manual,'Neutral CTA preserves manual choice');
+  }
  }
  for(const route of routes.filter(r=>!['/','/work/'].includes(r))){
   await page.goto(origin+route);
@@ -80,6 +96,19 @@ const artifacts=process.env.SF_QA_ARTIFACTS||'/tmp/sf-commercial-qa';fs.mkdirSyn
   assert.ok(anchor.startsWith('#'),'Hero comparison stays with this offer');
   assert.equal(await page.locator(anchor).count(),1,'Comparison has a real destination');
  }
+ // Miami and remote first steps remain visible and distinct, including direct referral URLs.
+ for(const start of ['assessment','remote']){
+  await page.goto(origin+'/coaching/miami/?start='+start+'#inquiry-program');
+  assert.equal(await page.locator('input[name=program]:checked').inputValue(),start);
+ }
+ await page.locator('.sf-hero .sf-button').click();
+ assert.equal(await page.locator('input[name=program]:checked').inputValue(),'assessment');
+ assert.match(await page.locator('#inquiry-step').innerText(),/free Miami assessment/);
+ await page.getByRole('link',{name:'Ask about remote coaching',exact:true}).click();
+ assert.equal(await page.locator('input[name=program]:checked').inputValue(),'remote');
+ assert.match(await page.locator('#inquiry-step').innerText(),/remote contact arrangements/);
+ await page.locator('input[name=program][value=both]').check();
+ assert.match(await page.locator('#inquiry-step').innerText(),/selected coaching block/);
  // Large type must remain accessible; no overflow hidden used to conceal it.
  await page.setViewportSize({width:390,height:900});await page.goto(origin+'/coaching/strength/');
  await page.evaluate(()=>{const styles=[...document.querySelectorAll('h1,h2,h3,p,a,label,legend,input,textarea,select,button,summary,li,dt,dd,.sf-price')].map(e=>[e,parseFloat(getComputedStyle(e).fontSize)]);styles.forEach(([e,size])=>e.style.setProperty('font-size',size*2+'px','important'));});
@@ -104,14 +133,15 @@ const artifacts=process.env.SF_QA_ARTIFACTS||'/tmp/sf-commercial-qa';fs.mkdirSyn
  assert.ok(await page.locator('.sf-form [type=submit]').isDisabled());
  const measurement=await page.evaluate(()=>JSON.stringify(window.dataLayer));assert.ok(!measurement.includes('qa@example')&&!measurement.includes('Edgewater'));
  // Visible package choices preserve first-session and remote offer routing.
- for(const [route,choice,expected,label] of [['/coaching/strength/','first','strength-first','Ask about a first session'],['/coaching/miami/','both','both','Ask about Run + Strength'],['/coaching/miami/','remote','remote',null]]){
+ for(const [route,choice,expected,label] of [['/coaching/strength/','first','strength-first','Ask about a first session'],['/coaching/miami/','both','both','Ask about Run + Strength'],['/coaching/miami/','remote','remote','Ask about remote coaching'],['/coaching/miami/','assessment','run','Ask for a free Miami assessment']]){
   await page.goto(origin+route);
-  if(label)await page.getByRole('link',{name:label+' →',exact:true}).click();
+  if(label)await page.getByRole('link',{name:label,exact:false}).click();
   else await page.locator('input[name=program][value='+choice+']').check();
   await page.locator('#inquiry-name').fill('Choice QA');await page.locator('#inquiry-email').fill('choice@example.invalid');
   await page.locator('#inquiry-location').fill('Miami');await page.locator('#inquiry-goal').fill('Please explain the selected coaching option.');
   await page.locator('.sf-form [type=submit]').click();await page.waitForSelector('.sf-form-status[data-state=received]');
   assert.equal(submissions.at(-1).p_payload.offer,expected);
+  assert.equal(submissions.at(-1).p_payload.message.includes('Requested first step: Free Miami running assessment'),choice==='assessment');
  }
  // Existing running intake still completes with the new receiver.
  await page.goto(origin+'/');await page.locator('[data-key=goal] .opt').first().click();

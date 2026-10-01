@@ -43,11 +43,11 @@ assert.throws(()=>new vm.Script('(() => { }());'),SyntaxError);
 const share=require('../scripts/share-metadata.cjs');
 const required=['og:type','og:title','og:description','og:url','og:site_name','og:locale','og:image','og:image:secure_url','og:image:type','og:image:width','og:image:height','og:image:alt','twitter:card','twitter:title','twitter:description','twitter:image','twitter:image:alt'];
 for(const key of required){const matches=[...share.head(html).matchAll(/<meta\b[^>]*>/gi)].filter(m=>{const a=share.attrs(m[0]);return(a.property||a.name)===key;});assert.equal(matches.length,1,key+' is unique');assert.ok(share.meta(html,key),key+' is nonempty');}
-const manifest=JSON.parse(fs.readFileSync(path.join(root,'docs/audits/SHARE-METADATA-MANIFEST-20260916.json'),'utf8'));
+const manifest=JSON.parse(fs.readFileSync(path.join(root,'docs/audits/MIAMI-COMMERCIAL-RECEIPT-20261001.json'),'utf8'));
 const row=manifest.pages.find(row=>row.file==='miami-running-training.html');
 assert.ok(row);
 for(const key of ['og:image','og:image:secure_url','twitter:image'])assert.equal(share.meta(html,key),row.image);
-assert.equal(share.meta(html,'og:image'),'https://speedandform.com/og/miami-running-training-20260923.jpg');
+assert.equal(share.meta(html,'og:image'),'https://speedandform.com/og/speed-and-form-20260930.jpg');
 assert.equal(share.meta(html,'og:image:alt'),share.meta(html,'twitter:image:alt'));
 assert.equal(share.meta(html,'og:url'),share.canonical(html,row.file));
 const info=share.imageInfo(root,row.image);

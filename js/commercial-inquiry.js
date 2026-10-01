@@ -46,7 +46,24 @@
   }
   document.querySelectorAll('[data-inquiry-form]').forEach(function(form){
     var sending=false,accepted=false;
-    // Package-specific links select a visible choice; neutral links preserve it.
+    var stepNote=form.querySelector('#inquiry-step');
+    function explainStep(){
+      if(!stepNote)return;
+      var selected=form.querySelector('input[name="program"]:checked').value;
+      stepNote.textContent=selected==='assessment'
+        ? 'A free Miami assessment: we discuss your goal, I watch you run, and we decide whether coaching fits. I reply by email to arrange it; no payment or booking is made here.'
+        : selected==='remote'
+        ? 'I reply by email to discuss your goal, fit and remote contact arrangements before payment. This inquiry does not include a recorded FORM Analysis.'
+        : 'I reply by email to discuss your goal, availability and the selected coaching block. We can arrange a free Miami assessment before you decide. No payment or booking is made here.';
+    }
+    form.querySelectorAll('input[name="program"]').forEach(function(input){input.addEventListener('change',explainStep);});
+    // A direct referral can name the first step without creating another page.
+    var start=campaign.get('start');
+    if(form.dataset.offer==='run'&&['assessment','remote'].includes(start)){
+      form.querySelector('input[value="'+start+'"]').checked=true;
+    }
+    explainStep();
+    // Specific links select a visible choice; neutral links preserve it.
     document.querySelectorAll('a[data-inquiry-program]').forEach(function(link){
       link.addEventListener('click',function(event){
         if(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;
@@ -65,10 +82,11 @@
       event.preventDefault();
       if(sending||accepted||!form.reportValidity())return;
       var fields=new FormData(form),offer=form.dataset.offer;
-      if(offer==='run')offer=fields.get('program')||'run';
+      var assessment=offer==='run'&&fields.get('program')==='assessment';
+      if(offer==='run')offer=assessment?'run':fields.get('program')||'run';
       if(offer==='strength'&&fields.get('program')==='first')offer='strength-first';
       var payload={offer:offer,name:fields.get('name'),email:fields.get('email'),location:fields.get('location'),
-        message:fields.get('message'),company_website:fields.get('company_website')||''};
+        message:(assessment?'Requested first step: Free Miami running assessment (no payment or booking).\n\n':'')+fields.get('message'),company_website:fields.get('company_website')||''};
       var button=form.querySelector('[type="submit"]'),status=form.querySelector('.sf-form-status');
       sending=true;button.disabled=true;button.textContent='Sending…';status.textContent='';status.dataset.state='sending';
       try{
