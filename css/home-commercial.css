@@ -92,3 +92,11 @@
 .study-baseline tbody tr+tr{border-top:1px solid rgba(185,196,187,.13)}.study-baseline th,.study-baseline td{border-bottom:0!important}
 .other-ways{margin-top:24px}.remote-note{margin-top:0!important}
 @media(max-width:700px){.study-actions{display:block}.study-plan-link{margin-top:12px}.study-ladder{overflow:hidden}.study-ladder-track{grid-template-columns:repeat(6,minmax(54px,1fr));gap:7px;align-items:start}.study-ladder-track i{display:none}.study-ladder-track span,.study-ladder-track .current{width:58px;height:58px}.study-ladder-track .current{box-shadow:none}.study-ladder-track span b,.study-ladder-track .current b{font-size:22px}.study-ladder-track span small{font-size:7px}.study-ladder-note{max-width:30ch}}
+
+/* Oct 1: progression follows proof; rebalance coaching offer. */
+.study-baseline .study-ladder{margin-top:34px;padding-top:32px;border-top:1px solid rgba(185,196,187,.09)}
+.study-baseline .study-ladder-track i{background:rgba(185,196,187,.13)}
+.study-baseline .study-ladder-track span{background:#0d1713}
+.study-foot{display:flex;justify-content:flex-end;background:transparent!important;padding:28px 0 0!important;margin-top:0!important}.study-foot>a{min-width:300px;padding:22px 24px;background:#101c17}
+.coaching-option-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;column-gap:70px;align-items:start}.primary-offer{min-width:0}.first-step{padding-top:18px;align-self:center}.first-step .button-link{width:100%;justify-content:space-between}.scope-list{grid-column:1/-1}.scope-list>div{background:transparent!important;padding-left:0!important;padding-right:24px!important;min-height:165px}.scope-list>div+div{border-left:1px solid rgba(104,98,88,.16)!important;padding-left:28px!important}.scope-list>div:before{margin-bottom:34px}
+@media(max-width:700px){.coaching-option-grid{grid-template-columns:1fr;gap:24px}.first-step{padding-top:0}.scope-list>div+div{border-left:0!important;padding-left:0!important}.study-foot>a{min-width:0;width:100%}}
