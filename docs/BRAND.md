@@ -47,7 +47,7 @@ One wordmark per surface. The seal may sit with either wordmark.
 
 There are two different things and they must never be confused.
 
-**Public schedule:** Thursday logistics and session selection come only from `/js/community-schedule.js`. If the time, place or authored session changes there, every public surface should follow it. The HTML fallback must be neutral rather than naming a potentially stale session. Monthly long runs are announced only when confirmed.
+**Public schedule:** dated Thursday gathering confirmation, time/place changes and cancellation come from the existing public Collective projection. `/js/community-schedule.js` owns usual recurring logistics and explicitly authored workout descriptions. A pending workout never cancels a published gathering; a failed or absent dated record never becomes a confirmation. See `FORM_CONNECTED_SURFACES.md`. Monthly long runs are announced only when confirmed.
 
 **Authored training architecture:** a plan may deliberately prescribe Tuesday, Thursday and Saturday. Those weekdays belong to that program. They do **not** become the public FORM schedule.
 
