@@ -2,9 +2,9 @@ name: Coaching funnel release checks
 on:
   push:
     branches: [main, work/commercial-home-20260930]
-    paths: ['index.html','coaching/**','analysis/**','work/**','js/coaching-measurement.js','js/commercial-inquiry.js','js/coaching-choice.js','css/home*.css','css/commercial.css','css/sf-brand.css','scripts/build-commercial.cjs','scripts/build-sf-brand.cjs','tests/commercial*','tests/coaching-measurement.cjs','.github/workflows/coaching-funnel.yml']
+    paths: ['index.html','thursday.html','miami-running-training.html','js/thursday-gathering.js','js/community-schedule.js','coaching/**','analysis/**','work/**','js/coaching-measurement.js','js/commercial-inquiry.js','js/coaching-choice.js','css/home*.css','css/commercial.css','css/sf-brand.css','scripts/build-commercial.cjs','scripts/build-sf-brand.cjs','tests/commercial*','tests/coaching-measurement.cjs','.github/workflows/coaching-funnel.yml']
   pull_request:
-    paths: ['index.html','coaching/**','analysis/**','work/**','js/commercial-inquiry.js','css/commercial.css','css/home-commercial.css','.github/workflows/coaching-funnel.yml']
+    paths: ['index.html','thursday.html','miami-running-training.html','js/thursday-gathering.js','js/community-schedule.js','coaching/**','analysis/**','work/**','js/commercial-inquiry.js','css/commercial.css','css/home-commercial.css','.github/workflows/coaching-funnel.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -28,6 +28,8 @@ jobs:
           node --check js/coaching-choice.js
           node tests/coaching-measurement.cjs
           node tests/commercial-release.cjs
+          node tests/thursday-schedule.cjs
+          node tests/miami-community-schedule.cjs
           node tests/homepage-metadata.cjs
           node tests/homepage-release.cjs
           node tests/coaching-copy.cjs

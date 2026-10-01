@@ -118,20 +118,21 @@ a:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
 
 <section class="session" id="current-session">
   <div class="coordinate"><span id="thu-eyebrow">Thursday · live schedule</span><span class="session-code" id="thu-session-code">Session</span></div>
-  <div class="session-label">This week's work</div>
-  <div class="session-name" id="thu-session-name">Session</div>
-  <p class="live-note">The session and logistics below are rendered from FORM's shared community schedule.</p>
+  <p class="live-note" id="thu-gathering-status" role="status">Check with Brice before traveling; the next gathering loads here.</p>
+  <div class="session-label">Workout</div>
+  <div class="session-name" id="thu-session-name">Workout details pending</div>
+  <p class="live-note">Gathering dates and logistics come from the published community schedule. Workout details are shown separately.</p>
 
   <div class="logistics">
     <div class="loc">
       <span class="loc-label">Where</span>
       <span class="loc-val"><a class="loc-link" href="/miami-running-training">Flamingo Park Track</a></span>
-      <span class="loc-sub">Miami Beach</span>
+      <span class="loc-sub" id="thu-location-detail">Miami Beach</span>
     </div>
     <div class="loc">
       <span class="loc-label">When</span>
       <span class="loc-val" id="thu-when">Thursday morning</span>
-      <span class="loc-sub">Weekly community practice</span>
+      <span class="loc-sub" id="thu-time-note">Check the confirmed date before traveling.</span>
     </div>
     <div class="loc">
       <span class="loc-label">Who</span>
@@ -147,11 +148,13 @@ a:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
   <div class="expect">
     <div class="expect-row"><span class="expect-num">01</span><span class="expect-text">You run short distances. You rest fully between each one.</span></div>
     <div class="expect-row"><span class="expect-num">02</span><span class="expect-text">No pace is required to arrive. Run the distance and see what the watch says.</span></div>
-    <div class="expect-row"><span class="expect-num">03</span><span class="expect-text" id="thu-rotation-line">This week's session loads from the shared schedule: <span id="thu-session-inline"></span></span></div>
+    <div class="expect-row"><span class="expect-num">03</span><span class="expect-text" id="thu-rotation-line">Workout details load separately from the meeting confirmation.</span></div>
     <div class="expect-row"><span class="expect-num">04</span><span class="expect-text">You can leave after the first rep. Finishing everything is not the price of belonging.</span></div>
   </div>
   <a class="action" href="/labs/track/"><strong>See the six authored sessions</strong><span>Track room →</span></a>
 </section>
+
+<section class="block"><h2>Want the rest of the week built around you?</h2><p class="live-note">I also coach runners one-to-one. Run Development includes eight private sessions in Miami and coaching across your week.</p><a class="action" href="/coaching/miami/?start=assessment#inquiry-program"><strong>Ask about a free Miami running assessment</strong><span>Meet Brice →</span></a></section>
 
 <section class="app-card">
   <div><p class="eyebrow">Keep the full practice</p><h2>FORM on iPhone.</h2><p>Threshold, speed, long run and your training record in one place.</p></div>
@@ -166,88 +169,6 @@ a:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
 </main>
 
 <script src="/js/community-schedule.js?v=20260922"></script>
-<script>
-// Schedule/logistics come from one canonical public source.
-const COMMUNITY = window.FORM_COMMUNITY_SCHEDULE || {};
-const THURSDAY = COMMUNITY.thursday;
-if (!THURSDAY) throw new Error('FORM Thursday schedule unavailable');
-
-const SESSIONS = THURSDAY.sessions;
-const THURSDAY_SCHEDULE = THURSDAY.authored;
-
-const whenEl = document.getElementById('thu-when');
-const audienceEl = document.getElementById('thu-audience');
-const locationLink = document.querySelector('.loc-link');
-const locationSub = document.querySelector('.loc-sub');
-
-if (whenEl) whenEl.textContent = THURSDAY.whenLabel;
-if (audienceEl) audienceEl.textContent = 'Every week · ' + THURSDAY.audience;
-if (locationLink) {
-  locationLink.textContent = THURSDAY.locationName;
-  locationLink.href = THURSDAY.mapUrl;
-}
-if (locationSub) locationSub.textContent = THURSDAY.locationCity + ' · ' + THURSDAY.locationDetail;
-
-function toYMD(d) {
-  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-}
-function getNextThursday(from) {
-  const d = new Date(from);
-  const dow = d.getDay();
-  const diff = dow <= 4 ? 4 - dow : 11 - dow;
-  d.setDate(d.getDate() + diff);
-  d.setHours(0,0,0,0);
-  return d;
-}
-
-(function() {
-  const today   = new Date(); today.setHours(0,0,0,0);
-  const nextThu = getNextThursday(today);
-  const thuYMD  = toYMD(nextThu);
-  const isThisThursday = today.getDay() === 4;
-
-  const eyebrow  = document.getElementById('thu-eyebrow');
-  const nameEl   = document.getElementById('thu-session-name');
-  const codeEl   = document.getElementById('thu-session-code');
-  const inlineEl = document.getElementById('thu-session-inline');
-  const rotEl    = document.getElementById('thu-rotation-line');
-
-  const dayLabel = isThisThursday
-    ? 'This morning'
-    : nextThu.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' });
-
-  const authored = THURSDAY_SCHEDULE.find(function(s) { return s.date === thuYMD; });
-
-  if (authored && authored.optional) {
-    if (eyebrow) eyebrow.textContent = dayLabel + ' · Optional';
-    if (nameEl)  nameEl.textContent  = 'Optional';
-    if (codeEl)  codeEl.textContent  = 'No fixed session';
-    if (rotEl)   rotEl.textContent   = 'This one is optional. Brice will confirm it.';
-    return;
-  }
-
-  let session = authored ? SESSIONS[authored.idx] : null;
-
-  if (!session) {
-    const dated = THURSDAY_SCHEDULE.filter(function(s) { return typeof s.idx === 'number'; });
-    const last  = dated[dated.length - 1];
-    if (last) {
-      const anchor  = new Date(last.date + 'T00:00:00');
-      const weeks   = Math.round((nextThu - anchor) / (7 * 24 * 60 * 60 * 1000));
-      const skipped = THURSDAY_SCHEDULE.filter(function(s) {
-        return s.optional && s.date > last.date && s.date < thuYMD;
-      }).length;
-      const step = ((last.idx + weeks - skipped) % SESSIONS.length + SESSIONS.length) % SESSIONS.length;
-      session = SESSIONS[step];
-    } else {
-      session = SESSIONS[0];
-    }
-  }
-
-  if (eyebrow)  eyebrow.textContent  = dayLabel + ' · Speed Emergence';
-  if (nameEl)   nameEl.textContent   = session.name;
-  if (codeEl)   codeEl.textContent   = 'Session ' + session.session;
-  if (inlineEl) inlineEl.textContent = session.name;
-})();</script>
+<script src="/js/thursday-gathering.js?v=20261001"></script>
 </body>
 </html>

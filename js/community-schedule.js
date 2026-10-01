@@ -1,6 +1,7 @@
-/* Canonical public community schedule for FORM.
-   Change recurring Thursday logistics here first. Pages should render from this
-   object rather than hard-coding time/location/session rotation. */
+/* Usual recurring logistics and explicitly authored workout descriptions.
+   Dated gathering confirmation, changes and cancellation belong to the public
+   Collective projection; see thursday-gathering.js and FORM_CONNECTED_SURFACES.
+   Historical optional workout entries do not cancel a published gathering. */
 (function (global) {
   'use strict';
 

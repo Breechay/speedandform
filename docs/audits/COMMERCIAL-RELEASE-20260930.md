@@ -51,3 +51,10 @@ Brice supplied screenshots of José’s programming feedback. The running page u
 - Netlify production deploy `6abda2d9f8d147f419ebbbd7` is ready and published at `2026-10-01T00:01:45.802Z` (September 30, 8:01 PM America/New_York), from a clean merged-main source upload.
 - Live browser checked the running story cards and quote, the complimentary assessment and whole-week/eight-session scope, Run + Strength selecting `both`, the strength first session selecting `first`, and the Plans cards preceding methodology with the $79/four-week-preview terms preserved. The homepage example link was followed to `/coaching/miami/#coaching-examples`; the finished section was visually inspected.
 - No live inquiry, payment, outreach or ad campaign was submitted. Physical iPhone review and a representative finished Analysis delivery remain open. Public athlete examples are coaching context and documented observations, not a finished Analysis deliverable.
+
+
+## Second-round review fixes · October 1 UTC
+
+Local source checks pass for the explicit Miami assessment/remote handoff, community-to-coaching links and public Thursday gathering projection. The published public record confirms October 1, meet 6:00 AM / run 6:15 AM at Flamingo Park Track. It is read-only evidence, not a newly booked event. Thursday tests cover canceled, moved, absent and unavailable records, the Miami date boundary and daylight saving time. Authored workout details remain distinct from gathering status.
+
+The existing older Miami share image decodes incompletely and differs from its historical receipt. This pass points the community page to the already-reviewed SF card and records a new editorial receipt without rewriting old receipts. Current Miami metadata, image integrity and preservation checks pass. The homepage and prices remain unchanged. Production and browser acceptance are pending for this pass; do not infer them from the earlier release below/above. No live test inquiry or payment has been submitted.

@@ -16,7 +16,7 @@ const PRESERVE = {
   'labs/raise-the-ceiling/index.html': '/og/raise-the-ceiling-study.png',
   'labs/speed-that-endures/index.html': '/og/speed-that-endures-20260923.jpg',
   'long-run.html': '/og/long-run.jpg',
-  'miami-running-training.html': '/og/miami-running-training-20260923.jpg',
+  'miami-running-training.html': '/og/speed-and-form-20260930.jpg',
   'notes.html': '/og/note-001.jpg?v=rd28',
   'plans/race-pace-durability/index.html': '/og/race-pace-durability.png',
   'plans/race-pace-durability/support/index.html': '/og/race-pace-durability.png',
