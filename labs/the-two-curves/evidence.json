@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "publication": "SIMON-003-EVIDENCE-20261001",
-  "approved_by": "Coach instruction in the October 1 study update",
+  "publication": "SIMON-003-EVIDENCE-20261001-R2",
+  "approved_by": "Coach instruction in the October 1 study update, including athlete post-session report",
   "scope": "Approved historical study excerpts. Not a complete activity history and not an automated publication of private filings.",
   "archive": {
     "uploaded_name": "Archive(20260923-230652).zip",
@@ -361,7 +361,12 @@
       "recorded_work_seconds": 900,
       "recorded_work_distance_km": 4.21,
       "derived_work_pace_s_km": 213.77672209026127,
-      "observation": "15 minutes of recorded work. Rep paces were 3:38, 3:29, 3:34, 3:34 and 3:35/km. After the faster second repetition, reps 3-5 stayed within one second per kilometre. This is a clean repeated-speed execution record; no heart-rate, RPE, reserve or next-day recovery was supplied, so do not infer VO2max or recovery cost from pace alone."
+      "observation": "15 minutes of recorded work. Rep paces were 3:38, 3:29, 3:34, 3:34 and 3:35/km. After the faster second repetition, reps 3-5 stayed within one second per kilometre. Simon reported that reps 4 and 5 felt 'kind of hard.' Pace did not materially deteriorate as perceived difficulty rose. This is useful repeated-speed execution evidence, not proof of a measured VO2max change.",
+      "athlete_report": {
+        "quote": "Kind of hard the 4th and 5th I am not gonna lie",
+        "timing": "post-session message to coach"
+      },
+      "interpretation": "Output remained almost unchanged as perceived difficulty rose late: reps 4-5 were 3:34 and 3:35/km (about 5:45 and 5:46/mi). Ceiling-side speed is available, but the final two repetitions carried meaningful perceived cost. Repeatability before progression; do not make the next ceiling session faster from this result alone."
     }
   ],
   "race_anchors": [
@@ -388,6 +393,6 @@
     "A race goal, watch zone, execution score, or stamina estimate is not proof of threshold, reserve, or VO2max.",
     "Historical volume does not confirm recent readiness; a new comparison needs context and recovery.",
     "Sep 29 W1 is not a clean within-band distribution test because rep 4 was deliberately slowed after an external heart-rate intervention. Preserve the intervention instead of interpreting the last rep as spontaneous fade.",
-    "Oct 1 repeated-speed execution is pace evidence only: heart rate, RPE, reserve and next-day recovery were not supplied, so do not infer VO2max or recovery cost."
+    "Oct 1 now includes an athlete-reported late-session cost. Preserve that separately from recorded pace; no heart-rate, measured VO2max, reserve score or next-day recovery was supplied."
   ]
 }
