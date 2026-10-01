@@ -924,6 +924,18 @@ html{scroll-behavior:smooth;scroll-padding-top:20px}
 .splits b{display:block;font-family:var(--f-mono);font-size:11px;font-weight:700}
 .splits span{display:block;font-family:var(--f-mono);font-size:8.5px;letter-spacing:.06em;color:var(--graphite);margin-top:3px}
 @media (max-width:760px){.splits{flex-wrap:wrap}.splits div{flex:0 0 calc(25% - 1px)}}
+
+/* ADRIAN SEPTEMBER 30 RUNNING REPORT DISPLAY */
+.sess--reports li{grid-template-columns:78px minmax(0,1fr) minmax(0,1fr);align-items:start}
+.sess--reports li>span{min-width:0}
+.sess--reports .wk{line-height:1.6}
+.sess--reports .load{white-space:normal;overflow-wrap:anywhere;text-align:left;line-height:1.7}
+.sess--reports .load .delta{display:block;margin-left:0!important;white-space:normal}
+.session-report-note{display:block;margin-top:8px;color:var(--graphite);font-size:13px;line-height:1.65}
+@media(max-width:640px){
+  .sess--reports li{grid-template-columns:46px minmax(0,1fr);column-gap:12px;row-gap:10px}
+  .sess--reports .load{grid-column:2;font-size:13px}
+}
 </style>
 <style id="adrian-intake-20260922">#intake-20260922 h2{font-size:clamp(28px,4vw,48px);line-height:1.12;max-width:22ch;margin:12px 0 18px}#intake-20260922 h3{font-size:21px;line-height:1.25;margin:25px 0 12px}#intake-20260922 p{font-size:17px;line-height:1.65;max-width:76ch;margin:0 0 16px}#intake-20260922 .lbl,#intake-20260922 .intake-small{font-size:14px;line-height:1.6}#intake-20260922 .intake-link{display:inline-block;padding:12px 18px;border:1px solid currentColor;border-radius:28px;text-decoration:none;margin:8px 0 20px}#intake-20260922 .intake-cols{display:grid;grid-template-columns:1fr 1fr;gap:32px}#intake-20260922 .intake-table{overflow-x:auto;margin:20px 0}#intake-20260922 table{border-collapse:collapse;width:100%;min-width:640px;font-size:16px}#intake-20260922 th,#intake-20260922 td{text-align:left;vertical-align:top;padding:15px 12px;border-bottom:1px solid var(--rule)}#intake-20260922 td p{font-size:14px;margin-top:8px}#intake-20260922 th:first-child{width:145px}#intake-20260922 td:last-child{width:210px;font-variant-numeric:tabular-nums}#intake-20260922 summary{cursor:pointer;min-height:54px;padding:14px 0;font-size:17px;font-weight:700}#intake-20260922 details{margin:18px 0} @media(max-width:700px){#intake-20260922 .intake-cols{grid-template-columns:1fr;gap:0}}</style>
 <style id="adrian-measurements-20260924-css">.measure-checkpoint{max-width:760px;margin:0 0 24px}.measure-checkpoint h3{font-size:clamp(24px,3vw,34px);line-height:1.2;margin:8px 0 20px}.measure-checkpoint p{font-size:16px;line-height:1.65;max-width:68ch;margin:16px 0}.measure-checkpoint .measure-meta{font-size:14px;line-height:1.6;color:var(--ink-2)}.measure-values{margin:0 0 22px}.measure-values>div{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px solid var(--rule)}.measure-values dt{font-size:17px;line-height:1.5}.measure-values dd{margin:0;font-family:var(--f-mono);font-size:20px;font-variant-numeric:tabular-nums;white-space:nowrap}.measure-values dd span{font-size:14px}.datagrid dd.pending{font-size:13px!important;line-height:1.6}</style>
@@ -4566,7 +4578,7 @@ function deep(){
       <div><p class="lbl lbl--ink" style="margin-bottom:10px">Standardized photo protocol</p>
         <p class="lbl" style="line-height:1.8">${S.photos.protocol}</p></div>
       <div><p class="lbl lbl--ink" style="margin-bottom:10px">Body mass</p>
-        <p class="lbl" style="line-height:1.8">Three to four morning readings a week under similar conditions. The weekly average is the number, never a single morning. ${pill("pending")}</p></div>
+        <p class="lbl" style="line-height:1.8">One to three morning readings a week under similar conditions. Read the pattern across comparable mornings; one reading is not a trend. ${pill("pending")}</p></div>
     </div>`;
   const strengthPanel = `
     <div class="strip__head" style="margin-bottom:8px">
@@ -4591,9 +4603,9 @@ function deep(){
     ${splitStrip}
     <p class="lbl" style="margin-top:10px;line-height:1.8;max-width:80ch">${R.caution}</p>
 
-    <p class="lbl lbl--ink" style="margin:26px 0 8px">Pre-intervention sessions ${pill("report")}</p>
-    <ul class="sess">${S.running.map(x=>`<li><span class="wk">${dmy(x.date)||"No date"}</span>
-      <span>${x.session}${x.quote?`<br><span class="delta" style="color:var(--graphite)">“${x.quote}”</span>`:""}</span>
+    <p class="lbl lbl--ink" style="margin:26px 0 8px">Running session records ${pill("report")}</p>
+    <ul class="sess sess--reports">${S.running.map(x=>`<li><span class="wk">${x.date?dmy(x.date):x.recordedOn?`Filed<br>${dmy(x.recordedOn)}`:"No date"}</span>
+      <span>${x.session}${x.quote?`<br><span class="delta" style="color:var(--graphite)">“${x.quote}”</span>`:""}${x.note?`<span class="session-report-note">${x.note}</span>`:""}</span>
       <span class="load">${x.dist} · ${x.pace}<span class="delta" style="color:var(--graphite);margin-left:8px">${x.time}</span></span></li>`).join("")}</ul>
     <p class="lbl" style="margin-top:12px;line-height:1.8;max-width:80ch">${S.runningNote}</p>
 

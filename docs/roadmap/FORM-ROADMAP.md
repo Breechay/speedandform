@@ -5,12 +5,12 @@
 Source: [dated athlete-report record](../studies/ADRIAN-ATHLETE-UPDATE-20260930.json). The study now files easier self-reported intake across roughly five days, three to four larger meals, an estimated low day of 3,400–3,500 kcal and an uncertain high day near 5,000 kcal. No new weight is supplied. The existing ~3,400 kcal target and October 4 calibration endpoint are unchanged. A separate running entry files 12 × 400 m mostly in the 70s, last 69 seconds, against the athlete-reported ~82-second prescription. Exact session date, splits, average and recoveries remain unverified. The running coach still owns the run plan.
 
 - [x] Source, current read, timeline, running evidence, nutrition summary and collection queue updated together.
-- [x] September 27 current read archived; all earlier evidence and all training prescriptions preserved. The stale queue is aligned with the already-established 1–3 morning weights per week.
-- [x] Source/history preservation, idempotency, JavaScript parsing and 12 Chromium/WebKit responsive views passed before this commit. Enlarged text was also checked; physical-phone review is not claimed.
+- [x] September 27 current read archived; all earlier evidence and all training prescriptions preserved. The stale queue and body-evidence copy are aligned with the already-established 1–3 morning weights per week. The running list now distinguishes filing dates from session dates, uses a neutral session-record heading and wraps its split information on phones.
+- [x] Source/history preservation, idempotency, JavaScript parsing and 12 Chromium/WebKit responsive views passed. Running split text is visible without clipping on the checked phone widths. Enlarged text was also checked; physical-phone review is not claimed.
 - [ ] Production must be verified after promotion; the pull request carries the release receipt. A branch or a green test is not a live-site claim.
 - [ ] Collect a comparable morning weight, dated intake logs, actual splits/recoveries and the next-day response.
 
-Acceptance run: https://github.com/Breechay/speedandform/actions/runs/36795411466. Tested source commit: 83580a376eec5e6ed449c6ffd747d4c6ee8e19e2. No FORM/Forge assignment, supplement/timing guidance, calorie target, calendar or message is changed.
+Acceptance run: https://github.com/Breechay/speedandform/actions/runs/36796258289. Tested source commit: 3ab5e4329ff36b2cf9f59ea364f17e50c07cb6e5. No FORM/Forge assignment, supplement/timing guidance, calorie target, calendar or message is changed.
 
 
 ## September 30 - Speed & Form commercial site
