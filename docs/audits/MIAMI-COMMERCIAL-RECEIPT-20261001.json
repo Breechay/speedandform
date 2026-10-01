@@ -1,11 +1,11 @@
 {
   "version": "20261001-miami-commercial",
-  "purpose": "Community search intent, canonical coaching handoff and approved eight-session scope. The damaged legacy Miami image is replaced with the existing reviewed SF card; historical receipts remain unchanged.",
+  "purpose": "Community search intent, canonical coaching handoff and approved eight-session scope. The damaged legacy Miami image is replaced with the existing reviewed SF card; historical receipts remain unchanged. Live follow-up restores the missing sitemap entry and explicit SF header/footer; Thursday prioritizes gathering status visually.",
   "pages": [
     {
       "file": "miami-running-training.html",
-      "afterSha256": "20c0acf5d1412ea38a532673381c7a0ea5df1247802469ef38b2527e7eadd56d",
-      "bodySha256": "8b90423c354d307b153f117d171c271931fbf99caa2440c72f20c07b63d035bc",
+      "afterSha256": "5821787f37ee5df19f1ef070e236de8b6a0b8f9c51128d57047a05e351e82f2d",
+      "bodySha256": "c92c4bdd5739632a8c71457f106fbe607a03f98057a57c6e9f111ebafa2011dc",
       "image": "https://speedandform.com/og/speed-and-form-20260930.jpg",
       "imageSha256": "e8524d995e65dee96af762b369d47beca1bb06a6bcd2dccbed7cb385369e05be",
       "preview": {
