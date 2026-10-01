@@ -75,14 +75,14 @@ jobs:
                 page.goto(url, wait_until='networkidle')
                 page.wait_for_selector('#adrian-update-20260930')
                 data = page.evaluate('() => ({version:STUDY.version, date:STUDY.currentRead.date, read:STUDY.currentRead.n, newestRun:STUDY.running[0], archived:STUDY.archive[0]})')
-                assert data['version'] == '2026.09.30.1'
-                assert data['date'] == '2026-09-30' and data['read'] == '07'
-                assert data['archived']['date'] == '2026-09-27' and data['archived']['n'] == '06'
-                assert data['newestRun']['date'] is None
-                assert data['newestRun']['averageRepSeconds'] is None
-                assert data['newestRun']['recoveries'] is None
+                assert data['version'] == '2026.09.30.1', data
+                assert data['date'] == '2026-09-30' and data['read'] == '07', data
+                assert data['archived']['date'] == '2026-09-27' and data['archived']['n'] == '06', data
+                assert data['newestRun']['date'] is None, data
+                assert data['newestRun']['averageRepSeconds'] is None, data
+                assert data['newestRun']['recoveries'] is None, data
                 panel = page.locator('#adrian-update-20260930')
-                text = panel.inner_text()
+                text = panel.text_content()
                 for expected in ['3,400–3,500', '5,000', '156.8', '69 seconds', '82 seconds', 'not proof']:
                   assert expected in text, expected
                 panel.scroll_into_view_if_needed()
@@ -92,22 +92,24 @@ jobs:
                 if width in [375, 390, 1440]:
                   page.screenshot(path=str(out / f'{engine_name}-{width}-intake.png'))
                 page.get_by_role('tab', name='Running', exact=True).click()
-                assert page.locator('#tab-2').get_attribute('aria-selected') == 'true'
-                assert page.locator('#pan-2').is_visible()
-                assert 'Running session records' in page.locator('#pan-2').inner_text()
+                assert page.locator('#tab-2').get_attribute('aria-selected') == 'true', 'Running tab not selected'
+                assert page.locator('#pan-2').is_visible(), 'Running panel not visible'
+                # textContent tests wording without CSS text-transform changing its case.
+                assert 'Running session records' in page.locator('#pan-2').text_content(), 'Running report heading missing'
                 run_row = page.locator('.sess--reports > li').first
-                assert run_row.is_visible()
-                run_text = run_row.inner_text()
+                assert run_row.is_visible(), 'Running report not visible'
+                run_text = run_row.text_content()
                 for expected in ['Filed', '12 × 400 m', '~82-second', 'last 69 s', 'full splits']:
-                  assert expected in run_text, expected
+                  assert expected in run_text, (expected, run_text)
                 run_row.scroll_into_view_if_needed()
+                if width in [375, 390, 1440]:
+                  page.screenshot(path=str(out / f'{engine_name}-{width}-running.png'))
                 for box in run_row.locator(':scope > span').all():
                   r = box.bounding_box()
                   assert r and r['x'] >= -1 and r['x'] + r['width'] <= width + 1, (engine_name, width, r)
                 load = run_row.locator('.load')
                 assert load.evaluate('(el) => el.scrollWidth <= el.clientWidth + 1'), (engine_name, width, 'split text clipped')
                 if width in [390, 1440]:
-                  page.screenshot(path=str(out / f'{engine_name}-{width}-running.png'))
                   page.locator('#read').scroll_into_view_if_needed()
                   page.screenshot(path=str(out / f'{engine_name}-{width}-current-read.png'))
                 if width == 390:
@@ -115,7 +117,7 @@ jobs:
                   panel.scroll_into_view_if_needed()
                   for box in panel.locator('p').all():
                     r = box.bounding_box()
-                    assert r['x'] >= -1 and r['x'] + r['width'] <= width + 1
+                    assert r['x'] >= -1 and r['x'] + r['width'] <= width + 1, (engine_name, width, 'enlarged intake', r)
                   page.screenshot(path=str(out / f'{engine_name}-390-enlarged.png'))
                 assert not errors, errors
                 reports.append({'browser':engine_name, 'width':width, 'status':'passed', 'runtime_errors':errors})
