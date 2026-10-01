@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "record_type": "media_attribution_correction",
+  "record_id": "adrian-running-strip-correction-20261001",
+  "study_id": "FRM-001",
+  "filed_on": "2026-10-01",
+  "correction_source": "Brice identified the first nine-frame baseline strip on the live Adrian study as not Adrian.",
+  "correction": {
+    "remove": "Hero/current-read area hard-coded STRIPS nine-frame 'Baseline running study'",
+    "retain": "Lower Running control S.media.fieldFrames strip; Brice identified this lower strip as Adrian.",
+    "do_not_reuse_removed_media": true,
+    "removed_media_is_adrian": false
+  },
+  "consequence": "The misattributed strip must not be presented as Adrian evidence or used to support Adrian-specific movement interpretation. Existing lower field-capture footage remains the Adrian running visual.",
+  "scope": {
+    "study_media_only": true,
+    "training_prescription_changed": false,
+    "nutrition_changed": false,
+    "native_assignment_changed": false
+  }
+}
