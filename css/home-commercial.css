@@ -19,3 +19,15 @@
 .header-inner,.header-right,.footer-top{flex-wrap:wrap}
 .hero-actions>a,.cta{max-width:100%}
 .ticks{color:var(--body)}
+
+/* Owner-supplied track atmosphere belongs only to the opening view. */
+.home-opening{background-color:#163023;background-image:linear-gradient(180deg,rgba(12,31,22,.14),rgba(12,31,22,.08) 55%,rgba(12,31,22,.65)),linear-gradient(90deg,rgba(12,31,22,.38),rgba(12,31,22,0) 65%),url('/assets/home/forest-track-20261001.webp');background-size:cover;background-position:center}
+.home-opening .header,.home-opening .sf-home-hero{background:transparent}
+.home-opening .sf-home-hero{padding-top:18px;padding-bottom:38px}
+.home-opening .hero-kicker{display:flex;align-items:center;gap:18px;color:#d6ddd0;letter-spacing:.13em}
+.home-opening .hero-kicker::before{content:"";display:block;width:38px;height:1px;background:currentColor;flex-shrink:0}
+.home-opening .home-hero-intro,.home-opening .home-hero-note{color:#d6ddd0}
+/* A curved left edge, entirely in CSS. Original portrait pixels remain unchanged. */
+.home-portrait-curve{border-top-left-radius:42% 50%;border-bottom-left-radius:42% 50%}
+.home-opening .home-hero-photo figcaption{color:var(--bone);font-size:13px}
+@media(max-width:600px){.home-opening{background-position:58% center;background-image:linear-gradient(180deg,rgba(8,28,18,.82),rgba(8,28,18,.76) 48%,rgba(8,28,18,.22) 65%,rgba(8,28,18,.55)),url('/assets/home/forest-track-20261001.webp')}.home-opening .sf-home-hero{padding-top:20px;padding-bottom:28px}.home-opening .hero-kicker{gap:14px}.home-opening .hero-kicker::before{width:28px}.home-opening .home-hero-photo figcaption{font-size:12px}}

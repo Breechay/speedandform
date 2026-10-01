@@ -8,8 +8,10 @@ Owner authorized publication of the approved palette, emblem-only headers/footer
 - [x] Forest/chalk applied to home, contact and six services; original Brice image replaces the mismatched personal introduction; Marcus and Saul remain in the practice section. No rejected portrait backing or chamfer.
 - [x] Brand authority, public build and share card aligned. Incorrect strength-photo identification, weak label contrast, contact radio focus and homepage 200% text overflow corrected.
 - [x] Exact static build, ten source suites, Chromium responsive/inquiry checks, broader public-route render review and automated accessibility checks passed. See the audit for scope and limits.
-- [ ] Complete Chromium/WebKit CI, record tested commit and inspect actual production after the authorized release.
-- [ ] Physical-phone review and a more dramatic photographic treatment remain separate follow-ups.
+- [x] Base refresh merged in PR #190 after Chromium/WebKit, ecosystem closure and RPD source-truth checks passed.
+- [x] Owner’s pre-publication follow-up incorporated: supplied track background, fine kicker rule and a curved CSS left photo edge. The original portrait is not regenerated.
+- [ ] Verify the combined first-fold follow-up and inspect actual production after the authorized release.
+- [ ] Physical-phone review remains a separate follow-up.
 
 
 ## October 1 - Speed That Endures: recovery is part of the result

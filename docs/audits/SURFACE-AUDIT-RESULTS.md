@@ -1,6 +1,6 @@
 # October 1, 2026: public house refresh and audit
 
-Owner authorization: publish the approved forest-and-chalk direction and improved Brice portrait crop, with the SF emblem alone in public headers and footers. The offset backing and clipped-corner experiments were rejected. Stronger photographic art direction remains open.
+Owner authorization: publish the approved forest-and-chalk direction and improved Brice portrait crop, with the SF emblem alone in public headers and footers. The offset backing and clipped-corner experiments were rejected. Before publication, Brice supplied a track background and asked to borrow the mockup’s treatment with a curved left edge while preserving the original photograph. This is now the first-fold treatment.
 
 Source base: `be9422c` on `origin/main`, including the concurrent October 1 Adrian and Speed That Endures publications. Release branch: `work/forest-chalk-20261001`. This report records local verification; the release receipt below must be completed after production is inspected.
 
@@ -31,8 +31,14 @@ Source base: `be9422c` on `origin/main`, including the concurrent October 1 Adri
 
 ## Limits and next action
 
-Physical iPhone/Android use is not claimed. Purchases, production inquiry delivery, private Console and native-app flows were not exercised. Public-data schedule behavior was checked with controlled fixtures, not used to invent a current gathering. Photo-edge drama remains a creative follow-up; the rejected treatments are not in this release.
+Physical iPhone/Android use is not claimed. Purchases, production inquiry delivery, private Console and native-app flows were not exercised. Public-data schedule behavior was checked with controlled fixtures, not used to invent a current gathering. The owner’s subsequent track background and CSS curve provide the first-fold treatment. The rejected backing/chamfer and generated portrait are not used.
+
+## First-fold follow-up
+
+Brice’s 9:54 AM New York follow-up supplies the background and asks for a curved left photo edge. The background is optimized from a 2.93 MB PNG to a 105 KB WebP at the same 1448×1086 dimensions. No track content is redrawn; the original portrait remains byte-for-byte unchanged. Header and hero share the background, with a dark overlay behind text. Existing copy, calls to action, account navigation and page order remain. Only the fine kicker rule and curved framing are borrowed from the mockup; extra slogans and the regenerated person are excluded.
+
+The initial phone crop put the bright mist behind the text. A stronger mobile-only overlay fixes that without darkening the desktop composition. Rendered-background sampling under text at 390/1440 px measured minimum contrast of 5.75:1 / 8.07:1 after the fix. Chromium’s complete responsive/inquiry suite passes on the combined build, including 200% text. [Phone first fold](20261001-house/home-phone.jpg) shows the mobile treatment.
 
 ## Release receipt
 
-Pending merge, cross-browser CI and production inspection. Source and screenshots alone are not evidence of publication.
+Base refresh: PR #190 merged as `564e2ed860fd3ac0efad520199a4b5319bc1fc0b`. Tested head `e31d03b1b7a09016166fe026c73cc346bfc0de4c` and tree `2d653744b6a5700c6cb5aa17e95c97e783344eed`; Chromium/WebKit workflow `36871882955`, ecosystem closure and RPD source-truth checks all passed. Publication was held to incorporate the owner’s first-fold follow-up. The combined production receipt follows after inspection; a merge alone is not publication.
