@@ -1,6 +1,12 @@
 # FORM: current state and next actions
 
 
+## October 1 - Sweeping portrait mask study
+
+- [x] Owner-requested preview at `design/experiments/sweep-mask-20261001/`: original Brice photograph, asymmetric SVG clip, photo flush to right edge, existing copy and track background.
+- [x] Chromium rendering at 390, 768, 1024 and 1440px: no horizontal overflow. Desktop and phone screenshots saved beside the preview. This is a local design study, not a production change or physical-device acceptance.
+- [ ] Owner review of the sweep before replacing the published portrait treatment. Current production remains the verified forest/track release below.
+
 ## October 1 - Forest-and-chalk public house
 
 Owner authorized publication of the approved palette, emblem-only headers/footers and Brice’s original portrait crop. [Audit and release receipt](../audits/SURFACE-AUDIT-RESULTS.md) records scope, findings, screenshots and verification. Existing copy, offers, prices, schedule authority, private records and FORM product/study styling remain in their current roles.
