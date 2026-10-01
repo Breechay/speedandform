@@ -1,6 +1,13 @@
 # FORM: current state and next actions
 
 
+## October 1 - Final portrait corner and quieter track
+
+- [x] Brice approved the enlarged top-left corner after rejecting the sweeping mask. Original photograph and crop remain; 160px desktop / 100px phone corner, other three square.
+- [x] Keep the green texture; neutral charcoal overlays reduce the bright haze and saturation in the desktop opening. Phone keeps the stronger readable overlay.
+- [x] Chromium render at 375/390/430/768/1024/1440px, reduced motion and 200% text: no horizontal overflow. Homepage source/metadata checks and exact Netlify build passed. Sampled opening text contrast minimum 5.75:1 phone / 9.10:1 desktop.
+- [ ] Publish once and verify the actual production corner and stylesheet version.
+
 ## October 1 - Forest-and-chalk public house
 
 Owner authorized publication of the approved palette, emblem-only headers/footers and Brice’s original portrait crop. [Audit and release receipt](../audits/SURFACE-AUDIT-RESULTS.md) records scope, findings, screenshots and verification. Existing copy, offers, prices, schedule authority, private records and FORM product/study styling remain in their current roles.
