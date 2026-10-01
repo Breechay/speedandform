@@ -1,5 +1,14 @@
 # FORM: current state and next actions
 
+## October 1 - Speed That Endures: recovery is part of the result
+
+The public Week 6 read keeps the September 29 six-mile results intact and adds one interpretation the performance numbers did not carry by themselves: **recovery is part of the result.** Later-day and next-morning response now belong in the study read alongside pace and completion. Worry about losing fitness is treated as real athlete context; the coaching aim is continuity across the block, not protecting every planned mile.
+
+- [x] Public study interpretation updated without changing the September 29 evidence, individual pace bands, Week 7 prescription, canonical athlete assignment or completed history.
+- [x] No private hip detail, diagnosis, PT detail or new athlete quote published. The private coaching record remains the place for those specifics.
+- [ ] Verify the October 1 source on production before calling this interpretation live; physical-phone review remains separate.
+
+
 ## October 1 - Adrian 160 lb report, strength progression and tape follow-up
 
 Source: [October 1 weight and strength report](../studies/ADRIAN-WEIGHT-UPDATE-20261001.json). Adrian reports 160 lb and calls it “starting weight.” This is a new report, not a correction to the original 156 lb report or September 25 156.8 lb reading. Measurement conditions remain unconfirmed. A second supplied screenshot, described by Brice as from last week, records Adrian's surprise that his first two exercises were 5–10 lb heavier than last time after a repeat-plan instruction of +5 lb if possible. Exact exercise/load/repetition details are still missing, so this is strength-progression evidence without a causal nutrition, weight-gain or hypertrophy claim.
