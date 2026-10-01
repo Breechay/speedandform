@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "publication": "SIMON-003-EVIDENCE-20260929",
-  "approved_by": "Coach instruction in the September 23 study review",
+  "publication": "SIMON-003-EVIDENCE-20261001",
+  "approved_by": "Coach instruction in the October 1 study update",
   "scope": "Approved historical study excerpts. Not a complete activity history and not an automated publication of private filings.",
   "archive": {
     "uploaded_name": "Archive(20260923-230652).zip",
@@ -277,6 +277,91 @@
       "heart_rate_values_supplied": false,
       "execution_context": "After rep 3, another coach told Simon his heart rate appeared too high for threshold work. Simon did not clarify that the session was working half-marathon pace, not threshold. He deliberately slowed rep 4. Brice does not use a fixed heart-rate cap for this plan and reports that Simon typically runs with a relatively high heart rate.",
       "observation": "The four-rep work average is inside the 3:47-3:52/km working band, but the distribution is not a clean pace-hold read: reps 1-3 were slightly faster than the band and rep 4 was intentionally slowed after outside heart-rate advice. Do not label rep 4 a physiological fade or use heart rate as a threshold gate. Pace access is evident; progression still depends on normal recovery and controlled execution."
+    },
+    {
+      "date": "2026-10-01",
+      "source": "Athlete-shared Garmin interval screenshot supplied by coach",
+      "state": "recorded_intervals",
+      "title": "5 x 3:00 VO2 / 2:00 recovery",
+      "warm_up": {
+        "seconds": 1200,
+        "distance_km": 3.65,
+        "pace_s_km": 328
+      },
+      "recorded_work": [
+        {
+          "rep": 1,
+          "seconds": 180,
+          "distance_km": 0.83,
+          "pace_s_km": 218
+        },
+        {
+          "rep": 2,
+          "seconds": 180,
+          "distance_km": 0.86,
+          "pace_s_km": 209
+        },
+        {
+          "rep": 3,
+          "seconds": 180,
+          "distance_km": 0.84,
+          "pace_s_km": 214
+        },
+        {
+          "rep": 4,
+          "seconds": 180,
+          "distance_km": 0.84,
+          "pace_s_km": 214
+        },
+        {
+          "rep": 5,
+          "seconds": 180,
+          "distance_km": 0.84,
+          "pace_s_km": 215
+        }
+      ],
+      "prescribed_recovery_seconds": 120,
+      "recorded_recoveries": [
+        {
+          "after_rep": 1,
+          "seconds": 120,
+          "distance_km": 0.33,
+          "pace_s_km": 359
+        },
+        {
+          "after_rep": 2,
+          "seconds": 120,
+          "distance_km": 0.3,
+          "pace_s_km": 395
+        },
+        {
+          "after_rep": 3,
+          "seconds": 120,
+          "distance_km": 0.29,
+          "pace_s_km": 413
+        },
+        {
+          "after_rep": 4,
+          "seconds": 120,
+          "distance_km": 0.27,
+          "pace_s_km": 437
+        },
+        {
+          "after_rep": 5,
+          "seconds": 13,
+          "distance_km": 0.02,
+          "pace_s_km": 571
+        }
+      ],
+      "cool_down": {
+        "seconds": 424.5,
+        "distance_km": 1.23,
+        "pace_s_km": 344
+      },
+      "recorded_work_seconds": 900,
+      "recorded_work_distance_km": 4.21,
+      "derived_work_pace_s_km": 213.77672209026127,
+      "observation": "15 minutes of recorded work. Rep paces were 3:38, 3:29, 3:34, 3:34 and 3:35/km. After the faster second repetition, reps 3-5 stayed within one second per kilometre. This is a clean repeated-speed execution record; no heart-rate, RPE, reserve or next-day recovery was supplied, so do not infer VO2max or recovery cost from pace alone."
     }
   ],
   "race_anchors": [
@@ -302,6 +387,7 @@
     "Garmin effort is activity-level. Do not equate its 3/10 directly with another system's RPE 7 without checking reporting context.",
     "A race goal, watch zone, execution score, or stamina estimate is not proof of threshold, reserve, or VO2max.",
     "Historical volume does not confirm recent readiness; a new comparison needs context and recovery.",
-    "Sep 29 W1 is not a clean within-band distribution test because rep 4 was deliberately slowed after an external heart-rate intervention. Preserve the intervention instead of interpreting the last rep as spontaneous fade."
+    "Sep 29 W1 is not a clean within-band distribution test because rep 4 was deliberately slowed after an external heart-rate intervention. Preserve the intervention instead of interpreting the last rep as spontaneous fade.",
+    "Oct 1 repeated-speed execution is pace evidence only: heart rate, RPE, reserve and next-day recovery were not supplied, so do not infer VO2max or recovery cost."
   ]
 }
