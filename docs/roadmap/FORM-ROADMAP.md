@@ -1,5 +1,12 @@
 # FORM: current state and next actions
 
+## October 1 - Adrian media attribution correction
+
+Brice identified the first hard-coded nine-frame “Baseline running study” strip on Adrian's public study as a different athlete. It is removed from the Adrian page and must not be reused as Adrian evidence. The separate lower Running-control field strip (S.media.fieldFrames) is retained; Brice confirmed that lower strip is Adrian. Machine-readable correction: [ADRIAN-MEDIA-CORRECTION-20261001.json](../studies/ADRIAN-MEDIA-CORRECTION-20261001.json).
+
+This is an evidence-integrity correction only. No strength, running, nutrition, measurement, athlete-system or Forge prescription changes.
+
+
 ## October 1 afternoon - Adrian intake strategy and training-day report
 
 Source: [October 1 afternoon athlete report](../studies/ADRIAN-INTAKE-TRAINING-UPDATE-20261001-PM.json). Adrian reports a protein shake around 690 kcal after adding an egg and one tablespoon of olive oil, estimated by him at about 190 added kcal with no noticeable taste change. He later reports a roughly 1,600 kcal meal and describes a good workout day of one hour walking, one hour running and one hour of legs. These are athlete reports, not verified calorie totals or measured energy expenditure.
