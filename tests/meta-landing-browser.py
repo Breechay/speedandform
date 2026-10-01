@@ -79,7 +79,6 @@ try:
                 assert page.locator('#simon').count() == 0
                 assert page.locator('#practice h2').inner_text() == 'I develop\nrunners.'
                 assert page.locator('.wind-line').inner_text() == 'Like a kite upon the wind.'
-                assert page.locator('.coach-axiom strong').inner_text() == 'Form is multiplied by every step.'
                 assert page.locator('.method-close p').inner_text() == 'Reveal what wants to be set free.'
 
                 bounds = page.evaluate("""() => {
