@@ -1,6 +1,6 @@
 {
   "authorization": "Brice supplied the archives and confirmed athlete consent on October 1, 2026.",
-  "processing": "Original photographs; EXIF orientation, proportional resize and WebP encoding only. No generative editing; metadata removed. Dates not inferred for files with invalid EXIF.",
+  "processing": "Original photographs; EXIF orientation, proportional resize and WebP encoding only. No generative editing; metadata removed. Dates not inferred for files with invalid EXIF. Owner-selected track-drive uses a crop of the real source, x800/y900/4000\u00d72400, preserving complete bodies of the central athletes.",
   "photos": [
     {
       "archive": "Archive 2(20261001-181004).zip",
@@ -71,6 +71,28 @@
         "road-rhythm-800.webp",
         "road-rhythm-1600.webp"
       ]
+    },
+    {
+      "archive": "Archive(20261001-181038).zip",
+      "name": "IMG_8069.JPG",
+      "sha256": "46942db611fa0f9ce1e78de371df7cc7b73ddb59954850f1b7064bf81cbe0864",
+      "asset": "track-drive",
+      "derivatives": [
+        "track-drive-800.webp",
+        "track-drive-1600.webp"
+      ],
+      "selection": "Matches the owner\u2019s Strava group screenshot. Replaces the rejected sky-heavy starting-together placement."
+    },
+    {
+      "archive": "Archive 2(20261001-181004).zip",
+      "name": "IMG_8052.JPG",
+      "sha256": "d061bb6ed1c1ad50bbd1ae5bfd84b0d62cbf0a7fa0ca5be7f570ca802cfb783e",
+      "asset": "thursday-people",
+      "derivatives": [
+        "thursday-people-800.webp",
+        "thursday-people-1600.webp"
+      ],
+      "crop": "x0/y700/6000\u00d73300; remove empty sky, retain all group members and complete bodies."
     }
   ]
 }

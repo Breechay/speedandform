@@ -51,3 +51,13 @@
 .distance-ring{padding:24px 12px;min-height:min-content}.study-intro h2{hyphens:manual}.athlete-pace{white-space:nowrap}
 @media(max-width:700px){.study-record{grid-template-columns:1fr}.study-record>div{border-left:0!important;padding-left:0!important}.study-record>div:not(:last-child){border-bottom:1px solid #344239}}
 @media(max-width:700px){.distance-ring{aspect-ratio:auto;min-height:330px}.distance-ring>p{flex-shrink:0}}
+
+/* Owner's Strava selection: movement leads, full-body framing retained. */
+.practice-grid{display:block}.practice-title{display:grid;grid-template-columns:.85fr 1.15fr;column-gap:80px;align-items:start}.practice-title>p,.practice-title>h2{grid-column:1}.practice-title .arguments{grid-column:2;grid-row:1/span 4;margin-top:0}.practice-photo{position:static;margin-top:44px}.practice-photo img{aspect-ratio:5/3;height:auto;object-fit:contain;object-position:center;border-radius:0}
+@media(max-width:700px){.practice-title{display:block}.practice-title .arguments{margin-top:30px}.practice-photo{margin-top:32px}}
+
+.home-field-invitation{max-width:32ch}.home-field-invitation>p{font-size:20px;line-height:1.55;color:var(--body)}.home-field-invitation .text-link{margin-top:16px}.home-field-community img{width:100%;height:auto;aspect-ratio:20/11;object-fit:contain}.home-field-invitation a{font-weight:600}
+@media(max-width:700px){.home-field-invitation{margin-top:24px}.home-field-invitation>p{font-size:18px}}
+
+.practice-title>.practice-coaching-link{grid-column:1;margin-top:20px}.practice-title>h2{max-width:11ch}.practice-title>p:not(.practice-pillars){max-width:35ch}
+@media(max-width:700px){.practice-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:0}.practice-title{display:contents}.practice-title>.eyebrow{order:1}.practice-title>h2{order:2}.practice-title>p:not(.practice-pillars){order:3}.practice-photo{order:4;margin-top:24px}.practice-title>.arguments{order:5;grid-row:auto;grid-column:1;margin-top:28px}.practice-title>.practice-pillars{order:6;margin-top:24px}.practice-title>.practice-coaching-link{order:7}}

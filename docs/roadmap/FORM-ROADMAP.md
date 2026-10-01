@@ -1,6 +1,13 @@
 # FORM: current state and next actions
 
 
+## October 1 - Owner correction: reader-first copy and Strava photograph
+
+- [x] Rejected sky-heavy practice crop replaced with Brice’s Strava-selected IMG_8069, central bodies/stride preserved in a wide frame. Portfolio selection follows.
+- [x] Practice now speaks to runner goals and explains the coaching relationship; running/strength headings lead with desired outcomes. Community section is a concrete Thursday invitation; abstract effort/recovery captions removed.
+- [x] Desktop copy in two columns above the wide image; phones show the photo before detailed benefits. Six widths, 200% text, native disclosure/inquiry contracts and homepage Axe review passed locally.
+- [ ] Final Chromium/WebKit release checks, combined publication and production verification. Prices, private records and original Brice introduction remain.
+
 ## October 1 - Stronger public typography and real practice photographs
 
 - [x] Owner approved the expressive study preview and wider public treatment, supplied four photo archives and confirmed athlete consent.

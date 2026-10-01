@@ -101,3 +101,9 @@ A beautiful house that lies about its schedule is not beautiful.
 ## October 1: expressive public continuation
 
 Brice approved the study/typography exploration and authorized extending it across recent reachable public surfaces with supplied real photographs and athlete consent. Display typography is bold Inter Tight with deliberate scale and tighter heading tracking; body copy stays quiet and readable. House pages alternate forest/chalk, with a distinct dark/lime public study feature. Homepage introduction retains the original B&W Brice photograph and top-left-only round corner. No generated or retouched athlete identities. Community schedule and FORM product/study rooms keep their owning sources.
+
+## October 1 owner correction: reader first, photograph with purpose
+
+Start public service sections with what the visitor wants: run farther, feel smoother, improve their form, get stronger, build muscle or get leaner. Then show what Brice does and what the visitor receives. Preserve the actual coaching philosophy in the deeper explanation; do not assemble coach quotations as a substitute for a buyer’s reason to care. A community section should clearly invite a local runner and link to the next confirmed gathering, not add abstract photo captions. Do not promise a pain cure or guaranteed body-composition result.
+
+The owner rejected the sky-heavy IMG_8047 portrait crop. Use his Strava selection IMG_8069 for the practice photograph, preserving central athletes’ complete bodies in a wide frame. Give the photo a deliberate relationship to the copy; show it before the detail on phones.
