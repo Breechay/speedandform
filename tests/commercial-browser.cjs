@@ -69,6 +69,13 @@ const artifacts=process.env.SF_QA_ARTIFACTS||'/tmp/sf-commercial-qa';fs.mkdirSyn
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,route+' fits at '+width);
   await page.screenshot({path:path.join(artifacts,route.slice(1)+'-'+width+'.png'),fullPage:true});
  }
+ // Contact shares the house without losing a visible radio focus indicator.
+ for(const width of [375,390,430,768,1024,1440]){
+  await page.setViewportSize({width,height:900});await page.goto(origin+'/contact');
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,'Contact fits at '+width);
+ }
+ await page.locator('input[value=Coaching]').focus();
+ assert.equal(await page.locator('input[value=Coaching]+span').evaluate(e=>getComputedStyle(e).outlineStyle),'solid');
  // Specific package links carry the visible selection and keyboard focus into the form.
  await page.setViewportSize({width:390,height:900});
  for(const [route,choices] of [
@@ -110,14 +117,16 @@ const artifacts=process.env.SF_QA_ARTIFACTS||'/tmp/sf-commercial-qa';fs.mkdirSyn
  await page.locator('input[name=program][value=both]').check();
  assert.match(await page.locator('#inquiry-step').innerText(),/selected coaching block/);
  // Large type must remain accessible; no overflow hidden used to conceal it.
- await page.setViewportSize({width:390,height:900});await page.goto(origin+'/coaching/strength/');
+ for(const route of [...routes,'/contact']){
+ await page.setViewportSize({width:390,height:900});await page.goto(origin+route);
  await page.evaluate(()=>{const styles=[...document.querySelectorAll('h1,h2,h3,p,a,label,legend,input,textarea,select,button,summary,li,dt,dd,.sf-price')].map(e=>[e,parseFloat(getComputedStyle(e).fontSize)]);styles.forEach(([e,size])=>e.style.setProperty('font-size',size*2+'px','important'));});
  const textOverflow=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth+1, nodes:[...document.querySelectorAll('body *')].filter(e=>{const b=e.getBoundingClientRect();return b.width>0&&b.right>innerWidth+1;}).slice(0,15).map(e=>({tag:e.tagName,cls:e.className,width:e.getBoundingClientRect().width,text:e.textContent.slice(0,80)}))}));
  if(textOverflow.overflow){
   console.log('REFLOW DIAGNOSTIC',await page.evaluate(()=>({viewport:innerWidth,root:document.documentElement.scrollWidth,body:document.body.scrollWidth,internal:[...document.querySelectorAll('body *')].filter(e=>e.clientWidth>0&&e.scrollWidth>e.clientWidth+1).map(e=>({tag:e.tagName,cls:e.className,client:e.clientWidth,scroll:e.scrollWidth,text:e.textContent.slice(0,90)})).slice(-25)})));
-  await page.screenshot({path:path.join(artifacts,'strength-enlarged-failure.png'),fullPage:true});
+  await page.screenshot({path:path.join(artifacts,(route.replaceAll('/','')||'home')+'-enlarged-failure.png'),fullPage:true});
  }
- assert.equal(textOverflow.overflow,false,'200% text reflows: '+JSON.stringify(textOverflow.nodes));
+ assert.equal(textOverflow.overflow,false,route+' 200% text reflows: '+JSON.stringify(textOverflow.nodes));
+ }
  // Real form code, rejected receipt, retained values, then accepted retry.
  await page.goto(origin+'/coaching/strength/?utm_source=google&utm_medium=cpc&utm_campaign=strength_test');
  await page.locator('#inquiry-name').fill('QA Example');await page.locator('#inquiry-email').fill('qa@example.invalid');
@@ -157,5 +166,5 @@ const artifacts=process.env.SF_QA_ARTIFACTS||'/tmp/sf-commercial-qa';fs.mkdirSyn
  const n=submissions.length;await page.goto(origin+'/analysis/?form_qa=1');
  assert.equal(await page.evaluate(()=>window.sfSubmitInquiry({offer:'analysis'}).then(()=>false,()=>true)),true);assert.equal(submissions.length,n);
  assert.deepEqual(missing,[]);assert.deepEqual(errors,[]);
- await browser.close();console.log('PASS: 42 responsive service views; plans order/reflow; package link selection, focus and delivery; 200% type; submission failure, retry, idempotent ID, running intake, accepted-only measurement, privacy, QA write block. No live messages or records.');
+ await browser.close();console.log('PASS: 42 responsive service views and 6 contact views; plans order/reflow; package link selection, focus and delivery; 200% type on all house pages; submission failure, retry, idempotent ID, running intake, accepted-only measurement, privacy, QA write block. No live messages or records.');
 })().catch(error=>{console.error(error);process.exit(1)});

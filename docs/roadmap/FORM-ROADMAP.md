@@ -1,5 +1,17 @@
 # FORM: current state and next actions
 
+
+## October 1 - Forest-and-chalk public house
+
+Owner authorized publication of the approved palette, emblem-only headers/footers and Brice’s original portrait crop. [Audit and release receipt](../audits/SURFACE-AUDIT-RESULTS.md) records scope, findings, screenshots and verification. Existing copy, offers, prices, schedule authority, private records and FORM product/study styling remain in their current roles.
+
+- [x] Forest/chalk applied to home, contact and six services; original Brice image replaces the mismatched personal introduction; Marcus and Saul remain in the practice section. No rejected portrait backing or chamfer.
+- [x] Brand authority, public build and share card aligned. Incorrect strength-photo identification, weak label contrast, contact radio focus and homepage 200% text overflow corrected.
+- [x] Exact static build, ten source suites, Chromium responsive/inquiry checks, broader public-route render review and automated accessibility checks passed. See the audit for scope and limits.
+- [ ] Complete Chromium/WebKit CI, record tested commit and inspect actual production after the authorized release.
+- [ ] Physical-phone review and a more dramatic photographic treatment remain separate follow-ups.
+
+
 ## October 1 - Speed That Endures: recovery is part of the result
 
 The public Week 6 read keeps the September 29 six-mile results intact and adds one interpretation the performance numbers did not carry by themselves: **recovery is part of the result.** Later-day and next-morning response now belong in the study read alongside pace and completion. Worry about losing fitness is treated as real athlete context; the coaching aim is continuity across the block, not protecting every planned mile.
