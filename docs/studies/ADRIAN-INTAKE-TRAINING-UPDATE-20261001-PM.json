@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "record_type": "athlete_intake_and_training_report",
+  "record_id": "adrian-intake-training-20261001-pm",
+  "study_id": "FRM-001",
+  "athlete": "Adrian Gandara",
+  "filed_on": "2026-10-01",
+  "source": {
+    "type": "owner_supplied_message_screenshots",
+    "screenshots_published": false,
+    "displayed_time": "Today 4:15 PM",
+    "date_context": "Filed October 1 in America/New_York from screenshots supplied by Brice."
+  },
+  "intake": {
+    "shake": {
+      "athlete_report": "cracking an egg and adding a tablespoon of olive oil to my protein shake adds 190 cals and it makes no difference in the taste with all the things in there",
+      "reported_total_kcal_approx": 690,
+      "reported_added_kcal": 190,
+      "egg_cooked_status": "appears intended to be added directly to shake; pasteurization status unknown",
+      "olive_oil_amount": "1 tablespoon",
+      "calories_independently_verified": false
+    },
+    "later_meal": {
+      "athlete_report": "And feasting 1600 cals now",
+      "reported_kcal_approx": 1600,
+      "items_visible_but_not_itemized": true,
+      "calories_independently_verified": false
+    },
+    "interpretation": "Adrian is finding self-selected ways to make the working intake target easier to reach. This is adherence/tolerance evidence, not a new calorie target or proof of surplus."
+  },
+  "training": {
+    "athlete_report": "just had a good workout day today",
+    "components_reported": [
+      {
+        "activity": "walk",
+        "duration_minutes": 60
+      },
+      {
+        "activity": "run",
+        "duration_minutes": 60
+      },
+      {
+        "activity": "legs",
+        "duration_minutes": 60
+      }
+    ],
+    "intensity": null,
+    "distance": null,
+    "run_pace": null,
+    "strength_exercises": null,
+    "loads": null,
+    "reps": null,
+    "energy_expenditure": null,
+    "interpretation": "A high-volume day by reported duration. Quality, intensity and recovery response are not yet known; no energy-expenditure estimate is inferred."
+  },
+  "safety_note": {
+    "raw_egg_food_safety": "If the egg is consumed raw or undercooked, pasteurized egg/egg product is the safer choice; the study does not endorse unpasteurized raw egg use."
+  },
+  "monitoring_unchanged": {
+    "working_target_kcal_approx": 3400,
+    "daily_intake_logging_through": "2026-10-04",
+    "training_prescription_changed": false
+  },
+  "next_evidence": [
+    "full-day intake total",
+    "whether the egg is pasteurized/cooked",
+    "run distance/pace or effort",
+    "leg-session exercises/loads/reps",
+    "next-day appetite, GI and leg/recovery response"
+  ],
+  "scope": {
+    "public_study_update": true,
+    "screenshots_public": false,
+    "nutrition_target_changed": false,
+    "training_prescription_changed": false,
+    "native_assignment_changed": false,
+    "calendar_or_message_write": false
+  }
+}

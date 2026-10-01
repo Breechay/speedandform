@@ -1,5 +1,18 @@
 # FORM: current state and next actions
 
+## October 1 afternoon - Adrian intake strategy and training-day report
+
+Source: [October 1 afternoon athlete report](../studies/ADRIAN-INTAKE-TRAINING-UPDATE-20261001-PM.json). Adrian reports a protein shake around 690 kcal after adding an egg and one tablespoon of olive oil, estimated by him at about 190 added kcal with no noticeable taste change. He later reports a roughly 1,600 kcal meal and describes a good workout day of one hour walking, one hour running and one hour of legs. These are athlete reports, not verified calorie totals or measured energy expenditure.
+
+The study interpretation is adherence, not causation: Adrian is independently finding compact ways to make the existing intake target easier to reach. The ~3,400 kcal working target and October 4 logging endpoint remain unchanged. Full-day intake, run details, leg-session loads/reps and next-day response remain open. If the egg is consumed raw or undercooked, pasteurized egg or egg product is the safer choice; pasteurization status is unknown and raw unpasteurized egg use is not endorsed.
+
+- [x] Source record, current read 09, prior read archive, nutrition summary, timeline and evidence queue updated together.
+- [ ] Athlete ecosystem closure and production verification after promotion.
+- [ ] Collect full-day intake and next-day recovery; keep repeat tape measurements from the morning update open.
+
+No training/nutrition prescription, native assignment, private console, calendar or message write.
+
+
 
 ## October 1 - Outside-in audit, practical food support and current study evidence
 
