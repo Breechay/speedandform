@@ -2,7 +2,7 @@
 
 Owner authorization: publish the approved forest-and-chalk direction and improved Brice portrait crop, with the SF emblem alone in public headers and footers. The offset backing and clipped-corner experiments were rejected. Before publication, Brice supplied a track background and asked to borrow the mockup’s treatment with a curved left edge while preserving the original photograph. This is now the first-fold treatment.
 
-Source base: `be9422c` on `origin/main`, including the concurrent October 1 Adrian and Speed That Endures publications. Release branch: `work/forest-chalk-20261001`. This report records local verification; the release receipt below must be completed after production is inspected.
+Source base: `be9422c` on `origin/main`, including the concurrent October 1 Adrian and Speed That Endures publications. Release branch: `work/forest-chalk-20261001`. This report records source, browser and actual production verification; the release receipt below identifies the published source and remaining limits.
 
 ## Findings and fixes
 
@@ -41,9 +41,20 @@ The initial phone crop put the bright mist behind the text. A stronger mobile-on
 
 ## Release receipt
 
-Base refresh: PR #190 merged as `564e2ed860fd3ac0efad520199a4b5319bc1fc0b`. Tested head `e31d03b1b7a09016166fe026c73cc346bfc0de4c` and tree `2d653744b6a5700c6cb5aa17e95c97e783344eed`; Chromium/WebKit workflow `36871882955`, ecosystem closure and RPD source-truth checks all passed. Publication was held to incorporate the owner’s first-fold follow-up. The combined production receipt follows after inspection; a merge alone is not publication.
+Base refresh: PR #190 merged as `564e2ed860fd3ac0efad520199a4b5319bc1fc0b`. Tested head `e31d03b1b7a09016166fe026c73cc346bfc0de4c` and tree `2d653744b6a5700c6cb5aa17e95c97e783344eed`; Chromium/WebKit workflow `36871882955`, ecosystem closure and RPD source-truth checks all passed. Publication was held to incorporate the owner’s first-fold follow-up. The final production receipt below records the combined release; a merge alone is not publication.
 
 
-The combined refresh was first published as Netlify deploy `6abe69c2d3f1b32cbe3efc45` at `2026-10-01T14:10:27.440Z`, from the clean source export of merged main `34bc1d2cb22f7f7298d766db601c3fced706b82f`. Live visual inspection confirmed the supplied background, CSS curve and original photo. That inspection also found the wrapper crossing the main landmark boundary: later sections rendered outside main. The correction places the complete opening inside main and positions the global header over it; visual geometry is retained. Browser assertions now require the coaching and inquiry sections inside the single main landmark. Final corrected publication is recorded below after verification.
+The combined refresh was first published as Netlify deploy `6abe69c2d3f1b32cbe3efc45` at `2026-10-01T14:10:27.440Z`, from the clean source export of merged main `34bc1d2cb22f7f7298d766db601c3fced706b82f`. Live visual inspection confirmed the supplied background, CSS curve and original photo. That inspection also found the wrapper crossing the main landmark boundary: later sections rendered outside main. The correction places the complete opening inside main and positions the global header over it; visual geometry is retained. Browser assertions now require the coaching and inquiry sections inside the single main landmark. Final corrected publication is recorded below.
 
 Deployment note: export the verified commit with `git archive` before using the Netlify MCP uploader. A Git worktree’s `.git` pointer is not portable; first attempt `6abe6974a5810d3172797530` failed during repository preparation. The source-export upload completed normally.
+
+## Final production verification
+
+- Published source: `8bbb3e43b78376b75dac5aa713def263b2b1034b` (PR #192); tree `d946cd04a4987ce97581df1472745f6ce3eea489`. The clean source export exactly matches the verified merged tree.
+- Netlify deploy `6abe6b9d354d73267b15133b` is **ready and published** at `2026-10-01T14:18:18.519Z` (October 1, 10:18 AM New York), on https://speedandform.com/. This is a source-archive upload, so Netlify `commit_ref` is null.
+- Tested head `80650ac0d23a054b46bc583dd9a526cfc8f2303c` passed Chromium and WebKit in workflow `36874815875`. The prior background head `fcc76cc7ae3187936e7b352d8a551d579b8a2555` passed workflow `36873241764` and ecosystem closure.
+- Actual production browser verification confirmed the versioned `home-commercial.css?v=20261001-track-main`, supplied track asset, original `coaching-track.webp`, `42% 50%` left curve, two emblem-only home links, one main containing both coaching and inquiry, and the global header outside main.
+- Live running, strength, analysis, work, photography, AI setup and contact routes rendered the forest palette and emblem-only links. Plans, Labs and FORM public routes also opened without horizontal overflow in the inspected desktop view. Existing product/room identity remains; no private app or physical-device claim is made.
+- No production inquiry or purchase was submitted. The audit’s simulated delivery, privacy and retry evidence remains distinct from live delivery testing.
+
+The post-publication documentation commit uses `[skip netlify]` to avoid paying for another unchanged-site deploy solely to record this receipt.

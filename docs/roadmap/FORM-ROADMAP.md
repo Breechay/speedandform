@@ -10,7 +10,7 @@ Owner authorized publication of the approved palette, emblem-only headers/footer
 - [x] Exact static build, ten source suites, Chromium responsive/inquiry checks, broader public-route render review and automated accessibility checks passed. See the audit for scope and limits.
 - [x] Base refresh merged in PR #190 after Chromium/WebKit, ecosystem closure and RPD source-truth checks passed.
 - [x] Owner’s pre-publication follow-up incorporated: supplied track background, fine kicker rule and a curved CSS left photo edge. The original portrait is not regenerated.
-- [ ] Verify the combined first-fold follow-up and inspect actual production after the authorized release.
+- [x] Combined release verified on production. Final source `8bbb3e43b78376b75dac5aa713def263b2b1034b`; Netlify `6abe6b9d354d73267b15133b`, published October 1 at 10:18 AM New York. Chromium/WebKit workflow `36874815875` passed; actual browser inspection confirms the supplied background, original curved portrait, emblem-only links and complete main landmark. See the audit receipt for route coverage and limits.
 - [ ] Physical-phone review remains a separate follow-up.
 
 
