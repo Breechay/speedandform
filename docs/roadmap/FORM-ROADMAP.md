@@ -6,7 +6,7 @@
 - [x] Brice approved the enlarged top-left corner after rejecting the sweeping mask. Original photograph and crop remain; 160px desktop / 100px phone corner, other three square.
 - [x] Keep the green texture; neutral charcoal overlays reduce the bright haze and saturation in the desktop opening. Phone keeps the stronger readable overlay.
 - [x] Chromium render at 375/390/430/768/1024/1440px, reduced motion and 200% text: no horizontal overflow. Homepage source/metadata checks and exact Netlify build passed. Sampled opening text contrast minimum 5.75:1 phone / 9.10:1 desktop.
-- [ ] Publish once and verify the actual production corner and stylesheet version.
+- [x] Published source `17e121fe205d2122edadd43c007f5518498862c6` (tree `126899c016359f9941598888485f844f8fa056c2`), Netlify `6abe9a7750bf79c5e3d9be07`, ready and published October 1 at 1:38 PM New York. Chromium/WebKit release workflow `36900200141` passed. Actual production browser inspection confirms `20261001-track-corner`, 160px / 0 / 0 / 0 corners, no mask, the neutral track gradients and original image, with no horizontal overflow. Source-archive deployment has no Netlify commit_ref; exported tree matches the merged source.
 
 ## October 1 - Forest-and-chalk public house
 
