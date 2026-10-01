@@ -10,7 +10,8 @@
     "screenshot_published": false,
     "athlete_quote": "160LBS STARTING WEIGHT",
     "displayed_message_time": "Today 8:21 AM",
-    "report_date_context": "Filed October 1 in America/New_York; Today is relative to the supplied screenshot, not an independently verified measurement date."
+    "report_date_context": "Filed October 1 in America/New_York; Today is relative to the supplied screenshot, not an independently verified measurement date.",
+    "additional_owner_supplied_context": "Brice supplied a second message screenshot on October 1 and says it is from last week; exact message/session date is not independently verified."
   },
   "weight": {
     "value_lb": 160,
@@ -46,7 +47,10 @@
   "monitoring_unchanged": {
     "working_target_kcal_approx": 3400,
     "daily_intake_logging_through": "2026-10-04",
-    "comparable_morning_weights_per_week": [1, 3]
+    "comparable_morning_weights_per_week": [
+      1,
+      3
+    ]
   },
   "scope": {
     "public_study_projection_only": true,
@@ -54,6 +58,27 @@
     "training_or_nutrition_prescription_changed": false,
     "native_assignment_or_sync_changed": false,
     "private_console_updated": false,
-    "calendar_or_message_sent": false
+    "calendar_or_message_sent": false,
+    "strength_progress_evidence_added": true
+  },
+  "strength_progress": {
+    "status": "athlete report from an earlier message supplied October 1",
+    "exact_date": null,
+    "date_context": "Brice says the screenshot is from last week; exact date not verified.",
+    "coach_instruction_shown": "Repeat the loaded plan with +5 lb if possible.",
+    "athlete_question": "Am i supposed to be that much stronger already",
+    "athlete_followup": "So far first two exercises have been 5-10lbs heavier than last time",
+    "interpretation": "Adrian appears surprised by how quickly his usable training loads are progressing. This supports a strength-progression observation, but the exercise names, prior/current loads, reps, set quality and recovery are not supplied.",
+    "causation": null,
+    "hypertrophy_claim": false,
+    "nutrition_causation_claim": false,
+    "prescription_changed_by_this_record": false,
+    "next_evidence": [
+      "exercise names",
+      "previous and current loads",
+      "reps completed",
+      "reps in reserve or set quality",
+      "next-session repeatability and recovery"
+    ]
   }
 }
