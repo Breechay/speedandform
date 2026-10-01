@@ -1,0 +1,170 @@
+name: Adrian September 30 study update
+on:
+  push:
+    branches: [work/adrian-study-update-20260930]
+    paths:
+      - .github/workflows/adrian-study-update-20260930.yml
+      - scripts/apply-adrian-study-update-20260930.py
+      - scripts/finalize-adrian-study-update-20260930.py
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: adrian-study-update-20260930
+  cancel-in-progress: false
+jobs:
+  update-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply report and prove idempotency
+        run: |
+          mkdir -p /tmp/adrian-study-update-20260930
+          python scripts/apply-adrian-study-update-20260930.py
+          python scripts/finalize-adrian-study-update-20260930.py
+          sha256sum labs/adrian-runner-mass/index.html docs/studies/ADRIAN-ATHLETE-UPDATE-20260930.json docs/roadmap/FORM-ROADMAP.md > /tmp/adrian-before.sha
+          python scripts/apply-adrian-study-update-20260930.py
+          python scripts/finalize-adrian-study-update-20260930.py
+          sha256sum labs/adrian-runner-mass/index.html docs/studies/ADRIAN-ATHLETE-UPDATE-20260930.json docs/roadmap/FORM-ROADMAP.md > /tmp/adrian-after.sha
+          diff -u /tmp/adrian-before.sha /tmp/adrian-after.sha
+          git diff --check
+          node <<'JS'
+          const fs = require('node:fs');
+          const vm = require('node:vm');
+          const html = fs.readFileSync('labs/adrian-runner-mass/index.html', 'utf8');
+          let count = 0;
+          for (const m of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
+            if (/application\/ld\+json/.test(m[1])) JSON.parse(m[2]);
+            else if (!/src=/.test(m[1])) { new vm.Script(m[2]); count++; }
+          }
+          if (!count) throw new Error('No inline study script checked');
+          console.log('PASS: study JavaScript and JSON-LD parse');
+          JS
+          cp docs/studies/ADRIAN-ATHLETE-UPDATE-20260930.json /tmp/adrian-study-update-20260930/source.json
+      - name: Install browser test dependencies
+        run: |
+          pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium webkit
+      - name: Verify report rendering on phone, tablet and desktop
+        run: |
+          python <<'PY'
+          from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
+          from threading import Thread
+          from pathlib import Path
+          import json
+          from playwright.sync_api import sync_playwright
+          out = Path('/tmp/adrian-study-update-20260930')
+          server = ThreadingHTTPServer(('127.0.0.1', 0), SimpleHTTPRequestHandler)
+          Thread(target=server.serve_forever, daemon=True).start()
+          url = f'http://127.0.0.1:{server.server_port}/labs/adrian-runner-mass/'
+          reports = []
+          with sync_playwright() as p:
+            for engine_name in ['chromium', 'webkit']:
+              browser = getattr(p, engine_name).launch()
+              for width in [375, 390, 430, 768, 1024, 1440]:
+                page = browser.new_page(viewport={'width': width, 'height': 900}, reduced_motion='reduce')
+                errors = []
+                page.on('pageerror', lambda e: errors.append(str(e)))
+                page.goto(url, wait_until='networkidle')
+                page.wait_for_selector('#adrian-update-20260930')
+                data = page.evaluate('() => ({version:STUDY.version, date:STUDY.currentRead.date, read:STUDY.currentRead.n, newestRun:STUDY.running[0], archived:STUDY.archive[0]})')
+                assert data['version'] == '2026.09.30.1', data
+                assert data['date'] == '2026-09-30' and data['read'] == '07', data
+                assert data['archived']['date'] == '2026-09-27' and data['archived']['n'] == '06', data
+                assert data['newestRun']['date'] is None, data
+                assert data['newestRun']['averageRepSeconds'] is None, data
+                assert data['newestRun']['recoveries'] is None, data
+                panel = page.locator('#adrian-update-20260930')
+                text = panel.text_content()
+                for expected in ['3,400–3,500', '5,000', '156.8', '69 seconds', '82 seconds', 'not proof']:
+                  assert expected in text, expected
+                panel.scroll_into_view_if_needed()
+                for box in panel.locator('h3, p').all():
+                  r = box.bounding_box()
+                  assert r and r['x'] >= -1 and r['x'] + r['width'] <= width + 1, (engine_name, width, r)
+                if width in [375, 390, 1440]:
+                  page.screenshot(path=str(out / f'{engine_name}-{width}-intake.png'))
+                page.get_by_role('tab', name='Running', exact=True).click()
+                assert page.locator('#tab-2').get_attribute('aria-selected') == 'true', 'Running tab not selected'
+                assert page.locator('#pan-2').is_visible(), 'Running panel not visible'
+                # textContent tests wording without CSS text-transform changing its case.
+                assert 'Running session records' in page.locator('#pan-2').text_content(), 'Running report heading missing'
+                run_row = page.locator('.sess--reports > li').first
+                assert run_row.is_visible(), 'Running report not visible'
+                run_text = run_row.text_content()
+                for expected in ['Filed', '12 × 400 m', '~82-second', 'last 69 s', 'full splits']:
+                  assert expected in run_text, (expected, run_text)
+                run_row.scroll_into_view_if_needed()
+                if width in [375, 390, 1440]:
+                  page.screenshot(path=str(out / f'{engine_name}-{width}-running.png'))
+                for box in run_row.locator(':scope > span').all():
+                  r = box.bounding_box()
+                  assert r and r['x'] >= -1 and r['x'] + r['width'] <= width + 1, (engine_name, width, r)
+                load = run_row.locator('.load')
+                assert load.evaluate('(el) => el.scrollWidth <= el.clientWidth + 1'), (engine_name, width, 'split text clipped')
+                if width in [390, 1440]:
+                  page.locator('#read').scroll_into_view_if_needed()
+                  page.screenshot(path=str(out / f'{engine_name}-{width}-current-read.png'))
+                if width == 390:
+                  page.evaluate("document.querySelector('#adrian-update-20260930').style.fontSize = '200%'; document.querySelectorAll('#adrian-update-20260930 p').forEach(x => {x.style.fontSize='34px';x.style.lineHeight='1.6'})")
+                  panel.scroll_into_view_if_needed()
+                  for box in panel.locator('p').all():
+                    r = box.bounding_box()
+                    assert r['x'] >= -1 and r['x'] + r['width'] <= width + 1, (engine_name, width, 'enlarged intake', r)
+                  page.screenshot(path=str(out / f'{engine_name}-390-enlarged.png'))
+                assert not errors, errors
+                reports.append({'browser':engine_name, 'width':width, 'status':'passed', 'runtime_errors':errors})
+                page.close()
+              browser.close()
+          server.shutdown()
+          (out / 'browser-acceptance.json').write_text(json.dumps(reports, indent=2))
+          print('PASS: 12 responsive browser views, visible unclipped splits, enlarged text and no runtime errors')
+          PY
+      - name: Commit only accepted study projections
+        run: |
+          python <<'PY'
+          from pathlib import Path
+          import os,re
+          p = Path('docs/roadmap/FORM-ROADMAP.md')
+          text = p.read_text()
+          pending = '- [ ] Acceptance checks must pass before the workflow commits the projections.'
+          prior = '- [x] Source/history preservation, idempotency, JavaScript parsing and 12 Chromium/WebKit responsive views passed before this commit. Enlarged text was also checked; physical-phone review is not claimed.'
+          accepted = '- [x] Source/history preservation, idempotency, JavaScript parsing and 12 Chromium/WebKit responsive views passed. Running split text is visible without clipping on the checked phone widths. Enlarged text was also checked; physical-phone review is not claimed.'
+          old = next((s for s in [pending, prior, accepted] if s in text), None)
+          assert old and text.count(old) == 1
+          text = text.replace(old, accepted, 1)
+          receipt = f"Acceptance run: https://github.com/Breechay/speedandform/actions/runs/{os.environ['GITHUB_RUN_ID']}. Tested source commit: {os.environ['GITHUB_SHA']}."
+          text,count = re.subn(r'Acceptance run: https://github.com/Breechay/speedandform/actions/runs/\d+\. Tested source commit: [a-f0-9]+\.', lambda m: receipt, text, count=1)
+          assert count == 1
+          p.write_text(text)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add labs/adrian-runner-mass/index.html docs/studies/ADRIAN-ATHLETE-UPDATE-20260930.json docs/roadmap/FORM-ROADMAP.md
+          python <<'PY'
+          import subprocess
+          files = set(subprocess.check_output(['git','diff','--cached','--name-only'], text=True).splitlines())
+          expected = {'labs/adrian-runner-mass/index.html','docs/studies/ADRIAN-ATHLETE-UPDATE-20260930.json','docs/roadmap/FORM-ROADMAP.md'}
+          assert files <= expected, files
+          PY
+          git diff --cached --check
+          if ! git diff --cached --quiet; then
+            git commit -m 'Finalize Adrian report display and verified mobile acceptance'
+            git push origin HEAD
+          fi
+          git rev-parse HEAD > /tmp/adrian-study-update-20260930/accepted-commit.txt
+          cp docs/studies/ADRIAN-ATHLETE-UPDATE-20260930.json /tmp/adrian-study-update-20260930/source.json
+          cp labs/adrian-runner-mass/index.html /tmp/adrian-study-update-20260930/study.html
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: adrian-study-update-20260930-acceptance
+          path: /tmp/adrian-study-update-20260930/
+          retention-days: 7
