@@ -1,0 +1,32 @@
+{
+  "version": "20261001-outside-in",
+  "purpose": "Owner-authorized recognition-first community wording and Plans shelf clarity. Existing schedule, plan protocol and purchase authority unchanged; historical receipts retained.",
+  "pages": [
+    {
+      "file": "miami-running-training.html",
+      "afterSha256": "10937ac413f53b53679d3aa111bd09a397bac80a96452c7e7d600fdd738219c5",
+      "bodySha256": "8237aef49588dda648642c67d1f9165891ca0019132720449b9ece9f0e8a98d1",
+      "image": "https://speedandform.com/og/speed-and-form-20260930.jpg",
+      "imageSha256": "e8524d995e65dee96af762b369d47beca1bb06a6bcd2dccbed7cb385369e05be",
+      "preview": {
+        "title": "Miami Running Group & Thursday Speedwork | Speed & Form",
+        "description": "Thursday community speedwork at Flamingo Park Track and occasional long-run pop-ups around Miami. All levels welcome; check the next gathering."
+      },
+      "alt": "Speed & Form. Running and strength coaching with Brice. Miami and online.",
+      "allowShareTransformRewrite": true
+    },
+    {
+      "file": "plans/index.html",
+      "afterSha256": "f2a0b9efe5537514567e104a49f322790ac911c256a6591008af673eb30f9a8a",
+      "bodySha256": "42a958a25a590ea2269bdca9d55cc6e21a7369c296ef12d6915661a4bb4e8c57",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d",
+      "preview": {
+        "title": "Running Plans | FORM",
+        "description": "Compare FORM running plans for the half marathon and marathon. See the scope, access and price before you start."
+      },
+      "alt": "Two runners in profile in a black-and-white photograph, with FORM, Run Development, and Brice · Miami + Remote.",
+      "allowShareTransformRewrite": true
+    }
+  ]
+}

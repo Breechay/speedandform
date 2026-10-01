@@ -107,3 +107,6 @@ Brice approved the study/typography exploration and authorized extending it acro
 Start public service sections with what the visitor wants: run farther, feel smoother, improve their form, get stronger, build muscle or get leaner. Then show what Brice does and what the visitor receives. Preserve the actual coaching philosophy in the deeper explanation; do not assemble coach quotations as a substitute for a buyer’s reason to care. A community section should clearly invite a local runner and link to the next confirmed gathering, not add abstract photo captions. Do not promise a pain cure or guaranteed body-composition result.
 
 The owner rejected the sky-heavy IMG_8047 portrait crop. Use his Strava selection IMG_8069 for the practice photograph, preserving central athletes’ complete bodies in a wide frame. Give the photo a deliberate relationship to the copy; show it before the detail on phones.
+
+## October 1 owner portrait and emblem proportion refinement
+Use owner-supplied Photoshop Brice portrait (`assets/home/20261001/`), retaining the elbow and original pixels. Responsive WebP encoding only; no regenerated person. Full portrait uses CSS cover/left-center in the existing3:4frame with top-left-only160desktop/100phone corner. Public header SF emblem76×32desktop/62×28phone; footer174×64retained after actual render review. Keep emblem-only links.

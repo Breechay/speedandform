@@ -7,6 +7,7 @@
 - [x] Strength includes practical food-log review, grocery/meal-prep guidance and adjustments; generic nutrition exclusion corrected. No athlete prescription or price changed.
 - [x] Hope/José preview names its audience, compares April half results with September 29 six-mile training, and distinguishes training from race performance. Homepage/running example share an approved public projection. Study source changes stop the build until the projection is reviewed. Daily reminder check enabled for new conclusions/results.
 - [x] Local copy, study parity, metadata, protected reading, six-width/200% text/inquiry checks and nine-route accessibility review passed.
+- [x] Owner portrait/elbow and header emblem proportions reviewed at phone/desktop. Three independent reviews completed; inquiry routing, mobile study/strength sequencing, Plans shelf and Adrian public-study proof refined.
 - [ ] Final dual-browser release, combined publication and production verification.
 
 ## October 1 - Owner correction: reader-first copy and Strava photograph
