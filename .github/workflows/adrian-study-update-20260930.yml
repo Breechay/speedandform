@@ -98,7 +98,7 @@ jobs:
                 run_row = page.locator('.sess--reports > li').first
                 assert run_row.is_visible()
                 run_text = run_row.inner_text()
-                for expected in ['Filed', '12 × 400 m', '~82-second', 'last 69 s', 'recoveries']:
+                for expected in ['Filed', '12 × 400 m', '~82-second', 'last 69 s', 'full splits']:
                   assert expected in run_text, expected
                 run_row.scroll_into_view_if_needed()
                 for box in run_row.locator(':scope > span').all():
