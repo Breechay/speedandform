@@ -35,6 +35,7 @@ const artifacts=process.env.SF_QA_ARTIFACTS||'/tmp/sf-commercial-qa';fs.mkdirSyn
    const over=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1);
    assert.equal(over,false,route+' overflow at '+width);
    assert.equal(await page.locator('h1').count(),1);
+   if(route==='/'){assert.equal(await page.locator('main').count(),1);assert.equal(await page.locator('main #coaching').count(),1);assert.equal(await page.locator('main #begin').count(),1);assert.equal(await page.locator('main > .home-opening').count(),1);assert.equal(await page.locator('main > .header').count(),0);}
    assert.ok(await page.locator('header .sf-brand').isVisible());
    const button=page.locator(route==='/'?'.hero .begin':'.sf-hero .sf-button');
    assert.ok(await button.isVisible());
