@@ -1,0 +1,76 @@
+{
+  "authorization": "Brice supplied the archives and confirmed athlete consent on October 1, 2026.",
+  "processing": "Original photographs; EXIF orientation, proportional resize and WebP encoding only. No generative editing; metadata removed. Dates not inferred for files with invalid EXIF.",
+  "photos": [
+    {
+      "archive": "Archive 2(20261001-181004).zip",
+      "name": "IMG_8047.JPG",
+      "sha256": "14b7997ace100843d9616aa334fb86b062d33b1f1e1a6fb7481f1a359a879a33",
+      "asset": "starting-together",
+      "derivatives": [
+        "starting-together-800.webp",
+        "starting-together-1600.webp"
+      ]
+    },
+    {
+      "archive": "Archive 2(20261001-181004).zip",
+      "name": "IMG_8077.JPG",
+      "sha256": "d2171a2b3fd7f8cbd43a0d859fc772ab14fdbba4bce7e45d69dae0744062f4c6",
+      "asset": "next-rep",
+      "derivatives": [
+        "next-rep-800.webp",
+        "next-rep-1600.webp"
+      ]
+    },
+    {
+      "archive": "Archive 2(20261001-181004).zip",
+      "name": "IMG_8052.JPG",
+      "sha256": "d061bb6ed1c1ad50bbd1ae5bfd84b0d62cbf0a7fa0ca5be7f570ca802cfb783e",
+      "asset": "together-after",
+      "derivatives": [
+        "together-after-800.webp",
+        "together-after-1600.webp"
+      ]
+    },
+    {
+      "archive": "Archive 3(20261001-181106).zip",
+      "name": "IMG_8087.JPG",
+      "sha256": "e57bf3a805f19ab5a4fa4cb045bf27d215b2cf72915c70c7fdbbaa0abb1d87e2",
+      "asset": "side-by-side",
+      "derivatives": [
+        "side-by-side-800.webp",
+        "side-by-side-1600.webp"
+      ]
+    },
+    {
+      "archive": "Archive(20261001-181038).zip",
+      "name": "IMG_8098.JPG",
+      "sha256": "855e05df305d9ce5bc1789e8ef21405fabaa079db53f9d0f9975acfb7b44426e",
+      "asset": "between-efforts",
+      "derivatives": [
+        "between-efforts-800.webp",
+        "between-efforts-1600.webp"
+      ]
+    },
+    {
+      "archive": "Archive(20261001-181038).zip",
+      "name": "DSC05728 2.JPG",
+      "sha256": "54bb10a66d8f0ce20fb812e1dc90e35a035fe7d81a67ade143d8cff6a0fd03a6",
+      "asset": "coming-through",
+      "derivatives": [
+        "coming-through-800.webp",
+        "coming-through-1600.webp"
+      ]
+    },
+    {
+      "archive": "Archive(20261001-180823).zip",
+      "name": "IMG_0340.JPG",
+      "sha256": "b3b97a97c1c3a8fd5a4dfeec4376fda615c8d147c8ba90f43d0a581ee4167b03",
+      "asset": "road-rhythm",
+      "derivatives": [
+        "road-rhythm-800.webp",
+        "road-rhythm-1600.webp"
+      ]
+    }
+  ]
+}

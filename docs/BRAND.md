@@ -97,3 +97,7 @@ A beautiful house that lies about its schedule is not beautiful.
 - Do not leave a past venue or time in structured data.
 - Do not let an archive look like a current instruction.
 - If a current fact has one source of truth, link to it instead of duplicating it.
+
+## October 1: expressive public continuation
+
+Brice approved the study/typography exploration and authorized extending it across recent reachable public surfaces with supplied real photographs and athlete consent. Display typography is bold Inter Tight with deliberate scale and tighter heading tracking; body copy stays quiet and readable. House pages alternate forest/chalk, with a distinct dark/lime public study feature. Homepage introduction retains the original B&W Brice photograph and top-left-only round corner. No generated or retouched athlete identities. Community schedule and FORM product/study rooms keep their owning sources.
