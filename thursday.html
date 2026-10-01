@@ -63,7 +63,8 @@ a{color:inherit}
 .hero-copy{margin:22px 0 0;max-width:600px;color:var(--muted);font-size:16px;line-height:1.55}
 .session{padding:34px 22px 36px;border-bottom:1px solid var(--hair)}
 .session-label{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--blue)}
-.session-name{margin:9px 0 24px;font-size:clamp(54px,12vw,86px);font-weight:850;line-height:.87;letter-spacing:-.065em}
+.session-name{margin:9px 0 24px;font-size:clamp(28px,6vw,40px);font-weight:750;line-height:1.1;letter-spacing:-.035em}
+.gathering-status{margin:18px 0 24px;font-size:clamp(30px,7vw,44px);font-weight:800;line-height:1.1;letter-spacing:-.035em;color:var(--ink)}
 .live-note{font-family:var(--mono);font-size:10px;line-height:1.5;color:var(--muted)}
 .logistics{display:grid;grid-template-columns:1.15fr .95fr .75fr;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
 .loc{padding:17px 16px;min-width:0}.loc:first-child{padding-left:0}.loc+.loc{border-left:1px solid var(--hair)}
@@ -118,7 +119,7 @@ a:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
 
 <section class="session" id="current-session">
   <div class="coordinate"><span id="thu-eyebrow">Thursday · live schedule</span><span class="session-code" id="thu-session-code">Session</span></div>
-  <p class="live-note" id="thu-gathering-status" role="status">Check with Brice before traveling; the next gathering loads here.</p>
+  <p class="gathering-status" id="thu-gathering-status" role="status">Check with Brice before traveling; the next gathering loads here.</p>
   <div class="session-label">Workout</div>
   <div class="session-name" id="thu-session-name">Workout details pending</div>
   <p class="live-note">Gathering dates and logistics come from the published community schedule. Workout details are shown separately.</p>
