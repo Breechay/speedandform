@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "record_type": "athlete_report",
+  "record_id": "adrian-athlete-update-20260930",
+  "study_id": "FRM-001",
+  "athlete": "Adrian Gandara",
+  "filed_on": "2026-09-30",
+  "source": "Athlete audio-message transcript supplied by Brice for the study update",
+  "source_media_published": false,
+  "message_timestamp_verified": false,
+  "running": {
+    "session_date": null,
+    "completion_status": "athlete_reported_completed",
+    "repetitions": 12,
+    "repetition_distance_m": 400,
+    "prescription_source": "Athlete account of his running coach's instruction; original prescription not supplied with this update",
+    "prescribed_seconds_per_400_approx": 82,
+    "prescribed_intensity_reported": "5K pace",
+    "actual_rep_times_reported": "mostly in the 70s",
+    "last_rep_seconds_reported": 69,
+    "average_rep_seconds": null,
+    "individual_splits": null,
+    "recovery_intervals": null,
+    "total_session_distance": null,
+    "effort_description": "controlled",
+    "numerical_rpe": null,
+    "deviation": "Athlete says he decided before starting that he wanted to run fast, rather than keep the prescribed pace",
+    "next_day_response": null,
+    "running_coach_owns_prescription": true,
+    "race_equivalence_or_fitness_upgrade_claimed": false
+  },
+  "nutrition": {
+    "period_description": "roughly the last five days, relative to the message; exact dates not verified",
+    "daily_intake_claim": "Athlete reports going above his calorie target each day",
+    "meal_frequency_reported": "three to four times per day",
+    "meal_pattern_reported": "larger meals, not much snacking",
+    "ease_quote": "It's actually gotten really easy.",
+    "lowest_day_reported": {
+      "date": null,
+      "relative_day": "yesterday in the message",
+      "kcal_estimate_range": [
+        3400,
+        3500
+      ]
+    },
+    "high_day_reported": {
+      "date": null,
+      "kcal_estimate": 5000,
+      "qualification": "nearly, possibly reached; athlete unsure"
+    },
+    "itemized_logs_for_this_report": null,
+    "verified_multiday_average_kcal": null,
+    "verified_daily_protein": null,
+    "working_target_kcal_approx_unchanged": 3400,
+    "new_target_created": false,
+    "measured_surplus_or_hypertrophy_claimed": false
+  },
+  "body_monitoring": {
+    "new_weight_lb": null,
+    "athlete_report": "Has not weighed recently; intends to remember a morning weigh-in",
+    "morning_weigh_in_status": "intended, not completed",
+    "latest_previously_filed_weight": {
+      "date": "2026-09-25",
+      "lb": 156.8,
+      "source": "athlete report"
+    },
+    "weight_trend": null,
+    "existing_frequency": "1-3 comparable morning weights per week"
+  },
+  "interpretation": {
+    "supported": "Eating above the working target feels easier to Adrian; he reports completing a faster-than-prescribed interval session",
+    "not_established": [
+      "weight gain",
+      "muscle gain",
+      "measured energy surplus",
+      "improved running fitness",
+      "a causal benefit of extra food or strength training"
+    ],
+    "next_evidence": [
+      "a comparable morning weight",
+      "dated itemized intake logs through the existing October 4 calibration window",
+      "actual 400 m splits, average and recovery intervals",
+      "next-day leg and training response"
+    ]
+  },
+  "scope": {
+    "public_study_update_requested_by": "Brice",
+    "run_prescription_changed": false,
+    "strength_prescription_changed": false,
+    "nutrition_target_or_timing_changed": false,
+    "native_assignment_changed": false,
+    "native_sync_claimed": false,
+    "calendar_or_message_write": false
+  }
+}

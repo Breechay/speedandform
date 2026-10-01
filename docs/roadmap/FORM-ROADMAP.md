@@ -1,5 +1,18 @@
 # FORM: current state and next actions
 
+## September 30 - Adrian intake and 400 m report
+
+Source: [dated athlete-report record](../studies/ADRIAN-ATHLETE-UPDATE-20260930.json). The study now files easier self-reported intake across roughly five days, three to four larger meals, an estimated low day of 3,400–3,500 kcal and an uncertain high day near 5,000 kcal. No new weight is supplied. The existing ~3,400 kcal target and October 4 calibration endpoint are unchanged. A separate running entry files 12 × 400 m mostly in the 70s, last 69 seconds, against the athlete-reported ~82-second prescription. Exact session date, splits, average and recoveries remain unverified. The running coach still owns the run plan.
+
+- [x] Source, current read, timeline, running evidence, nutrition summary and collection queue updated together.
+- [x] September 27 current read archived; all earlier evidence and all training prescriptions preserved. The stale queue is aligned with the already-established 1–3 morning weights per week.
+- [x] Source/history preservation, idempotency, JavaScript parsing and 12 Chromium/WebKit responsive views passed before this commit. Enlarged text was also checked; physical-phone review is not claimed.
+- [ ] Production must be verified after promotion; the pull request carries the release receipt. A branch or a green test is not a live-site claim.
+- [ ] Collect a comparable morning weight, dated intake logs, actual splits/recoveries and the next-day response.
+
+Acceptance run: https://github.com/Breechay/speedandform/actions/runs/36795411466. Tested source commit: 83580a376eec5e6ed449c6ffd747d4c6ee8e19e2. No FORM/Forge assignment, supplement/timing guidance, calorie target, calendar or message is changed.
+
+
 ## September 30 - Speed & Form commercial site
 
 Independent-review follow-up: package-specific inquiry links and contextual comparison links repaired; plan cards moved before methodology. PR #184 passed Chromium/WebKit on `c8d067a`, merged as `eb4612d`, and published in Netlify deploy `6abda2d9f8d147f419ebbbd7` at September 30, 8:01 PM New York. Live package selection, plan order and the homepage-to-athlete-example link are verified. Brice approved eight private Miami running sessions, now stated alongside whole-week running assignments, cues, video feedback and training-load/recovery adjustment. Natalie, Valerie and remote athletes Hope/José provide short coaching examples; José’s supplied programming quote adds his own perspective. Sessions are 45–60 minutes, with a complimentary Miami assessment before the paid block. Confirm remote cadence and finish the representative coaching sample next; keep the current identity and prices.
