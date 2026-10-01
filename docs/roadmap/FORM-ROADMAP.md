@@ -1,13 +1,21 @@
 # FORM: current state and next actions
 
 
+## October 1 - Stronger public typography and real practice photographs
+
+- [x] Owner approved the expressive study preview and wider public treatment, supplied four photo archives and confirmed athlete consent.
+- [x] Home, six commercial routes and both community pages updated. Seven real source photographs selected; responsive WebP derivatives preserve original people and strip metadata. Forest opening and original Brice portrait remain.
+- [x] Homepage now carries the public Hope/José historical study, oversized kite statement and effort/recovery photo sequence. Service pages use stronger heading scale; photography has an editorial four-image sequence.
+- [ ] Exact build, responsive/readability, keyboard and inquiry checks; inspect crops and disclosures.
+- [ ] Publish combined verified source and verify production. Physical-device review remains separate.
+
 ## October 1 - Solid opening, richer homepage exploration
 
 - [x] Owner decision: remove the track texture and match the opening to the footer’s solid forest. Original portrait/top-left corner and copy remain.
 - [x] Homepage source/metadata and exact build passed. Chromium at six widths and 200% text: no horizontal overflow.
 - [x] Published and verified. Source `74217a29e4ebe6fc38f28ec5d90c6a52791b42a4`; exported tree `5e2c298beff2d412541e246f22b2c54d3392e286`. Netlify `6abe9fc1248dc69630b7f99f`; Chromium/WebKit release workflow `36903274103` passed. Actual production browser confirms opening and footer both `rgb(40,60,50)`, no background image, stylesheet `20261001-solid-opening`, original portrait and 160px top-left corner.
 - [x] Separate expressive homepage preview built at `design/experiments/home-study-feature-20261001/` on the design branch: public Hope/José historical progression, large typography and an expandable coaching read. Six widths and enlarged study text passed no-overflow checks.
-- [ ] Brice reviews the study/typography preview before any further homepage publication.
+- [x] Brice approved the study/typography preview and requested the direction across recent public surfaces with his real photographs.
 
 ## October 1 - Final portrait corner and quieter track
 

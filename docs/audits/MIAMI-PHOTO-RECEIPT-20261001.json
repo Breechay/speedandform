@@ -1,0 +1,19 @@
+{
+  "version": "20261001-miami-photography",
+  "purpose": "Owner-approved real community practice photograph added; live schedule, offers, metadata and historical receipts preserved. Existing decorative THU label contrast corrected.",
+  "pages": [
+    {
+      "file": "miami-running-training.html",
+      "afterSha256": "85eed068c0fc52a16afaacd75ac6059a3c6d746bdda438a7a2e23bf6a5ad644f",
+      "bodySha256": "da26e333f82404da1281c9a9471cbae282be07260265e5238ab973f73cbea2ca",
+      "image": "https://speedandform.com/og/speed-and-form-20260930.jpg",
+      "imageSha256": "e8524d995e65dee96af762b369d47beca1bb06a6bcd2dccbed7cb385369e05be",
+      "preview": {
+        "title": "Miami Running Group & Thursday Speedwork | Speed & Form",
+        "description": "Thursday community speedwork at Flamingo Park Track and occasional long-run pop-ups around Miami. All levels welcome; check the next gathering."
+      },
+      "alt": "Speed & Form. Running and strength coaching with Brice. Miami and online.",
+      "allowShareTransformRewrite": true
+    }
+  ]
+}

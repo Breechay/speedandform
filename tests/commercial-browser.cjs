@@ -51,6 +51,13 @@ const artifacts=process.env.SF_QA_ARTIFACTS||'/tmp/sf-commercial-qa';fs.mkdirSyn
    const box=await mark.boundingBox();assert.ok(box.x>=0&&box.x+box.width<=width+1,route+' brand fits at '+width);
   }
  }
+ // Historical study details remain reachable with native keyboard disclosure behavior.
+ await page.goto(origin+'/');
+ await page.locator('.study-read summary').focus();await page.keyboard.press('Enter');
+ assert.notEqual(await page.locator('.study-read').getAttribute('open'),null,'Study read opens with keyboard');
+ assert.ok(await page.locator('.study-read a').isVisible(),'Recorded coaching decision is reachable');
+ assert.equal(await page.locator('.study-read a').getAttribute('href'),'/labs/speed-that-endures/#w6-read');
+ await page.keyboard.press('Enter');
  // The plans are available before their methodology, with price and prerequisites together.
  for(const width of [390,1440]){
   await page.setViewportSize({width,height:900});await page.goto(origin+'/plans/');
@@ -127,6 +134,7 @@ const artifacts=process.env.SF_QA_ARTIFACTS||'/tmp/sf-commercial-qa';fs.mkdirSyn
   await page.screenshot({path:path.join(artifacts,(route.replaceAll('/','')||'home')+'-enlarged-failure.png'),fullPage:true});
  }
  assert.equal(textOverflow.overflow,false,route+' 200% text reflows: '+JSON.stringify(textOverflow.nodes));
+ if(route==='/')for(const pace of await page.locator('.athlete-pace').all())assert.equal(await pace.evaluate(e=>getComputedStyle(e).whiteSpace),'nowrap','Historical pace remains one readable value at enlarged text');
  }
  // Real form code, rejected receipt, retained values, then accepted retry.
  await page.goto(origin+'/coaching/strength/?utm_source=google&utm_medium=cpc&utm_campaign=strength_test');
