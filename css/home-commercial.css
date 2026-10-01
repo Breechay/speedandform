@@ -46,3 +46,8 @@
 .practice-photo img{aspect-ratio:4/5;object-fit:cover;object-position:60% 50%}
 .home-field{background:var(--bone);padding:88px 0}.home-field-heading{display:flex;justify-content:space-between;gap:35px;align-items:end;margin-bottom:35px}.home-field h2{font-size:clamp(50px,6vw,86px);font-weight:800;line-height:.94;letter-spacing:-.055em;margin-top:18px}.home-field-photos{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:end}.home-field img{display:block;width:100%;height:auto}.home-field figcaption{font:500 12px/1.6 var(--mono);color:var(--body);margin-top:13px}.home-field .text-link{min-height:44px}
 @media(max-width:700px){.home-field{padding:58px 0}.home-field-heading{display:block}.home-field-heading>a{display:inline-flex;align-items:center;margin-top:20px}.home-field-photos{grid-template-columns:1fr;gap:28px}.practice-title h2,.coach h2,.coaching-options h2,.home-strength h2,.home-more h2{font-size:clamp(40px,10.7vw,58px)}}
+
+/* Preserve complete pace values when text is enlarged. */
+.distance-ring{padding:24px 12px;min-height:min-content}.study-intro h2{hyphens:manual}.athlete-pace{white-space:nowrap}
+@media(max-width:700px){.study-record{grid-template-columns:1fr}.study-record>div{border-left:0!important;padding-left:0!important}.study-record>div:not(:last-child){border-bottom:1px solid #344239}}
+@media(max-width:700px){.distance-ring{aspect-ratio:auto;min-height:330px}.distance-ring>p{flex-shrink:0}}

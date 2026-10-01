@@ -134,6 +134,7 @@ const artifacts=process.env.SF_QA_ARTIFACTS||'/tmp/sf-commercial-qa';fs.mkdirSyn
   await page.screenshot({path:path.join(artifacts,(route.replaceAll('/','')||'home')+'-enlarged-failure.png'),fullPage:true});
  }
  assert.equal(textOverflow.overflow,false,route+' 200% text reflows: '+JSON.stringify(textOverflow.nodes));
+ if(route==='/')for(const pace of await page.locator('.athlete-pace').all())assert.equal(await pace.evaluate(e=>getComputedStyle(e).whiteSpace),'nowrap','Historical pace remains one readable value at enlarged text');
  }
  // Real form code, rejected receipt, retained values, then accepted retry.
  await page.goto(origin+'/coaching/strength/?utm_source=google&utm_medium=cpc&utm_campaign=strength_test');
