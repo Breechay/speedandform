@@ -1,3 +1,3 @@
 /* Original photograph, rectangular crop, one rounded corner. */
-.home-portrait-curve{clip-path:none;border-radius:72px 0 0 0}
-@media(max-width:600px){.home-portrait-curve{border-top-left-radius:48px}}
+.home-portrait-curve{clip-path:none;border-radius:160px 0 0 0}
+@media(max-width:600px){.home-portrait-curve{border-top-left-radius:100px}}

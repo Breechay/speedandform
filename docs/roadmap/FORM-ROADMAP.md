@@ -3,7 +3,7 @@
 
 ## October 1 - Single-corner portrait preview
 
-- [x] Brice rejected the sweeping mask. Revised `design/experiments/sweep-mask-20261001/` restores the published layout and original rectangular crop with only the top-left corner rounded (72px desktop, 48px phone). No SVG mask or other rounded corners.
+- [x] Brice rejected the sweeping mask. Revised `design/experiments/sweep-mask-20261001/` restores the published layout and original rectangular crop with only the top-left corner rounded (160px desktop, 100px phone, matching Brice’s marked reference). No SVG mask or other rounded corners.
 - [x] Chromium rendering at 390, 768, 1024 and 1440px: no horizontal overflow. Desktop and phone screenshots saved beside the preview. Local design preview only; current production remains the verified forest/track release below.
 - [ ] Review the revised preview before publication.
 
