@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "source_path": "labs/speed-that-endures/index.html",
+  "source_sha256": "c41ffd316a0084fe32df04804869334d57dbaf784511c03a8b1d48aa24ddd5fc",
+  "source_url": "/labs/speed-that-endures/#w6-read",
+  "status": "ongoing",
+  "latest_completed": {
+    "date": "2026-09-29",
+    "label": "Sep 29",
+    "distance_mi": 6,
+    "previous_distance_mi": 5,
+    "previous_date_label": "Sep 15",
+    "decision": "Both completed one more continuous mile inside their own pace ranges. Hope still found the work hard; José’s faster run came with different shoes and conditions. I kept their pace targets and asked them to make the work repeatable.",
+    "recovery": "How they felt later that day and the next morning mattered too. Recovery belongs in the read."
+  },
+  "athletes": [
+    {
+      "name": "José",
+      "work_time": "39:16.0",
+      "work_pace": "6:33",
+      "previous_half_net_time": "1:40:23",
+      "previous_half_pace": "7:39",
+      "baseline_label": "April 2026 half marathon",
+      "baseline_source": "https://triregistration.com/RunCertificate.php?runresultid=158515"
+    },
+    {
+      "name": "Hope",
+      "work_time": "40:53.8",
+      "work_pace": "6:49",
+      "previous_half_net_time": "1:40:24",
+      "previous_half_pace": "7:39",
+      "baseline_label": "April 2026 half marathon",
+      "baseline_source": "https://triregistration.com/RunCertificate.php?runresultid=158498"
+    }
+  ],
+  "baseline_evidence": "Owner-confirmed official net results in September 14 records; certificate URLs retrieved from original shared brief. Prior half-marathon results, not verified lifetime PRs. Month-only date because historical briefs disagree on exact day. Certificate pages unavailable to search retrieval on October 1.",
+  "public_permission": "Owner-documented FORM development/showcase permission for Hope and José.",
+  "next_distance_ask": {
+    "date": "2026-10-20",
+    "distance_mi": 8,
+    "state": "scheduled"
+  }
+}

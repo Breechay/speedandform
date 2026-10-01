@@ -1,4 +1,5 @@
 'use strict';
+const outsideIn=require('./outside-in-public-state.cjs');
 const miamiPhoto=require('./miami-photo-state.cjs');
 const miamiCommercial=require('./miami-commercial-state.cjs');
 const miamiShareCard=require('./miami-share-card-state.cjs');
@@ -20,6 +21,6 @@ const updates=new Map(manifest.pages.map(p=>[p.file,p]));
 const subsequent=require('./training-guide-state.cjs');
 const product=require('./form-landing-state.cjs');
 const sculpt=require('./sculpt-landing-state.cjs');
-function verify(file,html){if(miamiPhoto.verify(file,html))return true;if(miamiCommercial.verify(file,html))return true;if(miamiShareCard.verify(file,html))return true;if(miamiFunctionalV2.verify(file,html))return true;if(homepageV2.verify(file,html))return true;if(runDevelopmentMethod.verify(file,html))return true;if(concurrent.verify(file,html))return true;if(contact.verify(file,html))return true;if(rpdStory.verify(file,html))return true;if(laterExcluded.verify(file,html))return true;if(sculpt.verify(file,html)||product.verify(file,html)||subsequent.verify(file,html))return true;const row=updates.get(file);if(!row)return false;assert.equal(sha(html),row.afterSha256,file+' exact Pass 4 editorial source');return true;}
-const latestUpdates=new Map([...updates,...subsequent.updates,...product.updates,...sculpt.updates,...contact.updates,...rpdStory.updates,...laterExcluded.updates,...concurrent.updates,...runDevelopmentMethod.updates,...homepageV2.updates,...miamiFunctionalV2.updates,...miamiShareCard.updates,...miamiCommercial.updates,...miamiPhoto.updates]);
+function verify(file,html){if(outsideIn.verify(file,html))return true;if(miamiPhoto.verify(file,html))return true;if(miamiCommercial.verify(file,html))return true;if(miamiShareCard.verify(file,html))return true;if(miamiFunctionalV2.verify(file,html))return true;if(homepageV2.verify(file,html))return true;if(runDevelopmentMethod.verify(file,html))return true;if(concurrent.verify(file,html))return true;if(contact.verify(file,html))return true;if(rpdStory.verify(file,html))return true;if(laterExcluded.verify(file,html))return true;if(sculpt.verify(file,html)||product.verify(file,html)||subsequent.verify(file,html))return true;const row=updates.get(file);if(!row)return false;assert.equal(sha(html),row.afterSha256,file+' exact Pass 4 editorial source');return true;}
+const latestUpdates=new Map([...updates,...subsequent.updates,...product.updates,...sculpt.updates,...contact.updates,...rpdStory.updates,...laterExcluded.updates,...concurrent.updates,...runDevelopmentMethod.updates,...homepageV2.updates,...miamiFunctionalV2.updates,...miamiShareCard.updates,...miamiCommercial.updates,...miamiPhoto.updates,...outsideIn.updates]);
 module.exports={manifest,updates,latestUpdates,verify};

@@ -1,0 +1,71 @@
+{
+  "version": "20261001-outside-in",
+  "purpose": "Owner-authorized visitor-first Plans, Labs and study framing. Evidence, athlete assignments, protocols, access and prices unchanged; historical receipts retained.",
+  "pages": [
+    {
+      "file": "miami-running-training.html",
+      "afterSha256": "10937ac413f53b53679d3aa111bd09a397bac80a96452c7e7d600fdd738219c5",
+      "bodySha256": "8237aef49588dda648642c67d1f9165891ca0019132720449b9ece9f0e8a98d1",
+      "image": "https://speedandform.com/og/speed-and-form-20260930.jpg",
+      "imageSha256": "e8524d995e65dee96af762b369d47beca1bb06a6bcd2dccbed7cb385369e05be",
+      "preview": {
+        "title": "Miami Running Group & Thursday Speedwork | Speed & Form",
+        "description": "Thursday community speedwork at Flamingo Park Track and occasional long-run pop-ups around Miami. All levels welcome; check the next gathering."
+      },
+      "alt": "Speed & Form. Running and strength coaching with Brice. Miami and online.",
+      "allowShareTransformRewrite": true
+    },
+    {
+      "file": "plans/index.html",
+      "afterSha256": "8684f5f5be1162c40a250fc1b22c401a329a13eb4c59cd99fa87ce5f2a393c92",
+      "bodySha256": "d1dfa1bdea2e1143a59fc8e8ed0fee00a1158a43a10e98236bd6ee765f2d3c02",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d",
+      "preview": {
+        "title": "Running Plans | FORM",
+        "description": "Compare FORM running plans for the half marathon and marathon. See the scope, access and price before you start."
+      },
+      "alt": "Two runners in profile in a black-and-white photograph, with FORM, Run Development, and Brice · Miami + Remote.",
+      "allowShareTransformRewrite": true
+    },
+    {
+      "file": "labs/index.html",
+      "afterSha256": "2793594f82ca063449830ba66d43c095ac49ecc75ca4e4d19d98812360221659",
+      "bodySha256": "05bb3f25e707866d23eb11980bc58c86da9c1e5faa85864ded567577d86bbd85",
+      "image": "https://speedandform.com/og/labs.png",
+      "imageSha256": "71b488a44a1320b0396f38bd4e00229ed3e0268abf2e96919284be6113ecf43e",
+      "preview": {
+        "title": "FORM Labs · Living studies",
+        "description": "Open training questions and human-performance studies. Follow the work, the athlete response, and what changes next."
+      },
+      "alt": "FORM Labs · Living studies",
+      "allowShareTransformRewrite": true
+    },
+    {
+      "file": "labs/speed-that-endures/index.html",
+      "afterSha256": "c41ffd316a0084fe32df04804869334d57dbaf784511c03a8b1d48aa24ddd5fc",
+      "bodySha256": "49153dfc127b9943c9fe86b8192935604d35ed20deafae0acb7092c6a4a31663",
+      "image": "https://speedandform.com/og/speed-that-endures-20260923.jpg",
+      "imageSha256": "58691b02f5b6b58a14ce56c5f7369546162521b9aa72a8e0a7afa0f785468431",
+      "preview": {
+        "title": "Speed That Endures · FORM Labs",
+        "description": "José and Hope follow a race-pace progression. See their individual responses and the decisions that change their work."
+      },
+      "alt": "Speed That Endures, a FORM Labs living study: a runner on the track, with the continuous race-pace ladder 5, 6, 8, 12 and 13.1 miles.",
+      "allowShareTransformRewrite": true
+    },
+    {
+      "file": "labs/the-last-10k/index.html",
+      "afterSha256": "bd92cfc571fa9de0ea2443cb6347eca2497a4a606b1beb395dab5714ae66b7e3",
+      "bodySha256": "843b221531e4c7e4f48091c80503eb01962f79459d589ba5cb5fb2f07e050ae4",
+      "image": "https://speedandform.com/og/form-share-20260916.jpg",
+      "imageSha256": "49188782d245c067988e1a3944ca2529896a5faab8e355f25cae0ad28ccbbf9d",
+      "preview": {
+        "title": "The Last 10K · Keep the Speed. Move It Deeper.",
+        "description": "FORM’s marathon teaching applied to Hope and José. Can useful pace still show up when the marathon gets hard?"
+      },
+      "alt": "FORM running development in Miami.",
+      "allowShareTransformRewrite": true
+    }
+  ]
+}
