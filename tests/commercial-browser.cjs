@@ -36,7 +36,7 @@ const artifacts=process.env.SF_QA_ARTIFACTS||'/tmp/sf-commercial-qa';fs.mkdirSyn
    const button=page.locator(route==='/'?'.hero .begin':'.sf-hero .sf-button');
    assert.ok(await button.isVisible());
    if(route==='/'&&width<=430)assert.ok((await button.boundingBox()).y<650,'Home CTA is in first fold');
-   if([390,1440].includes(width)&&['/','/coaching/strength/','/work/photo-video/'].includes(route))
+   if([390,1440].includes(width)&&['/','/coaching/miami/','/coaching/strength/','/work/photo-video/'].includes(route))
      await page.screenshot({path:path.join(artifacts,(route==='/'?'home':route.split('/').filter(Boolean).join('-'))+'-'+width+'.png')});
   }
  }
@@ -46,6 +46,39 @@ const artifacts=process.env.SF_QA_ARTIFACTS||'/tmp/sf-commercial-qa';fs.mkdirSyn
    const mark=page.locator('.sf-brand').first();assert.ok(await mark.isVisible(),route+' built house identity');
    const box=await mark.boundingBox();assert.ok(box.x>=0&&box.x+box.width<=width+1,route+' brand fits at '+width);
   }
+ }
+ // The plans are available before their methodology, with price and prerequisites together.
+ for(const width of [390,1440]){
+  await page.setViewportSize({width,height:900});await page.goto(origin+'/plans/');
+  const plans=await page.locator('.plans').boundingBox(),method=await page.locator('.relationship').boundingBox();
+  assert.ok(plans.y<method.y,'Plan selection precedes methodology');
+  assert.ok((await page.locator('.plan[data-state=paid]').innerText()).includes('$79 full plan'));
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,'Plans fit at '+width);
+ }
+ // Specific package links carry the visible selection and keyboard focus into the form.
+ await page.setViewportSize({width:390,height:900});
+ for(const [route,choices] of [
+  ['/coaching/miami/',[['both','Ask about Run + Strength'],['run','Ask about Run Development']]],
+  ['/coaching/strength/',[['first','Ask about a first session']]]
+ ]){
+  await page.goto(origin+route);
+  for(const [choice,label] of choices){
+   await page.getByRole('link',{name:label+' →',exact:true}).click();
+   assert.equal(await page.locator('input[name=program]:checked').inputValue(),choice);
+   assert.equal(await page.evaluate(()=>document.activeElement.value),choice);
+   const box=await page.locator('input[name=program]:checked').boundingBox();
+   assert.ok(box.y>=0&&box.y+box.height<=900,'Selected offer is visible after '+label);
+  }
+  const manual=route.includes('strength')?'block':'remote';
+  await page.locator('input[name=program][value='+manual+']').check();
+  await page.locator('.sf-hero .sf-button').click();
+  assert.equal(await page.locator('input[name=program]:checked').inputValue(),manual,'Neutral CTA preserves manual choice');
+ }
+ for(const route of routes.filter(r=>!['/','/work/'].includes(r))){
+  await page.goto(origin+route);
+  const anchor=await page.locator('.sf-hero .sf-text-link').getAttribute('href');
+  assert.ok(anchor.startsWith('#'),'Hero comparison stays with this offer');
+  assert.equal(await page.locator(anchor).count(),1,'Comparison has a real destination');
  }
  // Large type must remain accessible; no overflow hidden used to conceal it.
  await page.setViewportSize({width:390,height:900});await page.goto(origin+'/coaching/strength/');
@@ -71,8 +104,10 @@ const artifacts=process.env.SF_QA_ARTIFACTS||'/tmp/sf-commercial-qa';fs.mkdirSyn
  assert.ok(await page.locator('.sf-form [type=submit]').isDisabled());
  const measurement=await page.evaluate(()=>JSON.stringify(window.dataLayer));assert.ok(!measurement.includes('qa@example')&&!measurement.includes('Edgewater'));
  // Visible package choices preserve first-session and remote offer routing.
- for(const [route,choice,expected] of [['/coaching/strength/','first','strength-first'],['/coaching/miami/','remote','remote']]){
-  await page.goto(origin+route);await page.locator('input[name=program][value='+choice+']').check();
+ for(const [route,choice,expected,label] of [['/coaching/strength/','first','strength-first','Ask about a first session'],['/coaching/miami/','both','both','Ask about Run + Strength'],['/coaching/miami/','remote','remote',null]]){
+  await page.goto(origin+route);
+  if(label)await page.getByRole('link',{name:label+' →',exact:true}).click();
+  else await page.locator('input[name=program][value='+choice+']').check();
   await page.locator('#inquiry-name').fill('Choice QA');await page.locator('#inquiry-email').fill('choice@example.invalid');
   await page.locator('#inquiry-location').fill('Miami');await page.locator('#inquiry-goal').fill('Please explain the selected coaching option.');
   await page.locator('.sf-form [type=submit]').click();await page.waitForSelector('.sf-form-status[data-state=received]');
@@ -92,5 +127,5 @@ const artifacts=process.env.SF_QA_ARTIFACTS||'/tmp/sf-commercial-qa';fs.mkdirSyn
  const n=submissions.length;await page.goto(origin+'/analysis/?form_qa=1');
  assert.equal(await page.evaluate(()=>window.sfSubmitInquiry({offer:'analysis'}).then(()=>false,()=>true)),true);assert.equal(submissions.length,n);
  assert.deepEqual(missing,[]);assert.deepEqual(errors,[]);
- await browser.close();console.log('PASS: 42 responsive views; 200% type; submission failure, retry, idempotent ID, running intake, accepted-only measurement, privacy, QA write block. No live messages or records.');
+ await browser.close();console.log('PASS: 42 responsive service views; plans order/reflow; package link selection, focus and delivery; 200% type; submission failure, retry, idempotent ID, running intake, accepted-only measurement, privacy, QA write block. No live messages or records.');
 })().catch(error=>{console.error(error);process.exit(1)});

@@ -27,3 +27,18 @@ The new service pages are inquiry-first. No new service checkout is represented 
 Current source checks were updated for the approved new headline and static hero. The older browser tests tied to the removed video or a prior four-question form are superseded in the coaching release workflow by `tests/commercial-release.cjs` and `tests/commercial-browser.cjs`. Existing measurement and doctrine checks remain. A pre-existing reading-theme ordering issue was repaired so a later authored style block cannot precede the shared reading theme incorrectly.
 
 Rollback: revert the site release commit. To pause only new inquiry delivery, set the private `website-inquiries-v1` source state to unavailable; callers receive an error and can use email. Keep accepted operating items and their audit history. Removing the public RPC requires a separate non-destructive migration and should not delete inquiries.
+
+
+## Independent-review repairs, September 30 evening
+
+Source/live reproduction confirmed that Run + Strength and strength first-session CTAs did not select their corresponding form options. The repair selects and focuses the chosen radio and brings its group into view, while neutral CTAs preserve manual choices. Hero secondary links stay within the current service decision. Plans now presents the existing product cards before the methodology, with the same prerequisites, four-week RPD preview and $79 price.
+
+The reported free/full-plan contradiction was not present in current source or live page. Share metadata is also present. Brice explicitly approved eight private Miami running sessions during this review. Homepage and running page now state one each week, with programming and adjustments; remote delivery remains separately agreed. No new pricing, proof claim, discount, outreach or ad spend was introduced. Browser regression now follows the actual package buttons through intercepted receipt payloads, checks visibility/focus and manual overrides, and checks plan order/reflow. CI and production receipt to be appended after verification.
+
+Owner follow-up: session duration is 45–60 minutes. Complimentary Miami running assessment is now the inquiry entry point, arranged by email and separate from the eight paid sessions. The public representative sample remains a different, unfinished proof asset.
+
+Brice requested current-athlete examples. Three running-page cards cover Natalie’s half-marathon goal, Valerie’s outdoor 5K goal and Hope/José’s already-public September 29 six-mile study. Homepage links to the examples. Goals and recorded outcomes remain distinct; no private health details or new athlete imagery are included.
+
+Owner clarified whole-week delivery: running assignments, cues, targeted exercises, video feedback, long-term programming context and adjustment of training load/recovery. Homepage scope and running page now describe that relationship; Hope and José are identified as remote coaching examples. No guaranteed efficiency/speed claim was added.
+
+Brice supplied screenshots of José’s programming feedback. The running page uses the exact excerpt “body feels good and it feels sustainable... great programming”, attributed to José with the harder/easier-week context. Raw chats, profile photos and the photographed textbook are not public assets. The textbook exchange is not treated as independent scientific validation.

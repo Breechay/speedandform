@@ -2,6 +2,8 @@
 
 ## September 30 - Speed & Form commercial site
 
+Independent-review follow-up: package-specific inquiry links and contextual comparison links repaired; plan cards moved before methodology. The release receipt owns pending test/publication evidence. Brice approved eight private Miami running sessions, now stated on the homepage and running page. Sessions are 45–60 minutes, with a complimentary Miami assessment before the paid block. Confirm remote cadence and finish the representative coaching sample next; keep the current identity and prices.
+
 The homepage now leads with “Run better. Feel stronger.”, Brice’s introduction and the original SF mark. Separate pages cover Miami/online running, standalone strength, remote FORM Analysis, photography and AI setup, with a work directory. New inquiries use one validated create-only receiver into the existing private operating console, carrying the offer/source, next action and next-day follow-up. The strength offer includes a location/access/travel agreement before payment. Existing paid plans and native app identities are unchanged.
 
 - [x] Homepage, six commercial pages, shared public identity, search metadata and inquiry connection authored.
