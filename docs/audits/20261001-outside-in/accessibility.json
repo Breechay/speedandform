@@ -1,0 +1,38 @@
+[
+  {
+    "route": "/",
+    "violations": []
+  },
+  {
+    "route": "/coaching/miami/",
+    "violations": []
+  },
+  {
+    "route": "/coaching/strength/",
+    "violations": []
+  },
+  {
+    "route": "/analysis/",
+    "violations": []
+  },
+  {
+    "route": "/work/",
+    "violations": []
+  },
+  {
+    "route": "/work/ai-setup/",
+    "violations": []
+  },
+  {
+    "route": "/work/photo-video/",
+    "violations": []
+  },
+  {
+    "route": "/thursday",
+    "violations": []
+  },
+  {
+    "route": "/miami-running-training",
+    "violations": []
+  }
+]

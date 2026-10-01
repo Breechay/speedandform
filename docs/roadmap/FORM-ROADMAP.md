@@ -1,12 +1,20 @@
 # FORM: current state and next actions
 
 
+## October 1 - Outside-in audit, practical food support and current study evidence
+
+- [x] Home, six commercial pages, community routes and plans entry reviewed for visitor goal, felt difficulty, credible help and next step. Coaching, Analysis, photography and AI introductions now begin with the visitor’s situation.
+- [x] Strength includes practical food-log review, grocery/meal-prep guidance and adjustments; generic nutrition exclusion corrected. No athlete prescription or price changed.
+- [x] Hope/José preview names its audience, compares April half results with September 29 six-mile training, and distinguishes training from race performance. Homepage/running example share an approved public projection. Study source changes stop the build until the projection is reviewed. Daily reminder check enabled for new conclusions/results.
+- [x] Local copy, study parity, metadata, protected reading, six-width/200% text/inquiry checks and nine-route accessibility review passed.
+- [ ] Final dual-browser release, combined publication and production verification.
+
 ## October 1 - Owner correction: reader-first copy and Strava photograph
 
 - [x] Rejected sky-heavy practice crop replaced with Brice’s Strava-selected IMG_8069, central bodies/stride preserved in a wide frame. Portfolio selection follows.
 - [x] Practice now speaks to runner goals and explains the coaching relationship; running/strength headings lead with desired outcomes. Community section is a concrete Thursday invitation; abstract effort/recovery captions removed.
 - [x] Desktop copy in two columns above the wide image; phones show the photo before detailed benefits. Six widths, 200% text, native disclosure/inquiry contracts and homepage Axe review passed locally.
-- [ ] Final Chromium/WebKit release checks, combined publication and production verification. Prices, private records and original Brice introduction remain.
+- [x] Chromium/WebKit workflow `36911371275` and ecosystem closure `36911371452` passed. Source `24082acd914f5a21658eade9e23f3f2598a6bb5c`, tree `5af80e4c54dfb79f726d8ad04547dbafc11029c1`, published in Netlify `6abeaeea5c0cd52cc92b34fc`, ready October 1 at 19:05:30 UTC / 3:05 PM New York. Production homepage confirms reader-first copy, selected photo reference and clear Thursday invitation. Prices, private records and original Brice introduction remain.
 
 ## October 1 - Stronger public typography and real practice photographs
 

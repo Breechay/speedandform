@@ -2,9 +2,9 @@ name: Coaching funnel release checks
 on:
   push:
     branches: [main, work/commercial-home-20260930]
-    paths: ['index.html','thursday.html','miami-running-training.html','js/thursday-gathering.js','js/community-schedule.js','coaching/**','analysis/**','work/**','js/coaching-measurement.js','js/commercial-inquiry.js','js/coaching-choice.js','css/home*.css','css/commercial.css','css/sf-brand.css','scripts/build-commercial.cjs','scripts/build-sf-brand.cjs','tests/commercial*','tests/coaching-measurement.cjs','.github/workflows/coaching-funnel.yml']
+    paths: ['index.html','labs/speed-that-endures/**','data/public-studies/**','scripts/public-study-preview.cjs','tests/public-study-preview.cjs','thursday.html','miami-running-training.html','js/thursday-gathering.js','js/community-schedule.js','coaching/**','analysis/**','work/**','js/coaching-measurement.js','js/commercial-inquiry.js','js/coaching-choice.js','css/home*.css','css/commercial.css','css/sf-brand.css','scripts/build-commercial.cjs','scripts/build-sf-brand.cjs','tests/commercial*','tests/coaching-measurement.cjs','.github/workflows/coaching-funnel.yml']
   pull_request:
-    paths: ['index.html','thursday.html','miami-running-training.html','js/thursday-gathering.js','js/community-schedule.js','coaching/**','analysis/**','work/**','js/commercial-inquiry.js','css/commercial.css','css/home-commercial.css','.github/workflows/coaching-funnel.yml']
+    paths: ['index.html','labs/speed-that-endures/**','data/public-studies/**','scripts/public-study-preview.cjs','tests/public-study-preview.cjs','thursday.html','miami-running-training.html','js/thursday-gathering.js','js/community-schedule.js','coaching/**','analysis/**','work/**','js/commercial-inquiry.js','css/commercial.css','css/home-commercial.css','.github/workflows/coaching-funnel.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -33,6 +33,7 @@ jobs:
           node tests/homepage-metadata.cjs
           node tests/homepage-release.cjs
           node tests/coaching-copy.cjs
+          node tests/public-study-preview.cjs
           node tests/athlete-access.cjs
           node tests/run-development-method.cjs
           node tests/cream-reading.cjs
