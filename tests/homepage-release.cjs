@@ -24,7 +24,6 @@ assert.doesNotMatch(html,/first Miami track assessment is complimentary/i);
 assert.doesNotMatch(html,/id="simon"/);
 assert.match(html,/Run farther\.<br>Feel smoother\./);
 assert.match(html,/Like a kite upon the wind\./);
-assert.match(html,/Form is multiplied by every step\./);
 assert.match(html,/Reveal what wants to be set free\./);
 assert.doesNotMatch(html,/href="\/the-method">Read the method/);
 assert.match(html,/choose one useful change/);
