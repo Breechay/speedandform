@@ -6,8 +6,8 @@
 - [x] Owner approved the expressive study preview and wider public treatment, supplied four photo archives and confirmed athlete consent.
 - [x] Home, six commercial routes and both community pages updated. Seven real source photographs selected; responsive WebP derivatives preserve original people and strip metadata. Forest opening and original Brice portrait remain.
 - [x] Homepage now carries the public Hope/José historical study, oversized kite statement and effort/recovery photo sequence. Service pages use stronger heading scale; photography has an editorial four-image sequence.
-- [ ] Exact build, responsive/readability, keyboard and inquiry checks; inspect crops and disclosures.
-- [ ] Publish combined verified source and verify production. Physical-device review remains separate.
+- [x] Exact build, six widths, enlarged text, keyboard study disclosure, inquiry behavior and nine-route accessibility review passed. Final Chromium/WebKit workflow `36908361912` and ecosystem closure `36908361937` passed for source `1085143bb7387a296fdaa99904348f19ffd91163`.
+- [x] Combined source `cbc5bf99b36064c4800f1936a96616c296a2d5ea` (tree `eb67bdeba244d87a91cd960411b99f8a47253d76`) published in Netlify `6abea9796f7c528b095d9c79`, ready October 1 at 18:42:14 UTC / 2:42 PM New York. Actual production browser verified home, six service routes and both community pages; new photo assets load. Physical-device review remains separate.
 
 ## October 1 - Solid opening, richer homepage exploration
 

@@ -70,3 +70,8 @@ Homepage source/metadata suites and the configured Netlify build passed. Chromiu
 ## October 1: solid first fold
 
 Owner requested the footer’s solid forest in the opening, retiring the track texture. `.home-opening` uses `background:var(--dark)` at every width, matching the footer exactly. Photograph, top-left corner, copy, offers and intake remain. Homepage source/metadata and configured build passed; six Chromium viewport widths, reduced motion and 200% text showed no overflow. Screenshots: `20261001-house/solid-desktop.jpg` and `solid-phone.jpg`. Production verified. Source `74217a29e4ebe6fc38f28ec5d90c6a52791b42a4`; exported tree `5e2c298beff2d412541e246f22b2c54d3392e286`. Netlify `6abe9fc1248dc69630b7f99f`; Chromium/WebKit release workflow `36903274103` passed. Actual production browser confirms opening and footer both `rgb(40,60,50)`, no background image, stylesheet `20261001-solid-opening`, original portrait and 160px top-left corner. Study/typographic explorations remain separate from this release.
+
+
+## October 1: expressive public continuation published
+
+Owner-approved stronger typography, historical study feature and seven real photographs are live across the homepage, six recent services and both community routes. [Detailed audit and release receipt](PUBLIC-EDITORIAL-20261001.md) owns the scope, source mapping, responsive evidence, contrast correction and production verification. Source `cbc5bf99b36064c4800f1936a96616c296a2d5ea`; tree `eb67bdeba244d87a91cd960411b99f8a47253d76`; Netlify `6abea9796f7c528b095d9c79`, ready/published October 1 at 18:42:14 UTC. Chromium/WebKit release workflow `36908361912` passed. Physical-device review remains open.
