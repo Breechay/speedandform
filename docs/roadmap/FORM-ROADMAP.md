@@ -1,5 +1,16 @@
 # FORM: current state and next actions
 
+## October 1 - Adrian 160 lb report, strength progression and tape follow-up
+
+Source: [October 1 weight and strength report](../studies/ADRIAN-WEIGHT-UPDATE-20261001.json). Adrian reports 160 lb and calls it “starting weight.” This is a new report, not a correction to the original 156 lb report or September 25 156.8 lb reading. Measurement conditions remain unconfirmed. A second supplied screenshot, described by Brice as from last week, records Adrian's surprise that his first two exercises were 5–10 lb heavier than last time after a repeat-plan instruction of +5 lb if possible. Exact exercise/load/repetition details are still missing, so this is strength-progression evidence without a causal nutrition, weight-gain or hypertrophy claim.
+
+- [x] Dated source, body-evidence panel, current read 08, opening summary, nutrition summary, strength-progression evidence, timeline and collection queue updated together. Reading 07 and all prior evidence are preserved.
+- [ ] Production verification after promotion. Source edits alone are not a live-site claim.
+- [ ] Confirm the weight capture context; collect repeat waist, chest, relaxed arm/thigh and calf measurements against the unchanged September 24 checkpoint. File the strength exercise names, previous/current loads, reps and set quality if available.
+
+No calorie/timing, running/strength prescription, native assignment, private console, calendar or message write. Existing ~3,400 kcal target, October 4 logging endpoint and 1–3 comparable morning weights per week remain.
+
+
 ## September 30 - Adrian intake and 400 m report
 
 Source: [dated athlete-report record](../studies/ADRIAN-ATHLETE-UPDATE-20260930.json). The study now files easier self-reported intake across roughly five days, three to four larger meals, an estimated low day of 3,400–3,500 kcal and an uncertain high day near 5,000 kcal. No new weight is supplied. The existing ~3,400 kcal target and October 4 calibration endpoint are unchanged. A separate running entry files 12 × 400 m mostly in the 70s, last 69 seconds, against the athlete-reported ~82-second prescription. Exact session date, splits, average and recoveries remain unverified. The running coach still owns the run plan.
