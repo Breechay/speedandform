@@ -40,6 +40,10 @@
 .signal{background:var(--paper);color:var(--ink);padding:72px 0}.signal-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px}.signal h2{font-size:clamp(42px,5.4vw,76px);line-height:.94;letter-spacing:-.055em;font-weight:450;margin:0}.signal-copy{font-size:20px;line-height:1.5}.signal-copy p{margin:0 0 24px}.signal-stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line-dark);margin-top:42px}.signal-stat{padding:22px 22px 0 0}.signal-stat b{font-size:34px;letter-spacing:-.04em;display:block}.signal-stat span{font-size:13px;line-height:1.45;color:#66706a}.source-note{font:9px/1.55 var(--mono);letter-spacing:.03em;color:#747b76;margin-top:32px}.source-note a{color:inherit}
 .day{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:45px}.day article{padding:28px 20px;border-right:1px solid var(--line)}.day article:last-child{border-right:0}.day b{display:block;text-transform:uppercase;letter-spacing:.06em;font-size:14px;margin:14px 0 8px}.day p{font-size:13px;line-height:1.5;color:var(--muted);margin:0}.story{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}.story h2{font-size:clamp(45px,6vw,82px);line-height:.91;letter-spacing:-.06em;font-weight:450;margin:0}.story-copy{font-size:19px;line-height:1.65;color:#c8cbc7}.story-copy p{margin-top:0}.story-line{font-size:27px!important;line-height:1.2!important;color:#fff!important;letter-spacing:-.025em}.partner article .icon{margin-bottom:40px}.partner article:before{display:none}
 @media(max-width:850px){.signal-grid,.story{grid-template-columns:1fr}.signal-stats{grid-template-columns:1fr}.day{grid-template-columns:1fr 1fr}.day article:nth-child(even){border-right:0}.day article{border-bottom:1px solid var(--line)}}@media(max-width:520px){.day{grid-template-columns:1fr}.day article{border-right:0}.signal{padding:60px 0}}
+
+.hero>div:first-child{justify-content:center}.hero .lede{font-size:clamp(19px,1.8vw,25px);font-weight:400;max-width:690px;color:#d1cec6}.hero-thesis{font-size:16px;line-height:1.55;color:var(--muted);max-width:610px;margin:24px 0 0}.hero .eyebrow{margin-bottom:18px}.hero-side{align-items:flex-start}.hero-side>div{display:none}.story-lead{font-size:23px!important;line-height:1.42!important;color:#e6e2da!important;font-weight:450}.story-close{font-weight:600;color:#fff!important}.fact.meet,.fact.belong{flex:1.18}.fact.support{flex:1}.facts.ritual{display:flex;grid-template-columns:none}.facts.ritual .fact{min-width:0}.reveal{opacity:0;transform:translateY(10px);transition:opacity .55s ease,transform .55s ease}.reveal.is-in{opacity:1;transform:none}.verb-reveal{opacity:0;transform:translateY(8px);transition:opacity .45s ease,transform .45s ease}.verb-reveal.is-in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal,.verb-reveal{opacity:1;transform:none;transition:none}}
+@media(max-width:850px){.facts.ritual{display:grid;grid-template-columns:1fr 1fr}.facts.ritual .fact{border-bottom:1px solid var(--line)}}@media(max-width:520px){.facts.ritual{grid-template-columns:1fr}}
 </style><body>
 <svg aria-hidden="true" width="0" height="0" style="position:absolute"><defs>
 <symbol id="i-bag" viewBox="0 0 32 32"><path d="M7 11h18l-1 16H8L7 11Z"/><path d="M11 11V8a5 5 0 0 1 10 0v3"/></symbol>
@@ -60,92 +64,72 @@
   <div>
     <div class="eyebrow">A home for the practice</div>
     <h1>FORM<br>HOUSE.</h1>
-    <p class="lede">Meet early. Leave your bag. Run the city. Come back for coffee, recovery and the people you trained with.</p>
+    <p class="lede">Meet early. Leave your bag. Run the city. Come back for coffee, recovery, and the people you trained with.</p>
+    <p class="hero-thesis">Running already has the streets. What it rarely has is a place to belong before and after them.</p>
   </div>
-  <div class="hero-side"><div><strong>Running already has the streets.</strong><br>What it rarely has is a place to belong before and after them.</div></div>
+  <div class="hero-side" aria-label="Future real photograph placeholder"></div>
 </section>
-
-<section class="statement"><div class="shell"><p>FORM makes training an occasion.<br>FORM House gives the occasion a home.</p></div></section>
 
 <section class="section"><div class="shell">
   <div class="story">
-    <h2>The run is only part of the morning.</h2>
-    <div class="story-copy"><p class="story-line">It is 5:50 AM. Your bag is down. Coffee is already on. Someone is tying a shoe. Someone else is checking the route.</p><p>At six, everyone leaves. Some are running easy. Some have work to do. The city is the training ground.</p><p>Then everyone comes back somewhere. Water. Food. A shower if there is one. Ten minutes on the floor. Twenty minutes talking. The morning has somewhere to land.</p><p><strong>That is FORM House.</strong></p></div>
+    <h2 class="reveal">The run is only part of the morning.</h2>
+    <div class="story-copy"><p class="story-lead">It is 5:50 AM. Your bag is down. Coffee is already on. Someone is tying a shoe. Someone else is checking the route.</p><p>At six, everyone leaves. Some are running easy. Some have work to do. The city is the training ground.</p><p>Then everyone comes back somewhere. Water. Food. A shower if there is one. Ten minutes on the floor. Twenty minutes talking.</p><p class="story-close">That is FORM House.</p></div>
   </div>
-  <div class="day">
-    <article><svg class="icon"><use href="#i-bag"/></svg><b>Meet</b><p>A dependable early door. Bags down. Route up. Nobody is waiting on a sidewalk wondering where to go.</p></article>
-    <article><svg class="icon"><use href="#i-run"/></svg><b>Train</b><p>Track, bridges, boardwalks and streets stay the field. The House supports the work; it does not trap it indoors.</p></article>
-    <article><svg class="icon"><use href="#i-recover"/></svg><b>Recover</b><p>Water, mobility, showers or recovery amenities where the host can support them.</p></article>
-    <article><svg class="icon"><use href="#i-coffee"/></svg><b>Fuel</b><p>Coffee and simple food turn the finish into somewhere worth returning to.</p></article>
-    <article><svg class="icon"><use href="#i-people"/></svg><b>Belong</b><p>The people do not disappear at the last mile. Training becomes part of a place and a rhythm.</p></article>
+  <div class="facts ritual">
+    <div class="fact meet verb-reveal"><svg class="icon icon-row"><use href="#i-bag"/></svg><b>Meet</b><span>A dependable early door. Bags down. Route up. Nobody is waiting on a sidewalk wondering where to go.</span></div>
+    <div class="fact support verb-reveal"><svg class="icon icon-row"><use href="#i-run"/></svg><b>Train</b><span>The streets, bridges, and track stay the field. The House holds the bag and the return. It does not move the run indoors.</span></div>
+    <div class="fact support verb-reveal"><svg class="icon icon-row"><use href="#i-recover"/></svg><b>Recover</b><span>Water, a place to sit, a shower if the host has one. Enough to come down. Not a clinic.</span></div>
+    <div class="fact support verb-reveal"><svg class="icon icon-row"><use href="#i-coffee"/></svg><b>Fuel</b><span>Coffee and simple food. The finish becomes somewhere worth returning to.</span></div>
+    <div class="fact belong verb-reveal"><svg class="icon icon-row"><use href="#i-people"/></svg><b>Belong</b><span>The people do not disappear at the last mile. Same door next time. You can leave when you need to.</span></div>
   </div>
 </div></section>
 
-<section class="signal"><div class="shell">
-  <div class="signal-grid">
-    <div><div class="eyebrow" style="color:#657069">Why now</div><h2>Running is becoming a place people go to find people.</h2></div>
-    <div class="signal-copy"><p>The sport is growing, but the more interesting shift is cultural: runners are not only signing up for races. They are gathering around movement.</p><p>Strava reported that new running clubs grew 3.5× in 2025 and club-organized events rose 1.5× year over year. U.S. race participation also kept growing in 2025. The demand is already visible. FORM House asks a simple question: <strong>where does that energy go before and after the run?</strong></p>
-      <div class="signal-stats">
-        <div class="signal-stat"><b>3.5×</b><span>growth in new running clubs on Strava in 2025.</span></div>
-        <div class="signal-stat"><b>+5%</b><span>average U.S. race participation growth from 2024 to 2025 in RunSignup's RaceTrends data.</span></div>
-        <div class="signal-stat"><b>48%</b><span>of people in Strava's 2024 research said social connection was their top reason for joining a fitness group.</span></div>
-      </div>
-      <div class="source-note">Sources: Strava Year in Sport 2025; RunSignup RaceTrends 2025 via Running USA; Strava Year in Sport 2024 brand insights. These describe broader participation trends, not projected FORM House demand.</div>
-    </div>
-  </div>
+<section class="signal"><div class="shell"><div class="signal-grid">
+  <div><div class="eyebrow" style="color:#657069">Why now</div><h2 class="reveal">Running is becoming a place people go to find people.</h2></div>
+  <div class="signal-copy"><p>New running clubs and club events have grown sharply. Race fields are up. In earlier group research, social connection was the most common reason people joined.</p><div class="source-note">Strava Year in Sport 2025; RunSignup RaceTrends 2025 via Running USA; Strava Year in Sport 2024. Broader participation, not a forecast for FORM House.</div></div>
+</div></div></section>
+
+<section class="section"><div class="shell">
+  <div class="section-head"><div class="kicker">The system</div><h2 class="reveal">FORM already has the mornings.</h2></div>
+  <div class="story"><div><p class="lede">The right door makes them easier.</p></div><div class="story-copy"><p>The practice is the coaching, the plans, and the studies. The occasion is Thursday at the track, and a Saturday long run when one is scheduled. The record is the photographs, the sessions, and what the athletes actually did. The home is the door around the occasion.</p><p class="story-close">The home is optional. The other three already exist.</p></div></div>
 </div></section>
 
 <section class="section"><div class="shell">
-  <div class="section-head"><div class="kicker">The practice already exists</div><h2>FORM brings the mornings. The right place makes them better.</h2></div>
-  <div class="grid">
-    <article class="card"><span class="n">01</span><h3>People already training</h3><p>Coached athletes, Track Thursday, long-run mornings and a network that keeps crossing through the same practice.</p></article>
-    <article class="card"><span class="n">02</span><h3>A reason to return</h3><p>Programming, studies and FORM preserve continuity. The House gives that continuity a physical address.</p></article>
-    <article class="card"><span class="n">03</span><h3>A story worth showing</h3><p>Photography and Archive make the mornings visible without turning the practice into a feed or a promotional stunt.</p></article>
-  </div>
-</div></section>
-
-<section class="section"><div class="shell">
-  <div class="section-head"><div class="kicker">For the host</div><h2>Turn an amenity into a reason to be there.</h2></div>
+  <div class="section-head"><div class="kicker">For the host</div><h2 class="reveal">Turn an amenity into a reason to be there.</h2></div>
   <div class="partner">
-    <article><svg class="icon"><use href="#i-building"/></svg><h3>Residential</h3><p>A fitness room is equipment. FORM can give residents an actual morning to join, a coach to know and a ritual tied to where they live.</p></article>
-    <article><svg class="icon"><use href="#i-hotel"/></svg><h3>Hotel</h3><p>Give guests more than a treadmill: a route, a local running culture and a recovery / breakfast experience that belongs to the property.</p></article>
-    <article><svg class="icon"><use href="#i-cafe"/></svg><h3>Café</h3><p>Open the door to people who have already done something before breakfast. Early traffic becomes repeat ritual and post-run dwell.</p></article>
-    <article><svg class="icon"><use href="#i-gym"/></svg><h3>Performance space</h3><p>Add the outdoor running layer: coached routes, shared long runs and a place for athletes to return after the work.</p></article>
-  </div>
-</div></section>
-
-<section class="shell quote"><p>Not another room with equipment. <em>A reason to wake up and go somewhere.</em></p></section>
-
-<section class="section"><div class="shell">
-  <div class="section-head"><div class="kicker">How it starts</div><h2>It can begin with one door opening early.</h2></div>
-  <article class="model"><div class="num">01</div><div><h3>Residency</h3><p>Use what already exists: a lobby, lounge, café, hotel amenity or gym. Give FORM a dependable early window and let the real practice prove the fit.</p></div><aside>Fastest to test<br>Lowest build-out</aside></article>
-  <article class="model"><div class="num">02</div><div><h3>FORM Annex</h3><p>If the mornings work, build a small permanent layer: bag wall, coffee, hydration, mobility, recovery, assessment and an Archive wall.</p></div><aside>Co-built<br>Recognizable<br>Recurring</aside></article>
-  <article class="model"><div class="num">03</div><div><h3>FORM House</h3><p>The full expression: performance running, coaching, recovery, food, media and hospitality designed around the life of a runner.</p></div><aside>Site + capital<br>Proven use<br>Long horizon</aside></article>
-</div></section>
-
-<section class="section"><div class="shell">
-  <div class="section-head"><div class="kicker">Start small</div><h2>Give us a few mornings. See what the place becomes.</h2></div>
-  <div class="pilot">
-    <ol><li>Open the space before the run.</li><li>Give runners somewhere for bags, water and bathrooms.</li><li>Let FORM host the training.</li><li>Welcome everyone back for coffee, food or recovery.</li><li>Watch who returns, how long they stay and whether the space feels more alive because the practice is there.</li></ol>
-    <div class="box"><b>The first version does not need to be perfect.</b><p>It needs to make a 6 AM training morning noticeably better. If people keep coming back, we will know what deserves to be built next.</p></div>
+    <article><svg class="icon"><use href="#i-building"/></svg><h3>Residential</h3><p>A fitness room is equipment. This is a morning: a door, a coach, a route, and a reason to come back upstairs.</p></article>
+    <article><svg class="icon"><use href="#i-hotel"/></svg><h3>Hotel</h3><p>More than a treadmill. A route, a local morning, and coffee after. A guest can come once without becoming a member.</p></article>
+    <article><svg class="icon"><use href="#i-cafe"/></svg><h3>Café</h3><p>Open to people who have already done something before breakfast.</p></article>
+    <article><svg class="icon"><use href="#i-gym"/></svg><h3>Performance</h3><p>The outdoor running layer, and somewhere to return after the work.</p></article>
   </div>
 </div></section>
 
 <section class="section"><div class="shell">
-  <div class="section-head"><div class="kicker">What we will learn</div><h2>The next proof is a better morning.</h2></div>
-  <div class="facts">
-    <div class="fact"><svg class="icon icon-row"><use href="#i-people"/></svg><b>Arrival</b><span>Does a clear door, meeting point and bag routine make showing up easier?</span></div>
-    <div class="fact"><svg class="icon icon-row"><use href="#i-run"/></svg><b>Return</b><span>After the run, do people naturally come back to the same place?</span></div>
-    <div class="fact"><svg class="icon icon-row"><use href="#i-coffee"/></svg><b>Dwell</b><span>Do coffee, water, a seat or recovery give the morning somewhere useful to land?</span></div>
-    <div class="fact"><svg class="icon icon-row"><use href="#i-bag"/></svg><b>Friction</b><span>What made the morning easier — and what got in the way?</span></div>
-  </div>
-  <div class="source-note" style="color:var(--muted);max-width:760px">We will learn from real mornings before deciding what deserves a permanent build. No attendance score. No forced socializing. No assumption that bigger is better.</div>
+  <div class="section-head"><div class="kicker">Start light</div><h2 class="reveal">It can begin with one door opening early.</h2></div>
+  <div class="copy"><p>A residency uses a lobby, lounge, or café corner for the early window. An annex is a small zone built only after the mornings prove they belong there. A standalone house is the full version, if the site and the use ever justify it.</p></div>
+</div></section>
+
+<section class="section"><div class="shell">
+  <div class="section-head"><div class="kicker">Pilot</div><h2 class="reveal">Give us a few mornings.</h2></div>
+  <div class="story"><div><p class="lede">See what the place becomes.</p></div><div class="story-copy"><p>Four to eight Thursdays or scheduled Saturdays. Bags down. Water. A seat. Coffee if the host has it. Then we look at four things: who arrived, who came back inside, how long they stayed, and what got in the way.</p><p class="story-close">The first version does not need to be perfect. It needs to make a 6 AM morning noticeably better.</p></div></div>
+</div></section>
+
+<section class="section"><div class="shell">
+  <div class="section-head"><div class="kicker">What we will learn</div><h2 class="reveal">The next proof is a better morning.</h2></div>
+  <div class="copy"><p>Arrival. Return. Dwell. Friction. A sentence on what the morning actually felt like. No scores on people. No questionnaire. If the same faces keep coming back, we will know what deserves to be built.</p></div>
 </div></section>
 
 <section class="cta"><div class="shell cta-grid">
-  <div><div class="eyebrow" style="color:#657069">A brighter morning ahead</div><h2>Have the place?<br>We have the practice.</h2></div>
-  <div><p>Hotel. Apartment building. Café. Performance facility. Something we have not thought of yet. If the space could become a real home for people who train, that is enough for a first conversation.</p><a class="button" href="/contact">Build a morning with FORM →</a><div class="fine">No site selected · no partnership implied · Miami and beyond.</div></div>
+  <div><div class="eyebrow" style="color:#657069">A brighter morning ahead</div><h2 class="reveal">Have the place?<br>We have the practice.</h2></div>
+  <div><p>Hotel. Apartment. Café. Performance facility.</p><a class="button" href="/contact">Build a morning with FORM →</a><div class="fine">No site selected. No partnership implied. Miami and beyond.</div></div>
 </div></section>
 </main>
 <footer class="shell"><span>FORM · Speed & Form</span><span>Run · Recover · Fuel · Belong</span></footer>
-</body>
+<script>
+(function(){
+  if(!('IntersectionObserver' in window))return;
+  const once=(nodes,stagger)=>{const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const group=entry.target.parentElement;const siblings=stagger?[...group.querySelectorAll('.verb-reveal')]:[entry.target];siblings.forEach((el,i)=>setTimeout(()=>el.classList.add('is-in'),stagger?i*90:0));siblings.forEach(el=>io.unobserve(el));}),{threshold:.2});nodes.forEach(n=>io.observe(n));};
+  once(document.querySelectorAll('.reveal'),false);
+  const verbs=document.querySelectorAll('.verb-reveal');if(verbs.length)once([verbs[0]],true);
+})();
+</script></body>
