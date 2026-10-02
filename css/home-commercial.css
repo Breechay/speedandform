@@ -107,3 +107,20 @@
 
 .coaching-option-dek{max-width:690px;font-size:clamp(18px,1.8vw,24px);line-height:1.38;letter-spacing:-.02em;margin:16px 0 38px;color:var(--body)}
 .coaching-proof{margin:34px 0 0;padding:24px 0 0;border-top:1px solid rgba(104,98,88,.15);max-width:650px}.coaching-proof p{font-size:clamp(20px,2vw,27px);line-height:1.25;letter-spacing:-.025em;margin:0 0 10px}.coaching-proof cite{font:500 10px/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-style:normal}
+
+/* Oct 2: optional hero practice film. The portrait remains the default identity. */
+.home-portrait{isolation:isolate}
+.home-portrait-still,.home-portrait-film{transition:opacity .32s ease,filter .32s ease}
+.home-portrait-film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;opacity:0;z-index:2;background:#08110d}
+.home-portrait[data-film-playing="true"] .home-portrait-still{opacity:0}
+.home-portrait[data-film-playing="true"] .home-portrait-film{opacity:1}
+.home-portrait-play{position:absolute;right:22px;bottom:22px;z-index:4;display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:9px 13px;border:1px solid rgba(242,238,226,.38);border-radius:999px;background:rgba(7,16,12,.52);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--bone);font:500 11px/1 var(--mono);letter-spacing:.07em;text-transform:uppercase;cursor:pointer}
+.home-portrait-play span{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--bone);color:var(--green);font-size:9px;padding-left:1px}
+.home-portrait-play:hover{background:rgba(7,16,12,.7)}
+.home-portrait[data-film-playing="true"] .home-portrait-play{opacity:0;pointer-events:none}
+.home-film-controls{position:absolute;right:18px;bottom:18px;z-index:5;display:flex;gap:6px}
+.home-film-controls[hidden]{display:none}
+.home-film-controls button{border:1px solid rgba(242,238,226,.3);background:rgba(7,16,12,.55);color:var(--bone);border-radius:999px;padding:8px 10px;font:500 9px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.coaching-roster-note{max-width:690px;margin:-20px 0 36px;color:var(--muted);font-size:15px;line-height:1.55}
+@media(max-width:700px){.home-portrait-play{right:16px;bottom:16px}.home-portrait-play b{display:none}.home-film-controls{right:12px;bottom:12px}}
+@media(prefers-reduced-motion:reduce){.home-portrait-still,.home-portrait-film{transition:none}}
