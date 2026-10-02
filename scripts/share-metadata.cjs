@@ -33,7 +33,7 @@ const ALTS = {
   '/og/raise-the-ceiling-study.png': 'FORM Raise the Ceiling study card: How much more speed is available?',
   '/og/speed-that-endures-20260923.jpg': 'Speed That Endures, a FORM Labs living study: a runner on the track, with the continuous race-pace ladder 5, 6, 8, 12 and 13.1 miles.',
   '/og/long-run.jpg': 'Three runners photographed from behind on a palm-lined Miami street.',
-  '/og/miami-running-training-20260923.jpg': 'RUN MIAMI. Three ways into FORM: Thursday speedwork at Flamingo Park Track, monthly long-run pop-ups around Miami, and personal coaching with Brice.',
+  '/og/miami-running-training-20260923.jpg': 'RUN MIAMI. Three ways into FORM: Thursday speedwork at Flamingo Park Track, Saturday long runs when scheduled, and personal coaching with Brice.',
   '/og/note-001.jpg': 'A runner in profile outdoors, with a blue sky and concrete railing behind her.',
   '/og/raise-the-ceiling-plan.png': 'FORM Raise the Ceiling plan card showing Tuesday, Thursday and Saturday training.',
   '/og/threshold.jpg': 'Two runners side by side in profile outdoors in Miami.'
