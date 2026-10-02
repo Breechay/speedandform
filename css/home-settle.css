@@ -176,6 +176,51 @@ html.sf-motion .home-also-grid > a:active::after {
   }
 }
 
+/* Cream reaches the screen edge. Type stays in the column. */
+@media (max-width: 800px) {
+  html.sf-motion .home-also-grid > a,
+  html.sf-motion .home-also-grid > a + a {
+    margin-left: -32px;
+    margin-right: -32px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+@media (max-width: 359px) {
+  html.sf-motion .home-also-grid > a,
+  html.sf-motion .home-also-grid > a + a {
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+@media (min-width: 801px) {
+  html.sf-motion .home-also-grid > a:first-child {
+    position: relative;
+  }
+  html.sf-motion .home-also-grid > a:first-child::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 100%;
+    width: max(48px, calc((100vw - 1200px) / 2));
+    background: #f1ede4;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 560ms var(--sf-ease);
+    pointer-events: none;
+  }
+  html.sf-motion .home-also-grid > a:first-child:hover::before,
+  html.sf-motion .home-also-grid > a:first-child:focus-visible::before {
+    transform: scaleX(1);
+  }
+}
+@media (max-width: 1100px) and (min-width: 801px) {
+  html.sf-motion .home-also-grid > a:first-child::before { width: 32px; }
+}
+
 html.sf-motion .home-evidence-result dt .sf-count {
   font-variant-numeric: tabular-nums;
 }

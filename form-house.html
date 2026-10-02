@@ -18,6 +18,7 @@
 <meta name="twitter:title" content="FORM House · A home for the practice">
 <meta name="twitter:description" content="A physical layer for performance running, recovery and hospitality.">
 <meta name="twitter:image" content="https://speedandform.com/og/form-share-20260916.jpg">
+<script>try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("fh-motion")}catch(e){}</script>
 <link rel="stylesheet" href="/css/sf-brand.css?v=20261002">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,6 +63,47 @@
 .proof-grid{gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.proof-grid>div{padding:26px 28px 28px 0}.proof-grid>div+div{padding-left:28px;border-left:1px solid var(--line)}.proof-grid dt{font-size:12px}.proof-grid dd{font-size:14px}
 @media(min-width:851px){.section>.shell>.copy{margin-left:216px;max-width:760px}.section>.shell>.kicker+h2{margin-left:216px;max-width:1040px}.section>.shell>.kicker{float:left;width:160px;padding-top:10px}.section>.shell>.layers,.section>.shell>.pathline{clear:both}.facts.ritual{margin-top:62px}}
 @media(max-width:850px){.section-head{grid-template-columns:1fr;gap:14px}.section>.shell>.kicker{float:none;width:auto}.section>.shell>.kicker+h2{margin-left:0}.section>.shell>.copy{margin-left:0}}
+
+html.fh-motion{--fh-ease:cubic-bezier(.16,1,.3,1);--fh-state:cubic-bezier(.4,0,.2,1)}
+html.fh-motion .hero .eyebrow::before,html.fh-motion .kicker::before{content:"";display:inline-block;width:0;height:1px;margin-right:12px;background:currentColor;vertical-align:.15em;transition:width 900ms var(--fh-ease)}
+html.fh-motion.fh-arrived .hero .eyebrow::before,html.fh-motion .fh-in .kicker::before{width:36px}
+html.fh-motion .hero h1 .fh-line{display:block;overflow:hidden}
+html.fh-motion .hero h1 .fh-line i{display:block;font-style:normal;transform:translateY(108%);transition:transform 860ms var(--fh-ease)}
+html.fh-motion.fh-arrived .hero h1 .fh-line:nth-child(1) i{transition-delay:160ms;transform:none}
+html.fh-motion.fh-arrived .hero h1 .fh-line:nth-child(2) i{transition-delay:280ms;transform:none}
+html.fh-motion .hero .lede,html.fh-motion .hero .hero-thesis{opacity:0;transform:translateY(10px);transition:opacity 700ms var(--fh-ease),transform 700ms var(--fh-ease)}
+html.fh-motion.fh-arrived .hero .lede{opacity:1;transform:none;transition-delay:520ms}
+html.fh-motion.fh-arrived .hero .hero-thesis{opacity:1;transform:none;transition-delay:680ms}
+html.fh-motion .hero-side{transform:scale(1.045);transition:transform 1600ms var(--fh-ease)}
+html.fh-motion.fh-arrived .hero-side{transform:scale(1)}
+html.fh-motion .reveal{transition:opacity 700ms var(--fh-ease),transform 700ms var(--fh-ease)}
+html.fh-motion .fact,html.fh-motion .partner article{background-image:linear-gradient(#f1ede4,#f1ede4);background-repeat:no-repeat;background-position:left center;background-size:0% 100%;transition:background-size 560ms var(--fh-ease),color 240ms var(--fh-state)}
+html.fh-motion .fact span,html.fh-motion .partner article p,html.fh-motion .fact .icon{transition:color 240ms var(--fh-state)}
+html.fh-motion .fact,html.fh-motion .partner article,html.fh-motion .layer{position:relative}
+html.fh-motion .fact::after,html.fh-motion .partner article::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:#161916;transform:scaleX(0);transform-origin:left center;transition:transform 560ms var(--fh-ease);pointer-events:none}
+html.fh-motion .layer h3{transition:transform 420ms var(--fh-ease)}
+html.fh-motion .layer::after{content:"";position:absolute;left:28px;right:28px;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left center;transition:transform 520ms var(--fh-ease)}
+html.fh-motion .proof-grid>div{opacity:0;transform:translateY(12px);transition:opacity 700ms var(--fh-ease),transform 700ms var(--fh-ease)}
+html.fh-motion .fh-in .proof-grid>div{opacity:1;transform:none}
+html.fh-motion .fh-in .proof-grid>div:nth-child(2){transition-delay:80ms}
+html.fh-motion .fh-in .proof-grid>div:nth-child(3){transition-delay:140ms}
+html.fh-motion .fh-in .proof-grid>div:nth-child(4){transition-delay:200ms}
+html.fh-motion .button{background-image:linear-gradient(#161916,#161916);background-repeat:no-repeat;background-position:left center;background-size:0% 100%;transition:background-size 420ms var(--fh-ease),color 220ms var(--fh-state)}
+@media (hover:hover){
+  html.fh-motion .fact:hover,html.fh-motion .partner article:hover{background-size:100% 100%;color:#161916}
+  html.fh-motion .fact:hover span,html.fh-motion .partner article:hover p,html.fh-motion .fact:hover .icon{color:rgba(22,25,22,.72)}
+  html.fh-motion .fact:hover::after,html.fh-motion .partner article:hover::after{transform:scaleX(1)}
+  html.fh-motion .layer:hover h3{transform:translateX(6px)}
+  html.fh-motion .layer:hover::after{transform:scaleX(1)}
+  html.fh-motion .button:hover{background-size:100% 100%;color:var(--paper)}
+}
+html.fh-motion .fact:focus-within,html.fh-motion .partner article:focus-within,html.fh-motion .fact:active,html.fh-motion .partner article:active{background-size:100% 100%;color:#161916}
+@media (max-width:850px){
+  html.fh-motion .facts.ritual,html.fh-motion .partner{margin-left:-24px;margin-right:-24px}
+}
+@media (prefers-reduced-motion:reduce){
+  html.fh-motion .hero .lede,html.fh-motion .hero .hero-thesis,html.fh-motion .hero h1 .fh-line i,html.fh-motion .proof-grid>div{opacity:1!important;transform:none!important}
+}
 </style><body>
 <svg aria-hidden="true" width="0" height="0" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden;visibility:hidden;pointer-events:none"><defs>
 <symbol id="i-bag" viewBox="0 0 32 32"><path d="M7 11h18l-1 16H8L7 11Z"/><path d="M11 11V8a5 5 0 0 1 10 0v3"/></symbol>
@@ -82,6 +124,7 @@
   <div>
     <div class="eyebrow">A home for the practice</div>
     <h1>FORM<br>HOUSE.</h1>
+<script>(function(){var r=document.documentElement;if(!r.classList.contains("fh-motion"))return;var h=document.querySelector(".hero h1");if(!h||h.querySelector(".fh-line"))return;var parts=h.innerHTML.split(/<br\s*\/?>/i);if(parts.length<2)return;h.innerHTML=parts.map(function(part){return '<span class="fh-line"><i>'+part.trim()+"</i></span>"}).join("")})();</script>
     <p class="lede">Meet early. Leave your bag. Run the city. Come back for coffee, recovery, and the people you trained with.</p>
     <p class="hero-thesis">Running already has the streets. What it rarely has is a place to belong before and after them. 12+ years developing athletes. 26 on the current roster. Miami.</p>
   </div>
@@ -161,6 +204,17 @@
   if(!('IntersectionObserver' in window))return;
   const once=(nodes,stagger)=>{const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const group=entry.target.parentElement;const siblings=stagger?[...group.querySelectorAll('.verb-reveal')]:[entry.target];siblings.forEach((el,i)=>setTimeout(()=>el.classList.add('is-in'),stagger?i*90:0));siblings.forEach(el=>io.unobserve(el));}),{threshold:.2});nodes.forEach(n=>io.observe(n));};
   once(document.querySelectorAll('.reveal'),false);
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function arrive(){document.documentElement.classList.add('fh-arrived')}
+  if(reduce){document.documentElement.classList.remove('fh-motion');arrive()}
+  else if(document.readyState==='complete')arrive();
+  else window.addEventListener('load',arrive,{once:true});
+  window.setTimeout(arrive,1200);
+  if('IntersectionObserver' in window){
+    var sections=document.querySelectorAll('.section,.signal,.cta');
+    var io=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(!entry.isIntersecting)return;entry.target.classList.add('fh-in');io.unobserve(entry.target)})},{rootMargin:'0px 0px -10% 0px',threshold:.16});
+    sections.forEach(function(section){io.observe(section)});
+  }
   const verbs=document.querySelectorAll('.verb-reveal');if(verbs.length)once([verbs[0]],true);
   const copy=document.getElementById('copy-partner-note');
   if(copy)copy.addEventListener('click',async()=>{const note="We already train before the city is awake. What we need is a door: bags down at 5:50, out by 6:00, back for water, coffee, and ten or twenty minutes. The streets stay the training ground.\n\nA first version can be four to eight mornings in a lobby, café corner, or amenity lounge. If people keep coming back, we will know what deserves to be built next.\n\nFORM House\nhttps://speedandform.com/form-house";try{await navigator.clipboard.writeText(note);copy.textContent='Copied';setTimeout(()=>copy.textContent='Copy the note to send',2200)}catch(e){}});
