@@ -893,8 +893,8 @@
 
         <div class="info-list" aria-label="Saturday long-run details">
           <div class="info-row"><b>Status</b><span id="long-run-status">No long run scheduled yet</span></div>
-          <div class="info-row"><b>Route</b><span>Changes around Miami</span></div>
-          <div class="info-row"><b>Notice</b><span>Exact route and meeting point are announced before each confirmed run</span></div>
+          <div class="info-row"><b>Route</b><span id="long-run-route">Changes around Miami</span></div>
+          <div class="info-row"><b>Notice</b><span id="long-run-notice">Exact route and meeting point are announced before each confirmed run</span></div>
         </div>
 
         <div class="route-note"><span>The examples above show the session format, not a standing prescription. Check the dated announcement before traveling.</span></div>
@@ -1013,7 +1013,8 @@
     </article>
   </main>
 
-  <script src="/js/community-schedule.js?v=20260922"></script>
+  <script src="/js/community-schedule.js?v=20261002"></script>
+  <script src="/js/community-long-run.js?v=20261002"></script>
   <script>
     (() => {
       const schedule = window.FORM_COMMUNITY_SCHEDULE && window.FORM_COMMUNITY_SCHEDULE.thursday;
