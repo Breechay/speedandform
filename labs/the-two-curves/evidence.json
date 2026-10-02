@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "publication": "SIMON-003-EVIDENCE-20261001-R2",
-  "approved_by": "Coach instruction in the October 1 study update, including athlete post-session report",
+  "publication": "SIMON-003-EVIDENCE-20261001-R3",
+  "approved_by": "Coach instruction October 1; Tuesday and Thursday Garmin screenshots plus athlete report",
   "scope": "Approved historical study excerpts. Not a complete activity history and not an automated publication of private filings.",
   "archive": {
     "uploaded_name": "Archive(20260923-230652).zip",
@@ -276,7 +276,59 @@
       "derived_work_pace_s_km": 230.140625,
       "heart_rate_values_supplied": false,
       "execution_context": "After rep 3, another coach told Simon his heart rate appeared too high for threshold work. Simon did not clarify that the session was working half-marathon pace, not threshold. He deliberately slowed rep 4. Brice does not use a fixed heart-rate cap for this plan and reports that Simon typically runs with a relatively high heart rate.",
-      "observation": "The four-rep work average is inside the 3:47-3:52/km working band, but the distribution is not a clean pace-hold read: reps 1-3 were slightly faster than the band and rep 4 was intentionally slowed after outside heart-rate advice. Do not label rep 4 a physiological fade or use heart rate as a threshold gate. Pace access is evident; progression still depends on normal recovery and controlled execution."
+      "observation": "The four-rep work average is inside the 3:47-3:52/km working band, but the distribution is not a clean pace-hold read: reps 1-3 were slightly faster than the band and rep 4 was intentionally slowed after outside heart-rate advice. Do not label rep 4 a physiological fade or use heart rate as a threshold gate. Pace access is evident; progression still depends on normal recovery and controlled execution.",
+      "whole_activity_hr_avg": 158,
+      "recorded_hr_max": 185,
+      "garmin_hr_zones": [
+        [
+          "5",
+          ">177",
+          675,
+          19
+        ],
+        [
+          "4",
+          "158-177",
+          1081,
+          30
+        ],
+        [
+          "3",
+          "139-157",
+          1248,
+          35
+        ],
+        [
+          "2",
+          "119-138",
+          431,
+          12
+        ],
+        [
+          "1",
+          "99-118",
+          95,
+          2
+        ]
+      ],
+      "garmin_power": {
+        "average_w": 394,
+        "max_w": 576
+      },
+      "garmin_stamina": {
+        "beginning_potential_percent": 100,
+        "ending_potential_percent": 64
+      },
+      "cadence": {
+        "average_spm": 171,
+        "max_spm": 192
+      },
+      "stride_length_average_m": 1.22,
+      "garmin_training_effect": {
+        "aerobic": 4.5,
+        "anaerobic": 1.1
+      },
+      "additional_observation": "Garmin context: 158 bpm average / 185 max, aerobic/anaerobic Training Effect 4.5/1.1, potential stamina 100% to 64%. Device-derived context, not laboratory physiology."
     },
     {
       "date": "2026-10-01",
@@ -366,7 +418,61 @@
         "quote": "Kind of hard the 4th and 5th I am not gonna lie",
         "timing": "post-session message to coach"
       },
-      "interpretation": "Output remained almost unchanged as perceived difficulty rose late: reps 4-5 were 3:34 and 3:35/km (about 5:45 and 5:46/mi). Ceiling-side speed is available, but the final two repetitions carried meaningful perceived cost. Repeatability before progression; do not make the next ceiling session faster from this result alone."
+      "interpretation": "Output remained almost unchanged as perceived difficulty rose late: reps 4-5 were 3:34 and 3:35/km (about 5:45 and 5:46/mi). Ceiling-side speed is available, but the final two repetitions carried meaningful perceived cost. Repeatability before progression; do not make the next ceiling session faster from this result alone.",
+      "whole_activity_hr_avg": 159,
+      "recorded_hr_max": 194,
+      "garmin_hr_zones": [
+        [
+          "5",
+          ">177",
+          716,
+          23
+        ],
+        [
+          "4",
+          "158-177",
+          1018,
+          33
+        ],
+        [
+          "3",
+          "139-157",
+          707,
+          23
+        ],
+        [
+          "2",
+          "119-138",
+          517,
+          17
+        ],
+        [
+          "1",
+          "99-118",
+          41,
+          1
+        ]
+      ],
+      "garmin_power": {
+        "average_w": 394,
+        "max_w": 781
+      },
+      "garmin_stamina": {
+        "beginning_potential_percent": 97,
+        "ending_potential_percent": 47
+      },
+      "garmin_training_effect": {
+        "aerobic": 4.2,
+        "anaerobic": 3.4
+      },
+      "garmin_evaluation": {
+        "primary_benefit": "Tempo (High Aerobic)",
+        "feel": "Normal",
+        "perceived_effort": "Hard",
+        "score_10": 5,
+        "execution_score_percent": 42
+      },
+      "additional_observation": "Thursday shows more Garmin anaerobic Training Effect than Tuesday (3.4 vs 1.1) and a larger potential-stamina reduction (97% to 47% vs 100% to 64%), while final work pace stayed stable. This supports the intended distinction between Tuesday longer work and Thursday ceiling-side work; Garmin categories are device-derived."
     }
   ],
   "race_anchors": [
