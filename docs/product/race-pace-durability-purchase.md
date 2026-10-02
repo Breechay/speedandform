@@ -72,3 +72,21 @@ Do not claim secure paid entitlement until those pieces are actually live.
 7. Keep transaction records privately.
 
 Hosted Stripe checkout is intentionally used instead of custom card collection on the site.
+
+
+## October 2, 2026 · owned-plan surfaces and FORM boundary
+
+A paid Race Pace Durability entitlement owns the complete 15-week prescription independently of any FORM subscription.
+
+Current owned surfaces:
+- full web plan after verified paid entitlement;
+- **Light / Paper print edition**: warm paper, dark type, restrained rules, designed for printing;
+- **Dark / Screen print edition**: existing FORM/Labs visual language, designed for screen/PDF reading.
+
+Both print editions are views of the same canonical prescription. They must never fork training content, pacing, volume, or week structure. The print route verifies paid entitlement before rendering Weeks 5–15.
+
+FORM direction:
+- do not advertise “Follow in FORM” until purchased-plan entitlement is implemented and tested in iOS;
+- when implemented, RPD ownership must survive expiry/cancellation of any broader FORM subscription;
+- FORM may charge separately for ongoing product value around the owned plan (Today execution, history, reflections, notifications, additional subscription content, etc.), but must not require a second payment merely to access the RPD workouts already purchased;
+- the web plan and owned print editions remain sufficient to complete the purchased block.
