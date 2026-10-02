@@ -348,6 +348,19 @@ Website = public discovery/explanation/conversion.
 
 No layer silently rewrites another.
 
+# Pass 01 implementation log
+
+## 2026-10-02 · Community parent ruling
+- Reused `/miami-running-training` as the canonical public community parent instead of creating duplicate content.
+- Added `/run-with-us` as a memorable 301 alias to the canonical parent.
+- Kept `/thursday` as the live Thursday detail surface.
+- Removed the hard “monthly/about once a month” long-run promise from the parent and shared schedule config.
+- Saturday now reads as a dated occurrence with explicit scheduled/unscheduled behavior.
+- Added Workout Group + Easy Long Run Group example treatment while stating that the dated occurrence owns the actual prescription.
+- Thursday now labels the parent “Run with us.”
+- Next Pass 01 work: wire a structured Saturday occurrence projection when the public Collective source exposes a stable long-run series; until then the parent truthfully shows “No long run scheduled yet” and links to the announcement channel.
+- Next Pass 02 work: audit major Labs/Plan/Library routes for contextual links and avoid duplicate coaching CTAs.
+
 # Immediate NOW
 
 1. Pass 01 — inspect existing community routes and implement the parent community entry without duplicating good work.
