@@ -28,18 +28,47 @@ function areasView(){
   return `<div class="area-tabs"><button type="button" data-area="all" class="${area==='all'?'active':''}">All</button>${Object.entries(AREAS).map(([k,v])=>`<button type="button" data-area="${k}" class="${area===k?'active':''}">${e(v)}</button>`).join('')}</div><div class="area-grid">${selected.map(k=>{const items=board.items.filter(i=>i.area===k&&!closed(i));return `<section class="panel ${selected.length===1?'wide':''}"><h2 style="margin-bottom:25px">${e(AREAS[k])}</h2>${items.length?items.map(itemMarkup).join(''):'<p class="empty">No open operating items recorded.</p>'}${k==='coaching'?coachingView():''}</section>`;}).join('')}</div><details class="changes"><summary>Recently closed</summary>${board.items.filter(closed).slice().sort((a,b)=>b.updated_at.localeCompare(a.updated_at)).slice(0,12).map(itemMarkup).join('')||'<p class="empty">No closed items recorded yet.</p>'}</details>`;
 }
 function coachingView(){return `<h3 class="split-label">Current coach decisions · live FORM records</h3>${board.decisions.map(d=>`<article class="decision"><div class="metadata"><b>${e(athleteName(d.athlete_id))}</b><span>Effective ${e(dateLabel(d.effective_on))}</span><span>${d.delivery_state==='delivered_externally'?'Delivered directly':'Published'}</span></div><p>${e(d.athlete_text)}</p></article>`).join('')||'<p class="empty">No current published decisions returned. This does not mean no assignment exists.</p>'}${board.coach_tasks.length?`<h3 class="split-label">Open coaching gates</h3>${board.coach_tasks.map(coachTask).join('')}`:''}${board.coach_todos.length?`<h3 class="split-label">Dossier to-dos</h3>${board.coach_todos.map(t=>`<div class="item"><b>${e(athleteName(t.athlete_id))}</b><p>${e(t.body)}</p>${t.due_on?`<p class="small">Due ${e(dateLabel(t.due_on))}</p>`:''}</div>`).join('')}`:''}<a class="ref" href="/coach/labs/">Open athlete dossiers ↗</a><p class="source-note">These are existing FORM records, not copied plans. Appointment timing is separate from prescribed work. A new decision does not rewrite completed evidence.</p>`;}
+
+function monday(value){
+  const d=new Date(value+'T12:00:00-04:00'), day=(d.getDay()+6)%7;
+  d.setDate(d.getDate()-day);
+  return d;
+}
+function isoDay(d){return d.toLocaleDateString('en-CA',{timeZone:'America/New_York'});}
+function addDays(d,n){const x=new Date(d);x.setDate(x.getDate()+n);return x;}
+function daysBetween(a,b){return Math.round((new Date(b+'T12:00:00-04:00')-new Date(a+'T12:00:00-04:00'))/86400000);}
+function horizonState(block){
+  if(!block?.ends_on)return {label:'Term not dated',className:'warning'};
+  const n=daysBetween(board.today,block.ends_on);
+  if(n<0)return {label:'Needs closeout',className:'warning'};
+  if(n<=7)return {label:'This week',className:'warning'};
+  if(n<=21)return {label:'Ending soon',className:'warning'};
+  return {label:'Active',className:''};
+}
+function runwayView(){
+  const start=monday(board.today), weeks=Array.from({length:12},(_,i)=>{const s=addDays(start,i*7),e=addDays(s,6);return {start:isoDay(s),end:isoDay(e),label:s.toLocaleDateString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric'})};});
+  const tasks=board.items.filter(i=>i.kind==='task'&&!closed(i));
+  const dated=tasks.filter(i=>i.due_on||i.review_on||i.focus_on);
+  const backlog=tasks.filter(i=>!i.due_on&&!i.review_on&&!i.focus_on).slice().sort((a,b)=>a.priority-b.priority).slice(0,12);
+  const cell=(w)=>dated.filter(i=>{const d=i.due_on||i.review_on||i.focus_on;return d>=w.start&&d<=w.end;}).slice(0,6).map(i=>`<button type="button" class="runway-card" data-action="edit" data-id="${e(i.id)}"><span>${e(AREAS[i.area]||i.area)}</span><b>${e(i.title)}</b><small>${i.due_on?'Due ':i.review_on?'Review ':'Focus '}${e(dateLabel(i.due_on||i.review_on||i.focus_on))}</small></button>`).join('');
+  const blocks=board.athlete_blocks||[];
+  return `<section class="runway-intro"><div><p class="eyebrow">Company runway</p><h2>See the next 12 weeks.</h2><p>Dates come from the operating workspace. Athlete horizons come live from FORM. Scroll sideways like a training plan; click an operating card to edit its next step.</p></div><div class="hat-key"><span>COACH</span><span>PRACTICE HOST</span><span>PRODUCT DIRECTOR</span><span>BUILDER / REVIEWER</span><span>CREATIVE DIRECTOR</span><span>COMMERCIAL LEAD</span><span>OPERATOR</span><span>STUDENT / ATHLETE</span></div></section>
+  <div class="runway-scroll" tabindex="0" aria-label="Twelve week company runway"><div class="runway-grid">${weeks.map(w=>`<section class="runway-week"><header><b>WEEK OF</b><span>${e(w.label)}</span></header>${cell(w)||'<p class="empty-mini">Open capacity</p>'}</section>`).join('')}</div></div>
+  <div class="runway-split"><section class="panel"><div class="section-head"><h2>Athlete horizons</h2><span class="small">Review at 21 days</span></div>${blocks.length?blocks.map(b=>{const s=horizonState(b);return `<article class="horizon"><div><b>${e(b.first_name||'Athlete')}</b><span class="pill ${s.className}">${e(s.label)}</span></div><p>${e(b.name||'No dated active block')}${b.current_week&&b.total_weeks?` · Week ${e(b.current_week)} of ${e(b.total_weeks)}`:''}</p><small>${b.ends_on?`Ends ${e(dateLabel(b.ends_on,{month:'short',day:'numeric',year:'numeric'}))}`:'No block end date in FORM'}${b.race_on?` · Race ${e(dateLabel(b.race_on))}`:''}</small></article>`;}).join(''):'<p class="empty">No athlete horizon projection returned.</p>'}</section>
+  <section class="panel"><div class="section-head"><h2>Undated work</h2><span class="small">Backlog, not today</span></div>${backlog.length?backlog.map(itemMarkup).join(''):'<p class="empty">No undated operating work.</p>'}</section></div>`;
+}
 function waitingView(){const items=board.items.filter(i=>i.status==='waiting');const tasks=board.coach_tasks.filter(t=>t.state.startsWith('waiting'));return `<div class="layout"><section><div class="section-head"><h2>Someone or something else moves next</h2></div>${items.map(itemMarkup).join('')}${tasks.map(coachTask).join('')}${!items.length&&!tasks.length?'<p class="empty">No waiting items recorded.</p>':''}</section><aside class="side-panel"><h2>Keep the next question small</h2><p>Name who you are waiting for, what they need to supply and when you will check again. A time-pending agreement is not a confirmed clock-time appointment.</p></aside></div>`;}
 function sourcesView(){return `<p class="intro" style="margin:26px 0">Know what is live, what was checked and what is still unresolved.</p><div class="source-list">${board.sources.map(s=>{const st=sourceState(s);return `<article class="source"><div><h3>${e(s.label)}</h3><span class="pill ${['stale','conflict','unavailable','pending','unchecked'].includes(st)?'warning':''}">${e(sourceName(st))}</span></div><div><p><b>Owns:</b> ${e(s.authority)}</p><p>${e(s.detail)}</p><p class="small">Checked ${e(checked(s.observed_at))}.${s.source_as_of?` Source data through ${e(checked(s.source_as_of))}.`:' Source data-as-of is not supplied.'}</p><p class="locator">${e(s.locator)}</p></div></article>`;}).join('')}</div><section class="panel"><h2>The write-through rule</h2><p>Change the owning record first. Read it back. Record the receipt here. The brief reads this same workspace, plus fresh evidence from its original connectors. A link or a saved note never proves every destination synchronized.</p><p class="source-note">FORM decisions and coaching tasks are read live. Calendar, Finances, GitHub, Gmail and wearable checks are refreshed by authorized connector work, not by this browser's Refresh button. No bank token, private record or service-role key is embedded in this site.</p></section><details class="changes"><summary>Recent saved changes</summary><ul>${board.changes.map(c=>`<li>${e(c.title||c.label||'Operating record')} · ${e(c.status?statusName(c.status):c.operation.toLowerCase())}<br><span class="small">${e(checked(c.changed_at))} · revision ${e(c.revision||'1')}</span></li>`).join('')}</ul></details>`;}
 function render(){
   if(!board)return;
   $('#gate').hidden=true;$('#workspace').hidden=false;$('#refresh').hidden=false;$('#signout').hidden=false;
   $('#date').textContent=dateLabel(board.today,{weekday:'long',month:'long',day:'numeric',year:'numeric'});
-  $('#page-title').textContent={today:'Today.',areas:'Everything has a place.',waiting:'Waiting.',sources:'What is current?'}[tab];
+  $('#page-title').textContent={today:'Today.',runway:'Runway.',areas:'Everything has a place.',waiting:'Waiting.',sources:'What is current?'}[tab];
   $('#freshness').textContent=`Workspace read ${checked(board.read_at)} ET`;
   $('#waiting-count').textContent=board.items.filter(i=>i.status==='waiting').length+board.coach_tasks.filter(t=>t.state.startsWith('waiting')).length;
   $('#source-count').textContent=board.sources.filter(s=>['stale','conflict','unavailable','pending','unchecked'].includes(sourceState(s))).length||'';
   $('[data-tab][aria-current]')?.removeAttribute('aria-current');$(`[data-tab="${tab}"]`).setAttribute('aria-current','page');
-  $('#view').innerHTML=({today:todayView,areas:areasView,waiting:waitingView,sources:sourcesView}[tab])();
+  $('#view').innerHTML=({today:todayView,runway:runwayView,areas:areasView,waiting:waitingView,sources:sourcesView}[tab])();
 }
 async function refresh(){
   if(loading||!user)return;loading=true;$('#refresh').disabled=true;
