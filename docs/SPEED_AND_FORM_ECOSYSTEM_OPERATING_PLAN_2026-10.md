@@ -371,9 +371,42 @@ No layer silently rewrites another.
 - Pass 02 audit finding: HYROX already has its contextual coaching bridge; Race Pace Durability support already contains “Want the training managed around you?”; Raise the Ceiling already ends with a coaching-method link; The Last 10K already links its related marathon plan but needs a quiet coaching path; The Two Curves has no coaching/plan bridge; major study pages should be changed selectively rather than receiving a universal component.
 - Next: finish selective Labs links, then inspect Plans + Library + community cross-links and run route/mobile QA.
 
+## 2026-10-02 · Pass 01 / Pass 02 public-layer close
+
+### Pass 01 · sufficiently built
+- Canonical community parent: `/miami-running-training`.
+- Memorable alias: `/run-with-us` → canonical parent.
+- Live Thursday detail: `/thursday`.
+- Thursday reads the published Collective occurrence projection.
+- Saturday parent supports published occurrence / cancellation / unscheduled / unavailable states.
+- Long-run cadence is not promised.
+- Workout + Easy group examples explain the format while dated occurrences own actual prescription.
+- Mobile CSS already stacks long-run groups, coaching facts, intent cards and logistics at small widths.
+- Community parent has clear paths to Thursday and Run Development.
+- Share metadata source was corrected so future generated previews no longer say “monthly long-run pop-ups.”
+
+### Pass 02 · sufficiently built
+- Plans library → community + coaching + Labs.
+- Race Pace Durability → study + shared mornings; support page already → coaching.
+- Marathon Durability → living study + plans + shared mornings.
+- HYROX → contextual coaching bridge.
+- Two Curves → contextual coaching bridge.
+- Last 10K → related plan + Act I + coaching.
+- Raise the Ceiling already carries a coaching-method path; no duplicate CTA added.
+- Library already exposes Thursday, plans, Labs and commercial Work-with-Brice destinations.
+- Route audit confirmed the principal internal destinations used by these surfaces exist.
+
+### Deliberate remainder
+- Replace Saturday’s temporary explicit-title/series identity match with a dedicated canonical long-run `series_id` when Collective defines it.
+- Real-device visual QA remains a release habit, not a reason to keep redesigning the public layer.
+- Do not reopen public architecture absent a broken path, stale real-world detail, meaningful usage evidence or a new canonical occurrence contract.
+
+### Attention shift
+Primary product attention moves to **Pass 03: Shared Mornings + Archive**, while public pages enter operate/observe mode.
+
 # Immediate NOW
 
-1. Pass 01 — inspect existing community routes and implement the parent community entry without duplicating good work.
-2. Pass 02 — finish public internal-link/bridge audit; HYROX is already materially complete.
-3. FORM — continue current Collective/Archive work under these ownership rules; do not restart product architecture.
-4. Daily Brief/Console — project this plan as ≤4 actionable rows rather than copying the roadmap into the brief.
+1. Pass 03 — Shared Mornings: harden Thursday/Saturday occurrence parity, host closeout and archive handoff.
+2. Pass 03 — Archive: continue Roll → Nine toward an end-to-end editorial flow.
+3. Athlete delivery — protect Week and canonical coaching truth while product work continues.
+4. Daily Brief/Console — project these as ≤4 actionable rows rather than copying the roadmap into the brief.
