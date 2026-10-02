@@ -398,3 +398,74 @@ FORM House / FORM Morning should own the conditions around it.
 - Hilton 2025 active travel: https://stories.hilton.com/2025trends/the-rise-of-adventure-tourism
 - Expedia 2025 Traveler Value Index: https://partner.expediagroup.com/en-us/resources/research-insights/2025-traveler-value-index
 - Global Wellness Institute 2025 monitor: https://globalwellnessinstitute.org/industry-research/2025-global-wellness-economy-monitor/
+
+
+# 16. Operating protocol · research translated into mornings
+
+The concept is ready enough that the next evidence should come from operating the ritual, not adding more conceptual copy.
+
+For the next four eligible Thursday / Saturday shared mornings, behave as though the physical program already exists even if the venue is temporary.
+
+## Stable ritual
+
+**Same door + same time + host notices people + training fits the person + return does not require another purchase.**
+
+Keep stable where practical:
+- meeting point;
+- bag procedure;
+- where route/session is found;
+- explanation of the morning;
+- lane language;
+- return point;
+- water / seating / coffee expectation when available.
+
+Change the training as needed. Do not unnecessarily change the ritual.
+
+## Host behavior
+
+Before:
+- make arrival obvious;
+- greet / notice people;
+- introduce newcomers when useful;
+- explain lanes/session once;
+- reinforce that easy/shorter is a complete use of the morning.
+
+During:
+- preserve individual prescription;
+- no pressure to follow the faster lane;
+- allow clean early exit / turnaround.
+
+After:
+- make the return obvious;
+- leave room to sit / talk when the venue allows;
+- support people who want to leave immediately;
+- do not turn the return into a sales pitch.
+
+## Five-line host note
+
+After each morning, record only:
+1. **Arrived** — rough headcount / meaningful newcomer note.
+2. **Returned** — roughly how many came back to the hub/return point.
+3. **Dwell** — rough pattern: left immediately / ~10 min / ~20+ min.
+4. **Friction** — one thing that made arrival, training or return harder.
+5. **Worked** — one thing that noticeably improved the morning.
+
+Optional sixth line:
+**Witness** — one sentence somebody said that reveals what the morning did for them.
+
+This is field observation, not surveillance. Do not create social scores or individual dwell histories.
+
+## Visual evidence
+
+Capture, with appropriate permission:
+- one arrival frame: bags / shoes / route / people gathering;
+- one return frame: sitting / coffee / recovery / conversation.
+
+These two images are higher priority for the FORM House page than additional architectural fantasy renders because they prove the ritual already exists.
+
+## Success question
+
+Do not ask whether the morning converted someone to coaching.
+
+Ask:
+**Was the training morning noticeably better because arrival, belonging and return had a shape?**
