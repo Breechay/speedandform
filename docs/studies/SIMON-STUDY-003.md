@@ -86,6 +86,55 @@ The early read is therefore:
 
 In plain language: **he has the speed; the study is testing whether we can make more of it last.**
 
+## Tentative road to Saumur · October 2026 to May 16, 2027
+
+This is the **season architecture**, not thirty-two weeks of immutable workouts. Near-term work can be prescribed precisely; later blocks define the problem, progression logic and gates. Exact pace, volume and session format must be revised as Simon supplies new evidence.
+
+**Season objective:** arrive at the Semi-Marathon de la Loire on **May 16, 2027** able to express the largest sustainable fraction of Simon's available aerobic speed over 13.1 miles. The current goal envelope remains **1:19-1:23**, centered near **1:20 / 6:06 per mile**, but that center is a development target rather than a guaranteed race prescription.
+
+**Season progression:** **ACCESS → UTILIZATION → DURABILITY → SPECIFICITY → EXPRESSION.**
+
+| Phase | Dates | Primary problem | Tuesday | Thursday | Long run / Saturday | Decision evidence |
+|---|---|---|---|---|---|---|
+| 01 · Establish | Sep 28-Nov 1 | Baseline the hold and ceiling | Current HM-band ladder | Current ceiling progression | Easy durability | Oct 29 5K + candidate 6-8 km continuous read |
+| 02 · Extend | Nov-Dec | Increase sustainable utilization | Longer controlled sustained work | Maintain ceiling; do not chase pace | Gradually extend easy durability | Cost, reserve, recovery and continuous duration |
+| 03 · Coexist | HYROX build / Dec | Preserve run development around competing load | Reduce or consolidate as needed | HYROX/hard leg work can replace quality | Protect recoverable aerobic support | Post-Nashville recovery and retained running |
+| 04 · Rebuild | Late Dec-Jan 31 | Restore continuity and prepare specificity | Threshold/HM-development emphasis | Small ceiling/10K stimulus | Long-run consistency | Fresh January field references |
+| 05 · Specific I | Feb 1-Mar 14 | Convert capacity into HM-specific volume | Increasing HM-specific accumulation | Ceiling/10K maintenance | Durability; mostly controlled | Can prospective HM intensity accumulate normally? |
+| 06 · Specific II | Mar 15-Apr 25 | Make race-specific speed survive duration | Longer specific pieces / continuity | Smaller high-end dose | Introduce specific work after prior running when earned | Late-run control + recovery |
+| 07 · Sharpen / taper | Apr 26-May 16 | Preserve rhythm, remove fatigue, express | Reduced specific work | Short fast touches | Reduced long run | Race-week readiness |
+| RACE | May 16 | Expression | — | — | **Semi-Marathon de la Loire · Saumur** | Result + pacing + cost + recovery |
+
+### What each weekly pillar means
+
+**Tuesday · utilization / hold.** Progress from access to continuity. Early success is not a faster repetition; it is more controlled time near the relevant intensity at an acceptable cost. Broken work may progress toward longer pieces and then continuous work. Later in the season, substantial HM-specific accumulation can be introduced only after the earlier form is owned.
+
+**Thursday · ceiling.** Preserve or develop aerobic power above HM intensity. The October 1 session already shows that the current 5 x 3-minute dose is meaningful. Repeatability precedes more pace or more volume. As HM specificity rises, Thursday's dose should become smaller rather than competing with Tuesday and the long run.
+
+**Saturday / long run · durability.** Begin as easy aerobic support. Later, after fresh sustained work is controlled, test whether supported race-relevant speed remains available after prior running. Do not introduce aggressive fast finishes simply because the calendar advances.
+
+### Four season gates
+
+**Gate 01 · November — establish.** Use the Oct 29 5K plus a coach-approved 6-8 km continuous read after recovery. Ask whether the ceiling moved, whether the hold became more continuous, and what each cost. Do not require both to improve.
+
+**Gate 02 · January — re-establish after HYROX.** Before the Feb 1 specific block, obtain current field evidence after Nashville and the rebuild. Historical October fitness does not automatically become February prescription.
+
+**Gate 03 · March — utilization becoming specificity.** Determine whether Simon can accumulate substantial work near prospective HM intensity while keeping pacing, perceived cost and subsequent recovery controlled. This is where the ~1:20 center can begin to become a race-specific proposition rather than a distant target.
+
+**Gate 04 · late April — durability and race prescription.** Assess substantial specific work after prior running under comparable conditions. Race pace is selected from the accumulated evidence; 6:06/mi is not protected if the evidence points faster or slower.
+
+### Physiological model
+
+The coaching model is related to **fractional utilization of aerobic capacity**, but the field study does not directly measure fractional utilization of VO2max. Thursday develops/preserves high aerobic power; Tuesday develops sustainable utilization; the long run develops durability. Running economy, threshold/lactate behavior, fueling, mechanics and fatigue resistance may also change performance.
+
+A laboratory VO2max plus threshold/lactate assessment in the December-January window would strengthen the study by separating measured ceiling and submaximal physiology from Garmin estimates and field performance. It is useful, not required for the plan.
+
+### Future-session boundaries
+
+Later examples such as long runs containing race-specific work are **candidates, not current assignments**. Do not publish a 16-18 mile specific long run, fixed peak mileage, or a long continuous 6:06/mi prescription merely because it appears in a planning discussion. Author those sessions only when the preceding gate supports them.
+
+The success pattern does not require a dramatically faster 5K. A plausible successful trajectory is a similar high-end ceiling while ~6:05-6:10/mi becomes progressively longer, more controlled, more recoverable and eventually durable after prior running. Conversely, a faster ceiling without improved sustainable work does not by itself validate the half-marathon hypothesis.
+
 ## Gate 01 is a window
 
 1. **Oct 29:** current 5K reference after an easy Tuesday and lighter preceding week. Record splits, course, conditions, execution and subsequent recovery. High race effort is expected here; it is not graded like a controlled Tuesday.
