@@ -236,3 +236,19 @@ linear-gradient(0deg,rgba(3,5,4,.45) 0%,rgba(3,5,4,.04) 58%,rgba(3,5,4,.12) 100%
 /* 2026-10-02 · place Brice nearer the mobile/desktop focal center */
 @media(min-width:761px){.sf-home-hero-immersive .home-hero-media img{object-position:22% 42%}}
 @media(max-width:760px){.sf-home-hero-immersive .home-hero-media img{object-position:18% 50%}}
+
+/* 2026-10-02 · hero optical-weight + mobile vertical/focal polish */
+.sf-home-hero-immersive h1{font-weight:440;letter-spacing:-.058em}
+@media(min-width:761px){
+  .sf-home-hero-immersive h1{font-size:clamp(66px,7.9vw,124px)}
+}
+@media(max-width:760px){
+  .sf-home-hero-immersive-inner{align-items:flex-end;padding-top:86px;padding-bottom:18px}
+  .sf-home-hero-immersive .hero-copy{transform:translateY(-42px)!important}
+  .sf-home-hero-immersive h1{font-size:clamp(48px,13.2vw,72px);font-weight:440;line-height:.86;letter-spacing:-.057em}
+  .sf-home-hero-immersive .home-hero-intro{font-size:17px;line-height:1.46}
+  .sf-home-hero-immersive .home-proof-facts{margin-top:22px;padding-top:18px}
+  .sf-home-hero-immersive .home-hero-shade{background:
+    radial-gradient(ellipse 44% 23% at 8% 5%,rgba(3,5,4,.64) 0%,rgba(3,5,4,.34) 42%,rgba(3,5,4,0) 78%),
+    linear-gradient(0deg,rgba(3,5,4,.82) 0%,rgba(3,5,4,.54) 43%,rgba(3,5,4,.05) 77%,rgba(3,5,4,.03) 100%)}
+}
