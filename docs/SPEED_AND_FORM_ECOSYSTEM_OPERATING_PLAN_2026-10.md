@@ -404,6 +404,72 @@ No layer silently rewrites another.
 ### Attention shift
 Primary product attention moves to **Pass 03: Shared Mornings + Archive**, while public pages enter operate/observe mode.
 
+# October company objectives · revision 2026-10-02
+
+The four ecosystem passes remain the month spine, but Speed & Form operates as a small studio with multiple hats. Do not let one product lane consume the month.
+
+## O1 · Practice / Community
+Make shared training dependable and worth arriving for.
+- Thursday remains the weekly practice ritual.
+- Saturday tests the two-lane long-run model: different programs, one long-run morning.
+- Record recurring people, hubs and relationship assets without manufacturing RSVP/attendance/partnerships.
+- Field evidence, not group size alone, determines the standing Saturday format.
+
+## O2 · FORM Product
+Make the living practice visible and enjoyable.
+- Shared Mornings occurrence parity + closeout + Archive.
+- Roll → Nine editorial workflow.
+- Vault target-scoring prototype: authored target → attempt → precision/history → next attempt.
+- Week/Dossier continuity follows once the shared-morning/archive loop is coherent.
+- No global leaderboard, feed or generic gamification.
+
+## O3 · Forge / Strength
+Close real delivery loops before expanding.
+- Adrian canonical assignment/feed → Forge execution remains an October integration lane.
+- Preserve existing reminder on Oct 8 to review a further week of Adrian usage and begin the connection pass.
+- Create/refresh the dark-mode glute exercise/poster image set as a bounded creative asset task; do not let image polish block canonical program sync.
+
+## O4 · Commercial / Distribution
+Operate the already-live offer portfolio and learn from exposure.
+- Running remains the primary identity.
+- Run Development is the paid-acquisition focus when tracking/budget gates pass.
+- Plans, Analysis, strength, photography and AI workflow offers remain available through appropriate organic/referral/search paths.
+- Relationship-first referrals and local practice networks remain valid acquisition.
+- Google Ads readiness/launch gates already scheduled Oct 5 / Oct 8; do not duplicate reminders.
+
+## O5 · Company OS / Bridge Season
+One operating picture.
+- Daily Brief = morning control surface, ≤4 owner outcomes.
+- Console/roadmap = whole-company attention/milestones.
+- Bridge Season remains milestone authority for legacy/in-flight delivery obligations until reconciled into newer current state.
+- Canonical product sources remain authoritative; Brief/Console summarize rather than duplicate.
+- Friday closes bounded work; Sunday reviews delivery, money/housing, training/coaching, growth/FORM, home and learning.
+
+## Monthly finish condition
+
+By October 30:
+1. Public community layer is operating, not being endlessly redesigned.
+2. One real shared morning has moved through occurrence → witnessed closeout → Archive draft; Roll → Nine is demonstrable.
+3. Vault target scoring has a tested personal-history prototype on a real authored session.
+4. Adrian/Forge canonical sync has either passed its next integration gate or has one explicit verified blocker.
+5. Commercial portfolio has real exposure/inquiry evidence and Run Development ad readiness has an evidence-based go/hold state.
+6. Bridge Season/current roadmaps have been reconciled enough that stale September gates are not driving October work.
+7. November backlog is selected from observed use, revenue, athlete delivery and enjoyment rather than feature speculation.
+
+## Hats, not separate companies
+
+Brice rotates roles; he does not attempt every role every day:
+- **Coach** — athlete decisions/delivery.
+- **Practice host** — Thursday/Saturday.
+- **Product director** — FORM/Forge contracts and acceptance.
+- **Builder/reviewer** — agents, QA, release evidence.
+- **Creative director** — photography, Archive, exercise/poster imagery.
+- **Commercial lead** — inquiries, referrals, offers, ads when authorized.
+- **Operator** — money/housing/admin and company closeout.
+- **Student/athlete** — training and curriculum remain protected inputs to the practice.
+
+The Daily Brief chooses the few hats needed today.
+
 # Immediate NOW
 
 1. Pass 03 — Shared Mornings: harden Thursday/Saturday occurrence parity, host closeout and archive handoff.
