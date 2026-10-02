@@ -1,14 +1,11 @@
 'use strict';
 /* Public discovery only. Delivery routes and historical schedules are not a catalog. */
 const GROUPS = [
- ['coaching','Work with Brice','Coaching, focused reviews and work for your business.',[
+ ['coaching','If this is the week you want built around you.','',[
   ["coaching/miami/", "Running coaching in Miami & online", "Individual Run Development with Brice. Eight weeks, $1,200.", "run coach personal running miami online remote", "Service"],
   ["coaching/strength/", "Strength coaching in Miami", "Eight coached sessions and individual programming over eight weeks. $1,200.", "strength trainer personal training gym miami", "Service"],
   ["analysis/", "FORM Analysis", "A one-time remote running review with Brice. $149 pilot.", "running form video analysis gait review", "Service"],
-  ["work/photo-video/", "Fitness photography in Miami", "90 minutes, one location and 15 edited photographs. $350 pilot.", "fitness photographer photography coach trainer portraits miami", "Service"],
-  ["work/ai-setup/", "AI operations setup", "One recurring business workflow, documentation and handoff. $900 pilot.", "ai setup business automation operations", "Service"],
-  ["work/", "Work with Brice", "Compare coaching, analysis, photography, AI setup and training plans.", "hire brice work services", "Service"],
-]],
+      ]],
  ['start','Start with your question','A useful place to begin, whether you are new to running or building toward a race.',[
   ['library/from-lifting-to-running/','I lift. How do I start running?','Add running without treating every session like another hard gym day.','beginner starting beginner running lifting'],
   ['library/first-half-marathon-goal/','What is a sensible half-marathon goal?','Choose a starting target from the running you can do now.','first half marathon target goal 13.1'],
