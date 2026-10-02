@@ -106,6 +106,17 @@ Source: [dated athlete-report record](../studies/ADRIAN-ATHLETE-UPDATE-20260930.
 Acceptance run: https://github.com/Breechay/speedandform/actions/runs/36796258289. Tested source commit: 3ab5e4329ff36b2cf9f59ea364f17e50c07cb6e5. No FORM/Forge assignment, supplement/timing guidance, calorie target, calendar or message is changed.
 
 
+## October 2 - Pass 03 Shared Mornings + Archive
+
+Public ecosystem Passes 01/02 are sufficiently built. Primary product attention moves to the real weekly loop: **Upcoming occurrence → RSVP → morning → host closeout → Archive → selected public proof**.
+
+Canonical implementation contract: `docs/FORM_SHARED_MORNINGS_ARCHIVE_CONTRACT_V1.md`.
+
+Rulings: Thursday and Saturday use one occurrence model; RSVP and attendance remain separate; host closeout is Here / Absent / Unknown with FIRST RUN and an optional witness line; closeout exposes one occurrence-keyed private Archive draft; Roll → Nine is private-by-default, reversible and capped at nine selected published photographs; cover crop and cream/dark are presentation state; publish is explicit; website/Instagram consume only an explicitly published package. No feed, member-created runs, broad DMs, leaderboard or auto-coaching in this pass.
+
+Engineering order: occurrence parity → host closeout → Archive draft → Roll/Nine → public package. Before schema work, audit existing Collective/native models and add only the smallest additive structures; do not create parallel people/occurrence/media identity systems.
+
+
 ## October 1 UTC - Commercial handoff and Thursday alignment
 
 Second-round review fixes are live: explicit free Miami assessment/remote selections and preserved intake context; community search language and canonical coaching links; one concise reason behind the Hope/José pace decision; Analysis compatibility with an existing coach/plan. The current homepage and prices remain. Thursday now reads dated gathering status from the existing public Collective projection, keeping workout publication separate and failing safely if no date can be confirmed. Anonymous SELECT was verified against the public projection; no occurrence was created or changed. The damaged older Miami preview image now uses the existing SF card. PR186 passed Chromium/WebKit `36796888269`; live follow-up PR187 passed both engines `36797335442`. Final source `5f300f0` is published in Netlify `6abdac7145a0d5a4b3245b79` at September 30, 8:42 PM New York. Live first-step selection, Thursday public schedule and community SF identity are verified; the missing community sitemap entry is restored. Physical iPhone remains open. See the release receipt. The same remaining offer-readiness checklist stays in `COMMERCIAL-OFFERS-20260930.md`.
