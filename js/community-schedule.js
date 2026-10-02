@@ -33,7 +33,7 @@
       ])
     }),
     longRun: Object.freeze({
-      cadence: 'About once a month',
+      cadence: 'When scheduled',
       locationPolicy: 'Changing routes around Miami',
       announcementUrl: 'https://www.instagram.com/form.practice/'
     })
