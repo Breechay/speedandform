@@ -106,7 +106,7 @@
 <link rel="stylesheet" href="/css/coaching-choice.css?v=20260916-picker">
 <script defer src="/js/coaching-measurement.js?v=20260930"></script>
 <link rel="stylesheet" href="/css/sf-brand.css?v=20261001">
-<link rel="stylesheet" href="/css/home-commercial.css?v=20261002-offer-proof">
+<link rel="stylesheet" href="/css/home-commercial.css?v=20261002-hero-film">
 <script defer src="/js/commercial-inquiry.js?v=20260930"></script>
 </head>
 <body data-coaching-copy="20260927-gait-retraining">
@@ -131,7 +131,20 @@
       <div class="hero-actions"><a href="#coaching" class="begin">Find your coaching <span aria-hidden="true">→</span></a><a class="home-hero-secondary" href="#begin">Talk about your running ↗</a></div>
       <p class="home-hero-note">12+ years developing athletes · 26 athletes on the current roster. <a href="/coaching/miami/#coaching-examples">See the coaching in practice →</a></p>
     </div>
-    <figure class="home-hero-photo"><div class="home-portrait home-portrait-curve"><img src="/assets/home/20261001/brice-owner-1021.webp" srcset="/assets/home/20261001/brice-owner-640.webp 640w, /assets/home/20261001/brice-owner-1021.webp 1021w" sizes="(max-width: 600px) 100vw, 50vw" width="1021" height="1289" alt="Brice standing with his hands on his hips beside the track in Miami" fetchpriority="high"></div><figcaption>Brice · Coach <span>Miami, FL</span></figcaption></figure>
+    <figure class="home-hero-photo" data-hero-film>
+  <div class="home-portrait home-portrait-curve">
+    <img class="home-portrait-still" src="/assets/home/20261001/brice-owner-1021.webp" srcset="/assets/home/20261001/brice-owner-640.webp 640w, /assets/home/20261001/brice-owner-1021.webp 1021w" sizes="(max-width: 600px) 100vw, 50vw" width="1021" height="1289" alt="Brice standing with his hands on his hips beside the track in Miami" fetchpriority="high">
+    <video class="home-portrait-film" preload="metadata" muted playsinline disablepictureinpicture aria-label="From the practice in Miami">
+      <source src="/media/practice.mp4" type="video/mp4">
+    </video>
+    <button class="home-portrait-play" type="button" aria-label="Play practice film"><span aria-hidden="true">▶</span><b>From the practice</b></button>
+    <div class="home-film-controls" hidden>
+      <button type="button" data-film-sound aria-label="Turn sound on">Sound</button>
+      <button type="button" data-film-still aria-label="Return to portrait">Still</button>
+    </div>
+  </div>
+  <figcaption><span data-film-caption>Brice · Coach</span> <span data-film-place>Miami, FL</span></figcaption>
+</figure>
   </div>
 </section>
 </div>
@@ -193,7 +206,7 @@
   <div class="wrap">
     <p class="eyebrow">Work with Brice · Run Development</p>
     <h2 id="options-title">Your week.<br>Built around you.</h2>
-    <p class="coaching-option-dek">You do not have to figure the next week out alone. I assign the work, coach one private session each week in Miami, and adjust what comes next from how your running actually responds.</p>
+    <p class="coaching-option-dek">You do not have to figure the next week out alone. I assign the work, coach one private session each week in Miami, and adjust what comes next from how your running actually responds.</p><p class="coaching-roster-note">Some athletes come for a focused block and graduate when they no longer need the structure. Others stay across seasons as their race or fitness goals keep progressing.</p>
     <div class="coaching-option-grid">
       <article class="primary-offer"><h3>Individual running coaching</h3><p class="offer-method">RUN DEVELOPMENT · GAIT RETRAINING · PROGRAMMING</p><p class="coaching-price">$1,200 <span>/ 8 weeks · Miami</span></p>
         <dl class="scope-list"><div><dt>Know what to run</dt><dd>Assigned runs, pacing guidance, cues and targeted exercises built around your goal.</dd></div><div><dt>Practice together</dt><dd>One private 45-minute running session each week in Miami.</dd></div><div><dt>Keep moving forward</dt><dd>Training load, recovery and the next week change from what the work actually shows.</dd></div></dl>
@@ -557,5 +570,6 @@
 <script defer src="/js/coaching-choice.js?v=20260916-picker"></script>
 <script defer src="/js/homepage-motion.js?v=20260922-autoplay"></script>
 <script type="module" src="/private/account-navigation.js"></script>
+<script defer src="/js/home-hero-film.js?v=20261002"></script>
 </body>
 </html>
