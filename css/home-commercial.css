@@ -124,3 +124,10 @@
 .coaching-roster-note{max-width:690px;margin:-20px 0 36px;color:var(--muted);font-size:15px;line-height:1.55}
 @media(max-width:700px){.home-portrait-play{right:16px;bottom:16px}.home-portrait-play b{display:none}.home-film-controls{right:12px;bottom:12px}}
 @media(prefers-reduced-motion:reduce){.home-portrait-still,.home-portrait-film{transition:none}}
+
+
+/* Oct 2: athlete proof gets a face without turning the testimonial into a card. */
+.coaching-proof-wrap{display:grid;grid-template-columns:72px minmax(0,1fr);gap:20px;align-items:start;margin-top:34px;max-width:740px}
+.coaching-proof-avatar{width:72px;height:72px;border-radius:50%;object-fit:cover;object-position:50% 42%;display:block}
+.coaching-proof-wrap .coaching-proof{margin:0;padding:0;border-top:0;max-width:none}
+@media(max-width:700px){.coaching-proof-wrap{grid-template-columns:56px minmax(0,1fr);gap:14px;margin-top:28px}.coaching-proof-avatar{width:56px;height:56px}}

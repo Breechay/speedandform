@@ -5,6 +5,7 @@
   const video = figure.querySelector('.home-portrait-film');
   const play = figure.querySelector('.home-portrait-play');
   const controls = figure.querySelector('.home-film-controls');
+  const pause = figure.querySelector('[data-film-pause]');
   const sound = figure.querySelector('[data-film-sound]');
   const still = figure.querySelector('[data-film-still]');
   const caption = figure.querySelector('[data-film-caption]');
@@ -17,6 +18,10 @@
     controls.hidden = true;
     play.hidden = false;
     video.muted = true;
+    if (pause) {
+      pause.textContent = 'Pause';
+      pause.setAttribute('aria-label', 'Pause practice film');
+    }
     if (sound) {
       sound.textContent = 'Sound';
       sound.setAttribute('aria-label', 'Turn sound on');
@@ -41,6 +46,20 @@
   };
 
   play.addEventListener('click', start);
+  pause?.addEventListener('click', async () => {
+    if (video.paused) {
+      try {
+        await video.play();
+        pause.textContent = 'Pause';
+        pause.setAttribute('aria-label', 'Pause practice film');
+      } catch {}
+    } else {
+      video.pause();
+      pause.textContent = 'Play';
+      pause.setAttribute('aria-label', 'Resume practice film');
+    }
+  });
+  video.addEventListener('click', () => pause?.click());
   still?.addEventListener('click', reset);
   video.addEventListener('ended', reset);
   video.addEventListener('error', reset);
@@ -52,6 +71,12 @@
   });
 
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden && frame.dataset.filmPlaying === 'true') video.pause();
+    if (document.hidden && frame.dataset.filmPlaying === 'true') {
+      video.pause();
+      if (pause) {
+        pause.textContent = 'Play';
+        pause.setAttribute('aria-label', 'Resume practice film');
+      }
+    }
   });
 })();

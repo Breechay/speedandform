@@ -106,7 +106,7 @@
 <link rel="stylesheet" href="/css/coaching-choice.css?v=20260916-picker">
 <script defer src="/js/coaching-measurement.js?v=20260930"></script>
 <link rel="stylesheet" href="/css/sf-brand.css?v=20261001">
-<link rel="stylesheet" href="/css/home-commercial.css?v=20261002-hero-film">
+<link rel="stylesheet" href="/css/home-commercial.css?v=20261002-hero-film-proof">
 <script defer src="/js/commercial-inquiry.js?v=20260930"></script>
 </head>
 <body data-coaching-copy="20260927-gait-retraining">
@@ -139,6 +139,7 @@
     </video>
     <button class="home-portrait-play" type="button" aria-label="Play practice film"><span aria-hidden="true">▶</span><b>From the practice</b></button>
     <div class="home-film-controls" hidden>
+      <button type="button" data-film-pause aria-label="Pause practice film">Pause</button>
       <button type="button" data-film-sound aria-label="Turn sound on">Sound</button>
       <button type="button" data-film-still aria-label="Return to portrait">Still</button>
     </div>
@@ -210,7 +211,10 @@
     <div class="coaching-option-grid">
       <article class="primary-offer"><h3>Individual running coaching</h3><p class="offer-method">RUN DEVELOPMENT · GAIT RETRAINING · PROGRAMMING</p><p class="coaching-price">$1,200 <span>/ 8 weeks · Miami</span></p>
         <dl class="scope-list"><div><dt>Know what to run</dt><dd>Assigned runs, pacing guidance, cues and targeted exercises built around your goal.</dd></div><div><dt>Practice together</dt><dd>One private 45-minute running session each week in Miami.</dd></div><div><dt>Keep moving forward</dt><dd>Training load, recovery and the next week change from what the work actually shows.</dd></div></dl>
-        <blockquote class="coaching-proof"><p>“body feels good and it feels sustainable... great programming”</p><cite>José · Remote Run Development</cite></blockquote>
+        <div class="coaching-proof-wrap">
+          <img class="coaching-proof-avatar" src="/assets/athletes/jose-remote-256.webp" width="256" height="256" loading="lazy" decoding="async" alt="José">
+          <blockquote class="coaching-proof"><p>“body feels good and it feels sustainable... great programming”</p><cite>José · Remote Run Development</cite></blockquote>
+        </div>
       </article>
       <div class="first-step"><a class="button-link" href="#begin" data-coaching="run">Work with Brice <span aria-hidden="true">→</span></a></div>
     </div>
@@ -570,6 +574,6 @@
 <script defer src="/js/coaching-choice.js?v=20260916-picker"></script>
 <script defer src="/js/homepage-motion.js?v=20260922-autoplay"></script>
 <script type="module" src="/private/account-navigation.js"></script>
-<script defer src="/js/home-hero-film.js?v=20261002"></script>
+<script defer src="/js/home-hero-film.js?v=20261002-pause"></script>
 </body>
 </html>
