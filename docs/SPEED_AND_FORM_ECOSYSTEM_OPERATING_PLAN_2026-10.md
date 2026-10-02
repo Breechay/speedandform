@@ -470,6 +470,87 @@ Brice rotates roles; he does not attempt every role every day:
 
 The Daily Brief chooses the few hats needed today.
 
+# Company operating system · freshness protocol
+
+Speed & Form operates as a small company with connected sources of truth, not one giant master document.
+
+## Hats
+
+Use these labels in the Daily Brief, Runway, weekly review and monthly planning:
+- **COACH** — athlete decisions, reviews and delivery.
+- **PRACTICE HOST** — Thursday/Saturday logistics, people and closeout.
+- **PRODUCT DIRECTOR** — FORM/Forge scope, contracts and acceptance.
+- **BUILDER / REVIEWER** — agent work, tests, QA and release evidence.
+- **CREATIVE DIRECTOR** — photography, Archive, visual assets and exercise/poster imagery.
+- **COMMERCIAL LEAD** — inquiries, referrals, offers, distribution and ads when authorized.
+- **OPERATOR** — money, housing, admin, calendar and company closeout.
+- **STUDENT / ATHLETE** — Brice's own training, recovery and curriculum.
+
+The Daily Brief chooses the few hats needed today.
+
+## Source-of-truth mesh
+
+| Truth | Owner |
+|---|---|
+| Athlete prescription / block / plan / coaching decision | FORM Athlete System |
+| Athlete execution evidence | canonical filing / Garmin / Forge receipt as applicable |
+| Strength execution | Forge |
+| Shared-morning occurrence / RSVP / attendance | Collective |
+| Editorial photo history | Archive |
+| Public explanation / discovery / conversion | speedandform.com |
+| Timing / appointments | Google Calendar |
+| Cash / balances / transactions | Finances |
+| Company priorities / milestone state | Operating Console + current roadmap |
+| Long-lived product architecture / decisions | owning repo docs |
+| Daily projection | Daily Operating Brief |
+
+Readers summarize an owner; they do not become the owner. A later verified source supersedes an older summary. Missing information stays missing. Every material sync/change needs a read-back receipt.
+
+## Freshness cadence
+
+**Daily:** calendar, athlete changes/messages, cash-critical obligations, build/release blockers, shared-morning changes.
+
+**Weekly:** athlete block horizon / next gate, inquiries/referrals, FORM/Forge milestone status, network activation, housing/admin, stale-item sweep.
+
+**Monthly:** company objectives, offer evidence/delivery economics, product priorities, active roster, recurring-practice identity resolution, source-health audit, Archive/public-proof output and next-month finish conditions.
+
+## Athlete horizon rule
+
+At least weekly, read the canonical active training blocks.
+- **THIS WEEK** — ends within 7 days.
+- **ENDING SOON** — ends within 21 days.
+- **UNKNOWN TERM** — an active coached relationship has no dated current block.
+
+This means review renewal / next block / transition. It does **not** mean a coaching service automatically ends when a training block ends.
+
+Snapshot read 2026-10-02:
+- Natalie · Run Development · 8-week block ends Oct 17 → ENDING SOON.
+- Lisa · Raise the Ceiling · ends Oct 26.
+- Simon · Block 01 ends Nov 1.
+- Elijah · current block ends Nov 15.
+- Hope / José · RPD ends Dec 5.
+- Marcus · ends Dec 13.
+- Adrian · current block ends Dec 31.
+- Tinius · current RPD block ends Jan 10.
+- Devin / Marisa / Rod / Valerie have no active dated block in the canonical block table; treat this as an operational data gap, not proof that no coaching relationship exists.
+
+## Visual execution
+
+The private Operating Console now carries a **Runway** view modeled after a training-plan scroll:
+- 12 horizontally scrollable weeks;
+- operating milestones placed in their dated week;
+- undated backlog kept separate;
+- live athlete block horizons below the company runway;
+- hat labels kept visible as the thinking-mode vocabulary.
+
+The Runway is a projection. Operating items and FORM blocks remain the sources underneath it.
+
+## Review rhythm
+
+- **Daily Brief:** choose today's 3–4 outcomes.
+- **Weekly Company Review:** Sunday freshness sweep + athlete horizons + next week's finish conditions.
+- **Monthly Company Reset:** first Monday of each month; close stale state, set 4–6 company objectives, and write the next runway.
+
 # Immediate NOW
 
 1. Pass 03 — Shared Mornings: harden Thursday/Saturday occurrence parity, host closeout and archive handoff.
