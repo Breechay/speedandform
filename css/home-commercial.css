@@ -232,3 +232,7 @@ linear-gradient(0deg,rgba(3,5,4,.45) 0%,rgba(3,5,4,.04) 58%,rgba(3,5,4,.12) 100%
   .sf-home-hero-immersive .home-hero-media img{object-position:36% 50%}
   .sf-home-hero-immersive .home-hero-shade{background:linear-gradient(0deg,rgba(3,5,4,.80) 0%,rgba(3,5,4,.57) 42%,rgba(3,5,4,.06) 78%,rgba(3,5,4,.04) 100%)}
 }
+
+/* 2026-10-02 · place Brice nearer the mobile/desktop focal center */
+@media(min-width:761px){.sf-home-hero-immersive .home-hero-media img{object-position:22% 42%}}
+@media(max-width:760px){.sf-home-hero-immersive .home-hero-media img{object-position:18% 50%}}
