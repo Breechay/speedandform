@@ -144,6 +144,9 @@ function installStyles() {
     .rpd-lock-quiet{min-height:64px}
     .rpd-mobile-lock{min-height:340px;padding:28px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:repeating-linear-gradient(135deg,rgba(201,255,54,.035) 0,rgba(201,255,54,.035) 10px,transparent 10px,transparent 20px)}
     .rpd-mobile-lock strong{font-size:30px}
+    .rpd-print-choices{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+    .rpd-print-choices strong{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    .rpd-print-choices a{color:var(--lime);font-size:12px}
   `;
   document.head.appendChild(style);
 }
@@ -169,6 +172,9 @@ async function init() {
     if (note) {
       note.innerHTML = '<h3>All 15 weeks are available.</h3><p></p>';
       note.querySelector('p').textContent = access.mode === 'purchased' ? 'Your full web plan is ready to read. Use the week arrows to browse the training.' : 'This is the published plan. Individual paces and coach-authored changes remain in the athlete’s assigned training.';
+      if (access.mode === 'purchased') {
+        note.insertAdjacentHTML('beforeend', '<div class="rpd-print-choices"><strong>Print edition</strong><a href="/plans/race-pace-durability/print.html?theme=light#preview">Light / paper →</a><a href="/plans/race-pace-durability/print.html?theme=dark#preview">Dark / screen →</a></div>');
+      }
     }
   }
   $('#next').setAttribute('aria-label', entitled ? 'Next weeks' : 'Next weeks or unlock full plan');
