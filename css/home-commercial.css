@@ -272,3 +272,11 @@ linear-gradient(0deg,rgba(3,5,4,.45) 0%,rgba(3,5,4,.04) 58%,rgba(3,5,4,.12) 100%
     linear-gradient(90deg,rgba(3,5,4,.68) 0%,rgba(3,5,4,.54) 18%,rgba(3,5,4,.24) 34%,rgba(3,5,4,.07) 46%,rgba(3,5,4,0) 58%),
     linear-gradient(0deg,rgba(3,5,4,.40) 0%,rgba(3,5,4,.03) 56%,rgba(3,5,4,.09) 100%)}
 }
+
+/* 2026-10-02 · Speed & Form controls match FORM House: rectangles, no pills */
+.questionnaire .opt,.questionnaire .cta,.questionnaire #coachingChoice{border-radius:0!important;transform:none!important}
+.questionnaire .opt{border:1px solid #8f938e;background:transparent;color:#161916}
+.questionnaire .opt:hover{background:#e2ddd3;border-color:#161916}
+.questionnaire .opt[aria-pressed="true"],.questionnaire .opt[aria-pressed="true"]:hover{background:#161916;color:#f1ede4;border-color:#161916}
+.questionnaire .cta{background:#161916;color:#f1ede4;border:1px solid #161916}
+.questionnaire .cta:hover{background:#0d0f0e}
