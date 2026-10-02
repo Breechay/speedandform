@@ -93,7 +93,7 @@ function lockTable(table) {
       cell.dataset.rpdLocked = 'true';
       cell.classList.add('rpd-locked-cell');
       cell.innerHTML = rowIndex === 0
-        ? `<button class="rpd-lock" type="button" aria-label="Unlock weeks ${FREE_THROUGH + 1} through 15"><span>LOCKED</span><strong>Full plan · $79</strong><em>Unlock weeks ${FREE_THROUGH + 1}–15 →</em></button>`
+        ? `<button class="rpd-lock" type="button" aria-label="Unlock weeks ${FREE_THROUGH + 1} through 15"><span>LOCKED</span><strong>Unlock full 15 weeks · $79</strong><em>Unlock weeks ${FREE_THROUGH + 1}–15 →</em></button>`
         : '<div class="rpd-lock-quiet" aria-hidden="true"></div>';
     });
   });
@@ -113,7 +113,7 @@ function lockMobile() {
     if (!sheet || week <= FREE_THROUGH || week < 1) return;
     if (sheet.dataset.lockedWeek === String(week) && sheet.querySelector('.rpd-mobile-lock')) return;
     sheet.dataset.lockedWeek = String(week);
-    sheet.innerHTML = `<button class="rpd-mobile-lock" type="button" aria-label="Unlock the full plan"><span>WEEK ${week}</span><strong>Full plan · $79</strong><em>Unlock weeks ${FREE_THROUGH + 1}–15 →</em></button>`;
+    sheet.innerHTML = `<button class="rpd-mobile-lock" type="button" aria-label="Unlock the full plan"><span>WEEK ${week}</span><strong>Unlock full 15 weeks · $79</strong><em>Unlock weeks ${FREE_THROUGH + 1}–15 →</em></button>`;
   });
 }
 
