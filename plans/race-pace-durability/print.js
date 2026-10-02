@@ -11,7 +11,18 @@ import { publishedPlan } from './source.js';
 import { notation } from './notation.js';
 import { executionGuide, executionExamples, executionVersion } from './execution.js';
 
-const plan = await publishedPlan('race-pace-durability');
+const params = new URLSearchParams(location.search);
+const theme = params.get('theme') === 'light' ? 'light' : 'dark';
+document.documentElement.dataset.printTheme = theme;
+document.querySelectorAll('[data-theme-link]').forEach(link => link.setAttribute('aria-current', link.dataset.themeLink === theme ? 'page' : 'false'));
+document.getElementById('printNow')?.addEventListener('click', () => window.print());
+
+const access = await import('./source.js').then(m => m.resolvePlanAccess()).catch(() => null);
+if (!access?.entitled) {
+  document.getElementById('edition').innerHTML = '<section class="access-card"><h1>Full print editions come with the purchased plan.</h1><p>Weeks 1–4 remain free on the web. Purchase or restore access to print all 15 weeks.</p><a href="/plans/race-pace-durability/support/">Plan details →</a></section>';
+  throw new Error('Paid plan access required for print edition');
+}
+const plan = access.plan;
 const { read } = notation(plan);
 
 const DAYS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
@@ -93,7 +104,7 @@ document.getElementById('edition').innerHTML = `
   </section>` + spreads.map(spread).join('') + `<section class="page pacing-page"><div class="brand">FORM <span>LABS</span></div><h1>Practise the race.</h1><h2>START · SETTLE · HOLD · FINISH</h2><div class="pacing-columns"><div>${executionGuide.map(p => `<p>${esc(p)}</p>`).join('')}</div><div>${executionExamples.map(({label,cue}) => `<h3>${esc(label)}</h3><p>${esc(cue)}</p>`).join('')}</div></div><div class="page-foot">Pacing notes · ${executionVersion} · Follow your assigned band. Training volume and targets are unchanged.</div></section>`;
 
 // The file the browser offers to save is named by the print job's title.
-document.title = `${title} · ${version}`;
+document.title = `${title} · ${theme === 'light' ? 'Light' : 'Dark'} Print · ${version}`;
 
 // Opened to be printed. The fonts must be down before the dialog measures the
 // page, or the first print lays out in a fallback and the columns move.
