@@ -1,11 +1,22 @@
 # Study 003: The Two Curves
 
-Owner: Brice. Athlete: Simon. Approved revision: **SIMON-003-R2-20260923**.
+Owner: Brice. Athlete: Simon. Approved revision: **SIMON-003-R3-20261001**.
 Read this before changing the study, assigned plan, interpretation, or any Simon progression. It supersedes earlier September 23 proposals where they conflict. Reviews are inputs, not votes and not automatic instructions.
 
 ## The question
 
-Can faster running become continuous at an acceptable cost, and later remain available after prior running, while high-end field performance is developed?
+**Simon already has substantial speed. The open question is how much of that speed he can make durable.**
+
+His historical anchors make the mismatch visible: **17:36 for 5K (5:40/mi)** and **1:26:13 for the half (6:34/mi)**. The study's current goal envelope is **1:19-1:23**, with **~1:20 / 6:06 per mile** as a useful center, not a prediction or proof of current fitness.
+
+The working hypothesis is that Simon does not primarily need to prove he can touch ~6:06/mi. He needs to make controlled running in that neighborhood last progressively longer and cost less, while preserving enough faster running above it that half-marathon pace is not his ceiling.
+
+That gives the weekly architecture three distinct jobs:
+- **Tuesday — extend the hold:** controlled half-marathon-development work, progressing duration/continuity only when earned.
+- **Thursday — preserve/raise the ceiling:** shorter work substantially faster than the half-marathon band; repeatability before progression.
+- **Saturday — build durability underneath:** easy volume that supports the two quality exposures without becoming another test.
+
+The study therefore asks: **Can faster running become continuous at an acceptable cost, and later remain available after prior running, while high-end field performance is preserved or developed?**
 
 Do not reduce this to fixing a failed half marathon. April's 1:26:13 was a successful, deliberately conservative race aimed at sub-1:30 according to Brice. Ambitions of 1:15-1:20 during preparation do not establish fitness at those times. Faster-long-run fading is a separate coach observation. An even race neither disproves that observation nor identifies its cause.
 
@@ -56,6 +67,24 @@ Therefore:
 - the first three reps show ready access to the working pace neighborhood;
 - heart rate remains context, not a fixed cap or pass/fail gate in this plan;
 - Week 2's **4 x 2 km** remains conditional on normal recovery and controlled execution, exactly as authored. No faster band is created from this session.
+
+## Week 1 read: September 29 + October 1
+
+Week 1 supports the hypothesis; it does **not** prove it.
+
+Tuesday's first three 1.6 km repetitions were approximately **5:59, 6:02 and 6:04/mi** before the externally prompted slowdown on rep four. That is evidence of ready access to the working-pace neighborhood, not yet evidence that Simon can sustain ~6:06/mi continuously for a half marathon. Garmin context for the whole activity: **158 bpm average / 185 max**, **4.5 aerobic / 1.1 anaerobic Training Effect**, and potential stamina **100% → 64%**.
+
+Thursday's **5 x 3 min** produced **5:51, 5:36, 5:45, 5:45 and 5:46/mi**, about **5:44/mi average** across fifteen minutes of work. Simon reported that reps four and five were "kind of hard," yet their pace remained essentially unchanged. Garmin context: **159 bpm average / 194 max**, **4.2 aerobic / 3.4 anaerobic Training Effect**, and potential stamina **97% → 47%**.
+
+The early read is therefore:
+
+- **Speed availability does not currently look like the obvious limiter.** Simon can repeatedly access speeds faster than the ~6:06/mi study center.
+- **The hold remains the experiment.** Access to ~6:00-6:10/mi in repetitions is not the same as owning it continuously for 13.1 miles.
+- **Thursday is already sufficiently demanding.** Do not make the ceiling session faster because one rep reached 5:36/mi. Repeatability and cost come before progression.
+- **Tuesday and Thursday are producing meaningfully different session shapes.** The Garmin metrics are useful context for that distinction, but remain device-derived rather than laboratory measurements.
+- **No race conclusion yet.** Week 1 does not establish 1:20 fitness or justify narrowing the 1:19-1:23 envelope.
+
+In plain language: **he has the speed; the study is testing whether we can make more of it last.**
 
 ## Gate 01 is a window
 
