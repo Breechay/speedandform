@@ -69,3 +69,43 @@ tbody td{vertical-align:top;border-top:1px solid rgba(32,44,47,.9);
 }
 
 .pacing-page h1{font-size:34px;margin:24px 0 12px;letter-spacing:-.04em}.pacing-page h2{font-size:11px;color:var(--lime);letter-spacing:.15em}.pacing-columns{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:16px}.pacing-columns p{font-size:11px;line-height:1.5;color:#c7cfcb;margin:0 0 16px}.pacing-columns h3{font-size:11px;color:var(--lime);margin:0 0 4px}
+
+/* Buyer-selectable paper edition. The prescription is shared; only the material changes. */
+.print-tools{display:none}
+.loading,.access-card{font-family:Inter,Arial,sans-serif}
+html[data-print-theme="light"]{--bg:#eee8dc;--text:#171713;--muted:#716d64;--line:#cbc4b6;--lime:#5c6f21}
+html[data-print-theme="light"] body{background:#d8d2c6;color:var(--text)}
+html[data-print-theme="light"] .page{background:#eee8dc;color:#171713}
+html[data-print-theme="light"] .brand span{color:#5c6f21}
+html[data-print-theme="light"] .cover .sub{color:#4f4b44}
+html[data-print-theme="light"] .cover .meta{color:#777168;border-color:#aaa397}
+html[data-print-theme="light"] .table-wrap{border-color:#aaa397}
+html[data-print-theme="light"] thead th{color:#25231f;border-color:rgba(120,113,102,.24)}
+html[data-print-theme="light"] thead th:first-child{color:#6f6960}
+html[data-print-theme="light"] .date{color:#777168}
+html[data-print-theme="light"] tbody th{color:#3d3933;border-color:rgba(120,113,102,.18)}
+html[data-print-theme="light"] tbody td{background:#eee8dc;border-color:rgba(120,113,102,.13)}
+html[data-print-theme="light"] .s-title{color:#444039}
+html[data-print-theme="light"] .s-title.race{color:#a74234}
+html[data-print-theme="light"] .primary{color:#28251f}
+html[data-print-theme="light"] .detail{color:#676158}
+html[data-print-theme="light"] .total{color:#817a70}
+html[data-print-theme="light"] .rest .s-title{color:#858077}
+html[data-print-theme="light"] .rest .primary{color:#5e5951}
+html[data-print-theme="light"] .week-total th,
+html[data-print-theme="light"] .week-total td{background:#e7e0d4;border-color:#aaa397}
+html[data-print-theme="light"] .week-total .primary{color:#211f1b}
+html[data-print-theme="light"] .page-foot{color:#777168}
+html[data-print-theme="light"] .pacing-page h2,
+html[data-print-theme="light"] .pacing-columns h3{color:#a74234}
+html[data-print-theme="light"] .pacing-columns p{color:#49443d}
+@media screen{
+  .print-tools{position:sticky;top:12px;z-index:20;width:min(11in,calc(100vw - 32px));display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 12px;background:#111b18;color:#f4f1e8;font:12px/1.2 Inter,Arial,sans-serif;border:1px solid #314039}
+  .print-tools a,.print-tools button{color:inherit;background:transparent;border:0;text-decoration:none;padding:8px 10px;font:inherit;cursor:pointer}
+  .print-tools [aria-current="page"]{background:#c9ff36;color:#071012}
+  .print-tools div{display:flex;align-items:center;gap:4px}
+  .access-card{max-width:680px;margin:80px auto;padding:40px;background:#eee8dc;color:#171713}
+  .access-card h1{font-size:36px;line-height:1.05}.access-card a{color:#171713}
+  html[data-print-theme="light"] .page{box-shadow:0 1px 0 #bdb6aa,0 18px 44px #00000038}
+}
+@media print{.print-tools{display:none!important}}
