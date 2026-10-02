@@ -157,3 +157,116 @@ Start with two materially different hypotheses:
 - **B Evidence-led:** 6 continuous miles. No resets.
 
 Use the same destination and offer. Do not set spend until the ad account's current forecasts, conversion configuration, and stop condition are reviewed.
+
+
+# Run Development / Homepage Ad Track
+
+## Truth / proof available
+- Brice has coached and developed athletes for **12+ years**.
+- Current roster: **26 athletes**.
+- Roster count is not a claim of 26 current paying clients or equal service intensity. Some athletes are actively managed season after season; some need lighter-touch support; some graduate from coaching.
+- Do not convert the roster count into fabricated outcomes, retention rates, or client-volume claims.
+
+## Destination
+Primary coaching destination:
+`https://speedandform.com/coaching/miami/`
+
+Local-intent destination to test separately:
+`https://speedandform.com/miami-running-training`
+
+Primary action: **Ask for a free Miami assessment** for suitable local traffic.
+Remote traffic: inquiry / tell Brice what you want to be capable of.
+
+## Meta / Instagram coaching ads
+
+### Coaching A — Desire breadth
+**Headline:** Run better. Go farther. Feel ready.
+
+**Primary text**
+Your goal might be a first comfortable 5K, a faster race, more endurance, smoother running, or simply knowing what to do next.
+
+I have spent more than 12 years developing athletes. Today I work with a roster of 26 runners and athletes at different stages: some building toward a first distance, others returning season after season with progressive race or fitness goals.
+
+Run Development is eight weeks of individual coaching built around where you are now and what you want to become capable of.
+
+**CTA:** Learn More / Explore coaching
+
+### Coaching B — Guidance
+**Headline:** Stop guessing at the next week
+
+**Primary text**
+You do not just get a plan.
+
+I assign the running, coach one private 45-minute session each week in Miami, and adjust what comes next from how your running actually responds.
+
+12+ years developing athletes. 26 athletes on the current roster.
+
+**CTA:** Learn More / Ask about Run Development
+
+### Coaching C — Local Miami
+**Headline:** Running Coach in Miami
+
+**Primary text**
+Want to run farther, get faster, improve endurance or feel smoother when you run?
+
+Run Development combines your weekly training with one private 45-minute running session in Miami. The work changes as you develop.
+
+I have coached and developed athletes for more than 12 years. Current roster: 26 athletes.
+
+**CTA:** Learn More / Free Miami assessment
+
+### Coaching D — Proof / range
+**Headline:** Different goals. Same approach.
+
+**Primary text**
+A first community 5K. A half marathon you feel capable of finishing. Race pace that holds longer. Progressive goals season after season.
+
+The goal changes. Coaching starts from what you can do now and builds toward what you want next.
+
+12+ years developing athletes · 26 athletes on the current roster.
+
+**CTA:** Learn More / See coaching in practice
+
+## Coaching creative briefs
+
+### Coaching Creative 01 — Practice film
+Use the supplied 29-second vertical black-and-white training film as the lead asset for Reels/Stories.
+- Native 9:16; do not crop into a landscape mask for the ad.
+- Let the first seconds establish the group/environment before adding copy.
+- Suggested opening overlay: **RUN BETTER.**
+- Follow: **GO FARTHER. FEEL READY.**
+- End card: **RUN DEVELOPMENT · MIAMI + ONLINE**
+- Proof line: **12+ YEARS DEVELOPING ATHLETES · 26 ON THE CURRENT ROSTER**
+- CTA/end: **Tell me what you want to be capable of.**
+
+### Coaching Creative 02 — Still + proof
+Use a strong Thursday/practice photograph.
+Overlay:
+**YOUR WEEK. BUILT AROUND YOU.**
+Small:
+**12+ years developing athletes**
+**26 athletes on the current roster**
+Footer:
+**Run Development · 8 weeks · Miami + online**
+
+## Google Search coaching headlines
+Running Coach in Miami
+Private Running Coach Miami
+Run Development With Brice
+Run Better With a Coach
+Miami & Online Coaching
+8 Weeks Built Around You
+Running Form Help Miami
+Half Marathon Coach Miami
+5K Running Coach Miami
+Build Speed And Endurance
+
+## Google Search coaching descriptions
+Individual running coaching with Brice. Eight weeks, $1,200. Miami and online.
+12+ years developing athletes. Training built around your goal and current running.
+Private 45-minute Miami session each week plus programming and ongoing adjustments.
+From first 5K goals to faster racing. Tell Brice what you want to be capable of.
+
+## First coaching test
+Test **Desire breadth** vs **Guidance** before slicing by narrower athlete goal.
+For Miami Search, keep location intent explicit and send to the coaching/Miami surface.
