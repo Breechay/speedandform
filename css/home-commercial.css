@@ -104,3 +104,6 @@
 /* Oct 1: give the study ladder a designed caption, not a loose sentence. */
 .study-ladder{position:relative;padding-bottom:34px!important}.study-ladder-note{margin:30px 0 0!important;max-width:none!important;display:flex;align-items:center;gap:16px;font:600 14px/1.4 var(--sans)!important;color:var(--bone)!important}.study-ladder-note:before{content:"";width:34px;height:2px;background:var(--study-accent);flex:0 0 auto}.study-ladder-note:after{content:"RACE-PACE DURABILITY";font:500 10px/1.4 var(--mono);letter-spacing:.12em;color:#7f8d84;margin-left:auto}
 @media(max-width:700px){.study-ladder-note{align-items:flex-start}.study-ladder-note:after{display:none}}
+
+.coaching-option-dek{max-width:690px;font-size:clamp(18px,1.8vw,24px);line-height:1.38;letter-spacing:-.02em;margin:16px 0 38px;color:var(--body)}
+.coaching-proof{margin:34px 0 0;padding:24px 0 0;border-top:1px solid rgba(104,98,88,.15);max-width:650px}.coaching-proof p{font-size:clamp(20px,2vw,27px);line-height:1.25;letter-spacing:-.025em;margin:0 0 10px}.coaching-proof cite{font:500 10px/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-style:normal}
