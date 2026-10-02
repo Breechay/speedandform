@@ -44,6 +44,9 @@
 .hero>div:first-child{justify-content:center}.hero .lede{font-size:clamp(19px,1.8vw,25px);font-weight:400;max-width:690px;color:#d1cec6}.hero-thesis{font-size:16px;line-height:1.55;color:var(--muted);max-width:610px;margin:24px 0 0}.hero .eyebrow{margin-bottom:18px}.hero-side{align-items:flex-start}.hero-side>div{display:none}.story-lead{font-size:23px!important;line-height:1.42!important;color:#e6e2da!important;font-weight:450}.story-close{font-weight:600;color:#fff!important}.fact.meet,.fact.belong{flex:1.18}.fact.support{flex:1}.facts.ritual{display:flex;grid-template-columns:none}.facts.ritual .fact{min-width:0}.reveal{opacity:0;transform:translateY(10px);transition:opacity .55s ease,transform .55s ease}.reveal.is-in{opacity:1;transform:none}.verb-reveal{opacity:0;transform:translateY(8px);transition:opacity .45s ease,transform .45s ease}.verb-reveal.is-in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.reveal,.verb-reveal{opacity:1;transform:none;transition:none}}
 @media(max-width:850px){.facts.ritual{display:grid;grid-template-columns:1fr 1fr}.facts.ritual .fact{border-bottom:1px solid var(--line)}}@media(max-width:520px){.facts.ritual{grid-template-columns:1fr}}
+
+.layers{margin-top:44px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}.layer{background:var(--black);padding:28px;min-height:230px}.layer h3{font:600 18px/1.1 var(--mono);letter-spacing:.06em;text-transform:uppercase;margin:0}.layer strong{display:block;font-size:18px;line-height:1.3;margin:28px 0 12px}.layer p{font-size:14px;line-height:1.55;color:var(--muted);margin:0}.pathline{font-size:18px;line-height:1.55;max-width:700px;margin:30px 0 0}.proof-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}.proof-grid dt{font:600 14px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase}.proof-grid dd{margin:8px 0 0;font-size:14px;line-height:1.5;color:var(--muted)}.photo-slots{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.photo-slot{min-height:310px;position:relative;background:#171a18}.photo-slot+ .photo-slot{border-left:1px solid var(--line);background:#101210}.photo-slot:after{content:"";position:absolute;inset:16px;border:1px solid var(--line)}.photo-slot figcaption{position:absolute;z-index:1;top:34px;left:34px;font:10px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.photo-slot p{position:absolute;z-index:1;left:34px;bottom:34px;max-width:300px;font-size:14px;line-height:1.5;color:var(--muted)}.cta .button{border-radius:0;background:var(--ink);color:var(--paper);padding:15px 21px}.cta-actions{display:flex;flex-wrap:wrap;gap:10px}.copy-note{min-height:50px;padding:13px 18px;border:1px solid #8f938e;background:transparent;color:var(--ink);font:600 14px var(--sans);cursor:pointer}.copy-note:hover{background:#e2ddd3}.copy-note:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+@media(max-width:850px){.layers{grid-template-columns:1fr 1fr}.proof-grid{grid-template-columns:1fr 1fr}.photo-slots{grid-template-columns:1fr}.photo-slot+.photo-slot{border-left:0;border-top:1px solid var(--line)}}@media(max-width:520px){.layers,.proof-grid{grid-template-columns:1fr}}
 </style><body>
 <svg aria-hidden="true" width="0" height="0" style="position:absolute"><defs>
 <symbol id="i-bag" viewBox="0 0 32 32"><path d="M7 11h18l-1 16H8L7 11Z"/><path d="M11 11V8a5 5 0 0 1 10 0v3"/></symbol>
@@ -90,8 +93,15 @@
 </div></div></section>
 
 <section class="section"><div class="shell">
-  <div class="section-head"><div class="kicker">The system</div><h2 class="reveal">FORM already has the mornings.</h2></div>
-  <div class="story"><div><p class="lede">The right door makes them easier.</p></div><div class="story-copy"><p>The practice is the coaching, the plans, and the studies. The occasion is Thursday at the track, and a Saturday long run when one is scheduled. The record is the photographs, the sessions, and what the athletes actually did. The home is the door around the occasion.</p><p class="story-close">The home is optional. The other three already exist.</p></div></div>
+  <div class="kicker">How FORM operates</div>
+  <h2 class="reveal" style="max-width:900px">FORM already has the mornings.<br>The right door makes them easier.</h2>
+  <div class="layers">
+    <article class="layer"><h3>Practice</h3><strong>What makes the training intelligent.</strong><p>Coaching, authored plans, and living studies. This stays the commercial and intellectual center.</p></article>
+    <article class="layer"><h3>Occasion</h3><strong>A reason and a place to do it together.</strong><p>Thursday at the track. A Saturday long run when one is scheduled. Not a feed.</p></article>
+    <article class="layer"><h3>Record</h3><strong>The work keeps its memory.</strong><p>Photographs, named sessions, and what the athletes actually did.</p></article>
+    <article class="layer"><h3>Home</h3><strong>The door around the occasion.</strong><p>Optional. The other three already exist without real estate.</p></article>
+  </div>
+  <p class="pathline">Show up. The morning fits. Some people stay with the group. Some want a plan. Some want the week built around them. Nobody has to buy coaching to belong.</p>
 </div></section>
 
 <section class="section"><div class="shell">
@@ -116,12 +126,18 @@
 
 <section class="section"><div class="shell">
   <div class="section-head"><div class="kicker">What we will learn</div><h2 class="reveal">The next proof is a better morning.</h2></div>
-  <div class="copy"><p>Arrival. Return. Dwell. Friction. A sentence on what the morning actually felt like. No scores on people. No questionnaire. If the same faces keep coming back, we will know what deserves to be built.</p></div>
+  <dl class="proof-grid"><div><dt>Arrival</dt><dd>Who showed up at the door.</dd></div><div><dt>Return</dt><dd>Who came back inside.</dd></div><div><dt>Dwell</dt><dd>How long the morning naturally continued.</dd></div><div><dt>Friction</dt><dd>What got in the way.</dd></div></dl>
+  <div class="source-note" style="color:var(--muted);max-width:700px;margin-top:30px">Plus one sentence on what the morning felt like. No scores on people. No questionnaire. If the same faces keep coming back, we will know what deserves to be built.</div>
 </div></section>
+
+<section class="photo-slots" aria-label="Real photography still needed">
+  <figure class="photo-slot"><figcaption>Photograph needed · Arrival</figcaption><p>5:50. Shoes, bags, the route, somebody greeting someone.</p></figure>
+  <figure class="photo-slot"><figcaption>Photograph needed · Return</figcaption><p>Back from the work. Coffee, water, sitting, talking.</p></figure>
+</section>
 
 <section class="cta"><div class="shell cta-grid">
   <div><div class="eyebrow" style="color:#657069">A brighter morning ahead</div><h2 class="reveal">Have the place?<br>We have the practice.</h2></div>
-  <div><p>Hotel. Apartment. Café. Performance facility.</p><a class="button" href="/contact">Build a morning with FORM →</a><div class="fine">No site selected. No partnership implied. Miami and beyond.</div></div>
+  <div><p>Hotel. Apartment. Café. Performance facility.</p><div class="cta-actions"><a class="button" href="/contact">Build a morning with FORM →</a><button class="copy-note" type="button" id="copy-partner-note">Copy the note to send</button></div><div class="fine">No site selected. No partnership implied. Miami and beyond.</div></div>
 </div></section>
 </main>
 <footer class="shell"><span>FORM · Speed & Form</span><span>Run · Recover · Fuel · Belong</span></footer>
@@ -131,5 +147,7 @@
   const once=(nodes,stagger)=>{const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const group=entry.target.parentElement;const siblings=stagger?[...group.querySelectorAll('.verb-reveal')]:[entry.target];siblings.forEach((el,i)=>setTimeout(()=>el.classList.add('is-in'),stagger?i*90:0));siblings.forEach(el=>io.unobserve(el));}),{threshold:.2});nodes.forEach(n=>io.observe(n));};
   once(document.querySelectorAll('.reveal'),false);
   const verbs=document.querySelectorAll('.verb-reveal');if(verbs.length)once([verbs[0]],true);
+  const copy=document.getElementById('copy-partner-note');
+  if(copy)copy.addEventListener('click',async()=>{const note="We already train before the city is awake. What we need is a door: bags down at 5:50, out by 6:00, back for water, coffee, and ten or twenty minutes. The streets stay the training ground.\n\nA first version can be four to eight mornings in a lobby, café corner, or amenity lounge. If people keep coming back, we will know what deserves to be built next.\n\nFORM House\nhttps://speedandform.com/form-house";try{await navigator.clipboard.writeText(note);copy.textContent='Copied';setTimeout(()=>copy.textContent='Copy the note to send',2200)}catch(e){}});
 })();
 </script></body>
