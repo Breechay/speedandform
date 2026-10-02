@@ -73,3 +73,21 @@ The site repository owns this shell and contract. The FORM Athlete System owns c
 New public shell only; existing athlete dossiers and legacy authoring routes stay intact. The two September 30 operating migrations install private storage, audit/version checks and the shared reader, then a narrowly scoped owner-check wrapper. No app build is required. An initial permission test caught an existing helper's restricted execute grant; the follow-up migration fixed the wrapper without exposing the helper to arbitrary browser calls.
 
 Run `node --test tests/operating-console.test.mjs` and syntax checks. See `CONSOLE-ACCEPTANCE-20260930.md` for actual checks and open acceptance items. Use one batched site release. Do not buy credits or silently change deployment settings. A production receipt and browser/physical-device validation are separate claims.
+
+
+## Runway projection · October 2
+
+The console now includes a **Runway** view so company work can be scanned like a training plan instead of only as a task list.
+
+Runway rules:
+- operating items remain the project/milestone source;
+- active athlete blocks remain FORM Athlete System truth;
+- the view projects 12 horizontally scrollable weeks;
+- dated operating items appear in the week containing due/review/focus date;
+- undated work stays in a separate backlog;
+- athlete horizons come live from active training blocks;
+- THIS WEEK means block end within 7 days; ENDING SOON within 21 days; missing active block dates remain explicit;
+- a block end is a review trigger, not automatic coaching-service termination;
+- the UI may show hats as thinking-mode vocabulary, but hats do not create another ownership database.
+
+The browser does not invent missing dates to make the runway look full. Open capacity is allowed.
