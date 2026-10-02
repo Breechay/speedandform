@@ -87,3 +87,37 @@ Preserve this distinction in future nutrition decisions:
 - Track subjective clarity/appetite alongside performance, recovery, sleep and repeated morning weight.
 
 **Working nutrition principle:** *Eat on purpose. Fuel the work. Let bodyweight settle.*
+
+
+## October 2 · intentional fueling and sharpness update
+
+This is an **athlete-reported nutrition experiment**, not a causal gut-health finding or a prescription to restrict intake.
+
+### Athlete report and objective
+The athlete clarifies that his interest in “gut health” is broader than digestive comfort or probiotics. He notices that digestive state, food quantity and food composition can affect his perceived **mental sharpness, physical lightness, presence and sense of spirit**. Preserve those terms as subjective outcomes rather than assigning them a single physiological mechanism.
+
+The objective is **correctness and flow**, not eating as little as possible and not fear of weight gain. The athlete wants fewer unstructured/binge-like eating episodes, more deliberate portions and high-value nutrition placed where training and recovery require it. As running mileage and intensity increase, fueling should increase with them.
+
+### Working fueling doctrine
+- **Baseline nourishment:** protect adequate total energy, protein, calcium/bone-supportive micronutrients and hydration even on lighter training days.
+- **Carbohydrate follows demand:** use more carbohydrate around running, longer sessions and harder work rather than chronically suppressing it or forcing it when demand is low.
+- **Protein remains available across the day:** distribute meaningful protein opportunities rather than relying on one large feeding.
+- **Fuel → train → replenish → return to baseline:** use this rhythm instead of continuous grazing or prolonged restriction.
+- **Sharpness is tracked, not assumed:** note post-meal lightness/heaviness, digestive comfort, appetite/urge to graze, mental clarity and training/recovery alongside objective performance and recovery evidence.
+- **Portion awareness is an execution tool, not a weight-control mandate.** Feeling capable of operating on less is not evidence that energy availability is adequate for bone remodeling, endocrine function or adaptation.
+- **Hydration is an active target:** increase water intake progressively across the day rather than compensating late.
+
+### Foods added / current tools
+Purchased October 2: plain rolled oats, Sun-Maid raisins, Nido Fortificada whole-milk powder and Good Culture 4% cottage cheese. Existing protein powder and chocolate milk remain convenient recovery tools. Jasmine rice is available as an easy carbohydrate source, especially as running demand rises. Chickpeas can be tested as a fiber/carbohydrate/protein food, preferably farther from runs if digestive load is noticeable.
+
+Good Culture was chosen in part for its simple dairy ingredient list and live cultures, but the study should not attribute changes in sharpness or “spirit” to probiotics without repeatable evidence.
+
+### October 2 immediate sequence
+Planned sequence after walking home: coffee; a moderate oats + raisins feeding, with Nido used as the dairy/calcium/protein addition; complete the delayed pull session; use a protein shake afterward. Avoid automatically doubling Nido into both oats and the shake when the first feeding already supplies it; scale the post-training shake to hunger, session demand and the size of the pre-training feeding. Around 3 PM, chocolate milk or cottage cheese + raisins are available as recovery options if hunger/recovery demand supports them rather than as compulsory clock-based feeding.
+
+### Study question
+**Can deliberate, demand-matched fueling protect bone recovery, training adaptation and adequate energy availability while restoring the athlete's preferred sense of sharpness, lightness, presence and eating rhythm?**
+
+Track the answer prospectively. Do not turn one good day, one food or one fast into a causal conclusion.
+
+**Working nutrition principle:** *Fuel deliberately. Match carbohydrate to demand. Protect the recovery floor. Preserve the state.*
