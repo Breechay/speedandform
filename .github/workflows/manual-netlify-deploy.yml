@@ -1,0 +1,28 @@
+name: Manual Netlify Production Deploy
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/manual-netlify-deploy.yml'
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      NETLIFY_SITE_ID: f3914a6a-a9ce-465e-8212-f5f42597c469
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify deploy credential exists
+        shell: bash
+        run: |
+          if [ -z "$NETLIFY_AUTH_TOKEN" ]; then
+            echo "NETLIFY_AUTH_TOKEN repository secret is not configured."
+            exit 2
+          fi
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
+      - name: Deploy production with build
+        run: netlify deploy --prod --build --site "$NETLIFY_SITE_ID" --auth "$NETLIFY_AUTH_TOKEN" --message "Oct 2 batched website release"
