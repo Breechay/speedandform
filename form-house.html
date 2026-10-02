@@ -34,80 +34,107 @@
 .cta{background:var(--paper);color:var(--ink);padding:95px 0}.cta-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:80px;align-items:end}.cta h2{font-size:clamp(54px,7vw,100px);line-height:.88;letter-spacing:-.065em;font-weight:450;margin:0}.cta p{font-size:18px;line-height:1.6;color:#59615c}.button{display:inline-flex;padding:14px 20px;border:1px solid #1a1d1b;border-radius:999px;text-decoration:none;font-weight:600}.fine{font:9px/1.5 var(--mono);letter-spacing:.05em;color:#737a75;margin-top:20px}footer{padding:30px 0 44px;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font:9px var(--mono);letter-spacing:.08em;text-transform:uppercase}
 @media(max-width:850px){.hero{grid-template-columns:1fr;min-height:0}.hero>div:first-child{padding:72px 24px}.hero-side{min-height:390px}.section-head{grid-template-columns:1fr;gap:15px}.facts{grid-template-columns:1fr 1fr}.fact:nth-child(2){border-right:0}.fact:nth-child(-n+2){border-bottom:1px solid var(--line)}.grid{grid-template-columns:1fr}.card{border-right:0;border-bottom:1px solid var(--line);min-height:auto}.model{grid-template-columns:45px 1fr}.model aside{grid-column:2}.partner{grid-template-columns:1fr 1fr}.partner article:nth-child(2){border-right:0}.partner article:nth-child(-n+2){border-bottom:1px solid var(--line)}.pilot,.cta-grid{grid-template-columns:1fr}}
 @media(max-width:520px){.shell{width:calc(100% - 28px)}.top span{display:none}.facts,.partner{grid-template-columns:1fr}.fact,.partner article{border-right:0!important;border-bottom:1px solid var(--line)}.hero-side{min-height:330px}.section{padding:65px 0}.model{grid-template-columns:34px 1fr}.model h3{font-size:34px}}
+
+.icon{width:31px;height:31px;display:block;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.icon-sm{width:24px;height:24px}.icon-row{color:#d9ddd9;margin-bottom:26px}
+.signal{background:var(--paper);color:var(--ink);padding:72px 0}.signal-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px}.signal h2{font-size:clamp(42px,5.4vw,76px);line-height:.94;letter-spacing:-.055em;font-weight:450;margin:0}.signal-copy{font-size:20px;line-height:1.5}.signal-copy p{margin:0 0 24px}.signal-stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line-dark);margin-top:42px}.signal-stat{padding:22px 22px 0 0}.signal-stat b{font-size:34px;letter-spacing:-.04em;display:block}.signal-stat span{font-size:13px;line-height:1.45;color:#66706a}.source-note{font:9px/1.55 var(--mono);letter-spacing:.03em;color:#747b76;margin-top:32px}.source-note a{color:inherit}
+.day{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:45px}.day article{padding:28px 20px;border-right:1px solid var(--line)}.day article:last-child{border-right:0}.day b{display:block;text-transform:uppercase;letter-spacing:.06em;font-size:14px;margin:14px 0 8px}.day p{font-size:13px;line-height:1.5;color:var(--muted);margin:0}.story{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}.story h2{font-size:clamp(45px,6vw,82px);line-height:.91;letter-spacing:-.06em;font-weight:450;margin:0}.story-copy{font-size:19px;line-height:1.65;color:#c8cbc7}.story-copy p{margin-top:0}.story-line{font-size:27px!important;line-height:1.2!important;color:#fff!important;letter-spacing:-.025em}.partner article .icon{margin-bottom:40px}.partner article:before{display:none}
+@media(max-width:850px){.signal-grid,.story{grid-template-columns:1fr}.signal-stats{grid-template-columns:1fr}.day{grid-template-columns:1fr 1fr}.day article:nth-child(even){border-right:0}.day article{border-bottom:1px solid var(--line)}}@media(max-width:520px){.day{grid-template-columns:1fr}.day article{border-right:0}.signal{padding:60px 0}}
 </style><body>
-<header class="shell top"><a class="brand" href="/">FORM<i></i></a><span>Physical practice concept · October 2026</span></header>
+<svg aria-hidden="true" width="0" height="0" style="position:absolute"><defs>
+<symbol id="i-bag" viewBox="0 0 32 32"><path d="M7 11h18l-1 16H8L7 11Z"/><path d="M11 11V8a5 5 0 0 1 10 0v3"/></symbol>
+<symbol id="i-coffee" viewBox="0 0 32 32"><path d="M5 11h18v8a8 8 0 0 1-8 8h-2a8 8 0 0 1-8-8v-8Z"/><path d="M23 14h2a4 4 0 0 1 0 8h-3"/><path d="M10 7c0-2 2-2 2-4M16 7c0-2 2-2 2-4"/></symbol>
+<symbol id="i-run" viewBox="0 0 32 32"><circle cx="19" cy="5" r="2.5"/><path d="m16 10 4 3 4 1M16 10l-4 6 5 3-4 8M17 19l6 3 4 5M12 16l-6 1"/></symbol>
+<symbol id="i-recover" viewBox="0 0 32 32"><path d="M16 28C9 23 6 18 6 12a10 10 0 0 1 20 0c0 6-3 11-10 16Z"/><path d="M11 14h3l2-5 3 10 2-5h3"/></symbol>
+<symbol id="i-people" viewBox="0 0 32 32"><circle cx="11" cy="11" r="4"/><circle cx="22" cy="12" r="3.5"/><path d="M3 27c1-6 4-9 8-9s7 3 8 9M18 20c2-2 4-3 6-2 3 1 5 4 5 8"/></symbol>
+<symbol id="i-building" viewBox="0 0 32 32"><path d="M5 28V9l11-5 11 5v19M10 12h4M18 12h4M10 17h4M18 17h4M10 22h4M18 22h4M14 28v-4h4v4"/></symbol>
+<symbol id="i-hotel" viewBox="0 0 32 32"><path d="M4 27V7h24v20M4 20h24M8 20v-5h6v5M18 20v-5h6v5M9 11h2M21 11h2"/></symbol>
+<symbol id="i-cafe" viewBox="0 0 32 32"><path d="M5 10h18v8a8 8 0 0 1-8 8h-2a8 8 0 0 1-8-8v-8ZM23 13h3a4 4 0 0 1 0 8h-4M8 29h18"/></symbol>
+<symbol id="i-gym" viewBox="0 0 32 32"><path d="M3 13v6M7 10v12M25 10v12M29 13v6M7 16h18"/></symbol>
+</defs></svg>
+
+<header class="shell top"><a class="brand" href="/">FORM</a><span>FORM House · Partner concept</span></header>
 
 <main>
-<section class="shell hero">
+<section class="hero">
   <div>
-    <div class="eyebrow">FORM House · Partner concept</div>
-    <h1>A home for<br>the practice.</h1>
-    <p class="lede">Early-morning performance running, recovery and hospitality — attached to the right building, hotel, café or performance space.</p>
+    <div class="eyebrow">A home for the practice</div>
+    <h1>FORM<br>HOUSE.</h1>
+    <p class="lede">Meet early. Leave your bag. Run the city. Come back for coffee, recovery and the people you trained with.</p>
   </div>
-  <div class="hero-side"><strong>FORM already has the practice.</strong><br>Coached athletes. Track mornings. Long runs. Programming. Photography. Studies. Software. What it needs next is a dependable physical place to begin and end the work.</div>
+  <div class="hero-side"><div><strong>Running already has the streets.</strong><br>What it rarely has is a place to belong before and after them.</div></div>
 </section>
 
 <section class="statement"><div class="shell"><p>FORM makes training an occasion.<br>FORM House gives the occasion a home.</p></div></section>
 
 <section class="section"><div class="shell">
-  <div class="section-head"><div class="kicker">The use</div><h2>Meet early. Train outside. Return somewhere useful.</h2></div>
-  <div class="copy"><p>Long runs start around 6 AM. Track sessions start before much of the city is awake. A useful home does not need to contain the run. It needs to make the whole morning work: a reliable meeting point, a place for bags, water, bathrooms, recovery, coffee, food and ten or twenty minutes together after training.</p></div>
-  <div class="facts">
-    <div class="fact"><b>Before</b><span>Arrive · leave a bag · meet the group · see the route / session · get out the door on time.</span></div>
-    <div class="fact"><b>After</b><span>Return · hydrate · mobility / recovery · coffee or breakfast · coach debrief · stay for a few minutes.</span></div>
-    <div class="fact"><b>During</b><span>The city remains the training field. Roads, bridges, boardwalks and tracks stay central.</span></div>
-    <div class="fact"><b>Continuity</b><span>FORM software, studies, Archive and coaching preserve what happened beyond the room itself.</span></div>
+  <div class="story">
+    <h2>The run is only part of the morning.</h2>
+    <div class="story-copy"><p class="story-line">It is 5:50 AM. Your bag is down. Coffee is already on. Someone is tying a shoe. Someone else is checking the route.</p><p>At six, everyone leaves. Some are running easy. Some have work to do. The city is the training ground.</p><p>Then everyone comes back somewhere. Water. Food. A shower if there is one. Ten minutes on the floor. Twenty minutes talking. The morning has somewhere to land.</p><p><strong>That is FORM House.</strong></p></div>
+  </div>
+  <div class="day">
+    <article><svg class="icon"><use href="#i-bag"/></svg><b>Meet</b><p>A dependable early door. Bags down. Route up. Nobody is waiting on a sidewalk wondering where to go.</p></article>
+    <article><svg class="icon"><use href="#i-run"/></svg><b>Train</b><p>Track, bridges, boardwalks and streets stay the field. The House supports the work; it does not trap it indoors.</p></article>
+    <article><svg class="icon"><use href="#i-recover"/></svg><b>Recover</b><p>Water, mobility, showers or recovery amenities where the host can support them.</p></article>
+    <article><svg class="icon"><use href="#i-coffee"/></svg><b>Fuel</b><p>Coffee and simple food turn the finish into somewhere worth returning to.</p></article>
+    <article><svg class="icon"><use href="#i-people"/></svg><b>Belong</b><p>The people do not disappear at the last mile. Training becomes part of a place and a rhythm.</p></article>
+  </div>
+</div></section>
+
+<section class="signal"><div class="shell">
+  <div class="signal-grid">
+    <div><div class="eyebrow" style="color:#657069">Why now</div><h2>Running is becoming a place people go to find people.</h2></div>
+    <div class="signal-copy"><p>The sport is growing, but the more interesting shift is cultural: runners are not only signing up for races. They are gathering around movement.</p><p>Strava reported that new running clubs grew 3.5× in 2025 and club-organized events rose 1.5× year over year. U.S. race participation also kept growing in 2025. The demand is already visible. FORM House asks a simple question: <strong>where does that energy go before and after the run?</strong></p>
+      <div class="signal-stats">
+        <div class="signal-stat"><b>3.5×</b><span>growth in new running clubs on Strava in 2025.</span></div>
+        <div class="signal-stat"><b>+5%</b><span>average U.S. race participation growth from 2024 to 2025 in RunSignup's RaceTrends data.</span></div>
+        <div class="signal-stat"><b>48%</b><span>of people in Strava's 2024 research said social connection was their top reason for joining a fitness group.</span></div>
+      </div>
+      <div class="source-note">Sources: Strava Year in Sport 2025; RunSignup RaceTrends 2025 via Running USA; Strava Year in Sport 2024 brand insights. These describe broader participation trends, not projected FORM House demand.</div>
+    </div>
   </div>
 </div></section>
 
 <section class="section"><div class="shell">
-  <div class="section-head"><div class="kicker">What FORM brings</div><h2>Not a request for empty space.</h2></div>
+  <div class="section-head"><div class="kicker">The practice already exists</div><h2>FORM brings the mornings. The right place makes them better.</h2></div>
   <div class="grid">
-    <article class="card"><span class="n">01</span><h3>Real mornings</h3><p>Recurring hosted training with authored sessions rather than one-off promotional events.</p></article>
-    <article class="card"><span class="n">02</span><h3>Performance system</h3><p>Run Development, shared-session logic, individualized programming and a growing body of public studies and tools.</p></article>
-    <article class="card"><span class="n">03</span><h3>Editorial layer</h3><p>Photography, Archive and FORM's visual language can make the host property part of a living athletic record.</p></article>
+    <article class="card"><span class="n">01</span><h3>People already training</h3><p>Coached athletes, Track Thursday, long-run mornings and a network that keeps crossing through the same practice.</p></article>
+    <article class="card"><span class="n">02</span><h3>A reason to return</h3><p>Programming, studies and FORM preserve continuity. The House gives that continuity a physical address.</p></article>
+    <article class="card"><span class="n">03</span><h3>A story worth showing</h3><p>Photography and Archive make the mornings visible without turning the practice into a feed or a promotional stunt.</p></article>
   </div>
 </div></section>
 
 <section class="section"><div class="shell">
-  <div class="section-head"><div class="kicker">Flexible structure</div><h2>Start with the smallest version that works.</h2></div>
-  <article class="model"><div class="num">01</div><div><h3>Residency</h3><p>FORM operates from an existing lobby, lounge, café, hotel, apartment amenity or gym during agreed early hours. The fastest way to prove the idea.</p></div><aside>Access · bags · bathroom · seating · water / coffee</aside></article>
-  <article class="model"><div class="num">02</div><div><h3>FORM Annex</h3><p>A dedicated zone inside or beside an existing property: lockers, recovery, hydration, mobility, assessment, small retail and an editorial wall.</p></div><aside>Co-built · branded · recurring · measurable</aside></article>
-  <article class="model"><div class="num">03</div><div><h3>Standalone House</h3><p>The long-horizon expression: a purpose-built home where performance running, coaching, recovery, media and hospitality meet.</p></div><aside>Site + capital + proven demand</aside></article>
-</div></section>
-
-<section class="section"><div class="shell">
-  <div class="section-head"><div class="kicker">Who it can fit</div><h2>Different hosts. The same operating idea.</h2></div>
+  <div class="section-head"><div class="kicker">For the host</div><h2>Turn an amenity into a reason to be there.</h2></div>
   <div class="partner">
-    <article><h3>Residential</h3><p>A resident amenity with authentic recurring use and neighborhood identity.</p></article>
-    <article><h3>Hotel</h3><p>Performance-travel programming, local crossover, route support and recovery / breakfast value.</p></article>
-    <article><h3>Café</h3><p>Early traffic, post-run dwell and a recurring athletic occasion rather than a one-off event.</p></article>
-    <article><h3>Performance facility</h3><p>A structured running layer that complements strength, recovery and existing athlete services.</p></article>
+    <article><svg class="icon"><use href="#i-building"/></svg><h3>Residential</h3><p>A fitness room is equipment. FORM can give residents an actual morning to join, a coach to know and a ritual tied to where they live.</p></article>
+    <article><svg class="icon"><use href="#i-hotel"/></svg><h3>Hotel</h3><p>Give guests more than a treadmill: a route, a local running culture and a recovery / breakfast experience that belongs to the property.</p></article>
+    <article><svg class="icon"><use href="#i-cafe"/></svg><h3>Café</h3><p>Open the door to people who have already done something before breakfast. Early traffic becomes repeat ritual and post-run dwell.</p></article>
+    <article><svg class="icon"><use href="#i-gym"/></svg><h3>Performance space</h3><p>Add the outdoor running layer: coached routes, shared long runs and a place for athletes to return after the work.</p></article>
   </div>
 </div></section>
 
-<section class="shell quote"><p>The differentiator is not a clubhouse. It is <em>structured performance running + continuity + hospitality.</em></p></section>
+<section class="shell quote"><p>Not another room with equipment. <em>A reason to wake up and go somewhere.</em></p></section>
 
 <section class="section"><div class="shell">
-  <div class="section-head"><div class="kicker">Pilot first</div><h2>Prove the residency before building the house.</h2></div>
+  <div class="section-head"><div class="kicker">How it starts</div><h2>It can begin with one door opening early.</h2></div>
+  <article class="model"><div class="num">01</div><div><h3>Residency</h3><p>Use what already exists: a lobby, lounge, café, hotel amenity or gym. Give FORM a dependable early window and let the real practice prove the fit.</p></div><aside>Fastest to test<br>Lowest build-out</aside></article>
+  <article class="model"><div class="num">02</div><div><h3>FORM Annex</h3><p>If the mornings work, build a small permanent layer: bag wall, coffee, hydration, mobility, recovery, assessment and an Archive wall.</p></div><aside>Co-built<br>Recognizable<br>Recurring</aside></article>
+  <article class="model"><div class="num">03</div><div><h3>FORM House</h3><p>The full expression: performance running, coaching, recovery, food, media and hospitality designed around the life of a runner.</p></div><aside>Site + capital<br>Proven use<br>Long horizon</aside></article>
+</div></section>
+
+<section class="section"><div class="shell">
+  <div class="section-head"><div class="kicker">Start small</div><h2>Give us a few mornings. See what the place becomes.</h2></div>
   <div class="pilot">
-    <ol>
-      <li>Choose 4–8 mornings.</li>
-      <li>Agree on early access, bag hold, bathroom, seating and a simple host protocol.</li>
-      <li>Run the actual FORM practice.</li>
-      <li>Measure repeat attendance, dwell, recovery / food use, operator friction and participant value.</li>
-      <li>Decide whether the relationship should stay light, become an annex or stop.</li>
-    </ol>
-    <div class="box"><b>No invented projections.</b><p>The first partner does not need a giant membership forecast. The current practice is enough to test whether a physical home makes the morning materially better for the runners and useful for the host.</p></div>
+    <ol><li>Open the space before the run.</li><li>Give runners somewhere for bags, water and bathrooms.</li><li>Let FORM host the training.</li><li>Welcome everyone back for coffee, food or recovery.</li><li>Watch who returns, how long they stay and whether the space feels more alive because the practice is there.</li></ol>
+    <div class="box"><b>The first version does not need to be perfect.</b><p>It needs to make a 6 AM training morning noticeably better. If people keep coming back, we will know what deserves to be built next.</p></div>
   </div>
 </div></section>
 
 <section class="cta"><div class="shell cta-grid">
-  <div><div class="eyebrow" style="color:#506158">For operators, developers and capital partners</div><h2>Have a place that could become part of the practice?</h2></div>
-  <div><p>The right first conversation is about the asset, the neighborhood and the smallest useful pilot — not a fixed real-estate template.</p><a class="button" href="/contact">Talk with Brice →</a><div class="fine">No site selected · no partnership implied · pilot structures are partner-specific.</div></div>
+  <div><div class="eyebrow" style="color:#657069">A brighter morning ahead</div><h2>Have the place?<br>We have the practice.</h2></div>
+  <div><p>Hotel. Apartment building. Café. Performance facility. Something we have not thought of yet. If the space could become a real home for people who train, that is enough for a first conversation.</p><a class="button" href="/contact">Build a morning with FORM →</a><div class="fine">No site selected · no partnership implied · Miami and beyond.</div></div>
 </div></section>
 </main>
-
-<footer class="shell"><span>FORM · Speed & Form</span><span>Miami + wherever the right practice home exists</span></footer>
+<footer class="shell"><span>FORM · Speed & Form</span><span>Run · Recover · Fuel · Belong</span></footer>
 </body>
-</html>
