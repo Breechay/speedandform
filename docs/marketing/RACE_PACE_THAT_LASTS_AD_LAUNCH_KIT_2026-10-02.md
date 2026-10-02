@@ -270,3 +270,13 @@ From first 5K goals to faster racing. Tell Brice what you want to be capable of.
 ## First coaching test
 Test **Desire breadth** vs **Guidance** before slicing by narrower athlete goal.
 For Miami Search, keep location intent explicit and send to the coaching/Miami surface.
+
+
+## Oct 2 media implementation status
+Homepage interactive practice film is wired to the existing published media asset:
+- `/media/practice.mp4` — short grey practice cut used for the homepage mask interaction.
+- Portrait remains the default poster/identity.
+- Playback is user-initiated, muted first, with Sound and Still controls.
+- Caption changes from `Brice · Coach · Miami, FL` to `From the practice · Miami` while playing.
+
+The separately uploaded 29-second master is still useful for the paid/social 9:16 creative. Do not assume the short homepage cut and the 29-second master are byte-identical.
