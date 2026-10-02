@@ -4,6 +4,8 @@ Public site, published plans, living studies and athlete/coach web surfaces.
 **Start here: [Current state and roadmap](docs/roadmap/FORM-ROADMAP.md).**
 
 - [Agent instructions](AGENTS.md)
+- [Current agent orientation / source-of-truth map](docs/AGENT_ORIENTATION.md)
+- [October company operating plan](docs/SPEED_AND_FORM_ECOSYSTEM_OPERATING_PLAN_2026-10.md)
 - [Plan-specific app audit](docs/audits/PLAN-APP-AUDIT-BRIEF.md)
 - [Surface refinement audit](docs/audits/SURFACE-AUDIT-BRIEF.md)
 - [Original September 12 audit](docs/audits/2026-09-12-ecosystem-audit.md)
