@@ -101,7 +101,7 @@ a:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
   footer{padding-bottom:max(23px,env(safe-area-inset-bottom))}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-</style>
+.thu-immersive{position:relative;min-height:88svh;display:flex;align-items:flex-end;padding:0!important;border:0!important;overflow:hidden;background:#0b0d0c}.thu-media,.thu-shade{position:absolute;inset:0}.thu-media img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;filter:grayscale(1) contrast(1.05)}.thu-shade{background:linear-gradient(0deg,rgba(6,9,7,.88) 0%,rgba(6,9,7,.35) 48%,rgba(6,9,7,.12) 100%)}.thu-copy{position:relative;z-index:1;padding:28px 22px 36px}.thu-immersive h1,.thu-immersive .hero-copy,.thu-immersive .coordinate{color:#f5f1e8}.thu-immersive .hero-copy{color:rgba(245,241,232,.82)}@media(max-width:760px){.thu-immersive{min-height:78svh}}</style>
 <style>.community-photo{padding:30px 22px}.community-photo figure{margin:0}.community-photo img{display:block;width:100%;height:auto}.community-photo figcaption{font:500 12px/1.6 monospace;margin-top:12px;color:#575e54}@media(min-width:700px){.community-photo{padding:42px}}</style>
 <style>
 /* Homepage-door continuation */
@@ -116,10 +116,14 @@ html,body{background:#080a09!important;color:#f2ecdd!important}.shell{max-width:
   <nav class="topnav" aria-label="Page shortcuts"><a href="/miami-running-training">Run with us</a><a href="/contact">Contact</a></nav>
 </header>
 
-<section class="hero">
-  <div class="coordinate"><span>Thursday · Flamingo Park Track</span><span>Miami Beach</span></div>
-  <h1>THURSDAY<i>.</i></h1>
-  <p class="hero-copy"><strong>6:00 AM · track entrance on 11th St.</strong><br>No pace required. Run your effort. You can leave after the first rep. Check the live session below before traveling.</p>
+<section class="hero thu-immersive">
+  <div class="thu-media" aria-hidden="true"><img src="/assets/practice/20261001/thursday-people-1600.webp" srcset="/assets/practice/20261001/thursday-people-800.webp 800w, /assets/practice/20261001/thursday-people-1600.webp 1600w" sizes="100vw" alt=""></div>
+  <div class="thu-shade" aria-hidden="true"></div>
+  <div class="thu-copy">
+    <div class="coordinate"><span>Thursday · Flamingo Park</span><span>Miami Beach</span></div>
+    <h1>THURSDAY<i>.</i></h1>
+    <p class="hero-copy"><strong>6:00 AM · 11th St entrance.</strong><br>No pace required. Leave after the first rep.</p>
+  </div>
 </section>
 
 <section class="session" id="current-session">
