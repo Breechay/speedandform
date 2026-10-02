@@ -84,28 +84,23 @@ html.sf-motion .sf-in .intake-grid > *:nth-child(2) { transition-delay: 80ms; }
 html.sf-motion .sf-in .wrap > *:nth-child(3),
 html.sf-motion .sf-in .intake-grid > *:nth-child(3) { transition-delay: 150ms; }
 
-html.sf-motion .home-entry-grid > a,
-html.sf-motion .home-also-grid > a {
+html.sf-motion .home-entry-grid > a {
   position: relative;
 }
 html.sf-motion .home-entry-grid > a span,
-html.sf-motion .home-entry-grid > a small b,
-html.sf-motion .home-also-grid > a strong {
+html.sf-motion .home-entry-grid > a small b {
   display: inline-block;
   transition: transform 420ms var(--sf-ease);
 }
 html.sf-motion .home-entry-grid > a:hover span,
-html.sf-motion .home-entry-grid > a:focus-visible span,
-html.sf-motion .home-also-grid > a:hover strong,
-html.sf-motion .home-also-grid > a:focus-visible strong {
+html.sf-motion .home-entry-grid > a:focus-visible span {
   transform: translateX(6px);
 }
 html.sf-motion .home-entry-grid > a:hover small b,
 html.sf-motion .home-entry-grid > a:focus-visible small b {
   transform: translateX(8px);
 }
-html.sf-motion .home-entry-grid > a::after,
-html.sf-motion .home-also-grid > a::after {
+html.sf-motion .home-entry-grid > a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -118,15 +113,67 @@ html.sf-motion .home-also-grid > a::after {
   transition: transform 520ms var(--sf-ease);
 }
 html.sf-motion .home-entry-grid > a:hover::after,
-html.sf-motion .home-entry-grid > a:focus-visible::after,
-html.sf-motion .home-also-grid > a:hover::after,
-html.sf-motion .home-also-grid > a:focus-visible::after {
+html.sf-motion .home-entry-grid > a:focus-visible::after {
   transform: scaleX(1);
 }
-html.sf-motion .home-entry-grid > a:active,
-html.sf-motion .home-also-grid > a:active {
+html.sf-motion .home-entry-grid > a:active {
   transform: scale(0.985);
   transition-duration: 160ms;
+}
+
+/* Also is a second list, so it lights instead of repeating the door rule. */
+html.sf-motion .home-also-grid > a {
+  position: relative;
+  background-color: transparent;
+  background-image: linear-gradient(#f1ede4, #f1ede4);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 0% 100%;
+  transition: background-size 560ms var(--sf-ease), color 240ms var(--sf-state);
+}
+html.sf-motion .home-also-grid > a span {
+  transition: color 240ms var(--sf-state);
+}
+html.sf-motion .home-also-grid > a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: #11100e;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 560ms var(--sf-ease);
+  pointer-events: none;
+}
+html.sf-motion .home-also-grid > a:focus-visible,
+html.sf-motion .home-also-grid > a:active {
+  background-size: 100% 100%;
+  color: #11100e;
+}
+html.sf-motion .home-also-grid > a:focus-visible span,
+html.sf-motion .home-also-grid > a:active span {
+  color: rgba(17, 16, 14, 0.68);
+}
+html.sf-motion .home-also-grid > a:focus-visible::after,
+html.sf-motion .home-also-grid > a:active::after {
+  transform: scaleX(1);
+}
+@media (hover: hover) {
+  html.sf-motion .home-also-grid > a:hover {
+    background-size: 100% 100%;
+    color: #11100e;
+  }
+  html.sf-motion .home-also-grid > a:hover span {
+    color: rgba(17, 16, 14, 0.68);
+  }
+  html.sf-motion .home-also-grid > a:hover::after {
+    transform: scaleX(1);
+  }
+  html.sf-motion .home-also-grid > a:hover strong {
+    text-decoration-color: #11100e;
+  }
 }
 
 html.sf-motion .home-evidence-result dt .sf-count {
