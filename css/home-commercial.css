@@ -162,3 +162,17 @@
 /* 2026-10-02 · Speed & Form CTA geometry: editorial rectangles, not pills */
 .sf-home-hero .begin,.home-entry .begin,.home-evidence .button-link,.home-also .button-link,.intake .submit,.intake button[type="submit"],.cta,.button-link{border-radius:0}
 .home-entry-grid small b,.home-also-grid strong{font-style:normal}
+
+/* 2026-10-02 · immersive first fold using the original full practice photograph */
+.sf-home-hero-immersive{position:relative;min-height:100svh;padding:0!important;display:flex;align-items:flex-end;overflow:hidden;background:#0b0d0c}
+.sf-home-hero-immersive .home-hero-media,.sf-home-hero-immersive .home-hero-shade{position:absolute;inset:0}
+.sf-home-hero-immersive .home-hero-media img{width:100%;height:100%;display:block;object-fit:cover;object-position:50% 44%;filter:grayscale(1) contrast(1.04)}
+.sf-home-hero-immersive .home-hero-shade{background:linear-gradient(90deg,rgba(6,9,7,.9) 0%,rgba(6,9,7,.72) 38%,rgba(6,9,7,.28) 67%,rgba(6,9,7,.08) 100%),linear-gradient(0deg,rgba(6,9,7,.66) 0%,rgba(6,9,7,.02) 58%)}
+.sf-home-hero-immersive-inner{position:relative;z-index:1;width:100%;padding-top:150px;padding-bottom:clamp(52px,7vh,86px)}
+.sf-home-hero-immersive .hero-copy{max-width:780px}
+.sf-home-hero-immersive h1{font-size:clamp(68px,8.3vw,132px);line-height:.84;letter-spacing:-.064em;text-wrap:balance;text-shadow:0 2px 22px rgba(0,0,0,.15)}
+.sf-home-hero-immersive .home-hero-intro{max-width:590px;font-size:clamp(19px,1.55vw,25px);line-height:1.45;color:rgba(245,241,232,.88)}
+.sf-home-hero-immersive .hero-kicker{color:rgba(245,241,232,.76)}
+.sf-home-hero-immersive .home-proof-facts{max-width:700px;border-top-color:rgba(245,241,232,.32)}
+.sf-home-hero-immersive .home-proof-facts dd{color:rgba(245,241,232,.7)}
+@media(max-width:760px){.sf-home-hero-immersive{min-height:92svh}.sf-home-hero-immersive .home-hero-media img{object-position:58% 50%}.sf-home-hero-immersive .home-hero-shade{background:linear-gradient(0deg,rgba(6,9,7,.94) 0%,rgba(6,9,7,.72) 50%,rgba(6,9,7,.18) 100%)}.sf-home-hero-immersive-inner{padding-top:120px;padding-bottom:38px}.sf-home-hero-immersive h1{font-size:clamp(54px,14vw,82px)}}
