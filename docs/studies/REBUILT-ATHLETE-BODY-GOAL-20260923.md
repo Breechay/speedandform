@@ -3,8 +3,8 @@
 Owner decision: Brice, September 23, 2026.
 
 ## Current goal
-- Headline weight target: **185 lb**, replacing 180 lb.
-- Preferred range: **180–185 lb**. The lower end is not a compulsory finish line.
+- Headline bodyweight direction: **180–185 lb**, with **~182 lb as the current preferred center**.
+- **185 lb remains a useful upper anchor, not a compulsory finish line.** The athlete reports that when his eating/training rhythm is disciplined and stable, he normally settles closer to 180–185 lb.
 - Body fat: **8–10% as an aspiration**, not a mandatory device reading or clearance gate.
 - Keep the fuller build the athlete likes. Additional muscle is welcome within his weight preference; a sustained 190 lb baseline is not his objective.
 
@@ -58,3 +58,32 @@ For the immediate rebuild:
 5. The chaotic prior-year Garmin history is context, not the present target. Use this period as a prospective re-entry baseline rather than trying to explain the entire prior year retrospectively.
 
 **Working phrase:** *Protect the state before trying to exploit it.*
+
+
+## October 2 · body-composition and eating-intent update
+
+Morning body-fat-scale measurement at **08:17** after the preceding ~20-hour fast:
+- Weight **186.8 lb**
+- Device-estimated body fat **14.0%** / fat mass **26.2 lb**
+- Device-estimated fat-free mass **160.6 lb**
+- Device-estimated muscle mass **152.6 lb**
+- Device-estimated skeletal muscle mass **103.6 lb**
+- Device-estimated body water **62.1% / 116.0 lb**
+- Device-estimated bone mass **8.0 lb**
+
+The device compares this with Sep 30 and reports -4.6 lb bodyweight in roughly 48 hours. Do **not** interpret that short change as tissue loss or use the device's corresponding muscle/fat/bone deltas as established physiological change. The measurement followed a prolonged fast and is especially sensitive to gut contents, glycogen-associated water and hydration. Use repeated normally fed/hydrated morning measurements for trend decisions.
+
+### Athlete direction
+The athlete's preferred center is now **~182 lb within a normal 180–185 lb range**. This is not an aggressive-cut mandate. He intends to **fuel according to training demand**, with current priorities including bone recovery, adequate nutrition and hormonal/whole-body recovery.
+
+The athlete reports that the recent fast did not feel like suppression of a legitimate need to eat. Instead, it interrupted a pattern he describes as frequent unplanned snacking/eating and occasional binge-like eating, and made subsequent eating feel **more intentional**. He currently feels very good and more like himself.
+
+Preserve this distinction in future nutrition decisions:
+- **Intentional eating is the target; prolonged fasting is not the target.**
+- Do not reward lower scale weight by extending fasting or under-fueling training.
+- Fuel key running and Forge work according to demand.
+- Protect adequate total energy, protein, carbohydrate around demanding work, and micronutrient intake relevant to bone recovery.
+- Evaluate whether ~182 lb emerges from a sustainable rhythm rather than forcing it through acute restriction.
+- Track subjective clarity/appetite alongside performance, recovery, sleep and repeated morning weight.
+
+**Working nutrition principle:** *Eat on purpose. Fuel the work. Let bodyweight settle.*
