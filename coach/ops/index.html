@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/coach/ops/console.css?v=1">
+  <link rel="stylesheet" href="/coach/ops/console.css?v=2">
 </head>
 <body>
 <a class="skip" href="#main">Skip to your day</a>
@@ -30,7 +30,7 @@
     </section>
     <section id="workspace" hidden>
       <div class="day-heading"><div><p id="date" class="eyebrow"></p><h1 id="page-title">Today.</h1><p class="intro">Choose the few things that move the day forward.</p></div><p id="freshness" class="small"></p></div>
-      <nav class="tabs" aria-label="Workspace views"><button type="button" data-tab="today" aria-current="page">Today</button><button type="button" data-tab="areas">All areas</button><button type="button" data-tab="waiting">Waiting <span id="waiting-count"></span></button><button type="button" data-tab="sources">Sources <span id="source-count"></span></button></nav>
+      <nav class="tabs" aria-label="Workspace views"><button type="button" data-tab="today" aria-current="page">Today</button><button type="button" data-tab="runway">Runway</button><button type="button" data-tab="areas">All areas</button><button type="button" data-tab="waiting">Waiting <span id="waiting-count"></span></button><button type="button" data-tab="sources">Sources <span id="source-count"></span></button></nav>
       <p id="message" role="status" aria-live="polite"></p>
       <section id="view" aria-labelledby="page-title"></section>
       <details class="capture"><summary>Add an open loop</summary><form id="capture-form"><label>What needs to happen?<input name="title" maxlength="240" required placeholder="A concrete next action"></label><label>What does finished look like?<textarea name="next_action" maxlength="2000" rows="2"></textarea></label><div class="form-grid"><label>Area<select name="area"><option value="form">FORM</option><option value="coaching">Coaching</option><option value="training">My training</option><option value="money">Money</option><option value="home">Home & life</option><option value="learning">Learning</option></select></label><label>Who moves it?<select name="actor"><option value="brice">Me</option><option value="agent">Agent</option><option value="other">Someone else</option></select></label><label>Due, when real<input name="due_on" type="date"></label></div><label class="check"><input type="checkbox" name="focus">Consider for today</label><button class="primary" type="submit">Save to console</button></form></details>
@@ -39,6 +39,6 @@
   </main>
 </div>
 <dialog id="editor"><form id="edit-form"><div class="section-head"><h2>Edit the next step</h2><button type="button" id="close-editor" aria-label="Close editor">Close</button></div><input name="id" type="hidden"><input name="revision" type="hidden"><label>Title<input name="title" maxlength="240" required></label><label>Finish condition<textarea name="next_action" maxlength="2000" rows="2"></textarea></label><label>Context<textarea name="body" maxlength="12000" rows="3"></textarea></label><div class="form-grid"><label>State<select name="status"><option value="queued">Ready</option><option value="active">In progress</option><option value="waiting">Waiting</option><option value="done">Done</option><option value="cancelled">Parked</option></select></label><label>Priority (1 first)<input name="priority" type="number" min="1" max="100" required></label><label>Due date<input name="due_on" type="date"></label></div><div class="form-grid"><label>Area<select name="area"><option value="form">FORM</option><option value="coaching">Coaching</option><option value="training">My training</option><option value="money">Money</option><option value="home">Home &amp; life</option><option value="learning">Learning</option></select></label><label>Who moves it?<select name="actor"><option value="brice">Me</option><option value="agent">Agent</option><option value="other">Someone else</option></select></label><label>Focus date<input name="focus_on" type="date"></label></div><label>Waiting on<input name="waiting_on" maxlength="500" placeholder="Name the person or missing input"></label><label>Review date<input name="review_on" type="date"></label><p id="edit-message" role="status"></p><button class="primary" type="submit">Save changes</button></form></dialog>
-<script type="module" src="/coach/ops/console.js?v=1"></script>
+<script type="module" src="/coach/ops/console.js?v=2"></script>
 </body>
 </html>
