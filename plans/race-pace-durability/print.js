@@ -50,7 +50,7 @@ function cell(week, day) {
   const total = last && /mi total$/.test(last) ? last : '';
   const details = total ? r.lines.slice(0, -1) : r.lines;
   return `<div class="cell${r.kind === 'rest' ? ' rest' : ''}">
-    <div class="s-title${r.racePace ? ' race' : ''}">${esc(r.label)}</div>
+    <div class="s-title kind-${esc(r.kind)}${r.racePace ? ' race' : ''}">${esc(r.label)}</div>
     <div class="primary">${esc(r.head)}</div>
     ${details.map((l) => `<div class="detail">${esc(l)}</div>`).join('')}
     ${total ? `<div class="total">${esc(total)}</div>` : ''}
@@ -69,7 +69,7 @@ function spread(weeks) {
       .join('') + '</tr>';
   return `<section class="page plan-page">
     <div class="plan-head">
-      <div class="plan-title">${esc(title.toUpperCase())}</div>
+      <div><div class="plan-title">RACE PACE THAT LASTS</div><div class="plan-method">${esc(title.toUpperCase())} · 15 WEEKS</div></div>
       <div class="range">WEEKS ${pad(first)}–${pad(last)}</div>
     </div>
     <div class="table-wrap"><table>
@@ -78,8 +78,8 @@ function spread(weeks) {
       <tbody>${body}</tbody>
     </table></div>
     <div class="page-foot">
-      <div class="brand">FORM <span>LABS</span></div>
-      <div>${esc(title)} · ${esc(version)}</div>
+      <div class="brand">SPEED &amp; FORM</div>
+      <div>Race Pace That Lasts · 15 weeks · ${esc(version)}</div>
     </div>
   </section>`;
 }
@@ -93,8 +93,8 @@ document.getElementById('edition').innerHTML = `
   <section class="page cover">
     <div class="brand">FORM <span>LABS</span></div>
     <div>
-      <h1>${esc(title)}</h1>
-      <div class="sub">${esc(discipline)} · ${plan.weeks.length} WEEKS</div>
+      <h1>Race Pace<br>That Lasts.</h1>
+      <div class="sub">${esc(discipline)} · ${plan.weeks.length} WEEKS · ${esc(title)} METHOD</div>
     </div>
     <div class="meta">
       <div>FORM LABS</div>
