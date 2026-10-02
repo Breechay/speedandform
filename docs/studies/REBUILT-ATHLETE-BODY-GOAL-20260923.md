@@ -121,3 +121,35 @@ Planned sequence after walking home: coffee; a moderate oats + raisins feeding, 
 Track the answer prospectively. Do not turn one good day, one food or one fast into a causal conclusion.
 
 **Working nutrition principle:** *Fuel deliberately. Match carbohydrate to demand. Protect the recovery floor. Preserve the state.*
+
+
+## October 2 · post-run state and optimization target
+
+### Observation
+After the planned **60-minute easy treadmill run**, the athlete recorded a smart-scale reading of **184.2 lb at 3:24 PM**. The same reading estimated **13.8% body fat**, **158.8 lb fat-free mass**, **150.8 lb muscle mass**, **62.2% body water**, and **8.0 lb bone mass**. These body-composition fields are device estimates and the measurement was taken post-run, not under standardized morning conditions.
+
+The athlete expects some scale rebound with normal rehydration/refeeding and explicitly does **not** intend to under-eat or attempt to preserve the post-run number. The short-term scale drop is therefore filed as context, not a target or evidence of rapid tissue change.
+
+### Refined objective
+**Bodyweight is an observation, not the control variable.** The athlete is not trying to discover how little he can eat or how low he can force scale weight. The optimization target is a repeatable state combining:
+- balanced, demand-matched fueling;
+- recovery and continued bone support;
+- muscle development and muscular fullness;
+- ease of movement, elasticity and fluidity;
+- mental sharpness, freshness and presence;
+- comfortable digestion and useful gastric-emptying timing around training;
+- hydration and carbohydrate availability sufficient for performance;
+- strong aesthetics without manufacturing them through acute depletion.
+
+### Digestive-timing note
+Do not translate the athlete's interest in gastric emptying into a goal of keeping the stomach empty. The working question is **what amount, composition and timing of food produces comfortable digestion while preserving training quality and adequate energy availability**.
+
+Near running, favor foods/forms that the athlete repeatedly tolerates and that impose relatively little digestive burden; current candidates include liquid carbohydrate/dairy, raisins and jasmine rice, with portion size adjusted to proximity and workload. Foods that are slower or more fibrous can be placed farther from running when useful. Cottage cheese, oats and chickpeas remain foods to test by tolerance rather than label categorically as “good” or “bad.”
+
+### Aesthetic interpretation
+Do not equate the lowest scale reading with the best aesthetic state. Acute depletion can lower bodyweight while also reducing glycogen, hydration and muscular fullness. The desired visual state is better described as **muscular fullness + low unnecessary digestive distension + appropriate hydration/glycogen + improving body composition + easy movement**.
+
+### Decision rule
+After training, **rehydrate, replenish carbohydrate according to work performed, obtain a meaningful protein feeding, and respond to appetite/recovery demand**. Do not restrict intake to defend a transient post-exercise weight.
+
+**Working line:** *Fuel for freshness, fluidity, recovery and development. Let aesthetics emerge from the system.*
