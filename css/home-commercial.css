@@ -223,3 +223,12 @@ linear-gradient(0deg,rgba(3,5,4,.45) 0%,rgba(3,5,4,.04) 58%,rgba(3,5,4,.12) 100%
  .sf-home-hero-immersive .home-hero-media img{object-position:45% 50%;filter:grayscale(1) contrast(1.03) brightness(.9)}
  .sf-home-hero-immersive .home-hero-shade{background:linear-gradient(0deg,rgba(3,5,4,.82) 0%,rgba(3,5,4,.62) 42%,rgba(3,5,4,.08) 78%,rgba(3,5,4,.06) 100%)}
 }
+
+/* 2026-10-02 · final hero focal-point tuning */
+@media(min-width:761px){
+  .sf-home-hero-immersive .home-hero-media img{object-position:34% 42%}
+}
+@media(max-width:760px){
+  .sf-home-hero-immersive .home-hero-media img{object-position:36% 50%}
+  .sf-home-hero-immersive .home-hero-shade{background:linear-gradient(0deg,rgba(3,5,4,.80) 0%,rgba(3,5,4,.57) 42%,rgba(3,5,4,.06) 78%,rgba(3,5,4,.04) 100%)}
+}
