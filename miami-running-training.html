@@ -108,7 +108,7 @@
           "name": "How do I hear about FORM long runs in Miami?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "FORM hosts occasional monthly long-run pop-ups at changing locations around Miami. Follow @form.practice for the next confirmed route."
+            "text": "FORM hosts occasional long-run pop-ups at changing locations around Miami. Follow @form.practice for the next confirmed route."
           }
         },
         {
@@ -777,7 +777,15 @@
     }
 </style>
 <link rel="stylesheet" href="/css/sf-brand.css?v=20260930">
-<style>.community-photo{padding:30px 22px}.community-photo figure{margin:0}.community-photo img{display:block;width:100%;height:auto}.community-photo figcaption{font:500 12px/1.6 monospace;margin-top:12px;color:#575e54}@media(min-width:700px){.community-photo{padding:42px}}</style>
+<style>.community-photo{padding:30px 22px}.community-photo figure{margin:0}.community-photo img{display:block;width:100%;height:auto}.community-photo figcaption{font:500 12px/1.6 monospace;margin-top:12px;color:#575e54}@media(min-width:700px){.community-photo{padding:42px}}
+    /* Oct 2026 · community occurrence model */
+    .long-run-groups{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin:22px 0;background:var(--hair);border:1px solid var(--hair)}
+    .long-run-group{padding:20px;background:var(--paper-hi)}
+    .long-run-group .eyebrow{margin:0 0 18px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+    .long-run-group h3{margin:0 0 10px;font-size:25px;line-height:1;letter-spacing:-.04em}
+    .long-run-group p:last-child{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
+    @media(max-width:620px){.long-run-groups{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
   <main class="shell">
@@ -796,13 +804,13 @@
           <span class="phase">Community + coaching</span>
         </div>
         <h1><span>Run</span><span>Miami.</span></h1>
-        <p class="hero-copy"><strong>Looking for people to run with in Miami?</strong> Start with Thursday community speedwork at Flamingo Park, follow the monthly long-run pop-ups, or work one-on-one with Brice on training built around you.</p>
+        <p class="hero-copy"><strong>Looking for people to run with in Miami?</strong> Start with Thursday community speedwork at Flamingo Park, follow the long-run pop-ups, or work one-on-one with Brice on training built around you.</p>
         <div class="scribble">show up.<br />run your effort.</div>
       </section>
 
       <section class="summary" aria-label="Ways to train with FORM in Miami">
         <div><strong>Thursday</strong><span>Community speedwork</span></div>
-        <div><strong>Monthly</strong><span>Long-run pop-ups</span></div>
+        <div><strong>Saturday</strong><span>Long runs when scheduled</span></div>
         <div><strong>1:1</strong><span>Personal coaching</span></div>
       </section>
 
@@ -817,12 +825,12 @@
         <div class="path-list">
           <a class="path" href="/thursday">
             <span class="path-k">Run with us</span>
-            <span><strong>Thursday speedwork</strong><span>One coached community session every week at Flamingo Park Track.</span></span>
+            <span><strong>Thursday speedwork</strong><span>Short, faster running at Flamingo Park Track. Check the live page before traveling.</span></span>
             <span class="arrow" aria-hidden="true">→</span>
           </a>
           <a class="path" href="https://www.instagram.com/form.practice/" target="_blank" rel="noopener noreferrer">
             <span class="path-k">Stay close</span>
-            <span><strong>Monthly long-run pop-ups</strong><span>A changing route around Miami, announced before each run.</span></span>
+            <span><strong>Long-run pop-ups</strong><span>A changing route around Miami, announced before each run.</span></span>
             <span class="arrow" aria-hidden="true">↗</span>
           </a>
           <a class="path" href="/coaching/miami/">
@@ -865,21 +873,34 @@
 
       <section class="block" id="long-runs">
         <div class="block-head">
-          <div><p class="num">03</p><h2>Long run.<br />Somewhere new.</h2></div>
-          <div class="focus">About once a month</div>
+          <div><p class="num">03</p><h2>Saturday<br />long run.</h2></div>
+          <div class="focus">When one is scheduled</div>
         </div>
-        <p class="body-copy">The long run does not need a permanent clubhouse or the same route every Saturday. About once a month, FORM will host a longer run somewhere in Miami. The location changes. The point is to run together, give the morning some structure, and let the city change around the work.</p>
+        <p class="body-copy">A changing route around Miami with two ways to join. The exact distance, pace, meeting point and route belong to each dated run rather than a permanent weekly promise.</p>
 
-        <div class="info-list" aria-label="Monthly long-run details">
-          <div class="info-row"><b>Frequency</b><span>About once a month</span></div>
+        <div class="long-run-groups" aria-label="Long-run group examples">
+          <article class="long-run-group">
+            <p class="eyebrow">Workout group · example</p>
+            <h3>14 miles total.</h3>
+            <p>11 miles easy around 7:20/mi, finishing with the last 3 miles at 6:00–6:20/mi.</p>
+          </article>
+          <article class="long-run-group">
+            <p class="eyebrow">Easy long-run group · example</p>
+            <h3>6–14 miles.</h3>
+            <p>Easy running at 8:00/mi or slower. Metric details are published with the dated run.</p>
+          </article>
+        </div>
+
+        <div class="info-list" aria-label="Saturday long-run details">
+          <div class="info-row"><b>Status</b><span id="long-run-status">No long run scheduled yet</span></div>
           <div class="info-row"><b>Route</b><span>Changes around Miami</span></div>
-          <div class="info-row"><b>Notice</b><span>Announced before each confirmed run</span></div>
+          <div class="info-row"><b>Notice</b><span>Exact route and meeting point are announced before each confirmed run</span></div>
         </div>
 
-        <div class="route-note"><span>Follow <strong>@form.practice</strong> for the next confirmed route.</span></div>
+        <div class="route-note"><span>The examples above show the session format, not a standing prescription. Check the dated announcement before traveling.</span></div>
 
         <a class="action-row" href="https://www.instagram.com/form.practice/" target="_blank" rel="noopener noreferrer">
-          <strong>Follow the next long run</strong>
+          <strong>See the next long-run announcement</strong>
           <span>@form.practice ↗</span>
         </a>
       </section>
@@ -889,7 +910,7 @@
           <div><p class="num">04</p><h2>Want the week built around you?</h2></div>
           <div class="focus">Individual coaching</div>
         </div>
-        <p class="body-copy">Community gives you a place to run. Coaching answers a different question: <strong>what should your training ask from you now?</strong> Run Development starts with your current running, your goal and the way you move, then adjusts the week as the evidence changes.</p>
+        <p class="body-copy"><strong>Some people start with the group and stay with the group. Some want a plan around the sessions. Some want the week fully individualized.</strong> Run Development starts with your current running, your goal and the way you move, then adjusts the week as the evidence changes.</p>
 
         <div class="coaching-card">
           <div class="coaching-top">
@@ -966,8 +987,8 @@
           <p>Thursday is a community running session with a coached structure. You can absolutely come because you want people to run with. FORM also goes further than a social meetup: individual coaching can organize the rest of your week around your goals.</p>
         </details>
         <details>
-          <summary>How do I find the monthly long run?</summary>
-          <p>Follow <a href="https://www.instagram.com/form.practice/" target="_blank" rel="noopener noreferrer">@form.practice</a> for the next confirmed route.</p>
+          <summary>How do I find the next long run?</summary>
+          <p>The dated route and meeting point are announced before each run. Follow <a href="https://www.instagram.com/form.practice/" target="_blank" rel="noopener noreferrer">@form.practice</a> for the next confirmed announcement.</p>
         </details>
         <details>
           <summary>Can Brice coach me for a race?</summary>
