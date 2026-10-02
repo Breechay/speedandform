@@ -318,6 +318,16 @@
   status = 200
 
 [[redirects]]
+  from = "/form-house"
+  to = "/form-house.html"
+  status = 200
+
+[[redirects]]
+  from = "/form-house/"
+  to = "/form-house.html"
+  status = 200
+
+[[redirects]]
   from = "/run-with-us"
   to = "/miami-running-training"
   status = 301
