@@ -125,4 +125,39 @@ html.fh-motion .fact:focus-within,html.fh-motion .partner article:focus-within,h
   <div>
     <div class="eyebrow">A home for the practice</div>
     <h1>FORM<br>HOUSE.</h1>
-<script>(function(){var root=document.documentElement;function arrive(){root.classList.add("fh-arrived")}if(matchMedia("(prefers-reduced-motion: reduce)").matches){root.classList.remove("fh-motion");arrive()}else if(document.readyState==="complete")arrive();else window.addEventListener("load",arrive,{once:true});setTimeout(arrive,1000)})();</script></body>
+<script>(function(){var r=document.documentElement;if(!r.classList.contains("fh-motion"))return;var h=document.querySelector(".hero h1");if(!h||h.querySelector(".fh-line"))return;var parts=h.innerHTML.split(/<br\s*\/?>/i);if(parts.length<2)return;h.innerHTML=parts.map(function(part){return '<span class="fh-line"><i>'+part.trim()+"</i></span>"}).join("")})();</script>
+    <p class="lede thesis">The training is considered.<br><em>Everything around it should be too.</em></p>
+    
+  </div>
+  <div class="hero-side" aria-label="Future real photograph placeholder"></div>
+</section>
+<section class="vibes" aria-label="FORM House experience">
+  <article><svg class="icon"><use href="#i-run"/></svg><h2>Train</h2><p>Get your miles in. Track, road, bridge, trail, waterfront.</p></article>
+  <article><svg class="icon"><use href="#i-recover"/></svg><h2>Recover</h2><p>Shower. Stretch. Put your feet up. Take your time.</p></article>
+  <article><svg class="icon"><use href="#i-coffee"/></svg><h2>Fuel</h2><p>Good coffee. Breakfast. Something worth sitting down for.</p></article>
+  <article><svg class="icon"><use href="#i-people"/></svg><h2>Belong</h2><p>Come to train. Come for coffee. Come because your people are here.</p></article>
+</section>
+<section class="closing"><div class="shell"><p>Come for the miles. Stay for the morning.</p></div></section>
+</main>
+<footer class="shell"><span>FORM · Speed & Form</span><span>Run · Recover · Fuel · Belong</span></footer>
+<script>
+(function(){
+  if(!('IntersectionObserver' in window))return;
+  const once=(nodes,stagger)=>{const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const group=entry.target.parentElement;const siblings=stagger?[...group.querySelectorAll('.verb-reveal')]:[entry.target];siblings.forEach((el,i)=>setTimeout(()=>el.classList.add('is-in'),stagger?i*90:0));siblings.forEach(el=>io.unobserve(el));}),{threshold:.2});nodes.forEach(n=>io.observe(n));};
+  once(document.querySelectorAll('.reveal'),false);
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function arrive(){document.documentElement.classList.add('fh-arrived')}
+  if(reduce){document.documentElement.classList.remove('fh-motion');arrive()}
+  else if(document.readyState==='complete')arrive();
+  else window.addEventListener('load',arrive,{once:true});
+  window.setTimeout(arrive,1200);
+  if('IntersectionObserver' in window){
+    var sections=document.querySelectorAll('.section,.signal,.cta');
+    var io=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(!entry.isIntersecting)return;entry.target.classList.add('fh-in');io.unobserve(entry.target)})},{rootMargin:'0px 0px -10% 0px',threshold:.16});
+    sections.forEach(function(section){io.observe(section)});
+  }
+  const verbs=document.querySelectorAll('.verb-reveal');if(verbs.length)once([verbs[0]],true);
+  const copy=document.getElementById('copy-partner-note');
+  if(copy)copy.addEventListener('click',async()=>{const note="We already train before the city is awake. What we need is a door: bags down at 5:50, out by 6:00, back for water, coffee, and ten or twenty minutes. The streets stay the training ground.\n\nA first version can be four to eight mornings in a lobby, café corner, or amenity lounge. If people keep coming back, we will know what deserves to be built next.\n\nFORM House\nhttps://speedandform.com/form-house";try{await navigator.clipboard.writeText(note);copy.textContent='Copied';setTimeout(()=>copy.textContent='Copy the note to send',2200)}catch(e){}});
+})();
+</script></body>
