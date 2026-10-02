@@ -109,3 +109,42 @@ html[data-print-theme="light"] .pacing-columns p{color:#49443d}
   html[data-print-theme="light"] .page{box-shadow:0 1px 0 #bdb6aa,0 18px 44px #00000038}
 }
 @media print{.print-tools{display:none!important}}
+
+/* Oct 2 paper refinement: Simon-sheet principles, mapped to RPD semantics. */
+.plan-method{margin-top:4px;font-size:6.5px;letter-spacing:.14em;color:var(--muted)}
+html[data-print-theme="light"]{--bg:#f5f1e9;--text:#1a1a18;--muted:#746f66;--line:#d9d2c6;--lime:#496e91}
+html[data-print-theme="light"] body{background:#d7d1c6}
+html[data-print-theme="light"] .page{background:#f5f1e9}
+html[data-print-theme="light"] .plan-head{margin-bottom:15px}
+html[data-print-theme="light"] .plan-title{font-size:10px;letter-spacing:.28em;color:#27241f}
+html[data-print-theme="light"] .plan-method{color:#888177}
+html[data-print-theme="light"] .range{color:#817a70}
+html[data-print-theme="light"] .table-wrap{border-top-color:#a9a195;border-bottom-color:#a9a195}
+html[data-print-theme="light"] thead th{height:.46in;color:#6d675e;border-right:0;font-size:7.5px;letter-spacing:.13em}
+html[data-print-theme="light"] thead th:first-child{color:#817a70}
+html[data-print-theme="light"] tbody th{border-right:0;border-top-color:rgba(105,98,88,.17);color:#4a453e;font-size:7.5px;padding-left:4px}
+html[data-print-theme="light"] tbody td{border-right:0;border-top-color:rgba(105,98,88,.17);background:transparent}
+html[data-print-theme="light"] .cell{padding:8px 10px;min-height:.57in}
+html[data-print-theme="light"] .s-title{font-size:6.5px;letter-spacing:.17em;color:#6f6960}
+html[data-print-theme="light"] .s-title.kind-rp,
+html[data-print-theme="light"] .s-title.race{color:#496e91}
+html[data-print-theme="light"] .s-title.kind-support,
+html[data-print-theme="light"] .s-title.kind-absolute{color:#b04f40}
+html[data-print-theme="light"] .s-title.kind-easy,
+html[data-print-theme="light"] .s-title.kind-long{color:#777168}
+html[data-print-theme="light"] .primary{font-size:9px;line-height:1.28;color:#292620;font-weight:470}
+html[data-print-theme="light"] .detail{font-size:7px;line-height:1.38;color:#6f6960;margin-top:3px}
+html[data-print-theme="light"] .total{font-size:6.5px;color:#4d4942;margin-top:5px}
+html[data-print-theme="light"] .rest .s-title{color:#aaa399}
+html[data-print-theme="light"] .rest .primary{color:#8b857b}
+html[data-print-theme="light"] .week-total th,
+html[data-print-theme="light"] .week-total td{background:transparent;border-top-color:#aaa397}
+html[data-print-theme="light"] .week-total .primary{font-size:9px;text-align:right;font-weight:650;color:#1f1d19}
+html[data-print-theme="light"] .page-foot{margin-top:12px;color:#8a8378}
+html[data-print-theme="light"] .page-foot .brand{letter-spacing:.22em;color:#4e4942}
+html[data-print-theme="light"] .cover .brand{color:#4e4942}
+html[data-print-theme="light"] .cover h1{font-size:47px;color:#171613}
+html[data-print-theme="light"] .cover .sub{color:#6d675e}
+html[data-print-theme="light"] .cover .meta{border-color:#aaa397;color:#817a70}
+html[data-print-theme="light"] .pacing-page h2{color:#496e91}
+html[data-print-theme="light"] .pacing-columns h3{color:#b04f40}
