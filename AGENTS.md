@@ -1,5 +1,8 @@
 # Start here: Speed & Form
 
+> **Current orientation:** after this file, read [Agent Orientation](docs/AGENT_ORIENTATION.md). It maps the current company, source-of-truth mesh, operating hats, October lanes, staleness rules and active cross-repo documents. Older dated sections below remain useful decision history but do not automatically outrank newer verified owner decisions.
+
+
 ## Operating console and daily operations
 Before changing Brice's priorities, open loops, daily brief, calendar projections or cross-surface operating records, read [Operating Console contract](docs/operations/CONSOLE-CONTRACT.md). `/coach/ops/` and the scheduled daily brief share the same private `operating_console_read` projection. Current athlete decisions include both `published` and `delivered_externally`; do not resurrect old Calendar or automation prescriptions. Change the owning source, read it back and record the private receipt. Do not publish private financial, health or athlete operating facts in this repository. [Console release checklist](docs/operations/CONSOLE-ACCEPTANCE-20260930.md) separates tested code, actual publication and remaining checks. Existing athlete dossiers stay at `/coach/labs/`; Increments access is not yet an integration.
 
