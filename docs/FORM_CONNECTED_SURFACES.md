@@ -38,3 +38,14 @@ Typography and plain-language standards apply independently on every surface. Pr
 `/thursday` reads the existing anonymous `collective_public_runs` projection filtered to `series_id=track-thursday`. Collective owns the dated gathering, time/place changes and cancellation. The website does not create or confirm occurrences. Only published public fields are requested; no membership, attendance or personal records are read. Date selection and displayed times use America/New_York, independent of the visitor’s time zone.
 
 `js/community-schedule.js` still owns usual recurring logistics and explicitly authored workout names. Its historical October 1 optional-workout entry does not override the published Collective gathering. Automatic rotation is no longer presented as an authored future workout. Confirmed gathering / workout pending are separate states; no upcoming public occurrence and failed reads both show that a date is not confirmed, with contact guidance. Existing community-page recurring schema describes the usual schedule, not a dated confirmation. Test changed time/place, cancellation, absent/unavailable records and daylight-saving transitions before release.
+
+
+## Public Saturday long-run projection v1 · October 2, 2026
+
+`/miami-running-training` is the canonical public community parent. `/run-with-us` is only a memorable redirect alias. `/thursday` remains the live Thursday detail surface.
+
+The community parent now reads the existing anonymous `collective_public_runs` projection for a future explicitly public Saturday/long-run occurrence. It does not create an occurrence, infer one from a private plan, or promise a monthly cadence. Until Collective exposes a dedicated stable long-run series identifier, `js/community-long-run.js` searches future published rows for explicit Saturday/long-run identity in the public series/title fields while excluding `track-thursday`. If no suitable public row exists, the correct state is **No long run scheduled yet**.
+
+Only published public fields are requested: title, series identifier, start/meet times, meeting place/address, public group facts and status. Miami/New York timezone controls date/time rendering. Cancellation remains distinct from absence. Failed reads say confirmation could not be obtained rather than inventing a run.
+
+The parent page may show an example Workout Group and Easy Long Run Group to explain the format, but the dated occurrence owns the actual route, distance, pace, meeting point and group prescription. Replace the temporary public-row identity match with a dedicated long-run `series_id` filter once Collective establishes that canonical identifier.
