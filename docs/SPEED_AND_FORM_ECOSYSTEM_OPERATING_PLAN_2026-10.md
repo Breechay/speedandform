@@ -361,6 +361,16 @@ No layer silently rewrites another.
 - Next Pass 01 work: wire a structured Saturday occurrence projection when the public Collective source exposes a stable long-run series; until then the parent truthfully shows “No long run scheduled yet” and links to the announcement channel.
 - Next Pass 02 work: audit major Labs/Plan/Library routes for contextual links and avoid duplicate coaching CTAs.
 
+## 2026-10-02 · Saturday projection + Pass 02 audit start
+- Added `js/community-long-run.js`, a read-only public projection over `collective_public_runs`.
+- It does not assume a new private schema or create occurrences. It searches future published occurrences for an explicit Saturday/long-run identity and otherwise renders the unscheduled state.
+- Public fields only: title, series, start/meet times, meeting place/address, public group facts and status.
+- Miami timezone is authoritative for occurrence date/time display.
+- Community parent now wires this projection into Status / Route / Notice.
+- Existing Thursday projection remains separate and unchanged.
+- Pass 02 audit finding: HYROX already has its contextual coaching bridge; Race Pace Durability support already contains “Want the training managed around you?”; Raise the Ceiling already ends with a coaching-method link; The Last 10K already links its related marathon plan but needs a quiet coaching path; The Two Curves has no coaching/plan bridge; major study pages should be changed selectively rather than receiving a universal component.
+- Next: finish selective Labs links, then inspect Plans + Library + community cross-links and run route/mobile QA.
+
 # Immediate NOW
 
 1. Pass 01 — inspect existing community routes and implement the parent community entry without duplicating good work.
