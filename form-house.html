@@ -71,6 +71,20 @@ html.fh-motion.fh-arrived .vibes article:nth-child(4){transition-delay:.79s}
 .partner-types span{padding:clamp(30px,4vw,58px) clamp(24px,3vw,50px);border-right:1px solid var(--line-dark);font-size:clamp(27px,3vw,45px);font-weight:500;letter-spacing:-.045em}.partner-types span:last-child{border-right:0}
 .partner-last{display:flex;justify-content:space-between;align-items:center;gap:40px;padding-top:38px;padding-bottom:44px}.partner-last p{margin:0;font-size:18px}.partner-last a{font:600 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid;padding-bottom:5px}
 @media(max-width:850px){.partner-ask-grid{grid-template-columns:1fr}.partner-types{grid-template-columns:1fr 1fr}.partner-types span:nth-child(2){border-right:0}.partner-types span:nth-child(-n+2){border-bottom:1px solid var(--line-dark)}}@media(max-width:520px){.partner-types{grid-template-columns:1fr}.partner-types span{border-right:0;border-bottom:1px solid var(--line-dark)}.partner-last{display:block}.partner-last a{display:inline-block;margin-top:24px}}
+</style><style>
+.partner-close{margin-top:34px!important;color:var(--ink)!important;font-weight:500}
+.partner-types span{display:flex;min-height:190px;flex-direction:column;justify-content:space-between}
+.partner-icon{width:34px;height:34px;fill:none;stroke:#657069;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.partner-last{justify-content:flex-end!important}
+html.fh-motion .partner-ask-grid>*{opacity:0;transform:translateY(14px);transition:opacity .72s var(--fh-ease),transform .72s var(--fh-ease)}
+html.fh-motion .partner-ask.fh-in .partner-ask-grid>*{opacity:1;transform:none}
+html.fh-motion .partner-ask.fh-in .partner-ask-grid>*:nth-child(2){transition-delay:100ms}
+html.fh-motion .partner-types span{opacity:0;transform:translateY(10px);transition:opacity .62s var(--fh-ease),transform .62s var(--fh-ease),background .35s ease}
+html.fh-motion .partner-ask.fh-in .partner-types span{opacity:1;transform:none}
+html.fh-motion .partner-ask.fh-in .partner-types span:nth-child(2){transition-delay:70ms}
+html.fh-motion .partner-ask.fh-in .partner-types span:nth-child(3){transition-delay:140ms}
+html.fh-motion .partner-ask.fh-in .partner-types span:nth-child(4){transition-delay:210ms}
+@media(hover:hover){.partner-types span:hover{background:#e7e1d6}}
 </style></head>
 <body>
 <header class="shell top"><a class="sf-brand" href="/" aria-label="Speed and Form home"></a><span>FORM House · Partner concept</span></header>
@@ -112,14 +126,14 @@ html.fh-motion.fh-arrived .vibes article:nth-child(4){transition-delay:.79s}
       <h2>A place that wants<br>to take this seriously.</h2>
     </div>
     <div class="partner-ask-copy">
-      <p>FORM House could live inside a great hotel, residence or performance property—or become a House of its own.</p>
-      <p><strong>We want proper space for athletes. Showers and recovery worth coming back to. Good food and coffee. Somewhere comfortable enough to stay. Staff who care about the experience. And a partner who wants FORM to become part of what makes the place special.</strong></p>
+      <p>FORM House could live inside a great hotel, residence or performance property, or become a House of its own.</p>
+      <p><strong>We want proper space for athletes. Showers and recovery worth coming back to. Good food and coffee. Somewhere comfortable enough to stay. Staff who care about the experience. And a partner who wants FORM to become part of what makes the place special.</strong></p><p class="partner-close">If you have the place, or want to build it, we should talk.</p>
     </div>
   </div>
   <div class="partner-types">
-    <span>Hotel.</span><span>Residence.</span><span>Performance.</span><span>A House of our own.</span>
+    <span><svg class="partner-icon"><use href="#i-hotel"/></svg>Hotel.</span><span><svg class="partner-icon"><use href="#i-building"/></svg>Residence.</span><span><svg class="partner-icon"><use href="#i-gym"/></svg>Performance.</span><span><svg class="partner-icon"><use href="#i-people"/></svg>A House of our own.</span>
   </div>
-  <div class="shell partner-last"><p>If you have the place—or want to build it—we should talk.</p><a href="/contact">Talk about FORM House →</a></div>
+  <div class="shell partner-last"><a href="/contact">Talk about FORM House →</a></div>
 </section>
 
 </main>
@@ -139,4 +153,4 @@ html.fh-motion.fh-arrived .vibes article:nth-child(4){transition-delay:.79s}
   }else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('is-in')})}
 })();
 </script>
-</body></html>
+<script>(function(){var el=document.querySelector(".partner-ask");if(!el)return;if(matchMedia("(prefers-reduced-motion: reduce)").matches||!("IntersectionObserver" in window)){el.classList.add("fh-in");return}var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){el.classList.add("fh-in");io.disconnect()}})},{threshold:.14});io.observe(el)})();</script></body></html>
