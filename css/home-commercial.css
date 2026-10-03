@@ -309,3 +309,7 @@ linear-gradient(0deg,rgba(3,5,4,.45) 0%,rgba(3,5,4,.04) 58%,rgba(3,5,4,.12) 100%
 /* 2026-10-02 · doors need no introductory headline */
 .home-entry{padding-top:0}
 .home-entry-grid{border-top:0}
+
+/* 2026-10-02 · restore a quiet transition between hero and training doors */
+.home-entry{padding-top:clamp(38px,4vw,58px)}
+.home-entry h2{margin-top:0}
