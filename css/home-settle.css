@@ -259,15 +259,9 @@ html.sf-motion .questionnaire .opt[aria-pressed="true"] {
   }
 }
 
-/* 2026-10-02 · keep the hero reveal from clipping descenders on the final line */
+/* 2026-10-02 · preserve the reveal mask while giving descenders room */
 html.sf-motion .sf-home-hero-immersive h1 .sf-line:last-child{
-  padding-bottom:.12em;
-  margin-bottom:-.12em;
-}
-
-/* 2026-10-02 · release the final hero line after reveal so descenders render fully */
-html.sf-motion.sf-arrived .sf-home-hero-immersive h1 .sf-line:last-child{
-  overflow:visible;
-  padding-bottom:.2em;
-  margin-bottom:-.2em;
+  overflow:hidden;
+  padding-bottom:.24em;
+  margin-bottom:-.24em;
 }
