@@ -264,3 +264,10 @@ html.sf-motion .sf-home-hero-immersive h1 .sf-line:last-child{
   padding-bottom:.12em;
   margin-bottom:-.12em;
 }
+
+/* 2026-10-02 · release the final hero line after reveal so descenders render fully */
+html.sf-motion.sf-arrived .sf-home-hero-immersive h1 .sf-line:last-child{
+  overflow:visible;
+  padding-bottom:.2em;
+  margin-bottom:-.2em;
+}
