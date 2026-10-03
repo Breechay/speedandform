@@ -55,7 +55,8 @@
   list.id = 'coachingChoiceList';
   list.className = 'coaching-choice__list';
   list.setAttribute('role', 'listbox');
-  list.hidden = true;
+  list.setAttribute('aria-hidden', 'true');
+  list.inert = true;
   // Touch taps also synthesize mousedown; cancel its focus transfer, not touch scrolling.
   list.addEventListener('mousedown', function (event) { event.preventDefault(); });
   var open = false, active = Math.max(select.selectedIndex, 0), buffer = '', lastType = 0;
@@ -86,6 +87,7 @@
     var row = document.createElement('li');
     row.id = 'coachingChoiceOption-' + index;
     row.className = 'coaching-choice__option';
+    row.style.setProperty('--choice-index', index);
     row.setAttribute('role', 'option');
     row.append(valueNode(option), icon('M5 12l4 4L19 6', 'coaching-choice__check'));
     // Keep DOM focus on the combobox while interacting with its popup.
@@ -104,13 +106,7 @@
   }
   function position() {
     if (!open) return;
-    var box = trigger.getBoundingClientRect(), viewport = window.visualViewport;
-    var top = viewport ? viewport.offsetTop : 0;
-    var bottom = top + (viewport ? viewport.height : window.innerHeight);
-    var below = bottom - box.bottom - 14, above = box.top - top - 14;
-    var up = below < 240 && above > below;
-    control.classList.toggle('coaching-choice--up', up);
-    list.style.maxHeight = Math.max(96, Math.min(300, up ? above : below)) + 'px';
+    control.style.setProperty('--choice-height', Math.min(list.scrollHeight + 22, 330) + 'px');
   }
   function highlight(index) {
     active = Math.max(0, Math.min(options.length - 1, index));
@@ -121,12 +117,20 @@
     else if (bottom > list.scrollTop + list.clientHeight) list.scrollTop = bottom - list.clientHeight;
   }
   function show() {
-    open = true; list.hidden = false; trigger.setAttribute('aria-expanded', 'true');
-    position(); highlight(Math.max(0, select.selectedIndex));
+    open = true;
+    list.inert = false;
+    list.setAttribute('aria-hidden', 'false');
+    trigger.setAttribute('aria-expanded', 'true');
+    control.classList.add('is-open');
+    position();
+    highlight(Math.max(0, select.selectedIndex));
   }
   function close(commit) {
     if (!open) return;
-    open = false; list.hidden = true; buffer = '';
+    open = false; buffer = '';
+    control.classList.remove('is-open');
+    list.setAttribute('aria-hidden', 'true');
+    list.inert = true;
     trigger.setAttribute('aria-expanded', 'false');
     trigger.removeAttribute('aria-activedescendant');
     if (commit && select.selectedIndex !== active) {
