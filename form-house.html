@@ -62,7 +62,16 @@ html.fh-motion.fh-arrived .vibes article:nth-child(4){transition-delay:.79s}
 @media(max-width:520px){.vibes{grid-template-columns:1fr}.vibes article{min-height:250px;border-right:0;border-bottom:1px solid var(--line-dark)}}
 
 </style>
-</head>
+<style>
+.partner-ask{background:var(--paper);color:var(--ink);padding:clamp(90px,9vw,145px) 0 0}
+.partner-ask-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(64px,8vw,130px);align-items:end;padding-bottom:clamp(70px,7vw,110px)}
+.partner-ask .eyebrow{color:#657069;margin-bottom:22px}.partner-ask h2{margin:0;font-size:clamp(58px,7vw,104px);font-weight:450;line-height:.9;letter-spacing:-.065em}
+.partner-ask-copy p{margin:0 0 24px;font-size:clamp(18px,1.55vw,23px);line-height:1.5;color:#59615c}.partner-ask-copy strong{color:var(--ink);font-weight:500}
+.partner-types{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark)}
+.partner-types span{padding:clamp(30px,4vw,58px) clamp(24px,3vw,50px);border-right:1px solid var(--line-dark);font-size:clamp(27px,3vw,45px);font-weight:500;letter-spacing:-.045em}.partner-types span:last-child{border-right:0}
+.partner-last{display:flex;justify-content:space-between;align-items:center;gap:40px;padding-top:38px;padding-bottom:44px}.partner-last p{margin:0;font-size:18px}.partner-last a{font:600 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid;padding-bottom:5px}
+@media(max-width:850px){.partner-ask-grid{grid-template-columns:1fr}.partner-types{grid-template-columns:1fr 1fr}.partner-types span:nth-child(2){border-right:0}.partner-types span:nth-child(-n+2){border-bottom:1px solid var(--line-dark)}}@media(max-width:520px){.partner-types{grid-template-columns:1fr}.partner-types span{border-right:0;border-bottom:1px solid var(--line-dark)}.partner-last{display:block}.partner-last a{display:inline-block;margin-top:24px}}
+</style></head>
 <body>
 <header class="shell top"><a class="sf-brand" href="/" aria-label="Speed and Form home"></a><span>FORM House · Partner concept</span></header>
 <main>
@@ -96,6 +105,23 @@ html.fh-motion.fh-arrived .vibes article:nth-child(4){transition-delay:.79s}
 </section>
 
 <section class="closing"><div class="shell"><p>Come for the miles. Stay for the morning.</p></div></section>
+<section class="partner-ask">
+  <div class="shell partner-ask-grid">
+    <div>
+      <div class="eyebrow">What we're looking for</div>
+      <h2>A place that wants<br>to take this seriously.</h2>
+    </div>
+    <div class="partner-ask-copy">
+      <p>FORM House could live inside a great hotel, residence or performance property—or become a House of its own.</p>
+      <p><strong>We want proper space for athletes. Showers and recovery worth coming back to. Good food and coffee. Somewhere comfortable enough to stay. Staff who care about the experience. And a partner who wants FORM to become part of what makes the place special.</strong></p>
+    </div>
+  </div>
+  <div class="partner-types">
+    <span>Hotel.</span><span>Residence.</span><span>Performance.</span><span>A House of our own.</span>
+  </div>
+  <div class="shell partner-last"><p>If you have the place—or want to build it—we should talk.</p><a href="/contact">Talk about FORM House →</a></div>
+</section>
+
 </main>
 <footer class="shell"><span>FORM · Speed &amp; Form</span><span>Train · Recover · Fuel · Belong</span></footer>
 <script>
