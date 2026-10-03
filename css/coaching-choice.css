@@ -1,30 +1,32 @@
 /* One boundary, native paper, clear service and fee hierarchy. */
 .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 .analysis-screen img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.04)}
-.coaching-choice{position:relative;margin-bottom:35px;isolation:isolate}
-.coaching-choice__trigger{display:flex;align-items:center;justify-content:space-between;gap:24px;width:100%;min-height:80px;margin:0;padding:16px 20px;border:1px solid #9b9487;border-radius:2px;background:var(--paper2);color:var(--ink);text-align:left;cursor:pointer;transition:border-color .16s,background .16s;-webkit-appearance:none;appearance:none}
+.coaching-choice{position:relative;margin-bottom:35px;isolation:isolate;--choice-ease:cubic-bezier(.16,1,.3,1);--choice-height:260px}
+.coaching-choice__trigger{display:flex;align-items:center;justify-content:space-between;gap:24px;width:100%;min-height:80px;margin:0;padding:16px 20px;border:1px solid #9b9487;border-radius:0;background:var(--paper2);color:var(--ink);text-align:left;cursor:pointer;transition:border-color .28s var(--choice-ease),background .28s var(--choice-ease);-webkit-appearance:none;appearance:none}
 .coaching-choice__value{display:grid;gap:4px;min-width:0}
 .coaching-choice__name{font-size:18px;font-weight:500;line-height:1.35;letter-spacing:-.015em;overflow-wrap:break-word}
 .coaching-choice__fee{font-size:14px;font-weight:400;line-height:1.5;color:var(--body);font-variant-numeric:tabular-nums;letter-spacing:0}
-.coaching-choice__arrow{width:18px;height:18px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.5;transition:transform .18s}
-.coaching-choice__trigger[aria-expanded="true"]{border-color:var(--ink)}
+.coaching-choice__arrow{width:18px;height:18px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.5;transition:transform .42s var(--choice-ease)}
+.coaching-choice__trigger[aria-expanded="true"]{border-color:var(--ink);border-bottom-color:transparent}
 .coaching-choice__trigger[aria-expanded="true"] .coaching-choice__arrow{transform:rotate(180deg)}
 .coaching-choice__trigger:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
-.coaching-choice__list{position:absolute;z-index:4;inset:calc(100% + 6px) 0 auto;max-height:300px;overflow-y:auto;overscroll-behavior:contain;margin:0;padding:6px;list-style:none;border:1px solid #a79e90;border-radius:3px;background:var(--paper2);box-shadow:0 12px 28px rgba(31,25,15,.10);animation:choice-in .14s ease-out;scroll-padding:6px}
-.coaching-choice--up .coaching-choice__list{inset:auto 0 calc(100% + 6px);animation-name:choice-in-up}
-.coaching-choice__option{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:74px;padding:13px;border:0;border-radius:1px;cursor:pointer;color:var(--ink)}
+.coaching-choice__list{position:relative;z-index:4;max-height:0;overflow:hidden;margin:-1px 0 0;padding:0 20px;list-style:none;border:1px solid transparent;border-top:0;background:var(--paper2);opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-8px);transform-origin:top;transition:max-height .46s var(--choice-ease),padding .46s var(--choice-ease),opacity .22s ease,transform .46s var(--choice-ease),border-color .24s ease,visibility 0s linear .46s}
+.coaching-choice.is-open .coaching-choice__list{max-height:var(--choice-height);padding:8px 20px 12px;border-color:#9b9487;opacity:1;visibility:visible;pointer-events:auto;transform:none;transition-delay:0s}
+.coaching-choice__option{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:68px;padding:12px 0;border:0;border-top:1px solid rgba(22,25,22,.12);cursor:pointer;color:var(--ink);opacity:0;transform:translateY(-6px);transition:opacity .32s ease,transform .42s var(--choice-ease),background .22s ease}
+.coaching-choice__option:first-child{border-top:0}
+.coaching-choice.is-open .coaching-choice__option{opacity:1;transform:none;transition-delay:calc(var(--choice-index,0) * 34ms)}
 .coaching-choice__option .coaching-choice__name{font-size:16px}
 .coaching-choice__option .coaching-choice__fee{font-size:13px}
 .coaching-choice__check{width:18px;height:18px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.7;visibility:hidden}
 .coaching-choice__option[aria-selected="true"] .coaching-choice__check{visibility:visible}
-.coaching-choice__option.is-active{background:#e5decf}
+.coaching-choice__option.is-active{background:rgba(22,25,22,.045)}
 /* Keyboard highlight occupies the same edge; it never creates a second frame. */
-.coaching-choice.is-keyboard .coaching-choice__option.is-active{outline:2px solid var(--ink);outline-offset:-2px}
-@media(hover:hover){.coaching-choice__trigger:hover{border-color:var(--ink)}.coaching-choice__option:hover{background:#e5decf}}
+.coaching-choice.is-keyboard .coaching-choice__option.is-active{outline:1px solid var(--ink);outline-offset:-1px}
+@media(hover:hover){.coaching-choice__trigger:hover{border-color:var(--ink)}.coaching-choice__option:hover{background:rgba(22,25,22,.045)}}
 
 /* Mobile first fold: one promise, one fee, one action. */
 @media(max-width:600px){
-  .coaching-choice{margin-bottom:30px}.coaching-choice__trigger{padding:15px 16px;min-height:78px}.coaching-choice__name{font-size:17px}.coaching-choice__option{padding:13px 10px}
+  .coaching-choice{margin-bottom:30px}.coaching-choice__trigger{padding:15px 16px;min-height:78px}.coaching-choice__name{font-size:17px}.coaching-choice__list,.coaching-choice.is-open .coaching-choice__list{padding-left:16px;padding-right:16px}.coaching-choice__option{padding:12px 0}
   .hero{min-height:96svh}
   .hero-copy{padding:190px 0 54px}
   .hero h1{font-size:clamp(58px,16vw,74px);line-height:.89;letter-spacing:-.06em}
@@ -39,6 +41,4 @@
 @media(max-width:359px){.hero-copy{padding-top:176px}.hero h1{font-size:15.8vw}.hero-benefit{font-size:19px}}
 
 @media(forced-colors:active){.coaching-choice__list,.coaching-choice__trigger{border-color:ButtonText}.coaching-choice__option.is-active{outline:2px solid Highlight;outline-offset:-2px}.coaching-choice__fee{color:CanvasText}}
-@keyframes choice-in{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:none}}
-@keyframes choice-in-up{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
-@media(prefers-reduced-motion:reduce){.coaching-choice__list,.coaching-choice__arrow,.coaching-choice__trigger{animation:none;transition:none}}
+@media(prefers-reduced-motion:reduce){.coaching-choice__list,.coaching-choice__arrow,.coaching-choice__trigger,.coaching-choice__option{transition:none!important;transform:none!important}}
