@@ -40,12 +40,13 @@ html.sf-motion .sf-home-hero-immersive h1 .sf-line {
 html.sf-motion .sf-home-hero-immersive h1 .sf-line i {
   display: block;
   font-style: normal;
-  transform: translateY(108%);
-  transition: transform 860ms var(--sf-ease);
+  opacity: 0;
+  transform: translateY(112%);
+  transition: transform 860ms var(--sf-ease), opacity 140ms ease;
 }
-html.sf-motion.sf-arrived .sf-home-hero-immersive h1 .sf-line:nth-child(1) i { transition-delay: 160ms; transform: none; }
-html.sf-motion.sf-arrived .sf-home-hero-immersive h1 .sf-line:nth-child(2) i { transition-delay: 260ms; transform: none; }
-html.sf-motion.sf-arrived .sf-home-hero-immersive h1 .sf-line:nth-child(3) i { transition-delay: 360ms; transform: none; }
+html.sf-motion.sf-arrived .sf-home-hero-immersive h1 .sf-line:nth-child(1) i { transition-delay: 160ms; transform: none; opacity:1; }
+html.sf-motion.sf-arrived .sf-home-hero-immersive h1 .sf-line:nth-child(2) i { transition-delay: 260ms; transform: none; opacity:1; }
+html.sf-motion.sf-arrived .sf-home-hero-immersive h1 .sf-line:nth-child(3) i { transition-delay: 360ms; transform: none; opacity:1; }
 
 html.sf-motion .sf-home-hero-immersive .home-hero-intro,
 html.sf-motion .sf-home-hero-immersive .home-proof-facts {
@@ -259,9 +260,8 @@ html.sf-motion .questionnaire .opt[aria-pressed="true"] {
   }
 }
 
-/* 2026-10-02 · preserve the reveal mask while giving descenders room */
+/* 2026-10-02 · final line gets a taller line box, not a leaky reveal mask */
 html.sf-motion .sf-home-hero-immersive h1 .sf-line:last-child{
   overflow:hidden;
-  padding-bottom:.24em;
-  margin-bottom:-.24em;
+  line-height:.96;
 }
