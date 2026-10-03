@@ -153,3 +153,32 @@ Do not equate the lowest scale reading with the best aesthetic state. Acute depl
 After training, **rehydrate, replenish carbohydrate according to work performed, obtain a meaningful protein feeding, and respond to appetite/recovery demand**. Do not restrict intake to defend a transient post-exercise weight.
 
 **Working line:** *Fuel for freshness, fluidity, recovery and development. Let aesthetics emerge from the system.*
+
+
+## October 3 · stacked-training fueling guardrail
+
+### Athlete correction
+Do **not** over-instrument the athlete's acute post-exercise scale changes. He already knows from long experience that roughly an hour of exercise commonly produces a noticeable **range** of short-term body-mass loss for him. The exact mileage is not the important variable, and the study does not need a pre/post weigh-in protocol or a workout-by-workout “replacement ratio.”
+
+The practically important pattern is that when training days stack and refueling is not deliberate, his bodyweight can continue to fall quickly. He is not interested in preserving those lower post-training readings and does not regard rapid scale loss as an achievement.
+
+### October 3 context
+- Standardized early-morning reading: **186.0 lb at 5:50 AM**.
+- Training: **Forge full upper**, followed by **60 minutes / 5 reported treadmill miles of easy base running**.
+- Post-training reading at 1:42 PM: **183.0 lb**. File this as an acute post-training state, not evidence of three pounds of tissue loss or a target to maintain.
+- Athlete reports high energy and smooth/fluid running. The additional treadmill work was chosen because movement felt good, not to force mileage or accelerate weight loss.
+- Planned next exposure: easy running with Natalie on October 4, **up to ~8 miles depending on how both athletes feel** rather than a compulsory distance.
+
+### Running-control note
+The athlete declined the prior 10-mile outdoor idea when it did not feel appropriate. Treadmill running currently provides a lower-complexity environment while his sides/midsection regain the organization and endurance he associates with accumulated mileage. Outdoor volume should return according to movement quality and comfort rather than urgency.
+
+Watch-derived treadmill pace is not a useful progression metric for this athlete because he reports a longstanding mismatch between watch estimates and treadmill/belt effort. Do not infer an alternative “true” pace without calibrated evidence. For these easy exposures, prioritize duration, effort, heart rate when useful, and subjective smoothness/fluidity.
+
+### Fueling implication
+The control problem is **not weight loss**. The athlete knows he can lose scale weight rapidly. The guardrail is avoiding accidental under-replacement as activity accumulates.
+
+When running/strength days stack, deliberately increase food and fluid availability rather than trying to defend a transient lower weight. Current practical tools include oats + raisins/Nido, protein, jasmine rice, chocolate milk, cottage cheese and normal meals according to appetite and workload.
+
+Use morning bodyweight only as a loose contextual guardrail alongside recovery, muscular fullness, hunger, sleep, performance, movement quality and subjective freshness. A persistent downward drift combined with poorer recovery or loss of fullness/freshness is a reason to examine fueling; isolated post-training readings are not.
+
+**Working line:** *High output without accidental under-replacement.*
