@@ -297,3 +297,8 @@ linear-gradient(0deg,rgba(3,5,4,.45) 0%,rgba(3,5,4,.04) 58%,rgba(3,5,4,.12) 100%
 @media(max-width:900px){
   .home-entry h2{white-space:normal;font-size:clamp(32px,7vw,46px);margin-bottom:30px}
 }
+
+/* 2026-10-02 · evidence headline keeps the first thought intact on desktop */
+@media(min-width:801px){
+  .home-evidence h2{max-width:900px}
+}
