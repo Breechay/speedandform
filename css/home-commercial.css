@@ -280,3 +280,20 @@ linear-gradient(0deg,rgba(3,5,4,.45) 0%,rgba(3,5,4,.04) 58%,rgba(3,5,4,.12) 100%
 .questionnaire .opt[aria-pressed="true"],.questionnaire .opt[aria-pressed="true"]:hover{background:#161916;color:#f1ede4;border-color:#161916}
 .questionnaire .cta{background:#161916;color:#f1ede4;border:1px solid #161916}
 .questionnaire .cta:hover{background:#0d0f0e}
+
+/* 2026-10-02 · make the ways-to-train line an editorial subhead, not another hero */
+.home-entry h2{
+  max-width:1180px;
+  margin:18px 0 42px;
+  font-size:clamp(30px,3.25vw,50px);
+  font-weight:450;
+  line-height:.98;
+  letter-spacing:-.042em;
+  text-wrap:balance;
+}
+@media(min-width:1180px){
+  .home-entry h2{white-space:nowrap}
+}
+@media(max-width:900px){
+  .home-entry h2{white-space:normal;font-size:clamp(32px,7vw,46px);margin-bottom:30px}
+}
