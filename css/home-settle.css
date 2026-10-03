@@ -258,3 +258,9 @@ html.sf-motion .questionnaire .opt[aria-pressed="true"] {
     transform: none !important;
   }
 }
+
+/* 2026-10-02 · keep the hero reveal from clipping descenders on the final line */
+html.sf-motion .sf-home-hero-immersive h1 .sf-line:last-child{
+  padding-bottom:.12em;
+  margin-bottom:-.12em;
+}
