@@ -342,7 +342,7 @@ el('doneStatus').textContent = `Completed · v${VERSION}`;
 // The version's date is the date the version was CUT, not the date training
 // starts. They are two different facts and the footer is stating the first.
 const cutAt = plan.version?.cut_at ? new Date(plan.version.cut_at) : weekOne;
-el('version').textContent = `${plan.plan.name} · v${VERSION} · ${
+if (el('version')) el('version').textContent = `${plan.plan.name} · v${VERSION} · ${
   cutAt.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}`;
 
 // The switcher, ?state= and ?week= are DEVELOPMENT ONLY, and the gate is the
