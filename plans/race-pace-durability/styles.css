@@ -411,3 +411,18 @@ footer{height:55px;display:flex;align-items:flex-end;gap:18px;color:#9da6a8;font
 
 /* 2026-10-02 · with header navigation removed, keep purchase action at the far right */
 .topbar .actions{grid-column:3;justify-self:end}
+
+/* 2026-10-02 · purchase action belongs to the title row */
+.hero-purchase{display:block}
+@media(min-width:900px){
+  .hero{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:48px}
+  .hero-purchase{justify-self:end;align-self:start;padding-top:0}
+}
+@media(min-width:600px) and (max-width:899px){
+  .hero-purchase{margin-top:22px}
+}
+@media(max-width:599px){
+  .hero-purchase{display:none}
+  .mobile-hero-actions{margin-top:30px;width:100%}
+  .mobile-hero-actions .btn.lime{max-width:100%;white-space:nowrap}
+}
