@@ -302,3 +302,6 @@ linear-gradient(0deg,rgba(3,5,4,.45) 0%,rgba(3,5,4,.04) 58%,rgba(3,5,4,.12) 100%
 @media(min-width:801px){
   .home-evidence h2{max-width:900px}
 }
+
+/* 2026-10-02 · the doors headline needs no eyebrow */
+.home-entry h2{margin-top:0}
