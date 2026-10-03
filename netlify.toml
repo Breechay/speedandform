@@ -171,6 +171,20 @@
   to = "/athletes/:slug.html"
   status = 200
 
+
+# Retired Run Development landing page. Coaching now begins on the homepage intake.
+[[redirects]]
+  from = "/coaching/miami"
+  to = "/#begin"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/coaching/miami/"
+  to = "/#begin"
+  status = 301
+  force = true
+
 # Core pages
 [[redirects]]
   from = "/threshold"
