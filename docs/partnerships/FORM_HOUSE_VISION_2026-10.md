@@ -150,3 +150,24 @@ Priority order:
 5. **SEO / Library pages** — allow more information density because their job is discovery and education; do not force every page into the campaign-page format.
 
 Do not redesign a working page simply to satisfy this pass. Prefer subtraction, alignment, typography, photography and motion refinements.
+
+### Hard editing rule · remove explanatory residue
+
+Every design / copy audit must include a subtraction pass specifically looking for language and interface elements that explain away friction instead of removing it.
+
+Flag and usually cut phrases such as:
+- “a few sentences is enough”;
+- “no pressure”;
+- “you don't need to…”;
+- “this is just…”;
+- “no payment” / “no booking” when the interaction already makes that obvious;
+- defensive fit language, reassurance, instructions or caveats that exist because the interface is unclear;
+- category selectors, helper copy, optional fields, cards, buttons, links, dividers or sections that do not materially change the user's next action.
+
+Default question: **Can the design make this obvious without saying it?**
+
+Second question: **If this disappears, does the page become less useful or merely quieter?**
+
+If it merely becomes quieter, cut it.
+
+This rule applies across the website, FORM app, FORM House, inquiry flows, commercial pages and future product interfaces. Necessary safety, legal, privacy, pricing, eligibility and material product information are not “residue” and should remain when relevant.
