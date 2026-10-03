@@ -1,55 +1,124 @@
 # FORM House
-## A physical home for the practice · October 2026
+## Business-development track · October 2026
 
-## Thesis
+## Current thesis
 
-**Luck is opportunity meeting preparation.**
+**Give athletes a physical experience worthy of the quality of the training.**
 
-FORM no longer has Hideout as its informal physical home. The practice still has recurring early mornings, coached athletes, shared long runs, Track Thursday, photography, studies, FORM software and a growing network — but no dependable place to gather before or after the work.
+FORM House is a performance-running home organized around the outdoor training day. The run remains outside. The House makes the hours around it worth traveling for: train, recover, fuel, belong.
 
-FORM House is the prepared answer.
+**The training is considered. Everything around it should be too.**
 
-It is not necessarily one building, one neighborhood or one ownership model. It is a physical layer for the FORM methodology that can live:
-- inside an apartment building;
-- inside a hotel;
-- beside or within a café;
-- inside an existing gym/performance facility;
-- as an annex or residency;
-- eventually as a standalone FORM location.
+This is now an active business-development direction, not only a website concept.
 
-The concept should be ready before the right landlord, hotelier, developer, café owner, gym operator or capital partner appears.
+## Positioning
 
-## Core sentence
+FORM House should not compete by stacking more generic wellness amenities onto a property. Luxury wellness, hospitality and sport-led developments already prove that operators will invest serious space, staffing, food, recovery and design into the experience.
 
-**FORM makes training an occasion. FORM House gives the occasion a home.**
+FORM's opening is more specific: organize that infrastructure around the outdoor endurance athlete's morning.
 
-## What the space does
+**They built the wellness destination. FORM builds the home for the training day.**
 
-At minimum:
-- opens early enough for 5:30–6:30 AM running;
-- gives runners a reliable meeting point;
-- allows bags / small personal items to be left safely while people run;
-- provides water and a place to reset after training;
-- provides seating / lounge space for 10–30 minutes before or after;
-- supports coffee / simple food either directly or through the host;
-- has a bathroom or practical restroom access;
-- makes recovery / mobility possible without pretending to be a medical clinic;
-- can hold a small FORM board / session information;
-- can support photographs, study moments and community continuity.
+A strong partner may already have expensive infrastructure. FORM adds an outdoor endurance culture, authored training, recurring mornings and a reason for athletes to organize the whole morning around the property.
 
-Useful additions depending on partner:
-- showers / changing;
-- cold plunge / sauna / compression / recovery equipment;
-- strength / mobility corner;
-- lockers;
-- sports nutrition / breakfast;
-- retail shelf;
-- bike parking;
-- route maps;
-- screening / assessment area;
-- small event / workshop capacity;
-- projector / film / study nights;
-- concierge-style access for hotel/apartment guests.
+## Standard
+
+Do not pursue half-built or improvised versions simply because space is available. The physical experience must be worthy of the training.
+
+A credible FORM House expression should support:
+- proper early arrival and secure belongings;
+- changing rooms, clean bathrooms, showers and towels;
+- preparation / mobility before training;
+- outdoor running access: track, road, bridge, trail or waterfront;
+- recovery worth returning to;
+- good coffee, breakfast and real post-training food;
+- comfortable space to sit, talk, work or remain after training;
+- attentive staffing and hospitality;
+- a finished environment with enough design quality that athletes want to return and visitors might travel for it.
+
+The exact amenities can vary. The standard of care cannot.
+
+## Partner profile
+
+Prioritize:
+1. **Luxury / lifestyle hotel** — strong F&B, service, fitness/recovery infrastructure and access to excellent outdoor running.
+2. **Wellness- or sport-led residence** — substantial infrastructure that wants real programming, identity and recurring use rather than another passive amenity.
+3. **Performance property** — serious strength/recovery capability that lacks an outdoor endurance culture.
+4. **Capital / development partner** — capable of building the standalone FORM House as the full expression.
+
+Do not make generic apartment buildings the default target.
+
+## Reference set for internal research
+
+Use these as operating / quality references, not names to place on the public pitch:
+- THE WELL / Terra — wellness-led residential and hospitality thinking.
+- Continuum 12000 Sport & Wellness Private Residences — sport and wellness as defining real-estate infrastructure.
+- 1 Hotels / 1 Hotel South Beach — luxury hospitality, F&B, fitness and recovery in one guest experience.
+- Carillon Miami Wellness Resort — wellness as destination hospitality.
+- Anatomy — serious fitness/performance and recovery culture.
+
+Flow can be useful for studying community, coworking and programming, but it is not the quality benchmark for FORM House.
+
+## Public pitch
+
+Keep the public page brief:
+
+**FORM HOUSE → thesis → TRAIN / RECOVER / FUEL / BELONG → COME FOR THE MILES. STAY FOR THE MORNING. → partner ask.**
+
+Public partner argument:
+
+> You have already invested seriously in wellness, performance and hospitality. FORM House gives that infrastructure an outdoor endurance culture and a reason for athletes to organize the whole morning around the property.
+
+Do not add market-stat slides, reference-property logos, pilot language, or generic amenity-deck copy.
+
+## Business-development workstream
+
+### Stage 1 · Target list
+Build a deliberately small list of 10–15 organizations that can meet the FORM House standard. Start with the reference orbit above and comparable luxury hospitality, branded-residence, wellness-development and performance operators in Miami, then expand beyond Miami where the fit is unusually strong.
+
+For every target capture:
+- organization / property;
+- location;
+- what it has already invested in;
+- why FORM adds something missing;
+- likely decision-maker(s);
+- warm-introduction path, if any;
+- direct contact route;
+- one tailored pitch angle;
+- status / next action.
+
+### Stage 2 · People
+Identify the actual people who could entertain the concept: development principals, hotel GMs, heads of wellness, brand/experience leaders, residential amenity leaders, performance directors, ownership or capital partners. Do not default to generic info inboxes if a relevant person can be identified.
+
+### Stage 3 · Tailored outreach
+Prepare the first 3–5 approaches individually. The thesis stays constant; the reason it matters changes by property.
+
+Hotel: make the property a place an athlete wants to stay because the entire training morning is handled well.
+
+Residence: turn serious wellness infrastructure into an active outdoor endurance culture residents can actually belong to.
+
+Performance: extend the existing performance environment outside into running and give athletes somewhere to return.
+
+Capital / development: build the definitive endurance-performance hospitality environment from the athlete outward.
+
+### Stage 4 · Conversation material
+Before outreach, keep ready:
+- live FORM House page;
+- dedicated FORM House contact form;
+- concise one-paragraph concept;
+- property-specific note;
+- current FORM / athlete evidence when useful;
+- a clear answer to “what would this look like here?” without shrinking the standard.
+
+## Immediate next actions
+
+1. Research and rank the first 10–15 target organizations.
+2. Identify the strongest decision-maker at the first 5.
+3. Write a one-paragraph property-specific thesis for each.
+4. Draft the first 3–5 emails.
+5. Review for specificity and ambition before sending.
+6. Track replies, introductions, meetings and next actions as a persistent commercial pipeline.
+
 
 ## What FORM brings
 
