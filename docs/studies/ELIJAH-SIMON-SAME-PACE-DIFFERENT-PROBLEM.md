@@ -1,30 +1,44 @@
-# Study draft: Same Pace, Different Problem
+# Same Pace, Different Problem
 
 Owner: Brice. Athletes: Elijah + Simon.
-Drafted: 2026-10-04.
-Status: internal study brief only. No public page or automatic publication yet.
+Opened: 2026-10-04.
+Public page: `/labs/same-pace-different-problem/`.
 
-## Working title
+## Read this first: the study in 20 seconds
 
-**SAME PACE, DIFFERENT PROBLEM.**
+Two runners are aiming near the same half-marathon target. **They should not get the same plan.**
 
-Two athletes can aim at roughly the same half-marathon pace and require very different training.
+**Elijah races November 14.** He has six weeks. The job is to express the fitness he already has without creating fatigue he cannot recover from.
 
-Elijah races the Savannah Half Marathon on November 14, 2026. Simon races the Semi-Marathon de la Loire in Saumur on May 16, 2027.
+**Simon races May 16.** He has seven months. The job is to build the runner, then make the selected race pace last for longer and longer distances.
 
-Both currently orbit the neighborhood of a sub-1:20 half marathon (~6:06/mi), but the coaching problem is different because their evidence, runway and development needs are different.
+### Theory
 
-## The short paired study
+Shorter fast work can look good without proving half-marathon durability.
 
-From October 4 through Elijah's race on November 14, follow both athletes at once.
+That matters especially for Simon. Brice's working idea is that Simon's bigger problem may be **pacing and durability over distance**, not the ability to run fast for 20–40 minutes.
 
-The paired question is:
+This is a hypothesis, not a diagnosis.
 
-> **What changes when two athletes are pointed toward a similar half-marathon pace, but one needs to express it in six weeks while the other has seven months to develop it?**
+### How we test it
 
-The study does not assume either athlete is already a 1:19 runner.
+**Elijah:** 3 × 2 mi → 2 × 3 mi → 3 × 2 mi → 6 mi continuous → taper → Savannah.
 
-It compares the coaching decisions produced by different constraints.
+The six-mile continuous run is the main check. If it is even, controlled and followed by normal recovery, the target pace stays in the race discussion. If it costs too much, race pace comes down.
+
+**Simon now:** longer controlled Tuesday work + a smaller faster Thursday dose + easy long running.
+
+**Simon later:** distance-based race-pace work: 5 mi → 6 mi → 8 mi → race pace after prior running → 10–12 mi if earned → race.
+
+The pace does not need to get faster every week. The distance held at that pace is the main thing that eventually grows.
+
+### What would change our minds
+
+- If Simon's fresh sustained work is already too costly, the pace is wrong before durability is the problem.
+- If Simon keeps his 5K speed with a smaller Thursday dose, a large second quality day is not necessary.
+- If Elijah's six-mile run is too costly, sub-1:20 does not become the opening pace just because it was the original goal.
+
+The study is observational. It documents decisions. It does not prove that one plan causes a better result than another.
 
 ---
 
@@ -41,7 +55,7 @@ Current interpretation:
 - The block should not spend recovery on unnecessary second hard sessions.
 
 Current R4 architecture:
-- Weekly load: approximately 32 → 35 → 38 → 33 → 23 → race week.
+- Weekly load: approximately 32 → 35 → 37 → 33 → 23 → race week.
 - Tuesday is the principal specific session.
 - Thursday is mostly easy/strides, with only a small sharpening dose where useful.
 - Long runs: 10 → 11 → 12 → 10 → 5 miles.
