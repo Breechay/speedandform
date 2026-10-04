@@ -15,6 +15,14 @@ The calm black/bone direction, real practice photography and concise personal
 next steps carry across the flow. `/form-house/mornings/` is a one-off partner
 concept, not an announced event or venue partnership.
 
+FORM House commercial boundary, owner ruling October 4: the existing FORM athlete
+long run remains free. The first hospitality goal is to give the current team a
+better physical home around its training day, with a host-funded or
+property-supported morning explored before assuming consumer ticket economics.
+A later public 10K / boardwalk-style experience may be tested as a distinct
+guest-facing product only after the team/home model works; it is not paid access
+to the athlete long run and is not authorized for build or listing now.
+
 The public refinements are published with the tested and live receipts in the
 audit. Fresh public previews begin at Week 1; valid shared weeks and verified
 paid-calendar behavior remain intact. Service forms are immediately visible.
