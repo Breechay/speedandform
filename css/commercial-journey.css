@@ -35,6 +35,8 @@
 .sf-service-door .form-note{margin:20px 0 0}
 .sf-service-door .direct{margin:26px 0 0}
 .sf-service-door .direct a{color:var(--ink);text-underline-offset:4px}
+.sf-service-door .intro .direct a{color:var(--bone)}
+.sf-service-door .field input::placeholder,.sf-service-door .field textarea::placeholder,.sf-partner-journey .field input::placeholder,.sf-partner-journey .field textarea::placeholder{color:var(--muted);opacity:1}
 .sf-service-door .send{font-size:16px;min-height:52px}
 .sf-service-door .done h2{font-size:clamp(52px,4.6vw,76px);line-height:1.06;overflow-wrap:anywhere;max-width:100%}
 .sf-service-door .done p{line-height:1.6}
