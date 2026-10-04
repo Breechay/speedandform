@@ -46,3 +46,14 @@ Real, authored Arrival / Return photographs are still required for FORM House. T
 - Actual live browser readback confirmed versioned finish styles on Home, Contact, Analysis, Strength, FORM House, FORM House contact and Thursday. All fit the desktop viewport.
 - Home evidence remains six miles; all homepage folds are immediately visible with normal motion. FORM House reads the dark Arrival / Return frame and has visible partner/pillar content.
 - Live screenshot captured after publication. Physical-device review and real photography remain open.
+
+## Owner follow-up: photograph, fold transition and supporting copy
+
+Brice identified excessive darkening over his face/body and the photograph ending against the hero facts. The first pass missed two inherited causes: `.hero::before` stacked an older three-gradient overlay on the current shade, and the intended bottom-spacing selector did not match the actual `.home-hero-immersive-inner` wrapper.
+
+- Removed the inherited overlay and the slight photograph brightness reduction. The real photograph and its crop remain; light on the faces above the copy is preserved.
+- Kept a lighter scene treatment, a feathered scrim tied to the desktop copy and a separately tuned phone gradient. The small kicker uses the lighter bone tone for readability against the original fence highlights.
+- Corrected the wrapper selector: 48–76px desktop / 42px phone below the hero content. The bottom fade meets the next section's exact `#0d0f0e`, so there is no straight photographic cutoff.
+- Retained the three-part headline, personal introduction and major section headlines. Replaced “Assigned running” with “Your running, planned and adjusted as you develop.” Expanded “the full 13.1” to “a full half marathon.” Offer, price and evidence facts are unchanged.
+- Added targeted photograph captures and text-free background probes at 390×844, 1440×800 and 1920×1080 to both browser engines. They assert removal of the old overlay and actual wrapper spacing. Rendered contrast is reviewed against the local photograph, including the feathered type scrim.
+- Current source/build and responsive/inquiry checks passed in both engines for `82a1c15d76f8c965028c34f5877fedeae1234765`, workflow [37211300187](https://github.com/Breechay/speedandform/actions/runs/37211300187). Final lighter kicker and production receipt follow this entry; this source note alone is not a deployment claim.
