@@ -3,7 +3,35 @@
 Owner: Brice. Athlete: Simon. Approved revision: **SIMON-003-R4-20261004**.
 Read this before changing the study, assigned plan, interpretation, or any Simon progression. It supersedes earlier September 23 proposals and R3 Block 01 prescriptions where they conflict. Reviews are inputs, not votes and not automatic instructions.
 
-R4 is the October 4 multi-review synthesis. **The Two Curves remains a coaching model, not a physiological diagnosis.** The study now explicitly separates three things that can move differently: **fresh capability, durability, and recovery cost.** "Hold" remains useful shorthand for controlled sustainable work, but it must not become a basket label for threshold, economy, glycogen, mechanics, fatigue resistance and pacing. A result that contradicts the model should change the model.
+R4 is the October 4 multi-review synthesis. **The Two Curves remains a coaching model, not a physiological diagnosis.**
+
+## Plain version: what are we actually studying?
+
+Simon ran **17:36 for 5K** and **1:26:13 for the half**.
+
+That does not prove one physiological weakness. It gives us a useful question:
+
+> **Does Simon mainly need more speed, or does he need to hold the speed he already has for longer?**
+
+Brice's working theory is that shorter fast work is **not** the main limiter. Simon may need better pacing control and more durability as distance grows.
+
+We test that instead of assuming it.
+
+- **Tuesday:** make the controlled work longer.
+- **Thursday:** keep a smaller faster dose so speed above race pace is not ignored.
+- **Saturday:** easy long running.
+- **Oct 29:** 5K read. Did the short end move or at least stay intact?
+- **After recovery:** separate 6 km continuous read. What does sustained running cost now?
+- **Later specific phase:** grow race-pace distance: 5 mi → 6 → 8 → race pace after prior running → 10–12 if earned.
+
+The key idea is simple: **the pace does not have to get faster every week. The distance Simon can hold it is what eventually grows.**
+
+What would weaken the theory:
+- fresh sustained work is already too expensive;
+- reducing Thursday makes the short-distance speed fall materially;
+- longer race-pace work improves but the race still fails for another reason such as pacing, fueling or late mechanical breakdown.
+
+The study still separates three things that can move differently: **fresh capability, durability, and recovery cost.** "Hold" is shorthand, not a diagnosis. Threshold, economy, glycogen, mechanics, fatigue resistance and pacing are not interchangeable.
 
 ## The question
 
