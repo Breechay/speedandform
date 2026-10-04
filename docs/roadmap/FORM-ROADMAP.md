@@ -10,8 +10,8 @@ Owner then specified recovery food. [The return-table brief](../partnerships/FOR
 develops the menu and service; a visible proposed breakfast fold now carries it.
 
 - [x] Source reading, study parity and whitespace checks.
-- [ ] Full static build, Chromium/WebKit screenshots and responsive acceptance.
-- [ ] Publication and actual live header/disclosure/inquiry readback.
+- [x] Full static build; Chromium/WebKit `37226879820` and ecosystem closure `37226879857` passed for `4e2c8f5993f9ad2a00d323555509c5d95b9e3e9d`. Desktop/phone full-page captures reviewed; enlarged text and responsive acceptance passed.
+- [x] PR #211 merged as `b9eac4f73ca639608a6dcaddd0b29eb3f5aa2cdb`, unchanged tested tree `1a0444bf59b4e54113e9a819ab2698d489e12565`. Clean merged source archive published in Netlify `6ac2a4700072361aee3b6830`. Live browser confirmed naked header, menu, towel-off return, optional showers, native disclosure behavior and the hosting inquiry destination; no form submitted.
 - [ ] Real Arrival / Return photographs and physical-phone review.
 
 ## October 4 · FORM morning experience development
