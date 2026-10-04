@@ -3,6 +3,19 @@
 
 This checklist is private operating material. It is intentionally separate from the one-page partner concept.
 
+## 0. Practice boundary / working scale
+
+- [ ] Existing FORM athlete long run remains free; this pilot does not place a ticket on team training
+- [ ] Team/home purpose is explicit: improve the physical experience around the athletes' existing practice
+- [ ] Host-funded / property-supported structure explored before assuming a guest ticket
+- [ ] Working runner plan centers on 12; delivery also checked at 10 and 15
+- [ ] Breakfast-only guests counted separately
+- [ ] Property / hospitality staff counted separately
+- [ ] Every run leader counted separately and named
+- [ ] Any photographer / filmmaker counted separately
+- [ ] Future public 10K / boardwalk experience remains a separate later product, not part of this pilot
+- [ ] If athletes guide newcomers later, role, compensation, safety and responsibility are agreed before sale
+
 ## 1. Buyer / host
 
 - [ ] Named decision-maker
@@ -11,7 +24,8 @@ This checklist is private operating material. It is intentionally separate from 
 - [ ] Existing run/wellness programming understood
 - [ ] Complementary reason for this morning is clear
 - [ ] Who pays is explicit
-- [ ] Fee / ticket / client-appreciation model chosen
+- [ ] Host-funded / property-supported option priced first
+- [ ] Fee / ticket / client-appreciation model chosen only from real host economics
 
 ## 2. Access
 

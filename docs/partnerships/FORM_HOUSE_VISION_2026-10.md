@@ -14,6 +14,50 @@ Current owner direction: develop the experience and vision, not only the page de
 The wider FORM House standard remains. `/form-house/mornings/` now explores one
 expression with a host; it is not an announced event or confirmed partnership.
 
+### October 4 · Progression ruling: team first, public experience later
+
+The existing FORM long run is part of the athletes' practice and remains **free**.
+Do not turn the current team long run into a ticketed event, Eventbrite listing or
+paid access product.
+
+The near-term purpose of FORM House is more specific: give the existing athletic
+team a physical home around the work. The team already supplies the training,
+standards, relationships and culture. A property can make arrival, return,
+breakfast, recovery and time together materially better.
+
+Preferred first commercial structure to explore: **host-funded or
+property-supported morning**, with the property paying for a defined experience
+or otherwise carrying the agreed hospitality cost. Guest-paid ticket economics
+remain a later option only after real host costs and demand are known.
+
+Working internal service scale: plan from **12 runners**, and rehearse/check the
+same morning at **10 and 15 runners**. Count breakfast-only guests, property staff,
+run leaders and any photographer separately rather than hiding them inside the
+runner count.
+
+If the team/home model works, a later public product can be tested separately:
+for example, a hosted 10K boardwalk morning or another clear route-based
+experience that introduces guests to the FORM method. That future experience
+could use a reservation or ticketing platform such as Eventbrite, but it is a
+different product from the free athlete long run and is **not** authorized now.
+
+Experienced FORM athletes may eventually act as named route leaders, hosts or
+guides for newcomers. That role should be earned from the practice and agreed
+explicitly; staffing, compensation, safety, capacity and responsibility must be
+clear before it becomes part of a paid experience.
+
+Visual direction can communicate the athletic quality and aspiration of the
+practice through real, permissioned FORM athletes, styling, movement and
+photography. Written participation requirements should describe the actual run,
+experience and safety needs; do not turn appearance into an eligibility rule.
+
+Progression:
+1. **Team / Home** — improve the physical home for the athletes already doing the work.
+2. **Hosted morning** — prove one excellent property-supported morning.
+3. **Public experience** — only after delivery works, test a distinct guest-facing
+   route such as a 10K boardwalk morning.
+4. **Repeat / expand** — only when host demand, economics and delivery capacity earn it.
+
 **Different runs. One breakfast table.**
 
 The recommended first format has two departures: an early long run for runners

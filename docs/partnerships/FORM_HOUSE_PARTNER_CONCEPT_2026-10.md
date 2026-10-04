@@ -5,6 +5,25 @@
 
 The proposed unit is one carefully hosted morning that begins with outdoor training and ends with people feeling looked after.
 
+## Current progression
+
+The first partnership is not an attempt to monetize FORM's existing athlete long
+run. That practice remains free.
+
+The first job is to give the current athletic team a better home around the work:
+a prepared arrival, a strong return, food, recovery and time together. Explore a
+host-funded or property-supported morning before assuming a consumer ticket
+price.
+
+Internally, plan around 12 runners and test whether the same service still works
+well at 10 and 15. Breakfast-only guests, property staff and run leaders are
+separate headcounts.
+
+A future public 10K / boardwalk-style FORM experience may become a distinct
+guest-facing product after the home model works. It could later use a reservation
+or ticketing platform, and experienced FORM athletes could help guide newcomers,
+but neither is part of the first partnership promise.
+
 ## The idea
 
 **Different runs. One breakfast table.**
