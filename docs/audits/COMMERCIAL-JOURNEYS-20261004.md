@@ -67,10 +67,14 @@ conversion-goal setup.
   hosted Resend key, flag configuration and controlled mail-client acceptance
   are still required. A static preview is not an actual delivered email.
 
-The live review also identified a brief development-control flash in the plan
-loader. The bounded follow-up hides those controls in static public markup;
-only localhost design review may reveal them. Its final receipt follows after
-the loading-state check and actual publication.
+- PR208: tested `e2a1f83999040da86c5a6f8dcd855b362edabae9`, merged
+  `1cd76dcdbd2905445f2309654fd18f89ba9345dd`. All four triggered workflows
+  passed, including a held preview request proving the public loading state
+  never exposes prototype controls. Netlify `6ac292a1a28113ca07954610`
+  published at 17:53:52 UTC. Actual public browser inspection observed the
+  controls hidden while loading, removed after resolution, and Weeks 1–5 with
+  only Weeks 1–4 readable. Only localhost design review may reveal the strip.
+  Homepage Plans/Account routes and the live morning concept were also read back.
 
 ## Remaining product and acquisition limits
 
