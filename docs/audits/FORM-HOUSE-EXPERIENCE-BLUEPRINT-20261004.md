@@ -1,6 +1,8 @@
 # FORM House / Morning · Blueprint refinement receipt
 
-October 4, 2026 · Reviewable proposal, not production publication.
+October 4, 2026 · Page refinement published; operating blueprint remains a host proposal.
+
+The publication receipt below supersedes the original review hold and production-state notes.
 
 ## Outcome
 
@@ -59,3 +61,34 @@ reviewed in both engines; the separate WebKit public-finish capture verifies
 House's photo after one journey capture omitted it during painting. Updated
 review pack uses the new Chromium captures. Physical-phone review remains open.
 PR #214 remains open/unmerged; production and the property-response hold persist.
+
+
+## October 4 · Authorized publication
+
+Owner authorized push/publication after sending the property email. PR #214
+merged as `2c13afa4787a53b3e9e8fd201d0d0720310575d4`, tree
+`e6f6ed42009058577cb5f126c9d1a4a7e67286cd`. Final head
+`0eeb847a517e47781f19b30a278ee690aad2451d` passed Chromium/WebKit
+`37233440000` and athlete ecosystem `37233440078`; its public source is the
+previously captured mobile refinement, with only documentation added afterward.
+
+A fresh archive of the exact merged source passed the production build and
+published in Netlify deploy `6ac2bd06e7c936e5d02656ba`, ready, production context,
+published at `2026-10-04T20:54:48.379Z`. Manual upload metadata does not carry a
+commit ref; archive provenance above records the source. No second deploy is
+required for this documentation-only receipt.
+
+Live browser readback confirmed both page revisions, loaded original hero
+photography, absolute/naked header, updated stylesheet version and no horizontal
+overflow. Morning's shower disclosure opened and closed with native keyboard
+behavior; the hosting CTA reached `/form-house/contact?experience=morning`. No
+inquiry was submitted. The vision link reached the published House page. A live
+desktop House screenshot was saved separately from the source/build captures.
+Responsive Chromium/WebKit evidence covers phone widths; physical-phone review
+remains open.
+
+PR #209 is closed. The current athlete long run stays free, no event date or
+property booking is announced, and the operating proposal still requires host
+access, food/service ownership, staffing, quotes and rehearsal. Further concept
+development waits for the property response. The owner's email was sent outside
+this release; no message was sent by this agent.

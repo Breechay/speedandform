@@ -2,15 +2,15 @@
 
 ## October 4 · FORM House / Morning blueprint refinement
 
-- [x] Mobile Marcus framing refined in both page heroes; Chromium/WebKit `37233161692` and ecosystem `37233161680` passed for `d11582f5ee732bdb741d3aa7c9f482ed75deb515`. New phone captures reviewed and review pack refreshed. PR #214 remains open/unmerged; production/hold unchanged.
+- [x] Mobile Marcus framing refined in both page heroes; Chromium/WebKit `37233161692` and ecosystem `37233161680` passed for `d11582f5ee732bdb741d3aa7c9f482ed75deb515`. New phone captures reviewed and review pack refreshed. PR #214 is now merged and published; further concept development waits for the property response.
 
 - [x] Multi-agent recommendations reconciled against owning sources; unsupported rates, staffing ratios, routes and public promises rejected.
 - [x] [One experience blueprint](../partnerships/FORM_HOUSE_EXPERIENCE_BLUEPRINT_2026-10.md) supplies the guest journey, responsibilities/backups, run sheet and 10/12/15-runner economics. Pilot checklist remains the readiness gate; return-table brief owns food.
 - [x] House source rebuilt with naked photographic opening, concrete care, practice authority and wider ambition; Morning source clarifies breakfast on return, 10–15 planning range and meal choice.
-- [x] Full build, protected reading/study parity and whitespace passed; Chromium/WebKit `37232342099` and ecosystem `37232342070` passed for `2ecdae7db24c557d791056aa60c3128edea2f2d9`. Desktop/phone captures reviewed. [Receipt](../audits/FORM-HOUSE-EXPERIENCE-BLUEPRINT-20261004.md), PR #214. Production remains the previous verified release; no promotion in this pass.
+- [x] Full build, protected reading/study parity and whitespace passed; Chromium/WebKit `37232342099` and ecosystem `37232342070` passed for `2ecdae7db24c557d791056aa60c3128edea2f2d9`. Desktop/phone captures reviewed. [Receipt](../audits/FORM-HOUSE-EXPERIENCE-BLUEPRINT-20261004.md), PR #214. Owner authorized publication. PR #214 merged as `2c13afa4787a53b3e9e8fd201d0d0720310575d4`; final-head Chromium/WebKit `37233440000` and ecosystem `37233440078` passed. Exact merged archive published in ready Netlify deploy `6ac2bd06e7c936e5d02656ba`, October 4 at `20:54:48Z`. Both live pages, loaded photographs, naked headers, native disclosure and hosting inquiry destination verified; no form submitted.
 - [ ] Named host, real quotes, recipe review/service test, real Arrival / Return photography and physical-phone check.
-- Owner steering: complete this bounded reviewable proposal, then hold further FORM House building for the warm property response. No outreach or event announcement from this pass.
-- Overlap: PR #209 uses an older Morning source. Its shareable-brief intent is carried by current native disclosures; do not merge its old source wholesale.
+- Owner steering: the page refinements are live; the owner sent the property email. Hold further FORM House building for the warm property response. The blueprint remains an operating proposal, and no event is announced.
+- Overlap: PR #209 is closed; its shareable-brief intent is carried by current native disclosures.
 
 
 ## October 4 · FORM Morning editorial finish
