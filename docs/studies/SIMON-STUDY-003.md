@@ -237,3 +237,7 @@ One operating checklist remains in `docs/roadmap/FORM-ROADMAP.md`: current readi
 ## Release discipline
 
 Keep the Adrian-family layout, working image bytes, .98 figure scale and bottom anchor. Preserve English/French and mile/km controls. Content must remain visible if JavaScript fails. Source comments are discoverability aids, not privacy protection; do not put secrets in HTML or this public repository. Store any unapproved raw athlete material in the authorized private system, not the static site.
+
+
+## Connected publication · October 4
+The shared public journal and dated app-delivery contract now live in `docs/studies/CONNECTED-STUDY-CONTRACT.md`. `/labs/the-two-curves/` and the paired Elijah + Simon chapter render the same approved observations and decisions. Use the connected builder, not the retired R2 builder. Dated sessions, the active block, assignment and public publication must agree; an assignment-pointer update alone is incomplete. Block 01 R4 is unchanged by the page integration.

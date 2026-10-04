@@ -567,3 +567,9 @@ Acceptance note: the dedicated Miami regression and 71-page reading checks pass.
 ## Rebuilt Athlete body goal · 2026-09-23
 
 Owner-approved aspiration revision: 185 lb target; 180–185 lb preferred range; 8–10% body fat aspirational. Visible study and embedded body record updated together. Measurements, completed work and native assignments unchanged. See `docs/studies/REBUILT-ATHLETE-BODY-GOAL-20260923.md`. Automated source/JSON/JavaScript checks run in the goal-update workflow; production and device verification remain separate release checks.
+
+
+## Oct 4 · Connected Elijah / Simon publication
+The paired public chapter is `/labs/same-pace-different-problem/`; Elijah's public plan is `/plans/elijah-savannah-half/` and Simon's ongoing study remains `/labs/the-two-curves/`. Shared entries and approved sources follow `docs/studies/CONNECTED-STUDY-CONTRACT.md`.
+The earlier app-cache diagnosis was not established: template/assignment edits had not revised the dated app sessions. The connected publication repair now appends future session versions, updates active block calendars, preserves all pre-Oct-5 history, and gates public projection on actual parity. Physical app reopening remains a device check, not proof from a template query. No native release was made here.
+Elijah V5 is a delivery/accounting correction, not more training: peak week sums to 37 mi, not 38. Simon remains V4. Gate candidates remain candidates. Close the paired phase only after a real Savannah outcome and recovery entry; then continue Simon's record rather than copying it to another study.
