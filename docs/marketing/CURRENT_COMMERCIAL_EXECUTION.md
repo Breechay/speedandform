@@ -15,10 +15,17 @@ The calm black/bone direction, real practice photography and concise personal
 next steps carry across the flow. `/form-house/mornings/` is a one-off partner
 concept, not an announced event or venue partnership.
 
+The public refinements are published with the tested and live receipts in the
+audit. Fresh public previews begin at Week 1; valid shared weeks and verified
+paid-calendar behavior remain intact. Service forms are immediately visible.
 Stripe product naming and Checkout appearance were aligned and read back. The
-purchase-access email source is prepared behind an explicit default-off gate;
+purchase-access webhook/outbox is deployed behind an explicit default-off gate;
 credential installation, controlled acceptance and activation are still required.
 See [the delivery contract](../publishing/RPD-PURCHASE-ACCESS-EMAIL.md).
+
+The homepage inquiry records its accepted private Console receipt. These service
+and contact forms retain the existing FormSubmit email relay and direct email
+fallback; their accepted relay response is not proof of email-client delivery.
 
 A current connected-account read found an existing Google plan Search campaign
 active. The historical “unlaunched” wording below is not its present state.

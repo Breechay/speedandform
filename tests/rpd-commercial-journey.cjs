@@ -10,8 +10,11 @@ const SDK=`export const supabase={auth:{getSession:async()=>({data:{session:wind
 (async()=>{
  const browser=await(process.env.FORM_QA_BROWSER==='webkit'?webkit:chromium).launch();let checks=0;
  const check=(value,message)=>{assert.ok(value,message);checks++;};
- async function make({full=false,blocked=false,auth=null,pending=0,reject=false,restoreMissing=false,campaignBlocked=false,privacy=false,now='2026-09-17T12:00:00-04:00'}={}){
+ async function make({full=false,blocked=false,auth=null,pending=0,reject=false,restoreMissing=false,campaignBlocked=false,privacy=false,now='2026-09-17T12:00:00-04:00',holdPreview=false}={}){
   const ctx=await browser.newContext({viewport:{width:390,height:900},reducedMotion:'reduce'}),requests=[],errors=[],missing=[];let verifies=0;
+  let previewArrived,releasePreview;
+  const previewWaiting=new Promise(resolve=>{previewArrived=resolve;});
+  const previewHold=new Promise(resolve=>{releasePreview=resolve;});
   await ctx.addInitScript(({blocked,auth,campaignBlocked,privacy,now})=>{
    const NativeDate=Date;globalThis.Date=class extends NativeDate{constructor(...args){super(...(args.length?args:[now]));}};
    window.__rpdAuth=auth;
@@ -25,7 +28,7 @@ const SDK=`export const supabase={auth:{getSession:async()=>({data:{session:wind
    if(u.hostname==='buy.stripe.com')return route.fulfill({contentType:'text/html',body:'<!doctype html><title>Synthetic checkout destination</title><p>Local checkout boundary only.</p>'});
    if(u.hostname==='pbgsjjegycacodiltbhn.supabase.co'){
     const body=req.postDataJSON();requests.push({path:u.pathname,body});
-    if(u.pathname.endsWith('public_plan_preview'))return route.fulfill({contentType:'application/json',body:JSON.stringify(plan(false))});
+    if(u.pathname.endsWith('public_plan_preview')){previewArrived();if(holdPreview)await previewHold;return route.fulfill({contentType:'application/json',body:JSON.stringify(plan(false))});}
     if(u.pathname.endsWith('rpd_account_access'))return route.fulfill({contentType:'application/json',body:JSON.stringify({schema:1,user_id:auth?.user.id,mode:full?'purchased':'preview',entitled:full,workspace:'account',plan:body.p_include_plan&&full?plan(true):null})});
     if(u.pathname.endsWith('rpd-entitlement')){
      if(body.action==='verify')verifies++;
@@ -41,7 +44,7 @@ const SDK=`export const supabase={auth:{getSession:async()=>({data:{session:wind
    return route.fulfill({path:f,contentType:type});
   });
   const page=await ctx.newPage();page.on('pageerror',e=>errors.push(e.message));
-  return{ctx,page,requests,errors,missing,verifies:()=>verifies,setReject:value=>{reject=value;}};
+  return{ctx,page,requests,errors,missing,verifies:()=>verifies,setReject:value=>{reject=value;},previewWaiting,releasePreview};
  }
  const noOverflow=async(page,label)=>{
   const layout=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,offenders:[...document.querySelectorAll('body *')].map(node=>{const r=node.getBoundingClientRect();return{tag:node.tagName,class:node.className,left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width),text:(node.textContent||'').trim().slice(0,64)};}).filter(node=>node.right>innerWidth+1||node.left<0).slice(0,18)}));
@@ -67,7 +70,16 @@ const SDK=`export const supabase={auth:{getSession:async()=>({data:{session:wind
    check((await page.locator('#curSheet').innerText()).includes('SYNTHETIC W'+week+' '),'Free Week'+week+' prescription can be read before purchase');
   }
  };
- let e=await make();
+ let e=await make({holdPreview:true});
+ await e.page.goto(origin+'/plans/race-pace-durability/',{waitUntil:'commit'});await e.previewWaiting;await e.page.locator('#rpdLoading').waitFor();await e.page.evaluate(()=>document.fonts.ready);
+ check(await e.page.locator('#rpdLoading').isVisible(),'Held preview announces loading before plan data arrives');
+ check(await e.page.locator('#dev').getAttribute('hidden')!==null&&!(await e.page.locator('#dev').isVisible()),'Prototype controls remain statically hidden while preview RPC is unresolved');
+ check(await e.page.locator('#dev').evaluate(node=>getComputedStyle(node).display)==='none','Hidden prototype controls override authored flex display');
+ check(!(await e.page.locator('body').innerText()).includes('W3 · Build'),'Loading public page exposes no implementation-state labels');
+ e.releasePreview();await e.page.waitForFunction(()=>document.documentElement.dataset.rpdEntitled==='false');
+ check(await e.page.locator('#dev').count()===0,'Published viewer removes prototype controls after plan resolves');
+ check(e.errors.length===0,'Held preview resolves without an uncaught error');await e.ctx.close();
+ e=await make();
  const commercial=['/plans/race-pace-durability/support/','/plans/race-pace-durability/thanks/','/plans/race-pace-durability/access/'];
  for(const width of [375,390,430,768,1024,1440]){
   await e.page.setViewportSize({width,height:900});
