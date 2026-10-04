@@ -1,6 +1,10 @@
 # FORM House · Private Pilot Checklist
 ## Internal production sheet · October 2026
 
+Use the [experience blueprint](FORM_HOUSE_EXPERIENCE_BLUEPRINT_2026-10.md) for the
+run sheet, role handoffs and cost scenarios. This is the single current readiness
+checklist. Proposed planning inputs are not automatically checked decisions.
+
 This checklist is private operating material. It is intentionally separate from the one-page partner concept.
 
 ## 0. Practice boundary / working scale
@@ -34,7 +38,7 @@ This checklist is private operating material. It is intentionally separate from 
 - [ ] Belongings procedure confirmed
 - [ ] Bathrooms confirmed
 - [ ] Changing / showers confirmed, if offered
-- [ ] Towels confirmed, if offered
+- [ ] Clean towels and used-towel collection confirmed
 - [ ] Seating / lounge area confirmed
 - [ ] Parking / arrival instructions confirmed
 - [ ] Pool / spa / recovery access is either explicitly agreed or omitted
@@ -43,7 +47,7 @@ This checklist is private operating material. It is intentionally separate from 
 
 - [ ] Route(s) checked
 - [ ] Distance / lane logic confirmed
-- [ ] Named leader for every departure
+- [ ] Named leader and backup for every departure; supported format chosen before invitation
 - [ ] Pace / effort language is inclusive
 - [ ] Turnaround or shorter option exists when appropriate
 - [ ] Common return window is realistic
@@ -69,11 +73,12 @@ This checklist is private operating material. It is intentionally separate from 
 
 ## 5. Guest experience
 
-- [ ] Capacity
+- [ ] Capacity tested across routes, independent staffing, seating and kitchen
+- [ ] Runner places, breakfast-only guests and staff meal covers counted separately
 - [ ] Invitation / reservation mechanism
 - [ ] Arrival greeting owner
 - [ ] Newcomer orientation
-- [ ] Early finisher host remains on property
+- [ ] Named onsite host and backup remain on property across all departures/returns
 - [ ] Breakfast-only policy decided
 - [ ] Finish / goodbye experience
 - [ ] Contact for guest questions
@@ -106,9 +111,22 @@ Record real numbers before invitation.
 - Break-even guest count:
 - Contribution at expected attendance:
 
+- [ ] Same delivery scope compared at 10, 12 and 15 runners, all meal covers included
+- [ ] First-time development separated from repeat delivery
+- [ ] Incremental cash and allocated host labor identified
+- [ ] Quotes/rates marked with source, date, payer and status
+- [ ] FORM fee or component labor counted once
+- [ ] Host-funded, hybrid and ticket-only cases compared before selecting price
+- [ ] Cancellation/no-show case and actual payment fees included
+
 **Do not call unpaid speculative labor a viable commercial model.**
 
 ## 8. Go / revise / park gate
+
+- [ ] Property/route walkthrough completed with host
+- [ ] Service test covers early return, late runner, dietary substitution and missing staff
+- [ ] Critical roles and backups named; first-return service demonstrated
+
 
 ### Continue
 - [ ] Named buyer / host

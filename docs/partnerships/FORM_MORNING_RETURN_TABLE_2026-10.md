@@ -69,6 +69,20 @@ Sources checked October 4, 2026:
 - [AIS · Electrolyte supplement: what is it?](https://www.ausport.gov.au/ais/nutrition/supplements/group_a/sports-foods2/electrolyte-supplement2/what-is-it)
 - [AIS · Electrolyte supplement: how and when?](https://www.ausport.gov.au/ais/nutrition/supplements/group_a/sports-foods2/electrolyte-supplement2/how-and-when-do-i-use-it)
 
+## Production count and timing
+
+Use the [experience blueprint](FORM_HOUSE_EXPERIENCE_BLUEPRINT_2026-10.md) for the
+return-based run sheet. Plan quantities from runner choices, breakfast-only
+choices and staff meals, then a stated service buffer. Twelve runners plus two
+breakfast guests and four staff meals is 18 covers before that buffer, not 12.
+Do not count the same person twice. Buffer and replenishment depend on the host.
+
+Breakfast follows actual returns. A shorter run departing around 7 can finish
+before 8; do not delay service to the earlier proposed 8–9 breakfast clock.
+The onsite host is ready even for an unexpected early turnaround. Confirm
+complete-recipe yields, order counts, unit costs and storage with the kitchen.
+Keep this document as the food specification rather than making a second menu.
+
 ## Service standard for the first morning
 
 - One named host remains at the finish, separate from the running leads.

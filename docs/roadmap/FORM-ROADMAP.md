@@ -1,5 +1,18 @@
 # FORM: current state and next actions
 
+## October 4 · FORM House / Morning blueprint refinement
+
+- [x] Mobile Marcus framing refined in both page heroes; Chromium/WebKit `37233161692` and ecosystem `37233161680` passed for `d11582f5ee732bdb741d3aa7c9f482ed75deb515`. New phone captures reviewed and review pack refreshed. PR #214 remains open/unmerged; production/hold unchanged.
+
+- [x] Multi-agent recommendations reconciled against owning sources; unsupported rates, staffing ratios, routes and public promises rejected.
+- [x] [One experience blueprint](../partnerships/FORM_HOUSE_EXPERIENCE_BLUEPRINT_2026-10.md) supplies the guest journey, responsibilities/backups, run sheet and 10/12/15-runner economics. Pilot checklist remains the readiness gate; return-table brief owns food.
+- [x] House source rebuilt with naked photographic opening, concrete care, practice authority and wider ambition; Morning source clarifies breakfast on return, 10–15 planning range and meal choice.
+- [x] Full build, protected reading/study parity and whitespace passed; Chromium/WebKit `37232342099` and ecosystem `37232342070` passed for `2ecdae7db24c557d791056aa60c3128edea2f2d9`. Desktop/phone captures reviewed. [Receipt](../audits/FORM-HOUSE-EXPERIENCE-BLUEPRINT-20261004.md), PR #214. Production remains the previous verified release; no promotion in this pass.
+- [ ] Named host, real quotes, recipe review/service test, real Arrival / Return photography and physical-phone check.
+- Owner steering: complete this bounded reviewable proposal, then hold further FORM House building for the warm property response. No outreach or event announcement from this pass.
+- Overlap: PR #209 uses an older Morning source. Its shareable-brief intent is carried by current native disclosures; do not merge its old source wholesale.
+
+
 ## October 4 · FORM Morning editorial finish
 
 Owner requested a naked header/hero like the homepage and a fold-by-fold copy
@@ -39,7 +52,7 @@ explicit.
 - [x] PR #210 merged as `09917e1d98918ce85ea71910f72e693e3e62280e`, tree `a1ea6f3cd1c2f89fc67a8e7770e547dee9620758`. Clean source archive published in Netlify `6ac29e1a7192d4860e3d0df5` on October 4. Actual production browser verified the photograph/new concept, pointer expansion and keyboard collapse of host details, and the hosting inquiry destination. No form was submitted.
 - Release note: the first upload was rejected during repository preparation because it included a worktree pointer. Exporting the exact merged Git tree resolved packaging; the failed upload never replaced production.
 - [ ] Physical-phone review; real Arrival / Return photography.
-- Next: walk through access, showers, food, staffing and costs with a named host.
+- Next: walk through access, towel-off return, optional showers, food, staffing and costs with a named host.
 
 ## October 4 — Public finish against THE WELL / Continuum
 

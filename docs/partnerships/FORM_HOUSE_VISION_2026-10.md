@@ -1,6 +1,25 @@
 # FORM House
 ## Business-development track · October 2026
 
+## October 4 · Consolidated experience blueprint
+
+The [experience blueprint](FORM_HOUSE_EXPERIENCE_BLUEPRINT_2026-10.md) now reconciles
+the multi-agent proposals with the actual project. It supplies the guest/service
+journey, duties and backups, return-based run sheet, 10/12/15-runner comparisons,
+quote-based economics and page architecture. These are working recommendations,
+not host commitments. The [pilot checklist](FORM_HOUSE_PILOT_CHECKLIST_2026-10.md)
+remains the single readiness gate; the return-table brief owns food specifications.
+
+Plan around 12 runners as a comparison case within the owner's 10–15 range.
+Count breakfast guests and staff meals separately. Two departures require their
+own leads and supported routes, with someone staying onsite. Confirm the format
+before invitation. A host conversation can precede rehearsal; service testing
+at the interested property comes before delivery.
+
+Food and breakfast follow actual returns. The earlier 8–9 breakfast clock below
+is a historical planning anchor, not a waiting period. Early and unexpected
+returns receive food and care; exact service clocks follow route/guest planning.
+
 ## October 4 · Hosted-morning concept development
 
 Food direction developed October 4: [the return table](FORM_MORNING_RETURN_TABLE_2026-10.md)
@@ -163,6 +182,11 @@ Use these as operating / quality references, not names to place on the public pi
 Flow can be useful for studying community, coworking and programming, but it is not the quality benchmark for FORM House.
 
 ## Public pitch
+
+October 4 blueprint supersedes the repeated-tagline sequence below: House opens
+with the existing practice photograph, then idea, pillars, practice authority,
+one Morning expression and partner invitation. The wider House ambition remains.
+
 
 Keep the public page brief:
 
