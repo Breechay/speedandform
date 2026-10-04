@@ -137,6 +137,18 @@ A laboratory VO2max plus threshold/lactate assessment in the December-January wi
 
 Later examples such as long runs containing race-specific work are **candidates, not current assignments**. Do not publish a 16-18 mile specific long run, fixed peak mileage, or a long continuous 6:06/mi prescription merely because it appears in a planning discussion. Author those sessions only when the preceding gate supports them.
 
+#### Future specific-plan authoring intent · pacing durability
+
+Brice's long-range coaching intent is to make Simon's eventual half-marathon-specific plan resemble the successful logic used in **Speed That Endures**: progressively lengthen the amount of running performed at the selected race pace until the athlete has rehearsed something close to the race demand itself.
+
+The coaching hypothesis behind that direction is not simply physiological. Simon's pacing has historically been capable of becoming uneven, and although it has improved, Brice believes Simon may still need to develop **pacing trust**: the ability to recognize the correct rhythm, believe that it is sustainable, and keep returning to it rather than surging, second-guessing or allowing pace to drift.
+
+Therefore, shorter 30-40 minute race-pace sessions can be valuable early because they create successful exposures, confidence and feedback, but they are not the endpoint of the specific phase. If the evidence continues to support the race pace and recovery remains normal, the specific progression should move toward **longer and longer race-pace exposure**, eventually approaching race-length demand.
+
+An upper-end candidate later in the season is **approximately 10-12 miles of race-pace work**, potentially as one long continuous segment only if the earlier gates, long-run durability, fueling, mechanics and recovery all support it. A **12-mile continuous race-pace rehearsal is not a mandatory milestone and does not guarantee a race outcome**; it is a possible late-stage confidence and pacing-specificity session. It should replace other major quality that week rather than be added on top.
+
+This also clarifies Brice's earlier use of the word **fade**. The intended hypothesis is broader than simple aerobic failure: Simon may lose performance because **pace control, confidence in the chosen pace, mechanical durability and fatigue resistance** deteriorate together as duration accumulates. The future plan should therefore test whether the selected race pace remains stable and trusted as the exposure becomes longer, and later after prior running.
+
 The success pattern does not require a dramatically faster 5K. A plausible successful trajectory is a similar high-end ceiling while ~6:05-6:10/mi becomes progressively longer, more controlled, more recoverable and eventually durable after prior running. Conversely, a faster ceiling without improved sustainable work does not by itself validate the half-marathon hypothesis.
 
 ## Gate 01 is a window
