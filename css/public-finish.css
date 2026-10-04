@@ -1,0 +1,58 @@
+/* Shared finish for the public conversation, occasion and partner doors.
+   Scoped to these rooms. Product, study and private athlete styles are independent. */
+@font-face{font-family:"Inter Tight";src:url("/assets/site/fonts/inter-tight-latin-variable.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url("/assets/site/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");font-weight:400;font-display:swap}
+.sf-conversation main>*{min-width:0}
+.sf-conversation .intro h1{font-size:clamp(62px,6.5vw,104px);line-height:1.04;letter-spacing:-.05em;max-width:9ch;font-weight:450;text-wrap:balance;overflow-wrap:break-word}
+.sf-conversation .intro{padding-block:100px}
+.sf-conversation .eyebrow,.sf-conversation .field>span,.sf-conversation .upload-label>span{font-size:11px;line-height:1.6;letter-spacing:.07em}
+.sf-conversation .top>a:last-child{font-size:11px;min-height:44px;display:flex;align-items:center}
+.sf-conversation .intro p{font-size:20px;line-height:1.6}
+.sf-conversation .form-side{padding-block:100px}
+.sf-conversation .form-side form{min-width:0}
+.sf-conversation .field input,.sf-conversation .field textarea{font-size:20px;font-weight:400;line-height:1.5;max-width:100%}
+.sf-conversation .field input:focus-visible,.sf-conversation .field textarea:focus-visible{outline:2px solid var(--ink);outline-offset:5px}
+.sf-conversation .send{min-height:50px;padding:15px 24px;font-weight:500}
+.sf-conversation .send:hover{background:#303630}
+.sf-conversation .upload-action{display:inline-flex;align-items:center;min-height:44px;font-size:18px}
+.sf-conversation .upload-meta{font-size:11px;letter-spacing:0}
+.sf-conversation .upload-row:focus-within{outline:2px solid var(--ink);outline-offset:5px}
+.sf-conversation .file-list{overflow-wrap:anywhere}
+.sf-conversation footer{color:#b8bbb2}
+.sf-conversation .foot{font-size:11px;line-height:1.6;letter-spacing:0;text-transform:none;min-height:80px;height:auto;flex-wrap:wrap;padding-block:18px}
+.sf-conversation .foot a{display:inline-flex;align-items:center;min-height:44px}
+.sf-conversation .direct a{overflow-wrap:anywhere}
+.sf-house h1{line-height:1.02;letter-spacing:-.055em}
+.sf-house .hero .thesis{font-size:clamp(27px,2.8vw,43px);line-height:1.15;letter-spacing:-.03em}
+.sf-house .hero-side{background:#17191a;border-left:1px solid var(--line)}
+.sf-house .hero-side:before,.sf-house .hero-side:after{color:#c3c4bc;font-size:11px;line-height:1.6}
+.sf-house .hero-side:after{content:"Arrival / Return";font-weight:400;text-transform:none;letter-spacing:.04em}
+.sf-house .partner-ask h2{line-height:1.06;letter-spacing:-.045em}
+.sf-house .closing p{line-height:1.04;letter-spacing:-.05em}
+.sf-house .top span,.sf-house .eyebrow{font-size:11px;line-height:1.6;letter-spacing:.07em}
+.sf-house footer{font-size:11px;line-height:1.6;letter-spacing:.03em}
+.sf-house .partner-mail{font-size:12px;line-height:1.6;min-height:44px;display:inline-flex;align-items:center;letter-spacing:.04em}
+.sf-house .vibes h2{margin:64px 0 16px;line-height:1.1;letter-spacing:-.03em}
+.sf-house .vibes p{margin-bottom:auto}
+.sf-house .vibes article:last-child{border-bottom:0}
+/* Readable before scripts, fonts or observers finish. No empty screens. */
+html.fh-motion .sf-house h1 .fh-line{overflow:visible;line-height:inherit}
+html.fh-motion .sf-house h1 .fh-line i,
+html.fh-motion .sf-house .lede,
+html.fh-motion .sf-house .vibes article,
+html.fh-motion .sf-house .partner-ask-grid>*,
+html.fh-motion .sf-house .partner-types span{opacity:1;transform:none;transition:none}
+.sf-thursday .thu-immersive h1{font-size:clamp(88px,13vw,200px);line-height:1.02;letter-spacing:-.055em}
+.sf-thursday .gathering-status,.sf-thursday .block h2{line-height:1.06;letter-spacing:-.045em}
+.sf-thursday .coordinate,.sf-thursday .session-label,.sf-thursday .focus,.sf-thursday .live-note,.sf-thursday .loc-label{font-size:11px;line-height:1.6;letter-spacing:.05em}
+.sf-thursday .thu-copy>*,
+html.sf-motion .sf-thursday .thu-copy>*,
+html.sf-motion .sf-thursday .session>*:not(.logistics),
+html.sf-motion .sf-thursday .block>*,
+html.sf-motion .sf-thursday .community-photo figure{opacity:1;transform:none;transition:none}
+.sf-thursday .expect-row:last-child{border-bottom:0}
+.sf-thursday footer{font-size:11px;letter-spacing:.03em}
+.sf-thursday footer a{display:inline-flex;align-items:center;min-height:44px}
+@media(max-width:850px){.sf-conversation .intro,.sf-conversation .form-side{padding:68px 24px}.sf-conversation .intro h1{font-size:clamp(56px,13.5vw,86px);max-width:12ch}.sf-conversation .intro p{font-size:19px}.sf-house .hero-copy{padding-inline:24px}.sf-house .hero-side{border-left:0;border-top:1px solid var(--line)}}
+@media(max-width:760px){.sf-thursday .thu-immersive h1{font-size:clamp(66px,19.5vw,112px)}}
+@media(prefers-reduced-motion:reduce){.sf-conversation *,.sf-house *,.sf-thursday *{animation:none!important;transition:none!important;scroll-behavior:auto}}

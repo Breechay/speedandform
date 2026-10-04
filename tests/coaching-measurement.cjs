@@ -26,7 +26,7 @@ const html=readFileSync('index.html','utf8');
 assert.match(html,/var QN = 3;/);
 assert.doesNotMatch(html,/data-q=\"3\"/);
 assert.doesNotMatch(html,/id=\"issue\"/);
-assert.match(html,/This starts a conversation\. No payment or booking\./);
+assert.match(html,/Your inquiry goes to Brice’s private working inbox\./);
 assert.match(html,/rows\.push\(\[\"Reply to\", A\.mail/);
 const send=html.slice(html.indexOf('  function sendToBrice()'),html.indexOf('\n  function fail('));
 (async()=>{
