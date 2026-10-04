@@ -5,7 +5,7 @@
 - [x] Multi-agent recommendations reconciled against owning sources; unsupported rates, staffing ratios, routes and public promises rejected.
 - [x] [One experience blueprint](../partnerships/FORM_HOUSE_EXPERIENCE_BLUEPRINT_2026-10.md) supplies the guest journey, responsibilities/backups, run sheet and 10/12/15-runner economics. Pilot checklist remains the readiness gate; return-table brief owns food.
 - [x] House source rebuilt with naked photographic opening, concrete care, practice authority and wider ambition; Morning source clarifies breakfast on return, 10–15 planning range and meal choice.
-- [ ] Validation and review receipt to be completed before promotion. Production remains the previous verified release.
+- [x] Full build, protected reading/study parity and whitespace passed; Chromium/WebKit `37232342099` and ecosystem `37232342070` passed for `2ecdae7db24c557d791056aa60c3128edea2f2d9`. Desktop/phone captures reviewed. [Receipt](../audits/FORM-HOUSE-EXPERIENCE-BLUEPRINT-20261004.md), PR #214. Production remains the previous verified release; no promotion in this pass.
 - [ ] Named host, real quotes, recipe review/service test, real Arrival / Return photography and physical-phone check.
 - Owner steering: complete this bounded reviewable proposal, then hold further FORM House building for the warm property response. No outreach or event announcement from this pass.
 - Overlap: PR #209 uses an older Morning source. Its shareable-brief intent is carried by current native disclosures; do not merge its old source wholesale.
