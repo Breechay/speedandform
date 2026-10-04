@@ -2,6 +2,8 @@
 
 ## October 4 · FORM House / Morning blueprint refinement
 
+- [x] Mobile Marcus framing refined in both page heroes; Chromium/WebKit `37233161692` and ecosystem `37233161680` passed for `d11582f5ee732bdb741d3aa7c9f482ed75deb515`. New phone captures reviewed and review pack refreshed. PR #214 remains open/unmerged; production/hold unchanged.
+
 - [x] Multi-agent recommendations reconciled against owning sources; unsupported rates, staffing ratios, routes and public promises rejected.
 - [x] [One experience blueprint](../partnerships/FORM_HOUSE_EXPERIENCE_BLUEPRINT_2026-10.md) supplies the guest journey, responsibilities/backups, run sheet and 10/12/15-runner economics. Pilot checklist remains the readiness gate; return-table brief owns food.
 - [x] House source rebuilt with naked photographic opening, concrete care, practice authority and wider ambition; Morning source clarifies breakfast on return, 10–15 planning range and meal choice.

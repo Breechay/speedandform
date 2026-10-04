@@ -45,3 +45,17 @@ quotes, staffing and service test remain event readiness inputs.
 Finish the bounded review, then hold further speculative development for the
 warm property response. The next useful work depends on the host’s guest need,
 access and budget, rather than another concept rewrite.
+
+## October 4 · Mobile photograph follow-up
+
+Owner requested Marcus more centered on mobile. Both pages share the hero
+photograph rule: below 760px, horizontal framing changes from 54% to 45%.
+His face remains fully within the frame; desktop framing and image pixels are
+unchanged. The stylesheet version is refreshed on both pages.
+
+Tested public source `d11582f5ee732bdb741d3aa7c9f482ed75deb515`:
+Chromium/WebKit `37233161692` and ecosystem `37233161680` passed. Phone captures
+reviewed in both engines; the separate WebKit public-finish capture verifies
+House's photo after one journey capture omitted it during painting. Updated
+review pack uses the new Chromium captures. Physical-phone review remains open.
+PR #214 remains open/unmerged; production and the property-response hold persist.
