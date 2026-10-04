@@ -24,8 +24,11 @@ try:
    check(f'{width}: actual public preview renders',page.locator('#curSheet').inner_text().strip()!='')
    check(f'{width}: no horizontal overflow',page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
    check(f'{width}: public access remains restricted',page.get_attribute('html','data-rpd-entitled')=='false')
+   check(f'{width}: actual public preview starts at Week1',page.evaluate("Number(document.getElementById('range').textContent.match(/\\d+/)[0])===1"))
    page.screenshot(path=str(OUT/f'actual-preview-{width}.png'))
    if width==390:
+    for week in [2,3,4]:
+     page.locator('#next').click();page.wait_for_function("Number(document.getElementById('range').textContent.match(/\\d+/)[0])==="+str(week));check(f'Actual free Week{week} is readable',page.locator('#curSheet .mobile-week').is_visible())
     page.locator('#next').click();page.wait_for_url('**/support/');check('Actual next-week action respects public offer boundary','/support/' in page.url)
    page.goto(ORIGIN+'/');page.wait_for_function("document.documentElement.dataset.formAccount==='signed-out'")
    check(f'{width}: anonymous home retains Sign in',page.locator('a[data-form-account]').first.inner_text()=='Sign in →');context.close()

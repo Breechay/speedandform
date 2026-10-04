@@ -65,7 +65,7 @@ try:
   for role in ['guest','coach','jose','hope','buyer','stranger','lisa']:
    ctx,page,seen=make(role);open_plan(page);full=role in ['coach','jose','hope','buyer']
    check(role+': correct access',page.get_attribute('html','data-rpd-entitled')==str(full).lower())
-   check(role+': current week remains 4','04 / 15' in page.locator('#range').inner_text())
+   check(role+': correct initial week',('04 / 15' if full else '01 / 15') in page.locator('#range').inner_text())
    if full:
     page.locator('#next').click();page.wait_for_function("document.getElementById('range').textContent.includes('05')")
     check(role+': week 5 authored content','SYNTHETIC W5' in page.locator('#curSheet').inner_text())
@@ -76,7 +76,11 @@ try:
      page.evaluate("document.dispatchEvent(new CustomEvent('form:access-unavailable'))");page.locator('#plan').focus();page.keyboard.press('ArrowRight');page.set_viewport_size({'width':430,'height':960})
      check('Unavailable state cannot resurrect protected content','SYNTHETIC W5' not in page.locator('body').inner_text());check('Unavailable recovery offered',page.locator('#rpdRetry').is_visible())
    else:
-    check(role+': locked future contains no prescription','SYNTHETIC W5' not in page.locator('#track').inner_text());page.locator('#next').click();page.wait_for_url('**/support/');check(role+': next routes to public offer','/support/' in page.url)
+    check(role+': locked future contains no prescription','SYNTHETIC W5' not in page.locator('#track').inner_text())
+    for week in [1,2,3,4]:
+     if week>1:page.locator('#next').click();page.wait_for_function("Number(document.getElementById('range').textContent.match(/\\d+/)[0])==="+str(week))
+     check(role+f': free Week{week} remains readable',f'SYNTHETIC W{week} ' in page.locator('#curSheet').inner_text())
+    page.locator('#next').click();page.wait_for_url('**/support/');check(role+': Week5 routes to public offer','/support/' in page.url)
    check(role+': no client athlete or role override',all(set(body)<={'p_include_plan'} for path,body in seen if path.endswith('rpd_account_access')))
    check(role+': one account decision',sum(path.endswith('rpd_account_access') for path,_ in seen)==(0 if role=='guest' else 1));ctx.close()
   for role in ['coach','jose','guest']:
