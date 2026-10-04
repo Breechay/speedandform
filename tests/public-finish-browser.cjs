@@ -41,6 +41,30 @@ fs.mkdirSync(out,{recursive:true});
    if([390,1440].includes(width))await page.screenshot({path:path.join(out,(route.replaceAll('/','-').replace(/^-|-$/g,'')||'home')+'-'+width+'.png'),fullPage:true});
   }
  }
+ // The photograph has one owned shade; inherited legacy gradients must not stack.
+ // Save text-free backgrounds and text geometry for rendered contrast review.
+ for(const [width,height]of [[390,844],[1440,800],[1920,1080]]){
+  await page.setViewportSize({width,height});await page.goto(origin+'/');await page.evaluate(()=>document.fonts.ready);
+  const finish=await page.evaluate(()=>({overlay:getComputedStyle(document.querySelector('.sf-home-hero-immersive'),'::before').content,bottom:parseFloat(getComputedStyle(document.querySelector('.home-hero-immersive-inner')).paddingBottom)}));
+  assert.equal(finish.overlay,'none','No inherited shade over the current photograph');
+  assert.ok(finish.bottom>=42,'The opening facts have deliberate bottom space');
+  await noOverflow('Home photograph @ '+width+'x'+height);
+  const name='home-hero-'+width+'x'+height;
+  await page.locator('.sf-home-hero-immersive').screenshot({path:path.join(out,name+'.png')});
+  const samples=await page.evaluate(()=>{
+   const hero=document.querySelector('.sf-home-hero-immersive').getBoundingClientRect(),result=[];
+   for(const e of document.querySelectorAll('.hero-kicker,h1,.home-hero-intro,.home-proof-facts dt,.home-proof-facts dd,.home-contact')){
+    const walker=document.createTreeWalker(e,NodeFilter.SHOW_TEXT);let node;
+    while(node=walker.nextNode()){if(!node.textContent.trim())continue;const range=document.createRange();range.selectNodeContents(node);const style=getComputedStyle(node.parentElement);
+     for(const r of range.getClientRects())if(r.width&&r.height)result.push({text:node.textContent.trim(),x:r.x-hero.x,y:r.y-hero.y,width:r.width,height:r.height,color:style.color,large:parseFloat(style.fontSize)>=24});
+    }
+   }return result;
+  });
+  fs.writeFileSync(path.join(out,name+'.json'),JSON.stringify(samples));
+  await page.locator('.hero-copy').evaluate(e=>e.style.visibility='hidden');
+  await page.locator('.header').evaluate(e=>e.style.visibility='hidden');
+  await page.locator('.sf-home-hero-immersive').screenshot({path:path.join(out,name+'-background.png')});
+ }
  // Every fold is readable even without arrival/observer classes.
  await page.goto(origin+'/');
  assert.equal(await page.locator('.home-evidence-result dt').first().innerText(),'6 miles');
@@ -82,5 +106,5 @@ fs.mkdirSync(out,{recursive:true});
  assert.equal(await page.locator('#thu-session-name').innerText(),'Workout to be confirmed');
  assert.deepEqual(errors,[],'No uncaught page errors');assert.deepEqual([...new Set(missing)],[],'Local resources resolve');
  await browser.close();
- console.log('PASS: 48 route/width views, 16 full-page captures, readable folds, keyboard selection, inquiry reject/retry/receipt, upload limits, 200% reflow and gathering/workout separation. No live writes.');
+ console.log('PASS: 48 route/width views, 16 full-page captures, three photograph aspect ratios with contrast-review captures, readable folds, keyboard selection, inquiry reject/retry/receipt, upload limits, 200% reflow and gathering/workout separation. No live writes.');
 })().catch(e=>{console.error(e);process.exit(1);});
