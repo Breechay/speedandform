@@ -1,6 +1,56 @@
 # FORM House
 ## Business-development track · October 2026
 
+## October 4 · Hosted-morning concept development
+
+Current owner direction: develop the experience and vision, not only the page design.
+The wider FORM House standard remains. `/form-house/mornings/` now explores one
+expression with a host; it is not an announced event or confirmed partnership.
+
+**Different runs. One breakfast table.**
+
+The recommended first format has two departures: an early long run for runners
+with training to do, and a later 30–45-minute easy route for guests and runners
+who want a shorter morning. Plan departure times and distances around a common
+return window, with flexibility for individual training. Neither group is a
+lesser version of the other. Breakfast-only guests can reserve a place too.
+
+The host experience is the offer: a personal welcome, belongings handled,
+clean changing/shower facilities and towels, refreshments on return, a real
+breakfast, and comfortable time afterward. A guest knows what is included
+before arrival. Remaining at the table must not depend on buying another item.
+Pool/spa/recovery access is optional and must be specifically agreed, never
+implied from a property's facilities.
+
+Proposed rhythm: early arrival 5:50 / long run around 6:05; shorter-group welcome
+around 7; shared breakfast window around 8–9; hosted time through 10. Adjust to
+routes, climate, kitchen capacity and actual guest needs before invitation.
+No recurring Saturday commitment. Start with a personally hosted group whose
+size fits run support, showers, seating and kitchen service.
+
+Responsibilities to agree:
+- FORM: routes, group guidance, participant communication, coaching and a named
+  lead for each departure.
+- Host: property access, belongings, changing/recovery space, food/drinks and
+  hospitality staffing. Someone remains at the property while groups run.
+- Together: guest allocation and capacity, return window, weather decision,
+  help/emergency response, menu/dietary needs, costs, FORM fee, who pays,
+  reservation terms and separate photography permissions.
+
+Partner value is a hypothesis: give existing guests/residents a way into the
+practice and give local runners a reason to experience the property. Do not
+promise occupancy, revenue, retention or coaching conversion.
+
+Before invitations: name the buyer and host, verify access, cost the complete
+morning including staffing and Brice's time, agree a viable payment model,
+and publish only the actual inclusions. Judge the first morning by the welcome,
+run fit, return, comfort and whether guests and host want another one. Existing
+research host notes remain the lightweight record; no new dashboard is needed.
+
+The public page carries the experience first and expandable practical detail
+second. Next decision: review the full arrival-to-return route with a named
+host, including early access, shower throughput, breakfast and a place to remain.
+
 ## Current thesis
 
 **Give athletes a physical experience worthy of the quality of the training.**

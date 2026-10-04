@@ -1,5 +1,19 @@
 # FORM: current state and next actions
 
+## October 4 · FORM morning experience development
+
+Owner requested both a stronger page and a better-developed concept. The owning
+[FORM House vision](../partnerships/FORM_HOUSE_VISION_2026-10.md) records the proposed
+two-departure/shared-breakfast experience, breakfast-only guests, hospitality
+inclusions and host responsibilities. The public morning page presents that
+proposal with a photographic opening and native disclosures. No date, property,
+access, price or recurring program is confirmed.
+
+- [x] Source and full static build checked; no changes to coaching or athlete data.
+- [ ] Chromium/WebKit release checks, publication and live disclosure/inquiry check.
+- [ ] Physical-phone review; real Arrival / Return photography.
+- Next: walk through access, showers, food, staffing and costs with a named host.
+
 ## October 4 — Public finish against THE WELL / Continuum
 
 Owner reopened the public finish for a full-fold refinement. [Audit and release receipt](../audits/PUBLIC-FINISH-20261004.md) records scope, resolved issues and remaining photography/device work.
