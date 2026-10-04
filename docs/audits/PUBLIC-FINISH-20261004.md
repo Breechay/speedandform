@@ -38,4 +38,11 @@ No new sections, fabricated partner claims, generated lifestyle photography, ath
 
 Real, authored Arrival / Return photographs are still required for FORM House. The empty dark frame is intentional until those exist. No claim of physical-device verification or partner acceptance. A numerical design score is editorial judgment, not test evidence.
 
-Production release receipt will be appended after publication and live readback.
+## Production release receipt
+
+- Merged PR #201: `27c00fd71d61cc037955295f0d326aff15a32eb8`.
+- Existing production Netlify site `f3914a6a-a9ce-465e-8212-f5f42597c469`; deploy `6ac265dee21c0f01049d8615` ready and published October 4 at 14:42:51 UTC / 10:42:51 AM New York.
+- Source-upload build has no Netlify commit_ref. The upload used the clean checkout of the merged source above.
+- Actual live browser readback confirmed versioned finish styles on Home, Contact, Analysis, Strength, FORM House, FORM House contact and Thursday. All fit the desktop viewport.
+- Home evidence remains six miles; all homepage folds are immediately visible with normal motion. FORM House reads the dark Arrival / Return frame and has visible partner/pillar content.
+- Live screenshot captured after publication. Physical-device review and real photography remain open.

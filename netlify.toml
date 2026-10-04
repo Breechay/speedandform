@@ -14,7 +14,7 @@
 # to stop publishing, not to stop building.
 
 [build]
-  command = "node scripts/studies/build-paired-study.cjs && node tests/paired-study-contract.cjs && node tests/cream-reading.cjs && node scripts/build-cream-reading.cjs && node scripts/build-commercial.cjs && node scripts/build-sf-brand.cjs"
+  command = "node tests/cream-reading.cjs && node scripts/build-cream-reading.cjs && node scripts/build-commercial.cjs && node scripts/build-sf-brand.cjs"
   publish = "."
 
 # Force Netlify CDN to purge on every deploy

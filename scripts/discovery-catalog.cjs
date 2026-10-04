@@ -59,7 +59,6 @@ const GROUPS = [
   ['labs/speed-that-endures/','Speed That Endures','Follow the race-pace development study and its evidence.','hope jose durability case study','Study'],
   ['labs/adrian-runner-mass/','The Developed Runner','Follow Adrian as strength and useful mass are added around an already-proven running engine.','adrian developed runner strength mass marathon study','Study'],
   ['labs/rebuilt-athlete/','The Rebuilt Athlete','Follow the return from a complete tibial fracture as running, strength, body composition and capacity are rebuilt.','brice rebuilt athlete tibia fracture return running study','Study'],
-  ['labs/same-pace-different-problem/','Same Pace, Different Problem','Elijah and Simon: two timelines, connected training plans, observations and coaching decisions.','elijah simon half marathon pacing durability paired study','Study'],
   ['labs/the-two-curves/','The Two Curves','Follow Simon as half-marathon race-pace duration and the ceiling above it are developed together.','simon two curves ceiling durability half marathon 1:20 study','Study'],
   ['labs/the-last-10k/','The Last 10K','Follow the Orlando-to-Donna marathon durability study and the closing-10K hypothesis.','hope jose donna marathon durability final 10k closing miles','Study'],
   ['labs/hyrox/','HYROX: training and race tools','Explore the course, station work, and race-budget tools.','hyrox hybrid sled ski erg','Guide & tools'],

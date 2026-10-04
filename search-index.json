@@ -819,21 +819,5 @@
     ],
     "category": "practice",
     "type": "App"
-  },
-  {
-    "url": "/labs/same-pace-different-problem/",
-    "title": "Same Pace, Different Problem",
-    "description": "Elijah and Simon: connected plans, observations and coaching decisions across two race timelines.",
-    "keywords": [
-      "elijah",
-      "simon",
-      "study",
-      "half",
-      "marathon",
-      "durability",
-      "pacing"
-    ],
-    "category": "studies",
-    "type": "Study"
   }
 ]
