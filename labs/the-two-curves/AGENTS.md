@@ -11,3 +11,6 @@ Read `../../docs/studies/SIMON-STUDY-003.md` before editing this directory or Si
 - A stronger hold can count with an unchanged 5K. Never add a fixed HR cap, an invented drift boundary or more quality because a chart suggests it.
 
 Run the contract and browser tests before publishing. An HTML comment is public, not a place for private athlete data or credentials.
+
+
+October 4 supersession: R4 is the assigned Simon block. The paired study's shared renderer owns the current plan and journal sections; do not restore R2/R3 markup or totals. Read `docs/studies/CONNECTED-STUDY-CONTRACT.md` and run the connected builder/contract/browser tests. Preserve the historical race hero and image bytes.

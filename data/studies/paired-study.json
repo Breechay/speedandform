@@ -1,0 +1,462 @@
+{
+  "schema_version": 1,
+  "slug": "same-pace-different-problem",
+  "title": {
+    "en": "Same pace. Different problem.",
+    "fr": "Même allure. Défi différent."
+  },
+  "approved_on": "2026-10-04",
+  "phase": "paired",
+  "closeout_record_id": null,
+  "athletes": {
+    "elijah": {
+      "name": "Elijah",
+      "native_unit": "mi",
+      "study_url": "/labs/same-pace-different-problem/?athlete=elijah",
+      "plan_url": "/plans/elijah-savannah-half/",
+      "focus": {
+        "en": "Make the remaining weeks count.",
+        "fr": "Faire compter les semaines restantes."
+      },
+      "summary": {
+        "en": "A short preparation for Savannah. Specific work, measured progression and enough recovery to reach the start line ready.",
+        "fr": "Une préparation courte pour Savannah. Du travail spécifique, une progression mesurée et assez de récupération pour être prêt au départ."
+      },
+      "goal": {
+        "en": "Sub-1:20 is a conditional goal.",
+        "fr": "Moins de 1 h 20 reste un objectif conditionnel."
+      }
+    },
+    "simon": {
+      "name": "Simon",
+      "native_unit": "km",
+      "study_url": "/labs/the-two-curves/",
+      "plan_url": "/labs/the-two-curves/#plan",
+      "focus": {
+        "en": "Build it. Then make it last.",
+        "fr": "Construire. Puis faire durer."
+      },
+      "summary": {
+        "en": "A longer road to Saumur. Develop the runner now; later, extend the distance he can hold at a pace the evidence supports.",
+        "fr": "Un chemin plus long vers Saumur. Développer le coureur maintenant, puis allonger la distance tenue à une allure justifiée par les observations."
+      },
+      "goal": {
+        "en": "1:19–1:23 is a development range, not a prediction.",
+        "fr": "1 h 19–1 h 23 est une plage de développement, pas une prédiction."
+      }
+    }
+  },
+  "records": [
+    {
+      "id": "simon-2026-02-10",
+      "athletes": [
+        "simon"
+      ],
+      "kind": "observation",
+      "date": "2026-02-10",
+      "title": {
+        "en": "A faster opening, slower repetitions",
+        "fr": "Un départ plus rapide, des répétitions plus lentes"
+      },
+      "visibility": "approved_public",
+      "revision": 1,
+      "source_ref": {
+        "path": "labs/the-two-curves/evidence.json",
+        "collection": "sessions",
+        "date": "2026-02-10"
+      }
+    },
+    {
+      "id": "simon-2026-02-24",
+      "athletes": [
+        "simon"
+      ],
+      "kind": "observation",
+      "date": "2026-02-24",
+      "title": {
+        "en": "Two substantial pieces",
+        "fr": "Deux blocs soutenus"
+      },
+      "visibility": "approved_public",
+      "revision": 1,
+      "source_ref": {
+        "path": "labs/the-two-curves/evidence.json",
+        "collection": "sessions",
+        "date": "2026-02-24"
+      }
+    },
+    {
+      "id": "simon-2026-03-03",
+      "athletes": [
+        "simon"
+      ],
+      "kind": "observation",
+      "date": "2026-03-03",
+      "title": {
+        "en": "A description and recording disagree",
+        "fr": "La description et le fichier ne concordent pas"
+      },
+      "visibility": "approved_public",
+      "revision": 1,
+      "source_ref": {
+        "path": "labs/the-two-curves/evidence.json",
+        "collection": "sessions",
+        "date": "2026-03-03"
+      }
+    },
+    {
+      "id": "simon-2026-03-11",
+      "athletes": [
+        "simon"
+      ],
+      "kind": "observation",
+      "date": "2026-03-11",
+      "title": {
+        "en": "An incomplete recording",
+        "fr": "Un enregistrement incomplet"
+      },
+      "visibility": "approved_public",
+      "revision": 1,
+      "source_ref": {
+        "path": "labs/the-two-curves/evidence.json",
+        "collection": "sessions",
+        "date": "2026-03-11"
+      }
+    },
+    {
+      "id": "simon-2026-03-18",
+      "athletes": [
+        "simon"
+      ],
+      "kind": "observation",
+      "date": "2026-03-18",
+      "title": {
+        "en": "The second piece was quicker",
+        "fr": "Le second bloc était plus rapide"
+      },
+      "visibility": "approved_public",
+      "revision": 1,
+      "source_ref": {
+        "path": "labs/the-two-curves/evidence.json",
+        "collection": "sessions",
+        "date": "2026-03-18"
+      }
+    },
+    {
+      "id": "simon-2026-03-25",
+      "athletes": [
+        "simon"
+      ],
+      "kind": "observation",
+      "date": "2026-03-25",
+      "title": {
+        "en": "Thirty-two minutes, with a reset",
+        "fr": "Trente-deux minutes, avec une récupération"
+      },
+      "visibility": "approved_public",
+      "revision": 1,
+      "source_ref": {
+        "path": "labs/the-two-curves/evidence.json",
+        "collection": "sessions",
+        "date": "2026-03-25"
+      }
+    },
+    {
+      "id": "simon-2026-09-04",
+      "athletes": [
+        "simon"
+      ],
+      "kind": "observation",
+      "date": "2026-09-04",
+      "title": {
+        "en": "Controlled, but still broken",
+        "fr": "Maîtrisé, mais encore fractionné"
+      },
+      "visibility": "approved_public",
+      "revision": 1,
+      "source_ref": {
+        "path": "labs/the-two-curves/evidence.json",
+        "collection": "sessions",
+        "date": "2026-09-04"
+      }
+    },
+    {
+      "id": "simon-2026-09-29",
+      "athletes": [
+        "simon"
+      ],
+      "kind": "observation",
+      "date": "2026-09-29",
+      "title": {
+        "en": "A deliberate slowdown, not a fade",
+        "fr": "Un ralentissement volontaire, pas une défaillance"
+      },
+      "visibility": "approved_public",
+      "revision": 1,
+      "source_ref": {
+        "path": "labs/the-two-curves/evidence.json",
+        "collection": "sessions",
+        "date": "2026-09-29"
+      }
+    },
+    {
+      "id": "simon-2026-10-01",
+      "athletes": [
+        "simon"
+      ],
+      "kind": "observation",
+      "date": "2026-10-01",
+      "title": {
+        "en": "The pace held as the work got harder",
+        "fr": "L’allure tient quand l’effort augmente"
+      },
+      "visibility": "approved_public",
+      "revision": 1,
+      "source_ref": {
+        "path": "labs/the-two-curves/evidence.json",
+        "collection": "sessions",
+        "date": "2026-10-01"
+      }
+    },
+    {
+      "id": "simon-2026-04-12",
+      "athletes": [
+        "simon"
+      ],
+      "kind": "observation",
+      "date": "2026-04-12",
+      "title": {
+        "en": "A deliberately conservative half",
+        "fr": "Un semi volontairement prudent"
+      },
+      "visibility": "approved_public",
+      "revision": 1,
+      "source_ref": {
+        "path": "labs/the-two-curves/evidence.json",
+        "collection": "race_anchors",
+        "date": "2026-04-12"
+      }
+    },
+    {
+      "id": "simon-2026-04-23",
+      "athletes": [
+        "simon"
+      ],
+      "kind": "observation",
+      "date": "2026-04-23",
+      "title": {
+        "en": "The shorter-race reference",
+        "fr": "Le repère sur distance courte"
+      },
+      "visibility": "approved_public",
+      "revision": 1,
+      "source_ref": {
+        "path": "labs/the-two-curves/evidence.json",
+        "collection": "race_anchors",
+        "date": "2026-04-23"
+      }
+    },
+    {
+      "id": "elijah-2026-10-03",
+      "athletes": [
+        "elijah"
+      ],
+      "kind": "observation",
+      "date": "2026-10-03",
+      "title": {
+        "en": "One activity. Two different numbers.",
+        "fr": "Une activité. Deux chiffres différents."
+      },
+      "visibility": "approved_public",
+      "revision": 1,
+      "source_ref": {
+        "path": "data/studies/elijah-evidence.json",
+        "collection": "sessions",
+        "date": "2026-10-03"
+      }
+    },
+    {
+      "id": "elijah-2025-11-15",
+      "athletes": [
+        "elijah"
+      ],
+      "kind": "observation",
+      "date": "2025-11-15",
+      "title": {
+        "en": "The previous half",
+        "fr": "Le semi précédent"
+      },
+      "visibility": "approved_public",
+      "revision": 1,
+      "source_ref": {
+        "path": "data/studies/elijah-evidence.json",
+        "collection": "race_anchors",
+        "date": "2025-11-15"
+      }
+    },
+    {
+      "id": "two-runners-one-question",
+      "athletes": [
+        "elijah",
+        "simon"
+      ],
+      "kind": "analysis",
+      "date": "2026-10-04",
+      "title": {
+        "en": "Same aim. Different work.",
+        "fr": "Même objectif. Un travail différent."
+      },
+      "visibility": "approved_public",
+      "revision": 1,
+      "depends_on": [
+        "elijah-2026-10-03",
+        "simon-2026-09-29",
+        "simon-2026-10-01"
+      ],
+      "body": {
+        "en": "Both runners are working toward a faster half marathon. Elijah has a race in November. Simon has until May. The comparison is about the decisions those different timelines require, not which runner wins.",
+        "fr": "Les deux coureurs visent un semi plus rapide. Elijah court en novembre. Simon a jusqu’en mai. Nous comparons les décisions imposées par ces calendriers, pas les athlètes entre eux."
+      },
+      "learning": {
+        "en": "A shared goal pace is not evidence of shared current fitness or a shared limiter.",
+        "fr": "Une allure cible commune ne prouve ni une forme identique ni une même limite."
+      },
+      "next": {
+        "en": "Follow each athlete’s own prescribed work and recovery. Compare patterns, not isolated impressive splits.",
+        "fr": "Suivre le travail et la récupération propres à chacun. Comparer des tendances, pas seulement de beaux chronos."
+      }
+    },
+    {
+      "id": "elijah-protect-the-specific-work",
+      "athletes": [
+        "elijah"
+      ],
+      "kind": "decision",
+      "date": "2026-10-04",
+      "title": {
+        "en": "Protect the work that matters before Savannah.",
+        "fr": "Protéger le travail utile avant Savannah."
+      },
+      "visibility": "approved_public",
+      "revision": 1,
+      "depends_on": [
+        "elijah-2026-10-03"
+      ],
+      "plan_refs": {
+        "elijah": 5
+      },
+      "body": {
+        "en": "Keep Tuesday as the main specific session. Most Thursdays are easy with strides. Build a recoverable long run, then reduce the load. The six-mile continuous session informs the race plan; it does not certify a half marathon.",
+        "fr": "Le mardi reste la séance spécifique principale. Le jeudi est généralement facile avec des accélérations. Allonger la sortie longue sans compromettre la récupération, puis réduire la charge. Les six miles continus éclairent la stratégie de course sans garantir le semi."
+      },
+      "learning": {
+        "en": "We are protecting a short preparation window, not assuming that his current speed is already sufficient for sub-1:20.",
+        "fr": "Nous protégeons une préparation courte, sans supposer que sa vitesse actuelle suffit déjà pour moins de 1 h 20."
+      },
+      "next": {
+        "en": "Review execution and the following easy run before advancing.",
+        "fr": "Évaluer l’exécution et le footing suivant avant de progresser."
+      }
+    },
+    {
+      "id": "simon-make-thursday-support",
+      "athletes": [
+        "simon"
+      ],
+      "kind": "decision",
+      "date": "2026-10-04",
+      "title": {
+        "en": "Thursday supports the longer work.",
+        "fr": "Le jeudi soutient le travail plus long."
+      },
+      "visibility": "approved_public",
+      "revision": 1,
+      "depends_on": [
+        "simon-2026-09-29",
+        "simon-2026-10-01"
+      ],
+      "plan_refs": {
+        "simon": 4
+      },
+      "body": {
+        "en": "Keep the distance-based Tuesday progression. Reduce the faster Thursday dose and make the absorption week genuinely lighter. Hard HYROX and lower-body work count in the same recovery budget.",
+        "fr": "Conserver la progression du mardi en distance. Réduire la dose rapide du jeudi et alléger réellement la semaine d’assimilation. Le HYROX intense et le travail exigeant des jambes comptent dans la même charge."
+      },
+      "learning": {
+        "en": "Stable late repetitions show repeatable speed. They do not tell us that more speed work is the best next step.",
+        "fr": "Des répétitions stables à la fin montrent une vitesse répétable. Elles ne prouvent pas qu’il faut davantage de travail rapide."
+      },
+      "next": {
+        "en": "Use the October 29 5K, then a separate six-kilometer observation after recovery. The latter still needs coach approval.",
+        "fr": "Utiliser le 5 km du 29 octobre, puis une observation distincte sur six kilomètres après récupération. Cette dernière reste soumise à l’accord du coach."
+      }
+    },
+    {
+      "id": "distance-not-another-fast-finish",
+      "athletes": [
+        "simon"
+      ],
+      "kind": "analysis",
+      "date": "2026-10-04",
+      "title": {
+        "en": "Make the distance grow, not every split faster.",
+        "fr": "Allonger la distance, pas accélérer chaque fraction."
+      },
+      "visibility": "approved_public",
+      "revision": 1,
+      "depends_on": [
+        "simon-2026-03-25",
+        "simon-2026-09-29"
+      ],
+      "body": {
+        "en": "Shorter sustained sessions can look excellent without answering Simon’s longer-term question. The coach’s hypothesis is pacing durability: can he recognize, trust and keep the chosen rhythm as the miles accumulate?",
+        "fr": "Des séances soutenues plus courtes peuvent être excellentes sans répondre à la question à long terme. L’hypothèse du coach concerne la tenue de l’allure : reconnaître, accepter et conserver le rythme choisi lorsque les kilomètres s’accumulent."
+      },
+      "learning": {
+        "en": "The later race-specific progression borrows RPD’s distance logic: broken work, then longer continuous distances, then pace after prior running. A possible near-race-distance rehearsal is conditional, not prescribed now.",
+        "fr": "La progression spécifique ultérieure reprend la logique du RPD : fractionné, distances continues plus longues, puis allure après un travail préalable. Une répétition proche de la distance de course reste conditionnelle, pas prescrite aujourd’hui."
+      },
+      "next": {
+        "en": "Choose the actual race-pace band from later evidence. Do not turn the November observation into a twelve-mile test.",
+        "fr": "Choisir l’allure réelle avec les données ultérieures. Ne pas transformer l’observation de novembre en test de douze miles."
+      }
+    },
+    {
+      "id": "what-would-change-our-minds",
+      "athletes": [
+        "elijah",
+        "simon"
+      ],
+      "kind": "question",
+      "date": "2026-10-04",
+      "title": {
+        "en": "What would change our minds?",
+        "fr": "Qu’est-ce qui nous ferait changer d’avis ?"
+      },
+      "visibility": "approved_public",
+      "revision": 1,
+      "depends_on": [
+        "two-runners-one-question"
+      ],
+      "body": {
+        "en": "If fresh sustained work is expensive, reconsider the pace before blaming late-run durability. If a smaller Thursday preserves shorter-distance performance and improves recovery, keep the smaller dose. If race execution disagrees with a good workout, investigate rather than protect the story.",
+        "fr": "Si le travail soutenu à frais coûte trop, revoir l’allure avant d’incriminer la résistance en fin de sortie. Si un jeudi réduit préserve la performance courte et améliore la récupération, conserver cette dose. Si la course contredit une bonne séance, enquêter plutôt que défendre le récit."
+      },
+      "learning": {
+        "en": "This is a prospective coaching record, not a controlled comparison or a causal trial.",
+        "fr": "Il s’agit d’un suivi prospectif de coaching, pas d’une comparaison contrôlée ni d’un essai causal."
+      },
+      "next": {
+        "en": "Publish the useful observations and the reason for each change, including results that do not support the hypothesis.",
+        "fr": "Publier les observations utiles et les raisons de chaque changement, y compris les résultats contraires à l’hypothèse."
+      }
+    }
+  ],
+  "approval_basis": {
+    "two-runners-one-question": "07f311a8391e28c93aade6a3e3e8e021a49b5200fcad54ca19276c010f145e1f",
+    "elijah-protect-the-specific-work": "c8f2af8249cf35eeda8e7c3ec689f89b0766e86460798470fe99a8366c4d5ce8",
+    "simon-make-thursday-support": "33ab48288792ad076591bca7f42a54a4b8cf0468a3ceec2e5d54070bbeb23ffb",
+    "distance-not-another-fast-finish": "029ec329724d7662257beb8d1a0018c51643f57979e2d38727a99c4e66d90c61",
+    "what-would-change-our-minds": "ef2eac3f809520344a2f47c1f47fe5080da1fba01f21f8b08856767e2d35289c"
+  }
+}
