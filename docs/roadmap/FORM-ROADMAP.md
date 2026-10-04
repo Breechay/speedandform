@@ -23,6 +23,17 @@ inclusions and host responsibilities. The public morning page presents that
 proposal with a photographic opening and native disclosures. No date, property,
 access, price or recurring program is confirmed.
 
+Owner progression ruling: the existing FORM athlete long run remains free. FORM
+House should first give the current athletic team a home around the practice,
+with a host-funded/property-supported morning the first commercial structure to
+explore. Plan internally around 12 runners and check delivery at 10 and 15;
+breakfast guests and staff are separate headcounts. Only after that home model
+works should a distinct public experience (for example a hosted 10K boardwalk
+morning with reservation/ticketing) be tested. That future experience is a
+separate product, not paid access to the team long run. Experienced FORM athletes
+may later guide newcomers when staffing, compensation and responsibility are
+explicit.
+
 - [x] Source and full static build checked; no changes to coaching or athlete data.
 - [x] Chromium/WebKit release workflow `37225106823` and ecosystem closure passed for `8d4538174171126e54c49df9ee17354000ac6d89`. Responsive routes, 200% text, concept status and inquiry destination passed. Screenshot review corrected the mobile host-heading line breaks.
 - [x] PR #210 merged as `09917e1d98918ce85ea71910f72e693e3e62280e`, tree `a1ea6f3cd1c2f89fc67a8e7770e547dee9620758`. Clean source archive published in Netlify `6ac29e1a7192d4860e3d0df5` on October 4. Actual production browser verified the photograph/new concept, pointer expansion and keyboard collapse of host details, and the hosting inquiry destination. No form was submitted.
