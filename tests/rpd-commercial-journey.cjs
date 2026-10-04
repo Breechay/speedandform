@@ -10,15 +10,15 @@ const SDK=`export const supabase={auth:{getSession:async()=>({data:{session:wind
 (async()=>{
  const browser=await(process.env.FORM_QA_BROWSER==='webkit'?webkit:chromium).launch();let checks=0;
  const check=(value,message)=>{assert.ok(value,message);checks++;};
- async function make({full=false,blocked=false,auth=null,pending=0,reject=false,restoreMissing=false,campaignBlocked=false,privacy=false}={}){
+ async function make({full=false,blocked=false,auth=null,pending=0,reject=false,restoreMissing=false,campaignBlocked=false,privacy=false,now='2026-09-17T12:00:00-04:00'}={}){
   const ctx=await browser.newContext({viewport:{width:390,height:900},reducedMotion:'reduce'}),requests=[],errors=[],missing=[];let verifies=0;
-  await ctx.addInitScript(({blocked,auth,campaignBlocked,privacy})=>{
-   const NativeDate=Date;globalThis.Date=class extends NativeDate{constructor(...args){super(...(args.length?args:['2026-09-17T12:00:00-04:00']));}};
+  await ctx.addInitScript(({blocked,auth,campaignBlocked,privacy,now})=>{
+   const NativeDate=Date;globalThis.Date=class extends NativeDate{constructor(...args){super(...(args.length?args:[now]));}};
    window.__rpdAuth=auth;
    if(auth)localStorage.setItem('form-private-auth',JSON.stringify(auth));
    if(blocked||campaignBlocked){const write=Storage.prototype.setItem;Storage.prototype.setItem=function(...args){if((blocked&&this===localStorage)||campaignBlocked)throw Error('Synthetic storage restriction');return write.apply(this,args);};}
    if(privacy)Object.defineProperty(navigator,'globalPrivacyControl',{value:true});
-  },{blocked,auth,campaignBlocked,privacy});
+  },{blocked,auth,campaignBlocked,privacy,now});
   await ctx.route('**/*',async route=>{
    const req=route.request(),u=new URL(req.url());
    if(u.pathname==='/private/supabase-client.js')return route.fulfill({contentType:'text/javascript',body:SDK});
@@ -60,6 +60,13 @@ const SDK=`export const supabase={auth:{getSession:async()=>({data:{session:wind
   check(Number(url.searchParams.get('week'))===result.visible,label+' shares its visible week');
   check(!['purchase_session','session_id','state','token','code','access_token','refresh_token'].some(key=>url.searchParams.has(key)),label+' share contains no private access reference');
  };
+ const readFreeWeeks=async(page)=>{
+  check(await page.locator('#range').innerText()==='01 / 15','A fresh phone preview begins at Week1');
+  for(const week of [1,2,3,4]){
+   if(week>1){await page.locator('#next').click();await page.waitForFunction(week=>Number(document.querySelector('#range').textContent.match(/\d+/)[0])===week,week);}
+   check((await page.locator('#curSheet').innerText()).includes('SYNTHETIC W'+week+' '),'Free Week'+week+' prescription can be read before purchase');
+  }
+ };
  let e=await make();
  const commercial=['/plans/race-pace-durability/support/','/plans/race-pace-durability/thanks/','/plans/race-pace-durability/access/'];
  for(const width of [375,390,430,768,1024,1440]){
@@ -68,7 +75,24 @@ const SDK=`export const supabase={auth:{getSession:async()=>({data:{session:wind
  }
  for(const route of commercial){await e.page.setViewportSize({width:390,height:900});await e.page.goto(origin+route);await e.page.evaluate(()=>document.fonts.ready);await e.page.evaluate(()=>{const nodes=[...document.querySelectorAll('h1,h2,h3,p,a,label,input,button,span,strong,summary')];const sizes=nodes.map(n=>[n,parseFloat(getComputedStyle(n).fontSize)]);for(const[n,size]of sizes)n.style.setProperty('font-size',size*2+'px','important');});await noOverflow(e.page,route+' 200% text');}
  await e.page.goto(origin+'/plans/race-pace-durability/support/?utm_source=google&utm_medium=cpc&utm_campaign=synthetic_plan_test&utm_content=proof');await e.page.locator('[data-rpd-checkout]').first().click();await e.page.waitForURL('https://buy.stripe.com/**');const checkout=new URL(e.page.url());check(checkout.pathname==='/bJeaEX1YvfNwgMX3Doffy00','Purchase goes to exact approved payment link');check(checkout.searchParams.get('utm_source')==='google','Google source survives checkout');check(checkout.searchParams.get('client_reference_id').includes('c_synthetic_plan_test'),'Campaign is carried into checkout reference');
- await e.page.goto(origin+'/plans/race-pace-durability/');await e.page.waitForFunction(()=>document.documentElement.dataset.rpdEntitled==='false');check(!(await e.page.locator('#track').innerText()).includes('SYNTHETIC W5'),'Public preview never contains paid prescription');check(await e.page.locator('#rpdPreviewNote').isVisible(),'Preview gives prerequisite and recovery');await shareVisibleWeek(e.page,'Public preview');await e.page.locator('#next').click();await e.page.waitForURL(url=>url.pathname==='/plans/race-pace-durability/support/');check(e.page.url().includes('/support/'),'Week five routes to purchase');check(new URL(e.page.url()).searchParams.get('utm_campaign')==='synthetic_plan_test','Preview-to-purchase preserves campaign');check(e.errors.length===0,'Public offer/preview has no uncaught error');check(e.missing.length===0,'Commercial local assets resolve');await e.ctx.close();
+ await e.page.goto(origin+'/plans/race-pace-durability/');await e.page.waitForFunction(()=>document.documentElement.dataset.rpdEntitled==='false');check(!(await e.page.locator('#track').innerText()).includes('SYNTHETIC W5'),'Public preview never contains paid prescription');check(await e.page.locator('#rpdPreviewNote').isVisible(),'Preview gives prerequisite and recovery');await shareVisibleWeek(e.page,'Public preview');await readFreeWeeks(e.page);await e.page.locator('#next').click();await e.page.waitForURL(url=>url.pathname==='/plans/race-pace-durability/support/');check(e.page.url().includes('/support/'),'Week five routes to purchase');check(new URL(e.page.url()).searchParams.get('utm_campaign')==='synthetic_plan_test','Preview-to-purchase preserves campaign');check(e.errors.length===0,'Public offer/preview has no uncaught error');check(e.missing.length===0,'Commercial local assets resolve');await e.ctx.close();
+ // October is already beyond the free training weeks on the published calendar.
+ // A new visitor still receives the beginning; paid/shared views retain theirs.
+ for(const width of [390,1024,1440]){
+  e=await make({now:'2026-10-04T12:00:00-04:00'});await e.page.setViewportSize({width,height:900});await e.page.goto(origin+'/plans/race-pace-durability/');await e.page.waitForFunction(()=>document.documentElement.dataset.rpdEntitled==='false');
+  check(Number((await e.page.locator('#range').innerText()).match(/\d+/)[0])===1,'Late-calendar default preview starts at Week1 at '+width);
+  if(width===390)await readFreeWeeks(e.page);else{const content=await e.page.locator('#curSheet').innerText();for(const week of [1,2,3,4])check(content.includes('SYNTHETIC W'+week+' '),'Late-calendar desktop shows free Week'+week+' at '+width);check(await e.page.locator('#curSheet .rpd-lock').count()>0,'Later desktop columns remain locked');}
+  check(!(await e.page.locator('#track').innerText()).includes('SYNTHETIC W5'),'Late-calendar preview contains no paid Week5 prescription');check(e.errors.length===0,'Late-calendar preview has no uncaught error');await e.page.screenshot({path:path.join(out,'rpd-preview-late-'+width+'.png'),fullPage:true});await e.ctx.close();
+ }
+ for(const week of [3,5,12]){
+  e=await make({now:'2026-10-04T12:00:00-04:00'});await e.page.goto(origin+'/plans/race-pace-durability/?week='+week);await e.page.waitForFunction(week=>document.documentElement.dataset.rpdEntitled==='false'&&Number(document.querySelector('#range').textContent.match(/\d+/)[0])===week,week);
+  check(Number((await e.page.locator('#range').innerText()).match(/\d+/)[0])===week,'Late-calendar explicit Week'+week+' keeps its shared view');
+  check((await e.page.locator('#curSheet').innerText()).includes('SYNTHETIC W'+week+' ')===(week<=4),'Shared Week'+week+' exposes prescription only inside free preview');await e.ctx.close();
+ }
+ for(const width of [390,1024]){
+  e=await make({now:'2026-10-04T12:00:00-04:00',full:true,auth:{user:{id:'synthetic-buyer'},access_token:'synthetic-token'}});await e.page.setViewportSize({width,height:900});await e.page.goto(origin+'/plans/race-pace-durability/');await e.page.waitForFunction(()=>document.documentElement.dataset.rpdEntitled==='true');
+  check(Number((await e.page.locator('#range').innerText()).match(/\d+/)[0])===6,'Entitled calendar remains at Week6 on October4 at '+width);check((await e.page.locator('#curSheet').innerText()).includes('SYNTHETIC W6 '),'Entitled calendar preserves its current prescription');await e.ctx.close();
+ }
  e=await make();await e.page.goto(origin+'/plans/race-pace-durability/?week=5');await e.page.waitForFunction(()=>document.documentElement.dataset.rpdEntitled==='false'&&document.querySelector('#range').textContent.includes('05'));await e.page.locator('#curSheet .rpd-mobile-lock').waitFor();check(!(await e.page.locator('#track').innerText()).includes('SYNTHETIC W5'),'Shared paid week is redacted without verified access');await shareVisibleWeek(e.page,'Locked shared week');await e.ctx.close();
  for(const campaignBlocked of [false,true]){
   e=await make({campaignBlocked,privacy:true});await e.page.goto(origin+'/?utm_source=google&utm_medium=cpc&utm_campaign=synthetic_home_plan&utm_content=proof');await e.page.waitForFunction(()=>typeof window.sfCampaignSource==='function');

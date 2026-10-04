@@ -54,6 +54,21 @@ const run=(env,file,transform=code=>code)=>vm.runInContext(transform(fs.readFile
  }
  e=environment();e.context.supabase=sdk(null);e.context.supabase.auth.signInWithOtp=async()=>({error:Error('internal SMTP provider credential error')});run(e,access,code=>code.replace(/^import .*\n/,''));await flush();e.element('accessEmail').value='synthetic@example.invalid';await e.events['accessForm:submit']({preventDefault(){}});check(!e.element('accessStatus').textContent.includes('SMTP'),'Auth service detail is not shown to customer');check(!e.element('accessButton').disabled,'Failed link send remains retryable');
  e=environment();e.context.supabase=sdk(null);run(e,access,code=>code.replace(/^import .*\n/,''));await flush();e.element('accessEmail').value='synthetic@example.invalid';await e.events['accessForm:submit']({preventDefault(){}});check(e.element('accessButton').disabled,'Successful link send enters cooldown');const cooldown=[...e.timers.values()].find(t=>t.ms===60000);check(Boolean(cooldown),'Successful link send has a bounded resend cooldown');cooldown.callback();check(!e.element('accessButton').disabled,'Successful send can be resent after cooldown');
+ // The preview entry is independent of today's published training week.
+ // Exercise the real gate navigation with synthetic renderer controls only.
+ for(const [query,start,paid,expected] of [
+  ['',1,false,1],['',4,false,1],['',6,false,1],['',15,false,1],
+  ['?week=3',6,false,3],['?week=5',6,false,5],['?week=12',6,false,12],
+  ['?week=0',6,false,1],['?week=16',6,false,1],['?week=invalid',6,false,1],
+  ['',6,true,6],['?week=3',6,true,3],['?week=12',6,true,12]
+ ]){
+  let left=start;e=environment({query});
+  e.context.document.querySelector=selector=>selector==='#range'?{textContent:'Week '+left}:selector==='#prev'?{click:()=>left--}:selector==='#next'?{click:()=>left++}:null;
+  e.context.window.setTimeout=()=>0;e.context.window.requestAnimationFrame=()=>0;
+  run(e,'plans/race-pace-durability/gate.js',code=>code.replace(/^import .*\n/gm,''));
+  vm.runInContext('entitled='+paid+';openSharedWeek();normalizeToPreview();',e.context);
+  check(left===expected,'Preview entry '+query+' from Week'+start+' '+(paid?'paid':'public')+' opens Week'+expected);
+ }
  const approved=JSON.parse(fs.readFileSync('data/public-studies/speed-that-endures.json','utf8'));const offer=fs.readFileSync('plans/race-pace-durability/support/index.html','utf8');
  check(approved.latest_completed.date==='2026-09-29'&&approved.latest_completed.distance_mi===6,'Purchase proof requires current approved 6-mile projection review');check(offer.includes('On September 29, Hope and José both completed six continuous miles'),'Purchase proof matches approved projection');check(!offer.includes('<section hidden'),'Retired repeated offer sections removed');check(offer.includes('/plans/race-pace-durability/access/'),'Offer exposes purchase recovery');
  console.log(`PASS: ${checks} paid verification, pending/retry, storage resilience, account precedence, restore, OTP recovery and approved proof checks. All requests synthetic.`);

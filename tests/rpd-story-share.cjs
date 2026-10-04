@@ -76,12 +76,17 @@ lacks(share, 'waitForRange');
 lacks(share, 'openRequestedWeek');
 for(const [visible,requested,expected] of [['Week 03',9,3],['Weeks 10–13',12,12],['Week 05',5,5]]){
  const buttons={share:{},shareMobile:{}};
- const context={URL,URLSearchParams,Number,location:{href:'https://speedandform.com/plans/race-pace-durability/?purchase_session=cs_synthetic&session_id=cs_synthetic&state=private&token=private&code=private&access_token=private&refresh_token=private&utm_source=synthetic&week='+requested,search:'?week='+requested},document:{getElementById:id=>id==='range'?{textContent:visible}:buttons[id]||null,addEventListener(){}}};
+ const campaign={utm_source:'synthetic',utm_medium:'cpc',utm_campaign:'public running plan',utm_content:'practice-photo',ref:'friend'};
+ const query=new URLSearchParams({...campaign,purchase_session:'cs_synthetic',session_id:'cs_synthetic',state:'private',token:'private',code:'private',access_token:'private',refresh_token:'private',token_hash:'private-magic-link',provider_token:'private-provider',unknown_private_parameter:'private-unknown',user:'private-person',week:String(requested)});
+ const context={URL,URLSearchParams,Number,location:{href:'https://speedandform.com/plans/race-pace-durability/?'+query+'#access_token=private-fragment&refresh_token=private',search:'?'+query},document:{getElementById:id=>id==='range'?{textContent:visible}:buttons[id]||null,addEventListener(){}}};
  vm.createContext(context);vm.runInContext(share,context);
  const result=new URL(vm.runInContext('shareUrl()',context));
  ok(result.searchParams.get('week')===String(expected),'Sharing follows the visible week, not an unauthorized requested week');
- for(const key of ['purchase_session','session_id','state','token','code','access_token','refresh_token'])ok(!result.searchParams.has(key),'Shared URL excludes private '+key);
- ok(result.searchParams.get('utm_source')==='synthetic','Public share preserves campaign source');
+ for(const key of ['purchase_session','session_id','state','token','code','access_token','refresh_token','token_hash','provider_token','unknown_private_parameter','user'])ok(!result.searchParams.has(key),'Shared URL excludes private '+key);
+ for(const [key,value] of Object.entries(campaign))ok(result.searchParams.get(key)===value,'Public share preserves '+key);
+ ok([...result.searchParams.keys()].every(key=>key==='week'||Object.hasOwn(campaign,key)),'Shared query contains public allowlist only');
+ ok(result.hash==='','Shared URL clears authentication fragments');
+ ok(result.origin==='https://speedandform.com'&&result.pathname==='/plans/race-pace-durability/','Shared URL preserves canonical public origin and path');
 }
 
 // The renderer stays date-derived. The access gate is the one owner that opens

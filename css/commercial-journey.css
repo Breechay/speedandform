@@ -19,6 +19,7 @@
 .sf-service-door .intro-action:hover{color:var(--paper);border-color:var(--paper)}
 .sf-service-door .intro-action:focus-visible{outline:2px solid var(--bone);outline-offset:6px}
 .sf-service-door .form-side{padding:clamp(64px,6vw,96px) clamp(28px,4.5vw,72px);align-items:flex-start}
+.sf-service-door .form-side form{animation:none;opacity:1;transform:none}
 .sf-service-door .form-side .eyebrow{color:var(--muted)}
 .sf-service-door .inquiry-lead{margin-bottom:42px}
 .sf-service-door .inquiry-lead h2{font-size:clamp(30px,2.7vw,42px);font-weight:450;line-height:1.12;letter-spacing:-.025em;margin:14px 0 16px;max-width:18ch;text-wrap:balance}
@@ -45,6 +46,7 @@
 .sf-contact-door .intro-image img{object-position:36% 12%}
 .sf-contact-door .intro .direct{margin-top:28px;padding-top:0;border-top:0;font-size:15px}
 .sf-partner-journey{--muted:#60675f;--bone:#e8e3d9}
+.sf-partner-journey form{animation:none;opacity:1;transform:none}
 .sf-partner-journey .eyebrow{color:var(--muted)}
 .sf-partner-journey .top{height:auto;min-height:88px;gap:28px;padding-block:24px}
 .sf-partner-journey .top span{min-width:0;max-width:30ch;font-size:11px;line-height:1.6;letter-spacing:.05em}

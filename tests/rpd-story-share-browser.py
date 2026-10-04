@@ -90,7 +90,12 @@ try:
   page.screenshot(path=str(OUT/'coach-week5-share-390.png'));ctx.close()
 
   # A normal guest still hits the purchase route when paging beyond the free preview.
-  ctx,page,_=make('guest');page.goto(BASE+'/plans/race-pace-durability/');page.wait_for_function("document.documentElement.dataset.rpdEntitled==='false'");page.locator('#next').click();page.wait_for_url('**/support/');check('Ordinary preview navigation still routes to offer','/support/' in page.url);ctx.close()
+  ctx,page,_=make('guest');page.goto(BASE+'/plans/race-pace-durability/');page.wait_for_function("document.documentElement.dataset.rpdEntitled==='false'")
+  check('Ordinary preview begins with Week1','01 / 15' in page.locator('#range').inner_text())
+  for week in [1,2,3,4]:
+   if week>1:page.locator('#next').click();page.wait_for_function("Number(document.getElementById('range').textContent.match(/\\d+/)[0])==="+str(week))
+   check(f'Free Week{week} is readable before purchase',f'SYNTHETIC W{week} ' in page.locator('#curSheet').inner_text())
+  page.locator('#next').click();page.wait_for_url('**/support/');check('Ordinary preview navigation still routes to offer at Week5','/support/' in page.url);ctx.close()
 
   check('No uncaught JavaScript errors',not report['errors'])
   browser.close();report['result']='PASS'

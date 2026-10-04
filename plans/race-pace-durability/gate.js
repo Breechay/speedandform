@@ -129,10 +129,12 @@ function lockAll() {
 }
 
 function normalizeToPreview() {
-  if (entitled || (SHARED_WEEK && SHARED_WEEK > FREE_THROUGH)) return;
+  // A new visitor reads the free plan from its beginning. The published
+  // calendar still owns entitled views; explicit shared weeks keep their view.
+  if (entitled || SHARED_WEEK) return;
   const left = leftWeek();
-  if (left <= FREE_THROUGH) return;
-  baseClick(-1, left - FREE_THROUGH);
+  if (left <= 1) return;
+  baseClick(-1, left - 1);
 }
 
 function installStyles() {

@@ -79,6 +79,25 @@ const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
   assert.doesNotMatch(fallback,/utm_|gclid|gbraid|wbraid|_honey|_replyto/,'Fallback omits tracking and provider fields');
  }
 
+ // A customer with normal motion preferences must see the inquiry immediately.
+ // Finishing an entrance animation cannot be a dependency for usable forms.
+ await page.emulateMedia({reducedMotion:'no-preference'});
+ await page.setViewportSize({width:1440,height:900});
+ for(const route of ['/analysis/','/coaching/strength/','/contact','/form-house/contact']){
+  await visit(route);
+  const form=page.locator(route==='/form-house/contact'?'#house-form':'.form-side form');
+  const state=await form.evaluate(element=>{
+   const style=getComputedStyle(element);
+   return {opacity:style.opacity,animation:style.animationName,visibility:style.visibility};
+  });
+  assert.equal(state.opacity,'1',route+' inquiry is readable with normal motion preferences');
+  assert.equal(state.animation,'none',route+' inquiry does not depend on an entrance animation');
+  assert.equal(state.visibility,'visible',route+' inquiry is visible');
+  assert.equal(await form.locator('[name="name"]').isVisible(),true,route+' name field is usable');
+  assert.equal(await form.locator('[name="email"]').isVisible(),true,route+' email field is usable');
+ }
+ await page.emulateMedia({reducedMotion:'reduce'});
+
  // Each room keeps one focal heading and readable horizontal reflow. These are
  // local screenshots of the current source, not publication receipts.
  for(const width of [375,390,430,768,1024,1440]){
