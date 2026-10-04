@@ -606,4 +606,7 @@ Owner-approved aspiration revision: 185 lb target; 180–185 lb preferred range;
   and action plan. No new budget, outreach, application or venue commitment was made.
 - The existing result follow-up now includes permissioned Hope/José race photos
   and athlete-approved concise copy after verified results. Public results stay awaiting.
-- Live deployment and tested SHA receipt to follow in the audit after acceptance.
+- PR206 and PR207 are published. All relevant managed browser workflows passed;
+  tested SHA, deploy IDs, live route observations and remaining email/measurement
+  gates are recorded in the commercial audit. A fresh public preview now starts
+  at Week 1, and all four inquiry forms render without entrance-animation delay.

@@ -289,6 +289,7 @@ footer{height:55px;display:flex;align-items:flex-end;gap:18px;color:#9da6a8;font
 .dev{position:fixed;left:50%;transform:translateX(-50%);bottom:14px;z-index:90;
   display:flex;gap:2px;padding:3px;border:1px solid var(--line);border-radius:999px;
   background:#0a1113ee;backdrop-filter:blur(6px)}
+#dev[hidden]{display:none!important}
 .dev button{padding:6px 13px;border-radius:999px;border:0;background:transparent;
   color:var(--muted);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase}
 .dev button.on{background:#ffffff12;color:var(--text)}

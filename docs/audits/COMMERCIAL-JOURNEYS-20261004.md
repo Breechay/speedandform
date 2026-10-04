@@ -38,9 +38,49 @@ must pass on the release commit. No real purchase or prospect submission is used
 for QA. The historical retired-copy assertions are not acceptance criteria for
 current authored pages.
 
-After publication, record tested SHA, browser runs, deploy ID and actual live
-route/checkout observations here. Publishing site source is not purchase-email
-activation or proof of a Google Ads conversion-goal setup.
+Publishing site source is not purchase-email activation or proof of a Google Ads
+conversion-goal setup.
+
+## Verified release receipts
+
+- PR206: tested `2d1b0c5cac78bb770cfc98c1c71c5e98f36339aa`, merged
+  `c8b649262a89dc67e03380f75e3c8c7c48a22fe6`. All seven triggered workflows
+  passed, including Chromium/WebKit commercial, account and Console journeys.
+  Netlify `6ac28b8f08ef36afa53c0888` published October 4 at 17:23:43 UTC.
+- PR207: tested `50877d0a1781d16ebaa1f257900ad4db8f27a8da`, merged
+  `1f44c7e3d4ea67ca016d8d0767302af8d2aacbb4`. All three triggered workflows
+  passed, including normal-motion visibility for all four inquiry forms,
+  late-calendar public preview at phone/desktop widths, shared-week privacy,
+  paid calendar preservation and account/access regression in both engines.
+  Netlify `6ac28fc3490adf0f0b4b2af6` published at 17:41:38 UTC.
+- Actual public browser inspection confirmed every requested door, the morning
+  concept, loaded service/Plans photographs, the exact $79 Stripe payment link,
+  honest unconfirmed-purchase recovery, visible forms and a fresh public preview
+  with Weeks 1–4 readable and Week 5 redacted. No purchase or prospect submission
+  was made. Paid/print/retry/account cases use isolated synthetic fixtures.
+- Conservative text-free photograph measurements at 390 and 1440 px show
+  minimum service-copy contrast between 9.2:1 and 12.47:1. All sampled body and
+  large text passed their applicable 4.5:1 and 3:1 thresholds.
+- Private outbox/revocation migration was applied. The signed Stripe webhook
+  is ACTIVE version 14, with hosted bundling and service-role-only table/RPC
+  grants read back. Sending remains unactivated by this release: a restricted
+  hosted Resend key, flag configuration and controlled mail-client acceptance
+  are still required. A static preview is not an actual delivered email.
+
+The live review also identified a brief development-control flash in the plan
+loader. The bounded follow-up hides those controls in static public markup;
+only localhost design review may reveal them. Its final receipt follows after
+the loading-state check and actual publication.
+
+## Remaining product and acquisition limits
+
+The purchased edition retains the canonical published calendar and supported
+pace bands. It does not yet select a buyer's personal start/race date or provide
+native FORM/Forge assignment. An evergreen buyer edition requires separate
+product acceptance before claiming that capability. Google purchase/lead goals
+and an enforceable paid-test stop control remain unverified; no new ads were
+launched. Inquiry relay receipts are tested with intercepted provider responses,
+not a new real prospect notification.
 
 ## Commercial follow-through
 

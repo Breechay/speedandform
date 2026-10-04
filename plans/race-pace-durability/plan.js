@@ -353,6 +353,7 @@ if (el('version')) el('version').textContent = `${plan.plan.name} · v${VERSION}
 // forgot to update.
 const REVIEW = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
 if (!REVIEW) el('dev').remove();
+else el('dev').hidden = false;
 
 const firstAsk = weeks.find((w) => w.sessions.some((s) => s.asks != null))?.week_number;
 const FIXED = { build: Math.max(1, (firstAsk ?? 4) - 1), ask: firstAsk ?? 4, race: LAST, complete: LAST };
