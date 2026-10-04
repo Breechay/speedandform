@@ -39,6 +39,19 @@ const run=(env,file,transform=code=>code)=>vm.runInContext(transform(fs.readFile
  const sdk=user=>({auth:{getSession:async()=>({data:{session:user?{user:{id:user},access_token:'synthetic-token'}:null}}),signInWithOtp:async()=>({error:null})}});
  e=environment({storageBlocked:true});e.context.supabase=sdk('synthetic-buyer');run(e,access,code=>code.replace(/^import .*\n/,''));await flush();check(e.replacements[0]?.includes('purchase_session=cs_synthetic_fixture'),'Restore reaches plan even when storage is blocked');
  e=environment();e.context.supabase=sdk('synthetic-other');e.context.respond=()=>({ok:false,status:404,json:async()=>({})});run(e,access,code=>code.replace(/^import .*\n/,''));await flush();check(e.element('accessStatus').textContent.includes('No purchase was found'),'Unmatched signed-in email is a recoverable state');check(!e.element('accessButton').disabled,'Unmatched email can request correct sign-in link');
+ // Transport outages cannot masquerade as an unmatched purchase or grant access.
+ for(const failure of ['network','http','unpaid']){
+  e=environment();e.context.supabase=sdk('synthetic-buyer');
+  e.context.respond=()=>{if(failure==='network')throw Error('Synthetic network outage');return{ok:failure==='unpaid',status:failure==='unpaid'?200:503,json:async()=>failure==='unpaid'?{ok:true,status:'pending',session_id:'cs_synthetic_unverified'}:{}};};
+  run(e,access,code=>code.replace(/^import .*\n/,''));await flush();
+  check(e.element('accessStatus').dataset.state==='error','Restore '+failure+' has an actionable error');
+  check(e.element('accessStatus').textContent.includes(failure==='unpaid'?'No purchase was found':'couldn’t check'),'Transport failures and unmatched/unpaid purchases stay distinct');
+  check(e.replacements.length===0&&!e.values.has('rpd_purchase_session'),'Restore '+failure+' never redirects or remembers unverified access');
+  check(!e.element('accessButton').disabled,'Restore '+failure+' keeps email recovery available');
+  check(e.requests[0].options.signal instanceof AbortSignal&&e.requests[0].options.cache==='no-store','Restore request is abortable and never cached');
+  e.context.respond=()=>({ok:true,status:200,json:async()=>({ok:true,status:'paid',session_id:'cs_synthetic_fixture'})});await e.context.restore();await flush();
+  check(e.replacements.some(value=>value.includes('purchase_session=cs_synthetic_fixture')),'Restore '+failure+' can retry into verified access');
+ }
  e=environment();e.context.supabase=sdk(null);e.context.supabase.auth.signInWithOtp=async()=>({error:Error('internal SMTP provider credential error')});run(e,access,code=>code.replace(/^import .*\n/,''));await flush();e.element('accessEmail').value='synthetic@example.invalid';await e.events['accessForm:submit']({preventDefault(){}});check(!e.element('accessStatus').textContent.includes('SMTP'),'Auth service detail is not shown to customer');check(!e.element('accessButton').disabled,'Failed link send remains retryable');
  e=environment();e.context.supabase=sdk(null);run(e,access,code=>code.replace(/^import .*\n/,''));await flush();e.element('accessEmail').value='synthetic@example.invalid';await e.events['accessForm:submit']({preventDefault(){}});check(e.element('accessButton').disabled,'Successful link send enters cooldown');const cooldown=[...e.timers.values()].find(t=>t.ms===60000);check(Boolean(cooldown),'Successful link send has a bounded resend cooldown');cooldown.callback();check(!e.element('accessButton').disabled,'Successful send can be resent after cooldown');
  const approved=JSON.parse(fs.readFileSync('data/public-studies/speed-that-endures.json','utf8'));const offer=fs.readFileSync('plans/race-pace-durability/support/index.html','utf8');

@@ -7,8 +7,11 @@
 .sf-service-door .intro-image img{display:block;width:100%;height:100%;object-fit:cover;filter:grayscale(1)}
 .sf-analysis-door .intro-image img{object-position:36% 12%}
 .sf-strength-door .intro-image img{object-position:50% 10%}
-.sf-service-door .intro:after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(13,15,14,.04),rgba(13,15,14,.15) 18%,rgba(13,15,14,.84) 48%,#0d0f0e 88%)}
-.sf-service-door .intro-copy{position:relative;width:100%;min-width:0}
+.sf-service-door .intro:after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(13,15,14,.04),rgba(13,15,14,.06) 35%,rgba(13,15,14,.72) 64%,#0d0f0e 88%)}
+.sf-service-door .intro-copy{position:relative;isolation:isolate;width:100%;min-width:0}
+/* The photograph keeps its light above the copy. Readability shade follows
+   the actual type instead of darkening the face and torso across the panel. */
+.sf-service-door .intro-copy:before{content:"";position:absolute;inset:-36px -40px;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(13,15,14,.58) 0 75%,rgba(13,15,14,.35));mask-image:linear-gradient(180deg,transparent,#000 28px,#000 calc(100% - 28px),transparent)}
 .sf-service-door .intro h1{font-size:clamp(54px,5.4vw,84px);line-height:1.04;max-width:11.5ch;margin:24px 0;letter-spacing:-.045em;color:var(--bone)}
 .sf-service-door .intro p{max-width:33ch;color:var(--bone);font-size:clamp(18px,1.5vw,21px);line-height:1.55}
 .sf-service-door .intro .eyebrow{color:var(--bone)}
@@ -16,6 +19,7 @@
 .sf-service-door .intro-action:hover{color:var(--paper);border-color:var(--paper)}
 .sf-service-door .intro-action:focus-visible{outline:2px solid var(--bone);outline-offset:6px}
 .sf-service-door .form-side{padding:clamp(64px,6vw,96px) clamp(28px,4.5vw,72px);align-items:flex-start}
+.sf-service-door .form-side .eyebrow{color:var(--muted)}
 .sf-service-door .inquiry-lead{margin-bottom:42px}
 .sf-service-door .inquiry-lead h2{font-size:clamp(30px,2.7vw,42px);font-weight:450;line-height:1.12;letter-spacing:-.025em;margin:14px 0 16px;max-width:18ch;text-wrap:balance}
 .sf-service-door .inquiry-lead>p{font-size:17px;line-height:1.6;margin:0;max-width:44ch;color:var(--muted)}
@@ -39,6 +43,7 @@
 .sf-contact-door .intro-image img{object-position:36% 12%}
 .sf-contact-door .intro .direct{margin-top:28px;padding-top:0;border-top:0;font-size:15px}
 .sf-partner-journey{--muted:#60675f;--bone:#e8e3d9}
+.sf-partner-journey .eyebrow{color:var(--muted)}
 .sf-partner-journey .top{height:auto;min-height:88px;gap:28px;padding-block:24px}
 .sf-partner-journey .top span{min-width:0;max-width:30ch;font-size:11px;line-height:1.6;letter-spacing:.05em}
 .sf-partner-journey .grid{align-items:start;gap:clamp(48px,7vw,100px)}
