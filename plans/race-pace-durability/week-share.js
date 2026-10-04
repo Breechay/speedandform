@@ -23,8 +23,15 @@ function currentShareWeek() {
 
 function shareUrl() {
   const url = new URL(location.href);
-  // Shared views name a week; authentication references stay on this device.
-  ['purchase_session', 'session_id', 'state', 'token', 'code', 'access_token', 'refresh_token'].forEach(key => url.searchParams.delete(key));
+  // Shared views carry only public campaign labels and the visible week.
+  // An allowlist also excludes unknown callback parameters and auth fragments.
+  const publicQuery = new URLSearchParams();
+  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'ref'].forEach(key => {
+    const value = url.searchParams.get(key);
+    if (value !== null) publicQuery.set(key, value);
+  });
+  url.search = publicQuery.toString();
+  url.hash = '';
   url.searchParams.set('week', String(currentShareWeek()));
   return url.toString();
 }
