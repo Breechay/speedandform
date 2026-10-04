@@ -1,0 +1,34 @@
+name: Paired study verification
+on:
+  push:
+    branches: [work/paired-study-20261004]
+  pull_request:
+    paths:
+      - 'scripts/studies/*paired*'
+      - 'labs/same-pace-different-problem/**'
+      - 'labs/shared/**'
+      - 'tests/*paired*'
+      - '.github/workflows/paired-study.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Read-only workspace bundle
+        run: tar --exclude=.git --exclude=node_modules -czf /tmp/paired-study-workspace.tar.gz .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: paired-study-workspace
+          path: /tmp/paired-study-workspace.tar.gz
+          retention-days: 1
+      - name: Build and test when implementation is present
+        run: |
+          if test -f scripts/studies/build-paired-study.cjs; then
+            node scripts/studies/build-paired-study.cjs
+            node tests/paired-study-contract.cjs
+          fi
