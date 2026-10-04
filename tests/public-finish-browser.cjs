@@ -61,7 +61,7 @@ fs.mkdirSync(out,{recursive:true});
    }return result;
   });
   fs.writeFileSync(path.join(out,name+'.json'),JSON.stringify(samples));
-  await page.locator('.hero-copy').evaluate(e=>e.style.visibility='hidden');
+  await page.locator('.hero-copy > *').evaluateAll(nodes=>nodes.forEach(e=>e.style.visibility='hidden'));
   await page.locator('.header').evaluate(e=>e.style.visibility='hidden');
   await page.locator('.sf-home-hero-immersive').screenshot({path:path.join(out,name+'-background.png')});
  }
