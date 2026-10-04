@@ -32,12 +32,17 @@ This is a quality benchmark, not a claim of affiliation or a copied template.
 
 ## Acceptance evidence
 
-Source parity, protected reading and whitespace checks passed before submission.
-The existing Chromium/WebKit release workflow owns responsive widths, enlarged
-text, the public concept state and inquiry destination. Screenshot review must
-include the complete desktop and phone page before publication. Actual live
-header placement, image loading, disclosure and contact navigation follow.
-Physical-phone review remains separate.
+Source parity, protected reading, whitespace and the full static build passed.
+Chromium/WebKit release workflow `37226879820` and ecosystem closure `37226879857`
+passed for `4e2c8f5993f9ad2a00d323555509c5d95b9e3e9d`. Complete desktop/phone
+screenshots were reviewed; responsive widths and 200% text reflow passed.
+PR #211 merged as `b9eac4f73ca639608a6dcaddd0b29eb3f5aa2cdb`, with the tested
+source tree `1a0444bf59b4e54113e9a819ab2698d489e12565` unchanged.
+Netlify `6ac2a4700072361aee3b6830` published the clean merged source archive.
+Production readback confirmed a transparent absolute header, hero starting at
+page top, the loaded photograph, the new menu and towel-off return, native
+pointer expansion/keyboard collapse, and the hosting contact destination.
+No form was submitted. Physical-phone review remains separate.
 
 The owner's 9/10 request is treated as a finish bar: clear hierarchy, readable
 copy, distinct folds, a working next step and resolved visible defects. A
