@@ -1,5 +1,17 @@
 # FORM: current state and next actions
 
+## October 4 · FORM Morning editorial finish
+
+Owner requested a naked header/hero like the homepage and a fold-by-fold copy
+and finish pass. [The scoped audit](../audits/FORM-MORNING-EDITORIAL-FINISH-20261004.md)
+records each fold's job and corrections. The proposed experience is retained;
+hero/header placement, reading flow and host invitation are refined.
+
+- [x] Source reading, study parity and whitespace checks.
+- [ ] Full static build, Chromium/WebKit screenshots and responsive acceptance.
+- [ ] Publication and actual live header/disclosure/inquiry readback.
+- [ ] Real Arrival / Return photographs and physical-phone review.
+
 ## October 4 · FORM morning experience development
 
 Owner requested both a stronger page and a better-developed concept. The owning
