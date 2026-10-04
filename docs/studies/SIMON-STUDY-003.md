@@ -1,7 +1,9 @@
 # Study 003: The Two Curves
 
-Owner: Brice. Athlete: Simon. Approved revision: **SIMON-003-R3-20261001**.
-Read this before changing the study, assigned plan, interpretation, or any Simon progression. It supersedes earlier September 23 proposals where they conflict. Reviews are inputs, not votes and not automatic instructions.
+Owner: Brice. Athlete: Simon. Approved revision: **SIMON-003-R4-20261004**.
+Read this before changing the study, assigned plan, interpretation, or any Simon progression. It supersedes earlier September 23 proposals and R3 Block 01 prescriptions where they conflict. Reviews are inputs, not votes and not automatic instructions.
+
+R4 is the October 4 multi-review synthesis. **The Two Curves remains a coaching model, not a physiological diagnosis.** The study now explicitly separates three things that can move differently: **fresh capability, durability, and recovery cost.** "Hold" remains useful shorthand for controlled sustainable work, but it must not become a basket label for threshold, economy, glycogen, mechanics, fatigue resistance and pacing. A result that contradicts the model should change the model.
 
 ## The question
 
@@ -9,12 +11,14 @@ Read this before changing the study, assigned plan, interpretation, or any Simon
 
 His historical anchors make the mismatch visible: **17:36 for 5K (5:40/mi)** and **1:26:13 for the half (6:34/mi)**. The study's current goal envelope is **1:19-1:23**, with **~1:20 / 6:06 per mile** as a useful center, not a prediction or proof of current fitness.
 
-The working hypothesis is that Simon does not primarily need to prove he can touch ~6:06/mi. He needs to make controlled running in that neighborhood last progressively longer and cost less, while preserving enough faster running above it that half-marathon pace is not his ceiling.
+The working hypothesis is that Simon has demonstrated access to running near the current development center, while longer continuous control and race-specific durability remain less established. The study therefore develops controlled sustainable running while preserving enough faster running to keep high-end capacity from becoming a neglected variable. **Access is not the same as low cost, and the current working band is not yet established half-marathon race pace.**
 
 That gives the weekly architecture three distinct jobs:
-- **Tuesday — extend the hold:** controlled half-marathon-development work, progressing duration/continuity only when earned.
-- **Thursday — preserve/raise the ceiling:** shorter work substantially faster than the half-marathon band; repeatability before progression.
-- **Saturday — build durability underneath:** easy volume that supports the two quality exposures without becoming another test.
+- **Tuesday — primary sustainable-development session:** extend controlled duration/continuity at the working-development band only when earned.
+- **Thursday — conditional ceiling maintenance:** shorter faster running that supports the project only while it does not compromise Tuesday, Saturday, or HYROX recovery.
+- **Saturday — build durability underneath:** easy volume that supports the quality work without becoming another test.
+
+**Quality-budget rule:** a hard HYROX session, race simulation, or demanding lower-body strength session is not invisible load. When it materially taxes the legs or metabolic system, it replaces or reduces Thursday first. Do not preserve two running quality sessions merely because the template contains two.
 
 The study therefore asks: **Can faster running become continuous at an acceptable cost, and later remain available after prior running, while high-end field performance is preserved or developed?**
 
@@ -42,16 +46,16 @@ Archive byte hash: `f569106fc9659a4b0153edaee668b77bf8cf489a04f5ae7f7e5084257ab2
 | Week | Tuesday | Thursday | Saturday easy | Planned km |
 |---|---|---|---|---:|
 | 1 | 4 x 1.6 km | Ceiling 5 x 3 min | 18 km | 63 |
-| 2 | 4 x 2 km if earned | Repeat 5 x 3 min | 20 km | 67 |
-| 3 | 3 x 3 km if earned | 4 x 4 min if recovered | 21 km | 70 |
-| 4 | 2 x 4 km if earned | 4 x 3 min, reduced | 16 km | 62 |
-| 5 | 8 km easy, not a pace test | Oct 29: 5K read | 14 km, shorten if needed | 52 |
+| 2 | 4 x 2 km if earned | Ceiling maintenance 4 x 3 min | 18 km | 64 |
+| 3 | 3 x 3 km if earned | Ceiling maintenance 3 x 4 min | 19 km | 66 |
+| 4 | 2 x 3 km absorption hold | Easy + 6 relaxed strides | 16 km | 57 |
+| 5 | 8 km easy + 4 strides | Oct 29: 5K read | 12 km, shorten if needed | 48 |
 
-Tuesday working band remains **3:47-3:52/km**. Open near **3:52**; finishing there with control is enough. All broken Tuesday recoveries are **two minutes very easy jogging**, including 2 x 4 km. No brisk float and no automatic acceleration to 3:47. Record actual recovery pace.
+Block 01 Tuesday is now a **working-development band of 3:49-3:52/km**. Open near **3:52**; finishing there with control is enough. **3:47/km remains close to the 1:20 development center, not a pace that must be earned inside every October session.** All broken Tuesday recoveries are **two minutes very easy jogging**. No brisk float, no fast final repetition and no pace progression simply because Week 1 showed faster access. Record actual recovery pace, session effort, limiter and next-day response.
 
-Ceiling reference remains **3:29-3:34/km**, provisional from the historical 5K. Begin towards **3:32-3:34**. Repeating a dose is deliberate. More Tuesday continuity does not oblige more Thursday minutes. Do not raise pace and volume together because a rep was completed.
+For Block 01, Thursday is **ceiling maintenance around 3:33-3:38/km**, not a weekly test. The Oct 1 3:29/km repetition is observed evidence, not a target. Week 2 uses 4 x 3 min; Week 3 uses 3 x 4 min only if Tuesday is absorbed; Week 4 has no formal ceiling workout. More Tuesday continuity explicitly means Thursday can shrink.
 
-The plan retains 20-minute warm-ups and 10-minute cooldowns on quality days. Session and week distances containing time-based components are planning estimates, not exact distance requirements. Sunday is unauthored, displayed as a dash. Saturday has no fast finish in Block 01. Its distance is not a minimum, especially after the 5K.
+The plan retains 20-minute warm-ups and 10-minute cooldowns on quality days unless a field-test protocol states otherwise. Session and week distances containing time-based components are planning estimates, not exact distance requirements. Sunday is unauthored, displayed as a dash. Saturday has no fast finish in Block 01. Its distance is not a minimum, especially after the 5K. Week 4 is deliberately a **true absorption week**: specific Tuesday volume is reduced, Thursday becomes easy + strides, Friday can disappear if needed, and a hard HYROX simulation would violate the week’s purpose.
 
 This is a coach-reviewed conditional plan, not an automatic readiness algorithm. Before Week 1, confirm recent running continuity, comfortable long-run duration, hard HYROX/leg work and current recovery. If current readiness is lower than the historical background, reduce the plan. Never protect the quality sessions at all costs while stripping away all easy support.
 
@@ -137,11 +141,21 @@ The success pattern does not require a dramatically faster 5K. A plausible succe
 
 ## Gate 01 is a window
 
-1. **Oct 29:** current 5K reference after an easy Tuesday and lighter preceding week. Record splits, course, conditions, execution and subsequent recovery. High race effort is expected here; it is not graded like a controlled Tuesday.
-2. **From Nov 3, only if recovered:** consider a fresh **6-8 km continuous** working-pace read. Six is a valid stopping point if that is the controlled dose. This is **not yet an assigned workout** and must be explicitly published by Brice after reviewing the 5K/recovery. Do not auto-add Week 6 or a full Block 02.
-3. Close the gate after both useful observations and their recovery are available. If the continuous read is delayed or shortened, record why rather than force the calendar.
+1. **Oct 29:** current 5K reference after an easy Tuesday and lighter preceding week. Record elapsed/official time, splits, course, conditions, shoes, execution and 24-48 h recovery. High race effort is expected here; it is not graded like a controlled Tuesday.
+2. **From Nov 3, only if recovered:** consider a standardized fresh **6 km continuous** observation. Default target is approximately **3:52/km**, or the slower working pace if preceding evidence has already revised the band. Use a measured, repeatable route where practical. Do **not** extend the same observation to 8 km because Simon feels good. This is **not yet an assigned workout** and must be explicitly published by Brice after reviewing the 5K/recovery. Do not auto-add Week 6 or a full Block 02.
+3. Record overall effort, breathing effort and leg effort at roughly 2, 4 and 6 km, together with splits, conditions, footwear and the following two days of recovery. Close the gate only when both useful observations and their recovery are available. Delay rather than force the calendar if the evidence is noisy.
 
-An eight-kilometre fresh effort tests approximately thirty minutes of continuity. It does not establish an eighty-minute race or late-long-run durability. Thirty-two broken historical minutes cannot be credited as thirty-two continuous minutes.
+Six kilometres at 3:52/km is about twenty-three minutes of fresh continuity. It can establish whether the same controlled task is becoming less costly. It does **not** establish an eighty-minute race, late-long-run durability, threshold location or fractional utilization. Thirty-two broken historical minutes cannot be credited as thirty-two continuous minutes.
+
+## Competing hypotheses and falsification
+
+R4 makes the study easier to disconfirm. Treat these as practical competing hypotheses, not clean causal experiments:
+
+- **Full weekly ceiling work is necessary.** Weaken this if Thursday is reduced while 5K-level capability is preserved and Tuesday control improves.
+- **Fresh sustainable capacity is already adequate and durability is the main limiter.** Weaken this if the standardized fresh 6 km task remains disproportionately costly under good recovery and conditions.
+- **The two curves should improve together.** Weaken this if the 5K stays similar while controlled continuity improves materially, or if the 5K improves while the hold does not.
+- **October working pace maps cleanly to future HM pace.** Weaken this whenever repeated continuous work says otherwise. The development center never outranks current evidence.
+- **Block 01 explains subsequent change.** Do not claim this. A single-athlete coaching study has carryover, changing fitness, weather, HYROX, pacing and other confounders. The job of the framework is to improve decisions, not prove causality.
 
 ## Read, then choose
 
@@ -175,7 +189,7 @@ References for interpretation, not automatic prescriptions: Garmin self-evaluati
 
 ## One prescription, two projections
 
-Canonical plan slug: `simon-ceiling-durability-01`. Revision R2 creates plan version 2 and appends athlete session versions for unperformed work. Prior template/version history and all completed evidence stay unchanged. Migration: `simon_study_003_evidence_revision_r2`.
+Canonical plan slug: `simon-ceiling-durability-01`. **R4 is the current assigned Block 01 plan version.** It preserves prior template/version history and completed evidence while revising only future work. The public study and app must continue to read from canonical approved data rather than treating screenshots, captions or review prose as a second source of truth.
 
 The app reads the normal assigned plan feed. The site reads **`study_003_plan()`**, a no-argument, read-only public projection of the explicitly approved `plan_publications` row. It exposes no private filings, memberships, contact details, or arbitrary other plans. `public_plan(text)` stays service-role-only. The wrapper refuses to call the public schedule current when it detects assignment/publication drift.
 
