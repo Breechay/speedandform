@@ -8,8 +8,9 @@ after the long run deliberately.
 ## The experience
 
 Finish the run. Find shade, a seat, cold drinks and something easy to eat.
-Shower when ready. Sit down to a proper breakfast. Food is available from the
-first return; the group photograph, shower queue and last runner never hold it up.
+Towel off. Sit down to a proper breakfast. Showers are optional when available;
+most guests may simply towel off. Food is available from the first return; the
+group photograph and last runner never hold it up.
 
 The same table welcomes the shorter-run group and breakfast-only guests.
 Appetite and training needs differ. Offer a choice of breakfast and extra food;
@@ -79,12 +80,12 @@ Sources checked October 4, 2026:
   granola/protein products; agree substitutions and cross-contact procedures.
 - Keep perishable food cold and use the host kitchen's food-service procedures.
   Batch to the return spread so açaí stays cold and shakes are pleasant to drink.
-- Test the full service with the host: early return, delayed return, shower queue,
+- Test the full service with the host: early return, delayed return, towel supply,
   dairy-free order and a runner who wants only a small drink initially.
 - Cost one complete breakfast choice, drinks and reasonable extra food into
   each place. Staying and eating enough must not require a second transaction.
 
 First-morning evidence: Was food ready for the first return? Could runners eat
-without queuing behind showers? Were portions enough, substitutions credible
+without waiting for the full group? Were portions enough, substitutions credible
 and food still available for late returns? Record appetite, taste, waiting time,
 leftovers and costs. Do not infer physiological recovery from hospitality feedback.
