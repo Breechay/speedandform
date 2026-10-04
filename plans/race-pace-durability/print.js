@@ -7,7 +7,7 @@
 // week it is, and one pinned to a wall in November must not still be pointing
 // at September.
 
-import { publishedPlan } from './source.js';
+import { showPlanError } from './source.js';
 import { notation } from './notation.js';
 import { executionGuide, executionExamples, executionVersion } from './execution.js';
 
@@ -17,11 +17,19 @@ document.documentElement.dataset.printTheme = theme;
 document.querySelectorAll('[data-theme-link]').forEach(link => link.setAttribute('aria-current', link.dataset.themeLink === theme ? 'page' : 'false'));
 document.getElementById('printNow')?.addEventListener('click', () => window.print());
 
-const access = await import('./source.js').then(m => m.resolvePlanAccess()).catch(() => null);
-if (!access?.entitled) {
+const access = await import('./source.js').then(m => m.resolvePlanAccess()).catch(showPlanError);
+if (access && !access.entitled) {
   document.getElementById('edition').innerHTML = '<section class="access-card"><h1>Full print editions come with the purchased plan.</h1><p>Weeks 1–4 remain free on the web. Purchase or restore access to print all 15 weeks.</p><a href="/plans/race-pace-durability/support/">Plan details →</a></section>';
-  throw new Error('Paid plan access required for print edition');
 }
+if (access?.entitled) {
+  document.getElementById('printNow').disabled = false;
+  if (!access.signedIn && access.session_id) {
+    document.querySelectorAll('.print-tools a').forEach(link => {
+      const target = new URL(link.href, location.href);
+      target.searchParams.set('purchase_session', access.session_id);
+      link.href = target.toString();
+    });
+  }
 const plan = access.plan;
 const { read } = notation(plan);
 
@@ -101,7 +109,7 @@ document.getElementById('edition').innerHTML = `
       <div>${esc(version)} · ${esc(show(weekOne))} – ${esc(raceOn.toLocaleDateString('en-US',
         { month: 'short', day: 'numeric', year: 'numeric' }))}</div>
     </div>
-  </section>` + spreads.map(spread).join('') + `<section class="page pacing-page"><div class="brand">FORM <span>LABS</span></div><h1>Practise the race.</h1><h2>START · SETTLE · HOLD · FINISH</h2><div class="pacing-columns"><div>${executionGuide.map(p => `<p>${esc(p)}</p>`).join('')}</div><div>${executionExamples.map(({label,cue}) => `<h3>${esc(label)}</h3><p>${esc(cue)}</p>`).join('')}</div></div><div class="page-foot">Pacing notes · ${executionVersion} · Follow your assigned band. Training volume and targets are unchanged.</div></section>`;
+  </section>` + spreads.map(spread).join('') + `<section class="page pacing-page"><div class="brand">FORM <span>LABS</span></div><h1>Practice the race.</h1><h2>START · SETTLE · HOLD · FINISH</h2><div class="pacing-columns"><div>${executionGuide.map(p => `<p>${esc(p)}</p>`).join('')}</div><div>${executionExamples.map(({label,cue}) => `<h3>${esc(label)}</h3><p>${esc(cue)}</p>`).join('')}</div></div><div class="page-foot">Pacing notes · ${executionVersion} · Follow your assigned band. Training volume and targets are unchanged.</div></section>`;
 
 // The file the browser offers to save is named by the print job's title.
 document.title = `${title} · ${theme === 'light' ? 'Light' : 'Dark'} Print · ${version}`;
@@ -120,4 +128,6 @@ document.title = `${title} · ${theme === 'light' ? 'Light' : 'Dark'} Print · $
 if (!location.hash.includes('preview')) {
   await document.fonts.ready;
   window.print();
+}
+
 }

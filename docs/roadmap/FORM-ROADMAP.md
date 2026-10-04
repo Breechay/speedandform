@@ -585,3 +585,25 @@ Acceptance note: the dedicated Miami regression and 71-page reading checks pass.
 ## Rebuilt Athlete body goal · 2026-09-23
 
 Owner-approved aspiration revision: 185 lb target; 180–185 lb preferred range; 8–10% body fat aspirational. Visible study and embedded body record updated together. Measurements, completed work and native assignments unchanged. See `docs/studies/REBUILT-ATHLETE-BODY-GOAL-20260923.md`. Automated source/JSON/JavaScript checks run in the goal-update workflow; production and device verification remain separate release checks.
+
+
+## October 4 · Commercial journeys and FORM morning
+
+- Analysis, Strength, Contact, FORM House/partner Contact and the Plans shelf
+  received a coherent real-photography/black-bone pass and clearer personal next steps.
+- RPD confirmation, recovery, storage resilience and print delivery are covered
+  by source/state/privacy checks and isolated browser purchase fixtures. See
+  `docs/audits/COMMERCIAL-JOURNEYS-20261004.md` for release evidence.
+- Stripe product name and Checkout appearance were aligned and read back; $79
+  one-time price and entitlement identity are unchanged.
+- `/form-house/mornings/` is a shareable single-Saturday concept: 5:50–10,
+  easy 10K or longer routes, considered food/refreshments and comfortable time
+  afterward. Venue/date/access/capacity are to be agreed, with no recurring promise.
+- Purchase-access email source and private outbox are prepared, explicitly
+  default-off until hosted credentials and controlled mail acceptance. Activation
+  requirements are in `docs/publishing/RPD-PURCHASE-ACCESS-EMAIL.md`.
+- October commercial actions and proposed ad tests remain in the private Console
+  and action plan. No new budget, outreach, application or venue commitment was made.
+- The existing result follow-up now includes permissioned Hope/José race photos
+  and athlete-approved concise copy after verified results. Public results stay awaiting.
+- Live deployment and tested SHA receipt to follow in the audit after acceptance.

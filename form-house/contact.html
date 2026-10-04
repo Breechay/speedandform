@@ -18,15 +18,19 @@ form{max-width:680px}
 .field{margin-bottom:34px}
 .field textarea{min-height:190px}
 footer{padding:18px 0 22px;font-size:8px;letter-spacing:.055em;text-transform:none;border-top-color:rgba(22,25,22,.10)}
-</style><link rel="stylesheet" href="/css/public-finish.css?v=20261004-finish"></head><body class="sf-conversation sf-partner-contact">
+</style><link rel="stylesheet" href="/css/public-finish.css?v=20261004-finish"><link rel="stylesheet" href="/css/commercial-journey.css?v=20261004-doors"></head><body class="sf-conversation sf-partner-contact sf-partner-journey">
 <header class="shell top"><a class="sf-brand" href="/form-house" aria-label="FORM House"></a><span>FORM House · Partner conversation</span></header>
-<main class="shell"><div class="grid"><section><div class="eyebrow">FORM House</div><h1>Build it properly.</h1><p class="lede">Hotel. Residence. Performance property. A House of its own.</p></section>
-<form id="house-form" novalidate>
-<label class="field"><span>Name</span><input name="name" autocomplete="name" required></label>
-<label class="field"><span>Email</span><input name="email" type="email" autocomplete="email" required></label>
-<label class="field"><span>What are you building?</span><textarea name="message" required placeholder="Tell me about the place, what already exists, and what you see FORM House adding."></textarea></label>
+<main class="shell"><div class="grid"><section><div class="eyebrow">FORM House · A partner proposal</div><h1>Build it properly.</h1><p class="lede">A morning at your property, or a home for the practice.</p><p class="partner-step">I’ll reply personally. We can arrange a call and, where useful, a visit.</p><p class="direct">Or write to <a href="mailto:brice@speedandform.com?subject=FORM%20House">brice@speedandform.com</a>.</p></section>
+<form id="house-form" action="https://formsubmit.co/33a5c7969281803124c58268d7ae6188" method="POST" data-conversation-inquiry data-inquiry-label="FORM House" data-success-title="Thank you.">
+<input type="hidden" name="_subject" value="FORM House partner inquiry"><input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_url" value="https://speedandform.com/form-house/contact">
+<label class="field"><span>Name</span><input name="name" autocomplete="name" maxlength="120" required></label>
+<label class="field"><span>Email</span><input name="email" type="email" autocomplete="email" maxlength="254" required></label>
+<label class="field"><span>Property / organization · optional</span><input name="organization" autocomplete="organization" maxlength="240"></label>
+<label class="field"><span>What could we build together?</span><textarea name="message" maxlength="2400" required placeholder="The place, the idea, and what you’d like to make possible."></textarea></label>
 <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off">
-<button class="send" id="send" type="submit" data-send-to="33a5c7969281803124c58268d7ae6188">Send</button><p class="status" id="status" role="status" aria-live="polite"></p>
+<button class="send" id="send" type="submit" data-send-to="33a5c7969281803124c58268d7ae6188">Send to Brice</button><p class="status" id="status" role="status" aria-live="polite" tabindex="-1"></p><p class="form-note">Your details are used to reply to this proposal. <a href="/privacy.html#website">Privacy</a>.</p>
 </form></div></main>
-<footer class="shell"><span>FORM · Speed &amp; Form</span><span>Miami and beyond</span></footer>
-<script>(function(){"use strict";var BRICE="brice@speedandform.com",form=document.getElementById("house-form"),send=document.getElementById("send"),status=document.getElementById("status");function esc(s){return String(s).replace(/[<>&"]/g,"")}function fallback(d){var b=["Name: "+d.name,"Email: "+d.email,"",d.message].filter(Boolean).join("\n");var href="mailto:"+BRICE+"?subject="+encodeURIComponent("FORM House · "+d.name)+"&body="+encodeURIComponent(b);status.innerHTML='It did not send. <a href="'+href+'">Send it as an email instead</a>.';send.disabled=false;send.textContent="Try again →"}form.addEventListener("submit",function(e){e.preventDefault();if(form._honey.value)return;var d={name:form.name.value.trim(),email:form.email.value.trim(),message:form.message.value.trim()};if(!d.name||!d.email||!d.message||!form.email.checkValidity()){status.textContent="Add your name, a valid email and a message.";return}send.disabled=true;send.textContent="Sending…";status.textContent="";var fd=new FormData();fd.append("_subject","FORM House · "+d.name);fd.append("_template","table");fd.append("_captcha","false");fd.append("_replyto",d.email);fd.append("Name",d.name);fd.append("Email",d.email);fd.append("Message",d.message);fd.append("Page",location.href);fetch("https://formsubmit.co/ajax/"+encodeURIComponent(send.getAttribute("data-send-to")||BRICE),{method:"POST",body:fd,headers:{Accept:"application/json"}}).then(function(r){return r.json()}).then(function(j){if(String(j&&j.success)!=="true")return fallback(d);form.innerHTML='<div class="done"><h2>Sent.</h2><p>It went straight to Brice. He will reply to '+esc(d.email)+'.</p></div>'}).catch(function(){fallback(d)})})})();</script></body></html>
+<footer class="shell"><span>Speed &amp; Form · Miami</span><nav class="foot-links" aria-label="FORM House"><a href="/form-house">The vision</a><a href="/form-house/mornings/">The morning</a><a href="/privacy.html#website">Privacy</a></nav></footer>
+<script src="/js/source-continuity.js?v=20261004-journey"></script>
+<script defer src="/js/conversation-inquiry.js?v=20261004-journey"></script>
+</body></html>

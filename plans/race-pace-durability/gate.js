@@ -35,7 +35,12 @@ function pageSize() {
 
 function purchase() {
   if (!available) return;
-  window.location.assign(PURCHASE_URL);
+  const target = new URL(PURCHASE_URL, location.origin);
+  const source = typeof window.rpdSource === 'function' ? window.rpdSource() : {};
+  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'ref'].forEach(key => {
+    if (source[key]) target.searchParams.set(key, source[key]);
+  });
+  window.location.assign(target.pathname + target.search);
 }
 
 function baseClick(direction, times) {
@@ -138,9 +143,9 @@ function installStyles() {
     td.rpd-locked-cell{padding:0!important;background:
       repeating-linear-gradient(135deg,rgba(201,255,54,.035) 0,rgba(201,255,54,.035) 8px,transparent 8px,transparent 16px)!important}
     .rpd-lock,.rpd-mobile-lock{width:100%;min-height:100%;border:0;background:transparent;color:inherit;text-align:left;padding:18px;display:flex;flex-direction:column;justify-content:center;gap:5px}
-    .rpd-lock span,.rpd-mobile-lock span{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--lime)}
+    .rpd-lock span,.rpd-mobile-lock span{font-family:var(--mono);font-size:12px;letter-spacing:.07em;color:var(--lime)}
     .rpd-lock strong,.rpd-mobile-lock strong{font-family:var(--serif);font-size:20px;font-weight:400;line-height:1.05}
-    .rpd-lock em,.rpd-mobile-lock em{font-family:var(--mono);font-size:9px;font-style:normal;letter-spacing:.08em;color:var(--muted)}
+    .rpd-lock em,.rpd-mobile-lock em{font-family:var(--sans);font-size:14px;font-style:normal;letter-spacing:0;color:#b7bfbd}
     .rpd-lock-quiet{min-height:64px}
     .rpd-mobile-lock{min-height:340px;padding:28px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:repeating-linear-gradient(135deg,rgba(201,255,54,.035) 0,rgba(201,255,54,.035) 10px,transparent 10px,transparent 20px)}
     .rpd-mobile-lock strong{font-size:30px}
@@ -161,7 +166,8 @@ async function init() {
   $$('#pdf,#pdfMobile,#rpdPreviewNote').forEach(node => { node.hidden = false; });
   document.documentElement.dataset.rpdEntitled = String(entitled);
   if (entitled) {
-    $('.rpd-mobile-account').hidden = true;
+    const mobileAccount = $('.rpd-mobile-account');
+    if (mobileAccount) mobileAccount.hidden = true;
     const destination = access.signedIn ? accountDestination(access) : { href: '/plans/race-pace-durability/support/', label: 'Plan details' };
     $$('#pdf,#pdfMobile').forEach(link => {
       link.textContent = `${destination.label} →`;
@@ -173,7 +179,17 @@ async function init() {
       note.innerHTML = '<h3>All 15 weeks are available.</h3><p></p>';
       note.querySelector('p').textContent = access.mode === 'purchased' ? 'Your full web plan is ready to read. Use the week arrows to browse the training.' : 'This is the published plan. Individual paces and coach-authored changes remain in the athlete’s assigned training.';
       if (access.mode === 'purchased') {
+        note.insertAdjacentHTML('beforeend', '<div class="rpd-preview-links"><a href="/plans/race-pace-durability/access/">Restore access on another device →</a></div>');
         note.insertAdjacentHTML('beforeend', '<div class="rpd-print-choices"><strong>Print edition</strong><a href="/plans/race-pace-durability/print.html?theme=light#preview">Light / paper →</a><a href="/plans/race-pace-durability/print.html?theme=dark#preview">Dark / screen →</a></div>');
+        // Preserve the verified bearer reference when storage cannot remember it.
+        // Signed-in access continues to use the account, never another buyer's hint.
+        if (!access.signedIn && access.session_id) {
+          note.querySelectorAll('.rpd-print-choices a').forEach(link => {
+            const target = new URL(link.href, location.href);
+            target.searchParams.set('purchase_session', access.session_id);
+            link.href = target.toString();
+          });
+        }
       }
     }
   }

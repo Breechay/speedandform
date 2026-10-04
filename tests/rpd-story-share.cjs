@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const vm = require('node:vm');
 const root = path.resolve(__dirname, '..');
 const read = p => fs.readFileSync(path.join(root, p), 'utf8');
 let checks = 0;
@@ -22,16 +23,22 @@ lacks(checkout, 'coaching theory', 'retired coaching-theory copy');
 has(checkout, 'data-rpd-checkout');
 has(checkout, 'client_reference_id');
 
-// English explains shape, load and actual product without internal doctrine.
+// English explains the actual offer. Presentation wording may be refined;
+// price, preview, workload, delivery and separate coaching stay explicit.
 for (const phrase of [
-  'Build the ability to carry your race pace for 13.1 miles.',
-  'The structure behind the sessions.',
-  '5 continuous',
-  '12 after 4 easy',
+  'Race Pace<br>That Lasts.',
+  'Try Weeks 1–4 free',
+  'one-time payment',
+  '$79',
+  'Get the full 15 weeks',
+  '45 miles a week',
+  'six running days',
+  '12-mile long run',
+  '60 miles a week',
   '18-mile long run',
-  'Weeks 1–4 are free.',
-  'All 15 weeks are $79.',
-  'The web plan stands on its own.',
+  'light and dark print editions',
+  'Restore access',
+  'FORM app access are separate',
   'Individual coaching'
 ]) has(en, phrase);
 lacks(en, 'You do not need to know the training theory');
@@ -55,19 +62,27 @@ for (const phrase of [
 lacks(es, 'No necesitas conocer toda la teoría del entrenamiento');
 has(es, 'hreflang="en"');
 
-// Week sharing is presentation-only: it cannot carry or manufacture entitlement.
-has(viewer, 'Share Week');
+// Week sharing is a visible, presentation-only control. It cannot carry or
+// manufacture entitlement, even if an access callback appears in the address.
+for(const id of ['share','shareMobile']) ok(new RegExp('<button[^>]*id="'+id+'"[^>]*>Share week</button>').test(viewer), id+' is an accessible share button');
 has(viewer, '/plans/race-pace-durability/week-share.js');
 has(share, "url.searchParams.set('week'");
-has(share, "url.searchParams.delete('purchase_session')");
-has(share, "url.searchParams.delete('state')");
 lacks(share, 'resolvePlanAccess');
 lacks(share, 'rpd_purchase_session');
 lacks(share, 'localStorage');
-lacks(share, 'session_id');
+lacks(share, 'fetch(');
 lacks(share, 'button.click()');
 lacks(share, 'waitForRange');
 lacks(share, 'openRequestedWeek');
+for(const [visible,requested,expected] of [['Week 03',9,3],['Weeks 10–13',12,12],['Week 05',5,5]]){
+ const buttons={share:{},shareMobile:{}};
+ const context={URL,URLSearchParams,Number,location:{href:'https://speedandform.com/plans/race-pace-durability/?purchase_session=cs_synthetic&session_id=cs_synthetic&state=private&token=private&code=private&access_token=private&refresh_token=private&utm_source=synthetic&week='+requested,search:'?week='+requested},document:{getElementById:id=>id==='range'?{textContent:visible}:buttons[id]||null,addEventListener(){}}};
+ vm.createContext(context);vm.runInContext(share,context);
+ const result=new URL(vm.runInContext('shareUrl()',context));
+ ok(result.searchParams.get('week')===String(expected),'Sharing follows the visible week, not an unauthorized requested week');
+ for(const key of ['purchase_session','session_id','state','token','code','access_token','refresh_token'])ok(!result.searchParams.has(key),'Shared URL excludes private '+key);
+ ok(result.searchParams.get('utm_source')==='synthetic','Public share preserves campaign source');
+}
 
 // The renderer stays date-derived. The access gate is the one owner that opens
 // a shared week after identity/entitlement has resolved.
@@ -79,7 +94,10 @@ has(gate, 'function openSharedWeek()');
 has(gate, 'openSharedWeek();');
 has(gate, 'baseClick(delta > 0 ? 1 : -1, Math.abs(delta));');
 has(gate, 'rpd-mobile-lock');
-has(gate, 'Full plan · $79');
+has(gate, 'Unlock full 15 weeks · $79');
+has(gate, 'const FREE_THROUGH = 4');
+has(gate, 'if (entitled) return;');
+has(gate, "cell.dataset.rpdLocked === 'true'");
 lacks(gate, 'SYNTHETIC');
 
 // Commercial truth remains unchanged.

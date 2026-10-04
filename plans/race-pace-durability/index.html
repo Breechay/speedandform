@@ -55,15 +55,18 @@
 }
 </script>
 <link rel="stylesheet" href="/plans/race-pace-durability/styles.css" />
-<link rel="stylesheet" href="/plans/race-pace-durability/access.css" />
+<meta name="referrer" content="no-referrer">
+<link rel="stylesheet" href="/plans/race-pace-durability/access.css?v=20261004-journey" />
+<link rel="stylesheet" href="/css/sf-brand.css?v=20261001">
 </head>
 <body data-rpd-surface="preview">
 <div class="page-shell">
   <div class="atmosphere" aria-hidden="true"><span></span><span></span><span></span></div>
 
   <header class="topbar">
-    <div class="brand"><a href="/" style="color:inherit;text-decoration:none">FORM<span>.</span></a></div>
+    <div class="brand"><a class=" sf-brand" href="/" aria-label="Speed and Form home"></a></div>
     <div class="actions">
+      <button class="btn" id="share" type="button">Share week</button>
       <a class="btn lime" id="pdf" hidden href="/plans/race-pace-durability/support/">↗ &nbsp; Unlock full 15 weeks · $79</a>
     </div>
   </header>
@@ -76,6 +79,7 @@
         <div class="eyebrow" id="eyebrow"></div>
       </div>
       <div class="mobile-hero-actions">
+        <button class="btn" id="shareMobile" type="button">Share week</button>
         <a class="btn lime" id="pdfMobile" hidden href="/plans/race-pace-durability/support/">↗ &nbsp; Unlock full 15 weeks · $79</a>
       </div>
     </section>
@@ -103,6 +107,11 @@
         </div>
       </div>
     </section>
+    <aside class="rpd-preview-note" id="rpdPreviewNote" hidden aria-label="Plan access">
+      <h3>The first four weeks are yours to try.</h3>
+      <p>This plan starts around 45 miles a week, with six running days and a 12-mile long run. Use race and threshold paces supported by your recent training.</p>
+      <div class="rpd-preview-links"><a href="/plans/race-pace-durability/support/">About the full plan →</a><a href="/plans/race-pace-durability/access/">Already purchased? Restore access →</a></div>
+    </aside>
   </main>
 </div>
 
@@ -115,9 +124,10 @@
   <button data-state="complete">Complete</button>
   <button data-state="auto">Auto</button>
 </div>
-<script src="/js/rpd-measurement.js"></script>
+<script src="/js/source-continuity.js?v=20261004-journey"></script>
+<script src="/js/rpd-measurement.js?v=20261004-privacy"></script>
 <script type="module" src="/plans/race-pace-durability/plan.js"></script>
-<script type="module" src="/plans/race-pace-durability/gate.js"></script>
+<script type="module" src="/plans/race-pace-durability/gate.js?v=20261004-journey"></script>
 <script type="module" src="/plans/race-pace-durability/week-share.js"></script>
 <script type="module" src="/private/account-navigation.js"></script>
 </body>

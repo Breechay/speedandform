@@ -2,9 +2,9 @@
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0d0f0e"><meta name="robots" content="index,follow,max-image-preview:large">
 <title>Running Form Video Analysis | FORM Analysis · Speed & Form</title>
-<meta name="description" content="Send Brice your running for a focused one-time video review. FORM Analysis · $149.">
+<meta name="description" content="A focused remote running video review with Brice. Recorded explanation, priorities and a practice outline. FORM Analysis · $149.">
 <link rel="canonical" href="https://speedandform.com/analysis/"><link rel="icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preload" as="font" type="font/woff2" href="/assets/site/fonts/inter-tight-latin-variable.woff2" crossorigin><link rel="stylesheet" href="/css/sf-brand.css?v=20261002">
+<link rel="preload" as="font" type="font/woff2" href="/assets/site/fonts/inter-tight-latin-variable.woff2" crossorigin><link rel="stylesheet" href="/css/sf-brand.css?v=20261001">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"FORM Analysis","serviceType":"Running video analysis","provider":{"@type":"Person","name":"Brice Ikouebe"},"areaServed":["Miami","Online"],"offers":{"@type":"Offer","price":"149","priceCurrency":"USD"}}</script>
 <style>
 @font-face{font-family:"Inter Tight";src:url("/assets/site/fonts/inter-tight-latin-variable.woff2") format("woff2");font-weight:100 900;font-display:swap}
@@ -23,21 +23,23 @@ footer{background:var(--black);color:#777f79}.foot{min-height:52px;display:flex;
 @media(prefers-reduced-motion:no-preference){.intro>*{animation:rise .72s var(--ease) both}.intro h1{animation-delay:.08s}.intro p{animation-delay:.16s}.form-side form{animation:rise .72s .18s var(--ease) both}@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}}
 
 .upload{margin:4px 0 34px}.upload-label{display:block;color:var(--muted);margin-bottom:10px}.upload-row{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.upload-row input{position:absolute;opacity:0;pointer-events:none}.upload-action{font-size:20px;font-weight:520;cursor:pointer}.upload-meta{font:500 9px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:right}.file-list{margin-top:12px;color:var(--muted);font-size:14px;line-height:1.55}.file-list:empty{display:none}
-</style><link rel="stylesheet" href="/css/public-finish.css?v=20261004-finish"></head><body class="sf-conversation">
+</style><link rel="stylesheet" href="/css/public-finish.css?v=20261004-finish"><link rel="stylesheet" href="/css/commercial-journey.css?v=20261004-doors"></head><body class="sf-conversation sf-service-door sf-analysis-door">
 <div class="top-wrap"><header class="shell top"><a class="sf-brand" href="/" aria-label="Speed and Form home"></a><a href="/">Home</a></header></div>
 <main>
-<section class="intro"><div class="eyebrow">FORM Analysis · $149</div><h1>Send me videos of your running.</h1><p>I’ll show you what I see and what I’d work on next.</p></section>
-<section class="form-side">
+<section class="intro"><figure class="intro-image"><img src="/assets/home/practice/coaching-track.webp" width="1982" height="1248" alt="Brice with runners during track practice" fetchpriority="high"></figure><div class="intro-copy"><div class="eyebrow">FORM Analysis · Remote review · $149</div><h1>Send me videos of your running.</h1><p>I’ll show you what I see and what I’d work on next.</p><a class="intro-action" href="#inquire">Tell me what you want a second look at&nbsp;→</a></div></section>
+<section class="form-side" id="inquire" aria-labelledby="inquiry-title">
 <form id="analysis-form" action="https://formsubmit.co/33a5c7969281803124c58268d7ae6188" method="POST" enctype="multipart/form-data">
-<input type="hidden" name="_subject" value="FORM Analysis inquiry"><input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="https://speedandform.com/analysis/?sent=1"><input type="hidden" name="_url" value="https://speedandform.com/analysis/">
-<label class="field"><span>Name</span><input name="name" autocomplete="name" required></label>
-<label class="field"><span>Email</span><input id="analysis-email" name="email" type="email" autocomplete="email" required></label>
-<label class="field"><span>What do you want me to look at?</span><textarea name="message" required></textarea></label>
-<div class="upload"><div class="upload-label"><span>Video clips · optional</span></div><label class="upload-row" for="analysis-video"><input id="analysis-video" type="file" name="attachment" accept="video/*" multiple><span class="upload-action">Add video clips +</span><span class="upload-meta">10 MB total</span></label><div class="file-list" id="file-list" aria-live="polite"></div></div>
+<div class="inquiry-lead"><div class="eyebrow">Start a conversation</div><h2 id="inquiry-title">What’s on your mind?</h2><p>I’ll reply by email to confirm the question and footage before payment.</p><details class="scope"><summary>What the review includes</summary><ul><li>A 10–15-minute recorded explanation.</li><li>Two or three priorities and a two-week practice outline.</li><li>One email clarification within seven days.</li></ul><p>The review uses up to four 30-second clips and two weeks of training. Delivery is within five business days of payment and usable materials.</p></details></div>
+<input type="hidden" name="_subject" value="FORM Analysis inquiry"><input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_url" value="https://speedandform.com/analysis/">
+<label class="field"><span>Name</span><input id="analysis-name" name="name" autocomplete="name" maxlength="120" required></label>
+<label class="field"><span>Email</span><input id="analysis-email" name="email" type="email" autocomplete="email" maxlength="254" required></label>
+<label class="field"><span>What do you want me to look at?</span><textarea id="analysis-message" name="message" maxlength="2400" required></textarea></label>
+<div class="upload"><div class="upload-label"><span>Video clips · optional</span></div><label class="upload-row" for="analysis-video"><input id="analysis-video" type="file" name="attachment" accept="video/*" multiple aria-describedby="upload-hint"><span class="upload-action">Add video clips +</span><span class="upload-meta">10 MB total</span></label><div class="file-list" id="file-list" aria-live="polite"></div><p class="upload-hint" id="upload-hint">Larger videos? Send a link in your message, or we can arrange them by email.</p></div>
 <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off">
-<button class="send" id="send" type="submit">Send</button><p class="status" id="status" role="status" aria-live="polite"></p>
+<button class="send" id="send" type="submit">Send to Brice</button><p class="status" id="status" role="status" aria-live="polite" tabindex="-1"></p><p class="form-note">Your details are used to reply to this inquiry. Please leave out medical records. <a href="/privacy.html#website">Privacy</a>.</p><p class="direct">Prefer email? <a href="mailto:brice@speedandform.com?subject=FORM%20Analysis">Write to Brice directly</a>.</p>
 </form>
 </section></main>
-<footer><div class="shell foot"><span>© 2026 Speed &amp; Form</span><a href="/privacy.html#website">Privacy</a></div></footer>
-<script>(function(){"use strict";var form=document.getElementById("analysis-form"),file=document.getElementById("analysis-video"),list=document.getElementById("file-list"),status=document.getElementById("status"),email=document.getElementById("analysis-email");if(new URLSearchParams(location.search).get("sent")==="1"){form.innerHTML='<div class="done"><h2>Sent.</h2><p>I’ll reply by email.</p></div>';history.replaceState(null,"","/analysis/");return}function showFiles(){var fs=Array.from(file.files||[]);list.textContent=fs.map(function(f){return f.name}).join(" · ")}file.addEventListener("change",showFiles);form.addEventListener("submit",function(e){var files=Array.from(file.files||[]),total=files.reduce(function(n,f){return n+f.size},0);if(total>10*1024*1024){e.preventDefault();status.textContent="Video clips need to stay under 10 MB total.";return}var old=form.querySelector('input[name="_replyto"]');if(old)old.remove();var reply=document.createElement("input");reply.type="hidden";reply.name="_replyto";reply.value=email.value;form.appendChild(reply);document.getElementById("send").disabled=true;document.getElementById("send").textContent="Sending…"})})();</script>
+<footer><div class="shell foot"><span>© 2026 Speed &amp; Form</span><nav class="foot-links" aria-label="Explore the practice"><a href="/coaching/miami/">Run Development</a><a href="/plans/">Training plans</a><a href="/privacy.html#website">Privacy</a></nav></div></footer>
+<script src="/js/source-continuity.js?v=20261004-journey"></script>
+<script defer src="/js/analysis-inquiry.js?v=20261004-doors"></script>
 </body></html>

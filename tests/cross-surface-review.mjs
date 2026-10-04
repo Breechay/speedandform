@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
 
 const read = (path) => fs.readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const graphite = read('private/graphite.css');
@@ -44,12 +45,14 @@ has(rpdAccessStyles, /\.circle\{width:44px;height:44px\}/, 'RPD mobile week arro
 
 has(rpdSource, /Your training has not changed\. Try again or open your account\. There is no need to make another payment\./, 'RPD failed verification preserves access truth');
 has(rpdSource, /id="rpdRetry"/, 'RPD failed verification has retry');
-has(restore, /if \(!response\.ok\) \{\n    throw new Error\('Purchase lookup unavailable'\);/, 'restore transport failure is not treated as no purchase');
-has(restore, /Nothing was charged or changed/, 'purchase restore failure does not imply payment or access change');
-lacks(restore, /Sending a secure link/, 'restore flow uses plain sign-in language');
-lacks(restorePage, /secure sign-in link/i, 'restore page uses plain sign-in language');
+// Execute the recovery contract instead of pinning its implementation to an
+// obsolete exception message and whitespace. All SDK/payment traffic is mocked.
+const recovery = execFileSync(process.execPath, ['tests/rpd-purchase-state.cjs'], { cwd: new URL('../', import.meta.url), encoding: 'utf8' });
+has(recovery, /PASS: \d+ paid verification/, 'restore transport failure, unpaid results, explicit retry and unverified-access prevention pass behavior checks');
+has(restore, /cache: 'no-store', signal: controller\.signal/, 'restore verification is bounded and not cached');
+has(restorePage, /Restoring access does not charge you again\./, 'purchase restore does not imply another payment');
 has(restorePage, />Send sign-in link</, 'restore CTA says what it does');
-has(restorePage, /It matches your email<br>to the purchase\./, 'restore copy names the actual email-to-purchase proof');
+has(restorePage, /email used for the purchase[\s\S]*?verifies that address before opening the paid weeks/, 'restore copy names the actual email-to-purchase proof');
 lacks(restorePage, /proves the purchase<br>belongs to you/i, 'restore copy does not overstate identity proof');
 
 for (const [name, page] of [['athlete',athletePage],['coach',coachPage],['record',recordPage],['callback',callbackPage]]) {

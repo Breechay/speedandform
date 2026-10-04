@@ -52,13 +52,14 @@ try:
    ctx.route('**/*',route);page=ctx.new_page();page.on('pageerror',lambda e:report['errors'].append(str(e)))
    return ctx,page,seen
 
-  # Offer pages: new story, readable layout, no runtime replacement.
+  # Offer pages: factual promise and workload remain visible after refinements.
   for url,label,phrases in [
-   ('/plans/race-pace-durability/support/','English',['Build the ability to carry your race pace for 13.1 miles.','The structure behind the sessions.','12 after 4 easy']),
+   ('/plans/race-pace-durability/support/','English',['Race Pace That Lasts.','Get the full 15 weeks','Try Weeks 1–4 free','one-time payment','45 miles a week','six running days','12-mile long run','60 miles a week','18-mile long run','light and dark print editions','Individual coaching and FORM app access are separate']),
    ('/es/plans/race-pace-durability/','Spanish',['Desarrolla la capacidad de sostener tu ritmo de carrera durante 13.1 millas.','La estructura detrás de las sesiones.','12 después de 4 fáciles'])]:
    for width in [390,1440]:
     ctx,page,_=make('guest',width);page.goto(BASE+url);page.evaluate('document.fonts.ready')
-    body=page.locator('body').inner_text()
+    if label=='English':page.get_by_text('Does the $79 include coaching or the app?',exact=True).click()
+    body=' '.join(page.locator('body').inner_text().split())
     for phrase in phrases:check(f'{label} {width}: {phrase}',phrase in body)
     check(f'{label} {width}: retired theory copy absent','coaching theory' not in body.lower() and 'teoría del entrenamiento' not in body.lower())
     check(f'{label} {width}: no overflow',page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
@@ -69,7 +70,7 @@ try:
   # A guest can receive a Week 5 link, but only sees the locked placeholder.
   ctx,page,seen=make('guest');page.goto(BASE+'/plans/race-pace-durability/?week=5');page.wait_for_function("document.documentElement.dataset.rpdEntitled==='false'");page.wait_for_function("document.getElementById('range').textContent.includes('05')")
   check('Guest shared Week 5 opens Week 5 view','05 / 15' in page.locator('#range').inner_text())
-  check('Guest Week 5 remains locked','Full plan · $79' in page.locator('#curSheet').inner_text())
+  check('Guest Week 5 remains locked',page.locator('#curSheet .rpd-mobile-lock').is_visible() and 'Unlock full 15 weeks · $79' in page.locator('#curSheet').inner_text())
   check('Guest Week 5 contains no authored prescription','SYNTHETIC W5' not in page.locator('#curSheet').inner_text())
   check('Week query did not change entitlement API shape',all(set(body)<={'p_include_plan'} for path,body in seen if path.endswith('rpd_account_access')))
   page.screenshot(path=str(OUT/'guest-week5-390.png'));ctx.close()

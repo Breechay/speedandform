@@ -23,8 +23,8 @@ function currentShareWeek() {
 
 function shareUrl() {
   const url = new URL(location.href);
-  url.searchParams.delete('purchase_session');
-  url.searchParams.delete('state');
+  // Shared views name a week; authentication references stay on this device.
+  ['purchase_session', 'session_id', 'state', 'token', 'code', 'access_token', 'refresh_token'].forEach(key => url.searchParams.delete(key));
   url.searchParams.set('week', String(currentShareWeek()));
   return url.toString();
 }

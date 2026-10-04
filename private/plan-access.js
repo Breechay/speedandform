@@ -111,12 +111,19 @@ async function resolve(includePlan) {
     if (sessionId) {
       const data = await post('/functions/v1/rpd-entitlement', { action: includePlan ? 'plan' : 'verify', session_id: sessionId });
       if (!data.ok || (!includePlan && data.status !== 'paid')) throw new AccessError();
-      result = { entitled: true, mode: 'purchased', signedIn: false, workspace: 'account', plan: data.plan || null };
-      try { localStorage.setItem('rpd_purchase_session', sessionId); } catch {}
+      result = { entitled: true, mode: 'purchased', signedIn: false, workspace: 'account', session_id: sessionId, plan: data.plan || null };
+      let remembered = false;
+      try {
+        localStorage.setItem('rpd_purchase_session', sessionId);
+        remembered = localStorage.getItem('rpd_purchase_session') === sessionId;
+      } catch {}
       const clean = new URL(location.href);
-      if (clean.searchParams.has('purchase_session')) {
+      // Remove the private purchase reference only after another usable hint exists.
+      // Blocked storage must not erase access on reload or print navigation.
+      if (remembered && clean.searchParams.has('purchase_session')) {
         clean.searchParams.delete('purchase_session');
         history.replaceState(history.state, '', clean.pathname + clean.search + clean.hash);
+        document.dispatchEvent(new CustomEvent('sf:analytics-safe'));
       }
     } else result = { entitled: false, mode: 'preview', signedIn: false, workspace: 'account', plan: null };
   }
