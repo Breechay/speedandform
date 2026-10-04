@@ -10,7 +10,9 @@ proposal with a photographic opening and native disclosures. No date, property,
 access, price or recurring program is confirmed.
 
 - [x] Source and full static build checked; no changes to coaching or athlete data.
-- [ ] Chromium/WebKit release checks, publication and live disclosure/inquiry check.
+- [x] Chromium/WebKit release workflow `37225106823` and ecosystem closure passed for `8d4538174171126e54c49df9ee17354000ac6d89`. Responsive routes, 200% text, concept status and inquiry destination passed. Screenshot review corrected the mobile host-heading line breaks.
+- [x] PR #210 merged as `09917e1d98918ce85ea71910f72e693e3e62280e`, tree `a1ea6f3cd1c2f89fc67a8e7770e547dee9620758`. Clean source archive published in Netlify `6ac29e1a7192d4860e3d0df5` on October 4. Actual production browser verified the photograph/new concept, pointer expansion and keyboard collapse of host details, and the hosting inquiry destination. No form was submitted.
+- Release note: the first upload was rejected during repository preparation because it included a worktree pointer. Exporting the exact merged Git tree resolved packaging; the failed upload never replaced production.
 - [ ] Physical-phone review; real Arrival / Return photography.
 - Next: walk through access, showers, food, staffing and costs with a named host.
 
