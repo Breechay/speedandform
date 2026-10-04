@@ -1,6 +1,6 @@
 /* A study update must review both acquisition projections before release. */
 const assert=require('node:assert/strict'),fs=require('node:fs'),crypto=require('node:crypto');
-const {snapshot:s,renderHomeStudy,coachingExample}=require('../scripts/public-study-preview.cjs');
+const {snapshot:s,renderHomeEvidence,coachingExample}=require('../scripts/public-study-preview.cjs');
 const source=fs.readFileSync(s.source_path,'utf8');
 assert.equal(crypto.createHash('sha256').update(source).digest('hex'),s.source_sha256,'Study changed: review latest completed ask, conclusion, race results and both public previews. Update the approved projection and source hash together.');
 assert.ok(source.includes('id="'+s.source_url.split('#')[1]+'"'),'Recorded source anchor exists');
@@ -14,8 +14,8 @@ for(const a of s.athletes){
  assert.ok(Math.abs(seconds(a.previous_half_net_time)/13.1094-seconds(a.previous_half_pace))<1,'Prior race pace agrees with half-marathon time');
 }
 const home=fs.readFileSync('index.html','utf8'),run=fs.readFileSync('coaching/miami/index.html','utf8');
-assert.ok(home.includes(renderHomeStudy()),'Homepage uses the approved current projection');
-const escaped=coachingExample().replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-assert.ok(run.includes(escaped),'Running offer uses the same approved current conclusion');
-assert.ok(home.includes('A shorter training effort is not a new half-marathon result'),'Comparison distinguishes training and racing');
+assert.ok(home.includes(renderHomeEvidence()),'Homepage uses the approved current projection');
+// Coaching now enters through the homepage inquiry; its retired URL is a redirect.
+assert.match(fs.readFileSync('netlify.toml','utf8'),/from = "\/coaching\/miami"[\s\S]*?to = "\/#begin"/);
+assert.ok(home.includes('A training milestone. Not a race prediction.'));
 console.log('PASS: public study/current homepage and running example remain in sync; future asks and prior race baselines stay distinct.');

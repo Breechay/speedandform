@@ -57,6 +57,6 @@ assert.equal(new Set(schema['@graph'].map(n => n['@id'])).size, 4);
 assert.deepEqual(schema['@graph'].map(n => n['@type']), ['Organization', 'WebSite', 'WebPage', 'Service']);
 assert.equal(schema['@graph'][2].primaryImageOfPage.url, imageURL.href);
 assert.ok(!/aggregateRating|reviewCount|streetAddress/.test(scripts[0][1]));
-assert.match(html, /class="home-hero-photo"/);
+assert.match(html, /class="home-hero-media"/);
 assert.match(html, /<script defer src="\/js\/coaching-measurement.js\?v=20260930"><\/script>/);
 console.log('PASS: unique search/OG/Twitter tags, canonical, schema, static hero photograph and versioned measurement, JPEG 1200x630 and size.');

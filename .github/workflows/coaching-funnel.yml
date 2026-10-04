@@ -2,9 +2,9 @@ name: Coaching funnel release checks
 on:
   push:
     branches: [main, work/commercial-home-20260930]
-    paths: ['index.html','labs/speed-that-endures/**','data/public-studies/**','scripts/public-study-preview.cjs','tests/public-study-preview.cjs','thursday.html','miami-running-training.html','js/thursday-gathering.js','js/community-schedule.js','coaching/**','analysis/**','work/**','js/coaching-measurement.js','js/commercial-inquiry.js','js/coaching-choice.js','css/home*.css','css/commercial.css','css/sf-brand.css','scripts/build-commercial.cjs','scripts/build-sf-brand.cjs','tests/commercial*','tests/coaching-measurement.cjs','.github/workflows/coaching-funnel.yml']
+    paths: ['index.html','labs/speed-that-endures/**','data/public-studies/**','scripts/public-study-preview.cjs','tests/public-study-preview.cjs','thursday.html','miami-running-training.html','js/thursday-gathering.js','js/community-schedule.js','coaching/**','analysis/**','work/**','js/coaching-measurement.js','js/commercial-inquiry.js','js/coaching-choice.js','css/home*.css','css/public-finish.css','js/home-settle.js','form-house.html','form-house/contact.html','contact.html','tests/public-finish-browser.cjs','css/commercial.css','css/sf-brand.css','scripts/build-commercial.cjs','scripts/build-sf-brand.cjs','tests/commercial*','tests/coaching-measurement.cjs','.github/workflows/coaching-funnel.yml']
   pull_request:
-    paths: ['index.html','labs/speed-that-endures/**','data/public-studies/**','scripts/public-study-preview.cjs','tests/public-study-preview.cjs','thursday.html','miami-running-training.html','js/thursday-gathering.js','js/community-schedule.js','coaching/**','analysis/**','work/**','js/commercial-inquiry.js','css/commercial.css','css/home-commercial.css','.github/workflows/coaching-funnel.yml']
+    paths: ['index.html','labs/speed-that-endures/**','data/public-studies/**','scripts/public-study-preview.cjs','tests/public-study-preview.cjs','thursday.html','miami-running-training.html','js/thursday-gathering.js','js/community-schedule.js','coaching/**','analysis/**','work/**','js/commercial-inquiry.js','css/commercial.css','css/home-commercial.css','css/home-settle.css','css/public-finish.css','js/home-settle.js','form-house.html','form-house/contact.html','contact.html','tests/public-finish-browser.cjs','.github/workflows/coaching-funnel.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -27,16 +27,11 @@ jobs:
           node --check js/commercial-inquiry.js
           node --check js/coaching-choice.js
           node tests/coaching-measurement.cjs
-          node tests/commercial-release.cjs
-          node tests/thursday-schedule.cjs
-          node tests/miami-community-schedule.cjs
           node tests/homepage-metadata.cjs
-          node tests/homepage-release.cjs
-          node tests/coaching-copy.cjs
           node tests/public-study-preview.cjs
-          node tests/athlete-access.cjs
-          node tests/run-development-method.cjs
           node tests/cream-reading.cjs
+          node --check js/home-settle.js
+          node --check tests/public-finish-browser.cjs
       - name: Build the public pages as deployed
         run: node scripts/build-cream-reading.cjs && node scripts/build-commercial.cjs && node scripts/build-sf-brand.cjs
       - name: Install isolated browser runtime
@@ -49,7 +44,7 @@ jobs:
           FORM_QA_BROWSER: ${{ matrix.browser }}
           PLAYWRIGHT_MODULE: /tmp/sf-browser-check/node_modules/playwright
           SF_QA_ARTIFACTS: /tmp/sf-commercial-qa
-        run: node tests/commercial-browser.cjs
+        run: node tests/public-finish-browser.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

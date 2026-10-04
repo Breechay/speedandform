@@ -1,5 +1,16 @@
 # FORM: current state and next actions
 
+## October 4 — Public finish against THE WELL / Continuum
+
+Owner reopened the public finish for a full-fold refinement. [Audit and release receipt](../audits/PUBLIC-FINISH-20261004.md) records scope, resolved issues and remaining photography/device work.
+
+- [x] Home, Thursday, FORM House and the inquiry doors refined within the current black/bone architecture.
+- [x] Hidden reveal screens, compressed heading leading, unstable factual counter, weak service hierarchy, tiny footer and 200% upload/heading overflow corrected.
+- [x] Current homepage evidence renderer connected to the approved public-study projection; source hash gate retained.
+- [x] Chromium/WebKit workflow `37207975859` passed for `743d3bf754f5b512805fc2f33685863aadbf98e7`: 48 route/width views per engine, 16 full-page captures, enlarged text and intercepted inquiry behavior.
+- [ ] Production promotion and actual live readback.
+- [ ] Real FORM House Arrival / Return photography; physical-phone review.
+
 ## October 1 - Adrian media attribution correction
 
 Brice identified the first hard-coded nine-frame “Baseline running study” strip on Adrian's public study as a different athlete. It is removed from the Adrian page and must not be reused as Adrian evidence. The separate lower Running-control field strip (S.media.fieldFrames) is retained; Brice confirmed that lower strip is Adrian. Machine-readable correction: [ADRIAN-MEDIA-CORRECTION-20261001.json](../studies/ADRIAN-MEDIA-CORRECTION-20261001.json).
