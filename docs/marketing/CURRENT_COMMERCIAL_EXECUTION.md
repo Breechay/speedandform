@@ -35,11 +35,25 @@ The homepage inquiry records its accepted private Console receipt. These service
 and contact forms retain the existing FormSubmit email relay and direct email
 fallback; their accepted relay response is not proof of email-client delivery.
 
-A current connected-account read found an existing Google plan Search campaign
-active. The historical “unlaunched” wording below is not its present state.
-Keyword relevance, a disapproved headline, actual purchase/lead goals and bounded
-spend controls need review before any additional test allocation is authorized.
-No ad-budget increase or new campaign launch is included in this site release.
+A later October 4 cross-stream handoff reports the existing Google plan Search
+campaign still live at the same $10/day Manual CPC budget, with the overly broad
+`race pace training` phrase keyword paused, higher-intent half-marathon-plan
+keywords and negative keywords added, and the policy-limited ~45 mi/week ad
+replaced/paused. The handoff also reports Team Vinchay – GA4 linked to Google Ads
+and `Team Vinchay – GA4 (web) purchase` configured as the active Purchase goal:
+Primary, counted Every time and available to the RPTL campaign. The currently
+available Windsor connector can return an older cached account snapshot on the
+trial plan and cannot be force-refreshed hourly, so do **not** repeat completed
+mutations merely because that cached read lags.
+
+Remaining RPTL gates are narrower: activate purchase-access email with a
+sending-only Resend credential plus the hosted Supabase secret/flag, run one
+controlled end-to-end purchase acceptance, verify campaign-specific
+Purchase-only optimization before any future automated bidding, then review fresh
+search/ad data after roughly 5–7 days or enough new clicks. The separate Miami Run
+Development Search campaign remains a later, paused build until a true accepted
+coaching-inquiry event is verified. No ad-budget increase or new campaign launch
+is authorized here.
 
 The private Operating Console owns the October revenue actions and current
 account observations. Commercial/opportunity monitoring now runs on a bounded
