@@ -2,9 +2,9 @@ name: Coaching funnel release checks
 on:
   push:
     branches: [main, work/commercial-home-20260930]
-    paths: ['index.html','labs/speed-that-endures/**','data/public-studies/**','scripts/public-study-preview.cjs','tests/public-study-preview.cjs','thursday.html','miami-running-training.html','js/thursday-gathering.js','js/community-schedule.js','coaching/**','analysis/**','work/**','js/coaching-measurement.js','js/commercial-inquiry.js','js/coaching-choice.js','css/home*.css','css/public-finish.css','js/home-settle.js','form-house.html','form-house/contact.html','contact.html','tests/public-finish-browser.cjs','css/commercial.css','css/sf-brand.css','scripts/build-commercial.cjs','scripts/build-sf-brand.cjs','tests/commercial*','tests/coaching-measurement.cjs','.github/workflows/coaching-funnel.yml']
+    paths: ['index.html','labs/speed-that-endures/**','data/public-studies/**','scripts/public-study-preview.cjs','tests/public-study-preview.cjs','thursday.html','miami-running-training.html','js/thursday-gathering.js','js/community-schedule.js','coaching/**','analysis/**','work/**','js/coaching-measurement.js','js/commercial-inquiry.js','js/coaching-choice.js','css/home*.css','css/public-finish.css','js/home-settle.js','form-house.html','form-house/contact.html','contact.html','form-house/mornings/**','plans/**','es/plans/race-pace-durability/**','private/plan-access.js','css/commercial-journey.css','css/form-morning.css','js/conversation-inquiry.js','js/analysis-inquiry.js','js/source-continuity.js','js/rpd-measurement.js','supabase/functions/stripe-rpd-webhook/**','supabase/migrations/20261004163816_rpd_purchase_access_email.sql','tests/rpd*','tests/conversation-journey-browser.cjs','tests/public-finish-browser.cjs','css/commercial.css','css/sf-brand.css','scripts/build-commercial.cjs','scripts/build-sf-brand.cjs','tests/commercial*','tests/coaching-measurement.cjs','.github/workflows/coaching-funnel.yml']
   pull_request:
-    paths: ['index.html','labs/speed-that-endures/**','data/public-studies/**','scripts/public-study-preview.cjs','tests/public-study-preview.cjs','thursday.html','miami-running-training.html','js/thursday-gathering.js','js/community-schedule.js','coaching/**','analysis/**','work/**','js/commercial-inquiry.js','css/commercial.css','css/home-commercial.css','css/home-settle.css','css/public-finish.css','js/home-settle.js','form-house.html','form-house/contact.html','contact.html','tests/public-finish-browser.cjs','.github/workflows/coaching-funnel.yml']
+    paths: ['index.html','labs/speed-that-endures/**','data/public-studies/**','scripts/public-study-preview.cjs','tests/public-study-preview.cjs','thursday.html','miami-running-training.html','js/thursday-gathering.js','js/community-schedule.js','coaching/**','analysis/**','work/**','js/commercial-inquiry.js','css/commercial.css','css/home-commercial.css','css/home-settle.css','css/public-finish.css','js/home-settle.js','form-house.html','form-house/contact.html','contact.html','form-house/mornings/**','plans/**','es/plans/race-pace-durability/**','private/plan-access.js','css/commercial-journey.css','css/form-morning.css','js/conversation-inquiry.js','js/analysis-inquiry.js','js/source-continuity.js','js/rpd-measurement.js','supabase/functions/stripe-rpd-webhook/**','supabase/migrations/20261004163816_rpd_purchase_access_email.sql','tests/rpd*','tests/conversation-journey-browser.cjs','tests/public-finish-browser.cjs','.github/workflows/coaching-funnel.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -32,6 +32,18 @@ jobs:
           node tests/cream-reading.cjs
           node --check js/home-settle.js
           node --check tests/public-finish-browser.cjs
+          node --check js/conversation-inquiry.js
+          node --check js/analysis-inquiry.js
+          node --check js/source-continuity.js
+          node --check js/rpd-measurement.js
+          node tests/rpd-purchase-state.cjs
+          node tests/rpd-attribution-privacy.cjs
+          node tests/rpd-purchase-email.cjs
+      - name: Private purchase-delivery SQL contracts
+        run: |
+          npm install --prefix /tmp/sf-email-db --no-audit --no-fund @electric-sql/pglite@0.3.14 stripe@22.6.0
+          SF_PGLITE_PATH=/tmp/sf-email-db/node_modules/@electric-sql/pglite/dist/index.js node tests/rpd-purchase-email-db.mjs
+          SF_STRIPE_PATH=/tmp/sf-email-db/node_modules/stripe/esm/stripe.esm.node.js node tests/rpd-webhook-signature.mjs
       - name: Build the public pages as deployed
         run: node scripts/build-cream-reading.cjs && node scripts/build-commercial.cjs && node scripts/build-sf-brand.cjs
       - name: Install isolated browser runtime
@@ -44,7 +56,10 @@ jobs:
           FORM_QA_BROWSER: ${{ matrix.browser }}
           PLAYWRIGHT_MODULE: /tmp/sf-browser-check/node_modules/playwright
           SF_QA_ARTIFACTS: /tmp/sf-commercial-qa
-        run: node tests/public-finish-browser.cjs
+        run: |
+          node tests/public-finish-browser.cjs
+          node tests/conversation-journey-browser.cjs
+          node tests/rpd-commercial-journey.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

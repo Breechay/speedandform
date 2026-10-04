@@ -1,11 +1,35 @@
 # Current Commercial Execution — canonical roadmap
 
-**Updated:** September 30, 2026
+**Updated:** October 4, 2026
 **Owner:** Brice / Speed & Form  
 
 > **September 17 coaching doctrine:** `docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md` is now required reading for Run Development acquisition and homepage work. Keep the offer facts and measurement contracts here; use the manifesto for coaching philosophy, voice and page sequencing. The Miami campaign landing page was not static through the full test, so later analysis must identify the landing revision when comparing session quality.
 
 **Instruction:** if Brice says only `continue`, take the first unblocked item below, execute it, record evidence, then keep moving. Do not wait on a human-only blocker if another useful item is available.
+
+## October 4 commercial journey refinement
+
+The current authored service doors, Plans shelf, FORM House concept and RPD
+purchase/access rooms are covered by [the commercial journey audit](../audits/COMMERCIAL-JOURNEYS-20261004.md).
+The calm black/bone direction, real practice photography and concise personal
+next steps carry across the flow. `/form-house/mornings/` is a one-off partner
+concept, not an announced event or venue partnership.
+
+Stripe product naming and Checkout appearance were aligned and read back. The
+purchase-access email source is prepared behind an explicit default-off gate;
+credential installation, controlled acceptance and activation are still required.
+See [the delivery contract](../publishing/RPD-PURCHASE-ACCESS-EMAIL.md).
+
+A current connected-account read found an existing Google plan Search campaign
+active. The historical “unlaunched” wording below is not its present state.
+Keyword relevance, a disapproved headline, actual purchase/lead goals and bounded
+spend controls need review before any additional test allocation is authorized.
+No ad-budget increase or new campaign launch is included in this site release.
+
+The private Operating Console owns the October revenue actions and current
+account observations. Commercial/opportunity monitoring now runs on a bounded
+schedule. New product and hotel ideas remain proposals until validated; no
+unavailable Forge delivery, clothing inventory or hospitality access is sold.
 
 ## September 30 commercial site update
 

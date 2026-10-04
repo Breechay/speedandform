@@ -13,7 +13,7 @@ export function showPlanError(error) {
   const host = document.getElementById('track') || document.getElementById('edition');
   if (host) {
     host.style.transform = 'none';
-    host.innerHTML = `<section class="rpd-access-message" role="status"><h2>${error?.code === 'sign-in' ? 'Sign in to check your access.' : 'We couldn’t check your access.'}</h2><p>Your training has not changed. Try again or open your account. There is no need to make another payment.</p><div><button type="button" class="btn" id="rpdRetry">Try again</button><a class="btn" href="/athlete/">Open account →</a></div></section>`;
+    host.innerHTML = `<section class="rpd-access-message" role="status"><h2>${error?.code === 'sign-in' ? 'Sign in to check your access.' : 'We couldn’t check your access.'}</h2><p>Your training has not changed. Try again or open your account. There is no need to make another payment.</p><div><button type="button" class="btn" id="rpdRetry">Try again</button><a class="btn" href="/plans/race-pace-durability/access/">Restore purchase →</a><a class="btn" href="/athlete/">Open account →</a></div></section>`;
     document.getElementById('rpdRetry').addEventListener('click', () => location.reload());
   }
   document.querySelectorAll('#prev,#next').forEach(button => { button.disabled = true; });

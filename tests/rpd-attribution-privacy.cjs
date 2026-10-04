@@ -1,0 +1,33 @@
+'use strict';
+// Locally evaluated scripts with synthetic URLs; no analytics SDK is executed.
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+let checks=0;
+const check=(value,message)=>{assert.ok(value,message);checks++;};
+function make({path='/plans/race-pace-durability/support/',query='',store=new Map(),blocked=false,dnt=false,gpc=false,referrer='',surface='offer'}={}){
+ const listeners={},scripts=[];const location={};
+ function navigate(value){const url=new URL(value,'https://speedandform.com');for(const key of ['href','origin','hostname','pathname','search','hash'])location[key]=url[key];}
+ navigate(path+query);
+ const storage={getItem:key=>{if(blocked)throw Error('Synthetic storage restriction');return store.get(key)||null;},setItem:(key,value)=>{if(blocked)throw Error('Synthetic storage restriction');store.set(key,String(value));}};
+ const document={referrer,body:{getAttribute:()=>surface},head:{appendChild:node=>scripts.push({src:node.src,page:location.href})},querySelector:()=>null,createElement:()=>({dataset:{}}),addEventListener:(name,fn)=>(listeners[name]||=[]).push(fn)};
+ const window={location,sessionStorage:storage,localStorage:storage,navigator:{doNotTrack:dnt?'1':'0',globalPrivacyControl:gpc}};
+ const context={window,document,URL,URLSearchParams,Date,Set,Object,console};vm.createContext(context);
+ const run=file=>vm.runInContext(fs.readFileSync(file,'utf8'),context);
+ run('js/source-continuity.js');run('js/rpd-measurement.js');
+ function click(value){const link={href:new URL(value,location.href).toString(),getAttribute:()=>value,hasAttribute:()=>false};const event={target:{closest:()=>link}};for(const fn of listeners.click||[])fn(event);return new URL(link.href);}
+ return{window,document,scripts,store,navigate,click,listeners,run};
+}
+const shared=new Map();let e=make({path:'/',query:'?utm_source=google&utm_medium=cpc&utm_campaign=october_plan&utm_content=proof',store:shared,surface:null});
+check(shared.get('sf-source:utm_source')==='google','Homepage uses current shared commercial source key');
+let target=e.click('/plans/');check(target.searchParams.get('utm_campaign')==='october_plan','Homepage campaign reaches Plans');
+e=make({path:'/plans/',query:target.search,store:shared,surface:null});target=e.click('/plans/race-pace-durability/support/');check(target.searchParams.get('utm_source')==='google','Plans continues the homepage campaign');
+e=make({query:target.search,store:shared});check(e.window.rpdSource().utm_campaign==='october_plan','RPD reads the same first-party campaign');
+e=make({query:'?utm_source=referral',store:shared});check(e.window.rpdSource().utm_source==='referral','Explicit landing source wins over prior source');check(shared.get('sf-source:utm_source')==='referral','New explicit source updates the shared store');
+for(const privacy of [{dnt:true},{gpc:true}]){e=make({query:'?utm_source=google&utm_campaign=private_choice',...privacy});check(e.scripts.length===0,'DNT/GPC suppress external analytics scripts');check(!e.window.rpdTrack,'DNT/GPC suppress analytics events');check(e.window.rpdSource().utm_source==='google','DNT/GPC retain explicit labels for first-party reconciliation');check(e.click('/plans/').searchParams.get('utm_campaign')==='private_choice','First-party navigation still works under DNT/GPC');}
+e=make({path:'/',query:'?utm_source=google&utm_campaign=no_storage',blocked:true,surface:null});target=e.click('/plans/');e=make({path:'/plans/',query:target.search,blocked:true,surface:null});target=e.click('/plans/race-pace-durability/support/');e=make({query:target.search,blocked:true});check(e.window.rpdSource().utm_campaign==='no_storage','Homepage→Plans→RPD works when source storage is blocked');
+const protectedLink=e.click('/plans/race-pace-durability/?purchase_session=cs_synthetic_fixture');check(!protectedLink.searchParams.has('utm_source'),'Campaign helper does not decorate private access links');check(protectedLink.searchParams.get('purchase_session')==='cs_synthetic_fixture','Private access reference remains functional');
+check(!e.click('/auth/record-callback/').searchParams.has('utm_source'),'Campaign labels stay out of auth callbacks');check(e.click('/plans/?utm_source=direct').searchParams.get('utm_source')==='direct','Explicit destination attribution is preserved');
+e=make({path:'/plans/race-pace-durability/thanks/',query:'?session_id=cs_synthetic_fixture&utm_source=google',surface:'thanks',blocked:true});check(e.scripts.length===0,'Purchase return never starts SDKs on bearer URL');e.window.rpdTrack.purchase('synthetic-purchase');check(e.scripts.length===0,'Unclean return cannot transmit a purchase event');e.navigate('/plans/race-pace-durability/thanks/?utm_source=google');e.window.rpdTrack.purchase('synthetic-purchase');check(e.scripts.length===2,'Clean verified return can start required analytics SDKs');const sent=JSON.stringify(e.window.dataLayer.map(args=>Array.from(args)))+JSON.stringify(e.window.fbq.queue.map(args=>Array.from(args)));check(!sent.includes('cs_synthetic_fixture'),'Checkout bearer absent from all event/config parameters');check(sent.includes('synthetic-purchase'),'Analytics use opaque purchase ID');check(e.scripts.every(script=>!script.page.includes('cs_')),'SDKs initialize only on clean URLs');const before=e.window.dataLayer.length;e.window.rpdTrack.purchase('synthetic-purchase');check(e.window.dataLayer.length===before,'In-memory dedup works with blocked storage');e.window.rpdTrack.purchase('cs_synthetic_bad');check(e.window.dataLayer.length===before,'Legacy bearer transaction IDs are rejected');
+e=make({query:'?purchase_session=cs_synthetic_fixture&utm_source=google',surface:'preview',blocked:true});check(e.scripts.length===0,'Paid viewer retains token URL without external SDKs');check(e.window.location.search.includes('purchase_session='),'Measurement never removes access reference');
+e=make({referrer:'https://checkout.stripe.com/c/pay/cs_synthetic_fixture?secret=synthetic'});check(e.scripts.length===1&&!e.window.fbq,'Unsafe referrer suppresses Meta SDK');check(!JSON.stringify(e.window.dataLayer.map(args=>Array.from(args))).includes('cs_synthetic_fixture'),'Google receives sanitized referrer override');
+e=make({query:'?utm_source=google&email=synthetic%40example.invalid'});check(!JSON.stringify(e.window.dataLayer.map(args=>Array.from(args))).includes('example.invalid'),'Analytics URL keeps only approved public labels');
+console.log(`PASS: ${checks} first-party campaign continuity, explicit precedence, storage failure, DNT/GPC and checkout-bearer analytics privacy checks. No external SDK executed.`);
