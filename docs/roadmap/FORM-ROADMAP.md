@@ -16,7 +16,7 @@ Owner reopened the public finish for a full-fold refinement. [Audit and release 
 - [x] Identified and removed the inherited duplicate hero gradient; corrected the unmatched inner-wrapper spacing selector. Real faces retain their original light, with shade localized behind desktop text and an exact black fade into the next section.
 - [x] Kept the main copy and refined two supporting lines: assigned running → planned and adjusted running; 13.1 → half marathon.
 - [x] Added 390×844, 1440×800 and 1920×1080 photograph/contrast captures to the existing Chromium/WebKit workflow. Both engines passed source/build, 48 responsive route/width views, 200% text and intercepted inquiry checks at `82a1c15d`; the final lighter kicker is included in the release candidate.
-- [ ] Final contrast review and production publication/readback; record the exact source and deploy in the audit receipt.
+- [x] Final head `b64a067f` passed Chromium/WebKit `37211840028` and ecosystem closure `37211840023`. Six photograph probes passed rendered-background contrast (normal ≥4.857:1; large ≥3.184:1). PR #203 merged as `f632c9092fa6794e96d4740c2a47037e4cb757c8`; Netlify `6ac26c7a318f8f2b9cd34a3e` ready/published October 4 at 11:11:03 AM New York. Actual live readback confirms lighter photograph treatment, corrected spacing, continuous first-fold fade and both copy refinements. Physical-phone review remains open.
 
 ## October 1 - Adrian media attribution correction
 
