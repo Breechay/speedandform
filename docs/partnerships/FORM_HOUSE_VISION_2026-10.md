@@ -3,6 +3,13 @@
 
 ## October 4 · Hosted-morning concept development
 
+Food direction developed October 4: [the return table](FORM_MORNING_RETURN_TABLE_2026-10.md)
+specifies water/electrolytes and easy food at the finish, followed by an açaí bowl,
+breakfast shake or savory breakfast with carbohydrate and protein. Fresh orange
+juice, fruit and coffee belong at the table. Recipes, portions, substitutions,
+cost and service readiness are host decisions before invitation. The public
+morning page now makes this proposed menu visible.
+
 Current owner direction: develop the experience and vision, not only the page design.
 The wider FORM House standard remains. `/form-house/mornings/` now explores one
 expression with a host; it is not an announced event or confirmed partnership.

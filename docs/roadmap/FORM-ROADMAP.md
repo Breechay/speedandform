@@ -6,6 +6,8 @@ Owner requested a naked header/hero like the homepage and a fold-by-fold copy
 and finish pass. [The scoped audit](../audits/FORM-MORNING-EDITORIAL-FINISH-20261004.md)
 records each fold's job and corrections. The proposed experience is retained;
 hero/header placement, reading flow and host invitation are refined.
+Owner then specified recovery food. [The return-table brief](../partnerships/FORM_MORNING_RETURN_TABLE_2026-10.md)
+develops the menu and service; a visible proposed breakfast fold now carries it.
 
 - [x] Source reading, study parity and whitespace checks.
 - [ ] Full static build, Chromium/WebKit screenshots and responsive acceptance.
