@@ -3,6 +3,13 @@
 
 ## October 4 · Hosted-morning concept development
 
+Food direction developed October 4: [the return table](FORM_MORNING_RETURN_TABLE_2026-10.md)
+specifies water/electrolytes and easy food at the finish, followed by an açaí bowl,
+breakfast shake or savory breakfast with carbohydrate and protein. Fresh orange
+juice, fruit and coffee belong at the table. Recipes, portions, substitutions,
+cost and service readiness are host decisions before invitation. The public
+morning page now makes this proposed menu visible.
+
 Current owner direction: develop the experience and vision, not only the page design.
 The wider FORM House standard remains. `/form-house/mornings/` now explores one
 expression with a host; it is not an announced event or confirmed partnership.
@@ -16,9 +23,11 @@ return window, with flexibility for individual training. Neither group is a
 lesser version of the other. Breakfast-only guests can reserve a place too.
 
 The host experience is the offer: a personal welcome, belongings handled,
-clean changing/shower facilities and towels, refreshments on return, a real
+clean bathrooms and towels, refreshments on return, a real
 breakfast, and comfortable time afterward. A guest knows what is included
 before arrival. Remaining at the table must not depend on buying another item.
+Towel off and settle in is the usual return. Showers/changing space are optional
+when available; neither is required to deliver the first morning.
 Pool/spa/recovery access is optional and must be specifically agreed, never
 implied from a property's facilities.
 
@@ -26,7 +35,7 @@ Proposed rhythm: early arrival 5:50 / long run around 6:05; shorter-group welcom
 around 7; shared breakfast window around 8–9; hosted time through 10. Adjust to
 routes, climate, kitchen capacity and actual guest needs before invitation.
 No recurring Saturday commitment. Start with a personally hosted group whose
-size fits run support, showers, seating and kitchen service.
+size fits run support, seating and kitchen service.
 
 Responsibilities to agree:
 - FORM: routes, group guidance, participant communication, coaching and a named
@@ -49,7 +58,7 @@ research host notes remain the lightweight record; no new dashboard is needed.
 
 The public page carries the experience first and expandable practical detail
 second. Next decision: review the full arrival-to-return route with a named
-host, including early access, shower throughput, breakfast and a place to remain.
+host, including early access, towels, breakfast and a place to remain.
 
 ## Current thesis
 
@@ -77,7 +86,7 @@ Do not pursue half-built or improvised versions simply because space is availabl
 
 A credible FORM House expression should support:
 - proper early arrival and secure belongings;
-- changing rooms, clean bathrooms, showers and towels;
+- clean bathrooms and towels; optional changing rooms/showers when available;
 - preparation / mobility before training;
 - outdoor running access: track, road, bridge, trail or waterfront;
 - recovery worth returning to;

@@ -40,9 +40,14 @@ This checklist is private operating material. It is intentionally separate from 
 ## 4. Food / hospitality
 
 - [ ] Named food/service owner
-- [ ] Menu
+- [ ] Menu and complete recipes/portions; use [the return-table brief](FORM_MORNING_RETURN_TABLE_2026-10.md)
+- [ ] Carbohydrate and protein in each breakfast choice; actual product labels checked
+- [ ] Sports dietitian review of the long-run menu and substitutions
 - [ ] Dietary collection method
 - [ ] Coffee / water / electrolytes
+- [ ] Fresh orange juice / fruit; sodium-containing drink clearly labeled
+- [ ] Drinks and easy food ready before the first return, independent of showers
+- [ ] Allergen labels, cross-contact procedures and cold storage
 - [ ] Service time
 - [ ] Food remains available across plausible return spread
 - [ ] Guests can stay without another required transaction
