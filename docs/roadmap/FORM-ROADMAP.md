@@ -11,6 +11,13 @@ Owner reopened the public finish for a full-fold refinement. [Audit and release 
 - [x] Merged source `27c00fd71d61cc037955295f0d326aff15a32eb8` published in Netlify `6ac265dee21c0f01049d8615`, ready October 4 at 10:42:51 AM New York. Actual live seven-route readback confirms the finish styles, stable six-mile evidence, visible folds and dark FORM House frame.
 - [ ] Real FORM House Arrival / Return photography; physical-phone review.
 
+### October 4 follow-up — lighter photograph and continuous first fold
+
+- [x] Identified and removed the inherited duplicate hero gradient; corrected the unmatched inner-wrapper spacing selector. Real faces retain their original light, with shade localized behind desktop text and an exact black fade into the next section.
+- [x] Kept the main copy and refined two supporting lines: assigned running → planned and adjusted running; 13.1 → half marathon.
+- [x] Added 390×844, 1440×800 and 1920×1080 photograph/contrast captures to the existing Chromium/WebKit workflow. Both engines passed source/build, 48 responsive route/width views, 200% text and intercepted inquiry checks at `82a1c15d`; the final lighter kicker is included in the release candidate.
+- [ ] Final contrast review and production publication/readback; record the exact source and deploy in the audit receipt.
+
 ## October 1 - Adrian media attribution correction
 
 Brice identified the first hard-coded nine-frame “Baseline running study” strip on Adrian's public study as a different athlete. It is removed from the Adrian page and must not be reused as Adrian evidence. The separate lower Running-control field strip (S.media.fieldFrames) is retained; Brice confirmed that lower strip is Adrian. Machine-readable correction: [ADRIAN-MEDIA-CORRECTION-20261001.json](../studies/ADRIAN-MEDIA-CORRECTION-20261001.json).
