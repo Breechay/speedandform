@@ -3,7 +3,7 @@
 @font-face{font-family:"Inter Tight";src:url("/assets/site/fonts/inter-tight-latin-variable.woff2") format("woff2");font-weight:100 900;font-display:swap}
 @font-face{font-family:"JetBrains Mono";src:url("/assets/site/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");font-weight:400;font-display:swap}
 .sf-conversation main>*{min-width:0}
-.sf-conversation .intro h1{font-size:clamp(62px,6.5vw,104px);line-height:1.04;letter-spacing:-.05em;max-width:9ch;font-weight:450;text-wrap:balance;overflow-wrap:break-word}
+.sf-conversation .intro h1{font-size:clamp(62px,6.5vw,104px);line-height:1.04;letter-spacing:-.05em;max-width:9ch;font-weight:450;text-wrap:balance;overflow-wrap:anywhere}
 .sf-conversation .intro{padding-block:100px}
 .sf-conversation .eyebrow,.sf-conversation .field>span,.sf-conversation .upload-label>span{font-size:11px;line-height:1.6;letter-spacing:.07em}
 .sf-conversation .top>a:last-child{font-size:11px;min-height:44px;display:flex;align-items:center}
@@ -16,6 +16,8 @@
 .sf-conversation .send:hover{background:#303630}
 .sf-conversation .upload-action{display:inline-flex;align-items:center;min-height:44px;font-size:18px}
 .sf-conversation .upload-meta{font-size:11px;letter-spacing:0}
+.sf-conversation .upload-row{flex-wrap:wrap}
+.sf-conversation .upload-row input{width:1px;height:1px;clip-path:inset(50%);overflow:hidden}
 .sf-conversation .upload-row:focus-within{outline:2px solid var(--ink);outline-offset:5px}
 .sf-conversation .file-list{overflow-wrap:anywhere}
 .sf-conversation footer{color:#b8bbb2}

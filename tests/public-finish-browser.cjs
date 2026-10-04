@@ -27,7 +27,8 @@ fs.mkdirSync(out,{recursive:true});
  });
  const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
  const noOverflow=async(label)=>{
-  const state=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,offenders:[...document.querySelectorAll('h1,h2,h3,p,strong,dd,a')].filter(e=>e.getBoundingClientRect().right>innerWidth+1).map(e=>e.textContent.slice(0,70))}));
+  const state=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,offenders:[...document.querySelectorAll('body *')].filter(e=>e.getBoundingClientRect().right>innerWidth+1).map(e=>({tag:e.tagName,class:e.className,text:e.textContent.slice(0,70)})).slice(0,12)}));
+  if(state.scroll>state.width+1)await page.screenshot({path:path.join(out,'reflow-failure.png'),fullPage:true});
   assert.ok(state.scroll<=state.width+1,label+' '+JSON.stringify(state));
  };
  for(const width of [375,390,430,768,1024,1440]){
