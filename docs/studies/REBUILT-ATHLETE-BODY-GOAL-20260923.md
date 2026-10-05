@@ -197,3 +197,29 @@ The weekly total is corrected to **31.03 miles / 5 h 20 min / 180 ft**, not 32 m
 Hours after the run, the athlete reported a strong positive effect on **mood, physique and overall freshness**. He **refueled after the run**. The next priority is to absorb the week rather than immediately raise volume again.
 
 **Working line:** *Let the body organize around running again; then ask it for more.*
+
+
+## October 4 · Week 02 authoring decision
+
+The athlete wants **another week around 31 miles** rather than using the successful 10-mile outdoor run as permission to raise volume again. The previous week closed at **31.03 miles / 5 h 20 min**. Week 02 is therefore authored as a **31-mile hold**, not a progression.
+
+### Running structure · October 5–11
+- **Monday · 5 mi treadmill · feel-first.** Easy, fluid, no watch pace or heart-rate target.
+- **Tuesday · 5 mi outdoors · low aerobic / current Zone 2.** Pace slows as needed for heat or drift.
+- **Wednesday · no run.** Forge Glute Thrust; easy elliptical remains support, not required mileage.
+- **Thursday · 5 mi treadmill · feel-first.** Repeat smooth trunk/pelvis organization rather than testing fitness.
+- **Friday · no run.** Forge Lower Pump + Core; preserve the weekend.
+- **Saturday · 6 mi treadmill easy.** Supportive volume only; finish with Sunday available.
+- **Sunday · 10 mi outdoors.** Keep at least the first **7.5 mi / 75%** low aerobic. The final 2.5 mi may remain easy or open naturally only if movement stays fluid. No pace target and no required progression.
+
+### Study purpose
+The question is no longer whether the athlete can touch 31 miles. It is whether **31 can become ordinary** while:
+- outdoor running moves toward genuine low-aerobic control;
+- treadmill running remains a low-friction environment for repetition and trunk/pelvis organization;
+- Forge strength continues without stealing running freshness;
+- stacked training is deliberately refueled and hydrated;
+- mood, muscular fullness, movement ease and next-day freshness remain favorable.
+
+Do not use transient post-run scale loss as evidence that the week is working. Do not make up missed mileage with doubles. If the lower leg, mechanics or recovery state clearly deteriorates, shorten the week rather than protecting the number.
+
+**Working line:** *Make 31 feel ordinary before asking for more.*
