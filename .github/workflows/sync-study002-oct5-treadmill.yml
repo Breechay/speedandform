@@ -1,0 +1,46 @@
+name: Sync Study 002 Oct 5 treadmill state
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/sync-study002-oct5-treadmill.yml']
+permissions:
+  contents: write
+concurrency:
+  group: sync-study002-oct5-treadmill
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Patch live Study 002 current state
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('labs/rebuilt-athlete/index.html')
+          s = p.read_text(encoding='utf-8')
+          new_running = 'Oct 5: 5.01 mi treadmill filed · Oct 5–11: 31-mile hold'
+          if new_running not in s:
+              old_running = '31.03 mi completed · Oct 5–11: 31-mile hold'
+              if old_running not in s:
+                  raise SystemExit('Running-state anchor not found; source drift')
+              s = s.replace(old_running, new_running, 1)
+
+          new_recovery = 'Oct 5: 5.01 mi treadmill · feel-first velocity contrast · left reaction / rebound still slightly slower'
+          if new_recovery not in s:
+              old_recovery = 'Oct 4: 10.01 mi outdoors · refueled · repeatability is the next question'
+              if old_recovery in s:
+                  s = s.replace(old_recovery, new_recovery, 1)
+
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit live study state
+        run: |
+          git config user.name 'Speed & Form Automation'
+          git config user.email 'actions@speedandform.com'
+          git add labs/rebuilt-athlete/index.html
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Sync Oct 5 treadmill state to Study 002'
+          git push origin HEAD:main
