@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "program_id": "tinius_durable_frame_phase01_v0",
+  "athlete": "Tinius",
+  "title": "The Durable Frame · Phase 01",
+  "status": "provisional_equipment_gate_open",
+  "dates": {
+    "start": "2026-10-06",
+    "end": "2026-11-15",
+    "weeks": 6
+  },
+  "authorities": {
+    "running": "FORM Race Pace Durability remains canonical. This plan never rewrites running mileage, pace or session purpose.",
+    "strength": "FORGE owns these strength sessions after the equipment gate is closed.",
+    "study": "FORM Human Performance Study 004 interprets the interaction."
+  },
+  "objective": "Rebuild shoulders, upper back, upper chest, trunk definition and useful unilateral/posterior-chain strength without stealing quality from Tinius's running.",
+  "equipment_reported": [
+    "yoga mat",
+    "adjustable kettlebell",
+    "small barbell",
+    "plates / weights"
+  ],
+  "equipment_pending": [
+    "minimum and maximum kettlebell load",
+    "barbell weight",
+    "individual plate sizes",
+    "maximum usable barbell load",
+    "whether a stable chair/bench/step is available"
+  ],
+  "weekly_structure": [
+    {
+      "day": "Tuesday",
+      "session": "Frame A",
+      "timing": "after FORM quality when practical",
+      "bias": "upper frame",
+      "lower_body_cost": "minimal"
+    },
+    {
+      "day": "Thursday",
+      "session": "Lower + Core",
+      "timing": "after FORM quality when practical",
+      "bias": "unilateral legs + posterior chain + trunk",
+      "lower_body_cost": "capped"
+    },
+    {
+      "day": "Sunday",
+      "session": "Frame B",
+      "timing": "after Saturday long-run recovery",
+      "bias": "upper frame",
+      "lower_body_cost": "none planned"
+    }
+  ],
+  "global_rules": [
+    "No fourth strength day.",
+    "No bonus sets or optional finishers.",
+    "Keep 2-3 reps in reserve in Weeks 1-2; 1-2 reps in reserve on final sets of primary lifts in Weeks 3-4 only.",
+    "When all prescribed sets reach the top of the rep range with clean form and about two reps still available, add the smallest available load next exposure.",
+    "If available load cannot increase, use only the authored rep, tempo or leverage progression.",
+    "If strength begins to degrade Tuesday/Thursday/Saturday running for more than one week, reduce FORGE volume before changing FORM."
+  ],
+  "sessions": {
+    "frame_a": [
+      {
+        "slot": "A1",
+        "movement": "Barbell Floor Press",
+        "sets": 4,
+        "reps": "8-12",
+        "rest_sec": 90,
+        "role": "upper chest / press",
+        "gate": "Confirm usable barbell load."
+      },
+      {
+        "slot": "A2",
+        "movement": "1-Arm Kettlebell Row",
+        "sets": 4,
+        "reps": "10-15 / side",
+        "rest_sec": 75,
+        "role": "upper back / lat"
+      },
+      {
+        "slot": "A3",
+        "movement": "Half-Kneeling 1-Arm Kettlebell Press",
+        "sets": 3,
+        "reps": "8-12 / side",
+        "rest_sec": 75,
+        "role": "shoulder / trunk"
+      },
+      {
+        "slot": "A4",
+        "movement": "Lateral-delt slot",
+        "sets": 3,
+        "reps": "12-20",
+        "rest_sec": 60,
+        "role": "width",
+        "gate": "Freeze as plate lateral raise or another light-load option after exact plate/KB sizes are known."
+      },
+      {
+        "slot": "A5",
+        "movement": "Barbell Curl",
+        "sets": 2,
+        "reps": "10-15",
+        "rest_sec": 60,
+        "role": "arms"
+      },
+      {
+        "slot": "A6",
+        "movement": "Close-Grip Push-Up",
+        "sets": 2,
+        "reps": "8-20",
+        "rest_sec": 60,
+        "role": "triceps / chest",
+        "rule": "Stop with 2 reps available."
+      }
+    ],
+    "lower_core": [
+      {
+        "slot": "B1",
+        "movement": "Split Squat",
+        "sets": 3,
+        "reps": "8-12 / side",
+        "rest_sec": 90,
+        "role": "unilateral leg",
+        "gate": "Rear-foot elevation only if a stable surface is available."
+      },
+      {
+        "slot": "B2",
+        "movement": "Barbell Romanian Deadlift",
+        "sets": 3,
+        "reps": "8-12",
+        "rest_sec": 90,
+        "role": "posterior chain",
+        "gate": "If barbell loading is too light, use a slower eccentric or single-leg KB RDL substitution."
+      },
+      {
+        "slot": "B3",
+        "movement": "Single-Leg Calf Raise",
+        "sets": 2,
+        "reps": "12-20 / side",
+        "rest_sec": 60,
+        "role": "lower-leg support"
+      },
+      {
+        "slot": "B4",
+        "movement": "Suitcase March",
+        "sets": 3,
+        "reps": "30-45 sec / side",
+        "rest_sec": 45,
+        "role": "lateral trunk / gait"
+      },
+      {
+        "slot": "B5",
+        "movement": "Side Plank",
+        "sets": 2,
+        "reps": "30-45 sec / side",
+        "rest_sec": 45,
+        "role": "trunk"
+      }
+    ],
+    "frame_b": [
+      {
+        "slot": "C1",
+        "movement": "Barbell Bent-Over Row",
+        "sets": 4,
+        "reps": "8-12",
+        "rest_sec": 90,
+        "role": "upper back",
+        "gate": "Confirm barbell load."
+      },
+      {
+        "slot": "C2",
+        "movement": "Push-Up or Barbell Floor Press",
+        "sets": 4,
+        "reps": "8-20",
+        "rest_sec": 90,
+        "role": "chest",
+        "rule": "Use push-up progression if barbell loading is not useful."
+      },
+      {
+        "slot": "C3",
+        "movement": "Kettlebell Pullover",
+        "sets": 3,
+        "reps": "10-15",
+        "rest_sec": 75,
+        "role": "lat / serratus"
+      },
+      {
+        "slot": "C4",
+        "movement": "1-Arm Kettlebell Press",
+        "sets": 3,
+        "reps": "8-12 / side",
+        "rest_sec": 75,
+        "role": "shoulder"
+      },
+      {
+        "slot": "C5",
+        "movement": "Rear-Delt Row",
+        "sets": 3,
+        "reps": "12-15",
+        "rest_sec": 60,
+        "role": "rear shoulder / upper back",
+        "gate": "Final variation depends on available load."
+      },
+      {
+        "slot": "C6",
+        "movement": "Barbell Curl + Close-Grip Push-Up",
+        "sets": 2,
+        "reps": "10-15 + 8-20",
+        "rest_sec": 60,
+        "role": "arms / finish",
+        "rule": "Not a burnout; keep 2 reps available."
+      }
+    ]
+  },
+  "weeks": [
+    {
+      "week": 1,
+      "label": "Establish",
+      "rule": "Use the base set counts. Learn the movements and record actual loads. RIR ~3."
+    },
+    {
+      "week": 2,
+      "label": "Repeat",
+      "rule": "Same set counts. Add reps or the smallest load only where Week 1 was clean. RIR 2-3."
+    },
+    {
+      "week": 3,
+      "label": "Build",
+      "rule": "Add one set to A1, A2, C1 and C2 only if running remains normal. Lower + Core set counts do not increase."
+    },
+    {
+      "week": 4,
+      "label": "Hold",
+      "rule": "Keep Week 3 volume. Progress load/reps only; no new exercises."
+    },
+    {
+      "week": 5,
+      "label": "Absorb",
+      "rule": "Reduce working sets by about 30%. Keep movement quality and leave running fresh."
+    },
+    {
+      "week": 6,
+      "label": "Close",
+      "rule": "Return to Week 4 set counts if absorbed. Compare loads/reps and comparable physique evidence. No max testing."
+    }
+  ],
+  "closeout": [
+    "comparable front/side/back photos if supplied",
+    "waist measurement if supplied",
+    "key lift loads and reps",
+    "running-quality read",
+    "athlete report: frame, waist, freshness, interference"
+  ]
+}
