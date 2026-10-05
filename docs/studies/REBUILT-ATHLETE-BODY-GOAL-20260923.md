@@ -223,3 +223,47 @@ The question is no longer whether the athlete can touch 31 miles. It is whether 
 Do not use transient post-run scale loss as evidence that the week is working. Do not make up missed mileage with doubles. If the lower leg, mechanics or recovery state clearly deteriorates, shorten the week rather than protecting the number.
 
 **Working line:** *Make 31 feel ordinary before asking for more.*
+
+
+## October 5 · long-term goals and study question
+
+Owner instruction: develop gradually toward a beautiful, scenic 100-mile ultra in about two years; learn to run it well, enjoy the adventure and finish with a strong course-relative time. Additional ambitions: HYROX Elite 15, a sub-1:20 half marathon, a sub-17 5K and a race in the 2:40s.
+
+### Interpretation and targets
+- **100 miles:** flexible window around late 2028. No event or clock target selected. Scenery, adventure, enjoyment and competent execution are explicit success criteria.
+- **HYROX:** Elite 15 is the long-term aspiration, assumed Men Pro Singles. No deadline or current qualification readiness claimed. First benchmark station technique, Pro loads, compromised running and official races.
+- **Half marathon:** under 1:20 (faster than about 6:06/mi / 3:48/km). A later 1:17–1:18 is a useful coaching bridge toward the marathon ambition.
+- **5K:** under 17:00 (faster than about 5:28/mi / 3:24/km).
+- **Marathon:** “2:40s” is interpreted as marathon, pending owner correction. Working center 2:45; initial aspiration 2:45–2:49. Do not invent an approved sub-2:40 target.
+- These are goals, not current fitness, achieved results, medical clearance or future assigned pace bands.
+
+### Study question
+**Can Brice develop speed, strength and ultra endurance across successive blocks while keeping movement, recovery and daily life enjoyable?**
+
+Preserve the fuller build, preferred 180–185 lb range / about 182 lb center, mobility, writing and sitting practice. Event demands inform training choices; they do not automatically authorize weight loss or compromise fueling.
+
+### Sequence
+1. **Current rebuild:** preserve the Oct 5–11 31-mile hold week and its low-aerobic outdoor controls. Make volume repeatable before asking for more.
+2. **Base and road development:** earn consistent running, then benchmark current 5K/half fitness and establish training paces from evidence.
+3. **HYROX learning and competition:** learn the stations and running after them, then use race splits, penalties and recovery to establish the gap to elite competition.
+4. **Ultra apprenticeship through 2027:** enjoyable trails, terrain/hiking/descending skills, then a 50K when ready. A later 50-mile or 100K can rehearse longer execution; this is a proposed sequence, not a mandatory race calendar.
+5. **100-mile preparation toward late 2028:** choose the course, test its demands in a shorter ultra and prioritize the final specific block. Readiness can move the date.
+
+**One peak at a time.** Alternate road, HYROX and ultra emphasis; maintain the other qualities at a supporting dose. Do not stack three peak programs or assign every event to the same season.
+
+### What to test
+- **Road:** verified time, late-race control, effort, fueling and recovery. Illustrative Riegel calculation T2 = T1 × (D2/D1)^1.06 puts an 80-minute half near 2:47 for the marathon. It does not establish marathon readiness. The 1:17–1:18 bridge provides margin, not a compulsory gate.
+- **HYROX:** official race/division/course, station and run splits, transitions, penalties, late-run decay, recovery and licensed ranking. Current official 2026/27 guidance uses a rolling 365-day points system and requires an active athlete licence. Recheck the season rules before an attempt; no single time is described as automatic Elite 15 qualification.
+- **Ultra:** terrain/elevation, time moving, hiking/descending, late-run control, food/fluid tolerance, feet/equipment, night running and recovery. Set time only after selecting a course and collecting rehearsal evidence.
+- **Experience:** enjoyment, curiosity, muscular fullness, movement ease and whether training expands daily life.
+
+Race-selection brief: beautiful landscape, terrain worth learning, feasible entry/cutoff/logistics, preparation appropriate to the athlete and an adventure worth having. No booking, entry or specific event recommendation is implied.
+
+Sources checked October 5, 2026:
+- https://hyrox.com/elite-series-qualification/
+- https://points.hyrox.com/how-it-works
+
+### Connected surfaces and validation
+The public study's new long-horizon section and structured goal record carry this direction. Historical filings remain pinned and unchanged. This decision does not revise the canonical Oct 5–11 sessions, Forge programming or native assignments. A later session/pace change must originate in the FORM Athlete System before projection.
+
+Embedded JSON and inline JavaScript syntax, unique IDs and embedded-asset preservation passed. Browser layout checks remain open because the local Playwright browser executable is unavailable. Source commit is not a production or installed-app receipt.

@@ -1,5 +1,14 @@
 # FORM: current state and next actions
 
+## October 5 · Rebuilt Athlete long-term direction
+
+- [x] Owner goals recorded in Study 002: scenic 100 miles around late 2028; HYROX Elite 15 ambition; sub-1:20 half; sub-17 5K; interpreted marathon in the 2:40s, working center 2:45.
+- [x] Study narrative, structured goals and owning decision note updated together. Existing 31-mile hold week remains the current prescription; long-term goals assign no new sessions or pace bands.
+- [x] Embedded JSON, inline JavaScript, unique IDs and embedded-asset preservation checked locally. No historical filing rewritten.
+- [ ] Production and desktop/phone visual verification. Local browser executable unavailable; source acceptance is not device acceptance.
+- Next: absorb the hold week, then review repeatability. Race selection and elite qualification timing wait for evidence.
+
+
 ## October 4 · FORM House / Morning blueprint refinement
 
 - [x] Mobile Marcus framing refined in both page heroes; Chromium/WebKit `37233161692` and ecosystem `37233161680` passed for `d11582f5ee732bdb741d3aa7c9f482ed75deb515`. New phone captures reviewed and review pack refreshed. PR #214 is now merged and published; further concept development waits for the property response.
