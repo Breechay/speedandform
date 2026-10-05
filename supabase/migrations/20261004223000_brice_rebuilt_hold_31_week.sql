@@ -71,7 +71,7 @@ begin
     v_athlete,v_week,'MON',
     'Treadmill feel run · 5 mi',
     'Start the week by reproducing smooth, organized running without using pace or heart rate as a target.',
-    date '2026-10-05',1,5,'mi',null,2,3,
+    date '2026-10-05',1::smallint,5::numeric,'mi'::text,null::integer,2::smallint,3::smallint,
     jsonb_build_array(
       jsonb_build_object('role','work','shape','continuous','distance',5,'distanceUnit','mi','rpeLow',2,'rpeHigh',3)
     ),
@@ -83,7 +83,7 @@ begin
     v_athlete,v_week,'TUE',
     'Outdoor low-aerobic run · 5 mi',
     'Practice true low-aerobic control outdoors without turning the pace into the goal.',
-    date '2026-10-06',2,5,'mi',null,2,3,
+    date '2026-10-06',2::smallint,5::numeric,'mi'::text,null::integer,2::smallint,3::smallint,
     jsonb_build_array(
       jsonb_build_object('role','work','shape','continuous','distance',5,'distanceUnit','mi','rpeLow',2,'rpeHigh',3)
     ),
@@ -95,7 +95,7 @@ begin
     v_athlete,v_week,'THU',
     'Treadmill feel run · 5 mi',
     'Repeat the fluid treadmill state and let the trunk-pelvis system keep organizing through easy repetition.',
-    date '2026-10-08',3,5,'mi',null,2,3,
+    date '2026-10-08',3::smallint,5::numeric,'mi'::text,null::integer,2::smallint,3::smallint,
     jsonb_build_array(
       jsonb_build_object('role','work','shape','continuous','distance',5,'distanceUnit','mi','rpeLow',2,'rpeHigh',3)
     ),
@@ -107,7 +107,7 @@ begin
     v_athlete,v_week,'SAT',
     'Easy treadmill run · 6 mi',
     'Add easy volume without spending Sunday''s long-run freshness.',
-    date '2026-10-10',4,6,'mi',null,2,3,
+    date '2026-10-10',4::smallint,6::numeric,'mi'::text,null::integer,2::smallint,3::smallint,
     jsonb_build_array(
       jsonb_build_object('role','work','shape','continuous','distance',6,'distanceUnit','mi','rpeLow',2,'rpeHigh',3)
     ),
@@ -119,7 +119,7 @@ begin
     v_athlete,v_week,'SUN',
     'Outdoor long easy run · 10 mi',
     'Repeat ten miles outdoors while making low-aerobic control the main skill.',
-    date '2026-10-11',5,10,'mi',null,2,4,
+    date '2026-10-11',5::smallint,10::numeric,'mi'::text,null::integer,2::smallint,4::smallint,
     jsonb_build_array(
       jsonb_build_object('role','work','shape','continuous','distance',7.5,'distanceUnit','mi','rpeLow',2,'rpeHigh',3),
       jsonb_build_object('role','work','shape','continuous','distance',2.5,'distanceUnit','mi','rpeLow',2,'rpeHigh',4)
