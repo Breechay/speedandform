@@ -66,3 +66,20 @@ The working product sequence for this lane is:
 **Study → applied web plan → real use → native projection.**
 
 When real use changes the method, update the study. When it changes daily execution, update the web plan. When it changes running prescription, update the backend assignment/version. When it creates future implementation work, update Bridge Season. Native UI follows settled reality rather than getting ahead of it.
+
+
+## 2026-10-04 · Week 02 active authoring
+
+The one-week-at-a-time block has been extended through **2026-10-11** without opening a new race build. Backend active block now reads Week 02 / 02 and carries **31 prescribed miles** across five running sessions:
+
+- MON 5 mi treadmill · feel-first
+- TUE 5 mi outdoors · low aerobic / Zone 2
+- THU 5 mi treadmill · feel-first
+- SAT 6 mi treadmill · easy
+- SUN 10 mi outdoors · first 7.5 mi low aerobic, final 2.5 mi optional natural if still fluid
+
+Canonical write: `supabase/migrations/20261004223000_brice_rebuilt_hold_31_week.sql`.
+
+Web projection and all seven daily field sheets were updated to match. FORM remains running prescription + filing authority; Forge remains strength authority; Study 002 owns interpretation. No native prescription fork is required because the app reads the active FORM Athlete System block/feed.
+
+The progression decision is explicit: **hold volume; improve control.** The previous week closed at 31.03 actual miles, so Week 02 does not increase the running-load target. The next week remains unauthored until this hold is read.
