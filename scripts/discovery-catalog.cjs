@@ -60,6 +60,8 @@ const GROUPS = [
   ['labs/adrian-runner-mass/','The Developed Runner','Follow Adrian as strength and useful mass are added around an already-proven running engine.','adrian developed runner strength mass marathon study','Study'],
   ['labs/rebuilt-athlete/','The Rebuilt Athlete','Follow the return from a complete tibial fracture as running, strength, body composition and capacity are rebuilt.','brice rebuilt athlete tibia fracture return running study','Study'],
   ['labs/the-two-curves/','The Two Curves','Follow Simon as half-marathon race-pace duration and the ceiling above it are developed together.','simon two curves ceiling durability half marathon 1:20 study','Study'],
+  ['labs/the-durable-frame/','The Durable Frame','Follow Tinius as FORM running and a six-week FORGE physique phase operate together.','tinius durable frame forge form physique strength running study','Study'],
+  ['labs/the-long-chassis/','The Long Chassis','Follow Jacob as an experienced ultra runner rebuilds strength and stability around an existing aerobic engine.','jacob ultra long chassis strength stability 100 mile study','Study'],
   ['labs/the-last-10k/','The Last 10K','Follow the Orlando-to-Donna marathon durability study and the closing-10K hypothesis.','hope jose donna marathon durability final 10k closing miles','Study'],
   ['labs/hyrox/','HYROX: training and race tools','Explore the course, station work, and race-budget tools.','hyrox hybrid sled ski erg','Guide & tools'],
   ['labs/track/','Track workouts and standards','Browse the authored sessions and their execution standards.','track intervals sprint speed workouts','Workouts'],
