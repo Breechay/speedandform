@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "record_type": "athlete_weight_recovery_and_adherence_update",
+  "record_id": "adrian-recovery-weight-update-20261005",
+  "study_id": "FRM-001",
+  "athlete": "Adrian Gandara",
+  "filed_on": "2026-10-05",
+  "source": {
+    "type": "coach_supplied_message_screenshots_and_coach_context",
+    "screenshots_public": false,
+    "files": [
+      "IMG_8830.jpeg",
+      "IMG_8831.jpeg",
+      "IMG_8829.jpeg"
+    ],
+    "note": "Screenshots were supplied by Brice in the coaching conversation. Public study should summarize the evidence without republishing the private messages."
+  },
+  "body_mass": {
+    "points": [
+      {
+        "date": "2026-10-03",
+        "displayed_time_local": "04:47",
+        "value_lb": 158.8,
+        "context": "Saturday early-morning message; sequence is before the later long-run-linked reading, but pre-run status is not independently verified."
+      },
+      {
+        "date": "2026-10-03",
+        "displayed_time_local": "10:51",
+        "value_lb": 153.8,
+        "context": "Saturday later reading; athlete says it was after breakfast, and the conversation links the drop to the long run."
+      },
+      {
+        "date": "2026-10-05",
+        "displayed_time_local": null,
+        "value_lb": 163.2,
+        "context": "Athlete reports first thing in the morning after a full night's sleep; exact clock time and bathroom/hydration conditions are not independently verified."
+      }
+    ],
+    "saturday_within_day_change_lb": -5,
+    "saturday_within_day_change_pct_of_early_reading": -3.15,
+    "saturday_interpretation": "The 5.0 lb same-day swing is not treated as fat or tissue loss. It shows large acute scale variability around the long run, with fluid, glycogen, gut content and measurement conditions plausible contributors.",
+    "monday_vs_saturday_late_change_lb": 9.4,
+    "monday_vs_saturday_early_change_lb": 4.4,
+    "interpretation": "The 163.2 lb reading is a useful morning checkpoint, but the weekend swings are too large to interpret as tissue gain. A sequence of comparable morning readings plus repeat tape measurements is required."
+  },
+  "running_and_recovery_context": {
+    "prior_quality_session": "12 x 400 m reported mostly in the 70s, closing in 69 s, versus approximately 82 s prescribed by his running coach.",
+    "mobility_self_massage_adherence": "Coach reports Adrian had not been doing his mobility or self-massage work consistently.",
+    "walking_strategy": "Athlete had been using roughly one-hour walks on many days in an attempt to loosen his calves.",
+    "saturday_long_run_response": "After the Saturday long run, coach reports the calves were extremely tender to touch and massage, to the point Adrian was nearly in tears.",
+    "coach_decision": [
+      "Stop using one-hour walks as the default calf-loosening strategy.",
+      "Use lower-load recovery such as yin yoga / gentle mobility instead, without forcing painful calf range.",
+      "Resume recovery and self-care work rather than stacking more locomotor load onto already irritated calves.",
+      "If workload rises, add a few hundred calories around the harder sessions rather than leaving intake unchanged."
+    ],
+    "medical_boundary": "This record describes coaching observations and athlete reports, not a diagnosis. Persistent severe tenderness, swelling, weakness, dark urine, inability to walk normally, or worsening one-sided symptoms would warrant medical assessment."
+  },
+  "nutrition_adherence": {
+    "athlete_report": "Getting calories in now feels easy. Before this coaching phase he was often snacking rather than eating full meals; he is surprised he can reach the intended intake with regular full meals and does not mind eating.",
+    "interpretation": "This is a meaningful adherence signal. It does not establish measured energy surplus or hypertrophy by itself.",
+    "base_working_target_kcal_approx": 3400,
+    "hard_day_adjustment": "Coach allows a few hundred additional calories around harder or higher-workload sessions; this is a contextual workload adjustment, not a new fixed daily target."
+  },
+  "next_evidence": [
+    "Repeat waist, chest, relaxed arm, relaxed thigh and calf measurements using the September 24 method.",
+    "Collect 1-3 comparable morning weights per week under similar conditions.",
+    "Record calf tenderness, walking comfort and next-run response after the recovery adjustment.",
+    "Keep the 12 x 400 m departure from prescription connected to the recovery record rather than treating it as a performance win in isolation.",
+    "Record actual hard-day intake when the extra calories are used."
+  ],
+  "scope": "Study evidence and public-study projection. No completed workout is invented; no medical diagnosis is made; prior measurements and weight reports remain preserved."
+}
