@@ -1,166 +1,131 @@
 {
-  "schema_version": 1,
-  "season_id": "brice_rebuilt_athlete_phase00_20260921",
-  "program_id": "brice_rebuilt_phase00_v1",
+  "schema_version": 2,
+  "season_id": "brice_rebuilt_athlete_phase00_20260928",
+  "program_id": "brice_rebuilt_phase00_weekly_v2",
   "athlete": "Brice",
   "athlete_slug": "brice",
   "title": "The Rebuilt Athlete · Phase 00",
   "status": "coach_authored_self_execution",
-  "start_date": "2026-09-21",
+  "start_date": "2026-09-28",
   "end_date": "2026-10-11",
-  "duration_weeks": 3,
+  "duration_weeks": 2,
+  "current_week": 2,
   "authority": {
     "system": "FORM Athlete System",
-    "rule": "The backend assignment and immutable session versions are the running prescription source of truth. This JSON is a web projection for review and must not independently revise filed athlete evidence."
+    "rule": "The active backend block and immutable planned-session versions are the running prescription source of truth. This JSON mirrors the currently authored physical week for web review."
   },
   "study_path": "/labs/rebuilt-athlete/",
   "week_path": "/plans/rebuilt-athlete-phase-00/",
-  "objective": "Rebuild repeatable easy running, aerobic capacity, lower-leg confidence, strength and whole-body practice without choosing a race.",
-  "run_surface": "outdoors_or_treadmill",
-  "run_surface_rule": "Choose the surface that makes the easy run easiest to execute. Outdoors is welcome; treadmill remains fully valid. Surface is not a progression test.",
+  "objective": "Hold the newly reached ~31-mile running load while outdoor running becomes genuinely low aerobic and the body stays fluid, fueled and absorbable.",
+  "run_surface": "mixed",
+  "run_surface_rule": "Outdoor running is used to practice low-aerobic control. Treadmill running is used for relaxed repetition and movement quality without forcing watch pace or heart-rate targets.",
   "run_guardrails": [
-    "Easy running stays conversational at about RPE 2–3/10.",
-    "No pace target in Phase 00.",
-    "Tuesday and Saturday are the running anchors. Thursday is optional.",
-    "No doubles and no makeup minutes.",
-    "Stop or shorten if pain becomes focal, rises, changes stride, swelling appears or the next morning is clearly worse."
+    "This is a volume hold, not a mileage progression: 31 planned miles.",
+    "No pace target this week.",
+    "Monday and Thursday treadmill runs are feel-first: smooth, fluid and restrained.",
+    "Tuesday outdoor running stays in the athlete's current Zone 2 / low-aerobic range; slow for heat or drift.",
+    "Saturday is easy treadmill volume that must leave Sunday available.",
+    "Sunday is 10 miles outdoors with at least the first 7.5 miles low aerobic; the final 2.5 may open naturally only if movement remains fluid.",
+    "Do not make up missed miles by doubling.",
+    "Stacked training requires deliberate refueling and hydration; do not defend transient post-training scale loss."
   ],
   "form_scope": "FORM carries the running prescription and running filing only. Forge owns strength execution and filing. Study 002 integrates the evidence.",
   "weeks": [
     {
       "week": 1,
-      "start_date": "2026-09-21",
-      "end_date": "2026-09-27",
-      "intent": "Establish the repeatable weekly rhythm.",
-      "runs": [
-        {
-          "weekday": "Tuesday",
-          "title": "Easy run",
-          "duration_min": 35,
-          "optional": false
-        },
-        {
-          "weekday": "Thursday",
-          "title": "Optional easy run",
-          "duration_min_range": [
-            25,
-            30
-          ],
-          "optional": true
-        },
-        {
-          "weekday": "Saturday",
-          "title": "Longer easy run",
-          "duration_min": 45,
-          "optional": false
-        }
-      ]
+      "start_date": "2026-09-28",
+      "end_date": "2026-10-04",
+      "intent": "Reproduce the fluid, symmetrical running state without testing pace.",
+      "planned_miles": 20,
+      "status": "past"
     },
     {
       "week": 2,
-      "start_date": "2026-09-28",
-      "end_date": "2026-10-04",
-      "intent": "Add time, not intensity.",
-      "runs": [
-        {
-          "weekday": "Tuesday",
-          "title": "Easy run",
-          "duration_min": 40,
-          "optional": false
-        },
-        {
-          "weekday": "Thursday",
-          "title": "Optional easy run",
-          "duration_min": 30,
-          "optional": true
-        },
-        {
-          "weekday": "Saturday",
-          "title": "Longer easy run",
-          "duration_min": 55,
-          "optional": false
-        }
-      ]
-    },
-    {
-      "week": 3,
       "start_date": "2026-10-05",
       "end_date": "2026-10-11",
-      "intent": "Confirm that the rhythm remains absorbable.",
+      "intent": "Hold volume. Improve aerobic control and keep the movement fluid.",
+      "planned_miles": 31,
       "runs": [
         {
+          "weekday": "Monday",
+          "title": "Treadmill feel run",
+          "distance_mi": 5,
+          "surface": "treadmill",
+          "control": "feel_first",
+          "rpe": [2,3]
+        },
+        {
           "weekday": "Tuesday",
-          "title": "Easy run",
-          "duration_min": 45,
-          "optional": false
+          "title": "Outdoor low-aerobic run",
+          "distance_mi": 5,
+          "surface": "outdoors",
+          "control": "zone_2_low_aerobic",
+          "rpe": [2,3]
         },
         {
           "weekday": "Thursday",
-          "title": "Optional easy run",
-          "duration_min": 35,
-          "optional": true
+          "title": "Treadmill feel run",
+          "distance_mi": 5,
+          "surface": "treadmill",
+          "control": "feel_first",
+          "rpe": [2,3]
         },
         {
           "weekday": "Saturday",
-          "title": "Longer easy run",
-          "duration_min": 65,
-          "optional": false
+          "title": "Easy treadmill run",
+          "distance_mi": 6,
+          "surface": "treadmill",
+          "control": "easy_repeatable",
+          "rpe": [2,3]
+        },
+        {
+          "weekday": "Sunday",
+          "title": "Outdoor long easy run",
+          "distance_mi": 10,
+          "surface": "outdoors",
+          "control": "first_75_percent_low_aerobic",
+          "rpe": [2,4],
+          "segments": [
+            {"distance_mi": 7.5, "intent": "low aerobic / Zone 2"},
+            {"distance_mi": 2.5, "intent": "stay low aerobic or open naturally only if fluid"}
+          ]
         }
       ]
     }
   ],
   "typical_week": {
     "Monday": {
+      "run": "5 mi treadmill · feel-first",
       "strength": "Glute Hinge",
-      "engine": "Stationary bike 25 min easy",
-      "maintenance": [
-        "MOBO 60–120 sec",
-        "Band clamshell 1–2 × 12–15 / side"
-      ]
+      "maintenance": ["MOBO 60–120 sec","Band clamshell 1–2 × 12–15 / side"]
     },
     "Tuesday": {
-      "run": "Easy run",
+      "run": "5 mi outdoors · Zone 2 / low aerobic",
       "strength": "Upper Push",
-      "maintenance": [
-        "Run prep with MOBO",
-        "Plantar ball",
-        "Short-lever Copenhagen 2 × 20 sec / side"
-      ]
+      "maintenance": ["Run prep with MOBO","Plantar ball","Short-lever Copenhagen 2 × 20 sec / side"]
     },
     "Wednesday": {
       "strength": "Glute Thrust",
       "engine": "Elliptical 30 min easy",
-      "maintenance": [
-        "MOBO 60–120 sec"
-      ]
+      "maintenance": ["MOBO 60–120 sec"]
     },
     "Thursday": {
-      "run": "Optional easy run",
+      "run": "5 mi treadmill · feel-first",
       "strength": "Pull",
-      "maintenance": [
-        "Short-lever Copenhagen 2 × 20 sec / side"
-      ]
+      "maintenance": ["Short-lever Copenhagen 2 × 20 sec / side"]
     },
     "Friday": {
       "strength": "Lower Pump + Core",
-      "engine": "Stationary bike 25 min easy",
-      "maintenance": [
-        "MOBO 60–120 sec",
-        "Band clamshell 1–2 × 12–15 / side"
-      ]
+      "recovery": "No required running or cardio; eat, hydrate and keep the weekend available."
     },
     "Saturday": {
-      "run": "Longer easy run",
+      "run": "6 mi treadmill · easy",
       "strength": "Full Upper",
-      "maintenance": [
-        "Run prep with MOBO",
-        "Plantar ball",
-        "Gentle calf foam roll"
-      ]
+      "maintenance": ["Run prep with MOBO","Plantar ball","Gentle calf foam roll"]
     },
     "Sunday": {
-      "recovery": "10-minute restore",
-      "movement": "Walking · Yin · Ashtanga open"
+      "run": "10 mi outdoors · first 7.5 mi low aerobic",
+      "recovery": "Refuel, hydrate, restore; walking / yoga open."
     }
   }
 }
