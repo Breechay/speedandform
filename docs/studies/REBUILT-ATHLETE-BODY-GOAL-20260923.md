@@ -182,3 +182,18 @@ When running/strength days stack, deliberately increase food and fluid availabil
 Use morning bodyweight only as a loose contextual guardrail alongside recovery, muscular fullness, hunger, sleep, performance, movement quality and subjective freshness. A persistent downward drift combined with poorer recovery or loss of fullness/freshness is a reason to examine fueling; isolated post-training readings are not.
 
 **Working line:** *High output without accidental under-replacement.*
+
+
+## October 4 · 10-mile outdoor return and weekly correction
+
+The planned easy outdoor run became **10.01 miles in 1:51:15**. The first ~4 miles were with a training partner; the athlete continued solo because movement still felt smooth and controlled. He first intended to stop at 8 miles, then extended to 10 without forcing the effort.
+
+Recorded summary: **11:07/mi average pace**, **140 bpm average heart rate**, **178 bpm maximum heart rate**, **159 spm average cadence**, and **3.9 aerobic / 0.2 anaerobic training effect**. Late miles progressed to approximately **9:30, 9:02 and 8:18/mi**. The heart-rate rise occurred alongside that deliberate late progression, accumulated duration, and warm conditions; do not treat it as an isolated failure signal.
+
+The athlete reports continued improvement in the organization of his sides/midsection during running. When he allowed himself to move faster late, the body still felt solid rather than mechanically compromised. The current emphasis remains smoothness, fluidity and allowing outdoor running economy to return without chasing pace.
+
+The weekly total is corrected to **31.03 miles / 5 h 20 min / 180 ft**, not 32 miles.
+
+Hours after the run, the athlete reported a strong positive effect on **mood, physique and overall freshness**. He **refueled after the run**. The next priority is to absorb the week rather than immediately raise volume again.
+
+**Working line:** *Let the body organize around running again; then ask it for more.*
