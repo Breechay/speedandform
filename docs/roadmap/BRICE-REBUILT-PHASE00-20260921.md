@@ -83,3 +83,11 @@ Canonical write: `supabase/migrations/20261004223000_brice_rebuilt_hold_31_week.
 Web projection and all seven daily field sheets were updated to match. FORM remains running prescription + filing authority; Forge remains strength authority; Study 002 owns interpretation. No native prescription fork is required because the app reads the active FORM Athlete System block/feed.
 
 The progression decision is explicit: **hold volume; improve control.** The previous week closed at 31.03 actual miles, so Week 02 does not increase the running-load target. The next week remains unauthored until this hold is read.
+
+## 2026-10-05 · Monday completion / velocity contrast
+
+Monday's authored **5 mi treadmill · feel-first** session was completed as **5.01 mi / 47:42** and filed in the FORM Athlete System. The athlete used self-selected speed contrast rather than a pace- or HR-driven workout, then finished the final mile easy with reserve.
+
+Study 002 owns the detailed interpretation. Garmin ground-contact-time balance was **51.1% left / 48.9% right**; the athlete identifies the recovering left limb as still having slower reaction/rebound. Treat this as a small timing asymmetry and recovery signal, not evidence of greater left-side force.
+
+Week 02 remains a **31-mile volume hold**. No pace target, threshold prescription or fixed interval pattern is created from this run. Future feel-first treadmill running may allow spontaneous velocity contrast when it improves movement, but should stop before it becomes a push.
