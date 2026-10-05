@@ -819,5 +819,41 @@
     ],
     "category": "practice",
     "type": "App"
+  },
+  {
+    "url": "/labs/the-durable-frame/",
+    "title": "The Durable Frame",
+    "description": "Follow Tinius as FORM running and a six-week FORGE physique phase operate together.",
+    "keywords": [
+      "tinius",
+      "durable",
+      "frame",
+      "forge",
+      "form",
+      "physique",
+      "strength",
+      "running",
+      "study"
+    ],
+    "category": "practice",
+    "type": "Study"
+  },
+  {
+    "url": "/labs/the-long-chassis/",
+    "title": "The Long Chassis",
+    "description": "Follow Jacob as an experienced ultra runner rebuilds strength and stability around an existing aerobic engine.",
+    "keywords": [
+      "jacob",
+      "ultra",
+      "long",
+      "chassis",
+      "strength",
+      "stability",
+      "100",
+      "mile",
+      "study"
+    ],
+    "category": "practice",
+    "type": "Study"
   }
 ]
