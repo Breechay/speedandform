@@ -282,3 +282,33 @@ Specific speed, harder compromised running and race peaking wait for readiness. 
 Scope: this is a future authoring rule. The canonical Oct 5–11 31-mile hold week is already consistent and is unchanged. No new backend assignment, calendar prescription or native sync receipt is claimed.
 
 Production receipt for initial horizon update: commit 12609c741c55ea93cc09b57c06601f184fbdb0fb, ready production deploy 6ac38c30f9b03a00084d3680, published October 5 at 11:38:38 UTC. This receipt precedes the mileage-first follow-up.
+
+## October 5 · feel-first treadmill contrast and recovering-left reaction
+
+This is an **athlete-led movement observation**, not a threshold prescription and not a requirement to recreate the session.
+
+### Session and athlete report
+The planned **5 mi treadmill feel run** was completed as **5.01 mi in 47:42** (**9:31/mi average**). Garmin recorded **149 bpm average / 172 bpm maximum heart rate**, **3.7 aerobic / 1.0 anaerobic Training Effect**, **353 W average / 427 W maximum power**, **157 spm average / 183 spm maximum cadence**, **11.1 cm average vertical oscillation**, **279 ms average ground-contact time**, and **51.1% left / 48.9% right ground-contact-time balance**. Mile splits were approximately **10:41, 9:34, 9:15, 8:07, 10:01**.
+
+The athlete deliberately did not use heart rate or the new chest strap as pacing instructions. After several easy minutes he allowed self-selected increases in belt speed because the body appeared to want contrast: roughly **2 min quicker / 5 min recovery, 3 min quicker / 4 min recovery, then ~5 min quicker**, followed later by a longer quicker exposure of roughly **10 min**. The goal was not aerobic strain. The final mile returned to easy running by choice rather than adding another repetition.
+
+The athlete distinguishes **pushing** from **allowing**. Modest additional speed seemed to loosen the legs and improve posture, flow and elasticity. During the longer quicker segment, the temporary limiter felt more like fluidity / explosiveness / elasticity than aerobic distress; near the end, the body relaxed and found a better movement pattern again. He finished feeling fine, capable of continuing, and intentionally left reserve for the next day.
+
+### Mechanics read
+The traces support a narrow working hypothesis: at this stage of the rebuild, **modest self-selected velocity contrast may sometimes help the athlete access a more reactive and organized stride than very slow running alone**. Ground-contact time shortened during the quicker sections, cadence rose, power was comparatively stable during the longer quicker exposure, and vertical oscillation did not show an obvious runaway increase. Do not generalize this into “faster is safer” or prescribe speed merely to improve the numbers.
+
+### Recovering-left interpretation
+The **51.1% left / 48.9% right** ground-contact-time balance means the left foot spent slightly longer in ground contact on average. It does **not** establish greater left-side force or loading.
+
+The athlete identifies the left as the recovering limb and reports that it still has a **slower reaction / rebound time**. Treat the small leftward time bias as consistent with a working idea of **residual left reactive / elastic latency**, not as a diagnosis. The useful recovery question is increasingly: **how quickly and effortlessly can the left receive → stabilize → rebound → leave the ground?**
+
+Track whether the balance and subjective reaction quality move toward symmetry across weeks and whether they worsen with speed, fatigue or surface. On this run, the faster sections did not show an obvious progressive loss of symmetry.
+
+### Heart-rate interpretation and authoring implication
+Garmin labeled the activity **Threshold (High Aerobic)** and the configured zones show substantial time in Zones 4–5. Preserve that as device output, but do not redefine the session as a threshold workout. Training intent and experience were controlled, movement-led and non-maximal, with recovery between quicker segments.
+
+Keep the existing **31-mile hold week unchanged**. For feel-first treadmill runs, do **not** prescribe this interval pattern or a pace target. Brief self-selected increases in speed are allowed when they make movement feel more fluid, reactive or organized, and should end before they become a push. If faster running produces pain, worsening lower-leg response, obvious loss of coordination or progressive asymmetry, the contrast is not useful that day.
+
+**Study question:** *Can small doses of freely chosen velocity restore elastic organization while the recovering left side gradually regains faster ground reaction, without converting easy mileage into hidden hard training?*
+
+**Working line:** *Use speed as contrast when the body asks for it; never force the expression.*
