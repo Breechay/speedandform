@@ -267,3 +267,18 @@ Sources checked October 5, 2026:
 The public study's new long-horizon section and structured goal record carry this direction. Historical filings remain pinned and unchanged. This decision does not revise the canonical Oct 5–11 sessions, Forge programming or native assignments. A later session/pace change must originate in the FORM Athlete System before projection.
 
 Embedded JSON and inline JavaScript syntax, unique IDs and embedded-asset preservation passed. Browser layout checks remain open because the local Playwright browser executable is unavailable. Source commit is not a production or installed-app receipt.
+
+
+## October 5 · mileage-first authoring through year end
+
+Owner steering: future runs and plans should build toward the long-term goals. For starters, focus on weekly mileage until about the end of 2026, or until the athlete feels more confident and sturdy.
+
+**Authoring priority: repeatable mileage and durability.** First make about 31 miles ordinary. Hold there while it is being absorbed, then increase gradually only when lower-leg response during/after running, daily movement, late-week mechanics and recovery support more. Hold or reduce when response deteriorates. No automatic weekly percentage increase, December mileage quota or January intensity transition is approved.
+
+Each week should have one clear purpose: repeat, make a small volume increase, or absorb. Do not raise total mileage, long-run distance and intensity together. Most running remains easy; preserve the existing outdoor low-aerobic controls and feel-first treadmill exposures. Maintain Forge, mobility and deliberate fueling at doses that leave the running repeatable. Running volume is a means of building capacity, not the only outcome.
+
+Specific speed, harder compromised running and race peaking wait for readiness. Future trail and HYROX skill exposures can be considered within the tolerable load, without turning them into another demanding program. Author one week at a time from the latest response; explain how its purpose serves the longer horizon.
+
+Scope: this is a future authoring rule. The canonical Oct 5–11 31-mile hold week is already consistent and is unchanged. No new backend assignment, calendar prescription or native sync receipt is claimed.
+
+Production receipt for initial horizon update: commit 12609c741c55ea93cc09b57c06601f184fbdb0fb, ready production deploy 6ac38c30f9b03a00084d3680, published October 5 at 11:38:38 UTC. This receipt precedes the mileage-first follow-up.

@@ -6,7 +6,9 @@
 - [x] Study narrative, structured goals and owning decision note updated together. Existing 31-mile hold week remains the current prescription; long-term goals assign no new sessions or pace bands.
 - [x] Embedded JSON, inline JavaScript, unique IDs and embedded-asset preservation checked locally. No historical filing rewritten.
 - [ ] Production and desktop/phone visual verification. Local browser executable unavailable; source acceptance is not device acceptance.
-- Next: absorb the hold week, then review repeatability. Race selection and elite qualification timing wait for evidence.
+- Owner follow-up: prioritize repeatable weekly mileage and durability through about December 2026 or until sturdy/confident. First hold about 31 miles; future increases follow response. No year-end mileage quota or automatic January intensity switch.
+- Initial horizon update published: commit `12609c741c55ea93cc09b57c06601f184fbdb0fb`, ready production deploy `6ac38c30f9b03a00084d3680`, October 5 at 11:38:38 UTC. Mileage-first follow-up publication remains to verify.
+- Next: absorb the hold week, then author from repeatability. Race selection and elite qualification timing wait for evidence.
 
 
 ## October 4 · FORM House / Morning blueprint refinement
