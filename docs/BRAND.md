@@ -114,3 +114,74 @@ The owner rejected the sky-heavy IMG_8047 portrait crop. Use his Strava selectio
 
 ## October 1 owner portrait and emblem proportion refinement
 Use owner-supplied Photoshop Brice portrait (`assets/home/20261001/`), retaining the elbow and original pixels. Responsive WebP encoding only; no regenerated person. Full portrait uses CSS cover/left-center in the existing3:4frame with top-left-only160desktop/100phone corner. Public header SF emblem76×32desktop/62×28phone; footer174×64retained after actual render review. Keep emblem-only links.
+
+## October 6 · The bend: the house signature, and how to decide like this
+
+**Status.** Brice approved the direction from a canvas review on October 6 and asked for it stronger ("thicker") and written down, so the next person or agent reaches the same kind of answer without him. It is built on `work/the-bend-20261006`. His own review of the real page and the production check are still open. See the roadmap entry for the exact state.
+
+### What it is
+
+One drawn object: the first bend of a standard 400 m track, to true proportion. Bend radius 36.5 m, lane width 1.22 m, nine lines for eight lanes, the start line, and the seven staggered 400 m start marks. The straight comes in from the left and the bend rises on the right, because runners turn left. Do not mirror it.
+
+- Source of truth: `scripts/sf-bend.cjs`. Every number in it is a real track measurement.
+- Homepage use: generated into the **From the practice** fold by `scripts/public-study-preview.cjs`. Never hand-edit the SVG in `index.html`.
+- Standalone asset for story frames, covers and print: `/assets/brand/the-bend.svg` (run `node scripts/sf-bend.cjs` to rebuild it).
+- Check: `node tests/sf-bend.cjs`.
+
+### How the decision was made
+
+The request was: the lower folds feel flat, maybe subtle contour lines as a signature. The answer was not a better contour. Ask these in order before adding anything to a surface.
+
+1. **What is the real object?** A pattern is what you reach for when you have not found the object. Contours belong to hiking brands. The track belongs to this practice and is already in the hero photograph.
+2. **Can you name every number?** If a line cannot say what it measures, it is decoration. Take the geometry from the real thing and leave it alone.
+3. **What does it line up with?** The start line sits on a text edge: the left margin on phones, the left edge of the date column on desktop. The straight passes under the question "Can you hold it?"
+4. **What does it replace?** Adding the bend removed the boxed three-column grid. Also is now a plain index: one row per offer, price on the right in mono. If nothing comes out, do not put something in.
+5. **Is it one thing?** One accessory per fold. One bend per page.
+6. **Is it found, not announced?** It should read clearly once noticed and never compete with type. Lanes never cross type. They dissolve before they reach it.
+7. **Does the photograph still have the room?** See below.
+
+### What expensive means here
+
+- **The photograph is the luxury.** Space, type and the bend exist so a real photograph has somewhere to land. Brice is reshooting at higher quality. Build every room ready to receive a frame, and leave the space empty until a real one exists. Never fill it with stock, a generated image or ornament.
+- **Fewer things, each one exact.** Alignment, one rule per boundary, tabular figures and real measurements do the work.
+- **Agreed off the table on October 6:** topographic or contour textures, film grain, a serif display face, gold accents, boxed offer cards and a custom cursor.
+- **Not ruled:** capacity or invitation language such as "limited roster". The existing rule already applies. Do not publish it unless it is true.
+
+### Measurements
+
+| | Desktop, 1440 and wider | Phone and tablet, under 1024 |
+|---|---|---|
+| Lane | 22px (1.53vw, floor 16px, from 1024 to 1439) | 9px at 390 (2.31vw, 9px to 16px) |
+| Radii, inside to outside | 658px to 834px | 269px to 341px |
+| Line | 1.5px, the fold's text color | same |
+| Strength | lanes 22%, marks 60% | same |
+| Start line | left edge of the date column, 580px in from the content edge | on the text margin |
+| Outer lane | 104px above the fold's bottom edge | 72px above the fold's bottom edge |
+| Clearance | band starts 60px below the study link | inside lane 23.5 lanes below the study link |
+| Dissolve | over the 158px below the bend's center height | fully clear by the top of the study link |
+
+CSS owns these as `--lane`, `--bend-x`, `--bend-gap`, `--bend-solid` and `--bend-clear` on `.home-evidence` in `css/home-commercial.css`. The drawing scales with `--lane`. The proportion never changes.
+
+### The rest of the homepage follows the same rules
+
+Audited on October 6 against the questions above. Four small corrections, no new elements.
+
+- **One vertical line.** From 1280 wide, the Begin form starts 580px in from the content edge, the same line as the bend's start line and the date column. If you move one, move all three.
+- **Space separates the three doors.** The entry columns keep one top rule each. The vertical rules between them are gone, as they are in Also.
+- **The footer ends on the content edge.** Links sit flush right on desktop. On phones it closes on two lines: links, then the copyright with Top on the right. No link is left alone on a row.
+- **A label never breaks after its separator.** The hero label stays on one line on phones.
+
+### Motion
+
+It arrives once. When the fold enters view the lanes run in from the left, then the start marks appear. `js/home-settle.js` arms it, so without script or with reduced motion the bend is simply there. No loop, no parallax, no hover effect.
+
+### Where it may go
+
+- Built: the homepage **From the practice** fold.
+- Intended next, not built: 9:16 story frames, study covers and printed pieces, from the standalone asset. One bend per piece, same line weight, same strength.
+- Not without a new owner decision: paper or cream rooms, the FORM and Forge apps, any second use on the same page.
+- Never: tiled, rotated, mirrored, recolored lime, looped, or used in place of the SF emblem.
+
+### Checked and not checked
+
+Chromium renders at 375, 390, 430, 768, 1024, 1280, 1440 and 1920 wide were reviewed on October 6, with the arrival on and with reduced motion. The whole page was reviewed at 390 and 1440, and the footer also at 360 and 375. Safari, a physical phone, 200% zoom on this fold and production are not checked yet.

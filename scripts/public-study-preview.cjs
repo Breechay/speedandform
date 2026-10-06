@@ -2,6 +2,7 @@
 const fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..');
 const snapshot=JSON.parse(fs.readFileSync(path.join(root,'data/public-studies/speed-that-endures.json'),'utf8'));
+const {renderBend}=require('./sf-bend.cjs');
 const e=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function coachingExample(){const x=snapshot.latest_completed;return `They can hit their pace. The question is how far they can hold it. On ${x.label}, both completed ${x.distance_mi} continuous miles inside their own pace ranges. ${x.decision.replace(/^Both completed[^.]+\. /,'')} I coach their pacing, approach and progression remotely, using training updates and video.`;}
 function renderHomeStudy(){const x=snapshot.latest_completed;return `<section class="home-study" id="study-preview" aria-labelledby="home-study-title">
@@ -13,6 +14,7 @@ function renderHomeStudy(){const x=snapshot.latest_completed;return `<section cl
 <div class="study-foot"><a href="/plans/race-pace-durability/">Try the plan <span aria-hidden="true">↗</span><small>Weeks 1–4 free · Full plan $79</small></a></div>
 </div></section>`;}
 function renderHomeEvidence(){const x=snapshot.latest_completed;return `<section class="home-evidence" aria-labelledby="home-evidence-title">
+  ${renderBend()}
   <div class="wrap home-evidence-grid">
     <div class="home-evidence-question">
       <p class="eyebrow">From the practice</p>
