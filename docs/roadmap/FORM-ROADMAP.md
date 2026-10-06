@@ -1,5 +1,14 @@
 # FORM: current state and next actions
 
+## October 6 · Lit, not printed
+
+- Owner asked for the feel of his Instagram avatar on the homepage and in future content. Rules and measurements are in [Brand authority](../BRAND.md) under “October 6 · Lit, not printed”.
+- [x] Hero headline and header emblem fall off in light instead of sitting at flat full strength. CSS only, in `css/home-commercial.css`. No copy, layout or asset change.
+- [ ] Owner review of the preview. Not pushed, not merged, not deployed. Branch `work/lit-not-printed-20261006` exists as a patch against `main` at `200899a`.
+- [x] Closing cloth plate above the footer line, built from the owner's larger rendering (`/assets/home/20261006/sf-cloth.webp`). Recorded as a rendering of a garment, to be replaced by a photograph of the real piece.
+- [x] Owner revision of the bend from his Photoshop mock: lanes 1.65 times larger on desktop and about 1.5 times on phones, 2px lines, lanes 30%, marks 80%. Phone facts stack in one column so the lanes rise on the right without crossing type. From 1440 the start line sits on the distance column.
+- [x] Checks on the branch: `tests/sf-bend.cjs`, `tests/public-study-preview.cjs`, the Netlify build chain and `tests/public-finish-browser.cjs` in Chromium. Renders reviewed at 375, 390, 430, 768, 1024, 1280, 1440 and 1920.
+
 ## October 6 · The bend: homepage lower folds and house signature
 
 - Owner approved the direction from a canvas review and asked for it stronger and written down. The reasoning, rules and measurements are in [Brand authority](../BRAND.md) under “October 6 · The bend”.
@@ -9,7 +18,7 @@
 - [x] Checks on the branch: `tests/sf-bend.cjs`, `tests/public-study-preview.cjs`, the Netlify build chain and `tests/public-finish-browser.cjs` in Chromium all pass. Chromium renders reviewed at 375, 390, 430, 768, 1024, 1280, 1440 and 1920.
 - [x] Whole-page audit against the same rules, second commit on the branch: entry columns lose their vertical rules, the footer links sit flush right on desktop and close on two lines on phones, the hero label stays on one line on phones, and from 1280 the Begin form starts on the same vertical line as the bend's start line. No copy, offer, price or schedule change.
 - [ ] Owner review of the real page. Safari, a physical phone and 200% zoom on this fold are not checked.
-- [ ] Not pushed, not merged, not deployed. Branch `work/the-bend-20261006` exists as a patch against `main` at `6952a1c`. Record the tested commit and actual production state when it is published.
+- [x] Merged to `main` as `200899a` through PR #228. The release agent reported the Chromium, WebKit, closure and contract checks passing on the PR. A production read of the homepage on October 6 returns the new Also markup, so the bend release is live. Physical-phone review is still open.
 - Next: story frame and study cover from the standalone asset, after the homepage use is live and reviewed.
 
 ## October 6 · Half-marathon Library build sprint

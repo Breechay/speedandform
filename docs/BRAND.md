@@ -151,22 +151,25 @@ The request was: the lower folds feel flat, maybe subtle contour lines as a sign
 
 | | Desktop, 1440 and wider | Phone and tablet, under 1024 |
 |---|---|---|
-| Lane | 22px (1.53vw, floor 16px, from 1024 to 1439) | 9px at 390 (2.31vw, 9px to 16px) |
-| Radii, inside to outside | 658px to 834px | 269px to 341px |
-| Line | 1.5px, the fold's text color | same |
-| Strength | lanes 22%, marks 60% | same |
-| Start line | left edge of the date column, 580px in from the content edge | on the text margin |
+| Lane | 36px (2.5vw, floor 26px, from 1024 to 1439) | 14px at 390 (3.6vw, 14px to 24px) |
+| Radii, inside to outside | 1077px to 1365px | 419px to 531px |
+| Line | 2px, the fold's text color | same |
+| Strength | lanes 30%, marks 80% | same |
+| Start line | left edge of the distance column, 340px in from the content edge. From 1024 to 1439 it sits on the date column, 580px in | on the text margin |
 | Outer lane | 104px above the fold's bottom edge | 72px above the fold's bottom edge |
-| Clearance | band starts 60px below the study link | inside lane 23.5 lanes below the study link |
-| Dissolve | over the 158px below the bend's center height | fully clear by the top of the study link |
+| Clearance | band starts 60px below the study link | band starts 60px below the study link |
+| Facts | in a row beside the sentence | stacked in one column, 210px wide, so the bend can rise on the right |
+| Dissolve | over the top 180px of the fold | between 250px and 350px above the band |
 
-CSS owns these as `--lane`, `--bend-x`, `--bend-gap`, `--bend-solid` and `--bend-clear` on `.home-evidence` in `css/home-commercial.css`. The drawing scales with `--lane`. The proportion never changes.
+**October 6 owner revision.** Brice mocked the bend larger and heavier in Photoshop after seeing the first release live. The table above is that revision: lanes 1.65 times larger on desktop and about 1.5 times on phones, 2px lines, stronger lanes and marks. His mock let the lanes cross the facts. The build keeps the size and moves the type out of the way instead, so the rule still holds: lanes never cross type.
+
+CSS owns these as `--lane`, `--bend-x`, `--bend-gap`, `--bend-mask`, `--bend-solid`, `--bend-clear` and `--bend-marks` on `.home-evidence` in `css/home-commercial.css`. The drawing scales with `--lane`. The proportion never changes.
 
 ### The rest of the homepage follows the same rules
 
 Audited on October 6 against the questions above. Four small corrections, no new elements.
 
-- **One vertical line.** From 1280 wide, the Begin form starts 580px in from the content edge, the same line as the bend's start line and the date column. If you move one, move all three.
+- **One vertical line.** From 1280 wide, the Begin form starts on the date column's left edge, 580px in from the content edge. Under 1440 the bend's start line is on that same line. From 1440 the start line moves one column left, to the distance column, so the curve has room to rise. It always sits on a column edge, never between two.
 - **Space separates the three doors.** The entry columns keep one top rule each. The vertical rules between them are gone, as they are in Also.
 - **The footer ends on the content edge.** Links sit flush right on desktop. On phones it closes on two lines: links, then the copyright with Top on the right. No link is left alone on a row.
 - **A label never breaks after its separator.** The hero label stays on one line on phones.
@@ -185,3 +188,48 @@ It arrives once. When the fold enters view the lanes run in from the left, then 
 ### Checked and not checked
 
 Chromium renders at 375, 390, 430, 768, 1024, 1280, 1440 and 1920 wide were reviewed on October 6, with the arrival on and with reduced motion. The whole page was reviewed at 390 and 1440, and the footer also at 360 and 375. Safari, a physical phone, 200% zoom on this fold and production are not checked yet.
+
+## October 6 · Lit, not printed
+
+**Status.** Brice asked for the feel of his Instagram avatar on the homepage and in future video: richness, mystery, closeness, instead of flat white that "hits hard". The headline and emblem treatment below is built on `work/lit-not-printed-20261006` and waits for his review. The closing cloth plate is built on the same branch from the larger image he supplied.
+
+### What the avatar actually does
+
+It is the SF emblem blended into a photograph of black cloth. Measured from the file: the brightest point in the whole image is about 57% gray and the average is near black. The homepage headline was 90% white at over 100px. That gap is the "hit". The richness is three things, and none of them is an effect on letters:
+
+1. **A real material.** Cloth, photographed.
+2. **One light, from one side.** The mark is revealed by it, unevenly.
+3. **The mark is dimmer than you expect.** It never becomes the brightest thing in the frame.
+
+### Rules
+
+- **The photograph keeps the brightest point.** On a dark field, display type and the emblem fall off in light instead of sitting at flat full strength.
+- **Type stays flat and exact. Only its light changes.** No texture, bevel, emboss, glow, shadow or noise on live text, ever.
+- **Richness comes from real material.** Cloth, track, skin, concrete, photographed by Brice. Never from interface texture. Film grain stays off the interface, as already ruled.
+- **Anything a visitor must read to decide stays at full strength:** body copy, prices, dates, form labels, links. The falloff is for the hero headline and the emblem only.
+- **Check contrast where the light is lowest.** Large type must still clear 3:1 against what is behind it.
+- **One lit moment per view.** If the headline falls off, nothing else in that fold does.
+
+### Measurements
+
+| | Value |
+|---|---|
+| Hero headline | full strength to 28% of its width, falling to 60% at 96%, at 100 degrees |
+| Header emblem | bone at 18% of its width, falling to `#8f8e88` (about 56% gray) |
+| Everything else on the page | unchanged |
+
+### The closing plate
+
+The homepage ends on the cloth: the image above the footer line, the emblem's left tip on the content edge where the page opened with it, the cloth dissolving into black to the right on desktop and running edge to edge on phones.
+
+- Asset: `/assets/home/20261006/sf-cloth.webp`, 1448 by 1086.
+- Plate height 300px to 460px (32vw). Cloth width 560px to 900px (62vw). Desktop dissolve runs from 55% to 100% of the cloth's width.
+- Source: Brice supplied three large renderings generated from his own Photoshop composition on October 6. The one used is the middle strength, where the emblem sits at roughly 44% to 66% gray. The bright foil version was not used because the mark becomes the brightest thing in the frame. The emblem's shape was compared with the real mark and matches.
+- It is a rendering of a garment, not a photograph of one. That is acceptable for a brand object. It is not permission to generate people, sessions or places. When the real printed piece exists, photograph it and replace this file at the same path and proportions.
+
+### For video and future content (draft for Brice to edit)
+
+- Start close and in the dark. Let one light find the subject.
+- The mark arrives late and small, at about half strength, on something real.
+- Titles and captions in bone, never pure white, and never the brightest thing in the frame.
+- Black stays black. Do not lift the shadows to show more.
