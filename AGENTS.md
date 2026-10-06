@@ -99,3 +99,8 @@ The blanket v1.5.2 website hold is superseded. Read [current release scope](docs
 
 ## Public study acquisition projections · October 1
 Whenever Speed That Endures changes, review `data/public-studies/speed-that-endures.json`, the homepage preview and running-coaching example together. The projection contains only approved public evidence, never a private feed. Update the latest completed ask, coach conclusion, end-of-study state and verified race results when applicable; scheduled asks remain future. Prior race results are not automatically lifetime PRs. Build with `node scripts/build-commercial.cjs` and run `node tests/public-study-preview.cjs`. The study source hash is a review gate, not a result extractor. If a study edit does not change acquisition content, still record that review and refresh the hash.
+
+
+<!-- FORM-OBSERVATION-CONTINUITY-20261006 -->
+## Observation-led progression · October 6
+Read [FORM observation-led progression](docs/FORM_OBSERVATION_LED_PROGRESSION.md) before interpreting cost, continuous versus broken work, threshold progressions or copying a study observation to another athlete. Success is controlled goal-relevant running and recovery, not suffering. José's current continuous-support branch is athlete-specific. Preserve existing clinical/coach holds. Archived Durability & Compression and Sustained Pressure are distinct programs, not current prescriptions. Coach/app feed readback and physical-device screenshots are separate claims.

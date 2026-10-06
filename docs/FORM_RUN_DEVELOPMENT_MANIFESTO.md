@@ -358,3 +358,11 @@ Any future work that changes one of these areas must read this manifesto first:
 When this manifesto conflicts with older generic coaching language, preserve product facts and evidence boundaries from the older document but use this manifesto for the coaching philosophy, voice and sequencing.
 
 **FORM develops the runner. The work is to notice what is fighting the movement, free what matters most, repeat the better pattern, and let the athlete own it.**
+
+
+<!-- FORM-OBSERVATION-CONTINUITY-20261006 -->
+## Observation-led programming
+
+**Success is more useful running, not more suffering.** Brice judges progress against the athlete's goal and the changing challenge. The format is part of the question: staying in rhythm and repeatedly regaining it need not feel the same. Preserve the athlete's account, choose a useful adjustment, and review execution plus recovery. One athlete's response improves how we observe the others; it does not automatically become their workout.
+
+See [FORM observation-led progression](FORM_OBSERVATION_LED_PROGRESSION.md) for the current decision rules, threshold-program lineage and study-specific applications.

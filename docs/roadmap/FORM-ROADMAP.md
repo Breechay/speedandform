@@ -701,3 +701,14 @@ Owner-approved aspiration revision: 185 lb target; 180–185 lb preferred range;
   tested SHA, deploy IDs, live route observations and remaining email/measurement
   gates are recorded in the commercial audit. A fresh public preview now starts
   at Week 1, and all four inquiry forms render without entrance-animation delay.
+
+
+<!-- FORM-OBSERVATION-CONTINUITY-20261006 -->
+## October 6: continuity and progress, owner approved
+
+- Canonical José future sessions revised before public projection. October 8 remains recovery; October 13 is five continuous work miles, October 15 twenty controlled minutes if recovered, October 17 thirteen easy, October 20 eight continuous if ready. Completed evidence stays pinned.
+- Method and athlete-report notes saved for José, Hope, Elijah, Simon, Anthony and Tinius. Other athletes' prescriptions were not mass-edited. Anthony's application is in the existing private coach record; no invented public study.
+- Original Durability & Compression 20+8 and 20+12 found; 45 continuous belongs to separate Sustained Pressure. Archived options are not automatically assigned.
+- Public study, canonical doctrine and existing related study pages aligned; preview source hash reviewed.
+- App delivery requires normal coach-preview feed readback. Native physical-device appearance remains a separate check. Template weekly totals are not new mileage quotas; dated session instructions control.
+- Record tested commit, production receipt and actual visual verification in the PR. No competing native implementation or device installation.

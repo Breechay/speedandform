@@ -265,3 +265,11 @@ One operating checklist remains in `docs/roadmap/FORM-ROADMAP.md`: current readi
 ## Release discipline
 
 Keep the Adrian-family layout, working image bytes, .98 figure scale and bottom anchor. Preserve English/French and mile/km controls. Content must remain visible if JavaScript fails. Source comments are discoverability aids, not privacy protection; do not put secrets in HTML or this public repository. Store any unapproved raw athlete material in the authorized private system, not the static site.
+
+
+<!-- FORM-OBSERVATION-CONTINUITY-20261006 -->
+## October 6: observation-led progression
+
+Keep R4, current kilometer bands, HYROX quality-budget rules and separate gates. The March 25 20+12 is historical evidence, not current readiness. Observe whether he settles, holds and restarts at the intended effort before changing format.
+
+For Simon, judge controlled useful running, pacing and recovery against the goal. Broken and continuous work are tools, not an automatic hierarchy. [Shared method and threshold lineage](../FORM_OBSERVATION_LED_PROGRESSION.md). No current dose, gate, result or pace is changed by this methodological note.

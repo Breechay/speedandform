@@ -102,7 +102,7 @@
       "date": "2026-10-20",
       "distance_mi": 8
     },
-    "decision": "October 6 review correction: recovery-first on October 8. The session demonstrates eight broken work miles at high reported effort, not a diagnosed threshold deficit. Six continuous miles remains the latest completed rung; October 20 remains conditional."
+    "decision": "Owner-approved continuity support: five continuous miles October 13, modest conditional threshold October 15 and easy October 17. Keep October 8 easy and October 20 conditional. Six continuous miles remains the latest completed rung."
   },
   "permission": "Brice explicitly approved public study publication of this curated José update on October 6, 2026.",
   "review_amendment": {
@@ -112,5 +112,47 @@
     "current_individual_change": "Jose October 8: 40 min easy, shortened or omitted when unrecovered; optional relaxed strides only with normal legs.",
     "generic_change": "Withdraw automatic W7 3 x 12 replacement; restore preceding reusable publication without migrating individual assignments.",
     "future_scope": "No additional October 13–20 dose change is enacted by this source correction."
+  },
+  "continuity_amendment": {
+    "date": "2026-10-06",
+    "status": "Owner approved; canonical individual sessions revised and feed readback required",
+    "athlete_report": "Jose agrees that intervals feel harder for him, reports heavy legs restarting and again describes the six-mile continuous run as raceable. He acknowledges possible shoe effects.",
+    "mindset": "He reports doubting progress when the work gets hard; coach compares improvement against the changing challenge.",
+    "retrospective_treadmill_context": "Reports twice doing 10 x 1 km with floats near 7:00/mi and a workout average near 6:25/mi. Dates, work pace and recovery duration are not supplied; not a current float prescription.",
+    "interpretation": "Continuity may suit this athlete in this phase. Format, work volume, recovery and conditions are not isolated.",
+    "assigned_sequence": [
+      {
+        "date": "2026-10-08",
+        "work": "40 min easy; shorten/rest if needed"
+      },
+      {
+        "date": "2026-10-10",
+        "work": "13 mi easy; shorten if needed"
+      },
+      {
+        "date": "2026-10-13",
+        "work": "5 mi continuous at 6:40-6:45/mi; 20 min warm-up + 10 min cooldown"
+      },
+      {
+        "date": "2026-10-15",
+        "work": "20 min controlled continuous threshold if recovered; no pace target; 20 min warm-up + 10 min cooldown"
+      },
+      {
+        "date": "2026-10-17",
+        "work": "13 mi entirely easy; no fast finish"
+      },
+      {
+        "date": "2026-10-20",
+        "work": "8 mi continuous at 6:40-6:45/mi if ready; 20 min warm-up + 10 min cooldown"
+      }
+    ],
+    "success": "Controlled goal-relevant duration, pacing, rhythm and subsequent recovery, not maximum suffering.",
+    "not_claimed": [
+      "doubled fitness from doubled work distance",
+      "measured lactate clearance",
+      "all athletes prefer continuous work",
+      "eight continuous miles already completed",
+      "causal effect of format alone"
+    ]
   }
 }
