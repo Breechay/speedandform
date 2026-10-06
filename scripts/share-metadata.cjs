@@ -9,6 +9,7 @@ const DEFAULT_ALT = 'Two runners in profile in a black-and-white photograph, wit
 const PAGES = `anti-rotation.html app.html athletes.html avoid-injury.html competition.html cycles.html easy-run-standards.html easy-run.html es/plans/race-pace-durability/index.html field-notes.html form/index.html fueling.html ghost/cues.html ghost/index.html ghost/week-1.html ghost/week-2.html ghost/week-3.html ghost/week-4.html ghost/week-5.html ghost/week-6.html how-fast-should-i-run.html index.html labs/hyrox/index.html labs/index.html labs/raise-the-ceiling/index.html labs/speed-that-endures/index.html labs/the-last-10k/index.html labs/track/index.html ledger.html library/easy-days/index.html library/first-half-marathon-goal/index.html library/from-lifting-to-running/index.html library/half-marathon-week/index.html library/physique-volume/index.html library/the-two-paces/index.html library/when-a-week-goes-wrong/index.html library/why-phases/index.html library.html long-run-pace.html long-run.html mechanics-map.html miami-running-training.html mobility.html next.html notes.html pacing.html pain-map.html plan-speed-emergence.html plan-spring-2026.html plan.html plans/index.html plans/marathon-durability/index.html plans/race-pace-durability/index.html plans/race-pace-durability/support/index.html plans/raise-the-ceiling/index.html practice.html principles.html race-prep.html race-strategy.html recovery.html return.html running-form-errors.html running-terms.html search.html sessions.html shoes.html sleep.html speed.html split-calculator.html start.html strength-activation.html strength-fixes.html strength-routine.html strength.html the-field.html the-method.html the-work.html threshold-training.html threshold.html thursday.html training-arc.html training-interruptions.html training-map.html training-principles.html training-week.html troubleshooting.html`.split(' ');
 // Explicit exceptions. A new dedicated card must be reviewed, never silently replaced.
 const PRESERVE = {
+  'split-calculator.html': '/og/split-calculator-20261006.jpg',
   'contact.html': '/og/speed-and-form-20261001.jpg',
   'index.html': '/og/speed-and-form-20261001.jpg',
   'es/plans/race-pace-durability/index.html': '/og/race-pace-durability.png',
@@ -25,6 +26,7 @@ const PRESERVE = {
   'threshold.html': '/og/threshold.jpg'
 };
 const ALTS = {
+  '/og/split-calculator-20261006.jpg': require('../data/half-marathon-share.json').calculator.alt,
   '/og/speed-and-form-20260930.jpg': 'Speed & Form. Running and strength coaching with Brice. Miami and online.',
   '/og/speed-and-form-20261001.jpg': 'Speed & Form. Running and strength coaching with Brice. Miami and online.',
   '/og/race-pace-durability.png': 'FORM Race Pace Durability: a dark-green half-marathon plan card with the progression from broken work to continuous and late running.',
@@ -71,6 +73,7 @@ function transform(html, file, root) {
   const old = meta(html,'og:image');
   const target = ORIGIN + (PRESERVE[file] || DEFAULT_IMAGE);
   const permitted = ['', ORIGIN+'/og/default.jpg', ORIGIN+'/og/default.jpg?v=rd26', target];
+  if (file==='split-calculator.html') permitted.push(ORIGIN+DEFAULT_IMAGE);
   if (file==='index.html') permitted.push(ORIGIN+'/og/homepage-run-development-20260916.jpg');
   if (file==='plans/index.html') permitted.push(ORIGIN+'/og/plans.png');
   if (!permitted.includes(old)) throw new Error(`Unexpected dedicated image on ${file}; inspect before replacing: ${old}`);

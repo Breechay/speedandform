@@ -2,7 +2,7 @@
 
 **Owner direction:** October 6, 2026. Build the connected set, replace Library serif typography with sans serif, work through deliberate visual passes, and release complete groups as they become ready. This supersedes the supplied handoff's no-build status and its recommendation to retain serif headings. It does not establish that a page has shipped or that an ad is running.
 
-**Target:** initial working structure October 6; two focused build days October 7–8; launch-readiness review October 9. Dates are work targets, not a publication promise. The existing Console owns next actions and daily selection. This document owns the technical release checklist; it does not replace the company roadmap.
+**Target, reaffirmed by Brice October 6:** first group live October 6; two focused build days October 7–8; full-system launch-readiness review October 9. Dates are work targets, not a publication promise. The existing Console owns next actions and daily selection. This document owns the technical release checklist; it does not replace the company roadmap.
 
 ## One connected collection
 
@@ -63,7 +63,11 @@ These are build blocks, not calendar bookings. Coaching delivery and the existin
 - [ ] Complete physical-phone and on-device Safari acceptance separately.
 - [x] Established synthetic purchase (65), attribution (32) and email-outbox checks passed; no external messages sent and no live payment made.
 - [ ] Verify production analytics collector receipt; local event emission is not delivery evidence.
-- [ ] Exact release commit, production deployment and live route/asset readback recorded.
+- [x] First group released: merge `6952a1c48751caebd66fdb2ec3ce9be53cc3fb04`, Netlify production deploy `6ac54c5e25b74d0008f25716`, published October 6 at 19:30:52 UTC. Live browser verified all three routes, calculator and kilometer switching.
+- [x] Four dedicated share cards and complete SEO metadata built and scoped checks passed.
+- [ ] Publish/read back the new cards and metadata on the four resource/tool destinations.
+- [x] Resource-only GA collector implemented with GPC/DNT suppression, campaign-label sanitization and trusted week-open tracking; 61 focused checks pass.
+- [ ] Publish/read back resource measurement; verify actual GA collector receipt and Enhanced Measurement settings separately from local tests. Connected GSC Wizard currently returns payment_required, so Google-side account checks are not complete.
 
 ### Later resources
 
@@ -88,9 +92,26 @@ Review actual exposure, resource use, accepted inquiries and purchases separatel
 
 - Supplied consolidated handoff and original/review evidence read October 6. Owner's current build instruction takes precedence over its earlier no-build state and serif preference.
 - Repository baseline: `8ebea0f1b93899058e2fd64dd4d0428d43319ab6`; remote `main` confirmed October 6 before this scoped roadmap edit.
-- Source implementation: all three core resources are implemented and ready for owner review on `work/half-marathon-library-20261006`; review source commit `d865d97a31d086bec5bf748aa1f44a13d102ce27`, [draft PR #226](https://github.com/Breechay/speedandform/pull/226). Core build remains review-ready, not shipped.
+- Source implementation: all three core resources are implemented and ready for owner review on `work/half-marathon-library-20261006`; review source commit `d865d97a31d086bec5bf748aa1f44a13d102ce27`, [draft PR #226](https://github.com/Breechay/speedandform/pull/226). This candidate was subsequently merged and published in the first release recorded above.
 - Browser, schedule, pace, discovery, print and synthetic commercial evidence is summarized in the checklist above. Final bounded polish and keyboard checks passed. GitHub closure and existing Chromium/WebKit regression checks passed on the recorded source commit. They do not establish physical-device acceptance or production collection.
 - Validation caveat: preexisting frozen discovery/share snapshots are not the current scoped acceptance suite. The three-resource discovery check passed while preserving 60 existing search entries; do not label the entire historical snapshot suite green from that result.
-- Production publication: not performed in this pass. Production route/asset behavior and analytics collector receipt remain unverified.
+- Production publication: first group live as recorded above. Owner accepts physical-phone/on-device Safari as a follow-up. Analytics collector receipt remains unverified.
 - Advertising: preparation only, pending the production destination, collector verification and concrete spending scope. No account, budget, campaign or delivery state changed.
-- Next action: review the working first group for hierarchy and flow, then record release evidence when published. Review the separate six-week/faster-half candidates before extending publication.
+- Next action: close the SEO/share and resource-measurement pass, verify GA receipt, then finish the separate six-week/faster-half candidates and author the eight-/sixteen-week paths.
+
+
+## October 6 distribution pass and first-ad decision
+
+The owner reconfirmed October 9 as the full-system readiness target. Keep the five passes, with two short design looks inside pass 3. Every new resource needs its own search title/description, canonical URL, representative share image and alt text, correct structured data, sitemap entry, internal discovery links, and a live browser readback. Native-message preview appearance and search indexing are observations after publication, not guaranteed by valid metadata.
+
+**Today:** replace the generic card on the three resources and calculator with four dedicated 1200×630 cards, complete metadata, and add a dedicated public-resource collector. Source implementation and request emission do not establish GA receipt.
+
+**October 7:** review and build the six-week plan and faster-half guide; author complete eight-/sixteen-week schedules with distinct prerequisites and transitions. Begin content checks before duplicating the design.
+
+**October 8:** finish content, design, cross-links, print and QA for eligible plans. Each completed group can ship. Prepare one advertising package and verify collection on its exact destination.
+
+**October 9:** review the complete system, shipped list and any named remaining blockers. Use this as the readiness target, not permission to publish an incomplete schedule.
+
+**First experiment:** direct one clear message to the complete free twelve-week plan, naming its established-running starting point. Primary resource-use readout: measured landing sessions with at least one deliberate week open. Report that as schedule exploration, not adherence, a lead or a purchase. Print requests and onward visits are secondary; accepted inquiries and verified purchases stay distinct. Opening an incoming week hash must not count as deliberate engagement.
+
+Prepare the test now. Activate before October 9 only if the destination, share cards, production collector receipt, actual account state, and an explicit platform/spending cap/review point/stop condition are confirmed. Keep existing paid-plan and Run Development acquisition tests distinct. The owner has not selected a new budget or platform in this instruction; no ads or spending changes are authorized by this roadmap.

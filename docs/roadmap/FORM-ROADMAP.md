@@ -1,6 +1,13 @@
 # FORM: current state and next actions
 
-## October 6 · Half-marathon Library build sprint
+## October 6 · Half-marathon Library distribution pass
+
+- The first group is live: PR #226, merge `6952a1c48751caebd66fdb2ec3ce9be53cc3fb04`, Netlify production `6ac54c5e25b74d0008f25716`, October 6 at 19:30:52 UTC. The three resource routes, sans-serif type, kilometer switching and calculator were checked in the live browser.
+- Brice reconfirmed October 9 as the full-system readiness target. [The existing checklist](HALF-MARATHON-LIBRARY-20261006.md) remains the owner of all plans, five passes, SEO/share acceptance and ad-readiness gates.
+- Current pass: four dedicated share cards, complete resource metadata and resource-only analytics. Production GA receipt remains a separate gate; no ad spend has started. Physical-phone/Safari review is a follow-up accepted by the owner.
+- Prepare the first free-plan ad package while finishing the remaining plans. A test can start earlier after its destination, measurement and explicit spending scope are ready.
+
+## October 6 · Half-marathon Library build sprint (first-build record)
 
 - Current owner instruction authorizes the connected half-marathon resource build and replaces the Library serif direction with sans serif.
 - [The single release checklist](HALF-MARATHON-LIBRARY-20261006.md) sequences the twelve-week plan, readiness guide and pace chart first; the complete six-week resource next; reviewed sixteen-/eight-week paths and faster-half guidance follow without exposing unfinished plans.
