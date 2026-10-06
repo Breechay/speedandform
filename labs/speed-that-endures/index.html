@@ -1391,13 +1391,32 @@ h1,h2,h3,.display-claim,.cost-claim,.statement b,.kite-quote{text-wrap:balance}
  #w6-read .cr-grid>div{min-width:0;padding:22px 0;border-right:0;border-top:1px solid var(--line)}
  #w6-read .cr-grid>div:first-child{border-top:0}
 }
+/* W7: broken support read, same evidence grammar as W6. */
+#w7-read{scroll-margin-top:88px;padding-bottom:0}
+#w7-read .w4-lede{font-size:clamp(19px,1.7vw,26px);line-height:1.5;max-width:68ch;color:var(--ink-2);margin:0 0 34px}
+#w7-read .cr-grid{grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:0}
+#w7-read .w4-source{font-size:14px;line-height:1.6;color:var(--muted);margin:0;padding:22px 0}
+#w7-read .note{margin-top:0}
+#w7-read .w4-splits b{font-variant-numeric:tabular-nums}
+#w7-read{container-type:inline-size}
+#w7-context summary{display:list-item;font-size:16px;line-height:1.4;padding:18px 0}
+@media(max-width:900px){#w7-read .cr-grid{grid-template-columns:1fr}#w7-read .cr-grid>div{min-width:0;border-right:0;border-top:1px solid var(--line);padding:22px 0}#w7-read .cr-grid>div:first-child{border-top:0}}
+@container (max-width:850px){
+ #w7-read .cr-head{grid-template-columns:1fr;gap:22px}
+ #w7-read .cr-head h3{font-size:clamp(48px,9cqi,76px);max-width:100%}
+ #w7-read .w4-pair,#w7-read .cr-grid{grid-template-columns:1fr}
+ #w7-read .w4-athlete,#w7-read .w4-athlete+.w4-athlete{padding:28px 0;border-left:0}
+ #w7-read .w4-athlete+.w4-athlete{border-top:1px solid var(--line)}
+ #w7-read .cr-grid>div{min-width:0;padding:22px 0;border-right:0;border-top:1px solid var(--line)}
+ #w7-read .cr-grid>div:first-child{border-top:0}
+}
 html,body{overflow-x:clip}
 </style>
 </head>
 <body>
 <div class="masthead">
 <a class="wordmark" href="/" aria-label="FORM home">FORM<span>.</span></a>
-<div class="status"><i aria-hidden="true"></i>In progress · updated Sep 29</div>
+<div class="status"><i aria-hidden="true"></i>In progress · updated Oct 06</div>
 </div>
 
 <div aria-hidden="true" id="progress"></div>
@@ -1416,7 +1435,7 @@ html,body{overflow-x:clip}
 </nav>
 <article itemscope="" itemtype="https://schema.org/Article">
 <meta content="2026-08-23" itemprop="datePublished"/>
-<meta content="2026-09-29" itemprop="dateModified"/>
+<meta content="2026-10-06" itemprop="dateModified"/>
 <!-- ══════════════════════════ HERO ══════════════════════════ -->
 <header class="hero bleed" id="top">
 <div class="hero-photo">
@@ -1443,7 +1462,7 @@ html,body{overflow-x:clip}
 <li><a href="#cases"><b>04</b>Two athletes, one question</a></li>
 <li><a href="#orlando"><b>08</b>Orlando → Donna</a></li>
 </ol>
-<a class="plan-link" href="#w6-read">Sep 29 · Six miles. Same band. &rarr;</a>
+<a class="plan-link" href="#w7-read">Oct 06 · Eight broken miles. Two-minute floats. &rarr;</a>
 <a class="plan-link" href="/plans/race-pace-durability/">Open the 15-week plan &rarr;</a>
 </nav>
 
