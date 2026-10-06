@@ -77,6 +77,16 @@ try {
 
   const destination = await finishAuthCallback();
 
+  // The Operating Console is owner-only. A valid Supabase session is not enough:
+  // an alternate email must never become a second console owner by accident.
+  if (destination.startsWith('/coach/ops/')) {
+    const { data: isOwner, error: ownerError } = await supabase.rpc('operating_console_owner');
+    if (ownerError || isOwner !== true) {
+      try { await supabase.auth.signOut(); } catch {}
+      throw new Error('This email is not connected to the Operating Console. Use the coach account already connected to FORM.');
+    }
+  }
+
   if (appHandoff && !recovery && !calendarReturn) {
     const session = await getSession();
     const deepLink = appDeepLink(session);
