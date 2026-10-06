@@ -29,7 +29,7 @@ This is not a bodybuilding-only block and not a second running plan.
 
 Working structure:
 - **Tuesday after FORM quality · Frame A** — upper-dominant; shoulders, upper chest, back; minimal leg fatigue.
-- **Thursday after FORM quality · Lower + Core** — unilateral leg work, posterior chain, calf/foot support and trunk stability; volume capped so Saturday remains available.
+- **Thursday · Lower + Core, if earned** — full lower-body work only when Tuesday is absorbed and FORM Thursday is easy/support; otherwise use trunk/calf support, reduce it or skip it so Saturday remains available.
 - **Sunday · Frame B** — upper-dominant; back, shoulders, arms, chest; no lower-body debt after Saturday.
 
 Progression:
@@ -42,7 +42,7 @@ Progression:
 
 Do not add a fourth strength day. Do not add bonus sets because a session felt easy.
 
-## Equipment gate
+## Week 1 load calibration
 
 Athlete currently reports:
 - yoga mat;
@@ -69,7 +69,7 @@ Keep running and strength evidence separate:
 
 ## Next gate
 
-**Equipment authoring gate: closed for Week 1 calibration.**
+**Integration is now the live gate.**
 
 Freeze the Week 1 movement map. Start from the athlete-reported current working loads, record actual load / reps / RIR, and use the smallest available increase only when the authored rep-range rule is met. A stable chair/bench/step is still optional information for rear-foot elevation; it does not block the phase.
 
