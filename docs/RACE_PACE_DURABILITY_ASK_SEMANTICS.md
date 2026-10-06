@@ -12,27 +12,24 @@ A successful session is not defined by suffering or by completing the largest av
 
 # The ask, and what an ask returns
 
-**Proposal, 5 September 2026. Nothing built, nothing written, nothing assigned.**
-Companion to `RACE_PACE_DURABILITY_CANONICAL_v1.md`.
+**Originally proposed 5 September 2026; current semantics revised 6 October 2026.**
+Companion to `RACE_PACE_DURABILITY_CANONICAL_v1.md`. Git history preserves the retired four-ask proposal; this file states the current operating semantics.
 
 ---
 
 ## 1 · What an ask is
 
-Race Pace Durability contains four **asks**, and nothing else in the block is one:
+Race Pace Durability contains three programmed continuous-ownership **asks**:
 
 | | | |
 | --- | --- | --- |
-| **W4** | 5 mi continuous @ 6:30–6:45 | Tuesday |
-| **W6** | 6 mi continuous @ 6:30–6:45 | Tuesday |
-| **W9** | 8 mi continuous @ 6:30–6:45 | Tuesday |
-| **W12** | 12 mi continuous @ 6:30–6:45 | inside the Saturday 16 |
+| **W4** | 5 mi continuous @ the athlete's race-pace band | Tuesday |
+| **W6** | 6 mi continuous @ the athlete's race-pace band | Tuesday |
+| **W9** | 8 mi continuous @ the athlete's race-pace band | Tuesday |
 
-Every other session is preparation, maintenance or absorption. They can go badly
-without the block owing anyone an answer. **An ask is the only session that
-returns a verdict**, and the only one that can change what the athlete owns.
+W11 and W12 contain conditional late-access durability work (4 then 6 race-pace miles after prior easy running). They are not ownership asks and cannot move the ownership mark. Nine or ten continuous miles may be authored later for an individual athlete when evidence makes the question useful; they are not missing reusable-plan rungs.
 
-The eleven non-ask weeks are not lesser. They are what makes an ask answerable.
+Every other session is preparation, support, durability or absorption. **A programmed ownership ask is the only reusable-plan session that can return an ownership verdict.** The other weeks are not lesser; they make those questions answerable.
 
 ## 2 · The three verdicts
 
