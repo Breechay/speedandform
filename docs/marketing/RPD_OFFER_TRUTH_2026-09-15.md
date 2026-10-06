@@ -29,7 +29,7 @@ A runner targeting ~1:15, ~1:30, or another half-marathon time can use the same 
 - Starts around 45 mpw and builds to ~60 mpw.
 - Requires an existing long-run base; it is not a beginner/base-building plan.
 - Tuesday develops race-pace ownership.
-- Thursday keeps a ceiling above race pace.
+- Thursday supplies conditional aerobic support; demanding work is performed only when the primary session was controlled and recovery is normal.
 - Saturday develops duration and later asks whether race-pace access survives prior mileage.
 - The pace does not automatically get faster because a week went well.
 - The athlete response can require a repeat, hold, or change.
