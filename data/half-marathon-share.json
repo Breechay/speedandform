@@ -1,0 +1,30 @@
+{
+  "plan": {
+    "image": "/og/half-marathon-plan-20261006.jpg",
+    "alt": "Speed & Form. Your next 12 weeks. A free half-marathon plan with four easy outings a week.",
+    "label": "HALF MARATHON · FREE PLAN",
+    "headline": ["Your next", "12 weeks."],
+    "detail": ["Four outings a week.", "Easy effort.", "A complete free plan."]
+  },
+  "ready": {
+    "image": "/og/half-marathon-readiness-20261006.jpg",
+    "alt": "Speed & Form. Start where you are. Match half-marathon preparation to your recent running and available weeks.",
+    "label": "HALF MARATHON · GETTING STARTED",
+    "headline": ["Start where", "you are."],
+    "detail": ["The running you have.", "The time available.", "A clear starting point."]
+  },
+  "pace": {
+    "image": "/og/half-marathon-pace-20261006.jpg",
+    "alt": "Speed & Form. A time. A pace. Half-marathon finish times, pace per mile and pace per kilometer.",
+    "label": "HALF MARATHON · PACE CHART",
+    "headline": ["A time.", "A pace."],
+    "detail": ["Finish times.", "Miles and kilometers.", "The numbers, together."]
+  },
+  "calculator": {
+    "image": "/og/split-calculator-20261006.jpg",
+    "alt": "Speed & Form. Know your splits. Turn a distance and finish time into pace and race checkpoints.",
+    "label": "LIBRARY · SPLIT CALCULATOR",
+    "headline": ["Know your", "splits."],
+    "detail": ["Choose a distance.", "Enter a finish time.", "See your splits."]
+  }
+}
