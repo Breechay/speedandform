@@ -29,3 +29,7 @@ This newer standard takes precedence where older styling instructions require un
 The FORM wordmark ends with a **round period**, never a font-dependent square. Position it on the lettering baseline, not as a raised middle dot; verify the rendered mark with enlarged text and fallback fonts. Preserve its readable identity text. The website header/footer and José preview were corrected in [PR134's release](audits/APP-PREVIEW-POLISH-20260917.md); this is not a claim that every unrelated or native surface was edited.
 
 Breechay Sculpt's large illustrative phase numerals use its **sans-serif** family. Do not reintroduce a decorative serif 01 or the removed “Sculpt · The Frame” label beneath Adrian. Keep each surface's distinct material and typography rather than making FORM and Sculpt identical.
+
+## October 6 · Public house and Library scope
+
+Follow the current-authority section of [Brand authority](BRAND.md). The current house uses Inter Tight display weight 450 and measured mono labels. The three half-marathon pages take that lighter heading treatment through PR #232; it supersedes their earlier 600–650 direction. The remaining Library keeps its existing sans treatment until its own migration. No serif restoration. Cream pages retain reading width and ink; the dark-room lit headline does not transfer to paper. These choices do not waive the contrast, zoom, print or physical-device checks above.

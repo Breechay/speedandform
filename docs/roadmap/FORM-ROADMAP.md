@@ -1,11 +1,19 @@
 # FORM: current state and next actions
 
+> October 6 release reconciliation: PR #231 (brand page), #232 (doors/Library), #234 (one-house headers/footers) and #233 (agent brand guidance) are merged. Latest reviewed main: `49cc328`. Older unchecked “not pushed/not merged” lines below are historical build notes, superseded for those four PRs. Production, Safari and physical-device checks remain separate. PR #227 is the remaining SEO/share/measurement release.
+
 ## October 6 · Half-marathon Library distribution pass
 
 - The first group is live: PR #226, merge `6952a1c48751caebd66fdb2ec3ce9be53cc3fb04`, Netlify production `6ac54c5e25b74d0008f25716`, October 6 at 19:30:52 UTC. The three resource routes, sans-serif type, kilometer switching and calculator were checked in the live browser.
 - Brice reconfirmed October 9 as the full-system readiness target. [The existing checklist](HALF-MARATHON-LIBRARY-20261006.md) remains the owner of all plans, five passes, SEO/share acceptance and ad-readiness gates.
 - Current pass: four dedicated share cards, complete resource metadata and resource-only analytics. Production GA receipt remains a separate gate; no ad spend has started. Physical-phone/Safari review is a follow-up accepted by the owner.
 - Prepare the first free-plan ad package while finishing the remaining plans. A test can start earlier after its destination, measurement and explicit spending scope are ready.
+
+## October 6 · Brand continuity for future agents
+
+- Owner reaffirmed the new homepage/brand direction. Root instructions, Agent Orientation, Brand authority and typography now identify the current black/bone/ink, lighter-display and plain coaching voice rules, with paper-room scope and draft decisions explicit. Documentation only; no schedule, pace math, page copy or visual code changes in this follow-up.
+- Repository evidence: brand-page PR #231 merged as `0fde9ad`; doors/Library merged in PR #232 as `6184fc9`. Do not reapply the uploaded patch. SEO/share/measurement PR #227 remains a separate release; preserve both documentation records when merging.
+- Verification: source references and documentation diff reviewed. No new production, print, Safari, physical-phone or analytics-receipt claim. Next: land this guidance with the coordinated release and verify the combined destinations before the October 9 ad-readiness review.
 
 ## October 6 · One house: header link, footer line, FORM House
 
