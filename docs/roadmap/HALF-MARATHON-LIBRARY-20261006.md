@@ -59,7 +59,8 @@ These are build blocks, not calendar bookings. Coaching delivery and the existin
 - [x] Local resource events use allowlisted non-personal parameters, remain separate from inquiries/purchases and respect GPC/DNT.
 - [x] Chromium 153 checked at 375, 390, 430, 768, 1024 and 1440 pixels: all three resources, calculator, Library and a sample nested article. Miles/kilometers, week/hash navigation, no-JavaScript content, 200% text and malformed calculator input passed.
 - [x] Three-page print output visually reviewed.
-- [ ] Finish the small visual corrections and final checks; record remaining keyboard and physical-device acceptance separately.
+- [x] Small visual corrections, print cleanup and keyboard focus checks completed.
+- [ ] Complete physical-phone and on-device Safari acceptance separately.
 - [x] Established synthetic purchase (65), attribution (32) and email-outbox checks passed; no external messages sent and no live payment made.
 - [ ] Verify production analytics collector receipt; local event emission is not delivery evidence.
 - [ ] Exact release commit, production deployment and live route/asset readback recorded.
@@ -87,9 +88,9 @@ Review actual exposure, resource use, accepted inquiries and purchases separatel
 
 - Supplied consolidated handoff and original/review evidence read October 6. Owner's current build instruction takes precedence over its earlier no-build state and serif preference.
 - Repository baseline: `8ebea0f1b93899058e2fd64dd4d0428d43319ab6`; remote `main` confirmed October 6 before this scoped roadmap edit.
-- Source implementation: all three core resources are implemented and ready for owner review on `work/half-marathon-library-20261006`; review commit and PR receipt are pending. Core build remains review-ready, not shipped.
-- Browser, schedule, pace, discovery, print and synthetic commercial evidence is summarized in the checklist above. Final polish checks remain open. These checks cover the current local candidate, not an unrecorded future commit.
+- Source implementation: all three core resources are implemented and ready for owner review on `work/half-marathon-library-20261006`; review source commit `d865d97a31d086bec5bf748aa1f44a13d102ce27`, [draft PR #226](https://github.com/Breechay/speedandform/pull/226). Core build remains review-ready, not shipped.
+- Browser, schedule, pace, discovery, print and synthetic commercial evidence is summarized in the checklist above. Final bounded polish and keyboard checks passed. GitHub closure and existing Chromium/WebKit regression checks passed on the recorded source commit. They do not establish physical-device acceptance or production collection.
 - Validation caveat: preexisting frozen discovery/share snapshots are not the current scoped acceptance suite. The three-resource discovery check passed while preserving 60 existing search entries; do not label the entire historical snapshot suite green from that result.
 - Production publication: not performed in this pass. Production route/asset behavior and analytics collector receipt remain unverified.
 - Advertising: preparation only, pending the production destination, collector verification and concrete spending scope. No account, budget, campaign or delivery state changed.
-- Next action: review the working first group, close its small final corrections, then attach the exact review commit/PR and release evidence. Review the separate six-week/faster-half candidates before extending publication.
+- Next action: review the working first group for hierarchy and flow, then record release evidence when published. Review the separate six-week/faster-half candidates before extending publication.
