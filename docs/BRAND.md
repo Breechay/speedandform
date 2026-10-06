@@ -18,7 +18,7 @@ Brice reaffirmed the new homepage and brand-page direction on October 6 and aske
 
 `docs/BRAND.md` owns decisions and their scope. `brand/index.html` is the public presentation; `css/home-commercial.css` and the owning room styles implement it. `scripts/build-brand-kit.cjs` owns kit tokens/templates, `scripts/sf-bend.cjs` owns the drawing, and `scripts/render-brand-kit.cjs` renders the PDF/previews/zip. Read current source before using any copied values. Change source and projections together when a public rule changes; do not hand-edit generated output. Documentation-only routing or release corrections do not require regenerating unchanged public assets.
 
-At this review, PR #231 is merged at `0fde9ad3ffb29b5735aa73a3137fb2dec4e0682a`, including the homepage footer link to Brand. The doors and Library work is already pushed in PR #232 (`work/doors-and-library`); do not apply the uploaded patch again. Its code is separate from the SEO/share/measurement work in PR #227, but both edit operating documentation, so preserve both records when resolving conflicts. Production publication is a separate check.
+At this review, PR #231 is merged at `0fde9ad3ffb29b5735aa73a3137fb2dec4e0682a`, including the homepage footer link to Brand. The doors and Library work merged in PR #232 as `6184fc9` (`work/doors-and-library`); do not apply the uploaded patch again. Its code is separate from the SEO/share/measurement work in PR #227, but both edit operating documentation, so preserve both records when resolving conflicts. Production publication is a separate check.
 
 The proposed outing-to-run wording, rounded display distances and shorter cautions remain coaching-review items, not changes applied by this documentation update. Exact pace calculations stay exact. The proposed wider Library migration and unified footer/header decisions remain open. Draft details explicitly labeled as proposals below remain proposals; the owner's direction endorsement does not silently settle each open design choice.
 
@@ -272,3 +272,48 @@ The homepage ends on the cloth: the image above the footer line, the emblem's le
 **Drafts, not rulings.** These were proposed in the build and are his to change: clear space of half the emblem's height, the 62px minimum width, the story safe zones (top 14%, bottom 20%), the film and social rows, "no exclamation points", and the rule to ask before using a photograph.
 
 **Keep it true.** If a rule changes here, change the page, then rebuild and re-render the kit in the same release. A brand page that disagrees with the house is worse than none.
+
+## October 6 · Doors off the homepage
+
+**Status.** Brice asked for the doors a visitor reaches from the homepage to be audited against it, starting with Contact, whose header sat on a black bar and whose opening did not feel like the home. Built on `work/doors-20261006`, on top of the brand page branch. Owner review pending.
+
+**The rule.** Every house door opens like the home: the header sits bare on the photograph, the emblem alone on the left, one link on the right. The emblem's left edge is the copy's left edge. The right link's right edge is the form's right edge. The headline is lit, not printed.
+
+**What changed.**
+
+- Contact, Analysis, Strength and Plans share the split door (photograph and promise on the left, the form or the shelf on the right). Their black header bar is gone and the header now sits on the page. Shared rules live at the end of `css/commercial-journey.css`.
+- On desktop these doors no longer show the "jump to the form" link in the photograph panel, because the form is already beside it. Phones keep it. Plans already worked this way.
+- Contact uses two photographs, like the home: the track frame on desktop and Brice alone on phones.
+- Contact's details are in one place, under the promise: email, then Instagram. The second "prefer email" line under the form is gone. In its place, one line sends press, partners and brands to `/brand/`, which makes Contact the brand page's first way in.
+
+**Left alone on purpose.** FORM House and Thursday already open like the home. The plan page and the study are their own rooms and keep their own headers. No offer, price, schedule or form behavior changed.
+
+**Open, for Brice.**
+
+- One footer for every house door. Today the home, the split doors, Plans and Thursday each end differently.
+- FORM House sets its name in capitals. The type rule drafted for the brand page says sentence case. Either write the exception (a room may set its own name in capitals) or set it as "FORM House."
+- The header's right link is Contact on the home and Thursday, Home on the split doors, and The morning on FORM House. Decide whether that link is always the way to Contact.
+
+## October 6 · The Library on house rules
+
+**Status.** After the homepage, the brand page and the doors, Brice asked for the same audit of the new half-marathon Library pages (the 12-week plan, the pace chart and the timeline guide). Built on `work/library-20261006`, stacked on the brand page and doors branches. Owner review pending. Style only: `css/half-marathon-library.css`. No content, schedule, pace math, generator or tracking change.
+
+**The rule.** A paper room is the same house on paper. It keeps its own field and its reading measure, and takes everything else from the house.
+
+**What changed on the three pages.**
+
+- **House edges.** The page sits on the same content edges as the home, 1280px wide with the house gutter, so the emblem is where it is everywhere else.
+- **Display weight.** Headlines are 450 with tight tracking, as on the home, and larger. This replaces the 600 to 650 heading weight for these three pages. The rest of the Library still follows the earlier October 6 note until Brice decides to bring it across.
+- **Mono for labels and measured things.** Header links, eyebrows and fact labels use the mono at 11px, as on the home.
+- **Rules instead of boxes.** The starting-point panel in the opening is a ruled column, not a tinted card. Day cells inside a week keep their tint because they are a calendar.
+- **Facts read like the home.** The value is large and the label sits under it.
+- **Ink instead of an accent.** The weekly bars were forest green. They are ink, a lighter ink for step-back weeks and full ink for the race.
+- **One rule per row.** The first cell of each table row carried the header's darker rule and an underlined link, which read as two dividers. Each row now has one.
+
+**Not on paper yet.** The bend and the lit headline belong to dark rooms. On these pages the weekly bars are the one drawn object.
+
+**Copy, for Brice's coaching read. Not changed.**
+
+- "Outing" appears throughout. A coach would say run, and say once that run and walk both count.
+- 13.1094 mi, 10.54875 km and "approximately 17.1094 miles" read like software. Show 13.1 mi and 21.1 km and keep the exact figure in the math.
+- Several cautions explain themselves twice. Example: "That is a reason to adapt this plan, not a universal danger threshold or an instruction to replace the long outing with 150 minutes." One plain sentence does the job: "If 10 miles would take you much longer than 2½ hours, ask me for a version built on time."

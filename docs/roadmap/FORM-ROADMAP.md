@@ -3,8 +3,26 @@
 ## October 6 · Brand continuity for future agents
 
 - Owner reaffirmed the new homepage/brand direction. Root instructions, Agent Orientation, Brand authority and typography now identify the current black/bone/ink, lighter-display and plain coaching voice rules, with paper-room scope and draft decisions explicit. Documentation only; no schedule, pace math, page copy or visual code changes in this follow-up.
-- Repository evidence: brand-page PR #231 merged as `0fde9ad`; doors/Library already pushed in PR #232. Do not reapply the uploaded patch. SEO/share/measurement PR #227 remains a separate release; preserve both documentation records when merging.
+- Repository evidence: brand-page PR #231 merged as `0fde9ad`; doors/Library merged in PR #232 as `6184fc9`. Do not reapply the uploaded patch. SEO/share/measurement PR #227 remains a separate release; preserve both documentation records when merging.
 - Verification: source references and documentation diff reviewed. No new production, print, Safari, physical-phone or analytics-receipt claim. Next: land this guidance with the coordinated release and verify the combined destinations before the October 9 ad-readiness review.
+
+## October 6 · Half-marathon Library on house rules
+
+- Owner asked for the same audit on the three live half-marathon pages. Record: [Brand authority](../BRAND.md), “October 6 · The Library on house rules”. This is the visual-finish half of the design pass for the first group and does not change the build sprint below.
+- [x] `css/half-marathon-library.css` only: house edges, 450 display weight, mono labels, ruled starting-point column, home-style facts, ink bars, one rule per table row.
+- [x] `tests/half-marathon-library.cjs`, `tests/cream-reading.cjs` and `tests/pace-math.cjs` pass. Chromium renders of the three pages reviewed at 390, 768 and 1440.
+- [ ] Owner review. Print output, Safari and a physical phone not checked after this change. Not pushed, not merged, not deployed.
+- [ ] Copy calls recorded for the coaching read: outing or run, 13.1 instead of 13.1094, shorter cautions.
+- [ ] Decide whether the rest of the Library takes the same display weight.
+
+## October 6 · Doors off the homepage
+
+- Owner asked for an audit of the doors reachable from the homepage, starting with Contact. Record: [Brand authority](../BRAND.md), “October 6 · Doors off the homepage”.
+- [x] Contact, Analysis, Strength and Plans: header sits bare on the page, edges aligned to the copy and the form, lit headline, no redundant jump link on desktop. CSS only, at the end of `css/commercial-journey.css`.
+- [x] Contact: track frame on desktop and Brice alone on phones; email and Instagram together; one line to `/brand/` for press and partners.
+- [x] `tests/public-finish-browser.cjs` and `tests/conversation-journey-browser.cjs` pass in Chromium. `tests/commercial-browser.cjs` fails at line 41 the same way on `main` without this change. Renders reviewed at 390, 1024 and 1440.
+- [ ] Owner review. Safari and a physical phone not checked. Not pushed, not merged, not deployed. Depends on the brand page being merged first, because Contact links to `/brand/`.
+- [ ] Open decisions: one footer for house doors, FORM House capitals, what the header's right link always is.
 
 ## October 6 · Brand page and media kit
 
