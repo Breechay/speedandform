@@ -1,5 +1,15 @@
 # FORM: current state and next actions
 
+## October 6 · Speed That Endures W7 and coaching mindset signature
+
+- [x] José's scheduled Tuesday W7 support session filed from supplied Garmin and athlete-message evidence: 4 × 2 mi in 13:24.4 / 13:27.0 / 13:26.4 / 13:24.5 with 2:00 floats; eight work miles in 53:42.3, about 6:43/mi.
+- [x] Study keeps broken exposure distinct from continuous ownership. Six continuous miles remains the latest completed continuous rung; eight continuous miles remains scheduled for October 20.
+- [x] Athlete report preserves the high cost: 10/10, near-stop after rep two, heavy reengagement and late within-rep acceleration. Reported 56-mile prior week and humidity are context, not independently verified causal explanations.
+- [x] Brice's recurring cue **Stop negotiating with yourself.** is now part of the Run Development manifesto, athlete-language guidance and Method page. The original field wording is preserved in the dated source record. José's statement that he still thinks about the cue is recorded as carryover evidence.
+- [x] Owner explicitly approved public publication of this curated José update and coaching-message material on October 6. No pace-band or future prescription change.
+- [ ] Merge/release receipt and production readback belong to the publication PR; source completion alone is not a live claim.
+
+
 ## October 5 · Rebuilt Athlete long-term direction
 
 - [x] Owner goals recorded in Study 002: scenic 100 miles around late 2028; HYROX Elite 15 ambition; sub-1:20 half; sub-17 5K; interpreted marathon in the 2:40s, working center 2:45.
