@@ -672,12 +672,6 @@
               "reps": "12–15 / side"
             },
             {
-              "name": "Bent-Knee Calf Raise",
-              "sets": 2,
-              "reps": "10–15",
-              "note": "Maintenance only; perform only if calf tenderness has resolved and the prior run response is normal."
-            },
-            {
               "name": "Pallof Press",
               "sets": 2,
               "reps": "10 / side"
@@ -782,7 +776,187 @@
       "intent": "Accumulate clean reps in the new density block without adding exercise novelty.",
       "public_path": "/plans/adrian-developed-runner-2026/week.html?week=5",
       "progression_note": "Keep the frame-first menu. Rear delts and lats get two weekly exposures; upper traps stay modest. Calf work is maintenance only and is skipped if tenderness or next-run heaviness remains.",
-      "days_from_week": 4
+      "days": [
+        {
+          "day_index": 1,
+          "weekday": "Monday",
+          "title": "Upper A",
+          "focus": "Upper chest + lat width + traps",
+          "exercises": [
+            {
+              "name": "Incline Dumbbell Bench Press",
+              "sets": 4,
+              "reps": "6–8"
+            },
+            {
+              "name": "Chest-Supported Dumbbell Row",
+              "sets": 3,
+              "reps": "6–10"
+            },
+            {
+              "name": "Neutral-Grip Cable Pulldown",
+              "sets": 3,
+              "reps": "8–10"
+            },
+            {
+              "name": "Cable or Dumbbell Shrug",
+              "sets": 2,
+              "reps": "10–15"
+            },
+            {
+              "name": "Low-to-High Cable Fly",
+              "sets": 2,
+              "reps": "10–15"
+            },
+            {
+              "name": "Single-Arm Cable Lateral Raise",
+              "sets": 3,
+              "reps": "12–18 / side"
+            },
+            {
+              "name": "Cable Rear-Delt Fly",
+              "sets": 2,
+              "reps": "12–18"
+            },
+            {
+              "name": "Overhead Cable Triceps Extension",
+              "sets": 2,
+              "reps": "10–15"
+            }
+          ]
+        },
+        {
+          "day_index": 2,
+          "weekday": "Thursday",
+          "title": "Lower A",
+          "focus": "Thigh density + running chassis",
+          "exercises": [
+            {
+              "name": "Bulgarian Split Squat",
+              "sets": 3,
+              "reps": "6–8 / leg"
+            },
+            {
+              "name": "Dumbbell Romanian Deadlift",
+              "sets": 3,
+              "reps": "6–8"
+            },
+            {
+              "name": "Heel-Elevated Goblet Squat or Leg Press",
+              "sets": 2,
+              "reps": "8–10"
+            },
+            {
+              "name": "Seated Leg Curl",
+              "sets": 2,
+              "reps": "8–12"
+            },
+            {
+              "name": "Cable Hip Adduction",
+              "sets": 3,
+              "reps": "12–15 / side"
+            },
+            {
+              "name": "Bent-Knee Calf Raise",
+              "sets": 2,
+              "reps": "10–15",
+              "note": "Maintenance only; perform only if calf tenderness has resolved and the prior run response is normal."
+            },
+            {
+              "name": "Pallof Press",
+              "sets": 2,
+              "reps": "10 / side"
+            }
+          ]
+        },
+        {
+          "day_index": 3,
+          "weekday": "Friday",
+          "title": "Upper B",
+          "focus": "Lat width + rear shoulders + sleeves",
+          "exercises": [
+            {
+              "name": "Flat Dumbbell Bench Press",
+              "sets": 3,
+              "reps": "6–10"
+            },
+            {
+              "name": "One-Arm Cable Row",
+              "sets": 3,
+              "reps": "8–12 / side",
+              "note": "Lat bias: elbow toward hip; do not turn it into an upper-trap row."
+            },
+            {
+              "name": "Lat Pulldown",
+              "sets": 3,
+              "reps": "8–10"
+            },
+            {
+              "name": "Mid-Height Cable Fly",
+              "sets": 2,
+              "reps": "10–15"
+            },
+            {
+              "name": "Cable Lateral Raise",
+              "sets": 2,
+              "reps": "12–18"
+            },
+            {
+              "name": "Cable Rear-Delt Fly",
+              "sets": 3,
+              "reps": "12–18"
+            },
+            {
+              "name": "Hammer Curl",
+              "sets": 3,
+              "reps": "8–12"
+            },
+            {
+              "name": "Rope Pressdown",
+              "sets": 2,
+              "reps": "10–15"
+            }
+          ]
+        },
+        {
+          "day_index": 4,
+          "weekday": "Sunday",
+          "title": "Lower B",
+          "focus": "Single-leg + posterior + thigh support",
+          "exercises": [
+            {
+              "name": "Dumbbell Step-Up",
+              "sets": 3,
+              "reps": "6–8 / leg"
+            },
+            {
+              "name": "Hip Thrust",
+              "sets": 2,
+              "reps": "6–10"
+            },
+            {
+              "name": "Seated or Lying Leg Curl",
+              "sets": 2,
+              "reps": "8–12"
+            },
+            {
+              "name": "Leg Extension",
+              "sets": 2,
+              "reps": "12–15"
+            },
+            {
+              "name": "Dead Bug",
+              "sets": 3,
+              "reps": "8 / side"
+            },
+            {
+              "name": "Side Plank",
+              "sets": 2,
+              "reps": "45–60 sec / side"
+            }
+          ]
+        }
+      ]
     },
     {
       "week": 6,
@@ -793,7 +967,7 @@
       "intent": "Let the same menu become stronger. Do not confuse heavier work with maximal work.",
       "public_path": "/plans/adrian-developed-runner-2026/week.html?week=6",
       "progression_note": "Keep the frame-first menu. Rear delts and lats get two weekly exposures; upper traps stay modest. Calf work is maintenance only and is skipped if tenderness or next-run heaviness remains.",
-      "days_from_week": 4
+      "days_from_week": 5
     },
     {
       "week": 7,

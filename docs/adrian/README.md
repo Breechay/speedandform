@@ -168,7 +168,18 @@ Do not:
 - let Forge become a second prescription authority,
 - grow calves just because calf work existed in an older plan,
 - remove useful leg development merely because Adrian is a runner,
-- broaden the app before the Adrian pilot requires it.
+- broaden the app before the Adrian pilot requires it,
+- start Forge work from whichever FORM-iOS branch is newest.
+
+## Forge baseline
+
+Forge baseline = the exact deployed Breechay build SHA, not whichever FORM-iOS branch happens to be newest.
+
+- Installed on Brice's phone (read 2026-10-06 via devicectl): **Breechay 3.4 (4)**, `com.speedandform.forge`, developer-signed.
+- Matching source: `37f5659b` (`work/forge-adrian-week-context-20260921`), protected at `snapshot/deployed-breechay-3.4-4-37f5659b` in `Breechay/FORM-iOS`. The SHA is inferred from the build fingerprint stamped on the build Mac, not read from the phone.
+- App Store Connect lists 3.5 (4) as Ready for Distribution; no branch at 3.5 was found.
+- FORM-iOS PR #44 (`fix/hill-week-render-20261005` lineage, version 0.1 (1)) is the wrong baseline and must not be merged.
+- Adrian's strength program is regenerated into Forge with `scripts/generate-adrian-program.py <program.json> FORM/Forge/ForgeProgramLibrary.swift`; never hand-edit the generated block.
 
 ## Fast handoff
 
