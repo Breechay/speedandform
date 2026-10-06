@@ -182,3 +182,22 @@ test('recovery fragment is considered before session restoration cleans the URL'
  assert.match(callbackSource,/returnedFragment.get\('type'\) === 'recovery'/);
  assert.ok(callbackSource.indexOf('const recovery') < callbackSource.indexOf('await acceptImplicitReturn'));
 });
+
+test('hosted email templates are house-branded and verifier-independent',()=>{
+ const magic=readFileSync(new URL('../supabase/templates/magic_link.html',import.meta.url),'utf8');
+ const confirmation=readFileSync(new URL('../supabase/templates/confirmation.html',import.meta.url),'utf8');
+ for(const template of [magic,confirmation]){
+   assert.match(template,/sf-emblem-ink\.png/);
+   assert.match(template,/#e8e3d9/);
+   assert.match(template,/#161916/);
+   assert.match(template,/\{\{ \.RedirectTo \}\}&amp;token_hash=\{\{ \.TokenHash \}\}&amp;type=email/);
+   assert.doesNotMatch(template,/\.ConfirmationURL/);
+ }
+});
+test('callback failure returns to the requested coach door and hides raw PKCE detail',()=>{
+ const callback=readFileSync(new URL('../auth/record-callback/callback.js',import.meta.url),'utf8');
+ const auth=readFileSync(new URL('../private/auth.js',import.meta.url),'utf8');
+ assert.match(callback,/failedReturnDestination/);
+ assert.match(callback,/startsWith\('\/coach\/'\)/);
+ assert.match(auth,/pkce\|code verifier/i);
+});
