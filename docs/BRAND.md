@@ -20,7 +20,7 @@ Brice reaffirmed the new homepage and brand-page direction on October 6 and aske
 
 At this review, PR #231 is merged at `0fde9ad3ffb29b5735aa73a3137fb2dec4e0682a`, including the homepage footer link to Brand. The doors and Library work merged in PR #232 as `6184fc9` (`work/doors-and-library`); do not apply the uploaded patch again. Its code is separate from the SEO/share/measurement work in PR #227, but both edit operating documentation, so preserve both records when resolving conflicts. Production publication is a separate check.
 
-The proposed outing-to-run wording, rounded display distances and shorter cautions remain coaching-review items, not changes applied by this documentation update. Exact pace calculations stay exact. The proposed wider Library migration and unified footer/header decisions remain open. Draft details explicitly labeled as proposals below remain proposals; the owner's direction endorsement does not silently settle each open design choice.
+The proposed outing-to-run wording, rounded display distances and shorter cautions remain coaching-review items, not changes applied by this documentation update. Exact pace calculations stay exact. The wider Library migration remains open. PR #234 settles the scoped header/footer decisions in the later One house section; it merged as `5db30f7`. Draft details explicitly labeled as proposals below remain proposals; the owner's direction endorsement does not silently settle each open design choice.
 
 **One house, many rooms.** Speed & Form should feel authored. A study may feel like a marked-up research sheet, a guide may feel like a quiet book, and the homepage is a personal introduction to Brice and his work. The visitor should still know whose house they are in.
 
@@ -317,3 +317,14 @@ The homepage ends on the cloth: the image above the footer line, the emblem's le
 - "Outing" appears throughout. A coach would say run, and say once that run and walk both count.
 - 13.1094 mi, 10.54875 km and "approximately 17.1094 miles" read like software. Show 13.1 mi and 21.1 km and keep the exact figure in the math.
 - Several cautions explain themselves twice. Example: "That is a reason to adapt this plan, not a universal danger threshold or an instruction to replace the long outing with 150 minutes." One plain sentence does the job: "If 10 miles would take you much longer than 2½ hours, ask me for a version built on time."
+
+## October 6 · One house: header link, footer line, FORM House
+
+**Status.** Brice said go on the three open calls from “Doors off the homepage”. Built on `work/one-house-20261006` from `main` at `6184fc9`. Owner review pending.
+
+- **The header's right link is Contact.** Boxed, as on the home, on Analysis, Strength and Plans. Contact itself shows Home. FORM House points to its own front desk, `/form-house/contact`; A FORM Morning stays in its footer and its page. Thursday already had it.
+- **Every door closes on the home's footer line.** Same type, same edges, copyright on the left, links on the right, Top last. Each room keeps one or two of its own adjacent links first, then the same tail everywhere: Instagram, Brand, Privacy, Top. This keeps the earlier rule that a footer names the room's next destination and does not become a global menu. Applied to Contact, Analysis, Strength, Plans and Thursday. FORM House keeps its own closing with the emblem.
+- **FORM House is set in sentence case** in its headline. Mono labels may still be capitals.
+- **One copy change.** The Analysis form asked “What’s on your mind?”, the same words as Contact. It now says “Ask one clear question.”, which is what the page asks for.
+
+**Still to walk, in this order.** Run Development (`/coaching/miami/`), the Work pages, FORM House contact and mornings, Run Miami, the track gallery, the Library index and the rest of the reading room, the plan page, the Labs entrance, the FORM and Sculpt product pages, privacy and the 404. Same method each time: open like the home where it is a house door, keep the room where it is a room, one rule per boundary, plain voice.

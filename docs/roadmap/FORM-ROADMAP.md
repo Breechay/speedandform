@@ -6,6 +6,14 @@
 - Repository evidence: brand-page PR #231 merged as `0fde9ad`; doors/Library merged in PR #232 as `6184fc9`. Do not reapply the uploaded patch. SEO/share/measurement PR #227 remains a separate release; preserve both documentation records when merging.
 - Verification: source references and documentation diff reviewed. No new production, print, Safari, physical-phone or analytics-receipt claim. Next: land this guidance with the coordinated release and verify the combined destinations before the October 9 ad-readiness review.
 
+## October 6 · One house: header link, footer line, FORM House
+
+- Owner said go on the three open calls. Record: [Brand authority](../BRAND.md), “October 6 · One house”.
+- [x] Contact link boxed in the header of Analysis, Strength and Plans; FORM House header points to its own contact. Home footer line on Contact, Analysis, Strength, Plans and Thursday, each keeping its own adjacent links. FORM House headline in sentence case. Analysis form heading changed to “Ask one clear question.”
+- [x] `tests/public-finish-browser.cjs`, `tests/conversation-journey-browser.cjs` and `tests/brand-kit.cjs` pass in Chromium. Headers and footers reviewed at 390 and 1440.
+- [ ] Owner review. Safari and a physical phone not checked. Not pushed, not merged, not deployed.
+- [ ] Continue the walk through the site in the order listed in the brand record.
+
 ## October 6 · Half-marathon Library on house rules
 
 - Owner asked for the same audit on the three live half-marathon pages. Record: [Brand authority](../BRAND.md), “October 6 · The Library on house rules”. This is the visual-finish half of the design pass for the first group and does not change the build sprint below.
