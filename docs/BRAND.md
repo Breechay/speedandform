@@ -253,3 +253,24 @@ The homepage ends on the cloth: the image above the footer line, the emblem's le
 **Drafts, not rulings.** These were proposed in the build and are his to change: clear space of half the emblem's height, the 62px minimum width, the story safe zones (top 14%, bottom 20%), the film and social rows, "no exclamation points", and the rule to ask before using a photograph.
 
 **Keep it true.** If a rule changes here, change the page, then rebuild and re-render the kit in the same release. A brand page that disagrees with the house is worse than none.
+
+## October 6 · Doors off the homepage
+
+**Status.** Brice asked for the doors a visitor reaches from the homepage to be audited against it, starting with Contact, whose header sat on a black bar and whose opening did not feel like the home. Built on `work/doors-20261006`, on top of the brand page branch. Owner review pending.
+
+**The rule.** Every house door opens like the home: the header sits bare on the photograph, the emblem alone on the left, one link on the right. The emblem's left edge is the copy's left edge. The right link's right edge is the form's right edge. The headline is lit, not printed.
+
+**What changed.**
+
+- Contact, Analysis, Strength and Plans share the split door (photograph and promise on the left, the form or the shelf on the right). Their black header bar is gone and the header now sits on the page. Shared rules live at the end of `css/commercial-journey.css`.
+- On desktop these doors no longer show the "jump to the form" link in the photograph panel, because the form is already beside it. Phones keep it. Plans already worked this way.
+- Contact uses two photographs, like the home: the track frame on desktop and Brice alone on phones.
+- Contact's details are in one place, under the promise: email, then Instagram. The second "prefer email" line under the form is gone. In its place, one line sends press, partners and brands to `/brand/`, which makes Contact the brand page's first way in.
+
+**Left alone on purpose.** FORM House and Thursday already open like the home. The plan page and the study are their own rooms and keep their own headers. No offer, price, schedule or form behavior changed.
+
+**Open, for Brice.**
+
+- One footer for every house door. Today the home, the split doors, Plans and Thursday each end differently.
+- FORM House sets its name in capitals. The type rule drafted for the brand page says sentence case. Either write the exception (a room may set its own name in capitals) or set it as "FORM House."
+- The header's right link is Contact on the home and Thursday, Home on the split doors, and The morning on FORM House. Decide whether that link is always the way to Contact.
