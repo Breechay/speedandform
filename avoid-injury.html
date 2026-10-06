@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-form-reading="20261006">
 <head>
 <meta charset="UTF-8">
 <meta name="deploy-id" content="202603161318">
@@ -9,7 +9,6 @@
 <meta name="description" content="Adjust early and stay uninterrupted. Five principles for managing training load and protecting the system.">
 <link rel="canonical" href="https://speedandform.com/avoid-injury">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <!-- FORM share metadata: pass 1 -->
 <meta property="og:type" content="article">
 <meta property="og:title" content="Avoiding Injury | FORM">
@@ -33,35 +32,35 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --line:#d8d2c8; --line-l:#e8e3dc; }
 html, body { height: auto !important; overflow: visible !important; }
-body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 100px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+body { background: var(--cream); color: var(--ink); font-family: var(--reading-sans); font-weight: 400; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 100px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
 .nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
-.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
-.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+.nav-home { font-family: var(--reading-display); font-weight: 400; font-size: 22px; letter-spacing: 0em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); }
 .content { max-width: 560px; margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
-.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 52px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 10px; }
-.page-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 20px; font-weight: 300; color: var(--ink-l); letter-spacing: 0.02em; display: block; margin-bottom: 36px; }
-.intro { font-size: 13px; color: var(--ink-l); line-height: 1.8; letter-spacing: 0.02em; margin-bottom: 48px; }
+.page-title { font-family: var(--reading-display); font-weight: 400; font-size: 52px; letter-spacing: 0em; color: var(--ink); line-height: 1; margin-bottom: 10px; }
+.page-sub { font-family: var(--reading-display); font-style: italic; font-size: 20px; font-weight: 400; color: var(--ink-l); letter-spacing: 0em; display: block; margin-bottom: 36px; }
+.intro { font-size: 17px; color: var(--ink-l); line-height: 1.8; letter-spacing: 0em; margin-bottom: 48px; }
 .intro p + p { margin-top: 10px; }
 .block { margin-top: 48px; }
-.block-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px; }
-.block-intro { font-size: 13px; color: var(--ink-l); line-height: 1.8; letter-spacing: 0.02em; margin-bottom: 24px; }
+.block-label { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px; }
+.block-intro { font-size: 17px; color: var(--ink-l); line-height: 1.8; letter-spacing: 0em; margin-bottom: 24px; }
 .signal { padding: 20px 0; border-top: 1px solid var(--line-l); }
 .signal:last-of-type { border-bottom: 1px solid var(--line-l); }
-.signal-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 28px; letter-spacing: 0.03em; color: var(--ink); display: block; margin-bottom: 10px; line-height: 1.05; }
-.signal-desc { font-size: 13px; color: var(--ink-l); line-height: 1.8; letter-spacing: 0.02em; margin-bottom: 12px; }
-.signal-rule { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 8px; }
-.signal-action { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; line-height: 1.55; display: block; }
+.signal-name { font-family: var(--reading-display); font-weight: 400; font-size: 28px; letter-spacing: 0em; color: var(--ink); display: block; margin-bottom: 10px; line-height: 1.05; }
+.signal-desc { font-size: 17px; color: var(--ink-l); line-height: 1.8; letter-spacing: 0em; margin-bottom: 12px; }
+.signal-rule { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 8px; }
+.signal-action { font-family: var(--reading-display); font-style: italic; font-size: 17px; font-weight: 400; color: var(--ink-f); letter-spacing: 0em; line-height: 1.55; display: block; }
 .principle { padding: 18px 0; border-top: 1px solid var(--line-l); }
 .principle:last-of-type { border-bottom: 1px solid var(--line-l); }
-.principle-name { font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink); display: block; margin-bottom: 8px; }
-.principle-body { font-size: 13px; color: var(--ink-l); line-height: 1.8; letter-spacing: 0.02em; }
+.principle-name { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); display: block; margin-bottom: 8px; }
+.principle-body { font-size: 17px; color: var(--ink-l); line-height: 1.8; letter-spacing: 0em; }
 .closing-note { margin-top: 44px; padding-top: 24px; border-top: 1px solid var(--line-l); }
-.closing-note p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; font-weight: 300; color: var(--ink-f); line-height: 1.6; letter-spacing: 0.02em; }
+.closing-note p { font-family: var(--reading-display); font-style: italic; font-size: 17px; font-weight: 400; color: var(--ink-f); line-height: 1.6; letter-spacing: 0em; }
 .cross-links { margin-top: 36px; display: flex; gap: 28px; flex-wrap: wrap; }
-.cross-link { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px; }
+.cross-link { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px; }
 .cross-link:hover { color: var(--ink-l); border-color: var(--ink-l); }
 .footer-links { margin-top: 52px; padding-top: 24px; border-top: 1px solid var(--line-l); display: flex; gap: 28px; flex-wrap: wrap; }
-.footer-link { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
 .footer-link:hover { color: var(--ink-l); }
 @media (max-width: 480px) {
   .nav { padding-left: 24px; padding-right: 24px; }
@@ -71,10 +70,12 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 }
 </style>
 <link rel="stylesheet" href="/css/discovery.css?v=20260916-p2">
+<link rel="stylesheet" href="/css/sf-brand.css?v=20261001">
+<link rel="stylesheet" href="/css/cream-reading.css?v=20261006">
 </head>
 <body>
 <div class="nav">
-  <a class="nav-home" href="/">FORM</a>
+  <a class="nav-home sf-brand" href="/" aria-label="Speed and Form home"></a>
   <span class="nav-label">Avoid Injury</span>
 </div>
 <nav class="site-wayfinding" aria-label="Explore FORM"><a href="/library">Library</a><a href="/plans/">Plans</a><a href="/thursday">Run with us</a><a href="/#begin">Work with Brice</a></nav>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-form-reading="20261006">
 <head>
 <meta charset="UTF-8">
 <meta name="deploy-id" content="202603161318">
@@ -9,7 +9,6 @@
 <meta name="description" content="Common running pain signals and their usual mechanical causes. A quick diagnostic reference for runners.">
 <link rel="canonical" href="https://speedandform.com/pain-map">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <!-- FORM share metadata: pass 1 -->
 <meta property="og:type" content="article">
 <meta property="og:title" content="Runner Pain Map | FORM">
@@ -33,34 +32,34 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --line:#d8d2c8; --line-l:#e8e3dc; }
 html, body { height: auto !important; overflow: visible !important; }
-body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 120px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+body { background: var(--cream); color: var(--ink); font-family: var(--reading-sans); font-weight: 400; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 120px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
 
 .nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
-.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
-.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+.nav-home { font-family: var(--reading-display); font-weight: 400; font-size: 22px; letter-spacing: 0em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); }
 
 .content { max-width: 560px; margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
 
-.page-breadcrumb { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 12px; }
-.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 38px; letter-spacing: 0.04em; color: var(--ink); display: block; margin-bottom: 8px; line-height: 1; }
-.page-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; display: block; margin-bottom: 48px; }
+.page-breadcrumb { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 12px; }
+.page-title { font-family: var(--reading-display); font-weight: 400; font-size: 38px; letter-spacing: 0em; color: var(--ink); display: block; margin-bottom: 8px; line-height: 1; }
+.page-sub { font-family: var(--reading-display); font-style: italic; font-size: 17px; font-weight: 400; color: var(--ink-f); letter-spacing: 0em; display: block; margin-bottom: 48px; }
 
 .pain-block { padding: 28px 0; border-top: 1px solid var(--line-l); }
 .pain-block:last-of-type { border-bottom: 1px solid var(--line-l); }
 
-.pain-location { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 26px; letter-spacing: 0.03em; color: var(--ink); display: block; margin-bottom: 16px; line-height: 1; }
+.pain-location { font-family: var(--reading-display); font-weight: 400; font-size: 26px; letter-spacing: 0em; color: var(--ink); display: block; margin-bottom: 16px; line-height: 1; }
 
 .pain-row { display: grid; grid-template-columns: 110px 1fr; gap: 0; padding: 8px 0; border-bottom: 1px solid var(--line-l); align-items: start; }
 .pain-row:last-child { border-bottom: none; }
-.pain-row-label { font-size: 8px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); padding-top: 2px; }
-.pain-row-content { font-size: 12px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.7; }
+.pain-row-label { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); padding-top: 2px; }
+.pain-row-content { font-size: 17px; color: var(--ink-l); letter-spacing: 0em; line-height: 1.7; }
 
 .closing { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line-l); margin-bottom: 32px; }
-.closing-line { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.03em; display: block; margin-bottom: 6px; }
-.closing-sub { font-size: 12px; color: var(--ink-f); letter-spacing: 0.03em; line-height: 1.65; }
+.closing-line { font-family: var(--reading-display); font-style: italic; font-size: 17px; font-weight: 400; color: var(--ink-f); letter-spacing: 0em; display: block; margin-bottom: 6px; }
+.closing-sub { font-size: 17px; color: var(--ink-f); letter-spacing: 0em; line-height: 1.65; }
 
 .footer-links { display: flex; gap: 20px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid var(--line-l); }
-.footer-link { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
 .footer-link.primary { color: var(--ink-l); }
 .footer-link:hover { color: var(--ink); }
 
@@ -71,11 +70,13 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
   .pain-row { grid-template-columns: 90px 1fr; }
 }
 </style>
+<link rel="stylesheet" href="/css/sf-brand.css?v=20261001">
+<link rel="stylesheet" href="/css/cream-reading.css?v=20261006">
 </head>
 <body>
 
 <div class="nav">
-  <a class="nav-home" href="/">FORM</a>
+  <a class="nav-home sf-brand" href="/" aria-label="Speed and Form home"></a>
   <span class="nav-label">Reference</span>
 </div>
 

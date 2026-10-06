@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-form-reading="20261006">
 <head>
 <meta charset="UTF-8">
 <meta name="deploy-id" content="202603161318">
@@ -10,7 +10,6 @@
 <link rel="canonical" href="https://speedandform.com/the-work">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <!-- FORM share metadata: pass 1 -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="The Work | FORM">
@@ -35,7 +34,7 @@
 :root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --line:#d8d2c8; --line-l:#e8e3dc; }
 body {
   background: var(--cream); color: var(--ink);
-  font-family: 'Jost', sans-serif; font-weight: 300;
+  font-family: var(--reading-sans); font-weight: 400;
   font-kerning: normal; font-feature-settings: "kern";
   padding-bottom: 120px;
   overflow-y: auto;
@@ -50,14 +49,14 @@ body {
   display: flex; align-items: center; justify-content: space-between;
 }
 .nav-home {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300; font-size: 22px;
-  letter-spacing: 0.12em; color: var(--ink);
+  font-family: var(--reading-display);
+  font-weight: 400; font-size: 22px;
+  letter-spacing: 0em; color: var(--ink);
   text-decoration: none;
 }
 .nav-label {
-  font-size: 8px; font-weight: 500;
-  letter-spacing: 0.3em; text-transform: uppercase;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--ink-f);
 }
 
@@ -69,18 +68,18 @@ body {
 }
 
 .page-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300; font-size: 42px;
-  letter-spacing: 0.04em; color: var(--ink);
+  font-family: var(--reading-display);
+  font-weight: 400; font-size: 42px;
+  letter-spacing: 0em; color: var(--ink);
   line-height: 1; margin-bottom: 14px;
 }
-.page-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; display: block; margin-bottom: 16px; }
-.page-def { font-size: 13px; color: var(--ink-l); line-height: 1.65; letter-spacing: 0.02em; margin-bottom: 36px; }
+.page-sub { font-family: var(--reading-display); font-style: italic; font-size: 18px; font-weight: 400; color: var(--ink-f); letter-spacing: 0em; display: block; margin-bottom: 16px; }
+.page-def { font-size: 17px; color: var(--ink-l); line-height: 1.65; letter-spacing: 0em; margin-bottom: 36px; }
 
 /* BODY TEXT — the entire page is prose */
 .body-text {
-  font-size: 14px; line-height: 1.68;
-  color: rgba(42,38,32,0.72); letter-spacing: 0.02em;
+  font-size: 17px; line-height: 1.68;
+  color: rgba(42,38,32,0.72); letter-spacing: 0em;
 }
 .body-text p {
   margin-bottom: 32px;
@@ -95,11 +94,11 @@ body {
   border-bottom: 1px solid var(--line-l);
 }
 .closing {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic; font-weight: 300;
-  font-size: 22px; letter-spacing: 0.04em;
+  font-family: var(--reading-display);
+  font-style: italic; font-weight: 400;
+  font-size: 22px; letter-spacing: 0em;
   color: var(--ink); line-height: 1.8;
-  display: block; opacity: 0.75;
+  display: block; opacity: 1;
 }
 
 @media (max-width: 480px) {
@@ -118,21 +117,23 @@ body {
   gap: 16px;
 }
 .anchor-day {
-  font-size: 8px; font-weight: 500;
-  letter-spacing: 0.28em; text-transform: uppercase;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--ink-f); width: 140px; flex-shrink: 0;
 }
 .anchor-detail {
-  font-size: 10px; color: var(--ink-f);
-  letter-spacing: 0.06em; opacity: 0.7;
+  font-size: 14px; color: var(--ink-f);
+  letter-spacing: 0em; opacity: 1;
 }
-.page-breadcrumb { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 12px; }
+.page-breadcrumb { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 12px; }
 </style>
+<link rel="stylesheet" href="/css/sf-brand.css?v=20261001">
+<link rel="stylesheet" href="/css/cream-reading.css?v=20261006">
 </head>
 <body>
 
 <div class="nav">
-  <a class="nav-home" href="/">FORM</a>
+  <a class="nav-home sf-brand" href="/" aria-label="Speed and Form home"></a>
   <span class="nav-label">The Work</span>
 </div>
 
@@ -177,10 +178,10 @@ body {
   <script>(function(){var t=window.FORM_COMMUNITY_SCHEDULE&&window.FORM_COMMUNITY_SCHEDULE.thursday;var el=document.querySelector('[data-community-when]');if(t&&el)el.textContent=t.time+' · '+t.locationName;})();</script>
 
   <div style="padding: 20px 0; margin-top: 32px; display: flex; gap: 20px; flex-wrap: wrap; border-top: 1px solid var(--line-l);">
-    <a href="/miami-running-training" style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-l); text-decoration: none; font-family: 'Jost', sans-serif;">Run Miami</a>
-    <a href="/the-method" style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: 'Jost', sans-serif;">The Method</a>
-    <a href="/cycles" style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: 'Jost', sans-serif;">Cycles</a>
-    <a href="/library" style="font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: 'Jost', sans-serif;">Library</a>
+    <a href="/miami-running-training" style="font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-l); text-decoration: none; font-family: var(--reading-sans);">Run Miami</a>
+    <a href="/the-method" style="font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: var(--reading-sans);">The Method</a>
+    <a href="/cycles" style="font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: var(--reading-sans);">Cycles</a>
+    <a href="/library" style="font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; font-family: var(--reading-sans);">Library</a>
   </div>
 
 </div>

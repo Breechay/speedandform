@@ -63,11 +63,15 @@ Never copy a public time or location into a new page when it can be read from th
 | House: home, contact, coaching, analysis, work | Inter Tight + JetBrains Mono | Forest `#283c32`, chalk `#f2ecdd`, existing warm paper sections |
 | Labs, paper studies | Archivo + Space Mono + handwriting | Paper `#e9e3d6`, annotation blue/red |
 | Labs, dark studies | Inter / Inter Tight | Dark field + lime |
-| Library and guides | Cormorant Garamond + Jost | Cream `#f5f2ec` |
+| Library and guides | Inter Tight + existing numeric mono | Cream `#ece6da`, lighter paper `#f4efe7` |
 | Miami + Thursday | Archivo + Space Mono | Paper field sheet; Thursday is the compact live-session sibling of Run Miami |
 | Athlete plans | Their authored training-sheet system | Usually cream, restrained accent |
 
 A new room may choose its own type and composition. It keeps the house constants.
+
+### October 6 owner correction: Library typography
+
+Brice removed serif type from the Library. Library discovery, tools, guides and nested articles use the locally hosted Inter Tight family with a system sans-serif fallback. Keep the cream reading room and SF emblem. Body copy stays 17–18px with comfortable line spacing; headings use a clear 600–650 weight and restrained negative tracking. Openings are compact enough to reveal the next useful action. Existing numeric monospace remains distinct. `css/cream-reading.css` owns this room's type; `scripts/build-cream-reading.cjs` applies it and refreshes marked pages. The historical `--reading-serif` token is a sans alias for older layout sheets, not permission to restore a serif.
 
 ## Public product states
 

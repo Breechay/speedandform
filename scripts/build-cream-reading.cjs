@@ -7,21 +7,28 @@
  */
 const fs = require('node:fs');
 const path = require('node:path');
-const VERSION = '20260916';
+const VERSION = '20261006';
 const STYLE = `/css/cream-reading.css?v=${VERSION}`;
 const EXCLUDED = /^(?:index\.html|coach(?:\.html|\/)|athlete(?:\.html|\/)|auth\/|record(?:\.html|\/)|account(?:\.html|\/)|login(?:\.html|\/)|signin(?:\.html|\/)|village-intake\.html|private\/|studio\.html|films\.html|forge[^/]*(?:\.html|\/)|form(?:\.html|\/)|app\.html|plans\/|labs\/|mockup[^/]*(?:\.html|\/)|docs\/|tests\/|node_modules\/|\.git\/|_)/i;
 function eligible(file, html) {
-  return !EXCLUDED.test(file) && /--cream\s*:\s*#f5f2ec\b/i.test(html)
+  return !EXCLUDED.test(file) && (isLibraryArticle(file, html) || /--cream\s*:\s*#f5f2ec\b/i.test(html)
     && /Jost/.test(html) && /Cormorant Garamond/.test(html)
-    && /class=["'][^"']*\b(?:content|page)\b/.test(html);
+    && /class=["'][^"']*\b(?:content|page)\b/.test(html));
+}
+function isLibraryArticle(file, html) {
+  return /^library\//.test(file) && /href=["']\/assets\/home\/site\/library\.css(?:\?[^"']*)?["']/i.test(html);
+}
+function typography(css) {
+  return css
+    .replace(/font-family\s*:\s*(['"])Jost\1\s*,\s*sans-serif/gi, 'font-family: var(--reading-sans)')
+    .replace(/font-family\s*:\s*(['"])Cormorant Garamond\1\s*,\s*serif/gi, 'font-family: var(--reading-display)')
+    .replace(/var\(--reading-serif\)/g, 'var(--reading-display)');
 }
 function declarations(css, selector = '') {
   const label = /text-transform\s*:\s*uppercase/i.test(css)
     || /(?:label|eyebrow|breadcrumb|caption|meta|\bhead\b)/i.test(selector);
   const note = /(?:note|hint|unit|caption|meta|\berr\b|summary)/i.test(selector);
-  return css
-    .replace(/font-family\s*:\s*(['"])Jost\1\s*,\s*sans-serif/gi, 'font-family: var(--reading-sans)')
-    .replace(/font-family\s*:\s*(['"])Cormorant Garamond\1\s*,\s*serif/gi, 'font-family: var(--reading-serif)')
+  return typography(css)
     .replace(/(font-weight\s*:\s*)(?:100|200|300)\b/gi, '$1400')
     .replace(/(font-size\s*:\s*)(\d+(?:\.\d+)?)px\b/gi, (m, prefix, n) => {
       const value = Number(n);
@@ -35,29 +42,32 @@ function declarations(css, selector = '') {
       /color\s*:\s*var\(--ink(?:-f|-l)?\)/i.test(css) ? `${prefix}1` : m);
 }
 function transformHtml(html, file) {
-  if (/data-form-reading=/.test(html)) {
-    // Authored pages may add CSS after the original theme link. Keep the theme
-    // after that CSS without touching article text, scripts, or navigation.
-    const link = html.match(/<link\b[^>]*href="\/css\/cream-reading\.css[^\"]*"[^>]*>/i);
-    if (link && html.indexOf(link[0]) < html.slice(0,html.indexOf('</head>')).lastIndexOf('</style>'))
-      return html.replace(link[0],'').replace('</head>',link[0]+'\n</head>');
-    return html;
-  }
-  if (!eligible(file, html)) return html;
+  const marked = /data-form-reading=/.test(html);
+  if (EXCLUDED.test(file) || (!marked && !eligible(file, html))) return html;
+  // Existing marked pages only need the new type/cache migration. Reapplying
+  // the original size normalization would progressively enlarge small text.
+  const transformCss = marked ? typography : declarations;
   // Protect even HTML-looking template strings inside scripts, byte for byte.
   const pieces = html.split(/(<script\b[^>]*>[\s\S]*?<\/script\s*>)/gi);
   let next = pieces.map(piece => /^<script\b/i.test(piece) ? piece : piece
     .replace(/<link\b[^>]*href=["']https:\/\/fonts\.googleapis\.com\/[^"']*(?:Jost|Cormorant)[^"']*["'][^>]*>\s*/gi, '')
     .replace(/<style\b([^>]*)>([\s\S]*?)<\/style\s*>/gi, (m, attrs, css) =>
-      `<style${attrs}>${css.replace(/([^{}]+)\{([^{}]*)\}/g, (rule, selector, body) => `${selector}{${declarations(body, selector)}}`)}</style>`)
-    .replace(/\bstyle=(['"])([\s\S]*?)\1/gi, (m, quote, css) => `style=${quote}${declarations(css)}${quote}`)
+      `<style${attrs}>${css.replace(/([^{}]+)\{([^{}]*)\}/g, (rule, selector, body) => `${selector}{${transformCss(body, selector)}}`)}</style>`)
+    .replace(/\bstyle=(['"])([\s\S]*?)\1/gi, (m, quote, css) => `style=${quote}${transformCss(css)}${quote}`)
   ).join('');
-  next = next.replace(/<html\b([^>]*)>/i, `<html$1 data-form-reading="${VERSION}">`);
+  next = marked
+    ? next.replace(/data-form-reading=(['"])[^'"]*\1/i, `data-form-reading="${VERSION}"`)
+    : next.replace(/<html\b([^>]*)>/i, `<html$1 data-form-reading="${VERSION}">`);
+  // The final theme owns type across the discovery, guide and older article
+  // sheets. Refresh old cache keys and keep exactly one copy after authored CSS.
+  next = next.replace(/<link\b[^>]*href=["']\/css\/cream-reading\.css[^"']*["'][^>]*>\s*/gi, '');
   next = next.replace(/<\/head\s*>/i, `<link rel="stylesheet" href="${STYLE}">\n</head>`);
-  if (/class=["'][^"']*\blib-section\b/.test(html)) {
+  if (!marked && /class=["'][^"']*\blib-section\b/.test(html)) {
     next = next.replace(/<body\b([^>]*)>/i, '<body$1 data-reading-layout="library">')
       .replace(/<span class="lib-section-label">([^<]*)<\/span>/g, '<h2 class="lib-section-label">$1</h2>');
   }
+  if (isLibraryArticle(file, html) && !/data-reading-layout=/.test(next))
+    next = next.replace(/<body\b([^>]*)>/i, '<body$1 data-reading-layout="article">');
   return next;
 }
 function resolvePage(root, href) {
@@ -76,6 +86,18 @@ function resolvePage(root, href) {
 }
 function collect(root) {
   const queue = ['library.html', ...fs.readdirSync(root).filter(n => n.endsWith('.html') && !EXCLUDED.test(n))];
+  // Include nested Library articles even before a new doorway links to them.
+  const library = path.join(root, 'library');
+  if (fs.existsSync(library)) {
+    const visit = dir => {
+      for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        const full = path.join(dir, entry.name);
+        if (entry.isDirectory()) visit(full);
+        else if (entry.isFile() && entry.name.endsWith('.html')) queue.push(path.relative(root, full));
+      }
+    };
+    visit(library);
+  }
   const seen = new Set();
   const pages = [];
   while (queue.length) {

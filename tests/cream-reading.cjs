@@ -2,7 +2,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const { eligible, transformHtml, collect, declarations, STYLE } = require('../scripts/build-cream-reading.cjs');
+const { eligible, transformHtml, collect, declarations, STYLE, VERSION } = require('../scripts/build-cream-reading.cjs');
 const root = path.resolve(__dirname, '..');
 const fixture = `<!doctype html><html lang="en"><head><title>Fueling | FORM</title><link rel="canonical" href="https://speedandform.com/fueling"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Jost&display=swap" rel="stylesheet"><style>
 :root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --line:#d8d2c8; }
@@ -30,12 +30,27 @@ assert.equal(eligible('fueling.html', fixture), true);
 const output = transformHtml(fixture, 'fueling.html');
 invariants(fixture, output, 'fixture');
 assert.match(output, /font-weight:400/);
+assert.match(output, /font-family: var\(--reading-display\)/);
+assert.ok(!output.includes('Cormorant'));
 assert.match(output, /font-size:17px/);
 assert.match(output, /font-size:12px; text-transform:uppercase/);
 assert.match(output, /display:none;font-size:17px/);
 assert.match(output, /font-size:14px; color:var\(--ink-f\); opacity:1/);
 assert.ok(!output.includes('fonts.googleapis.com'));
 assert.ok(!transformHtml(fixture.replace('.fuel-note {', '.lib-section {'), 'fueling.html').includes('data-reading-layout=\"library\"'), 'CSS class name alone must not opt into the Library layout');
+const marked = output.replaceAll(VERSION, '20260916').replace('</head>', '<link rel="stylesheet" href="/css/guide-foundations.css"><style>.extra{font:400 29px/1.2 var(--reading-serif)}.small{font-size:14px}</style></head>');
+const migrated = transformHtml(marked, 'fueling.html');
+invariants(marked, migrated, 'marked page migration');
+assert.match(migrated, new RegExp(`data-form-reading="${VERSION}"`));
+assert.ok(!migrated.includes('20260916'), 'Refresh old marker and stylesheet cache version');
+assert.ok(!migrated.includes('var(--reading-serif)'), 'Migrate existing inline display tokens');
+assert.ok(migrated.includes('.small{font-size:14px}'), 'Do not rerun size normalization on already marked pages');
+assert.ok(migrated.indexOf(STYLE) > migrated.indexOf('/css/guide-foundations.css'), 'Reading type overrides load after layout stylesheets');
+const article = '<!doctype html><html lang="en"><head><link rel="stylesheet" href="/assets/home/site/library.css"></head><body><main class="article"><h1>Start here</h1><p>Keep the article.</p></main></body></html>';
+const articleOutput = transformHtml(article, 'library/start/index.html');
+assert.ok(eligible('library/start/index.html', article), 'Nested Library articles share the reading type');
+assert.match(articleOutput, /data-reading-layout="article"/);
+invariants(article, articleOutput, 'nested Library article');
 for (const file of ['record/index.html', 'account/index.html', 'login.html', 'signin.html', 'village-intake.html', 'index.html', 'coach.html', 'coach/labs/index.html', 'studio.html', 'films.html', 'athlete/index.html', 'auth/index.html', 'private/test.html', 'plans/test/index.html', 'labs/test/index.html', 'forge-app/index.html', 'form/index.html', 'mockupc/index.html']) {
   assert.equal(eligible(file, fixture), false, `${file} excluded`);
   assert.equal(transformHtml(fixture, file), fixture, `${file} unchanged`);
@@ -52,6 +67,9 @@ const css = fs.readFileSync(path.join(root,'css/cream-reading.css'),'utf8');
 assert.ok(!/overflow(?:-x)?\s*:\s*hidden/.test(css), 'Do not conceal overflow');
 assert.match(css, /prefers-reduced-motion/);
 assert.match(css, /:focus-visible/);
+assert.match(css, /--reading-serif:\s*var\(--reading-display\)/, 'Legacy display token remains a sans alias');
+assert.match(css, /inter-tight-latin-variable\.woff2/, 'Use the existing local sans font');
+assert.ok(!/Georgia|Times New Roman|Cormorant/.test(css), 'The reading theme contains no serif font stack');
 let checked = 0;
 if (fs.existsSync(path.join(root,'library.html'))) {
   const pages = collect(root);
