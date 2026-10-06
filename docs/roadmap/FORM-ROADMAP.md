@@ -712,3 +712,8 @@ Owner-approved aspiration revision: 185 lb target; 180–185 lb preferred range;
 - Public study, canonical doctrine and existing related study pages aligned; preview source hash reviewed.
 - App delivery requires normal coach-preview feed readback. Native physical-device appearance remains a separate check. Template weekly totals are not new mileage quotas; dated session instructions control.
 - Record tested commit, production receipt and actual visual verification in the PR. No competing native implementation or device installation.
+
+
+## Media kit · October 6, 2026
+
+Owner requested a public Speed & Form media kit after current hospitality outreach exposed a recurring need for a concise practice/team explanation and reusable brand assets. Branch `work/media-kit-20261006` adds `/media/` with the approved SF emblem, real permissioned practice photography, Brice bio/portrait tools, FORM naming guidance, partnership categories, editorial image guidance, contact information and black/light SVG + PNG export controls. The page avoids a volatile roster count and explicitly distinguishes FORM from a public run club. Added to the sitemap. Code is staged only; production deployment and live responsive review remain unverified.
