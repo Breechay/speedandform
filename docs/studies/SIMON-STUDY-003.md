@@ -18,11 +18,11 @@ Brice's working theory is that shorter fast work is **not** the main limiter. Si
 We test that instead of assuming it.
 
 - **Tuesday:** make the controlled work longer.
-- **Thursday:** keep a smaller faster dose so speed above race pace is not ignored.
+- **Thursday:** use a smaller faster dose only when Tuesday is absorbed; otherwise easy/strides. Speed above race pace is supported, not owed.
 - **Saturday:** easy long running.
 - **Oct 29:** 5K read. Did the short end move or at least stay intact?
 - **After recovery:** separate 6 km continuous read. What does sustained running cost now?
-- **Later specific phase:** grow race-pace distance: 5 mi → 6 → 8 → race pace after prior running → 10–12 if earned.
+- **Later specific phase:** grow race-pace ownership toward 5 mi → 6 → 8, then separate fresh ownership from race pace after prior running. A 9–10 mi continuous exposure can be considered if his own evidence earns it; 12 is not a required rung.
 
 The key idea is simple: **the pace does not have to get faster every week. The distance Simon can hold it is what eventually grows.**
 
@@ -171,7 +171,7 @@ Brice's long-range coaching intent is to make Simon's eventual half-marathon-spe
 
 The relevant RPD principle is not "do longer threshold sessions by time." It is:
 
-**broken race-pace work → 5 mi continuous → 6 mi continuous → 8 mi continuous → race pace after prior running → 12 mi continuous late → race**
+**broken race-pace work → 5 mi continuous → 6 mi continuous → 8 mi continuous → race pace after prior running → optional athlete-specific extension → race**
 
 The canonical RPD method states the idea directly: **the pace does not automatically get faster because the athlete succeeds; what grows is uninterrupted ownership.** That is the authoring model to carry forward for Simon once the actual Saumur race pace has been earned from evidence.
 
@@ -273,3 +273,17 @@ Keep the Adrian-family layout, working image bytes, .98 figure scale and bottom 
 Keep R4, current kilometer bands, HYROX quality-budget rules and separate gates. The March 25 20+12 is historical evidence, not current readiness. Observe whether he settles, holds and restarts at the intended effort before changing format.
 
 For Simon, judge controlled useful running, pacing and recovery against the goal. Broken and continuous work are tools, not an automatic hierarchy. [Shared method and threshold lineage](../FORM_OBSERVATION_LED_PROGRESSION.md). No current dose, gate, result or pace is changed by this methodological note.
+
+
+### October 6 weekly-priority teaching
+
+Simon is newer to the explicit FORM rule that the week's main question must be protected rather than surrounded by every useful stimulus.
+
+For Block 01:
+- **Tuesday owns the primary running question.**
+- Monday is there to arrive normal. No unscheduled hard lower-body / HYROX work, bonus intervals or fast finish should be added before Tuesday.
+- **Thursday is earned by Tuesday's absorption.** The prescribed ceiling dose is an option when recovery is normal; HYROX or demanding lower-body work can replace it.
+- Saturday remains easy in this block.
+- A reduced or skipped Thursday is not training debt.
+
+This is a teaching / priority clarification, not a new pace band or a reason to change R4's current Tuesday progression.
