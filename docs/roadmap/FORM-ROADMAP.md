@@ -6,6 +6,14 @@ The complete source and validation record is in [the half-marathon checklist](HA
 
 > October 6 release reconciliation: PR #231 (brand page), #232 (doors/Library), #234 (one-house headers/footers) and #233 (agent brand guidance) are merged. Latest reviewed main: `49cc328`. Older unchecked “not pushed/not merged” lines below are historical build notes, superseded for those four PRs. Production, Safari and physical-device checks remain separate. PR #227 is the remaining SEO/share/measurement release.
 
+## October 6 · Operating Console joins the house
+
+- Owner asked for the sign-in page and the entire private `/coach/ops/` workspace to use the October 6 house system, explicitly choosing cream. Record: [Brand authority](../BRAND.md), “October 6 · Operating Console as a paper room”.
+- [x] Visual migration only: bone/ink/quiet palette, ink SF emblem alone, local Inter Tight + JetBrains Mono, 450 display weight, square controls, ruled sections, monochrome status treatment and card-free Runway/area layouts. No bend, lit text, cloth, photography or lime.
+- [x] Authentication, private-data loading, operating records, prioritization, Runway behavior and write paths are unchanged.
+- [ ] Run the existing operating-console test and syntax checks on the PR, then review the sign-in gate plus Today, Runway, All areas, Waiting and Sources at phone/tablet/desktop widths. Safari, 200% zoom and physical-device review remain separate.
+- [ ] Production is unchanged. Merge and publication require an explicit release step after review.
+
 ## October 6 · Half-marathon Library distribution pass
 
 - The first group is live: PR #226, merge `6952a1c48751caebd66fdb2ec3ce9be53cc3fb04`, Netlify production `6ac54c5e25b74d0008f25716`, October 6 at 19:30:52 UTC. The three resource routes, sans-serif type, kilometer switching and calculator were checked in the live browser.

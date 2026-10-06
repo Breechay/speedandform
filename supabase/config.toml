@@ -164,12 +164,18 @@ additional_redirect_urls = [
   "https://speedandform.com/auth/record-callback/",
   "https://speedandform.com/auth/record-callback/?return_to=%2Fathlete%2F",
   "https://speedandform.com/auth/record-callback/?return_to=%2Fcoach%2F",
+  "https://speedandform.com/auth/record-callback/?return_to=%2Fcoach%2Fops%2F",
+  "https://speedandform.com/auth/record-callback/?return_to=%2Fcoach%2Flabs%2F",
   "http://127.0.0.1:8000/auth/record-callback/",
   "http://127.0.0.1:8000/auth/record-callback/?return_to=%2Fathlete%2F",
   "http://127.0.0.1:8000/auth/record-callback/?return_to=%2Fcoach%2F",
+  "http://127.0.0.1:8000/auth/record-callback/?return_to=%2Fcoach%2Fops%2F",
+  "http://127.0.0.1:8000/auth/record-callback/?return_to=%2Fcoach%2Flabs%2F",
   "http://localhost:8000/auth/record-callback/",
   "http://localhost:8000/auth/record-callback/?return_to=%2Fathlete%2F",
-  "http://localhost:8000/auth/record-callback/?return_to=%2Fcoach%2F"
+  "http://localhost:8000/auth/record-callback/?return_to=%2Fcoach%2F",
+  "http://localhost:8000/auth/record-callback/?return_to=%2Fcoach%2Fops%2F",
+  "http://localhost:8000/auth/record-callback/?return_to=%2Fcoach%2Flabs%2F"
 ]
 # How long tokens are valid for, in seconds. Defaults to 3600 (1 hour), maximum 604,800 (1 week).
 jwt_expiry = 3600
