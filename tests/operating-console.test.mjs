@@ -41,6 +41,14 @@ test('browser writes use optimistic revision matching and canonical shared reade
  assert.doesNotMatch(js,/from\('decisions'\)\.update/);
  assert.doesNotMatch(js,/f\.title\.value|f\.id\.value/);
 });
+test('operating console magic-link return is allow-listed',()=>{
+ const auth=fs.readFileSync(new URL('../private/auth.js',import.meta.url),'utf8');
+ const config=fs.readFileSync(new URL('../supabase/config.toml',import.meta.url),'utf8');
+ assert.match(auth,/sendMagicLink\(email, returnTo = '\/athlete\/'\)/);
+ assert.match(config,/https:\/\/speedandform\.com\/auth\/record-callback\/\?return_to=%2Fcoach%2Fops%2F/);
+ assert.match(config,/https:\/\/speedandform\.com\/auth\/record-callback\/\?return_to=%2Fcoach%2Flabs%2F/);
+});
+
 test('migration is private, does not seed identities and includes external decisions',()=>{
  const sql=fs.readFileSync(new URL('../supabase/migrations/20260930133207_operating_console_v1.sql',import.meta.url),'utf8');
  assert.match(sql,/ENABLE ROW LEVEL SECURITY/);
