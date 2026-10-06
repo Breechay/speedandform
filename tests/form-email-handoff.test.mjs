@@ -70,8 +70,8 @@ async function callback({ suffix = returned, oldSession = null, setError = false
   const finishAuthCallback = async () => { calls.push('claim'); if (!session) throw new Error('That sign-in link has expired.'); return '/athlete/'; };
   const getSession = async () => session;
   const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
-  await new AsyncFunction('window','document','supabase','acceptImplicitReturn','finishAuthCallback','getSession','authErrorMessage','setPassword',callbackSource)(
-    window, { getElementById: k => nodes[k] }, supabase, acceptImplicitReturn, finishAuthCallback, getSession, e => e.message, async()=>{}
+  await new AsyncFunction('window','document','supabase','acceptImplicitReturn','finishAuthCallback','getSession','authErrorMessage','safeReturnTo','setPassword',callbackSource)(
+    window, { getElementById: k => nodes[k] }, supabase, acceptImplicitReturn, finishAuthCallback, getSession, e => e.message, value => value && value.startsWith('/coach/') ? value : '/athlete/', async()=>{}
   );
   return { nodes, calls, navigation, window };
 }
@@ -153,4 +153,32 @@ test('blocked browser storage cannot consume a token and lose the app route',()=
 test('recovery fragment is considered before session restoration cleans the URL',()=>{
  assert.match(callbackSource,/returnedFragment.get\('type'\) === 'recovery'/);
  assert.ok(callbackSource.indexOf('const recovery') < callbackSource.indexOf('await acceptImplicitReturn'));
+});
+
+test('house auth email uses token hash instead of PKCE confirmation URL',()=>{
+ const magic=readFileSync(new URL('../supabase/templates/magic_link.html',import.meta.url),'utf8');
+ const confirmation=readFileSync(new URL('../supabase/templates/confirmation.html',import.meta.url),'utf8');
+ for(const template of [magic,confirmation]){
+   assert.match(template,/sf-emblem-ink\.png/);
+   assert.match(template,/\{\{ \.RedirectTo \}\}.*token_hash=\{\{ \.TokenHash \}\}.*type=email/);
+   assert.doesNotMatch(template,/\.ConfirmationURL/);
+   assert.match(template,/#e8e3d9/);
+   assert.match(template,/#161916/);
+ }
+});
+test('coach email-link requests never create a new account',()=>{
+ const auth=readFileSync(new URL('../private/auth.js',import.meta.url),'utf8');
+ const consoleJS=readFileSync(new URL('../coach/ops/console.js',import.meta.url),'utf8');
+ assert.match(auth,/shouldCreateUser = true/);
+ assert.match(consoleJS,/sendMagicLink\([^;]+shouldCreateUser:false/);
+});
+test('callback page follows the cream house and keeps failures human',()=>{
+ const html=readFileSync(new URL('../auth/record-callback/index.html',import.meta.url),'utf8');
+ const css=readFileSync(new URL('../auth/record-callback/callback.css',import.meta.url),'utf8');
+ const auth=readFileSync(new URL('../private/auth.js',import.meta.url),'utf8');
+ assert.match(html,/sf-emblem-ink\.svg/);
+ assert.match(html,/callback\.css\?v=1/);
+ assert.match(css,/--paper:#e8e3d9/);
+ assert.match(css,/--ink:#161916/);
+ assert.match(auth,/pkce\|code verifier/i);
 });
