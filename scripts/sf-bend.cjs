@@ -16,7 +16,13 @@ function marks(){const out=[`<line x1="0" y1="${R_IN}" x2="0" y2="${R_OUT}"/>`];
   return out.join('');}
 /* Inline form for a page. The centre of the bend is 0,0. CSS owns size, position, weight and strength. */
 function renderBend(){return `<div class="sf-bend" aria-hidden="true"><svg viewBox="${-BOX} ${-BOX} ${BOX*2} ${BOX*2}" focusable="false"><g class="sf-bend-lanes">${lanes()}</g><g class="sf-bend-marks">${marks()}</g></svg></div>`;}
-/* Standalone form for story frames, covers and print. Bone on transparent. */
-function renderBendAsset(){return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-700 -8 1548 856" fill="none" stroke="#e8e3d9" stroke-width="1.5"><title>The bend. Speed &amp; Form.</title><g opacity=".22">${lanes().replace(/M-4000/g,'M-700')}</g><g opacity=".6">${marks()}</g></svg>\n`;}
-module.exports={TRACK,UNIT,R_IN,R_OUT,BOX,staggerAngle,renderBend,renderBendAsset};
+/* Standalone form for story frames, covers and print. Bone on transparent by default; pass ink for paper. */
+function renderBendAsset(stroke='#e8e3d9'){return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-700 -8 1548 856" fill="none" stroke="${stroke}" stroke-width="2"><title>The bend. Speed &amp; Form.</title><g opacity=".3">${lanes().replace(/M-4000/g,'M-700')}</g><g opacity=".8">${marks()}</g></svg>\n`;}
+/* Placed form for a fixed artboard: start line at x, outer lane at y, lane in px. Used by the kit templates. */
+function renderBendPlaced({width,height,x,y,lane,stroke='#e8e3d9',line=2,straight=true}){const k=lane/UNIT,cy=y-R_OUT*k,f=v=>+(v).toFixed(1);
+  const ls=Array.from({length:TRACK.lanes+1},(_,n)=>{const R=r(n)*k;return `<path d="M${straight?-40:f(x)} ${f(cy+R)}H${f(x)}A${f(R)} ${f(R)} 0 0 0 ${f(x+R)} ${f(cy)}"/>`;}).join('');
+  const ms=[`<line x1="${f(x)}" y1="${f(cy+R_IN*k)}" x2="${f(x)}" y2="${f(cy+R_OUT*k)}"/>`];
+  for(let n=2;n<=TRACK.lanes;n++){const a=staggerAngle(n),s=Math.sin(a),c=Math.cos(a),a1=r(n-1)*k,a2=r(n)*k;ms.push(`<line x1="${f(x+a1*s)}" y1="${f(cy+a1*c)}" x2="${f(x+a2*s)}" y2="${f(cy+a2*c)}"/>`);}
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" fill="none" stroke="${stroke}" stroke-width="${line}" aria-hidden="true"><g opacity=".3">${ls}</g><g opacity=".8">${ms.join('')}</g></svg>`;}
+module.exports={TRACK,UNIT,R_IN,R_OUT,BOX,staggerAngle,renderBend,renderBendAsset,renderBendPlaced};
 if(require.main===module){const dest=path.resolve(__dirname,'..','assets/brand/the-bend.svg');fs.writeFileSync(dest,renderBendAsset());console.log('The bend: wrote '+path.relative(path.resolve(__dirname,'..'),dest));}

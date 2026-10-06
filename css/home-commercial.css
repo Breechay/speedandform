@@ -58,3 +58,4 @@ html,body{background:var(--dark)}.wrap{width:min(var(--max),calc(100% - 2 * var(
 @media(min-width:1440px){.home-evidence{--bend-x:calc(max(var(--public-gutter),50% - var(--max) / 2) + 340px)}}
 @media(min-width:1280px){.intake-grid{grid-template-columns:500px minmax(0,1fr);gap:80px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+@media(max-width:760px){.home-footer-line nav{column-gap:12px}}
