@@ -43,7 +43,7 @@
 .sf-service-door .done p{line-height:1.6}
 .sf-service-door .foot-links{display:flex;flex-wrap:wrap;gap:8px 26px}
 .sf-service-door .foot a:focus-visible{outline:2px solid var(--bone);outline-offset:4px}
-.sf-contact-door .intro-image img{object-position:36% 12%}
+.sf-contact-door .intro-image img{object-position:50% 32%}
 .sf-contact-door .intro .direct{margin-top:28px;padding-top:0;border-top:0;font-size:15px}
 .sf-partner-journey{--muted:#60675f;--bone:#e8e3d9}
 .sf-partner-journey form{animation:none;opacity:1;transform:none}
