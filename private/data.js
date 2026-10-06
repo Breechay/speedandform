@@ -451,7 +451,10 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
   }
 
   const responses = await Promise.all(queries);
-  responses.forEach(({ error }) => { if (error) throw error; });
+  // The Forge receipt read is supplementary evidence: if it is unavailable the record
+  // must still load, so its error is not fatal (it renders as no receipts).
+  const forgeIndex = coach ? queries.length - 1 : -1;
+  responses.forEach(({ error }, index) => { if (error && index !== forgeIndex) throw error; });
 
   const [
     athleteResponse, blockResponse, weeksResponse, sessionsResponse, versionsResponse,
@@ -561,7 +564,7 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     taskActions: task ? result(actionsResponse?.data, actionsResponse?.error).filter((item) => item.task_id === task.id) : [],
     privateNotes: result(privateNotesResponse?.data, privateNotesResponse?.error),
     adminStatus: adminResponse?.data || null,
-    forgeReceipts: coach ? result(forgeReceiptsResponse?.data, forgeReceiptsResponse?.error) : []
+    forgeReceipts: coach && !forgeReceiptsResponse?.error ? result(forgeReceiptsResponse?.data, null) : []
   };
 }
 
