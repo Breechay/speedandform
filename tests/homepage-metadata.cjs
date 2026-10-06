@@ -13,7 +13,7 @@ function meta(key) {
 }
 assert.equal([...head.matchAll(/<title>/g)].length, 1);
 assert.match(head, /<title>Running &amp; Strength Coach in Miami \| Speed &amp; Form<\/title>/);
-assert.equal(meta('og:title'), 'Run farther. Feel smoother. Get stronger. | Speed &amp; Form');
+assert.equal(meta('og:title'), 'Running &amp; Strength Coach in Miami');
 assert.equal(meta('twitter:title'), meta('og:title'));
 assert.ok(meta('description').length <= 160);
 assert.equal(meta('og:description'), meta('twitter:description'));
@@ -25,7 +25,7 @@ assert.equal(meta('twitter:card'), 'summary_large_image');
 assert.match(meta('robots'), /max-image-preview:large/);
 const imageURL = new URL(meta('og:image'));
 assert.equal(imageURL.origin, 'https://speedandform.com');
-assert.equal(imageURL.pathname, '/og/speed-and-form-20261001.jpg');
+assert.equal(imageURL.pathname, '/og/public-index-20261006.jpg');
 assert.equal(meta('twitter:image'), imageURL.href);
 assert.equal(meta('og:image:secure_url'), imageURL.href);
 assert.equal(meta('og:image:type'), 'image/jpeg');
