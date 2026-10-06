@@ -31,6 +31,10 @@ jobs:
           node --check scripts/rpd-review-correction-20261006.cjs
           node scripts/rpd-review-correction-20261006.cjs
           node scripts/rpd-review-correction-20261006.cjs
+          # The commercial generator also rewrites unrelated current pages.
+          # Preserve their checked-in source; this pass owns only the study.
+          git restore -- work/index.html work/ai-setup/index.html work/photo-video/index.html
+          node tests/public-study-preview.cjs
           git diff --check
           git diff --stat
       - name: Preserve reviewed source on the isolated branch
