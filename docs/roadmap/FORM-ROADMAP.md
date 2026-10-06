@@ -6,6 +6,15 @@ The complete source and validation record is in [the half-marathon checklist](HA
 
 > October 6 release reconciliation: PR #231 (brand page), #232 (doors/Library), #234 (one-house headers/footers) and #233 (agent brand guidance) are merged. Latest reviewed main: `49cc328`. Older unchecked “not pushed/not merged” lines below are historical build notes, superseded for those four PRs. Production, Safari and physical-device checks remain separate. PR #227 is the remaining SEO/share/measurement release.
 
+## October 6 · Private auth email house audit
+
+- Owner rejected the live Gmail render that still showed FORM as the sender, a serif FORM wordmark, green action, centered card and "Your record is one tap away / Open my record" copy. Record: [Brand authority](../BRAND.md), “October 6 · Private auth and email as a paper room”.
+- [x] Canonical auth/account/security templates now use the SF emblem alone, bone/ink/quiet palette, left-aligned paper-room hierarchy, one square ink action, useful inbox preheaders and literal account copy. The full template family is covered, not only the magic-link message.
+- [x] Email standard, auth template README and Supabase config now agree on Speed & Form sender/subjects. Target sender while the verified sending subdomain is active: `Speed & Form <access@send.speedandform.com>`; support: `support@speedandform.com`.
+- [x] Magic-link and confirmation actions use token-hash verification at the Speed & Form callback so opening an email in Gmail or another browser does not depend on a browser-local PKCE verifier. Recovery and email-change actions use the same direct pattern.
+- [x] Auth-email regression tests lock the house palette/mark, retire the green/FORM/card treatment and check the cross-browser link contract.
+- [ ] Hosted Supabase still must receive the canonical subjects, sender identity and HTML. Repository files alone do not change the email actually sent. After hosted update, send one fresh Gmail/Apple Mail message, inspect phone/dark mode and open the real link exactly once before calling this closed.
+
 ## October 6 · Operating Console joins the house
 
 - Owner asked for the sign-in page and the entire private `/coach/ops/` workspace to use the October 6 house system, explicitly choosing cream. Record: [Brand authority](../BRAND.md), “October 6 · Operating Console as a paper room”.

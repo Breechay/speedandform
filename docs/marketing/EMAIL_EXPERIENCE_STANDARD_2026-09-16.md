@@ -20,6 +20,22 @@ Every transactional email should answer, in this order:
 
 Anything that does not help one of those jobs should normally stay out of the customer-visible email.
 
+## October 6 auth/account override
+
+Auth, account-access and security emails now follow the Speed & Form **paper room**, not the earlier white-card / green-period treatment below.
+
+- Bone `#e8e3d9`, ink `#161916`, quiet text `#5e625b`.
+- Ink **SF emblem alone** at the top. No serif FORM wordmark, green period, text logo, photograph, bend, cloth or lit headline.
+- Left-aligned hierarchy with one rule per boundary. No centered promo card, rounded container or green CTA.
+- One square ink action, roughly 44–50px tall. Secondary help is a text link.
+- Email-safe Arial/Helvetica is the reading fallback; Courier New is acceptable for the small mono label or verification code.
+- Sender display is **Speed & Form**. While the verified subdomain is the sending path, use `access@send.speedandform.com`; use the root sender only after that root sending domain is verified.
+- Subjects name Speed & Form and the exact account action. Inbox preheader adds the next useful fact instead of repeating the subject.
+- Copy obeys the one-message law: name the account action, give the one action, state expiry/security, provide support.
+- Cross-browser is an acceptance condition. A magic link that only works in the browser that requested it is not accepted.
+
+This override is scoped to auth/account/security mail. Other transactional mail can retain its existing proven layout until its own house migration.
+
 ## Visual system
 
 - Warm-neutral outer canvas: `#f5f5f7`.
@@ -62,8 +78,8 @@ Anything that does not help one of those jobs should normally stay out of the cu
 | Coaching inquiry acknowledgment | `Brice · FORM <brice@speedandform.com>` | `brice@speedandform.com` | Human, personal acknowledgment |
 | Internal coaching inquiry alert | `FORM <inquiries@speedandform.com>` | athlete email | Compact lead card; Reply goes to athlete |
 | RPD purchase/access | `FORM <hello@speedandform.com>` | `support@speedandform.com` | Product access, not a second receipt |
-| Auth / account access | `FORM <access@speedandform.com>` | `support@speedandform.com` | One secure account action |
-| Security notification | `FORM <access@speedandform.com>` | `support@speedandform.com` | What changed + what to do if unexpected |
+| Auth / account access | `Speed & Form <access@send.speedandform.com>` | `support@speedandform.com` | One secure account action |
+| Security notification | `Speed & Form <access@send.speedandform.com>` | `support@speedandform.com` | What changed + what to do if unexpected |
 | Direct coaching reply | `Brice <brice@speedandform.com>` | same | Normal human email thread |
 
 Until `speedandform.com` is verified for Resend sending, keep production sender traffic on the already-verified `send.speedandform.com` path. Do not weaken inbound Cloudflare Email Routing to make root-domain sending work.
@@ -112,12 +128,12 @@ The message should contain:
 ### Authentication
 
 One email, one secure action. Subjects should be literal:
-- `Your FORM sign-in link`
-- `Reset your FORM password`
-- `Confirm your FORM email`
-- `You’re invited to FORM`
-- `Confirm your new email`
-- `Your FORM verification code`
+- `Your Speed & Form sign-in link`
+- `Reset your Speed & Form password`
+- `Confirm your Speed & Form email`
+- `Your Speed & Form access`
+- `Confirm your new Speed & Form email`
+- `Your Speed & Form verification code`
 
 Do not add product marketing to authentication messages.
 

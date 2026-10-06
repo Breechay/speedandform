@@ -293,7 +293,9 @@ The homepage ends on the cloth: the image above the footer line, the emblem's le
 **Status.** After reviewing the live Console sign-in flow, Brice rejected the old dark FORM callback screen and generic auth email treatment. The callback page and auth email templates now follow the same cream-house rules as the Operating Console.
 
 - `/auth/record-callback/` uses bone, ink, quiet text, the ink SF emblem, Inter Tight and JetBrains Mono. It does not use the old graphite shell, FORM. wordmark, lime, rounded auth cards or dark app styling.
-- Authentication emails use the ink SF emblem on bone, ink action buttons and short direct copy. Email clients fall back to system sans; the visual hierarchy still follows the house.
+- Authentication emails use the ink SF emblem alone on bone, left-aligned type, one rule per boundary and one square ink action. The old serif FORM wordmark, green period, centered white card, rounded button and green CTA are retired here.
+- Auth copy is literal. The message names the account action once, gives the one next action, states expiry/security and provides support. Do not write "your record is one tap away", "open my record" or other destination-specific copy in the shared sign-in template.
+- Sender display is **Speed & Form**. While `send.speedandform.com` is the verified sending path, the account sender is `access@send.speedandform.com`; do not present the sender as FORM or use a no-reply identity as the target state.
 - Auth email templates are canonical in `supabase/templates/`. Hosted Supabase must be updated from those files; the hosted service does not read repository templates automatically.
 - Coach magic-link requests do not create new user identities. Athlete invitation flows may still create the invited athlete account.
 - A valid Supabase session is not sufficient for the owner-only Operating Console. The callback verifies protected Console ownership before redirecting there.

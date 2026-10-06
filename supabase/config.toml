@@ -269,7 +269,7 @@ otp_expiry = 3600
 # port = 587
 # user = "resend"
 # pass = "env(RESEND_API_KEY)"
-# admin_email = "no-reply@send.speedandform.com"
+# admin_email = "access@send.speedandform.com"
 # sender_name = "Speed & Form"
 
 # Speed & Form auth email templates. Hosted Supabase does not auto-read these
@@ -279,7 +279,7 @@ subject = "Your Speed & Form access"
 content_path = "./supabase/templates/invite.html"
 
 [auth.email.template.confirmation]
-subject = "Confirm your Speed & Form account"
+subject = "Confirm your Speed & Form email"
 content_path = "./supabase/templates/confirmation.html"
 
 [auth.email.template.magic_link]
@@ -289,6 +289,14 @@ content_path = "./supabase/templates/magic_link.html"
 [auth.email.template.recovery]
 subject = "Reset your Speed & Form password"
 content_path = "./supabase/templates/recovery.html"
+
+[auth.email.template.email_change]
+subject = "Confirm your new Speed & Form email"
+content_path = "./supabase/templates/email_change.html"
+
+[auth.email.template.reauthentication]
+subject = "{{ .Token }} is your Speed & Form verification code"
+content_path = "./supabase/templates/reauthentication.html"
 
 # Uncomment to customize notification email template
 # [auth.email.notification.password_changed]
