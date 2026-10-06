@@ -249,6 +249,7 @@ export async function renderDoorway(container, { destination, label }) {
     const node = status(); node.textContent = text; node.className = `status-message${kind ? ` ${kind}` : ''}`;
   };
   const emailValue = () => document.getElementById('passwordForm').elements.email.value;
+  const shouldCreateAccount = !safeReturnTo(destination).startsWith('/coach/');
 
   document.getElementById('passwordForm').addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -258,7 +259,7 @@ export async function renderDoorway(container, { destination, label }) {
     // An empty password means they want the link, not a failed sign-in.
     if (!password) {
       button.disabled = true; say('Sending a link.');
-      try { await sendMagicLink(emailValue(), destination); say('Check your email. The link signs you in.', 'success'); }
+      try { await sendMagicLink(emailValue(), destination, { shouldCreateUser: shouldCreateAccount }); say('Check your email. The link signs you in.', 'success'); }
       catch (error) { say(authErrorMessage(error), 'error'); button.disabled = false; }
       return;
     }
@@ -272,7 +273,7 @@ export async function renderDoorway(container, { destination, label }) {
 
   document.getElementById('magicInstead').addEventListener('click', async () => {
     say('Sending a link.');
-    try { await sendMagicLink(emailValue(), destination); say('Check your email. The link signs you in.', 'success'); }
+    try { await sendMagicLink(emailValue(), destination, { shouldCreateUser: shouldCreateAccount }); say('Check your email. The link signs you in.', 'success'); }
     catch (error) { say(authErrorMessage(error), 'error'); }
   });
 
