@@ -83,7 +83,7 @@ function build(){
 function buildHalfMarathon(){
  const group=GROUPS.find(([id])=>id==='half-marathon');
  const resources=entries.filter(e=>e.category===group[0]);
- if(resources.length!==3)throw Error('Half-marathon release requires exactly three resources.');
+ if(resources.length!==7)throw Error('Half-marathon collection requires seven complete resources.');
  for(const e of resources){
   const html=read(e.file);
   if(/noindex/i.test(share.meta(html,'robots'))||share.canonical(html,e.file)!==O+e.url)throw Error('Resource is not a canonical public page: '+e.file);
@@ -112,7 +112,7 @@ function buildHalfMarathon(){
  for(const e of resources)if(!sitemap.includes('<loc>'+O+e.url+'</loc>'))sitemap=sitemap.replace('</urlset>','  <url><loc>'+O+e.url+'</loc></url>\n</urlset>');
  write('sitemap.xml',sitemap);
  const files=['library.html','search.html','404.html','search-index.json','sitemap.xml','plans/index.html'];
- const receipt={version:V,stage:'Discovery source build; later cream/brand build steps may change HTML hashes.',scope:'Three half-marathon Library resources; existing discovery preserved.',resources:resources.map(({url,title,type})=>({url,title,type})),searchEntries:index.length,existingSearchEntries:index.length-resources.length,sitemapUrls:(sitemap.match(/<loc>/g)||[]).length,files:files.map(file=>({file,sha256:hash(read(file))})),deferred:'Older full catalog generation differs from the current published Library and includes a noindex coaching redirect. This scoped build does not reconcile or publish unrelated catalog differences.'};
+ const receipt={version:V,stage:'Discovery source build; later cream/brand build steps may change HTML hashes.',scope:'Seven half-marathon Library resources; existing discovery preserved.',resources:resources.map(({url,title,type})=>({url,title,type})),searchEntries:index.length,existingSearchEntries:index.length-resources.length,sitemapUrls:(sitemap.match(/<loc>/g)||[]).length,files:files.map(file=>({file,sha256:hash(read(file))})),deferred:'Older full catalog generation differs from the current published Library and contains historical route assumptions. This scoped build does not reconcile or publish unrelated catalog differences.'};
  write('docs/audits/HALF-MARATHON-DISCOVERY-20261006.json',JSON.stringify(receipt,null,2)+'\n');
  console.log(`Half-marathon discovery: ${resources.length} new resources, ${index.length} search entries; existing Library sections retained.`);
  return receipt;

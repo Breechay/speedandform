@@ -4,7 +4,7 @@
   // The resource collector owns delivery and validates the public event fields.
   function track(name,extra){
     if(w.navigator.globalPrivacyControl||w.navigator.doNotTrack==='1'||w.doNotTrack==='1')return;
-    var fields=Object.assign({page:resource,plan:resource==='plan'?'half-marathon-finish-12':'none',version:'2026-10-06.1'},extra||{});
+    var fields=Object.assign({page:resource,plan:({plan:'half-marathon-finish-12',six:'half-marathon-six-week-prepared-base',eight:'half-marathon-finish-8',sixteen:'half-marathon-foundation-16'})[resource]||'none',version:'2026-10-06.1'},extra||{});
     d.dispatchEvent(new CustomEvent('sf:hm-resource',{detail:{name:name,fields:fields}}));
     if(typeof w.sfHmTrack==='function')w.sfHmTrack(name,fields);
   }
@@ -16,10 +16,10 @@
     track('hm_units_change',{unit:unit});
   }
   d.querySelectorAll('[data-hm-unit]').forEach(function(el){el.addEventListener('click',function(){units(el.dataset.hmUnit);});});
-  function openWeek(){var match=w.location.hash.match(/^#week-([1-9]|1[0-2])$/);if(!match)return;var el=d.getElementById('week-'+match[1]);if(el){el.open=true;el.scrollIntoView({block:'start'});}}
-  var select=d.getElementById('hm-week');if(select)select.addEventListener('change',function(event){if(select.value){w.location.hash='week-'+select.value;openWeek();if(event.isTrusted&&/^([1-9]|1[0-2])$/.test(select.value))track('hm_week_open',{week:Number(select.value),unit:unit,interaction:'explicit'});}});
+  function openWeek(){var match=w.location.hash.match(/^#week-([1-9]|1[0-6])$/);if(!match)return;var el=d.getElementById('week-'+match[1]);if(el){el.open=true;el.scrollIntoView({block:'start'});}}
+  var select=d.getElementById('hm-week');if(select)select.addEventListener('change',function(event){if(select.value){w.location.hash='week-'+select.value;openWeek();if(event.isTrusted&&/^([1-9]|1[0-6])$/.test(select.value))track('hm_week_open',{week:Number(select.value),unit:unit,interaction:'explicit'});}});
   d.querySelectorAll('a[href^="#week-"]').forEach(function(link){link.addEventListener('click',function(event){
-    var match=link.getAttribute('href').match(/^#week-([1-9]|1[0-2])$/),el=match&&d.getElementById('week-'+match[1]);
+    var match=link.getAttribute('href').match(/^#week-([1-9]|1[0-6])$/),el=match&&d.getElementById('week-'+match[1]);
     if(event.isTrusted&&el){el.open=true;track('hm_week_open',{week:Number(match[1]),unit:unit,interaction:'explicit'});}
   });});
   w.addEventListener('hashchange',openWeek);openWeek();

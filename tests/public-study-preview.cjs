@@ -15,7 +15,11 @@ for(const a of s.athletes){
 }
 const home=fs.readFileSync('index.html','utf8'),run=fs.readFileSync('coaching/miami/index.html','utf8');
 assert.ok(home.includes(renderHomeEvidence()),'Homepage uses the approved current projection');
-// Coaching now enters through the homepage inquiry; its retired URL is a redirect.
-assert.match(fs.readFileSync('netlify.toml','utf8'),/from = "\/coaching\/miami"[\s\S]*?to = "\/#begin"/);
+// Both public coaching entries keep the homepage intake. The standalone room links to the owning study rather than duplicating observations.
+assert.ok(run.includes('href="/#begin"'));
+assert.ok(run.includes('href="/labs/speed-that-endures/"'));
+assert.ok(home.includes('<a href="#begin"><span>01 / Coaching'));
+assert.ok(!run.includes('http-equiv="refresh"'));
+assert.ok(!fs.readFileSync('netlify.toml','utf8').includes('from = "/coaching/miami"'));
 assert.ok(home.includes('A training milestone. Not a race prediction.'));
 console.log('PASS: public study/current homepage and running example remain in sync; future asks and prior race baselines stay distinct.');

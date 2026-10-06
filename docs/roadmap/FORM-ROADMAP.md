@@ -1,3 +1,7 @@
+## October 6 · Standalone Run Development, remaining plans and public previews
+
+The complete source and validation record is in [the half-marathon checklist](HALF-MARATHON-LIBRARY-20261006.md), under the collection continuation. Run Development keeps homepage intake; six/eight/sixteen-week resources and faster-half guide are complete; 80 public previews follow the current house. Google site-event receipt and the exact GA stream match are confirmed; new resource and accepted-inquiry receipt remain separate. No new ad launch or spend. Source is ready for coordinated publication; physical-phone/Safari review remains open.
+
 # FORM: current state and next actions
 
 > October 6 release reconciliation: PR #231 (brand page), #232 (doors/Library), #234 (one-house headers/footers) and #233 (agent brand guidance) are merged. Latest reviewed main: `49cc328`. Older unchecked “not pushed/not merged” lines below are historical build notes, superseded for those four PRs. Production, Safari and physical-device checks remain separate. PR #227 is the remaining SEO/share/measurement release.

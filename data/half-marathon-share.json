@@ -2,29 +2,110 @@
   "plan": {
     "image": "/og/half-marathon-plan-20261006.jpg",
     "alt": "Speed & Form. Your next 12 weeks. A free half-marathon plan with four easy outings a week.",
-    "label": "HALF MARATHON · FREE PLAN",
-    "headline": ["Your next", "12 weeks."],
-    "detail": ["Four outings a week.", "Easy effort.", "A complete free plan."]
+    "label": "HALF MARATHON \u00b7 FREE PLAN",
+    "headline": [
+      "Your next",
+      "12 weeks."
+    ],
+    "detail": [
+      "Four outings a week.",
+      "Easy effort.",
+      "A complete free plan."
+    ]
   },
   "ready": {
     "image": "/og/half-marathon-readiness-20261006.jpg",
     "alt": "Speed & Form. Start where you are. Match half-marathon preparation to your recent running and available weeks.",
-    "label": "HALF MARATHON · GETTING STARTED",
-    "headline": ["Start where", "you are."],
-    "detail": ["The running you have.", "The time available.", "A clear starting point."]
+    "label": "HALF MARATHON \u00b7 GETTING STARTED",
+    "headline": [
+      "Start where",
+      "you are."
+    ],
+    "detail": [
+      "The running you have.",
+      "The time available.",
+      "A clear starting point."
+    ]
   },
   "pace": {
     "image": "/og/half-marathon-pace-20261006.jpg",
     "alt": "Speed & Form. A time. A pace. Half-marathon finish times, pace per mile and pace per kilometer.",
-    "label": "HALF MARATHON · PACE CHART",
-    "headline": ["A time.", "A pace."],
-    "detail": ["Finish times.", "Miles and kilometers.", "The numbers, together."]
+    "label": "HALF MARATHON \u00b7 PACE CHART",
+    "headline": [
+      "A time.",
+      "A pace."
+    ],
+    "detail": [
+      "Finish times.",
+      "Miles and kilometers.",
+      "The numbers, together."
+    ]
   },
   "calculator": {
     "image": "/og/split-calculator-20261006.jpg",
     "alt": "Speed & Form. Know your splits. Turn a distance and finish time into pace and race checkpoints.",
-    "label": "LIBRARY · SPLIT CALCULATOR",
-    "headline": ["Know your", "splits."],
-    "detail": ["Choose a distance.", "Enter a finish time.", "See your splits."]
+    "label": "LIBRARY \u00b7 SPLIT CALCULATOR",
+    "headline": [
+      "Know your",
+      "splits."
+    ],
+    "detail": [
+      "Choose a distance.",
+      "Enter a finish time.",
+      "See your splits."
+    ]
+  },
+  "six": {
+    "image": "/og/half-marathon-six-20261006.jpg",
+    "alt": "Speed & Form. Use the base A complete free 6-week half-marathon plan.",
+    "label": "HALF MARATHON \u00b7 FREE PLAN",
+    "headline": [
+      "Use the base",
+      "you have."
+    ],
+    "detail": [
+      "6 complete weeks.",
+      "A clear starting point.",
+      "Running you can repeat."
+    ]
+  },
+  "eight": {
+    "image": "/og/half-marathon-eight-20261006.jpg",
+    "alt": "Speed & Form. Eight weeks. A complete free 8-week half-marathon plan.",
+    "label": "HALF MARATHON \u00b7 FREE PLAN",
+    "headline": [
+      "Eight weeks."
+    ],
+    "detail": [
+      "8 complete weeks.",
+      "A clear starting point.",
+      "Running you can repeat."
+    ]
+  },
+  "sixteen": {
+    "image": "/og/half-marathon-sixteen-20261006.jpg",
+    "alt": "Speed & Form. Room to build. A complete free 16-week half-marathon plan.",
+    "label": "HALF MARATHON \u00b7 FREE PLAN",
+    "headline": [
+      "Room to build."
+    ],
+    "detail": [
+      "16 complete weeks.",
+      "A clear starting point.",
+      "Running you can repeat."
+    ]
+  },
+  "faster": {
+    "image": "/og/half-marathon-faster-20261006.jpg",
+    "alt": "Speed & Form. A faster half. Choose the next change from your running.",
+    "label": "HALF MARATHON \u00b7 RUNNING GUIDE",
+    "headline": [
+      "A faster half."
+    ],
+    "detail": [
+      "Review your running.",
+      "Choose the work.",
+      "Check the response."
+    ]
   }
 }

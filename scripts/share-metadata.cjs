@@ -68,6 +68,7 @@ function imageInfo(root, url) {
   throw new Error(`Unsupported or invalid card: ${url}`);
 }
 function transform(html, file, root) {
+  if (require('../data/public-share.json')[file]) return require('./build-public-share.cjs').transform(html,file);
   if (!PAGES.includes(file)) return html;
   if (/noindex/i.test(meta(html,'robots'))) throw new Error(`Refusing noindex page: ${file}`);
   const old = meta(html,'og:image');

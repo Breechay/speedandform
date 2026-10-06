@@ -115,3 +115,20 @@ The owner reconfirmed October 9 as the full-system readiness target. Keep the fi
 **First experiment:** direct one clear message to the complete free twelve-week plan, naming its established-running starting point. Primary resource-use readout: measured landing sessions with at least one deliberate week open. Report that as schedule exploration, not adherence, a lead or a purchase. Print requests and onward visits are secondary; accepted inquiries and verified purchases stay distinct. Opening an incoming week hash must not count as deliberate engagement.
 
 Prepare the test now. Activate before October 9 only if the destination, share cards, production collector receipt, actual account state, and an explicit platform/spending cap/review point/stop condition are confirmed. Keep existing paid-plan and Run Development acquisition tests distinct. The owner has not selected a new budget or platform in this instruction; no ads or spending changes are authorized by this roadmap.
+
+## October 6 · Collection and standalone coaching continuation
+
+Current source supersedes the earlier unwritten/draft-only status above:
+
+- Complete six-week prepared-base plan: 42 day entries, four optional familiar steady sessions, 20/23/20/25/19/5 training miles; final race distance separate.
+- Complete eight-week easy finish plan: 56 day entries, 19/20/16/20/21/22/16/4 training miles, distinct established-running entry.
+- Complete sixteen-week foundation path: 112 day entries; first four totals 10/11/11/14, then exact twelve-week schedule parity. Fourth-run and recovery gate precedes transition; repeat preparation and move the date if needed. Not a half-from-zero promise.
+- Faster-half guide connects observations, pacing, session purpose and recovery to the right next resource. All seven resources are in the Library, search index and sitemap.
+- Run Development stands alone at `/coaching/miami/`; homepage coaching and both new page inquiry buttons keep the existing `/#begin` intake.
+- 80 public pages receive current-house cards and normalized descriptive metadata. Four new half-marathon cards join the four already released. Dedicated product/study art outside the reviewed allowlist stays unchanged.
+
+Verification: full Netlify build chain, exact schedule totals/rest/race placement, 16-week transition parity, metadata/canonical/image checks, existing measurement privacy checks plus new plan bounds. Chromium: 28 checks across 375/390/768/1440, unit switching, final-week selection, three print PDFs and no-JavaScript access. Physical iPhone and on-device Safari remain untested. The schedules are authored coaching templates, not clinically validated individual prescriptions.
+
+Google readback: Windsor reports hostname `speedandform.com`, property 371147428, stream 5092063526 and matching measurement ID `G-HKG3MXM668`. October 6 report includes page views and coaching_intake_view/coaching_step_view. It does not yet show hm_resource_view or accepted-inquiry events. Enhanced Measurement settings are not exposed by this reporting connector. Do not equate configuration, form viewing or synthetic local events with accepted lead receipt. No test inquiry was submitted and no ads or budgets were changed.
+
+Publication: prepared on `work/run-development-library-20261006` from `9e4d1e1`; merge/deployment receipt will be recorded after publication. Next: verify production routes and card URLs, obtain the new resource collector receipt, then owner aesthetic/coaching pass and bounded ad-test decision. October 9 remains the readiness target.

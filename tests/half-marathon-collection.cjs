@@ -1,0 +1,11 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs');
+const plans=require('../data/half-marathon-collection.json'),base=require('../data/half-marathon-finish-plan.json'),{routes}=require('../scripts/build-half-marathon-collection.cjs');
+const totals={six:[20,23,20,25,19,5],eight:[19,20,16,20,21,22,16,4],sixteen:[10,11,11,14,14,15,16.5,14,18,19.5,16,20,21,22,16,4]};
+for(const [k,p]of Object.entries(plans)){assert.deepEqual(p.weeks.map(w=>w.days.reduce((s,x)=>s+(typeof x==='number'?x:0),0)),totals[k]);assert.equal(p.raceMeters,21097.5);const h=fs.readFileSync('.'+routes[k]+'index.html','utf8');assert.equal((h.match(/class="day-name"/g)||[]).length,p.weeks.length*7);assert.equal((h.match(/class="hm-week"/g)||[]).length,p.weeks.length);assert.equal(p.weeks.flatMap(w=>w.days).filter(x=>x==='race').length,1);for(const w of p.weeks){assert.equal(w.days.length,7);assert.equal(w.days[0],0);assert.equal(w.days[5],0);if(w.week!==p.weeks.length)assert.equal(w.days[3],0);assert.ok(w.days.every(x=>x==='race'||Number.isFinite(x)&&x>=0));}assert.deepEqual(p.weeks.at(-1).days.slice(2),[0,2,0,0,'race']);assert.ok(h.includes('Do not compress')||h.includes('Do not compress'.toLowerCase()));}
+assert.deepEqual(plans.sixteen.weeks.slice(4).map(w=>w.days),base.weeks.map(w=>w.days));assert.ok(fs.readFileSync('.'+routes.sixteen+'index.html','utf8').includes('Establish the four-run routine over several weeks'));
+assert.equal(plans.six.weeks.filter(w=>w.steady).length,4);assert.ok(plans.six.weeks.every(w=>!w.steady||w.days[1]>=4));
+const library=fs.readFileSync('library.html','utf8'),index=JSON.parse(fs.readFileSync('search-index.json','utf8'));
+for(const route of Object.values(routes)){assert.ok(library.includes(route));assert.equal(index.filter(x=>x.url===route).length,1);}
+const rd=fs.readFileSync('coaching/miami/index.html','utf8');assert.ok(!/http-equiv="refresh"|location.replace|noindex/.test(rd));assert.equal((rd.match(/href="\/#begin"/g)||[]).length,2);assert.ok(fs.readFileSync('index.html','utf8').includes('<a href="#begin"><span>01 / Coaching'));
+console.log('PASS: 210 new daily entries, totals, rest/race spacing, foundation parity and gate, discovery, coaching route and original homepage entry.');

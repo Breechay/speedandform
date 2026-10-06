@@ -89,3 +89,12 @@ e.weekLink.emit('click',{isTrusted:true});e.week.emit('toggle');e.window.emit('h
 check(e.week.open&&e.events.filter(event=>event.name==='hm_week_open').length===3,'Trusted overview week link opens the week and records exactly one use');
 check(e.sent().filter(row=>row[1]==='hm_week_open').length===3,'Overview, selector and summary clicks each deliver one use event');
 console.log(`PASS: ${checks} resource measurement, source continuity, privacy and deliberate-use checks. No external SDK executed.`);
+for(const [resource,slug,max] of [['six','6-week-half-marathon-training-plan',6],['eight','8-week-half-marathon-training-plan',8],['sixteen','16-week-half-marathon-training-plan',16]]){
+ e=make({resource,url:'https://speedandform.com/library/'+slug+'/'});
+ e.window.sfHmTrack('hm_week_open',{week:max,unit:'mi',interaction:'explicit'});
+ e.window.sfHmTrack('hm_week_open',{week:max+1,unit:'mi',interaction:'explicit'});
+ check(e.sent().filter(r=>r[1]==='hm_week_open').length===1,'New plan limits reject weeks outside their own schedule');
+ check(e.sent().find(r=>r[1]==='hm_week_open')[2].plan!=='none','New plans carry their own plan identity');
+ for(const privacy of [{dnt:true},{gpc:true}]){const p=make({resource,url:'https://speedandform.com/library/'+slug+'/',...privacy});check(p.scripts.length===0,'New plan respects privacy preferences');}
+}
+console.log('PASS: new plan identities, week bounds and privacy gates.');
