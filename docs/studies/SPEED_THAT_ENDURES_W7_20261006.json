@@ -9,21 +9,72 @@
   "assigned_band": "6:30–6:45/mi",
   "evidence_source": "Garmin interval screenshot and athlete/coach WhatsApp messages supplied by Brice on October 6, 2026",
   "work_reps": [
-    {"rep": 1, "distance_mi": 2.0, "time": "13:24.4", "avg_pace": "6:42/mi"},
-    {"rep": 2, "distance_mi": 2.0, "time": "13:27.0", "avg_pace": "6:43/mi"},
-    {"rep": 3, "distance_mi": 2.0, "time": "13:26.4", "avg_pace": "6:43/mi"},
-    {"rep": 4, "distance_mi": 2.0, "time": "13:24.5", "avg_pace": "6:42/mi"}
+    {
+      "rep": 1,
+      "distance_mi": 2,
+      "time": "13:24.4",
+      "avg_pace": "6:42/mi"
+    },
+    {
+      "rep": 2,
+      "distance_mi": 2,
+      "time": "13:27.0",
+      "avg_pace": "6:43/mi"
+    },
+    {
+      "rep": 3,
+      "distance_mi": 2,
+      "time": "13:26.4",
+      "avg_pace": "6:43/mi"
+    },
+    {
+      "rep": 4,
+      "distance_mi": 2,
+      "time": "13:24.5",
+      "avg_pace": "6:42/mi"
+    }
   ],
-  "work_total": {"distance_mi": 8.0, "time": "53:42.3", "approx_avg_pace": "6:43/mi"},
+  "work_total": {
+    "distance_mi": 8,
+    "time": "53:42.3",
+    "approx_avg_pace": "6:43/mi"
+  },
   "recoveries": [
-    {"after_rep": 1, "time": "2:00.0", "distance_mi": 0.21, "avg_pace": "9:35/mi"},
-    {"after_rep": 2, "time": "2:00.0", "distance_mi": 0.19, "avg_pace": "10:23/mi"},
-    {"after_rep": 3, "time": "2:00.0", "distance_mi": 0.14, "avg_pace": "14:18/mi"}
+    {
+      "after_rep": 1,
+      "time": "2:00.0",
+      "distance_mi": 0.21,
+      "avg_pace": "9:35/mi"
+    },
+    {
+      "after_rep": 2,
+      "time": "2:00.0",
+      "distance_mi": 0.19,
+      "avg_pace": "10:23/mi"
+    },
+    {
+      "after_rep": 3,
+      "time": "2:00.0",
+      "distance_mi": 0.14,
+      "avg_pace": "14:18/mi"
+    }
   ],
   "activity": {
-    "warm_up": {"time": "20:00.0", "distance_mi": 2.26, "avg_pace": "8:51/mi"},
-    "cool_down": {"time": "10:00.4", "distance_mi": 1.01, "avg_pace": "9:55/mi"},
-    "total": {"time": "1:29:42.7", "distance_mi": 11.81, "avg_pace": "7:36/mi"}
+    "warm_up": {
+      "time": "20:00.0",
+      "distance_mi": 2.26,
+      "avg_pace": "8:51/mi"
+    },
+    "cool_down": {
+      "time": "10:00.4",
+      "distance_mi": 1.01,
+      "avg_pace": "9:55/mi"
+    },
+    "total": {
+      "time": "1:29:42.7",
+      "distance_mi": 11.81,
+      "avg_pace": "7:36/mi"
+    }
   },
   "athlete_report": {
     "effort": "10/10",
@@ -47,8 +98,19 @@
   "study_read": {
     "completed": "Eight broken race-pace miles with shorter two-minute recoveries.",
     "continuous_ownership_mi": 6,
-    "next_continuous_ask": {"date": "2026-10-20", "distance_mi": 8},
-    "decision": "Keep the pace band. The session exposed the intended reengagement cost; the next question remains duration without a reset, not faster pace."
+    "next_continuous_ask": {
+      "date": "2026-10-20",
+      "distance_mi": 8
+    },
+    "decision": "October 6 review correction: recovery-first on October 8. The session demonstrates eight broken work miles at high reported effort, not a diagnosed threshold deficit. Six continuous miles remains the latest completed rung; October 20 remains conditional."
   },
-  "permission": "Brice explicitly approved public study publication of this curated José update on October 6, 2026."
+  "permission": "Brice explicitly approved public study publication of this curated José update on October 6, 2026.",
+  "review_amendment": {
+    "date": "2026-10-06",
+    "superseded_interpretation": "Keep the pace band. The session exposed the intended reengagement cost; the next question remains duration without a reset, not faster pace.",
+    "reason": "External reviews identified underdetermined mechanism and accumulated session-load risk.",
+    "current_individual_change": "Jose October 8: 40 min easy, shortened or omitted when unrecovered; optional relaxed strides only with normal legs.",
+    "generic_change": "Withdraw automatic W7 3 x 12 replacement; restore preceding reusable publication without migrating individual assignments.",
+    "future_scope": "No additional October 13–20 dose change is enacted by this source correction."
+  }
 }

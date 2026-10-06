@@ -1,5 +1,12 @@
 # FORM: current state and next actions
 
+## October 6 · External-review correction
+
+- The automatic W7 3 × 12 threshold replacement is withdrawn, not defended as a diagnosed physiological need. The preceding reusable publication is restored; athlete assignments are not migrated.
+- José October 8 is versioned easy recovery. Other athletes retain their own current coach gates; private restrictions are not published here. Historical work, bands and signature language are preserved.
+- Study interpretation, dated source, calendar and public preview reviewed together. October 13 decision rules are written before its result; wider fortnight dose changes remain for explicit coach approval.
+- Source checks and actual deploy state belong in this correction's PR receipt. Physical-device confirmation remains separate.
+
 ## October 6 · Race Pace Durability cost lane
 
 - [x] W7 Thursday revised from VO₂ 5 × 3 to controlled threshold 3 × 12 min with 2:00 easy recovery.
