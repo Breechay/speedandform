@@ -8,6 +8,10 @@ on:
       - 'private/auth.js'
       - 'private/supabase-client.js'
       - 'tests/form-email-handoff.test.mjs'
+      - 'supabase/templates/**'
+      - 'supabase/config.toml'
+      - 'coach/ops/console.js'
+      - 'auth/record-callback/callback.css'
       - '.github/workflows/form-email-handoff.yml'
   pull_request:
     paths:
