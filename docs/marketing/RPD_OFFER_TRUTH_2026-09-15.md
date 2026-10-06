@@ -14,11 +14,11 @@ The method is shared. **The pace is athlete-relative.**
 
 The race-pace number is not the product. The product is the progression:
 
-**broken race-pace work → 5 continuous → 6 continuous → 8 continuous → late-race-pace work → 12 continuous late → race**
+**broken race-pace work → 5 continuous → 6 continuous → 8 continuous → modest late-race-pace work → race**
 
 The canonical ownership asks are:
 
-**5 → 6 → 8 → 12 → race**
+**5 → 6 → 8 → late access → race**
 
 A runner targeting ~1:15, ~1:30, or another half-marathon time can use the same architecture if the prescribed band and workload are appropriate to their current fitness.
 
@@ -123,3 +123,7 @@ The existing canonical training document remains:
 `docs/RACE_PACE_DURABILITY_CANONICAL_v1.md`
 
 This offer-truth file does not replace the training prescription. It translates the canonical method into product and distribution language.
+
+## October 6 observation-system amendment
+
+The self-guided product no longer treats twelve race-pace miles as a mandatory culmination. Programmed continuous ownership asks stop at 5, 6 and 8 miles. Late race pace is a separate durability question, first four miles late and then six late when recovered. Nine or ten continuous miles can be athlete-specific options in coaching; they are not missing product rungs. Thursday is support, not an automatic second hard day.
