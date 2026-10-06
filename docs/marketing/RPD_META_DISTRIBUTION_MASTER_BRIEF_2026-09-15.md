@@ -42,7 +42,7 @@ Current public facts:
 - The plan page currently identifies roughly **45 → 60 miles/week**.
 - Six running days and an existing long-run base are expected.
 - Governing progression: **broken race-pace work → continuous distance → race pace late in the long run**.
-- Public progression language currently shows **5 → 6 → 8 → 12 continuous miles**.
+- Public progression language currently shows **5 → 6 → 8 continuous miles, then modest race pace late**.
 - The published working band is **6:30–6:45/mi** in the current sub-1:30 version.
 - Weeks 1–4 are open to inspect/run.
 - Weeks 5–15 cost **$79 once**.
@@ -413,7 +413,7 @@ Alternative less absolute line:
 **4.0–7.5 sec**  
 Minimal progression fills screen one step at a time:
 
-**BROKEN → 5 → 6 → 8 → 12 LATE**
+**BROKEN → 5 → 6 → 8 → LATE 4 → 6**
 
 Small:
 **continuous miles**
@@ -488,7 +488,7 @@ Top:
 **RACE PACE DURABILITY**
 
 Center, very large:
-**2 → 5 → 6 → 8 → 12**
+**BROKEN → 5 → 6 → 8 → LATE**
 
 Under:
 **continuous miles**
