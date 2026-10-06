@@ -10,7 +10,7 @@ catch { sharp = require(resolve(process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES, 
 const cards = [
   ['plans', 'PLANS', ['See how the', 'work builds.'], 'Preview the work. Follow the progression.', 'Training with purpose, in sequence.', true],
   ['labs', 'LIVING STUDIES', ['The work.', 'The response.'], 'The next decision.', 'Two open questions. Individual responses.'],
-  ['race-pace-durability', 'HALF MARATHON · 15 WEEKS', ['Race Pace', 'Durability'], 'Broken → continuous → late', '5 → 6 → 8 → 12 continuous miles · final 12 inside 16'],
+  ['race-pace-durability', 'HALF MARATHON · 15 WEEKS', ['Race Pace', 'Durability'], 'Broken → continuous → late', '5 → 6 → 8 continuous miles · then 4 → 6 miles late if absorbed'],
   ['raise-the-ceiling-plan', 'SIX-WEEK PLAN', ['Raise the', 'Ceiling'], 'Tuesday · Thursday · Saturday', 'Simon + Lisa · Individual working bands · One 10K'],
   ['speed-that-endures', 'LIVING STUDY', ['Speed That', 'Endures'], 'How much of the pace can you keep?', 'José + Hope · The work, the response and what changes'],
   ['raise-the-ceiling-study', 'LIVING STUDY', ['Raise the', 'Ceiling'], 'How much more speed is available?', 'Simon + Lisa · Six weeks · A 10K read']
