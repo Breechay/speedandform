@@ -1,5 +1,14 @@
 # FORM: current state and next actions
 
+## October 6 · Half-marathon Library on house rules
+
+- Owner asked for the same audit on the three live half-marathon pages. Record: [Brand authority](../BRAND.md), “October 6 · The Library on house rules”. This is the visual-finish half of the design pass for the first group and does not change the build sprint below.
+- [x] `css/half-marathon-library.css` only: house edges, 450 display weight, mono labels, ruled starting-point column, home-style facts, ink bars, one rule per table row.
+- [x] `tests/half-marathon-library.cjs`, `tests/cream-reading.cjs` and `tests/pace-math.cjs` pass. Chromium renders of the three pages reviewed at 390, 768 and 1440.
+- [ ] Owner review. Print output, Safari and a physical phone not checked after this change. Not pushed, not merged, not deployed.
+- [ ] Copy calls recorded for the coaching read: outing or run, 13.1 instead of 13.1094, shorter cautions.
+- [ ] Decide whether the rest of the Library takes the same display weight.
+
 ## October 6 · Doors off the homepage
 
 - Owner asked for an audit of the doors reachable from the homepage, starting with Contact. Record: [Brand authority](../BRAND.md), “October 6 · Doors off the homepage”.

@@ -274,3 +274,27 @@ The homepage ends on the cloth: the image above the footer line, the emblem's le
 - One footer for every house door. Today the home, the split doors, Plans and Thursday each end differently.
 - FORM House sets its name in capitals. The type rule drafted for the brand page says sentence case. Either write the exception (a room may set its own name in capitals) or set it as "FORM House."
 - The header's right link is Contact on the home and Thursday, Home on the split doors, and The morning on FORM House. Decide whether that link is always the way to Contact.
+
+## October 6 · The Library on house rules
+
+**Status.** After the homepage, the brand page and the doors, Brice asked for the same audit of the new half-marathon Library pages (the 12-week plan, the pace chart and the timeline guide). Built on `work/library-20261006`, stacked on the brand page and doors branches. Owner review pending. Style only: `css/half-marathon-library.css`. No content, schedule, pace math, generator or tracking change.
+
+**The rule.** A paper room is the same house on paper. It keeps its own field and its reading measure, and takes everything else from the house.
+
+**What changed on the three pages.**
+
+- **House edges.** The page sits on the same content edges as the home, 1280px wide with the house gutter, so the emblem is where it is everywhere else.
+- **Display weight.** Headlines are 450 with tight tracking, as on the home, and larger. This replaces the 600 to 650 heading weight for these three pages. The rest of the Library still follows the earlier October 6 note until Brice decides to bring it across.
+- **Mono for labels and measured things.** Header links, eyebrows and fact labels use the mono at 11px, as on the home.
+- **Rules instead of boxes.** The starting-point panel in the opening is a ruled column, not a tinted card. Day cells inside a week keep their tint because they are a calendar.
+- **Facts read like the home.** The value is large and the label sits under it.
+- **Ink instead of an accent.** The weekly bars were forest green. They are ink, a lighter ink for step-back weeks and full ink for the race.
+- **One rule per row.** The first cell of each table row carried the header's darker rule and an underlined link, which read as two dividers. Each row now has one.
+
+**Not on paper yet.** The bend and the lit headline belong to dark rooms. On these pages the weekly bars are the one drawn object.
+
+**Copy, for Brice's coaching read. Not changed.**
+
+- "Outing" appears throughout. A coach would say run, and say once that run and walk both count.
+- 13.1094 mi, 10.54875 km and "approximately 17.1094 miles" read like software. Show 13.1 mi and 21.1 km and keep the exact figure in the math.
+- Several cautions explain themselves twice. Example: "That is a reason to adapt this plan, not a universal danger threshold or an instruction to replace the long outing with 150 minutes." One plain sentence does the job: "If 10 miles would take you much longer than 2½ hours, ask me for a version built on time."
