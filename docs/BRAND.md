@@ -328,3 +328,11 @@ The homepage ends on the cloth: the image above the footer line, the emblem's le
 - **One copy change.** The Analysis form asked “What’s on your mind?”, the same words as Contact. It now says “Ask one clear question.”, which is what the page asks for.
 
 **Still to walk, in this order.** Run Development (`/coaching/miami/`), the Work pages, FORM House contact and mornings, Run Miami, the track gallery, the Library index and the rest of the reading room, the plan page, the Labs entrance, the FORM and Sculpt product pages, privacy and the 404. Same method each time: open like the home where it is a house door, keep the room where it is a room, one rule per boundary, plain voice.
+
+## October 6 · Run Development and public preview continuation
+
+The owner asked for `/coaching/miami/` to be ready as its own destination while the homepage remains the primary landing page. The homepage coaching door still targets `#begin`; the standalone page hands inquiries to that same intake. The forced retirement redirect is removed. `css/run-development.css` owns the black/bone room, local Inter Tight 450, mono labels, real coaching photograph and ruled sections. No new offer or form backend.
+
+The six-, eight- and sixteen-week half-marathon pages and faster-half guide reuse the established paper-room shell. This extends that scoped 450-heading treatment to these four resources, not the whole older Library. Every plan has its own starting point; the sixteen-week path has a transition gate and may take longer.
+
+Public share cards now have a reviewed file allowlist in `data/public-share.json`. `scripts/render-public-share.cjs` renders the local-font cards; `scripts/build-public-share.cjs` applies metadata after page generators. The eight Library resource/tool cards retain their separate half-marathon generator. Preserve dedicated study/product art outside this refresh and never sweep private or noindex rooms into the allowlist.

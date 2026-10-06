@@ -1,7 +1,7 @@
 {
   "version": "20261006",
   "stage": "Discovery source build; later cream/brand build steps may change HTML hashes.",
-  "scope": "Three half-marathon Library resources; existing discovery preserved.",
+  "scope": "Seven half-marathon Library resources; existing discovery preserved.",
   "resources": [
     {
       "url": "/library/how-long-to-train-for-a-half-marathon/",
@@ -14,39 +14,59 @@
       "type": "Plan"
     },
     {
+      "url": "/library/6-week-half-marathon-training-plan/",
+      "title": "Free 6-week half-marathon plan",
+      "type": "Plan"
+    },
+    {
+      "url": "/library/8-week-half-marathon-training-plan/",
+      "title": "Free 8-week half-marathon plan",
+      "type": "Plan"
+    },
+    {
+      "url": "/library/16-week-half-marathon-training-plan/",
+      "title": "Free 16-week half-marathon path",
+      "type": "Plan"
+    },
+    {
+      "url": "/library/how-to-run-a-faster-half-marathon/",
+      "title": "How to run a faster half marathon",
+      "type": "Guide"
+    },
+    {
       "url": "/library/half-marathon-pace-chart/",
       "title": "Half-marathon pace chart",
       "type": "Tool"
     }
   ],
-  "searchEntries": 63,
+  "searchEntries": 67,
   "existingSearchEntries": 60,
-  "sitemapUrls": 92,
+  "sitemapUrls": 97,
   "files": [
     {
       "file": "library.html",
-      "sha256": "5e60ecb196d070be7545c9a5779024e5e51a5fe9fcf8ca667432509fb1bf9df9"
+      "sha256": "0436d5a8f8aad6fc33bcb6575ad01f9acc22f5a173e4a11399b54022762423a9"
     },
     {
       "file": "search.html",
-      "sha256": "bdebbb68e496d0f6f28e74ef0e0aa9e04aee2bdf56536f73823c1cec90e76f9c"
+      "sha256": "e86e1db9f1ddc38f815335d13dd68c5825c30156759feeeecd963e09a1d67809"
     },
     {
       "file": "404.html",
-      "sha256": "dc9b9d6e6de6a6e22eb9e365f9523e6e44cddf94b5eaa72f910786a86376b38e"
+      "sha256": "5b113e06116eb34fd0bd57d6f58fe2b3916c4704c46a7cc3831b082e917bb66f"
     },
     {
       "file": "search-index.json",
-      "sha256": "bd1479108bfc68d73b83485925c6e556f5ef2c63ccabbbcbfa1d6396062fe512"
+      "sha256": "f20e5016125e19c51fded363b88b3e81d3960e4683983fabac0f8c91e2bbde48"
     },
     {
       "file": "sitemap.xml",
-      "sha256": "9b91e6b82bab9525146a658c6bc9d2b4d263344bb005c50c59d69402cfe824c7"
+      "sha256": "4b12223494dd603b4676ca05108291cdb89cf6086217d6dbd9fa8f6a5331d7d4"
     },
     {
       "file": "plans/index.html",
-      "sha256": "a5e3e147729ce0b1aa9ed0df9906ba475f186ccae87fc544b9d50d982c98d532"
+      "sha256": "0c5c1157b07f287c1c9e01380a54d46bc80cc9ae3e9363f9ef91c767a904b305"
     }
   ],
-  "deferred": "Older full catalog generation differs from the current published Library and includes a noindex coaching redirect. This scoped build does not reconcile or publish unrelated catalog differences."
+  "deferred": "Older full catalog generation differs from the current published Library and contains historical route assumptions. This scoped build does not reconcile or publish unrelated catalog differences."
 }

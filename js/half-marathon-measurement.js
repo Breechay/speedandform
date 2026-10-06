@@ -2,7 +2,9 @@
 (function(w,d){
   'use strict';
   var resource=d.documentElement.getAttribute('data-hm-resource');
-  var routes={plan:'/library/half-marathon-training-plan/',ready:'/library/how-long-to-train-for-a-half-marathon/',pace:'/library/half-marathon-pace-chart/'};
+  var routes={plan:'/library/half-marathon-training-plan/',ready:'/library/how-long-to-train-for-a-half-marathon/',pace:'/library/half-marathon-pace-chart/',six:'/library/6-week-half-marathon-training-plan/',eight:'/library/8-week-half-marathon-training-plan/',sixteen:'/library/16-week-half-marathon-training-plan/',faster:'/library/how-to-run-a-faster-half-marathon/'};
+  var planLimits={plan:12,six:6,eight:8,sixteen:16};
+  var planIds={plan:'half-marathon-finish-12',six:'half-marathon-six-week-prepared-base',eight:'half-marathon-finish-8',sixteen:'half-marathon-foundation-16'};
   var current=new URL(w.location.href);
   if(!/^(www\.)?speedandform\.com$/.test(current.hostname)||routes[resource]!==current.pathname||w.sfHmTrack)return;
   var ga='G-HKG3MXM668',version='2026-10-06.1';
@@ -64,15 +66,15 @@
   w.sfHmTrack=function(name,params){
     if(privateVisit())return;
     params=params||{};
-    var fields={page:resource,plan:resource==='plan'?'half-marathon-finish-12':'none',version:version,send_to:ga};
+    var fields={page:resource,plan:planIds[resource]||'none',version:version,send_to:ga};
     if(name==='hm_resource_view'){if(seenView)return;seenView=true;}
     else if(name==='hm_week_open'){
-      if(resource!=='plan'||!Number.isInteger(params.week)||params.week<1||params.week>12||params.interaction!=='explicit')return;
+      if(!planLimits[resource]||!Number.isInteger(params.week)||params.week<1||params.week>planLimits[resource]||params.interaction!=='explicit')return;
       fields.week=params.week;fields.interaction='explicit';
-    }else if(name==='hm_print_request'){if(resource!=='plan'&&resource!=='pace')return;}
+    }else if(name==='hm_print_request'){if(!planLimits[resource]&&resource!=='pace')return;}
     else if(name==='hm_units_change'){}
     else if(name==='hm_next_step'){
-      if(['plan','ready','pace','calculator','coaching','contact','plans'].indexOf(params.destination)===-1)return;
+      if(['plan','ready','pace','six','eight','sixteen','faster','calculator','coaching','contact','plans'].indexOf(params.destination)===-1)return;
       fields.destination=params.destination;
     }else return;
     if(['hm_week_open','hm_print_request','hm_units_change'].indexOf(name)!==-1){

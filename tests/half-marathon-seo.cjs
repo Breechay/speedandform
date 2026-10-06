@@ -1,7 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const share=require('../scripts/share-metadata.cjs'),cards=require('../data/half-marathon-share.json');
-const {routes}=require('../scripts/build-half-marathon.cjs');
+const routes={...require('../scripts/build-half-marathon.cjs').routes,...require('../scripts/build-half-marathon-collection.cjs').routes};
 const origin='https://speedandform.com',root=path.resolve(__dirname,'..');
 const sitemap=fs.readFileSync(path.join(root,'sitemap.xml'),'utf8');
 const robots=fs.readFileSync(path.join(root,'robots.txt'),'utf8');
@@ -28,4 +28,4 @@ for(const {key,route,file} of subjects){
     assert.equal(schema['@type'],'Article');assert.equal(schema.url,canonical);assert.equal(schema.mainEntityOfPage['@id'],canonical);assert.equal(schema.image.url,image);assert.equal(schema.headline,share.meta(html,'og:title'));assert.equal(schema.datePublished,'2026-10-06');assert.equal(schema.dateModified,'2026-10-06');
   } else assert.equal(share.transform(html,file,root),html,'Existing share builder must preserve calculator card');
 }
-console.log('PASS: four unique share cards, valid JPEG bytes/dimensions, complete metadata, canonical/schema parity, sitemap and robots checks.');
+console.log('PASS: eight unique share cards, valid JPEG bytes/dimensions, complete metadata, canonical/schema parity, sitemap and robots checks.');

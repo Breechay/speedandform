@@ -15,6 +15,10 @@ const GROUPS = [
  ['half-marathon','Your half marathon','Choose your starting point, read the plan, and understand the pace.',[
   ['library/how-long-to-train-for-a-half-marathon/','How long to train for a half marathon?','Match your preparation to your recent running, recovery, and available weeks.','half marathon readiness preparation weeks first beginner base run walk'],
   ['library/half-marathon-training-plan/','Free 12-week half-marathon plan','Four outings a week. A complete finish-focused plan with easy running or planned run/walk.','half marathon free twelve 12 week training plan finish run walk','Plan'],
+  ['library/6-week-half-marathon-training-plan/','Free 6-week half-marathon plan','A short build for runners with an established four-run week and comfortable eight-mile long run.','half marathon six 6 week plan prepared base','Plan'],
+  ['library/8-week-half-marathon-training-plan/','Free 8-week half-marathon plan','An easy-effort finish plan for an established four-run routine.','half marathon eight 8 week free plan','Plan'],
+  ['library/16-week-half-marathon-training-plan/','Free 16-week half-marathon path','Four foundation weeks and a readiness check before the complete twelve-week plan.','half marathon sixteen 16 week foundation free plan','Plan'],
+  ['library/how-to-run-a-faster-half-marathon/','How to run a faster half marathon','Choose the next change from your training, race execution and recovery.','half marathon faster improve performance'],
   ['library/half-marathon-pace-chart/','Half-marathon pace chart','Compare finish times, pace per mile and kilometer, and halfway splits.','half marathon pace chart finish time mile kilometer km splits calculator','Tool'],
  ]],
  ['training','Pace & the training week','Understand what each run is for and how the week fits together.',[

@@ -1,0 +1,33 @@
+name: Half-marathon collection and public previews
+on:
+  pull_request:
+    paths:
+      - 'data/half-marathon*'
+      - 'data/public-share.json'
+      - 'library/**'
+      - 'coaching/miami/**'
+      - 'scripts/*half-marathon*'
+      - 'scripts/*public-share*'
+      - 'js/half-marathon*'
+      - 'tests/*half-marathon*'
+      - 'tests/public-share.cjs'
+      - 'netlify.toml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: |
+          node tests/pace-math.cjs
+          node tests/half-marathon-library.cjs
+          node tests/half-marathon-collection.cjs
+          node tests/half-marathon-measurement.cjs
+          node tests/half-marathon-seo.cjs
+          node tests/public-share.cjs
+          node tests/cream-reading.cjs
