@@ -50,7 +50,7 @@ The landing page should feel like the next frame after the ad, not a separate es
 
 1. Ad continuity: same question, group proof, clear offer.
 2. What the athlete wants: run a faster / stronger half marathon, hold pace longer.
-3. What happens over 15 weeks: shorter race-pace efforts → 5 → 6 → 8 → 12 late → race.
+3. What happens over 15 weeks: shorter race-pace efforts → 5 → 6 → 8 continuous → modest race pace late → race.
 4. Simple fit check: already running consistently; this is not a first-half-marathon base plan.
 5. Real FORM evidence: Hope / José live use, Simon verified FORM result as broader coaching credibility where clearly distinguished.
 6. What the buyer gets: every week, every workout, long runs, warm-up / recovery / pace guidance.
