@@ -7,6 +7,10 @@ const helperSource = readFileSync(new URL('../auth/record-callback/session-hando
 const { acceptImplicitReturn } = await import(`data:text/javascript;base64,${Buffer.from(helperSource).toString('base64')}`);
 const callbackSource = readFileSync(new URL('../auth/record-callback/callback.js', import.meta.url), 'utf8').replace(/^import .*;\n/gm, '');
 const landingSource = readFileSync(new URL('../auth/app-signin/app-signin.js', import.meta.url), 'utf8');
+const authSource = readFileSync(new URL('../private/auth.js', import.meta.url), 'utf8');
+const callbackHtml = readFileSync(new URL('../auth/record-callback/index.html', import.meta.url), 'utf8');
+const callbackCss = readFileSync(new URL('../auth/record-callback/callback.css', import.meta.url), 'utf8');
+const authEmailTemplates = ['magic_link','confirmation','recovery','invite'].map(name => readFileSync(new URL('../supabase/templates/' + name + '.html', import.meta.url), 'utf8'));
 const base = 'https://speedandform.com/auth/record-callback/';
 const returned = '#access_token=test-access&refresh_token=test-refresh&type=magiclink';
 const newSession = { access_token: 'test-access', refresh_token: 'test-refresh', user: { id: 'new-user' } };
@@ -75,6 +79,30 @@ async function callback({ suffix = returned, oldSession = null, setError = false
   );
   return { nodes, calls, navigation, window };
 }
+
+test('private auth surfaces follow the cream house system', () => {
+  assert.ok(callbackHtml.includes('content="#e8e3d9"'));
+  assert.ok(callbackHtml.includes('sf-emblem-ink.svg'));
+  assert.ok(callbackHtml.includes('callback.css?v=1'));
+  assert.ok(!callbackHtml.includes('graphite.css'));
+  assert.ok(callbackCss.includes('--paper:#e8e3d9'));
+  assert.ok(callbackCss.includes('--ink:#161916'));
+  for (const template of authEmailTemplates) {
+    assert.ok(template.includes('#e8e3d9'));
+    assert.ok(template.includes('sf-emblem-ink.png'));
+    assert.ok(template.includes('Speed &amp; Form'));
+    assert.ok(!template.includes('#c8ff2e'));
+    assert.ok(!template.includes('#9acb19'));
+  }
+});
+test('coach magic links never create a new identity', () => {
+  assert.ok(authSource.includes("shouldCreateUser: !destination.startsWith('/coach/')"));
+});
+test('Operating Console callback rejects a non-owner session', () => {
+  assert.ok(callbackSource.includes("destination.startsWith('/coach/ops/')"));
+  assert.ok(callbackSource.includes("rpc('operating_console_owner')"));
+  assert.ok(callbackSource.includes('supabase.auth.signOut'));
+});
 
 test('implicit return is restored, server-verified and cleaned before claiming', async () => {
   const auth = authMock(), cleaned = [];

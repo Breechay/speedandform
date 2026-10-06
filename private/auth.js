@@ -57,11 +57,14 @@ export async function enabledProviders() {
 export async function sendMagicLink(email, returnTo = '/athlete/') {
   const normalized = String(email || '').trim().toLowerCase();
   if (!normalized || !normalized.includes('@')) throw new Error('Enter the email Brice invited.');
+  const destination = safeReturnTo(returnTo);
   const { error } = await supabase.auth.signInWithOtp({
     email: normalized,
     options: {
-      emailRedirectTo: callbackUrl(safeReturnTo(returnTo)),
-      shouldCreateUser: true
+      emailRedirectTo: callbackUrl(destination),
+      // Athlete invitations may create the invited account. Coach doors never
+      // create a new identity from a mistyped or alternate email address.
+      shouldCreateUser: !destination.startsWith('/coach/')
     }
   });
   if (error) throw error;
@@ -200,6 +203,7 @@ export function authErrorMessage(error) {
   const message = String(error?.message || error || 'Sign in could not be completed.');
   if (/provider.*not.*enabled/i.test(message)) return 'Apple sign-in is being connected. Use the email link for now.';
   if (/rate limit/i.test(message)) return 'Too many links were requested. Wait a moment, then try again.';
+  if (/signups?.*(not|disabled)|user.*not.*found/i.test(message)) return 'Use the coach account already connected to FORM.';
   if (/expired|invalid.*code|otp/i.test(message)) return 'That link has expired. Request a new sign-in link.';
   return message;
 }
