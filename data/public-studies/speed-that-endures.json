@@ -1,7 +1,6 @@
 {
   "schema_version": 1,
   "source_path": "labs/speed-that-endures/index.html",
-  "source_sha256": "a089132202139e5268d965f0e992d1de23e82bf93aa269500d19f7cd267f36d2",
   "source_url": "/labs/speed-that-endures/#rhythm-read",
   "status": "ongoing",
   "latest_completed": {
@@ -52,8 +51,9 @@
       "6:43",
       "6:42"
     ],
-    "decision": "Owner-approved continuity support: five continuous miles October 13, modest conditional threshold October 15 and easy October 17. Keep October 8 easy and October 20 conditional. Six continuous miles remains the latest completed rung.",
-    "mindset": "He said he still thinks about Brice’s cue, “Stop negotiating with yourself.” The cue is about appropriate effort and reengagement, not overriding pain or a needed training change."
+    "decision": "Owner-approved continuity support: five continuous miles October 13, visibly conditional threshold October 15 and easy October 17. Keep October 8 easy and October 20 conditional. Six continuous miles remains the latest completed rung.",
+    "mindset": "He said he still thinks about Brice’s cue, “Stop negotiating with yourself.” The cue is about appropriate effort and reengagement, not overriding pain or a needed training change.",
+    "engagement": "José responded positively to the revision and called the continuous threshold a new challenge. This is engagement evidence, not readiness; the recovery gate remains explicit."
   },
   "review_amendment": {
     "date": "2026-10-06",
@@ -63,6 +63,6 @@
   "continuity_amendment": {
     "date": "2026-10-06",
     "source_url": "/labs/speed-that-endures/#rhythm-read",
-    "status": "Individual format trial and lower support load; no universal workout change"
+    "status": "Individual continuity trial plus system revision: reusable ownership asks stop at 8; later race pace is separate late-access durability; no mandatory 12-mile rung."
   }
 }
