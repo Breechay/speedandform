@@ -9,7 +9,7 @@ Brice reaffirmed the new homepage and brand-page direction on October 6 and aske
 
 - **House:** black `#0d0f0e`, bone `#e8e3d9`, ink `#161916`; quiet text `#b8bbb2` on black and `#5e625b` on bone. These match `css/home-commercial.css` and the kit token generator. Forest/chalk below records the earlier direction, not the current public default. FORM app and authored study systems keep their own roles.
 - **Type and structure:** Inter Tight, display weight 450, restrained negative tracking; JetBrains Mono for house labels and measurements. Align the emblem and content edges, use rules and space instead of decorative boxes, keep one divider per boundary. Readability and contrast remain acceptance requirements, including at the smallest labels.
-- **Paper rooms:** cream and a comfortable reading measure, sans serif, ink structure. The supplied Library treatment uses 450 headings, house edges, mono labels, a ruled starting-point column, large facts above labels and ink weekly bars. It is scoped to the twelve-week plan, readiness guide and pace chart. The remaining Library has not been migrated to this heading weight. No bend or lit headline on these cream pages.
+- **Paper rooms:** cream/bone and a comfortable reading measure, sans serif, ink structure. Approved scopes now include the twelve-week Library group and the private Operating Console. The console uses bone `#e8e3d9`, ink, quiet text, 450 display headings and mono labels; it drops lime, rounded app-like cards and capsule navigation. No bend or lit headline in the console. Other cream surfaces do not inherit this treatment automatically.
 - **Light and imagery:** real photographs carry the room. Only the approved dark-room headline/emblem receive light falloff; decision text stays at full strength. Preserve the documented cloth-rendering exception without treating it as photography or permission to generate athletes.
 - **Voice:** say the real thing once. Use the shortest truthful sentence, first person when it is Brice, and the runner's need before the method. No hype, corporate belief language, pseudo-scientific noun piles or repeated reassurance. Keep coaching and evidence qualifications that change the reader's decision.
 - **Signature:** use the measured bend from `scripts/sf-bend.cjs`, never redraw, mirror or tile it. One bend per approved piece, clear of type. Kit templates are the reuse path; app use still needs its own design decision.
@@ -272,6 +272,21 @@ The homepage ends on the cloth: the image above the footer line, the emblem's le
 **Drafts, not rulings.** These were proposed in the build and are his to change: clear space of half the emblem's height, the 62px minimum width, the story safe zones (top 14%, bottom 20%), the film and social rows, "no exclamation points", and the rule to ask before using a photograph.
 
 **Keep it true.** If a rule changes here, change the page, then rebuild and re-render the kit in the same release. A brand page that disagrees with the house is worse than none.
+
+## October 6 · Operating Console as a paper room
+
+**Status.** Brice asked for the sign-in page and the full private Operating Console to follow the new house rules, and explicitly chose cream rather than the earlier green-tinted console treatment. Built on `work/console-house-20261006`. Production remains unchanged until the branch is reviewed and released.
+
+**Ruling.** `/coach/ops/` is a private paper room inside the same house.
+
+- Use the ink SF emblem alone in the header. Do not pair it with the FORM. wordmark.
+- Use bone `#e8e3d9`, ink `#161916` and quiet `#5e625b`. Inter Tight carries display and reading type at the house's 450 display weight; JetBrains Mono carries dates, labels, states and measured information.
+- Use rules, alignment and space instead of rounded cards, colored chips or capsule navigation. Primary actions may invert to ink on bone; ordinary status emphasis stays monochrome.
+- Keep form controls explicit and accessible. A functional error state and keyboard focus treatment are allowed; they are not decorative accent colors.
+- Do not import the bend, lit headline treatment, cloth, photography or dark-room opening into this cream workspace. Lime remains out of the house layer.
+- The console's data model, authorization, source-of-truth rules, prioritization logic and write behavior are unchanged by this visual migration.
+
+**Scope.** This settles the previously open paper/cream decision for the Operating Console only. It does not convert the FORM app, athlete studies, Forge or every cream page into this room.
 
 ## October 6 · Doors off the homepage
 
