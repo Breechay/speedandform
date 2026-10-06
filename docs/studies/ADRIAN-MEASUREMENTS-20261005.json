@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "record_id": "adrian-circumferences-20261005",
+  "study_id": "FRM-001",
+  "athlete": "Adrian Gandara",
+  "measured_on": "2026-10-05",
+  "recorded_on": "2026-10-05",
+  "unit": "in",
+  "source": {
+    "kind": "athlete_self_measurement_with_coach_supplied_photo_set",
+    "description": "Brice supplied Adrian's repeat tape values and four current physique photos on October 5, 2026.",
+    "independently_verified": false,
+    "publication": "Numeric values may be used in the public study. The chat-uploaded photo binaries are not republished by this record."
+  },
+  "reference_role": "second_recorded_circumference_checkpoint",
+  "pre_intervention_baseline": false,
+  "measurements": [
+    {
+      "key": "waist",
+      "label": "Waist",
+      "value": 31,
+      "unit": "in",
+      "state": null,
+      "side": null,
+      "landmark": null
+    },
+    {
+      "key": "chest",
+      "label": "Chest",
+      "value": 36,
+      "unit": "in",
+      "state": null,
+      "side": null,
+      "landmark": null
+    },
+    {
+      "key": "arm",
+      "label": "Arm, relaxed",
+      "value": 11.5,
+      "unit": "in",
+      "state": "relaxed",
+      "side": null,
+      "landmark": null
+    },
+    {
+      "key": "thigh_a",
+      "label": "Thigh, relaxed A",
+      "value": 20,
+      "unit": "in",
+      "state": "relaxed",
+      "side": null,
+      "landmark": null
+    },
+    {
+      "key": "thigh_b",
+      "label": "Thigh, relaxed B",
+      "value": 19.75,
+      "unit": "in",
+      "state": "relaxed",
+      "side": null,
+      "landmark": null
+    },
+    {
+      "key": "calf",
+      "label": "Calf",
+      "value": 15.5,
+      "unit": "in",
+      "state": null,
+      "side": null,
+      "landmark": null
+    }
+  ],
+  "conditions": {
+    "time_of_day": null,
+    "relation_to_training": null,
+    "pump_status": null,
+    "repeated_readings": null,
+    "standardization_confirmed": false,
+    "same_time_as_163_2_lb_weight": "intended by coach, not explicitly confirmed in the supplied message"
+  },
+  "comparison_to_20260924": {
+    "previous_source": "docs/studies/ADRIAN-MEASUREMENTS-20260924.json",
+    "waist_in": {
+      "previous": 31,
+      "current": 31,
+      "nominal_change": 0
+    },
+    "chest_in": {
+      "previous": 35.75,
+      "current": 36,
+      "nominal_change": 0.25
+    },
+    "arm_relaxed_in": {
+      "previous": 11,
+      "current": 11.5,
+      "nominal_change": 0.5
+    },
+    "thigh_relaxed_in": {
+      "previous": 20,
+      "current": [
+        20,
+        19.75
+      ],
+      "nominal_change": null,
+      "note": "Prior side was not recorded, and current side ordering was not supplied. Do not claim a side-specific change."
+    },
+    "calf_in": {
+      "previous": 15.75,
+      "current": 15.5,
+      "nominal_change": -0.25,
+      "note": "Side and landmark were not confirmed; treat the nominal difference as possible measurement noise until repeated."
+    },
+    "interpretation": "Waist is unchanged while chest and relaxed arm are nominally higher. The lower-body values are essentially flat/uncertain at this checkpoint. One repeat tape set without confirmed landmarks or capture conditions is not proof of hypertrophy."
+  },
+  "photos": {
+    "count": 4,
+    "supplied_in_chat": true,
+    "views": [
+      "front relaxed",
+      "profile",
+      "back relaxed",
+      "opposite profile"
+    ],
+    "capture_note": "The four images appear to be from the same session/location and show a relaxed physique set. No claim is made that camera distance, focal length, lighting, pump status, meal timing or relation to training matches earlier reference images.",
+    "study_role": "current reference set; useful qualitative context, not a standardized before/after comparison"
+  },
+  "current_read": "The direction is encouraging but still early: waist is stable at 31 in, chest is 36 in (+0.25 nominally) and relaxed arm is 11.5 in (+0.5 nominally) versus September 24. Thighs are 20/19.75 in and calf 15.5 in. Because the first checkpoint did not document side/landmarks and the new capture conditions are incomplete, the study records the values without converting them into a hypertrophy claim.",
+  "next_collection": "Repeat the same tape locations, record side for thigh/calf, and capture time of day, relation to training, pump status and comparable morning body mass. Continue preserving the high-level marathon constraint.",
+  "scope": "Body-evidence update only. No automatic change to run or strength prescription."
+}
