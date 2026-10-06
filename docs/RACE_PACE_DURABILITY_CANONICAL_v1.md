@@ -163,3 +163,13 @@ The assignment owns the athlete's actual values. The living study may show José
 ## October 6 external-review amendment
 
 Revision 4 generalized a threshold-deficit hypothesis and substituted 36 work minutes for 15 without sufficient athlete-specific evidence. That default is withdrawn. Restoring the earlier reusable publication does not overwrite existing athlete history or current individual recovery decisions. No automatic dose change is sent to other athletes. The October 13 decision is prospective: start only when ready; no rescue surges; unexpected high early effort means reduce or stop. The next continuous checkpoint remains conditional and cannot establish treatment causality. Proposed wider October 13–20 reductions remain for explicit coach approval.
+
+
+<!-- FORM-OBSERVATION-CONTINUITY-20261006 -->
+## October 6: individual continuity support
+
+Brice has approved the José branch: October 8 stays easy; October 13 is 5 continuous work miles at 6:40–6:45/mi; October 15 is a conditional 20-minute controlled continuous threshold without a required pace; October 17 is 13 entirely easy miles; October 20 stays an eight-mile continuous checkpoint if ready. The canonical athlete sessions own these values. The reusable table above is not silently assigned to him again.
+
+Broken support is an option, not an obligatory prerequisite to continuous work. A shorter familiar continuous run can support the next longer ask. Progress is controlled useful duration and recovery, not the hardest week. Do not promote 8, 9, 10 or 12 miles into automatic requirements.
+
+[Shared observation rules and recovered threshold programs](FORM_OBSERVATION_LED_PROGRESSION.md). The 20+8, 20+12 and Sustained Pressure 45-minute structures remain selected future options, not blanket Thursday replacements.

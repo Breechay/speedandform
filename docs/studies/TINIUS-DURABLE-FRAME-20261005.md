@@ -70,3 +70,11 @@ Keep running and strength evidence separate:
 ## Next gate
 
 Receive the exact kettlebell and barbell/plate weights, then freeze the Week 1 exercise map and publish the six-week FORGE delivery version.
+
+
+<!-- FORM-OBSERVATION-CONTINUITY-20261006 -->
+## October 6: observation-led progression
+
+Keep the kilometer-based running progression and fixed strength limits. Read leg effort and recovery across FORM and FORGE together. Do not add bonus work or longer threshold merely because another athlete benefits from it.
+
+For Tinius, judge controlled useful running, pacing and recovery against the goal. Broken and continuous work are tools, not an automatic hierarchy. [Shared method and threshold lineage](../FORM_OBSERVATION_LED_PROGRESSION.md). No current dose, gate, result or pace is changed by this methodological note.

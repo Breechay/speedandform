@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "source_path": "labs/speed-that-endures/index.html",
-  "source_sha256": "12e534b82b005913cad52d6e7edfce3cd6aa30a0ddf16c83856550e0a9e35c81",
-  "source_url": "/labs/speed-that-endures/#w7-read",
+  "source_sha256": "a089132202139e5268d965f0e992d1de23e82bf93aa269500d19f7cd267f36d2",
+  "source_url": "/labs/speed-that-endures/#rhythm-read",
   "status": "ongoing",
   "latest_completed": {
     "date": "2026-09-29",
@@ -52,12 +52,17 @@
       "6:43",
       "6:42"
     ],
-    "decision": "October 6 review correction: recovery-first on October 8. The session demonstrates eight broken work miles at high reported effort, not a diagnosed threshold deficit. Six continuous miles remains the latest completed rung; October 20 remains conditional.",
+    "decision": "Owner-approved continuity support: five continuous miles October 13, modest conditional threshold October 15 and easy October 17. Keep October 8 easy and October 20 conditional. Six continuous miles remains the latest completed rung.",
     "mindset": "He said he still thinks about Brice’s cue, “Stop negotiating with yourself.” The cue is about appropriate effort and reengagement, not overriding pain or a needed training change."
   },
   "review_amendment": {
     "date": "2026-10-06",
     "source_url": "/labs/speed-that-endures/#oct6-review",
     "status": "Recovery-first individual correction; universal threshold substitution withdrawn."
+  },
+  "continuity_amendment": {
+    "date": "2026-10-06",
+    "source_url": "/labs/speed-that-endures/#rhythm-read",
+    "status": "Individual format trial and lower support load; no universal workout change"
   }
 }

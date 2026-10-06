@@ -272,3 +272,11 @@ Do not claim:
 The purpose is narrower and more useful:
 
 > **Document how the training decision changes when the athlete, evidence and runway change—even when the desired race pace looks similar.**
+
+
+<!-- FORM-OBSERVATION-CONTINUITY-20261006 -->
+## October 6: observation-led progression
+
+The same pace neighborhood does not demand the same session shape. Elijah keeps the short-runway race gate; Simon keeps the longer development arc and reduced conditional Thursday. Neither inherits José's continuity preference without their own evidence.
+
+For Elijah and Simon, judge controlled useful running, pacing and recovery against the goal. Broken and continuous work are tools, not an automatic hierarchy. [Shared method and threshold lineage](../FORM_OBSERVATION_LED_PROGRESSION.md). No current dose, gate, result or pace is changed by this methodological note.

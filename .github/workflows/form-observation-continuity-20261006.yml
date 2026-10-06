@@ -1,0 +1,72 @@
+name: FORM observation continuity
+on:
+  push:
+    branches: [work/form-observation-continuity-20261006]
+    paths:
+      - scripts/form-observation-continuity-20261006.cjs
+      - .github/workflows/form-observation-continuity-20261006.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: form-observation-continuity-20261006
+  cancel-in-progress: false
+jobs:
+  source-and-preview:
+    if: github.ref == 'refs/heads/work/form-observation-continuity-20261006'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/form-observation-continuity-20261006
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply scoped correction and build as published
+        run: |
+          node --check scripts/form-observation-continuity-20261006.cjs
+          node scripts/form-observation-continuity-20261006.cjs
+          node scripts/form-observation-continuity-20261006.cjs
+          cp labs/speed-that-endures/index.html /tmp/study-before-brand.html
+          node tests/cream-reading.cjs
+          node scripts/build-cream-reading.cjs
+          node scripts/build-commercial.cjs
+          node scripts/build-sf-brand.cjs
+          node <<'NODE'
+          const fs=require('fs'),a=require('assert/strict'),h=require('crypto');
+          const before=fs.readFileSync('/tmp/study-before-brand.html','utf8'),after=fs.readFileSync('labs/speed-that-endures/index.html','utf8');
+          const panel=x=>x.match(/<section class="form-observation-note" id="rhythm-read"[\s\S]*?<\/section>/)[0];
+          a.equal(panel(after),panel(before),'Production build changed approved current decision');
+          a.deepEqual(after.match(/data:image[^\s"'<>]+/g),before.match(/data:image[^\s"'<>]+/g),'Production build changed photographs');
+          for(const t of ['13:24.4','13:27.0','13:26.4','13:24.5','53:42.3','39:16.0','40:53.8'])a(after.includes(t));
+          const p='data/public-studies/speed-that-endures.json',j=JSON.parse(fs.readFileSync(p,'utf8'));
+          j.source_sha256=h.createHash('sha256').update(after).digest('hex');
+          fs.writeFileSync(p,JSON.stringify(j,null,2)+'\n');
+          console.log('PASS: current decision and historical evidence survive production brand transform.');
+          NODE
+          node tests/public-study-preview.cjs
+          git diff --check
+      - name: Keep unrelated generator changes out of this release
+        run: |
+          node <<'NODE'
+          const cp=require('node:child_process');
+          const allowed=new Set(['AGENTS.md','docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md','docs/RACE_PACE_DURABILITY_CANONICAL_v1.md','docs/roadmap/FORM-ROADMAP.md','docs/studies/SIMON-STUDY-003.md','docs/studies/ELIJAH-SIMON-SAME-PACE-DIFFERENT-PROBLEM.md','docs/studies/TINIUS-DURABLE-FRAME-20261005.md','docs/studies/SPEED_THAT_ENDURES_W7_20261006.json','data/public-studies/speed-that-endures.json','labs/speed-that-endures/index.html','labs/same-pace-different-problem/index.html','labs/the-two-curves/index.html','labs/the-durable-frame/index.html','the-method.html','index.html']);
+          for(const p of cp.execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim().split('\n').filter(Boolean)){
+            if(!allowed.has(p)){console.log('Preserve unrelated source:',p);cp.execFileSync('git',['restore','--',p]);}
+          }
+          NODE
+          node tests/public-study-preview.cjs
+          git diff --check
+          git diff --stat
+      - name: Commit the scoped rendered source
+        run: |
+          git add AGENTS.md docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md docs/RACE_PACE_DURABILITY_CANONICAL_v1.md docs/roadmap/FORM-ROADMAP.md docs/studies/SIMON-STUDY-003.md docs/studies/ELIJAH-SIMON-SAME-PACE-DIFFERENT-PROBLEM.md docs/studies/TINIUS-DURABLE-FRAME-20261005.md docs/studies/SPEED_THAT_ENDURES_W7_20261006.json data/public-studies/speed-that-endures.json labs/speed-that-endures/index.html labs/same-pace-different-problem/index.html labs/the-two-curves/index.html labs/the-durable-frame/index.html the-method.html index.html
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'FORM: publish individual continuity decision and shared observation method'
+          git push origin HEAD:work/form-observation-continuity-20261006
