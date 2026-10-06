@@ -1,6 +1,6 @@
 # Race Pace Durability — the canonical prescription
 
-**Revision 3. 11 September 2026.**
+**Revision 4. 6 October 2026.**
 
 The method is shared. The pace is athlete-relative.
 
@@ -32,11 +32,11 @@ The pace does not automatically get faster because an athlete succeeds. What gro
 
 The Thursday lane now has an explicit threshold spine rather than threshold appearing as unrelated workouts:
 
-**W3 2 × 10 → W5 3 × 10 → W8 2 × 15 → W10 3 × 10 → W13 2 × 8**
+**W3 2 × 10 → W5 3 × 10 → W7 3 × 12 → W8 2 × 15 → W10 3 × 10 → W13 2 × 8**
 
 The progression is not "run threshold faster every time." It first adds threshold time, then removes a reset, then re-establishes the ceiling later in the block, then tapers it.
 
-W7 keeps one controlled higher-ceiling VO₂ session. The major race-pace asks stay protected by easy + strides on Thursday.
+W7 now extends the threshold-duration lane instead of adding a separate VO₂ session. October 6 evidence showed race pace remaining mechanically organized while internal cost became very high. The complementary question is whether controlled threshold-duration work can reduce the cost of race pace. Major race-pace asks stay protected by easy + strides on Thursday.
 
 ---
 
@@ -81,7 +81,7 @@ Four pre-race asks — **5 · 6 · 8 · 12** — each built toward and absorbed 
 | **W4** | **ask** | 46 | 6/6/7 | **5 mi CONTINUOUS @ RP** | Easy + strides | 12 easy | 5 | 5 |
 | **W5** | build | 53 | 7/6/7 | 5 × 1 mi @ RP / 2 min float | **Threshold 3 × 10 min** | 15 easy | 5 | — |
 | **W6** | **ask** | 56 | 8/8/7 | **6 mi CONTINUOUS @ RP** | Easy + strides | 16 easy | 6 | 6 |
-| **W7** | absorb | 50 | 6/6/5 | 4 × 2 mi @ RP / 2 min float | VO₂ 5 × 3 min | 13 easy | 8 | — |
+| **W7** | absorb | 50 | 6/6/5 | 4 × 2 mi @ RP / 2 min float | **Threshold 3 × 12 min / 2 min easy** | 13 easy | 8 | — |
 | **W8** | build | 58 | 7/7/7 | 4 × 2 mi @ RP / 2 min float | **Threshold 2 × 15 min** | 16, last 3 @ RP | 11 | — |
 | **W9** | **ask** | 60 | 8/8/8 | **8 mi CONTINUOUS @ RP** | Easy + strides | 17, last 4 @ RP | 12 | 8 |
 | **W10** | absorb | 54 | 7/8/7 | 3 × 2 mi @ RP / 2 min float | **Threshold 3 × 10 min** | 14 easy | 6 | — |
@@ -108,6 +108,10 @@ Touch the athlete's assigned race-pace band, repeat it, then remove recovery and
 ### Thursday — keep a ceiling above it
 
 Threshold work develops the sustainable ceiling so race pace remains submaximal. The threshold pace itself only moves when athlete evidence says the threshold moved.
+
+The Thursday lane also asks whether race pace can become less costly. When an athlete holds the assigned race-pace band but internal cost rises sharply while mechanics and output remain organized, do not automatically add more race-pace or VO₂ work. Develop controlled threshold duration underneath the specific work. W7's 3 × 12 minutes is controlled; W8's 2 × 15 removes one reset. Progress duration and continuity before speed.
+
+Do not force a faster Tuesday float merely because the athlete can run one. A float is recovery while moving. Let it become faster naturally when the athlete can cover more ground without making the following race-pace repetition more expensive.
 
 ### Saturday — make access survive duration
 
