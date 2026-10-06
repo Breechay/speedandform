@@ -9,4 +9,7 @@ html.sf-motion.sf-arrived .hero-copy{animation:sf-settle 650ms var(--sf-ease)}
 html.sf-motion .home-entry-grid small b{transition:transform .3s var(--sf-ease)}
 html.sf-motion .home-entry-grid a:hover small b{transform:translateX(4px)}
 html.sf-motion .q.on{animation:sf-settle 280ms var(--sf-ease)}
-@media(prefers-reduced-motion:reduce){html.sf-motion .home-hero-media img{transform:none;transition:none}.hero-copy,.q.on{animation:none!important}}
+/* The bend arrives once: lanes run in from the left, then the start marks. Armed only by script, so it is never hidden without it. */
+html.sf-motion .home-evidence.sf-bend-armed .sf-bend{clip-path:inset(0 100% 0 0)}html.sf-motion .home-evidence.sf-bend-armed .sf-bend-marks{opacity:0}
+html.sf-motion .home-evidence.sf-bend-armed.sf-in .sf-bend{clip-path:inset(0);transition:clip-path 1600ms var(--sf-ease)}html.sf-motion .home-evidence.sf-bend-armed.sf-in .sf-bend-marks{opacity:.6;transition:opacity 600ms ease 1000ms}
+@media(prefers-reduced-motion:reduce){html.sf-motion .home-hero-media img{transform:none;transition:none}.hero-copy,.q.on{animation:none!important}.sf-bend,.sf-bend-marks{transition:none!important;clip-path:none!important}}
