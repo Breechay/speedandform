@@ -55,7 +55,7 @@ try:
   # Offer pages: factual promise and workload remain visible after refinements.
   for url,label,phrases in [
    ('/plans/race-pace-durability/support/','English',['Race Pace That Lasts.','Get the full 15 weeks','Try Weeks 1–4 free','one-time payment','45 miles a week','six running days','12-mile long run','60 miles a week','18-mile long run','light and dark print editions','Individual coaching and FORM app access are separate']),
-   ('/es/plans/race-pace-durability/','Spanish',['Desarrolla la capacidad de sostener tu ritmo de carrera durante 13.1 millas.','La estructura detrás de las sesiones.','12 después de 4 fáciles'])]:
+   ('/es/plans/race-pace-durability/','Spanish',['Desarrolla la capacidad de sostener tu ritmo de carrera durante 13.1 millas.','La estructura detrás de las sesiones.','Ritmo al final · 4 → 6 mi'])]:
    for width in [390,1440]:
     ctx,page,_=make('guest',width);page.goto(BASE+url);page.evaluate('document.fonts.ready')
     if label=='English':page.get_by_text('Does the $79 include coaching or the app?',exact=True).click()
