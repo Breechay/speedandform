@@ -1,0 +1,17 @@
+/* Speed & Form house tokens. */
+:root{
+  --sf-black:#0d0f0e;
+  --sf-bone:#e8e3d9;
+  --sf-ink:#161916;
+  --sf-quiet-on-black:#b8bbb2;
+  --sf-quiet-on-bone:#5e625b;
+  --sf-rule:rgba(232,227,217,.18);
+  --sf-sans:"Inter Tight",Arial,sans-serif;
+  --sf-mono:"JetBrains Mono",ui-monospace,monospace;
+  --sf-display-weight:450;
+  --sf-display-tracking:-.05em;
+  --sf-lit:linear-gradient(100deg,#000 28%,rgba(0,0,0,.6) 96%); /* mask for a headline on black */
+  --sf-bend-line:2px;
+  --sf-bend-lanes:.3;
+  --sf-bend-marks:.8;
+}

@@ -233,3 +233,23 @@ The homepage ends on the cloth: the image above the footer line, the emblem's le
 - The mark arrives late and small, at about half strength, on something real.
 - Titles and captions in bone, never pure white, and never the brightest thing in the frame.
 - Black stays black. Do not lift the shadows to show more.
+
+## October 6 · The brand page and kit
+
+**Status.** Brice asked for a public page that lets partners, marketers, media and future agents make things the way these decisions were made, with every file to download. It is built at `/brand/` on a branch from `main` at `c03ac67` and waits for his review. It is not linked from the homepage yet and is not in the sitemap. All copy on it is a first draft for him to edit.
+
+**What it is.** The public form of this document. Same house as the homepage: it loads the homepage stylesheets and adds only `css/brand.css`. Opening on the cloth, three doors, the bend fold with its real measurements, the seven questions in order, then the mark, color, type, light, photography, voice, film and social, the bend in use, and the files.
+
+**Where things live.**
+
+- Page: `brand/index.html`. Its bend is injected by the kit builder. Never hand-edit it.
+- `node scripts/build-brand-kit.cjs` writes the kit's text assets from the site's own sources: emblem and bend vectors, `tokens.css`, `tokens.json`, the README and four editable templates (story 9:16, invite 4:5, document cover, email header).
+- `node scripts/render-brand-kit.cjs` needs a browser, qpdf and zip. It writes the PNGs, the avatar, the template previews, the guidelines PDF (one page per fold of the brand page) and the zip. Its results are committed. Run it again whenever the brand page or the kit changes, or the PDF goes stale.
+- `node tests/brand-kit.cjs` checks every link, the single generated bend, plain punctuation and that generated files match their generator.
+- Page images are right-sized copies in `/assets/brand/page/` so the PDF stays light. They are the same public photographs the site already shows.
+
+**Where the bend may go now.** Brice approved it as the signature for invites, posts, stories, email and document covers. The four templates are the approved way to do that: one bend per piece, start line on the text margin, type clear of the lanes, never mirrored. He is open to it in the FORM app; that is not designed and needs its own decision. Paper and cream rooms still need a decision.
+
+**Drafts, not rulings.** These were proposed in the build and are his to change: clear space of half the emblem's height, the 62px minimum width, the story safe zones (top 14%, bottom 20%), the film and social rows, "no exclamation points", and the rule to ask before using a photograph.
+
+**Keep it true.** If a rule changes here, change the page, then rebuild and re-render the kit in the same release. A brand page that disagrees with the house is worse than none.

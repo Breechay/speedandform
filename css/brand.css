@@ -1,0 +1,75 @@
+/* Speed & Form brand and media kit. Same house as the homepage: this sheet only adds what home-commercial.css does not have. Rules: docs/BRAND.md. */
+.bk{--bk-rule-ink:rgba(22,25,22,.2);--bk-quiet:#b8bbb2}
+.bk a{text-underline-offset:5px;text-decoration-thickness:1px}
+
+/* Opening. The cloth comes out of the dark on the right; the emblem's right tip sits on the content edge, under Contact. */
+.bk-hero{--cloth:clamp(900px,100vw,1500px)}
+.bk-hero-cloth{position:absolute;top:50%;left:calc(100% - max(var(--public-gutter),50% - var(--max) / 2) - var(--cloth) * .666);width:var(--cloth);aspect-ratio:1448/1086;transform:translateY(-64.3%);background:url("/assets/brand/page/sf-cloth.jpg") center/cover no-repeat;mix-blend-mode:screen;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent 10%,#000 50%),linear-gradient(to top,transparent 2%,#000 26%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 10%,#000 50%),linear-gradient(to top,transparent 2%,#000 26%);mask-composite:intersect}
+.bk-hero .hero-copy::before{content:none}
+@media(max-width:760px){.bk-hero{--cloth:168vw}.bk-hero-cloth{top:31%;left:calc(50% - var(--cloth) * .501);-webkit-mask-image:linear-gradient(to top,transparent 4%,#000 34%);mask-image:linear-gradient(to top,transparent 4%,#000 34%)}}
+
+/* Folds */
+.bk-fold{background:var(--dark);color:var(--bone);border-top:1px solid var(--public-rule);padding:clamp(76px,9vw,138px) 0}
+.home-evidence+.bk-fold{border-top:0;padding-top:0}
+.bk-paper{background:var(--paper);color:var(--ink);border-top:0}
+.bk-paper+.bk-fold:not(.bk-paper){border-top:0}
+.bk-fold .eyebrow{color:var(--bk-quiet);margin:0 0 26px}.bk-paper .eyebrow{color:var(--body)}
+.bk-h2{max-width:18ch;margin:0 0 clamp(36px,4.4vw,60px);font-size:clamp(36px,4.6vw,66px);font-weight:450;line-height:1.06;letter-spacing:-.045em;text-wrap:balance}
+.bk-note{max-width:62ch;margin:36px 0 0;font-size:16px;line-height:1.6;color:var(--bk-quiet)}.bk-paper .bk-note{color:var(--body)}.bk-note a{text-decoration:underline}
+.bk-mono{font-family:var(--mono);font-size:.9em}
+
+/* Index rows: label, the rule, the reason. One rule per row. */
+.bk-rows{border-bottom:1px solid var(--public-rule)}
+.bk-row{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;padding:26px 0;border-top:1px solid var(--public-rule)}
+.bk-row-label{font:400 11px/1.6 var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--bk-quiet)}
+.bk-row strong{font-size:clamp(23px,2.1vw,28px);font-weight:450;line-height:1.15;letter-spacing:-.03em;text-wrap:balance}
+.bk-row-copy{max-width:46ch;font-size:16px;line-height:1.6;color:var(--bk-quiet);text-wrap:pretty}
+.bk-rows-ink,.bk-rows-ink .bk-row{border-color:var(--bk-rule-ink)}.bk-rows-ink .bk-row-label,.bk-rows-ink .bk-row-copy{color:var(--body)}
+.bk-links{display:flex;flex-wrap:wrap;align-items:center;gap:0 20px;font:400 12px/1.6 var(--mono);letter-spacing:.03em}
+.bk-links a{display:inline-flex;align-items:center;min-height:44px;text-decoration:underline}
+@media(min-width:1024px){.bk-row{grid-template-columns:170px minmax(0,1.3fr) minmax(0,1fr);column-gap:40px;align-items:baseline;padding:30px 0}.bk-rows-files .bk-row{grid-template-columns:170px minmax(0,1fr) minmax(0,.9fr) minmax(0,.8fr)}.bk-rows-files .bk-links{justify-content:flex-end}}
+
+/* The mark */
+.bk-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.2vw,32px);margin:0 0 clamp(40px,5vw,64px)}
+.bk-tile{margin:0;min-width:0}.bk-tile-art{display:grid;place-items:center;aspect-ratio:4/3;overflow:hidden}
+.bk-on-black{background:var(--dark)}.bk-on-bone{background:var(--paper2);border:1px solid var(--bk-rule-ink)}.bk-tile-art img{display:block;width:46%;height:auto}.bk-on-cloth img{width:100%;height:100%;object-fit:cover}
+.bk-tile figcaption,.bk-made figcaption{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:44px;margin-top:6px;font:400 11px/1.6 var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--body)}
+.bk-tile .bk-links,.bk-made .bk-links{text-transform:none;color:var(--ink)}
+.bk-nots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.6vw,24px);margin:clamp(40px,5vw,64px) 0 0;padding:0;list-style:none}
+.bk-nots li{min-width:0}.bk-nots span{display:block;margin-top:12px;font:400 11px/1.6 var(--mono);letter-spacing:.03em;color:var(--body)}
+.bk-not{position:relative;display:flex;align-items:center;justify-content:center;gap:12px;aspect-ratio:16/9;overflow:hidden;background:var(--dark);color:var(--bone)}
+.bk-not::after{content:"";position:absolute;inset:0;background:linear-gradient(to top right,transparent calc(50% - .6px),rgba(232,227,217,.55) calc(50% - .6px),rgba(232,227,217,.55) calc(50% + .6px),transparent calc(50% + .6px))}
+.bk-not img{display:block;width:44%;height:auto}.bk-not-mirror img{transform:scaleX(-1)}.bk-not-stretch img{transform:scale(1.5,.62)}
+.bk-not-lime i{display:block;width:44%;aspect-ratio:798/290;background:#c9ff36;-webkit-mask:url("/assets/brand/sf-seal.svg") center/contain no-repeat;mask:url("/assets/brand/sf-seal.svg") center/contain no-repeat}
+.bk-not-name img{width:26%}.bk-not-name b{font-size:clamp(11px,1.2vw,16px);font-weight:650;letter-spacing:-.02em;white-space:nowrap}
+
+/* Color */
+.bk-swatches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.6vw,24px)}
+.bk-swatch{display:flex;flex-direction:column;justify-content:flex-end;gap:4px;min-width:0;aspect-ratio:1/1.08;padding:clamp(16px,1.8vw,26px);background:var(--sw);color:var(--on);border:1px solid var(--public-rule)}
+.bk-swatch strong{font-size:clamp(22px,2.2vw,30px);font-weight:450;letter-spacing:-.03em}.bk-swatch span{font:400 12px/1.6 var(--mono)}.bk-swatch em{font-style:normal;font-size:14px;line-height:1.5;opacity:.82}
+
+/* Type and light */
+.bk-specimen{max-width:none;margin-bottom:22px;font-size:clamp(40px,6.1vw,88px);letter-spacing:-.05em}
+.bk-specimen-mono{margin:0 0 clamp(40px,5vw,64px);font:400 clamp(12px,1.15vw,15px)/1.7 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--bk-quiet)}
+.bk-lit{display:inline-block;max-width:none;padding-bottom:.2em;font-size:clamp(48px,7.55vw,116px);line-height:1.01;letter-spacing:-.055em;-webkit-mask-image:linear-gradient(100deg,#000 28%,rgba(0,0,0,.6) 96%);mask-image:linear-gradient(100deg,#000 28%,rgba(0,0,0,.6) 96%)}
+
+/* Photography */
+.bk-photos{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(12px,1.6vw,24px);margin:0 0 clamp(40px,5vw,64px)}
+.bk-photos img{display:block;width:100%;height:100%;aspect-ratio:16/10;object-fit:cover}
+
+/* Voice */
+.bk-pairs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,4vw,64px);margin:0 0 clamp(40px,5vw,64px)}
+.bk-pairs .bk-row-label{color:var(--body)}.bk-pairs p{margin:14px 0 0;font-size:clamp(21px,2.3vw,31px);font-weight:450;line-height:1.18;letter-spacing:-.03em;text-wrap:balance}
+.bk-pairs-no p{color:var(--body);text-decoration:line-through;text-decoration-thickness:1px}
+
+/* In use */
+.bk-made{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.2vw,32px)}
+.bk-made figure{margin:0;min-width:0}.bk-made-art{position:relative;aspect-ratio:1/1.12;background:#181b1a}
+.bk-made-art img{position:absolute;inset:clamp(18px,2.4vw,36px);display:block;width:calc(100% - 2 * clamp(18px,2.4vw,36px));height:calc(100% - 2 * clamp(18px,2.4vw,36px));object-fit:contain}
+.bk-made-wide{grid-column:1/-1}.bk-made-wide .bk-made-art{aspect-ratio:auto;display:grid;place-items:center;padding:clamp(18px,2.4vw,36px)}.bk-made-wide .bk-made-art img{position:static;width:100%;max-width:600px;height:auto}
+.bk-made figcaption{color:var(--bk-quiet)}.bk-made .bk-links{color:var(--bone)}
+
+.bk-close{margin:clamp(48px,6vw,80px) 0 0;font-size:clamp(26px,2.8vw,40px);font-weight:450;line-height:1.15;letter-spacing:-.03em}.bk-close a{text-decoration:underline}
+
+@media(max-width:850px){.bk-tiles,.bk-photos,.bk-pairs{grid-template-columns:minmax(0,1fr)}.bk-nots,.bk-swatches{grid-template-columns:repeat(2,minmax(0,1fr))}.bk-made{grid-template-columns:repeat(2,minmax(0,1fr))}.bk-swatch{aspect-ratio:auto;min-height:150px}}
+@media(max-width:480px){.bk-made{grid-template-columns:minmax(0,1fr)}}
