@@ -204,6 +204,7 @@ export function authErrorMessage(error) {
   if (/provider.*not.*enabled/i.test(message)) return 'Apple sign-in is being connected. Use the email link for now.';
   if (/rate limit/i.test(message)) return 'Too many links were requested. Wait a moment, then try again.';
   if (/signups?.*(not|disabled)|user.*not.*found/i.test(message)) return 'Use the coach account already connected to FORM.';
+  if (/pkce|code verifier/i.test(message)) return 'That sign-in link opened without its browser handoff. Request a new link and open the new email.';
   if (/expired|invalid.*code|otp/i.test(message)) return 'That link has expired. Request a new sign-in link.';
   return message;
 }
