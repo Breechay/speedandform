@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "program_id": "tinius_durable_frame_phase01_v0",
+  "program_id": "tinius_durable_frame_phase01_v1",
   "athlete": "Tinius",
   "title": "The Durable Frame · Phase 01",
-  "status": "active_load_calibration",
+  "status": "active_forge_authoring",
   "dates": {
     "start": "2026-10-06",
     "end": "2026-11-15",
@@ -11,7 +11,7 @@
   },
   "authorities": {
     "running": "FORM Race Pace Durability remains canonical. This plan never rewrites running mileage, pace or session purpose.",
-    "strength": "FORGE owns the authored strength prescription. Remaining optional-equipment details do not block Week 1 load calibration.",
+    "strength": "FORGE owns the authored strength prescription. Durable Frame is mirrored into the Forge catalog under the stable program id tinius_durable_frame_phase01_v1.",
     "study": "FORM Human Performance Study 004 interprets the interaction."
   },
   "objective": "Rebuild shoulders, upper back, upper chest, trunk definition and useful unilateral/posterior-chain strength without stealing quality from Tinius's running.",
@@ -51,6 +51,7 @@
   "global_rules": [
     "No fourth strength day.",
     "No bonus sets or optional finishers.",
+    "Equipment contract: adjustable kettlebell, small barbell + plates, yoga mat and bodyweight only. No cables, machines or bench dependency.",
     "Tuesday's FORM key session owns the primary running question. Frame A is upper-dominant so it does not create lower-body debt.",
     "Thursday strength is earned by Tuesday's absorption. Do not stack a full FORM Thursday quality session and a full Lower + Core session by default.",
     "If FORM Thursday contains real quality, use only the authored trunk/calf support or skip lower-body strength; do not make it up later.",
@@ -92,16 +93,25 @@
       },
       {
         "slot": "A4",
-        "movement": "Lateral-delt slot",
+        "movement": "Plate or Kettlebell Lateral Raise",
         "sets": 3,
         "reps": "12-20",
         "rest_sec": 60,
         "role": "width",
-        "gate": "Use a light plate/KB option that reaches the rep range with clean form; record the actual load.",
-        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
+        "gate": "Use the lightest available plate/KB option that reaches the rep range with clean form; record the actual load.",
+        "load_rule": "Week 1: finish with about 3 reps in reserve. Progress only by the global rule."
       },
       {
         "slot": "A5",
+        "movement": "Rear-Delt Row",
+        "sets": 2,
+        "reps": "12-15",
+        "rest_sec": 60,
+        "role": "rear shoulder / upper back",
+        "load_rule": "Keep the elbow path wide and the load honest. Week 1 finishes around 3 RIR."
+      },
+      {
+        "slot": "A6",
         "movement": "Barbell Curl",
         "sets": 2,
         "reps": "10-15",
@@ -110,14 +120,13 @@
         "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
       },
       {
-        "slot": "A6",
+        "slot": "A7",
         "movement": "Close-Grip Push-Up",
         "sets": 2,
         "reps": "8-20",
         "rest_sec": 60,
         "role": "triceps / chest",
-        "rule": "Stop with 2 reps available.",
-        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
+        "rule": "Stop with about 2 reps available. Not a burnout."
       }
     ],
     "lower_core": [
@@ -182,13 +191,13 @@
       },
       {
         "slot": "C2",
-        "movement": "Push-Up or Barbell Floor Press",
+        "movement": "Barbell Floor Press or Push-Up",
         "sets": 4,
-        "reps": "8-20",
+        "reps": "8-15",
         "rest_sec": 90,
         "role": "chest",
-        "rule": "Use push-up progression if barbell loading is not useful.",
-        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
+        "rule": "Use the version that loads the chest cleanly with the equipment available.",
+        "load_rule": "Week 1: finish with about 3 reps in reserve. Record actual reps/load where applicable."
       },
       {
         "slot": "C3",
@@ -197,7 +206,7 @@
         "reps": "10-15",
         "rest_sec": 75,
         "role": "lat / serratus",
-        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
+        "load_rule": "Week 1: finish with about 3 reps in reserve. Progress only by the global rule."
       },
       {
         "slot": "C4",
@@ -206,7 +215,7 @@
         "reps": "8-12 / side",
         "rest_sec": 75,
         "role": "shoulder",
-        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
+        "load_rule": "Week 1: finish with about 3 reps in reserve. Do not grind after Saturday's long run."
       },
       {
         "slot": "C5",
@@ -215,18 +224,25 @@
         "reps": "12-15",
         "rest_sec": 60,
         "role": "rear shoulder / upper back",
-        "gate": "Choose the available load/variation that keeps the rear-delt emphasis and the authored rep range.",
-        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
+        "load_rule": "Choose the available load that keeps the rear-delt emphasis and authored rep range."
       },
       {
         "slot": "C6",
+        "movement": "Barbell or Kettlebell Shrug",
+        "sets": 2,
+        "reps": "10-15",
+        "rest_sec": 60,
+        "role": "traps / frame",
+        "rule": "Pause at the top. No rolling."
+      },
+      {
+        "slot": "C7",
         "movement": "Barbell Curl + Close-Grip Push-Up",
         "sets": 2,
         "reps": "10-15 + 8-20",
         "rest_sec": 60,
         "role": "arms / finish",
-        "rule": "Not a burnout; keep 2 reps available.",
-        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
+        "rule": "Pair each curl set with close-grip push-ups. Not a burnout; keep about 2 reps available."
       }
     ]
   },
@@ -268,5 +284,11 @@
     "key lift loads and reps",
     "running-quality read",
     "athlete report: frame, waist, freshness, interference"
-  ]
+  ],
+  "forge_delivery": {
+    "program_id": "tinius_durable_frame_phase01_v1",
+    "access_identity": "founding-tinius",
+    "visibility": "coach-assigned archive",
+    "rule": "Existing Tinius access is additive. Do not issue a second code, remove Sculpt access, reset selection or rewrite closed-session history."
+  }
 }
