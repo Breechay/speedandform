@@ -185,3 +185,43 @@ It arrives once. When the fold enters view the lanes run in from the left, then 
 ### Checked and not checked
 
 Chromium renders at 375, 390, 430, 768, 1024, 1280, 1440 and 1920 wide were reviewed on October 6, with the arrival on and with reduced motion. The whole page was reviewed at 390 and 1440, and the footer also at 360 and 375. Safari, a physical phone, 200% zoom on this fold and production are not checked yet.
+
+## October 6 · Lit, not printed
+
+**Status.** Brice asked for the feel of his Instagram avatar on the homepage and in future video: richness, mystery, closeness, instead of flat white that "hits hard". The headline and emblem treatment below is built on `work/lit-not-printed-20261006` and waits for his review. The closing cloth plate is designed and previewed but not built, because it needs his full-size export.
+
+### What the avatar actually does
+
+It is the SF emblem blended into a photograph of black cloth. Measured from the file: the brightest point in the whole image is about 57% gray and the average is near black. The homepage headline was 90% white at over 100px. That gap is the "hit". The richness is three things, and none of them is an effect on letters:
+
+1. **A real material.** Cloth, photographed.
+2. **One light, from one side.** The mark is revealed by it, unevenly.
+3. **The mark is dimmer than you expect.** It never becomes the brightest thing in the frame.
+
+### Rules
+
+- **The photograph keeps the brightest point.** On a dark field, display type and the emblem fall off in light instead of sitting at flat full strength.
+- **Type stays flat and exact. Only its light changes.** No texture, bevel, emboss, glow, shadow or noise on live text, ever.
+- **Richness comes from real material.** Cloth, track, skin, concrete, photographed by Brice. Never from interface texture. Film grain stays off the interface, as already ruled.
+- **Anything a visitor must read to decide stays at full strength:** body copy, prices, dates, form labels, links. The falloff is for the hero headline and the emblem only.
+- **Check contrast where the light is lowest.** Large type must still clear 3:1 against what is behind it.
+- **One lit moment per view.** If the headline falls off, nothing else in that fold does.
+
+### Measurements
+
+| | Value |
+|---|---|
+| Hero headline | full strength to 28% of its width, falling to 60% at 96%, at 100 degrees |
+| Header emblem | bone at 18% of its width, falling to `#8f8e88` (about 56% gray) |
+| Everything else on the page | unchanged |
+
+### The closing plate (designed, not built)
+
+The homepage should end on the cloth: Brice's own image above the footer line, the emblem on the left content edge where the page opened with it, the cloth dissolving into black to the right on desktop and running edge to edge on phones. It needs a real export, not the 554px avatar file: the same composition at 2880px wide or more, JPG or WebP, with the emblem at its current position. Do not upscale the avatar, regenerate the cloth or redraw the emblem onto a stock texture.
+
+### For video and future content (draft for Brice to edit)
+
+- Start close and in the dark. Let one light find the subject.
+- The mark arrives late and small, at about half strength, on something real.
+- Titles and captions in bone, never pure white, and never the brightest thing in the frame.
+- Black stays black. Do not lift the shadows to show more.
