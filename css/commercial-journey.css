@@ -102,3 +102,23 @@
 @media(max-width:1050px) and (min-width:851px){.sf-service-door main{grid-template-columns:1.06fr 1fr}.sf-service-door .intro,.sf-service-door .form-side{padding-inline:28px}.sf-service-door .intro h1{font-size:60px}}
 @media(max-width:850px){.sf-service-door main{grid-template-columns:1fr}.sf-service-door .intro{min-height:calc(100svh - 76px);padding:clamp(280px,36svh,380px) 24px 52px}.sf-service-door .intro h1{font-size:clamp(52px,13.5vw,82px)}.sf-service-door .intro-action{margin-top:22px}.sf-service-door .form-side{padding:64px 24px 76px}.sf-service-door .inquiry-lead{margin-bottom:36px}.sf-service-door .foot-links{column-gap:24px}}
 @media(max-width:850px){.sf-plan-shelf .top{height:76px}.sf-plan-shelf .shelf-more{padding-block:64px}.sf-plan-shelf .shelf-more-inner{grid-template-columns:1fr;gap:54px}.sf-plan-shelf .shell{width:calc(100% - 48px)}}
+/* Every house door opens like the home: the header sits bare on the photograph, its edges on the same lines as the copy and the form. October 6, 2026. docs/BRAND.md. */
+.sf-service-door .top-wrap{position:absolute;inset:0 0 auto;z-index:5;background:transparent}
+.sf-service-door .top{width:auto;margin:0;padding-inline:clamp(28px,4.5vw,72px);background:transparent}
+.sf-service-door .top .sf-brand::before{background:linear-gradient(100deg,var(--bone) 18%,#8f8e88)}
+.sf-service-door main,.sf-service-door .intro{min-height:100svh}
+.sf-service-door .intro-image picture{display:block;width:100%;height:100%}
+.sf-service-door .intro h1{padding-bottom:.2em;margin-bottom:calc(24px - .2em);-webkit-mask-image:linear-gradient(100deg,#000 28%,rgba(0,0,0,.6) 96%);mask-image:linear-gradient(100deg,#000 28%,rgba(0,0,0,.6) 96%)}
+.sf-contact-door .intro .direct a{display:inline-flex;align-items:center;min-height:44px}
+@media(min-width:851px){.sf-service-door .top>a:last-child{color:var(--ink)}.sf-service-door .form-side{padding-top:calc(92px + clamp(28px,3.4vw,56px))}.sf-service-door:not(.sf-plan-shelf) .intro-action{display:none}}
+@media(max-width:1050px) and (min-width:851px){.sf-service-door .top{padding-inline:28px}}
+@media(max-width:850px){.sf-service-door .top{padding-inline:24px}.sf-contact-door .intro-image img{object-position:50% 34%}}
+/* One house: the header's right link is Contact, boxed as on the home, and every door closes on the home's footer line. October 6, 2026. docs/BRAND.md. */
+.sf-service-door .top>a.door-contact{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:12px 20px;border:1px solid color-mix(in srgb,currentColor 50%,transparent);font:500 11px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;transition:background .2s ease,color .2s ease}
+.sf-service-door .top>a.door-contact:hover,.sf-service-door .top>a.door-contact:focus-visible{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.sf-service-door .foot{width:auto;margin:0;padding:0 clamp(28px,4.5vw,72px);min-height:88px;height:auto;display:flex;justify-content:space-between;align-items:center;gap:24px;font:400 11px/1.6 var(--mono);letter-spacing:0;text-transform:none;color:#b8bbb2}
+.sf-service-door .foot-links{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:0 26px}
+.sf-service-door .foot a{display:inline-flex;align-items:center;min-height:44px;font-size:12px;color:inherit;text-decoration:none}.sf-service-door .foot a:hover{color:var(--bone)}
+@media(max-width:1050px) and (min-width:851px){.sf-service-door .foot{padding-inline:28px}}
+@media(max-width:850px){.sf-service-door .top>a.door-contact{padding-inline:14px}.sf-service-door .top>a.door-contact:hover,.sf-service-door .top>a.door-contact:focus-visible{background:var(--bone);color:var(--ink);border-color:var(--bone)}.sf-service-door .foot{position:relative;flex-direction:column;align-items:flex-start;gap:0;padding:16px 24px}.sf-service-door .foot-links{justify-content:flex-start;gap:0 22px}.sf-service-door .foot>span{order:1;display:flex;align-items:center;min-height:44px}.sf-service-door .foot a[href="#top"]{position:absolute;right:24px;bottom:16px}}
+

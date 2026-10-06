@@ -7,7 +7,63 @@
 - Current pass: four dedicated share cards, complete resource metadata and resource-only analytics. Production GA receipt remains a separate gate; no ad spend has started. Physical-phone/Safari review is a follow-up accepted by the owner.
 - Prepare the first free-plan ad package while finishing the remaining plans. A test can start earlier after its destination, measurement and explicit spending scope are ready.
 
-## October 6 · Half-marathon Library build sprint (first-build record)
+## October 6 · One house: header link, footer line, FORM House
+
+- Owner said go on the three open calls. Record: [Brand authority](../BRAND.md), “October 6 · One house”.
+- [x] Contact link boxed in the header of Analysis, Strength and Plans; FORM House header points to its own contact. Home footer line on Contact, Analysis, Strength, Plans and Thursday, each keeping its own adjacent links. FORM House headline in sentence case. Analysis form heading changed to “Ask one clear question.”
+- [x] `tests/public-finish-browser.cjs`, `tests/conversation-journey-browser.cjs` and `tests/brand-kit.cjs` pass in Chromium. Headers and footers reviewed at 390 and 1440.
+- [ ] Owner review. Safari and a physical phone not checked. Not pushed, not merged, not deployed.
+- [ ] Continue the walk through the site in the order listed in the brand record.
+
+## October 6 · Half-marathon Library on house rules
+
+- Owner asked for the same audit on the three live half-marathon pages. Record: [Brand authority](../BRAND.md), “October 6 · The Library on house rules”. This is the visual-finish half of the design pass for the first group and does not change the build sprint below.
+- [x] `css/half-marathon-library.css` only: house edges, 450 display weight, mono labels, ruled starting-point column, home-style facts, ink bars, one rule per table row.
+- [x] `tests/half-marathon-library.cjs`, `tests/cream-reading.cjs` and `tests/pace-math.cjs` pass. Chromium renders of the three pages reviewed at 390, 768 and 1440.
+- [ ] Owner review. Print output, Safari and a physical phone not checked after this change. Not pushed, not merged, not deployed.
+- [ ] Copy calls recorded for the coaching read: outing or run, 13.1 instead of 13.1094, shorter cautions.
+- [ ] Decide whether the rest of the Library takes the same display weight.
+
+## October 6 · Doors off the homepage
+
+- Owner asked for an audit of the doors reachable from the homepage, starting with Contact. Record: [Brand authority](../BRAND.md), “October 6 · Doors off the homepage”.
+- [x] Contact, Analysis, Strength and Plans: header sits bare on the page, edges aligned to the copy and the form, lit headline, no redundant jump link on desktop. CSS only, at the end of `css/commercial-journey.css`.
+- [x] Contact: track frame on desktop and Brice alone on phones; email and Instagram together; one line to `/brand/` for press and partners.
+- [x] `tests/public-finish-browser.cjs` and `tests/conversation-journey-browser.cjs` pass in Chromium. `tests/commercial-browser.cjs` fails at line 41 the same way on `main` without this change. Renders reviewed at 390, 1024 and 1440.
+- [ ] Owner review. Safari and a physical phone not checked. Not pushed, not merged, not deployed. Depends on the brand page being merged first, because Contact links to `/brand/`.
+- [ ] Open decisions: one footer for house doors, FORM House capitals, what the header's right link always is.
+
+## October 6 · Brand page and media kit
+
+- Owner asked for a public brand page, close to the homepage, that carries the guidelines and every download for partners, marketers and media. Record: [Brand authority](../BRAND.md), “October 6 · The brand page and kit”.
+- [x] `/brand/` built from the homepage stylesheets plus `css/brand.css`: opening, three doors, the bend with its measurements, seven questions, mark, color, type, light, photography, voice, film and social, the bend in use, files.
+- [x] Kit under `/assets/brand/kit/`: emblem and bend (SVG, PNG), cloth avatar, tokens, four editable templates with previews, guidelines PDF (13 pages), zip.
+- [x] `tests/brand-kit.cjs`, `tests/sf-bend.cjs`, `tests/public-study-preview.cjs`, the Netlify build chain and `tests/public-finish-browser.cjs` in Chromium pass on the branch. Chromium renders of the page reviewed at 390 and 1440; the PDF reviewed page by page.
+- [ ] Owner review and copy edit. Safari and a physical phone not checked. Not pushed, not merged, not deployed.
+- [ ] Decide whether the homepage footer links to it and whether it joins the sitemap.
+
+## October 6 · Lit, not printed
+
+- Owner asked for the feel of his Instagram avatar on the homepage and in future content. Rules and measurements are in [Brand authority](../BRAND.md) under “October 6 · Lit, not printed”.
+- [x] Hero headline and header emblem fall off in light instead of sitting at flat full strength. CSS only, in `css/home-commercial.css`. No copy, layout or asset change.
+- [x] Merged to `main` as `c03ac67` through PR #229, with the cloth plate and the larger bend. Publication and the live page were not read back in this pass; record them when checked.
+- [x] Closing cloth plate above the footer line, built from the owner's larger rendering (`/assets/home/20261006/sf-cloth.webp`). Recorded as a rendering of a garment, to be replaced by a photograph of the real piece.
+- [x] Owner revision of the bend from his Photoshop mock: lanes 1.65 times larger on desktop and about 1.5 times on phones, 2px lines, lanes 30%, marks 80%. Phone facts stack in one column so the lanes rise on the right without crossing type. From 1440 the start line sits on the distance column.
+- [x] Checks on the branch: `tests/sf-bend.cjs`, `tests/public-study-preview.cjs`, the Netlify build chain and `tests/public-finish-browser.cjs` in Chromium. Renders reviewed at 375, 390, 430, 768, 1024, 1280, 1440 and 1920.
+
+## October 6 · The bend: homepage lower folds and house signature
+
+- Owner approved the direction from a canvas review and asked for it stronger and written down. The reasoning, rules and measurements are in [Brand authority](../BRAND.md) under “October 6 · The bend”.
+- [x] `scripts/sf-bend.cjs` draws the first bend of a 400 m track to true proportion and writes `/assets/brand/the-bend.svg`. The homepage practice fold receives it through `scripts/public-study-preview.cjs`.
+- [x] From the practice is one column with the facts in a row; Also is an index of three rows with the price on the right. Phone keeps its stacked layout. The phone headline now fits on two lines at 375 to 430.
+- [x] The bend arrives once through the existing `sf-motion` layer. Without script or with reduced motion it is simply present.
+- [x] Checks on the branch: `tests/sf-bend.cjs`, `tests/public-study-preview.cjs`, the Netlify build chain and `tests/public-finish-browser.cjs` in Chromium all pass. Chromium renders reviewed at 375, 390, 430, 768, 1024, 1280, 1440 and 1920.
+- [x] Whole-page audit against the same rules, second commit on the branch: entry columns lose their vertical rules, the footer links sit flush right on desktop and close on two lines on phones, the hero label stays on one line on phones, and from 1280 the Begin form starts on the same vertical line as the bend's start line. No copy, offer, price or schedule change.
+- [ ] Owner review of the real page. Safari, a physical phone and 200% zoom on this fold are not checked.
+- [x] Merged to `main` as `200899a` through PR #228. The release agent reported the Chromium, WebKit, closure and contract checks passing on the PR. A production read of the homepage on October 6 returns the new Also markup, so the bend release is live. Physical-phone review is still open.
+- Next: story frame and study cover from the standalone asset, after the homepage use is live and reviewed.
+
+## October 6 · Half-marathon Library build sprint
 
 - Current owner instruction authorizes the connected half-marathon resource build and replaces the Library serif direction with sans serif.
 - [The single release checklist](HALF-MARATHON-LIBRARY-20261006.md) sequences the twelve-week plan, readiness guide and pace chart first; the complete six-week resource next; reviewed sixteen-/eight-week paths and faster-half guidance follow without exposing unfinished plans.
