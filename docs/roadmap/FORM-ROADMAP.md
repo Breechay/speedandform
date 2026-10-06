@@ -1,5 +1,14 @@
 # FORM: current state and next actions
 
+## October 6 · Race Pace Durability cost lane
+
+- [x] W7 Thursday revised from VO₂ 5 × 3 to controlled threshold 3 × 12 min with 2:00 easy recovery.
+- [x] Tuesday race-pace progression stays unchanged. Floats remain recovery while moving and are not assigned a faster pace merely to make them harder.
+- [x] W8 keeps 2 × 15 min threshold. The sequence now adds controlled duration in W7, then removes one reset in W8.
+- [x] Canonical rationale: when race pace remains mechanically organized but internal cost rises sharply, Thursday develops the sustainable ceiling rather than adding another specific or VO₂ exposure.
+- [ ] Publish the new plan version and explicitly revise Hope/José's October 8 athlete sessions after merge/readback.
+
+
 ## October 6 · Speed That Endures W7 and coaching mindset signature
 
 - [x] José's scheduled Tuesday W7 support session filed from supplied Garmin and athlete-message evidence: 4 × 2 mi in 13:24.4 / 13:27.0 / 13:26.4 / 13:24.5 with 2:00 floats; eight work miles in 53:42.3, about 6:43/mi.
