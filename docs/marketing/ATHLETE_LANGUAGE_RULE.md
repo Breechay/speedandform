@@ -27,6 +27,7 @@ Examples of the intended cadence:
 - `I look for ease.`
 - `Running should click.`
 - `Repeat it until it belongs to you.`
+- `Stop negotiating with yourself.` Use selectively for mindset and approach, never as a cue to override pain, injury signals or a needed training change.
 - `You are hitting the pace. It is costing you more than it should.` when the athlete's evidence supports that read.
 - `This change lowered the athlete's heart rate at the same pace.` when that comparison was actually measured.
 

@@ -138,6 +138,18 @@ Brice pays attention to:
 
 The runner's internal state changes how the work is executed and learned.
 
+### Signature cue: stop negotiating with yourself
+
+One recurring Brice cue is:
+
+> **Stop negotiating with yourself.**
+
+The original field wording is preserved as: `its not much you just got to stop negotiating with yourself`.
+
+This is not a command to ignore pain, injury signals or a bad training decision. It is a mindset cue for the moment when the athlete has already established that the work is appropriate and the remaining problem is bargaining with effort. Brice coaches the conversation underneath the running: notice the negotiation, make the next useful decision, and reengage.
+
+José Santos De-Soto supplied a clear example on October 6, 2026. During 4 × 2 miles with two-minute floats, he reported nearly stopping after the second repetition, later remembered this cue, and described continuing through his own internal conversation. He also said he still thinks about the original text often. The carryover matters: a coaching phrase has done its job when the athlete can use it without the coach standing beside them.
+
 ## 7. Running is bigger than the workout
 
 Running is not merely something you do.

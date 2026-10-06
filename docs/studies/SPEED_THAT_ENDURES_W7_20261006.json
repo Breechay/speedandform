@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "study": "Speed That Endures",
+  "athlete": "José Santos De-Soto",
+  "session_date": "2026-10-06",
+  "filed_date": "2026-10-06",
+  "week": 7,
+  "scheduled_work": "4 × 2 mi with 2:00 floats",
+  "assigned_band": "6:30–6:45/mi",
+  "evidence_source": "Garmin interval screenshot and athlete/coach WhatsApp messages supplied by Brice on October 6, 2026",
+  "work_reps": [
+    {"rep": 1, "distance_mi": 2.0, "time": "13:24.4", "avg_pace": "6:42/mi"},
+    {"rep": 2, "distance_mi": 2.0, "time": "13:27.0", "avg_pace": "6:43/mi"},
+    {"rep": 3, "distance_mi": 2.0, "time": "13:26.4", "avg_pace": "6:43/mi"},
+    {"rep": 4, "distance_mi": 2.0, "time": "13:24.5", "avg_pace": "6:42/mi"}
+  ],
+  "work_total": {"distance_mi": 8.0, "time": "53:42.3", "approx_avg_pace": "6:43/mi"},
+  "recoveries": [
+    {"after_rep": 1, "time": "2:00.0", "distance_mi": 0.21, "avg_pace": "9:35/mi"},
+    {"after_rep": 2, "time": "2:00.0", "distance_mi": 0.19, "avg_pace": "10:23/mi"},
+    {"after_rep": 3, "time": "2:00.0", "distance_mi": 0.14, "avg_pace": "14:18/mi"}
+  ],
+  "activity": {
+    "warm_up": {"time": "20:00.0", "distance_mi": 2.26, "avg_pace": "8:51/mi"},
+    "cool_down": {"time": "10:00.4", "distance_mi": 1.01, "avg_pace": "9:55/mi"},
+    "total": {"time": "1:29:42.7", "distance_mi": 11.81, "avg_pace": "7:36/mi"}
+  },
+  "athlete_report": {
+    "effort": "10/10",
+    "context": [
+      "Reported a 56-mile prior week.",
+      "Reported feeling hot during the warm-up and high humidity.",
+      "Said he was hurting after the first repetition and was close to stopping after the second.",
+      "Reported heavy legs when reengaging after the short floats.",
+      "Reported a brief hands-on-knees pause during the final float without stopping the watch.",
+      "Described rep three as starting around 6:50 for the first mile before accelerating.",
+      "Described rep four as about 6:58 average after the first mile before accelerating enough to finish the two-mile rep at 6:42 average."
+    ],
+    "self_talk": "how dope would it be if I did it though?"
+  },
+  "coach_mindset_evidence": {
+    "original_field_wording": "its not much you just got to stop negotiating with yourself",
+    "signature_form": "Stop negotiating with yourself.",
+    "athlete_carryover": "José said on October 6 that he still thinks about this text often.",
+    "interpretation": "The cue is used for appropriate effort and reengagement, not to override pain, injury signals or a needed training change."
+  },
+  "study_read": {
+    "completed": "Eight broken race-pace miles with shorter two-minute recoveries.",
+    "continuous_ownership_mi": 6,
+    "next_continuous_ask": {"date": "2026-10-20", "distance_mi": 8},
+    "decision": "Keep the pace band. The session exposed the intended reengagement cost; the next question remains duration without a reset, not faster pace."
+  },
+  "permission": "Brice explicitly approved public study publication of this curated José update on October 6, 2026."
+}
