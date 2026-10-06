@@ -1,6 +1,6 @@
 # Race Pace Durability — the canonical prescription
 
-**Revision 5. 6 October 2026. External-review correction.**
+**Revision 6. 6 October 2026. Observation-system revision.**
 
 The method is shared. The pace is athlete-relative.
 
@@ -24,11 +24,13 @@ The current paired evidence also sharpens the relationship between the instrumen
 
 ## The progression
 
-The race-pace ladder remains:
+The current programmed ownership asks are:
 
-**5 → 6 → 8 → 12 → race**
+**5 → 6 → 8 → race**
 
-The pace does not automatically get faster because an athlete succeeds. What grows is uninterrupted ownership.
+Eight miles is the final mandatory continuous training ask in the reusable plan. Nine or ten continuous miles can be athlete-specific options when the evidence makes them useful; twelve is not a qualification rung. Later long-run race-pace work asks a different question: can the athlete access the pace after prior running?
+
+The pace does not automatically get faster because an athlete succeeds. Progress can be longer controlled duration, lower cost, better reserve, repeatability or later access.
 
 The Thursday lane now has an explicit threshold spine rather than threshold appearing as unrelated workouts:
 
@@ -56,7 +58,7 @@ The 10 does not fit without crowding the culminating 12. W11 instead asks for 18
 
 The bridge is therefore:
 
-**8 fresh → 6 late inside 18 → 12 inside 16**
+**8 fresh → absorb → 4 late inside 16 → 6 late inside 16 → race**
 
 ---
 
@@ -83,10 +85,10 @@ Four pre-race asks — **5 · 6 · 8 · 12** — each built toward and absorbed 
 | **W6** | **ask** | 56 | 8/8/7 | **6 mi CONTINUOUS @ RP** | Easy + strides | 16 easy | 6 | 6 |
 | **W7** | absorb | 50 | 6/6/5 | 4 × 2 mi @ RP / 2 min float | VO₂ 5 × 3 min, only if recovered; otherwise easy | 13 easy | 8 | — |
 | **W8** | build | 58 | 7/7/7 | 4 × 2 mi @ RP / 2 min float | **Threshold 2 × 15 min** | 16, last 3 @ RP | 11 | — |
-| **W9** | **ask** | 60 | 8/8/8 | **8 mi CONTINUOUS @ RP** | Easy + strides | 17, last 4 @ RP | 12 | 8 |
+| **W9** | **ask** | 57 | 8/8/8 | **8 mi CONTINUOUS @ RP** | Easy + strides | **14 easy** | 12 | 8 |
 | **W10** | absorb | 54 | 7/8/7 | 3 × 2 mi @ RP / 2 min float | **Threshold 3 × 10 min** | 14 easy | 6 | — |
-| **W11** | build | 60 | 9/9/9 | 4 × 1 mi @ RP / 2 min float | Easy + strides | **18, last 6 @ RP off tired legs** | 10 | — |
-| **W12** | **ask** | 52 | 8/8/7 | 3 × 1 mi @ RP / 2 min float | Easy + strides | **16, last 12 CONTINUOUS @ RP** | 15 | 12 |
+| **W11** | build | 58 | 9/9/9 | 4 × 1 mi @ RP / 2 min float | Easy + strides | **16, last 4 @ RP if absorbed** | 10 | — |
+| **W12** | build | 52 | 8/8/7 | 3 × 1 mi @ RP / 2 min float | Easy + strides | **16, last 6 @ RP if recovered** | 15 | — |
 | **W13** | taper | 44 | 5/4/5 | 3 × 2 mi @ RP / 2 min float | **Threshold 2 × 8 min** | 12 easy | 6 | — |
 | **W14** | taper | 36 | 5/4/5 | 3 × 1 mi @ RP / 2 min float | Easy + strides | 10 easy | 3 | — |
 | **W15** | race | 33 | 4/3/3 | 2 × 1 mi @ RP / 2 min float | 4 easy + 4 × 20 s strides | **RACE — 13.1** | 2 | — |
@@ -173,3 +175,17 @@ Brice has approved the José branch: October 8 stays easy; October 13 is 5 conti
 Broken support is an option, not an obligatory prerequisite to continuous work. A shorter familiar continuous run can support the next longer ask. Progress is controlled useful duration and recovery, not the hardest week. Do not promote 8, 9, 10 or 12 miles into automatic requirements.
 
 [Shared observation rules and recovered threshold programs](FORM_OBSERVATION_LED_PROGRESSION.md). The 20+8, 20+12 and Sustained Pressure 45-minute structures remain selected future options, not blanket Thursday replacements.
+
+
+## October 6 observation-system ruling
+
+This ruling supersedes any older paragraph in this file that still treats a twelve-mile race-pace rehearsal as a required culmination.
+
+- **Ownership and late access are different questions.** The reusable ownership asks are 5, 6 and 8 continuous miles. Late race-pace work inside a long run is durability evidence, not another ownership rung.
+- **W9 has one principal specific question:** eight continuous miles. Saturday is now 14 easy so the answer is not immediately buried under another large ask.
+- **W11 introduces late access:** 16 total, final 4 at race pace only when the week is absorbed.
+- **W12 extends late access:** 16 total, final 6 at race pace only when recovered. No automatic extension to 8, 9, 10 or 12.
+- **Thursday is aerobic support, not a compulsory ceiling day.** Threshold, faster work, strides, easy running or rest are selected around the actual Tuesday and Saturday demands.
+- The plan is still a reusable structure. Coached athletes remain on their own immutable assignments until their evidence supports a change.
+
+The coaching grammar is shared across athletes: **purpose → prediction → execution → cost → limiter → recovery → competing explanations → confidence → next smallest useful test.** The questions and measures can be common while the prescriptions remain individual.
