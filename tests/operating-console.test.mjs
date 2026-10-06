@@ -41,6 +41,18 @@ test('browser writes use optimistic revision matching and canonical shared reade
  assert.doesNotMatch(js,/from\('decisions'\)\.update/);
  assert.doesNotMatch(js,/f\.title\.value|f\.id\.value/);
 });
+test('operating console follows the cream house visual contract',()=>{
+ const html=fs.readFileSync(new URL('../coach/ops/index.html',import.meta.url),'utf8');
+ const css=fs.readFileSync(new URL('../coach/ops/console.css',import.meta.url),'utf8');
+ assert.match(html,/sf-emblem-ink\.svg/);
+ assert.doesNotMatch(html,/fonts\.googleapis\.com/);
+ assert.match(css,/--paper:#e8e3d9/);
+ assert.match(css,/--ink:#161916/);
+ assert.match(css,/--display-weight:450/);
+ assert.match(css,/JetBrains Mono/);
+ assert.doesNotMatch(css,/--lime:|border-radius:999px/);
+});
+
 test('operating console magic-link return is allow-listed',()=>{
  const auth=fs.readFileSync(new URL('../private/auth.js',import.meta.url),'utf8');
  const config=fs.readFileSync(new URL('../supabase/config.toml',import.meta.url),'utf8');
