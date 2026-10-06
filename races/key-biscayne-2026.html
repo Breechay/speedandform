@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-form-reading="20261006">
 <head>
 <meta charset="UTF-8">
 <meta name="deploy-id" content="202604031200">
@@ -21,7 +21,6 @@
 <meta name="twitter:description" content="Race strategy for April 12. Pace bands, watch protocol, fueling, three-day countdown.">
 <meta name="twitter:image" content="https://speedandform.com/og/default.jpg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -36,8 +35,8 @@
 body {
   background: var(--cream);
   color: var(--ink);
-  font-family: 'Jost', sans-serif;
-  font-weight: 300;
+  font-family: var(--reading-sans);
+  font-weight: 400;
   padding: 0 0 100px;
 }
 .nav {
@@ -49,17 +48,17 @@ body {
   justify-content: space-between;
 }
 .nav-home {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
+  font-family: var(--reading-display);
+  font-weight: 400;
   font-size: 22px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0em;
   color: var(--ink);
   text-decoration: none;
 }
 .nav-label {
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-f);
 }
@@ -70,35 +69,35 @@ body {
   border-left: 1px solid var(--line-l);
 }
 .page-eyebrow {
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent);
   display: block;
   margin-bottom: 12px;
 }
 .page-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
+  font-family: var(--reading-display);
+  font-weight: 400;
   font-size: 52px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0em;
   color: var(--ink);
   line-height: 1;
   margin-bottom: 8px;
 }
 .page-sub {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 400;
-  letter-spacing: 0.12em;
+  letter-spacing: 0em;
   color: var(--ink-f);
   display: block;
   margin-bottom: 52px;
 }
 .section-label {
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.35em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-f);
   display: block;
@@ -123,9 +122,9 @@ body {
 .day-tab:last-child { border-right: none; }
 .day-tab.active { background: var(--ink); }
 .day-tab-label {
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-f);
   display: block;
@@ -134,11 +133,11 @@ body {
 }
 .day-tab.active .day-tab-label { color: var(--ink-f); }
 .day-tab-name {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--reading-display);
   font-size: 18px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--ink);
-  letter-spacing: 0.04em;
+  letter-spacing: 0em;
   transition: color 0.15s;
 }
 .day-tab.active .day-tab-name { color: var(--cream); }
@@ -150,16 +149,16 @@ body {
 .day-panel.active { display: block; }
 
 .day-summary {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--reading-display);
   font-size: 22px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--ink);
-  letter-spacing: 0.03em;
+  letter-spacing: 0em;
   display: block;
   margin-bottom: 6px;
 }
 .day-note {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--ink-f);
   line-height: 1.7;
   margin-bottom: 28px;
@@ -198,7 +197,7 @@ body {
 }
 .check-item.checked .check-tick { opacity: 1; }
 .check-text {
-  font-size: 13px;
+  font-size: 17px;
   color: var(--ink-l);
   line-height: 1.5;
   transition: color 0.15s;
@@ -209,10 +208,10 @@ body {
   text-decoration-color: var(--line);
 }
 .check-sub {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--ink-f);
   font-style: italic;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--reading-display);
   display: block;
   margin-top: 2px;
 }
@@ -255,9 +254,9 @@ body {
   top: 6px;
 }
 .morning-time {
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-f);
   display: block;
@@ -265,17 +264,17 @@ body {
 }
 .morning-item.is-key .morning-time { color: var(--accent); }
 .morning-heading {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--reading-display);
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--ink);
   display: block;
-  letter-spacing: 0.03em;
+  letter-spacing: 0em;
   margin-bottom: 4px;
   line-height: 1.2;
 }
 .morning-text {
-  font-size: 12px;
+  font-size: 17px;
   color: var(--ink-f);
   line-height: 1.7;
 }
@@ -289,10 +288,10 @@ body {
 }
 .athlete-card:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
 .athlete-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
+  font-family: var(--reading-display);
+  font-weight: 400;
   font-size: 28px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0em;
   color: var(--ink);
   margin-bottom: 16px;
   display: block;
@@ -300,9 +299,9 @@ body {
 .split-table { width: 100%; border-collapse: collapse; margin-bottom: 12px; }
 .split-table thead tr { border-bottom: 1px solid var(--line); }
 .split-table th {
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-f);
   padding: 0 0 10px;
@@ -310,60 +309,60 @@ body {
 }
 .split-table th:last-child { text-align: right; }
 .split-table tbody tr { border-bottom: 1px solid var(--line-l); }
-.split-table td { padding: 12px 0; font-size: 13px; color: var(--ink-l); vertical-align: top; }
+.split-table td { padding: 12px 0; font-size: 17px; color: var(--ink-l); vertical-align: top; }
 .split-table td:last-child { text-align: right; }
-.split-phase { font-size: 11px; color: var(--ink-f); display: block; margin-top: 3px; font-style: italic; font-family: 'Cormorant Garamond', serif; }
-.split-pace { font-weight: 500; color: var(--ink); font-size: 15px; }
-.split-ceiling { font-size: 10px; color: var(--ink-f); display: block; margin-top: 2px; letter-spacing: 0.06em; }
-.split-outcome { font-size: 11px; color: var(--accent); letter-spacing: 0.06em; font-weight: 500; margin-top: 10px; display: block; }
+.split-phase { font-size: 14px; color: var(--ink-f); display: block; margin-top: 3px; font-style: italic; font-family: var(--reading-display); }
+.split-pace { font-weight: 500; color: var(--ink); font-size: 17px; }
+.split-ceiling { font-size: 14px; color: var(--ink-f); display: block; margin-top: 2px; letter-spacing: 0em; }
+.split-outcome { font-size: 14px; color: var(--accent); letter-spacing: 0em; font-weight: 500; margin-top: 10px; display: block; }
 
 /* Watch block */
 .watch-block { margin-top: 20px; padding: 20px; border: 1px solid var(--line-l); }
-.watch-heading { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 14px; }
+.watch-heading { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 14px; }
 .watch-row { display: flex; gap: 12px; margin-bottom: 10px; align-items: baseline; }
 .watch-row:last-of-type { margin-bottom: 0; }
-.watch-signal { font-size: 9px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; min-width: 44px; flex-shrink: 0; }
+.watch-signal { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; min-width: 44px; flex-shrink: 0; }
 .watch-signal.look { color: var(--ink-f); }
-.watch-signal.ignore { color: var(--line); text-decoration: line-through; }
-.watch-text { font-size: 12px; color: var(--ink-l); line-height: 1.5; }
-.watch-note { font-size: 11px; font-style: italic; font-family: 'Cormorant Garamond', serif; color: var(--ink-f); margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line-l); display: block; line-height: 1.6; }
+.watch-signal.ignore { color: var(--ink-f); text-decoration: line-through; }
+.watch-text { font-size: 17px; color: var(--ink-l); line-height: 1.5; }
+.watch-note { font-size: 14px; font-style: italic; font-family: var(--reading-display); color: var(--ink-f); margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line-l); display: block; line-height: 1.6; }
 
 /* Directive */
 .directive { border: 1px solid var(--line); padding: 28px; }
-.directive-heading { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 20px; color: var(--ink); margin-bottom: 16px; letter-spacing: 0.04em; }
+.directive-heading { font-family: var(--reading-display); font-weight: 400; font-size: 20px; color: var(--ink); margin-bottom: 16px; letter-spacing: 0em; }
 .directive-item { display: flex; gap: 16px; margin-bottom: 10px; align-items: baseline; }
-.directive-phase { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); min-width: 72px; flex-shrink: 0; }
-.directive-instruction { font-size: 13px; color: var(--ink-l); line-height: 1.5; }
-.directive-rule { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: var(--ink); margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--line-l); display: block; line-height: 1.6; }
+.directive-phase { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); min-width: 72px; flex-shrink: 0; }
+.directive-instruction { font-size: 17px; color: var(--ink-l); line-height: 1.5; }
+.directive-rule { font-family: var(--reading-display); font-size: 18px; font-style: italic; color: var(--ink); margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--line-l); display: block; line-height: 1.6; }
 
 /* Fuel rows */
 .fuel-row { padding: 16px 0; border-top: 1px solid var(--line-l); display: grid; grid-template-columns: 76px 1fr; gap: 16px; align-items: baseline; }
 .fuel-row:last-of-type { border-bottom: 1px solid var(--line-l); }
-.fuel-marker { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
-.fuel-title { font-size: 13px; font-weight: 400; color: var(--ink); display: block; margin-bottom: 3px; }
-.fuel-note { font-size: 12px; color: var(--ink-f); line-height: 1.65; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+.fuel-marker { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.fuel-title { font-size: 17px; font-weight: 400; color: var(--ink); display: block; margin-bottom: 3px; }
+.fuel-note { font-size: 14px; color: var(--ink-f); line-height: 1.65; font-family: var(--reading-display); font-style: italic; }
 
 /* Unit toggle (Simon) */
 .unit-toggle { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; padding: 4px 10px; border: 1px solid var(--line); user-select: none; }
 .unit-toggle:hover { border-color: var(--ink-l); }
-.unit-opt { font-size: 8px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); }
+.unit-opt { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); }
 .unit-opt.active { color: var(--ink); }
-.unit-divider { font-size: 8px; color: var(--line); }
+.unit-divider { font-size: 14px; color: var(--ink-f); }
 
 /* Footer */
 .footer-nav { border-top: 1px solid var(--line-l); margin-top: 64px; padding-top: 24px; display: flex; gap: 32px; flex-wrap: wrap; }
-.footer-link { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
 .footer-link:hover { color: var(--ink-l); }
 
 .fuel-content { flex: 1; }
-.fuel-title { font-size: 13px; font-weight: 400; color: var(--ink); display: block; margin-bottom: 3px; }
-.fuel-note { font-size: 12px; color: var(--ink-f); line-height: 1.6; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+.fuel-title { font-size: 17px; font-weight: 400; color: var(--ink); display: block; margin-bottom: 3px; }
+.fuel-note { font-size: 14px; color: var(--ink-f); line-height: 1.6; font-family: var(--reading-display); font-style: italic; }
 
-.hydration-note { font-size: 13px; color: var(--ink-l); line-height: 1.7; padding: 16px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); margin-bottom: 0; }
+.hydration-note { font-size: 14px; color: var(--ink-l); line-height: 1.7; padding: 16px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); margin-bottom: 0; }
 .hydration-note strong { font-weight: 500; color: var(--ink); }
 
 .gear-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid var(--line-l); }
-.gear-item { padding: 11px 0; border-bottom: 1px solid var(--line-l); display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--ink-l); cursor: pointer; user-select: none; }
+.gear-item { padding: 11px 0; border-bottom: 1px solid var(--line-l); display: flex; align-items: center; gap: 10px; font-size: 17px; color: var(--ink-l); cursor: pointer; user-select: none; }
 .gear-item:nth-child(odd) { padding-right: 16px; }
 .gear-item:nth-child(even) { padding-left: 16px; border-left: 1px solid var(--line-l); }
 .gear-check { width: 13px; height: 13px; border: 1px solid var(--line); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
@@ -374,14 +373,14 @@ body {
 .gear-label { line-height: 1.3; }
 
 .warning-block { border: 1px solid var(--accent); padding: 16px 20px; margin: 20px 0 0; }
-.warning-heading { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 8px; }
-.warning-text { font-size: 12px; color: var(--ink-l); line-height: 1.6; }
+.warning-heading { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 8px; }
+.warning-text { font-size: 17px; color: var(--ink-l); line-height: 1.6; }
 .warning-text strong { font-weight: 500; color: var(--ink); }
 
 .principle { padding: 20px 0; border-top: 1px solid var(--line-l); }
 .principle:last-of-type { border-bottom: 1px solid var(--line-l); }
-.principle-label { font-size: 8px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 6px; }
-.principle-text { font-size: 14px; color: var(--ink-l); line-height: 1.7; }
+.principle-label { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 6px; }
+.principle-text { font-size: 17px; color: var(--ink-l); line-height: 1.7; }
 .principle-text strong { font-weight: 500; color: var(--ink); }
 
 @media (max-width: 480px) {
@@ -390,12 +389,13 @@ body {
   .page-title { font-size: 40px; }
   .directive { padding: 20px; }
   .watch-block { padding: 16px; }
-  .day-tab-name { font-size: 15px; }
+  .day-tab-name { font-size: 17px; }
   .gear-grid { grid-template-columns: 1fr; }
   .gear-item:nth-child(even) { padding-left: 0; border-left: none; }
 }
 </style>
 <link rel="stylesheet" href="/css/discovery.css?v=20260916-p2">
+<link rel="stylesheet" href="/css/cream-reading.css?v=20261006">
 </head>
 <body>
 <aside class="discovery-return" data-discovery-archive><strong>Earlier training material.</strong> This page is retained as a record, not the current schedule or a new training assignment. <a href="/thursday">Current track details</a> · <a href="/plans/">Published training plans</a></aside>
@@ -642,8 +642,8 @@ body {
 
   <!-- Hope -->
   <div class="athlete-card">
-    <span class="athlete-name">Hope <span style="font-size:18px;color:var(--ink-f);font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;">paced by Jose</span></span>
-    <span style="display:block;font-size:9px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">Mission: Sub 1:30</span>
+    <span class="athlete-name">Hope <span style="font-size:18px;color:var(--ink-f);font-family: var(--reading-display);font-style:italic;font-weight:400;">paced by Jose</span></span>
+    <span style="display:block;font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">Mission: Sub 1:30</span>
     <table class="split-table">
       <thead><tr><th>Phase</th><th>Miles</th><th>Target Pace</th></tr></thead>
       <tbody>
@@ -809,7 +809,7 @@ body {
 
   <!-- GEAR -->
   <span class="section-label">Race Day Gear · Checklist</span>
-  <p style="font-size:12px;color:var(--ink-f);margin-bottom:16px;font-family:'Cormorant Garamond',serif;font-style:italic;">Tap to check off the night before. Lay everything out — the morning should require zero decisions.</p>
+  <p style="font-size:17px;color:var(--ink-f);margin-bottom:16px;font-family: var(--reading-display);font-style:italic;">Tap to check off the night before. Lay everything out — the morning should require zero decisions.</p>
 
   <div class="gear-grid" id="gear-grid">
     <div class="gear-item" onclick="this.classList.toggle('checked')">

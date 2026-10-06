@@ -10,7 +10,12 @@ const GROUPS = [
   ['library/from-lifting-to-running/','I lift. How do I start running?','Add running without treating every session like another hard gym day.','beginner starting beginner running lifting'],
   ['library/first-half-marathon-goal/','What is a sensible half-marathon goal?','Choose a starting target from the running you can do now.','first half marathon target goal 13.1'],
   ['library/easy-days/','How easy should an easy run feel?','Understand the role of the runs between your harder sessions.','easy slow zone 2 z2 effort'],
-  ['library/when-a-week-goes-wrong/','What should I do after a missed week?','Adjust the next week instead of trying to repay every missed mile.','missed sick busy week interruption'],
+ ['library/when-a-week-goes-wrong/','What should I do after a missed week?','Adjust the next week instead of trying to repay every missed mile.','missed sick busy week interruption'],
+ ]],
+ ['half-marathon','Your half marathon','Choose your starting point, read the plan, and understand the pace.',[
+  ['library/how-long-to-train-for-a-half-marathon/','How long to train for a half marathon?','Match your preparation to your recent running, recovery, and available weeks.','half marathon readiness preparation weeks first beginner base run walk'],
+  ['library/half-marathon-training-plan/','Free 12-week half-marathon plan','Four outings a week. A complete finish-focused plan with easy running or planned run/walk.','half marathon free twelve 12 week training plan finish run walk','Plan'],
+  ['library/half-marathon-pace-chart/','Half-marathon pace chart','Compare finish times, pace per mile and kilometer, and halfway splits.','half marathon pace chart finish time mile kilometer km splits calculator','Tool'],
  ]],
  ['training','Pace & the training week','Understand what each run is for and how the week fits together.',[
   ['library/half-marathon-week/','How a half-marathon week fits together','The relationship between demanding sessions, easy days, and the long run.','half marathon schedule weekly'],

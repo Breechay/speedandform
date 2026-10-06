@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-form-reading="20261006">
 <head>
 <meta charset="UTF-8">
 <meta name="deploy-id" content="202603161318">
@@ -9,7 +9,6 @@
 <meta name="description" content="FORM is a structured distance running practice based in Miami. Two sessions each week. Tuesday threshold. Saturday long run. Here is how to begin.">
 <link rel="canonical" href="https://speedandform.com/start">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <!-- FORM share metadata: pass 1 -->
 <meta property="og:type" content="article">
 <meta property="og:title" content="Start — FORM">
@@ -33,17 +32,17 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --line:#d8d2c8; --line-l:#e8e3dc; }
 html, body { height: auto !important; overflow: visible !important; }
-body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 100px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+body { background: var(--cream); color: var(--ink); font-family: var(--reading-sans); font-weight: 400; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 100px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
 .nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
-.nav-home { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
-.nav-label { font-size: 8px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-f); }
+.nav-home { font-family: var(--reading-display); font-weight: 400; font-size: 22px; letter-spacing: 0em; color: var(--ink); text-decoration: none; }
+.nav-label { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); }
 .content { max-width: 560px; margin: 0 auto; padding: 64px 32px 0; border-left: 1px solid var(--line-l); }
-.page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 52px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; margin-bottom: 6px; }
-.page-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-f); letter-spacing: 0.02em; display: block; margin-bottom: 40px; }
+.page-title { font-family: var(--reading-display); font-weight: 400; font-size: 52px; letter-spacing: 0em; color: var(--ink); line-height: 1; margin-bottom: 6px; }
+.page-sub { font-family: var(--reading-display); font-style: italic; font-size: 18px; font-weight: 400; color: var(--ink-f); letter-spacing: 0em; display: block; margin-bottom: 40px; }
 .section-rule { width: 100%; height: 1px; background: var(--line-l); display: block; margin: 40px 0 32px; }
-.section-label { font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
-.section-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 28px; letter-spacing: 0.04em; color: var(--ink); line-height: 1.1; margin-bottom: 16px; display: block; }
-.body-text { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.75; }
+.section-label { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 10px; }
+.section-title { font-family: var(--reading-display); font-weight: 400; font-size: 28px; letter-spacing: 0em; color: var(--ink); line-height: 1.1; margin-bottom: 16px; display: block; }
+.body-text { font-size: 17px; color: var(--ink-l); letter-spacing: 0em; line-height: 1.75; }
 .body-text p + p { margin-top: 10px; }
 .body-text a { color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); }
 
@@ -53,32 +52,32 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 .session-row { padding: 18px 0; border-bottom: 1px solid var(--line-l); display: grid; grid-template-columns: 90px 1fr; gap: 0 16px; align-items: start; text-decoration: none; cursor: pointer; transition: background 0.12s; }
 .session-row:hover { background: rgba(42,38,32,0.025); }
 .session-row:first-child { border-top: 1px solid var(--line-l); }
-.session-day { font-size: 8px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-l); padding-top: 3px; }
+.session-day { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-l); padding-top: 3px; }
 .session-body { }
-.session-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; color: var(--ink); letter-spacing: 0.04em; display: block; margin-bottom: 4px; line-height: 1; }
-.session-time { font-size: 11px; color: var(--ink-f); letter-spacing: 0.06em; display: block; margin-bottom: 8px; }
-.session-desc { font-size: 12px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.65; }
+.session-name { font-family: var(--reading-display); font-size: 22px; font-weight: 400; color: var(--ink); letter-spacing: 0em; display: block; margin-bottom: 4px; line-height: 1; }
+.session-time { font-size: 14px; color: var(--ink-f); letter-spacing: 0em; display: block; margin-bottom: 8px; }
+.session-desc { font-size: 17px; color: var(--ink-l); letter-spacing: 0em; line-height: 1.65; }
 
 /* protocol steps */
 .step-list { margin-top: 16px; }
 .step-row { padding: 14px 0; border-bottom: 1px solid var(--line-l); display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; align-items: start; }
 .step-row:first-child { border-top: 1px solid var(--line-l); }
-.step-num { font-size: 9px; font-weight: 500; letter-spacing: 0.12em; color: var(--ink-f); padding-top: 2px; }
-.step-body { font-size: 13px; color: var(--ink-l); letter-spacing: 0.02em; line-height: 1.65; }
+.step-num { font-size: 14px; font-weight: 500; letter-spacing: 0em; color: var(--ink-f); padding-top: 2px; }
+.step-body { font-size: 17px; color: var(--ink-l); letter-spacing: 0em; line-height: 1.65; }
 .step-body a { color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); }
 
 /* quick facts strip */
 .facts { margin-top: 20px; }
-.fact-row { padding: 12px 0; border-bottom: 1px solid var(--line-l); display: grid; grid-template-columns: 130px 1fr; gap: 0; align-items: baseline; font-size: 13px; }
+.fact-row { padding: 12px 0; border-bottom: 1px solid var(--line-l); display: grid; grid-template-columns: 130px 1fr; gap: 0; align-items: baseline; font-size: 17px; }
 .fact-row:first-child { border-top: 1px solid var(--line-l); }
-.fact-label { font-size: 8px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f); }
-.fact-val { color: var(--ink-l); letter-spacing: 0.02em; }
+.fact-label { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); }
+.fact-val { color: var(--ink-l); letter-spacing: 0em; }
 .fact-val a { color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); }
 
 .closing-rule { width: 100%; height: 1px; background: var(--line-l); display: block; margin: 52px 0 28px; }
-.closing-line { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; font-weight: 300; color: var(--ink-l); letter-spacing: 0.02em; display: block; }
+.closing-line { font-family: var(--reading-display); font-style: italic; font-size: 18px; font-weight: 400; color: var(--ink-l); letter-spacing: 0em; display: block; }
 .footer-links { margin-top: 52px; padding-top: 24px; border-top: 1px solid var(--line-l); display: flex; gap: 28px; flex-wrap: wrap; }
-.footer-link { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
+.footer-link { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
 .footer-link:hover { color: var(--ink-l); }
 @media (max-width: 480px) {
   .nav { padding-left: 24px; padding-right: 24px; }
@@ -89,6 +88,7 @@ body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-se
 }
 </style>
 <link rel="stylesheet" href="/css/discovery.css?v=20260916-p2">
+<link rel="stylesheet" href="/css/cream-reading.css?v=20261006">
 </head>
 <body>
 <aside class="discovery-return" data-discovery-archive><strong>Earlier training material.</strong> This page is retained as a record, not the current schedule or a new training assignment. <a href="/thursday">Current track details</a> · <a href="/plans/">Published training plans</a></aside>

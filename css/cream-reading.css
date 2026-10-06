@@ -1,5 +1,12 @@
-/* FORM reading material. Same paper, ink and type families as the homepage.
-   Only public legacy reading pages opt in, at build time. */
+/* FORM Library: warm paper, clear sans-serif type, quiet numeric labels.
+   Public reading pages opt in at build time. */
+@font-face {
+  font-family: "Inter Tight";
+  src: url("/assets/site/fonts/inter-tight-latin-variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
 html[data-form-reading] {
   --cream: #ece6da;
   --paper: #ece6da;
@@ -10,8 +17,10 @@ html[data-form-reading] {
   --line: rgba(17, 16, 14, .22);
   --line-l: rgba(17, 16, 14, .17);
   --accent: #923e29;
-  --reading-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-  --reading-serif: Georgia, "Times New Roman", serif;
+  --reading-sans: "Inter Tight", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --reading-display: var(--reading-sans);
+  /* Compatibility for existing discovery/guide sheets. This resolves to sans. */
+  --reading-serif: var(--reading-display);
   --reading-mono: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
   background: var(--cream);
   color-scheme: light;
@@ -63,13 +72,13 @@ html[data-form-reading] {
   width: min(720px, calc(100% - 96px));
   max-width: none;
   margin-inline: auto;
-  padding: 56px 0 0;
+  padding: 40px 0 0;
   border-left: 0;
   min-width: 0;
 }
 [data-form-reading] .page-title {
-  font: 400 clamp(44px, 6vw, 76px)/1.02 var(--reading-serif);
-  letter-spacing: -.05em;
+  font: 650 clamp(42px, 5.5vw, 68px)/1.04 var(--reading-display);
+  letter-spacing: -.045em;
   color: var(--ink);
   margin: 0 0 22px;
   overflow-wrap: break-word;
@@ -81,7 +90,7 @@ html[data-form-reading] {
   letter-spacing: 0;
   color: var(--ink-l);
   max-width: 56ch;
-  margin: 0 0 48px;
+  margin: 0 0 40px;
 }
 [data-form-reading] :where(.page-def, .section-body, .element-body, .system-body, .calc-intro, .principle-text, .phase-rule, .directive-instruction, .fuel-desc, .rule-item) {
   font-size: 17px;
@@ -93,7 +102,7 @@ html[data-form-reading] {
 [data-form-reading] :where(.section-body, .element-body, .system-body) p { max-width: 65ch; }
 [data-form-reading] :where(.section-body, .element-body, .system-body) p + p { margin-top: 18px; }
 [data-form-reading] :where(.section-title, .element-title) {
-  font: 400 clamp(28px, 3.8vw, 36px)/1.18 var(--reading-serif);
+  font: 600 clamp(28px, 3.8vw, 36px)/1.18 var(--reading-display);
   letter-spacing: -.025em;
   color: var(--ink);
   margin-bottom: 18px;
@@ -110,7 +119,7 @@ html[data-form-reading] {
   opacity: 1;
 }
 [data-form-reading] .element-purpose { font-size: 15px; line-height: 1.6; letter-spacing: 0; text-transform: none; color: var(--ink-l); }
-[data-form-reading] .closing-line { font: 400 24px/1.4 var(--reading-serif); letter-spacing: -.02em; color: var(--ink); }
+[data-form-reading] .closing-line { font: 500 24px/1.4 var(--reading-display); letter-spacing: -.02em; color: var(--ink); }
 [data-form-reading] :where(.section-body, .rule-item, .element-body, .system-body) a {
   color: var(--ink);
   border-bottom: 0;
@@ -148,12 +157,17 @@ html[data-form-reading] {
 [data-form-reading] .splits-row > * { min-width: 0; overflow-wrap: break-word; }
 [data-form-reading] .watch-section { border-top: 0; padding-top: 0; }
 [data-form-reading] summary { min-height: 48px; }
+[data-form-reading] .time-format-help { font-size: 15px; line-height: 1.6; color: var(--ink-l); margin: 12px 0 20px; max-width: 62ch; }
+[data-form-reading] .calc-submit { border: 1px solid var(--ink); background: var(--ink); color: var(--cream); padding: 13px 20px; min-height: 48px; font: 600 16px/1.4 var(--reading-sans); cursor: pointer; }
+[data-form-reading] .splits-grid { width: 100%; border-collapse: collapse; }
+[data-form-reading] .splits-grid th, [data-form-reading] .splits-grid td { text-align: right; font-weight: 400; padding: 0; }
+[data-form-reading] .splits-grid .col-label { text-align: left; }
 /* Library is a readable index, not a miniature table. */
 [data-form-reading] [data-reading-layout="library"] .content { width: min(1120px, calc(100% - 96px)); }
 [data-form-reading] .lib-section { min-width: 0; margin-bottom: 44px; }
 [data-form-reading] .lib-section-label {
   display: block;
-  font: 400 30px/1.2 var(--reading-serif);
+  font: 600 30px/1.2 var(--reading-display);
   letter-spacing: -.025em;
   color: var(--ink);
   text-transform: none;
@@ -177,6 +191,44 @@ html[data-form-reading] {
 [data-form-reading] .lib-sub { padding-left: 18px; }
 [data-form-reading] .lib-sub-name { font-weight: 400; }
 [data-form-reading] :where(.lib-desc, .lib-sub-desc) { text-align: right; }
+/* Discovery and guide layout sheets retain the old token for compatibility.
+   Keep the same sans hierarchy regardless of stylesheet order. */
+html[data-form-reading] :is(h1, h2, h3, h4) { font-family: var(--reading-display); font-weight: 600; }
+html[data-form-reading] h1 { font-weight: 650; }
+[data-form-reading][data-discovery] h1,
+[data-form-reading][data-guide] h1 {
+  font-size: clamp(42px, 5.5vw, 68px);
+  line-height: 1.04;
+  letter-spacing: -.045em;
+  max-width: 19ch;
+  text-wrap: balance;
+}
+[data-form-reading] :is(.discovery-hero, .guide-hero) { padding-block: 36px 32px; }
+/* Older nested Library essays use their own structural stylesheet. */
+[data-form-reading] [data-reading-layout="article"] { padding-bottom: 0; }
+[data-form-reading] [data-reading-layout="article"] .nav {
+  width: auto;
+  min-height: 0;
+  padding: 10px 12px;
+}
+[data-form-reading] [data-reading-layout="article"] .hero { background: var(--cream); padding-block: 44px 40px; }
+[data-form-reading] [data-reading-layout="article"] .hero h1 {
+  font-size: clamp(42px, 5.5vw, 68px);
+  line-height: 1.04;
+  max-width: 19ch;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+[data-form-reading] [data-reading-layout="article"] .article { max-width: 772px; padding-block: 40px 56px; }
+[data-form-reading] [data-reading-layout="article"] .article :is(p, li) { font-size: 18px; line-height: 1.65; color: var(--ink-l); }
+[data-form-reading] [data-reading-layout="article"] .article .lead { font-size: 21px; line-height: 1.5; color: var(--ink); }
+[data-form-reading] [data-reading-layout="article"] :is(.eyebrow, .back, .coach-note) {
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: .06em;
+  color: var(--ink-l);
+}
+[data-form-reading] [data-reading-layout="article"] .back { display: inline-flex; align-items: center; min-height: 44px; }
 @media (min-width: 960px) {
   [data-form-reading] [data-reading-layout="library"] .content { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 72px; }
   [data-form-reading] [data-reading-layout="library"] .content > :is(.page-title, .page-sub, .footer-links) { grid-column: 1 / -1; }
@@ -185,8 +237,8 @@ html[data-form-reading] {
   [data-form-reading] :is(.nav, .content, .page),
   [data-form-reading] [data-reading-layout="library"] .content { width: calc(100% - 48px); }
   [data-form-reading] .nav { min-height: 80px; padding-block: 16px; gap: 16px; }
-  [data-form-reading] :is(.content, .page) { padding-top: 32px; }
-  [data-form-reading] .page-title { font-size: clamp(42px, 10.5vw, 64px); }
+  [data-form-reading] :is(.content, .page) { padding-top: 24px; }
+  [data-form-reading] .page-title { font-size: clamp(38px, 10vw, 58px); }
   [data-form-reading] .page-sub { font-size: 18px; margin-bottom: 36px; }
   [data-form-reading] :where(.lib-entry, .lib-sub) { grid-template-columns: minmax(0, 1fr); gap: 5px; padding-block: 16px; }
   [data-form-reading] :where(.lib-desc, .lib-sub-desc) { text-align: left; }
@@ -194,6 +246,9 @@ html[data-form-reading] {
   [data-form-reading] .phase-rail { flex-wrap: wrap; row-gap: 8px; overflow-x: visible; }
   [data-form-reading] .directive-item { flex-direction: column; gap: 4px; margin-bottom: 18px; }
   [data-form-reading] .watch-table td:first-child { width: auto; white-space: normal; padding-right: 16px; }
+  [data-form-reading] :is(.discovery-hero, .guide-hero) { padding-block: 24px; }
+  [data-form-reading] [data-reading-layout="article"] .hero { padding-block: 32px; }
+  [data-form-reading] [data-reading-layout="article"] .article :is(p, li) { font-size: 17px; }
 }
 @media (max-width: 359px) {
   [data-form-reading] :is(.nav, .content, .page),

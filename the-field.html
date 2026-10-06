@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-form-reading="20261006">
 <head>
 <meta charset="UTF-8">
 <meta name="deploy-id" content="202603161318">
@@ -10,7 +10,6 @@
 <link rel="canonical" href="https://speedandform.com/the-field">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <!-- FORM share metadata: pass 1 -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="The Field | FORM">
@@ -38,7 +37,7 @@
 }
 body {
   background: var(--cream); color: var(--ink);
-  font-family: 'Jost', sans-serif; font-weight: 300;
+  font-family: var(--reading-sans); font-weight: 400;
   font-kerning: normal; font-feature-settings: "kern";
   padding-bottom: 120px;
   overflow-y: auto;
@@ -53,14 +52,14 @@ body {
   display: flex; align-items: center; justify-content: space-between;
 }
 .nav-home {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300; font-size: 22px;
-  letter-spacing: 0.12em; color: var(--ink);
+  font-family: var(--reading-display);
+  font-weight: 400; font-size: 22px;
+  letter-spacing: 0em; color: var(--ink);
   text-decoration: none;
 }
 .nav-label {
-  font-size: 8px; font-weight: 500;
-  letter-spacing: 0.3em; text-transform: uppercase;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--ink-f);
 }
 
@@ -72,14 +71,14 @@ body {
 }
 
 .page-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300; font-size: 42px;
-  letter-spacing: 0.04em; color: var(--ink);
+  font-family: var(--reading-display);
+  font-weight: 400; font-size: 42px;
+  letter-spacing: 0em; color: var(--ink);
   line-height: 1; margin-bottom: 12px;
 }
 .page-sub {
-  font-size: 11px; color: var(--ink-f);
-  letter-spacing: 0.05em; line-height: 1.6;
+  font-size: 14px; color: var(--ink-f);
+  letter-spacing: 0em; line-height: 1.6;
   display: block; margin-bottom: 20px;
 }
 
@@ -117,8 +116,8 @@ body {
   );
 }
 .placeholder-label {
-  font-size: 8px; font-weight: 500;
-  letter-spacing: 0.3em; text-transform: uppercase;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--ink-f); position: relative; z-index: 1;
 }
 
@@ -130,21 +129,21 @@ body {
   display: flex; align-items: baseline; justify-content: space-between;
 }
 .field-stamp {
-  font-size: 8px; font-weight: 500;
-  letter-spacing: 0.28em; text-transform: uppercase;
-  color: var(--ink-f); opacity: 0.6;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-f); opacity: 1;
 }
 .frame-count {
-  font-size: 8px; font-weight: 500;
-  letter-spacing: 0.28em; text-transform: uppercase;
-  color: var(--ink-f); opacity: 0.6;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-f); opacity: 1;
 }
 
 /* SEO context paragraph — quiet, near bottom */
 .field-context {
   margin-top: 40px;
-  font-size: 12px; color: var(--ink-f);
-  line-height: 1.7; letter-spacing: 0.02em;
+  font-size: 17px; color: var(--ink-f);
+  line-height: 1.7; letter-spacing: 0em;
   max-width: 420px;
 }
 
@@ -164,6 +163,7 @@ body {
 }
 </style>
 <link rel="stylesheet" href="/css/discovery.css?v=20260916-p2">
+<link rel="stylesheet" href="/css/cream-reading.css?v=20261006">
 </head>
 <body>
 <aside class="discovery-return" data-discovery-archive><strong>Earlier training material.</strong> This page is retained as a record, not the current schedule or a new training assignment. <a href="/thursday">Current track details</a> · <a href="/plans/">Published training plans</a></aside>
@@ -218,19 +218,19 @@ body {
   <p class="field-context">FORM is a small distance running training group based in Miami. Sessions include weekly threshold workouts, long runs, and structured track work. Runners train to improve their distance running over time.</p>
 
   <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line-l);">
-    <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px;">Session Locations</span>
+    <span style="font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 16px;">Session Locations</span>
     <div style="padding: 14px 0; border-bottom: 1px solid var(--line-l); display: grid; grid-template-columns: 90px 1fr; gap: 0; align-items: baseline;">
-      <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f);">Tuesday</span>
-      <a href="https://maps.google.com/?q=Flamingo+Park+Track,+Miami+Beach,+FL" target="_blank" rel="noopener" style="font-size: 13px; color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); letter-spacing: 0.02em;">Flamingo Park Track</a>
+      <span style="font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f);">Tuesday</span>
+      <a href="https://maps.google.com/?q=Flamingo+Park+Track,+Miami+Beach,+FL" target="_blank" rel="noopener" style="font-size: 17px; color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); letter-spacing: 0em;">Flamingo Park Track</a>
     </div>
     <div style="padding: 14px 0; border-bottom: 1px solid var(--line-l); display: grid; grid-template-columns: 90px 1fr; gap: 0; align-items: baseline;">
-      <span style="font-size: 8px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-f);">Saturday</span>
-      <a href="https://maps.google.com/?q=The+Hideout+Coffee+House,+Edgewater+Miami+FL" target="_blank" rel="noopener" style="font-size: 13px; color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); letter-spacing: 0.02em;">Hideout, Edgewater</a>
+      <span style="font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f);">Saturday</span>
+      <a href="https://maps.google.com/?q=The+Hideout+Coffee+House,+Edgewater+Miami+FL" target="_blank" rel="noopener" style="font-size: 17px; color: var(--ink-l); text-decoration: none; border-bottom: 1px solid var(--line); letter-spacing: 0em;">Hideout, Edgewater</a>
     </div>
   </div>
 
   <div style="margin-top: 32px; padding-top: 0;">
-    <a href="/practice" style="font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-f); text-decoration: none;">Practice →</a>
+    <a href="/practice" style="font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none;">Practice →</a>
   </div>
 
 </div>

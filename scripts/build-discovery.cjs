@@ -3,7 +3,7 @@
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const {GROUPS,ARCHIVE,PRESERVE_ONLY,EXTRA,entries,fileFor}=require('./discovery-catalog.cjs');
 const share=require('./share-metadata.cjs');
-const ROOT=path.resolve(__dirname,'..'),O='https://speedandform.com',V='20260916-p2';
+const ROOT=path.resolve(__dirname,'..'),O='https://speedandform.com',V='20261006';
 const read=f=>fs.readFileSync(path.join(ROOT,f),'utf8'),write=(f,s)=>{fs.mkdirSync(path.dirname(path.join(ROOT,f)),{recursive:true});fs.writeFileSync(path.join(ROOT,f),s);};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const hash=s=>crypto.createHash('sha256').update(s).digest('hex');
@@ -24,12 +24,12 @@ function page(file,body,{noindex=false,schema=null}={}){let h=read(file).match(/
  }
  if(noindex)h+='\n<meta name="robots" content="noindex,follow">';
  if(schema)h+='\n<script type="application/ld+json" id="discovery-schema">'+JSON.stringify(schema).replace(/</g,'\\u003c')+'</script>';
- h+=`\n<link rel="stylesheet" href="/css/cream-reading.css?v=20260916"><link rel="stylesheet" href="/css/discovery.css?v=${V}">\n`;
- return `<!doctype html>\n<html lang="en" data-form-reading="20260916" data-discovery="${V}"><head>${h.trim()}</head><body>${header()}<main id="main" class="discovery-wrap">${body}</main>${footer()}${file==='search.html'?`<script src="/js/discovery-search.js?v=${V}" defer></script>`:''}</body></html>\n`;
+ h+=`\n<link rel="stylesheet" href="/css/cream-reading.css?v=20261006"><link rel="stylesheet" href="/css/discovery.css?v=${V}">\n`;
+ return `<!doctype html>\n<html lang="en" data-form-reading="20261006" data-discovery="${V}"><head>${h.trim()}</head><body>${header()}<main id="main" class="discovery-wrap">${body}</main>${footer()}${file==='search.html'?`<script src="/js/discovery-search.js?v=${V}" defer></script>`:''}</body></html>\n`;
 }
 function build(){
  const beforeFiles=new Map(share.allHtml(ROOT).map(f=>[f,hash(read(f))]));
- const library=`<section class="discovery-hero"><p class="discovery-eyebrow">The Library</p><h1>Understand your running.</h1><p class="discovery-dek">You want clearer answers about your running, not more theory. Start with the question you have, find the next useful thing to try, and go deeper when you need to.</p>${searchForm()}</section><nav class="discovery-topics" aria-label="Library topics">${GROUPS.map(([id,title])=>`<a href="#${id}">${esc(({start:"Start here",training:"Pace & training",movement:"Form & strength",race:"Race preparation",recovery:"Recovery",practice:"Plans & studies"})[id])}</a>`).join('')}</nav>`+GROUPS.map(([id,title,desc])=>`<section class="discovery-section" id="${id}" aria-labelledby="heading-${id}"><div><h2 id="heading-${id}">${esc(title)}</h2><p>${esc(desc)}</p></div><ul class="discovery-rows">${entries.filter(e=>e.category===id).map(row).join('')}</ul></section>`).join('')+`<section class="discovery-help"><h2>Make it work for you.</h2><p>The Library explains the ideas. Coaching puts them into a week built around your running, your goal, and your life.</p><a href="/#begin">Tell Brice what you want to be capable of →</a><p class="discovery-question">Just have a question? <a href="/ask/">Ask Brice directly →</a></p></section><details class="discovery-archive"><summary>Earlier training material</summary><p>These pages are retained as a record. They are not the current group schedule or a new training assignment.</p><a href="/plan-spring-2026">Spring 2026 training cycle</a><a href="/races/key-biscayne-2026">Key Biscayne 2026 race notes</a></details>`;
+ const library=`<section class="discovery-hero"><p class="discovery-eyebrow">The Library</p><h1>Understand your running.</h1><p class="discovery-dek">A question, a useful answer, and somewhere to go next.</p>${searchForm()}</section><nav class="discovery-topics" aria-label="Library topics">${GROUPS.map(([id,title])=>`<a href="#${id}">${esc(({coaching:"Coaching",start:"Start here","half-marathon":"Half marathon",training:"Pace & training",movement:"Form & strength",race:"Race preparation",recovery:"Recovery",practice:"Plans & studies"})[id] || title)}</a>`).join('')}</nav>`+GROUPS.map(([id,title,desc])=>`<section class="discovery-section" id="${id}" aria-labelledby="heading-${id}"><div><h2 id="heading-${id}">${esc(title)}</h2><p>${esc(desc)}</p></div><ul class="discovery-rows">${entries.filter(e=>e.category===id).map(row).join('')}</ul></section>`).join('')+`<section class="discovery-help"><h2>Make it work for you.</h2><p>The Library explains the ideas. Coaching puts them into a week built around your running, your goal, and your life.</p><a href="/#begin">Tell Brice what you are training for →</a><p class="discovery-question">Just have a question? <a href="/ask/">Ask Brice directly →</a></p></section><details class="discovery-archive"><summary>Earlier training material</summary><p>These pages are retained as a record. They are not the current group schedule or a new training assignment.</p><a href="/plan-spring-2026">Spring 2026 training cycle</a><a href="/races/key-biscayne-2026">Key Biscayne 2026 race notes</a></details>`;
  const schema={'@context':'https://schema.org','@type':'CollectionPage','@id':O+'/library#page',url:O+'/library',name:'FORM Library',description:'Running guides, plans, studies, and tools from the coaching practice.',mainEntity:{'@type':'ItemList',itemListElement:entries.map((e,i)=>({'@type':'ListItem',position:i+1,name:e.title,url:O+e.url}))}};
  change('library.html',page('library.html',library,{schema}),'Athlete-facing topic index and static discovery links');
  const search=`<section class="discovery-hero"><p class="discovery-eyebrow">Search the Library</p><h1>Find your next answer.</h1><p class="discovery-dek">Search by the question you have, the run you are working on, or the idea you want to understand.</p>${searchForm()}</section><div class="discovery-results"><div class="discovery-state"><p class="discovery-status" id="discovery-status" role="status" aria-live="polite">Search is ready when the page loads.</p><button class="discovery-clear" id="discovery-clear" type="button" hidden>Clear search</button></div><div id="discovery-output"></div><noscript><p>Search needs JavaScript. <a href="/library">Browse the full Library by topic</a> without it.</p></noscript></div>`;
@@ -77,4 +77,45 @@ function build(){
  write(dest,JSON.stringify(manifest,null,2)+'\n');console.log(`Discovery: ${index.length} search entries, ${urls.length} canonical sitemap URLs, ${rows.size} scoped HTML changes.`);
  return manifest;
 }
-if(require.main===module)build();module.exports={build,esc,wayfinding};
+// This release adds one connected resource set. Preserve the existing public
+// index while the older all-catalog generator and later hand-authored doors
+// are reconciled separately. Do not publish additional catalog rows here.
+function buildHalfMarathon(){
+ const group=GROUPS.find(([id])=>id==='half-marathon');
+ const resources=entries.filter(e=>e.category===group[0]);
+ if(resources.length!==3)throw Error('Half-marathon release requires exactly three resources.');
+ for(const e of resources){
+  const html=read(e.file);
+  if(/noindex/i.test(share.meta(html,'robots'))||share.canonical(html,e.file)!==O+e.url)throw Error('Resource is not a canonical public page: '+e.file);
+ }
+ const beforeIndex=JSON.parse(read('search-index.json'));
+ const resourceUrls=new Set(resources.map(e=>e.url));
+ const index=beforeIndex.filter(e=>!resourceUrls.has(e.url));
+ const at=index.findIndex(e=>e.category==='training');
+ index.splice(at<0?index.length:at,0,...resources.map(({route,file,...e})=>e));
+ write('search-index.json',JSON.stringify(index,null,2)+'\n');
+ let library=read('library.html');
+ const section=`<section class="discovery-section" id="${group[0]}" aria-labelledby="heading-${group[0]}"><div><h2 id="heading-${group[0]}">${esc(group[1])}</h2><p>${esc(group[2])}</p></div><ul class="discovery-rows">${resources.map(row).join('')}</ul></section>`;
+ library=library.replace(/<section\b[^>]*id="half-marathon"[\s\S]*?<\/section>/,'').replace(/<section class="discovery-section" id="training"/,section+'<section class="discovery-section" id="training"');
+ if(!library.includes('id="half-marathon"'))throw Error('Library training section is missing.');
+ library=library.replace(/<a href="#half-marathon">[\s\S]*?<\/a>/g,'').replace('<a href="#training">','<a href="#half-marathon">Half marathon</a><a href="#training">');
+ library=library.replace(/(<script\b[^>]*id="discovery-schema"[^>]*>)([\s\S]*?)(<\/script>)/,(_,open,json,close)=>{
+  const schema=JSON.parse(json),items=schema.mainEntity.itemListElement.filter(e=>!resourceUrls.has(e.url.replace(O,'')));
+  for(const e of resources)items.push({'@type':'ListItem',position:items.length+1,name:e.title,url:O+e.url});
+  schema.mainEntity.itemListElement=items;
+  return open+JSON.stringify(schema).replace(/</g,'\\u003c')+close;
+ });
+ const refresh=html=>html.replace(/data-form-reading="[^"]*"/,'data-form-reading="20261006"').replace(/data-discovery="[^"]*"/,`data-discovery="${V}"`).replace(/(\/css\/(?:cream-reading|discovery)\.css|\/js\/discovery-search\.js)\?v=[^"']*/g,`$1?v=${V}`);
+ write('library.html',refresh(library));
+ for(const f of ['search.html','404.html'])write(f,refresh(read(f)));
+ let sitemap=read('sitemap.xml');
+ for(const e of resources)if(!sitemap.includes('<loc>'+O+e.url+'</loc>'))sitemap=sitemap.replace('</urlset>','  <url><loc>'+O+e.url+'</loc></url>\n</urlset>');
+ write('sitemap.xml',sitemap);
+ const files=['library.html','search.html','404.html','search-index.json','sitemap.xml','plans/index.html'];
+ const receipt={version:V,stage:'Discovery source build; later cream/brand build steps may change HTML hashes.',scope:'Three half-marathon Library resources; existing discovery preserved.',resources:resources.map(({url,title,type})=>({url,title,type})),searchEntries:index.length,existingSearchEntries:index.length-resources.length,sitemapUrls:(sitemap.match(/<loc>/g)||[]).length,files:files.map(file=>({file,sha256:hash(read(file))})),deferred:'Older full catalog generation differs from the current published Library and includes a noindex coaching redirect. This scoped build does not reconcile or publish unrelated catalog differences.'};
+ write('docs/audits/HALF-MARATHON-DISCOVERY-20261006.json',JSON.stringify(receipt,null,2)+'\n');
+ console.log(`Half-marathon discovery: ${resources.length} new resources, ${index.length} search entries; existing Library sections retained.`);
+ return receipt;
+}
+if(require.main===module){if(process.argv.includes('--half-marathon'))buildHalfMarathon();else build();}
+module.exports={build,buildHalfMarathon,esc,wayfinding};

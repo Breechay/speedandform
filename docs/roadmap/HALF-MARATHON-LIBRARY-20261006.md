@@ -1,0 +1,95 @@
+# Half-marathon Library: build and release roadmap
+
+**Owner direction:** October 6, 2026. Build the connected set, replace Library serif typography with sans serif, work through deliberate visual passes, and release complete groups as they become ready. This supersedes the supplied handoff's no-build status and its recommendation to retain serif headings. It does not establish that a page has shipped or that an ad is running.
+
+**Target:** initial working structure October 6; two focused build days October 7–8; launch-readiness review October 9. Dates are work targets, not a publication promise. The existing Console owns next actions and daily selection. This document owns the technical release checklist; it does not replace the company roadmap.
+
+## One connected collection
+
+Keep the existing Library and static publishing system. Readiness explains the choice; each plan owns its complete schedule; the pace chart and existing calculator answer the numerical question. Free plans remain complete without an email or account gate. Run Development and the existing Race Pace Durability plan are relevant choices for different needs, not required upgrades from a deliberately weakened free plan.
+
+| Resource | Reader's job | Release order and dependency |
+| --- | --- | --- |
+| Twelve-week plan | Prepare to finish from an established running or run/walk base | First group. Build the reviewed all-easy candidate as one internally consistent version, with its actual entry requirements, recovery, disruption and race-week directions. |
+| How long to prepare | Choose from current running, available weeks and practical readiness | First group. Match the actual plans; do not select from the race date alone or invent automatic clearance. |
+| Half-marathon pace chart | See the pace and splits associated with a finish time | First group. Canonical distance, shared math and repaired existing calculator; goal arithmetic is not a fitness assessment. |
+| Six-week plan | Organize an existing substantial base when the race is close | Second group. Separate complete resource with clear prerequisites, all days, recoveries, disruption rules and taper. Do not compress the twelve-week plan into six. |
+| Sixteen-week foundation path | Build the missing preparation before entering the main plan | Author and review as a distinct version. Verify the whole transition, including the fourth outing and weekly load. It must not promise a half from zero in sixteen weeks. |
+| Eight-week plan | Serve an established runner with a different runway | Author and review as a distinct version. Demonstrate who it suits and why it differs from six and twelve weeks. No duration-only selector or automatic cut-down schedule. |
+| Faster-half guide | Understand what to investigate and which training path fits | Author after the plan choices are clear. Explain several possible priorities; do not diagnose one limiter from a single race comparison. |
+| Existing Race Pace Durability | Follow the existing performance-focused paid program when qualified | Preserve the existing preview, purchase, entitlement and study relationship. Link contextually; no new checkout or silent athlete reassignment. |
+
+New-runner preparation stays useful even before a distinct FORM starting program is complete. Any new six-week run/walk starter requires its own complete schedule and review; it is not silently substituted for the distance-based plan. General starting, ordinary return after a break and return after injury remain distinct situations.
+
+No unreviewed schedule, disabled future-plan tab or advertised unfinished route is needed to make the collection feel connected. The readiness guide can describe what to establish before choosing an available plan. Keep raw reviews and unapproved prescriptions outside the deployable site root.
+
+## Five passes, each with a stopping point
+
+| Pass | Deliverable | Finish condition |
+| --- | --- | --- |
+| 1. Structure | Route map, one plan data source, reusable week/overview/print rendering, sans serif Library shell | A reader can reach the correct resource, identify its starting point and find the schedule. No duplicate calculator or Library index. |
+| 2. Content | Complete schedules and instructions, coherent prerequisites and handoffs | Each release candidate has every day, effort, recovery, total, race week, missed-session rule and non-fit path checked. Training changes are explicit and versioned. |
+| 3. Design | Typography, spacing, mobile flow, useful visuals and print layout | Review the first phone screen, schedule selection, one busy week, the final week, chart and next step. No decorative work that hides the schedule. One divider per boundary. |
+| 4. Verification | Functional, numerical, accessibility and journey evidence | Miles/kilometers, all weeks, no-JavaScript content, keyboard focus, enlarged text, print, links, metadata and existing paid-access behavior pass on the exact candidate. |
+| 5. Release and learning | Bounded publication, production readback and a concrete distribution experiment | Record exact commit, deploy and live checks. Prepare an ad experiment only for a ready destination with a defined objective and approved spending scope. |
+
+One structural pass and one content pass establish the bones. The design pass may have two short review cycles: hierarchy/flow, then visual finish. Repeat a completed pass only for a specific defect or owner correction. A numerical, content or access defect returns to its owning pass; it is not hidden by another design round.
+
+## Working sequence
+
+| Work block | Main output | End-of-block review |
+| --- | --- | --- |
+| Tuesday, October 6 afternoon | Build the first three resources, common schedule structure and sans serif treatment; repair the existing calculator | Working desktop/phone preview, exact content differences, remaining blockers. Inspect the bones before extending the template. |
+| Wednesday, October 7: build day 1 | Complete first-group content and design; author the full six-week resource; reconcile the sixteen- and eight-week candidates | First group passes its release checks. Every later plan has either a complete reviewed candidate or a named missing decision. |
+| Thursday, October 8: build day 2 | Finish eligible later plans and faster-half guidance; complete cross-links, print and release QA; prepare ad assets and message match | Review complete resources as one reader journey. Keep ready groups releasable; name any unfinished variant without exposing it as available. |
+| Friday, October 9 | Final launch-readiness review and sequential publication/verification where authorized | Actual shipped list, remaining blockers, verified share links and one concrete first advertising test. |
+
+These are build blocks, not calendar bookings. Coaching delivery and the existing daily operating commitments stay with their owning records. Publishing the first complete group need not wait for the last variant.
+
+## Release checklist
+
+### Group 1: twelve-week plan, readiness and chart
+
+- [x] Local Inter Tight sans serif implemented across all 75 reading pages; representative phone and desktop views reviewed.
+- [x] One complete twelve-week source drives overview, week view, units and print; all 84 days pass the schedule check.
+- [x] All-easy candidate's prerequisites, run/walk interpretation, recovery, disruption and race-week rules retained together.
+- [x] Readiness guide points only to available, compatible resources; scoped discovery check preserves the 60 existing search entries.
+- [x] Chart uses 21,097.5 meters and 1,609.344 meters per mile; shared math passes 25 rows / 100 chart cells and regression checks.
+- [x] Calculator rejects incomplete/malformed input and formats second/minute rollover correctly.
+- [x] Local resource events use allowlisted non-personal parameters, remain separate from inquiries/purchases and respect GPC/DNT.
+- [x] Chromium 153 checked at 375, 390, 430, 768, 1024 and 1440 pixels: all three resources, calculator, Library and a sample nested article. Miles/kilometers, week/hash navigation, no-JavaScript content, 200% text and malformed calculator input passed.
+- [x] Three-page print output visually reviewed.
+- [ ] Finish the small visual corrections and final checks; record remaining keyboard and physical-device acceptance separately.
+- [x] Established synthetic purchase (65), attribution (32) and email-outbox checks passed; no external messages sent and no live payment made.
+- [ ] Verify production analytics collector receipt; local event emission is not delivery evidence.
+- [ ] Exact release commit, production deployment and live route/asset readback recorded.
+
+### Later resources
+
+Six-week and faster-half candidates have been authored outside the deployable root for review. They are not published resources. Eight- and sixteen-week variants remain the next authoring backlog, with the same completion gates below.
+
+- [ ] Six-week plan has a complete prescription, reviewed entry requirements and its own taper.
+- [ ] Sixteen-week path has a reviewed beginning and explicit transition, not four generic added weeks.
+- [ ] Eight-week plan has a distinct starting point and full reviewed schedule.
+- [ ] Faster-half guide preserves uncertainty and offers appropriate next choices.
+- [ ] New starting-program proposal, if pursued, is reviewed independently before availability is advertised.
+- [ ] Completed later resources pass the same content, design and release gates; none are automatically published because their date arrived.
+
+## Advertising and learning
+
+Prepare the whole collection for discovery, then learn from one clearly scoped paid question at a time. Sequential tests are the proposed operating choice; they reduce ambiguity about which offer, message or destination changed. They are not a claim that a particular platform or budget has been approved.
+
+For each proposed test record the audience need, destination/version, claim, creative, primary outcome, allowed spend, review point and stop condition before activation. A free-resource visit, week open or print request is resource use; it is not a lead or purchase. Observe progression to the appropriate next step separately. A purchase test requires the existing access/delivery path to be ready for that test.
+
+Review actual exposure, resource use, accepted inquiries and purchases separately. Mark insufficient exposure as insufficient exposure. Keep destination revisions in the record. Search reviews at 7, 28 and 56 days after actual publication are observation points, not ranking deadlines. Reuse the existing Daily Brief and weekly commercial review; do not add overlapping automations.
+
+## Evidence and current state
+
+- Supplied consolidated handoff and original/review evidence read October 6. Owner's current build instruction takes precedence over its earlier no-build state and serif preference.
+- Repository baseline: `8ebea0f1b93899058e2fd64dd4d0428d43319ab6`; remote `main` confirmed October 6 before this scoped roadmap edit.
+- Source implementation: all three core resources are implemented and ready for owner review on `work/half-marathon-library-20261006`; review commit and PR receipt are pending. Core build remains review-ready, not shipped.
+- Browser, schedule, pace, discovery, print and synthetic commercial evidence is summarized in the checklist above. Final polish checks remain open. These checks cover the current local candidate, not an unrecorded future commit.
+- Validation caveat: preexisting frozen discovery/share snapshots are not the current scoped acceptance suite. The three-resource discovery check passed while preserving 60 existing search entries; do not label the entire historical snapshot suite green from that result.
+- Production publication: not performed in this pass. Production route/asset behavior and analytics collector receipt remain unverified.
+- Advertising: preparation only, pending the production destination, collector verification and concrete spending scope. No account, budget, campaign or delivery state changed.
+- Next action: review the working first group, close its small final corrections, then attach the exact review commit/PR and release evidence. Review the separate six-week/faster-half candidates before extending publication.
