@@ -28,7 +28,7 @@ The six-mile continuous run is the main check. If it is even, controlled and fol
 
 **Simon now:** longer controlled Tuesday work + a smaller faster Thursday dose + easy long running.
 
-**Simon later:** distance-based race-pace work: 5 mi → 6 mi → 8 mi → race pace after prior running → 10–12 mi if earned → race.
+**Simon later:** distance-based race-pace work: 5 mi → 6 mi → 8 mi → race pace after prior running → optional 9–10 mi fresh extension if earned → race.
 
 The pace does not need to get faster every week. The distance held at that pace is the main thing that eventually grows.
 
@@ -121,15 +121,13 @@ Simon’s immediate Block 01 question:
 
 But Simon’s longer race-specific authoring direction is **distance based**, borrowing the Race Pace Durability / Speed That Endures model:
 
-> **broken work → 5 mi continuous → 6 mi continuous → 8 mi continuous → race pace after prior running → 10–12 mi → race**
+> **broken work → 5 mi continuous → 6 mi continuous → 8 mi continuous → race pace after prior running → optional athlete-specific extension → race**
 
 The key principle is:
 
 > **The pace does not automatically get faster because the athlete succeeds. What grows is uninterrupted ownership.**
 
-Later in the season, if the selected race pace is supported by the evidence, the plan may culminate in something close to **12 miles continuous at race pace**, potentially inside a longer run in the spirit of RPD's final 12 inside 16.
-
-That is not a mandatory proof test today and does not guarantee the race. It is the late-stage specificity direction.
+Later in the season, if the selected race pace is supported by the evidence, Simon can progress beyond eight only when the added information is worth the recovery cost. Nine or ten fresh continuous miles may be useful athlete-specific options. Late race pace inside a long run is a separate durability question. Twelve race-pace miles are not a required qualification.
 
 Simon's longer-term question:
 
@@ -157,7 +155,7 @@ Primary lever:
 **months of consistent running + controlled sustained development + later distance ownership**
 
 We are asking:
-**How much of his available speed can become owned over 5, 6, 8, 10–12 and eventually 13.1 miles?**
+**How much of his available speed can become owned over 5, 6 and 8 miles, then remain accessible after prior running, with any further fresh extension earned from his own response?**
 
 Elijah therefore gets a short race-specific bridge.
 
@@ -280,3 +278,20 @@ The purpose is narrower and more useful:
 The same pace neighborhood does not demand the same session shape. Elijah keeps the short-runway race gate; Simon keeps the longer development arc and reduced conditional Thursday. Neither inherits José's continuity preference without their own evidence.
 
 For Elijah and Simon, judge controlled useful running, pacing and recovery against the goal. Broken and continuous work are tools, not an automatic hierarchy. [Shared method and threshold lineage](../FORM_OBSERVATION_LED_PROGRESSION.md). No current dose, gate, result or pace is changed by this methodological note.
+
+
+## October 6: protect the primary question
+
+The athlete updates also exposed an onboarding problem: newer athletes may understand the workout but not yet understand the hierarchy of the week.
+
+For both Elijah and Simon:
+- the principal Tuesday session is the first running question of the week;
+- Monday exists to protect it;
+- do not add bonus speed, a fast finish or hard lower-body work immediately before it;
+- Thursday is **support earned by Tuesday's absorption**, not a workout debt;
+- if Tuesday is costly, Thursday gets cheaper first;
+- missing or reducing Thursday is not something to make up later.
+
+For Elijah's short runway this matters especially because there is little recovery time to waste. For Simon it also includes HYROX / lower-body load in the same quality budget.
+
+This teaching rule changes neither athlete's current pace band nor copies José's preferred session format.
