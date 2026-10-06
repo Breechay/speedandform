@@ -441,7 +441,12 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
       supabase.from('coach_task_evidence').select('*').eq('athlete_id', athleteId).order('position'),
       supabase.from('coach_task_actions').select('*').eq('athlete_id', athleteId).order('position'),
       supabase.from('coach_private_notes').select('*').eq('athlete_id', athleteId).order('created_at', { ascending: false }),
-      supabase.from('coach_admin_status').select('*').eq('athlete_id', athleteId).maybeSingle()
+      supabase.from('coach_admin_status').select('*').eq('athlete_id', athleteId).maybeSingle(),
+      // Strength evidence is a separate channel from FORM running completions.
+      // Coach mode may read the exact performed-set receipt for this assigned athlete.
+      supabase.from('forge_strength_receipts')
+        .select('receipt_id,athlete_id,program_id,plan_week_number,plan_day_index,session_name,started_at,completed_at,set_count,movement_summary,native_payload,received_at,consent_version')
+        .eq('athlete_id', athleteId).order('completed_at', { ascending: false })
     );
   }
 
@@ -456,7 +461,8 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     verdictsResponse, piecesResponse, judgmentsResponse, judgmentLinksResponse,
     confidenceResponse, confidenceLinksResponse, evidenceFilesResponse, proposalResponse,
     exceptionsResponse, paceBandsResponse, observationsResponse,
-    taskResponse, evidenceResponse, actionsResponse, privateNotesResponse, adminResponse
+    taskResponse, evidenceResponse, actionsResponse, privateNotesResponse, adminResponse,
+    forgeReceiptsResponse
   ] = responses;
 
   const components = result(componentsResponse.data, componentsResponse.error);
@@ -554,7 +560,8 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     taskEvidence: task ? result(evidenceResponse?.data, evidenceResponse?.error).filter((item) => item.task_id === task.id) : [],
     taskActions: task ? result(actionsResponse?.data, actionsResponse?.error).filter((item) => item.task_id === task.id) : [],
     privateNotes: result(privateNotesResponse?.data, privateNotesResponse?.error),
-    adminStatus: adminResponse?.data || null
+    adminStatus: adminResponse?.data || null,
+    forgeReceipts: coach ? result(forgeReceiptsResponse?.data, forgeReceiptsResponse?.error) : []
   };
 }
 
