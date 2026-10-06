@@ -288,6 +288,17 @@ The homepage ends on the cloth: the image above the footer line, the emblem's le
 
 **Scope.** This settles the previously open paper/cream decision for the Operating Console only. It does not convert the FORM app, athlete studies, Forge or every cream page into this room.
 
+## October 6 · Private auth and email as a paper room
+
+**Status.** After reviewing the live Console sign-in flow, Brice rejected the old dark FORM callback screen and generic auth email treatment. The callback page and auth email templates now follow the same cream-house rules as the Operating Console.
+
+- `/auth/record-callback/` uses bone, ink, quiet text, the ink SF emblem, Inter Tight and JetBrains Mono. It does not use the old graphite shell, FORM. wordmark, lime, rounded auth cards or dark app styling.
+- Authentication emails use the ink SF emblem on bone, ink action buttons and short direct copy. Email clients fall back to system sans; the visual hierarchy still follows the house.
+- Auth email templates are canonical in `supabase/templates/`. Hosted Supabase must be updated from those files; the hosted service does not read repository templates automatically.
+- Coach magic-link requests do not create new user identities. Athlete invitation flows may still create the invited athlete account.
+- A valid Supabase session is not sufficient for the owner-only Operating Console. The callback verifies protected Console ownership before redirecting there.
+- No bend, cloth, photography or lit headline is used in these transactional paper surfaces.
+
 ## October 6 · Doors off the homepage
 
 **Status.** Brice asked for the doors a visitor reaches from the homepage to be audited against it, starting with Contact, whose header sat on a black bar and whose opening did not feel like the home. Built on `work/doors-20261006`, on top of the brand page branch. Owner review pending.
