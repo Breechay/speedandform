@@ -19,6 +19,20 @@ function rpdReturnDestination(value) {
   }
 }
 
+function failedReturnDestination(value) {
+  const rpd = rpdReturnDestination(value);
+  if (rpd) return rpd;
+  if (!value) return '/athlete/';
+  try {
+    const url = new URL(value, window.location.origin);
+    if (url.origin !== window.location.origin) return '/athlete/';
+    if (!url.pathname.startsWith('/athlete/') && !url.pathname.startsWith('/coach/')) return '/athlete/';
+    return `${url.pathname}${url.search}`;
+  } catch {
+    return '/athlete/';
+  }
+}
+
 function isAppHandoff() {
   try {
     return window.sessionStorage.getItem('form-app-signin-handoff') === '1';
@@ -168,6 +182,7 @@ try {
   status.textContent = authErrorMessage(error);
   status.className = 'status-message error';
   retry.textContent = 'Request a new link';
-  retry.href = '/athlete/';
+  const failedURL = new URL(window.location.href);
+  retry.href = failedReturnDestination(failedURL.searchParams.get('return_to') || '');
   retry.hidden = false;
 }
