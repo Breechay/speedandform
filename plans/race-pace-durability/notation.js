@@ -157,10 +157,9 @@ export function notation(plan) {
              lines: [base && band(base) ? `@ ${band(base)}` : ''].filter(Boolean) };
   }
 
-  // Lime means one thing: this can establish something. A day earns it by
-  // CARRYING race-pace work, not by being titled with it — which is how the
-  // Saturday long run that finishes at race pace gets the same mark as Tuesday.
-  // W12's ask is exactly that session, and it used to render grey.
+  // Race-pace styling follows the authored work inside the session, not the
+  // title. Late-access race pace can therefore render visibly on a Saturday
+  // without implying that the session is a continuous-ownership ask.
   function read(session) {
     const r = describe(session);
     r.racePace = (session?.components || [])
