@@ -1,4 +1,4 @@
-import { authErrorMessage, finishAuthCallback, getSession, setPassword } from '/private/auth.js';
+import { authErrorMessage, finishAuthCallback, getSession, safeReturnTo, setPassword } from '/private/auth.js';
 import { supabase } from '/private/supabase-client.js';
 import { acceptImplicitReturn } from './session-handoff.js?v=2';
 
@@ -158,6 +158,8 @@ try {
   status.textContent = authErrorMessage(error);
   status.className = 'status-message error';
   retry.textContent = 'Request a new link';
-  retry.href = '/athlete/';
+  const failedURL = new URL(window.location.href);
+  const failedReturn = failedURL.searchParams.get('return_to') || '';
+  retry.href = rpdReturnDestination(failedReturn) || safeReturnTo(failedReturn);
   retry.hidden = false;
 }
