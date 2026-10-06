@@ -135,7 +135,7 @@
       },
       {
         "date": "2026-10-15",
-        "work": "20 min controlled continuous threshold if recovered; no pace target; 20 min warm-up + 10 min cooldown"
+        "work": "20 min controlled continuous threshold · if recovered; no pace target; 20 min warm-up + 10 min cooldown; otherwise easy/rest"
       },
       {
         "date": "2026-10-17",
@@ -153,6 +153,21 @@
       "all athletes prefer continuous work",
       "eight continuous miles already completed",
       "causal effect of format alone"
-    ]
+    ],
+    "engagement_evidence": {
+      "report": "After receiving the revised plan card, Jose said he liked it; after noticing the 20-minute continuous threshold he called it a new challenge.",
+      "interpretation": "Engagement and format-preference evidence only; not readiness, threshold diagnosis or mechanism.",
+      "delivery_rule": "Conditional work must be visibly conditional so enthusiasm does not turn support into an obligation."
+    },
+    "system_implication": {
+      "reusable_ownership_asks_mi": [
+        5,
+        6,
+        8
+      ],
+      "late_access": "Separate durability question: four late miles, then six late miles in the reusable plan, each conditional.",
+      "optional_extensions": "Nine or ten continuous miles may be athlete-specific options; twelve is not required.",
+      "thursday": "Aerobic support, not a compulsory ceiling progression."
+    }
   }
 }

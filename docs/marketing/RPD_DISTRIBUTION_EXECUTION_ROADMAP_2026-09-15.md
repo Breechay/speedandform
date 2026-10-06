@@ -121,9 +121,11 @@ If Test 01 produces too little Purchase signal for useful delivery, run a **sepa
 
 Owner: Brice + training source of truth.
 
+October 6 ruling: the reusable ownership asks are now **5 → 6 → 8**, with late-run durability treated separately (four then six late miles when absorbed). Twelve race-pace miles are not a required product rung. Thursday is support, not an automatic second hard day.
+
 - [ ] Confirm the exact race target pace language. A 1:30 half is ~6:52/mi; the published 6:30–6:45/mi is a faster working band. Explain the relationship and do not call them the same thing casually.
-- [ ] Confirm the canonical progression. Resolve `5 → 6 → 8 → 12`, `2 → 5 → 6 → 8 → 12`, and exactly what “12 late” means.
-- [ ] Confirm the final 12-mile session: total distance, earlier miles, assigned band, recovery context and intended athlete-relative demand.
+- [x] Canonical progression resolved October 6: `5 → 6 → 8` programmed continuous asks, then separate late-access durability. No mandatory `12 late` rung.
+- [x] Former final 12-mile requirement retired October 6. Reusable late-access work is smaller and conditional; athlete-specific extensions require a later coach decision.
 - [ ] Confirm weekly stress architecture: specificity / threshold / long-run work must not be described as three separate hard days if the authored plan does not actually operate that way.
 - [ ] Define the valid calendar / start window for a fixed 15-week block. No implication that someone with 12 weeks to race should compress the plan.
 - [ ] Confirm starting-volume and long-run prerequisites from the real prescription.

@@ -366,3 +366,19 @@ When this manifesto conflicts with older generic coaching language, preserve pro
 **Success is more useful running, not more suffering.** Brice judges progress against the athlete's goal and the changing challenge. The format is part of the question: staying in rhythm and repeatedly regaining it need not feel the same. Preserve the athlete's account, choose a useful adjustment, and review execution plus recovery. One athlete's response improves how we observe the others; it does not automatically become their workout.
 
 See [FORM observation-led progression](FORM_OBSERVATION_LED_PROGRESSION.md) for the current decision rules, threshold-program lineage and study-specific applications.
+
+
+### Protect the question
+
+A week is easier to coach when the athlete knows what matters most.
+
+- Name the primary session.
+- Protect the day before it.
+- Do not add work because the athlete feels good.
+- **Thursday / secondary quality is earned by recovery, not owed by the calendar.**
+- Count hard strength, HYROX and races as real quality load.
+- Missing a support session creates no debt.
+
+For the current half-marathon studies, Tuesday often owns the first specific question. That is a common pattern, not a universal law. If the main question moves, the protection moves.
+
+Every active athlete should have a lightweight study record using the shared observation grammar. Only the cases with enough evidence, permission and teaching value need a feature Labs story. See [Athlete study operating model](studies/ATHLETE-STUDY-OPERATING-MODEL-20261006.md).

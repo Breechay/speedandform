@@ -1,6 +1,6 @@
 # Race Pace Durability — the canonical prescription
 
-**Revision 5. 6 October 2026. External-review correction.**
+**Revision 6. 6 October 2026. Observation-system revision.**
 
 The method is shared. The pace is athlete-relative.
 
@@ -24,17 +24,19 @@ The current paired evidence also sharpens the relationship between the instrumen
 
 ## The progression
 
-The race-pace ladder remains:
+The current programmed ownership asks are:
 
-**5 → 6 → 8 → 12 → race**
+**5 → 6 → 8 → race**
 
-The pace does not automatically get faster because an athlete succeeds. What grows is uninterrupted ownership.
+Eight miles is the final mandatory continuous training ask in the reusable plan. Nine or ten continuous miles can be athlete-specific options when the evidence makes them useful; twelve is not a qualification rung. Later long-run race-pace work asks a different question: can the athlete access the pace after prior running?
 
-The Thursday lane now has an explicit threshold spine rather than threshold appearing as unrelated workouts:
+The pace does not automatically get faster because an athlete succeeds. Progress can be longer controlled duration, lower cost, better reserve, repeatability or later access.
+
+The reusable plan contains a threshold-support sequence:
 
 **W3 2 × 10 → W5 3 × 10 → W8 2 × 15 → W10 3 × 10 → W13 2 × 8**
 
-The progression is not "run threshold faster every time." It first adds threshold time, then removes a reset, then re-establishes the ceiling later in the block, then tapers it.
+Those cells are support options, not workout debt. Perform demanding Thursday support only when the primary Tuesday work was controlled and recovery is normal; otherwise use easy running, strides, recovery or rest. The threshold pace itself moves only when athlete evidence says it moved.
 
 The automatic October 6 W7 threshold replacement is withdrawn. The preceding reusable template is restored, including its original W7 higher-intensity option for appropriately recovered athletes. José does not inherit that option: his October 8 assignment is easy recovery. Existing athlete restrictions and current coach decisions outrank this template.
 
@@ -48,15 +50,15 @@ The automatic October 6 W7 threshold replacement is withdrawn. The preceding reu
 
 7 would cost a full ownership-scale effort to answer a question the method does not need. W8 is a build week: high broken race-pace volume, threshold, and a long run carrying race pace late. W9's 8 is the next fresh continuous ask.
 
-### Do we want 10 continuous in W11 immediately followed by 12 in W12?
+### Do we want 9 or 10 continuous after eight?
 
-**No.**
+**Not by default.**
 
-The 10 does not fit without crowding the culminating 12. W11 instead asks for 18 miles with the last 6 at race pace off tired legs. That is a durability question, not a new ownership rung.
+Eight is the final programmed ownership ask. Nine or ten continuous miles can be athlete-specific extensions when the athlete's own execution, reserve and recovery make the question useful. The reusable plan instead separates fresh ownership from late access: W11 asks for four race-pace miles after twelve easy, then W12 may extend that to six after ten easy.
 
 The bridge is therefore:
 
-**8 fresh → 6 late inside 18 → 12 inside 16**
+**8 fresh → absorb → 4 late inside 16 → 6 late inside 16 → race**
 
 ---
 
@@ -67,35 +69,35 @@ The bridge is therefore:
      W1    W2    W3     W4     W5    W6     W7
      W8    W9    W10    W11    W12    W13   W14   W15
 
-Four pre-race asks — **5 · 6 · 8 · 12** — each built toward and absorbed from.
+Three programmed continuous ownership asks — **5 · 6 · 8** — are built toward and absorbed from. W11 and W12 then ask a different late-access question with **4 · 6** race-pace miles after prior easy running.
 
 ---
 
 ## The fifteen weeks
 
-| Wk | | Total | M/W/F | Tuesday — specificity | Thursday — ceiling | Saturday — durability | RP vol | Cont |
+| Wk | | Total | M/W/F | Tuesday — specificity | Thursday — conditional support | Saturday — durability | RP vol | Cont |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **W1** | build | 45 | 6/6/5 | 4 × 1 mi @ RP / 3 min float | Threshold 3 × 8 min | 12 easy | 4 | — |
 | **W2** | build | 48 | 6/6/6 | 3 × 2 mi @ RP / 3 min float | Hills 8 × 45 s + strides | 13 easy | 6 | — |
-| **W3** | build | 51 | 6/6/6 | 4 × 2 mi @ RP / 3 min float | **Threshold 2 × 10 min** | 13 easy | 8 | — |
+| **W3** | build | 51 | 6/6/6 | 4 × 2 mi @ RP / 3 min float | **Threshold 2 × 10 min if absorbed; otherwise easy** | 13 easy | 8 | — |
 | **W4** | **ask** | 46 | 6/6/7 | **5 mi CONTINUOUS @ RP** | Easy + strides | 12 easy | 5 | 5 |
-| **W5** | build | 53 | 7/6/7 | 5 × 1 mi @ RP / 2 min float | **Threshold 3 × 10 min** | 15 easy | 5 | — |
+| **W5** | build | 53 | 7/6/7 | 5 × 1 mi @ RP / 2 min float | **Threshold 3 × 10 min if absorbed; otherwise easy** | 15 easy | 5 | — |
 | **W6** | **ask** | 56 | 8/8/7 | **6 mi CONTINUOUS @ RP** | Easy + strides | 16 easy | 6 | 6 |
 | **W7** | absorb | 50 | 6/6/5 | 4 × 2 mi @ RP / 2 min float | VO₂ 5 × 3 min, only if recovered; otherwise easy | 13 easy | 8 | — |
-| **W8** | build | 58 | 7/7/7 | 4 × 2 mi @ RP / 2 min float | **Threshold 2 × 15 min** | 16, last 3 @ RP | 11 | — |
-| **W9** | **ask** | 60 | 8/8/8 | **8 mi CONTINUOUS @ RP** | Easy + strides | 17, last 4 @ RP | 12 | 8 |
-| **W10** | absorb | 54 | 7/8/7 | 3 × 2 mi @ RP / 2 min float | **Threshold 3 × 10 min** | 14 easy | 6 | — |
-| **W11** | build | 60 | 9/9/9 | 4 × 1 mi @ RP / 2 min float | Easy + strides | **18, last 6 @ RP off tired legs** | 10 | — |
-| **W12** | **ask** | 52 | 8/8/7 | 3 × 1 mi @ RP / 2 min float | Easy + strides | **16, last 12 CONTINUOUS @ RP** | 15 | 12 |
-| **W13** | taper | 44 | 5/4/5 | 3 × 2 mi @ RP / 2 min float | **Threshold 2 × 8 min** | 12 easy | 6 | — |
+| **W8** | build | 58 | 7/7/7 | 4 × 2 mi @ RP / 2 min float | **Threshold 2 × 15 min if absorbed; otherwise easy** | **16 easy** | 8 | — |
+| **W9** | **ask** | 57 | 8/8/8 | **8 mi CONTINUOUS @ RP** | Easy + strides | **14 easy** | 12 | 8 |
+| **W10** | absorb | 54 | 7/8/7 | 3 × 2 mi @ RP / 2 min float | **Threshold 3 × 10 min if absorbed; otherwise easy** | 14 easy | 6 | — |
+| **W11** | build | 58 | 9/9/9 | 4 × 1 mi @ RP / 2 min float | Easy + strides | **16, last 4 @ RP if absorbed** | 10 | — |
+| **W12** | build | 52 | 8/8/7 | 3 × 1 mi @ RP / 2 min float | Easy + strides | **16, last 6 @ RP if recovered** | 15 | — |
+| **W13** | taper | 44 | 5/4/5 | 3 × 2 mi @ RP / 2 min float | **Threshold 2 × 8 min if recovered; otherwise easy** | 12 easy | 6 | — |
 | **W14** | taper | 36 | 5/4/5 | 3 × 1 mi @ RP / 2 min float | Easy + strides | 10 easy | 3 | — |
 | **W15** | race | 33 | 4/3/3 | 2 × 1 mi @ RP / 2 min float | 4 easy + 4 × 20 s strides | **RACE — 13.1** | 2 | — |
 
-**Volume** 45 · 48 · 51 · 46 · 53 · 56 · 50 · 58 · **60** · 54 · **60** · 52 · 44 · 36 · 33
+**Volume** 45 · 48 · 51 · 46 · 53 · 56 · 50 · 58 · 57 · 54 · 58 · 52 · 44 · 36 · 33
 
-**Race-pace volume** 4 · 6 · 8 · 5 · 5 · 6 · 8 · 11 · 12 · 6 · 10 · **15** · 6 · 3 · 2
+**Race-pace volume** 4 · 6 · 8 · 5 · 5 · 6 · 8 · 8 · 8 · 6 · 8 · 9 · 6 · 3 · 2
 
-**Continuous at race pace** W4 **5** · W6 **6** · W9 **8** · W12 **12** · W15 race
+**Programmed continuous ownership asks** W4 **5** · W6 **6** · W9 **8** · W15 race. W11/W12 late-access work is **4 · 6** after prior easy running and does not advance the ownership mark.
 
 ---
 
@@ -105,9 +107,9 @@ Four pre-race asks — **5 · 6 · 8 · 12** — each built toward and absorbed 
 
 Touch the athlete's assigned race-pace band, repeat it, then remove recovery and extend uninterrupted distance.
 
-### Thursday — keep a ceiling above it
+### Thursday — conditional support
 
-Threshold work develops the sustainable ceiling so race pace remains submaximal. The threshold pace itself only moves when athlete evidence says the threshold moved.
+Threshold or faster aerobic work can support the sustainable ceiling, but Thursday is not automatically a second hard day. Use the demanding option only when Tuesday was controlled and recovery is normal; otherwise choose strides, easy running, recovery or rest. The threshold pace itself only moves when athlete evidence says the threshold moved.
 
 A costly race-pace session prompts review, not an automatic threshold prescription. Separate recorded output, perceived effort, environmental strain, measured economy and physiological capacity. Historical threshold paces are context, not mandatory outputs or validated physiological boundaries. Choose recovery, modest threshold or higher-intensity work from the athlete's response and the whole week, not from one watch trace.
 
@@ -117,27 +119,15 @@ Recovery pace is not another performance target. Use very easy recoveries; recor
 
 Easy long running builds the floor. Later long runs ask for race pace after prior mileage so fresh access and late access are not confused.
 
-## W9: The First Durability Experiment
+## W9: one primary question
 
-W9 is special. It is the first week that asks **two different questions** about
-race-pace capability:
+W9 is deliberately simple: Tuesday asks whether eight continuous miles at race pace are controlled enough to count as useful ownership evidence. Saturday stays fourteen miles easy so that answer can be interpreted and absorbed rather than immediately buried under another specific test.
 
-- **Tuesday:** Can you carry 8 continuous miles at RP without the cost materially rising?
-- **Saturday:** Can you access RP again late in the week and late in a long run after Tuesday already happened?
+Late-access durability begins later, after the eight-mile ask has been absorbed:
+- **W11:** 16 total, final 4 at race pace if absorbed.
+- **W12:** 16 total, final 6 at race pace if recovered.
 
-This makes W9 the first canonical plan week where the distinction between
-"execution established" and "durability corroborated" becomes concrete. The
-hypothesis and evidence framework for W9 is pre-registered in
-`W9_HYPOTHESIS_PRE_REGISTRATION.md` before any athlete reaches it.
-
-The key innovation is **fractional credit**: an athlete can have execution
-established (Tuesday supports continuous capability) but durability not yet
-corroborated (Saturday does not support durability under compounding fatigue).
-
-This is not a regression to pass/fail thinking. It is the recognition that
-**ESTABLISHED should not mean merely "the stopwatch says yes."** The cost of
-execution matters, and repeatability under fatigue is a separate question from
-single-session performance.
+Fresh ownership and late access are separate questions. Neither requires recreating nearly the entire half marathon in training.
 
 ---
 
@@ -173,3 +163,17 @@ Brice has approved the José branch: October 8 stays easy; October 13 is 5 conti
 Broken support is an option, not an obligatory prerequisite to continuous work. A shorter familiar continuous run can support the next longer ask. Progress is controlled useful duration and recovery, not the hardest week. Do not promote 8, 9, 10 or 12 miles into automatic requirements.
 
 [Shared observation rules and recovered threshold programs](FORM_OBSERVATION_LED_PROGRESSION.md). The 20+8, 20+12 and Sustained Pressure 45-minute structures remain selected future options, not blanket Thursday replacements.
+
+
+## October 6 observation-system ruling
+
+This ruling supersedes any older paragraph in this file that still treats a twelve-mile race-pace rehearsal as a required culmination.
+
+- **Ownership and late access are different questions.** The reusable ownership asks are 5, 6 and 8 continuous miles. Late race-pace work inside a long run is durability evidence, not another ownership rung.
+- **W9 has one principal specific question:** eight continuous miles. Saturday is now 14 easy so the answer is not immediately buried under another large ask.
+- **W11 introduces late access:** 16 total, final 4 at race pace only when the week is absorbed.
+- **W12 extends late access:** 16 total, final 6 at race pace only when recovered. No automatic extension to 8, 9, 10 or 12.
+- **Thursday is aerobic support, not a compulsory ceiling day.** Threshold, faster work, strides, easy running or rest are selected around the actual Tuesday and Saturday demands.
+- The plan is still a reusable structure. Coached athletes remain on their own immutable assignments until their evidence supports a change.
+
+The coaching grammar is shared across athletes: **purpose → prediction → execution → cost → limiter → recovery → competing explanations → confidence → next smallest useful test.** The questions and measures can be common while the prescriptions remain individual.

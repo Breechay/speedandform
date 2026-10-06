@@ -3,7 +3,7 @@
   "program_id": "tinius_durable_frame_phase01_v0",
   "athlete": "Tinius",
   "title": "The Durable Frame · Phase 01",
-  "status": "provisional_equipment_gate_open",
+  "status": "active_load_calibration",
   "dates": {
     "start": "2026-10-06",
     "end": "2026-11-15",
@@ -11,7 +11,7 @@
   },
   "authorities": {
     "running": "FORM Race Pace Durability remains canonical. This plan never rewrites running mileage, pace or session purpose.",
-    "strength": "FORGE owns these strength sessions after the equipment gate is closed.",
+    "strength": "FORGE owns the authored strength prescription. Remaining optional-equipment details do not block Week 1 load calibration.",
     "study": "FORM Human Performance Study 004 interprets the interaction."
   },
   "objective": "Rebuild shoulders, upper back, upper chest, trunk definition and useful unilateral/posterior-chain strength without stealing quality from Tinius's running.",
@@ -19,14 +19,11 @@
     "yoga mat",
     "adjustable kettlebell",
     "small barbell",
-    "plates / weights"
+    "plates / weights",
+    "October 6 athlete screenshot of current working loads received; Week 1 uses those loads as calibration context"
   ],
   "equipment_pending": [
-    "minimum and maximum kettlebell load",
-    "barbell weight",
-    "individual plate sizes",
-    "maximum usable barbell load",
-    "whether a stable chair/bench/step is available"
+    "whether a stable chair / bench / step is available for optional rear-foot elevation"
   ],
   "weekly_structure": [
     {
@@ -39,9 +36,9 @@
     {
       "day": "Thursday",
       "session": "Lower + Core",
-      "timing": "after FORM quality when practical",
+      "timing": "support slot after Tuesday is absorbed; if FORM Thursday quality is performed, reduce Lower + Core to trunk/calf only or skip the lower-body slots",
       "bias": "unilateral legs + posterior chain + trunk",
-      "lower_body_cost": "capped"
+      "lower_body_cost": "earned and capped"
     },
     {
       "day": "Sunday",
@@ -54,7 +51,11 @@
   "global_rules": [
     "No fourth strength day.",
     "No bonus sets or optional finishers.",
+    "Tuesday's FORM key session owns the primary running question. Frame A is upper-dominant so it does not create lower-body debt.",
+    "Thursday strength is earned by Tuesday's absorption. Do not stack a full FORM Thursday quality session and a full Lower + Core session by default.",
+    "If FORM Thursday contains real quality, use only the authored trunk/calf support or skip lower-body strength; do not make it up later.",
     "Keep 2-3 reps in reserve in Weeks 1-2; 1-2 reps in reserve on final sets of primary lifts in Weeks 3-4 only.",
+    "Week 1 starts from the athlete-reported working loads supplied October 6. Record actual load, reps and RIR; do not max test.",
     "When all prescribed sets reach the top of the rep range with clean form and about two reps still available, add the smallest available load next exposure.",
     "If available load cannot increase, use only the authored rep, tempo or leverage progression.",
     "If strength begins to degrade Tuesday/Thursday/Saturday running for more than one week, reduce FORGE volume before changing FORM."
@@ -68,7 +69,8 @@
         "reps": "8-12",
         "rest_sec": 90,
         "role": "upper chest / press",
-        "gate": "Confirm usable barbell load."
+        "gate": "Use the supplied current working-load context; calibrate to the rep range and RIR.",
+        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
       },
       {
         "slot": "A2",
@@ -76,7 +78,8 @@
         "sets": 4,
         "reps": "10-15 / side",
         "rest_sec": 75,
-        "role": "upper back / lat"
+        "role": "upper back / lat",
+        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
       },
       {
         "slot": "A3",
@@ -84,7 +87,8 @@
         "sets": 3,
         "reps": "8-12 / side",
         "rest_sec": 75,
-        "role": "shoulder / trunk"
+        "role": "shoulder / trunk",
+        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
       },
       {
         "slot": "A4",
@@ -93,7 +97,8 @@
         "reps": "12-20",
         "rest_sec": 60,
         "role": "width",
-        "gate": "Freeze as plate lateral raise or another light-load option after exact plate/KB sizes are known."
+        "gate": "Use a light plate/KB option that reaches the rep range with clean form; record the actual load.",
+        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
       },
       {
         "slot": "A5",
@@ -101,7 +106,8 @@
         "sets": 2,
         "reps": "10-15",
         "rest_sec": 60,
-        "role": "arms"
+        "role": "arms",
+        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
       },
       {
         "slot": "A6",
@@ -110,7 +116,8 @@
         "reps": "8-20",
         "rest_sec": 60,
         "role": "triceps / chest",
-        "rule": "Stop with 2 reps available."
+        "rule": "Stop with 2 reps available.",
+        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
       }
     ],
     "lower_core": [
@@ -121,7 +128,8 @@
         "reps": "8-12 / side",
         "rest_sec": 90,
         "role": "unilateral leg",
-        "gate": "Rear-foot elevation only if a stable surface is available."
+        "gate": "Rear-foot elevation only if a stable surface is available.",
+        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
       },
       {
         "slot": "B2",
@@ -130,7 +138,8 @@
         "reps": "8-12",
         "rest_sec": 90,
         "role": "posterior chain",
-        "gate": "If barbell loading is too light, use a slower eccentric or single-leg KB RDL substitution."
+        "gate": "If the available barbell load is too light at clean 12s, use the authored slower-eccentric or single-leg KB RDL progression.",
+        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
       },
       {
         "slot": "B3",
@@ -138,7 +147,8 @@
         "sets": 2,
         "reps": "12-20 / side",
         "rest_sec": 60,
-        "role": "lower-leg support"
+        "role": "lower-leg support",
+        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
       },
       {
         "slot": "B4",
@@ -146,7 +156,8 @@
         "sets": 3,
         "reps": "30-45 sec / side",
         "rest_sec": 45,
-        "role": "lateral trunk / gait"
+        "role": "lateral trunk / gait",
+        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
       },
       {
         "slot": "B5",
@@ -154,7 +165,8 @@
         "sets": 2,
         "reps": "30-45 sec / side",
         "rest_sec": 45,
-        "role": "trunk"
+        "role": "trunk",
+        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
       }
     ],
     "frame_b": [
@@ -165,7 +177,8 @@
         "reps": "8-12",
         "rest_sec": 90,
         "role": "upper back",
-        "gate": "Confirm barbell load."
+        "gate": "Use the supplied current working-load context; calibrate to the rep range and RIR.",
+        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
       },
       {
         "slot": "C2",
@@ -174,7 +187,8 @@
         "reps": "8-20",
         "rest_sec": 90,
         "role": "chest",
-        "rule": "Use push-up progression if barbell loading is not useful."
+        "rule": "Use push-up progression if barbell loading is not useful.",
+        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
       },
       {
         "slot": "C3",
@@ -182,7 +196,8 @@
         "sets": 3,
         "reps": "10-15",
         "rest_sec": 75,
-        "role": "lat / serratus"
+        "role": "lat / serratus",
+        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
       },
       {
         "slot": "C4",
@@ -190,7 +205,8 @@
         "sets": 3,
         "reps": "8-12 / side",
         "rest_sec": 75,
-        "role": "shoulder"
+        "role": "shoulder",
+        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
       },
       {
         "slot": "C5",
@@ -199,7 +215,8 @@
         "reps": "12-15",
         "rest_sec": 60,
         "role": "rear shoulder / upper back",
-        "gate": "Final variation depends on available load."
+        "gate": "Choose the available load/variation that keeps the rear-delt emphasis and the authored rep range.",
+        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
       },
       {
         "slot": "C6",
@@ -208,7 +225,8 @@
         "reps": "10-15 + 8-20",
         "rest_sec": 60,
         "role": "arms / finish",
-        "rule": "Not a burnout; keep 2 reps available."
+        "rule": "Not a burnout; keep 2 reps available.",
+        "load_rule": "Week 1: start from the athlete-reported current working load and finish with about 3 reps in reserve. Record actual load/reps/RIR; progress only by the global rule."
       }
     ]
   },
@@ -216,7 +234,7 @@
     {
       "week": 1,
       "label": "Establish",
-      "rule": "Use the base set counts. Learn the movements and record actual loads. RIR ~3."
+      "rule": "Use the base set counts and the October 6 reported working loads as starting context. Record actual loads/reps/RIR. RIR ~3. No max testing."
     },
     {
       "week": 2,

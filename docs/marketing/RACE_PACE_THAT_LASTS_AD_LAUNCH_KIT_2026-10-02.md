@@ -116,11 +116,11 @@ These are research candidates, not verified search-volume claims.
 
 ### Creative 01 — Progression
 **Format:** 4:5 feed, 9:16 Story/Reel adaptation.
-**Visual:** Dark FORM ground. SHORTER → 5 → 6 → 8 → 12 LATE → 13.1. Emphasize 6 as current field-study milestone.
+**Visual:** Dark FORM ground. SHORTER → 5 → 6 → 8 → LATE ACCESS → 13.1. Emphasize 6 as current field-study milestone.
 **Overlay:** RACE PACE THAT LASTS
 **Subline:** 15-week half marathon plan
 **Footer:** Weeks 1–4 free · Full plan $79
-**Truth note:** 12 means 12 race-pace miles after 4 easier miles, not a standalone 12-mile continuous run.
+**Truth note:** Continuous ownership asks stop at 8 in the reusable plan. Later race pace is placed after easy miles in smaller, conditional doses.
 
 ### Creative 02 — Evidence
 **Visual:** Permissioned Hope/José training photograph or restrained typographic creative.

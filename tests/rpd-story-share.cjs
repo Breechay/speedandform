@@ -53,7 +53,7 @@ for (const phrase of [
   'Desarrolla la capacidad de sostener tu ritmo de carrera durante 13.1 millas.',
   'La estructura detrás de las sesiones.',
   '5 continuas',
-  '12 después de 4 fáciles',
+  'Ritmo al final · 4 → 6 mi',
   'tirada larga de 18 millas',
   'Las semanas 1–4 son gratis.',
   'Las 15 semanas cuestan $79.',

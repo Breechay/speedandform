@@ -107,3 +107,46 @@ Keep the athlete-specific reports and restrictions in the existing private coach
 Future prescriptions live in the FORM Athlete System. Version the session, preserve performed history, read back the normal coach/app feed, and then align the public study. A database receipt is not a screenshot from a physical iPhone. The app must show the complete warm-up/work/cooldown and the correct units; a plan-table total is not permission to add compensatory mileage.
 
 Brice's signature remains **Stop negotiating with yourself.** It supports commitment to the appropriate task, including recovery. It is not permission to ignore pain or rescue an unsuitable session.
+
+
+## Observation grammar and confidence · October 6 follow-up
+
+Use the same observation grammar across Hope, José, Elijah, Simon, Anthony and Tinius while keeping prescriptions individual:
+
+**Purpose → Prediction → Execution → Cost → Limiter → Recovery → Competing explanations → Confidence → Next smallest useful test.**
+
+The useful shared principle is **common questions, common measures, different prescriptions**. Athlete report is evidence about experience and execution; it is not automatically a diagnosis of mechanism. Engagement is also evidence, but engagement is not readiness. When an athlete is excited by a conditional workout, make the recovery gate visible rather than allowing motivation to turn optional work into an obligation.
+
+For durable architecture changes, look for repeated concordant observations when practical. Immediate changes are still appropriate when a task is clearly too costly for its purpose, when safety/recovery requires it, or when the smallest reversible adjustment is the better coaching decision. Do not deliberately recreate a damaging session merely to obtain a cleaner experiment.
+
+### Race Pace Durability system implication
+
+The reusable RPD program no longer treats twelve continuous half-marathon-pace miles as a mandatory ownership rung. Programmed continuous asks stop at **5 → 6 → 8**. Later specific durability is a separate question: can race pace be accessed after prior running without excessive cost? The reusable late-run sequence is now modest and recoverable: first four miles late, then six late, each conditional. Nine or ten continuous miles remain optional athlete-specific tools; twelve is not a qualification.
+
+Thursday should be read as **aerobic support**, not a compulsory ceiling progression. A threshold session can be useful, but easy running or rest can be the correct support when Tuesday or Saturday already carries the week's main demand.
+
+### José engagement evidence
+
+After seeing the revised plan, José reacted positively and called the continuous threshold a “new challenge.” Record that as engagement and format-preference evidence only. It does not establish readiness or a threshold deficit. His October 15 athlete-facing title therefore states **if recovered**, while the underlying prescription retains the easy/rest substitution.
+
+
+## Protect the primary question
+
+Observation-led progression still needs a stable weekly hierarchy. Otherwise every useful stimulus competes for the same recovery.
+
+For most current half-marathon development blocks, Tuesday carries the week's first primary running question.
+
+**Protect it.**
+- Monday is support, not an opportunity to prove freshness.
+- No bonus mileage, surprise intervals, fast finishes or hard lower-body work immediately before the primary question.
+- When the primary session moves to another day, the protection moves with it.
+
+**Thursday is earned, not owed.**
+
+Thursday is the week's support slot. It can be threshold, faster aerobic work, strides, easy running, recovery or rest. Use the more demanding version only when the primary question was controlled and the athlete has recovered normally. If Tuesday was expensive, Thursday gets cheaper first.
+
+HYROX, a race simulation or hard lower-body strength can consume the same secondary-quality budget. Do not preserve a full Thursday run workout merely because it appears on a template.
+
+The point is not to make Tuesday sacred. The point is to make the **priority of the week legible**.
+
+A skipped or reduced support session creates no debt.

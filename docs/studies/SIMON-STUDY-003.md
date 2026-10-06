@@ -18,11 +18,11 @@ Brice's working theory is that shorter fast work is **not** the main limiter. Si
 We test that instead of assuming it.
 
 - **Tuesday:** make the controlled work longer.
-- **Thursday:** keep a smaller faster dose so speed above race pace is not ignored.
+- **Thursday:** use a smaller faster dose only when Tuesday is absorbed; otherwise easy/strides. Speed above race pace is supported, not owed.
 - **Saturday:** easy long running.
 - **Oct 29:** 5K read. Did the short end move or at least stay intact?
 - **After recovery:** separate 6 km continuous read. What does sustained running cost now?
-- **Later specific phase:** grow race-pace distance: 5 mi → 6 → 8 → race pace after prior running → 10–12 if earned.
+- **Later specific phase:** grow race-pace ownership toward 5 mi → 6 → 8, then separate fresh ownership from race pace after prior running. A 9–10 mi continuous exposure can be considered if his own evidence earns it; 12 is not a required rung.
 
 The key idea is simple: **the pace does not have to get faster every week. The distance Simon can hold it is what eventually grows.**
 
@@ -171,7 +171,7 @@ Brice's long-range coaching intent is to make Simon's eventual half-marathon-spe
 
 The relevant RPD principle is not "do longer threshold sessions by time." It is:
 
-**broken race-pace work → 5 mi continuous → 6 mi continuous → 8 mi continuous → race pace after prior running → 12 mi continuous late → race**
+**broken race-pace work → 5 mi continuous → 6 mi continuous → 8 mi continuous → race pace after prior running → optional athlete-specific extension → race**
 
 The canonical RPD method states the idea directly: **the pace does not automatically get faster because the athlete succeeds; what grows is uninterrupted ownership.** That is the authoring model to carry forward for Simon once the actual Saumur race pace has been earned from evidence.
 
@@ -183,9 +183,9 @@ The future specific question is **distance**:
 
 Simon has historically been capable of pace variation and may still need to develop **pacing trust**: recognize the correct rhythm, believe it is sustainable, and hold it without surging, second-guessing or allowing pace to drift as the miles accumulate. The way to train and test that is to make the race-pace distance progressively longer, not simply make a fixed-duration session faster.
 
-When the race-specific block is actually authored, use **distance-based checkpoints rather than time-based ownership targets**. The exact rung spacing should be chosen from Simon's evidence at that point, but RPD's architecture is the reference model. A plausible Saumur-specific progression could therefore move through something like **broken work → 5 mi → 6 mi → 8 mi → late-race-pace durability → 10-12 mi → race**, with the right to omit an intermediate rung when it adds cost without answering a new question.
+When the race-specific block is actually authored, use **distance-based checkpoints rather than time-based ownership targets**. RPD's current architecture is the reference model: **broken work → 5 mi → 6 mi → 8 mi fresh ownership**, followed by a separate late-access durability question. A 9- or 10-mile continuous exposure can be considered only if Simon's own evidence makes it useful; it is not a missing rung.
 
-The late-stage objective is deliberately ambitious. If preceding gates, fueling, mechanics, long-run durability and recovery support it, a culminating session can approach **12 miles continuous at the selected race pace**, potentially inside a longer run in the same spirit as RPD's final 12 inside 16. That is not a literal guarantee of the half-marathon result, but Brice's coaching rationale is that owning almost the entire race demand in training can remove substantial uncertainty, strengthen pacing confidence and make race pace deeply familiar.
+The late-stage objective is durability without recreating nearly the whole race in training. Use modest race-pace work after prior easy running (the reusable RPD direction is four late, then six late when absorbed) and let Simon's execution, reserve, fueling, mechanics and recovery decide whether any athlete-specific extension is warranted. Twelve continuous race-pace miles are not required for qualification or confidence.
 
 This also clarifies Brice's earlier use of **fade**. The hypothesis is broader than aerobic failure. The problem of interest is **pacing durability**: as distance accumulates, does Simon preserve the selected rhythm, trust it, and maintain the mechanical and physiological ability to keep expressing it? A shorter successful session can confirm access without answering that question.
 
@@ -273,3 +273,17 @@ Keep the Adrian-family layout, working image bytes, .98 figure scale and bottom 
 Keep R4, current kilometer bands, HYROX quality-budget rules and separate gates. The March 25 20+12 is historical evidence, not current readiness. Observe whether he settles, holds and restarts at the intended effort before changing format.
 
 For Simon, judge controlled useful running, pacing and recovery against the goal. Broken and continuous work are tools, not an automatic hierarchy. [Shared method and threshold lineage](../FORM_OBSERVATION_LED_PROGRESSION.md). No current dose, gate, result or pace is changed by this methodological note.
+
+
+### October 6 weekly-priority teaching
+
+Simon is newer to the explicit FORM rule that the week's main question must be protected rather than surrounded by every useful stimulus.
+
+For Block 01:
+- **Tuesday owns the primary running question.**
+- Monday is there to arrive normal. No unscheduled hard lower-body / HYROX work, bonus intervals or fast finish should be added before Tuesday.
+- **Thursday is earned by Tuesday's absorption.** The prescribed ceiling dose is an option when recovery is normal; HYROX or demanding lower-body work can replace it.
+- Saturday remains easy in this block.
+- A reduced or skipped Thursday is not training debt.
+
+This is a teaching / priority clarification, not a new pace band or a reason to change R4's current Tuesday progression.
