@@ -128,3 +128,25 @@ Thursday should be read as **aerobic support**, not a compulsory ceiling progres
 ### José engagement evidence
 
 After seeing the revised plan, José reacted positively and called the continuous threshold a “new challenge.” Record that as engagement and format-preference evidence only. It does not establish readiness or a threshold deficit. His October 15 athlete-facing title therefore states **if recovered**, while the underlying prescription retains the easy/rest substitution.
+
+
+## Protect the primary question
+
+Observation-led progression still needs a stable weekly hierarchy. Otherwise every useful stimulus competes for the same recovery.
+
+For most current half-marathon development blocks, Tuesday carries the week's first primary running question.
+
+**Protect it.**
+- Monday is support, not an opportunity to prove freshness.
+- No bonus mileage, surprise intervals, fast finishes or hard lower-body work immediately before the primary question.
+- When the primary session moves to another day, the protection moves with it.
+
+**Thursday is earned, not owed.**
+
+Thursday is the week's support slot. It can be threshold, faster aerobic work, strides, easy running, recovery or rest. Use the more demanding version only when the primary question was controlled and the athlete has recovered normally. If Tuesday was expensive, Thursday gets cheaper first.
+
+HYROX, a race simulation or hard lower-body strength can consume the same secondary-quality budget. Do not preserve a full Thursday run workout merely because it appears on a template.
+
+The point is not to make Tuesday sacred. The point is to make the **priority of the week legible**.
+
+A skipped or reduced support session creates no debt.
