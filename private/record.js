@@ -265,6 +265,37 @@ export function recordSection(record, { limit = 0 } = {}) {
   </section>`;
 }
 
+// What the athlete performed in Forge, straight from the native receipt. Coach-only:
+// the receipts are loaded only for the coach record, never as running completions.
+export function forgeSection(record) {
+  const receipts = (record.forgeReceipts || []).filter((row) => row.native_payload);
+  if (!receipts.length) return '';
+  const setLine = (set) => {
+    const load = set.weight == null ? '' : `${set.weight} lb \u00d7 `;
+    const work = set.seconds != null && set.reps == null ? `${set.seconds} sec` : `${set.reps ?? ''} reps`;
+    return `${load}${work}`;
+  };
+  return `<section class="record-section" id="forge">
+    <p class="eyebrow">Forge \u2014 performed</p>
+    <div class="record-list">${receipts.map((row) => {
+      const session = row.native_payload;
+      const byMovement = new Map();
+      [...(session.sets || [])].sort((a, b) => String(a.completedAt).localeCompare(String(b.completedAt)))
+        .forEach((set) => {
+          if (!byMovement.has(set.movementId)) byMovement.set(set.movementId, { name: set.movementName, sets: [] });
+          byMovement.get(set.movementId).sets.push(set);
+        });
+      return `<article class="record-event">
+        <time>${escapeHtml(formatDate(session.completedAt || row.received_at))}</time>
+        <span class="event-type">${escapeHtml(session.sessionName)}</span>
+        <p>Week ${escapeHtml(session.planWeekNumber)}${session.durationSeconds ? ` \u00b7 ${escapeHtml(formatDuration(session.durationSeconds))}` : ''}</p>
+        <ul>${[...byMovement.values()].map((movement) => `<li><strong>${escapeHtml(movement.name)}</strong> \u2014 ${movement.sets.map((set) => escapeHtml(setLine(set))).join(', ')}</li>`).join('')}</ul>
+        ${session.feedback ? `<p>${escapeHtml(session.feedback)}</p>` : ''}
+      </article>`;
+    }).join('')}</div>
+  </section>`;
+}
+
 function accountSection(record, email, interactive) {
   const athlete = record.athlete;
   const block = record.block;
@@ -289,6 +320,7 @@ export function renderAthleteRecord(record, { interactive = false, projection = 
     ${gradeSection(record)}
     ${supportSection(record)}
     ${recordSection(record)}
+    ${projection ? '' : forgeSection(record)}
     ${accountSection(record, email, interactive)}
   </div>`;
 }
