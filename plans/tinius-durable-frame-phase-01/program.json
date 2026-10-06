@@ -237,12 +237,21 @@
       },
       {
         "slot": "C7",
-        "movement": "Barbell Curl + Close-Grip Push-Up",
+        "movement": "Barbell Curl",
         "sets": 2,
-        "reps": "10-15 + 8-20",
+        "reps": "10-15",
         "rest_sec": 60,
-        "role": "arms / finish",
-        "rule": "Pair each curl set with close-grip push-ups. Not a burnout; keep about 2 reps available."
+        "role": "biceps",
+        "rule": "No hip drive. Keep about 2 reps available."
+      },
+      {
+        "slot": "C8",
+        "movement": "Close-Grip Push-Up",
+        "sets": 2,
+        "reps": "8-20",
+        "rest_sec": 60,
+        "role": "triceps / chest",
+        "rule": "Stop about 2 reps before failure. Not a burnout."
       }
     ]
   },
