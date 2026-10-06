@@ -1,0 +1,48 @@
+name: RPD external review correction
+on:
+  push:
+    branches: [work/rpd-review-correction-20261006]
+    paths:
+      - scripts/rpd-review-correction-20261006.cjs
+      - .github/workflows/rpd-review-correction-20261006.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: rpd-review-correction-20261006
+  cancel-in-progress: false
+jobs:
+  correct-and-check:
+    if: github.ref == 'refs/heads/work/rpd-review-correction-20261006'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/rpd-review-correction-20261006
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply correction and check evidence
+        run: |
+          node --check scripts/rpd-review-correction-20261006.cjs
+          node scripts/rpd-review-correction-20261006.cjs
+          node scripts/rpd-review-correction-20261006.cjs
+          git diff --check
+          git diff --stat
+      - name: Preserve reviewed source on the isolated branch
+        run: |
+          git add docs/RACE_PACE_DURABILITY_CANONICAL_v1.md docs/roadmap/FORM-ROADMAP.md docs/studies/SPEED_THAT_ENDURES_W7_20261006.json labs/speed-that-endures/index.html data/public-studies/speed-that-endures.json index.html
+          if ! git diff --quiet; then
+            echo 'Unexpected unstaged generated files; review before publication.'
+            git diff --name-only
+            exit 1
+          fi
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'RPD: withdraw automatic threshold swap and publish recovery-first read'
+          git push origin HEAD:work/rpd-review-correction-20261006
