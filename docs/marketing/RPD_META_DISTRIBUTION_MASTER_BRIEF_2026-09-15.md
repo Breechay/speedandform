@@ -1111,7 +1111,7 @@ If nobody reviewed anything else, the current best launch hypothesis is:
 > CAN YOU KEEP IT?
 
 **Mechanism**
-> Broken → 5 → 6 → 8 → 12 late.
+> Broken → 5 → 6 → 8 → late 4 → late 6 → race.
 
 **Product**
 > Race Pace Durability · 15 weeks · sub-1:30 · 45→60 mpw.
