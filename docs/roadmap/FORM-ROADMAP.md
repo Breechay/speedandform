@@ -5,7 +5,9 @@
 - Owner asked for the feel of his Instagram avatar on the homepage and in future content. Rules and measurements are in [Brand authority](../BRAND.md) under “October 6 · Lit, not printed”.
 - [x] Hero headline and header emblem fall off in light instead of sitting at flat full strength. CSS only, in `css/home-commercial.css`. No copy, layout or asset change.
 - [ ] Owner review of the preview. Not pushed, not merged, not deployed. Branch `work/lit-not-printed-20261006` exists as a patch against `main` at `200899a`.
-- [ ] Closing cloth plate above the footer line: designed and previewed, waiting on the owner's full-size export of the cloth image.
+- [x] Closing cloth plate above the footer line, built from the owner's larger rendering (`/assets/home/20261006/sf-cloth.webp`). Recorded as a rendering of a garment, to be replaced by a photograph of the real piece.
+- [x] Owner revision of the bend from his Photoshop mock: lanes 1.65 times larger on desktop and about 1.5 times on phones, 2px lines, lanes 30%, marks 80%. Phone facts stack in one column so the lanes rise on the right without crossing type. From 1440 the start line sits on the distance column.
+- [x] Checks on the branch: `tests/sf-bend.cjs`, `tests/public-study-preview.cjs`, the Netlify build chain and `tests/public-finish-browser.cjs` in Chromium. Renders reviewed at 375, 390, 430, 768, 1024, 1280, 1440 and 1920.
 
 ## October 6 · The bend: homepage lower folds and house signature
 
