@@ -52,6 +52,7 @@ html,body{background:var(--dark)}.wrap{width:min(var(--max),calc(100% - 2 * var(
 .home-footer-refined{border-top:0}
 .home-footer-cloth{--cloth:clamp(560px,62vw,900px);position:relative;height:clamp(300px,32vw,460px);overflow:hidden;background:var(--dark)}
 .home-footer-cloth::before{content:"";position:absolute;top:58%;left:calc(max(var(--public-gutter),50% - var(--max) / 2) - var(--cloth) * .3356);width:var(--cloth);aspect-ratio:1448/1086;transform:translateY(-64.3%);background:url("/assets/home/20261006/sf-cloth.webp") center/cover no-repeat;mix-blend-mode:screen}
+@media(max-width:760px){.home-footer-cloth{--cloth:max(560px,calc(100vw / .6644))}}
 @media(min-width:761px){.home-footer-cloth::before{-webkit-mask-image:linear-gradient(90deg,#000 55%,transparent 100%);mask-image:linear-gradient(90deg,#000 55%,transparent 100%)}}
 /* Begin starts on the same vertical line as the bend's start line: 580px in from the content edge. */
 @media(min-width:1440px){.home-evidence{--bend-x:calc(max(var(--public-gutter),50% - var(--max) / 2) + 340px)}}
