@@ -1,7 +1,26 @@
 # Speed & Form · house system
 
-> **CURRENT AUTHORITY · 1 October 2026**
+> **CURRENT AUTHORITY · 6 October 2026**
 > This is the active sitewide brand and public-surface doctrine. It supersedes earlier homepage positioning and do-not-regress documents wherever they conflict. Historical files remain in the repo as evidence, not current art direction.
+
+## Current direction and precedence
+
+Brice reaffirmed the new homepage and brand-page direction on October 6 and asked that future work follow it. Read this section before the dated decision history below. Current owner instructions and scoped newer decisions supersede conflicting older palette, display-weight and opening instructions; history is not an invitation to restore an older design.
+
+- **House:** black `#0d0f0e`, bone `#e8e3d9`, ink `#161916`; quiet text `#b8bbb2` on black and `#5e625b` on bone. These match `css/home-commercial.css` and the kit token generator. Forest/chalk below records the earlier direction, not the current public default. FORM app and authored study systems keep their own roles.
+- **Type and structure:** Inter Tight, display weight 450, restrained negative tracking; JetBrains Mono for house labels and measurements. Align the emblem and content edges, use rules and space instead of decorative boxes, keep one divider per boundary. Readability and contrast remain acceptance requirements, including at the smallest labels.
+- **Paper rooms:** cream and a comfortable reading measure, sans serif, ink structure. The supplied Library treatment uses 450 headings, house edges, mono labels, a ruled starting-point column, large facts above labels and ink weekly bars. It is scoped to the twelve-week plan, readiness guide and pace chart. The remaining Library has not been migrated to this heading weight. No bend or lit headline on these cream pages.
+- **Light and imagery:** real photographs carry the room. Only the approved dark-room headline/emblem receive light falloff; decision text stays at full strength. Preserve the documented cloth-rendering exception without treating it as photography or permission to generate athletes.
+- **Voice:** say the real thing once. Use the shortest truthful sentence, first person when it is Brice, and the runner's need before the method. No hype, corporate belief language, pseudo-scientific noun piles or repeated reassurance. Keep coaching and evidence qualifications that change the reader's decision.
+- **Signature:** use the measured bend from `scripts/sf-bend.cjs`, never redraw, mirror or tile it. One bend per approved piece, clear of type. Kit templates are the reuse path; app use still needs its own design decision.
+
+### Sources and release continuity
+
+`docs/BRAND.md` owns decisions and their scope. `brand/index.html` is the public presentation; `css/home-commercial.css` and the owning room styles implement it. `scripts/build-brand-kit.cjs` owns kit tokens/templates, `scripts/sf-bend.cjs` owns the drawing, and `scripts/render-brand-kit.cjs` renders the PDF/previews/zip. Read current source before using any copied values. Change source and projections together when a public rule changes; do not hand-edit generated output. Documentation-only routing or release corrections do not require regenerating unchanged public assets.
+
+At this review, PR #231 is merged at `0fde9ad3ffb29b5735aa73a3137fb2dec4e0682a`, including the homepage footer link to Brand. The doors and Library work is already pushed in PR #232 (`work/doors-and-library`); do not apply the uploaded patch again. Its code is separate from the SEO/share/measurement work in PR #227, but both edit operating documentation, so preserve both records when resolving conflicts. Production publication is a separate check.
+
+The proposed outing-to-run wording, rounded display distances and shorter cautions remain coaching-review items, not changes applied by this documentation update. Exact pace calculations stay exact. The proposed wider Library migration and unified footer/header decisions remain open. Draft details explicitly labeled as proposals below remain proposals; the owner's direction endorsement does not silently settle each open design choice.
 
 **One house, many rooms.** Speed & Form should feel authored. A study may feel like a marked-up research sheet, a guide may feel like a quiet book, and the homepage is a personal introduction to Brice and his work. The visitor should still know whose house they are in.
 

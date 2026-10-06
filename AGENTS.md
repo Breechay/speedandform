@@ -3,6 +3,11 @@
 > **Current orientation:** after this file, read [Agent Orientation](docs/AGENT_ORIENTATION.md). It maps the current company, source-of-truth mesh, operating hats, October lanes, staleness rules and active cross-repo documents. Older dated sections below remain useful decision history but do not automatically outrank newer verified owner decisions.
 
 
+## Public brand direction · October 6, 2026
+Before any public design, copy, Library page, share card, ad creative or media asset, read [Brand authority](docs/BRAND.md), starting with its current-authority section, then the current `/brand/` source and the owning homepage styles. The October 6 black/bone/ink direction and 450 display weight supersede conflicting October 1 forest/chalk and bold-display instructions below. Keep the Library sans serif. Apply the scoped paper-room rules; do not import the bend or lit text into cream pages. Use [Athlete Language Rule](docs/marketing/ATHLETE_LANGUAGE_RULE.md) for copy: say the real thing once, lead with the runner's need, use first person when it is Brice. Preserve clinical, evidence and accessibility requirements.
+
+Reuse the existing kit and generators. Do not invent another brand system, edit generated SVGs, or treat draft proposals as approved rules. Check current main and active PRs before implementing a supplied patch. Brand page, source rules, tokens and kit must agree when a public rule changes. Report source, merge, production and device checks separately.
+
 ## Operating console and daily operations
 Before changing Brice's priorities, open loops, daily brief, calendar projections or cross-surface operating records, read [Operating Console contract](docs/operations/CONSOLE-CONTRACT.md). `/coach/ops/` and the scheduled daily brief share the same private `operating_console_read` projection. Current athlete decisions include both `published` and `delivered_externally`; do not resurrect old Calendar or automation prescriptions. Change the owning source, read it back and record the private receipt. Do not publish private financial, health or athlete operating facts in this repository. [Console release checklist](docs/operations/CONSOLE-ACCEPTANCE-20260930.md) separates tested code, actual publication and remaining checks. Existing athlete dossiers stay at `/coach/labs/`; Increments access is not yet an integration.
 

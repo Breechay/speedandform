@@ -1,5 +1,11 @@
 # FORM: current state and next actions
 
+## October 6 · Brand continuity for future agents
+
+- Owner reaffirmed the new homepage/brand direction. Root instructions, Agent Orientation, Brand authority and typography now identify the current black/bone/ink, lighter-display and plain coaching voice rules, with paper-room scope and draft decisions explicit. Documentation only; no schedule, pace math, page copy or visual code changes in this follow-up.
+- Repository evidence: brand-page PR #231 merged as `0fde9ad`; doors/Library already pushed in PR #232. Do not reapply the uploaded patch. SEO/share/measurement PR #227 remains a separate release; preserve both documentation records when merging.
+- Verification: source references and documentation diff reviewed. No new production, print, Safari, physical-phone or analytics-receipt claim. Next: land this guidance with the coordinated release and verify the combined destinations before the October 9 ad-readiness review.
+
 ## October 6 · Brand page and media kit
 
 - Owner asked for a public brand page, close to the homepage, that carries the guidelines and every download for partners, marketers and media. Record: [Brand authority](../BRAND.md), “October 6 · The brand page and kit”.

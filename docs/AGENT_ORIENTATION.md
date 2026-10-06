@@ -42,7 +42,7 @@ Before meaningful work:
 3. Read `docs/roadmap/FORM-ROADMAP.md` for current product/site state relevant to the task.
 4. If the task touches operating priorities, read `docs/operations/CONSOLE-CONTRACT.md` and the private Console state.
 5. If it touches connected FORM/Forge/Collective behavior, read `docs/FORM_CONNECTED_SURFACES.md`.
-6. Read the smallest task-specific canonical brief/study/contract.
+6. Read the smallest task-specific canonical brief/study/contract. For public design, copy and creative, start with the current-authority section in `docs/BRAND.md`, the current brand page and owning homepage/room styles. October 6 house direction supersedes conflicting October 1 art direction; keep scoped exceptions and unapproved proposals distinct.
 7. Check remote main and concurrent branches before changing code.
 8. Establish whether the requested surface is source, projection, archive or historical material.
 9. Do not revive an older decision merely because it appears in a file.
