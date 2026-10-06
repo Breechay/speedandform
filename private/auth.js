@@ -54,14 +54,14 @@ export async function enabledProviders() {
   return providerCache;
 }
 
-export async function sendMagicLink(email, returnTo = '/athlete/') {
+export async function sendMagicLink(email, returnTo = '/athlete/', { shouldCreateUser = true } = {}) {
   const normalized = String(email || '').trim().toLowerCase();
   if (!normalized || !normalized.includes('@')) throw new Error('Enter the email Brice invited.');
   const { error } = await supabase.auth.signInWithOtp({
     email: normalized,
     options: {
       emailRedirectTo: callbackUrl(safeReturnTo(returnTo)),
-      shouldCreateUser: true
+      shouldCreateUser: Boolean(shouldCreateUser)
     }
   });
   if (error) throw error;
