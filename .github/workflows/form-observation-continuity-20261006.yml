@@ -31,10 +31,23 @@ jobs:
           node --check scripts/form-observation-continuity-20261006.cjs
           node scripts/form-observation-continuity-20261006.cjs
           node scripts/form-observation-continuity-20261006.cjs
+          cp labs/speed-that-endures/index.html /tmp/study-before-brand.html
           node tests/cream-reading.cjs
           node scripts/build-cream-reading.cjs
           node scripts/build-commercial.cjs
           node scripts/build-sf-brand.cjs
+          node <<'NODE'
+          const fs=require('fs'),a=require('assert/strict'),h=require('crypto');
+          const before=fs.readFileSync('/tmp/study-before-brand.html','utf8'),after=fs.readFileSync('labs/speed-that-endures/index.html','utf8');
+          const panel=x=>x.match(/<section class="form-observation-note" id="rhythm-read"[\s\S]*?<\/section>/)[0];
+          a.equal(panel(after),panel(before),'Production build changed approved current decision');
+          a.deepEqual(after.match(/data:image[^\s"'<>]+/g),before.match(/data:image[^\s"'<>]+/g),'Production build changed photographs');
+          for(const t of ['13:24.4','13:27.0','13:26.4','13:24.5','53:42.3','39:16.0','40:53.8'])a(after.includes(t));
+          const p='data/public-studies/speed-that-endures.json',j=JSON.parse(fs.readFileSync(p,'utf8'));
+          j.source_sha256=h.createHash('sha256').update(after).digest('hex');
+          fs.writeFileSync(p,JSON.stringify(j,null,2)+'\n');
+          console.log('PASS: current decision and historical evidence survive production brand transform.');
+          NODE
           node tests/public-study-preview.cjs
           git diff --check
       - name: Keep unrelated generator changes out of this release
