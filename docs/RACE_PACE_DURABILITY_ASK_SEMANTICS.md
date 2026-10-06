@@ -1,3 +1,15 @@
+# October 6, 2026 · current ruling
+
+This section is authoritative over older examples below.
+
+The reusable Race Pace Durability plan now has **three programmed continuous ownership asks: 5, 6 and 8 miles**. The former W12 twelve-mile ask is retired. Later race-pace segments inside long runs are **late-access durability work**, not continuous-ownership checkpoints, and do not move the ownership mark.
+
+An athlete can later be assigned 9 or 10 continuous miles when their own execution, reserve and recovery make that useful. Those are athlete-specific coach decisions, not missing rungs that must be collected. Twelve continuous miles at half-marathon pace is not required before racing.
+
+A successful session is not defined by suffering or by completing the largest available number. Preserve prescription, execution, athlete report, cost, limiter and recovery separately. Conditional work must remain visibly conditional on the athlete-facing surface.
+
+---
+
 # The ask, and what an ask returns
 
 **Proposal, 5 September 2026. Nothing built, nothing written, nothing assigned.**
