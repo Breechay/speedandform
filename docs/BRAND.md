@@ -162,6 +162,15 @@ The request was: the lower folds feel flat, maybe subtle contour lines as a sign
 
 CSS owns these as `--lane`, `--bend-x`, `--bend-gap`, `--bend-solid` and `--bend-clear` on `.home-evidence` in `css/home-commercial.css`. The drawing scales with `--lane`. The proportion never changes.
 
+### The rest of the homepage follows the same rules
+
+Audited on October 6 against the questions above. Four small corrections, no new elements.
+
+- **One vertical line.** From 1280 wide, the Begin form starts 580px in from the content edge, the same line as the bend's start line and the date column. If you move one, move all three.
+- **Space separates the three doors.** The entry columns keep one top rule each. The vertical rules between them are gone, as they are in Also.
+- **The footer ends on the content edge.** Links sit flush right on desktop. On phones it closes on two lines: links, then the copyright with Top on the right. No link is left alone on a row.
+- **A label never breaks after its separator.** The hero label stays on one line on phones.
+
 ### Motion
 
 It arrives once. When the fold enters view the lanes run in from the left, then the start marks appear. `js/home-settle.js` arms it, so without script or with reduced motion the bend is simply there. No loop, no parallax, no hover effect.
@@ -175,4 +184,4 @@ It arrives once. When the fold enters view the lanes run in from the left, then 
 
 ### Checked and not checked
 
-Chromium renders at 375, 390, 430, 768, 1024, 1280, 1440 and 1920 wide were reviewed on October 6, with the arrival on and with reduced motion. Safari, a physical phone, 200% zoom on this fold and production are not checked yet.
+Chromium renders at 375, 390, 430, 768, 1024, 1280, 1440 and 1920 wide were reviewed on October 6, with the arrival on and with reduced motion. The whole page was reviewed at 390 and 1440, and the footer also at 360 and 375. Safari, a physical phone, 200% zoom on this fold and production are not checked yet.

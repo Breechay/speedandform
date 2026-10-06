@@ -7,6 +7,7 @@
 - [x] From the practice is one column with the facts in a row; Also is an index of three rows with the price on the right. Phone keeps its stacked layout. The phone headline now fits on two lines at 375 to 430.
 - [x] The bend arrives once through the existing `sf-motion` layer. Without script or with reduced motion it is simply present.
 - [x] Checks on the branch: `tests/sf-bend.cjs`, `tests/public-study-preview.cjs`, the Netlify build chain and `tests/public-finish-browser.cjs` in Chromium all pass. Chromium renders reviewed at 375, 390, 430, 768, 1024, 1280, 1440 and 1920.
+- [x] Whole-page audit against the same rules, second commit on the branch: entry columns lose their vertical rules, the footer links sit flush right on desktop and close on two lines on phones, the hero label stays on one line on phones, and from 1280 the Begin form starts on the same vertical line as the bend's start line. No copy, offer, price or schedule change.
 - [ ] Owner review of the real page. Safari, a physical phone and 200% zoom on this fold are not checked.
 - [ ] Not pushed, not merged, not deployed. Branch `work/the-bend-20261006` exists as a patch against `main` at `6952a1c`. Record the tested commit and actual production state when it is published.
 - Next: story frame and study cover from the standalone asset, after the homepage use is live and reviewed.
