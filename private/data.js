@@ -441,12 +441,20 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
       supabase.from('coach_task_evidence').select('*').eq('athlete_id', athleteId).order('position'),
       supabase.from('coach_task_actions').select('*').eq('athlete_id', athleteId).order('position'),
       supabase.from('coach_private_notes').select('*').eq('athlete_id', athleteId).order('created_at', { ascending: false }),
-      supabase.from('coach_admin_status').select('*').eq('athlete_id', athleteId).maybeSingle()
+      supabase.from('coach_admin_status').select('*').eq('athlete_id', athleteId).maybeSingle(),
+      // What the athlete actually did in Forge: performed sets from native receipts.
+      // Kept apart from session_completions, which are runs and other filed sessions.
+      supabase.from('forge_strength_receipts').select('receipt_id,program_id,received_at,native_payload')
+        .eq('athlete_id', athleteId).not('native_payload', 'is', null)
+        .order('received_at', { ascending: false }).limit(10)
     );
   }
 
   const responses = await Promise.all(queries);
-  responses.forEach(({ error }) => { if (error) throw error; });
+  // The Forge receipt read is supplementary evidence: if it is unavailable the record
+  // must still load, so its error is not fatal (it renders as no receipts).
+  const forgeIndex = coach ? queries.length - 1 : -1;
+  responses.forEach(({ error }, index) => { if (error && index !== forgeIndex) throw error; });
 
   const [
     athleteResponse, blockResponse, weeksResponse, sessionsResponse, versionsResponse,
@@ -456,7 +464,8 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     verdictsResponse, piecesResponse, judgmentsResponse, judgmentLinksResponse,
     confidenceResponse, confidenceLinksResponse, evidenceFilesResponse, proposalResponse,
     exceptionsResponse, paceBandsResponse, observationsResponse,
-    taskResponse, evidenceResponse, actionsResponse, privateNotesResponse, adminResponse
+    taskResponse, evidenceResponse, actionsResponse, privateNotesResponse, adminResponse,
+    forgeReceiptsResponse
   ] = responses;
 
   const components = result(componentsResponse.data, componentsResponse.error);
@@ -554,7 +563,8 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     taskEvidence: task ? result(evidenceResponse?.data, evidenceResponse?.error).filter((item) => item.task_id === task.id) : [],
     taskActions: task ? result(actionsResponse?.data, actionsResponse?.error).filter((item) => item.task_id === task.id) : [],
     privateNotes: result(privateNotesResponse?.data, privateNotesResponse?.error),
-    adminStatus: adminResponse?.data || null
+    adminStatus: adminResponse?.data || null,
+    forgeReceipts: coach && !forgeReceiptsResponse?.error ? result(forgeReceiptsResponse?.data, null) : []
   };
 }
 

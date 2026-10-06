@@ -5,6 +5,14 @@ import { pathToFileURL } from 'node:url';
 const root = new URL('../', import.meta.url);
 const read = (path) => fs.readFileSync(new URL(path, root), 'utf8');
 const { renderAthleteWorkspace } = await import(pathToFileURL(new URL('athlete/workspace.js', root).pathname));
+// The workspace picks "today" from the real weekday. Pin the clock to a Wednesday so the
+// fixture's Mon/Tue sessions do not turn "Your current week." into "Your work today."
+const RealDate = Date;
+const FROZEN = new RealDate('2026-09-16T12:00:00Z').getTime();
+globalThis.Date = class extends RealDate {
+  constructor(...args) { args.length ? super(...args) : super(FROZEN); }
+  static now() { return FROZEN; }
+};
 let checks = 0;
 const ok = (value, message) => { assert.ok(value, message); checks += 1; };
 const has = (text, value) => ok(text.includes(value), `missing ${value}`);

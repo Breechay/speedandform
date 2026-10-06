@@ -31,6 +31,7 @@ jobs:
         run: |
           node tests/adrian-strength-fallback.mjs
           node tests/athlete-access.cjs
+          node tests/console-forge-receipt-section.mjs
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
