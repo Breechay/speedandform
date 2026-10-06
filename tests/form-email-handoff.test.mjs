@@ -201,3 +201,47 @@ test('callback failure returns to the requested coach door and hides raw PKCE de
  assert.match(callback,/startsWith\('\/coach\/'\)/);
  assert.match(auth,/pkce\|code verifier/i);
 });
+
+test('the whole auth email family obeys the October paper-room contract',()=>{
+ const files=[
+  'magic_link.html','confirmation.html','invite.html','recovery.html','email_change.html','reauthentication.html',
+  'password_changed_notification.html','email_changed_notification.html','phone_changed_notification.html',
+  'identity_linked_notification.html','identity_unlinked_notification.html',
+  'mfa_factor_enrolled_notification.html','mfa_factor_unenrolled_notification.html'
+ ];
+ for(const name of files){
+   const template=readFileSync(new URL('../supabase/templates/'+name,import.meta.url),'utf8');
+   assert.match(template,/sf-emblem-ink\.png/,name+' uses the SF emblem');
+   assert.match(template,/#e8e3d9/,name+' uses bone');
+   assert.match(template,/#161916/,name+' uses ink');
+   assert.match(template,/#5e625b/,name+' uses quiet text');
+   assert.doesNotMatch(template,/FORM<span|#9acb19|#c8ff2e|border-radius:\s*(?:12|20|22)px/i,name+' has no retired FORM/green/card treatment');
+   assert.doesNotMatch(template,/Your record is one tap away|Open my record/i,name+' has no old record-specific copy');
+   assert.match(template,/display:none;max-height:0/,name+' has a useful inbox preheader');
+ }
+});
+test('account action emails use one direct secure action',()=>{
+ const cases=[
+  ['magic_link.html','type=email'],
+  ['confirmation.html','type=email'],
+  ['recovery.html','type=recovery'],
+  ['email_change.html','type=email_change']
+ ];
+ for(const [name,type] of cases){
+   const template=readFileSync(new URL('../supabase/templates/'+name,import.meta.url),'utf8');
+   assert.match(template,/\{\{ \.RedirectTo \}\}&amp;token_hash=\{\{ \.TokenHash \}\}/,name+' uses token hash');
+   assert.ok(template.includes(type),name+' keeps the correct OTP type');
+   assert.equal((template.match(/<a href=/g)||[]).length,2,name+' has one primary action plus one support link');
+ }
+});
+test('auth email documentation names the current sender and house',()=>{
+ const readme=readFileSync(new URL('../supabase/templates/README.md',import.meta.url),'utf8');
+ const standard=readFileSync(new URL('../docs/marketing/EMAIL_EXPERIENCE_STANDARD_2026-09-16.md',import.meta.url),'utf8');
+ const config=readFileSync(new URL('../supabase/config.toml',import.meta.url),'utf8');
+ for(const text of [readme,standard,config]){
+   assert.match(text,/Speed & Form/, 'house name is explicit');
+ }
+ assert.match(readme,/access@send\.speedandform\.com/);
+ assert.match(config,/admin_email = "access@send\.speedandform\.com"/);
+ assert.match(config,/sender_name = "Speed & Form"/);
+});
