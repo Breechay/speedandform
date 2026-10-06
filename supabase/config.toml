@@ -270,7 +270,7 @@ otp_expiry = 3600
 # user = "resend"
 # pass = "env(RESEND_API_KEY)"
 # admin_email = "no-reply@send.speedandform.com"
-# sender_name = "FORM"
+# sender_name = "Speed & Form"
 
 # Uncomment to customize email template
 # [auth.email.template.invite]
@@ -283,6 +283,10 @@ otp_expiry = 3600
 [auth.email.template.magic_link]
 subject = "Your FORM sign-in link"
 content_path = "./supabase/templates/magic_link.html"
+
+[auth.email.template.confirmation]
+subject = "Confirm your email for FORM"
+content_path = "./supabase/templates/confirmation.html"
 
 # Uncomment to customize notification email template
 # [auth.email.notification.password_changed]
