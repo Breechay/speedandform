@@ -3,7 +3,7 @@
 import fs from 'node:fs';
 import { buildSpec, loadProgram } from './structured-strength-spec.mjs';
 
-const FILE = '20261007013000_structured_strength_exercises.sql';
+const FILE = '20261007015144_structured_strength_exercises.sql';
 // Held until Brice approves applying it (see supabase/held/README.md); then it moves to migrations/.
 export const MIGRATION = fs.existsSync(`supabase/held/${FILE}`) ? `supabase/held/${FILE}` : `supabase/migrations/${FILE}`;
 const START = '  -- BEGIN GENERATED ADRIAN STRUCTURED STRENGTH\n';
