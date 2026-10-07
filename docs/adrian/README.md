@@ -154,7 +154,7 @@ Coach Console should read Forge receipts as strength evidence. Do not mix Forge 
 
 ## Structured strength (server-side prescription)
 
-Adrian's strength sessions used to exist on the server only as prose (`planned_session_versions.details`). `planned_session_exercises` (migration `20261006190000_structured_strength_exercises.sql`) gives each immutable session **version** an ordered list of typed exercises, delivered through the same `athlete_plan_feed` as running components.
+Adrian's strength sessions used to exist on the server only as prose (`planned_session_versions.details`). `planned_session_exercises` (held migration `supabase/held/20261006190000_structured_strength_exercises.sql`) gives each immutable session **version** an ordered list of typed exercises, delivered through the same `athlete_plan_feed` as running components.
 
 - Prescription and progress stay separate: nothing here records where Adrian is. Current week/session comes from assignment dates plus real app state and evidence.
 - Exercise rows are append-only. A revision writes a new version with its own exercises; a completed workout can always point at the version it was performed against.

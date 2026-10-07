@@ -6,7 +6,6 @@ import fs from 'node:fs';
 import { openPglite, replaySchema, fixture, as, PLATFORM_ONLY } from './support/replay-schema.mjs';
 import { MIGRATION } from '../scripts/generate-structured-strength-migration.mjs';
 
-const THIS = '20261006190000_structured_strength_exercises.sql';
 let checks = 0;
 const ok = (v, m) => { assert.ok(v, m); checks += 1; };
 const eq = (a, b, m) => { assert.deepEqual(a, b, m); checks += 1; };
@@ -25,7 +24,9 @@ const withoutExercises = (feed) => ({
 
 // ── Pre-state: everything before this migration, then production-shaped fixtures ──────────
 const db = await openPglite();
-const pre = await replaySchema({ db, upTo: '20261006180000' });
+// This migration is held (supabase/held), so the migrations directory is exactly its pre-state.
+// Once it is promoted into migrations/ it replays as part of the history instead.
+const pre = await replaySchema({ db, skip: (f) => f.endsWith('_structured_strength_exercises.sql') });
 eq(pre.ddlFailures.filter((f) => !PLATFORM_ONLY.has(f.file)), [], 'the schema history before this migration replays');
 
 // The migration carries its own frozen snapshot of Adrian's program. The test reads THAT, not the
@@ -196,9 +197,9 @@ eq(await rows(db, 'select * from public.planned_session_exercises where version_
 
 // ── The schema history still replays with this migration in it ──────────────────────────
 const full = await openPglite();
-const replay = await replaySchema({ db: full });
+const replay = await replaySchema({ db: full, extra: [MIGRATION] });
 eq(replay.ddlFailures.filter((f) => !PLATFORM_ONLY.has(f.file)), [], 'the full history, including this migration, replays on an empty database');
-ok(replay.files.includes(THIS), 'this migration is part of the history');
+ok(replay.files.some((f) => f.endsWith('_structured_strength_exercises.sql')), 'this migration is part of the replayed history');
 eq((await rows(full, 'select count(*)::int n from public.planned_session_exercises'))[0].n, 0, 'with no Adrian present the backfill is a quiet no-op');
 
 console.log(`PASS: ${checks} structured strength checks (schema, additive feed, 58-session Adrian backfill vs the Forge bundle, isolation, append-only versioning).`);

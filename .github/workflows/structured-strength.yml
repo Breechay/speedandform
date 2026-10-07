@@ -2,9 +2,9 @@ name: Structured strength exercises
 on:
   push:
     branches: [main]
-    paths: ['supabase/migrations/**','scripts/structured-strength-spec.mjs','scripts/generate-structured-strength-migration.mjs','scripts/extract-forge-adrian-reference.mjs','tests/structured-strength-exercises-db.mjs','tests/support/**','tests/fixtures/forge-adrian-reference.json','.github/workflows/structured-strength.yml']
+    paths: ['supabase/migrations/**','supabase/held/**','scripts/structured-strength-spec.mjs','scripts/generate-structured-strength-migration.mjs','scripts/extract-forge-adrian-reference.mjs','tests/structured-strength-exercises-db.mjs','tests/support/**','tests/fixtures/forge-adrian-reference.json','.github/workflows/structured-strength.yml']
   pull_request:
-    paths: ['supabase/migrations/**','scripts/structured-strength-spec.mjs','scripts/generate-structured-strength-migration.mjs','scripts/extract-forge-adrian-reference.mjs','tests/structured-strength-exercises-db.mjs','tests/support/**','tests/fixtures/forge-adrian-reference.json','.github/workflows/structured-strength.yml']
+    paths: ['supabase/migrations/**','supabase/held/**','scripts/structured-strength-spec.mjs','scripts/generate-structured-strength-migration.mjs','scripts/extract-forge-adrian-reference.mjs','tests/structured-strength-exercises-db.mjs','tests/support/**','tests/fixtures/forge-adrian-reference.json','.github/workflows/structured-strength.yml']
   workflow_dispatch:
 permissions:
   contents: read

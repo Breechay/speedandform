@@ -48,14 +48,18 @@ const TXN = /^(begin|commit|rollback|start transaction)\b/i;
 
 // Each statement runs on its own. A failing seed statement (production rows are absent) is
 // tolerated and counted; a failing DDL statement is a real failure of the schema history.
-export async function replaySchema({ db, upTo = null, root = 'supabase/migrations' } = {}) {
+// `skip` leaves a file out (to build a pre-state); `extra` appends files that live outside the
+// migrations directory (held migrations), applied last.
+export async function replaySchema({ db, upTo = null, root = 'supabase/migrations', skip = () => false, extra = [] } = {}) {
   await db.exec(shim);
-  const files = (await fs.readdir(root)).filter((f) => f.endsWith('.sql')).sort();
+  const inDir = (await fs.readdir(root)).filter((f) => f.endsWith('.sql') && !skip(f)).sort();
+  const files = [...inDir, ...extra.map((p) => path.basename(p))];
+  const pathOf = (f) => (inDir.includes(f) ? path.join(root, f) : extra.find((p) => path.basename(p) === f));
   const ddlFailures = []; const seedSkipped = [];
   for (const f of files) {
     if (upTo && f > upTo) break;
     // PGlite 0.3.14 bundles no pgcrypto; the history only creates the extension and never calls it.
-    const sql = (await fs.readFile(path.join(root, f), 'utf8')).replace(/create extension if not exists pgcrypto;/gi, '');
+    const sql = (await fs.readFile(pathOf(f), 'utf8')).replace(/create extension if not exists pgcrypto;/gi, '');
     for (const stmt of splitStatements(sql)) {
       if (TXN.test(stripLeadingComments(stmt))) continue;
       try { await db.exec(stmt); }

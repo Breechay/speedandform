@@ -11,3 +11,10 @@ That has happened once already.
   provenance, revocation without deleting identity, append-only grant history,
   retention, a checker rejecting client-writable memberships) are written and
   Brice has read them. Coaching uploads must never be mixed into it.
+- `20261006190000_structured_strength_exercises.sql` — Structured strength
+  exercises (`planned_session_exercises`), the additive `athlete_plan_feed`
+  wrapper, and the Adrian backfill (58 sessions / 388 exercises). Authored and
+  tested (`tests/structured-strength-exercises-db.mjs`, isolated PGlite), applied
+  nowhere. It moves to `migrations/` only when Brice approves, and only after the
+  live `athlete_plan_feed` / `athlete_plan_feed_impl` definitions have been diffed
+  against this repository's chain.
