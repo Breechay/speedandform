@@ -293,6 +293,55 @@ function performedText(m) {
   }).join(', ');
 }
 
+// A private draft of what happened, for the coach to read, edit and use. It is evidence, not
+// interpretation: it states what was prescribed, what was done, and the change since the last time
+// the same movement was done. It publishes nothing and is never filed anywhere on its own.
+function bestSet(performed) {
+  return (performed || []).reduce((best, set) => {
+    if (set.seconds != null && set.reps == null) return !best || (set.seconds > (best.seconds ?? -1)) ? set : best;
+    const key = (x) => [Number(x.weight ?? 0), Number(x.reps ?? 0)];
+    if (!best) return set;
+    const [bw, br] = key(best), [sw, sr] = key(set);
+    return sw > bw || (sw === bw && sr > br) ? set : best;
+  }, null);
+}
+function deltaPhrase(now, before) {
+  if (!before) return 'first time recorded';
+  const a = bestSet(now), b = bestSet(before);
+  if (!a || !b) return '';
+  if (a.seconds != null && a.reps == null) {
+    const d = a.seconds - (b.seconds ?? 0);
+    return d === 0 ? 'same hold' : `${d > 0 ? '+' : ''}${d} sec`;
+  }
+  const dw = Number(a.weight ?? 0) - Number(b.weight ?? 0), dr = Number(a.reps ?? 0) - Number(b.reps ?? 0);
+  if (dw === 0 && dr === 0) return 'same top set';
+  if (dw !== 0) return `${dw > 0 ? '+' : ''}${dw} lb${dr ? `, ${dr > 0 ? '+' : ''}${dr} reps` : ''}`;
+  return `${dr > 0 ? '+' : ''}${dr} reps`;
+}
+
+export function forgeEvidenceSummary(record, { limit = 3 } = {}) {
+  const movements = record.forgeMovements || [];
+  const receipts = (record.forgeReceipts || []).filter((r) => r.native_payload).slice(0, limit);
+  if (!receipts.length || !movements.length) return '';
+  const byReceipt = new Map();
+  for (const m of movements) { if (!byReceipt.has(m.receipt_id)) byReceipt.set(m.receipt_id, []); byReceipt.get(m.receipt_id).push(m); }
+  const lines = ['DRAFT — private evidence summary. Not published.'];
+  for (const r of receipts) {
+    const rows = byReceipt.get(r.receipt_id) || [];
+    const p = r.native_payload;
+    lines.push('', `${p.sessionName} · week ${p.planWeekNumber} · ${formatDate(p.completedAt || r.received_at)}${p.durationSeconds ? ` · ${formatDuration(p.durationSeconds)}` : ''}`);
+    for (const m of rows) {
+      const before = movements
+        .filter((x) => x.movement_id === m.movement_id && x.receipt_id !== m.receipt_id && x.completed_at < m.completed_at)
+        .sort((x, y) => String(y.completed_at).localeCompare(String(x.completed_at)))[0];
+      const asked = targetText(m);
+      lines.push(`- ${m.movement_name}: ${asked ? `prescribed ${asked}; ` : ''}did ${m.performed_sets} (${performedText(m)}) — ${deltaPhrase(m.performed, before?.performed)}${before ? ` vs ${formatDate(before.completed_at)}` : ''}`);
+    }
+    if (p.feedback) lines.push(`  Athlete feedback: ${p.feedback}`);
+  }
+  return lines.join('\n');
+}
+
 export function forgeStateSection(record) {
   const state = record.forgeState;
   if (!state) return '';
@@ -356,10 +405,12 @@ export function forgeSection(record) {
         ${session.feedback ? `<p>${escapeHtml(session.feedback)}</p>` : ''}
       </article>`;
   }).join('');
+  const draft = forgeEvidenceSummary(record);
   return `<section class="record-section" id="forge">
     <p class="eyebrow">Forge — performed</p>
     ${state}
     <div class="record-list">${body}</div>
+    ${draft ? `<details class="forge-draft"><summary>Draft for study notes (private)</summary><pre>${escapeHtml(draft)}</pre></details>` : ''}
   </section>`;
 }
 

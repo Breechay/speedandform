@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { forgeSection } from '../private/record.js';
+import { forgeSection, forgeEvidenceSummary } from '../private/record.js';
 
 const receipt = {
   received_at: '2026-10-08T10:00:00Z',
@@ -53,5 +53,30 @@ assert.equal(forgeSection({ forgeState: { }, forgeReceipts: [] }), '', 'an empty
 // Views not applied yet: the receipt still renders from its own payload.
 const plain = forgeSection({ forgeReceipts: [receipt], forgeMovements: [], forgeState: null });
 assert.match(plain, /Cable Rear-Delt Fly<\/strong> \u2014 25 lb \u00d7 12 reps/, 'with no views, the original evidence rendering is unchanged');
+
+
+// ── The private evidence summary ─────────────────────────────────────────────────────────
+const prior = { ...receipt, receipt_id: 'r0', received_at: '2026-10-01T10:00:00Z', native_payload: { ...receipt.native_payload, completedAt: '2026-10-01T10:00:00Z' } };
+const summaryRecord = {
+  forgeReceipts: [{ ...receipt, receipt_id: 'r1' }, prior],
+  forgeMovements: [
+    { receipt_id: 'r1', completed_at: '2026-10-08T10:00:00Z', movement_id: 'sq', movement_name: 'Bulgarian Split Squat', performed_sets: 2,
+      performed: [{ weight: 30, reps: 7 }, { weight: 30, reps: 6 }], prescribed_sets: 3, rep_low: 6, rep_high: 8, side_word: 'leg' },
+    { receipt_id: 'r1', completed_at: '2026-10-08T10:00:00Z', movement_id: 'hold', movement_name: 'Suitcase Hold', performed_sets: 1,
+      performed: [{ seconds: 30 }], prescribed_sets: 2, target_seconds: 20, target_seconds_high: 30, side_word: 'side' },
+    { receipt_id: 'r1', completed_at: '2026-10-08T10:00:00Z', movement_id: 'new', movement_name: 'New Move', performed_sets: 1, performed: [{ weight: 10, reps: 12 }], prescribed_sets: 2, rep_low: 12, rep_high: 12 },
+    { receipt_id: 'r0', completed_at: '2026-10-01T10:00:00Z', movement_id: 'sq', movement_name: 'Bulgarian Split Squat', performed_sets: 2, performed: [{ weight: 25, reps: 7 }, { weight: 25, reps: 6 }], prescribed_sets: 3, rep_low: 6, rep_high: 8, side_word: 'leg' },
+    { receipt_id: 'r0', completed_at: '2026-10-01T10:00:00Z', movement_id: 'hold', movement_name: 'Suitcase Hold', performed_sets: 1, performed: [{ seconds: 20 }], prescribed_sets: 2, target_seconds: 20 }
+  ]
+};
+const summary = forgeEvidenceSummary(summaryRecord);
+assert.match(summary, /^DRAFT — private evidence summary\. Not published\./, 'it says it is a private draft');
+assert.match(summary, /Bulgarian Split Squat: prescribed 3 × 6–8 \/ leg; did 2 \(30 lb × 7, 30 lb × 6\) — \+5 lb vs Oct 1/, 'load progression against the previous time');
+assert.match(summary, /Suitcase Hold: prescribed 2 × 20–30 sec \/ side; did 1 \(30 sec\) — \+10 sec vs Oct 1/, 'a hold progression in seconds');
+assert.match(summary, /New Move: .*first time recorded/, 'a new movement says so rather than comparing to nothing');
+assert.equal(forgeEvidenceSummary({ forgeReceipts: [receipt], forgeMovements: [] }), '', 'no summary without prescription-linked movements');
+const page = forgeSection({ ...summaryRecord, sessions: [], forgeState: null });
+assert.match(page, /<details class="forge-draft"><summary>Draft for study notes \(private\)<\/summary><pre>DRAFT/, 'offered as selectable private text');
+assert.ok(!/<script|onclick|href=/.test(page), 'it publishes nothing and wires nothing');
 
 console.log('PASS: Console shows performed Forge sets per session, escapes feedback, ignores legacy summary receipts.');

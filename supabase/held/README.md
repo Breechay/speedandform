@@ -22,3 +22,10 @@ That has happened once already.
   (from FORM-iOS); it refuses to run if either is missing. Promote only with Brice's
   approval, after diffing the live receipt trigger and RPC against
   `tests/fixtures/forge-native-receipts-contract.sql`.
+- `20261007130000_revise_strength_session.sql` — `revise_strength_session`: a coach
+  appends an immutable strength version with its structured exercises (coach-only,
+  reason required, atomic, `details` generated from the stored rows). The strength
+  counterpart of `revise_session`, which writes running shape and would mis-shape a
+  strength session. Authored and tested (`tests/revise-strength-session-db.mjs`),
+  applied nowhere. Depends on the structured-strength migration. Without it the
+  Console strength editor cannot save.

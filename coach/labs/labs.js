@@ -21,7 +21,7 @@
 // Nothing in this file writes a style attribute into a template string.
 
 import { authErrorMessage, getAccessContext, rememberWorkspace } from '/private/auth.js';
-import { addAthleteMeasurement, addObservation, addPrivateNote, createRead, fileForAthlete, loadAthleteRecord, loadAttentionFor, loadCoachBench, loadConsolePreferences, reviseSession, rungFor, saveConsolePreferences, savePortrait, setExceptionStatus, setSessionAsk } from '/private/data.js?v=3';
+import { addAthleteMeasurement, addObservation, addPrivateNote, createRead, fileForAthlete, loadAthleteRecord, loadAttentionFor, loadCoachBench, loadConsolePreferences, reviseSession, reviseStrengthSession, rungFor, saveConsolePreferences, savePortrait, setExceptionStatus, setSessionAsk } from '/private/data.js?v=4';
 import { escapeHtml } from '/private/record.js';
 import { authoredMiles, dayLabel, initials, rangeLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
 
@@ -2421,10 +2421,83 @@ function askField(session) {
     the same decision, so this one is made out loud.</p></div>`;
 }
 
+// A strength session is revised exercise by exercise: sets, reps or seconds, and the authored
+// instruction. Movements and order stay as they are; swapping a movement is a re-authoring.
+function openReviseStrength(session) {
+  const version = session.currentVersion;
+  pending = { kind: 'revise-strength', sessionId: session.id };
+  document.getElementById('shKind').textContent = 'REVISE';
+  document.getElementById('shTitle').textContent = titleOf(session);
+  document.getElementById('shSub').textContent = [
+    session.scheduled_on ? dayLabel(session.scheduled_on) : '', `v${version?.version_number ?? 1}`].filter(Boolean).join(' · ');
+  document.getElementById('shNote').textContent = 'Appends a version. Work he has already opened stays as it was.';
+  const rowsHtml = (version.exercises || []).map((e, i) => {
+    const timed = e.target_seconds != null;
+    const side = e.side_word ? ` / ${e.side_word}` : '';
+    return `<div class="f" data-rvx="${i}">
+      <label>${escapeHtml(e.movement_name)}${escapeHtml(side)}</label>
+      <div style="display:flex;gap:8px;align-items:center">
+        <input id="rvx-${i}-sets" type="number" min="1" max="20" value="${escapeHtml(e.sets)}" aria-label="sets" style="width:4.5em"> <span>\u00d7</span>
+        <input id="rvx-${i}-lo" type="number" min="1" value="${escapeHtml(timed ? e.target_seconds : e.rep_low)}" aria-label="${timed ? 'seconds' : 'reps'} low" style="width:4.5em">
+        <span>\u2013</span>
+        <input id="rvx-${i}-hi" type="number" min="1" value="${escapeHtml((timed ? e.target_seconds_high : e.rep_high) ?? '')}" aria-label="${timed ? 'seconds' : 'reps'} high" style="width:4.5em">
+        <span>${timed ? 'sec' : escapeHtml(e.rep_unit || 'reps')}</span>
+      </div>
+      <textarea id="rvx-${i}-note" rows="2" placeholder="Instruction (as the athlete reads it)">${escapeHtml(e.instruction || '')}</textarea>
+    </div>`;
+  }).join('');
+  document.getElementById('shBody').innerHTML = `
+    <div class="f"><label for="rvTitle">TITLE</label>
+      <input id="rvTitle" type="text" value="${escapeHtml(version?.title || '')}"></div>
+    ${rowsHtml}
+    <div class="f"><label for="rvReason">WHY</label>
+      <input id="rvReason" type="text" placeholder="Still legible in six weeks.">
+      <p class="hint">Required. A revision without a reason is a mystery later.</p></div>
+    <p class="hint err" id="rvError"></p>`;
+  sheet.classList.add('on'); shScrim.classList.add('on'); sheet.setAttribute('aria-hidden', 'false');
+  document.getElementById('rvTitle').focus();
+}
+
+async function keepStrengthRevision() {
+  const session = (record?.sessions || []).find((item) => item.id === pending.sessionId);
+  const version = session?.currentVersion;
+  const error = document.getElementById('rvError');
+  const title = document.getElementById('rvTitle').value.trim();
+  const reason = document.getElementById('rvReason').value.trim();
+  if (!title) { error.textContent = 'A session needs a title.'; return; }
+  if (!reason) { error.textContent = 'A revision needs a reason.'; return; }
+  const exercises = [];
+  for (const [i, e] of (version.exercises || []).entries()) {
+    const num = (id) => { const v = document.getElementById(id).value.trim(); return v === '' ? null : Number(v); };
+    const sets = num(`rvx-${i}-sets`), lo = num(`rvx-${i}-lo`), hi = num(`rvx-${i}-hi`) ?? lo;
+    if (!(sets >= 1) || !(lo >= 1) || !(hi >= lo)) { error.textContent = `${e.movement_name}: check the sets and the range.`; return; }
+    const timed = e.target_seconds != null;
+    exercises.push({
+      movementId: e.movement_id, movementName: e.movement_name, sets,
+      ...(timed ? { targetSeconds: lo, targetSecondsHigh: hi !== lo ? hi : null } : { repLow: lo, repHigh: hi, repUnit: e.rep_unit || null }),
+      laterality: e.laterality, sideWord: e.side_word || null,
+      restSeconds: e.rest_seconds ?? null, cue: e.cue ?? null,
+      instruction: document.getElementById(`rvx-${i}-note`).value.trim() || null,
+      substitutions: e.substitutions ?? null
+    });
+  }
+  const button = document.getElementById('shSave');
+  button.disabled = true; error.textContent = '';
+  try {
+    await reviseStrengthSession(pending.sessionId, { title, changeReason: reason, exercises });
+    closeSheet();
+    await selectAthlete(record.athlete.slug, { silent: true });
+    showSession(session.id);
+  } catch (failure) {
+    error.textContent = failure.message;
+  } finally { button.disabled = false; }
+}
+
 function openRevise(sessionId) {
   const session = (record?.sessions || []).find((item) => item.id === sessionId);
   if (!session || !revisable(session).can) return;
   const version = session.currentVersion;
+  if (session.currentVersion?.shape === 'strength' && (session.currentVersion.exercises || []).length) { openReviseStrength(session); return; }
   const dose = soleWorkDistance(version);
   pending = { kind: 'revise', sessionId };
   document.getElementById('shKind').textContent = 'REVISE';
@@ -2663,6 +2736,7 @@ async function keepRead() {
   if (pending?.kind === 'private-note') { await keepPrivateNote(); return; }
   if (pending?.kind === 'observation') { await keepObservation(); return; }
   if (pending?.kind === 'revise') { await keepRevision(); return; }
+  if (pending?.kind === 'revise-strength') { await keepStrengthRevision(); return; }
   if (pending?.kind === 'file') { await keepFiling(); return; }
   if (!pending) { closeSheet(); return; }
   const error = document.getElementById('readError');
