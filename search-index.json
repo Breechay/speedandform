@@ -1272,5 +1272,21 @@
     ],
     "category": "house",
     "type": "Legal"
+  },
+  {
+    "url": "/the-work",
+    "title": "The Work",
+    "description": "Sessions shaping the practice now, and the coaching philosophy behind repeatable work.",
+    "keywords": [
+      "work",
+      "practice",
+      "coaching philosophy",
+      "consistency",
+      "threshold",
+      "long run",
+      "structure"
+    ],
+    "category": "training",
+    "type": "Essay"
   }
 ]
