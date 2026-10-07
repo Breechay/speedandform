@@ -156,7 +156,7 @@ Coach Console should read Forge receipts as strength evidence. Do not mix Forge 
 
 **Authority:** the FORM Athlete System's live current immutable version of each session is canonical. `program.json` is a version-controlled projection of it, not an independent authority. When the live prescription is revised (it was, for the home/dumbbell-equipment adaptation from 2026-10-08), bring `program.json` forward with `node scripts/reconcile-program-from-live.mjs <export.json> --write`; never push an older `program.json` over live. The bundled Forge program is historical/offline-fallback evidence.
 
-Adrian's strength sessions used to exist on the server only as prose (`planned_session_versions.details`, format `Movement — sets × target · authored instruction`). `planned_session_exercises` (held migration `supabase/held/20261006190000_structured_strength_exercises.sql`) gives each immutable session **version** an ordered list of typed exercises, delivered through the same `athlete_plan_feed` as running components.
+Adrian's strength sessions used to exist on the server only as prose (`planned_session_versions.details`, format `Movement — sets × target · authored instruction`). `planned_session_exercises` (migration `supabase/migrations/20261007013000_structured_strength_exercises.sql`) gives each immutable session **version** an ordered list of typed exercises, delivered through the same `athlete_plan_feed` as running components.
 
 - Prescription and progress stay separate: nothing here records where Adrian is. Current week/session comes from assignment dates plus real app state and evidence.
 - Exercise rows are append-only. A revision writes a new version with its own exercises; a completed workout can always point at the version it was performed against.
@@ -166,7 +166,7 @@ Adrian's strength sessions used to exist on the server only as prose (`planned_s
 - Stable `movement_id`s live in `scripts/structured-strength-spec.mjs` until the server owns them (Step 2). Where Forge already has the same movement its id is reused; plausibly distinct variants get their own.
 - The migration's Adrian block is a frozen snapshot generated from `program.json` (`node scripts/generate-structured-strength-migration.mjs`; `--check` to verify before applying). After it is applied, never regenerate it: later revisions are new versions, not a rewritten migration.
 - Preflight before applying: export the live current versions (`scripts/structured-strength-live-export.sql`, read-only) and run `node scripts/preflight-structured-strength.mjs <export.json>`. It must report 58/58.
-- Status: authored and tested in the repo. **Not applied to any hosted database.** Before applying, diff the live `athlete_plan_feed` / `athlete_plan_feed_impl` against the repository chain (the production ledger has migrations that are in no git branch).
+- Status: promoted into `supabase/migrations/` after the live `athlete_plan_feed` / `athlete_plan_feed_impl` diff. **Not yet applied to any hosted database.**
 
 ## Rules for future agents
 
