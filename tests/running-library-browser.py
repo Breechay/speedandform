@@ -10,7 +10,7 @@ artifacts.mkdir(parents=True,exist_ok=True)
 class Handler(http.server.SimpleHTTPRequestHandler):
     def translate_path(self,path):
         result=super().translate_path(path)
-        if not Path(result).exists() and Path(result+'.html').exists(): return result+'.html'
+        if Path(result+'.html').is_file(): return result+'.html'
         return result
     def log_message(self,*args): pass
 server=http.server.ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Handler,directory=str(root)))
