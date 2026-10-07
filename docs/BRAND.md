@@ -377,3 +377,15 @@ The owner asked for `/coaching/miami/` to be ready as its own destination while 
 The six-, eight- and sixteen-week half-marathon pages and faster-half guide reuse the established paper-room shell. This extends that scoped 450-heading treatment to these four resources, not the whole older Library. Every plan has its own starting point; the sixteen-week path has a transition gate and may take longer.
 
 Public share cards now have a reviewed file allowlist in `data/public-share.json`. `scripts/render-public-share.cjs` renders the local-font cards; `scripts/build-public-share.cjs` applies metadata after page generators. The eight Library resource/tool cards retain their separate half-marathon generator. Preserve dedicated study/product art outside this refresh and never sweep private or noindex rooms into the allowlist.
+
+## October 7 · Reading room pass after the lesson rebuild
+
+**Status.** Brice asked for a house pass once the running-lesson rebuild (PR #251) was merged. Built on `work/library-pass-20261007`. Owner review pending. The rebuild already carried the three page kinds, the 450 display weight and the bone paper; this pass closes what was left.
+
+- **House edges across the reading room.** Lessons, routines, guides, the Library index and Search now sit on the home's content edges (1280px with the house gutter), so the emblem is in the same place on every page. Reading measure is unchanged.
+- **House header.** Header links are mono, as on the home. On phones the header is one row, emblem left, Library and Contact right. Plans and Run with us return from 768px up.
+- **Empty media slots take no room.** Each move in a routine has a slot for a real photograph or film. Until one exists it is hidden, instead of leaving a blank ruled band between moves. The slot stays in the markup; add the media and it appears.
+- **Two words.** “Rubbish” became “waste” (American spelling). One “outings” in the long-run lesson became “runs”.
+
+**Still open.** The first Shelf needs Brice's own list of links he sends. Real photographs or films for the routine moves. Phone and Safari use.
+

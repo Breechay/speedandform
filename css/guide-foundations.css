@@ -1,7 +1,7 @@
 /* Foundation guides opt into the existing cream material. No global or app tokens. */
 [data-guide] *,[data-guide] *::before,[data-guide] *::after{box-sizing:border-box}
 [data-guide] body{margin:0;padding:0}
-.guide-wrap{width:min(1120px,calc(100% - 96px));margin-inline:auto}
+.guide-wrap{width:min(1280px,calc(100% - 2 * clamp(24px,5.5vw,88px)));margin-inline:auto}
 .guide-header{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:100px}
 .guide-brand{font:800 28px/1 var(--reading-sans);letter-spacing:-.065em;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
 .guide-brand span{color:#657c18}
