@@ -74,9 +74,10 @@
   if(!toc)return;toc.replaceChildren();
   for(const [title,description,match] of tocOrder){
    const items=entries.filter(e=>match(e)&&(!kind||e.kind===kind));if(!items.length)continue;
-   const section=node('section',undefined,'discovery-toc-section');
+   const section=node('section',undefined,'discovery-toc-section');section.id='topic-'+normalize(title).replace(/ /g,'-');
    const head=node('div',undefined,'discovery-toc-head');
-   head.append(node('p',String(items.length).padStart(2,'0'),'discovery-toc-count'),node('h3',title),node('p',description));
+   const heading=node('h3'),link=node('a',title,'discovery-heading-link');link.href='#'+section.id;heading.append(link);
+   head.append(node('p',String(items.length).padStart(2,'0'),'discovery-toc-count'),heading,node('p',description));
    const lists=node('div',undefined,'discovery-toc-family');
    const family=families[items[0].category];
    const sets=family?family.groups.map(g=>({title:g.title,items:items.filter(e=>g.urls.includes(e.url))})):[{items}];

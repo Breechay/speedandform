@@ -43,6 +43,7 @@ assert.equal(lessons.length,9);
 for(const g of lessons){const h=fs.readFileSync(g.file,'utf8');assert.equal((h.match(/class="lesson-picture"/g)||[]).length,1,g.file);for(const id of ['this-week','mistakes','fits','check-question'])assert.ok(h.includes('id="'+id+'"'),g.file+' missing '+id);}
 const search=fs.readFileSync('search.html','utf8'),library=fs.readFileSync('library.html','utf8');
 for(const e of index){assert.ok(search.includes('href="'+e.url+'"'),e.url+' no-JS index');assert.ok(library.includes('href="'+e.url+'"'),e.url+' library');}
+assert.ok(search.includes('id="topic-strength-movement"')&&search.includes('href="#topic-strength-movement"'));
 for(const kind of ['Lesson','Routine','Shelf'])assert.ok(search.includes('data-library-kind="'+kind+'"'));
 assert.ok(search.indexOf('/js/library-families.js')<search.indexOf('/js/discovery-search.js'));
 assert.ok(index.some(e=>e.kind==='Routine')&&index.some(e=>e.kind==='Shelf'));

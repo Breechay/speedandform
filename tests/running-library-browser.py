@@ -77,7 +77,7 @@ try:
   assert page.locator('#metro-start').is_enabled()
   context=browser.new_context(java_script_enabled=False,viewport={'width':390,'height':844})
   static=context.new_page();static.goto(base+'/search')
-  assert static.locator('#discovery-toc a').count()==86
+  assert static.locator('#discovery-toc .discovery-toc-link').count()==86
   static.goto(base+'/anti-rotation')
   assert static.locator('.movement-exercise').count()==4
   assert not errors,errors

@@ -3,7 +3,7 @@
 const fs=require('node:fs'),path=require('node:path');
 const {entries,GROUPS}=require('./discovery-catalog.cjs');
 const lessons=require('./running-lessons-content.cjs');
-const {groups}=require('../js/discovery-search.js');
+const {groups,normalize}=require('../js/discovery-search.js');
 const families=require('../js/library-families.js');
 const share=require('./share-metadata.cjs');
 const root=path.resolve(__dirname,'..'),V='20261006-lessons';
@@ -20,7 +20,8 @@ function toc(){return groups.map(([title,description,match])=>{
  const family=families[items[0].category];
  const sets=family?family.groups.map(g=>({title:g.title,items:items.filter(e=>g.urls.includes(e.url))})):[{items}];
  const lists=sets.map(set=>`${set.title?`<h4 class="discovery-subgroup">${esc(set.title)}</h4>`:''}<ul class="discovery-toc-list">${set.items.map(e=>`<li><a class="discovery-toc-link" href="${esc(e.url)}"><span class="discovery-toc-title">${esc(e.title)}</span><small>${esc(label(e))}</small></a></li>`).join('')}</ul>`).join('');
- return `<section class="discovery-toc-section"><div class="discovery-toc-head"><p class="discovery-toc-count">${String(items.length).padStart(2,'0')}</p><h3>${esc(title)}</h3><p>${esc(description)}</p></div><div class="discovery-toc-family">${lists}</div></section>`;
+ const id='topic-'+normalize(title).replace(/ /g,'-');
+ return `<section class="discovery-toc-section" id="${id}"><div class="discovery-toc-head"><p class="discovery-toc-count">${String(items.length).padStart(2,'0')}</p><h3><a class="discovery-heading-link" href="#${id}">${esc(title)}</a></h3><p>${esc(description)}</p></div><div class="discovery-toc-family">${lists}</div></section>`;
  }).join('');}
 function shell(file,body,schema){
  let head=read(file).match(/<head\b[^>]*>([\s\S]*?)<\/head>/i)[1];
@@ -42,7 +43,7 @@ function build(){
  }
  const index=entries.map(({route,file,...e})=>e);write('search-index.json',JSON.stringify(index,null,2)+'\n');
  const topics=GROUPS.map(([id,title])=>`<a href="#${id}">${esc(title)}</a>`).join('');
- const sections=GROUPS.map(([id,title,description])=>`<section class="discovery-section" id="${id}" aria-labelledby="heading-${id}"><div><h2 id="heading-${id}">${esc(title)}</h2><p>${esc(description)}</p></div><ul class="discovery-rows">${entries.filter(e=>e.category===id).map(row).join('')}</ul></section>`).join('');
+ const sections=GROUPS.map(([id,title,description])=>`<section class="discovery-section" id="${id}" aria-labelledby="heading-${id}"><div><h2 id="heading-${id}"><a class="discovery-heading-link" href="#${id}">${esc(title)}</a></h2><p>${esc(description)}</p></div><ul class="discovery-rows">${entries.filter(e=>e.category===id).map(row).join('')}</ul></section>`).join('');
  const library=`<section class="discovery-hero"><p class="discovery-eyebrow">The Library</p><h1>Understand your running.</h1><p class="discovery-dek">Plain answers you can use, remember and share.</p>${form()}</section>${formats}${basics()}<nav class="discovery-topics" aria-label="Library topics">${topics}</nav>${sections}<section class="discovery-help"><h2>Put it into practice.</h2><p>The Library explains the ideas. Coaching connects them to your running, goal and week.</p><a href="/#begin">Work with Brice →</a><p class="discovery-question"><a href="/ask/">Ask a training question →</a></p></section><details class="discovery-archive"><summary>Earlier training material</summary><p>These pages are retained as a record. They are not the current group schedule or a new training assignment.</p><a href="/plan-spring-2026">Spring 2026 training cycle</a><a href="/races/key-biscayne-2026">Key Biscayne 2026 race notes</a></details>`;
  const schema={'@context':'https://schema.org','@type':'CollectionPage','@id':share.ORIGIN+'/library#page',url:share.ORIGIN+'/library',name:'Speed & Form running library',description:'Plain running lessons, guides, plans and training tools.',mainEntity:{'@type':'ItemList',itemListElement:entries.map((e,i)=>({'@type':'ListItem',position:i+1,name:e.title,url:share.ORIGIN+e.url}))}};
  write('library.html',share.transform(shell('library.html',library,schema),'library.html',root));
