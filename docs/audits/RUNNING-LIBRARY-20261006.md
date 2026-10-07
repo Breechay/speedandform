@@ -26,6 +26,8 @@ Search matches whole normalized words, relevant question coverage and authored q
 | Build and boundaries | Full Netlify command passes. Pace math, all existing half-marathon data/measurement checks, cream reading, public previews and house hard checks pass. Build-only changes to unrelated pages were excluded from this commit. |
 | Browser and print | The PR workflow checks 390/768/1440 widths, actual 450 type/bone palette, routine anchors, search filters/history/escaping, print disclosure restoration, the metronome and no-JS access. Its screenshots and receipt are saved as CI artifacts. Record the actual result before claiming browser acceptance. |
 
+Browser acceptance passed in [Running library run 37557302192](https://github.com/Breechay/speedandform/actions/runs/37557302192) at source head `5e79e7b`: twenty-one route/width checks, no horizontal overflow, actual house type/color, search behavior, direct steps, white-paper print and no-JS access. Screenshots were inspected. [PR #251](https://github.com/Breechay/speedandform/pull/251) owns the combined review and final release status. A date-sensitive existing privacy fixture was fixed by freezing its synthetic clock; production measurement code was not changed.
+
 Managed local browser preview was unavailable; no unapproved browser runtime or local preview server was installed. Safari and physical-device review remain separate from automated Chromium acceptance.
 
 ## Editorial handoff

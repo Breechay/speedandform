@@ -52,6 +52,10 @@ try:
   page.locator('#discovery-query').press('Escape')
   page.wait_for_function("document.querySelector('#discovery-query').value===''")
   assert 'q=' not in page.url
+  page.locator('#discovery-query').fill('unicorn running pajamas')
+  page.get_by_role('button',name='Browse the complete index').click()
+  assert 'kind=' not in page.url and 'q=' not in page.url
+  assert page.locator('#discovery-toc .discovery-toc-link').count()==86
   page.goto(base+'/anti-rotation#exercise-2')
   page.wait_for_function("Math.abs(document.getElementById('exercise-2').getBoundingClientRect().top)<80")
   assert page.locator('[data-guide-print]').is_visible()
