@@ -132,3 +132,19 @@ Verification: full Netlify build chain, exact schedule totals/rest/race placemen
 Google readback: Windsor reports hostname `speedandform.com`, property 371147428, stream 5092063526 and matching measurement ID `G-HKG3MXM668`. October 6 report includes page views and coaching_intake_view/coaching_step_view. It does not yet show hm_resource_view or accepted-inquiry events. Enhanced Measurement settings are not exposed by this reporting connector. Do not equate configuration, form viewing or synthetic local events with accepted lead receipt. No test inquiry was submitted and no ads or budgets were changed.
 
 Publication: prepared on `work/run-development-library-20261006` from `9e4d1e1`; merge/deployment receipt will be recorded after publication. Next: verify production routes and card URLs, obtain the new resource collector receipt, then owner aesthetic/coaching pass and bounded ad-test decision. October 9 remains the readiness target.
+
+## October 6 · 20:24 EDT verification continuation
+
+Current release-control readback after the standalone coaching/library publication:
+
+- Remote `main` was re-read at `e8c19b549b229e8375d5f048847e75c7502cd447` after PRs #238–#246 were checked. PR #242 remains open for Tinius strength delivery and is outside this launch pass.
+- A live narrow-phone acceptance pass at approximately 390 px checked the twelve-, six-, eight- and sixteen-week half-marathon resources, the faster-half guide and `/coaching/miami/`. All six passed for overflow, clipping, label readability, duplicate dividers, navigation and current-house consistency. This is browser evidence, not a physical iPhone or on-device Safari check.
+- The twelve-week plan was opened in production and Week 2 was deliberately selected. The page and week navigation worked without visible errors. Google Analytics reporting still does not show the new half-marathon event family after that interaction. The connected Windsor reporting plan cannot force an hourly GA refresh, so emitted browser behavior is not yet Google-side receipt evidence.
+- The accepted coaching inquiry event is `generate_lead`. Source emits it only after the intake receives an accepted database receipt. Current GA reporting shows intermediate coaching events but no `generate_lead`; no test inquiry was submitted in this pass.
+- Enhanced Measurement remains an account-settings check. The connected reporting surface does not expose that setting, and no authenticated Google Analytics browser session was available for this pass. Do not mark it verified from event reporting alone.
+- Existing Console state was read before writing. The stale remaining-plan task is now done; the October 6–9 sprint stays active only for measurement, Enhanced Measurement, physical-device acceptance and the bounded ad decision.
+
+Prepared advertising envelope, not activation authorization: use a distinct Google Ads Search test to the complete free twelve-week plan. Proposed maximum is **$10/day and $60 total**. Review at **$30 spend**. Hard stop at **$60 or seven days**, whichever comes first. Stop early at **$30 with zero deliberate week opens**, or immediately for any measurement or destination fault. Primary outcome remains landing sessions with a deliberate week open; accepted inquiries and purchases remain separate outcomes. No campaign, budget or spend was changed in this pass.
+
+Next action remains measurement first: obtain Google-side receipt for the half-marathon events and `generate_lead`, inspect Enhanced Measurement in the account, then complete physical iPhone/on-device Safari acceptance. Only after those gates should the prepared free-plan test be eligible for explicit activation approval.
+
