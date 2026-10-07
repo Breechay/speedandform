@@ -63,6 +63,7 @@ try:
   page.evaluate("dispatchEvent(new Event('beforeprint'))")
   assert page.locator('details:not([open])').count()==0
   page.emulate_media(media='print')
+  assert page.locator('body').evaluate('el => getComputedStyle(el).backgroundColor')=='rgb(255, 255, 255)'
   assert not page.locator('.movement-media').first.is_visible()
   assert not page.locator('.routine-print').is_visible()
   page.screenshot(path=str(artifacts/'anti-rotation-print.png'),full_page=True)

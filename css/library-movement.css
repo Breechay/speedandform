@@ -41,3 +41,4 @@
 @media print{[data-running-lesson] body{background:white;color:#161916}.routine-print,.movement-media{display:none!important}.routine-facts{grid-template-columns:repeat(2,minmax(0,1fr))}.movement-exercise{break-inside:avoid;display:block;padding:20px 0}.movement-exercise header{margin-bottom:14px}.guide-body p{font-size:11pt}.guide-section h2{break-after:avoid}.guide-hero h1{font-size:30pt}.section-link{text-decoration:none}.guide-detail summary{padding-right:0}}
 
 .standalone-library-family{width:min(1120px,calc(100% - 48px));margin:40px auto;color:var(--ink)}
+@media print{html[data-running-lesson] body{background:white;color:#161916}html[data-running-lesson] .guide-hero h1{font-size:30pt}}
