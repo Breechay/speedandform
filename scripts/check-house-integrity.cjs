@@ -258,8 +258,14 @@ for (const page of publicPages.values()) {
 
     if (url.hash && routeToFile(target)) {
       const targetHtml = read(routeToFile(target));
-      const id = decodeURIComponent(url.hash.slice(1)).replace(/[.*+?^$()|[\]\\]/g, '\\$&');
-      if (id && !new RegExp('(?:id|name)=["\\']'+id+'["\\']','i').test(targetHtml)) {
+      const id = decodeURIComponent(url.hash.slice(1));
+      const fragmentFound = id && [
+        'id="' + id + '"',
+        "id='" + id + "'",
+        'name="' + id + '"',
+        "name='" + id + "'"
+      ].some(token => targetHtml.includes(token));
+      if (id && !fragmentFound) {
         add('warning','link.fragment',page.file,href+' points to no static id/name.');
       }
     }
