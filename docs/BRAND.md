@@ -300,6 +300,7 @@ The homepage ends on the cloth: the image above the footer line, the emblem's le
 - Coach magic-link requests do not create new user identities. Athlete invitation flows may still create the invited athlete account.
 - A valid Supabase session is not sufficient for the owner-only Operating Console. The callback verifies protected Console ownership before redirecting there.
 - No bend, cloth, photography or lit headline is used in these transactional paper surfaces.
+- Native FORM sign-in uses the same room. `coaching-email-signin` sends as **Speed & Form** from the verified access sender, and `/auth/app-signin/` is the scanner-safe paper handoff before the one-time provider URL is consumed. It may say **Open FORM** because the destination is the native product; it must not restore the old dark/lime FORM email treatment.
 
 ## October 6 · Doors off the homepage
 
