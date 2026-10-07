@@ -10,15 +10,41 @@
  }
  if(typeof module==='object'&&module.exports)module.exports={normalize,near,rank};
  if(!root.document)return;
- const d=root.document,input=d.getElementById('discovery-query'),form=d.getElementById('discovery-search'),out=d.getElementById('discovery-output'),status=d.getElementById('discovery-status'),clear=d.getElementById('discovery-clear');if(!input||!out)return;
+ const d=root.document,input=d.getElementById('discovery-query'),form=d.getElementById('discovery-search'),out=d.getElementById('discovery-output'),status=d.getElementById('discovery-status'),clear=d.getElementById('discovery-clear'),browse=d.getElementById('discovery-browse'),toc=d.getElementById('discovery-toc');if(!input||!out)return;
  let entries=[],state='loading',timer,controller;
  function node(tag,text,cls){const e=d.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;}
  function setURL(push=false){const u=new URL(root.location);const q=input.value.trim().slice(0,180);if(q)u.searchParams.set('q',q);else u.searchParams.delete('q');if(u.href!==root.location.href)root.history[push?'pushState':'replaceState']({},'',u);}
  function action(text,fn){const b=node('button',text);b.type='button';b.addEventListener('click',fn);return b;}
- function render(){const q=input.value.trim().slice(0,180);clear.hidden=!q;out.replaceChildren();
+ const tocOrder=[
+  ['start','Start here','Starting, resetting and choosing the right next step.'],
+  ['coaching','Work with Brice','Coaching, analysis and other ways to work together.'],
+  ['half-marathon','Half marathon','Plans, pacing, readiness and race development.'],
+  ['training','Running & training','Effort, sessions, weeks, physiology and progression.'],
+  ['movement','Strength & movement','Strength, mechanics, mobility and running form.'],
+  ['race','Racing & fueling','Race execution, fueling, shoes and practical tools.'],
+  ['recovery','Recovery & return','Fatigue, interruptions, load and coming back.'],
+  ['practice','Practice, studies & writing','Plans, studies, Field Notes, tools and the public practice.']
+ ];
+ function renderBrowse(){
+  if(!toc)return;toc.replaceChildren();
+  for(const [category,title,description] of tocOrder){
+   const items=entries.filter(e=>e.category===category);if(!items.length)continue;
+   const section=node('section',undefined,'discovery-toc-section');
+   const head=node('div',undefined,'discovery-toc-head');
+   head.append(node('p',String(items.length).padStart(2,'0'),'discovery-toc-count'),node('h3',title),node('p',description));
+   const list=node('ul',undefined,'discovery-toc-list');
+   for(const e of items){
+    const li=node('li'),a=node('a',undefined,'discovery-toc-link');a.href=e.url;
+    a.append(node('span',e.title,'discovery-toc-title'),node('small',e.type||'Guide'));
+    li.append(a);list.append(li);
+   }
+   section.append(head,list);toc.append(section);
+  }
+ }
+ function render(){const q=input.value.trim().slice(0,180);clear.hidden=!q;out.replaceChildren();if(browse)browse.hidden=!!q;
   if(state==='loading'){status.textContent='Loading the Library…';return;}
   if(state==='error'){status.textContent='Search is unavailable right now.';const box=node('div',undefined,'discovery-empty');box.append(node('h2','The Library is still open.'),node('p','The search list could not load. Try again, or browse the topics instead.'),action('Try again',load));const a=node('a','Browse the Library');a.href='/library';box.append(a);out.append(box);return;}
-  const results=q?rank(entries,q):entries.filter(e=>e.category==='start');status.textContent=q?`${results.length} ${results.length===1?'result':'results'} for “${q}”`:'A few places to start';
+  if(!q){status.textContent=`Search ${entries.length} public pages, or browse the complete index below.`;renderBrowse();return;}const results=rank(entries,q);status.textContent=`${results.length} ${results.length===1?'result':'results'} for “${q}”`;
   if(!results.length){const box=node('div',undefined,'discovery-empty');box.append(node('h2','Try the idea in a few words.'),node('p','Search for a topic such as “easy running,” “half marathon,” or “strength.” You can also browse the full Library.'));['easy running','half marathon','strength','HYROX'].forEach(s=>box.append(action(s,()=>{input.value=s;setURL(true);render();input.focus();})));const a=node('a','Browse every topic');a.href='/library';box.append(a);out.append(box);return;}
   const list=node('ul',undefined,'discovery-rows');for(const e of results){const li=node('li'),a=node('a',undefined,'discovery-link'),body=node('span');a.href=e.url;body.append(node('span',e.type||'Guide','discovery-result-type'),node('strong',e.title),node('small',e.description));const arrow=node('span','→','discovery-arrow');arrow.setAttribute('aria-hidden','true');a.append(body,arrow);li.append(a);list.append(li);}out.append(list);
  }
