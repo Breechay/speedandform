@@ -1,0 +1,41 @@
+name: Running library
+on:
+  pull_request:
+    paths: ['**/*.html', 'css/running-lessons.css', 'css/library-movement.css', 'css/discovery.css', 'js/discovery-search.js', 'js/library-families.js', 'js/guide-tools.js', 'scripts/*lesson*.cjs', 'scripts/*discovery*.cjs', 'scripts/build-guides.cjs', 'scripts/library-family.cjs', 'scripts/training-guide-content.cjs', 'tests/running-library*', '.github/workflows/running-library.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Current sources and regeneration
+        run: |
+          node tests/running-library.cjs
+          node tests/public-share.cjs
+          node scripts/check-house-integrity.cjs
+          node scripts/build-running-lessons.cjs
+          node scripts/build-discovery.cjs
+          git diff --exit-code
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Browser runtime
+        run: |
+          python -m pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium
+      - name: Browser and print acceptance
+        env:
+          RUNNING_LIBRARY_ARTIFACTS: /tmp/running-library
+        run: python tests/running-library-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: running-library
+          path: /tmp/running-library/
+          retention-days: 14

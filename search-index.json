@@ -13,7 +13,8 @@
       "remote"
     ],
     "category": "coaching",
-    "type": "Service"
+    "type": "Service",
+    "questions": []
   },
   {
     "url": "/coaching/strength/",
@@ -28,7 +29,8 @@
       "miami"
     ],
     "category": "coaching",
-    "type": "Service"
+    "type": "Service",
+    "questions": []
   },
   {
     "url": "/analysis/",
@@ -43,7 +45,8 @@
       "review"
     ],
     "category": "coaching",
-    "type": "Service"
+    "type": "Service",
+    "questions": []
   },
   {
     "url": "/work/photo-video/",
@@ -59,7 +62,8 @@
       "miami"
     ],
     "category": "coaching",
-    "type": "Service"
+    "type": "Service",
+    "questions": []
   },
   {
     "url": "/work/ai-setup/",
@@ -73,7 +77,8 @@
       "operations"
     ],
     "category": "coaching",
-    "type": "Service"
+    "type": "Service",
+    "questions": []
   },
   {
     "url": "/work/",
@@ -86,7 +91,8 @@
       "services"
     ],
     "category": "coaching",
-    "type": "Service"
+    "type": "Service",
+    "questions": []
   },
   {
     "url": "/library/from-lifting-to-running/",
@@ -100,7 +106,9 @@
       "lifting"
     ],
     "category": "start",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/library/first-half-marathon-goal/",
@@ -115,11 +123,13 @@
       "13.1"
     ],
     "category": "start",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/library/easy-days/",
-    "title": "Easy running: effort and feel",
+    "title": "Why do my easy runs feel hard?",
     "description": "Understand the role of the runs between your harder sessions.",
     "keywords": [
       "easy",
@@ -130,7 +140,13 @@
       "effort"
     ],
     "category": "start",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": [
+      "why are my easy runs hard",
+      "why do my easy runs feel hard",
+      "why cant i run slowly"
+    ]
   },
   {
     "url": "/library/when-a-week-goes-wrong/",
@@ -144,7 +160,9 @@
       "interruption"
     ],
     "category": "start",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/library/how-long-to-train-for-a-half-marathon/",
@@ -163,7 +181,9 @@
       "walk"
     ],
     "category": "half-marathon",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/library/half-marathon-training-plan/",
@@ -183,7 +203,9 @@
       "walk"
     ],
     "category": "half-marathon",
-    "type": "Plan"
+    "type": "Plan",
+    "kind": "Routine",
+    "questions": []
   },
   {
     "url": "/library/6-week-half-marathon-training-plan/",
@@ -200,7 +222,9 @@
       "base"
     ],
     "category": "half-marathon",
-    "type": "Plan"
+    "type": "Plan",
+    "kind": "Routine",
+    "questions": []
   },
   {
     "url": "/library/8-week-half-marathon-training-plan/",
@@ -216,7 +240,9 @@
       "plan"
     ],
     "category": "half-marathon",
-    "type": "Plan"
+    "type": "Plan",
+    "kind": "Routine",
+    "questions": []
   },
   {
     "url": "/library/16-week-half-marathon-training-plan/",
@@ -233,7 +259,9 @@
       "plan"
     ],
     "category": "half-marathon",
-    "type": "Plan"
+    "type": "Plan",
+    "kind": "Routine",
+    "questions": []
   },
   {
     "url": "/library/how-to-run-a-faster-half-marathon/",
@@ -247,7 +275,9 @@
       "performance"
     ],
     "category": "half-marathon",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/library/half-marathon-pace-chart/",
@@ -267,7 +297,8 @@
       "calculator"
     ],
     "category": "half-marathon",
-    "type": "Tool"
+    "type": "Tool",
+    "questions": []
   },
   {
     "url": "/library/half-marathon-week/",
@@ -280,7 +311,9 @@
       "weekly"
     ],
     "category": "training",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/library/the-two-paces/",
@@ -294,82 +327,168 @@
       "ceiling"
     ],
     "category": "training",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/how-fast-should-i-run",
     "title": "How fast should I run?",
-    "description": "Pace and effort guidance for the different runs in your week.",
+    "description": "Choose your running effort by the job of the run. A simple comparison of easy, threshold, long runs and faster work, with examples for heat and hills.",
     "keywords": [
+      "how",
+      "fast",
+      "running",
       "pace",
-      "zones",
-      "speed"
+      "effort",
+      "beginner",
+      "speed",
+      "heart",
+      "rate",
+      "zones"
     ],
     "category": "training",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": [
+      "how fast should i run",
+      "what pace should i run"
+    ]
   },
   {
     "url": "/easy-run",
     "title": "How easy should an easy run feel?",
-    "description": "Use conversation, effort, and recovery to keep the easy days easy.",
+    "description": "Easy running explained simply: use the talk test, learn why slow runs matter, try a manageable example, and adjust for hot or tired days.",
     "keywords": [
       "easy",
+      "running",
       "slow",
+      "talk",
+      "test",
+      "zone",
+      "2",
       "aerobic",
-      "base"
+      "base",
+      "conversation"
     ],
     "category": "training",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": [
+      "how easy should an easy run be",
+      "why should i run slowly",
+      "does running slowly make me slow",
+      "what is zone 2 running"
+    ]
   },
   {
     "url": "/threshold-training",
-    "title": "Threshold running, explained",
-    "description": "Know the effort, choose a session, and progress without racing the repetitions.",
+    "title": "What is threshold running?",
+    "description": "Threshold running explained with a volume dial: strong, controlled effort. Learn the purpose, tempo versus threshold, a 3 × 6-minute example, and how to adjust.",
     "keywords": [
+      "threshold",
       "tempo",
       "lactate",
-      "threshold"
+      "comfortably",
+      "hard",
+      "cruise",
+      "intervals",
+      "pace",
+      "heart",
+      "rate",
+      "workout"
     ],
     "category": "training",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": [
+      "threshold",
+      "threshhold",
+      "tempo",
+      "what is threshold running",
+      "what is lactate threshold",
+      "what is a tempo run",
+      "how fast should a tempo run be",
+      "threshold vs tempo",
+      "how do i find my threshold pace"
+    ]
   },
   {
     "url": "/long-run-pace",
-    "title": "Long-run pacing and duration",
-    "description": "Choose the purpose and duration before adding a faster finish.",
+    "title": "How fast should my long run be?",
+    "description": "A simple long-run guide: start conversational, choose a familiar duration, understand fast finishes, and practice the food and drink you will use for a race.",
     "keywords": [
       "long",
       "run",
+      "pacing",
+      "duration",
+      "slow",
+      "fast",
+      "finish",
       "endurance",
-      "steady",
-      "finish"
+      "how",
+      "long",
+      "how",
+      "far"
     ],
     "category": "training",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": [
+      "how fast should my long run be",
+      "how long should my long run be",
+      "should i do a fast finish long run"
+    ]
   },
   {
     "url": "/sessions",
-    "title": "Types of running sessions",
-    "description": "Compare easy running, threshold, intervals, speed, and the long run.",
+    "title": "What is each run for?",
+    "description": "Learn the difference between easy runs, threshold, long runs, intervals and strides. Simple purposes, examples and the questions to ask before a workout.",
     "keywords": [
+      "types",
+      "running",
+      "workouts",
       "intervals",
-      "session",
-      "workouts"
+      "repetitions",
+      "strides",
+      "speed",
+      "vo2max",
+      "recovery"
     ],
     "category": "training",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": [
+      "what are strides",
+      "what are running intervals",
+      "types of running workouts",
+      "intervals vs threshold"
+    ]
   },
   {
     "url": "/training-week",
-    "title": "Build a week you can repeat",
-    "description": "Place easy runs, important sessions, strength, and rest around the days you actually have.",
+    "title": "How do I build a running week?",
+    "description": "Build a repeatable running week with easy days, one controlled workout, a familiar long run and recovery. See three-, four- and five-run options.",
     "keywords": [
-      "plan",
-      "weekly",
-      "routine"
+      "running",
+      "week",
+      "schedule",
+      "routine",
+      "days",
+      "strength",
+      "rest",
+      "three",
+      "four",
+      "five"
     ],
     "category": "training",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": [
+      "how many days a week should i run",
+      "how do i build a running week",
+      "how to combine running and lifting"
+    ]
   },
   {
     "url": "/training-arc",
@@ -381,7 +500,9 @@
       "progression"
     ],
     "category": "training",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/pacing",
@@ -394,19 +515,39 @@
       "pace"
     ],
     "category": "training",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/running-terms",
-    "title": "Running terms, explained",
-    "description": "A reference for the vocabulary used throughout the Library.",
+    "title": "What do these running words mean?",
+    "description": "A plain-English running glossary: pace, easy effort, tempo, threshold, intervals, strides, VO₂max, lactate, running economy, cadence and recovery.",
     "keywords": [
+      "running",
+      "terms",
       "glossary",
       "definitions",
-      "vocabulary"
+      "vocabulary",
+      "tempo",
+      "threshold",
+      "vo2max",
+      "lactate",
+      "cadence",
+      "economy",
+      "intervals",
+      "strides"
     ],
     "category": "training",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": [
+      "what is vo2max",
+      "what is running economy",
+      "what is lactate",
+      "what does 3 x 6 mean",
+      "what are running terms"
+    ]
   },
   {
     "url": "/library/running-physiology-course/",
@@ -431,34 +572,52 @@
       "youtube"
     ],
     "category": "training",
-    "type": "Course"
+    "type": "Course",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/ghost/cues",
-    "title": "Running form cues",
-    "description": "Short cues from the six-week mechanics practice.",
+    "title": "Which running cue should I try?",
+    "description": "Simple running cues for shoulders, steps, posture and breathing. Learn when to try one, what to notice, and when to leave it alone.",
     "keywords": [
       "cadence",
       "technique",
       "stride",
       "posture",
-      "form"
+      "form",
+      "Which running cue should I try?"
     ],
     "category": "movement",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/running-form-errors",
-    "title": "Running form: what to change",
-    "description": "Test one useful adjustment and leave comfortable movement alone.",
+    "title": "What should I change in my running form?",
+    "description": "Running form explained simply: notice a real cost, try one small cue and compare. Includes cadence, heel strike, relaxed shoulders and a practice metronome.",
     "keywords": [
+      "running",
+      "form",
       "gait",
-      "overstride",
+      "cadence",
+      "heel",
+      "strike",
+      "overstriding",
       "shoulders",
+      "posture",
       "technique"
     ],
     "category": "movement",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": [
+      "how do i improve my running form",
+      "should i change my heel strike",
+      "do i need 180 cadence",
+      "what is cadence"
+    ]
   },
   {
     "url": "/strength",
@@ -470,85 +629,121 @@
       "weights"
     ],
     "category": "movement",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/strength-routine",
-    "title": "A strength routine for runners",
-    "description": "A practical routine with the exercises laid out.",
+    "title": "What strength exercises should a runner start with?",
+    "description": "Follow a simple runner strength session: squat or split squat, hinge, calf raise and trunk control. Clear steps, doses, easier versions and weekly placement.",
     "keywords": [
       "durability",
       "workout",
       "routine",
-      "legs"
+      "legs",
+      "What strength exercises should a runner start with?"
     ],
     "category": "movement",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Routine",
+    "questions": [
+      "what strength exercises should runners do"
+    ]
   },
   {
     "url": "/strength-activation",
-    "title": "Before you run",
-    "description": "Movement preparation and activation work.",
+    "title": "How should I warm up before running?",
+    "description": "A simple pre-run warm-up: start gently, choose familiar movements, and build toward the day’s effort without tiring yourself first.",
     "keywords": [
       "warm",
       "up",
       "warmup",
-      "activation"
+      "activation",
+      "How should I warm up before running?"
     ],
     "category": "movement",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Routine",
+    "questions": [
+      "how should i warm up before running",
+      "warm up routine"
+    ]
   },
   {
     "url": "/mobility",
-    "title": "Mobility practice",
-    "description": "Movement work to explore alongside training.",
+    "title": "How do I use mobility work around running?",
+    "description": "Simple mobility options for runners, with clear setup, dose and cues for hips, ankles, calves and upper back. Choose comfortable movement and review the response.",
     "keywords": [
       "stretch",
       "range",
       "motion",
-      "flexibility"
+      "flexibility",
+      "How do I use mobility work around running?"
     ],
     "category": "movement",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Routine",
+    "questions": [
+      "mobility for runners",
+      "how do i stretch before running",
+      "tight hips",
+      "hip stretches",
+      "tight ankles",
+      "calf stretches"
+    ]
   },
   {
     "url": "/anti-rotation",
-    "title": "Anti-rotation work",
-    "description": "A short routine focused on trunk control.",
+    "title": "How do I practice keeping my trunk steady?",
+    "description": "A simple anti-rotation exercise guide for runners. Learn dead bugs, Pallof presses, side planks and single-leg hinges with setup, starting dose and clear cues.",
     "keywords": [
       "core",
       "rotation",
-      "twist"
+      "twist",
+      "How do I practice keeping my trunk steady?"
     ],
     "category": "movement",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Routine",
+    "questions": [
+      "what is anti rotation",
+      "core exercises for runners",
+      "how do i keep my trunk steady"
+    ]
   },
   {
     "url": "/library/physique-volume/",
-    "title": "Why every area does not get equal volume",
-    "description": "How training emphasis shapes a strength program.",
+    "title": "Should every muscle get the same amount of work?",
+    "description": "Understand strength-training volume with a simple time-budget metaphor. Prioritize a goal, maintain other areas and adjust from performance and recovery.",
     "keywords": [
       "hypertrophy",
       "muscle",
       "physique",
       "forge",
-      "sculpt"
+      "sculpt",
+      "Should every muscle get the same amount of work?"
     ],
     "category": "movement",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/library/why-phases/",
-    "title": "Why a program has phases",
-    "description": "Different periods of work give different priorities their turn.",
+    "title": "Why does a training program have phases?",
+    "description": "Training phases explained simply: give one priority time, keep other abilities in practice and move the emphasis when the goal and response support it.",
     "keywords": [
       "strength",
       "phases",
       "forge",
-      "sculpt"
+      "sculpt",
+      "Why does a training program have phases?"
     ],
     "category": "movement",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/race-strategy",
@@ -562,7 +757,9 @@
       "marathon"
     ],
     "category": "race",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/race-prep",
@@ -574,7 +771,9 @@
       "preparation"
     ],
     "category": "race",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/split-calculator",
@@ -590,7 +789,8 @@
       "conversion"
     ],
     "category": "race",
-    "type": "Tool"
+    "type": "Tool",
+    "questions": []
   },
   {
     "url": "/fueling",
@@ -604,7 +804,13 @@
       "drink"
     ],
     "category": "race",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": [
+      "what should i eat before a run",
+      "how many carbs should i take",
+      "how do i fuel a long run"
+    ]
   },
   {
     "url": "/shoes",
@@ -617,7 +823,9 @@
       "rotation"
     ],
     "category": "race",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/recovery",
@@ -630,7 +838,13 @@
       "recovery"
     ],
     "category": "recovery",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": [
+      "why am i always tired after running",
+      "should i run or rest",
+      "how do i recover from running"
+    ]
   },
   {
     "url": "/sleep",
@@ -642,7 +856,9 @@
       "rest"
     ],
     "category": "recovery",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/return",
@@ -654,7 +870,9 @@
       "break"
     ],
     "category": "recovery",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/training-interruptions",
@@ -667,7 +885,9 @@
       "setback"
     ],
     "category": "recovery",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/avoid-injury",
@@ -680,7 +900,9 @@
       "prevention"
     ],
     "category": "recovery",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/troubleshooting",
@@ -692,7 +914,9 @@
       "rhythm"
     ],
     "category": "recovery",
-    "type": "Guide"
+    "type": "Guide",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/plans/",
@@ -704,7 +928,9 @@
       "programs"
     ],
     "category": "practice",
-    "type": "Plans"
+    "type": "Plans",
+    "kind": "Shelf",
+    "questions": []
   },
   {
     "url": "/plans/race-pace-durability/",
@@ -721,7 +947,9 @@
       "week"
     ],
     "category": "practice",
-    "type": "Plan"
+    "type": "Plan",
+    "kind": "Routine",
+    "questions": []
   },
   {
     "url": "/plans/marathon-durability/",
@@ -740,7 +968,9 @@
       "week"
     ],
     "category": "practice",
-    "type": "Plan"
+    "type": "Plan",
+    "kind": "Routine",
+    "questions": []
   },
   {
     "url": "/labs/speed-that-endures/",
@@ -754,7 +984,8 @@
       "study"
     ],
     "category": "practice",
-    "type": "Study"
+    "type": "Study",
+    "questions": []
   },
   {
     "url": "/labs/adrian-runner-mass/",
@@ -770,7 +1001,8 @@
       "study"
     ],
     "category": "practice",
-    "type": "Study"
+    "type": "Study",
+    "questions": []
   },
   {
     "url": "/labs/rebuilt-athlete/",
@@ -787,7 +1019,8 @@
       "study"
     ],
     "category": "practice",
-    "type": "Study"
+    "type": "Study",
+    "questions": []
   },
   {
     "url": "/labs/the-two-curves/",
@@ -805,7 +1038,8 @@
       "study"
     ],
     "category": "practice",
-    "type": "Study"
+    "type": "Study",
+    "questions": []
   },
   {
     "url": "/labs/the-last-10k/",
@@ -823,7 +1057,8 @@
       "miles"
     ],
     "category": "practice",
-    "type": "Study"
+    "type": "Study",
+    "questions": []
   },
   {
     "url": "/labs/hyrox/",
@@ -837,7 +1072,8 @@
       "erg"
     ],
     "category": "practice",
-    "type": "Guide & tools"
+    "type": "Guide & tools",
+    "questions": []
   },
   {
     "url": "/labs/track/",
@@ -851,7 +1087,9 @@
       "workouts"
     ],
     "category": "practice",
-    "type": "Workouts"
+    "type": "Workouts",
+    "kind": "Routine",
+    "questions": []
   },
   {
     "url": "/track/",
@@ -867,7 +1105,8 @@
       "community"
     ],
     "category": "practice",
-    "type": "Gallery"
+    "type": "Gallery",
+    "questions": []
   },
   {
     "url": "/thursday",
@@ -884,7 +1123,8 @@
       "community"
     ],
     "category": "practice",
-    "type": "Community"
+    "type": "Community",
+    "questions": []
   },
   {
     "url": "/field-notes",
@@ -899,7 +1139,9 @@
       "practice"
     ],
     "category": "practice",
-    "type": "Field note"
+    "type": "Field note",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/notes",
@@ -920,7 +1162,9 @@
       "movement"
     ],
     "category": "practice",
-    "type": "Field note"
+    "type": "Field note",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/form/",
@@ -934,7 +1178,8 @@
       "form"
     ],
     "category": "practice",
-    "type": "App"
+    "type": "App",
+    "questions": []
   },
   {
     "url": "/forge-sculpt/",
@@ -948,7 +1193,8 @@
       "app"
     ],
     "category": "practice",
-    "type": "App"
+    "type": "App",
+    "questions": []
   },
   {
     "url": "/labs/the-durable-frame/",
@@ -966,7 +1212,8 @@
       "study"
     ],
     "category": "practice",
-    "type": "Study"
+    "type": "Study",
+    "questions": []
   },
   {
     "url": "/labs/the-long-chassis/",
@@ -984,78 +1231,8 @@
       "study"
     ],
     "category": "practice",
-    "type": "Study"
-  },
-  {
-    "url": "/field-notes/a-good-session-does-not-need-an-encore/",
-    "title": "A good session does not need an encore.",
-    "description": "Feeling good at the end is useful information. It is not automatically a reason to add more.",
-    "keywords": [
-      "field note",
-      "article",
-      "essay",
-      "session",
-      "workout",
-      "control",
-      "reserve",
-      "more",
-      "training decision"
-    ],
-    "category": "practice",
-    "type": "Field note"
-  },
-  {
-    "url": "/field-notes/repeat-the-week-notice-what-changes/",
-    "title": "Repeat the week. Notice what changes.",
-    "description": "A familiar structure gives you something useful to compare, without making every week identical.",
-    "keywords": [
-      "field note",
-      "article",
-      "essay",
-      "repeat",
-      "week",
-      "routine",
-      "structure",
-      "consistency",
-      "change"
-    ],
-    "category": "practice",
-    "type": "Field note"
-  },
-  {
-    "url": "/field-notes/the-ordinary-run-counts/",
-    "title": "The ordinary run counts.",
-    "description": "Not every useful run gives you a story to tell. It can still belong in the bigger picture.",
-    "keywords": [
-      "field note",
-      "article",
-      "essay",
-      "ordinary run",
-      "easy run",
-      "consistency",
-      "practice",
-      "quiet run"
-    ],
-    "category": "practice",
-    "type": "Field note"
-  },
-  {
-    "url": "/field-notes/the-group-should-make-the-work-clearer/",
-    "title": "The group should make the work clearer.",
-    "description": "A shared session works best when people understand the purpose, not when everyone copies the fastest runner.",
-    "keywords": [
-      "field note",
-      "article",
-      "essay",
-      "group",
-      "track",
-      "running together",
-      "pace",
-      "purpose",
-      "community"
-    ],
-    "category": "practice",
-    "type": "Field note"
+    "type": "Study",
+    "questions": []
   },
   {
     "url": "/library",
@@ -1070,7 +1247,9 @@
       "browse"
     ],
     "category": "practice",
-    "type": "Index"
+    "type": "Index",
+    "kind": "Shelf",
+    "questions": []
   },
   {
     "url": "/labs/",
@@ -1085,7 +1264,9 @@
       "experiments"
     ],
     "category": "practice",
-    "type": "Studies"
+    "type": "Studies",
+    "kind": "Shelf",
+    "questions": []
   },
   {
     "url": "/the-method",
@@ -1100,7 +1281,9 @@
       "training"
     ],
     "category": "training",
-    "type": "Method"
+    "type": "Method",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/principles",
@@ -1115,21 +1298,30 @@
       "noise"
     ],
     "category": "training",
-    "type": "Reference"
+    "type": "Reference",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/training-principles",
-    "title": "Training Principles",
-    "description": "Seven principles that organize the work and the structure behind FORM training.",
+    "title": "What makes running training work?",
+    "description": "Simple running principles you can remember: repeat manageable work, give each run a job, recover, change one demand at a time and learn from your response.",
     "keywords": [
-      "principles",
+      "running",
       "training",
-      "philosophy",
-      "structure",
-      "foundations"
+      "principles",
+      "consistency",
+      "progression",
+      "recovery",
+      "purpose"
     ],
     "category": "training",
-    "type": "Reference"
+    "type": "Reference",
+    "kind": "Lesson",
+    "questions": [
+      "how does running training work",
+      "how do i improve as a runner"
+    ]
   },
   {
     "url": "/training-map",
@@ -1144,12 +1336,14 @@
       "week"
     ],
     "category": "training",
-    "type": "Map"
+    "type": "Map",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/mechanics-map",
-    "title": "Running Mechanics Map",
-    "description": "A map of rhythm, stability and direction, and how common running-form errors relate.",
+    "title": "Where should I start with running mechanics?",
+    "description": "A simple running mechanics map: notice rhythm, control and direction, choose one useful question, and test a change without diagnosing a runner from a video.",
     "keywords": [
       "mechanics",
       "map",
@@ -1157,10 +1351,13 @@
       "gait",
       "rhythm",
       "stability",
-      "direction"
+      "direction",
+      "Where should I start with running mechanics?"
     ],
     "category": "movement",
-    "type": "Map"
+    "type": "Map",
+    "kind": "Lesson",
+    "questions": []
   },
   {
     "url": "/pain-map",
@@ -1182,10 +1379,17 @@
       "foot"
     ],
     "category": "recovery",
-    "type": "Reference"
+    "type": "Reference",
+    "kind": "Lesson",
+    "questions": [
+      "achilles",
+      "achilles pain",
+      "heel pain",
+      "where does my achilles hurt"
+    ]
   },
   {
-    "url": "/ghost/",
+    "url": "/ghost",
     "title": "The Ghost Protocol",
     "description": "A six-week running-form practice for quieter mechanics and less wasted motion.",
     "keywords": [
@@ -1198,7 +1402,9 @@
       "cadence"
     ],
     "category": "movement",
-    "type": "Practice"
+    "type": "Practice",
+    "kind": "Routine",
+    "questions": []
   },
   {
     "url": "/contact",
@@ -1213,7 +1419,8 @@
       "collaboration"
     ],
     "category": "house",
-    "type": "Contact"
+    "type": "Contact",
+    "questions": []
   },
   {
     "url": "/brand/",
@@ -1230,7 +1437,8 @@
       "identity"
     ],
     "category": "house",
-    "type": "Brand"
+    "type": "Brand",
+    "questions": []
   },
   {
     "url": "/ask/",
@@ -1244,7 +1452,8 @@
       "help"
     ],
     "category": "house",
-    "type": "Question"
+    "type": "Question",
+    "questions": []
   },
   {
     "url": "/privacy",
@@ -1258,7 +1467,8 @@
       "information"
     ],
     "category": "house",
-    "type": "Legal"
+    "type": "Legal",
+    "questions": []
   },
   {
     "url": "/terms",
@@ -1271,7 +1481,8 @@
       "conditions"
     ],
     "category": "house",
-    "type": "Legal"
+    "type": "Legal",
+    "questions": []
   },
   {
     "url": "/the-work",
@@ -1287,6 +1498,68 @@
       "structure"
     ],
     "category": "training",
-    "type": "Essay"
+    "type": "Essay",
+    "kind": "Lesson",
+    "questions": []
+  },
+  {
+    "url": "/field-notes/a-good-session-does-not-need-an-encore/",
+    "title": "A good session does not need an encore.",
+    "description": "Feeling good at the end is useful information. It is not automatically a reason to add more.",
+    "keywords": [
+      "field note",
+      "article",
+      "essay",
+      "A good session does not need an encore."
+    ],
+    "questions": [],
+    "category": "practice",
+    "type": "Field note",
+    "kind": "Lesson"
+  },
+  {
+    "url": "/field-notes/repeat-the-week-notice-what-changes/",
+    "title": "Repeat the week. Notice what changes.",
+    "description": "A familiar structure gives you something useful to compare, without making every week identical.",
+    "keywords": [
+      "field note",
+      "article",
+      "essay",
+      "Repeat the week. Notice what changes."
+    ],
+    "questions": [],
+    "category": "practice",
+    "type": "Field note",
+    "kind": "Lesson"
+  },
+  {
+    "url": "/field-notes/the-ordinary-run-counts/",
+    "title": "The ordinary run counts.",
+    "description": "Not every useful run gives you a story to tell. It can still belong in the bigger picture.",
+    "keywords": [
+      "field note",
+      "article",
+      "essay",
+      "The ordinary run counts."
+    ],
+    "questions": [],
+    "category": "practice",
+    "type": "Field note",
+    "kind": "Lesson"
+  },
+  {
+    "url": "/field-notes/the-group-should-make-the-work-clearer/",
+    "title": "The group should make the work clearer.",
+    "description": "A shared session works best when people understand the purpose, not when everyone copies the fastest runner.",
+    "keywords": [
+      "field note",
+      "article",
+      "essay",
+      "The group should make the work clearer."
+    ],
+    "questions": [],
+    "category": "practice",
+    "type": "Field note",
+    "kind": "Lesson"
   }
 ]

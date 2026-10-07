@@ -12,6 +12,12 @@
  window.addEventListener('hashchange',revealHash);revealHash();
  // Preserve the old public disclosure helper for existing in-page references.
  window.openEntry=id=>{const t=document.getElementById(id);if(t){if(t.tagName==='DETAILS')t.open=true;location.hash=id;}};
+ document.querySelectorAll('[data-guide-print]').forEach(button=>{button.hidden=false;button.addEventListener('click',()=>window.print());});
+ // Native closed details do not always print their content. Restore the reader's
+ // exact disclosure state after printing or cancelling the dialog.
+ let printState;
+ window.addEventListener('beforeprint',()=>{printState=[...document.querySelectorAll('details')].map(el=>[el,el.open]);for(const [el] of printState)el.open=true;});
+ window.addEventListener('afterprint',()=>{for(const [el,open] of printState||[])el.open=open;printState=null;});
  const field=document.getElementById('metro-bpm');if(!field)return;
  const start=document.getElementById('metro-start'),stop=document.getElementById('metro-stop'),status=document.getElementById('metro-status'),panel=document.getElementById('cadence-practice');
  let audio=null,timer=null,limit=null,session=0,next=0;const nodes=new Set();

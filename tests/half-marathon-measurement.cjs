@@ -16,7 +16,9 @@ function make({url='https://speedandform.com/library/half-marathon-training-plan
  const anchors=links.map(href=>({href:new URL(href,url).href}));
  const document=eventTarget({referrer,documentElement:{getAttribute:()=>resource},head:{appendChild:node=>scripts.push(node)},createElement:()=>({dataset:{}}),querySelector:()=>null,querySelectorAll(selector){if(selector==='a[data-hm-destination]')return anchors;if(selector==='.hm-week')return[week];if(selector==='a[href^="#week-"]')return[weekLink];return[];},getElementById(id){return id==='hm-week'?select:id==='week-1'?week:null;},dispatchEvent:event=>events.push(event.detail)});
  const window=eventTarget({location,sessionStorage:storage,navigator:{doNotTrack:dnt?'1':'0',globalPrivacyControl:gpc},print(){}});
- const context={window,document,URL,URLSearchParams,Date,Set,Object,Array,Number,CustomEvent:class{constructor(name,{detail}){this.type=name;this.detail=detail;}}};vm.createContext(context);
+ // Keep the SDK's initialization timestamp out of privacy fixture coincidences.
+ const Clock=class extends Date{constructor(...args){super(...(args.length?args:['2026-10-07T00:00:00Z']));}static now(){return Date.parse('2026-10-07T00:00:00Z');}};
+ const context={window,document,URL,URLSearchParams,Date:Clock,Set,Object,Array,Number,CustomEvent:class{constructor(name,{detail}){this.type=name;this.detail=detail;}}};vm.createContext(context);
  const run=file=>vm.runInContext(fs.readFileSync(file,'utf8'),context);
  run('js/half-marathon-measurement.js');
  const sent=()=>Array.from(window.dataLayer||[],item=>Array.from(item));
