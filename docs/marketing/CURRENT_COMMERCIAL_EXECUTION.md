@@ -1,358 +1,48 @@
-# Current Commercial Execution — canonical roadmap
-
-**Updated:** October 4, 2026
-**Owner:** Brice / Speed & Form  
-
-> **September 17 coaching doctrine:** `docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md` is now required reading for Run Development acquisition and homepage work. Keep the offer facts and measurement contracts here; use the manifesto for coaching philosophy, voice and page sequencing. The Miami campaign landing page was not static through the full test, so later analysis must identify the landing revision when comparing session quality.
-
-**Instruction:** if Brice says only `continue`, take the first unblocked item below, execute it, record evidence, then keep moving. Do not wait on a human-only blocker if another useful item is available.
-
-## October 4 commercial journey refinement
-
-The current authored service doors, Plans shelf, FORM House concept and RPD
-purchase/access rooms are covered by [the commercial journey audit](../audits/COMMERCIAL-JOURNEYS-20261004.md).
-The calm black/bone direction, real practice photography and concise personal
-next steps carry across the flow. `/form-house/mornings/` is a one-off partner
-concept, not an announced event or venue partnership.
-
-FORM House commercial boundary, owner ruling October 4: the existing FORM athlete
-long run remains free. The first hospitality goal is to give the current team a
-better physical home around its training day, with a host-funded or
-property-supported morning explored before assuming consumer ticket economics.
-A later public 10K / boardwalk-style experience may be tested as a distinct
-guest-facing product only after the team/home model works; it is not paid access
-to the athlete long run and is not authorized for build or listing now.
-
-The public refinements are published with the tested and live receipts in the
-audit. Fresh public previews begin at Week 1; valid shared weeks and verified
-paid-calendar behavior remain intact. Service forms are immediately visible.
-Stripe product naming and Checkout appearance were aligned and read back. The
-purchase-access webhook/outbox is deployed behind an explicit default-off gate;
-credential installation, controlled acceptance and activation are still required.
-See [the delivery contract](../publishing/RPD-PURCHASE-ACCESS-EMAIL.md).
-
-The homepage inquiry records its accepted private Console receipt. These service
-and contact forms retain the existing FormSubmit email relay and direct email
-fallback; their accepted relay response is not proof of email-client delivery.
-
-A later October 4 cross-stream handoff reports the existing Google plan Search
-campaign still live at the same $10/day Manual CPC budget, with the overly broad
-`race pace training` phrase keyword paused, higher-intent half-marathon-plan
-keywords and negative keywords added, and the policy-limited ~45 mi/week ad
-replaced/paused. The handoff also reports Team Vinchay – GA4 linked to Google Ads
-and `Team Vinchay – GA4 (web) purchase` configured as the active Purchase goal:
-Primary, counted Every time and available to the RPTL campaign. The currently
-available Windsor connector can return an older cached account snapshot on the
-trial plan and cannot be force-refreshed hourly, so do **not** repeat completed
-mutations merely because that cached read lags.
-
-Remaining RPTL gates are narrower: activate purchase-access email with a
-sending-only Resend credential plus the hosted Supabase secret/flag, run one
-controlled end-to-end purchase acceptance, verify campaign-specific
-Purchase-only optimization before any future automated bidding, then review fresh
-search/ad data after roughly 5–7 days or enough new clicks. The separate Miami Run
-Development Search campaign remains a later, paused build until a true accepted
-coaching-inquiry event is verified. No ad-budget increase or new campaign launch
-is authorized here.
-
-The private Operating Console owns the October revenue actions and current
-account observations. Commercial/opportunity monitoring now runs on a bounded
-schedule. New product and hotel ideas remain proposals until validated; no
-unavailable Forge delivery, clothing inventory or hospitality access is sold.
-
-## September 30 commercial site update
-
-The current offers, travel policy, inquiry contract and proposed Search pilot are in [COMMERCIAL-OFFERS-20260930.md](COMMERCIAL-OFFERS-20260930.md). This supersedes the earlier hero/design freeze and unapproved Analysis pricing hypothesis. Speed & Form is the public house identity; FORM and Forge remain product names. Running and strength lead the homepage. The new service pages take inquiries into the existing private operating console. No ad spend was changed. Older descriptions below of a “live” campaign are historical, not a claim about its present delivery status.
-
-Release verification is in [COMMERCIAL-RELEASE-20260930.md](../audits/COMMERCIAL-RELEASE-20260930.md).
-
-**Latest launch direction:** make the full portfolio available; do not defer an offer until another sells. The pages are already published. Remaining preparation is authentic samples, broader photography categories, delivery readiness and private lifecycle measurement. Google Ads remains running-coaching-only and unlaunched. The readiness checklist in the current offer document distinguishes implemented intake tracking from the proposed full sales/delivery tracker.
-
-The [commercial working standard](COMMERCIAL-WORKING-STANDARD.md) owns buyer intent, research-based page rules, task sequencing and the Claude review handoff. Daily work rhythm and cross-life priorities remain private console records.
-
-## Operating law
-
-1. **RPD is live and is the active commercial-product test.** Do not redesign from the first handful of visits.
-2. **Miami Run Development is the live coaching control.** Keep campaign budget/audience changes evidence-led. September 17 intentionally compresses the landing experience after direct mobile review and weak post-click engagement; do not treat the landing page as unchanged across the entire test.
-3. **Think deeply backstage. Speak simply out front.** A fit runner may know very little coaching vocabulary.
-4. **Proof carries sophistication.** Real athletes, real sessions, verified outcomes.
-5. **Ad → landing → preview → checkout → access → email is one story.** Message match is required.
-6. **Real-world conversions outrank platform attribution.** Meta/GA are measurement systems, not the definition of whether a person converted.
-7. **Email is part of the product.** Every outward email must follow the 9+/10 experience and deliverability standard.
-
-Read first:
-- `docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md`
-- `docs/marketing/ATHLETE_LANGUAGE_RULE.md`
-- `docs/marketing/RPD_OFFER_TRUTH_2026-09-15.md`
-- `docs/RACE_PACE_DURABILITY_CANONICAL_v1.md`
-- `docs/marketing/EMAIL_EXPERIENCE_STANDARD_2026-09-16.md`
-- `docs/marketing/EMAIL_EXECUTION_ROADMAP_2026-09-16.md`
-- `docs/marketing/UNBOUNCE_PUBLIC_SWIPE_2026-09-16.md`
-
----
-
-# A. Race Pace Durability — LIVE
-
-## Product truth — locked
+# Current commercial execution
 
-- 15-week half-marathon plan.
-- Athlete-relative race pace; not a sub-1:30-only product.
-- Roughly 45 → 60 mi/week, six days/week.
-- Weeks 1–4 free.
-- Weeks 5–15 unlocked by **one-time payment of $79**.
-- Web plan complete; FORM app separate/not required.
-- Coaching separate.
-- No guaranteed finish time, fake personalization, fake urgency, secret/hack language.
+**Updated October 7, 2026. Owner: Brice / Speed & Form.**
 
-## Meta Test 01 — LIVE
+## Current direction: observe and prepare, no paid launch
 
-Campaign: `FORM · RPD · Purchase Test 01`  
-Campaign ID: `52675684605200`  
-Ad set: `US · Advantage+ · Purchase`  
-Ad set ID: `52675686707200`  
-Creative A: `Creative A · Can You Hold It? · v1`  
-Budget: approximately $25/day  
-Optimization: Purchase  
-Pixel: `147659485878240`
+Brice has deliberately paused active ad-launch work while useful information and preparation continue. There is no automatic October 9, October 16 or November restart. The former national free-twelve-week-plan $10/day / $60 proposal is **withdrawn**, not a campaign waiting for a tracking checkbox.
 
-Creative A uses the real FORM runners group photo, simple athlete-facing copy, Spanish translation, and Meta text generation with a truth filter.
+Read the [paid-acquisition learning and readiness report](PAID_ACQUISITION_READINESS_2026-10-07.md) and its [evidence appendix](PAID_ACQUISITION_EVIDENCE_2026-10-07.md). They own the current acquisition decision and evidence baseline. The private Operating Console owns current account observations, prospects, follow-up and owner decisions.
 
-Intended URL tags:
-`utm_source=meta&utm_medium=paid_social&utm_campaign=rpd_purchase_test_01&utm_content=group_photo_v1`
+For a general `continue`, use the current report and unblocked evidence work. Do not follow an old instruction to activate, resume or monitor a supposedly live campaign unchanged. Read actual current account state before interpreting delivery. No ad-account mutation is authorized by this document.
 
-### First live snapshot
+## Published offers remain available
 
-Windsor after activation:
-- spend: **$1.33**
-- impressions: **163**
-- reach: **162**
-- click fields were internally noisy at this very small sample and must not be treated as performance evidence yet.
-- paid entitlements: **0**
+Running remains the main public identity, without closing Brice's other live commercial interests. Local and remote Run Development, Run + Strength, standalone strength, FORM Analysis, self-guided plans, photography/content and other published services retain their existing scope. Broad availability does not require simultaneous advertising or identical homepage prominence.
 
-**Decision:** keep the campaign unchanged while the first meaningful traffic accumulates.
+- Run Development is available at `/coaching/miami/`, with the existing homepage `/#begin` inquiry. The public offer is Miami-first, with an explicit remote-coaching invitation in the closing section. Do not equate this with a validated national acquisition path.
+- The complete free half-marathon collection is published. Keep it genuinely useful without account/email gates and preserve its distinct starting requirements. The [half-marathon checklist](../roadmap/HALF-MARATHON-LIBRARY-20261006.md) owns release state.
+- The existing paid Race Pace Durability / Race Pace That Lasts plan retains its own preview, checkout, entitlement and recovery path. Use [offer truth](RPD_OFFER_TRUTH_2026-09-15.md) and the current public source before quoting product facts. A paid-plan campaign and coaching acquisition are different tests.
+- FORM House remains a shareable partner concept until actual agreements establish otherwise. Current athletes' long-run practice remains free. No new paid event, inventory, host funding, booking or partnership is implied by preparation.
 
-## Landing + preview + paid delivery — accepted
+## Current acquisition evidence
 
-English offer: `/plans/race-pace-durability/support/`  
-Spanish first sales surface: `/es/plans/race-pace-durability/`  
-Free preview: `/plans/race-pace-durability/`
+The completed October 7 report for `RPTL Search Test 01`, October 3–6, returned **PAUSED**, 38 clicks and $53.01. Disclosed positive-click terms explain 23 clicks/$32.62; 15 clicks/$20.39 remain unidentified in that extract. This is a historical snapshot, not the current status of every campaign. Some actual paid queries had weak fit with the experienced half-marathon offer; that does not prove all traffic was unsuitable or explain all outcomes.
 
-Story:
-**real FORM athletes → Can you keep the pace? → same FORM image → what this is → what you do → proof → Weeks 1–4 → $79**
+`hm_resource_view` receipt is established. `hm_week_open` and accepted-inquiry `generate_lead` receipt remained unverified in the preserved October 7 read. A visible full plan can be used without selecting a week, so week-open is not a full measure of resource use. Source emission, backend acceptance, notification dispatch, inbox delivery, GA receipt, qualified conversation and collected payment are separate facts.
 
-Accepted:
-- group-photo continuity;
-- desktop + deterministic 390px sales-page QA;
-- Weeks 1–4 readable;
-- Week 5+ locked;
-- arrow/tap navigation works;
-- public browser cannot retrieve paid prescription;
-- no paid workout leakage;
-- $79 CTA opens correct Stripe Checkout.
+PR #253 is a deployed code change, not a demonstrated root-cause fix. Do not submit more live TEST inquiries, invoke tracking functions directly or remove privacy controls to obtain a desired event. No fresh real-money purchase test is authorized. Preserve Brice's previous refusal of a mandatory internal $79 charge.
 
-Literal physical-finger swipe has not been reproduced by automation. Treat as a small residual, not a blocker; fix if live users report trouble.
+## Delivery and email remain separate checks
 
-## Paid-plan security
+The homepage inquiry uses the private Console/database acceptance path. Do not promise that an accepted screen means an email was sent or delivered. Other forms, email senders and purchase delivery have their own current implementation and acceptance requirements; check their owning source rather than infer readiness from this report.
 
-Public browser uses `public.public_plan_preview(text)`.
-Weeks 5–15 return structural placeholders only.
-Complete plan requires verified entitlement through `rpd-entitlement`.
+Use [the commercial offers](COMMERCIAL-OFFERS-20260930.md), [commercial working standard](COMMERCIAL-WORKING-STANDARD.md), [commercial journey audit](../audits/COMMERCIAL-JOURNEYS-20261004.md), [email standard](EMAIL_EXPERIENCE_STANDARD_2026-09-16.md), [email roadmap](EMAIL_EXECUTION_ROADMAP_2026-09-16.md) and [purchase-access email contract](../publishing/RPD-PURCHASE-ACCESS-EMAIL.md) for scoped evidence. Older “pending,” “live” or “complete” statements must be reconciled with newer verified owner/source decisions. Do not repeat already completed account configuration merely because a reporting cache lags.
 
-Backend:
-- `rpd-entitlement` ACTIVE v8
-- `stripe-rpd-webhook` ACTIVE v5
-- RLS enabled on entitlements
-- current genuine paid rows: 0
+## Operating mode
 
-Brice explicitly declined an internal $79 acceptance charge. **Do not ask again unless he reverses that decision.**
+Ads Readiness Watch reuses the former Paid Test Gate slot for Monday/Thursday read-only checks. New facts go to `paid-acquisition-readiness-evidence-20261007` in the private Console. The Daily Operating Brief and Weekly Company Review reuse those facts; broad Opportunity Watch keeps its separate discovery remit. No new parallel database or repetitive daily launch prompt.
 
-First-buyer contingency:
-1. monitor Stripe + entitlement + support inbox;
-2. if payment succeeds but access fails, pause RPD spend;
-3. restore access without another charge;
-4. repair path before resuming.
+Collect only information that can improve a decision: actual intent and objections, working measurement, organic/referral activity, real accepted/qualified/paid outcomes, access/delivery failures, local estimates where available, permissioned proof, sustainable capacity and costs. Unknown is not zero; paused campaigns do not generate new paid tests by waiting. Distinguish brings money in, costs money and learning.
 
-## Creative B — parked second hypothesis
+Preparation does not authorize creating campaigns even paused, enabling/resuming ads, changing bids/budgets/keywords/GA, buying subscriptions, posting, messaging athletes/prospects, booking or publishing/deploying. A later launch needs a justified offer/audience/outcome, credible delivery, economics, verified controls and explicit Brice approval. Protect current client delivery and leave unrelated active streams alone.
 
-Static asset: `rpd_creative_b_static_v2.png` · 1080×1350.
+## History and source continuity
 
-Message:
-- `See the first four weeks.`
-- `Run them before you decide.`
-- actual Week 4 prescription
-- Week 5 locked
-- one-time payment of $79
+The complete preceding version of this document is preserved in Git at [the reviewed October 7 baseline](https://github.com/Breechay/speedandform/blob/7aab567c9c5705b0ede4847c6def88e7d3f1af54/docs/marketing/CURRENT_COMMERCIAL_EXECUTION.md). It contains earlier campaign, creative, email and purchase history. Its LIVE headings, old launch queue and unverified snapshots are **historical**, not current account instructions. This shorter current index replaces those stale defaults without deleting their evidence from repository history.
 
-Do not add merely because it exists. Add it deliberately after Creative A establishes a baseline or when Brice chooses to compare hypotheses.
-
----
-
-# B. Miami Run Development — LIVE CONTROL
-
-## September 17 landing doctrine pass
-
-Source work on `work/mobile-hero-cut-20260917` deliberately reduces explanation density. The intended sequence is **hero → I develop runners → coaching/practice → training → offer → inquiry**. Simon remains valid evidence elsewhere but is no longer forced into position two on the homepage. The hero uses `Run Development` / `Run better.` / fee / one action. This is a source-state note only until production deployment is separately verified.
-
-
-Campaign: `FORM · Miami · Run · Test 01`
-
-Latest Windsor snapshot:
-- spend: **$27.45**
-- impressions: **1,324**
-- clicks: **43**
-- link clicks: **23**
-- reach: **956**
-- frequency: **1.38**
-
-Real conversions:
-- **1 genuine paid-social coaching inquiry: Jorge Tacoronte**
-- no newer genuine coaching inquiry found.
-
-Jorge’s intake:
-- Miami
-- wants to run longer
-- 3 days/week
-- 10–20 mi/week
-- longest run 6–10 mi
-- strength
-- obstacle: speed and breath
-- saw Run Development · 8 weeks · $1,200
-
-Meta `Lead` / GA4 `generate_lead` remain unreliable/incomplete. A single controlled measurement submission was already attempted and remained inconclusive. **Do not keep resubmitting tests.**
-
-**Decision:** keep budget, audience, creative, offer, and page unchanged.
-
----
-
-# C. Email experience — ACTIVE SYSTEM WORK
-
-Canonical standard:
-`docs/marketing/EMAIL_EXPERIENCE_STANDARD_2026-09-16.md`
-
-Execution roadmap:
-`docs/marketing/EMAIL_EXECUTION_ROADMAP_2026-09-16.md`
-
-## Coaching form stopgap — live
-
-FormSubmit still relays live coaching inquiries. It was improved so:
-- the opaque confirmed endpoint is stable;
-- `_replyto` is explicitly the athlete email;
-- giant `box` layout was replaced with compact `table` layout;
-- subject carries offer + person + term + price;
-- visible fields are compact and readable.
-
-This remains a stopgap because the visible sender is FormSubmit and the message cannot reach the desired FORM-level branded experience.
-
-## Resend — prepared
-
-Existing verified sending domain:
-`send.speedandform.com`
-
-Settings:
-- sending enabled
-- open tracking OFF
-- click tracking OFF
-- TLS enforced
-
-New root sending domain:
-`speedandform.com`
-- created in Resend
-- **pending DNS verification**
-- Return-Path uses the `resend` subdomain so current Cloudflare inbound routing is not replaced.
-
-Published Resend templates:
-1. `form-coaching-inquiry` — internal compact lead card.
-2. `form-coaching-inquiry-received` — immediate human acknowledgment.
-3. `rpd-purchase-confirmation` — useful plan-access email after purchase.
-
-Root-domain target senders after verification:
-- `inquiries@speedandform.com`
-- `brice@speedandform.com`
-- `hello@speedandform.com`
-- `access@speedandform.com`
-- support/reply: `support@speedandform.com`
-
-## Supabase Auth email design — canonical repo set ready
-
-Version-controlled FORM templates now include:
-- magic link
-- password recovery
-- email confirmation
-- invitation
-- email change
-- reauthentication
-- password changed
-- email changed
-- phone changed
-- identity linked/unlinked
-- MFA factor added/removed
-
-These repo files are **not yet proof that hosted Supabase is using them**. Hosted Auth templates still need application/acceptance.
-
-## Email next blocker
-
-Brice must add the Resend DNS records for `speedandform.com`. After DNS verification:
-1. send rendering tests to Gmail/Apple Mail;
-2. verify Reply-To behavior;
-3. create a sending-only server key;
-4. wire coaching notification + acknowledgment server-side while keeping FormSubmit fallback;
-5. wire RPD purchase access email after entitlement success without making email delivery block entitlement;
-6. apply/verify hosted Supabase Auth templates;
-7. audit Stripe receipt branding.
-
----
-
-# D. Stripe / purchase experience
-
-Live Payment Link:
-`https://buy.stripe.com/bJeaEX1YvfNwgMX3Doffy00`
-
-RPD checkout truth:
-- Race Pace Durability
-- $79 USD
-- one-time payment
-- no subscription
-- source labels preserved into Checkout Session
-- success returns to FORM with Checkout Session ID
-
-Current Stripe brand settings remain generic:
-- white background
-- Stripe-blue button/accent
-- no logo/icon in brand settings
-
-This is a real experience gap. Do not call the purchase flow 9+/10 until Stripe Checkout/receipt branding is intentionally aligned with Speed & Form.
-
----
-
-# E. Unbounce
-
-Authenticated TinyFish workspace access remains unreliable. Do not block RPD on it.
-
-Public research and swipe notes are parked in:
-- `docs/marketing/RPD_LANDING_PAGE_CONVERSION_NOTES_2026-09-15.md`
-- `docs/marketing/UNBOUNCE_PUBLIC_SWIPE_2026-09-16.md`
-- `docs/marketing/UNBOUNCE_SURFACE_EXPLORATION_2026-09-15.md`
-
-Parked surfaces:
-1. RPD challenger ideas
-2. FORM app
-3. Forge
-4. alternate coaching homepage
-
----
-
-# Queue for future `continue`
-
-1. Monitor RPD Creative A without premature changes: delivery → LPV → preview → checkout → purchase.
-2. Monitor Miami unchanged for a second genuine inquiry.
-3. Complete root Resend DNS verification when Brice has added records.
-4. Once root email domain is verified, send real render/reply tests and wire coaching + RPD transactional email server-side.
-5. On first genuine RPD purchase, monitor entitlement/unlock/email closely and execute contingency if needed.
-6. Apply hosted Supabase Auth templates and verify real magic-link/recovery rendering.
-7. Refine Stripe branding deliberately; do not change live account branding blindly.
-8. Add Creative B only as a deliberate second hypothesis.
-9. Revisit full Spanish RPD execution only when traffic/purchase evidence justifies it or Brice chooses bilingual completeness.
-
-## North star
-
-**Make it easy to understand, easy to buy, easy to start, easy to reply, and easy to keep going. Let the training and the result do the sophisticated talking.**
+Current philosophy and public work follow [Run Development manifesto](../FORM_RUN_DEVELOPMENT_MANIFESTO.md), [athlete language](ATHLETE_LANGUAGE_RULE.md), [Brand](../BRAND.md), current owner instructions and the actual owning surfaces. Keep personal/contact, health and financial records private.
