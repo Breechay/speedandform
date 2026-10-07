@@ -5,8 +5,8 @@
  const normalize=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
  function near(a,b){if(a.length<5||Math.abs(a.length-b.length)>1)return false;let i=0,j=0,n=0;while(i<a.length&&j<b.length){if(a[i]===b[j]){i++;j++;continue;}if(++n>1)return false;if(a.length>=b.length)i++;if(a.length<=b.length)j++;}return n+(i<a.length||j<b.length?1:0)<=1;}
  function rank(entries,query){const q=normalize(query),words=q.split(' ').filter(w=>w.length>1&&!stop.has(w));if(!words.length)return [];
-  return entries.map((entry,index)=>{const title=normalize(entry.title),keys=normalize((entry.keywords||[]).join(' ')),body=normalize(entry.description),terms=(title+' '+keys).split(' ');let score=title===q?120:title.includes(q)?65:0;let matched=0;
-   words.forEach(w=>{let s=title.includes(w)?20:keys.includes(w)?14:body.includes(w)?4:terms.some(t=>near(w,t))?7:0;if(s)matched++;score+=s;});score+=matched===words.length?18:0;return {entry,score,index};}).filter(x=>x.score>0).sort((a,b)=>b.score-a.score||a.index-b.index).slice(0,40).map(x=>x.entry);
+  return entries.map((entry,index)=>{const title=normalize(entry.title),keys=normalize((entry.keywords||[]).join(' ')),body=normalize(entry.description),terms=(title+' '+keys).split(' ');let score=title===q?160:title.startsWith(q)?105:title.includes(q)?80:0;if(keys.includes(q))score+=34;if(body.includes(q))score+=12;let matched=0;
+   words.forEach(w=>{let s=title.includes(w)?24:keys.includes(w)?16:body.includes(w)?5:terms.some(t=>near(w,t))?7:0;if(s)matched++;score+=s;});score+=matched===words.length?28:matched/words.length>=.6?6:-8;score+=entry.type==='Field note'&&/(note|article|essay|writing)/.test(q)?24:0;return {entry,score,index};}).filter(x=>x.score>0).sort((a,b)=>b.score-a.score||a.index-b.index).slice(0,40).map(x=>x.entry);
  }
  if(typeof module==='object'&&module.exports)module.exports={normalize,near,rank};
  if(!root.document)return;
