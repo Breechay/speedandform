@@ -1,0 +1,23 @@
+name: Structured strength exercises
+on:
+  push:
+    branches: [main]
+    paths: ['supabase/migrations/**','scripts/structured-strength-spec.mjs','scripts/generate-structured-strength-migration.mjs','scripts/extract-forge-adrian-reference.mjs','tests/structured-strength-exercises-db.mjs','tests/support/**','tests/fixtures/forge-adrian-reference.json','.github/workflows/structured-strength.yml']
+  pull_request:
+    paths: ['supabase/migrations/**','scripts/structured-strength-spec.mjs','scripts/generate-structured-strength-migration.mjs','scripts/extract-forge-adrian-reference.mjs','tests/structured-strength-exercises-db.mjs','tests/support/**','tests/fixtures/forge-adrian-reference.json','.github/workflows/structured-strength.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  sql:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Structured strength SQL contracts (isolated PGlite, never a hosted database)
+        run: |
+          npm install --prefix /tmp/sf-email-db --no-audit --no-fund @electric-sql/pglite@0.3.14
+          SF_PGLITE_PATH=/tmp/sf-email-db/node_modules/@electric-sql/pglite/dist/index.js node tests/structured-strength-exercises-db.mjs

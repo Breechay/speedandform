@@ -152,6 +152,18 @@ Coach Console should read Forge receipts as strength evidence. Do not mix Forge 
 8. Verify Coach Console can read the resulting Forge receipt in a useful way.
 9. Resolve and merge speedandform PR #219 after its broader release check is understood and green.
 
+## Structured strength (server-side prescription)
+
+Adrian's strength sessions used to exist on the server only as prose (`planned_session_versions.details`). `planned_session_exercises` (migration `20261006190000_structured_strength_exercises.sql`) gives each immutable session **version** an ordered list of typed exercises, delivered through the same `athlete_plan_feed` as running components.
+
+- Prescription and progress stay separate: nothing here records where Adrian is. Current week/session comes from assignment dates plus real app state and evidence.
+- Exercise rows are append-only. A revision writes a new version with its own exercises; a completed workout can always point at the version it was performed against.
+- The feed change is additive: a session gains `exercises` only when its current version has structured rows.
+- `rest_seconds`, `cue`, `substitutions` stay null unless authored; the server never invents them.
+- The migration's Adrian block is generated from `program.json` (`node scripts/generate-structured-strength-migration.mjs`, `--check` to verify before applying). After it is applied, never regenerate it: later revisions are new versions, not a rewritten migration.
+- The test proves the 388 server exercises match the Forge app's bundled reference (`tests/fixtures/forge-adrian-reference.json`, extracted from FORM-iOS `a8a68b1c` by `scripts/extract-forge-adrian-reference.mjs`).
+- Status: authored and tested in the repo. **Not applied to any hosted database.** Before applying, diff the live `athlete_plan_feed` / `athlete_plan_feed_impl` definitions against the repository chain (the production ledger has migrations that are in no git branch).
+
 ## Rules for future agents
 
 Before changing anything, answer:
