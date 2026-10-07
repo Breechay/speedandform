@@ -446,15 +446,21 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
       // Kept apart from session_completions, which are runs and other filed sessions.
       supabase.from('forge_strength_receipts').select('receipt_id,program_id,received_at,native_payload')
         .eq('athlete_id', athleteId).not('native_payload', 'is', null)
-        .order('received_at', { ascending: false }).limit(10)
+        .order('received_at', { ascending: false }).limit(10),
+      // Where he is, and what was prescribed beside what he did. Both are views that exist only
+      // once the Forge session-state migration is applied; until then they are simply absent.
+      supabase.from('forge_athlete_state').select('*').eq('athlete_id', athleteId).maybeSingle(),
+      supabase.from('forge_receipt_movements').select('*').eq('athlete_id', athleteId)
+        .order('completed_at', { ascending: false }).limit(400)
     );
   }
 
   const responses = await Promise.all(queries);
   // The Forge receipt read is supplementary evidence: if it is unavailable the record
   // must still load, so its error is not fatal (it renders as no receipts).
-  const forgeIndex = coach ? queries.length - 1 : -1;
-  responses.forEach(({ error }, index) => { if (error && index !== forgeIndex) throw error; });
+  // The last three coach queries are supplementary Forge evidence (receipts, state, movements).
+  const softFrom = coach ? queries.length - 3 : Infinity;
+  responses.forEach(({ error }, index) => { if (error && index < softFrom) throw error; });
 
   const [
     athleteResponse, blockResponse, weeksResponse, sessionsResponse, versionsResponse,
@@ -465,7 +471,7 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     confidenceResponse, confidenceLinksResponse, evidenceFilesResponse, proposalResponse,
     exceptionsResponse, paceBandsResponse, observationsResponse,
     taskResponse, evidenceResponse, actionsResponse, privateNotesResponse, adminResponse,
-    forgeReceiptsResponse
+    forgeReceiptsResponse, forgeStateResponse, forgeMovementsResponse
   ] = responses;
 
   const components = result(componentsResponse.data, componentsResponse.error);
@@ -564,7 +570,9 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     taskActions: task ? result(actionsResponse?.data, actionsResponse?.error).filter((item) => item.task_id === task.id) : [],
     privateNotes: result(privateNotesResponse?.data, privateNotesResponse?.error),
     adminStatus: adminResponse?.data || null,
-    forgeReceipts: coach && !forgeReceiptsResponse?.error ? result(forgeReceiptsResponse?.data, null) : []
+    forgeReceipts: coach && !forgeReceiptsResponse?.error ? result(forgeReceiptsResponse?.data, null) : [],
+    forgeState: coach && !forgeStateResponse?.error ? (forgeStateResponse?.data || null) : null,
+    forgeMovements: coach && !forgeMovementsResponse?.error ? result(forgeMovementsResponse?.data, null) : []
   };
 }
 

@@ -265,34 +265,101 @@ export function recordSection(record, { limit = 0 } = {}) {
   </section>`;
 }
 
-// What the athlete performed in Forge, straight from the native receipt. Coach-only:
-// the receipts are loaded only for the coach record, never as running completions.
+// What the athlete performed in Forge, and where he is. Coach-only: loaded for the coach record,
+// never as running completions. The receipt is the evidence; when the session-state views exist
+// each movement is shown beside the exact prescription it was performed against.
+const sessionOf = (record, id) => (record.sessions || []).find((item) => item.id === id) || null;
+const versionOf = (record, versionId) => {
+  for (const session of record.sessions || []) {
+    const version = (session.versions || []).find((item) => item.id === versionId);
+    if (version) return { version, session };
+  }
+  return null;
+};
+const sessionTitle = (record, id) => sessionOf(record, id)?.currentVersion?.title || '';
+
+function targetText(m) {
+  if (m.prescribed_sets == null) return '';
+  const side = m.side_word ? ` / ${m.side_word}` : '';
+  const amount = m.target_seconds != null
+    ? `${m.target_seconds}${m.target_seconds_high ? `–${m.target_seconds_high}` : ''} sec`
+    : `${m.rep_low}${m.rep_high !== m.rep_low ? `–${m.rep_high}` : ''}${m.rep_unit ? ` ${m.rep_unit}` : ''}`;
+  return `${m.prescribed_sets} × ${amount}${side}`;
+}
+function performedText(m) {
+  return (m.performed || []).map((set) => {
+    if (set.seconds != null && set.reps == null) return `${set.seconds} sec`;
+    return `${set.weight == null ? '' : `${Number(set.weight)} lb × `}${set.reps ?? ''}`;
+  }).join(', ');
+}
+
+export function forgeStateSection(record) {
+  const state = record.forgeState;
+  if (!state) return '';
+  const lines = [];
+  const named = (id) => { const t = sessionTitle(record, id); return t ? ` · ${escapeHtml(t)}` : ''; };
+  if (state.last_opened_at) lines.push(`<li><strong>Last opened</strong> ${escapeHtml(formatDate(state.last_opened_at))}${named(state.last_opened_session_id)}</li>`);
+  if (state.last_left_at) lines.push(`<li><strong>Last left part-way</strong> ${escapeHtml(formatDate(state.last_left_at))} · ${escapeHtml(state.last_left_set_count)} sets done</li>`);
+  if (state.last_completed_at) lines.push(`<li><strong>Last completed</strong> ${escapeHtml(formatDate(state.last_completed_at))}${named(state.last_completed_session_id)}</li>`);
+  if (state.next_session_id) lines.push(`<li><strong>Next</strong> ${escapeHtml(formatDate(state.next_session_on))}${named(state.next_session_id)}</li>`);
+  if (!lines.length) return '';
+  return `<ul class="forge-state">${lines.join('')}</ul>`;
+}
+
 export function forgeSection(record) {
   const receipts = (record.forgeReceipts || []).filter((row) => row.native_payload);
-  if (!receipts.length) return '';
+  const state = forgeStateSection(record);
+  if (!receipts.length && !state) return '';
   const setLine = (set) => {
-    const load = set.weight == null ? '' : `${set.weight} lb \u00d7 `;
+    const load = set.weight == null ? '' : `${set.weight} lb × `;
     const work = set.seconds != null && set.reps == null ? `${set.seconds} sec` : `${set.reps ?? ''} reps`;
     return `${load}${work}`;
   };
-  return `<section class="record-section" id="forge">
-    <p class="eyebrow">Forge \u2014 performed</p>
-    <div class="record-list">${receipts.map((row) => {
-      const session = row.native_payload;
+  const movementsByReceipt = new Map();
+  for (const m of record.forgeMovements || []) {
+    if (!movementsByReceipt.has(m.receipt_id)) movementsByReceipt.set(m.receipt_id, []);
+    movementsByReceipt.get(m.receipt_id).push(m);
+  }
+  const body = receipts.map((row) => {
+    const session = row.native_payload;
+    const rowsFor = movementsByReceipt.get(row.receipt_id);
+    let list;
+    let versionNote = '';
+    if (rowsFor?.length) {
+      const first = rowsFor[0];
+      const found = first.planned_session_version_id ? versionOf(record, first.planned_session_version_id) : null;
+      if (found) {
+        const latest = found.session.currentVersion;
+        versionNote = latest && latest.id !== found.version.id
+          ? ` · prescription v${escapeHtml(found.version.version_number)} (since revised to v${escapeHtml(latest.version_number)})`
+          : ` · prescription v${escapeHtml(found.version.version_number)}`;
+      } else if (!first.planned_session_version_id) versionNote = ' · no prescription recorded';
+      list = rowsFor.map((m) => {
+        const asked = targetText(m);
+        const did = performedText(m);
+        return `<li><strong>${escapeHtml(m.movement_name)}</strong> — ${asked ? `prescribed ${escapeHtml(asked)}; ` : ''}did ${escapeHtml(m.performed_sets)}${did ? `: ${escapeHtml(did)}` : ''}${m.instruction ? `<br><small>${escapeHtml(m.instruction)}</small>` : ''}</li>`;
+      }).join('');
+    } else {
       const byMovement = new Map();
       [...(session.sets || [])].sort((a, b) => String(a.completedAt).localeCompare(String(b.completedAt)))
         .forEach((set) => {
           if (!byMovement.has(set.movementId)) byMovement.set(set.movementId, { name: set.movementName, sets: [] });
           byMovement.get(set.movementId).sets.push(set);
         });
-      return `<article class="record-event">
+      list = [...byMovement.values()].map((movement) => `<li><strong>${escapeHtml(movement.name)}</strong> — ${movement.sets.map((set) => escapeHtml(setLine(set))).join(', ')}</li>`).join('');
+    }
+    return `<article class="record-event">
         <time>${escapeHtml(formatDate(session.completedAt || row.received_at))}</time>
         <span class="event-type">${escapeHtml(session.sessionName)}</span>
-        <p>Week ${escapeHtml(session.planWeekNumber)}${session.durationSeconds ? ` \u00b7 ${escapeHtml(formatDuration(session.durationSeconds))}` : ''}</p>
-        <ul>${[...byMovement.values()].map((movement) => `<li><strong>${escapeHtml(movement.name)}</strong> \u2014 ${movement.sets.map((set) => escapeHtml(setLine(set))).join(', ')}</li>`).join('')}</ul>
+        <p>Week ${escapeHtml(session.planWeekNumber)}${session.durationSeconds ? ` · ${escapeHtml(formatDuration(session.durationSeconds))}` : ''}${versionNote}</p>
+        <ul>${list}</ul>
         ${session.feedback ? `<p>${escapeHtml(session.feedback)}</p>` : ''}
       </article>`;
-    }).join('')}</div>
+  }).join('');
+  return `<section class="record-section" id="forge">
+    <p class="eyebrow">Forge — performed</p>
+    ${state}
+    <div class="record-list">${body}</div>
   </section>`;
 }
 
