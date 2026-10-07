@@ -1096,7 +1096,8 @@
       "coaching",
       "philosophy",
       "approach",
-      "run development"
+      "run development",
+      "training"
     ],
     "category": "training",
     "type": "Method"
@@ -1172,7 +1173,13 @@
       "injury",
       "mechanics",
       "runner",
-      "map"
+      "map",
+      "shin",
+      "knee",
+      "calf",
+      "achilles",
+      "hip",
+      "foot"
     ],
     "category": "recovery",
     "type": "Reference"
