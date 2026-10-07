@@ -5,6 +5,7 @@
   var key='sb_publishable_5Dg5TUvnh2mEo-zCYAbgmw_WHNXKDqj';
   var campaign=new URLSearchParams(window.location.search);
   var ids={};
+  var acceptedLeadRecorded=false;
   function id(offer){
     if(ids[offer])return ids[offer];
     var storageKey='sf-inquiry-v1:'+offer;
@@ -35,11 +36,14 @@
         body:JSON.stringify({p_submission_id:id(payload.offer),p_payload:payload}),signal:controller.signal});
       var receipt=await response.json();
       if(!response.ok||receipt.accepted!==true)throw new Error('Inquiry was not accepted');
+      recordLead(payload.offer);
       return receipt;
     }finally{clearTimeout(timer);}
   };
   function recordLead(offer){
+    if(acceptedLeadRecorded)return;
     if(navigator.globalPrivacyControl===true||navigator.doNotTrack==='1'||window.doNotTrack==='1')return;
+    acceptedLeadRecorded=true;
     if(typeof window.formTrackLead==='function')window.formTrackLead(offer);
     // A first-party event for the existing measurement layer. No contact details.
     window.dispatchEvent(new CustomEvent('sf:inquiry-received',{detail:{offer:offer}}));
