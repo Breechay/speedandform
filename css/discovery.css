@@ -124,3 +124,4 @@ html[data-form-reading][data-running-discovery] :is(h1,h2,h3,h4){font-weight:450
 [data-running-discovery] ::selection{background:#c4c0b6;color:var(--ink)}
 .discovery-heading-link{color:inherit;text-decoration:none;text-underline-offset:6px}
 .discovery-heading-link:hover,.discovery-heading-link:focus-visible{text-decoration:underline}
+[data-running-discovery] .discovery-results:has(#discovery-output:empty){min-height:0;padding-bottom:20px}

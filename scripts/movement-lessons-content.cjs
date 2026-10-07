@@ -6,6 +6,12 @@ const routineFacts={
  '/strength-activation':[['For','Preparing for today’s run'],['Time','About 5–10 min before an easy run; faster sessions may need more'],['Equipment','None required; optional mat or light band'],['How often','Before a run when it helps; choose only familiar movements.']],
  '/mobility':[['For','Exploring a comfortable range of movement'],['Time','About 5–8 min'],['Equipment','Cushion, wall or stable support'],['How often','Try 1 brief session, then repeat when it helps the movement you need.']]
 };
+const starting={
+ '/anti-rotation':'Choose 2 or 3 familiar moves. Begin with 1 easy set of each, resting enough to breathe normally and repeat with control.',
+ '/strength-routine':'Choose familiar versions of the 4 movements. Begin with 1 set of each, resting until you can do the next movement well.',
+ '/strength-activation':'Choose 1 or 2 familiar options. Do 1 gentle set, then check whether you feel ready to ease into the run.',
+ '/mobility':'Choose 1 or 2 options for a movement that feels restricted. Try the small amount once, then compare the movement again.'
+};
 const movementFeel={
  'Dead bug':['Keep the reach small.','Gentle abdominal work while your back stays comfortable.'],
  'Pallof press':['Face the same direction.','Your trunk working against the sideways pull; your shoulders stay comfortable.'],
@@ -22,8 +28,8 @@ const movementFeel={
  'Bridge':['Lift the hips comfortably.','Light work in your hips and buttocks, without back strain.'],
  'Band side steps':['Take small easy steps.','Light work around your outer hips; it should not tire you for the run.']
 };
-const practice=g=>({...g,updated:'2026-10-06',practice:true,kind:routineFacts[g.route]?'Routine':'Lesson',facts:routineFacts[g.route],family:'movement',number:'',help:'Make the work fit your running.',helpText:'Coaching connects the exercise choices, the amount of work and the runs around them.'});
-function exercise(id,name,dose,setup,action,notice){const [cue,feel]=movementFeel[name]||['Keep the movement comfortable.','Light work while breathing normally.'];return `<article class="movement-exercise" id="${id}" aria-labelledby="heading-${id}"><header><span class="lesson-label">${String(id.replace(/[^0-9]/g,'')||1).padStart(2,'0')}</span><h3 id="heading-${id}"><a class="section-link" href="#${id}">${name}</a></h3><p class="movement-dose">${dose}</p></header><div><p><strong>Set up:</strong> ${setup}</p><p><strong>Do:</strong> ${action}</p><p><strong>Cue:</strong> ${cue}</p><p><strong>Feel:</strong> ${feel}</p><p class="movement-adjust">${notice}</p><label class="movement-done"><input type="checkbox"> Done for this session</label></div><div class="movement-media" aria-label="Space reserved for a real demonstration of ${name}"><span>Demonstration space</span><small>${name} · real photo or video to come</small></div></article>`;}
+const practice=g=>({...g,updated:'2026-10-06',practice:true,kind:routineFacts[g.route]?'Routine':'Lesson',facts:routineFacts[g.route],starting:starting[g.route],family:'movement',number:'',help:'Make the work fit your running.',helpText:'Coaching connects the exercise choices, the amount of work and the runs around them.'});
+function exercise(id,name,dose,setup,action,notice){const [cue,feel]=movementFeel[name]||['Keep the movement comfortable.','Light work while breathing normally.'];return `<article class="movement-exercise" id="${id}" aria-labelledby="heading-${id}"><header><span class="lesson-label">${String(id.replace(/[^0-9]/g,'')||1).padStart(2,'0')}</span><h3 id="heading-${id}"><a class="section-link" href="#${id}">${name}</a></h3><p class="movement-dose">${dose}</p></header><div><p><strong>Set up:</strong> ${setup}</p><p><strong>Do:</strong> ${action}</p><p><strong>Cue:</strong> ${cue}</p><p><strong>Feel:</strong> ${feel}</p><p class="movement-adjust">${notice}</p><label class="movement-done"><input type="checkbox"> Done for this session</label></div><div class="movement-media" data-move-media="${id}" aria-hidden="true"></div></article>`;}
 const movement=[
  practice({file:'anti-rotation.html',route:'/anti-rotation',label:'Anti-rotation',title:'Anti-Rotation Exercises for Runners: A Simple Core Routine | Speed & Form',heading:'How do I practice keeping my trunk steady?',
  description:'A simple anti-rotation exercise guide for runners. Learn dead bugs, Pallof presses, side planks and single-leg hinges with setup, starting dose and clear cues.',

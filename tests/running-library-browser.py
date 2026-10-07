@@ -55,6 +55,8 @@ try:
   page.goto(base+'/anti-rotation#exercise-2')
   page.wait_for_function("Math.abs(document.getElementById('exercise-2').getBoundingClientRect().top)<80")
   assert page.locator('[data-guide-print]').is_visible()
+  assert page.locator('.routine-start-link').count()==1
+  assert page.locator('.routine-overview .section-link').evaluate('el => getComputedStyle(el).color')=='rgb(22, 25, 22)'
   page.locator('#exercise-2 input').check()
   assert page.locator('#exercise-2 input').is_checked()
   initial=page.locator('details[open]').count()
