@@ -3,22 +3,35 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="robots" content="noindex,nofollow">
-  <meta name="theme-color" content="#07110f">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="theme-color" content="#e8e3d9">
   <meta name="referrer" content="no-referrer">
-  <title>Opening FORM</title>
-  <link rel="stylesheet" href="/auth/app-signin/app-signin.css?v=2">
+  <title>Open FORM | Speed &amp; Form</title>
+  <link rel="stylesheet" href="/auth/app-signin/app-signin.css?v=3">
 </head>
 <body>
-  <main class="handoff" aria-live="polite">
-    <div class="brand">FORM<span>.</span></div>
-    <div class="app-icon" aria-hidden="true">FORM<span>.</span></div>
-    <p class="eyebrow">SIGN IN</p>
-    <h1 id="handoffTitle">Open FORM.</h1>
-    <p id="handoffStatus">Preparing your sign-in…</p>
-    <a id="handoffRetry" class="button" href="#" hidden>Continue →</a>
-    <a class="store-link" href="https://apps.apple.com/us/app/form-practice/id6761313085">FORM on the App Store</a>
-  </main>
-  <script src="/auth/app-signin/app-signin.js?v=2"></script>
+  <a class="skip-link" href="#handoff">Skip to sign-in</a>
+  <div class="auth-shell">
+    <header class="auth-header">
+      <a class="house-mark" href="/" aria-label="Speed and Form home">
+        <img src="/assets/brand/kit/emblem/sf-emblem-ink.svg" alt="">
+      </a>
+      <span class="auth-label">Secure access</span>
+    </header>
+
+    <main class="handoff" id="handoff" aria-live="polite">
+      <p class="eyebrow">Private access</p>
+      <h1 id="handoffTitle">Open FORM.</h1>
+      <p id="handoffStatus">Checking this sign-in link.</p>
+      <a id="handoffRetry" class="button" href="#" hidden>Continue</a>
+      <a class="store-link" href="https://apps.apple.com/us/app/form-practice/id6761313085">FORM on the App Store</a>
+    </main>
+
+    <footer class="auth-footer">
+      <span>Speed &amp; Form</span>
+      <span>Private sign-in</span>
+    </footer>
+  </div>
+  <script src="/auth/app-signin/app-signin.js?v=3"></script>
 </body>
 </html>
