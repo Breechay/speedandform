@@ -12,7 +12,7 @@
     const action = hash.get('continue');
     window.history.replaceState({}, '', '/auth/app-signin/');
     if (hash.getAll('continue').length !== 1 || !action) {
-      fail('Request a new FORM sign-in email.');
+      fail('Request a new Speed & Form sign-in email.');
       return;
     }
     const url = new URL(action);
@@ -26,12 +26,12 @@
         || url.searchParams.getAll('redirect_to').length !== 1
         || redirect.origin !== 'https://speedandform.com'
         || redirect.pathname !== '/auth/record-callback/' || redirect.search || redirect.hash) {
-      fail('Request a new FORM sign-in email.');
+      fail('Request a new Speed & Form sign-in email.');
       return;
     }
     title.textContent = 'Open FORM.';
-    status.textContent = 'Tap Continue to sign in. Then open the app.';
-    retry.textContent = 'Continue →';
+    status.textContent = 'Continue once to verify your account. FORM will open next.';
+    retry.textContent = 'Continue';
     retry.href = '#';
     retry.hidden = false;
     let opening = false;
@@ -44,7 +44,7 @@
       try {
         window.sessionStorage.setItem('form-app-signin-handoff', '1');
         if (window.sessionStorage.getItem('form-app-signin-handoff') !== '1') throw new Error('storage');
-        status.textContent = 'Signing in…';
+        status.textContent = 'Signing in.';
         retry.setAttribute('aria-disabled', 'true');
         window.location.replace(url.toString());
       } catch {
@@ -52,6 +52,6 @@
       }
     });
   } catch {
-    fail('Request a new FORM sign-in email.');
+    fail('Request a new Speed & Form sign-in email.');
   }
 })();

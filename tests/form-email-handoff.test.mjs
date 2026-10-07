@@ -245,3 +245,34 @@ test('auth email documentation names the current sender and house',()=>{
  assert.match(config,/admin_email = "access@send\.speedandform\.com"/);
  assert.match(config,/sender_name = "Speed & Form"/);
 });
+
+test('native app sign-in handoff follows the October paper-room contract',()=>{
+ const html=readFileSync(new URL('../auth/app-signin/index.html',import.meta.url),'utf8');
+ const css=readFileSync(new URL('../auth/app-signin/app-signin.css',import.meta.url),'utf8');
+ const js=readFileSync(new URL('../auth/app-signin/app-signin.js',import.meta.url),'utf8');
+ assert.match(html,/sf-emblem-ink\.svg/);
+ assert.match(html,/app-signin\.css\?v=3/);
+ assert.match(html,/app-signin\.js\?v=3/);
+ assert.match(css,/--paper:#e8e3d9/);
+ assert.match(css,/--ink:#161916/);
+ assert.match(css,/--muted:#5e625b/);
+ assert.doesNotMatch(css,/#c8ff2e|--lime|border-radius:12px|border-radius:19px/i);
+ assert.doesNotMatch(html,/class="brand"|class="app-icon"|FORM<span>/);
+ assert.match(js,/Continue once to verify your account\. FORM will open next\./);
+ assert.match(js,/Request a new Speed & Form sign-in email\./);
+});
+
+test('native coaching email uses the house sender and scanner-safe one-time handoff',()=>{
+ const source=readFileSync(new URL('../supabase/functions/coaching-email-signin/index.ts',import.meta.url),'utf8');
+ assert.match(source,/Speed & Form <access@send\.speedandform\.com>/);
+ assert.match(source,/Your Speed & Form sign-in link/);
+ assert.match(source,/reply_to: REPLY_TO/);
+ assert.match(source,/sf-emblem-ink\.png/);
+ assert.match(source,/#e8e3d9/);
+ assert.match(source,/#161916/);
+ assert.match(source,/HANDOFF_BASE.*auth\/app-signin/);
+ assert.match(source,/encodeURIComponent\(actionLink\)/);
+ assert.match(source,/coaching_magic_link_admit/);
+ assert.match(source,/generateLink/);
+ assert.doesNotMatch(source,/FORM <no-reply@send\.speedandform\.com>|#c8ff2e|Back to your training|One tap and you/);
+});
