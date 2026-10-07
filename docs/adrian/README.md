@@ -154,15 +154,19 @@ Coach Console should read Forge receipts as strength evidence. Do not mix Forge 
 
 ## Structured strength (server-side prescription)
 
-Adrian's strength sessions used to exist on the server only as prose (`planned_session_versions.details`). `planned_session_exercises` (held migration `supabase/held/20261006190000_structured_strength_exercises.sql`) gives each immutable session **version** an ordered list of typed exercises, delivered through the same `athlete_plan_feed` as running components.
+**Authority:** the FORM Athlete System's live current immutable version of each session is canonical. `program.json` is a version-controlled projection of it, not an independent authority. When the live prescription is revised (it was, for the home/dumbbell-equipment adaptation from 2026-10-08), bring `program.json` forward with `node scripts/reconcile-program-from-live.mjs <export.json> --write`; never push an older `program.json` over live. The bundled Forge program is historical/offline-fallback evidence.
+
+Adrian's strength sessions used to exist on the server only as prose (`planned_session_versions.details`, format `Movement — sets × target · authored instruction`). `planned_session_exercises` (held migration `supabase/held/20261006190000_structured_strength_exercises.sql`) gives each immutable session **version** an ordered list of typed exercises, delivered through the same `athlete_plan_feed` as running components.
 
 - Prescription and progress stay separate: nothing here records where Adrian is. Current week/session comes from assignment dates plus real app state and evidence.
 - Exercise rows are append-only. A revision writes a new version with its own exercises; a completed workout can always point at the version it was performed against.
 - The feed change is additive: a session gains `exercises` only when its current version has structured rows.
+- Lossless: the authored instruction is kept whole in `instruction` (the source does not separate cue from coach note, so none is guessed); `rep_unit` keeps units such as "out-and-back cycles"; `side_word` keeps "side" vs "leg". The test renders the rows back and requires the live text byte for byte (58/58, 388 exercises, 225 instructions).
 - `rest_seconds`, `cue`, `substitutions` stay null unless authored; the server never invents them.
-- The migration's Adrian block is generated from `program.json` (`node scripts/generate-structured-strength-migration.mjs`, `--check` to verify before applying). After it is applied, never regenerate it: later revisions are new versions, not a rewritten migration.
-- The test proves the 388 server exercises match the Forge app's bundled reference (`tests/fixtures/forge-adrian-reference.json`, extracted from FORM-iOS `a8a68b1c` by `scripts/extract-forge-adrian-reference.mjs`).
-- Status: authored and tested in the repo. **Not applied to any hosted database.** Before applying, diff the live `athlete_plan_feed` / `athlete_plan_feed_impl` definitions against the repository chain (the production ledger has migrations that are in no git branch).
+- Stable `movement_id`s live in `scripts/structured-strength-spec.mjs` until the server owns them (Step 2). Where Forge already has the same movement its id is reused; plausibly distinct variants get their own.
+- The migration's Adrian block is a frozen snapshot generated from `program.json` (`node scripts/generate-structured-strength-migration.mjs`; `--check` to verify before applying). After it is applied, never regenerate it: later revisions are new versions, not a rewritten migration.
+- Preflight before applying: export the live current versions (`scripts/structured-strength-live-export.sql`, read-only) and run `node scripts/preflight-structured-strength.mjs <export.json>`. It must report 58/58.
+- Status: authored and tested in the repo. **Not applied to any hosted database.** Before applying, diff the live `athlete_plan_feed` / `athlete_plan_feed_impl` against the repository chain (the production ledger has migrations that are in no git branch).
 
 ## Rules for future agents
 

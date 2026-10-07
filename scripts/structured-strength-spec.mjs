@@ -54,7 +54,23 @@ export const MOVEMENT_IDS = {
   'Seated or Lying Leg Curl': 'leg_curl',
   'Cable Lateral Raise': 'cable_lateral_raise_single_arm',
   'Cable or Dumbbell Shrug': 'shoulder_shrug',
-  'Leg Extension': 'leg_extension'
+  'Leg Extension': 'leg_extension',
+  // Home / dumbbell-equipment adaptation (live from Oct 8). Where Forge already has the same
+  // movement its id is reused; a plausibly distinct variant gets its own id rather than being
+  // conflated. Which variants are the same movement is a Step 2 decision, not made silently here.
+  'Dumbbell Goblet Squat': 'legs_db_goblet_squat',
+  'Dumbbell Shrug': 'shoulder_shrug',
+  'Seated Dumbbell Calf Raise': 'seated_calf_raise',
+  'Flat Dumbbell Fly': 'dumbbell_chest_fly',
+  'Low-Incline Dumbbell Fly': 'db_low_incline_fly',
+  'Bench-Supported One-Arm Dumbbell Row': 'db_bench_supported_single_arm_row',
+  'Chest-Supported Dumbbell Rear-Delt Fly': 'db_chest_supported_rear_delt_fly',
+  'Single-Arm Dumbbell Lateral Raise': 'db_lateral_raise_single_arm',
+  'Lying Dumbbell Triceps Extension': 'dumbbell_lying_triceps_extension',
+  'Seated Dumbbell Overhead Triceps Extension': 'dumbbell_seated_overhead_triceps_extension',
+  'Hamstring Bridge Walkout': 'legs_hamstring_bridge_walkout',
+  'Side-Lying Hip Adduction': 'legs_side_lying_hip_adduction',
+  'Dumbbell Suitcase Hold': 'core_db_suitcase_hold'
 };
 
 export function resolveDays(source, week, seen = new Set()) {
@@ -66,13 +82,15 @@ export function resolveDays(source, week, seen = new Set()) {
   return resolveDays(source, target, new Set([...seen, ref]));
 }
 
-// '8–10' | '12' | '12–15 / side' | '30 sec' | '30–45 sec / side'
+// '8–10' | '12' | '12–15 / side' | '30 sec' | '30–45 sec / side' | '6–8 out-and-back cycles'
+// A bare unit word other than "sec" is kept as the unit of a counted target (reps by default).
 export function parseTarget(raw) {
-  const m = /^(\d+)(?:–(\d+))?( sec)?(?: \/ (side|leg))?$/.exec(raw);
+  const m = /^(\d+)(?:–(\d+))?(?: ([a-z][a-z -]*?))?(?: \/ (side|leg))?$/.exec(raw);
   if (!m) throw new Error(`Unparsed rep target: ${raw}`);
   const low = Number(m[1]);
   const high = m[2] === undefined ? low : Number(m[2]);
-  return { low, high, timed: Boolean(m[3]), perSide: Boolean(m[4]) };
+  const unit = m[3] ?? null;
+  return { low, high, timed: unit === 'sec', repUnit: unit && unit !== 'sec' ? unit : null, perSide: Boolean(m[4]), sideWord: m[4] ?? null };
 }
 
 const addDays = (isoDate, n) => {
@@ -81,8 +99,11 @@ const addDays = (isoDate, n) => {
   return d.toISOString().slice(0, 10);
 };
 
-// The same readable fallback the original Adrian migration wrote into planned_session_versions.details.
-export const detailsText = (exercises) => exercises.map((e) => `${e.name} — ${e.sets} × ${e.reps}`).join('\n');
+// The readable text the live versions carry in planned_session_versions.details:
+// "Movement — sets × target" with the authored instruction, if any, after " · ". It is the one
+// place the instruction is written, so the readable fallback and the structured rows cannot differ.
+export const detailsText = (exercises) =>
+  exercises.map((e) => `${e.name} — ${e.sets} × ${e.reps}${e.note ? ` · ${e.note}` : ''}`).join('\n');
 
 export function buildSpec(source) {
   if (source.program_id !== 'adrian_runner_mass_phase1_v1') throw new Error('Program id changed; receipt continuity would break');
@@ -108,10 +129,12 @@ export function buildSpec(source) {
             sets: e.sets,
             rep_low: t.timed ? null : t.low,
             rep_high: t.timed ? null : t.high,
+            rep_unit: t.repUnit,
             target_seconds: t.timed ? t.low : null,
             target_seconds_high: t.timed && t.high !== t.low ? t.high : null,
             laterality: t.perSide ? 'per_side' : 'bilateral',
-            coach_note: e.note ?? null
+            side_word: t.sideWord,
+            instruction: e.note ?? null
           };
         })
       });

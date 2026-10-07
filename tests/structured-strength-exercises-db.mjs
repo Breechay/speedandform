@@ -5,6 +5,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { openPglite, replaySchema, fixture, as, PLATFORM_ONLY } from './support/replay-schema.mjs';
 import { MIGRATION } from '../scripts/generate-structured-strength-migration.mjs';
+import { MOVEMENT_IDS } from '../scripts/structured-strength-spec.mjs';
 
 let checks = 0;
 const ok = (v, m) => { assert.ok(v, m); checks += 1; };
@@ -45,13 +46,19 @@ for (const w of [...new Set(spec.map((x) => x.week))].sort((a, b) => a - b)) {
     values ($1,$2,$3,$4,$5,'planned') returning id`, [adrian.athlete, adrian.block, w, starts, addDays(starts, 6)]);
   weekIds.set(w, r[0].id);
 }
+// Production-shaped: each session carries exactly the text the live system carries today
+// (frozen in tests/fixtures), at the live version number. The test never edits a version.
+const live = JSON.parse(fs.readFileSync(new URL('./fixtures/adrian-live-current-2026-10-06.json', import.meta.url), 'utf8')).sessions;
+eq(live.length, 58, 'the live fixture holds 58 current versions');
+const liveByDate = new Map(live.map((l) => [l.scheduled_on, l]));
 let position = 0;
 for (const s of spec) {
+  const l = liveByDate.get(s.scheduled_on);
+  ok(l, `a live version exists for ${s.scheduled_on}`);
   const ps = await rows(db, `insert into public.planned_sessions(athlete_id, week_id, day_label, position, scheduled_on, state)
     values ($1,$2,$3,$4,$5,'published') returning id`, [adrian.athlete, weekIds.get(s.week), s.day_label, (position += 1), s.scheduled_on]);
-  // Exactly what the original Adrian migration wrote: prose details, no structure.
   await db.query(`insert into public.planned_session_versions(athlete_id, planned_session_id, version_number, title, intent, details, shape)
-    values ($1,$2,1,$3,'Strength',$4,'strength')`, [adrian.athlete, ps[0].id, s.title, s.details]);
+    values ($1,$2,$3,$4,'Strength',$5,'strength')`, [adrian.athlete, ps[0].id, l.version_number, l.title, l.details]);
 }
 
 // A running athlete with a structured running component: must be untouched by all of this.
@@ -79,26 +86,46 @@ eq((await rows(db, 'select count(*)::int n from public.planned_session_exercises
 const adrianAfter = await feedFor(adrian.athleteUser, adrian.athlete);
 eq(adrianAfter.sessions.filter((s) => s.exercises).length, 58, 'every Adrian session now carries exercises');
 
+// The live system is canonical. The bundled Forge program is only historical/offline-fallback
+// evidence: where it still agrees with live, the structured rows agree with it exactly; it may
+// differ only on the future sessions revised after the bundle was built (from 2026-10-08).
 const reference = JSON.parse(fs.readFileSync(new URL('./fixtures/forge-adrian-reference.json', import.meta.url), 'utf8'));
 const dayIndex = { Monday: 0, Tuesday: 1, Wednesday: 2, Thursday: 3, Friday: 4, Saturday: 5, Sunday: 6 };
 const referenceById = new Map(reference.sessions.map((s) => [s.sessionId, s]));
-let compared = 0;
+const signature = (e) => JSON.stringify([e.movement_id, e.movement_name, e.sets, e.rep_low, e.rep_high, e.target_seconds, e.laterality]);
+let bundleAgrees = 0; const bundleDiffers = [];
 for (const session of adrianAfter.sessions) {
   const spec1 = spec.find((s) => s.scheduled_on === session.scheduled_on);
   const ref = referenceById.get(`adrian_runner_mass_w${spec1.week}_d${dayIndex[spec1.day_label]}`);
   ok(ref, `Forge has a bundled session for ${session.scheduled_on}`);
-  eq(session.version.title, ref.sessionName, `title ${session.scheduled_on}`);
-  eq(session.exercises.length, ref.exercises.length, `exercise count ${session.scheduled_on}`);
-  session.exercises.forEach((ex, i) => {
-    const f = ref.exercises[i];
-    eq([ex.position, ex.movement_id, ex.movement_name, ex.sets, ex.rep_low, ex.rep_high, ex.target_seconds, ex.laterality === 'per_side' ? 'perSide' : 'bilateral'],
-       [i + 1, f.movementId, f.name, f.setCount, f.repLow, f.repHigh, f.targetSeconds, f.laterality],
-       `${session.scheduled_on} #${i + 1} ${f.name} matches the Forge bundle`);
-    compared += 1;
-  });
+  const refSig = ref.exercises.map((f) => JSON.stringify([f.movementId, f.name, f.setCount, f.repLow, f.repHigh, f.targetSeconds, f.laterality === 'perSide' ? 'per_side' : 'bilateral']));
+  const mine = session.exercises.map(signature);
+  if (JSON.stringify(refSig) === JSON.stringify(mine)) bundleAgrees += 1; else bundleDiffers.push(session.scheduled_on);
 }
-eq(compared, 388, 'every exercise was compared with the Forge bundle');
-eq(weekIds.size, 16, 'sixteen authored weeks');
+ok(bundleDiffers.every((d) => d >= '2026-10-08'), `the Forge bundle differs from live only from 2026-10-08, not on ${bundleDiffers.filter((d) => d < '2026-10-08')}`);
+ok(bundleAgrees >= 10 && bundleDiffers.length > 0, 'the bundle still agrees on the sessions that have not been revised');
+
+// The authoritative proof: the structured rows render back to the live text, byte for byte.
+const reps = (e) => e.target_seconds !== null
+  ? `${e.target_seconds}${e.target_seconds_high ? `–${e.target_seconds_high}` : ''} sec`
+  : `${e.rep_low}${e.rep_high !== e.rep_low ? `–${e.rep_high}` : ''}${e.rep_unit ? ` ${e.rep_unit}` : ''}`;
+const renderDetails = (exercises) => exercises
+  .map((e) => `${e.movement_name} — ${e.sets} × ${reps(e)}${e.side_word ? ` / ${e.side_word}` : ''}${e.instruction ? ` · ${e.instruction}` : ''}`).join('\n');
+let roundTripped = 0;
+for (const session of adrianAfter.sessions) {
+  eq(renderDetails(session.exercises), liveByDate.get(session.scheduled_on).details, `${session.scheduled_on} round-trips to the live text exactly`);
+  roundTripped += 1;
+}
+eq(roundTripped, 58, 'all 58 live versions round-trip exactly');
+// The text proves the prescription; the ids prove identity. One stable id per movement name,
+// and the id map covers every movement the live system uses.
+const idsByName = new Map();
+for (const e of adrianAfter.sessions.flatMap((s) => s.exercises)) idsByName.set(e.movement_name, new Set([...(idsByName.get(e.movement_name) ?? []), e.movement_id]));
+ok([...idsByName.values()].every((ids) => ids.size === 1), 'every movement name has exactly one stable id');
+eq([...idsByName.keys()].filter((n) => !(n in MOVEMENT_IDS)), [], 'every live movement has a stable id');
+for (const [name, [id]] of [...idsByName].map(([n, ids]) => [n, [...ids]])) eq(id, MOVEMENT_IDS[name], `${name} keeps its stable id`);
+eq(adrianAfter.sessions.flatMap((s) => s.exercises).length, 388, 'and they hold 388 exercises');
+eq(adrianAfter.sessions.flatMap((s) => s.exercises).filter((e) => e.instruction).length, 225, 'with all 225 authored instructions preserved');
 
 // Weeks 5 and 6 keep their own copy of what Week 4 used to hold; Week 4 itself has no calf.
 const names = (week) => adrianAfter.sessions.filter((s) => spec.find((x) => x.scheduled_on === s.scheduled_on).week === week).flatMap((s) => s.exercises.map((e) => e.movement_name));
@@ -107,7 +134,14 @@ ok(names(5).some((n) => /calf/i.test(n)), 'Week 5 keeps its explicit calf work')
 
 // Timed work keeps its authored range; nothing is invented.
 const plank = adrianAfter.sessions.flatMap((s) => s.exercises).find((e) => e.movement_id === 'core_floor_side_plank');
-eq([plank.target_seconds, plank.target_seconds_high, plank.rep_low, plank.rep_high, plank.laterality], [30, 45, null, null, 'per_side'], 'a timed per-side exercise keeps its range');
+eq([plank.target_seconds, plank.target_seconds_high, plank.rep_low, plank.rep_high, plank.laterality, plank.side_word], [30, 45, null, null, 'per_side', 'side'], 'a timed per-side exercise keeps its range');
+const walkout = adrianAfter.sessions.flatMap((s) => s.exercises).find((e) => e.movement_id === 'legs_hamstring_bridge_walkout');
+eq([walkout.rep_unit, walkout.target_seconds, walkout.rep_low <= walkout.rep_high], ['out-and-back cycles', null, true], 'a counted target keeps its unit');
+eq(adrianAfter.sessions.flatMap((s) => s.exercises).filter((e) => e.rep_unit).length, 16, 'all 16 unit-bearing targets keep their unit');
+const row = adrianAfter.sessions.find((s) => s.scheduled_on === '2026-10-09').exercises.find((e) => e.movement_id === 'db_bench_supported_single_arm_row');
+eq([row.laterality, row.side_word, row.instruction], ['per_side', 'side', 'Brace on the bench and draw your elbow toward your hip without twisting.'], 'the authored instruction is kept exactly');
+const legWork = adrianAfter.sessions.flatMap((s) => s.exercises).find((e) => e.side_word === 'leg');
+ok(legWork, 'the coach\'s "per leg" wording is kept, not flattened to "side"');
 ok(adrianAfter.sessions.flatMap((s) => s.exercises).every((e) => e.rest_seconds === null && e.cue === null && e.substitutions === null), 'rest, cue and substitutions are not invented');
 
 // ── Additive: nothing else in the feed changed ──────────────────────────────────────────
@@ -170,29 +204,34 @@ eq(feedOpen, true, 'the public feed entry point stays callable by signed-in user
 
 // ── Constraints: nothing ambiguous can be stored ────────────────────────────────────────
 const direct = (extra) => db.query(
-  `insert into public.planned_session_exercises(athlete_id, version_id, position, movement_id, movement_name, sets, rep_low, rep_high, target_seconds, target_seconds_high, laterality)
-   values ($1,$2,$3,'a_move','A',3,$4,$5,$6,$7,$8)`,
-  [runner.athlete, runnerVersion, extra.position, extra.rep_low ?? null, extra.rep_high ?? null, extra.target_seconds ?? null, extra.target_seconds_high ?? null, extra.laterality ?? 'bilateral']);
+  `insert into public.planned_session_exercises(athlete_id, version_id, position, movement_id, movement_name, sets, rep_low, rep_high, target_seconds, target_seconds_high, laterality, side_word, rep_unit)
+   values ($1,$2,$3,'a_move','A',3,$4,$5,$6,$7,$8,$9,$10)`,
+  [runner.athlete, runnerVersion, extra.position, extra.rep_low ?? null, extra.rep_high ?? null, extra.target_seconds ?? null, extra.target_seconds_high ?? null, extra.laterality ?? 'bilateral', extra.side_word ?? null, extra.rep_unit ?? null]);
 await rejects(() => direct({ position: 1 }), /exercise_has_one_measure/, 'an exercise must say reps or seconds');
 await rejects(() => direct({ position: 2, rep_low: 8, rep_high: 10, target_seconds: 30 }), /exercise_has_one_measure/, 'an exercise cannot say both');
 await rejects(() => direct({ position: 3, rep_low: 12, rep_high: 8 }), /exercise_reps_are_a_range/, 'a reversed rep range is refused');
 await rejects(() => direct({ position: 4, target_seconds: 45, target_seconds_high: 30 }), /exercise_seconds_are_a_range/, 'a reversed time range is refused');
 await rejects(() => direct({ position: 5, rep_low: 8, rep_high: 10, laterality: 'left' }), /laterality/, 'laterality is one of two values');
+await rejects(() => direct({ position: 7, rep_low: 8, rep_high: 8, laterality: 'per_side' }), /exercise_side_word_matches_laterality/, 'a per-side exercise must say how it was written');
+await rejects(() => direct({ position: 8, rep_low: 8, rep_high: 8, side_word: 'leg' }), /exercise_side_word_matches_laterality/, 'a bilateral exercise has no side word');
+await rejects(() => direct({ position: 9, target_seconds: 30, rep_unit: 'cycles' }), /exercise_unit_needs_a_count/, 'a unit belongs to a counted target, not a timed one');
+await direct({ position: 10, rep_low: 6, rep_high: 8, rep_unit: 'out-and-back cycles' });
+await direct({ position: 11, rep_low: 6, rep_high: 6, laterality: 'per_side', side_word: 'leg' });
 await direct({ position: 6, rep_low: 8, rep_high: 8 });
 await rejects(() => direct({ position: 6, rep_low: 8, rep_high: 8 }), /unique|duplicate/i, 'a position is used once per version');
 await rejects(() => db.query(`update public.planned_session_exercises set sets = 9 where version_id = $1`, [firstVersion]), /append-only/, 'a prescription cannot be edited in place');
 await rejects(() => db.query(`delete from public.planned_session_exercises where version_id = $1`, [firstVersion]), /append-only/, 'a prescription cannot be deleted');
 
 // ── Versioning: a revision never touches what an older version held ─────────────────────
-const target = (await rows(db, `select ps.id, v.id as v1 from public.planned_sessions ps join public.planned_session_versions v on v.planned_session_id = ps.id
+const target = (await rows(db, `select ps.id, v.id as v1, v.version_number as vn from public.planned_sessions ps join public.planned_session_versions v on v.planned_session_id = ps.id
   where ps.athlete_id = $1 order by ps.scheduled_on desc limit 1`, [adrian.athlete]))[0];
 const v1Rows = await rows(db, 'select * from public.planned_session_exercises where version_id = $1 order by position', [target.v1]);
 ok(v1Rows.length > 0, 'the future session has structured exercises on version 1');
 const v2 = (await rows(db, `insert into public.planned_session_versions(athlete_id, planned_session_id, version_number, title, intent, details, shape, change_reason)
-  values ($1,$2,2,'Revised','Strength','One revised line — 3 × 10','strength','coach revision') returning id`, [adrian.athlete, target.id]))[0].id;
+  values ($1,$2,$3,'Revised','Strength','One revised line — 3 × 10','strength','coach revision') returning id`, [adrian.athlete, target.id, target.vn + 1]))[0].id;
 const afterRevision = await feedFor(adrian.athleteUser, adrian.athlete);
 const revised = afterRevision.sessions.find((s) => s.id === target.id);
-eq([revised.version.version_number, 'exercises' in revised], [2, false], 'a revised version without structure shows none rather than the old version\'s exercises');
+eq([revised.version.version_number, 'exercises' in revised], [target.vn + 1, false], 'a revised version without structure shows none rather than the old version\'s exercises');
 eq(await rows(db, 'select * from public.planned_session_exercises where version_id = $1 order by position', [target.v1]), v1Rows, 'revising leaves version 1\'s exercise rows exactly as they were');
 // The backfill refuses to describe a version whose text it does not match.
 const mismatch = (await rows(db, 'select public.backfill_structured_strength($1, $2::jsonb) r', [adrian.athlete, JSON.stringify(spec.filter((x) => x.scheduled_on === revised.scheduled_on))]))[0].r;

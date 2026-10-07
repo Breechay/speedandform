@@ -9,7 +9,7 @@ import { MOVEMENT_IDS } from './structured-strength-spec.mjs';
 const file = process.argv[2];
 if (!file) { console.error('usage: preflight-structured-strength.mjs <live-export.json>'); process.exit(2); }
 const live = JSON.parse(fs.readFileSync(file, 'utf8'));
-const rows = Array.isArray(live) ? live : (live.rows ?? Object.values(live)[0]);
+const rows = Array.isArray(live) ? live : (live.rows ?? live.sessions ?? Object.values(live)[0]);
 const sql = fs.readFileSync(MIGRATION, 'utf8');
 const spec = JSON.parse(/\$spec\$(.*?)\$spec\$/s.exec(sql)[1]);
 const byDate = new Map(rows.map((r) => [String(r.scheduled_on).slice(0, 10), r]));

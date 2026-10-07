@@ -362,6 +362,50 @@
       "intent": "Keep the proven four-day rhythm, but spend the recovery budget where Adrian has the most useful room to develop.",
       "public_path": "/plans/adrian-hypertrophy-week-02/",
       "progression_note": "Known run structure: Wednesday quality and Saturday long run are protected. Do not make up the missed Sunday lift. Upper A may move one day if recovery is normal. Lower work stays controlled and yields if the run response is not normal.",
+      "run_context": {
+        "source": "athlete-supplied running-coach schedule",
+        "received_on": "2026-09-21",
+        "status": "planned context, not completion evidence",
+        "planned_miles": 44,
+        "schedule": [
+          {
+            "weekday": "Monday",
+            "run": "6 mi easy",
+            "pace": "7:30–8:15 / mi"
+          },
+          {
+            "weekday": "Tuesday",
+            "run": "6 mi easy + 4–6 × 15 sec strides"
+          },
+          {
+            "weekday": "Wednesday",
+            "run": "2 mi warm-up + 8 × 2 min @ 6:00 / mi with 2 min jog + 1.8 mi cool-down",
+            "approx_total_miles": 8
+          },
+          {
+            "weekday": "Thursday",
+            "run": "6 mi easy"
+          },
+          {
+            "weekday": "Friday",
+            "run": "6 mi easy + strides"
+          },
+          {
+            "weekday": "Saturday",
+            "run": "12 mi easy long run"
+          },
+          {
+            "weekday": "Sunday",
+            "run": "Off running"
+          }
+        ],
+        "prior_day_context": "The prior long run shifted from Saturday to Sunday. The planned Sunday strength session was skipped, and the athlete reported reduced recovery from travel and a late return.",
+        "protected_runs": [
+          "Wednesday quality session",
+          "Saturday long run"
+        ],
+        "strength_adjustment": "Do not make up or compress missed strength. Upper A may move from Monday to Tuesday after the easy run and strides if recovery is normal. Thursday Lower A stays controlled. Friday Upper B stays as written. Sunday Lower B is conditional on normal legs after Saturday; otherwise it is skipped rather than rolled forward."
+      },
       "days": [
         {
           "day_index": 1,
@@ -525,51 +569,7 @@
             }
           ]
         }
-      ],
-      "run_context": {
-        "source": "athlete-supplied running-coach schedule",
-        "received_on": "2026-09-21",
-        "status": "planned context, not completion evidence",
-        "planned_miles": 44,
-        "schedule": [
-          {
-            "weekday": "Monday",
-            "run": "6 mi easy",
-            "pace": "7:30–8:15 / mi"
-          },
-          {
-            "weekday": "Tuesday",
-            "run": "6 mi easy + 4–6 × 15 sec strides"
-          },
-          {
-            "weekday": "Wednesday",
-            "run": "2 mi warm-up + 8 × 2 min @ 6:00 / mi with 2 min jog + 1.8 mi cool-down",
-            "approx_total_miles": 8
-          },
-          {
-            "weekday": "Thursday",
-            "run": "6 mi easy"
-          },
-          {
-            "weekday": "Friday",
-            "run": "6 mi easy + strides"
-          },
-          {
-            "weekday": "Saturday",
-            "run": "12 mi easy long run"
-          },
-          {
-            "weekday": "Sunday",
-            "run": "Off running"
-          }
-        ],
-        "prior_day_context": "The prior long run shifted from Saturday to Sunday. The planned Sunday strength session was skipped, and the athlete reported reduced recovery from travel and a late return.",
-        "protected_runs": [
-          "Wednesday quality session",
-          "Saturday long run"
-        ],
-        "strength_adjustment": "Do not make up or compress missed strength. Upper A may move from Monday to Tuesday after the easy run and strides if recovery is normal. Thursday Lower A stays controlled. Friday Upper B stays as written. Sunday Lower B is conditional on normal legs after Saturday; otherwise it is skipped rather than rolled forward."
-      }
+      ]
     },
     {
       "week": 3,
@@ -649,7 +649,8 @@
             {
               "name": "Bulgarian Split Squat",
               "sets": 3,
-              "reps": "6–8 / leg"
+              "reps": "6–8 / leg",
+              "note": "Use a stable, load-bearing support for your rear foot; skip if it can slide or tip."
             },
             {
               "name": "Dumbbell Romanian Deadlift",
@@ -657,24 +658,28 @@
               "reps": "6–8"
             },
             {
-              "name": "Heel-Elevated Goblet Squat or Leg Press",
+              "name": "Dumbbell Goblet Squat",
               "sets": 2,
-              "reps": "8–10"
+              "reps": "8–10",
+              "note": "Keep your feet planted and squat only as deep as you can control."
             },
             {
-              "name": "Seated Leg Curl",
+              "name": "Hamstring Bridge Walkout",
               "sets": 2,
-              "reps": "8–12"
+              "reps": "4–6 out-and-back cycles",
+              "note": "From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled."
             },
             {
-              "name": "Cable Hip Adduction",
+              "name": "Side-Lying Hip Adduction",
               "sets": 3,
-              "reps": "12–15 / side"
+              "reps": "12–20 / side",
+              "note": "Lie on your side and lift the bottom leg without rolling your hips."
             },
             {
-              "name": "Pallof Press",
+              "name": "Dumbbell Suitcase Hold",
               "sets": 2,
-              "reps": "10 / side"
+              "reps": "20–30 sec / side",
+              "note": "Hold one dumbbell at your side; stand tall without leaning."
             }
           ]
         },
@@ -690,30 +695,34 @@
               "reps": "6–10"
             },
             {
-              "name": "One-Arm Cable Row",
+              "name": "Bench-Supported One-Arm Dumbbell Row",
               "sets": 3,
               "reps": "8–12 / side",
-              "note": "Lat bias: elbow toward hip; do not turn it into an upper-trap row."
+              "note": "Brace on the bench and draw your elbow toward your hip without twisting."
             },
             {
-              "name": "Lat Pulldown",
+              "name": "Dumbbell Pullover",
               "sets": 3,
-              "reps": "8–10"
+              "reps": "10–15",
+              "note": "Keep your back on the bench; lower only as far as your shoulders stay comfortable."
             },
             {
-              "name": "Mid-Height Cable Fly",
+              "name": "Flat Dumbbell Fly",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Keep your elbows softly bent and lower only through a comfortable range."
             },
             {
-              "name": "Cable Lateral Raise",
+              "name": "Dumbbell Lateral Raise",
               "sets": 2,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Lift smoothly to a comfortable shoulder height without swinging."
             },
             {
-              "name": "Cable Rear-Delt Fly",
+              "name": "Chest-Supported Dumbbell Rear-Delt Fly",
               "sets": 3,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Keep your chest supported and move without shrugging."
             },
             {
               "name": "Hammer Curl",
@@ -721,9 +730,10 @@
               "reps": "8–12"
             },
             {
-              "name": "Rope Pressdown",
+              "name": "Lying Dumbbell Triceps Extension",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Keep your upper arms steady; lower under control beside your head."
             }
           ]
         },
@@ -736,22 +746,26 @@
             {
               "name": "Dumbbell Step-Up",
               "sets": 3,
-              "reps": "6–8 / leg"
+              "reps": "6–8 / leg",
+              "note": "Use a stable, load-bearing step or bench; skip if it can slide or tip."
             },
             {
-              "name": "Hip Thrust",
+              "name": "Dumbbell Hip Thrust",
               "sets": 2,
-              "reps": "6–10"
+              "reps": "6–10",
+              "note": "Secure the dumbbell over your hips; keep the bench stable and finish without arching."
             },
             {
-              "name": "Seated or Lying Leg Curl",
+              "name": "Hamstring Bridge Walkout",
               "sets": 2,
-              "reps": "8–12"
+              "reps": "4–6 out-and-back cycles",
+              "note": "From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled."
             },
             {
-              "name": "Leg Extension",
+              "name": "Dumbbell Goblet Squat",
               "sets": 2,
-              "reps": "12–15"
+              "reps": "10–15",
+              "note": "Start light and leave 3 clean reps on the first exposure; hold or reduce if the next run is heavy."
             },
             {
               "name": "Dead Bug",
@@ -794,34 +808,40 @@
               "reps": "6–10"
             },
             {
-              "name": "Neutral-Grip Cable Pulldown",
+              "name": "Bench-Supported One-Arm Dumbbell Row",
               "sets": 3,
-              "reps": "8–10"
+              "reps": "8–12 / side",
+              "note": "Brace on the bench and draw your elbow toward your hip without twisting."
             },
             {
-              "name": "Cable or Dumbbell Shrug",
+              "name": "Dumbbell Shrug",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Lift smoothly, pause, then lower; keep your head level."
             },
             {
-              "name": "Low-to-High Cable Fly",
+              "name": "Low-Incline Dumbbell Fly",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Use a low bench incline, soft elbows and a comfortable depth."
             },
             {
-              "name": "Single-Arm Cable Lateral Raise",
+              "name": "Single-Arm Dumbbell Lateral Raise",
               "sets": 3,
-              "reps": "12–18 / side"
+              "reps": "12–18 / side",
+              "note": "Lift smoothly to a comfortable shoulder height without swinging."
             },
             {
-              "name": "Cable Rear-Delt Fly",
+              "name": "Chest-Supported Dumbbell Rear-Delt Fly",
               "sets": 2,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Keep your chest supported and move without shrugging."
             },
             {
-              "name": "Overhead Cable Triceps Extension",
+              "name": "Seated Dumbbell Overhead Triceps Extension",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Keep your upper arms steady and lower through a comfortable range."
             }
           ]
         },
@@ -834,7 +854,8 @@
             {
               "name": "Bulgarian Split Squat",
               "sets": 3,
-              "reps": "6–8 / leg"
+              "reps": "6–8 / leg",
+              "note": "Use a stable, load-bearing support for your rear foot; skip if it can slide or tip."
             },
             {
               "name": "Dumbbell Romanian Deadlift",
@@ -842,30 +863,34 @@
               "reps": "6–8"
             },
             {
-              "name": "Heel-Elevated Goblet Squat or Leg Press",
+              "name": "Dumbbell Goblet Squat",
               "sets": 2,
-              "reps": "8–10"
+              "reps": "8–10",
+              "note": "Keep your feet planted and squat only as deep as you can control."
             },
             {
-              "name": "Seated Leg Curl",
+              "name": "Hamstring Bridge Walkout",
               "sets": 2,
-              "reps": "8–12"
+              "reps": "4–6 out-and-back cycles",
+              "note": "From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled."
             },
             {
-              "name": "Cable Hip Adduction",
+              "name": "Side-Lying Hip Adduction",
               "sets": 3,
-              "reps": "12–15 / side"
+              "reps": "12–20 / side",
+              "note": "Lie on your side and lift the bottom leg without rolling your hips."
             },
             {
-              "name": "Bent-Knee Calf Raise",
+              "name": "Seated Dumbbell Calf Raise",
               "sets": 2,
               "reps": "10–15",
-              "note": "Maintenance only; perform only if calf tenderness has resolved and the prior run response is normal."
+              "note": "Maintenance only; perform only if calf tenderness has resolved and the prior run response is normal. Keep the dumbbell secure over your thigh."
             },
             {
-              "name": "Pallof Press",
+              "name": "Dumbbell Suitcase Hold",
               "sets": 2,
-              "reps": "10 / side"
+              "reps": "20–30 sec / side",
+              "note": "Hold one dumbbell at your side; stand tall without leaning."
             }
           ]
         },
@@ -881,30 +906,34 @@
               "reps": "6–10"
             },
             {
-              "name": "One-Arm Cable Row",
+              "name": "Bench-Supported One-Arm Dumbbell Row",
               "sets": 3,
               "reps": "8–12 / side",
-              "note": "Lat bias: elbow toward hip; do not turn it into an upper-trap row."
+              "note": "Brace on the bench and draw your elbow toward your hip without twisting."
             },
             {
-              "name": "Lat Pulldown",
+              "name": "Dumbbell Pullover",
               "sets": 3,
-              "reps": "8–10"
+              "reps": "10–15",
+              "note": "Keep your back on the bench; lower only as far as your shoulders stay comfortable."
             },
             {
-              "name": "Mid-Height Cable Fly",
+              "name": "Flat Dumbbell Fly",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Keep your elbows softly bent and lower only through a comfortable range."
             },
             {
-              "name": "Cable Lateral Raise",
+              "name": "Dumbbell Lateral Raise",
               "sets": 2,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Lift smoothly to a comfortable shoulder height without swinging."
             },
             {
-              "name": "Cable Rear-Delt Fly",
+              "name": "Chest-Supported Dumbbell Rear-Delt Fly",
               "sets": 3,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Keep your chest supported and move without shrugging."
             },
             {
               "name": "Hammer Curl",
@@ -912,9 +941,10 @@
               "reps": "8–12"
             },
             {
-              "name": "Rope Pressdown",
+              "name": "Lying Dumbbell Triceps Extension",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Keep your upper arms steady; lower under control beside your head."
             }
           ]
         },
@@ -927,22 +957,26 @@
             {
               "name": "Dumbbell Step-Up",
               "sets": 3,
-              "reps": "6–8 / leg"
+              "reps": "6–8 / leg",
+              "note": "Use a stable, load-bearing step or bench; skip if it can slide or tip."
             },
             {
-              "name": "Hip Thrust",
+              "name": "Dumbbell Hip Thrust",
               "sets": 2,
-              "reps": "6–10"
+              "reps": "6–10",
+              "note": "Secure the dumbbell over your hips; keep the bench stable and finish without arching."
             },
             {
-              "name": "Seated or Lying Leg Curl",
+              "name": "Hamstring Bridge Walkout",
               "sets": 2,
-              "reps": "8–12"
+              "reps": "4–6 out-and-back cycles",
+              "note": "From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled."
             },
             {
-              "name": "Leg Extension",
+              "name": "Dumbbell Goblet Squat",
               "sets": 2,
-              "reps": "12–15"
+              "reps": "10–15",
+              "note": "Start light and leave 3 clean reps on the first exposure; hold or reduce if the next run is heavy."
             },
             {
               "name": "Dead Bug",
@@ -996,34 +1030,40 @@
               "reps": "6–10"
             },
             {
-              "name": "Neutral-Grip Cable Pulldown",
+              "name": "Bench-Supported One-Arm Dumbbell Row",
               "sets": 2,
-              "reps": "8–10"
+              "reps": "8–10 / side",
+              "note": "Brace on the bench and draw your elbow toward your hip without twisting."
             },
             {
-              "name": "Cable or Dumbbell Shrug",
+              "name": "Dumbbell Shrug",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Lift smoothly, pause, then lower; keep your head level."
             },
             {
-              "name": "Low-to-High Cable Fly",
+              "name": "Low-Incline Dumbbell Fly",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Use a low bench incline, soft elbows and a comfortable depth."
             },
             {
-              "name": "Cable Lateral Raise",
+              "name": "Dumbbell Lateral Raise",
               "sets": 2,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Lift smoothly to a comfortable shoulder height without swinging."
             },
             {
-              "name": "Cable Rear-Delt Fly",
+              "name": "Chest-Supported Dumbbell Rear-Delt Fly",
               "sets": 2,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Keep your chest supported and move without shrugging."
             },
             {
-              "name": "Overhead Cable Triceps Extension",
+              "name": "Seated Dumbbell Overhead Triceps Extension",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Keep your upper arms steady and lower through a comfortable range."
             }
           ]
         },
@@ -1036,7 +1076,8 @@
             {
               "name": "Bulgarian Split Squat",
               "sets": 2,
-              "reps": "6–8 / leg"
+              "reps": "6–8 / leg",
+              "note": "Use a stable, load-bearing support for your rear foot; skip if it can slide or tip."
             },
             {
               "name": "Dumbbell Romanian Deadlift",
@@ -1044,19 +1085,22 @@
               "reps": "6–8"
             },
             {
-              "name": "Heel-Elevated Goblet Squat or Leg Press",
+              "name": "Dumbbell Goblet Squat",
               "sets": 2,
-              "reps": "8–10"
+              "reps": "8–10",
+              "note": "Keep your feet planted and squat only as deep as you can control."
             },
             {
-              "name": "Cable Hip Adduction",
+              "name": "Side-Lying Hip Adduction",
               "sets": 2,
-              "reps": "12–15 / side"
+              "reps": "12–20 / side",
+              "note": "Lie on your side and lift the bottom leg without rolling your hips."
             },
             {
-              "name": "Pallof Press",
+              "name": "Dumbbell Suitcase Hold",
               "sets": 2,
-              "reps": "10 / side"
+              "reps": "20–30 sec / side",
+              "note": "Hold one dumbbell at your side; stand tall without leaning."
             }
           ]
         },
@@ -1072,25 +1116,28 @@
               "reps": "6–10"
             },
             {
-              "name": "One-Arm Cable Row",
+              "name": "Bench-Supported One-Arm Dumbbell Row",
               "sets": 2,
               "reps": "8–12 / side",
-              "note": "Lat bias: elbow toward hip."
+              "note": "Brace on the bench and draw your elbow toward your hip without twisting."
             },
             {
-              "name": "Lat Pulldown",
+              "name": "Dumbbell Pullover",
               "sets": 2,
-              "reps": "8–10"
+              "reps": "10–15",
+              "note": "Keep your back on the bench; lower only as far as your shoulders stay comfortable."
             },
             {
-              "name": "Cable Lateral Raise",
+              "name": "Dumbbell Lateral Raise",
               "sets": 2,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Lift smoothly to a comfortable shoulder height without swinging."
             },
             {
-              "name": "Cable Rear-Delt Fly",
+              "name": "Chest-Supported Dumbbell Rear-Delt Fly",
               "sets": 2,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Keep your chest supported and move without shrugging."
             },
             {
               "name": "Hammer Curl",
@@ -1098,9 +1145,10 @@
               "reps": "8–12"
             },
             {
-              "name": "Rope Pressdown",
+              "name": "Lying Dumbbell Triceps Extension",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Keep your upper arms steady; lower under control beside your head."
             }
           ]
         },
@@ -1113,17 +1161,20 @@
             {
               "name": "Dumbbell Step-Up",
               "sets": 2,
-              "reps": "6–8 / leg"
+              "reps": "6–8 / leg",
+              "note": "Use a stable, load-bearing step or bench; skip if it can slide or tip."
             },
             {
-              "name": "Seated or Lying Leg Curl",
+              "name": "Hamstring Bridge Walkout",
               "sets": 2,
-              "reps": "8–12"
+              "reps": "4–6 out-and-back cycles",
+              "note": "From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled."
             },
             {
-              "name": "Leg Extension",
+              "name": "Dumbbell Goblet Squat",
               "sets": 2,
-              "reps": "12–15"
+              "reps": "10–15",
+              "note": "Start light and leave 3 clean reps on the first exposure; hold or reduce if the next run is heavy."
             },
             {
               "name": "Dead Bug",
@@ -1166,34 +1217,40 @@
               "reps": "6–10"
             },
             {
-              "name": "Neutral-Grip Cable Pulldown",
+              "name": "Bench-Supported One-Arm Dumbbell Row",
               "sets": 2,
-              "reps": "8–10"
+              "reps": "8–10 / side",
+              "note": "Brace on the bench and draw your elbow toward your hip without twisting."
             },
             {
-              "name": "Cable or Dumbbell Shrug",
+              "name": "Dumbbell Shrug",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Lift smoothly, pause, then lower; keep your head level."
             },
             {
-              "name": "Low-to-High Cable Fly",
+              "name": "Low-Incline Dumbbell Fly",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Use a low bench incline, soft elbows and a comfortable depth."
             },
             {
-              "name": "Cable Lateral Raise",
+              "name": "Dumbbell Lateral Raise",
               "sets": 2,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Lift smoothly to a comfortable shoulder height without swinging."
             },
             {
-              "name": "Cable Rear-Delt Fly",
+              "name": "Chest-Supported Dumbbell Rear-Delt Fly",
               "sets": 2,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Keep your chest supported and move without shrugging."
             },
             {
-              "name": "Overhead Cable Triceps Extension",
+              "name": "Seated Dumbbell Overhead Triceps Extension",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Keep your upper arms steady and lower through a comfortable range."
             }
           ]
         },
@@ -1206,7 +1263,8 @@
             {
               "name": "Bulgarian Split Squat",
               "sets": 2,
-              "reps": "6 / leg"
+              "reps": "6 / leg",
+              "note": "Use a stable, load-bearing support for your rear foot; skip if it can slide or tip."
             },
             {
               "name": "Dumbbell Romanian Deadlift",
@@ -1214,19 +1272,22 @@
               "reps": "6"
             },
             {
-              "name": "Seated Leg Curl",
+              "name": "Hamstring Bridge Walkout",
               "sets": 2,
-              "reps": "8–10"
+              "reps": "4–6 out-and-back cycles",
+              "note": "From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled."
             },
             {
-              "name": "Cable Hip Adduction",
+              "name": "Side-Lying Hip Adduction",
               "sets": 2,
-              "reps": "12 / side"
+              "reps": "12 / side",
+              "note": "Lie on your side and lift the bottom leg without rolling your hips."
             },
             {
-              "name": "Pallof Press",
+              "name": "Dumbbell Suitcase Hold",
               "sets": 2,
-              "reps": "8 / side"
+              "reps": "20 sec / side",
+              "note": "Hold one dumbbell at your side; stand tall without leaning."
             }
           ]
         },
@@ -1242,25 +1303,28 @@
               "reps": "6–10"
             },
             {
-              "name": "One-Arm Cable Row",
+              "name": "Bench-Supported One-Arm Dumbbell Row",
               "sets": 2,
               "reps": "8–12 / side",
-              "note": "Lat bias: elbow toward hip."
+              "note": "Brace on the bench and draw your elbow toward your hip without twisting."
             },
             {
-              "name": "Lat Pulldown",
+              "name": "Dumbbell Pullover",
               "sets": 2,
-              "reps": "8–10"
+              "reps": "10–15",
+              "note": "Keep your back on the bench; lower only as far as your shoulders stay comfortable."
             },
             {
-              "name": "Cable Lateral Raise",
+              "name": "Dumbbell Lateral Raise",
               "sets": 2,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Lift smoothly to a comfortable shoulder height without swinging."
             },
             {
-              "name": "Cable Rear-Delt Fly",
+              "name": "Chest-Supported Dumbbell Rear-Delt Fly",
               "sets": 2,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Keep your chest supported and move without shrugging."
             },
             {
               "name": "Hammer Curl",
@@ -1268,9 +1332,10 @@
               "reps": "8–12"
             },
             {
-              "name": "Rope Pressdown",
+              "name": "Lying Dumbbell Triceps Extension",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Keep your upper arms steady; lower under control beside your head."
             }
           ]
         },
@@ -1283,12 +1348,14 @@
             {
               "name": "Dumbbell Step-Up",
               "sets": 2,
-              "reps": "6 / leg"
+              "reps": "6 / leg",
+              "note": "Use a stable, load-bearing step or bench; skip if it can slide or tip."
             },
             {
-              "name": "Leg Extension",
+              "name": "Dumbbell Goblet Squat",
               "sets": 2,
-              "reps": "12"
+              "reps": "10–12",
+              "note": "Start light and leave 3 clean reps on the first exposure; hold or reduce if the next run is heavy."
             },
             {
               "name": "Dead Bug",
@@ -1331,29 +1398,34 @@
               "reps": "6–10"
             },
             {
-              "name": "Neutral-Grip Cable Pulldown",
+              "name": "Bench-Supported One-Arm Dumbbell Row",
               "sets": 2,
-              "reps": "8–10"
+              "reps": "8–10 / side",
+              "note": "Brace on the bench and draw your elbow toward your hip without twisting."
             },
             {
-              "name": "Cable or Dumbbell Shrug",
+              "name": "Dumbbell Shrug",
               "sets": 2,
-              "reps": "10–12"
+              "reps": "10–12",
+              "note": "Lift smoothly, pause, then lower; keep your head level."
             },
             {
-              "name": "Cable Lateral Raise",
+              "name": "Dumbbell Lateral Raise",
               "sets": 2,
-              "reps": "12–15"
+              "reps": "12–15",
+              "note": "Lift smoothly to a comfortable shoulder height without swinging."
             },
             {
-              "name": "Cable Rear-Delt Fly",
+              "name": "Chest-Supported Dumbbell Rear-Delt Fly",
               "sets": 2,
-              "reps": "12–15"
+              "reps": "12–15",
+              "note": "Keep your chest supported and move without shrugging."
             },
             {
-              "name": "Overhead Cable Triceps Extension",
+              "name": "Seated Dumbbell Overhead Triceps Extension",
               "sets": 2,
-              "reps": "10–12"
+              "reps": "10–12",
+              "note": "Keep your upper arms steady and lower through a comfortable range."
             }
           ]
         },
@@ -1366,7 +1438,8 @@
             {
               "name": "Bulgarian Split Squat",
               "sets": 2,
-              "reps": "5 / leg"
+              "reps": "5 / leg",
+              "note": "Use a stable, load-bearing support for your rear foot; skip if it can slide or tip."
             },
             {
               "name": "Dumbbell Romanian Deadlift",
@@ -1374,9 +1447,10 @@
               "reps": "5"
             },
             {
-              "name": "Pallof Press",
+              "name": "Dumbbell Suitcase Hold",
               "sets": 2,
-              "reps": "8 / side"
+              "reps": "20 sec / side",
+              "note": "Hold one dumbbell at your side; stand tall without leaning."
             }
           ]
         },
@@ -1392,20 +1466,22 @@
               "reps": "6–8"
             },
             {
-              "name": "One-Arm Cable Row",
+              "name": "Bench-Supported One-Arm Dumbbell Row",
               "sets": 2,
               "reps": "8–10 / side",
-              "note": "Lat bias: elbow toward hip."
+              "note": "Brace on the bench and draw your elbow toward your hip without twisting."
             },
             {
-              "name": "Lat Pulldown",
+              "name": "Dumbbell Pullover",
               "sets": 2,
-              "reps": "8–10"
+              "reps": "8–12",
+              "note": "Keep your back on the bench; lower only as far as your shoulders stay comfortable."
             },
             {
-              "name": "Cable Rear-Delt Fly",
+              "name": "Chest-Supported Dumbbell Rear-Delt Fly",
               "sets": 2,
-              "reps": "12–15"
+              "reps": "12–15",
+              "note": "Keep your chest supported and move without shrugging."
             },
             {
               "name": "Hammer Curl",
@@ -1413,9 +1489,10 @@
               "reps": "8–10"
             },
             {
-              "name": "Rope Pressdown",
+              "name": "Lying Dumbbell Triceps Extension",
               "sets": 2,
-              "reps": "10–12"
+              "reps": "10–12",
+              "note": "Keep your upper arms steady; lower under control beside your head."
             }
           ]
         }
@@ -1448,34 +1525,40 @@
               "reps": "8–12"
             },
             {
-              "name": "Neutral-Grip Cable Pulldown",
+              "name": "Bench-Supported One-Arm Dumbbell Row",
               "sets": 2,
-              "reps": "8–12"
+              "reps": "8–12 / side",
+              "note": "Brace on the bench and draw your elbow toward your hip without twisting."
             },
             {
-              "name": "Cable or Dumbbell Shrug",
+              "name": "Dumbbell Shrug",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Lift smoothly, pause, then lower; keep your head level."
             },
             {
-              "name": "Low-to-High Cable Fly",
+              "name": "Low-Incline Dumbbell Fly",
               "sets": 2,
-              "reps": "12–15"
+              "reps": "12–15",
+              "note": "Use a low bench incline, soft elbows and a comfortable depth."
             },
             {
-              "name": "Cable Lateral Raise",
+              "name": "Dumbbell Lateral Raise",
               "sets": 2,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Lift smoothly to a comfortable shoulder height without swinging."
             },
             {
-              "name": "Cable Rear-Delt Fly",
+              "name": "Chest-Supported Dumbbell Rear-Delt Fly",
               "sets": 2,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Keep your chest supported and move without shrugging."
             },
             {
-              "name": "Overhead Cable Triceps Extension",
+              "name": "Seated Dumbbell Overhead Triceps Extension",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Keep your upper arms steady and lower through a comfortable range."
             }
           ]
         },
@@ -1488,7 +1571,8 @@
             {
               "name": "Bulgarian Split Squat",
               "sets": 2,
-              "reps": "8 / leg"
+              "reps": "8 / leg",
+              "note": "Use a stable, load-bearing support for your rear foot; skip if it can slide or tip."
             },
             {
               "name": "Dumbbell Romanian Deadlift",
@@ -1496,30 +1580,34 @@
               "reps": "8"
             },
             {
-              "name": "Seated Leg Curl",
+              "name": "Hamstring Bridge Walkout",
               "sets": 2,
-              "reps": "10"
+              "reps": "4–6 out-and-back cycles",
+              "note": "From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled."
             },
             {
-              "name": "Leg Extension",
+              "name": "Dumbbell Goblet Squat",
               "sets": 2,
-              "reps": "12–15"
+              "reps": "10–15",
+              "note": "Start light and leave 3 clean reps on the first exposure; hold or reduce if the next run is heavy."
             },
             {
-              "name": "Cable Hip Adduction",
+              "name": "Side-Lying Hip Adduction",
               "sets": 2,
-              "reps": "12 / side"
+              "reps": "12 / side",
+              "note": "Lie on your side and lift the bottom leg without rolling your hips."
             },
             {
-              "name": "Bent-Knee Calf Raise",
+              "name": "Seated Dumbbell Calf Raise",
               "sets": 2,
               "reps": "12",
-              "note": "Maintenance only; skip unless calves are normal."
+              "note": "Maintenance only; skip unless calves are normal. Keep the dumbbell secure over your thigh."
             },
             {
-              "name": "Pallof Press",
+              "name": "Dumbbell Suitcase Hold",
               "sets": 2,
-              "reps": "10 / side"
+              "reps": "20–30 sec / side",
+              "note": "Hold one dumbbell at your side; stand tall without leaning."
             }
           ]
         },
@@ -1535,25 +1623,28 @@
               "reps": "8–10"
             },
             {
-              "name": "One-Arm Cable Row",
+              "name": "Bench-Supported One-Arm Dumbbell Row",
               "sets": 2,
               "reps": "10–12 / side",
-              "note": "Lat bias: elbow toward hip."
+              "note": "Brace on the bench and draw your elbow toward your hip without twisting."
             },
             {
-              "name": "Lat Pulldown",
+              "name": "Dumbbell Pullover",
               "sets": 2,
-              "reps": "10–12"
+              "reps": "10–15",
+              "note": "Keep your back on the bench; lower only as far as your shoulders stay comfortable."
             },
             {
-              "name": "Cable Lateral Raise",
+              "name": "Dumbbell Lateral Raise",
               "sets": 2,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Lift smoothly to a comfortable shoulder height without swinging."
             },
             {
-              "name": "Cable Rear-Delt Fly",
+              "name": "Chest-Supported Dumbbell Rear-Delt Fly",
               "sets": 2,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Keep your chest supported and move without shrugging."
             },
             {
               "name": "Hammer Curl",
@@ -1561,9 +1652,10 @@
               "reps": "8–12"
             },
             {
-              "name": "Rope Pressdown",
+              "name": "Lying Dumbbell Triceps Extension",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Keep your upper arms steady; lower under control beside your head."
             }
           ]
         }
@@ -1596,34 +1688,40 @@
               "reps": "6–10"
             },
             {
-              "name": "Neutral-Grip Cable Pulldown",
+              "name": "Bench-Supported One-Arm Dumbbell Row",
               "sets": 3,
-              "reps": "8–10"
+              "reps": "8–12 / side",
+              "note": "Brace on the bench and draw your elbow toward your hip without twisting."
             },
             {
-              "name": "Cable or Dumbbell Shrug",
+              "name": "Dumbbell Shrug",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Lift smoothly, pause, then lower; keep your head level."
             },
             {
-              "name": "Low-to-High Cable Fly",
+              "name": "Low-Incline Dumbbell Fly",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Use a low bench incline, soft elbows and a comfortable depth."
             },
             {
-              "name": "Single-Arm Cable Lateral Raise",
+              "name": "Single-Arm Dumbbell Lateral Raise",
               "sets": 3,
-              "reps": "12–18 / side"
+              "reps": "12–18 / side",
+              "note": "Lift smoothly to a comfortable shoulder height without swinging."
             },
             {
-              "name": "Cable Rear-Delt Fly",
+              "name": "Chest-Supported Dumbbell Rear-Delt Fly",
               "sets": 2,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Keep your chest supported and move without shrugging."
             },
             {
-              "name": "Overhead Cable Triceps Extension",
+              "name": "Seated Dumbbell Overhead Triceps Extension",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Keep your upper arms steady and lower through a comfortable range."
             }
           ]
         },
@@ -1636,7 +1734,8 @@
             {
               "name": "Bulgarian Split Squat",
               "sets": 3,
-              "reps": "6–8 / leg"
+              "reps": "6–8 / leg",
+              "note": "Use a stable, load-bearing support for your rear foot; skip if it can slide or tip."
             },
             {
               "name": "Dumbbell Romanian Deadlift",
@@ -1644,30 +1743,34 @@
               "reps": "6–8"
             },
             {
-              "name": "Heel-Elevated Goblet Squat or Leg Press",
+              "name": "Dumbbell Goblet Squat",
               "sets": 2,
-              "reps": "8–10"
+              "reps": "8–10",
+              "note": "Keep your feet planted and squat only as deep as you can control."
             },
             {
-              "name": "Seated Leg Curl",
+              "name": "Hamstring Bridge Walkout",
               "sets": 2,
-              "reps": "8–12"
+              "reps": "4–6 out-and-back cycles",
+              "note": "From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled."
             },
             {
-              "name": "Cable Hip Adduction",
+              "name": "Side-Lying Hip Adduction",
               "sets": 3,
-              "reps": "12–15 / side"
+              "reps": "12–20 / side",
+              "note": "Lie on your side and lift the bottom leg without rolling your hips."
             },
             {
-              "name": "Bent-Knee Calf Raise",
+              "name": "Seated Dumbbell Calf Raise",
               "sets": 2,
               "reps": "10–15",
-              "note": "Maintenance only; perform only if calf tenderness has resolved and the prior run response is normal."
+              "note": "Maintenance only; perform only if calf tenderness has resolved and the prior run response is normal. Keep the dumbbell secure over your thigh."
             },
             {
-              "name": "Pallof Press",
+              "name": "Dumbbell Suitcase Hold",
               "sets": 2,
-              "reps": "10 / side"
+              "reps": "20–30 sec / side",
+              "note": "Hold one dumbbell at your side; stand tall without leaning."
             }
           ]
         },
@@ -1683,30 +1786,34 @@
               "reps": "6–10"
             },
             {
-              "name": "One-Arm Cable Row",
+              "name": "Bench-Supported One-Arm Dumbbell Row",
               "sets": 3,
               "reps": "8–12 / side",
-              "note": "Lat bias: elbow toward hip; do not turn it into an upper-trap row."
+              "note": "Brace on the bench and draw your elbow toward your hip without twisting."
             },
             {
-              "name": "Lat Pulldown",
+              "name": "Dumbbell Pullover",
               "sets": 3,
-              "reps": "8–10"
+              "reps": "10–15",
+              "note": "Keep your back on the bench; lower only as far as your shoulders stay comfortable."
             },
             {
-              "name": "Mid-Height Cable Fly",
+              "name": "Flat Dumbbell Fly",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Keep your elbows softly bent and lower only through a comfortable range."
             },
             {
-              "name": "Cable Lateral Raise",
+              "name": "Dumbbell Lateral Raise",
               "sets": 2,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Lift smoothly to a comfortable shoulder height without swinging."
             },
             {
-              "name": "Cable Rear-Delt Fly",
+              "name": "Chest-Supported Dumbbell Rear-Delt Fly",
               "sets": 3,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Keep your chest supported and move without shrugging."
             },
             {
               "name": "Hammer Curl",
@@ -1714,9 +1821,10 @@
               "reps": "8–12"
             },
             {
-              "name": "Rope Pressdown",
+              "name": "Lying Dumbbell Triceps Extension",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Keep your upper arms steady; lower under control beside your head."
             }
           ]
         },
@@ -1729,22 +1837,26 @@
             {
               "name": "Dumbbell Step-Up",
               "sets": 2,
-              "reps": "6–8 / leg"
+              "reps": "6–8 / leg",
+              "note": "Use a stable, load-bearing step or bench; skip if it can slide or tip."
             },
             {
-              "name": "Hip Thrust",
+              "name": "Dumbbell Hip Thrust",
               "sets": 2,
-              "reps": "6–10"
+              "reps": "6–10",
+              "note": "Secure the dumbbell over your hips; keep the bench stable and finish without arching."
             },
             {
-              "name": "Seated or Lying Leg Curl",
+              "name": "Hamstring Bridge Walkout",
               "sets": 2,
-              "reps": "8–12"
+              "reps": "4–6 out-and-back cycles",
+              "note": "From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled."
             },
             {
-              "name": "Leg Extension",
+              "name": "Dumbbell Goblet Squat",
               "sets": 2,
-              "reps": "12–15"
+              "reps": "10–15",
+              "note": "Start light and leave 3 clean reps on the first exposure; hold or reduce if the next run is heavy."
             },
             {
               "name": "Dead Bug",
@@ -1787,29 +1899,34 @@
               "reps": "6–10"
             },
             {
-              "name": "Neutral-Grip Cable Pulldown",
+              "name": "Bench-Supported One-Arm Dumbbell Row",
               "sets": 2,
-              "reps": "8–10"
+              "reps": "8–10 / side",
+              "note": "Brace on the bench and draw your elbow toward your hip without twisting."
             },
             {
-              "name": "Cable or Dumbbell Shrug",
+              "name": "Dumbbell Shrug",
               "sets": 2,
-              "reps": "10–12"
+              "reps": "10–12",
+              "note": "Lift smoothly, pause, then lower; keep your head level."
             },
             {
-              "name": "Cable Lateral Raise",
+              "name": "Dumbbell Lateral Raise",
               "sets": 2,
-              "reps": "12–15"
+              "reps": "12–15",
+              "note": "Lift smoothly to a comfortable shoulder height without swinging."
             },
             {
-              "name": "Cable Rear-Delt Fly",
+              "name": "Chest-Supported Dumbbell Rear-Delt Fly",
               "sets": 2,
-              "reps": "12–15"
+              "reps": "12–15",
+              "note": "Keep your chest supported and move without shrugging."
             },
             {
-              "name": "Overhead Cable Triceps Extension",
+              "name": "Seated Dumbbell Overhead Triceps Extension",
               "sets": 2,
-              "reps": "10–12"
+              "reps": "10–12",
+              "note": "Keep your upper arms steady and lower through a comfortable range."
             }
           ]
         },
@@ -1822,7 +1939,8 @@
             {
               "name": "Bulgarian Split Squat",
               "sets": 2,
-              "reps": "5 / leg"
+              "reps": "5 / leg",
+              "note": "Use a stable, load-bearing support for your rear foot; skip if it can slide or tip."
             },
             {
               "name": "Dumbbell Romanian Deadlift",
@@ -1830,9 +1948,10 @@
               "reps": "5"
             },
             {
-              "name": "Pallof Press",
+              "name": "Dumbbell Suitcase Hold",
               "sets": 2,
-              "reps": "8 / side"
+              "reps": "20 sec / side",
+              "note": "Hold one dumbbell at your side; stand tall without leaning."
             }
           ]
         },
@@ -1848,20 +1967,22 @@
               "reps": "6–8"
             },
             {
-              "name": "One-Arm Cable Row",
+              "name": "Bench-Supported One-Arm Dumbbell Row",
               "sets": 2,
               "reps": "8–10 / side",
-              "note": "Lat bias: elbow toward hip."
+              "note": "Brace on the bench and draw your elbow toward your hip without twisting."
             },
             {
-              "name": "Lat Pulldown",
+              "name": "Dumbbell Pullover",
               "sets": 2,
-              "reps": "8–10"
+              "reps": "8–12",
+              "note": "Keep your back on the bench; lower only as far as your shoulders stay comfortable."
             },
             {
-              "name": "Cable Rear-Delt Fly",
+              "name": "Chest-Supported Dumbbell Rear-Delt Fly",
               "sets": 2,
-              "reps": "12–15"
+              "reps": "12–15",
+              "note": "Keep your chest supported and move without shrugging."
             },
             {
               "name": "Hammer Curl",
@@ -1869,9 +1990,10 @@
               "reps": "8–10"
             },
             {
-              "name": "Rope Pressdown",
+              "name": "Lying Dumbbell Triceps Extension",
               "sets": 2,
-              "reps": "10–12"
+              "reps": "10–12",
+              "note": "Keep your upper arms steady; lower under control beside your head."
             }
           ]
         }
@@ -1915,34 +2037,40 @@
               "reps": "6–10"
             },
             {
-              "name": "Neutral-Grip Cable Pulldown",
+              "name": "Bench-Supported One-Arm Dumbbell Row",
               "sets": 3,
-              "reps": "8–12"
+              "reps": "8–12 / side",
+              "note": "Brace on the bench and draw your elbow toward your hip without twisting."
             },
             {
-              "name": "Cable or Dumbbell Shrug",
+              "name": "Dumbbell Shrug",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Lift smoothly, pause, then lower; keep your head level."
             },
             {
-              "name": "Low-to-High Cable Fly",
+              "name": "Low-Incline Dumbbell Fly",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Use a low bench incline, soft elbows and a comfortable depth."
             },
             {
-              "name": "Cable Lateral Raise",
+              "name": "Dumbbell Lateral Raise",
               "sets": 3,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Lift smoothly to a comfortable shoulder height without swinging."
             },
             {
-              "name": "Cable Rear-Delt Fly",
+              "name": "Chest-Supported Dumbbell Rear-Delt Fly",
               "sets": 2,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Keep your chest supported and move without shrugging."
             },
             {
-              "name": "Overhead Cable Triceps Extension",
+              "name": "Seated Dumbbell Overhead Triceps Extension",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Keep your upper arms steady and lower through a comfortable range."
             }
           ]
         },
@@ -1955,7 +2083,8 @@
             {
               "name": "Bulgarian Split Squat",
               "sets": 3,
-              "reps": "6–8 / leg"
+              "reps": "6–8 / leg",
+              "note": "Use a stable, load-bearing support for your rear foot; skip if it can slide or tip."
             },
             {
               "name": "Dumbbell Romanian Deadlift",
@@ -1963,30 +2092,34 @@
               "reps": "6–8"
             },
             {
-              "name": "Heel-Elevated Goblet Squat or Leg Press",
+              "name": "Dumbbell Goblet Squat",
               "sets": 2,
-              "reps": "8–12"
+              "reps": "8–12",
+              "note": "Keep your feet planted and squat only as deep as you can control."
             },
             {
-              "name": "Seated Leg Curl",
+              "name": "Hamstring Bridge Walkout",
               "sets": 2,
-              "reps": "8–12"
+              "reps": "4–6 out-and-back cycles",
+              "note": "From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled."
             },
             {
-              "name": "Cable Hip Adduction",
+              "name": "Side-Lying Hip Adduction",
               "sets": 3,
-              "reps": "12–15 / side"
+              "reps": "12–20 / side",
+              "note": "Lie on your side and lift the bottom leg without rolling your hips."
             },
             {
-              "name": "Bent-Knee Calf Raise",
+              "name": "Seated Dumbbell Calf Raise",
               "sets": 2,
               "reps": "10–15",
-              "note": "Maintenance only; skip unless calves are normal."
+              "note": "Maintenance only; skip unless calves are normal. Keep the dumbbell secure over your thigh."
             },
             {
-              "name": "Pallof Press",
+              "name": "Dumbbell Suitcase Hold",
               "sets": 2,
-              "reps": "10 / side"
+              "reps": "20–30 sec / side",
+              "note": "Hold one dumbbell at your side; stand tall without leaning."
             }
           ]
         },
@@ -2002,30 +2135,34 @@
               "reps": "6–10"
             },
             {
-              "name": "One-Arm Cable Row",
+              "name": "Bench-Supported One-Arm Dumbbell Row",
               "sets": 3,
               "reps": "8–12 / side",
-              "note": "Lat bias: elbow toward hip."
+              "note": "Brace on the bench and draw your elbow toward your hip without twisting."
             },
             {
-              "name": "Lat Pulldown",
+              "name": "Dumbbell Pullover",
               "sets": 3,
-              "reps": "8–12"
+              "reps": "10–15",
+              "note": "Keep your back on the bench; lower only as far as your shoulders stay comfortable."
             },
             {
-              "name": "Mid-Height Cable Fly",
+              "name": "Flat Dumbbell Fly",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Keep your elbows softly bent and lower only through a comfortable range."
             },
             {
-              "name": "Cable Lateral Raise",
+              "name": "Dumbbell Lateral Raise",
               "sets": 2,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Lift smoothly to a comfortable shoulder height without swinging."
             },
             {
-              "name": "Cable Rear-Delt Fly",
+              "name": "Chest-Supported Dumbbell Rear-Delt Fly",
               "sets": 3,
-              "reps": "12–18"
+              "reps": "12–18",
+              "note": "Keep your chest supported and move without shrugging."
             },
             {
               "name": "Hammer Curl",
@@ -2033,9 +2170,10 @@
               "reps": "8–12"
             },
             {
-              "name": "Rope Pressdown",
+              "name": "Lying Dumbbell Triceps Extension",
               "sets": 2,
-              "reps": "10–15"
+              "reps": "10–15",
+              "note": "Keep your upper arms steady; lower under control beside your head."
             }
           ]
         },
@@ -2048,22 +2186,26 @@
             {
               "name": "Dumbbell Step-Up",
               "sets": 3,
-              "reps": "6–8 / leg"
+              "reps": "6–8 / leg",
+              "note": "Use a stable, load-bearing step or bench; skip if it can slide or tip."
             },
             {
-              "name": "Hip Thrust",
+              "name": "Dumbbell Hip Thrust",
               "sets": 2,
-              "reps": "6–10"
+              "reps": "6–10",
+              "note": "Secure the dumbbell over your hips; keep the bench stable and finish without arching."
             },
             {
-              "name": "Seated or Lying Leg Curl",
+              "name": "Hamstring Bridge Walkout",
               "sets": 2,
-              "reps": "8–12"
+              "reps": "4–6 out-and-back cycles",
+              "note": "From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled."
             },
             {
-              "name": "Leg Extension",
+              "name": "Dumbbell Goblet Squat",
               "sets": 2,
-              "reps": "12–15"
+              "reps": "10–15",
+              "note": "Start light and leave 3 clean reps on the first exposure; hold or reduce if the next run is heavy."
             },
             {
               "name": "Dead Bug",
@@ -2117,24 +2259,28 @@
               "reps": "8–10"
             },
             {
-              "name": "Neutral-Grip Cable Pulldown",
+              "name": "Bench-Supported One-Arm Dumbbell Row",
               "sets": 2,
-              "reps": "10"
+              "reps": "8–10 / side",
+              "note": "Brace on the bench and draw your elbow toward your hip without twisting."
             },
             {
-              "name": "Cable or Dumbbell Shrug",
+              "name": "Dumbbell Shrug",
               "sets": 2,
-              "reps": "12"
+              "reps": "12",
+              "note": "Lift smoothly, pause, then lower; keep your head level."
             },
             {
-              "name": "Cable Lateral Raise",
+              "name": "Dumbbell Lateral Raise",
               "sets": 2,
-              "reps": "12–15"
+              "reps": "12–15",
+              "note": "Lift smoothly to a comfortable shoulder height without swinging."
             },
             {
-              "name": "Cable Rear-Delt Fly",
+              "name": "Chest-Supported Dumbbell Rear-Delt Fly",
               "sets": 2,
-              "reps": "12–15"
+              "reps": "12–15",
+              "note": "Keep your chest supported and move without shrugging."
             },
             {
               "name": "Hammer Curl",
@@ -2142,9 +2288,10 @@
               "reps": "10"
             },
             {
-              "name": "Overhead Cable Triceps Extension",
+              "name": "Seated Dumbbell Overhead Triceps Extension",
               "sets": 2,
-              "reps": "10–12"
+              "reps": "10–12",
+              "note": "Keep your upper arms steady and lower through a comfortable range."
             }
           ]
         },
@@ -2157,7 +2304,8 @@
             {
               "name": "Bulgarian Split Squat",
               "sets": 2,
-              "reps": "6 / leg"
+              "reps": "6 / leg",
+              "note": "Use a stable, load-bearing support for your rear foot; skip if it can slide or tip."
             },
             {
               "name": "Dumbbell Romanian Deadlift",
@@ -2165,19 +2313,22 @@
               "reps": "6"
             },
             {
-              "name": "Leg Extension",
+              "name": "Dumbbell Goblet Squat",
               "sets": 2,
-              "reps": "12"
+              "reps": "10–12",
+              "note": "Start light and leave 3 clean reps on the first exposure; hold or reduce if the next run is heavy."
             },
             {
-              "name": "Cable Hip Adduction",
+              "name": "Side-Lying Hip Adduction",
               "sets": 2,
-              "reps": "12 / side"
+              "reps": "12 / side",
+              "note": "Lie on your side and lift the bottom leg without rolling your hips."
             },
             {
-              "name": "Pallof Press",
+              "name": "Dumbbell Suitcase Hold",
               "sets": 2,
-              "reps": "8 / side"
+              "reps": "20 sec / side",
+              "note": "Hold one dumbbell at your side; stand tall without leaning."
             }
           ]
         }
@@ -2255,5 +2406,12 @@
     "label": "Frame audit",
     "reason": "Oct 5 physique photos and repeat tape measurements: preserve the 31 in waist, expand lats / side and rear delts, add modest upper-trap density for the long neck, keep leg girth work, and demote calves from growth to maintenance while tenderness settles.",
     "performance_horizon": "Athlete-reported ~2:40 marathon remains a long-term horizon; running quality still governs lower-body progression."
-  }
+  },
+  "revision_history": [
+    {
+      "date": "2026-10-06",
+      "label": "Reconciled to the live current versions",
+      "reason": "The FORM Athlete System is canonical. Future sessions from 2026-10-08 were revised there for the home/dumbbell-equipment adaptation (with authored instructions); this projection now follows them."
+    }
+  ]
 }
