@@ -6,6 +6,14 @@ The complete source and validation record is in [the half-marathon checklist](HA
 
 > October 6 release reconciliation: PR #231 (brand page), #232 (doors/Library), #234 (one-house headers/footers) and #233 (agent brand guidance) are merged. Latest reviewed main: `49cc328`. Older unchecked “not pushed/not merged” lines below are historical build notes, superseded for those four PRs. Production, Safari and physical-device checks remain separate. PR #227 is the remaining SEO/share/measurement release.
 
+## October 6 · Native athlete sign-in joins the same account room
+
+- The native FORM app already authenticates coached athletes against the FORM Athlete System, but its dedicated `coaching-email-signin` sender and scanner-safe `/auth/app-signin/` handoff still carried the retired dark/lime FORM treatment.
+- [x] Canonical Edge source added to the repo with the Speed & Form sender, SF emblem, bone/ink paper-room email, useful preheader, plain-text alternative and support reply path. Admission remains non-enumerating; the one-time provider URL still lives only in the handoff fragment until an explicit Continue tap.
+- [x] `/auth/app-signin/` now matches the cream auth room: SF emblem alone, house type, square ink action, short literal copy. The URL validation and explicit-click scanner defense are unchanged.
+- [x] FORM email-handoff regression now covers the native sender source and the app handoff room.
+- [ ] Edge-function publication is separate from the Netlify page deploy. After publication, request one real native athlete email, inspect Gmail/Apple Mail, tap exactly once, confirm `form://coaching-auth` returns the same athlete, and record the function version before closing.
+
 ## October 6 · Private auth email house audit
 
 - Owner rejected the live Gmail render that still showed FORM as the sender, a serif FORM wordmark, green action, centered card and "Your record is one tap away / Open my record" copy. Record: [Brand authority](../BRAND.md), “October 6 · Private auth and email as a paper room”.
