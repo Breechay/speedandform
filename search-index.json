@@ -1056,5 +1056,141 @@
     ],
     "category": "practice",
     "type": "Field note"
+  },
+  {
+    "url": "/library",
+    "title": "FORM Library",
+    "description": "The main index of running guides, training tools, plans and studies.",
+    "keywords": [
+      "library",
+      "guides",
+      "training",
+      "tools",
+      "reference",
+      "browse"
+    ],
+    "category": "practice",
+    "type": "Index"
+  },
+  {
+    "url": "/labs/",
+    "title": "FORM Labs",
+    "description": "Living training studies, athlete response and the questions being tested in practice.",
+    "keywords": [
+      "labs",
+      "studies",
+      "research",
+      "evidence",
+      "athletes",
+      "experiments"
+    ],
+    "category": "practice",
+    "type": "Studies"
+  },
+  {
+    "url": "/the-method",
+    "title": "The Method",
+    "description": "How Brice develops runners: notice what matters, make useful changes and teach the runner to own the work.",
+    "keywords": [
+      "method",
+      "coaching",
+      "philosophy",
+      "approach",
+      "run development"
+    ],
+    "category": "training",
+    "type": "Method"
+  },
+  {
+    "url": "/principles",
+    "title": "Operating Principles",
+    "description": "The operational rules behind training, execution, rhythm, decisions and signal versus noise.",
+    "keywords": [
+      "principles",
+      "rules",
+      "doctrine",
+      "decisions",
+      "signal",
+      "noise"
+    ],
+    "category": "training",
+    "type": "Reference"
+  },
+  {
+    "url": "/training-principles",
+    "title": "Training Principles",
+    "description": "Seven principles that organize the work and the structure behind FORM training.",
+    "keywords": [
+      "principles",
+      "training",
+      "philosophy",
+      "structure",
+      "foundations"
+    ],
+    "category": "training",
+    "type": "Reference"
+  },
+  {
+    "url": "/training-map",
+    "title": "Training Map",
+    "description": "See how the FORM training system, session types and weekly structure fit together.",
+    "keywords": [
+      "map",
+      "system",
+      "training",
+      "structure",
+      "sessions",
+      "week"
+    ],
+    "category": "training",
+    "type": "Map"
+  },
+  {
+    "url": "/mechanics-map",
+    "title": "Running Mechanics Map",
+    "description": "A map of rhythm, stability and direction, and how common running-form errors relate.",
+    "keywords": [
+      "mechanics",
+      "map",
+      "running form",
+      "gait",
+      "rhythm",
+      "stability",
+      "direction"
+    ],
+    "category": "movement",
+    "type": "Map"
+  },
+  {
+    "url": "/pain-map",
+    "title": "Runner Pain Map",
+    "description": "A quick reference for common running pain signals and possible mechanical relationships.",
+    "keywords": [
+      "pain",
+      "sore",
+      "soreness",
+      "injury",
+      "mechanics",
+      "runner",
+      "map"
+    ],
+    "category": "recovery",
+    "type": "Reference"
+  },
+  {
+    "url": "/ghost/",
+    "title": "The Ghost Protocol",
+    "description": "A six-week running-form practice for quieter mechanics and less wasted motion.",
+    "keywords": [
+      "ghost",
+      "protocol",
+      "running form",
+      "mechanics",
+      "six week",
+      "beginner",
+      "cadence"
+    ],
+    "category": "movement",
+    "type": "Practice"
   }
 ]
