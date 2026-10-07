@@ -119,7 +119,7 @@
   },
   {
     "url": "/library/easy-days/",
-    "title": "How easy should an easy run feel?",
+    "title": "Easy running: effort and feel",
     "description": "Understand the role of the runs between your harder sessions.",
     "keywords": [
       "easy",
@@ -978,5 +978,76 @@
     ],
     "category": "practice",
     "type": "Study"
+  },
+  {
+    "url": "/field-notes/a-good-session-does-not-need-an-encore/",
+    "title": "A good session does not need an encore.",
+    "description": "Feeling good at the end is useful information. It is not automatically a reason to add more.",
+    "keywords": [
+      "field note",
+      "article",
+      "essay",
+      "session",
+      "workout",
+      "control",
+      "reserve",
+      "more",
+      "training decision"
+    ],
+    "category": "practice",
+    "type": "Field note"
+  },
+  {
+    "url": "/field-notes/repeat-the-week-notice-what-changes/",
+    "title": "Repeat the week. Notice what changes.",
+    "description": "A familiar structure gives you something useful to compare, without making every week identical.",
+    "keywords": [
+      "field note",
+      "article",
+      "essay",
+      "repeat",
+      "week",
+      "routine",
+      "structure",
+      "consistency",
+      "change"
+    ],
+    "category": "practice",
+    "type": "Field note"
+  },
+  {
+    "url": "/field-notes/the-ordinary-run-counts/",
+    "title": "The ordinary run counts.",
+    "description": "Not every useful run gives you a story to tell. It can still belong in the bigger picture.",
+    "keywords": [
+      "field note",
+      "article",
+      "essay",
+      "ordinary run",
+      "easy run",
+      "consistency",
+      "practice",
+      "quiet run"
+    ],
+    "category": "practice",
+    "type": "Field note"
+  },
+  {
+    "url": "/field-notes/the-group-should-make-the-work-clearer/",
+    "title": "The group should make the work clearer.",
+    "description": "A shared session works best when people understand the purpose, not when everyone copies the fastest runner.",
+    "keywords": [
+      "field note",
+      "article",
+      "essay",
+      "group",
+      "track",
+      "running together",
+      "pace",
+      "purpose",
+      "community"
+    ],
+    "category": "practice",
+    "type": "Field note"
   }
 ]
