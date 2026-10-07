@@ -158,6 +158,16 @@ await rejects(() => insert(runner.coachUser, newRow(runner.athlete, firstVersion
 await rejects(() => db.query(`insert into public.planned_session_exercises(athlete_id, version_id, position, movement_id, movement_name, sets, rep_low, rep_high, laterality)
   values ($1,$2,50,'a','A',3,8,10,'bilateral')`, [runner.athlete, firstVersion]), /same athlete/, 'the same rule holds for the table owner');
 
+// ── No helper in this migration is a client-callable RPC ────────────────────────────────
+for (const fn of ['exercise_matches_version_athlete()', 'backfill_structured_strength(uuid, jsonb)', 'athlete_plan_feed_before_exercises(uuid)']) {
+  for (const role of ['public', 'anon', 'authenticated']) {
+    const [{ ok: allowed }] = await rows(db, `select has_function_privilege('${role}', 'public.${fn}', 'execute') ok`);
+    eq(allowed, false, `${role} cannot execute ${fn}`);
+  }
+}
+const [{ ok: feedOpen }] = await rows(db, `select has_function_privilege('authenticated', 'public.athlete_plan_feed(uuid)', 'execute') ok`);
+eq(feedOpen, true, 'the public feed entry point stays callable by signed-in users');
+
 // ── Constraints: nothing ambiguous can be stored ────────────────────────────────────────
 const direct = (extra) => db.query(
   `insert into public.planned_session_exercises(athlete_id, version_id, position, movement_id, movement_name, sets, rep_low, rep_high, target_seconds, target_seconds_high, laterality)

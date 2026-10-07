@@ -92,7 +92,8 @@ create trigger planned_session_exercises_immutable
   before update or delete on public.planned_session_exercises
   for each row execute function public.prevent_immutable_change();
 
-revoke all on function public.exercise_matches_version_athlete() from public;
+-- A trigger function is invoked by its trigger; it must not also be a client-callable RPC.
+revoke all on function public.exercise_matches_version_athlete() from public, anon, authenticated;
 
 comment on table public.planned_session_exercises is
   'The ordered, typed strength prescription of one immutable session version. Prescription only: progress and performance live elsewhere.';
