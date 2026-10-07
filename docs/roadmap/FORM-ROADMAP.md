@@ -2,6 +2,14 @@
 
 The complete source and validation record is in [the half-marathon checklist](HALF-MARATHON-LIBRARY-20261006.md), under the collection continuation. Run Development keeps homepage intake; six/eight/sixteen-week resources and faster-half guide are complete; 80 public previews follow the current house. Google site-event receipt and the exact GA stream match are confirmed; new resource and accepted-inquiry receipt remain separate. No new ad launch or spend. Source is ready for coordinated publication; physical-phone/Safari review remains open.
 
+## October 6 · Running lessons and movement family
+
+- Owner asked for plain, memorable older articles and visually useful routines, then supplied the Lesson / Routine / Shelf format and paper-room rules. Authority: [Brand](../BRAND.md), “Library formats”. Source and acceptance: [running-library audit](../audits/RUNNING-LIBRARY-20261006.md).
+- Eighteen articles are rebuilt: nine connected running basics, five movement lessons and four numbered routines. All eleven Strength & movement destinations share the same path; Ghost's six-week assignments are retained. Direct section/move links, real-media slots and print behavior are included.
+- Search and Library use one curated catalog of eighty-six public pages, preserve newer Field Notes/plans, distinguish page formats, and find natural questions such as threshold, tight hips and Achilles. Static browsing works without JavaScript.
+- The full Netlify build and focused source/search/public-preview checks pass. Browser acceptance is tracked by the Running library PR workflow; production and physical-device/Safari readback are separate checks. Claude's voice/phone review follows the PR.
+- External-video shelf: use the owner's actual forwarded links and sending context when supplied. Prioritize the older pain-map and Ghost-week evidence review next.
+
 # FORM: current state and next actions
 
 > October 6 release reconciliation: PR #231 (brand page), #232 (doors/Library), #234 (one-house headers/footers) and #233 (agent brand guidance) are merged. Latest reviewed main: `49cc328`. Older unchecked “not pushed/not merged” lines below are historical build notes, superseded for those four PRs. Production, Safari and physical-device checks remain separate. PR #227 is the remaining SEO/share/measurement release.

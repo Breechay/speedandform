@@ -1,0 +1,1223 @@
+'use strict';
+// Curated public pages. Field Notes are added from their owning publication source.
+module.exports=[
+ {
+  "url": "/coaching/miami/",
+  "title": "Running coaching in Miami & online",
+  "description": "Individual Run Development with Brice. Eight weeks, $1,200.",
+  "keywords": [
+   "run",
+   "coach",
+   "personal",
+   "running",
+   "miami",
+   "online",
+   "remote"
+  ],
+  "category": "coaching",
+  "type": "Service"
+ },
+ {
+  "url": "/coaching/strength/",
+  "title": "Strength coaching in Miami",
+  "description": "Eight coached sessions and individual programming over eight weeks. $1,200.",
+  "keywords": [
+   "strength",
+   "trainer",
+   "personal",
+   "training",
+   "gym",
+   "miami"
+  ],
+  "category": "coaching",
+  "type": "Service"
+ },
+ {
+  "url": "/analysis/",
+  "title": "FORM Analysis",
+  "description": "A one-time remote running review with Brice. $149 pilot.",
+  "keywords": [
+   "running",
+   "form",
+   "video",
+   "analysis",
+   "gait",
+   "review"
+  ],
+  "category": "coaching",
+  "type": "Service"
+ },
+ {
+  "url": "/work/photo-video/",
+  "title": "Fitness photography in Miami",
+  "description": "90 minutes, one location and 15 edited photographs. $350 pilot.",
+  "keywords": [
+   "fitness",
+   "photographer",
+   "photography",
+   "coach",
+   "trainer",
+   "portraits",
+   "miami"
+  ],
+  "category": "coaching",
+  "type": "Service"
+ },
+ {
+  "url": "/work/ai-setup/",
+  "title": "AI operations setup",
+  "description": "One recurring business workflow, documentation and handoff. $900 pilot.",
+  "keywords": [
+   "ai",
+   "setup",
+   "business",
+   "automation",
+   "operations"
+  ],
+  "category": "coaching",
+  "type": "Service"
+ },
+ {
+  "url": "/work/",
+  "title": "Work with Brice",
+  "description": "Compare coaching, analysis, photography, AI setup and training plans.",
+  "keywords": [
+   "hire",
+   "brice",
+   "work",
+   "services"
+  ],
+  "category": "coaching",
+  "type": "Service"
+ },
+ {
+  "url": "/library/from-lifting-to-running/",
+  "title": "I lift. How do I start running?",
+  "description": "Add running without treating every session like another hard gym day.",
+  "keywords": [
+   "beginner",
+   "starting",
+   "beginner",
+   "running",
+   "lifting"
+  ],
+  "category": "start",
+  "type": "Guide"
+ },
+ {
+  "url": "/library/first-half-marathon-goal/",
+  "title": "What is a sensible half-marathon goal?",
+  "description": "Choose a starting target from the running you can do now.",
+  "keywords": [
+   "first",
+   "half",
+   "marathon",
+   "target",
+   "goal",
+   "13.1"
+  ],
+  "category": "start",
+  "type": "Guide"
+ },
+ {
+  "url": "/library/easy-days/",
+  "title": "Easy running: effort and feel",
+  "description": "Understand the role of the runs between your harder sessions.",
+  "keywords": [
+   "easy",
+   "slow",
+   "zone",
+   "2",
+   "z2",
+   "effort"
+  ],
+  "category": "start",
+  "type": "Guide"
+ },
+ {
+  "url": "/library/when-a-week-goes-wrong/",
+  "title": "What should I do after a missed week?",
+  "description": "Adjust the next week instead of trying to repay every missed mile.",
+  "keywords": [
+   "missed",
+   "sick",
+   "busy",
+   "week",
+   "interruption"
+  ],
+  "category": "start",
+  "type": "Guide"
+ },
+ {
+  "url": "/library/how-long-to-train-for-a-half-marathon/",
+  "title": "How long to train for a half marathon?",
+  "description": "Match your preparation to your recent running, recovery, and available weeks.",
+  "keywords": [
+   "half",
+   "marathon",
+   "readiness",
+   "preparation",
+   "weeks",
+   "first",
+   "beginner",
+   "base",
+   "run",
+   "walk"
+  ],
+  "category": "half-marathon",
+  "type": "Guide"
+ },
+ {
+  "url": "/library/half-marathon-training-plan/",
+  "title": "Free 12-week half-marathon plan",
+  "description": "Four outings a week. A complete finish-focused plan with easy running or planned run/walk.",
+  "keywords": [
+   "half",
+   "marathon",
+   "free",
+   "twelve",
+   "12",
+   "week",
+   "training",
+   "plan",
+   "finish",
+   "run",
+   "walk"
+  ],
+  "category": "half-marathon",
+  "type": "Plan"
+ },
+ {
+  "url": "/library/6-week-half-marathon-training-plan/",
+  "title": "Free 6-week half-marathon plan",
+  "description": "A short build for runners with an established four-run week and comfortable eight-mile long run.",
+  "keywords": [
+   "half",
+   "marathon",
+   "six",
+   "6",
+   "week",
+   "plan",
+   "prepared",
+   "base"
+  ],
+  "category": "half-marathon",
+  "type": "Plan"
+ },
+ {
+  "url": "/library/8-week-half-marathon-training-plan/",
+  "title": "Free 8-week half-marathon plan",
+  "description": "An easy-effort finish plan for an established four-run routine.",
+  "keywords": [
+   "half",
+   "marathon",
+   "eight",
+   "8",
+   "week",
+   "free",
+   "plan"
+  ],
+  "category": "half-marathon",
+  "type": "Plan"
+ },
+ {
+  "url": "/library/16-week-half-marathon-training-plan/",
+  "title": "Free 16-week half-marathon path",
+  "description": "Four foundation weeks and a readiness check before the complete twelve-week plan.",
+  "keywords": [
+   "half",
+   "marathon",
+   "sixteen",
+   "16",
+   "week",
+   "foundation",
+   "free",
+   "plan"
+  ],
+  "category": "half-marathon",
+  "type": "Plan"
+ },
+ {
+  "url": "/library/how-to-run-a-faster-half-marathon/",
+  "title": "How to run a faster half marathon",
+  "description": "Choose the next change from your training, race execution and recovery.",
+  "keywords": [
+   "half",
+   "marathon",
+   "faster",
+   "improve",
+   "performance"
+  ],
+  "category": "half-marathon",
+  "type": "Guide"
+ },
+ {
+  "url": "/library/half-marathon-pace-chart/",
+  "title": "Half-marathon pace chart",
+  "description": "Compare finish times, pace per mile and kilometer, and halfway splits.",
+  "keywords": [
+   "half",
+   "marathon",
+   "pace",
+   "chart",
+   "finish",
+   "time",
+   "mile",
+   "kilometer",
+   "km",
+   "splits",
+   "calculator"
+  ],
+  "category": "half-marathon",
+  "type": "Tool"
+ },
+ {
+  "url": "/library/half-marathon-week/",
+  "title": "How a half-marathon week fits together",
+  "description": "The relationship between demanding sessions, easy days, and the long run.",
+  "keywords": [
+   "half",
+   "marathon",
+   "schedule",
+   "weekly"
+  ],
+  "category": "training",
+  "type": "Guide"
+ },
+ {
+  "url": "/library/the-two-paces/",
+  "title": "Threshold pace and your easy-run ceiling",
+  "description": "Two guides for keeping demanding runs purposeful and easy days controlled.",
+  "keywords": [
+   "two",
+   "paces",
+   "threshold",
+   "easy",
+   "ceiling"
+  ],
+  "category": "training",
+  "type": "Guide"
+ },
+ {
+  "url": "/how-fast-should-i-run",
+  "title": "How fast should I run?",
+  "description": "Pace and effort guidance for the different runs in your week.",
+  "keywords": [
+   "pace",
+   "zones",
+   "speed"
+  ],
+  "category": "training",
+  "type": "Guide"
+ },
+ {
+  "url": "/easy-run",
+  "title": "How easy should an easy run feel?",
+  "description": "Use conversation, effort, and recovery to keep the easy days easy.",
+  "keywords": [
+   "easy",
+   "slow",
+   "aerobic",
+   "base"
+  ],
+  "category": "training",
+  "type": "Guide"
+ },
+ {
+  "url": "/threshold-training",
+  "title": "Threshold running, explained",
+  "description": "Know the effort, choose a session, and progress without racing the repetitions.",
+  "keywords": [
+   "tempo",
+   "lactate",
+   "threshold"
+  ],
+  "category": "training",
+  "type": "Guide"
+ },
+ {
+  "url": "/long-run-pace",
+  "title": "Long-run pacing and duration",
+  "description": "Choose the purpose and duration before adding a faster finish.",
+  "keywords": [
+   "long",
+   "run",
+   "endurance",
+   "steady",
+   "finish"
+  ],
+  "category": "training",
+  "type": "Guide"
+ },
+ {
+  "url": "/sessions",
+  "title": "Types of running sessions",
+  "description": "Compare easy running, threshold, intervals, speed, and the long run.",
+  "keywords": [
+   "intervals",
+   "session",
+   "workouts"
+  ],
+  "category": "training",
+  "type": "Guide"
+ },
+ {
+  "url": "/training-week",
+  "title": "Build a week you can repeat",
+  "description": "Place easy runs, important sessions, strength, and rest around the days you actually have.",
+  "keywords": [
+   "plan",
+   "weekly",
+   "routine"
+  ],
+  "category": "training",
+  "type": "Guide"
+ },
+ {
+  "url": "/training-arc",
+  "title": "The longer view",
+  "description": "How training emphasis changes across a block of work.",
+  "keywords": [
+   "season",
+   "development",
+   "progression"
+  ],
+  "category": "training",
+  "type": "Guide"
+ },
+ {
+  "url": "/pacing",
+  "title": "Running by effort",
+  "description": "Keep the purpose of the run in view when pace changes.",
+  "keywords": [
+   "heat",
+   "hills",
+   "effort",
+   "pace"
+  ],
+  "category": "training",
+  "type": "Guide"
+ },
+ {
+  "url": "/running-terms",
+  "title": "Running terms, explained",
+  "description": "A reference for the vocabulary used throughout the Library.",
+  "keywords": [
+   "glossary",
+   "definitions",
+   "vocabulary"
+  ],
+  "category": "training",
+  "type": "Guide"
+ },
+ {
+  "url": "/library/running-physiology-course/",
+  "title": "Running physiology & training science course",
+  "description": "A free, ordered lecture course on endurance physiology, biomechanics, strength, tissue adaptation and programming.",
+  "keywords": [
+   "running",
+   "physiology",
+   "training",
+   "science",
+   "vo2",
+   "vo2max",
+   "lactate",
+   "threshold",
+   "economy",
+   "biomechanics",
+   "strength",
+   "tendon",
+   "bone",
+   "course",
+   "lectures",
+   "youtube"
+  ],
+  "category": "training",
+  "type": "Course"
+ },
+ {
+  "url": "/ghost/cues",
+  "title": "Running form cues",
+  "description": "Short cues from the six-week mechanics practice.",
+  "keywords": [
+   "cadence",
+   "technique",
+   "stride",
+   "posture",
+   "form"
+  ],
+  "category": "movement",
+  "type": "Guide"
+ },
+ {
+  "url": "/running-form-errors",
+  "title": "Running form: what to change",
+  "description": "Test one useful adjustment and leave comfortable movement alone.",
+  "keywords": [
+   "gait",
+   "overstride",
+   "shoulders",
+   "technique"
+  ],
+  "category": "movement",
+  "type": "Guide"
+ },
+ {
+  "url": "/strength",
+  "title": "Strength training for runners",
+  "description": "Four useful movement patterns, a manageable starting dose, and room for your running.",
+  "keywords": [
+   "gym",
+   "lifting",
+   "weights"
+  ],
+  "category": "movement",
+  "type": "Guide"
+ },
+ {
+  "url": "/strength-routine",
+  "title": "A strength routine for runners",
+  "description": "A practical routine with the exercises laid out.",
+  "keywords": [
+   "durability",
+   "workout",
+   "routine",
+   "legs"
+  ],
+  "category": "movement",
+  "type": "Guide"
+ },
+ {
+  "url": "/strength-activation",
+  "title": "Before you run",
+  "description": "Movement preparation and activation work.",
+  "keywords": [
+   "warm",
+   "up",
+   "warmup",
+   "activation"
+  ],
+  "category": "movement",
+  "type": "Guide"
+ },
+ {
+  "url": "/mobility",
+  "title": "Mobility practice",
+  "description": "Movement work to explore alongside training.",
+  "keywords": [
+   "stretch",
+   "range",
+   "motion",
+   "flexibility"
+  ],
+  "category": "movement",
+  "type": "Guide"
+ },
+ {
+  "url": "/anti-rotation",
+  "title": "Anti-rotation work",
+  "description": "A short routine focused on trunk control.",
+  "keywords": [
+   "core",
+   "rotation",
+   "twist"
+  ],
+  "category": "movement",
+  "type": "Guide"
+ },
+ {
+  "url": "/library/physique-volume/",
+  "title": "Why every area does not get equal volume",
+  "description": "How training emphasis shapes a strength program.",
+  "keywords": [
+   "hypertrophy",
+   "muscle",
+   "physique",
+   "forge",
+   "sculpt"
+  ],
+  "category": "movement",
+  "type": "Guide"
+ },
+ {
+  "url": "/library/why-phases/",
+  "title": "Why a program has phases",
+  "description": "Different periods of work give different priorities their turn.",
+  "keywords": [
+   "strength",
+   "phases",
+   "forge",
+   "sculpt"
+  ],
+  "category": "movement",
+  "type": "Guide"
+ },
+ {
+  "url": "/race-strategy",
+  "title": "Race pacing and execution",
+  "description": "Think through the beginning, middle, and finish of the race.",
+  "keywords": [
+   "racing",
+   "strategy",
+   "splits",
+   "half",
+   "marathon"
+  ],
+  "category": "race",
+  "type": "Guide"
+ },
+ {
+  "url": "/race-prep",
+  "title": "Race-week preparation",
+  "description": "A reference for tapering and the decisions before the start.",
+  "keywords": [
+   "taper",
+   "racing",
+   "preparation"
+  ],
+  "category": "race",
+  "type": "Guide"
+ },
+ {
+  "url": "/split-calculator",
+  "title": "Split calculator",
+  "description": "Work out splits from your distance and target time.",
+  "keywords": [
+   "calculator",
+   "min",
+   "mile",
+   "km",
+   "kilometer",
+   "kilometre",
+   "conversion"
+  ],
+  "category": "race",
+  "type": "Tool"
+ },
+ {
+  "url": "/fueling",
+  "title": "Before, during, and after a run",
+  "description": "Practice food and drink for the session, then check your carbohydrate amounts.",
+  "keywords": [
+   "nutrition",
+   "carbs",
+   "carbohydrate",
+   "hydration",
+   "drink"
+  ],
+  "category": "race",
+  "type": "Guide"
+ },
+ {
+  "url": "/shoes",
+  "title": "Choosing shoes for the session",
+  "description": "Understand the different roles in a running-shoe rotation.",
+  "keywords": [
+   "footwear",
+   "trainers",
+   "sneakers",
+   "rotation"
+  ],
+  "category": "race",
+  "type": "Guide"
+ },
+ {
+  "url": "/recovery",
+  "title": "Run easy, reduce, or rest?",
+  "description": "Make the next decision from your energy, symptoms, and recent training.",
+  "keywords": [
+   "rest",
+   "fatigue",
+   "tired",
+   "recovery"
+  ],
+  "category": "recovery",
+  "type": "Guide"
+ },
+ {
+  "url": "/sleep",
+  "title": "Sleep and training",
+  "description": "A closer look at sleep within the training week.",
+  "keywords": [
+   "sleep",
+   "tired",
+   "rest"
+  ],
+  "category": "recovery",
+  "type": "Guide"
+ },
+ {
+  "url": "/return",
+  "title": "Returning to running",
+  "description": "A re-entry guide after time away.",
+  "keywords": [
+   "comeback",
+   "restarting",
+   "break"
+  ],
+  "category": "recovery",
+  "type": "Guide"
+ },
+ {
+  "url": "/training-interruptions",
+  "title": "When training is interrupted",
+  "description": "How to think about a disrupted block of work.",
+  "keywords": [
+   "injury",
+   "missed",
+   "illness",
+   "setback"
+  ],
+  "category": "recovery",
+  "type": "Guide"
+ },
+ {
+  "url": "/avoid-injury",
+  "title": "Managing training load",
+  "description": "General principles for noticing when training needs adjusting.",
+  "keywords": [
+   "pain",
+   "injury",
+   "load",
+   "prevention"
+  ],
+  "category": "recovery",
+  "type": "Guide"
+ },
+ {
+  "url": "/troubleshooting",
+  "title": "When a run is not going well",
+  "description": "A reference for noticing and adjusting during a run.",
+  "keywords": [
+   "tension",
+   "uncomfortable",
+   "rhythm"
+  ],
+  "category": "recovery",
+  "type": "Guide"
+ },
+ {
+  "url": "/plans/",
+  "title": "Find a training plan",
+  "description": "Compare the published plans and read their scope before choosing.",
+  "keywords": [
+   "training",
+   "plan",
+   "programs"
+  ],
+  "category": "practice",
+  "type": "Plans"
+ },
+ {
+  "url": "/plans/race-pace-durability/",
+  "title": "Race Pace Durability",
+  "description": "A 15-week half-marathon plan. Read Weeks 1–4 before purchasing the full plan.",
+  "keywords": [
+   "race",
+   "pace",
+   "durability",
+   "rpd",
+   "half",
+   "marathon",
+   "15",
+   "week"
+  ],
+  "category": "practice",
+  "type": "Plan"
+ },
+ {
+  "url": "/plans/marathon-durability/",
+  "title": "Marathon Durability",
+  "description": "A 16-week experienced-runner marathon plan: specific contact Tuesday, ceiling Thursday, durability Saturday.",
+  "keywords": [
+   "marathon",
+   "durability",
+   "closing",
+   "10k",
+   "reserve",
+   "rhythm",
+   "long",
+   "run",
+   "16",
+   "week"
+  ],
+  "category": "practice",
+  "type": "Plan"
+ },
+ {
+  "url": "/labs/speed-that-endures/",
+  "title": "Speed That Endures",
+  "description": "Follow the race-pace development study and its evidence.",
+  "keywords": [
+   "hope",
+   "jose",
+   "durability",
+   "case",
+   "study"
+  ],
+  "category": "practice",
+  "type": "Study"
+ },
+ {
+  "url": "/labs/adrian-runner-mass/",
+  "title": "The Developed Runner",
+  "description": "Follow Adrian as strength and useful mass are added around an already-proven running engine.",
+  "keywords": [
+   "adrian",
+   "developed",
+   "runner",
+   "strength",
+   "mass",
+   "marathon",
+   "study"
+  ],
+  "category": "practice",
+  "type": "Study"
+ },
+ {
+  "url": "/labs/rebuilt-athlete/",
+  "title": "The Rebuilt Athlete",
+  "description": "Follow the return from a complete tibial fracture as running, strength, body composition and capacity are rebuilt.",
+  "keywords": [
+   "brice",
+   "rebuilt",
+   "athlete",
+   "tibia",
+   "fracture",
+   "return",
+   "running",
+   "study"
+  ],
+  "category": "practice",
+  "type": "Study"
+ },
+ {
+  "url": "/labs/the-two-curves/",
+  "title": "The Two Curves",
+  "description": "Follow Simon as half-marathon race-pace duration and the ceiling above it are developed together.",
+  "keywords": [
+   "simon",
+   "two",
+   "curves",
+   "ceiling",
+   "durability",
+   "half",
+   "marathon",
+   "1:20",
+   "study"
+  ],
+  "category": "practice",
+  "type": "Study"
+ },
+ {
+  "url": "/labs/the-last-10k/",
+  "title": "The Last 10K",
+  "description": "Follow the Orlando-to-Donna marathon durability study and the closing-10K hypothesis.",
+  "keywords": [
+   "hope",
+   "jose",
+   "donna",
+   "marathon",
+   "durability",
+   "final",
+   "10k",
+   "closing",
+   "miles"
+  ],
+  "category": "practice",
+  "type": "Study"
+ },
+ {
+  "url": "/labs/hyrox/",
+  "title": "HYROX: training and race tools",
+  "description": "Explore the course, station work, and race-budget tools.",
+  "keywords": [
+   "hyrox",
+   "hybrid",
+   "sled",
+   "ski",
+   "erg"
+  ],
+  "category": "practice",
+  "type": "Guide & tools"
+ },
+ {
+  "url": "/labs/track/",
+  "title": "Track workouts and standards",
+  "description": "Browse the authored sessions and their execution standards.",
+  "keywords": [
+   "track",
+   "intervals",
+   "sprint",
+   "speed",
+   "workouts"
+  ],
+  "category": "practice",
+  "type": "Workouts"
+ },
+ {
+  "url": "/track/",
+  "title": "Track photographs & films",
+  "description": "Open an album, view photographs and clips, and save the available files.",
+  "keywords": [
+   "photos",
+   "pictures",
+   "videos",
+   "gallery",
+   "albums",
+   "track",
+   "community"
+  ],
+  "category": "practice",
+  "type": "Gallery"
+ },
+ {
+  "url": "/thursday",
+  "title": "Run with us",
+  "description": "Find the current Thursday track-session details and joining information.",
+  "keywords": [
+   "miami",
+   "flamingo",
+   "south",
+   "beach",
+   "group",
+   "join",
+   "thursday",
+   "community"
+  ],
+  "category": "practice",
+  "type": "Community"
+ },
+ {
+  "url": "/field-notes",
+  "title": "Field Notes",
+  "description": "Short reflections on training decisions, ordinary runs, and running together.",
+  "keywords": [
+   "notes",
+   "essays",
+   "questions",
+   "newsletter",
+   "feed",
+   "practice"
+  ],
+  "category": "practice",
+  "type": "Field note"
+ },
+ {
+  "url": "/notes",
+  "title": "The back leg finishes when nothing is rushing it.",
+  "description": "A photographed coaching note on Hope’s stride, rotation, bounce and the trail leg finishing behind her.",
+  "keywords": [
+   "Hope",
+   "field note",
+   "article",
+   "photograph",
+   "coaching",
+   "stride",
+   "back leg",
+   "trail leg",
+   "rotation",
+   "bounce",
+   "running form",
+   "movement"
+  ],
+  "category": "practice",
+  "type": "Field note"
+ },
+ {
+  "url": "/form/",
+  "title": "FORM running app",
+  "description": "Explore the running app and its current store destination.",
+  "keywords": [
+   "iphone",
+   "ios",
+   "mobile",
+   "app",
+   "form"
+  ],
+  "category": "practice",
+  "type": "App"
+ },
+ {
+  "url": "/forge-sculpt/",
+  "title": "Breechay Sculpt / Forge",
+  "description": "Explore the strength program and its app.",
+  "keywords": [
+   "forge",
+   "breechay",
+   "sculpt",
+   "strength",
+   "app"
+  ],
+  "category": "practice",
+  "type": "App"
+ },
+ {
+  "url": "/labs/the-durable-frame/",
+  "title": "The Durable Frame",
+  "description": "Follow Tinius as FORM running and a six-week FORGE physique phase operate together.",
+  "keywords": [
+   "tinius",
+   "durable",
+   "frame",
+   "forge",
+   "form",
+   "physique",
+   "strength",
+   "running",
+   "study"
+  ],
+  "category": "practice",
+  "type": "Study"
+ },
+ {
+  "url": "/labs/the-long-chassis/",
+  "title": "The Long Chassis",
+  "description": "Follow Jacob as an experienced ultra runner rebuilds strength and stability around an existing aerobic engine.",
+  "keywords": [
+   "jacob",
+   "ultra",
+   "long",
+   "chassis",
+   "strength",
+   "stability",
+   "100",
+   "mile",
+   "study"
+  ],
+  "category": "practice",
+  "type": "Study"
+ },
+ {
+  "url": "/library",
+  "title": "FORM Library",
+  "description": "The main index of running guides, training tools, plans and studies.",
+  "keywords": [
+   "library",
+   "guides",
+   "training",
+   "tools",
+   "reference",
+   "browse"
+  ],
+  "category": "practice",
+  "type": "Index"
+ },
+ {
+  "url": "/labs/",
+  "title": "FORM Labs",
+  "description": "Living training studies, athlete response and the questions being tested in practice.",
+  "keywords": [
+   "labs",
+   "studies",
+   "research",
+   "evidence",
+   "athletes",
+   "experiments"
+  ],
+  "category": "practice",
+  "type": "Studies"
+ },
+ {
+  "url": "/the-method",
+  "title": "The Method",
+  "description": "How Brice develops runners: notice what matters, make useful changes and teach the runner to own the work.",
+  "keywords": [
+   "method",
+   "coaching",
+   "philosophy",
+   "approach",
+   "run development",
+   "training"
+  ],
+  "category": "training",
+  "type": "Method"
+ },
+ {
+  "url": "/principles",
+  "title": "Operating Principles",
+  "description": "The operational rules behind training, execution, rhythm, decisions and signal versus noise.",
+  "keywords": [
+   "principles",
+   "rules",
+   "doctrine",
+   "decisions",
+   "signal",
+   "noise"
+  ],
+  "category": "training",
+  "type": "Reference"
+ },
+ {
+  "url": "/training-principles",
+  "title": "Training Principles",
+  "description": "Seven principles that organize the work and the structure behind FORM training.",
+  "keywords": [
+   "principles",
+   "training",
+   "philosophy",
+   "structure",
+   "foundations"
+  ],
+  "category": "training",
+  "type": "Reference"
+ },
+ {
+  "url": "/training-map",
+  "title": "Training Map",
+  "description": "See how the FORM training system, session types and weekly structure fit together.",
+  "keywords": [
+   "map",
+   "system",
+   "training",
+   "structure",
+   "sessions",
+   "week"
+  ],
+  "category": "training",
+  "type": "Map"
+ },
+ {
+  "url": "/mechanics-map",
+  "title": "Running Mechanics Map",
+  "description": "A map of rhythm, stability and direction, and how common running-form errors relate.",
+  "keywords": [
+   "mechanics",
+   "map",
+   "running form",
+   "gait",
+   "rhythm",
+   "stability",
+   "direction"
+  ],
+  "category": "movement",
+  "type": "Map"
+ },
+ {
+  "url": "/pain-map",
+  "title": "Runner Pain Map",
+  "description": "A quick reference for common running pain signals and possible mechanical relationships.",
+  "keywords": [
+   "pain",
+   "sore",
+   "soreness",
+   "injury",
+   "mechanics",
+   "runner",
+   "map",
+   "shin",
+   "knee",
+   "calf",
+   "achilles",
+   "hip",
+   "foot"
+  ],
+  "category": "recovery",
+  "type": "Reference"
+ },
+ {
+  "url": "/ghost",
+  "title": "The Ghost Protocol",
+  "description": "A six-week running-form practice for quieter mechanics and less wasted motion.",
+  "keywords": [
+   "ghost",
+   "protocol",
+   "running form",
+   "mechanics",
+   "six week",
+   "beginner",
+   "cadence"
+  ],
+  "category": "movement",
+  "type": "Practice"
+ },
+ {
+  "url": "/contact",
+  "title": "Contact Brice",
+  "description": "Send Brice a note about coaching, FORM House, collaboration, photography or another project.",
+  "keywords": [
+   "contact",
+   "email",
+   "brice",
+   "inquiry",
+   "work together",
+   "collaboration"
+  ],
+  "category": "house",
+  "type": "Contact"
+ },
+ {
+  "url": "/brand/",
+  "title": "Brand and Media Kit",
+  "description": "Speed & Form marks, house rules, colors, type, photography and downloadable brand files.",
+  "keywords": [
+   "brand",
+   "media",
+   "press",
+   "kit",
+   "logo",
+   "emblem",
+   "assets",
+   "identity"
+  ],
+  "category": "house",
+  "type": "Brand"
+ },
+ {
+  "url": "/ask/",
+  "title": "Ask Brice",
+  "description": "Ask a training question or send Brice context about something you are working through.",
+  "keywords": [
+   "ask",
+   "question",
+   "brice",
+   "training question",
+   "help"
+  ],
+  "category": "house",
+  "type": "Question"
+ },
+ {
+  "url": "/privacy",
+  "title": "Privacy Policy",
+  "description": "How Speed & Form handles information across the website, FORM app and coaching.",
+  "keywords": [
+   "privacy",
+   "data",
+   "tracking",
+   "cookies",
+   "information"
+  ],
+  "category": "house",
+  "type": "Legal"
+ },
+ {
+  "url": "/terms",
+  "title": "Terms of Service",
+  "description": "Terms for the FORM app, website, plans and coaching from Speed & Form.",
+  "keywords": [
+   "terms",
+   "legal",
+   "service",
+   "conditions"
+  ],
+  "category": "house",
+  "type": "Legal"
+ },
+ {
+  "url": "/the-work",
+  "title": "The Work",
+  "description": "Sessions shaping the practice now, and the coaching philosophy behind repeatable work.",
+  "keywords": [
+   "work",
+   "practice",
+   "coaching philosophy",
+   "consistency",
+   "threshold",
+   "long run",
+   "structure"
+  ],
+  "category": "training",
+  "type": "Essay"
+ }
+];

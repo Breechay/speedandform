@@ -1,86 +1,51 @@
 'use strict';
 /* Public discovery only. Delivery routes and historical schedules are not a catalog. */
 const GROUPS = [
- ['coaching','If this is the week you want built around you.','',[
-  ["coaching/miami/", "Running coaching in Miami & online", "Individual Run Development with Brice. Eight weeks, $1,200.", "run coach personal running miami online remote", "Service"],
-  ["coaching/strength/", "Strength coaching in Miami", "Eight coached sessions and individual programming over eight weeks. $1,200.", "strength trainer personal training gym miami", "Service"],
-  ["analysis/", "FORM Analysis", "A one-time remote running review with Brice. $149 pilot.", "running form video analysis gait review", "Service"],
-      ]],
- ['start','Start with your question','A useful place to begin, whether you are new to running or building toward a race.',[
-  ['library/from-lifting-to-running/','I lift. How do I start running?','Add running without treating every session like another hard gym day.','beginner starting beginner running lifting'],
-  ['library/first-half-marathon-goal/','What is a sensible half-marathon goal?','Choose a starting target from the running you can do now.','first half marathon target goal 13.1'],
-  ['library/easy-days/','How easy should an easy run feel?','Understand the role of the runs between your harder sessions.','easy slow zone 2 z2 effort'],
- ['library/when-a-week-goes-wrong/','What should I do after a missed week?','Adjust the next week instead of trying to repay every missed mile.','missed sick busy week interruption'],
- ]],
- ['half-marathon','Your half marathon','Choose your starting point, read the plan, and understand the pace.',[
-  ['library/how-long-to-train-for-a-half-marathon/','How long to train for a half marathon?','Match your preparation to your recent running, recovery, and available weeks.','half marathon readiness preparation weeks first beginner base run walk'],
-  ['library/half-marathon-training-plan/','Free 12-week half-marathon plan','Four outings a week. A complete finish-focused plan with easy running or planned run/walk.','half marathon free twelve 12 week training plan finish run walk','Plan'],
-  ['library/6-week-half-marathon-training-plan/','Free 6-week half-marathon plan','A short build for runners with an established four-run week and comfortable eight-mile long run.','half marathon six 6 week plan prepared base','Plan'],
-  ['library/8-week-half-marathon-training-plan/','Free 8-week half-marathon plan','An easy-effort finish plan for an established four-run routine.','half marathon eight 8 week free plan','Plan'],
-  ['library/16-week-half-marathon-training-plan/','Free 16-week half-marathon path','Four foundation weeks and a readiness check before the complete twelve-week plan.','half marathon sixteen 16 week foundation free plan','Plan'],
-  ['library/how-to-run-a-faster-half-marathon/','How to run a faster half marathon','Choose the next change from your training, race execution and recovery.','half marathon faster improve performance'],
-  ['library/half-marathon-pace-chart/','Half-marathon pace chart','Compare finish times, pace per mile and kilometer, and halfway splits.','half marathon pace chart finish time mile kilometer km splits calculator','Tool'],
- ]],
- ['training','Pace & the training week','Understand what each run is for and how the week fits together.',[
-  ['library/half-marathon-week/','How a half-marathon week fits together','The relationship between demanding sessions, easy days, and the long run.','half marathon schedule weekly'],
-  ['library/the-two-paces/','Threshold pace and your easy-run ceiling','Two guides for keeping demanding runs purposeful and easy days controlled.','two paces threshold easy ceiling'],
-  ['how-fast-should-i-run','How fast should I run?','Pace and effort guidance for the different runs in your week.','pace zones speed'],
-  ['easy-run','How easy should an easy run feel?','Use conversation, effort, and recovery to keep the easy days easy.','easy slow aerobic base'],
-  ['threshold-training','Threshold running, explained','Know the effort, choose a session, and progress without racing the repetitions.','tempo lactate threshold'],
-  ['long-run-pace','Long-run pacing and duration','Choose the purpose and duration before adding a faster finish.','long run endurance steady finish'],
-  ['sessions','Types of running sessions','Compare easy running, threshold, intervals, speed, and the long run.','intervals session workouts'],
-  ['training-week','Build a week you can repeat','Place easy runs, important sessions, strength, and rest around the days you actually have.','plan weekly routine'],
-  ['training-arc','The longer view','How training emphasis changes across a block of work.','season development progression'],
-  ['pacing','Running by effort','Keep the purpose of the run in view when pace changes.','heat hills effort pace'],
-  ['running-terms','Running terms, explained','A reference for the vocabulary used throughout the Library.','glossary definitions vocabulary'],
-  ['library/running-physiology-course/','Running physiology & training science course','A free, ordered lecture course on endurance physiology, biomechanics, strength, tissue adaptation and programming.','running physiology training science vo2 vo2max lactate threshold economy biomechanics strength tendon bone course lectures youtube','Course'],
- ]],
- ['movement','Running form & strength','Explore movement, cues, and the strength work around your running.',[
-  ['ghost/cues','Running form cues','Short cues from the six-week mechanics practice.','cadence technique stride posture form'],
-  ['running-form-errors','Running form: what to change','Test one useful adjustment and leave comfortable movement alone.','gait overstride shoulders technique'],
-  ['strength','Strength training for runners','Four useful movement patterns, a manageable starting dose, and room for your running.','gym lifting weights'],
-  ['strength-routine','A strength routine for runners','A practical routine with the exercises laid out.','durability workout routine legs'],
-  ['strength-activation','Before you run','Movement preparation and activation work.','warm up warmup activation'],
-  ['mobility','Mobility practice','Movement work to explore alongside training.','stretch range motion flexibility'],
-  ['anti-rotation','Anti-rotation work','A short routine focused on trunk control.','core rotation twist'],
-  ['library/physique-volume/','Why every area does not get equal volume','How training emphasis shapes a strength program.','hypertrophy muscle physique forge sculpt'],
-  ['library/why-phases/','Why a program has phases','Different periods of work give different priorities their turn.','strength phases forge sculpt'],
- ]],
- ['race','Prepare for your race','Plan the effort, practice the decisions, and find the right tools.',[
-  ['race-strategy','Race pacing and execution','Think through the beginning, middle, and finish of the race.','racing strategy splits half marathon'],
-  ['race-prep','Race-week preparation','A reference for tapering and the decisions before the start.','taper racing preparation'],
-  ['split-calculator','Split calculator','Work out splits from your distance and target time.','calculator min mile km kilometer kilometre conversion','Tool'],
-  ['fueling','Before, during, and after a run','Practice food and drink for the session, then check your carbohydrate amounts.','nutrition carbs carbohydrate hydration drink'],
-  ['shoes','Choosing shoes for the session','Understand the different roles in a running-shoe rotation.','footwear trainers sneakers rotation'],
- ]],
- ['recovery','Recovery & returning','Find the guidance that fits the interruption, not just the old plan.',[
-  ['recovery','Run easy, reduce, or rest?','Make the next decision from your energy, symptoms, and recent training.','rest fatigue tired recovery'],
-  ['sleep','Sleep and training','A closer look at sleep within the training week.','sleep tired rest'],
-  ['return','Returning to running','A re-entry guide after time away.','comeback restarting break'],
-  ['training-interruptions','When training is interrupted','How to think about a disrupted block of work.','injury missed illness setback'],
-  ['avoid-injury','Managing training load','General principles for noticing when training needs adjusting.','pain injury load prevention'],
-  ['troubleshooting','When a run is not going well','A reference for noticing and adjusting during a run.','tension uncomfortable rhythm'],
- ]],
- ['practice','Plans, studies & the practice','See the work itself, follow a plan, or join a session.',[
-  ['plans/','Find a training plan','Compare the published plans and read their scope before choosing.','training plan programs','Plans'],
-  ['plans/race-pace-durability/','Race Pace Durability','A 15-week half-marathon plan. Read Weeks 1–4 before purchasing the full plan.','race pace durability rpd half marathon 15 week','Plan'],
-  ['plans/marathon-durability/','Marathon Durability','A 16-week experienced-runner marathon plan: specific contact Tuesday, ceiling Thursday, durability Saturday.','marathon durability closing 10k reserve rhythm long run 16 week','Plan'],
-  ['labs/speed-that-endures/','Speed That Endures','Follow the race-pace development study and its evidence.','hope jose durability case study','Study'],
-  ['labs/adrian-runner-mass/','The Developed Runner','Follow Adrian as strength and useful mass are added around an already-proven running engine.','adrian developed runner strength mass marathon study','Study'],
-  ['labs/rebuilt-athlete/','The Rebuilt Athlete','Follow the return from a complete tibial fracture as running, strength, body composition and capacity are rebuilt.','brice rebuilt athlete tibia fracture return running study','Study'],
-  ['labs/the-two-curves/','The Two Curves','Follow Simon as half-marathon race-pace duration and the ceiling above it are developed together.','simon two curves ceiling durability half marathon 1:20 study','Study'],
-  ['labs/the-durable-frame/','The Durable Frame','Follow Tinius as FORM running and a six-week FORGE physique phase operate together.','tinius durable frame forge form physique strength running study','Study'],
-  ['labs/the-long-chassis/','The Long Chassis','Follow Jacob as an experienced ultra runner rebuilds strength and stability around an existing aerobic engine.','jacob ultra long chassis strength stability 100 mile study','Study'],
-  ['labs/the-last-10k/','The Last 10K','Follow the Orlando-to-Donna marathon durability study and the closing-10K hypothesis.','hope jose donna marathon durability final 10k closing miles','Study'],
-  ['labs/hyrox/','HYROX: training and race tools','Explore the course, station work, and race-budget tools.','hyrox hybrid sled ski erg','Guide & tools'],
-  ['labs/track/','Track workouts and standards','Browse the authored sessions and their execution standards.','track intervals sprint speed workouts','Workouts'],
-  ['track/','Track photographs & films','Open an album, view photographs and clips, and save the available files.','photos pictures videos gallery albums track community','Gallery'],
-  ['thursday','Run with us','Find the current Thursday track-session details and joining information.','miami flamingo south beach group join thursday community','Community'],
-  ['field-notes','Field Notes','Short reflections on training decisions, ordinary runs, and running together.','notes essays questions newsletter feed practice','Field note'],
-  ['notes','A note from the track','One observation, the adjustment, and the athlete’s response.','coaching note evidence form video','Field note'],
-  ['form/','FORM running app','Explore the running app and its current store destination.','iphone ios mobile app form','App'],
-  ['forge-sculpt/','Breechay Sculpt / Forge','Explore the strength program and its app.','forge breechay sculpt strength app','App'],
- ]],
+ [
+  "start",
+  "Start with your question",
+  "A useful place to begin, whether you are new to running or building toward a race."
+ ],
+ [
+  "coaching",
+  "Work with Brice",
+  "Coaching and other ways to work together."
+ ],
+ [
+  "half-marathon",
+  "Your half marathon",
+  "Choose your starting point, read the plan, and understand the pace."
+ ],
+ [
+  "training",
+  "Pace & the training week",
+  "Understand what each run is for and how the week fits together."
+ ],
+ [
+  "movement",
+  "Running form & strength",
+  "Movement, cues and the strength work around your running."
+ ],
+ [
+  "race",
+  "Prepare for your race",
+  "Practice pacing, fueling and race decisions."
+ ],
+ [
+  "recovery",
+  "Recovery & returning",
+  "Find guidance for fatigue, interruptions and coming back."
+ ],
+ [
+  "practice",
+  "Plans, studies & the practice",
+  "See the work itself, follow a plan or join a session."
+ ],
+ [
+  "house",
+  "House & access",
+  "Contact, brand files and the policies around the site."
+ ]
 ];
 const ARCHIVE = ['practice','start','plan','plan-spring-2026','cycles','the-field','competition','plan-speed-emergence','taper-key-biscayne','races/key-biscayne-2026'];
 const PRESERVE_ONLY = ['athletes','ledger','app'];
@@ -88,5 +53,51 @@ const GALLERY_ALBUMS = require('../track/albums.json').albums.filter(a=>a.publis
 const NOTE_PAGES = require('./field-notes-content.cjs').filter(n=>n.published===true).map(n=>'field-notes/'+n.slug+'/');
 const EXTRA = [...GALLERY_ALBUMS,...NOTE_PAGES,'ask/','','library','plans/race-pace-durability/support/','es/plans/race-pace-durability/','labs/','field-notes','the-method','the-work','training-principles','training-map','principles','mechanics-map','easy-run-standards','pain-map','strength-fixes','threshold','long-run','ghost','ghost/week-1','ghost/week-2','ghost/week-3','ghost/week-4','ghost/week-5','ghost/week-6'];
 function fileFor(route) { return !route?'index.html':route.endsWith('/')?route+'index.html':route==='ghost'?'ghost/index.html':route+'.html'; }
-const entries = GROUPS.flatMap(([group,, , rows]) => rows.map(([route,title,description,keywords,type='Guide'])=>({route,url:'/'+route,file:fileFor(route),title,description,keywords:keywords.split(' '),category:group,type})));
+// Reconcile the complete October 6 catalog, rather than replacing newer entries
+// with the historical rows above. There is one authored record per public URL.
+const records=require('./discovery-records.cjs');
+const lessons=[...require('./running-lessons-content.cjs'),...require('./movement-lessons-content.cjs').movement];
+const lessonKeywords={
+ '/how-fast-should-i-run':'how fast running pace effort beginner speed heart rate zones',
+ '/easy-run':'easy running slow talk test zone 2 aerobic base conversation',
+ '/threshold-training':'threshold tempo lactate comfortably hard cruise intervals pace heart rate workout',
+ '/long-run-pace':'long run pacing duration slow fast finish endurance how long how far',
+ '/sessions':'types running workouts intervals repetitions strides speed vo2max recovery',
+ '/training-week':'running week schedule routine days strength rest three four five',
+ '/running-form-errors':'running form gait cadence heel strike overstriding shoulders posture technique',
+ '/training-principles':'running training principles consistency progression recovery purpose',
+ '/running-terms':'running terms glossary definitions vocabulary tempo threshold vo2max lactate cadence economy intervals strides'
+};
+const questions={
+ '/how-fast-should-i-run':['how fast should i run','what pace should i run'],
+ '/easy-run':['how easy should an easy run be','why should i run slowly','does running slowly make me slow','what is zone 2 running'],
+ '/library/easy-days/':['why are my easy runs hard','why do my easy runs feel hard','why cant i run slowly'],
+ '/threshold-training':['threshold','threshhold','tempo','what is threshold running','what is lactate threshold','what is a tempo run','how fast should a tempo run be','threshold vs tempo','how do i find my threshold pace'],
+ '/long-run-pace':['how fast should my long run be','how long should my long run be','should i do a fast finish long run'],
+ '/sessions':['what are strides','what are running intervals','types of running workouts','intervals vs threshold'],
+ '/training-week':['how many days a week should i run','how do i build a running week','how to combine running and lifting'],
+ '/running-form-errors':['how do i improve my running form','should i change my heel strike','do i need 180 cadence','what is cadence'],
+ '/running-terms':['what is vo2max','what is running economy','what is lactate','what does 3 x 6 mean','what are running terms'],
+ '/training-principles':['how does running training work','how do i improve as a runner'],
+ '/recovery':['why am i always tired after running','should i run or rest','how do i recover from running'],
+ '/anti-rotation':['what is anti rotation','core exercises for runners','how do i keep my trunk steady'],
+ '/strength-activation':['how should i warm up before running','warm up routine'],
+ '/strength-routine':['what strength exercises should runners do'],
+ '/mobility':['mobility for runners','how do i stretch before running','tight hips','hip stretches','tight ankles','calf stretches'],
+ '/pain-map':['achilles','achilles pain','heel pain','where does my achilles hurt'],
+ '/fueling':['what should i eat before a run','how many carbs should i take','how do i fuel a long run']
+};
+const entries=records.map(e=>{
+ const g=lessons.find(x=>x.route===e.url);
+ const kind=g?.kind||(['/strength','/principles'].includes(e.url)?'Lesson':e.url==='/ghost'||e.type==='Plan'||e.type==='Workouts'?'Routine':['/library','/plans/','/labs/'].includes(e.url)?'Shelf':['Guide','Course','Reference','Map','Method','Essay','Field note'].includes(e.type)?'Lesson':null);
+ const row={...e,...(g?{title:g.heading,description:g.description,keywords:lessonKeywords[e.url]?lessonKeywords[e.url].split(' '):[...e.keywords,g.heading]}:{}),...(kind?{kind}:{}),questions:questions[e.url]||[],route:e.url.slice(1),file:fileFor(e.url.slice(1))};
+ if(e.url==='/library/easy-days/')row.title='Why do my easy runs feel hard?';
+ return row;
+});
+for(const n of require('./field-notes-content.cjs').filter(n=>n.published===true)){
+ const url='/field-notes/'+n.slug+'/';
+ entries.push({url,route:url.slice(1),file:fileFor(url.slice(1)),title:n.title,description:n.summary,keywords:['field note','article','essay',...(n.tags||[]),n.title],questions:[],category:'practice',type:'Field note',kind:'Lesson'});
+}
+if(new Set(entries.map(e=>e.url)).size!==entries.length)throw Error('Duplicate discovery URL');
+if(!GROUPS.some(g=>g[0]==='house'))GROUPS.push(['house','House & access','Contact, brand files and the policies around the site.',[]]);
 module.exports={GROUPS,ARCHIVE,PRESERVE_ONLY,EXTRA,entries,fileFor};

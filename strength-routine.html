@@ -1,113 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" data-form-reading="20261006">
+<html lang="en" data-form-reading="20261006" data-guide="20261006-lessons" data-running-lesson="20261006" data-library-kind="routine" data-library-family="movement">
 <head>
 <meta charset="UTF-8">
-<meta name="deploy-id" content="202603161318">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Simple Strength Routine for Runners | Speed &amp; Form</title>
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://speedandform.com/strength-routine">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<title>Durability Routine — Runner Strength Session | FORM</title>
-<link rel="canonical" href="https://speedandform.com/strength-routine">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root { --cream:#f5f2ec; --ink:#2a2620; --ink-l:#6b6459; --ink-f:#a09890; --accent:#c4593a; --line:#d8d2c8; --line-l:#e8e3dc; }
-html, body { height: auto !important; overflow: visible !important; }
-body { background: var(--cream); color: var(--ink); font-family: var(--reading-sans); font-weight: 400; font-kerning: normal; font-feature-settings: "kern"; padding-bottom: 100px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
-
-.nav { max-width: 560px; margin: 0 auto; padding: 36px 32px 0; display: flex; align-items: center; justify-content: space-between; }
-.nav-home { font-family: var(--reading-display); font-weight: 400; font-size: 22px; letter-spacing: 0em; color: var(--ink); text-decoration: none; }
-.nav-label { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); }
-.content { max-width: 560px; margin: 0 auto; padding: 48px 32px 0; border-left: 1px solid var(--line-l); }
-
-/* STICKY HEADER */
-.session-header { display: none; position: sticky; top: 0; z-index: 20; background: var(--cream); border-bottom: 1px solid var(--line-l); padding: 12px 0; }
-.session-header-inner { max-width: 560px; margin: 0 auto; padding: 0 32px; display: flex; align-items: baseline; justify-content: space-between; }
-.sh-title { font-family: var(--reading-display); font-weight: 400; font-size: 19px; letter-spacing: 0em; color: var(--ink); }
-.sh-meta { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); }
-
-.page-title { font-family: var(--reading-display); font-weight: 400; font-size: 38px; letter-spacing: 0em; color: var(--ink); line-height: 1; margin-bottom: 6px; }
-.page-sub { font-family: var(--reading-display); font-style: italic; font-size: 17px; font-weight: 400; color: var(--ink-f); letter-spacing: 0em; margin-bottom: 28px; }
-
-/* ROUND TRACKER */
-.round-tracker { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); }
-.round-label { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); }
-.round-circles { display: flex; gap: 10px; }
-.round-dot { width: 11px; height: 11px; border-radius: 50%; border: 1px solid var(--ink-f); background: transparent; cursor: pointer; transition: background 0.15s, border-color 0.15s; -webkit-tap-highlight-color: transparent; flex-shrink: 0; }
-.round-dot.done { background: var(--ink-l); border-color: var(--ink-l); }
-.round-reset { margin-left: auto; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); opacity: 1; cursor: pointer; background: none; border: none; font-family: var(--reading-sans); -webkit-tap-highlight-color: transparent; padding: 0; }
-
-/* ROUND NOTE */
-.round-note { font-size: 14px; color: var(--ink-f); letter-spacing: 0em; padding: 12px 0; border-bottom: 1px solid var(--line-l); }
-
-/* EXERCISE GROUPS */
-.ex-group { margin-top: 24px; }
-.ex-group-label { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); opacity: 1; display: block; margin-bottom: 0; }
-
-.exercise {
-  display: flex; align-items: center; gap: 16px;
-  padding: 14px 0 14px 0;
-  border-bottom: 1px solid var(--line-l);
-  cursor: pointer; -webkit-tap-highlight-color: transparent;
-  transition: opacity 0.15s, padding-left 0.1s, border-left 0.1s;
-  user-select: none;
-  border-left: 2px solid transparent;
-  margin-left: -2px;
-}
-.exercise:first-of-type { border-top: 1px solid var(--line-l); margin-top: 10px; }
-.exercise:not(.active):not(.done):hover { background: rgba(42,38,32,0.025); }
-.round-dot:not(.done):hover { border-color: var(--ink-l); background: rgba(42,38,32,0.06); }
-
-/* Active — clear, focused */
-.exercise.active {
-  border-left: 2px solid var(--ink-l);
-  padding-left: 14px;
-}
-.exercise.active .ex-name { color: var(--ink); }
-.exercise.active .ex-num { color: var(--ink-l); }
-
-/* Done — strongly faded */
-.exercise.done { opacity: 0.15; }
-
-.ex-num { font-size: 14px; font-weight: 500; letter-spacing: 0em; color: var(--ink-f); width: 22px; flex-shrink: 0; transition: color 0.15s; }
-.ex-body { flex: 1; }
-.ex-name { font-family: var(--reading-display); font-size: 22px; font-weight: 400; letter-spacing: 0em; color: var(--ink-l); line-height: 1; display: block; margin-bottom: 3px; transition: color 0.15s; }
-.ex-spec { font-size: 14px; color: var(--ink-f); letter-spacing: 0em; }
-
-/* CUE */
-.cue-block { padding: 20px 0; border-bottom: 1px solid var(--line-l); margin-top: 24px; }
-.cue-label { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 6px; }
-.cue-text { font-family: var(--reading-display); font-style: italic; font-size: 19px; font-weight: 400; color: var(--ink-l); letter-spacing: 0em; line-height: 1.55; }
-
-/* PLACEMENT */
-.placement { padding: 20px 0; border-bottom: 1px solid var(--line-l); }
-.placement-label { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); display: block; margin-bottom: 12px; }
-.day-row { display: flex; align-items: baseline; gap: 12px; padding: 4px 0; }
-.day-name { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); width: 72px; flex-shrink: 0; }
-.day-note { font-size: 14px; color: var(--ink-l); letter-spacing: 0em; }
-.day-note.avoid { color: var(--ink-f); opacity: 1; }
-
-/* FOOTER */
-.footer-links { padding: 20px 0; display: flex; gap: 20px; flex-wrap: wrap; }
-.footer-link { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-f); text-decoration: none; }
-.footer-link.primary { color: var(--ink-l); }
-
-@media (max-width: 480px) {
-  .nav { padding-left: 24px; padding-right: 24px; }
-  .content { padding-left: 24px; padding-right: 24px; border-left: none; padding-top: 36px; }
-  .session-header-inner { padding: 0 24px; }
-  .page-title { font-size: 32px; }
-  .exercise.active { padding-left: 12px; }
-}
-</style>
-<link rel="stylesheet" href="/css/discovery.css?v=20260916-p2">
+<script id="guide-schema" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://speedandform.com/strength-routine#article","headline":"What strength exercises should a runner start with?","description":"Follow a simple runner strength session: squat or split squat, hinge, calf raise and trunk control. Clear steps, doses, easier versions and weekly placement.","url":"https://speedandform.com/strength-routine","inLanguage":"en-US","author":{"@type":"Person","name":"Brice Ikouebe","url":"https://speedandform.com/#practice"},"dateModified":"2026-10-06","mainEntityOfPage":"https://speedandform.com/strength-routine","image":"https://speedandform.com/og/public-strength-routine-20261006.jpg","citation":["https://pubmed.ncbi.nlm.nih.gov/18460997/","https://pubmed.ncbi.nlm.nih.gov/23247672/","https://www.nhs.uk/live-well/exercise/knee-pain-and-other-running-injuries/"],"publisher":{"@type":"Organization","name":"Speed & Form","url":"https://speedandform.com"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Library","item":"https://speedandform.com/library"},{"@type":"ListItem","position":2,"name":"A runner’s strength routine","item":"https://speedandform.com/strength-routine"}]}]}</script>
+<link rel="stylesheet" href="/css/guide-foundations.css?v=20261006-lessons">
 <link rel="stylesheet" href="/css/sf-brand.css?v=20261001">
+<link rel="stylesheet" href="/css/running-lessons.css?v=20261006-lessons">
+<link rel="stylesheet" href="/css/library-movement.css?v=20261006-lessons">
+
+<script defer src="/js/guide-tools.js?v=20261006-lessons"></script>
 <link rel="stylesheet" href="/css/cream-reading.css?v=20261006">
-<meta name="description" content="The FORM durability routine: split squats, single-leg RDL, calf work, and core. Two rounds, twice a week.">
+<meta name="description" content="Follow a simple runner strength session: squat or split squat, hinge, calf raise and trunk control. Clear steps, doses, easier versions and weekly placement.">
 <!-- House share metadata: October 6 -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="Durability Routine — Runner Strength Session">
-<meta property="og:description" content="The FORM durability routine: split squats, single-leg RDL, calf work, and core. Two rounds, twice a week.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What strength exercises should a runner start with?">
+<meta property="og:description" content="Follow a simple runner strength session: squat or split squat, hinge, calf raise and trunk control. Clear steps, doses, easier versions and weekly placement.">
 <meta property="og:url" content="https://speedandform.com/strength-routine">
 <meta property="og:site_name" content="Speed &amp; Form">
 <meta property="og:locale" content="en_US">
@@ -116,200 +29,32 @@ body { background: var(--cream); color: var(--ink); font-family: var(--reading-s
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Speed &amp; Form. Durability Routine — Runner Strength Session.">
+<meta property="og:image:alt" content="Speed &amp; Form. What strength exercises should a runner start with?">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Durability Routine — Runner Strength Session">
-<meta name="twitter:description" content="The FORM durability routine: split squats, single-leg RDL, calf work, and core. Two rounds, twice a week.">
+<meta name="twitter:title" content="What strength exercises should a runner start with?">
+<meta name="twitter:description" content="Follow a simple runner strength session: squat or split squat, hinge, calf raise and trunk control. Clear steps, doses, easier versions and weekly placement.">
 <meta name="twitter:image" content="https://speedandform.com/og/public-strength-routine-20261006.jpg">
-<meta name="twitter:image:alt" content="Speed &amp; Form. Durability Routine — Runner Strength Session.">
+<meta name="twitter:image:alt" content="Speed &amp; Form. What strength exercises should a runner start with?">
 <!-- /House share metadata -->
 </head>
 <body>
-
-<div class="session-header" id="sticky-header">
-  <div class="session-header-inner">
-    <span class="sh-title">Durability Routine</span>
-    <span class="sh-meta">2 rounds</span>
-  </div>
-</div>
-
-<div class="nav">
-  <a class="nav-home sf-brand" href="/" aria-label="Speed and Form home"></a>
-  <span class="nav-label">Strength</span>
-</div>
-<nav class="site-wayfinding" aria-label="Explore FORM"><a href="/library">Library</a><a href="/plans/">Plans</a><a href="/thursday">Run with us</a><a href="/#begin">Work with Brice</a></nav>
-
-<div class="content">
-
-  <h1 class="page-title" id="page-title">Durability Routine</h1>
-  <div class="page-sub">Structural support for the practice.</div>
-
-  <!-- ROUND TRACKER -->
-  <div class="round-tracker">
-    <span class="round-label">Round</span>
-    <div class="round-circles">
-      <div class="round-dot" id="r1" onclick="toggleRound(1)"></div>
-      <div class="round-dot" id="r2" onclick="toggleRound(2)"></div>
-    </div>
-    <button class="round-reset" onclick="resetAll()">Reset</button>
-  </div>
-  <div class="round-note">Move through in sequence · rest 45–60 sec between movements if needed</div>
-
-  <!-- BLOCK A — STRENGTH -->
-  <div class="ex-group">
-    <span class="ex-group-label">Strength</span>
-
-    <div class="exercise" data-ex onclick="toggleEx(this)">
-      <span class="ex-num">A1</span>
-      <div class="ex-body">
-        <span class="ex-name">Split Squat</span>
-        <span class="ex-spec">8–10 reps / side · controlled descent</span>
-      </div>
-    </div>
-
-    <div class="exercise" data-ex onclick="toggleEx(this)">
-      <span class="ex-num">A2</span>
-      <div class="ex-body">
-        <span class="ex-name">Single-Leg RDL</span>
-        <span class="ex-spec">6–8 reps / side · hinge at hip · chest quiet</span>
-      </div>
-    </div>
-
-    <div class="exercise" data-ex onclick="toggleEx(this)">
-      <span class="ex-num">A3</span>
-      <div class="ex-body">
-        <span class="ex-name">Step Down</span>
-        <span class="ex-spec">8–10 reps / side · slow · knee tracks over foot</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- BLOCK B — CALF -->
-  <div class="ex-group">
-    <span class="ex-group-label">Calf</span>
-
-    <div class="exercise" data-ex onclick="toggleEx(this)">
-      <span class="ex-num">B1</span>
-      <div class="ex-body">
-        <span class="ex-name">Standing Calf Raise</span>
-        <span class="ex-spec">12–15 reps · single leg if possible · full range</span>
-      </div>
-    </div>
-
-    <div class="exercise" data-ex onclick="toggleEx(this)">
-      <span class="ex-num">B2</span>
-      <div class="ex-body">
-        <span class="ex-name">Seated Soleus Raise</span>
-        <span class="ex-spec">12–15 reps · knee bent 90° · slow and full range</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- BLOCK C — CORE -->
-  <div class="ex-group">
-    <span class="ex-group-label">Core</span>
-
-    <div class="exercise" data-ex onclick="toggleEx(this)">
-      <span class="ex-num">C1</span>
-      <div class="ex-body">
-        <span class="ex-name">Copenhagen Plank</span>
-        <span class="ex-spec">20–30 sec / side · hips level</span>
-      </div>
-    </div>
-
-    <div class="exercise" data-ex onclick="toggleEx(this)">
-      <span class="ex-num">C2</span>
-      <div class="ex-body">
-        <span class="ex-name">Side Plank</span>
-        <span class="ex-spec">30–40 sec / side · left side +10 sec if weaker</span>
-      </div>
-    </div>
-
-    <div class="exercise" data-ex onclick="toggleEx(this)">
-      <span class="ex-num">C3</span>
-      <div class="ex-body">
-        <span class="ex-name">Glute Bridge</span>
-        <span class="ex-spec">30 sec hold / side · single leg · ribs down</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- CUE -->
-  <div class="cue-block">
-    <span class="cue-label">Cue</span>
-    <span class="cue-text">Move slowly. Control the positions.<br>Precision matters more than fatigue.</span>
-  </div>
-
-  <!-- PLACEMENT -->
-  <div class="placement">
-    <span class="placement-label">Weekly Placement</span>
-    <div class="day-row"><span class="day-name">Monday</span><span class="day-note">cross training + this routine</span></div>
-    <div class="day-row"><span class="day-name">Wednesday</span><span class="day-note">after easy run</span></div>
-    <div class="day-row"><span class="day-name">Thursday</span><span class="day-note">after easy run</span></div>
-    <div class="day-row"><span class="day-name">Friday</span><span class="day-note">optional short routine</span></div>
-    <div class="day-row" style="margin-top:8px;"><span class="day-name">Tuesday</span><span class="day-note avoid">not before threshold</span></div>
-    <div class="day-row"><span class="day-name">Saturday</span><span class="day-note avoid">not before long run</span></div>
-  </div>
-
-  <!-- FOOTER -->
-  <div class="footer-links">
-    <a class="footer-link primary" href="/strength-activation">Activation →</a>
-    <a class="footer-link primary" href="/strength-fixes">Fixes →</a>
-    <a class="footer-link" href="/strength">Structural Work →</a>
-  </div>
-
-</div>
-
-<script>
-// Sticky header
-const stickyHeader = document.getElementById('sticky-header');
-const pageTitle    = document.getElementById('page-title');
-window.addEventListener('scroll', function() {
-  stickyHeader.style.display = pageTitle.getBoundingClientRect().bottom < 0 ? 'block' : 'none';
-}, { passive: true });
-
-// Round tracker
-function toggleRound(n) {
-  document.getElementById('r' + n).classList.toggle('done');
-}
-
-// Exercise tap: inactive → active → done → inactive
-function toggleEx(el) {
-  if (el.classList.contains('active')) {
-    el.classList.remove('active');
-    el.classList.add('done');
-    checkAutoRound();
-  } else if (el.classList.contains('done')) {
-    el.classList.remove('done');
-  } else {
-    // Remove active from all others
-    document.querySelectorAll('.exercise.active').forEach(e => e.classList.remove('active'));
-    el.classList.add('active');
-  }
-}
-
-// Auto-fill next round dot when all exercises are done
-function checkAutoRound() {
-  const all  = document.querySelectorAll('[data-ex]');
-  const done = document.querySelectorAll('[data-ex].done');
-  if (done.length === all.length) {
-    const r1 = document.getElementById('r1');
-    const r2 = document.getElementById('r2');
-    if (!r1.classList.contains('done')) {
-      r1.classList.add('done');
-    } else if (!r2.classList.contains('done')) {
-      r2.classList.add('done');
-      // All done — reset exercises for round 2 if starting again
-    }
-  }
-}
-
-// Reset everything
-function resetAll() {
-  document.querySelectorAll('.round-dot').forEach(d => d.classList.remove('done'));
-  document.querySelectorAll('.exercise').forEach(e => e.classList.remove('done','active'));
-}
-</script>
-
+<a class="guide-skip" href="#main">Skip to content</a>
+<header class="guide-wrap guide-header"><a class="guide-brand sf-brand" href="/" aria-label="Speed and Form home"></a><nav class="site-wayfinding" aria-label="Explore Speed and Form"><a href="/library">Library</a><a href="/plans/">Plans</a><a href="/thursday">Run with us</a><a href="/contact">Contact</a></nav></header>
+<main class="guide-wrap" id="main" tabindex="-1">
+<header class="guide-hero"><p class="guide-eyebrow"><a href="/library#movement">Strength &amp; movement</a> · Routine</p><h1>What strength exercises should a runner start with?</h1><p class="guide-answer">Start with a few movements you can control: bend the knees, hinge at the hips, raise the heels and keep the trunk steady. Use enough effort to learn, with room for your running.</p><div class="guide-byline"><span>By <a href="/#practice">Brice Ikouebe</a></span><span>Updated October 6, 2026</span></div></header>
+<section class="routine-overview" id="routine-facts" aria-labelledby="heading-routine-facts"><h2 id="heading-routine-facts"><a class="section-link" href="#routine-facts">The routine at a glance.</a></h2><dl class="routine-facts"><div><dt>For</dt><dd>Familiar strength movements around running</dd></div><div><dt>Time</dt><dd>About 15–25 min</dd></div><div><dt>Equipment</dt><dd>Chair or stable support; optional light weight</dd></div><div><dt>How often</dt><dd>Start with 1 session a week. Build toward 2 if recovery supports it.</dd></div></dl><p class="guide-small">An example starting amount. Choose movements you already know; an assigned plan takes priority.</p><button class="routine-print" type="button" data-guide-print hidden>Print this routine</button><noscript><p>Use your browser’s Print command for a paper copy.</p></noscript></section><div class="guide-layout"><aside class="guide-contents" aria-label="In this guide"><p>In this guide</p><nav><a href="#routine">Choose one from each job.</a><a href="#purpose">Build a frame you can use.</a><a href="#start">A small first session.</a><a href="#progress">Add work when the combination holds up.</a><a href="#stop">When should you stop?</a><a href="#remember">Remember this</a><a href="#sources">Sources &amp; context</a></nav></aside>
+<article class="guide-body" aria-label="A runner’s strength routine guide">
+<section class="guide-section" id="routine" aria-labelledby="heading-routine"><h2 id="heading-routine"><a class="section-link" href="#routine">Choose one from each job.</a></h2><article class="movement-exercise" id="exercise-1" aria-labelledby="heading-exercise-1"><header><span class="lesson-label"><span class="lesson-measure">01</span></span><h3 id="heading-exercise-1"><a class="section-link" href="#exercise-1">Squat or supported split squat</a></h3><p class="movement-dose"><span class="lesson-measure">6–10</span> controlled repetitions</p></header><div><p><strong>Set up:</strong> Use a chair squat, or stand in a split stance beside hand support.</p><p><strong>Do:</strong> Bend the knees and hips through a comfortable range. Stand up under control. In a split squat, repeat on both sides.</p><p><strong>Cue:</strong> Stand up under control.</p><p><strong>Feel:</strong> Work in your thighs and hips, with your balance supported.</p><p class="movement-adjust">A version you can balance and repeat. Reduce range or use support before adding weight.</p><label class="movement-done"><input type="checkbox"> Done for this session</label></div><div class="movement-media" aria-label="Space reserved for a real demonstration of Squat or supported split squat"><span>Demonstration space</span><small>Squat or supported split squat · real photo or video to come</small></div></article><article class="movement-exercise" id="exercise-2" aria-labelledby="heading-exercise-2"><header><span class="lesson-label"><span class="lesson-measure">02</span></span><h3 id="heading-exercise-2"><a class="section-link" href="#exercise-2">Hip hinge</a></h3><p class="movement-dose"><span class="lesson-measure">6–10</span> controlled repetitions</p></header><div><p><strong>Set up:</strong> Stand tall with soft knees. Start without weight.</p><p><strong>Do:</strong> Push your hips back while keeping your trunk comfortable, then stand tall. A bridge is an alternative if the hinge is unfamiliar.</p><p><strong>Cue:</strong> Push the hips back.</p><p><strong>Feel:</strong> Work around your hips and the back of your thighs; no painful pull in your back.</p><p class="movement-adjust">Move at the hips. Choose a comfortable range without rounding or arching to reach farther.</p><label class="movement-done"><input type="checkbox"> Done for this session</label></div><div class="movement-media" aria-label="Space reserved for a real demonstration of Hip hinge"><span>Demonstration space</span><small>Hip hinge · real photo or video to come</small></div></article><article class="movement-exercise" id="exercise-3" aria-labelledby="heading-exercise-3"><header><span class="lesson-label"><span class="lesson-measure">03</span></span><h3 id="heading-exercise-3"><a class="section-link" href="#exercise-3">Calf raise</a></h3><p class="movement-dose"><span class="lesson-measure">8–12</span> controlled repetitions</p></header><div><p><strong>Set up:</strong> Hold a stable support and stand on both feet.</p><p><strong>Do:</strong> Raise your heels, then lower slowly. Move through a comfortable range.</p><p><strong>Cue:</strong> Rise and lower smoothly.</p><p><strong>Feel:</strong> Work in your calves without Achilles or joint pain.</p><p class="movement-adjust">Use both legs before trying one leg. Avoid bouncing or forcing a painful stretch.</p><label class="movement-done"><input type="checkbox"> Done for this session</label></div><div class="movement-media" aria-label="Space reserved for a real demonstration of Calf raise"><span>Demonstration space</span><small>Calf raise · real photo or video to come</small></div></article><article class="movement-exercise" id="exercise-4" aria-labelledby="heading-exercise-4"><header><span class="lesson-label"><span class="lesson-measure">04</span></span><h3 id="heading-exercise-4"><a class="section-link" href="#exercise-4">Trunk control</a></h3><p class="movement-dose">A short hold or <span class="lesson-measure">6–8 repetitions</span> per side</p></header><div><p><strong>Set up:</strong> Choose a knee-supported side plank, a light carry or a dead bug.</p><p><strong>Do:</strong> Use a version you can control while breathing. See the separate routine for setup.</p><p><strong>Cue:</strong> Breathe while holding the position.</p><p><strong>Feel:</strong> Abdominal or side-trunk work without a painful back or shoulder.</p><p class="movement-adjust">Stop the set before your position changes. <a href="/anti-rotation">Open trunk-control instructions →</a></p><label class="movement-done"><input type="checkbox"> Done for this session</label></div><div class="movement-media" aria-label="Space reserved for a real demonstration of Trunk control"><span>Demonstration space</span><small>Trunk control · real photo or video to come</small></div></article></section>
+<section class="guide-section" id="purpose" aria-labelledby="heading-purpose"><h2 id="heading-purpose"><a class="section-link" href="#purpose">Build a frame you can use.</a></h2><figure class="lesson-picture"><p class="lesson-label">One picture to remember</p><blockquote><h3 id="purpose-step-1"><a class="section-link" href="#purpose-step-1">Four jobs. A few clear choices.</a></h3><p>You do not need a new exercise every week. Get familiar with movements, then add the challenge your training supports.</p></blockquote></figure><p>Strength training can improve the energy cost of running in studied runners. That result comes from progressive training, not from the name of a circuit. <a class="guide-ref" href="#source-1" aria-label="Source 1">[<span class="lesson-measure">1</span>]</a> <a href="/strength">Understand the strength work →</a></p></section>
+<section class="guide-section" id="start" aria-labelledby="heading-start"><h2 id="heading-start"><a class="section-link" href="#start">A small first session.</a></h2><div class="movement-brief"><div><span>Equipment</span><strong>Chair or stable support. A light weight is optional.</strong></div><div><span>First dose</span><strong>One set of each chosen movement.</strong></div><div><span>Effort</span><strong>Finish knowing you could do a few more controlled repetitions.</strong></div></div><p>Move easily first, then rehearse each movement. Rest between exercises until you can do the next one well. If you already lift, your established program may need a more challenging dose.</p><div class="movement-rounds"><label><input id="r1" type="checkbox"> Set <span class="lesson-measure">1</span> complete</label><label><input id="r2" type="checkbox"> Optional set <span class="lesson-measure">2</span> complete</label></div></section>
+<section class="guide-section" id="progress" aria-labelledby="heading-progress"><h2 id="heading-progress"><a class="section-link" href="#progress">Add work when the combination holds up.</a></h2><p>Repeat the first dose. If the movements stay controlled and your following runs remain manageable, add a little load or a set. Change one thing.</p><p>Start with one session when lifting is new. Build toward two if the week and recovery support it. Soreness is not your score. <a class="guide-ref" href="#source-2" aria-label="Source 2">[<span class="lesson-measure">2</span>]</a></p><p>Stop for sharp pain or joint pain. Get help with unfamiliar lifts or recurring symptoms. <a class="guide-ref" href="#source-3" aria-label="Source 3">[<span class="lesson-measure">3</span>]</a></p><p>The checklist is temporary. It does not file a strength workout to your app.</p></section>
+<section class="guide-section" id="stop" aria-labelledby="heading-stop"><h2 id="heading-stop"><a class="section-link" href="#stop">When should you stop?</a></h2><p>Stop the set if you lose control or must hold your breath. Reduce the amount or choose an easier version. Stop for sharp pain, joint pain or symptoms that change how you move; persistent or recurring symptoms need assessment.</p></section>
+<section class="lesson-recap" id="remember" aria-labelledby="heading-remember"><p class="lesson-label">The part to take with you</p><h2 id="heading-remember"><a class="section-link" href="#remember">Remember this.</a></h2><ol><li>Learn the movement before chasing the load.</li><li>Leave a few controlled repetitions in reserve.</li><li>Count the gym and the run in the same week.</li></ol><details class="guide-detail lesson-check" id="check-question"><summary>You finish the circuit, but tomorrow’s run feels sore enough to change your stride. What do you change?</summary><div><p>Reduce the strength dose or change its placement. Completing the circuit is less useful if the amount repeatedly spoils your running.</p></div></details><p class="lesson-teach">Try explaining the idea to a friend in your own words.</p></section>
+<section class="library-family" id="family" aria-labelledby="family-heading"><p class="lesson-label">Keep the pieces connected</p><h2 id="family-heading"><a class="section-link" href="#family">Strength &amp; movement</a></h2><p>Understand the idea, choose a practice, then check what helps your running.</p><nav aria-label="Strength &amp; movement learning path"><div><h3>Lessons · Understand</h3><ul><li><a href="/strength">Strength for runners</a></li><li><a href="/running-form-errors">One useful form change</a></li><li><a href="/ghost/cues">Running cues</a></li><li><a href="/mechanics-map">Movement map</a></li><li><a href="/library/physique-volume/">How much work?</a></li><li><a href="/library/why-phases/">Why phases?</a></li></ul></div><div><h3>Routines · Do</h3><ul><li><a href="/strength-activation">Before you run</a></li><li><a href="/strength-routine" aria-current="page">A strength session</a></li><li><a href="/anti-rotation">Trunk control</a></li><li><a href="/mobility">Mobility practice</a></li><li><a href="/ghost">The six-week practice</a></li></ul></div></nav></section>
+<section class="guide-sources" id="sources"><details><summary>Sources &amp; context</summary><p class="guide-small">The examples and decisions above are FORM coaching guidance. The research below supports the stated principles, not an individual prescription or a guaranteed result.</p><ol><li id="source-1">Støren et al. (2008)<a href="https://pubmed.ncbi.nlm.nih.gov/18460997/">Maximal strength training improves running economy in distance runners</a><small>A small study of trained runners using supervised heavy training; not a novice circuit prescription.</small></li><li id="source-2">Meeusen et al. (2013)<a href="https://pubmed.ncbi.nlm.nih.gov/23247672/">ECSS and ACSM consensus on training, recovery and overtraining</a><small>Excessive load and inadequate recovery need attention; a watch cannot diagnose the cause of persistent symptoms.</small></li><li id="source-3">NHS<a href="https://www.nhs.uk/live-well/exercise/knee-pain-and-other-running-injuries/">Knee pain and other running injuries</a><small>General guidance on painful running and getting assessment.</small></li></ol></details></section>
+<section class="guide-related" id="keep-learning" aria-labelledby="heading-keep-learning"><h2 id="heading-keep-learning"><a class="section-link" href="#keep-learning">Keep learning.</a></h2><ul><li><a href="/strength-activation"><strong>Prepare for a run →</strong><span>A shorter, gentler task.</span></a></li><li><a href="/anti-rotation"><strong>Practice trunk control →</strong><span>Clear setups and cues.</span></a></li><li><a href="/training-week"><strong>Fit lifting around running →</strong><span>Protect the important run.</span></a></li></ul></section>
+<section class="guide-help" id="coaching"><h2 id="heading-coaching"><a class="section-link" href="#coaching">Make the work fit your running.</a></h2><p>Coaching connects the exercise choices, the amount of work and the runs around them.</p><a href="/#begin">Work with Brice →</a></section>
+</article></div></main>
+<footer class="guide-wrap guide-footer"><a class="sf-brand" href="/" aria-label="Speed and Form home"></a><nav aria-label="Footer"><a href="/library">Library</a><a href="/search">Search</a><a href="/contact">Contact</a><a href="/privacy#website">Privacy</a></nav></footer>
 </body>
 </html>

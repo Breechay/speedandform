@@ -1,24 +1,24 @@
 {
   "anti-rotation.html": {
     "image": "/og/public-anti-rotation-20261006.jpg",
-    "alt": "Speed & Form. Anti-Rotation Routine.",
-    "title": "Anti-Rotation Routine",
-    "description": "A targeted routine for runners who twist or rotate excessively under load. Four exercises. One running cue.",
+    "alt": "Speed & Form. How do I practice keeping my trunk steady?",
+    "title": "How do I practice keeping my trunk steady?",
+    "description": "A simple anti-rotation exercise guide for runners. Learn dead bugs, Pallof presses, side planks and single-leg hinges with setup, starting dose and clear cues.",
     "headline": [
-      "Anti-Rotation Routine"
+      "How do I practice keeping my trunk steady?"
     ],
     "label": "FROM THE LIBRARY",
     "dark": false
   },
   "app.html": {
     "image": "/og/public-app-20261006.jpg",
-    "alt": "Speed & Form. FORM \u2014 App.",
-    "title": "FORM \u2014 App",
-    "description": "The FORM app. Ghost Protocol \u2014 six weeks of structured running. Free on iPhone.",
+    "alt": "Speed & Form. FORM — App.",
+    "title": "FORM — App",
+    "description": "The FORM app. Ghost Protocol — six weeks of structured running. Free on iPhone.",
     "headline": [
-      "FORM \u2014 App"
+      "FORM — App"
     ],
-    "label": "FORM \u00b7 RUNNING APP",
+    "label": "FORM · RUNNING APP",
     "dark": false
   },
   "athletes.html": {
@@ -78,11 +78,11 @@
   },
   "easy-run.html": {
     "image": "/og/public-easy-run-20261006.jpg",
-    "alt": "Speed & Form. Easy Running: How Easy, How Long & Why It Matters.",
-    "title": "Easy Running: How Easy, How Long & Why It Matters",
-    "description": "Use conversation, effort, and recovery to keep easy runs easy. A practical session example, common adjustments, and clear guidance for hot or tired days.",
+    "alt": "Speed & Form. How easy should an easy run feel?",
+    "title": "How easy should an easy run feel?",
+    "description": "Easy running explained simply: use the talk test, learn why slow runs matter, try a manageable example, and adjust for hot or tired days.",
     "headline": [
-      "Easy Running: How Easy, How Long & Why It Matters"
+      "How easy should an easy run feel?"
     ],
     "label": "FROM THE LIBRARY",
     "dark": false
@@ -100,13 +100,13 @@
   },
   "form/index.html": {
     "image": "/og/public-form-20261006.jpg",
-    "alt": "Speed & Form. FORM Running App | Know Today\u2019s Run.",
-    "title": "FORM Running App | Know Today\u2019s Run",
-    "description": "Know today\u2019s run and how it fits your training. Explore the FORM running app, its session types, and a record of the work you actually did.",
+    "alt": "Speed & Form. FORM Running App | Know Today’s Run.",
+    "title": "FORM Running App | Know Today’s Run",
+    "description": "Know today’s run and how it fits your training. Explore the FORM running app, its session types, and a record of the work you actually did.",
     "headline": [
       "FORM Running App"
     ],
-    "label": "FORM \u00b7 RUNNING APP",
+    "label": "FORM · RUNNING APP",
     "dark": false
   },
   "fueling.html": {
@@ -122,11 +122,11 @@
   },
   "ghost/cues.html": {
     "image": "/og/public-ghost-cues-20261006.jpg",
-    "alt": "Speed & Form. Running Form Cues | Ghost Protocol.",
-    "title": "Running Form Cues | Ghost Protocol",
-    "description": "All running form cues from the Ghost Protocol in one place. A reference for quiet, efficient movement.",
+    "alt": "Speed & Form. Which running cue should I try?",
+    "title": "Which running cue should I try?",
+    "description": "Simple running cues for shoulders, steps, posture and breathing. Learn when to try one, what to notice, and when to leave it alone.",
     "headline": [
-      "Running Form Cues"
+      "Which running cue should I try?"
     ],
     "label": "RUNNING PRACTICE",
     "dark": false
@@ -144,77 +144,77 @@
   },
   "ghost/week-1.html": {
     "image": "/og/public-ghost-week-1-20261006.jpg",
-    "alt": "Speed & Form. Week 1 \u2014 Rhythm | Running Form Practice.",
-    "title": "Week 1 \u2014 Rhythm | Running Form Practice",
-    "description": "Week 1 of the Ghost Protocol \u2014 a six-week practice to improve running form through simple mechanical cues. Find the beat. Remove urgency.",
+    "alt": "Speed & Form. Week 1 — Rhythm | Running Form Practice.",
+    "title": "Week 1 — Rhythm | Running Form Practice",
+    "description": "Week 1 of the Ghost Protocol — a six-week practice to improve running form through simple mechanical cues. Find the beat. Remove urgency.",
     "headline": [
-      "Week 1 \u2014 Rhythm"
+      "Week 1 — Rhythm"
     ],
     "label": "RUNNING PRACTICE",
     "dark": false
   },
   "ghost/week-2.html": {
     "image": "/og/public-ghost-week-2-20261006.jpg",
-    "alt": "Speed & Form. Week 2 \u2014 Gravity | Running Form Practice.",
-    "title": "Week 2 \u2014 Gravity | Running Form Practice",
-    "description": "Week 2 of the Ghost Protocol \u2014 a six-week running form practice. Stop pushing. Start falling.",
+    "alt": "Speed & Form. Week 2 — Gravity | Running Form Practice.",
+    "title": "Week 2 — Gravity | Running Form Practice",
+    "description": "Week 2 of the Ghost Protocol — a six-week running form practice. Stop pushing. Start falling.",
     "headline": [
-      "Week 2 \u2014 Gravity"
+      "Week 2 — Gravity"
     ],
     "label": "RUNNING PRACTICE",
     "dark": false
   },
   "ghost/week-3.html": {
     "image": "/og/public-ghost-week-3-20261006.jpg",
-    "alt": "Speed & Form. Week 3 \u2014 Spring | Running Form Practice.",
-    "title": "Week 3 \u2014 Spring | Running Form Practice",
-    "description": "Week 3 of the Ghost Protocol \u2014 a six-week running form practice. Use the ground. Don't sink into it.",
+    "alt": "Speed & Form. Week 3 — Spring | Running Form Practice.",
+    "title": "Week 3 — Spring | Running Form Practice",
+    "description": "Week 3 of the Ghost Protocol — a six-week running form practice. Use the ground. Don't sink into it.",
     "headline": [
-      "Week 3 \u2014 Spring"
+      "Week 3 — Spring"
     ],
     "label": "RUNNING PRACTICE",
     "dark": false
   },
   "ghost/week-4.html": {
     "image": "/og/public-ghost-week-4-20261006.jpg",
-    "alt": "Speed & Form. Week 4 \u2014 Pillar | Running Form Practice.",
-    "title": "Week 4 \u2014 Pillar | Running Form Practice",
-    "description": "Week 4 of the Ghost Protocol \u2014 a six-week running form practice. Still torso. Moving legs.",
+    "alt": "Speed & Form. Week 4 — Pillar | Running Form Practice.",
+    "title": "Week 4 — Pillar | Running Form Practice",
+    "description": "Week 4 of the Ghost Protocol — a six-week running form practice. Still torso. Moving legs.",
     "headline": [
-      "Week 4 \u2014 Pillar"
+      "Week 4 — Pillar"
     ],
     "label": "RUNNING PRACTICE",
     "dark": false
   },
   "ghost/week-5.html": {
     "image": "/og/public-ghost-week-5-20261006.jpg",
-    "alt": "Speed & Form. Week 5 \u2014 Gears | Running Form Practice.",
-    "title": "Week 5 \u2014 Gears | Running Form Practice",
-    "description": "Week 5 of the Ghost Protocol \u2014 a six-week running form practice. Change speed without changing form.",
+    "alt": "Speed & Form. Week 5 — Gears | Running Form Practice.",
+    "title": "Week 5 — Gears | Running Form Practice",
+    "description": "Week 5 of the Ghost Protocol — a six-week running form practice. Change speed without changing form.",
     "headline": [
-      "Week 5 \u2014 Gears"
+      "Week 5 — Gears"
     ],
     "label": "RUNNING PRACTICE",
     "dark": false
   },
   "ghost/week-6.html": {
     "image": "/og/public-ghost-week-6-20261006.jpg",
-    "alt": "Speed & Form. Week 6 \u2014 Ghost | Running Form Practice.",
-    "title": "Week 6 \u2014 Ghost | Running Form Practice",
-    "description": "Week 6 of the Ghost Protocol \u2014 a six-week running form practice. Everything together. No thinking.",
+    "alt": "Speed & Form. Week 6 — Ghost | Running Form Practice.",
+    "title": "Week 6 — Ghost | Running Form Practice",
+    "description": "Week 6 of the Ghost Protocol — a six-week running form practice. Everything together. No thinking.",
     "headline": [
-      "Week 6 \u2014 Ghost"
+      "Week 6 — Ghost"
     ],
     "label": "RUNNING PRACTICE",
     "dark": false
   },
   "how-fast-should-i-run.html": {
     "image": "/og/public-how-fast-should-i-run-20261006.jpg",
-    "alt": "Speed & Form. How Fast Should I Run.",
-    "title": "How Fast Should I Run",
-    "description": "Most running should feel comfortable. Runners learning mechanics alongside pacing will find the <a href=",
+    "alt": "Speed & Form. How fast should I run?",
+    "title": "How fast should I run?",
+    "description": "Choose your running effort by the job of the run. A simple comparison of easy, threshold, long runs and faster work, with examples for heat and hills.",
     "headline": [
-      "How Fast Should I Run"
+      "How fast should I run?"
     ],
     "label": "FROM THE LIBRARY",
     "dark": false
@@ -233,11 +233,11 @@
   },
   "labs/the-last-10k/index.html": {
     "image": "/og/public-labs-the-last-10k-20261006.jpg",
-    "alt": "Speed & Form. The Last 10K \u00b7 Marathon Durability Study.",
-    "title": "The Last 10K \u00b7 Marathon Durability Study",
-    "description": "The FORM marathon teaching applied to Hope and Jos\u00e9: Orlando, the Donna build, late-race access, fueling, pacing, and what changes from the evidence.",
+    "alt": "Speed & Form. The Last 10K · Marathon Durability Study.",
+    "title": "The Last 10K · Marathon Durability Study",
+    "description": "The FORM marathon teaching applied to Hope and José: Orlando, the Donna build, late-race access, fueling, pacing, and what changes from the evidence.",
     "headline": [
-      "The Last 10K \u00b7 Marathon Durability Study"
+      "The Last 10K · Marathon Durability Study"
     ],
     "label": "FROM THE PRACTICE",
     "dark": false
@@ -266,8 +266,8 @@
   },
   "library/easy-days/index.html": {
     "image": "/og/public-library-easy-days-20261006.jpg",
-    "alt": "Speed & Form. Why easy days stay easy \u2014 Speed & Form Library.",
-    "title": "Why easy days stay easy \u2014 Speed & Form Library",
+    "alt": "Speed & Form. Why easy days stay easy — Speed & Form Library.",
+    "title": "Why easy days stay easy — Speed & Form Library",
     "description": "Easy running is not the part of the plan you rush through. It is what lets the important work keep improving.",
     "headline": [
       "Why easy days stay easy"
@@ -277,8 +277,8 @@
   },
   "library/first-half-marathon-goal/index.html": {
     "image": "/og/public-library-first-half-marathon-goal-20261006.jpg",
-    "alt": "Speed & Form. How to set your first half-marathon goal \u2014 Speed & Form Library.",
-    "title": "How to set your first half-marathon goal \u2014 Speed & Form Library",
+    "alt": "Speed & Form. How to set your first half-marathon goal — Speed & Form Library.",
+    "title": "How to set your first half-marathon goal — Speed & Form Library",
     "description": "Set a first half-marathon goal from recent running, not a guess. Learn how to choose a starting target and adjust it as evidence builds.",
     "headline": [
       "How to set your first half-marathon goal"
@@ -288,8 +288,8 @@
   },
   "library/from-lifting-to-running/index.html": {
     "image": "/og/public-library-from-lifting-to-running-20261006.jpg",
-    "alt": "Speed & Form. How to start running when you already lift \u2014 Speed & Form Library.",
-    "title": "How to start running when you already lift \u2014 Speed & Form Library",
+    "alt": "Speed & Form. How to start running when you already lift — Speed & Form Library.",
+    "title": "How to start running when you already lift — Speed & Form Library",
     "description": "You do not need to stop lifting to become a runner. You need a running dose that your current training can absorb.",
     "headline": [
       "How to start running when you already lift"
@@ -299,8 +299,8 @@
   },
   "library/half-marathon-week/index.html": {
     "image": "/og/public-library-half-marathon-week-20261006.jpg",
-    "alt": "Speed & Form. How a half-marathon week fits together \u2014 Speed & Form Library.",
-    "title": "How a half-marathon week fits together \u2014 Speed & Form Library",
+    "alt": "Speed & Form. How a half-marathon week fits together — Speed & Form Library.",
+    "title": "How a half-marathon week fits together — Speed & Form Library",
     "description": "A race plan is not a pile of runs. Each day has a job, and the week works because those jobs support one another.",
     "headline": [
       "How a half-marathon week fits together"
@@ -310,19 +310,19 @@
   },
   "library/physique-volume/index.html": {
     "image": "/og/public-library-physique-volume-20261006.jpg",
-    "alt": "Speed & Form. Why every area should not get the same volume \u2014 Speed & Form Library.",
-    "title": "Why every area should not get the same volume \u2014 Speed & Form Library",
-    "description": "A balanced physique is not built by giving every muscle the same amount of work. It is built by deciding where emphasis belongs.",
+    "alt": "Speed & Form. Should every muscle get the same amount of work?",
+    "title": "Should every muscle get the same amount of work?",
+    "description": "Understand strength-training volume with a simple time-budget metaphor. Prioritize a goal, maintain other areas and adjust from performance and recovery.",
     "headline": [
-      "Why every area should not get the same volume"
+      "Should every muscle get the same amount of work?"
     ],
     "label": "FROM THE LIBRARY",
     "dark": false
   },
   "library/the-two-paces/index.html": {
     "image": "/og/public-library-the-two-paces-20261006.jpg",
-    "alt": "Speed & Form. The two numbers that organize the whole plan \u2014 Speed & Form Library.",
-    "title": "The two numbers that organize the whole plan \u2014 Speed & Form Library",
+    "alt": "Speed & Form. The two numbers that organize the whole plan — Speed & Form Library.",
+    "title": "The two numbers that organize the whole plan — Speed & Form Library",
     "description": "Understand threshold pace and an easy-effort ceiling: two guides for keeping demanding runs purposeful and easy days controlled.",
     "headline": [
       "The two numbers that organize the whole plan"
@@ -332,8 +332,8 @@
   },
   "library/when-a-week-goes-wrong/index.html": {
     "image": "/og/public-library-when-a-week-goes-wrong-20261006.jpg",
-    "alt": "Speed & Form. What to do when the week goes wrong \u2014 Speed & Form Library.",
-    "title": "What to do when the week goes wrong \u2014 Speed & Form Library",
+    "alt": "Speed & Form. What to do when the week goes wrong — Speed & Form Library.",
+    "title": "What to do when the week goes wrong — Speed & Form Library",
     "description": "Missed a run? Learn how to return to your training week without cramming missed sessions together or turning every day into catch-up work.",
     "headline": [
       "What to do when the week goes wrong"
@@ -343,11 +343,11 @@
   },
   "library/why-phases/index.html": {
     "image": "/og/public-library-why-phases-20261006.jpg",
-    "alt": "Speed & Form. Why the program runs in phases \u2014 Speed & Form Library.",
-    "title": "Why the program runs in phases \u2014 Speed & Form Library",
-    "description": "Why physique training uses phases: focus the work, maintain what you have built, and move the emphasis in a deliberate order.",
+    "alt": "Speed & Form. Why does a training program have phases?",
+    "title": "Why does a training program have phases?",
+    "description": "Training phases explained simply: give one priority time, keep other abilities in practice and move the emphasis when the goal and response support it.",
     "headline": [
-      "Why the program runs in phases"
+      "Why does a training program have phases?"
     ],
     "label": "FROM THE LIBRARY",
     "dark": false
@@ -365,22 +365,22 @@
   },
   "long-run-pace.html": {
     "image": "/og/public-long-run-pace-20261006.jpg",
-    "alt": "Speed & Form. Long-Run Pacing: Effort, Duration & Strong Finishes.",
-    "title": "Long-Run Pacing: Effort, Duration & Strong Finishes",
-    "description": "Choose a manageable long run, separate easy effort from steady finishes, and adjust when fatigue or heat changes the day. Examples for a repeatable training week.",
+    "alt": "Speed & Form. How fast should my long run be?",
+    "title": "How fast should my long run be?",
+    "description": "A simple long-run guide: start conversational, choose a familiar duration, understand fast finishes, and practice the food and drink you will use for a race.",
     "headline": [
-      "Long-Run Pacing: Effort, Duration & Strong Finishes"
+      "How fast should my long run be?"
     ],
     "label": "FROM THE LIBRARY",
     "dark": false
   },
   "mechanics-map.html": {
     "image": "/og/public-mechanics-map-20261006.jpg",
-    "alt": "Speed & Form. Running Mechanics Map.",
-    "title": "Running Mechanics Map",
-    "description": "How common running errors relate to each other. Rhythm, stability, and direction \u2014 the three root categories of mechanical inefficiency.",
+    "alt": "Speed & Form. Where should I start with running mechanics?",
+    "title": "Where should I start with running mechanics?",
+    "description": "A simple running mechanics map: notice rhythm, control and direction, choose one useful question, and test a change without diagnosing a runner from a video.",
     "headline": [
-      "Running Mechanics Map"
+      "Where should I start with running mechanics?"
     ],
     "label": "FROM THE LIBRARY",
     "dark": false
@@ -398,22 +398,22 @@
   },
   "mobility.html": {
     "image": "/og/public-mobility-20261006.jpg",
-    "alt": "Speed & Form. Mobility.",
-    "title": "Mobility",
-    "description": "The mobility work that supports FORM training. Hip flexors, ankles, calves, mid-back, glutes. Short, specific, purposeful.",
+    "alt": "Speed & Form. How do I use mobility work around running?",
+    "title": "How do I use mobility work around running?",
+    "description": "Simple mobility options for runners, with clear setup, dose and cues for hips, ankles, calves and upper back. Choose comfortable movement and review the response.",
     "headline": [
-      "Mobility"
+      "How do I use mobility work around running?"
     ],
     "label": "FROM THE LIBRARY",
     "dark": false
   },
   "next.html": {
     "image": "/og/public-next-20261006.jpg",
-    "alt": "Speed & Form. Next Cycle \u2014 FORM.",
-    "title": "Next Cycle \u2014 FORM",
+    "alt": "Speed & Form. Next Cycle — FORM.",
+    "title": "Next Cycle — FORM",
     "description": "Speed Emergence is complete. The next cycle is ready.",
     "headline": [
-      "Next Cycle \u2014 FORM"
+      "Next Cycle — FORM"
     ],
     "label": "FROM THE LIBRARY",
     "dark": false
@@ -444,7 +444,7 @@
     "image": "/og/public-plan-speed-emergence-20261006.jpg",
     "alt": "Speed & Form. Speed Emergence.",
     "title": "Speed Emergence",
-    "description": "Speed Emergence \u2014 the active FORM cycle. Tuesday threshold, Thursday track, Saturday long run. Six sessions rotating through a six-week cycle.",
+    "description": "Speed Emergence — the active FORM cycle. Tuesday threshold, Thursday track, Saturday long run. Six sessions rotating through a six-week cycle.",
     "headline": [
       "Speed Emergence"
     ],
@@ -453,11 +453,11 @@
   },
   "plan-spring-2026.html": {
     "image": "/og/public-plan-spring-2026-20261006.jpg",
-    "alt": "Speed & Form. Plan \u2014 Spring 2026.",
-    "title": "Plan \u2014 Spring 2026",
+    "alt": "Speed & Form. Plan — Spring 2026.",
+    "title": "Plan — Spring 2026",
     "description": "The FORM Spring 2026 training plan. Season structure, cycle phases, and race targets.",
     "headline": [
-      "Plan \u2014 Spring 2026"
+      "Plan — Spring 2026"
     ],
     "label": "TRAINING PLANS",
     "dark": false
@@ -489,7 +489,7 @@
     "image": "/og/public-plans-marathon-durability-20261006.jpg",
     "alt": "Speed & Form. Marathon Durability: 16-Week Advanced Marathon Plan.",
     "title": "Marathon Durability: 16-Week Advanced Marathon Plan",
-    "description": "FORM\u2019s 16-week marathon reference for experienced runners: training strategy, race pacing, key long runs, fueling, and how to reduce late-race fading.",
+    "description": "FORM’s 16-week marathon reference for experienced runners: training strategy, race pacing, key long runs, fueling, and how to reduce late-race fading.",
     "headline": [
       "Marathon Durability: 16-Week Advanced Marathon Plan"
     ],
@@ -533,7 +533,7 @@
     "image": "/og/public-race-strategy-20261006.jpg",
     "alt": "Speed & Form. Race Strategy.",
     "title": "Race Strategy",
-    "description": "Race pace is not chosen \u2014 it is revealed. The FORM framework for executing a race: pace bands, ceilings, watch protocol, fueling, and the three days before.",
+    "description": "Race pace is not chosen — it is revealed. The FORM framework for executing a race: pace bands, ceilings, watch protocol, fueling, and the three days before.",
     "headline": [
       "Race Strategy"
     ],
@@ -564,33 +564,33 @@
   },
   "running-form-errors.html": {
     "image": "/og/public-running-form-errors-20261006.jpg",
-    "alt": "Speed & Form. Running Form: What to Change, What to Leave Alone.",
-    "title": "Running Form: What to Change, What to Leave Alone",
-    "description": "Learn what to notice in your running form, how to test one useful cue, and when to leave a movement alone. Includes cadence practice without a universal target.",
+    "alt": "Speed & Form. What should I change in my running form?",
+    "title": "What should I change in my running form?",
+    "description": "Running form explained simply: notice a real cost, try one small cue and compare. Includes cadence, heel strike, relaxed shoulders and a practice metronome.",
     "headline": [
-      "Running Form: What to Change, What to Leave Alone"
+      "What should I change in my running form?"
     ],
     "label": "FROM THE LIBRARY",
     "dark": false
   },
   "running-terms.html": {
     "image": "/og/public-running-terms-20261006.jpg",
-    "alt": "Speed & Form. Running Terms.",
-    "title": "Running Terms",
-    "description": "A selective glossary for structured training. Terms used in the FORM system explained clearly.",
+    "alt": "Speed & Form. What do these running words mean?",
+    "title": "What do these running words mean?",
+    "description": "A plain-English running glossary: pace, easy effort, tempo, threshold, intervals, strides, VO₂max, lactate, running economy, cadence and recovery.",
     "headline": [
-      "Running Terms"
+      "What do these running words mean?"
     ],
     "label": "FROM THE LIBRARY",
     "dark": false
   },
   "sessions.html": {
     "image": "/og/public-sessions-20261006.jpg",
-    "alt": "Speed & Form. Sessions.",
-    "title": "Sessions",
-    "description": "The recurring session types in the FORM training week. Threshold, long run, easy runs, and structural work.",
+    "alt": "Speed & Form. What is each run for?",
+    "title": "What is each run for?",
+    "description": "Learn the difference between easy runs, threshold, long runs, intervals and strides. Simple purposes, examples and the questions to ask before a workout.",
     "headline": [
-      "Sessions"
+      "What is each run for?"
     ],
     "label": "FROM THE LIBRARY",
     "dark": false
@@ -630,55 +630,55 @@
   },
   "start.html": {
     "image": "/og/public-start-20261006.jpg",
-    "alt": "Speed & Form. Start \u2014 Join FORM Running Practice | Miami.",
-    "title": "Start \u2014 Join FORM Running Practice | Miami",
+    "alt": "Speed & Form. Start — Join FORM Running Practice | Miami.",
+    "title": "Start — Join FORM Running Practice | Miami",
     "description": "FORM is a structured distance running practice based in Miami. Two sessions each week. Tuesday threshold. Saturday long run. Here is how to begin.",
     "headline": [
-      "Start \u2014 Join FORM Running Practice"
+      "Start — Join FORM Running Practice"
     ],
     "label": "FROM THE LIBRARY",
     "dark": false
   },
   "strength-activation.html": {
     "image": "/og/public-strength-activation-20261006.jpg",
-    "alt": "Speed & Form. Activation \u2014 Pre-Run Warmup Routine.",
-    "title": "Activation \u2014 Pre-Run Warmup Routine",
-    "description": "A 4\u20135 minute pre-run activation sequence for runners: glute bridge, dead bug, lateral band walk, calf raise, A-skip.",
+    "alt": "Speed & Form. How should I warm up before running?",
+    "title": "How should I warm up before running?",
+    "description": "A simple pre-run warm-up: start gently, choose familiar movements, and build toward the day’s effort without tiring yourself first.",
     "headline": [
-      "Activation \u2014 Pre-Run Warmup Routine"
+      "How should I warm up before running?"
     ],
     "label": "FROM THE LIBRARY",
     "dark": false
   },
   "strength-fixes.html": {
     "image": "/og/public-strength-fixes-20261006.jpg",
-    "alt": "Speed & Form. Mechanical Fixes \u2014 Runner Correction Exercises.",
-    "title": "Mechanical Fixes \u2014 Runner Correction Exercises",
+    "alt": "Speed & Form. Mechanical Fixes — Runner Correction Exercises.",
+    "title": "Mechanical Fixes — Runner Correction Exercises",
     "description": "Targeted exercises for common running mechanics issues: glutes not firing, tight calves, hip drop, and unstable core.",
     "headline": [
-      "Mechanical Fixes \u2014 Runner Correction Exercises"
+      "Mechanical Fixes — Runner Correction Exercises"
     ],
     "label": "FROM THE LIBRARY",
     "dark": false
   },
   "strength-routine.html": {
     "image": "/og/public-strength-routine-20261006.jpg",
-    "alt": "Speed & Form. Durability Routine \u2014 Runner Strength Session.",
-    "title": "Durability Routine \u2014 Runner Strength Session",
-    "description": "The FORM durability routine: split squats, single-leg RDL, calf work, and core. Two rounds, twice a week.",
+    "alt": "Speed & Form. What strength exercises should a runner start with?",
+    "title": "What strength exercises should a runner start with?",
+    "description": "Follow a simple runner strength session: squat or split squat, hinge, calf raise and trunk control. Clear steps, doses, easier versions and weekly placement.",
     "headline": [
-      "Durability Routine \u2014 Runner Strength Session"
+      "What strength exercises should a runner start with?"
     ],
     "label": "FROM THE LIBRARY",
     "dark": false
   },
   "strength.html": {
     "image": "/og/public-strength-20261006.jpg",
-    "alt": "Speed & Form. Strength Training for Runners: What to Do and Where It Fits.",
-    "title": "Strength Training for Runners: What to Do and Where It Fits",
+    "alt": "Speed & Form. Get stronger. Keep running well.",
+    "title": "Get stronger. Keep running well.",
     "description": "A practical introduction to strength training for runners: four movement patterns, a small starting session, progression, and placement around important runs.",
     "headline": [
-      "Strength Training for Runners: What to Do and Where It Fits"
+      "Get stronger. Keep running well."
     ],
     "label": "FROM THE LIBRARY",
     "dark": false
@@ -718,19 +718,19 @@
   },
   "threshold-training.html": {
     "image": "/og/public-threshold-training-20261006.jpg",
-    "alt": "Speed & Form. Threshold Running: Effort, Workouts & Progression.",
-    "title": "Threshold Running: Effort, Workouts & Progression",
-    "description": "Understand threshold running, choose a manageable session, and know when to adjust. Controlled effort, practical examples, and the difference from race pace.",
+    "alt": "Speed & Form. What is threshold running?",
+    "title": "What is threshold running?",
+    "description": "Threshold running explained with a volume dial: strong, controlled effort. Learn the purpose, tempo versus threshold, a 3 × 6-minute example, and how to adjust.",
     "headline": [
-      "Threshold Running: Effort, Workouts & Progression"
+      "What is threshold running?"
     ],
     "label": "FROM THE LIBRARY",
     "dark": false
   },
   "thursday.html": {
     "image": "/og/public-thursday-20261006.jpg",
-    "alt": "Speed & Form. Thursday \u00b7 Flamingo Park.",
-    "title": "Thursday \u00b7 Flamingo Park",
+    "alt": "Speed & Form. Thursday · Flamingo Park.",
+    "title": "Thursday · Flamingo Park",
     "description": "FORM Thursday community speedwork at Flamingo Park Track in Miami Beach. See the current session, live schedule and how to join.",
     "headline": [
       "Thursday",
@@ -774,22 +774,22 @@
   },
   "training-principles.html": {
     "image": "/og/public-training-principles-20261006.jpg",
-    "alt": "Speed & Form. Training Principles.",
-    "title": "Training Principles",
-    "description": "Seven principles that organize the work. The foundations behind FORM training structure and philosophy.",
+    "alt": "Speed & Form. What makes running training work?",
+    "title": "What makes running training work?",
+    "description": "Simple running principles you can remember: repeat manageable work, give each run a job, recover, change one demand at a time and learn from your response.",
     "headline": [
-      "Training Principles"
+      "What makes running training work?"
     ],
     "label": "FROM THE LIBRARY",
     "dark": false
   },
   "training-week.html": {
     "image": "/og/public-training-week-20261006.jpg",
-    "alt": "Speed & Form. How to Structure a Running Week.",
-    "title": "How to Structure a Running Week",
-    "description": "Fit easy runs, harder sessions, long runs and strength into a repeatable week. See a four-run example, simpler options, and what to change when life interrupts.",
+    "alt": "Speed & Form. How do I build a running week?",
+    "title": "How do I build a running week?",
+    "description": "Build a repeatable running week with easy days, one controlled workout, a familiar long run and recovery. See three-, four- and five-run options.",
     "headline": [
-      "How to Structure a Running Week"
+      "How do I build a running week?"
     ],
     "label": "FROM THE LIBRARY",
     "dark": false
@@ -821,7 +821,7 @@
     "image": "/og/public-analysis-20261006.jpg",
     "alt": "Speed & Form. Running Form Video Analysis.",
     "title": "Running Form Video Analysis",
-    "description": "A focused remote running video review with Brice. Recorded explanation, priorities and a practice outline. FORM Analysis \u00b7 $149.",
+    "description": "A focused remote running video review with Brice. Recorded explanation, priorities and a practice outline. FORM Analysis · $149.",
     "headline": [
       "A second look.",
       "Your running."
@@ -833,7 +833,7 @@
     "image": "/og/public-coaching-strength-20261006.jpg",
     "alt": "Speed & Form. Strength Coaching & Personal Training in Miami.",
     "title": "Strength Coaching & Personal Training in Miami",
-    "description": "Eight weekly coached sessions with Brice in Miami, your gym plan and practical food support. Eight weeks of strength coaching \u00b7 $1,200.",
+    "description": "Eight weekly coached sessions with Brice in Miami, your gym plan and practical food support. Eight weeks of strength coaching · $1,200.",
     "headline": [
       "Get stronger."
     ],

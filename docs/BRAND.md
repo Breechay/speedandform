@@ -14,6 +14,18 @@ Brice reaffirmed the new homepage and brand-page direction on October 6 and aske
 - **Voice:** say the real thing once. Use the shortest truthful sentence, first person when it is Brice, and the runner's need before the method. No hype, corporate belief language, pseudo-scientific noun piles or repeated reassurance. Keep coaching and evidence qualifications that change the reader's decision.
 - **Signature:** use the measured bend from `scripts/sf-bend.cjs`, never redraw, mirror or tile it. One bend per approved piece, clear of type. Kit templates are the reuse path; app use still needs its own design decision.
 
+### Library formats · October 6 owner direction
+
+This pass extends the paper-room rules to Search, the Library index, the nine running-basics lessons and the Strength & movement family. Inter Tight display weight is 450; measures use JetBrains Mono. Keep house edges, bone, ink, comfortable 17–18px reading copy, and one rule per boundary. Use space and rules instead of decorative cards or accent colors.
+
+The public catalog distinguishes three reading formats. Other site destinations retain their service, tool, study or policy identity.
+
+- **Lesson · understand:** the question as typed, an answer in two sentences, one truthful written picture to remember, a bounded application this week with numbers, two or three mistakes, where the idea fits, and one check question. Write for a sharp fifteen-year-old: plain, direct and respectful.
+- **Routine · do:** a facts row for purpose, approximate time, equipment and frequency; numbered moves with dose, one cue and what to feel; progress and stop guidance; and a print action. Every move and section has a stable link. The examples are education, not automatically assigned athlete or youth sessions.
+- **Shelf · things to send:** curated items with what they are, when Brice sends them, their known length or duration, and the source link. Existing collection hubs are labeled Shelf; a first external-video shelf waits for Brice’s actual selected links. Do not invent his endorsement, a duration or an exercise demonstration.
+
+A metaphor must preserve the physiology. Only real numbers justify a diagram, and its numbers and units must remain visible. No stock or generated people. Routine pages reserve a sized, empty demonstration space for the real photo or video of each move; that space is omitted from print. Memory cues are written images, not invented physiological charts. Preserve a program’s authored session instructions when improving its presentation or connecting it to the family.
+
 ### Sources and release continuity
 
 `docs/BRAND.md` owns decisions and their scope. `brand/index.html` is the public presentation; `css/home-commercial.css` and the owning room styles implement it. `scripts/build-brand-kit.cjs` owns kit tokens/templates, `scripts/sf-bend.cjs` owns the drawing, and `scripts/render-brand-kit.cjs` renders the PDF/previews/zip. Read current source before using any copied values. Change source and projections together when a public rule changes; do not hand-edit generated output. Documentation-only routing or release corrections do not require regenerating unchanged public assets.
