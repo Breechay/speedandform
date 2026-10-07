@@ -1,0 +1,524 @@
+[
+  {
+    "shape": "strength",
+    "title": "Upper A",
+    "details": "Incline Barbell Bench Press — 3 × 8–10\nFlat Dumbbell Bench Press — 3 × 8–12\nOne-Arm Dumbbell Row — 3 × 10 / side\nDumbbell Pullover — 2 × 10–12\nDumbbell Lateral Raise — 3 × 12–15\nParallel Bar Dips — 3 × 8–12\nBarbell Curl — 3 × 8–10",
+    "day_label": "Monday",
+    "version_id": "6a26e6f6-0642-41d8-bf4c-3ebe44fd68c0",
+    "scheduled_on": "2026-09-14",
+    "version_number": 1
+  },
+  {
+    "shape": "strength",
+    "title": "Lower + Core",
+    "details": "Back Squat — 3 × 8–10\nRomanian Deadlift — 3 × 8–10\nBulgarian Split Squat — 2 × 8 / leg\nStanding Calf Raise — 3 × 12–15\nDead Bug — 3 × 8 / side\nPallof Press — 3 × 10 / side",
+    "day_label": "Thursday",
+    "version_id": "8c52459e-2b42-4782-89cc-9eabbbb36919",
+    "scheduled_on": "2026-09-17",
+    "version_number": 1
+  },
+  {
+    "shape": "strength",
+    "title": "Upper B",
+    "details": "Seated Dumbbell Shoulder Press — 3 × 8–10\nIncline Dumbbell Bench Press — 3 × 10–12\nOne-Arm Dumbbell Row — 3 × 10 / side\nDumbbell Lateral Raise — 4 × 10–15\nRear-Delt Dumbbell Fly — 3 × 12–15\nIncline Dumbbell Curl — 3 × 10–12\nDumbbell Skull Crusher — 3 × 10–12",
+    "day_label": "Friday",
+    "version_id": "b4a4c543-115b-416d-bc38-db68876a6885",
+    "scheduled_on": "2026-09-18",
+    "version_number": 1
+  },
+  {
+    "shape": "strength",
+    "title": "Lower Support + Core",
+    "details": "Dumbbell Hip Thrust — 3 × 10–12\nStep-Up — 2 × 8 / leg\nStanding Calf Raise — 3 × 12–15\nDead Bug — 3 × 8 / side\nSide Plank — 2 × 30–45 sec / side",
+    "day_label": "Sunday",
+    "version_id": "dbebb56d-31de-4454-beac-c8ad4cf0ce48",
+    "scheduled_on": "2026-09-20",
+    "version_number": 1
+  },
+  {
+    "shape": "strength",
+    "title": "Upper A",
+    "details": "Incline Dumbbell Bench Press — 3 × 8–10\nChest-Supported Dumbbell Row — 3 × 8–12\nNeutral-Grip Cable Pulldown — 3 × 8–12\nLow-to-High Cable Fly — 2 × 12–15\nSingle-Arm Cable Lateral Raise — 2 × 12–18 / side\nOverhead Cable Triceps Extension — 3 × 10–15",
+    "day_label": "Monday",
+    "version_id": "9bbbc9c2-a017-49e4-9c51-1c1b8406c26d",
+    "scheduled_on": "2026-09-21",
+    "version_number": 1
+  },
+  {
+    "shape": "strength",
+    "title": "Lower A",
+    "details": "Bulgarian Split Squat — 3 × 8 / leg\nDumbbell Romanian Deadlift — 3 × 8–10\nHeel-Elevated Goblet Squat or Leg Press — 2 × 10–12\nSeated Leg Curl — 2 × 10–12\nBent-Knee Calf Raise — 3 × 12–15\nCable Hip Adduction — 2 × 12–15 / side\nPallof Press — 2 × 10 / side",
+    "day_label": "Thursday",
+    "version_id": "bf7a5379-3172-4ed2-bf39-89bd037b71d6",
+    "scheduled_on": "2026-09-24",
+    "version_number": 1
+  },
+  {
+    "shape": "strength",
+    "title": "Upper B",
+    "details": "Flat Dumbbell Bench Press — 3 × 8–10\nOne-Arm Cable Row — 3 × 10–12 / side\nLat Pulldown — 3 × 10–12\nMid-Height Cable Fly — 2 × 12–15\nCable Rear-Delt Fly — 2 × 12–18\nHammer Curl — 3 × 8–12\nRope Pressdown — 2 × 10–15",
+    "day_label": "Friday",
+    "version_id": "0b9eb703-2eec-475d-90e8-5dee7dce82cb",
+    "scheduled_on": "2026-09-25",
+    "version_number": 1
+  },
+  {
+    "shape": "strength",
+    "title": "Lower B",
+    "details": "Hip Thrust — 2 × 8–10\nDumbbell Step-Up — 2 × 8 / leg\nSeated or Lying Leg Curl — 2 × 10–12\nStanding Calf Raise — 3 × 12–15\nDead Bug — 3 × 8 / side\nSide Plank — 2 × 45–60 sec / side",
+    "day_label": "Sunday",
+    "version_id": "7197a13d-a6fc-406f-890d-c844f1382e1f",
+    "scheduled_on": "2026-09-27",
+    "version_number": 1
+  },
+  {
+    "shape": "strength",
+    "title": "Upper A",
+    "details": "Incline Dumbbell Bench Press — 3 × 8–10\nChest-Supported Dumbbell Row — 3 × 8–12\nNeutral-Grip Cable Pulldown — 3 × 8–12\nLow-to-High Cable Fly — 2 × 12–15\nSingle-Arm Cable Lateral Raise — 2 × 12–18 / side\nOverhead Cable Triceps Extension — 3 × 10–15",
+    "day_label": "Monday",
+    "version_id": "cd1e591b-bf34-49cd-ba6d-0de72c24e2e2",
+    "scheduled_on": "2026-09-28",
+    "version_number": 1
+  },
+  {
+    "shape": "strength",
+    "title": "Lower A",
+    "details": "Bulgarian Split Squat — 3 × 8 / leg\nDumbbell Romanian Deadlift — 3 × 8–10\nHeel-Elevated Goblet Squat or Leg Press — 2 × 10–12\nSeated Leg Curl — 2 × 10–12\nBent-Knee Calf Raise — 3 × 12–15\nCable Hip Adduction — 2 × 12–15 / side\nPallof Press — 2 × 10 / side",
+    "day_label": "Thursday",
+    "version_id": "1da35e4d-506b-42fa-9262-cb62f5230fcd",
+    "scheduled_on": "2026-10-01",
+    "version_number": 1
+  },
+  {
+    "shape": "strength",
+    "title": "Upper B",
+    "details": "Flat Dumbbell Bench Press — 3 × 8–10\nOne-Arm Cable Row — 3 × 10–12 / side\nLat Pulldown — 3 × 10–12\nMid-Height Cable Fly — 2 × 12–15\nCable Rear-Delt Fly — 2 × 12–18\nHammer Curl — 3 × 8–12\nRope Pressdown — 2 × 10–15",
+    "day_label": "Friday",
+    "version_id": "f5021e0d-d218-44ea-b6a0-2ac2686efe3d",
+    "scheduled_on": "2026-10-02",
+    "version_number": 1
+  },
+  {
+    "shape": "strength",
+    "title": "Lower B",
+    "details": "Hip Thrust — 2 × 8–10\nDumbbell Step-Up — 2 × 8 / leg\nSeated or Lying Leg Curl — 2 × 10–12\nStanding Calf Raise — 3 × 12–15\nDead Bug — 3 × 8 / side\nSide Plank — 2 × 45–60 sec / side",
+    "day_label": "Sunday",
+    "version_id": "ec379989-ac06-45e3-b957-f71776973bde",
+    "scheduled_on": "2026-10-04",
+    "version_number": 1
+  },
+  {
+    "shape": "strength",
+    "title": "Upper A",
+    "details": "Incline Dumbbell Bench Press — 4 × 6–8\nChest-Supported Dumbbell Row — 3 × 6–10\nNeutral-Grip Cable Pulldown — 3 × 8–10\nCable or Dumbbell Shrug — 2 × 10–15\nLow-to-High Cable Fly — 2 × 10–15\nSingle-Arm Cable Lateral Raise — 3 × 12–18 / side\nCable Rear-Delt Fly — 2 × 12–18\nOverhead Cable Triceps Extension — 2 × 10–15",
+    "day_label": "Monday",
+    "version_id": "2a946d5f-ccb5-40e5-80cc-7f90ac7ed16b",
+    "scheduled_on": "2026-10-05",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Lower A",
+    "details": "Bulgarian Split Squat — 3 × 6–8 / leg · Use a stable, load-bearing support for your rear foot; skip if it can slide or tip.\nDumbbell Romanian Deadlift — 3 × 6–8\nDumbbell Goblet Squat — 2 × 8–10 · Keep your feet planted and squat only as deep as you can control.\nHamstring Bridge Walkout — 2 × 4–6 out-and-back cycles · From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled.\nSide-Lying Hip Adduction — 3 × 12–20 / side · Lie on your side and lift the bottom leg without rolling your hips.\nDumbbell Suitcase Hold — 2 × 20–30 sec / side · Hold one dumbbell at your side; stand tall without leaning.",
+    "day_label": "Thursday",
+    "version_id": "4335d831-2bd2-4546-b67b-51066d13fe20",
+    "scheduled_on": "2026-10-08",
+    "version_number": 4
+  },
+  {
+    "shape": "strength",
+    "title": "Upper B",
+    "details": "Flat Dumbbell Bench Press — 3 × 6–10\nBench-Supported One-Arm Dumbbell Row — 3 × 8–12 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Pullover — 3 × 10–15 · Keep your back on the bench; lower only as far as your shoulders stay comfortable.\nFlat Dumbbell Fly — 2 × 10–15 · Keep your elbows softly bent and lower only through a comfortable range.\nDumbbell Lateral Raise — 2 × 12–18 · Lift smoothly to a comfortable shoulder height without swinging.\nChest-Supported Dumbbell Rear-Delt Fly — 3 × 12–18 · Keep your chest supported and move without shrugging.\nHammer Curl — 3 × 8–12\nLying Dumbbell Triceps Extension — 2 × 10–15 · Keep your upper arms steady; lower under control beside your head.",
+    "day_label": "Friday",
+    "version_id": "b4cebc89-6451-4d87-8e15-9ea3de65b1f8",
+    "scheduled_on": "2026-10-09",
+    "version_number": 4
+  },
+  {
+    "shape": "strength",
+    "title": "Lower B",
+    "details": "Dumbbell Step-Up — 3 × 6–8 / leg · Use a stable, load-bearing step or bench; skip if it can slide or tip.\nDumbbell Hip Thrust — 2 × 6–10 · Secure the dumbbell over your hips; keep the bench stable and finish without arching.\nHamstring Bridge Walkout — 2 × 4–6 out-and-back cycles · From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled.\nDumbbell Goblet Squat — 2 × 10–15 · Start light and leave 3 clean reps on the first exposure; hold or reduce if the next run is heavy.\nDead Bug — 3 × 8 / side\nSide Plank — 2 × 45–60 sec / side",
+    "day_label": "Sunday",
+    "version_id": "01bed08b-53f0-43ad-87da-321dca6cb4f6",
+    "scheduled_on": "2026-10-11",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Upper A",
+    "details": "Incline Dumbbell Bench Press — 4 × 6–8\nChest-Supported Dumbbell Row — 3 × 6–10\nBench-Supported One-Arm Dumbbell Row — 3 × 8–12 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Shrug — 2 × 10–15 · Lift smoothly, pause, then lower; keep your head level.\nLow-Incline Dumbbell Fly — 2 × 10–15 · Use a low bench incline, soft elbows and a comfortable depth.\nSingle-Arm Dumbbell Lateral Raise — 3 × 12–18 / side · Lift smoothly to a comfortable shoulder height without swinging.\nChest-Supported Dumbbell Rear-Delt Fly — 2 × 12–18 · Keep your chest supported and move without shrugging.\nSeated Dumbbell Overhead Triceps Extension — 2 × 10–15 · Keep your upper arms steady and lower through a comfortable range.",
+    "day_label": "Monday",
+    "version_id": "ec4324b7-3a16-4c9b-8b5a-808205a0a2b9",
+    "scheduled_on": "2026-10-12",
+    "version_number": 4
+  },
+  {
+    "shape": "strength",
+    "title": "Lower A",
+    "details": "Bulgarian Split Squat — 3 × 6–8 / leg · Use a stable, load-bearing support for your rear foot; skip if it can slide or tip.\nDumbbell Romanian Deadlift — 3 × 6–8\nDumbbell Goblet Squat — 2 × 8–10 · Keep your feet planted and squat only as deep as you can control.\nHamstring Bridge Walkout — 2 × 4–6 out-and-back cycles · From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled.\nSide-Lying Hip Adduction — 3 × 12–20 / side · Lie on your side and lift the bottom leg without rolling your hips.\nSeated Dumbbell Calf Raise — 2 × 10–15 · Maintenance only; perform only if calf tenderness has resolved and the prior run response is normal. Keep the dumbbell secure over your thigh.\nDumbbell Suitcase Hold — 2 × 20–30 sec / side · Hold one dumbbell at your side; stand tall without leaning.",
+    "day_label": "Thursday",
+    "version_id": "283797f7-e45b-43db-b96b-e00facbfe1d0",
+    "scheduled_on": "2026-10-15",
+    "version_number": 4
+  },
+  {
+    "shape": "strength",
+    "title": "Upper B",
+    "details": "Flat Dumbbell Bench Press — 3 × 6–10\nBench-Supported One-Arm Dumbbell Row — 3 × 8–12 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Pullover — 3 × 10–15 · Keep your back on the bench; lower only as far as your shoulders stay comfortable.\nFlat Dumbbell Fly — 2 × 10–15 · Keep your elbows softly bent and lower only through a comfortable range.\nDumbbell Lateral Raise — 2 × 12–18 · Lift smoothly to a comfortable shoulder height without swinging.\nChest-Supported Dumbbell Rear-Delt Fly — 3 × 12–18 · Keep your chest supported and move without shrugging.\nHammer Curl — 3 × 8–12\nLying Dumbbell Triceps Extension — 2 × 10–15 · Keep your upper arms steady; lower under control beside your head.",
+    "day_label": "Friday",
+    "version_id": "e2e37444-ea6f-422a-81ad-ef856875685a",
+    "scheduled_on": "2026-10-16",
+    "version_number": 4
+  },
+  {
+    "shape": "strength",
+    "title": "Lower B",
+    "details": "Dumbbell Step-Up — 3 × 6–8 / leg · Use a stable, load-bearing step or bench; skip if it can slide or tip.\nDumbbell Hip Thrust — 2 × 6–10 · Secure the dumbbell over your hips; keep the bench stable and finish without arching.\nHamstring Bridge Walkout — 2 × 4–6 out-and-back cycles · From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled.\nDumbbell Goblet Squat — 2 × 10–15 · Start light and leave 3 clean reps on the first exposure; hold or reduce if the next run is heavy.\nDead Bug — 3 × 8 / side\nSide Plank — 2 × 45–60 sec / side",
+    "day_label": "Sunday",
+    "version_id": "21fdeb98-7cde-42d6-8f8f-299782732296",
+    "scheduled_on": "2026-10-18",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Upper A",
+    "details": "Incline Dumbbell Bench Press — 4 × 6–8\nChest-Supported Dumbbell Row — 3 × 6–10\nBench-Supported One-Arm Dumbbell Row — 3 × 8–12 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Shrug — 2 × 10–15 · Lift smoothly, pause, then lower; keep your head level.\nLow-Incline Dumbbell Fly — 2 × 10–15 · Use a low bench incline, soft elbows and a comfortable depth.\nSingle-Arm Dumbbell Lateral Raise — 3 × 12–18 / side · Lift smoothly to a comfortable shoulder height without swinging.\nChest-Supported Dumbbell Rear-Delt Fly — 2 × 12–18 · Keep your chest supported and move without shrugging.\nSeated Dumbbell Overhead Triceps Extension — 2 × 10–15 · Keep your upper arms steady and lower through a comfortable range.",
+    "day_label": "Monday",
+    "version_id": "49f823cb-3b0a-451d-8065-a5707622a782",
+    "scheduled_on": "2026-10-19",
+    "version_number": 4
+  },
+  {
+    "shape": "strength",
+    "title": "Lower A",
+    "details": "Bulgarian Split Squat — 3 × 6–8 / leg · Use a stable, load-bearing support for your rear foot; skip if it can slide or tip.\nDumbbell Romanian Deadlift — 3 × 6–8\nDumbbell Goblet Squat — 2 × 8–10 · Keep your feet planted and squat only as deep as you can control.\nHamstring Bridge Walkout — 2 × 4–6 out-and-back cycles · From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled.\nSide-Lying Hip Adduction — 3 × 12–20 / side · Lie on your side and lift the bottom leg without rolling your hips.\nSeated Dumbbell Calf Raise — 2 × 10–15 · Maintenance only; perform only if calf tenderness has resolved and the prior run response is normal. Keep the dumbbell secure over your thigh.\nDumbbell Suitcase Hold — 2 × 20–30 sec / side · Hold one dumbbell at your side; stand tall without leaning.",
+    "day_label": "Thursday",
+    "version_id": "733b4217-071c-4366-afbd-a14d271a7d12",
+    "scheduled_on": "2026-10-22",
+    "version_number": 4
+  },
+  {
+    "shape": "strength",
+    "title": "Upper B",
+    "details": "Flat Dumbbell Bench Press — 3 × 6–10\nBench-Supported One-Arm Dumbbell Row — 3 × 8–12 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Pullover — 3 × 10–15 · Keep your back on the bench; lower only as far as your shoulders stay comfortable.\nFlat Dumbbell Fly — 2 × 10–15 · Keep your elbows softly bent and lower only through a comfortable range.\nDumbbell Lateral Raise — 2 × 12–18 · Lift smoothly to a comfortable shoulder height without swinging.\nChest-Supported Dumbbell Rear-Delt Fly — 3 × 12–18 · Keep your chest supported and move without shrugging.\nHammer Curl — 3 × 8–12\nLying Dumbbell Triceps Extension — 2 × 10–15 · Keep your upper arms steady; lower under control beside your head.",
+    "day_label": "Friday",
+    "version_id": "aa5c93dc-f0a1-4e77-ada8-d2701cbc0651",
+    "scheduled_on": "2026-10-23",
+    "version_number": 4
+  },
+  {
+    "shape": "strength",
+    "title": "Lower B",
+    "details": "Dumbbell Step-Up — 3 × 6–8 / leg · Use a stable, load-bearing step or bench; skip if it can slide or tip.\nDumbbell Hip Thrust — 2 × 6–10 · Secure the dumbbell over your hips; keep the bench stable and finish without arching.\nHamstring Bridge Walkout — 2 × 4–6 out-and-back cycles · From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled.\nDumbbell Goblet Squat — 2 × 10–15 · Start light and leave 3 clean reps on the first exposure; hold or reduce if the next run is heavy.\nDead Bug — 3 × 8 / side\nSide Plank — 2 × 45–60 sec / side",
+    "day_label": "Sunday",
+    "version_id": "6a27be98-136b-499e-82aa-0c7ec0e8162e",
+    "scheduled_on": "2026-10-25",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Upper A",
+    "details": "Incline Dumbbell Bench Press — 3 × 6–8\nChest-Supported Dumbbell Row — 2 × 6–10\nBench-Supported One-Arm Dumbbell Row — 2 × 8–10 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Shrug — 2 × 10–15 · Lift smoothly, pause, then lower; keep your head level.\nLow-Incline Dumbbell Fly — 2 × 10–15 · Use a low bench incline, soft elbows and a comfortable depth.\nDumbbell Lateral Raise — 2 × 12–18 · Lift smoothly to a comfortable shoulder height without swinging.\nChest-Supported Dumbbell Rear-Delt Fly — 2 × 12–18 · Keep your chest supported and move without shrugging.\nSeated Dumbbell Overhead Triceps Extension — 2 × 10–15 · Keep your upper arms steady and lower through a comfortable range.",
+    "day_label": "Monday",
+    "version_id": "bb1eb7db-445e-45b5-9fc1-dff7c462abec",
+    "scheduled_on": "2026-10-26",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Lower A",
+    "details": "Bulgarian Split Squat — 2 × 6–8 / leg · Use a stable, load-bearing support for your rear foot; skip if it can slide or tip.\nDumbbell Romanian Deadlift — 2 × 6–8\nDumbbell Goblet Squat — 2 × 8–10 · Keep your feet planted and squat only as deep as you can control.\nSide-Lying Hip Adduction — 2 × 12–20 / side · Lie on your side and lift the bottom leg without rolling your hips.\nDumbbell Suitcase Hold — 2 × 20–30 sec / side · Hold one dumbbell at your side; stand tall without leaning.",
+    "day_label": "Thursday",
+    "version_id": "649f8ce6-8857-4eef-91eb-a846f355f08b",
+    "scheduled_on": "2026-10-29",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Upper B",
+    "details": "Flat Dumbbell Bench Press — 3 × 6–10\nBench-Supported One-Arm Dumbbell Row — 2 × 8–12 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Pullover — 2 × 10–15 · Keep your back on the bench; lower only as far as your shoulders stay comfortable.\nDumbbell Lateral Raise — 2 × 12–18 · Lift smoothly to a comfortable shoulder height without swinging.\nChest-Supported Dumbbell Rear-Delt Fly — 2 × 12–18 · Keep your chest supported and move without shrugging.\nHammer Curl — 2 × 8–12\nLying Dumbbell Triceps Extension — 2 × 10–15 · Keep your upper arms steady; lower under control beside your head.",
+    "day_label": "Friday",
+    "version_id": "10c89adf-3f68-4fd5-a8d1-5c4bee9722b9",
+    "scheduled_on": "2026-10-30",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Lower B",
+    "details": "Dumbbell Step-Up — 2 × 6–8 / leg · Use a stable, load-bearing step or bench; skip if it can slide or tip.\nHamstring Bridge Walkout — 2 × 4–6 out-and-back cycles · From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled.\nDumbbell Goblet Squat — 2 × 10–15 · Start light and leave 3 clean reps on the first exposure; hold or reduce if the next run is heavy.\nDead Bug — 2 × 8 / side\nSide Plank — 2 × 45 sec / side",
+    "day_label": "Sunday",
+    "version_id": "822265d0-ef83-4c06-8ea0-4f897254e632",
+    "scheduled_on": "2026-11-01",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Upper A",
+    "details": "Incline Dumbbell Bench Press — 3 × 6–8\nChest-Supported Dumbbell Row — 2 × 6–10\nBench-Supported One-Arm Dumbbell Row — 2 × 8–10 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Shrug — 2 × 10–15 · Lift smoothly, pause, then lower; keep your head level.\nLow-Incline Dumbbell Fly — 2 × 10–15 · Use a low bench incline, soft elbows and a comfortable depth.\nDumbbell Lateral Raise — 2 × 12–18 · Lift smoothly to a comfortable shoulder height without swinging.\nChest-Supported Dumbbell Rear-Delt Fly — 2 × 12–18 · Keep your chest supported and move without shrugging.\nSeated Dumbbell Overhead Triceps Extension — 2 × 10–15 · Keep your upper arms steady and lower through a comfortable range.",
+    "day_label": "Monday",
+    "version_id": "3a343f12-47ff-415f-bc82-19552659f77e",
+    "scheduled_on": "2026-11-02",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Lower A",
+    "details": "Bulgarian Split Squat — 2 × 6 / leg · Use a stable, load-bearing support for your rear foot; skip if it can slide or tip.\nDumbbell Romanian Deadlift — 2 × 6\nHamstring Bridge Walkout — 2 × 4–6 out-and-back cycles · From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled.\nSide-Lying Hip Adduction — 2 × 12 / side · Lie on your side and lift the bottom leg without rolling your hips.\nDumbbell Suitcase Hold — 2 × 20 sec / side · Hold one dumbbell at your side; stand tall without leaning.",
+    "day_label": "Thursday",
+    "version_id": "b6373ce6-e451-4738-a308-ab4a385370fb",
+    "scheduled_on": "2026-11-05",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Upper B",
+    "details": "Flat Dumbbell Bench Press — 3 × 6–10\nBench-Supported One-Arm Dumbbell Row — 2 × 8–12 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Pullover — 2 × 10–15 · Keep your back on the bench; lower only as far as your shoulders stay comfortable.\nDumbbell Lateral Raise — 2 × 12–18 · Lift smoothly to a comfortable shoulder height without swinging.\nChest-Supported Dumbbell Rear-Delt Fly — 2 × 12–18 · Keep your chest supported and move without shrugging.\nHammer Curl — 2 × 8–12\nLying Dumbbell Triceps Extension — 2 × 10–15 · Keep your upper arms steady; lower under control beside your head.",
+    "day_label": "Friday",
+    "version_id": "f6c2a227-b844-4f38-ae1c-7d5648313ae2",
+    "scheduled_on": "2026-11-06",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Lower B",
+    "details": "Dumbbell Step-Up — 2 × 6 / leg · Use a stable, load-bearing step or bench; skip if it can slide or tip.\nDumbbell Goblet Squat — 2 × 10–12 · Start light and leave 3 clean reps on the first exposure; hold or reduce if the next run is heavy.\nDead Bug — 2 × 8 / side\nSide Plank — 2 × 45 sec / side",
+    "day_label": "Sunday",
+    "version_id": "2aef0870-2ee1-40fd-8a71-399a7e4c34e4",
+    "scheduled_on": "2026-11-08",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Upper A",
+    "details": "Incline Dumbbell Bench Press — 3 × 6–8\nChest-Supported Dumbbell Row — 2 × 6–10\nBench-Supported One-Arm Dumbbell Row — 2 × 8–10 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Shrug — 2 × 10–12 · Lift smoothly, pause, then lower; keep your head level.\nDumbbell Lateral Raise — 2 × 12–15 · Lift smoothly to a comfortable shoulder height without swinging.\nChest-Supported Dumbbell Rear-Delt Fly — 2 × 12–15 · Keep your chest supported and move without shrugging.\nSeated Dumbbell Overhead Triceps Extension — 2 × 10–12 · Keep your upper arms steady and lower through a comfortable range.",
+    "day_label": "Monday",
+    "version_id": "081fe5f6-465b-4113-9a7e-e30b01ccffb8",
+    "scheduled_on": "2026-11-09",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Lower Primer",
+    "details": "Bulgarian Split Squat — 2 × 5 / leg · Use a stable, load-bearing support for your rear foot; skip if it can slide or tip.\nDumbbell Romanian Deadlift — 2 × 5\nDumbbell Suitcase Hold — 2 × 20 sec / side · Hold one dumbbell at your side; stand tall without leaning.",
+    "day_label": "Tuesday",
+    "version_id": "cf67b9d9-0ef7-4c2b-8d81-a10793ef1d13",
+    "scheduled_on": "2026-11-10",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Upper B",
+    "details": "Flat Dumbbell Bench Press — 2 × 6–8\nBench-Supported One-Arm Dumbbell Row — 2 × 8–10 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Pullover — 2 × 8–12 · Keep your back on the bench; lower only as far as your shoulders stay comfortable.\nChest-Supported Dumbbell Rear-Delt Fly — 2 × 12–15 · Keep your chest supported and move without shrugging.\nHammer Curl — 2 × 8–10\nLying Dumbbell Triceps Extension — 2 × 10–12 · Keep your upper arms steady; lower under control beside your head.",
+    "day_label": "Friday",
+    "version_id": "a4c3be3c-eb42-46c4-aef4-218d1b5bb07b",
+    "scheduled_on": "2026-11-13",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Upper A",
+    "details": "Incline Dumbbell Bench Press — 3 × 8–10\nChest-Supported Dumbbell Row — 3 × 8–12\nBench-Supported One-Arm Dumbbell Row — 2 × 8–12 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Shrug — 2 × 10–15 · Lift smoothly, pause, then lower; keep your head level.\nLow-Incline Dumbbell Fly — 2 × 12–15 · Use a low bench incline, soft elbows and a comfortable depth.\nDumbbell Lateral Raise — 2 × 12–18 · Lift smoothly to a comfortable shoulder height without swinging.\nChest-Supported Dumbbell Rear-Delt Fly — 2 × 12–18 · Keep your chest supported and move without shrugging.\nSeated Dumbbell Overhead Triceps Extension — 2 × 10–15 · Keep your upper arms steady and lower through a comfortable range.",
+    "day_label": "Monday",
+    "version_id": "39ff53e6-e064-4213-99b5-1a0aee7639d6",
+    "scheduled_on": "2026-11-16",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Lower Restore",
+    "details": "Bulgarian Split Squat — 2 × 8 / leg · Use a stable, load-bearing support for your rear foot; skip if it can slide or tip.\nDumbbell Romanian Deadlift — 2 × 8\nHamstring Bridge Walkout — 2 × 4–6 out-and-back cycles · From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled.\nDumbbell Goblet Squat — 2 × 10–15 · Start light and leave 3 clean reps on the first exposure; hold or reduce if the next run is heavy.\nSide-Lying Hip Adduction — 2 × 12 / side · Lie on your side and lift the bottom leg without rolling your hips.\nSeated Dumbbell Calf Raise — 2 × 12 · Maintenance only; skip unless calves are normal. Keep the dumbbell secure over your thigh.\nDumbbell Suitcase Hold — 2 × 20–30 sec / side · Hold one dumbbell at your side; stand tall without leaning.",
+    "day_label": "Thursday",
+    "version_id": "b7af1717-192a-4a71-b936-6d77a1013529",
+    "scheduled_on": "2026-11-19",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Upper B",
+    "details": "Flat Dumbbell Bench Press — 3 × 8–10\nBench-Supported One-Arm Dumbbell Row — 2 × 10–12 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Pullover — 2 × 10–15 · Keep your back on the bench; lower only as far as your shoulders stay comfortable.\nDumbbell Lateral Raise — 2 × 12–18 · Lift smoothly to a comfortable shoulder height without swinging.\nChest-Supported Dumbbell Rear-Delt Fly — 2 × 12–18 · Keep your chest supported and move without shrugging.\nHammer Curl — 2 × 8–12\nLying Dumbbell Triceps Extension — 2 × 10–15 · Keep your upper arms steady; lower under control beside your head.",
+    "day_label": "Friday",
+    "version_id": "f5a53d37-c95c-48dd-a15b-0463d42aff44",
+    "scheduled_on": "2026-11-20",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Upper A",
+    "details": "Incline Dumbbell Bench Press — 4 × 6–8\nChest-Supported Dumbbell Row — 3 × 6–10\nBench-Supported One-Arm Dumbbell Row — 3 × 8–12 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Shrug — 2 × 10–15 · Lift smoothly, pause, then lower; keep your head level.\nLow-Incline Dumbbell Fly — 2 × 10–15 · Use a low bench incline, soft elbows and a comfortable depth.\nSingle-Arm Dumbbell Lateral Raise — 3 × 12–18 / side · Lift smoothly to a comfortable shoulder height without swinging.\nChest-Supported Dumbbell Rear-Delt Fly — 2 × 12–18 · Keep your chest supported and move without shrugging.\nSeated Dumbbell Overhead Triceps Extension — 2 × 10–15 · Keep your upper arms steady and lower through a comfortable range.",
+    "day_label": "Monday",
+    "version_id": "c92e771b-86aa-4e62-89e4-77a6dd7cf542",
+    "scheduled_on": "2026-11-23",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Lower A",
+    "details": "Bulgarian Split Squat — 3 × 6–8 / leg · Use a stable, load-bearing support for your rear foot; skip if it can slide or tip.\nDumbbell Romanian Deadlift — 3 × 6–8\nDumbbell Goblet Squat — 2 × 8–10 · Keep your feet planted and squat only as deep as you can control.\nHamstring Bridge Walkout — 2 × 4–6 out-and-back cycles · From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled.\nSide-Lying Hip Adduction — 3 × 12–20 / side · Lie on your side and lift the bottom leg without rolling your hips.\nSeated Dumbbell Calf Raise — 2 × 10–15 · Maintenance only; perform only if calf tenderness has resolved and the prior run response is normal. Keep the dumbbell secure over your thigh.\nDumbbell Suitcase Hold — 2 × 20–30 sec / side · Hold one dumbbell at your side; stand tall without leaning.",
+    "day_label": "Thursday",
+    "version_id": "c801e993-4dd8-4f0a-8ba1-02db8f5c20d5",
+    "scheduled_on": "2026-11-26",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Upper B",
+    "details": "Flat Dumbbell Bench Press — 3 × 6–10\nBench-Supported One-Arm Dumbbell Row — 3 × 8–12 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Pullover — 3 × 10–15 · Keep your back on the bench; lower only as far as your shoulders stay comfortable.\nFlat Dumbbell Fly — 2 × 10–15 · Keep your elbows softly bent and lower only through a comfortable range.\nDumbbell Lateral Raise — 2 × 12–18 · Lift smoothly to a comfortable shoulder height without swinging.\nChest-Supported Dumbbell Rear-Delt Fly — 3 × 12–18 · Keep your chest supported and move without shrugging.\nHammer Curl — 3 × 8–12\nLying Dumbbell Triceps Extension — 2 × 10–15 · Keep your upper arms steady; lower under control beside your head.",
+    "day_label": "Friday",
+    "version_id": "dc2d6c29-48fc-4e1a-9307-42336c4dec2b",
+    "scheduled_on": "2026-11-27",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Lower B",
+    "details": "Dumbbell Step-Up — 2 × 6–8 / leg · Use a stable, load-bearing step or bench; skip if it can slide or tip.\nDumbbell Hip Thrust — 2 × 6–10 · Secure the dumbbell over your hips; keep the bench stable and finish without arching.\nHamstring Bridge Walkout — 2 × 4–6 out-and-back cycles · From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled.\nDumbbell Goblet Squat — 2 × 10–15 · Start light and leave 3 clean reps on the first exposure; hold or reduce if the next run is heavy.\nDead Bug — 2 × 8 / side\nSide Plank — 2 × 45–60 sec / side",
+    "day_label": "Sunday",
+    "version_id": "4dd2ab0b-659a-48f3-a83c-2dba4083c6fd",
+    "scheduled_on": "2026-11-29",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Upper A",
+    "details": "Incline Dumbbell Bench Press — 3 × 6–8\nChest-Supported Dumbbell Row — 2 × 6–10\nBench-Supported One-Arm Dumbbell Row — 2 × 8–10 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Shrug — 2 × 10–12 · Lift smoothly, pause, then lower; keep your head level.\nDumbbell Lateral Raise — 2 × 12–15 · Lift smoothly to a comfortable shoulder height without swinging.\nChest-Supported Dumbbell Rear-Delt Fly — 2 × 12–15 · Keep your chest supported and move without shrugging.\nSeated Dumbbell Overhead Triceps Extension — 2 × 10–12 · Keep your upper arms steady and lower through a comfortable range.",
+    "day_label": "Monday",
+    "version_id": "fbe5bf24-1aaf-4521-8f50-b71ad41676e1",
+    "scheduled_on": "2026-11-30",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Lower Primer",
+    "details": "Bulgarian Split Squat — 2 × 5 / leg · Use a stable, load-bearing support for your rear foot; skip if it can slide or tip.\nDumbbell Romanian Deadlift — 2 × 5\nDumbbell Suitcase Hold — 2 × 20 sec / side · Hold one dumbbell at your side; stand tall without leaning.",
+    "day_label": "Tuesday",
+    "version_id": "b9591a7b-92d3-483d-8e09-740e13f1f464",
+    "scheduled_on": "2026-12-01",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Upper B",
+    "details": "Flat Dumbbell Bench Press — 2 × 6–8\nBench-Supported One-Arm Dumbbell Row — 2 × 8–10 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Pullover — 2 × 8–12 · Keep your back on the bench; lower only as far as your shoulders stay comfortable.\nChest-Supported Dumbbell Rear-Delt Fly — 2 × 12–15 · Keep your chest supported and move without shrugging.\nHammer Curl — 2 × 8–10\nLying Dumbbell Triceps Extension — 2 × 10–12 · Keep your upper arms steady; lower under control beside your head.",
+    "day_label": "Friday",
+    "version_id": "8e45ac24-c65d-4d10-a404-e95ba0887972",
+    "scheduled_on": "2026-12-04",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Upper A",
+    "details": "Incline Dumbbell Bench Press — 3 × 8–10\nChest-Supported Dumbbell Row — 3 × 8–12\nBench-Supported One-Arm Dumbbell Row — 2 × 8–12 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Shrug — 2 × 10–15 · Lift smoothly, pause, then lower; keep your head level.\nLow-Incline Dumbbell Fly — 2 × 12–15 · Use a low bench incline, soft elbows and a comfortable depth.\nDumbbell Lateral Raise — 2 × 12–18 · Lift smoothly to a comfortable shoulder height without swinging.\nChest-Supported Dumbbell Rear-Delt Fly — 2 × 12–18 · Keep your chest supported and move without shrugging.\nSeated Dumbbell Overhead Triceps Extension — 2 × 10–15 · Keep your upper arms steady and lower through a comfortable range.",
+    "day_label": "Monday",
+    "version_id": "80ee086d-b3c5-4f71-adcb-6f3c1a709ce9",
+    "scheduled_on": "2026-12-07",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Lower Restore",
+    "details": "Bulgarian Split Squat — 2 × 8 / leg · Use a stable, load-bearing support for your rear foot; skip if it can slide or tip.\nDumbbell Romanian Deadlift — 2 × 8\nHamstring Bridge Walkout — 2 × 4–6 out-and-back cycles · From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled.\nDumbbell Goblet Squat — 2 × 10–15 · Start light and leave 3 clean reps on the first exposure; hold or reduce if the next run is heavy.\nSide-Lying Hip Adduction — 2 × 12 / side · Lie on your side and lift the bottom leg without rolling your hips.\nSeated Dumbbell Calf Raise — 2 × 12 · Maintenance only; skip unless calves are normal. Keep the dumbbell secure over your thigh.\nDumbbell Suitcase Hold — 2 × 20–30 sec / side · Hold one dumbbell at your side; stand tall without leaning.",
+    "day_label": "Thursday",
+    "version_id": "96525c91-cc09-4295-84de-61dba03cdb4b",
+    "scheduled_on": "2026-12-10",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Upper B",
+    "details": "Flat Dumbbell Bench Press — 3 × 8–10\nBench-Supported One-Arm Dumbbell Row — 2 × 10–12 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Pullover — 2 × 10–15 · Keep your back on the bench; lower only as far as your shoulders stay comfortable.\nDumbbell Lateral Raise — 2 × 12–18 · Lift smoothly to a comfortable shoulder height without swinging.\nChest-Supported Dumbbell Rear-Delt Fly — 2 × 12–18 · Keep your chest supported and move without shrugging.\nHammer Curl — 2 × 8–12\nLying Dumbbell Triceps Extension — 2 × 10–15 · Keep your upper arms steady; lower under control beside your head.",
+    "day_label": "Friday",
+    "version_id": "edb4c3c4-2d1f-4509-9c22-d865bb5ef0a7",
+    "scheduled_on": "2026-12-11",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Upper A",
+    "details": "Incline Dumbbell Bench Press — 4 × 6–10\nChest-Supported Dumbbell Row — 3 × 6–10\nBench-Supported One-Arm Dumbbell Row — 3 × 8–12 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Shrug — 2 × 10–15 · Lift smoothly, pause, then lower; keep your head level.\nLow-Incline Dumbbell Fly — 2 × 10–15 · Use a low bench incline, soft elbows and a comfortable depth.\nDumbbell Lateral Raise — 3 × 12–18 · Lift smoothly to a comfortable shoulder height without swinging.\nChest-Supported Dumbbell Rear-Delt Fly — 2 × 12–18 · Keep your chest supported and move without shrugging.\nSeated Dumbbell Overhead Triceps Extension — 2 × 10–15 · Keep your upper arms steady and lower through a comfortable range.",
+    "day_label": "Monday",
+    "version_id": "cc90b5a3-0de7-4adf-8a3f-c74fa6e03080",
+    "scheduled_on": "2026-12-14",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Lower A",
+    "details": "Bulgarian Split Squat — 3 × 6–8 / leg · Use a stable, load-bearing support for your rear foot; skip if it can slide or tip.\nDumbbell Romanian Deadlift — 3 × 6–8\nDumbbell Goblet Squat — 2 × 8–12 · Keep your feet planted and squat only as deep as you can control.\nHamstring Bridge Walkout — 2 × 4–6 out-and-back cycles · From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled.\nSide-Lying Hip Adduction — 3 × 12–20 / side · Lie on your side and lift the bottom leg without rolling your hips.\nSeated Dumbbell Calf Raise — 2 × 10–15 · Maintenance only; skip unless calves are normal. Keep the dumbbell secure over your thigh.\nDumbbell Suitcase Hold — 2 × 20–30 sec / side · Hold one dumbbell at your side; stand tall without leaning.",
+    "day_label": "Thursday",
+    "version_id": "f1d2bbd5-7f59-44a0-a693-be7b1277cb20",
+    "scheduled_on": "2026-12-17",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Upper B",
+    "details": "Flat Dumbbell Bench Press — 3 × 6–10\nBench-Supported One-Arm Dumbbell Row — 3 × 8–12 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Pullover — 3 × 10–15 · Keep your back on the bench; lower only as far as your shoulders stay comfortable.\nFlat Dumbbell Fly — 2 × 10–15 · Keep your elbows softly bent and lower only through a comfortable range.\nDumbbell Lateral Raise — 2 × 12–18 · Lift smoothly to a comfortable shoulder height without swinging.\nChest-Supported Dumbbell Rear-Delt Fly — 3 × 12–18 · Keep your chest supported and move without shrugging.\nHammer Curl — 3 × 8–12\nLying Dumbbell Triceps Extension — 2 × 10–15 · Keep your upper arms steady; lower under control beside your head.",
+    "day_label": "Friday",
+    "version_id": "b3017dad-1bee-4920-be67-15bb449ccc2a",
+    "scheduled_on": "2026-12-18",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Lower B",
+    "details": "Dumbbell Step-Up — 3 × 6–8 / leg · Use a stable, load-bearing step or bench; skip if it can slide or tip.\nDumbbell Hip Thrust — 2 × 6–10 · Secure the dumbbell over your hips; keep the bench stable and finish without arching.\nHamstring Bridge Walkout — 2 × 4–6 out-and-back cycles · From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled.\nDumbbell Goblet Squat — 2 × 10–15 · Start light and leave 3 clean reps on the first exposure; hold or reduce if the next run is heavy.\nDead Bug — 3 × 8 / side\nSide Plank — 2 × 45–60 sec / side",
+    "day_label": "Sunday",
+    "version_id": "d894e552-85fc-4be4-bdeb-8e758a6c7c40",
+    "scheduled_on": "2026-12-20",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Upper A",
+    "details": "Incline Dumbbell Bench Press — 4 × 6–10\nChest-Supported Dumbbell Row — 3 × 6–10\nBench-Supported One-Arm Dumbbell Row — 3 × 8–12 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Shrug — 2 × 10–15 · Lift smoothly, pause, then lower; keep your head level.\nLow-Incline Dumbbell Fly — 2 × 10–15 · Use a low bench incline, soft elbows and a comfortable depth.\nDumbbell Lateral Raise — 3 × 12–18 · Lift smoothly to a comfortable shoulder height without swinging.\nChest-Supported Dumbbell Rear-Delt Fly — 2 × 12–18 · Keep your chest supported and move without shrugging.\nSeated Dumbbell Overhead Triceps Extension — 2 × 10–15 · Keep your upper arms steady and lower through a comfortable range.",
+    "day_label": "Monday",
+    "version_id": "2531ff39-2196-4971-9ab1-dcb266f84f6c",
+    "scheduled_on": "2026-12-21",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Lower A",
+    "details": "Bulgarian Split Squat — 3 × 6–8 / leg · Use a stable, load-bearing support for your rear foot; skip if it can slide or tip.\nDumbbell Romanian Deadlift — 3 × 6–8\nDumbbell Goblet Squat — 2 × 8–12 · Keep your feet planted and squat only as deep as you can control.\nHamstring Bridge Walkout — 2 × 4–6 out-and-back cycles · From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled.\nSide-Lying Hip Adduction — 3 × 12–20 / side · Lie on your side and lift the bottom leg without rolling your hips.\nSeated Dumbbell Calf Raise — 2 × 10–15 · Maintenance only; skip unless calves are normal. Keep the dumbbell secure over your thigh.\nDumbbell Suitcase Hold — 2 × 20–30 sec / side · Hold one dumbbell at your side; stand tall without leaning.",
+    "day_label": "Thursday",
+    "version_id": "fcb64450-9f3a-47c9-b2c6-5264e3d606cc",
+    "scheduled_on": "2026-12-24",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Upper B",
+    "details": "Flat Dumbbell Bench Press — 3 × 6–10\nBench-Supported One-Arm Dumbbell Row — 3 × 8–12 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Pullover — 3 × 10–15 · Keep your back on the bench; lower only as far as your shoulders stay comfortable.\nFlat Dumbbell Fly — 2 × 10–15 · Keep your elbows softly bent and lower only through a comfortable range.\nDumbbell Lateral Raise — 2 × 12–18 · Lift smoothly to a comfortable shoulder height without swinging.\nChest-Supported Dumbbell Rear-Delt Fly — 3 × 12–18 · Keep your chest supported and move without shrugging.\nHammer Curl — 3 × 8–12\nLying Dumbbell Triceps Extension — 2 × 10–15 · Keep your upper arms steady; lower under control beside your head.",
+    "day_label": "Friday",
+    "version_id": "b748deaf-7753-4e10-9786-35d03fcd4f10",
+    "scheduled_on": "2026-12-25",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Lower B",
+    "details": "Dumbbell Step-Up — 3 × 6–8 / leg · Use a stable, load-bearing step or bench; skip if it can slide or tip.\nDumbbell Hip Thrust — 2 × 6–10 · Secure the dumbbell over your hips; keep the bench stable and finish without arching.\nHamstring Bridge Walkout — 2 × 4–6 out-and-back cycles · From a bridge, take short heel steps out and back. One full out-and-back is one rep; keep your hips controlled.\nDumbbell Goblet Squat — 2 × 10–15 · Start light and leave 3 clean reps on the first exposure; hold or reduce if the next run is heavy.\nDead Bug — 3 × 8 / side\nSide Plank — 2 × 45–60 sec / side",
+    "day_label": "Sunday",
+    "version_id": "6beb79cd-69f8-4419-a246-023808df3bb3",
+    "scheduled_on": "2026-12-27",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Upper Closeout",
+    "details": "Incline Dumbbell Bench Press — 3 × 8\nChest-Supported Dumbbell Row — 2 × 8–10\nBench-Supported One-Arm Dumbbell Row — 2 × 8–10 / side · Brace on the bench and draw your elbow toward your hip without twisting.\nDumbbell Shrug — 2 × 12 · Lift smoothly, pause, then lower; keep your head level.\nDumbbell Lateral Raise — 2 × 12–15 · Lift smoothly to a comfortable shoulder height without swinging.\nChest-Supported Dumbbell Rear-Delt Fly — 2 × 12–15 · Keep your chest supported and move without shrugging.\nHammer Curl — 2 × 10\nSeated Dumbbell Overhead Triceps Extension — 2 × 10–12 · Keep your upper arms steady and lower through a comfortable range.",
+    "day_label": "Monday",
+    "version_id": "23beac8c-59d1-448b-88e9-1f7b8f4d5597",
+    "scheduled_on": "2026-12-28",
+    "version_number": 3
+  },
+  {
+    "shape": "strength",
+    "title": "Lower Closeout",
+    "details": "Bulgarian Split Squat — 2 × 6 / leg · Use a stable, load-bearing support for your rear foot; skip if it can slide or tip.\nDumbbell Romanian Deadlift — 2 × 6\nDumbbell Goblet Squat — 2 × 10–12 · Start light and leave 3 clean reps on the first exposure; hold or reduce if the next run is heavy.\nSide-Lying Hip Adduction — 2 × 12 / side · Lie on your side and lift the bottom leg without rolling your hips.\nDumbbell Suitcase Hold — 2 × 20 sec / side · Hold one dumbbell at your side; stand tall without leaning.",
+    "day_label": "Wednesday",
+    "version_id": "cd562656-2f38-4f02-b02f-120bdeeb3257",
+    "scheduled_on": "2026-12-30",
+    "version_number": 3
+  }
+]
