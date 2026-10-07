@@ -82,3 +82,5 @@
 .discovery-toc-link:hover .discovery-toc-title{text-decoration:underline;text-underline-offset:4px}
 @media(max-width:980px){.discovery-toc{grid-template-columns:1fr}.discovery-toc-section{grid-template-columns:minmax(160px,.7fr) minmax(0,1.3fr)}}
 @media(max-width:620px){.discovery-browse{padding-top:42px}.discovery-browse-head{grid-template-columns:1fr;gap:16px;padding-bottom:28px}.discovery-browse-head h2{max-width:none}.discovery-toc-section{grid-template-columns:1fr;gap:18px;padding:28px 0 32px}.discovery-toc-head>p:last-child{max-width:38ch}.discovery-toc-link{padding:12px 0}}
+
+.discovery-noscript{border-top:1px solid var(--line);padding:20px 0 28px;color:var(--ink-l)}.discovery-noscript p{margin:0 0 8px}.discovery-noscript a{color:var(--ink);text-underline-offset:4px}
