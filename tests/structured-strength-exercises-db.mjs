@@ -246,7 +246,10 @@ eq(await rows(db, 'select * from public.planned_session_exercises where version_
 
 // ── The schema history still replays with this migration in it ──────────────────────────
 const full = await openPglite();
-const replay = await replaySchema({ db: full, extra: [MIGRATION] });
+// When the migration is still held, append it explicitly. Once promoted into migrations/,
+// replaySchema will discover it there and must not apply the same file twice.
+const promoted = MIGRATION.startsWith('supabase/migrations/');
+const replay = await replaySchema({ db: full, extra: promoted ? [] : [MIGRATION] });
 eq(replay.ddlFailures.filter((f) => !PLATFORM_ONLY.has(f.file)), [], 'the full history, including this migration, replays on an empty database');
 ok(replay.files.some((f) => f.endsWith('_structured_strength_exercises.sql')), 'this migration is part of the replayed history');
 eq((await rows(full, 'select count(*)::int n from public.planned_session_exercises'))[0].n, 0, 'with no Adrian present the backfill is a quiet no-op');
