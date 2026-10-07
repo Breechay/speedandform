@@ -42,3 +42,5 @@
 
 .standalone-library-family{width:min(1120px,calc(100% - 48px));margin:40px auto;color:var(--ink)}
 @media print{html[data-running-lesson] body{background:white;color:#161916}html[data-running-lesson] .guide-hero h1{font-size:30pt}}
+/* October 7, 2026: the media slot stays in the markup for a real photograph or film of the move, and takes no room until one exists. */
+.movement-media:empty{display:none}

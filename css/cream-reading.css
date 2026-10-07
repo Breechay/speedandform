@@ -47,7 +47,7 @@ html[data-form-reading] {
 [data-form-reading] ::placeholder { color: var(--ink-f); opacity: 1; }
 [data-form-reading] ::selection { background: #c9ff36; color: var(--ink); }
 [data-form-reading] .nav {
-  width: min(1120px, calc(100% - 96px));
+  width: min(1280px,calc(100% - 2 * clamp(24px,5.5vw,88px)));
   max-width: none;
   min-height: 88px;
   margin-inline: auto;
@@ -163,7 +163,7 @@ html[data-form-reading] {
 [data-form-reading] .splits-grid th, [data-form-reading] .splits-grid td { text-align: right; font-weight: 400; padding: 0; }
 [data-form-reading] .splits-grid .col-label { text-align: left; }
 /* Library is a readable index, not a miniature table. */
-[data-form-reading] [data-reading-layout="library"] .content { width: min(1120px, calc(100% - 96px)); }
+[data-form-reading] [data-reading-layout="library"] .content { width: min(1280px,calc(100% - 2 * clamp(24px,5.5vw,88px))); }
 [data-form-reading] .lib-section { min-width: 0; margin-bottom: 44px; }
 [data-form-reading] .lib-section-label {
   display: block;
@@ -259,3 +259,6 @@ html[data-form-reading] h1 { font-weight: 650; }
   [data-form-reading] { scroll-behavior: auto; }
   [data-form-reading] :where(.lib-entry, .lib-sub) { transition: none; }
 }
+/* October 7, 2026 house pass. The reading room keeps its paper and its measure and takes the house's edges and header: mono links, one row on phones. docs/BRAND.md. */
+.site-wayfinding a,.guide-header nav a,.discovery-nav a{font:400 11px/1.6 var(--reading-mono,"JetBrains Mono",ui-monospace,monospace);letter-spacing:.06em;text-transform:uppercase}
+@media(max-width:767px){.guide-header,.discovery-header{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:16px;padding:0;min-height:84px}.guide-header nav,.discovery-nav,.site-wayfinding{flex-wrap:nowrap;justify-content:flex-end;gap:0 18px;margin:0;width:auto}.guide-header nav a[href="/plans/"],.guide-header nav a[href="/thursday"],.discovery-nav a[href="/plans/"],.discovery-nav a[href="/thursday"],.site-wayfinding a[href="/plans/"],.site-wayfinding a[href="/thursday"]{display:none}.site-wayfinding a,.guide-header nav a,.discovery-nav a{font-size:11px}}

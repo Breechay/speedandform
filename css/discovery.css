@@ -1,14 +1,14 @@
 /* Pass 2 layout only. Reading color and font tokens belong to cream-reading.css. */
 [data-discovery] *,[data-discovery] *::before,[data-discovery] *::after{box-sizing:border-box}
 [data-discovery] body{margin:0;padding:0}
-.discovery-wrap{width:min(1120px,calc(100% - 96px));margin-inline:auto}
+.discovery-wrap{width:min(1280px,calc(100% - 2 * clamp(24px,5.5vw,88px)));margin-inline:auto}
 .discovery-header{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:100px;flex-wrap:wrap}
 .discovery-brand{font:800 28px/1 var(--reading-sans);letter-spacing:-.065em;color:var(--ink);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
 .discovery-brand span{color:#657c18}
 .discovery-nav,.site-wayfinding{display:flex;flex-wrap:wrap;gap:8px 28px;align-items:center}
 .discovery-nav a,.site-wayfinding a{font:500 15px/1.4 var(--reading-sans,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif);color:var(--ink,#11100e);text-decoration:none;display:inline-flex;align-items:center;min-height:44px;text-underline-offset:6px}
 .discovery-nav a:hover,.site-wayfinding a:hover,.discovery-nav a[aria-current]{text-decoration:underline}
-.site-wayfinding{width:min(1120px,calc(100% - 96px));margin:0 auto 12px;justify-content:flex-end;color:#11100e}
+.site-wayfinding{width:min(1280px,calc(100% - 2 * clamp(24px,5.5vw,88px)));margin:0 auto 12px;justify-content:flex-end;color:#11100e}
 .site-wayfinding a:focus-visible,.discovery-skip:focus{outline:2px solid currentColor;outline-offset:4px}
 .discovery-skip{position:absolute;top:8px;left:16px;transform:translateY(-180%);background:#ece6da;color:#11100e;padding:12px;z-index:1000}
 .discovery-skip:focus{transform:none}

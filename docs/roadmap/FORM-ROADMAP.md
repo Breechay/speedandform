@@ -2,6 +2,14 @@
 
 The complete source and validation record is in [the half-marathon checklist](HALF-MARATHON-LIBRARY-20261006.md), under the collection continuation. Run Development keeps homepage intake; six/eight/sixteen-week resources and faster-half guide are complete; 80 public previews follow the current house. Google site-event receipt and the exact GA stream match are confirmed; new resource and accepted-inquiry receipt remain separate. No new ad launch or spend. Source is ready for coordinated publication; physical-phone/Safari review remains open.
 
+## October 7 · Reading room pass after the lesson rebuild
+
+- Owner asked for a house pass after PR #251. Record: [Brand authority](../BRAND.md), “October 7 · Reading room pass”.
+- [x] House edges and mono header across lessons, routines, guides, the Library index and Search; one-row phone header; empty move-media slots hidden until real media exists; two copy words.
+- [x] `tests/running-library.cjs`, `tests/cream-reading.cjs`, `tests/half-marathon-library.cjs`, `tests/sf-bend.cjs` and `tests/brand-kit.cjs` pass. Chromium renders of a lesson, a routine, Search, the Library index and an older guide reviewed at 390 and 1440. `tests/running-library-browser.py` not run here.
+- [ ] Owner review. Safari and a physical phone not checked. Not pushed, not merged, not deployed.
+- [ ] First Shelf: waiting on the owner's list of links he sends.
+
 ## October 6 · Running lessons and movement family
 
 - Owner asked for plain, memorable older articles and visually useful routines, then supplied the Lesson / Routine / Shelf format and paper-room rules. Authority: [Brand](../BRAND.md), “Library formats”. Source and acceptance: [running-library audit](../audits/RUNNING-LIBRARY-20261006.md).
