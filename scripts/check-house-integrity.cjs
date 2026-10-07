@@ -232,8 +232,11 @@ const inbound = new Map(sitemap.map(r => [r, 0]));
 for (const page of publicPages.values()) {
   const html = seenFiles.get(page.file) || read(page.file);
   const baseRoute = routeForPage(page);
+  const linkHtml = html
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '')
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, '');
 
-  for (const m of html.matchAll(/<a\b[^>]*\bhref\s*=\s*(["'])(.*?)\1/gi)) {
+  for (const m of linkHtml.matchAll(/<a\b[^>]*\bhref\s*=\s*(["'])(.*?)\1/gi)) {
     const href = (m[2] || '').trim();
     if (!href || href.startsWith('#') || /^(?:mailto:|tel:|sms:|javascript:|data:)/i.test(href)) continue;
 
