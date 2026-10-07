@@ -29,6 +29,11 @@ assert.doesNotMatch(html,/id=\"issue\"/);
 assert.match(html,/Your inquiry goes to Brice’s private working inbox\./);
 assert.match(html,/rows\.push\(\[\"Reply to\", A\.mail/);
 const send=html.slice(html.indexOf('  function sendToBrice()'),html.indexOf('\n  function fail('));
+const inquirySource=readFileSync('js/commercial-inquiry.js','utf8');
+assert.match(inquirySource,/if\(!response\.ok\|\|receipt\.accepted!==true\)throw new Error\('Inquiry was not accepted'\);\s*recordLead\(payload\.offer\);\s*return receipt;/);
+assert.match(inquirySource,/function recordLead\(offer\)\{\s*if\(acceptedLeadRecorded\)return;/);
+assert.match(html,/commercial-inquiry\.js\?v=20261006-accepted-lead/);
+
 (async()=>{
  const relay=new FormData();
  [
