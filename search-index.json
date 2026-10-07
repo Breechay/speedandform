@@ -1199,5 +1199,78 @@
     ],
     "category": "movement",
     "type": "Practice"
+  },
+  {
+    "url": "/contact",
+    "title": "Contact Brice",
+    "description": "Send Brice a note about coaching, FORM House, collaboration, photography or another project.",
+    "keywords": [
+      "contact",
+      "email",
+      "brice",
+      "inquiry",
+      "work together",
+      "collaboration"
+    ],
+    "category": "house",
+    "type": "Contact"
+  },
+  {
+    "url": "/brand/",
+    "title": "Brand and Media Kit",
+    "description": "Speed & Form marks, house rules, colors, type, photography and downloadable brand files.",
+    "keywords": [
+      "brand",
+      "media",
+      "press",
+      "kit",
+      "logo",
+      "emblem",
+      "assets",
+      "identity"
+    ],
+    "category": "house",
+    "type": "Brand"
+  },
+  {
+    "url": "/ask/",
+    "title": "Ask Brice",
+    "description": "Ask a training question or send Brice context about something you are working through.",
+    "keywords": [
+      "ask",
+      "question",
+      "brice",
+      "training question",
+      "help"
+    ],
+    "category": "house",
+    "type": "Question"
+  },
+  {
+    "url": "/privacy",
+    "title": "Privacy Policy",
+    "description": "How Speed & Form handles information across the website, FORM app and coaching.",
+    "keywords": [
+      "privacy",
+      "data",
+      "tracking",
+      "cookies",
+      "information"
+    ],
+    "category": "house",
+    "type": "Legal"
+  },
+  {
+    "url": "/terms",
+    "title": "Terms of Service",
+    "description": "Terms for the FORM app, website, plans and coaching from Speed & Form.",
+    "keywords": [
+      "terms",
+      "legal",
+      "service",
+      "conditions"
+    ],
+    "category": "house",
+    "type": "Legal"
   }
 ]
