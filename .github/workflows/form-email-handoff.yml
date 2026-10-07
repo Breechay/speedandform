@@ -10,12 +10,14 @@ on:
       - 'tests/form-email-handoff.test.mjs'
       - 'supabase/templates/**'
       - 'supabase/config.toml'
+      - 'supabase/functions/coaching-email-signin/**'
       - '.github/workflows/form-email-handoff.yml'
   pull_request:
     paths:
       - 'auth/**'
       - 'private/auth.js'
       - 'private/supabase-client.js'
+      - 'supabase/functions/coaching-email-signin/**'
       - 'tests/form-email-handoff.test.mjs'
       - '.github/workflows/form-email-handoff.yml'
   workflow_dispatch:
