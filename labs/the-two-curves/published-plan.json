@@ -1,16 +1,20 @@
 {
   "state": "published",
+  "revision": "SIMON-V5",
+  "distance_unit": "km",
+  "schema_version": 1,
+  "pace_seconds_unit": "mi",
   "payload": {
     "plan": {
-      "name": "Ceiling × Durability · Block 01",
+      "name": "Half-marathon training · Block 01",
       "slug": "simon-ceiling-durability-01",
-      "for_whom": "Simon. Historical sustained faster work, a controlled April half, and a coach-reported faster-long-run limiter. Current readiness is reviewed separately.",
-      "question": "Can faster running become continuous at acceptable cost, then remain available after prior running, while high-end field performance is developed?",
+      "for_whom": "Simon, preparing for the half marathon in Saumur on May 16, 2027.",
+      "question": "Can Simon hold his pace over longer runs?",
       "discipline": "run",
-      "peak_volume": 70,
+      "peak_volume": 66,
       "total_weeks": 5,
       "entry_volume": 63,
-      "race_pace_low_seconds": 365,
+      "race_pace_low_seconds": 368,
       "race_pace_high_seconds": 373
     },
     "field": [],
@@ -137,7 +141,7 @@
             "label": "Ceiling",
             "title": "Ceiling · 5 × 3 min",
             "intent": "Establish a repeatable high-aerobic reference from current response.",
-            "details": "Start toward 3:32-3:34/km. Take 2 min very easy jogging between repetitions. The 3:29-3:34/km band is provisional, based on the historical April 5K, not a measured VO2max pace. Repeat or reduce if Tuesday leaves unusual fatigue. Stop the work rather than chase a fading repetition. Record effort, reserve, conditions and next-day recovery.",
+            "details": "Start toward 3:33-3:35/km. Take 2 min very easy jogging between repetitions. The 3:29-3:35/km band is provisional, updated from Week 1 execution; it is not a measured VO2max pace. Settle near 3:33-3:35/km and do not chase 3:29. Repeat or reduce if Tuesday leaves unusual fatigue. Stop the work rather than chase a fading repetition. Record effort, reserve, conditions and next-day recovery.",
             "distance": 11,
             "components": [
               {
@@ -167,7 +171,7 @@
                 "duration_seconds": 180,
                 "pace_low_seconds": 336,
                 "recovery_seconds": 120,
-                "pace_high_seconds": 344,
+                "pace_high_seconds": 346,
                 "counts_toward_mark": false
               },
               {
@@ -247,16 +251,16 @@
       },
       {
         "phase": "build",
-        "intent": "Progression is conditional on controlled execution and normal recovery. Keep Saturday easy.",
+        "intent": "Run longer intervals at a steady pace on Tuesday. Do Thursday's faster intervals only when you feel recovered. Keep the other runs easy.",
         "sessions": [
           {
             "day": "MON",
             "asks": null,
             "role": "easy",
-            "label": "General aerobic",
+            "label": "Easy run",
             "title": "Easy",
-            "intent": "Aerobic support. Keep it cheap.",
-            "details": "4:55/km or slower, governed by easy effort. Historical 45 mi/week is not a requirement today. Shorten with your coach if recent training or recovery does not support the planned volume.",
+            "intent": "Keep the run easy so you recover between workouts.",
+            "details": "Run at 4:55/km or slower. Keep the effort easy enough to hold a conversation. Shorten the run if you are still tired.",
             "distance": 8,
             "components": [
               {
@@ -280,10 +284,10 @@
             "day": "TUE",
             "asks": null,
             "role": "key",
-            "label": "Working half pace",
-            "title": "4 × 2 km at working half pace",
-            "intent": "Extend continuity only if the preceding step and recovery were controlled.",
-            "details": "Working band, not established half-marathon ability. Start near 3:52/km; holding that pace with control is enough. Take 2 min very easy jogging between repetitions and record recovery pace. Do not chase 3:47/km. If effort climbs unusually early or control is lost, slow down or shorten the work. Advance only after controlled execution and normal recovery; otherwise repeat the previous step with your coach. Conditions and recent HYROX/leg work belong in the record. No fixed 175 bpm cap.",
+            "label": "Intervals",
+            "title": "4 × 2 km",
+            "intent": "Hold a steady pace as the intervals get longer.",
+            "details": "Warm up for 20 minutes. Run 4 × 2 km at 3:49–3:52/km with 2 minutes of very easy jogging between repetitions. Start near 3:52/km and keep the repetitions even. If the effort rises unusually early or your form becomes difficult to control, shorten the workout. Cool down for 10 minutes. Note how the workout felt and how you recover the next day.",
             "distance": 14,
             "components": [
               {
@@ -311,7 +315,7 @@
                 "distance_unit": "km",
                 "recovery_kind": "easy",
                 "duration_seconds": null,
-                "pace_low_seconds": 365,
+                "pace_low_seconds": 368,
                 "recovery_seconds": 120,
                 "pace_high_seconds": 373,
                 "counts_toward_mark": true
@@ -337,10 +341,10 @@
             "day": "WED",
             "asks": null,
             "role": "easy",
-            "label": "General aerobic",
+            "label": "Easy run",
             "title": "Easy",
-            "intent": "Absorb Tuesday.",
-            "details": "4:55/km or slower, governed by easy effort. Historical 45 mi/week is not a requirement today. Shorten with your coach if recent training or recovery does not support the planned volume.",
+            "intent": "Recover from Tuesday's workout.",
+            "details": "Run at 4:55/km or slower. Keep the effort easy enough to hold a conversation. Shorten the run if you are still tired.",
             "distance": 8,
             "components": [
               {
@@ -364,470 +368,10 @@
             "day": "THU",
             "asks": null,
             "role": "key",
-            "label": "Ceiling",
-            "title": "Ceiling · 5 × 3 min",
-            "intent": "Repeat the same ceiling dose while Tuesday develops.",
-            "details": "Start toward 3:32-3:34/km. Take 2 min very easy jogging between repetitions. The 3:29-3:34/km band is provisional, based on the historical April 5K, not a measured VO2max pace. Repeat or reduce if Tuesday leaves unusual fatigue. Stop the work rather than chase a fading repetition. Record effort, reserve, conditions and next-day recovery.",
-            "distance": 11,
-            "components": [
-              {
-                "role": "warm_up",
-                "shape": "continuous",
-                "rpe_low": null,
-                "distance": null,
-                "rpe_high": null,
-                "repeat_count": null,
-                "distance_unit": "mi",
-                "recovery_kind": null,
-                "duration_seconds": 1200,
-                "pace_low_seconds": null,
-                "recovery_seconds": null,
-                "pace_high_seconds": null,
-                "counts_toward_mark": false
-              },
-              {
-                "role": "work",
-                "shape": "repetitions",
-                "rpe_low": null,
-                "distance": null,
-                "rpe_high": null,
-                "repeat_count": 5,
-                "distance_unit": "mi",
-                "recovery_kind": "easy",
-                "duration_seconds": 180,
-                "pace_low_seconds": 336,
-                "recovery_seconds": 120,
-                "pace_high_seconds": 344,
-                "counts_toward_mark": false
-              },
-              {
-                "role": "cool_down",
-                "shape": "continuous",
-                "rpe_low": null,
-                "distance": null,
-                "rpe_high": null,
-                "repeat_count": null,
-                "distance_unit": "mi",
-                "recovery_kind": null,
-                "duration_seconds": 600,
-                "pace_low_seconds": null,
-                "recovery_seconds": null,
-                "pace_high_seconds": null,
-                "counts_toward_mark": false
-              }
-            ]
-          },
-          {
-            "day": "FRI",
-            "asks": null,
-            "role": "easy",
-            "label": "General aerobic",
-            "title": "Easy",
-            "intent": "Keep it cheap.",
-            "details": "4:55/km or slower, governed by easy effort. Historical 45 mi/week is not a requirement today. Shorten with your coach if recent training or recovery does not support the planned volume.",
-            "distance": 6,
-            "components": [
-              {
-                "role": "work",
-                "shape": "continuous",
-                "rpe_low": null,
-                "distance": 6,
-                "rpe_high": null,
-                "repeat_count": null,
-                "distance_unit": "km",
-                "recovery_kind": null,
-                "duration_seconds": null,
-                "pace_low_seconds": 475,
-                "recovery_seconds": null,
-                "pace_high_seconds": null,
-                "counts_toward_mark": false
-              }
-            ]
-          },
-          {
-            "day": "SAT",
-            "asks": null,
-            "role": "key",
-            "label": "Long run",
-            "title": "Long run",
-            "intent": "Keep the long run easy and recoverable.",
-            "details": "No fast finish in Block 01. The distance is a plan, not a minimum. Use your recent comfortable long-run duration if shorter, and shorten again if recovery is not normal. Log conditions, fuel, fluid and any hard HYROX or lower-body work. Do not make up missed distance.",
-            "distance": 20,
-            "components": [
-              {
-                "role": "work",
-                "shape": "continuous",
-                "rpe_low": null,
-                "distance": 20,
-                "rpe_high": null,
-                "repeat_count": null,
-                "distance_unit": "km",
-                "recovery_kind": null,
-                "duration_seconds": null,
-                "pace_low_seconds": 475,
-                "recovery_seconds": null,
-                "pace_high_seconds": null,
-                "counts_toward_mark": false
-              }
-            ]
-          }
-        ],
-        "week_number": 2,
-        "total_distance": 67
-      },
-      {
-        "phase": "build",
-        "intent": "Progression is conditional on controlled execution and normal recovery. Keep Saturday easy.",
-        "sessions": [
-          {
-            "day": "MON",
-            "asks": null,
-            "role": "easy",
-            "label": "General aerobic",
-            "title": "Easy",
-            "intent": "Aerobic support. Keep it cheap.",
-            "details": "4:55/km or slower, governed by easy effort. Historical 45 mi/week is not a requirement today. Shorten with your coach if recent training or recovery does not support the planned volume.",
-            "distance": 8,
-            "components": [
-              {
-                "role": "work",
-                "shape": "continuous",
-                "rpe_low": null,
-                "distance": 8,
-                "rpe_high": null,
-                "repeat_count": null,
-                "distance_unit": "km",
-                "recovery_kind": null,
-                "duration_seconds": null,
-                "pace_low_seconds": 475,
-                "recovery_seconds": null,
-                "pace_high_seconds": null,
-                "counts_toward_mark": false
-              }
-            ]
-          },
-          {
-            "day": "TUE",
-            "asks": null,
-            "role": "key",
-            "label": "Working half pace",
-            "title": "3 × 3 km at working half pace",
-            "intent": "Extend continuity only if the preceding step and recovery were controlled.",
-            "details": "Working band, not established half-marathon ability. Start near 3:52/km; holding that pace with control is enough. Take 2 min very easy jogging between repetitions and record recovery pace. Do not chase 3:47/km. If effort climbs unusually early or control is lost, slow down or shorten the work. Advance only after controlled execution and normal recovery; otherwise repeat the previous step with your coach. Conditions and recent HYROX/leg work belong in the record. No fixed 175 bpm cap.",
-            "distance": 15,
-            "components": [
-              {
-                "role": "warm_up",
-                "shape": "continuous",
-                "rpe_low": null,
-                "distance": null,
-                "rpe_high": null,
-                "repeat_count": null,
-                "distance_unit": "mi",
-                "recovery_kind": null,
-                "duration_seconds": 1200,
-                "pace_low_seconds": null,
-                "recovery_seconds": null,
-                "pace_high_seconds": null,
-                "counts_toward_mark": false
-              },
-              {
-                "role": "work",
-                "shape": "repetitions",
-                "rpe_low": null,
-                "distance": 3,
-                "rpe_high": null,
-                "repeat_count": 3,
-                "distance_unit": "km",
-                "recovery_kind": "easy",
-                "duration_seconds": null,
-                "pace_low_seconds": 365,
-                "recovery_seconds": 120,
-                "pace_high_seconds": 373,
-                "counts_toward_mark": true
-              },
-              {
-                "role": "cool_down",
-                "shape": "continuous",
-                "rpe_low": null,
-                "distance": null,
-                "rpe_high": null,
-                "repeat_count": null,
-                "distance_unit": "mi",
-                "recovery_kind": null,
-                "duration_seconds": 600,
-                "pace_low_seconds": null,
-                "recovery_seconds": null,
-                "pace_high_seconds": null,
-                "counts_toward_mark": false
-              }
-            ]
-          },
-          {
-            "day": "WED",
-            "asks": null,
-            "role": "easy",
-            "label": "General aerobic",
-            "title": "Easy",
-            "intent": "Absorb Tuesday.",
-            "details": "4:55/km or slower, governed by easy effort. Historical 45 mi/week is not a requirement today. Shorten with your coach if recent training or recovery does not support the planned volume.",
-            "distance": 8,
-            "components": [
-              {
-                "role": "work",
-                "shape": "continuous",
-                "rpe_low": null,
-                "distance": 8,
-                "rpe_high": null,
-                "repeat_count": null,
-                "distance_unit": "km",
-                "recovery_kind": null,
-                "duration_seconds": null,
-                "pace_low_seconds": 475,
-                "recovery_seconds": null,
-                "pace_high_seconds": null,
-                "counts_toward_mark": false
-              }
-            ]
-          },
-          {
-            "day": "THU",
-            "asks": null,
-            "role": "key",
-            "label": "Ceiling",
-            "title": "Ceiling · 4 × 4 min",
-            "intent": "Longer ceiling repetitions only if the repeated dose and recovery stayed controlled.",
-            "details": "Start toward 3:32-3:34/km. Take 2 min very easy jogging between repetitions. The 3:29-3:34/km band is provisional, based on the historical April 5K, not a measured VO2max pace. Repeat or reduce if Tuesday leaves unusual fatigue. Stop the work rather than chase a fading repetition. Record effort, reserve, conditions and next-day recovery.",
-            "distance": 12,
-            "components": [
-              {
-                "role": "warm_up",
-                "shape": "continuous",
-                "rpe_low": null,
-                "distance": null,
-                "rpe_high": null,
-                "repeat_count": null,
-                "distance_unit": "mi",
-                "recovery_kind": null,
-                "duration_seconds": 1200,
-                "pace_low_seconds": null,
-                "recovery_seconds": null,
-                "pace_high_seconds": null,
-                "counts_toward_mark": false
-              },
-              {
-                "role": "work",
-                "shape": "repetitions",
-                "rpe_low": null,
-                "distance": null,
-                "rpe_high": null,
-                "repeat_count": 4,
-                "distance_unit": "mi",
-                "recovery_kind": "easy",
-                "duration_seconds": 240,
-                "pace_low_seconds": 336,
-                "recovery_seconds": 120,
-                "pace_high_seconds": 344,
-                "counts_toward_mark": false
-              },
-              {
-                "role": "cool_down",
-                "shape": "continuous",
-                "rpe_low": null,
-                "distance": null,
-                "rpe_high": null,
-                "repeat_count": null,
-                "distance_unit": "mi",
-                "recovery_kind": null,
-                "duration_seconds": 600,
-                "pace_low_seconds": null,
-                "recovery_seconds": null,
-                "pace_high_seconds": null,
-                "counts_toward_mark": false
-              }
-            ]
-          },
-          {
-            "day": "FRI",
-            "asks": null,
-            "role": "easy",
-            "label": "General aerobic",
-            "title": "Easy",
-            "intent": "Keep it cheap.",
-            "details": "4:55/km or slower, governed by easy effort. Historical 45 mi/week is not a requirement today. Shorten with your coach if recent training or recovery does not support the planned volume.",
-            "distance": 6,
-            "components": [
-              {
-                "role": "work",
-                "shape": "continuous",
-                "rpe_low": null,
-                "distance": 6,
-                "rpe_high": null,
-                "repeat_count": null,
-                "distance_unit": "km",
-                "recovery_kind": null,
-                "duration_seconds": null,
-                "pace_low_seconds": 475,
-                "recovery_seconds": null,
-                "pace_high_seconds": null,
-                "counts_toward_mark": false
-              }
-            ]
-          },
-          {
-            "day": "SAT",
-            "asks": null,
-            "role": "key",
-            "label": "Long run",
-            "title": "Long run",
-            "intent": "Keep the long run easy and recoverable.",
-            "details": "No fast finish in Block 01. The distance is a plan, not a minimum. Use your recent comfortable long-run duration if shorter, and shorten again if recovery is not normal. Log conditions, fuel, fluid and any hard HYROX or lower-body work. Do not make up missed distance.",
-            "distance": 21,
-            "components": [
-              {
-                "role": "work",
-                "shape": "continuous",
-                "rpe_low": null,
-                "distance": 21,
-                "rpe_high": null,
-                "repeat_count": null,
-                "distance_unit": "km",
-                "recovery_kind": null,
-                "duration_seconds": null,
-                "pace_low_seconds": 475,
-                "recovery_seconds": null,
-                "pace_high_seconds": null,
-                "counts_toward_mark": false
-              }
-            ]
-          }
-        ],
-        "week_number": 3,
-        "total_distance": 70
-      },
-      {
-        "phase": "absorb",
-        "intent": "Progression is conditional on controlled execution and normal recovery. Keep Saturday easy.",
-        "sessions": [
-          {
-            "day": "MON",
-            "asks": null,
-            "role": "easy",
-            "label": "General aerobic",
-            "title": "Easy",
-            "intent": "Aerobic support. Keep it cheap.",
-            "details": "4:55/km or slower, governed by easy effort. Historical 45 mi/week is not a requirement today. Shorten with your coach if recent training or recovery does not support the planned volume.",
-            "distance": 8,
-            "components": [
-              {
-                "role": "work",
-                "shape": "continuous",
-                "rpe_low": null,
-                "distance": 8,
-                "rpe_high": null,
-                "repeat_count": null,
-                "distance_unit": "km",
-                "recovery_kind": null,
-                "duration_seconds": null,
-                "pace_low_seconds": 475,
-                "recovery_seconds": null,
-                "pace_high_seconds": null,
-                "counts_toward_mark": false
-              }
-            ]
-          },
-          {
-            "day": "TUE",
-            "asks": null,
-            "role": "key",
-            "label": "Working half pace",
-            "title": "2 × 4 km at working half pace",
-            "intent": "Extend continuity only if the preceding step and recovery were controlled.",
-            "details": "Working band, not established half-marathon ability. Start near 3:52/km; holding that pace with control is enough. Take 2 min very easy jogging between repetitions and record recovery pace. Do not chase 3:47/km. If effort climbs unusually early or control is lost, slow down or shorten the work. Advance only after controlled execution and normal recovery; otherwise repeat the previous step with your coach. Conditions and recent HYROX/leg work belong in the record. No fixed 175 bpm cap.",
-            "distance": 14,
-            "components": [
-              {
-                "role": "warm_up",
-                "shape": "continuous",
-                "rpe_low": null,
-                "distance": null,
-                "rpe_high": null,
-                "repeat_count": null,
-                "distance_unit": "mi",
-                "recovery_kind": null,
-                "duration_seconds": 1200,
-                "pace_low_seconds": null,
-                "recovery_seconds": null,
-                "pace_high_seconds": null,
-                "counts_toward_mark": false
-              },
-              {
-                "role": "work",
-                "shape": "repetitions",
-                "rpe_low": null,
-                "distance": 4,
-                "rpe_high": null,
-                "repeat_count": 2,
-                "distance_unit": "km",
-                "recovery_kind": "easy",
-                "duration_seconds": null,
-                "pace_low_seconds": 365,
-                "recovery_seconds": 120,
-                "pace_high_seconds": 373,
-                "counts_toward_mark": true
-              },
-              {
-                "role": "cool_down",
-                "shape": "continuous",
-                "rpe_low": null,
-                "distance": null,
-                "rpe_high": null,
-                "repeat_count": null,
-                "distance_unit": "mi",
-                "recovery_kind": null,
-                "duration_seconds": 600,
-                "pace_low_seconds": null,
-                "recovery_seconds": null,
-                "pace_high_seconds": null,
-                "counts_toward_mark": false
-              }
-            ]
-          },
-          {
-            "day": "WED",
-            "asks": null,
-            "role": "easy",
-            "label": "General aerobic",
-            "title": "Easy",
-            "intent": "Absorb Tuesday.",
-            "details": "4:55/km or slower, governed by easy effort. Historical 45 mi/week is not a requirement today. Shorten with your coach if recent training or recovery does not support the planned volume.",
-            "distance": 8,
-            "components": [
-              {
-                "role": "work",
-                "shape": "continuous",
-                "rpe_low": null,
-                "distance": 8,
-                "rpe_high": null,
-                "repeat_count": null,
-                "distance_unit": "km",
-                "recovery_kind": null,
-                "duration_seconds": null,
-                "pace_low_seconds": 475,
-                "recovery_seconds": null,
-                "pace_high_seconds": null,
-                "counts_toward_mark": false
-              }
-            ]
-          },
-          {
-            "day": "THU",
-            "asks": null,
-            "role": "key",
-            "label": "Ceiling",
-            "title": "Ceiling · 4 × 3 min",
-            "intent": "Reduce faster-running volume before the assessment week.",
-            "details": "Start toward 3:32-3:34/km. Take 2 min very easy jogging between repetitions. The 3:29-3:34/km band is provisional, based on the historical April 5K, not a measured VO2max pace. Repeat or reduce if Tuesday leaves unusual fatigue. Stop the work rather than chase a fading repetition. Record effort, reserve, conditions and next-day recovery.",
+            "label": "Faster intervals",
+            "title": "4 × 3 min",
+            "intent": "Keep some faster running in the week when you feel recovered.",
+            "details": "Only do the intervals when you feel recovered from Tuesday and any hard HYROX or leg training. If you are still tired, keep the run easy or rest. Warm up for 20 minutes. Run 4 × 3 minutes at 3:33–3:38/km with 2 minutes of very easy jogging between repetitions. Keep the repetitions even. Cool down for 10 minutes. Leave out any skipped intervals later in the week.",
             "distance": 10,
             "components": [
               {
@@ -855,9 +399,9 @@
                 "distance_unit": "mi",
                 "recovery_kind": "easy",
                 "duration_seconds": 180,
-                "pace_low_seconds": 336,
+                "pace_low_seconds": 343,
                 "recovery_seconds": 120,
-                "pace_high_seconds": 344,
+                "pace_high_seconds": 351,
                 "counts_toward_mark": false
               },
               {
@@ -881,10 +425,10 @@
             "day": "FRI",
             "asks": null,
             "role": "easy",
-            "label": "General aerobic",
+            "label": "Easy run",
             "title": "Easy",
-            "intent": "Keep it cheap.",
-            "details": "4:55/km or slower, governed by easy effort. Historical 45 mi/week is not a requirement today. Shorten with your coach if recent training or recovery does not support the planned volume.",
+            "intent": "Keep the run easy so you recover between workouts.",
+            "details": "Run at 4:55/km or slower. Keep the effort easy enough to hold a conversation. Shorten the run if you are still tired.",
             "distance": 6,
             "components": [
               {
@@ -908,10 +452,455 @@
             "day": "SAT",
             "asks": null,
             "role": "key",
-            "label": "Long run",
+            "label": "Easy long run",
             "title": "Long run",
-            "intent": "Keep the long run easy and recoverable.",
-            "details": "No fast finish in Block 01. The distance is a plan, not a minimum. Use your recent comfortable long-run duration if shorter, and shorten again if recovery is not normal. Log conditions, fuel, fluid and any hard HYROX or lower-body work. Do not make up missed distance.",
+            "intent": "Build endurance at an easy pace.",
+            "details": "Run 18 km at 4:55/km or slower, at an easy conversational effort. Keep the same easy effort through the finish. Shorten the run if you are still tired. Note your fueling and how you feel the next day.",
+            "distance": 18,
+            "components": [
+              {
+                "role": "work",
+                "shape": "continuous",
+                "rpe_low": null,
+                "distance": 18,
+                "rpe_high": null,
+                "repeat_count": null,
+                "distance_unit": "km",
+                "recovery_kind": null,
+                "duration_seconds": null,
+                "pace_low_seconds": 475,
+                "recovery_seconds": null,
+                "pace_high_seconds": null,
+                "counts_toward_mark": false
+              }
+            ]
+          }
+        ],
+        "week_number": 2,
+        "total_distance": 64
+      },
+      {
+        "phase": "build",
+        "intent": "If last week's workout felt controlled and you recovered well, make Tuesday's intervals longer. Keep Thursday shorter and the long run easy.",
+        "sessions": [
+          {
+            "day": "MON",
+            "asks": null,
+            "role": "easy",
+            "label": "Easy run",
+            "title": "Easy",
+            "intent": "Arrive ready for Tuesday's workout.",
+            "details": "Run at 4:55/km or slower. Keep it easy so you feel ready for Tuesday. Leave out extra intervals, a fast finish, and hard leg training.",
+            "distance": 8,
+            "components": [
+              {
+                "role": "work",
+                "shape": "continuous",
+                "rpe_low": null,
+                "distance": 8,
+                "rpe_high": null,
+                "repeat_count": null,
+                "distance_unit": "km",
+                "recovery_kind": null,
+                "duration_seconds": null,
+                "pace_low_seconds": 475,
+                "recovery_seconds": null,
+                "pace_high_seconds": null,
+                "counts_toward_mark": false
+              }
+            ]
+          },
+          {
+            "day": "TUE",
+            "asks": null,
+            "role": "key",
+            "label": "Intervals",
+            "title": "3 × 3 km",
+            "intent": "Make the intervals longer if last week's workout felt controlled and you recovered well.",
+            "details": "Warm up for 20 minutes. Run 3 × 3 km at 3:49–3:52/km with 2 minutes of very easy jogging between repetitions. Keep the final repetition at the same pace. If holding the pace already feels forced in the first repetition, stop after two repetitions or repeat the previous workout with your coach. Cool down for 10 minutes. Note how you feel during the workout and the next day.",
+            "distance": 15,
+            "components": [
+              {
+                "role": "warm_up",
+                "shape": "continuous",
+                "rpe_low": null,
+                "distance": null,
+                "rpe_high": null,
+                "repeat_count": null,
+                "distance_unit": "mi",
+                "recovery_kind": null,
+                "duration_seconds": 1200,
+                "pace_low_seconds": null,
+                "recovery_seconds": null,
+                "pace_high_seconds": null,
+                "counts_toward_mark": false
+              },
+              {
+                "role": "work",
+                "shape": "repetitions",
+                "rpe_low": null,
+                "distance": 3,
+                "rpe_high": null,
+                "repeat_count": 3,
+                "distance_unit": "km",
+                "recovery_kind": "easy",
+                "duration_seconds": null,
+                "pace_low_seconds": 368,
+                "recovery_seconds": 120,
+                "pace_high_seconds": 373,
+                "counts_toward_mark": true
+              },
+              {
+                "role": "cool_down",
+                "shape": "continuous",
+                "rpe_low": null,
+                "distance": null,
+                "rpe_high": null,
+                "repeat_count": null,
+                "distance_unit": "mi",
+                "recovery_kind": null,
+                "duration_seconds": 600,
+                "pace_low_seconds": null,
+                "recovery_seconds": null,
+                "pace_high_seconds": null,
+                "counts_toward_mark": false
+              }
+            ]
+          },
+          {
+            "day": "WED",
+            "asks": null,
+            "role": "easy",
+            "label": "Easy run",
+            "title": "Easy",
+            "intent": "Recover from Tuesday's workout.",
+            "details": "Run at 4:55/km or slower. Keep the effort easy enough to hold a conversation. Shorten the run if you are still tired.",
+            "distance": 8,
+            "components": [
+              {
+                "role": "work",
+                "shape": "continuous",
+                "rpe_low": null,
+                "distance": 8,
+                "rpe_high": null,
+                "repeat_count": null,
+                "distance_unit": "km",
+                "recovery_kind": null,
+                "duration_seconds": null,
+                "pace_low_seconds": 475,
+                "recovery_seconds": null,
+                "pace_high_seconds": null,
+                "counts_toward_mark": false
+              }
+            ]
+          },
+          {
+            "day": "THU",
+            "asks": null,
+            "role": "key",
+            "label": "Faster intervals",
+            "title": "3 × 4 min",
+            "intent": "Keep some faster running in the week when you feel recovered.",
+            "details": "Only do the intervals when you feel recovered from Tuesday and any hard HYROX or leg training. If you are still tired, keep the run easy or rest. Warm up for 20 minutes. Run 3 × 4 minutes at 3:33–3:38/km with 2 minutes of very easy jogging between repetitions. Keep the repetitions even. Cool down for 10 minutes. Leave out any skipped intervals later in the week.",
+            "distance": 10,
+            "components": [
+              {
+                "role": "warm_up",
+                "shape": "continuous",
+                "rpe_low": null,
+                "distance": null,
+                "rpe_high": null,
+                "repeat_count": null,
+                "distance_unit": "mi",
+                "recovery_kind": null,
+                "duration_seconds": 1200,
+                "pace_low_seconds": null,
+                "recovery_seconds": null,
+                "pace_high_seconds": null,
+                "counts_toward_mark": false
+              },
+              {
+                "role": "work",
+                "shape": "repetitions",
+                "rpe_low": null,
+                "distance": null,
+                "rpe_high": null,
+                "repeat_count": 3,
+                "distance_unit": "mi",
+                "recovery_kind": "easy",
+                "duration_seconds": 240,
+                "pace_low_seconds": 343,
+                "recovery_seconds": 120,
+                "pace_high_seconds": 351,
+                "counts_toward_mark": false
+              },
+              {
+                "role": "cool_down",
+                "shape": "continuous",
+                "rpe_low": null,
+                "distance": null,
+                "rpe_high": null,
+                "repeat_count": null,
+                "distance_unit": "mi",
+                "recovery_kind": null,
+                "duration_seconds": 600,
+                "pace_low_seconds": null,
+                "recovery_seconds": null,
+                "pace_high_seconds": null,
+                "counts_toward_mark": false
+              }
+            ]
+          },
+          {
+            "day": "FRI",
+            "asks": null,
+            "role": "easy",
+            "label": "Easy run",
+            "title": "Easy",
+            "intent": "Keep the run easy so you recover between workouts.",
+            "details": "Run at 4:55/km or slower. Keep the effort easy enough to hold a conversation. Shorten the run if you are still tired.",
+            "distance": 6,
+            "components": [
+              {
+                "role": "work",
+                "shape": "continuous",
+                "rpe_low": null,
+                "distance": 6,
+                "rpe_high": null,
+                "repeat_count": null,
+                "distance_unit": "km",
+                "recovery_kind": null,
+                "duration_seconds": null,
+                "pace_low_seconds": 475,
+                "recovery_seconds": null,
+                "pace_high_seconds": null,
+                "counts_toward_mark": false
+              }
+            ]
+          },
+          {
+            "day": "SAT",
+            "asks": null,
+            "role": "key",
+            "label": "Easy long run",
+            "title": "Long run",
+            "intent": "Build endurance at an easy pace.",
+            "details": "Run 19 km at 4:55/km or slower, at an easy conversational effort. Keep the same easy effort through the finish. Use 18 km instead if you have not recovered well from last week's long run or this week's training.",
+            "distance": 19,
+            "components": [
+              {
+                "role": "work",
+                "shape": "continuous",
+                "rpe_low": null,
+                "distance": 19,
+                "rpe_high": null,
+                "repeat_count": null,
+                "distance_unit": "km",
+                "recovery_kind": null,
+                "duration_seconds": null,
+                "pace_low_seconds": 475,
+                "recovery_seconds": null,
+                "pace_high_seconds": null,
+                "counts_toward_mark": false
+              }
+            ]
+          }
+        ],
+        "week_number": 3,
+        "total_distance": 66
+      },
+      {
+        "phase": "absorb",
+        "intent": "A lighter week: shorter intervals on Tuesday, easy running with strides on Thursday, and a shorter long run.",
+        "sessions": [
+          {
+            "day": "MON",
+            "asks": null,
+            "role": "easy",
+            "label": "Easy run",
+            "title": "Easy",
+            "intent": "Arrive ready for Tuesday's workout.",
+            "details": "Run at 4:55/km or slower. Keep it easy so you feel ready for Tuesday. Leave out extra intervals, a fast finish, and hard leg training.",
+            "distance": 8,
+            "components": [
+              {
+                "role": "work",
+                "shape": "continuous",
+                "rpe_low": null,
+                "distance": 8,
+                "rpe_high": null,
+                "repeat_count": null,
+                "distance_unit": "km",
+                "recovery_kind": null,
+                "duration_seconds": null,
+                "pace_low_seconds": 475,
+                "recovery_seconds": null,
+                "pace_high_seconds": null,
+                "counts_toward_mark": false
+              }
+            ]
+          },
+          {
+            "day": "TUE",
+            "asks": null,
+            "role": "key",
+            "label": "Intervals",
+            "title": "2 × 3 km",
+            "intent": "Keep a steady pace while doing less work this week.",
+            "details": "Warm up for 20 minutes. Run 2 × 3 km at 3:50–3:53/km with 2 minutes of very easy jogging between repetitions. Keep both repetitions controlled. Cool down for 10 minutes. Keep this workout shorter as planned.",
+            "distance": 12,
+            "components": [
+              {
+                "role": "warm_up",
+                "shape": "continuous",
+                "rpe_low": null,
+                "distance": null,
+                "rpe_high": null,
+                "repeat_count": null,
+                "distance_unit": "mi",
+                "recovery_kind": null,
+                "duration_seconds": 1200,
+                "pace_low_seconds": null,
+                "recovery_seconds": null,
+                "pace_high_seconds": null,
+                "counts_toward_mark": false
+              },
+              {
+                "role": "work",
+                "shape": "repetitions",
+                "rpe_low": null,
+                "distance": 3,
+                "rpe_high": null,
+                "repeat_count": 2,
+                "distance_unit": "km",
+                "recovery_kind": "easy",
+                "duration_seconds": null,
+                "pace_low_seconds": 370,
+                "recovery_seconds": 120,
+                "pace_high_seconds": 375,
+                "counts_toward_mark": true
+              },
+              {
+                "role": "cool_down",
+                "shape": "continuous",
+                "rpe_low": null,
+                "distance": null,
+                "rpe_high": null,
+                "repeat_count": null,
+                "distance_unit": "mi",
+                "recovery_kind": null,
+                "duration_seconds": 600,
+                "pace_low_seconds": null,
+                "recovery_seconds": null,
+                "pace_high_seconds": null,
+                "counts_toward_mark": false
+              }
+            ]
+          },
+          {
+            "day": "WED",
+            "asks": null,
+            "role": "easy",
+            "label": "Easy run",
+            "title": "Easy",
+            "intent": "Recover from Tuesday's workout.",
+            "details": "Run at 4:55/km or slower. Keep the effort easy enough to hold a conversation. Shorten the run if you are still tired.",
+            "distance": 8,
+            "components": [
+              {
+                "role": "work",
+                "shape": "continuous",
+                "rpe_low": null,
+                "distance": 8,
+                "rpe_high": null,
+                "repeat_count": null,
+                "distance_unit": "km",
+                "recovery_kind": null,
+                "duration_seconds": null,
+                "pace_low_seconds": 475,
+                "recovery_seconds": null,
+                "pace_high_seconds": null,
+                "counts_toward_mark": false
+              }
+            ]
+          },
+          {
+            "day": "THU",
+            "asks": null,
+            "role": "support",
+            "label": "Easy run + strides",
+            "title": "Easy + 6 strides",
+            "intent": "Keep your legs moving comfortably during the lighter week.",
+            "details": "Run 8 km easy at 4:55/km or slower, then 6 × 20-second relaxed strides with 1 minute of easy recovery between them. Keep the strides smooth. Keep HYROX and leg training light this week too.",
+            "distance": 8,
+            "components": [
+              {
+                "role": "work",
+                "shape": "continuous",
+                "rpe_low": null,
+                "distance": 8,
+                "rpe_high": null,
+                "repeat_count": null,
+                "distance_unit": "km",
+                "recovery_kind": null,
+                "duration_seconds": null,
+                "pace_low_seconds": 475,
+                "recovery_seconds": null,
+                "pace_high_seconds": null,
+                "counts_toward_mark": false
+              },
+              {
+                "role": "work",
+                "shape": "repetitions",
+                "rpe_low": null,
+                "distance": null,
+                "rpe_high": null,
+                "repeat_count": 6,
+                "distance_unit": null,
+                "recovery_kind": "easy",
+                "duration_seconds": 20,
+                "pace_low_seconds": null,
+                "recovery_seconds": 60,
+                "pace_high_seconds": null,
+                "counts_toward_mark": false
+              }
+            ]
+          },
+          {
+            "day": "FRI",
+            "asks": null,
+            "role": "easy",
+            "label": "Easy run",
+            "title": "Easy",
+            "intent": "Keep the day light.",
+            "details": "Run 5 km very easy at 4:55/km or slower. If your legs still feel heavy, take the day off.",
+            "distance": 5,
+            "components": [
+              {
+                "role": "work",
+                "shape": "continuous",
+                "rpe_low": null,
+                "distance": 5,
+                "rpe_high": null,
+                "repeat_count": null,
+                "distance_unit": "km",
+                "recovery_kind": null,
+                "duration_seconds": null,
+                "pace_low_seconds": 475,
+                "recovery_seconds": null,
+                "pace_high_seconds": null,
+                "counts_toward_mark": false
+              }
+            ]
+          },
+          {
+            "day": "SAT",
+            "asks": null,
+            "role": "key",
+            "label": "Easy long run",
+            "title": "Long run",
+            "intent": "Build endurance at an easy pace.",
+            "details": "Run 16 km at 4:55/km or slower, at an easy conversational effort. Keep the same easy effort through the finish. Shorten the run if you are still tired.",
             "distance": 16,
             "components": [
               {
@@ -933,20 +922,20 @@
           }
         ],
         "week_number": 4,
-        "total_distance": 62
+        "total_distance": 57
       },
       {
         "phase": "taper",
-        "intent": "Lighter week before the October 29 5K. Continuous read follows recovery, not 48 hours before the test.",
+        "intent": "Keep the running easy before Thursday's 5K test. Take extra recovery afterward if you need it.",
         "sessions": [
           {
             "day": "MON",
             "asks": null,
             "role": "easy",
-            "label": "General aerobic",
+            "label": "Easy run",
             "title": "Easy",
-            "intent": "Gate week. Arrive at the reads with something in reserve.",
-            "details": "4:55/km or slower, governed by easy effort. Historical 45 mi/week is not a requirement today. Shorten with your coach if recent training or recovery does not support the planned volume.",
+            "intent": "Feel fresh for Thursday's 5K test.",
+            "details": "Run 7 km easy at 4:55/km or slower. Keep the effort comfortable and leave out extra hard work.",
             "distance": 7,
             "components": [
               {
@@ -969,11 +958,11 @@
           {
             "day": "TUE",
             "asks": null,
-            "role": "easy",
-            "label": "Easy",
-            "title": "Easy",
-            "intent": "Arrive recovered for the 5K read.",
-            "details": "Easy running only. No continuous working-pace test today. Gate 01 continues after the 5K once recovery is normal; November 3 is a candidate, not a compulsory session.",
+            "role": "support",
+            "label": "Easy run + strides",
+            "title": "Easy + 4 strides",
+            "intent": "Keep your legs fresh for Thursday's 5K test.",
+            "details": "Run 8 km easy at 4:55/km or slower, then 4 × 20-second relaxed strides with 1 minute of easy recovery between them.",
             "distance": 8,
             "components": [
               {
@@ -990,6 +979,21 @@
                 "recovery_seconds": null,
                 "pace_high_seconds": null,
                 "counts_toward_mark": false
+              },
+              {
+                "role": "work",
+                "shape": "repetitions",
+                "rpe_low": null,
+                "distance": null,
+                "rpe_high": null,
+                "repeat_count": 4,
+                "distance_unit": null,
+                "recovery_kind": "easy",
+                "duration_seconds": 20,
+                "pace_low_seconds": null,
+                "recovery_seconds": 60,
+                "pace_high_seconds": null,
+                "counts_toward_mark": false
               }
             ]
           },
@@ -997,17 +1001,17 @@
             "day": "WED",
             "asks": null,
             "role": "easy",
-            "label": "General aerobic",
+            "label": "Easy run",
             "title": "Easy",
-            "intent": "Recover for the ceiling read.",
-            "details": "4:55/km or slower, governed by easy effort. Historical 45 mi/week is not a requirement today. Shorten with your coach if recent training or recovery does not support the planned volume.",
-            "distance": 7,
+            "intent": "Feel fresh for Thursday's 5K test.",
+            "details": "Run 6 km easy at 4:55/km or slower. Keep the effort comfortable.",
+            "distance": 6,
             "components": [
               {
                 "role": "work",
                 "shape": "continuous",
                 "rpe_low": null,
-                "distance": 7,
+                "distance": 6,
                 "rpe_high": null,
                 "repeat_count": null,
                 "distance_unit": "km",
@@ -1024,10 +1028,10 @@
             "day": "THU",
             "asks": null,
             "role": "key",
-            "label": "Ceiling read",
-            "title": "5K ceiling read",
-            "intent": "Establish a current 5K field reference after lighter preceding work.",
-            "details": "Even start, strong finish. No prescribed pace. This is the only demanding test this week. Record course, conditions, splits, feel, effort and subsequent recovery. A hard race effort is expected here and is interpreted differently from a controlled Tuesday. Compare with April as historical context, not proof of a five-week causal gain.",
+            "label": "5K test",
+            "title": "5K test",
+            "intent": "Check your progress over 5 km.",
+            "details": "Warm up for 20 minutes. Run 5 km with an even start and a strong finish. Use a measured route where possible. Cool down for 10 minutes. Record your time, splits, effort, conditions, shoes, and how you feel over the following two days.",
             "distance": 10,
             "components": [
               {
@@ -1081,17 +1085,17 @@
             "day": "FRI",
             "asks": null,
             "role": "easy",
-            "label": "General aerobic",
+            "label": "Easy run",
             "title": "Easy",
-            "intent": "No extra work after the read.",
-            "details": "4:55/km or slower, governed by easy effort. Historical 45 mi/week is not a requirement today. Shorten with your coach if recent training or recovery does not support the planned volume.",
-            "distance": 6,
+            "intent": "Recover from the 5K test.",
+            "details": "Run 5 km very easy at 4:55/km or slower, or take the day off if you have not recovered from the 5K.",
+            "distance": 5,
             "components": [
               {
                 "role": "work",
                 "shape": "continuous",
                 "rpe_low": null,
-                "distance": 6,
+                "distance": 5,
                 "rpe_high": null,
                 "repeat_count": null,
                 "distance_unit": "km",
@@ -1108,17 +1112,17 @@
             "day": "SAT",
             "asks": null,
             "role": "key",
-            "label": "Long run",
-            "title": "Long run · down",
-            "intent": "Keep the long run easy and recoverable.",
-            "details": "No fast finish in Block 01. The distance is a plan, not a minimum. Use your recent comfortable long-run duration if shorter, and shorten again if recovery is not normal. Log conditions, fuel, fluid and any hard HYROX or lower-body work. Do not make up missed distance.",
-            "distance": 14,
+            "label": "Easy long run",
+            "title": "Long run",
+            "intent": "Return to easy running after the 5K test.",
+            "details": "Run 12 km easy at 4:55/km or slower only if you feel recovered from the 5K. Shorten to 8–10 km or rest if needed. Keep the same easy effort through the finish.",
+            "distance": 12,
             "components": [
               {
                 "role": "work",
                 "shape": "continuous",
                 "rpe_low": null,
-                "distance": 14,
+                "distance": 12,
                 "rpe_high": null,
                 "repeat_count": null,
                 "distance_unit": "km",
@@ -1133,23 +1137,19 @@
           }
         ],
         "week_number": 5,
-        "total_distance": 52
+        "total_distance": 48
       }
     ],
     "running": {
       "race_on": "2027-05-16",
-      "race_name": "Semi-Marathon de la Loire · Saumur",
+      "race_name": "Semi-Marathon de la Loire · Saumur, France",
       "starts_on": "2026-09-28",
-      "published_at": "2026-09-23T23:38:11.595701+00:00"
+      "published_at": "2026-10-08T08:06:16.344843+00:00"
     },
     "version": {
-      "cut_at": "2026-09-23T23:38:11.595701+00:00",
-      "number": 2,
-      "summary": "SIMON-003-R2-20260923 | Controlled running first; continuity next. Tuesday keeps 4 x 1.6 km, 4 x 2 km, 3 x 3 km, 2 x 4 km as conditional steps with 2 min very easy recovery. Thursday is 5 x 3, repeat 5 x 3, 4 x 4 if recovered, then 4 x 3. Week 5 Tuesday is easy before the October 29 5K. A 6-8 km continuous read is considered from November 3 after recovery and coach approval, not automatically assigned. Historical March 25 broken work supports the starting idea but does not establish current readiness, continuous capacity or a physiological threshold. A better hold with an unchanged 5K is a valid success."
+      "cut_at": "2026-10-08T08:06:16.344843+00:00",
+      "number": 5,
+      "summary": "Build toward a faster half marathon by running at a steady pace for longer. Tuesday is the main workout. Thursday adds shorter, faster intervals when you feel recovered. Saturday is an easy long run. The other runs stay easy so you can recover between workouts."
     }
-  },
-  "revision": "SIMON-003-R2-20260923",
-  "distance_unit": "km",
-  "schema_version": 1,
-  "pace_seconds_unit": "mi"
+  }
 }

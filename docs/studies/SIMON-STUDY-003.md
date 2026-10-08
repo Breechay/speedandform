@@ -1,6 +1,6 @@
 # Study 003: The Two Curves
 
-Owner: Brice. Athlete: Simon. Approved revision: **SIMON-003-R4-20261004**.
+Owner: Brice. Athlete: Simon. Approved prescription decision: **SIMON-003-R4-20261004**. Current delivery is **version 5**, public revision **SIMON-V5**, published October 8. It keeps R4’s numeric prescription and the October 6 recovery conditions while replacing the athlete-facing copy.
 Read this before changing the study, assigned plan, interpretation, or any Simon progression. It supersedes earlier September 23 proposals and R3 Block 01 prescriptions where they conflict. Reviews are inputs, not votes and not automatic instructions.
 
 R4 is the October 4 multi-review synthesis. **The Two Curves remains a coaching model, not a physiological diagnosis.**
@@ -18,7 +18,7 @@ Brice's working theory is that shorter fast work is **not** the main limiter. Si
 We test that instead of assuming it.
 
 - **Tuesday:** make the controlled work longer.
-- **Thursday:** use a smaller faster dose only when Tuesday is absorbed; otherwise easy/strides. Speed above race pace is supported, not owed.
+- **Thursday:** shorter, faster intervals only after a controlled Tuesday and normal recovery. Otherwise, easy running or rest. Hard HYROX or leg training also counts when choosing Thursday.
 - **Saturday:** easy long running.
 - **Oct 29:** 5K read. Did the short end move or at least stay intact?
 - **After recovery:** separate 6 km continuous read. What does sustained running cost now?
@@ -76,20 +76,20 @@ Archive byte hash: `f569106fc9659a4b0153edaee668b77bf8cf489a04f5ae7f7e5084257ab2
 | 1 | 4 x 1.6 km | Ceiling 5 x 3 min | 18 km | 63 |
 | 2 | 4 x 2 km if earned | Ceiling maintenance 4 x 3 min | 18 km | 64 |
 | 3 | 3 x 3 km if earned | Ceiling maintenance 3 x 4 min | 19 km | 66 |
-| 4 | 2 x 3 km absorption hold | Easy + 6 relaxed strides | 16 km | 57 |
+| 4 | 2 x 3 km at 3:50–3:53/km, lighter week | Easy + 6 relaxed strides | 16 km | 57 |
 | 5 | 8 km easy + 4 strides | Oct 29: 5K read | 12 km, shorten if needed | 48 |
 
-Block 01 Tuesday is now a **working-development band of 3:49-3:52/km**. Open near **3:52**; finishing there with control is enough. **3:47/km remains close to the 1:20 development center, not a pace that must be earned inside every October session.** All broken Tuesday recoveries are **two minutes very easy jogging**. No brisk float, no fast final repetition and no pace progression simply because Week 1 showed faster access. Record actual recovery pace, session effort, limiter and next-day response.
+Weeks 2 and 3 use a Tuesday band of **3:49-3:52/km**. Week 4 is deliberately slower at **3:50-3:53/km**. Canonical work components store 368–373 and 370–375 seconds per mile respectively; displayed kilometer paces are rounded once from those values. Open near **3:52**; finishing there with control is enough. **3:47/km remains close to the 1:20 development center, not a pace that must be earned inside every October session.** All broken Tuesday recoveries are **two minutes very easy jogging**. No brisk float, no fast final repetition and no pace progression simply because Week 1 showed faster access. Record actual recovery pace, session effort, limiter and next-day response.
 
-For Block 01, Thursday is **ceiling maintenance around 3:33-3:38/km**, not a weekly test. The Oct 1 3:29/km repetition is observed evidence, not a target. Week 2 uses 4 x 3 min; Week 3 uses 3 x 4 min only if Tuesday is absorbed; Week 4 has no formal ceiling workout. More Tuesday continuity explicitly means Thursday can shrink.
+For Block 01, Thursday is **ceiling maintenance around 3:33-3:38/km**, not a weekly test. The Oct 1 3:29/km repetition is observed evidence, not a target. Week 2 uses 4 x 3 min; Week 3 uses 3 x 4 min only after controlled Tuesday running and normal recovery; Week 4 has no formal ceiling workout. More Tuesday continuity explicitly means Thursday can shrink.
 
-The plan retains 20-minute warm-ups and 10-minute cooldowns on quality days unless a field-test protocol states otherwise. Session and week distances containing time-based components are planning estimates, not exact distance requirements. Sunday is unauthored, displayed as a dash. Saturday has no fast finish in Block 01. Its distance is not a minimum, especially after the 5K. Week 4 is deliberately a **true absorption week**: specific Tuesday volume is reduced, Thursday becomes easy + strides, Friday can disappear if needed, and a hard HYROX simulation would violate the week’s purpose.
+The plan retains 20-minute warm-ups and 10-minute cooldowns on quality days unless a field-test protocol states otherwise. Session and week distances containing time-based components are planning estimates, not exact distance requirements. Sunday is unauthored, displayed as a dash. Saturday has no fast finish in Block 01. Its distance is not a minimum, especially after the 5K. Week 4 is deliberately a **lighter week**: specific Tuesday volume is reduced, Thursday becomes easy + strides, Friday can disappear if needed, and a hard HYROX simulation would violate the week’s purpose.
 
 This is a coach-reviewed conditional plan, not an automatic readiness algorithm. Before Week 1, confirm recent running continuity, comfortable long-run duration, hard HYROX/leg work and current recovery. If current readiness is lower than the historical background, reduce the plan. Never protect the quality sessions at all costs while stripping away all easy support.
 
-## Week 1 filed: September 29
+## Historical snapshot: Week 1 filed on September 29
 
-Simon completed **4 x 1.6 km** in **5:57.0, 5:59.4, 6:01.7 and 6:34.8**, for **24:32.9 across 6.40 km**, a derived work average of about **3:50/km**. The prescribed working band remains **3:47-3:52/km**.
+Simon completed **4 x 1.6 km** in **5:57.0, 5:59.4, 6:01.7 and 6:34.8**, for **24:32.9 across 6.40 km**, a derived work average of about **3:50/km**. The band prescribed for that September 29 session was **3:47-3:52/km**. This is historical context, not the current Weeks 2–4 instruction.
 
 This is not a clean four-rep within-band pacing read. The first three reps were slightly faster than the band. Before the fourth, another coach told Simon his heart rate appeared too high for threshold work. Simon did not clarify that this was **working half-marathon pace, not threshold**, and deliberately slowed the final repetition. No numeric heart-rate series was supplied with the screenshot.
 
@@ -100,7 +100,7 @@ Therefore:
 - heart rate remains context, not a fixed cap or pass/fail gate in this plan;
 - Week 2's **4 x 2 km** remains conditional on normal recovery and controlled execution, exactly as authored. No faster band is created from this session.
 
-## Week 1 read: September 29 + October 1
+## Historical snapshot: Week 1 read, September 29 + October 1
 
 Week 1 supports the hypothesis; it does **not** prove it.
 
@@ -128,7 +128,7 @@ This is the **season architecture**, not thirty-two weeks of immutable workouts.
 
 | Phase | Dates | Primary problem | Tuesday | Thursday | Long run / Saturday | Decision evidence |
 |---|---|---|---|---|---|---|
-| 01 · Establish | Sep 28-Nov 1 | Baseline the hold and ceiling | Current HM-band ladder | Current ceiling progression | Easy durability | Oct 29 5K + candidate 6-8 km continuous read |
+| 01 · Establish | Sep 28-Nov 1 | Baseline the hold and ceiling | Current HM-band ladder | Current ceiling progression | Easy durability | Oct 29 5K + candidate 6 km continuous read |
 | 02 · Extend | Nov-Dec | Increase sustainable utilization | Longer controlled sustained work | Maintain ceiling; do not chase pace | Gradually extend easy durability | Cost, reserve, recovery and continuous duration |
 | 03 · Coexist | HYROX build / Dec | Preserve run development around competing load | Reduce or consolidate as needed | HYROX/hard leg work can replace quality | Protect recoverable aerobic support | Post-Nashville recovery and retained running |
 | 04 · Rebuild | Late Dec-Jan 31 | Restore continuity and prepare specificity | Threshold/HM-development emphasis | Small ceiling/10K stimulus | Long-run consistency | Fresh January field references |
@@ -147,7 +147,7 @@ This is the **season architecture**, not thirty-two weeks of immutable workouts.
 
 ### Four season gates
 
-**Gate 01 · November — establish.** Use the Oct 29 5K plus a coach-approved 6-8 km continuous read after recovery. Ask whether the ceiling moved, whether the hold became more continuous, and what each cost. Do not require both to improve.
+**Gate 01 · November — establish.** Use the Oct 29 5K plus a coach-approved 6 km continuous read after recovery. Ask whether the ceiling moved, whether the hold became more continuous, and what each cost. Do not require both to improve.
 
 **Gate 02 · January — re-establish after HYROX.** Before the Feb 1 specific block, obtain current field evidence after Nashville and the rebuild. Historical October fitness does not automatically become February prescription.
 
@@ -185,7 +185,7 @@ Simon has historically been capable of pace variation and may still need to deve
 
 When the race-specific block is actually authored, use **distance-based checkpoints rather than time-based ownership targets**. RPD's current architecture is the reference model: **broken work → 5 mi → 6 mi → 8 mi fresh ownership**, followed by a separate late-access durability question. A 9- or 10-mile continuous exposure can be considered only if Simon's own evidence makes it useful; it is not a missing rung.
 
-The late-stage objective is durability without recreating nearly the whole race in training. Use modest race-pace work after prior easy running (the reusable RPD direction is four late, then six late when absorbed) and let Simon's execution, reserve, fueling, mechanics and recovery decide whether any athlete-specific extension is warranted. Twelve continuous race-pace miles are not required for qualification or confidence.
+The late-stage objective is durability without recreating nearly the whole race in training. Use modest race-pace work after prior easy running (the reusable RPD direction is four late, then six late when execution and recovery support it) and let Simon's execution, reserve, fueling, mechanics and recovery decide whether any athlete-specific extension is warranted. Twelve continuous race-pace miles are not required for qualification or confidence.
 
 This also clarifies Brice's earlier use of **fade**. The hypothesis is broader than aerobic failure. The problem of interest is **pacing durability**: as distance accumulates, does Simon preserve the selected rhythm, trust it, and maintain the mechanical and physiological ability to keep expressing it? A shorter successful session can confirm access without answering that question.
 
@@ -243,17 +243,17 @@ References for interpretation, not automatic prescriptions: Garmin self-evaluati
 
 ## One prescription, two projections
 
-Canonical plan slug: `simon-ceiling-durability-01`. **R4 is the current assigned Block 01 plan version.** It preserves prior template/version history and completed evidence while revising only future work. The public study and app must continue to read from canonical approved data rather than treating screenshots, captions or review prose as a second source of truth.
+Canonical plan slug: `simon-ceiling-durability-01`. **R4 owns the current Block 01 doses and progression.** Later copy-only delivery versions keep those numbers and preserve the performed-session history. It preserves prior template/version history and completed evidence while revising only future work. The public study and app must continue to read from canonical approved data rather than treating screenshots, captions or review prose as a second source of truth.
 
 The app reads the normal assigned plan feed. The site reads **`study_003_plan()`**, a no-argument, read-only public projection of the explicitly approved `plan_publications` row. It exposes no private filings, memberships, contact details, or arbitrary other plans. `public_plan(text)` stays service-role-only. The wrapper refuses to call the public schedule current when it detects assignment/publication drift.
 
-`published-plan.json` / `published-plan.js` are dated offline fallbacks generated from that approved publication, not another place to author paces. `plan-projection.js` converts canonical pace seconds per mile into native km and selected display units. Runtime refresh reads the approved publication; failure leaves the saved version visible and explicitly labeled. No-JavaScript HTML contains the full saved block.
+`published-plan.json` / `published-plan.js` are dated offline fallbacks generated from that approved publication, not another place to author paces. `plan-projection.js` converts canonical pace seconds per mile into native km and selected display units. The full work-component list includes strides. Runtime refresh updates the grid, current pace cards and the English block summary together. The visible **Refresh plan** button repeats that read; failure leaves the saved version visible and explicitly labeled. No-JavaScript HTML contains the full saved block.
 
 For future edits:
 1. Read this file, source evidence and the latest canonical assignment. Distinguish a proposal from owner approval.
 2. Cut a new template version and append future athlete session versions. Preserve identity, history, units and mark eligibility. Never mutate performed evidence to match a new story.
 3. Review the exact public subset and publish the matching version. Never auto-publish private athlete notes.
-4. Refresh the saved projection with `node scripts/studies/build-simon-r2.cjs --refresh-only`, then run the contract and browser tests. Update both English and French copy, calendar references and the root roadmap.
+4. Refresh the saved projection with `node scripts/studies/build-simon-r2.cjs --refresh-only --expected-revision <approved-revision>`, then run `node tests/simon-study-r2.cjs` and the browser acceptance checks. The compatibility filenames no longer pin the build to R2. `scripts/studies/simon-study-copy.cjs` owns the public translations; the English block summary comes from `payload.version.summary`. Update the matching French translation, calendar references and the root roadmap. An approved public RPC snapshot can be supplied with `--publication-file`; never use a private coach feed as its input.
 5. Check actual app-feed values and web production. An HTML edit is not proof that the app changed; a ready deploy is not a screenshot inspection.
 
 ## Forward calendar and open questions
@@ -282,8 +282,16 @@ Simon is newer to the explicit FORM rule that the week's main question must be p
 For Block 01:
 - **Tuesday owns the primary running question.**
 - Monday is there to arrive normal. No unscheduled hard lower-body / HYROX work, bonus intervals or fast finish should be added before Tuesday.
-- **Thursday is earned by Tuesday's absorption.** The prescribed ceiling dose is an option when recovery is normal; HYROX or demanding lower-body work can replace it.
+- **Thursday depends on Tuesday and recovery.** Use the faster intervals only after controlled Tuesday running and normal recovery. Easy running or rest can replace them; HYROX or demanding lower-body work also counts toward this decision.
 - Saturday remains easy in this block.
 - A reduced or skipped Thursday is not training debt.
 
 This is a teaching / priority clarification, not a new pace band or a reason to change R4's current Tuesday progression.
+
+## October 8: plain athlete copy and publication parity
+
+Athlete-facing block copy explains the goal and what each training day does. Technical coaching interpretation stays in the coach record. Do not show `absorbed`, `absorption`, `working development`, `ceiling maintenance`, or defensive race-prediction statements as plan instructions. The internal `absorb` phase enum maps to **Lighter week** in English and **Semaine allégée** in French. Recovery conditions still apply.
+
+Current pace cards must come from the approved publication, including the slower Week 4 Tuesday range. Week 1 is labeled a **plan snapshot**, with the earlier numbers retained. Historical workout reports remain dated evidence rather than being rewritten to match a newer plan. The September 4 workout card shows its two recorded repetitions, not an invented current threshold band.
+
+New private athlete reports and weekly-load notes belong in the existing private coaching record. Updating this public projection does not publish those messages. The static fallback, live public RPC and normal assigned app feed are separate readbacks; test each one and report physical-device verification separately.
