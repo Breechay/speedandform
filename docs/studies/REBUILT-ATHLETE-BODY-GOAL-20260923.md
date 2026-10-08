@@ -1,25 +1,70 @@
 # Rebuilt Athlete: body-goal revision
 
-Owner decision: Brice, September 23, 2026.
+Current owner decision: Brice, October 8, 2026. Original record: September 23, 2026.
 
 ## Current goal
+- Preferred bodyweight center: **about 185 lb**.
+- Preferred range: **180–185 lb**, with **187 lb also acceptable**. Keep the preferred range and the acceptable upper weight distinct.
+- Physique: **impressively muscular**. Building visible muscle is an explicit aim of this phase.
+- Running: gradually make **6:00/mi feel controlled and sustainable as half-marathon race pace**, with **a half marathon around 1:20 whenever ready**.
+- Race timing: **no selected event or deadline**. The pace is a future development goal, not today's prescribed training pace.
+- The earlier 8–10% body-fat aspiration remains historical context. It is not a required target for this phase.
+- Fuel muscle development, training and recovery. A lower scale reading is not the measure of success.
+
+This October 8 decision supersedes earlier active references to a preferred 182 lb center or to 185 lb as an upper anchor. Dated observations and original decisions below remain history.
+
+## Current study question
+
+**Can I build an impressively muscular body around 185 lb and gradually make 6:00/mi a comfortable half-marathon race pace?**
+
+The aim overlaps with Adrian's study: develop muscular size while retaining useful running speed. Brice's training progression remains individual.
+
+### Pace interpretation
+- Official half-marathon distance: 21.0975 km / 13.1093787 mi.
+- **6:00/mi** for the full distance gives **1:18:39**.
+- **1:20:00** requires an average of **about 6:06/mi**.
+- Preserve the owner's approximate 1:20 race goal and his separate 6:00/mi development aim. Do not turn either into a current race prediction.
+- Here, comfortable means controlled movement and sustainable race effort. It does not mean easy-run effort.
+
+### Current phase and later ambitions
+Build visible muscle alongside repeatable easy running. Then gradually develop the time Brice can spend running faster, guided by running response and recovery.
+
+The existing mileage-first running approach continues through roughly the end of 2026 or until Brice feels confident and sturdy. It has no automatic date for starting intensity. Muscle development is now explicit alongside that patient running progression.
+
+The October 5 ultra, HYROX, 5K and marathon ambitions remain longer-term interests. They do not create additional demands or a race deadline for this phase. The later 1:17–1:18 coaching bridge is not this phase's target.
+
+## Connected source and scope
+
+The current visible study and the revised `study-002-long-horizon` structured goal record in `labs/rebuilt-athlete/index.html` carry this same October 8 direction.
+
+This is a goal revision. The canonical October 5–11 **31-mile hold week**, existing pace-free easy running, Forge programming and native assignments are unchanged. Any future assigned pace, workout or recovery change must originate in the FORM Athlete System before projection.
+
+Historical measurements, completed training, dated study entries and embedded images remain unchanged. Source verification and publication status are recorded in `docs/roadmap/FORM-ROADMAP.md`.
+
+## September 23–24 · original decision and release history
+
+The following record describes the earlier goal and its release. Its bodyweight preference is superseded by the October 8 current goal above.
+
+Original owner decision: Brice, September 23, 2026.
+
+### September 23 goal
 - Headline bodyweight direction: **180–185 lb**, with **~182 lb as the current preferred center**.
 - **185 lb remains a useful upper anchor, not a compulsory finish line.** The athlete reports that when his eating/training rhythm is disciplined and stable, he normally settles closer to 180–185 lb.
 - Body fat: **8–10% as an aspiration**, not a mandatory device reading or clearance gate.
 - Keep the fuller build the athlete likes. Additional muscle is welcome within his weight preference; a sustained 190 lb baseline is not his objective.
 
-## Evidence and decisions
+### Evidence and decisions
 The athlete reports liking how he looks. Comparable morning weights and photos are pending. Do not treat an evening measurement as an established morning baseline, infer verified fat or muscle gain, or prescribe a five-pound cut from it. This revision does not authorize a calorie deficit, changed workouts, or clinical clearance.
 
 Historical measurements and completed training stay unchanged. The 180 lb protein calculation is a labeled nutrition reference, not the current bodyweight goal.
 
-## Connected source and scope
+### Connected source and scope
 The visible study and its embedded structured body record were updated together in `labs/rebuilt-athlete/index.html`. Actual weight and body-fat fields remain null until appropriate evidence is filed. This note records the owner decision for future agents. Native assignment changes or app synchronization are not claimed; no assigned workout was changed. Existing raster social artwork was not regenerated.
 
-## Acceptance
+### Acceptance
 Current goal anchors, embedded-image preservation, measured-value preservation, JSON parsing and inline JavaScript syntax passed in GitHub Actions run `35942800253`.
 
-## Production receipt
+### Production receipt
 - Tested source: `fbb39b05c8ce5cc61ed4ac8a1178dd9a6c4a6d69` on `main`.
 - Netlify site: `f3914a6a-a9ce-465e-8212-f5f42597c469` (`speedandform.com`).
 - Production deploy: `6ab47beae42dc000086764a1`, ready and published September 24, 2026 at 01:25:30 UTC (September 23 in Miami).
