@@ -1,3 +1,12 @@
+## October 8 · Brice: muscle development and half-marathon comeback
+
+Authority: [Rebuilt Athlete body-goal record](../studies/REBUILT-ATHLETE-BODY-GOAL-20260923.md). Brice now prefers about 185 lb within 180–185 lb, with 187 lb acceptable. This phase explicitly develops an impressively muscular physique and gradually works toward comfortable 6:00/mi half-marathon race pace, with a race around 1:20 whenever ready. Later road, HYROX and ultra ambitions remain secondary.
+
+- [x] Current study copy, body metric, BODY card, search/share descriptions and `study-002-long-horizon` structured goals agree with the October 8 owner direction. The note clearly marks the previous 182 lb preference as historical.
+- [x] Goal-only scope: the canonical October 5–11 31-mile hold week, assigned paces, Forge programming, measured values, historical filings and embedded images are preserved.
+- [x] Prepared source verification: all embedded JSON parses; executable scripts, style blocks, archive records and the September opening baseline remain unchanged. Current visible and structured goals match. Pace arithmetic uses the official half-marathon distance.
+- [ ] Release: review the PR's hosted checks and publish with the next authorized website release. The local execution environment is unavailable, so no local build, browser, physical-device or new app synchronization result is claimed. The PR carries the exact source commit and hosted-check receipts.
+
 ## October 8 · Simon plan clarity and pace display
 
 Current authority: [Study 003 protocol](../studies/SIMON-STUDY-003.md). R5 is a plain-language revision of the R4 prescription. The live approved publication reads `SIMON-V5`; the assignment, calendar, workout amounts, recoveries and marks are unchanged. The block summary explains Tuesday's main intervals, Thursday's shorter faster work when recovered, Saturday's easy long run and easy running between workouts. Current and future workout titles are literal; the recovery condition remains beside the workout.
