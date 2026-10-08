@@ -4,6 +4,22 @@ Owner: Brice Ikouebe
 Opened: 2026-10-05  
 Public case-study consent: confirmed by coach from the athlete before publication.
 
+## October 8 · Strength sessions on the web
+
+Brice requested a phone-first reading page while Tinius's app still shows the general Sculpt program. The companion is `/plans/tinius-durable-frame-phase-01/`, with a reciprocal link from `/labs/the-durable-frame/`.
+
+The page projects the approved `tinius_durable_frame_phase01_v1` program from FORM-iOS PR #46, merge `4e66e13f9e3e8303a8a5a731249af15df239ecdf`. Its source is `FORM/Forge/ForgeProgramLibrary+CatalogAthletePrograms.swift`, blob `8ac710928c4153d0ad1fdb7655726ffccd089176`. The same Tinius program section is unchanged on the current `work/adrian-frame-on-deployed-20261006` branch at this review. Website PR #242 at `2df1cba3066730b198b0341ce17829cb881b19cc` contains the matching base exercise map; the older website v0 outline is superseded by this explicit six-week projection.
+
+`plans/tinius-durable-frame-phase-01/program.json` preserves all six authored weeks, 18 session IDs, 120 exercise instances and 330 set prescriptions. `scripts/build-tinius-strength.cjs` generates the static HTML. The page's JavaScript selects an existing week/session and shares its URL. It does not infer current position, create an assignment, record completion or claim app synchronization. All six weeks remain readable without JavaScript.
+
+Plain page labels are Start here, Repeat, Build, Keep building, Lighter week and Review. Numeric prescriptions are unchanged. The native per-set effort target controls the displayed "How hard?" instruction; three legacy push-up/curl cues also contain a conflicting two-reps-left phrase, which is omitted from presentation while the original source cue is retained. Timed sets preserve the native 30-second target and display the authored 30–45-second range. No numerical weight is inferred.
+
+Keep the Week 3 extra-set condition, Week 6 recovery condition and Thursday restriction beside the relevant work. Thursday's hard run means intervals, a tempo run or a hill workout, not any easy run over hilly terrain. No fourth strength day, bonus exercises or Friday/Saturday make-up session is added.
+
+The page is an approved-program reading companion, not a live server assignment export. Current FORM server assignment and native access work must be completed through their owning workflow; this page does not manufacture that integration. Future prescription changes must first update the approved owning program/assignment, then regenerate this projection. Public page metadata contains only program/version provenance and approved prescription data, with no private account identifiers, credentials, screenshots or medical notes.
+
+Validation and release evidence are recorded in the October 8 roadmap entry and the associated pull request. Browser-width checks are separate from a physical-device or native-app check.
+
 ## Question
 
 **Can Tinius rebuild a sharper, more muscular athletic frame while his FORM running development continues — without strength work stealing from the running?**
