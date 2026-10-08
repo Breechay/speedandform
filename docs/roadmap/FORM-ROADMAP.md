@@ -7,6 +7,18 @@ Authority: [Rebuilt Athlete body-goal record](../studies/REBUILT-ATHLETE-BODY-GO
 - [x] Prepared source verification: all embedded JSON parses; executable scripts, style blocks, archive records and the September opening baseline remain unchanged. Current visible and structured goals match. Pace arithmetic uses the official half-marathon distance.
 - [ ] Release: review the PR's hosted checks and publish with the next authorized website release. The local execution environment is unavailable, so no local build, browser, physical-device or new app synchronization result is claimed. The PR carries the exact source commit and hosted-check receipts.
 
+## October 8 · Tinius strength companion
+
+Owner request: give Tinius a phone-first link to his approved strength sessions while the app access issue is being fixed. Source and connection details: [Tinius Study 004](../studies/TINIUS-DURABLE-FRAME-20261005.md#october-8--strength-sessions-on-the-web).
+
+- [x] Replace the older outline at `/plans/tinius-durable-frame-phase-01/` with the approved six-week native `tinius_durable_frame_phase01_v1` projection. All 120 exercise instances and 330 set prescriptions match the approved source. The added Frame A rear-delt work, Frame B shrugs, 8–15 chest range and exact lighter-week set counts are preserved.
+- [x] Add week selection, three session views, exact-session share links, readable sets/reps/rest, per-exercise effort instructions and no-JavaScript access. Apply current bone/ink house type and single rules. Link the companion and `/labs/the-durable-frame/` both ways; keep the companion noindex and outside public discovery lists.
+- [x] Preserve Thursday's recovery restriction, Week 3's conditional extra sets and Week 6's conditional return to Week 4. No workout filing, inferred current week, new database assignment or native access change is introduced.
+- [x] Independent source/HTML parity, deterministic generation, JavaScript syntax and the full configured Netlify build pass. Existing house checks report zero errors and nine pre-existing warnings. Unrelated build-generated source changes were excluded from this patch.
+- [x] Local Chromium acceptance covers 375, 390, 430, 768 and 1440px, all week/session views, larger text, keyboard/touch, direct links/history, three share paths and no-JavaScript content. Phone and desktop screenshots were visually reviewed. The scoped PR workflow repeats Chromium and adds WebKit at 390px; its artifacts identify the exact tested commit.
+
+Release receipt: the associated pull request records the reviewed source head, hosted check results, merge and actual Netlify publication. This source entry is not a claim about Tinius's installed app or a physical iPhone check. The remaining app access/integration work stays in its existing stream.
+
 ## October 8 · Simon plan clarity and pace display
 
 Current authority: [Study 003 protocol](../studies/SIMON-STUDY-003.md). R5 is a plain-language revision of the R4 prescription. The live approved publication reads `SIMON-V5`; the assignment, calendar, workout amounts, recoveries and marks are unchanged. The block summary explains Tuesday's main intervals, Thursday's shorter faster work when recovered, Saturday's easy long run and easy running between workouts. Current and future workout titles are literal; the recovery condition remains beside the workout.

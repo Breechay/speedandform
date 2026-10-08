@@ -1,0 +1,55 @@
+name: Tinius strength companion
+on:
+  pull_request:
+    paths:
+      - 'plans/tinius-durable-frame-phase-01/**'
+      - 'labs/the-durable-frame/**'
+      - scripts/build-tinius-strength.cjs
+      - 'tests/tinius-strength*'
+      - .github/workflows/tinius-strength.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: tinius-strength-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify authored page generation
+        run: |
+          mkdir -p /tmp/tinius-strength-qa
+          node --check scripts/build-tinius-strength.cjs
+          node --check plans/tinius-durable-frame-phase-01/strength.js
+          node --check tests/tinius-strength-browser.cjs
+          node scripts/build-tinius-strength.cjs
+          git diff --exit-code -- plans/tinius-durable-frame-phase-01/
+      - name: Install browser tooling
+        run: |
+          npm install --prefix /tmp/tinius-browser-check --no-audit --no-fund playwright@1.55.0
+          /tmp/tinius-browser-check/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Phone, desktop and fallback acceptance
+        env:
+          PLAYWRIGHT_MODULE: /tmp/tinius-browser-check/node_modules/playwright
+        run: |
+          python -m http.server 8765 >/tmp/tinius-strength-qa/server.log 2>&1 &
+          node tests/tinius-strength-browser.cjs
+      - name: Record tested source
+        if: always()
+        run: |
+          mkdir -p /tmp/tinius-strength-qa
+          git rev-parse HEAD > /tmp/tinius-strength-qa/tested-commit.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tinius-strength-acceptance
+          path: /tmp/tinius-strength-qa/
+          retention-days: 14
