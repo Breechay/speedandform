@@ -200,6 +200,18 @@ If an abbreviation is useful, spell it out first. If a term such as threshold, f
 
 Do not make education a prerequisite for compliance.
 
+### October 8: explain the block plainly
+
+Brice rejected the athlete-facing Simon block description and workout labels. A block description says what the athlete will do and what it builds. Keep the coach's hypotheses, evidence qualifications and race-prediction discussion in the coach record.
+
+- Name the work directly: `4 × 2 km`, `4 × 3 min`, `Easy run`, or `Easy + 6 relaxed strides`.
+- Put the recovery instruction beside the workout: `Run the intervals only if you have recovered from Tuesday. If you are still tired, run easy or rest.`
+- Use `recovered` and `lighter week` instead of `absorbed`, `absorption` or `true absorption week` in current athlete instructions.
+- Keep phrases such as `working development`, `ceiling maintenance`, `quality budget` and `no race prediction is established` out of athlete block descriptions and workout labels. The coach can keep the precise reasoning in private notes.
+- Do not remove a recovery condition while simplifying its wording. Do not turn an observation into a completion, pace change or race prediction.
+
+Apply this to the canonical plan data as well as the interface. A display-only replacement leaves the rejected wording in the next refresh. Preserve dated historical evidence and its original prescription.
+
 ## Acceptance test
 
 Before publishing athlete-facing copy, ask:

@@ -1,3 +1,14 @@
+## October 8 · Simon plan clarity and pace display
+
+Current authority: [Study 003 protocol](../studies/SIMON-STUDY-003.md). R5 is a plain-language revision of the R4 prescription. The live approved publication reads `SIMON-V5`; the assignment, calendar, workout amounts, recoveries and marks are unchanged. The block summary explains Tuesday's main intervals, Thursday's shorter faster work when recovered, Saturday's easy long run and easy running between workouts. Current and future workout titles are literal; the recovery condition remains beside the workout.
+
+- [x] Canonical R5 summary and 24 appended current-week/future session copy versions are live. Previous session versions and completion records are preserved. The study's private screenshot intake is recorded in the athlete system, outside the public projection.
+- [x] Both authorized plan feeds return component pace numbers and correctly unit-labeled legacy clocks. Applied migration: `20261008075900_coaching_feed_typed_pace_seconds_and_display_units.sql`. Tuesday weeks 2–3: 3:49–3:52/km; Thursday weeks 2–3: 3:33–3:38/km; week 4 Tuesday: 3:50–3:53/km; easy running: 4:55/km or slower.
+- [x] The approved study publication and assigned R5 pass the existing public/private parity check. Weekly planned totals remain 63 / 64 / 66 / 57 / 48 km. Earlier R2 snapshots are historical.
+- [x] Web source acceptance: plain EN/FR plan copy, visible Refresh plan, current pace cards, full easy-plus-strides anatomy, prescribed rest alternatives and an honest saved fallback. The focused contract, 86-page reading check and six-width Chromium checks pass; public House integrity has zero errors. CI and production receipts follow the exact source commit.
+- [ ] Native source acceptance and PR receipt: numeric pace conversion, visible Refresh plan for the athlete being viewed, saved-state handling and End of block when the target race lies outside the block.
+- [ ] Native installation, physical-iPhone review and public website deployment are separate release checks; this data readback does not establish them.
+
 ## October 6 · Standalone Run Development, remaining plans and public previews
 
 The complete source and validation record is in [the half-marathon checklist](HALF-MARATHON-LIBRARY-20261006.md), under the collection continuation. Run Development keeps homepage intake; six/eight/sixteen-week resources and faster-half guide are complete; 80 public previews follow the current house. Google site-event receipt and the exact GA stream match are confirmed; new resource and accepted-inquiry receipt remain separate. No new ad launch or spend. Source is ready for coordinated publication; physical-phone/Safari review remains open.
@@ -428,7 +439,7 @@ Acceptance run: https://github.com/Breechay/speedandform/actions/runs/3595220254
 
 ## September 23 · Simon evidence revision R2
 
-**Current authority:** [Study 003 protocol](../studies/SIMON-STUDY-003.md), canonical plan version 2, revision `SIMON-003-R2-20260923`. This supersedes earlier same-day Simon training recommendations below, not other athletes. Tuesday retains the first four ladder steps with two-minute very easy recoveries. Thursdays: 5×3, repeat 5×3, 4×4 if recovered, reduced 4×3, then 5K. Oct 27 is easy; Oct 29 is the 5K; a 6–8 km continuous read is a Nov 3-or-later candidate requiring coach approval after recovery. Planned totals are 63 / 67 / 70 / 62 / 52 km, not minimums. No new completed evidence or mark ownership was invented.
+**Historical R2 decision:** canonical plan version 2, revision `SIMON-003-R2-20260923`, superseded for current work by the R4 prescription and October 8 R5 copy correction in the [Study 003 protocol](../studies/SIMON-STUDY-003.md). The following paragraph records the September 23 decision; its bands, totals and candidate test length are not the current prescription. Tuesday retains the first four ladder steps with two-minute very easy recoveries. Thursdays: 5×3, repeat 5×3, 4×4 if recovered, reduced 4×3, then 5K. Oct 27 is easy; Oct 29 is the 5K; a 6–8 km continuous read is a Nov 3-or-later candidate requiring coach approval after recovery. Planned totals are 63 / 67 / 70 / 62 / 52 km, not minimums. No new completed evidence or mark ownership was invented.
 
 Historical March 25 is 32 broken minutes with a favourable activity report, not a continuous or laboratory test. March 11 remains a partial recording with reason unknown. Historical 45 mi/week is a coach report, not current-volume verification. A better hold with an unchanged 5K is progress. No arbitrary 175-bpm cap, universal drift threshold, fixed threshold-to-half offset or automatic peak mileage is adopted.
 

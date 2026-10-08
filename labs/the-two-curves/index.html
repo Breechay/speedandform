@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-study-revision="SIMON-003-R4-20261004">
+<html lang="en" data-study-revision="SIMON-V5">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..700&family=Space+Mono:wght@400;700&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"The Two Curves · FORM Human Performance Study 003","description":"Simon ran 1:26:13 for the half and 17:36 for 5K. FORM Study 003 follows him as the ceiling and the hold rise together.","datePublished":"2026-09-23","dateModified":"2026-10-01","inLanguage":["en","fr"],"mainEntityOfPage":"https://speedandform.com/labs/the-two-curves/","image":"https://speedandform.com/labs/the-two-curves/og.jpg","author":{"@type":"Organization","name":"FORM","url":"https://speedandform.com/"},"publisher":{"@type":"Organization","name":"FORM","url":"https://speedandform.com/"}}
+{"@context":"https://schema.org","@type":"Article","headline":"The Two Curves · FORM Human Performance Study 003","description":"Simon ran 1:26:13 for the half and 17:36 for 5K. FORM Study 003 follows his training toward holding a steady pace for longer.","datePublished":"2026-09-23","dateModified":"2026-10-08","inLanguage":["en","fr"],"mainEntityOfPage":"https://speedandform.com/labs/the-two-curves/","image":"https://speedandform.com/labs/the-two-curves/og.jpg","author":{"@type":"Organization","name":"FORM","url":"https://speedandform.com/"},"publisher":{"@type":"Organization","name":"FORM","url":"https://speedandform.com/"}}
 </script>
 <style>
 :root{
@@ -423,6 +423,13 @@ table.rtc{width:100%;border-collapse:collapse}
 .keys,.tools>div,.keys>div{min-width:0}.keys .lbl{white-space:normal}
 
 .study-bridge{border-top:1px solid var(--rule-hard);padding:42px 0 48px}.study-bridge__grid{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end}.study-bridge small{display:block;margin-bottom:10px;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--graphite)}.study-bridge h3{margin:0;font-size:clamp(26px,3vw,42px);line-height:1;letter-spacing:-.04em}.study-bridge p{margin:12px 0 0;max-width:650px;color:var(--ink-2)}.study-bridge a{display:inline-block;padding:12px 0;border-bottom:1px solid var(--ink);font-family:var(--f-mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;text-decoration:none;white-space:nowrap}@media(max-width:700px){.study-bridge__grid{grid-template-columns:1fr;align-items:start}.study-bridge a{justify-self:start}}
+/* STUDY003_REFRESH_CONTROL */
+.plan-publication{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;margin:8px 0 12px}
+.plan-publication .plan-source{margin:0;flex:1 1 260px}
+.plan-refresh{font:13px/1.4 var(--f-mono);border:1px solid var(--rule-hard);padding:11px 16px;min-height:44px}
+.plan-refresh:hover{background:var(--paper-hi)}.plan-refresh:disabled{cursor:wait;opacity:.65}
+.plan-note{display:block;margin-top:10px;font:13px/1.5 var(--f-text);color:var(--ink-2)}
+.keys b[data-i="pace.history"]{white-space:normal;max-width:17ch}
 </style>
 <style id="form-observation-style">.form-observation-note{display:block;position:relative;box-sizing:border-box;max-width:1040px;margin:48px auto;padding:28px 24px;border-top:1px solid currentColor;scroll-margin-top:100px}.form-observation-note h2{font:inherit;font-size:clamp(25px,4vw,40px);font-weight:700;line-height:1.15;letter-spacing:0;margin:8px 0 20px}.form-observation-note p{font-size:17px;line-height:1.6;max-width:66ch;letter-spacing:0}.form-observation-note .obs-label{font-size:13px;letter-spacing:.04em}.form-observation-note a{color:inherit;text-decoration:underline}.form-observation-note dl{display:grid;grid-template-columns:100px 1fr;gap:14px 20px;margin:26px 0;font-size:16px;line-height:1.5}.form-observation-note dt{font-weight:700}.form-observation-note dd{margin:0}.form-observation-note blockquote{font:inherit;font-size:20px;line-height:1.5;margin:24px 0;max-width:60ch}@media(max-width:430px){.form-observation-note{padding:24px 20px;margin:32px auto}.form-observation-note dl{grid-template-columns:1fr;gap:5px}.form-observation-note dd{margin-bottom:12px}}</style>
 <link rel="stylesheet" href="/css/sf-brand.css?v=20261001">
@@ -437,7 +444,7 @@ table.rtc{width:100%;border-collapse:collapse}
       <a href="#races" data-i="nav.races">Races</a>
       <a href="#evidence" data-i="nav.evidence">Evidence</a>
     </nav>
-    <div class="mast__creed" data-i="creed">Higher ceiling. Longer hold.</div>
+    <div class="mast__creed" data-i="creed">Hold a steady pace for longer.</div>
     <div class="ctl">
       <div class="langs" role="group" aria-label="Language">
         <button class="flag" type="button" data-lang="en" aria-pressed="true" aria-label="English" title="English">
@@ -473,11 +480,11 @@ Historical evidence is qualified in evidence.json. Hidden comments are not priva
       <dl class="metrics">
         <div><dt data-i="m.half">Half</dt><dd>1:26:13<small data-u="rp:6:34|4:05">6:34/mi</small></dd></div>
         <div><dt data-i="m.5k">5K</dt><dd>17:36<small data-u="rp:5:41|3:31">5:41/mi</small></dd></div>
-        <div><dt data-i="m.goal">Goal</dt><dd>1:19–1:23<small data-u="p:227-232">3:47–3:52/km</small></dd></div>
+        <div><dt data-i="m.goal">Goal</dt><dd>1:19–1:23<small data-i="m.goalnote">Half-marathon goal</small></dd></div>
         <div><dt data-i="m.status">Status</dt><dd class="live"><span class="dot"></span><span id="statusTxt">Opens Sep 28</span><small id="statusSub">Block 01</small></dd></div>
       </dl>
       <h2 class="display claim" data-i="claim">Speed is there.<br>Can it last?</h2>
-      <p class="claim-sub" data-i="claimsub">Test the hold. Keep enough speed above it.</p>
+      <p class="claim-sub" data-i="claimsub">Build endurance. Keep the faster running.</p>
     </div>
 
     <div class="wall__stage">
@@ -495,23 +502,23 @@ Historical evidence is qualified in evidence.json. Hidden comments are not priva
         <dl>
           <div><dt data-i="rb.races">Races</dt><dd data-i="rb.races.v">2 official</dd></div>
           <div><dt data-i="rb.thr">Work history</dt><dd data-i="rb.thr.v">Recorded + reported</dd></div>
-          <div><dt data-i="rb.next">Next assessment</dt><dd data-i="rb.next.v">Gate 01 · 5K · Oct 29</dd></div>
+          <div><dt data-i="rb.next">Next assessment</dt><dd data-i="rb.next.v">5K · Oct 29</dd></div>
           <div><dt data-i="rb.b1">Block 01</dt><dd data-i="rb.b1.v">Opens Sep 28</dd></div>
           <div><dt data-i="rb.goal">Goal race</dt><dd data-i="rb.goal.v">16 May · Saumur</dd></div>
         </dl>
       </div>
-      <p class="rail-note" data-i="railnote">Neither curve may cost the other.</p>
+      <p class="rail-note" data-i="railnote">Leave room to recover between workouts.</p>
     </aside>
 
     <nav class="cards" aria-label="Study summary">
       <a class="card" href="#races">
         <span class="card__n">01</span><span class="card__t" data-i="c1.t">Question</span>
-        <p data-i="c1.p">Can he carry a faster pace for longer without the work becoming too costly?</p>
-        <p class="sub" data-i="c1.s">We do not assume the answer is threshold, durability or pacing. We test it.</p>
+        <p data-i="c1.p">Can Simon hold a steady pace for longer?</p>
+        <p class="sub" data-i="c1.s">We follow his pacing, effort and recovery as the runs get longer.</p>
       </a>
       <a class="card" href="#plan">
         <span class="card__n">02</span><span class="card__t" data-i="c2.t">The plan</span>
-        <p data-i="c2.p">Tuesday: longer controlled work. Thursday: smaller faster support. Saturday: easy long run.</p>
+        <p data-i="c2.p">Tuesday: longer repeats. Thursday: shorter, faster intervals if recovered. Saturday: an easy long run.</p>
         <span class="go" data-i="c2.go">Change one thing at a time</span>
       </a>
       <a class="card" href="#evidence">
@@ -519,7 +526,7 @@ Historical evidence is qualified in evidence.json. Hidden comments are not priva
         <ul class="evl">
           <li><b data-i="c3.a">Races</b><span data-i="c3.av">2 official results</span></li>
           <li><b data-i="c3.b">Work history</b><span data-i="c3.bv">March + September</span></li>
-          <li><b data-i="c3.c">Block 01</b><span data-i="c3.cv">Nothing filed yet</span></li>
+          <li><b data-i="c3.c">Block 01</b><span data-i="c3.cv">Sep 29 + Oct 1</span></li>
         </ul>
       </a>
       <a class="card" href="#races">
@@ -527,7 +534,7 @@ Historical evidence is qualified in evidence.json. Hidden comments are not priva
         <ul class="evl">
           <li><b data-i="c4.a">Apr 12</b><span data-i="c4.av">Half · 1:26:13</span></li>
           <li><b data-i="c4.b">Apr 23</b><span data-i="c4.bv">5K · 17:36</span></li>
-          <li><b data-i="c4.c">Oct 29</b><span class="open" data-i="c4.cv">5K · Gate 01</span></li>
+          <li><b data-i="c4.c">Oct 29</b><span class="open" data-i="c4.cv">5K test</span></li>
         </ul>
       </a>
     </nav>
@@ -549,28 +556,28 @@ Historical evidence is qualified in evidence.json. Hidden comments are not priva
   <div class="shell">
     <div class="sec-head">
       <div class="sec-num">00</div>
-      <div><h2 class="display" data-i="s0.h">The study in 20 seconds.</h2><p data-i="s0.p">His 5K is stronger than his half. That does not tell us why. This study separates the questions instead of guessing.</p></div>
+      <div><h2 class="display" data-i="s0.h">The study in 20 seconds.</h2><p data-i="s0.p">Simon has run 17:36 for 5K and 1:26:13 for the half marathon. We are working on holding a steady pace for longer.</p></div>
     </div>
     <div class="trio">
       <article>
-        <span class="day tue" data-i="s0.a.l">Theory</span>
-        <h3 data-i="s0.a.h">Short speed may not be the limiter.</h3>
-        <p data-i="s0.a.p">Simon already runs fast for shorter distances. The bigger opportunity may be pacing and durability: holding the right speed for longer without the cost rising too quickly.</p>
+        <span class="day tue" data-i="s0.a.l">The focus</span>
+        <h3 data-i="s0.a.h">Make the pace last.</h3>
+        <p data-i="s0.a.p">Simon can already run fast over shorter distances. The next step is to hold his pace as the distance grows.</p>
       </article>
       <article>
-        <span class="day thu" data-i="s0.b.l">How we test it now</span>
-        <h3 data-i="s0.b.h">Longer work first. Faster work second.</h3>
-        <p data-i="s0.b.p">Tuesday grows the controlled work. Thursday keeps a smaller faster dose. The October 29 5K checks the short end. After recovery, a separate 6 km continuous run checks what sustained running costs.</p>
+        <span class="day thu" data-i="s0.b.l">This block</span>
+        <h3 data-i="s0.b.h">Longer repeats. Easy days between.</h3>
+        <p data-i="s0.b.p">Tuesday is the main workout. Thursday adds a short faster session when he has recovered. The block finishes with a 5K on October 29.</p>
       </article>
       <article>
-        <span class="day sat" data-i="s0.c.l">Where this goes</span>
-        <h3 data-i="s0.c.h">Grow distance, not speed every week.</h3>
-        <p data-i="s0.c.p">Later race-specific work becomes distance based: 5 miles, 6, 8, then race pace after prior running. Nine or ten fresh miles can become an athlete-specific option if the evidence supports it; twelve is not required.</p>
+        <span class="day sat" data-i="s0.c.l">Later in the season</span>
+        <h3 data-i="s0.c.h">Build the distance gradually.</h3>
+        <p data-i="s0.c.p">Closer to the half marathon, the plan will add longer stretches at race pace. Brice will choose those sessions from the running and recovery Simon shows during this block.</p>
       </article>
     </div>
     <div class="coach">
-      <span class="lbl" data-i="s0.rule.l">What would change the theory?</span>
-      <p data-i="s0.rule.p">If fresh sustained work is already too expensive, the pace is wrong before durability is the problem. If a smaller Thursday preserves his 5K while Tuesday improves, we do not need a large second quality day.</p>
+      <span class="lbl" data-i="s0.rule.l">When the plan changes</span>
+      <p data-i="s0.rule.p">If the pace becomes difficult too early or recovery takes longer than usual, shorten the next workout or run easy. The next step follows how Simon responds.</p>
     </div>
   </div>
 </section>
@@ -612,8 +619,8 @@ Historical evidence is qualified in evidence.json. Hidden comments are not priva
     <div class="line-read">
       <div>
         <span class="lbl" data-i="ch.l">Two historical anchors</span>
-        <h3 data-i="ch.h">One working model.</h3>
-        <p data-i="ch.p">The line connects two race results; it is not a measured physiological curve. We are testing whether the hold, the higher-speed marker, or both can improve without an unacceptable recovery cost. The red horizon is only a long-range possibility, not a requirement for Saumur. Race cards retain organizer display paces; plotted positions use time and distance.</p>
+        <h3 data-i="ch.h">Two races, one training focus.</h3>
+        <p data-i="ch.p">The black line joins the April race results. The blue marker is the half-marathon goal. The red marker is a longer-term possibility for 5K speed. Plot positions use time and distance; the race cards keep the organizer’s displayed pace.</p>
       </div>
       <svg class="chart" id="chart" viewBox="0 0 720 350" role="img" aria-label="Current 5K and half-marathon relationship with Saumur half-marathon target"></svg>
     </div>
@@ -640,43 +647,43 @@ Historical evidence is qualified in evidence.json. Hidden comments are not priva
   <div class="shell">
     <div class="sec-head">
       <div class="sec-num">02</div>
-      <div><h2 class="display" data-i="s2.h">The whole plan</h2><p data-i="s2.p">Five weeks, with room to repeat. Keep the Tuesday progression, repeat the first Thursday dose, and reduce the load before the 5K read. Later steps depend on the work and the recovery, not just the date.</p></div>
+      <div><h2 class="display" data-i="s2.h">The five-week block</h2><p data-i="s2.p">Build toward a faster half marathon by running at a steady pace for longer. Tuesday is the main workout. Thursday adds shorter, faster intervals when you feel recovered. Saturday is an easy long run. The other runs stay easy so you can recover between workouts.</p></div>
     </div>
 
     <div class="trio">
-      <article><div class="day tue" data-i="tr1.d">Tuesday · the hold</div><h3 data-i="tr1.h">Race pace, longer.</h3><p data-i="tr1.p">Working band: <span class="u">3:47–3:52/km</span>. Start near <span class="u">3:52/km</span>; finishing there with control is enough. Two minutes very easy jogging between pieces. The next step must be earned.</p></article>
-      <article><div class="day thu" data-i="tr2.d">Thursday · the ceiling</div><h3 data-i="tr2.h">Faster than race pace.</h3><p data-i="tr2.p">The April 5K gives a provisional reference. Start toward <span class="u">3:32–3:34/km</span>. Repeat the dose before extending it, especially while Tuesday changes.</p></article>
-      <article><div class="day sat" data-i="tr3.d">Saturday · the base</div><h3 data-i="tr3.h">Long and easy.</h3><p data-i="tr3.p">Easy means <span class="u">4:55/km</span> or slower, guided by effort. No fast finish in this block. The planned distance is not a minimum to force when recovery is poor.</p></article>
+      <article><div class="day tue" data-i="tr1.d">Tuesday</div><h3 data-i="tr1.h">Longer, steady repeats.</h3><p data-i="tr1.p">Run the repeats at <span class="u">3:49–3:52/km</span>, starting at the slower end. Take 2 min very easy jogging between repeats. Week 4 is lighter, at <span class="u">3:50–3:53/km</span>.</p></article>
+      <article><div class="day thu" data-i="tr2.d">Thursday</div><h3 data-i="tr2.h">Shorter, faster intervals.</h3><p data-i="tr2.p">Run the faster intervals at <span class="u">3:33–3:38/km</span>, with 2 min very easy jogging between them. If Tuesday, hard HYROX or leg training leaves you tired, run easy or rest instead.</p></article>
+      <article><div class="day sat" data-i="tr3.d">Saturday</div><h3 data-i="tr3.h">Long and easy.</h3><p data-i="tr3.p">Run at <span class="u">4:55/km</span> or slower, guided by easy effort. Keep the whole long run easy. Shorten it if you have not recovered.</p></article>
     </div>
 
     <div class="bridge">
       <div class="bridge__lead">
-        <span class="lbl" data-i="br.l">What connects the curves</span>
-        <h3 data-i="br.h">Conversion durability.</h3>
+        <span class="lbl" data-i="br.l">Why the week is arranged this way</span>
+        <h3 data-i="br.h">Each run has a job.</h3>
       </div>
       <div class="bridge__body">
         <article>
-          <b data-i="br1.h">1 · Make room above</b>
-          <p data-i="br1.p">Faster intervals test the upper end. A better 5K may help, but it is not required at every gate for the half-marathon work to be progressing.</p>
+          <b data-i="br1.h">1 · Keep the faster running</b>
+          <p data-i="br1.p">Short intervals keep faster running in the week while Tuesday focuses on endurance.</p>
         </article>
         <article>
-          <b data-i="br2.h">2 · Make the middle sustainable</b>
-          <p data-i="br2.p">Threshold-oriented work is one possible bridge. Tuesday already overlaps the provisional reference. Do not add a third hard day just to complete the diagram.</p>
+          <b data-i="br2.h">2 · Hold a steady pace</b>
+          <p data-i="br2.p">Longer repeats give Simon more time to settle into a pace and keep it even.</p>
         </article>
         <article>
-          <b data-i="br3.h">3 · Make race pace survive context</b>
-          <p data-i="br3.p">First ask for more controlled continuity. Later, repeat a supported pace after a defined amount of prior running. That later question has not yet been directly tested.</p>
+          <b data-i="br3.h">3 · Get used to longer runs</b>
+          <p data-i="br3.p">The easy long run builds endurance without adding another fast workout.</p>
         </article>
       </div>
     </div>
 
-    <div class="plan-rules"><h3 data-i="rules.h">How this block stays useful.</h3><p data-i="rules.p">Repeat before forcing. Let pace yield when conditions or recovery make the prescribed work too costly. Heart rate is context, not a standalone 175-bpm pass/fail rule. Keep the existing Feel/Effort report, add reserve and limiter, and check the next day.</p><p class="source-note" data-i="rules.note">Distances with timed warm-ups, recoveries and cooldowns are planning estimates. Run the prescribed components; do not add miles to force the estimate. Sunday is unauthored.</p></div>
+    <div class="plan-rules"><h3 data-i="rules.h">Keep the week manageable.</h3><p data-i="rules.p">If Tuesday or hard HYROX or leg training leaves you tired, replace Thursday’s intervals with easy running or rest. Tell Brice how the workout felt and how you feel the next day.</p><p class="source-note" data-i="rules.note">The weekly distances include estimates for timed running. Follow the session, and do not add distance to reach the total. Sunday has no assigned run in this block.</p></div>
     <div class="tools">
       <div class="keys">
-        <div><span class="lbl" data-i="k.easy">Easy</span><b data-u="p+:295">4:55/km +</b></div>
-        <div class="k-tue"><span class="lbl" data-i="k.half">Working half-pace band</span><b data-u="p:227-232">3:47–3:52/km</b></div>
-        <div><span class="lbl" data-i="k.thr">Provisional threshold reference</span><b data-u="p:223.7-228.7">3:44–3:49/km</b></div>
-        <div class="k-thu"><span class="lbl" data-i="k.ceil">Provisional ceiling reference</span><b data-u="p:209-214">3:29–3:34/km</b></div>
+        <div><span class="lbl" data-i="k.easy">Easy</span><b data-i="pace.easy"><span class="u">4:55/km</span> or slower</b></div>
+        <div class="k-tue"><span class="lbl" data-i="k.half">Tuesday repeats</span><b data-i="pace.tuesday"><span class="u">3:49–3:52/km</span></b></div>
+        <div><span class="lbl" data-i="k.thr">Sep 4 workout · snapshot</span><b data-i="pace.history"><span class="u">3:47/km</span> / <span class="u">3:45/km</span></b></div>
+        <div class="k-thu"><span class="lbl" data-i="k.ceil">Thursday intervals</span><b data-i="pace.thursday"><span class="u">3:33–3:38/km</span></b></div>
       </div>
       <div>
         <div class="lbl" style="margin-bottom:8px" data-i="x.l">Pace translator</div>
@@ -691,11 +698,11 @@ Historical evidence is qualified in evidence.json. Hidden comments are not priva
 
     <div class="phase-head">
       <div><span class="lbl" data-i="pb.l">Now · Study 003</span><h3 data-i="pb.h">Block 01</h3></div>
-      <div class="meta" data-i="pb.m">Sep 28 → Nov 1 · 5 weeks · ends with Gate 01</div>
+      <div class="meta" data-i="pb.m">Sep 28 → Nov 1 · 5 weeks · 5K on October 29</div>
     </div>
-    <!-- STUDY003_SAVED_GRID --><p class="plan-source" id="planSource" data-source-state="saved">Saved approved plan · version 2. Current connection has not been checked.</p><div class="grid-plan" id="gridPlan" role="table" aria-label="Block 01, every day"><div class="gp-h" role="columnheader">Week</div><div class="gp-h" role="columnheader">Mon</div><div class="gp-h" role="columnheader">Tue</div><div class="gp-h" role="columnheader">Wed</div><div class="gp-h" role="columnheader">Thu</div><div class="gp-h" role="columnheader">Fri</div><div class="gp-h" role="columnheader">Sat</div><div class="gp-h" role="columnheader">Sun</div><div class="gp-h r" role="columnheader">Total</div><div class="gp-row " role="row"><div class="gp-wk" role="cell"><b>Wk 01</b><strong>Open both curves</strong></div><div class="gp-d easy" role="cell" data-day="Mon"><span class="t">Easy</span><span class="body">Easy</span><span class="km">8 km</span></div><div class="gp-d tue" role="cell" data-day="Tue"><span class="t">Hold</span><span class="body">4 × 1.6 km at <span class="u">3:47–3:52/km</span> · 2 min very easy jog<small class="plan-frame">Warm-up 20 min · Cooldown 10 min</small></span><span class="km">12 km</span></div><div class="gp-d easy" role="cell" data-day="Wed"><span class="t">Easy</span><span class="body">Easy</span><span class="km">8 km</span></div><div class="gp-d thu" role="cell" data-day="Thu"><span class="t">Ceiling</span><span class="body">5 × 3 min at <span class="u">3:29–3:34/km</span> · 2 min very easy jog<small class="plan-frame">Warm-up 20 min · Cooldown 10 min</small></span><span class="km">11 km</span></div><div class="gp-d easy" role="cell" data-day="Fri"><span class="t">Easy</span><span class="body">Easy</span><span class="km">6 km</span></div><div class="gp-d sat" role="cell" data-day="Sat"><span class="t">Long</span><span class="body">Long run, easy. Shorten if recovery is not normal.</span><span class="km">18 km</span></div><div class="gp-d off" role="cell" data-day="Sun"><span class="body">—</span></div><div class="gp-tot" role="cell">63 km<small>planned estimate</small></div></div><div class="gp-row " role="row"><div class="gp-wk" role="cell"><b>Wk 02</b><strong>Extend and repeat</strong></div><div class="gp-d easy" role="cell" data-day="Mon"><span class="t">Easy</span><span class="body">Easy</span><span class="km">8 km</span></div><div class="gp-d tue" role="cell" data-day="Tue"><span class="t">Hold</span><span class="body">4 × 2 km at <span class="u">3:47–3:52/km</span> · 2 min very easy jog<small class="plan-frame">Warm-up 20 min · Cooldown 10 min</small></span><span class="km">14 km</span></div><div class="gp-d easy" role="cell" data-day="Wed"><span class="t">Easy</span><span class="body">Easy</span><span class="km">8 km</span></div><div class="gp-d thu" role="cell" data-day="Thu"><span class="t">Ceiling</span><span class="body">5 × 3 min at <span class="u">3:29–3:34/km</span> · 2 min very easy jog<small class="plan-frame">Warm-up 20 min · Cooldown 10 min</small></span><span class="km">11 km</span></div><div class="gp-d easy" role="cell" data-day="Fri"><span class="t">Easy</span><span class="body">Easy</span><span class="km">6 km</span></div><div class="gp-d sat" role="cell" data-day="Sat"><span class="t">Long</span><span class="body">Long run, easy. Shorten if recovery is not normal.</span><span class="km">20 km</span></div><div class="gp-d off" role="cell" data-day="Sun"><span class="body">—</span></div><div class="gp-tot" role="cell">67 km<small>planned estimate</small></div></div><div class="gp-row " role="row"><div class="gp-wk" role="cell"><b>Wk 03</b><strong>Longer pieces</strong></div><div class="gp-d easy" role="cell" data-day="Mon"><span class="t">Easy</span><span class="body">Easy</span><span class="km">8 km</span></div><div class="gp-d tue" role="cell" data-day="Tue"><span class="t">Hold</span><span class="body">3 × 3 km at <span class="u">3:47–3:52/km</span> · 2 min very easy jog<small class="plan-frame">Warm-up 20 min · Cooldown 10 min</small></span><span class="km">15 km</span></div><div class="gp-d easy" role="cell" data-day="Wed"><span class="t">Easy</span><span class="body">Easy</span><span class="km">8 km</span></div><div class="gp-d thu" role="cell" data-day="Thu"><span class="t">Ceiling</span><span class="body">4 × 4 min at <span class="u">3:29–3:34/km</span> · 2 min very easy jog<small class="plan-frame">Warm-up 20 min · Cooldown 10 min</small></span><span class="km">12 km</span></div><div class="gp-d easy" role="cell" data-day="Fri"><span class="t">Easy</span><span class="body">Easy</span><span class="km">6 km</span></div><div class="gp-d sat" role="cell" data-day="Sat"><span class="t">Long</span><span class="body">Long run, easy. Shorten if recovery is not normal.</span><span class="km">21 km</span></div><div class="gp-d off" role="cell" data-day="Sun"><span class="body">—</span></div><div class="gp-tot" role="cell">70 km<small>planned estimate</small></div></div><div class="gp-row " role="row"><div class="gp-wk" role="cell"><b>Wk 04</b><strong>Keep the control</strong></div><div class="gp-d easy" role="cell" data-day="Mon"><span class="t">Easy</span><span class="body">Easy</span><span class="km">8 km</span></div><div class="gp-d tue" role="cell" data-day="Tue"><span class="t">Hold</span><span class="body">2 × 4 km at <span class="u">3:47–3:52/km</span> · 2 min very easy jog<small class="plan-frame">Warm-up 20 min · Cooldown 10 min</small></span><span class="km">14 km</span></div><div class="gp-d easy" role="cell" data-day="Wed"><span class="t">Easy</span><span class="body">Easy</span><span class="km">8 km</span></div><div class="gp-d thu" role="cell" data-day="Thu"><span class="t">Ceiling</span><span class="body">4 × 3 min at <span class="u">3:29–3:34/km</span> · 2 min very easy jog<small class="plan-frame">Warm-up 20 min · Cooldown 10 min</small></span><span class="km">10 km</span></div><div class="gp-d easy" role="cell" data-day="Fri"><span class="t">Easy</span><span class="body">Easy</span><span class="km">6 km</span></div><div class="gp-d sat" role="cell" data-day="Sat"><span class="t">Long</span><span class="body">Long run, easy. Shorten if recovery is not normal.</span><span class="km">16 km</span></div><div class="gp-d off" role="cell" data-day="Sun"><span class="body">—</span></div><div class="gp-tot" role="cell">62 km<small>planned estimate</small></div></div><div class="gp-row gate" role="row"><div class="gp-wk" role="cell"><b>Wk 05</b><strong>Gate 01: 5K read</strong></div><div class="gp-d easy" role="cell" data-day="Mon"><span class="t">Easy</span><span class="body">Easy</span><span class="km">7 km</span></div><div class="gp-d easy" role="cell" data-day="Tue"><span class="t">Easy</span><span class="body">Easy. Protect the 5K read.</span><span class="km">8 km</span></div><div class="gp-d easy" role="cell" data-day="Wed"><span class="t">Easy</span><span class="body">Easy</span><span class="km">7 km</span></div><div class="gp-d thu" role="cell" data-day="Thu"><span class="t">Ceiling</span><span class="body">5 km effort · no set pace<small class="plan-frame">Warm-up 20 min · Cooldown 10 min</small></span><span class="km">10 km</span></div><div class="gp-d easy" role="cell" data-day="Fri"><span class="t">Easy</span><span class="body">Easy</span><span class="km">6 km</span></div><div class="gp-d sat" role="cell" data-day="Sat"><span class="t">Long</span><span class="body">Long run, easy. Shorten if recovery is not normal.</span><span class="km">14 km</span></div><div class="gp-d off" role="cell" data-day="Sun"><span class="body">—</span></div><div class="gp-tot" role="cell">52 km<small>planned estimate</small></div></div></div><!-- END_STUDY003_SAVED_GRID -->
+    <!-- STUDY003_SAVED_GRID --><div class="plan-publication"><p class="plan-source" id="planSource" data-source-state="saved" role="status" aria-live="polite">Saved plan · version 5.</p><button id="refreshPlan" class="plan-refresh" type="button" data-i="refresh" hidden>Refresh plan</button></div><div class="grid-plan" id="gridPlan" role="table" aria-label="Block 01, every day"><div class="gp-h" role="columnheader">Week</div><div class="gp-h" role="columnheader">Mon</div><div class="gp-h" role="columnheader">Tue</div><div class="gp-h" role="columnheader">Wed</div><div class="gp-h" role="columnheader">Thu</div><div class="gp-h" role="columnheader">Fri</div><div class="gp-h" role="columnheader">Sat</div><div class="gp-h" role="columnheader">Sun</div><div class="gp-h r" role="columnheader">Total</div><div class="gp-row " role="row"><div class="gp-wk" role="cell"><b>Wk 01</b><strong>Plan snapshot</strong></div><div class="gp-d easy" role="cell" data-day="Mon"><span class="t">Easy</span><span class="body">8 km at <span class="u">4:55/km</span> or slower</span><span class="km">8 km</span></div><div class="gp-d tue" role="cell" data-day="Tue"><span class="t">Repeats</span><span class="body">4 × 1.6 km at <span class="u">3:47–3:52/km</span> · 2 min very easy jog<small class="plan-frame">Warm-up 20 min · Cooldown 10 min</small></span><span class="km">12 km</span></div><div class="gp-d easy" role="cell" data-day="Wed"><span class="t">Easy</span><span class="body">8 km at <span class="u">4:55/km</span> or slower</span><span class="km">8 km</span></div><div class="gp-d thu" role="cell" data-day="Thu"><span class="t">Intervals</span><span class="body">5 × 3 min at <span class="u">3:29–3:35/km</span> · 2 min very easy jog<small class="plan-frame">Warm-up 20 min · Cooldown 10 min</small></span><span class="km">11 km</span></div><div class="gp-d easy" role="cell" data-day="Fri"><span class="t">Easy</span><span class="body">6 km at <span class="u">4:55/km</span> or slower</span><span class="km">6 km</span></div><div class="gp-d sat" role="cell" data-day="Sat"><span class="t">Long run</span><span class="body">Long run, easy at <span class="u">4:55/km</span> or slower. Shorten if you have not recovered.</span><span class="km">18 km</span></div><div class="gp-d off" role="cell" data-day="Sun"><span class="body">—</span></div><div class="gp-tot" role="cell">63 km<small>planned estimate</small></div></div><div class="gp-row " role="row"><div class="gp-wk" role="cell"><b>Wk 02</b><strong>Longer repeats</strong></div><div class="gp-d easy" role="cell" data-day="Mon"><span class="t">Easy</span><span class="body">8 km at <span class="u">4:55/km</span> or slower</span><span class="km">8 km</span></div><div class="gp-d tue" role="cell" data-day="Tue"><span class="t">Repeats</span><span class="body">4 × 2 km at <span class="u">3:49–3:52/km</span> · 2 min very easy jog<small class="plan-frame">Warm-up 20 min · Cooldown 10 min</small></span><span class="km">14 km</span></div><div class="gp-d easy" role="cell" data-day="Wed"><span class="t">Easy</span><span class="body">8 km at <span class="u">4:55/km</span> or slower</span><span class="km">8 km</span></div><div class="gp-d thu" role="cell" data-day="Thu"><span class="t">Intervals</span><span class="body">4 × 3 min at <span class="u">3:33–3:38/km</span> · 2 min very easy jog<small class="plan-frame">Warm-up 20 min · Cooldown 10 min</small><small class="plan-note">If Tuesday, hard HYROX or leg training leaves you tired, run easy or rest instead.</small></span><span class="km">10 km</span></div><div class="gp-d easy" role="cell" data-day="Fri"><span class="t">Easy</span><span class="body">6 km at <span class="u">4:55/km</span> or slower</span><span class="km">6 km</span></div><div class="gp-d sat" role="cell" data-day="Sat"><span class="t">Long run</span><span class="body">Long run, easy at <span class="u">4:55/km</span> or slower. Shorten if you have not recovered.</span><span class="km">18 km</span></div><div class="gp-d off" role="cell" data-day="Sun"><span class="body">—</span></div><div class="gp-tot" role="cell">64 km<small>planned estimate</small></div></div><div class="gp-row " role="row"><div class="gp-wk" role="cell"><b>Wk 03</b><strong>Longer repeats</strong></div><div class="gp-d easy" role="cell" data-day="Mon"><span class="t">Easy</span><span class="body">8 km at <span class="u">4:55/km</span> or slower</span><span class="km">8 km</span></div><div class="gp-d tue" role="cell" data-day="Tue"><span class="t">Repeats</span><span class="body">3 × 3 km at <span class="u">3:49–3:52/km</span> · 2 min very easy jog<small class="plan-frame">Warm-up 20 min · Cooldown 10 min</small><small class="plan-note">Only if last week was controlled and recovery was normal. If the first repeat feels forced, stop after two repeats or repeat the previous workout with Brice.</small></span><span class="km">15 km</span></div><div class="gp-d easy" role="cell" data-day="Wed"><span class="t">Easy</span><span class="body">8 km at <span class="u">4:55/km</span> or slower</span><span class="km">8 km</span></div><div class="gp-d thu" role="cell" data-day="Thu"><span class="t">Intervals</span><span class="body">3 × 4 min at <span class="u">3:33–3:38/km</span> · 2 min very easy jog<small class="plan-frame">Warm-up 20 min · Cooldown 10 min</small><small class="plan-note">If Tuesday, hard HYROX or leg training leaves you tired, run easy or rest instead.</small></span><span class="km">10 km</span></div><div class="gp-d easy" role="cell" data-day="Fri"><span class="t">Easy</span><span class="body">6 km at <span class="u">4:55/km</span> or slower</span><span class="km">6 km</span></div><div class="gp-d sat" role="cell" data-day="Sat"><span class="t">Long run</span><span class="body">Long run, easy at <span class="u">4:55/km</span> or slower. Use 18 km if you have not recovered well from last week’s long run or this week’s training.</span><span class="km">19 km</span></div><div class="gp-d off" role="cell" data-day="Sun"><span class="body">—</span></div><div class="gp-tot" role="cell">66 km<small>planned estimate</small></div></div><div class="gp-row " role="row"><div class="gp-wk" role="cell"><b>Wk 04</b><strong>Lighter week</strong></div><div class="gp-d easy" role="cell" data-day="Mon"><span class="t">Easy</span><span class="body">8 km at <span class="u">4:55/km</span> or slower</span><span class="km">8 km</span></div><div class="gp-d tue" role="cell" data-day="Tue"><span class="t">Repeats</span><span class="body">2 × 3 km at <span class="u">3:50–3:53/km</span> · 2 min very easy jog<small class="plan-frame">Warm-up 20 min · Cooldown 10 min</small></span><span class="km">12 km</span></div><div class="gp-d easy" role="cell" data-day="Wed"><span class="t">Easy</span><span class="body">8 km at <span class="u">4:55/km</span> or slower</span><span class="km">8 km</span></div><div class="gp-d easy" role="cell" data-day="Thu"><span class="t">Easy + strides</span><span class="body">8 km at <span class="u">4:55/km</span> or slower<br>6 × 20 sec relaxed strides · 1 min very easy jog<small class="plan-note">Keep HYROX and leg training light this week too.</small></span><span class="km">8 km</span></div><div class="gp-d easy" role="cell" data-day="Fri"><span class="t">Easy</span><span class="body">5 km at <span class="u">4:55/km</span> or slower<small class="plan-note">Take the day off if your legs still feel heavy.</small></span><span class="km">5 km</span></div><div class="gp-d sat" role="cell" data-day="Sat"><span class="t">Long run</span><span class="body">Long run, easy at <span class="u">4:55/km</span> or slower. Shorten if you have not recovered.</span><span class="km">16 km</span></div><div class="gp-d off" role="cell" data-day="Sun"><span class="body">—</span></div><div class="gp-tot" role="cell">57 km<small>planned estimate</small></div></div><div class="gp-row gate" role="row"><div class="gp-wk" role="cell"><b>Wk 05</b><strong>5K week</strong></div><div class="gp-d easy" role="cell" data-day="Mon"><span class="t">Easy</span><span class="body">7 km at <span class="u">4:55/km</span> or slower</span><span class="km">7 km</span></div><div class="gp-d easy" role="cell" data-day="Tue"><span class="t">Easy + strides</span><span class="body">8 km at <span class="u">4:55/km</span> or slower<br>4 × 20 sec relaxed strides · 1 min very easy jog</span><span class="km">8 km</span></div><div class="gp-d easy" role="cell" data-day="Wed"><span class="t">Easy</span><span class="body">6 km at <span class="u">4:55/km</span> or slower</span><span class="km">6 km</span></div><div class="gp-d thu" role="cell" data-day="Thu"><span class="t">5K test</span><span class="body">5 km at race effort<small class="plan-frame">Warm-up 20 min · Cooldown 10 min</small></span><span class="km">10 km</span></div><div class="gp-d easy" role="cell" data-day="Fri"><span class="t">Easy</span><span class="body">5 km at <span class="u">4:55/km</span> or slower<small class="plan-note">Take the day off if you have not recovered from the 5K.</small></span><span class="km">5 km</span></div><div class="gp-d sat" role="cell" data-day="Sat"><span class="t">Long run</span><span class="body">Only if recovered from the 5K. Keep the run easy at <span class="u">4:55/km</span> or slower. Shorten to 8 km to 10 km or rest if needed.</span><span class="km">12 km</span></div><div class="gp-d off" role="cell" data-day="Sun"><span class="body">—</span></div><div class="gp-tot" role="cell">48 km<small>planned estimate</small></div></div></div><!-- END_STUDY003_SAVED_GRID -->
 
-<div class="gate-window" id="gate"><span class="lbl" data-i="gate.l">Gate 01: a decision window</span><h3 data-i="gate.h">Two reads. Room to recover.</h3><div class="gate-grid"><article><h4 data-i="gate.a.h">Oct 29: the 5K</h4><p data-i="gate.a.p">Tuesday is easy. The 5K establishes a current field reference; its effort is read differently from a controlled Tuesday. Compare conditions and recovery, not just the finishing time.</p></article><article><h4 data-i="gate.b.h">From Nov 3: continuity, if ready</h4><p data-i="gate.b.p">Consider 6 km to 8 km continuous only after normal recovery and coach approval. This is a candidate, not an assigned sixth week. Record controlled duration without running until failure.</p></article><article><h4 data-i="gate.c.h">Read the cost before the next step</h4><p data-i="gate.c.p">A stronger hold with the same 5K can be success. Expensive early: review pace and controlled sustained work. Expensive only after more running: investigate continuity and later durability. Poor recovery: reduce demand. Unclear but recovered: check comparability before changing the plan.</p></article></div></div>
+<div class="gate-window" id="gate"><span class="lbl" data-i="gate.l">After this block</span><h3 data-i="gate.h">Check progress, then choose the next block.</h3><div class="gate-grid"><article><h4 data-i="gate.a.h">October 29 · 5K</h4><p data-i="gate.a.p">Run an even 5K and record your time, splits and how it felt. The days before it are lighter.</p></article><article><h4 data-i="gate.b.h">From November 3 · possible 6 km run</h4><p data-i="gate.b.p">After you recover from the 5K, Brice may add a steady 6 km run. Wait for his confirmation before doing it. Keep it to 6 km.</p></article><article><h4 data-i="gate.c.h">Review the running and recovery</h4><p data-i="gate.c.p">Brice will use the 5K, the longer running and your recovery to decide what comes next.</p></article></div></div>
     <div class="arc">
       <div class="phase-head" style="margin-top:0;border-top:0;padding-top:0">
         <div><span class="lbl" data-i="arc.l">After Block 01</span><h3 data-i="arc.h">The road to May.</h3></div>
@@ -711,12 +718,12 @@ Historical evidence is qualified in evidence.json. Hidden comments are not priva
   <div class="shell">
     <div class="sec-head">
       <div class="sec-num">03</div>
-      <div><h2 class="display" data-i="s3.h">Filed so far</h2><p data-i="s3.p">Recorded work, athlete reports and coach interpretation are kept separate. These historical records do not certify current readiness.</p></div>
+      <div><h2 class="display" data-i="s3.h">Filed so far</h2><p data-i="s3.p">Race results and workout records, with the source beside each entry.</p></div>
     </div>
 <div class="history-wall" id="history"><span class="lbl" data-i="hx.l">Historical evidence</span><h3 data-i="hx.h">He already had the pieces.</h3><p data-i="hx.p">Brice reports about 45 miles per week in the earlier block. The selected sessions show substantial faster pieces. They support the starting idea, not a claim that the same readiness is present today.</p><div class="history-pair"><article><span class="pill ok" data-i="hx.recorded">Recorded intervals</span><h4 data-i="hx.m25.h">March 25: thirty-two broken minutes.</h4><p data-i="hx.m25.p">Garmin records 20 minutes at <span class="u">3:52/km</span>, 3 minutes of very easy recovery at <span class="u">7:27/km</span>, then 12 minutes at <span class="u">3:50/km</span>. The activity evaluation was Strong, with Moderate perceived effort, 3/10. The longest continuous piece was 20 minutes. Next-day recovery is not supplied.</p><p data-i="hx.m25.n">The shorter recorded cooldown explains the difference from the written session. Both faster blocks were captured in full. This is not evidence of eight continuous kilometres or a physiological threshold.</p></article><article><span class="pill wait" data-i="hx.partial">Partial recording</span><h4 data-i="hx.m11.h">March 11: partial recording, reason unknown.</h4><p data-i="hx.m11.p">The 3 × 12 title is not the completed record. Garmin shows 12:00 and 9:37.6 of work, separated by 1:30 very easy recovery. Mean work paces were <span class="u">3:54/km</span> and <span class="u">3:54/km</span>. The third repetition is absent. We have not established why the recording ended.</p></article></div><h4 data-i="hx.other">Other athlete-written descriptions</h4><div class="history-notes"><p data-i="hx.f10">Feb 10: 3 × 10 minutes, <span class="u">3:43/km</span> → <span class="u">3:55/km</span> → <span class="u">4:00/km</span>. Slower repetitions after the fastest opening; the precise cause is not measured.</p><p data-i="hx.f24">Feb 24: 2 × 14 minutes, <span class="u">3:55/km</span> → <span class="u">3:51/km</span>. Second repetition described as faster.</p><p data-i="hx.m03">Mar 3: description lists 20 + 8 minutes. The full written session totals 61 minutes; moving time is 40:49. The mismatch remains unresolved.</p><p data-i="hx.m18">Mar 18: 2 × 15 minutes, <span class="u">3:52/km</span> → <span class="u">3:49/km</span>. Two substantial pieces, second described as faster.</p></div><p class="source-note" data-i="hx.source">Source: coach-supplied screenshots. Recorded intervals, captions and athlete evaluations are different kinds of evidence. No raw time series or exact heart-rate drift was reconstructed.</p></div>
     <article class="entry">
       <div class="entry__date"><span data-i="e1.d">23 Sep 2026</span><br><span class="pill ok" data-i="e1.k">Coach note</span></div>
-      <div><h3 data-i="e1.h">The race held. Faster training asks the next question.</h3><p data-i="e1.p">The April race was a successful conservative execution, not a failed conversion test. The coach-reported faster-long-run limiter remains a separate observation. We are testing control, continuity and eventually prior-running context rather than assuming a single cause.</p></div>
+      <div><h3 data-i="e1.h">An evenly paced half marathon.</h3><p data-i="e1.p">Simon chose to secure sub-1:30 in April and held an even pace. Brice has seen him slow in some faster long runs. This study follows how he holds a quicker pace as the distance grows.</p></div>
     </article>
     <article class="entry">
       <div class="entry__date"><span data-i="e2.d">04 Sep 2026</span><br><span class="pill ok" data-i="filed">Filed</span></div>
@@ -724,7 +731,7 @@ Historical evidence is qualified in evidence.json. Hidden comments are not priva
     </article>
     <article class="entry">
       <div class="entry__date"><span data-i="e3.d">29 Sep 2026</span><br><span class="pill ok" data-i="filed">Filed</span></div>
-      <div><h3 data-i="e3.h">Average in band. Distribution deliberately interrupted.</h3><p data-i="e3.p">Simon ran 4 × 1.6 km in 5:57.0 · 5:59.4 · 6:01.7 · 6:34.8. The 6.40 km work average was about 3:50/km, inside the 3:47–3:52/km working band. The first three were slightly faster than the band; the fourth was intentionally slowed after another coach interpreted a high heart rate as a threshold problem. This was working half pace, not threshold. No fixed HR cap is used here, and the last rep is not read as a physiological fade.</p></div>
+      <div><h3 data-i="e3.h">September 29 · workout snapshot</h3><p data-i="e3.p">Simon ran 4 × 1.6 km in 5:57.0 · 5:59.4 · 6:01.7 · 6:34.8. The 6.40 km work average was about <span class="u">3:50/km</span>, inside the <span class="u">3:47–3:52/km</span> band prescribed for that September 29 session. The first three were slightly faster than the band; the fourth was intentionally slowed after another coach interpreted a high heart rate as a threshold problem. This was working half pace, not threshold. No fixed HR cap is used here, and the last rep is not read as a physiological fade.</p></div>
     </article>
   </div>
 </section>
@@ -743,9 +750,9 @@ Historical evidence is qualified in evidence.json. Hidden comments are not priva
           <tr><td data-i="r1">Half marathon</td><td>1:26:13 · <span data-u="rp:6:34|4:05">6:34/mi</span></td><td><a href="https://triregistration.com/IndividualRunResults.php?runresultid=158204" target="_blank" rel="noopener" data-i="r1.s">Official result · Apr 12, 2026</a></td><td><span class="pill ok" data-i="official">Official</span></td></tr>
           <tr><td data-i="r2">Previous half best</td><td>1:30:44</td><td data-i="r2.s">Strava: Apr 12 was 4:31 faster than his previous best</td><td><span class="pill derived" data-i="derived">Derived</span></td></tr>
           <tr><td>5K</td><td>17:36 · <span data-u="rp:5:41|3:31">5:41/mi</span></td><td><a href="https://events.hakuapp.com/?registration_number=EA41EB7EF322" target="_blank" rel="noopener" data-i="r3.s">Official result · Apr 23, 2026</a></td><td><span class="pill ok" data-i="official">Official</span></td></tr>
-          <tr><td data-i="r4">Threshold-related field record</td><td>2 × 10 min · <span data-u="p:227.4218563588642"><span class="u">3:47/km</span></span> / <span data-u="p:224.93637158991487"><span class="u">3:45/km</span></span></td><td data-i="r4.s">Sep 4 coach import: recorded repetitions, RPE 7; physiological threshold remains provisional.</td><td><span class="pill wait" data-i="ref.provisional">Provisional</span></td></tr>
+          <tr><td data-i="r4">September 4 workout</td><td>2 × 10 min · <span data-u="p:227.4218563588642"><span class="u">3:47/km</span></span> / <span data-u="p:224.93637158991487"><span class="u">3:45/km</span></span></td><td data-i="r4.s">Sep 4 coach import: recorded repetitions, RPE 7; physiological threshold remains provisional.</td><td><span class="pill wait" data-i="ref.provisional">Provisional</span></td></tr>
           <tr><td data-i="r5">Goal</td><td>1:19–1:23</td><td data-i="r5.s">Set by Brice, around 1:20</td><td><span class="pill wait" data-i="working">Working</span></td></tr>
-          <tr><td data-i="r6">Experimental working band</td><td><span data-u="p:227-232">3:47–3:52/km</span></td><td data-i="r6.s">Narrower than the 1:19-1:23 goal envelope. Not established race pace.</td><td><span class="pill wait" data-i="working">Working</span></td></tr>
+          <tr><td data-i="r6">Tuesday repeats</td><td data-i="pace.tuesday"><span class="u">3:49–3:52/km</span></td><td data-i="r6.s">Current assigned plan. Week 4 has a slower range shown in its session.</td><td><span class="pill wait" data-i="working">Working</span></td></tr>
           <tr><td data-i="r7">Goal race</td><td data-i="r7.v">16 May 2027 · Saumur</td><td><a href="https://www.marathon-loire.fr/les-courses/semi-marathon" target="_blank" rel="noopener" data-i="r7.s">Official Semi-Marathon de la Loire page</a></td><td><span class="pill ok" data-i="official">Official</span></td></tr>
           <tr><td data-i="r8">W1 working-pace read</td><td>4 × 1.6 km · 24:32.9 · <span data-u="p:230.140625">3:50/km</span> avg</td><td data-i="r8.s">Garmin workout summary · Sep 29. Rep 4 was deliberately slowed after outside HR-based advice; not filed as spontaneous fade.</td><td><span class="pill ok" data-i="filed">Filed</span></td></tr>
         </tbody>
@@ -759,21 +766,26 @@ Historical evidence is qualified in evidence.json. Hidden comments are not priva
   <div class="shell">
     <div class="sec-head">
       <div class="sec-num">05</div>
-      <div><h2 class="display" data-i="s5.h">What this page says</h2></div>
+      <div><h2 class="display" data-i="s5.h">What we’re watching</h2></div>
     </div>
     <div class="scope">
-      <article><h3 data-i="sc1.h">It says</h3><p data-i="sc1.p">The historical record supports substantial broken running near the working band. This block tests current control and continuity while developing higher-speed work. A stronger hold with an unchanged 5K can be progress.</p></article>
-      <article><h3 data-i="sc2.h">It doesn't claim</h3><p data-i="sc2.p">It does not establish a laboratory threshold, a VO₂max gain, the cause of an incomplete recording, current 45-mile weeks, or a guaranteed 1:20 half. Later work stays conditional.</p></article>
+      <article><h3 data-i="sc1.h">Steady running for longer.</h3><p data-i="sc1.p">Longer repeats, even pacing and enough recovery to arrive ready for the next workout.</p></article>
+      <article><h3 data-i="sc2.h">Room to recover.</h3><p data-i="sc2.p">Thursday gets shorter or becomes easy running or rest if Tuesday or HYROX leaves Simon tired.</p></article>
     </div>
   </div>
 </section>
 <section class="study-bridge"><div class="shell study-bridge__grid"><div><small>From study to practice</small><h3>The same questions appear in coaching.</h3><p>The public study shows the question and the evidence. Run Development applies that process to your actual week, goal and response to training.</p></div><a href="/coaching/miami/">Work with Brice →</a></div></section>
-<!-- FORM-OBSERVATION-CONTINUITY-20261006 --><section class="form-observation-note" id="observation-led" aria-labelledby="observation-led-h"><p class="obs-label">FORM · OBSERVATION-LED PROGRESSION · OCTOBER 6</p><h2 id="observation-led-h">The response chooses the next step.</h2><p>Simon's current pacing, sustained control, faster work and HYROX load belong in the same review. Tuesday owns the primary running question; Thursday is earned by Tuesday's absorption and can become easy/strides when HYROX or recovery already consumes the quality budget. We may change continuity or dose when his response supports it, not simply make every session longer. His existing R4 plan and separated gates remain the authority.</p><p>The shared practice is to observe, choose, repeat and review. It is not a claim that one workout works for everyone. <a href="/the-method#observation-led">How FORM approaches the work</a>.</p></section>
+<!-- FORM-OBSERVATION-CONTINUITY-20261006 --><section class="form-observation-note" id="observation-led" aria-labelledby="observation-led-h">
+<p class="obs-label" data-i="obs.label">The training week</p>
+<h2 id="observation-led-h" data-i="obs.h">Adjust the week to how you recover.</h2>
+<p data-i="obs.p">Tuesday is the main workout. If Tuesday, HYROX or hard leg training leaves you tired, make Thursday easy or rest. Keep Saturday easy. Tell Brice how each workout feels and how you feel the next day.</p>
+<p><a href="/the-method#observation-led" data-i="obs.link">How FORM plans the training</a>.</p>
+</section>
 </main>
 
 <footer class="footer">
   <span data-i="f1">FORM · Study 003 · Simon</span>
-  <span data-i="f2">The Two Curves · living record · updated 29 Sep 2026</span>
+  <span data-i="f2">The Two Curves · updated October 8, 2026</span>
 </footer>
 
 <script src="/labs/the-two-curves/plan-projection.js"></script>
@@ -797,16 +809,140 @@ const BLOCK01_START = window.FORMSimonPublishedPlan.payload.running.starts_on; /
 let B1 = window.FORMSimonPlan.fromPublication(window.FORMSimonPublishedPlan);
 
 const ARC = [
-  {cls:"gate",when:{en:"Thu · Oct 29",fr:"Jeu. · 29 oct."},t:{en:"Gate 01 · current 5K",fr:"Porte 01 · 5 km actuel"},p:{en:"Easy Tuesday, then the 5K read. Record conditions, execution and recovery. This is a current reference, not proof of a five-week causal gain.",fr:"Mardi facile, puis le test de 5 km. Noter conditions, exécution et récupération. C’est un repère actuel, pas la preuve d’un effet causal de cinq semaines."}},
-  {cls:"cond",when:{en:"From Tue · Nov 3",fr:"À partir du mar. · 3 nov."},t:{en:"Continuous read · awaiting coach approval",fr:"Lecture continue · accord du coach attendu"},p:{en:"Consider {d:6} to {d:8} continuous only after normal recovery. This candidate is not yet assigned in FORM. Shorten or defer rather than force a result.",fr:"Envisager {d:6} à {d:8} en continu après une récupération normale. Cette possibilité n’est pas encore programmée dans FORM. Raccourcir ou reporter plutôt que forcer."}},
-  {cls:"cond",when:{en:"After both reads",fr:"Après les deux lectures"},t:{en:"Choose the next emphasis",fr:"Choisir la priorité suivante"},p:{en:"A better hold can count with an unchanged 5K. Let control, recovery and where effort rises decide whether to emphasize sustained work, continuity, later prior-running context, or less load.",fr:"Une meilleure tenue compte même sans meilleur 5 km. Le contrôle, la récupération et le moment où l’effort augmente décident : travail soutenu, continuité, course préalable plus tard, ou allègement."}},
-  {cls:"gate", when:{en:"Thanksgiving · Nov 26",fr:"Thanksgiving · 26 nov."}, t:{en:"Turkey Trot · tbc",fr:"Turkey Trot · à confirmer"}, p:{en:"A second 5K ceiling read four weeks later. Race name is still to confirm.",fr:"Une deuxième lecture du plafond sur 5 km quatre semaines plus tard. Le nom de la course reste à confirmer."}},
-  {cls:"race", when:{en:"Dec 9–13",fr:"9–13 déc."}, t:{en:"HYROX Nashville",fr:"HYROX Nashville"}, p:{en:"Still on. Exact race day and heat are not filed yet.",fr:"Toujours prévu. Le jour exact et la vague ne sont pas encore au dossier."}},
-  {when:{en:"Holidays",fr:"Fêtes"}, t:{en:"Hold what we built",fr:"Garder l’acquis"}, p:{en:"Less load, same rhythm. Protect the work through the calendar.",fr:"Moins de charge, même rythme. Protéger le travail pendant les fêtes."}},
-  {cls:"cond", when:{en:"January",fr:"Janvier"}, t:{en:"Read, then build",fr:"Lire, puis construire"}, p:{en:"Use Gate 01, the Turkey Trot and HYROX to decide what gets raised, held or converted next.",fr:"Utiliser la porte 01, le Turkey Trot et HYROX pour décider ce qui monte, ce qui se maintient ou ce qui se convertit ensuite."}},
-  {when:{en:"Mon · Feb 1",fr:"Lun. · 1 févr."}, t:{en:"Race-specific · 15 weeks",fr:"Bloc spécifique · 15 semaines"}, p:{en:"The final block now has an anchor: Feb 1 → May 16. Broken work becomes continuous, then race pace arrives late in long runs.",fr:"Le bloc final a désormais son ancrage : 1 févr. → 16 mai. Le travail fractionné devient continu, puis l’allure course arrive en fin de sortie longue."}},
-  {cls:"race", when:{en:"Sun · May 16",fr:"Dim. · 16 mai"}, t:{en:"Semi-Marathon de la Loire · Saumur",fr:"Semi-Marathon de la Loire · Saumur"}, p:{en:"21.1 km · 8:00 start at Pont de Gennes, Gennes-Val-de-Loire → Saumur. Target around 1:20.",fr:"21,1 km · départ à 8h00 au Pont de Gennes, Gennes-Val-de-Loire → Saumur. Objectif autour de 1:20."}}
-]
+ {
+  "cls": "gate",
+  "when": {
+   "en": "Thu · Oct 29",
+   "fr": "Jeu. · 29 oct."
+  },
+  "t": {
+   "en": "5K test",
+   "fr": "Test sur 5 km"
+  },
+  "p": {
+   "en": "An easy Tuesday, then a 5K on October 29. Record the time, splits and how it felt.",
+   "fr": "Un mardi facile, puis un 5 km le 29 octobre. Noter le temps, les passages et les sensations."
+  }
+ },
+ {
+  "cls": "cond",
+  "when": {
+   "en": "From Tue · Nov 3",
+   "fr": "À partir du mar. · 3 nov."
+  },
+  "t": {
+   "en": "Possible steady 6 km run",
+   "fr": "Sortie régulière de 6 km à envisager"
+  },
+  "p": {
+   "en": "After recovery, Brice may add a steady {d:6} run. Wait for his confirmation and keep it to {d:6}.",
+   "fr": "Après récupération, Brice pourra ajouter une sortie régulière de {d:6}. Attendre son accord et garder la distance à {d:6}."
+  }
+ },
+ {
+  "cls": "cond",
+  "when": {
+   "en": "After both runs",
+   "fr": "Après les deux sorties"
+  },
+  "t": {
+   "en": "Choose the next emphasis",
+   "fr": "Choisir la priorité suivante"
+  },
+  "p": {
+   "en": "Use the running, effort and recovery to choose the next block.",
+   "fr": "Utiliser la course, l’effort et la récupération pour choisir le bloc suivant."
+  }
+ },
+ {
+  "cls": "gate",
+  "when": {
+   "en": "Thanksgiving · Nov 26",
+   "fr": "Thanksgiving · 26 nov."
+  },
+  "t": {
+   "en": "Turkey Trot · tbc",
+   "fr": "Turkey Trot · à confirmer"
+  },
+  "p": {
+   "en": "A possible second 5K on Thanksgiving. The event and entry still need confirmation.",
+   "fr": "Un deuxième 5 km possible à Thanksgiving. L’épreuve et l’inscription restent à confirmer."
+  }
+ },
+ {
+  "cls": "race",
+  "when": {
+   "en": "Dec 9–13",
+   "fr": "9–13 déc."
+  },
+  "t": {
+   "en": "HYROX Nashville",
+   "fr": "HYROX Nashville"
+  },
+  "p": {
+   "en": "Still on. Exact race day and heat are not filed yet.",
+   "fr": "Toujours prévu. Le jour exact et la vague ne sont pas encore au dossier."
+  }
+ },
+ {
+  "when": {
+   "en": "Holidays",
+   "fr": "Fêtes"
+  },
+  "t": {
+   "en": "Hold what we built",
+   "fr": "Garder l’acquis"
+  },
+  "p": {
+   "en": "Less load, same rhythm. Protect the work through the calendar.",
+   "fr": "Moins de charge, même rythme. Protéger le travail pendant les fêtes."
+  }
+ },
+ {
+  "cls": "cond",
+  "when": {
+   "en": "January",
+   "fr": "Janvier"
+  },
+  "t": {
+   "en": "Review, then build",
+   "fr": "Faire le point, puis construire"
+  },
+  "p": {
+   "en": "Review the autumn running and recovery after HYROX before choosing January’s sessions.",
+   "fr": "Faire le point sur la course de l’automne et la récupération après HYROX avant de choisir les séances de janvier."
+  }
+ },
+ {
+  "when": {
+   "en": "Mon · Feb 1",
+   "fr": "Lun. · 1 févr."
+  },
+  "t": {
+   "en": "Race-specific · 15 weeks",
+   "fr": "Bloc spécifique · 15 semaines"
+  },
+  "p": {
+   "en": "February 1 to May 16. Build longer stretches at race pace, then add some race-pace running later in long runs when ready.",
+   "fr": "Du 1er février au 16 mai. Allonger les portions à l’allure de course, puis en ajouter en fin de sortie longue quand Simon est prêt."
+  }
+ },
+ {
+  "cls": "race",
+  "when": {
+   "en": "Sun · May 16",
+   "fr": "Dim. · 16 mai"
+  },
+  "t": {
+   "en": "Semi-Marathon de la Loire · Saumur",
+   "fr": "Semi-Marathon de la Loire · Saumur"
+  },
+  "p": {
+   "en": "21.1 km · 8:00 start at Pont de Gennes, Gennes-Val-de-Loire → Saumur. Target around 1:20.",
+   "fr": "21,1 km · départ à 8h00 au Pont de Gennes, Gennes-Val-de-Loire → Saumur. Objectif autour de 1:20."
+  }
+ }
+];
 
 /* ============================================================
    COPY: English and French. {p:x} paces, {d:x} distances,
@@ -830,8 +966,8 @@ const T = {
   "Preuves"
  ],
  "creed": [
-  "Higher ceiling. Longer hold.",
-  "Plafond plus haut. Tenue plus longue."
+  "Hold a steady pace for longer.",
+  "Tenir une allure régulière plus longtemps."
  ],
  "follow": [
   "Follow the study",
@@ -878,8 +1014,8 @@ const T = {
   "La vitesse est là.<br>Peut-elle durer ?"
  ],
  "claimsub": [
-  "Test the hold. Keep enough speed above it.",
-  "Tester la tenue. Garder assez de vitesse au-dessus."
+  "Build endurance. Keep the faster running.",
+  "Développer l’endurance. Garder le travail rapide."
  ],
  "coords": [
   "Key Biscayne · 12 Apr 2026",
@@ -922,8 +1058,8 @@ const T = {
   "Prochain test"
  ],
  "rb.next.v": [
-  "Gate 01 · 5K · Oct 29",
-  "Porte 01 · 5 km · 29 oct."
+  "5K · Oct 29",
+  "5 km · 29 oct."
  ],
  "rb.b1": [
   "Block 01",
@@ -942,28 +1078,28 @@ const T = {
   "16 mai · Saumur"
  ],
  "railnote": [
-  "Neither curve may cost the other.",
-  "Aucune courbe ne doit coûter à l’autre."
+  "Leave room to recover between workouts.",
+  "Garder le temps de récupérer entre les séances."
  ],
  "c1.t": [
   "Question",
   "Question"
  ],
  "c1.p": [
-  "Can he carry a faster pace for longer without the work becoming too costly?",
-  "Peut-il tenir une allure plus rapide plus longtemps sans que le travail devienne trop coûteux ?"
+  "Can Simon hold a steady pace for longer?",
+  "Simon peut-il tenir une allure régulière plus longtemps ?"
  ],
  "c1.s": [
-  "We do not assume the answer is threshold, durability or pacing. We test it.",
-  "Nous ne supposons pas que la réponse soit le seuil, la durabilité ou l’allure. Nous le testons."
+  "We follow his pacing, effort and recovery as the runs get longer.",
+  "Nous suivons son allure, son effort et sa récupération quand les séances s’allongent."
  ],
  "c2.t": [
   "The plan",
   "Le plan"
  ],
  "c2.p": [
-  "Tuesday: longer controlled work. Thursday: smaller faster support. Saturday: easy long run.",
-  "Mardi : travail contrôlé plus long. Jeudi : petite dose plus rapide. Samedi : sortie longue facile."
+  "Tuesday: longer repeats. Thursday: shorter, faster intervals if recovered. Saturday: an easy long run.",
+  "Mardi : répétitions plus longues. Jeudi : intervalles plus courts et rapides si la récupération est bonne. Samedi : sortie longue facile."
  ],
  "c2.go": [
   "Change one thing at a time",
@@ -994,8 +1130,8 @@ const T = {
   "Bloc 01"
  ],
  "c3.cv": [
-  "Nothing filed yet",
-  "Rien encore au dossier"
+  "Sep 29 + Oct 1",
+  "29 sept. + 1er oct."
  ],
  "c4.t": [
   "Races",
@@ -1022,8 +1158,8 @@ const T = {
   "29 oct."
  ],
  "c4.cv": [
-  "5K · Gate 01",
-  "5 km · porte 01"
+  "5K test",
+  "Test sur 5 km"
  ],
  "tag.sub": [
   "Subject",
@@ -1046,52 +1182,52 @@ const T = {
   "L’étude en 20 secondes."
  ],
  "s0.p": [
-  "His 5K is stronger than his half. That does not tell us why. This study separates the questions instead of guessing.",
-  "Son 5 km est plus fort que son semi. Cela ne nous dit pas pourquoi. Cette étude sépare les questions au lieu de deviner."
+  "Simon has run 17:36 for 5K and 1:26:13 for the half marathon. We are working on holding a steady pace for longer.",
+  "Simon a couru 17:36 sur 5 km et 1:26:13 sur semi-marathon. Nous travaillons à tenir une allure régulière plus longtemps."
  ],
  "s0.a.l": [
-  "Theory",
-  "Théorie"
+  "The focus",
+  "La priorité"
  ],
  "s0.a.h": [
-  "Short speed may not be the limiter.",
-  "La vitesse courte n’est peut-être pas la limite."
+  "Make the pace last.",
+  "Tenir l’allure."
  ],
  "s0.a.p": [
-  "Simon already runs fast for shorter distances. The bigger opportunity may be pacing and durability: holding the right speed for longer without the cost rising too quickly.",
-  "Simon court déjà vite sur les distances courtes. Le plus grand potentiel est peut-être l’allure et la durabilité : tenir la bonne vitesse plus longtemps sans que le coût monte trop vite."
+  "Simon can already run fast over shorter distances. The next step is to hold his pace as the distance grows.",
+  "Simon court déjà vite sur les distances courtes. La prochaine étape est de tenir son allure sur une plus grande distance."
  ],
  "s0.b.l": [
-  "How we test it now",
-  "Comment nous le testons maintenant"
+  "This block",
+  "Ce bloc"
  ],
  "s0.b.h": [
-  "Longer work first. Faster work second.",
-  "D’abord plus long. Ensuite plus vite."
+  "Longer repeats. Easy days between.",
+  "Des répétitions plus longues. Des jours faciles entre les séances."
  ],
  "s0.b.p": [
-  "Tuesday grows the controlled work. Thursday keeps a smaller faster dose. The October 29 5K checks the short end. After recovery, a separate 6 km continuous run checks what sustained running costs.",
-  "Le mardi allonge le travail contrôlé. Le jeudi garde une petite dose plus rapide. Le 5 km du 29 octobre vérifie le côté court. Après récupération, un 6 km continu séparé mesure le coût du travail soutenu."
+  "Tuesday is the main workout. Thursday adds a short faster session when he has recovered. The block finishes with a 5K on October 29.",
+  "Mardi est la séance principale. Jeudi ajoute une courte séance rapide quand il a récupéré. Le bloc se termine par un 5 km le 29 octobre."
  ],
  "s0.c.l": [
-  "Where this goes",
-  "Où cela mène"
+  "Later in the season",
+  "Plus tard dans la saison"
  ],
  "s0.c.h": [
-  "Grow distance, not speed every week.",
-  "Faire grandir la distance, pas la vitesse chaque semaine."
+  "Build the distance gradually.",
+  "Allonger progressivement la distance."
  ],
  "s0.c.p": [
-  "Later race-specific work becomes distance based: 5 miles, 6, 8, then race pace after prior running. Nine or ten fresh miles can become an athlete-specific option if the evidence supports it; twelve is not required.",
-  "Plus tard, le travail spécifique devient basé sur la distance : 5 miles, 6, 8, puis l’allure de course après avoir déjà couru. Neuf ou dix miles frais peuvent devenir une option individuelle si les données le justifient ; douze ne sont pas obligatoires."
+  "Closer to the half marathon, the plan will add longer stretches at race pace. Brice will choose those sessions from the running and recovery Simon shows during this block.",
+  "À l’approche du semi-marathon, le plan ajoutera des portions plus longues à l’allure de course. Brice choisira ces séances à partir de la course et de la récupération de Simon pendant ce bloc."
  ],
  "s0.rule.l": [
-  "What would change the theory?",
-  "Qu’est-ce qui changerait la théorie ?"
+  "When the plan changes",
+  "Quand le plan change"
  ],
  "s0.rule.p": [
-  "If fresh sustained work is already too expensive, the pace is wrong before durability is the problem. If a smaller Thursday preserves his 5K while Tuesday improves, we do not need a large second quality day.",
-  "Si le travail soutenu à frais est déjà trop coûteux, l’allure est à revoir avant d’accuser la durabilité. Si un jeudi plus léger préserve son 5 km pendant que le mardi progresse, nous n’avons pas besoin d’un gros deuxième jour de qualité."
+  "If the pace becomes difficult too early or recovery takes longer than usual, shorten the next workout or run easy. The next step follows how Simon responds.",
+  "Si l’allure devient difficile trop tôt ou si la récupération prend plus de temps que d’habitude, raccourcir la séance suivante ou courir facilement. La suite dépend de la réponse de Simon."
  ],
  "s1.h": [
   "Where he starts",
@@ -1150,12 +1286,12 @@ const T = {
   "Deux repères historiques"
  ],
  "ch.h": [
-  "One working model.",
-  "Un modèle de travail."
+  "Two races, one training focus.",
+  "Deux courses, un objectif de travail."
  ],
  "ch.p": [
-  "The line connects two race results; it is not a measured physiological curve. We are testing whether the hold, the higher-speed marker, or both can improve without an unacceptable recovery cost. The red horizon is only a long-range possibility, not a requirement for Saumur. Race cards retain organizer display paces; plotted positions use time and distance.",
-  "La ligne relie deux résultats de course ; ce n’est pas une courbe physiologique mesurée. Nous observons si la tenue, le repère de vitesse supérieure, ou les deux peuvent progresser sans coût de récupération excessif. L’horizon rouge reste une possibilité lointaine, pas une condition pour Saumur. Les fiches gardent les allures affichées par l’organisateur ; les positions utilisent temps et distance."
+  "The black line joins the April race results. The blue marker is the half-marathon goal. The red marker is a longer-term possibility for 5K speed. Plot positions use time and distance; the race cards keep the organizer’s displayed pace.",
+  "La ligne noire relie les résultats d’avril. Le repère bleu indique l’objectif sur semi-marathon. Le repère rouge est une possibilité à plus long terme pour la vitesse sur 5 km. Les positions utilisent le temps et la distance ; les fiches gardent l’allure affichée par l’organisateur."
  ],
  "sp.l": [
   "Key Biscayne, mile by mile",
@@ -1182,96 +1318,96 @@ const T = {
   "D’après son coach, Simon a choisi une course maîtrisée pour passer sous 1h30. Les baisses d’allure observées par Brice concernaient certains entraînements plus rapides, pas ce semi régulier. Ce sont des efforts différents. La question suivante est de tenir une allure plus rapide sous contrôle, d’abord frais, puis après avoir déjà couru."
  ],
  "s2.h": [
-  "The whole plan",
-  "Le plan complet"
+  "The five-week block",
+  "Le bloc de cinq semaines"
  ],
  "s2.p": [
-  "Five weeks, with room to repeat. Keep the Tuesday progression, repeat the first Thursday dose, and reduce the load before the 5K read. Later steps depend on the work and the recovery, not just the date.",
-  "Cinq semaines, avec la possibilité de répéter. Garder la progression du mardi, répéter la première dose du jeudi, puis alléger avant le test de 5 km. La suite dépend du travail et de la récupération, pas seulement de la date."
+  "Build toward a faster half marathon by running at a steady pace for longer. Tuesday is the main workout. Thursday adds shorter, faster intervals when you feel recovered. Saturday is an easy long run. The other runs stay easy so you can recover between workouts.",
+  "Préparer un semi-marathon plus rapide en tenant une allure régulière plus longtemps. Mardi est la séance principale. Jeudi ajoute des intervalles plus courts et rapides quand tu te sens reposé. Samedi est une sortie longue facile. Les autres sorties restent faciles pour récupérer entre les séances."
  ],
  "br.l": [
-  "What connects the curves",
-  "Ce qui relie les courbes"
+  "Why the week is arranged this way",
+  "Pourquoi la semaine est organisée ainsi"
  ],
  "br.h": [
-  "Conversion durability.",
-  "Durabilité de conversion."
+  "Each run has a job.",
+  "Chaque sortie a un rôle."
  ],
  "br1.h": [
-  "1 · Make room above",
-  "1 · Créer de la marge au-dessus"
+  "1 · Keep the faster running",
+  "1 · Garder le travail rapide"
  ],
  "br1.p": [
-  "Faster intervals test the upper end. A better 5K may help, but it is not required at every gate for the half-marathon work to be progressing.",
-  "Les intervalles rapides explorent le haut. Un meilleur 5 km peut aider, mais il n’est pas nécessaire à chaque étape pour que le travail du semi progresse."
+  "Short intervals keep faster running in the week while Tuesday focuses on endurance.",
+  "Les intervalles courts gardent du travail rapide dans la semaine, tandis que mardi développe l’endurance."
  ],
  "br2.h": [
-  "2 · Make the middle sustainable",
-  "2 · Rendre le milieu soutenable"
+  "2 · Hold a steady pace",
+  "2 · Tenir une allure régulière"
  ],
  "br2.p": [
-  "Threshold-oriented work is one possible bridge. Tuesday already overlaps the provisional reference. Do not add a third hard day just to complete the diagram.",
-  "Le travail proche du seuil est un pont possible. Mardi recoupe déjà le repère provisoire. Ne pas ajouter un troisième jour dur pour compléter le schéma."
+  "Longer repeats give Simon more time to settle into a pace and keep it even.",
+  "Les répétitions longues donnent à Simon plus de temps pour trouver son allure et la garder régulière."
  ],
  "br3.h": [
-  "3 · Make race pace survive context",
-  "3 · Faire survivre l’allure course au contexte"
+  "3 · Get used to longer runs",
+  "3 · S’habituer aux sorties longues"
  ],
  "br3.p": [
-  "First ask for more controlled continuity. Later, repeat a supported pace after a defined amount of prior running. That later question has not yet been directly tested.",
-  "Chercher d’abord plus de continuité sous contrôle. Ensuite, reprendre une allure étayée après une quantité définie de course facile. Cette dernière question n’a pas encore été testée directement."
+  "The easy long run builds endurance without adding another fast workout.",
+  "La sortie longue facile développe l’endurance sans ajouter une autre séance rapide."
  ],
  "tr1.d": [
-  "Tuesday · the hold",
-  "Mardi · la tenue"
+  "Tuesday",
+  "Mardi"
  ],
  "tr1.h": [
-  "Race pace, longer.",
-  "L’allure course, plus longtemps."
+  "Longer, steady repeats.",
+  "Des répétitions longues et régulières."
  ],
  "tr1.p": [
-  "Working band: {p:226.80048516662688-231.77145470452555}. Start near {p:232}; finishing there with control is enough. Two minutes very easy jogging between pieces. The next step must be earned.",
-  "Plage de travail : {p:226.80048516662688-231.77145470452555}. Commencer vers {p:232} ; finir à cette allure sous contrôle suffit. Deux minutes de footing très facile entre les blocs. Chaque étape doit être méritée."
+  "Run the repeats at {p:228.664599-231.771455}, starting at the slower end. Take 2 min very easy jogging between repeats. Week 4 is lighter, at {p:229.907341-233.014197}.",
+  "Cours les répétitions à {p:228.664599-231.771455}, en commençant du côté le plus lent. Prends 2 min de footing très facile entre les répétitions. La quatrième semaine est allégée, à {p:229.907341-233.014197}."
  ],
  "tr2.d": [
-  "Thursday · the ceiling",
-  "Jeudi · le plafond"
+  "Thursday",
+  "Jeudi"
  ],
  "tr2.h": [
-  "Faster than race pace.",
-  "Plus vite que l’allure course."
+  "Shorter, faster intervals.",
+  "Des intervalles plus courts et rapides."
  ],
  "tr2.p": [
-  "The April 5K gives a provisional reference. Start toward {p:212-214}. Repeat the dose before extending it, especially while Tuesday changes.",
-  "Le 5 km d’avril donne un repère provisoire. Commencer vers {p:212-214}. Répéter la dose avant de l’allonger, surtout lorsque mardi évolue."
+  "Run the faster intervals at {p:213.130319-218.101288}, with 2 min very easy jogging between them. If Tuesday, hard HYROX or leg training leaves you tired, run easy or rest instead.",
+  "Cours les intervalles rapides à {p:213.130319-218.101288}, avec 2 min de footing très facile entre eux. Si mardi, HYROX ou une séance de jambes exigeante te laisse fatigué, cours facilement ou repose-toi à la place."
  ],
  "tr3.d": [
-  "Saturday · the base",
-  "Samedi · la base"
+  "Saturday",
+  "Samedi"
  ],
  "tr3.h": [
   "Long and easy.",
   "Long et facile."
  ],
  "tr3.p": [
-  "Easy means {p:295} or slower, guided by effort. No fast finish in this block. The planned distance is not a minimum to force when recovery is poor.",
-  "Facile signifie {p:295} ou plus lent, selon l’effort. Pas de fin rapide dans ce bloc. La distance prévue n’est pas un minimum à forcer si la récupération est mauvaise."
+  "Run at {p:295.151316} or slower, guided by easy effort. Keep the whole long run easy. Shorten it if you have not recovered.",
+  "Cours à {p:295.151316} ou plus lentement, selon tes sensations. Garde toute la sortie longue facile. Raccourcis-la si tu n’as pas récupéré."
  ],
  "k.easy": [
   "Easy",
   "Facile"
  ],
  "k.half": [
-  "Working half-pace band",
-  "Plage de travail pour le semi"
+  "Tuesday repeats",
+  "Répétitions du mardi"
  ],
  "k.thr": [
-  "Provisional threshold reference",
-  "Repère de seuil provisoire"
+  "Sep 4 workout · snapshot",
+  "Séance du 4 sept. · archive"
  ],
  "k.ceil": [
-  "Provisional ceiling reference",
-  "Repère de plafond provisoire"
+  "Thursday intervals",
+  "Intervalles du jeudi"
  ],
  "x.l": [
   "Pace translator",
@@ -1302,8 +1438,8 @@ const T = {
   "En cours · Étude 003"
  ],
  "pb.m": [
-  "{b1} → {b1end} · 5 weeks · ends with Gate 01",
-  "{b1} → {b1end} · 5 semaines · se termine par la porte 01"
+  "{b1} → {b1end} · 5 weeks · 5K on October 29",
+  "{b1} → {b1end} · 5 semaines · 5 km le 29 octobre"
  ],
  "pb.h": [
   "Block 01",
@@ -1326,8 +1462,8 @@ const T = {
   "Au dossier"
  ],
  "s3.p": [
-  "Recorded work, athlete reports and coach interpretation are kept separate. These historical records do not certify current readiness.",
-  "Le travail enregistré, les ressentis et l’interprétation du coach restent distincts. Ces données historiques ne certifient pas la disponibilité actuelle."
+  "Race results and workout records, with the source beside each entry.",
+  "Résultats de course et séances enregistrées, avec la source de chaque entrée."
  ],
  "e1.d": [
   "23 Sep 2026",
@@ -1338,12 +1474,12 @@ const T = {
   "Note du coach"
  ],
  "e1.h": [
-  "The race held. Faster training asks the next question.",
-  "La course a tenu. L’entraînement plus rapide pose la suite."
+  "An evenly paced half marathon.",
+  "Un semi-marathon couru régulièrement."
  ],
  "e1.p": [
-  "The April race was a successful conservative execution, not a failed conversion test. The coach-reported faster-long-run limiter remains a separate observation. We are testing control, continuity and eventually prior-running context rather than assuming a single cause.",
-  "Le semi d’avril était une exécution prudente réussie, pas un test de conversion raté. La limite observée par le coach en sortie longue plus rapide reste distincte. Nous testons le contrôle, la continuité et ensuite la course préalable, sans supposer une cause unique."
+  "Simon chose to secure sub-1:30 in April and held an even pace. Brice has seen him slow in some faster long runs. This study follows how he holds a quicker pace as the distance grows.",
+  "Simon a choisi de passer sous 1h30 en avril et a tenu une allure régulière. Brice l’a vu ralentir dans certaines sorties longues plus rapides. Cette étude suit sa capacité à tenir une allure plus rapide quand la distance augmente."
  ],
  "e2.d": [
   "04 Sep 2026",
@@ -1362,12 +1498,12 @@ const T = {
   "29 sept. 2026"
  ],
  "e3.h": [
-  "Average in band. Distribution deliberately interrupted.",
-  "Moyenne dans la plage. Répartition volontairement interrompue."
+  "September 29 · workout snapshot",
+  "29 septembre · séance archivée"
  ],
  "e3.p": [
-  "Simon ran 4 × 1.6 km in 5:57.0 · 5:59.4 · 6:01.7 · 6:34.8. The 6.40 km work average was about {p:230.140625}, inside the {p:227-232} working band. The first three were slightly faster than the band; the fourth was intentionally slowed after another coach interpreted a high heart rate as a threshold problem. This was working half pace, not threshold. No fixed HR cap is used here, and the last rep is not read as a physiological fade.",
-  "Simon a couru 4 × 1,6 km en 5:57.0 · 5:59.4 · 6:01.7 · 6:34.8. La moyenne des 6,40 km de travail est d’environ {p:230.140625}, dans la plage de travail {p:227-232}. Les trois premières répétitions étaient légèrement plus rapides ; la quatrième a été volontairement ralentie après qu’un autre coach a interprété une fréquence cardiaque élevée comme un problème de seuil. Il s’agissait de l’allure de travail du semi, pas du seuil. Aucun plafond fixe de fréquence cardiaque n’est utilisé ici et la dernière répétition n’est pas interprétée comme une défaillance physiologique."
+  "Simon ran 4 × 1.6 km in 5:57.0 · 5:59.4 · 6:01.7 · 6:34.8. The 6.40 km work average was about {p:230.140625}, inside the {p:227-232} band prescribed for that September 29 session. The first three were slightly faster than the band; the fourth was intentionally slowed after another coach interpreted a high heart rate as a threshold problem. This was working half pace, not threshold. No fixed HR cap is used here, and the last rep is not read as a physiological fade.",
+  "Simon a couru 4 × 1,6 km en 5:57.0 · 5:59.4 · 6:01.7 · 6:34.8. La moyenne des 6,40 km de travail est d’environ {p:230.140625}, dans la plage {p:227-232} prescrite pour cette séance du 29 septembre. Les trois premières répétitions étaient légèrement plus rapides ; la quatrième a été volontairement ralentie après qu’un autre coach a interprété une fréquence cardiaque élevée comme un problème de seuil. Il s’agissait de l’allure de travail du semi, pas du seuil. Aucun plafond fixe de fréquence cardiaque n’est utilisé ici et la dernière répétition n’est pas interprétée comme une défaillance physiologique."
  ],
  "s4.h": [
   "The record",
@@ -1414,8 +1550,8 @@ const T = {
   "Résultat officiel · 23 avr. 2026"
  ],
  "r4": [
-  "Threshold-related field record",
-  "Repère de terrain proche du seuil"
+  "September 4 workout",
+  "Séance du 4 septembre"
  ],
  "r4.s": [
   "Sep 4 coach import: recorded repetitions, RPE 7; physiological threshold remains provisional.",
@@ -1430,12 +1566,12 @@ const T = {
   "Fixé par Brice, autour de 1:20"
  ],
  "r6": [
-  "Experimental working band",
-  "Plage de travail expérimentale"
+  "Tuesday repeats",
+  "Répétitions du mardi"
  ],
  "r6.s": [
-  "Narrower than the 1:19-1:23 goal envelope. Not established race pace.",
-  "Plus étroite que l’objectif de 1h19 à 1h23. Ce n’est pas une allure de course établie."
+  "Current assigned plan. Week 4 has a slower range shown in its session.",
+  "Plan actuellement attribué. La quatrième semaine utilise une plage plus lente, indiquée dans sa séance."
  ],
  "r7": [
   "Goal race",
@@ -1470,24 +1606,24 @@ const T = {
   "À confirmer"
  ],
  "s5.h": [
-  "What this page says",
-  "Ce que dit cette page"
+  "What we’re watching",
+  "Ce que nous suivons"
  ],
  "sc1.h": [
-  "It says",
-  "Elle dit"
+  "Steady running for longer.",
+  "Courir régulièrement plus longtemps."
  ],
  "sc1.p": [
-  "The historical record supports substantial broken running near the working band. This block tests current control and continuity while developing higher-speed work. A stronger hold with an unchanged 5K can be progress.",
-  "L’historique étaye un volume conséquent de course fractionnée proche de la plage visée. Ce bloc teste le contrôle et la continuité actuels tout en développant la vitesse. Une meilleure tenue peut être un progrès sans meilleur 5 km."
+  "Longer repeats, even pacing and enough recovery to arrive ready for the next workout.",
+  "Des répétitions plus longues, une allure régulière et assez de récupération pour aborder la séance suivante."
  ],
  "sc2.h": [
-  "It doesn't claim",
-  "Elle n’affirme pas"
+  "Room to recover.",
+  "Le temps de récupérer."
  ],
  "sc2.p": [
-  "It does not establish a laboratory threshold, a VO₂max gain, the cause of an incomplete recording, current 45-mile weeks, or a guaranteed 1:20 half. Later work stays conditional.",
-  "Il n’établit ni un seuil de laboratoire, ni un gain de VO₂max, ni la cause d’un enregistrement incomplet, ni un volume actuel de 45 miles, ni un semi garanti en 1h20. La suite reste conditionnelle."
+  "Thursday gets shorter or becomes easy running or rest if Tuesday or HYROX leaves Simon tired.",
+  "Jeudi devient plus court, facile ou du repos si mardi ou HYROX laisse Simon fatigué."
  ],
  "r8": [
   "W1 working-pace read",
@@ -1502,8 +1638,8 @@ const T = {
   "FORM · Étude 003 · Simon"
  ],
  "f2": [
-  "The Two Curves · living record · updated 29 Sep 2026",
-  "Les deux courbes · dossier vivant · mis à jour le 29 sept. 2026"
+  "The Two Curves · updated October 8, 2026",
+  "Les deux courbes · mis à jour le 8 octobre 2026"
  ],
  "g.wk": [
   "Wk",
@@ -1544,16 +1680,16 @@ const T = {
  "g.type": [
   {
    "easy": "Easy",
-   "tue": "Hold",
-   "thu": "Ceiling",
-   "sat": "Long",
+   "tue": "Repeats",
+   "thu": "Intervals",
+   "sat": "Long run",
    "off": ""
   },
   {
    "easy": "Facile",
-   "tue": "Tenue",
-   "thu": "Plafond",
-   "sat": "Longue",
+   "tue": "Répétitions",
+   "thu": "Intervalles",
+   "sat": "Sortie longue",
    "off": ""
   }
  ],
@@ -1562,8 +1698,8 @@ const T = {
   "Cette semaine"
  ],
  "g.week": [
-  "week",
-  "semaine"
+  "planned estimate",
+  "estimation"
  ],
  "g.st.pre": [
   "Opens Sep 28",
@@ -1574,24 +1710,24 @@ const T = {
   "Sem. {n} / 5"
  ],
  "g.st.after": [
-  "Awaiting Gate 01 review",
-  "Lecture de la porte 01 attendue"
+  "Block complete · coach review",
+  "Bloc terminé · bilan avec le coach"
  ],
  "g.ceil": [
-  "CEILING",
-  "PLAFOND"
+  "5K SPEED",
+  "VITESSE 5 KM"
  ],
  "g.hold": [
-  "HOLD",
-  "TENUE"
+  "ENDURANCE",
+  "ENDURANCE"
  ],
  "g.goal": [
   "GOAL 1:20",
   "OBJECTIF 1:20"
  ],
  "g.open": [
-  "GATE 01 · OCT 29 · 5K",
-  "PORTE 01 · 29 OCT. · 5 KM"
+  "5K · OCT 29",
+  "5 KM · 29 OCT."
  ],
  "g.turkey": [
   "TURKEY TROT · NOV 26 · TBC",
@@ -1682,48 +1818,48 @@ const T = {
   "Source : captures fournies par le coach. Intervalles enregistrés, descriptions et ressentis sont des preuves différentes. Aucune série brute ni dérive cardiaque exacte n’a été reconstruite."
  ],
  "rules.h": [
-  "How this block stays useful.",
-  "Comment garder ce bloc utile."
+  "Keep the week manageable.",
+  "Garder une semaine récupérable."
  ],
  "rules.p": [
-  "Repeat before forcing. Let pace yield when conditions or recovery make the prescribed work too costly. Heart rate is context, not a standalone 175-bpm pass/fail rule. Keep the existing Feel/Effort report, add reserve and limiter, and check the next day.",
-  "Répéter plutôt que forcer. Laisser l’allure baisser si les conditions ou la récupération rendent le travail trop coûteux. La fréquence cardiaque apporte du contexte, pas une règle isolée à 175 bpm. Garder le ressenti et l’effort existants, ajouter la réserve et la limite, puis vérifier le lendemain."
+  "If Tuesday or hard HYROX or leg training leaves you tired, replace Thursday’s intervals with easy running or rest. Tell Brice how the workout felt and how you feel the next day.",
+  "Si mardi, HYROX ou une séance de jambes exigeante te laisse fatigué, remplace les intervalles du jeudi par une course facile ou du repos. Dis à Brice comment la séance s’est passée et comment tu te sens le lendemain."
  ],
  "rules.note": [
-  "Distances with timed warm-ups, recoveries and cooldowns are planning estimates. Run the prescribed components; do not add miles to force the estimate. Sunday is unauthored.",
-  "Les distances avec échauffement, récupération et retour au calme chronométrés sont des estimations. Suivre les blocs prescrits sans ajouter de distance pour atteindre l’estimation. Dimanche n’est pas programmé."
+  "The weekly distances include estimates for timed running. Follow the session, and do not add distance to reach the total. Sunday has no assigned run in this block.",
+  "Les distances hebdomadaires incluent des estimations pour les portions chronométrées. Suis la séance sans ajouter de distance pour atteindre le total. Aucune sortie n’est programmée le dimanche dans ce bloc."
  ],
  "gate.l": [
-  "Gate 01: a decision window",
-  "Porte 01 : une fenêtre de décision"
+  "After this block",
+  "Après ce bloc"
  ],
  "gate.h": [
-  "Two reads. Room to recover.",
-  "Deux lectures. Le temps de récupérer."
+  "Check progress, then choose the next block.",
+  "Faire le point, puis choisir le bloc suivant."
  ],
  "gate.a.h": [
-  "Oct 29: the 5K",
-  "29 oct. : le 5 km"
+  "October 29 · 5K",
+  "29 octobre · 5 km"
  ],
  "gate.a.p": [
-  "Tuesday is easy. The 5K establishes a current field reference; its effort is read differently from a controlled Tuesday. Compare conditions and recovery, not just the finishing time.",
-  "Mardi est facile. Le 5 km établit un repère actuel ; son effort ne se lit pas comme celui d’un mardi contrôlé. Comparer les conditions et la récupération, pas seulement le chrono."
+  "Run an even 5K and record your time, splits and how it felt. The days before it are lighter.",
+  "Cours un 5 km régulier et note ton temps, tes passages et tes sensations. Les jours qui précèdent sont plus légers."
  ],
  "gate.b.h": [
-  "From Nov 3: continuity, if ready",
-  "À partir du 3 nov. : continuité, si prêt"
+  "From November 3 · possible 6 km run",
+  "À partir du 3 novembre · 6 km à envisager"
  ],
  "gate.b.p": [
-  "Consider {d:6} to {d:8} continuous only after normal recovery and coach approval. This is a candidate, not an assigned sixth week. Record controlled duration without running until failure.",
-  "Envisager {d:6} à {d:8} en continu après une récupération normale et l’accord du coach. C’est une possibilité, pas une sixième semaine programmée. Mesurer la durée maîtrisée sans chercher l’échec."
+  "After you recover from the 5K, Brice may add a steady {d:6} run. Wait for his confirmation before doing it. Keep it to {d:6}.",
+  "Après ta récupération du 5 km, Brice pourra ajouter une sortie régulière de {d:6}. Attends son accord avant de la faire. Garde la distance à {d:6}."
  ],
  "gate.c.h": [
-  "Read the cost before the next step",
-  "Lire le coût avant la suite"
+  "Review the running and recovery",
+  "Faire le point sur la course et la récupération"
  ],
  "gate.c.p": [
-  "A stronger hold with the same 5K can be success. Expensive early: review pace and controlled sustained work. Expensive only after more running: investigate continuity and later durability. Poor recovery: reduce demand. Unclear but recovered: check comparability before changing the plan.",
-  "Une meilleure tenue avec le même 5 km peut être une réussite. Coût élevé dès le départ : revoir l’allure et le travail soutenu contrôlé. Coût tardif : examiner la continuité puis la durabilité. Mauvaise récupération : alléger. Résultat flou mais récupération normale : vérifier la comparaison avant de changer le plan."
+  "Brice will use the 5K, the longer running and your recovery to decide what comes next.",
+  "Brice utilisera le 5 km, les séances plus longues et ta récupération pour décider de la suite."
  ],
  "hx.recorded": [
   "Recorded intervals",
@@ -1736,6 +1872,50 @@ const T = {
  "ref.provisional": [
   "Provisional",
   "Provisoire"
+ ],
+ "m.goalnote": [
+  "Half-marathon goal",
+  "Objectif sur semi-marathon"
+ ],
+ "refresh": [
+  "Refresh plan",
+  "Actualiser le plan"
+ ],
+ "g.snapshot": [
+  "Plan snapshot",
+  "Plan archivé"
+ ],
+ "pace.easy": [
+  "{p:295.151316} or slower",
+  "{p:295.151316} ou plus lent"
+ ],
+ "pace.tuesday": [
+  "{p:228.664599-231.771455}",
+  "{p:228.664599-231.771455}"
+ ],
+ "pace.thursday": [
+  "{p:213.130319-218.101288}",
+  "{p:213.130319-218.101288}"
+ ],
+ "pace.history": [
+  "{p:227.4218563588642} / {p:224.93637158991487}",
+  "{p:227.4218563588642} / {p:224.93637158991487}"
+ ],
+ "obs.label": [
+  "The training week",
+  "La semaine d’entraînement"
+ ],
+ "obs.h": [
+  "Adjust the week to how you recover.",
+  "Adapter la semaine à ta récupération."
+ ],
+ "obs.p": [
+  "Tuesday is the main workout. If Tuesday, HYROX or hard leg training leaves you tired, make Thursday easy or rest. Keep Saturday easy. Tell Brice how each workout feels and how you feel the next day.",
+  "Mardi est la séance principale. Si mardi, HYROX ou une séance de jambes exigeante te laisse fatigué, cours facilement jeudi ou repose-toi. Garde la sortie du samedi facile. Dis à Brice comment se passe chaque séance et comment tu te sens le lendemain."
+ ],
+ "obs.link": [
+  "How FORM plans the training",
+  "Comment FORM construit l’entraînement"
  ]
 };
 const MON = [["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc."]];
@@ -1782,7 +1962,10 @@ const inWeek = (monIso) => { const a=new Date(monIso+"T00:00:00"), b=new Date(a)
    RENDER
    ============================================================ */
 function renderCopy(){
-  document.querySelectorAll("[data-i]").forEach(el=>{ const v=T[el.dataset.i]; if(v) el.innerHTML = fmt(v[L()]); });
+  // STUDY003_LIVE_COPY: update the summaries as well as the grid.
+  const copy=window.FORMSimonPlan.currentCopy(window.FORMSimonPublishedPlan);
+  T['s2.p'][0]=copy['s2.en'];delete copy['s2.en'];Object.assign(T,copy);
+  document.querySelectorAll("[data-i]").forEach(el=>{ const v=T[el.dataset.i]; if(v){if(el.dataset.i==='s2.p')el.textContent=v[L()];else el.innerHTML = fmt(v[L()]);} });
   document.querySelectorAll("[data-u]").forEach(el=>{
     const u=el.dataset.u;
     if(u.startsWith("rp:")){ const [mi,km]=u.slice(3).split("|"); el.textContent = unit==="km"?`${km}/km`:`${mi}/mi`; el.title = unit==="km"?`${mi}/mi`:`${km}/km`; return; }
@@ -1814,8 +1997,8 @@ function renderGrid(){
     h += `<div class="gp-wk" role="cell"><b>${t("g.wk")} 0${i+1}</b><strong>${w.name[lang]}</strong><span>${date(mon)} → ${date(sun)}</span></div>`;
     w.days.forEach((d,j)=>{
       if(d.type==="off"){ h += `<div class="gp-d off" role="cell" data-day="${days[j]}"><span class="t"></span><span class="body">—</span></div>`; return; }
-      const body = d.type==="easy" ? (d.lbl?d.lbl[lang]:"") : fmt(d[lang]);
-      h += `<div class="gp-d ${d.type}" role="cell" data-day="${days[j]}"><span class="t">${types[d.type]}</span><span class="body">${body}</span><span class="km">${dist(d.km,true)}</span></div>`;
+      const body = fmt(d[lang]);
+      h += `<div class="gp-d ${d.type}" role="cell" data-day="${days[j]}"><span class="t">${d.label?d.label[lang]:types[d.type]}</span><span class="body">${body}</span><span class="km">${dist(d.km,true)}</span></div>`;
     });
     h += `<div class="gp-tot" role="cell">${dist(tot,true)}<small>${t("g.week")}</small></div></div>`;
   });
@@ -1918,19 +2101,27 @@ document.getElementById("xSwap").addEventListener("click", ()=>{ const out=xOut.
    ============================================================ */
 
 let publicationState='saved';
+let refreshingPublication=false;
 function renderPublicationState(){
- const el=document.getElementById('planSource');if(!el)return;
+ const el=document.getElementById('planSource'),button=document.getElementById('refreshPlan');if(!el)return;
  el.dataset.sourceState=publicationState;
  const ver=window.FORMSimonPublishedPlan.payload.version.number;
- el.textContent=publicationState==='live'?(lang==='fr'?'Plan publié vérifié · version ':'Approved plan checked · version ')+ver:publicationState==='review_required'?(lang==='fr'?'Publication à revoir. Suivre le plan attribué dans FORM. Copie précédente affichée ci-dessous.':'Publication needs review. Follow your assigned FORM plan. Previous approved copy shown below.'):(lang==='fr'?'Copie publiée enregistrée · version ':'Saved approved copy · version ')+ver+(lang==='fr'?' · connexion non vérifiée.':' · live connection not verified.');
+ if(publicationState==='refreshing')el.textContent=lang==='fr'?'Vérification du plan…':'Checking for plan updates…';
+ else if(publicationState==='live')el.textContent=(lang==='fr'?'Plan à jour · version ':'Plan up to date · version ')+ver;
+ else if(publicationState==='review_required')el.textContent=lang==='fr'?'La publication doit être mise à jour. Consulte ton plan dans FORM. La copie précédente reste affichée.':'The published copy needs an update. Check your plan in FORM. The previous copy remains visible.';
+ else el.textContent=(lang==='fr'?'Copie enregistrée · version ':'Saved plan · version ')+ver+(lang==='fr'?'. Les mises à jour n’ont pas pu être vérifiées.':'. Updates could not be checked.');
+ if(button){button.hidden=false;button.disabled=refreshingPublication;button.textContent=refreshingPublication?(lang==='fr'?'Vérification…':'Checking…'):t('refresh');}
 }
 async function refreshApprovedPublication(){
+ if(refreshingPublication)return;
+ refreshingPublication=true;publicationState='refreshing';renderPublicationState();
  try{
   const next=await window.FORMSimonPlan.read(AbortSignal.timeout(12000));
-  if(next.payload.running.starts_on!==BLOCK01_START)throw Error('Calendar changed; review the study');
+  if(next.payload.running.starts_on!==BLOCK01_START||next.payload.version.number<window.FORMSimonPublishedPlan.payload.version.number)throw Error('Public plan is not approved/current');
   B1=window.FORMSimonPlan.fromPublication(next);window.FORMSimonPublishedPlan=next;publicationState='live';
  }catch(e){publicationState=String(e.message).includes('approved/current')?'review_required':'saved';}
- renderGrid();renderPublicationState();
+ refreshingPublication=false;
+ renderCopy();renderGrid();renderPublicationState();
 }
 
 function renderAll(){
@@ -1954,6 +2145,7 @@ document.querySelectorAll("[data-unit]").forEach(b=>b.addEventListener("click",(
   swap(()=>{ unit=b.dataset.unit; store.set("form.unit",unit); });
 }));
 
+document.getElementById('refreshPlan').addEventListener('click',refreshApprovedPublication);
 renderAll();
 refreshApprovedPublication();
 
