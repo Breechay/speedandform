@@ -4,6 +4,7 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const playwright=require(process.env.PLAYWRIGHT_MODULE||'playwright');
 const ROOT=path.resolve(__dirname,'..'),BASE=(process.env.SIMON_QA_ORIGIN||'http://127.0.0.1:8765').replace(/\/$/,''),OUT=process.env.SIMON_QA_OUTPUT||'/tmp/simon-study-qa';
 const pub=JSON.parse(fs.readFileSync(path.join(ROOT,'labs/the-two-curves/published-plan.json'),'utf8'));
+const summaryTranslation=require('../scripts/studies/simon-study-copy.cjs')['s2.p'];
 fs.mkdirSync(OUT,{recursive:true});
 const report={origin:BASE,revision:pub.revision,cases:[],scope:'Browser emulation. Not a physical iPhone or a native-app test.'};
 const route='**/rest/v1/rpc/study_003_plan';
@@ -29,6 +30,8 @@ async function record(page,name,width,lang,mode='live',screenshot=false){
  await page.goto(BASE+'/labs/the-two-curves/?lang='+lang+'&unit=km',{waitUntil:'domcontentloaded'});
  await page.waitForFunction(state=>document.querySelector('#planSource')?.dataset.sourceState===state,mode,{timeout:20000});
  assert.equal(await page.locator('#gridPlan .gp-row').count(),5);
+ assert.equal(await page.locator('[data-i="s2.p"]').innerText(),lang==='fr'?summaryTranslation[1]:pub.payload.version.summary);
+ assert.equal(await page.locator('#summaryLanguage').isVisible(),false,'Known approved summary needs no language fallback');
  const row=page.locator('#gridPlan .gp-row');
  assert.ok((await row.nth(0).textContent()).includes(lang==='fr'?'Plan archivé':'Plan snapshot'));
  assert.ok((await row.nth(1).innerText()).includes('3:49–3:52/km'));
@@ -80,17 +83,37 @@ async function main(){
   assert.ok((await fr.locator('#gridPlan').innerText()).includes('very easy jog'));
   report.cases.push({name:'language-and-unit-switch',result:'passed'});await fr.close();
 
+  for(const language of ['en','fr']){
   const manual=await browser.newPage({viewport:{width:390,height:844}});let calls=0;
   const revised=structuredClone(pub);revised.payload.version.number++;revised.revision='SIMON-003-R'+revised.payload.version.number+'-20261008';
   revised.payload.version.summary='A refreshed description from the approved plan.';
   revised.payload.weeks[1].sessions.find(s=>s.day==='TUE').components.find(c=>c.role==='work').pace_low_seconds=371;
-  await manual.route(route,r=>{calls++;return r.fulfill({status:200,contentType:'application/json',body:JSON.stringify(calls===1?pub:revised)});});
-  await record(manual,'manual-refresh-before',390,'en');
+  await manual.route(route,r=>{calls++;return calls===3?r.abort():r.fulfill({status:200,contentType:'application/json',body:JSON.stringify(calls===1?pub:revised)});});
+  await record(manual,'manual-refresh-before-'+language,390,language);
   await manual.locator('#refreshPlan').click();await manual.waitForFunction(n=>document.querySelector('#planSource').textContent.includes('version '+n),revised.payload.version.number);
   assert.equal(calls,2);assert.equal(await manual.locator('[data-i="s2.p"]').innerText(),revised.payload.version.summary);
+  assert.equal(await manual.locator('[data-i="s2.p"]').getAttribute('lang'),'en');
+  assert.equal(await manual.locator('#summaryLanguage').isVisible(),language==='fr');
+  if(language==='fr'){
+   assert.equal(await manual.locator('#summaryLanguage').innerText(),'Description du bloc en anglais');
+   await manual.locator('[data-lang="en"]').click();
+   await manual.waitForFunction(()=>document.documentElement.lang==='en');
+   assert.equal(await manual.locator('#summaryLanguage').isVisible(),false);
+   assert.equal(await manual.locator('[data-i="s2.p"]').innerText(),revised.payload.version.summary);
+   await manual.locator('[data-lang="fr"]').click();
+   await manual.waitForFunction(()=>document.documentElement.lang==='fr');
+   assert.equal(await manual.locator('#summaryLanguage').isVisible(),true);
+   await manual.locator('#summaryLanguage').evaluate(e=>window.scrollTo(0,e.getBoundingClientRect().top+scrollY-80));
+   await manual.screenshot({path:path.join(OUT,'refreshed-french-summary.png'),scale:'css'});
+   await manual.locator('#refreshPlan').click();
+   await manual.waitForFunction(()=>document.querySelector('#planSource').dataset.sourceState==='saved');
+   assert.equal(await manual.locator('[data-i="s2.p"]').innerText(),revised.payload.version.summary,'A failed later check retains the current summary');
+   assert.equal(await manual.locator('#summaryLanguage').isVisible(),true);
+  }
   assert.ok((await manual.locator('[data-i="pace.tuesday"]').first().innerText()).includes('3:51–3:52/km'));
   assert.ok((await manual.locator('#gridPlan .gp-row').nth(1).innerText()).includes('3:51–3:52/km'));
-  report.cases.push({name:'manual-refresh',result:'Summary, cards and grid changed together from an approved test response'});await manual.close();
+  report.cases.push({name:'manual-refresh-'+language,result:'Current summary, cards and grid refreshed together; unmatched French translation uses labeled current English'});await manual.close();
+  }
 
   for(const mode of ['saved','review_required']){
    const page=await browser.newPage({viewport:{width:390,height:844}});await mock(page,mode);await record(page,mode,390,'en',mode);

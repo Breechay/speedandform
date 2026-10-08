@@ -34,6 +34,11 @@
       if(Math.abs(sum-w.total_distance)>.001) throw Error('Week total does not equal sessions');
     });return raw;
   }
+  function summaryCopy(raw,translation){
+    const summary=validate(raw).payload.version.summary;
+    const translated=Array.isArray(translation)&&translation[0]===summary&&typeof translation[1]==='string'&&translation[1].trim().length>0;
+    return {values:[summary,translated?translation[1]:summary],frenchFallback:!translated};
+  }
   function currentCopy(raw){
     const p=validate(raw).payload;
     const work=(week,day)=>p.weeks[week-1].sessions.find(s=>s.day===day).components.find(c=>c.role==='work');
@@ -128,5 +133,5 @@
       h+=`<div class="gp-tot" role="cell">${w.days.reduce((n,d)=>n+(d.km||0),0)} km<small>planned estimate</small></div></div>`;
     });return h;
   }
-  return {MI,validate,currentCopy,fromPublication,read,format,fallbackGrid};
+  return {MI,validate,summaryCopy,currentCopy,fromPublication,read,format,fallbackGrid};
 });
