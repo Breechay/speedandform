@@ -26,7 +26,10 @@ module.exports = {
   's0.rule.l': ['When the plan changes', 'Quand le plan change'],
   's0.rule.p': ['If the pace becomes difficult too early or recovery takes longer than usual, shorten the next workout or run easy. The next step follows how Simon responds.', 'Si l’allure devient difficile trop tôt ou si la récupération prend plus de temps que d’habitude, raccourcir la séance suivante ou courir facilement. La suite dépend de la réponse de Simon.'],
   's2.h': ['The five-week block', 'Le bloc de cinq semaines'],
-  's2.p': ['', 'Préparer un semi-marathon plus rapide en tenant une allure régulière plus longtemps. Mardi est la séance principale. Jeudi ajoute des intervalles plus courts et rapides quand tu te sens reposé. Samedi est une sortie longue facile. Les autres sorties restent faciles pour récupérer entre les séances.'],
+  // The English entry identifies the exact source translated here. Displayed
+  // English always comes from the approved publication, including after refresh.
+  's2.p': ['Build toward a faster half marathon by running at a steady pace for longer. Tuesday is the main workout. Thursday adds shorter, faster intervals when you feel recovered. Saturday is an easy long run. The other runs stay easy so you can recover between workouts.', 'Préparer un semi-marathon plus rapide en tenant une allure régulière plus longtemps. Mardi est la séance principale. Jeudi ajoute des intervalles plus courts et rapides quand tu te sens reposé. Samedi est une sortie longue facile. Les autres sorties restent faciles pour récupérer entre les séances.'],
+  's2.fallback': ['', 'Description du bloc en anglais'],
   'ch.h': ['Two races, one training focus.', 'Deux courses, un objectif de travail.'],
   'ch.p': ['The black line joins the April race results. The blue marker is the half-marathon goal. The red marker is a longer-term possibility for 5K speed. Plot positions use time and distance; the race cards keep the organizer’s displayed pace.', 'La ligne noire relie les résultats d’avril. Le repère bleu indique l’objectif sur semi-marathon. Le repère rouge est une possibilité à plus long terme pour la vitesse sur 5 km. Les positions utilisent le temps et la distance ; les fiches gardent l’allure affichée par l’organisateur.'],
   'tr1.d': ['Tuesday', 'Mardi'],

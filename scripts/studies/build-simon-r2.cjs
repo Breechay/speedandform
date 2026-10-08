@@ -12,7 +12,9 @@ const staticFormat=s=>A.format(s,'km').replace(/\{e:(\d+)\}/g,(_,x)=>x+' m').rep
 const arg=name=>{const i=process.argv.indexOf(name);return i<0?null:process.argv[i+1];};
 
 function replaceCopy(html,key,value){
-  const open=new RegExp('<([a-z][\\w:-]*)\\b[^>]*\\bdata-i=["\\\']'+escapeRE(key)+'["\\\'][^>]*>','g');
+  // An attribute needs whitespace after the tag name; an inline comparison
+  // such as TODAY<b; is not an opening <b> element.
+  const open=new RegExp('<([a-z][\\w:-]*)\\s+[^>]*\\bdata-i=["\\\']'+escapeRE(key)+'["\\\'][^>]*>','g');
   // A translated span can contain pace spans. Find its balanced closing tag,
   // rather than treating the first nested </span> as the end of the copy.
   const matches=[...html.matchAll(open)].reverse();
@@ -41,13 +43,17 @@ function render(html,pub){
   const T=JSON.parse(html.slice(t0+10,t1).trim().replace(/;$/,''));
   Object.assign(T,COPY);
   const current=A.currentCopy(pub);
-  T['s2.p'][0]=current['s2.en'];
+  T['s2.p']=A.summaryCopy(pub,COPY['s2.p']).values;
   delete current['s2.en'];
   Object.assign(T,current);
   // These are the recorded September 4 repetitions, not a current pace range.
   const history=`{p:${366/A.MI}} / {p:${362/A.MI}}`;
   T['pace.history']=[history,history];
   html=html.slice(0,t0)+'const T = '+JSON.stringify(T,null,1)+';\n'+html.slice(t1);
+  const translation='const SUMMARY_TRANSLATION = '+JSON.stringify(COPY['s2.p'])+';\n';
+  if(html.includes('const SUMMARY_TRANSLATION = '))html=html.replace(/const SUMMARY_TRANSLATION = [^\n]*\n/,()=>translation);
+  else html=html.replace(/(const MON = [^\n]*\n)/,(_,line)=>line+translation);
+  if(!html.includes('id="summaryLanguage"'))html=html.replace('<p data-i="s2.p">','<p id="summaryLanguage" class="plan-summary-language" lang="fr" hidden></p><p data-i="s2.p">');
 
   html=html.replace(/<small data-u="p:227-232">[\s\S]*?<\/small>/,'<small data-i="m.goalnote"></small>');
   html=html.replace(/(<span class="lbl" data-i="k.easy">[\s\S]*?<\/span>)<b[^>]*>[\s\S]*?<\/b>/,'$1<b data-i="pace.easy"></b>');
@@ -77,10 +83,18 @@ function render(html,pub){
   arc[7].p={en:'February 1 to May 16. Build longer stretches at race pace, then add some race-pace running later in long runs when ready.',fr:'Du 1er février au 16 mai. Allonger les portions à l’allure de course, puis en ajouter en fin de sortie longue quand Simon est prêt.'};
   html=html.slice(0,a0)+'const ARC = '+JSON.stringify(arc,null,1)+';\n'+html.slice(a1);
 
-  if(!html.includes('STUDY003_LIVE_COPY'))html=html.replace('function renderCopy(){',`function renderCopy(){
+  const copyStart=html.indexOf('function renderCopy(){'),copyEnd=html.indexOf('  document.querySelectorAll("[data-i]")',copyStart);
+  assert.ok(copyStart>=0&&copyEnd>copyStart,'Study copy renderer missing');
+  html=html.slice(0,copyStart)+`function renderCopy(){
   // STUDY003_LIVE_COPY: update the summaries as well as the grid.
   const copy=window.FORMSimonPlan.currentCopy(window.FORMSimonPublishedPlan);
-  T['s2.p'][0]=copy['s2.en'];delete copy['s2.en'];Object.assign(T,copy);`);
+  const summary=window.FORMSimonPlan.summaryCopy(window.FORMSimonPublishedPlan,SUMMARY_TRANSLATION);
+  T['s2.p']=summary.values;delete copy['s2.en'];Object.assign(T,copy);
+  const englishFallback=lang==='fr'&&summary.frenchFallback;
+  const summaryLabel=document.getElementById('summaryLanguage');
+  summaryLabel.hidden=!englishFallback;summaryLabel.textContent=t('s2.fallback');
+  document.querySelector('[data-i="s2.p"]').lang=englishFallback?'en':lang;
+`+html.slice(copyEnd);
   html=html.replace('if(v) el.innerHTML = fmt(v[L()]);','if(v){if(el.dataset.i===\'s2.p\')el.textContent=v[L()];else el.innerHTML = fmt(v[L()]);}');
   html=html.replace('const body = d.type==="easy" ? (d.lbl?d.lbl[lang]:"") : fmt(d[lang]);','const body = fmt(d[lang]);');
   html=html.replace('${types[d.type]}</span><span class="body">${body}', '${d.label?d.label[lang]:types[d.type]}</span><span class="body">${body}');
@@ -126,6 +140,7 @@ async function refreshApprovedPublication(){
 .plan-note{display:block;margin-top:10px;font:13px/1.5 var(--f-text);color:var(--ink-2)}
 .keys b[data-i="pace.history"]{white-space:normal;max-width:17ch}
 </style>`);
+  if(!html.includes('STUDY003_SUMMARY_LANGUAGE'))html=html.replace('</style>','/* STUDY003_SUMMARY_LANGUAGE */\n.sec-head .plan-summary-language{font:13px/1.5 var(--f-mono);margin:12px 0 0}\n</style>');
   html=html.replace(/data-study-revision="[^"]+"/,'data-study-revision="'+pub.revision+'"');
   html=html.replace('FORM Study 003 follows him as the ceiling and the hold rise together.','FORM Study 003 follows his training toward holding a steady pace for longer.');
   html=html.replace('"dateModified":"2026-10-01"','"dateModified":"2026-10-08"');

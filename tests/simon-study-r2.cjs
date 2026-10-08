@@ -4,6 +4,7 @@
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),vm=require('node:vm');
 const ROOT=path.resolve(__dirname,'..'),DIR=path.join(ROOT,'labs/the-two-curves');
 const A=require(path.join(DIR,'plan-projection.js'));
+const publicCopy=require('../scripts/studies/simon-study-copy.cjs');
 const pub=JSON.parse(fs.readFileSync(path.join(DIR,'published-plan.json'),'utf8'));
 const evidence=JSON.parse(fs.readFileSync(path.join(DIR,'evidence.json'),'utf8'));
 const html=fs.readFileSync(path.join(DIR,'index.html'),'utf8');
@@ -33,6 +34,9 @@ assert.deepEqual([1,2,3,4,5].map(w=>session(w,'SAT').distance),[18,18,19,16,12])
 assert.ok(weeks.every(w=>w.sessions.length===6&&!w.sessions.some(s=>s.day==='SUN')));
 
 const projected=A.fromPublication(pub),copy=A.currentCopy(pub);
+const knownSummary=A.summaryCopy(pub,publicCopy['s2.p']);
+assert.deepEqual(knownSummary.values,[pub.payload.version.summary,publicCopy['s2.p'][1]]);
+assert.equal(knownSummary.frenchFallback,false,'The approved French summary matches its English source');
 assert.equal(projected[0].snapshot,true,'Earlier prescription stays visibly a plan snapshot');
 assert.equal(projected[3].name.en,'Lighter week');assert.equal(projected[3].name.fr,'Semaine allégée');
 assert.equal(projected[4].days[1].type,'easy');
@@ -69,6 +73,10 @@ const later=structuredClone(pub);later.payload.version.number++;
 later.payload.version.summary='Updated coach description.';
 later.payload.weeks[1].sessions.find(s=>s.day==='TUE').components.find(c=>c.role==='work').pace_low_seconds=371;
 assert.equal(A.currentCopy(later)['s2.en'],'Updated coach description.');
+assert.deepEqual(A.summaryCopy(later,publicCopy['s2.p']),{values:['Updated coach description.','Updated coach description.'],frenchFallback:true},'A new summary cannot reuse the old French translation');
+assert.deepEqual(A.summaryCopy(later,['Updated coach description.','Description du coach actualisée.']),{values:['Updated coach description.','Description du coach actualisée.'],frenchFallback:false},'A matching new translation can be used');
+const sameSummary=structuredClone(pub);sameSummary.payload.version.number++;
+assert.equal(A.summaryCopy(sameSummary,publicCopy['s2.p']).frenchFallback,false,'An unchanged summary retains its paired translation across versions');
 assert.ok(A.format(A.currentCopy(later)['pace.tuesday'][0]).includes('3:51–3:52/km'));
 for(const state of ['review_required','unavailable'])assert.throws(()=>A.validate({...pub,state}));
 const old=structuredClone(pub);old.payload.version.number=2;assert.throws(()=>A.validate(old));
@@ -90,7 +98,6 @@ const plan=html.slice(html.indexOf('<!-- 02 PLAN -->'),html.indexOf('<!-- 03',ht
 const observation=html.match(/<section\b[^>]*id="observation-led"[^>]*>[\s\S]*?<\/section>/)?.[0];
 assert.ok(observation&&observation.includes('Adjust the week to how you recover.'));
 const panel=require('../scripts/studies/simon-study-panel.cjs')();
-const publicCopy=require('../scripts/studies/simon-study-copy.cjs');
 const banned=/absorbed|absorption|working.development|ceiling maintenance|race prediction|not established half|quality budget|separated gates/i;
 for(const [name,copy] of Object.entries({plan,observation,panel,bilingual:JSON.stringify(publicCopy)}))assert.ok(!banned.test(copy),name+': current athlete copy is plain');
 assert.ok(publicCopy['obs.p'][1].includes('cours facilement jeudi ou repose-toi'));
@@ -101,6 +108,11 @@ for(const [,attrs,body]of html.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g))
 }
 const build=require('../scripts/studies/build-simon-r2.cjs');
 assert.equal(build.render(html,pub),html,'Repeating the publication build is idempotent');
+const futureBuild=build.render(html,later);
+const futureT=JSON.parse(futureBuild.slice(futureBuild.indexOf('const T = ')+10,futureBuild.indexOf('const MON = ')).trim().replace(/;$/,''));
+assert.deepEqual(futureT['s2.p'],['Updated coach description.','Updated coach description.'],'A later saved build also avoids a stale French description');
+assert.equal(publicCopy['s2.p'][0],pub.payload.version.summary,'Building a later publication never rewrites the translation source');
+assert.equal(build.render(futureBuild,later),futureBuild,'Future-summary fallback build is idempotent');
 assert.deepEqual(Object.keys(pub).sort(),['state','revision','distance_unit','schema_version','pace_seconds_unit','payload'].sort());
 assert.ok(!/simonrobin95|@icloud|access_invites|athlete_memberships|readback_note|weekly.workload|feels.heavier/i.test(JSON.stringify(pub)),'No private intake data in the public plan');
 assert.deepEqual(pub.payload.field,[]);
