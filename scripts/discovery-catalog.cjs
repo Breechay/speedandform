@@ -107,7 +107,7 @@ entries.push({
  url:'/brice-recommends/',route:'brice-recommends/',file:'brice-recommends/index.html',
  title:'Brice Recommends',
  description:'A curated shelf of the exact running gear, recovery shoes, everyday clothes, skin care and fragrance Brice buys or recommends.',
- keywords:['brice recommends','recommendations','gear','running shoes','running socks','2xu','bandit','kane revive','roger centre court','cuts clothing','skin care','skincare','paulas choice','barbara sturm','fragrance','kirke','mens style','young men'],
+ keywords:['brice recommends','recommendations','gear','running shoes','running socks','2xu','bandit','kane revive','roger centre court','cuts clothing','alo yoga','alo bone shirt','conquer reform crewneck','skin care','skincare','paulas choice','barbara sturm','fragrance','kirke','mens style','young men'],
  questions:['what does brice recommend','what running shoes does brice recommend','what socks does brice wear','what skin care does brice recommend','what fragrance does brice wear','what clothes does brice recommend'],
  category:'recommendations',type:'Recommendations',kind:'Shelf'
 });
