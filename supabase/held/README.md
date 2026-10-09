@@ -11,3 +11,21 @@ That has happened once already.
   provenance, revocation without deleting identity, append-only grant history,
   retention, a checker rejecting client-writable memberships) are written and
   Brice has read them. Coaching uploads must never be mixed into it.
+- `20261007120000_forge_session_state_and_receipt_version.sql` — Forge session
+  state and the receipt's exact prescription: receipts name the immutable version
+  they were performed against (validated, additive); `forge_session_events`
+  (opened / left, append-only, idempotent, one validated RPC); and the Console
+  read models `forge_athlete_state` and `forge_receipt_movements` (security-invoker
+  views). Authored and tested (`tests/forge-session-state-db.mjs`, against the real
+  native-receipt contract), applied nowhere. It depends on the structured-strength
+  migration and on the live `forge_strength_receipts` / `submit_forge_native_receipt`
+  (from FORM-iOS); it refuses to run if either is missing. Promote only with Brice's
+  approval, after diffing the live receipt trigger and RPC against
+  `tests/fixtures/forge-native-receipts-contract.sql`.
+- `20261007130000_revise_strength_session.sql` — `revise_strength_session`: a coach
+  appends an immutable strength version with its structured exercises (coach-only,
+  reason required, atomic, `details` generated from the stored rows). The strength
+  counterpart of `revise_session`, which writes running shape and would mis-shape a
+  strength session. Authored and tested (`tests/revise-strength-session-db.mjs`),
+  applied nowhere. Depends on the structured-strength migration. Without it the
+  Console strength editor cannot save.

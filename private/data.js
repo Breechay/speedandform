@@ -446,15 +446,23 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
       // Kept apart from session_completions, which are runs and other filed sessions.
       supabase.from('forge_strength_receipts').select('receipt_id,program_id,received_at,native_payload')
         .eq('athlete_id', athleteId).not('native_payload', 'is', null)
-        .order('received_at', { ascending: false }).limit(10)
+        .order('received_at', { ascending: false }).limit(10),
+      // Where he is, and what was prescribed beside what he did. Both are views that exist only
+      // once the Forge session-state migration is applied; until then they are simply absent.
+      supabase.from('forge_athlete_state').select('*').eq('athlete_id', athleteId).maybeSingle(),
+      supabase.from('forge_receipt_movements').select('*').eq('athlete_id', athleteId)
+        .order('completed_at', { ascending: false }).limit(400),
+      // The structured prescription of every version, so a strength revision starts from what is there.
+      supabase.from('planned_session_exercises').select('*').eq('athlete_id', athleteId).order('position')
     );
   }
 
   const responses = await Promise.all(queries);
   // The Forge receipt read is supplementary evidence: if it is unavailable the record
   // must still load, so its error is not fatal (it renders as no receipts).
-  const forgeIndex = coach ? queries.length - 1 : -1;
-  responses.forEach(({ error }, index) => { if (error && index !== forgeIndex) throw error; });
+  // The last four coach queries are supplementary Forge data (receipts, state, movements, exercises).
+  const softFrom = coach ? queries.length - 4 : Infinity;
+  responses.forEach(({ error }, index) => { if (error && index < softFrom) throw error; });
 
   const [
     athleteResponse, blockResponse, weeksResponse, sessionsResponse, versionsResponse,
@@ -465,14 +473,17 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     confidenceResponse, confidenceLinksResponse, evidenceFilesResponse, proposalResponse,
     exceptionsResponse, paceBandsResponse, observationsResponse,
     taskResponse, evidenceResponse, actionsResponse, privateNotesResponse, adminResponse,
-    forgeReceiptsResponse
+    forgeReceiptsResponse, forgeStateResponse, forgeMovementsResponse, exercisesResponse
   ] = responses;
 
   const components = result(componentsResponse.data, componentsResponse.error);
+  const exerciseRows = coach && !exercisesResponse?.error ? (exercisesResponse?.data || []) : [];
   const versions = result(versionsResponse.data, versionsResponse.error)
     .map((version) => ({
       ...version,
       components: components.filter((item) => item.version_id === version.id)
+        .sort((a, b) => a.position - b.position),
+      exercises: exerciseRows.filter((item) => item.version_id === version.id)
         .sort((a, b) => a.position - b.position)
     }));
   const sessions = result(sessionsResponse.data, sessionsResponse.error).map((session) => ({
@@ -564,7 +575,9 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     taskActions: task ? result(actionsResponse?.data, actionsResponse?.error).filter((item) => item.task_id === task.id) : [],
     privateNotes: result(privateNotesResponse?.data, privateNotesResponse?.error),
     adminStatus: adminResponse?.data || null,
-    forgeReceipts: coach && !forgeReceiptsResponse?.error ? result(forgeReceiptsResponse?.data, null) : []
+    forgeReceipts: coach && !forgeReceiptsResponse?.error ? result(forgeReceiptsResponse?.data, null) : [],
+    forgeState: coach && !forgeStateResponse?.error ? (forgeStateResponse?.data || null) : null,
+    forgeMovements: coach && !forgeMovementsResponse?.error ? result(forgeMovementsResponse?.data, null) : []
   };
 }
 
@@ -958,6 +971,20 @@ export async function setSessionAsk(plannedSessionId, checkpointId) {
     .update({ asks_checkpoint_id: checkpointId })
     .eq('id', plannedSessionId);
   if (error) throw error;
+}
+
+// Appends an immutable strength version with its structured exercises. The athlete's app takes it
+// for work they have not opened; a workout already opened stays on the version it was opened on.
+export async function reviseStrengthSession(plannedSessionId, payload) {
+  const { data, error } = await supabase.rpc('revise_strength_session', {
+    p_planned_session_id: plannedSessionId,
+    p_title: payload.title,
+    p_intent: payload.intent || null,
+    p_change_reason: payload.changeReason || '',
+    p_exercises: payload.exercises
+  });
+  if (error) throw error;
+  return { id: data };
 }
 
 export async function reviseSession(plannedSessionId, payload) {
