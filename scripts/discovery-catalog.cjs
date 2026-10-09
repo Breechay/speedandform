@@ -42,6 +42,11 @@ const GROUPS = [
   "See the work itself, follow a plan or join a session."
  ],
  [
+  "recommendations",
+  "Brice recommends",
+  "Gear, clothes, skin care and scent Brice actually buys or sends."
+ ],
+ [
   "house",
   "House & access",
   "Contact, brand files and the policies around the site."
@@ -98,6 +103,14 @@ for(const n of require('./field-notes-content.cjs').filter(n=>n.published===true
  const url='/field-notes/'+n.slug+'/';
  entries.push({url,route:url.slice(1),file:fileFor(url.slice(1)),title:n.title,description:n.summary,keywords:['field note','article','essay',...(n.tags||[]),n.title],questions:[],category:'practice',type:'Field note',kind:'Lesson'});
 }
+entries.push({
+ url:'/brice-recommends/',route:'brice-recommends/',file:'brice-recommends/index.html',
+ title:'Brice Recommends',
+ description:'A curated shelf of the exact running gear, recovery shoes, everyday clothes, skin care and fragrance Brice buys or recommends.',
+ keywords:['brice recommends','recommendations','gear','running shoes','running socks','2xu','bandit','kane revive','roger centre court','cuts clothing','skin care','skincare','paulas choice','barbara sturm','fragrance','kirke','mens style','young men'],
+ questions:['what does brice recommend','what running shoes does brice recommend','what socks does brice wear','what skin care does brice recommend','what fragrance does brice wear','what clothes does brice recommend'],
+ category:'recommendations',type:'Recommendations',kind:'Shelf'
+});
 if(new Set(entries.map(e=>e.url)).size!==entries.length)throw Error('Duplicate discovery URL');
 if(!GROUPS.some(g=>g[0]==='house'))GROUPS.push(['house','House & access','Contact, brand files and the policies around the site.',[]]);
 module.exports={GROUPS,ARCHIVE,PRESERVE_ONLY,EXTRA,entries,fileFor};

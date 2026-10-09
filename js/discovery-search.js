@@ -57,6 +57,7 @@
   ['Studies & evidence','Living athlete studies and the questions being tested in practice.',e=>e.category==='practice'&&['Study','Studies'].includes(e.type)],
   ['Field Notes & practice','Writing, photographs, community and the public running practice.',e=>e.category==='practice'&&['Field note','Gallery','Community'].includes(e.type)],
   ['Plans, apps & tools','Published plans, FORM products and practical training tools.',e=>e.category==='practice'&&!['Study','Studies','Field note','Gallery','Community'].includes(e.type)],
+  ['Brice recommends','Gear, clothes, skin care and scent Brice actually buys or sends.',e=>e.category==='recommendations'],
   ['House & access','Contact, brand files, questions and the policies around the site.',e=>e.category==='house']
  ];
  const families=typeof module==='object'&&module.exports?require('./library-families.js'):root.FORM_LIBRARY_FAMILIES||{};
