@@ -1,6 +1,32 @@
-# Rebuilt Athlete: long-run comparison
+# Rebuilt Athlete: long-run observations
 
-Updated 2026-10-09. Subject: Brice Ikouebe. This is a source correction and evidence record, not a new training prescription.
+Updated 2026-10-09. Subject: Brice Ikouebe. This is a dated observation and evidence record, not a ranking or a new training prescription. The existing filename is retained for continuity.
+
+## Read the outing before the numbers
+
+Brice clarified that he is noticing and enjoying his runs, not trying to beat, rate or rank them. Each outing can have a different purpose, company and sequence of choices. Record those details beside the numbers, not as an explanation appended after treating one run as better or worse. A slower average is not a failed attempt at a faster outing. A faster average is not automatically the purpose or achievement of that day.
+
+The study is open-ended. Preserve what happened, what Brice noticed and how he felt without requiring each new entry to demonstrate progress. Curiosity, presence, freedom, social connection and enjoyment are part of the observation itself, not merely mechanisms for improving a metric. Intentional control, changing direction, accompanying someone or later choosing to move more freely can all belong to one run. No score, ranking, target cadence or mandatory fast finish follows from these entries.
+
+## The story of each outing
+
+### September 25 · earlier 8.01-mile causeway outing
+
+The overview identifies an 8.01-mile Miami/Miami Beach causeway run beginning at 8:13 AM. Keep it as a separate dated outing, with its own screenshots and mechanics. The screenshot addition did not supply a new account of its purpose, companions or mid-run decisions; leave those details open here rather than borrowing the October 4 or October 9 story. A final full mile of 8:06.7 is a recorded lap, not evidence that a fast finish was the intention.
+
+### October 4 · four miles with Natalie, then a solo journey
+
+Brice ran the first four miles with Natalie. When she could not continue running, he kept going alone and went on a journey. His first concern was keeping the outing controlled; he deliberately tried to keep heart rate low. Later he chose to just move rather than continue holding the same restriction. This was a shared run that became a solo exploration, with changing intentions, not an attempt to match or beat another long run.
+
+The 10.01-mile total and 11:07/mi whole-run average describe that mixed outing. Do not read the slower early miles as his maximum capability, a setback or a mechanical problem needing correction. Do not read the later acceleration as a required progression workout or proof that the slower part was wrong. The first-four-mile shared segment is athlete-reported. The exact point at which the low-HR intention changed was not supplied, so do not assign it automatically to mile 5 or to a particular graph feature. Low heart rate was an intention; no exact ceiling or verified time below that ceiling was supplied in this clarification.
+
+His earlier account that low-8-minute running late in this outing required attention remains a valid sensation report. It is one observation within the day, not a rating of the whole run.
+
+### October 9 · social run with Julius, allowing the rhythm to change
+
+The 10-mile outing with Julius followed a new connection at Muscle Beach. Brice described natural changes of rhythm, intentionally easing when Julius asked to slow down, relaxing there, and later finding the pace rise again without chasing it. The sense of support and more freely available movement, the company and the enjoyment belong beside the device measurements. His patient mindset and absence of anything to prove are explicit, not inferred from pace.
+
+His reported symptom-free evening, eating well, substantial nap and protected recovery time belong to this outing's account. They are not a confirmed next-morning result. Keep the run's narrative separate from its metric summary and from any later training decision.
 
 ## Correction and comparison order
 
@@ -8,13 +34,13 @@ Brice clarified: "the previous run was 10 miles Oct 4" and supplied the Garmin l
 
 He then supplied the September 25 overview, lap table and mechanics screenshots, saying: "September 25 this one". Its five previously missing mechanical averages are now verified from its own screenshots. Keep the chronology **September 25, October 4, October 9**, with all three runs as separate entries. Do not assign October 4 values to September 25. Do not label October 4 as the 8-mile run or give it October 9's 8:18/mi average.
 
-October 4 remains the immediate previous long run. September 25 is the earlier whole-run comparison closer to October 9 in average pace; it is not a controlled or matched-pace test.
+October 4 remains the immediate previous long run. September 25 is the earlier whole-run comparison closer to October 9 in average pace; it is not a controlled or matched-pace test. Chronological order is not a performance ladder.
 
-Read this record alongside `index.html`, especially its `long-run-mechanics-study-20261009` section. This companion record corrects the comparison attribution and fills September 25's missing data. The HTML page has not been revised by this note update. No Calendar, FORM assignment, native app, or deployed-website synchronization is established by saving this file.
+Read this record alongside `index.html`, especially its `long-run-mechanics-study-20261009` section. This companion record corrects the comparison attribution, fills September 25's missing data, and preserves the different intentions of the outings. The HTML page has not been revised by this note update. No Calendar, FORM assignment, native app, or deployed-website synchronization is established by saving this file.
 
 ## Verified screenshot summary
 
-Running distances and pace use miles and min/mi. Garmin mechanics retain their native units: spm, meters, milliseconds, centimeters and percent.
+Read this table with the outing descriptions above. It is a descriptive record, not a scorecard. Running distances and pace use miles and min/mi. Garmin mechanics retain their native units: spm, meters, milliseconds, centimeters and percent.
 
 | Metric | September 25, 2026 | October 4, 2026 | October 9, 2026 |
 | --- | --- | --- | --- |
@@ -104,11 +130,13 @@ October 9 covered approximately two more miles at an average pace 20 seconds per
 
 The September 25 plots show broadly sustained cadence and stride length with local changes, and shorter contact times near the faster finish. Vertical oscillation stays comparatively steady across much of the displayed trace. These are qualitative readings, not numeric segment means or a symmetry assessment. The final full mile, 8:06.7, confirms that low-8-minute running already appeared in this earlier outing. The screenshots do not establish how it felt relative to October 9.
 
-The new baseline therefore does not support a story of a completely new mechanical pattern appearing between October 4 and October 9. A better working interpretation is that a broadly similar pattern was present earlier, while Brice is now reporting freer, less consciously managed running over a longer outing. The subjective experience is athlete-reported; the averages neither prove nor negate it. September 25's higher average cadence despite a slower average pace also means the reported change cannot simply be equated with increasing cadence. Neither cadence nor stride length becomes a target from this observation.
+The new baseline therefore does not support a story of a completely new mechanical pattern appearing between October 4 and October 9. One possible interpretation alongside Brice's account is that a broadly similar pattern was present earlier, while he is now reporting freer, less consciously managed running over a longer outing. This remains one observation, not the required story of improvement for every run. The subjective experience is athlete-reported; the averages neither prove nor negate it. September 25's higher average cadence despite a slower average pace also means the reported change cannot simply be equated with increasing cadence. Neither cadence nor stride length becomes a target from this observation.
 
 ### October 4 to October 9
 
-The first seven October 4 miles were substantially slower than its final three. The last three full miles were 9:30, 9:02 and 8:18. The final-mile time of 8:18.1 is the relevant numerical context for Brice's report that low-8-minute pace near the end of his previous long run required more attention.
+Read the October 4 narrative first: four miles with Natalie, then solo exploration, initially keeping the effort controlled and attempting low HR, with a later choice to move more freely. That change of company and intention matters when reading its graphs. The exact timing of the change in HR intention is unknown.
+
+The first seven October 4 miles were substantially slower than its final three. The last three full miles were 9:30, 9:02 and 8:18. The final-mile time of 8:18.1 is the relevant numerical context for Brice's report that low-8-minute pace near the end of his previous long run required more attention. Neither the slower section nor the later acceleration should be rated against October 9's different purpose.
 
 Qualitatively, the October 4 graphs show cadence and stride length rising late, ground contact time shortening, vertical ratio falling, and vertical oscillation rising somewhat as pace increased. These are observations of the displayed curves, not calculated per-mile mechanics. Do not invent exact early/middle/late values from screenshot pixels.
 
@@ -120,7 +148,7 @@ From October 4 to October 9, vertical ratio fell from 9.5% to 8.0%, while vertic
 
 Ground contact time is the duration of contact per step. It is not ground-contact force or a left/right control assessment. No ground-contact-time balance data was supplied for these comparisons; symmetry remains unmeasured here. Garmin defines its stride-length metric as distance from one footfall to the next. Longer recorded steps do not alone establish better form or overstriding.
 
-## Athlete experience and comparison question
+## Athlete experience and observation questions
 
 Brice is not trying to beat prior runs, chase a cadence target or prove fitness. His stated style is presence, freedom, relaxed rhythm and allowing movement rather than pushing or grinding. His recent cadence cue was comfortable leg lifting around an earlier 162–165 spm rhythm, followed by a feeling that the rhythm became automatic. Whole-run cadence changing from 159 to 161 spm between October 4 and October 9 does not independently confirm or refute that experience. Nor does September 25's 166-spm average make it a preferred cadence target.
 
@@ -128,29 +156,42 @@ His October 9 report describes naturally changing speed with Julius, intentional
 
 At 5:49 PM after the approximately 6 AM October 9 run, Brice reported no noticeable tibial or other lower-leg symptoms. He ate well, took a substantial nap and deliberately protected recovery time. This is a same-day recovery report, not a confirmed next-morning result. Comparable September 25 and October 4 recovery responses have not been supplied with these screenshot additions.
 
-The working question is: **Is a comfortable, self-selected rhythm becoming available for more of the outing, with less conscious effort and an acceptable recovery cost?** Do not turn that question into an instruction to run faster or reproduce a prior pace.
+Start with: **What kind of outing was this, what did Brice choose or notice along the way, and what followed afterward?** One possible longer-term question is whether a comfortable, self-selected rhythm becomes available for more of an outing with less conscious effort and an acceptable recovery cost. That is a question to observe, not an improvement that every run must deliver. Do not turn it into an instruction to run faster or reproduce a prior pace.
 
 Record support work, including the timing and dose of front squats and other lower-body lifts, but do not attribute the observed changes causally to front squats. Once-weekly front squats remain a proposed integration with existing Forge work, not additional mandatory volume. Record body mass only when a dated measurement is available; do not invent the run-day weight or assume weight changes from photographs.
 
+## How each run entry is written
+
+Put a short description before or beside its metrics and graphs. Use details Brice naturally reports; this is not a compulsory questionnaire or a reason to monitor himself throughout an enjoyable run.
+
+- **Intention and setting:** what the outing was for, who was there, and route or conditions when known.
+- **How it unfolded:** shared and solo portions, deliberate restraint, spontaneous changes, pauses or exploration. Separate exact mile/time markers from an undated recollection such as "later".
+- **What it felt like:** rhythm, support, attention, enjoyment, fatigue, anything noticeable in the legs, or no particular observation. Do not force a numerical effort score.
+- **What surrounded it:** relevant support work, fueling, rest, body-weight context when actually measured, and reported same-day/next-morning response.
+- **What the device recorded:** the numbers and graphs as context, with missing fields left unknown. Keep observation, interpretation and any separate training decision distinct.
+
+The narrative travels with the chart. Do not display a comparative mechanics table alone and reconstruct the story from it. Use chronological views and neutral labels, not best/worst badges, improvement scores or required upward trends.
+
 ## Comparison method from here
 
-Keep all runs of at least 8 miles, including September 25, October 4 and October 9, as separate dated entries. Preserve whole-run context, but use actual matched-pace segments for mechanical comparisons when raw lap or sample data becomes available. Also compare early, middle and late sections descriptively within a run. Record surface, shoes, device/sensor source, stops, companion context, support work in the prior 24–48 hours, fueling, sleep/nap, and same-day/next-morning recovery when reported.
+Keep all runs of at least 8 miles, including September 25, October 4 and October 9, as separate dated entries. Preserve whole-run context, but use actual matched-pace segments for mechanical comparisons when raw lap or sample data becomes available. Also compare early, middle and late sections descriptively within a run. Record surface, shoes, device/sensor source, stops, companion context, support work in the prior 24–48 hours, fueling, sleep/nap, and same-day/next-morning recovery when reported. A comparison may simply show a different choice or kind of outing rather than a change in fitness.
 
 Do not make a standardized performance test out of a free/social run. Do not rank lower contact time, higher cadence, longer stride or lower vertical ratio as universally better. Do not manufacture sampled line graphs from screenshot traces. The current evidence supports exact September 25 and October 4 pace-by-mile series and whole-run mechanical averages for all three dated runs; it does not yet support numerical mechanics-by-mile overlays. October 9's previously converted kilometer-segment paces are not actual measured mile laps.
 
 ## Source provenance
 
 - October 4 date attribution: Brice's correction, "the previous run was 10 miles Oct 4".
+- October 4 purpose/company clarification: Brice's subsequent message says the first four miles were with Natalie; when she could not run more, he continued alone on a journey; he initially tried to keep the run controlled and HR low, then later chose to move. He explicitly describes noticing and enjoying rather than rating, ranking or trying to beat runs. This clarification supersedes interpretations of the slower outing that omit its purpose, without altering any device values.
 - September 25 date attribution: the overview's September 25 label and Brice's accompanying statement, "September 25 this one"; 2026 follows the established study chronology.
 - September 25 screenshots supplied in this conversation: IMG_9155.png (overview/map), IMG_9156.png (pace/HR), IMG_9157.png (Training Effect/elevation), IMG_9158.png (power/stamina), IMG_9159.png (Performance Condition/cadence), IMG_9160.png (stride length/vertical ratio), IMG_9161.png (vertical oscillation/contact time), IMG_9163.png (zones), IMG_9162.png (temperature/run-walk), IMG_9164.png (laps).
 - October 4 Garmin screenshots supplied in this conversation: IMG_9146.png (laps), IMG_9147.png (pace/HR), IMG_9148.png (Training Effect/elevation), IMG_9149.png (power/stamina), IMG_9150.png (Performance Condition/cadence), IMG_9151.png (stride length/vertical ratio), IMG_9152.png (vertical oscillation/contact time), IMG_9153.png (temperature/run-walk), IMG_9154.png (zones).
 - Screenshot filenames document supplied evidence, not repository-hosted image URLs. This note does not claim to upload the image files.
 - October 9 source: Brice's earlier supplied screenshots IMG_9127.jpeg and IMG_9128.png through IMG_9135.png, plus the dated study field note and his subsequent same-day account.
 - Existing study reference previously read: `labs/rebuilt-athlete/index.html`, blob `2a99594bea403ac7d9aee6dea8e42362fbb03faf`. The current note update does not establish that the HTML still has that blob or has been synchronized.
-- The initial companion record was committed as `a290b9699a31299594a89a539ee1443d2b2b1d71`. September 25's former unverified status is superseded by this screenshot addition.
-- Garmin metric definitions, consulted 2026-10-09: https://www8.garmin.com/manuals/webhelp/GUID-9D99A9D4-467A-4F1A-A0EA-023184FEA3DD/EN-US/GUID-62A09512-518A-424A-8491-FE2B80CD2091.html . This supports metric definitions, not a causal conclusion about Brice's adaptation.
-- Garmin optical HR limitations, consulted 2026-10-09: https://support.garmin.com/en-US/?faq=xQwjQjzUew4BF1GYcusE59 . This supports measurement caution, not a finding of faulty HR in a specific run.
+- The initial companion record was committed as `a290b9699a31299594a89a539ee1443d2b2b1d71`. September 25's former unverified status is superseded by its screenshot addition, committed as `f6e443f6a11b0841ec48a9ff246af4c5a626d36d`.
+- Garmin metric definitions, consulted in the earlier record on 2026-10-09: https://www8.garmin.com/manuals/webhelp/GUID-9D99A9D4-467A-4F1A-A0EA-023184FEA3DD/EN-US/GUID-62A09512-518A-424A-8491-FE2B80CD2091.html . This supports metric definitions, not a causal conclusion about Brice's adaptation.
+- Garmin optical HR limitations, consulted in the earlier record on 2026-10-09: https://support.garmin.com/en-US/?faq=xQwjQjzUew4BF1GYcusE59 . This supports measurement caution, not a finding of faulty HR in a specific run.
 
 ## Rendering follow-through
 
-When revising the study HTML, include September 25's verified mechanics, insert October 4 between September 25 and October 9, and identify October 4 as the immediate previous long run. Replace obsolete September 25 missing-mechanics statements in the active comparison while preserving the historical provenance of earlier uncertainty. Preserve unrelated newer decisions, historical evidence and embedded media. October 9's converted late kilometer-segment paces are equivalent min/mi paces, not actual mile laps; do not label them as measured one-mile splits. Read back and validate the destination after any edit. Do not claim a website deploy or Calendar/native synchronization from this repository note.
+When revising the study HTML, include September 25's verified mechanics, insert October 4 between September 25 and October 9, and identify October 4 as the immediate previous long run. Present each outing's description beside or before its numbers and graphs, including October 4's four miles with Natalie and subsequent solo journey with changing intent. Do not render these as ranked attempts at the same workout. Replace obsolete September 25 missing-mechanics statements in the active comparison while preserving the historical provenance of earlier uncertainty. Preserve unrelated newer decisions, historical evidence and embedded media. October 9's converted late kilometer-segment paces are equivalent min/mi paces, not actual mile laps; do not label them as measured one-mile splits. Read back and validate the destination after any edit. Do not claim a website deploy or Calendar/native synchronization from this repository note.
