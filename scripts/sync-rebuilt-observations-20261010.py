@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PAGE = ROOT / 'labs/rebuilt-athlete/index.html'
 NOTE = ROOT / 'labs/rebuilt-athlete/LONG-RUN-COMPARISON.md'
 SID = 'long-run-mechanics-study-20261009'
-VERSION = '20261010-observations-v1'
+VERSION = '20261011-recovery-followup-v2'
 SOURCE_DATE = '2026-10-11'
 SOURCE_DATE_LABEL = 'October 11, 2026'
 OUT = Path('/tmp/rebuilt-observations')
@@ -105,6 +105,7 @@ fragment = '''<section class="sec sec--tint rlo" id="long-run-mechanics-study-20
 <article class="rlo-story" aria-labelledby="rlo-oct04-story"><p class="rlo-date mono">October 4 · 2026</p><h3 id="rlo-oct04-story">With Natalie, then a journey</h3><p>I ran the first four miles with Natalie. When she could not continue, I kept going on my own. At first I wanted to keep it controlled and keep my heart rate low. Later, I decided to just move.</p><p class="rlo-stats">10.01 mi · 1:51:14.6 · 11:07/mi</p><p class="rlo-small">A shared run became a solo exploration. The slower average was not a setback, and the later acceleration was not a required workout. The exact point at which the intention changed was not recorded.</p></article>
 <article class="rlo-story" aria-labelledby="rlo-oct09-story"><p class="rlo-date mono">October 9 · 2026</p><h3 id="rlo-oct09-story">Finding a rhythm with Julius</h3><p>A new connection at Muscle Beach became a run together. The rhythm opened up naturally. We deliberately eased off, relaxed there, and later found the pace picking up again. I wasn’t defending a pace or trying to prove anything.</p><p class="rlo-stats">10.0 mi · 1:22:57 · 8:18/mi</p><p class="rlo-small">The run felt solid, not hard. By 5:49 PM after an approximately 6 AM start, I had no noticeable tibia or lower-leg symptoms. I ate well, took a long nap and left room to recover. The next-morning response was not yet recorded.</p></article>
 </div>
+<div id="recovery-20261011"><h3>October 11 · Recovery follow-up</h3><p class="prose">I haven’t had any lower-limb issues since those runs. My legs feel stronger and sturdier, especially through the quads and outer thighs, with some of that feeling in the hamstrings too. There’s slight muscle soreness, but it’s easing with time and returning toward normal.</p></div>
 <h3>What the watch recorded</h3>
 <p class="prose">These are whole-run averages from three different outings, not a scorecard. October 4 is the long run immediately before October 9. September 25 stays as an earlier observation.</p>
 <div class="rlo-table-wrap" role="region" aria-label="Three-run mechanics table; scroll horizontally on smaller screens" tabindex="0"><table><caption>Running distances in miles; pace in minutes per mile.</caption>HEAD<tbody>BODY</tbody></table></div>

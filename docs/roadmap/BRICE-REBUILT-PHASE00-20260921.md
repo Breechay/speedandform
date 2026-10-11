@@ -8,7 +8,7 @@ This file is the speedandform-side implementation record. It does not become a s
 
 ## Latest study read · October 11, 2026
 
-The implementation and feed receipts below remain dated history. The October 9 study decision subsequently set aside chasing the earlier 31-mile proposal and prioritized recovery before further running. The latest filed run is October 9: 10.0 miles outdoors in 1:22:57. The 5:49 PM same-day report described no subsequent discomfort, tightness or soreness; the following morning's response is not yet filed.
+The implementation and feed receipts below remain dated history. The October 9 study decision subsequently set aside chasing the earlier 31-mile proposal and prioritized recovery before further running. The latest filed run is October 9: 10.0 miles outdoors in 1:22:57. The 5:49 PM same-day report described no subsequent discomfort, tightness or soreness. Brice's October 11 evening follow-up adds no lower-limb issues since the runs, legs that feel stronger and sturdier through the quads, outer thighs and some of the hamstrings, and slight muscle soreness easing toward normal. This is a later general recovery report; separate morning-by-morning checks were not supplied.
 
 The [October 11 review](../../labs/rebuilt-athlete/index.html#review-20261011) clarifies the page and adds recommendations. It does not verify or change the current backend assignment, Forge program, calendar or native state. Future assigned work still belongs in the FORM Athlete System; the study's later recovery decision must be considered when that work is authored. Do not read the historical 31-mile receipt below as a new instruction to complete that mileage.
 

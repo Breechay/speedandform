@@ -1,6 +1,6 @@
 # Rebuilt Athlete: long-run observations
 
-Updated 2026-10-09. Subject: Brice Ikouebe. This is a dated observation and evidence record, not a ranking or a new training prescription. The existing filename is retained for continuity.
+Updated 2026-10-11 with the later recovery follow-up. Subject: Brice Ikouebe. This is a dated observation and evidence record, not a ranking or a new training prescription. The existing filename is retained for continuity.
 
 ## Read the outing before the numbers
 
@@ -26,7 +26,17 @@ His earlier account that low-8-minute running late in this outing required atten
 
 The 10-mile outing with Julius followed a new connection at Muscle Beach. Brice described natural changes of rhythm, intentionally easing when Julius asked to slow down, relaxing there, and later finding the pace rise again without chasing it. The sense of support and more freely available movement, the company and the enjoyment belong beside the device measurements. His patient mindset and absence of anything to prove are explicit, not inferred from pace.
 
-His reported symptom-free evening, eating well, substantial nap and protected recovery time belong to this outing's account. They are not a confirmed next-morning result. Keep the run's narrative separate from its metric summary and from any later training decision.
+His reported symptom-free evening, eating well, substantial nap and protected recovery time belong to this outing's account. The October 11 follow-up below adds the later recovery trend. Keep the run's narrative separate from its metric summary and from any later training decision.
+
+### October 11 · Follow-up after the runs
+
+Brice reports no lower-limb issues since these runs. His legs feel stronger and sturdier, particularly through the quads and outer thighs, with some of this feeling in the hamstrings too. He describes slight muscle soreness that is easing with time and returning toward normal.
+
+**Original owner report, October 11 evening:**
+
+> Also no lower limb issues since those runs - well no issues at all just stronger muscular quads, the outside side of thighs some hamstrings basically sturdier legs and slight soreness getting better with time returning to normal
+
+This supplies the later recovery report that was missing at the earlier filing. It is a general trend since the runs, not separate morning-by-morning checks. Stronger and sturdier describe how the legs feel; no measured strength or muscle gain, specific symptom examination or clinical clearance is established. No new training prescription follows from this observation.
 
 ## Correction and comparison order
 
@@ -154,7 +164,7 @@ Brice is not trying to beat prior runs, chase a cadence target or prove fitness.
 
 His October 9 report describes naturally changing speed with Julius, intentionally slowing down together, and later returning to faster running without defending a target pace. Approximately 7:45–7:50/mi late in the run felt easier than low-8-minute pace late in the previous long run. Preserve those athlete-reported paces separately from device lap data.
 
-At 5:49 PM after the approximately 6 AM October 9 run, Brice reported no noticeable tibial or other lower-leg symptoms. He ate well, took a substantial nap and deliberately protected recovery time. This is a same-day recovery report, not a confirmed next-morning result. Comparable September 25 and October 4 recovery responses have not been supplied with these screenshot additions.
+At 5:49 PM after the approximately 6 AM October 9 run, Brice reported no noticeable tibial or other lower-leg symptoms. He ate well, took a substantial nap and deliberately protected recovery time. That first report covered the same day. His October 11 follow-up subsequently reports no lower-limb issues since the runs, legs that feel stronger and sturdier, and slight muscle soreness easing toward normal. Separate comparable recovery checks after each dated outing remain unavailable.
 
 Start with: **What kind of outing was this, what did Brice choose or notice along the way, and what followed afterward?** One possible longer-term question is whether a comfortable, self-selected rhythm becomes available for more of an outing with less conscious effort and an acceptable recovery cost. That is a question to observe, not an improvement that every run must deliver. Do not turn it into an instruction to run faster or reproduce a prior pace.
 
@@ -180,6 +190,7 @@ Do not make a standardized performance test out of a free/social run. Do not ran
 
 ## Source provenance
 
+- October 11 recovery follow-up: Brice's evening conversation update, quoted above. It adds the later general recovery trend without inventing individual next-morning checks.
 - October 4 date attribution: Brice's correction, "the previous run was 10 miles Oct 4".
 - October 4 purpose/company clarification: Brice's subsequent message says the first four miles were with Natalie; when she could not run more, he continued alone on a journey; he initially tried to keep the run controlled and HR low, then later chose to move. He explicitly describes noticing and enjoying rather than rating, ranking or trying to beat runs. This clarification supersedes interpretations of the slower outing that omit its purpose, without altering any device values.
 - September 25 date attribution: the overview's September 25 label and Brice's accompanying statement, "September 25 this one"; 2026 follows the established study chronology.

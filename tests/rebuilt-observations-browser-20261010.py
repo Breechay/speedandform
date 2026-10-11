@@ -28,7 +28,7 @@ with sync_playwright() as p:
         assert response and response.status == 200
         block = page.locator('#long-run-mechanics-study-20261009')
         assert block.count() == 1
-        assert block.get_attribute('data-observations-version') == '20261010-observations-v1'
+        assert block.get_attribute('data-observations-version') == '20261011-recovery-followup-v2'
         block.scroll_into_view_if_needed()
         assert block.is_visible()
         assert block.locator('.rlo-story').count() == 3
