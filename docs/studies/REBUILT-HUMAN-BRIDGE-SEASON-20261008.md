@@ -35,7 +35,7 @@ Do not convert these into scores, daily quotas, a moral standard or a requiremen
 
 The Rebuilt Athlete remains the physical record: running, strength, body composition, injury recovery, nutrition and training response. The Rebuilt Human is the broader personal context for Bridge Season. Adrian's Developed Runner remains his own distinct study. The two Brice records may inform each other but must not create competing workouts or claims.
 
-**Current status:** October 8 reflection filed. No new training, diet, calendar, task, public website copy or native-app change authorized by this note. Publication of any intimate reflection beyond this repository requires a separate deliberate editorial decision.
+**Current status:** October 8, 9 and 11 reflections filed. No new training, diet, calendar, task, public website copy or native-app change authorized by this note. Publication of any intimate reflection beyond this repository requires a separate deliberate editorial decision.
 
 ## October 9 · Spontaneity as responsibilities grow
 
@@ -44,3 +44,17 @@ I recognize that I have lost some of the spontaneity, exploration and social ene
 **Current interpretation, not a rule:** Spontaneity used to arise more naturally from the structure of my life. Now I may need to intentionally leave room for unplanned experiences, without trying to schedule or optimize the experiences themselves. Going to the track or Muscle Beach creates the possibility of meeting someone or seeing something unexpected. I do not want to postpone living until my projects, business, physique or surroundings are finished.
 
 **Open question:** What forms of curiosity, adventure, connection and freedom fit the life I have now? Do not assume the answer is simply to recreate my twenties. Preserve this as a developing observation, without assigning a quota for socializing or turning every encounter into a task.
+
+## October 11 · What feels rewarding socially
+
+Some evenings with close friends from an earlier phase of my life are pleasant but leave me feeling "meh." An impressive setting and familiar routines around wine or other drinks do not necessarily make the occasion rewarding for me. I keep noticing this difference afterward.
+
+Running, Muscle Beach and working with athletes repeatedly feel worthwhile. The brief time with a solo traveler was fun, and so was a single spontaneous beer with my roommate on Thursday, October 8. I still enjoy meeting people and some occasions that include a drink. I am trying to understand what makes those encounters feel different.
+
+Novelty may be part of it. Training is familiar and still rewarding, so novelty alone does not explain the pattern. Shared activity, curiosity and room for an encounter to unfold naturally may also matter. This connects with what I said about the cafe: being around a changing mix of people kept life feeling engaging and fresh. I want to keep speaking to people and saying yes to things that interest me.
+
+FORM House describes an environment I would enjoy: training, working with top athletes, developing myself and others, with hospitality and community around the practice. I want to take part in that life without carrying the daily responsibility of managing a venue.
+
+I am considering being more selective about traditional social plans centered on drinking. Changing the setting or how often I join may be enough; I am leaving conclusions about particular friendships open.
+
+**What remains open:** Is this mainly novelty, changing interests, the activity, the setting, my energy at the time, or a combination? Preserve the examples and see how this develops. There is no new social quota or requirement to score each encounter.
