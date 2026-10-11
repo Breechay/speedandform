@@ -1,3 +1,10 @@
+## October 11 · Adrian progress photo and athlete feedback
+
+- Added the original supplied front-flexed photograph and a dated check-in to Study 001, its reference gallery and timeline. Source: `docs/studies/ADRIAN-PROGRESS-20261011.json`.
+- October 11 is the filing date; exact capture/message dates are unverified. Adrian reports strength, comfort, enjoyment of lower-body days and increased confidence. No measured muscle-gain claim or prescription change.
+- The private message screenshot is not published. Prior evidence and the October 5 read are preserved.
+- Validation: embedded study data and JavaScript syntax pass; prior evidence, measurements and prescriptions are preserved; diff whitespace check passes. Browser rendering is unverified because Chromium is unavailable. Brice explicitly approved publishing the photo and summarized feedback on October 11. Publication is in progress; no native synchronization is claimed.
+
 ## October 8 · Brice: muscle development and half-marathon comeback
 
 Authority: [Rebuilt Athlete body-goal record](../studies/REBUILT-ATHLETE-BODY-GOAL-20260923.md). Brice now prefers about 185 lb within 180–185 lb, with 187 lb acceptable. This phase explicitly develops an impressively muscular physique and gradually works toward comfortable 6:00/mi half-marathon race pace, with a race around 1:20 whenever ready. Later road, HYROX and ultra ambitions remain secondary.
