@@ -1,3 +1,9 @@
+## October 11 · Rebuilt Human social observation
+
+- Added a dated reflection to the existing [Rebuilt Human companion](../studies/REBUILT-HUMAN-BRIDGE-SEASON-20261008.md#october-11--what-feels-rewarding-socially), preserving the October 8 and 9 entries. Source: Brice's October 11 conversation. Descriptions of other people remain general.
+- Novelty remains a possible explanation alongside shared activity, curiosity, setting and energy. FORM House is recorded as an environment Brice wants to participate in, with daily venue management outside that personal aspiration. No social score or quota is introduced.
+- Validation: the study was read back and matched the reviewed text exactly at source commit `dd02de60313404d705be440e18fe174939604161`. This is a repository observation update; no website or app deployment is part of this change. Further observations belong in the same dated record.
+
 ## October 11 · Adrian progress photo and athlete feedback
 
 - Added the original supplied front-flexed photograph and a dated check-in to Study 001, its reference gallery and timeline. Source: `docs/studies/ADRIAN-PROGRESS-20261011.json`.
