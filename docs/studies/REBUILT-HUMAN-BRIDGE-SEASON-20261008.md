@@ -6,6 +6,8 @@
 
 The dated entries connect physical development with outdoor time, technical work, surroundings and social life. Running and Muscle Beach repeatedly feel rewarding to Brice. Some familiar social occasions leave less satisfaction, while brief spontaneous encounters remain enjoyable. The reasons are still open.
 
+In his October 11 evening follow-up, Brice reports no lower-limb issues since the recent runs. His legs feel stronger and sturdier through the quads, outer thighs and some of the hamstrings, with slight muscle soreness easing toward normal. The [dated recovery account](../../labs/rebuilt-athlete/LONG-RUN-COMPARISON.md#october-11--follow-up-after-the-runs) preserves his original words.
+
 The [body-goal record](REBUILT-ATHLETE-BODY-GOAL-20260923.md#current-goal) owns the current physical goals; [The Rebuilt Athlete](../../labs/rebuilt-athlete/index.html) is the public study. This companion preserves the broader observations. The editorial review below offers recommendations separately from Brice's first-person history. It does not require life to improve in every area at once.
 
 ## Purpose

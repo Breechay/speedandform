@@ -1,3 +1,9 @@
+## October 11 · Rebuilt recovery follow-up
+
+Brice added a later recovery report after the review: no lower-limb issues since the runs, legs that feel stronger and sturdier through the quads, outer thighs and some of the hamstrings, and slight muscle soreness easing toward normal. The [three-run source note](../../labs/rebuilt-athlete/LONG-RUN-COMPARISON.md#october-11--follow-up-after-the-runs) preserves his exact words. The public study, Rebuilt Human companion, body-goal note and Phase 00 implementation note now carry this dated follow-up. The earlier run-day reports remain historical evidence.
+
+This is an athlete-reported general trend, not measured muscle gain or separate morning-by-morning checks. Current summaries no longer describe all later recovery as unfiled. The existing generator includes the new dated paragraph; no styles, charts, goals, historical image/archive data or training assignments change. Source validation confirms repeatable generation, valid JSON and fragment links, preserved images/archive objects, unchanged executable scripts/styles and passing House, Running library and ecosystem checks. The existing browser assertion follows the updated observation version. The PR from `work/rebuilt-recovery-followup-20261011` owns the exact tested commit, hosted checks and actual publication receipt; production is not established by this source entry.
+
 ## October 11 · Rebuilt Human review and long-run observations
 
 Owner approved implementing the review. Source: [Rebuilt Human companion](../studies/REBUILT-HUMAN-BRIDGE-SEASON-20261008.md), [physical goal record](../studies/REBUILT-ATHLETE-BODY-GOAL-20260923.md) and [three-run comparison](../../labs/rebuilt-athlete/LONG-RUN-COMPARISON.md). This continues PR #267 rather than opening a competing page version.
