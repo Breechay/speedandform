@@ -5,6 +5,7 @@ from urllib.parse import urlparse
 from playwright.sync_api import sync_playwright
 
 root=Path(__file__).resolve().parents[1]
+catalog_size=len(json.loads((root/'search-index.json').read_text()))
 artifacts=Path(os.environ.get('RUNNING_LIBRARY_ARTIFACTS','/tmp/running-library'))
 artifacts.mkdir(parents=True,exist_ok=True)
 class Handler(http.server.SimpleHTTPRequestHandler):
@@ -26,7 +27,7 @@ try:
    page.set_viewport_size({'width':width,'height':950})
    for route in ['/threshold-training','/anti-rotation','/strength-routine','/training-week','/strength','/search','/library']:
     page.goto(base+route);page.evaluate('document.fonts.ready')
-    if route=='/search': page.wait_for_function("document.querySelector('#discovery-status').textContent.startsWith('Search 86')")
+    if route=='/search': page.wait_for_function("count => document.querySelector('#discovery-status').textContent === `Search ${count} public pages, or browse the complete index below.`", arg=catalog_size)
     metrics=page.evaluate('''() => ({overflow:document.documentElement.scrollWidth>innerWidth+1,weight:getComputedStyle(document.querySelector('h1')).fontWeight,background:getComputedStyle(document.body).backgroundColor})''')
     assert not metrics['overflow'],(width,route,metrics)
     assert metrics['weight']=='450',(width,route,metrics)
@@ -55,7 +56,7 @@ try:
   page.locator('#discovery-query').fill('unicorn running pajamas')
   page.get_by_role('button',name='Browse the complete index').click()
   assert 'kind=' not in page.url and 'q=' not in page.url
-  assert page.locator('#discovery-toc .discovery-toc-link').count()==86
+  assert page.locator('#discovery-toc .discovery-toc-link').count()==catalog_size
   page.goto(base+'/anti-rotation#exercise-2')
   page.wait_for_function("Math.abs(document.getElementById('exercise-2').getBoundingClientRect().top)<80")
   assert page.locator('[data-guide-print]').is_visible()
@@ -84,7 +85,7 @@ try:
   assert page.locator('#metro-start').is_enabled()
   context=browser.new_context(java_script_enabled=False,viewport={'width':390,'height':844})
   static=context.new_page();static.goto(base+'/search')
-  assert static.locator('#discovery-toc .discovery-toc-link').count()==86
+  assert static.locator('#discovery-toc .discovery-toc-link').count()==catalog_size
   static.goto(base+'/anti-rotation')
   assert static.locator('.movement-exercise').count()==4
   assert not errors,errors
