@@ -1,3 +1,29 @@
+## October 11 · Rebuilt Human review and long-run observations
+
+Owner approved implementing the review. Source: [Rebuilt Human companion](../studies/REBUILT-HUMAN-BRIDGE-SEASON-20261008.md), [physical goal record](../studies/REBUILT-ATHLETE-BODY-GOAL-20260923.md) and [three-run comparison](../../labs/rebuilt-athlete/LONG-RUN-COMPARISON.md). This continues PR #267 rather than opening a competing page version.
+
+- Added a dated current review and recommendations to the public study and companion. Participation, choice, curiosity, setting and energy remain possible explanations; enjoyment does not require a later payoff. Personal observation is optional. No new private client, financial, legal or intimate clinical material is included.
+- Aligned the latest run, same-day recovery report and unfiled next-morning response. The October 9 recovery decision is distinct from the earlier 31-mile plan. Historical running, strength, movement, practice and nutrition records remain under dated disclosures; the original archived JSON and images are preserved.
+- Completed the three outing narratives, exact three-run table, five whole-run mechanics plots and two full-mile lap charts. October 9 kilometer splits are not substituted for exact mile splits. The generator is repeatable and preserves embedded image bytes.
+- Replaced the universal evidence hierarchy with evidence matched to the question. Removed the automatic blood-panel and retesting schedule in favor of clinician-led questions. The earlier food trial is explicitly September 21–October 11; it does not restart when the page is read.
+- Current goal values remain the October 8 owner decision. This is an editorial and evidence projection update; no backend assignment, Forge program, calendar, diet or native synchronization is claimed.
+- Kept the field-note sections together before Evidence so every selected tab opens beside its controls. Required discovery regeneration also exposed existing drift: the search generator now preserves the already-published script version, and the index follows the catalog's existing keyword order without changing its content.
+
+Validation: the configured Netlify build passes in an isolated copy. Current goal values, all four image data URIs and four archive objects are preserved; generated observations are idempotent; JSON, executable scripts, fragments and ARIA targets pass. Existing source checks and discovery regeneration pass. Browser acceptance, exact tested commits and release receipts are recorded in [PR #267](https://github.com/Breechay/speedandform/pull/267). Production and physical-device acceptance remain separate from a repository merge. This entry is not a production receipt.
+
+## October 11 · Rebuilt Human social observation
+
+- Added a dated reflection to the existing [Rebuilt Human companion](../studies/REBUILT-HUMAN-BRIDGE-SEASON-20261008.md#october-11--what-feels-rewarding-socially), preserving the October 8 and 9 entries. Source: Brice's October 11 conversation. Descriptions of other people remain general.
+- Novelty remains a possible explanation alongside shared activity, curiosity, setting and energy. FORM House is recorded as an environment Brice wants to participate in, with daily venue management outside that personal aspiration. No social score or quota is introduced.
+- Validation: the study was read back and matched the reviewed text exactly at source commit `dd02de60313404d705be440e18fe174939604161`. This is a repository observation update; no website or app deployment is part of this change. Further observations belong in the same dated record.
+
+## October 11 · Adrian progress photo and athlete feedback
+
+- Added the original supplied front-flexed photograph and a dated check-in to Study 001, its reference gallery and timeline. Source: `docs/studies/ADRIAN-PROGRESS-20261011.json`.
+- October 11 is the filing date; exact capture/message dates are unverified. Adrian reports strength, comfort, enjoyment of lower-body days and increased confidence. No measured muscle-gain claim or prescription change.
+- The private message screenshot is not published. Prior evidence and the October 5 read are preserved.
+- Validation: embedded study data and JavaScript syntax pass; prior evidence, measurements and prescriptions are preserved; diff whitespace check passes. Browser rendering is unverified because Chromium is unavailable. Brice explicitly approved publishing the photo and summarized feedback on October 11. Publication is in progress; no native synchronization is claimed.
+
 ## October 8 · Brice: muscle development and half-marathon comeback
 
 Authority: [Rebuilt Athlete body-goal record](../studies/REBUILT-ATHLETE-BODY-GOAL-20260923.md). Brice now prefers about 185 lb within 180–185 lb, with 187 lb acceptable. This phase explicitly develops an impressively muscular physique and gradually works toward comfortable 6:00/mi half-marathon race pace, with a race around 1:20 whenever ready. Later road, HYROX and ultra ambitions remain secondary.

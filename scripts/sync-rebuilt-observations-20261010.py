@@ -6,7 +6,6 @@ No training prescription, assignment, Calendar event or deployment is changed he
 """
 from pathlib import Path
 from html import escape
-from html.parser import HTMLParser
 import hashlib
 import json
 import re
@@ -16,13 +15,15 @@ PAGE = ROOT / 'labs/rebuilt-athlete/index.html'
 NOTE = ROOT / 'labs/rebuilt-athlete/LONG-RUN-COMPARISON.md'
 SID = 'long-run-mechanics-study-20261009'
 VERSION = '20261010-observations-v1'
+SOURCE_DATE = '2026-10-11'
+SOURCE_DATE_LABEL = 'October 11, 2026'
 OUT = Path('/tmp/rebuilt-observations')
 OUT.mkdir(parents=True, exist_ok=True)
 
 RUNS = [
-    {'date':'September 25', 'short':'Sep 25', 'distance':'8.01 mi', 'time':'1:09:08', 'pace':'8:38/mi', 'cadence':166, 'stride':1.12, 'contact':268, 'ratio':8.2, 'oscillation':9.1, 'hr':'167 / 181 bpm', 'power':'368 W', 'condition':'Negative', 'temperature':'82–88°F'},
-    {'date':'October 4', 'short':'Oct 4', 'distance':'10.01 mi', 'time':'1:51:14.6', 'pace':'11:07/mi', 'cadence':159, 'stride':0.91, 'contact':298, 'ratio':9.5, 'oscillation':8.5, 'hr':'140 / 178 bpm', 'power':'287 W', 'condition':'Negative', 'temperature':'82–86°F'},
-    {'date':'October 9', 'short':'Oct 9', 'distance':'10.0 mi', 'time':'1:22:57', 'pace':'8:18/mi', 'cadence':161, 'stride':1.18, 'contact':264, 'ratio':8.0, 'oscillation':9.4, 'hr':'159 / 188 bpm', 'power':'375 W', 'condition':'Positive', 'temperature':'82–88°F'},
+    {'date':'September 25', 'short':'Sep 25', 'distance':'8.01 mi', 'time':'1:09:08', 'pace':'8:38/mi', 'cadence':166, 'stride':1.12, 'contact':268, 'ratio':8.2, 'oscillation':9.1, 'hr':'167 / 181 bpm', 'power':'368 W', 'effect':'5.0 / 2.3', 'condition':'Negative', 'temperature':'82–88°F'},
+    {'date':'October 4', 'short':'Oct 4', 'distance':'10.01 mi', 'time':'1:51:14.6', 'pace':'11:07/mi', 'cadence':159, 'stride':0.91, 'contact':298, 'ratio':9.5, 'oscillation':8.5, 'hr':'140 / 178 bpm', 'power':'287 W', 'effect':'3.9 / 0.2', 'condition':'Negative', 'temperature':'82–86°F'},
+    {'date':'October 9', 'short':'Oct 9', 'distance':'10.0 mi', 'time':'1:22:57', 'pace':'8:18/mi', 'cadence':161, 'stride':1.18, 'contact':264, 'ratio':8.0, 'oscillation':9.4, 'hr':'159 / 188 bpm', 'power':'375 W', 'effect':'5.0 / 3.8', 'condition':'Positive', 'temperature':'82–88°F'},
 ]
 METRICS = [('cadence','Cadence','spm',0), ('stride','Stride length','m',2), ('contact','Ground contact time','ms',0), ('ratio','Vertical ratio','%',1), ('oscillation','Vertical oscillation','cm',1)]
 
@@ -44,19 +45,20 @@ def metric_chart(key, title, unit, precision):
 def lap_chart(label, lap_seconds, prefix):
     # Exact complete one-mile lap times. Exclude rounded 0.01-mile partials.
     low, high = 450, 810
-    x = lambda i: 56 + i * (440/(len(lap_seconds)-1))
+    x = lambda i: 54 + i * (286/(len(lap_seconds)-1))
     y = lambda s: 36 + (s-low)/(high-low)*156
-    grid = ''.join(f'<path d="M56 {y(s):.2f}H496" stroke="currentColor" opacity=".16"/><text x="46" y="{y(s)+4:.2f}" text-anchor="end">{s//60}:{s%60:02d}</text>' for s in [480,600,720,780])
+    grid = ''.join(f'<path d="M54 {y(s):.2f}H340" stroke="currentColor" opacity=".16"/><text x="44" y="{y(s)+5:.2f}" text-anchor="end">{s//60}:{s%60:02d}</text>' for s in [480,600,720,780])
     points = ' '.join(f'{x(i):.2f},{y(s):.2f}' for i,s in enumerate(lap_seconds))
     ticks = ''.join(f'<text x="{x(i):.2f}" y="217" text-anchor="middle">{i+1}</text>' for i in range(len(lap_seconds)))
+    markers = ''.join(f'<circle cx="{x(i):.2f}" cy="{y(s):.2f}" r="3" fill="currentColor"><title>Mile {i+1}: {int(s)//60}:{s%60:04.1f}</title></circle>' for i,s in enumerate(lap_seconds))
     desc = '; '.join(f'mile {i+1}: {int(s)//60}:{s%60:04.1f}' for i,s in enumerate(lap_seconds))
-    return f'<figure class="rlo-laps"><figcaption>{label} <span>· recorded one-mile laps</span></figcaption><svg viewBox="0 0 530 242" role="img" aria-labelledby="{prefix}-title {prefix}-desc"><title id="{prefix}-title">{label} pace by mile</title><desc id="{prefix}-desc">{desc}. Pace in minutes per mile; not a prescribed progression.</desc>{grid}<polyline points="{points}" fill="none" stroke="currentColor" stroke-width="2"/>{ticks}<text x="276" y="238" text-anchor="middle">Mile</text></svg></figure>'
+    return f'<figure class="rlo-laps"><figcaption>{label} <span>· recorded one-mile laps</span></figcaption><svg viewBox="0 0 360 246" role="img" aria-labelledby="{prefix}-title {prefix}-desc"><title id="{prefix}-title">{label} pace by mile</title><desc id="{prefix}-desc">{desc}. Pace in minutes per mile; not a prescribed progression.</desc>{grid}<polyline points="{points}" fill="none" stroke="currentColor" stroke-width="2"/>{markers}{ticks}<text x="197" y="242" text-anchor="middle">Mile</text></svg></figure>'
 
 rows = [('Distance','distance'), ('Recorded time','time'), ('Average pace','pace')]
 body = ''.join('<tr><th scope="row">'+label+'</th>'+''.join('<td>'+escape(str(r[key]))+'</td>' for r in RUNS)+'</tr>' for label,key in rows)
 for key,label,unit,precision in METRICS:
     body += '<tr><th scope="row">'+label+'</th>'+''.join('<td>'+val(r[key],precision)+' '+unit+'</td>' for r in RUNS)+'</tr>'
-context = ''.join('<tr><th scope="row">'+label+'</th>'+''.join('<td>'+escape(r[key])+'</td>' for r in RUNS)+'</tr>' for label,key in [('Average / maximum heart rate','hr'),('Average power','power'),('Performance Condition','condition'),('Watch temperature','temperature')])
+context = ''.join('<tr><th scope="row">'+label+'</th>'+''.join('<td>'+escape(r[key])+'</td>' for r in RUNS)+'</tr>' for label,key in [('Average / maximum heart rate','hr'),('Average power','power'),('Aerobic / anaerobic Training Effect','effect'),('Performance Condition','condition'),('Watch temperature','temperature')])
 head = '<thead><tr><th scope="col">Measure</th>'+''.join('<th scope="col">'+r['short']+'</th>' for r in RUNS)+'</tr></thead>'
 charts = ''.join(metric_chart(*m) for m in METRICS)
 laps = lap_chart('September 25', [544.4,529.1,517.5,502.9,523.1,526.4,512.9,486.7], 'rlo-sep25') + lap_chart('October 4', [719.2,735.8,780.8,753.1,722.9,682.8,665,570,542.4,498.1], 'rlo-oct04')
@@ -85,6 +87,7 @@ fragment = '''<section class="sec sec--tint rlo" id="long-run-mechanics-study-20
 #long-run-mechanics-study-20261009 figcaption span{font-weight:400;font-size:.88rem}
 #long-run-mechanics-study-20261009 svg{display:block;width:100%;height:auto;overflow:visible}
 #long-run-mechanics-study-20261009 svg text{fill:currentColor;font-family:inherit;font-size:13px;font-variant-numeric:tabular-nums}
+#long-run-mechanics-study-20261009 .rlo-laps svg text{font-size:16px}
 #long-run-mechanics-study-20261009 .rlo-lap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin:1.5rem 0}
 #long-run-mechanics-study-20261009 details{margin:1.5rem 0;padding:0;border:0}
 #long-run-mechanics-study-20261009 summary{cursor:pointer;padding:.75rem 0;font-size:1rem;font-weight:500}
@@ -114,8 +117,8 @@ fragment = '''<section class="sec sec--tint rlo" id="long-run-mechanics-study-20
 <div><h3>What I’m noticing around the run</h3><p>The comfortable leg-lifting cue, the feeling of support after front squats, the barbell work and the wish to keep a muscular frame all belong in the notes. Once-weekly front squats remain an idea to fit into existing strength work, not an extra workout created by this page.</p><p>Keep space for company, sleep, naps, food, shoes, walking, strength work and occasional dated weight. Recovery and enjoyment belong beside the graphs.</p></div>
 <div><h3>What remains open</h3><p>A longer stride or shorter ground contact time is not automatically better. Contact time does not measure impact force or left–right control. Vertical ratio can fall even when absolute vertical movement rises.</p><p>The same pace can feel different on another day. We can notice without requiring a progress story, assigning a cause to front squats, or turning the next outing into a test.</p></div>
 </div>
-<p class="prose"><strong>Current recovery decision, recorded October 9:</strong> no attempt to make up the proposed 31 miles. Leave room for food, rest, gentle movement, core and upper-body work. Easy stationary cycling stays optional. The next running week is a separate decision, not an outcome of these graphs.</p>
-<p class="rlo-small"><a href="./LONG-RUN-COMPARISON.md">Read the full dated observations and source notes</a>. Source: Brice’s accounts and supplied Garmin screenshots. Observations do not change the training plan or Calendar.</p>
+<p class="prose"><strong>Recovery decision recorded October 9:</strong> no attempt to make up the proposed 31 miles. Leave room for food, rest, gentle movement, core and upper-body work. Easy stationary cycling stays optional and only if the legs feel normal. The next running week is a separate decision.</p>
+<p class="rlo-small"><a href="/labs/rebuilt-athlete/LONG-RUN-COMPARISON.md">Read the full dated observations and source notes</a>. Source: Brice’s accounts and supplied Garmin screenshots. Observations do not change the training plan or Calendar.</p>
 </div></section>'''
 for token, value in [('VERSION',VERSION),('HEAD',head),('BODY',body),('CHARTS',charts),('LAPS',laps),('CONTEXT',context)]:
     fragment = fragment.replace(token,value)
@@ -135,18 +138,25 @@ for phrase in ['first four miles with Natalie', 'whole-run averages', '166 spm',
     assert phrase in fragment, phrase
 for token in ['BODY','CHARTS','LAPS','CONTEXT']:
     assert token not in fragment
-assert text.count('data:image/') == updated.count('data:image/'), 'Embedded images changed'
-PAGE.write_bytes(updated.encode('utf-8'))
+images = re.findall(r'data:image/[^\s\x22\x27>]+', text)
+assert images == re.findall(r'data:image/[^\s\x22\x27>]+', updated), 'Embedded image bytes changed'
 
 note = NOTE.read_text()
-notice = ('Website integration completed in the source on October 10, 2026: `index.html#'+SID+'` now presents the three outing descriptions before the verified table and whole-run metric plots. The two exact full-mile lap charts are labeled separately. This source integration does not itself establish a production deploy, Calendar update or native-app synchronization.')
-# Preserve evidence, but supersede earlier pending-render statements.
-note = note.replace('The HTML page has not been revised by this note update.', notice)
-heading = '\n## Rendering follow-through\n'
-if heading in note:
-    note = note.split(heading)[0] + '\n## Website projection\n\n' + notice + '\n\nThe projection preserves the existing section anchor and all unrelated HTML, embedded images and training panels. Regenerate only after reviewing newer observation decisions. No numerical mechanics-by-mile overlay has been invented.\n'
+notice = ('Website integration completed in the source on '+SOURCE_DATE_LABEL+': `index.html#'+SID+'` now presents the three outing descriptions before the verified table and five whole-run metric plots. The two exact full-mile lap charts are labeled separately. This source integration does not itself establish a production deploy, Calendar update or native-app synchronization.')
+# Preserve the dated observation record and original rendering brief as history.
+note = note.replace('The HTML page has not been revised by this note update.', 'The HTML source projection was refreshed on '+SOURCE_DATE_LABEL+'; see Website projection below.')
+note = note.replace('The current note update does not establish that the HTML still has that blob or has been synchronized.', 'That blob identifies the previously read source; the later source projection is recorded below.')
+note = note.replace('\n## Rendering follow-through\n', '\n## Original rendering brief\n\nThe following brief preceded the source integration recorded below.\n')
+projection = '\n## Website projection\n\n'+notice+'\n\nThe generator preserves the existing section anchor and all unrelated HTML, embedded images and training panels. Run it only after reviewing newer observation decisions. No numerical mechanics-by-mile overlay has been invented. Rendering and deployment acceptance are recorded separately from this source receipt.\n'
+if '\n## Website projection\n' in note:
+    note = re.sub(r'\n## Website projection\n.*?(?=\n## |\Z)', lambda _: projection, note, flags=re.S)
+else:
+    note = note.rstrip()+'\n'+projection
+# Upgrade any earlier generated receipt without rewriting the observation dates.
+note = re.sub(r'Website integration completed in the source on October 10, 2026:.*?native-app synchronization\.', notice, note)
+PAGE.write_bytes(updated.encode('utf-8'))
 NOTE.write_text(note)
-receipt = {'version':VERSION, 'html_sha256':hashlib.sha256(updated.encode()).hexdigest(), 'unchanged_prefix_sha256':hashlib.sha256(text[:old.start()].encode()).hexdigest(), 'unchanged_suffix_sha256':hashlib.sha256(text[old.end():].encode()).hexdigest(), 'embedded_image_count':text.count('data:image/'), 'source_only':True, 'training_calendar_unchanged':True}
+receipt = {'version':VERSION, 'source_date':SOURCE_DATE, 'html_sha256':hashlib.sha256(updated.encode()).hexdigest(), 'unchanged_prefix_sha256':hashlib.sha256(text[:old.start()].encode()).hexdigest(), 'unchanged_suffix_sha256':hashlib.sha256(text[old.end():].encode()).hexdigest(), 'embedded_image_count':len(images), 'embedded_image_sha256':[hashlib.sha256(image.encode()).hexdigest() for image in images], 'source_only':True, 'training_calendar_unchanged':True}
 (OUT/'source-check.json').write_text(json.dumps(receipt,indent=2))
 (OUT/'section.html').write_text(fragment)
 print(json.dumps(receipt,indent=2))

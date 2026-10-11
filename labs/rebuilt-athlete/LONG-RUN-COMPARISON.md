@@ -36,7 +36,7 @@ He then supplied the September 25 overview, lap table and mechanics screenshots,
 
 October 4 remains the immediate previous long run. September 25 is the earlier whole-run comparison closer to October 9 in average pace; it is not a controlled or matched-pace test. Chronological order is not a performance ladder.
 
-Read this record alongside `index.html`, especially its `long-run-mechanics-study-20261009` section. This companion record corrects the comparison attribution, fills September 25's missing data, and preserves the different intentions of the outings. The HTML page has not been revised by this note update. No Calendar, FORM assignment, native app, or deployed-website synchronization is established by saving this file.
+Read this record alongside `index.html`, especially its `long-run-mechanics-study-20261009` section. This companion record corrects the comparison attribution, fills September 25's missing data, and preserves the different intentions of the outings. The HTML source projection was refreshed on October 11, 2026; see Website projection below. No Calendar, FORM assignment, native app, or deployed-website synchronization is established by saving this file.
 
 ## Verified screenshot summary
 
@@ -187,11 +187,19 @@ Do not make a standardized performance test out of a free/social run. Do not ran
 - October 4 Garmin screenshots supplied in this conversation: IMG_9146.png (laps), IMG_9147.png (pace/HR), IMG_9148.png (Training Effect/elevation), IMG_9149.png (power/stamina), IMG_9150.png (Performance Condition/cadence), IMG_9151.png (stride length/vertical ratio), IMG_9152.png (vertical oscillation/contact time), IMG_9153.png (temperature/run-walk), IMG_9154.png (zones).
 - Screenshot filenames document supplied evidence, not repository-hosted image URLs. This note does not claim to upload the image files.
 - October 9 source: Brice's earlier supplied screenshots IMG_9127.jpeg and IMG_9128.png through IMG_9135.png, plus the dated study field note and his subsequent same-day account.
-- Existing study reference previously read: `labs/rebuilt-athlete/index.html`, blob `2a99594bea403ac7d9aee6dea8e42362fbb03faf`. The current note update does not establish that the HTML still has that blob or has been synchronized.
+- Existing study reference previously read: `labs/rebuilt-athlete/index.html`, blob `2a99594bea403ac7d9aee6dea8e42362fbb03faf`. That blob identifies the previously read source; the later source projection is recorded below.
 - The initial companion record was committed as `a290b9699a31299594a89a539ee1443d2b2b1d71`. September 25's former unverified status is superseded by its screenshot addition, committed as `f6e443f6a11b0841ec48a9ff246af4c5a626d36d`.
 - Garmin metric definitions, consulted in the earlier record on 2026-10-09: https://www8.garmin.com/manuals/webhelp/GUID-9D99A9D4-467A-4F1A-A0EA-023184FEA3DD/EN-US/GUID-62A09512-518A-424A-8491-FE2B80CD2091.html . This supports metric definitions, not a causal conclusion about Brice's adaptation.
 - Garmin optical HR limitations, consulted in the earlier record on 2026-10-09: https://support.garmin.com/en-US/?faq=xQwjQjzUew4BF1GYcusE59 . This supports measurement caution, not a finding of faulty HR in a specific run.
 
-## Rendering follow-through
+## Original rendering brief
+
+The following brief preceded the source integration recorded below.
 
 When revising the study HTML, include September 25's verified mechanics, insert October 4 between September 25 and October 9, and identify October 4 as the immediate previous long run. Present each outing's description beside or before its numbers and graphs, including October 4's four miles with Natalie and subsequent solo journey with changing intent. Do not render these as ranked attempts at the same workout. Replace obsolete September 25 missing-mechanics statements in the active comparison while preserving the historical provenance of earlier uncertainty. Preserve unrelated newer decisions, historical evidence and embedded media. October 9's converted late kilometer-segment paces are equivalent min/mi paces, not actual mile laps; do not label them as measured one-mile splits. Read back and validate the destination after any edit. Do not claim a website deploy or Calendar/native synchronization from this repository note.
+
+## Website projection
+
+Website integration completed in the source on October 11, 2026: `index.html#long-run-mechanics-study-20261009` now presents the three outing descriptions before the verified table and five whole-run metric plots. The two exact full-mile lap charts are labeled separately. This source integration does not itself establish a production deploy, Calendar update or native-app synchronization.
+
+The generator preserves the existing section anchor and all unrelated HTML, embedded images and training panels. Run it only after reviewing newer observation decisions. No numerical mechanics-by-mile overlay has been invented. Rendering and deployment acceptance are recorded separately from this source receipt.
