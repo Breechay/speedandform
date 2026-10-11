@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "record_type": "progress_photo_and_athlete_report",
+  "record_id": "adrian-progress-20261011",
+  "study_id": "FRM-001",
+  "athlete": "Adrian Gandara",
+  "filed_on": "2026-10-11",
+  "capture_date": null,
+  "message_date_verified": false,
+  "source": {
+    "type": "coach_supplied_photo_and_message_screenshot",
+    "screenshot_published": false
+  },
+  "photo": {
+    "path": "labs/adrian-runner-mass/assets/progress-20261011.png",
+    "view": "Front double-biceps pose",
+    "standardized": false,
+    "note": "Original supplied image. Capture time, pump, lighting and camera distance were not documented."
+  },
+  "athlete_quotes": [
+    "Strong",
+    "Especially today, I love lower body days",
+    "And today felt really strong and comfortable",
+    "Confidence ⬆️"
+  ],
+  "interpretation": "Adrian reports feeling strong and comfortable, enjoying lower-body sessions and gaining confidence. The photo is qualitative progress documentation; it does not establish a measured change in muscle size.",
+  "scope": {
+    "training_prescription_changed": false,
+    "nutrition_changed": false,
+    "native_assignment_changed": false
+  }
+}

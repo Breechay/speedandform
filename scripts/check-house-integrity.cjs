@@ -200,7 +200,7 @@ if (!Array.isArray(search)) {
 } else {
   const urls = new Set();
   const titles = new Set();
-  const categories = new Set(['start','coaching','half-marathon','training','movement','race','recovery','practice','house']);
+  const categories = new Set(['start','coaching','half-marathon','training','movement','race','recovery','practice','recommendations','house']);
 
   for (const entry of search) {
     const subject = entry && entry.url ? entry.url : 'search-index.json';
