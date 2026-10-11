@@ -1577,6 +1577,9 @@
       "kane revive",
       "roger centre court",
       "cuts clothing",
+      "alo yoga",
+      "alo bone shirt",
+      "conquer reform crewneck",
       "skin care",
       "skincare",
       "paulas choice",
@@ -1584,14 +1587,8 @@
       "fragrance",
       "kirke",
       "mens style",
-      "young men",
-      "alo yoga",
-      "alo bone shirt",
-      "conquer reform crewneck"
+      "young men"
     ],
-    "category": "recommendations",
-    "type": "Recommendations",
-    "kind": "Shelf",
     "questions": [
       "what does brice recommend",
       "what running shoes does brice recommend",
@@ -1599,6 +1596,9 @@
       "what skin care does brice recommend",
       "what fragrance does brice wear",
       "what clothes does brice recommend"
-    ]
+    ],
+    "category": "recommendations",
+    "type": "Recommendations",
+    "kind": "Shelf"
   }
 ]

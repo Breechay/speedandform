@@ -6,7 +6,7 @@ const lessons=require('./running-lessons-content.cjs');
 const {groups,normalize}=require('../js/discovery-search.js');
 const families=require('../js/library-families.js');
 const share=require('./share-metadata.cjs');
-const root=path.resolve(__dirname,'..'),V='20261006-lessons';
+const root=path.resolve(__dirname,'..'),V='20261006-lessons',SEARCH_V='20261009-recommends';
 const read=f=>fs.readFileSync(path.join(root,f),'utf8'),write=(f,s)=>fs.writeFileSync(path.join(root,f),s);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const label=e=>e.kind||e.type;
@@ -30,7 +30,7 @@ function shell(file,body,schema){
  if(schema)head+=`\n<script type="application/ld+json" id="discovery-schema">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script>`;
  const header=`<a class="discovery-skip" href="#main">Skip to content</a><header class="discovery-wrap discovery-header"><a class="discovery-brand sf-brand" href="/" aria-label="Speed and Form home"></a><nav class="discovery-nav" aria-label="Main"><a href="/library">Library</a><a href="/plans/">Plans</a><a href="/thursday">Run with us</a><a href="/contact">Contact</a></nav></header>`;
  const footer=`<footer class="discovery-wrap discovery-footer"><a class="sf-brand" href="/" aria-label="Speed and Form home"></a><nav aria-label="Footer"><a href="/library">Library</a><a href="/search">Search</a><a href="/contact">Contact</a><a href="/privacy#website">Privacy</a></nav></footer>`;
- return require('./build-cream-reading.cjs').transformHtml(`<!doctype html>\n<html lang="en" data-form-reading="20261006" data-discovery="20261006" data-running-discovery="20261006"><head>${head}\n</head><body>${header}<main id="main" tabindex="-1" class="discovery-wrap">${body}</main>${footer}${file==='search.html'?`<script src="/js/library-families.js?v=${V}" defer></script><script src="/js/discovery-search.js?v=${V}" defer></script>`:''}</body></html>\n`,file);
+ return require('./build-cream-reading.cjs').transformHtml(`<!doctype html>\n<html lang="en" data-form-reading="20261006" data-discovery="20261006" data-running-discovery="20261006"><head>${head}\n</head><body>${header}<main id="main" tabindex="-1" class="discovery-wrap">${body}</main>${footer}${file==='search.html'?`<script src="/js/library-families.js?v=${V}" defer></script><script src="/js/discovery-search.js?v=${SEARCH_V}" defer></script>`:''}</body></html>\n`,file);
 }
 function build(){
  for(const e of entries){

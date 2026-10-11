@@ -6,6 +6,12 @@
 
 This file is the speedandform-side implementation record. It does not become a second Bridge Season roadmap.
 
+## Latest study read · October 11, 2026
+
+The implementation and feed receipts below remain dated history. The October 9 study decision subsequently set aside chasing the earlier 31-mile proposal and prioritized recovery before further running. The latest filed run is October 9: 10.0 miles outdoors in 1:22:57. The 5:49 PM same-day report described no subsequent discomfort, tightness or soreness; the following morning's response is not yet filed.
+
+The [October 11 review](../../labs/rebuilt-athlete/index.html#review-20261011) clarifies the page and adds recommendations. It does not verify or change the current backend assignment, Forge program, calendar or native state. Future assigned work still belongs in the FORM Athlete System; the study's later recovery decision must be considered when that work is authored. Do not read the historical 31-mile receipt below as a new instruction to complete that mileage.
+
 ## Study → plan → backend
 
 Study:

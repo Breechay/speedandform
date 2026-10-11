@@ -37,7 +37,9 @@ The October 5 ultra, HYROX, 5K and marathon ambitions remain longer-term interes
 
 The current visible study and the revised `study-002-long-horizon` structured goal record in `labs/rebuilt-athlete/index.html` carry this same October 8 direction.
 
-This is a goal revision. The canonical October 5–11 **31-mile hold week**, existing pace-free easy running, Forge programming and native assignments are unchanged. Any future assigned pace, workout or recovery change must originate in the FORM Athlete System before projection.
+At the October 8 goal decision, the authored October 5–11 **31-mile hold week**, existing pace-free easy running, Forge programming and native assignments were unchanged. This sentence describes that dated goal revision, not a renewed mileage target.
+
+**October 11 editorial review:** the later October 9 study decision set aside chasing the earlier 31-mile proposal and prioritized recovery before further running. The 5:49 PM update reported no subsequent discomfort, tightness or soreness; the following morning's response is not yet filed. The [current study review](../../labs/rebuilt-athlete/index.html#review-20261011) and structured goal record now carry that chronology. This editorial update does not claim a changed backend assignment, Forge program or calendar. Any subsequent assigned work must be reconciled through the FORM Athlete System before projection.
 
 Historical measurements, completed training, dated study entries and embedded images remain unchanged. Source verification and publication status are recorded in `docs/roadmap/FORM-ROADMAP.md`.
 
