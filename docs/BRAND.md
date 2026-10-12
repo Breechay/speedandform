@@ -12,8 +12,11 @@ Brice reaffirmed the new homepage and brand-page direction on October 6 and aske
 - **Paper rooms:** cream/bone and a comfortable reading measure, sans serif, ink structure. Approved scopes now include the twelve-week Library group and the private Operating Console. The console uses bone `#e8e3d9`, ink, quiet text, 450 display headings and mono labels; it drops lime, rounded app-like cards and capsule navigation. No bend or lit headline in the console. Other cream surfaces do not inherit this treatment automatically.
 - **Light and imagery:** real photographs carry the room. Only the approved dark-room headline/emblem receive light falloff; decision text stays at full strength. Preserve the documented cloth-rendering exception without treating it as photography or permission to generate athletes.
 - **Voice:** say the real thing once. Use the shortest truthful sentence, first person when it is Brice, and the runner's need before the method. No hype, corporate belief language, pseudo-scientific noun piles or repeated reassurance. Keep coaching and evidence qualifications that change the reader's decision.
-- **Signature:** use the measured bend from `scripts/sf-bend.cjs`, never redraw, mirror or tile it. One bend per approved piece, clear of type. Kit templates are the reuse path; app use still needs its own design decision.
+- **Signature:** use the measured bend from `scripts/sf-bend.cjs`, never redraw, mirror or tile it. One bend per approved piece, clear of type. Kit templates are the website reuse path. The October 12 Running brief separately approves its native opening, sign-in and Week bend; this does not extend the bend to other paper rooms or apps.
 - **App names:** Speed & Form: Running and Speed & Form: Strength. FORM stays the practice, team and authored-study identity; Forge is the strength project's legacy name, and Breechay Sculpt remains the program inside Strength. Public website naming can ship before the App Store rename. Native builds, store metadata and installed icons have their own release checks.
+- **App icons and native direction:** Running uses the ink emblem on cream `#F2EEE5`; Strength uses the graphite emblem on `#080807`. Running's Week stays dark with lime; cream belongs to its native opening, sign-in and Dossier. Strength's native opening is the ghost mark alone, without cloth; bronze remains its internal accent. Read [the October 12 app direction](design/APP-DESIGN-DIRECTION-20261012.md) for source precedence, scope and unverified native release state. Claude owns the native implementation.
+- **Homepage menu:** a bone `#e8e3d9` drawer, ink text, 85vw capped at 460px, with the underlying page visible beside it. Service-first navigation and 44px minimum touch targets. The October 12 audit-and-proceed instruction supersedes the earlier preview-only hold; verification and actual publication remain separate.
+- **Homepage opening and closing:** remove the crowded “Running & strength · Miami + online” hero eyebrow. The cloth closing becomes the actual grouped footer, with useful links inside the same composition. This October 12 owner correction supersedes the older cloth-above-a-footer-strip and footer-tail-only rules for the homepage only; other pages keep their existing footer scope.
 
 ### Library formats · October 6 owner direction
 
@@ -123,7 +126,7 @@ A public room should answer three questions without hunting:
 2. **What can I do here?**
 3. **How do I reach Brice or the next live thing?**
 
-The preferred footer frame is: home/seal, the room's adjacent destination, **Contact**, Privacy. Do not add a global mega-navigation that erases the room.
+The preferred footer frame is: home/seal, the room's adjacent destination, **Contact**, Privacy. Do not add a global mega-navigation that erases the room. **Homepage exception, October 12:** the homepage represents the whole practice and now closes with grouped links inside its cloth footer. This does not prescribe that larger footer for other rooms.
 
 ## Truth before polish
 
@@ -204,7 +207,7 @@ Audited on October 6 against the questions above. Four small corrections, no new
 - **One vertical line.** From 1280 wide, the Begin form starts on the date column's left edge, 580px in from the content edge. Under 1440 the bend's start line is on that same line. From 1440 the start line moves one column left, to the distance column, so the curve has room to rise. It always sits on a column edge, never between two.
 - **Space separates the three doors.** The entry columns keep one top rule each. The vertical rules between them are gone, as they are in Also.
 - **The footer ends on the content edge.** Links sit flush right on desktop. On phones it closes on two lines: links, then the copyright with Top on the right. No link is left alone on a row.
-- **A label never breaks after its separator.** The hero label stays on one line on phones.
+- **A label never breaks after its separator.** This October 6 treatment kept the hero label on one line on phones. The later October 12 owner correction removes the homepage's crowded service/location eyebrow entirely.
 
 ### Motion
 
@@ -214,7 +217,7 @@ It arrives once. When the fold enters view the lanes run in from the left, then 
 
 - Built: the homepage **From the practice** fold.
 - Intended next, not built: 9:16 story frames, study covers and printed pieces, from the standalone asset. One bend per piece, same line weight, same strength.
-- Not without a new owner decision: paper or cream rooms, the FORM and Forge apps, any second use on the same page.
+- At the October 6 decision, paper/cream rooms, the apps and a second use on the same page still needed a new owner decision. The October 12 Running brief now authorizes its native bend in the specified opening, sign-in and Week surfaces. It does not change the other exclusions.
 - Never: tiled, rotated, mirrored, recolored lime, looped, or used in place of the SF emblem.
 
 ### Checked and not checked
@@ -250,9 +253,9 @@ It is the SF emblem blended into a photograph of black cloth. Measured from the 
 | Header emblem | bone at 18% of its width, falling to `#8f8e88` (about 56% gray) |
 | Everything else on the page | unchanged |
 
-### The closing plate
+### The closing plate · October 6 history
 
-The homepage ends on the cloth: the image above the footer line, the emblem's left tip on the content edge where the page opened with it, the cloth dissolving into black to the right on desktop and running edge to edge on phones.
+The original homepage closing put the cloth image above a separate footer line, with the emblem's left tip on the opening content edge and the cloth dissolving into black. **Superseded for the homepage on October 12:** the cloth now belongs to the actual grouped footer, with links inside that composition rather than a detached strip below it. The asset provenance below remains valid; the old plate sizing is historical, not a constraint on the new footer.
 
 - Asset: `/assets/home/20261006/sf-cloth.webp`, 1448 by 1086.
 - Plate height 300px to 460px (32vw). Cloth width 560px to 900px (62vw). Desktop dissolve runs from 55% to 100% of the cloth's width.
@@ -280,7 +283,7 @@ The homepage ends on the cloth: the image above the footer line, the emblem's le
 - `node tests/brand-kit.cjs` checks every link, the single generated bend, plain punctuation and that generated files match their generator.
 - Page images are right-sized copies in `/assets/brand/page/` so the PDF stays light. They are the same public photographs the site already shows.
 
-**Where the bend may go now.** Brice approved it as the signature for invites, posts, stories, email and document covers. The four templates are the approved way to do that: one bend per piece, start line on the text margin, type clear of the lanes, never mirrored. He is open to it in the FORM app; that is not designed and needs its own decision. Paper and cream rooms still need a decision.
+**Where the bend may go.** Brice approved it as the signature for invites, posts, stories, email and document covers. The four templates are the approved way to do that: one bend per piece, start line on the text margin, type clear of the lanes, never mirrored. App use was still open on October 6; the [October 12 Running decision](design/APP-DESIGN-DIRECTION-20261012.md) now settles its native opening, sign-in and Week only. Other paper and cream rooms still need their own decision.
 
 **Drafts, not rulings.** These were proposed in the build and are his to change: clear space of half the emblem's height, the 62px minimum width, the story safe zones (top 14%, bottom 20%), the film and social rows, "no exclamation points", and the rule to ask before using a photograph.
 
@@ -381,18 +384,20 @@ Public share cards now have a reviewed file allowlist in `data/public-share.json
 
 ## October 12 · The menu
 
-**Status.** Brice asked to remove the Also section from the homepage and replace the Contact link with a side menu. The supplied `work/home-menu-20261012` patch is prepared for review on `codex/home-menu-preview-20261012`, based on the completed app-page source `d77194c401e0257e074cc72bd7c5d4bbfbb17298`. Brice explicitly asked to see the preview before publication. Homepage only for now; other house pages keep their header until this one is approved.
+**Status.** Brice asked to remove the Also section from the homepage and replace the Contact link with a side menu. The initial preview on `codex/home-menu-preview-20261012` was based on completed app-page source `d77194c401e0257e074cc72bd7c5d4bbfbb17298`. His later October 12 instruction authorizes an audit, design calls and proceeding with the refined result; it supersedes the earlier preview-only hold. This pass remains homepage-only. Revised source, browser checks, merge and actual publication are recorded separately in the roadmap and PR #273.
 
 - **What the site is for.** The site's main job is hiring Brice for Run Development. Its second job is being a running resource. The menu is ordered by that: hire first, train second, learn third.
-- **Work with me.** Run Development is the first and largest item, with its price under it. Strength coaching and Running analysis sit below it at the normal size.
-- **Train.** Running app, Strength app, Plans, Thursday.
-- **Learn.** Library and Studies. Search lives inside the Library, so the menu has one door, not two.
+- **The panel.** Bone `#e8e3d9`, ink `#161916`, quiet text `#5e625b`. A right-side drawer, 85vw capped at 460px, leaves the page visible beside it on phones. It may scroll vertically on shorter screens; links have at least 44px touch targets. Keep house type and one divider per boundary. Do not add a bend, photograph or another emblem to the panel.
+- **Work with me.** Run Development is the first and largest item, with its existing 8-week / $1,200 offer under it. Strength coaching and Running analysis sit below it at the normal size. Secondary prices and app platform notes belong on their destination pages.
+- **Train.** Running app, Strength app, Training plans, Thursday sessions. Existing destination URLs stay unchanged.
+- **Learn.** Training library and Athlete studies. Search lives inside the Library, so the menu has one door, not two.
 - **Foot.** The email address, @form.practice and Contact.
 - **Also is gone.** Analysis and Strength now live in the menu. FORM House moved to the footer, next to Brand.
+- **The homepage opens more quietly and closes usefully.** The crowded “Running & strength · Miami + online” eyebrow is removed. The bottom cloth and its navigation become one actual grouped footer. Keep useful destinations within that composition, readable over a quiet part of the image, with one divider per boundary. This later owner instruction replaces the homepage's earlier footer-tail-only rule; other pages remain unchanged.
 - **Works without JavaScript.** The menu opens with `#site-menu` and closes with a link. With JavaScript it locks scroll, traps focus, closes on Escape or a tap outside, and returns focus to the Menu link.
 - **Preview fixes.** Space activates the enhanced Menu button. Focus enters immediately without scrolling. Hash navigation updates the accessible dialog state, and closing it clears the visible menu even when the CSS target is retained by history replacement. Expanded/collapsed state belongs to the JavaScript enhancement; the no-JavaScript link does not falsely announce a closed menu when its hash opens the panel.
 
-**Still open.** Plans page redesign. Roll the menu to the other house pages once approved.
+**Still open.** Verify and publish this refined source, with actual production readback. Plans page redesign and extending the menu to other house pages remain separate work.
 
 ## October 7 · Reading room pass after the lesson rebuild
 
@@ -407,7 +412,7 @@ Public share cards now have a reviewed file allowlist in `data/public-share.json
 
 ## October 12 · App pages
 
-**Status.** Brice decided the apps' public names (Speed & Form: Running, Speed & Form: Strength; FORM stays the practice, Forge the project name, Breechay Sculpt the program inside Strength) and the icon direction (one mark, two pigments). He then asked for `/form/` and `/forge-sculpt/` to be fixed. The three-pass candidate was built on `work/app-pages-20261012`. Brice subsequently approved applying it and publishing the website now. That instruction supersedes the earlier hold for the App Store name change. The roadmap records the tested source and actual publication; this naming decision does not claim a native or App Store release.
+**Status.** Brice decided the apps' public names (Speed & Form: Running, Speed & Form: Strength; FORM stays the practice, Forge the project name, Breechay Sculpt the program inside Strength). The latest same-day icon decision is ink on cream for Running and graphite on black for Strength, superseding the earlier pigment-based icon direction; [the app direction record](design/APP-DESIGN-DIRECTION-20261012.md) identifies the exact supplied assets. The three-pass landing-page candidate was built on `work/app-pages-20261012`. Brice approved applying it and publishing the website, superseding the earlier hold for the App Store name change. The roadmap records tested source and actual publication; website naming and asset use do not claim a native or App Store release.
 
 **The rule.** An app page is a room in the house. It keeps its app's pigment and takes everything else from the house.
 
@@ -418,7 +423,7 @@ Public share cards now have a reviewed file allowlist in `data/public-share.json
 
 **Second pass, same day.** Brice asked for both pages above nine out of ten, with the mark given atmosphere instead of sitting flat, and copy and search worked together.
 
-- **The mark lives in material.** Both headers carry the lit emblem. Strength's author fold (“Someone has to decide where the work goes.”) sits on the cloth, the same image as the app's dark opening screen. Running's last call sits on the bend, drawn in lime on its Labs field and generated by `scripts/build-brand-kit.cjs` into `form/index.html`.
+- **The mark lives in material.** Both headers carry the lit emblem. Strength's author fold (“Someone has to decide where the work goes.”) uses the approved website cloth. The later native brief removes cloth from the app opening, so the website material must no longer be described as the current native splash. Running's last call sits on the bend, drawn in lime on its Labs field and generated by `scripts/build-brand-kit.cjs` into `form/index.html`.
 - **Strength stays dark.** It already shows its paper side in the folds about the app and the price, the way the home ends on a cream fold. A cream page would lose the cloth.
 - **The promise is the home's.** Running: “Your plan, written by a coach. Open the day and run it.” The old section “An app, a plan, or a coach?” is now “Who writes your plan?” with three ways in: a program in the app, a written plan on your own, or a plan I write and load into your app. Strength gains the same door in its FAQ: Strength coaching, eight weeks, plan in the app.
 - **Hedges cut.** Five “Shape only. Not a prescribed session.” lines, “Illustration · not athlete data” and the software voice in the missed-workout answer are gone. The honesty about the preview design stays, in plain words.
@@ -430,6 +435,8 @@ Public share cards now have a reviewed file allowlist in `data/public-share.json
 **Final publication check.** The live U.S. Running listing retrieved on October 12 confirms a free download on iPhone and iPad, authored programming and coached-athlete plans, but does not enumerate the 5K/10K/half-marathon/marathon catalog described in the third-pass review. The published page therefore explains available programs without promising that specific catalog. The metadata source matches this wording. The Strength listing confirms $199.99 annually and week one free. Source: [Running](https://apps.apple.com/us/app/form-running/id6761313085) and [Strength](https://apps.apple.com/us/app/breechay/id6790569283).
 
 **Website name continuity.** Support, privacy and terms pages identify Speed & Form: Running as the app also called FORM, and Speed & Form: Strength as the app also called Breechay or FORGE. This identifies the same products while existing policy wording and named app controls remain intact. Public app links and discovery entries use the current names. The website keeps the existing App Store destinations and URLs; publication does not assert that the store listing or installed app has already changed. FORM practice/team language, Breechay Sculpt program names, historical studies and native systems are outside this naming pass.
+
+**Later October 12 native alignment.** `RUNNING-design-calls-20261012 (2).md` and `STRENGTH-design-calls-20261012 (1).md` supersede their earlier supplied versions. Use their standalone cream/graphite icons directly; keep Running's dark Week and the Strength page's dark/bronze treatment. The newer Running brief authorizes a full, unmasked ink bend on the native cream opening/sign-in, not a new cream landing-page requirement. The supplied audit boards are design references, not verified released-app screenshots. Claude owns native work; retain honest website example labels and wait for verified app captures before replacing release evidence. Full provenance and open questions live in [the app direction record](design/APP-DESIGN-DIRECTION-20261012.md).
 
 **Still open.** Whether HYROX appears as a program in the Running listing is Brice's call; the page follows the listing. Native app names, store metadata and icon publication require their own verified release.
 

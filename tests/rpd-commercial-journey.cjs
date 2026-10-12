@@ -111,7 +111,7 @@ const SDK=`export const supabase={auth:{getSession:async()=>({data:{session:wind
   e=await make({campaignBlocked,privacy:true});await e.page.goto(origin+'/?utm_source=google&utm_medium=cpc&utm_campaign=synthetic_home_plan&utm_content=proof');await e.page.waitForFunction(()=>typeof window.sfCampaignSource==='function');
   if(entry==='menu'){
    await e.page.getByRole('button',{name:'Menu',exact:true}).click();
-   await e.page.getByRole('dialog',{name:'Menu',exact:true}).getByRole('link',{name:'Plans',exact:true}).click();
+   await e.page.getByRole('dialog',{name:'Menu',exact:true}).getByRole('link',{name:'Training plans',exact:true}).click();
   }else await e.page.locator('footer').getByRole('link',{name:'Plans',exact:true}).click();
   await e.page.waitForURL('**/plans/?*');check(new URL(e.page.url()).searchParams.get('utm_campaign')==='synthetic_home_plan',journey+' carries the homepage campaign to Plans');
   await e.page.locator('a[href^="/plans/race-pace-durability/"]').first().click();await e.page.waitForURL('**/race-pace-durability/**');

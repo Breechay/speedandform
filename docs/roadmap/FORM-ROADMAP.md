@@ -1,11 +1,24 @@
-## October 12 · Homepage menu preview
+## October 12 · Homepage menu refinement and app design alignment
 
-Brice supplied a homepage menu patch and explicitly held publication until he reviews a preview. The isolated candidate is on `codex/home-menu-preview-20261012`, based on the completed app-page source `d77194c401e0257e074cc72bd7c5d4bbfbb17298`. [The menu decision](../BRAND.md#october-12--the-menu) owns the scope: replace the header Contact link, put Run Development first, move the former Also destinations into navigation, and keep FORM House in the footer.
+Brice's later October 12 request authorizes auditing the menu and app pages, making the design calls and proceeding. It supersedes the initial preview-only publication hold. This source pass continues [PR #273](https://github.com/Breechay/speedandform/pull/273); it does not duplicate Claude's native-app work. Authority: [the menu decision](../BRAND.md#october-12--the-menu) and [app design direction](../design/APP-DESIGN-DIRECTION-20261012.md).
+
+- [x] Recorded the approved source precedence: Running `(2)` and Strength `(1)`, with exact brief/icon hashes. Earlier audit-board openings are not current authority. No private training examples or screenshots are copied into this record.
+- [x] Reconciled Brand, Agent Orientation and public brand prose: cream Running icon; graphite Strength icon; dark Running Week with lime; native cream opening/sign-in/Dossier; Strength ghost opening and bronze inside. Website cloth remains its own approved material.
+- [x] Recorded Brice's later homepage correction: remove the crowded “Running & strength · Miami + online” hero eyebrow and turn the bottom cloth/strip into the actual grouped footer with links inside. This is a homepage-only exception to the older footer-tail-only rule; other pages retain their existing footers.
+- [ ] Verify the refined homepage drawer: house bone `#e8e3d9`, 85vw capped at 460px, at least 44px link targets, visible backdrop, service-first order, plain destination labels and less secondary price/platform copy. Existing URLs, inquiry behavior, keyboard/focus, history, no-JavaScript and reduced-motion behavior must remain usable.
+- [ ] Verify the quieter hero and integrated cloth footer at phone/desktop widths and enlarged text, including link readability, grouping, usable targets and the existing footer purchase path. Earlier preview checks do not cover this new owner correction.
+- [ ] Verify the app-page alignment with the exact supplied icons and preserved example/released-screenshot distinctions. Website material is not proof that the native app changed.
+- [ ] Complete source and browser checks on the final combined revision; record the tested commit and hosted results in PR #273. Then merge, publish and inspect the actual production homepage/menu and both app pages. This entry does not yet claim those steps passed.
+- [ ] Native follow-up belongs to Claude's existing stream: implementation, build, final captures, installed-app acceptance and App Store publication remain separately unverified here. The open Strength “numbers instead of phases” question stays open.
+
+### Earlier menu preview evidence
+
+The original isolated preview was on `codex/home-menu-preview-20261012`, based on completed app-page source `d77194c401e0257e074cc72bd7c5d4bbfbb17298`. Its checks below apply to that earlier preview, not automatically to the refined source. Scope remains the header Menu link, Run Development first, former Also destinations in navigation and FORM House in the footer.
 
 - [x] Applied the supplied patch without changing the app-page release branch. Fixed Space activation, the focus timing race, and accessible opening/closing through the menu hash. The no-JavaScript links remain functional.
 - [x] Local acceptance: the measured-bend gate passes; the public browser suite passes 48 route/width views, the existing inquiry reject/retry checks, and enlarged-text reflow. The focused menu check passes 54 checks at 390×844 and 1440×900, including keyboard focus wrap, Enter/Space, Escape, outside click, hash navigation and no-JavaScript opening/closing. Screenshots were compared with the supplied previews.
 - [x] RPD integration gate: the existing commercial journey now opens Menu before selecting Plans and separately checks the footer Plans link. Both routes retain campaign and GPC checks with storage available and blocked. The full synthetic journey passes 144 checks in local Chromium; payment, authentication and API traffic remain intercepted. [Draft PR #273](https://github.com/Breechay/speedandform/pull/273) records hosted follow-up checks.
-- [ ] Owner preview review. The associated preview PR records the exact tested head and hosted checks. No menu production publication, physical-phone acceptance or native-app change is claimed.
+- The earlier owner-preview hold is superseded by the later audit-and-proceed instruction above. These preview checks do not establish publication, physical-phone acceptance or native-app changes.
 
 ## October 11 · Rebuilt Human social clarification
 

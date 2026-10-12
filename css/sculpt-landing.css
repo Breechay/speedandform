@@ -26,9 +26,15 @@ h1,h2,h3{font-weight:450;letter-spacing:-.045em}
 .bs-label{font:400 11px/1.6 var(--mono);letter-spacing:.08em}
 @media(max-width:760px){.bs-nav nav a[href="#demo"]{display:none}}
 .bs-footer .sf-brand{max-width:100%;min-width:0}.bs-footer .sf-brand::before{max-width:100%}.bs-footer>*{min-width:0}
-/* Lit emblem, and the maker's fold on the cloth: the same image as the app's dark opening screen. */
+/* Lit emblem and website-only cloth in the author fold. The native opening now uses a ghost mark on black. */
 .bs-header .sf-brand::before{background:linear-gradient(100deg,#f0ece3 18%,#8f8a80)}
 .bs-author{position:relative;--cloth:min(980px,150vw);--cloth-h:calc(var(--cloth) * .75);padding-top:calc(var(--cloth-h) * .74 + 64px)}
 .bs-author::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--cloth-h);background:url("/assets/brand/page/sf-cloth.jpg") 49% 0/var(--cloth) auto no-repeat;pointer-events:none;-webkit-mask-image:radial-gradient(calc(var(--cloth) * .52) calc(var(--cloth-h) * .54) at 50% 58%,#000 42%,transparent 100%);mask-image:radial-gradient(calc(var(--cloth) * .52) calc(var(--cloth-h) * .54) at 50% 58%,#000 42%,transparent 100%)}
 .bs-author>*{position:relative}
 
+
+/* Approved graphite app icon, October 12. Bronze remains the room’s accent. */
+.bs-app-identity{display:flex;align-items:center;gap:16px;min-width:0;margin-bottom:24px}
+.bs-app-identity img{display:block;flex:none;width:48px;height:48px;border-radius:11px;border:1px solid var(--line)}
+.bs-app-identity .bs-label{min-width:0;overflow-wrap:anywhere}
+@media(max-width:760px){.bs-app-identity{gap:14px;margin-bottom:19px}.bs-app-identity img{width:44px;height:44px;border-radius:10px}}
