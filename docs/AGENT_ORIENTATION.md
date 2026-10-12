@@ -33,6 +33,8 @@ Physical-space concept:
 
 Do not flatten these into generic fitness-software, run-club or funnel language.
 
+**October 12 naming and design overlay:** the public app names are **Speed & Form: Running** and **Speed & Form: Strength**. FORM remains the practice/team; Forge is the legacy strength project name; Breechay Sculpt is a program within Strength. The latest supplied cream Running / graphite Strength icon and native-surface decisions are recorded in [App design direction](design/APP-DESIGN-DIRECTION-20261012.md). Claude owns native implementation. Website source or publication does not establish a native build, installed icon or App Store release; older names below remain architecture/history references.
+
 ## 2. Start-of-work protocol
 
 Before meaningful work:

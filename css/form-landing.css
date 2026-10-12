@@ -42,3 +42,9 @@ h2,h3{font-weight:450;letter-spacing:-.04em}.fl-button{font-weight:500;border-ra
 .fl-bend{position:absolute;left:0;bottom:0;width:100%;height:auto;pointer-events:none;opacity:.85;-webkit-mask-image:linear-gradient(to top,#000 55%,transparent 100%);mask-image:linear-gradient(to top,#000 55%,transparent 100%)}
 @media(max-width:760px){.fl-close{padding-bottom:220px}.fl-bend{height:220px}}
 
+
+/* Approved app icon, October 12. The website room keeps the Week’s field and lime. */
+.fl-app-identity{display:flex;align-items:center;gap:16px;min-width:0}
+.fl-app-identity img{display:block;flex:none;width:48px;height:48px;border-radius:11px}
+.fl-app-identity .fl-label{min-width:0;overflow-wrap:anywhere}
+@media(max-width:760px){.fl-app-identity{gap:14px}.fl-app-identity img{width:44px;height:44px;border-radius:10px}}

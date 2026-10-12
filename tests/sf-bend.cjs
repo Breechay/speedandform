@@ -11,7 +11,7 @@ const deg=n=>bend.staggerAngle(n)*180/Math.PI;
 for(let n=3;n<=8;n++)assert.ok(deg(n)>deg(n-1),'each outer lane starts farther round the bend');
 assert.ok(Math.abs(deg(2)-10.6)<.1&&Math.abs(deg(8)-67.2)<.1,'400 m stagger angles');
 assert.equal(html.split(inline).length,2,'homepage carries exactly one bend, generated, not hand-edited');
-assert.ok(html.indexOf('class="sf-bend"')>html.indexOf('class="home-evidence"')&&html.indexOf('class="sf-bend"')<html.indexOf('class="home-also"'),'the bend lives in the practice fold');
+assert.ok(html.indexOf('class="sf-bend"')>html.indexOf('class="home-evidence"')&&html.indexOf('class="sf-bend"')<html.indexOf('class="intake"'),'the bend lives in the practice fold');
 assert.equal(fs.readFileSync(path.join(root,'assets/brand/the-bend.svg'),'utf8'),bend.renderBendAsset(),'brand asset matches the source');
 assert.match(inline,/aria-hidden="true"/,'decoration is hidden from assistive technology');
 for(const token of ['--lane','--bend-x','--bend-gap','--bend-solid','--bend-clear','vector-effect:non-scaling-stroke'])assert.ok(css.includes(token),'homepage stylesheet owns '+token);

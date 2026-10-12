@@ -1,0 +1,54 @@
+name: App pages design review
+on:
+  pull_request:
+    paths: ['form/index.html', 'forge-sculpt/index.html', 'css/form-landing.css', 'css/sculpt-landing.css', 'assets/brand/apps/**', 'brand/index.html', '.github/workflows/app-design-review.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Source contracts
+        run: |
+          node tests/form-landing.cjs
+          node tests/sculpt-landing.cjs
+          node scripts/build-brand-kit.cjs
+          node tests/brand-kit.cjs
+      - name: Existing browser and brand render dependencies
+        run: |
+          python -m pip install playwright==1.58.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+          npm install --prefix /tmp/sf-brand-review --no-audit --no-fund playwright@1.58.0
+          sudo apt-get update -qq
+          sudo apt-get install -y qpdf zip
+      - name: App page browser acceptance
+        env:
+          FORM_LANDING_ARTIFACTS: /tmp/app-design-review/running
+          SCULPT_ARTIFACTS: /tmp/app-design-review/strength
+        run: |
+          python tests/form-landing-browser.py
+          python tests/sculpt-landing-browser.py
+      - name: Render current brand guide
+        env:
+          PLAYWRIGHT_MODULE: /tmp/sf-brand-review/node_modules/playwright
+        run: |
+          node scripts/render-brand-kit.cjs
+          mkdir -p /tmp/app-design-review/brand
+          cp assets/brand/kit/speed-and-form-brand.pdf /tmp/app-design-review/brand/
+          cp assets/brand/kit/speed-and-form-kit.zip /tmp/app-design-review/brand/
+          git rev-parse HEAD > /tmp/app-design-review/tested-commit.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: app-design-review
+          path: /tmp/app-design-review/
+          retention-days: 14

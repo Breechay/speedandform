@@ -38,6 +38,7 @@ fs.mkdirSync(out,{recursive:true});
    await noOverflow(route+' @ '+width);
    assert.equal(await page.locator('h1').count(),1,route+' has one focal heading');
    assert.ok(await page.locator('header .sf-brand').isVisible(),route+' home door');
+   if(route==='/'&&[390,1440].includes(width)){await page.locator('.home-footer-emblem').scrollIntoViewIfNeeded();await page.locator('.home-footer-emblem img').evaluate(img=>img.decode());await page.locator('.home-footer-integrated').screenshot({path:path.join(out,'home-footer-'+width+'.png')});await page.evaluate(()=>scrollTo(0,0));}
    if([390,1440].includes(width))await page.screenshot({path:path.join(out,(route.replaceAll('/','-').replace(/^-|-$/g,'')||'home')+'-'+width+'.png'),fullPage:true});
   }
  }
@@ -68,11 +69,45 @@ fs.mkdirSync(out,{recursive:true});
  // Every fold is readable even without arrival/observer classes.
  await page.goto(origin+'/');
  assert.equal(await page.locator('.home-evidence-result dt').first().innerText(),'6 miles');
- for(const selector of ['.hero-copy','.home-entry h2','.home-evidence h2','.home-also-grid','.intake-copy']){
+ for(const selector of ['.hero-copy','.home-entry h2','.home-evidence h2','.intake-copy']){
   assert.equal(await page.locator(selector).evaluate(e=>getComputedStyle(e).opacity),'1',selector+' never hidden');
  }
  assert.ok(await page.getByRole('link',{name:/Follow the study/}).isVisible());
+ // The menu replaces the header Contact link: it opens, holds focus, closes on Escape and returns focus.
+ const toggle=page.locator('.sf-menu-toggle');assert.equal(await toggle.textContent(),'Menu');await toggle.click();
+ assert.ok(await page.locator('#site-menu.is-open').isVisible(),'Menu opens');assert.equal(await toggle.getAttribute('aria-expanded'),'true');
+ assert.ok(await page.locator('.sf-menu-close').evaluate(e=>e===document.activeElement),'Focus moves into the menu');
+ assert.equal(await page.locator('.sf-menu-first').getAttribute('href'),'/coaching/miami/','Run Development leads the menu');
+ for(const href of ['/coaching/strength/','/analysis/','/form/','/forge-sculpt/','/plans/','/thursday','/library','/labs/','/contact','mailto:brice@speedandform.com'])assert.equal(await page.locator('#site-menu a[href="'+href+'"]').count(),1,'Menu links '+href);
+ await page.keyboard.press('Escape');assert.equal(await toggle.getAttribute('aria-expanded'),'false');assert.ok(await toggle.evaluate(e=>e===document.activeElement),'Focus returns to Menu');
+ await page.keyboard.press('Space');assert.equal(await toggle.getAttribute('aria-expanded'),'true','Space opens the enhanced button');
+ await page.waitForFunction(()=>document.activeElement.classList.contains('sf-menu-close'));await page.keyboard.press('Escape');
+ await page.evaluate(()=>location.hash='site-menu');await page.waitForFunction(()=>document.activeElement.classList.contains('sf-menu-close'));
+ assert.notEqual(await page.locator('#site-menu').getAttribute('aria-hidden'),'true','Hash navigation exposes the open dialog');
+ await page.keyboard.press('Escape');assert.equal(await toggle.getAttribute('aria-expanded'),'false');assert.ok(!(await page.locator('#site-menu').isVisible()),'Closing the hash-opened menu hides the dialog');
  assert.equal(await page.locator('.home-entry-grid a').first().getAttribute('href'),'#begin');
+ // Partial-width navigation remains usable on small phones, short screens and enlarged text.
+ for(const [width,height,zoom] of [[320,568,1],[375,667,1],[390,844,1],[430,932,1],[768,1024,1],[1440,900,1],[390,844,2]]){
+  await page.setViewportSize({width,height});await page.goto(origin+'/');
+  if(zoom!==1)await page.addStyleTag({content:'html{zoom:2}'});
+  await page.locator('.sf-menu-toggle').click();await page.evaluate(()=>document.fonts.ready);
+  const shape=await page.locator('.sf-menu-panel').evaluate(e=>({left:e.getBoundingClientRect().left,width:e.getBoundingClientRect().width,scroll:e.scrollWidth,client:e.clientWidth}));
+  if(zoom===1){assert.ok(shape.left>=width*.14,'Page remains visible beside drawer @ '+width);assert.ok(shape.width<=460.5,'Desktop drawer stays bounded');}
+  if(shape.scroll>shape.client+1){await page.screenshot({path:path.join(out,'menu-reflow-failure.png')});console.log(await page.locator('.sf-menu-panel').evaluate(e=>({width:e.clientWidth,scroll:e.scrollWidth,items:[...e.querySelectorAll('*')].filter(n=>n.scrollWidth>n.clientWidth+1).map(n=>({tag:n.tagName,cl:n.className,text:n.textContent.slice(0,80),client:n.clientWidth,scroll:n.scrollWidth}))})));}
+  assert.ok(shape.scroll<=shape.client+1,'Menu text fits @ '+width+' zoom '+zoom);
+  assert.equal(await page.locator('main').evaluate(e=>e.inert),true,'Background is unavailable while menu is open');
+  await page.keyboard.press('Shift+Tab');assert.equal(await page.evaluate(()=>document.activeElement.textContent.trim()),'@form.practice ↗︎','Focus wraps to last link');
+  await page.keyboard.press('Tab');assert.ok(await page.locator('.sf-menu-close').evaluate(e=>e===document.activeElement),'Focus wraps to Close');
+  await page.locator('.sf-menu-foot a[href="/contact"]').scrollIntoViewIfNeeded();assert.ok(await page.locator('.sf-menu-foot a[href="/contact"]').evaluate(e=>{const r=e.getBoundingClientRect();return r.top>=0&&r.bottom<=innerHeight+1;}),'Contact is reachable by scrolling');
+  if(zoom!==1){await page.locator('.sf-menu-panel').evaluate(e=>e.scrollTop=0);await page.screenshot({path:path.join(out,'menu-390-zoom2.png')});}
+  if(zoom===1&&[390,1440].includes(width)){await page.locator('.sf-menu-panel').evaluate(e=>e.scrollTop=0);await page.screenshot({path:path.join(out,'menu-'+width+'.png')});}
+  await page.keyboard.press('Escape');assert.equal(await page.locator('main').evaluate(e=>e.inert),false,'Background restored');
+ }
+ await page.setViewportSize({width:390,height:844});await page.goto(origin+'/');await page.locator('.sf-menu-toggle').click();
+ await page.mouse.click(10,420);assert.equal(await page.locator('.sf-menu-toggle').getAttribute('aria-expanded'),'false','Visible page strip dismisses menu');
+ await page.locator('.sf-menu-toggle').click();await page.getByRole('dialog',{name:'Menu',exact:true}).getByRole('link',{name:'Training plans',exact:true}).click();
+ await page.waitForURL('**/plans/');await page.goBack();assert.equal(await page.locator('main').evaluate(e=>e.inert),false,'Returning to the page restores access');
+
  // Keyboard service selection, a full inquiry, rejection, retained answer, accepted retry.
  await page.goto(origin+'/?utm_source=google&utm_medium=cpc&utm_campaign=qa');
  await page.locator('#coachingChoiceTrigger').focus();await page.keyboard.press('Enter');
