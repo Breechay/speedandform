@@ -7,9 +7,9 @@
 .home-footer-integrated a{color:inherit;text-decoration:none}
 .home-footer-integrated a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
 .home-footer-integrated a:focus-visible{outline:2px solid var(--bone);outline-offset:5px}
-.home-footer-identity .home-footer-contact{display:inline-flex;align-items:center;gap:26px;min-height:52px;font:450 clamp(30px,3vw,42px)/1.15 var(--sans);letter-spacing:-.035em}
-.home-footer-contact span{font-size:25px}
-.home-footer-identity .home-footer-email{max-width:100%;min-width:0;display:inline-flex;align-items:center;min-height:44px;margin-top:12px;font:400 16px/1.5 var(--sans);color:#c8c7bf;overflow-wrap:anywhere}
+.home-footer-identity .home-footer-contact{display:inline-flex;align-items:center;gap:12px;min-height:44px;font:450 22px/1.4 var(--sans);letter-spacing:-.035em}
+.home-footer-arrow{display:block;flex:none;width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round}
+.home-footer-identity .home-footer-email{max-width:100%;min-width:0;display:inline-flex;align-items:center;min-height:44px;margin-top:0;font:400 16px/1.5 var(--sans);color:#c8c7bf;overflow-wrap:anywhere}
 .home-footer-identity .home-footer-social{display:inline-flex;align-items:center;gap:12px;min-height:44px;font:400 13px/1.6 var(--mono);color:#b8bbb2}
 .home-footer-integrated .home-footer-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(22px,3vw,44px);min-width:0;margin:0;padding-top:15px}
 .home-footer-group{min-width:0}
@@ -19,6 +19,6 @@
 .home-footer-integrated .home-footer-base nav{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:12px 26px;min-width:0;margin:0}
 .home-footer-integrated .home-footer-base a{display:inline-flex;align-items:center;justify-content:flex-start;gap:8px;min-height:44px;font:400 12px/1.5 var(--mono)}
 @media(max-width:1000px){.home-footer-grid{grid-template-columns:minmax(0,.8fr) minmax(0,1.5fr);gap:36px}.home-footer-integrated .home-footer-links{gap:24px}.home-footer-integrated .home-footer-group a{font-size:16px}.home-footer-emblem{height:165px}.home-footer-identity .home-footer-email{font-size:15px}}
-@media(max-width:760px){.home-footer-grid{grid-template-columns:minmax(0,1fr);gap:48px;padding-block:44px 42px}.home-footer-emblem{width:280px;max-width:100%;height:160px;margin-top:-18px;margin-bottom:8px}.home-footer-identity .home-footer-contact{font-size:36px}.home-footer-integrated .home-footer-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 28px;padding-top:0}.home-footer-group h2{margin-bottom:15px}.home-footer-integrated .home-footer-group a{min-height:44px;font-size:17px}.home-footer-base{align-items:flex-start;flex-wrap:wrap;gap:6px 20px;padding-block:18px}.home-footer-base>span{order:1;min-height:30px;display:flex;align-items:center}.home-footer-integrated .home-footer-base nav{width:100%;justify-content:flex-start;gap:10px 26px}}
-@media(max-width:360px){.home-footer-integrated .home-footer-links{grid-template-columns:minmax(0,1fr);gap:30px}}
+@media(max-width:760px){.home-footer-grid{grid-template-columns:minmax(0,1fr);gap:32px;padding-block:40px 32px}.home-footer-emblem{width:240px;max-width:100%;height:130px;margin-top:-12px;margin-bottom:12px}.home-footer-identity .home-footer-contact{font-size:22px}.home-footer-integrated .home-footer-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 28px;padding-top:0}.home-footer-group h2{margin-bottom:12px}.home-footer-explore{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px}.home-footer-explore h2{grid-column:1/-1}.home-footer-integrated .home-footer-group a{min-height:44px;font-size:17px}.home-footer-base{align-items:flex-start;flex-wrap:wrap;gap:6px 20px;padding-block:18px}.home-footer-base>span{order:1;min-height:30px;display:flex;align-items:center}.home-footer-integrated .home-footer-base nav{width:100%;justify-content:flex-start;gap:10px 26px}}
+@media(max-width:360px){.home-footer-integrated .home-footer-links{grid-template-columns:minmax(0,1fr);gap:30px}.home-footer-explore{grid-template-columns:minmax(0,1fr)}}
 @media(forced-colors:active){.home-footer-emblem{border:1px solid CanvasText}.home-footer-emblem img{mix-blend-mode:normal;-webkit-mask-image:none;mask-image:none}}
