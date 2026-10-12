@@ -71,7 +71,7 @@ try:
     page.evaluate("location.hash='type-long'");page.wait_for_function("!document.getElementById('type-long').hidden")
     check('Changed hash switches panels',page.locator('#type-long').is_visible())
     page.goto(BASE+'/form/');page.locator('.fl-preview-doors a').nth(1).click();check('Illustration door opens actual section',urlsplit(page.url).fragment=='session-details')
-    page.locator('.fl-faq summary').nth(2).click();check('New design not sold as current screenshot','previews the new interface' in page.locator('.fl-faq details').nth(2).inner_text())
+    dark=page.locator('.fl-faq details',has_text='dark screen');dark.locator('summary').click();check('New design not sold as current screenshot',all(w in dark.inner_text() for w in ('new design','example run','version you can download')))
     check('Reduced motion honored',page.locator('.fl-preview').evaluate('(e)=>getComputedStyle(e).animationName')=='none' and page.locator('html').evaluate('(e)=>getComputedStyle(e).scrollBehavior')=='auto')
     # Test the existing provider-agnostic hook without opening Apple or sending an event.
     page.evaluate("document.addEventListener('click',e=>{if(e.target.closest('[data-sf-event]'))e.preventDefault()});window.sfEvents=[]")

@@ -6,7 +6,7 @@ const schema=h=>JSON.parse((h.match(/<script[^>]*application\/ld\+json[^>]*>([\s
 function check(file,{name,store,css,stray}){
   const h=read(file),text=visible(h);
   assert.equal((h.match(/<h1\b/g)||[]).length,1,file+': one headline');
-  assert.ok(h.includes('<title>'+name.replace('&','&amp;')),file+': title leads with the product name');
+  assert.ok(((h.match(/<title>([^<]*)/)||[])[1]||'').includes(name.replace('&','&amp;')),file+': title names the product');
   assert.ok(h.includes(store),file+': App Store link unchanged');
   assert.ok(/class="[^"]*sf-brand[^"]*" href="\/" aria-label="Speed and Form home"><\/a>/.test(h),file+': the SF emblem alone, linking home');
   assert.ok(!stray.test(text),file+': no retired product name on the page');

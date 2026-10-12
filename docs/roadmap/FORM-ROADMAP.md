@@ -12,6 +12,8 @@ Source checks, hosted acceptance, the tested commit and actual publication are r
 - [x] Both pages take the SF emblem, bare header, house edges, house type and lit headline, and keep their own pigment (Running lime on the Labs field, Strength bronze on black). Names updated in titles, eyebrows, FAQs, footers and structured data. App Store links, prices and claims unchanged.
 - [x] `tests/form-landing.cjs` and `tests/sculpt-landing.cjs` replaced with current house checks; `tests/form-landing-browser.py` and `tests/sculpt-landing-browser.py` pass, including 200% reflow.
 - [ ] Owner review. Not pushed, not merged, not deployed. Publish with the App Store name change.
+- [x] Second pass: lit emblems, Strength author fold on the cloth, Running close on the lime bend, copy rewritten around “Who writes your plan?”, search titles and descriptions. Browser tests pass; the preview-honesty check now finds its answer by text.
+- [ ] Commercial direction, open: the app is the delivery and the judgment is the product. Three ways in, priced by how much of Brice is in the plan: a program in the app, a written plan, a plan written and loaded for the athlete. Bring-your-own-plan import stays unannounced until built (condition schema with provenance, already ruled).
 - [ ] Share images and the support, privacy and terms pages still carry the old names.
 
 ## October 11 · Rebuilt recovery follow-up

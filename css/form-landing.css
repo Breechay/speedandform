@@ -35,3 +35,10 @@ body{font-family:"Inter Tight",-apple-system,BlinkMacSystemFont,sans-serif}
 h2,h3{font-weight:450;letter-spacing:-.04em}.fl-button{font-weight:500;border-radius:0}
 @media(max-width:760px){.fl-nav{min-height:84px}.fl-nav nav{gap:18px}.fl-nav nav a[href="#faq"]{display:none}}
 .fl-footer .sf-brand{max-width:100%;min-width:0}.fl-footer .sf-brand::before{max-width:100%}.fl-footer>*{min-width:0}
+/* Lit emblem, and the close on the bend: lime lanes on the Labs field, rising behind the last call. */
+.fl-header .sf-brand::before{background:linear-gradient(100deg,#f2f4ef 18%,#7e8b84)}
+.fl-close{position:relative;overflow:hidden;padding-bottom:clamp(260px,30vw,400px)}
+.fl-close>*:not(.fl-bend){position:relative;z-index:1}
+.fl-bend{position:absolute;left:0;bottom:0;width:100%;height:auto;pointer-events:none;opacity:.85;-webkit-mask-image:linear-gradient(to top,#000 55%,transparent 100%);mask-image:linear-gradient(to top,#000 55%,transparent 100%)}
+@media(max-width:760px){.fl-close{padding-bottom:200px}.fl-bend{width:190%;left:-62%}}
+

@@ -116,4 +116,8 @@ Made something? Send it before it goes out: https://speedandform.com/contact
 const pageFile=path.join(root,'brand/index.html'),html=fs.readFileSync(pageFile,'utf8'),slot=/<!-- sf-bend -->[\s\S]*?<!-- \/sf-bend -->/;
 if(!slot.test(html))throw Error('Brand page bend slot is missing');
 fs.writeFileSync(pageFile,html.replace(slot,'<!-- sf-bend -->'+renderBend()+'<!-- /sf-bend -->'));
+/* The Running page closes on the bend, drawn in lime on its Labs field. Generated, never hand-edited. */
+const runFile=path.join(root,'form/index.html'),runHtml=fs.readFileSync(runFile,'utf8'),runSlot=/<!-- sf-bend-run -->[\s\S]*?<!-- \/sf-bend-run -->/;
+if(!runSlot.test(runHtml))throw Error('Running page bend slot is missing');
+fs.writeFileSync(runFile,runHtml.replace(runSlot,'<!-- sf-bend-run -->'+renderBendPlaced({width:1280,height:440,x:560,y:430,lane:22,stroke:'#c9ff36',line:2}).replace('<svg ','<svg class="fl-bend" ')+'<!-- /sf-bend-run -->'));
 console.log('Brand kit: vectors, tokens, templates and README written to assets/brand/kit/.');
