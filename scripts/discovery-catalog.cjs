@@ -74,6 +74,8 @@ const lessonKeywords={
  '/running-terms':'running terms glossary definitions vocabulary tempo threshold vo2max lactate cadence economy intervals strides'
 };
 const questions={
+ '/form/':['S&F Running'],
+ '/forge-sculpt/':['Forge','S&F Strength'],
  '/how-fast-should-i-run':['how fast should i run','what pace should i run'],
  '/easy-run':['how easy should an easy run be','why should i run slowly','does running slowly make me slow','what is zone 2 running'],
  '/library/easy-days/':['why are my easy runs hard','why do my easy runs feel hard','why cant i run slowly'],

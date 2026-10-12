@@ -6,6 +6,17 @@ Updated the [companion's current interpretation](../studies/REBUILT-HUMAN-BRIDGE
 
 Source checks, hosted acceptance, the tested commit and actual publication are recorded in the PR from `work/rebuilt-social-clarification-20261011`. This source entry is not a deployment receipt.
 
+## October 12 · App pages on the house rules
+
+Brice approved applying the replacement three-commit app-pages patch and publishing the website now. This supersedes the earlier hold for the App Store name change. The existing native-app release remains a separate stream.
+
+- [x] Applied the three-pass candidate on `codex/app-pages-publish-20261012`, based on production source `47b08a208da96e2329691f7f9454e8bf9183594e`. Both landing pages use the existing SF emblem and house typography. Running keeps the green/lime treatment; Strength keeps bronze, cloth and its paper sections.
+- [x] Clarified Speed & Form: Strength as the app and Breechay Sculpt as its featured program. Running explains built-in plans, written plans and coaching with plain account wording. Existing App Store destinations and billing terms remain intact; future plan import is unannounced.
+- [x] Replaced both share cards and corrected the metadata source so later builds preserve their current names and custom artwork. JSON-LD uses literal ampersands. Relevant link, fragment, metadata, contrast, example-label, billing and sample-input checks are retained alongside the new identity checks.
+- [x] Updated the brand page, public app-link labels, discovery source and app support/privacy/terms naming. Legacy aliases identify the same products; policy bodies and named native controls remain intact. FORM remains the practice/team; Sculpt remains the program.
+- Validation, exact tested source and publication evidence belong to the associated release PR. The configured Netlify build passes with zero errors; the existing landing browser suites pass 255 checks across six widths, 200% CSS-zoom containment, keyboard/no-JavaScript behavior and actual image loading. These are browser checks, not physical-device or native-app acceptance.
+- Open product decision: the longer-term commercial model and bring-your-own-plan import. Website publication does not settle them or establish an App Store release.
+
 ## October 11 · Rebuilt recovery follow-up
 
 Brice added a later recovery report after the review: no lower-limb issues since the runs, legs that feel stronger and sturdier through the quads, outer thighs and some of the hamstrings, and slight muscle soreness easing toward normal. The [three-run source note](../../labs/rebuilt-athlete/LONG-RUN-COMPARISON.md#october-11--follow-up-after-the-runs) preserves his exact words. The public study, Rebuilt Human companion, body-goal note and Phase 00 implementation note now carry this dated follow-up. The earlier run-day reports remain historical evidence.

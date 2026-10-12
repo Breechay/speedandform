@@ -99,15 +99,16 @@
     "dark": false
   },
   "form/index.html": {
-    "image": "/og/public-form-20261006.jpg",
-    "alt": "Speed & Form. FORM Running App | Know Today’s Run.",
-    "title": "FORM Running App | Know Today’s Run",
-    "description": "Know today’s run and how it fits your training. Explore the FORM running app, its session types, and a record of the work you actually did.",
+    "image": "/og/app-running-20261012.jpg",
+    "alt": "Speed & Form: Running. Know today’s run.",
+    "title": "Running Plan App for iPhone | Speed & Form: Running",
+    "description": "Your running plan, written by a coach and kept in one app. Open today’s run, follow the week and keep the record. Free to download on iPhone and iPad.",
     "headline": [
-      "FORM Running App"
+      "Know today’s run."
     ],
-    "label": "FORM · RUNNING APP",
-    "dark": false
+    "label": "SPEED & FORM: RUNNING",
+    "dark": true,
+    "custom": true
   },
   "fueling.html": {
     "image": "/og/public-fueling-20261006.jpg",
@@ -884,5 +885,17 @@
     ],
     "label": "SPEED & FORM",
     "dark": true
+  },
+  "forge-sculpt/index.html": {
+    "image": "/og/app-strength-20261012.jpg",
+    "alt": "Speed & Form: Strength. Breechay Sculpt. Look like you train on purpose.",
+    "title": "Breechay Sculpt Physique Program | Speed & Form: Strength",
+    "description": "Breechay Sculpt is a year of physique training for men, already written: twelve phases, every session with a job. Train week one free in the Speed & Form: Strength app.",
+    "headline": [
+      "Look like you train on purpose."
+    ],
+    "label": "SPEED & FORM: STRENGTH",
+    "dark": true,
+    "custom": true
   }
 }
