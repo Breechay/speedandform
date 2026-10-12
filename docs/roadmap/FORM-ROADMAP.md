@@ -1,3 +1,11 @@
+## October 12 · Homepage menu preview
+
+Brice supplied a homepage menu patch and explicitly held publication until he reviews a preview. The isolated candidate is on `codex/home-menu-preview-20261012`, based on the completed app-page source `d77194c401e0257e074cc72bd7c5d4bbfbb17298`. [The menu decision](../BRAND.md#october-12--the-menu) owns the scope: replace the header Contact link, put Run Development first, move the former Also destinations into navigation, and keep FORM House in the footer.
+
+- [x] Applied the supplied patch without changing the app-page release branch. Fixed Space activation, the focus timing race, and accessible opening/closing through the menu hash. The no-JavaScript links remain functional.
+- [x] Local acceptance: the measured-bend gate passes; the public browser suite passes 48 route/width views, the existing inquiry reject/retry checks, and enlarged-text reflow. The focused menu check passes 54 checks at 390×844 and 1440×900, including keyboard focus wrap, Enter/Space, Escape, outside click, hash navigation and no-JavaScript opening/closing. Screenshots were compared with the supplied previews.
+- [ ] Owner preview review. The associated preview PR records the exact tested head and hosted checks. No menu production publication, physical-phone acceptance or native-app change is claimed.
+
 ## October 11 · Rebuilt Human social clarification
 
 Brice corrected the scope and meaning of the social reflection. The dissatisfaction follows particular encounters; he describes enjoyment, engagement and a very positive view of himself and his life elsewhere. His own explanation emphasizes mutual exchange, freshness and compatibility. He expects the preferences would persist with secure income. Athlete relationships concern deep care and mutual inspiration, including athletes with little recognition. He describes presence during experiences and reflection afterward.

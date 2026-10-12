@@ -89,6 +89,7 @@
 <script src="/js/source-continuity.js?v=20261004-journey"></script>
 <script defer src="/js/coaching-measurement.js?v=20260930"></script>
 <link rel="stylesheet" href="/css/sf-brand.css?v=20261001">
+<link rel="stylesheet" href="/css/sf-menu.css?v=20261012">
 <link rel="stylesheet" href="/css/home-commercial.css?v=20261006-brandlink">
 <script>try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("sf-motion")}catch(e){}</script>
 <link rel="stylesheet" href="/css/home-settle.css?v=20261006-cloth">
@@ -119,9 +120,44 @@
 <header class="header">
   <div class="wrap header-inner">
     <a href="/" class="sf-brand" aria-label="Speed and Form home"></a>
-    <nav class="header-right" aria-label="Main"><a class="home-contact" href="/contact">Contact</a></nav>
+    <nav class="header-right" aria-label="Main"><a class="home-contact sf-menu-toggle" href="#site-menu" aria-controls="site-menu">Menu</a></nav>
   </div>
 </header>
+<div class="sf-menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu">
+  <a class="sf-menu-scrim" href="#" tabindex="-1" aria-hidden="true"></a>
+  <div class="sf-menu-panel">
+    <div class="sf-menu-top"><a class="sf-menu-close" href="#">Close</a></div>
+    <section class="sf-menu-group sf-menu-lead" aria-labelledby="sf-menu-work">
+      <p class="sf-menu-label" id="sf-menu-work">Work with me</p>
+      <ul>
+        <li><a class="sf-menu-first" href="/coaching/miami/"><span>Run Development</span><small>8 weeks · $1,200 · Miami and online</small></a></li>
+        <li><a href="/coaching/strength/"><span>Strength coaching</span><small>8 weeks · $1,200</small></a></li>
+        <li><a href="/analysis/"><span>Running analysis</span><small>$149</small></a></li>
+      </ul>
+    </section>
+    <section class="sf-menu-group" aria-labelledby="sf-menu-train">
+      <p class="sf-menu-label" id="sf-menu-train">Train</p>
+      <ul>
+        <li><a href="/form/"><span>Running app</span><small>iPhone</small></a></li>
+        <li><a href="/forge-sculpt/"><span>Strength app</span><small>iPhone</small></a></li>
+        <li><a href="/plans/"><span>Plans</span></a></li>
+        <li><a href="/thursday"><span>Thursday</span><small>Flamingo Park</small></a></li>
+      </ul>
+    </section>
+    <section class="sf-menu-group" aria-labelledby="sf-menu-learn">
+      <p class="sf-menu-label" id="sf-menu-learn">Learn</p>
+      <ul>
+        <li><a href="/library"><span>Library</span></a></li>
+        <li><a href="/labs/"><span>Studies</span></a></li>
+      </ul>
+    </section>
+    <div class="sf-menu-foot">
+      <a href="mailto:brice@speedandform.com">brice@speedandform.com</a>
+      <a href="https://www.instagram.com/form.practice/" target="_blank" rel="noopener noreferrer">@form.practice ↗︎</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </div>
+</div>
 
 <main id="main-content" tabindex="-1"><span id="top" aria-hidden="true"></span>
 <div class="home-opening">
@@ -156,17 +192,6 @@
         <div><dt>Sep 29</dt><dd>A training milestone. Not a race prediction.</dd></div>
       </dl>
       <a class="text-link" href="/labs/speed-that-endures/">Follow the study <span aria-hidden="true">↗︎</span></a>
-    </div>
-  </div>
-</section>
-
-<section class="home-also" aria-labelledby="home-also-title">
-  <div class="wrap">
-    <p class="eyebrow" id="home-also-title">Also</p>
-    <div class="home-also-grid">
-      <a href="/analysis/"><span class="home-also-label">Analysis</span><strong>Send me videos of your running.</strong><span class="home-also-copy">I’ll show you what I see and what I’d work on next.</span><span class="home-also-price"><i>$149</i><b aria-hidden="true">↗︎</b></span></a>
-      <a href="/coaching/strength/"><span class="home-also-label">Strength</span><strong>Get stronger. Build muscle. Get leaner.</strong><span class="home-also-copy">Eight weeks. Eight coached sessions.</span><span class="home-also-price"><i>$1,200</i><b aria-hidden="true">↗︎</b></span></a>
-      <a href="/form-house"><span class="home-also-label">FORM House</span><strong>Come for the miles. Stay for the morning.</strong><span class="home-also-copy">A home for training, recovery, food and the people around it.</span><span class="home-also-price"><b aria-hidden="true">↗︎</b></span></a>
     </div>
   </div>
 </section>
@@ -284,7 +309,8 @@
       <a href="/plans/">Plans</a>
       <a href="/athlete/" data-form-account>Account →</a>
       <a href="https://www.instagram.com/form.practice/" target="_blank" rel="noopener noreferrer">Instagram ↗︎</a>
-      <a href="/search">Search</a><a href="/brand/">Brand</a>
+      <a href="/search">Search</a><a href="/form-house">FORM House</a>
+      <a href="/brand/">Brand</a>
       <a href="/privacy.html#website">Privacy</a>
       <a href="#top">Top ↑</a>
     </nav>
@@ -523,5 +549,6 @@
 <script type="module" src="/private/account-navigation.js"></script>
 <script defer src="/js/home-hero-film.js?v=20261002-pause"></script>
 <script defer src="/js/home-settle.js?v=20261006-bend"></script>
+<script defer src="/js/sf-menu.js?v=20261012"></script>
 </body>
 </html>

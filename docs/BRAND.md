@@ -379,6 +379,21 @@ The six-, eight- and sixteen-week half-marathon pages and faster-half guide reus
 
 Public share cards now have a reviewed file allowlist in `data/public-share.json`. `scripts/render-public-share.cjs` renders the local-font cards; `scripts/build-public-share.cjs` applies metadata after page generators. The eight Library resource/tool cards retain their separate half-marathon generator. Preserve dedicated study/product art outside this refresh and never sweep private or noindex rooms into the allowlist.
 
+## October 12 · The menu
+
+**Status.** Brice asked to remove the Also section from the homepage and replace the Contact link with a side menu. The supplied `work/home-menu-20261012` patch is prepared for review on `codex/home-menu-preview-20261012`, based on the completed app-page source `d77194c401e0257e074cc72bd7c5d4bbfbb17298`. Brice explicitly asked to see the preview before publication. Homepage only for now; other house pages keep their header until this one is approved.
+
+- **What the site is for.** The site's main job is hiring Brice for Run Development. Its second job is being a running resource. The menu is ordered by that: hire first, train second, learn third.
+- **Work with me.** Run Development is the first and largest item, with its price under it. Strength coaching and Running analysis sit below it at the normal size.
+- **Train.** Running app, Strength app, Plans, Thursday.
+- **Learn.** Library and Studies. Search lives inside the Library, so the menu has one door, not two.
+- **Foot.** The email address, @form.practice and Contact.
+- **Also is gone.** Analysis and Strength now live in the menu. FORM House moved to the footer, next to Brand.
+- **Works without JavaScript.** The menu opens with `#site-menu` and closes with a link. With JavaScript it locks scroll, traps focus, closes on Escape or a tap outside, and returns focus to the Menu link.
+- **Preview fixes.** Space activates the enhanced Menu button. Focus enters immediately without scrolling. Hash navigation updates the accessible dialog state, and closing it clears the visible menu even when the CSS target is retained by history replacement. Expanded/collapsed state belongs to the JavaScript enhancement; the no-JavaScript link does not falsely announce a closed menu when its hash opens the panel.
+
+**Still open.** Plans page redesign. Roll the menu to the other house pages once approved.
+
 ## October 7 · Reading room pass after the lesson rebuild
 
 **Status.** Brice asked for a house pass once the running-lesson rebuild (PR #251) was merged. Built on `work/library-pass-20261007`. Owner review pending. The rebuild already carried the three page kinds, the 450 display weight and the bone paper; this pass closes what was left.
