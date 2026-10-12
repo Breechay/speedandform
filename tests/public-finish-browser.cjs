@@ -38,6 +38,7 @@ fs.mkdirSync(out,{recursive:true});
    await noOverflow(route+' @ '+width);
    assert.equal(await page.locator('h1').count(),1,route+' has one focal heading');
    assert.ok(await page.locator('header .sf-brand').isVisible(),route+' home door');
+   if(route==='/'&&[390,1440].includes(width)){await page.locator('.home-footer-emblem').scrollIntoViewIfNeeded();await page.locator('.home-footer-emblem img').evaluate(img=>img.decode());await page.locator('.home-footer-integrated').screenshot({path:path.join(out,'home-footer-'+width+'.png')});await page.evaluate(()=>scrollTo(0,0));}
    if([390,1440].includes(width))await page.screenshot({path:path.join(out,(route.replaceAll('/','-').replace(/^-|-$/g,'')||'home')+'-'+width+'.png'),fullPage:true});
   }
  }
@@ -92,11 +93,13 @@ fs.mkdirSync(out,{recursive:true});
   await page.locator('.sf-menu-toggle').click();await page.evaluate(()=>document.fonts.ready);
   const shape=await page.locator('.sf-menu-panel').evaluate(e=>({left:e.getBoundingClientRect().left,width:e.getBoundingClientRect().width,scroll:e.scrollWidth,client:e.clientWidth}));
   if(zoom===1){assert.ok(shape.left>=width*.14,'Page remains visible beside drawer @ '+width);assert.ok(shape.width<=460.5,'Desktop drawer stays bounded');}
+  if(shape.scroll>shape.client+1){await page.screenshot({path:path.join(out,'menu-reflow-failure.png')});console.log(await page.locator('.sf-menu-panel').evaluate(e=>({width:e.clientWidth,scroll:e.scrollWidth,items:[...e.querySelectorAll('*')].filter(n=>n.scrollWidth>n.clientWidth+1).map(n=>({tag:n.tagName,cl:n.className,text:n.textContent.slice(0,80),client:n.clientWidth,scroll:n.scrollWidth}))})));}
   assert.ok(shape.scroll<=shape.client+1,'Menu text fits @ '+width+' zoom '+zoom);
   assert.equal(await page.locator('main').evaluate(e=>e.inert),true,'Background is unavailable while menu is open');
   await page.keyboard.press('Shift+Tab');assert.equal(await page.evaluate(()=>document.activeElement.textContent.trim()),'@form.practice ↗︎','Focus wraps to last link');
   await page.keyboard.press('Tab');assert.ok(await page.locator('.sf-menu-close').evaluate(e=>e===document.activeElement),'Focus wraps to Close');
   await page.locator('.sf-menu-foot a[href="/contact"]').scrollIntoViewIfNeeded();assert.ok(await page.locator('.sf-menu-foot a[href="/contact"]').evaluate(e=>{const r=e.getBoundingClientRect();return r.top>=0&&r.bottom<=innerHeight+1;}),'Contact is reachable by scrolling');
+  if(zoom!==1){await page.locator('.sf-menu-panel').evaluate(e=>e.scrollTop=0);await page.screenshot({path:path.join(out,'menu-390-zoom2.png')});}
   if(zoom===1&&[390,1440].includes(width)){await page.locator('.sf-menu-panel').evaluate(e=>e.scrollTop=0);await page.screenshot({path:path.join(out,'menu-'+width+'.png')});}
   await page.keyboard.press('Escape');assert.equal(await page.locator('main').evaluate(e=>e.inert),false,'Background restored');
  }

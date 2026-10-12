@@ -9,12 +9,12 @@
 .home-footer-integrated a:focus-visible{outline:2px solid var(--bone);outline-offset:5px}
 .home-footer-identity .home-footer-contact{display:inline-flex;align-items:center;gap:26px;min-height:52px;font:450 clamp(30px,3vw,42px)/1.15 var(--sans);letter-spacing:-.035em}
 .home-footer-contact span{font-size:25px}
-.home-footer-identity .home-footer-email{display:inline-flex;align-items:center;min-height:44px;margin-top:12px;font:400 16px/1.5 var(--sans);color:#c8c7bf;overflow-wrap:anywhere}
+.home-footer-identity .home-footer-email{max-width:100%;min-width:0;display:inline-flex;align-items:center;min-height:44px;margin-top:12px;font:400 16px/1.5 var(--sans);color:#c8c7bf;overflow-wrap:anywhere}
 .home-footer-identity .home-footer-social{display:inline-flex;align-items:center;gap:12px;min-height:44px;font:400 13px/1.6 var(--mono);color:#b8bbb2}
 .home-footer-integrated .home-footer-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(22px,3vw,44px);min-width:0;margin:0;padding-top:15px}
 .home-footer-group{min-width:0}
 .home-footer-group h2{margin:0 0 23px;font:400 11px/1.6 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#b8bbb2}
-.home-footer-integrated .home-footer-group a{display:flex;align-items:center;justify-content:flex-start;min-height:46px;gap:0;font:400 17px/1.45 var(--sans);padding-block:8px;color:var(--bone);overflow-wrap:break-word}
+.home-footer-integrated .home-footer-group a{display:flex;align-items:center;justify-content:flex-start;min-height:46px;gap:0;font:400 17px/1.45 var(--sans);padding-block:8px;color:var(--bone);overflow-wrap:anywhere}
 .home-footer-base{display:flex;justify-content:space-between;align-items:center;gap:24px;padding-block:20px 24px;border-top:1px solid var(--public-rule);font:400 11px/1.6 var(--mono);color:#b8bbb2}
 .home-footer-integrated .home-footer-base nav{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:12px 26px;min-width:0;margin:0}
 .home-footer-integrated .home-footer-base a{display:inline-flex;align-items:center;justify-content:flex-start;gap:8px;min-height:44px;font:400 12px/1.5 var(--mono)}
