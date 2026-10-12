@@ -22,9 +22,9 @@
     text('thu-eyebrow', 'Recurring Thursday practice');
     text('thu-when', schedule.whenLabel);
     text('thu-time-note', 'Usual time, not a confirmed date. Contact Brice before traveling.');
-    text('thu-session-name', 'Workout to be confirmed');
-    text('thu-session-code', 'Not yet published');
-    text('thu-rotation-line', 'The workout is confirmed separately from the gathering. Ask Brice if you need details before attending.');
+    text('thu-session-name', 'This week’s workout');
+    text('thu-session-code', 'Workout updates');
+    text('thu-rotation-line', 'Check @form.practice posts or Stories for workout details.');
     location(schedule.locationName, schedule.locationCity + ' · ' + schedule.locationDetail);
   }
   function render(run) {
@@ -46,9 +46,9 @@
     text('thu-time-note', 'Miami time · ' + dateLabel);
     var authored = schedule.authored.find(function(entry) { return entry.date === day(run.starts_at); });
     var workout = authored && Number.isInteger(authored.idx) ? schedule.sessions[authored.idx] : null;
-    text('thu-session-name', workout ? workout.name : 'Workout to be confirmed');
-    text('thu-session-code', workout ? 'Session ' + workout.session : 'Details pending');
-    text('thu-rotation-line', workout ? 'This week’s work: ' + workout.name + '.' : 'The gathering is confirmed. Brice will share the workout details separately.');
+    text('thu-session-name', workout ? workout.name : 'This week’s workout');
+    text('thu-session-code', workout ? 'Session ' + workout.session : 'Workout updates');
+    text('thu-rotation-line', workout ? 'This week’s work: ' + workout.name + '.' : 'Check @form.practice posts or Stories for workout details.');
   }
   fallback('Checking the next gathering…');
   text('thu-audience', schedule.audience);

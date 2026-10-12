@@ -17,7 +17,7 @@ async function render(rows,now='2026-10-01T00:30:00Z',ok=true){
  let r=await render([run]);
  assert.equal(r.nodes['thu-gathering-status'].textContent,'Gathering confirmed');
  assert.match(r.nodes['thu-when'].textContent,/Meet 6:00 AM · Run 6:15 AM/);
- assert.equal(r.nodes['thu-session-name'].textContent,'Workout to be confirmed');
+ assert.equal(r.nodes['thu-session-name'].textContent,'This week’s workout');
  assert.match(r.nodes['thu-location-detail'].textContent,/Bench by the bleachers/);
  assert.match(r.requests[0].url,/collective_public_runs/);
  assert.equal(new URL(r.requests[0].url).searchParams.get('starts_at'),'gte.2026-09-30T00:00:00Z','Date follows Miami, not UTC visitor date');
@@ -36,8 +36,10 @@ async function render(rows,now='2026-10-01T00:30:00Z',ok=true){
  assert.match(r.nodes['thu-when'].textContent,/Meet 6:00 AM · Run 6:15 AM/,'Miami daylight saving time');
  r=await render([{...run,starts_at:'2026-09-24T10:15:00Z',meet_at:'2026-09-24T10:00:00Z'}],'2026-09-23T12:00:00Z');
  assert.equal(r.nodes['thu-session-name'].textContent,'Gauntlet','Explicit authored workout remains available');
- assert.ok(html.includes('/js/thursday-gathering.js?v=20261001'));
+ assert.ok(html.includes('/js/thursday-gathering.js?v=20261012-instagram'));
  assert.ok(!html.includes('Brice will confirm it.'));
- assert.ok(html.includes('/coaching/miami/?start=assessment#inquiry-program'));
+ assert.ok(html.includes('See @form.practice'));
+ assert.ok(html.includes('I post the workout on Instagram, in the feed or Stories.'));
+ assert.ok(html.includes('href="/contact"'));
  console.log('PASS Thursday: published/canceled/moved/absent/unavailable gatherings, separate authored workouts, Miami date and DST, public read only.');
 })().catch(error=>{console.error(error);process.exit(1);});

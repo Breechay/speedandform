@@ -1,3 +1,11 @@
+## October 12 · Plain menu copy and Thursday sprint updates
+
+Brice approved the brainstormed menu copy: Run Development “Run faster. Get stronger. Move better.”; app descriptions name their plan/program and logging functions; Training plans “A clear plan for the next race.”; Thursday sprints “Speed, technique and power.” Strength coaching and Running analysis have no descriptions. Learn stays plain.
+
+Thursday workouts are also shared through @form.practice posts or Stories, and the app is not always updated. The page now explains that route with a direct Instagram link, identifies the practice as sprint development, and stops treating absent website workout data as an unconfirmed workout. Dated meeting confirmation, cancellations, changes and authored workout names retain their existing source and behavior. No gathering or workout was created or altered in the backend. Reduced status-heading scale keeps logistics and workout information readable without making missing website data the page's visual centerpiece.
+
+The PR from `codex/thursday-copy-20261012` records checks, exact tested source and production receipt.
+
 ## October 12 · Narrower menu, descriptions and complete closing motion
 
 Brice's later phone review changes the drawer to 75% width, still capped at 460px. Work with me and Train receive short destination descriptions; Learn stays plain. This supersedes the earlier 85% decision. The three-line trigger remains.
