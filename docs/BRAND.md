@@ -1,6 +1,6 @@
 # Speed & Form · house system
 
-> **CURRENT AUTHORITY · 6 October 2026**
+> **CURRENT AUTHORITY · 12 October 2026**
 > This is the active sitewide brand and public-surface doctrine. It supersedes earlier homepage positioning and do-not-regress documents wherever they conflict. Historical files remain in the repo as evidence, not current art direction.
 
 ## Current direction and precedence
@@ -13,6 +13,7 @@ Brice reaffirmed the new homepage and brand-page direction on October 6 and aske
 - **Light and imagery:** real photographs carry the room. Only the approved dark-room headline/emblem receive light falloff; decision text stays at full strength. Preserve the documented cloth-rendering exception without treating it as photography or permission to generate athletes.
 - **Voice:** say the real thing once. Use the shortest truthful sentence, first person when it is Brice, and the runner's need before the method. No hype, corporate belief language, pseudo-scientific noun piles or repeated reassurance. Keep coaching and evidence qualifications that change the reader's decision.
 - **Signature:** use the measured bend from `scripts/sf-bend.cjs`, never redraw, mirror or tile it. One bend per approved piece, clear of type. Kit templates are the reuse path; app use still needs its own design decision.
+- **App names:** Speed & Form: Running and Speed & Form: Strength. FORM stays the practice, team and authored-study identity; Forge is the strength project's legacy name, and Breechay Sculpt remains the program inside Strength. Public website naming can ship before the App Store rename. Native builds, store metadata and installed icons have their own release checks.
 
 ### Library formats · October 6 owner direction
 
@@ -38,7 +39,7 @@ The proposed outing-to-run wording, rounded display distances and shorter cautio
 
 ## The house
 
-**Speed & Form** is the public house. **FORM** remains the identity of the running app, coaching practice, studies and related products. The public homepage and service pages use forest and chalk; lime does not have to define the entire ecosystem.
+**Speed & Form** is the public house. Its apps are **Speed & Form: Running** and **Speed & Form: Strength**. **FORM** remains the identity of the coaching practice, team and studies. The forest/chalk direction recorded below is historical; the current house palette is defined above. Lime retains its role in Running and Labs.
 
 The primary public doors are:
 
@@ -57,7 +58,7 @@ Retired doors may keep their URLs for continuity, but they redirect into the cur
 | Mark | Use |
 |---|---|
 | **SF emblem** · `/assets/brand/sf-seal.svg` | Public header and footer, alone. Also favicon, merch, stamps and sign-offs. |
-| **FORM.** · product wordmark, lime period | Existing application and product identity where it already belongs. |
+| **FORM.** · product wordmark, lime period | Existing native application and practice material where it already belongs. Public app pages use the SF emblem and current app names. |
 | **Italic FORM** | Authored study and field-sheet identity inside the room. |
 
 The public home link is the emblem alone, with an accessible name. Do not place “Speed & Form” or a second wordmark beside it, including in the footer. Product titles, editorial copy and copyright may still name the house or product.
@@ -391,7 +392,7 @@ Public share cards now have a reviewed file allowlist in `data/public-share.json
 
 ## October 12 · App pages
 
-**Status.** Brice decided the apps' public names (Speed & Form: Running, Speed & Form: Strength; FORM stays the practice, Forge the project name, Breechay Sculpt the program inside Strength) and the icon direction (one mark, two pigments). He then asked for `/form/` and `/forge-sculpt/` to be fixed. Built on `work/app-pages-20261012`. Owner review pending. Publish the same day the App Store names change.
+**Status.** Brice decided the apps' public names (Speed & Form: Running, Speed & Form: Strength; FORM stays the practice, Forge the project name, Breechay Sculpt the program inside Strength) and the icon direction (one mark, two pigments). He then asked for `/form/` and `/forge-sculpt/` to be fixed. The three-pass candidate was built on `work/app-pages-20261012`. Brice subsequently approved applying it and publishing the website now. That instruction supersedes the earlier hold for the App Store name change. The roadmap records the tested source and actual publication; this naming decision does not claim a native or App Store release.
 
 **The rule.** An app page is a room in the house. It keeps its app's pigment and takes everything else from the house.
 
@@ -411,5 +412,7 @@ Public share cards now have a reviewed file allowlist in `data/public-share.json
 
 **Third pass, after review.** Claims checked against both App Store listings on October 12: Running is free on iPhone and iPad and lists the 5K, 10K, half marathon and marathon, so the page says that and no longer lists HYROX as a program (the HYROX guide is linked instead). Strength lists $199.99 a year with week one free, matching the page. Strength's opening now says the app is Speed & Form: Strength and Breechay Sculpt is its featured program, with a visible route to Strength coaching. Running says “If I coach you, your assigned plan appears when you sign in.” Structured-data names use a plain `&`. New share images (`og/app-running-20261012.jpg`, `og/app-strength-20261012.jpg`) are drawn from the page material and marked `custom` in `data/public-share.json`, which `scripts/render-public-share.cjs` now skips so the generic card never overwrites them. The landing tests again check links, fragments, metadata, structured data, contrast, billing language, preview honesty and the sample's validation, alongside the house checks. Decorative layers no longer rely on `overflow:hidden`.
 
-**Still open.** The support, privacy and terms pages under both apps should read “Speed & Form: Running (formerly FORM)” and “Speed & Form: Strength (formerly Breechay)” once the store names change. The App Store links keep their old slugs; Apple redirects them. Whether HYROX appears as a program in the Running listing is Brice's call; the page follows the listing.
+**Website name continuity.** Support, privacy and terms pages identify Speed & Form: Running as the app also called FORM, and Speed & Form: Strength as the app also called Breechay or FORGE. This identifies the same products while existing policy wording and named app controls remain intact. Public app links and discovery entries use the current names. The website keeps the existing App Store destinations and URLs; publication does not assert that the store listing or installed app has already changed. FORM practice/team language, Breechay Sculpt program names, historical studies and native systems are outside this naming pass.
+
+**Still open.** Whether HYROX appears as a program in the Running listing is Brice's call; the page follows the listing. Native app names, store metadata and icon publication require their own verified release.
 

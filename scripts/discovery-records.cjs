@@ -926,7 +926,7 @@ module.exports=[
  },
  {
   "url": "/form/",
-  "title": "FORM running app",
+  "title": "Speed & Form: Running",
   "description": "Explore the running app and its current store destination.",
   "keywords": [
    "iphone",
@@ -940,8 +940,8 @@ module.exports=[
  },
  {
   "url": "/forge-sculpt/",
-  "title": "Breechay Sculpt / Forge",
-  "description": "Explore the strength program and its app.",
+  "title": "Speed & Form: Strength",
+  "description": "Explore the strength app and its featured Breechay Sculpt program.",
   "keywords": [
    "forge",
    "breechay",
@@ -1180,7 +1180,7 @@ module.exports=[
  {
   "url": "/privacy",
   "title": "Privacy Policy",
-  "description": "How Speed & Form handles information across the website, FORM app and coaching.",
+  "description": "How Speed & Form handles information across the website, Speed & Form: Running app and coaching.",
   "keywords": [
    "privacy",
    "data",
@@ -1194,7 +1194,7 @@ module.exports=[
  {
   "url": "/terms",
   "title": "Terms of Service",
-  "description": "Terms for the FORM app, website, plans and coaching from Speed & Form.",
+  "description": "Terms for the Speed & Form: Running app, website, plans and coaching from Speed & Form.",
   "keywords": [
    "terms",
    "legal",

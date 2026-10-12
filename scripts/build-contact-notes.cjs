@@ -23,7 +23,7 @@ ${schema?'<script type="application/ld+json">'+JSON.stringify(schema).replace(/<
 <script src="/js/contact-notes.js?v=${VERSION}" defer></script></head><body>
 <a class="cn-skip" href="#main">Skip to content</a><header class="cn-wrap cn-header"><a class="cn-brand" href="/" aria-label="FORM home">FORM<span>.</span></a><nav aria-label="Main"><a href="/library">Library</a><a href="/plans/">Plans</a><a href="/thursday">Run with us</a><a href="/#begin">Work with Brice</a></nav></header>
 <main id="main" class="cn-wrap" tabindex="-1">${body}</main>
-<footer class="cn-wrap cn-footer"><p>FORM · Running with Brice.<br>Miami + Remote.</p><nav aria-label="Footer"><a href="/field-notes">Field Notes</a><a href="/track/">Photos &amp; films</a><a href="/ask/">Ask Brice</a><a href="/form/">FORM app</a><a href="/forge-sculpt/">Breechay Sculpt</a><a href="/privacy.html#website">Privacy</a></nav></footer>
+<footer class="cn-wrap cn-footer"><p>FORM · Running with Brice.<br>Miami + Remote.</p><nav aria-label="Footer"><a href="/field-notes">Field Notes</a><a href="/track/">Photos &amp; films</a><a href="/ask/">Ask Brice</a><a href="/form/" aria-label="Speed &amp; Form: Running">Running app</a><a href="/forge-sculpt/">Breechay Sculpt</a><a href="/privacy.html#website">Privacy</a></nav></footer>
 </body></html>\n`;
 }
 function card(n){return `<li><a class="cn-note-link" href="${route(n)}"><span class="cn-label">${esc(n.category)}</span><h3>${esc(n.title)}</h3><p>${esc(n.summary)}</p><span class="cn-read">Read the note <span aria-hidden="true">→</span></span></a></li>`;}

@@ -15,7 +15,7 @@ async function serve(context){await context.route('**/*',route=>{const u=new URL
   return route.fulfill({path:f,contentType:types[path.extname(f)]||'application/octet-stream',headers:{'access-control-allow-origin':'*'}});});}
 const out=rel=>{const f=path.join(kit,rel);fs.mkdirSync(path.dirname(f),{recursive:true});return f;};
 (async()=>{
-  const browser=await chromium.launch();
+  const browser=await chromium.launch(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:{});
   const shot=async({url,html,width,height,scale=1,file,transparent=false,type='png',hide})=>{const context=await browser.newContext({viewport:{width,height},deviceScaleFactor:scale,reducedMotion:'reduce'});await serve(context);const page=await context.newPage();
     if(url)await page.goto(origin+url,{waitUntil:'load'});else{await page.goto(origin+'/__kit-blank');await page.setContent(html,{waitUntil:'load'});}
     if(hide)await page.addStyleTag({content:hide+'{visibility:hidden!important}'});
