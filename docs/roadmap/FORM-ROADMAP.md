@@ -1,11 +1,12 @@
-## October 12 · Homepage footer phone correction
+## October 12 · Homepage footer phone correction and menu icon
 
 Brice supplied actual iPhone screenshots after PR #273 and identified the contact arrow rendering as a colored emoji. Hosted Linux WebKit did not reveal Apple's font fallback. He also rejected the prominence and generic wording of “Let’s talk.”
 
 - Replaced the display-sized invitation with a quiet `Contact` link, retaining email and Instagram.
 - Replaced the homepage footer's diagonal and upward character arrows with monochrome SVG strokes so platform emoji fonts cannot change their appearance.
 - Reduced the mobile cloth/contact block and excess spacing. Explore uses both mobile columns instead of leaving half the row empty; the smallest widths retain single-column reflow. Touch targets remain at least 44px.
-- Scope: homepage footer only; destinations, account routing, services and app pages remain intact. Source and responsive browser verification, exact tested revision and production receipt belong to the PR from `codex/footer-polish-20261012`. The supplied screenshots establish the original physical-iPhone defect; hosted WebKit rechecks are not a new physical-device check.
+- Replaced the visible Menu word with three fine SVG lines at Brice’s request. The accessible Menu name, 44px target, keyboard behavior and no-JavaScript link remain.
+- Scope: homepage footer and menu trigger only; destinations, account routing, services and app pages remain intact. Source and responsive browser verification, exact tested revision and production receipt belong to the PR from `codex/footer-polish-20261012`. The supplied screenshots establish the original physical-iPhone defect; hosted WebKit rechecks are not a new physical-device check.
 
 ## October 12 · Homepage menu refinement and app design alignment
 
