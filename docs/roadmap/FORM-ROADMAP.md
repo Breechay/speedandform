@@ -1,3 +1,11 @@
+## October 12 · Narrower menu, descriptions and complete closing motion
+
+Brice's later phone review changes the drawer to 75% width, still capped at 460px. Work with me and Train receive short destination descriptions; Learn stays plain. This supersedes the earlier 85% decision. The three-line trigger remains.
+
+The earlier implementation hid the parent immediately on close, preventing the panel's exit transition from being seen. The closing state now retains visibility and scroll isolation through the slide/fade, then restores background access and focus without scrolling. Reduced motion closes immediately, navigation releases immediately, and a timeout handles an interrupted transition. Existing responsive tests now include normal-motion dismissal, final hidden state, scroll position and focus restoration.
+
+Verification and actual production receipt belong to the PR from `codex/menu-motion-20261012`; hosted browsers do not establish a physical-iPhone motion check.
+
 ## October 12 · Homepage footer phone correction and menu icon
 
 Brice supplied actual iPhone screenshots after PR #273 and identified the contact arrow rendering as a colored emoji. Hosted Linux WebKit did not reveal Apple's font fallback. He also rejected the prominence and generic wording of “Let’s talk.”
