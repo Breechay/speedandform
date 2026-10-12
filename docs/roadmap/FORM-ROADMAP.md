@@ -6,6 +6,14 @@ Updated the [companion's current interpretation](../studies/REBUILT-HUMAN-BRIDGE
 
 Source checks, hosted acceptance, the tested commit and actual publication are recorded in the PR from `work/rebuilt-social-clarification-20261011`. This source entry is not a deployment receipt.
 
+## October 12 · App pages on the house rules
+
+- Owner decided the app names and icon direction and asked for `/form/` and `/forge-sculpt/` to be fixed. Record: [Brand authority](../BRAND.md), “October 12 · App pages”.
+- [x] Both pages take the SF emblem, bare header, house edges, house type and lit headline, and keep their own pigment (Running lime on the Labs field, Strength bronze on black). Names updated in titles, eyebrows, FAQs, footers and structured data. App Store links, prices and claims unchanged.
+- [x] `tests/form-landing.cjs` and `tests/sculpt-landing.cjs` replaced with current house checks; `tests/form-landing-browser.py` and `tests/sculpt-landing-browser.py` pass, including 200% reflow.
+- [ ] Owner review. Not pushed, not merged, not deployed. Publish with the App Store name change.
+- [ ] Share images and the support, privacy and terms pages still carry the old names.
+
 ## October 11 · Rebuilt recovery follow-up
 
 Brice added a later recovery report after the review: no lower-limb issues since the runs, legs that feel stronger and sturdier through the quads, outer thighs and some of the hamstrings, and slight muscle soreness easing toward normal. The [three-run source note](../../labs/rebuilt-athlete/LONG-RUN-COMPARISON.md#october-11--follow-up-after-the-runs) preserves his exact words. The public study, Rebuilt Human companion, body-goal note and Phase 00 implementation note now carry this dated follow-up. The earlier run-day reports remain historical evidence.

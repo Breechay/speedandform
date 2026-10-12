@@ -389,3 +389,16 @@ Public share cards now have a reviewed file allowlist in `data/public-share.json
 
 **Still open.** The first Shelf needs Brice's own list of links he sends. Real photographs or films for the routine moves. Phone and Safari use.
 
+## October 12 · App pages
+
+**Status.** Brice decided the apps' public names (Speed & Form: Running, Speed & Form: Strength; FORM stays the practice, Forge the project name, Breechay Sculpt the program inside Strength) and the icon direction (one mark, two pigments). He then asked for `/form/` and `/forge-sculpt/` to be fixed. Built on `work/app-pages-20261012`. Owner review pending. Publish the same day the App Store names change.
+
+**The rule.** An app page is a room in the house. It keeps its app's pigment and takes everything else from the house.
+
+- **Running (`/form/`).** Keeps the Labs field and lime as its one accent. Takes the SF emblem alone (the "The running app" label beside it is gone), a bare header with mono links, house edges, Inter Tight at 450 and a lit headline. It was set in the system font.
+- **Strength (`/forge-sculpt/`).** Keeps black, bone and bronze. The BREECHAY SCULPT wordmark in the header and footer is replaced by the SF emblem, linking home. Jost and the serif italic on “purpose” are replaced by Inter Tight and JetBrains Mono.
+- **Names.** Each page names its app once at the top and in its title and structured data. Buttons say “View in the App Store”, true before and after the store rename. FAQ answers and footers use the new names. App Store links, prices, the sample set, the illustrations and every claim are unchanged.
+- **Tests.** `tests/form-landing.cjs` and `tests/sculpt-landing.cjs` pinned Pass 5 source hashes and had been failing on `main`. They now check the house state through `tests/app-pages-house.cjs`. The two browser tests are unchanged and pass.
+
+**Still open.** Share images still carry the old names (`og/public-form-20261006.jpg`, `assets/forge/og-sculpt-20260917.jpg`). The support, privacy and terms pages under both apps should read “Speed & Form: Running (formerly FORM)” and “Speed & Form: Strength (formerly Breechay)” once the store names change. The App Store links keep their old slugs; Apple redirects them.
+

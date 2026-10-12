@@ -12,3 +12,17 @@
 /* Narrow available columns, including 200% zoom: the illustration yields before the words. */
 body{container-type:inline-size;container-name:sculpt-page}.bs-section>* ,.bs-paper-inner>*,.bs-price-inner>*,.bs-hero>*{min-width:0}h1,h2,h3,p,dd,summary,a{overflow-wrap:anywhere}
 @container sculpt-page (max-width:360px){.bs-nav{flex-direction:column;align-items:flex-start;padding-block:18px;gap:10px}.bs-nav nav{flex-wrap:wrap;gap:18px}.bs-hero,.bs-section,.bs-paper-inner,.bs-price-inner{grid-template-columns:minmax(0,1fr)}.bs-hero h1{font-size:44px}.bs-hero h1 br{display:none}.bs-principles>div{grid-template-columns:1fr;gap:8px}.bs-campaigns summary{grid-template-columns:minmax(0,1fr) 20px;gap:8px}.bs-count{grid-column:1/-1}.bs-campaigns ol{padding-left:28px}.bs-inputs{grid-template-columns:1fr;gap:20px}.bs-input-group label{font-size:12px}.bs-stepper{grid-template-columns:44px minmax(0,1fr) 44px}.bs-poster{padding:20px;min-height:410px}.bs-ghost,.bs-anatomy{display:none}.bs-prescription{max-width:100%;margin-top:65px}.bs-poster-foot{flex-direction:column;align-items:flex-start;gap:4px}.bs-preview figcaption{font-size:12px}.bs-footer{grid-template-columns:1fr}.bs-footer .bs-mark{flex-wrap:wrap}.bs-button{gap:14px;padding-inline:16px}.bs-receipt{padding:18px}.bs-receipt-value{font-size:21px}}
+
+/* October 12, 2026 · the Strength page on the house rules (docs/BRAND.md, "App pages").
+   The room keeps its black and bone and bronze as its one accent. It takes the house type, the SF emblem, bare header and lit headline. */
+@font-face{font-family:"Inter Tight";src:url("/assets/site/fonts/inter-tight-latin-variable.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url("/assets/site/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url("/assets/site/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+:root{--sans:"Inter Tight",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace;--pad:clamp(24px,5.5vw,88px)}
+h1,h2,h3{font-weight:450;letter-spacing:-.045em}
+.bs-hero h1,h1{padding-bottom:.18em;margin-bottom:-.18em;-webkit-mask-image:linear-gradient(100deg,#000 28%,rgba(0,0,0,.6) 96%);mask-image:linear-gradient(100deg,#000 28%,rgba(0,0,0,.6) 96%)}
+.bs-header{border-bottom:0}.bs-nav nav a{font:400 11px/1.6 var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.bs-mark.sf-brand{letter-spacing:0}
+.bs-label{font:400 11px/1.6 var(--mono);letter-spacing:.08em}
+@media(max-width:760px){.bs-nav nav a[href="#demo"]{display:none}}
+.bs-footer .sf-brand{max-width:100%;min-width:0}.bs-footer .sf-brand::before{max-width:100%}.bs-footer>*{min-width:0}

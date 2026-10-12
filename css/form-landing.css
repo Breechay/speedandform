@@ -20,3 +20,18 @@ h1,h2,h3,.fl-target,.fl-button,.fl-record-example dd{overflow-wrap:break-word}
 .fl-button{max-width:100%}.fl-button>span{flex-shrink:0}
 @container(max-width:280px){.fl-record-example dl>div{grid-template-columns:minmax(0,1fr);gap:5px}}
 @media(max-width:760px){.fl-hero{grid-template-columns:minmax(0,1fr)}.fl-hero h1{font-size:clamp(34px,18cqi,64px)}}
+
+/* October 12, 2026 · the Running page on the house rules (docs/BRAND.md, "App pages").
+   The room keeps its Labs field and lime as its one accent. It takes the house edges, type, bare header and lit headline. */
+@font-face{font-family:"Inter Tight";src:url("/assets/site/fonts/inter-tight-latin-variable.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url("/assets/site/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url("/assets/site/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+body{font-family:"Inter Tight",-apple-system,BlinkMacSystemFont,sans-serif}
+.fl-wrap{width:min(1280px,calc(100% - 2 * clamp(24px,5.5vw,88px)));max-width:none;margin-inline:auto;padding-inline:0}
+.fl-label{font:400 11px/1.6 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.08em}
+.fl-header{position:relative;background:transparent;border-bottom:0}
+.fl-nav{min-height:104px}.fl-nav nav a{font:400 11px/1.6 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase}
+.fl-hero h1{font-weight:450;letter-spacing:-.05em;line-height:1.02;padding-bottom:.18em;margin-bottom:-.18em;-webkit-mask-image:linear-gradient(100deg,#000 28%,rgba(0,0,0,.6) 96%);mask-image:linear-gradient(100deg,#000 28%,rgba(0,0,0,.6) 96%)}
+h2,h3{font-weight:450;letter-spacing:-.04em}.fl-button{font-weight:500;border-radius:0}
+@media(max-width:760px){.fl-nav{min-height:84px}.fl-nav nav{gap:18px}.fl-nav nav a[href="#faq"]{display:none}}
+.fl-footer .sf-brand{max-width:100%;min-width:0}.fl-footer .sf-brand::before{max-width:100%}.fl-footer>*{min-width:0}
