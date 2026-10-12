@@ -27,3 +27,9 @@ html:not(.sf-menu-enhanced) .sf-menu:target .sf-menu-panel,.sf-menu.is-open .sf-
 html.sf-menu-locked,html.sf-menu-locked body{overflow:clip}
 @media(min-width:761px){.sf-menu-panel{padding-right:40px;padding-left:40px;padding-bottom:32px}.sf-menu-top{min-height:96px}.sf-menu-group{padding-top:22px;padding-bottom:24px}}
 @media(prefers-reduced-motion:reduce){.sf-menu-scrim,.sf-menu-panel{transition:none}}
+
+/* The icon remains a named 44px control, including before enhancement. */
+.header .header-right .sf-menu-toggle{width:44px;height:44px;min-height:44px;padding:10px;border:0;background:transparent;color:var(--bone);letter-spacing:0}
+.sf-menu-toggle svg{display:block;width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round}
+.header .header-right .sf-menu-toggle:hover{opacity:.75}
+.header .header-right .sf-menu-toggle:focus-visible{outline:2px solid var(--bone);outline-offset:3px}

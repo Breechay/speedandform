@@ -74,7 +74,7 @@ fs.mkdirSync(out,{recursive:true});
  }
  assert.ok(await page.getByRole('link',{name:/Follow the study/}).isVisible());
  // The menu replaces the header Contact link: it opens, holds focus, closes on Escape and returns focus.
- const toggle=page.locator('.sf-menu-toggle');assert.equal(await toggle.textContent(),'Menu');await toggle.click();
+ const toggle=page.locator('.sf-menu-toggle');assert.equal(await toggle.getAttribute('aria-label'),'Menu');await toggle.click();
  assert.ok(await page.locator('#site-menu.is-open').isVisible(),'Menu opens');assert.equal(await toggle.getAttribute('aria-expanded'),'true');
  assert.ok(await page.locator('.sf-menu-close').evaluate(e=>e===document.activeElement),'Focus moves into the menu');
  assert.equal(await page.locator('.sf-menu-first').getAttribute('href'),'/coaching/miami/','Run Development leads the menu');
