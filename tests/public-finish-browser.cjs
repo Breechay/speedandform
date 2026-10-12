@@ -108,6 +108,20 @@ fs.mkdirSync(out,{recursive:true});
  await page.locator('.sf-menu-toggle').click();await page.getByRole('dialog',{name:'Menu',exact:true}).getByRole('link',{name:'Training plans',exact:true}).click();
  await page.waitForURL('**/plans/');await page.goBack();assert.equal(await page.locator('main').evaluate(e=>e.inert),false,'Returning to the page restores access');
 
+ // Normal-motion dismissal must finish its slide before hiding/unlocking the page.
+ await page.emulateMedia({reducedMotion:'no-preference'});await page.goto(origin+'/');
+ await page.evaluate(()=>{scrollTo(0,500);document.querySelector('.sf-menu-toggle').click();});
+ await page.waitForFunction(()=>getComputedStyle(document.querySelector('.sf-menu-panel')).transform==='none');
+ const beforeClose=await page.evaluate(()=>scrollY);
+ await page.locator('.sf-menu-close').click();
+ assert.ok(await page.locator('#site-menu').evaluate(e=>e.classList.contains('is-closing')&&getComputedStyle(e).visibility==='visible'),'Closing drawer stays visible during exit');
+ assert.equal(await page.locator('html').evaluate(e=>e.classList.contains('sf-menu-locked')),true,'Page remains locked through exit');
+ await page.waitForFunction(()=>!document.querySelector('#site-menu').classList.contains('is-closing'));
+ assert.equal(await page.locator('#site-menu').isVisible(),false,'Drawer hides after exit');
+ assert.equal(await page.evaluate(()=>scrollY),beforeClose,'Closing preserves page position');
+ assert.equal(await page.locator('main').evaluate(e=>e.inert),false,'Page restored after exit');
+ assert.ok(await page.locator('.sf-menu-toggle').evaluate(e=>e===document.activeElement),'Focus returns after exit');
+ await page.emulateMedia({reducedMotion:'reduce'});
  // Keyboard service selection, a full inquiry, rejection, retained answer, accepted retry.
  await page.goto(origin+'/?utm_source=google&utm_medium=cpc&utm_campaign=qa');
  await page.locator('#coachingChoiceTrigger').focus();await page.keyboard.press('Enter');
