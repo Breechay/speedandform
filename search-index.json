@@ -1179,7 +1179,9 @@
     ],
     "category": "practice",
     "type": "App",
-    "questions": []
+    "questions": [
+      "S&F Running"
+    ]
   },
   {
     "url": "/forge-sculpt/",
@@ -1194,7 +1196,10 @@
     ],
     "category": "practice",
     "type": "App",
-    "questions": []
+    "questions": [
+      "Forge",
+      "S&F Strength"
+    ]
   },
   {
     "url": "/labs/the-durable-frame/",
