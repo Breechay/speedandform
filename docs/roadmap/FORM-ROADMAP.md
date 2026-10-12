@@ -4,6 +4,7 @@ Brice supplied a homepage menu patch and explicitly held publication until he re
 
 - [x] Applied the supplied patch without changing the app-page release branch. Fixed Space activation, the focus timing race, and accessible opening/closing through the menu hash. The no-JavaScript links remain functional.
 - [x] Local acceptance: the measured-bend gate passes; the public browser suite passes 48 route/width views, the existing inquiry reject/retry checks, and enlarged-text reflow. The focused menu check passes 54 checks at 390×844 and 1440×900, including keyboard focus wrap, Enter/Space, Escape, outside click, hash navigation and no-JavaScript opening/closing. Screenshots were compared with the supplied previews.
+- [x] RPD integration gate: the existing commercial journey now opens Menu before selecting Plans and separately checks the footer Plans link. Both routes retain campaign and GPC checks with storage available and blocked. The full synthetic journey passes 144 checks in local Chromium; payment, authentication and API traffic remain intercepted. [Draft PR #273](https://github.com/Breechay/speedandform/pull/273) records hosted follow-up checks.
 - [ ] Owner preview review. The associated preview PR records the exact tested head and hosted checks. No menu production publication, physical-phone acceptance or native-app change is claimed.
 
 ## October 11 · Rebuilt Human social clarification
