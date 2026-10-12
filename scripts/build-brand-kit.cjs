@@ -119,5 +119,5 @@ fs.writeFileSync(pageFile,html.replace(slot,'<!-- sf-bend -->'+renderBend()+'<!-
 /* The Running page closes on the bend, drawn in lime on its Labs field. Generated, never hand-edited. */
 const runFile=path.join(root,'form/index.html'),runHtml=fs.readFileSync(runFile,'utf8'),runSlot=/<!-- sf-bend-run -->[\s\S]*?<!-- \/sf-bend-run -->/;
 if(!runSlot.test(runHtml))throw Error('Running page bend slot is missing');
-fs.writeFileSync(runFile,runHtml.replace(runSlot,'<!-- sf-bend-run -->'+renderBendPlaced({width:1280,height:440,x:560,y:430,lane:22,stroke:'#c9ff36',line:2}).replace('<svg ','<svg class="fl-bend" ')+'<!-- /sf-bend-run -->'));
+fs.writeFileSync(runFile,runHtml.replace(runSlot,'<!-- sf-bend-run -->'+renderBendPlaced({width:1280,height:440,x:560,y:430,lane:22,stroke:'#c9ff36',line:2}).replace('<svg ','<svg class="fl-bend" preserveAspectRatio="xMidYMax slice" ')+'<!-- /sf-bend-run -->'));
 console.log('Brand kit: vectors, tokens, templates and README written to assets/brand/kit/.');
