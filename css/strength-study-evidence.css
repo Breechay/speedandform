@@ -1,0 +1,12 @@
+.strength-study { margin:0 0 32px; font-size:16px; line-height:1.6; overflow-wrap:anywhere; }
+.strength-study h3 {font-size:24px; margin:0 0 12px;}
+.strength-study p {max-width:65ch; margin:12px 0; font-size:16px; line-height:1.6;}
+.strength-actions {display:flex; flex-wrap:wrap; gap:12px; margin:16px 0;}
+.strength-study button {font:inherit; color:var(--ink); background:transparent; border:1px solid var(--rule-hard); padding:8px 16px; min-height:44px; cursor:pointer;}
+.strength-study button:focus-visible,.strength-study summary:focus-visible {outline:2px solid var(--ink);outline-offset:4px;}
+.strength-study button:disabled {cursor:wait;}
+.strength-record {padding:16px 0; border-top:1px solid var(--rule);}
+.strength-record summary {cursor:pointer; min-height:44px; font-weight:600;}
+.strength-record h4 {margin:20px 0 8px; font-size:18px;}
+.strength-record ol {padding-left:1.7em; font-variant-numeric:tabular-nums;}
+.strength-record .strength-source {font-size:14px; color:var(--ink-2);}

@@ -1,3 +1,13 @@
+## October 13 · Adrian study and completed Strength evidence
+
+- [x] Reviewed PR #281 on main. Public study name and current linked records now use Adrian. Corrected reported incline work to four sets at 50 lb with achieved reps unconfirmed; removed the equipment-ceiling inference and zero-cost running claims.
+- [x] Deployed the consent-gated, service-only completed-receipt projection and public read Edge Function. No raw receipt/account access is exposed. Actual read returns 0 Adrian app sessions; unknown/revoked studies return no data.
+- [x] Added the Strength evidence section, data-derived app count, explicit received/check times, refresh, pagination and JSON export. Message reports remain separate. SQL isolation tests, six-width browser states, existing study/coach checks and configured site build pass.
+- [ ] Website publication and Adrian's first actual phone upload. Source/tested commit and merge receipt belong to the PR from `codex/adrian-strength-evidence-20261013`; backend deployment is separate from website publication. Next: publish the verified website build, then compare one genuine completed workout with the phone and coach record.
+- [ ] Confirm the native receipt load unit. Missing units stay explicit rather than being guessed.
+
+Implementation and agent review contract: [Adrian Strength evidence](../studies/ADRIAN-STRENGTH-EVIDENCE-20261013.md). The 41 coach-directed plan revisions are already saved; Week 1–4 history is unchanged. Christmas moves remain withheld pending the dated running schedule; pull-up ladder advancement remains conditional on the October 16 test.
+
 ## October 12 · Plain menu copy and Thursday sprint updates
 
 
