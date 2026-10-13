@@ -54,6 +54,16 @@ BEGIN
     RETURNING id INTO completed;
   END IF;
 
+  -- Structured segments preserve exact Garmin work versus warmup/cooldown.
+  IF NOT EXISTS (SELECT 1 FROM public.session_pieces WHERE completion_id=completed) THEN
+    INSERT INTO public.session_pieces
+      (athlete_id,completion_id,position,kind,distance,distance_unit,duration_seconds,pace_seconds,duration_seconds_exact)
+    VALUES
+      (athlete,completed,1,'warmup',2.43,'mi',1200,495,1200.0),
+      (athlete,completed,2,'rep',3.28,'mi',1200,366,1200.0),
+      (athlete,completed,3,'cooldown',1.32,'mi',671,509,670.9);
+  END IF;
+
   -- Thursday now carries the previously prescribed five-mile controlled race-pace work.
   SELECT id INTO STRICT sess FROM public.planned_sessions
     WHERE athlete_id=athlete AND scheduled_on='2026-10-15' AND state='published';
