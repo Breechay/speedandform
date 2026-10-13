@@ -791,6 +791,75 @@
    "used_on": []
   },
   {
+   "id": "towel-and-water",
+   "title": "Towel and water",
+   "kind": "track",
+   "captured": null,
+   "setting": "track",
+   "light": "morning sun",
+   "tone": "color",
+   "people": "1, face",
+   "orientation": "portrait",
+   "width": 1281,
+   "height": 1938,
+   "focal": {
+    "x": 0.35,
+    "y": 0.35
+   },
+   "alt": "A runner on the track after the session, towel over his shoulder and a water bottle in hand, clouds and sun behind.",
+   "uses": [
+    "hero-portrait",
+    "card",
+    "essay"
+   ],
+   "files": {
+    "2400": "/media/library/towel-and-water-2400.webp",
+    "1200": "/media/library/towel-and-water-1200.webp",
+    "600": "/media/library/towel-and-water-600.webp"
+   },
+   "source": {
+    "supplied": "2026-10-13",
+    "sha256": "b2f04903091103b0962262ac26ad7938480f310a1bb1c03af92a73d954216406"
+   },
+   "tags": [],
+   "used_on": []
+  },
+  {
+   "id": "terrace-after",
+   "title": "After, on the terrace",
+   "kind": "social",
+   "captured": null,
+   "setting": "café terrace",
+   "light": "daylight",
+   "tone": "color",
+   "people": "3",
+   "orientation": "portrait",
+   "width": 1320,
+   "height": 1927,
+   "focal": {
+    "x": 0.55,
+    "y": 0.55
+   },
+   "alt": "Three runners sit on café chairs on a green terrace among plants after the run, a bridge overhead.",
+   "uses": [
+    "community",
+    "card",
+    "story",
+    "essay"
+   ],
+   "files": {
+    "2400": "/media/library/terrace-after-2400.webp",
+    "1200": "/media/library/terrace-after-1200.webp",
+    "600": "/media/library/terrace-after-600.webp"
+   },
+   "source": {
+    "supplied": "2026-10-13",
+    "sha256": "b972cc7ccac4fff4fdc0bd5dbb546b2f3d8006fd3778f4bc97cdec3c1cbb0716"
+   },
+   "tags": [],
+   "used_on": []
+  },
+  {
    "id": "between-efforts",
    "title": "Between efforts",
    "kind": "track",
