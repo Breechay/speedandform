@@ -88,14 +88,21 @@ export const supabase = {
       S.drafts[args.run] = Object.assign({}, d, { version: d.version + 1, items: args.items, layout: args.layout, appearance: args.appearance });
       return { data: d.version + 1, error: null };
     }
-    if (name === 'collective_album_stage_paths') return { data: args.assets.map((a, i) => ({ asset: a, kind: 'photo', source_bucket: 'collective-gallery-drafts', source_path: `runs/${args.run}/${a}.jpg`, path: `runs/${args.run}/a/${a}.jpg`, staged: i === 0 })), error: null };
+    if (name === 'collective_album_stage_paths') return { data: (args.assets || S.drafts[args.run].items.map((x) => x.asset)).map((a, i) => ({ asset: a, kind: 'photo', source_bucket: 'collective-gallery-drafts', source_path: `runs/${args.run}/${a}.jpg`, path: `runs/${args.run}/a/${a}.jpg`, staged: i === 0 })), error: null };
     if (name === 'collective_album_publish') { const d = S.drafts[args.run]; if (d.version !== args.expected) return { data: null, error: { message: 'draft_conflict' } }; d.live_revision = (d.live_revision || 0) + 1; return { data: d.live_revision, error: null }; }
+    if (name === 'collective_album_take_down') { S.drafts[args.run].taken_down = true; S.withdrawals = [{ id: 1, bucket: 'collective-media', path: `runs/${args.run}/a/r2.jpg`, claim_token: 't1' }, { id: 2, bucket: 'collective-media', path: `runs/${args.run}/a/r0.jpg`, claim_token: 't2' }]; return { data: [{ path: `runs/${args.run}/legacy.webp`, park_to: `runs/${args.run}/parked/legacy.webp` }], error: null }; }
+    if (name === 'collective_media_claim_withdrawals') return { data: S.withdrawals || [], error: null };
+    if (name === 'collective_media_withdrawals_still_claimed') return { data: args.ids.filter((i) => i !== 2).map((id) => ({ id })), error: null };
+    if (name === 'collective_media_withdrawals_done') return { data: args.ids.length, error: null };
+    if (name === 'collective_album_public_paths') return { data: [{ path: `runs/${args.run}/legacy.webp`, source_bucket: 'collective-gallery-drafts', source_path: `runs/${args.run}/parked/legacy.webp`, staged: false }, { path: `runs/${args.run}/a/r1.jpg`, source_bucket: 'collective-gallery-drafts', source_path: `runs/${args.run}/r1.jpg`, staged: false }], error: null };
+    if (name === 'collective_album_put_back_up') { S.drafts[args.run].taken_down = false; return { data: null, error: null }; }
     return { data: null, error: { message: 'unexpected rpc ' + name } };
   },
   storage: { from: (bucket) => ({
     async upload(path, blob, opts) { log({ upload: bucket, path, size: blob.size, type: opts.contentType, upsert: opts.upsert }); return { data: { path }, error: null }; },
     async createSignedUrls(paths) { return { data: paths.map((p, i) => ({ signedUrl: S.thumb })), error: null }; },
-    async copy(from, to, opts) { log({ copy: bucket, from, to, dest: opts?.destinationBucket }); return { data: {}, error: null }; }
+    async copy(from, to, opts) { log({ copy: bucket, from, to, dest: opts?.destinationBucket }); return { data: {}, error: null }; },
+    async remove(paths) { log({ remove: bucket, paths }); return { data: [], error: null }; }
   }) }
 };
 '''
@@ -231,6 +238,33 @@ with sync_playwright() as pw:
     check('copies only unstaged, into the public bucket', all(c['dest'] == 'collective-media' and c['to'].startswith('runs/p2/a/') for c in copies) and len(copies) == 2)
     check('publish uses the saved version', seq[-1]['args']['expected'] == S(page)['drafts']['p2']['version'])
     check('site link after publish', page.locator('#albumHead a[href^="/run/track-thursday-"]').count() == 1)
+
+    # take down, then put back up (the app's sequence)
+    mark = len(S(page)['log'])
+    page.locator('#takeDown').click()
+    check('take down asks first', 'put it back up' in page.locator('#sheetBody').inner_text())
+    page.locator('#sheetSave').click(); page.wait_for_function('!document.getElementById("sheet").open')
+    page.wait_for_selector('#putBackUp')
+    log = S(page)['log'][mark:]
+    names = [o.get('rpc') or ('copy' if 'copy' in o else 'remove' if 'remove' in o else None) for o in log]
+    names = [n for n in names if n and n not in ('collective_galleries',)]
+    check('take-down order', names == ['collective_album_take_down', 'copy', 'collective_media_claim_withdrawals', 'collective_media_withdrawals_still_claimed', 'remove', 'collective_media_withdrawals_done'])
+    park = [o for o in log if 'copy' in o][0]
+    check('legacy file parked privately first', park['copy'] == 'collective-media' and park['dest'] == 'collective-gallery-drafts')
+    rm = [o for o in log if 'remove' in o][0]
+    check('removes only still-claimed copies', rm['paths'] == ['runs/p2/a/r2.jpg'] and [o for o in log if o.get('rpc') == 'collective_media_withdrawals_done'][0]['args']['ids'] == [1])
+    check('site link hidden when taken down', page.locator('#albumHead a[href^="/run/"]').count() == 0)
+    mark = len(S(page)['log'])
+    page.locator('#putBackUp').click()
+    page.wait_for_function('/Back up/.test(document.getElementById("saveStatus").textContent)')
+    log = S(page)['log'][mark:]
+    names = [o.get('rpc') or ('copy' if 'copy' in o else None) for o in log]
+    names = [n for n in names if n and n != 'collective_galleries']
+    check('put-back-up order', names[0] == 'collective_album_stage_paths' and names[-1] == 'collective_album_put_back_up' and 'collective_album_public_paths' in names)
+    legacy = [o for o in log if 'copy' in o and o['to'].endswith('legacy.webp')]
+    after_paths = log[[i for i, o in enumerate(log) if o.get('rpc') == 'collective_album_public_paths'][0]:]
+    check('legacy restored; album copies only through staging', len(legacy) == 1 and all(not o['to'].startswith('runs/p2/a/') for o in after_paths if 'copy' in o))
+    check('take down offered again', page.locator('#takeDown').count() == 1)
 
     # nine at most
     page.evaluate('''()=>{const S=window.__S;for(let i=3;i<12;i++)S.tables.collective_roll_assets.push({id:"x"+i,run_id:"p2",draft_path:"runs/p2/x"+i+".jpg",width:1600,height:1067,taken_at:S.tables.collective_roll_assets[0].taken_at,needs_date:false,kind:"photo",deleted_at:null,created_at:"2026"});}''')

@@ -421,7 +421,7 @@ function paintAlbum() {
     <div class="uploads" id="uploads"></div>
     <div class="grid" id="grid">${ed.roll.length ? [...inAlbum.map((a, i) => cell(a, i + 1)), ...out.map((a) => cell(a, 0))].join('') : '<p class="quiet">No photos yet. Drop the shoot here.</p>'}</div>
     <div class="foot"><span class="s"><b>${inAlbum.length} in the album</b> of ${ed.roll.length}${blocked.length ? ` · <span class="st warn">${blocked.length} need${blocked.length === 1 ? 's' : ''} a date</span>` : ''} · nothing is public until you publish</span>
-      <span><button type="button" class="btn go" id="publish"${!inAlbum.length || blocked.length || ed.conflict || ed.publishing ? ' disabled' : ''}>${ed.live && !ed.takenDown ? 'Publish changes' : 'Publish to app and site'}</button></span></div>`;
+      <span class="footActs">${ed.live && !ed.takenDown ? `<button type="button" class="btn danger" id="takeDown"${ed.publishing ? ' disabled' : ''}>Take down</button>` : ''}${ed.live && ed.takenDown ? `<button type="button" class="btn" id="putBackUp"${ed.publishing ? ' disabled' : ''}>Put back up</button>` : ''}<button type="button" class="btn go" id="publish"${!inAlbum.length || blocked.length || ed.conflict || ed.publishing ? ' disabled' : ''}>${ed.live && !ed.takenDown ? 'Publish changes' : 'Publish to app and site'}</button></span></div>`;
   paintAlbumHead(); paintUploads();
 }
 function paintUploads() {
@@ -525,6 +525,67 @@ async function publish() {
   } finally { ed.publishing = false; paintAlbum(); }
 }
 
+// Take down / Put back up, as the app does (FORMCollectiveAlbum.takeDown / putBackUp). The edit,
+// the roll and every revision stay; only the public album is hidden.
+async function drainWithdrawals(runID) {
+  try {
+    const claimed = await rpc('collective_media_claim_withdrawals', { run: runID }) || [];
+    const done = [];
+    const byBucket = {};
+    claimed.forEach((c) => { (byBucket[c.bucket] = byBucket[c.bucket] || []).push(c); });
+    for (const [bucket, rows] of Object.entries(byBucket)) {
+      const owned = new Set(((await rpc('collective_media_withdrawals_still_claimed', { ids: rows.map((r) => r.id), claim_tokens: rows.map((r) => r.claim_token) })) || []).map((o) => o.id));
+      const current = rows.filter((r) => owned.has(r.id));
+      if (!current.length) continue;
+      const { error } = await sb.storage.from(bucket).remove(current.map((r) => r.path));
+      if (!error) done.push(...current.map((r) => r.id));
+    }
+    if (done.length) await rpc('collective_media_withdrawals_done', { ids: done });
+  } catch { /* the server worker finishes anything left */ }
+}
+async function takeDown() {
+  const run = ed.run;
+  const served = await rpc('collective_album_take_down', { run: run.id }) || [];
+  ed.takenDown = true;
+  // A legacy public file has no private source: park it before its public copy goes.
+  for (const p of served) {
+    if (p.park_to) await sb.storage.from(PUBLIC).copy(p.path, p.park_to, { destinationBucket: DRAFTS }).catch(() => {});
+  }
+  await drainWithdrawals(run.id);
+  setStatus('Taken down. Hidden in the app and on the site.', 'good');
+  await loadRuns(); paintList(); paintAlbum();
+}
+async function putBackUp() {
+  if (!ed || ed.publishing) return;
+  ed.publishing = true; paintAlbum();
+  const isAlbumCopy = (path) => { const s = path.split('/'); return s.length === 4 && s[0] === 'runs' && s[2] === 'a'; };
+  const copy = async (bucket, from, to) => {
+    const { error } = await sb.storage.from(bucket).copy(from, to, { destinationBucket: PUBLIC });
+    if (error && !/exist|409|duplicate/i.test(String(error.message || error.statusCode))) throw error;
+  };
+  try {
+    setStatus('Preparing the public copies…');
+    for (const c of (await rpc('collective_album_stage_paths', { run: ed.run.id, assets: null })) || []) {
+      if (!c.staged && c.source_path) await copy(c.source_bucket, c.source_path, c.path);
+    }
+    for (const p of (await rpc('collective_album_public_paths', { run: ed.run.id })) || []) {
+      if (!p.staged && !isAlbumCopy(p.path) && p.source_path) await copy(p.source_bucket, p.source_path, p.path);
+    }
+    await rpc('collective_album_put_back_up', { run: ed.run.id });
+    ed.takenDown = false;
+    setStatus('Back up in the app and on the site', 'good');
+    await loadRuns(); paintList();
+  } catch (err) {
+    setStatus(String(err?.message || '').includes('withdrawal_in_progress')
+      ? 'An earlier copy is still being removed. It stays hidden; try again in a minute.'
+      : 'Couldn’t put it back up. It stays hidden; try again.', 'bad');
+  } finally { ed.publishing = false; paintAlbum(); }
+}
+function confirmTakeDown() {
+  openSheet('Take this album down?', '<p>It disappears from the app and the site right away. Your edit, the photos and every version stay here, and you can put it back up.</p>',
+    async () => { try { await takeDown(); } catch { throw new Error('Couldn’t take it down. The album is unchanged.'); } }, 'Take it down');
+}
+
 // ------------------------------------------------------------------ events
 
 function select(id) {
@@ -572,7 +633,9 @@ document.addEventListener('click', async (e) => {
   const dm = t.closest('[data-dismiss]');
   if (dm) { ed.uploads = ed.uploads.filter((x) => x.id !== dm.dataset.dismiss); paintUploads(); return; }
   const cfl = t.closest('[data-conflict]'); if (cfl) { await resolveConflict(cfl.dataset.conflict === 'mine'); return; }
-  if (t.closest('#publish')) { publish(); }
+  if (t.closest('#publish')) { publish(); return; }
+  if (t.closest('#takeDown')) { confirmTakeDown(); return; }
+  if (t.closest('#putBackUp')) { putBackUp(); }
 });
 document.addEventListener('change', (e) => {
   if (!ed) return;
