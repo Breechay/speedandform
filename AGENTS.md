@@ -4,6 +4,8 @@
 
 
 ## Public brand direction · October 6, 2026
+Photographs: start from the [photo library](media/library/README.md) (`media/library/library.json`): consented, sized, with alt text, focal points and suggested uses.
+
 Before any public design, copy, Library page, share card, ad creative or media asset, read [Brand authority](docs/BRAND.md), starting with its current-authority section, then the current `/brand/` source and the owning homepage styles. The October 6 black/bone/ink direction and 450 display weight supersede conflicting October 1 forest/chalk and bold-display instructions below. Keep the Library sans serif. Apply the scoped paper-room rules; do not import the bend or lit text into cream pages. Use [Athlete Language Rule](docs/marketing/ATHLETE_LANGUAGE_RULE.md) for copy: say the real thing once, lead with the runner's need, use first person when it is Brice. Preserve clinical, evidence and accessibility requirements.
 
 Reuse the existing kit and generators. Do not invent another brand system, edit generated SVGs, or treat draft proposals as approved rules. Check current main and active PRs before implementing a supplied patch. Brand page, source rules, tokens and kit must agree when a public rule changes. Report source, merge, production and device checks separately.
