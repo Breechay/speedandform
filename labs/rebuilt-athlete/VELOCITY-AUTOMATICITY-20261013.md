@@ -3,7 +3,7 @@
 **Filed:** October 13, 2026  
 **Subject:** Brice Ikouebe  
 **Study:** FORM Study 002 · The Rebuilt Athlete  
-**Status:** athlete report plus device evidence and working coaching interpretation. This is not a new training prescription.
+**Status:** athlete report plus device evidence and working coaching interpretation. The later October 13 owner decision created a canonical running block from this question; the FORM Athlete System remains the prescription authority.
 
 ## Question
 
@@ -127,10 +127,28 @@ First see whether the legs remain quiet after the two faster exposures. Then obs
 
 Later, a longer faster bout can test whether the pace stays automatic when the recovery breaks disappear.
 
+## Current authored test block · October 13
+
+The owner then chose to repeat the same Monday / Tuesday / Saturday pattern for three weeks, with pace left open. The live FORM Athlete System now carries the prescription.
+
+| Week | Monday · longer rhythm | Tuesday · mile repeats | Saturday |
+| --- | --- | --- | --- |
+| Oct 19–25 | 20 min relaxed + 4 × 4 min, 2:00 easy | 3 × 1 mi, 2:30 easy | 8 mi easy |
+| Oct 26–Nov 1 | 20 min relaxed + 3 × 6 min, 2:00 easy | 3 × 1 mi, 2:30 easy | 9 mi easy |
+| Nov 2–8 | 20 min relaxed + 2 × 10 min, 2:30 easy | 3 × 1 mi, 2:30 easy | 10 mi easy |
+
+The quicker work is authored at RPE 4–5 with no pace target and no heart-rate target. Saturday is easy with no fast finish.
+
+The mile-repeat question stays deliberately unchanged: what pace appears when the athlete runs with the same relaxed internal effort? A first 5:xx split is not a cue to accelerate the next repetition. **5:40/mi is a direction, not a deadline or assigned split.**
+
+This week, October 12–18, is the entry/read week in the same active block. Monday and Tuesday were already performed when this extension was authored. Their linked coach-import filings preserve the actual execution and deviation; they are not rewritten as pre-run native app receipts. Saturday is 8 miles easy.
+
+Progress the Monday duration only when the prior Monday / Tuesday pair leaves normal recovery. A support session that is shortened or skipped creates no mileage debt.
+
 ## What this changes
 
 The study now distinguishes **access to speed** from **ownership of speed**.
 
 Access is returning quickly. Ownership means the pace can be held with relaxed breathing, low attentional cost, stable movement and normal recovery.
 
-No new mileage quota, canonical FORM assignment, race prediction or medical conclusion is created by this observation.
+The observation itself creates no race prediction or medical conclusion. The later October 13 owner decision did create the bounded FORM running block above; it adds no weekly mileage quota beyond the explicitly authored Saturday distances.
