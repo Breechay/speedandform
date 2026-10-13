@@ -1,6 +1,14 @@
 ## October 12 · Plain menu copy and Thursday sprint updates
 
 
+## October 12 · Shared public navigation
+
+Brice supplied the review that the homepage menu was missing from the rest of the site. The existing bone drawer and approved link copy now have one shared fragment. A final build step applies it to sitemap-listed public pages, Search, the 404 page and app help/legal pages, keeping page shortcuts and purchase controls. Private, sign-in and unlisted athlete screens retain their own navigation.
+
+- [x] Shared static rendering, consistent 44px trigger, page-specific shortcuts and no-JavaScript links.
+- [ ] Hosted phone/desktop, keyboard, 200% reflow, full build and production readback. The PR from `codex/shared-menu-20261013` owns the tested revision and release receipt.
+
+
 ## October 12 · Running and Strength page audit
 
 Owner request: audit both app pages, resolve layout issues and publish. Strength supports light and dark mode; the website keeps its dark illustrations.
@@ -9,7 +17,7 @@ Owner request: audit both app pages, resolve layout issues and publish. Strength
 - [x] Rewrote both pages around the athlete’s reasons to use the apps: what to train, how to do it and a record to return to. Enlarged preview labels, clarified session shapes with visible timings and corrected the paid-plan preview wording.
 - [x] Strength retains the Shoulder A and Upper Push figures, with a dark sample set record, readable poster labels and concise program requirements. Its app walkthrough now precedes Sculpt program details. Removed an unverified automatic scheduling promise.
 - [x] Both static landing-page checks and the full configured Netlify build pass. The build does not rewrite either app page or its CSS. Existing unrelated font warnings remain.
-- [ ] Hosted responsive and interaction review, then merge and production readback. The PR from `codex/app-pages-audit-20261013` owns the exact tested commit and deployment receipt. No physical-device or native-app release is established by this website review.
+- [x] Hosted responsive and interaction review passed; merged and production verified in PR #279. Netlify deploy `6acda0c1aba3fd1c0e1c9a4c` published merge `85b1cea6db6f85ccdd0c27506919659183b89936`. No physical-device or native-app release is established by this website review.
 
 Scope is the two marketing pages. The legacy athlete portal and separate unmerged privacy-policy work remain separate from this release.
 
