@@ -6,8 +6,7 @@ html:not(.sf-menu-enhanced) .sf-menu:target,.sf-menu.is-open,.sf-menu.is-closing
 .sf-menu-panel{box-sizing:border-box;position:absolute;top:0;right:0;bottom:0;width:min(460px,75%);display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain;padding:env(safe-area-inset-top,0px) max(20px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px));background:#e8e3d9;color:#161916;box-shadow:-12px 0 48px rgba(0,0,0,.12);font-family:"Inter Tight",Arial,sans-serif;transform:translateX(100%);transition:transform .38s var(--ease,cubic-bezier(.22,.61,.36,1))}
 html:not(.sf-menu-enhanced) .sf-menu:target .sf-menu-scrim,.sf-menu.is-open .sf-menu-scrim{opacity:1}
 html:not(.sf-menu-enhanced) .sf-menu:target .sf-menu-panel,.sf-menu.is-open .sf-menu-panel{transform:none}
-.sf-menu-top{position:sticky;top:0;z-index:1;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0 12px;min-height:80px;flex:none;background:#e8e3d9}
-.sf-menu-heading{margin:0;color:#5e625b;font:400 11px/1.5 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase}
+.sf-menu-top{position:sticky;top:0;z-index:1;display:flex;justify-content:flex-end;align-items:center;flex-wrap:wrap;gap:0 12px;min-height:64px;flex:none;background:#e8e3d9}
 .sf-menu-close{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:44px;min-height:44px;padding:10px 0 10px 14px;color:#161916;font:400 11px/1.2 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;background:transparent;cursor:pointer}
 .sf-menu-close::after{content:"×";font:300 25px/1 Arial,sans-serif}
 .sf-menu-close:hover{text-decoration:underline;text-underline-offset:5px}
@@ -25,7 +24,7 @@ html:not(.sf-menu-enhanced) .sf-menu:target .sf-menu-panel,.sf-menu.is-open .sf-
 .sf-menu a:focus-visible,.sf-menu button:focus-visible,.sf-menu input:focus-visible{outline:2px solid #161916;outline-offset:3px}
 .sf-visually-hidden{position:absolute!important;width:1px;height:1px;overflow:clip;clip-path:inset(50%);white-space:nowrap}
 html.sf-menu-locked,html.sf-menu-locked body{overflow:clip}
-@media(min-width:761px){.sf-menu-panel{padding-right:40px;padding-left:40px;padding-bottom:32px}.sf-menu-top{min-height:96px}.sf-menu-group{padding-top:22px;padding-bottom:24px}}
+@media(min-width:761px){.sf-menu-panel{padding-right:40px;padding-left:40px;padding-bottom:32px}.sf-menu-top{min-height:80px}.sf-menu-group{padding-top:22px;padding-bottom:24px}}
 @media(prefers-reduced-motion:reduce){.sf-menu-scrim,.sf-menu-panel{transition:none}}
 
 /* The icon remains a named 44px control, including before enhancement. */
