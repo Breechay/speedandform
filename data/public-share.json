@@ -897,5 +897,17 @@
     "label": "SPEED & FORM: STRENGTH",
     "dark": true,
     "custom": true
+  },
+  "runs/index.html": {
+    "image": "/og/public-thursday-20261006.jpg",
+    "alt": "Speed & Form. Group runs in Miami Beach.",
+    "title": "Group runs · Miami Beach",
+    "description": "Free group runs in Miami Beach with Speed & Form: Thursdays at Flamingo Park Track, long runs when scheduled, and the photographs from every published morning.",
+    "headline": [
+      "Group",
+      "runs."
+    ],
+    "label": "SPEED & FORM",
+    "dark": true
   }
 }

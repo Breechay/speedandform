@@ -1127,6 +1127,26 @@
     "questions": []
   },
   {
+    "url": "/runs/",
+    "title": "Group runs",
+    "description": "Upcoming group runs in Miami Beach and the photographs from past mornings.",
+    "keywords": [
+      "group",
+      "runs",
+      "miami",
+      "beach",
+      "flamingo",
+      "thursday",
+      "long",
+      "run",
+      "photos",
+      "community"
+    ],
+    "category": "practice",
+    "type": "Community",
+    "questions": []
+  },
+  {
     "url": "/field-notes",
     "title": "Field Notes",
     "description": "Short reflections on training decisions, ordinary runs, and running together.",
