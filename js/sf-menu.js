@@ -17,6 +17,9 @@ function open(from){
  if(menu.classList.contains("is-closing")){clearTimeout(closingTimer);menu.classList.remove("is-closing");}else{isolate(true);last=from||document.activeElement;}
  menu.inert=false;menu.classList.add("is-open");menu.removeAttribute("aria-hidden");root.classList.add("sf-menu-locked");
  toggles.forEach(function(t){t.setAttribute("aria-expanded","true");});close.focus({preventScroll:true});
+ // WebKit can defer focus while a previously hidden drawer and inert backdrop
+ // are being resolved. Retry after layout only if focus is still outside it.
+ requestAnimationFrame(function(){if(menu.classList.contains("is-open")&&!menu.contains(document.activeElement))close.focus({preventScroll:true});});
 }
 function shut(immediate){
  if(!menu.classList.contains("is-open")){if(immediate&&menu.classList.contains("is-closing"))finishClose();return;}

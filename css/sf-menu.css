@@ -1,7 +1,7 @@
 /* Shared public navigation. House bone and ink, with the page visible beside the drawer.
    The :target fallback keeps navigation available without JavaScript. */
 .sf-menu{position:fixed;inset:0;z-index:10000;visibility:hidden;pointer-events:none;text-align:left;font:400 17px/1.5 "Inter Tight",Arial,sans-serif;letter-spacing:normal;text-transform:none}
-.sf-menu,.sf-menu *{box-sizing:border-box}
+.sf-menu,.sf-menu *{box-sizing:border-box;transition-property:none}
 .sf-menu .sf-menu-group{width:auto;max-width:none;margin:0;background:transparent;border:0;border-top:1px solid rgba(22,25,22,.18);border-radius:0;box-shadow:none}
 .sf-menu .sf-menu-group ul,.sf-menu .sf-menu-group li{margin:0;padding:0;list-style:none;border:0;background:none}
 html:not(.sf-menu-enhanced) .sf-menu:target,.sf-menu.is-open,.sf-menu.is-closing{visibility:visible;pointer-events:auto}
@@ -44,6 +44,9 @@ html.sf-menu-enhanced{scrollbar-gutter:stable}
 .sf-menu-host>.sf-menu-toggle::before,.sf-menu-host>.sf-menu-toggle::after{display:none}
 .sf-menu-host>.sf-menu-toggle:hover{opacity:.75}
 .sf-menu-host>.sf-menu-toggle:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+.masthead.sf-menu-host{flex-wrap:nowrap;gap:12px}
+.masthead.sf-menu-host>.status{flex:1;min-width:0;text-align:right}
+.sf-menu .sf-menu-close,.sf-menu a:hover,.sf-menu a:focus{color:#161916;border-radius:0}
 .sf-public-masthead{display:flex;align-items:center;justify-content:space-between;gap:20px;width:min(1120px,calc(100% - 48px));margin:0 auto;padding:18px 0;color:inherit}
 .sf-public-masthead>a:first-child{color:inherit;font:500 17px/1.4 "Inter Tight",Arial,sans-serif;text-decoration:none}
 .sf-public-masthead>.sf-brand::before{background:currentColor}

@@ -36,6 +36,7 @@ function slug(route){return route.replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'
    check(label+' named control',await toggle.getAttribute('aria-label')==='Menu');
    const bounds=await toggle.boundingBox();check(label+' control has 44px target',bounds.width>=43.5&&bounds.height>=43.5);
    await toggle.click();await page.waitForFunction(()=>document.querySelector('#site-menu').classList.contains('is-open'));
+   await page.waitForFunction(()=>document.activeElement?.classList.contains('sf-menu-close'));
    const state=await page.locator('#site-menu').evaluate(menu=>{
     const panel=menu.querySelector('.sf-menu-panel'),m=menu.getBoundingClientRect(),p=panel.getBoundingClientRect();
     return {parent:menu.parentElement.tagName,top:m.top,bottom:m.bottom,left:p.left,right:p.right,width:p.width,height:p.height,vw:innerWidth,vh:innerHeight,scroll:panel.scrollWidth,client:panel.clientWidth,backgroundInert:[...document.body.children].filter(e=>e!==menu&&!/^(SCRIPT|STYLE|LINK)$/.test(e.tagName)).every(e=>e.inert),focus:document.activeElement?.classList.contains('sf-menu-close'),rootScroll:document.documentElement.scrollWidth,rootWidth:document.documentElement.clientWidth};
@@ -57,7 +58,7 @@ function slug(route){return route.replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'
    return toggle;
   }
   for(const width of [375,390,768,1440])for(const route of routes){
-   await visit(route,width);const label=route+' @ '+width;const toggle=await checkOpen(label);
+   await visit(route,width);if(width===390||width===1440)await page.screenshot({path:path.join(out,slug(route)+'-'+width+'-closed.png')});const label=route+' @ '+width;const toggle=await checkOpen(label);
    if(width===390||width===1440)await page.screenshot({path:path.join(out,slug(route)+'-'+width+'-open.png')});
    await page.keyboard.press('Escape');check(label+' Escape closes',await toggle.getAttribute('aria-expanded')==='false');
    check(label+' focus returns',await toggle.evaluate(e=>e===document.activeElement));
@@ -93,6 +94,6 @@ function slug(route){return route.replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'
   check('Shared assets resolve',!report.missing.some(p=>/sf-menu|site-menu/.test(p)));
   check('No menu script exceptions',!report.pageErrors.some(e=>/sf-menu|site-menu/.test(e.message)));
   console.log('PASS: '+report.checks.length+' shared-menu browser checks in '+engineName+'.');
- }catch(error){report.failure=error.stack;if(page)await page.screenshot({path:path.join(out,'failure.png'),fullPage:true}).catch(()=>{});throw error;}
+ }catch(error){report.failure=error.stack;if(page)await page.screenshot({path:path.join(out,'failure.png')}).catch(()=>{});throw error;}
  finally{fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2)+'\n');await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});
