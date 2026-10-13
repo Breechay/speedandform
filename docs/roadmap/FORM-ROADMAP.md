@@ -1,5 +1,18 @@
 ## October 12 · Plain menu copy and Thursday sprint updates
 
+
+## October 12 · Running and Strength page audit
+
+Owner request: audit both app pages, resolve layout issues and publish. Strength supports light and dark mode; the website keeps its dark illustrations.
+
+- [x] Corrected Running's inconsistent example mileage summary and duration-proportional session strip. Named athletes are replaced with generic illustration labels, and previews are labeled as illustrations.
+- [x] Enlarged preview labels, clarified example session shapes with visible timings, simplified repetitive copy and corrected the paid-plan preview wording.
+- [x] Strength retains the Shoulder A and Upper Push figures, with a dark sample set record, readable poster labels and concise program requirements. Removed an unverified automatic scheduling promise.
+- [x] Both static landing-page checks and the full configured Netlify build pass. The build does not rewrite either app page or its CSS. Existing unrelated font warnings remain.
+- [ ] Hosted responsive and interaction review, then merge and production readback. The PR from `codex/app-pages-audit-20261013` owns the exact tested commit and deployment receipt. No physical-device or native-app release is established by this website review.
+
+Scope is the two marketing pages. The legacy athlete portal and separate unmerged privacy-policy work remain separate from this release.
+
 Brice approved the brainstormed menu copy: Run Development “Run faster. Get stronger. Move better.”; app descriptions name their plan/program and logging functions; Training plans “A clear plan for the next race.”; Thursday sprints “Speed, technique and power.” Strength coaching and Running analysis have no descriptions. Learn stays plain. Removed the redundant Explore label above the groups and reduced the close-control row while retaining its sticky position and 44px target. “Train with direction” is the shared menu heading; the two app descriptions explain their distinct functions rather than repeating the promise. Destination review confirmed that Running previews planned sessions and run records, Strength previews programmed sessions and set logging, and Training plans leads to race preparation.
 
 Thursday workouts are also shared through @form.practice posts or Stories, and the app is not always updated. The page now explains that route with a direct Instagram link, identifies the practice as sprint development, and stops treating absent website workout data as an unconfirmed workout. Dated meeting confirmation, cancellations, changes and authored workout names retain their existing source and behavior. No gathering or workout was created or altered in the backend. Reduced status-heading scale keeps logistics and workout information readable without making missing website data the page's visual centerpiece.

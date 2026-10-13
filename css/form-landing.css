@@ -102,3 +102,25 @@ h2,h3{font-weight:450;letter-spacing:-.04em}.fl-button{font-weight:500;border-ra
 .fl-session-total b{font-size:19px;letter-spacing:0;text-transform:none;color:var(--fl-ink);font-weight:550}
 .fl-session-fig figcaption{margin-top:16px;font-size:13px;line-height:1.65;color:var(--fl-support)}
 @media(max-width:420px){.fl-parts li{grid-template-columns:76px minmax(0,1fr)}}
+
+/* October 13 · readable web examples, precise session shapes and narrow-screen reflow. */
+.fl-kind,.fl-week-tile small,.fl-week-sum span:last-child,.fl-tick-labels,.fl-parts span,.fl-session-total{font-size:12px;letter-spacing:.05em}
+.fl-kind,.fl-week-tile small,.fl-week-sum span:last-child,.fl-pace,.fl-tick-labels,.fl-poster-goal,.fl-poster-name,.fl-poster-date,.fl-parts span,.fl-session-total{color:var(--fl-support)}
+.fl-kind.fl-key{color:var(--fl-lime)}
+.fl-week-tile{gap:8px}.fl-week-head{gap:12px}.fl-week-sum{flex-wrap:wrap;gap:8px}
+.fl-week-days li{grid-template-columns:44px minmax(0,1fr)}
+.fl-week-days p,.fl-poster p{overflow-wrap:break-word}
+.fl-preview-label{font-size:12px;letter-spacing:.05em}
+.fl-effort{padding:26px 0;min-width:0}
+.fl-effort .fl-example-label{font:400 12px/1.6 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.04em;text-transform:uppercase;margin-top:0!important}
+.fl-effort .fl-example-value{font-size:36px!important;line-height:1.2;letter-spacing:-.03em;color:var(--fl-ink);margin-top:14px!important;font-variant-numeric:tabular-nums}
+.fl-effort-track{height:64px;gap:3px;margin-top:18px}
+.fl-effort-track::before{content:none}
+.fl-effort-track .fl-shape-work{height:48px;background:var(--fl-lime)}
+.fl-effort-track .fl-shape-recovery{height:8px;background:#718076}
+.fl-effort-track .fl-shape-easy{height:20px;background:linear-gradient(90deg,#718076,#b4c0b6);border-top:2px solid var(--fl-lime)}
+.fl-effort .fl-example-note{font-size:14px!important;margin-top:4px!important}
+.fl-record-example dl>div:last-child dd{font-size:23px;font-weight:550}
+.fl-footer nav a{min-height:44px;display:inline-flex;align-items:center}
+@media(max-width:820px){.fl-race,.fl-session{grid-template-columns:minmax(0,1fr);gap:34px}.fl-session-fig,.fl-poster-fig{justify-self:start}.fl-effort{padding:8px 0}.fl-week-tile small{font-size:12px}}
+@media(max-width:380px){.fl-week{padding:24px 18px 14px}.fl-week-head .fl-athlete{font-size:25px}.fl-week-tile b{font-size:23px}.fl-week-days li{grid-template-columns:35px minmax(0,1fr);gap:10px}.fl-poster{padding:26px 20px}.fl-poster-event{font-size:32px}.fl-parts li{grid-template-columns:65px minmax(0,1fr)}}

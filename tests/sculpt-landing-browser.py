@@ -33,7 +33,7 @@ try:
    check(f'200 at {w}',r.status==200);check(f'Release marker at {w}',page.locator('body').get_attribute('data-sculpt-landing')=='20260917-p5b');check(f'No overflow at {w}',page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'));check(f'One main heading at {w}',page.locator('h1').count()==1)
    check(f'App action in first viewport at {w}',page.locator('.bs-hero .bs-button').evaluate('(e)=>e.getBoundingClientRect().bottom<=innerHeight'))
    check(f'Correct app destination at {w}',page.locator('.bs-hero .bs-button').get_attribute('href')=='https://apps.apple.com/us/app/breechay/id6790569283')
-   check(f'Adrian identity at {w}',page.locator('.bs-athlete').inner_text()=='ADRIAN.');check(f'Illustration labeled at {w}','sample training' in page.locator('.bs-preview figcaption').inner_text())
+   check(f'Generic program identity at {w}',page.locator('.bs-athlete').inner_text()=='SCULPT.');check(f'Illustration labeled at {w}','sample training' in page.locator('.bs-preview figcaption').inner_text())
    for i in page.locator('img').all():i.scroll_into_view_if_needed();i.evaluate('(i)=>i.decode()')
    check(f'Actual store image loaded at {w}',page.locator('.bs-store img').evaluate('(i)=>i.naturalWidth===600&&i.naturalHeight===1299'))
    check(f'Anatomy loaded at {w}',page.locator('.bs-anatomy').evaluate('(i)=>i.naturalWidth===765'))

@@ -38,9 +38,9 @@ try:
         check(f'Readable body at {width}',page.locator('.fl-intro').evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)>=17'))
         check(f'Native field material at {width}',page.locator('body').evaluate('(e)=>getComputedStyle(e).backgroundColor')=='rgb(7, 17, 15)')
         for img in page.locator('img').all():img.scroll_into_view_if_needed();img.evaluate('(i)=>i.decode()')
-        check(f'José identity at {width}',page.locator('.fl-athlete').inner_text()=='JOSÉ.')
+        check(f'Generic example identity at {width}',page.locator('.fl-athlete').inner_text()=='RUNNER.')
         check(f'Session shown with its parts at {width}',page.locator('.fl-parts li').count()==2 and '58 min' in page.locator('.fl-session-total').inner_text())
-        check(f'Preview label visible at {width}',page.get_by_text('From the app',exact=True).is_visible())
+        check(f'Preview label visible at {width}',page.get_by_text('App preview',exact=True).is_visible())
         check(f'All tabs present at {width}',page.get_by_role('tab').count()==5)
         for tab in page.get_by_role('tab').all():
             tab.click();check(f'{tab.inner_text()} panel contained at {width}',page.get_by_role('tabpanel').count()==1 and page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
@@ -70,7 +70,7 @@ try:
     page.goto(BASE+'/form/#type-speed');check('Direct explanation URL opens correct panel',page.locator('#type-speed').is_visible())
     page.evaluate("location.hash='type-long'");page.wait_for_function("!document.getElementById('type-long').hidden")
     check('Changed hash switches panels',page.locator('#type-long').is_visible())
-    page.goto(BASE+'/form/');check('Hero week is labelled as example training',all(w in page.locator('#preview-caption').inner_text() for w in ('as it opens in the app','example')))
+    page.goto(BASE+'/form/');check('Hero week is labelled as example training',all(w in page.locator('#preview-caption').inner_text() for w in ('App illustration','example')))
     check('Reduced motion honored',page.locator('.fl-preview').evaluate('(e)=>getComputedStyle(e).animationName')=='none' and page.locator('html').evaluate('(e)=>getComputedStyle(e).scrollBehavior')=='auto')
     # Test the existing provider-agnostic hook without opening Apple or sending an event.
     page.evaluate("document.addEventListener('click',e=>{if(e.target.closest('[data-sf-event]'))e.preventDefault()});window.sfEvents=[]")
