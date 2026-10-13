@@ -58,6 +58,7 @@ function transformHtml(html,file){
   }
  }
  // Styles last: standalone article CSS must not recolor/reflow the drawer.
+ if(next.includes('sf-public-masthead')&&!next.includes('/css/sf-brand.css'))next=next.replace(/<\/head>/i,'<link rel="stylesheet" href="/css/sf-brand.css?v=20261001">\n</head>');
  next=next.replace(/<link\b[^>]*href=["']\/css\/sf-menu\.css[^"']*["'][^>]*>\s*/g,'').replace(/<script\b[^>]*src=["']\/js\/sf-menu\.js[^"']*["'][^>]*>\s*<\/script>\s*/g,'');
  next=next.replace(/<\/head>/i,`<link rel="stylesheet" href="/css/sf-menu.css?v=${VERSION}">\n</head>`);
  next=next.replace(/<\/body>/i,`<!-- Shared site menu -->\n${PANEL}\n<!-- /Shared site menu -->\n<script defer src="/js/sf-menu.js?v=${VERSION}"></script>\n</body>`);

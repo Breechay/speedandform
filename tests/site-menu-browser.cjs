@@ -4,7 +4,7 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const {chromium,webkit}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
 const root=path.resolve(__dirname,'..'),origin='https://speedandform.com';
 const engineName=process.env.SF_MENU_BROWSER||'chromium',out=process.env.SF_MENU_ARTIFACTS||'/tmp/site-menu-review';
-const routes=['/','/form/','/forge-sculpt/','/coaching/miami/','/coaching/strength/','/plans/','/library','/library/easy-days/','/labs/speed-that-endures/','/thursday'];
+const routes=['/','/form/','/forge-sculpt/','/coaching/miami/','/coaching/strength/','/plans/','/library','/library/easy-days/','/labs/speed-that-endures/','/labs/the-durable-frame/','/form/support/','/thursday'];
 const report={engine:engineName,checks:[],pageErrors:[],blockedWrites:[],missing:[],physicalDevice:false};
 fs.mkdirSync(out,{recursive:true});
 function check(label,ok){assert.ok(ok,label);report.checks.push(label);}
@@ -29,6 +29,7 @@ function slug(route){return route.replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'
   async function visit(route,width=390,zoom=1){
    await page.setViewportSize({width,height:900});const response=await page.goto(origin+route,{waitUntil:'domcontentloaded'});check(route+' returns 200',response.status()===200);
    await page.evaluate(()=>document.fonts.ready);
+   if(await page.locator('.sf-public-masthead').count())check(route+' fallback home emblem visible',await page.locator('.sf-public-masthead .sf-brand').evaluate(e=>getComputedStyle(e,'::before').content==='""'&&parseFloat(getComputedStyle(e,'::before').width)>0));
    if(zoom!==1)await page.addStyleTag({content:'html{zoom:'+zoom+'}'});
   }
   async function checkOpen(label,zoom=1){
