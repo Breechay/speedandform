@@ -1,0 +1,48 @@
+{
+  "study": "Speed That Endures",
+  "athlete": "José",
+  "date": "2026-10-13",
+  "source": "Coach-supplied Garmin screenshots and athlete report",
+  "activity": {
+    "warmup": "20:00 / 2.43 mi at 8:15/mi",
+    "continuous": "20:00 / 3.28 mi at 6:06/mi",
+    "cooldown": "11:10.9 / 1.32 mi at 8:29/mi",
+    "total": "51:10.9 / 7.02 mi at 7:17/mi"
+  },
+  "garmin_best_effort": {
+    "distance": "5K",
+    "current": "18:56",
+    "previous": "19:31",
+    "note": "Detected inside the 20-minute workout; not a separate race"
+  },
+  "athlete_report": "Opened around 6:20/mi and accelerated by feel; described breathing as controlled midway. Cooler conditions helped. Felt fresh shortly after, though lower-body strength Oct 12 may produce next-day soreness. Exact splits, RPE and next-day recovery unknown.",
+  "interpretation": "New sustained-speed evidence, not a measured lactate threshold or proof that one format or weather caused the difference. His six-mile continuous half-marathon pace milestone remains unchanged.",
+  "approved_week": [
+    [
+      "2026-10-13",
+      "Completed 20-min continuous tempo"
+    ],
+    [
+      "2026-10-14",
+      "40 min easy or rest"
+    ],
+    [
+      "2026-10-15",
+      "Five continuous miles at 6:40–6:45/mi if recovered; 20-min easy warm-up and 10-min cooldown"
+    ],
+    [
+      "2026-10-16",
+      "40 min easy or rest"
+    ],
+    [
+      "2026-10-17",
+      "No long run, travel, no makeup"
+    ],
+    [
+      "2026-10-20",
+      "Conditional eight-mile continuous checkpoint unchanged"
+    ]
+  ],
+  "future": "Explore 5:50/mi in a later block only if repeatable; not a current prescription",
+  "privacy": "Curated first-name-only study. Private messages are not republished."
+}
