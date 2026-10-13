@@ -105,7 +105,7 @@ h2,h3{font-weight:450;letter-spacing:-.04em}.fl-button{font-weight:500;border-ra
 
 /* October 13 · readable web examples, precise session shapes and narrow-screen reflow. */
 .fl-kind,.fl-week-tile small,.fl-week-sum span:last-child,.fl-tick-labels,.fl-parts span,.fl-session-total{font-size:12px;letter-spacing:.05em}
-.fl-kind,.fl-week-tile small,.fl-week-sum span:last-child,.fl-pace,.fl-tick-labels,.fl-poster-goal,.fl-poster-name,.fl-poster-date,.fl-parts span,.fl-session-total{color:var(--fl-support)}
+.fl-kind,.fl-week-tile small,.fl-week-sum span:last-child,.fl-pace,.fl-parts span,.fl-session-total{color:var(--fl-support)}
 .fl-kind.fl-key{color:var(--fl-lime)}
 .fl-week-tile{gap:8px}.fl-week-head{gap:12px}.fl-week-sum{flex-wrap:wrap;gap:8px}
 .fl-week-days li{grid-template-columns:44px minmax(0,1fr)}

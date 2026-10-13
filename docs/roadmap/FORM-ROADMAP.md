@@ -6,8 +6,8 @@
 Owner request: audit both app pages, resolve layout issues and publish. Strength supports light and dark mode; the website keeps its dark illustrations.
 
 - [x] Corrected Running's inconsistent example mileage summary and duration-proportional session strip. Named athletes are replaced with generic illustration labels, and previews are labeled as illustrations.
-- [x] Enlarged preview labels, clarified example session shapes with visible timings, simplified repetitive copy and corrected the paid-plan preview wording.
-- [x] Strength retains the Shoulder A and Upper Push figures, with a dark sample set record, readable poster labels and concise program requirements. Removed an unverified automatic scheduling promise.
+- [x] Rewrote both pages around the athlete’s reasons to use the apps: what to train, how to do it and a record to return to. Enlarged preview labels, clarified session shapes with visible timings and corrected the paid-plan preview wording.
+- [x] Strength retains the Shoulder A and Upper Push figures, with a dark sample set record, readable poster labels and concise program requirements. Its app walkthrough now precedes Sculpt program details. Removed an unverified automatic scheduling promise.
 - [x] Both static landing-page checks and the full configured Netlify build pass. The build does not rewrite either app page or its CSS. Existing unrelated font warnings remain.
 - [ ] Hosted responsive and interaction review, then merge and production readback. The PR from `codex/app-pages-audit-20261013` owns the exact tested commit and deployment receipt. No physical-device or native-app release is established by this website review.
 
