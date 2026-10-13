@@ -115,6 +115,14 @@ Owner approved implementing the review. Source: [Rebuilt Human companion](../stu
 
 Validation: the configured Netlify build passes in an isolated copy. Current goal values, all four image data URIs and four archive objects are preserved; generated observations are idempotent; JSON, executable scripts, fragments and ARIA targets pass. Existing source checks and discovery regeneration pass. Browser acceptance, exact tested commits and release receipts are recorded in [PR #267](https://github.com/Breechay/speedandform/pull/267). Production and physical-device acceptance remain separate from a repository merge. This entry is not a production receipt.
 
+## October 13 · canonical completion read-back and Speed That Endures history
+
+- Closed the backend half of the athlete-history gap: `athlete_plan_feed` now returns the authorized athlete's canonical historical completions and ordered pieces alongside the plan. It preserves source provenance and exact planned-session-version links; it does not fabricate local native receipts.
+- Backfilled nine high-confidence Speed That Endures results already preserved in Study 001: Hope on September 8, 15, 22 and 29; José on September 8, 15, 22, 29 and October 6. Hope October 6 remains absent because no completed result exists. The paired September 10 / 11 threshold observation remains study evidence only because the athlete-specific calendar dates are unresolved.
+- Live own-athlete acceptance: Hope's feed returns 10 canonical completions including the four study backfills; José's returns 18 including five study backfills. Each new row remains `coach_import`.
+- Native closure is a behavior/schema-support change and therefore belongs in the Release 43 app stream: recognize server-only canonical evidence as filed, prevent duplicate filing, preserve local Exact Edit for receipts the installation actually owns, and retain the history in the cached feed for a later Progress / Memory treatment. No progress visualization is selected here.
+- Full evidence and boundaries: [canonical completion read-back audit](../audits/CANONICAL-COMPLETION-READBACK-20261013.md).
+
 ## October 13 · Rebuilt Athlete velocity automaticity observation and block
 
 - Filed the October 12 and October 13 running evidence in `labs/rebuilt-athlete/VELOCITY-AUTOMATICITY-20261013.md` and refreshed Study 002 with the athlete's own sequence: October 12 faster work became breathing- and attention-heavy, so the remaining work was shortened; October 13 began as an intended easy run, but the legs settled near 7:00/mi without a pace plan and the outing became 3 x 1 mile in 7:05, 6:40 and 6:48 with 2:30 recovery.
