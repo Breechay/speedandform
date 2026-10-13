@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photo library | Speed &amp; Form</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="canonical" href="https://speedandform.com/media/library/">
+<style>
+@font-face{font-family:"Inter Tight";src:url("/assets/site/fonts/inter-tight-latin-variable.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url("/assets/site/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");font-display:swap}
+:root{--black:#0d0f0e;--bone:#e8e3d9;--q:rgba(232,227,217,.62);--hair:rgba(232,227,217,.14)}
+*{box-sizing:border-box}body{margin:0;background:var(--black);color:var(--bone);font-family:"Inter Tight",Arial,sans-serif;padding:40px clamp(20px,5vw,72px) 80px}
+h1{font-size:clamp(40px,7vw,88px);letter-spacing:-.05em;font-weight:500;margin:0}
+p{color:var(--q);font-size:16px;line-height:1.5;max-width:70ch}
+.m{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--q)}
+.f{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}.f button{font:inherit;color:var(--bone);background:none;border:1px solid var(--hair);border-radius:999px;padding:8px 14px;cursor:pointer}.f button[aria-pressed=true]{background:var(--bone);color:var(--black)}
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:28px 20px}
+figure{margin:0}img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:14px;display:block;background:#1a1d1b}
+figcaption{margin-top:10px}figcaption b{display:block;font-weight:560;font-size:17px}figcaption span{display:block;margin-top:4px}
+</style>
+</head>
+<body>
+<p class="m">Speed &amp; Form · internal</p>
+<h1>Photo library.</h1>
+<p>Every photo here is cleared for use on the site. The catalogue is <a href="/media/library/library.json" style="color:inherit">library.json</a>: sizes, alt text, focal points and suggested uses. Not indexed by search engines.</p>
+<div class="f" id="f"></div>
+<div class="g" id="g"></div>
+<script>
+fetch('/media/library/library.json').then(function(r){return r.json()}).then(function(lib){
+  var all=lib.photos, kinds=['all'].concat(Array.from(new Set(all.map(function(p){return p.kind}))));
+  var f=document.getElementById('f'), g=document.getElementById('g');
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function show(k){
+    f.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.k===k))});
+    g.innerHTML=all.filter(function(p){return k==='all'||p.kind===k}).map(function(p){
+      var thumb=p.files['600']||p.files['800'], big=p.files['2400']||p.files['1600'];
+      return '<figure><a href="'+esc(big)+'"><img src="'+esc(thumb)+'" alt="'+esc(p.alt)+'" loading="lazy" style="object-position:'+(p.focal.x*100)+'% '+(p.focal.y*100)+'%"></a><figcaption><b>'+esc(p.title)+'</b><span class="m">'+esc(p.id)+' · '+esc(p.orientation)+(p.captured?' · '+esc(p.captured):'')+'</span><span class="m">'+esc(p.uses.join(' · '))+'</span></figcaption></figure>';
+    }).join('');
+  }
+  f.innerHTML=kinds.map(function(k){return '<button type="button" data-k="'+esc(k)+'">'+esc(k)+'</button>'}).join('');
+  f.addEventListener('click',function(e){var b=e.target.closest('button');if(b)show(b.dataset.k)});
+  show('all');
+});
+</script>
+</body>
+</html>
