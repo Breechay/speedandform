@@ -97,3 +97,27 @@ Monday's authored **5 mi treadmill · feel-first** session was completed as **5.
 Study 002 owns the detailed interpretation. Garmin ground-contact-time balance was **51.1% left / 48.9% right**; the athlete identifies the recovering left limb as still having slower reaction/rebound. Treat this as a small timing asymmetry and recovery signal, not evidence of greater left-side force.
 
 Week 02 remains a **31-mile volume hold**. No pace target, threshold prescription or fixed interval pattern is created from this run. Future feel-first treadmill running may allow spontaneous velocity contrast when it improves movement, but should stop before it becomes a push.
+
+
+## October 13 · velocity automaticity block
+
+Owner decision: keep Monday, Tuesday and Saturday as the running spine while the quicker gear becomes automatic again. The pace clock is evidence after the rep, not the target during it.
+
+Canonical FORM Athlete System state:
+- active block remains `The Rebuilt Athlete · Phase 00`, now Week 03 of 06 and ending November 8;
+- Week 03 includes the October 12 longer-rhythm attempt, October 13 three one-mile repeats and October 17 eight-mile easy run;
+- Week 04: Monday 4 × 4 minutes after 20 minutes relaxed, Tuesday 3 × 1 mile, Saturday 8 easy;
+- Week 05: Monday 3 × 6 minutes after 20 minutes relaxed, Tuesday 3 × 1 mile, Saturday 9 easy;
+- Week 06: Monday 2 × 10 minutes after 20 minutes relaxed, Tuesday 3 × 1 mile, Saturday 10 easy;
+- Tuesday recovery remains 2:30 easy; Monday recovery is 2:00 in Weeks 04–05 and 2:30 in Week 06;
+- quicker work is RPE 4–5 with no pace or heart-rate target;
+- 5:40/mi is a later direction, not an assigned split or deadline;
+- Saturday has no fast finish and no makeup mileage.
+
+The October 12 and 13 sessions were already complete when the extension was authored. They are filed against their new Week 03 occurrences as `coach_import` evidence, not backdated native app receipts. Monday is `changed` at 5.27 mi / 36:53 with the exact 20-minute warm-up preserved and the unmeasured shorter reps left uninvented. Tuesday is `completed` at 3.00 mi / 20:36 with exact one-mile pieces of 7:05, 6:40 and 6:48.
+
+Applied backend migration: `supabase/migrations/20261013134500_brice_velocity_automaticity_block.sql`.
+
+Read-back on October 13 confirms the coach plan feed carries all six weeks, the current block goal, twelve published Week 03–06 sessions and both linked filings. The current web projection is `plans/rebuilt-athlete-phase-00/program.json`. Study interpretation is in `labs/rebuilt-athlete/VELOCITY-AUTOMATICITY-20261013.md`.
+
+This records backend authority and source projection. It does not by itself prove what an already-installed iPhone binary has refreshed or rendered.

@@ -1,131 +1,245 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "season_id": "brice_rebuilt_athlete_phase00_20260928",
-  "program_id": "brice_rebuilt_phase00_weekly_v2",
+  "program_id": "brice_rebuilt_phase00_automaticity_20261013",
   "athlete": "Brice",
   "athlete_slug": "brice",
   "title": "The Rebuilt Athlete · Phase 00",
   "status": "coach_authored_self_execution",
   "start_date": "2026-09-28",
-  "end_date": "2026-10-11",
-  "duration_weeks": 2,
-  "current_week": 2,
+  "end_date": "2026-11-08",
+  "duration_weeks": 6,
+  "current_week": 3,
   "authority": {
     "system": "FORM Athlete System",
-    "rule": "The active backend block and immutable planned-session versions are the running prescription source of truth. This JSON mirrors the currently authored physical week for web review."
+    "block_id": "92580a34-1e9e-4d12-9c3c-0c372e6527b7",
+    "rule": "The live active block and immutable planned-session versions are the running prescription source of truth. This JSON is a web review projection."
   },
   "study_path": "/labs/rebuilt-athlete/",
   "week_path": "/plans/rebuilt-athlete-phase-00/",
-  "objective": "Hold the newly reached ~31-mile running load while outdoor running becomes genuinely low aerobic and the body stays fluid, fueled and absorbable.",
-  "run_surface": "mixed",
-  "run_surface_rule": "Outdoor running is used to practice low-aerobic control. Treadmill running is used for relaxed repetition and movement quality without forcing watch pace or heart-rate targets.",
-  "run_guardrails": [
-    "This is a volume hold, not a mileage progression: 31 planned miles.",
-    "No pace target this week.",
-    "Monday and Thursday treadmill runs are feel-first: smooth, fluid and restrained.",
-    "Tuesday outdoor running stays in the athlete's current Zone 2 / low-aerobic range; slow for heat or drift.",
-    "Saturday is easy treadmill volume that must leave Sunday available.",
-    "Sunday is 10 miles outdoors with at least the first 7.5 miles low aerobic; the final 2.5 may open naturally only if movement remains fluid.",
-    "Do not make up missed miles by doubling.",
-    "Stacked training requires deliberate refueling and hydration; do not defend transient post-training scale loss."
+  "objective": "Retrain automatic faster running without forcing pace. Monday extends relaxed time, Tuesday repeats 3 × 1 mile by feel, and Saturday keeps easy durability underneath it.",
+  "governing_rules": [
+    "No pace target for the quicker work.",
+    "No heart-rate target for the quicker work.",
+    "Quicker running stays around a relaxed 4–5/10. Fluidity wins over the clock.",
+    "5:40/mi is a later direction, not a split to force.",
+    "When the first 5:xx appears, repeat the feeling rather than accelerating the next rep.",
+    "Saturday stays easy with no fast finish and no makeup mileage.",
+    "Progress Monday duration only when the prior Monday/Tuesday pair leaves normal recovery."
   ],
-  "form_scope": "FORM carries the running prescription and running filing only. Forge owns strength execution and filing. Study 002 integrates the evidence.",
+  "form_scope": "FORM carries the running prescription and running filing. Strength remains in Speed & Form: Strength / Forge. Study 002 interprets the interaction.",
+  "authoring_context": "Weeks 03 Monday and Tuesday were added after the sessions occurred so the canonical block includes this week's work and the observed deviations. Their coach-import completions preserve what actually happened; they are not represented as pre-run native app receipts.",
   "weeks": [
     {
       "week": 1,
       "start_date": "2026-09-28",
       "end_date": "2026-10-04",
-      "intent": "Reproduce the fluid, symmetrical running state without testing pace.",
-      "planned_miles": 20,
-      "status": "past"
+      "status": "past",
+      "intent": "Prolong clean running by distance, with full recovery between exposures."
     },
     {
       "week": 2,
       "start_date": "2026-10-05",
       "end_date": "2026-10-11",
-      "intent": "Hold volume. Improve aerobic control and keep the movement fluid.",
-      "planned_miles": 31,
-      "runs": [
+      "status": "past",
+      "intent": "Hold volume. Improve aerobic control and keep the movement fluid."
+    },
+    {
+      "week": 3,
+      "start_date": "2026-10-12",
+      "end_date": "2026-10-18",
+      "status": "current",
+      "intent": "Read the first faster exposures, then keep Saturday easy.",
+      "sessions": [
         {
+          "date": "2026-10-12",
           "weekday": "Monday",
-          "title": "Treadmill feel run",
-          "distance_mi": 5,
-          "surface": "treadmill",
-          "control": "feel_first",
-          "rpe": [2,3]
+          "title": "Longer rhythm · 2 × 10 min",
+          "role": "support",
+          "rpe": [
+            4,
+            5
+          ],
+          "structure": "20 min relaxed + 2 × 10 min quicker · 2:00 easy recovery",
+          "pace_target": null,
+          "heart_rate_target": null,
+          "execution_status": "changed",
+          "execution_note": "Breathing and attentional cost rose in the first faster block, so the remaining quicker work was shortened into smaller exposures."
         },
         {
+          "date": "2026-10-13",
           "weekday": "Tuesday",
-          "title": "Outdoor low-aerobic run",
-          "distance_mi": 5,
-          "surface": "outdoors",
-          "control": "zone_2_low_aerobic",
-          "rpe": [2,3]
+          "title": "Mile repeats · 3 × 1 mi",
+          "role": "key",
+          "rpe": [
+            4,
+            5
+          ],
+          "structure": "3 × 1 mi · 2:30 easy recovery",
+          "pace_target": null,
+          "heart_rate_target": null,
+          "execution_status": "completed",
+          "execution_note": "7:05 · 6:40 · 6:48. Second mile probably excitement; third deliberately relaxed."
         },
         {
-          "weekday": "Thursday",
-          "title": "Treadmill feel run",
-          "distance_mi": 5,
-          "surface": "treadmill",
-          "control": "feel_first",
-          "rpe": [2,3]
-        },
-        {
+          "date": "2026-10-17",
           "weekday": "Saturday",
-          "title": "Easy treadmill run",
-          "distance_mi": 6,
-          "surface": "treadmill",
-          "control": "easy_repeatable",
-          "rpe": [2,3]
+          "title": "Long easy · 8 mi",
+          "role": "easy",
+          "rpe": [
+            2,
+            3
+          ],
+          "structure": "8 mi continuous easy",
+          "pace_target": null,
+          "heart_rate_target": null,
+          "execution_status": "planned"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "start_date": "2026-10-19",
+      "end_date": "2026-10-25",
+      "status": "future",
+      "intent": "Make quicker running repeatable before making it longer.",
+      "sessions": [
+        {
+          "date": "2026-10-19",
+          "weekday": "Monday",
+          "title": "Longer rhythm · 4 × 4 min",
+          "role": "support",
+          "rpe": [
+            4,
+            5
+          ],
+          "structure": "20 min relaxed + 4 × 4 min quicker · 2:00 easy recovery",
+          "pace_target": null,
+          "heart_rate_target": null
         },
         {
-          "weekday": "Sunday",
-          "title": "Outdoor long easy run",
-          "distance_mi": 10,
-          "surface": "outdoors",
-          "control": "first_75_percent_low_aerobic",
-          "rpe": [2,4],
-          "segments": [
-            {"distance_mi": 7.5, "intent": "low aerobic / Zone 2"},
-            {"distance_mi": 2.5, "intent": "stay low aerobic or open naturally only if fluid"}
-          ]
+          "date": "2026-10-20",
+          "weekday": "Tuesday",
+          "title": "Mile repeats · 3 × 1 mi",
+          "role": "key",
+          "rpe": [
+            4,
+            5
+          ],
+          "structure": "3 × 1 mi · 2:30 easy recovery",
+          "pace_target": null,
+          "heart_rate_target": null
+        },
+        {
+          "date": "2026-10-24",
+          "weekday": "Saturday",
+          "title": "Long easy · 8 mi",
+          "role": "easy",
+          "rpe": [
+            2,
+            3
+          ],
+          "structure": "8 mi continuous easy",
+          "pace_target": null,
+          "heart_rate_target": null
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "start_date": "2026-10-26",
+      "end_date": "2026-11-01",
+      "status": "future",
+      "intent": "Extend the time spent in the fluid gear without changing the Tuesday question.",
+      "sessions": [
+        {
+          "date": "2026-10-26",
+          "weekday": "Monday",
+          "title": "Longer rhythm · 3 × 6 min",
+          "role": "support",
+          "rpe": [
+            4,
+            5
+          ],
+          "structure": "20 min relaxed + 3 × 6 min quicker · 2:00 easy recovery",
+          "pace_target": null,
+          "heart_rate_target": null
+        },
+        {
+          "date": "2026-10-27",
+          "weekday": "Tuesday",
+          "title": "Mile repeats · 3 × 1 mi",
+          "role": "key",
+          "rpe": [
+            4,
+            5
+          ],
+          "structure": "3 × 1 mi · 2:30 easy recovery",
+          "pace_target": null,
+          "heart_rate_target": null
+        },
+        {
+          "date": "2026-10-31",
+          "weekday": "Saturday",
+          "title": "Long easy · 9 mi",
+          "role": "easy",
+          "rpe": [
+            2,
+            3
+          ],
+          "structure": "9 mi continuous easy",
+          "pace_target": null,
+          "heart_rate_target": null
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "start_date": "2026-11-02",
+      "end_date": "2026-11-08",
+      "status": "future",
+      "intent": "Return to two ten-minute blocks and see whether they now require less attention.",
+      "sessions": [
+        {
+          "date": "2026-11-02",
+          "weekday": "Monday",
+          "title": "Longer rhythm · 2 × 10 min",
+          "role": "support",
+          "rpe": [
+            4,
+            5
+          ],
+          "structure": "20 min relaxed + 2 × 10 min quicker · 2:30 easy recovery",
+          "pace_target": null,
+          "heart_rate_target": null
+        },
+        {
+          "date": "2026-11-03",
+          "weekday": "Tuesday",
+          "title": "Mile repeats · 3 × 1 mi",
+          "role": "key",
+          "rpe": [
+            4,
+            5
+          ],
+          "structure": "3 × 1 mi · 2:30 easy recovery",
+          "pace_target": null,
+          "heart_rate_target": null
+        },
+        {
+          "date": "2026-11-07",
+          "weekday": "Saturday",
+          "title": "Long easy · 10 mi",
+          "role": "easy",
+          "rpe": [
+            2,
+            3
+          ],
+          "structure": "10 mi continuous easy",
+          "pace_target": null,
+          "heart_rate_target": null
         }
       ]
     }
-  ],
-  "typical_week": {
-    "Monday": {
-      "run": "5 mi treadmill · feel-first",
-      "strength": "Glute Hinge",
-      "maintenance": ["MOBO 60–120 sec","Band clamshell 1–2 × 12–15 / side"]
-    },
-    "Tuesday": {
-      "run": "5 mi outdoors · Zone 2 / low aerobic",
-      "strength": "Upper Push",
-      "maintenance": ["Run prep with MOBO","Plantar ball","Short-lever Copenhagen 2 × 20 sec / side"]
-    },
-    "Wednesday": {
-      "strength": "Glute Thrust",
-      "engine": "Elliptical 30 min easy",
-      "maintenance": ["MOBO 60–120 sec"]
-    },
-    "Thursday": {
-      "run": "5 mi treadmill · feel-first",
-      "strength": "Pull",
-      "maintenance": ["Short-lever Copenhagen 2 × 20 sec / side"]
-    },
-    "Friday": {
-      "strength": "Lower Pump + Core",
-      "recovery": "No required running or cardio; eat, hydrate and keep the weekend available."
-    },
-    "Saturday": {
-      "run": "6 mi treadmill · easy",
-      "strength": "Full Upper",
-      "maintenance": ["Run prep with MOBO","Plantar ball","Gentle calf foam roll"]
-    },
-    "Sunday": {
-      "run": "10 mi outdoors · first 7.5 mi low aerobic",
-      "recovery": "Refuel, hydrate, restore; walking / yoga open."
-    }
-  }
+  ]
 }
