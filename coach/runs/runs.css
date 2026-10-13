@@ -71,6 +71,7 @@ select:focus,input:focus,textarea:focus,button:focus-visible,a:focus-visible{out
 .cellActs button:hover{color:var(--text)}
 .foot{margin-top:auto;border-top:1px solid var(--hair);padding:16px 36px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;position:sticky;bottom:0;background:var(--field)}
 .foot .s b{font-weight:500}
+.footActs{display:flex;gap:10px;flex-wrap:wrap}
 .btn{border-radius:999px;padding:11px 18px;font-weight:500;border:1px solid var(--edge-2);background:none;cursor:pointer;min-height:44px}
 .btn.go{background:var(--lime);color:var(--field);border-color:var(--lime)}
 .btn[disabled]{opacity:.45;cursor:not-allowed}
