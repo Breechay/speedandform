@@ -2,7 +2,7 @@
  "version": 1,
  "updated": "2026-10-13",
  "owner": "Brice (Speed & Form)",
- "consent": "Brice confirmed on Oct 13, 2026 that he holds consent from everyone photographed for these images. Names are not attached; add a person tag only when that person has agreed to be named.",
+ "consent": "Brice confirmed on Oct 13, 2026 that he holds consent from everyone photographed. People he has named are tagged (\"tags\"); everyone else stays unnamed. Add a person tag only when Brice or the person names them.",
  "how_to_use": [
   "Pick by \"uses\" and \"orientation\"; crop around \"focal\" (0–1 from the top left).",
   "Use the 2400 file for full-bleed heroes, 1200 for cards and essays, 600 for thumbnails.",
@@ -45,7 +45,15 @@
     "supplied": "2026-10-13",
     "sha256": "3343eac5c9dbf92cc7c9bcb5a456cbcb591dc284ba5215dcf9313d7eb240cfc2"
    },
-   "tags": [],
+   "tags": [
+    {
+     "name": "Hope F.",
+     "slug": "hope",
+     "instagram": "hope_finnane",
+     "strava": null,
+     "consented": "2026-10-13"
+    }
+   ],
    "used_on": []
   },
   {
@@ -79,7 +87,15 @@
     "supplied": "2026-10-13",
     "sha256": "62bad565d02dda0e0274e03395e5b505efadd10088d63429e5166960cdba030c"
    },
-   "tags": [],
+   "tags": [
+    {
+     "name": "Hope F.",
+     "slug": "hope",
+     "instagram": "hope_finnane",
+     "strava": null,
+     "consented": "2026-10-13"
+    }
+   ],
    "used_on": []
   },
   {
@@ -113,7 +129,15 @@
     "supplied": "2026-10-13",
     "sha256": "17591ac5d5cd2a2ecbb40f17015664a310757cc2ed9ddbee1eab156b054b58fa"
    },
-   "tags": [],
+   "tags": [
+    {
+     "name": "Hope F.",
+     "slug": "hope",
+     "instagram": "hope_finnane",
+     "strava": null,
+     "consented": "2026-10-13"
+    }
+   ],
    "used_on": []
   },
   {
@@ -146,7 +170,15 @@
     "supplied": "2026-10-13",
     "sha256": "d1f34bb2a6417823dcdd5acf350f25aa09dd9f2c17fad243ab19ee36474a77df"
    },
-   "tags": [],
+   "tags": [
+    {
+     "name": "Hope F.",
+     "slug": "hope",
+     "instagram": "hope_finnane",
+     "strava": null,
+     "consented": "2026-10-13"
+    }
+   ],
    "used_on": []
   },
   {
@@ -181,7 +213,15 @@
     "supplied": "2026-10-13",
     "sha256": "4d0f688dbcb97e2d17efa16a8c57e69438d920ba2d7231f68449dcde80d06962"
    },
-   "tags": [],
+   "tags": [
+    {
+     "name": "Hope F.",
+     "slug": "hope",
+     "instagram": "hope_finnane",
+     "strava": null,
+     "consented": "2026-10-13"
+    }
+   ],
    "used_on": []
   },
   {
@@ -282,7 +322,15 @@
     "supplied": "2026-10-13",
     "sha256": "30ff581334176b3beaf14c31ff4095fc591289e438ddd803f52110888d39ccb4"
    },
-   "tags": [],
+   "tags": [
+    {
+     "name": "Tinius",
+     "slug": "tinius",
+     "instagram": "tiniusms",
+     "strava": null,
+     "consented": "2026-10-13"
+    }
+   ],
    "used_on": []
   },
   {
@@ -1171,6 +1219,133 @@
    "used_on": [
     "/work/photo-video/"
    ]
+  },
+  {
+   "id": "hope-bridge-stride",
+   "title": "Hope on the bridge",
+   "kind": "long run",
+   "captured": null,
+   "setting": "bridge",
+   "light": "morning sun",
+   "tone": "color",
+   "people": "1, profile",
+   "orientation": "portrait",
+   "width": 1022,
+   "height": 1538,
+   "focal": {
+    "x": 0.55,
+    "y": 0.45
+   },
+   "alt": "Hope running across a white bridge railing over the bay, mid-stride, morning sky behind.",
+   "uses": [
+    "hero-portrait",
+    "card",
+    "essay",
+    "story"
+   ],
+   "files": {
+    "2400": "/media/library/hope-bridge-stride-2400.webp",
+    "1200": "/media/library/hope-bridge-stride-1200.webp",
+    "600": "/media/library/hope-bridge-stride-600.webp"
+   },
+   "source": {
+    "supplied": "2026-10-13",
+    "sha256": "0e879ebfe6803e922711d9f7a666512d3f8bcb8a46facc8e0a5fd1a91103b806"
+   },
+   "tags": [
+    {
+     "name": "Hope F.",
+     "slug": "hope",
+     "instagram": "hope_finnane",
+     "strava": null,
+     "consented": "2026-10-13"
+    }
+   ],
+   "used_on": []
+  },
+  {
+   "id": "jose-track-dusk",
+   "title": "José at dusk",
+   "kind": "track",
+   "captured": null,
+   "setting": "track",
+   "light": "dusk",
+   "tone": "color",
+   "people": "1, profile",
+   "orientation": "landscape",
+   "width": 1726,
+   "height": 1380,
+   "focal": {
+    "x": 0.55,
+    "y": 0.4
+   },
+   "alt": "José running the track at dusk, field lights on behind him.",
+   "uses": [
+    "hero-landscape",
+    "card",
+    "essay"
+   ],
+   "files": {
+    "2400": "/media/library/jose-track-dusk-2400.webp",
+    "1200": "/media/library/jose-track-dusk-1200.webp",
+    "600": "/media/library/jose-track-dusk-600.webp"
+   },
+   "source": {
+    "supplied": "2026-10-13",
+    "sha256": "92f6b57ad7ef7a50b7889f4b1eef37e7b7e421d766b92b69a724031fd4b554db"
+   },
+   "tags": [
+    {
+     "name": "José S.",
+     "slug": "jose",
+     "instagram": "josefsantosdesoto",
+     "strava": null,
+     "consented": "2026-10-13"
+    }
+   ],
+   "used_on": []
+  },
+  {
+   "id": "adrian-dune-path",
+   "title": "Adrian on the dune path",
+   "kind": "long run",
+   "captured": null,
+   "setting": "beach path",
+   "light": "golden hour",
+   "tone": "color",
+   "people": "2, front-on",
+   "orientation": "portrait",
+   "width": 1108,
+   "height": 1476,
+   "focal": {
+    "x": 0.7,
+    "y": 0.35
+   },
+   "alt": "Two runners on the beach path at golden hour; Adrian in red shorts on the right.",
+   "uses": [
+    "hero-portrait",
+    "card",
+    "story"
+   ],
+   "files": {
+    "2400": "/media/library/adrian-dune-path-2400.webp",
+    "1200": "/media/library/adrian-dune-path-1200.webp",
+    "600": "/media/library/adrian-dune-path-600.webp"
+   },
+   "source": {
+    "supplied": "2026-10-13",
+    "sha256": "8e985a37496375898d83af8fdaa3ce1abd14bed4d90da467cc7e1c7f448b2b65"
+   },
+   "tags": [
+    {
+     "name": "Adrian G.",
+     "slug": "adrian",
+     "instagram": "fit_with_adrian",
+     "strava": null,
+     "consented": "2026-10-13"
+    }
+   ],
+   "used_on": []
   }
  ]
 }

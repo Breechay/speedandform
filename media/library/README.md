@@ -2,7 +2,7 @@
 
 Photographs cleared for the website and the apps. Start from `library.json`.
 
-- **Consent:** Brice holds consent from everyone photographed (confirmed Oct 13, 2026). Names are not attached. Add a person tag only once that person has agreed to be named.
+- **Consent:** Brice holds consent from everyone photographed (confirmed Oct 13, 2026). People Brice has named carry a person tag (name, Instagram, Strava); everyone else stays unnamed. Add a tag only when Brice or the person names them.
 - **Sizes:** new photos have `-2400`, `-1200` and `-600` WebP files. Use 2400 for full-bleed heroes, 1200 for cards and essays, 600 for thumbnails. The Oct 1 practice set lives in `/assets/practice/20261001/` at 1600 and 800.
 - **Choosing:** filter by `kind` (track, long run, social, strength), `orientation` and `uses` (hero-landscape, hero-portrait, card, essay, story, community, ad, fueling, strength).
 - **Cropping:** `focal` is the point to keep in frame, 0–1 from the top left.
