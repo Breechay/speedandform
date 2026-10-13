@@ -115,12 +115,14 @@ Owner approved implementing the review. Source: [Rebuilt Human companion](../stu
 
 Validation: the configured Netlify build passes in an isolated copy. Current goal values, all four image data URIs and four archive objects are preserved; generated observations are idempotent; JSON, executable scripts, fragments and ARIA targets pass. Existing source checks and discovery regeneration pass. Browser acceptance, exact tested commits and release receipts are recorded in [PR #267](https://github.com/Breechay/speedandform/pull/267). Production and physical-device acceptance remain separate from a repository merge. This entry is not a production receipt.
 
-## October 13 · Rebuilt Athlete velocity automaticity observation
+## October 13 · Rebuilt Athlete velocity automaticity observation and block
 
 - Filed the October 12 and October 13 running evidence in `labs/rebuilt-athlete/VELOCITY-AUTOMATICITY-20261013.md` and refreshed Study 002 with the athlete's own sequence: October 12 faster work became breathing- and attention-heavy, so the remaining work was shortened; October 13 began as an intended easy run, but the legs settled near 7:00/mi without a pace plan and the outing became 3 x 1 mile in 7:05, 6:40 and 6:48 with 2:30 recovery.
 - Preserve the owner's clarification that the 6:40 second mile was probably excitement and the 6:48 third mile was deliberately relaxed to stay comfortable and finish the third mile. The current working interpretation is return of automaticity at faster velocity, not proof that 6:40/mi is easy, continuous or race-ready.
+- Owner then approved a bounded three-week test. The live FORM Athlete System block now extends through November 8. Week 03 records the October 12–13 entry exposures and an 8-mile easy Saturday. Weeks 04–06 progress Monday from 4 x 4 minutes to 3 x 6 to 2 x 10, keep Tuesday fixed at 3 x 1 mile with 2:30 easy recovery, and progress Saturday easy distance 8 / 9 / 10 miles. Quicker work is RPE 4–5 with no pace or heart-rate target. 5:40/mi is a direction, not an assigned split.
+- October 12 and 13 are linked in the canonical athlete record as `coach_import` completions. That preserves the actual Monday deviation and Tuesday splits without pretending the phone created a native FORM receipt after the fact. Future app filings continue through the native receipt upload path.
 - Competing explanations remain live: October 13 was cooler, shorter and broken by recovery. The 24–48-hour lower-limb response after the October 12–13 faster exposures is still pending.
-- No canonical FORM assignment, mileage quota, race prediction, Forge program or medical conclusion was changed. The public study source is updated on branch `work/rebuilt-automaticity-20261013`; merge, Netlify publication and physical-device review remain separate.
+- Applied backend migration: `20261013134500_brice_velocity_automaticity_block.sql`. Read-back confirms active block Week 03 of 06, twelve published sessions across Weeks 03–06, plan authority true, and the two linked coach-import completions. The web plan JSON and current-week page now project that authority. Native installed-build readback and Netlify publication remain separate checks.
 
 ## October 11 · Rebuilt Human social observation
 
