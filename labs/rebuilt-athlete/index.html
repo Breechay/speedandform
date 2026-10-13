@@ -464,6 +464,8 @@ p,li,dd,figcaption{hyphens:none}
 .nowkey li{display:inline-flex;align-items:center;gap:7px}
 .nowkey i{display:inline-block;width:10px;height:10px}
 .k-avg{border-radius:50%;background:var(--ink)}
+.k-mixed{box-sizing:border-box;border:2px solid var(--blue);background:var(--paper-hi)}
+.k-work{background:var(--blue)}
 .k-best{background:var(--blue);transform:rotate(45deg) scale(.85)}
 .k-tread{border:1.5px solid var(--ink);background:var(--paper-lo)}
 .nowchart{display:block;width:100%;height:auto;overflow:visible}
@@ -478,6 +480,8 @@ p,li,dd,figcaption{hyphens:none}
 .nc-axt{font-size:10px;letter-spacing:.1em;text-transform:uppercase;fill:var(--graphite)}
 .nc-avg{fill:var(--ink);stroke:var(--paper-hi);stroke-width:2}
 .nc-avg--tread{fill:var(--paper-hi);stroke:var(--ink);stroke-width:1.6}
+.nc-mixed{fill:var(--paper-hi);stroke:var(--blue);stroke-width:2}
+.nc-work{fill:var(--blue);stroke:var(--paper-hi);stroke-width:1.6}
 .nc-best{fill:var(--blue);stroke:var(--paper-hi);stroke-width:1.5}
 .nc-call{font-size:12px;fill:var(--ink);font-weight:700}
 .nc-call--blue{fill:var(--blue)}
@@ -606,12 +610,14 @@ p,li,dd,figcaption{hyphens:none}
         <figcaption class="nowcard__head"><b>Running since the restart</b><span>Since the Sep 18 baseline</span></figcaption>
         <ul class="nowkey" aria-hidden="true">
           <li><i class="k-avg"></i>Outing average</li>
+          <li><i class="k-mixed"></i>Mixed session</li>
+          <li><i class="k-work"></i>Work reps</li>
           <li><i class="k-best"></i>Fastest mile</li>
           <li><i class="k-tread"></i>Treadmill</li>
         </ul>
         <svg class="nowchart nowchart--lg" viewBox="0 0 600 392" role="img" aria-labelledby="nowchart-t-lg nowchart-d-lg" xmlns="http://www.w3.org/2000/svg">
 <title id="nowchart-t-lg">Running since the restart</title>
-<desc id="nowchart-d-lg">Filed outings since September 25. Sep 25: 8.01 mi, average 8:38/mi, fastest mile 8:07; Sep 28: 5.01 mi, average 8:31/mi, fastest mile 8:15; Oct 2: 6.0 mi, average 10:11/mi treadmill; Oct 4: 10.01 mi, average 11:07/mi, fastest mile 8:18; Oct 5: 5.01 mi treadmill; Oct 9: 10.0 mi, average 8:18/mi; Oct 12: 5.27 mi, average 7:00/mi; Oct 13: 3.0 mi, average 6:51/mi, fastest mile 6:40. Pre-injury threshold was 6:04 to 6:09 per mile; the goal is 6:00 per mile feeling comfortable.</desc>
+<desc id="nowchart-d-lg">Filed outings since September 25. Sep 25: 8.01 mi, average 8:38/mi, fastest mile 8:07; Sep 28: 5.01 mi, average 8:31/mi, fastest mile 8:15; Oct 2: 6.0 mi, average 10:11/mi treadmill; Oct 4: 10.01 mi, average 11:07/mi, fastest mile 8:18; Oct 5: 5.01 mi treadmill; Oct 9: 10.0 mi, average 8:18/mi; Oct 12: 5.27 mi mixed outing with warm-up and shorter repetitions, 7:00/mi moving average for that full outing; Oct 13: 3 x 1-mile work repetitions with 2:30 recovery, 6:51/mi average of the three work miles only, fastest rep 6:40/mi; the October 13 distance bar shows three work miles, not a continuous three-mile run. The mixed and work-rep markers are distinct from ordinary outing averages. Pre-injury threshold was 6:04 to 6:09 per mile; the goal is 6:00 per mile feeling comfortable.</desc>
 <rect class="nc-band" x="50" y="53.8" width="536" height="2.6"/>
 <text class="nc-bandlbl" x="54" y="69.4">Before the break · threshold 6:04 to 6:09</text>
 <line class="nc-goal" x1="50" x2="586" y1="51.7" y2="51.7"/>
@@ -636,10 +642,10 @@ p,li,dd,figcaption{hyphens:none}
 <circle class="nc-avg" cx="329.2" cy="210.1" r="5"/>
 <path class="nc-best" d="M329.2 117.0 L335.2 123.0 L329.2 129.0 L323.2 123.0Z"/>
 <circle class="nc-avg" cx="440.8" cy="122.9" r="5"/>
-<circle class="nc-avg" cx="507.8" cy="82.7" r="5"/>
-<circle class="nc-avg" cx="530.2" cy="78.1" r="5"/>
+<rect class="nc-mixed" x="502.8" y="77.7" width="10" height="10"/>
+<rect class="nc-work" x="525.2" y="73.1" width="10" height="10"/>
 <path class="nc-best" d="M530.2 66.4 L536.2 72.4 L530.2 78.4 L524.2 72.4Z"/>
-<text class="nc-call nc-call--blue" x="495.8" y="76.4" text-anchor="end">6:40 mile · Oct 13</text>
+<text class="nc-call nc-call--blue" x="495.8" y="76.4" text-anchor="end">6:40 rep · Oct 13</text>
 <text class="nc-call" x="122.2" y="153.3">8:38 avg</text>
 <text class="nc-call nc-call--quiet" x="338.2" y="214.1">social run</text>
 <text class="nc-axt" x="43" y="258" text-anchor="end">miles</text>
@@ -666,14 +672,14 @@ p,li,dd,figcaption{hyphens:none}
 <text class="nc-val" x="507.8" y="297.9" text-anchor="middle">5.3</text>
 <text class="nc-day" x="507.8" y="362" text-anchor="middle">12</text>
 <rect class="nc-bar" x="523.7" y="321.2" width="13" height="22.8"/>
-<text class="nc-val" x="530.2" y="315.2" text-anchor="middle">3.0</text>
+<text class="nc-val" x="530.2" y="315.2" text-anchor="middle">3×1</text>
 <text class="nc-day" x="530.2" y="362" text-anchor="middle">13</text>
 <text class="nc-mon" x="128.2" y="380" text-anchor="middle">Sep</text>
 <text class="nc-mon" x="284.5" y="380" text-anchor="middle">Oct</text>
 </svg>
 <svg class="nowchart nowchart--sm" viewBox="0 0 360 346" role="img" aria-labelledby="nowchart-t-sm nowchart-d-sm" xmlns="http://www.w3.org/2000/svg">
 <title id="nowchart-t-sm">Running since the restart</title>
-<desc id="nowchart-d-sm">Filed outings since September 25. Sep 25: 8.01 mi, average 8:38/mi, fastest mile 8:07; Sep 28: 5.01 mi, average 8:31/mi, fastest mile 8:15; Oct 2: 6.0 mi, average 10:11/mi treadmill; Oct 4: 10.01 mi, average 11:07/mi, fastest mile 8:18; Oct 5: 5.01 mi treadmill; Oct 9: 10.0 mi, average 8:18/mi; Oct 12: 5.27 mi, average 7:00/mi; Oct 13: 3.0 mi, average 6:51/mi, fastest mile 6:40. Pre-injury threshold was 6:04 to 6:09 per mile; the goal is 6:00 per mile feeling comfortable.</desc>
+<desc id="nowchart-d-sm">Filed outings since September 25. Sep 25: 8.01 mi, average 8:38/mi, fastest mile 8:07; Sep 28: 5.01 mi, average 8:31/mi, fastest mile 8:15; Oct 2: 6.0 mi, average 10:11/mi treadmill; Oct 4: 10.01 mi, average 11:07/mi, fastest mile 8:18; Oct 5: 5.01 mi treadmill; Oct 9: 10.0 mi, average 8:18/mi; Oct 12: 5.27 mi mixed outing with warm-up and shorter repetitions, 7:00/mi moving average for that full outing; Oct 13: 3 x 1-mile work repetitions with 2:30 recovery, 6:51/mi average of the three work miles only, fastest rep 6:40/mi; the October 13 distance bar shows three work miles, not a continuous three-mile run. The mixed and work-rep markers are distinct from ordinary outing averages. Pre-injury threshold was 6:04 to 6:09 per mile; the goal is 6:00 per mile feeling comfortable.</desc>
 <rect class="nc-band" x="40" y="48.6" width="312" height="2.3"/>
 <text class="nc-bandlbl" x="44" y="63.9">Pre-injury threshold</text>
 <line class="nc-goal" x1="40" x2="352" y1="46.8" y2="46.8"/>
@@ -698,10 +704,10 @@ p,li,dd,figcaption{hyphens:none}
 <circle class="nc-avg" cx="176.5" cy="185.6" r="5"/>
 <path class="nc-best" d="M176.5 103.2 L182.5 109.2 L176.5 115.2 L170.5 109.2Z"/>
 <circle class="nc-avg" cx="254.5" cy="109.2" r="5"/>
-<circle class="nc-avg" cx="293.5" cy="73.9" r="5"/>
-<circle class="nc-avg" cx="332.5" cy="69.8" r="5"/>
+<rect class="nc-mixed" x="288.5" y="68.9" width="10" height="10"/>
+<rect class="nc-work" x="327.5" y="64.8" width="10" height="10"/>
 <path class="nc-best" d="M332.5 58.9 L338.5 64.9 L332.5 70.9 L326.5 64.9Z"/>
-<text class="nc-call nc-call--blue" x="281.5" y="68.9" text-anchor="end">6:40 · Oct 13</text>
+<text class="nc-call nc-call--blue" x="281.5" y="68.9" text-anchor="end">6:40 rep · Oct 13</text>
 <text class="nc-call" x="53.5" y="138.2">8:38 avg</text>
 <text class="nc-call nc-call--quiet" x="185.5" y="189.6">social run</text>
 <text class="nc-axt" x="33" y="234" text-anchor="end">miles</text>
@@ -728,12 +734,12 @@ p,li,dd,figcaption{hyphens:none}
 <text class="nc-val" x="293.5" y="267.3" text-anchor="middle">5.3</text>
 <text class="nc-day" x="293.5" y="324" text-anchor="middle">12</text>
 <rect class="nc-bar" x="324.5" y="287.4" width="16" height="18.6"/>
-<text class="nc-val" x="332.5" y="281.4" text-anchor="middle">3.0</text>
+<text class="nc-val" x="332.5" y="281.4" text-anchor="middle">3×1</text>
 <text class="nc-day" x="332.5" y="324" text-anchor="middle">13</text>
 <text class="nc-mon" x="59.5" y="342" text-anchor="middle">Sep</text>
 <text class="nc-mon" x="137.5" y="342" text-anchor="middle">Oct</text>
 </svg>
-        <p class="nowcard__fine">Filed outings only, so weekly totals run higher. Each outing had its own purpose; the Oct 4 run was paced for company.</p>
+        <p class="nowcard__fine"><b>Different efforts, different evidence.</b> Oct 12: 7:00/mi moving average across a mixed session. Oct 13: 3 × 1 mi at 6:51/mi average for work only, with 2:30 recovery; the bar counts three work miles. Neither is a continuous fast run. Other pace points are outing averages, and Oct 4 was paced for company. Only selected filed runs are plotted.</p>
       </figure>
     <div class="nowcard fuel">
         <div class="nowcard__head"><b>Fuel, as it works now</b><span>Oct 13 basket and staples</span></div>
@@ -750,7 +756,7 @@ p,li,dd,figcaption{hyphens:none}
 <li class="thread" data-level="2">
   <div class="thread__k"><span class="thread__sys">Running</span><span class="ladder" role="img" aria-label="Evidence: repeating"><i></i><i></i><i></i><i></i></span><span class="thread__lvl">Repeating</span></div>
   <h3 class="thread__t">Faster pace by feel</h3>
-  <p class="thread__now">A 6:40 mile on Oct 13 felt fluid and unforced. On Oct 12 the same speed still felt busy.</p>
+  <p class="thread__now">A 6:40 work mile on Oct 13 felt fluid and unforced. On Oct 12 the same speed still felt busy.</p>
   <p class="thread__next"><b>Next</b>Does the same feel hold in a continuous run, with a normal next day?</p>
 </li>
 <li class="thread" data-level="3">
@@ -801,7 +807,7 @@ p,li,dd,figcaption{hyphens:none}
       "system": "Running",
       "level": 2,
       "title": "Faster pace by feel",
-      "now": "A 6:40 mile on Oct 13 felt fluid and unforced. On Oct 12 the same speed still felt busy.",
+      "now": "A 6:40 work mile on Oct 13 felt fluid and unforced. On Oct 12 the same speed still felt busy.",
       "next": "Does the same feel hold in a continuous run, with a normal next day?"
     },
     {
@@ -887,13 +893,23 @@ p,li,dd,figcaption{hyphens:none}
       "date": "2026-10-12",
       "miles": 5.27,
       "average_pace_s_per_mi": 420,
+      "pace_basis": "full_mixed_outing_moving_average",
+      "session_format": "warm-up plus shorter 400 m and 800 m repetitions",
+      "continuous_fast_run": false,
       "fastest_mile_s_per_mi": null,
       "surface": "road"
     },
     {
       "date": "2026-10-13",
       "miles": 3.0,
-      "average_pace_s_per_mi": 411,
+      "distance_basis": "three_work_miles_only",
+      "average_pace_s_per_mi": null,
+      "work_pace_s_per_mi": 411,
+      "pace_basis": "work_repetitions_only_excludes_recovery",
+      "work_repetitions": 3,
+      "work_rep_distance_miles": 1,
+      "recovery_between_reps_seconds": 150,
+      "continuous_fast_run": false,
       "fastest_mile_s_per_mi": 400,
       "surface": "road"
     }
