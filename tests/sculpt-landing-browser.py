@@ -36,7 +36,7 @@ try:
    check(f'Adrian identity at {w}',page.locator('.bs-athlete').inner_text()=='ADRIAN.');check(f'Illustration labeled at {w}','sample training' in page.locator('.bs-preview figcaption').inner_text())
    for i in page.locator('img').all():i.scroll_into_view_if_needed();i.evaluate('(i)=>i.decode()')
    check(f'Actual store image loaded at {w}',page.locator('.bs-store img').evaluate('(i)=>i.naturalWidth===600&&i.naturalHeight===1299'))
-   check(f'Anatomy loaded at {w}',page.locator('.bs-anatomy').evaluate('(i)=>i.naturalWidth===670'))
+   check(f'Anatomy loaded at {w}',page.locator('.bs-anatomy').evaluate('(i)=>i.naturalWidth===765'))
    for d in page.locator('.bs-campaigns details').all():d.evaluate('(d)=>d.open=true')
    check(f'Twelve phases readable at {w}',page.locator('.bs-campaigns li:visible').count()==12)
    for d in page.locator('.bs-faq details').all():d.locator('summary').click()
