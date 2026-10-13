@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "record_type": "study_update",
+  "record_id": "adrian-study-update-20261013",
+  "study_id": "FRM-001",
+  "athlete": "Adrian Gandara",
+  "filed_on": "2026-10-13",
+  "entries": [
+    {
+      "id": "adrian-plan-revisions-20261006",
+      "date": "2026-10-06",
+      "kind": "intervention_changed",
+      "summary": "Weeks 05–16 revised: frame priorities move to lat width, side and rear shoulders and modest traps; cables and machines are replaced with dumbbells, a bench and bodyweight for future sessions.",
+      "source": "docs/studies/ADRIAN-PLAN-W05-16-20261013.json"
+    },
+    {
+      "id": "adrian-incline-50-20261012",
+      "date": null,
+      "session": "Week 05 · Upper A (scheduled Oct 12)",
+      "kind": "athlete_report",
+      "prescribed": "4 × 6",
+      "last_load_lb": 35,
+      "load_lb": 50,
+      "sets_completed": 4,
+      "attempt": "60 lb on the final set; did not complete, went back down",
+      "equipment_ceiling_lb": 60,
+      "quotes": [
+        "Just did 50s for all 4 sets on incline!!!",
+        "Yes feeling strong dude",
+        "I know for a fact that wouldn’t have moved a month ago"
+      ],
+      "context": "Trained from the earlier cable version still on his phone; the revised plan has not reached the app yet.",
+      "verified": false
+    },
+    {
+      "id": "adrian-intake-20261012",
+      "date": "2026-10-12",
+      "kind": "athlete_report",
+      "kcal": 3820,
+      "protein_g": "over 215",
+      "verified": false
+    },
+    {
+      "id": "adrian-weight-hold-20261013",
+      "date": "2026-10-13",
+      "kind": "coach_report",
+      "summary": "Body mass holding near 160 lb.",
+      "readings_filed": false
+    },
+    {
+      "id": "adrian-fuel-by-day-20261013",
+      "date": "2026-10-13",
+      "kind": "coach_decision",
+      "summary": "Intake follows the training day: about 3,000 / 4,000 / 5,000 kcal.",
+      "source": "docs/studies/ADRIAN-NUTRITION-FUEL-BY-DAY-20261013.json"
+    },
+    {
+      "id": "adrian-exact-targets-20261013",
+      "date": "2026-10-13",
+      "kind": "intervention_changed",
+      "summary": "41 future sessions carry exact sets and reps. Chin-ups replace the extra row on Upper A and pull-ups replace the pullover on Upper B, starting at 2 × 4. Yin yoga, 2–3 times a week, is assigned as the recovery layer.",
+      "open": "Pull-up bar availability and current vertical-pull capacity are not confirmed.",
+      "source": "docs/studies/ADRIAN-PLAN-W05-16-20261013.json"
+    },
+    {
+      "id": "adrian-progression-rule-20261013",
+      "date": "2026-10-13",
+      "kind": "coach_decision",
+      "summary": "Same weight until every set is clean with 2 reps in reserve; then 3 × 8 → 3 × 10 → 3 × 12; at 3 × 12, the next dumbbell and back to 3 × 8. On the gym’s heaviest dumbbells, a 3-second lowering before adding reps."
+    }
+  ],
+  "page_changes": [
+    "Current state, weeks 05–16 plan, fuel-by-day rule and new log entries."
+  ]
+}

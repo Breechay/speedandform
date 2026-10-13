@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "record_type": "nutrition_guideline",
+  "record_id": "adrian-fuel-by-day-20261013",
+  "study_id": "FRM-001",
+  "athlete": "Adrian Gandara",
+  "filed_on": "2026-10-13",
+  "authority": "Coach decision (Brice), Oct 13, 2026",
+  "replaces": "The flat working target of about 3,400 kcal a day (set Sep 24–25).",
+  "why": "Body mass has held near 160 lb on the flat target, so intake now follows the training day.",
+  "unit": "kcal",
+  "tiers": [
+    {
+      "id": "base",
+      "kcal": 3000,
+      "label": "About 3,000",
+      "days": [
+        "rest day",
+        "easy run only"
+      ]
+    },
+    {
+      "id": "train",
+      "kcal": 4000,
+      "label": "About 4,000",
+      "days": [
+        "lifting day",
+        "normal run day"
+      ]
+    },
+    {
+      "id": "hard",
+      "kcal": 5000,
+      "label": "About 5,000",
+      "days": [
+        "long run",
+        "workout day",
+        "hard run plus a lift"
+      ]
+    }
+  ],
+  "protein_g": {
+    "low": 150,
+    "high": 170,
+    "note": "Covers the need. Energy above this goes to carbohydrate, especially around runs."
+  },
+  "close_is_enough": true,
+  "adjustment": {
+    "signal": "7-day average of morning weights, read beside the waist tape",
+    "aim_lb_per_week": 0.5,
+    "rules": [
+      {
+        "if": "Flat for 2 weeks",
+        "then": "One 3,000 day becomes a 4,000 day."
+      },
+      {
+        "if": "Rising more than 1 lb a week for 2 weeks and the waist is up",
+        "then": "One 5,000 day becomes a 4,000 day."
+      }
+    ]
+  },
+  "context_reports": [
+    {
+      "date": "2026-10-12",
+      "kind": "athlete_report",
+      "kcal": 3820,
+      "protein_g": "over 215",
+      "note": "Self-reported total; not itemized."
+    },
+    {
+      "date": "2026-10-13",
+      "kind": "coach_report",
+      "body_mass": "Holding near 160 lb",
+      "note": "Coach summary of recent weigh-ins; individual readings not filed."
+    }
+  ],
+  "app_note": "Written so the Strength app can later show the day's tier beside the session. The day type comes from the planned run and lift for that date.",
+  "scope": {
+    "training_prescription_changed": false,
+    "nutrition_changed": true,
+    "native_assignment_changed": false
+  }
+}
