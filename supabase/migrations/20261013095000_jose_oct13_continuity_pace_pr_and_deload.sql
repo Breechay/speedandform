@@ -114,7 +114,7 @@ BEGIN
     VALUES
       (athlete,'practice','coach_observed',
       'FORM-JOSE-OCT13-20261013-RESULT. Garmin screenshots provided by coach show 20:00 continuous work, 3.28 mi at displayed 6:06/mi, plus 20:00 / 2.43 mi warm-up and 11:10.9 / 1.32 mi cooldown; total 7.02 mi in 51:10.9. Garmin marked 18:56 as an all-time 5K best effort compared with prior 19:31. This is a detected effort nested in the workout, not a separately raced 5K. José reports negative progression within the 20 minutes, unexpectedly controlled breathing, improved confidence, favorable weather and fresh legs shortly after; also did strenuous leg work Oct 12 and anticipates soreness. Athlete report is not independently verified pace splits or a measured threshold. Outcome strengthens evidence of present sustained speed but cannot isolate effects of training, continuity, weather, effort, shoes, electrolytes or recovery. Latest six-mile continuous half-marathon race-pace mark remains six miles; speed workout does not increment that mark.',
-      'improving','2026-10-13',coach,ARRAY[completed]);
+      'no_clear_change','2026-10-13',coach,ARRAY[completed]);
   END IF;
   IF NOT EXISTS (SELECT 1 FROM public.athlete_observations WHERE athlete_id=athlete
     AND observation LIKE 'FORM-JOSE-OCT13-20261013-DECISION.%') THEN
