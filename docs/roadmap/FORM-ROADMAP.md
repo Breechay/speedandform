@@ -115,6 +115,13 @@ Owner approved implementing the review. Source: [Rebuilt Human companion](../stu
 
 Validation: the configured Netlify build passes in an isolated copy. Current goal values, all four image data URIs and four archive objects are preserved; generated observations are idempotent; JSON, executable scripts, fragments and ARIA targets pass. Existing source checks and discovery regeneration pass. Browser acceptance, exact tested commits and release receipts are recorded in [PR #267](https://github.com/Breechay/speedandform/pull/267). Production and physical-device acceptance remain separate from a repository merge. This entry is not a production receipt.
 
+## October 13 · Rebuilt Athlete velocity automaticity observation
+
+- Filed the October 12 and October 13 running evidence in `labs/rebuilt-athlete/VELOCITY-AUTOMATICITY-20261013.md` and refreshed Study 002 with the athlete's own sequence: October 12 faster work became breathing- and attention-heavy, so the remaining work was shortened; October 13 began as an intended easy run, but the legs settled near 7:00/mi without a pace plan and the outing became 3 x 1 mile in 7:05, 6:40 and 6:48 with 2:30 recovery.
+- Preserve the owner's clarification that the 6:40 second mile was probably excitement and the 6:48 third mile was deliberately relaxed to stay comfortable and finish the third mile. The current working interpretation is return of automaticity at faster velocity, not proof that 6:40/mi is easy, continuous or race-ready.
+- Competing explanations remain live: October 13 was cooler, shorter and broken by recovery. The 24–48-hour lower-limb response after the October 12–13 faster exposures is still pending.
+- No canonical FORM assignment, mileage quota, race prediction, Forge program or medical conclusion was changed. The public study source is updated on branch `work/rebuilt-automaticity-20261013`; merge, Netlify publication and physical-device review remain separate.
+
 ## October 11 · Rebuilt Human social observation
 
 - Added a dated reflection to the existing [Rebuilt Human companion](../studies/REBUILT-HUMAN-BRIDGE-SEASON-20261008.md#october-11--what-feels-rewarding-socially), preserving the October 8 and 9 entries. Source: Brice's October 11 conversation. Descriptions of other people remain general.
