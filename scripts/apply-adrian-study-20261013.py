@@ -35,6 +35,9 @@ i = s.index(marker) + len(marker)
 S, end = json.JSONDecoder().raw_decode(s, i)
 
 S['version'] = '2026.10.13.1'
+S['athlete']['full'] = 'Adrian'
+if 'intake20260922' in S:
+    S['intake20260922']['athlete'] = 'Adrian'
 
 base = {b['k']: b for b in S['baseline']}
 base['Body mass']['note'] = 'Holding near 160 lb by Oct 13 (coach report); standardized weekly mean pending'
@@ -50,10 +53,10 @@ t = S['targets']
 for x in t:
     if x['name'] == 'Upper back':
         x['name'] = 'Back width'
-        x['why'] = 'Lats and upper back. Width in a shirt, with no landing penalty.'
+        x['why'] = 'Lats and upper-back width in a shirt.'
 if not any(x['name'] == 'Side shoulders' for x in t):
     at = [x['name'] for x in t].index('Back width') + 1
-    t.insert(at, {'name': 'Side shoulders', 'why': 'Lateral delts: shoulder width and roundness. Costs the run nothing.',
+    t.insert(at, {'name': 'Side shoulders', 'why': 'Lateral delts: shoulder width and roundness. Monitor recovery alongside running.',
                   'progress': None, 'state': 'Target'})
 
 # Weeks 05-16 from the plan snapshot. Week names stay; everything else is the stored plan.
@@ -69,7 +72,7 @@ S['seasonNote'] = ('Prescription authority: FORM Athlete System. Sixteen weeks, 
                    'exact sets and reps. Earlier weeks stay as published. This is the authored plan, not a record of what was completed.')
 
 if not any(x['week'] == 'W05' for x in S['strength']):
-    S['strength'].append({'week': 'W05', 'ex': 'Incline dumbbell bench press', 'load': '4 × 6 @ 50 lb dumbbells',
+    S['strength'].append({'week': 'W05', 'ex': 'Incline dumbbell bench press', 'load': '4 sets @ 50 lb dumbbells; completed reps not reported',
                           'delta': '+15 lb', 'note': 'Upper A · athlete report · 60 lb tried on the last set, not completed'})
 S['strengthNote'] = ('Two sessions have numbers against them. The Week 05 incline jump is a reported load, '
                      'not evidence of hypertrophy and not evidence that the running absorbed it.')
@@ -115,7 +118,7 @@ new_entries = [
     {'id': 'adrian-incline-50-20261012', 'when': 'Week 05 · Upper A', 'kind': 'Strength · athlete report', 'type': 'note',
      'title': '50 lb dumbbells for all four sets on the incline press.',
      'body': 'Prescribed 4 × 6; his last recorded load was 35 lb. He tried 60 lb on the final set and went back down. '
-             'The gym’s heaviest dumbbells are 60 lb, so progress from here comes from reps and a slower lowering before load. '
+             'The gym’s heaviest dumbbells are 60 lb. He has not outgrown them: 50 lb is the reported working load, and 60 lb was not completed. '
              'He trained from the earlier cable version still on his phone. Exact date not supplied; this is a reported load, not a hypertrophy claim.'},
     {'id': 'adrian-fuel-by-day-20261013', 'when': 'Oct 13, 2026', 'kind': 'Body + nutrition · coach decision', 'type': 'change',
      'title': 'Weight holds near 160 lb. Food now follows the training day.',
@@ -138,7 +141,7 @@ if S['currentRead']['date'] != '2026-10-13':
     S['currentRead'] = {
         'date': '2026-10-13', 'n': '13',
         'body': 'Weight is holding near 160 lb, so food now follows the training day: about 3,000, 4,000 or 5,000 kcal. '
-                'The incline press moved from 35 to 50 lb dumbbells for 4 × 6. The plan now carries exact targets, chin-ups and pull-ups, and yin yoga.',
+                'He reported 50 lb dumbbells for all four incline sets; completed reps were not reported. The plan now carries exact targets, chin-ups and pull-ups, and yin yoga.',
         'running': 'No new race or key-session result. The calf adjustment and yin yoga stay in force; key sessions are read against their prescribed pace.',
         'next': 'First standardized photo set and repeat tape this weekend: morning, before eating, same spot, right side for arm, thigh and calf. '
                 'Keep 1–3 comparable morning weights a week.',
@@ -175,13 +178,13 @@ s = s[:i] + json.dumps(S, indent=1, ensure_ascii=False) + s[end:]
 
 # ---------------------------------------------------------------- renderer
 swap('<div><dt>Body</dt><dd class="no">Nothing filed</dd></div>', '<div><dt>Body</dt><dd class="yes">2 tape sets</dd></div>')
-swap('<div><dt>Strength</dt><dd class="yes">1 session</dd></div>', '<div><dt>Strength</dt><dd class="yes">2 sessions</dd></div>')
-swap('{k:"Sessions filed", v:1}', '{k:"Sessions filed", v:2}')
+# Message-based strength reports remain separate from the live app count.
+# App session count is supplied by strength-study-evidence.js.
 swap('''    {s:"on", t:`${S.weekendUpdate.weights[2].lb} lb morning report filed. Weekend scale swing preserved.`},
     {s:"on", t:`Recovery adherence is now tracked alongside body, strength, running and athlete experience.`},
     {s:"open", t:`Repeat tape measurements now. ~2:40 marathon remains a long-term horizon, not a current prescription.`}''',
      '''    {s:"on", t:`Holding near 160 lb. Food now follows the training day: 3k / 4k / 5k.`},
-    {s:"on", t:`Incline press up from 35 to 50 lb dumbbells for 4 × 6.`},
+    {s:"on", t:`Incline press: 50 lb dumbbells for four sets; completed reps not reported.`},
     {s:"open", t:`First standardized photo set and repeat tape this weekend. ~2:40 marathon stays a long-term horizon.`}''')
 swap('''    <p class="measure-meta">Filed ${fmtDate(w.filedOn)} · Athlete report</p>
     <h3>Latest reported weight</h3>
