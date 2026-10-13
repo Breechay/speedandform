@@ -114,6 +114,11 @@ body.gr-album.is-dark .gr-mono,body.gr-album.is-dark .gr-q{color:rgba(242,238,22
 .gr-vnav{position:absolute;top:50%;transform:translateY(-50%);background:none;border:0;color:inherit;font-size:28px;width:56px;height:88px;cursor:pointer}
 .gr-vnav.is-prev{left:6px}.gr-vnav.is-next{right:6px}
 html.gr-locked,html.gr-locked body{overflow:clip}
+.gr-vpeople{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:12px 20px 20px}
+.gr-vpeople[hidden]{display:none}
+.gr-vpeople .gr-mono{color:rgba(242,238,229,.62);margin-right:6px}
+.gr-vpeople a{display:flex;align-items:center;gap:8px;min-height:44px;padding:0 14px 0 8px;border-radius:999px;background:#1d2022;text-decoration:none;font-size:15px}
+.gr-vpeople img{width:28px;height:28px;border-radius:50%;object-fit:cover}
 
 @media (max-width:760px){
  :root{--g:20px}

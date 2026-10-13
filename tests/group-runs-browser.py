@@ -62,6 +62,10 @@ def install(page, fail=False):
         if url.endswith('/rpc/collective_album'):
             run = json.loads(route.request.post_data or '{}').get('run')
             return route.fulfill(status=200, content_type='application/json', body=json.dumps([albums[run]] if run in albums else []))
+        if url.endswith('/rpc/collective_album_people'):
+            run = json.loads(route.request.post_data or '{}').get('run')
+            rows = [dict(asset='a3', slug='jose', name='José', avatar='/assets/athletes/jose-remote-256.webp', x=None, y=None)] if run == 'p1' else []
+            return route.fulfill(status=200, content_type='application/json', body=json.dumps(rows))
         return route.fulfill(status=404, body='[]')
     def media(route):
         n = int(re.search(r'/(\d+)\.webp', route.request.url).group(1))
@@ -142,7 +146,10 @@ with sync_playwright() as p:
         page.locator('.gr-f').nth(3).click()
         assert page.locator('#gr-viewer.is-open').count() == 1 and page.locator('[data-count]').inner_text() == '4 / 9'
         assert page.evaluate('location.hash') == '#a3', page.evaluate('location.hash')
+        page.wait_for_selector('[data-people] a[href="/people/jose"]')
+        assert 'José' in page.locator('[data-people]').inner_text()
         page.keyboard.press('ArrowRight'); assert page.locator('[data-count]').inner_text() == '5 / 9'
+        assert page.locator('[data-people]').is_hidden(), 'tag shown on an untagged photo'
         page.keyboard.press('Escape'); assert page.locator('#gr-viewer.is-open').count() == 0
         assert not errors, errors
         report.append({'width': w, 'status': 'pass'}); page.close()

@@ -215,9 +215,28 @@
   }
   // Frames are addressed by their stable asset id (#a1b2c3d4), never by position.
   function frameKey(f) { return String(f.asset || f.path).replace(/[^a-z0-9]/gi, '').slice(0, 8); }
-  function viewer(items, pageURL) {
+  // Who is in each photograph: confirmed tags of people whose profiles are visible
+  // (collective_album_people). Hidden people never come back, so their name never shows.
+  function loadPeople(runID) {
+    return request('rpc/collective_album_people', { run: runID }).then(function (rows) {
+      var by = {};
+      (Array.isArray(rows) ? rows : []).forEach(function (r) { (by[r.asset] = by[r.asset] || []).push(r); });
+      return by;
+    }).catch(function () { return {}; });
+  }
+  function viewer(items, pageURL, people) {
     var v = $('gr-viewer'), img = v.querySelector('img'), count = v.querySelector('[data-count]'), at = 0, last = null;
-    function show(i) { at = (i + items.length) % items.length; img.src = MEDIA + items[at].path; count.textContent = (at + 1) + ' / ' + items.length; v.querySelector('[data-open]').href = MEDIA + items[at].path; history.replaceState(null, '', '#' + frameKey(items[at])); }
+    var who = v.querySelector('[data-people]');
+    function paintPeople() {
+      if (!who) return;
+      var list = (people && people.map && people.map[items[at].asset]) || [];
+      who.hidden = !list.length;
+      who.innerHTML = list.length ? '<span class="gr-mono">In this photo</span>' + list.map(function (p) {
+        return '<a href="/people/' + esc(p.slug) + '">' + (p.avatar ? '<img src="' + esc(p.avatar) + '" alt="" width="28" height="28">' : '') + esc(p.name) + '</a>';
+      }).join('') : '';
+    }
+    if (people) people.ready = paintPeople;
+    function show(i) { at = (i + items.length) % items.length; img.src = MEDIA + items[at].path; count.textContent = (at + 1) + ' / ' + items.length; v.querySelector('[data-open]').href = MEDIA + items[at].path; history.replaceState(null, '', '#' + frameKey(items[at])); paintPeople(); }
     function open(i) { last = document.activeElement; v.classList.add('is-open'); document.documentElement.classList.add('gr-locked'); show(i); v.querySelector('[data-close]').focus(); }
     function close() { v.classList.remove('is-open'); document.documentElement.classList.remove('gr-locked'); history.replaceState(null, '', location.pathname); if (last) last.focus(); }
     v.querySelector('[data-close]').onclick = close;
@@ -283,7 +302,9 @@
         $('gr-count').textContent = items.length + (items.length === 1 ? ' photograph' : ' photographs');
         root.querySelectorAll('img').forEach(function (img) { img.addEventListener('load', function () { placeFocal(img); }); if (img.complete) placeFocal(img); });
         if (window.ResizeObserver) new ResizeObserver(function () { root.querySelectorAll('img').forEach(placeFocal); }).observe(root);
-        var open = viewer(items, url);
+        var people = { map: {} };
+        var open = viewer(items, url, people);
+        loadPeople(run.id).then(function (m) { people.map = m; if (people.ready) people.ready(); });
         root.addEventListener('click', function (e) { var b = e.target.closest('.gr-f'); if (b) open(+b.dataset.i); });
         var older = runs.filter(function (r) { return r.status !== 'cancelled' && Date.parse(r.starts_at) < Date.parse(run.starts_at) && (gal[r.id] || []).length; })[0];
         var nx = $('gr-next-album');

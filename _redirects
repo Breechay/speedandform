@@ -148,6 +148,8 @@
 /run                    /runs/                      301
 /run/                   /runs/                      301
 /run/*                  /run/template.html          200
+/people                 /people/                    301
+/people/*               /people/template.html       200
 /plan-speed-emergence   /plans/                    301!
 
 # Interactive homepage mockup (does not replace production index)
