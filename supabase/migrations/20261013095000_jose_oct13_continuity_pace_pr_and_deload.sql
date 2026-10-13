@@ -135,4 +135,14 @@ BEGIN
       'FORM-JOSE-OCT13-20261013-DECISION. Owner-approved Tuesday/Thursday swap: Oct 13 20-minute continuous speed-development session completed; Oct 15 five continuous miles at 6:40–6:45/mi only with normal legs and recovery; Wed/Fri 40 min optional easy or rest; Oct 17 thirteen-mile long run cancelled due anniversary travel and deload, no replacement mileage. Oct 20 eight continuous race-pace miles remains a conditional checkpoint, not newly earned by today. Preserve RPD band and six-mile ownership mark. Future block may explore 5:50/mi tempo speed only after repeatability and recovery; not a current required target. Review Thursday leg vs breathing effort and recovery before advancing.',
       'no_clear_change','2026-10-13',coach,ARRAY[completed]);
   END IF;
+  -- Reconcile the older RPD mark against the already documented Sep 29 six-mile
+  -- continuous evidence. Today's 20-minute speed effort does not advance this mark.
+  UPDATE public.athlete_marks
+    SET current_value=6,
+        current_question='Can José hold eight uninterrupted miles at 6:40–6:45/mi with controlled effort and normal recovery?',
+        next_test='Eight continuous miles at race pace on October 20, only if recovered; no catch-up surges.',
+        claim_note='Sep 29 coach-documented Garmin result: six continuous miles in 39:16.0 at 6:33/mi. Oct 13 faster 20-minute tempo and 18:56 Garmin 5K best effort are separate capacity evidence.'
+    WHERE athlete_id=athlete AND active AND label='continuous at race pace'
+      AND current_value < 6;
+
 END $$;
