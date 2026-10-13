@@ -1,0 +1,1644 @@
+{
+ "schema_version": 1,
+ "record_type": "plan_snapshot",
+ "record_id": "adrian-plan-w05-16-20261013",
+ "study_id": "FRM-001",
+ "athlete": "Adrian Gandara",
+ "exported_on": "2026-10-13",
+ "source": "FORM Athlete System · latest published version of each strength session, weeks 05–16",
+ "revisions": [
+  {
+   "date": "2026-10-01",
+   "summary": "Density weeks refined toward traps, torso depth, rounded shoulders and thigh girth; calves to maintenance."
+  },
+  {
+   "date": "2026-10-06",
+   "summary": "Frame priorities set to lat width, side and rear shoulders, modest traps. Cables and machines replaced with dumbbells, a bench and bodyweight for future sessions."
+  },
+  {
+   "date": "2026-10-13",
+   "summary": "41 future sessions get exact sets and reps. Chin-ups replace the extra row on Upper A; pull-ups replace the pullover on Upper B."
+  },
+  {
+   "date": "2026-10-13",
+   "summary": "Follow-up: progression rule with a slower lowering at the equipment ceiling; incline curl replaces the Upper A shrug in weeks 6–15; closeout shrug removed; extra lateral-raise set on Upper B in full weeks."
+  }
+ ],
+ "note": "Week 05 Upper A (Oct 12) was already open and keeps its earlier version. Completed and opened sessions are never rewritten.",
+ "weeks": [
+  {
+   "week": 5,
+   "starts": "2026-10-12",
+   "ends": "2026-10-18",
+   "intent": "Accumulate clean reps in the new density block without adding exercise novelty.",
+   "note": "Keep the frame-first menu. Rear delts and lats get two weekly exposures; upper traps stay modest. Calf work is maintenance only and is skipped if tenderness or next-run heaviness remains.",
+   "sessions": [
+    {
+     "date": "2026-10-12",
+     "day": "Monday",
+     "title": "Upper A",
+     "focus": "Upper chest + lat width + traps",
+     "versionCreated": "2026-10-06",
+     "exercises": [
+      [
+       "Incline Dumbbell Bench Press",
+       "4 × 6–8"
+      ],
+      [
+       "Chest-Supported Dumbbell Row",
+       "3 × 6–10"
+      ],
+      [
+       "Bench-Supported One-Arm Dumbbell Row",
+       "3 × 8–12 / side"
+      ],
+      [
+       "Dumbbell Shrug",
+       "2 × 10–15"
+      ],
+      [
+       "Low-Incline Dumbbell Fly",
+       "2 × 10–15"
+      ],
+      [
+       "Single-Arm Dumbbell Lateral Raise",
+       "3 × 12–18 / side"
+      ],
+      [
+       "Chest-Supported Dumbbell Rear-Delt Fly",
+       "2 × 12–18"
+      ],
+      [
+       "Seated Dumbbell Overhead Triceps Extension",
+       "2 × 10–15"
+      ]
+     ]
+    },
+    {
+     "date": "2026-10-15",
+     "day": "Thursday",
+     "title": "Lower A",
+     "focus": "Thigh density + running chassis",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Bulgarian Split Squat",
+       "3 × 6 / leg"
+      ],
+      [
+       "Dumbbell Romanian Deadlift",
+       "3 × 6"
+      ],
+      [
+       "Dumbbell Goblet Squat",
+       "2 × 10"
+      ],
+      [
+       "Hamstring Bridge Walkout",
+       "2 × 4 out-and-back cycles"
+      ],
+      [
+       "Side-Lying Hip Adduction",
+       "3 × 15 / side"
+      ],
+      [
+       "Seated Dumbbell Calf Raise",
+       "2 × 12"
+      ],
+      [
+       "Dumbbell Suitcase Hold",
+       "2 × 30 sec / side"
+      ]
+     ]
+    },
+    {
+     "date": "2026-10-16",
+     "day": "Friday",
+     "title": "Upper B",
+     "focus": "Lat width + rear shoulders + sleeves",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Pull-Up",
+       "2 × 4"
+      ],
+      [
+       "Flat Dumbbell Bench Press",
+       "3 × 8"
+      ],
+      [
+       "Bench-Supported One-Arm Dumbbell Row",
+       "3 × 10 / side"
+      ],
+      [
+       "Flat Dumbbell Fly",
+       "2 × 12"
+      ],
+      [
+       "Dumbbell Lateral Raise",
+       "3 × 15"
+      ],
+      [
+       "Chest-Supported Dumbbell Rear-Delt Fly",
+       "3 × 15"
+      ],
+      [
+       "Hammer Curl",
+       "2 × 10"
+      ],
+      [
+       "Lying Dumbbell Triceps Extension",
+       "2 × 12"
+      ]
+     ]
+    },
+    {
+     "date": "2026-10-18",
+     "day": "Sunday",
+     "title": "Lower B",
+     "focus": "Single-leg + posterior + thigh support",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Dumbbell Step-Up",
+       "3 × 6 / leg"
+      ],
+      [
+       "Dumbbell Hip Thrust",
+       "2 × 8"
+      ],
+      [
+       "Hamstring Bridge Walkout",
+       "2 × 4 out-and-back cycles"
+      ],
+      [
+       "Dumbbell Goblet Squat",
+       "2 × 12"
+      ],
+      [
+       "Dead Bug",
+       "3 × 8 / side"
+      ],
+      [
+       "Side Plank",
+       "2 × 45 sec / side"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "week": 6,
+   "starts": "2026-10-19",
+   "ends": "2026-10-25",
+   "intent": "Let the same menu become stronger. Do not confuse heavier work with maximal work.",
+   "note": "Keep the frame-first menu. Rear delts and lats get two weekly exposures; upper traps stay modest. Calf work is maintenance only and is skipped if tenderness or next-run heaviness remains.",
+   "sessions": [
+    {
+     "date": "2026-10-19",
+     "day": "Monday",
+     "title": "Upper A",
+     "focus": "Upper chest + lat width + traps",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Incline Dumbbell Bench Press",
+       "4 × 8"
+      ],
+      [
+       "Chin-Up",
+       "3 × 4"
+      ],
+      [
+       "Chest-Supported Dumbbell Row",
+       "3 × 10"
+      ],
+      [
+       "Incline Dumbbell Curl",
+       "2 × 12"
+      ],
+      [
+       "Low-Incline Dumbbell Fly",
+       "2 × 12"
+      ],
+      [
+       "Single-Arm Dumbbell Lateral Raise",
+       "3 × 15 / side"
+      ],
+      [
+       "Chest-Supported Dumbbell Rear-Delt Fly",
+       "2 × 15"
+      ],
+      [
+       "Seated Dumbbell Overhead Triceps Extension",
+       "2 × 12"
+      ]
+     ]
+    },
+    {
+     "date": "2026-10-22",
+     "day": "Thursday",
+     "title": "Lower A",
+     "focus": "Thigh density + running chassis",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Bulgarian Split Squat",
+       "3 × 6 / leg"
+      ],
+      [
+       "Dumbbell Romanian Deadlift",
+       "3 × 6"
+      ],
+      [
+       "Dumbbell Goblet Squat",
+       "2 × 10"
+      ],
+      [
+       "Hamstring Bridge Walkout",
+       "2 × 4 out-and-back cycles"
+      ],
+      [
+       "Side-Lying Hip Adduction",
+       "3 × 15 / side"
+      ],
+      [
+       "Seated Dumbbell Calf Raise",
+       "2 × 12"
+      ],
+      [
+       "Dumbbell Suitcase Hold",
+       "2 × 30 sec / side"
+      ]
+     ]
+    },
+    {
+     "date": "2026-10-23",
+     "day": "Friday",
+     "title": "Upper B",
+     "focus": "Lat width + rear shoulders + sleeves",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Pull-Up",
+       "3 × 4"
+      ],
+      [
+       "Flat Dumbbell Bench Press",
+       "3 × 8"
+      ],
+      [
+       "Bench-Supported One-Arm Dumbbell Row",
+       "3 × 10 / side"
+      ],
+      [
+       "Flat Dumbbell Fly",
+       "2 × 12"
+      ],
+      [
+       "Dumbbell Lateral Raise",
+       "3 × 15"
+      ],
+      [
+       "Chest-Supported Dumbbell Rear-Delt Fly",
+       "3 × 15"
+      ],
+      [
+       "Hammer Curl",
+       "2 × 10"
+      ],
+      [
+       "Lying Dumbbell Triceps Extension",
+       "2 × 12"
+      ]
+     ]
+    },
+    {
+     "date": "2026-10-25",
+     "day": "Sunday",
+     "title": "Lower B",
+     "focus": "Single-leg + posterior + thigh support",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Dumbbell Step-Up",
+       "3 × 6 / leg"
+      ],
+      [
+       "Dumbbell Hip Thrust",
+       "2 × 8"
+      ],
+      [
+       "Hamstring Bridge Walkout",
+       "2 × 4 out-and-back cycles"
+      ],
+      [
+       "Dumbbell Goblet Squat",
+       "2 × 12"
+      ],
+      [
+       "Dead Bug",
+       "3 × 8 / side"
+      ],
+      [
+       "Side Plank",
+       "2 × 45 sec / side"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "week": 7,
+   "starts": "2026-10-26",
+   "ends": "2026-11-01",
+   "intent": "Keep the movement pattern and absorb the block before race-specific weeks begin.",
+   "note": "Reduce lower-body set count about 20–30%. Keep upper quality high. Finish the week feeling better than you started it.",
+   "sessions": [
+    {
+     "date": "2026-10-26",
+     "day": "Monday",
+     "title": "Upper A",
+     "focus": "Keep the frame",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Incline Dumbbell Bench Press",
+       "3 × 8"
+      ],
+      [
+       "Chin-Up",
+       "2 × 4"
+      ],
+      [
+       "Chest-Supported Dumbbell Row",
+       "2 × 10"
+      ],
+      [
+       "Incline Dumbbell Curl",
+       "2 × 12"
+      ],
+      [
+       "Low-Incline Dumbbell Fly",
+       "2 × 12"
+      ],
+      [
+       "Dumbbell Lateral Raise",
+       "2 × 15"
+      ],
+      [
+       "Chest-Supported Dumbbell Rear-Delt Fly",
+       "2 × 15"
+      ],
+      [
+       "Seated Dumbbell Overhead Triceps Extension",
+       "2 × 12"
+      ]
+     ]
+    },
+    {
+     "date": "2026-10-29",
+     "day": "Thursday",
+     "title": "Lower A",
+     "focus": "Reduced thigh / posterior dose",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Bulgarian Split Squat",
+       "2 × 6 / leg"
+      ],
+      [
+       "Dumbbell Romanian Deadlift",
+       "2 × 6"
+      ],
+      [
+       "Dumbbell Goblet Squat",
+       "2 × 10"
+      ],
+      [
+       "Side-Lying Hip Adduction",
+       "2 × 15 / side"
+      ],
+      [
+       "Dumbbell Suitcase Hold",
+       "2 × 30 sec / side"
+      ]
+     ]
+    },
+    {
+     "date": "2026-10-30",
+     "day": "Friday",
+     "title": "Upper B",
+     "focus": "Lats + rear shoulders + arms",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Pull-Up",
+       "2 × 4"
+      ],
+      [
+       "Flat Dumbbell Bench Press",
+       "3 × 8"
+      ],
+      [
+       "Bench-Supported One-Arm Dumbbell Row",
+       "2 × 10 / side"
+      ],
+      [
+       "Dumbbell Lateral Raise",
+       "2 × 15"
+      ],
+      [
+       "Chest-Supported Dumbbell Rear-Delt Fly",
+       "2 × 15"
+      ],
+      [
+       "Hammer Curl",
+       "2 × 10"
+      ],
+      [
+       "Lying Dumbbell Triceps Extension",
+       "2 × 12"
+      ]
+     ]
+    },
+    {
+     "date": "2026-11-01",
+     "day": "Sunday",
+     "title": "Lower B",
+     "focus": "Short thigh support",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Dumbbell Step-Up",
+       "2 × 6 / leg"
+      ],
+      [
+       "Hamstring Bridge Walkout",
+       "2 × 4 out-and-back cycles"
+      ],
+      [
+       "Dumbbell Goblet Squat",
+       "2 × 12"
+      ],
+      [
+       "Dead Bug",
+       "2 × 8 / side"
+      ],
+      [
+       "Side Plank",
+       "2 × 45 sec / side"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "week": 8,
+   "starts": "2026-11-02",
+   "ends": "2026-11-08",
+   "intent": "Keep strength present while the November 15 10K approaches. No late lower-body accumulation.",
+   "note": "Upper body stays productive. Lower work is moderate, crisp and familiar; no new exercise should create race-week soreness.",
+   "sessions": [
+    {
+     "date": "2026-11-02",
+     "day": "Monday",
+     "title": "Upper A",
+     "focus": "Maintain frame development",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Incline Dumbbell Bench Press",
+       "3 × 8"
+      ],
+      [
+       "Chin-Up",
+       "2 × 4"
+      ],
+      [
+       "Chest-Supported Dumbbell Row",
+       "2 × 10"
+      ],
+      [
+       "Incline Dumbbell Curl",
+       "2 × 12"
+      ],
+      [
+       "Low-Incline Dumbbell Fly",
+       "2 × 12"
+      ],
+      [
+       "Dumbbell Lateral Raise",
+       "2 × 15"
+      ],
+      [
+       "Chest-Supported Dumbbell Rear-Delt Fly",
+       "2 × 15"
+      ],
+      [
+       "Seated Dumbbell Overhead Triceps Extension",
+       "2 × 12"
+      ]
+     ]
+    },
+    {
+     "date": "2026-11-05",
+     "day": "Thursday",
+     "title": "Lower A",
+     "focus": "Force maintenance + thigh",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Bulgarian Split Squat",
+       "2 × 6 / leg"
+      ],
+      [
+       "Dumbbell Romanian Deadlift",
+       "2 × 6"
+      ],
+      [
+       "Hamstring Bridge Walkout",
+       "2 × 4 out-and-back cycles"
+      ],
+      [
+       "Side-Lying Hip Adduction",
+       "2 × 12 / side"
+      ],
+      [
+       "Dumbbell Suitcase Hold",
+       "2 × 20 sec / side"
+      ]
+     ]
+    },
+    {
+     "date": "2026-11-06",
+     "day": "Friday",
+     "title": "Upper B",
+     "focus": "Lats + rear shoulders + arms",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Pull-Up",
+       "2 × 4"
+      ],
+      [
+       "Flat Dumbbell Bench Press",
+       "3 × 8"
+      ],
+      [
+       "Bench-Supported One-Arm Dumbbell Row",
+       "2 × 10 / side"
+      ],
+      [
+       "Dumbbell Lateral Raise",
+       "2 × 15"
+      ],
+      [
+       "Chest-Supported Dumbbell Rear-Delt Fly",
+       "2 × 15"
+      ],
+      [
+       "Hammer Curl",
+       "2 × 10"
+      ],
+      [
+       "Lying Dumbbell Triceps Extension",
+       "2 × 12"
+      ]
+     ]
+    },
+    {
+     "date": "2026-11-08",
+     "day": "Sunday",
+     "title": "Lower B",
+     "focus": "Very short thigh support",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Dumbbell Step-Up",
+       "2 × 6 / leg"
+      ],
+      [
+       "Dumbbell Goblet Squat",
+       "2 × 12"
+      ],
+      [
+       "Dead Bug",
+       "2 × 8 / side"
+      ],
+      [
+       "Side Plank",
+       "2 × 45 sec / side"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "week": 9,
+   "starts": "2026-11-09",
+   "ends": "2026-11-15",
+   "intent": "Arrive at the 10K with strength maintained and lower-body fatigue low.",
+   "note": "Three strength exposures only. Tuesday lower work is a primer, not a workout to win. No lower lifting after Tuesday; Sunday is the race.",
+   "sessions": [
+    {
+     "date": "2026-11-09",
+     "day": "Monday",
+     "title": "Upper A",
+     "focus": "Full upper, no fatigue chase",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Incline Dumbbell Bench Press",
+       "3 × 6"
+      ],
+      [
+       "Chin-Up",
+       "2 × 4"
+      ],
+      [
+       "Chest-Supported Dumbbell Row",
+       "2 × 8"
+      ],
+      [
+       "Incline Dumbbell Curl",
+       "2 × 12"
+      ],
+      [
+       "Dumbbell Lateral Raise",
+       "2 × 15"
+      ],
+      [
+       "Chest-Supported Dumbbell Rear-Delt Fly",
+       "2 × 15"
+      ],
+      [
+       "Seated Dumbbell Overhead Triceps Extension",
+       "2 × 12"
+      ]
+     ]
+    },
+    {
+     "date": "2026-11-10",
+     "day": "Tuesday",
+     "title": "Lower Primer",
+     "focus": "Low soreness",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Bulgarian Split Squat",
+       "2 × 5 / leg"
+      ],
+      [
+       "Dumbbell Romanian Deadlift",
+       "2 × 5"
+      ],
+      [
+       "Dumbbell Suitcase Hold",
+       "2 × 20 sec / side"
+      ]
+     ]
+    },
+    {
+     "date": "2026-11-13",
+     "day": "Friday",
+     "title": "Upper B",
+     "focus": "Short frame maintenance",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Pull-Up",
+       "2 × 4"
+      ],
+      [
+       "Flat Dumbbell Bench Press",
+       "2 × 6"
+      ],
+      [
+       "Bench-Supported One-Arm Dumbbell Row",
+       "2 × 8 / side"
+      ],
+      [
+       "Chest-Supported Dumbbell Rear-Delt Fly",
+       "2 × 15"
+      ],
+      [
+       "Hammer Curl",
+       "2 × 10"
+      ],
+      [
+       "Lying Dumbbell Triceps Extension",
+       "2 × 12"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "week": 10,
+   "starts": "2026-11-16",
+   "ends": "2026-11-22",
+   "intent": "Absorb the 10K, restore normal movement and return to development without a rebound volume spike.",
+   "note": "Three sessions. Resume normal loading only when the legs feel normal after the race.",
+   "sessions": [
+    {
+     "date": "2026-11-16",
+     "day": "Monday",
+     "title": "Upper A",
+     "focus": "Restore frame without soreness",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Incline Dumbbell Bench Press",
+       "3 × 8"
+      ],
+      [
+       "Chin-Up",
+       "2 × 4"
+      ],
+      [
+       "Chest-Supported Dumbbell Row",
+       "3 × 10"
+      ],
+      [
+       "Incline Dumbbell Curl",
+       "2 × 12"
+      ],
+      [
+       "Low-Incline Dumbbell Fly",
+       "2 × 12"
+      ],
+      [
+       "Dumbbell Lateral Raise",
+       "2 × 15"
+      ],
+      [
+       "Chest-Supported Dumbbell Rear-Delt Fly",
+       "2 × 15"
+      ],
+      [
+       "Seated Dumbbell Overhead Triceps Extension",
+       "2 × 12"
+      ]
+     ]
+    },
+    {
+     "date": "2026-11-19",
+     "day": "Thursday",
+     "title": "Lower Restore",
+     "focus": "Return thigh / posterior work without soreness",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Bulgarian Split Squat",
+       "2 × 8 / leg"
+      ],
+      [
+       "Dumbbell Romanian Deadlift",
+       "2 × 8"
+      ],
+      [
+       "Hamstring Bridge Walkout",
+       "2 × 4 out-and-back cycles"
+      ],
+      [
+       "Dumbbell Goblet Squat",
+       "2 × 10"
+      ],
+      [
+       "Side-Lying Hip Adduction",
+       "2 × 12 / side"
+      ],
+      [
+       "Seated Dumbbell Calf Raise",
+       "2 × 12"
+      ],
+      [
+       "Dumbbell Suitcase Hold",
+       "2 × 30 sec / side"
+      ]
+     ]
+    },
+    {
+     "date": "2026-11-20",
+     "day": "Friday",
+     "title": "Upper B",
+     "focus": "Lats + rear shoulders + arms",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Pull-Up",
+       "2 × 4"
+      ],
+      [
+       "Flat Dumbbell Bench Press",
+       "3 × 8"
+      ],
+      [
+       "Bench-Supported One-Arm Dumbbell Row",
+       "2 × 10 / side"
+      ],
+      [
+       "Dumbbell Lateral Raise",
+       "2 × 15"
+      ],
+      [
+       "Chest-Supported Dumbbell Rear-Delt Fly",
+       "2 × 15"
+      ],
+      [
+       "Hammer Curl",
+       "2 × 10"
+      ],
+      [
+       "Lying Dumbbell Triceps Extension",
+       "2 × 12"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "week": 11,
+   "starts": "2026-11-23",
+   "ends": "2026-11-29",
+   "intent": "One productive week between races: upper-body development returns fully; lower body stays useful and economical.",
+   "note": "Return to four sessions, but do not chase soreness before the December 6 half.",
+   "sessions": [
+    {
+     "date": "2026-11-23",
+     "day": "Monday",
+     "title": "Upper A",
+     "focus": "Upper chest + lat width + traps",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Incline Dumbbell Bench Press",
+       "4 × 8"
+      ],
+      [
+       "Chin-Up",
+       "3 × 5"
+      ],
+      [
+       "Chest-Supported Dumbbell Row",
+       "3 × 10"
+      ],
+      [
+       "Incline Dumbbell Curl",
+       "2 × 12"
+      ],
+      [
+       "Low-Incline Dumbbell Fly",
+       "2 × 12"
+      ],
+      [
+       "Single-Arm Dumbbell Lateral Raise",
+       "3 × 15 / side"
+      ],
+      [
+       "Chest-Supported Dumbbell Rear-Delt Fly",
+       "2 × 15"
+      ],
+      [
+       "Seated Dumbbell Overhead Triceps Extension",
+       "2 × 12"
+      ]
+     ]
+    },
+    {
+     "date": "2026-11-26",
+     "day": "Thursday",
+     "title": "Lower A",
+     "focus": "Force + thigh density",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Bulgarian Split Squat",
+       "3 × 6 / leg"
+      ],
+      [
+       "Dumbbell Romanian Deadlift",
+       "3 × 6"
+      ],
+      [
+       "Dumbbell Goblet Squat",
+       "2 × 10"
+      ],
+      [
+       "Hamstring Bridge Walkout",
+       "2 × 4 out-and-back cycles"
+      ],
+      [
+       "Side-Lying Hip Adduction",
+       "3 × 15 / side"
+      ],
+      [
+       "Seated Dumbbell Calf Raise",
+       "2 × 12"
+      ],
+      [
+       "Dumbbell Suitcase Hold",
+       "2 × 30 sec / side"
+      ]
+     ]
+    },
+    {
+     "date": "2026-11-27",
+     "day": "Friday",
+     "title": "Upper B",
+     "focus": "Lat width + rear shoulders + sleeves",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Pull-Up",
+       "3 × 5"
+      ],
+      [
+       "Flat Dumbbell Bench Press",
+       "3 × 8"
+      ],
+      [
+       "Bench-Supported One-Arm Dumbbell Row",
+       "3 × 10 / side"
+      ],
+      [
+       "Flat Dumbbell Fly",
+       "2 × 12"
+      ],
+      [
+       "Dumbbell Lateral Raise",
+       "3 × 15"
+      ],
+      [
+       "Chest-Supported Dumbbell Rear-Delt Fly",
+       "3 × 15"
+      ],
+      [
+       "Hammer Curl",
+       "2 × 10"
+      ],
+      [
+       "Lying Dumbbell Triceps Extension",
+       "2 × 12"
+      ]
+     ]
+    },
+    {
+     "date": "2026-11-29",
+     "day": "Sunday",
+     "title": "Lower B",
+     "focus": "Short posterior + thigh support",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Dumbbell Step-Up",
+       "2 × 6 / leg"
+      ],
+      [
+       "Dumbbell Hip Thrust",
+       "2 × 8"
+      ],
+      [
+       "Hamstring Bridge Walkout",
+       "2 × 4 out-and-back cycles"
+      ],
+      [
+       "Dumbbell Goblet Squat",
+       "2 × 12"
+      ],
+      [
+       "Dead Bug",
+       "2 × 8 / side"
+      ],
+      [
+       "Side Plank",
+       "2 × 45 sec / side"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "week": 12,
+   "starts": "2026-11-30",
+   "ends": "2026-12-06",
+   "intent": "Maintain strength and arrive at the December 6 half with quiet legs.",
+   "note": "Three strength exposures. Tuesday lower primer only; no lower-body lifting later in the week. Sunday race replaces Lower B.",
+   "sessions": [
+    {
+     "date": "2026-11-30",
+     "day": "Monday",
+     "title": "Upper A",
+     "focus": "Maintain the frame",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Incline Dumbbell Bench Press",
+       "3 × 6"
+      ],
+      [
+       "Chin-Up",
+       "2 × 4"
+      ],
+      [
+       "Chest-Supported Dumbbell Row",
+       "2 × 8"
+      ],
+      [
+       "Incline Dumbbell Curl",
+       "2 × 12"
+      ],
+      [
+       "Dumbbell Lateral Raise",
+       "2 × 15"
+      ],
+      [
+       "Chest-Supported Dumbbell Rear-Delt Fly",
+       "2 × 15"
+      ],
+      [
+       "Seated Dumbbell Overhead Triceps Extension",
+       "2 × 12"
+      ]
+     ]
+    },
+    {
+     "date": "2026-12-01",
+     "day": "Tuesday",
+     "title": "Lower Primer",
+     "focus": "Low soreness",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Bulgarian Split Squat",
+       "2 × 5 / leg"
+      ],
+      [
+       "Dumbbell Romanian Deadlift",
+       "2 × 5"
+      ],
+      [
+       "Dumbbell Suitcase Hold",
+       "2 × 20 sec / side"
+      ]
+     ]
+    },
+    {
+     "date": "2026-12-04",
+     "day": "Friday",
+     "title": "Upper B",
+     "focus": "Short frame maintenance",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Pull-Up",
+       "2 × 4"
+      ],
+      [
+       "Flat Dumbbell Bench Press",
+       "2 × 6"
+      ],
+      [
+       "Bench-Supported One-Arm Dumbbell Row",
+       "2 × 8 / side"
+      ],
+      [
+       "Chest-Supported Dumbbell Rear-Delt Fly",
+       "2 × 15"
+      ],
+      [
+       "Hammer Curl",
+       "2 × 10"
+      ],
+      [
+       "Lying Dumbbell Triceps Extension",
+       "2 × 12"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "week": 13,
+   "starts": "2026-12-07",
+   "ends": "2026-12-13",
+   "intent": "Recover from the half, review the running response and re-enter normal strength without forcing the calendar.",
+   "note": "Three sessions. If the half was treated harder than planned, hold lower loading. This week is for information, not proving toughness.",
+   "sessions": [
+    {
+     "date": "2026-12-07",
+     "day": "Monday",
+     "title": "Upper A",
+     "focus": "Restore frame without soreness",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Incline Dumbbell Bench Press",
+       "3 × 8"
+      ],
+      [
+       "Chin-Up",
+       "2 × 4"
+      ],
+      [
+       "Chest-Supported Dumbbell Row",
+       "3 × 10"
+      ],
+      [
+       "Incline Dumbbell Curl",
+       "2 × 12"
+      ],
+      [
+       "Low-Incline Dumbbell Fly",
+       "2 × 12"
+      ],
+      [
+       "Dumbbell Lateral Raise",
+       "2 × 15"
+      ],
+      [
+       "Chest-Supported Dumbbell Rear-Delt Fly",
+       "2 × 15"
+      ],
+      [
+       "Seated Dumbbell Overhead Triceps Extension",
+       "2 × 12"
+      ]
+     ]
+    },
+    {
+     "date": "2026-12-10",
+     "day": "Thursday",
+     "title": "Lower Restore",
+     "focus": "Return thigh / posterior work without soreness",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Bulgarian Split Squat",
+       "2 × 8 / leg"
+      ],
+      [
+       "Dumbbell Romanian Deadlift",
+       "2 × 8"
+      ],
+      [
+       "Hamstring Bridge Walkout",
+       "2 × 4 out-and-back cycles"
+      ],
+      [
+       "Dumbbell Goblet Squat",
+       "2 × 10"
+      ],
+      [
+       "Side-Lying Hip Adduction",
+       "2 × 12 / side"
+      ],
+      [
+       "Seated Dumbbell Calf Raise",
+       "2 × 12"
+      ],
+      [
+       "Dumbbell Suitcase Hold",
+       "2 × 30 sec / side"
+      ]
+     ]
+    },
+    {
+     "date": "2026-12-11",
+     "day": "Friday",
+     "title": "Upper B",
+     "focus": "Lats + rear shoulders + arms",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Pull-Up",
+       "2 × 4"
+      ],
+      [
+       "Flat Dumbbell Bench Press",
+       "3 × 8"
+      ],
+      [
+       "Bench-Supported One-Arm Dumbbell Row",
+       "2 × 10 / side"
+      ],
+      [
+       "Dumbbell Lateral Raise",
+       "2 × 15"
+      ],
+      [
+       "Chest-Supported Dumbbell Rear-Delt Fly",
+       "2 × 15"
+      ],
+      [
+       "Hammer Curl",
+       "2 × 10"
+      ],
+      [
+       "Lying Dumbbell Triceps Extension",
+       "2 × 12"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "week": 14,
+   "starts": "2026-12-14",
+   "ends": "2026-12-20",
+   "intent": "Return to the most productive development dose of the season with running still governing lower-body progression.",
+   "note": "Upper body can progress when recovery is normal. Lower body stays compact, strong and repeatable. Prioritize lats, side and rear shoulders, upper chest, arms and thighs. Glutes and calves stay at maintenance; skip calf work if tenderness returns.",
+   "sessions": [
+    {
+     "date": "2026-12-14",
+     "day": "Monday",
+     "title": "Upper A",
+     "focus": "Upper chest + lat width + traps",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Incline Dumbbell Bench Press",
+       "4 × 8"
+      ],
+      [
+       "Chin-Up",
+       "3 × 6"
+      ],
+      [
+       "Chest-Supported Dumbbell Row",
+       "3 × 10"
+      ],
+      [
+       "Incline Dumbbell Curl",
+       "2 × 12"
+      ],
+      [
+       "Low-Incline Dumbbell Fly",
+       "2 × 12"
+      ],
+      [
+       "Dumbbell Lateral Raise",
+       "3 × 15"
+      ],
+      [
+       "Chest-Supported Dumbbell Rear-Delt Fly",
+       "2 × 15"
+      ],
+      [
+       "Seated Dumbbell Overhead Triceps Extension",
+       "2 × 12"
+      ]
+     ]
+    },
+    {
+     "date": "2026-12-17",
+     "day": "Thursday",
+     "title": "Lower A",
+     "focus": "Thigh + posterior density",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Bulgarian Split Squat",
+       "3 × 6 / leg"
+      ],
+      [
+       "Dumbbell Romanian Deadlift",
+       "3 × 6"
+      ],
+      [
+       "Dumbbell Goblet Squat",
+       "2 × 10"
+      ],
+      [
+       "Hamstring Bridge Walkout",
+       "2 × 4 out-and-back cycles"
+      ],
+      [
+       "Side-Lying Hip Adduction",
+       "3 × 15 / side"
+      ],
+      [
+       "Seated Dumbbell Calf Raise",
+       "2 × 12"
+      ],
+      [
+       "Dumbbell Suitcase Hold",
+       "2 × 30 sec / side"
+      ]
+     ]
+    },
+    {
+     "date": "2026-12-18",
+     "day": "Friday",
+     "title": "Upper B",
+     "focus": "Lat width + rear shoulders + sleeves",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Pull-Up",
+       "3 × 6"
+      ],
+      [
+       "Flat Dumbbell Bench Press",
+       "3 × 8"
+      ],
+      [
+       "Bench-Supported One-Arm Dumbbell Row",
+       "3 × 10 / side"
+      ],
+      [
+       "Flat Dumbbell Fly",
+       "2 × 12"
+      ],
+      [
+       "Dumbbell Lateral Raise",
+       "3 × 15"
+      ],
+      [
+       "Chest-Supported Dumbbell Rear-Delt Fly",
+       "3 × 15"
+      ],
+      [
+       "Hammer Curl",
+       "2 × 10"
+      ],
+      [
+       "Lying Dumbbell Triceps Extension",
+       "2 × 12"
+      ]
+     ]
+    },
+    {
+     "date": "2026-12-20",
+     "day": "Sunday",
+     "title": "Lower B",
+     "focus": "Posterior + single-leg + thigh support",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Dumbbell Step-Up",
+       "3 × 6 / leg"
+      ],
+      [
+       "Dumbbell Hip Thrust",
+       "2 × 8"
+      ],
+      [
+       "Hamstring Bridge Walkout",
+       "2 × 4 out-and-back cycles"
+      ],
+      [
+       "Dumbbell Goblet Squat",
+       "2 × 12"
+      ],
+      [
+       "Dead Bug",
+       "3 × 8 / side"
+      ],
+      [
+       "Side Plank",
+       "2 × 45 sec / side"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "week": 15,
+   "starts": "2026-12-21",
+   "ends": "2026-12-27",
+   "intent": "Progress the year-end build by reps or the smallest load increase while keeping the running feel recognizable.",
+   "note": "No new movements. Beat Week 14 only where the evidence says to. Do not use holiday schedule disruption as a reason to cram missed work.",
+   "sessions": [
+    {
+     "date": "2026-12-21",
+     "day": "Monday",
+     "title": "Upper A",
+     "focus": "Upper chest + lat width + traps",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Incline Dumbbell Bench Press",
+       "4 × 8"
+      ],
+      [
+       "Chin-Up",
+       "3 × 7"
+      ],
+      [
+       "Chest-Supported Dumbbell Row",
+       "3 × 10"
+      ],
+      [
+       "Incline Dumbbell Curl",
+       "2 × 12"
+      ],
+      [
+       "Low-Incline Dumbbell Fly",
+       "2 × 12"
+      ],
+      [
+       "Dumbbell Lateral Raise",
+       "3 × 15"
+      ],
+      [
+       "Chest-Supported Dumbbell Rear-Delt Fly",
+       "2 × 15"
+      ],
+      [
+       "Seated Dumbbell Overhead Triceps Extension",
+       "2 × 12"
+      ]
+     ]
+    },
+    {
+     "date": "2026-12-24",
+     "day": "Thursday",
+     "title": "Lower A",
+     "focus": "Thigh + posterior density",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Bulgarian Split Squat",
+       "3 × 6 / leg"
+      ],
+      [
+       "Dumbbell Romanian Deadlift",
+       "3 × 6"
+      ],
+      [
+       "Dumbbell Goblet Squat",
+       "2 × 10"
+      ],
+      [
+       "Hamstring Bridge Walkout",
+       "2 × 4 out-and-back cycles"
+      ],
+      [
+       "Side-Lying Hip Adduction",
+       "3 × 15 / side"
+      ],
+      [
+       "Seated Dumbbell Calf Raise",
+       "2 × 12"
+      ],
+      [
+       "Dumbbell Suitcase Hold",
+       "2 × 30 sec / side"
+      ]
+     ]
+    },
+    {
+     "date": "2026-12-25",
+     "day": "Friday",
+     "title": "Upper B",
+     "focus": "Lat width + rear shoulders + sleeves",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Pull-Up",
+       "3 × 7"
+      ],
+      [
+       "Flat Dumbbell Bench Press",
+       "3 × 8"
+      ],
+      [
+       "Bench-Supported One-Arm Dumbbell Row",
+       "3 × 10 / side"
+      ],
+      [
+       "Flat Dumbbell Fly",
+       "2 × 12"
+      ],
+      [
+       "Dumbbell Lateral Raise",
+       "3 × 15"
+      ],
+      [
+       "Chest-Supported Dumbbell Rear-Delt Fly",
+       "3 × 15"
+      ],
+      [
+       "Hammer Curl",
+       "2 × 10"
+      ],
+      [
+       "Lying Dumbbell Triceps Extension",
+       "2 × 12"
+      ]
+     ]
+    },
+    {
+     "date": "2026-12-27",
+     "day": "Sunday",
+     "title": "Lower B",
+     "focus": "Posterior + single-leg + thigh support",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Dumbbell Step-Up",
+       "3 × 6 / leg"
+      ],
+      [
+       "Dumbbell Hip Thrust",
+       "2 × 8"
+      ],
+      [
+       "Hamstring Bridge Walkout",
+       "2 × 4 out-and-back cycles"
+      ],
+      [
+       "Dumbbell Goblet Squat",
+       "2 × 12"
+      ],
+      [
+       "Dead Bug",
+       "3 × 8 / side"
+      ],
+      [
+       "Side Plank",
+       "2 × 45 sec / side"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "week": 16,
+   "starts": "2026-12-28",
+   "ends": "2026-12-31",
+   "intent": "Close the 2026 study block with low fatigue, measurements and a clear record for January.",
+   "note": "Two sessions only. No failure, no testing. Complete standardized photos, body-mass average and circumferences before January starts fresh.",
+   "sessions": [
+    {
+     "date": "2026-12-28",
+     "day": "Monday",
+     "title": "Upper Closeout",
+     "focus": "Frame quality + measurements",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Incline Dumbbell Bench Press",
+       "3 × 8"
+      ],
+      [
+       "Chin-Up",
+       "2 × 4"
+      ],
+      [
+       "Chest-Supported Dumbbell Row",
+       "2 × 10"
+      ],
+      [
+       "Dumbbell Lateral Raise",
+       "2 × 15"
+      ],
+      [
+       "Chest-Supported Dumbbell Rear-Delt Fly",
+       "2 × 15"
+      ],
+      [
+       "Hammer Curl",
+       "2 × 10"
+      ],
+      [
+       "Seated Dumbbell Overhead Triceps Extension",
+       "2 × 12"
+      ]
+     ]
+    },
+    {
+     "date": "2026-12-30",
+     "day": "Wednesday",
+     "title": "Lower Closeout",
+     "focus": "Quiet legs + final thigh signal",
+     "versionCreated": "2026-10-13",
+     "exercises": [
+      [
+       "Bulgarian Split Squat",
+       "2 × 6 / leg"
+      ],
+      [
+       "Dumbbell Romanian Deadlift",
+       "2 × 6"
+      ],
+      [
+       "Dumbbell Goblet Squat",
+       "2 × 10"
+      ],
+      [
+       "Side-Lying Hip Adduction",
+       "2 × 12 / side"
+      ],
+      [
+       "Dumbbell Suitcase Hold",
+       "2 × 20 sec / side"
+      ]
+     ]
+    }
+   ]
+  }
+ ]
+}
