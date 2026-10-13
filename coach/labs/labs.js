@@ -2860,6 +2860,7 @@ document.addEventListener('click', (event) => {
   if (!go) return;
   const where = go.dataset.nav;
   if (where === 'console') { location.href = '/coach/console/'; return; }
+  if (where === 'runs') { location.href = '/coach/runs/'; return; }
   if (where === 'brief') { location.hash = '#/brief'; return; }
   const slug = record?.athlete?.slug || route().slug
     || bench.slice().sort(benchOrder)[0]?.slug;
