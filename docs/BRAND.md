@@ -388,8 +388,8 @@ Public share cards now have a reviewed file allowlist in `data/public-share.json
 
 - **What the site is for.** The site's main job is hiring Brice for Run Development. Its second job is being a running resource. The menu is ordered by that: hire first, train second, learn third.
 - **The panel.** Bone `#e8e3d9`, ink `#161916`, quiet text `#5e625b`. A right-side drawer, 75vw capped at 460px, leaves the page visible beside it on phones. It may scroll vertically on shorter screens; links have at least 44px touch targets. Keep house type and one divider per boundary. Do not add a bend, photograph or another emblem to the panel.
-- **Work with me.** Run Development is the first and largest item, with its existing 8-week / $1,200 offer under it. Strength coaching and Running analysis sit below it at the normal size. Secondary prices and app platform notes belong on their destination pages.
-- **Train.** Running app, Strength app, Training plans, Thursday sessions. Existing destination URLs stay unchanged.
+- **Work with me.** Run Development is the first and largest item, with “Run faster. Get stronger. Move better.” beneath it. Strength coaching and Running analysis sit below it at the normal size, without descriptions. Secondary prices and app platform notes belong on their destination pages.
+- **Train with direction.** The shared promise appears once in the menu heading. Running app, Strength app, Training plans, Thursday sprints. Brief descriptions explain the app functions, race plans, and sprint development. Existing destination URLs stay unchanged.
 - **Learn.** Training library and Athlete studies. Search lives inside the Library, so the menu has one door, not two.
 - **Foot.** The email address, @form.practice and Contact.
 - **Also is gone.** Analysis and Strength now live in the menu. FORM House moved to the footer, next to Brand.
@@ -397,7 +397,7 @@ Public share cards now have a reviewed file allowlist in `data/public-share.json
 - **Works without JavaScript.** The menu opens with `#site-menu` and closes with a link. With JavaScript it locks scroll, traps focus, closes on Escape or a tap outside, and returns focus to the Menu link.
 - **Preview fixes.** Space activates the enhanced Menu button. Focus enters immediately without scrolling. Hash navigation updates the accessible dialog state, and closing it clears the visible menu even when the CSS target is retained by history replacement. Expanded/collapsed state belongs to the JavaScript enhancement; the no-JavaScript link does not falsely announce a closed menu when its hash opens the panel.
 
-**Still open.** Verify and publish this refined source, with actual production readback. Plans page redesign and extending the menu to other house pages remain separate work.
+**Release continuity.** PR #273 published the initial refined menu/footer; PR #274 corrected iPhone footer glyphs and added the three-line trigger; PR #275 published the 75% drawer and complete closing motion. Later approved wording and its release receipt are recorded in the roadmap. Plans page redesign and extending the menu to other house pages remain separate work.
 
 ## October 7 · Reading room pass after the lesson rebuild
 

@@ -152,7 +152,7 @@ fs.mkdirSync(out,{recursive:true});
  // Real confirmed gathering remains separate from an unpublished workout.
  await page.goto(origin+'/thursday');await page.evaluate(()=>window.FORM_THURSDAY_READY);
  assert.equal(await page.locator('#thu-gathering-status').innerText(),'Gathering confirmed');
- assert.equal(await page.locator('#thu-session-name').innerText(),'Workout to be confirmed');
+ assert.equal(await page.locator('#thu-session-name').innerText(),'This week’s workout');
  assert.deepEqual(errors,[],'No uncaught page errors');assert.deepEqual([...new Set(missing)],[],'Local resources resolve');
  await browser.close();
  console.log('PASS: 48 route/width views, 16 full-page captures, three photograph aspect ratios with contrast-review captures, readable folds, keyboard selection, inquiry reject/retry/receipt, upload limits, 200% reflow and gathering/workout separation. No live writes.');
