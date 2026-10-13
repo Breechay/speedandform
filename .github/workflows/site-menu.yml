@@ -1,0 +1,58 @@
+name: Shared public menu
+on:
+  pull_request:
+    paths: ['**/*.html', '*.html', 'css/**', 'js/sf-menu.js', 'scripts/build-site-menu.cjs', 'scripts/site-menu-panel.html', 'scripts/build-*.cjs', 'sitemap.xml', 'netlify.toml', 'tests/site-menu*', '.github/workflows/site-menu.yml']
+  push:
+    branches: [main]
+    paths: ['**/*.html', '*.html', 'css/**', 'js/sf-menu.js', 'scripts/build-site-menu.cjs', 'scripts/site-menu-panel.html', 'scripts/build-*.cjs', 'sitemap.xml', 'netlify.toml', 'tests/site-menu*', '.github/workflows/site-menu.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build the configured production pipeline and verify shared navigation
+        run: |
+          node --check scripts/build-site-menu.cjs
+          node --check js/sf-menu.js
+          node --check tests/site-menu-browser.cjs
+          node - <<'JS'
+          const fs = require('node:fs');
+          const cp = require('node:child_process');
+          const source = fs.readFileSync('netlify.toml', 'utf8');
+          const command = source.match(/^\s*command\s*=\s*"([^"]+)"/m)?.[1];
+          if (!command || !command.includes('build-site-menu.cjs')) throw new Error('Production build must generate the shared menu');
+          cp.execSync(command, {stdio: 'inherit'});
+          JS
+          node tests/site-menu.cjs
+          node scripts/build-site-menu.cjs
+          node tests/site-menu.cjs
+      - name: Install isolated browser runtime
+        run: |
+          npm install --prefix /tmp/sf-menu-browser --no-audit --no-fund playwright@1.58.2
+          /tmp/sf-menu-browser/node_modules/.bin/playwright install --with-deps ${{ matrix.browser }}
+      - name: Verify public page menus with all traffic intercepted
+        env:
+          SF_MENU_BROWSER: ${{ matrix.browser }}
+          PLAYWRIGHT_MODULE: /tmp/sf-menu-browser/node_modules/playwright
+          SF_MENU_ARTIFACTS: /tmp/site-menu-review
+        run: |
+          mkdir -p /tmp/site-menu-review
+          git rev-parse HEAD > /tmp/site-menu-review/tested-commit.txt
+          node tests/site-menu-browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: site-menu-${{ matrix.browser }}
+          path: /tmp/site-menu-review/
+          retention-days: 14

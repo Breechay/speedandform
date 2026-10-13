@@ -1,6 +1,9 @@
-/* Homepage navigation. House bone and ink, with the page still visible beside the drawer.
+/* Shared public navigation. House bone and ink, with the page visible beside the drawer.
    The :target fallback keeps navigation available without JavaScript. */
-.sf-menu{position:fixed;inset:0;z-index:60;visibility:hidden;pointer-events:none}
+.sf-menu{position:fixed;inset:0;z-index:10000;visibility:hidden;pointer-events:none;text-align:left;font:400 17px/1.5 "Inter Tight",Arial,sans-serif;letter-spacing:normal;text-transform:none}
+.sf-menu,.sf-menu *{box-sizing:border-box;transition-property:none}
+.sf-menu .sf-menu-group{width:auto;max-width:none;margin:0;background:transparent;border:0;border-top:1px solid rgba(22,25,22,.18);border-radius:0;box-shadow:none}
+.sf-menu .sf-menu-group ul,.sf-menu .sf-menu-group li{margin:0;padding:0;list-style:none;border:0;background:none}
 html:not(.sf-menu-enhanced) .sf-menu:target,.sf-menu.is-open,.sf-menu.is-closing{visibility:visible;pointer-events:auto}
 .sf-menu-scrim{position:absolute;inset:0;background:rgba(5,6,6,.42);opacity:0;transition:opacity .3s var(--ease,cubic-bezier(.22,.61,.36,1))}
 .sf-menu-panel{box-sizing:border-box;position:absolute;top:0;right:0;bottom:0;width:min(460px,75%);display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain;padding:env(safe-area-inset-top,0px) max(20px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px));background:#e8e3d9;color:#161916;box-shadow:-12px 0 48px rgba(0,0,0,.12);font-family:"Inter Tight",Arial,sans-serif;transform:translateX(100%);transition:transform .38s var(--ease,cubic-bezier(.22,.61,.36,1))}
@@ -34,3 +37,23 @@ html.sf-menu-locked,html.sf-menu-locked body{overflow:clip}
 .header .header-right .sf-menu-toggle:focus-visible{outline:2px solid var(--bone);outline-offset:3px}
 
 html.sf-menu-enhanced{scrollbar-gutter:stable}
+
+/* A single shared control fits each room's existing navigation and palette. */
+.sf-menu-host{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.sf-menu-host>.sf-menu-toggle{display:inline-flex!important;align-items:center;justify-content:center;width:44px;height:44px;min-width:44px;min-height:44px;flex:none;padding:10px;margin:0;border:0;border-radius:0;box-shadow:none;background:transparent;color:inherit;text-decoration:none;line-height:1}
+.sf-menu-host>.sf-menu-toggle::before,.sf-menu-host>.sf-menu-toggle::after{display:none}
+.sf-menu-host>.sf-menu-toggle:hover{opacity:.75}
+.sf-menu-host>.sf-menu-toggle:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+.masthead.sf-menu-host{flex-wrap:nowrap;gap:12px}
+.masthead.sf-menu-host>.status{flex:1;min-width:0;text-align:right}
+.sf-menu .sf-menu-close,.sf-menu a:hover,.sf-menu a:focus{color:#161916;border-radius:0}
+.sf-public-masthead{display:flex;align-items:center;justify-content:space-between;gap:20px;width:min(1120px,calc(100% - 48px));margin:0 auto;padding:18px 0;color:inherit}
+.sf-public-masthead>a:first-child{color:inherit;font:500 17px/1.4 "Inter Tight",Arial,sans-serif;text-decoration:none}
+.sf-public-masthead>.sf-brand::before{background:currentColor}
+@media(max-width:760px){.fl-nav nav a[href="#how"],.bs-nav nav a[href="#curriculum"],.bs-nav nav a[href="#demo"]{display:none}.sf-menu-host{gap:12px}}
+@media print{.sf-menu,.sf-menu-toggle,.sf-public-masthead{display:none!important}}
+
+/* Keep the viewport drawer outside Strength’s responsive content containers. */
+body[data-sculpt-landing]{container-type:normal}
+body[data-sculpt-landing]>main,body[data-sculpt-landing]>.bs-header{container-type:inline-size;container-name:sculpt-page}
+@media(max-width:360px){body[data-sculpt-landing] .bs-footer{grid-template-columns:1fr}body[data-sculpt-landing] .bs-footer .bs-mark{flex-wrap:wrap}}
