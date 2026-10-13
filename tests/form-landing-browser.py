@@ -39,8 +39,8 @@ try:
         check(f'Native field material at {width}',page.locator('body').evaluate('(e)=>getComputedStyle(e).backgroundColor')=='rgb(7, 17, 15)')
         for img in page.locator('img').all():img.scroll_into_view_if_needed();img.evaluate('(i)=>i.decode()')
         check(f'José identity at {width}',page.locator('.fl-athlete').inner_text()=='JOSÉ.')
-        check(f'Official screenshot loaded at {width}',page.locator('.fl-store-screen img').evaluate('(i)=>i.complete&&i.naturalWidth==600&&i.naturalHeight==1299'))
-        check(f'Preview label visible at {width}',page.get_by_text('Design preview',exact=True).is_visible())
+        check(f'Session shown with its parts at {width}',page.locator('.fl-parts li').count()==2 and '58 min' in page.locator('.fl-session-total').inner_text())
+        check(f'Preview label visible at {width}',page.get_by_text('From the app',exact=True).is_visible())
         check(f'All tabs present at {width}',page.get_by_role('tab').count()==5)
         for tab in page.get_by_role('tab').all():
             tab.click();check(f'{tab.inner_text()} panel contained at {width}',page.get_by_role('tabpanel').count()==1 and page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
@@ -70,8 +70,7 @@ try:
     page.goto(BASE+'/form/#type-speed');check('Direct explanation URL opens correct panel',page.locator('#type-speed').is_visible())
     page.evaluate("location.hash='type-long'");page.wait_for_function("!document.getElementById('type-long').hidden")
     check('Changed hash switches panels',page.locator('#type-long').is_visible())
-    page.goto(BASE+'/form/');page.locator('.fl-preview-doors a').nth(1).click();check('Illustration door opens actual section',urlsplit(page.url).fragment=='session-details')
-    dark=page.locator('.fl-faq details',has_text='dark screen');dark.locator('summary').click();check('New design not sold as current screenshot',all(w in dark.inner_text() for w in ('new design','example run','version you can download')))
+    page.goto(BASE+'/form/');check('Hero week is labelled as example training',all(w in page.locator('#preview-caption').inner_text() for w in ('as it opens in the app','example')))
     check('Reduced motion honored',page.locator('.fl-preview').evaluate('(e)=>getComputedStyle(e).animationName')=='none' and page.locator('html').evaluate('(e)=>getComputedStyle(e).scrollBehavior')=='auto')
     # Test the existing provider-agnostic hook without opening Apple or sending an event.
     page.evaluate("document.addEventListener('click',e=>{if(e.target.closest('[data-sf-event]'))e.preventDefault()});window.sfEvents=[]")

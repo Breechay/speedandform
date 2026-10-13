@@ -18,10 +18,10 @@ try:
         check(f'Live version at {width}',page.locator('body').get_attribute('data-form-landing')=='20260917-p5a')
         check(f'Live layout contained at {width}',page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
         check(f'Current app destination at {width}',page.locator('.fl-hero .fl-button').get_attribute('href')=='https://apps.apple.com/us/app/form-running-plans/id6761313085')
-        check(f'Preview clearly identified at {width}',page.get_by_text('Design preview',exact=True).is_visible())
+        check(f'Preview clearly identified at {width}',page.get_by_text('From the app',exact=True).is_visible())
         for image in page.locator('img').all():image.scroll_into_view_if_needed();image.evaluate('(i)=>i.decode()')
         check(f'José identity at {width}',page.locator('.fl-athlete').inner_text()=='JOSÉ.')
-        check(f'Official screenshot loaded at {width}',page.locator('.fl-store-screen img').evaluate('(i)=>i.naturalWidth===600&&i.naturalHeight===1299'))
+        check(f'Session shown with its parts at {width}',page.locator('.fl-parts li').count()==2)
         for name in ['Threshold','Interval','Speed','Long Run','Easy']:
             page.get_by_role('tab',name=name,exact=True).click();check(f'{name} panel works at {width}',page.get_by_role('tabpanel').count()==1 and page.get_by_role('tabpanel').get_attribute('data-session')==name)
         page.locator('.fl-faq summary').nth(2).click();check(f'Live appearance distinction at {width}','previews the new interface' in page.locator('.fl-faq details').nth(2).inner_text());page.locator('.fl-faq summary').nth(2).click()
