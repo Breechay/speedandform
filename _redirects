@@ -142,6 +142,12 @@
 /support                /form/support/              301
 /plan-spring-2026       /plan-spring-2026.html      200
 /thursday               /thursday.html              200
+
+# Group runs: each run lives at the app's own share address, speedandform.com/run/<slug>
+# ("track-thursday-2026-10-01"): details before the run, its photographs after.
+/run                    /runs/                      301
+/run/                   /runs/                      301
+/run/*                  /run/template.html          200
 /plan-speed-emergence   /plans/                    301!
 
 # Interactive homepage mockup (does not replace production index)
