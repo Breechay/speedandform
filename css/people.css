@@ -122,3 +122,5 @@ main{max-width:1200px;margin:0 auto;padding:24px 24px 80px}
  .pp-clips{padding:0 0;grid-template-columns:1fr}
  .pp-clips .pp-embed{margin:0}
 }
+.pp-lede{margin:16px 0 0;font-size:18px;line-height:1.45;color:var(--sec);max-width:44ch}
+.pp-lede a{color:var(--ink)}

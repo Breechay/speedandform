@@ -25,7 +25,7 @@ function menuParent(html){
  }
  return null;
 }
-const expected=['/coaching/miami/','/coaching/strength/','/analysis/','/form/','/forge-sculpt/','/plans/','/thursday','/library','/labs/','/contact'];
+const expected=['/coaching/miami/','/coaching/strength/','/analysis/','/form/','/forge-sculpt/','/plans/','/thursday','/runs/','/people/','/library','/labs/','/contact'];
 for(const file of files){
  assert.ok(!privatePath.test(file),'Private/app execution routes excluded: '+file);
  const html=read(file);
