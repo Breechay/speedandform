@@ -204,7 +204,7 @@ function accountView(record, email, fallbackProgram) {
       ${fallbackProgram ? `<div><span>Web reference</span><b>${esc(fallbackProgram.title)} · ${esc(fallbackProgram.duration_weeks)} weeks</b></div>` : ''}
     </div>
     <p class="athlete-readonly">${esc(delivery.accountNote)}${fallbackProgram ? ' A web fallback is available; it does not claim Forge receipt delivery or infer your native position.' : ''}</p>
-    <div class="athlete-account-actions"><button class="button" id="setPassword" type="button">Set a password</button><button class="button" id="linkApple" type="button" hidden>Link Apple</button><button class="button" id="changeEmail" type="button">Change email</button><a class="button" href="mailto:brice@speedandform.com?subject=FORM%20account%20help">Get help</a><button class="button quiet" id="accountSignOut" type="button">Sign out</button></div>
+    <div class="athlete-account-actions"><a class="button" href="/athlete/profile/">Public profile</a><button class="button" id="setPassword" type="button">Set a password</button><button class="button" id="linkApple" type="button" hidden>Link Apple</button><button class="button" id="changeEmail" type="button">Change email</button><a class="button" href="mailto:brice@speedandform.com?subject=FORM%20account%20help">Get help</a><button class="button quiet" id="accountSignOut" type="button">Sign out</button></div>
   </section>`;
 }
 
