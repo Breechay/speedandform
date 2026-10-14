@@ -43,6 +43,19 @@
   var IG = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>';
   var STRAVA = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l6-14 6 14"/><path d="M13 20l3.5-7 3.5 7"/></svg>';
 
+  function ytThumb(id) { return 'https://i.ytimg.com/vi/' + encodeURIComponent(id) + '/hqdefault.jpg'; }
+  function libSrc(lib, id, size) { var ph = lib && lib[id]; return ph && ph.files ? (ph.files[size] || ph.files['1200'] || ph.files['1600'] || ph.files['800']) : ''; }
+  function sessionDate(d) { return new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', month: 'long', day: 'numeric', year: 'numeric' }).format(new Date(d + 'T00:00:00Z')); }
+  var PLAY = '<span class="pp-play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg></span>';
+  // A session card: the film's poster (YouTube's frame, or a library photo) linking to the session page.
+  function sessionCard(se, lib) {
+    var img = se.youtube_id ? ytThumb(se.youtube_id) : (se.poster ? libSrc(lib, se.poster, '1200') : (se.library && se.library[0] ? libSrc(lib, se.library[0], '1200') : ''));
+    var film = !!se.youtube_id;
+    return '<a class="pp-film" href="/session/' + esc(se.slug) + '"' + (film ? ' aria-label="Watch: ' + esc(se.title) + '"' : '') + '>' +
+      (img ? '<span class="pp-film-frame"><img src="' + esc(img) + '" alt="" loading="lazy">' + (film ? PLAY : '') + '</span>' : '') +
+      '<b>' + esc(se.title) + '</b><span>' + esc([se.detail, sessionDate(se.date)].filter(Boolean).join(' · ')) + '</span></a>';
+  }
+
   // ---------------------------------------------------------------- directory
   function renderDirectory() {
     var list = $('pp-list'), find = $('pp-find'), note = $('pp-note'), people = [];
@@ -141,17 +154,60 @@
           (p.discipline ? '<p class="pp-disc">' + esc(p.discipline) + '</p>' : '') +
           (links ? '<div class="pp-links">' + links + '</div>' : '') +
           (now || best ? '<div class="pp-facts">' + now + best + '</div>' : '') +
+          ((p.sessions || []).length ? '<section class="pp-sessions" aria-label="Film"><p class="pp-mono">' + ((p.sessions || []).some(function (x) { return x.youtube_id; }) ? 'Film' : 'Sessions') + '</p>' + p.sessions.map(function (x) { return sessionCard(x, lib); }).join('') + '</section>' : '') +
         '</div></div>' +
         (count ? '<section class="pp-media" aria-label="Photos and films"><h2>Photos &amp; films</h2>' + media + '</section>' : '') +
         '<p class="pp-foot">Photographs by Brice. Speed &amp; Form, Miami.</p>';
       // Mobile reorder: the avatar sits beside the name, as on the app profile.
       var idl = root.querySelector('.pp-idline'), h1 = root.querySelector('.pp-intro h1');
       if (window.matchMedia('(max-width:760px)').matches && idl && h1) idl.appendChild(h1);
-      window.FORM_PERSON = { slug: p.slug, photos: count, groups: groups.length, fields: Object.keys(p).sort() };
+      window.FORM_PERSON = { slug: p.slug, photos: count, groups: groups.length, sessions: (p.sessions || []).length, fields: Object.keys(p).sort() };
     }
     document.addEventListener('click', function (e) { if (e.target.closest('[data-pp-retry]')) load(); });
     load();
   }
 
-  if ($('pp-profile')) renderProfile(); else if ($('pp-list')) renderDirectory();
+  // ---------------------------------------------------------------- session
+  function renderSession() {
+    var root = $('pp-session');
+    var slug = decodeURIComponent((location.pathname.match(/^\/session\/([^/]+)\/?$/) || [])[1] || '').toLowerCase();
+    function missing(msg, retry) {
+      root.innerHTML = '<section class="pp-missing"><h1>' + esc(msg) + '</h1><p class="pp-note">' +
+        (retry ? '<button type="button" data-pp-retry>Try again</button> · ' : '') + '<a href="/people/">All athletes</a></p></section>';
+      window.FORM_SESSION = { error: msg };
+    }
+    function embed(id, title) {
+      return '<div class="pp-embed"><iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) + '?rel=0&modestbranding=1&playsinline=1" title="' + esc(title) +
+        '" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>';
+    }
+    function load() {
+      if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug)) return missing('This session isn’t here.');
+      Promise.all([request('rpc/collective_session', { slug: slug }), library().catch(function () { return {}; })]).then(function (res) {
+        var se = res[0], lib = res[1];
+        if (!se || !se.slug) return missing('This session isn’t here.');
+        document.title = se.title + ' | Speed & Form';
+        var who = (se.people || []).map(function (p) {
+          return '<a href="/people/' + esc(p.slug) + '">' + (p.avatar ? '<img src="' + esc(p.avatar) + '" alt="" width="32" height="32">' : '') + esc(p.name) + '</a>';
+        }).join('');
+        var clips = (se.clips || []).filter(function (c) { return c && c.youtube_id; });
+        var photos = (se.library || []).map(function (id) { var ph = lib[id]; return ph ? '<img src="' + esc(libSrc(lib, id, '1200')) + '" alt="' + esc(ph.alt || '') + '" loading="lazy">' : ''; }).join('');
+        root.innerHTML =
+          '<section class="pp-sess-head"><p class="pp-mono">' + esc(['Session', sessionDate(se.date), se.place].filter(Boolean).join(' · ')) + '</p>' +
+          '<h1>' + esc(se.title) + '</h1>' + (se.detail ? '<p class="pp-bio">' + esc(se.detail) + '</p>' : '') +
+          (who ? '<div class="pp-who">' + who + '</div>' : '') + '</section>' +
+          (se.youtube_id ? embed(se.youtube_id, se.title) : (se.poster ? '<img class="pp-hero pp-wide" src="' + esc(libSrc(lib, se.poster, '1200')) + '" alt="">' : '')) +
+          (clips.length ? '<section class="pp-media"><h2>Clips</h2><div class="pp-clips">' + clips.map(function (c) {
+            return '<figure>' + embed(c.youtube_id, c.title || se.title) + (c.title ? '<figcaption>' + esc(c.title) + '</figcaption>' : '') + '</figure>';
+          }).join('') + '</div></section>' : '') +
+          (photos ? '<section class="pp-media"><h2>Photos</h2><div class="pp-grid">' + photos + '</div></section>' : '') +
+          (se.run ? '<p class="pp-note"><a href="' + esc(runHref(se.run.title, se.run.starts_at, se.run.series_id)) + '">' + esc(se.run.title) + ' · the group run ›</a></p>' : '') +
+          '<p class="pp-foot">Filmed by Brice. Speed &amp; Form, Miami.</p>';
+        window.FORM_SESSION = { slug: se.slug, film: !!se.youtube_id, clips: clips.length, people: (se.people || []).length };
+      }).catch(function () { missing('This can’t be loaded right now.', true); });
+    }
+    document.addEventListener('click', function (e) { if (e.target.closest('[data-pp-retry]')) load(); });
+    load();
+  }
+
+  if ($('pp-session')) renderSession(); else if ($('pp-profile')) renderProfile(); else if ($('pp-list')) renderDirectory();
 }());

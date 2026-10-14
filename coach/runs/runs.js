@@ -54,6 +54,7 @@ let selected = null;
 let ed = null; // the open album editor
 let people = []; // collective_people, for tagging
 let requests = null; // pending "That's me" requests (null: unknown)
+let sessions = null; // collective_sessions with their people (null: unknown)
 
 // ------------------------------------------------------------------ time (Miami)
 
@@ -120,6 +121,80 @@ async function loadRuns() {
 
 // People and tags (20261013230000). Brice reads and writes the tables directly; RLS allows
 // publishers only. A tag says who is in a photo, never who attended.
+// Sessions (20261014000000): one athlete's own workout with its film. Never a group run: no
+// "I'm in", no attendance. Public only when published and everyone in it is visible.
+async function loadSessions() {
+  try {
+    const { data, error } = await sb.from('collective_sessions')
+      .select('id,slug,title,detail,happened_on,place,youtube_id,clips,published,collective_session_people(person_id)')
+      .order('happened_on', { ascending: false });
+    if (error) throw error;
+    sessions = data || [];
+  } catch { sessions = null; }
+}
+const ytID = (v) => {
+  const s = String(v || '').trim();
+  if (!s) return null;
+  if (/^[A-Za-z0-9_-]{11}$/.test(s)) return s;
+  const m = s.match(/(?:youtu\.be\/|v=|\/shorts\/|\/embed\/|\/live\/)([A-Za-z0-9_-]{11})/);
+  return m ? m[1] : undefined;
+};
+function sessionRow(se) {
+  const p = parts(`${se.happened_on}T16:00:00Z`);
+  const who = (se.collective_session_people || []).map((x) => personName(personById(x.person_id))).join(', ');
+  return `<button type="button" class="row${selected === `s:${se.id}` ? ' sel' : ''}" data-session="${se.id}">
+    <span class="d">${esc(p.wd)}<b>${esc(p.day)}</b></span>
+    <span class="t">${esc(se.title)}<small>${esc([who, se.youtube_id ? 'Film' : 'No film yet'].filter(Boolean).join(' · '))}</small></span>
+    <span class="st${se.published ? ' act' : ''}">${se.published ? 'Published' : 'Draft'}</span></button>`;
+}
+function sessionSheet(se) {
+  const mine = new Set((se?.collective_session_people || []).map((x) => x.person_id));
+  const clips = (se?.clips || []).map((c) => `https://youtu.be/${c.youtube_id}${c.title ? ` | ${c.title}` : ''}`).join('\n');
+  openSheet(se ? 'Session' : 'New session', `
+    <div class="fields">
+      <label class="wide">Title<input type="text" name="title" required maxlength="80" value="${esc(se?.title || '')}" placeholder="7 × 800 at 2:44"></label>
+      <label class="wide">Detail<input type="text" name="detail" maxlength="120" value="${esc(se?.detail || '')}" placeholder="5:30 a mile · 2:00 jog between"></label>
+      <label>Date<input type="date" name="date" required value="${esc(se?.happened_on || today())}"></label>
+      <label>Place<input type="text" name="place" maxlength="60" value="${esc(se?.place || '')}"></label>
+      <label class="wide">Film (YouTube link)<input type="text" name="youtube" value="${se?.youtube_id ? `https://youtu.be/${esc(se.youtube_id)}` : ''}" placeholder="https://youtu.be/…" autocomplete="off"></label>
+      <label class="wide">Clips, one per line (link | title)<textarea name="clips" rows="3" placeholder="https://youtube.com/shorts/… | Rep 4">${esc(clips)}</textarea></label>
+    </div>
+    <p class="label newLabel">Whose session</p>
+    <div class="peopleList">${people.map((p) => `<label class="check"><input type="checkbox" name="p" value="${p.id}"${mine.has(p.id) ? ' checked' : ''}>
+      ${p.avatar_path ? `<img src="${esc(p.avatar_path)}" alt="" width="28" height="28">` : ''}<span>${esc(personName(p))}${p.visible ? '' : ' <span class="quiet">· profile hidden, so this stays private</span>'}</span></label>`).join('')}</div>
+    <label class="check"><input type="checkbox" name="published"${se?.published ? ' checked' : ''}> Published: on their profile, the site and the app</label>`,
+  async (f) => {
+    const title = f.get('title').trim();
+    const yt = ytID(f.get('youtube'));
+    if (yt === undefined) throw new Error('That film link isn’t a YouTube link.');
+    const clipRows = String(f.get('clips') || '').split('\n').map((l) => l.trim()).filter(Boolean).map((l) => {
+      const [link, ...rest] = l.split('|'); const id = ytID(link);
+      if (!id) throw new Error(`Not a YouTube link: ${link.trim()}`);
+      const t = rest.join('|').trim(); return t ? { youtube_id: id, title: t } : { youtube_id: id };
+    });
+    const who = f.getAll('p');
+    if (!who.length) throw new Error('Choose whose session this is.');
+    const row = { title, detail: f.get('detail').trim() || null, happened_on: f.get('date'), place: f.get('place').trim() || null,
+      youtube_id: yt, clips: clipRows, published: f.get('published') === 'on' };
+    let id = se?.id;
+    if (id) {
+      const { error } = await sb.from('collective_sessions').update(row).eq('id', id);
+      if (error) throw error;
+    } else {
+      const base = `${(personById(who[0])?.slug || 'session')}-${title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}-${row.happened_on}`.slice(0, 60).replace(/-$/, '');
+      let slug = base, n = 2;
+      while ((sessions || []).some((x) => x.slug === slug)) slug = `${base}-${n++}`;
+      const { data, error } = await sb.from('collective_sessions').insert({ ...row, slug }).select('id').single();
+      if (error) throw error;
+      id = data.id;
+    }
+    const adds = who.filter((p) => !mine.has(p)), removes = [...mine].filter((p) => !who.includes(p));
+    if (adds.length) { const { error } = await sb.from('collective_session_people').insert(adds.map((person_id) => ({ session_id: id, person_id }))); if (error) throw error; }
+    if (removes.length) { const { error } = await sb.from('collective_session_people').delete().eq('session_id', id).in('person_id', removes); if (error) throw error; }
+    await loadSessions(); paintList();
+  }, se ? 'Save' : 'Add session');
+}
+
 async function loadPeople() {
   try {
     const { data, error } = await sb.from('collective_people')
@@ -163,7 +238,9 @@ function paintList() {
     ? `<button type="button" class="row reqRow${selected === 'requests' ? ' sel' : ''}" data-requests><span class="d">TAGS<b>${requests.length}</b></span><span class="t">Tag requests<small>People who said “That’s me”</small></span><span class="st act">Review</span></button>` : '';
   $('rows').innerHTML = reqs +
     `<p class="grp label">Upcoming</p>${upcoming.length ? upcoming.map(rowHTML).join('') : '<p class="quiet pad">Nothing scheduled. Add the next run.</p>'}` +
-    `<p class="grp label">Past</p>${past.length ? past.map(rowHTML).join('') : '<p class="quiet pad">No past runs yet.</p>'}`;
+    `<p class="grp label">Past</p>${past.length ? past.map(rowHTML).join('') : '<p class="quiet pad">No past runs yet.</p>'}` +
+    `<p class="grp label sessHead">Sessions <button type="button" class="pill" data-new-session>New session</button></p>` +
+    (sessions === null ? '<p class="quiet pad">Sessions can’t be loaded right now.</p>' : sessions.length ? sessions.map(sessionRow).join('') : '<p class="quiet pad">No sessions yet. Add one for a filmed workout.</p>');
 }
 
 // ------------------------------------------------------------------ upcoming run
@@ -754,6 +831,8 @@ document.addEventListener('click', async (e) => {
   if (t.closest('#newRun')) { newRun(); return; }
   const a = t.closest('[data-act]'); if (a) { act(a.dataset.act, runs.find((r) => r.id === selected)); return; }
   if (t.closest('[data-reopen]')) { select(selected); return; }
+  if (t.closest('[data-new-session]')) { sessionSheet(null); return; }
+  const sr = t.closest('[data-session]'); if (sr) { sessionSheet((sessions || []).find((x) => x.id === sr.dataset.session)); return; }
   if (t.closest('[data-requests]')) { if (!(await leaveAlbum())) return; selected = 'requests'; paintList(); $('wrap').classList.add('editing'); paintRequests(); return; }
   const ok = t.closest('[data-req-ok]'), no = t.closest('[data-req-no]');
   if (ok || no) {
@@ -842,7 +921,7 @@ window.addEventListener('beforeunload', (e) => {
 });
 
 async function refresh() {
-  await Promise.all([loadRuns(), loadPeople()]); paintList();
+  await Promise.all([loadRuns(), loadPeople(), loadSessions()]); paintList();
   if (selected) { const r = runs.find((x) => x.id === selected); if (r && isUpcoming(r)) paintUpcoming(r); }
 }
 
