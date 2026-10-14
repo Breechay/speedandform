@@ -51,6 +51,9 @@ function q(table) {
     const match = (r) => st.filters.every(([k, v, isIn]) => (isIn ? v.includes(r[k]) : v === null ? r[k] == null : r[k] === v));
     if (st.op === 'delete') { const hit = rows.filter(match); hit.forEach((r) => rows.splice(rows.indexOf(r), 1)); log({ delete: table, ids: hit.map((r) => r.id) }); return { data: hit, error: null }; }
     if (st.op === 'insert' && Array.isArray(st.row)) {
+      // Postgres semantics: one duplicate fails the whole batch.
+      if (table === 'collective_person_tags' && st.row.some((row) => rows.some((r) => r.person_id === row.person_id && r.asset_id === row.asset_id && row.asset_id)))
+        return { data: null, error: { message: 'duplicate key value violates unique constraint "collective_person_tags_asset"' } };
       const recs = st.row.map((row) => Object.assign({ id: 'n' + Math.random().toString(16).slice(2, 8) }, row));
       recs.forEach((rec) => { log({ insert: table, row: rec }); rows.push(rec); });
       return { data: recs, error: null };
@@ -332,6 +335,26 @@ with sync_playwright() as pw:
     page.locator('#sheetSave').click(); page.wait_for_function('!document.getElementById("sheet").open')
     check('unticking removes the tag, not the photo', not any(t['asset_id'] == 'r0' and t['person_id'] == 'pj' for t in S(page)['tables']['collective_person_tags'])
           and any(a['id'] == 'r0' for a in S(page)['tables']['collective_roll_assets']))
+    # a pending requester ticked together with someone new to the photo: both end up confirmed
+    page.evaluate('''()=>window.__S.tables.collective_person_tags.push({id:'t-req2',person_id:'ph',asset_id:'r2',library_id:null,status:'requested',created_at:'2026-10-13T21:00:00Z'})''')
+    page.locator('[data-run="p1"]').click(); page.locator('[data-run="p2"]').click(); page.wait_for_selector('[data-people="r2"]')
+    page.locator('[data-people="r2"]').click()
+    check('pending requester is marked in the sheet', 'asked to be tagged' in page.locator('#sheetBody').inner_text())
+    page.locator('input[name=p][value=ph]').check(); page.locator('input[name=p][value=pj]').check()
+    page.locator('#sheetSave').click(); page.wait_for_function('!document.getElementById("sheet").open')
+    r2 = [t for t in S(page)['tables']['collective_person_tags'] if t['asset_id'] == 'r2']
+    check('request confirmed, not duplicated', [t['status'] for t in r2 if t['person_id'] == 'ph'] == ['confirmed'])
+    check('the other person tagged in the same save', [t['status'] for t in r2 if t['person_id'] == 'pj'] == ['confirmed'])
+    # a failed batch insert is reported, never silently dropped
+    page.evaluate('''()=>window.__S.tables.collective_person_tags.push({id:'t-dup',person_id:'pj',asset_id:'r1',library_id:null,status:'confirmed',created_at:'x'})''')
+    # (the editor does not know about t-dup, so ticking José on r1 collides on the server)
+    page.evaluate('''()=>{const st=window.FORM_RUNS.state(); st.tags=st.tags.filter(t=>t.id!=='t-dup');}''')
+    page.locator('[data-people="r1"]').click(); page.locator('input[name=p][value=pj]').check()
+    page.locator('#sheetSave').click()
+    page.wait_for_function('/duplicate/.test(document.getElementById("sheetNote").textContent)')
+    check('a failed tag save says so', page.locator('#sheet').evaluate('d=>d.open'))
+    page.locator('#sheetCancel').click()
+
     # an edit, then straight to another run: the save happens first
     page.locator('[data-toggle="r0"]').click()
     page.locator('[data-run="p1"]').click()

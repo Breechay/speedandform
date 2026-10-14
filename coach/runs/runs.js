@@ -432,10 +432,12 @@ function whoLine(assetID) {
 
 // Who is in this photo: tick the people, or add someone new.
 function tagSheet(assetID) {
-  const tagged = new Set(ed.tags.filter((t) => t.asset_id === assetID && t.status === 'confirmed').map((t) => t.person_id));
+  const mine = ed.tags.filter((t) => t.asset_id === assetID);
+  const tagged = new Set(mine.filter((t) => t.status === 'confirmed').map((t) => t.person_id));
+  const asked = new Set(mine.filter((t) => t.status === 'requested').map((t) => t.person_id));
   openSheet('Who’s in this photo?', `
     <div class="peopleList">${people.map((p) => `<label class="check"><input type="checkbox" name="p" value="${p.id}"${tagged.has(p.id) ? ' checked' : ''}>
-      ${p.avatar_path ? `<img src="${esc(p.avatar_path)}" alt="" width="28" height="28">` : ''}<span>${esc(personName(p))}${p.visible ? '' : ' <span class="quiet">· profile hidden</span>'}</span></label>`).join('') || '<p class="quiet">No one yet.</p>'}</div>
+      ${p.avatar_path ? `<img src="${esc(p.avatar_path)}" alt="" width="28" height="28">` : ''}<span>${esc(personName(p))}${asked.has(p.id) ? ' <span class="quiet">· asked to be tagged</span>' : ''}${p.visible ? '' : ' <span class="quiet">· profile hidden</span>'}</span></label>`).join('') || '<p class="quiet">No one yet.</p>'}</div>
     <p class="label newLabel">Someone new</p>
     <div class="fields">
       <label>First name<input type="text" name="first" maxlength="40" autocomplete="off"></label>
@@ -460,11 +462,18 @@ function tagSheet(assetID) {
       if (error) throw error;
       people.push(data); want.add(data.id);
     }
-    const adds = [...want].filter((id) => !tagged.has(id));
-    const removes = ed.tags.filter((t) => t.asset_id === assetID && t.status === 'confirmed' && !want.has(t.person_id)).map((t) => t.id);
+    // Ticking someone who asked confirms their request; everyone else gets a new tag. An untick
+    // leaves a pending request alone (Decline is on the Tag requests screen).
+    const confirms = mine.filter((t) => t.status === 'requested' && want.has(t.person_id)).map((t) => t.id);
+    const adds = [...want].filter((id) => !tagged.has(id) && !asked.has(id));
+    const removes = mine.filter((t) => t.status === 'confirmed' && !want.has(t.person_id)).map((t) => t.id);
+    for (const id of confirms) {
+      const { error } = await sb.rpc('collective_confirm_tag', { tag: id });
+      if (error) throw error;
+    }
     if (adds.length) {
       const { error } = await sb.from('collective_person_tags').insert(adds.map((person_id) => ({ person_id, asset_id: assetID, status: 'confirmed', confirmed_at: new Date().toISOString() })));
-      if (error && !/duplicate/i.test(error.message)) throw error;
+      if (error) { await loadAssetTags(); paintAlbum(); throw error; }
     }
     if (removes.length) {
       const { error } = await sb.from('collective_person_tags').delete().in('id', removes);
