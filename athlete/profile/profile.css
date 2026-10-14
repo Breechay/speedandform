@@ -1,0 +1,23 @@
+/* Your public profile (owner controls). Graphite room; CSP style-src 'self', so no inline styles. */
+.pf{max-width:640px;margin:0 auto;padding:28px 20px 80px}
+.pf h1{margin:6px 0 0;font-size:34px;letter-spacing:-.03em;font-weight:620}
+.pf .lede{margin:10px 0 0;color:var(--secondary);font-size:15px;line-height:1.5}
+.pf-switch{margin-top:24px;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:0 16px;border:1px solid var(--line, #2a3134);border-radius:14px;cursor:pointer}
+.pf-switch b{font-size:16px;font-weight:600}
+.pf-switch input,.pf-field input[type=checkbox]{width:22px;height:22px;accent-color:var(--lime)}
+.pf-sec{margin-top:30px}
+.pf-sec>.eyebrow{margin-bottom:10px}
+.pf-names{display:flex;gap:8px;flex-wrap:wrap}
+.pf-names label{display:flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:1px solid var(--line, #2a3134);border-radius:999px;cursor:pointer;font-size:15px}
+.pf-field{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 14px;align-items:start;padding:14px 0;border-top:1px solid var(--line, #2a3134)}
+.pf-field:last-child{border-bottom:1px solid var(--line, #2a3134)}
+.pf-field .field-label{grid-column:1}
+.pf-field .show{grid-column:2;grid-row:1;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--secondary);min-height:44px}
+.pf-field .value{grid-column:1/-1;font-size:15px}
+.pf-draft{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--secondary)}
+.pf-count{grid-column:1/-1;font-size:12px;color:var(--secondary);text-align:right}
+.pf-tags{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+.pf-tag{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--secondary)}
+.pf-tag img,.pf-tag .ph{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;background:#1a1f21;display:block}
+.pf-tag button{min-height:36px}
+.pf-actions{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}

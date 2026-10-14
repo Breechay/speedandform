@@ -42,7 +42,7 @@ Owner screen intro: "Only the details you choose appear publicly. Your full plan
 - Website: `/people/` (directory and search), `/people/<slug>` (profile), name tags in the album viewer at `/run/<slug>`. Owned by Claude Browser.
 - App: the same screens from the canvas, against these calls. Owned by Claude Code.
 - Web Runs room (Brice): tag people on any album photo (add someone new there too), and review "That's me" requests (Confirm / Decline).
-- Not built yet: owner controls on the web.
+- Website owner controls: `/athlete/profile/` (linked from My training › Account). Show or hide, name shown, each field one by one, keep or rewrite the line, Instagram and Strava, remove a tag or cancel a request. After a failed save it re-reads and says what is saved; it never says "nothing changed".
 
 ## Never in static files
 

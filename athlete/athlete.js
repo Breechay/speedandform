@@ -2,7 +2,7 @@ import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorksp
 import { changeEmail, loadAthleteRecord } from '/private/data.js';
 import { escapeHtml } from '/private/record.js';
 import { loadStrengthFallback } from '/athlete/strength-fallback.js';
-import { renderAthleteWorkspace } from '/athlete/workspace.js';
+import { renderAthleteWorkspace } from '/athlete/workspace.js?v=2';
 
 const app = document.getElementById('app');
 const signOutButton = document.getElementById('signOut');
