@@ -72,6 +72,15 @@
       "kind": "coach_report",
       "body_mass": "Holding near 160 lb",
       "note": "Coach summary of recent weigh-ins; individual readings not filed."
+    },
+    {
+      "date": "2026-10-14",
+      "kind": "athlete_report",
+      "kcal": 4280,
+      "carbohydrate_g": 403,
+      "protein_g": null,
+      "fat_g": null,
+      "note": "Athlete text screenshot: 'I'm at 403 carbs with 4280 cals.' Reporting moment is not a confirmed full-day close; measured intake composition and historical carbohydrate baseline unavailable."
     }
   ],
   "app_note": "Written so the Strength app can later show the day's tier beside the session. The day type comes from the planned run and lift for that date.",
@@ -79,5 +88,18 @@
     "training_prescription_changed": false,
     "nutrition_changed": true,
     "native_assignment_changed": false
+  },
+  "observation_20261014": {
+    "body_mass": "Coach reports fluctuating in the 160s with occasional 158 lb readings; comparable series absent.",
+    "strength": "Athlete reports lifting heavier; not evidence by itself of tissue gain.",
+    "prior_carbohydrate_baseline": "Athlete answered no when asked whether he knew prior carb intake.",
+    "diet_experiment": "Athlete enjoys oats and plans to introduce them as a carbohydrate source; not yet documented as consumed.",
+    "coach_interpretation": "Earlier increase in calories was not accompanied by a sufficiently explicit macronutrient breakdown. Carbohydrate adequacy is a working hypothesis, not a demonstrated cause of the body-weight pattern.",
+    "monitor": [
+      "Record daily carbohydrate, protein, fat and calories, with actual day-end totals distinguished from mid-day readings.",
+      "Use comparable morning weights and 7-day average, alongside waist and training response.",
+      "Document oat intake, gastrointestinal tolerance, session fueling, perceived energy and recovery."
+    ],
+    "prescription_changes": "None established by this evidence entry; existing fuel-by-day guidance remains an authored coach decision."
   }
 }
