@@ -112,3 +112,12 @@ select:focus,input:focus,textarea:focus,button:focus-visible,a:focus-visible{out
   .kv{grid-template-columns:1fr}
   .fields{grid-template-columns:1fr}
 }
+/* People and tags */
+.who{margin:0;font-size:12.5px;color:var(--sec);overflow-wrap:anywhere}
+.who b{color:var(--text);font-weight:500}
+.peopleList{display:flex;flex-direction:column;gap:2px;margin-top:14px;max-height:260px;overflow:auto}
+.peopleList .check{display:flex;align-items:center;gap:10px;min-height:44px;cursor:pointer}
+.peopleList img{width:28px;height:28px;border-radius:50%;object-fit:cover}
+.newLabel{margin:20px 0 0}
+.reqRow .d b{font-size:20px}
+.reqGrid .ph{cursor:default}

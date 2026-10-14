@@ -41,4 +41,9 @@ Owner screen intro: "Only the details you choose appear publicly. Your full plan
 
 - Website: `/people/` (directory and search), `/people/<slug>` (profile), name tags in the album viewer at `/run/<slug>`. Owned by Claude Browser.
 - App: the same screens from the canvas, against these calls. Owned by Claude Code.
-- Not built yet: owner controls on the web, and tagging inside the web Runs room. Brice can tag through the app or the table until then.
+- Web Runs room (Brice): tag people on any album photo (add someone new there too), and review "That's me" requests (Confirm / Decline).
+- Not built yet: owner controls on the web.
+
+## Never in static files
+
+`/media/library/library.json` holds no names, handles or tags, and its ids, titles and alt text name no one. Who is in a photo lives only in `collective_person_tags`, so hiding a profile or removing a tag takes effect everywhere at once.
