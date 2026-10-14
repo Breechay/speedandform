@@ -93,6 +93,9 @@ export const supabase = {
     if (name === 'collective_photo_opt_outs') return { data: S.optOuts, error: null };
     if (name === 'collective_album_draft') return { data: S.drafts[args.run] ? [S.drafts[args.run]] : [], error: null };
     if (name === 'collective_album_save_draft') {
+      S.inflight = (S.inflight || 0) + 1; S.maxInflight = Math.max(S.maxInflight || 0, S.inflight);
+      if (S.saveDelay) await new Promise((r) => setTimeout(r, S.saveDelay));
+      S.inflight--;
       const d = S.drafts[args.run] || { version: 0 };
       if (d.version !== args.expected) return { data: null, error: { message: 'draft_conflict' } };
       S.drafts[args.run] = Object.assign({}, d, { version: d.version + 1, items: args.items, layout: args.layout, appearance: args.appearance });
@@ -355,11 +358,29 @@ with sync_playwright() as pw:
     check('a failed tag save says so', page.locator('#sheet').evaluate('d=>d.open'))
     page.locator('#sheetCancel').click()
 
+    # Make cover, change the layout and Publish within a second, on a slow connection:
+    # one save at a time, nothing lost, no conflict, and the published version is the saved one.
+    page.locator('[data-run="p1"]').click(); page.locator('[data-run="p2"]').click(); page.wait_for_selector('[data-toggle="r2"]')
+    page.evaluate('window.__S.saveDelay = 600; window.__S.maxInflight = 0')
+    for a in ('r0', 'r1'):
+        if page.locator(f'[data-toggle="{a}"][aria-pressed=false]').count(): page.locator(f'[data-toggle="{a}"]').click()
+    if page.locator('[data-toggle="r2"][aria-pressed=true]').count(): page.locator('[data-toggle="r2"]').click()
+    page.wait_for_timeout(750)  # the first autosave is now in flight
+    page.locator('[data-cover="r1"]').click(); page.select_option('#layout', 'contact_sheet'); page.locator('#publish').click()
+    page.wait_for_function('/Live in the app/.test(document.getElementById("saveStatus").textContent)', timeout=15000)
+    st = S(page)
+    check('saves never overlap', st['maxInflight'] == 1)
+    check('cover and layout both saved', st['drafts']['p2']['items'][0]['asset'] == 'r1' and st['drafts']['p2']['layout'] == 'contact_sheet')
+    pubs = [o for o in st['log'] if o.get('rpc') == 'collective_album_publish']
+    check('published the version that holds the edit', pubs[-1]['args']['expected'] == st['drafts']['p2']['version'] and page.locator('[data-conflict]').count() == 0)
+    page.evaluate('window.__S.saveDelay = 0')
+
     # an edit, then straight to another run: the save happens first
     page.locator('[data-toggle="r0"]').click()
+    want = page.evaluate('window.FORM_RUNS.state().items.map(i => i.asset)')
     page.locator('[data-run="p1"]').click()
-    page.wait_for_function('window.__S.log.some(o => o.rpc === "collective_album_save_draft")')
-    check('leaving saves the pending edit first', [i['asset'] for i in S(page)['drafts']['p2']['items']] == ['r0'])
+    page.wait_for_function('window.FORM_RUNS.state() && window.FORM_RUNS.state().run.id === "p1"')
+    check('leaving saves the pending edit first', [i['asset'] for i in S(page)['drafts']['p2']['items']] == want)
     # a failing save keeps the album open
     page.locator('[data-run="p2"]').click(); page.wait_for_selector('[data-toggle="r1"]')
     page.evaluate('window.__S.rpcFail={collective_album_save_draft:"network"}')

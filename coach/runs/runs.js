@@ -537,8 +537,8 @@ function paintAlbum() {
     <div class="head" id="albumHead"></div>
     ${ed.conflict ? `<div class="banner"><p>This draft changed elsewhere. Your edit isn’t saved.</p><button type="button" class="btn" data-conflict="theirs">Load the latest</button><button type="button" class="btn" data-conflict="mine">Keep mine</button></div>` : ''}
     <div class="tools">
-      <label><span class="label">Layout</span><select id="layout">${LAYOUTS.map(([v, t]) => `<option value="${v}"${v === ed.layout ? ' selected' : ''}>${t}</option>`).join('')}</select></label>
-      <label><span class="label">Page</span><select id="appearance"><option value="cream"${ed.appearance === 'cream' ? ' selected' : ''}>Cream</option><option value="dark"${ed.appearance === 'dark' ? ' selected' : ''}>Dark</option></select></label>
+      <label><span class="label">Layout</span><select id="layout"${ed.publishing ? ' disabled' : ''}>${LAYOUTS.map(([v, t]) => `<option value="${v}"${v === ed.layout ? ' selected' : ''}>${t}</option>`).join('')}</select></label>
+      <label><span class="label">Page</span><select id="appearance"${ed.publishing ? ' disabled' : ''}><option value="cream"${ed.appearance === 'cream' ? ' selected' : ''}>Cream</option><option value="dark"${ed.appearance === 'dark' ? ' selected' : ''}>Dark</option></select></label>
     </div>
     <label class="drop" id="drop"><span><b>Drop photos, a folder or a camera ZIP</b> · or choose files</span><span class="mono">Tap a photo to put it in or take it out · ${LIMIT} at most</span>
       <input type="file" id="files" multiple accept="image/jpeg,image/png,image/heic,image/heif,image/webp,.zip,application/zip"></label>
@@ -600,18 +600,28 @@ function scheduleSave() {
   setStatus('Not saved yet');
   ed.saveTimer = setTimeout(save, 700);
 }
-async function save() {
-  if (!ed || ed.conflict) return false;
+// Saves run one at a time. Each sends the latest edit with the version the previous save
+// returned, so autosave, retries, leaving and Publish can never race on the same version.
+function save() {
+  if (!ed) return Promise.resolve(false);
+  const e = ed;
+  e.queue = (e.queue || Promise.resolve(true)).then(() => saveNow(e), () => saveNow(e));
+  return e.queue;
+}
+async function saveNow(e) {
+  if (e !== ed || e.conflict) return false;
+  clearTimeout(e.saveTimer); e.saveTimer = null;
   setStatus('Saving…');
   try {
-    ed.version = await rpc('collective_album_save_draft', { run: ed.run.id, expected: ed.version, items: ed.items, layout: ed.layout, appearance: ed.appearance });
+    e.version = await rpc('collective_album_save_draft', { run: e.run.id, expected: e.version, items: e.items, layout: e.layout, appearance: e.appearance });
     const t = new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit' }).format(new Date());
-    setStatus(`Saved ${t}`, 'good');
+    if (e === ed) setStatus(`Saved ${t}`, 'good');
     return true;
   } catch (err) {
-    if (String(err?.message).includes('draft_conflict')) { ed.conflict = true; setStatus('Not saved', 'bad'); paintAlbum(); return false; }
+    if (e !== ed) return false;
+    if (String(err?.message).includes('draft_conflict')) { e.conflict = true; setStatus('Not saved', 'bad'); paintAlbum(); return false; }
     const waits = [3000, 8000, 20000];
-    if (ed.retry < waits.length) { setStatus('Not saved yet. Trying again…', 'bad'); ed.saveTimer = setTimeout(save, waits[ed.retry++]); }
+    if (e.retry < waits.length) { setStatus('Not saved yet. Trying again…', 'bad'); e.saveTimer = setTimeout(save, waits[e.retry++]); }
     else setStatus('Not saved. Check the connection; your edit stays here.', 'bad');
     return false;
   }
@@ -632,15 +642,16 @@ async function publish() {
   try {
     clearTimeout(ed.saveTimer);
     if (!(await save())) throw new Error(ed.conflict ? 'This album changed elsewhere.' : 'Couldn’t save the draft, so nothing was published.');
+    const version = ed.version, assets = ed.items.map((i) => i.asset);
     setStatus('Preparing the public copies…');
-    const rows = await rpc('collective_album_stage_paths', { run: ed.run.id, assets: ed.items.map((i) => i.asset) });
+    const rows = await rpc('collective_album_stage_paths', { run: ed.run.id, assets });
     for (const c of rows || []) {
       if (c.staged || !c.source_path) continue;
       const { error } = await sb.storage.from(c.source_bucket).copy(c.source_path, c.path, { destinationBucket: PUBLIC });
       if (error && !/exist|409|duplicate/i.test(String(error.message || error.statusCode))) throw error;
     }
     setStatus('Publishing…');
-    ed.live = await rpc('collective_album_publish', { run: ed.run.id, expected: ed.version });
+    ed.live = await rpc('collective_album_publish', { run: ed.run.id, expected: version });
     ed.takenDown = false;
     setStatus('Live in the app and on the site', 'good');
     await loadRuns(); paintList();
@@ -752,6 +763,7 @@ document.addEventListener('click', async (e) => {
     await paintRequests(); paintList(); return;
   }
   if (!ed) return;
+  if (ed.publishing && t.closest('[data-toggle],[data-cover],[data-move],[data-people],[data-confirm]')) return;
   const pp = t.closest('[data-people]'); if (pp) { tagSheet(pp.dataset.people); return; }
   const tog = t.closest('[data-toggle]');
   if (tog) {
