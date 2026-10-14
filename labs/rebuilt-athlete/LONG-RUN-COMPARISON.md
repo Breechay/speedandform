@@ -214,3 +214,24 @@ When revising the study HTML, include September 25's verified mechanics, insert 
 Website integration completed in the source on October 11, 2026: `index.html#long-run-mechanics-study-20261009` now presents the three outing descriptions before the verified table and five whole-run metric plots. The two exact full-mile lap charts are labeled separately. This source integration does not itself establish a production deploy, Calendar update or native-app synchronization.
 
 The generator preserves the existing section anchor and all unrelated HTML, embedded images and training panels. Run it only after reviewing newer observation decisions. No numerical mechanics-by-mile overlay has been invented. Rendering and deployment acceptance are recorded separately from this source receipt.
+
+## October 14 · Spontaneous six-mile run and organization through movement
+
+**Outing before numbers.** Brice felt inspired to go out again, ran shirtless on the Biscayne Boulevard / Venetian Causeway route, and encountered Simon Robin. He focused on fluidity, symmetry, calm and letting his legs move freely, reporting an effort of **4/10**. Just after halfway, he noticed a bilateral heavy or fluid-like feeling around the lower waist, sides, hips and lower back. It faded approximately a mile later. Immediately afterward, he felt his sides tighter and his body sharper and more "organized" for efficient movement. These are subjective descriptions; no literal redistribution of fat/fluid, measured tissue adaptation or measured left-right symmetry is established. A later recovery check is not yet recorded.
+
+**Device and Strava screens, October 14:** 6.00 mi; 50:05 moving time; 8:20/mi average pace; 7:17/mi best pace; 162 bpm average HR, 176 bpm maximum; 167 spm average cadence, 174 maximum; 1.16 m average stride length; 265 ms average ground contact time; 8.1% vertical ratio; 9.3 cm vertical oscillation; 386 W average power, 521 W maximum; aerobic/anaerobic Training Effect 4.4/0.0; beginning/ending stamina potential 100%/56%; Garmin temperature range 82–97 F (device temperature, not established ambient weather). The Strava summary displays 138 ft elevation gain, distinct from Garmin elevation minimum -2 ft and maximum 30 ft. Garmin run/walk shows 49:58 running, 0:06 walking. These values are device outputs, not independent clinical tests.
+
+| Mile | Displayed pace | Average HR |
+| --- | --- | --- |
+| 1 | 8:29/mi | 141 bpm |
+| 2 | 8:21/mi | 160 bpm |
+| 3 | 8:20/mi | 168 bpm |
+| 4 | 8:20/mi | 169 bpm |
+| 5 | 8:12/mi | 169 bpm |
+| 6 | 8:18/mi | 167 bpm |
+
+The relatively level HR and mile paces after mile 3, alongside fairly stable plotted cadence, stride length, vertical oscillation and contact time, are consistent with sustained rhythm. They do **not** prove economy, symmetrical gait, the mechanism of the waist sensation or a particular physical adaptation. The HR trace rose early before settling. Garmin configured HR zones show Z5 (>166 bpm) 27:34/55%, Z4 (149–166) 18:02/36%, Z3 (130–148) 2:58/5%, Z2 (112–129) 0:46/1%, Z1 (93–111) 0:22/0%; displayed shares are rounded. The mismatch between high device-classified HR and 4/10 perceived effort is unresolved. Possible contributing factors include individual zone settings, environmental conditions, conditioning and optical HR measurement limitations. Brice does not enjoy regular chest-strap use and may wear it occasionally; the sensor source for this specific run is not independently confirmed. Do not declare Garmin zones physiologically correct or dismiss the internal training load on the basis of RPE alone.
+
+**Working question:** Does a freely chosen comfortable rhythm remain available across different outings with acceptable later recovery? Track only observations Brice naturally provides; do not prescribe more mileage to eliminate the sensation, turn pace or cadence into a target, or interpret one outing as proof of tissue remodeling. If focal pain, radiating symptoms, renewed shin pain or altered gait emerge, reassess separately.
+
+**Provenance:** Athlete's October 14 first-person reports and supplied Strava/Garmin screenshots IMG_9470.jpeg, IMG_9471.jpeg and IMG_9472.png through IMG_9479.png. Screenshot filenames identify user-provided evidence; they are not claims that those images were uploaded to the repository.
