@@ -140,3 +140,8 @@ values ('adrian-7x800-2026-10-14', '7 × 800 at 2:44', '5:30 a mile · 2:00 jog 
 insert into public.collective_session_people (session_id, person_id)
 select s.id, p.id from public.collective_sessions s, public.collective_people p
  where s.slug = 'adrian-7x800-2026-10-14' and p.slug = 'adrian';
+
+-- Oct 14, 2026 (data, applied after the shoot): the session is Adrian's and Tinius's; poster is
+-- the film's frame (library night-pair-track, tagged for both); published. Film link to follow.
+-- update public.collective_sessions set poster_library_id = 'night-pair-track', library_ids = array['night-pair-track'], published = true where slug = 'adrian-7x800-2026-10-14';
+-- + collective_session_people (tinius) and confirmed tags for adrian and tinius on night-pair-track.
