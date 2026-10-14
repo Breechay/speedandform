@@ -50,6 +50,7 @@ body { background: var(--cream); color: var(--ink); font-family: var(--reading-s
 <link rel="stylesheet" href="/css/discovery.css?v=20260916-p2">
 <link rel="stylesheet" href="/css/sf-brand.css?v=20261001">
 <link rel="stylesheet" href="/css/cream-reading.css?v=20261006">
+<link rel="stylesheet" href="/css/sf-menu.css?v=20261013-shared">
 <meta name="description" content="The race is the expression of what training built. How to approach taper, race week, and race-day execution.">
 <!-- House share metadata: October 6 -->
 <meta property="og:type" content="article">
@@ -72,10 +73,10 @@ body { background: var(--cream); color: var(--ink); font-family: var(--reading-s
 <!-- /House share metadata -->
 </head>
 <body>
-<div class="nav">
+<div class="nav sf-menu-host">
   <a class="nav-home sf-brand" href="/" aria-label="Speed and Form home"></a>
   <span class="nav-label">Race Prep</span>
-</div>
+<a class="sf-menu-toggle" href="#site-menu" aria-controls="site-menu" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18"/></svg></a></div>
 <nav class="site-wayfinding" aria-label="Explore FORM"><a href="/library">Library</a><a href="/plans/">Plans</a><a href="/thursday">Run with us</a><a href="/#begin">Work with Brice</a></nav>
 <div class="content">
 
@@ -189,5 +190,50 @@ body { background: var(--cream); color: var(--ink); font-family: var(--reading-s
   </div>
 
 </div>
+<!-- Shared site menu -->
+<div class="sf-menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu">
+  <a class="sf-menu-scrim" href="#" tabindex="-1" aria-hidden="true"></a>
+  <div class="sf-menu-panel">
+    <div class="sf-menu-top"><a class="sf-menu-close" href="#" aria-label="Close menu">Close</a></div>
+    <section class="sf-menu-group sf-menu-lead" aria-labelledby="sf-menu-work">
+      <p class="sf-menu-label" id="sf-menu-work">Work with me</p>
+      <ul>
+        <li><a class="sf-menu-first" href="/coaching/miami/" aria-label="Run Development" aria-describedby="sf-menu-desc-0"><span>Run Development</span><small id="sf-menu-desc-0">Run faster. Get stronger. Move better.</small></a></li>
+        <li><a href="/coaching/strength/" aria-label="Strength coaching"><span>Strength coaching</span></a></li>
+        <li><a href="/analysis/" aria-label="Running analysis"><span>Running analysis</span></a></li>
+      </ul>
+    </section>
+    <section class="sf-menu-group" aria-labelledby="sf-menu-train">
+      <p class="sf-menu-label" id="sf-menu-train">Train with direction</p>
+      <ul>
+        <li><a href="/form/" aria-label="Running app" aria-describedby="sf-menu-desc-3"><span>Running app</span><small id="sf-menu-desc-3">Follow a running plan. Log each run.</small></a></li>
+        <li><a href="/forge-sculpt/" aria-label="Strength app" aria-describedby="sf-menu-desc-4"><span>Strength app</span><small id="sf-menu-desc-4">Follow a program. Log sets, reps and weight.</small></a></li>
+        <li><a href="/plans/" aria-label="Training plans" aria-describedby="sf-menu-desc-5"><span>Training plans</span><small id="sf-menu-desc-5">A clear plan for the next race.</small></a></li>
+        <li><a href="/thursday" aria-label="Thursday sprints" aria-describedby="sf-menu-desc-6"><span>Thursday sprints</span><small id="sf-menu-desc-6">Speed, technique and power.</small></a></li>
+      </ul>
+    </section>
+    <section class="sf-menu-group" aria-labelledby="sf-menu-together">
+      <p class="sf-menu-label" id="sf-menu-together">Run with us</p>
+      <ul>
+        <li><a href="/runs/" aria-label="Group runs" aria-describedby="sf-menu-desc-7"><span>Group runs</span><small id="sf-menu-desc-7">Thursdays at the track, long runs, the photos.</small></a></li>
+        <li><a href="/people/" aria-label="Athletes" aria-describedby="sf-menu-desc-8"><span>Athletes</span><small id="sf-menu-desc-8">The runners, their races and their film.</small></a></li>
+      </ul>
+    </section>
+    <section class="sf-menu-group" aria-labelledby="sf-menu-learn">
+      <p class="sf-menu-label" id="sf-menu-learn">Learn</p>
+      <ul>
+        <li><a href="/library"><span>Training library</span></a></li>
+        <li><a href="/labs/"><span>Athlete studies</span></a></li>
+      </ul>
+    </section>
+    <div class="sf-menu-foot">
+      <a href="/contact">Contact</a>
+      <a href="mailto:brice@speedandform.com">brice@speedandform.com</a>
+      <a href="https://www.instagram.com/form.practice/" target="_blank" rel="noopener noreferrer">@form.practice ↗︎</a>
+    </div>
+  </div>
+</div>
+<!-- /Shared site menu -->
+<script defer src="/js/sf-menu.js?v=20261013-shared"></script>
 </body>
 </html>

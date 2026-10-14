@@ -1274,6 +1274,43 @@
    },
    "tags": [],
    "used_on": []
+  },
+  {
+   "id": "night-pair-track",
+   "title": "Night pair on the track",
+   "kind": "track",
+   "captured": "2026-10-14",
+   "setting": "track",
+   "light": "night, floodlit",
+   "tone": "color",
+   "people": "2, front-on",
+   "orientation": "landscape",
+   "width": 1920,
+   "height": 1080,
+   "focal": {
+    "x": 0.62,
+    "y": 0.4
+   },
+   "alt": "Two runners side by side on the track at night, field lights behind.",
+   "uses": [
+    "hero-landscape",
+    "card",
+    "essay"
+   ],
+   "files": {
+    "2400": "/media/library/night-pair-track-2400.webp",
+    "1200": "/media/library/night-pair-track-1200.webp",
+    "600": "/media/library/night-pair-track-600.webp"
+   },
+   "source": {
+    "supplied": "2026-10-14",
+    "sha256": "10be201a09564e7833f3e3cd1efe1c846b0f598c82f705faff32c8cc9670ecd3",
+    "note": "frame from the 7 × 800 film"
+   },
+   "tags": [],
+   "used_on": [
+    "/session/adrian-7x800-2026-10-14"
+   ]
   }
  ]
 }

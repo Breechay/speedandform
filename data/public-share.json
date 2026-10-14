@@ -909,5 +909,17 @@
     ],
     "label": "SPEED & FORM",
     "dark": true
+  },
+  "people/index.html": {
+    "image": "/og/public-thursday-20261006.jpg",
+    "alt": "Speed & Form. The athletes.",
+    "title": "Athletes · Speed & Form",
+    "description": "The runners of Speed & Form: their races, their training, and the photographs and film from the mornings.",
+    "headline": [
+      "The",
+      "athletes."
+    ],
+    "label": "SPEED & FORM",
+    "dark": true
   }
 }

@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="/css/sf-brand.css?v=20261001">
 <link rel="stylesheet" href="/css/sculpt-landing.css?v=20261013-audit">
 <script defer src="/js/sculpt-landing.js?v=20260917-p5b"></script>
+<link rel="stylesheet" href="/css/sf-menu.css?v=20261013-shared">
 <meta name="description" content="Build muscle with a plan. Follow your workouts, log weights and reps, and look back at what you lifted. Try the first week of Breechay Sculpt free on iPhone.">
 <!-- House share metadata: October 6 -->
 <meta property="og:type" content="website">
@@ -37,7 +38,7 @@
 <a class="bs-skip" href="#main">Skip to content</a>
 <header class="bs-header" id="nav"><div class="bs-wrap bs-nav">
 <a class="bs-mark sf-brand" href="/" aria-label="Speed and Form home"></a>
-<nav aria-label="On this page"><a href="#curriculum">Sculpt program</a><a href="#demo">Try a set</a><a href="#price">Sculpt pricing <span aria-hidden="true">↓</span></a></nav>
+<nav aria-label="On this page" class="sf-menu-host"><a href="#curriculum">Sculpt program</a><a href="#demo">Try a set</a><a href="#price">Sculpt pricing <span aria-hidden="true">↓</span></a><a class="sf-menu-toggle" href="#site-menu" aria-controls="site-menu" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18"/></svg></a></nav>
 </div></header>
 <main id="main" tabindex="-1">
 <section class="bs-wrap bs-hero" id="top" aria-labelledby="hero-title">
@@ -96,5 +97,50 @@
 <section class="bs-wrap bs-close" id="final"><p class="bs-label">Speed &amp; Form: Strength</p><h2>Take your plan<br>to the gym.</h2><a class="bs-button" href="https://apps.apple.com/us/app/breechay/id6790569283">Get the Strength app <span aria-hidden="true">↗</span></a><p class="bs-note">iPhone · Sculpt: Week one free</p></section>
 </main>
 <footer class="bs-wrap bs-footer"><div><a class="bs-mark sf-brand" href="/" aria-label="Speed and Form home"></a><p>A Speed &amp; Form product.<br>Written by Brice Ikouebe.</p></div><nav aria-label="Explore Speed and Form"><a href="/">Speed &amp; Form</a><a href="/form/">Speed &amp; Form: Running</a><a href="/library">Library</a><a href="/plans/">Running plans</a><a href="/track/">Photos &amp; films</a><a href="/#begin">Work with Brice</a></nav><nav aria-label="App help"><a href="/contact">Contact</a><a href="/forge-sculpt/support/">Support</a><a href="/forge-sculpt/privacy/">Privacy</a><a href="/forge-sculpt/terms/">Terms</a></nav><p class="bs-copyright">© 2026 Brice Ikouebe · Speed &amp; Form</p></footer>
+<!-- Shared site menu -->
+<div class="sf-menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu">
+  <a class="sf-menu-scrim" href="#" tabindex="-1" aria-hidden="true"></a>
+  <div class="sf-menu-panel">
+    <div class="sf-menu-top"><a class="sf-menu-close" href="#" aria-label="Close menu">Close</a></div>
+    <section class="sf-menu-group sf-menu-lead" aria-labelledby="sf-menu-work">
+      <p class="sf-menu-label" id="sf-menu-work">Work with me</p>
+      <ul>
+        <li><a class="sf-menu-first" href="/coaching/miami/" aria-label="Run Development" aria-describedby="sf-menu-desc-0"><span>Run Development</span><small id="sf-menu-desc-0">Run faster. Get stronger. Move better.</small></a></li>
+        <li><a href="/coaching/strength/" aria-label="Strength coaching"><span>Strength coaching</span></a></li>
+        <li><a href="/analysis/" aria-label="Running analysis"><span>Running analysis</span></a></li>
+      </ul>
+    </section>
+    <section class="sf-menu-group" aria-labelledby="sf-menu-train">
+      <p class="sf-menu-label" id="sf-menu-train">Train with direction</p>
+      <ul>
+        <li><a href="/form/" aria-label="Running app" aria-describedby="sf-menu-desc-3"><span>Running app</span><small id="sf-menu-desc-3">Follow a running plan. Log each run.</small></a></li>
+        <li><a href="/forge-sculpt/" aria-label="Strength app" aria-describedby="sf-menu-desc-4"><span>Strength app</span><small id="sf-menu-desc-4">Follow a program. Log sets, reps and weight.</small></a></li>
+        <li><a href="/plans/" aria-label="Training plans" aria-describedby="sf-menu-desc-5"><span>Training plans</span><small id="sf-menu-desc-5">A clear plan for the next race.</small></a></li>
+        <li><a href="/thursday" aria-label="Thursday sprints" aria-describedby="sf-menu-desc-6"><span>Thursday sprints</span><small id="sf-menu-desc-6">Speed, technique and power.</small></a></li>
+      </ul>
+    </section>
+    <section class="sf-menu-group" aria-labelledby="sf-menu-together">
+      <p class="sf-menu-label" id="sf-menu-together">Run with us</p>
+      <ul>
+        <li><a href="/runs/" aria-label="Group runs" aria-describedby="sf-menu-desc-7"><span>Group runs</span><small id="sf-menu-desc-7">Thursdays at the track, long runs, the photos.</small></a></li>
+        <li><a href="/people/" aria-label="Athletes" aria-describedby="sf-menu-desc-8"><span>Athletes</span><small id="sf-menu-desc-8">The runners, their races and their film.</small></a></li>
+      </ul>
+    </section>
+    <section class="sf-menu-group" aria-labelledby="sf-menu-learn">
+      <p class="sf-menu-label" id="sf-menu-learn">Learn</p>
+      <ul>
+        <li><a href="/library"><span>Training library</span></a></li>
+        <li><a href="/labs/"><span>Athlete studies</span></a></li>
+      </ul>
+    </section>
+    <div class="sf-menu-foot">
+      <a href="/contact">Contact</a>
+      <a href="mailto:brice@speedandform.com">brice@speedandform.com</a>
+      <a href="https://www.instagram.com/form.practice/" target="_blank" rel="noopener noreferrer">@form.practice ↗︎</a>
+    </div>
+  </div>
+</div>
+<!-- /Shared site menu -->
+<script defer src="/js/sf-menu.js?v=20261013-shared"></script>
 </body>
 </html>

@@ -43,6 +43,7 @@
   var IG = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>';
   var STRAVA = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l6-14 6 14"/><path d="M13 20l3.5-7 3.5 7"/></svg>';
 
+  function canonical(path) { var c = document.querySelector('link[rel=canonical]'); if (c) c.href = 'https://speedandform.com' + path; }
   function ytThumb(id) { return 'https://i.ytimg.com/vi/' + encodeURIComponent(id) + '/hqdefault.jpg'; }
   function libSrc(lib, id, size) { var ph = lib && lib[id]; return ph && ph.files ? (ph.files[size] || ph.files['1200'] || ph.files['1600'] || ph.files['800']) : ''; }
   function sessionDate(d) { return new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', month: 'long', day: 'numeric', year: 'numeric' }).format(new Date(d + 'T00:00:00Z')); }
@@ -110,6 +111,7 @@
     }
     function paint(p, lib) {
       document.title = p.name + ' | Speed & Form';
+      canonical('/people/' + p.slug);
       var hero = p.hero ? '<img class="pp-hero" src="' + esc(sized(p.hero.path, 1200)) + '" srcset="' + esc(sized(p.hero.path, 1200)) + ' 1200w, ' + esc(p.hero.path) + ' 2400w" sizes="(max-width:760px) 100vw, 560px" alt="' + esc(p.name) + '" style="object-position:' + (p.hero.focal_x * 100) + '% ' + (p.hero.focal_y * 100) + '%">' : '';
       var links = (p.instagram ? '<a href="https://instagram.com/' + esc(p.instagram) + '" rel="noopener" target="_blank">' + IG + '@' + esc(p.instagram) + '</a>' : '') +
         (p.strava ? '<a href="' + esc(p.strava) + '" rel="noopener" target="_blank">' + STRAVA + 'Strava</a>' : '');
@@ -186,6 +188,7 @@
         var se = res[0], lib = res[1];
         if (!se || !se.slug) return missing('This session isn’t here.');
         document.title = se.title + ' | Speed & Form';
+        canonical('/session/' + se.slug);
         var who = (se.people || []).map(function (p) {
           return '<a href="/people/' + esc(p.slug) + '">' + (p.avatar ? '<img src="' + esc(p.avatar) + '" alt="" width="32" height="32">' : '') + esc(p.name) + '</a>';
         }).join('');
