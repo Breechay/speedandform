@@ -52,6 +52,8 @@ let liveCounts = {};
 let rollCounts = {};
 let selected = null;
 let ed = null; // the open album editor
+let people = []; // collective_people, for tagging
+let requests = null; // pending "That's me" requests (null: unknown)
 
 // ------------------------------------------------------------------ time (Miami)
 
@@ -116,6 +118,25 @@ async function loadRuns() {
   } catch { rollCounts = null; }
 }
 
+// People and tags (20261013230000). Brice reads and writes the tables directly; RLS allows
+// publishers only. A tag says who is in a photo, never who attended.
+async function loadPeople() {
+  try {
+    const { data, error } = await sb.from('collective_people')
+      .select('id,slug,first_name,last_initial,show_last_initial,avatar_path,instagram,visible').order('first_name');
+    if (error) throw error;
+    people = data || [];
+  } catch { people = []; }
+  try {
+    const { data, error } = await sb.from('collective_person_tags')
+      .select('id,person_id,asset_id,library_id,created_at').eq('status', 'requested').order('created_at');
+    if (error) throw error;
+    requests = data || [];
+  } catch { requests = null; }
+}
+const personName = (p) => (p ? `${p.first_name}${p.show_last_initial && p.last_initial ? ` ${p.last_initial}.` : ''}` : 'Someone');
+const personById = (id) => people.find((p) => p.id === id);
+
 // ------------------------------------------------------------------ list
 
 function rowHTML(r) {
@@ -138,7 +159,9 @@ function rowHTML(r) {
 function paintList() {
   const upcoming = runs.filter(isUpcoming).sort((a, b) => Date.parse(a.starts_at) - Date.parse(b.starts_at));
   const past = runs.filter((r) => !isUpcoming(r) && r.status !== 'cancelled');
-  $('rows').innerHTML =
+  const reqs = requests && requests.length
+    ? `<button type="button" class="row reqRow${selected === 'requests' ? ' sel' : ''}" data-requests><span class="d">TAGS<b>${requests.length}</b></span><span class="t">Tag requests<small>People who said “That’s me”</small></span><span class="st act">Review</span></button>` : '';
+  $('rows').innerHTML = reqs +
     `<p class="grp label">Upcoming</p>${upcoming.length ? upcoming.map(rowHTML).join('') : '<p class="quiet pad">Nothing scheduled. Add the next run.</p>'}` +
     `<p class="grp label">Past</p>${past.length ? past.map(rowHTML).join('') : '<p class="quiet pad">No past runs yet.</p>'}`;
 }
@@ -364,9 +387,20 @@ async function openAlbum(run) {
     $('pane').innerHTML = `<button type="button" class="back" data-back>‹ Runs</button><div class="banner"><p>Couldn’t load this album. ${esc(message(err))}</p><button type="button" class="btn" data-reopen>Try again</button></div>`;
     return;
   }
+  await loadAssetTags();
   rpc('collective_photo_opt_outs', { p_run_id: run.id }).then((rows) => { ed.optOuts = rows || []; paintAlbumHead(); }).catch(() => { ed.optOuts = null; paintAlbumHead(); });
   await signThumbs(ed.roll);
   paintAlbum();
+}
+async function loadAssetTags() {
+  ed.tags = [];
+  if (!ed.roll.length) return;
+  try {
+    const { data, error } = await sb.from('collective_person_tags').select('id,person_id,asset_id,status')
+      .in('asset_id', ed.roll.map((a) => a.id));
+    if (error) throw error;
+    ed.tags = data || [];
+  } catch { ed.tags = null; }
 }
 async function signThumbs(list) {
   const want = list.filter((a) => !ed.thumbs[a.id]);
@@ -389,6 +423,86 @@ function paintAlbumHead() {
     ${ed.live && !ed.takenDown && r.visibility === 'public' ? `<a class="status" href="/run/${esc(slugOf(r))}/" target="_blank" rel="noopener">Open on the site ↗</a>` : ''}</div>`;
 }
 
+function whoLine(assetID) {
+  if (!ed.tags) return '';
+  const names = ed.tags.filter((t) => t.asset_id === assetID)
+    .map((t) => `${personName(personById(t.person_id))}${t.status === 'requested' ? ' (asked)' : ''}`);
+  return names.length ? `<p class="who">${esc(names.join(', '))}</p>` : '';
+}
+
+// Who is in this photo: tick the people, or add someone new.
+function tagSheet(assetID) {
+  const tagged = new Set(ed.tags.filter((t) => t.asset_id === assetID && t.status === 'confirmed').map((t) => t.person_id));
+  openSheet('Who’s in this photo?', `
+    <div class="peopleList">${people.map((p) => `<label class="check"><input type="checkbox" name="p" value="${p.id}"${tagged.has(p.id) ? ' checked' : ''}>
+      ${p.avatar_path ? `<img src="${esc(p.avatar_path)}" alt="" width="28" height="28">` : ''}<span>${esc(personName(p))}${p.visible ? '' : ' <span class="quiet">· profile hidden</span>'}</span></label>`).join('') || '<p class="quiet">No one yet.</p>'}</div>
+    <p class="label newLabel">Someone new</p>
+    <div class="fields">
+      <label>First name<input type="text" name="first" maxlength="40" autocomplete="off"></label>
+      <label>Instagram<input type="text" name="ig" maxlength="31" placeholder="handle" autocomplete="off"></label>
+      <label class="wide">Strava<input type="url" name="strava" placeholder="https://www.strava.com/athletes/…" autocomplete="off"></label>
+    </div>
+    <p class="quiet">It shows on their profile. They can remove it. A tag says who is in the photo, not who came.</p>`,
+  async (f) => {
+    const want = new Set(f.getAll('p'));
+    const first = (f.get('first') || '').trim();
+    if (first) {
+      const ig = (f.get('ig') || '').trim().replace(/^@/, '') || null;
+      const strava = (f.get('strava') || '').trim() || null;
+      if (ig && !/^[A-Za-z0-9._]{1,30}$/.test(ig)) throw new Error('That Instagram handle doesn’t look right.');
+      if (strava && !/^https:\/\/(www\.)?strava\.com\/athletes\/[0-9]+\/?$/.test(strava)) throw new Error('Paste the strava.com/athletes/… link.');
+      const base = first.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'runner';
+      let slug = base, n = 2;
+      while (people.some((p) => p.slug === slug)) slug = `${base}-${n++}`;
+      const fields = [ig && 'instagram', strava && 'strava'].filter(Boolean);
+      const { data, error } = await sb.from('collective_people').insert({ slug, first_name: first, instagram: ig, strava_url: strava, visible: true, public_fields: fields })
+        .select('id,slug,first_name,last_initial,show_last_initial,avatar_path,instagram,visible').single();
+      if (error) throw error;
+      people.push(data); want.add(data.id);
+    }
+    const adds = [...want].filter((id) => !tagged.has(id));
+    const removes = ed.tags.filter((t) => t.asset_id === assetID && t.status === 'confirmed' && !want.has(t.person_id)).map((t) => t.id);
+    if (adds.length) {
+      const { error } = await sb.from('collective_person_tags').insert(adds.map((person_id) => ({ person_id, asset_id: assetID, status: 'confirmed', confirmed_at: new Date().toISOString() })));
+      if (error && !/duplicate/i.test(error.message)) throw error;
+    }
+    if (removes.length) {
+      const { error } = await sb.from('collective_person_tags').delete().in('id', removes);
+      if (error) throw error;
+    }
+    await loadAssetTags(); paintAlbum();
+  }, 'Save');
+}
+
+// "That's me" requests: confirm or decline, with the photo in view.
+async function paintRequests() {
+  ed = null;
+  $('pane').innerHTML = '<button type="button" class="back" data-back>‹ Runs</button><div class="empty"><p class="quiet">Loading requests…</p></div>';
+  await loadPeople();
+  if (!requests) { $('pane').innerHTML = '<button type="button" class="back" data-back>‹ Runs</button><div class="banner"><p>Requests can’t be loaded right now.</p><button type="button" class="btn" data-requests>Try again</button></div>'; return; }
+  const assetIDs = requests.filter((r) => r.asset_id).map((r) => r.asset_id);
+  const thumbs = {};
+  if (assetIDs.length) {
+    const { data: roll } = await sb.from('collective_roll_assets').select('id,draft_path').in('id', assetIDs);
+    if (roll && roll.length) {
+      const { data } = await sb.storage.from(DRAFTS).createSignedUrls(roll.map((a) => a.draft_path), 3600);
+      (data || []).forEach((u, i) => { if (u.signedUrl) thumbs[roll[i].id] = u.signedUrl; });
+    }
+  }
+  let lib = {};
+  if (requests.some((r) => r.library_id)) {
+    try { (await (await fetch('/media/library/library.json')).json()).photos.forEach((p) => { lib[p.id] = p; }); } catch { lib = {}; }
+  }
+  const src = (r) => r.asset_id ? thumbs[r.asset_id] : (lib[r.library_id]?.files?.['600'] || lib[r.library_id]?.files?.['800'] || '');
+  $('pane').innerHTML = `<button type="button" class="back" data-back>‹ Runs</button>
+    <div class="head"><div><p class="label">Tags</p><h2>Tag requests</h2><p class="facts">${requests.length ? 'Confirm puts the name on the photo and the photo on their profile.' : 'Nothing waiting.'}</p></div></div>
+    <div class="grid reqGrid">${requests.map((r) => `<div class="cell">
+      <div class="ph">${src(r) ? `<img src="${esc(src(r))}" alt="" loading="lazy">` : ''}</div>
+      <p class="who"><b>${esc(personName(personById(r.person_id)))}</b> says “That’s me”</p>
+      <div class="cellActs"><button type="button" data-req-ok="${r.id}">Confirm</button><button type="button" data-req-no="${r.id}">Decline</button></div>
+    </div>`).join('')}</div>`;
+}
+
 function paintAlbum() {
   const r = ed.run;
   const inAlbum = ed.items.map((i) => ed.roll.find((a) => a.id === i.asset)).filter(Boolean);
@@ -406,7 +520,8 @@ function paintAlbum() {
         ${isIn && n > 1 ? `<button type="button" data-cover="${a.id}">Make cover</button><button type="button" data-move="${a.id}" data-by="-1">Earlier</button>` : ''}
         ${isIn && n < inAlbum.length ? `<button type="button" data-move="${a.id}" data-by="1">Later</button>` : ''}
         ${flag ? `<button type="button" data-confirm="${a.id}">Confirm it’s from this run</button>` : ''}
-      </div></div>`;
+        ${ed.tags ? `<button type="button" data-people="${a.id}">People</button>` : ''}
+      </div>${whoLine(a.id)}</div>`;
   };
   $('pane').innerHTML = `
     <button type="button" class="back" data-back>‹ Runs</button>
@@ -588,7 +703,23 @@ function confirmTakeDown() {
 
 // ------------------------------------------------------------------ events
 
-function select(id) {
+// Leaving an album never drops an edit: a pending save runs first, and if it fails the album
+// stays open with its status instead of closing.
+async function leaveAlbum() {
+  if (!ed) return true;
+  if (ed.saveTimer && /Not saved yet|Trying again/.test(ed.status)) {
+    clearTimeout(ed.saveTimer); ed.saveTimer = null;
+    if (!(await save())) {
+      if (!ed.conflict) setStatus('Not saved. Your edit is still here; try again before leaving.', 'bad');
+      return false;
+    }
+  }
+  if (/Saving/.test(ed.status)) { await new Promise((ok) => setTimeout(ok, 50)); return leaveAlbum(); }
+  if (/^Not saved/.test(ed.status) || ed.conflict) { setStatus(ed.conflict ? 'This album changed elsewhere. Choose a version before leaving.' : 'Not saved. Your edit is still here; try again before leaving.', 'bad'); return false; }
+  return true;
+}
+async function select(id) {
+  if (!(await leaveAlbum())) return;
   selected = id; ed = null;
   const r = runs.find((x) => x.id === id);
   paintList();
@@ -598,12 +729,21 @@ function select(id) {
 }
 document.addEventListener('click', async (e) => {
   const t = e.target;
-  const row = t.closest('[data-run]'); if (row) { select(row.dataset.run); return; }
-  if (t.closest('[data-back]')) { $('wrap').classList.remove('editing'); selected = null; ed = null; paintList(); return; }
+  const row = t.closest('[data-run]'); if (row) { await select(row.dataset.run); return; }
+  if (t.closest('[data-back]')) { if (!(await leaveAlbum())) return; $('wrap').classList.remove('editing'); selected = null; ed = null; paintList(); return; }
   if (t.closest('#newRun')) { newRun(); return; }
   const a = t.closest('[data-act]'); if (a) { act(a.dataset.act, runs.find((r) => r.id === selected)); return; }
   if (t.closest('[data-reopen]')) { select(selected); return; }
+  if (t.closest('[data-requests]')) { if (!(await leaveAlbum())) return; selected = 'requests'; paintList(); $('wrap').classList.add('editing'); paintRequests(); return; }
+  const ok = t.closest('[data-req-ok]'), no = t.closest('[data-req-no]');
+  if (ok || no) {
+    const id = (ok || no).dataset[ok ? 'reqOk' : 'reqNo'];
+    const res = ok ? await sb.rpc('collective_confirm_tag', { tag: id }) : await sb.from('collective_person_tags').delete().eq('id', id);
+    if (res.error) { (ok || no).textContent = 'Didn’t go through. Try again'; return; }
+    await paintRequests(); paintList(); return;
+  }
   if (!ed) return;
+  const pp = t.closest('[data-people]'); if (pp) { tagSheet(pp.dataset.people); return; }
   const tog = t.closest('[data-toggle]');
   if (tog) {
     const id = tog.dataset.toggle, i = ed.items.findIndex((x) => x.asset === id);
@@ -681,7 +821,7 @@ window.addEventListener('beforeunload', (e) => {
 });
 
 async function refresh() {
-  await loadRuns(); paintList();
+  await Promise.all([loadRuns(), loadPeople()]); paintList();
   if (selected) { const r = runs.find((x) => x.id === selected); if (r && isUpcoming(r)) paintUpcoming(r); }
 }
 
@@ -699,5 +839,5 @@ async function boot() {
   }
 }
 document.addEventListener('click', (e) => { if (e.target.closest('[data-reload]')) location.reload(); });
-window.FORM_RUNS = { miami, exifTaken, slugOf, needsConfirm, state: () => ed };
+window.FORM_RUNS = { miami, exifTaken, slugOf, needsConfirm, state: () => ed, people: () => people, requests: () => requests };
 boot();

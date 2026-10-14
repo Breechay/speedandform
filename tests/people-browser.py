@@ -19,11 +19,11 @@ DIRECTORY = [
     {'person': {'slug': 'tinius', 'name': 'Tinius', 'avatar': '/assets/athletes/tinius-256.webp', 'instagram': 'tiniusms'}},
 ]
 JOSE = {'slug': 'jose', 'name': 'José', 'avatar': '/assets/athletes/jose-remote-256.webp',
-        'hero': {'path': '/media/library/jose-track-dusk-2400.webp', 'focal_x': 0.56, 'focal_y': 0.45},
+        'hero': {'path': '/media/library/track-dusk-2400.webp', 'focal_x': 0.56, 'focal_y': 0.45},
         'bio': 'Running Orlando with Hope.', 'instagram': 'josefsantosdesoto', 'discipline': 'Half marathon',
         'now': {'title': 'Speed That Endures', 'detail': 'OUC Half · Orlando · December 5', 'url': '/labs/speed-that-endures/'},
         'best': {'event': 'Half marathon', 'time': '1:40:23', 'place': 'Key Biscayne', 'date': '2026-04-12'},
-        'library': ['jose-track-dusk'],
+        'library': ['track-dusk'],
         'album': [{'run_id': 'r1', 'run_title': 'Track Thursday', 'starts_at': '2026-10-15T10:15:00+00:00', 'series_id': 'track-thursday',
                    'path': 'runs/r1/a/x.jpg', 'width': 1600, 'height': 1067, 'focal_x': 0.5, 'focal_y': 0.4}]}
 TINIUS = {'slug': 'tinius', 'name': 'Tinius', 'avatar': '/assets/athletes/tinius-256.webp', 'instagram': 'tiniusms',

@@ -48,7 +48,13 @@ function q(table) {
   const run = async () => {
     if (S.fail && S.fail[table]) return { data: null, error: { message: S.fail[table] } };
     const rows = S.tables[table] || (S.tables[table] = []);
-    const match = (r) => st.filters.every(([k, v]) => (v === null ? r[k] == null : r[k] === v));
+    const match = (r) => st.filters.every(([k, v, isIn]) => (isIn ? v.includes(r[k]) : v === null ? r[k] == null : r[k] === v));
+    if (st.op === 'delete') { const hit = rows.filter(match); hit.forEach((r) => rows.splice(rows.indexOf(r), 1)); log({ delete: table, ids: hit.map((r) => r.id) }); return { data: hit, error: null }; }
+    if (st.op === 'insert' && Array.isArray(st.row)) {
+      const recs = st.row.map((row) => Object.assign({ id: 'n' + Math.random().toString(16).slice(2, 8) }, row));
+      recs.forEach((rec) => { log({ insert: table, row: rec }); rows.push(rec); });
+      return { data: recs, error: null };
+    }
     if (st.op === 'insert') {
       const rec = Object.assign({ id: st.row.id || ('n' + (rows.length + 1) + Math.random().toString(16).slice(2, 6)) }, st.row);
       if (rows.some((r) => r.id === rec.id)) return { data: null, error: { message: 'duplicate key value' } };
@@ -63,8 +69,9 @@ function q(table) {
     return { data: out, error: null };
   };
   const b = {
-    select() { if (st.op !== 'insert' && st.op !== 'update') st.op = 'select'; return b; },
+    select() { if (st.op !== 'insert' && st.op !== 'update' && st.op !== 'delete') st.op = 'select'; return b; },
     eq(k, v) { st.filters.push([k, v]); return b; }, is(k, v) { st.filters.push([k, v]); return b; },
+    in(k, v) { st.filters.push([k, v, true]); return b; }, delete() { st.op = 'delete'; return b; },
     order(k, o) { st.order = [k, o?.ascending !== false]; return b; }, limit() { return b; },
     insert(row) { st.op = 'insert'; st.row = row; return b; }, update(row) { st.op = 'update'; st.row = row; return b; },
     single() { st.single = true; return b; }, maybeSingle() { st.maybe = true; return b; },
@@ -95,6 +102,7 @@ export const supabase = {
     if (name === 'collective_media_withdrawals_still_claimed') return { data: args.ids.filter((i) => i !== 2).map((id) => ({ id })), error: null };
     if (name === 'collective_media_withdrawals_done') return { data: args.ids.length, error: null };
     if (name === 'collective_album_public_paths') return { data: [{ path: `runs/${args.run}/legacy.webp`, source_bucket: 'collective-gallery-drafts', source_path: `runs/${args.run}/parked/legacy.webp`, staged: false }, { path: `runs/${args.run}/a/r1.jpg`, source_bucket: 'collective-gallery-drafts', source_path: `runs/${args.run}/r1.jpg`, staged: false }], error: null };
+    if (name === 'collective_confirm_tag') { const t = S.tables.collective_person_tags.find((x) => x.id === args.tag); if (t) t.status = 'confirmed'; return { data: null, error: null }; }
     if (name === 'collective_album_put_back_up') { S.drafts[args.run].taken_down = false; return { data: null, error: null }; }
     return { data: null, error: { message: 'unexpected rpc ' + name } };
   },
@@ -124,7 +132,10 @@ with sync_playwright() as pw:
         ctx = browser.new_context(viewport={'width': width, 'height': 1000}, reduced_motion='reduce')
         state = dict(log=[], publisher=publisher, signedIn=signed_in, galleries=galleries, optOuts=opt_outs if opt_outs is not None else [],
                      drafts=drafts or {}, tables={'collective_runs_current': runs, 'collective_roll_assets': [dict(r) for r in roll],
-                     'collective_run_changes': [], 'collective_run_details': [], 'collective_runs': []},
+                     'collective_run_changes': [], 'collective_run_details': [], 'collective_runs': [],
+                     'collective_people': [dict(id='pj', slug='jose', first_name='José', last_initial='S', show_last_initial=False, avatar_path='/assets/athletes/jose-remote-256.webp', instagram='josefsantosdesoto', visible=True),
+                                           dict(id='ph', slug='hope', first_name='Hope', last_initial='F', show_last_initial=False, avatar_path='/assets/athletes/hope-256.webp', instagram='hope_finnane', visible=True)],
+                     'collective_person_tags': [dict(id='t-req', person_id='ph', asset_id='r1', library_id=None, status='requested', created_at='2026-10-13T20:00:00Z')]},
                      thumb=BASE + '/assets/practice/20261001/' + photos[0].name)
         ctx.add_init_script('window.__S=' + json.dumps(state) + ';')
         def route(r):
@@ -150,7 +161,7 @@ with sync_playwright() as pw:
 
     # --- the list
     ctx, page, errors = make()
-    rows = page.locator('.row')
+    rows = page.locator('.row[data-run]')
     check('lists four runs', rows.count() == 4)
     text = page.locator('#rows').inner_text()
     check('upcoming before past, upcoming ascending', text.index('UPCOMING') < text.index('PAST') and text.index('Track Thursday') < text.index('Long Run 02'))
@@ -297,6 +308,43 @@ with sync_playwright() as pw:
     check('keep mine saves over the latest', page.locator('[data-conflict]').count() == 0)
     check('no inline styles (album)', no_inline(page))
     check('no page errors (album)', not errors)
+    ctx.close()
+
+    # --- tags: requests from the list, tagging from a photo, back never drops an edit
+    ctx, page, errors = make()
+    check('tag requests row shows the count', 'Tag requests' in page.locator('#rows').inner_text() and page.locator('[data-requests]').count() == 1)
+    page.locator('[data-requests]').first.click(); page.wait_for_selector('[data-req-ok]')
+    check('request names the person', 'Hope' in page.locator('#pane').inner_text())
+    page.locator('[data-req-ok]').click(); page.wait_for_function('!document.querySelector("[data-req-ok]")')
+    check('confirm goes through the server call', any(o.get('rpc') == 'collective_confirm_tag' and o['args']['tag'] == 't-req' for o in S(page)['log']))
+    page.locator('[data-run="p2"]').click(); page.wait_for_selector('[data-people="r0"]')
+    check('confirmed tag shows under its photo', 'Hope' in page.locator('[data-people="r1"]').locator('xpath=../..').inner_text())
+    page.locator('[data-people="r0"]').click()
+    page.locator('input[name=p][value=pj]').check()
+    page.fill('input[name=first]', 'Maya'); page.fill('input[name=ig]', '@maya.runs')
+    page.locator('#sheetSave').click(); page.wait_for_function('!document.getElementById("sheet").open')
+    st = S(page)
+    newp = [r for r in st['tables']['collective_people'] if r['first_name'] == 'Maya']
+    check('someone new gets a profile', len(newp) == 1 and newp[0]['slug'] == 'maya' and newp[0]['instagram'] == 'maya.runs' and newp[0]['public_fields'] == ['instagram'])
+    r0 = sorted(t['person_id'] for t in st['tables']['collective_person_tags'] if t['asset_id'] == 'r0')
+    check('tags saved for the ticked people', r0 == sorted(['pj', newp[0]['id']]))
+    page.locator('[data-people="r0"]').click(); page.locator('input[name=p][value=pj]').uncheck()
+    page.locator('#sheetSave').click(); page.wait_for_function('!document.getElementById("sheet").open')
+    check('unticking removes the tag, not the photo', not any(t['asset_id'] == 'r0' and t['person_id'] == 'pj' for t in S(page)['tables']['collective_person_tags'])
+          and any(a['id'] == 'r0' for a in S(page)['tables']['collective_roll_assets']))
+    # an edit, then straight to another run: the save happens first
+    page.locator('[data-toggle="r0"]').click()
+    page.locator('[data-run="p1"]').click()
+    page.wait_for_function('window.__S.log.some(o => o.rpc === "collective_album_save_draft")')
+    check('leaving saves the pending edit first', [i['asset'] for i in S(page)['drafts']['p2']['items']] == ['r0'])
+    # a failing save keeps the album open
+    page.locator('[data-run="p2"]').click(); page.wait_for_selector('[data-toggle="r1"]')
+    page.evaluate('window.__S.rpcFail={collective_album_save_draft:"network"}')
+    page.locator('[data-toggle="r1"]').click(); page.locator('[data-run="p1"]').click()
+    page.wait_for_function('/before leaving/.test(document.getElementById("saveStatus").textContent)')
+    check('a failed save keeps the album open', page.locator('#albumHead').count() == 1)
+    check('no inline styles (tags)', no_inline(page))
+    check('no page errors (tags)', not errors)
     ctx.close()
 
     # --- opt-outs unreadable is said, never zero
