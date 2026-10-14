@@ -134,3 +134,11 @@ Technical work is part of the life Brice enjoys. It also occupies time that coul
 **Recommendation:** Add an entry when something feels worth preserving. A gap in the record means no entry was made; it is not evidence of lost progress. There is no social quota, required mood score or obligation to finish each week more motivated than the last.
 
 Later observations may support, complicate or overturn this review. Differences in setting, activity and energy remain possible explanations. Preserve disagreement and changed preferences without rewriting the earlier account. The study can hold an ordinary week, a return to an old enjoyment or an unresolved question without requiring an upward trend.
+
+## October 14 · Organization through movement
+
+**Athlete's account, paraphrased, not a physiological finding.** An impromptu six-mile run began from inspiration rather than a prescribed performance target. Brice ran shirtless, stayed calm, and focused on fluidity, symmetry, relaxation and letting the legs move freely. He rated the perceived effort 4/10 and met Simon Robin along the way.
+
+A little after halfway, both sides of the lower waist, hips and back felt heavy, almost "liquid or body fat or fluid" rather than like one side had failed. Approximately a mile later that sensation had gone. After the run, Brice described his sides as tighter and his body as sharper and more "organized" for efficiency. The feeling is an important first-person experience, not evidence that body fat or tissue fluid physically relocated or that running instantly rebuilt tissue.
+
+The broader observation is spontaneous movement as an enjoyable part of the life he already inhabits, not an assigned test or a demand for every outing to improve. The [October 14 physical evidence entry](../../labs/rebuilt-athlete/LONG-RUN-COMPARISON.md#october-14--spontaneous-six-mile-run-and-organization-through-movement) records the numbers and their limitations. No new workout, cadence target, diagnosis, mandatory chest-strap use or program change follows. Brice prefers not to wear a chest strap regularly, although he may use it occasionally; today's report does not establish that a strap was worn.
