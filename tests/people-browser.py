@@ -26,6 +26,12 @@ JOSE = {'slug': 'jose', 'name': 'José', 'avatar': '/assets/athletes/jose-remote
         'library': ['track-dusk'],
         'album': [{'run_id': 'r1', 'run_title': 'Track Thursday', 'starts_at': '2026-10-15T10:15:00+00:00', 'series_id': 'track-thursday',
                    'path': 'runs/r1/a/x.jpg', 'width': 1600, 'height': 1067, 'focal_x': 0.5, 'focal_y': 0.4}]}
+SESSION = {'slug': 'adrian-7x800-2026-10-14', 'title': '7 × 800 at 2:44', 'detail': '5:30 a mile · 2:00 jog between', 'date': '2026-10-14',
+           'youtube_id': 'dQw4w9WgXcQ', 'clips': [{'youtube_id': 'abcdefghijk', 'title': 'Rep 4'}], 'library': ['dune-path'],
+           'people': [{'slug': 'adrian', 'name': 'Adrian', 'avatar': '/assets/athletes/adrian-256.webp'}]}
+ADRIAN = {'slug': 'adrian', 'name': 'Adrian', 'avatar': '/assets/athletes/adrian-256.webp', 'instagram': 'fit_with_adrian',
+          'hero': {'path': '/media/library/dune-path-2400.webp', 'focal_x': 0.75, 'focal_y': 0.3}, 'library': ['dune-path'], 'album': [],
+          'sessions': [SESSION]}
 TINIUS = {'slug': 'tinius', 'name': 'Tinius', 'avatar': '/assets/athletes/tinius-256.webp', 'instagram': 'tiniusms',
           'hero': {'path': '/media/library/bw-lead-runner-2400.webp', 'focal_x': 0.6, 'focal_y': 0.35}, 'library': ['bw-lead-runner'], 'album': []}
 
@@ -50,12 +56,16 @@ with sync_playwright() as pw:
                 if path.endswith('/rpc/collective_people_directory'):
                     return r.fulfill(status=200, content_type='application/json', body=json.dumps(DIRECTORY))
                 if path.endswith('/rpc/collective_person'):
-                    p = {'jose': JOSE, 'tinius': TINIUS}.get(body.get('slug'))
+                    p = {'jose': JOSE, 'tinius': TINIUS, 'adrian': ADRIAN}.get(body.get('slug'))
                     return r.fulfill(status=200, content_type='application/json', body=json.dumps(p))
+                if path.endswith('/rpc/collective_session'):
+                    se = SESSION if body.get('slug') == SESSION['slug'] else None
+                    return r.fulfill(status=200, content_type='application/json', body=json.dumps(se))
                 return r.fulfill(status=404, body='[]')
             if url.startswith(BASE + '/'):
                 name = unquote(path).lstrip('/')
                 if re.match(r'^people/[^/]+/?$', name): name = 'people/template.html'
+                if re.match(r'^session/[^/]+/?$', name): name = 'session/template.html'
                 for n in [name, name.rstrip('/') + '/index.html']:
                     f = (ROOT / n).resolve()
                     if f.is_relative_to(ROOT) and f.is_file(): return r.fulfill(path=str(f))
@@ -94,6 +104,19 @@ with sync_playwright() as pw:
         page.goto(BASE + '/people/tinius'); page.wait_for_function('window.FORM_PERSON')
         t = page.locator('#pp-profile').inner_text()
         check(f'{w}: sections without content are absent', 'Now' not in t and 'Best' not in t and 'Tinius' in t)
+
+        page.goto(BASE + '/people/adrian'); page.wait_for_function('window.FORM_PERSON')
+        check(f'{w}: film on the profile links to its session', page.evaluate('FORM_PERSON.sessions') == 1 and page.locator('a.pp-film[href="/session/adrian-7x800-2026-10-14"]').count() == 1)
+        check(f'{w}: film labelled', 'film' in page.locator('.pp-sessions').inner_text().lower() and '7 × 800 at 2:44' in page.locator('.pp-sessions').inner_text())
+        page.screenshot(path=str(OUT / f'adrian-{w}.png'), full_page=True)
+        page.goto(BASE + '/session/adrian-7x800-2026-10-14'); page.wait_for_function('window.FORM_SESSION')
+        check(f'{w}: session page plays the film from YouTube (no cookies)', page.locator('iframe[src^="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ"]').count() == 1)
+        check(f'{w}: clips and people', page.evaluate('FORM_SESSION.clips') == 1 and page.locator('.pp-who a[href="/people/adrian"]').count() == 1)
+        check(f'{w}: session no attendance language', not re.search(r'attend|I.m in|at the run', page.locator('#pp-session').inner_text(), re.I))
+        check(f'{w}: session no overflow', page.evaluate('document.documentElement.scrollWidth<=innerWidth'))
+        page.screenshot(path=str(OUT / f'session-{w}.png'), full_page=True)
+        page.goto(BASE + '/session/not-published'); page.wait_for_function('window.FORM_SESSION')
+        check(f'{w}: unpublished or hidden session is not here', 'isn’t here' in page.locator('#pp-session').inner_text())
 
         page.goto(BASE + '/people/someone-hidden'); page.wait_for_function('window.FORM_PERSON')
         check(f'{w}: hidden or unknown profile is not here', 'isn’t here' in page.locator('#pp-profile').inner_text())

@@ -141,7 +141,8 @@ with sync_playwright() as pw:
                      'collective_run_changes': [], 'collective_run_details': [], 'collective_runs': [],
                      'collective_people': [dict(id='pj', slug='jose', first_name='José', last_initial='S', show_last_initial=False, avatar_path='/assets/athletes/jose-remote-256.webp', instagram='josefsantosdesoto', visible=True),
                                            dict(id='ph', slug='hope', first_name='Hope', last_initial='F', show_last_initial=False, avatar_path='/assets/athletes/hope-256.webp', instagram='hope_finnane', visible=True)],
-                     'collective_person_tags': [dict(id='t-req', person_id='ph', asset_id='r1', library_id=None, status='requested', created_at='2026-10-13T20:00:00Z')]},
+                     'collective_person_tags': [dict(id='t-req', person_id='ph', asset_id='r1', library_id=None, status='requested', created_at='2026-10-13T20:00:00Z')],
+                     'collective_sessions': [], 'collective_session_people': []},
                      thumb=BASE + '/assets/practice/20261001/' + photos[0].name)
         ctx.add_init_script('window.__S=' + json.dumps(state) + ';')
         def route(r):
@@ -338,6 +339,26 @@ with sync_playwright() as pw:
     page.locator('#sheetSave').click(); page.wait_for_function('!document.getElementById("sheet").open')
     check('unticking removes the tag, not the photo', not any(t['asset_id'] == 'r0' and t['person_id'] == 'pj' for t in S(page)['tables']['collective_person_tags'])
           and any(a['id'] == 'r0' for a in S(page)['tables']['collective_roll_assets']))
+    # sessions: a filmed workout of one athlete, separate from group runs
+    check('sessions section', 'No sessions yet' in page.locator('#rows').inner_text())
+    page.locator('[data-new-session]').click()
+    page.fill('input[name=title]', '7 × 800 at 2:44'); page.fill('input[name=detail]', '5:30 a mile · 2:00 jog between')
+    page.fill('input[name=date]', '2026-10-14')
+    page.fill('input[name=youtube]', 'https://vimeo.com/123')
+    page.locator('input[name=p][value=pj]').check()
+    page.locator('#sheetSave').click()
+    check('non-YouTube film refused', 'isn’t a YouTube link' in page.locator('#sheetNote').inner_text())
+    page.fill('input[name=youtube]', 'https://youtu.be/dQw4w9WgXcQ?si=xyz')
+    page.fill('textarea[name=clips]', 'https://youtube.com/shorts/abcdefghijk | Rep 4')
+    page.locator('input[name=published]').check()
+    page.locator('#sheetSave').click(); page.wait_for_function('!document.getElementById("sheet").open')
+    st = S(page)
+    ses = st['tables']['collective_sessions']
+    check('session saved with film and clip ids', len(ses) == 1 and ses[0]['youtube_id'] == 'dQw4w9WgXcQ' and ses[0]['clips'] == [{'youtube_id': 'abcdefghijk', 'title': 'Rep 4'}] and ses[0]['published'] is True)
+    check('session slug carries the athlete and date', ses[0]['slug'] == 'jose-7-800-at-2-44-2026-10-14')
+    check('whose session is linked', [r['person_id'] for r in st['tables']['collective_session_people']] == ['pj'])
+    check('no attendance or roster for a session', not any(o.get('insert') == 'collective_run_changes' for o in st['log'] if o.get('insert')))
+
     # a pending requester ticked together with someone new to the photo: both end up confirmed
     page.evaluate('''()=>window.__S.tables.collective_person_tags.push({id:'t-req2',person_id:'ph',asset_id:'r2',library_id:null,status:'requested',created_at:'2026-10-13T21:00:00Z'})''')
     page.locator('[data-run="p1"]').click(); page.locator('[data-run="p2"]').click(); page.wait_for_selector('[data-people="r2"]')

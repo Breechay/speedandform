@@ -121,3 +121,6 @@ select:focus,input:focus,textarea:focus,button:focus-visible,a:focus-visible{out
 .newLabel{margin:20px 0 0}
 .reqRow .d b{font-size:20px}
 .reqGrid .ph{cursor:default}
+.sessHead{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.sessHead .pill{font-family:var(--sans);font-size:13px;letter-spacing:0;text-transform:none;min-height:36px;padding:6px 12px}
+textarea{background:var(--field-2);border:1px solid var(--edge-2);border-radius:10px;padding:9px 12px;font:inherit;color:inherit;resize:vertical}
