@@ -51,5 +51,5 @@ assert.match(hero, /video\.controls = false/);
 assert.match(hero, /prefers-reduced-motion/);
 assert.doesNotMatch(hero, /home-hero-sound|Unmute|soundToggle/);
 assert.match(slides, /home-hero-slide\{position:absolute;inset:0;opacity:0;transition:opacity/);
-assert.match(slides, /home-hero-slide\\:nth-child\\(2\\) img\\{filter:/);
+assert.match(slides, /home-hero-slide:nth-child\(2\) img\{filter:/);
 console.log('FORM theatrical design contract: pass (still requires visual review).');
