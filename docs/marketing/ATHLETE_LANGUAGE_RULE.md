@@ -205,12 +205,14 @@ Do not make education a prerequisite for compliance.
 Brice rejected the athlete-facing Simon block description and workout labels. A block description says what the athlete will do and what it builds. Keep the coach's hypotheses, evidence qualifications and race-prediction discussion in the coach record.
 
 - Name the work directly: `4 × 2 km`, `4 × 3 min`, `Easy run`, or `Easy + 6 relaxed strides`.
-- Put the recovery instruction beside the workout: `Run the intervals only if you have recovered from Tuesday. If you are still tired, run easy or rest.`
-- Use `recovered` and `lighter week` instead of `absorbed`, `absorption` or `true absorption week` in current athlete instructions.
+- **No conditional recovery language in an athlete's assigned plan.** Do not publish `if Tuesday absorbed`, `if recovered`, `if you feel good`, `if the previous workout was absorbed`, `Thursday is earned`, `otherwise easy or rest`, or equivalent decisions in workout titles, session details, weekly summaries, push notifications, or the coach board's athlete preview.
+- **The coach owns readiness.** Evaluate the actual preceding work, athlete feedback, injuries and available recovery before prescribing. Publish one executable session, not a choice between a demanding workout and an easier fallback. Change that published session through the normal versioned coaching workflow when new evidence changes the decision. A planned workout is not proof that the athlete completed it.
+- If a session is not yet cleared, **hold it for coach review** rather than publishing a hard workout with a disclaimer or silently converting a conditional workout into an unconditional one. Never remove a condition from a high-load prescription without resolving the programming decision.
+- The athlete's prescribed work specifies warm-up, main set, exact repetitions/duration, pace where appropriate, rests, cool-down, and short execution cues. The coach's hypotheses, recovery assessments, decision thresholds, and alternative options belong in coach-private notes and revision history.
+- Safety instructions such as stopping for sharp pain, concerning symptoms or an injury are not programming indecision; keep genuine safety information visible and understandable.
 - Keep phrases such as `working development`, `ceiling maintenance`, `quality budget` and `no race prediction is established` out of athlete block descriptions and workout labels. The coach can keep the precise reasoning in private notes.
-- Do not remove a recovery condition while simplifying its wording. Do not turn an observation into a completion, pace change or race prediction.
 
-Apply this to the canonical plan data as well as the interface. A display-only replacement leaves the rejected wording in the next refresh. Preserve dated historical evidence and its original prescription.
+**Implementation rule:** Apply this at the canonical plan and athlete-specific assigned-session level, not solely through a display-time string replacement. Do not author new conditional suffixes via migrations, app clients, imports, or backfills. Reconcile the published coach board, athlete view, active assignments, plan catalogue and sync/refresh payloads. Check future weeks too. Keep historical evidence, completed-session snapshots and prior prescription versions intact, with dated revision reasons.
 
 ## Acceptance test
 
