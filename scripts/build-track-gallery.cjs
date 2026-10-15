@@ -38,7 +38,22 @@ function build(){
  const first=manifest.albums[0],fallback={url:'/og/form-share-20260916.jpg',alt:'FORM Run Development, two runners in profile.'};
  const body=`<section class="track-hero"><div><p class="track-eyebrow">FORM · Photographs &amp; films</p><h1>From the track.</h1></div><p class="track-intro">The people, the work, and the mornings in between. Open an album. Save a favorite.<br><a href="/thursday">Come run with us →</a></p></section><section class="track-albums" aria-label="Albums">${manifest.albums.map(a=>{const cover=a.media.find(m=>m.id===a.cover);return `<a class="track-feature" href="${url(a)}"><div class="track-feature-picture">${thumbnail(cover,'fetchpriority="high"')}</div><div class="track-feature-caption"><div><p class="track-meta">${dateLabel(a)} · ${count(a)}</p><h2>${esc(a.title)}</h2></div><span class="track-feature-action">View the album ↗</span></div></a>`;}).join('\n')}${first?'':'<p class="track-empty">The next selection belongs here. Session albums appear after Brice publishes the photographs. <a href="/thursday">Find the current track details</a>.</p>'}</section><section class="track-index-note"><h2>Looking for your morning?</h2><p>New session albums appear here after the edit. Until then, explore the earlier selection or find the details for joining us.</p></section>`;
  const schema={'@context':'https://schema.org','@type':'CollectionPage',name:'FORM Track Photos & Films',url:O+'/track/',description:'Selected photographs and films from running practice.',mainEntity:{'@type':'ItemList',itemListElement:manifest.albums.map((a,i)=>({'@type':'ListItem',position:i+1,name:a.title,url:O+url(a)}))}};
- write('track/index.html',documentPage({title:'Track Photos & Films | FORM Miami',description:'Selected photographs and films from running practice with FORM. Explore the albums, save your favorites, and find the next track-session details.',route:'/track/',image:first?.share||fallback,body,schema}));
+ // Preserve the already-reviewed cinematic entrance and complete first-party
+ // session film. Only the real album shelf and its structured data are generated.
+ const existing=read('track/index.html');
+ let page=documentPage({title:'Track Photos & Films | FORM Miami',description:'Selected photographs and films from running practice with FORM. Explore the albums, save your favorites, and find the next track-session details.',route:'/track/',image:first?.share||fallback,body,schema});
+ if(existing.includes('class="track-entrance"')&&existing.includes('class="track-native-film"')){
+   const gallery=body.match(/<section class="track-albums" aria-label="Albums">[\\s\\S]*?<\\/section>/)?.[0];
+   if(!gallery)throw Error('Generated album shelf is missing');
+   const albumSlot=/<section class="track-albums" aria-label="Albums">[\\s\\S]*?<\\/section>/;
+   if(!albumSlot.test(existing))throw Error('Existing cinematic album shelf is missing');
+   page=existing.replace(albumSlot,gallery)
+     .replace(/<script type="application\\/ld\\+json">[\\s\\S]*?<\\/script>/,
+       '<script type="application/ld+json">'+json(schema)+'</script>');
+   if(!page.includes('href="/photos/"'))page=page.replace('</main>','<p class="track-library-link"><a href="/photos/">Browse the photo library ↗</a></p></main>');
+   if(!page.includes(' controls muted playsinline '))throw Error('Draft session film must remain muted');
+ }
+ write('track/index.html',page);
  console.log('Built gallery and '+manifest.albums.length+' album(s), static links and no-gate downloads.');
  return manifest;
 }
