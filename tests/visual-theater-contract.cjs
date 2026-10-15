@@ -31,11 +31,14 @@ assert.match(plans, /\.plan-media figure:nth-child\(1\) img\{filter:/);
 assert.match(coaching, /\.rd-media-grid figure:nth-child\(2\) img\{filter:/);
 
 
-// The most common regression was deleting the phone-specific backing gradient.
-assert.match(css, /@media\(max-width:760px\)\{\.sf-home-hero-immersive \.hero-copy::before\{content:""/);
-assert.match(css, /\.home-hero-shade\{pointer-events:none;z-index:0;background:radial-gradient/);
-assert.match(css, /\.home-hero-shade\{background:radial-gradient/);
-assert.doesNotMatch(css, /max-width:760px[^\n]*hero-copy::before\{content:none/);
+// Owner's later photo-specific correction: never force grades or backing
+// gradients onto these two original hero frames. Theater remains elsewhere.
+assert.match(css, /\.sf-home-hero-immersive \.hero-copy::before\{content:none\}/);
+assert.match(css, /\.home-hero-shade\{pointer-events:none;z-index:0;background:none\}/);
+assert.match(css, /@media\(max-width:760px\)\{\.sf-home-hero-immersive \.hero-copy::before\{content:none\}/);
+assert.match(css, /\.home-hero-shade\{background:none\}/);
+assert.match(slides, /\.home-hero-slide:nth-child\(1\) img\{filter:none/);
+assert.match(slides, /\.home-hero-slide:nth-child\(4\) img\{filter:grayscale\(1\)/);
 
 // Decoration is allowed to be beautiful. The site also keeps meaningful entry points.
 assert.equal((home.match(/class="home-media-card"/g) || []).length, 3);

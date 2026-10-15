@@ -8,11 +8,12 @@ for(const phrase of [
  'Run farther.<br>Feel smoother.<br>Get stronger',
  'I’m Brice.',
  'Train with me.',
- 'The work has faces.',
+ 'Meet the athletes. The faces of FORM.',
  'From the practice',
  'Tell me what you want to be capable of.',
  'Run Development',
  'See the plan',
+ 'Browse the photographs ↗',
  '$1,200'
 ])assert.ok(html.includes(phrase),'Approved homepage text: '+phrase);
 for(const href of ['/coaching/miami/','/form/','/forge-sculpt/','/plans/','/runs/','/people/','/track/','/contact'])
