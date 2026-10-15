@@ -24,13 +24,23 @@ In the authenticated Runs room, open Sessions → Adrian + Tinius 7 × 800 and c
 - Both clients construct a public Storage URL ONLY from a validated `sessions/<slug>/<uuid>.mp4` or `.jpg/.webp` path on our existing Supabase project. Never accept an arbitrary external URL from user content.
 - Supabase Storage public-read URLs work independently of an app update; **but the app version must first contain the native video player**. Once shipped, later media can be changed server-side.
 
-## Media that is available but not uploaded yet
+## Production upload — verified October 14, 2026
 
-Conversation-mounted files:
-- `adrian-tinius-7x800-tight.mp4` — 24,831,039 bytes, 33.821s, H.264 1920×1080 + AAC, SHA-256 `5802bc3a9791e8016e1c4b8c494626f52c320a05643289d39e6699d605113ac8`.
-- `adrian-tinius-7x800-poster.jpg` — SHA-256 `404e52fee778acee7d31740ff13790b98a00a8ef554f58b8053a1a061fe27f6f`.
+**Uploaded and linked. Do not ask Brice to upload these files again.**
 
-The assistant's GitHub/Supabase connectors **cannot upload local binary files to Supabase Storage**. Its sandbox runtime has no network/DNS route for `curl`, either. This is why the MP4 has NOT been transferred: no fake “published” URL is to be reported until a publisher's actual browser has uploaded and the object returns HTTP 200/range playback.
+Verified in production `storage.objects` under the public `collective-films` bucket:
+
+- `sessions/adrian-7x800-2026-10-14/9f242ac9-173d-4e76-b203-4304a1d1c1f6.mp4`, 24,831,039 bytes, `video/mp4`.
+- `sessions/adrian-7x800-2026-10-14/4396f5fd-6fce-4fc0-8841-26b2d02d080e.jpg`, 137,602 bytes, `image/jpeg`.
+
+The published `collective_sessions` row `adrian-7x800-2026-10-14` has **both** versioned paths. Database `collective_session(slug)` returns the video, poster, and the already linked public profiles `adrian` and `tinius`. The original YouTube ID remains null.
+
+Public Storage address format: `https://pbgsjjegycacodiltbhn.supabase.co/storage/v1/object/public/collective-films/<path>`.
+
+The database and content types were verified. Playback over HTTP and `Accept-Ranges` still need confirmation in a real browser (tool runtime cannot fetch these binary URLs).
+
+**The website player is not live yet**: merge/deploy this PR once reviewed, preserving the image-led people-directory changes currently on `main`. The iPhone player is also not yet shipped, see FORM-iOS PR #62. Do not advertise existing app builds as playable.
+
 
 ## Safety and operations
 
@@ -40,7 +50,7 @@ Publish only material for which the shooter/owner has rights, including any soun
 
 ## Acceptance checks
 
-1. Merge/deploy the site patch, then use the publisher account to upload the MP4 + poster into Adrian + Tinius's existing session. Confirm the stored paths, publicly served URLs and application video playback.
+1. Keep the existing uploaded and linked files; merge/deploy the site player patch after review. Confirm the actual public Storage URLs return range-supported playable media.
 2. Test /session/adrian-7x800-2026-10-14 on Safari iOS and desktop Chrome. Expect built-in controls, poster, and a range-supported MP4, not a blank iframe.
 3. Test Adrian and Tinius public profile cards. Their shared session should appear on both via existing person links and policy.
 4. Test FORM iPhone Network featured story → Session → Play, plus Media > Films and both profiles. Regress guest/private person rules, fail/offline states and reduced motion.
