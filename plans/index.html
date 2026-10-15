@@ -5,11 +5,13 @@
 <link rel="canonical" href="https://speedandform.com/plans/"><link rel="icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" as="font" type="font/woff2" href="/assets/site/fonts/inter-tight-latin-variable.woff2" crossorigin><link rel="stylesheet" href="/css/sf-brand.css?v=20261001"><link rel="stylesheet" href="/css/public-finish.css?v=20261004-finish"><link rel="stylesheet" href="/css/commercial-journey.css?v=20261006-house">
 <style>html{background:#0d0f0e;-webkit-text-size-adjust:100%}*{box-sizing:border-box}
-.plan-media{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:48px 0 0}
+.plan-media{display:grid;grid-template-columns:1.18fr 1fr;gap:16px;margin:48px 0 0}
 .plan-media figure{margin:0;border-radius:12px;overflow:hidden;background:#1a1c1a}
-.plan-media img{width:100%;height:220px;object-fit:cover;display:block;filter:grayscale(0.3)}
+.plan-media img{width:100%;height:270px;object-fit:cover;display:block}
+.plan-media figure:nth-child(1) img{filter:grayscale(.86) contrast(1.18) brightness(.96);object-position:47% 44%}
+.plan-media figure:nth-child(2) img{filter:grayscale(.48) contrast(1.12) brightness(1.02);object-position:53% 44%}
 .plan-media figcaption{font:11px/1.5 "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase;padding:10px 14px;color:#b8bbb2}
-@media(max-width:760px){.plan-media{grid-template-columns:1fr}.plan-media img{height:180px}}
+@media(max-width:760px){.plan-media{grid-template-columns:1fr}.plan-media img{height:clamp(215px,63vw,340px)}}
 </style>
 <link rel="stylesheet" href="/css/sf-menu.css?v=20261015-focus">
 <meta name="description" content="Choose a self-guided running plan: free half-marathon finish plans and Race Pace That Lasts.">
