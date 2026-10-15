@@ -15,9 +15,11 @@ for(const a of s.athletes){
 }
 const home=fs.readFileSync('index.html','utf8'),run=fs.readFileSync('coaching/miami/index.html','utf8');
 assert.ok(home.includes(renderHomeEvidence()),'Homepage uses the approved current projection');
-// Both public coaching entries keep the homepage intake. The standalone room links to the owning study rather than duplicating observations.
+// Homepage owns the approved study projection. Run Development keeps its direct inquiry path;
+// the owner's focused coaching room deliberately does not carry study/analysis cross-links.
 assert.ok(run.includes('href="/#begin"'));
-assert.ok(run.includes('href="/labs/speed-that-endures/"'));
+assert.ok(!run.includes('href="/labs/speed-that-endures/"'),'Focused coaching entry has no unsolicited study cross-link');
+assert.ok(!run.includes('href="/analysis/"'),'Analysis remains out of the commercial coaching path');
 assert.ok(home.includes('<a href="#begin"><span>01 / Coaching'));
 assert.ok(!run.includes('http-equiv="refresh"'));
 assert.ok(!fs.readFileSync('netlify.toml','utf8').includes('from = "/coaching/miami"'));
