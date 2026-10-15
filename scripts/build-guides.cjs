@@ -76,7 +76,12 @@ ${familyBlock}
 </body>
 </html>
 `;
- return share.transform(require('./build-cream-reading.cjs').transformHtml(html,g.file),g.file,ROOT);
+ // Preserve the complete generated public surface: reading treatment, canonical
+ // share metadata, and the same shared menu present in the checked-in HTML.
+ const reading=require('./build-cream-reading.cjs').transformHtml(html,g.file);
+ const meta=share.transform(reading,g.file,ROOT);
+ const pub=require('./build-public-share.cjs').transform(meta,g.file);
+ return require('./build-site-menu.cjs').transformHtml(pub,g.file);
 }
 function build(){for(const g of guides){const p=path.join(ROOT,g.file);fs.writeFileSync(p,render(g,fs.readFileSync(p,'utf8')));}console.log('Built four reviewed foundation guides. No other page changed.');}
 if(require.main===module)build();module.exports={render,build,VERSION};
