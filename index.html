@@ -95,7 +95,7 @@
 <link rel="stylesheet" href="/css/home-settle.css?v=20261006-cloth">
 <script defer src="/js/commercial-inquiry.js?v=20261006-accepted-lead"></script>
 <link rel="stylesheet" href="/css/sf-menu.css?v=20261015-focus">
-<link rel="stylesheet" href="/css/home-hero-carousel.css?v=20261015-silent">
+<link rel="stylesheet" href="/css/home-hero-carousel.css?v=20261014-cinematic">
 <meta name="description" content="Running and strength coaching with Brice. Build endurance, strength and confidence in Miami or online. Explore coaching, running reviews and training plans.">
 <!-- House share metadata: October 6 -->
 <meta property="og:type" content="website">
@@ -129,8 +129,11 @@
 .home-media-card{position:relative;display:block;isolation:isolate;border-radius:13px;overflow:hidden;aspect-ratio:3/3.7;background:#242723;color:var(--bone);text-decoration:none}
 .home-media-grid figure:first-child .home-media-card{aspect-ratio:3.2/3.7}
 .home-media-card::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,transparent 42%,rgba(6,8,7,.16) 58%,rgba(6,8,7,.89));pointer-events:none}
-.home-media-card img{display:block;width:100%;height:100%;object-fit:cover;filter:grayscale(.35);transition:transform .65s cubic-bezier(.22,.61,.36,1),filter .65s}
-.home-media-card:hover img,.home-media-card:focus-visible img{transform:scale(1.055);filter:grayscale(0)}
+.home-media-card img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .65s cubic-bezier(.22,.61,.36,1),filter .65s}
+.home-media-grid figure:nth-child(1) img{filter:grayscale(.75) contrast(1.13) brightness(.92);object-position:48% 45%}
+.home-media-grid figure:nth-child(2) img{filter:grayscale(.20) contrast(1.10) brightness(.97);object-position:50% 46%}
+.home-media-grid figure:nth-child(3) img{filter:grayscale(1) contrast(1.18) brightness(.94);object-position:52% 42%}
+.home-media-card:hover img,.home-media-card:focus-visible img{transform:scale(1.055);filter:grayscale(.15) contrast(1.11) brightness(.98)}
 .home-media-card figcaption{position:absolute;inset:auto 22px 24px;z-index:1;display:grid;gap:7px}
 .home-media-card small{font:400 10px/1.4 var(--mono,monospace);text-transform:uppercase;letter-spacing:.14em;color:#e6e2d9}
 .home-media-card strong{font-size:clamp(26px,2.7vw,43px);font-weight:450;letter-spacing:-.04em;line-height:1.04}
