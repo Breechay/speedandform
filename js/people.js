@@ -14,7 +14,7 @@
   var KIND = { 'long run': 'Long run', track: 'Track', social: 'After the run', strength: 'Strength' };
 
   function $(id) { return document.getElementById(id); }
-  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&', '<': '<', '>': '>', '"': '"', "'": '&#39;' }[c]; }); }
   function request(path, body) {
     var controller = new AbortController();
     var timer = setTimeout(function () { controller.abort(); }, 12000);
@@ -57,6 +57,12 @@
       '<b>' + esc(se.title) + '</b><span>' + esc([se.detail, sessionDate(se.date)].filter(Boolean).join(' · ')) + '</span></a>';
   }
 
+  function monogram(name) {
+    var parts = String(name || '').trim().split(/\s+/).filter(Boolean);
+    var initials = (parts[0] ? parts[0][0] : '') + (parts[1] ? parts[1][0] : '');
+    return '<span class="pp-monogram" aria-hidden="true">' + esc(initials.toUpperCase()) + '</span>';
+  }
+
   // ---------------------------------------------------------------- directory
   function renderDirectory() {
     var list = $('pp-list'), find = $('pp-find'), note = $('pp-note'), people = [];
@@ -66,11 +72,15 @@
         return !q || String(p.name).toLowerCase().indexOf(q) >= 0 || String(p.instagram || '').toLowerCase().indexOf(q) >= 0;
       });
       list.innerHTML = shown.map(function (p) {
-        return '<li><a href="/people/' + esc(p.slug) + '">' +
-          (p.avatar ? '<img src="' + esc(p.avatar) + '" alt="" width="52" height="52" loading="lazy">' : '<span class="pp-av0" aria-hidden="true"></span>') +
-          '<span class="pp-who"><b>' + esc(p.name) + '</b>' +
-          (p.bio || p.discipline || p.instagram ? '<small>' + esc(p.bio || p.discipline || ('@' + p.instagram)) + '</small>' : '') +
-          '</span><span class="pp-go" aria-hidden="true">›</span></a></li>';
+        var media = p.avatar
+          ? '<img class="pp-card-img" src="' + esc(p.avatar) + '" alt="" loading="lazy">'
+          : monogram(p.name);
+        var sub = p.bio || p.discipline || (p.instagram ? '@' + p.instagram : '');
+        return '<li class="pp-card"><a href="/people/' + esc(p.slug) + '">' +
+          '<div class="pp-card-media">' + media + '</div>' +
+          '<div class="pp-card-info"><b>' + esc(p.name) + '</b>' +
+          (sub ? '<small>' + esc(sub) + '</small>' : '') +
+          '</div></a></li>';
       }).join('');
       note.textContent = people.length && !shown.length ? 'No one by that name yet.' : '';
       window.FORM_PEOPLE = { shown: shown.length, total: people.length };
@@ -158,8 +168,8 @@
           (now || best ? '<div class="pp-facts">' + now + best + '</div>' : '') +
           ((p.sessions || []).length ? '<section class="pp-sessions" aria-label="Film"><p class="pp-mono">' + ((p.sessions || []).some(function (x) { return x.youtube_id; }) ? 'Film' : 'Sessions') + '</p>' + p.sessions.map(function (x) { return sessionCard(x, lib); }).join('') + '</section>' : '') +
         '</div></div>' +
-        (count ? '<section class="pp-media" aria-label="Photos and films"><h2>Photos &amp; films</h2>' + media + '</section>' : '') +
-        '<p class="pp-foot">Photographs by Brice. Speed &amp; Form, Miami.</p>';
+        (count ? '<section class="pp-media" aria-label="Photos and films"><h2>Photos & films</h2>' + media + '</section>' : '') +
+        '<p class="pp-foot">Photographs by Brice. Speed & Form, Miami.</p>';
       // Mobile reorder: the avatar sits beside the name, as on the app profile.
       var idl = root.querySelector('.pp-idline'), h1 = root.querySelector('.pp-intro h1');
       if (window.matchMedia('(max-width:760px)').matches && idl && h1) idl.appendChild(h1);
@@ -204,7 +214,7 @@
           }).join('') + '</div></section>' : '') +
           (photos ? '<section class="pp-media"><h2>Photos</h2><div class="pp-grid">' + photos + '</div></section>' : '') +
           (se.run ? '<p class="pp-note"><a href="' + esc(runHref(se.run.title, se.run.starts_at, se.run.series_id)) + '">' + esc(se.run.title) + ' · the group run ›</a></p>' : '') +
-          '<p class="pp-foot">Filmed by Brice. Speed &amp; Form, Miami.</p>';
+          '<p class="pp-foot">Filmed by Brice. Speed & Form, Miami.</p>';
         window.FORM_SESSION = { slug: se.slug, film: !!se.youtube_id, clips: clips.length, people: (se.people || []).length };
       }).catch(function () { missing('This can’t be loaded right now.', true); });
     }
