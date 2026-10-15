@@ -58,6 +58,11 @@ jobs:
           node tests/homepage-release.cjs
           node tests/form-landing.cjs
           node tests/sculpt-landing.cjs
+          # Exercise the same build command that Netlify production executes.
+          BUILD_COMMAND="$(sed -n 's/^  command = "\(.*\)"$/\1/p' netlify.toml)"
+          test -n "$BUILD_COMMAND"
+          bash -euo pipefail -c "$BUILD_COMMAND"
+          node tests/public-study-preview.cjs
       - name: Commit canonical generated pages only
         shell: bash
         run: |
