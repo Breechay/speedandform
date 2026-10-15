@@ -21,7 +21,10 @@ jobs:
         with:
           node-version: '20'
       - name: Install genuine media tooling
-        run: python -m pip install Pillow==11.3.0
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          python -m pip install Pillow==11.3.0
       - name: Generate and verify approved album
         shell: bash
         run: |
