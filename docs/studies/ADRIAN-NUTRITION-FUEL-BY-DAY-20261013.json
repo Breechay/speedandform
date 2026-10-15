@@ -80,7 +80,18 @@
       "carbohydrate_g": 403,
       "protein_g": null,
       "fat_g": null,
-      "note": "Athlete text screenshot: 'I'm at 403 carbs with 4280 cals.' Reporting moment is not a confirmed full-day close; measured intake composition and historical carbohydrate baseline unavailable."
+      "note": "Earlier Oct 14 in-day checkpoint, superseded by later athlete-reported 4,620 kcal / 465 g carbs / 202 g protein / 219.5 g fat. Preserve both reports as separate observations."
+    },
+    {
+      "date": "2026-10-14",
+      "kind": "athlete_report_later_daily_total",
+      "kcal": 4620,
+      "carbohydrate_g": 465,
+      "protein_g": 202,
+      "fat_g": 219.5,
+      "estimated_kcal_from_macros": 4643.5,
+      "reported_vs_macro_calorie_difference": 23.5,
+      "note": "Later text provided Oct 15 as 'yesterday': 4,620 calories, 465 g carbohydrates, 202 g protein, 219.5 g fat. More complete than earlier Oct 14 report of 4,280 kcal and 403 g carbohydrate. Macro-calculated calories are 4,643.5; 23.5 kcal discrepancy likely reflects tracking/rounding; source remains athlete report, not independent verification."
     }
   ],
   "app_note": "Written so the Strength app can later show the day's tier beside the session. The day type comes from the planned run and lift for that date.",
@@ -98,8 +109,10 @@
     "monitor": [
       "Record daily carbohydrate, protein, fat and calories, with actual day-end totals distinguished from mid-day readings.",
       "Use comparable morning weights and 7-day average, alongside waist and training response.",
-      "Document oat intake, gastrointestinal tolerance, session fueling, perceived energy and recovery."
+      "Document oat intake, gastrointestinal tolerance, session fueling, perceived energy and recovery.",
+      "Check high reported fat intake against food log and whether it crowds out carbohydrate on demanding run days; do not infer a problem from one day."
     ],
-    "prescription_changes": "None established by this evidence entry; existing fuel-by-day guidance remains an authored coach decision."
+    "prescription_changes": "None established by this evidence entry; existing fuel-by-day guidance remains an authored coach decision.",
+    "latest_intake_report": "Later total: 4,620 kcal, 465 g carbohydrate, 202 g protein, 219.5 g fat, replacing earlier in-day checkpoint for day-level analysis."
   }
 }
