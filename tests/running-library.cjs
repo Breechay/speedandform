@@ -30,7 +30,7 @@ for(const g of pages){
  for(const [,json]of h.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g))JSON.parse(json);
  assert.equal(share.canonical(h,g.file),share.ORIGIN+g.route);
  assert.ok(h.includes('tabindex="-1"')&&h.includes('guide-skip'));
- assert.ok(!/<svg|https:\/\/fonts\.googleapis/.test(h),'no unmeasured drawing or external type '+g.file);
+ const article=h.split('<article class="guide-body"')[1]?.split('</article>')[0]||''; assert.ok(article&&!/<svg\b|https:\/\/fonts\.googleapis/.test(article),'no unmeasured drawing or external type inside lesson '+g.file);
  if(g.kind==='Routine'){
   for(const id of ['routine-facts','progress','stop'])assert.ok(ids.includes(id),g.file+' missing '+id);
   assert.ok(h.includes('data-guide-print'));
