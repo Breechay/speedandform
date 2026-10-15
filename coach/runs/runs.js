@@ -26,6 +26,8 @@ import { supabase as sb } from '/private/supabase-client.js';
 const ZONE = 'America/New_York';
 const DRAFTS = 'collective-gallery-drafts';
 const PUBLIC = 'collective-media';
+const FILMS = 'collective-films';
+const FILM_LIMIT = 60 * 1024 * 1024;
 const LIMIT = 9;
 const LONG_EDGE = 3000;
 const SESSIONS = [
@@ -126,7 +128,7 @@ async function loadRuns() {
 async function loadSessions() {
   try {
     const { data, error } = await sb.from('collective_sessions')
-      .select('id,slug,title,detail,happened_on,place,youtube_id,clips,published,collective_session_people(person_id)')
+      .select('id,slug,title,detail,happened_on,place,youtube_id,video_path,poster_path,clips,published,collective_session_people(person_id)')
       .order('happened_on', { ascending: false });
     if (error) throw error;
     sessions = data || [];
@@ -144,8 +146,20 @@ function sessionRow(se) {
   const who = (se.collective_session_people || []).map((x) => personName(personById(x.person_id))).join(', ');
   return `<button type="button" class="row${selected === `s:${se.id}` ? ' sel' : ''}" data-session="${se.id}">
     <span class="d">${esc(p.wd)}<b>${esc(p.day)}</b></span>
-    <span class="t">${esc(se.title)}<small>${esc([who, se.youtube_id ? 'Film' : 'No film yet'].filter(Boolean).join(' · '))}</small></span>
+    <span class="t">${esc(se.title)}<small>${esc([who, (se.video_path || se.youtube_id) ? 'Film' : 'No film yet'].filter(Boolean).join(' · '))}</small></span>
     <span class="st${se.published ? ' act' : ''}">${se.published ? 'Published' : 'Draft'}</span></button>`;
+}
+
+async function uploadNativeSessionAsset(_id, file, type, slug) {
+  // The bucket policy allows only signed-in publishers, in sessions/<slug>/<uuid>.
+  const ext = type === 'video' ? 'mp4' : (file.type === 'image/webp' ? 'webp' : 'jpg');
+  const objectPath = `sessions/${slug}/${crypto.randomUUID()}.${ext}`;
+  const mime = type === 'video' ? 'video/mp4' : (ext === 'webp' ? 'image/webp' : 'image/jpeg');
+  const { error } = await sb.storage.from(FILMS).upload(objectPath, file, {
+    upsert: false, cacheControl: '3600', contentType: mime
+  });
+  if (error) throw new Error(`Film storage upload failed: ${error.message}`);
+  return objectPath;
 }
 function sessionSheet(se) {
   const mine = new Set((se?.collective_session_people || []).map((x) => x.person_id));
@@ -156,8 +170,13 @@ function sessionSheet(se) {
       <label class="wide">Detail<input type="text" name="detail" maxlength="120" value="${esc(se?.detail || '')}" placeholder="5:30 a mile · 2:00 jog between"></label>
       <label>Date<input type="date" name="date" required value="${esc(se?.happened_on || today())}"></label>
       <label>Place<input type="text" name="place" maxlength="60" value="${esc(se?.place || '')}"></label>
-      <label class="wide">Film (YouTube link)<input type="text" name="youtube" value="${se?.youtube_id ? `https://youtu.be/${esc(se.youtube_id)}` : ''}" placeholder="https://youtu.be/…" autocomplete="off"></label>
+      <label class="wide">FORM-hosted film (MP4, up to 60 MB)<input type="file" name="nativeFilm" accept="video/mp4,.mp4"><small>${se?.video_path ? 'A FORM-hosted film is linked. Selecting a new MP4 replaces it.' : 'Choose a local MP4 to upload to FORM Storage.'}</small></label>
+      <label class="wide">Film poster (JPEG or WebP)<input type="file" name="nativePoster" accept="image/jpeg,image/webp,.jpg,.jpeg,.webp"><small>${se?.poster_path ? 'A FORM-hosted poster is linked.' : 'Optional. The existing public library cover remains the fallback.'}</small></label>
+      ${se?.video_path ? '<label class="check"><input type="checkbox" name="removeNativeFilm"> Remove hosted film and revoke its public URL</label>' : ''}
+      ${se?.poster_path ? '<label class="check"><input type="checkbox" name="removeNativePoster"> Remove hosted poster</label>' : ''}
+      <label class="wide">Alternative video (YouTube link)<input type="text" name="youtube" value="${se?.youtube_id ? `https://youtu.be/${esc(se.youtube_id)}` : ''}" placeholder="https://youtu.be/…" autocomplete="off"></label>
       <label class="wide">Clips, one per line (link | title)<textarea name="clips" rows="3" placeholder="https://youtube.com/shorts/… | Rep 4">${esc(clips)}</textarea></label>
+      <label class="check"><input type="checkbox" name="rights"> I have the rights and athlete publication permission needed to publish a new film here.</label>
     </div>
     <p class="label newLabel">Whose session</p>
     <div class="peopleList">${people.map((p) => `<label class="check"><input type="checkbox" name="p" value="${p.id}"${mine.has(p.id) ? ' checked' : ''}>
@@ -165,6 +184,21 @@ function sessionSheet(se) {
     <label class="check"><input type="checkbox" name="published"${se?.published ? ' checked' : ''}> Published: on their profile, the site and the app</label>`,
   async (f) => {
     const title = f.get('title').trim();
+    const filmFile = f.get('nativeFilm');
+    const posterFile = f.get('nativePoster');
+    const hasFilmFile = filmFile instanceof File && filmFile.size > 0;
+    const hasPosterFile = posterFile instanceof File && posterFile.size > 0;
+    const removeFilm = f.get('removeNativeFilm') === 'on';
+    const removePoster = f.get('removeNativePoster') === 'on';
+    if (removeFilm && hasFilmFile) throw new Error('Choose either remove film or upload replacement, not both.');
+    if (removePoster && hasPosterFile) throw new Error('Choose either remove poster or upload replacement, not both.');
+    if (hasFilmFile && f.get('rights') !== 'on') throw new Error('Confirm publication rights before uploading a film.');
+    if (hasFilmFile && (!/\\.mp4$/i.test(filmFile.name) || (filmFile.type && filmFile.type !== 'video/mp4') || filmFile.size > FILM_LIMIT)) {
+      throw new Error('Choose an MP4 smaller than 60 MB.');
+    }
+    if (hasPosterFile && (!/\\.(jpe?g|webp)$/i.test(posterFile.name) ||
+        (posterFile.type && !['image/jpeg','image/webp'].includes(posterFile.type)) ||
+        posterFile.size > 5 * 1024 * 1024)) throw new Error('Choose a JPEG or WebP poster smaller than 5 MB.');
     const yt = ytID(f.get('youtube'));
     if (yt === undefined) throw new Error('That film link isn’t a YouTube link.');
     const clipRows = String(f.get('clips') || '').split('\n').map((l) => l.trim()).filter(Boolean).map((l) => {
@@ -177,6 +211,7 @@ function sessionSheet(se) {
     const row = { title, detail: f.get('detail').trim() || null, happened_on: f.get('date'), place: f.get('place').trim() || null,
       youtube_id: yt, clips: clipRows, published: f.get('published') === 'on' };
     let id = se?.id;
+    let rowSlug = se?.slug;
     if (id) {
       const { error } = await sb.from('collective_sessions').update(row).eq('id', id);
       if (error) throw error;
@@ -187,10 +222,32 @@ function sessionSheet(se) {
       const { data, error } = await sb.from('collective_sessions').insert({ ...row, slug }).select('id').single();
       if (error) throw error;
       id = data.id;
+      rowSlug = slug;
     }
     const adds = who.filter((p) => !mine.has(p)), removes = [...mine].filter((p) => !who.includes(p));
     if (adds.length) { const { error } = await sb.from('collective_session_people').insert(adds.map((person_id) => ({ session_id: id, person_id }))); if (error) throw error; }
     if (removes.length) { const { error } = await sb.from('collective_session_people').delete().eq('session_id', id).in('person_id', removes); if (error) throw error; }
+    const newlyUploaded = [];
+    try {
+      const data = {};
+      if (hasFilmFile) data.video_path = await uploadNativeSessionAsset(id, filmFile, 'video', rowSlug);
+      else if (removeFilm) data.video_path = null;
+      if (data.video_path) newlyUploaded.push(data.video_path);
+      if (hasPosterFile) data.poster_path = await uploadNativeSessionAsset(id, posterFile, 'poster', rowSlug);
+      else if (removePoster) data.poster_path = null;
+      if (data.poster_path) newlyUploaded.push(data.poster_path);
+      if (Object.keys(data).length) {
+        const { error } = await sb.from('collective_sessions').update(data).eq('id', id);
+        if (error) throw error;
+      }
+    } catch (error) {
+      if (newlyUploaded.length) await sb.storage.from(FILMS).remove(newlyUploaded).catch(() => {});
+      throw error;
+    }
+    // Once the record points to the replacement, retire the old public URL.
+    const previous = [hasFilmFile || removeFilm ? se?.video_path : null,
+                      hasPosterFile || removePoster ? se?.poster_path : null].filter(Boolean);
+    if (previous.length) await sb.storage.from(FILMS).remove(previous).catch(() => {});
     await loadSessions(); paintList();
   }, se ? 'Save' : 'Add session');
 }
