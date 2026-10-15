@@ -1,0 +1,26 @@
+name: FORM visual theater guard
+on:
+  pull_request:
+    paths:
+      - 'docs/BRAND.md'
+      - 'index.html'
+      - 'css/home-commercial.css'
+      - 'css/home-hero-carousel.css'
+      - 'js/home-hero-carousel.js'
+      - 'tests/visual-theater-contract.cjs'
+      - '.github/workflows/visual-theater-guard.yml'
+jobs:
+  visual-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Theatrical design and quiet media contract
+        run: |
+          node --check js/home-hero-carousel.js
+          node tests/visual-theater-contract.cjs
