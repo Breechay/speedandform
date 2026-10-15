@@ -43,12 +43,12 @@ function build(){
  const existing=read('track/index.html');
  let page=documentPage({title:'Track Photos & Films | FORM Miami',description:'Selected photographs and films from running practice with FORM. Explore the albums, save your favorites, and find the next track-session details.',route:'/track/',image:first?.share||fallback,body,schema});
  if(existing.includes('class="track-entrance"')&&existing.includes('class="track-native-film"')){
-   const gallery=body.match(/<section class="track-albums" aria-label="Albums">[\\s\\S]*?<\\/section>/)?.[0];
+   const gallery=body.match(/<section class="track-albums" aria-label="Albums">[\s\S]*?<\/section>/)?.[0];
    if(!gallery)throw Error('Generated album shelf is missing');
-   const albumSlot=/<section class="track-albums" aria-label="Albums">[\\s\\S]*?<\\/section>/;
+   const albumSlot=/<section class="track-albums" aria-label="Albums">[\s\S]*?<\/section>/;
    if(!albumSlot.test(existing))throw Error('Existing cinematic album shelf is missing');
    page=existing.replace(albumSlot,gallery)
-     .replace(/<script type="application\\/ld\\+json">[\\s\\S]*?<\\/script>/,
+     .replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/,
        '<script type="application/ld+json">'+json(schema)+'</script>');
    if(!page.includes('href="/photos/"'))page=page.replace('</main>','<p class="track-library-link"><a href="/photos/">Browse the photo library ↗</a></p></main>');
    if(!page.includes(' controls muted playsinline '))throw Error('Draft session film must remain muted');
