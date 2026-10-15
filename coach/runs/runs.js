@@ -172,6 +172,8 @@ function sessionSheet(se) {
       <label>Place<input type="text" name="place" maxlength="60" value="${esc(se?.place || '')}"></label>
       <label class="wide">FORM-hosted film (MP4, up to 60 MB)<input type="file" name="nativeFilm" accept="video/mp4,.mp4"><small>${se?.video_path ? 'A FORM-hosted film is linked. Selecting a new MP4 replaces it.' : 'Choose a local MP4 to upload to FORM Storage.'}</small></label>
       <label class="wide">Film poster (JPEG or WebP)<input type="file" name="nativePoster" accept="image/jpeg,image/webp,.jpg,.jpeg,.webp"><small>${se?.poster_path ? 'A FORM-hosted poster is linked.' : 'Optional. The existing public library cover remains the fallback.'}</small></label>
+      ${se?.video_path ? '<label class="check"><input type="checkbox" name="removeNativeFilm"> Remove hosted film and revoke its public URL</label>' : ''}
+      ${se?.poster_path ? '<label class="check"><input type="checkbox" name="removeNativePoster"> Remove hosted poster</label>' : ''}
       <label class="wide">Alternative video (YouTube link)<input type="text" name="youtube" value="${se?.youtube_id ? `https://youtu.be/${esc(se.youtube_id)}` : ''}" placeholder="https://youtu.be/…" autocomplete="off"></label>
       <label class="wide">Clips, one per line (link | title)<textarea name="clips" rows="3" placeholder="https://youtube.com/shorts/… | Rep 4">${esc(clips)}</textarea></label>
       <label class="check"><input type="checkbox" name="rights"> I have the rights and athlete publication permission needed to publish a new film here.</label>
@@ -186,6 +188,10 @@ function sessionSheet(se) {
     const posterFile = f.get('nativePoster');
     const hasFilmFile = filmFile instanceof File && filmFile.size > 0;
     const hasPosterFile = posterFile instanceof File && posterFile.size > 0;
+    const removeFilm = f.get('removeNativeFilm') === 'on';
+    const removePoster = f.get('removeNativePoster') === 'on';
+    if (removeFilm && hasFilmFile) throw new Error('Choose either remove film or upload replacement, not both.');
+    if (removePoster && hasPosterFile) throw new Error('Choose either remove poster or upload replacement, not both.');
     if (hasFilmFile && f.get('rights') !== 'on') throw new Error('Confirm publication rights before uploading a film.');
     if (hasFilmFile && (!/\\.mp4$/i.test(filmFile.name) || (filmFile.type && filmFile.type !== 'video/mp4') || filmFile.size > FILM_LIMIT)) {
       throw new Error('Choose an MP4 smaller than 60 MB.');
@@ -225,8 +231,10 @@ function sessionSheet(se) {
     try {
       const data = {};
       if (hasFilmFile) data.video_path = await uploadNativeSessionAsset(id, filmFile, 'video', rowSlug);
+      else if (removeFilm) data.video_path = null;
       if (data.video_path) newlyUploaded.push(data.video_path);
       if (hasPosterFile) data.poster_path = await uploadNativeSessionAsset(id, posterFile, 'poster', rowSlug);
+      else if (removePoster) data.poster_path = null;
       if (data.poster_path) newlyUploaded.push(data.poster_path);
       if (Object.keys(data).length) {
         const { error } = await sb.from('collective_sessions').update(data).eq('id', id);
@@ -237,7 +245,8 @@ function sessionSheet(se) {
       throw error;
     }
     // Once the record points to the replacement, retire the old public URL.
-    const previous = [hasFilmFile ? se?.video_path : null, hasPosterFile ? se?.poster_path : null].filter(Boolean);
+    const previous = [hasFilmFile || removeFilm ? se?.video_path : null,
+                      hasPosterFile || removePoster ? se?.poster_path : null].filter(Boolean);
     if (previous.length) await sb.storage.from(FILMS).remove(previous).catch(() => {});
     await loadSessions(); paintList();
   }, se ? 'Save' : 'Add session');
