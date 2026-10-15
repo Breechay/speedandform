@@ -35,11 +35,15 @@ function check(file,o){
   assert.ok(!raw.includes('&amp;'),file+': no HTML entities inside JSON-LD');
   const graph=JSON.parse(raw)['@graph'],app=graph.find(x=>x['@type']==='SoftwareApplication');
   assert.equal(app.name,o.name,file+': structured data names the app');assert.equal(app.downloadUrl,o.store,file+': App Store link');
-  // Links: every local path and fragment resolves; every outside link is the app's App Store page
+  // Links: every local path and fragment resolves; outside links are the app's App Store page or the approved shared-menu FORM Instagram
   let storeLinks=0;
   for(const m of h.matchAll(/href="([^"]+)"/g)){const href=s.attrs(m[0]).href;if(/^(mailto:|tel:)/.test(href))continue;
     const u=new URL(href,s.ORIGIN+route);
-    if(u.origin!==s.ORIGIN){assert.equal(u.origin+u.pathname,new URL(o.store).origin+new URL(o.store).pathname,file+': outside link '+u);storeLinks++;continue;}
+    if(u.origin!==s.ORIGIN){
+      if(u.origin+u.pathname==='https://www.instagram.com/form.practice/')continue; // Owner-approved shared-menu social profile, not an App Store alternative.
+      assert.equal(u.origin+u.pathname,new URL(o.store).origin+new URL(o.store).pathname,file+': outside link '+u);
+      storeLinks++;continue;
+    }
     const r=u.pathname.slice(1),f=[r||'index.html',r+'.html',r.replace(/\/$/,'')+'/index.html',r].find(f=>fs.existsSync(path.join(ROOT,f))&&fs.statSync(path.join(ROOT,f)).isFile());
     assert.ok(f,file+': working local path '+u.pathname);
     if(u.hash&&!/\.(css|js|svg|png|jpg|webp|ico)$/.test(f))assert.ok(ids(read(f)).includes(decodeURIComponent(u.hash.slice(1))),file+': working fragment '+u.pathname+u.hash);}
