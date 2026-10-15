@@ -57,7 +57,7 @@ function check(file,o){
   for(const [a,b] of o.contrast)assert.ok(contrast(a,b)>=4.5,o.css+': readable contrast '+a+'/'+b);
   // Honest copy
   for(const t of o.mustSay)assert.ok(h.includes(t),file+': keeps "'+t+'"');
-  assert.ok(!o.retired.test(h),file+': retired claims stay out');
+  assert.ok(!o.retired.test(h.split('<!-- Shared site menu -->')[0]),file+': retired claims stay out of app-page content; global menu has independent rules');
   assert.ok(!/plan import|import your (own )?plan|coming soon/i.test(text),file+': unbuilt features are not announced');
   // Page script never stores or sends anything
   const js=read(o.js);assert.ok(!/innerHTML|fetch\(|localStorage|sessionStorage|XMLHttpRequest|sendBeacon|eval\(/.test(js),o.js+': no storage or network');
