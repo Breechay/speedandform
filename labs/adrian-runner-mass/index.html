@@ -941,7 +941,7 @@ html{scroll-behavior:smooth;scroll-padding-top:20px}
 <style id="adrian-intake-20260922">#intake-20260922 h2{font-size:clamp(28px,4vw,48px);line-height:1.12;max-width:22ch;margin:12px 0 18px}#intake-20260922 h3{font-size:21px;line-height:1.25;margin:25px 0 12px}#intake-20260922 p{font-size:17px;line-height:1.65;max-width:76ch;margin:0 0 16px}#intake-20260922 .lbl,#intake-20260922 .intake-small{font-size:14px;line-height:1.6}#intake-20260922 .intake-link{display:inline-block;padding:12px 18px;border:1px solid currentColor;border-radius:28px;text-decoration:none;margin:8px 0 20px}#intake-20260922 .intake-cols{display:grid;grid-template-columns:1fr 1fr;gap:32px}#intake-20260922 .fuel-days{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 24px;margin:26px 0 10px;border-top:1px solid var(--rule-hard)}#intake-20260922 .fuel-days>div{padding:18px 0 4px;border-bottom:1px solid var(--rule)}#intake-20260922 .fuel-days h3{margin:8px 0 6px}#intake-20260922 .fuel-days p{margin:0 0 12px}#intake-20260922 .fuel-kcal{font-size:clamp(44px,6vw,68px)!important;line-height:1!important;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;margin:0!important}#intake-20260922 .fuel-kcal span{font-size:14px;font-weight:600;letter-spacing:.08em;margin-left:8px;text-transform:uppercase}@media (max-width:760px){#intake-20260922 .fuel-days{grid-template-columns:1fr}}#intake-20260922 .intake-table{overflow-x:auto;margin:20px 0}#intake-20260922 table{border-collapse:collapse;width:100%;min-width:640px;font-size:16px}#intake-20260922 th,#intake-20260922 td{text-align:left;vertical-align:top;padding:15px 12px;border-bottom:1px solid var(--rule)}#intake-20260922 td p{font-size:14px;margin-top:8px}#intake-20260922 th:first-child{width:145px}#intake-20260922 td:last-child{width:210px;font-variant-numeric:tabular-nums}#intake-20260922 summary{cursor:pointer;min-height:54px;padding:14px 0;font-size:17px;font-weight:700}#intake-20260922 details{margin:18px 0} @media(max-width:700px){#intake-20260922 .intake-cols{grid-template-columns:1fr;gap:0}}</style>
 <style id="adrian-measurements-20260924-css">.measure-checkpoint{max-width:760px;margin:0 0 24px}.measure-checkpoint h3{font-size:clamp(24px,3vw,34px);line-height:1.2;margin:8px 0 20px}.measure-checkpoint p{font-size:16px;line-height:1.65;max-width:68ch;margin:16px 0}.measure-checkpoint .measure-meta{font-size:14px;line-height:1.6;color:var(--ink-2)}.measure-values{margin:0 0 22px}.measure-values>div{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px solid var(--rule)}.measure-values dt{font-size:17px;line-height:1.5}.measure-values dd{margin:0;font-family:var(--f-mono);font-size:20px;font-variant-numeric:tabular-nums;white-space:nowrap}.measure-values dd span{font-size:14px}.datagrid dd.pending{font-size:13px!important;line-height:1.6}</style>
 <link rel="stylesheet" href="/css/sf-brand.css?v=20261001">
-<link rel="stylesheet" href="/css/sf-menu.css?v=20261013-shared">
+<link rel="stylesheet" href="/css/sf-menu.css?v=20261015-focus">
 </head>
 <body class="boot">
 <div class="paper-grain" aria-hidden="true"></div>
@@ -5484,12 +5484,43 @@ try{ if(location.hash){ const t=document.querySelector(location.hash);
   <a class="sf-menu-scrim" href="#" tabindex="-1" aria-hidden="true"></a>
   <div class="sf-menu-panel">
     <div class="sf-menu-top"><a class="sf-menu-close" href="#" aria-label="Close menu">Close</a></div>
+
+    <!-- Photographic entrance -->
+    <a class="sf-menu-hero" href="/people/" aria-label="The Collective — athletes, runs, and media">
+      <img src="/media/library/bridge-profile-1200.webp" alt="" loading="eager" width="1200" height="800">
+      <div class="sf-menu-hero-overlay">
+        <p class="sf-menu-eyebrow">Network</p>
+        <p class="sf-menu-hero-title">The Collective</p>
+        <p class="sf-menu-hero-sub">People. Places. Process.</p>
+      </div>
+    </a>
+
+    <!-- Visual Collective / Athletes -->
+    <section class="sf-menu-group sf-menu-visual" aria-labelledby="sf-menu-collective">
+      <p class="sf-menu-label" id="sf-menu-collective">The Collective</p>
+      <div class="sf-menu-cards">
+        <a class="sf-menu-card" href="/people/">
+          <img src="/media/library/white-shorts-dusk-600.webp" alt="" loading="lazy">
+          <span>Athletes</span>
+          <small>Portraits, sessions, film</small>
+        </a>
+        <a class="sf-menu-card" href="/runs/">
+          <img src="/media/library/track-curve-group-600.webp" alt="" loading="lazy">
+          <span>Runs</span>
+          <small>Track, long runs, mornings</small>
+        </a>
+        <a class="sf-menu-card" href="/people/">
+          <img src="/media/library/bw-lead-runner-600.webp" alt="" loading="lazy">
+          <span>Media</span>
+          <small>Photos & film</small>
+        </a>
+      </div>
+    </section>
+
     <section class="sf-menu-group sf-menu-lead" aria-labelledby="sf-menu-work">
       <p class="sf-menu-label" id="sf-menu-work">Work with me</p>
       <ul>
-        <li><a class="sf-menu-first" href="/coaching/miami/" aria-label="Run Development" aria-describedby="sf-menu-desc-0"><span>Run Development</span><small id="sf-menu-desc-0">Run faster. Get stronger. Move better.</small></a></li>
-        <li><a href="/coaching/strength/" aria-label="Strength coaching"><span>Strength coaching</span></a></li>
-        <li><a href="/analysis/" aria-label="Running analysis"><span>Running analysis</span></a></li>
+        <li><a class="sf-menu-first" href="/coaching/miami/" aria-label="Run Development" aria-describedby="sf-menu-desc-0"><span>Run Development</span><small id="sf-menu-desc-0">The week built around you. Running, strength, and form in one package.</small></a></li>
       </ul>
     </section>
     <section class="sf-menu-group" aria-labelledby="sf-menu-train">
@@ -5497,7 +5528,7 @@ try{ if(location.hash){ const t=document.querySelector(location.hash);
       <ul>
         <li><a href="/form/" aria-label="Running app" aria-describedby="sf-menu-desc-3"><span>Running app</span><small id="sf-menu-desc-3">Follow a running plan. Log each run.</small></a></li>
         <li><a href="/forge-sculpt/" aria-label="Strength app" aria-describedby="sf-menu-desc-4"><span>Strength app</span><small id="sf-menu-desc-4">Follow a program. Log sets, reps and weight.</small></a></li>
-        <li><a href="/plans/" aria-label="Training plans" aria-describedby="sf-menu-desc-5"><span>Training plans</span><small id="sf-menu-desc-5">A clear plan for the next race.</small></a></li>
+        <li><a href="/plans/" aria-label="Training plans" aria-describedby="sf-menu-desc-5"><span>Training plans</span><small id="sf-menu-desc-5">Race Pace That Lasts, free half-marathon options, and more.</small></a></li>
         <li><a href="/thursday" aria-label="Thursday sprints" aria-describedby="sf-menu-desc-6"><span>Thursday sprints</span><small id="sf-menu-desc-6">Speed, technique and power.</small></a></li>
       </ul>
     </section>
@@ -5512,7 +5543,6 @@ try{ if(location.hash){ const t=document.querySelector(location.hash);
       <p class="sf-menu-label" id="sf-menu-learn">Learn</p>
       <ul>
         <li><a href="/library"><span>Training library</span></a></li>
-        <li><a href="/labs/"><span>Athlete studies</span></a></li>
       </ul>
     </section>
     <div class="sf-menu-foot">
@@ -5523,6 +5553,6 @@ try{ if(location.hash){ const t=document.querySelector(location.hash);
   </div>
 </div>
 <!-- /Shared site menu -->
-<script defer src="/js/sf-menu.js?v=20261013-shared"></script>
+<script defer src="/js/sf-menu.js?v=20261015-focus"></script>
 </body>
 </html>
