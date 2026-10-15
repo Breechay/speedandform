@@ -58,3 +58,7 @@ body.track-index{background:#f1ece2;color:#161916}
 
 @font-face{font-family:"Inter Tight";src:url("/assets/site/fonts/inter-tight-latin-variable.woff2") format("woff2");font-weight:100 900;font-display:swap}
 .track-hero h1,.track-hero h2,.track-feature h2{font-family:"Inter Tight",Arial,sans-serif;font-weight:450}
+
+/* One divider owns each album boundary. */
+.track-index .track-feature+.track-feature{border-top:0;padding-top:0}
+.track-index .track-feature-caption{margin-bottom:0}
