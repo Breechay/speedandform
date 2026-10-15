@@ -40,12 +40,12 @@ alter table public.collective_sessions
 alter table public.collective_sessions
   add constraint collective_session_video_path_format check (
     video_path is null or
-    (video_path ~ '^sessions/[a-z0-9]+(-[a-z0-9]+)*/[0-9a-f-]{36}\\.mp4$'
+    (video_path ~ '^sessions/[a-z0-9]+(-[a-z0-9]+)*/[0-9a-f-]{36}\.mp4$'
      and video_path like 'sessions/' || slug || '/%')
   ),
   add constraint collective_session_poster_path_format check (
     poster_path is null or
-    (poster_path ~ '^sessions/[a-z0-9]+(-[a-z0-9]+)*/[0-9a-f-]{36}\\.(jpg|webp)$'
+    (poster_path ~ '^sessions/[a-z0-9]+(-[a-z0-9]+)*/[0-9a-f-]{36}\.(jpg|webp)$'
      and poster_path like 'sessions/' || slug || '/%')
   );
 
