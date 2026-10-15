@@ -26,6 +26,22 @@ jobs:
           node scripts/build-discovery.cjs
           node scripts/build-public-share.cjs
           node scripts/build-site-menu.cjs
+          # Verify the only change to the approved athlete study is the canonical
+          # site-menu projection; preserve every source observation and milestone.
+          node - <<'NODE'
+          const fs=require('node:fs'),cp=require('node:child_process'),crypto=require('node:crypto');
+          const {transformHtml}=require('./scripts/build-site-menu.cjs');
+          const source='labs/speed-that-endures/index.html',snapshotFile='data/public-studies/speed-that-endures.json';
+          const sha=text=>crypto.createHash('sha256').update(text).digest('hex');
+          const old=cp.execFileSync('git',['show','HEAD:'+source],{encoding:'utf8'});
+          const fresh=fs.readFileSync(source,'utf8'),snapshot=JSON.parse(fs.readFileSync(snapshotFile,'utf8'));
+          if(sha(old)!==snapshot.source_sha256)throw Error('Unapproved athlete study change before menu projection');
+          if(transformHtml(old,source)!==fresh)throw Error('Study changed beyond shared-menu projection: human editorial review required');
+          if(snapshot.latest_completed.date!=='2026-09-29'||snapshot.latest_completed.distance_mi!==6)
+            throw Error('Unexpected training evidence milestone');
+          snapshot.source_sha256=sha(fresh);
+          fs.writeFileSync(snapshotFile,JSON.stringify(snapshot,null,2)+'\n');
+          NODE
           node tests/public-study-preview.cjs
           node tests/public-share.cjs
           node tests/site-menu.cjs
