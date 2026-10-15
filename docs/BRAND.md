@@ -474,3 +474,12 @@ Public share cards now have a reviewed file allowlist in `data/public-share.json
 
 This standard applies to public website surfaces. Refine execution rather than removing visual treatments. Real photography only. No invented athletes or stock.
 
+
+
+## October 15 · The photograph wins
+
+- No automatic exposure, contrast or color correction on an original that the owner approves as-is. Preserve the natural monochrome treatment for the white-shorts frame.
+- Never add an obvious gradient box or pseudo-element behind homepage copy. When copy needs stronger contrast, refine image composition and text position rather than imposing a visible dark panel.
+- Keep cinematic richness everywhere it serves the work. These are frame-specific exceptions, not a mandate for minimalism.
+- Group runs: “Open group runs. All paces welcome.” Use clear practical details. No explanatory sports-documentary slogans.
+- Collective: “Meet the athletes. The faces of FORM.” The photos tell the rest.
