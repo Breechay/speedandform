@@ -1,1316 +1,1620 @@
 {
- "version": 1,
- "updated": "2026-10-13",
- "owner": "Brice (Speed & Form)",
- "consent": "Brice confirmed on Oct 13, 2026 that he holds consent from everyone photographed. Names are never stored here: who is in a photo lives in the database (collective_person_tags), where hiding a profile or removing a tag takes effect everywhere.",
- "how_to_use": [
-  "Pick by \"uses\" and \"orientation\"; crop around \"focal\" (0–1 from the top left).",
-  "Use the 2400 file for full-bleed heroes, 1200 for cards and essays, 600 for thumbnails.",
-  "Use the alt text as written, or write a better one for the context. Never describe bodies.",
-  "Do not recolor, composite or generate on top of these photos. Black-and-white conversion of a color photo is allowed for a page that needs it.",
-  "Record which page uses a photo in \"used_on\" when you ship it."
- ],
- "tag_schema": {
-  "note": "Person tags moved to the database on Oct 13, 2026 (collective_person_tags.library_id = this id). Keep \"tags\" empty."
- },
- "photos": [
-  {
-   "id": "waterfront-palms-four",
-   "title": "Four along the waterfront",
-   "kind": "long run",
-   "captured": null,
-   "setting": "waterfront path",
-   "light": "morning sun",
-   "tone": "color",
-   "people": "4, from behind",
-   "orientation": "portrait",
-   "width": 1717,
-   "height": 2576,
-   "focal": {
-    "x": 0.5,
-    "y": 0.68
-   },
-   "alt": "Four runners from behind on a palm-lined waterfront path, a glass tower ahead in morning sun.",
-   "uses": [
-    "hero-portrait",
-    "story",
-    "essay"
-   ],
-   "files": {
-    "2400": "/media/library/waterfront-palms-four-2400.webp",
-    "1200": "/media/library/waterfront-palms-four-1200.webp",
-    "600": "/media/library/waterfront-palms-four-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "3343eac5c9dbf92cc7c9bcb5a456cbcb591dc284ba5215dcf9313d7eb240cfc2"
-   },
-   "tags": [],
-   "used_on": []
+  "version": 1,
+  "updated": "2026-10-15",
+  "owner": "Brice (Speed & Form)",
+  "consent": "Brice confirmed on Oct 13, 2026 that he holds consent from everyone photographed. Names are never stored here: who is in a photo lives in the database (collective_person_tags), where hiding a profile or removing a tag takes effect everywhere.",
+  "how_to_use": [
+    "Pick by \"uses\" and \"orientation\"; crop around \"focal\" (0–1 from the top left).",
+    "Use the 2400 file for full-bleed heroes, 1200 for cards and essays, 600 for thumbnails.",
+    "Use the alt text as written, or write a better one for the context. Never describe bodies.",
+    "Do not recolor, composite or generate on top of these photos. Black-and-white conversion of a color photo is allowed for a page that needs it.",
+    "Record which page uses a photo in \"used_on\" when you ship it."
+  ],
+  "tag_schema": {
+    "note": "Person tags moved to the database on Oct 13, 2026 (collective_person_tags.library_id = this id). Keep \"tags\" empty."
   },
-  {
-   "id": "keep-right-path",
-   "title": "Keep right",
-   "kind": "long run",
-   "captured": null,
-   "setting": "beach path",
-   "light": "morning sun",
-   "tone": "color",
-   "people": "4, from behind",
-   "orientation": "portrait",
-   "width": 1717,
-   "height": 2576,
-   "focal": {
-    "x": 0.5,
-    "y": 0.65
-   },
-   "alt": "Four runners on a brick beach path under sea grape trees, passing Keep Right and Slow Down signs.",
-   "uses": [
-    "card",
-    "story",
-    "essay"
-   ],
-   "files": {
-    "2400": "/media/library/keep-right-path-2400.webp",
-    "1200": "/media/library/keep-right-path-1200.webp",
-    "600": "/media/library/keep-right-path-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "62bad565d02dda0e0274e03395e5b505efadd10088d63429e5166960cdba030c"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "canopy-street",
-   "title": "Under the canopy",
-   "kind": "long run",
-   "captured": null,
-   "setting": "street",
-   "light": "morning sun",
-   "tone": "color",
-   "people": "5, from behind",
-   "orientation": "portrait",
-   "width": 1717,
-   "height": 2576,
-   "focal": {
-    "x": 0.5,
-    "y": 0.55
-   },
-   "alt": "Five runners from behind on a street under a canopy of trees, two close to the camera.",
-   "uses": [
-    "card",
-    "essay",
-    "story"
-   ],
-   "files": {
-    "2400": "/media/library/canopy-street-2400.webp",
-    "1200": "/media/library/canopy-street-1200.webp",
-    "600": "/media/library/canopy-street-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "17591ac5d5cd2a2ecbb40f17015664a310757cc2ed9ddbee1eab156b054b58fa"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "crossing-ahead",
-   "title": "Crossing ahead",
-   "kind": "long run",
-   "captured": null,
-   "setting": "street",
-   "light": "morning sun",
-   "tone": "color",
-   "people": "5, from behind",
-   "orientation": "portrait",
-   "width": 1717,
-   "height": 2576,
-   "focal": {
-    "x": 0.5,
-    "y": 0.55
-   },
-   "alt": "Runners from behind on a tree-lined street, yellow pedestrian crossing signs overhead.",
-   "uses": [
-    "essay",
-    "story"
-   ],
-   "files": {
-    "2400": "/media/library/crossing-ahead-2400.webp",
-    "1200": "/media/library/crossing-ahead-1200.webp",
-    "600": "/media/library/crossing-ahead-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "d1f34bb2a6417823dcdd5acf350f25aa09dd9f2c17fad243ab19ee36474a77df"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "bridge-profile",
-   "title": "On the bridge",
-   "kind": "long run",
-   "captured": null,
-   "setting": "bridge",
-   "light": "morning sun",
-   "tone": "color",
-   "people": "4, in profile",
-   "orientation": "portrait",
-   "width": 1717,
-   "height": 2576,
-   "focal": {
-    "x": 0.45,
-    "y": 0.5
-   },
-   "alt": "Runners in profile crossing a bridge with a white balustrade and blue sky, one in front in mid-stride.",
-   "uses": [
-    "hero-portrait",
-    "card",
-    "ad",
-    "story"
-   ],
-   "files": {
-    "2400": "/media/library/bridge-profile-2400.webp",
-    "1200": "/media/library/bridge-profile-1200.webp",
-    "600": "/media/library/bridge-profile-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "4d0f688dbcb97e2d17efa16a8c57e69438d920ba2d7231f68449dcde80d06962"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "bench-after-reps",
-   "title": "After the reps",
-   "kind": "track",
-   "captured": null,
-   "setting": "track",
-   "light": "overcast",
-   "tone": "color",
-   "people": "3",
-   "orientation": "portrait",
-   "width": 972,
-   "height": 1416,
-   "focal": {
-    "x": 0.4,
-    "y": 0.55
-   },
-   "alt": "A runner sits on the track bench between reps while another dries his face with a towel behind him.",
-   "uses": [
-    "essay",
-    "card"
-   ],
-   "files": {
-    "2400": "/media/library/bench-after-reps-2400.webp",
-    "1200": "/media/library/bench-after-reps-1200.webp",
-    "600": "/media/library/bench-after-reps-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "3bf6fc5fc3997a7c76c7e5633298415f6da0e9fb9e21cc7be4334197d9f97724"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "bench-three",
-   "title": "Three on the bench",
-   "kind": "track",
-   "captured": null,
-   "setting": "track",
-   "light": "warm evening",
-   "tone": "color",
-   "people": "3, faces",
-   "orientation": "landscape",
-   "width": 2348,
-   "height": 1530,
-   "focal": {
-    "x": 0.5,
-    "y": 0.45
-   },
-   "alt": "Three runners talking and laughing on a bench by the track fence.",
-   "uses": [
-    "community",
-    "essay",
-    "card"
-   ],
-   "files": {
-    "2400": "/media/library/bench-three-2400.webp",
-    "1200": "/media/library/bench-three-1200.webp",
-    "600": "/media/library/bench-three-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "5446be5fcbe35b12b7c37028e736c7dbfc34ae46c50fbe34e0f558a154b798c5"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "bw-lead-runner",
-   "title": "Out front",
-   "kind": "track",
-   "captured": null,
-   "setting": "track",
-   "light": "overcast",
-   "tone": "black and white",
-   "people": "2, front-on",
-   "orientation": "landscape",
-   "width": 1704,
-   "height": 1376,
-   "focal": {
-    "x": 0.55,
-    "y": 0.45
-   },
-   "alt": "Black and white: a runner leads another down the track toward the camera, city buildings behind.",
-   "uses": [
-    "hero-landscape",
-    "essay",
-    "ad"
-   ],
-   "files": {
-    "2400": "/media/library/bw-lead-runner-2400.webp",
-    "1200": "/media/library/bw-lead-runner-1200.webp",
-    "600": "/media/library/bw-lead-runner-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "30ff581334176b3beaf14c31ff4095fc591289e438ddd803f52110888d39ccb4"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "track-curve-group",
-   "title": "Into the curve",
-   "kind": "track",
-   "captured": "2025-05-01",
-   "setting": "track",
-   "light": "dawn",
-   "tone": "color",
-   "people": "6, from behind",
-   "orientation": "landscape",
-   "width": 2336,
-   "height": 1662,
-   "focal": {
-    "x": 0.5,
-    "y": 0.5
-   },
-   "alt": "A group runs into the track's curve from behind at dawn, shoes mid-stride.",
-   "uses": [
-    "hero-landscape",
-    "essay",
-    "card"
-   ],
-   "files": {
-    "2400": "/media/library/track-curve-group-2400.webp",
-    "1200": "/media/library/track-curve-group-1200.webp",
-    "600": "/media/library/track-curve-group-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "5aa468f3ece3bff69712f54369913d845d9f55b3dcf28277dc923eac5e8243b8"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "two-on-the-lanes",
-   "title": "Two on the lanes",
-   "kind": "track",
-   "captured": null,
-   "setting": "track",
-   "light": "overcast",
-   "tone": "color",
-   "people": "2, from behind",
-   "orientation": "portrait",
-   "width": 1096,
-   "height": 1450,
-   "focal": {
-    "x": 0.5,
-    "y": 0.45
-   },
-   "alt": "Two runners from behind on the red track lanes, trees beyond the fence.",
-   "uses": [
-    "card",
-    "essay",
-    "story"
-   ],
-   "files": {
-    "2400": "/media/library/two-on-the-lanes-2400.webp",
-    "1200": "/media/library/two-on-the-lanes-1200.webp",
-    "600": "/media/library/two-on-the-lanes-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "fbd2adb60497e031c5fa30aba422da0274f76fb5aaaab440ab3c1b58dafbeb6d"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "white-shorts-dusk",
-   "title": "Alone on the bend",
-   "kind": "track",
-   "captured": null,
-   "setting": "track",
-   "light": "dusk",
-   "tone": "color",
-   "people": "1",
-   "orientation": "portrait",
-   "width": 1070,
-   "height": 1464,
-   "focal": {
-    "x": 0.45,
-    "y": 0.45
-   },
-   "alt": "A lone runner in white shorts strides around the track bend at dusk, a net and floodlight poles behind.",
-   "uses": [
-    "hero-portrait",
-    "story",
-    "essay"
-   ],
-   "files": {
-    "2400": "/media/library/white-shorts-dusk-2400.webp",
-    "1200": "/media/library/white-shorts-dusk-1200.webp",
-    "600": "/media/library/white-shorts-dusk-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "42519e3944a89476e2d8f5e59e4994566ec3371670237fb798c965f7a7df5235"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "solo-profile-field",
-   "title": "Steady",
-   "kind": "track",
-   "captured": null,
-   "setting": "track",
-   "light": "dusk",
-   "tone": "color",
-   "people": "1, profile",
-   "orientation": "landscape",
-   "width": 2342,
-   "height": 1524,
-   "focal": {
-    "x": 0.42,
-    "y": 0.5
-   },
-   "alt": "A runner in profile on the track at dusk, the football field and end zone behind.",
-   "uses": [
-    "hero-landscape",
-    "card",
-    "ad"
-   ],
-   "files": {
-    "2400": "/media/library/solo-profile-field-2400.webp",
-    "1200": "/media/library/solo-profile-field-1200.webp",
-    "600": "/media/library/solo-profile-field-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "6d5aaa0c4d03b99beedd015115e74c03ca708b1efe527a92bb66868b1e72c650"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "walk-back",
-   "title": "The walk back",
-   "kind": "track",
-   "captured": null,
-   "setting": "track",
-   "light": "overcast",
-   "tone": "color",
-   "people": "2",
-   "orientation": "landscape",
-   "width": 1874,
-   "height": 1412,
-   "focal": {
-    "x": 0.47,
-    "y": 0.5
-   },
-   "alt": "A runner walks back along the track between reps; another leans on the fence by the bleachers.",
-   "uses": [
-    "essay",
-    "card"
-   ],
-   "files": {
-    "2400": "/media/library/walk-back-2400.webp",
-    "1200": "/media/library/walk-back-1200.webp",
-    "600": "/media/library/walk-back-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "f1259f05f8cf2d0a7b5b46bf60bdb151a44c45f32f5b0fff0cd59afd87b27144"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "golden-recovery",
-   "title": "Spent",
-   "kind": "track",
-   "captured": null,
-   "setting": "track",
-   "light": "golden hour",
-   "tone": "color",
-   "people": "3",
-   "orientation": "portrait",
-   "width": 1320,
-   "height": 1723,
-   "focal": {
-    "x": 0.55,
-    "y": 0.45
-   },
-   "alt": "Golden backlight: two runners sit with heads down while a third lies flat on the track after the session.",
-   "uses": [
-    "hero-portrait",
-    "essay",
-    "story"
-   ],
-   "files": {
-    "2400": "/media/library/golden-recovery-2400.webp",
-    "1200": "/media/library/golden-recovery-1200.webp",
-    "600": "/media/library/golden-recovery-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "3bd26cba948ab9fe477aa761ef9df75495339e220bf0bd5114dde942c2b4acfb"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "rooftop-seven",
-   "title": "Seven after the run",
-   "kind": "social",
-   "captured": null,
-   "setting": "rooftop terrace",
-   "light": "evening",
-   "tone": "color",
-   "people": "7, faces",
-   "orientation": "portrait",
-   "width": 1320,
-   "height": 1614,
-   "focal": {
-    "x": 0.5,
-    "y": 0.5
-   },
-   "alt": "Seven runners stand arm in arm on a rooftop terrace with palms and string lights, two flexing.",
-   "uses": [
-    "community",
-    "card",
-    "story"
-   ],
-   "files": {
-    "2400": "/media/library/rooftop-seven-2400.webp",
-    "1200": "/media/library/rooftop-seven-1200.webp",
-    "600": "/media/library/rooftop-seven-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "954a9e24ed654db0db946851e98d0cccf61374ff940ec7eede7c3f788520a135"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "bw-group-portrait",
-   "title": "The group",
-   "kind": "track",
-   "captured": null,
-   "setting": "track",
-   "light": "overcast",
-   "tone": "black and white",
-   "people": "12, faces",
-   "orientation": "landscape",
-   "width": 1535,
-   "height": 1024,
-   "focal": {
-    "x": 0.5,
-    "y": 0.55
-   },
-   "alt": "Black and white group portrait of twelve runners on the track under a dramatic sky.",
-   "uses": [
-    "community",
-    "hero-landscape",
-    "card"
-   ],
-   "files": {
-    "2400": "/media/library/bw-group-portrait-2400.webp",
-    "1200": "/media/library/bw-group-portrait-1200.webp",
-    "600": "/media/library/bw-group-portrait-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "0a2693137b272360ed8fed86998dd611e741b5c01f1c65d399a75e26663d5450"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "bw-high-knees",
-   "title": "Drills",
-   "kind": "track",
-   "captured": "2025-03-27",
-   "setting": "track",
-   "light": "dawn",
-   "tone": "black and white",
-   "people": "several",
-   "orientation": "landscape",
-   "width": 1514,
-   "height": 1010,
-   "focal": {
-    "x": 0.5,
-    "y": 0.5
-   },
-   "alt": "Black and white: runners doing high-knee drills down the track before dawn.",
-   "uses": [
-    "essay",
-    "hero-landscape"
-   ],
-   "files": {
-    "2400": "/media/library/bw-high-knees-2400.webp",
-    "1200": "/media/library/bw-high-knees-1200.webp",
-    "600": "/media/library/bw-high-knees-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "2ec1275512bf5cbce258a29a22ca38bb23df762bc58bbd1e8227237368b0029d"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "rooftop-seated",
-   "title": "Six on the terrace",
-   "kind": "social",
-   "captured": null,
-   "setting": "rooftop terrace",
-   "light": "daylight",
-   "tone": "color",
-   "people": "6, faces",
-   "orientation": "landscape",
-   "width": 1514,
-   "height": 1010,
-   "focal": {
-    "x": 0.5,
-    "y": 0.45
-   },
-   "alt": "Six athletes seated and smiling together on a rooftop terrace among plants.",
-   "uses": [
-    "community",
-    "card"
-   ],
-   "files": {
-    "2400": "/media/library/rooftop-seated-2400.webp",
-    "1200": "/media/library/rooftop-seated-1200.webp",
-    "600": "/media/library/rooftop-seated-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "04ebf9d8efd201a28fb6e8343476833c4bbc2526defced89cc9ff075ff24a2bb"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "bench-towel",
-   "title": "Towel",
-   "kind": "track",
-   "captured": null,
-   "setting": "track",
-   "light": "morning sun",
-   "tone": "color",
-   "people": "2",
-   "orientation": "portrait",
-   "width": 1514,
-   "height": 2019,
-   "focal": {
-    "x": 0.5,
-    "y": 0.4
-   },
-   "alt": "Two runners on the track bench in morning sun, one drying his face with a towel.",
-   "uses": [
-    "essay",
-    "story"
-   ],
-   "files": {
-    "2400": "/media/library/bench-towel-2400.webp",
-    "1200": "/media/library/bench-towel-1200.webp",
-    "600": "/media/library/bench-towel-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "cc555e650b456bbd3b9145364a7fa804fd33a2621942d16bfcd8627f4baa2bbf"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "refuel",
-   "title": "Refuel",
-   "kind": "social",
-   "captured": null,
-   "setting": "terrace",
-   "light": "daylight",
-   "tone": "color",
-   "people": "1",
-   "orientation": "square",
-   "width": 1514,
-   "height": 1503,
-   "focal": {
-    "x": 0.55,
-    "y": 0.45
-   },
-   "alt": "An athlete in a black T-shirt stirs a drink in a shaker on a terrace chair.",
-   "uses": [
-    "fueling",
-    "card",
-    "essay"
-   ],
-   "files": {
-    "2400": "/media/library/refuel-2400.webp",
-    "1200": "/media/library/refuel-1200.webp",
-    "600": "/media/library/refuel-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "c5a9e5098126365ed55f4b569f56bb8c6cbbd1fda26253a77b9b2bc109bcc355"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "bw-track-talk",
-   "title": "Between sets",
-   "kind": "track",
-   "captured": "2025-03-27",
-   "setting": "track",
-   "light": "morning",
-   "tone": "black and white",
-   "people": "several",
-   "orientation": "landscape",
-   "width": 1514,
-   "height": 1010,
-   "focal": {
-    "x": 0.5,
-    "y": 0.5
-   },
-   "alt": "Black and white: runners standing on the track lanes talking between sets.",
-   "uses": [
-    "essay",
-    "community"
-   ],
-   "files": {
-    "2400": "/media/library/bw-track-talk-2400.webp",
-    "1200": "/media/library/bw-track-talk-1200.webp",
-    "600": "/media/library/bw-track-talk-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "4aa95772153be03f0e14be9f6432e0cc0d7d91b4b9823906515002baa23b7f6e"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "beach-gym-barbell",
-   "title": "Beach gym",
-   "kind": "strength",
-   "captured": null,
-   "setting": "outdoor beach gym",
-   "light": "bright sun",
-   "tone": "color",
-   "people": "1",
-   "orientation": "landscape",
-   "width": 1514,
-   "height": 1427,
-   "focal": {
-    "x": 0.5,
-    "y": 0.4
-   },
-   "alt": "An athlete in sunglasses with a loaded barbell across his shoulders at an outdoor beach gym, palms behind.",
-   "uses": [
-    "strength",
-    "card",
-    "hero-portrait"
-   ],
-   "files": {
-    "2400": "/media/library/beach-gym-barbell-2400.webp",
-    "1200": "/media/library/beach-gym-barbell-1200.webp",
-    "600": "/media/library/beach-gym-barbell-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "caf9f2b3b864acdac06ac1aa0f451a856362943e9de0b59b01b4213aff0fa98c"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "raw-curve-dawn",
-   "title": "Curve at dawn",
-   "kind": "track",
-   "captured": "2025-05-01",
-   "setting": "track",
-   "light": "dawn",
-   "tone": "color",
-   "people": "several, from behind",
-   "orientation": "landscape",
-   "width": 6024,
-   "height": 4024,
-   "focal": {
-    "x": 0.5,
-    "y": 0.5
-   },
-   "alt": "Runners from behind rounding the track curve at dawn, the field and stands beside them.",
-   "uses": [
-    "hero-landscape",
-    "essay"
-   ],
-   "files": {
-    "2400": "/media/library/raw-curve-dawn-2400.webp",
-    "1200": "/media/library/raw-curve-dawn-1200.webp",
-    "600": "/media/library/raw-curve-dawn-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "305ff6a923f718fdc193320a5a64696d70f9d4e4c8a8379e0d0e0ef3819c9a0b",
-    "note": "Developed from Sony A7 III RAW DSC05952.ARW (camera white balance, no edits). The RAW stays with Brice."
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "towel-and-water",
-   "title": "Towel and water",
-   "kind": "track",
-   "captured": null,
-   "setting": "track",
-   "light": "morning sun",
-   "tone": "color",
-   "people": "1, face",
-   "orientation": "portrait",
-   "width": 1281,
-   "height": 1938,
-   "focal": {
-    "x": 0.35,
-    "y": 0.35
-   },
-   "alt": "A runner on the track after the session, towel over his shoulder and a water bottle in hand, clouds and sun behind.",
-   "uses": [
-    "hero-portrait",
-    "card",
-    "essay"
-   ],
-   "files": {
-    "2400": "/media/library/towel-and-water-2400.webp",
-    "1200": "/media/library/towel-and-water-1200.webp",
-    "600": "/media/library/towel-and-water-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "b2f04903091103b0962262ac26ad7938480f310a1bb1c03af92a73d954216406"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "terrace-after",
-   "title": "After, on the terrace",
-   "kind": "social",
-   "captured": null,
-   "setting": "café terrace",
-   "light": "daylight",
-   "tone": "color",
-   "people": "3",
-   "orientation": "portrait",
-   "width": 1320,
-   "height": 1927,
-   "focal": {
-    "x": 0.55,
-    "y": 0.55
-   },
-   "alt": "Three runners sit on café chairs on a green terrace among plants after the run, a bridge overhead.",
-   "uses": [
-    "community",
-    "card",
-    "story",
-    "essay"
-   ],
-   "files": {
-    "2400": "/media/library/terrace-after-2400.webp",
-    "1200": "/media/library/terrace-after-1200.webp",
-    "600": "/media/library/terrace-after-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "b972cc7ccac4fff4fdc0bd5dbb546b2f3d8006fd3778f4bc97cdec3c1cbb0716"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "between-efforts",
-   "title": "Between efforts",
-   "kind": "track",
-   "captured": null,
-   "setting": "track",
-   "light": "night",
-   "tone": "color",
-   "people": "several, from behind",
-   "orientation": "landscape",
-   "width": 1600,
-   "height": 1067,
-   "focal": {
-    "x": 0.5,
-    "y": 0.5
-   },
-   "alt": "Runners walk the track between efforts under the floodlights.",
-   "uses": [
-    "essay",
-    "card"
-   ],
-   "files": {
-    "1600": "/assets/practice/20261001/between-efforts-1600.webp",
-    "800": "/assets/practice/20261001/between-efforts-800.webp"
-   },
-   "source": {
-    "supplied": "2026-10-01",
-    "record": "/assets/practice/20261001/SOURCE.json"
-   },
-   "tags": [],
-   "used_on": [
-    "/work/photo-video/"
-   ]
-  },
-  {
-   "id": "coming-through",
-   "title": "Coming through",
-   "kind": "track",
-   "captured": null,
-   "setting": "track",
-   "light": "dusk",
-   "tone": "color",
-   "people": "several, front-on",
-   "orientation": "landscape",
-   "width": 1600,
-   "height": 1067,
-   "focal": {
-    "x": 0.5,
-    "y": 0.5
-   },
-   "alt": "A group runs straight at the camera down the track at dusk.",
-   "uses": [
-    "hero-landscape",
-    "essay"
-   ],
-   "files": {
-    "1600": "/assets/practice/20261001/coming-through-1600.webp",
-    "800": "/assets/practice/20261001/coming-through-800.webp"
-   },
-   "source": {
-    "supplied": "2026-10-01",
-    "record": "/assets/practice/20261001/SOURCE.json"
-   },
-   "tags": [],
-   "used_on": [
-    "/docs/archive/coaching-miami-2026-10-02.html",
-    "/es/plans/race-pace-durability/",
-    "/plans/race-pace-durability/support/"
-   ]
-  },
-  {
-   "id": "next-rep",
-   "title": "Next rep",
-   "kind": "track",
-   "captured": null,
-   "setting": "track",
-   "light": "night",
-   "tone": "color",
-   "people": "several",
-   "orientation": "landscape",
-   "width": 1600,
-   "height": 1067,
-   "focal": {
-    "x": 0.5,
-    "y": 0.5
-   },
-   "alt": "Runners explode off the line at the start of a rep.",
-   "uses": [
-    "hero-landscape",
-    "ad",
-    "essay"
-   ],
-   "files": {
-    "1600": "/assets/practice/20261001/next-rep-1600.webp",
-    "800": "/assets/practice/20261001/next-rep-800.webp"
-   },
-   "source": {
-    "supplied": "2026-10-01",
-    "record": "/assets/practice/20261001/SOURCE.json"
-   },
-   "tags": [],
-   "used_on": [
-    "/work/photo-video/"
-   ]
-  },
-  {
-   "id": "road-rhythm",
-   "title": "Road rhythm",
-   "kind": "long run",
-   "captured": null,
-   "setting": "road",
-   "light": "sunrise",
-   "tone": "color",
-   "people": "4, from behind",
-   "orientation": "portrait",
-   "width": 1600,
-   "height": 2400,
-   "focal": {
-    "x": 0.5,
-    "y": 0.5
-   },
-   "alt": "Four runners from behind on a sunlit causeway sidewalk at sunrise.",
-   "uses": [
-    "hero-portrait",
-    "story",
-    "card"
-   ],
-   "files": {
-    "1600": "/assets/practice/20261001/road-rhythm-1600.webp",
-    "800": "/assets/practice/20261001/road-rhythm-800.webp"
-   },
-   "source": {
-    "supplied": "2026-10-01",
-    "record": "/assets/practice/20261001/SOURCE.json"
-   },
-   "tags": [],
-   "used_on": [
-    "/work/photo-video/"
-   ]
-  },
-  {
-   "id": "side-by-side",
-   "title": "Side by side",
-   "kind": "track",
-   "captured": null,
-   "setting": "track",
-   "light": "night",
-   "tone": "color",
-   "people": "several, profile",
-   "orientation": "landscape",
-   "width": 1600,
-   "height": 1067,
-   "focal": {
-    "x": 0.5,
-    "y": 0.5
-   },
-   "alt": "Runners side by side along the back straight at night.",
-   "uses": [
-    "essay",
-    "card"
-   ],
-   "files": {
-    "1600": "/assets/practice/20261001/side-by-side-1600.webp",
-    "800": "/assets/practice/20261001/side-by-side-800.webp"
-   },
-   "source": {
-    "supplied": "2026-10-01",
-    "record": "/assets/practice/20261001/SOURCE.json"
-   },
-   "tags": [],
-   "used_on": [
-    "/miami-running-training.html",
-    "/track/from-practice/"
-   ]
-  },
-  {
-   "id": "starting-together",
-   "title": "Starting together",
-   "kind": "track",
-   "captured": null,
-   "setting": "track",
-   "light": "dusk",
-   "tone": "color",
-   "people": "several",
-   "orientation": "landscape",
-   "width": 1600,
-   "height": 1067,
-   "focal": {
-    "x": 0.5,
-    "y": 0.5
-   },
-   "alt": "The group sets off together down the home straight at dusk.",
-   "uses": [
-    "essay",
-    "card"
-   ],
-   "files": {
-    "1600": "/assets/practice/20261001/starting-together-1600.webp",
-    "800": "/assets/practice/20261001/starting-together-800.webp"
-   },
-   "source": {
-    "supplied": "2026-10-01",
-    "record": "/assets/practice/20261001/SOURCE.json"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "thursday-people",
-   "title": "Thursday people",
-   "kind": "track",
-   "captured": null,
-   "setting": "track infield",
-   "light": "dusk",
-   "tone": "color",
-   "people": "14, faces",
-   "orientation": "landscape",
-   "width": 1600,
-   "height": 880,
-   "focal": {
-    "x": 0.5,
-    "y": 0.5
-   },
-   "alt": "The Thursday group standing together on the infield at dusk, one waving.",
-   "uses": [
-    "community",
-    "hero-landscape",
-    "card"
-   ],
-   "files": {
-    "1600": "/assets/practice/20261001/thursday-people-1600.webp",
-    "800": "/assets/practice/20261001/thursday-people-800.webp"
-   },
-   "source": {
-    "supplied": "2026-10-01",
-    "record": "/assets/practice/20261001/SOURCE.json"
-   },
-   "tags": [],
-   "used_on": [
-    "/thursday.html"
-   ]
-  },
-  {
-   "id": "together-after",
-   "title": "Together after",
-   "kind": "track",
-   "captured": null,
-   "setting": "track infield",
-   "light": "dusk",
-   "tone": "color",
-   "people": "14, faces",
-   "orientation": "landscape",
-   "width": 1600,
-   "height": 1067,
-   "focal": {
-    "x": 0.5,
-    "y": 0.5
-   },
-   "alt": "The group portrait after the session, a second frame of the same lineup.",
-   "uses": [
-    "community",
-    "card"
-   ],
-   "files": {
-    "1600": "/assets/practice/20261001/together-after-1600.webp",
-    "800": "/assets/practice/20261001/together-after-800.webp"
-   },
-   "source": {
-    "supplied": "2026-10-01",
-    "record": "/assets/practice/20261001/SOURCE.json"
-   },
-   "tags": [],
-   "used_on": [
-    "/plans/",
-    "/work/",
-    "/work/photo-video/"
-   ]
-  },
-  {
-   "id": "track-drive",
-   "title": "Track drive",
-   "kind": "track",
-   "captured": null,
-   "setting": "track",
-   "light": "night",
-   "tone": "color",
-   "people": "several",
-   "orientation": "landscape",
-   "width": 1600,
-   "height": 960,
-   "focal": {
-    "x": 0.5,
-    "y": 0.5
-   },
-   "alt": "Runners driving hard into the bend at night.",
-   "uses": [
-    "hero-landscape",
-    "essay",
-    "ad"
-   ],
-   "files": {
-    "1600": "/assets/practice/20261001/track-drive-1600.webp",
-    "800": "/assets/practice/20261001/track-drive-800.webp"
-   },
-   "source": {
-    "supplied": "2026-10-01",
-    "record": "/assets/practice/20261001/SOURCE.json"
-   },
-   "tags": [],
-   "used_on": [
-    "/work/photo-video/"
-   ]
-  },
-  {
-   "id": "bridge-stride",
-   "title": "Bridge stride",
-   "kind": "long run",
-   "captured": null,
-   "setting": "bridge",
-   "light": "morning sun",
-   "tone": "color",
-   "people": "1, profile",
-   "orientation": "portrait",
-   "width": 1022,
-   "height": 1538,
-   "focal": {
-    "x": 0.55,
-    "y": 0.45
-   },
-   "alt": "A runner crossing a white bridge over the bay, mid-stride, morning sky behind.",
-   "uses": [
-    "hero-portrait",
-    "card",
-    "essay",
-    "story"
-   ],
-   "files": {
-    "2400": "/media/library/bridge-stride-2400.webp",
-    "1200": "/media/library/bridge-stride-1200.webp",
-    "600": "/media/library/bridge-stride-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "0e879ebfe6803e922711d9f7a666512d3f8bcb8a46facc8e0a5fd1a91103b806"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "track-dusk",
-   "title": "Track at dusk",
-   "kind": "track",
-   "captured": null,
-   "setting": "track",
-   "light": "dusk",
-   "tone": "color",
-   "people": "1, profile",
-   "orientation": "landscape",
-   "width": 1726,
-   "height": 1380,
-   "focal": {
-    "x": 0.55,
-    "y": 0.4
-   },
-   "alt": "A runner on the track at dusk, the field lights on behind.",
-   "uses": [
-    "hero-landscape",
-    "card",
-    "essay"
-   ],
-   "files": {
-    "2400": "/media/library/track-dusk-2400.webp",
-    "1200": "/media/library/track-dusk-1200.webp",
-    "600": "/media/library/track-dusk-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "92f6b57ad7ef7a50b7889f4b1eef37e7b7e421d766b92b69a724031fd4b554db"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "dune-path",
-   "title": "Dune path",
-   "kind": "long run",
-   "captured": null,
-   "setting": "beach path",
-   "light": "golden hour",
-   "tone": "color",
-   "people": "2, front-on",
-   "orientation": "portrait",
-   "width": 1108,
-   "height": 1476,
-   "focal": {
-    "x": 0.7,
-    "y": 0.35
-   },
-   "alt": "Two runners on the beach path at golden hour.",
-   "uses": [
-    "hero-portrait",
-    "card",
-    "story"
-   ],
-   "files": {
-    "2400": "/media/library/dune-path-2400.webp",
-    "1200": "/media/library/dune-path-1200.webp",
-    "600": "/media/library/dune-path-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-13",
-    "sha256": "8e985a37496375898d83af8fdaa3ce1abd14bed4d90da467cc7e1c7f448b2b65"
-   },
-   "tags": [],
-   "used_on": []
-  },
-  {
-   "id": "night-pair-track",
-   "title": "Night pair on the track",
-   "kind": "track",
-   "captured": "2026-10-14",
-   "setting": "track",
-   "light": "night, floodlit",
-   "tone": "color",
-   "people": "2, front-on",
-   "orientation": "landscape",
-   "width": 1920,
-   "height": 1080,
-   "focal": {
-    "x": 0.62,
-    "y": 0.4
-   },
-   "alt": "Two runners side by side on the track at night, field lights behind.",
-   "uses": [
-    "hero-landscape",
-    "card",
-    "essay"
-   ],
-   "files": {
-    "2400": "/media/library/night-pair-track-2400.webp",
-    "1200": "/media/library/night-pair-track-1200.webp",
-    "600": "/media/library/night-pair-track-600.webp"
-   },
-   "source": {
-    "supplied": "2026-10-14",
-    "sha256": "10be201a09564e7833f3e3cd1efe1c846b0f598c82f705faff32c8cc9670ecd3",
-    "note": "frame from the 7 × 800 film"
-   },
-   "tags": [],
-   "used_on": [
-    "/session/adrian-7x800-2026-10-14"
-   ]
-  }
- ]
+  "photos": [
+    {
+      "id": "waterfront-palms-four",
+      "title": "Four along the waterfront",
+      "kind": "long run",
+      "captured": null,
+      "setting": "waterfront path",
+      "light": "morning sun",
+      "tone": "color",
+      "people": "4, from behind",
+      "orientation": "portrait",
+      "width": 1717,
+      "height": 2576,
+      "focal": {
+        "x": 0.5,
+        "y": 0.68
+      },
+      "alt": "Four runners from behind on a palm-lined waterfront path, a glass tower ahead in morning sun.",
+      "uses": [
+        "hero-portrait",
+        "story",
+        "essay"
+      ],
+      "files": {
+        "600": "/media/library/waterfront-palms-four-600.webp",
+        "1200": "/media/library/waterfront-palms-four-1200.webp",
+        "2400": "/media/library/waterfront-palms-four-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "3343eac5c9dbf92cc7c9bcb5a456cbcb591dc284ba5215dcf9313d7eb240cfc2"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "keep-right-path",
+      "title": "Keep right",
+      "kind": "long run",
+      "captured": null,
+      "setting": "beach path",
+      "light": "morning sun",
+      "tone": "color",
+      "people": "4, from behind",
+      "orientation": "portrait",
+      "width": 1717,
+      "height": 2576,
+      "focal": {
+        "x": 0.5,
+        "y": 0.65
+      },
+      "alt": "Four runners on a brick beach path under sea grape trees, passing Keep Right and Slow Down signs.",
+      "uses": [
+        "card",
+        "story",
+        "essay"
+      ],
+      "files": {
+        "600": "/media/library/keep-right-path-600.webp",
+        "1200": "/media/library/keep-right-path-1200.webp",
+        "2400": "/media/library/keep-right-path-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "62bad565d02dda0e0274e03395e5b505efadd10088d63429e5166960cdba030c"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "canopy-street",
+      "title": "Under the canopy",
+      "kind": "long run",
+      "captured": null,
+      "setting": "street",
+      "light": "morning sun",
+      "tone": "color",
+      "people": "5, from behind",
+      "orientation": "portrait",
+      "width": 1717,
+      "height": 2576,
+      "focal": {
+        "x": 0.5,
+        "y": 0.55
+      },
+      "alt": "Five runners from behind on a street under a canopy of trees, two close to the camera.",
+      "uses": [
+        "card",
+        "essay",
+        "story"
+      ],
+      "files": {
+        "600": "/media/library/canopy-street-600.webp",
+        "1200": "/media/library/canopy-street-1200.webp",
+        "2400": "/media/library/canopy-street-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "17591ac5d5cd2a2ecbb40f17015664a310757cc2ed9ddbee1eab156b054b58fa"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "crossing-ahead",
+      "title": "Crossing ahead",
+      "kind": "long run",
+      "captured": null,
+      "setting": "street",
+      "light": "morning sun",
+      "tone": "color",
+      "people": "5, from behind",
+      "orientation": "portrait",
+      "width": 1717,
+      "height": 2576,
+      "focal": {
+        "x": 0.5,
+        "y": 0.55
+      },
+      "alt": "Runners from behind on a tree-lined street, yellow pedestrian crossing signs overhead.",
+      "uses": [
+        "essay",
+        "story"
+      ],
+      "files": {
+        "600": "/media/library/crossing-ahead-600.webp",
+        "1200": "/media/library/crossing-ahead-1200.webp",
+        "2400": "/media/library/crossing-ahead-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "d1f34bb2a6417823dcdd5acf350f25aa09dd9f2c17fad243ab19ee36474a77df"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "bridge-profile",
+      "title": "On the bridge",
+      "kind": "long run",
+      "captured": null,
+      "setting": "bridge",
+      "light": "morning sun",
+      "tone": "color",
+      "people": "4, in profile",
+      "orientation": "portrait",
+      "width": 1717,
+      "height": 2576,
+      "focal": {
+        "x": 0.45,
+        "y": 0.5
+      },
+      "alt": "Runners in profile crossing a bridge with a white balustrade and blue sky, one in front in mid-stride.",
+      "uses": [
+        "hero-portrait",
+        "card",
+        "ad",
+        "story"
+      ],
+      "files": {
+        "600": "/media/library/bridge-profile-600.webp",
+        "1200": "/media/library/bridge-profile-1200.webp",
+        "2400": "/media/library/bridge-profile-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "4d0f688dbcb97e2d17efa16a8c57e69438d920ba2d7231f68449dcde80d06962"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "bench-after-reps",
+      "title": "After the reps",
+      "kind": "track",
+      "captured": null,
+      "setting": "track",
+      "light": "overcast",
+      "tone": "color",
+      "people": "3",
+      "orientation": "portrait",
+      "width": 972,
+      "height": 1416,
+      "focal": {
+        "x": 0.4,
+        "y": 0.55
+      },
+      "alt": "A runner sits on the track bench between reps while another dries his face with a towel behind him.",
+      "uses": [
+        "essay",
+        "card"
+      ],
+      "files": {
+        "600": "/media/library/bench-after-reps-600.webp",
+        "1200": "/media/library/bench-after-reps-1200.webp",
+        "2400": "/media/library/bench-after-reps-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "3bf6fc5fc3997a7c76c7e5633298415f6da0e9fb9e21cc7be4334197d9f97724"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "bench-three",
+      "title": "Three on the bench",
+      "kind": "track",
+      "captured": null,
+      "setting": "track",
+      "light": "warm evening",
+      "tone": "color",
+      "people": "3, faces",
+      "orientation": "landscape",
+      "width": 2348,
+      "height": 1530,
+      "focal": {
+        "x": 0.5,
+        "y": 0.45
+      },
+      "alt": "Three runners talking and laughing on a bench by the track fence.",
+      "uses": [
+        "community",
+        "essay",
+        "card"
+      ],
+      "files": {
+        "600": "/media/library/bench-three-600.webp",
+        "1200": "/media/library/bench-three-1200.webp",
+        "2400": "/media/library/bench-three-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "5446be5fcbe35b12b7c37028e736c7dbfc34ae46c50fbe34e0f558a154b798c5"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "bw-lead-runner",
+      "title": "Out front",
+      "kind": "track",
+      "captured": null,
+      "setting": "track",
+      "light": "overcast",
+      "tone": "black and white",
+      "people": "2, front-on",
+      "orientation": "landscape",
+      "width": 1704,
+      "height": 1376,
+      "focal": {
+        "x": 0.55,
+        "y": 0.45
+      },
+      "alt": "Black and white: a runner leads another down the track toward the camera, city buildings behind.",
+      "uses": [
+        "hero-landscape",
+        "essay",
+        "ad"
+      ],
+      "files": {
+        "600": "/media/library/bw-lead-runner-600.webp",
+        "1200": "/media/library/bw-lead-runner-1200.webp",
+        "2400": "/media/library/bw-lead-runner-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "30ff581334176b3beaf14c31ff4095fc591289e438ddd803f52110888d39ccb4"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "track-curve-group",
+      "title": "Into the curve",
+      "kind": "track",
+      "captured": "2025-05-01",
+      "setting": "track",
+      "light": "dawn",
+      "tone": "color",
+      "people": "6, from behind",
+      "orientation": "landscape",
+      "width": 2336,
+      "height": 1662,
+      "focal": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "A group runs into the track's curve from behind at dawn, shoes mid-stride.",
+      "uses": [
+        "hero-landscape",
+        "essay",
+        "card"
+      ],
+      "files": {
+        "600": "/media/library/track-curve-group-600.webp",
+        "1200": "/media/library/track-curve-group-1200.webp",
+        "2400": "/media/library/track-curve-group-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "5aa468f3ece3bff69712f54369913d845d9f55b3dcf28277dc923eac5e8243b8"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "two-on-the-lanes",
+      "title": "Two on the lanes",
+      "kind": "track",
+      "captured": null,
+      "setting": "track",
+      "light": "overcast",
+      "tone": "color",
+      "people": "2, from behind",
+      "orientation": "portrait",
+      "width": 1096,
+      "height": 1450,
+      "focal": {
+        "x": 0.5,
+        "y": 0.45
+      },
+      "alt": "Two runners from behind on the red track lanes, trees beyond the fence.",
+      "uses": [
+        "card",
+        "essay",
+        "story"
+      ],
+      "files": {
+        "600": "/media/library/two-on-the-lanes-600.webp",
+        "1200": "/media/library/two-on-the-lanes-1200.webp",
+        "2400": "/media/library/two-on-the-lanes-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "fbd2adb60497e031c5fa30aba422da0274f76fb5aaaab440ab3c1b58dafbeb6d"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "white-shorts-dusk",
+      "title": "Alone on the bend",
+      "kind": "track",
+      "captured": null,
+      "setting": "track",
+      "light": "dusk",
+      "tone": "color",
+      "people": "1",
+      "orientation": "portrait",
+      "width": 1070,
+      "height": 1464,
+      "focal": {
+        "x": 0.45,
+        "y": 0.45
+      },
+      "alt": "A lone runner in white shorts strides around the track bend at dusk, a net and floodlight poles behind.",
+      "uses": [
+        "hero-portrait",
+        "story",
+        "essay"
+      ],
+      "files": {
+        "600": "/media/library/white-shorts-dusk-600.webp",
+        "1200": "/media/library/white-shorts-dusk-1200.webp",
+        "2400": "/media/library/white-shorts-dusk-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "42519e3944a89476e2d8f5e59e4994566ec3371670237fb798c965f7a7df5235"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "solo-profile-field",
+      "title": "Steady",
+      "kind": "track",
+      "captured": null,
+      "setting": "track",
+      "light": "dusk",
+      "tone": "color",
+      "people": "1, profile",
+      "orientation": "landscape",
+      "width": 2342,
+      "height": 1524,
+      "focal": {
+        "x": 0.42,
+        "y": 0.5
+      },
+      "alt": "A runner in profile on the track at dusk, the football field and end zone behind.",
+      "uses": [
+        "hero-landscape",
+        "card",
+        "ad"
+      ],
+      "files": {
+        "600": "/media/library/solo-profile-field-600.webp",
+        "1200": "/media/library/solo-profile-field-1200.webp",
+        "2400": "/media/library/solo-profile-field-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "6d5aaa0c4d03b99beedd015115e74c03ca708b1efe527a92bb66868b1e72c650"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "walk-back",
+      "title": "The walk back",
+      "kind": "track",
+      "captured": null,
+      "setting": "track",
+      "light": "overcast",
+      "tone": "color",
+      "people": "2",
+      "orientation": "landscape",
+      "width": 1874,
+      "height": 1412,
+      "focal": {
+        "x": 0.47,
+        "y": 0.5
+      },
+      "alt": "A runner walks back along the track between reps; another leans on the fence by the bleachers.",
+      "uses": [
+        "essay",
+        "card"
+      ],
+      "files": {
+        "600": "/media/library/walk-back-600.webp",
+        "1200": "/media/library/walk-back-1200.webp",
+        "2400": "/media/library/walk-back-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "f1259f05f8cf2d0a7b5b46bf60bdb151a44c45f32f5b0fff0cd59afd87b27144"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "golden-recovery",
+      "title": "Spent",
+      "kind": "track",
+      "captured": null,
+      "setting": "track",
+      "light": "golden hour",
+      "tone": "color",
+      "people": "3",
+      "orientation": "portrait",
+      "width": 1320,
+      "height": 1723,
+      "focal": {
+        "x": 0.55,
+        "y": 0.45
+      },
+      "alt": "Golden backlight: two runners sit with heads down while a third lies flat on the track after the session.",
+      "uses": [
+        "hero-portrait",
+        "essay",
+        "story"
+      ],
+      "files": {
+        "600": "/media/library/golden-recovery-600.webp",
+        "1200": "/media/library/golden-recovery-1200.webp",
+        "2400": "/media/library/golden-recovery-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "3bd26cba948ab9fe477aa761ef9df75495339e220bf0bd5114dde942c2b4acfb"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "rooftop-seven",
+      "title": "Seven after the run",
+      "kind": "social",
+      "captured": null,
+      "setting": "rooftop terrace",
+      "light": "evening",
+      "tone": "color",
+      "people": "7, faces",
+      "orientation": "portrait",
+      "width": 1320,
+      "height": 1614,
+      "focal": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "Seven runners stand arm in arm on a rooftop terrace with palms and string lights, two flexing.",
+      "uses": [
+        "community",
+        "card",
+        "story"
+      ],
+      "files": {
+        "600": "/media/library/rooftop-seven-600.webp",
+        "1200": "/media/library/rooftop-seven-1200.webp",
+        "2400": "/media/library/rooftop-seven-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "954a9e24ed654db0db946851e98d0cccf61374ff940ec7eede7c3f788520a135"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "bw-group-portrait",
+      "title": "The group",
+      "kind": "track",
+      "captured": null,
+      "setting": "track",
+      "light": "overcast",
+      "tone": "black and white",
+      "people": "12, faces",
+      "orientation": "landscape",
+      "width": 1535,
+      "height": 1024,
+      "focal": {
+        "x": 0.5,
+        "y": 0.55
+      },
+      "alt": "Black and white group portrait of twelve runners on the track under a dramatic sky.",
+      "uses": [
+        "community",
+        "hero-landscape",
+        "card"
+      ],
+      "files": {
+        "600": "/media/library/bw-group-portrait-600.webp",
+        "1200": "/media/library/bw-group-portrait-1200.webp",
+        "2400": "/media/library/bw-group-portrait-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "0a2693137b272360ed8fed86998dd611e741b5c01f1c65d399a75e26663d5450"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "bw-high-knees",
+      "title": "Drills",
+      "kind": "track",
+      "captured": "2025-03-27",
+      "setting": "track",
+      "light": "dawn",
+      "tone": "black and white",
+      "people": "several",
+      "orientation": "landscape",
+      "width": 1514,
+      "height": 1010,
+      "focal": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "Black and white: runners doing high-knee drills down the track before dawn.",
+      "uses": [
+        "essay",
+        "hero-landscape"
+      ],
+      "files": {
+        "600": "/media/library/bw-high-knees-600.webp",
+        "1200": "/media/library/bw-high-knees-1200.webp",
+        "2400": "/media/library/bw-high-knees-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "2ec1275512bf5cbce258a29a22ca38bb23df762bc58bbd1e8227237368b0029d"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "rooftop-seated",
+      "title": "Six on the terrace",
+      "kind": "social",
+      "captured": null,
+      "setting": "rooftop terrace",
+      "light": "daylight",
+      "tone": "color",
+      "people": "6, faces",
+      "orientation": "landscape",
+      "width": 1514,
+      "height": 1010,
+      "focal": {
+        "x": 0.5,
+        "y": 0.45
+      },
+      "alt": "Six athletes seated and smiling together on a rooftop terrace among plants.",
+      "uses": [
+        "community",
+        "card"
+      ],
+      "files": {
+        "600": "/media/library/rooftop-seated-600.webp",
+        "1200": "/media/library/rooftop-seated-1200.webp",
+        "2400": "/media/library/rooftop-seated-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "04ebf9d8efd201a28fb6e8343476833c4bbc2526defced89cc9ff075ff24a2bb"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "bench-towel",
+      "title": "Towel",
+      "kind": "track",
+      "captured": null,
+      "setting": "track",
+      "light": "morning sun",
+      "tone": "color",
+      "people": "2",
+      "orientation": "portrait",
+      "width": 1514,
+      "height": 2019,
+      "focal": {
+        "x": 0.5,
+        "y": 0.4
+      },
+      "alt": "Two runners on the track bench in morning sun, one drying his face with a towel.",
+      "uses": [
+        "essay",
+        "story"
+      ],
+      "files": {
+        "600": "/media/library/bench-towel-600.webp",
+        "1200": "/media/library/bench-towel-1200.webp",
+        "2400": "/media/library/bench-towel-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "cc555e650b456bbd3b9145364a7fa804fd33a2621942d16bfcd8627f4baa2bbf"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "refuel",
+      "title": "Refuel",
+      "kind": "social",
+      "captured": null,
+      "setting": "terrace",
+      "light": "daylight",
+      "tone": "color",
+      "people": "1",
+      "orientation": "square",
+      "width": 1514,
+      "height": 1503,
+      "focal": {
+        "x": 0.55,
+        "y": 0.45
+      },
+      "alt": "An athlete in a black T-shirt stirs a drink in a shaker on a terrace chair.",
+      "uses": [
+        "fueling",
+        "card",
+        "essay"
+      ],
+      "files": {
+        "600": "/media/library/refuel-600.webp",
+        "1200": "/media/library/refuel-1200.webp",
+        "2400": "/media/library/refuel-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "c5a9e5098126365ed55f4b569f56bb8c6cbbd1fda26253a77b9b2bc109bcc355"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "bw-track-talk",
+      "title": "Between sets",
+      "kind": "track",
+      "captured": "2025-03-27",
+      "setting": "track",
+      "light": "morning",
+      "tone": "black and white",
+      "people": "several",
+      "orientation": "landscape",
+      "width": 1514,
+      "height": 1010,
+      "focal": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "Black and white: runners standing on the track lanes talking between sets.",
+      "uses": [
+        "essay",
+        "community"
+      ],
+      "files": {
+        "600": "/media/library/bw-track-talk-600.webp",
+        "1200": "/media/library/bw-track-talk-1200.webp",
+        "2400": "/media/library/bw-track-talk-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "4aa95772153be03f0e14be9f6432e0cc0d7d91b4b9823906515002baa23b7f6e"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "beach-gym-barbell",
+      "title": "Beach gym",
+      "kind": "strength",
+      "captured": null,
+      "setting": "outdoor beach gym",
+      "light": "bright sun",
+      "tone": "color",
+      "people": "1",
+      "orientation": "landscape",
+      "width": 1514,
+      "height": 1427,
+      "focal": {
+        "x": 0.5,
+        "y": 0.4
+      },
+      "alt": "An athlete in sunglasses with a loaded barbell across his shoulders at an outdoor beach gym, palms behind.",
+      "uses": [
+        "strength",
+        "card",
+        "hero-portrait"
+      ],
+      "files": {
+        "600": "/media/library/beach-gym-barbell-600.webp",
+        "1200": "/media/library/beach-gym-barbell-1200.webp",
+        "2400": "/media/library/beach-gym-barbell-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "caf9f2b3b864acdac06ac1aa0f451a856362943e9de0b59b01b4213aff0fa98c"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "raw-curve-dawn",
+      "title": "Curve at dawn",
+      "kind": "track",
+      "captured": "2025-05-01",
+      "setting": "track",
+      "light": "dawn",
+      "tone": "color",
+      "people": "several, from behind",
+      "orientation": "landscape",
+      "width": 6024,
+      "height": 4024,
+      "focal": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "Runners from behind rounding the track curve at dawn, the field and stands beside them.",
+      "uses": [
+        "hero-landscape",
+        "essay"
+      ],
+      "files": {
+        "600": "/media/library/raw-curve-dawn-600.webp",
+        "1200": "/media/library/raw-curve-dawn-1200.webp",
+        "2400": "/media/library/raw-curve-dawn-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "305ff6a923f718fdc193320a5a64696d70f9d4e4c8a8379e0d0e0ef3819c9a0b",
+        "note": "Developed from Sony A7 III RAW DSC05952.ARW (camera white balance, no edits). The RAW stays with Brice."
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "towel-and-water",
+      "title": "Towel and water",
+      "kind": "track",
+      "captured": null,
+      "setting": "track",
+      "light": "morning sun",
+      "tone": "color",
+      "people": "1, face",
+      "orientation": "portrait",
+      "width": 1281,
+      "height": 1938,
+      "focal": {
+        "x": 0.35,
+        "y": 0.35
+      },
+      "alt": "A runner on the track after the session, towel over his shoulder and a water bottle in hand, clouds and sun behind.",
+      "uses": [
+        "hero-portrait",
+        "card",
+        "essay"
+      ],
+      "files": {
+        "600": "/media/library/towel-and-water-600.webp",
+        "1200": "/media/library/towel-and-water-1200.webp",
+        "2400": "/media/library/towel-and-water-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "b2f04903091103b0962262ac26ad7938480f310a1bb1c03af92a73d954216406"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "terrace-after",
+      "title": "After, on the terrace",
+      "kind": "social",
+      "captured": null,
+      "setting": "café terrace",
+      "light": "daylight",
+      "tone": "color",
+      "people": "3",
+      "orientation": "portrait",
+      "width": 1320,
+      "height": 1927,
+      "focal": {
+        "x": 0.55,
+        "y": 0.55
+      },
+      "alt": "Three runners sit on café chairs on a green terrace among plants after the run, a bridge overhead.",
+      "uses": [
+        "community",
+        "card",
+        "story",
+        "essay"
+      ],
+      "files": {
+        "600": "/media/library/terrace-after-600.webp",
+        "1200": "/media/library/terrace-after-1200.webp",
+        "2400": "/media/library/terrace-after-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "b972cc7ccac4fff4fdc0bd5dbb546b2f3d8006fd3778f4bc97cdec3c1cbb0716"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "between-efforts",
+      "title": "Between efforts",
+      "kind": "track",
+      "captured": null,
+      "setting": "track",
+      "light": "night",
+      "tone": "color",
+      "people": "several, from behind",
+      "orientation": "landscape",
+      "width": 1600,
+      "height": 1067,
+      "focal": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "Runners walk the track between efforts under the floodlights.",
+      "uses": [
+        "essay",
+        "card"
+      ],
+      "files": {
+        "800": "/assets/practice/20261001/between-efforts-800.webp",
+        "1600": "/assets/practice/20261001/between-efforts-1600.webp"
+      },
+      "source": {
+        "supplied": "2026-10-01",
+        "record": "/assets/practice/20261001/SOURCE.json"
+      },
+      "tags": [],
+      "used_on": [
+        "/work/photo-video/"
+      ]
+    },
+    {
+      "id": "coming-through",
+      "title": "Coming through",
+      "kind": "track",
+      "captured": null,
+      "setting": "track",
+      "light": "dusk",
+      "tone": "color",
+      "people": "several, front-on",
+      "orientation": "landscape",
+      "width": 1600,
+      "height": 1067,
+      "focal": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "A group runs straight at the camera down the track at dusk.",
+      "uses": [
+        "hero-landscape",
+        "essay"
+      ],
+      "files": {
+        "800": "/assets/practice/20261001/coming-through-800.webp",
+        "1600": "/assets/practice/20261001/coming-through-1600.webp"
+      },
+      "source": {
+        "supplied": "2026-10-01",
+        "record": "/assets/practice/20261001/SOURCE.json"
+      },
+      "tags": [],
+      "used_on": [
+        "/docs/archive/coaching-miami-2026-10-02.html",
+        "/es/plans/race-pace-durability/",
+        "/plans/race-pace-durability/support/"
+      ]
+    },
+    {
+      "id": "next-rep",
+      "title": "Next rep",
+      "kind": "track",
+      "captured": null,
+      "setting": "track",
+      "light": "night",
+      "tone": "color",
+      "people": "several",
+      "orientation": "landscape",
+      "width": 1600,
+      "height": 1067,
+      "focal": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "Runners explode off the line at the start of a rep.",
+      "uses": [
+        "hero-landscape",
+        "ad",
+        "essay"
+      ],
+      "files": {
+        "800": "/assets/practice/20261001/next-rep-800.webp",
+        "1600": "/assets/practice/20261001/next-rep-1600.webp"
+      },
+      "source": {
+        "supplied": "2026-10-01",
+        "record": "/assets/practice/20261001/SOURCE.json"
+      },
+      "tags": [],
+      "used_on": [
+        "/work/photo-video/"
+      ]
+    },
+    {
+      "id": "road-rhythm",
+      "title": "Road rhythm",
+      "kind": "long run",
+      "captured": null,
+      "setting": "road",
+      "light": "sunrise",
+      "tone": "color",
+      "people": "4, from behind",
+      "orientation": "portrait",
+      "width": 1600,
+      "height": 2400,
+      "focal": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "Four runners from behind on a sunlit causeway sidewalk at sunrise.",
+      "uses": [
+        "hero-portrait",
+        "story",
+        "card"
+      ],
+      "files": {
+        "800": "/assets/practice/20261001/road-rhythm-800.webp",
+        "1600": "/assets/practice/20261001/road-rhythm-1600.webp"
+      },
+      "source": {
+        "supplied": "2026-10-01",
+        "record": "/assets/practice/20261001/SOURCE.json"
+      },
+      "tags": [],
+      "used_on": [
+        "/work/photo-video/"
+      ]
+    },
+    {
+      "id": "side-by-side",
+      "title": "Side by side",
+      "kind": "track",
+      "captured": null,
+      "setting": "track",
+      "light": "night",
+      "tone": "color",
+      "people": "several, profile",
+      "orientation": "landscape",
+      "width": 1600,
+      "height": 1067,
+      "focal": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "Runners side by side along the back straight at night.",
+      "uses": [
+        "essay",
+        "card"
+      ],
+      "files": {
+        "800": "/assets/practice/20261001/side-by-side-800.webp",
+        "1600": "/assets/practice/20261001/side-by-side-1600.webp"
+      },
+      "source": {
+        "supplied": "2026-10-01",
+        "record": "/assets/practice/20261001/SOURCE.json"
+      },
+      "tags": [],
+      "used_on": [
+        "/miami-running-training.html",
+        "/track/from-practice/"
+      ]
+    },
+    {
+      "id": "starting-together",
+      "title": "Starting together",
+      "kind": "track",
+      "captured": null,
+      "setting": "track",
+      "light": "dusk",
+      "tone": "color",
+      "people": "several",
+      "orientation": "landscape",
+      "width": 1600,
+      "height": 1067,
+      "focal": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "The group sets off together down the home straight at dusk.",
+      "uses": [
+        "essay",
+        "card"
+      ],
+      "files": {
+        "800": "/assets/practice/20261001/starting-together-800.webp",
+        "1600": "/assets/practice/20261001/starting-together-1600.webp"
+      },
+      "source": {
+        "supplied": "2026-10-01",
+        "record": "/assets/practice/20261001/SOURCE.json"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "thursday-people",
+      "title": "Thursday people",
+      "kind": "track",
+      "captured": null,
+      "setting": "track infield",
+      "light": "dusk",
+      "tone": "color",
+      "people": "14, faces",
+      "orientation": "landscape",
+      "width": 1600,
+      "height": 880,
+      "focal": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "The Thursday group standing together on the infield at dusk, one waving.",
+      "uses": [
+        "community",
+        "hero-landscape",
+        "card"
+      ],
+      "files": {
+        "800": "/assets/practice/20261001/thursday-people-800.webp",
+        "1600": "/assets/practice/20261001/thursday-people-1600.webp"
+      },
+      "source": {
+        "supplied": "2026-10-01",
+        "record": "/assets/practice/20261001/SOURCE.json"
+      },
+      "tags": [],
+      "used_on": [
+        "/thursday.html"
+      ]
+    },
+    {
+      "id": "together-after",
+      "title": "Together after",
+      "kind": "track",
+      "captured": null,
+      "setting": "track infield",
+      "light": "dusk",
+      "tone": "color",
+      "people": "14, faces",
+      "orientation": "landscape",
+      "width": 1600,
+      "height": 1067,
+      "focal": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "The group portrait after the session, a second frame of the same lineup.",
+      "uses": [
+        "community",
+        "card"
+      ],
+      "files": {
+        "800": "/assets/practice/20261001/together-after-800.webp",
+        "1600": "/assets/practice/20261001/together-after-1600.webp"
+      },
+      "source": {
+        "supplied": "2026-10-01",
+        "record": "/assets/practice/20261001/SOURCE.json"
+      },
+      "tags": [],
+      "used_on": [
+        "/plans/",
+        "/work/",
+        "/work/photo-video/"
+      ]
+    },
+    {
+      "id": "track-drive",
+      "title": "Track drive",
+      "kind": "track",
+      "captured": null,
+      "setting": "track",
+      "light": "night",
+      "tone": "color",
+      "people": "several",
+      "orientation": "landscape",
+      "width": 1600,
+      "height": 960,
+      "focal": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "Runners driving hard into the bend at night.",
+      "uses": [
+        "hero-landscape",
+        "essay",
+        "ad"
+      ],
+      "files": {
+        "800": "/assets/practice/20261001/track-drive-800.webp",
+        "1600": "/assets/practice/20261001/track-drive-1600.webp"
+      },
+      "source": {
+        "supplied": "2026-10-01",
+        "record": "/assets/practice/20261001/SOURCE.json"
+      },
+      "tags": [],
+      "used_on": [
+        "/work/photo-video/"
+      ]
+    },
+    {
+      "id": "bridge-stride",
+      "title": "Bridge stride",
+      "kind": "long run",
+      "captured": null,
+      "setting": "bridge",
+      "light": "morning sun",
+      "tone": "color",
+      "people": "1, profile",
+      "orientation": "portrait",
+      "width": 1022,
+      "height": 1538,
+      "focal": {
+        "x": 0.55,
+        "y": 0.45
+      },
+      "alt": "A runner crossing a white bridge over the bay, mid-stride, morning sky behind.",
+      "uses": [
+        "hero-portrait",
+        "card",
+        "essay",
+        "story"
+      ],
+      "files": {
+        "600": "/media/library/bridge-stride-600.webp",
+        "1200": "/media/library/bridge-stride-1200.webp",
+        "2400": "/media/library/bridge-stride-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "0e879ebfe6803e922711d9f7a666512d3f8bcb8a46facc8e0a5fd1a91103b806"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "track-dusk",
+      "title": "Track at dusk",
+      "kind": "track",
+      "captured": null,
+      "setting": "track",
+      "light": "dusk",
+      "tone": "color",
+      "people": "1, profile",
+      "orientation": "landscape",
+      "width": 1726,
+      "height": 1380,
+      "focal": {
+        "x": 0.55,
+        "y": 0.4
+      },
+      "alt": "A runner on the track at dusk, the field lights on behind.",
+      "uses": [
+        "hero-landscape",
+        "card",
+        "essay"
+      ],
+      "files": {
+        "600": "/media/library/track-dusk-600.webp",
+        "1200": "/media/library/track-dusk-1200.webp",
+        "2400": "/media/library/track-dusk-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "92f6b57ad7ef7a50b7889f4b1eef37e7b7e421d766b92b69a724031fd4b554db"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "dune-path",
+      "title": "Dune path",
+      "kind": "long run",
+      "captured": null,
+      "setting": "beach path",
+      "light": "golden hour",
+      "tone": "color",
+      "people": "2, front-on",
+      "orientation": "portrait",
+      "width": 1108,
+      "height": 1476,
+      "focal": {
+        "x": 0.7,
+        "y": 0.35
+      },
+      "alt": "Two runners on the beach path at golden hour.",
+      "uses": [
+        "hero-portrait",
+        "card",
+        "story"
+      ],
+      "files": {
+        "600": "/media/library/dune-path-600.webp",
+        "1200": "/media/library/dune-path-1200.webp",
+        "2400": "/media/library/dune-path-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-13",
+        "sha256": "8e985a37496375898d83af8fdaa3ce1abd14bed4d90da467cc7e1c7f448b2b65"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "night-pair-track",
+      "title": "Night pair on the track",
+      "kind": "track",
+      "captured": "2026-10-14",
+      "setting": "track",
+      "light": "night, floodlit",
+      "tone": "color",
+      "people": "2, front-on",
+      "orientation": "landscape",
+      "width": 1920,
+      "height": 1080,
+      "focal": {
+        "x": 0.62,
+        "y": 0.4
+      },
+      "alt": "Two runners side by side on the track at night, field lights behind.",
+      "uses": [
+        "hero-landscape",
+        "card",
+        "essay"
+      ],
+      "files": {
+        "600": "/media/library/night-pair-track-600.webp",
+        "1200": "/media/library/night-pair-track-1200.webp",
+        "2400": "/media/library/night-pair-track-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-14",
+        "sha256": "10be201a09564e7833f3e3cd1efe1c846b0f598c82f705faff32c8cc9670ecd3",
+        "note": "frame from the 7 × 800 film"
+      },
+      "tags": [],
+      "used_on": [
+        "/session/adrian-7x800-2026-10-14"
+      ]
+    },
+    {
+      "id": "track-5728",
+      "title": "Frame 5728",
+      "kind": "track",
+      "captured": null,
+      "setting": "track practice",
+      "light": "track lights and daylight",
+      "tone": "original",
+      "people": "FORM athletes",
+      "orientation": "landscape",
+      "width": 1000,
+      "height": 666,
+      "focal": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "Runners approaching along the track in daylight.",
+      "uses": [
+        "photo-library",
+        "album",
+        "editorial"
+      ],
+      "files": {
+        "600": "/media/track/track-selection/1b35020a8701/frame-5728-640.jpg",
+        "1200": "/media/track/track-selection/1b35020a8701/frame-5728-1440.jpg",
+        "2400": "/media/track/track-selection/1b35020a8701/frame-5728.jpg"
+      },
+      "source": {
+        "supplied": "2026-10-15",
+        "sha256": "2a02927020970df4e2bab617712b5e9c4906d011e582d596e848bf9ec7db8790",
+        "notes": "Reviewed selection from embedded album study; web-size photograph, not claimed camera original."
+      },
+      "tags": [],
+      "used_on": [
+        "/track/track-selection/",
+        "/photos/"
+      ]
+    },
+    {
+      "id": "track-8046",
+      "title": "Frame 8046",
+      "kind": "track",
+      "captured": null,
+      "setting": "track practice",
+      "light": "track lights and daylight",
+      "tone": "original",
+      "people": "FORM athletes",
+      "orientation": "landscape",
+      "width": 1000,
+      "height": 666,
+      "focal": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "Runners gathered beside the track and infield.",
+      "uses": [
+        "photo-library",
+        "album",
+        "editorial"
+      ],
+      "files": {
+        "600": "/media/track/track-selection/1b35020a8701/frame-8046-640.jpg",
+        "1200": "/media/track/track-selection/1b35020a8701/frame-8046-1440.jpg",
+        "2400": "/media/track/track-selection/1b35020a8701/frame-8046.jpg"
+      },
+      "source": {
+        "supplied": "2026-10-15",
+        "sha256": "5ba7a50342cfe70f2c98f6eaa597e438f57277a6f9648655f15df1ad282eaeef",
+        "notes": "Reviewed selection from embedded album study; web-size photograph, not claimed camera original."
+      },
+      "tags": [],
+      "used_on": [
+        "/track/track-selection/",
+        "/photos/"
+      ]
+    },
+    {
+      "id": "track-8045",
+      "title": "Frame 8045",
+      "kind": "track",
+      "captured": null,
+      "setting": "track practice",
+      "light": "track lights and daylight",
+      "tone": "original",
+      "people": "FORM athletes",
+      "orientation": "landscape",
+      "width": 1000,
+      "height": 666,
+      "focal": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "Runners beginning a repetition under the track lights.",
+      "uses": [
+        "photo-library",
+        "album",
+        "editorial"
+      ],
+      "files": {
+        "600": "/media/track/track-selection/1b35020a8701/frame-8045-640.jpg",
+        "1200": "/media/track/track-selection/1b35020a8701/frame-8045-1440.jpg",
+        "2400": "/media/track/track-selection/1b35020a8701/frame-8045.jpg"
+      },
+      "source": {
+        "supplied": "2026-10-15",
+        "sha256": "c76593a0d9e6fd785e890ea2450b46e5e9629b5d7d0783117fc58214d13074f4",
+        "notes": "Reviewed selection from embedded album study; web-size photograph, not claimed camera original."
+      },
+      "tags": [],
+      "used_on": [
+        "/track/track-selection/",
+        "/photos/"
+      ]
+    },
+    {
+      "id": "track-8058",
+      "title": "Frame 8058",
+      "kind": "track",
+      "captured": null,
+      "setting": "track practice",
+      "light": "track lights and daylight",
+      "tone": "original",
+      "people": "FORM athletes",
+      "orientation": "landscape",
+      "width": 1000,
+      "height": 666,
+      "focal": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "A group standing across the track lanes at night.",
+      "uses": [
+        "photo-library",
+        "album",
+        "editorial"
+      ],
+      "files": {
+        "600": "/media/track/track-selection/1b35020a8701/frame-8058-640.jpg",
+        "1200": "/media/track/track-selection/1b35020a8701/frame-8058-1440.jpg",
+        "2400": "/media/track/track-selection/1b35020a8701/frame-8058.jpg"
+      },
+      "source": {
+        "supplied": "2026-10-15",
+        "sha256": "68b64c23cdadce7f42da097699977890b276ff39d49499e5b8649cceecab95f8",
+        "notes": "Reviewed selection from embedded album study; web-size photograph, not claimed camera original."
+      },
+      "tags": [],
+      "used_on": [
+        "/track/track-selection/",
+        "/photos/"
+      ]
+    },
+    {
+      "id": "track-8044",
+      "title": "Frame 8044",
+      "kind": "track",
+      "captured": null,
+      "setting": "track practice",
+      "light": "track lights and daylight",
+      "tone": "original",
+      "people": "FORM athletes",
+      "orientation": "landscape",
+      "width": 1000,
+      "height": 666,
+      "focal": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "Runners moving along the straight beside the infield.",
+      "uses": [
+        "photo-library",
+        "album",
+        "editorial"
+      ],
+      "files": {
+        "600": "/media/track/track-selection/1b35020a8701/frame-8044-640.jpg",
+        "1200": "/media/track/track-selection/1b35020a8701/frame-8044-1440.jpg",
+        "2400": "/media/track/track-selection/1b35020a8701/frame-8044.jpg"
+      },
+      "source": {
+        "supplied": "2026-10-15",
+        "sha256": "e5a8b017af23bc6aa412cd743f3163c17ec956ce8598fc280b8790ac10ee9546",
+        "notes": "Reviewed selection from embedded album study; web-size photograph, not claimed camera original."
+      },
+      "tags": [],
+      "used_on": [
+        "/track/track-selection/",
+        "/photos/"
+      ]
+    },
+    {
+      "id": "track-5701",
+      "title": "Frame 5701",
+      "kind": "track",
+      "captured": null,
+      "setting": "track practice",
+      "light": "track lights and daylight",
+      "tone": "original",
+      "people": "FORM athletes",
+      "orientation": "landscape",
+      "width": 1000,
+      "height": 666,
+      "focal": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "A wide view of runners on the track at dusk.",
+      "uses": [
+        "photo-library",
+        "album",
+        "editorial"
+      ],
+      "files": {
+        "600": "/media/track/track-selection/1b35020a8701/frame-5701-640.jpg",
+        "1200": "/media/track/track-selection/1b35020a8701/frame-5701-1440.jpg",
+        "2400": "/media/track/track-selection/1b35020a8701/frame-5701.jpg"
+      },
+      "source": {
+        "supplied": "2026-10-15",
+        "sha256": "b799b9afca014d16ca9ffa26102377463dcb86abbc4c1cf15c3cbcbe9980e512",
+        "notes": "Reviewed selection from embedded album study; web-size photograph, not claimed camera original."
+      },
+      "tags": [],
+      "used_on": [
+        "/track/track-selection/",
+        "/photos/"
+      ]
+    },
+    {
+      "id": "track-8057",
+      "title": "Frame 8057",
+      "kind": "track",
+      "captured": null,
+      "setting": "track practice",
+      "light": "track lights and daylight",
+      "tone": "original",
+      "people": "FORM athletes",
+      "orientation": "landscape",
+      "width": 1000,
+      "height": 666,
+      "focal": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "Runners passing the stands along the straight.",
+      "uses": [
+        "photo-library",
+        "album",
+        "editorial"
+      ],
+      "files": {
+        "600": "/media/track/track-selection/1b35020a8701/frame-8057-640.jpg",
+        "1200": "/media/track/track-selection/1b35020a8701/frame-8057-1440.jpg",
+        "2400": "/media/track/track-selection/1b35020a8701/frame-8057.jpg"
+      },
+      "source": {
+        "supplied": "2026-10-15",
+        "sha256": "d48fcec7792f0175f70cebda3ec500d82e0c5a220a808e2d558b52b73fbb1b9d",
+        "notes": "Reviewed selection from embedded album study; web-size photograph, not claimed camera original."
+      },
+      "tags": [],
+      "used_on": [
+        "/track/track-selection/",
+        "/photos/"
+      ]
+    },
+    {
+      "id": "track-8080",
+      "title": "Frame 8080",
+      "kind": "track",
+      "captured": null,
+      "setting": "track practice",
+      "light": "track lights and daylight",
+      "tone": "original",
+      "people": "FORM athletes",
+      "orientation": "landscape",
+      "width": 1000,
+      "height": 666,
+      "focal": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "A wide view of runners passing the trackside fence.",
+      "uses": [
+        "photo-library",
+        "album",
+        "editorial"
+      ],
+      "files": {
+        "600": "/media/track/track-selection/1b35020a8701/frame-8080-640.jpg",
+        "1200": "/media/track/track-selection/1b35020a8701/frame-8080-1440.jpg",
+        "2400": "/media/track/track-selection/1b35020a8701/frame-8080.jpg"
+      },
+      "source": {
+        "supplied": "2026-10-15",
+        "sha256": "7758c45a1fc9a1f393447371f0b7e8fd1a6374e9381e8b3bc6b2ada771dccdad",
+        "notes": "Reviewed selection from embedded album study; web-size photograph, not claimed camera original."
+      },
+      "tags": [],
+      "used_on": [
+        "/track/track-selection/",
+        "/photos/"
+      ]
+    }
+  ]
 }
