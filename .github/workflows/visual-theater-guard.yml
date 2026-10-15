@@ -3,6 +3,14 @@ on:
   pull_request:
     paths:
       - 'docs/BRAND.md'
+      - 'docs/design/FORM_VISUAL_EXECUTION_STANDARD_2026-10.md'
+      - 'AGENTS.md'
+      - '.cursor/rules/form-speedandform-context.mdc'
+      - 'brand/index.html'
+      - 'css/brand.css'
+      - 'plans/index.html'
+      - 'coaching/miami/index.html'
+      - 'runs/index.html'
       - 'index.html'
       - 'css/home-commercial.css'
       - 'css/home-hero-carousel.css'
