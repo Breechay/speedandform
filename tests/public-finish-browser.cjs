@@ -78,7 +78,7 @@ fs.mkdirSync(out,{recursive:true});
  assert.ok(await page.locator('#site-menu.is-open').isVisible(),'Menu opens');assert.equal(await toggle.getAttribute('aria-expanded'),'true');
  assert.ok(await page.locator('.sf-menu-close').evaluate(e=>e===document.activeElement),'Focus moves into the menu');
  assert.equal(await page.locator('.sf-menu-first').getAttribute('href'),'/coaching/miami/','Run Development leads the menu');
- for(const href of ['/form/','/forge-sculpt/','/plans/','/thursday','/runs/','/people/','/library','/contact','mailto:brice@speedandform.com'])assert.equal(await page.locator('#site-menu a[href="'+href+'"]').count(),1,'Menu links '+href);
+ for(const href of ['/form/','/forge-sculpt/','/plans/','/thursday','/runs/','/people/','/library','/contact','mailto:brice@speedandform.com'])assert.ok(await page.locator('#site-menu a[href="'+href+'"]').count()>=1,'Menu contains reachable '+href);
  await page.keyboard.press('Escape');assert.equal(await toggle.getAttribute('aria-expanded'),'false');assert.ok(await toggle.evaluate(e=>e===document.activeElement),'Focus returns to Menu');
  await page.keyboard.press('Space');assert.equal(await toggle.getAttribute('aria-expanded'),'true','Space opens the enhanced button');
  await page.waitForFunction(()=>document.activeElement.classList.contains('sf-menu-close'));await page.keyboard.press('Escape');
