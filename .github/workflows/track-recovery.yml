@@ -5,7 +5,7 @@ on:
   pull_request:
     paths: ['track/**', 'js/session-film-muted.js', 'tests/track-recovery-browser.py']
 permissions:
-  contents: read
+  contents: write
 jobs:
   review:
     runs-on: ubuntu-latest
@@ -34,6 +34,20 @@ jobs:
           node scripts/build-brand-kit.cjs
           node scripts/render-brand-kit.cjs
           node tests/brand-kit.cjs
+      - name: Save rendered brand kit on the reviewed branch
+        if: github.event_name == 'push'
+        env:
+          REVIEWED_SHA: ${{ github.sha }}
+        run: |
+          git add assets/brand/kit
+          if ! git diff --cached --quiet; then
+            current=$(git ls-remote origin refs/heads/work/recover-track-selection-20261015 | cut -f1)
+            test "$current" = "$REVIEWED_SHA"
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'Refresh reviewed FORM brand kit from editorial source'
+            git push origin HEAD:work/recover-track-selection-20261015
+          fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
