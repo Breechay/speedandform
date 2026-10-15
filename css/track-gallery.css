@@ -13,3 +13,36 @@
 
 /* A film poster keeps its complete frame. No cropped heads or feet. */
 .track-frame[data-media="video"] .track-frame-link img{height:auto;max-height:none;object-fit:contain}
+
+/* Editorial Collective index: cream magazine cover, dark screening room.
+   Scoped away from existing album/photo-viewer routes. */
+body.track-index{background:#f1ece2;color:#161916}
+.track-index .track-header{border-bottom:1px solid rgba(22,25,22,.16)}
+.track-index .track-mark,.track-index .track-nav a{color:#161916}
+.track-index .track-hero{padding-top:clamp(52px,7vw,94px);padding-bottom:clamp(38px,5vw,64px)}
+.track-index .track-hero h1{font-family:"Inter Tight",Georgia,serif;font-weight:450;max-width:12ch;letter-spacing:-.058em}
+.track-index .track-eyebrow,.track-index .track-intro,.track-index .track-meta,.track-index .track-index-note{color:#626760}
+.track-index .track-intro a,.track-index .track-index-note h2{color:#161916}
+.track-index .track-feature img{height:clamp(340px,44vw,690px);border-radius:14px;filter:grayscale(.16)}
+.track-index .track-feature-caption{border-bottom:1px solid rgba(22,25,22,.16);margin-bottom:46px}
+.track-index .track-feature h2{font-family:"Inter Tight",Georgia,serif;font-weight:470}
+.track-index .track-feature-action{font-weight:500}
+.track-index .track-index-note{margin:44px 0 70px}
+.track-index .track-index-note h2{font-family:"Inter Tight",Georgia,serif}
+.track-index .track-footer{border-top-color:rgba(22,25,22,.2);color:#626760}
+.track-index .track-footer a{color:#161916}
+.track-native-film{background:#0d0f0e;color:#e8e3d9;padding:clamp(30px,4vw,62px);border-radius:20px;display:grid;grid-template-columns:minmax(230px,.78fr) minmax(0,1.3fr);gap:clamp(28px,4vw,64px);align-items:center;scroll-margin-top:24px}
+.track-native-film .track-eyebrow{color:#a8aca1;margin-bottom:18px}
+.track-native-film h2{font:460 clamp(42px,5vw,82px)/1.02 "Inter Tight",Georgia,serif;letter-spacing:-.055em;margin:0 0 30px}
+.track-native-film .track-film-intro>p:not(.track-eyebrow){font-size:19px;line-height:1.55;color:#c2c5bb;max-width:31ch}
+.track-film-actions{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin-top:34px}
+.track-film-actions a,.track-film-actions button{display:inline-flex;align-items:center;min-height:44px;font:500 15px/1.4 "Inter Tight",Arial,sans-serif;color:#e8e3d9;background:none;border:none;padding:4px 0;text-decoration:none;border-bottom:1px solid rgba(232,227,217,.36);cursor:pointer}
+.track-film-actions a:hover,.track-film-actions button:hover{border-color:#e8e3d9}
+.track-film-actions span[aria-hidden]{margin-left:12px}
+.track-film-frame{min-width:0}
+.track-film-frame video{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:8px;background:#242723}
+.track-film-frame p{color:#a8aca1;font-size:12px;letter-spacing:.07em;text-transform:uppercase;margin:14px 0 0}
+.track-share-status{font-size:13px;color:#c2c5bb;min-height:0}
+@media(max-width:850px){.track-native-film{grid-template-columns:1fr}.track-native-film h2{margin-bottom:20px}.track-film-actions{flex-direction:row;flex-wrap:wrap;gap:12px 24px;margin-top:24px}}
+@media(max-width:600px){.track-native-film{margin-inline:-10px;padding:24px 18px;border-radius:12px}.track-index .track-feature img{height:320px}.track-film-actions{display:grid;gap:7px}.track-film-frame p{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.track-index .track-feature img{transition:none}.track-index .track-feature:hover img{transform:none}}
