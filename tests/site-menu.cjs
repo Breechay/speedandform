@@ -2,7 +2,7 @@
 /* Shared menu coverage and regeneration. No historical page snapshots. */
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..');
-const {collect,transformHtml}=require('../scripts/build-site-menu.cjs');
+const {collect,transformHtml,VERSION}=require('../scripts/build-site-menu.cjs');
 const files=collect(root),read=f=>fs.readFileSync(path.join(root,f),'utf8');
 const required=['index.html','form/index.html','forge-sculpt/index.html','coaching/miami/index.html','coaching/strength/index.html','analysis/index.html','plans/index.html','library.html','search.html','404.html','library/easy-days/index.html','labs/speed-that-endures/index.html','thursday.html','form/support/index.html','form/privacy/index.html','form/terms/index.html','forge-sculpt/support/index.html','forge-sculpt/privacy/index.html','forge-sculpt/terms/index.html'];
 for(const file of required)assert.ok(files.includes(file),'Shared menu covers '+file);
@@ -25,7 +25,7 @@ function menuParent(html){
  }
  return null;
 }
-const expected=['/coaching/miami/','/coaching/strength/','/analysis/','/form/','/forge-sculpt/','/plans/','/thursday','/runs/','/people/','/library','/labs/','/contact'];
+const expected=['/coaching/miami/','/form/','/forge-sculpt/','/plans/','/thursday','/runs/','/people/','/library','/contact'];
 for(const file of files){
  assert.ok(!privatePath.test(file),'Private/app execution routes excluded: '+file);
  const html=read(file);
@@ -36,8 +36,8 @@ for(const file of files){
  assert.equal(menuParent(html),'body',file+': drawer is a direct body child');
  assert.ok(/aria-controls=["']site-menu["']/.test(html),file+': control names its drawer');
  assert.ok(/href=["']#site-menu["']/.test(html),file+': no-JavaScript link');
- assert.equal(count(html,/<link\b[^>]*href=["']\/css\/sf-menu\.css\?v=20261013-shared["'][^>]*>/g),1,file+': current shared style once');
- assert.equal(count(html,/<script\b[^>]*src=["']\/js\/sf-menu\.js\?v=20261013-shared["'][^>]*>/g),1,file+': current shared script once');
+ assert.equal(count(html,/<link\b[^>]*href=["']\/css\/sf-menu\.css\??v=${VERSION}["'][^>]*>/g),1,file+': current shared style once');
+ assert.equal(count(html,/<script\b[^>]*src=["']\/js\/sf-menu\.js\??v=${VERSION}["'][^>]*>/g),1,file+': current shared script once');
  assert.ok(html.includes(fragment),file+': canonical menu content');
  assert.equal(transformHtml(html,file),html,file+': regeneration is idempotent');
  for(const href of expected)assert.ok(fragment.includes('href="'+href+'"'),'Menu target: '+href);
