@@ -1,6 +1,5 @@
-/* Athletes: public profiles and the directory (/people/). Values are the Oct 13 athletes canvas
-   ("Profile on speedandform.com" at desktop, "Profile · José (app)" at phone width). Inter Tight
-   only. Cream reading page; one hairline per boundary. */
+/* Athletes: public profiles and the directory (/people/). Image-led editorial grid.
+   Inter Tight only. Cream reading page; real published photography only. */
 @font-face{font-family:"Inter Tight";src:url("/assets/site/fonts/inter-tight-latin-variable.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
 @font-face{font-family:"JetBrains Mono";src:url("/assets/site/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");font-weight:400;font-display:swap}
 :root{--cream:#efebe3;--field:#f6f3ec;--ink:#151515;--sec:#5f5a52;--hair:rgba(21,21,21,.10);--edge:rgba(21,21,21,.18);--sans:"Inter Tight",Arial,sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,monospace}
@@ -14,23 +13,25 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .pp-top .pp-crumb{text-decoration:none;font-size:15px;min-height:44px;display:flex;align-items:center}
 main{max-width:1200px;margin:0 auto;padding:24px 24px 80px}
 
-/* Directory */
+/* Directory — image-led magazine grid */
 .pp-dir h1{margin:0;font-size:clamp(48px,7vw,96px);line-height:.95;font-weight:450;letter-spacing:-.05em}
-.pp-find{margin-top:24px;max-width:560px;display:flex;align-items:center;gap:10px;min-height:48px;padding:0 14px;border:1px solid var(--edge);border-radius:14px;background:var(--field)}
+.pp-lede{margin:16px 0 0;font-size:18px;line-height:1.45;color:var(--sec);max-width:48ch}
+.pp-lede a{color:var(--ink)}
+.pp-find{margin-top:28px;max-width:480px;display:flex;align-items:center;gap:10px;min-height:48px;padding:0 14px;border:1px solid var(--edge);border-radius:14px;background:var(--field)}
 .pp-find svg{flex:none}
 .pp-find input{flex:1;border:0;background:none;font:inherit;font-size:16px;color:var(--ink);min-height:44px;min-width:0}
 .pp-find input:focus{outline:none}
 .pp-find:focus-within{outline:2px solid var(--ink);outline-offset:3px}
-.pp-list{margin:30px 0 0;padding:0;list-style:none;max-width:720px}
-.pp-list li{border-top:1px solid var(--hair)}
-.pp-list li:last-child{border-bottom:1px solid var(--hair)}
-.pp-list a{display:flex;align-items:center;gap:14px;padding:14px 4px;text-decoration:none;min-height:72px}
-.pp-list img,.pp-av0{width:52px;height:52px;border-radius:50%;object-fit:cover;flex:none;background:#ddd6c9}
-.pp-list .pp-who{flex:1;min-width:0}
-.pp-list b{display:block;font-size:19px;font-weight:500;letter-spacing:-.015em}
-.pp-list small{display:block;font-size:14px;color:var(--sec);margin-top:2px;overflow-wrap:anywhere}
-.pp-list .pp-go{color:var(--sec);font-size:18px}
-.pp-note{font-size:17px;line-height:1.5;color:var(--sec);margin:30px 0 0}
+.pp-list{margin:40px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:28px 24px;max-width:none}
+.pp-card a{display:block;text-decoration:none;color:inherit;border-radius:20px;overflow:hidden;background:var(--field);transition:transform .25s ease, box-shadow .25s ease}
+.pp-card a:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(21,21,21,.08)}
+.pp-card-media{aspect-ratio:3/4;background:#ddd6c9;position:relative;overflow:hidden}
+.pp-card-img{width:100%;height:100%;object-fit:cover;display:block}
+.pp-monogram{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:clamp(48px,8vw,72px);font-weight:450;letter-spacing:-.04em;color:var(--ink);background:linear-gradient(145deg,#f6f3ec,#e8e2d6)}
+.pp-card-info{padding:16px 18px 20px}
+.pp-card-info b{display:block;font-size:20px;font-weight:500;letter-spacing:-.02em;line-height:1.15}
+.pp-card-info small{display:block;margin-top:4px;font-size:14.5px;line-height:1.4;color:var(--sec);overflow-wrap:anywhere}
+.pp-note{font-size:17px;line-height:1.5;color:var(--sec);margin:36px 0 0}
 .pp-note button{font:inherit;color:var(--ink);background:none;border:0;border-bottom:1px solid var(--edge);padding:0;cursor:pointer;min-height:32px}
 
 /* Profile */
@@ -67,8 +68,8 @@ main{max-width:1200px;margin:0 auto;padding:24px 24px 80px}
  .pp-dir{padding:8px 20px 0}
  .pp-dir h1{font-size:48px;line-height:1}
  .pp-find{margin-top:18px}
- .pp-list{margin-top:26px}
- .pp-list a{padding:14px 0}
+ .pp-list{margin-top:28px;grid-template-columns:1fr;gap:20px}
+ .pp-card-media{aspect-ratio:4/5}
  .pp-head{display:block}
  .pp-hero{width:calc(100% - 32px);height:460px;margin:0 16px;border-radius:22px}
  .pp-intro{padding:24px 20px 0}
@@ -96,7 +97,7 @@ main{max-width:1200px;margin:0 auto;padding:24px 24px 80px}
 }
 .pp-disc{display:none}
 
-/* Film and sessions (20261014000000) */
+/* Film and sessions */
 .pp-sessions{margin-top:34px;display:flex;flex-direction:column;gap:22px}
 .pp-sessions>.pp-mono{margin-bottom:-10px}
 .pp-film{display:flex;flex-direction:column;gap:4px;text-decoration:none;max-width:560px}
@@ -122,5 +123,3 @@ main{max-width:1200px;margin:0 auto;padding:24px 24px 80px}
  .pp-clips{padding:0 0;grid-template-columns:1fr}
  .pp-clips .pp-embed{margin:0}
 }
-.pp-lede{margin:16px 0 0;font-size:18px;line-height:1.45;color:var(--sec);max-width:44ch}
-.pp-lede a{color:var(--ink)}
