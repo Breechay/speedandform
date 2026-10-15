@@ -65,6 +65,99 @@
           "posterTime": 6.3
         }
       ]
+    },
+    {
+      "slug": "track-selection",
+      "title": "Track selection.",
+      "kind": "selection",
+      "date": null,
+      "published": true,
+      "description": "Eight photographs from the track.",
+      "note": "",
+      "cover": "frame-5728",
+      "publicationBasis": "Owner requested publication of the recovered eight-frame study selection on October 15, 2026. Excludes 8097 (minors names) and 8069 (unconfirmed date). No session date asserted.",
+      "media": [
+        {
+          "id": "frame-5728",
+          "type": "photo",
+          "source": "media/track-selection/frame-5728.jpg",
+          "sourcePage": "Recovered from owner-supplied FORM Album Editor Study 06; embedded web image, not camera original.",
+          "sourceSha256": "04aeafaa16cc5c807964af75f462e54ea0d6de1d0ec1129ede42471e9a534dfc",
+          "title": "Frame 5728",
+          "alt": "Runners approaching along the track in daylight.",
+          "downloadApproved": true
+        },
+        {
+          "id": "frame-8046",
+          "type": "photo",
+          "source": "media/track-selection/frame-8046.jpg",
+          "sourcePage": "Recovered from owner-supplied FORM Album Editor Study 06; embedded web image, not camera original.",
+          "sourceSha256": "184576d778e85a3c6ce3964dd809969959b1e3ae356b9335ab34b1d622300f98",
+          "title": "Frame 8046",
+          "alt": "Runners gathered beside the track and infield.",
+          "downloadApproved": true
+        },
+        {
+          "id": "frame-8045",
+          "type": "photo",
+          "source": "media/track-selection/frame-8045.jpg",
+          "sourcePage": "Recovered from owner-supplied FORM Album Editor Study 06; embedded web image, not camera original.",
+          "sourceSha256": "60bbf851b47a465fd37e8e4ae1b3e74b959fa812643121fc5121c6ceb139f984",
+          "title": "Frame 8045",
+          "alt": "Runners beginning a repetition under the track lights.",
+          "downloadApproved": true
+        },
+        {
+          "id": "frame-8058",
+          "type": "photo",
+          "source": "media/track-selection/frame-8058.jpg",
+          "sourcePage": "Recovered from owner-supplied FORM Album Editor Study 06; embedded web image, not camera original.",
+          "sourceSha256": "ca76dea21d4a64833a957dfd9d988bcfa294dadb84402f47477eb1b94483e002",
+          "title": "Frame 8058",
+          "alt": "A group standing across the track lanes at night.",
+          "downloadApproved": true
+        },
+        {
+          "id": "frame-8044",
+          "type": "photo",
+          "source": "media/track-selection/frame-8044.jpg",
+          "sourcePage": "Recovered from owner-supplied FORM Album Editor Study 06; embedded web image, not camera original.",
+          "sourceSha256": "9528e6d568884d375170d8b7e9edad80f4c3f0c20fe1e4901481c13646cb99b8",
+          "title": "Frame 8044",
+          "alt": "Runners moving along the straight beside the infield.",
+          "downloadApproved": true
+        },
+        {
+          "id": "frame-5701",
+          "type": "photo",
+          "source": "media/track-selection/frame-5701.jpg",
+          "sourcePage": "Recovered from owner-supplied FORM Album Editor Study 06; embedded web image, not camera original.",
+          "sourceSha256": "570979bd63e65a8a1050c31c9e0b5484ca6eb7601e4d2757419758a489ec4559",
+          "title": "Frame 5701",
+          "alt": "A wide view of runners on the track at dusk.",
+          "downloadApproved": true
+        },
+        {
+          "id": "frame-8057",
+          "type": "photo",
+          "source": "media/track-selection/frame-8057.jpg",
+          "sourcePage": "Recovered from owner-supplied FORM Album Editor Study 06; embedded web image, not camera original.",
+          "sourceSha256": "f25a9cb2b1d02fc3ff47a5e1e1509529b166175fc87fa27c8a5cc08bacb8332a",
+          "title": "Frame 8057",
+          "alt": "Runners passing the stands along the straight.",
+          "downloadApproved": true
+        },
+        {
+          "id": "frame-8080",
+          "type": "photo",
+          "source": "media/track-selection/frame-8080.jpg",
+          "sourcePage": "Recovered from owner-supplied FORM Album Editor Study 06; embedded web image, not camera original.",
+          "sourceSha256": "68f816ef75528d94532faa03befc33f9fc206f15a3da003fd685ddd73ef79232",
+          "title": "Frame 8080",
+          "alt": "A wide view of runners passing the trackside fence.",
+          "downloadApproved": true
+        }
+      ]
     }
   ]
 }

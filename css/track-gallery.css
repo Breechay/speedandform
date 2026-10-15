@@ -46,3 +46,12 @@ body.track-index{background:#f1ece2;color:#161916}
 @media(max-width:850px){.track-native-film{grid-template-columns:1fr}.track-native-film h2{margin-bottom:20px}.track-film-actions{flex-direction:row;flex-wrap:wrap;gap:12px 24px;margin-top:24px}}
 @media(max-width:600px){.track-native-film{margin-inline:-10px;padding:24px 18px;border-radius:12px}.track-index .track-feature img{height:320px}.track-film-actions{display:grid;gap:7px}.track-film-frame p{font-size:11px}}
 @media(prefers-reduced-motion:reduce){.track-index .track-feature img{transition:none}.track-index .track-feature:hover img{transform:none}}
+
+/* Preserve the full selected photograph at every breakpoint. */
+.track-feature img,.track-index .track-feature img{height:auto;object-fit:contain}
+.track-frame[data-media="photo"] .track-frame-link img{height:auto;max-height:none;aspect-ratio:auto;object-fit:contain}
+.track-grid{align-items:start;grid-template-columns:repeat(6,minmax(0,1fr))}
+.track-frame[data-media="photo"]{grid-column:span 3}
+.track-frame[data-media="photo"]:nth-child(4n+1){grid-column:1/-1}
+@media(max-width:767px){.track-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.track-frame[data-media="photo"]{grid-column:1/-1}}
+.track-frame[data-media="photo"] .track-frame-link:hover img{transform:none}
