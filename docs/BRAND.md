@@ -440,3 +440,17 @@ Public share cards now have a reviewed file allowlist in `data/public-share.json
 
 **Still open.** Whether HYROX appears as a program in the Running listing is Brice's call; the page follows the listing. Native app names, store metadata and icon publication require their own verified release.
 
+
+## October 14 · Visual theater · never confuse restraint with quality
+
+**FORM is not anti-decoration.** The approved direction is cinematic athletic editorial: beautiful photography, dramatic light, deep shadows, immersive compositions, theatrical moments, elegant transitions, and visual personality.
+
+- Keep the visual richness. Photographic strips, layered imagery, gradients, shadows, cinematic transitions, oversized typography, and unexpected compositions are welcome.
+- Design for emotional impact. FORM should create moments of anticipation, immersion, energy, and delight.
+- Make decoration intentional, not absent. It can establish mood, rhythm, identity, or simply make something beautiful.
+- A photograph does not need to be clickable to earn its place. Beauty and atmosphere are legitimate design purposes.
+- Do not flatten everything into minimal cards and lists. Functionality is the foundation, not the whole experience.
+- Cream is the canvas, not a requirement to make everything quiet.
+
+This standard applies to public website surfaces. Refine execution rather than removing visual treatments. Real photography only. No invented athletes or stock.
+
