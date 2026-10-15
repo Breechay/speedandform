@@ -1,7 +1,22 @@
 # Speed & Form · house system
 
-> **CURRENT AUTHORITY · 12 October 2026**
+> **CURRENT AUTHORITY · 14 October 2026**
 > This is the active sitewide brand and public-surface doctrine. It supersedes earlier homepage positioning and do-not-regress documents wherever they conflict. Historical files remain in the repo as evidence, not current art direction.
+
+## Owner's visual rule · 14 October 2026 (active)
+
+**FORM is not anti-decoration.** Brice explicitly wants theater, wow, drama, atmosphere, delight, visual engagement and personality. Rich photography, moving pictures, layered light and shadows, gradients that protect type, editorial strips, unusual compositions, immersive entrance moments, beautiful transitions and decorative treatments are encouraged when they make the experience memorable. A design can be beautiful simply because it creates feeling.
+
+**Do not mistake restraint for taste.** Do not reflexively replace photographic sections with plain text, strip away a well-composed gradient, remove atmospheric layers or turn a magazine-like room into conventional navigation cards merely because the visual layer is decorative. Preserve the distinctive treatment first; refine its execution, rhythm and mobile readability. If a decoration causes an accessibility or performance problem, improve that decoration or replace it with an equally compelling treatment rather than defaulting to empty minimalism.
+
+**Creative acceptance gate:** Does it make people want to stay, explore, share, return or look closer? Does it feel alive and unmistakably FORM? Ask these alongside practical questions about contrast, responsiveness, real content, reduced motion, video load, consent and accessible navigation.
+
+- An immersive entrance, a beautiful photo strip, filmic light and sophisticated transitions are welcome; no requirement that every flourish be a functional button.
+- Some decorative elements should also offer meaningful paths into actual runners, films, runs, studies and experiences. Mixing atmosphere with discoverability is good, not a reason to ban atmospheric-only elements.
+- Protect legible hero copy with photographic shading and gradients, particularly on phones. Do not solve contrast by deleting atmosphere.
+- Use original FORM photography and films. This does not authorize stock/fake athletes, fabricated stories, noisy UI gimmicks or text bevels/glows. House colors, identity, privacy and truthful claims remain binding.
+- Website, FORM Network and related visual destinations should feel like a living athletic editorial world, not a minimal utility catalogue.
+- Earlier site rules that seem to ban *all* decorative photography, photographic menu treatments or richly staged motion were not statements of Brice's taste. This explicit owner clarification supersedes that broad interpretation; narrower technical/brand constraints still apply unless the owner replaces them.
 
 ## Current direction and precedence
 
