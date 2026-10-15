@@ -3,6 +3,22 @@
 > **Current orientation:** after this file, read [Agent Orientation](docs/AGENT_ORIENTATION.md). It maps the current company, source-of-truth mesh, operating hats, October lanes, staleness rules and active cross-repo documents. Older dated sections below remain useful decision history but do not automatically outrank newer verified owner decisions.
 
 
+## Standing art direction · October 14, 2026 (owner-approved; read before visual changes)
+
+**FORM is not anti-decoration.** Brice wants theater, elegant drama, cinematic atmosphere, "wow", personality and reasons to linger. The goal is an emotionally engaging athletic editorial world, not quiet minimalism. Photographic strips, sophisticated shadows and gradients, dynamic compositions, visual pacing, rich black-and-white grading, film, immersive entrances and crafted motion are part of the design language. Keep atmospheric elements even when they serve beauty rather than navigation. **Never delete a beautiful visual element simply because it is decorative.**
+
+Start with the [active brand authority](docs/BRAND.md#owners-visual-rule--14-october-2026-active), [public Brand presentation](/brand/index.html), and the [executable visual checklist](docs/design/FORM_VISUAL_EXECUTION_STANDARD_2026-10.md). The October 14 rule supersedes broad earlier interpretations of "restraint", "no decoration" and historic website redesign holds. Older documented restrictions on fabricated people, consent, contrast, source-backed claims, accessibility and app-specific functional layout still apply.
+
+Execution contract for every visual change:
+1. **Study the real frame** (athlete, light, shadows, motion, focal point). Prefer original published FORM photography and film. Grade per image rather than imposing one blanket filter. Preserve convincing skin, midtone detail and highlights; black-and-white can have luminous whites and deep blacks without crushed bodies.
+2. **Compose, don't flatten:** layer exposure, vignette and lower-third shade where type needs shelter, especially on mobile. Maintain the photographic subject and visual depth. Avoid text glow/bevel/shadow; light and gradients belong to the picture/background.
+3. **Keep immersive decoration:** photographic strips, overlapping imagery, film and cinematic page changes are valid artistic choices. Make some images navigable when useful, but **do not require every image to be a button**. Keep useful text, data and controls legible.
+4. **Inspect actual mobile and desktop renders** across several hero frames and image slides; dark/bright scenes, iPhone narrow/large screens, reduced motion, slow media, zoom/large text. A CSS compile alone does not prove the result.
+5. **Preserve truth and UX:** no invented athletes or stock impostors; respect publication permission, image opt-outs and performance. Use lightweight CSS grading unless the original approved media needs a non-destructive, separate derivative. Never overwrite raw photographs.
+6. **Deliver evidence:** screenshots of before/after from real content, list of edited selectors/assets, test results, exact commit, and deployment status. The owner judges visual character as well as accessibility and functionality.
+
+**Home film:** silent ambient video with no sound toggle; its original full-session film is distinct from any short homepage cut. The darker hero text-protection treatment is approved, especially on mobile.
+
 ## Public brand direction · October 6, 2026
 Photographs: start from the [photo library](media/library/README.md) (`media/library/library.json`): consented, sized, with alt text, focal points and suggested uses.
 
