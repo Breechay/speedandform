@@ -2,7 +2,7 @@
 // Static public navigation. The sitemap owns eligibility; private/account routes
 // are never scanned. Run last so every generated page retains the same drawer.
 const fs=require('node:fs'),path=require('node:path');
-const ROOT=path.resolve(__dirname,'..'),VERSION='20261014-editorial';
+const ROOT=path.resolve(__dirname,'..'),VERSION='20261015-focus';
 const PANEL=fs.readFileSync(path.join(__dirname,'site-menu-panel.html'),'utf8').trim();
 const TOGGLE='<a class="sf-menu-toggle" href="#site-menu" aria-controls="site-menu" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18"/></svg></a>';
 const EXCLUDED=/^(?:coach|athlete|auth|account|record|private|studio|form-app|forge-app|tests|docs)(?:\/|\.html)|^(?:form|forge-sculpt)\/(?:train|auth|account)\//;
