@@ -46,3 +46,7 @@ body.track-index{background:#f1ece2;color:#161916}
 @media(max-width:850px){.track-native-film{grid-template-columns:1fr}.track-native-film h2{margin-bottom:20px}.track-film-actions{flex-direction:row;flex-wrap:wrap;gap:12px 24px;margin-top:24px}}
 @media(max-width:600px){.track-native-film{margin-inline:-10px;padding:24px 18px;border-radius:12px}.track-index .track-feature img{height:320px}.track-film-actions{display:grid;gap:7px}.track-film-frame p{font-size:11px}}
 @media(prefers-reduced-motion:reduce){.track-index .track-feature img{transition:none}.track-index .track-feature:hover img{transform:none}}
+
+/* Preserve the full photographic frame in the archive. No forced editorial crop. */
+.track-frame-link img{width:100%;height:auto;max-height:none;object-fit:contain;transition:none}
+.track-frame-link:hover img{transform:none}

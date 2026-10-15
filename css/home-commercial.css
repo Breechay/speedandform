@@ -12,11 +12,11 @@ html,body{background:var(--dark)}.wrap{width:min(var(--max),calc(100% - 2 * var(
 /* This room owns the photograph treatment. Retire the inherited hero overlay. */
 .sf-home-hero-immersive::before{content:none}
 .home-hero-media,.home-hero-shade{position:absolute;inset:0}.home-hero-media picture{display:block;width:100%;height:100%}.home-hero-media img{display:block;width:100%;height:100%;max-width:none;object-fit:cover;object-position:22% 42%;filter:grayscale(1)}
-.home-hero-shade{pointer-events:none;z-index:0;background:radial-gradient(125% 85% at 100% 24%,rgba(13,15,14,0) 26%,rgba(13,15,14,.30) 66%,rgba(13,15,14,.56) 100%),linear-gradient(90deg,rgba(13,15,14,.66) 0,rgba(13,15,14,.38) 34%,rgba(13,15,14,.09) 66%,transparent 90%),linear-gradient(0deg,#0d0f0e 0%,rgba(13,15,14,.95) 9%,rgba(13,15,14,.70) 24%,rgba(13,15,14,.25) 48%,transparent 76%),linear-gradient(180deg,rgba(13,15,14,.48),transparent 24%)}
+.home-hero-shade{pointer-events:none;z-index:0;background:none}
 .home-hero-immersive-inner{position:relative;z-index:1;min-height:100svh;display:flex;align-items:flex-end;padding-top:160px;padding-bottom:clamp(48px,6vh,76px)}
 .sf-home-hero-immersive .hero-copy{padding:0;max-width:850px;min-width:0}
 /* Shade follows the type, leaving the faces above it in the original light. */
-.sf-home-hero-immersive .hero-copy::before{content:"";position:absolute;inset:-48px -70px -48px calc(-1 * var(--public-gutter));z-index:-1;pointer-events:none;background:radial-gradient(ellipse 110% 100% at 22% 64%,rgba(5,7,6,.86),rgba(5,7,6,.64) 48%,rgba(5,7,6,.20) 74%,transparent 94%);-webkit-mask-image:linear-gradient(180deg,transparent,#000 13%,#000 87%,transparent);mask-image:linear-gradient(180deg,transparent,#000 13%,#000 87%,transparent)}
+.sf-home-hero-immersive .hero-copy::before{content:none}
 .sf-home-hero-immersive .hero-kicker{display:flex;align-items:center;gap:18px;margin:0 0 28px;color:#f1ede4;font:400 11px/1.7 var(--mono);letter-spacing:.065em}.hero-kicker::before{content:"";width:32px;height:1px;background:currentColor;flex-shrink:0}
 .sf-home-hero-immersive h1{font:450 clamp(68px,7.55vw,116px)/1.01 var(--sans);letter-spacing:-.055em;color:var(--bone);margin:0 0 28px;text-wrap:balance}.sf-home-hero-immersive h1 .dot{color:inherit}
 .sf-home-hero-immersive .home-hero-intro{max-width:43ch;font-size:clamp(19px,1.5vw,23px);line-height:1.5;color:#dedad1;margin:0}

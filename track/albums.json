@@ -65,6 +65,99 @@
           "posterTime": 6.3
         }
       ]
+    },
+    {
+      "slug": "track-practice",
+      "title": "Track practice.",
+      "kind": "selection",
+      "date": null,
+      "published": true,
+      "description": "Flamingo Park · Miami Beach.",
+      "note": "Eight photographs from the supplied track selection. Date not verified.",
+      "cover": "track-5728",
+      "publicationBasis": "Owner explicitly requested publication on Oct 15, 2026. Eight editor-approved selections; IMG_8069 withheld for uncertain date and IMG_8097 excluded for minors' names. Photos are supplied web-size assets, not camera originals.",
+      "media": [
+        {
+          "id": "track-5728",
+          "type": "photo",
+          "source": "media/library/track-5728.jpg",
+          "sourcePage": "/track/track-practice/",
+          "sourceSha256": "04aeafaa16cc5c807964af75f462e54ea0d6de1d0ec1129ede42471e9a534dfc",
+          "title": "Running, approaching",
+          "alt": "Athletes running toward the camera on a track.",
+          "downloadApproved": true
+        },
+        {
+          "id": "track-8046",
+          "type": "photo",
+          "source": "media/library/track-8046.jpg",
+          "sourcePage": "/track/track-practice/",
+          "sourceSha256": "184576d778e85a3c6ce3964dd809969959b1e3ae356b9335ab34b1d622300f98",
+          "title": "Track gathering",
+          "alt": "Athletes gather on the track beside a football field.",
+          "downloadApproved": true
+        },
+        {
+          "id": "track-8045",
+          "type": "photo",
+          "source": "media/library/track-8045.jpg",
+          "sourcePage": "/track/track-practice/",
+          "sourceSha256": "60bbf851b47a465fd37e8e4ae1b3e74b959fa812643121fc5121c6ceb139f984",
+          "title": "Track warm-up",
+          "alt": "Runners lining up and stretching near a track bend at night.",
+          "downloadApproved": true
+        },
+        {
+          "id": "track-8058",
+          "type": "photo",
+          "source": "media/library/track-8058.jpg",
+          "sourcePage": "/track/track-practice/",
+          "sourceSha256": "ca76dea21d4a64833a957dfd9d988bcfa294dadb84402f47477eb1b94483e002",
+          "title": "Track walk",
+          "alt": "Runners walk together around the track after a session.",
+          "downloadApproved": true
+        },
+        {
+          "id": "track-8044",
+          "type": "photo",
+          "source": "media/library/track-8044.jpg",
+          "sourcePage": "/track/track-practice/",
+          "sourceSha256": "9528e6d568884d375170d8b7e9edad80f4c3f0c20fe1e4901481c13646cb99b8",
+          "title": "Track repetitions",
+          "alt": "Runners moving together in a lane at night.",
+          "downloadApproved": true
+        },
+        {
+          "id": "track-5701",
+          "type": "photo",
+          "source": "media/library/track-5701.jpg",
+          "sourcePage": "/track/track-practice/",
+          "sourceSha256": "570979bd63e65a8a1050c31c9e0b5484ca6eb7601e4d2757419758a489ec4559",
+          "title": "Track from the stands",
+          "alt": "Athletes running around the track at dusk.",
+          "downloadApproved": true
+        },
+        {
+          "id": "track-8057",
+          "type": "photo",
+          "source": "media/library/track-8057.jpg",
+          "sourcePage": "/track/track-practice/",
+          "sourceSha256": "f25a9cb2b1d02fc3ff47a5e1e1509529b166175fc87fa27c8a5cc08bacb8332a",
+          "title": "Track pack",
+          "alt": "Athletes running in a pack beside a football field.",
+          "downloadApproved": true
+        },
+        {
+          "id": "track-8080",
+          "type": "photo",
+          "source": "media/library/track-8080.jpg",
+          "sourcePage": "/track/track-practice/",
+          "sourceSha256": "68f816ef75528d94532faa03befc33f9fc206f15a3da003fd685ddd73ef79232",
+          "title": "Track, wide",
+          "alt": "Athletes running around a track seen from the stands at night.",
+          "downloadApproved": true
+        }
+      ]
     }
   ]
 }

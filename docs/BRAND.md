@@ -469,3 +469,11 @@ Public share cards now have a reviewed file allowlist in `data/public-share.json
 
 This standard applies to public website surfaces. Refine execution rather than removing visual treatments. Real photography only. No invented athletes or stock.
 
+
+## October 15 · Editorial and photographic restraint (owner-approved)
+
+**Show, don't narrate.** The audience can see the photograph, film and emotional context. Copy exists to identify people, places, dates, actions, and offers, not to explain the image's mood or announce the meaning of an athletic moment. Prohibited patterns include “a look inside the work,” “what the camera caught,” “not just the finish,” “the work has faces,” and unsupported emotional sporting slogans. Write plainly. Remove explanatory filler even when it sounds poetic.
+
+**Respect the source image.** Filmic feeling does not require a corrective filter. Do not automatically alter exposure, contrast, monochrome, white balance or skin tones. If the original image is already compelling, leave it alone. Do not place a visible gradient/card behind text because an agent prefers text protection. Preserve the photographic frame and subject; do not arbitrarily crop athletes, heads, legs or compositions to fit equal cards. Use naturally proportioned photographs and responsive layouts; intentional, owner-reviewed crops are exceptions.
+
+**Current approvals:** homepage hero original treatment; no hero text gradient box; white-shorts scene black and white; photograph panels proportionate without heavy cuts; track film muted everywhere during draft review. “Meet the athletes”, “The faces of FORM”, “Open group runs. All paces welcome.” Keep sophisticated decoration, theatrical compositions and visually rich imagery. Restraint applies to **copy and unsolicited retouching**, not visual ambition.
