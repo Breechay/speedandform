@@ -51,7 +51,19 @@
   // Never accept an arbitrary URL or a free-form path from the session response.
   function hostedMedia(se, path, extensions) {
     var slug = String(se && se.slug || '');
-    var escaped = slug.replace(/[.*+?^${}()|[\]\\]/g, '\\  function sessionDate(d) { return new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', month: 'long', day: 'numeric', year: 'numeric' }).format(new Date(d + 'T00:00:00Z')); }
+    var escaped = slug.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    var pattern = new RegExp('^sessions/' + escaped + '/[a-f0-9-]{36}\\.(' + extensions + ')$');
+    return typeof path === 'string' && pattern.test(path)
+      ? FILMS + path.split('/').map(encodeURIComponent).join('/') : '';
+  }
+  function videoURL(se) { return hostedMedia(se, se.video_path, 'mp4'); }
+  function posterURL(se) { return hostedMedia(se, se.poster_path, 'jpg|webp'); }
+  function sessionPoster(se, lib) {
+    return posterURL(se) || (se.poster ? libSrc(lib, se.poster, '1200') : '') ||
+      (se.library && se.library[0] ? libSrc(lib, se.library[0], '1200') : '') ||
+      (se.youtube_id ? ytThumb(se.youtube_id) : '');
+  }
+  function sessionDate(d) { return new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', month: 'long', day: 'numeric', year: 'numeric' }).format(new Date(d + 'T00:00:00Z')); }
   var PLAY = '<span class="pp-play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg></span>';
   // A session card: the film's poster (YouTube's frame, or a library photo) linking to the session page.
   function sessionCard(se, lib) {
