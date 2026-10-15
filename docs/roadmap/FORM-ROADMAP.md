@@ -1,5 +1,14 @@
 ## October 13 · Adrian study and completed Strength evidence
 
+## October 15 · Recovered track selection
+
+- Recovered eight embedded 1000 × 666 web photographs from the owner-supplied Album Editor Study 06, in its original selected order. Camera originals were not recovered. Excluded frames 8097 and 8069.
+- Existing main had cinematic website work and merged album-save PR #300; production Netlify deploy `6ad0acbfb01a698be8540487` served main `2afcfd417cec2900ffcd546a1cc9462d5cd3f56f`. Live database inspection found no album drafts or album-state records.
+- Prepared `/track/track-selection/` as an undated static selection through the existing public album authority. Existing cinematic entrance and native-film block are preserved by an authored index template. Full photo frames, viewer, downloads and discovery remain available. No run/date or database album fabricated.
+- Added the owner's show-don't-narrate rule to agent and brand authority and public Brand page. Replaced rejected Track film copy. The identified first-draft session film is forced muted on Track and dynamically rendered web session players. Native app/device behavior remains unverified.
+- Configured Netlify build and theatrical source contract pass. Browser and brand-kit rendering run in the recovery CI workflow because local Chromium download failed. No recovery publication claimed until preview, screenshots and production are checked.
+
+
 - [x] Reviewed PR #281 on main. Public study name and current linked records now use Adrian. Corrected reported incline work to four sets at 50 lb with achieved reps unconfirmed; removed the equipment-ceiling inference and zero-cost running claims.
 - [x] Deployed the consent-gated, service-only completed-receipt projection and public read Edge Function. No raw receipt/account access is exposed. Actual read returns 0 Adrian app sessions; unknown/revoked studies return no data.
 - [x] Added the Strength evidence section, data-derived app count, explicit received/check times, refresh, pagination and JSON export. Message reports remain separate. SQL isolation tests, six-width browser states, existing study/coach checks and configured site build pass.

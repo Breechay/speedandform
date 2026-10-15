@@ -1,5 +1,10 @@
 # Start here: Speed & Form
 
+## Editorial rule · October 15, 2026
+
+**Show, don't narrate.** Photography, film, typography and composition carry the atmosphere. Copy supplies information, context or a reason to act. Do not explain what the viewer can already see, manufacture emotional significance or use generic sports-documentary slogans. Avoid lines such as “A look inside the work, not just the finish,” “See what the camera caught between the reps,” and “The work has faces.” Keep useful captions, dates and accessibility descriptions. This rule preserves the approved theater, decoration and visual drama. The Adrian & Tinius first-draft film stays muted throughout site and app until the owner changes that instruction.
+
+
 > **Current orientation:** after this file, read [Agent Orientation](docs/AGENT_ORIENTATION.md). It maps the current company, source-of-truth mesh, operating hats, October lanes, staleness rules and active cross-repo documents. Older dated sections below remain useful decision history but do not automatically outrank newer verified owner decisions.
 
 

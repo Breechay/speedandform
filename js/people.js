@@ -216,7 +216,7 @@
       var url = videoURL(se);
       if (!url) return '';
       var poster = sessionPoster(se, lib);
-      return '<div class="pp-embed"><video class="pp-native-video" controls playsinline preload="metadata"' +
+      return '<div class="pp-embed"><video class="pp-native-video"' + (se.slug === 'adrian-7x800-2026-10-14' ? ' muted' : '') + ' controls playsinline preload="metadata"' +
         (poster ? ' poster="' + esc(poster) + '"' : '') + ' aria-label="' + esc(se.title) +
         '"><source src="' + esc(url) + '" type="video/mp4">Your browser cannot play this video.</video></div>';
     }

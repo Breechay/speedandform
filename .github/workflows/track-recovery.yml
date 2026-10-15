@@ -1,0 +1,57 @@
+name: Recovered track selection
+on:
+  push:
+    branches: [work/recover-track-selection-20261015]
+  pull_request:
+    paths: ['track/**', 'js/session-film-muted.js', 'tests/track-recovery-browser.py']
+permissions:
+  contents: write
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium
+          npm install --no-save --package-lock=false playwright@1.58.0
+          sudo apt-get install -y qpdf
+      - name: Build parity and browser review
+        run: |
+          python - <<'PY'
+          import tomllib,subprocess
+          subprocess.run(tomllib.load(open('netlify.toml','rb'))['build']['command'],shell=True,check=True)
+          PY
+          python tests/track-recovery-browser.py
+          node tests/visual-theater-contract.cjs
+          node scripts/build-brand-kit.cjs
+          node scripts/render-brand-kit.cjs
+          node tests/brand-kit.cjs
+      - name: Save rendered brand kit on the reviewed branch
+        if: github.event_name == 'push'
+        env:
+          REVIEWED_SHA: ${{ github.sha }}
+        run: |
+          git add assets/brand/kit
+          if ! git diff --cached --quiet; then
+            current=$(git ls-remote origin refs/heads/work/recover-track-selection-20261015 | cut -f1)
+            test "$current" = "$REVIEWED_SHA"
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'Refresh reviewed FORM brand kit from editorial source'
+            git push origin HEAD:work/recover-track-selection-20261015
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: recovered-track-review
+          path: |
+            /tmp/recovery-review
+            assets/brand/kit
