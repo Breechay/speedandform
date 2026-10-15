@@ -26,25 +26,38 @@ jobs:
           node scripts/build-discovery.cjs
           node scripts/build-public-share.cjs
           node scripts/build-site-menu.cjs
-          # Verify the only change to the approved athlete study is the canonical
-          # site-menu projection; preserve every source observation and milestone.
+          # Start only from the last owner-reviewed source, then materialize the
+          # already-authored Oct 13 result before Netlify builds its public pages.
           node - <<'NODE'
           const fs=require('node:fs'),cp=require('node:child_process'),crypto=require('node:crypto');
-          const {transformHtml}=require('./scripts/build-site-menu.cjs');
-          const source='labs/speed-that-endures/index.html',snapshotFile='data/public-studies/speed-that-endures.json';
-          const sha=text=>crypto.createHash('sha256').update(text).digest('hex');
-          const old=cp.execFileSync('git',['show','HEAD:'+source],{encoding:'utf8'});
-          const fresh=fs.readFileSync(source,'utf8'),snapshot=JSON.parse(fs.readFileSync(snapshotFile,'utf8'));
-          if(sha(old)!==snapshot.source_sha256)throw Error('Unapproved athlete study change before menu projection');
-          if(transformHtml(old,source)!==fresh)throw Error('Study changed beyond shared-menu projection: human editorial review required');
+          const sha=s=>crypto.createHash('sha256').update(s).digest('hex');
+          const file='labs/speed-that-endures/index.html',proj='data/public-studies/speed-that-endures.json';
+          const original=cp.execFileSync('git',['show','HEAD:'+file],{encoding:'utf8'});
+          const snapshot=JSON.parse(cp.execFileSync('git',['show','HEAD:'+proj],{encoding:'utf8'}));
+          if(sha(original)!==snapshot.source_sha256)throw Error('The tracked athlete study changed outside approved evidence review');
           if(snapshot.latest_completed.date!=='2026-09-29'||snapshot.latest_completed.distance_mi!==6)
-            throw Error('Unexpected training evidence milestone');
-          snapshot.source_sha256=sha(fresh);
-          fs.writeFileSync(snapshotFile,JSON.stringify(snapshot,null,2)+'\n');
+            throw Error('Wrong completed shared race-pace milestone');
+          NODE
+          node scripts/studies/apply-jose-oct13.cjs
+          node - <<'NODE'
+          const fs=require('node:fs'),crypto=require('node:crypto');
+          const {transformHtml}=require('./scripts/build-site-menu.cjs');
+          const file='labs/speed-that-endures/index.html',proj='data/public-studies/speed-that-endures.json';
+          const fresh=fs.readFileSync(file,'utf8'),snapshot=JSON.parse(fs.readFileSync(proj,'utf8'));
+          const hash=crypto.createHash('sha256').update(fresh).digest('hex');
+          if(!fresh.includes('id="oct13-jose"')||!fresh.includes('id="rhythm-read"'))
+            throw Error('Approved study evidence anchors are missing');
+          if(snapshot.latest_support?.date!=='2026-10-13'||snapshot.source_sha256!==hash)
+            throw Error('Oct 13 observation and public checksum must be reviewed together');
+          if(transformHtml(fresh,file)!==fresh)throw Error('Study menu projection is not idempotent');
           NODE
           node tests/public-study-preview.cjs
           node tests/public-share.cjs
           node tests/site-menu.cjs
+          node tests/running-library.cjs
+          node tests/homepage-release.cjs
+          node tests/form-landing.cjs
+          node tests/sculpt-landing.cjs
       - name: Commit canonical generated pages only
         shell: bash
         run: |
