@@ -38,7 +38,7 @@ fs.mkdirSync(out,{recursive:true});
    await noOverflow(route+' @ '+width);
    assert.equal(await page.locator('h1').count(),1,route+' has one focal heading');
    assert.ok(await page.locator('header .sf-brand').isVisible(),route+' home door');
-   if(route==='/'&&[390,1440].includes(width)){await page.locator('.home-footer-emblem').scrollIntoViewIfNeeded();await page.locator('.home-footer-emblem img').evaluate(img=>img.decode());await page.locator('.home-footer-integrated').screenshot({path:path.join(out,'home-footer-'+width+'.png')});await page.evaluate(()=>scrollTo(0,0));}
+   if(route==='/'&&[390,1440].includes(width)){await page.locator('.home-footer-emblem').scrollIntoViewIfNeeded();await page.waitForFunction(()=>{const img=document.querySelector('.home-footer-emblem img');return !!img&&img.complete&&img.naturalWidth>0;},{timeout:12000});await page.locator('.home-footer-integrated').screenshot({path:path.join(out,'home-footer-'+width+'.png')});await page.evaluate(()=>scrollTo(0,0));}
    if([390,1440].includes(width))await page.screenshot({path:path.join(out,(route.replaceAll('/','-').replace(/^-|-$/g,'')||'home')+'-'+width+'.png'),fullPage:true});
   }
  }
