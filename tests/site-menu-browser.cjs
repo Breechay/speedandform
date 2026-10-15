@@ -89,7 +89,7 @@ function slug(route){return route.replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'
   for(const route of ['/form/','/library']){
    await fallback.goto(origin+route);await fallback.locator('.sf-menu-toggle').click();
    check(route+' no-JS drawer opens',await fallback.locator('#site-menu').isVisible());
-   await fallback.locator('#site-menu a[href="/coaching/strength/"]').click();await fallback.waitForURL(origin+'/coaching/strength/');
+   await fallback.locator('#site-menu a[href="/coaching/miami/"]').click();await fallback.waitForURL(origin+'/coaching/miami/');
    check(route+' no-JS destination loaded',await fallback.locator('.sf-menu-toggle').count()===1);
   }
   check('Shared assets resolve',!report.missing.some(p=>/sf-menu|site-menu/.test(p)));
