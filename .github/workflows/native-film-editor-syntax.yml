@@ -1,0 +1,22 @@
+name: Native film editor syntax
+on:
+  pull_request:
+    paths:
+      - 'coach/runs/runs.js'
+      - 'js/people.js'
+      - 'supabase/migrations/20261015013000_collective_native_films.sql'
+      - '.github/workflows/native-film-editor-syntax.yml'
+jobs:
+  check-javascript:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check public athlete and session JavaScript
+        run: node --check js/people.js
+      - name: Check authenticated Runs room ES module
+        run: node --input-type=module --check < coach/runs/runs.js
