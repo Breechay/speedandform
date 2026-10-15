@@ -1,0 +1,43 @@
+name: Materialize website consolidation artifacts
+on:
+  push:
+    branches:
+      - release/cinematic-site-consolidation-20261014
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: release/cinematic-site-consolidation-20261014
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Rebuild reviewed static projections
+        shell: bash
+        run: |
+          set -euxo pipefail
+          node scripts/build-running-lessons.cjs
+          node scripts/build-discovery.cjs
+          node scripts/build-public-share.cjs
+          node scripts/build-site-menu.cjs
+          node tests/public-study-preview.cjs
+          node tests/public-share.cjs
+          node tests/site-menu.cjs
+      - name: Commit canonical generated pages only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git status --short
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -u
+            git commit -m "Materialize cinematic public pages and discovery with canonical shared menu"
+            git push origin HEAD:release/cinematic-site-consolidation-20261014
+          fi
