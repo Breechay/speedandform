@@ -14,7 +14,7 @@
   var KIND = { 'long run': 'Long run', track: 'Track', social: 'After the run', strength: 'Strength' };
 
   function $(id) { return document.getElementById(id); }
-  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&', '<': '<', '>': '>', '"': '"', "'": '&#39;' }[c]; }); }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function request(path, body) {
     var controller = new AbortController();
     var timer = setTimeout(function () { controller.abort(); }, 12000);
@@ -46,12 +46,32 @@
   function canonical(path) { var c = document.querySelector('link[rel=canonical]'); if (c) c.href = 'https://speedandform.com' + path; }
   function ytThumb(id) { return 'https://i.ytimg.com/vi/' + encodeURIComponent(id) + '/hqdefault.jpg'; }
   function libSrc(lib, id, size) { var ph = lib && lib[id]; return ph && ph.files ? (ph.files[size] || ph.files['1200'] || ph.files['1600'] || ph.files['800']) : ''; }
+  var FILMS = SUPA + '/storage/v1/object/public/collective-films/';
+  // Only objects in our known bucket and the session's own slug may be used.
+  function hostedMedia(se, path, allowed) {
+    var slug = String(se && se.slug || '');
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) return '';
+    var value = String(path || '');
+    var prefix = 'sessions/' + slug + '/';
+    if (!value.startsWith(prefix)) return '';
+    var file = value.slice(prefix.length);
+    var match = /^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\.(mp4|jpg|webp)$/.exec(file);
+    if (!match || allowed.indexOf(match[2]) === -1) return '';
+    return FILMS + value;
+  }
+  function videoURL(se) { return hostedMedia(se, se && se.video_path, ['mp4']); }
+  function sessionPoster(se, lib) {
+    return hostedMedia(se, se && se.poster_path, ['jpg', 'webp']) ||
+      (se && se.youtube_id ? ytThumb(se.youtube_id) :
+      (se && se.poster ? libSrc(lib, se.poster, '1200') :
+      (se && se.library && se.library[0] ? libSrc(lib, se.library[0], '1200') : '')));
+  }
   function sessionDate(d) { return new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', month: 'long', day: 'numeric', year: 'numeric' }).format(new Date(d + 'T00:00:00Z')); }
   var PLAY = '<span class="pp-play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg></span>';
   // A session card: the film's poster (YouTube's frame, or a library photo) linking to the session page.
   function sessionCard(se, lib) {
-    var img = se.youtube_id ? ytThumb(se.youtube_id) : (se.poster ? libSrc(lib, se.poster, '1200') : (se.library && se.library[0] ? libSrc(lib, se.library[0], '1200') : ''));
-    var film = !!se.youtube_id;
+    var img = sessionPoster(se, lib);
+    var film = !!(videoURL(se) || se.youtube_id);
     return '<a class="pp-film" href="/session/' + esc(se.slug) + '"' + (film ? ' aria-label="Watch: ' + esc(se.title) + '"' : '') + '>' +
       (img ? '<span class="pp-film-frame"><img src="' + esc(img) + '" alt="" loading="lazy">' + (film ? PLAY : '') + '</span>' : '') +
       '<b>' + esc(se.title) + '</b><span>' + esc([se.detail, sessionDate(se.date)].filter(Boolean).join(' · ')) + '</span></a>';
@@ -166,7 +186,7 @@
           (p.discipline ? '<p class="pp-disc">' + esc(p.discipline) + '</p>' : '') +
           (links ? '<div class="pp-links">' + links + '</div>' : '') +
           (now || best ? '<div class="pp-facts">' + now + best + '</div>' : '') +
-          ((p.sessions || []).length ? '<section class="pp-sessions" aria-label="Film"><p class="pp-mono">' + ((p.sessions || []).some(function (x) { return x.youtube_id; }) ? 'Film' : 'Sessions') + '</p>' + p.sessions.map(function (x) { return sessionCard(x, lib); }).join('') + '</section>' : '') +
+          ((p.sessions || []).length ? '<section class="pp-sessions" aria-label="Film"><p class="pp-mono">' + ((p.sessions || []).some(function (x) { return videoURL(x) || x.youtube_id; }) ? 'Film' : 'Sessions') + '</p>' + p.sessions.map(function (x) { return sessionCard(x, lib); }).join('') + '</section>' : '') +
         '</div></div>' +
         (count ? '<section class="pp-media" aria-label="Photos and films"><h2>Photos & films</h2>' + media + '</section>' : '') +
         '<p class="pp-foot">Photographs by Brice. Speed & Form, Miami.</p>';
@@ -192,6 +212,14 @@
       return '<div class="pp-embed"><iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) + '?rel=0&modestbranding=1&playsinline=1" title="' + esc(title) +
         '" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>';
     }
+    function nativePlayer(se, lib) {
+      var url = videoURL(se);
+      if (!url) return '';
+      var poster = sessionPoster(se, lib);
+      return '<div class="pp-embed"><video class="pp-native-video" controls playsinline preload="metadata"' +
+        (poster ? ' poster="' + esc(poster) + '"' : '') + ' aria-label="' + esc(se.title) +
+        '"><source src="' + esc(url) + '" type="video/mp4">Your browser cannot play this video.</video></div>';
+    }
     function load() {
       if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug)) return missing('This session isn’t here.');
       Promise.all([request('rpc/collective_session', { slug: slug }), library().catch(function () { return {}; })]).then(function (res) {
@@ -208,14 +236,14 @@
           '<section class="pp-sess-head"><p class="pp-mono">' + esc(['Session', sessionDate(se.date), se.place].filter(Boolean).join(' · ')) + '</p>' +
           '<h1>' + esc(se.title) + '</h1>' + (se.detail ? '<p class="pp-bio">' + esc(se.detail) + '</p>' : '') +
           (who ? '<div class="pp-who">' + who + '</div>' : '') + '</section>' +
-          (se.youtube_id ? embed(se.youtube_id, se.title) : (se.poster ? '<img class="pp-hero pp-wide" src="' + esc(libSrc(lib, se.poster, '1200')) + '" alt="">' : '')) +
+          (videoURL(se) ? nativePlayer(se, lib) : (se.youtube_id ? embed(se.youtube_id, se.title) : (sessionPoster(se, lib) ? '<img class="pp-hero pp-wide" src="' + esc(sessionPoster(se, lib)) + '" alt="">' : ''))) +
           (clips.length ? '<section class="pp-media"><h2>Clips</h2><div class="pp-clips">' + clips.map(function (c) {
             return '<figure>' + embed(c.youtube_id, c.title || se.title) + (c.title ? '<figcaption>' + esc(c.title) + '</figcaption>' : '') + '</figure>';
           }).join('') + '</div></section>' : '') +
           (photos ? '<section class="pp-media"><h2>Photos</h2><div class="pp-grid">' + photos + '</div></section>' : '') +
           (se.run ? '<p class="pp-note"><a href="' + esc(runHref(se.run.title, se.run.starts_at, se.run.series_id)) + '">' + esc(se.run.title) + ' · the group run ›</a></p>' : '') +
           '<p class="pp-foot">Filmed by Brice. Speed & Form, Miami.</p>';
-        window.FORM_SESSION = { slug: se.slug, film: !!se.youtube_id, clips: clips.length, people: (se.people || []).length };
+        window.FORM_SESSION = { slug: se.slug, film: !!(videoURL(se) || se.youtube_id), hosted: !!videoURL(se), clips: clips.length, people: (se.people || []).length };
       }).catch(function () { missing('This can’t be loaded right now.', true); });
     }
     document.addEventListener('click', function (e) { if (e.target.closest('[data-pp-retry]')) load(); });

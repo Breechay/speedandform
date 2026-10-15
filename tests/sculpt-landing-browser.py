@@ -34,7 +34,7 @@ try:
    check(f'App action in first viewport at {w}',page.locator('.bs-hero .bs-button').evaluate('(e)=>e.getBoundingClientRect().bottom<=innerHeight'))
    check(f'Correct app destination at {w}',page.locator('.bs-hero .bs-button').get_attribute('href')=='https://apps.apple.com/us/app/breechay/id6790569283')
    check(f'Generic program identity at {w}',page.locator('.bs-athlete').inner_text()=='SCULPT.');check(f'Illustration labeled at {w}','sample training' in page.locator('.bs-preview figcaption').inner_text())
-   for i in page.locator('img').all():i.scroll_into_view_if_needed();i.evaluate('(i)=>i.decode()')
+   for i in page.locator('main img:visible').all():i.scroll_into_view_if_needed();i.evaluate('(i)=>i.decode()')
    check(f'Sample set preview readable at {w}',page.locator('.bs-set-values').is_visible() and 'sample training' in page.locator('.bs-session-preview figcaption').inner_text())
    check(f'Anatomy loaded at {w}',page.locator('.bs-anatomy').evaluate('(i)=>i.naturalWidth===765'))
    for d in page.locator('.bs-campaigns details').all():d.evaluate('(d)=>d.open=true')

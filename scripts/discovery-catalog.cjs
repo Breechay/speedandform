@@ -97,7 +97,7 @@ const questions={
 const entries=records.map(e=>{
  const g=lessons.find(x=>x.route===e.url);
  const kind=g?.kind||(['/strength','/principles'].includes(e.url)?'Lesson':e.url==='/ghost'||e.type==='Plan'||e.type==='Workouts'?'Routine':['/library','/plans/','/labs/'].includes(e.url)?'Shelf':['Guide','Course','Reference','Map','Method','Essay','Field note'].includes(e.type)?'Lesson':null);
- const row={...e,...(g?{title:g.heading,description:g.description,keywords:lessonKeywords[e.url]?lessonKeywords[e.url].split(' '):[...e.keywords,g.heading]}:{}),...(kind?{kind}:{}),questions:questions[e.url]||[],route:e.url.slice(1),file:fileFor(e.url.slice(1))};
+ const row={...e,...(g?{title:g.heading,description:g.description,keywords:lessonKeywords[e.url]?lessonKeywords[e.url].split(' '):[...e.keywords,g.heading]}:{}),...(kind?{kind}:{}),questions:questions[e.url]||e.questions||[],route:e.url.slice(1),file:fileFor(e.url.slice(1))};
  if(e.url==='/library/easy-days/')row.title='Why do my easy runs feel hard?';
  return row;
 });

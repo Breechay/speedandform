@@ -1,7 +1,7 @@
 {
-  "version": "20260916-p2",
+  "version": "20261014-consolidated-catalog",
   "baseCommit": "05b76ab2b08cfc37f448f637f19e3aa0c9c3d03a",
-  "searchEntries": 58,
+  "searchEntries": 89,
   "sitemap": [
     {
       "file": "analysis/index.html",
@@ -350,6 +350,74 @@
     {
       "file": "work/photo-video/index.html",
       "url": "https://speedandform.com/work/photo-video/"
+    },
+    {
+      "file": "labs/the-durable-frame/index.html",
+      "url": "https://speedandform.com/labs/the-durable-frame/"
+    },
+    {
+      "file": "labs/the-long-chassis/index.html",
+      "url": "https://speedandform.com/labs/the-long-chassis/"
+    },
+    {
+      "file": "runs/index.html",
+      "url": "https://speedandform.com/runs/"
+    },
+    {
+      "file": "people/index.html",
+      "url": "https://speedandform.com/people/"
+    },
+    {
+      "file": "miami-running-training.html",
+      "url": "https://speedandform.com/miami-running-training"
+    },
+    {
+      "file": "library/how-long-to-train-for-a-half-marathon/index.html",
+      "url": "https://speedandform.com/library/how-long-to-train-for-a-half-marathon/"
+    },
+    {
+      "file": "library/half-marathon-training-plan/index.html",
+      "url": "https://speedandform.com/library/half-marathon-training-plan/"
+    },
+    {
+      "file": "library/half-marathon-pace-chart/index.html",
+      "url": "https://speedandform.com/library/half-marathon-pace-chart/"
+    },
+    {
+      "file": "library/6-week-half-marathon-training-plan/index.html",
+      "url": "https://speedandform.com/library/6-week-half-marathon-training-plan/"
+    },
+    {
+      "file": "library/8-week-half-marathon-training-plan/index.html",
+      "url": "https://speedandform.com/library/8-week-half-marathon-training-plan/"
+    },
+    {
+      "file": "library/16-week-half-marathon-training-plan/index.html",
+      "url": "https://speedandform.com/library/16-week-half-marathon-training-plan/"
+    },
+    {
+      "file": "library/how-to-run-a-faster-half-marathon/index.html",
+      "url": "https://speedandform.com/library/how-to-run-a-faster-half-marathon/"
+    },
+    {
+      "file": "contact.html",
+      "url": "https://speedandform.com/contact"
+    },
+    {
+      "file": "brand/index.html",
+      "url": "https://speedandform.com/brand/"
+    },
+    {
+      "file": "privacy.html",
+      "url": "https://speedandform.com/privacy"
+    },
+    {
+      "file": "terms.html",
+      "url": "https://speedandform.com/terms"
+    },
+    {
+      "file": "brice-recommends/index.html",
+      "url": "https://speedandform.com/brice-recommends/"
     }
   ],
   "changedHtml": [
@@ -1573,5 +1641,6 @@
       "file": "work/photo-video/index.html",
       "sha256": "d429a4fbdfa8053e738863f38bd99001ddea34639fbc88c8428038789fa2afd7"
     }
-  ]
+  ],
+  "review_note": "Reviewed catalog expansion from historical 58 entries to 89 unique live index URLs, including Collective people and runs; expanded canonical sitemap from 87 to 104 existing routes. Original Sept 16 source-hash baselines remain protected."
 }

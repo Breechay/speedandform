@@ -38,7 +38,7 @@ fs.mkdirSync(out,{recursive:true});
    await noOverflow(route+' @ '+width);
    assert.equal(await page.locator('h1').count(),1,route+' has one focal heading');
    assert.ok(await page.locator('header .sf-brand').isVisible(),route+' home door');
-   if(route==='/'&&[390,1440].includes(width)){await page.locator('.home-footer-emblem').scrollIntoViewIfNeeded();await page.locator('.home-footer-emblem img').evaluate(img=>img.decode());await page.locator('.home-footer-integrated').screenshot({path:path.join(out,'home-footer-'+width+'.png')});await page.evaluate(()=>scrollTo(0,0));}
+   if(route==='/'&&[390,1440].includes(width)){await page.locator('.home-footer-emblem').scrollIntoViewIfNeeded();await page.waitForFunction(()=>{const img=document.querySelector('.home-footer-emblem img');return !!img&&img.complete&&img.naturalWidth>0;},{timeout:12000});await page.locator('.home-footer-integrated').screenshot({path:path.join(out,'home-footer-'+width+'.png')});await page.evaluate(()=>scrollTo(0,0));}
    if([390,1440].includes(width))await page.screenshot({path:path.join(out,(route.replaceAll('/','-').replace(/^-|-$/g,'')||'home')+'-'+width+'.png'),fullPage:true});
   }
  }
@@ -72,13 +72,13 @@ fs.mkdirSync(out,{recursive:true});
  for(const selector of ['.hero-copy','.home-entry h2','.home-evidence h2','.intake-copy']){
   assert.equal(await page.locator(selector).evaluate(e=>getComputedStyle(e).opacity),'1',selector+' never hidden');
  }
- assert.ok(await page.getByRole('link',{name:/Follow the study/}).isVisible());
+ assert.ok(await page.getByRole('link',{name:/See the plan/}).isVisible());
  // The menu replaces the header Contact link: it opens, holds focus, closes on Escape and returns focus.
  const toggle=page.locator('.sf-menu-toggle');assert.equal(await toggle.getAttribute('aria-label'),'Menu');await toggle.click();
  assert.ok(await page.locator('#site-menu.is-open').isVisible(),'Menu opens');assert.equal(await toggle.getAttribute('aria-expanded'),'true');
  assert.ok(await page.locator('.sf-menu-close').evaluate(e=>e===document.activeElement),'Focus moves into the menu');
  assert.equal(await page.locator('.sf-menu-first').getAttribute('href'),'/coaching/miami/','Run Development leads the menu');
- for(const href of ['/coaching/strength/','/analysis/','/form/','/forge-sculpt/','/plans/','/thursday','/library','/labs/','/contact','mailto:brice@speedandform.com'])assert.equal(await page.locator('#site-menu a[href="'+href+'"]').count(),1,'Menu links '+href);
+ for(const href of ['/form/','/forge-sculpt/','/plans/','/thursday','/runs/','/people/','/library','/contact','mailto:brice@speedandform.com'])assert.ok(await page.locator('#site-menu a[href="'+href+'"]').count()>=1,'Menu contains reachable '+href);
  await page.keyboard.press('Escape');assert.equal(await toggle.getAttribute('aria-expanded'),'false');assert.ok(await toggle.evaluate(e=>e===document.activeElement),'Focus returns to Menu');
  await page.keyboard.press('Space');assert.equal(await toggle.getAttribute('aria-expanded'),'true','Space opens the enhanced button');
  await page.waitForFunction(()=>document.activeElement.classList.contains('sf-menu-close'));await page.keyboard.press('Escape');

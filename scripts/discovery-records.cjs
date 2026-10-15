@@ -889,6 +889,48 @@ module.exports=[
   "type": "Community"
  },
  {
+   "url": "/runs/",
+   "title": "Group runs",
+   "description": "Upcoming group runs in Miami Beach and the photographs from past mornings.",
+   "keywords": [
+     "group",
+     "runs",
+     "miami",
+     "beach",
+     "flamingo",
+     "thursday",
+     "long",
+     "run",
+     "photos",
+     "community"
+   ],
+   "category": "practice",
+   "type": "Community",
+   "questions": []
+ },
+ {
+   "url": "/people/",
+   "title": "Athletes",
+   "description": "The runners of Speed & Form: their races, their training and the photographs and film from the mornings.",
+   "keywords": [
+     "athletes",
+     "runners",
+     "profiles",
+     "photos",
+     "film",
+     "community",
+     "miami",
+     "instagram",
+     "strava"
+   ],
+   "category": "practice",
+   "type": "Community",
+   "questions": [
+     "who runs with speed and form",
+     "speed and form athletes"
+   ]
+ },
+ {
   "url": "/field-notes",
   "title": "Field Notes",
   "description": "Short reflections on training decisions, ordinary runs, and running together.",

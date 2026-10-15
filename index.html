@@ -94,8 +94,7 @@
 <script>try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("sf-motion")}catch(e){}</script>
 <link rel="stylesheet" href="/css/home-settle.css?v=20261006-cloth">
 <script defer src="/js/commercial-inquiry.js?v=20261006-accepted-lead"></script>
-<link rel="stylesheet" href="/css/sf-menu.css?v=20261015-focus">
-<link rel="stylesheet" href="/css/home-hero-carousel.css?v=20261014-editorial">
+<link rel="stylesheet" href="/css/home-hero-carousel.css?v=20261014-cinematic">
 <meta name="description" content="Running and strength coaching with Brice. Build endurance, strength and confidence in Miami or online. Explore coaching, running reviews and training plans.">
 <!-- House share metadata: October 6 -->
 <meta property="og:type" content="website">
@@ -118,13 +117,38 @@
 <!-- /House share metadata -->
 
 <style>
-.home-media-strip{background:var(--dark);color:var(--bone);padding:0 0 clamp(48px,6vw,80px)}
-.home-media-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.home-media-grid figure{margin:0;border-radius:12px;overflow:hidden}
-.home-media-grid img{width:100%;height:280px;object-fit:cover;display:block;filter:grayscale(0.4)}
-.home-media-grid figcaption{font:11px/1.5 var(--mono,monospace);letter-spacing:.06em;text-transform:uppercase;padding:12px 0 0;color:#b8bbb2}
-@media(max-width:760px){.home-media-grid{grid-template-columns:1fr}.home-media-grid img{height:220px}}
+/* Real photographic exits rather than an inert strip of thumbnails. */
+.home-media-strip{background:var(--dark);color:var(--bone);padding:clamp(32px,4vw,60px) 0 clamp(65px,8vw,120px)}
+.home-media-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:26px}
+.home-media-head .home-media-eyebrow{margin:0 0 12px;font:400 11px/1.6 var(--mono,monospace);letter-spacing:.13em;text-transform:uppercase;color:#b8bbb2}
+.home-media-head h2{font-size:clamp(34px,4vw,64px);font-weight:430;line-height:1.06;letter-spacing:-.05em;margin:0;color:var(--bone)}
+.home-media-head>p{max-width:33ch;font-size:17px;line-height:1.5;color:#b8bbb2;margin:0}
+.home-media-grid{display:grid;grid-template-columns:1.28fr 1fr 1fr;gap:12px}
+.home-media-grid figure{margin:0;min-width:0}
+.home-media-card{position:relative;display:block;isolation:isolate;border-radius:13px;overflow:hidden;aspect-ratio:3/3.7;background:#242723;color:var(--bone);text-decoration:none}
+.home-media-grid figure:first-child .home-media-card{aspect-ratio:3.2/3.7}
+.home-media-card::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,transparent 42%,rgba(6,8,7,.16) 58%,rgba(6,8,7,.89));pointer-events:none}
+.home-media-card img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .65s cubic-bezier(.22,.61,.36,1),filter .65s}
+.home-media-grid figure:nth-child(1) img{filter:grayscale(.75) contrast(1.13) brightness(.92);object-position:48% 45%}
+.home-media-grid figure:nth-child(2) img{filter:grayscale(.20) contrast(1.10) brightness(.97);object-position:50% 46%}
+.home-media-grid figure:nth-child(3) img{filter:grayscale(1) contrast(1.18) brightness(.94);object-position:52% 42%}
+.home-media-card:hover img,.home-media-card:focus-visible img{transform:scale(1.055);filter:grayscale(.15) contrast(1.11) brightness(.98)}
+.home-media-card figcaption{position:absolute;inset:auto 22px 24px;z-index:1;display:grid;gap:7px}
+.home-media-card small{font:400 10px/1.4 var(--mono,monospace);text-transform:uppercase;letter-spacing:.14em;color:#e6e2d9}
+.home-media-card strong{font-size:clamp(26px,2.7vw,43px);font-weight:450;letter-spacing:-.04em;line-height:1.04}
+.home-media-card em{font:400 13px/1.4 var(--mono,monospace);font-style:normal;letter-spacing:.02em;color:#e6e2d9;margin-top:7px}
+.home-media-card:focus-visible{outline:2px solid var(--bone);outline-offset:4px}
+@media(max-width:760px){
+.home-media-head{display:block}
+.home-media-head>p{margin-top:14px;font-size:16px}
+.home-media-grid{display:flex;overflow-x:auto;gap:12px;scroll-snap-type:x mandatory;scroll-padding-inline:2px;padding-bottom:12px;overscroll-behavior-inline:contain}
+.home-media-grid figure{flex:0 0 min(79vw,340px);scroll-snap-align:start}
+.home-media-card,.home-media-grid figure:first-child .home-media-card{aspect-ratio:3/3.35}
+.home-media-card figcaption{inset:auto 18px 20px}
+}
+@media(prefers-reduced-motion:reduce){.home-media-card img{transition:none}.home-media-card:hover img,.home-media-card:focus-visible img{transform:none}.home-media-grid{scroll-behavior:auto}}
 </style>
+<link rel="stylesheet" href="/css/sf-menu.css?v=20261015-focus">
 </head>
 <body data-coaching-copy="20260927-gait-retraining">
 <a class="skip-link" href="#main-content">Skip to content</a>
@@ -139,7 +163,7 @@
 <main id="main-content" tabindex="-1"><span id="top" aria-hidden="true"></span>
 <div class="home-opening">
 <section class="hero sf-home-hero sf-home-hero-immersive" data-hero-carousel="ready">
-  <!-- Photographic hero. Current image is the entrance. Carousel is ready for the Adrian & Tinius film once its published URL exists in collective-films. -->
+  <!-- Photographic entrance; hosted Adrian & Tinius film is silent, decorative, and reduced-motion aware. -->
   <div class="home-hero-media" aria-hidden="true">
     <div class="home-hero-slides">
       <div class="home-hero-slide is-active">
@@ -154,9 +178,9 @@
       <div class="home-hero-slide">
         <img src="/media/library/white-shorts-dusk-1200.webp" alt="" loading="lazy">
       </div>
-      <!-- Video slide activates when data-video-src is set to the published collective-films URL -->
+      <!-- Hosted film is displayed without audio or video controls; media links below lead to the full archive. -->
       <div class="home-hero-slide home-hero-video" data-video-src="https://pbgsjjegycacodiltbhn.supabase.co/storage/v1/object/public/collective-films/sessions/adrian-7x800-2026-10-14/9f242ac9-173d-4e76-b203-4304a1d1c1f6.mp4" hidden>
-        <video muted playsinline loop preload="none" poster="/media/library/bw-lead-runner-1200.webp"></video>
+        <video muted playsinline preload="none" poster="/media/library/bw-lead-runner-1200.webp"></video>
       </div>
     </div>
   </div>
@@ -173,12 +197,25 @@
 </div>
 <section class="home-entry" id="coaching" aria-labelledby="home-entry-title"><div class="wrap"><h2 id="home-entry-title">Train with me. Train on your own. Train together.</h2><div class="home-entry-grid"><a href="#begin"><span>01 / Coaching</span><strong>The week built around you.</strong><p>Your running, planned and adjusted as you develop. One private session each week in Miami.</p><small>8 weeks · $1,200 · Miami + online <b aria-hidden="true">↗︎</b></small></a><a href="/plans/race-pace-durability/"><span>02 / Plan</span><strong>Race Pace That Lasts.</strong><p>A 15-week plan to build your ability to hold race pace through a full half marathon.</p><small>Weeks 1–4 free · Full plan $79 <b aria-hidden="true">↗︎</b></small></a><a href="/thursday"><span>03 / Thursday</span><strong>Thursday sprints.</strong><p>6:00 AM · Flamingo Park.<br>11th St &amp; Jefferson Ave · Miami Beach.</p><small>See Thursday <b aria-hidden="true">↗︎</b></small></a></div></div></section>
 
-<section class="home-media-strip" aria-label="From the practice">
+<section class="home-media-strip" aria-labelledby="home-media-title">
   <div class="wrap">
+    <div class="home-media-head">
+      <div><p class="home-media-eyebrow">From the FORM Collective</p><h2 id="home-media-title">The work has faces.</h2></div>
+      <p>Meet the runners. Open the sessions. See what the camera caught between the reps.</p>
+    </div>
     <div class="home-media-grid">
-      <figure><img src="/media/library/bridge-profile-1200.webp" alt="" loading="lazy"><figcaption>On the bridge</figcaption></figure>
-      <figure><img src="/media/library/golden-recovery-1200.webp" alt="" loading="lazy"><figcaption>Spent</figcaption></figure>
-      <figure><img src="/media/library/bw-lead-runner-1200.webp" alt="" loading="lazy"><figcaption>Out front</figcaption></figure>
+      <figure><a class="home-media-card" href="/runs/">
+        <img src="/media/library/bridge-profile-1200.webp" alt="" loading="lazy" decoding="async" width="1200" height="800">
+        <figcaption><small>01 / THE MORNINGS</small><strong>Runs together.</strong><em>Explore the sessions ↗</em></figcaption>
+      </a></figure>
+      <figure><a class="home-media-card" href="/people/">
+        <img src="/media/library/golden-recovery-1200.webp" alt="" loading="lazy" decoding="async" width="1200" height="800">
+        <figcaption><small>02 / THE PEOPLE</small><strong>Meet the athletes.</strong><em>Explore the roster ↗</em></figcaption>
+      </a></figure>
+      <figure><a class="home-media-card" href="/track/">
+        <img src="/media/library/bw-lead-runner-1200.webp" alt="" loading="lazy" decoding="async" width="1200" height="800">
+        <figcaption><small>03 / THE WORK ON FILM</small><strong>Photos &amp; film.</strong><em>Open the archive ↗</em></figcaption>
+      </a></figure>
     </div>
   </div>
 </section>
@@ -319,7 +356,7 @@
       <div class="home-footer-group">
         <h2>Work with me</h2>
         <a href="/coaching/miami/">Run Development</a>
-        <a href="/coaching/strength/">Strength coaching</a>
+        
               </div>
       <div class="home-footer-group">
         <h2>Train</h2>
@@ -579,23 +616,57 @@
 <script type="module" src="/private/account-navigation.js"></script>
 <script defer src="/js/home-hero-film.js?v=20261002-pause"></script>
 <script defer src="/js/home-settle.js?v=20261006-bend"></script>
+<script defer src="/js/home-hero-carousel.js?v=20261015-silent"></script>
 <!-- Shared site menu -->
 <div class="sf-menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu">
   <a class="sf-menu-scrim" href="#" tabindex="-1" aria-hidden="true"></a>
   <div class="sf-menu-panel">
     <div class="sf-menu-top"><a class="sf-menu-close" href="#" aria-label="Close menu">Close</a></div>
+
+    <!-- Photographic entrance -->
+    <a class="sf-menu-hero" href="/people/" aria-label="The Collective — athletes, runs, and media">
+      <img src="/media/library/bridge-profile-1200.webp" alt="" loading="eager" width="1200" height="800">
+      <div class="sf-menu-hero-overlay">
+        <p class="sf-menu-eyebrow">Network</p>
+        <p class="sf-menu-hero-title">The Collective</p>
+        <p class="sf-menu-hero-sub">People. Places. Process.</p>
+      </div>
+    </a>
+
+    <!-- Visual Collective / Athletes -->
+    <section class="sf-menu-group sf-menu-visual" aria-labelledby="sf-menu-collective">
+      <p class="sf-menu-label" id="sf-menu-collective">The Collective</p>
+      <div class="sf-menu-cards">
+        <a class="sf-menu-card" href="/people/">
+          <img src="/media/library/white-shorts-dusk-600.webp" alt="" loading="lazy">
+          <span>Athletes</span>
+          <small>Portraits, sessions, film</small>
+        </a>
+        <a class="sf-menu-card" href="/runs/">
+          <img src="/media/library/track-curve-group-600.webp" alt="" loading="lazy">
+          <span>Runs</span>
+          <small>Track, long runs, mornings</small>
+        </a>
+        <a class="sf-menu-card" href="/people/">
+          <img src="/media/library/bw-lead-runner-600.webp" alt="" loading="lazy">
+          <span>Media</span>
+          <small>Photos & film</small>
+        </a>
+      </div>
+    </section>
+
     <section class="sf-menu-group sf-menu-lead" aria-labelledby="sf-menu-work">
       <p class="sf-menu-label" id="sf-menu-work">Work with me</p>
       <ul>
-        <li><a class="sf-menu-first" href="/coaching/miami/" aria-label="Run Development" aria-describedby="sf-menu-desc-0"><span>Run Development</span><small id="sf-menu-desc-0">Run faster. Get stronger. Move better.</small></a></li>
-                      </ul>
+        <li><a class="sf-menu-first" href="/coaching/miami/" aria-label="Run Development" aria-describedby="sf-menu-desc-0"><span>Run Development</span><small id="sf-menu-desc-0">The week built around you. Running, strength, and form in one package.</small></a></li>
+      </ul>
     </section>
     <section class="sf-menu-group" aria-labelledby="sf-menu-train">
       <p class="sf-menu-label" id="sf-menu-train">Train with direction</p>
       <ul>
         <li><a href="/form/" aria-label="Running app" aria-describedby="sf-menu-desc-3"><span>Running app</span><small id="sf-menu-desc-3">Follow a running plan. Log each run.</small></a></li>
         <li><a href="/forge-sculpt/" aria-label="Strength app" aria-describedby="sf-menu-desc-4"><span>Strength app</span><small id="sf-menu-desc-4">Follow a program. Log sets, reps and weight.</small></a></li>
-        <li><a href="/plans/" aria-label="Training plans" aria-describedby="sf-menu-desc-5"><span>Training plans</span><small id="sf-menu-desc-5">A clear plan for the next race.</small></a></li>
+        <li><a href="/plans/" aria-label="Training plans" aria-describedby="sf-menu-desc-5"><span>Training plans</span><small id="sf-menu-desc-5">Race Pace That Lasts, free half-marathon options, and more.</small></a></li>
         <li><a href="/thursday" aria-label="Thursday sprints" aria-describedby="sf-menu-desc-6"><span>Thursday sprints</span><small id="sf-menu-desc-6">Speed, technique and power.</small></a></li>
       </ul>
     </section>
@@ -610,7 +681,7 @@
       <p class="sf-menu-label" id="sf-menu-learn">Learn</p>
       <ul>
         <li><a href="/library"><span>Training library</span></a></li>
-              </ul>
+      </ul>
     </section>
     <div class="sf-menu-foot">
       <a href="/contact">Contact</a>
@@ -620,7 +691,6 @@
   </div>
 </div>
 <!-- /Shared site menu -->
-<script defer src="/js/sf-menu.js?v=20261014-editorial"></script>
-<script defer src="/js/home-hero-carousel.js?v=20261015-focus"></script>
+<script defer src="/js/sf-menu.js?v=20261015-focus"></script>
 </body>
 </html>

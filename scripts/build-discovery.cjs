@@ -5,7 +5,20 @@ const {entries}=require('./discovery-catalog.cjs');
 const root=path.resolve(__dirname,'..');
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const wayfinding='<nav class="site-wayfinding" aria-label="Explore Speed and Form"><a href="/library">Library</a><a href="/plans/">Plans</a><a href="/thursday">Run with us</a><a href="/contact">Contact</a></nav>';
-function build(){return require('./build-discovery-current.cjs').build();}
+function build(){
+ const receipt=require('./build-discovery-current.cjs').build();
+ // Discovery generates these public entrances from their catalog. Apply the
+ // same approved metadata and global menu before writing final HTML so both
+ // public CI and rebuilds are source-idempotent, not just full deploys.
+ const pub=require('./build-public-share.cjs').transform;
+ const menu=require('./build-site-menu.cjs').transformHtml;
+ for(const file of ['library.html','search.html','404.html','plans/index.html']){
+  const full=path.join(root,file);
+  const html=fs.readFileSync(full,'utf8');
+  fs.writeFileSync(full,menu(pub(html,file),file));
+ }
+ return receipt;
+}
 function buildHalfMarathon(){
  build();
  const resources=entries.filter(e=>e.category==='half-marathon');

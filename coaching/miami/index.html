@@ -6,7 +6,6 @@
 <link rel="preload" as="font" type="font/woff2" href="/assets/site/fonts/inter-tight-latin-variable.woff2" crossorigin>
 <link rel="stylesheet" href="/css/sf-brand.css?v=20261001"><link rel="stylesheet" href="/css/run-development.css?v=20261006">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Run Development","url":"https://speedandform.com/coaching/miami/","description":"Eight weeks of individual running coaching, training planning and adjustment, with one private session each week in Miami.","serviceType":"Individual running coaching","provider":{"@type":"Person","name":"Brice Ikouebe"},"areaServed":{"@type":"City","name":"Miami"},"offers":{"@type":"Offer","price":"1200","priceCurrency":"USD","url":"https://speedandform.com/#begin"}}</script>
-<link rel="stylesheet" href="/css/sf-menu.css?v=20261015-focus">
 <meta name="description" content="Individual running coaching with Brice. Your training planned and adjusted, with one private session each week in Miami. Eight weeks, $1,200.">
 <!-- House share metadata: October 6 -->
 <meta property="og:type" content="website">
@@ -30,12 +29,16 @@
 
 <style>
 .rd-media{background:#0d0f0e;padding:0 0 clamp(40px,5vw,72px)}
-.rd-media-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rd-media-grid{display:grid;grid-template-columns:1.18fr 1fr .94fr;gap:16px}
 .rd-media-grid figure{margin:0;border-radius:12px;overflow:hidden}
-.rd-media-grid img{width:100%;height:240px;object-fit:cover;display:block;filter:grayscale(0.35)}
+.rd-media-grid img{width:100%;height:290px;object-fit:cover;display:block}
+.rd-media-grid figure:nth-child(1) img{filter:grayscale(.82) contrast(1.16) brightness(.97);object-position:50% 41%}
+.rd-media-grid figure:nth-child(2) img{filter:grayscale(.22) contrast(1.10) brightness(.99);object-position:50% 49%}
+.rd-media-grid figure:nth-child(3) img{filter:grayscale(.65) contrast(1.13) brightness(.96);object-position:51% 46%}
 .rd-media-grid figcaption{font:11px/1.5 var(--mono,monospace);letter-spacing:.06em;text-transform:uppercase;padding:10px 0 0;color:#b8bbb2}
-@media(max-width:760px){.rd-media-grid{grid-template-columns:1fr}.rd-media-grid img{height:200px}}
+@media(max-width:760px){.rd-media-grid{grid-template-columns:1fr}.rd-media-grid img{height:clamp(240px,64vw,350px)}}
 </style>
+<link rel="stylesheet" href="/css/sf-menu.css?v=20261015-focus">
 </head><body id="top">
 <a class="skip" href="#main">Skip to content</a><header class="rd-wrap rd-header sf-menu-host"><a class="sf-brand" href="/" aria-label="Speed and Form home"></a><a class="sf-menu-toggle" href="#site-menu" aria-controls="site-menu" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18"/></svg></a></header>
 <main id="main">
@@ -60,12 +63,43 @@
   <a class="sf-menu-scrim" href="#" tabindex="-1" aria-hidden="true"></a>
   <div class="sf-menu-panel">
     <div class="sf-menu-top"><a class="sf-menu-close" href="#" aria-label="Close menu">Close</a></div>
+
+    <!-- Photographic entrance -->
+    <a class="sf-menu-hero" href="/people/" aria-label="The Collective — athletes, runs, and media">
+      <img src="/media/library/bridge-profile-1200.webp" alt="" loading="eager" width="1200" height="800">
+      <div class="sf-menu-hero-overlay">
+        <p class="sf-menu-eyebrow">Network</p>
+        <p class="sf-menu-hero-title">The Collective</p>
+        <p class="sf-menu-hero-sub">People. Places. Process.</p>
+      </div>
+    </a>
+
+    <!-- Visual Collective / Athletes -->
+    <section class="sf-menu-group sf-menu-visual" aria-labelledby="sf-menu-collective">
+      <p class="sf-menu-label" id="sf-menu-collective">The Collective</p>
+      <div class="sf-menu-cards">
+        <a class="sf-menu-card" href="/people/">
+          <img src="/media/library/white-shorts-dusk-600.webp" alt="" loading="lazy">
+          <span>Athletes</span>
+          <small>Portraits, sessions, film</small>
+        </a>
+        <a class="sf-menu-card" href="/runs/">
+          <img src="/media/library/track-curve-group-600.webp" alt="" loading="lazy">
+          <span>Runs</span>
+          <small>Track, long runs, mornings</small>
+        </a>
+        <a class="sf-menu-card" href="/people/">
+          <img src="/media/library/bw-lead-runner-600.webp" alt="" loading="lazy">
+          <span>Media</span>
+          <small>Photos & film</small>
+        </a>
+      </div>
+    </section>
+
     <section class="sf-menu-group sf-menu-lead" aria-labelledby="sf-menu-work">
       <p class="sf-menu-label" id="sf-menu-work">Work with me</p>
       <ul>
-        <li><a class="sf-menu-first" href="/coaching/miami/" aria-label="Run Development" aria-describedby="sf-menu-desc-0"><span>Run Development</span><small id="sf-menu-desc-0">Run faster. Get stronger. Move better.</small></a></li>
-        <li><a href="/coaching/strength/" aria-label="Strength coaching"><span>Strength coaching</span></a></li>
-        <li><a href="/analysis/" aria-label="Running analysis"><span>Running analysis</span></a></li>
+        <li><a class="sf-menu-first" href="/coaching/miami/" aria-label="Run Development" aria-describedby="sf-menu-desc-0"><span>Run Development</span><small id="sf-menu-desc-0">The week built around you. Running, strength, and form in one package.</small></a></li>
       </ul>
     </section>
     <section class="sf-menu-group" aria-labelledby="sf-menu-train">
@@ -73,7 +107,7 @@
       <ul>
         <li><a href="/form/" aria-label="Running app" aria-describedby="sf-menu-desc-3"><span>Running app</span><small id="sf-menu-desc-3">Follow a running plan. Log each run.</small></a></li>
         <li><a href="/forge-sculpt/" aria-label="Strength app" aria-describedby="sf-menu-desc-4"><span>Strength app</span><small id="sf-menu-desc-4">Follow a program. Log sets, reps and weight.</small></a></li>
-        <li><a href="/plans/" aria-label="Training plans" aria-describedby="sf-menu-desc-5"><span>Training plans</span><small id="sf-menu-desc-5">A clear plan for the next race.</small></a></li>
+        <li><a href="/plans/" aria-label="Training plans" aria-describedby="sf-menu-desc-5"><span>Training plans</span><small id="sf-menu-desc-5">Race Pace That Lasts, free half-marathon options, and more.</small></a></li>
         <li><a href="/thursday" aria-label="Thursday sprints" aria-describedby="sf-menu-desc-6"><span>Thursday sprints</span><small id="sf-menu-desc-6">Speed, technique and power.</small></a></li>
       </ul>
     </section>
@@ -88,7 +122,6 @@
       <p class="sf-menu-label" id="sf-menu-learn">Learn</p>
       <ul>
         <li><a href="/library"><span>Training library</span></a></li>
-        <li><a href="/labs/"><span>Athlete studies</span></a></li>
       </ul>
     </section>
     <div class="sf-menu-foot">

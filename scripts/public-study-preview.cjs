@@ -26,7 +26,7 @@ function renderHomeEvidence(){const x=snapshot.latest_completed;return `<section
         <div><dt>${x.distance_mi} miles</dt><dd>Continuous. No resets.</dd></div>
         <div><dt>${e(x.label)}</dt><dd>A training milestone. Not a race prediction.</dd></div>
       </dl>
-      <a class="text-link" href="/labs/speed-that-endures/">Follow the study <span aria-hidden="true">↗︎</span></a>
+      <a class="text-link" href="/plans/race-pace-durability/">See the plan <span aria-hidden="true">↗︎</span></a>
     </div>
   </div>
 </section>`;}
