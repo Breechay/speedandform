@@ -1,6 +1,6 @@
 # Rebuilt Athlete: long-run observations
 
-Updated 2026-10-11 with the later recovery follow-up. Subject: Brice Ikouebe. This is a dated observation and evidence record, not a ranking or a new training prescription. The existing filename is retained for continuity.
+Updated 2026-10-17 with the Palm Beach seven-mile outing and recovery context. Subject: Brice Ikouebe. This is a dated observation and evidence record, not a ranking or a new training prescription. The existing filename is retained for continuity.
 
 ## Read the outing before the numbers
 
@@ -235,3 +235,32 @@ The relatively level HR and mile paces after mile 3, alongside fairly stable plo
 **Working question:** Does a freely chosen comfortable rhythm remain available across different outings with acceptable later recovery? Track only observations Brice naturally provides; do not prescribe more mileage to eliminate the sensation, turn pace or cadence into a target, or interpret one outing as proof of tissue remodeling. If focal pain, radiating symptoms, renewed shin pain or altered gait emerge, reassess separately.
 
 **Provenance:** Athlete's October 14 first-person reports and supplied Strava/Garmin screenshots IMG_9470.jpeg, IMG_9471.jpeg and IMG_9472.png through IMG_9479.png. Screenshot filenames identify user-provided evidence; they are not claims that those images were uploaded to the repository.
+
+
+## October 17 · Palm Beach seven miles, gifted shoes and hydration/recovery context
+
+**Outing before numbers.** In Palm Beach at 7:30 AM, Brice ran a self-selected seven-mile outing without aiming at a pace. Marcus had just gifted him a highly cushioned pair of ASICS running shoes (photographed and tentatively identified in conversation as Superblast 3; model not independently checked against the shoe label). The shoes initially felt wobbly and unstable, then settled in and effectively disappeared beneath him. The run felt smooth, and he reported no lower-limb issues. Compared with the October 14 outing, he did not report the same lower-waist/side/back heaviness; that does not establish an objective symmetry change.
+
+**Hydration and perception.** Brice explicitly reports feeling quite underhydrated; during the run he considered returning to the house where he was staying for water and then finishing. In retrospect, the effort did not seem substantially harder in any one location, but he felt all-around tired. He had consumed alcohol the previous day and described low mood/energy and recent future-related concerns. These are contextual first-person reports, not diagnoses and not proof that alcohol or hydration alone caused an HR pattern. He chose a low-demand Saturday afterward: travel by Brightline, water, food, possible nap and some tidying, with Sunday for returning to work.
+
+**Garmin Forerunner 965 and supplied screens:** 7.00 mi in 55:21, 7:54/mi average, best pace 6:55/mi; average/max HR 144/163 bpm; average/max cadence 170/185 spm; average stride length 1.2 m; average vertical ratio 7.7%; vertical oscillation 9.2 cm; average ground contact time 255 ms; average/max power 393/466 W; aerobic/anaerobic Training Effect 3.9/0.6; beginning/ending stamina potential 98%/55%; displayed elevation gain 23 ft. Reported run time 55:06 and walk time 0:11. The watch-sensor temperature chart shows 79–90 °F, which must not be treated as an ambient-weather observation.
+
+| Mile | Displayed pace | Average HR |
+| --- | --- | --- |
+| 1 | 8:02/mi | 125 bpm |
+| 2 | 7:52/mi | 133 bpm |
+| 3 | 7:53/mi | 134 bpm |
+| 4 | 8:00/mi | 144 bpm |
+| 5 | 7:40/mi | 157 bpm |
+| 6 | 7:58/mi | 158 bpm |
+| 7 | 7:52/mi | 158 bpm |
+
+**Within-run observation:** Pace is narrowly distributed across the seven full miles, and the displayed cadence, stride length, power and ground-contact-time traces are broadly stable outside brief pauses/outliers. The HR trace shows a relatively abrupt upward transition around 26–27 minutes, from approximately the 130s to the 150s, followed by sustained higher readings. This is not an HR *drop*. A change in wrist optical capture and physiological HR drift (possibly influenced by hydration, heat, recent exertion and recovery) remain alternatives; the evidence cannot resolve them. His current Garmin zones allocate 27:06 (48%) to displayed Zone 4 and 21:10 (38%) to displayed Zone 3. Those are configured watch zones, not independently verified thresholds. Device power zone 1 contains 49:49 (90%); power and HR zones describe different scales and should not be treated as contradictory diagnoses.
+
+**Recovery context from connected Garmin data, read October 17:** October 15: 7.17 h sleep, score 76, overnight HRV 61 ms, resting HR 47 bpm. October 16: 5.2 h, score 57, HRV 42 ms, resting HR 50 bpm, alongside an eight-mile treadmill run. October 17: 4.4 h, score 53, HRV 48 ms, resting HR 50 bpm, Body Battery high 32 / low 5. The 48 ms value rose from the previous night but remains below October 15; a personal multiweek baseline is not available from this limited Garmin connector history. Alcohol the prior day, short sleep, self-reported underhydration, and training load all supply context without establishing a single cause.
+
+**Comparison with October 14:** October 14's spontaneous 6.00 mi at 8:20/mi had average HR 162, cadence 167, stride length 1.16 m, ground contact time 265 ms, vertical ratio 8.1%, oscillation 9.3 cm and power 386 W. October 17's seven miles at 7:54/mi showed 144, 170, 1.2 m, 255 ms, 7.7%, 9.2 cm and 393 W respectively. Faster pace, different shoes, hydration, sensor conditions and varying recovery prevent attributing these changes to improved gait economy or cardiac adaptation. Also retain September 25, October 4 and October 9 as distinct historical outings with their actual purposes; October 4's 10-mile average was 11:07/mi (four miles with Natalie followed by solo exploration), while October 9's separate 10-mile outing averaged 8:18/mi.
+
+**What to observe next:** Brice considers freely chosen outdoor outings around 7–10 miles a useful study range at this stage, not a new mandatory workout or a request to chase pace. Retain shoe/terrain/hydration and morning-after lower-leg response where naturally reported. Today's useful finding is a smooth, untargeted rhythm and no reported lower-limb problems *during* the run, alongside evidence of poor recent sleep and felt underhydration. It does not establish the shoe as a universal solution, clearance for increased mileage, or an obligation to complete future runs without stopping for water. No assigned workouts, calendars, app entries or live website have been changed by this note.
+
+**Provenance:** Athlete narrative in October 17 conversation; attached Strava/Garmin screenshots (IMG_9627, IMG_9628, IMG_9630–IMG_9637) and October 17 Garmin partner-connected activity/health summaries from Forerunner 965. The original shoes photograph was provided in conversation (IMG_9622). These references identify evidence, not claims that images have been uploaded to the repository.
