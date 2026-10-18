@@ -1,6 +1,6 @@
 # Rebuilt Athlete · Speed Exposure Ledger
 
-**Opened October 18, 2026.** Athlete: Brice. Companion to [dated run observations](LONG-RUN-COMPARISON.md) and [physical goals](../../docs/studies/REBUILT-ATHLETE-BODY-GOAL-20260923.md). This is an evidence tracker, **not** a training schedule or a speed prescription. The present block's formal start/end dates were not established in the October 18 conversation; the ledger begins with the newly supplied evidence and can backfill older activities when original recordings are available.
+**Opened October 18, 2026. Interval screenshots verified later that day.** Athlete: Brice. Companion to [dated run observations](LONG-RUN-COMPARISON.md) and [physical goals](../../docs/studies/REBUILT-ATHLETE-BODY-GOAL-20260923.md). This is an evidence tracker, **not** a training schedule or a speed prescription. The present block's formal start/end dates were not established in the October 18 conversation; the ledger begins with the newly supplied evidence and can backfill older activities when original recordings are available.
 
 ## Why track
 
@@ -24,9 +24,9 @@ A pace band is an **external performance exposure**, not a distinct muscle-fiber
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Oct 17 | Palm Beach spontaneous road run, gifted ASICS shoes | Forerunner 965; Garmin summary and owner lap screenshots | 55:21 | 7.00 mi | 7:54/mi overall | 144 / 163 bpm | **Unknown**; mile 5 averaged 7:40/mi, not proof all its seconds were ≤7:42 | Pending original recording | One whole-mile **lap average** 7:40/mi; sustained-band residency not verified |
 | Oct 18 06:56 | Treadmill aerobic by time/HR | Forerunner 965; connected summary, ID `24767168775` | 60:31 | 8.06 km ≈ 5.01 mi (watch) | 7.51 min/km ≈ 12:05/mi (watch) | 113 / 125 bpm | **Not assessed** (aerobic time/HR focus) | Not assessed; treadmill calibration not provided | Not assessed |
-| Oct 18 08:57 | Miami Beach track, mixed short repetitions | Forerunner 965; connected summary, ID `24768331932`, owner recollection | 22:04 | 5.17 km ≈ 3.21 mi | 4.27 min/km ≈ 6:52/mi overall **including any recoveries recorded** | 151 / 179 bpm | **Unknown** | **Pending original FIT or lap evidence** | Athlete recalls approximately **6 × 400 m + 3 × 800 m + 1 × 400 m**; unverified; details below |
+| Oct 18 08:57 | Miami Beach track, mixed short repetitions | Forerunner 965; connected summary, ID `24768331932`, owner recollection | 22:04 | 5.17 km ≈ 3.21 mi | 4.27 min/km ≈ 6:52/mi overall **including any recoveries recorded** | 151 / 179 bpm | **17:04.9** in 8 timed work laps averaging 5:57–6:12/mi, all faster than 7:42; *not second-by-second time at speed* | **Verified by Garmin interval screenshot as lap-average categories; second-by-second distribution still unknown** | **Verified Garmin interval screen: 5 × about 400 m + 3 × about 800 m**, with recoveries and brief rests. See October 18 verified work table below. |
 
-**Reconciliation needed:** The recalled rep total is (6 × 400) + (3 × 800) + (1 × 400) = **5,200 m of work**, slightly *more* than the Garmin-recorded **5,170 m for the entire activity**. Possible incomplete recall, auto-pause, GPS/track-mode distance mismatch, or differently recorded recoveries; no explanation is confirmed. Do **not** publish the recollection as exact completed intervals or assign a pace to each rep without lap evidence.
+**Reconciliation resolved by October 18 screenshots:** Garmin's Intervals screen contains **five short Run rows (~0.25–0.26 mile)** and **three longer Run rows (~0.51 mile)**, each with a timestamp and average pace. This supersedes the earlier uncertain recollection of ten total reps. Rounded distance of 0.25–0.26 and 0.51 mi is not a calibrated track measurement. Work durations total 17:04.9; the full recording is 22:03.8 (22:04 rounded). Garmin also records recoveries/brief rests, and the Run/Walk classification shows 19:15 run and 1:50 walk. Do not sum these distinct classification schemes as separate exercise volumes.
 
 **October 17 prior visual pace laps:** 8:02, 7:52, 7:53, 8:00, **7:40**, 7:58, 7:52 per mile. Brice clarified that 7:40 felt like 8:00 and that subsequent slowing was a conscious choice because of sun exposure and felt underhydration, not proof the pace became harder. Those splits can be used as *whole-mile average* benchmarks, not as exact seconds within 15-second pace zones.
 
@@ -45,3 +45,44 @@ The athlete reported weighing **190 lb** on October 18 (scale, time relative to 
 ## Provenance and publication
 
 Garmin Forerunner 965 activity summaries retrieved through the user's connected Fitness AI Connector on October 18, 2026; October 17 Strava/Garmin screenshots, October 17 four-week Garmin VO₂ max image, and October 18 athlete first-person conversation. **Insights derived in part from Garmin device-sourced data.** Source-document update does not establish live website deployment, FORM app/Forge syncing, changes to coach assignments, or automation of Garmin imports. This ledger must not be presented as an automatic feed while the connector provides only summaries.
+
+## October 18 · Timed speed exposure from Garmin intervals
+
+**Screenshot readback, not FIT sample-level data.** The Garmin Intervals screen confirms these eight Run work entries. Run row index, displayed duration, Garmin distance and pace are retained without inventing missing lengths, rest periods or per-second speeds.
+
+| Work rep | Duration | Garmin recorded distance | Displayed avg pace | Category by average |
+| --- | --- | --- | --- | --- |
+| 400-ish #1 | 1:32.2 | 0.26 mi | 5:57/mi | 5:43–5:57 |
+| 400-ish #2 | 1:31.6 | 0.25 mi | 6:00/mi | 5:58–6:12 |
+| 400-ish #3 | 1:32.4 | 0.26 mi | 6:01/mi | 5:58–6:12 |
+| 400-ish #4 | 1:32.4 | 0.25 mi | 6:05/mi | 5:58–6:12 |
+| 800-ish #1 | 3:09.8 | 0.51 mi | 6:12/mi | 5:58–6:12 |
+| 800-ish #2 | 3:07.8 | 0.51 mi | 6:05/mi | 5:58–6:12 |
+| 800-ish #3 | 3:05.8 | 0.51 mi | 6:04/mi | 5:58–6:12 |
+| Closing 400-ish #5 | 1:32.9 | 0.26 mi | 5:58/mi | 5:58–6:12 |
+
+**Totals:** 17:04.9 of measured work reps; **1:32.2** classified into 5:43–5:57/mi by lap mean; **15:32.7** classified into 5:58–6:12/mi by lap mean. Across conventional minute ranges, **3:05.1** from two work reps averaged 5:xx/mi and **13:59.8** from six reps averaged 6:xx/mi. No work rep averaged 7:xx/mi. These are **work-interval duration totals based on average pace**, not proof that each second remained in the nominated category.
+
+The whole track recording shows 3.21 mi, 22:03.8 total, 6:52/mi whole-session average, 151 bpm average and 179 maximum on the Garmin connector (Strava displays 152 bpm whole-session average); 3.2 aerobic and 3.7 anaerobic Garmin Training Effect; 438 W mean power; 154 spm overall cadence (affected by stops), 187 maximum; 1.45 m mean stride length; 6.4% mean vertical ratio; 9.1 cm oscillation; **217 ms mean ground contact time**, all device outputs not independently verified measures of running economy. Garmin configured HR-zone distribution: Z5 5:41, Z4 9:26, Z3 3:08, Z2 1:54, Z1 1:26. Power-zone distribution differs and is not equivalent to HR zones. Garmin’s device-temperature display ranges 77–79°F and must not be reported as reliable ambient air temperature.
+
+**Workload context:** This track exposure followed 60:31 of treadmill running, Garmin 5.01 mi, 113 bpm average, 125 bpm maximum, intended as aerobic time/HR rather than a pace challenge. The two sessions are recorded separately. The athlete describes enjoying both, with faster running feeling heavier at a scale-measured 190 lb than at his desired muscular weight closer to 185. Do not infer the cause from scale weight alone.
+
+## Baseline anchor · October 10, and block entry · October 12–18
+
+The user identifies the October 10 **run with Matt, while Adrian followed on a bike**, as the first especially clear felt transition to freer running, accompanying the period when the Garmin VO₂ max estimate rose and remained higher. **Observation anchor: October 10.** October 12–18 is independently documented in the existing [Velocity Automaticity study record](VELOCITY-AUTOMATICITY-20261013.md) as the entry/read week of the authored running block. These are different dates for different purposes, not conflicting program prescriptions.
+
+- **October 9 with Julius:** 10 mi in 1:22:57, average 8:18/mi, with pace feeling more available as a self-selected social outing. Contextual precursor, not falsely counted as completed miles in 7:42-or-faster bins.
+- **October 10 with Matt (Adrian on bike):** 3 mi at 7:18/mi; full-mile laps **7:37, 7:17, 7:00**; HR 139 avg; cadence 168; stride 1.30 m; GCT 250 ms; vertical ratio 7.4%; oscillation 9.7 cm. The user reports relaxed movement with music and a deliberate decision to finish before quality deteriorated. Source: athlete’s October 10 conversation. The whole-mile lap-average paces qualify for the wider chart, but the file has not been received to time-classify second-by-second pace.
+- **October 12:** 20:00 warm-up / 2.67 mi at 7:29/mi, then originally intended 2 × 10 minutes faster; the user broke the quicker work into shorter pieces to preserve fluidity. Entire activity: 5.27 mi in 36:53 moving time, 7:00/mi moving-average pace; 159 avg HR, 239 ms GCT, 1.32 m stride. Faster interval durations are not quantified here without the actual laps/FIT.
+- **October 13:** 3 × 1 mile with 2:30 recovery, splits **7:05 (HR 141), 6:40 (HR 169), 6:48 (HR 168)**, average 6:51/mi; 242 ms GCT, 1.36 m stride, average HR 159. Using displayed full-mile split paces (rounded to whole seconds) their nominal qualifying lap durations sum to about **20:33**, while the Garmin activity record reports 20:36 for all three. Do not force reconciliation from rounded splits or treat the entire 20:36 as a FIT-verified speed histogram.
+- **October 14:** 6 miles in 50:05 at 8:20/mi, recorded separately in [long-run observations](LONG-RUN-COMPARISON.md), not a new session just because FORM athletes did track intervals that morning.
+- **October 17:** 7 miles at 7:54/mi average; mile 5 was **7:40/mi averaged across the whole mile**. Brice said it felt no harder than 8:00/mi and deliberately eased because of sun and hydration concerns. Record the lap as benchmark, not precise per-second bin residency.
+- **Other two prior track sessions:** exact athlete session identities, dates and FIT/lap evidence remain pending user uploads. Do not substitute Adrian/Tinius filmed intervals or another athlete’s programmed work.
+
+**Observational goal:** Brice wants the **7:42–7:20/mi corridor** eventually to become ordinary low-aerobic running. When repeatable matched-condition efforts demonstrate low-aerobic cost (ideally grounded in an individualized LT1/VT1 or credible submaximal assessment), manageable HR drift, low perceived effort, and normal recovery, the corridor may be *retired from special speed milestones* and treated as ordinary aerobic mileage. No number of accumulated fast minutes alone can establish this transition.
+
+## Graph projection · October 18
+
+The graphical study workbench now lives at [Speed Exposure](speed-exposure/index.html). Its views cover documented duration in 15-second **lap-average pace** bins, aerobic cost and Garmin VO₂ max estimate, stride length/ground-contact time alongside pace, and durability with continuous versus repeated exposures. It does not pretend to reconstruct FIT speed histograms, physiological lactate thresholds or same-day tissue adaptation from current incomplete data.
+
+**Research context:** A 2024 systematic review and meta-analysis supports some improvements in running economy from high-load strength training and plyometrics, with speed-dependent effects (https://pmc.ncbi.nlm.nih.gov/articles/PMC11052887/). A 2025 recreational-runner study found LT1 running speed deteriorated after 90 min of low-intensity running, supporting durability as distinct from rested fitness (https://pmc.ncbi.nlm.nih.gov/articles/PMC11889008/). Neither study establishes a universal adaptation dose such as 30 cumulative minutes at a particular pace. The dashboard does not override FORM Athlete System prescriptions or medical return-to-running guidance.
