@@ -13,6 +13,10 @@ Current owner decision: Brice, October 8, 2026. Original record: September 23, 2
 
 This October 8 decision supersedes earlier active references to a preferred 182 lb center or to 185 lb as an upper anchor. Dated observations and original decisions below remain history.
 
+### October 18 · weight and speed-work preference
+
+Brice reports a single **190 lb** scale reading on October 18, without confirmed standardized morning-measurement conditions. He felt heavier during faster running and prefers a muscular **approximately 185 lb** build rather than becoming bigger for its own sake. The existing 180–185 lb preferred range (187 also acceptable) remains unchanged, but the athlete is leaning toward 185 as a practical running-plus-muscle center. This is an athlete-perceived speed/weight tradeoff, not a demonstrated causal effect of 5 lb, measured body-composition change or new weight-loss/fueling prescription. He wants fullness in selected muscle groups while retaining lighter, more enjoyable faster running. Preserve adequate energy for running, strength development and the recovering tibia. His [October 18 speed-exposure ledger](../../labs/rebuilt-athlete/SPEED-EXPOSURE-LEDGER-20261018.md) records the two morning sessions and a time-in-pace-band tracking method without changing Forge or his training assignments.
+
 ## Current study question
 
 **Can I build an impressively muscular body around 185 lb and gradually make 6:00/mi a comfortable half-marathon race pace?**
