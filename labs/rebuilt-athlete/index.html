@@ -532,6 +532,35 @@ p,li,dd,figcaption{hyphens:none}
 </style>
 <link rel="stylesheet" href="/css/sf-brand.css?v=20261001">
 <link rel="stylesheet" href="/css/sf-menu.css?v=20261015-focus">
+<style>
+/* Current orientation: keep the study's paper, ink, blue and red visual language. */
+.sb-overview{position:relative;isolation:isolate;background:linear-gradient(135deg,rgba(255,255,255,.26),transparent 60%),var(--paper-hi);color:var(--ink);border-top:1px solid var(--rule-hard);border-bottom:2px solid var(--ink);padding:clamp(27px,5vw,68px) 0}
+.sb-overview:before{content:"002";position:absolute;right:3%;top:1%;color:rgba(46,94,142,.055);font:900 clamp(110px,23vw,320px)/1 var(--f-display);letter-spacing:-.14em;z-index:-1;pointer-events:none}
+.sb-heading{display:flex;justify-content:space-between;align-items:end;gap:23px;border-bottom:1px solid var(--rule-hard);padding-bottom:16px;margin-bottom:23px}
+.sb-kicker{font:700 10px/1.5 var(--f-mono);letter-spacing:.11em;color:var(--blue);text-transform:uppercase;margin:0 0 7px}
+.sb-heading h2{font:750 clamp(30px,4.6vw,63px)/1 var(--f-display);letter-spacing:-.065em;margin:0}
+.sb-heading>p{max-width:250px;font-size:13px;color:var(--ink-2);line-height:1.5;margin:0}
+.sb-priority{display:grid;grid-template-columns:1.3fr .7fr;gap:22px;padding:4px 0 25px;border-bottom:1px solid var(--rule-hard)}
+.sb-priority strong{font:800 clamp(20px,2.5vw,32px)/1.14 var(--f-display);display:block;letter-spacing:-.04em;margin:3px 0 7px}
+.sb-priority span{font-size:14px;line-height:1.55}
+.sb-side{padding-left:18px;border-left:3px solid var(--red);align-self:center}
+.sb-side b{display:block;font:700 10px var(--f-mono);letter-spacing:.11em;color:var(--red);text-transform:uppercase}
+.sb-side strong{font-size:20px}
+.sb-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--rule-hard)}
+.sb-metric{padding:21px 16px 22px 0;border-right:1px solid var(--rule);margin-right:15px;min-width:0}
+.sb-metric:last-child{border:0;margin:0}
+.sb-metric b{display:block;font:700 10px/1.4 var(--f-mono);letter-spacing:.09em;color:var(--blue);text-transform:uppercase}
+.sb-metric strong{display:block;font:700 clamp(27px,3.4vw,46px)/1.12 var(--f-display);letter-spacing:-.055em;margin:8px 0}
+.sb-metric strong small{font-size:.43em;letter-spacing:0}
+.sb-metric span{display:block;font-size:12px;line-height:1.5;color:var(--ink-2)}
+.sb-routes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:19px 0 0}
+.sb-route{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:80px;padding:16px;border:1px solid var(--ink);color:var(--ink);text-decoration:none;background:transparent;transition:transform .15s,background .15s}
+.sb-route:hover,.sb-route:focus-visible{background:var(--paper-lo);transform:translateY(-2px)}
+.sb-route b{display:block;font-size:16px;line-height:1.2}.sb-route small{display:block;font-size:11px;line-height:1.45;color:var(--ink-2);margin-top:6px}.sb-arr{font:600 23px var(--f-display);color:var(--red);flex-shrink:0}
+.sb-footnote{margin:15px 0 0;font:11px/1.55 var(--f-mono);color:var(--graphite)}
+@media(max-width:760px){.sb-heading{display:block}.sb-heading>p{margin-top:9px}.sb-priority{grid-template-columns:1fr}.sb-side{padding:8px 0 8px 16px}.sb-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.sb-metric:nth-child(2){margin:0;border-right:0}.sb-metric:nth-child(-n+2){border-bottom:1px solid var(--rule)}.sb-metric strong{font-size:34px}.sb-routes{grid-template-columns:1fr;gap:8px}.sb-route{min-height:66px;padding:13px 15px}}
+@media(prefers-reduced-motion:reduce){.sb-route{transition:none}}
+</style>
 </head>
 <body>
 <!-- STANDALONE RULE: Core study content must render from file:// with JavaScript disabled. JS may enhance navigation/tabs only; it must never gate visibility. -->
@@ -597,8 +626,27 @@ p,li,dd,figcaption{hyphens:none}
   </div>
 </section>
 
-
-
+<section class="sb-overview" id="bridge-overview-20261018" data-index-title="Current orientation" aria-labelledby="sb-overview-title">
+ <div class="shell">
+  <div class="sb-heading"><div><p class="sb-kicker">Current orientation · 18 October 2026</p><h2 id="sb-overview-title">The week. The work. The evidence.</h2></div><p>Start with what matters. The full dated study continues below.</p></div>
+  <div class="sb-priority">
+   <div><p class="sb-kicker">This week's intention · 19–25 Oct</p><strong>Ease the lower-leg load.</strong><span>Easy treadmill time, yin yoga, rest or lighter strength. No mileage or speed to make up. iRun remains optional.</span></div>
+   <div class="sb-side"><b>Elastic capacity</b><strong>Later phase</strong><span>Preserved for the future. Not part of this week's work or the Forge program.</span></div>
+  </div>
+  <div class="sb-metrics" aria-label="Latest documented measures">
+   <div class="sb-metric"><b>Yoga intention</b><strong>300 <small>min</small></strong><span>Oct 19–25 · recorded with Garmin Yoga. No completed sessions imported yet.</span></div>
+   <div class="sb-metric"><b>Faster running</b><strong>17:04.9</strong><span>Oct 18 · eight timed track reps, 5:57–6:12/mi by rep average.</span></div>
+   <div class="sb-metric"><b>Aerobic estimate</b><strong>52</strong><span>Garmin VO₂ max, Oct 17 · four-week low about 48.4.</span></div>
+   <div class="sb-metric"><b>Last full week</b><strong>37.52 <small>mi</small></strong><span>Week ending Oct 18 · context, not a target to chase.</span></div>
+  </div>
+  <div class="sb-routes" aria-label="Jump to the work">
+   <a class="sb-route" href="/labs/rebuilt-athlete/strength-and-speed/#week"><span><b>Review my week</b><small>Flexible recovery-first choices</small></span><span class="sb-arr" aria-hidden="true">↗</span></a>
+   <a class="sb-route" href="/labs/rebuilt-athlete/strength-and-speed/#workouts"><span><b>Choose a workout</b><small>Muscle Beach A/B · Forge detail C</small></span><span class="sb-arr" aria-hidden="true">↗</span></a>
+   <a class="sb-route" href="/labs/rebuilt-athlete/speed-exposure/"><span><b>See my graphs</b><small>Speed · HR · movement · durability</small></span><span class="sb-arr" aria-hidden="true">↗</span></a>
+  </div>
+  <p class="sb-footnote">Dated observations, not live Garmin data. Last single weigh-in: 190 lb on Oct 18; preferred muscular direction around 185 lb. The 7:42–7:20/mi corridor is not yet verified as low aerobic.</p>
+ </div>
+</section>
 <section class="sec sec--tint now reveal" id="now-20261013" data-index-title="Where it stands">
   <div class="shell">
     <div class="sec__head">
