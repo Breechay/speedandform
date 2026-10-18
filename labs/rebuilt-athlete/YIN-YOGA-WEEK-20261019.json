@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "study": "The Rebuilt Athlete",
   "week_start": "2026-10-19",
   "week_end": "2026-10-25",
@@ -7,9 +7,13 @@
   "target_type": "flexible weekly intention, not daily prescription",
   "completed_sessions": [],
   "logged_minutes": 0,
-  "logging_state": "no session durations reported as of 2026-10-18; 0 recorded is not 0 performed",
-  "counting_rule": "Only actual completed minutes from athlete reports; no inferred or scheduled time. Each unique session must have date,duration_minutes,style,optional_video,notes.",
+  "logging_state": "October 19–25 has not yet begun at the October 18 update; no completed Yoga activities have been imported. Empty records do not establish 0 practiced minutes.",
+  "counting_rule": "Count actual Garmin Yoga activity elapsed duration in minutes, including partial sessions; deduplicate by Garmin activity ID across refreshes. Do not count projected time, running/strength workouts, or yoga activities outside this week. Do not double-count one session reported by both Garmin and the athlete.",
   "excluded": "Elastic/plyometrics deferred. Do not count strength, treadmill, or generic mobility as yin unless athlete explicitly says it is yin/deep stretch.",
   "form_support_prescription_title": "Yin yoga · October 19–25",
-  "source": "Athlete's Oct 18 instruction, FORM Athlete System support prescription; personal Rebuilt Athlete study."
+  "source": "Athlete's Oct 18 instruction, FORM Athlete System support prescription; personal Rebuilt Athlete study.",
+  "primary_logging_source": "Garmin Connect Yoga activity profile (completed synced sessions)",
+  "recording_workflow": "On Garmin watch choose Yoga, record video/practice session, save activity, sync to Garmin Connect. No duplicate manual reporting needed.",
+  "import_method": "On explicit study refresh, read Garmin-connected activity summaries, filter Yoga sessions dated 2026-10-19 through 2026-10-25, and import each unique completed activity (date, activity_id, duration_minutes, optional notes). The public study does not automatically sync.",
+  "history_limitation": "Current Garmin connection on Free tier returns only two-day activity history; incomplete retrieval is not evidence of no sessions. Refresh at least every two days or backfill from exported Connect data/screenshots."
 }
