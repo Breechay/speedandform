@@ -1428,6 +1428,38 @@ p,li,dd,figcaption{hyphens:none}
     <p class="prose"><strong>Decision for the remainder of this week.</strong> Do not chase the previously proposed 31 miles. Two sessions had meaningful load, despite low subjective difficulty. Prioritize lower-leg recovery, fueling, sleep, Yin, gentle foam rolling, core and upper-body strength; optional easy stationary bike only if legs feel normal. No makeup mileage or automatic additional intensity. The next run week depends on 24–48-hour response, especially focal tibial / outer-calf / ankle symptoms and next-morning walking confidence. At the initial filing, the post-run symptom response was unconfirmed. The later 5:49 PM update reported no subsequent discomfort, tightness or soreness. Brice supplied a further recovery report on October 11. <a href="#recovery-20261011">Read the October 11 follow-up.</a></p>
   </div>
 </section>
+
+<!-- Speed exposure observation / Oct 10 anchor, Oct 12-18 entry week -->
+<section class="sec reveal" id="speed-exposure-workbench-20261018" data-index-title="Speed exposure" aria-labelledby="speed-exposure-heading">
+  <div class="shell">
+    <div class="sec__head">
+      <span class="sec__n mono">SPEED EXPOSURE · OCT 2026</span>
+      <h2 class="sec__t" id="speed-exposure-heading">How long does speed last?</h2>
+      <p class="sec__note">Running speed, aerobic cost, mechanics and durability, read together.</p>
+    </div>
+    <div class="prose" style="max-width:75ch">
+      <p>October 10 marked the first especially clear return to freer running with Matt, while Adrian rode alongside. October 12–18 is the entry week of the existing running block. The first measured track exposures came on October 18: eight documented work reps averaging 5:57–6:12 per mile, totalling 17:04.9 of work.</p>
+      <p><strong>The question:</strong> Can 7:42–7:20 per mile gradually become ordinary low-aerobic running, while faster speeds become sustainable for longer? Time in a speed band is a training-exposure measure, not an independent muscle-fiber threshold or a guarantee of adaptation. This chart deliberately separates lap-average evidence from true time-at-speed, and keeps heart-rate cost and recovery in view.</p>
+    </div>
+  </div>
+  <div style="max-width:1280px;margin:clamp(26px,4vw,54px) auto 0;padding:0 clamp(12px,3vw,40px)">
+    <iframe id="form-speed-embed" src="/labs/rebuilt-athlete/speed-exposure/?embedded=1" title="The Rebuilt Athlete speed exposure graphs, interactive views for pace, aerobic cost, mechanics and durability" loading="lazy" style="display:block;width:100%;height:1040px;max-width:100%;border:0;background:#14191f" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <p class="prose" style="margin:14px auto 0;max-width:82ch;font-size:13px"><a href="/labs/rebuilt-athlete/speed-exposure/">Open the full speed exposure workbench</a> · <a href="/labs/rebuilt-athlete/SPEED-EXPOSURE-LEDGER-20261018.md">Read sourced intervals and open questions</a>. Exact second-by-second speed totals await original Garmin activity files.</p>
+  </div>
+</section>
+<script>
+(function(){
+  var frame=document.getElementById("form-speed-embed");
+  window.addEventListener("message",function(event){
+    if(!frame||event.source!==frame.contentWindow||event.origin!==window.location.origin)return;
+    var data=event.data;
+    if(!data||data.type!=="form-study-speed-embed"||!Number.isFinite(data.height))return;
+    var h=Math.max(480,Math.min(3500,Math.ceil(data.height)+15));
+    frame.style.height=h+"px";
+  });
+})();
+</script>
+
 <section class="sec sec--tint rlo" id="long-run-mechanics-study-20261009" data-observations-version="20261011-recovery-followup-v2" aria-labelledby="rlo-title">
 <style>
 #long-run-mechanics-study-20261009 .rlo-intro{max-width:68ch;font-size:1.08rem;line-height:1.65}
