@@ -2021,7 +2021,7 @@ p,li,dd,figcaption{hyphens:none}
   if(copy.includes("\u2248")) console.warn("FORM copy rule violation: U+2248 (approximation glyph) found in visible copy.");
 
   const sections = [...document.querySelectorAll('main > section[id]')];
-  const openArchiveHash = () => { const id=decodeURIComponent(location.hash.slice(1));if(!id)return;const target=document.getElementById(id);const parent=target?.closest('details.study-archive');if(parent)parent.open=true; };
+  const openArchiveHash = () => { const id=decodeURIComponent(location.hash.slice(1));if(!id)return;const target=document.getElementById(id);const parent=target?.closest('details.study-archive');if(parent){parent.open=true;requestAnimationFrame(()=>target.scrollIntoView({block:'start',behavior:'auto'}));} };
   openArchiveHash();window.addEventListener('hashchange',openArchiveHash);
   const desktop = document.getElementById('desktopIndex');
   const sheetList = document.querySelector('#sheet ol');
