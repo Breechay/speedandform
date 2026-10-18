@@ -2,6 +2,14 @@
 
 **Draft for athlete review · October 18, 2026. Not an assigned FORM Athlete System workout.** This document is a bank of executable options to reconcile with the existing 2026-10-13 Rebuilt Athlete running block and the current FORGE strength assignment; it does not rewrite backend prescriptions, Garmin workouts, scheduled sessions or live website content.
 
+## Latest athlete decision · October 18, 11 AM Miami time
+
+This **supersedes the provisional hard-run week below** for current planning: Brice may skip iRun on Monday October 19, is not committing to a social workout or fast running, and wants to see how his lower limbs recover after 37.52 miles and the October 18 track session. The first few days should offer **rest, a reduced-load day, easy treadmill running by time and genuinely low HR, or modest upper-body strength**, based on his actual recovery. No mileage debt, no forced treadmill double, and no automatic speed exposure; ease is a legitimate training choice. Track and heavier lower strength return only after a fresh recovery review. The user said "may" and "maybe": do not convert those into a definitive cancellation of all sessions or a new strict scheduled plan. iRun is an optional social opportunity, not the week's committed key workout.
+
+**Native application status:** The canonical FORM Athlete System owns any dated change to run assignments. This source page alone does not revise them. The Strength / Forge native program catalog is separately versioned; an authored workout bank is not proof that a new program is available on a phone. Until native integration is committed, built, released and installed, the page remains a selectable *reference* rather than a native completion receiver.
+
+**Latest navigation:** [Strength and Speed Field Guide](../../labs/rebuilt-athlete/strength-and-speed/index.html) · [Speed Exposure graphs](../../labs/rebuilt-athlete/speed-exposure/index.html) · [Original Athlete Study](../../labs/rebuilt-athlete/index.html).
+
 ## Athlete priorities
 
 - Athletic expression: maintain fluid running; increase relaxed speed exposure and running durability; outdoor long runs in an enjoyable **7–10 mi** range for now, not a compulsory 10 mi; aerobic treadmill work measured primarily as time and heart rate.
