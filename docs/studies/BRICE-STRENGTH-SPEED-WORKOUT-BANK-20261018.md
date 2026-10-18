@@ -10,6 +10,16 @@ This **supersedes the provisional hard-run week below** for current planning: Br
 
 **Latest navigation:** [Strength and Speed Field Guide](../../labs/rebuilt-athlete/strength-and-speed/index.html) · [Speed Exposure graphs](../../labs/rebuilt-athlete/speed-exposure/index.html) · [Original Athlete Study](../../labs/rebuilt-athlete/index.html).
 
+## October 19–25 · Yin yoga tracking / fluid recovery week
+
+**Latest decision superseding the initial 8–12 minute elastic-prep workout:** No elastic drills this phase. They remain a future chapter after impact-loading clearance, with no current sessions or time quota. The gym choices are **A · Frame, B · Chassis and optional C · Detail**. Previous D is a future-phase research note only; do not add it to Forge now.
+
+**Weekly intention:** **5 hours = 300 minutes** of deep stretching / yin yoga using the athlete's existing follow-along videos. Not five prescribed one-hour appointments and not an instruction to stretch hard. The timing is fluid: Brice will choose by feel and rest when he wants. Log each completed yoga session with date, duration in minutes, style/video (optional) and a brief lower-leg/body response. Total only actual completed time. **As of October 18 no sessions for October 19–25 have been supplied: completed total unknown / not yet logged, not falsely zero performed.** This is a voluntary goal, not a fitness compliance gate.
+
+**First days of the week:** iRun is optional and likely skipped, speed work is not a debt, and Brice is inclined to low-HR treadmill easy days, gentle mobility and/or upper strength while his lower limbs settle. The high-impact elastic progression, heavy lower sessions and second quality run are not commitments for this week. Original FORM running assignments still exist until explicitly versioned in their owning backend; don't claim the study changed app prescriptions.
+
+**Canonical review:** [Strength + Speed Field Guide](../../labs/rebuilt-athlete/strength-and-speed/index.html#week), [Yin Yoga section](../../labs/rebuilt-athlete/strength-and-speed/index.html#yoga), [Strength choices](../../labs/rebuilt-athlete/strength-and-speed/index.html#frame), [Elastic / later phase](../../labs/rebuilt-athlete/strength-and-speed/index.html#elastic).
+
 ## Athlete priorities
 
 - Athletic expression: maintain fluid running; increase relaxed speed exposure and running durability; outdoor long runs in an enjoyable **7–10 mi** range for now, not a compulsory 10 mi; aerobic treadmill work measured primarily as time and heart rate.
@@ -71,9 +81,9 @@ Pull-ups are a primary lift rather than a finish when overheated. Strict row pos
 
 This is a *replacement* for accessory volume, not another mandatory hypertrophy day after A. Do not prescribe spinal flexion/rotation as local back-fat removal.
 
-### D · Elastic preparation (8–12 min; no bouncing required)
+### D · DEFERRED — future elastic progression (not a present workout)
 
-Initial candidate for now:
+Historical preparation candidates only, retained for later review after clinician/PT clearance and current-load tolerance; **not part of this week's exercise bank and not selectable in Forge now**:
 - Brisk 3-min walk and comfortable ankle/hip motions.
 - Isometric straight-knee calf raise hold: 2 × 20 seconds per side.
 - Isometric bent-knee calf raise hold: 2 × 20 seconds per side.
@@ -90,7 +100,7 @@ Later, only once cleared for impact progression and tolerating the running/lifti
 - **Aerobic time-only:** 40–60 min easy treadmill by appropriate individually grounded low-aerobic HR and comfortable conversation; do not convert every PM treadmill hour into a mileage obligation. Recovery workload matters, especially on a double day.
 - **Outdoor longer free run:** 7–10 mi comfortable, route and duration chosen to finish feeling able to train again. The currently authored Saturday 8 mi is an existing backend prescription; changing its actual assignment requires a separate coaching update.
 
-## Tentative week · Oct 19–25, for discussion, not published as an assignment
+## Older tentative week · Oct 19–25 (superseded by latest recovery and yoga decision above)
 
 | Day | Main intention | What it replaces/avoids |
 | --- | --- | --- |
