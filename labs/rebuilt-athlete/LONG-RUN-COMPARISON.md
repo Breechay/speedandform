@@ -2,6 +2,8 @@
 
 Updated 2026-10-17 with the Palm Beach seven-mile outing and recovery context. Subject: Brice Ikouebe. This is a dated observation and evidence record, not a ranking or a new training prescription. The existing filename is retained for continuity.
 
+**Speed exposure tracker opened October 18:** [15-second pace-band, interval-distance and recovery ledger](SPEED-EXPOSURE-LEDGER-20261018.md) now holds the October 17 road baseline and both October 18 Garmin sessions. Detailed pace-band minutes are pending lap or original FIT evidence; this long-run companion remains the dated outing narrative. The new ledger is observational only and does not update any workout or website.
+
 ## Read the outing before the numbers
 
 Brice clarified that he is noticing and enjoying his runs, not trying to beat, rate or rank them. Each outing can have a different purpose, company and sequence of choices. Record those details beside the numbers, not as an explanation appended after treating one run as better or worse. A slower average is not a failed attempt at a faster outing. A faster average is not automatically the purpose or achievement of that day.
