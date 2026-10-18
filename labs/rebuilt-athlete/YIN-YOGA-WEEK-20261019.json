@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "study": "The Rebuilt Athlete",
+  "week_start": "2026-10-19",
+  "week_end": "2026-10-25",
+  "target_minutes": 300,
+  "target_type": "flexible weekly intention, not daily prescription",
+  "completed_sessions": [],
+  "logged_minutes": 0,
+  "logging_state": "no session durations reported as of 2026-10-18; 0 recorded is not 0 performed",
+  "counting_rule": "Only actual completed minutes from athlete reports; no inferred or scheduled time. Each unique session must have date,duration_minutes,style,optional_video,notes.",
+  "excluded": "Elastic/plyometrics deferred. Do not count strength, treadmill, or generic mobility as yin unless athlete explicitly says it is yin/deep stretch.",
+  "form_support_prescription_title": "Yin yoga · October 19–25",
+  "source": "Athlete's Oct 18 instruction, FORM Athlete System support prescription; personal Rebuilt Athlete study."
+}
