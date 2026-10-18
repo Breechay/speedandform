@@ -2,6 +2,22 @@
 
 **Editorial and UI quality review, October 18, 2026.** Companion to the public [study](https://speedandform.com/labs/rebuilt-athlete/), [strength field guide](https://speedandform.com/labs/rebuilt-athlete/strength-and-speed/) and [speed workbench](https://speedandform.com/labs/rebuilt-athlete/speed-exposure/).
 
+## Revised editorial hierarchy · October 18
+
+The public main study now opens with a single thesis and Phase 00, followed by one current six-part status dashboard, the five systems, readiness phases, one developing-signals table, concise dated field log, and direct links to the strength and speed workbenches. Earlier October checkpoint charts, detailed long-run tables, ambitions and the complete evidence protocol are preserved in an expandable archive below the front narrative.
+
+**Source chapter:** the April tibial-fracture / pre-injury-training illustrated chapter, including the original two embedded evidence images and the product-safety follow-up, was moved without cutting source content to [The Interruption](../../labs/rebuilt-athlete/archive/interruption/index.html). The main study retains a brief dated introduction and the link. This change reduced the main HTML from around 1.33 MB to roughly 240 KB, an approximately 82% reduction. Do not re-embed the original chapter into the main page.
+
+**One authority for current status:** the six current fields are body, running, engine, tibial/recovery, movement, and life practice; each has a date or defined evidence state. Older numbers remain labeled historical rather than appearing in a second current-state panel.
+
+**Signal table:** five lines (Running, Tibia, Strength, Fuel, Life) have state, observed evidence and one open question. States are descriptions of evidence maturity, never numeric grades or motivational scores. No system is called settled while the evidence is still emerging.
+
+**Archive navigation:** public deep links into the original October notes open their enclosing native details element on hash navigation. The generated Study Index lists only the top-level editorial sections rather than each archived note. The archive and images must remain accessible with minimal JavaScript.
+
+**Preservation rule:** keep cinematic type, archival textures, dramatic composition and the physical-source images. Reducing reading friction does not mean stripping decoration, smoothing everything into generic cards, or losing the filmic study identity.
+
+**Acceptance checks:** Netlify main deploy ready; the illustrated archive route published and verified; TinyFish visual desktop and 390px mobile audit passed section rendering, content fit, mobile menu, index navigation and collapsed archive. The main HTML still needs periodic human reading in Safari/iPhone after future content changes. This is a published structural improvement, not a native FORM/Forge release.
+
 ## First glance, no deciphering
 
 The first current-content view on Study 002, after its visual masthead, must answer:
@@ -39,7 +55,7 @@ Every salient figure carries a date and definition; never mix session-average, i
 - Netlify's current deploy reported ready; fetched public URLs showed the current study orientation, recovery-choice week, six measurement questions and nine pace-band bars.
 - Repository checks: strength guide has nine opening/closing sections, no duplicate IDs, all local href anchors resolve, and inline scripts parse; speed page has five matched sections, no duplicate IDs, all local anchors resolve, and its scripts parse.
 - Visual audit of the previous guide version found the need for easier table-of-contents navigation and no side-scrolling of workout sets on mobile. A horizontal sticky mobile TOC, anchor highlighting and fixed-width two-column workout tables were implemented afterward.
-- **Quality judgment, not a user-test certification:** target at least 9/10 for information clarity and navigation. Real device reading, tap targets and performance still deserve a final human pass. Main legacy article remains about 1.3 MB because of embedded media and is outside this narrowly scoped content/layout revision.
+- **Quality judgment, not a user-test certification:** target at least 9/10 for information clarity and navigation. Real device reading, tap targets and performance still deserve a final human pass. The original main article's 1.3 MB media-heavy version has since been refactored. The new standalone illustrated interruption chapter owns its preserved source media, while the current main page is approximately 240 KB. See the revised editorial hierarchy above.
 
 ## Next evidence events
 
