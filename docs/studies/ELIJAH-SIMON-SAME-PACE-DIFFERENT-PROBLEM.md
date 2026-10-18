@@ -8,7 +8,7 @@ Public page: `/labs/same-pace-different-problem/`.
 
 Two runners are aiming near the same half-marathon target. **They should not get the same plan.**
 
-**Elijah races November 14.** He has six weeks. The job is to express the fitness he already has without creating fatigue he cannot recover from.
+**Elijah's original short block targeted Savannah on November 14.** As of October 18 his race choice is unresolved. The training question is to express the ability he has without relying on a perfect calendar or adding fatigue he cannot recover from.
 
 **Simon races May 16.** He has seven months. The job is to build the runner, then make the selected race pace last for longer and longer distances.
 
@@ -24,7 +24,7 @@ This is a hypothesis, not a diagnosis.
 
 **Elijah:** 3 × 2 mi → 2 × 3 mi → 3 × 2 mi → 6 mi continuous → taper → Savannah.
 
-The six-mile continuous run is the main check. If it is even, controlled and followed by normal recovery, the target pace stays in the race discussion. If it costs too much, race pace comes down.
+The six-mile continuous run is the planned main check. If performed evenly, controlled and followed by normal recovery, the target pace stays in the race discussion. If too costly, race pace comes down. If not performed, do not invent a result.
 
 **Simon now:** longer controlled Tuesday work + a smaller faster Thursday dose + easy long running.
 
@@ -44,7 +44,7 @@ The study is observational. It documents decisions. It does not prove that one p
 
 ## Elijah: express existing fitness
 
-Target: **Savannah Half Marathon · November 14, 2026**
+Current authored race reference: **Savannah Half Marathon · November 14, 2026** (Elijah is reconsidering; no replacement confirmed as of October 18).
 Goal: **Sub-1:20 conditional A-goal**
 
 Current interpretation:
@@ -74,7 +74,7 @@ Elijah's question:
 
 > **Can the fitness already present be organized into enough continuous race-specific durability to make sub-1:20 a defensible race-day attempt?**
 
-Success before Savannah is not "more fitness everywhere." It is:
+Useful progress in the current block is not "more fitness everywhere." It is:
 - pace that becomes more controlled,
 - legs that remain composed,
 - recovery that remains normal,
@@ -189,7 +189,7 @@ How much more powerful is the same pace when it has been owned over progressivel
 
 ---
 
-## Evidence to record through Nov 14
+## Evidence to record through the next race decision
 
 ### Elijah
 - Tuesday specific splits and execution.
@@ -198,8 +198,8 @@ How much more powerful is the same pace when it has been owned over progressivel
 - 24–48 h recovery.
 - Oct 27 six-mile continuous gate.
 - Long-run recovery and fueling rehearsal.
-- Final Savannah pacing plan.
-- Race result, splits, pacing decisions, limiter and recovery.
+- Final pacing plan for a confirmed event, if he selects one.
+- Race result, splits, pacing decisions, limiter and recovery only if he actually races. No race means no invented result.
 
 ### Simon
 - Tuesday pace discipline and recovery pace.
@@ -217,7 +217,7 @@ Do not infer missing training from missing records.
 
 ## Paired-study decision points
 
-By Elijah's race, ask:
+At Elijah's race decision and any subsequent race, ask:
 
 1. Did Elijah's short specific block make race pace more controlled and durable without creating recovery debt?
 2. Did the six-mile gate predict his Savannah execution usefully?
@@ -227,9 +227,9 @@ By Elijah's race, ask:
 
 ---
 
-## After Savannah
+## After Elijah's race decision
 
-Elijah exits the paired phase after his November 14 race and becomes a completed short-horizon case.
+Elijah does not exit the paired phase automatically on November 14. Record the actual event choice, any completed race, and the training evidence before deciding how to close or continue his short-horizon case.
 
 The study then continues with Simon only.
 
@@ -238,7 +238,7 @@ The title can remain **Same Pace, Different Problem** as an origin story, or the
 Recommended continuity:
 
 **Part I · Two athletes, one pace neighborhood**
-Oct 4–Nov 14, 2026
+Oct 4 onward · original Savannah window through Nov 14, subject to an actual race decision
 Elijah + Simon
 
 **Part II · Make it last**
@@ -295,3 +295,15 @@ For both Elijah and Simon:
 For Elijah's short runway this matters especially because there is little recovery time to waste. For Simon it also includes HYROX / lower-body load in the same quality budget.
 
 This teaching rule changes neither athlete's current pace band nor copies José's preferred session format.
+
+---
+
+## October 18: use the work that actually happens (current ruling)
+
+**Race decision:** The current authored program still points to Savannah (November 14). Elijah is considering another local race, but no withdrawal, replacement registration or date change is confirmed. Nothing has changed in his athlete-facing plan. Do not treat Palm Beach, extra weeks of development, or participation at either race as established.
+
+**Coaching philosophy:** This is not a behavior-change or discipline-improvement study. Brice's decision is to coach within the athlete's observed constraints and seek meaningful performance without assuming he will follow an ideal calendar. Preserve one clear primary quality session and useful long-running support; evaluate the work he completes and the resulting recovery. Prioritize the highest-value opportunities. Do not add catch-up mileage or manufacture compliance metrics.
+
+**What the public study can say:** The racing calendar is under review; a scheduled event is not a result. The athlete's private messages, labels about his character, and Brice's private reliability assessment are *not* public study evidence and should not appear on the site. The methodological question is what the athlete's completed work can support. Missing completed evidence is unknown, not proof of skipped training.
+
+**Next gate:** Keep the current authored week. Let a confirmed race decision trigger a fresh coach assessment of race-week timing and taper. If there is no race, the study records that fact when established, without treating it as a failed performance test. Simon's plan and the comparison doctrine are unchanged.
