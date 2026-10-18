@@ -31,6 +31,14 @@ h2{font-weight:500;letter-spacing:-.04em;line-height:1.1;font-size:clamp(25px,3.
 @media(max-width:650px){.shell{padding:20px}.barrow{grid-template-columns:91px 1fr 63px;gap:8px}.range{font-size:10px}.val{font-size:12px}.axis{padding-left:99px;padding-right:71px}.grid2,.numbers{grid-template-columns:1fr}.num{padding:14px}.hero{padding-top:50px}.tab{flex:1 1 43%}}
 .embed .top,.embed .hero,.embed .foot{display:none}.embed .shell{max-width:1200px;padding:0}.embed body{background:transparent}.embed .toolbar{margin-top:0}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style><style>
+.signals{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid #66727b;border-bottom:1px solid #66727b;margin:2px 0 18px}
+.signals>div{padding:15px 14px 18px 0;border-right:1px solid #404b56;margin-right:12px;min-width:0}
+.signals>div:last-child{border:0;margin:0}.signals small{display:block;color:var(--blue);font:600 10px ui-monospace,monospace}.signals strong{display:block;margin:6px 0;font-size:clamp(24px,3.2vw,38px);font-weight:520;letter-spacing:-.055em}.signals strong em{font-style:normal;font-size:.5em}.signals span{font-size:12px;line-height:1.48;color:#c2ccd0;display:block}
+.microstatement{font-size:13px;line-height:1.6;color:#d6dadd;max-width:79ch;border-left:2px solid var(--wine);padding:10px 16px;margin:15px 0 28px}.microstatement b{color:var(--bone)}
+.repsummary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:26px 0 20px}
+.repsummary>div{padding:16px;border:1px solid #55616a;background:#1b2128}.repsummary b{font-size:11px;font-weight:600;color:#c9d7df}.repsummary strong{display:block;font-weight:530;font-size:clamp(22px,3vw,32px);letter-spacing:-.035em;margin:5px 0}.repsummary small{display:block;color:#bcc8ce;font-size:11px;line-height:1.5}
+@media(max-width:700px){.signals{grid-template-columns:repeat(2,minmax(0,1fr))}.signals>div:nth-child(2){margin:0;border-right:0}.signals>div:nth-child(-n+2){border-bottom:1px solid #404b56}.signals strong{font-size:28px}.signals span{font-size:11px}.repsummary{grid-template-columns:1fr;gap:7px}.repsummary>div{display:grid;grid-template-columns:1fr auto;align-items:center;gap:1px 12px}.repsummary small{grid-column:1/-1}.repsummary strong{font-size:23px;margin:0}.microstatement{font-size:12px}}
 </style></head>
 <body>
 <div class="shell">
@@ -39,8 +47,15 @@ h2{font-weight:500;letter-spacing:-.04em;line-height:1.1;font-size:clamp(25px,3.
 <section class="hero">
 <p class="smallcaps">Running economy / Speed durability · Observation begins 10 October 2026</p>
 <h1>Speed.<br>Then ease.</h1>
-<p class="intro">Not a pace to chase. A record of how long faster running is available, what it costs, and whether it eventually becomes ordinary. This is an observational layer of the existing running block, not a new training program.</p>
+<p class="intro">The question is simple: does faster running become more available, cost less, and last longer? The measures below separate what we know from what still needs evidence.</p>
 </section>
+<div class="signals" aria-label="Speed study measurement sequence">
+ <div><small>01 / Speed exposure</small><strong>17:04.9</strong><span>Oct 18 faster work, timed by lap</span></div>
+ <div><small>02 / Aerobic cost</small><strong>52</strong><span>Latest Garmin VO₂ estimate; matched-pace HR pending</span></div>
+ <div><small>03 / Mechanics</small><strong>217 <em>ms</em></strong><span>Oct 18 track GCT; compare at similar speeds later</span></div>
+ <div><small>04 / Durability</small><strong>3 <em>mi</em></strong><span>Oct 10 consecutive full-mile averages faster than 7:42</span></div>
+</div>
+<p class="microstatement"><b>Current development corridor:</b> 7:42–7:20/mi. Two separate full-mile laps averaged inside it (Oct 10 and Oct 17), totaling about 15:17. It is <b>not yet established as low aerobic</b>.</p>
 <nav class="toolbar" aria-label="Chart views">
 <button type="button" class="tab" data-panel="speed" aria-selected="true">Time at speed</button>
 <button type="button" class="tab" data-panel="aerobic" aria-selected="false">Aerobic cost</button>
@@ -55,10 +70,14 @@ h2{font-weight:500;letter-spacing:-.04em;line-height:1.1;font-size:clamp(25px,3.
 <div class="num"><small>Oct 18 / average 5:xx</small><strong>3:05.1</strong><span class="quiet">2 repetitions</span></div>
 <div class="num"><small>Oct 18 / average 6:xx</small><strong>13:59.8</strong><span class="quiet">6 repetitions</span></div>
 </div>
-<div class="scopebar" aria-label="Which documented segments to chart"><button class="scope" data-scope="track" aria-pressed="true">Oct 18 track</button><button class="scope" data-scope="all" aria-pressed="false">All verified segments</button><button class="scope" data-scope="road" aria-pressed="false">Earlier road + miles</button></div>
+<div class="scopebar" aria-label="Which documented segments to chart"><button class="scope" data-scope="track" aria-pressed="false">Oct 18 track</button><button class="scope" data-scope="all" aria-pressed="true">All verified segments</button><button class="scope" data-scope="road" aria-pressed="false">Earlier road + miles</button></div>
 <div class="bars" id="exposure-bars" role="img" aria-label="Bar chart of accumulated recorded interval duration by the average pace of each lap"></div><div class="axis" id="bar-axis"><span>0</span><span>Minutes at lap-average pace</span><span id="max-axis">16</span></div>
 <div class="fineprint" id="scope-note">Track repetitions from October 18 only. The eight recorded efforts do not include recoveries. The previous October 17 mile at 7:40 is not included in this track-only view.</div>
-<h3>Where this block starts</h3>
+<div class="repsummary" aria-label="Sustained segment evidence">
+ <div><b>Five short reps</b><strong>7:41.5</strong><small>Oct 18 · about 400 m each, 5:57–6:05/mi averages</small></div>
+ <div><b>Three longer reps</b><strong>9:23.4</strong><small>Oct 18 · about 800 m each, 6:04–6:12/mi averages</small></div>
+ <div><b>Full-mile laps</b><strong>7 recorded</strong><small>Oct 10, 13 and 17 · mixed outings/work; not all intervals</small></div>
+</div><h3>Where this block starts</h3>
 <p class="quiet">October 10 is the first reported freer-running moment with Matt while Adrian rode the bike. The 3-mile outing averaged 7:18/mi and the full-mile splits were 7:37, 7:17 and 7:00. October 12–18 is the existing block's entry week. October 13 includes 3 × 1 mile at 7:05, 6:40 and 6:48. October 17 adds one 7:40 full-mile lap during the 7-mile Palm Beach run. Those events appear in the wider chart view, but do not establish second-by-second time at pace. Two known full-mile lap averages fall within the proposed 7:42–7:20 aerobic development corridor: Oct 10 at 7:37 and Oct 17 at 7:40. That is 2 miles and about 15:17 of lap-average exposure, not yet low-aerobic evidence.</p>
 <p class="quiet"><a href="../SPEED-EXPOSURE-LEDGER-20261018.md">Read the full evidence ledger</a> · The two other prior track sessions still need their exact athlete recordings. No invented reps have been added.</p>
 </section>
@@ -123,7 +142,7 @@ var observations=[
 {date:"Oct 18 track",pace:412,gct:217,stride:1.45,hr:151}
 ];
 function fmt(s){var m=Math.floor(s/60),ss=s-m*60;return m+":"+ss.toFixed(1).padStart(4,"0")}
-function init(){document.querySelectorAll(".tab").forEach(function(b){b.addEventListener("click",function(){document.querySelectorAll(".tab").forEach(function(t){t.setAttribute("aria-selected",String(t===b))});document.querySelectorAll(".panel").forEach(function(p){p.hidden=p.id!==b.dataset.panel})})});document.querySelectorAll("[data-scope]").forEach(function(b){b.addEventListener("click",function(){document.querySelectorAll("[data-scope]").forEach(function(v){v.setAttribute("aria-pressed",String(v===b))});renderBars(b.dataset.scope)})});document.querySelectorAll("[data-metric]").forEach(function(b){b.addEventListener("click",function(){document.querySelectorAll("[data-metric]").forEach(function(v){v.setAttribute("aria-pressed",String(v===b))});drawMechanics(b.dataset.metric)})});renderBars("track");drawMechanics("gct")}
+function init(){document.querySelectorAll(".tab").forEach(function(b){b.addEventListener("click",function(){document.querySelectorAll(".tab").forEach(function(t){t.setAttribute("aria-selected",String(t===b))});document.querySelectorAll(".panel").forEach(function(p){p.hidden=p.id!==b.dataset.panel})})});document.querySelectorAll("[data-scope]").forEach(function(b){b.addEventListener("click",function(){document.querySelectorAll("[data-scope]").forEach(function(v){v.setAttribute("aria-pressed",String(v===b))});renderBars(b.dataset.scope)})});document.querySelectorAll("[data-metric]").forEach(function(b){b.addEventListener("click",function(){document.querySelectorAll("[data-metric]").forEach(function(v){v.setAttribute("aria-pressed",String(v===b))});drawMechanics(b.dataset.metric)})});renderBars("all");drawMechanics("gct")}
 function renderBars(scope){var entries=reps.filter(function(d){return scope==="all"||(scope==="track"&&d.type==="track")||(scope==="road"&&d.type==="road")}),values=bands.map(function(b){return entries.filter(function(r){return r.pace>=b.lo&&r.pace<=b.hi}).reduce(function(s,v){return s+v.seconds},0)}),max=Math.max(60,...values);var el=document.getElementById("exposure-bars");el.textContent="";
 bands.forEach(function(b,i){var v=values[i],row=document.createElement("div");row.className="barrow";var caption=document.createElement("span");caption.className="range";caption.textContent=b.label;var rail=document.createElement("div");rail.className="rail";var fill=document.createElement("span");fill.className="fill"+(b.lo<360?" five":"");fill.style.width=String(v?Math.max(0.5,v/max*100):0)+"%";rail.append(fill);var val=document.createElement("span");val.className="val";val.textContent=v?fmt(v):"—";row.append(caption,rail,val);el.append(row)});
 document.getElementById("max-axis").textContent=Math.ceil(max/60)+"m";document.getElementById("scope-note").textContent=scope==="track"?"Only October 18 timed work reps, sorted by their Garmin lap-average pace. Recovery is excluded.":scope==="road"?"Known full-mile laps from October 10, October 13 and October 17. Do not confuse their average-pace duration with exact time at that instantaneous speed.": "All documented complete-mile averages and October 18 timed repetitions. This is an incomplete observed subset of the block, not total training time in these pace bins.";
