@@ -13,7 +13,7 @@
 <meta content="index,follow,max-image-preview:large" name="robots"/>
 <!-- Share image follows the convention already used on /plans/race-pace-durability. -->
 <meta content="2026-08-23" property="article:published_time"/>
-<meta content="2026-10-13" property="article:modified_time"/>
+<meta content="2026-10-18" property="article:modified_time"/>
 <meta content="Running" property="article:section"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -1415,30 +1415,44 @@ html,body{overflow-x:clip}
 <style id="form-observation-style">.form-observation-note{display:block;position:relative;box-sizing:border-box;max-width:1040px;margin:48px auto;padding:28px 24px;border-top:1px solid currentColor;scroll-margin-top:100px}.form-observation-note h2{font:inherit;font-size:clamp(25px,4vw,40px);font-weight:700;line-height:1.15;letter-spacing:0;margin:8px 0 20px}.form-observation-note p{font-size:17px;line-height:1.6;max-width:66ch;letter-spacing:0}.form-observation-note .obs-label{font-size:13px;letter-spacing:.04em}.form-observation-note a{color:inherit;text-decoration:underline}.form-observation-note dl{display:grid;grid-template-columns:100px 1fr;gap:14px 20px;margin:26px 0;font-size:16px;line-height:1.5}.form-observation-note dt{font-weight:700}.form-observation-note dd{margin:0}.form-observation-note blockquote{font:inherit;font-size:20px;line-height:1.5;margin:24px 0;max-width:60ch}@media(max-width:430px){.form-observation-note{padding:24px 20px;margin:32px auto}.form-observation-note dl{grid-template-columns:1fr;gap:5px}.form-observation-note dd{margin-bottom:12px}}</style>
 <link rel="stylesheet" href="/css/sf-brand.css?v=20261001">
 <link rel="stylesheet" href="/css/sf-menu.css?v=20261015-focus">
-</head>
+<style>
+/* FORM study first-read: keep the original dark cinematic laboratory beneath */
+.ste-current,.ste-method,.ste-development,.ste-log{position:relative;background:#061416;color:#f5f1e8;border-bottom:1px solid #496368;padding:clamp(35px,5vw,70px) 0}
+.ste-current{background:radial-gradient(circle at 80% 12%,rgba(137,195,181,.14),transparent 42%),#061416}
+.ste-heading{border-bottom:1px solid #506665;padding-bottom:22px}.ste-heading h2{font-size:clamp(38px,6vw,76px);letter-spacing:-.058em;line-height:1.03;max-width:18ch;margin:11px 0}.ste-heading h2 em{font-style:italic;color:#b3d0c4}.ste-heading>p:last-child{font-size:clamp(15px,1.9vw,19px);max-width:72ch;color:#d5e1da}
+.ste-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:#4d6968;border:1px solid #4d6968;margin:24px 0}.ste-card{background:#0e2527;padding:clamp(19px,3vw,33px);min-width:0}
+.ste-card small{display:block;color:#b6cbbb;font:700 11px/1.5 ui-monospace,monospace;letter-spacing:.08em}.ste-card strong{display:block;margin:13px 0;font-size:clamp(31px,4vw,57px);line-height:1;letter-spacing:-.055em;color:#f7f1e3}.ste-card strong em{font-size:.45em;font-style:normal;letter-spacing:0}.ste-card p{font-size:14px;line-height:1.6;color:#d7e0db;margin:0 0 10px}.ste-card p b{color:white}.ste-flag{display:block;margin-top:17px;color:#c5e4cb;font:700 10px/1.6 ui-monospace,monospace;letter-spacing:.03em}.ste-route,.ste-reference{display:flex;flex-wrap:wrap;gap:9px;margin-top:17px}.ste-route a,.ste-reference a{padding:13px 15px;border:1px solid #8caeaa;color:#f1f5ec;font-size:12px;text-decoration:none}.ste-route a:hover,.ste-route a:focus-visible,.ste-reference a:hover{background:rgba(154,196,180,.13)}.ste-small{color:#b9cbc4;font-size:12px;line-height:1.65;margin:16px 0 0}
+.ste-method h2,.ste-development h2,.ste-log h2{font-size:clamp(31px,4.5vw,54px);letter-spacing:-.045em;margin:11px 0 20px;line-height:1.1}.ste-method>.rail>p:not(.tag):not(.ste-small){font-size:16px;max-width:71ch;color:#d5e1da}
+.ste-methodgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin:26px 0}.ste-methodgrid>div{border-top:2px solid #a0c5b5;padding-top:16px}.ste-methodgrid b{display:block;color:#b6d8cc;font:700 11px ui-monospace,monospace}.ste-methodgrid strong{display:block;margin:12px 0;font-size:19px;line-height:1.2}.ste-methodgrid span{display:block;color:#c8d5d0;font-size:13px;line-height:1.55}
+.ste-rows{border-top:2px solid #8eaca5}.ste-r{display:grid;grid-template-columns:1fr 1fr 2.3fr 2.5fr;gap:17px;padding:17px 2px;border-bottom:1px solid #47605c;font-size:13px;line-height:1.6}.ste-r>b{font-size:16px}.ste-labels{font:700 10px ui-monospace,monospace;color:#b6cbbb;text-transform:uppercase}.ste-state{color:#b4d8c5;font:700 12px ui-monospace,monospace}
+.ste-entry{border-top:1px solid #4a6560;display:grid;grid-template-columns:105px 1fr;gap:22px;padding:16px 0}.ste-entry time{font:700 12px ui-monospace,monospace;color:#b3d2c3}.ste-entry b{font-size:16px}.ste-entry p{margin:4px 0;font-size:14px;color:#d6dfda;line-height:1.6}
+.ste-notebook{background:#071819;color:#f6f0e8;border-bottom:2px solid #c8d8ce}.ste-notebook>summary{cursor:pointer;list-style:revert;padding:clamp(24px,5vw,56px) max(22px,calc((100% - 1110px)/2));border-bottom:1px solid #4a6768}.ste-notebook>summary>b{display:block;font-size:clamp(25px,4vw,47px);letter-spacing:-.05em}.ste-notebook>summary>span{display:block;font-size:13px;max-width:65ch;color:#cfdbd4;margin-top:9px;line-height:1.6}.ste-notebook:not([open]){padding-bottom:0}
+@media(max-width:700px){.ste-grid{grid-template-columns:1fr}.ste-methodgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.ste-r{grid-template-columns:1fr 1fr;gap:7px 14px}.ste-r>span:nth-child(3),.ste-r>span:nth-child(4){grid-column:1/-1}.ste-labels{display:none}.ste-r>span:nth-child(4){color:#a9b9b2}.ste-r>span:nth-child(4):before{content:"OPEN QUESTION · ";font:700 10px ui-monospace,monospace;color:#b6d8cc}.ste-entry{grid-template-columns:75px 1fr;gap:12px}.ste-card strong{font-size:37px}}
+@media(max-width:430px){.ste-methodgrid{grid-template-columns:1fr 1fr;gap:9px}.ste-methodgrid strong{font-size:16px}.ste-card p{font-size:13px}}
+</style></head>
 <body>
 <div class="masthead sf-menu-host">
 <a class="wordmark sf-brand" href="/" aria-label="Speed and Form home"></a>
-<div class="status"><i aria-hidden="true"></i>In progress · updated Oct 06</div>
+<div class="status"><i aria-hidden="true"></i>In progress · reviewed Oct 18</div>
 <a class="sf-menu-toggle" href="#site-menu" aria-controls="site-menu" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18"/></svg></a></div>
 
 <div aria-hidden="true" id="progress"></div>
 <nav aria-label="Article contents" id="toc">
 <div aria-hidden="true" id="toc-panel">
-<a href="#cost"><b>01</b>The cost of pace</a>
-<a href="#kite"><b>02</b>The feeling of fitness</a>
-<a href="#method"><b>03</b>The method</a>
-<a href="#cases"><b>04</b>Two athletes, one question</a>
-<a href="#season"><b>05</b>The season</a>
-<a href="#experiment"><b>06</b>The experiment</a>
-<a href="#lab-notes"><b>07</b>Lab notes</a>
-<a href="#orlando"><b>08</b>Orlando → Donna</a>
+<a href="#now"><b>01</b>Current status</a>
+<a href="#ste-method"><b>02</b>Method</a>
+<a href="#ste-developing"><b>03</b>Developing</a>
+<a href="#ste-evidence"><b>04</b>Evidence</a>
+<a href="#ste-notebook"><b>05</b>Full notebook</a>
+<a href="#ste-method"><b>06</b>Test method</a>
+<a href="#ste-evidence"><b>07</b>Latest log</a>
+<a href="#ste-notebook"><b>08</b>Orlando → Donna</a>
 </div>
 <button aria-controls="toc-panel" aria-expanded="false" id="toc-btn"><i aria-hidden="true"></i>Contents</button>
 </nav>
 <article itemscope="" itemtype="https://schema.org/Article">
 <meta content="2026-08-23" itemprop="datePublished"/>
-<meta content="2026-10-06" itemprop="dateModified"/>
+<meta content="2026-10-18" itemprop="dateModified"/>
 <!-- ══════════════════════════ HERO ══════════════════════════ -->
 <header class="hero bleed" id="top">
 <div class="hero-photo">
@@ -1465,7 +1479,7 @@ html,body{overflow-x:clip}
 <li><a href="#cases"><b>04</b>Two athletes, one question</a></li>
 <li><a href="#orlando"><b>08</b>Orlando → Donna</a></li>
 </ol>
-<a class="plan-link" href="#rhythm-read">Oct 06 · Find the rhythm. Make it last. &rarr;</a>
+<a class="plan-link" href="#rhythm-read">Oct 13 · José, 20 minutes continuous &rarr;</a>
 <a class="plan-link" href="/plans/race-pace-durability/">Open the 15-week plan &rarr;</a>
 </nav>
 
@@ -1473,6 +1487,41 @@ html,body{overflow-x:clip}
 </div>
 </header>
 <div class="bleed" itemprop="articleBody">
+<div class="ste-current" id="now" aria-labelledby="ste-now-title">
+ <div class="rail">
+ <div class="ste-heading"><p class="tag">CURRENT READ · 18 OCT 2026 · ACT I</p><h2 id="ste-now-title">The speed is there.<br><em>How long can it last?</em></h2><p>The question is not who runs the fastest rep. It is what happens to the same race pace when recovery breaks disappear, time extends and the cost rises.</p></div>
+ <div class="ste-grid" aria-label="Current athlete and season status">
+  <div class="ste-card"><small>JOSÉ · RACE-PACE BAND</small><strong>6:30–6:45 <em>/mi</em></strong><p><b>Oct 13 evidence:</b> 20:00 continuous at 6:06/mi, 3.28 mi. That was faster development work, <b>not</b> a half-marathon race-pace test. Six continuous miles remain the last confirmed race-pace milestone.</p><span class="ste-flag">NEXT READ · Longer continuous hold, after a recovery check</span></div>
+  <div class="ste-card"><small>HOPE · RACE-PACE BAND</small><strong>6:45–7:00 <em>/mi</em></strong><p><b>Last documented direction:</b> ease back into running following PT; easy running before another quality session. No newer completed hard run has been verified in this study.</p><span class="ste-flag">NEXT READ · Re-establish comfortable, repeatable running</span></div>
+  <div class="ste-card"><small>ACT I · ORLANDO HALF</small><strong>05 DEC <em>2026</em></strong><p>Test continuous race-pace durability over 13.1 miles. The result belongs to each athlete individually, not to a shared predicted finish.</p></div>
+  <div class="ste-card"><small>ACT II · DONNA MARATHON</small><strong>07 FEB <em>2027</em></strong><p>The later question is whether usable pace survives the first 20 miles. Conversion after Orlando is evidence-led; it is not an automatic workload escalation.</p></div>
+ </div>
+ <div class="ste-route"><a href="#ste-method">How the test works ↘</a><a href="#ste-developing">What is developing ↘</a><a href="#ste-notebook">Open full lab notebook ↘</a><a href="/plans/race-pace-durability/">Training plan ↗</a></div>
+ <p class="ste-small">Current-status source: last verified athlete results and coaching notes in this study through Oct 13. Oct 18 is the editorial review date, not evidence of a newly completed workout. Plans are coach-owned and can change separately from the public study.</p>
+ </div></div>
+<section class="ste-method" id="ste-method"><div class="rail">
+<p class="tag">METHOD · REMOVE THE RESET</p><h2>Output. Cost. Reserve. Limiter.</h2><p>We start from a speed each athlete can already reach, then test the ability to keep it available for longer. Broken repetitions introduce resets. Continuous exposure removes them.</p>
+<div class="ste-methodgrid">
+ <div><b>01 · OUTPUT</b><strong>What pace held?</strong><span>Work duration, splits and whether the athlete kept the assigned band.</span></div>
+ <div><b>02 · COST</b><strong>What did it require?</strong><span>Effort, breathing, HR where credible, conditions and rising fatigue.</span></div>
+ <div><b>03 · RESERVE</b><strong>What remained?</strong><span>How much farther could the pace reasonably have continued?</span></div>
+ <div><b>04 · LIMITER</b><strong>What failed first?</strong><span>Legs, cardiovascular strain, pacing, heat or another reported constraint.</span></div>
+</div><p class="ste-small">The same pace band is not the same physiological cost for two different people. Recovery, weather, sensor limitations and workout format remain part of interpretation.</p></div></section>
+<section class="ste-development" id="ste-developing"><div class="rail"><p class="tag">WHAT IS DEVELOPING · LAST VERIFIED READ</p><h2>Two athletes. Different next questions.</h2>
+<div class="ste-rows" role="table" aria-label="Current race-pace durability observations">
+ <div class="ste-r ste-labels" role="row"><span role="columnheader">Athlete</span><span role="columnheader">Read</span><span role="columnheader">Evidence</span><span role="columnheader">Open question</span></div>
+ <div class="ste-r" role="row"><b role="cell">José</b><span role="cell" class="ste-state">Repeating</span><span role="cell">Six continuous miles previously established at race pace; 20 min faster work recorded Oct 13.</span><span role="cell">Can his race-pace band remain controlled through a longer uninterrupted hold with manageable recovery?</span></div>
+ <div class="ste-r" role="row"><b role="cell">Hope</b><span role="cell" class="ste-state">Re-entry</span><span role="cell">Earlier interval exposures; subsequent PT-linked easy-only return and no new hard-session result.</span><span role="cell">When does comfortable consistency allow quality work to resume without forcing the calendar?</span></div>
+ <div class="ste-r" role="row"><b role="cell">Shared test</b><span role="cell" class="ste-state">Not yet</span><span role="cell">Orlando Dec 5 is the intended continuous half-marathon test.</span><span role="cell">How does the cost of the same relative goal pace change later in the race?</span></div>
+ </div></div></section>
+<section class="ste-log" id="ste-evidence"><div class="rail"><p class="tag">DATED EVIDENCE · SHORT VERSION</p><h2>Results, not repeated headlines.</h2>
+<div class="ste-entry"><time datetime="2026-09-15">SEP 15</time><div><b>Continuous pace begins to extend</b><p>Five uninterrupted race-pace miles documented in the earlier ladder. More duration is the next variable, not a faster arbitrary target.</p></div></div>
+<div class="ste-entry"><time datetime="2026-09-29">SEP 29</time><div><b>José establishes six continuous miles</b><p>The documented race-pace milestone for José; it is separate from his later faster twenty-minute effort.</p></div></div>
+<div class="ste-entry"><time datetime="2026-10-06">OCT 06</time><div><b>Broken work becomes too costly</b><p>José reports 4 × 2 mi at roughly 6:42–6:43/mi feeling 10/10. Coach prioritizes more manageable, continuous rhythm.</p></div></div>
+<div class="ste-entry"><time datetime="2026-10-13">OCT 13</time><div><b>Twenty minutes of uninterrupted faster development</b><p>José covers 3.28 mi at 6:06/mi and reports his rhythm settling. This does not establish a new threshold or replace the six-mile race-pace benchmark.</p></div></div>
+<div class="ste-reference"><a href="#ste-notebook">Explore original athlete reports, rep splits and research ↘</a><a href="#orlando">Orlando study chapter ↘</a><a href="#donna-test">Donna research chapter ↘</a></div>
+</div></section>
+<details class="ste-notebook" id="ste-notebook"><summary><b>Full lab notebook and source evidence</b><span>Original paired athlete observations, pace-cost diagrams, progression ladders, season chapters and literature. Preserved, not deleted. Open for detail ↘</span></summary>
 <!-- ══════════════════════════ 01 · COST OF PACE ══════════════════════════ -->
 <section aria-labelledby="cost-h" class="chapter cost-v7" id="cost">
 <div class="rail">
@@ -2259,6 +2308,8 @@ html,body{overflow-x:clip}
 <p style="margin:36px auto 0;text-align:center"><a href="/labs/the-last-10k/" style="display:inline-block;border-bottom:1px solid currentColor;padding-bottom:4px">Continue to Act II · The Last 10K →</a></p>
 </div>
 </section>
+
+</details>
 </div><!-- /articleBody -->
 <footer class="site-foot bleed">
 <div class="rail foot-grid">
@@ -2267,7 +2318,7 @@ html,body{overflow-x:clip}
 <div class="foot-meta">
 <span>Speed That Endures</span>
 <span>José + Hope · two athletes · one question</span>
-<span>In progress · last updated Sep 19 2026</span>
+<span>Editorial review 18 Oct 2026 · latest sourced José session 13 Oct</span>
 </div>
 </div>
 <div><a class="foot-plan" href="/plans/race-pace-durability/">Open the 15-week plan &rarr;</a><p><a href="/labs/">Other studies &rarr;</a> &nbsp; <a href="/#practice">How I coach &rarr;</a></p></div>
@@ -2720,5 +2771,11 @@ const evidence = {
 </div>
 <!-- /Shared site menu -->
 <script defer src="/js/sf-menu.js?v=20261015-focus"></script>
-</body>
+<script>
+(function(){
+ const openHash=()=>{const id=decodeURIComponent(location.hash.slice(1));if(!id)return;const el=document.getElementById(id);if(el&&el.closest('#ste-notebook')){const notebook=document.getElementById('ste-notebook');notebook.open=true;requestAnimationFrame(()=>el.scrollIntoView({block:'start'}))}};
+ addEventListener('hashchange',openHash);document.addEventListener('DOMContentLoaded',openHash);
+ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{const id=a.getAttribute('href').slice(1);const el=document.getElementById(id);if(el&&el.closest('#ste-notebook'))document.getElementById('ste-notebook').open=true}));
+})();
+</script></body>
 </html>
