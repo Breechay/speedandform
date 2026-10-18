@@ -15,12 +15,12 @@
       "study_url": "/labs/same-pace-different-problem/?athlete=elijah",
       "plan_url": "/plans/elijah-savannah-half/",
       "focus": {
-        "en": "Make the remaining weeks count.",
-        "fr": "Faire compter les semaines restantes."
+        "en": "Make the useful work count.",
+        "fr": "Faire compter le travail utile."
       },
       "summary": {
-        "en": "A short preparation for Savannah. Specific work, measured progression and enough recovery to reach the start line ready.",
-        "fr": "Une préparation courte pour Savannah. Du travail spécifique, une progression mesurée et assez de récupération pour être prêt au départ."
+        "en": "A short, specific block with race selection under review. Train from the work actually completed, protecting the principal session and recoverable long run.",
+        "fr": "Un bloc court et spécifique, avec une course encore à confirmer. Partir du travail effectué, en protégeant la séance principale et la sortie longue récupérable."
       },
       "goal": {
         "en": "Sub-1:20 is a conditional goal.",
@@ -835,6 +835,44 @@
       },
       "basis_hash": "ef2eac3f809520344a2f47c1f47fe5080da1fba01f21f8b08856767e2d35289c",
       "review_required": false
+    },
+    {
+      "id": "elijah-use-the-work-20261018",
+      "athletes": [
+        "elijah"
+      ],
+      "kind": "decision",
+      "date": "2026-10-18",
+      "visibility": "approved_public",
+      "revision": 1,
+      "depends_on": [
+        "elijah-protect-the-specific-work"
+      ],
+      "plan_refs": {
+        "elijah": 5
+      },
+      "title": {
+        "en": "Use the work that actually happens.",
+        "fr": "S'appuyer sur le travail réellement fait."
+      },
+      "body": {
+        "en": "The Savannah date remains the current plan reference, but the race selection is under review. No replacement or race result is confirmed. Training stays focused on the most useful specific work and a recoverable long run, judged by what is actually completed rather than an assumed perfect calendar.",
+        "fr": "Savannah reste la référence du plan actuel, mais le choix de course est en révision. Aucun remplacement ni résultat n'est confirmé. L'entraînement privilégie le travail spécifique utile et une sortie longue récupérable, à partir des séances réellement effectuées plutôt que d'un calendrier idéal."
+      },
+      "learning": {
+        "en": "The coaching question is how to get useful performance from the training available. Changing the athlete's habits is not a separate intervention in this study; one strong session or extra calendar weeks are not evidence of more preparation.",
+        "fr": "La question est d'obtenir une performance utile avec le travail disponible. Changer les habitudes de l'athlète n'est pas l'objectif de cette étude. Une bonne séance ou davantage de semaines au calendrier ne prouvent pas une meilleure préparation."
+      },
+      "next": {
+        "en": "Continue the assigned program. Confirm an event before revising its taper. Record workouts and race participation only when evidence arrives; a missed or unrun event is not a performance result.",
+        "fr": "Poursuivre le programme attribué. Confirmer l'épreuve avant de revoir l'affûtage. Ne noter séances et participation que lorsque les preuves arrivent ; une course non disputée ne constitue pas un résultat."
+      },
+      "source": {
+        "url": "https://github.com/Breechay/speedandform/blob/main/docs/studies/ELIJAH-SIMON-SAME-PACE-DIFFERENT-PROBLEM.md",
+        "label": "FORM study decision · October 18",
+        "state": "coach-authored public interpretation"
+      },
+      "review_required": false
     }
   ],
   "copy": {
@@ -843,16 +881,16 @@
       "fr": "Même allure. Défi différent."
     },
     "intro": {
-      "en": "One runner races in November. The other has until May. The target may look similar. The work should not.",
-      "fr": "L’un court en novembre. L’autre a jusqu’en mai. La cible se ressemble. Pas le travail."
+      "en": "Two runners share a half-marathon pace neighborhood. Elijah's event choice is under review; Savannah remains the current plan reference. Simon is building toward May.",
+      "fr": "Deux coureurs visent des allures voisines sur semi-marathon. Le choix de course d'Elijah est en révision ; Savannah reste la référence du plan. Simon se prépare pour mai."
     },
     "elijah.focus": {
-      "en": "Make the remaining weeks count.",
-      "fr": "Faire compter les semaines restantes."
+      "en": "Make the useful work count.",
+      "fr": "Faire compter le travail utile."
     },
     "elijah.summary": {
-      "en": "A short preparation for Savannah. Specific work, measured progression and enough recovery to reach the start line ready.",
-      "fr": "Une préparation courte pour Savannah. Du travail spécifique, une progression mesurée et assez de récupération pour être prêt au départ."
+      "en": "A short, specific block with race selection under review. Train from the work actually completed, protecting the principal session and recoverable long run.",
+      "fr": "Un bloc court et spécifique, avec une course encore à confirmer. Partir du travail effectué, en protégeant la séance principale et la sortie longue récupérable."
     },
     "elijah.goal": {
       "en": "Sub-1:20 is a conditional goal.",
@@ -874,5 +912,10 @@
   "generated_from": {
     "registry": "data/studies/paired-study.json",
     "hash": "f7f03d1d5a7be14e79d453b11f105c4ed2050a765c9b04bc01c7b984495648f6"
+  },
+  "editorial_update": {
+    "date": "2026-10-18",
+    "source": "docs/studies/ELIJAH-SIMON-SAME-PACE-DIFFERENT-PROBLEM.md",
+    "scope": "public coaching decision; race choice pending; no plan change"
   }
 }
