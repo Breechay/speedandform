@@ -7,6 +7,7 @@
 <meta name="description" content="The Rebuilt Athlete speed exposure and durability workbench. Documented lap-average time at pace, estimated aerobic development, running mechanics and recovery context.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://speedandform.com/labs/rebuilt-athlete/speed-exposure/">
+<script>if(location.search.indexOf('embedded=1')>=0){document.documentElement.classList.add('embed')}</script>
 <style>
 :root{color-scheme:dark;--bg:#14191f;--panel:#222831;--line:#414a52;--muted:#b6c0c7;--bone:#f4efe5;--blue:#90b8cf;--wine:#a46b7f;--bar:#95b7c8}
 *{box-sizing:border-box}html{background:var(--bg);scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--bone);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
@@ -28,6 +29,7 @@ h2{font-weight:500;letter-spacing:-.04em;line-height:1.1;font-size:clamp(25px,3.
 .figure{width:100%;height:auto;max-height:330px;display:block}.figure text{font-family:ui-monospace,monospace;fill:#bbc7cf;font-size:12px}.figure line{stroke:#596671;stroke-width:1}.figure .trace{stroke:#99b9c9;fill:none;stroke-width:3}.figure .dot{fill:#d0dce0}.figure .accent{fill:#af7488}
 .foot{border-top:1px solid var(--line);padding:32px 0 50px;color:var(--muted);font-size:12px;line-height:1.65}
 @media(max-width:650px){.shell{padding:20px}.barrow{grid-template-columns:91px 1fr 63px;gap:8px}.range{font-size:10px}.val{font-size:12px}.axis{padding-left:99px;padding-right:71px}.grid2,.numbers{grid-template-columns:1fr}.num{padding:14px}.hero{padding-top:50px}.tab{flex:1 1 43%}}
+.embed .top,.embed .hero,.embed .foot{display:none}.embed .shell{max-width:1200px;padding:0}.embed body{background:transparent}.embed .toolbar{margin-top:0}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style></head>
 <body>
@@ -133,7 +135,7 @@ for(var i=0;i<=4;i++){var y=315-i*61;node("line",{x1:67,y1:y,x2:744,y2:y,stroke:
 for(var p=400;p<=510;p+=22){var x=67+(p-395)/(510-395)*677;node("text",{x:x,y:352,"text-anchor":"middle"},Math.floor(p/60)+":"+String(p%60).padStart(2,"0"))}
 observations.forEach(function(o,i){var x=67+(o.pace-395)/(510-395)*677,y=315-(o[metric]-bounds[0])/(bounds[1]-bounds[0])*244;node("circle",{cx:x,cy:y,r:7,fill:i===6?"#b27b8a":"#aac7d7",stroke:"#1b232a","stroke-width":2});var dy=i===2?-17:(i===3?25:(i===0?-17:(i===4?20:-14)));node("text",{x:x+6,y:y+dy,fill:"#d5e1e7",style:"font-size:12px"},o.date)});
 node("text",{x:390,y:376,"text-anchor":"middle",style:"font-size:12px"},"Whole-run average pace (min/mi), not a controlled matched-pace test")}
-document.addEventListener("DOMContentLoaded",init);
+function sendHeight(){if(window.parent!==window){window.parent.postMessage({type:"form-study-speed-embed",height:Math.ceil(document.documentElement.scrollHeight)},"*")}}document.addEventListener("DOMContentLoaded",function(){init();sendHeight();if(typeof ResizeObserver!=="undefined"){new ResizeObserver(sendHeight).observe(document.body)}window.addEventListener("load",sendHeight)});
 })();
 </script>
 </body></html>
