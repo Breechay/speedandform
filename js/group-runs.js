@@ -145,6 +145,8 @@
     Promise.all([loadRuns(), loadGalleries().catch(function () { return null; })]).then(function (res) {
       var runs = res[0], gal = res[1];
       var upcoming = runs.filter(isUpcoming).sort(function (a, b) { return Date.parse(a.starts_at) - Date.parse(b.starts_at); }).slice(0, 6);
+      var heroAction = $('gr-hero-action');
+      if (heroAction) heroAction.firstChild.textContent = upcoming.length ? 'See the next run ' : 'Run details ';
       next.innerHTML = upcoming.length ? upcoming.map(function (r) { return runRow(r, true); }).join('') :
         '<p class="gr-state">No group run is currently scheduled. The published mornings and photographs remain below.</p>';
       var past = runs.filter(function (r) { return r.status !== 'cancelled' && !isUpcoming(r); });
