@@ -131,9 +131,9 @@ check(/<h1>/.test(html), 'missing h1');
 check((html.match(/<h1>/g) || []).length === 1, 'more than one h1');
 check(/prefers-reduced-motion/.test(html), 'missing reduced-motion handling');
 check(/@media print/.test(html), 'missing print styles');
-const scriptTags = [...html.matchAll(/<script\\b[^>]*>/gi)].map(m => m[0]);
-check(scriptTags.every(tag => /type="application\\/ld\\+json"/.test(tag) ||
-  /src="\\/js\\/sf-menu\\.js(?:\\?[^"]*)?"/.test(tag)),
+const scriptTags = [...html.matchAll(/<script\b[^>]*>/gi)].map(m => m[0]);
+check(scriptTags.every(tag => /type="application\/ld\+json"/.test(tag) ||
+  /src="\/js\/sf-menu\.js(?:\?[^"]*)?"/.test(tag)),
   'only schema and the approved shared-navigation script are allowed');
 
 // 11. The page is registered where readers find it.
