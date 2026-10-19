@@ -6,7 +6,7 @@ const html=fs.readFileSync('index.html','utf8');
 const menu=fs.readFileSync('scripts/site-menu-panel.html','utf8').trim();
 for(const phrase of [
  'Run farther.<br>Feel smoother.<br>Get stronger',
- 'I’m Brice.',
+ 'Running and strength coaching. Plans to follow. People to train with.',
  'Train with me.',
  'Meet the athletes. The faces of FORM.',
  'From the practice',

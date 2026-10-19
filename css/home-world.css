@@ -1,32 +1,28 @@
-/* Inside FORM (Oct 19, 2026): the app's opening on the homepage. Cream ground, the ink bend,
-   real FORM photographs in the infield, the emblem at the goal. */
-.home-world{background:#f1ede4;color:#161916;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);align-items:center;overflow:hidden}
-.home-world-art{min-width:0}
-.home-world-art svg{display:block;width:100%;height:auto;aspect-ratio:900/760}
-.hw-ground{fill:#161916}
-.hw-photo{filter:grayscale(1) contrast(1.08);opacity:0}
-.hw-photo:first-of-type{opacity:1}
-.hw-scrim{fill:rgba(13,15,14,.26)}
-.hw-lanes{fill:none;stroke:rgba(22,25,22,.52);stroke-width:1.25}
-.hw-lanes path{vector-effect:non-scaling-stroke}
-.home-world-copy{padding:48px max(var(--public-gutter,24px),calc((100vw - var(--max,1280px)) / 2)) 48px 24px;max-width:520px}
-.home-world-mark{display:block;width:150px;height:auto;margin:0 0 34px}
-.home-world-eyebrow{margin:0 0 18px;font:400 11px/1.6 var(--mono,monospace);letter-spacing:.13em;text-transform:uppercase;color:#5e625b}
-.home-world h2{margin:0;font-size:clamp(36px,4.2vw,62px);font-weight:450;line-height:1.04;letter-spacing:-.05em;text-wrap:balance}
-.home-world-copy>p:not(.home-world-eyebrow):not(.home-world-links){margin:22px 0 0;font-size:18px;line-height:1.5;color:#3f433d;max-width:36ch}
-.home-world-links{display:flex;flex-wrap:wrap;gap:10px;margin:30px 0 0}
-.home-world-links a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border:1px solid rgba(22,25,22,.24);border-radius:999px;color:#161916;text-decoration:none;font-size:15px}
-.home-world-links a:hover{border-color:#161916}
+/* Inside FORM (Oct 19, 2026): a contact sheet. Cream ground, "The work shows." set large, and a strip of
+   real FORM frames that runs off the page and drifts with the scroll. Its own composition: the
+   bend belongs to the chapter above. */
+.home-world{background:#f1ede4;color:#161916;padding:clamp(88px,9vw,140px) 0 clamp(72px,8vw,120px);overflow:hidden}
+.home-world-head{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);column-gap:clamp(40px,6vw,96px);align-items:end}
+.home-world-eyebrow{margin:0 0 20px;font:400 11px/1.6 var(--mono,monospace);letter-spacing:.13em;text-transform:uppercase;color:#5e625b}
+.home-world h2{margin:0;max-width:13ch;font-size:clamp(60px,9vw,140px);font-weight:450;line-height:.94;letter-spacing:-.06em}
+.home-world-copy>p:first-child{margin:0;font-size:18px;line-height:1.55;color:#3f433d;max-width:36ch}
+.home-world-links{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 0}
+.home-world-links a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border:1px solid rgba(22,25,22,.24);border-radius:999px;color:#161916;text-decoration:none;font-size:15px;transition:background-color .3s ease,color .3s ease,border-color .3s ease}
+.home-world-links a:hover{background:#161916;border-color:#161916;color:#f1ede4}
 .home-world-links a:focus-visible{outline:2px solid #161916;outline-offset:3px}
-@media(prefers-reduced-motion:no-preference){
-.hw-photo{animation:hw-cycle 24s linear infinite}
-.hw-photo:nth-of-type(1){animation-delay:0s}
-.hw-photo:nth-of-type(2){animation-delay:-18s}
-.hw-photo:nth-of-type(3){animation-delay:-12s}
-.hw-photo:nth-of-type(4){animation-delay:-6s}
-}
-@keyframes hw-cycle{0%{opacity:1}20%{opacity:1}25%{opacity:0}95%{opacity:0}100%{opacity:1}}
+
+/* The sheet: frames of one height, varying widths, numbered like film. */
+.home-world-sheet{margin-top:clamp(56px,6vw,96px);padding-left:max(var(--public-gutter,24px),calc((100vw - var(--max,1280px)) / 2))}
+.home-world-sheet ul{display:flex;gap:clamp(10px,1.1vw,16px);margin:0;padding:0;list-style:none;width:max-content;will-change:transform}
+.home-world-sheet li{flex:none;margin:0}
+.home-world-sheet img{display:block;height:clamp(240px,30vw,440px);width:auto;max-width:none;filter:grayscale(1) contrast(1.06);background:#d9d4c9}
+.home-world-sheet span{display:block;margin-top:10px;font:400 11px/1.4 var(--mono,monospace);letter-spacing:.1em;color:#5e625b}
 @media(max-width:860px){
-.home-world{grid-template-columns:1fr}
-.home-world-copy{padding:8px var(--public-gutter,24px) 72px;max-width:none}
+  .home-world-head{grid-template-columns:1fr;row-gap:24px}
+  .home-world h2{font-size:clamp(60px,17vw,96px)}
+  .home-world-sheet{overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-right:var(--public-gutter,24px);scroll-padding-left:var(--public-gutter,24px)}
+  .home-world-sheet::-webkit-scrollbar{display:none}
+  .home-world-sheet li{scroll-snap-align:start}
+  .home-world-sheet img{height:clamp(190px,52vw,300px)}
+  .home-world-sheet ul{will-change:auto}
 }
