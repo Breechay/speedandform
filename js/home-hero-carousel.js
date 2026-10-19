@@ -1,99 +1,114 @@
-/* FORM homepage: photographic editorial carousel. The film is silent, decorative,
-   lazy, and never exposes a control that could unmute it. No tracking. */
-(function(){
+/* Two-scene FORM entrance: Brice's original still then the published Adrian + Tinius
+   film. The still holds the hero until video ACTUALLY plays. Silent, no film controls.
+   Reduced Motion and Save-Data render one static photograph. */
+(function () {
   'use strict';
   var root = document.querySelector('[data-hero-carousel="ready"]');
-  if(!root) return;
-  var videoSlide = root.querySelector('.home-hero-video');
-  var video = videoSlide && videoSlide.querySelector('video');
+  if (!root) return;
+
+  var still = root.querySelector('.home-hero-slide.is-active');
+  var filmSlide = root.querySelector('.home-hero-video');
+  var video = filmSlide && filmSlide.querySelector('video');
+  if (!still || !filmSlide || !video) return;
+
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var saveData = !!(navigator.connection && navigator.connection.saveData);
-  var filmURL = 'https://pbgsjjegycacodiltbhn.supabase.co/storage/v1/object/public/collective-films/sessions/adrian-7x800-2026-10-14/9f242ac9-173d-4e76-b203-4304a1d1c1f6.mp4';
+  var videoURL = 'https://pbgsjjegycacodiltbhn.supabase.co/storage/v1/object/public/collective-films/sessions/adrian-7x800-2026-10-14/9f242ac9-173d-4e76-b203-4304a1d1c1f6.mp4';
   var posterURL = 'https://pbgsjjegycacodiltbhn.supabase.co/storage/v1/object/public/collective-films/sessions/adrian-7x800-2026-10-14/4396f5fd-6fce-4fc0-8841-26b2d02d080e.jpg';
-  var slides = [];
-  var idx = 0;
-  var timer = null;
   var visible = true;
   var active = !document.hidden;
+  var filmDisabled = reduce || saveData;
+  var waiting = false;
+  var filmVisible = false;
+  var timer = null;
+  var watchdog = null;
 
-  function refreshSlides() {
-    slides = Array.prototype.slice.call(root.querySelectorAll('.home-hero-slide:not([hidden])'));
-  }
   function silence() {
-    if(!video) return;
     video.defaultMuted = true;
     video.muted = true;
     video.volume = 0;
     video.controls = false;
   }
-  function stopClock() {
-    if(timer !== null) clearTimeout(timer);
+  function clearTimers() {
+    clearTimeout(timer);
+    clearTimeout(watchdog);
     timer = null;
+    watchdog = null;
   }
-  function pauseFilm() {
-    if(video) video.pause();
+  function canPlayHere() { return !filmDisabled && active && visible; }
+  function showStill(schedule) {
+    waiting = false;
+    filmVisible = false;
+    clearTimers();
+    still.classList.add('is-active');
+    filmSlide.classList.remove('is-active');
+    video.pause();
+    if (schedule && canPlayHere()) timer = setTimeout(startFilm, 8000);
   }
-  function queue(ms) {
-    stopClock();
-    if(!reduce && active && visible && slides.length > 1) {
-      timer = setTimeout(next, ms);
-    }
+  function startFilm() {
+    clearTimers();
+    if (!canPlayHere() || waiting || filmVisible) return;
+    waiting = true;
+    silence();
+    if (!video.src) video.src = videoURL;
+    video.currentTime = 0;
+    var p = video.play();
+    if (p && p.catch) p.catch(function () { filmDisabled = true; showStill(false); });
+    // No blank hero if a remote video stalls. A later 'playing' event cannot reveal it.
+    watchdog = setTimeout(function () {
+      if (waiting) { filmDisabled = true; showStill(false); }
+    }, 12000);
   }
-  function show(i) {
-    if(!slides.length) return;
-    idx = (i + slides.length) % slides.length;
-    slides.forEach(function(slide, n){ slide.classList.toggle('is-active', n === idx); });
-    pauseFilm();
-    if(slides[idx] === videoSlide && video && !reduce && !saveData && active && visible) {
-      silence();
-      video.currentTime = 0;
-      video.play().catch(function(){ next(); });
-      // If media never finishes, the homepage still advances to the next photograph.
-      queue(37000);
-    } else {
-      queue(8000);
-    }
-  }
-  function next() { show(idx + 1); }
-  function enableFilm(url, poster) {
-    if(!url || !video || !videoSlide || reduce || saveData) return;
-    if(poster) video.poster = poster;
+  function setFilm(url, poster) {
+    if (!url || reduce || saveData) return;
+    videoURL = url;
+    if (poster) video.poster = poster;
     silence();
     video.preload = 'none';
-    video.src = url;
-    videoSlide.removeAttribute('hidden');
-    videoSlide.setAttribute('data-video-src', url);
-    refreshSlides();
+    filmSlide.hidden = false;
+    video.src = '';
+    filmDisabled = false;
+    showStill(true);
   }
-  function toggleVisibility() {
+  video.addEventListener('playing', function () {
+    if (!waiting || !canPlayHere()) return;
+    clearTimeout(watchdog);
+    watchdog = null;
+    waiting = false;
+    filmVisible = true;
+    filmSlide.classList.add('is-active');
+    still.classList.remove('is-active');
+    timer = setTimeout(function () { showStill(true); }, 37000);
+  });
+  video.addEventListener('ended', function () { showStill(true); });
+  video.addEventListener('error', function () { filmDisabled = true; showStill(false); });
+  video.addEventListener('volumechange', silence);
+  video.addEventListener('waiting', function () {
+    if (filmVisible) {
+      // Preserve the photograph rather than freeze on a stalled frame.
+      showStill(true);
+    }
+  });
+  document.addEventListener('visibilitychange', function () {
     active = !document.hidden;
-    if(!active) { stopClock(); pauseFilm(); }
-    else if(visible) show(idx);
-  }
-
-  if(video) {
-    silence();
-    video.addEventListener('volumechange', silence);
-    video.addEventListener('ended', function(){
-      if(slides[idx] === videoSlide) next();
-    });
-    video.addEventListener('error', function(){
-      if(slides[idx] === videoSlide) next();
-    });
-  }
-  refreshSlides();
-  enableFilm(filmURL, posterURL);
-  document.addEventListener('visibilitychange', toggleVisibility);
-  window.addEventListener('pagehide', function(){ active = false; stopClock(); pauseFilm(); });
-  if('IntersectionObserver' in window) {
-    new IntersectionObserver(function(entries){
+    showStill(active && visible);
+  });
+  window.addEventListener('pagehide', function () {
+    active = false;
+    showStill(false);
+  });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
       visible = !!(entries[0] && entries[0].isIntersecting);
-      if(!visible) { stopClock(); pauseFilm(); }
-      else if(active && !reduce) show(idx);
-    }, {threshold:0.08}).observe(root);
+      showStill(visible && active);
+    }, { threshold: 0.08 }).observe(root);
   }
-  if(!reduce) queue(8000);
+  silence();
+  if (!filmDisabled) setFilm(videoURL, posterURL);
+  else { filmSlide.hidden = true; showStill(false); }
 
-  // Existing callers only need to advance or enable a new approved, published film.
-  window.FORM_HERO = {enableFilm: enableFilm, next: next};
+  window.FORM_HERO = {
+    enableFilm: setFilm,
+    next: function () { if (!filmVisible) startFilm(); else showStill(true); }
+  };
 })();
