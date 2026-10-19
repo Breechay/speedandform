@@ -7,7 +7,7 @@
 .home-world h2{margin:0;max-width:13ch;font-size:clamp(60px,9vw,140px);font-weight:450;line-height:.94;letter-spacing:-.06em}
 .home-world-copy>p:first-child{margin:0;font-size:18px;line-height:1.55;color:#4F5A64;max-width:36ch}
 .home-world-links{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 0}
-.home-world-links a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border:1px solid rgba(22,25,22,.24);border-radius:999px;color:#10161A;text-decoration:none;font-size:15px;transition:background-color .3s ease,color .3s ease,border-color .3s ease}
+.home-world-links a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0;border:0;border-bottom:1px solid rgba(16,22,26,.5);border-radius:0;color:#10161A;text-decoration:none;font-size:15px;transition:border-color .2s ease,color .2s ease}
 .home-world-links a:hover{background:#10161A;border-color:#10161A;color:#EEEDE8}
 .home-world-links a:focus-visible{outline:2px solid #10161A;outline-offset:3px}
 
