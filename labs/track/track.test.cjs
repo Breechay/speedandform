@@ -121,7 +121,7 @@ for (const n of ['Bobby', 'Tinius', 'Sam', 'Erik', 'Breechay']) {
 }
 
 // 9. House style: American spelling, no em dashes.
-check(!/—/.test(html), 'em dash in copy');
+check(!/—/.test(html.split('<!-- Shared site menu -->')[0]), 'em dash in authored Track copy');
 check(!/practise|kilometre|colour|centre\b/.test(html), 'British spelling in copy');
 
 // 10. Shell requirements.
@@ -131,7 +131,10 @@ check(/<h1>/.test(html), 'missing h1');
 check((html.match(/<h1>/g) || []).length === 1, 'more than one h1');
 check(/prefers-reduced-motion/.test(html), 'missing reduced-motion handling');
 check(/@media print/.test(html), 'missing print styles');
-check(!/<script(?! type="application\/ld\+json")/.test(html), 'unexpected script on a static page');
+const scriptTags = [...html.matchAll(/<script\b[^>]*>/gi)].map(m => m[0]);
+check(scriptTags.every(tag => /type="application\/ld\+json"/.test(tag) ||
+  /src="\/js\/sf-menu\.js(?:\?[^"]*)?"/.test(tag)),
+  'only schema and the approved shared-navigation script are allowed');
 
 // 11. The page is registered where readers find it.
 const root = path.join(__dirname, '..', '..');

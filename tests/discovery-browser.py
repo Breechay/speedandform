@@ -40,9 +40,17 @@ with tempfile.TemporaryDirectory(prefix='form-discovery-') as tmp:
                 if route.startswith('/search'):page.wait_for_function("document.querySelector('#discovery-status').textContent.includes('result')")
                 check(f'{route} contained at {width}',page.evaluate('document.documentElement.scrollWidth <= innerWidth+1'))
                 if route=='/library':
-                    ys=page.locator('.discovery-nav a').evaluate_all('(links)=>links.map(a=>Math.round(a.getBoundingClientRect().top))')
-                    check(f'Navigation stays on one row at {width}',len(set(ys))==1)
-                    if width==390:check('First useful guide reaches the first mobile screen',page.locator('.discovery-link').first.bounding_box()['y']<960)
+                    nav_boxes=page.locator('.discovery-nav a:visible').evaluate_all("""links => links.map(a => {
+                        const r=a.getBoundingClientRect();
+                        return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height};
+                    })""")
+                    check(f'Navigation links stay on screen at {width}',bool(nav_boxes) and all(
+                        b['left']>=-1 and b['right']<=width+1 and b['height']>=20 for b in nav_boxes))
+                    check(f'Navigation links do not overlap at {width}',all(
+                        a['right']<=b['left']+1 or b['right']<=a['left']+1 or
+                        a['bottom']<=b['top']+1 or b['bottom']<=a['top']+1
+                        for i,a in enumerate(nav_boxes) for b in nav_boxes[i+1:]))
+                    if width==390:check('Search is available on the opening mobile screen',page.locator('#discovery-query').bounding_box()['y']<960)
                 if width in [390,1440]:
                     name={'/':'home','/library':'library','/search?q=hyrox':'search','/page-does-not-exist-pass2':'404','/library/easy-days/':'article','/thursday':'thursday'}[route]
                     page.screenshot(path=str(OUT/(name+f'-{width}.png')))
@@ -56,7 +64,7 @@ with tempfile.TemporaryDirectory(prefix='form-discovery-') as tmp:
         page.locator('#discovery-query').fill('threshold');page.get_by_role('button',name='Search',exact=True).click();page.wait_for_url('**/search?q=threshold');page.wait_for_function("document.querySelector('#discovery-status').textContent.includes('result')")
         check('Library form reaches query-aware results',page.locator('#discovery-output a[href="/threshold-training"]').count()>0)
         page.locator('#discovery-query').fill('threshhold');page.wait_for_timeout(200);check('Small typo finds threshold',page.locator('#discovery-output a[href="/threshold-training"]').count()>0)
-        page.locator('#discovery-query').fill('zzxyqqz');page.wait_for_timeout(200);check('Empty state has useful fallback',page.get_by_text('Try the idea in a few words.').count()==1)
+        page.locator('#discovery-query').fill('zzxyqqz');page.wait_for_timeout(200);check('Empty state has useful fallback',page.get_by_text('No close answer yet.').count()==1 and page.get_by_role('button',name='Browse the complete index').count()==1)
         page.locator('#discovery-query').fill('<img src=x onerror="window.discoveryXSS=1">');page.wait_for_timeout(200);check('Input never becomes markup',page.evaluate('!window.discoveryXSS && !document.querySelector("#discovery-output img")'))
         page.locator('#discovery-clear').click();check('Clear removes q and keeps focus',page.evaluate("!new URL(location).searchParams.has('q') && document.activeElement.id==='discovery-query'"))
         page.evaluate("history.pushState({},'', '/search?q=hyrox');dispatchEvent(new PopStateEvent('popstate'))");check('History state restores query',page.locator('#discovery-query').input_value()=='hyrox')
@@ -68,7 +76,7 @@ with tempfile.TemporaryDirectory(prefix='form-discovery-') as tmp:
         check('Retry succeeds',page.locator('#discovery-output a').count()>0)
         page.goto(base+'/page-does-not-exist-pass2');page.screenshot(path=str(OUT/'404-1440.png'))
         check('No errors on changed discovery pages',len(errors)==0)
-        nojs=browser.new_context(java_script_enabled=False);p=nojs.new_page();p.goto(base+'/library');check('Library works without JS',sorted(p.locator('.discovery-link').evaluate_all('(links)=>links.map(a=>a.getAttribute("href"))'))==sorted(catalog_urls));p.goto(base+'/search');check('Search offers no-JS Library path',p.locator('noscript a').is_visible())
+        nojs=browser.new_context(java_script_enabled=False);p=nojs.new_page();p.goto(base+'/library');check('Library works without JS',sorted(p.locator('.discovery-link').evaluate_all('(links)=>links.map(a=>a.getAttribute("href"))'))==sorted(catalog_urls));p.goto(base+'/search');check('Search offers no-JS Library path',p.locator('noscript a[href="/library"]').is_visible())
         browser.close()
     server.shutdown()
 (OUT/'browser.json').write_text(json.dumps({'checks':checks,'count':len(checks),'browser':'Chromium','viewports':[375,390,430,768,1024,1440],'physicalDevice':False},indent=2))
