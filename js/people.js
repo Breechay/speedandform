@@ -85,38 +85,30 @@
 
   // ---------------------------------------------------------------- directory
   function renderDirectory() {
-    var list = $('pp-list'), find = $('pp-find'), note = $('pp-note'), people = [];
+    var list = $('pp-list'), note = $('pp-note'), people = [];
     function paint() {
-      var q = (find.value || '').trim().toLowerCase().replace(/^@/, '');
-      var shown = people.filter(function (p) {
-        return !q || String(p.name).toLowerCase().indexOf(q) >= 0 || String(p.instagram || '').toLowerCase().indexOf(q) >= 0;
-      });
-      list.innerHTML = shown.map(function (p) {
+      list.innerHTML = people.map(function (p, i) {
         var media = p.avatar
-          ? '<img class="pp-card-img" src="' + esc(p.avatar) + '" alt="" loading="lazy">'
+          ? '<img class="pp-card-img" src="' + esc(p.avatar) + '" alt="" loading="' + (i < 3 ? 'eager' : 'lazy') + '" decoding="async">'
           : monogram(p.name);
-        var sub = p.bio || p.discipline || (p.instagram ? '@' + p.instagram : '');
-        return '<li class="pp-card"><a href="/people/' + esc(p.slug) + '">' +
-          '<div class="pp-card-media">' + media + '</div>' +
-          '<div class="pp-card-info"><b>' + esc(p.name) + '</b>' +
-          (sub ? '<small>' + esc(sub) + '</small>' : '') +
-          '</div></a></li>';
+        return '<li class="pp-card"><a href="/athletes/' + esc(p.slug) + '/" aria-label="Meet ' + esc(p.name) + '">' +
+          '<div class="pp-card-media">' + media + '<span class="pp-card-name">' + esc(p.name) + '</span></div></a></li>';
       }).join('');
-      note.textContent = people.length && !shown.length ? 'No one by that name yet.' : '';
-      window.FORM_PEOPLE = { shown: shown.length, total: people.length };
+      note.textContent = people.length ? '' : 'No public athlete profiles are available at the moment.';
+      window.FORM_PEOPLE = { shown: people.length, total: people.length };
     }
     function load() {
-      note.textContent = 'Loading…';
+      note.textContent = 'Loading athletes…';
       request('rpc/collective_people_directory').then(function (rows) {
-        people = (Array.isArray(rows) ? rows : []).map(function (r) { return r.person || r; }).filter(function (p) { return p && p.slug && p.name; });
-        if (!people.length) { note.textContent = 'No profiles yet.'; window.FORM_PEOPLE = { shown: 0, total: 0 }; return; }
+        // The publisher owns visibility. Never add names or private portraits client-side.
+        people = (Array.isArray(rows) ? rows : []).map(function (r) { return r.person || r; })
+          .filter(function (p) { return p && p.slug && p.name; });
         paint();
       }).catch(function () {
-        note.innerHTML = 'This can’t be loaded right now. <button type="button" data-pp-retry>Try again</button>';
+        note.innerHTML = 'The athletes can’t be loaded right now. <button type="button" data-pp-retry>Try again</button>';
         window.FORM_PEOPLE = { error: true };
       });
     }
-    find.addEventListener('input', paint);
     document.addEventListener('click', function (e) { if (e.target.closest('[data-pp-retry]')) load(); });
     load();
   }
@@ -124,11 +116,11 @@
   // ---------------------------------------------------------------- profile
   function renderProfile() {
     var root = $('pp-profile');
-    var slug = decodeURIComponent((location.pathname.match(/^\/people\/([^/]+)\/?$/) || [])[1] || '').toLowerCase();
+    var slug = decodeURIComponent((location.pathname.match(/^\/(?:people|athletes)\/([^/.]+)\/?$/) || [])[1] || '').toLowerCase();
     function missing(msg, retry) {
       document.title = 'Athletes | Speed & Form';
       root.innerHTML = '<section class="pp-missing"><h1>' + esc(msg) + '</h1><p class="pp-note">' +
-        (retry ? '<button type="button" data-pp-retry>Try again</button> · ' : '') + '<a href="/people/">All athletes</a></p></section>';
+        (retry ? '<button type="button" data-pp-retry>Try again</button> · ' : '') + '<a href="/athletes/">All athletes</a></p></section>';
       window.FORM_PERSON = { error: msg };
     }
     function load() {
@@ -141,7 +133,7 @@
     }
     function paint(p, lib) {
       document.title = p.name + ' | Speed & Form';
-      canonical('/people/' + p.slug);
+      canonical('/athletes/' + p.slug + '/');
       var hero = p.hero ? '<img class="pp-hero" src="' + esc(sized(p.hero.path, 1200)) + '" srcset="' + esc(sized(p.hero.path, 1200)) + ' 1200w, ' + esc(p.hero.path) + ' 2400w" sizes="(max-width:760px) 100vw, 560px" alt="' + esc(p.name) + '" style="object-position:' + (p.hero.focal_x * 100) + '% ' + (p.hero.focal_y * 100) + '%">' : '';
       var links = (p.instagram ? '<a href="https://instagram.com/' + esc(p.instagram) + '" rel="noopener" target="_blank">' + IG + '@' + esc(p.instagram) + '</a>' : '') +
         (p.strava ? '<a href="' + esc(p.strava) + '" rel="noopener" target="_blank">' + STRAVA + 'Strava</a>' : '');
@@ -178,7 +170,7 @@
       }).join('');
 
       root.innerHTML =
-        '<div class="pp-head">' + hero + '<div class="pp-intro">' +
+        '<div class="pp-head' + (hero ? ' has-hero' : ' no-hero') + '">' + hero + '<div class="pp-intro">' +
           '<div class="pp-idline">' + (p.avatar ? '<img class="pp-av" src="' + esc(p.avatar) + '" alt="" width="56" height="56">' : '') +
             '<p class="pp-mono">' + esc(['Athlete', p.discipline].filter(Boolean).join(' · ')) + '</p></div>' +
           '<h1>' + esc(p.name) + '</h1>' +
@@ -190,10 +182,7 @@
         '</div></div>' +
         (count ? '<section class="pp-media" aria-label="Photos and films"><h2>Photos & films</h2>' + media + '</section>' : '') +
         '<p class="pp-foot">Speed & Form, Miami.</p>';
-      // Mobile reorder: the avatar sits beside the name, as on the app profile.
-      var idl = root.querySelector('.pp-idline'), h1 = root.querySelector('.pp-intro h1');
-      if (window.matchMedia('(max-width:760px)').matches && idl && h1) idl.appendChild(h1);
-      window.FORM_PERSON = { slug: p.slug, photos: count, groups: groups.length, sessions: (p.sessions || []).length, fields: Object.keys(p).sort() };
+        window.FORM_PERSON = { slug: p.slug, photos: count, groups: groups.length, sessions: (p.sessions || []).length, fields: Object.keys(p).sort() };
     }
     document.addEventListener('click', function (e) { if (e.target.closest('[data-pp-retry]')) load(); });
     load();
@@ -205,7 +194,7 @@
     var slug = decodeURIComponent((location.pathname.match(/^\/session\/([^/]+)\/?$/) || [])[1] || '').toLowerCase();
     function missing(msg, retry) {
       root.innerHTML = '<section class="pp-missing"><h1>' + esc(msg) + '</h1><p class="pp-note">' +
-        (retry ? '<button type="button" data-pp-retry>Try again</button> · ' : '') + '<a href="/people/">All athletes</a></p></section>';
+        (retry ? '<button type="button" data-pp-retry>Try again</button> · ' : '') + '<a href="/athletes/">All athletes</a></p></section>';
       window.FORM_SESSION = { error: msg };
     }
     function embed(id, title) {
@@ -228,7 +217,7 @@
         document.title = se.title + ' | Speed & Form';
         canonical('/session/' + se.slug);
         var who = (se.people || []).map(function (p) {
-          return '<a href="/people/' + esc(p.slug) + '">' + (p.avatar ? '<img src="' + esc(p.avatar) + '" alt="" width="32" height="32">' : '') + esc(p.name) + '</a>';
+          return '<a href="/athletes/' + esc(p.slug) + '">' + (p.avatar ? '<img src="' + esc(p.avatar) + '" alt="" width="32" height="32">' : '') + esc(p.name) + '</a>';
         }).join('');
         var clips = (se.clips || []).filter(function (c) { return c && c.youtube_id; });
         var photos = (se.library || []).map(function (id) { var ph = lib[id]; return ph ? '<img src="' + esc(libSrc(lib, id, '1200')) + '" alt="' + esc(ph.alt || '') + '" loading="lazy">' : ''; }).join('');
