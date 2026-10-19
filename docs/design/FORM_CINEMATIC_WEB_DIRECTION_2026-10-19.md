@@ -14,16 +14,15 @@ The SF emblem and a measured running-track bend establish continuity. Inter Tigh
 **Never strip approved theater merely to make a page simple.** Preserve the continuous homepage band, original hero frame, silent Adrian/Tinius film, real people and large photographic sequences. Give each section a distinct editorial job; do not repeat a slogan just to describe a photograph.
 
 ## Website palette and typography
+
+**Owner-approved later refinement, October 19:** The public website uses pure neutral black, not midnight or blue-black. Black, graphite and bone are the entire interface core. Real photography can carry full natural color. Native app palettes remain separate.
 | Role | Token | Usage |
 | --- | --- | --- |
-| Ink | `#10161A` | Dark stage, high-impact headings |
-| Graphite | `#1B242B` | Raised dark surfaces |
-| Stone | `#EEEDE8` | Reading backgrounds, shared navigation |
-| Bone | `#F1EFE8` | Type on ink, clear light |
-| Steel on ink | `#9CB5C7` | One active state, selection or link, never generic metadata |
-| Steel on paper | `#42627B` | Same one-cue job, adjusted for light contrast |
+| Ink | `#0B0B0B` | Black stage and dark type |
+| Graphite | `#1A1A1A` | Raised controls and dark depth |
+| Bone | `#F4F2EC` | Light reading surfaces and type on black |
 
-The near-black raised field is close in luminance to ink. Every raised control or sheet needs a 1px boundary, roughly 18% bone, not just a different fill. Secondary text stays neutral; steel is reserved for one meaningful cue per screen. The website may retain established neutral secondary text and meaningful status colors when necessary for contrast and semantic meaning. No brown/tan UI accent, blanket bronze or lime, faux metallic type, or decorative serif athlete headings. Legibility comes before microscopic uppercase labels. Do not globally invert unrelated product screens.
+The near-black raised field is close in luminance to ink. Every raised control or sheet needs a 1px boundary, roughly 18% bone, not just a different fill. Secondary text, focus rings and selected states use accessible neutral contrast; no default blue-grey interface cues. The website may retain established neutral secondary text and meaningful status colors when necessary for contrast and semantic meaning. No brown/tan UI accent, blanket bronze or lime, faux metallic type, or decorative serif athlete headings. Legibility comes before microscopic uppercase labels. Do not globally invert unrelated product screens.
 
 ## Color integrity: non-negotiable
 Images have **two approved states**:

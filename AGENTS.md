@@ -6,6 +6,8 @@
 
 ## Current web visual authority · October 19, 2026
 
+**Owner refinement:** Public website core UI only: neutral ink #0B0B0B, graphite #1A1A1A and bone #F4F2EC. No midnight or blue-grey chrome. The homepage bend begins in the first viewport; headline and Work with me are above it. Do not restore the Athletes hero CTA until the roster is ready. Public menu retains Athletes discoverability. Native app design is separately governed.
+
 **Website first, native later.** Follow [FORM cinematic web finish](docs/design/FORM_CINEMATIC_WEB_DIRECTION_2026-10-19.md) alongside the publication contract and deployment discipline. The SF emblem, measured bend, Inter Tight and measured mono, ink/graphite/stone/bone, rounded photographic crops, and real athlete photography define the public web. Color is either full natural color or true monochrome. No muddy partial grayscale, color-desaturation hover, brown/tan UI accents, serif athlete names or invented public athletic claims. Preserve the homepage's continuous band, muted first-draft film, functional navigation and privacy-gated published assets. This web rule does not silently modify the iOS app or native training prescriptions. One coherent review batch, no routine deploy without explicit approval.
 
 ## Deployment discipline · October 19, 2026

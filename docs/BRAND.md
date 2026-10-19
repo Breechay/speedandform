@@ -6,6 +6,8 @@ Before composing any public marketing page or the shared menu, obey [the public 
 
 ## Current website visual direction · October 19, 2026
 
+**Later October 19 owner refinement (supersedes old web swatches below):** The public website uses pure ink `#0B0B0B`, graphite `#1A1A1A`, and bone `#F4F2EC`. No midnight blue, blue-black or blue-grey interface palette. Photographs may remain original full color or true monochrome. Native applications are a separate design pass.
+
 The active web execution reference is [FORM cinematic web finish](design/FORM_CINEMATIC_WEB_DIRECTION_2026-10-19.md) and the matching public [Brand page](/brand/). It updates photographic color integrity, the shared menu, and the site's neutral palette while **preserving** the October 14 rule that FORM needs theater and atmosphere, not stripped-down minimalism. Website colors are ink `#10161A`, graphite `#1B242B`, stone `#EEEDE8`, bone `#F1EFE8` and sparing steel `#9CB5C7`. Photography is **true black-and-white or full natural color**, with no intermediate desaturation on hover or scrolling. No tan/brown UI accent. Skin tones must remain human and faces legible. Maintain rounded photographic framing where appropriate.
 
 The native Running/Strength color doctrines are **pending a separate app pass**. Older website and app design records remain historical sources; do not reintroduce their lime/bronze/serif defaults into new public web work. Do not claim those native surfaces were changed by this site release.
