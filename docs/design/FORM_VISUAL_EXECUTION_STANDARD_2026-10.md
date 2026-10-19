@@ -1,5 +1,9 @@
 # FORM visual execution standard · October 14, 2026
 
+## October 19 · Photographic color integrity (current website rule)
+
+Read [FORM cinematic web finish](FORM_CINEMATIC_WEB_DIRECTION_2026-10-19.md) before editing public photographs. Real published images use only natural full color, or true black-and-white (grayscale 100%). Partial grayscale, reduced saturation, sepia, muddy gray-brown grades, and gradient grayscale-to-color hover animations are disallowed. Full color and B&W can cut directly if an interaction needs a state change; prefer no grading animation at all. Preserve subject exposure and the real colors of skin, track, sky, sun and clothing. This refines, not removes, October 14 cinematic theater. Native training appearance is reviewed separately.
+
 **Owner approved and current.** Read with `AGENTS.md`, the opening of `docs/BRAND.md` and `brand/index.html`. This governs FORM's public website, Collective, photography/film and relevant brand extensions. Native training screens still use their functional product requirements. Older blanket statements against decorative design cannot be used to remove Brice's approved theatrical atmosphere.
 
 ## Creative intention
