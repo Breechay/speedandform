@@ -83,7 +83,7 @@ body[data-sculpt-landing]>main,body[data-sculpt-landing]>.bs-header{container-ty
 
 /* Oct 19 photograph-first side door. Shared across public pages. The bend is already
    the homepage's architecture; the drawer is a cream photographic magazine chapter. */
-.sf-menu-panel{width:min(520px,calc(100% - 44px));background:#f1ede4;box-shadow:-24px 0 90px rgba(0,0,0,.25)}
+.sf-menu-panel{width:min(460px,85%);background:#f1ede4;box-shadow:-24px 0 90px rgba(0,0,0,.25)}
 .sf-menu-top{justify-content:space-between;background:#f1ede4;min-height:76px;padding:6px 2px}
 .sf-menu-home{display:inline-flex;align-items:center;justify-content:flex-start;min-height:44px;min-width:90px}
 .sf-menu-home img{display:block;max-width:90px;width:90px;height:auto}
@@ -110,5 +110,5 @@ body[data-sculpt-landing]>main,body[data-sculpt-landing]>.bs-header{container-ty
 .sf-menu-group a{line-height:1.18}
 .sf-menu-foot{padding-bottom:20px}
 @media(max-width:520px){.sf-menu-hero{margin-left:-20px;margin-right:-20px;min-height:250px}.sf-menu-hero img{height:290px}.sf-menu-hero-overlay{padding:22px 24px 26px}.sf-menu-cards{gap:8px}.sf-menu-card img{height:118px}.sf-menu-card span{font-size:18px}.sf-menu-panel{padding-left:20px;padding-right:20px}}
-@media(max-width:360px){.sf-menu-panel{width:calc(100% - 25px)}.sf-menu-card:nth-child(3){grid-template-columns:42% 58%}.sf-menu-hero-title{font-size:49px}}
+@media(max-width:360px){.sf-menu-panel{width:85%}.sf-menu-card:nth-child(3){grid-template-columns:42% 58%}.sf-menu-hero-title{font-size:49px}}
 @media(prefers-reduced-motion:reduce){.sf-menu-card img,.sf-menu-hero img{transition:none}}
