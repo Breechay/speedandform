@@ -37,6 +37,17 @@ function tagAttr(tag, attr) {
   }
   return '';
 }
+function scanText(value,file,section) {
+  const text=normalize(String(value));
+  const matches=[];
+  for (const [rule,regex] of banned) {
+    regex.lastIndex=0;
+    for (const hit of text.matchAll(regex)) matches.push({
+      file,section,rule,excerpt:text.slice(Math.max(0,hit.index-45),hit.index+hit[0].length+65).trim()
+    });
+  }
+  return matches;
+}
 function scanHtml(html, file) {
   const matches = [];
   const h = (html.match(/<head\b[^>]*>([\s\S]*?)<\/head>/i) || [,''])[1];
@@ -57,14 +68,7 @@ function scanHtml(html, file) {
     if (!['description','og:description','twitter:description','og:title','twitter:title'].includes(name?.toLowerCase())) continue;
     subjects.push({section:name, text: normalize(tagAttr(m[0], 'content') || '')});
   }
-  for (const {section,text} of subjects) {
-    for (const [rule,regex] of banned) {
-      regex.lastIndex = 0;
-      for (const hit of text.matchAll(regex)) {
-        matches.push({file,section,rule,excerpt:text.slice(Math.max(0,hit.index-45),hit.index+hit[0].length+65).trim()});
-      }
-    }
-  }
+  for (const {section,text} of subjects) matches.push(...scanText(text,file,section));
   return matches;
 }
 
@@ -95,11 +99,30 @@ function findPublicHtml() {
   return [...pages].sort();
 }
 
+function scanPublicData() {
+  const findings=[];
+  const files=['data/public-share.json','search-index.json'];
+  for(const file of files) {
+    const full=path.join(ROOT,file);
+    if(!fs.existsSync(full))continue;
+    const records=JSON.parse(fs.readFileSync(full,'utf8'));
+    const items=Array.isArray(records)?records.map((value,i)=>[String(i),value]):Object.entries(records);
+    for(const [key,entry] of items) {
+      if(!entry || typeof entry!=='object')continue;
+      for(const field of ['title','description','ogDescription','alt','label','headline','summary']) {
+        const value=entry[field];
+        if(typeof value==='string') findings.push(...scanText(value,file,key+'.'+field));
+        else if(Array.isArray(value)) for(const part of value) if(typeof part==='string') findings.push(...scanText(part,file,key+'.'+field));
+      }
+    }
+  }
+  return findings;
+}
 function run() {
   const pages = findPublicHtml();
-  const violations = pages.flatMap(file => scanHtml(fs.readFileSync(path.join(ROOT,file),'utf8'), file));
+  const violations = [...pages.flatMap(file => scanHtml(fs.readFileSync(path.join(ROOT,file),'utf8'), file)), ...scanPublicData()];
   for (const x of violations) console.error('EDITORIAL ' + x.rule + ' · ' + x.file + ' · ' + x.section + ': ' + x.excerpt);
-  console.log('FORM editorial contract: '+pages.length+' public pages checked; '+violations.length+' high-confidence violations.');
+  console.log('FORM editorial contract: '+pages.length+' public pages plus canonical share/search records checked; '+violations.length+' high-confidence violations.');
   if (process.env.EDITORIAL_REPORT) {
     const output = path.resolve(process.env.EDITORIAL_REPORT);
     fs.mkdirSync(path.dirname(output),{recursive:true});
@@ -107,5 +130,5 @@ function run() {
   }
   if (violations.length) process.exitCode = 1;
 }
-module.exports = {scanHtml,findPublicHtml,run};
+module.exports = {scanHtml,scanText,scanPublicData,findPublicHtml,run};
 if (require.main === module) run();
