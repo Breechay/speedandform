@@ -80,7 +80,7 @@ with sync_playwright() as pw:
         txt = page.locator('#app').inner_text()
         check(f'{width}: privacy line', 'Only the details you choose appear publicly. Your full plan, workout logs and coach notes stay private.' in txt)
         check(f'{width}: draft is marked as private until kept', 'stays private until you keep it' in txt)
-        check(f'{width}: requested tag shown as waiting', 'Waiting for Brice' in txt and 'Cancel request' in txt)
+        check(f'{width}: requested tag shown as waiting', 'Request sent' in txt and 'Brice' not in txt and 'Cancel request' in txt)
         check(f'{width}: no inline styles', page.evaluate('document.querySelectorAll("[style]").length') == 0)
         check(f'{width}: no overflow', page.evaluate('document.documentElement.scrollWidth<=innerWidth'))
         page.screenshot(path=str(OUT / f'profile-{width}.png'), full_page=True)
