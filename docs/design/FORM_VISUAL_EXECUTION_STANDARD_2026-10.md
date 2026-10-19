@@ -2,6 +2,10 @@
 
 **Owner approved and current.** Read with `AGENTS.md`, the opening of `docs/BRAND.md` and `brand/index.html`. This governs FORM's public website, Collective, photography/film and relevant brand extensions. Native training screens still use their functional product requirements. Older blanket statements against decorative design cannot be used to remove Brice's approved theatrical atmosphere.
 
+## Running, Group and the photo-rich athletic world
+
+**Current October 19 authority:** [FORM athletic world product/design standard](FORM_ATHLETIC_WORLD_STANDARD_2026-10.md) and [content model for native Running + homepage](../product/FORM_ATHLETIC_WORLD_CONTENT_MODEL_2026-10.md). Photography/film are primary interface material. The Group retains browseable media and real people even without a scheduled run. The October 19 cream left-side door and visual tiles supersede older plain-row Dossier navigation, while the approved cream ink-bend native launch is preserved. No invented content or forced social feed. Do not confuse unconfirmed media in the source with a shipped/reachable viewer.
+
 ## Creative intention
 
 The brand should create **anticipation, wow, memory, curiosity and a desire to explore**. Athletic editorial photography meets cinema; sophisticated, dramatic and elegant rather than a sterile utility page. Theatrical is not gaudy. Originality matters more than minimalism. Cream reading surfaces can coexist with black screening rooms and dramatic imagery.
