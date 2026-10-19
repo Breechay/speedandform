@@ -2,7 +2,7 @@
 /* Speed & Form public front door. Current composition, October 6, 2026. */
 @font-face{font-family:"Inter Tight";src:url("/assets/site/fonts/inter-tight-latin-variable.woff2") format("woff2");font-weight:100 900;font-display:swap}
 @font-face{font-family:"JetBrains Mono";src:url("/assets/site/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");font-weight:400;font-display:swap}
-:root{--dark:#0d0f0e;--backdrop:#0d0f0e;--bone:#e8e3d9;--paper:#e8e3d9;--paper2:#f1ede4;--ink:#161916;--body:#5e625b;--muted:#aeb2aa;--lime:#e8e3d9;--sans:"Inter Tight",Arial,sans-serif;--serif:var(--sans);--mono:"JetBrains Mono",monospace;--max:1280px;--public-gutter:clamp(24px,5.5vw,88px);--public-rule:rgba(232,227,217,.18)}
+:root{--dark:#10161A;--backdrop:#10161A;--bone:#F1EFE8;--paper:#EEEDE8;--paper2:#EEEDE8;--ink:#10161A;--body:#4F5A64;--muted:#AEB5BC;--lime:#F1EFE8;--sans:"Inter Tight",Arial,sans-serif;--serif:var(--sans);--mono:"JetBrains Mono",monospace;--max:1280px;--public-gutter:clamp(24px,5.5vw,88px);--public-rule:rgba(241,239,232,.18)}
 html,body{background:var(--dark)}.wrap{width:min(var(--max),calc(100% - 2 * var(--public-gutter)))}h1,h2,h3{font-family:var(--sans)}
 .eyebrow{font:400 11px/1.6 var(--mono);letter-spacing:.08em}
 .header{position:absolute;inset:0 0 auto;z-index:30;background:transparent;border:0}.header-inner{min-height:104px}.header-right{display:flex;align-items:center}.header .sf-brand,.header .header-right a{color:var(--bone)}
@@ -17,7 +17,7 @@ html,body{background:var(--dark)}.wrap{width:min(var(--max),calc(100% - 2 * var(
 .sf-home-hero-immersive .hero-copy{padding:0;max-width:850px;min-width:0}
 /* Shade follows the type, leaving the faces above it in the original light. */
 .sf-home-hero-immersive .hero-copy::before{content:none}
-.sf-home-hero-immersive .hero-kicker{display:flex;align-items:center;gap:18px;margin:0 0 28px;color:#f1ede4;font:400 11px/1.7 var(--mono);letter-spacing:.065em}.hero-kicker::before{content:"";width:32px;height:1px;background:currentColor;flex-shrink:0}
+.sf-home-hero-immersive .hero-kicker{display:flex;align-items:center;gap:18px;margin:0 0 28px;color:#EEEDE8;font:400 11px/1.7 var(--mono);letter-spacing:.065em}.hero-kicker::before{content:"";width:32px;height:1px;background:currentColor;flex-shrink:0}
 .sf-home-hero-immersive h1{font:450 clamp(68px,7.55vw,116px)/1.01 var(--sans);letter-spacing:-.055em;color:var(--bone);margin:0 0 28px;text-wrap:balance}.sf-home-hero-immersive h1 .dot{color:inherit}
 .sf-home-hero-immersive .home-hero-intro{max-width:43ch;font-size:clamp(19px,1.5vw,23px);line-height:1.5;color:#dedad1;margin:0}
 .home-proof-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;max-width:700px;margin-top:34px;padding-top:25px;border-top:1px solid rgba(232,227,217,.3)}.home-proof-facts dt{font-size:25px;line-height:1.25;font-weight:500;letter-spacing:-.025em}.home-proof-facts dd{font-size:13px;line-height:1.55;color:#cccac0;margin-top:7px}
