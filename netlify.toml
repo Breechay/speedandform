@@ -155,48 +155,8 @@
   to = "/"
   status = 301
 
-# Public athlete features replace retired standalone athlete-record routes.
-# Original legacy files are retained as archive files, not used in public discovery.
-[[redirects]]
-  from = "/people"
-  to = "/athletes/"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/people/"
-  to = "/athletes/"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/people/:slug"
-  to = "/athletes/:slug"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/people/:slug/"
-  to = "/athletes/:slug"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/athletes"
-  to = "/athletes/"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/athletes/"
-  to = "/people/index.html"
-  status = 200
-  force = true
-[[redirects]]
-  from = "/athletes/:slug"
-  to = "/people/template.html"
-  status = 200
-  force = true
-[[redirects]]
-  from = "/athletes/:slug/"
-  to = "/people/template.html"
-  status = 200
-  force = true
+# Public athlete routes are owned exclusively by _redirects.
+# Keep slash forms as 200 rewrites; Netlify normalizes /athletes and /athletes/.
 
 # Run Development has its own authored page; homepage coaching still begins at #begin.
 
@@ -259,11 +219,6 @@
 [[redirects]]
   from = "/ledger"
   to = "/ledger.html"
-  status = 200
-
-[[redirects]]
-  from = "/athletes"
-  to = "/athletes.html"
   status = 200
 
 [[redirects]]
