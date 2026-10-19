@@ -1,5 +1,5 @@
 'use strict';
-/* Public perimeter smoke/visual audit. Starts from actual home, menu and footer anchors.
+/* Public perimeter smoke/visual audit. Starts from home, menu and gallery anchors.
    All requests stay local to the checked-out repo. Never call a live app or submit data. */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -12,7 +12,8 @@ const out = process.env.SF_MENU_ARTIFACTS || '/tmp/site-menu-review';
 fs.mkdirSync(path.join(out, 'entry-pages'), { recursive: true });
 const source = [
   fs.readFileSync(path.join(root, 'index.html'), 'utf8'),
-  fs.readFileSync(path.join(root, 'scripts/site-menu-panel.html'), 'utf8')
+  fs.readFileSync(path.join(root, 'scripts/site-menu-panel.html'), 'utf8'),
+  fs.readFileSync(path.join(root, 'photos/index.html'), 'utf8')
 ].join('\n');
 const internalHrefs = [...source.matchAll(/<a\b[^>]*\bhref=["']([^"']+)["']/gi)]
   .map(m => m[1]).filter(h => h.startsWith('/') && !h.startsWith('//'));
