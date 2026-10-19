@@ -16,7 +16,7 @@ body{font-family:"Inter Tight",Arial,sans-serif;background:#10161A;color:#F1EFE8
 .photos-editorial-bend{position:absolute;inset:0;width:108%;height:100%;object-fit:contain;transform:scale(1.4) translate(0%,1%);opacity:.78;mix-blend-mode:screen;pointer-events:none}
 .photos-editorial-emblem{position:absolute;bottom:10%;right:9%;width:clamp(90px,11vw,185px);z-index:1;opacity:.92}
 .photos-collection{padding-top:clamp(68px,8vw,120px);padding-bottom:clamp(70px,8vw,130px)}
-.photos-collection>.photos-kicker{margin:0 0 clamp(30px,4vw,60px);font-size:12px;letter-spacing:.10em}
+.photos-collection>.photos-kicker{margin:0 0 clamp(30px,4vw,60px);font-size:12px;letter-spacing:.08em}
 .photo-wall{column-count:3;column-gap:clamp(12px,1.6vw,24px)}
 .photo-frame{margin:0 0 clamp(12px,1.6vw,24px);border-radius:clamp(10px,1vw,16px);overflow:hidden}
 .photo-frame a{background:#1B242B;border-radius:inherit;overflow:hidden}
