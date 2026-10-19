@@ -134,7 +134,7 @@
     function paint(p, lib) {
       document.title = p.name + ' | Speed & Form';
       canonical('/athletes/' + p.slug + '/');
-      var hero = p.hero ? '<img class="pp-hero" src="' + esc(sized(p.hero.path, 1200)) + '" srcset="' + esc(sized(p.hero.path, 1200)) + ' 1200w, ' + esc(p.hero.path) + ' 2400w" sizes="(max-width:760px) 100vw, 560px" alt="' + esc(p.name) + '" style="object-position:' + (p.hero.focal_x * 100) + '% ' + (p.hero.focal_y * 100) + '%">' : '';
+      var hero = p.hero ? '<img class="pp-hero" src="' + esc(sized(p.hero.path, 1200)) + '" srcset="' + esc(sized(p.hero.path, 1200)) + ' 1200w, ' + esc(p.hero.path) + ' 2400w" sizes="(max-width:760px) 100vw, 680px" alt="' + esc(p.name) + '" style="object-position:' + ((p.hero.focal_x == null ? .5 : p.hero.focal_x) * 100) + '% ' + ((p.hero.focal_y == null ? .4 : p.hero.focal_y) * 100) + '%">' : (p.avatar ? '<img class="pp-hero pp-hero-avatar" src="' + esc(p.avatar) + '" alt="' + esc(p.name) + '" loading="eager">' : '');
       var links = (p.instagram ? '<a href="https://instagram.com/' + esc(p.instagram) + '" rel="noopener" target="_blank">' + IG + '@' + esc(p.instagram) + '</a>' : '') +
         (p.strava ? '<a href="' + esc(p.strava) + '" rel="noopener" target="_blank">' + STRAVA + 'Strava</a>' : '');
       var now = p.now ? '<div class="pp-now"><p class="pp-mono">Now</p><b>' + esc(p.now.title) + '</b>' + (p.now.detail ? '<p class="pp-q">' + esc(p.now.detail) + '</p>' : '') +
