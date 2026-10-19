@@ -64,7 +64,8 @@ with sync_playwright() as pw:
                 return r.fulfill(status=404, body='[]')
             if url.startswith(BASE + '/'):
                 name = unquote(path).lstrip('/')
-                if re.match(r'^athletes/[^/]+/?
+                if name in ('athletes/','athletes'): name = 'people/index.html'
+                if re.match(r'^athletes/[^/]+/?$', name): name = 'people/template.html'
                 if re.match(r'^session/[^/]+/?$', name): name = 'session/template.html'
                 for n in [name, name.rstrip('/') + '/index.html']:
                     f = (ROOT / n).resolve()
@@ -83,74 +84,6 @@ with sync_playwright() as pw:
         check(f'{w}: anonymous reads only', all(a is None for _, _, a in seen))
         check(f'{w}: portrait names, no search UI', page.locator('.pp-card-name').count() == 4 and page.locator('#pp-find').count() == 0)
         check(f'{w}: cards link to canonical profiles', page.locator('a[href="/athletes/jose/"]').count() == 1)
-        check(f'{w}: directory no overflow', page.evaluate('document.documentElement.scrollWidth<=innerWidth'))
-        page.screenshot(path=str(OUT / f'directory-{w}.png'), full_page=True)
-
-        page.goto(BASE + '/athletes/jose'); page.wait_for_function('window.FORM_PERSON')
-        txt = page.locator('#pp-profile').inner_text()
-        check(f'{w}: profile name, bio, best, now', 'José' in txt and 'Running Orlando with Hope.' in txt and '1:40:23' in txt and 'Speed That Endures' in txt)
-        check(f'{w}: Instagram link', page.locator('a[href="https://instagram.com/josefsantosdesoto"]').count() == 1)
-        check(f'{w}: no Strava without a link', 'Strava' not in txt)
-        check(f'{w}: study link', page.locator('a[href="/labs/speed-that-endures/"]').count() == 1)
-        check(f'{w}: album photos link to the run, app address', page.locator('a[href="/run/track-thursday-2026-10-15"]').count() == 1)
-        check(f'{w}: library photos grouped by kind', page.evaluate('FORM_PERSON.groups') == 2 and 'Track' in txt)
-        check(f'{w}: no attendance language', not re.search(r'attend|runs together|at the run', txt, re.I))
-        check(f'{w}: profile no overflow', page.evaluate('document.documentElement.scrollWidth<=innerWidth'))
-        page.evaluate('''async()=>{document.querySelectorAll("img").forEach(i=>i.loading="eager");await Promise.all([...document.images].map(i=>i.complete?0:new Promise(r=>{i.onload=i.onerror=r})));}''')
-        page.screenshot(path=str(OUT / f'jose-{w}.png'), full_page=True)
-
-        page.goto(BASE + '/athletes/tinius'); page.wait_for_function('window.FORM_PERSON')
-        t = page.locator('#pp-profile').inner_text()
-        check(f'{w}: sections without content are absent', 'Now' not in t and 'Best' not in t and 'Tinius' in t)
-
-        page.goto(BASE + '/athletes/adrian'); page.wait_for_function('window.FORM_PERSON')
-        check(f'{w}: film on the profile links to its session', page.evaluate('FORM_PERSON.sessions') == 1 and page.locator('a.pp-film[href="/session/adrian-7x800-2026-10-14"]').count() == 1)
-        check(f'{w}: film labelled', 'film' in page.locator('.pp-sessions').inner_text().lower() and '7 × 800 at 2:44' in page.locator('.pp-sessions').inner_text())
-        page.screenshot(path=str(OUT / f'adrian-{w}.png'), full_page=True)
-        page.goto(BASE + '/session/adrian-7x800-2026-10-14'); page.wait_for_function('window.FORM_SESSION')
-        check(f'{w}: session page plays the film from YouTube (no cookies)', page.locator('iframe[src^="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ"]').count() == 1)
-        check(f'{w}: clips and people', page.evaluate('FORM_SESSION.clips') == 1 and page.locator('.pp-who a[href="/athletes/adrian"]').count() == 1)
-        check(f'{w}: session no attendance language', not re.search(r'attend|I.m in|at the run', page.locator('#pp-session').inner_text(), re.I))
-        check(f'{w}: session no overflow', page.evaluate('document.documentElement.scrollWidth<=innerWidth'))
-        page.screenshot(path=str(OUT / f'session-{w}.png'), full_page=True)
-        page.goto(BASE + '/session/not-published'); page.wait_for_function('window.FORM_SESSION')
-        check(f'{w}: unpublished or hidden session is not here', 'isn’t here' in page.locator('#pp-session').inner_text())
-
-        page.goto(BASE + '/athletes/someone-hidden'); page.wait_for_function('window.FORM_PERSON')
-        check(f'{w}: hidden or unknown profile is not here', 'isn’t here' in page.locator('#pp-profile').inner_text())
-        check(f'{w}: no page errors', not errors)
-        ctx.close()
-
-    ctx, page, errors, _ = make(390, fail=True)
-    page.goto(BASE + '/athletes/'); page.wait_for_function('window.FORM_PEOPLE')
-    check('failed directory offers a retry', page.locator('[data-pp-retry]').count() == 1)
-    page.goto(BASE + '/athletes/jose'); page.wait_for_function('window.FORM_PERSON')
-    check('failed profile says so, never "not here"', 'can’t be loaded' in page.locator('#pp-profile').inner_text())
-    ctx.close(); browser.close()
-
-print(f'people: {len(checks)} checks passed')
-, name): name = 'people/template.html'
-                if name in ('athletes/','athletes'): name = 'people/index.html'
-                if re.match(r'^session/[^/]+/?$', name): name = 'session/template.html'
-                for n in [name, name.rstrip('/') + '/index.html']:
-                    f = (ROOT / n).resolve()
-                    if f.is_relative_to(ROOT) and f.is_file(): return r.fulfill(path=str(f))
-                return r.fulfill(status=404, body='')
-            return r.abort()
-        ctx.route('**/*', route)
-        page = ctx.new_page(); errors = []
-        page.on('pageerror', lambda e: errors.append(str(e)))
-        return ctx, page, errors, seen
-
-    for w in (390, 1440):
-        ctx, page, errors, seen = make(w)
-        page.goto(BASE + '/athletes/'); page.wait_for_function('window.FORM_PEOPLE')
-        check(f'{w}: directory lists everyone', page.evaluate('FORM_PEOPLE.total') == 4 and page.locator('#pp-list li').count() == 4)
-        check(f'{w}: anonymous reads only', all(a is None for _, _, a in seen))
-        page.fill('#pp-find', 'hope'); check(f'{w}: search by name', page.locator('#pp-list li').count() == 1)
-        page.fill('#pp-find', '@tiniusms'); check(f'{w}: search by Instagram', page.locator('#pp-list li').count() == 1 and 'Tinius' in page.locator('#pp-list').inner_text())
-        page.fill('#pp-find', 'zzz'); check(f'{w}: nobody found says so', 'No one' in page.locator('#pp-note').inner_text())
-        page.fill('#pp-find', '')
         check(f'{w}: directory no overflow', page.evaluate('document.documentElement.scrollWidth<=innerWidth'))
         page.screenshot(path=str(OUT / f'directory-{w}.png'), full_page=True)
 
