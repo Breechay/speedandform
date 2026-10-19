@@ -132,9 +132,9 @@
 .home-media-grid figure:first-child .home-media-card{aspect-ratio:3/3.7}
 .home-media-card::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,transparent 42%,rgba(6,8,7,.16) 58%,rgba(6,8,7,.89));pointer-events:none}
 .home-media-card img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .65s cubic-bezier(.22,.61,.36,1),filter .65s}
-.home-media-grid figure:nth-child(1) img{filter:grayscale(1) contrast(1.11) brightness(.96);object-position:50% 68%}
-.home-media-grid figure:nth-child(2) img{filter:contrast(1.04) brightness(.99);object-position:50% 46%}
-.home-media-grid figure:nth-child(3) img{filter:grayscale(1) contrast(1.18) brightness(.94);object-position:52% 42%}
+.home-media-grid figure:nth-child(1) img{filter:none;object-position:50% 68%}
+.home-media-grid figure:nth-child(2) img{filter:none;object-position:50% 46%}
+.home-media-grid figure:nth-child(3) img{filter:none;object-position:52% 42%}
 .home-media-card:hover img,.home-media-card:focus-visible img{transform:scale(1.035)}
 .home-media-card figcaption{position:absolute;inset:auto 22px 24px;z-index:1;display:grid;gap:7px}
 .home-media-card small{font:400 10px/1.4 var(--mono,monospace);text-transform:uppercase;letter-spacing:.14em;color:#e6e2d9}
@@ -197,40 +197,13 @@
       <p class="home-world-eyebrow">Inside FORM</p>
       <h2 id="home-world-title">The work<br>shows.</h2>
       <p class="home-world-summary">Thursday track sessions. Long runs through Miami. The people, the effort, and what happens between sets.</p>
-      <div class="home-world-links">
-        <a class="home-world-primary" href="/athletes/">Meet the athletes <span aria-hidden="true">↗</span></a>
-        <a href="/photos/">Photos and film <span aria-hidden="true">↗</span></a>
-      </div>
     </div>
-    <div class="home-world-architecture" aria-hidden="true">
-      <svg class="home-world-aperture" viewBox="0 0 1180 780" preserveAspectRatio="xMidYMid slice" focusable="false">
-        <defs>
-          <clipPath id="home-world-infield"><path d="M1180 55H700A320 320 0 0 0 700 695H1180Z"/></clipPath>
-          <linearGradient id="home-world-photo-shade" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b100e" stop-opacity=".10"/><stop offset="1" stop-color="#0b100e" stop-opacity=".36"/></linearGradient>
-        </defs>
-        <g clip-path="url(#home-world-infield)">
-          <rect x="0" y="0" width="1180" height="780" fill="#101412"/>
-          <image href="/media/library/bw-lead-runner-1200.webp" x="340" y="42" width="920" height="670" preserveAspectRatio="xMidYMid slice"/>
-          <rect x="340" y="42" width="900" height="670" fill="url(#home-world-photo-shade)"/>
-        </g>
-        <g class="home-world-lanes"><path d="M1180 55H700A320 320 0 0 0 700 695H1180"/>
-          <path d="M1180 45H700A330 330 0 0 0 700 705H1180"/>
-          <path d="M1180 35H700A340 340 0 0 0 700 715H1180"/>
-          <path d="M1180 25H700A350 350 0 0 0 700 725H1180"/>
-          <path d="M1180 15H700A360 360 0 0 0 700 735H1180"/>
-          <path d="M1180 5H700A370 370 0 0 0 700 745H1180"/>
-          <path d="M1180 -5H700A380 380 0 0 0 700 755H1180"/>
-          <path d="M1180 -15H700A390 390 0 0 0 700 765H1180"/>
-          <path d="M1180 -25H700A400 400 0 0 0 700 775H1180"/></g>
-        <image class="home-world-emblem" href="/assets/brand/kit/emblem/sf-emblem-bone.svg" x="897" y="575" width="175" height="64"/>
-      </svg>
-    </div>
+    <div class="home-world-architecture" aria-hidden="true"><img src="/media/library/bw-lead-runner-1200.webp" alt="" loading="lazy" decoding="async" width="1200" height="800"></div>
   </div>
   <div class="home-world-sheet-head wrap">
     <p class="home-world-eyebrow">From the practice</p>
-    <p>Frames from the track, the road, and the moments after.</p>
   </div>
-  <div class="home-world-sheet" data-world-sheet><ul aria-hidden="true"><li><img src="/media/library/bw-high-knees-600.webp" srcset="/media/library/bw-high-knees-600.webp 600w, /media/library/bw-high-knees-1200.webp 1200w" sizes="(min-width:860px) 34vw, 70vw" width="600" height="400" alt="" loading="lazy" decoding="async"><span>01</span></li><li><img src="/media/library/night-pair-track-600.webp" srcset="/media/library/night-pair-track-600.webp 600w, /media/library/night-pair-track-1200.webp 1200w" sizes="(min-width:860px) 34vw, 70vw" width="600" height="338" alt="" loading="lazy" decoding="async"><span>02</span></li><li><img src="/media/library/waterfront-palms-four-600.webp" srcset="/media/library/waterfront-palms-four-600.webp 600w, /media/library/waterfront-palms-four-1200.webp 1200w" sizes="(min-width:860px) 34vw, 70vw" width="400" height="600" alt="" loading="lazy" decoding="async"><span>03</span></li><li><img src="/media/library/bench-three-600.webp" srcset="/media/library/bench-three-600.webp 600w, /media/library/bench-three-1200.webp 1200w" sizes="(min-width:860px) 34vw, 70vw" width="600" height="391" alt="" loading="lazy" decoding="async"><span>04</span></li><li><img src="/media/library/two-on-the-lanes-600.webp" srcset="/media/library/two-on-the-lanes-600.webp 600w, /media/library/two-on-the-lanes-1200.webp 1200w" sizes="(min-width:860px) 34vw, 70vw" width="454" height="600" alt="" loading="lazy" decoding="async"><span>05</span></li><li><img src="/media/library/bw-track-talk-600.webp" srcset="/media/library/bw-track-talk-600.webp 600w, /media/library/bw-track-talk-1200.webp 1200w" sizes="(min-width:860px) 34vw, 70vw" width="600" height="400" alt="" loading="lazy" decoding="async"><span>06</span></li></ul></div>
+  <div class="home-world-sheet" data-world-sheet><ul aria-hidden="true"><li><img src="/media/library/night-pair-track-600.webp" srcset="/media/library/night-pair-track-600.webp 600w, /media/library/night-pair-track-1200.webp 1200w" sizes="(min-width:860px) 34vw, 70vw" width="600" height="338" alt="" loading="lazy" decoding="async"><span>01</span></li><li><img src="/media/library/waterfront-palms-four-600.webp" srcset="/media/library/waterfront-palms-four-600.webp 600w, /media/library/waterfront-palms-four-1200.webp 1200w" sizes="(min-width:860px) 34vw, 70vw" width="400" height="600" alt="" loading="lazy" decoding="async"><span>02</span></li><li><img src="/media/library/bw-high-knees-600.webp" srcset="/media/library/bw-high-knees-600.webp 600w, /media/library/bw-high-knees-1200.webp 1200w" sizes="(min-width:860px) 34vw, 70vw" width="600" height="400" alt="" loading="lazy" decoding="async"><span>03</span></li><li><img src="/media/library/bw-track-talk-600.webp" srcset="/media/library/bw-track-talk-600.webp 600w, /media/library/bw-track-talk-1200.webp 1200w" sizes="(min-width:860px) 34vw, 70vw" width="600" height="400" alt="" loading="lazy" decoding="async"><span>04</span></li><li><img src="/media/library/bench-three-600.webp" srcset="/media/library/bench-three-600.webp 600w, /media/library/bench-three-1200.webp 1200w" sizes="(min-width:860px) 34vw, 70vw" width="600" height="391" alt="" loading="lazy" decoding="async"><span>05</span></li><li><img src="/media/library/two-on-the-lanes-600.webp" srcset="/media/library/two-on-the-lanes-600.webp 600w, /media/library/two-on-the-lanes-1200.webp 1200w" sizes="(min-width:860px) 34vw, 70vw" width="454" height="600" alt="" loading="lazy" decoding="async"><span>06</span></li></ul></div>
 </section>
 
 <section class="home-media-strip" aria-labelledby="home-media-title">
