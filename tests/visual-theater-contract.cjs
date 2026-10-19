@@ -38,12 +38,16 @@ assert.match(css, /\.home-hero-shade\{pointer-events:none;z-index:0;background:n
 assert.match(css, /@media\(max-width:760px\)\{\.sf-home-hero-immersive \.hero-copy::before\{content:none\}/);
 assert.match(css, /\.home-hero-shade\{background:none\}/);
 assert.match(slides, /\.home-hero-slide:nth-child\(1\) img\{filter:none/);
-assert.match(slides, /\.home-hero-slide:nth-child\(4\) img\{filter:grayscale\(1\)/);
+// The owner reduced the hero to exactly one original photograph and one silent film.
+assert.equal((home.match(/class="home-hero-slide(?: is-active)?"/g)||[]).length,1,'One original still only');
+assert.equal((home.match(/class="home-hero-slide home-hero-video"/g)||[]).length,1,'One hosted training film only');
+assert.match(home,/adrian-7x800-2026-10-14/);
+assert.doesNotMatch(home,/home-hero-slide[^>]*>[\s\S]*?bridge-profile-1200/);
 
 // Decoration is allowed to be beautiful. The site also keeps meaningful entry points.
 assert.equal((home.match(/class="home-media-card"/g) || []).length, 3);
 assert.match(home, /class="home-media-head"/);
-assert.match(home, /href="\/people\/"/);
+assert.match(home, /href="\/athletes\/"/);
 assert.match(home, /href="\/runs\/"/);
 assert.match(home, /href="\/track\/"/);
 
@@ -54,5 +58,8 @@ assert.match(hero, /video\.controls = false/);
 assert.match(hero, /prefers-reduced-motion/);
 assert.doesNotMatch(hero, /home-hero-sound|Unmute|soundToggle/);
 assert.match(slides, /home-hero-slide\{position:absolute;inset:0;opacity:0;transition:opacity/);
-assert.match(slides, /home-hero-slide:nth-child\(2\) img\{filter:/);
+assert.match(slides,/\.home-hero-slide video\{filter:grayscale\(1\)/);
+assert.match(hero,/video\.addEventListener\('playing'/);
+assert.match(hero,/video\.addEventListener\('error'/);
+assert.match(hero,/showStill/);
 console.log('FORM theatrical design contract: pass (still requires visual review).');
