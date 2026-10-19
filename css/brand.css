@@ -44,7 +44,7 @@
 .bk-not-name img{width:26%}.bk-not-name b{font-size:clamp(11px,1.2vw,16px);font-weight:650;letter-spacing:-.02em;white-space:nowrap}
 
 /* Color */
-.bk-swatches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.6vw,24px)}
+.bk-swatches{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(12px,1.6vw,24px)}
 .bk-swatch{display:flex;flex-direction:column;justify-content:flex-end;gap:4px;min-width:0;aspect-ratio:1/1.08;padding:clamp(16px,1.8vw,26px);background:var(--sw);color:var(--on);border:1px solid var(--public-rule)}
 .bk-swatch strong{font-size:clamp(22px,2.2vw,30px);font-weight:450;letter-spacing:-.03em}.bk-swatch span{font:400 12px/1.6 var(--mono)}.bk-swatch em{font-style:normal;font-size:14px;line-height:1.5;opacity:.82}
 
