@@ -2,7 +2,7 @@
 
 ## Editorial rule · October 15, 2026
 
-**Show, don't narrate.** Photography, film, typography and composition carry the atmosphere. Copy supplies information, context or a reason to act. Do not explain what the viewer can already see, manufacture emotional significance or use generic sports-documentary slogans. Avoid lines such as “A look inside the work, not just the finish,” “See what the camera caught between the reps,” and “The work has faces.” Keep useful captions, dates and accessibility descriptions. This rule preserves the approved theater, decoration and visual drama. The Adrian & Tinius first-draft film stays muted throughout site and app until the owner changes that instruction.
+**Show, don't narrate.** Photography, film, typography and composition carry the atmosphere. Copy supplies information, context or a reason to act. Do not explain what the viewer can already see, manufacture emotional significance or use generic sports-documentary slogans. Avoid lines such as “A look inside the work, not just the finish,” “See what the camera caught between the reps,” and “The work has faces.” Keep useful captions, dates and accessibility descriptions. On study pages, use direct labels for source links and archives; don't narrate the reading interface with lines like “full details remain one click away” or editorial formulas like “session, experience, decision.” Preserve evidence caveats when they materially affect interpretation. This rule preserves the approved theater, decoration and visual drama. The Adrian & Tinius first-draft film stays muted throughout site and app until the owner changes that instruction.
 
 
 > **CURRENT AUTHORITY · 14 October 2026**
