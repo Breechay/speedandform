@@ -40,8 +40,16 @@ with tempfile.TemporaryDirectory(prefix='form-discovery-') as tmp:
                 if route.startswith('/search'):page.wait_for_function("document.querySelector('#discovery-status').textContent.includes('result')")
                 check(f'{route} contained at {width}',page.evaluate('document.documentElement.scrollWidth <= innerWidth+1'))
                 if route=='/library':
-                    ys=page.locator('.discovery-nav a').evaluate_all('(links)=>links.map(a=>Math.round(a.getBoundingClientRect().top))')
-                    check(f'Navigation stays on one row at {width}',len(set(ys))==1)
+                    nav_boxes=page.locator('.discovery-nav a:visible').evaluate_all("""links => links.map(a => {
+                        const r=a.getBoundingClientRect();
+                        return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height};
+                    })""")
+                    check(f'Navigation links stay on screen at {width}',bool(nav_boxes) and all(
+                        b['left']>=-1 and b['right']<=width+1 and b['height']>=20 for b in nav_boxes))
+                    check(f'Navigation links do not overlap at {width}',all(
+                        a['right']<=b['left']+1 or b['right']<=a['left']+1 or
+                        a['bottom']<=b['top']+1 or b['bottom']<=a['top']+1
+                        for i,a in enumerate(nav_boxes) for b in nav_boxes[i+1:]))
                     if width==390:check('First useful guide reaches the first mobile screen',page.locator('.discovery-link').first.bounding_box()['y']<960)
                 if width in [390,1440]:
                     name={'/':'home','/library':'library','/search?q=hyrox':'search','/page-does-not-exist-pass2':'404','/library/easy-days/':'article','/thursday':'thursday'}[route]
