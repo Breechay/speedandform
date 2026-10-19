@@ -147,8 +147,8 @@ body.pp-directory-page .pp-mono,body.pp-athlete-page .pp-mono{color:#c0beb5}
 .pp-directory-page .pp-card a:hover{box-shadow:none;transform:none}
 .pp-directory-page .pp-card-media{aspect-ratio:3/4.1;background:#222622}
 .pp-directory-page .pp-card:nth-child(7n+2) .pp-card-media,.pp-directory-page .pp-card:nth-child(7n+6) .pp-card-media{aspect-ratio:3/5.55}
-.pp-directory-page .pp-card-img{object-position:center 34%;filter:grayscale(.78) contrast(1.08);transition:transform .7s cubic-bezier(.22,.61,.36,1),filter .55s ease}
-.pp-directory-page .pp-card a:hover .pp-card-img,.pp-directory-page .pp-card a:focus-visible .pp-card-img{transform:scale(1.035);filter:grayscale(.15) contrast(1.06)}
+.pp-directory-page .pp-card-img{object-position:center 34%;filter:contrast(1.06);transition:transform .7s cubic-bezier(.22,.61,.36,1)}
+.pp-directory-page .pp-card a:hover .pp-card-img,.pp-directory-page .pp-card a:focus-visible .pp-card-img{transform:scale(1.035);filter:contrast(1.06)}
 .pp-directory-page .pp-card-media:after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(0deg,rgba(4,7,5,.86),transparent 75%);pointer-events:none}
 .pp-directory-page .pp-card-name{position:absolute;left:clamp(16px,2.2vw,32px);right:12px;bottom:clamp(18px,2.4vw,34px);z-index:1;color:#f8f4eb;font-size:clamp(32px,4vw,69px);letter-spacing:-.064em;line-height:.96;font-weight:520;text-wrap:balance;overflow-wrap:anywhere}
 .pp-directory-page .pp-monogram{background:#31392f;color:#f2eee5}
@@ -158,7 +158,7 @@ body.pp-directory-page .pp-mono,body.pp-athlete-page .pp-mono{color:#c0beb5}
 .pp-directory-page .pp-dir-exit .pp-mono{color:#62675d}
 .pp-directory-page .pp-dir-exit h2{font-size:clamp(56px,7.4vw,122px);line-height:.86;letter-spacing:-.075em;font-weight:500;margin:30px 0 0}
 .pp-directory-page .pp-dir-exit-photo{grid-row:1/3;grid-column:2;overflow:hidden;border-radius:16px;aspect-ratio:1.08;background:#1e2621}
-.pp-directory-page .pp-dir-exit-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:48% 60%;filter:grayscale(.4) contrast(1.07)}
+.pp-directory-page .pp-dir-exit-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:48% 60%;filter:contrast(1.06)}
 .pp-directory-page .pp-dir-exit>a{font-size:18px;align-self:end;justify-self:start;margin-top:30px;min-height:44px;text-underline-offset:8px}
 .pp-directory-page .pp-dir-exit>a span{margin-left:12px}
 .pp-athlete-page #pp-profile{padding-top:clamp(50px,7vw,108px)}
@@ -167,7 +167,7 @@ body.pp-directory-page .pp-mono,body.pp-athlete-page .pp-mono{color:#c0beb5}
 .pp-athlete-page .pp-intro{max-width:none;align-self:end;padding-bottom:clamp(16px,3vw,54px)}
 .pp-athlete-page .pp-intro h1{font-size:clamp(72px,9.1vw,155px);line-height:.86;letter-spacing:-.08em;font-weight:520;color:#f3eee5;overflow-wrap:anywhere}
 .pp-athlete-page .pp-idline{margin-bottom:22px}
-.pp-athlete-page .pp-av{width:48px;height:48px;filter:grayscale(.65)}
+.pp-athlete-page .pp-av{width:48px;height:48px;filter:grayscale(0)}
 .pp-athlete-page .pp-idline .pp-mono{color:#bbb9b1;font-size:12px}
 .pp-athlete-page .pp-bio{font-size:clamp(20px,2vw,28px);max-width:34ch;line-height:1.28;margin-top:30px;color:#ede8dd}
 .pp-athlete-page .pp-disc{display:block;color:#c4c3b9;font-size:18px;margin-top:24px}
@@ -184,13 +184,13 @@ body.pp-directory-page .pp-mono,body.pp-athlete-page .pp-mono{color:#c0beb5}
 .pp-athlete-page .pp-group>a,.pp-athlete-page .pp-group>p{color:#f0eadf}
 .pp-athlete-page .pp-group>*>span+span{color:#c6c3b9}
 .pp-athlete-page .pp-grid{grid-template-columns:repeat(12,minmax(0,1fr));gap:14px}
-.pp-athlete-page .pp-grid img{grid-column:span 4;height:clamp(280px,34vw,510px);border-radius:14px;filter:grayscale(.45);object-fit:cover}
+.pp-athlete-page .pp-grid img{grid-column:span 4;height:clamp(280px,34vw,510px);border-radius:14px;filter:grayscale(0);object-fit:cover}
 .pp-athlete-page .pp-grid img:first-child{grid-column:span 6}
 .pp-athlete-page .pp-grid img:nth-child(3n+2){grid-column:span 3}
 .pp-athlete-page .pp-grid.is-one{grid-template-columns:1fr}
 .pp-athlete-page .pp-grid.is-one img{grid-column:1;height:auto;max-height:780px}
 .pp-athlete-page .pp-film{max-width:none;color:#f2eee5}
-.pp-athlete-page .pp-film-frame img{border-radius:12px;filter:grayscale(.35)}
+.pp-athlete-page .pp-film-frame img{border-radius:12px;filter:grayscale(0)}
 .pp-athlete-page .pp-film>span:last-child{color:#bdbbb2}
 .pp-athlete-page .pp-film b{font-size:23px}
 .pp-athlete-page .pp-foot,.pp-athlete-page .pp-missing .pp-note{color:#bbb9ad}
