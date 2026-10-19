@@ -240,3 +240,8 @@ body.pp-directory-page .pp-mono,body.pp-athlete-page .pp-mono{color:#c0beb5}
  .pp-athlete-page .pp-missing{padding:60px 0}
 }
 @media(prefers-reduced-motion:reduce){.pp-directory-page .pp-card-img{transition:none}}
+
+/* Public directory opens on portraits; semantic title stays accessible. */
+.pp-visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.pp-directory-page .pp-dir{padding-top:clamp(18px,3vw,44px)}
+@media(max-width:760px){.pp-directory-page .pp-dir{padding-top:10px}}
