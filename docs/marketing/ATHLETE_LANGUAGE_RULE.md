@@ -45,6 +45,10 @@ The first states the observation. The second adds an unproven mechanism and then
 
 FORM's public voice should sound like the coach in the field: **see it, name it, change it, show the result.**
 
+## Publication and interface voice
+
+**Present the evidence. Don't narrate the presentation.** Read [FORM Publication Contract](../editorial/PUBLICATION_CONTRACT.md). Use direct source/archive link labels; do not narrate the page, the scroll, the link, the design intent or an emotion the imagery should convey. Apply the same rule to SEO descriptions, social excerpts, share cards, and generated pages. Preserve safety, consent, provenance and necessary instructions. This is not a ban on decoration, and is not a license to erase meaning.
+
 ## Say it once
 
 A recurring failure mode is explaining every sentence twice.
