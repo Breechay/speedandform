@@ -1,5 +1,9 @@
 # Start here: Speed & Form
 
+## Current web visual authority · October 19, 2026
+
+**Website first, native later.** Follow [FORM cinematic web finish](docs/design/FORM_CINEMATIC_WEB_DIRECTION_2026-10-19.md) alongside the publication contract and deployment discipline. The SF emblem, measured bend, Inter Tight and measured mono, ink/graphite/stone/bone, rounded photographic crops, and real athlete photography define the public web. Color is either full natural color or true monochrome. No muddy partial grayscale, color-desaturation hover, brown/tan UI accents, serif athlete names or invented public athletic claims. Preserve the homepage's continuous band, muted first-draft film, functional navigation and privacy-gated published assets. This web rule does not silently modify the iOS app or native training prescriptions. One coherent review batch, no routine deploy without explicit approval.
+
 ## Deployment discipline · October 19, 2026
 
 **Do not deploy every edit. Work in batches. Commit freely, deploy deliberately.** Read [FORM Deployment Discipline](docs/engineering/DEPLOYMENT_DISCIPLINE_2026-10.md) before any production release. Preview/local work is for iteration; production is for a coherent, QA'd batch or a genuinely urgent fix. **Maximum one routine production deploy per work block.** Small copy, styling, study, metadata, content and non-urgent code edits should accumulate into that release. A request to make/edit/fix/update/commit something is **not** permission to deploy. Codex, ChatGPT and other agents may deploy only when Brice explicitly says deploy/publish/push live/make it live, or when the task is already an explicitly approved release task. Keep status states distinct: **Edited → Tested → Committed → Previewed/QA'd → Deployed → Production-verified.** Netlify credits are a production resource; avoid spending them on iterative production builds that can be validated locally or in preview.
