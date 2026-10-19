@@ -39,6 +39,10 @@ Don't create a scheduled publishing obligation (weekly numbered Issues), rest-da
 - **Race destination photography** can set context behind an athlete's actual assigned race countdown, using the approved black-and-white city imagery and a crop/grade tailored to each photograph. An unavailable asset falls back to the established dark field. The countdown, event and training block remain source-backed, never a mock value.
 - **No uniform monochrome mandate:** use natural and black-and-white images intentionally. Protect dark skin, facial detail, highlights, text contrast, loading performance and motion accessibility. Keep each image's permitted crop and actual rights.
 
+## Design inspiration is not published FORM evidence
+
+The October 19 group/homepage mockups demonstrate editorial scale, bold imagery, typography, variation, film and inhabitation. Their sample brand labels (`STRIDE`, `PACE`), runners, city names (`London`, `Portland`), dates, distances, attendance, personal scores, quotes, media playback controls and copy are **not** approved FORM facts or identities. Do not copy them into a production app/site. Use only verified FORM albums, real group runs, approved photographs, published athletes and genuine note/study content. Do not add a permanent playback bar, new bottom navigation, home hero overhaul or extra content rails simply because an illustrative mock happens to show them.
+
 ## Guardrails
 
 1. Reuse existing authority. Media catalogue: `/media/library/library.json`. People and tags: `docs/collective/PEOPLE-AND-TAGS-CONTRACT-20261013.md`. Public sessions/films: `docs/collective/SESSIONS-AND-FILM-CONTRACT-20261014.md` and `docs/collective/NATIVE-SUPABASE-FILM-20261014.md`. Occurrences and RSVP: the existing published Collective public run projections. Studies: the already approved public Labs pages. **Do not add a new database, posting system or parallel identity.**
