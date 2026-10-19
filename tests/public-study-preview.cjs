@@ -13,16 +13,18 @@ for(const a of s.athletes){
  assert.ok(Math.abs(seconds(a.work_time)/s.latest_completed.distance_mi-seconds(a.work_pace))<1,'Work average retains source precision');
  assert.ok(Math.abs(seconds(a.previous_half_net_time)/13.1094-seconds(a.previous_half_pace))<1,'Prior race pace agrees with half-marathon time');
 }
-const home=fs.readFileSync('index.html','utf8'),run=fs.readFileSync('coaching/miami/index.html','utf8');
-assert.ok(home.includes(renderHomeEvidence()),'Homepage uses the approved current projection');
-// Homepage owns the approved study projection. Run Development keeps its direct inquiry path;
-// the owner's focused coaching room deliberately does not carry study/analysis cross-links.
-assert.ok(run.includes('href="/#begin"'));
-assert.ok(!run.includes('href="/labs/speed-that-endures/"'),'Focused coaching entry has no unsolicited study cross-link');
-assert.ok(!run.split('<!-- Shared site menu -->')[0].includes('href="/analysis/"'),'Commercial content does not cross-sell analysis; shared menu is tested separately');
-assert.match(home,/<section class="home-entry"/,'Coaching remains a public homepage chapter');
-assert.match(home,/<a href="#begin">[\s\S]*?<strong>1:1 Coaching<\/strong>/,'The original coaching destination remains reachable');
+const home=fs.readFileSync('index.html','utf8'),run=fs.readFileSync('coaching/miami/index.html','utf8'),inquiry=fs.readFileSync('coaching/apply/index.html','utf8');
+assert.match(home,/You can hit the pace\.<br>Can you hold it\?/,'Study question survives the short homepage');
+assert.match(home,/Hope and José are working on that question\./,'Real named athletes remain');
+assert.match(home,/>6 miles</,'The completed continuous distance remains explicit');
+assert.match(home,/href="\/labs\/speed-that-endures\/"/,'Study remains directly accessible');
+assert.ok(source.includes(s.latest_completed.date),'Dated study evidence remains in its owning source');
+assert.ok(run.includes('href="/coaching/apply/"'),'Coaching leads to real separate inquiry');
+assert.ok(inquiry.includes('class="questionnaire"'),'Application workflow remains functional');
+assert.ok(!run.includes('href="/labs/speed-that-endures/"'),'Offer does not grow study cross-sell');
+assert.ok(!run.split('<!-- Shared site menu -->')[0].includes('href="/analysis/"'),'Offer does not cross-sell analysis');
+assert.match(home,/<section class="home-entry home-bend-only"/,'Visual signature bend remains');
 assert.ok(!run.includes('http-equiv="refresh"'));
 assert.ok(!fs.readFileSync('netlify.toml','utf8').includes('from = "/coaching/miami"'));
-assert.ok(home.includes('A training milestone. Not a race prediction.'));
-console.log('PASS: public study/current homepage and running example remain in sync; future asks and prior race baselines stay distinct.');
+assert.ok(!home.includes('A training milestone. Not a race prediction.'),'Full study owns caveats; homepage is a photographic entrance');
+console.log('PASS: canonical study keeps full evidence; focused home keeps measured result and source link; coaching inquiry remains functional.');
