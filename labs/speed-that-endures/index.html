@@ -1414,7 +1414,6 @@ html,body{overflow-x:clip}
 </style>
 <style id="form-observation-style">.form-observation-note{display:block;position:relative;box-sizing:border-box;max-width:1040px;margin:48px auto;padding:28px 24px;border-top:1px solid currentColor;scroll-margin-top:100px}.form-observation-note h2{font:inherit;font-size:clamp(25px,4vw,40px);font-weight:700;line-height:1.15;letter-spacing:0;margin:8px 0 20px}.form-observation-note p{font-size:17px;line-height:1.6;max-width:66ch;letter-spacing:0}.form-observation-note .obs-label{font-size:13px;letter-spacing:.04em}.form-observation-note a{color:inherit;text-decoration:underline}.form-observation-note dl{display:grid;grid-template-columns:100px 1fr;gap:14px 20px;margin:26px 0;font-size:16px;line-height:1.5}.form-observation-note dt{font-weight:700}.form-observation-note dd{margin:0}.form-observation-note blockquote{font:inherit;font-size:20px;line-height:1.5;margin:24px 0;max-width:60ch}@media(max-width:430px){.form-observation-note{padding:24px 20px;margin:32px auto}.form-observation-note dl{grid-template-columns:1fr;gap:5px}.form-observation-note dd{margin-bottom:12px}}</style>
 <link rel="stylesheet" href="/css/sf-brand.css?v=20261001">
-<link rel="stylesheet" href="/css/sf-menu.css?v=20261015-focus">
 <style>
 /* FORM study first-read: keep the original dark cinematic laboratory beneath */
 .ste-current,.ste-method,.ste-development,.ste-log{position:relative;background:#061416;color:#f5f1e8;border-bottom:1px solid #496368;padding:clamp(35px,5vw,70px) 0}
@@ -1429,7 +1428,8 @@ html,body{overflow-x:clip}
 .ste-notebook{background:#071819;color:#f6f0e8;border-bottom:2px solid #c8d8ce}.ste-notebook>summary{cursor:pointer;list-style:revert;padding:clamp(24px,5vw,56px) max(22px,calc((100% - 1110px)/2));border-bottom:1px solid #4a6768}.ste-notebook>summary>b{display:block;font-size:clamp(25px,4vw,47px);letter-spacing:-.05em}.ste-notebook>summary>span{display:block;font-size:13px;max-width:65ch;color:#cfdbd4;margin-top:9px;line-height:1.6}.ste-notebook:not([open]){padding-bottom:0}
 @media(max-width:700px){.ste-grid{grid-template-columns:1fr}.ste-methodgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.ste-r{grid-template-columns:1fr 1fr;gap:7px 14px}.ste-r>span:nth-child(3),.ste-r>span:nth-child(4){grid-column:1/-1}.ste-labels{display:none}.ste-r>span:nth-child(4){color:#a9b9b2}.ste-r>span:nth-child(4):before{content:"OPEN QUESTION · ";font:700 10px ui-monospace,monospace;color:#b6d8cc}.ste-entry{grid-template-columns:75px 1fr;gap:12px}.ste-card strong{font-size:37px}}
 @media(max-width:430px){.ste-methodgrid{grid-template-columns:1fr 1fr;gap:9px}.ste-methodgrid strong{font-size:16px}.ste-card p{font-size:13px}}
-</style></head>
+</style><link rel="stylesheet" href="/css/sf-menu.css?v=20261015-focus">
+</head>
 <body>
 <div class="masthead sf-menu-host">
 <a class="wordmark sf-brand" href="/" aria-label="Speed and Form home"></a>
@@ -2696,25 +2696,31 @@ const evidence = {
 </script>
 
 <!-- The status states the publication date; session dates remain on their evidence. -->
-<!-- Shared site menu -->
+<script>
+(function(){
+ const openHash=()=>{const id=decodeURIComponent(location.hash.slice(1));if(!id)return;const el=document.getElementById(id);if(el&&el.closest('#ste-notebook')){const notebook=document.getElementById('ste-notebook');notebook.open=true;requestAnimationFrame(()=>el.scrollIntoView({block:'start'}))}};
+ addEventListener('hashchange',openHash);document.addEventListener('DOMContentLoaded',openHash);
+ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{const id=a.getAttribute('href').slice(1);const el=document.getElementById(id);if(el&&el.closest('#ste-notebook'))document.getElementById('ste-notebook').open=true}));
+})();
+</script><!-- Shared site menu -->
 <div class="sf-menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu">
   <a class="sf-menu-scrim" href="#" tabindex="-1" aria-hidden="true"></a>
   <div class="sf-menu-panel">
     <div class="sf-menu-top"><a class="sf-menu-close" href="#" aria-label="Close menu">Close</a></div>
 
     <!-- Photographic entrance -->
-    <a class="sf-menu-hero" href="/people/" aria-label="The Collective — athletes, runs, and media">
+    <a class="sf-menu-hero" href="/people/" aria-label="The Team — athletes, runs, and media">
       <img src="/media/library/bridge-profile-1200.webp" alt="" loading="eager" width="1200" height="800">
       <div class="sf-menu-hero-overlay">
-        <p class="sf-menu-eyebrow">Network</p>
-        <p class="sf-menu-hero-title">The Collective</p>
+        <p class="sf-menu-eyebrow">FORM</p>
+        <p class="sf-menu-hero-title">The Team</p>
         <p class="sf-menu-hero-sub">People. Places. Process.</p>
       </div>
     </a>
 
-    <!-- Visual Collective / Athletes -->
+    <!-- Visual Team / Athletes -->
     <section class="sf-menu-group sf-menu-visual" aria-labelledby="sf-menu-collective">
-      <p class="sf-menu-label" id="sf-menu-collective">The Collective</p>
+      <p class="sf-menu-label" id="sf-menu-collective">The Team</p>
       <div class="sf-menu-cards">
         <a class="sf-menu-card" href="/people/">
           <img src="/media/library/white-shorts-dusk-600.webp" alt="" loading="lazy">
@@ -2771,11 +2777,5 @@ const evidence = {
 </div>
 <!-- /Shared site menu -->
 <script defer src="/js/sf-menu.js?v=20261015-focus"></script>
-<script>
-(function(){
- const openHash=()=>{const id=decodeURIComponent(location.hash.slice(1));if(!id)return;const el=document.getElementById(id);if(el&&el.closest('#ste-notebook')){const notebook=document.getElementById('ste-notebook');notebook.open=true;requestAnimationFrame(()=>el.scrollIntoView({block:'start'}))}};
- addEventListener('hashchange',openHash);document.addEventListener('DOMContentLoaded',openHash);
- document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{const id=a.getAttribute('href').slice(1);const el=document.getElementById(id);if(el&&el.closest('#ste-notebook'))document.getElementById('ste-notebook').open=true}));
-})();
-</script></body>
+</body>
 </html>
