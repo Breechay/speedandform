@@ -7,5 +7,9 @@ assert.deepEqual(plans.sixteen.weeks.slice(4).map(w=>w.days),base.weeks.map(w=>w
 assert.equal(plans.six.weeks.filter(w=>w.steady).length,4);assert.ok(plans.six.weeks.every(w=>!w.steady||w.days[1]>=4));
 const library=fs.readFileSync('library.html','utf8'),index=JSON.parse(fs.readFileSync('search-index.json','utf8'));
 for(const route of Object.values(routes)){assert.ok(library.includes(route));assert.equal(index.filter(x=>x.url===route).length,1);}
-const rd=fs.readFileSync('coaching/miami/index.html','utf8');assert.ok(!/http-equiv="refresh"|location.replace|noindex/.test(rd));assert.equal((rd.match(/href="\/#begin"/g)||[]).length,2);assert.ok(fs.readFileSync('index.html','utf8').includes('<a href="#begin"><span>01 / Coaching'));
+const rd=fs.readFileSync('coaching/miami/index.html','utf8');assert.ok(!/http-equiv="refresh"|location.replace|noindex/.test(rd));assert.equal((rd.match(/href="\/#begin"/g)||[]).length,2);const home=fs.readFileSync('index.html','utf8');
+assert.match(home,/<section class="home-entry"/,'Homepage keeps an actual coaching entry chapter');
+assert.match(home,/<a href="#begin">[\s\S]*?<strong>1:1 Coaching<\/strong>/,'1:1 coaching remains a live homepage destination');
+assert.match(home,/href="\/plans\/"[\s\S]*?<strong>Training plans<\/strong>/,'Plans remain reachable');
+assert.match(home,/href="\/athletes\/"[\s\S]*?<strong>The Team<\/strong>/,'The Team remains reachable');
 console.log('PASS: 210 new daily entries, totals, rest/race spacing, foundation parity and gate, discovery, coaching route and original homepage entry.');

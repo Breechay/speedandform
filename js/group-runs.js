@@ -146,7 +146,7 @@
       var runs = res[0], gal = res[1];
       var upcoming = runs.filter(isUpcoming).sort(function (a, b) { return Date.parse(a.starts_at) - Date.parse(b.starts_at); }).slice(0, 6);
       next.innerHTML = upcoming.length ? upcoming.map(function (r) { return runRow(r, true); }).join('') :
-        '<p class="gr-state">The next run posts here. Thursdays are usually 6:00 AM at Flamingo Park Track.</p>';
+        '<p class="gr-state">No group run is currently scheduled. The published mornings and photographs remain below.</p>';
       var past = runs.filter(function (r) { return r.status !== 'cancelled' && !isUpcoming(r); });
       window.FORM_GROUP_RUNS = { upcoming: upcoming.length, mornings: past.length };
       if (!gal) { mornings.innerHTML = '<p class="gr-state">The photographs can’t be loaded right now.<button type="button" data-gr-retry>Try again</button></p>'; return; }

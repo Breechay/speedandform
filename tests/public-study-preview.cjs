@@ -20,7 +20,8 @@ assert.ok(home.includes(renderHomeEvidence()),'Homepage uses the approved curren
 assert.ok(run.includes('href="/#begin"'));
 assert.ok(!run.includes('href="/labs/speed-that-endures/"'),'Focused coaching entry has no unsolicited study cross-link');
 assert.ok(!run.split('<!-- Shared site menu -->')[0].includes('href="/analysis/"'),'Commercial content does not cross-sell analysis; shared menu is tested separately');
-assert.ok(home.includes('<a href="#begin"><span>01 / Coaching'));
+assert.match(home,/<section class="home-entry"/,'Coaching remains a public homepage chapter');
+assert.match(home,/<a href="#begin">[\s\S]*?<strong>1:1 Coaching<\/strong>/,'The original coaching destination remains reachable');
 assert.ok(!run.includes('http-equiv="refresh"'));
 assert.ok(!fs.readFileSync('netlify.toml','utf8').includes('from = "/coaching/miami"'));
 assert.ok(home.includes('A training milestone. Not a race prediction.'));

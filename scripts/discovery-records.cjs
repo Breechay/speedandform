@@ -909,7 +909,7 @@ module.exports=[
    "questions": []
  },
  {
-   "url": "/people/",
+   "url": "/athletes/",
    "title": "Athletes",
    "description": "The runners of Speed & Form: their races, their training and the photographs and film from the mornings.",
    "keywords": [

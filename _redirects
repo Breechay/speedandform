@@ -63,8 +63,8 @@
 /library                /library.html               200
 /training-interruptions /training-interruptions.html 200
 /ledger                 /ledger.html                200
-/athletes               /athletes.html              200
-/athletes/              /athletes.html              301
+/athletes               /athletes/                  301!
+/athletes/              /people/index.html          200!
 /the-field              /miami-running-training    301!
 /easy-run               /easy-run.html              200
 /competition            /competition.html           200
@@ -72,7 +72,8 @@
 /strength-activation    /strength-activation.html   200
 /strength-fixes         /strength-fixes.html        200
 /arc                    /arc.html                   200
-/athletes/:slug         /athletes/:slug.html        200
+/athletes/:slug         /people/template.html       200!
+/athletes/:slug/        /people/template.html       200!
 
 # Block WordPress paths — redirect to home
 /wp-admin               /       301
@@ -148,8 +149,9 @@
 /run                    /runs/                      301
 /run/                   /runs/                      301
 /run/*                  /run/template.html          200
-/people                 /people/                    301
-/people/*               /people/template.html       200
+/people                 /athletes/                  301!
+/people/                /athletes/                  301!
+/people/*               /athletes/:splat            301!
 /session                 /people/                    302
 /session/                /people/                    302
 /session/*               /session/template.html      200

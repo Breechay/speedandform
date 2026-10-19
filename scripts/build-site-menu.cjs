@@ -2,15 +2,15 @@
 // Static public navigation. The sitemap owns eligibility; private/account routes
 // are never scanned. Run last so every generated page retains the same drawer.
 const fs=require('node:fs'),path=require('node:path');
-const ROOT=path.resolve(__dirname,'..'),VERSION='20261015-focus';
+const ROOT=path.resolve(__dirname,'..'),VERSION='20261019-photographic-drawer';
 const PANEL=fs.readFileSync(path.join(__dirname,'site-menu-panel.html'),'utf8').trim();
 const TOGGLE='<a class="sf-menu-toggle" href="#site-menu" aria-controls="site-menu" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18"/></svg></a>';
 const EXCLUDED=/^(?:coach|athlete|auth|account|record|private|studio|form-app|forge-app|tests|docs)(?:\/|\.html)|^(?:form|forge-sculpt)\/(?:train|auth|account)\//;
 function collect(root=ROOT){
- const files=new Set(['index.html','search.html','404.html','privacy.html','terms.html']);
+ const files=new Set(['index.html','search.html','404.html','privacy.html','terms.html','people/index.html','people/template.html','session/template.html']);
  const urls=[...fs.readFileSync(path.join(root,'sitemap.xml'),'utf8').matchAll(/<loc>https:\/\/speedandform\.com([^<]*)<\/loc>/g)].map(m=>m[1]);
  for(const app of ['form','forge-sculpt'])for(const page of ['support','privacy','terms'])urls.push(`/${app}/${page}/`);
- for(const url of urls){const route=url.replace(/^\/+|\/+$/g,'');if(!route)continue;for(const file of [route+'.html',route+'/index.html'])if(fs.existsSync(path.join(root,file))){files.add(file);break;}}
+ for(const url of urls){const route=url.replace(/^\/+|\/+$/g,'');if(!route)continue;if(route==='athletes'){files.add('people/index.html');continue;}for(const file of [route+'.html',route+'/index.html'])if(fs.existsSync(path.join(root,file))){files.add(file);break;}}
  return [...files].filter(file=>!EXCLUDED.test(file)&&fs.existsSync(path.join(root,file))&&(/^(?:search|404)\.html$|^(?:form|forge-sculpt)\/(?:support|privacy|terms)\//.test(file)||!/<meta\b[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(fs.readFileSync(path.join(root,file),'utf8')))).sort();
 }
 // Tiny structural tokenizer: scripts/styles/comments are opaque, and offsets
@@ -56,6 +56,10 @@ function transformHtml(html,file){
   else next=next.slice(0,target.close)+TOGGLE+next.slice(target.close);
   next=next.slice(0,target.start)+open+next.slice(target.openEnd);
   }
+ }
+ // Official rounded SF favicon, shared by public menu pages. ICO remains legacy fallback.
+ if(!/rel=["']icon["']\s+type=["']image\/svg\+xml["']/.test(next)){
+   next=next.replace(/<\/head>/i,'<link rel="icon" type="image/svg+xml" href="/assets/brand/kit/favicon/form-rounded.svg">\n</head>');
  }
  // Styles last: standalone article CSS must not recolor/reflow the drawer.
  if(next.includes('sf-public-masthead')&&!next.includes('/css/sf-brand.css'))next=next.replace(/<\/head>/i,'<link rel="stylesheet" href="/css/sf-brand.css?v=20261001">\n</head>');

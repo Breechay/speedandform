@@ -1,0 +1,53 @@
+/* FORM photographic room — the same editorial scale as Homepage Direction B.
+   Canonical real FORM assets; no labels, captions, counts or fabricated athletes. */
+@font-face{font-family:"Inter Tight";src:url("/assets/site/fonts/inter-tight-latin-variable.woff2") format("woff2");font-weight:100 900;font-display:swap}
+html{scroll-behavior:smooth}
+body{font-family:"Inter Tight",Arial,sans-serif;background:#0a0e0d;color:#f2eee5}
+.photos-header{position:relative;z-index:3}
+.photos-editorial-hero{position:relative;min-height:clamp(620px,76vh,970px);background:#f2eee5;color:#121714;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.04fr);align-items:center;margin-top:0}
+.photos-editorial-copy{z-index:2;padding:clamp(60px,8vw,135px) 0 clamp(80px,8vw,130px) max(30px,calc((100vw - 1360px)/2));max-width:850px}
+.photos-editorial-copy .photos-kicker{color:#5c6158}
+.photos-editorial-copy h1{font-size:clamp(62px,8.6vw,142px);font-weight:500;line-height:.86;letter-spacing:-.086em;max-width:10ch;margin:clamp(36px,4vw,65px) 0 0;text-wrap:balance}
+.photos-editorial-copy .photos-scroll{display:inline-flex;align-items:center;gap:26px;color:#101611;text-decoration:none;border-bottom:1px solid #848a7e;padding:0 0 11px;margin-top:clamp(35px,5vw,72px);min-height:44px;font-size:16px}
+.photos-editorial-copy .photos-scroll:hover{gap:34px}
+.photos-editorial-aperture{position:relative;min-height:clamp(560px,73vh,960px);height:100%;background:#0b0e0d;overflow:hidden;clip-path:ellipse(102% 85% at 107% 55%)}
+.photos-editorial-frame{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 41%;filter:grayscale(.9) contrast(1.12) brightness(.87)}
+.photos-editorial-aperture:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,8,6,.1),transparent 40%),linear-gradient(0deg,rgba(4,8,6,.5),transparent 38%);pointer-events:none}
+.photos-editorial-bend{position:absolute;inset:0;width:108%;height:100%;object-fit:contain;transform:scale(1.4) translate(0%,1%);opacity:.78;mix-blend-mode:screen;pointer-events:none}
+.photos-editorial-emblem{position:absolute;bottom:10%;right:9%;width:clamp(90px,11vw,185px);z-index:1;opacity:.92}
+.photos-collection{padding-top:clamp(68px,8vw,120px);padding-bottom:clamp(70px,8vw,130px)}
+.photos-collection>.photos-kicker{margin:0 0 clamp(30px,4vw,60px);font-size:12px;letter-spacing:.10em}
+.photo-wall{column-count:3;column-gap:clamp(12px,1.6vw,24px)}
+.photo-frame{margin:0 0 clamp(12px,1.6vw,24px);border-radius:clamp(10px,1vw,16px);overflow:hidden}
+.photo-frame a{background:#252b27;border-radius:inherit;overflow:hidden}
+.photo-frame img{object-fit:cover!important;display:block;width:100%;height:auto;filter:grayscale(.65) contrast(1.12) brightness(.95);transition:transform .65s cubic-bezier(.22,.61,.36,1),filter .5s ease}
+.photo-frame:nth-child(5n+2) img,.photo-frame:nth-child(7n+3) img{filter:grayscale(.05) contrast(1.05) brightness(.98)}
+.photo-frame:nth-child(4n+1){margin-bottom:clamp(22px,3.5vw,48px)}
+.photo-frame a:hover img,.photo-frame a:focus-visible img{filter:grayscale(0) contrast(1.03);transform:scale(1.018)}
+.photos-header{background:#0b0e0d;color:#f2eee5;width:100%;max-width:none;padding:17px max(30px,calc((100vw - 1360px)/2))}
+.photos-header .sf-brand{filter:brightness(0) invert(1)}
+.photos-nav a{font-size:14px}
+.photos-footer{border-color:#353a32;color:#c9cabe}
+.photos-footer a{min-height:44px;display:inline-flex;align-items:center}
+@media(max-width:850px){
+ .photos-editorial-hero{grid-template-columns:1fr}
+ .photos-editorial-copy{padding:clamp(58px,12vw,95px) 24px 38px;max-width:none}
+ .photos-editorial-copy h1{font-size:clamp(65px,12vw,102px);margin-top:25px}
+ .photos-editorial-copy .photos-scroll{margin-top:35px}
+ .photos-editorial-aperture{height:clamp(420px,65vw,650px);min-height:0;clip-path:ellipse(95% 110% at 90% 100%)}
+ .photos-editorial-bend{transform:scale(1.13);object-position:right}
+}
+@media(max-width:590px){
+ .photos-header{padding:18px}
+ .photos-nav{gap:10px}
+ .photos-nav a{font-size:13px}
+ .photos-editorial-copy{padding:67px 19px 35px}
+ .photos-editorial-copy h1{font-size:clamp(57px,13.2vw,80px)}
+ .photos-editorial-aperture{height:88vw;max-height:465px}
+ .photos-collection{padding-top:68px}
+ .photo-wall{column-count:2;column-gap:9px}
+ .photo-frame{margin-bottom:9px;border-radius:9px}
+ .photos-wrap{width:calc(100% - 28px)}
+ .photos-footer{margin-top:20px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.photo-frame img{transition:none}}

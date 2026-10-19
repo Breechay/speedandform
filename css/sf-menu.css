@@ -80,3 +80,35 @@ html.sf-menu-enhanced{scrollbar-gutter:stable}
 body[data-sculpt-landing]{container-type:normal}
 body[data-sculpt-landing]>main,body[data-sculpt-landing]>.bs-header{container-type:inline-size;container-name:sculpt-page}
 @media(max-width:360px){body[data-sculpt-landing] .bs-footer{grid-template-columns:1fr}body[data-sculpt-landing] .bs-footer .bs-mark{flex-wrap:wrap}}
+
+/* Oct 19 photograph-first side door. Shared across public pages. The bend is already
+   the homepage's architecture; the drawer is a cream photographic magazine chapter. */
+.sf-menu-panel{width:min(460px,85%);background:#f1ede4;box-shadow:-24px 0 90px rgba(0,0,0,.25)}
+.sf-menu-top{justify-content:space-between;background:#f1ede4;min-height:76px;padding:6px 2px}
+.sf-menu-home{display:inline-flex;align-items:center;justify-content:flex-start;min-height:44px;min-width:90px;order:-1;margin-right:auto}
+.sf-menu-home img{display:block;max-width:90px;width:90px;height:auto}
+.sf-menu-close{font-size:12px}
+.sf-menu-hero{margin-bottom:14px;min-height:330px;border-radius:3px;isolation:isolate;background:#171a18}
+.sf-menu-hero img{height:350px;filter:grayscale(.6) contrast(1.14) brightness(.93);object-position:50% 45%;transition:filter .45s cubic-bezier(.22,.61,.36,1),transform .6s cubic-bezier(.22,.61,.36,1)}
+.sf-menu-hero-overlay{padding:30px 30px 32px;background:linear-gradient(0deg,rgba(4,8,6,.84),rgba(4,8,6,.32) 47%,transparent 80%)}
+.sf-menu-hero-title{font-size:clamp(52px,6.1vw,78px);line-height:.88;letter-spacing:-.065em;font-weight:480}
+.sf-menu-hero-sub{margin-top:13px;max-width:28ch;font-size:15px;line-height:1.4;color:#f2eee5}
+.sf-menu-label{letter-spacing:.13em}
+.sf-menu-visual{padding-top:9px!important}
+.sf-menu-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.sf-menu-card{background:#e8e2d8;border:1px solid rgba(22,25,22,.1);border-radius:5px;overflow:hidden;min-height:190px}
+.sf-menu-card img{height:140px;filter:grayscale(.72) contrast(1.07);object-position:50% 39%;transition:filter .4s ease,transform .6s cubic-bezier(.22,.61,.36,1)}
+.sf-menu-card span{padding:12px 13px 0;font-size:21px;line-height:1.04;font-weight:490}
+.sf-menu-card small{padding:5px 13px 14px;font-size:13px;line-height:1.35}
+.sf-menu-card:nth-child(3){grid-column:1/-1;display:grid;grid-template-columns:44% minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:0;min-height:133px}
+.sf-menu-card:nth-child(3) img{grid-row:1/3;grid-column:1;height:100%;min-height:133px}
+.sf-menu-card:nth-child(3) span{grid-column:2;grid-row:1;align-self:end;padding:12px 14px 0}
+.sf-menu-card:nth-child(3) small{grid-column:2;grid-row:2;padding:8px 14px 12px}
+.sf-menu-card:hover img,.sf-menu-card:focus-visible img{filter:grayscale(0) contrast(1.06);transform:scale(1.035)}
+.sf-menu-lead{padding-top:27px}
+.sf-menu-lead a.sf-menu-first{font-size:clamp(27px,4vw,38px)}
+.sf-menu-group a{line-height:1.18}
+.sf-menu-foot{padding-bottom:20px}
+@media(max-width:520px){.sf-menu-hero{margin-left:-20px;margin-right:-20px;min-height:250px}.sf-menu-hero img{height:290px}.sf-menu-hero-overlay{padding:22px 24px 26px}.sf-menu-cards{gap:8px}.sf-menu-card img{height:118px}.sf-menu-card span{font-size:18px}.sf-menu-panel{padding-left:20px;padding-right:20px}}
+@media(max-width:360px){.sf-menu-panel{width:85%}.sf-menu-card:nth-child(3){grid-template-columns:42% 58%}.sf-menu-hero-title{font-size:49px}}
+@media(prefers-reduced-motion:reduce){.sf-menu-card img,.sf-menu-hero img{transition:none}}
