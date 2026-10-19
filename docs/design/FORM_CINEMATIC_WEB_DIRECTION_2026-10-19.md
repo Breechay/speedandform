@@ -3,6 +3,10 @@ Approved web execution · 19 October 2026
 
 **Scope:** speedandform.com public website. The native Running and Strength apps are a separate pass. Keep published athlete consent, visibility, private training state, study evidence, routing and source-of-truth contracts unchanged.
 
+## Binding public copy law
+
+See [FORM public copy law](../editorial/PUBLIC_COPY_LAW_2026-10-19.md). **A distinct editorial job is a different picture, necessary fact, or action; it does not authorize a new kicker, caption or paragraph.** The homepage headline, authored photographic sequence, real result and single contact action are enough. Do not create copy to explain a visual change. Never use the Brand kit's explanatory density as a pattern for public pages.
+
 ## The principle
 **Keep the depth. Photography carries the color and emotion.**
 The SF emblem and a measured running-track bend establish continuity. Inter Tight carries editorial titles; JetBrains Mono carries measured details. The world is visually rich, athletic, documentary and confident. It is not an over-muted luxury template, an artificial workout feed, or a minimal card dashboard.
