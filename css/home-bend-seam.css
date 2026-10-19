@@ -1,0 +1,23 @@
+/* The bend as the seam between the hero and "Train with me" (Oct 19, 2026). See js/home-bend-seam.js. */
+.home-entry[data-bend-seam]{position:relative;z-index:3;overflow:visible}
+.bend-seam{position:absolute;left:0;pointer-events:none;overflow:visible;z-index:0}
+.bend-seam-lanes path{fill:none;stroke:rgba(232,227,217,.44);stroke-width:1.4px;vector-effect:non-scaling-stroke}
+.bend-seam-lanes .bend-seam-start{stroke-width:1.6px}
+.bend-seam-mark{position:absolute;z-index:1;height:auto;opacity:0;pointer-events:none;transition:opacity 700ms ease 900ms}
+.home-entry[data-bend-seam].bend-in .bend-seam-mark{opacity:1}
+.home-entry[data-bend-seam]>.wrap{position:relative;z-index:2}
+@media(min-width:1024px){
+  .home-entry[data-bend-seam]>.wrap{padding-right:clamp(300px,30vw,460px);box-sizing:border-box}
+  .home-entry[data-bend-seam]{padding-top:clamp(84px,7.4vw,112px);padding-bottom:clamp(84px,7.4vw,112px)}
+}
+@media(max-width:1023px){
+  .home-entry[data-bend-seam] h2{max-width:min(68%,17ch)}
+  .bend-seam-lanes path{stroke-width:1.1px}
+}
+@media(prefers-reduced-motion:reduce){.bend-seam-mark{transition:none}}
+.home-opening:has(+ .home-entry[data-bend-seam]) .home-proof-facts{margin-bottom:112px}
+.home-entry[data-bend-seam] + .home-media-strip{padding-top:calc(clamp(32px,4vw,60px) + 116px)}
+@media(max-width:1023px){
+  .home-opening:has(+ .home-entry[data-bend-seam]) .home-proof-facts{margin-bottom:84px}
+  .home-entry[data-bend-seam] + .home-media-strip{padding-top:calc(clamp(32px,4vw,60px) + 40px)}
+}
