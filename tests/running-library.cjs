@@ -23,8 +23,13 @@ assert.ok(!rank([{title:'Fundamentals',keywords:[],description:'General informat
 const movement=entries.filter(e=>e.category==='movement');
 assert.deepEqual(new Set(families.movement.groups.flatMap(g=>g.urls)),new Set(movement.map(e=>e.url)));
 for(const e of entries){assert.equal(groups.filter(g=>g[2](e)).length,1,e.url);assert.ok(!/^\/(?:coach|athletes|record|auth|app)(?:\/|$)/.test(e.url),e.url);}
+// Each guide's authored content must be deterministic. The shared menu and rounded
+// favicon are separately verified by tests/site-menu.cjs and are rebuilt last.
+const normalizeMenu=require('../scripts/build-site-menu.cjs').transformHtml;
 for(const g of pages){
- const h=fs.readFileSync(g.file,'utf8');assert.equal(render(g,h),h,g.file+' deterministic publication');
+ const h=fs.readFileSync(g.file,'utf8');
+ const published=normalizeMenu(h,g.file);
+ assert.equal(render(g,h),published,g.file+' deterministic content and canonical navigation');
  const ids=[...h.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length,g.file+' duplicate fragment');
  for(const [,id]of h.matchAll(/href="#([^"]+)"/g))assert.ok(ids.includes(id),g.file+' missing '+id);
  for(const [,json]of h.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g))JSON.parse(json);
