@@ -72,7 +72,7 @@ fs.mkdirSync(out,{recursive:true});
  for(const selector of ['.hero-copy','.home-entry h2','.home-evidence h2','.intake-copy']){
   assert.equal(await page.locator(selector).evaluate(e=>getComputedStyle(e).opacity),'1',selector+' never hidden');
  }
- assert.ok(await page.getByRole('link',{name:/See the plan/}).isVisible());
+ assert.ok(await page.locator('.home-evidence-links a[href="/plans/race-pace-durability/"]').isVisible(),'The source-backed plan remains directly accessible');
  // The menu replaces the header Contact link: it opens, holds focus, closes on Escape and returns focus.
  const toggle=page.locator('.sf-menu-toggle');assert.equal(await toggle.getAttribute('aria-label'),'Menu');await toggle.click();
  assert.ok(await page.locator('#site-menu.is-open').isVisible(),'Menu opens');assert.equal(await toggle.getAttribute('aria-expanded'),'true');
