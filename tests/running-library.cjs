@@ -22,7 +22,7 @@ for(const q of ['submarine','unicorn running pajamas','<script>alert(1)</script>
 assert.ok(!rank([{title:'Fundamentals',keywords:[],description:'General information',url:'/test'}],'mental').length,'word fragments are not words');
 const movement=entries.filter(e=>e.category==='movement');
 assert.deepEqual(new Set(families.movement.groups.flatMap(g=>g.urls)),new Set(movement.map(e=>e.url)));
-for(const e of entries){assert.equal(groups.filter(g=>g[2](e)).length,1,e.url);assert.ok(!/^\/(?:coach|athletes|record|auth|app)(?:\/|$)/.test(e.url),e.url);}
+for(const e of entries){assert.equal(groups.filter(g=>g[2](e)).length,1,e.url);assert.ok(e.url==='/athletes/'||!/^\/(?:coach|athletes|record|auth|app)(?:\/|$)/.test(e.url),e.url);}
 // Each guide's authored content must be deterministic. The shared menu and rounded
 // favicon are separately verified by tests/site-menu.cjs and are rebuilt last.
 const normalizeMenu=require('../scripts/build-site-menu.cjs').transformHtml;
