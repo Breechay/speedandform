@@ -32,8 +32,10 @@ function normalize(value) {
   return decode(value).replace(/\s+/g, ' ').trim();
 }
 function tagAttr(tag, attr) {
-  const re = new RegExp('\\b' + attr + '\\s*=\s*(["\\x27])([\\s\\S]*?)\\1', 'i');
-  return (tag.match(re) || [,'',''])[2];
+  for (const m of tag.matchAll(/\b([a-z:-]+)\s*=\s*(["'])(.*?)\2/gis)) {
+    if (m[1].toLowerCase() === attr) return m[3];
+  }
+  return '';
 }
 function scanHtml(html, file) {
   const matches = [];
