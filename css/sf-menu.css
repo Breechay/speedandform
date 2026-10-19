@@ -85,7 +85,7 @@ body[data-sculpt-landing]>main,body[data-sculpt-landing]>.bs-header{container-ty
    the homepage's architecture; the drawer is a cream photographic magazine chapter. */
 .sf-menu-panel{width:min(460px,85%);background:#f1ede4;box-shadow:-24px 0 90px rgba(0,0,0,.25)}
 .sf-menu-top{justify-content:space-between;background:#f1ede4;min-height:76px;padding:6px 2px}
-.sf-menu-home{display:inline-flex;align-items:center;justify-content:flex-start;min-height:44px;min-width:90px}
+.sf-menu-home{display:inline-flex;align-items:center;justify-content:flex-start;min-height:44px;min-width:90px;order:-1;margin-right:auto}
 .sf-menu-home img{display:block;max-width:90px;width:90px;height:auto}
 .sf-menu-close{font-size:12px}
 .sf-menu-hero{margin-bottom:14px;min-height:330px;border-radius:3px;isolation:isolate;background:#171a18}
