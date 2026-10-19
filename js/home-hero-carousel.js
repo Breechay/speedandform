@@ -50,7 +50,7 @@
     if (!canPlayHere() || waiting || filmVisible) return;
     waiting = true;
     silence();
-    if (!video.src) video.src = videoURL;
+    if (video.getAttribute('src') !== videoURL) video.src = videoURL;
     video.currentTime = 0;
     var p = video.play();
     if (p && p.catch) p.catch(function () { filmDisabled = true; showStill(false); });
@@ -66,7 +66,8 @@
     silence();
     video.preload = 'none';
     filmSlide.hidden = false;
-    video.src = '';
+    video.removeAttribute('src');
+    video.load();
     filmDisabled = false;
     showStill(true);
   }
