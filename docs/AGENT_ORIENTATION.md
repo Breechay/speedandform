@@ -3,6 +3,8 @@
 
 This file exists to stop a capable agent from doing locally reasonable work that makes the whole Speed & Form system less coherent.
 
+For anything an athlete, prospect or collaborator will read, [FORM Publication Contract](editorial/PUBLICATION_CONTRACT.md) is mandatory: **Present the evidence. Don't narrate the presentation.** Keep source/record truth distinct from audience copy, and leave decorative theater intact.
+
 Root `AGENTS.md` contains detailed surface rules. This document answers a different question:
 
 **What is this company now, where does truth live, and how should an agent decide what to touch?**
