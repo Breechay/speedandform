@@ -49,4 +49,25 @@ assert.match(home, /href="\/athletes\/"[^>]*>Meet the athletes/);
 const rules = read('docs/design/FORM_CINEMATIC_WEB_DIRECTION_2026-10-19.md');
 assert.match(rules, /Color integrity/);
 assert.match(rules, /native Running and Strength apps are a separate pass/i);
+// Source-of-truth navigation, not the compiled copy in each page.
+const menuSource = read('scripts/site-menu-panel.html');
+for (const route of ['/athletes/', '/runs/', '/photos/']) {
+  assert.equal((menuSource.match(new RegExp('href="' + route + '"', 'g')) || []).length, 1,
+    'Menu has exactly one destination for ' + route);
+}
+assert.doesNotMatch(menuSource, /sf-menu-together|>The Team</, 'No duplicate Team group');
+const photoFrames = [...photos.matchAll(/<figure class="photo-frame(?: photo-sequence-\d)?" data-search="([^" ]+)/g)];
+assert.equal(photoFrames.length, 46, 'Preserve all 46 public photographs');
+assert.deepEqual(photoFrames.slice(0, 5).map(m => m[1]), [
+  'track-curve-group', 'bridge-profile', 'bw-lead-runner', 'two-on-the-lanes', 'bench-after-reps'
+], 'Editorial opening: scene, athlete, effort, detail, after');
+assert.match(read('css/home-world.css'), /\.home-world-sheet img\{[^}]*filter:none/);
+assert.match(read('css/home-editorial-continuation.css'), /\.home-world-featured \.home-world-sheet img\{[^}]*filter:none/);
+assert.doesNotMatch(home, /home-world-lanes|home-world-aperture/, 'One measured bend only');
+assert.match(brand, /#42627B/, 'Steel cue on paper');
+const palette = read('css/home-commercial.css');
+assert.match(palette, /--dark:#10161A;--backdrop:#10161A/);
+const runCSS = read('css/runs-editorial.css');
+assert.match(runCSS, /background:#1B242B;border:1px solid rgba\(241,239,232,\.18\)/);
+assert.doesNotMatch(photos, /\.photos-search\{/, 'Legacy search input style retired');
 console.log('PASS: natural/full-monochrome imagery, current Brand tokens, no duplicate Photos destination, live Runs CTA and scope rules');
