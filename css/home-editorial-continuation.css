@@ -106,3 +106,7 @@
 .intake .home-hero-primary{background:#0B0B0B;color:#F4F2EC;border-color:#0B0B0B}
 .intake .home-hero-primary:hover{background:#1A1A1A;color:#F4F2EC}
 .intake .home-hero-primary:focus-visible{outline:2px solid #0B0B0B;outline-offset:3px}
+
+/* The strip on paper after the bend: room to breathe above, no dead space below. */
+.home-world.home-world-strip{padding:clamp(64px,7vw,112px) 0 clamp(64px,7vw,112px)}
+.home-world-strip .home-world-sheet{margin-top:0}

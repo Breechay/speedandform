@@ -7,6 +7,7 @@
   const section = document.querySelector('[data-bend-seam]');
   if (!section) return;
   const NS = 'http://www.w3.org/2000/svg';
+  const infield = section.querySelector('.bend-infield');
   const svg = document.createElementNS(NS, 'svg');
   svg.setAttribute('class', 'bend-seam');
   svg.setAttribute('aria-hidden', 'true');
@@ -75,6 +76,10 @@
     mark.style.left = (gx - mw / 2) + 'px';
     mark.style.top = (gy - mh / 2) + 'px';
     if (hero) hero.style.setProperty('--seam-outer', Math.ceil(outer) + 'px');
+    section.style.setProperty('--seam-outer', Math.ceil(outer) + 'px');
+    // The infield holds the photograph: clipped to the inner lane, so the track is its frame.
+    if (infield) infield.style.clipPath = `path('M-2 0H${cx.toFixed(1)}A${rin.toFixed(1)} ${rin.toFixed(1)} 0 0 1 ${cx.toFixed(1)} ${(2 * rin).toFixed(1)}H-2Z')`;
+    if (infield) infield.style.height = (2 * rin) + 'px';
     maskHero({ cx, cy, R: rin + outer });
     if (!drawn) prime();
   }
