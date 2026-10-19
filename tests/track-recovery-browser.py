@@ -23,7 +23,12 @@ with sync_playwright() as p:
    assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),(route,width,'overflow')
    imgs=page.locator('main img') if label!='brand' else page.locator('#theater img')
    for im in imgs.all():
-    im.scroll_into_view_if_needed();im.evaluate('(i)=>i.decode()')
+    im.scroll_into_view_if_needed()
+    try:
+     im.evaluate('(i)=>i.decode()')
+    except Exception as exc:
+     image_state=im.evaluate('(i)=>({src:i.currentSrc || i.src,complete:i.complete,naturalWidth:i.naturalWidth,naturalHeight:i.naturalHeight})')
+     raise AssertionError(f'Image decode failure at {route} / {label} / {width}px: {image_state}') from exc
    if label=='album':
     assert imgs.count()==8
     assert imgs.evaluate_all('(ims)=>ims.every(i=>i.complete&&i.naturalWidth>0&&Math.abs(i.clientWidth/i.clientHeight-i.naturalWidth/i.naturalHeight)<.02)')
