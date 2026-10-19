@@ -5,19 +5,19 @@
 /* The nine lines are both the track and a visual transition: don't fill the cream
    chapter with another grid of interchangeable cards. */
 .home-world.home-world-featured{
-  background:#EEEDE8;color:#10161A;position:relative;isolation:isolate;
+  background:#F4F2EC;color:#0B0B0B;position:relative;isolation:isolate;
   padding:0 0 clamp(56px,5vw,84px);overflow:hidden;
 }
 .home-world-feature{position:relative;display:flex;align-items:center;min-height:clamp(540px,49vw,770px);margin:0 auto;width:100%;isolation:isolate}
 .home-world-feature-copy{position:relative;z-index:2;box-sizing:border-box;flex:0 0 42%;padding:clamp(70px,9vw,120px) 0 clamp(72px,8vw,110px) max(24px,calc((100vw - var(--max,1280px))/2));max-width:670px}
 .home-world-feature-copy .home-world-eyebrow{margin-bottom:clamp(26px,3vw,42px);color:#51544d}
-.home-world-feature-copy h2{color:#10161A;max-width:8ch;font-size:clamp(66px,8.15vw,128px);line-height:.9;letter-spacing:-.067em;font-weight:470;margin:0}
+.home-world-feature-copy h2{color:#0B0B0B;max-width:8ch;font-size:clamp(66px,8.15vw,128px);line-height:.9;letter-spacing:-.067em;font-weight:470;margin:0}
 .home-world-feature-copy .home-world-summary{max-width:34ch;margin:clamp(30px,3vw,44px) 0 0;font-size:clamp(17px,1.35vw,20px);line-height:1.5;color:#424740}
 .home-world-feature-copy .home-world-links{margin-top:clamp(26px,2.5vw,38px)}
 .home-world-feature-copy .home-world-links a{border-color:#aaa99e;white-space:normal;line-height:1.2}
-.home-world-feature-copy .home-world-links a.home-world-primary{background:#10161A;color:#f4f0e6;border-color:#10161A}
-.home-world-feature-copy .home-world-links a.home-world-primary:hover{background:#1B242B}
-.home-world-architecture{position:absolute;pointer-events:none;z-index:1;inset:32px var(--public-gutter,24px) 32px 49%;display:block;overflow:hidden;border-radius:20px;background:#1B242B}
+.home-world-feature-copy .home-world-links a.home-world-primary{background:#0B0B0B;color:#f4f0e6;border-color:#0B0B0B}
+.home-world-feature-copy .home-world-links a.home-world-primary:hover{background:#1A1A1A}
+.home-world-architecture{position:absolute;pointer-events:none;z-index:1;inset:32px var(--public-gutter,24px) 32px 49%;display:block;overflow:hidden;border-radius:20px;background:#1A1A1A}
 .home-world-architecture img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 45%}
 .home-world-sheet-head{margin-top:clamp(4px,2vw,24px);margin-bottom:clamp(20px,3vw,34px);display:flex;align-items:baseline;justify-content:space-between;gap:24px}
 .home-world-sheet-head .home-world-eyebrow{margin:0}
@@ -33,7 +33,7 @@
 .home-world-featured .home-world-sheet li:nth-child(5) img{width:clamp(350px,34vw,530px);object-position:center 47%}
 
 @media(hover:hover){.home-world-featured .home-world-sheet li:hover img{transform:translateY(-2px)}}
-.home-world-featured + .home-media-strip{padding-top:clamp(92px,9vw,144px);background:#10161A}
+.home-world-featured + .home-media-strip{padding-top:clamp(92px,9vw,144px);background:#0B0B0B}
 .home-world-featured + .home-media-strip .home-media-head{margin-bottom:clamp(32px,4vw,54px)}
 .home-world-featured + .home-media-strip .home-media-grid{gap:clamp(14px,2vw,24px)}
 .home-world-featured + .home-media-strip .home-media-card{border-radius:16px;border:1px solid rgba(241,239,232,.18)}
@@ -103,6 +103,6 @@
   .home-world-featured .home-world-sheet img{transition:none}
 }
 /* The closing action sits on paper: ink, so it reads as the one thing to press. */
-.intake .home-hero-primary{background:#10161A;color:#F1EFE8;border-color:#10161A}
-.intake .home-hero-primary:hover{background:#1B242B;color:#F1EFE8}
-.intake .home-hero-primary:focus-visible{outline:2px solid #10161A;outline-offset:3px}
+.intake .home-hero-primary{background:#0B0B0B;color:#F4F2EC;border-color:#0B0B0B}
+.intake .home-hero-primary:hover{background:#1A1A1A;color:#F4F2EC}
+.intake .home-hero-primary:focus-visible{outline:2px solid #0B0B0B;outline-offset:3px}

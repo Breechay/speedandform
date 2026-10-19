@@ -2,7 +2,7 @@
    Inter Tight only. Cream reading page; real published photography only. */
 @font-face{font-family:"Inter Tight";src:url("/assets/site/fonts/inter-tight-latin-variable.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
 @font-face{font-family:"JetBrains Mono";src:url("/assets/site/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");font-weight:400;font-display:swap}
-:root{--cream:#EEEDE8;--field:#EEEDE8;--ink:#10161A;--sec:#4F5A64;--hair:rgba(16,22,26,.12);--edge:rgba(16,22,26,.18);--sans:"Inter Tight",Arial,sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,monospace}
+:root{--cream:#F4F2EC;--field:#F4F2EC;--ink:#0B0B0B;--sec:#555553;--hair:rgba(16,22,26,.12);--edge:rgba(16,22,26,.18);--sans:"Inter Tight",Arial,sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,monospace}
 *{box-sizing:border-box}
 html{background:var(--cream);-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
@@ -128,7 +128,7 @@ main{max-width:1200px;margin:0 auto;padding:24px 24px 80px}
 /* FORM Athlete Features · 19 Oct 2026
    Public athletes are a real photographic publication, not a coaching dashboard.
    Permissions remain exclusively with collective_people_directory / collective_person. */
-body.pp-directory-page,body.pp-athlete-page{background:#10161A;color:#F1EFE8}
+body.pp-directory-page,body.pp-athlete-page{background:#0B0B0B;color:#F4F2EC}
 body.pp-directory-page a,body.pp-athlete-page a{color:inherit}
 body.pp-directory-page .pp-top,body.pp-athlete-page .pp-top{max-width:1520px;padding:24px clamp(20px,4vw,64px)}
 body.pp-directory-page .pp-top .sf-brand,body.pp-athlete-page .pp-top .sf-brand{filter:brightness(0) invert(1)}
@@ -151,10 +151,10 @@ body.pp-directory-page .pp-mono,body.pp-athlete-page .pp-mono{color:#c0beb5}
 .pp-directory-page .pp-card a:hover .pp-card-img,.pp-directory-page .pp-card a:focus-visible .pp-card-img{transform:scale(1.035);filter:contrast(1.06)}
 .pp-directory-page .pp-card-media:after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(0deg,rgba(4,7,5,.86),transparent 75%);pointer-events:none}
 .pp-directory-page .pp-card-name{position:absolute;left:clamp(16px,2.2vw,32px);right:12px;bottom:clamp(18px,2.4vw,34px);z-index:1;color:#f8f4eb;font-size:clamp(32px,4vw,69px);letter-spacing:-.064em;line-height:.96;font-weight:520;text-wrap:balance;overflow-wrap:anywhere}
-.pp-directory-page .pp-monogram{background:#31392f;color:#F1EFE8}
+.pp-directory-page .pp-monogram{background:#31392f;color:#F4F2EC}
 .pp-directory-page .pp-note{color:#d4d0c6;font-size:18px}
 .pp-directory-page .pp-note button{color:#f3eee5}
-.pp-directory-page .pp-dir-exit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);column-gap:clamp(24px,5vw,86px);align-items:end;margin-top:clamp(100px,13vw,210px);background:#F1EFE8;color:#171b18;margin-inline:calc(-1*clamp(20px,4vw,64px));padding:clamp(50px,8vw,115px) clamp(20px,4vw,64px)}
+.pp-directory-page .pp-dir-exit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);column-gap:clamp(24px,5vw,86px);align-items:end;margin-top:clamp(100px,13vw,210px);background:#F4F2EC;color:#171b18;margin-inline:calc(-1*clamp(20px,4vw,64px));padding:clamp(50px,8vw,115px) clamp(20px,4vw,64px)}
 .pp-directory-page .pp-dir-exit .pp-mono{color:#62675d}
 .pp-directory-page .pp-dir-exit h2{font-size:clamp(56px,7.4vw,122px);line-height:.86;letter-spacing:-.075em;font-weight:500;margin:30px 0 0}
 .pp-directory-page .pp-dir-exit-photo{grid-row:1/3;grid-column:2;overflow:hidden;border-radius:16px;aspect-ratio:1.08;background:#1e2621}
@@ -173,13 +173,13 @@ body.pp-directory-page .pp-mono,body.pp-athlete-page .pp-mono{color:#c0beb5}
 .pp-athlete-page .pp-disc{display:block;color:#c4c3b9;font-size:18px;margin-top:24px}
 .pp-athlete-page .pp-links{margin-top:28px}
 .pp-athlete-page .pp-links a{border-color:rgba(245,240,230,.34);min-height:44px;padding:0 18px;color:#ece8de}
-.pp-athlete-page .pp-links a:hover{border-color:#F1EFE8;background:#1a211b}
+.pp-athlete-page .pp-links a:hover{border-color:#F4F2EC;background:#1a211b}
 .pp-athlete-page .pp-facts{border-top:1px solid rgba(242,238,229,.27);margin-top:48px;gap:22px}
 .pp-athlete-page .pp-now b{font-size:clamp(23px,2.6vw,34px);color:#f3efe7}
 .pp-athlete-page .pp-best b{font-size:clamp(34px,3.5vw,54px);color:#f3efe7}
 .pp-athlete-page .pp-q,.pp-athlete-page .pp-now a{color:#c9c8bf}
 .pp-athlete-page .pp-media{margin-top:clamp(90px,11vw,160px)}
-.pp-athlete-page .pp-media h2{font-size:clamp(42px,6vw,88px);font-weight:470;letter-spacing:-.065em;color:#F1EFE8;margin-bottom:34px}
+.pp-athlete-page .pp-media h2{font-size:clamp(42px,6vw,88px);font-weight:470;letter-spacing:-.065em;color:#F4F2EC;margin-bottom:34px}
 .pp-athlete-page .pp-group{margin-top:44px}
 .pp-athlete-page .pp-group>a,.pp-athlete-page .pp-group>p{color:#f0eadf}
 .pp-athlete-page .pp-group>*>span+span{color:#c6c3b9}
@@ -189,12 +189,12 @@ body.pp-directory-page .pp-mono,body.pp-athlete-page .pp-mono{color:#c0beb5}
 .pp-athlete-page .pp-grid img:nth-child(3n+2){grid-column:span 3}
 .pp-athlete-page .pp-grid.is-one{grid-template-columns:1fr}
 .pp-athlete-page .pp-grid.is-one img{grid-column:1;height:auto;max-height:780px}
-.pp-athlete-page .pp-film{max-width:none;color:#F1EFE8}
+.pp-athlete-page .pp-film{max-width:none;color:#F4F2EC}
 .pp-athlete-page .pp-film-frame img{border-radius:12px;filter:grayscale(0)}
 .pp-athlete-page .pp-film>span:last-child{color:#bdbbb2}
 .pp-athlete-page .pp-film b{font-size:23px}
 .pp-athlete-page .pp-foot,.pp-athlete-page .pp-missing .pp-note{color:#bbb9ad}
-.pp-athlete-page .pp-missing h1{color:#F1EFE8}
+.pp-athlete-page .pp-missing h1{color:#F4F2EC}
 .pp-athlete-page .pp-note a{color:#f4eee4}
 .pp-athlete-page .pp-head.no-hero{display:block}
 .pp-athlete-page .pp-head.no-hero .pp-intro{max-width:1000px}
