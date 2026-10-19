@@ -1,6 +1,6 @@
-/* Shared public navigation. House bone and ink, with the page visible beside the drawer.
+/* Shared public navigation. Ink and stone, with the page visible beside the drawer.
    The :target fallback keeps navigation available without JavaScript.
-   Photographic editorial treatment for Network / The Collective. */
+   Photographic editorial treatment; each public destination appears once. */
 .sf-menu{position:fixed;inset:0;z-index:10000;visibility:hidden;pointer-events:none;text-align:left;font:400 17px/1.5 "Inter Tight",Arial,sans-serif;letter-spacing:normal;text-transform:none}
 .sf-menu,.sf-menu *{box-sizing:border-box;transition-property:none}
 .sf-menu .sf-menu-group{width:auto;max-width:none;margin:0;background:transparent;border:0;border-top:1px solid rgba(22,25,22,.18);border-radius:0;box-shadow:none}
@@ -34,7 +34,7 @@ html:not(.sf-menu-enhanced) .sf-menu:target .sf-menu-panel,.sf-menu.is-open .sf-
 .sf-menu-card small{display:block;padding:0 10px 10px;font:400 11px/1.3 "Inter Tight",sans-serif;color:#48535a}
 .sf-menu-card:hover{transform:translateY(-2px)}
 @media(prefers-reduced-motion:reduce){.sf-menu-card:hover{transform:none}}
-@media(max-width:420px){.sf-menu-cards{grid-template-columns:1fr 1fr;gap:8px}.sf-menu-card:last-child{grid-column:1/-1}}
+@media(max-width:420px){.sf-menu-cards{grid-template-columns:1fr 1fr;gap:8px}.sf-menu-card:last-child{grid-column:auto}}
 
 .sf-menu-group{flex:none;padding:17px 0 19px;border-top:1px solid rgba(22,25,22,.18)}
 .sf-menu-label{margin:0 0 8px;font:400 11px/1.6 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:#48535a}
@@ -100,15 +100,11 @@ body[data-sculpt-landing]>main,body[data-sculpt-landing]>.bs-header{container-ty
 .sf-menu-card img{height:140px;filter:none;object-position:50% 39%;transition:transform .6s cubic-bezier(.22,.61,.36,1)}
 .sf-menu-card span{padding:12px 13px 0;font-size:21px;line-height:1.04;font-weight:490}
 .sf-menu-card small{padding:5px 13px 14px;font-size:13px;line-height:1.35}
-.sf-menu-card:nth-child(3){grid-column:1/-1;display:grid;grid-template-columns:44% minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:0;min-height:133px}
-.sf-menu-card:nth-child(3) img{grid-row:1/3;grid-column:1;height:100%;min-height:133px}
-.sf-menu-card:nth-child(3) span{grid-column:2;grid-row:1;align-self:end;padding:12px 14px 0}
-.sf-menu-card:nth-child(3) small{grid-column:2;grid-row:2;padding:8px 14px 12px}
 .sf-menu-card:hover img,.sf-menu-card:focus-visible img{filter:none;transform:scale(1.035)}
 .sf-menu-lead{padding-top:27px}
 .sf-menu-lead a.sf-menu-first{font-size:clamp(27px,4vw,38px)}
 .sf-menu-group a{line-height:1.18}
 .sf-menu-foot{padding-bottom:20px}
 @media(max-width:520px){.sf-menu-hero{margin-left:-20px;margin-right:-20px;min-height:250px}.sf-menu-hero img{height:290px}.sf-menu-hero-overlay{padding:22px 24px 26px}.sf-menu-cards{gap:8px}.sf-menu-card img{height:118px}.sf-menu-card span{font-size:18px}.sf-menu-panel{padding-left:20px;padding-right:20px}}
-@media(max-width:360px){.sf-menu-panel{width:85%}.sf-menu-card:nth-child(3){grid-template-columns:42% 58%}.sf-menu-hero-title{font-size:49px}}
+@media(max-width:360px){.sf-menu-panel{width:85%}.sf-menu-hero-title{font-size:49px}}
 @media(prefers-reduced-motion:reduce){.sf-menu-card img,.sf-menu-hero img{transition:none}}
