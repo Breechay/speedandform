@@ -24,9 +24,16 @@ with sync_playwright() as p:
    imgs=page.locator('main img') if label!='brand' else page.locator('#theater img')
    for im in imgs.all():
     im.scroll_into_view_if_needed()
-    # Chromium may reject an explicit decode() during a lazy-load transition
-    # despite nonzero dimensions. Demand real painted pixels, not just metadata.
+    # Scrolling starts lazy loading. Wait for load before decode() or canvas.
+    # The previous test raced the network and rejected valid source photographs.
+    im.evaluate('(i)=>{i.loading="eager"}')
     state=im.evaluate("""async (i) => {
+      if (!i.complete || !i.naturalWidth) {
+        await new Promise((resolve, reject) => {
+          i.addEventListener('load', resolve, {once:true});
+          i.addEventListener('error', () => reject(Error('Image failed to load')), {once:true});
+        });
+      }
       let decodeError = null;
       try { await i.decode(); } catch (e) { decodeError = String(e); }
       const c = document.createElement('canvas');
