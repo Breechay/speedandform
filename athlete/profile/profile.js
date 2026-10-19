@@ -70,7 +70,7 @@ async function paint(note = '', cls = '') {
           const ph = t.library_id && l[t.library_id];
           const src = ph?.files?.['600'] || ph?.files?.['800'] || '';
           return `<div class="pf-tag">${src ? `<img src="${esc(src)}" alt="${esc(ph.alt || '')}" loading="lazy">` : '<span class="ph" aria-hidden="true"></span>'}
-            <span>${t.status === 'requested' ? 'Requested' : (t.asset_id ? 'Group run photo' : 'Photo')}</span>
+            <span>${t.status === 'requested' ? 'Request sent' : (t.asset_id ? 'Group run photo' : 'Photo')}</span>
             <button class="button" type="button" data-untag="${t.id}">${t.status === 'requested' ? 'Cancel request' : 'Remove me'}</button></div>`;
         }).join('')}</div>` : '<p class="field-hint">No photos yet.</p>'}
       </div>
