@@ -50,7 +50,7 @@ with tempfile.TemporaryDirectory(prefix='form-discovery-') as tmp:
                         a['right']<=b['left']+1 or b['right']<=a['left']+1 or
                         a['bottom']<=b['top']+1 or b['bottom']<=a['top']+1
                         for i,a in enumerate(nav_boxes) for b in nav_boxes[i+1:]))
-                    if width==390:check('First useful guide reaches the first mobile screen',page.locator('.discovery-link').first.bounding_box()['y']<960)
+                    if width==390:check('Search is available on the opening mobile screen',page.locator('#discovery-query').bounding_box()['y']<960)
                 if width in [390,1440]:
                     name={'/':'home','/library':'library','/search?q=hyrox':'search','/page-does-not-exist-pass2':'404','/library/easy-days/':'article','/thursday':'thursday'}[route]
                     page.screenshot(path=str(OUT/(name+f'-{width}.png')))
