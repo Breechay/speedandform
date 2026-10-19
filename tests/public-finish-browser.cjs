@@ -54,7 +54,7 @@ fs.mkdirSync(out,{recursive:true});
   await page.locator('.sf-home-hero-immersive').screenshot({path:path.join(out,name+'.png')});
   const samples=await page.evaluate(()=>{
    const hero=document.querySelector('.sf-home-hero-immersive').getBoundingClientRect(),result=[];
-   for(const e of document.querySelectorAll('.hero-kicker,h1,.home-hero-intro,.home-proof-facts dt,.home-proof-facts dd,.home-contact')){
+   for(const e of document.querySelectorAll('.sf-home-hero-immersive h1,.sf-home-hero-immersive .home-hero-actions a')){
     const walker=document.createTreeWalker(e,NodeFilter.SHOW_TEXT);let node;
     while(node=walker.nextNode()){if(!node.textContent.trim())continue;const range=document.createRange();range.selectNodeContents(node);const style=getComputedStyle(node.parentElement);
      for(const r of range.getClientRects())if(r.width&&r.height)result.push({text:node.textContent.trim(),x:r.x-hero.x,y:r.y-hero.y,width:r.width,height:r.height,color:style.color,large:parseFloat(style.fontSize)>=24});
@@ -69,10 +69,10 @@ fs.mkdirSync(out,{recursive:true});
  // Every fold is readable even without arrival/observer classes.
  await page.goto(origin+'/');
  assert.equal(await page.locator('.home-evidence-result dt').first().innerText(),'6 miles');
- for(const selector of ['.hero-copy','.home-entry h2','.home-evidence h2','.intake-copy']){
+ for(const selector of ['.hero-copy','.home-evidence h2','.intake-copy']){
   assert.equal(await page.locator(selector).evaluate(e=>getComputedStyle(e).opacity),'1',selector+' never hidden');
  }
- assert.ok(await page.locator('.home-evidence-links a[href="/plans/race-pace-durability/"]').isVisible(),'The source-backed plan remains directly accessible');
+ assert.ok(await page.locator('.home-evidence-links a[href="/labs/speed-that-endures/"]').isVisible(),'The source-backed study remains directly accessible');
  // The menu replaces the header Contact link: it opens, holds focus, closes on Escape and returns focus.
  const toggle=page.locator('.sf-menu-toggle');assert.equal(await toggle.getAttribute('aria-label'),'Menu');await toggle.click();
  assert.ok(await page.locator('#site-menu.is-open').isVisible(),'Menu opens');assert.equal(await toggle.getAttribute('aria-expanded'),'true');
@@ -85,7 +85,9 @@ fs.mkdirSync(out,{recursive:true});
  await page.evaluate(()=>location.hash='site-menu');await page.waitForFunction(()=>document.activeElement.classList.contains('sf-menu-close'));
  assert.notEqual(await page.locator('#site-menu').getAttribute('aria-hidden'),'true','Hash navigation exposes the open dialog');
  await page.keyboard.press('Escape');assert.equal(await toggle.getAttribute('aria-expanded'),'false');assert.ok(!(await page.locator('#site-menu').isVisible()),'Closing the hash-opened menu hides the dialog');
- assert.equal(await page.locator('.home-entry-grid a').first().getAttribute('href'),'#begin');
+ assert.equal(await page.locator('.home-hero-primary').first().getAttribute('href'),'/coaching/miami/');
+ assert.equal(await page.locator('.intake-single a').first().getAttribute('href'),'/coaching/apply/');
+ assert.equal(await page.locator('.home-media-card').count(),0,'No repeated public navigation cards');
  // Partial-width navigation remains usable on small phones, short screens and enlarged text.
  for(const [width,height,zoom] of [[320,568,1],[375,667,1],[390,844,1],[430,932,1],[768,1024,1],[1440,900,1],[390,844,2]]){
   await page.setViewportSize({width,height});await page.goto(origin+'/');
@@ -123,7 +125,7 @@ fs.mkdirSync(out,{recursive:true});
  assert.ok(await page.locator('.sf-menu-toggle').evaluate(e=>e===document.activeElement),'Focus returns after exit');
  await page.emulateMedia({reducedMotion:'reduce'});
  // Keyboard service selection, a full inquiry, rejection, retained answer, accepted retry.
- await page.goto(origin+'/?utm_source=google&utm_medium=cpc&utm_campaign=qa');
+ await page.goto(origin+'/coaching/apply/?utm_source=google&utm_medium=cpc&utm_campaign=qa');
  await page.locator('#coachingChoiceTrigger').focus();await page.keyboard.press('Enter');
  await page.keyboard.press('Escape');assert.equal(await page.locator('#coachingChoiceTrigger').getAttribute('aria-expanded'),'false');
  await page.locator('[data-key=goal] .opt').filter({hasText:'Run longer'}).click();
