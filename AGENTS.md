@@ -1,5 +1,9 @@
 # Start here: Speed & Form
 
+## Site-wide publication contract · October 19, 2026
+
+**Present the evidence. Don't narrate the presentation.** Read [FORM Publication Contract](docs/editorial/PUBLICATION_CONTRACT.md) before authoring or editing any public copy, study, plan, gallery, site metadata, email, app-facing instruction or agent-generated publication. This governs both human and AI writing. A link or visual element should do its own job; do not add sentences to explain that it can be clicked or that a page contains sections. Keep necessary evidence caveats, accessibility and factual utility. Run `node tests/editorial-contract.cjs` and `node scripts/check-editorial-contract.cjs` before publishing. Preserve approved photographic theater and actual records.
+
 ## Editorial rule · October 15, 2026
 
 **Show, don't narrate.** Photography, film, typography and composition carry the atmosphere. Copy supplies information, context or a reason to act. Do not explain what the viewer can already see, manufacture emotional significance or use generic sports-documentary slogans. Avoid lines such as “A look inside the work, not just the finish,” “See what the camera caught between the reps,” and “The work has faces.” Keep useful captions, dates and accessibility descriptions. This rule preserves the approved theater, decoration and visual drama. The Adrian & Tinius first-draft film stays muted throughout site and app until the owner changes that instruction.
