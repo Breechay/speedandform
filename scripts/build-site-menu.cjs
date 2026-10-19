@@ -10,7 +10,7 @@ function collect(root=ROOT){
  const files=new Set(['index.html','search.html','404.html','privacy.html','terms.html']);
  const urls=[...fs.readFileSync(path.join(root,'sitemap.xml'),'utf8').matchAll(/<loc>https:\/\/speedandform\.com([^<]*)<\/loc>/g)].map(m=>m[1]);
  for(const app of ['form','forge-sculpt'])for(const page of ['support','privacy','terms'])urls.push(`/${app}/${page}/`);
- for(const url of urls){const route=url.replace(/^\/+|\/+$/g,'');if(!route)continue;for(const file of [route+'.html',route+'/index.html'])if(fs.existsSync(path.join(root,file))){files.add(file);break;}}
+ for(const url of urls){const route=url.replace(/^\/+|\/+$/g,'');if(!route)continue;if(route==='athletes'){files.add('people/index.html');continue;}for(const file of [route+'.html',route+'/index.html'])if(fs.existsSync(path.join(root,file))){files.add(file);break;}}
  return [...files].filter(file=>!EXCLUDED.test(file)&&fs.existsSync(path.join(root,file))&&(/^(?:search|404)\.html$|^(?:form|forge-sculpt)\/(?:support|privacy|terms)\//.test(file)||!/<meta\b[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(fs.readFileSync(path.join(root,file),'utf8')))).sort();
 }
 // Tiny structural tokenizer: scripts/styles/comments are opaque, and offsets
