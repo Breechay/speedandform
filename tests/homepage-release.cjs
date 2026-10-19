@@ -28,7 +28,7 @@ assert.match(html,/Run farther\.<br>Feel smoother\./);
 assert.match(html,/class="home-media-head"/,'The editorial media strip remains');
 assert.match(html,/href="\/runs\/"/,'Group runs remain directly discoverable');
 assert.doesNotMatch(html,/href="\/the-method">Read the method/);
-assert.match(html,/href="\/people\/"/,'Athletes remain directly discoverable');
+assert.match(html,/href="\/athletes\/"/,'Public athletes remain directly discoverable');
 assert.match(html,/href="\/track\/"/,'The photo and film archive remains discoverable');
 assert.ok(!measurement.includes('var simon ='));assert.ok(!measurement.includes('result-grid'));
 assert.match(css,/prefers-reduced-motion:reduce/);assert.match(css,/grid-template-areas:"heading" "film" "body"/);
