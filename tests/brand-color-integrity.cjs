@@ -47,7 +47,7 @@ const runs = read('runs/index.html'), runCode = read('js/group-runs.js');
 assert.match(runs, /id="gr-hero-action"[^>]*>Run details/);
 assert.match(runCode, /heroAction\.firstChild\.textContent = upcoming\.length/);
 const home = read('index.html');
-assert.match(home, /href="\/athletes\/"[^>]*>Meet the athletes/);
+assert.match(home, /href="\/athletes\/"[^>]*>Athletes/);
 const rules = read('docs/design/FORM_CINEMATIC_WEB_DIRECTION_2026-10-19.md');
 assert.match(rules, /Color integrity/);
 assert.match(rules, /native Running and Strength apps are a separate pass/i);
