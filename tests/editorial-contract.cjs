@@ -44,6 +44,16 @@ assert.ok(read('docs/design/FORM_ATHLETIC_WORLD_STANDARD_2026-10.md').includes('
 assert.ok(read('docs/product/FORM_ATHLETIC_WORLD_CONTENT_MODEL_2026-10.md').includes('No group run scheduled'), 'No-run fallback contract missing');
 assert.ok(read('docs/product/FORM_ATHLETIC_WORLD_CONTENT_MODEL_2026-10.md').includes('/media/library/library.json'), 'Content contract must reuse approved FORM media library');
 
+// October 19 bend-photography direction must persist when brand/agent docs are revised.
+for (const file of [
+  'AGENTS.md',
+  'docs/BRAND.md',
+  'docs/design/FORM_VISUAL_EXECUTION_STANDARD_2026-10.md',
+  'docs/design/FORM_ATHLETIC_WORLD_STANDARD_2026-10.md',
+  '.cursor/rules/form-speedandform-context.mdc'
+]) assert.ok(read(file).includes('FORM_BEND_PHOTOGRAPHIC_APERTURE_2026-10.md'), 'Photo bend art direction missing from '+file);
+assert.ok(read('docs/design/FORM_BEND_PHOTOGRAPHIC_APERTURE_2026-10.md').includes('photographic-aperture grammar'), 'Bend photographic architecture creative spec missing');
+
 const doc = text => '<!doctype html><html><head><title>FORM Study</title><meta name="description" content="A real training question."></head><body>'+text+'</body></html>';
 assert.equal(scanHtml(doc('<h1>José · Oct 13</h1><p>20 minutes at 6:06/mi, athlete reported.</p><a href="#source">Reports &amp; splits</a>'), 'fixture.html').length, 0);
 assert.equal(scanHtml(doc('<p>Read the study archive for the original splits.</p>'), 'fixture.html').length, 0);
