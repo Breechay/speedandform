@@ -64,7 +64,7 @@ with tempfile.TemporaryDirectory(prefix='form-discovery-') as tmp:
         page.locator('#discovery-query').fill('threshold');page.get_by_role('button',name='Search',exact=True).click();page.wait_for_url('**/search?q=threshold');page.wait_for_function("document.querySelector('#discovery-status').textContent.includes('result')")
         check('Library form reaches query-aware results',page.locator('#discovery-output a[href="/threshold-training"]').count()>0)
         page.locator('#discovery-query').fill('threshhold');page.wait_for_timeout(200);check('Small typo finds threshold',page.locator('#discovery-output a[href="/threshold-training"]').count()>0)
-        page.locator('#discovery-query').fill('zzxyqqz');page.wait_for_timeout(200);check('Empty state has useful fallback',page.get_by_text('Try the idea in a few words.').count()==1)
+        page.locator('#discovery-query').fill('zzxyqqz');page.wait_for_timeout(200);check('Empty state has useful fallback',page.get_by_text('No close answer yet.').count()==1 and page.get_by_role('button',name='Browse the complete index').count()==1)
         page.locator('#discovery-query').fill('<img src=x onerror="window.discoveryXSS=1">');page.wait_for_timeout(200);check('Input never becomes markup',page.evaluate('!window.discoveryXSS && !document.querySelector("#discovery-output img")'))
         page.locator('#discovery-clear').click();check('Clear removes q and keeps focus',page.evaluate("!new URL(location).searchParams.has('q') && document.activeElement.id==='discovery-query'"))
         page.evaluate("history.pushState({},'', '/search?q=hyrox');dispatchEvent(new PopStateEvent('popstate'))");check('History state restores query',page.locator('#discovery-query').input_value()=='hyrox')
