@@ -34,7 +34,7 @@ jobs:
             node tests/thursday-schedule.cjs
           } | tee /tmp/discovery-receipt/source-tests.txt
           node scripts/build-discovery.cjs
-          git diff --exit-code
+          node scripts/verify-public-generated-drift.cjs
           git rev-parse HEAD > /tmp/discovery-receipt/commit.txt
           cp docs/audits/DISCOVERY-MANIFEST-20260916.json /tmp/discovery-receipt/
       - uses: actions/setup-python@v5
@@ -53,7 +53,7 @@ jobs:
           export CHROMIUM_PATH="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
           python tests/homepage-current-browser.py
           cp .homepage-qa/browser-qa.json /tmp/discovery-receipt/homepage-browser.json
-          git diff --exit-code
+          node scripts/verify-public-generated-drift.cjs
       - name: Verify actual production routes and metadata
         if: github.ref_name == 'main'
         run: |
