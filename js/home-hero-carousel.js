@@ -67,7 +67,6 @@
     video.preload = 'none';
     filmSlide.hidden = false;
     video.removeAttribute('src');
-    video.load();
     filmDisabled = false;
     showStill(true);
   }
