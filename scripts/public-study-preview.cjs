@@ -14,7 +14,7 @@ function renderHomeStudy(){const x=snapshot.latest_completed;return `<section cl
 <div class="study-foot"><a href="/plans/race-pace-durability/">Try the plan <span aria-hidden="true">↗</span><small>Weeks 1–4 free · Full plan $79</small></a></div>
 </div></section>`;}
 function renderHomeEvidence(){const x=snapshot.latest_completed;return `<section class="home-evidence" aria-labelledby="home-evidence-title">
-  ${renderBend()}
+  <div class="home-evidence-photograph" aria-hidden="true"><img src="/media/library/night-pair-track-1200.webp" alt="" loading="lazy" decoding="async" width="1200" height="800"></div>
   <div class="wrap home-evidence-grid">
     <div class="home-evidence-question">
       <p class="eyebrow">From the practice</p>
@@ -26,7 +26,7 @@ function renderHomeEvidence(){const x=snapshot.latest_completed;return `<section
         <div><dt>${x.distance_mi} miles</dt><dd>Continuous. No resets.</dd></div>
         <div><dt>${e(x.label)}</dt><dd>A training milestone. Not a race prediction.</dd></div>
       </dl>
-      <a class="text-link" href="/plans/race-pace-durability/">See the plan <span aria-hidden="true">↗︎</span></a>
+      <div class="home-evidence-links"><a class="text-link" href="/labs/speed-that-endures/">Read the study <span aria-hidden="true">↗︎</span></a><a class="text-link" href="/plans/race-pace-durability/">Explore the plan <span aria-hidden="true">↗︎</span></a></div>
     </div>
   </div>
 </section>`;}
