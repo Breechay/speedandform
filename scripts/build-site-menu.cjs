@@ -7,7 +7,7 @@ const PANEL=fs.readFileSync(path.join(__dirname,'site-menu-panel.html'),'utf8').
 const TOGGLE='<a class="sf-menu-toggle" href="#site-menu" aria-controls="site-menu" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18"/></svg></a>';
 const EXCLUDED=/^(?:coach|athlete|auth|account|record|private|studio|form-app|forge-app|tests|docs)(?:\/|\.html)|^(?:form|forge-sculpt)\/(?:train|auth|account)\//;
 function collect(root=ROOT){
- const files=new Set(['index.html','search.html','404.html','privacy.html','terms.html']);
+ const files=new Set(['index.html','search.html','404.html','privacy.html','terms.html','people/index.html','people/template.html','session/template.html']);
  const urls=[...fs.readFileSync(path.join(root,'sitemap.xml'),'utf8').matchAll(/<loc>https:\/\/speedandform\.com([^<]*)<\/loc>/g)].map(m=>m[1]);
  for(const app of ['form','forge-sculpt'])for(const page of ['support','privacy','terms'])urls.push(`/${app}/${page}/`);
  for(const url of urls){const route=url.replace(/^\/+|\/+$/g,'');if(!route)continue;if(route==='athletes'){files.add('people/index.html');continue;}for(const file of [route+'.html',route+'/index.html'])if(fs.existsSync(path.join(root,file))){files.add(file);break;}}
