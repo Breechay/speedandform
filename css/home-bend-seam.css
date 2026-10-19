@@ -4,6 +4,7 @@
    bend is larger than the screen, the lanes sweep out past the right edge, and the emblem rides the
    home straight. */
 .home-entry[data-bend-seam]{position:relative;z-index:3;overflow:visible;background:transparent;padding:clamp(76px,9vw,96px) 0 clamp(84px,10vw,104px)}
+.home-entry.home-bend-only[data-bend-seam]{min-height:clamp(260px,32vw,410px);padding:0}
 .bend-seam{position:absolute;left:0;pointer-events:none;overflow:visible;z-index:0}
 .bend-seam-lanes path{fill:none;stroke:rgba(232,227,217,.46);stroke-width:1.1px;vector-effect:non-scaling-stroke}
 .bend-seam-lanes .bend-seam-start{stroke:rgba(232,227,217,.72);stroke-width:1.3px}
