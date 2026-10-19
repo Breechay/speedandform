@@ -83,8 +83,8 @@ body[data-sculpt-landing]>main,body[data-sculpt-landing]>.bs-header{container-ty
 
 /* Oct 19 photograph-first side door. Shared across public pages. The bend is already
    the homepage's architecture; the drawer is a cream photographic magazine chapter. */
-.sf-menu-panel{width:min(460px,85%);background:#f1ede4;box-shadow:-24px 0 90px rgba(0,0,0,.25)}
-.sf-menu-top{justify-content:space-between;background:#f1ede4;min-height:76px;padding:6px 2px}
+.sf-menu-panel{width:min(460px,85%);background:#EEEDE8;box-shadow:-24px 0 90px rgba(0,0,0,.25)}
+.sf-menu-top{justify-content:space-between;background:#EEEDE8;min-height:76px;padding:6px 2px}
 .sf-menu-home{display:inline-flex;align-items:center;justify-content:flex-start;min-height:44px;min-width:90px;order:-1;margin-right:auto}
 .sf-menu-home img{display:block;max-width:90px;width:90px;height:auto}
 .sf-menu-close{font-size:12px}
@@ -92,7 +92,7 @@ body[data-sculpt-landing]>main,body[data-sculpt-landing]>.bs-header{container-ty
 .sf-menu-hero img{height:350px;filter:grayscale(1) contrast(1.10) brightness(.98);object-position:50% 45%;transition:filter .45s cubic-bezier(.22,.61,.36,1),transform .6s cubic-bezier(.22,.61,.36,1)}
 .sf-menu-hero-overlay{padding:30px 30px 32px;background:linear-gradient(0deg,rgba(4,8,6,.84),rgba(4,8,6,.32) 47%,transparent 80%)}
 .sf-menu-hero-title{font-size:clamp(52px,6.1vw,78px);line-height:.88;letter-spacing:-.065em;font-weight:480}
-.sf-menu-hero-sub{margin-top:13px;max-width:28ch;font-size:15px;line-height:1.4;color:#f2eee5}
+.sf-menu-hero-sub{margin-top:13px;max-width:28ch;font-size:15px;line-height:1.4;color:#F1EFE8}
 .sf-menu-label{letter-spacing:.13em}
 .sf-menu-visual{padding-top:9px!important}
 .sf-menu-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
