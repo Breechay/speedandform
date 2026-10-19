@@ -48,6 +48,10 @@ jobs:
         env:
           DISCOVERY_ARTIFACTS: /tmp/discovery-receipt/screens
         run: python tests/discovery-browser.py
+      - name: Public athlete privacy and photographic pages
+        env:
+          PEOPLE_ARTIFACTS: /tmp/discovery-receipt/athletes
+        run: python tests/people-browser.py
       - name: Existing homepage interaction and intake acceptance
         run: |
           export CHROMIUM_PATH="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
