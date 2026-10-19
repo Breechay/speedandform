@@ -33,7 +33,7 @@ for (const file of photographicSources) {
     file + ': no saturation or sepia grading');
 }
 const brand = read('brand/index.html');
-for (const token of ['#10161A', '#1B242B', '#EEEDE8', '#F1EFE8', '#9CB5C7']) {
+for (const token of ['#0B0B0B', '#1A1A1A', '#F4F2EC']) {
   assert.ok(brand.includes(token), 'Brand page includes current palette token ' + token);
 }
 assert.match(brand, /True monochrome or natural full color/);
@@ -48,6 +48,8 @@ assert.match(runs, /id="gr-hero-action"[^>]*>Run details/);
 assert.match(runCode, /heroAction\.firstChild\.textContent = upcoming\.length/);
 const home = read('index.html');
 assert.match(home, /href="\/athletes\/"[^>]*>Athletes/);
+assert.doesNotMatch(home.match(/<div class="home-hero-actions"[\s\S]*?<\/div>/)?.[0] || '', /\/athletes\//, 'Athletes do not occupy the homepage primary entrance');
+assert.match(read('css/home-bend-seam.css'), /margin-top:-clamp\(/, 'Bend begins inside the opening viewport');
 const rules = read('docs/design/FORM_CINEMATIC_WEB_DIRECTION_2026-10-19.md');
 assert.match(rules, /Color integrity/);
 assert.match(rules, /native Running and Strength apps are a separate pass/i);
@@ -66,10 +68,10 @@ assert.deepEqual(photoFrames.slice(0, 5).map(m => m[1]), [
 assert.match(read('css/home-world.css'), /\.home-world-sheet img\{[^}]*filter:none/);
 assert.match(read('css/home-editorial-continuation.css'), /\.home-world-featured \.home-world-sheet img\{[^}]*filter:none/);
 assert.doesNotMatch(home, /home-world-lanes|home-world-aperture/, 'One measured bend only');
-assert.match(brand, /#42627B/, 'Steel cue on paper');
+assert.doesNotMatch(brand, /#(?:10161A|1B242B|9CB5C7|42627B)/i, 'No retired blue-black or steel palette in Brand page');
 const palette = read('css/home-commercial.css');
-assert.match(palette, /--dark:#10161A;--backdrop:#10161A/);
+assert.match(palette, /--dark:#0B0B0B;--backdrop:#0B0B0B/, 'Neutral ink owns the public homepage');
 const runCSS = read('css/runs-editorial.css');
-assert.match(runCSS, /background:#1B242B;border:1px solid rgba\(241,239,232,\.18\)/);
+assert.match(runCSS, /background:#1A1A1A;border:1px solid rgba\(241,239,232,\.18\)/, 'Runs surfaces use neutral graphite with a visible boundary');
 assert.doesNotMatch(photos, /\.photos-search\{/, 'Legacy search input style retired');
 console.log('PASS: natural/full-monochrome imagery, current Brand tokens, no duplicate Photos destination, live Runs CTA and scope rules');
