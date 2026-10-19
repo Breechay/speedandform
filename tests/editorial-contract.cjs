@@ -1,7 +1,7 @@
 'use strict';
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
-const {scanHtml,findPublicHtml} = require('../scripts/check-editorial-contract.cjs');
+const {scanHtml,scanText,scanPublicData,findPublicHtml} = require('../scripts/check-editorial-contract.cjs');
 const read = p => fs.readFileSync(p, 'utf8');
 
 const expected = [
@@ -23,6 +23,8 @@ assert.ok(scanHtml(doc('<p>Plan 03 · Method frozen. Inspect the plan.</p>'), 'f
 const meta = '<html><head><meta content="See what the camera caught" property="og:description"></head><body><p>Clean content</p></body></html>';
 assert.ok(scanHtml(meta,'fixture.html').some(x=>x.section==='og:description'), 'Share descriptions checked regardless of attribute order');
 assert.equal(scanHtml(doc('<script>const x="one click away";</script><style>/* Method frozen */</style><p>Real evidence.</p>'), 'fixture.html').length,0,'Source-only text not treated as rendered copy');
+assert.ok(scanText('Full details remain one click away.', 'data/public-share.json', 'sample.description').length>0, 'Public share source is checked');
+assert.equal(scanPublicData().length, 0, 'Canonical public share and search records carry no high-confidence prohibited copy');
 // Current commercial/editorial decisions should not regress through generated copy.
 assert.doesNotMatch(read('labs/index.html'), /Method frozen|Inspect the plan|href="\/plans\/marathon-durability\/"\s+target=/i, 'Retired method is not on the Labs plan shelf');
 assert.doesNotMatch(read('plans/index.html'), /open marathon reference/i, 'Retired reference does not leak into share metadata');
