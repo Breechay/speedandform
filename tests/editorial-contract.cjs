@@ -23,6 +23,9 @@ assert.ok(scanHtml(doc('<p>Plan 03 · Method frozen. Inspect the plan.</p>'), 'f
 const meta = '<html><head><meta content="See what the camera caught" property="og:description"></head><body><p>Clean content</p></body></html>';
 assert.ok(scanHtml(meta,'fixture.html').some(x=>x.section==='og:description'), 'Share descriptions checked regardless of attribute order');
 assert.equal(scanHtml(doc('<script>const x="one click away";</script><style>/* Method frozen */</style><p>Real evidence.</p>'), 'fixture.html').length,0,'Source-only text not treated as rendered copy');
+// Current commercial/editorial decisions should not regress through generated copy.
+assert.doesNotMatch(read('labs/index.html'), /Method frozen|Inspect the plan|href="\/plans\/marathon-durability\/"\s+target=/i, 'Retired method is not on the Labs plan shelf');
+assert.doesNotMatch(read('plans/index.html'), /open marathon reference/i, 'Retired reference does not leak into share metadata');
 const pages=findPublicHtml();
 for (const path of ['index.html','brand/index.html','labs/speed-that-endures/index.html','labs/adrian-runner-mass/index.html','labs/rebuilt-athlete/index.html','labs/the-two-curves/index.html']) assert.ok(pages.includes(path), 'Must scan published study: '+path);
 console.log('PASS: FORM publication contract is present in agent/brand rules and public-copy + metadata gate behaves as intended.');
