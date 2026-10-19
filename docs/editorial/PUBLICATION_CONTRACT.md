@@ -29,6 +29,10 @@ This is a standing owner-approved editorial rule for all athlete-facing Running 
 
 **Editorial check:** If the founder's name disappeared, would the athlete lose information needed to act, understand authorship, consent, contact or accountability? If not, omit it. **Present the evidence. Don't narrate the presentation.** Preserve the visual theater and the necessary privacy, permission and accessibility disclosures.
 
+## Athletic world: photographs, people and useful notes
+
+FORM's athlete-facing screens are not only schedules: they also present real people, published photos, films, and occasional complete short training ideas. Follow the [athletic-world standard](../design/FORM_ATHLETIC_WORLD_STANDARD_2026-10.md) and the [lean Running + website model](../product/FORM_ATHLETIC_WORLD_CONTENT_MODEL_2026-10.md). A section with no upcoming event can remain useful through truthful existing archive material, but never imply an old run is upcoming or invent freshness. Keep event absence distinct from read failure. Curated cards are not a social feed; photographs and notes must respect permission, source and relevance.
+
 ## Check before publishing
 
 1. **Question:** What would a visitor know or do differently after reading each sentence? Delete lines that merely explain the page design, navigation, content grouping or feeling.
