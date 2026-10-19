@@ -7,6 +7,8 @@ alwaysApply: true
 
 **Mandatory on every public-facing edit:** [FORM Publication Contract](../../docs/editorial/PUBLICATION_CONTRACT.md) — **Present the evidence. Don't narrate the presentation.** This includes studies, docs intended for publication, metadata, captions, athlete-facing plans and generated content. No explanatory interface copy, faux-documentary slogans or internal status text. Preserve real source caveats, instructions and cinematic visual identity. Run `node tests/editorial-contract.cjs` and `node scripts/check-editorial-contract.cjs`.
 
+**Standing athlete-first rule (October 19):** **People are the subject. FORM is the platform. The founder is not the narrator.** Remove gratuitous photo credits, repeated coach signatures, `Sent to Brice`, `Brice confirms` and founder-led app marketing. Keep real athlete identities, privacy/tag-review logic, necessary accountability and contractually required credits. Read the [canonical attribution rule](../../docs/editorial/PUBLICATION_CONTRACT.md#athlete-first-attribution--october-19-2026) before app/Network/media/athlete copy. Do not paste the rule itself into public pages.
+
 **Human tone (workspace default):** Site = understanding (philosophical, timeless); still human, not deck-speak. `FORM-iOS/docs/BRICE_OS/HUMAN_TONE_DEFAULT.md`. FORM web spec governs tone split with app.
 
 ## Owner-approved visual north star (October 14)
