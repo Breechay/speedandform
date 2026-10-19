@@ -3,6 +3,8 @@ on:
   push:
     branches: [work/site-discovery-pass2, main]
     paths: ['**/*.html', 'scripts/*discovery*.cjs', 'scripts/verify-share-production.cjs', 'tests/discovery*', 'tests/share-metadata*.cjs', 'css/discovery.css', 'js/discovery-search.js', 'search-index.json', 'sitemap.xml', 'robots.txt', '_headers', '_redirects', 'docs/audits/DISCOVERY-MANIFEST-20260916.json', '.github/workflows/discovery-review.yml']
+  pull_request:
+    paths: ['**/*.html', 'scripts/*discovery*.cjs', 'scripts/verify-share-production.cjs', 'tests/discovery*', 'tests/share-metadata*.cjs', 'css/discovery.css', 'js/discovery-search.js', 'search-index.json', 'sitemap.xml', 'robots.txt', '_headers', '_redirects', 'docs/audits/DISCOVERY-MANIFEST-20260916.json', '.github/workflows/discovery-review.yml']
   workflow_dispatch:
 permissions:
   contents: read
