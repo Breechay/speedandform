@@ -13,3 +13,13 @@ html.sf-motion .q.on{animation:sf-settle 280ms var(--sf-ease)}
 html.sf-motion .home-evidence.sf-bend-armed .sf-bend{clip-path:inset(0 100% 0 0)}html.sf-motion .home-evidence.sf-bend-armed .sf-bend-marks{opacity:0}
 html.sf-motion .home-evidence.sf-bend-armed.sf-in .sf-bend{clip-path:inset(0);transition:clip-path 1600ms var(--sf-ease)}html.sf-motion .home-evidence.sf-bend-armed.sf-in .sf-bend-marks{opacity:var(--bend-marks);transition:opacity 600ms ease 1000ms}
 @media(prefers-reduced-motion:reduce){html.sf-motion .home-hero-media img{transform:none;transition:none}.hero-copy,.q.on{animation:none!important}.sf-bend,.sf-bend-marks{transition:none!important;clip-path:none!important}}
+
+/* The first-frame hero now has a measured raised resting position. Its arrival
+   must not animate transform to zero and then jump back to that position. */
+@keyframes sf-home-hero-arrive{from{opacity:.88}to{opacity:1}}
+html.sf-motion.sf-arrived .sf-home-hero-immersive.has-bend-seam .hero-copy{
+  animation:sf-home-hero-arrive 650ms var(--sf-ease);
+}
+@media(prefers-reduced-motion:reduce){
+  html.sf-motion.sf-arrived .sf-home-hero-immersive.has-bend-seam .hero-copy{animation:none}
+}
