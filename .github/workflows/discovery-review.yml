@@ -2,7 +2,7 @@ name: Discovery release checks
 on:
   push:
     branches: [work/site-discovery-pass2, main]
-    paths: ['**/*.html', 'scripts/*discovery*.cjs', 'scripts/verify-share-production.cjs', 'tests/discovery*', 'tests/share-metadata.cjs', 'css/discovery.css', 'js/discovery-search.js', 'search-index.json', 'sitemap.xml', 'robots.txt', '_headers', '_redirects', 'docs/audits/DISCOVERY-MANIFEST-20260916.json', '.github/workflows/discovery-review.yml']
+    paths: ['**/*.html', 'scripts/*discovery*.cjs', 'scripts/verify-share-production.cjs', 'tests/discovery*', 'tests/share-metadata*.cjs', 'css/discovery.css', 'js/discovery-search.js', 'search-index.json', 'sitemap.xml', 'robots.txt', '_headers', '_redirects', 'docs/audits/DISCOVERY-MANIFEST-20260916.json', '.github/workflows/discovery-review.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -22,8 +22,8 @@ jobs:
           set -o pipefail
           mkdir -p /tmp/discovery-receipt
           {
-            node tests/discovery.cjs
-            node tests/share-metadata.cjs
+            node tests/discovery-current.cjs
+            node tests/share-metadata-current.cjs
             node tests/homepage-metadata.cjs
             node tests/homepage-release.cjs
             node tests/coaching-measurement.cjs
