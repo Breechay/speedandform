@@ -47,3 +47,12 @@ Owner screen intro: "Only the details you choose appear publicly. Your full plan
 ## Never in static files
 
 `/media/library/library.json` holds no names, handles or tags, and its ids, titles and alt text name no one. Who is in a photo lives only in `collective_person_tags`, so hiding a profile or removing a tag takes effect everywhere at once.
+
+## Owner photo (20261019120000, applied Oct 19)
+
+An athlete changes their own photo from the app (tap the photo or name in the side door → Your page → photo).
+
+1. Pick a photo, adjust a square crop on the device (circle preview), export 1024 × 1024 JPEG.
+2. Upload to the public bucket `collective-media` at `avatars/<person id>/<new uuid>.jpg` (person id = `collective_my_person().id`). Storage policies allow an owner only their own `avatars/<person id>/` folder; the publisher can manage any.
+3. Call `collective_update_my_person({"avatar": "avatars/<person id>/<file>.jpg"})`. The server checks the folder and that the object exists, then stores the public URL in `avatar_path`. Errors: `avatar_not_yours`, `avatar_missing`.
+4. `avatar_path` is now either a site path (`/assets/athletes/...`) or an absolute Supabase public URL. Readers use it as an image source as is.
