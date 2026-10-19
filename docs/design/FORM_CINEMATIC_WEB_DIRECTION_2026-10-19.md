@@ -16,9 +16,10 @@ The SF emblem and a measured running-track bend establish continuity. Inter Tigh
 | Graphite | `#1B242B` | Raised dark surfaces |
 | Stone | `#EEEDE8` | Reading backgrounds, shared navigation |
 | Bone | `#F1EFE8` | Type on ink, clear light |
-| Steel | `#9CB5C7` | Rare functional/cool cue; no decoration merely to use it |
+| Steel on ink | `#9CB5C7` | One active state, selection or link, never generic metadata |
+| Steel on paper | `#42627B` | Same one-cue job, adjusted for light contrast |
 
-The website may retain established neutral secondary text and meaningful status colors when necessary for contrast and semantic meaning. No brown/tan UI accent, blanket bronze or lime, faux metallic type, or decorative serif athlete headings. Legibility comes before microscopic uppercase labels. Do not globally invert unrelated product screens.
+The near-black raised field is close in luminance to ink. Every raised control or sheet needs a 1px boundary, roughly 18% bone, not just a different fill. Secondary text stays neutral; steel is reserved for one meaningful cue per screen. The website may retain established neutral secondary text and meaningful status colors when necessary for contrast and semantic meaning. No brown/tan UI accent, blanket bronze or lime, faux metallic type, or decorative serif athlete headings. Legibility comes before microscopic uppercase labels. Do not globally invert unrelated product screens.
 
 ## Color integrity: non-negotiable
 Images have **two approved states**:
@@ -30,15 +31,15 @@ No 20–90% grayscale, reduced saturation, sepia, warm-gray filters, gray-to-col
 Use a wide view, a face, an effort, a detail, and an after-moment as editorial rhythm. Preserve heads, eyes, joints, direction of movement, dark-skin exposure and athlete consent. Avoid enlarging a low-resolution avatar as a hero. Separate desktop/mobile focal points when needed.
 
 ## Public pages
-- **Home:** one original still and silent film, dramatic bend into the cream chapter, meaningful coaching/training/team paths, then authentic evidence. Fix clipped type and photo/text collisions without breaking the continuous band. Make the people route point to Athletes and photo route point to Photos.
+- **Home:** one original still and silent film, the **only measured bend** carrying the entrance into the light chapter, meaningful coaching/training/team paths, then authentic evidence. Follow it with one real photographic sequence: wide scene, person, effort, detail, after. Do not repeat the bend behind rows. Fix clipped type and photo/text collisions without breaking the continuous band. Make the people route point to Athletes and photo route point to Photos.
 - **Athletes:** portrait-first roster; reveal only public consented records. Public profile is a photographic feature, not private dossier. Headline, current goal, real study/media when supplied. No generated biographies or empty promises.
 - **Runs:** real next occurrence from source. The default CTA says “Run details” until a run is verified; only then say “See the next run.” The archive and published galleries remain discoverable.
 - **Photos:** curated photographic entrance and independent photo/archive routes; no duplicated navigation destinations, invented counts or captions. Preserve real library images and visibility policy.
 - **Brand:** this document's current palette, SF emblem, bend, two allowed image treatments, credit and download links. Historical collateral with lime, bronze, or serif is not authoritative for new website UI.
-- **Shared menu:** one source-generated drawer across public pages, clean stone/ink UI, rounded original imagery, working keyboard focus and real routes. Never override private/coach execution pages. Photographic cards remain full color or real B&W on hover.
+- **Shared menu:** edit `scripts/site-menu-panel.html`, the authoritative fragment injected by `scripts/build-site-menu.cjs`. Athletes, Runs and Photos have exactly one destination each. The hero may photograph the team but cannot be a fourth destination called Team. Keep clean stone/ink UI, rounded original imagery, working keyboard focus and real routes. Never override private/coach execution pages. Photographic cards remain full color or real B&W on hover.
 
 ## Release and acceptance
 Review at 1440, 1024, 390 and 320 CSS pixels and 200% zoom. Check bright hero frames, deep skin detail, menu scroll and focus, reduced motion, archive, profile loading, data-empty states and link destinations. Build source generators, run all public and privacy tests, and compare preview against the live site before a single intentional production release. **Do not deploy automatically.** Present evidence, not a narration of the presentation.
 
 ## Native handoff (deferred)
-Recommended Training Week remains dark ink/graphite with tiny steel-blue cues; Week is immediately visible, athlete portrait lives on You, and Team holds real runs and albums. Native typography, status bar, Dynamic Type, swipe controls and source-driven prescriptions require an app-specific implementation/QA cycle. This website change does not modify native runtime.
+Recommended Training Week remains dark ink/graphite with a single steel cue for Today or selection, not an accent on every caption. Week is immediately visible, without a photographic header. Athlete portrait belongs on the person page, not above the week. Keep bottom navigation small and do not reuse an overloaded Team label before app-specific IA is approved. Native typography, status bar, Dynamic Type, swipe controls and source-driven prescriptions require an app-specific implementation/QA cycle. This website change does not modify native runtime.
