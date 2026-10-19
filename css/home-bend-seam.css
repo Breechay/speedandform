@@ -1,23 +1,60 @@
-/* The bend as the seam between the hero and "Train with me" (Oct 19, 2026). See js/home-bend-seam.js. */
-.home-entry[data-bend-seam]{position:relative;z-index:3;overflow:visible}
+/* The bend as the seam between the hero and "Train with me" (Oct 19, 2026). See js/home-bend-seam.js.
+   The lanes leave the hero photograph, curve into this chapter and hold it: three lines, three
+   photographic destinations, the emblem at the goal. Wide: the whole bend is on the page. Narrow: the
+   bend is larger than the screen, the lanes sweep out past the right edge, and the emblem rides the
+   home straight. */
+.home-entry[data-bend-seam]{position:relative;z-index:3;overflow:visible;background:transparent;padding:clamp(76px,9vw,96px) 0 clamp(84px,10vw,104px)}
 .bend-seam{position:absolute;left:0;pointer-events:none;overflow:visible;z-index:0}
-.bend-seam-lanes path{fill:none;stroke:rgba(232,227,217,.44);stroke-width:1.4px;vector-effect:non-scaling-stroke}
-.bend-seam-lanes .bend-seam-start{stroke-width:1.6px}
+.bend-seam-lanes path{fill:none;stroke:rgba(232,227,217,.46);stroke-width:1.1px;vector-effect:non-scaling-stroke}
+.bend-seam-lanes .bend-seam-start{stroke:rgba(232,227,217,.72);stroke-width:1.3px}
 .bend-seam-mark{position:absolute;z-index:1;height:auto;opacity:0;pointer-events:none;transition:opacity 700ms ease 900ms}
+.bend-seam-mark.on-lanes{background:var(--dark);padding:8px 12px;margin:-8px 0 0 -12px}
 .home-entry[data-bend-seam].bend-in .bend-seam-mark{opacity:1}
 .home-entry[data-bend-seam]>.wrap{position:relative;z-index:2}
-@media(min-width:1024px){
-  .home-entry[data-bend-seam]>.wrap{padding-right:clamp(300px,30vw,460px);box-sizing:border-box}
-  .home-entry[data-bend-seam]{padding-top:clamp(84px,7.4vw,112px);padding-bottom:clamp(84px,7.4vw,112px)}
+
+/* Three lines. */
+.home-entry[data-bend-seam] h2{margin:0;max-width:none;font-size:clamp(40px,10.4vw,68px);line-height:1;font-weight:450;letter-spacing:-.05em;text-wrap:initial}
+.home-entry[data-bend-seam] h2 span{display:block;transition:opacity .45s cubic-bezier(.22,.61,.36,1)}
+
+/* Three destinations. Narrow: composed rows, photograph, words, a round arrow. */
+.home-entry[data-bend-seam] .home-entry-grid{display:flex;flex-direction:column;gap:0;margin-top:clamp(34px,6vw,48px);max-width:640px}
+.home-entry[data-bend-seam] .home-entry-grid>a{display:grid;grid-template-columns:clamp(92px,26vw,128px) minmax(0,1fr) 44px;grid-template-rows:auto auto 1fr;column-gap:clamp(16px,4.4vw,24px);align-items:start;padding:16px 0;border-top:1px solid var(--public-rule);color:var(--bone);text-decoration:none}
+.home-entry[data-bend-seam] .home-entry-grid>a:last-child{border-bottom:1px solid var(--public-rule)}
+.home-entry-photo{grid-column:1;grid-row:1/4;display:block;aspect-ratio:1;overflow:hidden;border-radius:9px;background:#1b1d1c}
+.home-entry-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 40%);filter:grayscale(1) contrast(1.05) brightness(1.04);transition:transform .9s cubic-bezier(.22,.61,.36,1)}
+.home-entry[data-bend-seam] .home-entry-grid>a>.home-entry-index{grid-column:2;grid-row:1;font:400 11px/1.5 var(--mono);letter-spacing:.08em;color:#b8bbb2;padding-top:2px}
+.home-entry[data-bend-seam] .home-entry-grid strong{grid-column:2;grid-row:2;margin:6px 0 0;max-width:none;font-size:clamp(22px,5.8vw,27px);font-weight:450;line-height:1.1;letter-spacing:-.03em}
+.home-entry[data-bend-seam] .home-entry-grid p{grid-column:2;grid-row:3;margin:8px 0 0;max-width:30ch;font-size:15px;line-height:1.5;color:#b8bbb2}
+.home-entry-go{grid-column:3;grid-row:1/4;align-self:center;display:grid;place-items:center;width:44px;height:44px;border:1px solid rgba(232,227,217,.42);border-radius:50%;font:400 18px/1 var(--sans);color:var(--bone);transition:background-color .3s ease,color .3s ease,border-color .3s ease}
+.home-entry[data-bend-seam] .home-entry-grid a:hover strong{text-decoration:none}
+.home-entry[data-bend-seam] .home-entry-grid a:hover .home-entry-go,.home-entry[data-bend-seam] .home-entry-grid a:focus-visible .home-entry-go{background:var(--bone);border-color:var(--bone);color:var(--dark)}
+.home-entry[data-bend-seam] .home-entry-grid a:hover .home-entry-photo img{transform:scale(1.035)}
+
+/* The hero photograph is masked by the outer lane (set by the script). */
+.sf-home-hero-immersive.has-bend-seam{overflow:visible}
+.sf-home-hero-immersive.has-bend-seam .home-hero-slides{overflow:hidden}
+.home-opening:has(+ .home-entry[data-bend-seam]) .home-proof-facts{margin-bottom:104px}
+.home-entry[data-bend-seam] + .home-media-strip{padding-top:calc(clamp(32px,4vw,60px) + 104px)}
+
+/* Wide: the full bend on the page; the destinations become photographs in a row under the lines. */
+@media(min-width:1180px){
+  .home-entry[data-bend-seam]{padding:clamp(112px,8.6vw,136px) 0 clamp(120px,9vw,144px)}
+  .home-entry[data-bend-seam]>.wrap{padding-right:clamp(330px,31vw,520px);box-sizing:border-box}
+  .home-entry[data-bend-seam] h2{font-size:clamp(56px,5.1vw,84px);line-height:.98;letter-spacing:-.055em}
+  .home-entry[data-bend-seam] .home-entry-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:clamp(24px,2.2vw,36px);margin-top:clamp(52px,4.4vw,68px);max-width:none}
+  .home-entry[data-bend-seam] .home-entry-grid>a,.home-entry[data-bend-seam] .home-entry-grid>a:last-child{grid-template-columns:minmax(0,1fr) 44px;grid-template-rows:auto auto auto 1fr;column-gap:16px;padding:0;border:0}
+  .home-entry-photo{grid-column:1/3;grid-row:1;aspect-ratio:4/3;margin-bottom:20px;border-radius:12px}
+  .home-entry[data-bend-seam] .home-entry-grid>a>.home-entry-index{grid-column:1;grid-row:2}
+  .home-entry[data-bend-seam] .home-entry-grid strong{grid-column:1;grid-row:3;font-size:clamp(24px,1.9vw,30px)}
+  .home-entry[data-bend-seam] .home-entry-grid p{grid-column:1;grid-row:4;font-size:15.5px;max-width:28ch}
+  .home-entry-go{grid-column:2;grid-row:2/5;align-self:end}
+  .home-entry[data-bend-seam]:has(.home-entry-grid>a:hover,.home-entry-grid>a:focus-visible) h2 span{opacity:.3}
+  .home-entry[data-bend-seam]:has(.home-entry-grid>a:nth-child(1):hover,.home-entry-grid>a:nth-child(1):focus-visible) h2 span:nth-child(1),
+  .home-entry[data-bend-seam]:has(.home-entry-grid>a:nth-child(2):hover,.home-entry-grid>a:nth-child(2):focus-visible) h2 span:nth-child(2),
+  .home-entry[data-bend-seam]:has(.home-entry-grid>a:nth-child(3):hover,.home-entry-grid>a:nth-child(3):focus-visible) h2 span:nth-child(3){opacity:1}
+  .bend-seam-lanes path{stroke-width:1.4px}
+  .bend-seam-lanes .bend-seam-start{stroke-width:1.6px}
+  .home-opening:has(+ .home-entry[data-bend-seam]) .home-proof-facts{margin-bottom:136px}
+  .home-entry[data-bend-seam] + .home-media-strip{padding-top:calc(clamp(32px,4vw,60px) + 136px)}
 }
-@media(max-width:1023px){
-  .home-entry[data-bend-seam] h2{max-width:min(68%,17ch)}
-  .bend-seam-lanes path{stroke-width:1.1px}
-}
-@media(prefers-reduced-motion:reduce){.bend-seam-mark{transition:none}}
-.home-opening:has(+ .home-entry[data-bend-seam]) .home-proof-facts{margin-bottom:112px}
-.home-entry[data-bend-seam] + .home-media-strip{padding-top:calc(clamp(32px,4vw,60px) + 116px)}
-@media(max-width:1023px){
-  .home-opening:has(+ .home-entry[data-bend-seam]) .home-proof-facts{margin-bottom:84px}
-  .home-entry[data-bend-seam] + .home-media-strip{padding-top:calc(clamp(32px,4vw,60px) + 40px)}
-}
+@media(prefers-reduced-motion:reduce){.bend-seam-mark,.home-entry[data-bend-seam] h2 span,.home-entry-photo img,.home-entry-go{transition:none}}

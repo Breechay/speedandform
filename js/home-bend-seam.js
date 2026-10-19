@@ -2,12 +2,10 @@
 // curve around "Train with me" on the right and run back out underneath, with the emblem at the
 // goal: the same geometry as the Running app's opening (inner radius = 29.92 lane widths, emblem
 // at center + 0.40 x inner radius). Desktop: the bend holds the whole section. Phone: it holds the
-// heading, and the three offers start below the lanes. Drawn once on arrival; still with Reduce Motion.
+// whole chapter too, larger than the screen so the lanes sweep out past the right edge. Drawn once on arrival; still with Reduce Motion.
 (() => {
   const section = document.querySelector('[data-bend-seam]');
   if (!section) return;
-  const heading = section.querySelector('h2');
-  const grid = section.querySelector('.home-entry-grid');
   const NS = 'http://www.w3.org/2000/svg';
   const svg = document.createElementNS(NS, 'svg');
   svg.setAttribute('class', 'bend-seam');
@@ -25,30 +23,26 @@
   section.prepend(mark);
 
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const wideQuery = matchMedia('(min-width: 1180px)'); // same breakpoint as the CSS
   let drawn = false;
+
+  // Real track proportions, as scripts/sf-bend.cjs: 36.5 m radius, 1.22 m lanes, 400 m stagger.
+  const RADIUS_IN_LANES = 36.5 / 1.22;
+  const staggerAngle = (n) => 2 * Math.PI * ((n - 1) * 1.22 - 0.1) / (36.5 + (n - 1) * 1.22 + 0.2);
 
   function layout() {
     const W = section.clientWidth;
-    const desktop = W >= 1024;
-    grid.style.marginTop = '';
-    let rin, lane, H;
-    if (desktop) {
-      H = section.offsetHeight;
-      rin = H / 2;
-    } else {
-      rin = Math.min(W * 0.58, 240);
-    }
-    lane = rin / 29.92;
+    const wide = wideQuery.matches;
+    section.classList.toggle('bend-wide', wide);
+    // The bend always holds the whole chapter: inner diameter = the section's height.
+    const rin = section.offsetHeight / 2;
+    const lane = rin / RADIUS_IN_LANES;
     const outer = lane * 8;
-    const apex = W - (desktop ? Math.max(48, W * 0.045) : 10);
-    const cx = apex - rin;
+    // Wide: the full bend sits inside the page, apex near the right edge. Narrow: the bend is
+    // larger than the screen, so the lanes sweep down and out past the right edge, as on a track.
+    // Narrow: never let the apex land inside the screen, so the lanes always run out past the edge.
+    const cx = wide ? W - Math.max(48, W * 0.045) - rin : Math.round(Math.max(W * 0.46, W - rin * 0.9));
     const cy = rin;
-    if (!desktop) {
-      // Offers start under the outer bottom lane.
-      const want = 2 * rin + outer + 36;
-      const have = grid.getBoundingClientRect().top - section.getBoundingClientRect().top;
-      if (have < want) grid.style.marginTop = (want - have + parseFloat(getComputedStyle(grid).marginTop || 0)) + 'px';
-    }
     const top = outer + 2;
     svg.setAttribute('width', W);
     svg.setAttribute('height', 2 * rin + 2 * top);
@@ -61,18 +55,61 @@
       p.setAttribute('d', `M-40 ${cy - r}H${cx}A${r} ${r} 0 0 1 ${cx} ${cy + r}H-40`);
       lanes.appendChild(p);
     }
-    const start = document.createElementNS(NS, 'path');
-    start.setAttribute('d', `M${cx} ${cy + rin}V${cy + rin + outer}`);
-    start.setAttribute('class', 'bend-seam-start');
-    lanes.appendChild(start);
-    const mw = desktop ? Math.min(220, rin * 0.62) : Math.min(120, rin * 0.5);
-    const mh = mw * 290 / 798;
-    let gx = cx + 0.40 * rin, gy = cy;
-    if (!desktop && heading) gy = Math.max(cy, heading.getBoundingClientRect().bottom - section.getBoundingClientRect().top + mh / 2 + 28);
+    const marks = [`M${cx} ${cy + rin}V${cy + rin + outer}`];
+    for (let n = 2; n <= 8; n++) {
+      const t = staggerAngle(n), sn = Math.sin(t), cs = Math.cos(t);
+      const a1 = rin + (n - 1) * lane, a2 = rin + n * lane;
+      marks.push(`M${(cx + a1 * sn).toFixed(1)} ${(cy + a1 * cs).toFixed(1)}L${(cx + a2 * sn).toFixed(1)} ${(cy + a2 * cs).toFixed(1)}`);
+    }
+    marks.forEach((d) => {
+      const m = document.createElementNS(NS, 'path');
+      m.setAttribute('d', d); m.setAttribute('class', 'bend-seam-start');
+      lanes.appendChild(m);
+    });
+    let mw, mh, gx, gy;
+    if (wide) {
+      mw = Math.min(210, rin * 0.5); mh = mw * 290 / 798;
+      gx = cx + 0.40 * rin; gy = cy;
+      mark.classList.remove('on-lanes');
+    } else {
+      // The emblem rides the home straight, just before the start line.
+      mw = Math.min(118, W * 0.28); mh = mw * 290 / 798;
+      gx = cx - mw / 2 - 22; gy = cy + rin + outer / 2;
+      mark.classList.add('on-lanes');
+    }
     mark.style.width = mw + 'px';
     mark.style.left = (gx - mw / 2) + 'px';
     mark.style.top = (gy - mh / 2) + 'px';
+    maskHero({ cx, cy, R: rin + outer });
     if (!drawn) prime();
+  }
+
+  // The hero photograph ends on the outer lane: straight along the bottom, then following the
+  // curve down the right side, so the lanes are the photo's edge instead of drawn across it.
+  const hero = document.querySelector('.sf-home-hero-immersive');
+  const media = hero && hero.querySelector('.home-hero-media');
+  function maskHero({ cx, cy, R }) {
+    if (!hero || !media) return;
+    hero.classList.add('has-bend-seam');
+    media.style.bottom = '0px';
+    const W = hero.clientWidth;
+    const heroTop = hero.getBoundingClientRect().top;
+    const seamTop = section.getBoundingClientRect().top - heroTop;
+    const cyH = seamTop + cy;
+    const dx = W - cx;
+    const exitY = dx < R ? cyH - Math.sqrt(R * R - dx * dx) : cyH;
+    const H = Math.max(hero.offsetHeight, Math.ceil(exitY) + 2);
+    media.style.bottom = (hero.offsetHeight - H) + 'px';
+    // If the outer lane does not reach the right edge, the photo runs down to the bend's middle and
+    // follows the lane back from its apex.
+    const d = dx < R
+      ? `M0 0H${W}V${exitY.toFixed(1)}A${R.toFixed(1)} ${R.toFixed(1)} 0 0 0 ${cx.toFixed(1)} ${(cyH - R).toFixed(1)}H0Z`
+      : `M0 0H${W}V${cyH.toFixed(1)}H${(cx + R).toFixed(1)}A${R.toFixed(1)} ${R.toFixed(1)} 0 0 0 ${cx.toFixed(1)} ${(cyH - R).toFixed(1)}H0Z`;
+    const svgMask = `<svg xmlns='http://www.w3.org/2000/svg' width='${W}' height='${H}' viewBox='0 0 ${W} ${H}'><path d='${d}' fill='black'/></svg>`;
+    const url = `url("data:image/svg+xml,${encodeURIComponent(svgMask)}")`;
+    media.style.webkitMaskImage = url; media.style.maskImage = url;
+    media.style.webkitMaskSize = '100% 100%'; media.style.maskSize = '100% 100%';
+    media.style.webkitMaskRepeat = 'no-repeat'; media.style.maskRepeat = 'no-repeat';
   }
 
   function prime() {
