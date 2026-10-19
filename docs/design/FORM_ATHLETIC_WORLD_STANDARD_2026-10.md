@@ -28,6 +28,10 @@ Use **eligible source reference → deliberate selection → designed rendering*
 
 Don't create a scheduled publishing obligation (weekly numbered Issues), rest-day media injections, an iOS widget, personal performance receipts, athlete quote forms, a place atlas, new public permalink system or in-café displays as part of v1. These are separate design proposals requiring evidence and approval. Athlete stories or personal metrics need explicit, contextual consent and should not be turned into group accountability mechanics by default.
 
+## Signature photographic architecture
+
+Use the approved [Bend Photographic Aperture](FORM_BEND_PHOTOGRAPHIC_APERTURE_2026-10.md) when an actual subject deserves theatrical treatment. Measured bend lanes may frame a real FORM photograph; the SF emblem may anchor the scene; large editorial type can counterbalance the image. This is a flexible design grammar, not a template pasted into every module, a command to put the bend behind the functional Week or permission to publish a mock's sample people. Real photography and clear training facts remain primary.
+
 ## Composition and interaction
 
 - Preserve the **approved cream ink-bend native entrance** and the dark Week, not a photographic replacement splash. Place photographic immersion within the authenticated side door, Group and media rooms, and appropriately within approved web landing compositions.
