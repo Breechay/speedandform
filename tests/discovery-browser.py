@@ -76,7 +76,7 @@ with tempfile.TemporaryDirectory(prefix='form-discovery-') as tmp:
         check('Retry succeeds',page.locator('#discovery-output a').count()>0)
         page.goto(base+'/page-does-not-exist-pass2');page.screenshot(path=str(OUT/'404-1440.png'))
         check('No errors on changed discovery pages',len(errors)==0)
-        nojs=browser.new_context(java_script_enabled=False);p=nojs.new_page();p.goto(base+'/library');check('Library works without JS',sorted(p.locator('.discovery-link').evaluate_all('(links)=>links.map(a=>a.getAttribute("href"))'))==sorted(catalog_urls));p.goto(base+'/search');check('Search offers no-JS Library path',p.locator('noscript a').is_visible())
+        nojs=browser.new_context(java_script_enabled=False);p=nojs.new_page();p.goto(base+'/library');check('Library works without JS',sorted(p.locator('.discovery-link').evaluate_all('(links)=>links.map(a=>a.getAttribute("href"))'))==sorted(catalog_urls));p.goto(base+'/search');check('Search offers no-JS Library path',p.locator('noscript a[href="/library"]').is_visible())
         browser.close()
     server.shutdown()
 (OUT/'browser.json').write_text(json.dumps({'checks':checks,'count':len(checks),'browser':'Chromium','viewports':[375,390,430,768,1024,1440],'physicalDevice':False},indent=2))
