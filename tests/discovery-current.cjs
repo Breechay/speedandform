@@ -70,7 +70,7 @@ for (const file of ['library.html','search.html','404.html']) {
   assert.equal((html.match(/<h1\b/g) || []).length, 1, 'One H1: ' + file);
   assert.ok(html.includes('role="search"'), 'Usable search in ' + file);
   assert.ok(html.includes('for="discovery-query"'), 'Search field labeled in ' + file);
-  for (const href of ['/library','/plans/','/thursday','/#begin']) {
+  for (const href of ['/library','/plans/','/thursday','/coaching/miami/']) {
     assert.ok(html.includes('href="' + href + '"'), file + ' useful route ' + href);
   }
 }
