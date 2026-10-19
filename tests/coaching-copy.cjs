@@ -1,26 +1,17 @@
-// Current homepage coaching copy. Editorial/collective entrances are deliberate.
-// September's multi-offer copy freeze is historical, not the live house contract.
+// Preserve the approved shorter public opening, authentic photography and real inquiry destination.
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs');
-const html=fs.readFileSync('index.html','utf8');
+const home=fs.readFileSync('index.html','utf8');
+const inquiry=fs.readFileSync('coaching/apply/index.html','utf8');
 const menu=fs.readFileSync('scripts/site-menu-panel.html','utf8').trim();
-for(const phrase of [
- 'Run farther.<br>Feel smoother.<br>Get stronger',
- 'Running and strength coaching. Plans to follow. People to train with.',
- 'Train with me.',
- 'Meet the athletes. The faces of FORM.',
- 'From the practice',
- 'Tell me what you want to be capable of.',
- 'Run Development',
- 'See the plan',
- 'Browse the photographs ↗',
- '$1,200'
-])assert.ok(html.includes(phrase),'Approved homepage text: '+phrase);
-for(const href of ['/coaching/miami/','/form/','/forge-sculpt/','/plans/','/runs/','/people/','/track/','/contact'])
- assert.ok(html.includes('href="'+href+'"'),'Current entry point: '+href);
-assert.ok(html.includes(menu),'The shared cinematic menu is projected from one source');
-assert.match(html,/class="home-hero-slide is-active"/,'Opening photograph remains');
-assert.match(html,/class="home-media-card"/,'The image-led Collective entrance remains');
-assert.doesNotMatch(html,/guaranteed results|injury-proof|universal perfect form/i);
-assert.doesNotMatch(html,/Run \+ Strength · \$1,800 \/ 8 weeks/,'The retired combined coaching package stays out');
-console.log('PASS: current cinematic homepage, focused Run Development, direct app/collective paths, real pricing and preserved publication language.');
+for(const line of ['Run farther.<br>Feel smoother.<br>Get stronger','The work','You can hit the pace.','Tell me what you want to be capable of.'])assert.ok(home.includes(line),'Approved FORM voice: '+line);
+assert.equal((home.match(/class="home-hero-slide is-active"/g)||[]).length,1,'One approved still');
+assert.equal((home.match(/class="home-hero-slide home-hero-video"/g)||[]).length,1,'One muted film');
+assert.equal((home.match(/class="home-media-card"/g)||[]).length,0,'No duplicated photo directory');
+assert.match(home,/home-bend-only/,'Keep measured bend');
+assert.match(home,/href="\/coaching\/apply\/"/,'Actual inquiry destination');
+assert.match(inquiry,/id="sendBtn"/,'Actual working inquiry form');
+assert.match(inquiry,/sfSubmitInquiry/,'Preserve backed inquiry submission');
+assert.ok(home.includes(menu),'Canonical generated menu must be projected');
+assert.doesNotMatch(home,/guaranteed results|injury-proof|universal perfect form|class="questionnaire"/i);
+console.log('PASS: restrained photographic homepage, authored voice, real coaching inquiry, shared navigation.');
