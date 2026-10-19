@@ -109,6 +109,6 @@ body[data-sculpt-landing]>main,body[data-sculpt-landing]>.bs-header{container-ty
 .sf-menu-lead a.sf-menu-first{font-size:clamp(27px,4vw,38px)}
 .sf-menu-group a{line-height:1.18}
 .sf-menu-foot{padding-bottom:20px}
-@media(max-width:520px){.sf-menu-hero{margin-left:-20px;margin-right:-20px;min-height:250px}.sf-menu-hero img{height:290px}.sf-menu-hero-overlay{padding:22px 24px 26px}.sf-menu-cards{gap:8px}.sf-menu-card img{height:118px}.sf-menu-card span{font-size:18px}.sf-menu-panel{padding-left:20px;padding-right:20px}}
+@media(max-width:520px){.sf-menu-panel{width:min(460px,calc(100% - 16px))}.sf-menu-hero{margin-left:-20px;margin-right:-20px;min-height:250px}.sf-menu-hero img{height:290px}.sf-menu-hero-overlay{padding:22px 24px 26px}.sf-menu-cards{gap:8px}.sf-menu-card img{height:118px}.sf-menu-card span{font-size:18px}.sf-menu-panel{padding-left:20px;padding-right:20px}}
 @media(max-width:360px){.sf-menu-panel{width:85%}.sf-menu-card:nth-child(3){grid-template-columns:42% 58%}.sf-menu-hero-title{font-size:49px}}
 @media(prefers-reduced-motion:reduce){.sf-menu-card img,.sf-menu-hero img{transition:none}}
