@@ -21,7 +21,7 @@ jobs:
           node scripts/check-house-integrity.cjs
           node scripts/build-running-lessons.cjs
           node scripts/build-discovery.cjs
-          git diff --exit-code
+          node scripts/verify-public-generated-drift.cjs
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
