@@ -23,7 +23,33 @@ with sync_playwright() as p:
    assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),(route,width,'overflow')
    imgs=page.locator('main img') if label!='brand' else page.locator('#theater img')
    for im in imgs.all():
-    im.scroll_into_view_if_needed();im.evaluate('(i)=>i.decode()')
+    im.scroll_into_view_if_needed()
+    # Scrolling starts lazy loading. Wait for load before decode() or canvas.
+    # The previous test raced the network and rejected valid source photographs.
+    im.evaluate('(i)=>{i.loading="eager"}')
+    state=im.evaluate("""async (i) => {
+      if (!i.complete || !i.naturalWidth) {
+        await new Promise((resolve, reject) => {
+          i.addEventListener('load', resolve, {once:true});
+          i.addEventListener('error', () => reject(Error('Image failed to load')), {once:true});
+        });
+      }
+      let decodeError = null;
+      try { await i.decode(); } catch (e) { decodeError = String(e); }
+      const c = document.createElement('canvas');
+      c.width = 24; c.height = 24;
+      const ctx = c.getContext('2d', {willReadFrequently:true});
+      let painted = false, drawError = null;
+      try {
+        ctx.drawImage(i, 0, 0, c.width, c.height);
+        const rgba = ctx.getImageData(0, 0, c.width, c.height).data;
+        painted = rgba.some((v, n) => n % 4 === 3 && v > 0);
+      } catch(e) { drawError = String(e); }
+      return {src:i.currentSrc || i.src, complete:i.complete,
+        naturalWidth:i.naturalWidth, naturalHeight:i.naturalHeight,
+        painted, decodeError, drawError};
+    }""")
+    assert state['complete'] and state['naturalWidth']>0 and state['naturalHeight']>0 and state['painted'],(route,label,width,state)
    if label=='album':
     assert imgs.count()==8
     assert imgs.evaluate_all('(ims)=>ims.every(i=>i.complete&&i.naturalWidth>0&&Math.abs(i.clientWidth/i.clientHeight-i.naturalWidth/i.naturalHeight)<.02)')

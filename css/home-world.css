@@ -1,22 +1,22 @@
 /* Inside FORM (Oct 19, 2026): a contact sheet. Cream ground, "The work shows." set large, and a strip of
    real FORM frames that runs off the page and drifts with the scroll. Its own composition: the
    bend belongs to the chapter above. */
-.home-world{background:#f1ede4;color:#161916;padding:clamp(88px,9vw,140px) 0 clamp(72px,8vw,120px);overflow:hidden}
+.home-world{background:#EEEDE8;color:#10161A;padding:clamp(88px,9vw,140px) 0 clamp(72px,8vw,120px);overflow:hidden}
 .home-world-head{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);column-gap:clamp(40px,6vw,96px);align-items:end}
-.home-world-eyebrow{margin:0 0 20px;font:400 11px/1.6 var(--mono,monospace);letter-spacing:.13em;text-transform:uppercase;color:#5e625b}
+.home-world-eyebrow{margin:0 0 20px;font:400 11px/1.6 var(--mono,monospace);letter-spacing:.08em;text-transform:uppercase;color:#55616A}
 .home-world h2{margin:0;max-width:13ch;font-size:clamp(60px,9vw,140px);font-weight:450;line-height:.94;letter-spacing:-.06em}
-.home-world-copy>p:first-child{margin:0;font-size:18px;line-height:1.55;color:#3f433d;max-width:36ch}
+.home-world-copy>p:first-child{margin:0;font-size:18px;line-height:1.55;color:#4F5A64;max-width:36ch}
 .home-world-links{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 0}
-.home-world-links a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border:1px solid rgba(22,25,22,.24);border-radius:999px;color:#161916;text-decoration:none;font-size:15px;transition:background-color .3s ease,color .3s ease,border-color .3s ease}
-.home-world-links a:hover{background:#161916;border-color:#161916;color:#f1ede4}
-.home-world-links a:focus-visible{outline:2px solid #161916;outline-offset:3px}
+.home-world-links a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0;border:0;border-bottom:1px solid rgba(16,22,26,.5);border-radius:0;color:#10161A;text-decoration:none;font-size:15px;transition:border-color .2s ease,color .2s ease}
+.home-world-links a:hover{background:#10161A;border-color:#10161A;color:#EEEDE8}
+.home-world-links a:focus-visible{outline:2px solid #10161A;outline-offset:3px}
 
 /* The sheet: frames of one height, varying widths, numbered like film. */
 .home-world-sheet{margin-top:clamp(56px,6vw,96px);padding-left:max(var(--public-gutter,24px),calc((100vw - var(--max,1280px)) / 2))}
 .home-world-sheet ul{display:flex;gap:clamp(10px,1.1vw,16px);margin:0;padding:0;list-style:none;width:max-content;will-change:transform}
 .home-world-sheet li{flex:none;margin:0}
-.home-world-sheet img{display:block;height:clamp(240px,30vw,440px);width:auto;max-width:none;filter:grayscale(1) contrast(1.06);background:#d9d4c9}
-.home-world-sheet span{display:block;margin-top:10px;font:400 11px/1.4 var(--mono,monospace);letter-spacing:.1em;color:#5e625b}
+.home-world-sheet img{display:block;height:clamp(240px,30vw,440px);width:auto;max-width:none;filter:none;background:#1B242B}
+.home-world-sheet span{display:block;margin-top:10px;font:400 11px/1.4 var(--mono,monospace);letter-spacing:.08em;color:#55616A}
 @media(max-width:860px){
   .home-world-head{grid-template-columns:1fr;row-gap:24px}
   .home-world h2{font-size:clamp(60px,17vw,96px)}

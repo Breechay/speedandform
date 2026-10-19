@@ -58,5 +58,7 @@ assert.deepEqual(schema['@graph'].map(n => n['@type']), ['Organization', 'WebSit
 assert.equal(schema['@graph'][2].primaryImageOfPage.url, imageURL.href);
 assert.ok(!/aggregateRating|reviewCount|streetAddress/.test(scripts[0][1]));
 assert.match(html, /class="home-hero-media"/);
-assert.match(html, /<script defer src="\/js\/coaching-measurement.js\?v=20260930"><\/script>/);
+const inquiry = fs.readFileSync(path.join(root,'coaching/apply/index.html'),'utf8');
+assert.match(html,/href="\/coaching\/apply\/"/,'Homepage links to inquiry');
+assert.match(inquiry,/<script defer src="\/js\/coaching-measurement.js\?v=20260930"><\/script>/,'Measurement belongs on the actual inquiry page');
 console.log('PASS: unique search/OG/Twitter tags, canonical, schema, static hero photograph and versioned measurement, JPEG 1200x630 and size.');

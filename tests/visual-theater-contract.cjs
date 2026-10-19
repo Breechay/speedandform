@@ -46,11 +46,12 @@ assert.match(home,/adrian-7x800-2026-10-14/);
 // same library photo may legitimately appear later in editorial sections.
 
 // Decoration is allowed to be beautiful. The site also keeps meaningful entry points.
-assert.equal((home.match(/class="home-media-card"/g) || []).length, 3);
-assert.match(home, /class="home-media-head"/);
-assert.match(home, /href="\/athletes\/"/);
-assert.match(home, /href="\/runs\/"/);
-assert.match(home, /href="\/track\/"/);
+assert.equal((home.match(/class="home-media-card"/g) || []).length, 0,'No duplicate card chapter');
+assert.match(home, /class="home-entry home-bend-only"/,'The measured bend remains');
+assert.match(home, /class="home-world-sheet"/,'Photography remains');
+assert.match(home, /href="\/coaching\/apply\/"/,'One real coaching inquiry');
+assert.match(home, /href="\/athletes\/"/,'Athletes remain accessible');
+assert.match(read('coaching/apply/index.html'), /id="sendBtn"/,'Inquiry survives on dedicated page');
 
 // The homepage film is ambient, silent, and respectful of accessibility.
 assert.match(hero, /video\.defaultMuted = true/);

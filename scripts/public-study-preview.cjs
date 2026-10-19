@@ -17,16 +17,16 @@ function renderHomeEvidence(){const x=snapshot.latest_completed;return `<section
   <div class="home-evidence-photograph" aria-hidden="true"><img src="/media/library/night-pair-track-1200.webp" alt="" loading="lazy" decoding="async" width="1200" height="800"></div>
   <div class="wrap home-evidence-grid">
     <div class="home-evidence-question">
-      <p class="eyebrow">From the practice</p>
+      
       <h2 id="home-evidence-title">You can hit the pace.<br>Can you hold it?</h2>
     </div>
     <div class="home-evidence-result">
       <p>Hope and José are working on that question.</p>
       <dl>
         <div><dt>${x.distance_mi} miles</dt><dd>Continuous. No resets.</dd></div>
-        <div><dt>${e(x.label)}</dt><dd>A training milestone. Not a race prediction.</dd></div>
+        
       </dl>
-      <div class="home-evidence-links"><a class="text-link" href="/labs/speed-that-endures/">Read the study <span aria-hidden="true">↗︎</span></a><a class="text-link" href="/plans/race-pace-durability/">Explore the plan <span aria-hidden="true">↗︎</span></a></div>
+      <div class="home-evidence-links"><a class="text-link" href="/labs/speed-that-endures/">Study <span aria-hidden="true">↗︎</span></a></div>
     </div>
   </div>
 </section>`;}

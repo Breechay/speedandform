@@ -16,6 +16,8 @@ on:
       - 'css/home-hero-carousel.css'
       - 'js/home-hero-carousel.js'
       - 'tests/visual-theater-contract.cjs'
+      - 'tests/brand-color-integrity.cjs'\n      - 'tests/public-copy-law.cjs'\n      - 'docs/editorial/PUBLIC_COPY_LAW_2026-10-19.md'
+      - 'docs/design/FORM_CINEMATIC_WEB_DIRECTION_2026-10-19.md'
       - '.github/workflows/visual-theater-guard.yml'
 jobs:
   visual-contract:
@@ -32,3 +34,4 @@ jobs:
         run: |
           node --check js/home-hero-carousel.js
           node tests/visual-theater-contract.cjs
+          node tests/brand-color-integrity.cjs\n          node tests/public-copy-law.cjs
