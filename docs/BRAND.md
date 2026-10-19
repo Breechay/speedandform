@@ -1,5 +1,9 @@
 # Speed & Form · house system
 
+## Current public copy authority · October 19, 2026
+
+Before composing any public marketing page or the shared menu, obey [the public copy law](editorial/PUBLIC_COPY_LAW_2026-10-19.md). It supersedes older promotional page tours. A section earns its existence through a real photograph, source fact, or functional action, not a subtitle or explanatory kicker. Preserve necessary business details, user-facing controls and legal terms. Public pages do not narrate the kit.
+
 ## Current website visual direction · October 19, 2026
 
 The active web execution reference is [FORM cinematic web finish](design/FORM_CINEMATIC_WEB_DIRECTION_2026-10-19.md) and the matching public [Brand page](/brand/). It updates photographic color integrity, the shared menu, and the site's neutral palette while **preserving** the October 14 rule that FORM needs theater and atmosphere, not stripped-down minimalism. Website colors are ink `#10161A`, graphite `#1B242B`, stone `#EEEDE8`, bone `#F1EFE8` and sparing steel `#9CB5C7`. Photography is **true black-and-white or full natural color**, with no intermediate desaturation on hover or scrolling. No tan/brown UI accent. Skin tones must remain human and faces legible. Maintain rounded photographic framing where appropriate.
