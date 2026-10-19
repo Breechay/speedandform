@@ -44,4 +44,12 @@ for(const file of files){
 }
 for(const file of ['coach/index.html','coach/ops/index.html','athlete/index.html','athletes/index.html','auth/app-signin/index.html','record/index.html','forge-app/index.html','forge-sculpt/train/index.html','plans/devin-week-01/index.html','labs/devin/index.html','plans/race-pace-durability/thanks/index.html','plans/race-pace-durability/access/index.html'])assert.ok(!files.includes(file),'Execution/private route remains outside menu projection: '+file);
 const js=read('js/sf-menu.js');assert.ok(js.includes('Escape')&&js.includes('Tab')&&js.includes('inert'),'Keyboard and modal isolation remain supported');
+// A public menu destination must not loop under Netlify's normalized trailing slashes.
+const redirectLines=read('_redirects').split(/\r?\n/).filter(line=>line.trim()&&!/^\s*#/.test(line));
+for(const route of ['/athletes','/athletes/']){
+ const rules=redirectLines.filter(line=>line.trim().split(/\s+/)[0]===route);
+ assert.equal(rules.length,1,route+': one authoritative rewrite');
+ assert.deepEqual(rules[0].trim().split(/\s+/),[route,'/people/index.html','200!'],route+': forced 200 rewrite, no slash redirect');
+}
+assert.ok(!/from\s*=\s*["']\/athletes\/?["']/.test(read('netlify.toml')),'No conflicting Netlify TOML athlete rule');
 console.log(`PASS: ${files.length} shared-menu pages; coverage, private exclusions, one canonical drawer, direct-body placement, no-JS links and idempotent regeneration.`);
