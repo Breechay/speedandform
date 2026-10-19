@@ -5,13 +5,14 @@
    home straight. */
 .home-entry[data-bend-seam]{position:relative;z-index:3;overflow:visible;background:transparent;padding:clamp(76px,9vw,96px) 0 clamp(84px,10vw,104px)}
 /* The continuous, full-diameter track bend survives the copy reduction. */
-.home-entry.home-bend-only[data-bend-seam]{min-height:clamp(640px,65vw,860px);padding:0}
-@media(max-width:760px){.home-entry.home-bend-only[data-bend-seam]{min-height:clamp(410px,112vw,600px)}}
+.home-entry.home-bend-only[data-bend-seam]{min-height:clamp(320px,26vw,400px);padding:0}
+@media(max-width:760px){.home-entry.home-bend-only[data-bend-seam]{min-height:clamp(240px,64vw,300px)}}
+/* The hero's last line of type stays clear of the lanes it ends on. */
+.sf-home-hero-immersive.has-bend-seam .home-hero-immersive-inner{padding-bottom:calc(var(--seam-outer,48px) + clamp(36px,4.2vw,64px))}
 .bend-seam{position:absolute;left:0;pointer-events:none;overflow:visible;z-index:0}
 .bend-seam-lanes path{fill:none;stroke:rgba(232,227,217,.46);stroke-width:1.1px;vector-effect:non-scaling-stroke}
 .bend-seam-lanes .bend-seam-start{stroke:rgba(232,227,217,.72);stroke-width:1.3px}
 .bend-seam-mark{position:absolute;z-index:1;height:auto;opacity:0;pointer-events:none;transition:opacity 700ms ease 900ms}
-.bend-seam-mark.on-lanes{background:var(--dark);padding:8px 12px;margin:-8px 0 0 -12px}
 .home-entry[data-bend-seam].bend-in .bend-seam-mark{opacity:1}
 .home-entry[data-bend-seam]>.wrap{position:relative;z-index:2}
 

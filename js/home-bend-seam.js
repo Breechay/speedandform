@@ -34,8 +34,9 @@
     const W = section.clientWidth;
     const wide = wideQuery.matches;
     section.classList.toggle('bend-wide', wide);
-    // The bend always holds the whole chapter: inner diameter = the section's height.
-    const rin = section.offsetHeight / 2;
+    // The bend holds the whole chapter, outer lane included: inner diameter + one lane band = the
+    // section's height, so no lane spills onto the paper below.
+    const rin = section.offsetHeight / (2 + 8 / RADIUS_IN_LANES);
     const lane = rin / RADIUS_IN_LANES;
     const outer = lane * 8;
     // Wide: the full bend sits inside the page, apex near the right edge. Narrow: the bend is
@@ -66,20 +67,13 @@
       m.setAttribute('d', d); m.setAttribute('class', 'bend-seam-start');
       lanes.appendChild(m);
     });
-    let mw, mh, gx, gy;
-    if (wide) {
-      mw = Math.min(210, rin * 0.5); mh = mw * 290 / 798;
-      gx = cx + 0.40 * rin; gy = cy;
-      mark.classList.remove('on-lanes');
-    } else {
-      // The emblem rides the home straight, just before the start line.
-      mw = Math.min(118, W * 0.28); mh = mw * 290 / 798;
-      gx = cx - mw / 2 - 22; gy = cy + rin + outer / 2;
-      mark.classList.add('on-lanes');
-    }
+    // The emblem at the goal on every width, inside the bend, clear of the edge.
+    const mw = Math.min(200, rin * 0.62, W * 0.28); const mh = mw * 290 / 798;
+    const gx = Math.min(cx + 0.40 * rin, W - mw / 2 - 24); const gy = cy;
     mark.style.width = mw + 'px';
     mark.style.left = (gx - mw / 2) + 'px';
     mark.style.top = (gy - mh / 2) + 'px';
+    if (hero) hero.style.setProperty('--seam-outer', Math.ceil(outer) + 'px');
     maskHero({ cx, cy, R: rin + outer });
     if (!drawn) prime();
   }
