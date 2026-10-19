@@ -21,7 +21,7 @@
 .home-entry[data-bend-seam] .home-entry-grid>a{display:grid;grid-template-columns:clamp(92px,26vw,128px) minmax(0,1fr) 44px;grid-template-rows:auto auto 1fr;column-gap:clamp(16px,4.4vw,24px);align-items:start;padding:16px 0;border-top:1px solid var(--public-rule);color:var(--bone);text-decoration:none}
 .home-entry[data-bend-seam] .home-entry-grid>a:last-child{border-bottom:1px solid var(--public-rule)}
 .home-entry-photo{grid-column:1;grid-row:1/4;display:block;aspect-ratio:1;overflow:hidden;border-radius:9px;background:#1b1d1c}
-.home-entry-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 40%);filter:grayscale(1) contrast(1.05) brightness(1.04);transition:transform .9s cubic-bezier(.22,.61,.36,1)}
+.home-entry-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 40%);filter:grayscale(1) brightness(var(--b,1)) contrast(var(--c,1.05));transition:transform .9s cubic-bezier(.22,.61,.36,1)}
 .home-entry[data-bend-seam] .home-entry-grid>a>.home-entry-index{grid-column:2;grid-row:1;font:400 11px/1.5 var(--mono);letter-spacing:.08em;color:#b8bbb2;padding-top:2px}
 .home-entry[data-bend-seam] .home-entry-grid strong{grid-column:2;grid-row:2;margin:6px 0 0;max-width:none;font-size:clamp(22px,5.8vw,27px);font-weight:450;line-height:1.1;letter-spacing:-.03em}
 .home-entry[data-bend-seam] .home-entry-grid p{grid-column:2;grid-row:3;margin:8px 0 0;max-width:30ch;font-size:15px;line-height:1.5;color:#b8bbb2}
@@ -29,6 +29,11 @@
 .home-entry[data-bend-seam] .home-entry-grid a:hover strong{text-decoration:none}
 .home-entry[data-bend-seam] .home-entry-grid a:hover .home-entry-go,.home-entry[data-bend-seam] .home-entry-grid a:focus-visible .home-entry-go{background:var(--bone);border-color:var(--bone);color:var(--dark)}
 .home-entry[data-bend-seam] .home-entry-grid a:hover .home-entry-photo img{transform:scale(1.035)}
+/* One grade across the three: each photograph's own brightness and contrast (--b, --c) maps its
+   tones onto the same range, deep blacks to bright skin, so they read as one set. */
+/* A magazine close-up inside a wider frame: zoom and focus point set per photograph. */
+.home-entry-photo.is-close img{object-position:var(--pos);transform-origin:var(--o);transform:scale(var(--z))}
+.home-entry[data-bend-seam] .home-entry-grid a:hover .home-entry-photo.is-close img{transform:scale(calc(var(--z) * 1.035))}
 
 /* The hero photograph is masked by the outer lane (set by the script). */
 .sf-home-hero-immersive.has-bend-seam{overflow:visible}
@@ -48,6 +53,7 @@
   .home-entry[data-bend-seam] .home-entry-grid strong{grid-column:1;grid-row:3;font-size:clamp(24px,1.9vw,30px)}
   .home-entry[data-bend-seam] .home-entry-grid p{grid-column:1;grid-row:4;font-size:15.5px;max-width:28ch}
   .home-entry-go{grid-column:2;grid-row:2/5;align-self:end}
+  .home-entry-photo.is-close{--z:var(--zw);--o:var(--ow);--pos:50% 50%}
   .home-entry[data-bend-seam]:has(.home-entry-grid>a:hover,.home-entry-grid>a:focus-visible) h2 span{opacity:.3}
   .home-entry[data-bend-seam]:has(.home-entry-grid>a:nth-child(1):hover,.home-entry-grid>a:nth-child(1):focus-visible) h2 span:nth-child(1),
   .home-entry[data-bend-seam]:has(.home-entry-grid>a:nth-child(2):hover,.home-entry-grid>a:nth-child(2):focus-visible) h2 span:nth-child(2),
