@@ -66,7 +66,14 @@ const mime={'.html':'text/html','.css':'text/css','.js':'text/javascript','.mjs'
           links:[...document.querySelectorAll('a[href]')].length
         }));
         assert.ok(state.visible>100,route+' contains a page at '+width);
-        assert.ok(state.root<=state.viewport+1,route+' horizontal overflow at '+width+': '+JSON.stringify(state));
+        if(state.root>state.viewport+1){
+          const offenders=await page.evaluate(()=>[...document.body.querySelectorAll('*')]
+            .map(el=>({el,r:el.getBoundingClientRect()}))
+            .filter(x=>x.r.width>0 && (x.r.right>innerWidth+2 || x.r.left < -2))
+            .slice(0,12).map(x=>({tag:x.el.tagName,className:String(x.el.className).slice(0,110),
+              left:Math.round(x.r.left),right:Math.round(x.r.right),text:(x.el.textContent||'').trim().slice(0,45)})));
+          report.issues.push({type:'horizontal-overflow',route,width,state,offenders});
+        }
         report.checked.push({route,width,links:state.links});
         if(width===390||width===1440){
           const slug=route.replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'')||'home';
@@ -77,6 +84,7 @@ const mime={'.html':'text/html','.css':'text/css','.js':'text/javascript','.mjs'
       }
     }
     assert.equal(new Set(report.checked.map(c=>c.route)).size,routes.length,'All first-hop routes inspected');
+    assert.equal(report.issues.filter(e=>e.type==='horizontal-overflow').length,0,'No horizontal overflow at any public entrance: '+JSON.stringify(report.issues.filter(e=>e.type==='horizontal-overflow')));
     console.log('PASS: '+routes.length+' direct public homepage/menu/footer routes at 320, 390, 1024 and 1440 pixels in '+engineName+'.');
   }catch(e){report.failure=e.stack;throw e;}
   finally{
