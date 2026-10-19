@@ -31,6 +31,19 @@ for (const [copy, code] of [
 assert.equal(scanText('Brice · Athlete profile · Miami', 'fixture.html', 'visible copy').length, 0, 'Actual athlete identity remains legal');
 assert.equal(scanText('Request sent. Tag pending review.', 'fixture.html', 'visible copy').length, 0, 'Neutral status remains allowed');
 
+// Owner's October 19 athletic-world rule must survive future site and agent changes.
+for (const [file, phrase] of [
+  ['AGENTS.md', 'FORM_ATHLETIC_WORLD_STANDARD_2026-10.md'],
+  ['docs/BRAND.md', 'FORM_ATHLETIC_WORLD_STANDARD_2026-10.md'],
+  ['docs/editorial/PUBLICATION_CONTRACT.md', 'FORM_ATHLETIC_WORLD_STANDARD_2026-10.md'],
+  ['docs/design/FORM_VISUAL_EXECUTION_STANDARD_2026-10.md', 'FORM_ATHLETIC_WORLD_STANDARD_2026-10.md'],
+  ['docs/design/APP-DESIGN-DIRECTION-20261012.md', 'FORM_ATHLETIC_WORLD_STANDARD_2026-10.md'],
+  ['.cursor/rules/form-speedandform-context.mdc', 'FORM_ATHLETIC_WORLD_STANDARD_2026-10.md']
+]) assert.ok(read(file).includes(phrase), 'Living athletic-world rule missing from '+file);
+assert.ok(read('docs/design/FORM_ATHLETIC_WORLD_STANDARD_2026-10.md').includes('No dead sections'), 'No-dead-sections design authority missing');
+assert.ok(read('docs/product/FORM_ATHLETIC_WORLD_CONTENT_MODEL_2026-10.md').includes('No group run scheduled'), 'No-run fallback contract missing');
+assert.ok(read('docs/product/FORM_ATHLETIC_WORLD_CONTENT_MODEL_2026-10.md').includes('/media/library/library.json'), 'Content contract must reuse approved FORM media library');
+
 const doc = text => '<!doctype html><html><head><title>FORM Study</title><meta name="description" content="A real training question."></head><body>'+text+'</body></html>';
 assert.equal(scanHtml(doc('<h1>José · Oct 13</h1><p>20 minutes at 6:06/mi, athlete reported.</p><a href="#source">Reports &amp; splits</a>'), 'fixture.html').length, 0);
 assert.equal(scanHtml(doc('<p>Read the study archive for the original splits.</p>'), 'fixture.html').length, 0);
