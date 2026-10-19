@@ -1,5 +1,9 @@
 # Start here: Speed & Form
 
+## Public copy law · October 19, 2026
+
+**Public site pages are images, offers, product screens, or references. Show the work; never narrate the layout.** Read [the binding public copy law](docs/editorial/PUBLIC_COPY_LAW_2026-10-19.md) before any Home, Photos, Athletes, Runs, coaching opening, apps, Library lobby, Track, menu, or Contact edit. No ornamental eyebrow, repeat subtitle, 01/02/03 tour, link coaching, caption explaining a photo, or menu `<small>`. Preserve real offer terms, accessibility, study evidence and privacy. Run `node tests/public-copy-law.cjs` before committing. A visual change adds no words. Empty space is finished.
+
 ## Current web visual authority · October 19, 2026
 
 **Website first, native later.** Follow [FORM cinematic web finish](docs/design/FORM_CINEMATIC_WEB_DIRECTION_2026-10-19.md) alongside the publication contract and deployment discipline. The SF emblem, measured bend, Inter Tight and measured mono, ink/graphite/stone/bone, rounded photographic crops, and real athlete photography define the public web. Color is either full natural color or true monochrome. No muddy partial grayscale, color-desaturation hover, brown/tan UI accents, serif athlete names or invented public athletic claims. Preserve the homepage's continuous band, muted first-draft film, functional navigation and privacy-gated published assets. This web rule does not silently modify the iOS app or native training prescriptions. One coherent review batch, no routine deploy without explicit approval.
