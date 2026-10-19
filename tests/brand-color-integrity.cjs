@@ -39,7 +39,7 @@ for (const token of ['#10161A', '#1B242B', '#EEEDE8', '#F1EFE8', '#9CB5C7']) {
 assert.match(brand, /True monochrome or natural full color/);
 assert.doesNotMatch(brand, /Strength keeps bronze inside the app|Running has its own lime/);
 const photos = read('photos/index.html');
-const nav = photos.match(/<nav class="photos-nav"[^>]*>([\s\S]*?)<\/nav>/)?.[1] || '';
+const nav = photos.match(/<nav class="photos-nav(?: [^"]*)?"[^>]*>([\s\S]*?)<\/nav>/)?.[1] || '';
 assert.equal((nav.match(/href="\/runs\/"/g) || []).length, 1, 'Photos nav: one Runs destination');
 const runs = read('runs/index.html'), runCode = read('js/group-runs.js');
 assert.match(runs, /id="gr-hero-action"[^>]*>Run details/);
