@@ -40,6 +40,29 @@ Every displayed feature needs:
 
 Don't duplicate authoritative athlete, event, photo-tag or film records in a new CMS. If a small curation map is necessary, use an explicit **versioned list of existing references**, not copied biographies, private feeds, generated descriptions or a new UGC service. No backend migration or new navigation tab is authorized by this brief.
 
+## One editorial reference, different presentations (no new content platform)
+
+A reusable editorial item can be a **read-time view of an existing approved object**, not a new database record. Minimum common projection for a rendered feature:
+
+| Field | Contract |
+|---|---|
+| `ref` + `kind` | Existing stable run/album/session/person/library-photo/field-note/study reference and type |
+| `title` + `complete_text` | Own source's truthful title and a self-contained short excerpt/observation if any |
+| `happened_on` / `published_on` | Separate actual event/capture time from publish time; null if unknown, not invented |
+| `media_ref` + `focal` | Approved source asset id/path, with original crop/alt/rights constraints |
+| `provenance` | Actual owner category (run, athlete, study, Field Notes), only when useful to understand the claim. Not a repetitive founder signature |
+| `related_refs` | Explicit public run, athlete, study, phase or place links; no guessed identities or attendance |
+| `audience` / `eligibility` | Checked against the owning record at read/render time: permission, publication, withdrawn media, participant visibility |
+| `optional_url` | Real existing destination, with public/member access respected |
+
+**Eligibility → relevance → selection → rendering are separate decisions.** 'Published' does not mean 'relevant'; 'most recently edited' does not mean 'new.' Allow a deliberate editorial pin among eligible source references, but no hidden engagement ranking.
+
+The real website already publishes four canonical Field Notes through `scripts/field-notes-content.cjs`, with stable `/field-notes/<slug>/` pages and `docs/publishing/FIELD-NOTES-AND-CONTACT.md`. Reuse one when relevant, with its factual current status and appropriate quotation/rights. No new note editor is needed for the first pass. An agent proposed stable `THE PRACTICE` clause IDs, but those IDs and public deep-link contract are **not verified** in the checked source; don't bind features to hypothetical anchors. Revisit if a verifiable clause inventory exists.
+
+Don't treat a `Plate` as an automatic new content schema; the repository already uses 'plate' for unrelated editorial/instrument contexts. Call this a **featured item** or **editorial reference** until a design need proves otherwise.
+
+**Selection must not force a module to remain mounted.** If a film rail has no eligible actual film, omit the rail; if no note is specific to the group/current phase, omit the note. Keep the overall Group destination navigable and schedule truth available, rather than filling every slot. No fabricated next event and no repeating the same photo across five placements merely to suggest volume.
+
 ## Selection logic (transparent, bounded)
 
 **Group lead:**
