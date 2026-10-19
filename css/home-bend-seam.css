@@ -75,7 +75,7 @@
   isolation:isolate;
 }
 .sf-home-hero-immersive.has-bend-seam .hero-copy{
-  transform:translateY(-clamp(56px,9svh,116px));
+  transform:translateY(-clamp(82px,12svh,140px));
 }
 .sf-home-hero-immersive .home-hero-shade{
   background:linear-gradient(90deg,rgba(4,4,4,.40),transparent 72%),
@@ -84,7 +84,7 @@
 @media(max-width:760px){
   .home-entry.home-bend-only[data-bend-seam]{margin-top:-clamp(108px,15svh,156px)}
   .sf-home-hero-immersive.has-bend-seam .hero-copy{
-    transform:translateY(-clamp(72px,12svh,136px));
+    transform:translateY(-clamp(116px,19svh,190px));
   }
   .sf-home-hero-immersive .home-hero-shade{
     background:linear-gradient(0deg,rgba(4,4,4,.56),rgba(4,4,4,.22) 55%,transparent 80%),
