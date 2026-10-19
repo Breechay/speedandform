@@ -63,7 +63,7 @@
 /library                /library.html               200
 /training-interruptions /training-interruptions.html 200
 /ledger                 /ledger.html                200
-/athletes               /athletes/                  301!
+/athletes               /people/index.html          200!
 /athletes/              /people/index.html          200!
 /the-field              /miami-running-training    301!
 /easy-run               /easy-run.html              200
