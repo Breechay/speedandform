@@ -48,8 +48,8 @@
     "work_time": "20:00",
     "work_pace": "6:06/mi",
     "garmin_5k_best_effort": "18:56",
-    "decision": "Garmin best effort occurred inside the workout. Thursday is now five continuous miles at 6:40–6:45/mi if recovered; Saturday long run removed for the down week.",
-    "next_test": "Oct 15 five controlled continuous miles; Oct 20 eight-mile checkpoint still conditional."
+    "decision": "October 13: 20 minutes continuous at 6:06/mi, faster than the established race-pace band. This does not replace the six-mile continuous race-pace benchmark. No October 15 completion is established in the public evidence.",
+    "next_test": "A longer uninterrupted hold in José’s 6:30–6:45/mi race-pace band is the next durability question; later completion not yet documented."
   },
   "review_amendment": {
     "date": "2026-10-06",
@@ -61,7 +61,7 @@
     "source_url": "/labs/speed-that-endures/#rhythm-read",
     "status": "Individual continuity trial plus system revision: reusable ownership asks stop at 8; later race pace is separate late-access durability; no mandatory 12-mile rung."
   },
-  "source_sha256": "909fb87e063076c42719620d7202f943af13ca6da6779a9c3d89ce29bebbc417",
+  "source_sha256": "5dcf69687fbcbb6f3de3a00cde69d22a28cceba422c57eced3d6e90a88a8082f",
   "previous_support": {
     "date": "2026-10-06",
     "label": "Oct 6",
