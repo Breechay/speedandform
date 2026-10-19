@@ -38,6 +38,8 @@ for (const token of ['#10161A', '#1B242B', '#EEEDE8', '#F1EFE8', '#9CB5C7']) {
 }
 assert.match(brand, /True monochrome or natural full color/);
 assert.doesNotMatch(brand, /Strength keeps bronze inside the app|Running has its own lime/);
+assert.doesNotMatch(brand, /bk-not-lime|#c9ff36/i, 'No neon/bronze demonstration on the approved Brand page');
+assert.doesNotMatch(read('css/brand.css'), /#c9ff36/i, 'Brand CSS contains no retired lime mark');
 const photos = read('photos/index.html');
 const nav = photos.match(/<nav class="photos-nav(?: [^"]*)?"[^>]*>([\s\S]*?)<\/nav>/)?.[1] || '';
 assert.equal((nav.match(/href="\/runs\/"/g) || []).length, 1, 'Photos nav: one Runs destination');
