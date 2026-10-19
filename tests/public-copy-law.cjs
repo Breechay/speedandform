@@ -24,7 +24,9 @@ const normalize=s=>s.replace(/<!--[^]*?-->/g,'').replace(/<(script|style)\b[^>]*
 for(const file of pages){
  const html=read(file);
  const main=html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1]||html.replace(/<!-- Shared site menu -->[\s\S]*$/,'');
- const visible=normalize(main);
+ // The Library is a reference index: real article/album names and lesson descriptions are content, not lobby narration.
+ const surface=file==='library.html'?(main.match(/<section class="discovery-hero"[\s\S]*?<\/section>/)?.[0]||'')+' '+(main.match(/<section class="discovery-basics"[\s\S]*?<\/section>/)?.[0]||''):main;
+ const visible=normalize(surface);
  for(const re of banned)assert.doesNotMatch(visible,re,file+': no tutorial or page narration');
 }
 const menu=read('scripts/site-menu-panel.html');
