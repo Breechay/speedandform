@@ -16,6 +16,18 @@
 
 **Archive beats a disappearing feed.** Albums, films, athlete pages, studies and notes remain findable by meaningful subject, run, date or athlete. No endless algorithmic feed, likes, follows, leaderboard, comments, fake activity counts, daily-post obligation or new social graph. Curation is editorial, not engagement bait.
 
+## Relevance requirement · no padded sections (October 19 refinement)
+
+**No dead sections does not mean never hide a module. No dead sections. No padded sections.** A surface must give the athlete a meaningful next route or a truthful current state, but each optional tile, film rail or note may disappear if nothing specific and eligible deserves the space. Three honest elements are better than nine weak substitutes. A quiet week is a valid editorial condition, not a deficit to disguise.
+
+Lead selection must pass the **relevance test** in addition to publication/consent/rights checks. The item should relate to at least one of: this real group's people/place/work; an actual upcoming event; a verified recently published session or album; the relevant athlete's **publicly shareable** phase or study; a deliberately resurfaced archive item with a stated reason; or an existing FORM Field Note with a concrete connection to current practice. Do not fill Standing with random evergreen motivation.
+
+Prefer **live → recent → contextually standing → meaningfully resurfaced archive**, but treat 48-hour and 7-day cutoffs as examples, **not universal gates**. A published run on the calendar is still a real upcoming run when more than 48 hours away; a six-week-old film can be more relevant than an unrelated note published today. State actual event date and original capture/publish dates. Surface a truthful `No group run scheduled` on the schedule path when verified; never invent a `next` date. Unavailable network reads are not proof of no schedule.
+
+Use **eligible source reference → deliberate selection → designed rendering**. There may be a tiny reusable content-card/feature projection across app and site, but it must only point to original approved records, not become another content platform, reposting pipeline or independent permission authority. Avoid the term `Plate` as a binding new storage schema: FORM already uses it in other visual/instrument contexts. A visual card is a presentation of an eligible event, album, film, public note, study or photo.
+
+Don't create a scheduled publishing obligation (weekly numbered Issues), rest-day media injections, an iOS widget, personal performance receipts, athlete quote forms, a place atlas, new public permalink system or in-café displays as part of v1. These are separate design proposals requiring evidence and approval. Athlete stories or personal metrics need explicit, contextual consent and should not be turned into group accountability mechanics by default.
+
 ## Composition and interaction
 
 - Preserve the **approved cream ink-bend native entrance** and the dark Week, not a photographic replacement splash. Place photographic immersion within the authenticated side door, Group and media rooms, and appropriately within approved web landing compositions.
