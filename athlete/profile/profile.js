@@ -48,8 +48,8 @@ async function paint(note = '', cls = '') {
     return `<div class="pf-field">
       <span class="field-label">${esc(label)}</span>
       <label class="show"><input type="checkbox" name="show" value="${key}"${shown.has(key) ? ' checked' : ''}${!editable && !value ? ' disabled' : ''}> Show</label>
-      ${editable ? `<div class="value">${input}</div>` : `<div class="value">${value ? esc(value) : '<span class="field-hint">Not set. Brice adds this.</span>'}</div>`}
-      ${key === 'bio' && me.bio && !me.bio_confirmed ? '<div class="pf-draft"><span>Brice drafted this line. It stays private until you keep it or rewrite it.</span><button class="button" type="button" data-keep>Use this line</button></div>' : ''}
+      ${editable ? `<div class="value">${input}</div>` : `<div class="value">${value ? esc(value) : '<span class="field-hint">Not set yet.</span>'}</div>`}
+      ${key === 'bio' && me.bio && !me.bio_confirmed ? '<div class="pf-draft"><span>A suggested line. It stays private until you keep it or rewrite it.</span><button class="button" type="button" data-keep>Use this line</button></div>' : ''}
       ${key === 'bio' ? `<span class="pf-count" data-count>${(me.bio || '').length} / 90</span>` : ''}
     </div>`;
   };
@@ -70,7 +70,7 @@ async function paint(note = '', cls = '') {
           const ph = t.library_id && l[t.library_id];
           const src = ph?.files?.['600'] || ph?.files?.['800'] || '';
           return `<div class="pf-tag">${src ? `<img src="${esc(src)}" alt="${esc(ph.alt || '')}" loading="lazy">` : '<span class="ph" aria-hidden="true"></span>'}
-            <span>${t.status === 'requested' ? 'Waiting for Brice' : (t.asset_id ? 'Group run photo' : 'Photo')}</span>
+            <span>${t.status === 'requested' ? 'Requested' : (t.asset_id ? 'Group run photo' : 'Photo')}</span>
             <button class="button" type="button" data-untag="${t.id}">${t.status === 'requested' ? 'Cancel request' : 'Remove me'}</button></div>`;
         }).join('')}</div>` : '<p class="field-hint">No photos yet.</p>'}
       </div>
@@ -151,7 +151,7 @@ document.addEventListener('click', async (e) => {
     if (!access.session) { document.body.classList.add('auth-only'); await renderDoorway(app, { destination: '/athlete/profile/', label: 'Athlete sign in' }); return; }
     me = await rpc('collective_my_person');
     if (!me) {
-      app.innerHTML = '<p class="eyebrow">Account</p><h1>Your public profile</h1><p class="lede">You don’t have a public profile yet. Brice sets it up; then you decide what shows.</p><p><a class="button" href="/athlete/">Back to my training</a></p>';
+      app.innerHTML = '<p class="eyebrow">Account</p><h1>Your public profile</h1><p class="lede">You don’t have a public profile yet. Once it’s set up, you decide what shows.</p><p><a class="button" href="/athlete/">Back to my training</a></p>';
       return;
     }
     paint();

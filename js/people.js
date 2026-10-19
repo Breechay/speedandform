@@ -189,7 +189,7 @@
           ((p.sessions || []).length ? '<section class="pp-sessions" aria-label="Film"><p class="pp-mono">' + ((p.sessions || []).some(function (x) { return videoURL(x) || x.youtube_id; }) ? 'Film' : 'Sessions') + '</p>' + p.sessions.map(function (x) { return sessionCard(x, lib); }).join('') + '</section>' : '') +
         '</div></div>' +
         (count ? '<section class="pp-media" aria-label="Photos and films"><h2>Photos & films</h2>' + media + '</section>' : '') +
-        '<p class="pp-foot">Photographs by Brice. Speed & Form, Miami.</p>';
+        '<p class="pp-foot">Speed & Form, Miami.</p>';
       // Mobile reorder: the avatar sits beside the name, as on the app profile.
       var idl = root.querySelector('.pp-idline'), h1 = root.querySelector('.pp-intro h1');
       if (window.matchMedia('(max-width:760px)').matches && idl && h1) idl.appendChild(h1);
@@ -242,7 +242,7 @@
           }).join('') + '</div></section>' : '') +
           (photos ? '<section class="pp-media"><h2>Photos</h2><div class="pp-grid">' + photos + '</div></section>' : '') +
           (se.run ? '<p class="pp-note"><a href="' + esc(runHref(se.run.title, se.run.starts_at, se.run.series_id)) + '">' + esc(se.run.title) + ' · the group run ›</a></p>' : '') +
-          '<p class="pp-foot">Filmed by Brice. Speed & Form, Miami.</p>';
+          '<p class="pp-foot">Speed & Form, Miami.</p>';
         window.FORM_SESSION = { slug: se.slug, film: !!(videoURL(se) || se.youtube_id), hosted: !!videoURL(se), clips: clips.length, people: (se.people || []).length };
       }).catch(function () { missing('This can’t be loaded right now.', true); });
     }
