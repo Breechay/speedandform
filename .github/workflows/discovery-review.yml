@@ -51,7 +51,7 @@ jobs:
       - name: Existing homepage interaction and intake acceptance
         run: |
           export CHROMIUM_PATH="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
-          python tests/homepage-browser.py
+          python tests/homepage-current-browser.py
           cp .homepage-qa/browser-qa.json /tmp/discovery-receipt/homepage-browser.json
           git diff --exit-code
       - name: Verify actual production routes and metadata
