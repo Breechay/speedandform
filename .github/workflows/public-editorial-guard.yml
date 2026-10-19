@@ -1,0 +1,60 @@
+name: FORM public editorial contract
+
+on:
+  pull_request:
+    paths:
+      - '**/*.html'
+      - 'sitemap.xml'
+      - 'AGENTS.md'
+      - '.cursor/rules/form-speedandform-context.mdc'
+      - 'docs/BRAND.md'
+      - 'docs/editorial/**'
+      - 'docs/marketing/ATHLETE_LANGUAGE_RULE.md'
+      - 'scripts/check-editorial-contract.cjs'
+      - 'tests/editorial-contract.cjs'
+      - '.github/workflows/public-editorial-guard.yml'
+  push:
+    branches: [main]
+    paths:
+      - '**/*.html'
+      - 'sitemap.xml'
+      - 'AGENTS.md'
+      - '.cursor/rules/form-speedandform-context.mdc'
+      - 'docs/BRAND.md'
+      - 'docs/editorial/**'
+      - 'docs/marketing/ATHLETE_LANGUAGE_RULE.md'
+      - 'scripts/check-editorial-contract.cjs'
+      - 'tests/editorial-contract.cjs'
+      - '.github/workflows/public-editorial-guard.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: editorial-contract-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  public-copy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate source doctrine and scanner
+        run: node tests/editorial-contract.cjs
+      - name: Check public HTML and social/search metadata
+        env:
+          EDITORIAL_REPORT: /tmp/form-editorial/report.json
+        run: node scripts/check-editorial-contract.cjs
+      - name: Preserve audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-editorial-audit
+          path: /tmp/form-editorial/
+          if-no-files-found: ignore
+          retention-days: 14
