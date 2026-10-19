@@ -2,7 +2,7 @@
 // Static public navigation. The sitemap owns eligibility; private/account routes
 // are never scanned. Run last so every generated page retains the same drawer.
 const fs=require('node:fs'),path=require('node:path');
-const ROOT=path.resolve(__dirname,'..'),VERSION='20261019-blackbone-menu';
+const ROOT=path.resolve(__dirname,'..'),VERSION='20261019-photographic-drawer';
 const PANEL=fs.readFileSync(path.join(__dirname,'site-menu-panel.html'),'utf8').trim();
 const TOGGLE='<a class="sf-menu-toggle" href="#site-menu" aria-controls="site-menu" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18"/></svg></a>';
 const EXCLUDED=/^(?:coach|athlete|auth|account|record|private|studio|form-app|forge-app|tests|docs)(?:\/|\.html)|^(?:form|forge-sculpt)\/(?:train|auth|account)\//;
@@ -61,9 +61,6 @@ function transformHtml(html,file){
  if(!/rel=["']icon["']\s+type=["']image\/svg\+xml["']/.test(next)){
    next=next.replace(/<\/head>/i,'<link rel="icon" type="image/svg+xml" href="/assets/brand/kit/favicon/form-rounded.svg">\n</head>');
  }
- // Shared public chrome adopts the current neutral palette on every regenerated page.
- next=next.replace(/(<meta name="theme-color" content=")#[0-9a-f]{6}(")/i,'$1#0B0B0B$2');
- next=next.replace(/(sf-brand\\.css\\?v=)[^"']+/g,'$1'+'20261019-blackbone');
  // Styles last: standalone article CSS must not recolor/reflow the drawer.
  if(next.includes('sf-public-masthead')&&!next.includes('/css/sf-brand.css'))next=next.replace(/<\/head>/i,'<link rel="stylesheet" href="/css/sf-brand.css?v=20261001">\n</head>');
  next=next.replace(/<link\b[^>]*href=["']\/css\/sf-menu\.css[^"']*["'][^>]*>\s*/g,'').replace(/<script\b[^>]*src=["']\/js\/sf-menu\.js[^"']*["'][^>]*>\s*<\/script>\s*/g,'');
