@@ -1,5 +1,10 @@
 # Start here: Speed & Form
 
+## Deployment discipline · October 19, 2026
+
+**Do not deploy every edit. Work in batches. Commit freely, deploy deliberately.** Read [FORM Deployment Discipline](docs/engineering/DEPLOYMENT_DISCIPLINE_2026-10.md) before any production release. Preview/local work is for iteration; production is for a coherent, QA'd batch or a genuinely urgent fix. **Maximum one routine production deploy per work block.** Small copy, styling, study, metadata, content and non-urgent code edits should accumulate into that release. A request to make/edit/fix/update/commit something is **not** permission to deploy. Codex, ChatGPT and other agents may deploy only when Brice explicitly says deploy/publish/push live/make it live, or when the task is already an explicitly approved release task. Keep status states distinct: **Edited → Tested → Committed → Previewed/QA'd → Deployed → Production-verified.** Netlify credits are a production resource; avoid spending them on iterative production builds that can be validated locally or in preview.
+
+
 ## Site-wide publication contract · October 19, 2026
 
 **Present the evidence. Don't narrate the presentation.** Read [FORM Publication Contract](docs/editorial/PUBLICATION_CONTRACT.md) before authoring or editing any public copy, study, plan, gallery, site metadata, email, app-facing instruction or agent-generated publication. This governs both human and AI writing. A link or visual element should do its own job; do not add sentences to explain that it can be clicked or that a page contains sections. Keep necessary evidence caveats, accessibility and factual utility. Run `node tests/editorial-contract.cjs` and `node scripts/check-editorial-contract.cjs` before publishing. Preserve approved photographic theater and actual records.
