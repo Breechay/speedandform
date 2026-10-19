@@ -63,4 +63,10 @@ body{background:#0B0B0B}
  .gr-close{padding:90px 18px 80px}
  .gr-close h2{font-size:clamp(56px,11vw,78px)}
 }
+/* At 320px, WebKit kept the unbroken second line wider than the viewport.
+   Scale the original heading, do not clip it or force a broken word. */
+@media(max-width:360px){
+ .gr-hero h1{font-size:clamp(60px,19vw,70px);letter-spacing:-.085em}
+ .gr-hero-copy,.gr-hero-frame,.gr-next,.gr-paper,.gr-close{min-width:0}
+}
 @media(prefers-reduced-motion:reduce){.gr-card .gr-print{transition:none}}
