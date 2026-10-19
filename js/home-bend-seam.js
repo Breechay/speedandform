@@ -32,6 +32,7 @@
 
   function layout() {
     const W = section.clientWidth;
+    if (!W) return;
     const wide = wideQuery.matches;
     section.classList.toggle('bend-wide', wide);
     // The bend holds the whole chapter, outer lane included: inner diameter + one lane band = the
@@ -126,10 +127,12 @@
   }
 
   layout();
+  if (section.getBoundingClientRect().top < window.innerHeight &&
+      section.getBoundingClientRect().bottom > 0) draw();
   if ('IntersectionObserver' in window && !reduce.matches) {
     const io = new IntersectionObserver((entries) => {
       if (entries.some((e) => e.isIntersecting)) { draw(); io.disconnect(); }
-    }, { threshold: 0.25 });
+    }, { threshold: 0.05 });
     io.observe(section);
   }
   let t;

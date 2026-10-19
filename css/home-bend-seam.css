@@ -68,3 +68,29 @@
   .home-entry[data-bend-seam] + .home-media-strip{padding-top:calc(clamp(32px,4vw,60px) + 136px)}
 }
 @media(prefers-reduced-motion:reduce){.bend-seam-mark,.home-entry[data-bend-seam] h2 span,.home-entry-photo img,.home-entry-go{transition:none}}
+
+/* Start the same measured bend within the first viewport, not below it. */
+.home-entry.home-bend-only[data-bend-seam]{
+  margin-top:-clamp(112px,15svh,180px);
+  isolation:isolate;
+}
+.sf-home-hero-immersive.has-bend-seam .hero-copy{
+  transform:translateY(-clamp(56px,9svh,116px));
+}
+.sf-home-hero-immersive .home-hero-shade{
+  background:linear-gradient(90deg,rgba(4,4,4,.40),transparent 72%),
+    linear-gradient(0deg,rgba(4,4,4,.45),transparent 65%);
+}
+@media(max-width:760px){
+  .home-entry.home-bend-only[data-bend-seam]{margin-top:-clamp(108px,15svh,156px)}
+  .sf-home-hero-immersive.has-bend-seam .hero-copy{
+    transform:translateY(-clamp(72px,12svh,136px));
+  }
+  .sf-home-hero-immersive .home-hero-shade{
+    background:linear-gradient(0deg,rgba(4,4,4,.56),rgba(4,4,4,.22) 55%,transparent 80%),
+      linear-gradient(90deg,rgba(4,4,4,.18),transparent 88%);
+  }
+}
+@media(max-width:760px) and (max-height:740px){
+  .sf-home-hero-immersive.has-bend-seam .hero-copy{transform:translateY(-clamp(28px,6svh,58px))}
+}
