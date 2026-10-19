@@ -1,10 +1,10 @@
-/* Inside FORM (Oct 19, 2026): a contact sheet. Cream ground, the claim set large, and a strip of
+/* Inside FORM (Oct 19, 2026): a contact sheet. Cream ground, "The work shows." set large, and a strip of
    real FORM frames that runs off the page and drifts with the scroll. Its own composition: the
    bend belongs to the chapter above. */
 .home-world{background:#f1ede4;color:#161916;padding:clamp(88px,9vw,140px) 0 clamp(72px,8vw,120px);overflow:hidden}
 .home-world-head{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);column-gap:clamp(40px,6vw,96px);align-items:end}
 .home-world-eyebrow{margin:0 0 20px;font:400 11px/1.6 var(--mono,monospace);letter-spacing:.13em;text-transform:uppercase;color:#5e625b}
-.home-world h2{margin:0;max-width:13ch;font-size:clamp(44px,6.2vw,96px);font-weight:450;line-height:.98;letter-spacing:-.055em}
+.home-world h2{margin:0;max-width:13ch;font-size:clamp(60px,9vw,140px);font-weight:450;line-height:.94;letter-spacing:-.06em}
 .home-world-copy>p:first-child{margin:0;font-size:18px;line-height:1.55;color:#3f433d;max-width:36ch}
 .home-world-links{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 0}
 .home-world-links a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border:1px solid rgba(22,25,22,.24);border-radius:999px;color:#161916;text-decoration:none;font-size:15px;transition:background-color .3s ease,color .3s ease,border-color .3s ease}
@@ -19,7 +19,7 @@
 .home-world-sheet span{display:block;margin-top:10px;font:400 11px/1.4 var(--mono,monospace);letter-spacing:.1em;color:#5e625b}
 @media(max-width:860px){
   .home-world-head{grid-template-columns:1fr;row-gap:24px}
-  .home-world h2{font-size:clamp(42px,11.4vw,64px)}
+  .home-world h2{font-size:clamp(60px,17vw,96px)}
   .home-world-sheet{overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-right:var(--public-gutter,24px);scroll-padding-left:var(--public-gutter,24px)}
   .home-world-sheet::-webkit-scrollbar{display:none}
   .home-world-sheet li{scroll-snap-align:start}
