@@ -22,7 +22,10 @@ assert.equal(c.window.dataLayer.length,2);assert.equal(c.window.dataLayer[1][0],
 c.window.formTrackLead();c.window.formTrackLead();assert.equal(c.window.fbq.queue.length,4);
 assert.deepEqual(Array.from(c.window.fbq.queue[3]),['trackSingle','147659485878240','Lead']);
 assert.equal(c.window.dataLayer.length,3);assert.equal(c.window.dataLayer[2][0],'event');assert.equal(c.window.dataLayer[2][1],'generate_lead');
-const html=readFileSync('index.html','utf8');
+const html=readFileSync('coaching/apply/index.html','utf8');
+const home=readFileSync('index.html','utf8');
+assert.doesNotMatch(home,/class="questionnaire"/,'Homepage is not the inquiry form');
+assert.match(home,/href="\/coaching\/apply\/"/,'Homepage links to the working form');
 assert.match(html,/var QN = 3;/);
 assert.doesNotMatch(html,/data-q=\"3\"/);
 assert.doesNotMatch(html,/id=\"issue\"/);
