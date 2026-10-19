@@ -77,7 +77,7 @@ for (const file of ['library.html','search.html','404.html']) {
 assert.equal(share.meta(read('search.html'),'robots'),'noindex,follow');
 assert.equal(share.meta(read('404.html'),'robots'),'noindex,follow');
 assert.ok(!read('js/discovery-search.js').includes('innerHTML'), 'Never inject search input as HTML');
-assert.ok(read('_redirects').startsWith('# Pass 2: verified app alias'), 'App redirects retained');
+assert.match(read('_redirects'), /^\/app(?:\.html)?\s+\/form\/\s+301!/m, 'App aliases still redirect to Running');
 assert.equal(search.rank(index,'hyrox')[0].url, '/labs/hyrox/');
 assert.ok(search.rank(index,'why are my easy runs hard').slice(0,3)
   .some(entry => entry.url === '/library/easy-days/'));
