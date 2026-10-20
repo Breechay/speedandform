@@ -6,6 +6,8 @@
 
 ## Current web visual authority · October 19, 2026
 
+**Owner refinement:** Public website core UI only: neutral ink #0B0B0B, graphite #1A1A1A and bone #F4F2EC. No midnight or blue-grey chrome. The homepage bend begins in the first viewport; headline and Work with me are above it. Do not restore the Athletes hero CTA until the roster is ready. Public menu retains Athletes discoverability. Native app design is separately governed.
+
 **Website first, native later.** Follow [FORM cinematic web finish](docs/design/FORM_CINEMATIC_WEB_DIRECTION_2026-10-19.md) alongside the publication contract and deployment discipline. The SF emblem, measured bend, Inter Tight and measured mono, ink/graphite/stone/bone, rounded photographic crops, and real athlete photography define the public web. Color is either full natural color or true monochrome. No muddy partial grayscale, color-desaturation hover, brown/tan UI accents, serif athlete names or invented public athletic claims. Preserve the homepage's continuous band, muted first-draft film, functional navigation and privacy-gated published assets. This web rule does not silently modify the iOS app or native training prescriptions. One coherent review batch, no routine deploy without explicit approval.
 
 ## Deployment discipline · October 19, 2026
@@ -26,6 +28,8 @@
 
 
 ## Standing art direction · October 14, 2026 (owner-approved; read before visual changes)
+
+**Never crop a head (Oct 19).** Every photograph, on every screen size, keeps clear picture above each head: at least 8% of the frame's height and never less than 40px (16px reads as cut). If the source photograph has no room above the heads, choose another photograph; do not crop it tighter. Set `object-position` per image and per breakpoint, and check phone and desktop renders before calling a crop done. Inside the bends, a photograph fills every pocket the lanes leave; the lanes are the only dark on the band.
 
 **FORM is not anti-decoration.** Brice wants theater, elegant drama, cinematic atmosphere, "wow", personality and reasons to linger. The goal is an emotionally engaging athletic editorial world, not quiet minimalism. Photographic strips, sophisticated shadows and gradients, dynamic compositions, visual pacing, rich black-and-white grading, film, immersive entrances and crafted motion are part of the design language. Keep atmospheric elements even when they serve beauty rather than navigation. **Never delete a beautiful visual element simply because it is decorative.**
 

@@ -1,7 +1,7 @@
 name: Shared public menu
 on:
   pull_request:
-    paths: ['**/*.html', '*.html', 'css/**', 'js/sf-menu.js', 'scripts/build-site-menu.cjs', 'scripts/site-menu-panel.html', 'scripts/build-*.cjs', 'sitemap.xml', 'netlify.toml', 'tests/site-menu*', '.github/workflows/site-menu.yml']
+    paths: ['**/*.html', '*.html', 'css/**', 'js/sf-menu.js', 'scripts/build-site-menu.cjs', 'scripts/site-menu-panel.html', 'scripts/build-*.cjs', 'sitemap.xml', 'netlify.toml', 'tests/site-menu*', 'tests/public-entry-browser.cjs', '.github/workflows/site-menu.yml']
   push:
     branches: [main]
     paths: ['**/*.html', '*.html', 'css/**', 'js/sf-menu.js', 'scripts/build-site-menu.cjs', 'scripts/site-menu-panel.html', 'scripts/build-*.cjs', 'sitemap.xml', 'netlify.toml', 'tests/site-menu*', '.github/workflows/site-menu.yml']
@@ -50,6 +50,7 @@ jobs:
           mkdir -p /tmp/site-menu-review
           git rev-parse HEAD > /tmp/site-menu-review/tested-commit.txt
           node tests/site-menu-browser.cjs
+          node tests/public-entry-browser.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

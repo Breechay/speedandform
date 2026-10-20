@@ -1,5 +1,5 @@
 /* Speed & Form house identity. The original SF seal stays a single vector. */
-:root{--sf-field:#10161A;--sf-raised:#1B242B;--sf-paper:#EEEDE8;--sf-type:#F1EFE8;--sf-cue-dark:#9CB5C7;--sf-cue-light:#42627B;--sf-hairline:rgba(241,239,232,.18)}
+:root{--sf-field:#0B0B0B;--sf-raised:#1A1A1A;--sf-paper:#F4F2EC;--sf-type:#F4F2EC;--sf-cue-dark:#B9B9B3;--sf-cue-light:#4E4E49;--sf-hairline:rgba(241,239,232,.18)}
 .sf-brand{display:inline-flex!important;align-items:center;gap:14px;flex-shrink:0;color:inherit!important;text-decoration:none!important;font-family:"Inter Tight",Arial,sans-serif!important;font-size:17px!important;font-weight:650!important;line-height:1.1!important;letter-spacing:-.025em!important;min-height:44px}
 .sf-brand::before{content:"";display:block;width:76px;height:32px;background:currentColor;mask:url('/assets/brand/sf-seal.svg') center/contain no-repeat;-webkit-mask:url('/assets/brand/sf-seal.svg') center/contain no-repeat;flex-shrink:0}
 /* Compatibility for older authored pages; builds emit an accessible emblem-only link. */

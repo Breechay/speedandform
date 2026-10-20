@@ -42,7 +42,7 @@ with sync_playwright() as p:
     check('Homepage links to the working inquiry',pg.locator('a[href="/coaching/apply/"]').count()>0)
     pg.close()
     pg=visit(browser,390,844,js=False)
-    check('No-JavaScript coaching link visible',pg.locator('a[href="/coaching/apply/"]').is_visible())
+    check('No-JavaScript coaching link visible',pg.locator('.intake-single a[href="/coaching/apply/"]').is_visible())
     check('No homepage questionnaire',pg.locator('.questionnaire').count()==0)
     pg.close()
     browser.close()

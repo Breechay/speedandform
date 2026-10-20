@@ -15,6 +15,9 @@ for(const file of files){
     .replace(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi,(all,attrs,body)=>{
       if(!/href=["'](?:\/|#top|index\.html)["']/.test(attrs))return all;
       if(/sf-brand/.test(attrs))return '<a'+attrs+'></a>';
+      // Image-backed house marks (such as the signed homepage footer) own their
+      // actual art. Never replace the media with an empty CSS-logo anchor.
+      if(/<(?:img|picture|svg|video)\b/i.test(body))return all;
       if(!/(?:brand|wordmark|logo|mark)/i.test(attrs)&&!/^\s*FORM\s*(?:<(?:span|i)[^>]*>\.\s*<\/(?:span|i)>)?\s*$/.test(body))return all;
       const cls=(attrs.match(/class="([^"]*)"/)||[])[1]||'';
       return mark.replace('class="sf-brand"','class="'+cls+' sf-brand"');

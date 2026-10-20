@@ -1,6 +1,6 @@
 /* FORM runs: photographic editorial continuation of the Direction B homepage.
    Existing published Collective occurrence / album service stays authoritative. */
-body{background:#10161A}
+body{background:#0B0B0B}
 .gr-top{max-width:1500px;margin:auto;padding:25px clamp(18px,4vw,65px) 0}
 .gr-hero{position:relative;min-height:clamp(650px,78vh,1000px);display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);align-items:center;gap:clamp(30px,3vw,55px);padding:clamp(60px,9vw,140px) clamp(18px,4vw,65px) clamp(105px,10vw,150px);max-width:1600px;margin:0 auto}
 .gr-hero-copy{position:relative;z-index:2}
@@ -17,14 +17,14 @@ body{background:#10161A}
 .gr-next{padding:clamp(80px,10vw,145px) clamp(18px,4vw,65px) clamp(90px,10vw,160px);max-width:1600px;margin:0 auto;border-top:1px solid rgba(242,238,229,.16)}
 .gr-next>.gr-label{font-size:12px;letter-spacing:.1em;padding-bottom:25px}
 .gr-rows{display:grid;gap:14px}
-.gr-row{display:grid;grid-template-columns:135px minmax(0,1fr) 220px;gap:clamp(22px,4vw,66px);background:#1B242B;border:1px solid rgba(241,239,232,.18);padding:clamp(26px,3vw,44px);border-radius:14px;align-items:center}
+.gr-row{display:grid;grid-template-columns:135px minmax(0,1fr) 220px;gap:clamp(22px,4vw,66px);background:#1A1A1A;border:1px solid rgba(241,239,232,.18);padding:clamp(26px,3vw,44px);border-radius:14px;align-items:center}
 .gr-rows>.gr-row:last-child{border:1px solid rgba(241,239,232,.18)}
 .gr-date b{font-size:clamp(62px,6.5vw,100px)}
 .gr-what h2{font-size:clamp(30px,3.5vw,52px);letter-spacing:-.055em;font-weight:520}
 .gr-what p{line-height:1.4}
 .gr-acts a,.gr-acts button{min-height:44px;display:inline-flex;align-items:center;justify-content:flex-end}
 .gr-state{padding:clamp(26px,4vw,50px) 0;font-size:clamp(18px,2vw,24px)}
-.gr-paper{border-radius:0;background:#EEEDE8;padding:clamp(85px,9vw,145px) clamp(18px,4vw,65px) clamp(95px,11vw,170px)}
+.gr-paper{border-radius:0;background:#F4F2EC;padding:clamp(85px,9vw,145px) clamp(18px,4vw,65px) clamp(95px,11vw,170px)}
 .gr-paper>p.gr-mono,.gr-paper>.gr-display,.gr-paper>#gr-mornings{max-width:1500px;margin-left:auto;margin-right:auto}
 .gr-paper .gr-display{font-size:clamp(72px,10vw,160px);line-height:.86;letter-spacing:-.084em;font-weight:500;margin-top:34px}
 .gr-paper .gr-grid{gap:clamp(25px,4vw,65px);margin-top:clamp(45px,6vw,90px)}
@@ -63,4 +63,30 @@ body{background:#10161A}
  .gr-close{padding:90px 18px 80px}
  .gr-close h2{font-size:clamp(56px,11vw,78px)}
 }
+/* At 320px, WebKit kept the unbroken second line wider than the viewport.
+   Scale the original heading, do not clip it or force a broken word. */
+@media(max-width:360px){
+ .gr-hero h1{font-size:clamp(60px,19vw,70px);letter-spacing:-.085em}
+ .gr-hero-copy,.gr-hero-frame,.gr-next,.gr-paper,.gr-close{min-width:0}
+}
 @media(prefers-reduced-motion:reduce){.gr-card .gr-print{transition:none}}
+
+/* Oct 19 (evening): the opening is the run. The photograph runs edge to edge; the line sits on it. */
+.gr-hero{position:relative;display:block;min-height:0;padding:0;margin:0 0 clamp(24px,3vw,48px);max-width:none;overflow:hidden;isolation:isolate}
+.gr-hero .gr-hero-frame{position:relative;width:100%;height:clamp(560px,82vh,900px);margin:0;border-radius:0;overflow:hidden}
+.gr-hero .gr-hero-frame img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;border-radius:0}
+.gr-hero .gr-hero-frame::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,11,11,.86) 0%,rgba(11,11,11,.25) 42%,rgba(11,11,11,0) 64%),linear-gradient(90deg,rgba(11,11,11,.45),rgba(11,11,11,0) 55%)}
+.gr-hero .gr-hero-mark{display:none}
+.gr-hero .gr-hero-copy{position:absolute;z-index:2;left:max(24px,calc((100vw - 1360px)/2));right:24px;bottom:clamp(36px,6vw,88px);padding:0;max-width:none}
+.gr-hero .gr-hero-copy h1{font-size:clamp(84px,13vw,230px);line-height:.8;letter-spacing:-.075em;font-weight:480;color:#F4F2EC;margin:0}
+.gr-hero .gr-hero-copy .gr-mono{color:rgba(244,242,236,.8)}
+.gr-hero .gr-lede{color:#F4F2EC;font-size:clamp(18px,1.6vw,22px);margin-top:clamp(16px,2vw,26px)}
+.gr-hero .gr-explore{color:#F4F2EC;border-color:rgba(244,242,236,.5)}
+@media(max-width:760px){
+ .gr-hero .gr-hero-frame{height:clamp(520px,128vw,680px)}
+ .gr-hero .gr-hero-frame img{object-position:50% 34%}
+ .gr-hero .gr-hero-copy{left:20px;bottom:30px}
+ .gr-hero .gr-hero-copy h1{font-size:clamp(72px,22vw,110px)}
+}
+.gr-hero .gr-hero-frame img{object-position:50% 0%}
+@media(max-width:760px){.gr-hero .gr-hero-frame img{object-position:50% 0%}}

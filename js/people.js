@@ -91,11 +91,26 @@
         var media = p.avatar
           ? '<img class="pp-card-img" src="' + esc(p.avatar) + '" alt="" loading="' + (i < 3 ? 'eager' : 'lazy') + '" decoding="async">'
           : monogram(p.name);
-        return '<li class="pp-card"><a href="/athletes/' + esc(p.slug) + '/" aria-label="Meet ' + esc(p.name) + '">' +
+        return '<li class="pp-card" data-slug="' + esc(p.slug) + '"><a href="/athletes/' + esc(p.slug) + '/" aria-label="Meet ' + esc(p.name) + '">' +
           '<div class="pp-card-media">' + media + '<span class="pp-card-name">' + esc(p.name) + '</span></div></a></li>';
       }).join('');
       note.textContent = people.length ? '' : 'No public athlete profiles are available at the moment.';
       window.FORM_PEOPLE = { shown: people.length, total: people.length };
+    }
+    // Each card wears the athlete's own published hero frame when there is one; the avatar is the fallback.
+    function upgrade() {
+      people.forEach(function (p) {
+        request('rpc/collective_person', { slug: p.slug }).then(function (full) {
+          var h = full && full.hero;
+          if (!h || !h.path) return;
+          var img = list.querySelector('a[href="/athletes/' + p.slug + '/"] .pp-card-img');
+          if (!img) return;
+          var fx = (h.focal_x == null ? .5 : h.focal_x) * 100, fy = (h.focal_y == null ? .4 : h.focal_y) * 100;
+          var next = new Image();
+          next.onload = function () { img.src = next.src; img.style.objectPosition = fx + '% ' + fy + '%'; img.classList.add('is-hero'); };
+          next.src = sized(h.path, 1200);
+        }).catch(function () {});
+      });
     }
     function load() {
       note.textContent = 'Loading athletes…';
@@ -104,6 +119,7 @@
         people = (Array.isArray(rows) ? rows : []).map(function (r) { return r.person || r; })
           .filter(function (p) { return p && p.slug && p.name; });
         paint();
+        upgrade();
       }).catch(function () {
         note.innerHTML = 'The athletes can’t be loaded right now. <button type="button" data-pp-retry>Try again</button>';
         window.FORM_PEOPLE = { error: true };
@@ -134,7 +150,8 @@
     function paint(p, lib) {
       document.title = p.name + ' | Speed & Form';
       canonical('/athletes/' + p.slug + '/');
-      var hero = p.hero ? '<img class="pp-hero" src="' + esc(sized(p.hero.path, 1200)) + '" srcset="' + esc(sized(p.hero.path, 1200)) + ' 1200w, ' + esc(p.hero.path) + ' 2400w" sizes="(max-width:760px) 100vw, 680px" alt="' + esc(p.name) + '" style="object-position:' + ((p.hero.focal_x == null ? .5 : p.hero.focal_x) * 100) + '% ' + ((p.hero.focal_y == null ? .4 : p.hero.focal_y) * 100) + '%">' : (p.avatar ? '<img class="pp-hero pp-hero-avatar" src="' + esc(p.avatar) + '" alt="' + esc(p.name) + '" loading="eager">' : '');
+      // The stage is wider than the photograph: crop from 20% above the focal point so heads stay in.
+      var hero = p.hero ? '<img class="pp-hero" src="' + esc(sized(p.hero.path, 1200)) + '" srcset="' + esc(sized(p.hero.path, 1200)) + ' 1200w, ' + esc(p.hero.path) + ' 2400w" sizes="(max-width:760px) 100vw, 680px" alt="' + esc(p.name) + '" style="object-position:' + ((p.hero.focal_x == null ? .5 : p.hero.focal_x) * 100) + '% ' + (Math.max(0, (p.hero.focal_y == null ? .4 : p.hero.focal_y) - .2) * 100) + '%">' : (p.avatar ? '<img class="pp-hero pp-hero-avatar" src="' + esc(p.avatar) + '" alt="' + esc(p.name) + '" loading="eager">' : '');
       var links = (p.instagram ? '<a href="https://instagram.com/' + esc(p.instagram) + '" rel="noopener" target="_blank">' + IG + '@' + esc(p.instagram) + '</a>' : '') +
         (p.strava ? '<a href="' + esc(p.strava) + '" rel="noopener" target="_blank">' + STRAVA + 'Strava</a>' : '');
       var now = p.now ? '<div class="pp-now"><p class="pp-mono">Now</p><b>' + esc(p.now.title) + '</b>' + (p.now.detail ? '<p class="pp-q">' + esc(p.now.detail) + '</p>' : '') +
@@ -169,15 +186,14 @@
           }).join('') + '</div></div>';
       }).join('');
 
+      var id = '<p class="pp-mono pp-kicker">' + esc(['Athlete', p.discipline].filter(Boolean).join(' · ')) + '</p><h1>' + esc(p.name) + '</h1>';
       root.innerHTML =
-        '<div class="pp-head' + (hero ? ' has-hero' : ' no-hero') + '">' + hero + '<div class="pp-intro">' +
-          '<div class="pp-idline">' + (p.avatar ? '<img class="pp-av" src="' + esc(p.avatar) + '" alt="" width="56" height="56">' : '') +
-            '<p class="pp-mono">' + esc(['Athlete', p.discipline].filter(Boolean).join(' · ')) + '</p></div>' +
-          '<h1>' + esc(p.name) + '</h1>' +
+        '<div class="pp-head' + (hero ? ' has-hero pp-stage' : ' no-hero') + '">' + hero +
+          (hero ? '<div class="pp-stage-copy">' + id + '</div>' : '') +
+        '<div class="pp-intro">' +
+          (hero ? '' : '<div class="pp-idline">' + (p.avatar ? '<img class="pp-av" src="' + esc(p.avatar) + '" alt="" width="56" height="56">' : '') + '</div>' + id) +
           (p.bio ? '<p class="pp-bio">' + esc(p.bio) + '</p>' : '') +
-          (p.discipline ? '<p class="pp-disc">' + esc(p.discipline) + '</p>' : '') +
-          (links ? '<div class="pp-links">' + links + '</div>' : '') +
-          (now || best ? '<div class="pp-facts">' + now + best + '</div>' : '') +
+          (now || best || links ? '<div class="pp-facts">' + now + best + (links ? '<div class="pp-links">' + links + '</div>' : '') + '</div>' : '') +
           ((p.sessions || []).length ? '<section class="pp-sessions" aria-label="Film"><p class="pp-mono">' + ((p.sessions || []).some(function (x) { return videoURL(x) || x.youtube_id; }) ? 'Film' : 'Sessions') + '</p>' + p.sessions.map(function (x) { return sessionCard(x, lib); }).join('') + '</section>' : '') +
         '</div></div>' +
         (count ? '<section class="pp-media" aria-label="Photos and films"><h2>Photos & films</h2>' + media + '</section>' : '') +

@@ -22,3 +22,40 @@
 @media(max-width:760px){.home-footer-grid{grid-template-columns:minmax(0,1fr);gap:32px;padding-block:40px 32px}.home-footer-emblem{width:240px;max-width:100%;height:130px;margin-top:-12px;margin-bottom:12px}.home-footer-identity .home-footer-contact{font-size:22px}.home-footer-integrated .home-footer-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 28px;padding-top:0}.home-footer-group h2{margin-bottom:12px}.home-footer-explore{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px}.home-footer-explore h2{grid-column:1/-1}.home-footer-integrated .home-footer-group a{min-height:44px;font-size:17px}.home-footer-base{align-items:flex-start;flex-wrap:wrap;gap:6px 20px;padding-block:18px}.home-footer-base>span{order:1;min-height:30px;display:flex;align-items:center}.home-footer-integrated .home-footer-base nav{width:100%;justify-content:flex-start;gap:10px 26px}}
 @media(max-width:360px){.home-footer-integrated .home-footer-links{grid-template-columns:minmax(0,1fr);gap:30px}.home-footer-explore{grid-template-columns:minmax(0,1fr)}}
 @media(forced-colors:active){.home-footer-emblem{border:1px solid CanvasText}.home-footer-emblem img{mix-blend-mode:normal;-webkit-mask-image:none;mask-image:none}}
+
+/* Oct 19 (evening): the close. A crisp emblem, the address as the headline, every door once. */
+.home-footer-integrated{background:#0B0B0B}
+.home-footer-integrated .home-footer-identity .home-footer-mark{display:block;width:clamp(130px,12vw,170px);max-width:none;height:auto;margin:0 0 clamp(28px,3vw,44px);background:none}
+.home-footer-integrated .home-footer-identity .home-footer-mark img{display:block;width:100%;height:auto;object-fit:contain;filter:none;mix-blend-mode:normal;-webkit-mask-image:none;mask-image:none}
+.home-footer-integrated .home-footer-identity .home-footer-contact{min-height:28px;font:400 11px/1.6 "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(244,242,236,.55)}
+.home-footer-integrated .home-footer-identity .home-footer-email{min-height:0;display:inline-block;margin-top:10px;font-size:clamp(26px,2.6vw,38px);line-height:1.1;letter-spacing:-.035em;color:#F4F2EC;text-decoration:none;border-bottom:1px solid rgba(244,242,236,.3)}
+.home-footer-integrated .home-footer-email:hover{border-color:#F4F2EC}
+
+/* Oct 19 (night): signed. Contact and every door in one row under a hairline, then the emblem large
+   at the bottom left as the signature, lit like the headlines (bone fading to stone), with the
+   small print on its baseline. Phone: the emblem runs the width of the page, the small print under it. */
+.home-footer-signed .home-footer-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.9fr);padding-block:clamp(48px,5vw,72px) 0;border-top:1px solid rgba(244,242,236,.14)}
+.home-footer-signed .home-footer-identity .home-footer-contact{min-height:28px;font:400 11px/1.6 "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(244,242,236,.55)}
+.home-footer-signed .home-footer-identity .home-footer-email{margin-top:12px}
+.home-footer-signed .home-footer-identity .home-footer-social{margin-top:14px}
+.home-footer-signed .home-footer-links{padding-top:0}
+.home-footer-signed .home-footer-group h2{color:rgba(244,242,236,.55)}
+.home-footer-signed .home-footer-sign{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;padding-block:clamp(72px,9vw,150px) clamp(28px,3vw,44px)}
+.home-footer-signed .home-footer-sign .home-footer-emblem{display:block;flex:none;width:clamp(240px,44vw,660px);max-width:100%;height:auto;margin:0;line-height:0;transition:opacity .5s ease}
+.home-footer-signed .home-footer-sign .home-footer-emblem:hover{opacity:.82;text-decoration:none}
+.home-footer-signed .home-footer-sign .home-footer-emblem img{display:block;width:100%;height:auto;object-fit:contain;mix-blend-mode:normal;-webkit-mask-image:linear-gradient(100deg,#000 26%,rgba(0,0,0,.42) 100%);mask-image:linear-gradient(100deg,#000 26%,rgba(0,0,0,.42) 100%)}
+.home-footer-signed .home-footer-sign .home-footer-base{display:flex;flex-direction:column;align-items:flex-end;gap:2px;padding:0 0 clamp(4px,.6vw,10px);border:0;text-align:right}
+.home-footer-signed .home-footer-sign .home-footer-base nav{justify-content:flex-end}
+@media(max-width:1000px){.home-footer-signed .home-footer-sign .home-footer-emblem{height:auto}}
+@media(max-width:760px){
+  .home-footer-signed .home-footer-grid{grid-template-columns:minmax(0,1fr);padding-block:40px 0}
+  .home-footer-signed .home-footer-sign{flex-direction:column;align-items:stretch;gap:28px;padding-block:72px 22px}
+  .home-footer-signed .home-footer-sign .home-footer-emblem{width:100%;height:auto;margin:0}
+  .home-footer-signed .home-footer-sign .home-footer-base{align-items:flex-start;text-align:left;padding-top:18px;border-top:1px solid rgba(244,242,236,.14)}
+  .home-footer-signed .home-footer-sign .home-footer-base nav{width:100%;justify-content:flex-start}
+}
+@media(prefers-reduced-motion:no-preference){
+  .home-footer-signed .home-footer-sign .home-footer-emblem img{animation:sf-footer-sign linear both;animation-timeline:view();animation-range:entry 0% entry 100%}
+  @keyframes sf-footer-sign{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+}
+@media(forced-colors:active){.home-footer-signed .home-footer-sign .home-footer-emblem img{-webkit-mask-image:none;mask-image:none}}

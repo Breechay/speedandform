@@ -107,3 +107,7 @@
 
 @media(max-width:850px){.bk-tiles,.bk-photos,.bk-pairs{grid-template-columns:minmax(0,1fr)}.bk-nots,.bk-swatches{grid-template-columns:repeat(2,minmax(0,1fr))}.bk-made{grid-template-columns:repeat(2,minmax(0,1fr))}.bk-swatch{aspect-ratio:auto;min-height:150px}}
 @media(max-width:480px){.bk-made{grid-template-columns:minmax(0,1fr)}.bk-nots li:last-child{grid-column:1/-1}}
+
+/* Three core public colors. On a phone the final swatch spans the row. */
+.bk-swatches{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:850px){.bk-swatches{grid-template-columns:repeat(2,minmax(0,1fr))}.bk-swatches .bk-swatch:last-child:nth-child(odd){grid-column:1/-1}}
