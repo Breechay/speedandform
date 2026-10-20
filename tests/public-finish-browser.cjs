@@ -38,7 +38,7 @@ fs.mkdirSync(out,{recursive:true});
    await noOverflow(route+' @ '+width);
    assert.equal(await page.locator('h1').count(),1,route+' has one focal heading');
    assert.ok(await page.locator('header .sf-brand').isVisible(),route+' home door');
-   if(route==='/'&&[390,1440].includes(width)){await page.locator('.home-footer-emblem').scrollIntoViewIfNeeded();const state=await page.locator('.home-footer-emblem img').evaluate(async img=>{img.loading='eager';await img.decode().catch(()=>{});return {complete:img.complete,naturalWidth:img.naturalWidth,src:img.currentSrc,outerHTML:img.outerHTML}});assert.ok(state.complete&&state.naturalWidth>0,'Footer emblem must decode: '+JSON.stringify(state));await page.locator('.home-footer-integrated').screenshot({path:path.join(out,'home-footer-'+width+'.png')});await page.evaluate(()=>scrollTo(0,0));}
+   if(route==='/'&&[390,1440].includes(width)){await page.locator('.home-footer-emblem').scrollIntoViewIfNeeded();const emblemSrc=await page.locator('.home-footer-emblem img').getAttribute('src');assert.ok(emblemSrc&&emblemSrc.endsWith('.svg')&&fs.existsSync(path.join(root,emblemSrc.replace(/^\//,''))),'Footer links to a real local SVG emblem');await page.locator('.home-footer-integrated').screenshot({path:path.join(out,'home-footer-'+width+'.png')});await page.evaluate(()=>scrollTo(0,0));}
    if([390,1440].includes(width))await page.screenshot({path:path.join(out,(route.replaceAll('/','-').replace(/^-|-$/g,'')||'home')+'-'+width+'.png'),fullPage:true});
   }
  }
