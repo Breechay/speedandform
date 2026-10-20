@@ -64,7 +64,7 @@
     "source_url": "/labs/speed-that-endures/#rhythm-read",
     "status": "Reusable continuous progression ends at 8 miles in training; athlete-specific late-run race-pace rehearsal and recovery monitoring follow."
   },
-  "source_sha256": "cfe89c73f7e2201d6cc082ea3a08fce378458466f09446374d73f706fa60e972",
+  "source_sha256": "0786004453c03fadc431b43560dbe8366f552fe397e3b3fc1d1263a0ef77a3a1",
   "previous_support": {
     "date": "2026-10-06",
     "label": "Oct 6",
@@ -136,6 +136,20 @@
     ],
     "taper": "Nov 21 ten easy; Nov 28 eight easy; no third late-fast long run",
     "measures": "Output, RPE, context, comparable HR, nutrition/hydration tolerance, next-day recovery",
+    "source_url": "/labs/speed-that-endures/#oct20-late-durability"
+  },
+  "coach_race_brief_as_of": "2026-10-20",
+  "orlando_execution": {
+    "status": "published coach prescription; race outcome pending",
+    "training_maintenance": "October 29 20 min continuous and November 19 2×5 min, both at 6:20–6:30/mi, no faster than 6:20/mi.",
+    "race_date": "2026-12-05",
+    "start_time": "7:15 AM Eastern",
+    "goal": "sub-1:30",
+    "watch_pace_target": "6:48–6:50/mi",
+    "course_mile_checkpoints": "3 mi 20:30; 6 mi 41:00; 9 mi 1:01:30; 12 mi 1:22:00 at 6:50/course mi",
+    "psychology": "Patient (miles 1–4), Loose (5–9), No negotiating (10–13.1)",
+    "official_130_pace_group": "not advertised",
+    "nutrition": "Race-morning meal, maple syrup and water bottle to be verified in Nov 7/14 rehearsals; exact amounts not yet locked",
     "source_url": "/labs/speed-that-endures/#oct20-late-durability"
   }
 }
