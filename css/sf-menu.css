@@ -153,3 +153,15 @@ body[data-sculpt-landing]>main,body[data-sculpt-landing]>.bs-header{container-ty
 .sf-menu.is-open .sf-menu-hero,.sf-menu.is-open .sf-menu-visual,.sf-menu.is-open .sf-menu-group:not(.sf-menu-visual),.sf-menu.is-open .sf-menu-foot{animation:none}
 @media(max-width:520px){.sf-menu-top{margin-inline:-20px;padding-inline:20px}.sf-menu-card span{left:12px}.sf-menu-hero-title{font-size:48px}}
 @media(prefers-reduced-motion:reduce){.sf-menu-card:hover img,.sf-menu-card:focus-visible img{transform:none}}
+
+/* Reflow inside the drawer itself, including browser/text zoom. */
+.sf-menu-panel{container-type:inline-size}
+@container(max-width:260px){
+ .sf-menu-top{flex-wrap:wrap;gap:4px 8px}
+ .sf-menu-home{min-width:60px}
+ .sf-menu-home img{width:60px}
+ .sf-menu-cards{grid-template-columns:1fr}
+ .sf-menu-hero-title{font-size:36px;letter-spacing:-.045em}
+ .sf-menu-hero-overlay{padding:12px}
+ .sf-menu-lead a.sf-menu-first{font-size:28px}
+}

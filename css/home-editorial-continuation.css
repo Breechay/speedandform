@@ -140,3 +140,17 @@
 .home-evidence .home-evidence-links a:first-child{border-bottom:0}
 @media(prefers-reduced-motion:reduce){.home-world.home-world-strip .home-world-sheet{overflow-x:auto}}
 .home-world.home-world-strip .home-world-sheet ul{will-change:auto}
+
+/* The invitation is part of the typography, with a single quiet underline. */
+.sf-home-hero-immersive .home-hero-primary,.intake.intake-single .home-hero-primary{
+ background:transparent;color:#F4F2EC;border:0;border-bottom:1px solid rgba(244,242,236,.6);
+ border-radius:0;padding:12px 0;gap:32px;min-height:48px;font-weight:450;font-size:clamp(18px,1.5vw,22px);
+}
+.sf-home-hero-immersive .home-hero-primary:hover,.intake.intake-single .home-hero-primary:hover{
+ background:transparent;color:#fff;border-bottom-color:#fff;
+}
+.home-hero-primary svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.2;transition:transform .25s ease}
+.home-hero-primary:hover svg{transform:translate(2px,-2px)}
+.home-world.home-world-strip .home-world-sheet{cursor:grab;touch-action:pan-x pan-y;user-select:none}
+.home-world.home-world-strip .home-world-sheet.is-dragging{cursor:grabbing}
+@media(prefers-reduced-motion:reduce){.home-hero-primary svg{transition:none}.home-hero-primary:hover svg{transform:none}}

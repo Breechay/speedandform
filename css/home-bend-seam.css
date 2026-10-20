@@ -128,3 +128,8 @@
 @media(max-width:760px){.bend-infield img,.bend-pocket-upper img{object-position:58% 0%}}
 /* A complete photographic chapter remains when scripts are unavailable. */
 .bend-infield{height:100%}
+
+@media(min-width:761px){
+ .bend-infield img,.bend-pocket-upper img{transform:translateY(-10px)}
+ .home-entry[data-bend-seam].bend-in .bend-infield img{transform:translateY(-10px)}
+}
