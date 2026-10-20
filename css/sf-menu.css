@@ -123,3 +123,17 @@ body[data-sculpt-landing]>main,body[data-sculpt-landing]>.bs-header{container-ty
 @keyframes sf-menu-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @media(max-width:520px){.sf-menu-panel{width:85%;padding-left:20px;padding-right:20px}.sf-menu-hero{margin-left:-20px;margin-right:-20px}.sf-menu-hero-overlay{padding:0 20px 22px}.sf-menu-card span{font-size:26px}}
 @media(prefers-reduced-motion:reduce){.sf-menu.is-open *{animation:none!important}.sf-menu-card img,.sf-menu-hero img{transition:none}}
+
+/* Shared cinematic finish (Oct 19): the homepage's lit emblem and lit headlines, and a quiet arrival,
+   on every dark public opening. Light falls from the left; the far end settles to 60%. */
+.gr-top .sf-brand,.photos-header .sf-brand,.pp-top .sf-brand,.rd-header .sf-brand,body.pp-directory-page .sf-brand,body.pp-athlete-page .sf-brand{filter:none!important;color:#F4F2EC!important}
+.gr-top .sf-brand::before,.photos-header .sf-brand::before,.pp-top .sf-brand::before,.rd-header .sf-brand::before,body.pp-directory-page .sf-brand::before,body.pp-athlete-page .sf-brand::before{background:linear-gradient(100deg,#F4F2EC 18%,#8f8e88)!important}
+.pp-dir-head h1,.pp-stage-copy h1,.gr-hero h1,.rd-hero h1,.photos-editorial-copy h1,.bend-infield-copy h2,.intake-single .intake-copy h2{-webkit-mask-image:linear-gradient(100deg,#000 28%,rgba(0,0,0,.6) 96%);mask-image:linear-gradient(100deg,#000 28%,rgba(0,0,0,.6) 96%);padding-bottom:.08em}
+@media(prefers-reduced-motion:no-preference){
+ .pp-dir-head h1,.pp-stage-copy,.gr-hero-copy,.rd-hero .rd-intro,.photos-editorial-copy h1{animation:sf-arrive 1s cubic-bezier(.22,.61,.36,1) .12s both}
+ .pp-dir-photo img,.pp-stage .pp-hero,.gr-hero-frame>img,.rd-hero figure img{animation:sf-settle 1.8s cubic-bezier(.22,.61,.36,1) both}
+ .pp-list .pp-card{animation:sf-arrive .9s cubic-bezier(.22,.61,.36,1) both}
+ .pp-list .pp-card:nth-child(2){animation-delay:.08s}.pp-list .pp-card:nth-child(3){animation-delay:.16s}.pp-list .pp-card:nth-child(n+4){animation-delay:.24s}
+}
+@keyframes sf-arrive{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes sf-settle{from{transform:scale(1.07);opacity:.6}to{transform:scale(1);opacity:1}}

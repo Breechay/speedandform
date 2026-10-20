@@ -18,7 +18,7 @@ html,body{background:var(--dark)}.wrap{width:min(var(--max),calc(100% - 2 * var(
 /* Shade follows the type, leaving the faces above it in the original light. */
 .sf-home-hero-immersive .hero-copy::before{content:none}
 .sf-home-hero-immersive .hero-kicker{display:flex;align-items:center;gap:18px;margin:0 0 28px;color:#F4F2EC;font:400 11px/1.7 var(--mono);letter-spacing:.065em}.hero-kicker::before{content:"";width:32px;height:1px;background:currentColor;flex-shrink:0}
-.sf-home-hero-immersive h1{font:450 clamp(68px,7.55vw,116px)/1.01 var(--sans);letter-spacing:-.055em;color:var(--bone);margin:0 0 28px;text-wrap:balance}.sf-home-hero-immersive h1 .dot{color:inherit}
+.sf-home-hero-immersive h1{font:450 clamp(58px,6.4vw,98px)/1.01 var(--sans);letter-spacing:-.055em;color:var(--bone);margin:0 0 28px;text-wrap:balance}.sf-home-hero-immersive h1 .dot{color:inherit}
 .sf-home-hero-immersive .home-hero-intro{max-width:43ch;font-size:clamp(19px,1.5vw,23px);line-height:1.5;color:#dedad1;margin:0}
 .home-proof-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;max-width:700px;margin-top:34px;padding-top:25px;border-top:1px solid rgba(232,227,217,.3)}.home-proof-facts dt{font-size:25px;line-height:1.25;font-weight:500;letter-spacing:-.025em}.home-proof-facts dd{font-size:13px;line-height:1.55;color:#cccac0;margin-top:7px}
 .home-entry{padding:clamp(56px,6vw,90px) 0 clamp(62px,6.5vw,96px);background:var(--dark);color:var(--bone)}.home-entry h2{font-size:clamp(30px,3.2vw,47px);font-weight:450;line-height:1.18;letter-spacing:-.035em;margin:0 0 46px;text-wrap:balance}

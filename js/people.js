@@ -91,7 +91,7 @@
         var media = p.avatar
           ? '<img class="pp-card-img" src="' + esc(p.avatar) + '" alt="" loading="' + (i < 3 ? 'eager' : 'lazy') + '" decoding="async">'
           : monogram(p.name);
-        return '<li class="pp-card"><a href="/athletes/' + esc(p.slug) + '/" aria-label="Meet ' + esc(p.name) + '">' +
+        return '<li class="pp-card" data-slug="' + esc(p.slug) + '"><a href="/athletes/' + esc(p.slug) + '/" aria-label="Meet ' + esc(p.name) + '">' +
           '<div class="pp-card-media">' + media + '<span class="pp-card-name">' + esc(p.name) + '</span></div></a></li>';
       }).join('');
       note.textContent = people.length ? '' : 'No public athlete profiles are available at the moment.';

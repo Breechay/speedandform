@@ -296,3 +296,11 @@ body.pp-directory-page .pp-mono,body.pp-athlete-page .pp-mono{color:#c0beb5}
  .pp-athlete-page .pp-grid img,.pp-athlete-page .pp-grid img:nth-child(n){grid-column:span 6;height:clamp(200px,52vw,320px)}
  .pp-athlete-page .pp-grid img:nth-child(3n+1){grid-column:span 12;height:clamp(260px,70vw,420px)}
 }
+
+/* Crops, Oct 19: Hope's frame is wide, so her card comes in close; the team photo keeps everyone on the left. */
+.pp-directory-page .pp-card[data-slug="hope"] .pp-card-img.is-hero{transform:scale(1.65);transform-origin:56% 42%}
+.pp-directory-page .pp-card[data-slug="hope"] a:hover .pp-card-img.is-hero{transform:scale(1.7)}
+@media(max-width:850px){
+ .pp-directory-page .pp-dir-photo img{object-position:4% 46%}
+ .pp-athlete-page .pp-grid img:first-child{height:clamp(300px,82vw,460px);object-position:50% 14%!important}
+}

@@ -110,3 +110,24 @@
 /* The strip on paper after the bend: room to breathe above, no dead space below. */
 .home-world.home-world-strip{padding:clamp(64px,7vw,112px) 0 clamp(64px,7vw,112px)}
 .home-world-strip .home-world-sheet{margin-top:0}
+
+/* The track's other end: the strip slides through a second bend that opens to the right. */
+.home-world.home-world-strip{position:relative;padding:0;height:clamp(600px,54vw,780px);overflow:hidden}
+.strip-bend{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:visible}
+.strip-bend path{fill:none;stroke:rgba(11,11,11,.42);stroke-width:1.2px;vector-effect:non-scaling-stroke}
+.strip-bend .strip-bend-start{stroke:rgba(11,11,11,.7);stroke-width:1.4px}
+.strip-infield{position:absolute;inset:0;z-index:1;display:flex;align-items:center;background:#0B0B0B}
+.home-world-strip .home-world-sheet{margin:0;width:100%}
+.home-world-strip .home-world-sheet img{border-radius:14px}
+@media(max-width:860px){
+ .home-world.home-world-strip{height:clamp(440px,118vw,520px)}
+ .home-world-strip .home-world-sheet{padding-left:calc(var(--public-gutter,24px) + 30px)}
+}
+
+/* The close joins the footer: bone on black, one line and one button. */
+.intake.intake-single{background:#0B0B0B;color:#F4F2EC;padding:clamp(96px,10vw,160px) 0 clamp(40px,4vw,64px)}
+.intake.intake-single .intake-copy h2{color:#F4F2EC;font-size:clamp(52px,6.6vw,110px);line-height:.9;letter-spacing:-.06em;max-width:12ch}
+.intake .home-hero-primary,.intake.intake-single .home-hero-primary{background:#F4F2EC;color:#0B0B0B;border-color:#F4F2EC}
+.intake .home-hero-primary:hover{background:#fff;color:#0B0B0B}
+.intake .home-hero-primary:focus-visible{outline:2px solid #F4F2EC;outline-offset:3px}
+.intake.intake-single+.footer,.intake.intake-single~.footer{border-top:0}
