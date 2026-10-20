@@ -75,3 +75,11 @@
 .home-footer-intro .home-hero-primary:hover{text-decoration:none}
 @media(max-width:900px){.home-footer-signed .home-footer-grid{grid-template-columns:minmax(0,1fr)}.home-footer-intro .intake.intake-single .intake-copy h2{max-width:17ch;font-size:clamp(42px,7vw,64px)}}
 @media(max-width:760px){.home-footer-signed .home-footer-grid{gap:32px;padding-top:48px}.home-footer-signed .home-footer-sign{gap:24px;padding-block:32px 18px}.home-footer-signed .home-footer-sign .home-footer-emblem{width:180px}}
+
+/* The invitation and navigation finish together, without another empty fold. */
+.home-footer-intro .intake.intake-single .intake-copy h2{animation:none;opacity:1;transform:none;font-size:clamp(40px,3.8vw,60px);line-height:1.04;max-width:15ch}
+.home-footer-signed .home-footer-grid{padding-top:48px;gap:clamp(32px,5vw,72px)}
+.home-footer-intro .home-footer-identity{margin-top:24px}
+.home-footer-intro .intake-single .home-hero-primary{margin-top:8px}
+.home-footer-signed .home-footer-sign{padding-top:28px}
+@media(max-width:360px){.home-footer-integrated .home-footer-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 18px}.home-footer-explore{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:18px}.home-footer-integrated .home-footer-group a{font-size:16px}}

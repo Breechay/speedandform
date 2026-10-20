@@ -11,6 +11,14 @@
   const strip = section.nextElementSibling && section.nextElementSibling.matches('[data-bend-strip]') ? section.nextElementSibling : null;
   const stripField = strip && strip.querySelector('.strip-infield');
   // Each exposed corner belongs to its adjacent photographic chapter.
+  // A shared photographic exposure beneath the first lane band makes the
+  // spaces between the rails translucent, rather than a solid black gasket.
+  const trackExposure = infield && infield.cloneNode(true);
+  if (trackExposure) {
+    trackExposure.className = 'bend-track-exposure';
+    trackExposure.setAttribute('aria-hidden', 'true');
+    section.prepend(trackExposure);
+  }
   const pockets = {};
   const evidence = document.querySelector('.home-evidence');
   function pocket(name, source) {
@@ -37,8 +45,16 @@
   lanes.setAttribute('class', 'bend-seam-lanes');
   const paper = document.createElementNS(NS, 'path');
   paper.setAttribute('class', 'bend-seam-paper');
+  const defs = document.createElementNS(NS, 'defs');
+  defs.innerHTML = '<linearGradient id="bend-return-paper" gradientUnits="userSpaceOnUse"><stop stop-color="#F4F2EC"/><stop offset="1" stop-color="#0B0B0B"/></linearGradient><linearGradient id="bend-return-ink" gradientUnits="userSpaceOnUse"><stop stop-color="#0B0B0B" stop-opacity=".38"/><stop offset="1" stop-color="#0B0B0B" stop-opacity="0"/></linearGradient>';
+  svg.appendChild(defs);
+  const returnPaper = document.createElementNS(NS, 'path');
+  returnPaper.setAttribute('fill', 'url(#bend-return-paper)');
+  svg.appendChild(returnPaper);
   svg.appendChild(paper);
   svg.appendChild(lanes);
+  const returnLines = document.createElementNS(NS, 'g');
+  svg.appendChild(returnLines);
   const mark = document.createElement('img');
   mark.className = 'bend-seam-mark';
   mark.src = '/assets/brand/kit/emblem/sf-emblem-bone.svg';
@@ -82,6 +98,7 @@
     svg.setAttribute('viewBox', `0 ${-top} ${W} ${tall + top + 2}`);
     svg.style.top = (-top) + 'px';
     lanes.replaceChildren();
+    returnLines.replaceChildren();
     const f = (v) => v.toFixed(1);
     for (let n = 0; n < 9; n++) {
       const r = rin + n * lane;
@@ -91,6 +108,18 @@
     }
     if (strip) {
       strip.style.height = H1 + 'px';
+      // The shared straight changes material gradually, without a vertical cut.
+      defs.querySelectorAll('linearGradient').forEach(g => {
+        g.setAttribute('x1', cx2); g.setAttribute('x2', cx);
+        g.setAttribute('y1', 0); g.setAttribute('y2', 0);
+      });
+      returnPaper.setAttribute('d', `M${f(cx2)} ${f(2 * rin)}H${f(cx)}V${f(H1)}H${f(cx2)}Z`);
+      for (let n = 0; n < 9; n++) {
+        const line = document.createElementNS(NS, 'path');
+        line.setAttribute('class', 'bend-seam-return');
+        line.setAttribute('d', `M${f(cx2)} ${f(2 * rin + n * lane)}H${f(cx)}`);
+        returnLines.appendChild(line);
+      }
       // A true offset ribbon: concentric arcs retain identical lane gaps at every width.
       const R = rin + outer;
       paper.setAttribute('d', `M${f(cx2)} ${f(2 * rin)}A${f(R)} ${f(R)} 0 0 0 ${f(cx2)} ${f(2 * H1)}H${W + 2}V${f(2 * H1 - outer)}H${f(cx2)}A${f(rin)} ${f(rin)} 0 0 1 ${f(cx2)} ${f(H1)}Z`);
@@ -118,7 +147,7 @@
       lanes.appendChild(m);
     });
     // The emblem at the goal on every width, inside the bend, clear of the edge.
-    const mw = Math.min(200, rin * 0.62, W * 0.28); const mh = mw * 290 / 798;
+    const mw = Math.min(160, rin * 0.48, W * 0.24); const mh = mw * 290 / 798;
     const gx = Math.min(cx + 0.40 * rin, W - mw / 2 - 24); const gy = cy;
     mark.style.width = mw + 'px';
     mark.style.left = (gx - mw / 2) + 'px';
@@ -131,6 +160,12 @@
     // are the only dark left on the page.
     if (infield) {
       infield.style.height = (2 * rin) + 'px';
+      if (trackExposure) {
+        trackExposure.style.top = -outer + 'px';
+        trackExposure.style.height = (H1 + outer) + 'px';
+        trackExposure.style.clipPath = `path('M-2 0H${f(cx)}A${f(rin + outer)} ${f(rin + outer)} 0 0 1 ${f(cx)} ${f(H1 + outer)}H-2Z')`;
+        trackExposure.querySelector('img').style.top = outer + 'px';
+      }
       infield.style.clipPath = `path('M-2 0H${f(cx)}A${f(rin)} ${f(rin)} 0 0 1 ${f(cx)} ${f(2 * rin)}H-2Z')`;
     }
     // Split the outside of the second curve at its apex. The upper corner is
@@ -158,7 +193,7 @@
       if (pockets.right) {
         const img = pockets.right.querySelector('img');
         img.style.top = cy + 'px';
-        img.style.height = (H1 - cy) + 'px';
+        img.style.height = (2 * rin) + 'px';
       }
       if (pockets.lower) {
         const img = pockets.lower.querySelector('img');

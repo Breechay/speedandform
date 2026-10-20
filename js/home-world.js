@@ -14,6 +14,13 @@
       const r = img.getBoundingClientRect();
       return r.left <= edge && r.right >= edge;
     });
+    if (visible) {
+      // Use the actual frame width and horizontal offset, not a viewport-wide
+      // cover crop. The corner travels with its photograph during manual drag.
+      const r = visible.getBoundingClientRect();
+      corner.style.width = r.width + 'px';
+      corner.style.left = (r.left - sheet.getBoundingClientRect().left) + 'px';
+    }
     if (visible && corner.dataset.source !== visible.src) {
       corner.dataset.source = visible.src;
       corner.src = visible.src;

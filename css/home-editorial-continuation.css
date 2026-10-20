@@ -158,3 +158,26 @@
 .home-link-arrow{display:inline-block;flex:none;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}
 .home-evidence .home-evidence-links a:first-child{display:inline-flex;align-items:center;gap:24px;padding:10px 0;text-decoration:none;border:0;border-bottom:1px solid rgba(244,242,236,.5);border-radius:0;min-height:44px}
 .home-evidence .home-evidence-links a:first-child:hover{border-bottom-color:#F4F2EC}
+
+/* October 20: photographic contrast, a typographic invitation, a quieter study. */
+.sf-home-hero-immersive .home-hero-primary,.intake.intake-single .home-hero-primary{border:0;gap:20px;padding:4px 0;font-size:20px;min-height:52px}
+.home-hero-primary svg{box-sizing:content-box;width:19px;height:19px;padding:13px;border:1px solid rgba(244,242,236,.5);border-radius:50%;transition:transform .3s ease,background-color .3s ease}
+.home-hero-primary:hover svg{transform:translate(3px,-3px);background:rgba(244,242,236,.1)}
+.home-evidence{border:0;min-height:520px}
+.home-evidence-photograph{left:32%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%);mask-image:linear-gradient(90deg,transparent,#000 45%)}
+.home-evidence-photograph img{filter:grayscale(1) contrast(1.06);object-position:50% 32%}
+.home-evidence::after{background:linear-gradient(0deg,#0B0B0B,rgba(11,11,11,.2) 38%,transparent 75%)}
+.home-evidence .home-evidence-question h2{font-size:clamp(44px,4.8vw,72px);line-height:1.02;letter-spacing:-.045em;max-width:14ch}
+.home-evidence .home-evidence-result>p{font-size:clamp(18px,1.5vw,22px);max-width:25ch}
+.home-evidence .home-evidence-result dt{font-size:clamp(32px,3vw,44px)}
+.home-evidence .home-evidence-links a:first-child{margin-top:4px;gap:28px}
+@media(min-width:1024px){.home-evidence{padding-block:88px 72px}.home-evidence-grid{gap:32px}.home-evidence-result{grid-template-columns:minmax(0,230px) minmax(0,220px);column-gap:36px;row-gap:20px}}
+@media(max-width:760px){
+ .home-evidence{padding-block:72px 48px;min-height:0}
+ .home-evidence-photograph{inset:0;opacity:.55;-webkit-mask-image:none;mask-image:none}
+ .home-evidence-photograph img{filter:grayscale(1) contrast(1.06)}
+ .home-evidence::after{background:linear-gradient(0deg,#0B0B0B,rgba(11,11,11,.25) 75%)}
+ .home-evidence .home-evidence-question h2{font-size:clamp(40px,10.5vw,60px)}
+ .home-evidence-grid{gap:28px}
+}
+@media(prefers-reduced-motion:reduce){.home-hero-primary svg{transition:none}.home-hero-primary:hover svg{transform:none}}

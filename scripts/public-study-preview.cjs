@@ -26,7 +26,7 @@ function renderHomeEvidence(){const x=snapshot.latest_completed;return `<section
         <div><dt>${x.distance_mi} miles</dt><dd>Continuous. No resets.</dd></div>
         
       </dl>
-      <div class="home-evidence-links"><a class="text-link" href="/labs/speed-that-endures/">Study <span aria-hidden="true">↗︎</span></a></div>
+      <div class="home-evidence-links"><a class="text-link" href="/labs/speed-that-endures/">Study <svg class="home-link-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
     </div>
   </div>
 </section>`;}
