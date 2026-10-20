@@ -245,3 +245,54 @@ body.pp-directory-page .pp-mono,body.pp-athlete-page .pp-mono{color:#c0beb5}
 .pp-visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 .pp-directory-page .pp-dir{padding-top:clamp(18px,3vw,44px)}
 @media(max-width:760px){.pp-directory-page .pp-dir{padding-top:10px}}
+
+/* Oct 19 (evening): the directory opens on the team, then the athletes, each in their own frame. */
+.pp-directory-page .pp-dir-head{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);gap:clamp(20px,3vw,48px);align-items:end;margin:clamp(16px,3vw,40px) 0 clamp(14px,1.6vw,24px)}
+.pp-directory-page .pp-dir-head h1{margin:0;padding-bottom:clamp(6px,1vw,16px);font-size:clamp(64px,8.4vw,150px);line-height:.86;letter-spacing:-.07em;font-weight:480;color:#F4F2EC}
+.pp-directory-page .pp-dir-photo{margin:0;border-radius:16px;overflow:hidden;aspect-ratio:16/8.6;background:#1A1A1A}
+.pp-directory-page .pp-dir-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 46%}
+.pp-directory-page .pp-list{grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.4vw,22px)}
+.pp-directory-page .pp-card,.pp-directory-page .pp-card:nth-child(n){grid-column:auto}
+.pp-directory-page .pp-card-media,.pp-directory-page .pp-card:nth-child(n) .pp-card-media{aspect-ratio:3/4.3}
+.pp-directory-page .pp-card a{border-radius:16px;background:#1A1A1A}
+.pp-directory-page .pp-card-img{filter:none;transition:transform .9s cubic-bezier(.22,.61,.36,1),opacity .5s ease}
+.pp-directory-page .pp-card-name{font-size:clamp(30px,3vw,52px);font-weight:480;letter-spacing:-.055em}
+@media(max-width:850px){
+ .pp-directory-page .pp-dir-head{grid-template-columns:1fr;gap:18px}
+ .pp-directory-page .pp-dir-head h1{font-size:clamp(56px,15vw,96px)}
+ .pp-directory-page .pp-dir-photo{aspect-ratio:4/3;margin-inline:0}
+ .pp-directory-page .pp-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+}
+
+/* Oct 19 (evening): the athlete page opens on the photograph, the name set across it; facts in one row. */
+.pp-athlete-page #pp-profile{padding-top:clamp(12px,2vw,28px)}
+.pp-athlete-page .pp-head.pp-stage{display:block;position:relative}
+.pp-athlete-page .pp-stage .pp-hero{display:block;width:100%;height:clamp(520px,78vh,880px);border-radius:18px;object-fit:cover;margin:0}
+.pp-athlete-page .pp-stage::after{content:"";position:absolute;left:0;right:0;top:0;height:clamp(520px,78vh,880px);border-radius:18px;background:linear-gradient(0deg,rgba(11,11,11,.78) 0%,rgba(11,11,11,.18) 38%,rgba(11,11,11,0) 60%),linear-gradient(90deg,rgba(11,11,11,.35) 0%,rgba(11,11,11,0) 50%);pointer-events:none}
+.pp-athlete-page .pp-stage-copy{position:absolute;left:clamp(22px,3.4vw,56px);bottom:calc(100% - clamp(520px,78vh,880px) + clamp(24px,3.4vw,52px));z-index:1}
+.pp-athlete-page .pp-stage-copy .pp-kicker{margin:0 0 6px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,242,236,.82)}
+.pp-athlete-page .pp-stage-copy h1{margin:0;font-size:clamp(96px,15vw,260px);line-height:.8;letter-spacing:-.075em;font-weight:500;color:#F4F2EC}
+.pp-athlete-page .pp-stage .pp-intro{padding:0}
+.pp-athlete-page .pp-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:clamp(20px,2.4vw,36px);border-top:0}
+.pp-athlete-page .pp-facts>*{padding:22px clamp(16px,2vw,32px) 8px 0;margin:0}
+.pp-athlete-page .pp-facts>*+*{padding-left:clamp(16px,2vw,32px);border-left:1px solid rgba(244,242,236,.14)}
+.pp-athlete-page .pp-facts .pp-links{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin:0}
+.pp-athlete-page .pp-now a{display:inline-block;margin-top:10px}
+@media(max-width:850px){
+ .pp-athlete-page .pp-stage .pp-hero,.pp-athlete-page .pp-stage::after{height:clamp(480px,118vw,660px)}
+ .pp-athlete-page .pp-stage-copy{bottom:calc(100% - clamp(480px,118vw,660px) + 22px)}
+ .pp-athlete-page .pp-stage-copy h1{font-size:clamp(88px,26vw,150px)}
+ .pp-athlete-page .pp-facts{grid-template-columns:1fr}
+ .pp-athlete-page .pp-facts>*+*{padding-left:0;border-left:0;border-top:1px solid rgba(244,242,236,.14)}
+ .pp-athlete-page .pp-best{border-top:0}
+}
+/* Photos & films: rows that always fill: wide + narrow, then three, repeat. */
+.pp-athlete-page .pp-grid img,.pp-athlete-page .pp-grid img:first-child,.pp-athlete-page .pp-grid img:nth-child(3n+2){grid-column:span 4;height:clamp(260px,26vw,420px)}
+.pp-athlete-page .pp-grid img:nth-child(5n+1){grid-column:span 7;height:clamp(320px,34vw,560px)}
+.pp-athlete-page .pp-grid img:nth-child(5n+2){grid-column:span 5;height:clamp(320px,34vw,560px)}
+.pp-athlete-page .pp-grid img:nth-child(5n+1):last-child{grid-column:span 12}
+.pp-athlete-page .pp-grid img:nth-child(5n+4):last-child{grid-column:span 8}
+@media(max-width:850px){
+ .pp-athlete-page .pp-grid img,.pp-athlete-page .pp-grid img:nth-child(n){grid-column:span 6;height:clamp(200px,52vw,320px)}
+ .pp-athlete-page .pp-grid img:nth-child(3n+1){grid-column:span 12;height:clamp(260px,70vw,420px)}
+}
