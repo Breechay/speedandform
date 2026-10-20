@@ -1048,3 +1048,7 @@ Owner-approved aspiration revision: 185 lb target; 180–185 lb preferred range;
 - Public study, canonical doctrine and existing related study pages aligned; preview source hash reviewed.
 - App delivery requires normal coach-preview feed readback. Native physical-device appearance remains a separate check. Template weekly totals are not new mileage quotas; dated session instructions control.
 - Record tested commit, production receipt and actual visual verification in the PR. No competing native implementation or device installation.
+
+### October 20 · Homepage cinematic finish
+
+PR 326 is merged and production-verified at 8b900b6b. Follow-up batch reduces competing headline scale, preserves brighter photographic detail, joins the black/bone track materials, matches the side-pocket image width to the carousel, introduces circular-arrow invitations, compacts the footer, and starts silent film earlier with live reduced-motion support. Corrects the canonical Study generator so SVG arrows survive production builds. Full configured build passed locally; browser preview and CI verification pending before the authorized release. No private athlete records or native app changes.

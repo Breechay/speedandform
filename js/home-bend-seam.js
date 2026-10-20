@@ -46,7 +46,7 @@
   const paper = document.createElementNS(NS, 'path');
   paper.setAttribute('class', 'bend-seam-paper');
   const defs = document.createElementNS(NS, 'defs');
-  defs.innerHTML = '<linearGradient id="bend-return-paper" gradientUnits="userSpaceOnUse"><stop stop-color="#F4F2EC"/><stop offset="1" stop-color="#0B0B0B"/></linearGradient><linearGradient id="bend-return-ink" gradientUnits="userSpaceOnUse"><stop stop-color="#0B0B0B" stop-opacity=".38"/><stop offset="1" stop-color="#0B0B0B" stop-opacity="0"/></linearGradient>';
+  defs.innerHTML = '<linearGradient id="bend-return-paper" gradientUnits="userSpaceOnUse"><stop stop-color="#F4F2EC"/><stop offset="1" stop-color="#F4F2EC" stop-opacity="0"/></linearGradient><linearGradient id="bend-return-ink" gradientUnits="userSpaceOnUse"><stop stop-color="#0B0B0B" stop-opacity=".38"/><stop offset="1" stop-color="#0B0B0B" stop-opacity="0"/></linearGradient>';
   svg.appendChild(defs);
   const returnPaper = document.createElementNS(NS, 'path');
   returnPaper.setAttribute('fill', 'url(#bend-return-paper)');
@@ -164,7 +164,7 @@
         trackExposure.style.top = -outer + 'px';
         trackExposure.style.height = (H1 + outer) + 'px';
         trackExposure.style.clipPath = `path('M-2 0H${f(cx)}A${f(rin + outer)} ${f(rin + outer)} 0 0 1 ${f(cx)} ${f(H1 + outer)}H-2Z')`;
-        trackExposure.querySelector('img').style.top = outer + 'px';
+        trackExposure.querySelector('img').style.top = '0px';
       }
       infield.style.clipPath = `path('M-2 0H${f(cx)}A${f(rin)} ${f(rin)} 0 0 1 ${f(cx)} ${f(2 * rin)}H-2Z')`;
     }

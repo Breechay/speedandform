@@ -166,3 +166,7 @@
  .home-entry.home-bend-only[data-bend-seam]{min-height:clamp(530px,142vw,650px)}
  .bend-track-exposure img{object-position:58% 0%;transform:none}
 }
+
+/* The small outside corner is a material transition, not a second crop of a face. */
+.bend-pocket-right{background:#F4F2EC}
+.bend-pocket-right img,.bend-pocket-right::after{display:none}

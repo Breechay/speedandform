@@ -181,3 +181,11 @@
  .home-evidence-grid{gap:28px}
 }
 @media(prefers-reduced-motion:reduce){.home-hero-primary svg{transition:none}.home-hero-primary:hover svg{transform:none}}
+
+/* A phone gets a composed frame, not the empty left edge of a desktop panorama. */
+@media(max-width:760px){
+ .home-world-featured.home-world-strip .home-world-sheet li{flex:0 0 100vw;width:100vw}
+ .home-world-featured.home-world-strip .home-world-sheet li:nth-child(n) img{width:100%;height:100%;object-fit:cover;object-position:64% 50%}
+ .home-world-featured.home-world-strip .home-world-sheet li:nth-child(2) img{object-position:50% 40%}
+ .home-world-featured.home-world-strip .home-world-sheet li:nth-child(3) img{object-position:58% 35%}
+}
