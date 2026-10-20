@@ -1,4 +1,13 @@
-## October 20 · Homepage continuity refinement · draft PR #326
+## October 20 · Follow-up homepage audit
+
+- PR #326 is open and ready for review, not merged. Production remains main `b91f9244` (Netlify `6ad6d83a97b8b4f3c40f8da5`).
+- Fresh connected-Chrome inspection at 1175px and 390px confirmed the old pocket mismatch, mobile bend overlap and doubled Study underline on production. The pending branch addresses these; this inspection is not a fresh visual approval of that branch.
+- Carousel interaction hardening in `1e06112fa7cef9c99c64308237a71877699bcde2`: held touch suspends page-driven drift; touch end/cancel and mouse release establish the next origin; viewport and bend-size changes rebase progress without moving the chosen photo. Regression checks cover touch cancellation/resumption and resizing alongside existing reverse-scroll and reduced-motion checks.
+- Removed hover underlining from the menu close control, which otherwise underlines both Close and its multiplication-sign icon. Existing focus outline remains.
+- Preview blocker: Netlify explicitly has Deploy Previews disabled and only builds main. The presumed PR preview URL returns Site not found. Local execution is unavailable. No Netlify configuration, production deployment, album publication or app build changed in this follow-up.
+- Next: inspect current branch desktop/mobile rendering in a preview or restored local environment, then decide on one production release. Earlier screenshots and passing tests do not substitute for this final visual check. Check current PR checks for the exact tested head.
+
+## October 20 · Homepage continuity refinement · PR #326
 
 - Source batch on `codex/homepage-continuity-refinement`, based on merged #325 (`b91f9244`). Upper-left corner uses the upper chapter photograph; right corner follows the visible strip photograph; lower-left uses the evidence photograph. Bend enlarged while preserving the measured radius/lane ratio. All nine joins now meet on narrow screens; the carousel turn uses a bone ribbon.
 - Lane arrival advances together with a short eased catch-up and never unwinds on reverse scroll. Photo drift is capped to 65% of viewport width. Native touch/trackpad, keyboard and mouse dragging set a new origin for subsequent page scrolling; fractional position is retained across frames. Reduced motion disables automatic drift.
@@ -6,7 +15,7 @@
 - Drawer masthead spans its full width, photographs use less vertical space, link styling no longer adds padding around photographic cards, delayed link entrances are removed, and narrow/zoomed drawers reflow. The live homepage masthead was observed to be absolute; the sticky inset surface belonged to the drawer.
 - Static checks pass: public copy, publication contract, menu coverage/idempotence, color integrity, visual theater, editorial scan and 44 account/access checks. The legacy `sf-bend.cjs` check has an obsolete expectation for the previously removed inline evidence bend; baseline failure confirmed separately and no assertion weakened.
 - Rendered evidence: GitHub Actions run `39409908534`, artifacts `site-menu-chromium` and `site-menu-webkit`; full-page 390/1440 captures reviewed. Chromium passed 19 public entrances at 320/390/1024/1440, lane continuity and carousel direction/reduced-motion checks. WebKit passed the menu and responsive pages, then exposed a carousel round-trip discrepancy; fractional-position and deterministic-scroll fixes are in `a5c9844a`, verified by run `39410310045`: both Chromium and WebKit pass, including reverse-scroll origin retention, live reduced-motion changes, 19 entrances at four widths and shared menu/zoom checks.
-- The rendered page is 561px shorter at 1440 and 194px shorter at 390 versus the earlier refinement capture, despite larger bends. No production deployment or merge. Review remains in draft PR #326.
+- The rendered page is 561px shorter at 1440 and 194px shorter at 390 versus the earlier refinement capture, despite larger bends. No production deployment or merge. Review remains in open PR #326.
 
 ## October 13 · Adrian study and completed Strength evidence
 
