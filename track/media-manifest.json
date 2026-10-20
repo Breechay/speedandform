@@ -3,10 +3,10 @@
   "albums": [
     {
       "slug": "track-selection",
-      "title": "Track selection.",
-      "kind": "selection",
-      "date": null,
-      "description": "Eight photographs from the track.",
+      "title": "Speed Demons.",
+      "kind": "session",
+      "date": "2026-09-24",
+      "description": "Eight photographs from the September 24 track session.",
       "note": "",
       "cover": "frame-5728",
       "revision": "1b35020a8701",
