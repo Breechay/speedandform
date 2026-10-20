@@ -37,7 +37,6 @@
   section.prepend(svg);
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   const LANES = 36.5 / 1.22;
-  let drawn = false;
   function layout() {
     const W = section.clientWidth, H = section.clientHeight;
     const rin = H / (2 * (1 + 8 / LANES));
@@ -53,22 +52,26 @@
     d += `<path class="strip-bend-start" d="M${cx.toFixed(1)} ${(cy - rin).toFixed(1)}V${(cy - rin - outer).toFixed(1)}"/>`;
     svg.innerHTML = d;
     infield.style.clipPath = `path('M${W + 2} ${(cy - rin).toFixed(1)}H${cx.toFixed(1)}A${rin.toFixed(1)} ${rin.toFixed(1)} 0 0 0 ${cx.toFixed(1)} ${(cy + rin).toFixed(1)}H${W + 2}Z')`;
-    if (!drawn && !reduce.matches && 'IntersectionObserver' in window) {
-      svg.querySelectorAll('path').forEach((p) => { const l = p.getTotalLength(); p.style.strokeDasharray = l; p.style.strokeDashoffset = l; });
-    }
+    lens = [...svg.querySelectorAll('path')].map((p) => { const l = p.getTotalLength(); if (!reduce.matches) p.style.strokeDasharray = l; return l; });
+    paint();
   }
-  function draw() {
-    drawn = true;
-    svg.querySelectorAll('path').forEach((p, i) => {
-      p.style.transition = `stroke-dashoffset 1400ms cubic-bezier(.30,.10,.20,1) ${i * 45}ms`;
-      p.style.strokeDashoffset = 0;
+  // Drawn with the scroll, like the first bend: inner lane first, the start line last.
+  let lens = [], raf = 0;
+  function paint() {
+    raf = 0;
+    if (reduce.matches) return;
+    const r = section.getBoundingClientRect(), vh = innerHeight;
+    const p = Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.6 + r.height * 0.5)));
+    svg.querySelectorAll('path').forEach((el, i) => {
+      const start = el.classList.contains('strip-bend-start');
+      const k = start ? Math.min(1, Math.max(0, (p - 0.78) / 0.22)) : Math.min(1, Math.max(0, (p - i * 0.035) / (1 - 8 * 0.035)));
+      el.style.strokeDashoffset = (lens[i] * (1 - (1 - Math.pow(1 - k, 3)))).toFixed(1);
     });
+    infield.style.opacity = Math.min(1, Math.max(0, (p - 0.15) / 0.35)).toFixed(3);
   }
+  const queue = () => { if (!raf) raf = requestAnimationFrame(paint); };
   layout();
-  if (!reduce.matches && 'IntersectionObserver' in window) {
-    const io = new IntersectionObserver((e) => { if (e.some((x) => x.isIntersecting)) { draw(); io.disconnect(); } }, { threshold: 0.2 });
-    io.observe(section);
-  }
+  addEventListener('scroll', queue, { passive: true });
   let t;
-  addEventListener('resize', () => { clearTimeout(t); t = setTimeout(() => { layout(); if (drawn) svg.querySelectorAll('path').forEach((p) => { p.style.strokeDasharray = ''; p.style.strokeDashoffset = ''; }); }, 120); });
+  addEventListener('resize', () => { clearTimeout(t); t = setTimeout(layout, 120); });
 })();

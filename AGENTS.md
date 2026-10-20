@@ -29,6 +29,8 @@
 
 ## Standing art direction · October 14, 2026 (owner-approved; read before visual changes)
 
+**Never crop a head (Oct 19).** Every photograph, on every screen size, keeps at least 16px of picture above each head; set `object-position` per image and per breakpoint, and check phone and desktop renders before calling a crop done.
+
 **FORM is not anti-decoration.** Brice wants theater, elegant drama, cinematic atmosphere, "wow", personality and reasons to linger. The goal is an emotionally engaging athletic editorial world, not quiet minimalism. Photographic strips, sophisticated shadows and gradients, dynamic compositions, visual pacing, rich black-and-white grading, film, immersive entrances and crafted motion are part of the design language. Keep atmospheric elements even when they serve beauty rather than navigation. **Never delete a beautiful visual element simply because it is decorative.**
 
 Start with the [active brand authority](docs/BRAND.md#owners-visual-rule--14-october-2026-active), [public Brand presentation](/brand/index.html), and the [executable visual checklist](docs/design/FORM_VISUAL_EXECUTION_STANDARD_2026-10.md). The October 14 rule supersedes broad earlier interpretations of "restraint", "no decoration" and historic website redesign holds. Older documented restrictions on fabricated people, consent, contrast, source-backed claims, accessibility and app-specific functional layout still apply.

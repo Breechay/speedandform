@@ -81,7 +81,7 @@
     if (infield) infield.style.clipPath = `path('M-2 0H${cx.toFixed(1)}A${rin.toFixed(1)} ${rin.toFixed(1)} 0 0 1 ${cx.toFixed(1)} ${(2 * rin).toFixed(1)}H-2Z')`;
     if (infield) infield.style.height = (2 * rin) + 'px';
     maskHero({ cx, cy, R: rin + outer });
-    if (!drawn) prime();
+    prime();
   }
 
   // The hero photograph ends on the outer lane: straight along the bottom, then following the
@@ -112,38 +112,45 @@
     media.style.webkitMaskRepeat = 'no-repeat'; media.style.maskRepeat = 'no-repeat';
   }
 
+  // The lanes draw with the scroll, like the app's opening: inner lane first, each outer lane a beat
+  // behind, the start line last. A short arrival on load so the first screen already shows the track.
+  let lens = [], intro = 0, raf = 0;
   function prime() {
-    if (reduce.matches || !('IntersectionObserver' in window)) { section.classList.add('bend-in'); drawn = true; return; }
-    lanes.querySelectorAll('path').forEach((p) => {
+    if (reduce.matches) { section.classList.add('bend-in'); drawn = true; return; }
+    lens = [...lanes.querySelectorAll('path')].map((p) => {
       const len = p.getTotalLength();
       p.style.strokeDasharray = len;
-      p.style.strokeDashoffset = len;
+      p.style.transition = 'none';
+      return len;
     });
+    paint();
   }
-
-  function draw() {
-    if (drawn) return;
-    drawn = true;
-    section.classList.add('bend-in');
-    lanes.querySelectorAll('path').forEach((p, i) => {
-      p.style.transition = `stroke-dashoffset 1400ms cubic-bezier(.30,.10,.20,1) ${i * 45}ms`;
-      p.style.strokeDashoffset = 0;
+  function progress() {
+    const r = section.getBoundingClientRect(), vh = innerHeight;
+    return Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.55 + r.height * 0.55)));
+  }
+  function paint() {
+    raf = 0;
+    if (reduce.matches || !lens.length) return;
+    const p = Math.max(progress(), intro);
+    lanes.querySelectorAll('path').forEach((el, i) => {
+      const start = el.classList.contains('bend-seam-start');
+      const k = start ? Math.min(1, Math.max(0, (p - 0.78) / 0.22)) : Math.min(1, Math.max(0, (p - i * 0.035) / (1 - 8 * 0.035)));
+      const e = 1 - Math.pow(1 - k, 3);
+      el.style.strokeDashoffset = (lens[i] * (1 - e)).toFixed(1);
     });
+    if (p > 0.55 && !drawn) { drawn = true; section.classList.add('bend-in'); }
   }
+  const queue = () => { if (!raf) raf = requestAnimationFrame(paint); };
 
   layout();
-  if (section.getBoundingClientRect().top < window.innerHeight &&
-      section.getBoundingClientRect().bottom > 0) draw();
-  if ('IntersectionObserver' in window && !reduce.matches) {
-    const io = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) { draw(); io.disconnect(); }
-    }, { threshold: 0.05 });
-    io.observe(section);
+  if (!reduce.matches) {
+    const t0 = performance.now();
+    const tick = (now) => { intro = Math.min(0.42, ((now - t0) / 1400) * 0.42); queue(); if (intro < 0.42) requestAnimationFrame(tick); };
+    requestAnimationFrame(tick);
+    addEventListener('scroll', queue, { passive: true });
   }
   let t;
-  addEventListener('resize', () => { clearTimeout(t); t = setTimeout(() => {
-    const wasDrawn = drawn; layout();
-    if (wasDrawn) lanes.querySelectorAll('path').forEach((p) => { p.style.strokeDasharray = ''; p.style.strokeDashoffset = ''; p.style.transition = ''; });
-  }, 120); });
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (!drawn) layout(); else { layout(); lanes.querySelectorAll('path').forEach((p) => { p.style.strokeDasharray = ''; p.style.strokeDashoffset = ''; }); } });
+  addEventListener('resize', () => { clearTimeout(t); t = setTimeout(() => { layout(); prime(); }, 120); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { layout(); prime(); });
 })();

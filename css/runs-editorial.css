@@ -88,3 +88,5 @@ body{background:#0B0B0B}
  .gr-hero .gr-hero-copy{left:20px;bottom:30px}
  .gr-hero .gr-hero-copy h1{font-size:clamp(72px,22vw,110px)}
 }
+.gr-hero .gr-hero-frame img{object-position:50% 0%}
+@media(max-width:760px){.gr-hero .gr-hero-frame img{object-position:50% 0%}}
