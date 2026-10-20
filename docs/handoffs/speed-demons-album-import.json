@@ -1,0 +1,92 @@
+{
+  "title": "Speed Demons",
+  "status": "prepared_not_imported",
+  "run_id": null,
+  "session_id": "speed-demons",
+  "location": "Flamingo Park Track",
+  "date_candidate": "2026-09-24",
+  "date_confirmed": false,
+  "date_source": "Simulated owner-supplied Album Editor Study 06; requires owner confirmation before creating/linking a dated run.",
+  "layout": "photo_essay",
+  "appearance": "cream",
+  "cover": "frame-5728",
+  "excluded": [
+    "8069",
+    "8097"
+  ],
+  "existing_web_album": "https://speedandform.com/track/track-selection/",
+  "items": [
+    {
+      "position": 0,
+      "id": "frame-5728",
+      "source": "media/track-selection/frame-5728.jpg",
+      "sha256": "04aeafaa16cc5c807964af75f462e54ea0d6de1d0ec1129ede42471e9a534dfc",
+      "width": 1000,
+      "height": 666,
+      "alt": "Runners approaching along the track in daylight."
+    },
+    {
+      "position": 1,
+      "id": "frame-8046",
+      "source": "media/track-selection/frame-8046.jpg",
+      "sha256": "184576d778e85a3c6ce3964dd809969959b1e3ae356b9335ab34b1d622300f98",
+      "width": 1000,
+      "height": 666,
+      "alt": "Runners gathered beside the track and infield."
+    },
+    {
+      "position": 2,
+      "id": "frame-8045",
+      "source": "media/track-selection/frame-8045.jpg",
+      "sha256": "60bbf851b47a465fd37e8e4ae1b3e74b959fa812643121fc5121c6ceb139f984",
+      "width": 1000,
+      "height": 666,
+      "alt": "Runners beginning a repetition under the track lights."
+    },
+    {
+      "position": 3,
+      "id": "frame-8058",
+      "source": "media/track-selection/frame-8058.jpg",
+      "sha256": "ca76dea21d4a64833a957dfd9d988bcfa294dadb84402f47477eb1b94483e002",
+      "width": 1000,
+      "height": 666,
+      "alt": "A group standing across the track lanes at night."
+    },
+    {
+      "position": 4,
+      "id": "frame-8044",
+      "source": "media/track-selection/frame-8044.jpg",
+      "sha256": "9528e6d568884d375170d8b7e9edad80f4c3f0c20fe1e4901481c13646cb99b8",
+      "width": 1000,
+      "height": 666,
+      "alt": "Runners moving along the straight beside the infield."
+    },
+    {
+      "position": 5,
+      "id": "frame-5701",
+      "source": "media/track-selection/frame-5701.jpg",
+      "sha256": "570979bd63e65a8a1050c31c9e0b5484ca6eb7601e4d2757419758a489ec4559",
+      "width": 1000,
+      "height": 666,
+      "alt": "A wide view of runners on the track at dusk."
+    },
+    {
+      "position": 6,
+      "id": "frame-8057",
+      "source": "media/track-selection/frame-8057.jpg",
+      "sha256": "f25a9cb2b1d02fc3ff47a5e1e1509529b166175fc87fa27c8a5cc08bacb8332a",
+      "width": 1000,
+      "height": 666,
+      "alt": "Runners passing the stands along the straight."
+    },
+    {
+      "position": 7,
+      "id": "frame-8080",
+      "source": "media/track-selection/frame-8080.jpg",
+      "sha256": "68f816ef75528d94532faa03befc33f9fc206f15a3da003fd685ddd73ef79232",
+      "width": 1000,
+      "height": 666,
+      "alt": "A wide view of runners passing the trackside fence."
+    }
+  ]
+}
