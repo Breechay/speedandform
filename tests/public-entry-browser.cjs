@@ -99,7 +99,7 @@ const mime={'.html':'text/html','.css':'text/css','.js':'text/javascript','.mjs'
               await page.evaluate(y=>window.scrollTo(0,y),y);
               await page.waitForTimeout(80);
             }
-            await page.evaluate(()=>Promise.all([...document.images].map(img=>img.decode().catch(()=>{}))));
+            await page.evaluate(()=>Promise.all([...document.querySelectorAll('main img, footer img')].map(img=>{img.loading='eager';return img.decode().catch(()=>{});})));
             await page.evaluate(()=>window.scrollTo(0,0));
             await page.waitForTimeout(150);
           }
