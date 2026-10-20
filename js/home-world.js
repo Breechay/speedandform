@@ -5,7 +5,7 @@
   if (!sheet) return;
   const strip = sheet.querySelector('ul');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
-  let raf = 0, previousProgress = null, drag = null, preciseLeft = null, lastApplied = null;
+  let raf = 0, previousProgress = null, drag = null, preciseLeft = null, lastApplied = null, touching = false;
   const corner = document.querySelector('.bend-pocket-right img');
   function matchCorner() {
     if (!corner) return;
@@ -22,13 +22,21 @@
     }
   }
   sheet.addEventListener('scroll', matchCorner, { passive: true });
+  function pageProgress() {
+    const r = sheet.getBoundingClientRect();
+    return Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight + r.height)));
+  }
+  function rebase() {
+    preciseLeft = sheet.scrollLeft;
+    lastApplied = preciseLeft;
+    previousProgress = pageProgress();
+  }
   function update() {
     raf = 0;
     matchCorner();
-    const r = sheet.getBoundingClientRect();
     const travel = Math.min(sheet.clientWidth * 0.65, Math.max(0, strip.scrollWidth - sheet.clientWidth));
-    const p = Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight + r.height)));
-    if (!reduce.matches && previousProgress !== null && !drag) {
+    const p = pageProgress();
+    if (!reduce.matches && previousProgress !== null && !drag && !touching) {
       // Preserve subpixel movement even in engines that round scrollLeft reads.
       // A native/manual change becomes the new origin on the next page frame.
       if (preciseLeft === null || Math.abs(sheet.scrollLeft - lastApplied) > 0.5) preciseLeft = sheet.scrollLeft;
@@ -39,6 +47,10 @@
     previousProgress = p;
   }
   const queue = () => { if (!raf) raf = requestAnimationFrame(update); };
+  // A finger owns the strip until it leaves. Never compete with diagonal touch scrolling.
+  sheet.addEventListener('touchstart', () => { touching = true; rebase(); }, { passive: true });
+  sheet.addEventListener('touchend', e => { touching = e.touches.length > 0; rebase(); }, { passive: true });
+  sheet.addEventListener('touchcancel', () => { touching = false; rebase(); }, { passive: true });
   // Native touch and trackpad scrolling; mouse users can grab the strip.
   sheet.querySelectorAll('img').forEach(img => { img.draggable = false; });
   sheet.addEventListener('pointerdown', e => {
@@ -50,13 +62,16 @@
   sheet.addEventListener('pointermove', e => {
     if (drag) sheet.scrollLeft = drag.left + drag.x - e.clientX;
   });
-  const release = () => { drag = null; sheet.classList.remove('is-dragging'); };
+  const release = () => { drag = null; rebase(); sheet.classList.remove('is-dragging'); };
   sheet.addEventListener('pointerup', release);
   sheet.addEventListener('pointercancel', release);
   sheet.addEventListener('lostpointercapture', release);
   addEventListener('scroll', queue, { passive: true });
-  addEventListener('resize', queue);
-  reduce.addEventListener('change', queue);
+  const resized = () => { previousProgress = null; queue(); };
+  addEventListener('resize', resized);
+  // The bend recalculates after resize; observe its final dimensions too.
+  if (typeof ResizeObserver !== 'undefined') new ResizeObserver(resized).observe(sheet);
+  reduce.addEventListener('change', () => { rebase(); queue(); });
   sheet.querySelectorAll('img').forEach(img => img.addEventListener('load', queue, { once: true }));
   update();
 })();

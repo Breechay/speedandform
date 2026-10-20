@@ -127,6 +127,20 @@ const mime={'.html':'text/html','.css':'text/css','.js':'text/javascript','.mjs'
     const backward=await sheet.evaluate(el=>el.scrollLeft);
     assert.ok(backward<forward,'Upward page scroll reverses carousel drift');
     assert.ok(Math.abs(backward-manual)<4,'Carousel returns without snapping to its old origin: '+JSON.stringify({manual,forward,backward}));
+    // A held touch owns the strip even when the page moves diagonally.
+    await sheet.evaluate(el=>el.dispatchEvent(new Event('touchstart')));
+    const held=await sheet.evaluate(el=>el.scrollLeft);
+    await page.evaluate(()=>window.scrollBy({top:80,behavior:'instant'}));
+    await page.waitForTimeout(180);
+    assert.ok(Math.abs(await sheet.evaluate(el=>el.scrollLeft)-held)<2,'Touch gesture is not overridden by page drift');
+    await sheet.evaluate(el=>el.dispatchEvent(new Event('touchcancel')));
+    await page.evaluate(()=>window.scrollBy({top:80,behavior:'instant'}));
+    await page.waitForTimeout(180);
+    assert.ok(await sheet.evaluate(el=>el.scrollLeft)>held,'Page drift resumes after touch cancellation');
+    const beforeResize=await sheet.evaluate(el=>el.scrollLeft);
+    await page.setViewportSize({width:1024,height:900});
+    await page.waitForTimeout(300);
+    assert.ok(Math.abs(await sheet.evaluate(el=>el.scrollLeft)-beforeResize)<2,'Resize preserves the selected carousel position');
     await page.emulateMedia({reducedMotion:'reduce'});
     await page.waitForTimeout(80);
     const still=await sheet.evaluate(el=>el.scrollLeft);
