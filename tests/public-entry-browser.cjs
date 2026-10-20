@@ -75,15 +75,64 @@ const mime={'.html':'text/html','.css':'text/css','.js':'text/javascript','.mjs'
               left:Math.round(x.r.left),right:Math.round(x.r.right),text:(x.el.textContent||'').trim().slice(0,45)})));
           report.issues.push({type:'horizontal-overflow',route,width,state,offenders});
         }
+        if(route==='/'){
+          const seams=await page.evaluate(()=>{
+            const paths=[...document.querySelectorAll('.bend-seam-lanes path')];
+            const first=paths.filter(p=>!p.classList.contains('bend-seam-b')&&!p.classList.contains('bend-seam-start'));
+            const second=paths.filter(p=>p.classList.contains('bend-seam-b'));
+            return first.map((p,i)=>{
+              const a=p.getPointAtLength(p.getTotalLength()),b=second[i].getPointAtLength(0);
+              return Math.hypot(a.x-b.x,a.y-b.y);
+            });
+          });
+          assert.equal(seams.length,9,'Nine continuous lanes');
+          assert.ok(seams.every(gap=>gap<0.2),'Bends join without gaps at '+width);
+        }
         report.checked.push({route,width,links:state.links});
         if(width===390||width===1440){
           const slug=route.replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'')||'home';
           const file='entry-pages/'+slug+'-'+width+'.png';
+          if(route==='/'){
+            // Visit each fold before full-page capture so native lazy photographs load.
+            const height=await page.evaluate(()=>document.documentElement.scrollHeight);
+            for(let y=0;y<height;y+=600){
+              await page.evaluate(y=>window.scrollTo(0,y),y);
+              await page.waitForTimeout(80);
+            }
+            await page.evaluate(()=>Promise.all([...document.images].map(img=>img.decode().catch(()=>{}))));
+            await page.evaluate(()=>window.scrollTo(0,0));
+            await page.waitForTimeout(150);
+          }
           await page.screenshot({path:path.join(out,file),animations:'disabled',fullPage:route==='/'});
           report.screenshots.push(file);
         }
       }
     }
+    // Manual navigation must establish the origin for subsequent page-driven movement.
+    await page.emulateMedia({reducedMotion:'no-preference'});
+    await page.goto(origin+'/',{waitUntil:'domcontentloaded'});
+    await page.evaluate(()=>document.fonts.ready);
+    const sheet=page.locator('[data-world-sheet]');
+    await sheet.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(200);
+    await sheet.evaluate(el=>{el.scrollLeft=300;});
+    await page.waitForTimeout(80);
+    const manual=await sheet.evaluate(el=>el.scrollLeft);
+    await page.evaluate(()=>window.scrollBy(0,100));
+    await page.waitForTimeout(180);
+    const forward=await sheet.evaluate(el=>el.scrollLeft);
+    assert.ok(forward>manual,'Page scroll resumes from the manual carousel position');
+    await page.evaluate(()=>window.scrollBy(0,-100));
+    await page.waitForTimeout(180);
+    const backward=await sheet.evaluate(el=>el.scrollLeft);
+    assert.ok(backward<forward,'Upward page scroll reverses carousel drift');
+    assert.ok(Math.abs(backward-manual)<4,'Carousel returns without snapping to its old origin');
+    await page.emulateMedia({reducedMotion:'reduce'});
+    await page.waitForTimeout(80);
+    const still=await sheet.evaluate(el=>el.scrollLeft);
+    await page.evaluate(()=>window.scrollBy(0,100));
+    await page.waitForTimeout(180);
+    assert.ok(Math.abs(await sheet.evaluate(el=>el.scrollLeft)-still)<2,'Reduced motion disables automatic drift');
     assert.equal(new Set(report.checked.map(c=>c.route)).size,routes.length,'All first-hop routes inspected');
     assert.equal(report.issues.filter(e=>e.type==='horizontal-overflow').length,0,'No horizontal overflow at any public entrance: '+JSON.stringify(report.issues.filter(e=>e.type==='horizontal-overflow')));
     console.log('PASS: '+routes.length+' direct public homepage/menu/footer routes at 320, 390, 1024 and 1440 pixels in '+engineName+'.');

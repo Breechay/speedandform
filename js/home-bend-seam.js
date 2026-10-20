@@ -93,7 +93,7 @@
       strip.style.height = H1 + 'px';
       // A true offset ribbon: concentric arcs retain identical lane gaps at every width.
       const R = rin + outer;
-      paper.setAttribute('d', `M${W + 2} ${f(2 * rin)}H${f(cx2)}A${f(R)} ${f(R)} 0 0 0 ${f(cx2)} ${f(2 * H1)}H${W + 2}V${f(2 * H1 - outer)}H${f(cx2)}A${f(rin)} ${f(rin)} 0 0 1 ${f(cx2)} ${f(H1)}H${W + 2}Z`);
+      paper.setAttribute('d', `M${f(cx2)} ${f(2 * rin)}A${f(R)} ${f(R)} 0 0 0 ${f(cx2)} ${f(2 * H1)}H${W + 2}V${f(2 * H1 - outer)}H${f(cx2)}A${f(rin)} ${f(rin)} 0 0 1 ${f(cx2)} ${f(H1)}Z`);
       for (let n = 0; n < 9; n++) {
         const r2 = rin + (8 - n) * lane;
         const p = document.createElementNS(NS, 'path');
@@ -200,7 +200,7 @@
 
   // The lanes draw with the scroll, like the app's opening: inner lane first, each outer lane a beat
   // behind, the start line last. A short arrival on load so the first screen already shows the track.
-  let lens = [], intro = 0, raf = 0, progress = 0;
+  let lens = [], intro = 0, raf = 0, progress = 0, target = 0, lastPaint = 0;
   function prime() {
     if (reduce.matches) { section.classList.add('bend-in'); drawn = true; if (stripField) stripField.style.opacity = 1; return; }
     lens = [...lanes.querySelectorAll('path')].map((p) => {
@@ -220,10 +220,15 @@
   }
   const ease = (k) => 1 - Math.pow(1 - k, 3);
   const clamp = (v) => Math.min(1, Math.max(0, v));
-  function paint() {
+  function paint(now = performance.now()) {
     raf = 0;
     if (reduce.matches || !lens.length) return;
-    const t = progress = Math.max(progress, span());
+    target = Math.max(target, span());
+    const elapsed = Math.min(64, lastPaint ? now - lastPaint : 16);
+    lastPaint = now;
+    progress += (target - progress) * (1 - Math.exp(-elapsed / 90));
+    if (target - progress < 0.0005) progress = target;
+    const t = progress;
     const p1 = Math.max(strip ? clamp(t / 0.5) : t, intro);
     const p2 = strip ? clamp((t - 0.5) / 0.5) : 0;
     lanes.querySelectorAll('path').forEach((el, i) => {
@@ -235,6 +240,7 @@
     });
     // Photographs remain present while their lane outlines arrive.
     if (p1 > 0.55 && !drawn) { drawn = true; section.classList.add('bend-in'); }
+    if (target > progress) queue();
   }
   const queue = () => { if (!raf) raf = requestAnimationFrame(paint); };
 
