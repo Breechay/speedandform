@@ -53,3 +53,29 @@ Track Shack's October 20 event page: December 5, 2026, 7:15 AM Eastern, Downtown
 6. On race day and after, record actual outcome, decision quality, and which interventions remain unproven even if the goal succeeds.
 
 **Decision record:** Review intake only. No automatic session rewrite, public-study publication, strength assignment or feature deployment is authorized by reviewer agreement alone.
+
+## October 20 owner decision · applied after independent review
+
+The coach approved the following **current athlete prescription** in FORM Athlete System on October 20, superseding earlier proposals above:
+
+- October 27 and November 10: matched four continuous solo miles at **6:48–6:52/mi** on the same route where practical, with a twenty-minute easy warm-up and ten-minute cooldown. Compare effort and 24–48-hour recovery; this is an observation, not proof of physiological adaptation.
+- November 3: retain **3 × 1 mile at 6:40–6:45/mi** as a short faster training exposure.
+- November 7: **14 miles, eleven easy plus final three at 6:48–6:52**. Familiar fuel/hydration rehearsal.
+- November 14: **14 miles, nine easy plus final five at 6:48–6:52**; first three solo, steady companion for final two without acceleration; race-morning rehearsal.
+- November 17: three continuous goal-pace miles, not a faster requirement. November 21: ten entirely easy miles. November 28: eight easy. No third late-race-pace long-run finish.
+- November 27: four easy miles. December 4: two-mile shakeout. Missing easy-day session instructions now have plain published text. Preserve existing running plan versions; do not retrofit historical completions.
+
+The older **6:30–6:45 RACE WORK** and **8:45 EASY** active block labels are superseded in the current block by **GOAL PACE 6:48–6:52**, **FASTER TOUCH 6:40–6:45**, and **EASY 8:00 or slower**. The old band settings and workout evidence remain historical, not current instructions. The athlete reports maple syrup intake at 70–80 g carbohydrate per hour and a planned water bottle. Actual amounts, fluid volumes and tolerance still require dated observation.
+
+The race is still on December 5. The long-run progression is now **actual faster work → fresh goal-pace comparison → late goal-pace durability → taper → race**, not a twelve-mile pre-race proof requirement. Future runs remain *planned* until results are filed.
+
+### Deferred FORM iOS product work
+
+**Calendar review date: November 3, 2026 (all-day, after current iOS shipping window).** This is a review, not a shipping or activation deadline. Priority order at that review:
+
+1. Validate activity total distance versus race-pace work distance and projected whole-session miles.
+2. Confirm live goal/fast/easy pace authority and actual app Week readback.
+3. Make next-day recovery capturable and preserve existing session history.
+4. Reuse existing notes before considering minimal new segment RPE, company and fueling fields.
+
+The current FORM release is protected. No speculative scoring, prediction feature or new workout database is authorized. Any work after review must be staged in a separately approved bounded implementation batch. The standard active Weekly Company Review and athlete coach records remain the broader owning sources.
