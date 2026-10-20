@@ -6,7 +6,7 @@
    chapter with another grid of interchangeable cards. */
 .home-world.home-world-featured{
   background:#EEEDE8;color:#10161A;position:relative;isolation:isolate;
-  padding:0 0 clamp(78px,8vw,124px);overflow:hidden;
+  padding:0 0 clamp(56px,5vw,84px);overflow:hidden;
 }
 .home-world-feature{position:relative;display:flex;align-items:center;min-height:clamp(540px,49vw,770px);margin:0 auto;width:100%;isolation:isolate}
 .home-world-feature-copy{position:relative;z-index:2;box-sizing:border-box;flex:0 0 42%;padding:clamp(70px,9vw,120px) 0 clamp(72px,8vw,110px) max(24px,calc((100vw - var(--max,1280px))/2));max-width:670px}
@@ -45,7 +45,7 @@
 .home-evidence-photograph{position:absolute;inset:0 0 0 38%;z-index:0;pointer-events:none;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 30%);mask-image:linear-gradient(90deg,transparent,#000 30%)}
 .home-evidence-photograph img{width:100%;height:100%;display:block;object-fit:cover;object-position:50% 45%;filter:grayscale(1) contrast(1.10) brightness(.88)}
 .home-evidence::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background:linear-gradient(0deg,rgba(6,14,12,.68),transparent 70%)}
-.home-evidence>.wrap{position:relative;z-index:1;width:100%}
+.home-evidence>.wrap{position:relative;z-index:1;width:min(var(--max),calc(100% - 2 * var(--public-gutter)));margin-inline:auto}
 .home-evidence .home-evidence-question h2{max-width:12ch;text-wrap:balance}
 .home-evidence .home-evidence-result>p{max-width:32ch;font-size:clamp(19px,2vw,25px);color:#f4f0e6}
 .home-evidence .home-evidence-result dt{font-size:clamp(32px,3.2vw,52px);font-weight:450}
@@ -81,7 +81,7 @@
   .home-world-architecture img{object-position:50% 43%}
   .home-world-sheet-head{display:block;padding-inline:var(--public-gutter,24px);margin-top:22px}
   .home-world-sheet-head>p:last-child{margin-top:8px;font-size:14px}
-  .home-world-featured .home-world-sheet{margin-top:0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;scroll-padding-left:var(--public-gutter,24px)}
+  .home-world-featured .home-world-sheet{margin-top:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;scroll-padding-left:var(--public-gutter,24px)}
   .home-world-featured .home-world-sheet img{height:clamp(220px,54vw,300px)}
   .home-world-featured .home-world-sheet li:nth-child(1) img{width:min(79vw,430px);height:clamp(220px,54vw,300px)}
   .home-world-featured .home-world-sheet li:nth-child(2) img{width:min(59vw,280px);height:clamp(265px,67vw,350px)}
@@ -102,3 +102,7 @@
 @media(prefers-reduced-motion:reduce){
   .home-world-featured .home-world-sheet img{transition:none}
 }
+/* The closing action sits on paper: ink, so it reads as the one thing to press. */
+.intake .home-hero-primary{background:#10161A;color:#F1EFE8;border-color:#10161A}
+.intake .home-hero-primary:hover{background:#1B242B;color:#F1EFE8}
+.intake .home-hero-primary:focus-visible{outline:2px solid #10161A;outline-offset:3px}
