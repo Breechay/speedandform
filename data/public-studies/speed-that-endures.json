@@ -64,7 +64,7 @@
     "source_url": "/labs/speed-that-endures/#rhythm-read",
     "status": "Reusable continuous progression ends at 8 miles in training; athlete-specific late-run race-pace rehearsal and recovery monitoring follow."
   },
-  "source_sha256": "e811aa89c722a4c1f6307ec8485bb112a087b284ab4dc35db16153f2516c3d94",
+  "source_sha256": "87b0caad5133a99c16f4bb4dfe6f2c5087d89c6e7216710e7816cad2f404d2dd",
   "previous_support": {
     "date": "2026-10-06",
     "label": "Oct 6",
@@ -93,9 +93,21 @@
     "total": "11.49 mi / 1:23:55.3",
     "athlete_response": "Reported hard effort and meaningful benefit from people running alongside him late.",
     "coach_read": "Race-pace duration demonstrated, not yet economical or independently repeatable.",
-    "revised_support": "October 27: 4 continuous miles at race pace; October 29: controlled 2 × 8-minute tempo; November 7: 14 miles, last 3 at race pace; November 14: 14 miles, last 5 at race pace; taper begins November 16.",
+    "revised_support": "Oct 27 solo four at 6:40–6:45; Oct 29 continuous controlled 20 min; Nov 7 late three at 6:48–6:52; Nov 14 late five at 6:48–6:52 with race morning/fuel rehearsal; Nov 17 three continuous; Nov 19 2 × 5 min controlled; race Dec 5 sub-1:30.",
     "race": "Orlando Half Marathon · December 5, 2026",
     "race_outcome": "pending",
     "source_url": "/labs/speed-that-endures/#oct20-jose"
+  },
+  "pace_psychology": {
+    "observed_on": "2026-10-20",
+    "goal": "Sub-1:30",
+    "fresh_training_pace": "6:40–6:45/mi",
+    "late_goal_pace": "6:48–6:52/mi",
+    "hypothesis": "José reports running with others improves perceived ability to maintain rhythm; it is not causal proof.",
+    "outcome": "Eight continuous training-pace miles at 6:44/mi completed; effort high and recovery not yet verified.",
+    "next_tests": "Oct 27 four solo faster training miles; Nov 10 fresh three goal-pace miles; Nov 7 late three goal-pace miles; Nov 14 late five goal-pace miles plus practiced fueling and company.",
+    "race_strategy": "Controlled opening around 6:50–6:51, even miles through nine, group for steadiness rather than a compulsory faster finish.",
+    "measurement": "Pace, RPE, company, reliable HR when comparable, fueling, weather, sleep, 24- and 48-hour recovery.",
+    "source_url": "/labs/speed-that-endures/#oct20-psychology"
   }
 }
