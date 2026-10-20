@@ -64,7 +64,7 @@
     "source_url": "/labs/speed-that-endures/#rhythm-read",
     "status": "Reusable continuous progression ends at 8 miles in training; athlete-specific late-run race-pace rehearsal and recovery monitoring follow."
   },
-  "source_sha256": "0786004453c03fadc431b43560dbe8366f552fe397e3b3fc1d1263a0ef77a3a1",
+  "source_sha256": "306ff8573181ac24fba0890e3245bfbba912f858f137d9f78f62c6b7319247bc",
   "previous_support": {
     "date": "2026-10-06",
     "label": "Oct 6",
@@ -135,7 +135,7 @@
       }
     ],
     "taper": "Nov 21 ten easy; Nov 28 eight easy; no third late-fast long run",
-    "measures": "Output, RPE, context, comparable HR, nutrition/hydration tolerance, next-day recovery",
+    "measures": "Final 3/5 pace splits and steadiness; RPE entering the goal block, midway and at finish; comparable HR as context only; maple syrup and bottle quantities/tolerance; solo-to-partner transition; next-day and 48h recovery. Not a literal simulation of the last five miles after nine miles at race pace.",
     "source_url": "/labs/speed-that-endures/#oct20-late-durability"
   },
   "coach_race_brief_as_of": "2026-10-20",
