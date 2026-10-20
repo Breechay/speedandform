@@ -49,7 +49,7 @@ assert.match(runCode, /heroAction\.firstChild\.textContent = upcoming\.length/);
 const home = read('index.html');
 assert.ok(home.includes('href="/athletes/"'), 'Athletes remains available through the shared menu');
 assert.doesNotMatch(home.match(/<div class="home-hero-actions"[\s\S]*?<\/div>/)?.[0] || '', /\/athletes\//, 'Athletes do not occupy the homepage primary entrance');
-assert.match(read('css/home-bend-seam.css'), /margin-top:-clamp\(/, 'Bend begins inside the opening viewport');
+assert.match(read('css/home-bend-seam.css'), /margin-top:calc\(-1 \* clamp\(/, 'Bend begins inside the opening viewport');
 const rules = read('docs/design/FORM_CINEMATIC_WEB_DIRECTION_2026-10-19.md');
 assert.match(rules, /Color integrity/);
 assert.match(rules, /native Running and Strength apps are a separate pass/i);
