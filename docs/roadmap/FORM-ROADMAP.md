@@ -1,3 +1,11 @@
+## October 20 · Homepage corner and menu refinement
+
+- Source batch on `codex/homepage-continuity-refinement`, based on merged #325 (`b91f9244`). Upper-left corner uses the upper chapter photograph; right corner uses the strip photograph; lower-left uses the evidence photograph. Measured bend proportions remain unchanged.
+- Lane drawing progresses once instead of unwinding on reverse scroll; photographs no longer fade through a blank field. Photo drift is capped to 65% of viewport width and yields to manual scrolling. Reduced-motion changes are handled live.
+- Drawer masthead spans its full width, photographs use less vertical space, link styling no longer adds padding around photographic cards, and delayed link entrances are removed. The live homepage masthead was observed to be absolute, not sticky; the sticky inset surface belongs to the drawer.
+- Static checks: public copy, publication contract, menu coverage/idempotence, color integrity, visual theater and editorial scan pass. `sf-bend.cjs` has an existing obsolete expectation for the removed inline evidence bend; baseline failure confirmed separately. No test weakened.
+- Visual evidence: owner screenshots and live desktop reviewed. Local preview is unreachable from the available remote browser; candidate responsive, crop and interaction QA remains open. No production deployment. Do not rate this candidate or merge it before rendered QA.
+
 ## October 13 · Adrian study and completed Strength evidence
 
 ## October 15 · Recovered track selection

@@ -131,3 +131,12 @@
 .intake .home-hero-primary:hover{background:#fff;color:#0B0B0B}
 .intake .home-hero-primary:focus-visible{outline:2px solid #F4F2EC;outline-offset:3px}
 .intake.intake-single+.footer,.intake.intake-single~.footer{border-top:0}
+
+/* Keep the strip available by touch/keyboard, with no racing six-frame traverse. */
+.home-world.home-world-strip .home-world-sheet{overflow-x:auto;scrollbar-width:none}
+.home-world.home-world-strip .home-world-sheet::-webkit-scrollbar{display:none}
+.home-world-sheet:focus-visible{outline:2px solid #F4F2EC;outline-offset:-4px}
+.home-evidence::after{background:linear-gradient(0deg,rgba(11,11,11,.68),transparent 70%)}
+.home-evidence .home-evidence-links a:first-child{border-bottom:0}
+@media(prefers-reduced-motion:reduce){.home-world.home-world-strip .home-world-sheet{overflow-x:auto}}
+.home-world.home-world-strip .home-world-sheet ul{will-change:auto}

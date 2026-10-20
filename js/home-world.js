@@ -1,24 +1,27 @@
-// The photo stream (Oct 19, 2026): one continuous run of frames inside the second bend, drifting
-// left into the curve as the section crosses the screen, on every width. With Reduce Motion it
-// stays still and scrolls by hand. The bend itself is drawn by home-bend-seam.js.
+// A gentle scroll-linked drift. Direct touch, horizontal wheel or keyboard input
+// takes over permanently; reduced motion uses the same native photo scroller.
 (() => {
   const sheet = document.querySelector('[data-world-sheet]');
   if (!sheet) return;
   const strip = sheet.querySelector('ul');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
-  let raf = 0;
+  let raf = 0, manual = false;
   function update() {
     raf = 0;
-    if (reduce.matches) { strip.style.transform = ''; return; }
+    if (reduce.matches || manual) return;
     const r = sheet.getBoundingClientRect();
-    const travel = Math.max(0, strip.scrollWidth - sheet.clientWidth);
-    // 0 when the sheet enters at the bottom of the screen, 1 when it leaves at the top.
+    if (r.bottom < 0 || r.top > innerHeight) return;
+    const travel = Math.min(sheet.clientWidth * 0.65, Math.max(0, strip.scrollWidth - sheet.clientWidth));
     const p = Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight + r.height)));
-    strip.style.transform = `translate3d(${(-travel * p).toFixed(1)}px,0,0)`;
+    sheet.scrollLeft = travel * p;
   }
   const queue = () => { if (!raf) raf = requestAnimationFrame(update); };
+  sheet.addEventListener('pointerdown', () => { manual = true; }, { passive: true });
+  sheet.addEventListener('wheel', e => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY) || e.shiftKey) manual = true; }, { passive: true });
+  sheet.addEventListener('keydown', e => { if (['ArrowLeft','ArrowRight','Home','End'].includes(e.key)) manual = true; });
   addEventListener('scroll', queue, { passive: true });
   addEventListener('resize', queue);
   reduce.addEventListener('change', queue);
+  sheet.querySelectorAll('img').forEach(img => img.addEventListener('load', queue, { once: true }));
   update();
 })();

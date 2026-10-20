@@ -10,13 +10,24 @@
   const infield = section.querySelector('.bend-infield');
   const strip = section.nextElementSibling && section.nextElementSibling.matches('[data-bend-strip]') ? section.nextElementSibling : null;
   const stripField = strip && strip.querySelector('.strip-infield');
-  let pockets = null;
+  // Each exposed corner belongs to its adjacent photographic chapter.
+  const pockets = {};
+  const evidence = document.querySelector('.home-evidence');
+  function pocket(name, source) {
+    if (!source) return null;
+    const frame = document.createElement('div');
+    frame.className = 'bend-pockets bend-pocket-' + name;
+    frame.setAttribute('aria-hidden', 'true');
+    const img = source.cloneNode(true);
+    img.alt = '';
+    frame.appendChild(img);
+    section.prepend(frame);
+    return frame;
+  }
   if (strip) {
-    pockets = document.createElement('div');
-    pockets.className = 'bend-pockets';
-    pockets.setAttribute('aria-hidden', 'true');
-    pockets.innerHTML = '<img src="/media/library/night-pair-track-1200.webp" srcset="/media/library/night-pair-track-1200.webp 1200w, /media/library/night-pair-track-2400.webp 2400w" sizes="100vw" alt="" loading="lazy" decoding="async">';
-    section.prepend(pockets);
+    pockets.upper = pocket('upper', infield && infield.querySelector('img'));
+    pockets.right = pocket('right', strip.querySelector('img'));
+    pockets.lower = pocket('lower', evidence && evidence.querySelector('img'));
   }
   const svg = document.createElementNS(NS, 'svg');
   svg.setAttribute('class', 'bend-seam');
@@ -116,28 +127,38 @@
       infield.style.height = (2 * rin) + 'px';
       infield.style.clipPath = `path('M-2 0H${f(cx)}A${f(rin)} ${f(rin)} 0 0 1 ${f(cx)} ${f(2 * rin)}H-2Z')`;
     }
-    // With the second bend below, the photograph from below fills every pocket the lanes leave:
-    // down the left outside the second bend, and the corner outside the first bend on the right.
-    // The lanes are the only dark on the band.
-    if (strip && pockets) {
+    // Split the outside of the second curve at its apex. The upper corner is
+    // the first chapter; the lower corner belongs to the evidence below.
+    if (strip) {
       const R = rin + outer, B = 2 * H1;
-      let d = `M-2 ${f(2 * rin)}H${f(cx2)}`;
-      if (cx2 - R >= -2) {
-        d += `A${f(R)} ${f(R)} 0 0 0 ${f(cx2 - R)} ${f(cy2)}A${f(R)} ${f(R)} 0 0 0 ${f(cx2)} ${f(B)}H-2Z`;
-      } else {
-        const h = Math.sqrt(R * R - (cx2 + 2) * (cx2 + 2));
-        d += `A${f(R)} ${f(R)} 0 0 0 -2 ${f(cy2 - h)}Z`;
-        d += `M-2 ${f(cy2 + h)}A${f(R)} ${f(R)} 0 0 0 ${f(cx2)} ${f(B)}H-2Z`;
-      }
+      const x = Math.max(-2, cx2 - R);
+      const h = cx2 - R >= -2 ? 0 : Math.sqrt(R * R - (cx2 + 2) ** 2);
+      const upper = `M-2 ${f(2 * rin)}H${f(cx2)}A${f(R)} ${f(R)} 0 0 0 ${f(x)} ${f(cy2 - h)}H-2Z`;
+      const lower = `M-2 ${f(cy2 + h)}H${f(x)}A${f(R)} ${f(R)} 0 0 0 ${f(cx2)} ${f(B)}H-2Z`;
       const dx = W + 2 - cx;
-      if (dx < R) {
-        const yE = cy + Math.sqrt(R * R - dx * dx);
-        d += `M${W + 2} ${f(yE)}V${f(H1)}H${f(cx)}A${f(R)} ${f(R)} 0 0 0 ${W + 2} ${f(yE)}Z`;
-      } else {
-        d += `M${W + 2} ${f(cy)}V${f(H1)}H${f(cx)}A${f(R)} ${f(R)} 0 0 0 ${f(cx + R)} ${f(cy)}Z`;
+      const y = dx < R ? cy + Math.sqrt(R * R - dx * dx) : cy;
+      const right = `M${W + 2} ${f(y)}V${f(H1)}H${f(cx)}A${f(R)} ${f(R)} 0 0 0 ${f(Math.min(W + 2, cx + R))} ${f(y)}Z`;
+      for (const [name, d] of Object.entries({upper, lower, right})) {
+        const frame = pockets[name];
+        if (!frame) continue;
+        frame.style.height = B + 'px';
+        frame.style.clipPath = `path('${d}')`;
       }
-      pockets.style.height = B + 'px';
-      pockets.style.clipPath = `path('${d}')`;
+      // Share the upper photograph's render plane with its corner. No unrelated
+      // track-color slivers and no different zoom on the two halves.
+      const photoHeight = cy2;
+      section.style.setProperty('--infield-photo-height', photoHeight + 'px');
+      if (pockets.upper) pockets.upper.querySelector('img').style.height = photoHeight + 'px';
+      if (pockets.right) {
+        const img = pockets.right.querySelector('img');
+        img.style.top = cy + 'px';
+        img.style.height = (H1 - cy) + 'px';
+      }
+      if (pockets.lower) {
+        const img = pockets.lower.querySelector('img');
+        img.style.top = cy2 + 'px';
+        img.style.height = (B - cy2 + (evidence ? evidence.offsetHeight : 0)) + 'px';
+      }
     }
     maskHero({ cx, cy, R: rin + outer });
     prime();
@@ -173,7 +194,7 @@
 
   // The lanes draw with the scroll, like the app's opening: inner lane first, each outer lane a beat
   // behind, the start line last. A short arrival on load so the first screen already shows the track.
-  let lens = [], intro = 0, raf = 0;
+  let lens = [], intro = 0, raf = 0, progress = 0;
   function prime() {
     if (reduce.matches) { section.classList.add('bend-in'); drawn = true; if (stripField) stripField.style.opacity = 1; return; }
     lens = [...lanes.querySelectorAll('path')].map((p) => {
@@ -196,7 +217,7 @@
   function paint() {
     raf = 0;
     if (reduce.matches || !lens.length) return;
-    const t = span();
+    const t = progress = Math.max(progress, span());
     const p1 = Math.max(strip ? clamp(t / 0.5) : t, intro);
     const p2 = strip ? clamp((t - 0.5) / 0.5) : 0;
     let a = 0, b = 0;
@@ -207,7 +228,7 @@
       else { k = clamp((p1 - a * 0.035) / (1 - 8 * 0.035)); a++; }
       el.style.strokeDashoffset = (lens[i] * (1 - ease(k))).toFixed(1);
     });
-    if (stripField) stripField.style.opacity = clamp((t - 0.4) / 0.2).toFixed(3);
+    // Photographs remain present while their lane outlines arrive.
     if (p1 > 0.55 && !drawn) { drawn = true; section.classList.add('bend-in'); }
   }
   const queue = () => { if (!raf) raf = requestAnimationFrame(paint); };
@@ -217,8 +238,15 @@
     const t0 = performance.now();
     const tick = (now) => { intro = Math.min(0.42, ((now - t0) / 1400) * 0.42); queue(); if (intro < 0.42) requestAnimationFrame(tick); };
     requestAnimationFrame(tick);
-    addEventListener('scroll', queue, { passive: true });
+
   }
+  addEventListener('scroll', queue, { passive: true });
+  reduce.addEventListener('change', () => {
+    if (reduce.matches) {
+      lanes.querySelectorAll('path').forEach(p => { p.style.strokeDasharray = ''; p.style.strokeDashoffset = ''; });
+    }
+    prime();
+  });
   let t;
   addEventListener('resize', () => { clearTimeout(t); t = setTimeout(() => { layout(); prime(); }, 120); });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { layout(); prime(); });
