@@ -35,6 +35,9 @@
   svg.setAttribute('focusable', 'false');
   const lanes = document.createElementNS(NS, 'g');
   lanes.setAttribute('class', 'bend-seam-lanes');
+  const paper = document.createElementNS(NS, 'path');
+  paper.setAttribute('class', 'bend-seam-paper');
+  svg.appendChild(paper);
   svg.appendChild(lanes);
   const mark = document.createElement('img');
   mark.className = 'bend-seam-mark';
@@ -71,7 +74,7 @@
     const H1 = 2 * rin + outer;
     // The track runs on: the first bend's home straight is the second bend's back straight, so the
     // lanes swap inner for outer and turn the other way around the photographs below (an S).
-    const cx2 = strip ? Math.min(cx, wide ? Math.max(16, W * 0.03) + outer + rin : W - cx) : 0;
+    const cx2 = strip ? Math.min(cx, wide ? Math.max(16, W * 0.03) + outer + rin : W * 0.46) : 0;
     const cy2 = 3 * rin + outer;
     const tall = strip ? 2 * H1 : H1;
     svg.setAttribute('width', W);
@@ -83,11 +86,14 @@
     for (let n = 0; n < 9; n++) {
       const r = rin + n * lane;
       const p = document.createElementNS(NS, 'path');
-      p.setAttribute('d', `M-40 ${f(cy - r)}H${f(cx)}A${f(r)} ${f(r)} 0 0 1 ${f(cx)} ${f(cy + r)}H${strip && n ? f(cx2) : -40}`);
+      p.setAttribute('d', `M-40 ${f(cy - r)}H${f(cx)}A${f(r)} ${f(r)} 0 0 1 ${f(cx)} ${f(cy + r)}H${strip ? f(cx2) : -40}`);
       lanes.appendChild(p);
     }
     if (strip) {
       strip.style.height = H1 + 'px';
+      // A true offset ribbon: concentric arcs retain identical lane gaps at every width.
+      const R = rin + outer;
+      paper.setAttribute('d', `M${W + 2} ${f(2 * rin)}H${f(cx2)}A${f(R)} ${f(R)} 0 0 0 ${f(cx2)} ${f(2 * H1)}H${W + 2}V${f(2 * H1 - outer)}H${f(cx2)}A${f(rin)} ${f(rin)} 0 0 1 ${f(cx2)} ${f(H1)}H${W + 2}Z`);
       for (let n = 0; n < 9; n++) {
         const r2 = rin + (8 - n) * lane;
         const p = document.createElementNS(NS, 'path');
@@ -146,7 +152,7 @@
       }
       // Share the upper photograph's render plane with its corner. No unrelated
       // track-color slivers and no different zoom on the two halves.
-      const photoHeight = cy2;
+      const photoHeight = cy2 + (W > 760 ? 10 : 0);
       section.style.setProperty('--infield-photo-height', photoHeight + 'px');
       if (pockets.upper) pockets.upper.querySelector('img').style.height = photoHeight + 'px';
       if (pockets.right) {
@@ -220,12 +226,11 @@
     const t = progress = Math.max(progress, span());
     const p1 = Math.max(strip ? clamp(t / 0.5) : t, intro);
     const p2 = strip ? clamp((t - 0.5) / 0.5) : 0;
-    let a = 0, b = 0;
     lanes.querySelectorAll('path').forEach((el, i) => {
       let k;
       if (el.classList.contains('bend-seam-start')) k = clamp((p1 - 0.78) / 0.22);
-      else if (el.classList.contains('bend-seam-b')) { k = clamp((p2 - b * 0.035) / (1 - 8 * 0.035)); b++; }
-      else { k = clamp((p1 - a * 0.035) / (1 - 8 * 0.035)); a++; }
+      else if (el.classList.contains('bend-seam-b')) { k = p2; }
+      else { k = p1; }
       el.style.strokeDashoffset = (lens[i] * (1 - ease(k))).toFixed(1);
     });
     // Photographs remain present while their lane outlines arrive.

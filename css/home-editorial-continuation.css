@@ -154,3 +154,7 @@
 .home-world.home-world-strip .home-world-sheet{cursor:grab;touch-action:pan-x pan-y;user-select:none}
 .home-world.home-world-strip .home-world-sheet.is-dragging{cursor:grabbing}
 @media(prefers-reduced-motion:reduce){.home-hero-primary svg{transition:none}.home-hero-primary:hover svg{transform:none}}
+
+.home-link-arrow{display:inline-block;flex:none;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}
+.home-evidence .home-evidence-links a:first-child{display:inline-flex;align-items:center;gap:24px;padding:10px 0;text-decoration:none;border:0;border-bottom:1px solid rgba(244,242,236,.5);border-radius:0;min-height:44px}
+.home-evidence .home-evidence-links a:first-child:hover{border-bottom-color:#F4F2EC}
