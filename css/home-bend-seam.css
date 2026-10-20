@@ -115,3 +115,29 @@
 .bend-pockets{position:absolute;left:0;right:0;top:0;z-index:0;overflow:hidden;pointer-events:none;background:#1A1A1A}
 .bend-pockets img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
 .bend-pockets::after{content:"";position:absolute;inset:0;background:rgba(8,8,8,.18)}
+
+/* Adjacent photographs own the corners; the measured lanes stay unchanged. */
+.bend-infield img,.bend-pocket-upper img{height:var(--infield-photo-height,100%);object-position:60% 0%;transform:none;transition:none}
+.home-entry[data-bend-seam].bend-in .bend-infield img{transform:none}
+.bend-pockets{background:#0B0B0B}
+.bend-pockets img{position:absolute;left:0;width:100%;object-fit:cover}
+.bend-pocket-upper::after{background:linear-gradient(90deg,rgba(8,8,8,.62),rgba(8,8,8,.18) 46%,transparent 70%)}
+.bend-pocket-right img{object-position:100% 0%;filter:none}
+.bend-pocket-lower img{object-position:50% 0%;filter:grayscale(1) contrast(1.10) brightness(.88)}
+.bend-pocket-lower::after{background:linear-gradient(90deg,#0B0B0B,transparent 68%)}
+@media(max-width:760px){.bend-infield img,.bend-pocket-upper img{object-position:58% 0%}}
+/* A complete photographic chapter remains when scripts are unavailable. */
+.bend-infield{height:100%}
+
+@media(min-width:761px){
+ .bend-infield img,.bend-pocket-upper img{transform:translateY(-10px)}
+ .home-entry[data-bend-seam].bend-in .bend-infield img{transform:translateY(-10px)}
+}
+
+/* Broader photographic turns, with a bone ribbon around the third fold. */
+.home-entry.home-bend-only[data-bend-seam]{min-height:clamp(600px,54vw,820px)}
+.bend-seam-paper{fill:#F4F2EC;stroke:none}
+.bend-seam-lanes .bend-seam-b{stroke:rgba(11,11,11,.38)}
+.bend-seam-mark{transition:opacity 500ms ease}
+@media(max-width:760px){.home-entry.home-bend-only[data-bend-seam]{min-height:clamp(500px,136vw,600px)}}
+@media(prefers-reduced-motion:reduce){.bend-seam-mark{transition:none}}

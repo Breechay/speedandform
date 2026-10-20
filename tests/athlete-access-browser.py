@@ -95,7 +95,7 @@ try:
     page.wait_for_timeout(160);check(f'{role} {width}: stable rendering',page.evaluate('__mutations')<10)
     if role=='coach' and width in [390,1440]:page.screenshot(path=str(OUT/f'coach-{width}.png'),full_page=True)
     page.goto(BASE+'/');page.wait_for_function("document.documentElement.dataset.formAccount!==undefined")
-    check(f'{role} home {width}: correct label',page.locator('a[data-form-account]').first.inner_text()=={'coach':'Console →','jose':'My training →','guest':'Sign in →'}[role])
+    check(f'{role} home {width}: correct label',page.locator('a[data-form-account]').first.get_attribute('aria-label')=={'coach':'Console','jose':'My training','guest':'Sign in'}[role])
     check(f'{role} home {width}: no header overflow',page.locator('.header').evaluate('e=>e.scrollWidth<=innerWidth+1'))
     if role!='guest' and width==390:page.screenshot(path=str(OUT/f'{role}-home-390.png'))
     ctx.close()

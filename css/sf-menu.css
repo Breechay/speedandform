@@ -13,7 +13,7 @@ html:not(.sf-menu-enhanced) .sf-menu:target .sf-menu-panel,.sf-menu.is-open .sf-
 .sf-menu-top{position:sticky;top:0;z-index:2;display:flex;justify-content:flex-end;align-items:center;flex-wrap:wrap;gap:0 12px;min-height:56px;flex:none;background:#eeede8;padding:0 4px}
 .sf-menu-close{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:44px;min-height:44px;padding:10px 0 10px 14px;color:#0B0B0B;font:400 11px/1.2 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;background:transparent;cursor:pointer}
 .sf-menu-close::after{content:"×";font:300 25px/1 Arial,sans-serif}
-.sf-menu-close:hover{text-decoration:underline;text-underline-offset:5px}
+.sf-menu .sf-menu-close:hover{text-decoration:none;opacity:.75}
 
 /* Photographic hero entrance */
 .sf-menu-hero{position:relative;display:block;margin:0 -20px 8px;min-height:220px;overflow:hidden;text-decoration:none;color:#fff;flex:none}
@@ -137,3 +137,31 @@ body[data-sculpt-landing]>main,body[data-sculpt-landing]>.bs-header{container-ty
 }
 @keyframes sf-arrive{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 @keyframes sf-settle{from{transform:scale(1.07);opacity:.6}to{transform:scale(1);opacity:1}}
+
+/* A full-width sticky masthead, not an inset rectangle over scrolling pictures. */
+.sf-menu-panel{border-left:1px solid rgba(244,242,236,.18);scrollbar-width:thin;scrollbar-color:#555 #0B0B0B}
+.sf-menu-top{margin-inline:-28px;padding:12px 28px;min-height:76px;flex-wrap:nowrap;background:#0B0B0B;box-shadow:0 12px 20px -16px #000}
+.sf-menu-hero img{height:auto;aspect-ratio:3/2;object-fit:contain;transform:none}
+.sf-menu-hero:hover img,.sf-menu-hero:focus-visible img{transform:none}
+.sf-menu-hero-title{font-size:clamp(46px,6vw,68px)}
+.sf-menu-hero-overlay{padding-bottom:20px}
+.sf-menu .sf-menu-cards .sf-menu-card{display:block;padding:0;border-radius:12px}
+.sf-menu-card img{height:clamp(110px,17vh,150px)}
+.sf-menu .sf-menu-cards .sf-menu-card span{font-size:26px;bottom:12px}
+.sf-menu-lead a.sf-menu-first{font-size:clamp(30px,4vw,40px);line-height:1.05}
+.sf-menu-group a{font-size:clamp(23px,2.5vw,28px)}
+.sf-menu.is-open .sf-menu-hero,.sf-menu.is-open .sf-menu-visual,.sf-menu.is-open .sf-menu-group:not(.sf-menu-visual),.sf-menu.is-open .sf-menu-foot{animation:none}
+@media(max-width:520px){.sf-menu-top{margin-inline:-20px;padding-inline:20px}.sf-menu-card span{left:12px}.sf-menu-hero-title{font-size:48px}}
+@media(prefers-reduced-motion:reduce){.sf-menu-card:hover img,.sf-menu-card:focus-visible img{transform:none}}
+
+/* Reflow inside the drawer itself, including browser/text zoom. */
+.sf-menu-panel{container-type:inline-size}
+@container(max-width:260px){
+ .sf-menu-top{flex-wrap:wrap;gap:4px 8px}
+ .sf-menu-home{min-width:60px}
+ .sf-menu-home img{width:60px}
+ .sf-menu-cards{grid-template-columns:1fr}
+ .sf-menu-hero-title{font-size:36px;letter-spacing:-.045em}
+ .sf-menu-hero-overlay{padding:12px}
+ .sf-menu-lead a.sf-menu-first{font-size:28px}
+}
