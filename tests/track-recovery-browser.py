@@ -8,7 +8,7 @@ server=http.server.ThreadingHTTPServer(('127.0.0.1',0),functools.partial(http.se
 threading.Thread(target=server.serve_forever,daemon=True).start()
 origin=f'http://127.0.0.1:{server.server_port}'
 a=next(a for a in json.loads((ROOT/'track/media-manifest.json').read_text())['albums'] if a['slug']=='track-selection')
-assert a['date'] is None
+assert a['kind']=='session' and a['date']=='2026-09-24'
 assert [m['id'] for m in a['media']]==['frame-'+n for n in ['5728','8046','8045','8058','8044','5701','8057','8080']]
 checks=[]
 with sync_playwright() as p:
@@ -53,7 +53,7 @@ with sync_playwright() as p:
    if label=='album':
     assert imgs.count()==8
     assert imgs.evaluate_all('(ims)=>ims.every(i=>i.complete&&i.naturalWidth>0&&Math.abs(i.clientWidth/i.clientHeight-i.naturalWidth/i.naturalHeight)<.02)')
-    assert 'Undated selection' in page.locator('main').inner_text()
+    assert 'September 24, 2026' in page.locator('main').inner_text()
    page.evaluate('scrollTo(0,0)');page.screenshot(path=str(OUT/f'{label}-{width}.png'),full_page=True)
    checks.append(f'{label} {width}: loaded, contained')
   page.goto(origin+'/track/track-selection/',wait_until='networkidle')
