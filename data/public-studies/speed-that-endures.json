@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "source_path": "labs/speed-that-endures/index.html",
-  "source_url": "/labs/speed-that-endures/#rhythm-read",
+  "source_url": "/labs/speed-that-endures/#oct20-jose",
   "status": "ongoing",
   "latest_completed": {
     "date": "2026-09-29",
@@ -37,7 +37,10 @@
   "next_distance_ask": {
     "date": "2026-10-20",
     "distance_mi": 8,
-    "state": "scheduled"
+    "state": "completed",
+    "work_time": "53:54.5",
+    "work_pace": "6:44/mi",
+    "interpretation": "Distance at prescribed pace achieved; relative effort was high and next-day recovery not yet verified."
   },
   "latest_support": {
     "date": "2026-10-13",
@@ -49,7 +52,7 @@
     "work_pace": "6:06/mi",
     "garmin_5k_best_effort": "18:56",
     "decision": "October 13: 20 minutes continuous at 6:06/mi, faster than the established race-pace band. This does not replace the six-mile continuous race-pace benchmark. No October 15 completion is established in the public evidence.",
-    "next_test": "A longer uninterrupted hold in José’s 6:30–6:45/mi race-pace band is the next durability question; later completion not yet documented."
+    "next_test": "October 20: eight continuous race-pace miles completed in 53:54.5 at 6:44/mi. Subsequent goal is less costly repeatability, not automatically advancing to twelve continuous miles."
   },
   "review_amendment": {
     "date": "2026-10-06",
@@ -59,9 +62,9 @@
   "continuity_amendment": {
     "date": "2026-10-06",
     "source_url": "/labs/speed-that-endures/#rhythm-read",
-    "status": "Individual continuity trial plus system revision: reusable ownership asks stop at 8; later race pace is separate late-access durability; no mandatory 12-mile rung."
+    "status": "Reusable continuous progression ends at 8 miles in training; athlete-specific late-run race-pace rehearsal and recovery monitoring follow."
   },
-  "source_sha256": "53f3fd255e95769796e06348a82b5005bcf3d33f9bd3074f5ee7cbedabf63edf",
+  "source_sha256": "e811aa89c722a4c1f6307ec8485bb112a087b284ab4dc35db16153f2516c3d94",
   "previous_support": {
     "date": "2026-10-06",
     "label": "Oct 6",
@@ -78,5 +81,21 @@
     "mindset": "He said he still thinks about Brice’s cue, “Stop negotiating with yourself.” The cue is about appropriate effort and reengagement, not overriding pain or a needed training change.",
     "engagement": "José responded positively to the revision and called the continuous threshold a new challenge. This is engagement evidence, not readiness; the recovery gate remains explicit."
   },
-  "latest_jose_result_url": "/labs/speed-that-endures/#oct13-jose"
+  "latest_jose_result_url": "/labs/speed-that-endures/#oct20-jose",
+  "latest_jose_completion": {
+    "date": "2026-10-20",
+    "athlete": "José",
+    "work_distance_mi": 8,
+    "work_time": "53:54.5",
+    "work_pace": "6:44/mi",
+    "warmup": "20:00 / 2.42 mi",
+    "cooldown": "10:00.8 / 1.07 mi",
+    "total": "11.49 mi / 1:23:55.3",
+    "athlete_response": "Reported hard effort and meaningful benefit from people running alongside him late.",
+    "coach_read": "Race-pace duration demonstrated, not yet economical or independently repeatable.",
+    "revised_support": "October 27: 4 continuous miles at race pace; October 29: controlled 2 × 8-minute tempo; November 7: 14 miles, last 3 at race pace; November 14: 14 miles, last 5 at race pace; taper begins November 16.",
+    "race": "Orlando Half Marathon · December 5, 2026",
+    "race_outcome": "pending",
+    "source_url": "/labs/speed-that-endures/#oct20-jose"
+  }
 }
