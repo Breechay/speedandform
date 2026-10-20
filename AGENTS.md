@@ -29,7 +29,7 @@
 
 ## Standing art direction · October 14, 2026 (owner-approved; read before visual changes)
 
-**Never crop a head (Oct 19).** Every photograph, on every screen size, keeps at least 16px of picture above each head; set `object-position` per image and per breakpoint, and check phone and desktop renders before calling a crop done.
+**Never crop a head (Oct 19).** Every photograph, on every screen size, keeps clear picture above each head: at least 8% of the frame's height and never less than 40px (16px reads as cut). If the source photograph has no room above the heads, choose another photograph; do not crop it tighter. Set `object-position` per image and per breakpoint, and check phone and desktop renders before calling a crop done. Inside the bends, a photograph fills every pocket the lanes leave; the lanes are the only dark on the band.
 
 **FORM is not anti-decoration.** Brice wants theater, elegant drama, cinematic atmosphere, "wow", personality and reasons to linger. The goal is an emotionally engaging athletic editorial world, not quiet minimalism. Photographic strips, sophisticated shadows and gradients, dynamic compositions, visual pacing, rich black-and-white grading, film, immersive entrances and crafted motion are part of the design language. Keep atmospheric elements even when they serve beauty rather than navigation. **Never delete a beautiful visual element simply because it is decorative.**
 

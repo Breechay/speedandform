@@ -131,7 +131,7 @@ body[data-sculpt-landing]>main,body[data-sculpt-landing]>.bs-header{container-ty
 .pp-dir-head h1,.pp-stage-copy h1,.gr-hero h1,.rd-hero h1,.photos-editorial-copy h1,.bend-infield-copy h2,.intake-single .intake-copy h2{-webkit-mask-image:linear-gradient(100deg,#000 28%,rgba(0,0,0,.6) 96%);mask-image:linear-gradient(100deg,#000 28%,rgba(0,0,0,.6) 96%);padding-bottom:.08em}
 @media(prefers-reduced-motion:no-preference){
  .pp-dir-head h1,.pp-stage-copy,.gr-hero-copy,.rd-hero .rd-intro,.photos-editorial-copy h1{animation:sf-arrive 1s cubic-bezier(.22,.61,.36,1) .12s both}
- .pp-dir-photo img,.pp-stage .pp-hero,.gr-hero-frame>img,.rd-hero figure img{animation:sf-settle 1.8s cubic-bezier(.22,.61,.36,1) both}
+ .pp-dir-photo img,.pp-stage .pp-hero,.gr-hero-frame>img,.rd-hero figure img{animation:sf-settle 1.8s cubic-bezier(.22,.61,.36,1) both;transform-origin:50% 0%}
  .pp-list .pp-card{animation:sf-arrive .9s cubic-bezier(.22,.61,.36,1) both}
  .pp-list .pp-card:nth-child(2){animation-delay:.08s}.pp-list .pp-card:nth-child(3){animation-delay:.16s}.pp-list .pp-card:nth-child(n+4){animation-delay:.24s}
 }

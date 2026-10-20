@@ -304,3 +304,5 @@ body.pp-directory-page .pp-mono,body.pp-athlete-page .pp-mono{color:#c0beb5}
  .pp-directory-page .pp-dir-photo img{object-position:4% 46%}
  .pp-athlete-page .pp-grid img:first-child{height:clamp(300px,82vw,460px);object-position:50% 14%!important}
 }
+/* Per-photograph stage crops (head rule): these frames carry the head close to the top of the photograph. */
+.pp-athlete-page .pp-stage .pp-hero[src*="track-dusk"]{object-position:56% 0%!important}

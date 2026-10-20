@@ -107,22 +107,22 @@
 .intake .home-hero-primary:hover{background:#1A1A1A;color:#F4F2EC}
 .intake .home-hero-primary:focus-visible{outline:2px solid #0B0B0B;outline-offset:3px}
 
-/* The strip on paper after the bend: room to breathe above, no dead space below. */
-.home-world.home-world-strip{padding:clamp(64px,7vw,112px) 0 clamp(64px,7vw,112px)}
-.home-world-strip .home-world-sheet{margin-top:0}
-
-/* The track's other end: the strip slides through a second bend that opens to the right. */
-.home-world.home-world-strip{position:relative;padding:0;height:clamp(600px,54vw,780px);overflow:hidden}
-.strip-bend{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:visible}
-.strip-bend path{fill:none;stroke:rgba(11,11,11,.42);stroke-width:1.2px;vector-effect:non-scaling-stroke}
-.strip-bend .strip-bend-start{stroke:rgba(11,11,11,.7);stroke-width:1.4px}
-.strip-infield{position:absolute;inset:0;z-index:1;display:flex;align-items:center;background:#0B0B0B}
-.home-world-strip .home-world-sheet{margin:0;width:100%}
-.home-world-strip .home-world-sheet img{border-radius:14px}
+/* The second bend (Oct 19): the first bend's home straight turns the other way around one
+   continuous stream of photographs. Lanes, clip and heights are set by js/home-bend-seam.js; the
+   stream drifts with the scroll (js/home-world.js). Frames touch: no gaps, no corners, no ground. */
+.home-world.home-world-strip{position:relative;z-index:2;padding:0;height:clamp(560px,50vw,780px);overflow:hidden;background:#0B0B0B}
+.strip-infield{position:absolute;left:0;right:0;top:0;height:100%;z-index:1;overflow:hidden;background:#1A1A1A}
+.home-world-strip .home-world-sheet{margin:0;padding:0;width:100%;height:100%;overflow:hidden}
+.home-world-strip .home-world-sheet ul{height:100%;gap:0}
+.home-world-strip .home-world-sheet li{height:100%}
+.home-world-featured.home-world-strip .home-world-sheet li:nth-child(n) img{height:100%;width:auto;border-radius:0;object-fit:cover;transform:none;transition:none}
 @media(max-width:860px){
- .home-world.home-world-strip{height:clamp(440px,118vw,520px)}
- .home-world-strip .home-world-sheet{padding-left:calc(var(--public-gutter,24px) + 30px)}
+ .home-world.home-world-strip{height:clamp(470px,128vw,560px)}
+ .home-world-strip .home-world-sheet{scroll-snap-type:none}
+ .home-world-strip .home-world-sheet ul{will-change:transform}
+ .home-world-featured.home-world-strip .home-world-sheet li:nth-child(n) img{height:100%;width:auto}
 }
+@media(prefers-reduced-motion:reduce) and (max-width:860px){.home-world-strip .home-world-sheet{overflow-x:auto}}
 
 /* The close joins the footer: bone on black, one line and one button. */
 .intake.intake-single{background:#0B0B0B;color:#F4F2EC;padding:clamp(96px,10vw,160px) 0 clamp(40px,4vw,64px)}

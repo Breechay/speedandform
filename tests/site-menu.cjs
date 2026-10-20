@@ -36,8 +36,8 @@ for(const file of files){
  assert.equal(menuParent(html),'body',file+': drawer is a direct body child');
  assert.ok(/aria-controls=["']site-menu["']/.test(html),file+': control names its drawer');
  assert.ok(/href=["']#site-menu["']/.test(html),file+': no-JavaScript link');
- assert.equal(count(html,/<link\b[^>]*href=["']\/css\/sf-menu\.css\?v=20261019-cinema["'][^>]*>/g),1,file+': current shared style once');
- assert.equal(count(html,/<script\b[^>]*src=["']\/js\/sf-menu\.js\?v=20261019-cinema["'][^>]*>/g),1,file+': current shared script once');
+ assert.equal(count(html,/<link\b[^>]*href=["']\/css\/sf-menu\.css\?v=20261019-signed["'][^>]*>/g),1,file+': current shared style once');
+ assert.equal(count(html,/<script\b[^>]*src=["']\/js\/sf-menu\.js\?v=20261019-signed["'][^>]*>/g),1,file+': current shared script once');
  assert.ok(html.includes(fragment),file+': canonical menu content');
  assert.equal(transformHtml(html,file),html,file+': regeneration is idempotent');
  for(const href of expected)assert.ok(fragment.includes('href="'+href+'"'),'Menu target: '+href);

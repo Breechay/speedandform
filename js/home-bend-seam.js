@@ -8,6 +8,16 @@
   if (!section) return;
   const NS = 'http://www.w3.org/2000/svg';
   const infield = section.querySelector('.bend-infield');
+  const strip = section.nextElementSibling && section.nextElementSibling.matches('[data-bend-strip]') ? section.nextElementSibling : null;
+  const stripField = strip && strip.querySelector('.strip-infield');
+  let pockets = null;
+  if (strip) {
+    pockets = document.createElement('div');
+    pockets.className = 'bend-pockets';
+    pockets.setAttribute('aria-hidden', 'true');
+    pockets.innerHTML = '<img src="/media/library/night-pair-track-1200.webp" srcset="/media/library/night-pair-track-1200.webp 1200w, /media/library/night-pair-track-2400.webp 2400w" sizes="100vw" alt="" loading="lazy" decoding="async">';
+    section.prepend(pockets);
+  }
   const svg = document.createElementNS(NS, 'svg');
   svg.setAttribute('class', 'bend-seam');
   svg.setAttribute('aria-hidden', 'true');
@@ -47,16 +57,37 @@
     const cx = wide ? W - Math.max(48, W * 0.045) - rin : Math.round(Math.max(W * 0.46, W - rin * 0.9));
     const cy = rin;
     const top = outer + 2;
+    const H1 = 2 * rin + outer;
+    // The track runs on: the first bend's home straight is the second bend's back straight, so the
+    // lanes swap inner for outer and turn the other way around the photographs below (an S).
+    const cx2 = strip ? Math.min(cx, wide ? Math.max(16, W * 0.03) + outer + rin : W - cx) : 0;
+    const cy2 = 3 * rin + outer;
+    const tall = strip ? 2 * H1 : H1;
     svg.setAttribute('width', W);
-    svg.setAttribute('height', 2 * rin + 2 * top);
-    svg.setAttribute('viewBox', `0 ${-top} ${W} ${2 * rin + 2 * top}`);
+    svg.setAttribute('height', tall + top + 2);
+    svg.setAttribute('viewBox', `0 ${-top} ${W} ${tall + top + 2}`);
     svg.style.top = (-top) + 'px';
     lanes.replaceChildren();
+    const f = (v) => v.toFixed(1);
     for (let n = 0; n < 9; n++) {
       const r = rin + n * lane;
       const p = document.createElementNS(NS, 'path');
-      p.setAttribute('d', `M-40 ${cy - r}H${cx}A${r} ${r} 0 0 1 ${cx} ${cy + r}H-40`);
+      p.setAttribute('d', `M-40 ${f(cy - r)}H${f(cx)}A${f(r)} ${f(r)} 0 0 1 ${f(cx)} ${f(cy + r)}H${strip && n ? f(cx2) : -40}`);
       lanes.appendChild(p);
+    }
+    if (strip) {
+      strip.style.height = H1 + 'px';
+      for (let n = 0; n < 9; n++) {
+        const r2 = rin + (8 - n) * lane;
+        const p = document.createElementNS(NS, 'path');
+        p.setAttribute('class', 'bend-seam-b');
+        p.setAttribute('d', `M${f(cx2)} ${f(cy2 - r2)}A${f(r2)} ${f(r2)} 0 0 0 ${f(cx2)} ${f(cy2 + r2)}H${W + 40}`);
+        lanes.appendChild(p);
+      }
+      if (stripField) {
+        stripField.style.height = (2 * rin) + 'px';
+        stripField.style.clipPath = `path('M${W + 2} 0H${f(cx2)}A${f(rin)} ${f(rin)} 0 0 0 ${f(cx2)} ${f(2 * rin)}H${W + 2}Z')`;
+      }
     }
     const marks = [`M${cx} ${cy + rin}V${cy + rin + outer}`];
     for (let n = 2; n <= 8; n++) {
@@ -77,9 +108,37 @@
     mark.style.top = (gy - mh / 2) + 'px';
     if (hero) hero.style.setProperty('--seam-outer', Math.ceil(outer) + 'px');
     section.style.setProperty('--seam-outer', Math.ceil(outer) + 'px');
-    // The infield holds the photograph: clipped to the inner lane, so the track is its frame.
-    if (infield) infield.style.clipPath = `path('M-2 0H${cx.toFixed(1)}A${rin.toFixed(1)} ${rin.toFixed(1)} 0 0 1 ${cx.toFixed(1)} ${(2 * rin).toFixed(1)}H-2Z')`;
-    if (infield) infield.style.height = (2 * rin) + 'px';
+    // The infield holds the photograph: clipped to the inner lane, so the track is its frame. With
+    // the second bend below, the same photograph also fills every pocket the lanes leave: down the
+    // left, outside the second bend, and the corner outside the first bend on the right. The lanes
+    // are the only dark left on the page.
+    if (infield) {
+      infield.style.height = (2 * rin) + 'px';
+      infield.style.clipPath = `path('M-2 0H${f(cx)}A${f(rin)} ${f(rin)} 0 0 1 ${f(cx)} ${f(2 * rin)}H-2Z')`;
+    }
+    // With the second bend below, the photograph from below fills every pocket the lanes leave:
+    // down the left outside the second bend, and the corner outside the first bend on the right.
+    // The lanes are the only dark on the band.
+    if (strip && pockets) {
+      const R = rin + outer, B = 2 * H1;
+      let d = `M-2 ${f(2 * rin)}H${f(cx2)}`;
+      if (cx2 - R >= -2) {
+        d += `A${f(R)} ${f(R)} 0 0 0 ${f(cx2 - R)} ${f(cy2)}A${f(R)} ${f(R)} 0 0 0 ${f(cx2)} ${f(B)}H-2Z`;
+      } else {
+        const h = Math.sqrt(R * R - (cx2 + 2) * (cx2 + 2));
+        d += `A${f(R)} ${f(R)} 0 0 0 -2 ${f(cy2 - h)}Z`;
+        d += `M-2 ${f(cy2 + h)}A${f(R)} ${f(R)} 0 0 0 ${f(cx2)} ${f(B)}H-2Z`;
+      }
+      const dx = W + 2 - cx;
+      if (dx < R) {
+        const yE = cy + Math.sqrt(R * R - dx * dx);
+        d += `M${W + 2} ${f(yE)}V${f(H1)}H${f(cx)}A${f(R)} ${f(R)} 0 0 0 ${W + 2} ${f(yE)}Z`;
+      } else {
+        d += `M${W + 2} ${f(cy)}V${f(H1)}H${f(cx)}A${f(R)} ${f(R)} 0 0 0 ${f(cx + R)} ${f(cy)}Z`;
+      }
+      pockets.style.height = B + 'px';
+      pockets.style.clipPath = `path('${d}')`;
+    }
     maskHero({ cx, cy, R: rin + outer });
     prime();
   }
@@ -116,7 +175,7 @@
   // behind, the start line last. A short arrival on load so the first screen already shows the track.
   let lens = [], intro = 0, raf = 0;
   function prime() {
-    if (reduce.matches) { section.classList.add('bend-in'); drawn = true; return; }
+    if (reduce.matches) { section.classList.add('bend-in'); drawn = true; if (stripField) stripField.style.opacity = 1; return; }
     lens = [...lanes.querySelectorAll('path')].map((p) => {
       const len = p.getTotalLength();
       p.style.strokeDasharray = len;
@@ -125,21 +184,31 @@
     });
     paint();
   }
-  function progress() {
+  // One run through both bends: the first draws until its last lane reaches the bottom of the
+  // screen, the second picks up at the same point and finishes as its photographs settle.
+  function span() {
     const r = section.getBoundingClientRect(), vh = innerHeight;
-    return Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.55 + r.height * 0.55)));
+    if (!strip) return Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.55 + r.height * 0.55)));
+    return Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.8 + r.height)));
   }
+  const ease = (k) => 1 - Math.pow(1 - k, 3);
+  const clamp = (v) => Math.min(1, Math.max(0, v));
   function paint() {
     raf = 0;
     if (reduce.matches || !lens.length) return;
-    const p = Math.max(progress(), intro);
+    const t = span();
+    const p1 = Math.max(strip ? clamp(t / 0.5) : t, intro);
+    const p2 = strip ? clamp((t - 0.5) / 0.5) : 0;
+    let a = 0, b = 0;
     lanes.querySelectorAll('path').forEach((el, i) => {
-      const start = el.classList.contains('bend-seam-start');
-      const k = start ? Math.min(1, Math.max(0, (p - 0.78) / 0.22)) : Math.min(1, Math.max(0, (p - i * 0.035) / (1 - 8 * 0.035)));
-      const e = 1 - Math.pow(1 - k, 3);
-      el.style.strokeDashoffset = (lens[i] * (1 - e)).toFixed(1);
+      let k;
+      if (el.classList.contains('bend-seam-start')) k = clamp((p1 - 0.78) / 0.22);
+      else if (el.classList.contains('bend-seam-b')) { k = clamp((p2 - b * 0.035) / (1 - 8 * 0.035)); b++; }
+      else { k = clamp((p1 - a * 0.035) / (1 - 8 * 0.035)); a++; }
+      el.style.strokeDashoffset = (lens[i] * (1 - ease(k))).toFixed(1);
     });
-    if (p > 0.55 && !drawn) { drawn = true; section.classList.add('bend-in'); }
+    if (stripField) stripField.style.opacity = clamp((t - 0.4) / 0.2).toFixed(3);
+    if (p1 > 0.55 && !drawn) { drawn = true; section.classList.add('bend-in'); }
   }
   const queue = () => { if (!raf) raf = requestAnimationFrame(paint); };
 

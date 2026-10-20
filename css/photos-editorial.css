@@ -71,4 +71,4 @@ body{font-family:"Inter Tight",Arial,sans-serif;background:#0B0B0B;color:#F4F2EC
  .photos-editorial-copy{padding:28px 18px 22px}
  .photos-editorial-copy h1{margin-top:0;font-size:clamp(60px,18vw,96px)}
 }
-.photo-sequence-1 img{object-position:50% 6%}
+.photo-sequence-1 img,.photo-sequence-1 img[src]{aspect-ratio:2336/1662;max-height:none;object-position:50% 0%}
