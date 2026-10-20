@@ -60,3 +60,14 @@ body{font-family:"Inter Tight",Arial,sans-serif;background:#0B0B0B;color:#F4F2EC
  .photos-footer{margin-top:20px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.photo-frame img{transition:none}}
+
+/* Oct 19 (evening): the wall is the page. A black title, then the photographs; no hand-drawn curve. */
+.photos-editorial-hero{display:block;min-height:0;background:#0B0B0B;color:#F4F2EC}
+.photos-editorial-aperture{display:none}
+.photos-editorial-copy{max-width:none;padding:clamp(40px,6vw,96px) max(30px,calc((100vw - 1360px)/2)) clamp(28px,3.4vw,52px)}
+.photos-editorial-copy h1{max-width:none;font-size:clamp(72px,12vw,210px);line-height:.82;letter-spacing:-.075em;font-weight:480;color:#F4F2EC}
+@media(max-width:760px){
+ .photos-nav>a:not(.sf-menu-toggle){display:none}
+ .photos-editorial-copy{padding:28px 18px 22px}
+ .photos-editorial-copy h1{margin-top:0;font-size:clamp(60px,18vw,96px)}
+}
