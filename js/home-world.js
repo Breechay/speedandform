@@ -6,8 +6,25 @@
   const strip = sheet.querySelector('ul');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   let raf = 0, manual = false;
+  const corner = document.querySelector('.bend-pocket-right img');
+  function matchCorner() {
+    if (!corner) return;
+    const edge = sheet.getBoundingClientRect().right - 1;
+    const visible = [...strip.querySelectorAll('img')].find(img => {
+      const r = img.getBoundingClientRect();
+      return r.left <= edge && r.right >= edge;
+    });
+    if (visible && corner.dataset.source !== visible.src) {
+      corner.dataset.source = visible.src;
+      corner.src = visible.src;
+      corner.srcset = visible.srcset;
+      corner.sizes = visible.sizes;
+    }
+  }
+  sheet.addEventListener('scroll', matchCorner, { passive: true });
   function update() {
     raf = 0;
+    matchCorner();
     if (reduce.matches || manual) return;
     const r = sheet.getBoundingClientRect();
     if (r.bottom < 0 || r.top > innerHeight) return;

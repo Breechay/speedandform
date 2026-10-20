@@ -122,7 +122,7 @@
 .bend-pockets{background:#0B0B0B}
 .bend-pockets img{position:absolute;left:0;width:100%;object-fit:cover}
 .bend-pocket-upper::after{background:linear-gradient(90deg,rgba(8,8,8,.62),rgba(8,8,8,.18) 46%,transparent 70%)}
-.bend-pocket-right img{object-position:50% 0%;filter:grayscale(1)}
+.bend-pocket-right img{object-position:100% 0%;filter:none}
 .bend-pocket-lower img{object-position:50% 0%;filter:grayscale(1) contrast(1.10) brightness(.88)}
 .bend-pocket-lower::after{background:linear-gradient(90deg,#0B0B0B,transparent 68%)}
 @media(max-width:760px){.bend-infield img,.bend-pocket-upper img{object-position:58% 0%}}
