@@ -47,6 +47,7 @@ const runs = read('runs/index.html'), runCode = read('js/group-runs.js');
 assert.match(runs, /id="gr-hero-action"[^>]*>Run details/);
 assert.match(runCode, /heroAction\.firstChild\.textContent = upcoming\.length/);
 const home = read('index.html');
+assert.match(home, /<a class="home-footer-emblem[^>]*><img[^>]*src="\/assets\/brand\/kit\/emblem\/sf-emblem-bone\.svg"/, 'The actual footer mark survives the production brand builder');
 assert.ok(home.includes('href="/athletes/"'), 'Athletes remains available through the shared menu');
 assert.doesNotMatch(home.match(/<div class="home-hero-actions"[\s\S]*?<\/div>/)?.[0] || '', /\/athletes\//, 'Athletes do not occupy the homepage primary entrance');
 assert.match(read('css/home-bend-seam.css'), /margin-top:calc\(-1 \* clamp\(/, 'Bend begins inside the opening viewport');
