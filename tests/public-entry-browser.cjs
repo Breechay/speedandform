@@ -79,7 +79,7 @@ const mime={'.html':'text/html','.css':'text/css','.js':'text/javascript','.mjs'
         if(width===390||width===1440){
           const slug=route.replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'')||'home';
           const file='entry-pages/'+slug+'-'+width+'.png';
-          await page.screenshot({path:path.join(out,file),animations:'disabled'});
+          await page.screenshot({path:path.join(out,file),animations:'disabled',fullPage:route==='/'});
           report.screenshots.push(file);
         }
       }
