@@ -96,11 +96,11 @@ const mime={'.html':'text/html','.css':'text/css','.js':'text/javascript','.mjs'
             // Visit each fold before full-page capture so native lazy photographs load.
             const height=await page.evaluate(()=>document.documentElement.scrollHeight);
             for(let y=0;y<height;y+=600){
-              await page.evaluate(y=>window.scrollTo(0,y),y);
+              await page.evaluate(y=>window.scrollTo({top:y,behavior:'instant'}),y);
               await page.waitForTimeout(80);
             }
             await page.evaluate(()=>Promise.all([...document.querySelectorAll('main img, footer img')].map(img=>{img.loading='eager';return img.decode().catch(()=>{});})));
-            await page.evaluate(()=>window.scrollTo(0,0));
+            await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));
             await page.waitForTimeout(150);
           }
           await page.screenshot({path:path.join(out,file),animations:'disabled',fullPage:route==='/'});
@@ -118,19 +118,19 @@ const mime={'.html':'text/html','.css':'text/css','.js':'text/javascript','.mjs'
     await sheet.evaluate(el=>{el.scrollLeft=300;});
     await page.waitForTimeout(80);
     const manual=await sheet.evaluate(el=>el.scrollLeft);
-    await page.evaluate(()=>window.scrollBy(0,100));
+    await page.evaluate(()=>window.scrollBy({top:100,behavior:'instant'}));
     await page.waitForTimeout(180);
     const forward=await sheet.evaluate(el=>el.scrollLeft);
     assert.ok(forward>manual,'Page scroll resumes from the manual carousel position');
-    await page.evaluate(()=>window.scrollBy(0,-100));
+    await page.evaluate(()=>window.scrollBy({top:-100,behavior:'instant'}));
     await page.waitForTimeout(180);
     const backward=await sheet.evaluate(el=>el.scrollLeft);
     assert.ok(backward<forward,'Upward page scroll reverses carousel drift');
-    assert.ok(Math.abs(backward-manual)<4,'Carousel returns without snapping to its old origin');
+    assert.ok(Math.abs(backward-manual)<4,'Carousel returns without snapping to its old origin: '+JSON.stringify({manual,forward,backward}));
     await page.emulateMedia({reducedMotion:'reduce'});
     await page.waitForTimeout(80);
     const still=await sheet.evaluate(el=>el.scrollLeft);
-    await page.evaluate(()=>window.scrollBy(0,100));
+    await page.evaluate(()=>window.scrollBy({top:100,behavior:'instant'}));
     await page.waitForTimeout(180);
     assert.ok(Math.abs(await sheet.evaluate(el=>el.scrollLeft)-still)<2,'Reduced motion disables automatic drift');
     assert.equal(new Set(report.checked.map(c=>c.route)).size,routes.length,'All first-hop routes inspected');

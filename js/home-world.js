@@ -5,7 +5,7 @@
   if (!sheet) return;
   const strip = sheet.querySelector('ul');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
-  let raf = 0, previousProgress = null, drag = null;
+  let raf = 0, previousProgress = null, drag = null, preciseLeft = null, lastApplied = null;
   const corner = document.querySelector('.bend-pocket-right img');
   function matchCorner() {
     if (!corner) return;
@@ -29,7 +29,12 @@
     const travel = Math.min(sheet.clientWidth * 0.65, Math.max(0, strip.scrollWidth - sheet.clientWidth));
     const p = Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight + r.height)));
     if (!reduce.matches && previousProgress !== null && !drag) {
-      sheet.scrollLeft += travel * (p - previousProgress);
+      // Preserve subpixel movement even in engines that round scrollLeft reads.
+      // A native/manual change becomes the new origin on the next page frame.
+      if (preciseLeft === null || Math.abs(sheet.scrollLeft - lastApplied) > 0.5) preciseLeft = sheet.scrollLeft;
+      preciseLeft = Math.max(0, Math.min(strip.scrollWidth - sheet.clientWidth, preciseLeft + travel * (p - previousProgress)));
+      sheet.scrollLeft = preciseLeft;
+      lastApplied = sheet.scrollLeft;
     }
     previousProgress = p;
   }
