@@ -6,29 +6,6 @@
   const strip = sheet.querySelector('ul');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   let raf = 0, previousProgress = null, drag = null, preciseLeft = null, lastApplied = null, touching = false;
-  const corner = document.querySelector('.bend-pocket-right img');
-  function matchCorner() {
-    if (!corner) return;
-    const edge = sheet.getBoundingClientRect().right - 1;
-    const visible = [...strip.querySelectorAll('img')].find(img => {
-      const r = img.getBoundingClientRect();
-      return r.left <= edge && r.right >= edge;
-    });
-    if (visible) {
-      // Use the actual frame width and horizontal offset, not a viewport-wide
-      // cover crop. The corner travels with its photograph during manual drag.
-      const r = visible.getBoundingClientRect();
-      corner.style.width = r.width + 'px';
-      corner.style.left = (r.left - sheet.getBoundingClientRect().left) + 'px';
-    }
-    if (visible && corner.dataset.source !== visible.src) {
-      corner.dataset.source = visible.src;
-      corner.src = visible.src;
-      corner.srcset = visible.srcset;
-      corner.sizes = visible.sizes;
-    }
-  }
-  sheet.addEventListener('scroll', matchCorner, { passive: true });
   function pageProgress() {
     const r = sheet.getBoundingClientRect();
     return Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight + r.height)));
@@ -40,7 +17,6 @@
   }
   function update() {
     raf = 0;
-    matchCorner();
     const travel = Math.min(sheet.clientWidth * 0.65, Math.max(0, strip.scrollWidth - sheet.clientWidth));
     const p = pageProgress();
     if (!reduce.matches && previousProgress !== null && !drag && !touching) {
