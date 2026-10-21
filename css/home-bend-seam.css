@@ -130,8 +130,8 @@
 .bend-infield{height:100%}
 
 @media(min-width:761px){
- .bend-infield img,.bend-pocket-upper img{transform:translateY(-10px)}
- .home-entry[data-bend-seam].bend-in .bend-infield img{transform:translateY(-10px)}
+ .bend-infield img,.bend-pocket-upper img{transform:translate(10px,-18px) scale(1.03)}
+ .home-entry[data-bend-seam].bend-in .bend-infield img{transform:translate(10px,-18px) scale(1.03)}
 }
 
 /* Broader photographic turns, with a bone ribbon around the third fold. */
@@ -154,7 +154,7 @@
    Radius and lane width still come from one measured concentric construction. */
 .home-entry.home-bend-only[data-bend-seam]{min-height:clamp(680px,58vw,900px)}
 .bend-track-exposure{position:absolute;inset-inline:0;z-index:-1;overflow:hidden;pointer-events:none}
-.bend-track-exposure img{position:absolute;left:0;display:block;width:100%;max-width:none;height:var(--infield-photo-height,100%);object-fit:cover;object-position:60% 0%;transform:translateY(-10px)}
+.bend-track-exposure img{position:absolute;left:0;display:block;width:100%;max-width:none;height:var(--infield-photo-height,100%);object-fit:cover;object-position:60% 0%;transform-origin:62% 0%;transform:translate(10px,-18px) scale(1.03)}
 .bend-track-exposure::after{content:"";position:absolute;inset:0;background:rgba(11,11,11,.46)}
 .bend-seam-lanes path{stroke:rgba(244,242,236,.7);stroke-width:1.2px}
 .bend-seam-lanes path:nth-child(3n+2):not(.bend-seam-b):not(.bend-seam-start){stroke:rgba(244,242,236,.28)}
@@ -167,6 +167,7 @@
  .bend-track-exposure img{object-position:58% 0%;transform:none}
 }
 
-/* The small outside corner is a material transition, not a second crop of a face. */
-.bend-pocket-right{background:#F4F2EC}
-.bend-pocket-right img,.bend-pocket-right::after{display:none}
+/* One continuous paper ground outside the light turn. The photographic chapter
+   ends at its own bend instead of leaking dark wedges around the next one. */
+.bend-pocket-upper,.bend-pocket-lower,.bend-pocket-right{background:#F4F2EC}
+.bend-pockets img,.bend-pockets::after{display:none}

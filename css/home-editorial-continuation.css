@@ -110,7 +110,7 @@
 /* The second bend (Oct 19): the first bend's home straight turns the other way around one
    continuous stream of photographs. Lanes, clip and heights are set by js/home-bend-seam.js; the
    stream drifts with the scroll (js/home-world.js). Frames touch: no gaps, no corners, no ground. */
-.home-world.home-world-strip{position:relative;z-index:2;padding:0;height:clamp(560px,50vw,780px);overflow:hidden;background:#0B0B0B}
+.home-world.home-world-strip{position:relative;z-index:2;padding:0;height:clamp(560px,50vw,780px);overflow:hidden;background:#F4F2EC}
 .strip-infield{position:absolute;left:0;right:0;top:0;height:100%;z-index:1;overflow:hidden;background:#1A1A1A}
 .home-world-strip .home-world-sheet{margin:0;padding:0;width:100%;height:100%;overflow:hidden}
 .home-world-strip .home-world-sheet ul{height:100%;gap:0}
