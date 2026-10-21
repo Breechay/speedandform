@@ -1052,3 +1052,5 @@ Owner-approved aspiration revision: 185 lb target; 180–185 lb preferred range;
 ### October 20 · Homepage cinematic finish
 
 PR 326 is merged and production-verified at 8b900b6b. Follow-up batch reduces competing headline scale, preserves brighter photographic detail, joins the black/bone track materials, matches the side-pocket image width to the carousel, introduces circular-arrow invitations, compacts the footer, and starts silent film earlier with live reduced-motion support. Corrects the canonical Study generator so SVG arrows survive production builds. Full configured build passed locally; browser preview and CI verification pending before the authorized release. No private athlete records or native app changes.
+
+October 21 owner steering: homepage features José alone at eight continuous miles (53:54.5, 6:44/mi, October 20). Keep the paired six-mile archive intact. Freeze this homepage milestone until the December 5 Orlando result is verified; do not automatically replace it after intervening training sessions. Final public build/browser review and authorized production release remain the current batch.

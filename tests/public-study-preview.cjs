@@ -23,8 +23,12 @@ for(const a of s.athletes){
 }
 const home=fs.readFileSync('index.html','utf8'),run=fs.readFileSync('coaching/miami/index.html','utf8'),inquiry=fs.readFileSync('coaching/apply/index.html','utf8');
 assert.match(home,/You can hit the pace\.<br>Can you hold it\?/,'Study question survives the short homepage');
-assert.match(home,/Hope and José are working on that question\./,'Real named athletes remain');
-assert.match(home,/>6 miles</,'The completed continuous distance remains explicit');
+assert.match(home,/José · 6:44\/mi/,'Individual milestone is clearly attributed to José');
+assert.match(home,/>8 miles</,'José’s completed continuous distance remains explicit');
+assert.equal(s.homepage_feature.distance_mi,8);
+assert.equal(s.homepage_feature.athlete,'José');
+assert.ok(source.includes(s.homepage_feature.work_time),'Featured time exists in the approved study');
+assert.match(s.homepage_feature.next_update,/result is verified/,'Next homepage update waits for verified race evidence');
 assert.match(home,/href="\/labs\/speed-that-endures\/"/,'Study remains directly accessible');
 assert.ok(source.includes(s.latest_completed.date),'Dated study evidence remains in its owning source');
 assert.ok(run.includes('href="/coaching/apply/"'),'Coaching leads to real separate inquiry');
