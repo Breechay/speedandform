@@ -58,10 +58,14 @@ async function intercept(context) {
    assert.equal(await page.locator('.photo-viewer-count').innerText(),'51 / 51','Wraps from first to last');
    if(width<500){
     await page.locator('#photo-viewer').evaluate(el=>{
-      const start=new Touch({identifier:1,target:el,clientX:250,clientY:400});
-      const end=new Touch({identifier:1,target:el,clientX:100,clientY:402});
-      el.dispatchEvent(new TouchEvent('touchstart',{touches:[start],bubbles:true}));
-      el.dispatchEvent(new TouchEvent('touchend',{touches:[],changedTouches:[end],bubbles:true}));
+      // WebKit's desktop automation forbids constructing Touch directly.
+      // Synthetic DOM events exercise the swipe handler in both browsers.
+      const start=new Event('touchstart',{bubbles:true});
+      Object.defineProperty(start,'touches',{value:[{clientX:250,clientY:400}]});
+      const end=new Event('touchend',{bubbles:true});
+      Object.defineProperty(end,'changedTouches',{value:[{clientX:100,clientY:402}]});
+      el.dispatchEvent(start);
+      el.dispatchEvent(end);
     });
     assert.equal(await page.locator('.photo-viewer-count').innerText(),'1 / 51','Swipe advances from last to first');
    }
