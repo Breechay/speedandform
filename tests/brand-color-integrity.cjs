@@ -61,11 +61,18 @@ for (const route of ['/athletes/', '/runs/', '/photos/']) {
     'Menu has exactly one destination for ' + route);
 }
 assert.doesNotMatch(menuSource, /sf-menu-together|>The Team</, 'No duplicate Team group');
-const photoFrames = [...photos.matchAll(/<figure class="photo-frame(?: photo-sequence-\d)?" data-search="([^" ]+)/g)];
-assert.equal(photoFrames.length, 46, 'Preserve all 46 public photographs');
-assert.deepEqual(photoFrames.slice(0, 5).map(m => m[1]), [
-  'track-curve-group', 'bridge-profile', 'bw-lead-runner', 'two-on-the-lanes', 'bench-after-reps'
-], 'Editorial opening: scene, athlete, effort, detail, after');
+const photoFrames = [...photos.matchAll(/<figure class="photo-frame" data-search="([^" ]+)/g)];
+const photoIds = photoFrames.map(match => match[1]);
+const catalogue = JSON.parse(read('media/library/library.json'));
+assert.equal(photoFrames.length, catalogue.photos.length, 'Every public library photograph appears exactly once');
+assert.equal(new Set(photoIds).size, photoIds.length, 'No duplicate public gallery photograph');
+for (const id of [
+  'track-curve-group', 'bridge-profile', 'bw-lead-runner', 'two-on-the-lanes', 'bench-after-reps',
+  'after-practice-conversation', 'track-solo-away', 'track-runner-profile-orange',
+  'terrace-after-practice-two', 'bw-track-standing-after'
+]) assert.ok(photoIds.includes(id), 'Preserve original and new photos: ' + id);
+assert.match(read('js/photos-gallery.js'), /getRandomValues/, 'Gallery order rotates on reopening');
+assert.match(photos, /id="photo-viewer"/, 'Full-screen viewer remains present');
 assert.match(read('css/home-world.css'), /\.home-world-sheet img\{[^}]*filter:none/);
 assert.match(read('css/home-editorial-continuation.css'), /\.home-world-featured \.home-world-sheet img\{[^}]*filter:none/);
 assert.doesNotMatch(home, /home-world-lanes|home-world-aperture/, 'One measured bend only');
