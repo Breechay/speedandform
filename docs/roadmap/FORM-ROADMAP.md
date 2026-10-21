@@ -1,3 +1,12 @@
+## October 21 · Homepage cream flow refinement
+
+- Branch `work/home-cream-flow`, based on main `ee5b69a2`. Both left pockets and the photo-strip ground now match the right pocket and ribbon in bone `#F4F2EC`.
+- Desktop lead-runner frame moves another 8px up and 10px right, with 3% overscan to cover the edges. Matching track exposure uses the same transform and origin. Mobile crop remains unchanged.
+- Removed obsolete hidden-corner image synchronization from the scrolling gallery, eliminating per-scroll image geometry reads and hidden-image updates. Touch, drag, keyboard and reduced-motion behavior are retained.
+- Preview reviewed in cloud Chrome at desktop width and in 390px/320px browser frames. Cream turn, headroom of the lead-runner portrait, readable links, study and footer checked. These are browser renders, not physical-device checks. Full motion/reduced-motion and all carousel-frame crop acceptance remain open; no numerical design score claimed.
+- Public copy law, homepage release, editorial contract and public editorial scan pass. JavaScript syntax passes. The existing sf-bend test expects a generated inline drawing that is already absent at the base commit; unchanged geometry/source inputs mean this is a baseline test discrepancy, not a passing gate.
+- Status: source refinement prepared for review, no production deployment. Next: remaining visual acceptance and one approved release.
+
 ## October 20 · Follow-up homepage audit
 
 - PR #326 is open and ready for review, not merged. Production remains main `b91f9244` (Netlify `6ad6d83a97b8b4f3c40f8da5`).
