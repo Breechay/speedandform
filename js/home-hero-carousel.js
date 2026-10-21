@@ -11,7 +11,8 @@
   var video = filmSlide && filmSlide.querySelector('video');
   if (!still || !filmSlide || !video) return;
 
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var reduce = motion.matches;
   var saveData = !!(navigator.connection && navigator.connection.saveData);
   var videoURL = 'https://pbgsjjegycacodiltbhn.supabase.co/storage/v1/object/public/collective-films/sessions/adrian-7x800-2026-10-14/9f242ac9-173d-4e76-b203-4304a1d1c1f6.mp4';
   var posterURL = 'https://pbgsjjegycacodiltbhn.supabase.co/storage/v1/object/public/collective-films/sessions/adrian-7x800-2026-10-14/4396f5fd-6fce-4fc0-8841-26b2d02d080e.jpg';
@@ -43,7 +44,7 @@
     still.classList.add('is-active');
     filmSlide.classList.remove('is-active');
     video.pause();
-    if (schedule && canPlayHere()) timer = setTimeout(startFilm, 8000);
+    if (schedule && canPlayHere()) timer = setTimeout(startFilm, 2400);
   }
   function startFilm() {
     clearTimers();
@@ -103,6 +104,12 @@
       showStill(visible && active);
     }, { threshold: 0.08 }).observe(root);
   }
+  motion.addEventListener('change', function () {
+    reduce = motion.matches;
+    filmDisabled = reduce || saveData;
+    if (filmDisabled) { showStill(false); filmSlide.hidden = true; }
+    else setFilm(videoURL, posterURL);
+  });
   silence();
   if (!filmDisabled) setFilm(videoURL, posterURL);
   else { filmSlide.hidden = true; showStill(false); }

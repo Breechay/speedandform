@@ -100,14 +100,14 @@
 .bend-infield::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,8,8,.62) 0%,rgba(8,8,8,.18) 46%,rgba(8,8,8,0) 70%),linear-gradient(0deg,rgba(8,8,8,.55) 0%,rgba(8,8,8,0) 45%)}
 .home-entry[data-bend-seam].bend-in .bend-infield img{transform:scale(1.14)}
 .bend-infield-copy{position:relative;z-index:2;padding-bottom:calc(var(--seam-outer,80px) + clamp(36px,4vw,64px))}
-.home-entry[data-bend-seam] .bend-infield-copy h2{margin:0;color:var(--bone);font-size:clamp(64px,10.4vw,168px);line-height:.88;font-weight:470;letter-spacing:-.065em;max-width:7ch}
+.home-entry[data-bend-seam] .bend-infield-copy h2{margin:0;color:var(--bone);font-size:clamp(64px,7.4vw,116px);line-height:.94;font-weight:450;letter-spacing:-.065em;max-width:7ch}
 .bend-infield-links{display:flex;gap:28px;margin:clamp(22px,2.4vw,34px) 0 0;flex-wrap:wrap}
 .bend-infield-links a{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--bone);text-decoration:none;font-size:16px;border-bottom:1px solid rgba(244,242,236,.45)}
 .bend-infield-links a:hover{border-color:var(--bone)}
 .bend-infield-links a:focus-visible{outline:2px solid var(--bone);outline-offset:4px}
 @media(max-width:760px){
   .bend-infield img{object-position:58% 0%;transform-origin:58% 0%}
-  .home-entry[data-bend-seam] .bend-infield-copy h2{font-size:clamp(58px,17vw,84px)}
+  .home-entry[data-bend-seam] .bend-infield-copy h2{font-size:clamp(54px,14.8vw,76px)}
   .home-entry[data-bend-infield] .bend-seam-mark{display:none}
 }
 @media(prefers-reduced-motion:reduce){.bend-infield img{transition:none;transform:none}}
@@ -141,3 +141,32 @@
 .bend-seam-mark{transition:opacity 500ms ease}
 @media(max-width:760px){.home-entry.home-bend-only[data-bend-seam]{min-height:clamp(500px,136vw,600px)}}
 @media(prefers-reduced-motion:reduce){.bend-seam-mark{transition:none}}
+
+/* Keep the people in the light; the headline occupies the quiet lower left. */
+.bend-infield::after{background:linear-gradient(90deg,rgba(11,11,11,.5),rgba(11,11,11,.08) 48%,transparent 72%),linear-gradient(0deg,rgba(11,11,11,.42),transparent 48%)}
+.bend-pocket-upper::after{background:linear-gradient(90deg,rgba(11,11,11,.5),rgba(11,11,11,.08) 48%,transparent 72%)}
+.bend-pocket-right img{max-width:none;object-fit:fill;object-position:center}
+.bend-pocket-right::after{background:linear-gradient(0deg,transparent,rgba(11,11,11,.18))}
+.bend-seam-return{fill:none;stroke:url(#bend-return-ink);stroke-width:1.1px;vector-effect:non-scaling-stroke}
+@media(min-width:1180px){.bend-seam-return{stroke-width:1.4px}}
+
+/* The track is light crossing the photographs, not a black border around them.
+   Radius and lane width still come from one measured concentric construction. */
+.home-entry.home-bend-only[data-bend-seam]{min-height:clamp(680px,58vw,900px)}
+.bend-track-exposure{position:absolute;inset-inline:0;z-index:-1;overflow:hidden;pointer-events:none}
+.bend-track-exposure img{position:absolute;left:0;display:block;width:100%;max-width:none;height:var(--infield-photo-height,100%);object-fit:cover;object-position:60% 0%;transform:translateY(-10px)}
+.bend-track-exposure::after{content:"";position:absolute;inset:0;background:rgba(11,11,11,.46)}
+.bend-seam-lanes path{stroke:rgba(244,242,236,.7);stroke-width:1.2px}
+.bend-seam-lanes path:nth-child(3n+2):not(.bend-seam-b):not(.bend-seam-start){stroke:rgba(244,242,236,.28)}
+.bend-seam-lanes path:nth-child(3n):not(.bend-seam-b):not(.bend-seam-start){stroke:rgba(244,242,236,.48)}
+.bend-seam-lanes .bend-seam-b{stroke:rgba(11,11,11,.48)}
+.bend-seam-lanes .bend-seam-b:nth-child(3n+2){stroke:rgba(11,11,11,.2)}
+@media(min-width:1180px){.bend-seam-lanes path{stroke-width:1.5px}}
+@media(max-width:760px){
+ .home-entry.home-bend-only[data-bend-seam]{min-height:clamp(530px,142vw,650px)}
+ .bend-track-exposure img{object-position:58% 0%;transform:none}
+}
+
+/* The small outside corner is a material transition, not a second crop of a face. */
+.bend-pocket-right{background:#F4F2EC}
+.bend-pocket-right img,.bend-pocket-right::after{display:none}

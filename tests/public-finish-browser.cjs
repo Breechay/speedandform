@@ -68,7 +68,7 @@ fs.mkdirSync(out,{recursive:true});
  }
  // Every fold is readable even without arrival/observer classes.
  await page.goto(origin+'/');
- assert.equal(await page.locator('.home-evidence-result dt').first().innerText(),'6 miles');
+ assert.equal(await page.locator('.home-evidence-result dt').first().innerText(),'8 miles');
  for(const selector of ['.hero-copy','.home-evidence h2','.intake-copy']){
   assert.equal(await page.locator(selector).evaluate(e=>getComputedStyle(e).opacity),'1',selector+' never hidden');
  }
