@@ -90,7 +90,10 @@
     const H1 = 2 * rin + outer;
     // The track runs on: the first bend's home straight is the second bend's back straight, so the
     // lanes swap inner for outer and turn the other way around the photographs below (an S).
-    const cx2 = strip ? Math.min(cx, wide ? Math.max(16, W * 0.03) + outer + rin : W * 0.46) : 0;
+    // Keep a real shared straight on phones too. Coincident bend centers
+    // collapse the material gradient into a hard cream/ink cut.
+    const blendRun = Math.min(112, W * 0.22);
+    const cx2 = strip ? Math.min(cx - blendRun, wide ? Math.max(16, W * 0.03) + outer + rin : W * 0.46) : 0;
     const cy2 = 3 * rin + outer;
     const tall = strip ? 2 * H1 : H1;
     svg.setAttribute('width', W);

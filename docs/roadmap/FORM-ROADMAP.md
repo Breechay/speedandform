@@ -1,3 +1,10 @@
+## October 21 · Narrow-screen track transition
+
+- `work/home-track-transition`, based on main `17787082`. The shared straight now retains at least 22% of viewport width (capped at 112px), so coincident mobile bend centers cannot collapse the cream/ink blend. Track radii, lane spacing, photo transforms and gallery motion remain unchanged.
+- Chromium preview inspected at 320, 390, 1024 and 1440 CSS pixels using local browser frames. Mobile gradient spans 70.4px / 85.8px; desktop composition retains its existing longer straight. Browser preview evidence, not a physical-device check.
+- Public copy, homepage release, editorial contract, editorial scan, JavaScript syntax, diff checks and the configured production build pass. Reduced-motion logic is unchanged; no new animation is introduced.
+- Status: QA complete, prepared for the approved merge and production release. Next: confirm published deploy and live mobile join.
+
 ## October 21 · Homepage cream flow refinement
 
 - Branch `work/home-cream-flow`, based on main `ee5b69a2`. Both left pockets and the photo-strip ground now match the right pocket and ribbon in bone `#F4F2EC`.
@@ -5,7 +12,7 @@
 - Removed obsolete hidden-corner image synchronization from the scrolling gallery, eliminating per-scroll image geometry reads and hidden-image updates. Touch, drag, keyboard and reduced-motion behavior are retained.
 - Preview reviewed in cloud Chrome at desktop width and in 390px/320px browser frames. Cream turn, headroom of the lead-runner portrait, readable links, study and footer checked. These are browser renders, not physical-device checks. Full motion/reduced-motion and all carousel-frame crop acceptance remain open; no numerical design score claimed.
 - Public copy law, homepage release, editorial contract and public editorial scan pass. JavaScript syntax passes. The existing sf-bend test expects a generated inline drawing that is already absent at the base commit; unchanged geometry/source inputs mean this is a baseline test discrepancy, not a passing gate.
-- Status: source refinement prepared for review, no production deployment. Next: remaining visual acceptance and one approved release.
+- Released in PR #338, squash merge `e2b94643`. Production was verified at `17787082` (a descendant of that merge), Netlify deploy `6ad9204f26c9d823e3cd8835`; cream pockets, asset versions and photo transform confirmed in the live DOM.
 
 ## October 20 · Follow-up homepage audit
 
