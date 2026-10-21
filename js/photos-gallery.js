@@ -36,6 +36,11 @@
   const firstImage = frames[0].querySelector('img');
   firstImage.loading = 'eager';
   firstImage.setAttribute('fetchpriority', 'high');
+  // The rotating wide lead must use the original high-resolution image,
+  // not a 600px card thumb stretched across the whole page.
+  firstImage.removeAttribute('srcset');
+  firstImage.removeAttribute('sizes');
+  firstImage.src = frames[0].querySelector('a').href;
   const fragment = document.createDocumentFragment();
   frames.forEach(frame => fragment.appendChild(frame));
   wall.appendChild(fragment);
