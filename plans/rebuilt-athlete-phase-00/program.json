@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
   "season_id": "brice_rebuilt_athlete_phase00_20260928",
-  "program_id": "brice_rebuilt_phase00_automaticity_20261013",
+  "program_id": "brice_rebuilt_phase00_recovery_20261021",
   "athlete": "Brice",
   "athlete_slug": "brice",
   "title": "The Rebuilt Athlete · Phase 00",
@@ -9,7 +9,7 @@
   "start_date": "2026-09-28",
   "end_date": "2026-11-08",
   "duration_weeks": 6,
-  "current_week": 3,
+  "current_week": 4,
   "authority": {
     "system": "FORM Athlete System",
     "block_id": "92580a34-1e9e-4d12-9c3c-0c372e6527b7",
@@ -17,18 +17,17 @@
   },
   "study_path": "/labs/rebuilt-athlete/",
   "week_path": "/plans/rebuilt-athlete-phase-00/",
-  "objective": "Retrain automatic faster running without forcing pace. Monday extends relaxed time, Tuesday repeats 3 × 1 mile by feel, and Saturday keeps easy durability underneath it.",
+  "objective": "Recover lower-leg tolerance and make easy running repeatable. This week concludes with one 40-minute easy run; future weeks are authored after coaching review rather than progressed in advance.",
   "governing_rules": [
-    "No pace target for the quicker work.",
-    "No heart-rate target for the quicker work.",
-    "Quicker running stays around a relaxed 4–5/10. Fluidity wins over the clock.",
-    "5:40/mi is a later direction, not a split to force.",
-    "When the first 5:xx appears, repeat the feeling rather than accelerating the next rep.",
-    "Saturday stays easy with no fast finish and no makeup mileage.",
-    "Progress Monday duration only when the prior Monday/Tuesday pair leaves normal recovery."
+    "Healing, normal lower-leg response and training continuity are priorities through 2026.",
+    "Saturday 24 Oct: 40 minutes continuous easy at RPE 2–3 on a flat familiar route; no pace target or fast finish.",
+    "No structured speed or mileage debt. The old October–November speed progression was superseded October 21.",
+    "One upcoming week at a time; later sessions require coaching review and new FORM authorship.",
+    "When impact pain or gait change appears, the coach revises the actual prescription; the athlete does not run through it.",
+    "Long-term sub-5 mile and 6:00/mi 10K development belongs to 2027 when supported by recovery."
   ],
   "form_scope": "FORM carries the running prescription and running filing. Strength remains in Speed & Form: Strength / Forge. Study 002 interprets the interaction.",
-  "authoring_context": "Weeks 03 Monday and Tuesday were added after the sessions occurred so the canonical block includes this week's work and the observed deviations. Their coach-import completions preserve what actually happened; they are not represented as pre-run native app receipts.",
+  "authoring_context": "Historical prescriptions and existing coach-import receipts are preserved. The Oct 21 owner-approved administrative revision appended an immutable v2 for Saturday Oct 24 (40 min easy, RPE 2–3) and cancelled six unfiled future quality/long-run sessions (Oct 26–Nov 7), preserving their earlier versions and withdrawal reasons. The Monday Oct19 and Tuesday Oct20 prescriptions are historical and were not retrospectively recorded as completed. The next week awaits coaching review; the site is a snapshot, not a live feed.",
   "weeks": [
     {
       "week": 1,
@@ -48,7 +47,7 @@
       "week": 3,
       "start_date": "2026-10-12",
       "end_date": "2026-10-18",
-      "status": "current",
+      "status": "past",
       "intent": "Read the first faster exposures, then keep Saturday easy.",
       "sessions": [
         {
@@ -101,8 +100,8 @@
       "week": 4,
       "start_date": "2026-10-19",
       "end_date": "2026-10-25",
-      "status": "future",
-      "intent": "Make quicker running repeatable before making it longer.",
+      "status": "current",
+      "intent": "Recovery-first consolidation. Oct19 faster work and Oct21 strength-plus-run count as load; avoid additional speed and finish with a modest easy outing.",
       "sessions": [
         {
           "date": "2026-10-19",
@@ -115,7 +114,9 @@
           ],
           "structure": "20 min relaxed + 4 × 4 min quicker · 2:00 easy recovery",
           "pace_target": null,
-          "heart_rate_target": null
+          "heart_rate_target": null,
+          "prescription_state": "historical",
+          "execution_note": "Original Oct19 prescription kept as history. Athlete reports completing a different group interval session that date; no linked FORM receipt is asserted."
         },
         {
           "date": "2026-10-20",
@@ -128,20 +129,25 @@
           ],
           "structure": "3 × 1 mi · 2:30 easy recovery",
           "pace_target": null,
-          "heart_rate_target": null
+          "heart_rate_target": null,
+          "prescription_state": "historical",
+          "execution_note": "Original Oct20 prescription kept as history. No linked session-completion receipt was found in the current FORM plan."
         },
         {
           "date": "2026-10-24",
           "weekday": "Saturday",
-          "title": "Long easy · 8 mi",
+          "title": "Easy run · 40 min",
           "role": "easy",
           "rpe": [
             2,
             3
           ],
-          "structure": "8 mi continuous easy",
+          "structure": "40 min continuous easy on a familiar flat route",
           "pace_target": null,
-          "heart_rate_target": null
+          "heart_rate_target": null,
+          "prescribed_duration_minutes": 40,
+          "planned_session_version": 2,
+          "change_reason": "Owner-approved recovery-first revision Oct21; original 8-mile v1 preserved."
         }
       ]
     },
@@ -149,97 +155,17 @@
       "week": 5,
       "start_date": "2026-10-26",
       "end_date": "2026-11-01",
-      "status": "future",
-      "intent": "Extend the time spent in the fluid gear without changing the Tuesday question.",
-      "sessions": [
-        {
-          "date": "2026-10-26",
-          "weekday": "Monday",
-          "title": "Longer rhythm · 3 × 6 min",
-          "role": "support",
-          "rpe": [
-            4,
-            5
-          ],
-          "structure": "20 min relaxed + 3 × 6 min quicker · 2:00 easy recovery",
-          "pace_target": null,
-          "heart_rate_target": null
-        },
-        {
-          "date": "2026-10-27",
-          "weekday": "Tuesday",
-          "title": "Mile repeats · 3 × 1 mi",
-          "role": "key",
-          "rpe": [
-            4,
-            5
-          ],
-          "structure": "3 × 1 mi · 2:30 easy recovery",
-          "pace_target": null,
-          "heart_rate_target": null
-        },
-        {
-          "date": "2026-10-31",
-          "weekday": "Saturday",
-          "title": "Long easy · 9 mi",
-          "role": "easy",
-          "rpe": [
-            2,
-            3
-          ],
-          "structure": "9 mi continuous easy",
-          "pace_target": null,
-          "heart_rate_target": null
-        }
-      ]
+      "status": "awaiting_coach_review",
+      "intent": "No sessions currently assigned. Decide after the Oct25 recovery review.",
+      "sessions": []
     },
     {
       "week": 6,
       "start_date": "2026-11-02",
       "end_date": "2026-11-08",
-      "status": "future",
-      "intent": "Return to two ten-minute blocks and see whether they now require less attention.",
-      "sessions": [
-        {
-          "date": "2026-11-02",
-          "weekday": "Monday",
-          "title": "Longer rhythm · 2 × 10 min",
-          "role": "support",
-          "rpe": [
-            4,
-            5
-          ],
-          "structure": "20 min relaxed + 2 × 10 min quicker · 2:30 easy recovery",
-          "pace_target": null,
-          "heart_rate_target": null
-        },
-        {
-          "date": "2026-11-03",
-          "weekday": "Tuesday",
-          "title": "Mile repeats · 3 × 1 mi",
-          "role": "key",
-          "rpe": [
-            4,
-            5
-          ],
-          "structure": "3 × 1 mi · 2:30 easy recovery",
-          "pace_target": null,
-          "heart_rate_target": null
-        },
-        {
-          "date": "2026-11-07",
-          "weekday": "Saturday",
-          "title": "Long easy · 10 mi",
-          "role": "easy",
-          "rpe": [
-            2,
-            3
-          ],
-          "structure": "10 mi continuous easy",
-          "pace_target": null,
-          "heart_rate_target": null
-        }
-      ]
+      "status": "awaiting_coach_review",
+      "intent": "No sessions currently assigned. Week-by-week review, no automatic progression.",
+      "sessions": []
     }
   ]
 }

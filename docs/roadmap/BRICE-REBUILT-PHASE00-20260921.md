@@ -121,3 +121,7 @@ Applied backend migration: `supabase/migrations/20261013134500_brice_velocity_au
 Read-back on October 13 confirms the coach plan feed carries all six weeks, the current block goal, twelve published Week 03–06 sessions and both linked filings. The current web projection is `plans/rebuilt-athlete-phase-00/program.json`. Study interpretation is in `labs/rebuilt-athlete/VELOCITY-AUTOMATICITY-20261013.md`.
 
 This records backend authority and source projection. It does not by itself prove what an already-installed iPhone binary has refreshed or rendered.
+
+## October 21 · recovery-first prescription revision
+
+After explicit athlete/coach approval, the live FORM Athlete System replaced October 24's 8-mile session with **Easy 40 min, RPE 2–3** (session version 2). The six published future sessions Oct 26–Nov 7 were cancelled with reasons, and their historic versions were retained. Week 4 is current; weeks 5 and 6 await a coaching review and contain no new published runs. October 19/20 historical prescriptions were not backdated or made into invented receipts. The updated [web projection](../../plans/rebuilt-athlete-phase-00/program.json) and [running week](../../plans/rebuilt-athlete-phase-00/index.html) match database readback. No Forge change or signed-in device verification is claimed.

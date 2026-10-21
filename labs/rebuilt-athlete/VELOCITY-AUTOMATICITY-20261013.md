@@ -5,6 +5,8 @@
 **Study:** FORM Study 002 · The Rebuilt Athlete  
 **Status:** athlete report plus device evidence and working coaching interpretation. The later October 13 owner decision created a canonical running block from this question; the FORM Athlete System remains the prescription authority.
 
+**Later decision, October 21:** This October 13 speed progression is historical. FORM now prescribes 40 minutes easy on October 24 and no speed/mileage progression for October 26 to November 8. See the current Phase 00 week.
+
 ## Question
 
 Is faster running becoming easier to access because the movement is becoming more automatic again, or did the October 13 session simply cost less because it was shorter, cooler and more broken up?
