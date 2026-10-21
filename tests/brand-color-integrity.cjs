@@ -61,7 +61,7 @@ for (const route of ['/athletes/', '/runs/', '/photos/']) {
     'Menu has exactly one destination for ' + route);
 }
 assert.doesNotMatch(menuSource, /sf-menu-together|>The Team</, 'No duplicate Team group');
-const photoFrames = [...photos.matchAll(/<figure class="photo-frame(?: photo-sequence-\\d)?" data-search="([^" ]+)/g)];
+const photoFrames = [...photos.matchAll(/<figure class="photo-frame" data-search="([^" ]+)/g)];
 const photoIds = photoFrames.map(match => match[1]);
 const catalogue = JSON.parse(read('media/library/library.json'));
 assert.equal(photoFrames.length, catalogue.photos.length, 'Every public library photograph appears exactly once');
