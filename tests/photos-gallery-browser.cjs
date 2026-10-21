@@ -65,6 +65,10 @@ async function intercept(context) {
     });
     assert.equal(await page.locator('.photo-viewer-count').innerText(),'1 / 51','Swipe advances from last to first');
    }
+   // A navigation check is complete only when the selected image is visible,
+   // not merely when its counter changes; catch empty black frames on mobile.
+   await img.evaluate(el=>el.decode());
+   assert.ok(await img.evaluate(el=>el.naturalWidth>0 && el.complete),'Displayed frame decodes after navigation');
    await page.screenshot({path:path.join(output,'photos-gallery-'+engine+'-'+width+'-viewer.png')});
    await page.keyboard.press('Escape');
    assert.equal(await page.locator('#photo-viewer').evaluate(el=>el.open),false,'Escape closes viewer');
