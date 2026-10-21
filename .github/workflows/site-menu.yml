@@ -51,6 +51,7 @@ jobs:
           git rev-parse HEAD > /tmp/site-menu-review/tested-commit.txt
           node tests/site-menu-browser.cjs
           node tests/public-entry-browser.cjs
+          node tests/photos-gallery-browser.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
