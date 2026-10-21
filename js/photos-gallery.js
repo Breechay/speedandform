@@ -58,6 +58,19 @@
   let opener = null;
   let startTouch = null;
   const isOpen = () => viewer.open;
+  // Cache only adjacent full-size frames to make swipes responsive without
+  // downloading the entire collection or retaining unbounded image objects.
+  const nearby = new Map();
+  const warm = index => {
+    const i = (index + frames.length) % frames.length;
+    const url = frames[i].querySelector('a').href;
+    if (nearby.has(url)) return;
+    const preloader = new Image();
+    preloader.decoding = 'async';
+    preloader.src = url;
+    nearby.set(url, preloader);
+    while (nearby.size > 4) nearby.delete(nearby.keys().next().value);
+  };
   const show = (index) => {
     position = (index + frames.length) % frames.length;
     const link = frames[position].querySelector('a');
@@ -66,6 +79,7 @@
     viewerImage.alt = thumbnail.alt || 'FORM photograph';
     counter.textContent = (position + 1) + ' / ' + frames.length;
     previous.disabled = next.disabled = frames.length < 2;
+    if (frames.length > 1) { warm(position + 1); warm(position - 1); }
   };
   const navigate = (step) => { if (isOpen()) show(position + step); };
 
