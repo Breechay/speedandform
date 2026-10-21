@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-15",
+  "updated": "2026-10-21",
   "owner": "Brice (Speed & Form)",
   "consent": "Brice confirmed on Oct 13, 2026 that he holds consent from everyone photographed. Names are never stored here: who is in a photo lives in the database (collective_person_tags), where hiding a profile or removing a tag takes effect everywhere.",
   "how_to_use": [
@@ -1613,6 +1613,186 @@
       "tags": [],
       "used_on": [
         "/track/track-selection/",
+        "/photos/"
+      ]
+    },
+    {
+      "id": "after-practice-conversation",
+      "title": "After the practice",
+      "kind": "social",
+      "captured": null,
+      "setting": "café terrace",
+      "light": "unverified",
+      "tone": "color",
+      "people": "visible in photograph",
+      "orientation": "portrait",
+      "width": 1309,
+      "height": 1677,
+      "focal": {
+        "x": 0.5,
+        "y": 0.45
+      },
+      "alt": "An athlete leans forward on a café chair during a conversation after training.",
+      "uses": [
+        "card",
+        "story",
+        "community"
+      ],
+      "files": {
+        "600": "/media/library/after-practice-conversation-600.webp",
+        "1200": "/media/library/after-practice-conversation-1200.webp",
+        "2400": "/media/library/after-practice-conversation-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-21",
+        "sha256": "8724e4841af76a055673ce78f8f1fb109db593811185d99709cb6c884bc6c91d"
+      },
+      "tags": [],
+      "used_on": [
+        "/photos/"
+      ]
+    },
+    {
+      "id": "track-solo-away",
+      "title": "Down the straight",
+      "kind": "track",
+      "captured": null,
+      "setting": "track",
+      "light": "unverified",
+      "tone": "color",
+      "people": "visible in photograph",
+      "orientation": "portrait",
+      "width": 1150,
+      "height": 1575,
+      "focal": {
+        "x": 0.5,
+        "y": 0.45
+      },
+      "alt": "A runner moves away down the center lane of a track at dusk.",
+      "uses": [
+        "card",
+        "story",
+        "community"
+      ],
+      "files": {
+        "600": "/media/library/track-solo-away-600.webp",
+        "1200": "/media/library/track-solo-away-1200.webp",
+        "2400": "/media/library/track-solo-away-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-21",
+        "sha256": "918fbb31fe859243b875b145242a4b66b59d3e5e978f045a21fd8fa291b4bc22"
+      },
+      "tags": [],
+      "used_on": [
+        "/photos/"
+      ]
+    },
+    {
+      "id": "track-runner-profile-orange",
+      "title": "Across the track",
+      "kind": "track",
+      "captured": null,
+      "setting": "track",
+      "light": "unverified",
+      "tone": "color",
+      "people": "visible in photograph",
+      "orientation": "portrait",
+      "width": 1212,
+      "height": 1643,
+      "focal": {
+        "x": 0.5,
+        "y": 0.45
+      },
+      "alt": "A runner in bright orange shoes moves past the track fence in profile.",
+      "uses": [
+        "card",
+        "story",
+        "community"
+      ],
+      "files": {
+        "600": "/media/library/track-runner-profile-orange-600.webp",
+        "1200": "/media/library/track-runner-profile-orange-1200.webp",
+        "2400": "/media/library/track-runner-profile-orange-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-21",
+        "sha256": "fe0fcd54264ed0c99a02b950fc450b8491d941c5f9987b98b5771faf6c879aa2"
+      },
+      "tags": [],
+      "used_on": [
+        "/photos/"
+      ]
+    },
+    {
+      "id": "terrace-after-practice-two",
+      "title": "After practice together",
+      "kind": "social",
+      "captured": null,
+      "setting": "café terrace",
+      "light": "unverified",
+      "tone": "color",
+      "people": "visible in photograph",
+      "orientation": "portrait",
+      "width": 1013,
+      "height": 1612,
+      "focal": {
+        "x": 0.5,
+        "y": 0.45
+      },
+      "alt": "Two athletes sit in café chairs together after training.",
+      "uses": [
+        "card",
+        "story",
+        "community"
+      ],
+      "files": {
+        "600": "/media/library/terrace-after-practice-two-600.webp",
+        "1200": "/media/library/terrace-after-practice-two-1200.webp",
+        "2400": "/media/library/terrace-after-practice-two-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-21",
+        "sha256": "e4b897f77d31b82e279647c12f0bcda1428a127e9e19ceb8a367490a7c118e6c"
+      },
+      "tags": [],
+      "used_on": [
+        "/photos/"
+      ]
+    },
+    {
+      "id": "bw-track-standing-after",
+      "title": "After the session",
+      "kind": "track",
+      "captured": null,
+      "setting": "track",
+      "light": "unverified",
+      "tone": "black-and-white",
+      "people": "visible in photograph",
+      "orientation": "portrait",
+      "width": 1320,
+      "height": 1774,
+      "focal": {
+        "x": 0.5,
+        "y": 0.45
+      },
+      "alt": "Black and white: a runner stands quietly at the edge of a floodlit track.",
+      "uses": [
+        "card",
+        "story",
+        "community"
+      ],
+      "files": {
+        "600": "/media/library/bw-track-standing-after-600.webp",
+        "1200": "/media/library/bw-track-standing-after-1200.webp",
+        "2400": "/media/library/bw-track-standing-after-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-10-21",
+        "sha256": "173b5f66469706e928d96661e507df75144dd9690b47fb2dcdc810cb97f2c805"
+      },
+      "tags": [],
+      "used_on": [
         "/photos/"
       ]
     }
