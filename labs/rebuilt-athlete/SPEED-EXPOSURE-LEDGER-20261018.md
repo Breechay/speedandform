@@ -134,3 +134,27 @@ Estimated sampled time **faster than 6:00/mi: 10:49**. These results do not impl
 
 **Limit:** Faster rep time and a good mechanical feeling do not prove improvement in running economy, tibial load tolerance, lower cardiac cost at matched pace, or readiness for an automatic mileage increase. Other recent runs remain summary/lap-level evidence unless their original recordings are supplied.
 
+
+
+## October 22 · Detailed work-lap running mechanics
+
+**Source and scope:** Original Garmin Forerunner 965 FIT activity 24812863860, 1,204 timestamped record messages; the running-dynamics comparison uses only the seven timed Run work laps, excluding warm-up, recovery and post-work records. Each row is a mean of valid moving samples within that recorded work lap (positive running cadence, speed at least 2.4 m/s). FIT field transformations: half-cadence and fractional cadence to full steps/min; raw step length /10,000 to metres; stance time /10 to milliseconds; vertical oscillation /100 to centimetres; vertical ratio /100 to percent. One-second-ish samples are not independent experiments and rounding does not imply instrument-level precision.
+
+| Work lap | Mean pace /mi | Mean steps/min | Mean step length | Mean ground contact | Vertical oscillation | Vertical ratio | Mean HR |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 1600 m, 5:59.548 | 5:59.5 | 178.2 | 1.50 m | 217.9 ms | 9.60 cm | 6.42% | 166.7 bpm |
+| 800 m 1, 2:52.741 | 5:47.5 | 178.5 | 1.55 m | 213.0 ms | 9.73 cm | 6.27% | 159.5 bpm |
+| 800 m 2, 2:57.231 | 5:56.6 | 177.8 | 1.50 m | 218.6 ms | 9.64 cm | 6.45% | 167.9 bpm |
+| 400 m 1, 1:22.290 | 5:31.1 | 182.3 | 1.62 m | 202.5 ms | 9.57 cm | 5.91% | 157.8 bpm |
+| 400 m 2, 1:22.056 | 5:30.2 | 181.9 | 1.61 m | 201.9 ms | 9.63 cm | 5.98% | 165.3 bpm |
+| 400 m 3, 1:22.423 | 5:31.6 | 181.1 | 1.61 m | 204.7 ms | 9.68 cm | 6.01% | 163.9 bpm |
+| 400 m 4, 1:26.740 | 5:49.0 | 179.3 | 1.55 m | 212.0 ms | 9.63 cm | 6.24% | 164.9 bpm |
+| **All 7 timed work laps** | **5:49** | **179.1** | **1.54 m** | **213.3 ms** | **9.64 cm** | **6.28%** | **164.6 bpm** |
+
+Work metrics are sampled device estimates, not lab-calibrated mechanics. All seven work laps supplied valid ground-contact and step-length sample data after filtering (approximately 1,012 moving samples). The FIT file did not provide usable left-right ground contact balance for this session; **do not infer symmetry**.
+
+**What is meaningful:** The first three 400 m reps show consistently quicker pace and a speed-dependent combination of longer measured step length (about 1.61 m versus 1.50 m in the mile), cadence about 182 versus 178 steps/min, and shorter ground contact (about 203 versus 218 ms). Faster running normally produces these changes, so these numbers are evidence of *how* speed was accessed on this day, not proof of improved efficiency. Oct 22 work-only sample means must not be compared directly with the Oct 18 entire track recording's 217 ms average GCT and 1.45 m stride length, where recovery and idle periods were included. Further matched-pace work across comparable days is needed.
+
+**Athlete context:** The first warm-up stride felt forced; work felt smooth. The last 400 was distracted, not reported as a physical fade. Heart rate was high despite smooth perceived mechanics, and the device reached 185 bpm in the full recorded session. Neither the last-lap values nor raw HR establish a biomechanical breakdown.
+
+**Ongoing run ID review:** See [Run Evidence Review Standard](RUN-EVIDENCE-REVIEW-STANDARD.md) for how supplied activity IDs are screened for lap pace, time-at-pace, stride/step length, cadence, ground contact time, vertical oscillation/ratio, cardiac cost and recovery. A Garmin activity ID can identify a summary record, but source-level mechanics and sample-accurate pace bins require the original FIT trace or a compatible detailed record. Unavailable fields remain unknown.
