@@ -3,7 +3,7 @@
 **Study:** FORM Human Performance Study 002  
 **Authored:** 22 October 2026  
 **Window:** Monday 26 October 2026 through Sunday 17 January 2027 (12 weeks)  
-**State:** Coach-authored **study plan / development blueprint**, not 12 weeks of published FORM Athlete System assignments. Phase 00 remains the live canonical plan until each coach-owned Week is separately authored, reviewed and published. Nothing here restores the sessions cancelled October 21.  
+**Live status (October 22):** Active in the FORM Athlete System with a separate **October 19–25 entry week**, followed by the original October 26–January 17 twelve-week speed progression. The app therefore shows **13 weeks including entry week** (Kevin's marathon-completion block shows 15 including entry). October 24 easy 5K is published for all five cohort athletes; later sessions begin October 26 on their original dates. Brice's former Phase 00 block remains archived. Future weeks remain coaching review references, not automatically published assignments.  
 **Context:** Left tibial shaft fracture April 2026 repaired with intramedullary nail. Reported good function and strong legs now, but tibial/load response and clinical return-to-speed clearance remain relevant. One good workout is not a substitute for these checks.
 
 ## The proposition
@@ -23,6 +23,12 @@ The eventual mile and 5K race abilities are more closely related on standard end
 ### The real October 22 starting point
 
 **Descent Into Ruin:** Garmin FIT recorded a 5:59.5 mile, 800 m in 2:52.7 / 2:57.2, 400 m in 1:22.3 / 1:22.1 / 1:22.4 / 1:26.7; fast work 2.99 mi in 17:23, about 5:49/mi excluding recoveries. Main work felt fluid and controlled, with a high recorded HR. The final 400 was interrupted by a late start and trying to film, not an evidenced fitness fade. Moving-work mechanics were about 1.54 m step length, 179 spm and 213 ms ground contact. This supports speed access in short / broken efforts, not continuous 5K or mile race readiness. The Saturday October 24 Alo easy 5K is the immediate recovery/social session.
+
+### Entry Week · October 19–25
+
+**Week 1 in FORM** is the shared entry period for Brice, Tinius, David Morales, Kevin Helle and Sam Reyes. Coach reports David, Kevin, Tinius and Brice attended the October 22 *Descent Into Ruin* practice; Sam did not. Only Brice's actual Garmin metrics have been verified in this study. The group attendance is recorded privately as coach-reported, not a copied FIT activity or a completed session. Saturday October 24 is an easy 5K at 8:00/mi or slower (4:58/km or slower for Tinius). **FORM Week 2 is the October 26–November 1 first speed-progression week**; all original workout dates remain intact.
+
+The Speed First development section below continues to number *development weeks* 1–12 to preserve its research sequence. Those correspond to **FORM app Weeks 2–13**. The app now has a current week before October 26, which the earlier forward-dated block lacked. An unclaimed invitation still prevents an athlete from reading their own feed; this change does not authenticate a user or upgrade an older app.
 
 ## Architecture: 12 weeks, three four-week acts
 
