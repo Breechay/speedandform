@@ -18,6 +18,14 @@
 - **Saturday:** A shared easy longer outing whenever suitable, initially about 6 mi (10 km for Tinius), not an automatic mileage ladder. Pace **8:00 per mile or slower**; in Tinius's native metric view, approximately **4:58/km or slower**. Conversation and easy effort still matter. The mile pace is a ceiling, not an obligation to run exactly 8:00.
 - **Other days:** Rest, cross-training, personalized strength. Typical experiment volume **20–30 miles/week**, not an enforced minimum, and not guaranteed from four workouts if the runner chooses fewer days.
 
+## Monday iRUN · Weekly actual-session backfill
+
+**Standing retrospective workflow, after each Monday:** iRUN's posted session is **not automatically the 40-minute easy independent FORM prescription**. Capture the real workout (reps, distances, recovery, pace intent), source/date/coach, attendance if actually confirmed, and each athlete's own completed execution when Garmin FIT or truthful feedback exists. A shared group template is not personal proof of completion. Record any mismatch between preauthored FORM Week and observed session as **planned vs executed**; preserve the original version and do not forge a retroactive session completion. Review Sunday Chassis or other Forge leg work and upcoming Thursday speed against actual iRUN effort. If iRUN's workout is known **before** Monday, coach authorizes an updated Monday prescription in FORM; do not stack a separate easy session on it. Future iRUN weeks cannot be automatically populated from this document without a real source (event workout post, coach log or recorded FIT).
+
+**Baseline backfill, Oct 19:** Garmin activity **24784881231** from previously supplied FIT files, analyzed in `rebuilt_athlete_2026-10-19_evidence.md` and `rebuilt_athlete_lap_evidence.csv`: **8 × approximately 800 m**, recorded Garmin laps 0.50–0.52 mi. Rep times **3:22, 3:09, 3:04, 3:09, 3:09, 3:05, 3:07, 3:10**; 4.07 mi work in 25:16 at approximately 6:12/mi, recoveries 85–96 seconds, session max HR185. Jacob and Quinn are athlete-reported group context, not names inferred from the FIT. Original Oct 19 FORM planned session **4 × 4 min** remains recorded separately. Per-rep GCT and stride length are not in the preserved lap CSV. **No new completion receipt was created**.
+
+**Reusable 5K cycle label:** **THE FIVE · Speed First** (12-week progression plus a separately managed entry week). Keep session/event names (e.g. Descent Into Ruin, The Fifth Circle) separate from the overall cycle name.
+
 ## Paired strength coordination
 
 For Brice, Tinius and Kevin, every FORM running prescription change requires review of the same athlete's Forge strength prescription, and every Forge change requires review of the active/forming FORM week. The [standing cross-app rule](https://github.com/Breechay/FORM-iOS/blob/main/docs/FORM_FORGE_COUPLED_TRAINING_REVIEW_20261022.md) records the known conflicts and proposed adjustments.
